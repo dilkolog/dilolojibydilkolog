@@ -10,8 +10,9 @@ import type { KelimeDB } from '../data/db'
 import { wordKeys } from '../data/wordInput'
 import { ERROR_NAME, POS_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { relativeTime } from './format'
-import { canSpeak, speak } from './speech'
+import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
+import { WordMedia } from './WordMedia'
 
 interface Props {
   db: KelimeDB
@@ -76,7 +77,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         <div className="row">
           <h1 className="word">{displayForm(entry)}</h1>
           {canSpeak() && (
-            <button className="speak" onClick={() => speak(displayForm(entry), entry.language)} aria-label="Sesli dinle">
+            <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                 <path d="M11 5 6 9H2v6h4l5 4V5z" />
                 <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
@@ -104,6 +105,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           </button>
         </div>
       </section>
+
+      <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
 
       {(entry.alternativeForms?.length ?? 0) > 0 && (
         <section className="section stack">

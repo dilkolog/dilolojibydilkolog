@@ -6,7 +6,6 @@ import { answeredToday, progressStats, studyStreak } from './engine/progress'
 import { buildMistakePlan, buildPracticePlan } from './engine/practice'
 import { nextReviewAt } from './engine/review'
 import { createRng } from './engine/rng'
-import { createScheduler } from './engine/scheduler'
 import type { SessionSummary } from './engine/session'
 import {
   TARGET_LANGUAGES,
@@ -17,7 +16,8 @@ import {
   type UserWordState,
   type VocabularyEntry,
 } from './engine/types'
-import { KelimeDB, type Settings } from './data/db'
+import { db, scheduler } from './data/instance'
+import type { Settings } from './data/db'
 import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GearIcon, HomeIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { AiContext } from './ui/aiContext'
@@ -28,8 +28,6 @@ import { SessionScreen } from './ui/Session'
 import { WordDetail } from './ui/WordDetail'
 import { WordsScreen } from './ui/Words'
 
-const db = new KelimeDB()
-const scheduler = createScheduler()
 
 type Screen =
   | { name: 'home' }
@@ -235,6 +233,7 @@ export default function App() {
             language={data.language}
             vocabulary={data.vocabulary}
             states={data.states}
+            mistakes={data.mistakes}
             onChanged={reload}
             onOpen={(entryId) => setScreen({ name: 'word', entryId })}
           />

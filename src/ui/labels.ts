@@ -77,4 +77,5 @@ export const PROMPT_TEXT: Record<string, string> = {
   word_form: 'Bu biçimi yaz',
   listen_type: 'Duyduğunu yaz',
   free_sentence: 'Kendi cümleni kur',
+  picture_choice: 'Bu resim hangi kelime?',
 }

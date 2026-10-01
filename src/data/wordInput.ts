@@ -33,6 +33,10 @@ export interface WordInput {
   collocations?: string
   /** Lemmas of words this one is easily confused with (same language). */
   confusables?: string
+  /** Personal note / mnemonic. */
+  notes?: string
+  /** Comma-separated labels, e.g. "iş, seyahat". */
+  tags?: string
 }
 
 export class WordInputError extends Error {}
@@ -135,7 +139,8 @@ export function createEntry(
     collocations: parseCollocations(input.collocations),
     relations,
     wordFamily: [],
-    tags: [],
+    tags: splitList(input.tags, /,/),
+    notes: input.notes?.trim() || undefined,
     source,
     addedAt: now,
   }
@@ -257,6 +262,8 @@ export function entryToInput(entry: VocabularyEntry): WordInput {
       .filter((r) => r.type === 'confusable')
       .map((r) => r.targetId.slice(r.targetId.indexOf(':') + 1))
       .join(', '),
+    notes: entry.notes ?? '',
+    tags: entry.tags.join(', '),
   }
 }
 
@@ -287,6 +294,8 @@ export function updateEntry(existing: VocabularyEntry, input: WordInput): Vocabu
     ],
     collocations: edited.collocations,
     relations: [...existing.relations.filter((r) => r.type !== 'confusable'), ...edited.relations],
+    notes: edited.notes,
+    tags: edited.tags,
   }
 }
 

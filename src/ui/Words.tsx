@@ -1,14 +1,17 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { displayForm } from '../engine/exercises'
+import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
-import type { Gender, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { createEntry, entryToInput, IMPORT_COLUMNS, importWords, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
+import { ImagePicker, type PickedImage } from './ImagePicker'
 import { Select } from './Select'
+import { useMediaUrl } from './useMedia'
 import { TextImport } from './TextImport'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 
@@ -17,23 +20,17 @@ interface Props {
   language: TargetLanguage
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
+  mistakes: Mistake[]
   onChanged: () => void
   onOpen: (entryId: string) => void
 }
 
-export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpen }: Props) {
-  const [query, setQuery] = useState('')
+export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
 
-  const list = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    return [...vocabulary]
-      .filter((v) => !q || v.lemma.toLowerCase().includes(q) || v.senses[0].gloss.toLowerCase().includes(q))
-      .sort((a, b) => (b.addedAt?.getTime() ?? 0) - (a.addedAt?.getTime() ?? 0) || a.lemma.localeCompare(b.lemma))
-  }, [vocabulary, query])
 
   const loadSamples = async () => {
     await db.vocabulary.bulkPut(SAMPLE_WORDS[language].filter((w) => !ids.has(w.id)))
@@ -70,48 +67,7 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpe
         </div>
       </section>
 
-      <section className="section stack">
-        <div className="row">
-          <h2 className="section-title" style={{ marginRight: 'auto' }}>
-            Liste <span className="muted small">({vocabulary.length})</span>
-          </h2>
-          <input
-            className="input"
-            style={{ maxWidth: '16rem' }}
-            placeholder="Ara"
-            aria-label="Kelime ara"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        </div>
-        {vocabulary.length === 0 ? (
-          <p className="muted">Henüz kelime yok. Yukarıdan ekleyebilir ya da bir liste yapıştırabilirsin.</p>
-        ) : (
-          <ul className="word-list">
-            {list.map((v) => {
-              const st = stateById.get(v.id)
-              return (
-                <li key={v.id}>
-                  <button className="w word-link" onClick={() => onOpen(v.id)}>
-                    {displayForm(v)}
-                  </button>
-                  {st ? (
-                    <span className={`pill stage-${MASTERY_STAGES.indexOf(masteryStage(st))}`}>{STAGE_NAME[masteryStage(st)]}</span>
-                  ) : (
-                    <span className="pill">Sırada</span>
-                  )}
-                  <span className="meta">
-                    {v.senses[0].gloss}
-                    {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
-                    {v.source === 'sample' && ' (örnek)'}
-                    {v.senses[0].examples.length === 0 && '. Örnek cümle yok'}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
-        )}
-      </section>
+      <WordList vocabulary={vocabulary} stateById={stateById} mistakes={mistakes} onOpen={onOpen} />
     </div>
   )
 }
@@ -170,6 +126,9 @@ export function WordForm({
   const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
   const { apiKey } = useAi()
   const [filling, setFilling] = useState(false)
+  // A picture chosen before the word is saved (new words only; existing words edit it in detail).
+  const [image, setImage] = useState<(PickedImage & { url: string }) | null>(null)
+  const [picking, setPicking] = useState(false)
 
   /** Asks the AI for the word's data and fills only the fields the user left empty. */
   const fillWithAi = async () => {
@@ -207,10 +166,15 @@ export function WordForm({
       if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
         throw new WordInputError(`"${saved.lemma}" zaten listende.`)
       }
+      if (image) {
+        saved.imageId = await db.addMedia('image', image.blob)
+        saved.imageCredit = image.credit
+      }
       await db.vocabulary.put(saved)
       if (!entry) {
         setAdded(saved.lemma)
         setForm(EMPTY)
+        setImage(null)
         document.getElementById('w-word')?.focus()
       }
       onSaved(saved)
@@ -275,9 +239,48 @@ export function WordForm({
           <label htmlFor="w-ext">Örnek cümlenin çevirisi</label>
           <input id="w-ext" className="input" value={form.exampleTranslation ?? ''} onChange={set('exampleTranslation')} />
         </div>
+        {!entry && (
+          <div className="row">
+            {image ? (
+              <>
+                <img className="thumb" src={image.url} alt="" />
+                <button type="button" className="link small" onClick={() => setPicking(true)}>
+                  Görseli değiştir
+                </button>
+                <button type="button" className="link small" onClick={() => setImage(null)}>
+                  Kaldır
+                </button>
+              </>
+            ) : (
+              <button type="button" className="btn btn-quiet" onClick={() => setPicking(true)} disabled={!form.word.trim()}>
+                🖼️ Görsel ekle
+              </button>
+            )}
+          </div>
+        )}
+        {picking && (
+          <ImagePicker
+            initialQuery={splitArticle(normalize(form.word), language).rest}
+            suggestions={form.meaning.split(/,|\//).map((m) => m.trim()).filter(Boolean)}
+            onClose={() => setPicking(false)}
+            onPick={(img) => {
+              setImage({ ...img, url: URL.createObjectURL(img.blob) })
+              setPicking(false)
+            }}
+          />
+        )}
         <details>
-          <summary className="small">Daha fazla: kalıplar ve karıştırılan kelimeler</summary>
+          <summary className="small">Daha fazla: not, etiketler, kalıplar ve karıştırılan kelimeler</summary>
           <div className="stack">
+            <div className="field">
+              <label htmlFor="w-note">Not / hafıza ipucu</label>
+              <input id="w-note" className="input" value={form.notes ?? ''} onChange={set('notes')} placeholder="Nerede gördün, neye benziyor…" />
+            </div>
+            <div className="field">
+              <label htmlFor="w-tags">Etiketler</label>
+              <input id="w-tags" className="input" value={form.tags ?? ''} onChange={set('tags')} placeholder="iş, seyahat, dizi" />
+              <span className="help">Virgülle ayır; kelime listesinde etikete göre filtreleyebilirsin.</span>
+            </div>
             <div className="field">
               <label htmlFor="w-col">Kalıplar (collocation)</label>
               <textarea
@@ -415,5 +418,172 @@ function ImportPanel({
         )}
       </div>
     </details>
+  )
+}
+
+// ---------------------------------------------------------------------------
+
+type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes'
+type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest'
+
+const STAGE_FILTERS: [StageFilter, string][] = [
+  ['all', 'Hepsi'],
+  ['waiting', 'Sırada'],
+  ['learning', 'Öğreniliyor'],
+  ['strong', 'Sağlam'],
+  ['mastered', 'Oturdu'],
+  ['mistakes', 'Hatalı'],
+]
+
+function WordThumb({ id }: { id?: string }) {
+  const url = useMediaUrl(id)
+  return url ? <img className="thumb" src={url} alt="" /> : null
+}
+
+/** Searchable, filterable word list. */
+function WordList({
+  vocabulary,
+  stateById,
+  mistakes,
+  onOpen,
+}: {
+  vocabulary: VocabularyEntry[]
+  stateById: Map<string, UserWordState>
+  mistakes: Mistake[]
+  onOpen: (id: string) => void
+}) {
+  const [query, setQuery] = useState('')
+  const [stage, setStage] = useState<StageFilter>('all')
+  const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean }>({})
+  const [tag, setTag] = useState('')
+  const [sort, setSort] = useState<Sort>('newest')
+
+  const withMistakes = useMemo(() => new Set(mistakes.filter((m) => !m.resolved).map((m) => m.entryId)), [mistakes])
+  const tags = useMemo(() => [...new Set(vocabulary.flatMap((v) => v.tags))].sort((a, b) => a.localeCompare(b, 'tr')), [vocabulary])
+  const stageIndex = (v: VocabularyEntry) => {
+    const st = stateById.get(v.id)
+    return st ? MASTERY_STAGES.indexOf(masteryStage(st)) : -1
+  }
+
+  const list = useMemo(() => {
+    const q = query.trim().toLocaleLowerCase('tr')
+    const match = (v: VocabularyEntry) => {
+      if (q && ![v.lemma, v.senses[0].gloss, ...(v.senses[0].altGlosses ?? []), v.notes ?? ''].some((t) => t.toLocaleLowerCase('tr').includes(q))) return false
+      const i = stageIndex(v)
+      if (stage === 'waiting' && i !== -1) return false
+      if (stage === 'learning' && !(i >= 0 && i <= 2)) return false
+      if (stage === 'strong' && !(i === 3 || i === 4)) return false
+      if (stage === 'mastered' && i !== 5) return false
+      if (stage === 'mistakes' && !withMistakes.has(v.id)) return false
+      if (flags.picture && !v.imageId) return false
+      if (flags.audio && !v.audioId) return false
+      if (flags.noExample && v.senses[0].examples.length > 0) return false
+      if (tag && !v.tags.includes(tag)) return false
+      return true
+    }
+    const by: Record<Sort, (a: VocabularyEntry, b: VocabularyEntry) => number> = {
+      newest: (a, b) => (b.addedAt?.getTime() ?? 0) - (a.addedAt?.getTime() ?? 0) || a.lemma.localeCompare(b.lemma),
+      alpha: (a, b) => a.lemma.localeCompare(b.lemma, 'tr'),
+      weakest: (a, b) => stageIndex(a) - stageIndex(b) || (stateById.get(b.id)?.stats.wrong ?? 0) - (stateById.get(a.id)?.stats.wrong ?? 0),
+      strongest: (a, b) => stageIndex(b) - stageIndex(a),
+    }
+    return vocabulary.filter(match).sort(by[sort])
+  }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])
+
+  const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
+
+  return (
+    <section className="section stack">
+      <h2 className="section-title">
+        Liste <span className="muted small">({list.length === vocabulary.length ? vocabulary.length : `${list.length} / ${vocabulary.length}`})</span>
+      </h2>
+      {vocabulary.length === 0 ? (
+        <p className="muted">Henüz kelime yok. Yukarıdan ekleyebilir ya da bir liste yapıştırabilirsin.</p>
+      ) : (
+        <>
+          <div className="toolbar">
+            <div className="search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input className="input" placeholder="Kelime, anlam ya da not ara" aria-label="Kelime ara" value={query} onChange={(e) => setQuery(e.target.value)} />
+            </div>
+            <div className="toolbar-sort">
+              <Select<Sort>
+                label="Sırala"
+                value={sort}
+                onChange={setSort}
+                options={[
+                  { value: 'newest', label: 'En yeni' },
+                  { value: 'alpha', label: 'Alfabetik' },
+                  { value: 'weakest', label: 'En zayıf önce' },
+                  { value: 'strongest', label: 'En güçlü önce' },
+                ]}
+              />
+            </div>
+          </div>
+          <div className="choice-row">
+            {STAGE_FILTERS.map(([v, label]) => (
+              <button key={v} className="chip chip-sm" aria-pressed={stage === v} onClick={() => setStage(v)}>
+                {label}
+              </button>
+            ))}
+            <span className="chip-sep" aria-hidden />
+            <button className="chip chip-sm" aria-pressed={!!flags.picture} onClick={() => toggle('picture')}>
+              🖼️ Resimli
+            </button>
+            <button className="chip chip-sm" aria-pressed={!!flags.audio} onClick={() => toggle('audio')}>
+              🎙️ Sesli
+            </button>
+            <button className="chip chip-sm" aria-pressed={!!flags.noExample} onClick={() => toggle('noExample')}>
+              Örneksiz
+            </button>
+            {tags.length > 0 && (
+              <div style={{ minWidth: '10rem' }}>
+                <Select
+                  label="Etiket"
+                  value={tag || '__all'}
+                  onChange={(v) => setTag(v === '__all' ? '' : v)}
+                  options={[{ value: '__all', label: 'Tüm etiketler' }, ...tags.map((t) => ({ value: t, label: `#${t}` }))]}
+                />
+              </div>
+            )}
+          </div>
+          {list.length === 0 ? (
+            <p className="muted">Bu filtrelere uyan kelime yok.</p>
+          ) : (
+            <ul className="word-list">
+              {list.map((v) => {
+                const st = stateById.get(v.id)
+                return (
+                  <li key={v.id}>
+                    <button className="word-row" onClick={() => onOpen(v.id)}>
+                      <WordThumb id={v.imageId} />
+                      <span className="word-row-text">
+                        <span className="w">{displayForm(v)}</span>
+                        <span className="meta">
+                          {v.senses[0].gloss}
+                          {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
+                          {v.source === 'sample' && ' (örnek)'}
+                          {v.audioId && ' · 🎙️'}
+                          {v.tags.length > 0 && ` · ${v.tags.map((t) => `#${t}`).join(' ')}`}
+                        </span>
+                      </span>
+                      {withMistakes.has(v.id) && <span className="pill" style={{ background: 'var(--bad-soft)', color: 'var(--bad-text)' }}>hata</span>}
+                      {st ? (
+                        <span className={`pill stage-${MASTERY_STAGES.indexOf(masteryStage(st))}`}>{STAGE_NAME[masteryStage(st)]}</span>
+                      ) : (
+                        <span className="pill">Sırada</span>
+                      )}
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </>
+      )}
+    </section>
   )
 }

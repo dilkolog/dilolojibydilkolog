@@ -90,3 +90,22 @@ describe('replaceReview', () => {
     expect((await db.wordStates.get(entry.id))!.stats.correct).toBe(1)
   })
 })
+
+describe('media', () => {
+  it('is stored, included in backups as data URLs, restored, and deleted with its word', async () => {
+    const { db, entry } = await seeded('t-media')
+    const imageId = await db.addMedia('image', new Blob(['png-bytes'], { type: 'image/png' }))
+    await db.vocabulary.put({ ...entry, imageId })
+    const json = await exportBackup(db, NOW)
+    expect(json).toContain('data:image/png;base64,')
+
+    const other = new KelimeDB('t-media-restore')
+    await restoreBackup(other, parseBackup(json))
+    const restored = await other.media.get(imageId)
+    expect(restored?.kind).toBe('image')
+    expect(await restored!.blob.text()).toBe('png-bytes')
+
+    await other.deleteWord(entry.id)
+    expect(await other.media.count()).toBe(0)
+  })
+})

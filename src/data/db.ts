@@ -28,6 +28,14 @@ interface MetaRow {
   value: unknown
 }
 
+/** A picture or a recording attached to a word. Stored as a Blob so it works offline. */
+export interface MediaRow {
+  id: string
+  kind: 'image' | 'audio'
+  blob: Blob
+  createdAt: Date
+}
+
 /**
  * Everything lives on this device (IndexedDB) so practice works offline. JSON export/import
  * is the backup and the way to move data between computer and phone.
@@ -38,6 +46,7 @@ export class KelimeDB extends Dexie {
   events!: Table<ReviewEvent, string>
   mistakes!: Table<Mistake, string>
   meta!: Table<MetaRow, string>
+  media!: Table<MediaRow, string>
 
   constructor(name = 'kelime-koc') {
     super(name)
@@ -48,6 +57,13 @@ export class KelimeDB extends Dexie {
       mistakes: 'id, entryId',
       meta: 'key',
     })
+    this.version(2).stores({ media: 'id, kind' })
+  }
+
+  async addMedia(kind: MediaRow['kind'], blob: Blob): Promise<string> {
+    const id = crypto.randomUUID()
+    await this.media.add({ id, kind, blob, createdAt: new Date() })
+    return id
   }
 
   async getSettings(): Promise<Settings | undefined> {
@@ -113,9 +129,12 @@ export class KelimeDB extends Dexie {
     })
   }
 
-  /** Deleting a word also deletes what was learned about it. */
+  /** Deleting a word also deletes what was learned about it, and its picture/recording. */
   deleteWord(id: string) {
-    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes], async () => {
+    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media], async () => {
+      const entry = await this.vocabulary.get(id)
+      const media = [entry?.imageId, entry?.audioId].filter((m): m is string => !!m)
+      if (media.length) await this.media.bulkDelete(media)
       await this.vocabulary.delete(id)
       await this.wordStates.delete(id)
       await this.events.where('entryId').equals(id).delete()
@@ -128,7 +147,8 @@ export class KelimeDB extends Dexie {
 // Backup
 // ---------------------------------------------------------------------------
 
-export const BACKUP_VERSION = 1
+/** v2 adds media (pictures/recordings) as data URLs. v1 backups still restore. */
+export const BACKUP_VERSION = 2
 
 export interface Backup {
   app: 'kelime-koc'
@@ -139,6 +159,22 @@ export interface Backup {
   wordStates: UserWordState[]
   events: ReviewEvent[]
   mistakes: Mistake[]
+  media?: { id: string; kind: MediaRow['kind']; dataUrl: string; createdAt: string }[]
+}
+
+async function blobToDataUrl(blob: Blob): Promise<string> {
+  const bytes = new Uint8Array(await blob.arrayBuffer())
+  let binary = ''
+  // Chunked so large recordings don't overflow the argument limit of fromCharCode.
+  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+  return `data:${blob.type || 'application/octet-stream'};base64,${btoa(binary)}`
+}
+
+async function dataUrlToBlob(url: string): Promise<Blob> {
+  const [head, data] = url.split(',', 2)
+  const mime = head.match(/data:([^;]+)/)?.[1] ?? 'application/octet-stream'
+  const bytes = Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
+  return new Blob([bytes], { type: mime })
 }
 
 export async function exportBackup(db: KelimeDB, now = new Date()): Promise<string> {
@@ -151,6 +187,14 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     wordStates: await db.wordStates.toArray(),
     events: await db.events.toArray(),
     mistakes: await db.mistakes.toArray(),
+    media: await Promise.all(
+      (await db.media.toArray()).map(async (m) => ({
+        id: m.id,
+        kind: m.kind,
+        dataUrl: await blobToDataUrl(m.blob),
+        createdAt: m.createdAt.toISOString(),
+      })),
+    ),
   }
   return JSON.stringify(backup)
 }
@@ -173,8 +217,13 @@ export function parseBackup(json: string): Backup {
 
 /** Replaces everything on this device with the backup. */
 export async function restoreBackup(db: KelimeDB, backup: Backup) {
-  await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta], async () => {
-    await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear()])
+  // Decode media before the transaction: IndexedDB transactions close on unrelated awaits.
+  const media = await Promise.all(
+    (backup.media ?? []).map(async (m) => ({ id: m.id, kind: m.kind, blob: await dataUrlToBlob(m.dataUrl), createdAt: new Date(m.createdAt) })),
+  )
+  await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media], async () => {
+    await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.media.clear()])
+    await db.media.bulkPut(media)
     await db.vocabulary.bulkPut(backup.vocabulary)
     await db.wordStates.bulkPut(backup.wordStates)
     await db.events.bulkPut(backup.events)

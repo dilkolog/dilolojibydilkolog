@@ -35,7 +35,8 @@ import { AiError, evaluateSentence } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon } from './icons'
-import { canSpeak, speak } from './speech'
+import { canSpeak, playWord, speak, speechPrefs } from './speech'
+import { useMediaUrl } from './useMedia'
 
 interface Props {
   items: PlanItem[]
@@ -235,7 +236,7 @@ export function SessionScreen(p: Props) {
 
 function SpeakButton({ text, entry, big, auto }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean }) {
   useEffect(() => {
-    if (auto) speak(text, entry.language)
+    if (auto) playWord(entry, text)
   }, [auto, text, entry.language])
 
   // Alt+S anywhere, or Space when not typing, replays the audio.
@@ -245,7 +246,7 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
       const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
       if ((e.altKey && e.code === 'KeyS') || (e.code === 'Space' && !typing && !(e.target instanceof HTMLButtonElement))) {
         e.preventDefault()
-        speak(text, entry.language)
+        playWord(entry, text)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -256,7 +257,7 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
     <button
       type="button"
       className={big ? 'speak speak-big' : 'speak'}
-      onClick={() => speak(text, entry.language)}
+      onClick={() => playWord(entry, text)}
       aria-label="Sesli dinle"
     >
       <SpeakerIcon size={big ? 36 : 22} />
@@ -305,6 +306,7 @@ function Intro({ entry, onContinue, onKnown }: { entry: VocabularyEntry; onConti
   const sense = entry.senses[0]
   const example = sense.examples[0]
   const btn = useRef<HTMLButtonElement>(null)
+  const imageUrl = useMediaUrl(entry.imageId)
   useEffect(() => btn.current?.focus(), [])
   return (
     <div>
@@ -317,12 +319,14 @@ function Intro({ entry, onContinue, onKnown }: { entry: VocabularyEntry; onConti
           <Word entry={entry} />
           <SpeakButton text={displayForm(entry)} entry={entry} auto />
         </div>
+        {imageUrl && <img className="word-image" src={imageUrl} alt="" />}
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        {entry.notes && <p className="note">💡 {entry.notes}</p>}
         {example && (
           <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
             <Sentence text={example.text} translation={example.translation} />
             {canSpeak() && (
-              <button className="icon-btn" onClick={() => speak(example.text, entry.language, 0.85)} aria-label="Cümleyi dinle">
+              <button className="icon-btn" onClick={() => speak(example.text, entry.language, speechPrefs.rate * 0.95)} aria-label="Cümleyi dinle">
                 <SpeakerIcon size={20} />
               </button>
             )}
@@ -378,7 +382,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
     const log = await onAnswer(ev, ms, hintsUsed, maxHints)
     setResult({ ev, log, chosen })
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
-    speak(displayForm(entry), entry.language)
+    playWord(entry)
   }
 
   /** Free sentences are graded by the AI; time is measured up to submission, not the network wait. */
@@ -477,6 +481,8 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     case 'discriminate':
     case 'cloze_typed':
       return <Sentence text={exercise.context!} translation={exercise.contextTranslation} />
+    case 'picture_choice':
+      return <PictureFrame id={exercise.imageId} />
     case 'free_sentence':
       return (
         <div className="stack">
@@ -492,6 +498,11 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     default:
       return <p className="prompt-text">{exercise.prompt}</p>
   }
+}
+
+function PictureFrame({ id }: { id?: string }) {
+  const url = useMediaUrl(id)
+  return url ? <img className="word-image" src={url} alt="Kelimenin görseli" /> : <div className="word-image" style={{ height: '12rem', background: 'var(--surface-2)' }} />
 }
 
 function Choices({
@@ -662,6 +673,7 @@ function Feedback({
           </p>
           {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
+          {ev.verdict !== 'correct' && entry.notes && <p className="small">💡 {entry.notes}</p>}
           <p className="small muted">
             {displayForm(entry)}: {entry.senses[0].gloss}
           </p>
