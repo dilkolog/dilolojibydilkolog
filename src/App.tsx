@@ -18,6 +18,7 @@ import {
 } from './engine/types'
 import { db, scheduler } from './data/instance'
 import type { Settings } from './data/db'
+import { fillFrequencyRanks } from './data/frequency'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
@@ -136,6 +137,11 @@ export default function App() {
     const [loaded, recentEvents, g] = await Promise.all([db.loadLanguage(language), db.eventsSince(since), loadGame(db)])
     setData({ language, ...loaded, recentEvents })
     setGame(g)
+    // New words without a frequency band get one from the bundled list, in the background.
+    if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
+      const filled = await fillFrequencyRanks(db, language)
+      if (filled) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    }
   }, [language])
 
   useEffect(() => {

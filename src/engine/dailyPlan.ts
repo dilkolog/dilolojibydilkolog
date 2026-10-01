@@ -158,8 +158,8 @@ export function newWordCandidates(input: PlanInput, limit: number): VocabularyEn
   const { catalog, states, now } = input
   const pool = unintroduced(input)
   const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
-  // Unknown frequency (0) sorts after every known band.
-  const rank = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : Infinity)
+  // Words outside the frequency list (negative) come after listed ones; unknown (0) last.
+  const rank = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : e.frequencyRank < 0 ? 1e6 : 2e6)
   const own = pool
     .filter((e) => e.source !== 'sample')
     .sort((a, b) => (input.settings.frequencyFirst ? rank(a) - rank(b) : 0) || added(a) - added(b))

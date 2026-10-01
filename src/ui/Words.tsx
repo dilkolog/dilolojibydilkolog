@@ -5,6 +5,7 @@ import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
+import { loadFrequency, rankOf, UNRANKED } from '../data/frequency'
 import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
@@ -167,6 +168,9 @@ const EXAMPLES: Record<TargetLanguage, { collocation: string; confusable: string
   },
 }
 
+/** Sort key for frequency: known ranks first, then words rarer than the list, then unknown. */
+const freqKey = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : e.frequencyRank < 0 ? 1e6 : 2e6)
+
 const splitTags = (s?: string) => (s ?? '').split(',').map((t) => t.trim()).filter(Boolean)
 
 const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslation: '', collocations: '', confusables: '' }
@@ -210,6 +214,22 @@ export function WordForm({
   const [aiPos, setAiPos] = useState<{ word: string; pos: PartOfSpeech } | null>(null)
   const autoPos = aiPos && aiPos.word === form.word.trim() ? aiPos.pos : guessPartOfSpeech(form.word, language)
   const [moreOpen, setMoreOpen] = useState(false)
+  // Frequency band looked up from the bundled list as the word is typed.
+  const [autoRank, setAutoRank] = useState(0)
+  useEffect(() => {
+    const word = form.word.trim()
+    if (!word) return
+    let live = true
+    loadFrequency(language).then((list) => {
+      if (!live) return
+      const { article, rest } = splitArticle(normalize(word).toLocaleLowerCase(language), language)
+      setAutoRank(rankOf({ language, lemma: article && rest ? rest : word, partOfSpeech: posManual ? (form.partOfSpeech ?? 'other') : (autoPos ?? 'other') }, list))
+    })
+    return () => {
+      live = false
+    }
+  }, [form.word, form.partOfSpeech, posManual, autoPos, language])
+  const autoBand = form.word.trim() ? bandOf(autoRank) : undefined
   // Which single-field AI request is running ('more' = notes + tags + collocations together).
   const [suggesting, setSuggesting] = useState<SuggestField | 'more' | null>(null)
   const [aiError, setAiError] = useState<{ at: SuggestField | 'more'; message: string } | null>(null)
@@ -304,7 +324,8 @@ export function WordForm({
         exampleTranslation: f.exampleTranslation?.trim() ? f.exampleTranslation : ai.exampleTranslation,
         collocations: f.collocations?.trim() ? f.collocations : ai.collocations,
         confusables: f.confusables?.trim() ? f.confusables : ai.confusables,
-        frequencyRank: f.frequencyRank || ai.frequencyRank,
+        // The frequency list is measured data; the AI's band is only a fallback for words it lacks.
+        frequencyRank: f.frequencyRank || (autoRank === 0 || autoRank === UNRANKED ? ai.frequencyRank : 0),
       }))
       setAiPos({ word: ai.word.trim(), pos: ai.partOfSpeech })
     } catch (err) {
@@ -474,10 +495,13 @@ export function WordForm({
                 id="w-freq"
                 label="Sıklık"
                 value={bandOf(form.frequencyRank)?.id ?? 'unknown'}
-                options={[{ value: 'unknown', label: 'Bilinmiyor' }, ...FREQUENCY_BANDS.map((b) => ({ value: b.id, label: b.label }))]}
+                options={[{ value: 'unknown', label: autoBand ? `Otomatik: ${autoBand.label}` : 'Otomatik' }, ...FREQUENCY_BANDS.map((b) => ({ value: b.id, label: b.label }))]}
                 onChange={(v) => setForm((f) => ({ ...f, frequencyRank: FREQUENCY_BANDS.find((b) => b.id === v)?.rank ?? 0 }))}
               />
-              <span className="help">Sık kelimeler daha çok işe yarar; Ayarlar'dan yeni kelimeleri sık olanlardan başlatabilirsin. "AI ile doldur" bunu da tahmin eder.</span>
+              <span className="help">
+                Otomatik değer, alt yazılardan derlenmiş sıklık listesinden gelir (OpenSubtitles, 20.000 kelime). Sık kelimeler daha çok işe yarar; Ayarlar'dan yeni
+                kelimeleri sık olanlardan başlatabilirsin.
+              </span>
             </div>
             <div className="field">
               <div className="field-head">
@@ -608,7 +632,7 @@ function WordList({
       alpha: (a, b) => a.lemma.localeCompare(b.lemma, 'tr'),
       weakest: (a, b) => stageIndex(a) - stageIndex(b) || (stateById.get(b.id)?.stats.wrong ?? 0) - (stateById.get(a.id)?.stats.wrong ?? 0),
       strongest: (a, b) => stageIndex(b) - stageIndex(a),
-      frequent: (a, b) => (a.frequencyRank || Infinity) - (b.frequencyRank || Infinity) || a.lemma.localeCompare(b.lemma, 'tr'),
+      frequent: (a, b) => freqKey(a) - freqKey(b) || a.lemma.localeCompare(b.lemma, 'tr'),
     }
     return vocabulary.filter(match).sort(by[sort])
   }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])

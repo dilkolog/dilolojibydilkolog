@@ -48,17 +48,22 @@ export class WordInputError extends Error {}
  * band is shown with each word and can order new words. A band is stored as a representative rank.
  */
 export const FREQUENCY_BANDS = [
-  { id: 'top1000', label: 'Çok sık (ilk 1000)', short: 'ilk 1000', rank: 500 },
-  { id: 'top3000', label: 'Sık (ilk 3000)', short: 'ilk 3000', rank: 2000 },
-  { id: 'top10000', label: 'Orta (ilk 10.000)', short: 'ilk 10.000', rank: 6000 },
-  { id: 'rare', label: 'Nadir', short: 'nadir', rank: 20000 },
+  { id: 'top1000', label: 'Çok sık (ilk 1000)', short: 'ilk 1000', rank: 500, max: 1000 },
+  { id: 'top3000', label: 'Sık (ilk 3000)', short: 'ilk 3000', rank: 2000, max: 3000 },
+  { id: 'top10000', label: 'Orta (ilk 10.000)', short: 'ilk 10.000', rank: 6000, max: 10000 },
+  { id: 'rare', label: 'Nadir', short: 'nadir', rank: 20000, max: Infinity },
 ] as const
 
 export type FrequencyBand = (typeof FREQUENCY_BANDS)[number]['id']
 
+/**
+ * Band of a rank. 0 = not looked up yet; -1 = not in the frequency list (rarer than its 20 000
+ * words); -2 = can't be ranked (a phrase).
+ */
 export function bandOf(rank: number | undefined): (typeof FREQUENCY_BANDS)[number] | undefined {
-  if (!rank) return undefined
-  return FREQUENCY_BANDS.find((b) => rank <= b.rank * 1.5) ?? FREQUENCY_BANDS[3]
+  if (!rank || rank < -1) return undefined
+  if (rank === -1) return FREQUENCY_BANDS[3]
+  return FREQUENCY_BANDS.find((b) => rank <= b.max)
 }
 
 const GENDER_BY_ARTICLE: Record<string, Gender> = { le: 'm', un: 'm', el: 'm', la: 'f', une: 'f', una: 'f' }

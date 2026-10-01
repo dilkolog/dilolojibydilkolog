@@ -119,5 +119,4 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 4. AI gerektirenler (geri anlatım, ters çeviri) yazıldı; anahtar girilince uçtan uca denenecek.
 
 ## Açık kalanlar
-- Sıklık bandı şu an elle ya da "AI ile doldur" ile belirleniyor. Hazır bir sıklık listesi (ör. OpenSubtitles tabanlı) indirilirse otomatik olur; indirme için onay gerekiyor.
 - EN için fiil çekimi yok (düzensiz geçmiş zaman listesi eklenebilir).

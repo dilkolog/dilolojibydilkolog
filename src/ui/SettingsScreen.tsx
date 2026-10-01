@@ -172,7 +172,7 @@ export function SettingsScreen({
         </Row>
         <Toggle
           label="Yeni kelimeleri sık olanlardan başlat"
-          help="Açıkken eklediğin kelimeler eklenme sırası yerine sıklık bandına göre tanıtılır (önce ilk 1000). Sıklığı bilinmeyenler sona kalır."
+          help="Açıkken eklediğin kelimeler eklenme sırası yerine sıklığa göre tanıtılır (önce en sık olanlar). Sıklık verisi: FrequencyWords (Hermit Dave), OpenSubtitles 2018, CC BY-SA 4.0."
           checked={settings.frequencyFirst}
           onChange={(v) => set('frequencyFirst', v)}
         />
