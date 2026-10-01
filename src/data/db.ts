@@ -10,6 +10,15 @@ import {
   type VocabularyEntry,
 } from '../engine/types'
 
+export interface VocabTestRecord {
+  language: TargetLanguage
+  /** ISO date. */
+  at: string
+  estimate: number
+  falseAlarms: number
+  bands: number[]
+}
+
 export interface Profile {
   name: string
   /** Emoji shown as the avatar when there is no photo. */
@@ -205,6 +214,15 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'encounters', value: all })
   }
 
+  /** Vocabulary size test results, oldest first. */
+  async getVocabTests(): Promise<VocabTestRecord[]> {
+    return ((await this.meta.get('vocabTests'))?.value as VocabTestRecord[]) ?? []
+  }
+
+  async addVocabTest(record: VocabTestRecord) {
+    await this.meta.put({ key: 'vocabTests', value: [...(await this.getVocabTests()), record] })
+  }
+
   /** The text open in reading mode, per language. */
   async getReadingText(language: TargetLanguage): Promise<string> {
     return ((await this.meta.get(`reading:${language}`))?.value as string) ?? ''
@@ -325,6 +343,7 @@ export interface Backup {
   stories?: StoryEpisode[]
   /** Known-word sets and reading encounters (backup version 3+). */
   reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number> }
+  vocabTests?: VocabTestRecord[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -357,6 +376,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
       known: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getKnownWords(l))]]))),
       encounters: await db.getEncounters(),
     },
+    vocabTests: await db.getVocabTests(),
     media: await Promise.all(
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
@@ -404,5 +424,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
       for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
       await db.meta.put({ key: 'encounters', value: backup.reading.encounters })
     }
+    if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
   })
 }

@@ -31,6 +31,11 @@ export function loadFrequency(language: TargetLanguage): Promise<Map<string, num
   return p
 }
 
+/** The list as words in rank order (index 0 = rank 1). */
+export async function frequencyWords(language: TargetLanguage): Promise<string[]> {
+  return [...(await loadFrequency(language)).keys()]
+}
+
 /** Looked up, but not among the listed words: rarer than the list goes. */
 export const NOT_LISTED = -1
 /** Can't be ranked by a single-word list (multi-word phrases). */
