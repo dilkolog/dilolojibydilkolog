@@ -17,6 +17,18 @@ export interface Scheduler {
   retrievability(card: Card, now: Date): number
 }
 
+/** Default FSRS-6 forgetting-curve decay (w20). */
+const DEFAULT_DECAY = -generatorParameters().w[20]
+
+/**
+ * Review workload at `retention` relative to the 0.9 default: intervals scale with
+ * (R^(1/decay) − 1), and the number of reviews with the inverse. 0.95 ≈ 2.5× the reviews, 0.85 ≈ 0.5×.
+ */
+export function relativeWorkload(retention: number, decay = DEFAULT_DECAY): number {
+  const interval = (r: number) => Math.pow(r, 1 / decay) - 1
+  return interval(0.9) / interval(retention)
+}
+
 export function createScheduler(options: SchedulerOptions = {}): Scheduler {
   const f = fsrs(
     generatorParameters({

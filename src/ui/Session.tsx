@@ -3,6 +3,7 @@ import type { PlanItem } from '../engine/dailyPlan'
 import {
   BLANK,
   buildExercise,
+  buildPretest,
   displayForm,
   evaluateChoice,
   evaluateTyped,
@@ -228,7 +229,14 @@ export function SessionScreen(p: Props) {
         </ConfirmDialog>
       )}
       {item.kind === 'introduce' ? (
-        <Intro key={session.index} entry={entry} onContinue={() => introduce(false)} onKnown={() => introduce(true)} />
+        <Intro
+          key={session.index}
+          entry={entry}
+          catalog={distractorPool}
+          rng={rng}
+          onContinue={() => introduce(false)}
+          onKnown={() => introduce(true)}
+        />
       ) : (
         <ExerciseRunner
           key={session.index}
@@ -249,9 +257,9 @@ export function SessionScreen(p: Props) {
 
 // ---------------------------------------------------------------------------
 
-function SpeakButton({ text, entry, big, auto }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean }) {
+function SpeakButton({ text, entry, big, auto, vary }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean }) {
   useEffect(() => {
-    if (auto && prefs.autoPlay) playWord(entry, text)
+    if (auto && prefs.autoPlay) playWord(entry, text, vary)
   }, [auto, text, entry.language])
 
   // Alt+S anywhere, or Space when not typing, replays the audio.
@@ -261,7 +269,7 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
       const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
       if ((e.altKey && e.code === 'KeyS') || (e.code === 'Space' && !typing && !(e.target instanceof HTMLButtonElement))) {
         e.preventDefault()
-        playWord(entry, text)
+        playWord(entry, text, vary)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -272,7 +280,7 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
     <button
       type="button"
       className={big ? 'speak speak-big' : 'speak'}
-      onClick={() => playWord(entry, text)}
+      onClick={() => playWord(entry, text, vary)}
       aria-label="Sesli dinle"
     >
       <SpeakerIcon size={big ? 36 : 22} />
@@ -316,23 +324,81 @@ function Sentence({ text, translation }: { text: string; translation?: string })
 /**
  * First encounter: only the word, its sound, the core meaning and one strong example.
  * Collocations and word family are revealed in later encounters, not all at once.
+ *
+ * With pretesting on, the learner first guesses the meaning. Even a wrong guess makes the answer
+ * that follows stick better (pretesting effect; Kornell, Hays & Bjork 2009). The guess is not
+ * graded and leaves no trace in the schedule.
  */
-function Intro({ entry, onContinue, onKnown }: { entry: VocabularyEntry; onContinue: () => void; onKnown: () => void }) {
+function Intro({
+  entry,
+  catalog,
+  rng,
+  onContinue,
+  onKnown,
+}: {
+  entry: VocabularyEntry
+  catalog: VocabularyEntry[]
+  rng: Rng
+  onContinue: () => void
+  onKnown: () => void
+}) {
   const sense = entry.senses[0]
   const example = sense.examples[0]
   const btn = useRef<HTMLButtonElement>(null)
   const imageUrl = useMediaUrl(entry.imageId)
-  useEffect(() => btn.current?.focus(), [])
+  const [pretest] = useState(() => (prefs.pretest ? buildPretest(entry, catalog, rng) : null))
+  const [guess, setGuess] = useState<{ label: string; correct: boolean } | 'skipped' | null>(null)
+  const guessing = pretest !== null && guess === null
+  useEffect(() => {
+    if (!guessing) btn.current?.focus()
+  }, [guessing])
+
+  if (guessing) {
+    return (
+      <div>
+        <p className="prompt-label">
+          <span className="badge">Yeni kelime</span> <span className="small muted">Bilmiyorsan da bir tahmin yap</span>
+        </p>
+        <div className="row">
+          <Word entry={entry} />
+          <SpeakButton text={displayForm(entry)} entry={entry} auto />
+        </div>
+        <p className="muted">Sence ne anlama geliyor?</p>
+        <Choices
+          exercise={pretest}
+          answered={false}
+          onChoose={(id) => {
+            const label = pretest.options.find((o) => o.id === id)!.label
+            if (id === pretest.correctOptionId) sfx.correct()
+            setGuess({ label, correct: id === pretest.correctOptionId })
+          }}
+        />
+        <div className="session-actions">
+          <button className="link small" onClick={() => setGuess('skipped')}>
+            Hiç fikrim yok, göster
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
       <p className="prompt-label">
         <span className="badge">Yeni kelime</span>
         {entry.partOfSpeech !== 'other' && <span className="small muted"> {POS_NAME[entry.partOfSpeech]}</span>}
       </p>
+      {guess && guess !== 'skipped' && (
+        <p className={`guess-result ${guess.correct ? 'is-right' : 'is-wrong'}`} role="status">
+          {guess.correct
+            ? 'Doğru tahmin! Zaten biliyorsan aşağıdan "Zaten biliyorum"u seç.'
+            : `Tahminin "${guess.label}" idi. Doğrusunu şimdi gör: tahmin ettiğin için daha iyi aklında kalacak.`}
+        </p>
+      )}
       <div className="intro-card stack">
         <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
           <Word entry={entry} />
-          <SpeakButton text={displayForm(entry)} entry={entry} auto />
+          <SpeakButton text={displayForm(entry)} entry={entry} auto={!pretest} />
         </div>
         {imageUrl && <img className="word-image" src={imageUrl} alt="" />}
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
@@ -406,7 +472,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
     setResult({ ev, log, chosen })
     if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
-    playWord(entry)
+    playWord(entry, undefined, true)
   }
 
   /** Free sentences are graded by the AI; time is measured up to submission, not the network wait. */
@@ -532,7 +598,7 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     case 'listen_choose':
     case 'listen_type':
       return canSpeak() ? (
-        <SpeakButton text={exercise.audioText!} entry={entry} big auto />
+        <SpeakButton text={exercise.audioText!} entry={entry} big auto vary />
       ) : (
         <p className="muted">Bu tarayıcıda sesli okuma yok. Kelime: {exercise.audioText}</p>
       )
@@ -545,14 +611,26 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     case 'dictation':
       return (
         <div className="row">
-          <SpeakButton text={exercise.audioText!} entry={entry} big auto />
-          <button className="btn btn-quiet" onClick={() => speak(exercise.audioText!, entry.language, 0.7)}>
+          <SpeakButton text={exercise.audioText!} entry={entry} big auto vary />
+          <button className="btn btn-quiet" onClick={() => speak(exercise.audioText!, entry.language, 0.7, true)}>
             🐢 Yavaş dinle
           </button>
         </div>
       )
     case 'speak_word':
       return <p className="prompt-text">{exercise.prompt}</p>
+    case 'article_choice':
+      return (
+        <div className="stack" style={{ gap: '0.5rem' }}>
+          <h1 className="word" lang={entry.language}>
+            <span className="blank" aria-label="artikel">
+              ____
+            </span>{' '}
+            {exercise.prompt}
+          </h1>
+          <p className="gloss muted">{exercise.context}</p>
+        </div>
+      )
     case 'free_sentence':
       return (
         <div className="stack">

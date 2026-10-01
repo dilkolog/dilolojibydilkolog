@@ -1,4 +1,5 @@
 import type { Settings } from '../data/db'
+import { setRetention } from '../data/instance'
 import { speechPrefs } from './speech'
 
 /** Runtime preferences read by session components; updated whenever settings change. */
@@ -8,6 +9,7 @@ export const prefs = {
   accentStrict: false,
   soundEffects: true,
   showKeyLegend: true,
+  pretest: true,
 }
 
 export function applySettings(s: Settings) {
@@ -16,6 +18,9 @@ export function applySettings(s: Settings) {
   prefs.accentStrict = s.accentStrict
   prefs.soundEffects = s.soundEffects
   prefs.showKeyLegend = s.showKeyLegend
+  prefs.pretest = s.pretest
+  speechPrefs.varyVoices = s.varyVoices
+  setRetention(s.retention)
   speechPrefs.rate = s.speechRate
   speechPrefs.voices = s.voices
   const root = document.documentElement

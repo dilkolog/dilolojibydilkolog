@@ -12,6 +12,7 @@ export const SKILL_NAME: Record<Skill, string> = {
   production: 'Üretme',
   listening: 'Dinleme',
   collocation: 'Kalıplar',
+  gender: 'Artikel',
 }
 
 export const STAGE_NAME: Record<MasteryStage, string> = {
@@ -80,4 +81,5 @@ export const PROMPT_TEXT: Record<string, string> = {
   picture_choice: 'Bu resim hangi kelime?',
   dictation: 'Duyduğun cümleyi yaz',
   speak_word: 'Söyle: hedef dildeki karşılığı',
+  article_choice: 'Artikeli hangisi?',
 }

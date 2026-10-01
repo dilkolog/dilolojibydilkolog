@@ -152,3 +152,21 @@ describe('pickGameWords', () => {
     expect(new Set(words.map((w) => w.senses[0].gloss)).size).toBe(5)
   })
 })
+
+describe('pickFluencyWords', () => {
+  it('takes only words whose recognition has graduated and that are mostly answered right', async () => {
+    const { pickFluencyWords } = await import('../practice')
+    const en = CATALOG.filter((e) => e.language === 'en')
+    const shaky = practised(affect, 2)
+    shaky.stats = { ...shaky.stats, reviews: 10, correct: 5, wrong: 5 }
+    const words = pickFluencyWords(en, [practised(decision, 2), practised(decide, 1), shaky], createRng(3))
+    expect(words.map((w) => w.id)).toEqual(['en:decision'])
+  })
+
+  it('median', async () => {
+    const { median } = await import('../practice')
+    expect(median([])).toBe(0)
+    expect(median([3, 1, 2])).toBe(2)
+    expect(median([4, 1, 3, 2])).toBe(2.5)
+  })
+})

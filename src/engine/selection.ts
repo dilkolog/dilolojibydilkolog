@@ -13,6 +13,7 @@ export function unlockedSkills(state: UserWordState | undefined, entry: Vocabula
   if (!state) return out
   const { recognition, recall } = state.skills
   if (recognition && recognition.reps > 0) out.push('listening')
+  if (recognition && recognition.reps > 0 && exerciseTypesFor('gender', entry).length) out.push('gender')
   if (recognition?.state === State.Review) out.push('recall')
   if (recall && recall.reps > 0 && exerciseTypesFor('collocation', entry).length) out.push('collocation')
   if (recall?.state === State.Review && exerciseTypesFor('production', entry, opts).length) out.push('production')
@@ -25,7 +26,7 @@ export function startOfDay(d: Date): Date {
   return x
 }
 
-const SKILL_PRIORITY: Record<Skill, number> = { recognition: 0, recall: 1, listening: 2, collocation: 3, production: 4 }
+const SKILL_PRIORITY: Record<Skill, number> = { recognition: 0, recall: 1, gender: 2, listening: 3, collocation: 4, production: 5 }
 
 export interface SkillDue {
   skill: Skill
@@ -62,7 +63,7 @@ export const ERROR_SKILL: Record<ErrorType, Skill> = {
   accent: 'recall',
   typo: 'recall',
   article: 'recall',
-  gender: 'recall',
+  gender: 'gender',
   form: 'production',
   confusion: 'recognition',
   collocation: 'collocation',

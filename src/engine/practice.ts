@@ -1,3 +1,4 @@
+import { State } from 'ts-fsrs'
 import { interleave, type PlanItem } from './dailyPlan'
 import { exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
@@ -127,4 +128,36 @@ export function pickGameWords(
     if (!out.some((o) => normalize(o.senses[0].gloss) === normalize(e.senses[0].gloss))) out.push(e)
   }
   return out
+}
+
+// ---------------------------------------------------------------------------
+// Fluency
+// ---------------------------------------------------------------------------
+
+/** Fewest well-known words a fluency round needs to stay varied. */
+export const FLUENCY_MIN_WORDS = 6
+
+/**
+ * Fluency practice works only on words that are already known (Nation's fluency strand): the
+ * goal is not learning but making retrieval fast and automatic. "Known" = recognition has
+ * graduated and most answers on the word have been right.
+ */
+export function pickFluencyWords(catalog: readonly VocabularyEntry[], states: readonly UserWordState[], rng: Rng): VocabularyEntry[] {
+  const known = new Set(
+    states
+      .filter((s) => s.skills.recognition?.state === State.Review && s.stats.correct >= 0.7 * s.stats.reviews)
+      .map((s) => s.entryId),
+  )
+  const out: VocabularyEntry[] = []
+  for (const e of shuffle(catalog.filter((c) => known.has(c.id)), rng)) {
+    if (!out.some((o) => normalize(o.senses[0].gloss) === normalize(e.senses[0].gloss))) out.push(e)
+  }
+  return out
+}
+
+export function median(values: readonly number[]): number {
+  if (!values.length) return 0
+  const s = [...values].sort((a, b) => a - b)
+  const mid = Math.floor(s.length / 2)
+  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2
 }

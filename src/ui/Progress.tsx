@@ -148,7 +148,7 @@ export function ProgressScreen({
       <section className="section stack">
         <h2 className="section-title">Beceriler</h2>
         <div className="bars">
-          {SKILLS.map((s) => (
+          {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
             <div className="bar-row" key={s}>
               <span>{SKILL_NAME[s]}</span>
               <div className="bar-track">

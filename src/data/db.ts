@@ -43,6 +43,12 @@ export interface Settings {
   showKeyLegend: boolean
   /** Ask some answers to be spoken aloud (when the browser can recognise speech). */
   speechExercises: boolean
+  /** FSRS target probability of recall when a review comes up (0.85–0.95). */
+  retention: number
+  /** Guess a new word's meaning before it is shown (pretesting effect). */
+  pretest: boolean
+  /** Listening exercises use a different system voice each time (high-variability input). */
+  varyVoices: boolean
   reminder: { enabled: boolean; time: string }
   profile: Profile
   story: { interests: string[]; custom: string }
@@ -63,6 +69,9 @@ export const DEFAULT_SETTINGS: Settings = {
   accentStrict: false,
   showKeyLegend: true,
   speechExercises: true,
+  retention: 0.9,
+  pretest: true,
+  varyVoices: true,
   reminder: { enabled: false, time: '20:00' },
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },

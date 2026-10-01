@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 import { EXERCISES } from '../exercises'
 import { masteryStage, skillProfile, skillScores } from '../mastery'
 import { markKnown, newWordState, processAttempt, type AttemptInput } from '../review'
-import { createScheduler } from '../scheduler'
+import { createScheduler, relativeWorkload } from '../scheduler'
 import { dueSkills, unlockedSkills } from '../selection'
 import type { ExerciseType, Mistake, Skill, UserWordState } from '../types'
-import { decide, decision } from './fixtures'
+import { decide, decision, laDecision } from './fixtures'
 
 const scheduler = createScheduler({ fuzz: false })
 const T0 = new Date('2026-10-01T09:00:00Z')
@@ -36,6 +36,7 @@ const DEFAULT_TYPE: Record<Skill, ExerciseType> = {
   production: 'cloze_typed',
   listening: 'listen_choose',
   collocation: 'collocation_choice',
+  gender: 'article_choice',
 }
 
 /** Answers every due skill each day; `failing` skills are always answered wrong. */
@@ -69,6 +70,13 @@ describe('progressive unlocking', () => {
     s = answer(s, 'mc_meaning', minutes(15)).state
     expect(s.skills.recognition!.state).toBe(State.Review)
     expect(unlockedSkills(s, decision)).toContain('recall')
+  })
+
+  it('the article skill unlocks after first exposure, only for FR/ES nouns', () => {
+    const fr = answer(newWordState(laDecision, T0), 'mc_meaning', T0).state
+    expect(unlockedSkills(fr, laDecision)).toContain('gender')
+    const en = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    expect(unlockedSkills(en, decision)).not.toContain('gender')
   })
 
   it('collocation and production unlock only when the word has data for them', () => {
@@ -201,5 +209,13 @@ describe('skill tie-break', () => {
     s = answer(s, 'mc_meaning', minutes(15)).state
     const due = dueSkills(s, decision, scheduler, new Date(T0.getTime() + 86_400_000))
     expect(due.map((d) => d.skill).slice(0, 2)).toEqual(['recall', 'listening'])
+  })
+})
+
+describe('relativeWorkload', () => {
+  it('is 1 at the default and grows with the target retention', () => {
+    expect(relativeWorkload(0.9)).toBeCloseTo(1)
+    expect(relativeWorkload(0.95)).toBeGreaterThan(1.8)
+    expect(relativeWorkload(0.85)).toBeLessThan(0.75)
   })
 })

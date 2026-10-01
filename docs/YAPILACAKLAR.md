@@ -19,7 +19,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   Varsayılan FSRS ağırlıkları milyonlarca kullanıcının ortalaması. Birkaç yüz tekrardan sonra
   kişisel ağırlıklar tahmin hatasını belirgin şekilde azaltıyor (FSRS benchmark'ları).
   Olay geçmişi zaten tutuluyor; optimizer (fsrs-browser / wasm) ile haftalık yeniden hesapla.
-- [ ] ⭐⭐⭐ **Hedef hatırlama oranı ayarı** (S)
+- [x] ⭐⭐⭐ **Hedef hatırlama oranı ayarı** (S)
   %85–95 arası seçim; düşük = daha az tekrar, yüksek = daha sağlam. Ayarda iş yükü tahmini göster.
 - [ ] ⭐⭐ **Gerçek vs. tahmini hatırlama grafiği** (S)
   Kalibrasyon eğrisi: "FSRS %90 dedi, sen %84 hatırladın". Modelin doğru çalıştığını görünür kılar.
@@ -34,7 +34,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 3. Yeni kelimeyi ilk öğrenme anı
 
-- [ ] ⭐⭐⭐ **Ön-test (pretesting)** (S)
+- [x] ⭐⭐⭐ **Ön-test (pretesting)** (S)
   Anlamı göstermeden önce tahmin ettir; yanlış tahmin bile sonraki öğrenmeyi artırıyor
   (Kornell, Hays & Bjork 2009; Richland 2009). Tanışma ekranına "Ne olabilir?" adımı.
 - [ ] ⭐⭐⭐ **Kriterli tekrar (successive relearning)** (M)
@@ -66,14 +66,14 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [ ] ⭐⭐⭐ **Soydaş ve sahte dost tespiti** (M)
   Soydaşlar hızlı öğrenilir, onları ucuza geçir; sahte dostlar (EN *actually* / FR *actuellement*,
   ES *embarazada*) aktif girişim kaynağı — ayırt etme sorusuna sok. Basit benzerlik + elle liste.
-- [ ] ⭐⭐⭐ **FR/ES cinsiyet (artikel) alıştırması** (S)
+- [x] ⭐⭐⭐ **FR/ES cinsiyet (artikel) alıştırması** (S)
   Artikel şu an sadece gösteriliyor. "le/la", "el/la" seçme sorusu + renk kodu
   (cinsiyet hataları ileri düzeyde bile kalıcı). Ayrı bir beceri kartı olabilir.
 - [ ] ⭐⭐ **Fiil çekim mini-alıştırması** (M) — sık fiiller için zaman/şahıs çekimi.
 
 ## 6. Dinleme ve telaffuz
 
-- [ ] ⭐⭐⭐ **Yüksek değişkenlikli ses (HVPT)** (S)
+- [x] ⭐⭐⭐ **Yüksek değişkenlikli ses (HVPT)** (S)
   Aynı kelimeyi farklı seslerle dinletmek tanımayı genelleştirir (Logan, Lively & Pisoni 1991;
   Thomson 2018). Sistemdeki birden çok sesi rastgele kullan.
 - [ ] ⭐⭐ **Minimal çift ayırt etme** (M) — FR *u/ou*, *dessus/dessous*; EN *ship/sheep*; ES *pero/perro*.
@@ -83,7 +83,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 7. Akıcılık (4. kol)
 
-- [ ] ⭐⭐⭐ **Akıcılık turu** (S)
+- [x] ⭐⭐⭐ **Akıcılık turu** (S)
   Sadece iyi bilinen kelimelerle, zaman baskısıyla hızlı geri çağırma (Nation'ın 4/3/2 mantığı).
   Amaç bilgi değil otomatikleşme; cevap süresini takip et ve ilerlemeyi göster.
 - [ ] ⭐⭐ **Tepki süresini zorluk sinyali yap** (S) — doğru ama yavaşsa "kırılgan" say.
@@ -113,7 +113,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 ---
 
 ## Önerilen sıra
-1. Hızlı ve etkili: ön-test, artikel alıştırması, HVPT, akıcılık turu, hedef hatırlama ayarı.
+1. ~~Hızlı ve etkili: ön-test, artikel alıştırması, HVPT, akıcılık turu, hedef hatırlama ayarı.~~ (yapıldı)
 2. Orta: güven + hiper-düzeltme, kriterli tekrar, değişen örnek cümle, soydaş/sahte dost.
 3. Büyük: FSRS optimizasyonu, okuma modu + kapsama, kavram kartları.
 4. AI gerektirenler anahtar girilince: geri anlatım, ters çeviri.

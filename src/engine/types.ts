@@ -26,8 +26,8 @@ export type Register = 'neutral' | 'formal' | 'informal' | 'slang' | 'academic' 
  * Skills are tracked independently: knowing a word in one direction says little about the other.
  * Each skill gets its own FSRS card.
  */
-export type Skill = 'recognition' | 'recall' | 'production' | 'listening' | 'collocation'
-export const SKILLS: readonly Skill[] = ['recognition', 'recall', 'production', 'listening', 'collocation']
+export type Skill = 'recognition' | 'recall' | 'production' | 'listening' | 'collocation' | 'gender'
+export const SKILLS: readonly Skill[] = ['recognition', 'recall', 'production', 'listening', 'collocation', 'gender']
 
 // ---------------------------------------------------------------------------
 // Vocabulary (shared catalog, read-only at runtime)
@@ -134,6 +134,7 @@ export type ExerciseType =
   | 'picture_choice' // see the word's picture → choose the word
   | 'dictation' // hear an example sentence → type the whole sentence
   | 'speak_word' // see the Turkish meaning → say the word aloud (speech recognition)
+  | 'article_choice' // FR/ES noun without its article → choose le/la, el/la
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {

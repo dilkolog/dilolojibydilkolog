@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { displayForm } from '../engine/exercises'
+import { definiteArticle, displayForm } from '../engine/exercises'
 import { masteryStage, skillScores } from '../engine/mastery'
 import { openMistakes } from '../engine/mistakes'
 import { nextReviewAt } from '../engine/review'
@@ -196,7 +196,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <section className="section stack">
         <h2 className="section-title">Beceriler</h2>
         <div className="bars">
-          {SKILLS.map((s) => (
+          {SKILLS.filter((s) => s !== 'gender' || definiteArticle(entry)).map((s) => (
             <div className="bar-row" key={s}>
               <span>{SKILL_NAME[s]}</span>
               <div className="bar-track">
@@ -209,7 +209,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           ))}
         </div>
         <p className="small muted">
-          Beceriler sırayla açılır: önce tanıma, sonra dinleme ve hatırlama, en son kalıplar ve üretme.
+          Beceriler sırayla açılır: önce tanıma, sonra dinleme, artikel ve hatırlama, en son kalıplar ve üretme.
           {sense.examples.length === 0 && ' Üretme alıştırmaları için örnek cümle ekle.'}
         </p>
       </section>

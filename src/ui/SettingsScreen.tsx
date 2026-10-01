@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { relativeWorkload } from '../engine/scheduler'
 import { TARGET_LANGUAGES } from '../engine/types'
 import { exportBackup, parseBackup, restoreBackup, type Settings } from '../data/db'
 import { db } from '../data/instance'
@@ -18,6 +19,7 @@ const XP_GOALS = [30, 50, 100, 200, 300]
 const SESSION_MAX = [0, 10, 20, 30, 50]
 const HINT_DELAYS = [0, 3, 6, 10]
 const RATES = [0.7, 0.8, 0.9, 1, 1.1]
+const RETENTIONS = [0.85, 0.88, 0.9, 0.93, 0.95]
 const TIMES = Array.from({ length: 36 }, (_, i) => {
   const h = 6 + Math.floor(i / 2)
   return `${String(h).padStart(2, '0')}:${i % 2 ? '30' : '00'}`
@@ -157,6 +159,22 @@ export function SettingsScreen({
         <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
           <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
         </Row>
+        <Row
+          label="Hedef hatırlama oranı"
+          help={`Tekrar geldiğinde kelimeyi hatırlıyor olma ihtimalin. Yüksek oran daha sağlam ama daha çok tekrar demek. ${
+            settings.retention === 0.9
+              ? 'Varsayılan, çoğu kişi için en iyi denge.'
+              : `Tekrar yükü varsayılanın yaklaşık ${relativeWorkload(settings.retention).toFixed(1).replace('.', ',')} katı.`
+          }`}
+        >
+          <Chips options={RETENTIONS} value={settings.retention} onChange={(v) => set('retention', v)} format={(r) => `%${Math.round(r * 100)}`} />
+        </Row>
+        <Toggle
+          label="Yeni kelimede önce tahmin et"
+          help="Anlamı göstermeden önce bir tahmin istenir. Yanlış tahmin bile kelimeyi daha iyi akılda tutmanı sağlar; tahmin puanlanmaz."
+          checked={settings.pretest}
+          onChange={(v) => set('pretest', v)}
+        />
       </section>
 
       <section className="card stack">
@@ -168,6 +186,12 @@ export function SettingsScreen({
           help={canListen() ? 'Bazı sorularda kelimeyi sesli söylemen istenir; yazılı sorularda mikrofonla da cevaplayabilirsin.' : 'Bu tarayıcı konuşma tanımayı desteklemiyor (Safari ya da Chrome kullan).'}
           checked={settings.speechExercises && canListen()}
           onChange={(v) => set('speechExercises', v)}
+        />
+        <Toggle
+          label="Dinlemede farklı sesler"
+          help={`Dinleme sorularında her seferinde sistemdeki başka bir ses konuşur; kelimeyi her konuşmacıdan tanımayı öğrenirsin. ${voices.length < 2 ? `Şu an ${LANGUAGE_NAME[lang]} için tek ses var; macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten başka sesler indirebilirsin.` : `${LANGUAGE_NAME[lang]} için ${voices.length} ses var.`}`}
+          checked={settings.varyVoices}
+          onChange={(v) => set('varyVoices', v)}
         />
         <Row label="Konuşma hızı">
           <Chips options={RATES} value={settings.speechRate} onChange={(v) => set('speechRate', v)} format={(r) => `${r}×`} />

@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 import {
   BLANK,
   buildExercise,
+  buildPretest,
+  definiteArticle,
   displayForm,
   evaluateChoice,
   evaluateTyped,
@@ -11,7 +13,7 @@ import {
   type TypedExercise,
 } from '../exercises'
 import { createRng } from '../rng'
-import { abandon, affect, CATALOG, decide, decision, EN_CATALOG, laDecision, lArbre } from './fixtures'
+import { abandon, affect, CATALOG, decide, decision, EN_CATALOG, elAno, laDecision, lArbre } from './fixtures'
 
 const rng = () => createRng(42)
 
@@ -141,5 +143,43 @@ describe('picture exercise', () => {
     expect(ex.imageId).toBe('img1')
     expect(ex.options.find((o) => o.id === ex.correctOptionId)!.label).toBe('decision')
     expect(ex.options.length).toBeGreaterThanOrEqual(3)
+  })
+})
+
+describe('article_choice', () => {
+  it('knows the definite article from the written article or the gender', () => {
+    expect(definiteArticle(laDecision)).toBe('la')
+    expect(definiteArticle(lArbre)).toBe('le')
+    expect(definiteArticle(elAno)).toBe('el')
+    // "el agua" is feminine but takes el: the written article wins.
+    expect(definiteArticle({ ...elAno, lemma: 'agua', gender: 'f', article: 'el' })).toBe('el')
+  })
+
+  it('applies only to FR/ES nouns with a known gender', () => {
+    expect(exerciseTypesFor('gender', laDecision)).toEqual(['article_choice'])
+    expect(exerciseTypesFor('gender', decision)).toEqual([])
+    expect(exerciseTypesFor('gender', { ...laDecision, gender: 'mf', article: undefined })).toEqual([])
+    expect(exerciseTypesFor('gender', { ...laDecision, partOfSpeech: 'verb' })).toEqual([])
+  })
+
+  it('asks le/la for the bare noun and marks a wrong pick as a gender error', () => {
+    const ex = buildExercise('article_choice', lArbre, CATALOG, rng()) as ChoiceExercise
+    expect(ex.prompt).toBe('arbre')
+    expect(ex.options.map((o) => o.label)).toEqual(['le', 'la'])
+    expect(evaluateChoice(ex, ex.correctOptionId).verdict).toBe('correct')
+    const wrong = ex.options.find((o) => o.id !== ex.correctOptionId)!.id
+    expect(evaluateChoice(ex, wrong)).toMatchObject({ verdict: 'wrong', errorType: 'gender', expected: 'le' })
+  })
+})
+
+describe('buildPretest', () => {
+  it('leaves out confusable words and overlapping meanings', () => {
+    const glossOf = new Map(CATALOG.map((c) => [c.senses[0].gloss, c.id]))
+    for (let seed = 0; seed < 20; seed++) {
+      const ex = buildPretest(affect, CATALOG, createRng(seed))
+      const ids = ex.options.map((o) => glossOf.get(o.label))
+      expect(ids).toContain('en:affect')
+      for (const r of affect.relations) expect(ids).not.toContain(r.targetId)
+    }
   })
 })

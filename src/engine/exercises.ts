@@ -26,6 +26,21 @@ export interface ExerciseMeta {
 }
 
 const hasExamples = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0
+
+const DEFINITE: Record<'fr' | 'es', { m: string; f: string }> = { fr: { m: 'le', f: 'la' }, es: { m: 'el', f: 'la' } }
+
+/**
+ * The definite article a FR/ES noun takes, or undefined when there is nothing to test (English,
+ * not a noun, unknown or common gender). A written le/la/el is taken as is, so "el agua"
+ * (feminine, but el) is still right; elided l' and indefinite articles fall back to the gender.
+ */
+export function definiteArticle(e: VocabularyEntry): string | undefined {
+  if (e.language === 'en' || e.partOfSpeech !== 'noun') return undefined
+  const forms = DEFINITE[e.language]
+  if (e.article && (e.article === forms.m || e.article === forms.f)) return e.article
+  if (e.gender === 'm' || e.gender === 'f') return forms[e.gender]
+  return undefined
+}
 const always = () => true
 
 export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
@@ -71,6 +86,13 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     expectedMs: 6000,
     applicable: always,
     requiresSpeech: true,
+  },
+  article_choice: {
+    skill: 'gender',
+    direction: 'target_to_native',
+    input: 'choice',
+    expectedMs: 3000,
+    applicable: (e) => definiteArticle(e) !== undefined,
   },
   free_sentence: {
     skill: 'production',
@@ -406,6 +428,20 @@ export function buildExercise(
       }
     }
 
+    case 'article_choice': {
+      // Gender errors persist even at advanced levels; a fast, focused choice makes it automatic.
+      const forms = DEFINITE[entry.language as 'fr' | 'es']
+      const correct = definiteArticle(entry)!
+      return {
+        ...base,
+        kind: 'choice',
+        prompt: entry.lemma,
+        context: sense.gloss,
+        options: [forms.m, forms.f].map((label, i) => ({ id: String(i), label })),
+        correctOptionId: correct === forms.m ? '0' : '1',
+      }
+    }
+
     case 'word_form': {
       const member = pick(entry.wordFamily, rng)
       return {
@@ -417,6 +453,23 @@ export function buildExercise(
       }
     }
   }
+}
+
+/**
+ * Meaning question for a word seen for the first time (pretesting). Unlike review questions,
+ * the options must not include words it is confused with or meanings that overlap: those are
+ * hard on purpose for a known word, but unfair before the learner has seen it at all.
+ */
+export function buildPretest(entry: VocabularyEntry, catalog: readonly VocabularyEntry[], rng: Rng): ChoiceExercise {
+  const gloss = normalize(entry.senses[0].gloss)
+  const related = (c: VocabularyEntry) =>
+    entry.relations.some((r) => r.targetId === c.id) || c.relations.some((r) => r.targetId === entry.id)
+  const overlaps = (c: VocabularyEntry) => {
+    const g = normalize(c.senses[0].gloss)
+    return g.includes(gloss) || gloss.includes(g)
+  }
+  const fair = catalog.filter((c) => c.id === entry.id || (!related(c) && !overlaps(c)))
+  return buildExercise('mc_meaning', entry, fair, rng) as ChoiceExercise
 }
 
 // ---------------------------------------------------------------------------
@@ -433,6 +486,7 @@ export interface Evaluation {
 const CHOICE_ERROR: Partial<Record<ExerciseType, ErrorType>> = {
   discriminate: 'confusion',
   collocation_choice: 'collocation',
+  article_choice: 'gender',
 }
 
 export function evaluateChoice(ex: ChoiceExercise, optionId: string): Evaluation {
