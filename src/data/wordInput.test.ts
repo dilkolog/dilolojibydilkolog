@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createEntry, entryToInput, findForm, importWords, parseCollocations, parseDelimited, parseWordList, updateEntry, WordInputError, wordKeys } from './wordInput'
+import { createEntry, entryToInput, findForm, guessPartOfSpeech, importWords, parseCollocations, parseDelimited, parseWordList, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -153,5 +153,42 @@ describe('parseWordList (bulk formats)', () => {
   it('applies tags to every imported word', () => {
     const r = importWords('decision - karar\nthrive - gelişmek', 'en', new Set(), NOW, { term: 'auto', row: 'newline', tags: 'dizi, s1' })
     expect(r.entries.map((e) => e.tags)).toEqual([['dizi', 's1'], ['dizi', 's1']])
+  })
+})
+
+describe('guessPartOfSpeech', () => {
+  it.each([
+    ['en', 'decision', 'noun'],
+    ['en', 'to abandon', 'verb'],
+    ['en', 'the weather', 'noun'],
+    ['en', 'quickly', 'adverb'],
+    ['en', 'dangerous', 'adjective'],
+    ['en', 'realize', 'verb'],
+    ['en', 'although', 'conjunction'],
+    ['en', 'make up for', 'phrase'],
+    ['fr', 'la décision', 'noun'],
+    ['fr', 'manger', 'verb'],
+    ['fr', 'se souvenir', 'verb'],
+    ["fr", "s'asseoir", 'verb'],
+    ['fr', 'lentement', 'adverb'],
+    ['fr', 'heureux', 'adjective'],
+    ['fr', 'malgré', 'preposition'],
+    ['es', 'el año', 'noun'],
+    ['es', 'hablar', 'verb'],
+    ['es', 'rápidamente', 'adverb'],
+    ['es', 'peligroso', 'adjective'],
+    ['es', 'aunque', 'conjunction'],
+  ] as const)('%s %s → %s', (lang, word, pos) => {
+    expect(guessPartOfSpeech(word, lang)).toBe(pos)
+  })
+
+  it('returns undefined when nothing points anywhere', () => {
+    expect(guessPartOfSpeech('cat', 'en')).toBeUndefined()
+    expect(guessPartOfSpeech('', 'fr')).toBeUndefined()
+  })
+
+  it('is used by createEntry when no type is given', () => {
+    expect(createEntry({ word: 'hablar', meaning: 'konuşmak' }, 'es', new Date()).partOfSpeech).toBe('verb')
+    expect(createEntry({ word: 'cat', meaning: 'kedi' }, 'en', new Date()).partOfSpeech).toBe('other')
   })
 })

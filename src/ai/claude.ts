@@ -3,7 +3,7 @@ import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
-import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type Mnemonic, type SentenceEvaluation, type WordInfo } from './types'
+import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -110,6 +110,51 @@ export async function enrichWords(
   const list = words.map((w, i) => `${i + 1}. ${w.word}${w.context ? `\n   context: ${w.context}` : ''}`).join('\n')
   const out = await structured(apiKey, WordBatch, system, `Words:\n${list}`, 'low')
   return new Map(out.words.map((w) => [w.input.toLocaleLowerCase(), w]))
+}
+
+// ---------------------------------------------------------------------------
+// Single-field suggestions (add-word form)
+// ---------------------------------------------------------------------------
+
+const Collocation = z.object({
+  phrase: z.string(),
+  translation: z.string().describe('Turkish'),
+  wrongVariants: z.array(z.string()).describe('1-2 unnatural variants a Turkish learner typically produces.'),
+})
+
+const FIELD_SHAPES = {
+  example: {
+    example: z.string().describe('One natural, idiomatic example sentence in the target language with the word marked by asterisks: "She *abandoned* the plan." Must differ from the current example if one is given.'),
+    exampleTranslation: z.string().describe('Turkish translation of the example sentence.'),
+  },
+  notes: {
+    note: z.string().describe('A short memory hook in Turkish (max 2 sentences): an accurate etymology, a Turkish sound-alike, or a usage tip that prevents a typical mistake.'),
+  },
+  tags: {
+    tags: z.array(z.string()).describe('1-3 short lowercase Turkish topic tags (e.g. "iş", "duygular", "seyahat"). Reuse existing tags when they fit.'),
+  },
+  collocations: {
+    collocations: z.array(Collocation).describe('2-3 genuinely frequent collocations of the word. Empty for function words.'),
+  },
+} satisfies Record<SuggestField, z.ZodRawShape>
+
+/** Suggests only the requested add-word form fields, in one request. */
+export async function suggestFields(apiKey: string, req: SuggestRequest): Promise<FieldSuggestions> {
+  const shape = Object.assign({}, ...req.fields.map((f) => FIELD_SHAPES[f])) as z.ZodRawShape
+  const system = [
+    `You help a Turkish native speaker who speaks ${LANGUAGE_NAME[req.language]} well fill in a vocabulary card.`,
+    'Be accurate and natural: no invented etymology, no textbook-simplified sentences, only genuinely frequent collocations.',
+    'If a Turkish meaning is given, use that sense of the word.',
+  ].join('\n')
+  const user = [
+    `Word: ${req.word}`,
+    req.meaning.trim() && `Turkish meaning: ${req.meaning}`,
+    req.fields.includes('tags') && req.existingTags.length > 0 && `Existing tags: ${req.existingTags.join(', ')}`,
+    req.fields.includes('example') && req.currentExample?.trim() && `Current example (write a different one): ${req.currentExample}`,
+  ]
+    .filter(Boolean)
+    .join('\n')
+  return (await structured(apiKey, z.object(shape), system, user, 'low')) as FieldSuggestions
 }
 
 // ---------------------------------------------------------------------------

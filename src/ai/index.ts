@@ -1,5 +1,5 @@
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { EnrichRequest, EpisodeDraft, EpisodeRequest, Mnemonic, SentenceEvaluation, WordInfo } from './types'
+import type { EnrichRequest, EpisodeDraft, EpisodeRequest, FieldSuggestions, Mnemonic, SentenceEvaluation, SuggestRequest, WordInfo } from './types'
 
 export * from './types'
 
@@ -16,6 +16,8 @@ export const enrichWords = async (
   language: TargetLanguage,
   words: EnrichRequest[],
 ): Promise<Map<string, WordInfo>> => (await sdk()).enrichWords(apiKey, language, words)
+
+export const suggestFields = async (apiKey: string, req: SuggestRequest): Promise<FieldSuggestions> => (await sdk()).suggestFields(apiKey, req)
 
 export const evaluateSentence = async (apiKey: string, entry: VocabularyEntry, sentence: string): Promise<SentenceEvaluation> =>
   (await sdk()).evaluateSentence(apiKey, entry, sentence)

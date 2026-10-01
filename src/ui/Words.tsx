@@ -5,8 +5,8 @@ import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
-import { createEntry, entryToInput, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
-import { AiError, enrichWords, wordInfoToInput } from '../ai'
+import { createEntry, entryToInput, guessPartOfSpeech, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
+import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
@@ -161,6 +161,8 @@ const EXAMPLES: Record<TargetLanguage, { collocation: string; confusable: string
   },
 }
 
+const splitTags = (s?: string) => (s ?? '').split(',').map((t) => t.trim()).filter(Boolean)
+
 const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslation: '', collocations: '', confusables: '' }
 
 const POS_OPTIONS: PartOfSpeech[] = ['other', 'noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'phrase']
@@ -197,6 +199,84 @@ export function WordForm({
   // A picture chosen before the word is saved (new words only; existing words edit it in detail).
   const [image, setImage] = useState<(PickedImage & { url: string }) | null>(null)
   const [picking, setPicking] = useState(false)
+  // Part of speech is guessed from the word (or taken from the AI) unless the user picks it.
+  const [posManual, setPosManual] = useState(() => !!entry || !!initial?.partOfSpeech)
+  const [aiPos, setAiPos] = useState<{ word: string; pos: PartOfSpeech } | null>(null)
+  const autoPos = aiPos && aiPos.word === form.word.trim() ? aiPos.pos : guessPartOfSpeech(form.word, language)
+  const [moreOpen, setMoreOpen] = useState(false)
+  // Which single-field AI request is running ('more' = notes + tags + collocations together).
+  const [suggesting, setSuggesting] = useState<SuggestField | 'more' | null>(null)
+  const [aiError, setAiError] = useState<{ at: SuggestField | 'more'; message: string } | null>(null)
+
+  /**
+   * Asks the AI for some fields. Clicking a field's button is an explicit request, so the example
+   * is replaced (a second click gives a new sentence), while notes, tags and collocations are
+   * added to what is already there.
+   */
+  const suggest = async (at: SuggestField | 'more', fields: SuggestField[]) => {
+    setAiError(null)
+    if (!apiKey) {
+      setAiError({ at, message: 'AI önerileri için Ayarlar → AI yardımcısı bölümünden API anahtarını gir.' })
+      return
+    }
+    if (!form.word.trim()) {
+      setAiError({ at, message: 'Önce kelimeyi yaz.' })
+      return
+    }
+    setSuggesting(at)
+    try {
+      const existingTags = [...new Set((await db.vocabulary.where('language').equals(language).toArray()).flatMap((v) => v.tags))]
+      const out = await suggestFields(apiKey, {
+        language,
+        word: form.word.trim(),
+        meaning: form.meaning,
+        fields,
+        existingTags,
+        currentExample: form.example,
+      })
+      setForm((f) => {
+        const next = { ...f }
+        if (out.example) {
+          next.example = out.example
+          next.exampleTranslation = out.exampleTranslation ?? ''
+        }
+        if (out.note) next.notes = f.notes?.trim() ? `${f.notes.trim()}\n${out.note}` : out.note
+        if (out.tags?.length) {
+          const tags = new Set([...splitTags(f.tags), ...out.tags.map((t) => t.trim().toLocaleLowerCase('tr'))])
+          next.tags = [...tags].filter(Boolean).join(', ')
+        }
+        if (out.collocations?.length) {
+          const have = (f.collocations ?? '').split('\n').map((l) => l.trim()).filter(Boolean)
+          const known = new Set(have.map((l) => l.split('=')[0].trim().toLocaleLowerCase()))
+          const fresh = out.collocations.filter((c) => !known.has(c.phrase.trim().toLocaleLowerCase()))
+          next.collocations = [...have, collocationLines(fresh)].filter(Boolean).join('\n')
+        }
+        return next
+      })
+    } catch (err) {
+      setAiError({ at, message: err instanceof AiError ? err.message : 'AI önerisi alınamadı.' })
+    } finally {
+      setSuggesting(null)
+    }
+  }
+
+  const aiButton = (at: SuggestField | 'more', fields: SuggestField[], label: string, busyLabel = 'Hazırlanıyor…') => (
+    <button
+      type="button"
+      className="ai-suggest"
+      onClick={() => suggest(at, fields)}
+      disabled={suggesting !== null}
+    >
+      <SparkleIcon size={14} className="icon-star" />
+      {suggesting === at ? busyLabel : label}
+    </button>
+  )
+  const aiErrorFor = (at: SuggestField | 'more') =>
+    aiError?.at === at && (
+      <p className="error small" role="alert">
+        {aiError.message}
+      </p>
+    )
 
   /** Asks the AI for the word's data and fills only the fields the user left empty. */
   const fillWithAi = async () => {
@@ -219,6 +299,7 @@ export function WordForm({
         collocations: f.collocations?.trim() ? f.collocations : ai.collocations,
         confusables: f.confusables?.trim() ? f.confusables : ai.confusables,
       }))
+      setAiPos({ word: ai.word.trim(), pos: ai.partOfSpeech })
     } catch (err) {
       setError(err instanceof AiError || err instanceof WordInputError ? err.message : 'AI ile doldurulamadı.')
     } finally {
@@ -230,7 +311,8 @@ export function WordForm({
     e.preventDefault()
     setError('')
     try {
-      const saved = entry ? updateEntry(entry, form) : createEntry(form, language, new Date())
+      const input = posManual ? form : { ...form, partOfSpeech: autoPos }
+      const saved = entry ? updateEntry(entry, input) : createEntry(input, language, new Date())
       if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
         throw new WordInputError(`"${saved.lemma}" zaten listende.`)
       }
@@ -243,6 +325,9 @@ export function WordForm({
         setAdded(saved.lemma)
         setForm(EMPTY)
         setImage(null)
+        setPosManual(false)
+        setAiPos(null)
+        setAiError(null)
         document.getElementById('w-word')?.focus()
       }
       onSaved(saved)
@@ -270,14 +355,34 @@ export function WordForm({
         </div>
         <div className="grid-2">
           <div className="field">
-            <label htmlFor="w-pos">Tür</label>
-            <Select
-              id="w-pos"
-              label="Tür"
-              value={form.partOfSpeech ?? 'other'}
-              options={POS_OPTIONS.map((p) => ({ value: p, label: p === 'other' ? 'Belirtme' : POS_NAME[p] }))}
-              onChange={(v) => setForm((f) => ({ ...f, partOfSpeech: v === 'other' ? undefined : v }))}
-            />
+            <div className="field-head">
+              <label htmlFor="w-pos">Tür</label>
+              <button
+                type="button"
+                className="link small"
+                onClick={() => {
+                  // Switching to manual starts from the current guess, so nothing jumps.
+                  if (!posManual) setForm((f) => ({ ...f, partOfSpeech: autoPos }))
+                  setPosManual(!posManual)
+                }}
+              >
+                {posManual ? 'Otomatiğe dön' : 'Elle seç'}
+              </button>
+            </div>
+            {posManual ? (
+              <Select
+                id="w-pos"
+                label="Tür"
+                value={form.partOfSpeech ?? 'other'}
+                options={POS_OPTIONS.map((p) => ({ value: p, label: p === 'other' ? 'Belirtme' : POS_NAME[p] }))}
+                onChange={(v) => setForm((f) => ({ ...f, partOfSpeech: v === 'other' ? undefined : v }))}
+              />
+            ) : (
+              <div className="pos-auto" id="w-pos" role="status" aria-live="polite">
+                {autoPos ? <strong>{POS_NAME[autoPos]}</strong> : <span className="muted">{form.word.trim() ? 'Tahmin edilemedi' : 'Kelimeyi yazınca belirlenir'}</span>}
+                <span className="pos-auto-tag">{aiPos && autoPos === aiPos.pos && aiPos.word === form.word.trim() ? 'AI' : 'Otomatik'}</span>
+              </div>
+            )}
           </div>
           {needsGender && (
             <div className="field">
@@ -297,11 +402,15 @@ export function WordForm({
           )}
         </div>
         <div className="field">
-          <label htmlFor="w-ex">Örnek cümle (isteğe bağlı)</label>
+          <div className="field-head">
+            <label htmlFor="w-ex">Örnek cümle (isteğe bağlı)</label>
+            {aiButton('example', ['example'], form.example?.trim() ? 'Başka cümle getir' : 'Cümle getir', 'Cümle yazılıyor…')}
+          </div>
           <input id="w-ex" className="input" value={form.example ?? ''} onChange={set('example')} lang={language} />
           <span className="help">
             Bağlam ve boşluk doldurma alıştırmalarını açar. Kelime cümlede farklı biçimdeyse yıldızla işaretle: {EXAMPLES[language].marked}
           </span>
+          {aiErrorFor('example')}
         </div>
         <div className="field">
           <label htmlFor="w-ext">Örnek cümlenin çevirisi</label>
@@ -337,20 +446,35 @@ export function WordForm({
             }}
           />
         )}
-        <details>
+        <details open={moreOpen} onToggle={(e) => setMoreOpen(e.currentTarget.open)}>
           <summary className="small">Daha fazla: not, etiketler, kalıplar ve karıştırılan kelimeler</summary>
           <div className="stack">
-            <div className="field">
-              <label htmlFor="w-note">Not / hafıza ipucu</label>
-              <input id="w-note" className="input" value={form.notes ?? ''} onChange={set('notes')} placeholder="Nerede gördün, neye benziyor…" />
+            <div className="ai-fill-all">
+              {aiButton('more', ['notes', 'tags', 'collocations'], 'Not, etiket ve kalıpları AI ile doldur', 'Dolduruluyor…')}
+              {aiErrorFor('more')}
             </div>
             <div className="field">
-              <label htmlFor="w-tags">Etiketler</label>
+              <div className="field-head">
+                <label htmlFor="w-note">Not / hafıza ipucu</label>
+                {aiButton('notes', ['notes'], 'İpucu öner')}
+              </div>
+              <textarea id="w-note" className="textarea textarea-sm" value={form.notes ?? ''} onChange={set('notes')} placeholder="Nerede gördün, neye benziyor…" />
+              {aiErrorFor('notes')}
+            </div>
+            <div className="field">
+              <div className="field-head">
+                <label htmlFor="w-tags">Etiketler</label>
+                {aiButton('tags', ['tags'], 'Etiket öner')}
+              </div>
               <input id="w-tags" className="input" value={form.tags ?? ''} onChange={set('tags')} placeholder="iş, seyahat, dizi" />
               <span className="help">Virgülle ayır; kelime listesinde etikete göre filtreleyebilirsin.</span>
+              {aiErrorFor('tags')}
             </div>
             <div className="field">
-              <label htmlFor="w-col">Kalıplar (collocation)</label>
+              <div className="field-head">
+                <label htmlFor="w-col">Kalıplar (collocation)</label>
+                {aiButton('collocations', ['collocations'], 'Kalıp öner')}
+              </div>
               <textarea
                 id="w-col"
                 className="textarea"
@@ -360,6 +484,7 @@ export function WordForm({
                 placeholder={EXAMPLES[language].collocation}
               />
               <span className="help">Her satıra bir kalıp. Parantez içine sık yapılan yanlışları yazarsan kalıp alıştırması açılır.</span>
+              {aiErrorFor('collocations')}
             </div>
             <div className="field">
               <label htmlFor="w-conf">Karıştırılan kelimeler</label>

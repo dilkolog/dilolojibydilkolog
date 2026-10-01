@@ -47,9 +47,7 @@ export function wordInfoToInput(info: WordInfo) {
     gender: info.gender === 'none' ? undefined : info.gender,
     example: info.example,
     exampleTranslation: info.exampleTranslation,
-    collocations: info.collocations
-      .map((c) => `${c.phrase} = ${c.translation}${c.wrongVariants.length ? ` (${c.wrongVariants.join(', ')})` : ''}`)
-      .join('\n'),
+    collocations: collocationLines(info.collocations),
     confusables: info.confusables.join(', '),
   }
 }
@@ -75,4 +73,32 @@ export interface Mnemonic {
   etymology: string
   soundAlike: string
   scene: string
+}
+
+/** Add-word form fields the AI can suggest one at a time. */
+export type SuggestField = 'example' | 'notes' | 'tags' | 'collocations'
+
+export interface SuggestRequest {
+  language: import('../engine/types').TargetLanguage
+  word: string
+  /** Turkish meaning(s) typed so far; picks the sense when the word has several. */
+  meaning: string
+  fields: SuggestField[]
+  /** Tags already in use, so suggestions reuse them instead of inventing near-duplicates. */
+  existingTags: string[]
+  /** Current example sentence, so a second request gives a different one. */
+  currentExample?: string
+}
+
+export interface FieldSuggestions {
+  example?: string
+  exampleTranslation?: string
+  note?: string
+  tags?: string[]
+  collocations?: { phrase: string; translation: string; wrongVariants: string[] }[]
+}
+
+/** Formats suggested collocations the way the form's collocation field expects them. */
+export function collocationLines(list: NonNullable<FieldSuggestions['collocations']>): string {
+  return list.map((c) => `${c.phrase} = ${c.translation}${c.wrongVariants.length ? ` (${c.wrongVariants.join(', ')})` : ''}`).join('\n')
 }
