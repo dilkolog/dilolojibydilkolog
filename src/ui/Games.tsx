@@ -226,7 +226,7 @@ function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onCh
     const entry = pick(words, rng.current)
     return { entry, ex: buildExercise('mc_meaning', entry, pool, rng.current) as ChoiceExercise }
   }, [words, pool])
-  const [q, setQ] = useState(() => nextQuestion())
+  const [q, setQ] = useState<{ entry: VocabularyEntry; ex: ChoiceExercise } | null>(null)
 
   const finished = useRef(false)
   const finish = useCallback(async () => {
@@ -252,7 +252,7 @@ function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onCh
   }, [phase, ends, finish])
 
   const answer = (optionId: string) => {
-    if (phase !== 'play' || flash) return
+    if (phase !== 'play' || flash || !q) return
     const ev = evaluateChoice(q.ex, optionId)
     const ok = ev.verdict === 'correct'
     void recordPractice(q.entry, stateById.get(q.entry.id), 'mc_meaning', ok, performance.now() - shownAt.current)
@@ -277,19 +277,6 @@ function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onCh
     )
   }
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (phase === 'ready' && (e.key === 'Enter' || e.key === ' ')) {
-        e.preventDefault()
-        begin()
-      }
-      const i = Number(e.key) - 1
-      if (phase === 'play' && i >= 0 && i < q.ex.options.length) answer(q.ex.options[i].id)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  })
-
   const begin = () => {
     setScore(0)
     setCombo(0)
@@ -303,6 +290,19 @@ function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onCh
     finished.current = false
     setPhase('play')
   }
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (phase === 'ready' && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault()
+        begin()
+      }
+      const i = Number(e.key) - 1
+      if (phase === 'play' && q && i >= 0 && i < q.ex.options.length) answer(q.ex.options[i].id)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
   const left = Math.max(0, ends - now)
 
@@ -328,7 +328,7 @@ function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onCh
         </div>
       )}
 
-      {phase === 'play' && (
+      {phase === 'play' && q && (
         <>
           <div className="progress">
             <div style={{ width: `${(left / BLITZ_MS) * 100}%`, transition: 'width 0.1s linear' }} />

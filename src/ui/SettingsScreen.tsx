@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { TARGET_LANGUAGES } from '../engine/types'
 import { exportBackup, parseBackup, restoreBackup, type Settings } from '../data/db'
 import { db } from '../data/instance'
@@ -10,6 +10,7 @@ import { calendarFile, notificationsSupported, requestNotifications, showReminde
 import { Select } from './Select'
 import { canSpeak, speak, voicesFor } from './speech'
 import { canListen } from './speechInput'
+import { bookmarkletCode } from './incoming'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
 const NEW_WORDS = [0, 3, 5, 8, 12, 20]
@@ -251,6 +252,19 @@ export function SettingsScreen({
         <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
       </section>
 
+      <section className="card stack">
+        <h2 className="section-title">Web'den kelime ekle</h2>
+        <p className="small muted">
+          Aşağıdaki butonu tarayıcının yer imleri çubuğuna sürükle. Bir makale okurken kelimeyi seçip bu yer imine tıkla:
+          kelime, geçtiği cümle ve kaynağıyla birlikte ekleme formunda açılır. Sayfanın dili İngilizce, Fransızca ya da
+          İspanyolca ise doğru dile kendiliğinden geçer.
+        </p>
+        <div className="row">
+          <Bookmarklet />
+          <span className="small muted">← yer imleri çubuğuna sürükle (Safari: ⌘⇧B ile çubuğu göster)</span>
+        </div>
+      </section>
+
       <AiSettings />
 
       <section className="card stack">
@@ -297,5 +311,18 @@ export function SettingsScreen({
         </ConfirmDialog>
       )}
     </div>
+  )
+}
+
+/** React refuses javascript: URLs in href, so the bookmarklet link is set directly on the element. */
+function Bookmarklet() {
+  const ref = useRef<HTMLAnchorElement>(null)
+  useEffect(() => {
+    ref.current?.setAttribute('href', bookmarkletCode(location.origin))
+  }, [])
+  return (
+    <a ref={ref} className="btn bookmarklet" onClick={(e) => e.preventDefault()} title="Yer imleri çubuğuna sürükle">
+      + Kelime Koçu'na ekle
+    </a>
   )
 }

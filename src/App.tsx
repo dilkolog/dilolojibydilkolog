@@ -36,6 +36,8 @@ import { SettingsScreen } from './ui/SettingsScreen'
 import { StoryScreen } from './ui/Story'
 import { WordDetail } from './ui/WordDetail'
 import { WordsScreen } from './ui/Words'
+import { CommandPalette, type Command } from './ui/CommandPalette'
+import { readIncoming, type IncomingWord } from './ui/incoming'
 
 type Screen =
   | { name: 'home' }
@@ -84,6 +86,9 @@ export default function App() {
   const [game, setGame] = useState<GameState | null>(null)
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
   const [apiKey, setApiKeyState] = useState<string | null>(null)
+  const [palette, setPalette] = useState(false)
+  // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
+  const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
   const language = settings?.activeLanguage
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn }), [apiKey, speechOn])
@@ -96,6 +101,19 @@ export default function App() {
   useEffect(() => {
     if (settings) applySettings(settings)
   }, [settings])
+
+  // ⌘K / Ctrl+K opens the command palette (not during a session, to avoid leaving it by accident).
+  const inSessionNow = screen.name === 'session'
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k' && !inSessionNow) {
+        e.preventDefault()
+        setPalette((p) => !p)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [inSessionNow])
 
   const ai = useMemo(
     () => ({
@@ -132,6 +150,15 @@ export default function App() {
     await db.saveSettings(s)
     setSettings(s)
   }
+
+  // Bookmarklet: switch to the page's language and open the add-word form prefilled.
+  useEffect(() => {
+    if (!incoming || !settings) return
+    history.replaceState(null, '', location.pathname)
+    if (incoming.lang && incoming.lang !== settings.activeLanguage) void updateSettings({ ...settings, activeLanguage: incoming.lang })
+    setScreen({ name: 'words' })
+  }, [incoming, settings === null || settings === undefined])
+
 
   const planInput = useMemo(() => {
     if (!settings || !data || data.language !== settings.activeLanguage) return null
@@ -190,6 +217,31 @@ export default function App() {
 
   const go = (s: Screen) => () => setScreen(s)
   const inSession = screen.name === 'session'
+
+  const commands: Command[] = [
+    { id: 'home', label: 'Bugün', icon: '🏠', run: go({ name: 'home' }) },
+    ...(plan && plan.items.length ? [{ id: 'start', label: 'Bugünkü görevi başlat', icon: '▶️', run: () => startSession(plan.items, 'normal', daySeed(new Date())) }] : []),
+    { id: 'add', label: 'Kelime ekle', icon: '➕', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
+    { id: 'words', label: 'Kelimeler', icon: '📚', run: go({ name: 'words' }) },
+    { id: 'story', label: 'Hikaye', icon: '📖', run: go({ name: 'story' }) },
+    { id: 'games', label: 'Oyunlar', icon: '🧩', run: go({ name: 'games' }) },
+    ...(data && data.states.some((s) => Object.keys(s.skills).length)
+      ? [{ id: 'practice', label: 'Serbest pratik', icon: '✨', run: () => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice') }]
+      : []),
+    ...(data && openMistakes(data.mistakes).length
+      ? [{ id: 'mistakes-practice', label: 'Hatalarını düzelt', icon: '🩹', run: () => startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal') }]
+      : []),
+    { id: 'mistakes', label: 'Hatalar', icon: '⚠️', run: go({ name: 'mistakes' }) },
+    { id: 'progress', label: 'İlerleme', icon: '📈', run: go({ name: 'progress' }) },
+    { id: 'profile', label: 'Profil', icon: '👤', run: go({ name: 'profile' }) },
+    { id: 'settings', label: 'Ayarlar', icon: '⚙️', run: go({ name: 'settings' }) },
+    ...TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage).map((l) => ({
+      id: `lang-${l}`,
+      label: `Dil: ${LANGUAGE_NAME[l]}`,
+      icon: '🌍',
+      run: () => updateSettings({ ...settings, activeLanguage: l }),
+    })),
+  ]
   const current = (n: NavScreen) =>
     screen.name === n || (n === 'words' && screen.name === 'word') || (n === 'home' && screen.name === 'summary')
 
@@ -218,6 +270,10 @@ export default function App() {
                   </button>
                 ))}
               </div>
+              <button className="palette-trigger" onClick={() => setPalette(true)}>
+                <span>Ara ya da git…</span>
+                <kbd>⌘K</kbd>
+              </button>
               <nav className="nav">
                 {NAV.map((n) => (
                   <button
@@ -281,6 +337,8 @@ export default function App() {
                 mistakes={data.mistakes}
                 onChanged={reload}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+                incoming={incoming && (!incoming.lang || incoming.lang === data.language) ? incoming : null}
+                onIncomingDone={() => setIncoming(null)}
                 onStudy={(deck) =>
                   startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
                 }
@@ -368,6 +426,14 @@ export default function App() {
               />
             )}
           </main>
+          {palette && data && (
+            <CommandPalette
+              commands={commands}
+              vocabulary={data.vocabulary}
+              onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
+              onClose={() => setPalette(false)}
+            />
+          )}
         </div>
       </GameContext.Provider>
     </AiContext.Provider>

@@ -14,6 +14,7 @@ import { BulkImport } from './BulkImport'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
 import { TextImport } from './TextImport'
+import type { IncomingWord } from './incoming'
 import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 
@@ -27,9 +28,12 @@ interface Props {
   onOpen: (entryId: string) => void
   /** Study a filtered list (deck) right now. */
   onStudy: (entries: VocabularyEntry[]) => void
+  /** A word sent from another site via the bookmarklet. */
+  incoming?: IncomingWord | null
+  onIncomingDone?: () => void
 }
 
-export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
@@ -53,7 +57,36 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
     <div>
       <section className="section stack">
         <h1 className="greeting">{LANGUAGE_NAME[language]} kelimelerin</h1>
-        <details open className="card">
+        {incoming && (
+          <div className="card stack incoming">
+            <p className="small muted">
+              🌐 Web'den geldi{incoming.src && (
+                <>
+                  : <a href={incoming.src} target="_blank" rel="noreferrer">{new URL(incoming.src).hostname}</a>
+                </>
+              )}
+            </p>
+            <WordForm
+              key={incoming.word + incoming.context}
+              db={db}
+              language={language}
+              existing={keys}
+              initial={{
+                word: incoming.word,
+                meaning: '',
+                example: markWord(incoming.context, incoming.word),
+                exampleTranslation: '',
+                notes: incoming.src ? `Kaynak: ${incoming.src}` : '',
+              }}
+              onSaved={() => {
+                onChanged()
+                onIncomingDone?.()
+              }}
+              onCancel={onIncomingDone}
+            />
+          </div>
+        )}
+        <details open={!incoming} className="card">
           <summary>Kelime ekle</summary>
           <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
         </details>
@@ -130,6 +163,7 @@ export function WordForm({
   language,
   existing,
   entry,
+  initial,
   onSaved,
   onCancel,
 }: {
@@ -137,10 +171,12 @@ export function WordForm({
   language: TargetLanguage
   existing: Set<string>
   entry?: VocabularyEntry
+  /** Prefilled values for a new word. */
+  initial?: WordInput
   onSaved: (entry: VocabularyEntry) => void
   onCancel?: () => void
 }) {
-  const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : EMPTY))
+  const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : (initial ?? EMPTY)))
   const [error, setError] = useState('')
   const [added, setAdded] = useState('')
   const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
@@ -520,4 +556,10 @@ function WordList({
       )}
     </section>
   )
+}
+
+/** Marks the word in its sentence (*word*) so the example's form is unambiguous. */
+function markWord(sentence: string, word: string): string {
+  const i = sentence.toLowerCase().indexOf(word.toLowerCase())
+  return i < 0 ? sentence : `${sentence.slice(0, i)}*${sentence.slice(i, i + word.length)}*${sentence.slice(i + word.length)}`
 }
