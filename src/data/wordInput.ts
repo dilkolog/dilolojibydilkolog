@@ -202,23 +202,114 @@ export interface ImportResult {
   duplicates: string[]
 }
 
+/** How a pasted word list is laid out (Quizlet-style options). */
+export type TermSeparator = 'auto' | 'tab' | 'comma' | 'semicolon' | 'dash' | 'equals' | 'colon' | 'custom'
+export type RowSeparator = 'newline' | 'semicolon' | 'custom'
+
+export interface ListFormat {
+  term: TermSeparator
+  row: RowSeparator
+  customTerm?: string
+  customRow?: string
+  /** Meaning comes first ("karar - decision"). */
+  swap?: boolean
+  /** Tags added to every imported word. */
+  tags?: string
+}
+
+export const DEFAULT_FORMAT: ListFormat = { term: 'auto', row: 'newline' }
+
+const TERM_SEP: Record<Exclude<TermSeparator, 'auto' | 'custom'>, string> = {
+  tab: '\t',
+  comma: ',',
+  semicolon: ';',
+  dash: ' - ',
+  equals: '=',
+  colon: ':',
+}
+
+/** Picks the separator used on most lines: tab first, then the common word-list notations. */
+export function detectTermSeparator(lines: string[]): Exclude<TermSeparator, 'auto' | 'custom'> {
+  const candidates: [Exclude<TermSeparator, 'auto' | 'custom'>, RegExp][] = [
+    ['tab', /\t/],
+    ['dash', /\s[-–—]\s/],
+    ['equals', /=/],
+    ['colon', /:/],
+    ['semicolon', /;/],
+    ['comma', /,/],
+  ]
+  for (const [name, re] of candidates) {
+    if (lines.length && lines.filter((l) => re.test(l)).length >= Math.ceil(lines.length * 0.6)) return name
+  }
+  return 'tab'
+}
+
+const stripHtml = (s: string) => s.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+
+/** Rows of cells from a pasted list, JSON array, CSV/TSV or Anki export. */
+export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): string[][] {
+  const trimmed = text.trim()
+  // JSON: [{word, meaning, …}] or Quizlet-like [{term, definition}].
+  if (trimmed.startsWith('[')) {
+    try {
+      const data = JSON.parse(trimmed) as Record<string, unknown>[]
+      const str = (v: unknown) => (typeof v === 'string' ? v : '')
+      return data.map((o) => [
+        str(o.word ?? o.term ?? o.front),
+        str(o.meaning ?? o.definition ?? o.back),
+        str(o.example),
+        str(o.exampleTranslation),
+        str(o.collocations),
+        str(o.confusables),
+      ])
+    } catch {
+      // Not JSON after all; fall through to text parsing.
+    }
+  }
+  const rowSep = fmt.row === 'semicolon' ? ';' : fmt.row === 'custom' && fmt.customRow ? fmt.customRow : '\n'
+  const lines = text
+    .replace(/\r/g, '')
+    .split(rowSep)
+    .filter((l) => l.trim() && !l.startsWith('#')) // Anki exports start with "#separator:tab" headers.
+  const term = fmt.term === 'auto' ? detectTermSeparator(lines) : fmt.term
+  let rows: string[][]
+  if (term === 'tab' || term === 'comma') {
+    // Spreadsheet-like: full CSV/TSV parsing with quotes, all columns kept.
+    rows = term === 'tab' ? lines.map((l) => l.split('\t')) : parseDelimited(lines.join('\n'))
+  } else {
+    // Word-list notations split on the FIRST separator only, so meanings may contain it.
+    const sep = term === 'custom' ? fmt.customTerm || '\t' : TERM_SEP[term]
+    const re = term === 'dash' ? /\s[-–—]\s/ : null
+    rows = lines.map((l) => {
+      const m = re ? l.match(re) : null
+      const i = re ? (m?.index ?? -1) : l.indexOf(sep)
+      const len = re ? (m?.[0].length ?? 0) : sep.length
+      // "breeze -" (meaning left empty): drop the dangling separator from the word.
+      return i < 0 ? [l.replace(/\s*([-–—=:;|]|\t)\s*$/, '')] : [l.slice(0, i), l.slice(i + len)]
+    })
+  }
+  rows = rows.map((r) => r.map((c) => stripHtml(c).trim()))
+  return fmt.swap ? rows.map(([a = '', b = '', ...rest]) => [b, a, ...rest]) : rows
+}
+
 export function importWords(
   text: string,
   language: TargetLanguage,
   existingIds: ReadonlySet<string>,
   now: Date,
+  fmt: ListFormat = DEFAULT_FORMAT,
 ): ImportResult {
-  const rows = parseDelimited(text)
+  const rows = parseWordList(text, fmt)
   const result: ImportResult = { entries: [], errors: [], duplicates: [] }
   const seen = new Set(existingIds)
   rows.forEach((cells, i) => {
     const line = i + 1
-    if (i === 0 && ['kelime', 'word'].includes(normalize(cells[0] ?? ''))) return
+    if (i === 0 && ['kelime', 'word', 'term', 'anlam', 'meaning'].includes(normalize(cells[0] ?? ''))) return
     const [word, meaning, example, exampleTranslation, collocations, confusables] = cells.map((c) => c.trim())
     try {
       // Spread `now` by row so the file order is kept as the introduction order.
       const entry = createEntry(
-        { word, meaning, example, exampleTranslation, collocations, confusables },
+        { word, meaning, example, exampleTranslation, collocations, confusables, tags: fmt.tags },
         language,
         new Date(now.getTime() + i),
         'import',

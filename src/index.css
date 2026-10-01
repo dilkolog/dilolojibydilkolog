@@ -259,7 +259,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .link { background: none; border: 0; padding: 0; color: var(--lang-text); font-weight: 500; cursor: pointer; text-decoration: none; }
 .link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-.field { display: grid; gap: 0.375rem; }
+.field { display: grid; gap: 0.375rem; align-content: start; }
 .field label { font-weight: 600; font-size: var(--t-sm); }
 .field .help { font-size: var(--t-sm); color: var(--ink-soft); }
 
@@ -277,7 +277,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
 .grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 
-.choice-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.choice-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
 .chip {
   border: 2px solid var(--rule);
   background: var(--surface);
@@ -804,3 +804,6 @@ kbd {
 .credit { font-size: 0.75rem; color: var(--ink-soft); }
 
 .note { background: var(--surface-2); border-radius: 0.75rem; padding: 0.5rem 0.75rem; font-size: var(--t-sm); }
+.preview { max-height: 20rem; overflow: auto; border: 1px solid var(--rule); border-radius: 0.75rem; padding: 0 0.75rem; }
+.preview-table { width: 100%; margin: 0; }
+.preview-table th { position: sticky; top: 0; background: var(--surface); padding-top: 0.5rem; }

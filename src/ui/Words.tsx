@@ -5,11 +5,12 @@ import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
-import { createEntry, entryToInput, IMPORT_COLUMNS, importWords, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
+import { createEntry, entryToInput, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
+import { BulkImport } from './BulkImport'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
 import { TextImport } from './TextImport'
@@ -53,7 +54,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
         </details>
         <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
-        <ImportPanel db={db} language={language} existing={keys} onImported={onChanged} />
+        <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
         <div className="row small">
           {hasSamples ? (
             <button className="link" onClick={removeSamples}>
@@ -319,105 +320,6 @@ export function WordForm({
           )}
         </div>
     </form>
-  )
-}
-
-function ImportPanel({
-  db,
-  language,
-  existing,
-  onImported,
-}: {
-  db: KelimeDB
-  language: TargetLanguage
-  existing: Set<string>
-  onImported: () => void
-}) {
-  const [text, setText] = useState('')
-  const [report, setReport] = useState<ReturnType<typeof importWords> | null>(null)
-  const [added, setAdded] = useState(0)
-
-  const preview = () => {
-    setAdded(0)
-    setReport(importWords(text, language, existing, new Date()))
-  }
-
-  const save = async () => {
-    if (!report) return
-    await db.vocabulary.bulkPut(report.entries)
-    setAdded(report.entries.length)
-    setText('')
-    setReport(null)
-    onImported()
-  }
-
-  const readFile = async (file: File) => {
-    setText(await file.text())
-    setReport(null)
-  }
-
-  return (
-    <details className="card">
-      <summary>Toplu ekle</summary>
-      <div className="stack">
-        <p className="small muted">
-          Excel ya da Google Sheets'ten satırları kopyalayıp yapıştır, veya bir CSV dosyası seç. Sütun sırası:
-        </p>
-        <p className="code">{IMPORT_COLUMNS.join('\t')}</p>
-        <p className="small muted">Yalnızca ilk iki sütun zorunlu. Kalıpları ";" ile ayır.</p>
-        <textarea
-          className="textarea"
-          value={text}
-          lang={language}
-          aria-label="Kelime listesi"
-          placeholder={EXAMPLES[language].row}
-          onChange={(e) => {
-            setText(e.target.value)
-            setReport(null)
-          }}
-        />
-        <div className="row">
-          <button className="btn btn-quiet" type="button" onClick={preview} disabled={!text.trim()}>
-            Önizle
-          </button>
-          <label className="link small">
-            Dosya seç
-            <input
-              type="file"
-              accept=".csv,.tsv,.txt"
-              className="sr-only"
-              onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])}
-            />
-          </label>
-        </div>
-        {added > 0 && <p className="notice" role="status">{added} kelime eklendi.</p>}
-        {report && (
-          <div className="stack small" role="status">
-            <p>
-              {report.entries.length} kelime eklenmeye hazır
-              {report.duplicates.length > 0 && `, ${report.duplicates.length} tanesi zaten var (atlanacak)`}
-              {report.errors.length > 0 && `, ${report.errors.length} satırda sorun var`}.
-            </p>
-            {report.errors.length > 0 && (
-              <ul className="error">
-                {report.errors.map((e) => (
-                  <li key={e.line}>
-                    Satır {e.line}: {e.message}
-                  </li>
-                ))}
-              </ul>
-            )}
-            {report.entries.length > 0 && (
-              <div>
-                <button className="btn" type="button" onClick={save}>
-                  {report.entries.length} kelimeyi ekle
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </details>
   )
 }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createEntry, entryToInput, findForm, importWords, parseCollocations, parseDelimited, updateEntry, WordInputError, wordKeys } from './wordInput'
+import { createEntry, entryToInput, findForm, importWords, parseCollocations, parseDelimited, parseWordList, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -126,5 +126,32 @@ describe('editing', () => {
   it('keeps data the form does not show', () => {
     const e = { ...createEntry({ word: 'decide', meaning: 'karar vermek' }, 'en', NOW), wordFamily: [{ lemma: 'decision', partOfSpeech: 'noun' as const, gloss: 'karar' }] }
     expect(updateEntry(e, { ...entryToInput(e), meaning: 'karar vermek, kararlaştırmak' }).wordFamily).toHaveLength(1)
+  })
+})
+
+describe('parseWordList (bulk formats)', () => {
+  it('auto-detects common word-list notations, splitting on the first separator only', () => {
+    expect(parseWordList('decision - karar\nthrive - gelişmek, büyümek')).toEqual([['decision', 'karar'], ['thrive', 'gelişmek, büyümek']])
+    expect(parseWordList('decision = karar\nabandon = terk etmek')).toEqual([['decision', 'karar'], ['abandon', 'terk etmek']])
+    expect(parseWordList('decision: karar\nabandon: terk etmek')).toEqual([['decision', 'karar'], ['abandon', 'terk etmek']])
+  })
+  it('keeps hyphenated words intact with the dash notation', () => {
+    expect(parseWordList('well-known - ünlü')).toEqual([['well-known', 'ünlü']])
+  })
+  it('supports custom separators, row separators and swapped columns', () => {
+    expect(parseWordList('karar|decision;gelişmek|thrive', { term: 'custom', customTerm: '|', row: 'semicolon', swap: true })).toEqual([
+      ['decision', 'karar'],
+      ['thrive', 'gelişmek'],
+    ])
+  })
+  it('reads JSON arrays (word/meaning or term/definition)', () => {
+    expect(parseWordList('[{"term":"decision","definition":"karar"}]')[0].slice(0, 2)).toEqual(['decision', 'karar'])
+  })
+  it('reads Anki exports: skips # headers and strips HTML', () => {
+    expect(parseWordList('#separator:tab\n#html:true\n<b>decision</b>\tkarar<br>seçim')).toEqual([['decision', 'karar seçim']])
+  })
+  it('applies tags to every imported word', () => {
+    const r = importWords('decision - karar\nthrive - gelişmek', 'en', new Set(), NOW, { term: 'auto', row: 'newline', tags: 'dizi, s1' })
+    expect(r.entries.map((e) => e.tags)).toEqual([['dizi', 's1'], ['dizi', 's1']])
   })
 })
