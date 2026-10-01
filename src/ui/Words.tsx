@@ -5,7 +5,7 @@ import type { Gender, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEnt
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { createEntry, entryToInput, IMPORT_COLUMNS, importWords, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
-import { AiError, enrichWords, wordInfoToInput } from '../ai/claude'
+import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { TextImport } from './TextImport'

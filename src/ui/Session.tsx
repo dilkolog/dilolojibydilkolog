@@ -30,7 +30,7 @@ import {
 import type { EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
-import { AiError, evaluateSentence } from '../ai/claude'
+import { AiError, evaluateSentence } from '../ai'
 import { useAi } from './aiContext'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon } from './icons'
 import { canSpeak, speak } from './speech'
@@ -51,9 +51,8 @@ interface Props {
 }
 
 export function SessionScreen(p: Props) {
-  // A ref, not memo: an override can add an accepted spelling to a word mid-session.
-  const entries = useRef(new Map(p.vocabulary.map((e) => [e.id, e])))
-  const byId = entries.current
+  // State, not memo: an override can add an accepted spelling to a word mid-session.
+  const [byId, setById] = useState(() => new Map(p.vocabulary.map((e) => [e.id, e])))
   /** The last answer, kept so "my answer was right too" can recompute it from the prior state. */
   const lastAnswer = useRef<{ before: UserWordState; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
@@ -146,7 +145,7 @@ export function SessionScreen(p: Props) {
     const given = last.input.given?.trim()
     if (given && (input.exerciseType === 'typed_translation' || input.exerciseType === 'listen_type')) {
       const updated = { ...entry, alternativeForms: [...new Set([...(entry.alternativeForms ?? []), given])] }
-      entries.current.set(entry.id, updated)
+      setById((m) => new Map(m).set(entry.id, updated))
       await p.db.vocabulary.put(updated)
     }
     return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state) }

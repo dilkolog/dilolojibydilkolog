@@ -1,8 +1,9 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import * as z from 'zod/v4'
-import type { ErrorType, PartOfSpeech, TargetLanguage, Verdict, VocabularyEntry } from '../engine/types'
+import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
+import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type SentenceEvaluation, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -12,17 +13,6 @@ import { LANGUAGE_NAME } from '../ui/labels'
  * Single-user app, so the browser calls the API directly with the user's own key, which never
  * leaves this device except to api.anthropic.com.
  */
-export const AI_MODEL = 'claude-opus-5-5'
-
-export type AiErrorKind = 'auth' | 'rate' | 'refusal' | 'network' | 'other'
-
-export class AiError extends Error {
-  readonly kind: AiErrorKind
-  constructor(kind: AiErrorKind, message: string) {
-    super(message)
-    this.kind = kind
-  }
-}
 
 const AI_MESSAGES: Record<AiErrorKind, string> = {
   auth: 'API anahtarı geçersiz. Ayarlar ekranından kontrol et.',
@@ -99,15 +89,11 @@ const WordInfo = z.object({
     .describe('0-3 high-value collocations. Empty for function words.'),
   confusables: z.array(z.string()).describe('0-2 words in the same language commonly confused with this one (affect/effect).'),
 })
-export type WordInfo = z.infer<typeof WordInfo>
+// Compile-time check that the schema and the shared WordInfo type agree.
+const _schemaMatches: (x: z.infer<typeof WordInfo>) => WordInfo = (x) => x
+void _schemaMatches
 
 const WordBatch = z.object({ words: z.array(WordInfo) })
-
-export interface EnrichRequest {
-  word: string
-  /** Sentence the word was found in; its meaning should be the one used there. */
-  context?: string
-}
 
 /** Fills in dictionary data for up to ~20 words in one request. */
 export async function enrichWords(
@@ -127,22 +113,6 @@ export async function enrichWords(
   return new Map(out.words.map((w) => [w.input.toLocaleLowerCase(), w]))
 }
 
-/** Converts AI word data into the add-word form's fields. */
-export function wordInfoToInput(info: WordInfo) {
-  return {
-    word: info.lemma,
-    meaning: info.meanings.join(', '),
-    partOfSpeech: info.partOfSpeech as PartOfSpeech,
-    gender: info.gender === 'none' ? undefined : info.gender,
-    example: info.example,
-    exampleTranslation: info.exampleTranslation,
-    collocations: info.collocations
-      .map((c) => `${c.phrase} = ${c.translation}${c.wrongVariants.length ? ` (${c.wrongVariants.join(', ')})` : ''}`)
-      .join('\n'),
-    confusables: info.confusables.join(', '),
-  }
-}
-
 // ---------------------------------------------------------------------------
 // Sentence evaluation (free production)
 // ---------------------------------------------------------------------------
@@ -157,13 +127,6 @@ const SentenceGrade = z.object({
   corrected: z.string().describe('The learner\'s sentence minimally corrected (identical if already correct).'),
   feedback: z.string().describe('1-2 short, encouraging sentences in Turkish explaining what was right or what to fix.'),
 })
-
-export interface SentenceEvaluation {
-  verdict: Verdict
-  errorType?: ErrorType
-  corrected: string
-  feedback: string
-}
 
 export async function evaluateSentence(
   apiKey: string,

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { AI_MODEL, AiError, testKey } from '../ai/claude'
+import { AI_MODEL, AiError, testKey } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 

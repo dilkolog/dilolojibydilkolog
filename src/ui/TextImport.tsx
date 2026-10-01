@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AiError, enrichWords, wordInfoToInput } from '../ai/claude'
+import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { extractCandidates, type Candidate } from '../engine/extract'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
