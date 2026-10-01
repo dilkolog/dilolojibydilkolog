@@ -10,14 +10,20 @@ import {
   type LevelInfo,
   type XpSummary,
 } from '../engine/gamification'
+import { streakWithFreezes } from '../engine/insights'
 import { masteryStage } from '../engine/mastery'
-import { studyStreak } from '../engine/progress'
+import { localDate } from '../engine/progress'
+import { dayMetrics, questStatus, type QuestStatus } from '../engine/quests'
 import type { KelimeDB } from '../data/db'
 
 export interface GameState {
   xp: XpSummary
   level: LevelInfo
   streak: number
+  /** Streak freezes in reserve. */
+  freezes: number
+  /** Today's three quests. */
+  quests: QuestStatus[]
   stats: GameStats
   achievements: AchievementState[]
 }
@@ -41,7 +47,19 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     freeSentencesCorrect: real.filter((e) => e.exerciseType === 'free_sentence' && e.verdict === 'correct').length,
     level: level.level,
   }
-  return { xp, level, streak: studyStreak(events, now), stats, achievements: achievements(stats) }
+  const studyDays = [...new Set(real.map((e) => localDate(e.timestamp)))]
+  const streak = streakWithFreezes(studyDays, now)
+  const today = localDate(now)
+  const quests = questStatus(
+    today,
+    dayMetrics(
+      events.filter((e) => localDate(e.timestamp) === today),
+      states.filter((s) => localDate(s.introducedAt) === today).length,
+    ),
+  )
+  // Longest streak counts freeze-covered days too, so a frozen day never lowers the record.
+  stats.longestStreak = Math.max(stats.longestStreak, streak.streak)
+  return { xp, level, streak: streak.streak, freezes: streak.freezes, quests, stats, achievements: achievements(stats) }
 }
 
 export const GameContext = createContext<GameState | null>(null)

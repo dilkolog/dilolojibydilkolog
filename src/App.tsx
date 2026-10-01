@@ -3,7 +3,7 @@ import { buildDailyPlan, buildExtraNewPlan, type PlanItem } from './engine/daily
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
 import { answeredToday, progressStats } from './engine/progress'
-import { buildMistakePlan, buildPracticePlan } from './engine/practice'
+import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/practice'
 import { nextReviewAt } from './engine/review'
 import { createRng } from './engine/rng'
 import type { SessionSummary } from './engine/session'
@@ -276,6 +276,9 @@ export default function App() {
                 mistakes={data.mistakes}
                 onChanged={reload}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+                onStudy={(deck) =>
+                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
+                }
               />
             ) : screen.name === 'word' && byId.has(screen.entryId) ? (
               <WordDetail
@@ -299,7 +302,15 @@ export default function App() {
                 }
               />
             ) : screen.name === 'progress' ? (
-              <ProgressScreen db={db} language={data.language} vocabularyCount={data.vocabulary.length} states={data.states} scheduler={scheduler} />
+              <ProgressScreen
+                db={db}
+                language={data.language}
+                vocabularyCount={data.vocabulary.length}
+                states={data.states}
+                scheduler={scheduler}
+                vocabulary={data.vocabulary}
+                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+              />
             ) : screen.name === 'story' ? (
               <StoryScreen
                 language={data.language}

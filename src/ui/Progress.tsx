@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 import { MASTERY_STAGES, skillProfile } from '../engine/mastery'
 import { progressStats, type DayActivity, type ProgressStats } from '../engine/progress'
 import type { Scheduler } from '../engine/scheduler'
-import { SKILLS, type TargetLanguage, type UserWordState } from '../engine/types'
+import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
+import { displayForm } from '../engine/exercises'
+import { errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
+import { useGame } from './game'
 import type { KelimeDB } from '../data/db'
-import { SKILL_NAME, STAGE_NAME } from './labels'
+import { ERROR_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
 
@@ -14,24 +17,37 @@ export function ProgressScreen({
   vocabularyCount,
   states,
   scheduler,
+  vocabulary,
+  onOpen,
 }: {
   db: KelimeDB
   language: TargetLanguage
   vocabularyCount: number
   states: UserWordState[]
   scheduler: Scheduler
+  vocabulary: VocabularyEntry[]
+  onOpen: (entryId: string) => void
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
+  const [events, setEvents] = useState<ReviewEvent[]>([])
+  const game = useGame()
 
   useEffect(() => {
     const now = new Date()
-    const since = new Date(now.getFullYear(), now.getMonth(), now.getDate() - DAYS + 1)
-    db.eventsSince(since, language).then((events) =>
-      setStats(progressStats({ vocabularyCount, states, events, scheduler, now, days: DAYS })),
-    )
+    // All of this language's history: hard words and the weekly report need more than 14 days.
+    db.eventsSince(new Date(0), language).then((all) => {
+      setEvents(all)
+      setStats(progressStats({ vocabularyCount, states, events: all, scheduler, now, days: DAYS }))
+    })
   }, [db, language, vocabularyCount, states, scheduler])
 
   if (!stats) return null
+  const now = new Date()
+  const report = weekReport(events, states.map((s) => s.introducedAt), game?.xp.byDay ?? new Map(), now)
+  const forecast = reviewForecast(states, now, DAYS)
+  const hard = hardWords(events, 8)
+  const errors = Object.entries(errorBreakdown(events)) as [ErrorType, number][]
+  const byId = new Map(vocabulary.map((v) => [v.id, v]))
   const profile = skillProfile(states, scheduler, new Date())
   const maxStage = Math.max(1, stats.notStarted, ...Object.values(stats.stageCounts))
 
@@ -49,6 +65,64 @@ export function ProgressScreen({
             </span>
           </span>
         </div>
+      </section>
+
+      <WeekCard report={report} focus={weakestSkill(skillProfile(states, scheduler, now))} />
+
+      <section className="section stack">
+        <h2 className="section-title">Önümüzdeki {DAYS} günün tekrarları</h2>
+        <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
+        <ForecastChart forecast={forecast} />
+      </section>
+
+      <section className="section stack">
+        <h2 className="section-title">Zorlandığın kelimeler</h2>
+        {hard.length === 0 ? (
+          <p className="muted">Henüz belirgin bir zorluk yok. En az 3 kez cevapladığın kelimeler burada sıralanır.</p>
+        ) : (
+          <ul className="word-list">
+            {hard.map((h) => {
+              const e = byId.get(h.entryId)
+              if (!e) return null
+              return (
+                <li key={h.entryId}>
+                  <button className="word-row" onClick={() => onOpen(h.entryId)}>
+                    <span className="word-row-text">
+                      <span className="w">{displayForm(e)}</span>
+                      <span className="meta">{e.senses[0].gloss}</span>
+                    </span>
+                    <span className="small muted">
+                      {h.wrong}/{h.total} yanlış
+                    </span>
+                    <span className="hard-rate" style={{ ['--rate' as string]: h.rate }}>
+                      %{Math.round(h.rate * 100)}
+                    </span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+        {errors.length > 0 && (
+          <>
+            <h3 className="field">
+              <label>Hata türleri</label>
+            </h3>
+            <div className="bars">
+              {errors
+                .sort((a, b) => b[1] - a[1])
+                .map(([t, n]) => (
+                  <div className="bar-row" key={t}>
+                    <span>{ERROR_NAME[t]}</span>
+                    <div className="bar-track bar-track-plain">
+                      <div className="bar-fill" style={{ width: `${(n / Math.max(...errors.map((x) => x[1]))) * 100}%`, background: 'var(--bad)' }} />
+                    </div>
+                    <span className="bar-value">{n}</span>
+                  </div>
+                ))}
+            </div>
+          </>
+        )}
       </section>
 
       <section className="section stack">
@@ -163,6 +237,81 @@ function ActivityChart({ activity }: { activity: DayActivity[] }) {
           </tbody>
         </table>
       </details>
+    </div>
+  )
+}
+
+function Delta({ now, before, suffix = '' }: { now: number; before: number; suffix?: string }) {
+  if (before === 0 && now === 0) return null
+  const diff = now - before
+  if (diff === 0) return <span className="delta">=</span>
+  return (
+    <span className={`delta ${diff > 0 ? 'up' : 'down'}`}>
+      {diff > 0 ? '▲' : '▼'} {Math.abs(Math.round(diff))}
+      {suffix}
+    </span>
+  )
+}
+
+const FOCUS_TEXT: Record<string, string> = {
+  recognition: 'Tanıma zayıf: yeni kelimeleri daha sık tekrar et.',
+  recall: 'Hatırlama zayıf: yazarak hatırlama sorularına ağırlık ver; ipucunu geç aç.',
+  production: 'Üretme zayıf: boşluk doldurma ve kendi cümleni kurma alıştırmaları yap.',
+  listening: 'Dinleme zayıf: dikte ve dinleme sorularıyla kulağını alıştır.',
+  collocation: 'Kalıplar zayıf: kelimeleri birlikte kullanıldıkları kelimelerle çalış.',
+}
+
+/** This week against last week, with a suggested focus. */
+function WeekCard({ report, focus }: { report: ReturnType<typeof weekReport>; focus: string | null }) {
+  const t = report.thisWeek
+  const l = report.lastWeek
+  return (
+    <section className="section card stack">
+      <h2 className="section-title">Bu hafta</h2>
+      <div className="week-grid">
+        <div>
+          <strong>{t.xp}</strong> XP <span className="small muted">(tüm diller)</span> <Delta now={t.xp} before={l.xp} />
+        </div>
+        <div>
+          <strong>{t.answers}</strong> cevap <Delta now={t.answers} before={l.answers} />
+        </div>
+        <div>
+          <strong>%{Math.round(t.accuracy * 100)}</strong> doğruluk <Delta now={t.accuracy * 100} before={l.accuracy * 100} suffix=" puan" />
+        </div>
+        <div>
+          <strong>{t.newWords}</strong> yeni kelime <Delta now={t.newWords} before={l.newWords} />
+        </div>
+        <div>
+          <strong>{t.daysStudied}</strong>/7 gün <Delta now={t.daysStudied} before={l.daysStudied} />
+        </div>
+      </div>
+      {focus && FOCUS_TEXT[focus] && <p className="small">🎯 Önerilen odak: {FOCUS_TEXT[focus]}</p>}
+    </section>
+  )
+}
+
+function ForecastChart({ forecast }: { forecast: { date: string; count: number }[] }) {
+  const [hover, setHover] = useState<number | null>(null)
+  const max = Math.max(1, ...forecast.map((f) => f.count))
+  const shown = hover !== null ? forecast[hover] : null
+  return (
+    <div>
+      <p className="chart-readout small">
+        {shown
+          ? `${dayLabel(shown.date, { day: 'numeric', month: 'long', weekday: 'short' })}: ${shown.count} kelime`
+          : `Toplam ${forecast.reduce((s, f) => s + f.count, 0)} kelime`}
+      </p>
+      <div className="columns" onMouseLeave={() => setHover(null)}>
+        {forecast.map((f, i) => (
+          <button key={f.date} type="button" className="column-hit" onMouseEnter={() => setHover(i)} onFocus={() => setHover(i)} aria-label={`${f.date}: ${f.count} kelime`}>
+            <span className={`column${hover === i ? ' is-active' : ''}`} style={{ height: f.count ? `${Math.max(4, (f.count / max) * 100)}%` : 0, background: i === 0 ? 'var(--flame)' : undefined }} />
+          </button>
+        ))}
+      </div>
+      <div className="columns-axis small muted">
+        <span>bugün</span>
+        <span>{dayLabel(forecast.at(-1)!.date, { day: 'numeric', month: 'short' })}</span>
+      </div>
     </div>
   )
 }

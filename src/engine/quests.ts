@@ -21,7 +21,7 @@ export interface QuestDef {
 
 export const QUESTS: QuestDef[] = [
   { id: 'answers', icon: '✍️', title: (n) => `${n} soru cevapla`, targets: [20, 30, 50], xp: 20 },
-  { id: 'correct', icon: '✅', title: (n) => `${n} doğru cevap ver`, targets: [15, 25, 40], xp: 25 },
+  { id: 'correct', icon: '🎯', title: (n) => `${n} doğru cevap ver`, targets: [15, 25, 40], xp: 25 },
   { id: 'combo', icon: '🔥', title: (n) => `Üst üste ${n} doğru yap`, targets: [5, 8, 12], xp: 30 },
   { id: 'typedCorrect', icon: '⌨️', title: (n) => `Yazarak ${n} doğru cevap ver`, targets: [5, 10, 15], xp: 30 },
   { id: 'listenCorrect', icon: '🎧', title: (n) => `Dinleme sorularında ${n} doğru`, targets: [5, 8, 12], xp: 25 },

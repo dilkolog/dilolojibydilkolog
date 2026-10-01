@@ -24,9 +24,11 @@ interface Props {
   mistakes: Mistake[]
   onChanged: () => void
   onOpen: (entryId: string) => void
+  /** Study a filtered list (deck) right now. */
+  onStudy: (entries: VocabularyEntry[]) => void
 }
 
-export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
@@ -68,7 +70,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </div>
       </section>
 
-      <WordList vocabulary={vocabulary} stateById={stateById} mistakes={mistakes} onOpen={onOpen} />
+      <WordList vocabulary={vocabulary} stateById={stateById} mistakes={mistakes} onOpen={onOpen} onStudy={onStudy} />
     </div>
   )
 }
@@ -348,11 +350,13 @@ function WordList({
   stateById,
   mistakes,
   onOpen,
+  onStudy,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
   mistakes: Mistake[]
   onOpen: (id: string) => void
+  onStudy: (entries: VocabularyEntry[]) => void
 }) {
   const [query, setQuery] = useState('')
   const [stage, setStage] = useState<StageFilter>('all')
@@ -452,6 +456,16 @@ function WordList({
               </div>
             )}
           </div>
+          {list.length > 0 && list.length < vocabulary.length && (
+            <div className="deck-bar">
+              <span>
+                {tag ? <strong>#{tag}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
+              </span>
+              <button className="btn" onClick={() => onStudy(list)}>
+                Bu listeyi çalış
+              </button>
+            </div>
+          )}
           {list.length === 0 ? (
             <p className="muted">Bu filtrelere uyan kelime yok.</p>
           ) : (
