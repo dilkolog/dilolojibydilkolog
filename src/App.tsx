@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState, type ReactElement } from 'react'
 import { buildDailyPlan, type PlanItem } from './engine/dailyPlan'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
@@ -18,7 +18,9 @@ import {
   type VocabularyEntry,
 } from './engine/types'
 import { KelimeDB, type Settings } from './data/db'
+import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GearIcon, HomeIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
+import { AiContext } from './ui/aiContext'
 import { MistakesScreen } from './ui/Mistakes'
 import { ProgressScreen } from './ui/Progress'
 import { Home, Onboarding, SettingsScreen, Summary } from './ui/Screens'
@@ -39,11 +41,12 @@ type Screen =
   | { name: 'progress' }
   | { name: 'settings' }
 
-const NAV: { screen: 'words' | 'mistakes' | 'progress' | 'settings'; label: string }[] = [
-  { screen: 'words', label: 'Kelimeler' },
-  { screen: 'mistakes', label: 'Hatalar' },
-  { screen: 'progress', label: 'İlerleme' },
-  { screen: 'settings', label: 'Ayarlar' },
+const NAV: { screen: 'home' | 'words' | 'mistakes' | 'progress' | 'settings'; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
+  { screen: 'home', label: 'Bugün', icon: HomeIcon },
+  { screen: 'words', label: 'Kelimeler', icon: BookIcon },
+  { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
+  { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
+  { screen: 'settings', label: 'Ayarlar', icon: GearIcon },
 ]
 
 interface LanguageData {
@@ -51,7 +54,7 @@ interface LanguageData {
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
   mistakes: Mistake[]
-  /** Last ~2 months of answers, for the streak and today's progress. */
+  /** Last ~2 months of answers in ALL languages: the streak counts any study day. */
   recentEvents: ReviewEvent[]
 }
 
@@ -65,16 +68,30 @@ export default function App() {
   const [settings, setSettings] = useState<Settings | null | undefined>(undefined)
   const [data, setData] = useState<LanguageData | null>(null)
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
+  const [apiKey, setApiKeyState] = useState<string | null>(null)
   const language = settings?.activeLanguage
+  const options = useMemo(() => ({ ai: !!apiKey }), [apiKey])
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))
+    db.getAiKey().then(setApiKeyState)
   }, [])
+
+  const ai = useMemo(
+    () => ({
+      apiKey,
+      setApiKey: async (key: string | null) => {
+        await db.saveAiKey(key)
+        setApiKeyState(key)
+      },
+    }),
+    [apiKey],
+  )
 
   const reload = useCallback(async () => {
     if (!language) return
     const since = new Date(Date.now() - STREAK_WINDOW_DAYS * 86_400_000)
-    const [loaded, recentEvents] = await Promise.all([db.loadLanguage(language), db.eventsSince(since, language)])
+    const [loaded, recentEvents] = await Promise.all([db.loadLanguage(language), db.eventsSince(since)])
     setData({ language, ...loaded, recentEvents })
   }, [language])
 
@@ -108,8 +125,9 @@ export default function App() {
       mistakes: data.mistakes,
       scheduler,
       seed: daySeed(now),
+      options,
     })
-  }, [settings, data])
+  }, [settings, data, options])
 
   const byId = useMemo(() => new Map((data?.vocabulary ?? []).map((v) => [v.id, v])), [data])
   const streak = data ? studyStreak(data.recentEvents, new Date()) : 0
@@ -144,9 +162,10 @@ export default function App() {
   const inSession = screen.name === 'session'
 
   return (
-    <div className="app" data-lang={settings.activeLanguage}>
+    <AiContext.Provider value={ai}>
+    <div className={inSession ? 'app' : 'shell'} data-lang={settings.activeLanguage}>
       {!inSession && (
-        <header className="topbar">
+        <aside className="sidebar">
           <button className="brand" onClick={go({ name: 'home' })}>
             <span className="brand-mark" aria-hidden>
               k
@@ -170,18 +189,27 @@ export default function App() {
             {NAV.map((n) => (
               <button
                 key={n.screen}
-                className="nav-btn"
-                aria-current={screen.name === n.screen || (n.screen === 'words' && screen.name === 'word') ? 'page' : undefined}
+                className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}`}
+                aria-current={
+                  screen.name === n.screen || (n.screen === 'words' && screen.name === 'word') || (n.screen === 'home' && screen.name === 'summary')
+                    ? 'page'
+                    : undefined
+                }
                 onClick={go({ name: n.screen })}
               >
-                {n.label}
+                <n.icon size={20} />
+                <span>{n.label}</span>
               </button>
             ))}
           </nav>
-        </header>
+          <div className="sidebar-foot">
+            <FlameIcon size={18} className="icon-flame" />
+            {streak > 0 ? `${streak} günlük seri` : 'Bugün seriyi başlat'}
+          </div>
+        </aside>
       )}
 
-      <main>
+      <main className="main">
         {!data || !plan ? null : screen.name === 'session' ? (
           <SessionScreen
             items={screen.items}
@@ -192,6 +220,7 @@ export default function App() {
             db={db}
             scheduler={scheduler}
             seed={screen.seed}
+            options={options}
             onFinish={finishSession}
             onQuit={() => {
               reload()
@@ -206,6 +235,7 @@ export default function App() {
             language={data.language}
             vocabulary={data.vocabulary}
             states={data.states}
+            level={settings.levels[data.language] ?? 'B1'}
             onChanged={reload}
             onOpen={(entryId) => setScreen({ name: 'word', entryId })}
           />
@@ -227,7 +257,7 @@ export default function App() {
             vocabulary={data.vocabulary}
             onOpen={(entryId) => setScreen({ name: 'word', entryId })}
             onPractice={() =>
-              startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()) }), 'normal')
+              startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
             }
           />
         ) : screen.name === 'progress' ? (
@@ -258,20 +288,21 @@ export default function App() {
             learningCount={data.states.length}
             activeVocabulary={progressStats({ vocabularyCount: data.vocabulary.length, states: data.states, events: [], scheduler, now: new Date() }).activeVocabulary}
             streak={streak}
-            answeredToday={answeredToday(data.recentEvents, new Date())}
+            answeredToday={answeredToday(data.recentEvents.filter((e) => e.language === data.language), new Date())}
             nextReview={earliest(data.states)}
             openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
             canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
             onStart={() => setScreen({ name: 'session', items: plan.items, mode: 'normal', seed: daySeed(new Date()) })}
             onAddWords={go({ name: 'words' })}
             onPracticeMistakes={() =>
-              startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()) }), 'normal')
+              startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
             }
-            onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()) }), 'practice')}
+            onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
           />
         )}
       </main>
     </div>
+    </AiContext.Provider>
   )
 }
 

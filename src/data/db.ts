@@ -19,7 +19,7 @@ export interface Settings {
 export const DEFAULT_SETTINGS: Settings = {
   activeLanguage: 'en',
   levels: {},
-  dailyMinutes: 12,
+  dailyMinutes: 10,
   newWordsPerDay: 5,
 }
 
@@ -59,6 +59,16 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'settings', value: settings })
   }
 
+  /** Kept apart from settings so it is never written into a backup file. */
+  async getAiKey(): Promise<string | null> {
+    const row = await this.meta.get('aiKey')
+    return typeof row?.value === 'string' && row.value ? row.value : null
+  }
+
+  saveAiKey(key: string | null) {
+    return key ? this.meta.put({ key: 'aiKey', value: key }) : this.meta.delete('aiKey')
+  }
+
   async loadLanguage(language: TargetLanguage) {
     const [vocabulary, states, mistakes] = await Promise.all([
       this.vocabulary.where('language').equals(language).toArray(),
@@ -79,12 +89,28 @@ export class KelimeDB extends Dexie {
     })
   }
 
-  eventsSince(date: Date, language: TargetLanguage) {
+  /** Answers since `date`, for one language or (no language) all of them. */
+  eventsSince(date: Date, language?: TargetLanguage) {
     return this.events
       .where('timestamp')
       .aboveOrEqual(date)
-      .filter((e) => e.language === language)
+      .filter((e) => !language || e.language === language)
       .toArray()
+  }
+
+  /**
+   * Replaces an answer that the learner overrode ("my answer was right too"): the old event is
+   * removed and the recomputed state/event/mistakes take its place, atomically.
+   */
+  replaceReview(oldEventId: string, result: ReviewResult, staleMistakeIds: string[]) {
+    const touched = result.mistakes.filter((m) => m.entryId === result.state.entryId)
+    return this.transaction('rw', [this.wordStates, this.events, this.mistakes], async () => {
+      await this.events.delete(oldEventId)
+      await this.wordStates.put(result.state)
+      await this.events.add(result.event)
+      await this.mistakes.bulkDelete(staleMistakeIds)
+      await this.mistakes.bulkPut(touched)
+    })
   }
 
   /** Deleting a word also deletes what was learned about it. */

@@ -76,4 +76,5 @@ export const PROMPT_TEXT: Record<string, string> = {
   cloze_typed: 'Boşluğu doğru biçimle doldur',
   word_form: 'Bu biçimi yaz',
   listen_type: 'Duyduğunu yaz',
+  free_sentence: 'Kendi cümleni kur',
 }

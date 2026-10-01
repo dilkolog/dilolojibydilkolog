@@ -13,7 +13,7 @@ import {
   type TypedExercise,
 } from '../engine/exercises'
 import { masteryStage } from '../engine/mastery'
-import { newWordState, processAttempt } from '../engine/review'
+import { markKnown, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import {
@@ -21,14 +21,17 @@ import {
   currentItem,
   isFinished,
   retryItem,
+  skipRemaining,
   startSession,
   summarize,
   type SessionLogEntry,
   type SessionSummary,
 } from '../engine/session'
-import type { Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
+import type { EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
+import { AiError, evaluateSentence } from '../ai/claude'
+import { useAi } from './aiContext'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon } from './icons'
 import { canSpeak, speak } from './speech'
 
@@ -42,12 +45,17 @@ interface Props {
   db: KelimeDB
   scheduler: Scheduler
   seed: number
+  options: EngineOptions
   onFinish: (summary: SessionSummary) => void
   onQuit: () => void
 }
 
 export function SessionScreen(p: Props) {
-  const byId = useMemo(() => new Map(p.vocabulary.map((e) => [e.id, e])), [p.vocabulary])
+  // A ref, not memo: an override can add an accepted spelling to a word mid-session.
+  const entries = useRef(new Map(p.vocabulary.map((e) => [e.id, e])))
+  const byId = entries.current
+  /** The last answer, kept so "my answer was right too" can recompute it from the prior state. */
+  const lastAnswer = useRef<{ before: UserWordState; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
   const rng = useMemo(() => createRng(p.seed ^ 0x5bd1e995), [p.seed])
@@ -58,6 +66,15 @@ export function SessionScreen(p: Props) {
   useEffect(() => {
     if (isFinished(session)) onFinish(summarize(session))
   }, [session, onFinish])
+
+  const { onQuit } = p
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onQuit()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onQuit])
 
   if (!item) return null
   const entry = byId.get(item.entryId)
@@ -72,37 +89,36 @@ export function SessionScreen(p: Props) {
     return null
   }
 
-  const introduce = async () => {
-    if (!states.current.has(entry.id)) {
-      const state = newWordState(entry, new Date())
-      states.current.set(entry.id, state)
-      await p.db.wordStates.put(state)
-    }
-    next({ entryId: entry.id })
+  const introduce = async (known = false) => {
+    const now = new Date()
+    let state = states.current.get(entry.id) ?? newWordState(entry, now)
+    if (known) state = markKnown(state, p.scheduler, now)
+    states.current.set(entry.id, state)
+    await p.db.wordStates.put(state)
+    if (known) setSession((s) => skipRemaining(completeItem(s, { entryId: entry.id }), entry.id))
+    else next({ entryId: entry.id })
   }
 
   const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number) => {
     const before = states.current.get(entry.id) ?? newWordState(entry, new Date())
-    const result = processAttempt(
-      before,
-      {
-        exerciseType: item.exerciseType!,
-        verdict: ev.verdict,
-        errorType: ev.errorType,
-        given: ev.given,
-        expected: ev.expected,
-        responseMs,
-        hintsUsed,
-        maxHints,
-        at: new Date(),
-        mode: p.mode,
-      },
-      mistakes.current,
-      p.scheduler,
-    )
+    const input: AttemptInput = {
+      exerciseType: item.exerciseType!,
+      verdict: ev.verdict,
+      errorType: ev.errorType,
+      given: ev.given,
+      expected: ev.expected,
+      responseMs,
+      hintsUsed,
+      maxHints,
+      at: new Date(),
+      mode: p.mode,
+    }
+    const bank = mistakes.current
+    const result = processAttempt(before, input, bank, p.scheduler)
     states.current.set(entry.id, result.state)
     mistakes.current = result.mistakes
     await p.db.saveReview(result)
+    lastAnswer.current = { before, bank, input, eventId: result.event.id }
     return {
       entryId: entry.id,
       verdict: ev.verdict,
@@ -112,9 +128,33 @@ export function SessionScreen(p: Props) {
     }
   }
 
+  /**
+   * The learner says the answer was actually right (e.g. a valid synonym). Recompute the review
+   * from the state before it, and remember the spelling so it is accepted next time.
+   */
+  const override = async (): Promise<Omit<SessionLogEntry, 'item'> | null> => {
+    const last = lastAnswer.current
+    if (!last) return null
+    const input: AttemptInput = { ...last.input, verdict: 'correct', errorType: undefined }
+    const result = processAttempt(last.before, input, last.bank, p.scheduler)
+    const keep = new Set(result.mistakes.map((m) => m.id))
+    const stale = mistakes.current.filter((m) => m.entryId === entry.id && !keep.has(m.id)).map((m) => m.id)
+    await p.db.replaceReview(last.eventId, result, stale)
+    states.current.set(entry.id, result.state)
+    mistakes.current = result.mistakes
+    lastAnswer.current = { ...last, input, eventId: result.event.id }
+    const given = last.input.given?.trim()
+    if (given && (input.exerciseType === 'typed_translation' || input.exerciseType === 'listen_type')) {
+      const updated = { ...entry, alternativeForms: [...new Set([...(entry.alternativeForms ?? []), given])] }
+      entries.current.set(entry.id, updated)
+      await p.db.vocabulary.put(updated)
+    }
+    return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state) }
+  }
+
   const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
     const state = states.current.get(entry.id)
-    const retry = log.verdict === 'wrong' && state ? retryItem(item, entry, state, rng) : undefined
+    const retry = log.verdict === 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
     next(log, retry)
   }
 
@@ -149,8 +189,9 @@ export function SessionScreen(p: Props) {
           <span className="badge">Serbest pratik</span>
         </p>
       )}
+      <KeyLegend />
       {item.kind === 'introduce' ? (
-        <Intro key={session.index} entry={entry} onContinue={introduce} />
+        <Intro key={session.index} entry={entry} onContinue={() => introduce(false)} onKnown={() => introduce(true)} />
       ) : (
         <ExerciseRunner
           key={session.index}
@@ -159,6 +200,7 @@ export function SessionScreen(p: Props) {
           catalog={p.vocabulary}
           rng={rng}
           onAnswer={answer}
+          onOverride={override}
           onContinue={proceed}
         />
       )}
@@ -172,6 +214,19 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
   useEffect(() => {
     if (auto) speak(text, entry.language)
   }, [auto, text, entry.language])
+
+  // Alt+S anywhere, or Space when not typing, replays the audio.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
+      if ((e.altKey && e.code === 'KeyS') || (e.code === 'Space' && !typing && !(e.target instanceof HTMLButtonElement))) {
+        e.preventDefault()
+        speak(text, entry.language)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [text, entry.language])
   if (!canSpeak()) return null
   return (
     <button
@@ -222,7 +277,7 @@ function Sentence({ text, translation }: { text: string; translation?: string })
  * First encounter: only the word, its sound, the core meaning and one strong example.
  * Collocations and word family are revealed in later encounters, not all at once.
  */
-function Intro({ entry, onContinue }: { entry: VocabularyEntry; onContinue: () => void }) {
+function Intro({ entry, onContinue, onKnown }: { entry: VocabularyEntry; onContinue: () => void; onKnown: () => void }) {
   const sense = entry.senses[0]
   const example = sense.examples[0]
   const btn = useRef<HTMLButtonElement>(null)
@@ -239,11 +294,23 @@ function Intro({ entry, onContinue }: { entry: VocabularyEntry; onContinue: () =
           <SpeakButton text={displayForm(entry)} entry={entry} auto />
         </div>
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
-        {example && <Sentence text={example.text} translation={example.translation} />}
+        {example && (
+          <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
+            <Sentence text={example.text} translation={example.translation} />
+            {canSpeak() && (
+              <button className="icon-btn" onClick={() => speak(example.text, entry.language, 0.85)} aria-label="Cümleyi dinle">
+                <SpeakerIcon size={20} />
+              </button>
+            )}
+          </div>
+        )}
       </div>
       <div className="session-actions">
-        <button ref={btn} className="btn btn-lg btn-block" onClick={onContinue}>
+        <button ref={btn} className="btn btn-lg" style={{ flex: 1 }} onClick={onContinue}>
           Öğrendim, devam
+        </button>
+        <button className="btn btn-lg btn-quiet" onClick={onKnown}>
+          Zaten biliyorum
         </button>
       </div>
     </div>
@@ -258,13 +325,20 @@ interface RunnerProps {
   catalog: VocabularyEntry[]
   rng: Rng
   onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number) => Promise<Omit<SessionLogEntry, 'item'>>
+  onOverride: () => Promise<Omit<SessionLogEntry, 'item'> | null>
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
 }
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onContinue }: RunnerProps) {
+/** An evaluation plus optional AI feedback text (free sentences). */
+type Graded = Evaluation & { feedback?: string }
+
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue }: RunnerProps) {
   const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
   const startedAt = useRef(performance.now())
-  const [result, setResult] = useState<{ ev: Evaluation; log: Omit<SessionLogEntry, 'item'>; chosen?: string } | null>(null)
+  const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string } | null>(null)
+  const [pending, setPending] = useState(false)
+  const [aiError, setAiError] = useState('')
+  const { apiKey } = useAi()
   const continueBtn = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -273,15 +347,36 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onContinue }: Run
 
   const busy = useRef(false)
 
-  const submit = async (ev: Evaluation, hintsUsed: number, maxHints: number, chosen?: string) => {
+  const submit = async (ev: Graded, hintsUsed: number, maxHints: number, chosen?: string, ms = Math.round(performance.now() - startedAt.current)) => {
     // Guards against a double click/keypress recording the same answer twice.
     if (busy.current) return
     busy.current = true
-    const ms = Math.round(performance.now() - startedAt.current)
     const log = await onAnswer(ev, ms, hintsUsed, maxHints)
     setResult({ ev, log, chosen })
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
     speak(displayForm(entry), entry.language)
+  }
+
+  /** Free sentences are graded by the AI; time is measured up to submission, not the network wait. */
+  const submitSentence = async (text: string, hints: number) => {
+    if (!apiKey || pending) return
+    const ms = Math.round(performance.now() - startedAt.current)
+    setPending(true)
+    setAiError('')
+    try {
+      const g = await evaluateSentence(apiKey, entry, text.trim())
+      await submit(
+        { verdict: g.verdict, errorType: g.errorType, given: text.trim(), expected: g.corrected, feedback: g.feedback },
+        hints,
+        exercise.kind === 'typed' ? exercise.hints.length : 0,
+        undefined,
+        ms,
+      )
+    } catch (e) {
+      setAiError(e instanceof AiError ? e.message : 'Değerlendirme yapılamadı.')
+    } finally {
+      setPending(false)
+    }
   }
 
   return (
@@ -295,15 +390,43 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onContinue }: Run
       ) : (
         <TypedAnswer
           exercise={exercise}
-          answered={!!result}
+          answered={!!result || pending}
+          pending={pending}
           verdict={result?.ev.verdict}
-          onSubmit={(text, hints) => submit(evaluateTyped(exercise, text, entry, catalog), hints, exercise.hints.length)}
+          onSubmit={(text, hints) =>
+            exercise.type === 'free_sentence'
+              ? submitSentence(text, hints)
+              : submit(evaluateTyped(exercise, text, entry, catalog), hints, exercise.hints.length)
+          }
         />
+      )}
+      {aiError && !result && (
+        <div className="session-actions">
+          <p className="error" role="alert">
+            {aiError}
+          </p>
+          <button className="btn btn-quiet" onClick={() => onContinue({ entryId: entry.id })}>
+            Bu soruyu atla
+          </button>
+        </div>
       )}
       {result && (
         <>
           <div className="sheet-spacer" />
-          <Feedback ev={result.ev} entry={entry} continueRef={continueBtn} onContinue={() => onContinue(result.log)} />
+          <Feedback
+            ev={result.ev}
+            entry={entry}
+            continueRef={continueBtn}
+            onContinue={() => onContinue(result.log)}
+            onOverride={
+              exercise.kind === 'typed' && exercise.type !== 'free_sentence' && result.ev.verdict !== 'correct'
+                ? async () => {
+                    const log = await onOverride()
+                    if (log) setResult({ ...result, log, ev: { ...result.ev, verdict: 'correct', errorType: undefined, feedback: 'Doğru sayıldı. Bu yazımı bundan sonra kabul edeceğim.' } })
+                  }
+                : undefined
+            }
+          />
         </>
       )}
     </div>
@@ -330,8 +453,20 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     case 'discriminate':
     case 'cloze_typed':
       return <Sentence text={exercise.context!} translation={exercise.contextTranslation} />
+    case 'free_sentence':
+      return (
+        <div className="stack">
+          <div className="row">
+            <Word entry={entry} />
+            <SpeakButton text={displayForm(entry)} entry={entry} />
+          </div>
+          <p className="muted">
+            {entry.senses[0].gloss}. {exercise.context}
+          </p>
+        </div>
+      )
     default:
-      return <p className="word" style={{ color: 'var(--ink)' }}>{exercise.prompt}</p>
+      return <p className="prompt-text">{exercise.prompt}</p>
   }
 }
 
@@ -386,11 +521,13 @@ function Choices({
 function TypedAnswer({
   exercise,
   answered,
+  pending,
   verdict,
   onSubmit,
 }: {
   exercise: TypedExercise
   answered: boolean
+  pending?: boolean
   verdict?: Evaluation['verdict']
   onSubmit: (text: string, hintsUsed: number) => void
 }) {
@@ -408,6 +545,18 @@ function TypedAnswer({
   const nextDelay = HINT_DELAYS_MS[shown] ?? Infinity
   const waitSec = Math.max(0, Math.ceil((nextDelay - elapsed) / 1000))
   const canHint = shown < exercise.hints.length && waitSec === 0 && !answered
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      // e.code, not e.key: on macOS Alt+H types a special character instead of "h".
+      if (e.altKey && e.code === 'KeyH') {
+        e.preventDefault()
+        if (canHint) setShown((n) => n + 1)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [canHint])
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
@@ -441,10 +590,10 @@ function TypedAnswer({
           ))}
         </div>
       )}
-      {!answered && (
+      {(!answered || pending) && (
         <div className="session-actions">
-          <button className="btn" type="submit" disabled={!text.trim()}>
-            Kontrol et
+          <button className="btn" type="submit" disabled={!text.trim() || pending}>
+            {pending ? 'Değerlendiriliyor…' : 'Kontrol et'}
           </button>
           {shown < exercise.hints.length && (
             <button type="button" className="btn btn-quiet" disabled={!canHint} onClick={() => setShown((n) => n + 1)}>
@@ -464,11 +613,13 @@ function Feedback({
   entry,
   continueRef,
   onContinue,
+  onOverride,
 }: {
-  ev: Evaluation
+  ev: Graded
   entry: VocabularyEntry
   continueRef: React.RefObject<HTMLButtonElement | null>
   onContinue: () => void
+  onOverride?: () => void
 }) {
   const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
@@ -484,15 +635,35 @@ function Feedback({
             {title}
           </p>
           {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
-          {hint && <p className="small">{hint}</p>}
+          {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
           <p className="small muted">
             {displayForm(entry)}: {entry.senses[0].gloss}
           </p>
         </div>
-        <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue}>
-          Devam
-        </button>
+        <div className="row" style={{ gap: '0.75rem' }}>
+          {onOverride && (
+            <button className="link small" onClick={onOverride}>
+              Cevabım da doğru
+            </button>
+          )}
+          <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue}>
+            Devam
+          </button>
+        </div>
       </div>
     </div>
+  )
+}
+
+/** Shortcut reminder, only on devices with a hover-capable pointer (i.e. a real keyboard is likely). */
+function KeyLegend() {
+  return (
+    <p className="kbd-legend" aria-hidden>
+      <span><kbd>1</kbd>–<kbd>4</kbd> seç</span>
+      <span><kbd>Enter</kbd> onayla</span>
+      <span><kbd>Alt</kbd>+<kbd>S</kbd> dinle</span>
+      <span><kbd>Alt</kbd>+<kbd>H</kbd> ipucu</span>
+      <span><kbd>Esc</kbd> çık</span>
+    </p>
   )
 }

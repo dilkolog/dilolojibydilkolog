@@ -56,6 +56,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           language={entry.language}
           existing={others}
           entry={entry}
+          level={entry.cefr}
           onSaved={() => {
             onChanged()
             setEditing(false)
@@ -104,6 +105,29 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           </button>
         </div>
       </section>
+
+      {(entry.alternativeForms?.length ?? 0) > 0 && (
+        <section className="section stack">
+          <h2 className="section-title">Kabul edilen diğer yazımlar</h2>
+          <div className="row">
+            {entry.alternativeForms!.map((f) => (
+              <span key={f} className="pill" style={{ fontSize: 'var(--t-sm)' }}>
+                {f}{' '}
+                <button
+                  className="link small"
+                  aria-label={`${f} kaldır`}
+                  onClick={async () => {
+                    await db.vocabulary.put({ ...entry, alternativeForms: entry.alternativeForms!.filter((x) => x !== f) })
+                    onChanged()
+                  }}
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
 
       {sense.examples.length > 0 && (
         <section className="section stack">

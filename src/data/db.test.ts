@@ -59,3 +59,34 @@ describe('KelimeDB', () => {
     expect(() => parseBackup('{"foo":1}')).toThrow('yedeği değil')
   })
 })
+
+describe('AI key', () => {
+  it('is stored on the device but never exported in a backup', async () => {
+    const db = new KelimeDB('t-ai')
+    await db.saveAiKey('sk-test')
+    expect(await db.getAiKey()).toBe('sk-test')
+    expect(await exportBackup(db)).not.toContain('sk-test')
+    await db.saveAiKey(null)
+    expect(await db.getAiKey()).toBeNull()
+  })
+})
+
+describe('replaceReview', () => {
+  it('swaps a wrong answer for a corrected one without leaving the old event or mistake', async () => {
+    const { db, entry } = await seeded('t-replace')
+    const [oldEvent] = await db.events.toArray()
+    const fixed = processAttempt(
+      newWordState(entry, NOW),
+      { exerciseType: 'typed_translation', verdict: 'correct', responseMs: 5000, hintsUsed: 0, maxHints: 3, at: NOW },
+      [],
+      scheduler,
+    )
+    const stale = (await db.mistakes.toArray()).map((m) => m.id)
+    await db.replaceReview(oldEvent.id, fixed, stale)
+    const events = await db.events.toArray()
+    expect(events).toHaveLength(1)
+    expect(events[0].verdict).toBe('correct')
+    expect(await db.mistakes.count()).toBe(0)
+    expect((await db.wordStates.get(entry.id))!.stats.correct).toBe(1)
+  })
+})

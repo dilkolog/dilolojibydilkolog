@@ -1,3 +1,4 @@
+import { Rating } from 'ts-fsrs'
 import { EXERCISES } from './exercises'
 import { gradeAttempt } from './grading'
 import { recordCorrect, recordMistake } from './mistakes'
@@ -130,3 +131,16 @@ export function nextReviewAt(state: UserWordState): Date | undefined {
 export const INTERVENTION_AFTER_WRONG = 3
 export const needsIntervention = (state: UserWordState) =>
   state.stats.consecutiveWrong >= INTERVENTION_AFTER_WRONG
+
+/**
+ * "I already know this word": skip the beginner steps by rating recognition and recall Easy,
+ * so the word starts with a long interval instead of being drilled from scratch. It is still
+ * scheduled, so a wrong self-assessment is caught at the first real review.
+ */
+export function markKnown(state: UserWordState, scheduler: Scheduler, now: Date): UserWordState {
+  const skills = { ...state.skills }
+  for (const skill of ['recognition', 'recall'] as const) {
+    skills[skill] = scheduler.review(skills[skill] ?? scheduler.newCard(now), Rating.Easy, now)
+  }
+  return { ...state, skills, lastReviewAt: now }
+}

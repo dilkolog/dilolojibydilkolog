@@ -2,7 +2,7 @@ import { State } from 'ts-fsrs'
 import { describe, expect, it } from 'vitest'
 import { EXERCISES } from '../exercises'
 import { masteryStage, skillProfile, skillScores } from '../mastery'
-import { newWordState, processAttempt, type AttemptInput } from '../review'
+import { markKnown, newWordState, processAttempt, type AttemptInput } from '../review'
 import { createScheduler } from '../scheduler'
 import { dueSkills, unlockedSkills } from '../selection'
 import type { ExerciseType, Mistake, Skill, UserWordState } from '../types'
@@ -167,5 +167,30 @@ describe('mastery', () => {
     const p = skillProfile([a, b], scheduler, new Date(T0.getTime() + 30 * 86_400_000))
     expect(p.production).not.toBeNull()
     expect(skillProfile([b], scheduler, T0).production).toBeNull()
+  })
+})
+
+describe('AI option', () => {
+  it('unlocks production for a word without examples only when AI can grade free sentences', () => {
+    const bare = { ...decide, senses: [{ ...decide.senses[0], examples: [] }] }
+    let s = newWordState(bare, T0)
+    s = answer(s, 'mc_meaning', T0).state
+    s = answer(s, 'mc_meaning', minutes(15)).state
+    s = answer(s, 'typed_translation', minutes(30)).state
+    s = answer(s, 'typed_translation', minutes(45)).state
+    expect(s.skills.recall!.state).toBe(State.Review)
+    expect(unlockedSkills(s, bare)).not.toContain('production')
+    expect(unlockedSkills(s, bare, { ai: true })).toContain('production')
+  })
+})
+
+describe('markKnown', () => {
+  it('graduates recognition and recall with a long first interval', () => {
+    const s = markKnown(newWordState(decision, T0), scheduler, T0)
+    expect(s.skills.recognition!.state).toBe(State.Review)
+    expect(s.skills.recall!.state).toBe(State.Review)
+    expect(s.skills.recall!.scheduled_days).toBeGreaterThanOrEqual(3)
+    // Self-assessed knowledge starts high; the first real review corrects it if it was wrong.
+    expect(masteryStage(s)).toBe('strong')
   })
 })

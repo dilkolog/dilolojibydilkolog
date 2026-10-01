@@ -2,20 +2,20 @@ import { State } from 'ts-fsrs'
 import { EXERCISES, exerciseTypesFor } from './exercises'
 import { pick, type Rng } from './rng'
 import type { Scheduler } from './scheduler'
-import type { ErrorType, ExerciseType, Skill, UserWordState, VocabularyEntry } from './types'
+import type { EngineOptions, ErrorType, ExerciseType, Skill, UserWordState, VocabularyEntry } from './types'
 
 /**
  * Progressive disclosure: harder skills unlock only once the easier ones hold, so a new word
  * starts with recognition and isn't immediately tested on production.
  */
-export function unlockedSkills(state: UserWordState | undefined, entry: VocabularyEntry): Skill[] {
+export function unlockedSkills(state: UserWordState | undefined, entry: VocabularyEntry, opts: EngineOptions = {}): Skill[] {
   const out: Skill[] = ['recognition']
   if (!state) return out
   const { recognition, recall } = state.skills
   if (recognition && recognition.reps > 0) out.push('listening')
   if (recognition?.state === State.Review) out.push('recall')
   if (recall && recall.reps > 0 && exerciseTypesFor('collocation', entry).length) out.push('collocation')
-  if (recall?.state === State.Review && exerciseTypesFor('production', entry).length) out.push('production')
+  if (recall?.state === State.Review && exerciseTypesFor('production', entry, opts).length) out.push('production')
   return out
 }
 
@@ -40,8 +40,9 @@ export function dueSkills(
   entry: VocabularyEntry,
   scheduler: Scheduler,
   now: Date,
+  opts: EngineOptions = {},
 ): SkillDue[] {
-  return unlockedSkills(state, entry)
+  return unlockedSkills(state, entry, opts)
     .map((skill) => {
       const card = state?.skills[skill]
       if (!card) return { skill, retrievability: 0, due: !state?.lastReviewAt || state.lastReviewAt < startOfDay(now) }
@@ -73,8 +74,9 @@ export function pickExerciseType(
   entry: VocabularyEntry,
   state: UserWordState | undefined,
   rng: Rng,
+  opts: EngineOptions = {},
 ): ExerciseType {
-  const types = exerciseTypesFor(skill, entry)
+  const types = exerciseTypesFor(skill, entry, opts)
   if (!types.length) throw new Error(`no exercise for ${skill} on ${entry.id}`)
   const fresh = types.filter((t) => t !== state?.lastExerciseType)
   return pick(fresh.length ? fresh : types, rng)

@@ -2,7 +2,7 @@ import type { PlanItem } from './dailyPlan'
 import { MASTERY_STAGES, type MasteryStage } from './mastery'
 import type { Rng } from './rng'
 import { pickExerciseType } from './selection'
-import type { ErrorType, UserWordState, VocabularyEntry, Verdict } from './types'
+import type { EngineOptions, ErrorType, UserWordState, VocabularyEntry, Verdict } from './types'
 
 export interface SessionLogEntry {
   entryId: string
@@ -32,8 +32,14 @@ export const currentItem = (s: Session): PlanItem | undefined => s.items[s.index
 export const isFinished = (s: Session) => s.index >= s.items.length
 
 /** Same skill, different format: the retry tests the memory, not the screen just seen. */
-export function retryItem(item: PlanItem, entry: VocabularyEntry, state: UserWordState, rng: Rng): PlanItem {
-  return { ...item, kind: 'exercise', exerciseType: pickExerciseType(item.skill, entry, state, rng) }
+export function retryItem(
+  item: PlanItem,
+  entry: VocabularyEntry,
+  state: UserWordState,
+  rng: Rng,
+  opts: EngineOptions = {},
+): PlanItem {
+  return { ...item, kind: 'exercise', exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
 }
 
 export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem): Session {
@@ -45,6 +51,12 @@ export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, ret
     retried.push(item.entryId)
   }
   return { items, index: s.index + 1, retried, log: [...s.log, { ...log, item }] }
+}
+
+/** Drops the remaining items for a word (e.g. after "I already know this"). */
+export function skipRemaining(s: Session, entryId: string): Session {
+  const items = s.items.filter((it, i) => i < s.index || it.entryId !== entryId)
+  return { ...s, items }
 }
 
 export interface SessionSummary {

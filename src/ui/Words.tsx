@@ -5,6 +5,10 @@ import type { Gender, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEnt
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { createEntry, entryToInput, IMPORT_COLUMNS, importWords, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
+import { AiError, enrichWords, wordInfoToInput } from '../ai/claude'
+import { useAi } from './aiContext'
+import { SparkleIcon } from './icons'
+import { TextImport } from './TextImport'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 
 interface Props {
@@ -12,11 +16,12 @@ interface Props {
   language: TargetLanguage
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
+  level: string
   onChanged: () => void
   onOpen: (entryId: string) => void
 }
 
-export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpen }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, level, onChanged, onOpen }: Props) {
   const [query, setQuery] = useState('')
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
@@ -48,8 +53,9 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpe
         <h1 className="greeting">{LANGUAGE_NAME[language]} kelimelerin</h1>
         <details open className="card">
           <summary>Kelime ekle</summary>
-          <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
+          <WordForm db={db} language={language} level={level} existing={keys} onSaved={onChanged} />
         </details>
+        <TextImport db={db} language={language} level={level} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
         <ImportPanel db={db} language={language} existing={keys} onImported={onChanged} />
         <div className="row small">
           {hasSamples ? (
@@ -147,6 +153,7 @@ export function WordForm({
   language,
   existing,
   entry,
+  level = 'B1',
   onSaved,
   onCancel,
 }: {
@@ -154,6 +161,8 @@ export function WordForm({
   language: TargetLanguage
   existing: Set<string>
   entry?: VocabularyEntry
+  /** CEFR level, so AI examples match the learner. */
+  level?: string
   onSaved: (entry: VocabularyEntry) => void
   onCancel?: () => void
 }) {
@@ -162,6 +171,36 @@ export function WordForm({
   const [added, setAdded] = useState('')
   const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
   const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
+  const { apiKey } = useAi()
+  const [filling, setFilling] = useState(false)
+
+  /** Asks the AI for the word's data and fills only the fields the user left empty. */
+  const fillWithAi = async () => {
+    if (!apiKey || !form.word.trim()) return
+    setFilling(true)
+    setError('')
+    try {
+      const result = await enrichWords(apiKey, language, level, [{ word: form.word.trim() }])
+      const info = result.values().next().value
+      if (!info) throw new WordInputError('AI bu kelime için sonuç döndürmedi.')
+      const ai = wordInfoToInput(info)
+      setForm((f) => ({
+        ...f,
+        word: ai.word || f.word,
+        meaning: f.meaning?.trim() ? f.meaning : ai.meaning,
+        partOfSpeech: f.partOfSpeech ?? ai.partOfSpeech,
+        gender: f.gender ?? ai.gender,
+        example: f.example?.trim() ? f.example : ai.example,
+        exampleTranslation: f.exampleTranslation?.trim() ? f.exampleTranslation : ai.exampleTranslation,
+        collocations: f.collocations?.trim() ? f.collocations : ai.collocations,
+        confusables: f.confusables?.trim() ? f.confusables : ai.confusables,
+      }))
+    } catch (err) {
+      setError(err instanceof AiError || err instanceof WordInputError ? err.message : 'AI ile doldurulamadı.')
+    } finally {
+      setFilling(false)
+    }
+  }
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
@@ -273,6 +312,12 @@ export function WordForm({
           <button className="btn" type="submit">
             {entry ? 'Değişiklikleri kaydet' : 'Kelimeyi ekle'}
           </button>
+          {apiKey && (
+            <button className="btn btn-quiet" type="button" onClick={fillWithAi} disabled={filling || !form.word.trim()}>
+              <SparkleIcon size={18} className="icon-star" />
+              {filling ? 'Dolduruluyor…' : 'AI ile doldur'}
+            </button>
+          )}
           {onCancel && (
             <button className="btn btn-quiet" type="button" onClick={onCancel}>
               Vazgeç

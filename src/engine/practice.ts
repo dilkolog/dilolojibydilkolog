@@ -3,26 +3,34 @@ import { exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
 import { pick, shuffle, type Rng } from './rng'
 import { ERROR_SKILL, pickExerciseType, unlockedSkills } from './selection'
-import type { Mistake, Skill, UserWordState, VocabularyEntry } from './types'
+import type { EngineOptions, Mistake, Skill, UserWordState, VocabularyEntry } from './types'
 
 interface Input {
   catalog: readonly VocabularyEntry[]
   states: readonly UserWordState[]
   rng: Rng
   limit?: number
+  options?: EngineOptions
 }
 
-function exerciseFor(entry: VocabularyEntry, state: UserWordState, skill: Skill, rng: Rng, reason: PlanItem['reason']): PlanItem {
+function exerciseFor(
+  entry: VocabularyEntry,
+  state: UserWordState,
+  skill: Skill,
+  rng: Rng,
+  reason: PlanItem['reason'],
+  opts: EngineOptions = {},
+): PlanItem {
   // A word edited after practice may have lost the data an exercise needs (e.g. its example).
-  const usable = exerciseTypesFor(skill, entry).length ? skill : 'recognition'
-  return { kind: 'exercise', entryId: entry.id, reason, skill: usable, exerciseType: pickExerciseType(usable, entry, state, rng) }
+  const usable = exerciseTypesFor(skill, entry, opts).length ? skill : 'recognition'
+  return { kind: 'exercise', entryId: entry.id, reason, skill: usable, exerciseType: pickExerciseType(usable, entry, state, rng, opts) }
 }
 
 /**
  * Targeted practice of the Mistake Bank: one item per word with open mistakes, in the skill where
  * the most recent mistake was made (a collocation error is practised as a collocation, etc.).
  */
-export function buildMistakePlan({ catalog, states, rng, limit = 15, mistakes }: Input & { mistakes: readonly Mistake[] }): PlanItem[] {
+export function buildMistakePlan({ catalog, states, rng, limit = 15, mistakes, options = {} }: Input & { mistakes: readonly Mistake[] }): PlanItem[] {
   const byId = new Map(catalog.map((e) => [e.id, e]))
   const stateById = new Map(states.map((s) => [s.entryId, s]))
   const latest = new Map<string, Mistake>()
@@ -36,8 +44,8 @@ export function buildMistakePlan({ catalog, states, rng, limit = 15, mistakes }:
     const state = stateById.get(m.entryId)
     if (!entry || !state) continue
     const wanted = ERROR_SKILL[m.errorType]
-    const skill = unlockedSkills(state, entry).includes(wanted) ? wanted : 'recognition'
-    items.push(exerciseFor(entry, state, skill, rng, 'mistake'))
+    const skill = unlockedSkills(state, entry, options).includes(wanted) ? wanted : 'recognition'
+    items.push(exerciseFor(entry, state, skill, rng, 'mistake', options))
     if (items.length >= limit) break
   }
   return interleave(items, rng)
@@ -47,7 +55,7 @@ export function buildMistakePlan({ catalog, states, rng, limit = 15, mistakes }:
  * Low-stakes free practice over words already being learned, in skills already practised.
  * Meant to be run in 'practice' mode, so it never changes the schedule or the Mistake Bank.
  */
-export function buildPracticePlan({ catalog, states, rng, limit = 12 }: Input): PlanItem[] {
+export function buildPracticePlan({ catalog, states, rng, limit = 12, options = {} }: Input): PlanItem[] {
   const byId = new Map(catalog.map((e) => [e.id, e]))
   const candidates = shuffle(
     states.filter((s) => byId.has(s.entryId) && Object.keys(s.skills).length > 0),
@@ -56,7 +64,7 @@ export function buildPracticePlan({ catalog, states, rng, limit = 12 }: Input): 
   const items = candidates.map((state) => {
     const entry = byId.get(state.entryId)!
     const skill = pick(Object.keys(state.skills) as Skill[], rng)
-    return exerciseFor(entry, state, skill, rng, 'practice')
+    return exerciseFor(entry, state, skill, rng, 'practice', options)
   })
   return interleave(items, rng)
 }

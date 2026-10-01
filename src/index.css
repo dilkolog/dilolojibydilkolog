@@ -92,9 +92,13 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 /* ---------- Layout ---------- */
 
-.app { max-width: 46rem; margin: 0 auto; padding: 1rem 1rem 5rem; }
+.app, .shell { max-width: 46rem; margin: 0 auto; padding: 1rem 1rem 5rem; }
 
-.topbar { display: flex; align-items: center; gap: 0.75rem 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+/* Narrow screens: the sidebar is a top bar. Wide screens: a sticky left column (see below). */
+.sidebar { display: flex; align-items: center; gap: 0.75rem 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.sidebar-foot { display: none; }
+.nav-btn svg { display: none; }
+.nav-home { display: none; }
 
 .brand {
   display: inline-flex;
@@ -156,9 +160,59 @@ button, input, textarea, select { font: inherit; color: inherit; }
 @media (max-width: 26rem) {
   .nav-btn { font-size: var(--t-sm); padding: 0.375rem 0.625rem; }
 }
-@media (min-width: 46rem) {
+@media (min-width: 46rem) and (max-width: 63.99rem) {
   .nav { width: auto; order: 3; }
   .langs { order: 4; }
+}
+
+@media (min-width: 64rem) {
+  .shell {
+    max-width: 78rem;
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 3.5rem;
+    padding: 2rem 2rem 5rem;
+  }
+  .main { max-width: 52rem; width: 100%; }
+  .sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    min-height: calc(100vh - 4rem);
+    margin: 0;
+  }
+  .sidebar .brand { margin: 0; }
+  .sidebar .langs { justify-content: space-between; }
+  .sidebar .lang-btn { flex: 1; padding: 0.375rem 0; }
+  .nav { flex-direction: column; gap: 0.25rem; overflow: visible; }
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.875rem;
+    text-align: left;
+    font-size: var(--t-base);
+  }
+  .nav-btn svg { display: block; flex: none; }
+  .nav-home { display: flex; }
+  .nav-btn[aria-current='page'] { box-shadow: inset 3px 0 0 var(--lang); }
+  .sidebar-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    background: var(--surface);
+    border-radius: 0.875rem;
+    padding: 0.75rem 0.875rem;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    box-shadow: var(--shadow);
+  }
 }
 
 .stack > * + * { margin-top: 1rem; }
@@ -463,6 +517,31 @@ details[open] > summary { margin-bottom: 1rem; }
 .session-actions { margin-top: 1.75rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
 .kbd { font-size: var(--t-sm); color: var(--ink-soft); }
 
+.kbd-legend { display: none; }
+@media (hover: hover) and (min-width: 46rem) {
+  .kbd-legend {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    z-index: 1;
+  }
+}
+kbd {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-bottom-width: 2px;
+  border-radius: 0.375rem;
+  padding: 0 0.375rem;
+}
+
 /* Bottom sheet that rises after every answer: the moment of feedback. */
 .sheet-spacer { height: 11rem; }
 .sheet {
@@ -521,6 +600,23 @@ details[open] > summary { margin-bottom: 1rem; }
 .summary-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; text-align: left; }
 
 /* ---------- Words, detail, mistakes, progress ---------- */
+
+.candidate-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; max-height: 32rem; overflow-y: auto; }
+.candidate-list li {
+  display: grid;
+  grid-template-columns: auto minmax(7rem, 1fr) minmax(8rem, 1.3fr);
+  gap: 0.375rem 0.625rem;
+  align-items: center;
+  padding: 0.625rem;
+  border-radius: 0.75rem;
+  background: var(--surface-2);
+  border: 2px solid transparent;
+}
+.candidate-list li.is-selected { border-color: var(--lang-soft); background: var(--surface); }
+.candidate-list input[type='checkbox'] { width: 1.125rem; height: 1.125rem; accent-color: var(--lang); }
+.candidate-list .input { padding: 0.375rem 0.625rem; }
+.cand-word { font-family: var(--serif); }
+.cand-context { grid-column: 2 / -1; font-family: var(--serif); }
 
 .word-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
 .word-list li {

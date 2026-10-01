@@ -4,6 +4,7 @@ import type { SessionSummary } from '../engine/session'
 import { CEFR_LEVELS, SKILLS, TARGET_LANGUAGES, type CefrLevel, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
 import { DEFAULT_SETTINGS, exportBackup, parseBackup, restoreBackup, type KelimeDB, type Settings } from '../data/db'
+import { AiSettings } from './AiSettings'
 import { relativeTime } from './format'
 import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME } from './labels'
@@ -11,6 +12,9 @@ import { Ring } from './Ring'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 const NEW_WORD_OPTIONS = [0, 3, 5, 8, 12]
+
+/** Keeps a stored value selectable even if it isn't one of the presets (e.g. an older default). */
+const withValue = (options: number[], value: number) => (options.includes(value) ? options : [...options, value].sort((a, b) => a - b))
 
 function Chips<T extends string | number>({
   options,
@@ -453,11 +457,17 @@ export function SettingsScreen({
         <h1 className="greeting">Ayarlar</h1>
         <div className="card stack">
           <h2 className="section-title">Günlük süre</h2>
-          <Chips label="Günlük süre" options={MINUTE_OPTIONS} value={settings.dailyMinutes} onChange={(m) => onChange({ ...settings, dailyMinutes: m })} format={(m) => `${m} dk`} />
+          <Chips
+            label="Günlük süre"
+            options={withValue(MINUTE_OPTIONS, settings.dailyMinutes)}
+            value={settings.dailyMinutes}
+            onChange={(m) => onChange({ ...settings, dailyMinutes: m })}
+            format={(m) => `${m} dk`}
+          />
         </div>
         <div className="card stack">
           <h2 className="section-title">Günde en fazla yeni kelime</h2>
-          <Chips label="Yeni kelime" options={NEW_WORD_OPTIONS} value={settings.newWordsPerDay} onChange={(n) => onChange({ ...settings, newWordsPerDay: n })} />
+          <Chips label="Yeni kelime" options={withValue(NEW_WORD_OPTIONS, settings.newWordsPerDay)} value={settings.newWordsPerDay} onChange={(n) => onChange({ ...settings, newWordsPerDay: n })} />
           <p className="small muted">Tekrarlar birikmişse o gün yeni kelime gelmez.</p>
         </div>
         <div className="card stack">
@@ -471,6 +481,8 @@ export function SettingsScreen({
           <p className="small muted">Yalnızca örnek kelimelerin sırasını etkiler. Kendi eklediklerin her zaman önce gelir.</p>
         </div>
       </section>
+
+      <AiSettings />
 
       <section className="section card stack">
         <h2 className="section-title">Yedek</h2>

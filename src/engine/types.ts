@@ -122,6 +122,13 @@ export type ExerciseType =
   | 'listen_choose' // hear the word → choose meaning
   | 'listen_type' // hear the word → type it
   | 'collocation_choice' // choose the natural collocation
+  | 'free_sentence' // write your own sentence with the word; graded by the AI layer
+
+/** Capabilities available to the engine at runtime. */
+export interface EngineOptions {
+  /** The AI layer is configured, so AI-graded exercises (free_sentence) may be scheduled. */
+  ai?: boolean
+}
 
 export type Direction =
   | 'target_to_native'

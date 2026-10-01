@@ -98,3 +98,18 @@ describe('evaluation', () => {
     expect(evaluateTyped(ex, 'decision', decision, CATALOG).errorType).toBe('form')
   })
 })
+
+describe('AI-graded exercises', () => {
+  it('free_sentence is only offered when AI is available', () => {
+    expect(exerciseTypesFor('production', decide)).not.toContain('free_sentence')
+    expect(exerciseTypesFor('production', decide, { ai: true })).toContain('free_sentence')
+  })
+
+  it('builds a personal prompt with progressive hints and no fixed answer', () => {
+    const ex = buildExercise('free_sentence', decision, CATALOG, rng()) as TypedExercise
+    expect(ex.prompt).toBe('"decision" ile bir cümle kur')
+    expect(ex.context).toBeTruthy()
+    expect(ex.accepted).toEqual([])
+    expect(ex.hints[0]).toBe('Anlamı: karar')
+  })
+})

@@ -6,6 +6,7 @@ import { dueSkills, ERROR_SKILL, pickExerciseType, startOfDay, unlockedSkills } 
 import {
   CEFR_LEVELS,
   type CefrLevel,
+  type EngineOptions,
   type ExerciseType,
   type Mistake,
   type Skill,
@@ -39,6 +40,8 @@ export interface PlanInput {
   mistakes: readonly Mistake[]
   scheduler: Scheduler
   seed: number
+  /** Runtime capabilities (e.g. AI grading available). */
+  options?: EngineOptions
 }
 
 export interface DailyPlan {
@@ -90,7 +93,8 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   for (const state of states) {
     const entry = byId.get(state.entryId)
     if (!entry) continue
-    const due = dueSkills(state, entry, scheduler, now)
+    const opts = input.options ?? {}
+    const due = dueSkills(state, entry, scheduler, now, opts)
     const open = openMistakes(input.mistakes, state.entryId)
 
     if (due.length) {
@@ -102,15 +106,15 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
       const reason: PlanReason =
         r < FORGOTTEN_R ? 'forgotten' : open.length ? 'mistake' : r < WEAK_R ? 'weak' : 'due'
       scored.push({
-        item: { kind: 'exercise', entryId: entry.id, reason, skill, exerciseType: pickExerciseType(skill, entry, state, rng) },
+        item: { kind: 'exercise', entryId: entry.id, reason, skill, exerciseType: pickExerciseType(skill, entry, state, rng, opts) },
         r,
       })
     } else if (open.length && (!state.lastReviewAt || state.lastReviewAt < today)) {
       const latest = open.reduce((a, b) => (a.lastAt > b.lastAt ? a : b))
       const wanted = ERROR_SKILL[latest.errorType]
-      const skill = unlockedSkills(state, entry).includes(wanted) ? wanted : 'recognition'
+      const skill = unlockedSkills(state, entry, opts).includes(wanted) ? wanted : 'recognition'
       extras.push({
-        item: { kind: 'exercise', entryId: entry.id, reason: 'mistake', skill, exerciseType: pickExerciseType(skill, entry, state, rng) },
+        item: { kind: 'exercise', entryId: entry.id, reason: 'mistake', skill, exerciseType: pickExerciseType(skill, entry, state, rng, opts) },
         lastAt: latest.lastAt.getTime(),
       })
     }

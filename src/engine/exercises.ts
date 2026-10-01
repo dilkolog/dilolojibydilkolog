@@ -2,6 +2,7 @@ import { checkTyped, normalize } from './answerCheck'
 import { pick, shuffle, type Rng } from './rng'
 import type {
   Direction,
+  EngineOptions,
   ErrorType,
   ExerciseType,
   Example,
@@ -18,6 +19,8 @@ export interface ExerciseMeta {
   expectedMs: number
   /** Whether the entry has the data this exercise needs. */
   applicable: (entry: VocabularyEntry) => boolean
+  /** Only offered when the AI layer is available to grade it. */
+  requiresAI?: boolean
 }
 
 const hasExamples = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0
@@ -51,13 +54,34 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     expectedMs: 8000,
     applicable: (e) => e.collocations.some((c) => (c.wrongVariants?.length ?? 0) > 0),
   },
+  free_sentence: {
+    skill: 'production',
+    direction: 'native_to_target',
+    input: 'typed',
+    expectedMs: 45000,
+    applicable: always,
+    requiresAI: true,
+  },
 }
 
-export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry): ExerciseType[] {
+export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry, opts: EngineOptions = {}): ExerciseType[] {
   return (Object.keys(EXERCISES) as ExerciseType[]).filter(
-    (t) => EXERCISES[t].skill === skill && EXERCISES[t].applicable(entry),
+    (t) => EXERCISES[t].skill === skill && EXERCISES[t].applicable(entry) && (!EXERCISES[t].requiresAI || opts.ai),
   )
 }
+
+/**
+ * Self-reference prompts: tying a new word to your own life makes it stick far better than a
+ * neutral sentence (self-reference effect).
+ */
+export const PERSONAL_PROMPTS = [
+  'Kendi hayatından bir şeyle ilgili olsun.',
+  'Bugün ya da bu hafta yaşadığın bir şeyi anlat.',
+  'Bir arkadaşına söyleyeceğin bir cümle olsun.',
+  'Gelecekle ilgili bir planını anlat.',
+  'Sevdiğin ya da sevmediğin bir şeyle ilgili olsun.',
+  'Çocukluğundan bir anıyla ilgili olsun.',
+]
 
 /** "la décision", "l'arbre", "abandon". */
 export function displayForm(entry: VocabularyEntry): string {
@@ -276,6 +300,23 @@ export function buildExercise(
         contextTranslation: ex.translation,
         accepted: [ex.form],
         hints: buildHints(ex.form, `${entry.lemma} — ${sense.gloss}`),
+      }
+    }
+
+    case 'free_sentence': {
+      const ex = chooseExample(entry, rng)
+      const col = entry.collocations[0]
+      return {
+        ...base,
+        kind: 'typed',
+        prompt: `"${answer}" ile bir cümle kur`,
+        context: pick(PERSONAL_PROMPTS, rng),
+        accepted: [],
+        hints: [
+          `Anlamı: ${sense.gloss}`,
+          ...(col ? [`Kalıp: ${col.phrase}`] : []),
+          ...(ex ? [`Örnek: ${ex.text}`] : []),
+        ],
       }
     }
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, isFinished, retryItem, RETRY_GAP, startSession, summarize } from '../session'
+import { completeItem, currentItem, isFinished, retryItem, RETRY_GAP, skipRemaining, startSession, summarize } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -53,5 +53,15 @@ describe('session', () => {
       errors: { gender: 1 },
       introduced: ['c'],
     })
+  })
+})
+
+describe('skipRemaining', () => {
+  it('removes only the upcoming items of that word', () => {
+    let s = startSession([item('a'), item('b'), item('a'), item('c')])
+    s = completeItem(s, { entryId: 'a', verdict: 'correct' })
+    s = skipRemaining(s, 'a')
+    expect(s.items.map((i) => i.entryId)).toEqual(['a', 'b', 'c'])
+    expect(currentItem(s)?.entryId).toBe('b')
   })
 })
