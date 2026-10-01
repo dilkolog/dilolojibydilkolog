@@ -14,6 +14,7 @@ import { BulkImport } from './BulkImport'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
 import { TextImport } from './TextImport'
+import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 
 interface Props {
@@ -32,6 +33,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
+  const [view, setView] = useState<'list' | 'graph'>('list')
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
 
 
@@ -70,7 +72,23 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </div>
       </section>
 
-      <WordList vocabulary={vocabulary} stateById={stateById} mistakes={mistakes} onOpen={onOpen} onStudy={onStudy} />
+      <section className="section stack">
+        <div className="segmented" role="tablist" aria-label="Görünüm">
+          <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
+            Liste
+          </button>
+          <button role="tab" className="segmented-btn" aria-selected={view === 'graph'} onClick={() => setView('graph')}>
+            Kelime ağı
+          </button>
+        </div>
+      </section>
+      {view === 'list' ? (
+        <WordList vocabulary={vocabulary} stateById={stateById} mistakes={mistakes} onOpen={onOpen} onStudy={onStudy} />
+      ) : (
+        <section className="stack" style={{ marginTop: '1rem' }}>
+          <WordGraph vocabulary={vocabulary} states={states} onOpen={onOpen} />
+        </section>
+      )}
     </div>
   )
 }
