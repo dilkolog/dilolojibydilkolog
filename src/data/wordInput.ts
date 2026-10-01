@@ -111,6 +111,12 @@ export function guessPartOfSpeech(word: string, language: TargetLanguage): PartO
   return SUFFIXES[language].find(([re]) => re.test(w))?.[1]
 }
 
+/** Marks the first occurrence of `word` in `sentence` with asterisks, as the add-word form expects. */
+export function markWord(sentence: string, word: string): string {
+  const i = sentence.toLowerCase().indexOf(word.toLowerCase())
+  return i < 0 ? sentence : `${sentence.slice(0, i)}*${sentence.slice(i, i + word.length)}*${sentence.slice(i + word.length)}`
+}
+
 /** Finds the surface form of `lemma` inside `sentence`, e.g. "decided" for "decide". */
 export function findForm(sentence: string, lemma: string): string | undefined {
   const marked = sentence.match(/\*([^*]+)\*/)

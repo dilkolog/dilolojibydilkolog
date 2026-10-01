@@ -5,7 +5,7 @@ import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
-import { createEntry, entryToInput, guessPartOfSpeech, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
+import { createEntry, entryToInput, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
@@ -790,10 +790,4 @@ function WordList({
       )}
     </section>
   )
-}
-
-/** Marks the word in its sentence (*word*) so the example's form is unambiguous. */
-function markWord(sentence: string, word: string): string {
-  const i = sentence.toLowerCase().indexOf(word.toLowerCase())
-  return i < 0 ? sentence : `${sentence.slice(0, i)}*${sentence.slice(i, i + word.length)}*${sentence.slice(i + word.length)}`
 }

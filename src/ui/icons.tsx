@@ -116,6 +116,11 @@ export const StoryIcon = (p: P) => (
     <path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" />
   </Icon>
 )
+export const ReadIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M4 5h16M4 10h16M4 15h11M4 20h7" />
+  </Icon>
+)
 export const GameIcon = (p: P) => (
   <Icon {...p}>
     <rect x="2" y="6" width="20" height="12" rx="4" />

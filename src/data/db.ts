@@ -1,12 +1,13 @@
 import Dexie, { type Table } from 'dexie'
 import type { ReviewResult } from '../engine/review'
-import type {
-  CefrLevel,
-  Mistake,
-  ReviewEvent,
-  TargetLanguage,
-  UserWordState,
-  VocabularyEntry,
+import {
+  TARGET_LANGUAGES,
+  type CefrLevel,
+  type Mistake,
+  type ReviewEvent,
+  type TargetLanguage,
+  type UserWordState,
+  type VocabularyEntry,
 } from '../engine/types'
 
 export interface Profile {
@@ -167,6 +168,43 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'settings', value: settings })
   }
 
+  /** Word keys (stems) the learner knows from reading, per language. */
+  async getKnownWords(language: TargetLanguage): Promise<Set<string>> {
+    return new Set(((await this.meta.get(`known:${language}`))?.value as string[]) ?? [])
+  }
+
+  async addKnownWords(language: TargetLanguage, keys: readonly string[]) {
+    const all = await this.getKnownWords(language)
+    for (const k of keys) all.add(k)
+    await this.meta.put({ key: `known:${language}`, value: [...all] })
+  }
+
+  async removeKnownWord(language: TargetLanguage, key: string) {
+    const all = await this.getKnownWords(language)
+    all.delete(key)
+    await this.meta.put({ key: `known:${language}`, value: [...all] })
+  }
+
+  /** Times each list word was met while reading. */
+  async getEncounters(): Promise<Record<string, number>> {
+    return ((await this.meta.get('encounters'))?.value as Record<string, number>) ?? {}
+  }
+
+  async addEncounters(add: Record<string, number>) {
+    const all = await this.getEncounters()
+    for (const [id, n] of Object.entries(add)) all[id] = (all[id] ?? 0) + n
+    await this.meta.put({ key: 'encounters', value: all })
+  }
+
+  /** The text open in reading mode, per language. */
+  async getReadingText(language: TargetLanguage): Promise<string> {
+    return ((await this.meta.get(`reading:${language}`))?.value as string) ?? ''
+  }
+
+  saveReadingText(language: TargetLanguage, text: string) {
+    return this.meta.put({ key: `reading:${language}`, value: text })
+  }
+
   /** Personal bests in the games, per game and language. */
   async getRecords(): Promise<Record<string, number>> {
     return ((await this.meta.get('records'))?.value as Record<string, number>) ?? {}
@@ -263,7 +301,7 @@ export class KelimeDB extends Dexie {
 // ---------------------------------------------------------------------------
 
 /** v2 adds media (pictures/recordings) as data URLs. v1 backups still restore. */
-export const BACKUP_VERSION = 2
+export const BACKUP_VERSION = 3
 
 export interface Backup {
   app: 'kelime-koc'
@@ -276,6 +314,8 @@ export interface Backup {
   mistakes: Mistake[]
   media?: { id: string; kind: MediaRow['kind']; dataUrl: string; createdAt: string }[]
   stories?: StoryEpisode[]
+  /** Known-word sets and reading encounters (backup version 3+). */
+  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number> }
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -304,6 +344,10 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     events: await db.events.toArray(),
     mistakes: await db.mistakes.toArray(),
     stories: await db.stories.toArray(),
+    reading: {
+      known: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getKnownWords(l))]]))),
+      encounters: await db.getEncounters(),
+    },
     media: await Promise.all(
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
@@ -347,5 +391,9 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
     await db.events.bulkPut(backup.events)
     await db.mistakes.bulkPut(backup.mistakes)
     if (backup.settings) await db.saveSettings(backup.settings)
+    if (backup.reading) {
+      for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
+      await db.meta.put({ key: 'encounters', value: backup.reading.encounters })
+    }
   })
 }

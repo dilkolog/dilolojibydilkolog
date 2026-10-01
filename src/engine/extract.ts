@@ -50,7 +50,7 @@ const STOPWORDS: Record<TargetLanguage, string> = {
     siempre nunca entonces después luego mientras cuál cómo dónde`,
 }
 
-const STOP: Record<TargetLanguage, Set<string>> = {
+export const STOP: Record<TargetLanguage, Set<string>> = {
   en: new Set(STOPWORDS.en.split(/\s+/).filter(Boolean)),
   fr: new Set(STOPWORDS.fr.split(/\s+/).filter(Boolean)),
   es: new Set(STOPWORDS.es.split(/\s+/).filter(Boolean)),
@@ -94,13 +94,18 @@ interface Token {
   capitalisedMidSentence: boolean
 }
 
+/** The dictionary-ish word inside a raw token: elisions (l', d') and possessive 's removed. */
+export function cleanToken(t: string, language: TargetLanguage): string {
+  let word = t
+  if (language === 'fr') word = word.replace(ELISION, '')
+  if (language === 'en') word = word.replace(/['’]s$/i, '')
+  return word.replace(/^[-'’]+|[-'’]+$/g, '')
+}
+
 function tokenize(sentence: string, language: TargetLanguage): Token[] {
   const raw = sentence.match(/[\p{L}][\p{L}'’-]*/gu) ?? []
   return raw.map((t, i) => {
-    let word = t
-    if (language === 'fr') word = word.replace(ELISION, '')
-    if (language === 'en') word = word.replace(/['’]s$/i, '')
-    word = word.replace(/^[-'’]+|[-'’]+$/g, '')
+    const word = cleanToken(t, language)
     const capital = /^\p{Lu}/u.test(word)
     return { word, lowercase: !capital, capitalisedMidSentence: capital && i > 0 }
   })

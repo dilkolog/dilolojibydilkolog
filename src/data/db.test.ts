@@ -137,3 +137,20 @@ describe('deleteWords', () => {
     expect(await db.media.count()).toBe(0)
   })
 })
+
+describe('reading data', () => {
+  it('keeps known words and encounters, and carries them through a backup', async () => {
+    const db = new KelimeDB('t-reading')
+    await db.addKnownWords('fr', ['maison', 'chat'])
+    await db.addKnownWords('fr', ['chat', 'chien'])
+    await db.addEncounters({ 'fr:chat': 2 })
+    await db.addEncounters({ 'fr:chat': 1, 'fr:chien': 1 })
+    expect([...(await db.getKnownWords('fr'))].sort()).toEqual(['chat', 'chien', 'maison'])
+    expect(await db.getEncounters()).toEqual({ 'fr:chat': 3, 'fr:chien': 1 })
+    const json = await exportBackup(db)
+    const other = new KelimeDB('t-reading-restore')
+    await restoreBackup(other, parseBackup(json))
+    expect((await other.getKnownWords('fr')).size).toBe(3)
+    expect(await other.getEncounters()).toEqual({ 'fr:chat': 3, 'fr:chien': 1 })
+  })
+})

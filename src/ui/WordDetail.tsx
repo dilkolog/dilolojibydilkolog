@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { definiteArticle, displayForm } from '../engine/exercises'
 import { masteryStage, skillScores } from '../engine/mastery'
 import { openMistakes } from '../engine/mistakes'
+import { contextEncounters, ENCOUNTER_TARGET } from '../engine/reading'
 import { nextReviewAt } from '../engine/review'
 import type { Scheduler } from '../engine/scheduler'
 import { unlockedSkills } from '../engine/selection'
@@ -38,6 +39,12 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const scores = state ? skillScores(state, scheduler, now) : undefined
   const unlocked = new Set(unlockedSkills(state, entry))
   const next = state && nextReviewAt(state)
+  const [encounters, setEncounters] = useState<number | null>(null)
+  useEffect(() => {
+    Promise.all([db.events.where('entryId').equals(entry.id).toArray(), db.getEncounters()]).then(([events, reading]) =>
+      setEncounters(contextEncounters(events, reading[entry.id] ?? 0)),
+    )
+  }, [db, entry.id, state])
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
 
   const remove = async () => {
@@ -95,6 +102,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             entry.cefr,
             state ? STAGE_NAME[masteryStage(state)] : 'Henüz çalışılmadı',
             next && `sıradaki tekrar ${relativeTime(next)}`,
+            encounters !== null && `bağlamda ${encounters}/${ENCOUNTER_TARGET}+ karşılaşma`,
           ]
             .filter(Boolean)
             .join(', ')}

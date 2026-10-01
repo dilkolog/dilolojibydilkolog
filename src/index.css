@@ -1240,3 +1240,27 @@ kbd {
 .recall-pred { border: 2px solid var(--ink-soft); background: var(--surface); }
 .recall-act { background: var(--lang); box-shadow: 0 0 0 2px var(--surface); }
 .recall-n { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Reading mode */
+.coverage-head { display: flex; align-items: center; gap: 1rem; }
+.coverage-num { font-size: var(--t-2xl); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--lang-text); }
+.coverage-bar { display: flex; height: 0.625rem; border-radius: 999px; overflow: hidden; background: var(--rule); gap: 2px; }
+.coverage-bar span { display: block; height: 100%; }
+.cb-known { background: var(--ok); }
+.cb-list { background: var(--near); }
+.cb-unseen { background: var(--lang); }
+.coverage-legend { display: flex; flex-wrap: wrap; gap: 1rem; }
+.coverage-legend i { display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: 2px; margin-right: 0.25rem; vertical-align: middle; }
+.zone-too_hard .coverage-num, .zone-hard .coverage-num { color: var(--near-text); }
+
+.reader { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.85; max-width: 42rem; }
+.reader p { margin: 0 0 1.25rem; }
+.rw { cursor: pointer; border-radius: 0.25rem; padding: 0 1px; transition: background-color 0.15s ease; }
+.rw:hover, .rw:focus-visible { background: var(--surface-2); outline: none; }
+.rw-unseen { background: var(--lang-soft); color: var(--lang-text); }
+.rw-learning, .rw-new { background: var(--near-soft); color: var(--near-text); }
+.rw-skipped { text-decoration: underline wavy var(--lang); text-underline-offset: 4px; }
+.rw.is-selected { box-shadow: 0 0 0 2px var(--lang); }
+.word-pop { position: sticky; bottom: 1rem; z-index: 5; box-shadow: var(--shadow-lg, var(--shadow)); }
+.word-pop-word { font-family: var(--serif); font-size: var(--t-xl); color: var(--lang-text); font-weight: 400; }
+.reader mark, .sentence-sm mark { background: var(--lang-soft); color: var(--lang-text); border-radius: 0.25rem; padding: 0 2px; }

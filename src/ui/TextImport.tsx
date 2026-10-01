@@ -4,7 +4,7 @@ import { displayForm } from '../engine/exercises'
 import { extractCandidates, findExampleSentences, type Candidate, type FoundExample } from '../engine/extract'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
-import { addExample, createEntry, wordId, type WordInput } from '../data/wordInput'
+import { addExample, createEntry, markWord, wordId, type WordInput } from '../data/wordInput'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 
@@ -21,11 +21,6 @@ interface Row {
 const PRESELECT = 12
 /** Words per AI request; one request per batch keeps cost and latency low. */
 const AI_BATCH = 15
-
-function markForm(sentence: string, form: string): string {
-  const i = sentence.toLowerCase().indexOf(form.toLowerCase())
-  return i < 0 ? sentence : `${sentence.slice(0, i)}*${sentence.slice(i, i + form.length)}*${sentence.slice(i + form.length)}`
-}
 
 /** Learning from real content: paste a text, pick the unknown words, add them with their sentence. */
 export function TextImport({
@@ -64,7 +59,7 @@ export function TextImport({
       const entry = byId.get(f.entryId)
       if (!entry) continue
       try {
-        updated.push(addExample(entry, markForm(f.text, f.form)))
+        updated.push(addExample(entry, markWord(f.text, f.form)))
       } catch {
         // Already has it, or is full: nothing to add.
       }
@@ -119,14 +114,14 @@ export function TextImport({
       if (!r.meaning.trim()) return problems.push(`${r.word}: anlam yok`)
       const input: WordInput = r.ai
         ? { ...r.ai, word: r.word, meaning: r.meaning }
-        : { word: r.word, meaning: r.meaning, example: markForm(r.candidate.context, r.candidate.surface), exampleTranslation: '' }
+        : { word: r.word, meaning: r.meaning, example: markWord(r.candidate.context, r.candidate.surface), exampleTranslation: '' }
       try {
         // The AI example may not contain the word in a detectable form; fall back to the source sentence.
         let entry: VocabularyEntry
         try {
           entry = createEntry(input, language, new Date(now + i), 'import')
         } catch {
-          entry = createEntry({ ...input, example: markForm(r.candidate.context, r.candidate.surface), exampleTranslation: '' }, language, new Date(now + i), 'import')
+          entry = createEntry({ ...input, example: markWord(r.candidate.context, r.candidate.surface), exampleTranslation: '' }, language, new Date(now + i), 'import')
         }
         if (keys.has(entry.id) || keys.has(wordId(language, entry.lemma))) return problems.push(`${entry.lemma}: zaten listende`)
         keys.add(entry.id)

@@ -50,12 +50,12 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   Aynı bağlam ezber yapar; değişen bağlam aktarımı artırır (kodlama çeşitliliği,
   Pavlik & Anderson; Webb 2007). Kelime başına birden çok örnek; metin içe aktarmadan
   otomatik cümle toplama.
-- [ ] ⭐⭐⭐ **Okuma modu + kapsama ölçer** (M)
+- [x] ⭐⭐⭐ **Okuma modu + kapsama ölçer** (M)
   Bir metinde bilinen kelime oranını hesapla; rahat okuma için ~%95–98 gerek (Hu & Nation 2000).
   Bilinmeyenler vurgulu, tıklayınca ekle. Metin içe aktarmanın üzerine kurulur.
-- [ ] ⭐⭐ **Cümle madenciliği (i+1)** (M)
+- [x] ⭐⭐ **Cümle madenciliği (i+1)** (M)
   İçe aktarılan metinden *tam bir* bilinmeyen kelime içeren cümleleri ayıkla ve kart yap.
-- [ ] ⭐⭐ **Karşılaşma sayacı** (S) — Bir kelimeyi bağlamda kaç kez gördün; 8–12 karşılaşma
+- [x] ⭐⭐ **Karşılaşma sayacı** (S) — Bir kelimeyi bağlamda kaç kez gördün; 8–12 karşılaşma
   hedefi (Webb 2007; Uchihara ve ark. 2019 meta-analizi).
 
 ## 5. Diller arası (EN/FR/ES'e özel — en büyük fırsat)
