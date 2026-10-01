@@ -9,18 +9,58 @@ import type {
   VocabularyEntry,
 } from '../engine/types'
 
+export interface Profile {
+  name: string
+  /** Emoji shown as the avatar when there is no photo. */
+  emoji: string
+  /** Avatar background, a CSS colour. */
+  color: string
+  /** Avatar photo (media table id). */
+  photoId?: string
+  motto: string
+}
+
 export interface Settings {
   activeLanguage: TargetLanguage
   /** @deprecated No longer used (level system removed); kept so old backups still load. */
   levels?: Partial<Record<TargetLanguage, CefrLevel>>
   dailyMinutes: number
   newWordsPerDay: number
+  /** Daily XP target shown on the home screen. */
+  dailyXpGoal: number
+  /** Questions per session at most; 0 = whole plan. */
+  sessionMax: number
+  theme: 'system' | 'light' | 'dark'
+  autoPlayAudio: boolean
+  speechRate: number
+  /** Chosen system voice per language (voiceURI). */
+  voices: Partial<Record<TargetLanguage, string>>
+  soundEffects: boolean
+  /** Seconds before the first hint unlocks (then the same again for each next one). */
+  hintDelaySec: number
+  /** Missing/wrong accents count as wrong instead of "almost". */
+  accentStrict: boolean
+  showKeyLegend: boolean
+  reminder: { enabled: boolean; time: string }
+  profile: Profile
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   activeLanguage: 'en',
   dailyMinutes: 10,
   newWordsPerDay: 5,
+  dailyXpGoal: 50,
+  sessionMax: 0,
+  theme: 'system',
+  autoPlayAudio: true,
+  speechRate: 0.9,
+  voices: {},
+  soundEffects: true,
+  hintDelaySec: 6,
+  accentStrict: false,
+  showKeyLegend: true,
+  reminder: { enabled: false, time: '20:00' },
+  profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
 }
 
 interface MetaRow {
@@ -68,7 +108,16 @@ export class KelimeDB extends Dexie {
 
   async getSettings(): Promise<Settings | undefined> {
     const row = await this.meta.get('settings')
-    return row ? { ...DEFAULT_SETTINGS, ...(row.value as Partial<Settings>) } : undefined
+    if (!row) return undefined
+    // Merge nested objects too, so settings saved by an older version get the new defaults.
+    const v = row.value as Partial<Settings>
+    return {
+      ...DEFAULT_SETTINGS,
+      ...v,
+      voices: { ...DEFAULT_SETTINGS.voices, ...v.voices },
+      reminder: { ...DEFAULT_SETTINGS.reminder, ...v.reminder },
+      profile: { ...DEFAULT_SETTINGS.profile, ...v.profile },
+    }
   }
 
   saveSettings(settings: Settings) {

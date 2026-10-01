@@ -1,20 +1,17 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
 import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
-import { DEFAULT_SETTINGS, exportBackup, parseBackup, restoreBackup, type KelimeDB, type Settings } from '../data/db'
-import { AiSettings } from './AiSettings'
+import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
 import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME } from './labels'
 import { Ring } from './Ring'
+import { useGame, type GameState } from './game'
+import { sfx } from './sounds'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
-const NEW_WORD_OPTIONS = [0, 3, 5, 8, 12]
-
-/** Keeps a stored value selectable even if it isn't one of the presets (e.g. an older default). */
-const withValue = (options: number[], value: number) => (options.includes(value) ? options : [...options, value].sort((a, b) => a - b))
 
 function Chips<T extends string | number>({
   options,
@@ -48,6 +45,7 @@ const CARD_COLOR: Record<TargetLanguage, string> = { en: 'var(--en)', fr: 'var(-
 export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const [language, setLanguage] = useState<TargetLanguage>('en')
   const [minutes, setMinutes] = useState(DEFAULT_SETTINGS.dailyMinutes)
+  const [name, setName] = useState('')
   return (
     <div className="stack" data-lang={language}>
       <div className="brand" style={{ cursor: 'default' }}>
@@ -60,6 +58,10 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
         Her gün sana özel kısa bir çalışma hazırlar, unutmak üzere olduğun kelimeleri tam zamanında geri getirir.
       </p>
 
+      <div className="section stack">
+        <h2 className="section-title">Adın ne?</h2>
+        <input className="input" style={{ maxWidth: '20rem' }} value={name} onChange={(e) => setName(e.target.value)} placeholder="Adın" aria-label="Adın" autoFocus />
+      </div>
       <div className="section stack">
         <h2 className="section-title">Hangi dille başlayalım?</h2>
         <div className="lang-cards" role="group" aria-label="Dil">
@@ -86,7 +88,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
       <div className="section">
         <button
           className="btn btn-lg btn-block"
-          onClick={() => onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, dailyMinutes: minutes })}
+          onClick={() => onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, dailyMinutes: minutes, profile: { ...DEFAULT_SETTINGS.profile, name: name.trim() } })}
         >
           Başlayalım
         </button>
@@ -130,13 +132,15 @@ export function Home({
   vocabularyCount,
   learningCount,
   activeVocabulary,
-  streak,
+  name,
+  dailyXpGoal,
   answeredToday,
   nextReview,
   openMistakeWords,
   canPractice,
   onStart,
   onAddWords,
+  onProfile,
   onExtraNew,
   onPracticeMistakes,
   onFreePractice,
@@ -147,18 +151,23 @@ export function Home({
   vocabularyCount: number
   learningCount: number
   activeVocabulary: number
-  streak: number
+  name: string
+  dailyXpGoal: number
   answeredToday: number
   nextReview?: Date
   openMistakeWords: number
   canPractice: boolean
   onStart: () => void
   onAddWords: () => void
+  onProfile: () => void
   onExtraNew: () => void
   onPracticeMistakes: () => void
   onFreePractice: () => void
 }) {
   const now = new Date()
+  const game = useGame()
+  const streak = game?.streak ?? 0
+  const hello = `${greeting(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
   const goal = answeredToday + remaining
@@ -167,7 +176,7 @@ export function Home({
   if (vocabularyCount === 0) {
     return (
       <div className="stack">
-        <h1 className="greeting">{greeting(now)}!</h1>
+        <h1 className="greeting">{hello}</h1>
         <div className="hero">
           <div className="hero-body">
             <h2 className="hero-title">{LANGUAGE_NAME[language]} için ilk kelimelerini ekle</h2>
@@ -207,7 +216,9 @@ export function Home({
               </button>
               {plan.newBlockedBy && plan.waitingNew > 0 && (
                 <p className="small muted" style={{ marginTop: '0.75rem' }}>
-                  {NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
+                  {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
+                    ? `${plan.waitingNew} kelime daha sırada; günlük sınırı Ayarlar'dan artırabilirsin.`
+                    : NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
                 </p>
               )}
             </>
@@ -232,6 +243,29 @@ export function Home({
           )}
         </div>
       </div>
+
+      {game && (
+        <button className="level-strip" onClick={onProfile}>
+          <span className="level-badge">Sv. {game.level.level}</span>
+          <span className="level-strip-body">
+            <span className="level-strip-top">
+              <strong>{game.level.title}</strong>
+              <span className="small muted">
+                {game.level.into.toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
+              </span>
+            </span>
+            <span className="xp-bar xp-bar-sm">
+              <span style={{ width: `${game.level.progress * 100}%` }} />
+            </span>
+          </span>
+          <span className={`daily-goal${game.xp.today >= dailyXpGoal ? ' is-done' : ''}`}>
+            <span className="small muted">Bugün</span>
+            <strong>
+              {game.xp.today}/{dailyXpGoal} XP
+            </strong>
+          </span>
+        </button>
+      )}
 
       <div className="stats">
         <div className="stat">
@@ -348,13 +382,15 @@ export function Summary({
   summary,
   byId,
   practice,
-  streak,
+  before,
+  after,
   onDone,
 }: {
   summary: SessionSummary
   byId: Map<string, VocabularyEntry>
   practice?: boolean
-  streak: number
+  before: GameState | null
+  after: GameState | null
   onDone: () => void
 }) {
   const name = (id: string) => {
@@ -363,38 +399,78 @@ export function Summary({
   }
   const accuracy = summary.answered ? summary.correct / summary.answered : 0
   const errors = Object.entries(summary.errors) as [keyof typeof ERROR_NAME, number][]
+  const leveledUp = !!before && !!after && after.level.level > before.level.level
+  const newBadges = before && after ? after.achievements.filter((a) => a.unlocked && !before.achievements.find((b) => b.id === a.id)?.unlocked) : []
+
+  useEffect(() => {
+    if (leveledUp || newBadges.length) sfx.levelUp()
+    // Play once when the summary opens.
+  }, [])
+
   return (
     <div className="stack">
       <div className="celebrate">
-        {accuracy >= 0.7 && <Burst />}
+        {(accuracy >= 0.7 || leveledUp) && <Burst />}
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         <h1>{headline(accuracy, practice)}</h1>
         <p className="muted" style={{ marginTop: '0.5rem' }}>
           {summary.answered} sorudan {summary.correct} tanesini doğru bildin.
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>
+        <p className="xp-gain">+{summary.xp} XP</p>
       </div>
 
-      <div className="summary-stats">
-        <div className="stat">
-          <span className="stat-value">
-            <FlameIcon className="icon-flame" size={22} /> {streak}
+      {leveledUp && after && (
+        <div className="level-up">
+          <span className="level-badge" style={{ fontSize: '1.25rem', height: '2.5rem', minWidth: '3rem' }}>
+            {after.level.level}
           </span>
-          <span className="stat-label">günlük seri</span>
+          <div>
+            <strong>Seviye atladın!</strong>
+            <p className="small">
+              Artık {after.level.level}. seviyedesin: <strong>{after.level.title}</strong>
+            </p>
+          </div>
         </div>
-        <div className="stat">
-          <span className="stat-value">
-            <SparkleIcon className="icon-book" size={22} /> {summary.introduced.length}
-          </span>
-          <span className="stat-label">yeni kelime</span>
+      )}
+
+      {newBadges.length > 0 && (
+        <div className="stack">
+          <h2 className="section-title">Yeni rozet{newBadges.length > 1 ? 'ler' : ''}!</h2>
+          <div className="badge-grid">
+            {newBadges.map((a) => (
+              <div key={a.id} className="badge-card is-unlocked">
+                <span className="badge-icon">{a.icon}</span>
+                <strong>{a.title}</strong>
+                <span className="small muted">{a.description}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="stat">
-          <span className="stat-value">
-            <StarIcon className="icon-star" size={22} /> {practice ? 0 : summary.strengthened.length}
-          </span>
-          <span className="stat-label">güçlenen</span>
+      )}
+
+      {after && (
+        <div className="summary-stats">
+          <div className="stat">
+            <span className="stat-value">
+              <FlameIcon className="icon-flame" size={22} /> {after.streak}
+            </span>
+            <span className="stat-label">günlük seri</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">
+              <SparkleIcon className="icon-book" size={22} /> {summary.introduced.length}
+            </span>
+            <span className="stat-label">yeni kelime</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">
+              <StarIcon className="icon-star" size={22} /> {practice ? 0 : summary.strengthened.length}
+            </span>
+            <span className="stat-label">güçlenen</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {summary.introduced.length > 0 && (
         <p>
@@ -412,98 +488,12 @@ export function Summary({
           {!practice && <span className="muted"> Yakında tekrar karşına çıkacaklar.</span>}
         </p>
       )}
-      {errors.length > 0 && (
-        <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>
-      )}
+      {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
       <div className="section">
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>
           Devam
         </button>
       </div>
-    </div>
-  )
-}
-
-// ---------------------------------------------------------------------------
-
-export function SettingsScreen({
-  db,
-  settings,
-  onChange,
-  onRestored,
-}: {
-  db: KelimeDB
-  settings: Settings
-  onChange: (s: Settings) => void
-  onRestored: () => void
-}) {
-  const [message, setMessage] = useState('')
-  const [error, setError] = useState('')
-
-  const download = async () => {
-    const json = await exportBackup(db)
-    const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }))
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `kelime-kocu-yedek-${new Date().toISOString().slice(0, 10)}.json`
-    a.click()
-    URL.revokeObjectURL(url)
-    setMessage('Yedek indirildi.')
-  }
-
-  const restore = async (file: File) => {
-    setError('')
-    setMessage('')
-    try {
-      const backup = parseBackup(await file.text())
-      const when = new Date(backup.exportedAt).toLocaleString('tr-TR')
-      if (!confirm(`Bu cihazdaki tüm veriler ${when} tarihli yedekle değiştirilecek. Devam edilsin mi?`)) return
-      await restoreBackup(db, backup)
-      setMessage(`Yedek geri yüklendi: ${backup.vocabulary.length} kelime.`)
-      onRestored()
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Dosya okunamadı.')
-    }
-  }
-
-  return (
-    <div>
-      <section className="stack">
-        <h1 className="greeting">Ayarlar</h1>
-        <div className="card stack">
-          <h2 className="section-title">Günlük süre</h2>
-          <Chips
-            label="Günlük süre"
-            options={withValue(MINUTE_OPTIONS, settings.dailyMinutes)}
-            value={settings.dailyMinutes}
-            onChange={(m) => onChange({ ...settings, dailyMinutes: m })}
-            format={(m) => `${m} dk`}
-          />
-        </div>
-        <div className="card stack">
-          <h2 className="section-title">Günde en fazla yeni kelime</h2>
-          <Chips label="Yeni kelime" options={withValue(NEW_WORD_OPTIONS, settings.newWordsPerDay)} value={settings.newWordsPerDay} onChange={(n) => onChange({ ...settings, newWordsPerDay: n })} />
-          <p className="small muted">Tekrarlar birikmişse o gün yeni kelime gelmez.</p>
-        </div>
-      </section>
-
-      <AiSettings />
-
-      <section className="section card stack">
-        <h2 className="section-title">Yedek</h2>
-        <p className="small muted">Veriler yalnızca bu cihazda duruyor. Yedeği indirip başka bir cihazda geri yükleyerek taşıyabilirsin.</p>
-        <div className="row">
-          <button className="btn btn-quiet" onClick={download}>
-            Yedeği indir
-          </button>
-          <label className="btn btn-quiet">
-            Yedekten geri yükle
-            <input type="file" accept=".json,application/json" className="sr-only" onChange={(e) => e.target.files?.[0] && restore(e.target.files[0])} />
-          </label>
-        </div>
-        {message && <p className="notice" role="status">{message}</p>}
-        {error && <p className="error" role="alert">{error}</p>}
-      </section>
     </div>
   )
 }

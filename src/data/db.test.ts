@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto'
 import { describe, expect, it } from 'vitest'
 import { newWordState, processAttempt } from '../engine/review'
 import { createScheduler } from '../engine/scheduler'
-import { exportBackup, KelimeDB, parseBackup, restoreBackup } from './db'
+import { DEFAULT_SETTINGS, exportBackup, KelimeDB, parseBackup, restoreBackup } from './db'
 import { SAMPLE_WORDS } from './seed'
 
 const scheduler = createScheduler({ fuzz: false })
@@ -43,7 +43,7 @@ describe('KelimeDB', () => {
 
   it('backup round-trips with dates intact', async () => {
     const { db } = await seeded('t3')
-    await db.saveSettings({ activeLanguage: 'fr', levels: { fr: 'A2' }, dailyMinutes: 10, newWordsPerDay: 3 })
+    await db.saveSettings({ ...DEFAULT_SETTINGS, activeLanguage: 'fr', dailyMinutes: 10, newWordsPerDay: 3 })
     const json = await exportBackup(db, NOW)
 
     const other = new KelimeDB('t3-restore')
@@ -107,5 +107,16 @@ describe('media', () => {
 
     await other.deleteWord(entry.id)
     expect(await other.media.count()).toBe(0)
+  })
+})
+
+describe('settings migration', () => {
+  it('fills new and nested defaults into settings saved by an older version', async () => {
+    const db = new KelimeDB('t-settings')
+    await db.meta.put({ key: 'settings', value: { activeLanguage: 'fr', dailyMinutes: 20, newWordsPerDay: 3, profile: { name: 'Ali' } } })
+    const s = (await db.getSettings())!
+    expect(s).toMatchObject({ activeLanguage: 'fr', dailyMinutes: 20, theme: 'system', dailyXpGoal: 50 })
+    expect(s.profile).toMatchObject({ name: 'Ali', emoji: '🦊' })
+    expect(s.reminder).toEqual({ enabled: false, time: '20:00' })
   })
 })

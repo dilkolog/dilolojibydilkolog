@@ -6,12 +6,12 @@ import {
   displayForm,
   evaluateChoice,
   evaluateTyped,
-  HINT_DELAYS_MS,
   type ChoiceExercise,
   type Evaluation,
   type Exercise,
   type TypedExercise,
 } from '../engine/exercises'
+import { xpForAnswer } from '../engine/gamification'
 import { masteryStage } from '../engine/mastery'
 import { markKnown, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { createRng, type Rng } from '../engine/rng'
@@ -34,7 +34,9 @@ import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
-import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon } from './icons'
+import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon, StarIcon } from './icons'
+import { prefs } from './prefs'
+import { sfx } from './sounds'
 import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { useMediaUrl } from './useMedia'
 
@@ -129,12 +131,20 @@ export function SessionScreen(p: Props) {
     mistakes.current = result.mistakes
     await p.db.saveReview(result)
     lastAnswer.current = { before, bank, input, eventId: result.event.id }
+    const runBefore = comboOf(session.log)
+    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: ev.verdict, hintsUsed, responseMs, mode: p.mode, combo: runBefore })
+    const run = ev.verdict === 'wrong' ? 0 : runBefore + 1
+    if (ev.verdict === 'wrong') sfx.wrong()
+    else if (run === 5 || run === 10 || run === 20) sfx.combo()
+    else if (ev.verdict === 'near') sfx.near()
+    else sfx.correct()
     return {
       entryId: entry.id,
       verdict: ev.verdict,
       errorType: ev.errorType,
       stageBefore: masteryStage(before),
       stageAfter: masteryStage(result.state),
+      xp,
     }
   }
 
@@ -159,7 +169,8 @@ export function SessionScreen(p: Props) {
       setById((m) => new Map(m).set(entry.id, updated))
       await p.db.vocabulary.put(updated)
     }
-    return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state) }
+    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: 'correct', hintsUsed: input.hintsUsed, responseMs: input.responseMs, mode: p.mode, combo: 0 })
+    return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state), xp }
   }
 
   const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
@@ -168,12 +179,8 @@ export function SessionScreen(p: Props) {
     next(log, retry)
   }
 
-  // Consecutive correct answers at the end of the log: a small, visible reward for momentum.
-  let combo = 0
-  for (let i = session.log.length - 1; i >= 0 && session.log[i].verdict !== undefined; i--) {
-    if (session.log[i].verdict === 'wrong') break
-    combo++
-  }
+  const combo = comboOf(session.log)
+  const sessionXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
 
   return (
     <div>
@@ -193,13 +200,16 @@ export function SessionScreen(p: Props) {
             {session.index}/{session.items.length}
           </span>
         )}
+        <span className="session-xp" key={sessionXp}>
+          <StarIcon size={16} className="icon-star" /> {sessionXp}
+        </span>
       </div>
       {p.mode === 'practice' && (
         <p style={{ marginTop: '-1.5rem', marginBottom: '1.5rem' }}>
           <span className="badge">Serbest pratik</span>
         </p>
       )}
-      <KeyLegend />
+      {prefs.showKeyLegend && <KeyLegend />}
       {confirmQuit && (
         <ConfirmDialog
           title="Oturumdan çıkılsın mı?"
@@ -236,7 +246,7 @@ export function SessionScreen(p: Props) {
 
 function SpeakButton({ text, entry, big, auto }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean }) {
   useEffect(() => {
-    if (auto) playWord(entry, text)
+    if (auto && prefs.autoPlay) playWord(entry, text)
   }, [auto, text, entry.language])
 
   // Alt+S anywhere, or Space when not typing, replays the audio.
@@ -357,6 +367,9 @@ interface RunnerProps {
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
 }
 
+/** With "strict accents" on, a missing accent is an error rather than a near miss. */
+const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.errorType === 'accent' ? { ...ev, verdict: 'wrong' } : ev)
+
 /** An evaluation plus optional AI feedback text (free sentences). */
 type Graded = Evaluation & { feedback?: string }
 
@@ -424,7 +437,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           onSubmit={(text, hints) =>
             exercise.type === 'free_sentence'
               ? submitSentence(text, hints)
-              : submit(evaluateTyped(exercise, text, entry, catalog), hints, exercise.hints.length)
+              : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog)), hints, exercise.hints.length)
           }
         />
       )}
@@ -443,6 +456,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           <div className="sheet-spacer" />
           <Feedback
             ev={result.ev}
+            xp={result.log.xp}
             entry={entry}
             continueRef={continueBtn}
             onContinue={() => onContinue(result.log)}
@@ -578,7 +592,8 @@ function TypedAnswer({
     return () => clearInterval(t)
   }, [answered])
 
-  const nextDelay = HINT_DELAYS_MS[shown] ?? Infinity
+  // Each next hint unlocks one more delay later (desirable difficulty).
+  const nextDelay = shown < exercise.hints.length ? prefs.hintDelayMs * (shown + 1) : Infinity
   const waitSec = Math.max(0, Math.ceil((nextDelay - elapsed) / 1000))
   const canHint = shown < exercise.hints.length && waitSec === 0 && !answered
 
@@ -651,7 +666,9 @@ function Feedback({
   continueRef,
   onContinue,
   onOverride,
+  xp,
 }: {
+  xp?: number
   ev: Graded
   entry: VocabularyEntry
   continueRef: React.RefObject<HTMLButtonElement | null>
@@ -670,6 +687,7 @@ function Feedback({
           <p className="sheet-title">
             {ev.verdict === 'correct' ? <CheckIcon size={24} /> : <AlertIcon size={24} />}
             {title}
+            {xp !== undefined && xp > 0 && <span className="xp-pop">+{xp} XP</span>}
           </p>
           {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
@@ -691,6 +709,17 @@ function Feedback({
       </div>
     </div>
   )
+}
+
+/** Consecutive non-wrong answers at the end of the log (introductions don't break a run). */
+function comboOf(log: readonly SessionLogEntry[]): number {
+  let n = 0
+  for (let i = log.length - 1; i >= 0; i--) {
+    if (log[i].verdict === undefined) continue
+    if (log[i].verdict === 'wrong') break
+    n++
+  }
+  return n
 }
 
 /** Shortcuts are paused while a dialog is open. */

@@ -8,10 +8,17 @@ export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis'
 /** Voice and speed preferences, set from Settings. */
 export const speechPrefs: { rate: number; voices: Partial<Record<TargetLanguage, string>> } = { rate: 0.9, voices: {} }
 
+/** macOS novelty voices: fun, but useless for learning pronunciation. */
+const NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Junior|Ralph|Fred|Kathy|Grandma|Grandpa|Rocko|Shelley|Sandy|Eddy|Flo|Reed)\b/i
+
 export function voicesFor(language: TargetLanguage): SpeechSynthesisVoice[] {
   if (!canSpeak()) return []
   const prefix = SPEECH_LANG[language].slice(0, 2)
-  return window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(prefix))
+  const quality = (v: SpeechSynthesisVoice) => (/premium/i.test(v.name) ? 0 : /enhanced|geliştirilmiş/i.test(v.name) ? 1 : 2)
+  return window.speechSynthesis
+    .getVoices()
+    .filter((v) => v.lang.toLowerCase().startsWith(prefix) && !NOVELTY.test(v.name))
+    .sort((a, b) => quality(a) - quality(b) || a.name.localeCompare(b.name))
 }
 
 /** Uses the system's built-in voices, which work offline on most desktops and phones. */

@@ -42,7 +42,7 @@ describe('session', () => {
 
   it('summarises strengthened words, struggles and error types', () => {
     let s = startSession([item('a'), item('b'), { ...item('c'), kind: 'introduce' }])
-    s = completeItem(s, { entryId: 'a', verdict: 'correct', stageBefore: 'introduced', stageAfter: 'familiar' })
+    s = completeItem(s, { entryId: 'a', verdict: 'correct', stageBefore: 'introduced', stageAfter: 'familiar', xp: 5 })
     s = completeItem(s, { entryId: 'b', verdict: 'wrong', errorType: 'gender', stageBefore: 'familiar', stageAfter: 'familiar' })
     s = completeItem(s, { entryId: 'c' })
     expect(summarize(s)).toEqual({
@@ -52,6 +52,7 @@ describe('session', () => {
       struggling: ['b'],
       errors: { gender: 1 },
       introduced: ['c'],
+      xp: 5,
     })
   })
 })

@@ -6,7 +6,7 @@ function recordingType(): string | undefined {
   return ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'].find((t) => MediaRecorder.isTypeSupported(t))
 }
 
-export const canRecord = () => typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && !!recordingType()
+const canRecord = () => typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && !!recordingType()
 
 /** Max length of a word recording; long enough for a phrase, short enough to stay small. */
 const MAX_MS = 8000

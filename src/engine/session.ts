@@ -11,6 +11,8 @@ export interface SessionLogEntry {
   errorType?: ErrorType
   stageBefore?: MasteryStage
   stageAfter?: MasteryStage
+  /** XP earned by this answer. */
+  xp?: number
 }
 
 export interface Session {
@@ -68,6 +70,7 @@ export interface SessionSummary {
   struggling: string[]
   errors: Partial<Record<ErrorType, number>>
   introduced: string[]
+  xp: number
 }
 
 export function summarize(s: Session): SessionSummary {
@@ -88,5 +91,6 @@ export function summarize(s: Session): SessionSummary {
     struggling: [...new Set(answers.filter((l) => l.verdict === 'wrong').map((l) => l.entryId))],
     errors,
     introduced: s.log.filter((l) => l.item.kind === 'introduce').map((l) => l.entryId),
+    xp: s.log.reduce((sum, l) => sum + (l.xp ?? 0), 0),
   }
 }
