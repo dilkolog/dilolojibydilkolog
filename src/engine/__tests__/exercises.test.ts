@@ -183,3 +183,19 @@ describe('buildPretest', () => {
     }
   })
 })
+
+describe('back_translation', () => {
+  it('is offered only with the AI layer and an example that has a translation', () => {
+    expect(exerciseTypesFor('production', decision, { ai: true })).toContain('back_translation')
+    expect(exerciseTypesFor('production', decision)).not.toContain('back_translation')
+    const noTr = { ...decision, senses: [{ ...decision.senses[0], examples: decision.senses[0].examples.map((e) => ({ ...e, translation: '' })) }] }
+    expect(exerciseTypesFor('production', noTr, { ai: true })).not.toContain('back_translation')
+  })
+
+  it('shows the Turkish sentence and keeps the original as reference', () => {
+    const ex = buildExercise('back_translation', decision, CATALOG, rng()) as TypedExercise
+    const original = decision.senses[0].examples.find((e) => e.text === ex.accepted[0])!
+    expect(ex.prompt).toBe(original.translation)
+    expect(ex.hints[0]).toContain('decision')
+  })
+})

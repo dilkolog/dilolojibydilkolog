@@ -103,6 +103,14 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     expectedMs: 6000,
     applicable: (e) => conjugate(e) !== undefined,
   },
+  back_translation: {
+    skill: 'production',
+    direction: 'native_to_target',
+    input: 'typed',
+    expectedMs: 40000,
+    applicable: (e) => e.senses[0].examples.some((x) => x.translation.trim()),
+    requiresAI: true,
+  },
   free_sentence: {
     skill: 'production',
     direction: 'native_to_target',
@@ -460,6 +468,19 @@ export function buildExercise(
         context: sense.gloss,
         options: [forms.m, forms.f].map((label, i) => ({ id: String(i), label })),
         correctOptionId: correct === forms.m ? '0' : '1',
+      }
+    }
+
+    case 'back_translation': {
+      // Pushed output: producing a whole sentence shows what is missing in a way reading can't.
+      const ex = pick(sense.examples.filter((x) => x.translation.trim()), rng)
+      const words = ex.text.split(/\s+/)
+      return {
+        ...base,
+        kind: 'typed',
+        prompt: ex.translation,
+        accepted: [ex.text],
+        hints: [`Kelime: ${answer}`, `Başlangıç: ${words.slice(0, Math.min(3, Math.ceil(words.length / 3))).join(' ')}…`],
       }
     }
 

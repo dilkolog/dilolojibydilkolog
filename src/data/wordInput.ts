@@ -471,7 +471,7 @@ export const MAX_EXAMPLES = 8
  * Adds another example sentence to the word's main sense. Seeing a word in varied contexts
  * builds a flexible memory instead of one tied to a single sentence (encoding variability).
  */
-export function addExample(entry: VocabularyEntry, text: string, translation = ''): VocabularyEntry {
+export function addExample(entry: VocabularyEntry, text: string, translation = '', personal = false): VocabularyEntry {
   const sense = entry.senses[0]
   const clean = text.replace(/\*/g, '').trim()
   if (!clean) throw new WordInputError('Cümle boş olamaz.')
@@ -481,7 +481,7 @@ export function addExample(entry: VocabularyEntry, text: string, translation = '
   if (!form) {
     throw new WordInputError(`Cümlede "${entry.lemma}" bulunamadı. Cümlede kelimeyi *yıldız* içine al: "She *abandoned* it".`)
   }
-  const example = { text: clean, translation: translation.trim(), form }
+  const example = { text: clean, translation: translation.trim(), form, ...(personal ? { personal: true } : {}) }
   return { ...entry, senses: [{ ...sense, examples: [...sense.examples, example] }, ...entry.senses.slice(1)] }
 }
 

@@ -20,6 +20,8 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const [translation, setTranslation] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  // The AI's sentence, to tell it apart from one the learner wrote themselves.
+  const [aiText, setAiText] = useState('')
 
   const save = async (next: VocabularyEntry) => {
     await db.vocabulary.put(next)
@@ -29,7 +31,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const add = async () => {
     setError('')
     try {
-      await save(addExample(entry, text, translation))
+      await save(addExample(entry, text, translation, text.trim() !== aiText.trim()))
       setText('')
       setTranslation('')
       setAdding(false)
@@ -56,6 +58,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
         currentExample: examples.map((e) => e.text).join(' / '),
       })
       setText(out.example ?? '')
+      setAiText(out.example ?? '')
       setTranslation(out.exampleTranslation ?? '')
       setAdding(true)
     } catch (e) {
@@ -94,7 +97,10 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
           {examples.map((ex, i) => (
             <li key={ex.text}>
               <div>
-                <p className="sentence">{ex.text}</p>
+                <p className="sentence">
+                  {ex.text}
+                  {ex.personal && <span className="personal-tag">senin cümlen</span>}
+                </p>
                 {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
                 <ShadowButton text={ex.text} language={entry.language} />
               </div>
@@ -122,6 +128,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
         >
           <div className="field">
             <label htmlFor="ex-text">Cümle</label>
+            {!aiText && <span className="help">En iyisi kendi hayatından bir cümle: kendinle ilgili cümleler çok daha iyi akılda kalır.</span>}
             <input id="ex-text" className="input" value={text} onChange={(e) => setText(e.target.value)} lang={entry.language} autoFocus />
             <span className="help">Kelime cümlede farklı biçimdeyse yıldızla işaretle: She *abandoned* it.</span>
           </div>

@@ -85,4 +85,5 @@ export const PROMPT_TEXT: Record<string, string> = {
   speak_word: 'Söyle: hedef dildeki karşılığı',
   article_choice: 'Artikeli hangisi?',
   conjugation: 'Fiili çek',
+  back_translation: 'Bu cümleyi çevir',
 }

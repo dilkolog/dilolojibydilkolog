@@ -40,7 +40,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] ⭐⭐⭐ **Kriterli tekrar (successive relearning)** (M)
   Yeni ve unutulan kelime oturumdan ancak 2–3 kez ayrı aralıklarla doğru çağrılınca çıksın
   (Rawson & Dunlosky 2011–2013). Şu an tek doğru yetiyor mu kontrol et.
-- [ ] ⭐⭐ **Kendi cümlen (öz-referans + katılım yükü)** (S)
+- [x] ⭐⭐ **Kendi cümlen (öz-referans + katılım yükü)** (S)
   Kelimeyi kendi hayatından bir cümleyle kaydetme seçeneği (Laufer & Hulstijn 2001'in katılım
   yükü hipotezi; öz-referans etkisi). AI'sız da çalışır, sadece saklanır ve sonra cloze olur.
 
@@ -90,9 +90,9 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 8. Çıktı (2. kol)
 
-- [ ] ⭐⭐ **Geri anlatım** (M, AI) — hikaye bölümünü kendi cümlelerinle özetle; hedef kelimeler
+- [x] ⭐⭐ **Geri anlatım** (M, AI) — hikaye bölümünü kendi cümlelerinle özetle; hedef kelimeler
   kullanıldı mı kontrol et (Swain'in çıktı hipotezi).
-- [ ] ⭐⭐ **Ters çeviri** (M, AI) — Türkçe cümleyi hedef dile çevir, sonra orijinalle karşılaştır.
+- [x] ⭐⭐ **Ters çeviri** (M, AI) — Türkçe cümleyi hedef dile çevir, sonra orijinalle karşılaştır.
 
 ## 9. Zamanlama, uyku, alışkanlık
 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { AiError, writeEpisode } from '../ai'
+import { AiError, evaluateRetelling, writeEpisode, type RetellEvaluation } from '../ai'
 import { displayForm } from '../engine/exercises'
 import { xpForAnswer } from '../engine/gamification'
 import { newWordState, processAttempt } from '../engine/review'
@@ -381,13 +381,16 @@ function Episode({
       ))}
 
       {done ? (
-        <div className="story-done">
-          <CheckIcon size={22} />
-          <span>
-            Bölüm tamamlandı: {blanks.length} boşluğun {firstTry} tanesini ilk denemede bildin.
-            {xp > 0 && <strong className="xp-pop">+{xp} XP</strong>}
-          </span>
-        </div>
+        <>
+          <div className="story-done">
+            <CheckIcon size={22} />
+            <span>
+              Bölüm tamamlandı: {blanks.length} boşluğun {firstTry} tanesini ilk denemede bildin.
+              {xp > 0 && <strong className="xp-pop">+{xp} XP</strong>}
+            </span>
+          </div>
+          <Retell language={language} story={paragraphs.map((p) => p.plain).join('\n')} words={words} />
+        </>
       ) : (
         <p className="small muted">
           Bir boşluğa tıkla, sonra yukarıdan uyan kelimeyi seç. Bankada sözlük hali var; metne doğru biçimi yerleşir. Her boşluğun ilk
@@ -395,5 +398,72 @@ function Episode({
         </p>
       )}
     </article>
+  )
+}
+
+/**
+ * Retell the episode in your own words (pushed output, Swain): producing the story shows which
+ * words you can actually use, not just recognise. The AI checks each practice word.
+ */
+function Retell({ language, story, words }: { language: TargetLanguage; story: string; words: VocabularyEntry[] }) {
+  const { apiKey } = useAi()
+  const [text, setText] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const [result, setResult] = useState<RetellEvaluation | null>(null)
+  if (!apiKey) return null
+
+  const check = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      setResult(
+        await evaluateRetelling(apiKey, {
+          language,
+          story,
+          words: words.map((w) => ({ lemma: displayForm(w), gloss: w.senses[0].gloss })),
+          retelling: text.trim(),
+        }),
+      )
+    } catch (e) {
+      setError(e instanceof AiError ? e.message : 'Değerlendirilemedi.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="stack retell">
+      <h3 className="section-title">Kendi cümlelerinle anlat</h3>
+      <p className="small muted">
+        Bölümü {LANGUAGE_NAME[language]} birkaç cümleyle özetle; mümkün olduğunca bölümün kelimelerini kullan. Kullanmak, tanımaktan çok daha kalıcı öğretir.
+      </p>
+      <textarea className="textarea" lang={language} value={text} onChange={(e) => setText(e.target.value)} aria-label="Özetin" placeholder="Bu bölümde…" />
+      <div className="row">
+        <button className="btn" onClick={check} disabled={busy || text.trim().split(/\s+/).length < 5}>
+          {busy ? 'Değerlendiriliyor…' : 'Değerlendir'}
+        </button>
+        <span className="small muted">En az 5 kelime.</span>
+      </div>
+      {error && <p className="error">{error}</p>}
+      {result && (
+        <div className="stack" role="status">
+          <p>{result.feedback}</p>
+          {result.corrected.trim() !== text.trim() && (
+            <p className="small">
+              <strong>Düzeltilmiş hali:</strong> <span lang={language}>{result.corrected}</span>
+            </p>
+          )}
+          <div className="row" style={{ gap: '0.5rem' }}>
+            {result.words.map((w) => (
+              <span key={w.lemma} className={`pill ${w.correct ? 'stage-5' : w.used ? 'stage-3' : ''}`}>
+                {w.correct ? '✓' : w.used ? '~' : '–'} {w.lemma}
+              </span>
+            ))}
+          </div>
+          <p className="small muted">✓ doğru kullandın · ~ kullandın ama düzeltilmeli · – kullanmadın</p>
+        </div>
+      )}
+    </section>
   )
 }

@@ -52,6 +52,21 @@ export function wordInfoToInput(info: WordInfo) {
   }
 }
 
+export interface RetellRequest {
+  language: import('../engine/types').TargetLanguage
+  /** The episode text in the target language. */
+  story: string
+  words: { lemma: string; gloss: string }[]
+  retelling: string
+}
+
+export interface RetellEvaluation {
+  feedback: string
+  /** The learner's text with errors minimally corrected. */
+  corrected: string
+  words: { lemma: string; used: boolean; correct: boolean }[]
+}
+
 export interface EpisodeRequest {
   language: import('../engine/types').TargetLanguage
   interests: string[]

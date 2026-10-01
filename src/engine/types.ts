@@ -39,6 +39,8 @@ export interface Example {
   translation: string
   /** The exact surface form of the target word inside `text` (e.g. "abandoned"), used for cloze. */
   form: string
+  /** Written by the learner about their own life (self-reference makes it stick). */
+  personal?: boolean
 }
 
 export interface Sense {
@@ -136,6 +138,7 @@ export type ExerciseType =
   | 'speak_word' // see the Turkish meaning → say the word aloud (speech recognition)
   | 'article_choice' // FR/ES noun without its article → choose le/la, el/la
   | 'conjugation' // FR/ES verb + subject → type the present-tense form
+  | 'back_translation' // Turkish translation of an example → write it in the target language; AI-graded
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {

@@ -3,7 +3,7 @@ import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
-import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -194,6 +194,59 @@ export async function evaluateSentence(
     corrected: g.corrected,
     feedback: g.feedback,
   }
+}
+
+/**
+ * Back-translation: the learner turns a Turkish sentence into the target language. Graded on
+ * whether the meaning comes across and the target word is used correctly; the original is a
+ * reference, not the only right answer.
+ */
+export async function evaluateTranslation(
+  apiKey: string,
+  entry: VocabularyEntry,
+  turkish: string,
+  reference: string,
+  attempt: string,
+): Promise<SentenceEvaluation> {
+  const lang = LANGUAGE_NAME[entry.language]
+  const system = [
+    `You are a warm but precise ${lang} teacher for a Turkish native speaker practising translation into ${lang}.`,
+    'The learner translated a Turkish sentence. Judge whether their sentence conveys the same meaning naturally and uses the target word correctly.',
+    'The reference translation is one good answer, not the only one: accept any natural, faithful translation. Ignore punctuation and capitalisation.',
+    'Keep feedback in Turkish, short and kind; mention the most useful improvement.',
+  ].join('\n')
+  const user = [
+    `Target word: ${entry.article ? `${entry.article} ` : ''}${entry.lemma} = ${entry.senses[0].gloss}`,
+    `Turkish sentence: ${turkish}`,
+    `Reference translation: ${reference}`,
+    `Learner's translation: ${attempt}`,
+  ].join('\n')
+  const g = await structured(apiKey, SentenceGrade, system, user, 'medium')
+  return { verdict: g.verdict, errorType: g.errorType === 'none' ? undefined : g.errorType, corrected: g.corrected, feedback: g.feedback }
+}
+
+const Retell = z.object({
+  feedback: z.string().describe('2-3 short, encouraging sentences in Turkish: what worked, and the single most useful improvement.'),
+  corrected: z.string().describe("The learner's retelling with errors minimally corrected (identical if already correct)."),
+  words: z
+    .array(z.object({ lemma: z.string(), used: z.boolean(), correct: z.boolean().describe('Used with the right meaning and form. False if not used.') }))
+    .describe('One item per practice word, in the given order.'),
+})
+
+/** Retelling an episode in your own words (pushed output): which practice words made it in, and how well. */
+export async function evaluateRetelling(apiKey: string, req: RetellRequest): Promise<RetellEvaluation> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are a warm but precise ${lang} teacher. A Turkish learner who speaks ${lang} well read a short story and retold it in their own words.`,
+    'Judge the retelling as communication first: is the story recognisable and the language natural? Then check each practice word: was it used, and correctly?',
+    'Do not demand completeness; a short retelling is fine. Feedback in Turkish.',
+  ].join('\n')
+  const user = [
+    `Story:\n${req.story}`,
+    `Practice words: ${req.words.map((w) => `${w.lemma} (${w.gloss})`).join(', ')}`,
+    `Learner's retelling:\n${req.retelling}`,
+  ].join('\n\n')
+  return structured(apiKey, Retell, system, user, 'medium')
 }
 
 // ---------------------------------------------------------------------------

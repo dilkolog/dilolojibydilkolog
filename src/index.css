@@ -1283,3 +1283,6 @@ kbd {
 .shadow-rec { color: var(--bad-text); display: inline-flex; align-items: center; gap: 0.5rem; }
 .shadow-bar { display: inline-block; height: 0.25rem; border-radius: 999px; background: var(--bad); transition: width 0.1s linear; }
 .fragile-note { padding: 0.5rem 0.75rem; border-radius: 0.75rem; background: var(--surface-2); color: var(--ink-soft); }
+.retell { border-top: 1px solid var(--rule); padding-top: 1.25rem; margin-top: 0.5rem; }
+.personal-tag { margin-left: 0.5rem; font-family: var(--sans, inherit); font-size: 0.75rem; font-weight: 700; padding: 0.0625rem 0.5rem; border-radius: 999px; background: var(--lang-soft); color: var(--lang-text); vertical-align: middle; }
+.own-link { justify-self: start; text-align: left; }

@@ -33,8 +33,9 @@ import {
 import type { Confidence, EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
+import { addExample, WordInputError } from '../data/wordInput'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
-import { AiError, evaluateSentence } from '../ai'
+import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { CrossLanguageNotes } from './CrossLanguage'
 import { ConfirmDialog } from './Dialog'
@@ -240,6 +241,11 @@ export function SessionScreen(p: Props) {
           rng={rng}
           onContinue={() => introduce(false)}
           onKnown={() => introduce(true)}
+          onOwnSentence={async (text) => {
+            const updated = addExample(entry, text, '', true)
+            await p.db.vocabulary.put(updated)
+            setById((m) => new Map(m).set(updated.id, updated))
+          }}
         />
       ) : (
         <ExerciseRunner
@@ -340,12 +346,15 @@ function Intro({
   rng,
   onContinue,
   onKnown,
+  onOwnSentence,
 }: {
   entry: VocabularyEntry
   catalog: VocabularyEntry[]
   rng: Rng
   onContinue: () => void
   onKnown: () => void
+  /** Saves a sentence the learner wrote about their own life as an example. */
+  onOwnSentence: (text: string) => Promise<void>
 }) {
   const sense = entry.senses[0]
   const example = sense.examples[0]
@@ -419,6 +428,7 @@ function Intro({
             )}
           </div>
         )}
+        <OwnSentence entry={entry} onSave={onOwnSentence} />
       </div>
       <div className="session-actions">
         <button ref={btn} className="btn btn-lg" style={{ flex: 1 }} onClick={onContinue}>
@@ -429,6 +439,60 @@ function Intro({
         </button>
       </div>
     </div>
+  )
+}
+
+/**
+ * Optional: a sentence about the learner's own life with the new word. Self-referenced,
+ * self-generated sentences are remembered far better than given ones; it becomes an example
+ * that later exercises use.
+ */
+function OwnSentence({ entry, onSave }: { entry: VocabularyEntry; onSave: (text: string) => Promise<void> }) {
+  const [open, setOpen] = useState(false)
+  const [text, setText] = useState('')
+  const [error, setError] = useState('')
+  const [saved, setSaved] = useState(false)
+  if (saved) return <p className="small notice">✍️ Cümlen kaydedildi; alıştırmalarda karşına çıkacak.</p>
+  if (!open) {
+    return (
+      <button className="link small own-link" onClick={() => setOpen(true)}>
+        ✍️ Bu kelimeyle kendi hayatından bir cümle yaz (isteğe bağlı)
+      </button>
+    )
+  }
+  return (
+    <form
+      className="stack own-form"
+      onSubmit={async (e) => {
+        e.preventDefault()
+        setError('')
+        try {
+          await onSave(text)
+          setSaved(true)
+        } catch (err) {
+          setError(err instanceof WordInputError ? err.message : 'Kaydedilemedi.')
+        }
+      }}
+    >
+      <input
+        className="input"
+        lang={entry.language}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder={`${entry.lemma} ile, kendinle ilgili bir cümle…`}
+        autoFocus
+        aria-label="Kendi cümlen"
+      />
+      <div className="row">
+        <button className="btn btn-quiet" type="submit" disabled={!text.trim()}>
+          Kaydet
+        </button>
+        <button className="link small" type="button" onClick={() => setOpen(false)}>
+          Vazgeç
+        </button>
+      </div>
+      {error && <p className="error small">{error}</p>}
+    </form>
   )
 }
 
@@ -500,9 +564,18 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
     setPending(true)
     setAiError('')
     try {
-      const g = await evaluateSentence(apiKey, entry, text.trim())
+      const reference = exercise.kind === 'typed' && exercise.type === 'back_translation' ? exercise.accepted[0] : ''
+      const g = reference
+        ? await evaluateTranslation(apiKey, entry, exercise.prompt, reference, text.trim())
+        : await evaluateSentence(apiKey, entry, text.trim())
       await submit(
-        { verdict: g.verdict, errorType: g.errorType, given: text.trim(), expected: g.corrected, feedback: g.feedback },
+        {
+          verdict: g.verdict,
+          errorType: g.errorType,
+          given: text.trim(),
+          expected: g.corrected,
+          feedback: reference ? `${g.feedback} Örnek çeviri: ${reference}` : g.feedback,
+        },
         hints,
         exercise.kind === 'typed' ? exercise.hints.length : 0,
         { ms },
@@ -568,7 +641,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           pending={pending}
           verdict={result?.ev.verdict}
           onSubmit={(text, hints, shift) =>
-            exercise.type === 'free_sentence'
+            exercise.type === 'free_sentence' || exercise.type === 'back_translation'
               ? submitSentence(text, hints)
               : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog)), hints, exercise.hints.length, { shift })
           }
@@ -609,7 +682,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             continueRef={continueBtn}
             onContinue={() => onContinue(result.log)}
             onOverride={
-              exercise.kind === 'typed' && exercise.type !== 'free_sentence' && result.ev.verdict !== 'correct'
+              exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && result.ev.verdict !== 'correct'
                 ? async () => {
                     const log = await onOverride()
                     if (log) setResult({ ...result, log, ev: { ...result.ev, verdict: 'correct', errorType: undefined, feedback: 'Doğru sayıldı. Bu yazımı bundan sonra kabul edeceğim.' } })
@@ -659,6 +732,16 @@ function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: Vo
       )
     case 'speak_word':
       return <p className="prompt-text">{exercise.prompt}</p>
+    case 'back_translation':
+      return (
+        <div className="stack" style={{ gap: '0.375rem' }}>
+          <p className="prompt-text">{exercise.prompt}</p>
+          <p className="muted">
+            {LANGUAGE_NAME[entry.language]} yaz; <span lang={entry.language}>“{displayForm(entry)}”</span> kelimesini kullan. Birebir aynısı gerekmez, anlamı
+            doğru aktarman yeter.
+          </p>
+        </div>
+      )
     case 'conjugation':
       return (
         <div className="stack" style={{ gap: '0.375rem' }}>
