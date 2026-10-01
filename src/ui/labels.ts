@@ -29,6 +29,7 @@ export const REASON_TEXT: Record<PlanReason, (n: number) => string> = {
   weak: (n) => `${n} zayıf kelime`,
   due: (n) => `${n} tekrar zamanı gelen kelime`,
   new: (n) => `${n} yeni kelime`,
+  practice: (n) => `${n} serbest pratik sorusu`,
 }
 
 export const ERROR_NAME: Record<ErrorType, string> = {

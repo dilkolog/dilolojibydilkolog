@@ -79,6 +79,14 @@ export class KelimeDB extends Dexie {
     })
   }
 
+  eventsSince(date: Date, language: TargetLanguage) {
+    return this.events
+      .where('timestamp')
+      .aboveOrEqual(date)
+      .filter((e) => e.language === language)
+      .toArray()
+  }
+
   /** Deleting a word also deletes what was learned about it. */
   deleteWord(id: string) {
     return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes], async () => {

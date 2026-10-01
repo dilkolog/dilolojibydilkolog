@@ -1,14 +1,27 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { buildDailyPlan, type DailyPlan } from './engine/dailyPlan'
+import { buildDailyPlan, type PlanItem } from './engine/dailyPlan'
 import { skillProfile } from './engine/mastery'
+import { openMistakes } from './engine/mistakes'
+import { buildMistakePlan, buildPracticePlan } from './engine/practice'
 import { nextReviewAt } from './engine/review'
+import { createRng } from './engine/rng'
 import { createScheduler } from './engine/scheduler'
 import type { SessionSummary } from './engine/session'
-import { TARGET_LANGUAGES, type Mistake, type TargetLanguage, type UserWordState, type VocabularyEntry } from './engine/types'
+import {
+  TARGET_LANGUAGES,
+  type Mistake,
+  type ReviewMode,
+  type TargetLanguage,
+  type UserWordState,
+  type VocabularyEntry,
+} from './engine/types'
 import { KelimeDB, type Settings } from './data/db'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
+import { MistakesScreen } from './ui/Mistakes'
+import { ProgressScreen } from './ui/Progress'
 import { Home, Onboarding, SettingsScreen, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
+import { WordDetail } from './ui/WordDetail'
 import { WordsScreen } from './ui/Words'
 
 const db = new KelimeDB()
@@ -16,10 +29,20 @@ const scheduler = createScheduler()
 
 type Screen =
   | { name: 'home' }
-  | { name: 'session'; plan: DailyPlan; seed: number }
-  | { name: 'summary'; summary: SessionSummary }
+  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode }
+  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode }
   | { name: 'words' }
+  | { name: 'word'; entryId: string }
+  | { name: 'mistakes' }
+  | { name: 'progress' }
   | { name: 'settings' }
+
+const NAV: { screen: 'words' | 'mistakes' | 'progress' | 'settings'; label: string }[] = [
+  { screen: 'words', label: 'Kelimeler' },
+  { screen: 'mistakes', label: 'Hatalar' },
+  { screen: 'progress', label: 'İlerleme' },
+  { screen: 'settings', label: 'Ayarlar' },
+]
 
 interface LanguageData {
   language: TargetLanguage
@@ -52,6 +75,11 @@ export default function App() {
     reload()
   }, [reload])
 
+  // Each screen starts at the top, like a page navigation.
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [screen.name])
+
   const updateSettings = async (s: Settings) => {
     await db.saveSettings(s)
     setSettings(s)
@@ -81,10 +109,14 @@ export default function App() {
   const finishSession = useCallback(
     (summary: SessionSummary) => {
       reload()
-      setScreen({ name: 'summary', summary })
+      setScreen((s) => ({ name: 'summary', summary, mode: s.name === 'session' ? s.mode : 'normal' }))
     },
     [reload],
   )
+
+  const startSession = (items: PlanItem[], mode: ReviewMode) => {
+    if (items.length) setScreen({ name: 'session', items, mode, seed: Date.now() % 2 ** 31 })
+  }
 
   if (settings === undefined) return null
   if (settings === null) {
@@ -124,12 +156,16 @@ export default function App() {
             ))}
           </div>
           <nav className="nav">
-            <button className="link" aria-current={screen.name === 'words' ? 'page' : undefined} onClick={go({ name: 'words' })}>
-              Kelimeler
-            </button>
-            <button className="link" aria-current={screen.name === 'settings' ? 'page' : undefined} onClick={go({ name: 'settings' })}>
-              Ayarlar
-            </button>
+            {NAV.map((n) => (
+              <button
+                key={n.screen}
+                className="link"
+                aria-current={screen.name === n.screen || (n.screen === 'words' && screen.name === 'word') ? 'page' : undefined}
+                onClick={go({ name: n.screen })}
+              >
+                {n.label}
+              </button>
+            ))}
           </nav>
         </header>
       )}
@@ -137,7 +173,8 @@ export default function App() {
       <main>
         {!data || !plan ? null : screen.name === 'session' ? (
           <SessionScreen
-            plan={screen.plan}
+            items={screen.items}
+            mode={screen.mode}
             vocabulary={data.vocabulary}
             states={data.states}
             mistakes={data.mistakes}
@@ -151,9 +188,45 @@ export default function App() {
             }}
           />
         ) : screen.name === 'summary' ? (
-          <Summary summary={screen.summary} byId={byId} onDone={go({ name: 'home' })} />
+          <Summary summary={screen.summary} byId={byId} practice={screen.mode === 'practice'} onDone={go({ name: 'home' })} />
         ) : screen.name === 'words' ? (
-          <WordsScreen db={db} language={data.language} vocabulary={data.vocabulary} states={data.states} onChanged={reload} />
+          <WordsScreen
+            db={db}
+            language={data.language}
+            vocabulary={data.vocabulary}
+            states={data.states}
+            onChanged={reload}
+            onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+          />
+        ) : screen.name === 'word' && byId.has(screen.entryId) ? (
+          <WordDetail
+            key={screen.entryId}
+            db={db}
+            entry={byId.get(screen.entryId)!}
+            vocabulary={data.vocabulary}
+            state={data.states.find((s) => s.entryId === screen.entryId)}
+            mistakes={data.mistakes}
+            scheduler={scheduler}
+            onChanged={reload}
+            onBack={go({ name: 'words' })}
+          />
+        ) : screen.name === 'mistakes' ? (
+          <MistakesScreen
+            mistakes={data.mistakes}
+            vocabulary={data.vocabulary}
+            onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+            onPractice={() =>
+              startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()) }), 'normal')
+            }
+          />
+        ) : screen.name === 'progress' ? (
+          <ProgressScreen
+            db={db}
+            language={data.language}
+            vocabularyCount={data.vocabulary.length}
+            states={data.states}
+            scheduler={scheduler}
+          />
         ) : screen.name === 'settings' ? (
           <SettingsScreen
             db={db}
@@ -173,8 +246,14 @@ export default function App() {
             vocabularyCount={data.vocabulary.length}
             learningCount={data.states.length}
             nextReview={earliest(data.states)}
-            onStart={() => setScreen({ name: 'session', plan, seed: daySeed(new Date()) })}
+            openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
+            canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
+            onStart={() => setScreen({ name: 'session', items: plan.items, mode: 'normal', seed: daySeed(new Date()) })}
             onAddWords={go({ name: 'words' })}
+            onPracticeMistakes={() =>
+              startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()) }), 'normal')
+            }
+            onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()) }), 'practice')}
           />
         )}
       </main>

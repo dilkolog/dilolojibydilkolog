@@ -4,7 +4,7 @@ import { masteryStage } from '../engine/mastery'
 import type { Gender, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
-import { createEntry, IMPORT_COLUMNS, importWords, WordInputError, type WordInput } from '../data/wordInput'
+import { createEntry, entryToInput, IMPORT_COLUMNS, importWords, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 
 interface Props {
@@ -13,12 +13,14 @@ interface Props {
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
   onChanged: () => void
+  onOpen: (entryId: string) => void
 }
 
-export function WordsScreen({ db, language, vocabulary, states, onChanged }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpen }: Props) {
   const [query, setQuery] = useState('')
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
+  const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
 
   const list = useMemo(() => {
@@ -40,18 +42,15 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged }: Pro
     onChanged()
   }
 
-  const remove = async (entry: VocabularyEntry) => {
-    if (!confirm(`"${entry.lemma}" ve bu kelimedeki ilerlemen silinecek. Devam edilsin mi?`)) return
-    await db.deleteWord(entry.id)
-    onChanged()
-  }
-
   return (
     <div>
       <section className="section stack">
         <h2 className="today-title">{LANGUAGE_NAME[language]} kelimelerin</h2>
-        <AddWordForm db={db} language={language} existing={ids} onAdded={onChanged} />
-        <ImportPanel db={db} language={language} existing={ids} onImported={onChanged} />
+        <details open>
+          <summary>Kelime ekle</summary>
+          <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
+        </details>
+        <ImportPanel db={db} language={language} existing={keys} onImported={onChanged} />
         <div className="row small">
           {hasSamples ? (
             <button className="link" onClick={removeSamples}>
@@ -87,10 +86,10 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged }: Pro
               const st = stateById.get(v.id)
               return (
                 <li key={v.id}>
-                  <span className="w">{displayForm(v)}</span>
-                  <button className="link small" onClick={() => remove(v)}>
-                    Sil
+                  <button className="w word-link" onClick={() => onOpen(v.id)}>
+                    {displayForm(v)}
                   </button>
+                  <span />
                   <span className="meta">
                     {v.senses[0].gloss}
                     {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
@@ -137,34 +136,46 @@ const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslatio
 
 const POS_OPTIONS: PartOfSpeech[] = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'phrase', 'other']
 
-function AddWordForm({
+/**
+ * Adds a new word, or edits `entry` when given. `existing` holds the keys of the other words
+ * (see `wordKeys`) for the duplicate check.
+ */
+export function WordForm({
   db,
   language,
   existing,
-  onAdded,
+  entry,
+  onSaved,
+  onCancel,
 }: {
   db: KelimeDB
   language: TargetLanguage
   existing: Set<string>
-  onAdded: () => void
+  entry?: VocabularyEntry
+  onSaved: (entry: VocabularyEntry) => void
+  onCancel?: () => void
 }) {
-  const [form, setForm] = useState<WordInput>(EMPTY)
+  const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : EMPTY))
   const [error, setError] = useState('')
   const [added, setAdded] = useState('')
-  const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value || undefined }))
+  const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
   const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
     try {
-      const entry = createEntry(form, language, new Date())
-      if (existing.has(entry.id)) throw new WordInputError(`"${entry.lemma}" zaten listende.`)
-      await db.vocabulary.put(entry)
-      setAdded(entry.lemma)
-      setForm(EMPTY)
-      document.getElementById('w-word')?.focus()
-      onAdded()
+      const saved = entry ? updateEntry(entry, form) : createEntry(form, language, new Date())
+      if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
+        throw new WordInputError(`"${saved.lemma}" zaten listende.`)
+      }
+      await db.vocabulary.put(saved)
+      if (!entry) {
+        setAdded(saved.lemma)
+        setForm(EMPTY)
+        document.getElementById('w-word')?.focus()
+      }
+      onSaved(saved)
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err))
     }
@@ -174,9 +185,7 @@ function AddWordForm({
     language === 'en' ? 'Örn. decision' : language === 'fr' ? 'İsimleri artikeliyle yaz: la décision' : 'İsimleri artikeliyle yaz: el año'
 
   return (
-    <details open>
-      <summary>Kelime ekle</summary>
-      <form className="stack" onSubmit={submit}>
+    <form className="stack" onSubmit={submit}>
         <div className="grid-2">
           <div className="field">
             <label htmlFor="w-word">Kelime</label>
@@ -192,7 +201,12 @@ function AddWordForm({
         <div className="grid-2">
           <div className="field">
             <label htmlFor="w-pos">Tür</label>
-            <select id="w-pos" className="select" value={form.partOfSpeech ?? ''} onChange={set('partOfSpeech')}>
+            <select
+              id="w-pos"
+              className="select"
+              value={form.partOfSpeech ?? ''}
+              onChange={(e) => setForm((f) => ({ ...f, partOfSpeech: (e.target.value || undefined) as PartOfSpeech | undefined }))}
+            >
               <option value="">Belirtme</option>
               {POS_OPTIONS.map((p) => (
                 <option key={p} value={p}>
@@ -253,13 +267,17 @@ function AddWordForm({
         </details>
         {error && <p className="error" role="alert">{error}</p>}
         {added && !error && <p className="notice" role="status">"{added}" eklendi.</p>}
-        <div>
+        <div className="row">
           <button className="btn" type="submit">
-            Kelimeyi ekle
+            {entry ? 'Değişiklikleri kaydet' : 'Kelimeyi ekle'}
           </button>
+          {onCancel && (
+            <button className="btn btn-quiet" type="button" onClick={onCancel}>
+              Vazgeç
+            </button>
+          )}
         </div>
-      </form>
-    </details>
+    </form>
   )
 }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { relativeTime } from './Screens'
+import { relativeTime } from './format'
 
 describe('relativeTime', () => {
   const now = new Date(2026, 9, 1, 12, 0) // Thursday 1 Oct 2026

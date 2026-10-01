@@ -14,7 +14,7 @@ import {
   type VocabularyEntry,
 } from './types'
 
-export type PlanReason = 'forgotten' | 'mistake' | 'weak' | 'due' | 'new'
+export type PlanReason = 'forgotten' | 'mistake' | 'weak' | 'due' | 'new' | 'practice'
 
 export interface PlanItem {
   kind: 'introduce' | 'exercise'
@@ -66,7 +66,7 @@ export const INTRO_GAP = 2
 const INTRO_COST_MS = 20000
 const OVERHEAD_MS = 4000
 const DAY_MS = 86_400_000
-const REASON_ORDER: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new']
+const REASON_ORDER: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new', 'practice']
 
 const itemCost = (item: PlanItem) =>
   item.kind === 'introduce' ? INTRO_COST_MS : EXERCISES[item.exerciseType!].expectedMs + OVERHEAD_MS
@@ -227,7 +227,7 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   }
 
   const items = interleave([...reviews, ...newItems], rng)
-  const counts = { forgotten: 0, mistake: 0, weak: 0, due: 0, new: 0 }
+  const counts = { forgotten: 0, mistake: 0, weak: 0, due: 0, new: 0, practice: 0 }
   const bySkill: Partial<Record<Skill, number>> = {}
   for (const it of items) {
     if (it.kind === 'introduce') continue

@@ -4,6 +4,7 @@ import type { SessionSummary } from '../engine/session'
 import { CEFR_LEVELS, SKILLS, TARGET_LANGUAGES, type CefrLevel, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
 import { DEFAULT_SETTINGS, exportBackup, parseBackup, restoreBackup, type KelimeDB, type Settings } from '../data/db'
+import { relativeTime } from './format'
 import { ERROR_NAME, LANGUAGE_NAME, REASON_TEXT, SKILL_NAME } from './labels'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
@@ -81,8 +82,12 @@ export function Home({
   vocabularyCount,
   learningCount,
   nextReview,
+  openMistakeWords,
+  canPractice,
   onStart,
   onAddWords,
+  onPracticeMistakes,
+  onFreePractice,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -90,8 +95,12 @@ export function Home({
   vocabularyCount: number
   learningCount: number
   nextReview?: Date
+  openMistakeWords: number
+  canPractice: boolean
   onStart: () => void
   onAddWords: () => void
+  onPracticeMistakes: () => void
+  onFreePractice: () => void
 }) {
   const today = new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })
   const exercises = plan.items.filter((i) => i.kind === 'exercise').length
@@ -143,6 +152,29 @@ export function Home({
         )}
       </section>
 
+      {(openMistakeWords > 0 || canPractice) && (
+        <section className="section stack">
+          <h2 className="today-title">Ek çalışma</h2>
+          <ul className="plain">
+            {openMistakeWords > 0 && (
+              <li>
+                <button className="link" onClick={onPracticeMistakes}>
+                  Hatalı {openMistakeWords} kelimeyi çalış
+                </button>
+              </li>
+            )}
+            {canPractice && (
+              <li>
+                <button className="link" onClick={onFreePractice}>
+                  Serbest pratik
+                </button>{' '}
+                <span className="small muted">Takvimi ve hata listesini etkilemez, rahatça dene.</span>
+              </li>
+            )}
+          </ul>
+        </section>
+      )}
+
       <section className="section stack">
         <h2 className="today-title">Beceriler</h2>
         <p className="small muted">
@@ -164,26 +196,17 @@ export function Home({
   )
 }
 
-/** "bugün 14:47", "yarın 09:00", "cumartesi 10:15", "12 Ekim" */
-export function relativeTime(d: Date, now = new Date()): string {
-  const day = (x: Date) => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime()
-  const diff = Math.round((day(d) - day(now)) / 86_400_000)
-  const time = d.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })
-  if (diff <= 0) return `bugün ${time}`
-  if (diff === 1) return `yarın ${time}`
-  if (diff < 7) return `${d.toLocaleDateString('tr-TR', { weekday: 'long' }).toLocaleLowerCase('tr-TR')} ${time}`
-  return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })
-}
-
 // ---------------------------------------------------------------------------
 
 export function Summary({
   summary,
   byId,
+  practice,
   onDone,
 }: {
   summary: SessionSummary
   byId: Map<string, VocabularyEntry>
+  practice?: boolean
   onDone: () => void
 }) {
   const name = (id: string) => {
@@ -196,19 +219,20 @@ export function Summary({
       <h1 className="today-title">
         {summary.answered} sorudan {summary.correct} tanesi doğru
       </h1>
+      {practice && <p className="muted">Serbest pratikti: tekrar takvimin ve hata listen değişmedi.</p>}
       {summary.introduced.length > 0 && (
         <p>
           <strong>Yeni:</strong> {summary.introduced.map(name).join(', ')}
         </p>
       )}
-      {summary.strengthened.length > 0 && (
+      {!practice && summary.strengthened.length > 0 && (
         <p>
           <strong>Güçlenen:</strong> {summary.strengthened.map(name).join(', ')}
         </p>
       )}
       {summary.struggling.length > 0 && (
         <p>
-          <strong>Zorlandığın:</strong> {summary.struggling.map(name).join(', ')}. Yakında tekrar gelecekler.
+          <strong>Zorlandığın:</strong> {summary.struggling.map(name).join(', ')}.{!practice && ' Yakında tekrar gelecekler.'}
         </p>
       )}
       {errors.length > 0 && (

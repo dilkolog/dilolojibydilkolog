@@ -52,7 +52,7 @@ src/
 
 1. **Faz 1 — Motor + testler** ✅
 2. **Faz 2 — Vertical slice:** ✅ açılış → kelime ekleme/içe aktarma → günlük görev → oturum → özet → sonraki tekrar
-3. **Faz 3 — MVP'yi tamamlama:** PWA/offline, kelime düzenleme, Mistake Bank ve İlerleme ekranları (ayrıntı aşağıda)
+3. **Faz 3 — MVP'yi tamamlama:** ✅ PWA/offline, kelime detay/düzenleme, Hatalar ve İlerleme ekranları, serbest pratik
 4. **Faz 4 — AI katmanı** (karar sonra)
 5. **Sonrası:** PDF/altyazı/web metninden kelime çıkarma, hikaye modu, graph view, konuşma
 
@@ -68,9 +68,11 @@ src/
 - Örnek cümlesi olmayan kelimede üretme (production) alıştırmaları açılmaz, bu yüzden "Oturdu"
   aşamasına çıkamaz. Kelime listesinde "Örnek cümle yok" diye işaretlenir.
 
-## Sıradaki (Faz 3)
+## Faz 3 notları
 
-- PWA: manifest + service worker (tam offline, ana ekrana ekleme)
-- Kelime düzenleme (şu an yalnızca ekle/sil)
-- Mistake Bank ekranı ve İlerleme ekranı (aşama dağılımı, beceri grafikleri)
-- Serbest pratik (low-stakes) modu için arayüz
+- **Offline:** service worker uygulamanın tüm dosyalarını önbelleğe alır; veriler zaten IndexedDB'de.
+  Veriler adrese bağlıdır: uygulama yayınlanınca hep aynı adresten açılmalı.
+- **Ana metrik (North Star):** "aktif kelime" = Kullanılabiliyor/Oturdu aşamasında olup üretme becerisinde
+  hatırlama olasılığı şu an ≥ %85 olan kelimeler.
+- **Hataları çalış:** her hatalı kelime bir kez, son hatanın yapıldığı beceride sorulur. Normal mod.
+- **Serbest pratik:** zaten çalışılan kelimeler, zaten açılmış becerilerde; takvimi ve hata listesini etkilemez.

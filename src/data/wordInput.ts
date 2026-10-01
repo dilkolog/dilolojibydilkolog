@@ -230,3 +230,72 @@ export function importWords(
   })
   return result
 }
+
+// ---------------------------------------------------------------------------
+// Editing
+// ---------------------------------------------------------------------------
+
+/** Turns an entry back into form fields; the inverse of `createEntry` for the editable parts. */
+export function entryToInput(entry: VocabularyEntry): WordInput {
+  const sense = entry.senses[0]
+  const ex = sense.examples[0]
+  // Only mark the form with asterisks when automatic detection wouldn't find it again.
+  const example = ex && findForm(ex.text, entry.lemma) !== ex.form ? ex.text.replace(ex.form, `*${ex.form}*`) : ex?.text
+  const article = entry.article ? (entry.article.endsWith("'") ? entry.article : `${entry.article} `) : ''
+  return {
+    word: `${article}${entry.lemma}`,
+    meaning: [sense.gloss, ...(sense.altGlosses ?? [])].join(', '),
+    partOfSpeech: entry.partOfSpeech,
+    gender: entry.gender,
+    level: entry.cefr,
+    example: example ?? '',
+    exampleTranslation: ex?.translation ?? '',
+    collocations: entry.collocations
+      .map((c) => `${c.phrase} = ${c.translation}${c.wrongVariants?.length ? ` (${c.wrongVariants.join(', ')})` : ''}`)
+      .join('\n'),
+    confusables: entry.relations
+      .filter((r) => r.type === 'confusable')
+      .map((r) => r.targetId.slice(r.targetId.indexOf(':') + 1))
+      .join(', '),
+  }
+}
+
+/**
+ * Applies form edits to an existing entry. The id never changes, so learning history stays
+ * attached; data the form doesn't show (word family, other senses, extra examples) is kept.
+ */
+export function updateEntry(existing: VocabularyEntry, input: WordInput): VocabularyEntry {
+  const edited = createEntry(input, existing.language, existing.addedAt ?? new Date(), existing.source)
+  const [oldSense, ...otherSenses] = existing.senses
+  const newExample = edited.senses[0].examples[0]
+  const otherExamples = oldSense.examples.slice(1)
+  return {
+    ...existing,
+    lemma: edited.lemma,
+    partOfSpeech: input.partOfSpeech ? edited.partOfSpeech : existing.partOfSpeech,
+    gender: edited.gender,
+    article: edited.article,
+    cefr: input.level ?? existing.cefr,
+    senses: [
+      {
+        ...oldSense,
+        gloss: edited.senses[0].gloss,
+        altGlosses: edited.senses[0].altGlosses,
+        examples: newExample ? [newExample, ...otherExamples] : otherExamples,
+      },
+      ...otherSenses,
+    ],
+    collocations: edited.collocations,
+    relations: [...existing.relations.filter((r) => r.type !== 'confusable'), ...edited.relations],
+  }
+}
+
+/** Keys that identify a word for duplicate checks: its id and the id its current lemma would get. */
+export function wordKeys(entries: readonly VocabularyEntry[]): Set<string> {
+  const keys = new Set<string>()
+  for (const e of entries) {
+    keys.add(e.id)
+    keys.add(wordId(e.language, e.lemma))
+  }
+  return keys
+}

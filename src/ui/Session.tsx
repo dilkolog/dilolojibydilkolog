@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
-import type { DailyPlan, PlanItem } from '../engine/dailyPlan'
+import type { PlanItem } from '../engine/dailyPlan'
 import {
   BLANK,
   buildExercise,
@@ -26,13 +26,15 @@ import {
   type SessionLogEntry,
   type SessionSummary,
 } from '../engine/session'
-import type { Mistake, UserWordState, VocabularyEntry } from '../engine/types'
+import type { Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
 import { canSpeak, speak } from './speech'
 
 interface Props {
-  plan: DailyPlan
+  items: PlanItem[]
+  /** 'practice' = free practice: answers don't touch the schedule or the Mistake Bank. */
+  mode: ReviewMode
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
   mistakes: Mistake[]
@@ -48,7 +50,7 @@ export function SessionScreen(p: Props) {
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
   const rng = useMemo(() => createRng(p.seed ^ 0x5bd1e995), [p.seed])
-  const [session, setSession] = useState(() => startSession(p.plan.items))
+  const [session, setSession] = useState(() => startSession(p.items))
   const item = currentItem(session)
   const { onFinish } = p
 
@@ -92,6 +94,7 @@ export function SessionScreen(p: Props) {
         hintsUsed,
         maxHints,
         at: new Date(),
+        mode: p.mode,
       },
       mistakes.current,
       p.scheduler,
@@ -120,6 +123,7 @@ export function SessionScreen(p: Props) {
         <div className="progress" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
           <div style={{ width: `${progress}%` }} />
         </div>
+        {p.mode === 'practice' && <span className="small muted">Serbest pratik</span>}
         <button className="link" onClick={p.onQuit}>
           Bitir
         </button>

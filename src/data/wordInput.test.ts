@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createEntry, findForm, importWords, parseCollocations, parseDelimited, WordInputError } from './wordInput'
+import { createEntry, entryToInput, findForm, importWords, parseCollocations, parseDelimited, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -97,5 +97,34 @@ describe('importWords', () => {
     expect(r.errors).toEqual([{ line: 5, message: 'Türkçe anlamı yaz.' }])
     // File order is kept as introduction order.
     expect(r.entries[0].addedAt!.getTime()).toBeLessThan(r.entries[1].addedAt!.getTime())
+  })
+})
+
+describe('editing', () => {
+  it('round-trips an entry through the form unchanged', async () => {
+    const { SAMPLE_WORDS } = await import('./seed')
+    const decision = SAMPLE_WORDS.en.find((e) => e.lemma === 'decision')!
+    const roundTrip = updateEntry(decision, entryToInput(decision))
+    expect(roundTrip).toEqual({ ...decision, senses: [{ ...decision.senses[0], altGlosses: [] }] })
+  })
+
+  it('marks the example form only when it cannot be detected', () => {
+    const e = createEntry({ word: 'saber', meaning: 'bilmek', example: 'No *sé* nada.' }, 'es', NOW)
+    expect(entryToInput(e).example).toBe('No *sé* nada.')
+    const d = createEntry({ word: 'decide', meaning: 'karar vermek', example: 'She decided.' }, 'en', NOW)
+    expect(entryToInput(d).example).toBe('She decided.')
+  })
+
+  it('keeps the id (and so the learning history) when the word is renamed', () => {
+    const e = createEntry({ word: 'la fenetre', meaning: 'pencere' }, 'fr', NOW)
+    const fixed = updateEntry(e, { ...entryToInput(e), word: 'la fenêtre' })
+    expect(fixed.id).toBe(e.id)
+    expect(fixed.lemma).toBe('fenêtre')
+    expect(wordKeys([fixed])).toEqual(new Set(['fr:fenetre', 'fr:fenêtre']))
+  })
+
+  it('keeps data the form does not show', () => {
+    const e = { ...createEntry({ word: 'decide', meaning: 'karar vermek' }, 'en', NOW), wordFamily: [{ lemma: 'decision', partOfSpeech: 'noun' as const, gloss: 'karar' }] }
+    expect(updateEntry(e, { ...entryToInput(e), meaning: 'karar vermek, kararlaştırmak' }).wordFamily).toHaveLength(1)
   })
 })
