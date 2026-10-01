@@ -18,16 +18,25 @@ export interface SessionLogEntry {
 export interface Session {
   items: PlanItem[]
   index: number
-  /** Words already re-queued once this session, so a hard word can't loop forever. */
-  retried: string[]
+  /** How many times each word has been re-queued this session. */
+  retries: Record<string, number>
+  /** Correct answers a missed word still needs before it may leave the session. */
+  relearn: Record<string, number>
   log: SessionLogEntry[]
 }
 
 /** A missed word comes back this many items later — long enough that it isn't just echoed. */
 export const RETRY_GAP = 3
+/**
+ * Successive relearning (Rawson & Dunlosky): a missed word has to be recalled correctly this
+ * many times, spaced apart, before the session lets it go. One lucky answer isn't relearning.
+ */
+export const RELEARN_TARGET = 2
+/** Cap on re-queues per word, so a word that won't stick can't take over the session. */
+export const MAX_RETRIES = 3
 
 export function startSession(items: readonly PlanItem[]): Session {
-  return { items: [...items], index: 0, retried: [], log: [] }
+  return { items: [...items], index: 0, retries: {}, relearn: {}, log: [] }
 }
 
 export const currentItem = (s: Session): PlanItem | undefined => s.items[s.index]
@@ -44,15 +53,24 @@ export function retryItem(
   return { ...item, kind: 'exercise', exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
 }
 
+/**
+ * Moves past the current item. `retry` is the item to re-queue if the word still needs
+ * relearning; it is used only when the answer was wrong or the word hasn't yet reached its
+ * relearning target.
+ */
 export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem): Session {
   const item = s.items[s.index]
+  const id = item.entryId
   const items = [...s.items]
-  const retried = [...s.retried]
-  if (retry && log.verdict === 'wrong' && !retried.includes(item.entryId)) {
+  const relearn = { ...s.relearn }
+  const retries = { ...s.retries }
+  if (log.verdict === 'wrong') relearn[id] = RELEARN_TARGET
+  else if (log.verdict && relearn[id]) relearn[id]--
+  if (retry && relearn[id] > 0 && (retries[id] ?? 0) < MAX_RETRIES) {
     items.splice(Math.min(s.index + 1 + RETRY_GAP, items.length), 0, retry)
-    retried.push(item.entryId)
+    retries[id] = (retries[id] ?? 0) + 1
   }
-  return { items, index: s.index + 1, retried, log: [...s.log, { ...log, item }] }
+  return { items, index: s.index + 1, retries, relearn, log: [...s.log, { ...log, item }] }
 }
 
 /** Drops the remaining items for a word (e.g. after "I already know this"). */

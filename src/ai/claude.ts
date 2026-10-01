@@ -150,7 +150,7 @@ export async function suggestFields(apiKey: string, req: SuggestRequest): Promis
     `Word: ${req.word}`,
     req.meaning.trim() && `Turkish meaning: ${req.meaning}`,
     req.fields.includes('tags') && req.existingTags.length > 0 && `Existing tags: ${req.existingTags.join(', ')}`,
-    req.fields.includes('example') && req.currentExample?.trim() && `Current example (write a different one): ${req.currentExample}`,
+    req.fields.includes('example') && req.currentExample?.trim() && `Existing example(s), write one in a different context: ${req.currentExample}`,
   ]
     .filter(Boolean)
     .join('\n')

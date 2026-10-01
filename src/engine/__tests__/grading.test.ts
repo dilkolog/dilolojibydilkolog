@@ -26,3 +26,14 @@ describe('gradeAttempt (evidence-based, no self-rating)', () => {
     expect(gradeAttempt({ ...base, exerciseType: 'typed_translation', responseMs: 7000 })).toBe(Rating.Good)
   })
 })
+
+describe('confidence', () => {
+  it('a correct answer given while unsure counts as Hard', async () => {
+    const { Rating } = await import('ts-fsrs')
+    const { gradeAttempt } = await import('../grading')
+    const base = { exerciseType: 'typed_translation' as const, verdict: 'correct' as const, responseMs: 5000, hintsUsed: 0, maxHints: 3 }
+    expect(gradeAttempt({ ...base, confidence: 'sure' })).toBe(Rating.Good)
+    expect(gradeAttempt({ ...base, confidence: 'unsure' })).toBe(Rating.Hard)
+    expect(gradeAttempt({ ...base, verdict: 'wrong', confidence: 'unsure' })).toBe(Rating.Again)
+  })
+})

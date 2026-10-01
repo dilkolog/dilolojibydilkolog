@@ -163,6 +163,7 @@ export type ErrorType =
   | 'form' // right family, wrong form (decide vs decision)
   | 'confusion' // picked a confusable word (affect/effect)
   | 'collocation' // unnatural word combination (do a decision)
+  | 'false_friend' // gave the meaning of a look-alike word in another language (actuellement ≠ actually)
 
 // ---------------------------------------------------------------------------
 // Per-user learning state
@@ -190,6 +191,9 @@ export interface UserWordState {
 
 export type ReviewMode = 'normal' | 'practice'
 
+/** How sure the learner said they were before answering; absent when not asked. */
+export type Confidence = 'sure' | 'unsure'
+
 /** One row per answer. The scheduler can be re-evaluated offline from these. */
 export interface ReviewEvent {
   id: string
@@ -204,6 +208,7 @@ export interface ReviewEvent {
   rating: Grade
   responseMs: number
   hintsUsed: number
+  confidence?: Confidence
   given?: string
   expected?: string
   retrievabilityBefore: number
@@ -226,5 +231,7 @@ export interface Mistake {
   lastAt: Date
   /** Correct answers on this word since the last occurrence. */
   correctSince: number
+  /** Made while the learner was sure: worth extra attention (hypercorrection effect). */
+  highConfidence?: boolean
   resolved: boolean
 }

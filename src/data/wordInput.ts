@@ -458,6 +458,32 @@ export function updateEntry(existing: VocabularyEntry, input: WordInput): Vocabu
   }
 }
 
+/** Most example sentences kept per word: enough variety, without a wall of text. */
+export const MAX_EXAMPLES = 8
+
+/**
+ * Adds another example sentence to the word's main sense. Seeing a word in varied contexts
+ * builds a flexible memory instead of one tied to a single sentence (encoding variability).
+ */
+export function addExample(entry: VocabularyEntry, text: string, translation = ''): VocabularyEntry {
+  const sense = entry.senses[0]
+  const clean = text.replace(/\*/g, '').trim()
+  if (!clean) throw new WordInputError('Cümle boş olamaz.')
+  if (sense.examples.some((e) => normalize(e.text) === normalize(clean))) throw new WordInputError('Bu cümle zaten var.')
+  if (sense.examples.length >= MAX_EXAMPLES) throw new WordInputError(`En fazla ${MAX_EXAMPLES} örnek cümle eklenebilir.`)
+  const form = findForm(text, entry.lemma)
+  if (!form) {
+    throw new WordInputError(`Cümlede "${entry.lemma}" bulunamadı. Cümlede kelimeyi *yıldız* içine al: "She *abandoned* it".`)
+  }
+  const example = { text: clean, translation: translation.trim(), form }
+  return { ...entry, senses: [{ ...sense, examples: [...sense.examples, example] }, ...entry.senses.slice(1)] }
+}
+
+export function removeExample(entry: VocabularyEntry, index: number): VocabularyEntry {
+  const sense = entry.senses[0]
+  return { ...entry, senses: [{ ...sense, examples: sense.examples.filter((_, i) => i !== index) }, ...entry.senses.slice(1)] }
+}
+
 /** Keys that identify a word for duplicate checks: its id and the id its current lemma would get. */
 export function wordKeys(entries: readonly VocabularyEntry[]): Set<string> {
   const keys = new Set<string>()

@@ -3,7 +3,7 @@ import { displayForm } from '../engine/exercises'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
 import { ERROR_NAME } from './labels'
 
-const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'confusion', 'form', 'accent', 'typo', 'meaning']
+const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'false_friend', 'confusion', 'form', 'accent', 'typo', 'meaning']
 
 /**
  * The Personal Mistake Bank: the learner's own errors, grouped by kind. A mistake closes after
@@ -93,7 +93,9 @@ function MistakeList({
               {m.given ? <span className="strike">{m.given}</span> : <span className="muted">(boş)</span>} →{' '}
               <span className="target">{m.expected}</span>
             </span>
-            <span className="small muted">{m.count > 1 ? `${m.count} kez` : ''}</span>
+            <span className="small muted">
+              {m.highConfidence && <span className="pill confident-pill">emindin</span>} {m.count > 1 ? `${m.count} kez` : ''}
+            </span>
             <span className="meta">
               <button className="link" onClick={() => onOpen(entry.id)}>
                 {displayForm(entry)}

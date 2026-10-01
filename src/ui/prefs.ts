@@ -10,6 +10,7 @@ export const prefs = {
   soundEffects: true,
   showKeyLegend: true,
   pretest: true,
+  confidence: true,
 }
 
 export function applySettings(s: Settings) {
@@ -19,6 +20,7 @@ export function applySettings(s: Settings) {
   prefs.soundEffects = s.soundEffects
   prefs.showKeyLegend = s.showKeyLegend
   prefs.pretest = s.pretest
+  prefs.confidence = s.confidence
   speechPrefs.varyVoices = s.varyVoices
   setRetention(s.retention)
   speechPrefs.rate = s.speechRate

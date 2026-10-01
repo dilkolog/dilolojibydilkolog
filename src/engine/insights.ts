@@ -150,4 +150,28 @@ export function weakestSkill(profile: Record<string, number | null>): string | n
   return known.length ? known.sort((a, b) => a[1] - b[1])[0][0] : null
 }
 
+// ---------------------------------------------------------------------------
+// Confidence calibration
+// ---------------------------------------------------------------------------
+
+export interface Calibration {
+  sure: { answers: number; correct: number }
+  unsure: { answers: number; correct: number }
+}
+
+/**
+ * How well the learner's sense of knowing matches reality. Well calibrated = sure answers are
+ * nearly always right and unsure ones clearly less so; overconfidence shows as sure-but-wrong.
+ */
+export function calibration(events: readonly ReviewEvent[]): Calibration {
+  const out: Calibration = { sure: { answers: 0, correct: 0 }, unsure: { answers: 0, correct: 0 } }
+  for (const e of events) {
+    if (!e.confidence || e.mode !== 'normal') continue
+    const c = out[e.confidence]
+    c.answers++
+    if (e.verdict !== 'wrong') c.correct++
+  }
+  return out
+}
+
 export type { Scheduler }

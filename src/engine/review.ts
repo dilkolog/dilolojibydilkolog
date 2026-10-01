@@ -4,6 +4,7 @@ import { gradeAttempt } from './grading'
 import { recordCorrect, recordMistake } from './mistakes'
 import type { Scheduler } from './scheduler'
 import type {
+  Confidence,
   ErrorType,
   ExerciseType,
   Mistake,
@@ -36,6 +37,7 @@ export interface AttemptInput {
   at: Date
   /** 'practice' = low-stakes: logged, but affects neither the schedule nor the Mistake Bank. */
   mode?: ReviewMode
+  confidence?: Confidence
 }
 
 export interface ReviewResult {
@@ -88,6 +90,7 @@ export function processAttempt(
         given: input.given ?? '',
         expected: input.expected ?? '',
         at: now,
+        highConfidence: input.verdict === 'wrong' && input.confidence === 'sure' ? true : undefined,
       })
     } else if (input.verdict === 'correct') {
       nextMistakes = recordCorrect(nextMistakes, state.entryId)
@@ -110,6 +113,7 @@ export function processAttempt(
     rating,
     responseMs: input.responseMs,
     hintsUsed: input.hintsUsed,
+    confidence: input.confidence,
     given: input.given,
     expected: input.expected,
     retrievabilityBefore,

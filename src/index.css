@@ -609,12 +609,27 @@ kbd {
   align-items: center;
   flex-wrap: wrap;
 }
-.sheet-text { flex: 1; min-width: 14rem; display: grid; gap: 0.125rem; }
+.sheet-text { flex: 1 1 22rem; min-width: min(100%, 22rem); display: grid; gap: 0.125rem; }
 .sheet-title { display: flex; align-items: center; gap: 0.5rem; font-size: var(--t-lg); font-weight: 700; color: var(--ok-text); }
 .sheet.near .sheet-title { color: var(--near-text); }
 .sheet.wrong .sheet-title { color: var(--bad-text); }
 .sheet .expected { font-family: var(--serif); font-size: var(--t-lg); }
 .sheet .btn { min-width: 9rem; }
+.sheet .btn:disabled { opacity: 0.55; cursor: wait; }
+/* Confident error: a framed note inside the sheet so it reads before "Devam". */
+.hyper { margin: 0.375rem 0; padding: 0.5rem 0.75rem; border-left: 3px solid var(--bad); background: color-mix(in srgb, var(--surface) 55%, transparent); border-radius: 0 0.5rem 0.5rem 0; display: grid; gap: 0.25rem; }
+.hyper s { opacity: 0.75; }
+.sentence-sm { font-family: var(--serif); font-size: var(--t-base, 1rem); }
+
+/* "Not sure" toggle shown before answering. */
+.unsure-chip {
+  display: inline-flex; align-items: center; gap: 0.375rem; margin: 1rem 0 1rem;
+  border: 2px dashed var(--rule); background: transparent; color: var(--ink-soft);
+  border-radius: 999px; padding: 0.25rem 0.75rem; font-size: var(--t-sm); font-weight: 600; cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.unsure-chip:hover { border-color: var(--near); }
+.unsure-chip.is-on { border-style: solid; border-color: var(--near); background: var(--near-soft); color: var(--near-text); }
 @media (max-width: 30rem) { .sheet .btn { width: 100%; } }
 
 @keyframes rise { from { transform: translateY(100%); } to { transform: none; } }
@@ -1197,3 +1212,22 @@ kbd {
 .fluency-live { text-align: center; min-height: 1.25rem; font-variant-numeric: tabular-nums; }
 .fluency-bars { display: flex; align-items: flex-end; gap: 3px; height: 4rem; max-width: 24rem; margin: 0 auto; width: 100%; }
 .fluency-bars span { flex: 1; background: var(--lang); border-radius: 4px 4px 0 0; opacity: 0.75; }
+
+/* Confidence calibration: two headline percentages side by side. */
+.calib { display: flex; flex-wrap: wrap; gap: 2rem; }
+.calib p { display: grid; gap: 0.125rem; margin: 0; }
+.calib-num { font-size: var(--t-2xl, 1.5rem); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--lang-text); }
+.confident-pill { background: var(--bad-soft); color: var(--bad-text); }
+
+.example-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.example-list li { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
+.example-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.example-list .sentence { font-size: var(--t-lg); }
+
+/* Cross-language notes: a warning for false friends, a quiet line for translations. */
+.cross { display: grid; gap: 0.375rem; }
+.cross p { margin: 0; }
+.cross-warn { padding: 0.5rem 0.75rem; border-radius: 0.75rem; background: var(--near-soft); color: var(--near-text); font-size: var(--t-sm); }
+.cross-links { font-size: var(--t-sm); color: var(--ink-soft); }
+.cross em { font-family: var(--serif); font-style: normal; color: var(--ink); }
+.cognate-tag { margin-left: 0.375rem; font-size: 0.75rem; font-weight: 700; padding: 0.0625rem 0.5rem; border-radius: 999px; background: var(--ok-soft); color: var(--ok-text); }

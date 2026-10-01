@@ -12,6 +12,8 @@ import { ERROR_NAME, POS_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
+import { CrossLanguageNotes } from './CrossLanguage'
+import { WordExamples } from './WordExamples'
 import { WordMedia } from './WordMedia'
 
 interface Props {
@@ -86,6 +88,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </div>
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        <CrossLanguageNotes entry={entry} />
         <p className="small muted">
           {[
             entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech],
@@ -131,17 +134,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </section>
       )}
 
-      {sense.examples.length > 0 && (
-        <section className="section stack">
-          <h2 className="section-title">Örnekler</h2>
-          {sense.examples.map((ex) => (
-            <div key={ex.text}>
-              <p className="sentence">{ex.text}</p>
-              {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
-            </div>
-          ))}
-        </section>
-      )}
+      <WordExamples db={db} entry={entry} onChanged={onChanged} />
 
       {(entry.collocations.length > 0 || entry.wordFamily.length > 0 || confusables.length > 0) && (
         <section className="section stack">

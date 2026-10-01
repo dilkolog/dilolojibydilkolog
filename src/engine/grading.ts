@@ -1,5 +1,5 @@
 import { Rating, type Grade } from 'ts-fsrs'
-import type { ExerciseType, Verdict } from './types'
+import type { Confidence, ExerciseType, Verdict } from './types'
 import { EXERCISES } from './exercises'
 
 /**
@@ -13,6 +13,7 @@ export interface GradingInput {
   hintsUsed: number
   /** Number of hints the exercise offered; using all of them means the answer was given away. */
   maxHints: number
+  confidence?: Confidence
 }
 
 /** Slower than this multiple of the expected time = effortful retrieval → Hard. */
@@ -29,6 +30,8 @@ export function gradeAttempt(input: GradingInput): Grade {
   // Near misses (accent, typo, missing article) show the word was retrieved but not precisely.
   if (input.verdict === 'near') return Rating.Hard
   if (input.hintsUsed > 0) return Rating.Hard
+  // Right, but the learner wasn't sure: the memory is there but fragile.
+  if (input.confidence === 'unsure') return Rating.Hard
   if (input.responseMs > meta.expectedMs * SLOW_FACTOR) return Rating.Hard
   // Multiple choice can be guessed, so speed there is never evidence of strong memory.
   if (meta.input === 'typed' && input.responseMs < meta.expectedMs * FAST_FACTOR) return Rating.Easy

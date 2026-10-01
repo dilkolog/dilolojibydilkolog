@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { falseFriendsOf } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
 import {
   BLANK,
@@ -28,12 +29,13 @@ import {
   type SessionLogEntry,
   type SessionSummary,
 } from '../engine/session'
-import type { EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
+import type { Confidence, EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence } from '../ai'
 import { useAi } from './aiContext'
+import { CrossLanguageNotes } from './CrossLanguage'
 import { ConfirmDialog } from './Dialog'
 import { MnemonicDialog } from './Mnemonic'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon, StarIcon } from './icons'
@@ -115,7 +117,7 @@ export function SessionScreen(p: Props) {
     else next({ entryId: entry.id })
   }
 
-  const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number) => {
+  const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => {
     const before = states.current.get(entry.id) ?? newWordState(entry, new Date())
     const input: AttemptInput = {
       exerciseType: item.exerciseType!,
@@ -128,6 +130,7 @@ export function SessionScreen(p: Props) {
       maxHints,
       at: new Date(),
       mode: p.mode,
+      confidence,
     }
     const bank = mistakes.current
     const result = processAttempt(before, input, bank, p.scheduler)
@@ -402,6 +405,7 @@ function Intro({
         </div>
         {imageUrl && <img className="word-image" src={imageUrl} alt="" />}
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        <CrossLanguageNotes entry={entry} compact />
         {entry.notes && <p className="note">💡 {entry.notes}</p>}
         {example && (
           <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
@@ -433,7 +437,7 @@ interface RunnerProps {
   item: PlanItem
   catalog: VocabularyEntry[]
   rng: Rng
-  onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number) => Promise<Omit<SessionLogEntry, 'item'>>
+  onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => Promise<Omit<SessionLogEntry, 'item'>>
   onOverride: () => Promise<Omit<SessionLogEntry, 'item'> | null>
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
   /** The word has been missed several times in a row: offer a memory hook. */
@@ -452,7 +456,11 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
   const startedAt = useRef(performance.now())
-  const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string } | null>(null)
+  const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string; confidence?: Confidence } | null>(null)
+  // Confidence is asked before the answer (not after: hindsight inflates it). Free sentences are
+  // graded by the AI and spoken answers are hands-free, so those two skip it.
+  const asksConfidence = prefs.confidence && exercise.type !== 'free_sentence' && exercise.type !== 'speak_word'
+  const [unsure, setUnsure] = useState(false)
   const [pending, setPending] = useState(false)
   const [aiError, setAiError] = useState('')
   const { apiKey } = useAi()
@@ -464,12 +472,18 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
 
   const busy = useRef(false)
 
-  const submit = async (ev: Graded, hintsUsed: number, maxHints: number, chosen?: string, ms = Math.round(performance.now() - startedAt.current)) => {
+  const submit = async (
+    ev: Graded,
+    hintsUsed: number,
+    maxHints: number,
+    { chosen, ms = Math.round(performance.now() - startedAt.current), shift = false }: { chosen?: string; ms?: number; shift?: boolean } = {},
+  ) => {
     // Guards against a double click/keypress recording the same answer twice.
     if (busy.current) return
     busy.current = true
-    const log = await onAnswer(ev, ms, hintsUsed, maxHints)
-    setResult({ ev, log, chosen })
+    const confidence: Confidence | undefined = asksConfidence ? (unsure || shift ? 'unsure' : 'sure') : undefined
+    const log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence)
+    setResult({ ev, log, chosen, confidence })
     if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
     playWord(entry, undefined, true)
@@ -487,8 +501,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
         { verdict: g.verdict, errorType: g.errorType, given: text.trim(), expected: g.corrected, feedback: g.feedback },
         hints,
         exercise.kind === 'typed' ? exercise.hints.length : 0,
-        undefined,
-        ms,
+        { ms },
       )
     } catch (e) {
       setAiError(e instanceof AiError ? e.message : 'Değerlendirme yapılamadı.')
@@ -507,8 +520,27 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             : PROMPT_TEXT[exercise.type]}
       </p>
       <Prompt exercise={exercise} entry={entry} />
+      {asksConfidence && !result && (
+        <button
+          type="button"
+          className={`unsure-chip${unsure ? ' is-on' : ''}`}
+          aria-pressed={unsure}
+          onClick={() => {
+            setUnsure((u) => !u)
+            document.getElementById('answer')?.focus()
+          }}
+        >
+          🤔 Emin değilim
+          <span className="small muted"> · ya da Shift ile cevapla</span>
+        </button>
+      )}
       {exercise.kind === 'choice' ? (
-        <Choices exercise={exercise} chosen={result?.chosen} answered={!!result} onChoose={(id) => submit(evaluateChoice(exercise, id), 0, 0, id)} />
+        <Choices
+          exercise={exercise}
+          chosen={result?.chosen}
+          answered={!!result}
+          onChoose={(id, shift) => submit(evaluateChoice(exercise, id), 0, 0, { chosen: id, shift })}
+        />
       ) : (
         exercise.type === 'speak_word' && !typeInstead ? (
           <SpeakAnswer
@@ -531,10 +563,10 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           answered={!!result || pending}
           pending={pending}
           verdict={result?.ev.verdict}
-          onSubmit={(text, hints) =>
+          onSubmit={(text, hints, shift) =>
             exercise.type === 'free_sentence'
               ? submitSentence(text, hints)
-              : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog)), hints, exercise.hints.length)
+              : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog)), hints, exercise.hints.length, { shift })
           }
         />
         )
@@ -565,6 +597,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           <div className="sheet-spacer" />
           <Feedback
             ev={result.ev}
+            confidence={result.confidence}
             xp={result.log.xp}
             entry={entry}
             mnemonic={mnemonic}
@@ -662,15 +695,17 @@ function Choices({
   exercise: ChoiceExercise
   chosen?: string
   answered: boolean
-  onChoose: (id: string) => void
+  onChoose: (id: string, shift: boolean) => void
 }) {
-  // Number keys pick an option, so a whole session can run from the keyboard.
+  // Number keys pick an option, so a whole session can run from the keyboard. Shift+number
+  // (e.code: Shift changes e.key to a symbol) answers as "not sure".
   useEffect(() => {
     if (answered) return
     const onKey = (e: KeyboardEvent) => {
       if (modalOpen()) return
-      const i = Number(e.key) - 1
-      if (i >= 0 && i < exercise.options.length) onChoose(exercise.options[i].id)
+      const m = /^(?:Digit|Numpad)([1-9])$/.exec(e.code)
+      const i = m ? Number(m[1]) - 1 : -1
+      if (i >= 0 && i < exercise.options.length) onChoose(exercise.options[i].id, e.shiftKey)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -688,7 +723,7 @@ function Choices({
               : 'is-dim'
           : ''
         return (
-          <button key={o.id} className={`option ${state}`} disabled={answered} onClick={() => onChoose(o.id)}>
+          <button key={o.id} className={`option ${state}`} disabled={answered} onClick={(e) => onChoose(o.id, e.shiftKey)}>
             <span className="key">{i + 1}</span>
             <span className={targetText ? 'option-serif' : ''}>{o.label}</span>
           </button>
@@ -715,7 +750,7 @@ function TypedAnswer({
   answered: boolean
   pending?: boolean
   verdict?: Evaluation['verdict']
-  onSubmit: (text: string, hintsUsed: number) => void
+  onSubmit: (text: string, hintsUsed: number, shift: boolean) => void
 }) {
   const [text, setText] = useState('')
   const [hearing, setHearing] = useState(false)
@@ -761,7 +796,7 @@ function TypedAnswer({
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
-    if (!answered && text.trim()) onSubmit(text, shown)
+    if (!answered && text.trim()) onSubmit(text, shown, false)
   }
 
   return (
@@ -775,6 +810,13 @@ function TypedAnswer({
         className={`answer-input${verdict ? ` is-${verdict}` : ''}`}
         value={text}
         onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => {
+          // Shift+Enter: answer, marked as not sure.
+          if (e.key === 'Enter' && e.shiftKey) {
+            e.preventDefault()
+            if (!answered && text.trim()) onSubmit(text, shown, true)
+          }
+        }}
         disabled={answered}
         autoFocus
         placeholder="Cevabını yaz"
@@ -817,8 +859,12 @@ function TypedAnswer({
 
 const PRAISE = ['Harika!', 'Doğru!', 'Süper!', 'Aynen böyle!', 'Mükemmel!', 'Çok iyi!']
 
+/** A confident error gets a moment of attention before moving on (hypercorrection). */
+const CONFIDENT_ERROR_PAUSE_MS = 1500
+
 function Feedback({
   ev,
+  confidence,
   entry,
   continueRef,
   onContinue,
@@ -831,6 +877,7 @@ function Feedback({
   mnemonic?: 'offer' | 'open' | 'saved' | null
   onMnemonic?: () => void
   ev: Graded
+  confidence?: Confidence
   entry: VocabularyEntry
   continueRef: React.RefObject<HTMLButtonElement | null>
   onContinue: () => void
@@ -838,9 +885,20 @@ function Feedback({
 }) {
   const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
-  const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
+  const confidentError = ev.verdict === 'wrong' && confidence === 'sure'
+  const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : confidentError ? 'Emindin, ama doğrusu:' : 'Olsun, doğrusu:'
   const hint = ev.errorType && ev.verdict !== 'correct' ? ERROR_HINT[ev.errorType] : ''
   const btnClass = ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
+  const [ready, setReady] = useState(!confidentError)
+  useEffect(() => {
+    if (ready) return
+    const t = setTimeout(() => setReady(true), CONFIDENT_ERROR_PAUSE_MS)
+    return () => clearTimeout(t)
+  }, [ready])
+  useEffect(() => {
+    if (ready && confidentError) continueRef.current?.focus()
+  }, [ready, confidentError, continueRef])
+  const example = entry.senses[0].examples[0]
   return (
     <div className={`sheet ${cls}`} role="status">
       <div className="sheet-inner">
@@ -851,7 +909,27 @@ function Feedback({
             {xp !== undefined && xp > 0 && <span className="xp-pop">+{xp} XP</span>}
           </p>
           {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
+          {confidentError && (
+            <div className="hyper">
+              <p className="small">Emin olduğun bir hatayı düzeltmek, doğrusunu en kalıcı şekilde öğrenmeni sağlar. Farka bir bak:</p>
+              {ev.given && (
+                <p className="small">
+                  <s>{ev.given}</s> → <strong>{ev.expected}</strong>
+                </p>
+              )}
+              {example && <p className="small sentence-sm">{example.text}</p>}
+            </div>
+          )}
+          {ev.verdict !== 'wrong' && confidence === 'unsure' && (
+            <p className="small">Emin değildin; bu yüzden kelime biraz daha erken tekrar gelecek.</p>
+          )}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
+          {ev.errorType === 'false_friend' &&
+            falseFriendsOf(entry).map((f) => (
+              <p key={f.word} className="small">
+                “{f.gloss}” {LANGUAGE_NAME[f.lang]} <em>{f.word}</em> demek. {displayForm(entry)} ise “{entry.senses[0].gloss}”.
+              </p>
+            ))}
           {ev.verdict !== 'correct' && entry.notes && <p className="small">💡 {entry.notes}</p>}
           <p className="small muted">
             {displayForm(entry)}: {entry.senses[0].gloss}
@@ -869,7 +947,7 @@ function Feedback({
               Cevabım da doğru
             </button>
           )}
-          <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue}>
+          <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue} disabled={!ready}>
             Devam
           </button>
         </div>
@@ -955,6 +1033,7 @@ function KeyLegend() {
     <p className="kbd-legend" aria-hidden>
       <span><kbd>1</kbd>–<kbd>4</kbd> seç</span>
       <span><kbd>Enter</kbd> onayla</span>
+      {prefs.confidence && <span><kbd>Shift</kbd> emin değilim</span>}
       <span><kbd>Alt</kbd>+<kbd>S</kbd> dinle</span>
       <span><kbd>Alt</kbd>+<kbd>H</kbd> ipucu</span>
       <span><kbd>Esc</kbd> çık</span>

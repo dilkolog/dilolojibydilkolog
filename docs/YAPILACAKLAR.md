@@ -26,18 +26,18 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 2. Üstbiliş (metacognition)
 
-- [ ] ⭐⭐⭐ **Cevaptan önce güven derecesi + hiper-düzeltme** (M)
+- [x] ⭐⭐⭐ **Cevaptan önce güven derecesi + hiper-düzeltme** (M)
   Yüksek güvenle yapılan hatalar, düzeltildiğinde en iyi akılda kalanlar
   (Butterfield & Metcalfe 2001). Yazmalı sorularda "emin / tahmin" iki tuşu; emin-yanlışlara
   uzun, karşılaştırmalı geri bildirim ve ertesi gün öncelik.
-- [ ] ⭐⭐ **Kalibrasyon puanı** (S) — "Emin olduklarının %X'i doğru". Aşırı güveni azaltır.
+- [x] ⭐⭐ **Kalibrasyon puanı** (S) — "Emin olduklarının %X'i doğru". Aşırı güveni azaltır.
 
 ## 3. Yeni kelimeyi ilk öğrenme anı
 
 - [x] ⭐⭐⭐ **Ön-test (pretesting)** (S)
   Anlamı göstermeden önce tahmin ettir; yanlış tahmin bile sonraki öğrenmeyi artırıyor
   (Kornell, Hays & Bjork 2009; Richland 2009). Tanışma ekranına "Ne olabilir?" adımı.
-- [ ] ⭐⭐⭐ **Kriterli tekrar (successive relearning)** (M)
+- [x] ⭐⭐⭐ **Kriterli tekrar (successive relearning)** (M)
   Yeni ve unutulan kelime oturumdan ancak 2–3 kez ayrı aralıklarla doğru çağrılınca çıksın
   (Rawson & Dunlosky 2011–2013). Şu an tek doğru yetiyor mu kontrol et.
 - [ ] ⭐⭐ **Kendi cümlen (öz-referans + katılım yükü)** (S)
@@ -46,7 +46,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 4. Bağlam çeşitliliği ve girdi (1. kol)
 
-- [ ] ⭐⭐⭐ **Her tekrarda farklı örnek cümle** (M)
+- [x] ⭐⭐⭐ **Her tekrarda farklı örnek cümle** (M)
   Aynı bağlam ezber yapar; değişen bağlam aktarımı artırır (kodlama çeşitliliği,
   Pavlik & Anderson; Webb 2007). Kelime başına birden çok örnek; metin içe aktarmadan
   otomatik cümle toplama.
@@ -63,7 +63,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [ ] ⭐⭐⭐ **Kavram kartı: üç dil yan yana** (M)
   "advice / conseil / consejo" bağlantısı. Bir dildeki bilgi diğerine köprü olur (soydaş
   kolaylaştırması). Kelime ağına diller arası kenar.
-- [ ] ⭐⭐⭐ **Soydaş ve sahte dost tespiti** (M)
+- [x] ⭐⭐⭐ **Soydaş ve sahte dost tespiti** (M)
   Soydaşlar hızlı öğrenilir, onları ucuza geçir; sahte dostlar (EN *actually* / FR *actuellement*,
   ES *embarazada*) aktif girişim kaynağı — ayırt etme sorusuna sok. Basit benzerlik + elle liste.
 - [x] ⭐⭐⭐ **FR/ES cinsiyet (artikel) alıştırması** (S)
@@ -114,6 +114,6 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## Önerilen sıra
 1. ~~Hızlı ve etkili: ön-test, artikel alıştırması, HVPT, akıcılık turu, hedef hatırlama ayarı.~~ (yapıldı)
-2. Orta: güven + hiper-düzeltme, kriterli tekrar, değişen örnek cümle, soydaş/sahte dost.
+2. ~~Orta: güven + hiper-düzeltme, kriterli tekrar, değişen örnek cümle, soydaş/sahte dost.~~ (yapıldı)
 3. Büyük: FSRS optimizasyonu, okuma modu + kapsama, kavram kartları.
 4. AI gerektirenler anahtar girilince: geri anlatım, ters çeviri.

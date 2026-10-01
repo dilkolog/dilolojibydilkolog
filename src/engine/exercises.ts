@@ -1,4 +1,5 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
+import { trapGlosses } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import type {
   Direction,
@@ -161,6 +162,8 @@ export interface ChoiceExercise extends ExerciseBase {
   kind: 'choice'
   options: ChoiceOption[]
   correctOptionId: string
+  /** Options that are a false friend's meaning; picking one is a 'false_friend' error. */
+  traps?: string[]
 }
 
 export interface TypedExercise extends ExerciseBase {
@@ -278,8 +281,15 @@ const FILLER_GLOSSES: Record<'noun' | 'verb' | 'adjective' | 'other', string[]> 
   other: ['belki', 'hemen', 'aslında', 'zaten', 'yine de', 'neredeyse', 'birlikte', 'sonunda', 'hâlâ', 'özellikle'],
 }
 
+/**
+ * Wrong meanings for a meaning question. A false friend's meaning goes first: it is the error
+ * the learner is most likely to make, so it is the one worth practising against.
+ */
 function meaningOptions(entry: VocabularyEntry, catalog: readonly VocabularyEntry[], rng: Rng): string[] {
-  const glosses = pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map((d) => d.senses[0].gloss)
+  const traps = trapGlosses(entry).slice(0, 1)
+  const glosses = [...traps, ...pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map((d) => d.senses[0].gloss)]
+    .filter((g, i, all) => all.findIndex((x) => normalize(x) === normalize(g)) === i)
+    .slice(0, OPTION_COUNT - 1)
   const pos = entry.partOfSpeech === 'noun' || entry.partOfSpeech === 'verb' || entry.partOfSpeech === 'adjective' ? entry.partOfSpeech : 'other'
   const own = new Set([entry.senses[0].gloss, ...glosses].map(normalize))
   for (const f of shuffle(FILLER_GLOSSES[pos], rng)) {
@@ -287,6 +297,11 @@ function meaningOptions(entry: VocabularyEntry, catalog: readonly VocabularyEntr
     if (!own.has(normalize(f))) glosses.push(f)
   }
   return glosses
+}
+
+function withTraps(ex: ChoiceExercise, entry: VocabularyEntry): ChoiceExercise {
+  const traps = trapGlosses(entry).filter((t) => ex.options.some((o) => o.label === t))
+  return traps.length ? { ...ex, traps } : ex
 }
 
 export function buildExercise(
@@ -305,14 +320,12 @@ export function buildExercise(
 
   switch (type) {
     case 'mc_meaning':
-      return choice({ ...base, prompt: answer }, sense.gloss, meaningOptions(entry, catalog, rng), rng)
+      return withTraps(choice({ ...base, prompt: answer }, sense.gloss, meaningOptions(entry, catalog, rng), rng), entry)
 
     case 'listen_choose':
-      return choice(
-        { ...base, prompt: 'Duyduğun kelimenin anlamı ne?', audioText: answer },
-        sense.gloss,
-        meaningOptions(entry, catalog, rng),
-        rng,
+      return withTraps(
+        choice({ ...base, prompt: 'Duyduğun kelimenin anlamı ne?', audioText: answer }, sense.gloss, meaningOptions(entry, catalog, rng), rng),
+        entry,
       )
 
     case 'mc_context': {
@@ -493,6 +506,7 @@ export function evaluateChoice(ex: ChoiceExercise, optionId: string): Evaluation
   const given = ex.options.find((o) => o.id === optionId)?.label ?? ''
   const expected = ex.options.find((o) => o.id === ex.correctOptionId)!.label
   if (optionId === ex.correctOptionId) return { verdict: 'correct', given, expected }
+  if (ex.traps?.includes(given)) return { verdict: 'wrong', errorType: 'false_friend', given, expected }
   return { verdict: 'wrong', errorType: CHOICE_ERROR[ex.type] ?? 'meaning', given, expected }
 }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createEntry, entryToInput, findForm, guessPartOfSpeech, importWords, parseCollocations, parseDelimited, parseWordList, updateEntry, WordInputError, wordKeys } from './wordInput'
+import { addExample, createEntry, entryToInput, findForm, guessPartOfSpeech, importWords, parseCollocations, parseDelimited, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -190,5 +190,27 @@ describe('guessPartOfSpeech', () => {
   it('is used by createEntry when no type is given', () => {
     expect(createEntry({ word: 'hablar', meaning: 'konuşmak' }, 'es', new Date()).partOfSpeech).toBe('verb')
     expect(createEntry({ word: 'cat', meaning: 'kedi' }, 'en', new Date()).partOfSpeech).toBe('other')
+  })
+})
+
+describe('addExample / removeExample', () => {
+  const base = createEntry({ word: 'decide', meaning: 'karar vermek', example: 'I *decided* to stay.' }, 'en', new Date())
+
+  it('adds a sentence with the word found automatically or marked', () => {
+    const one = addExample(base, 'She decides quickly.', 'Çabuk karar verir.')
+    expect(one.senses[0].examples.at(-1)).toEqual({ text: 'She decides quickly.', translation: 'Çabuk karar verir.', form: 'decides' })
+    const two = addExample(one, 'They *chose* to wait.')
+    expect(two.senses[0].examples.at(-1)?.form).toBe('chose')
+    expect(two.senses[0].examples).toHaveLength(3)
+  })
+
+  it('rejects duplicates and sentences without the word', () => {
+    expect(() => addExample(base, 'I decided to stay.')).toThrow(WordInputError)
+    expect(() => addExample(base, 'Nothing here.')).toThrow(WordInputError)
+  })
+
+  it('removes by position', () => {
+    const two = addExample(base, 'She decides quickly.')
+    expect(removeExample(two, 0).senses[0].examples.map((e) => e.form)).toEqual(['decides'])
   })
 })

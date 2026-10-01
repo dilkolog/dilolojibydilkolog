@@ -156,3 +156,37 @@ export function extractCandidates(
       .slice(0, limit)
   )
 }
+
+export interface FoundExample {
+  entryId: string
+  /** The sentence as it appears in the text. */
+  text: string
+  /** The word's surface form inside the sentence. */
+  form: string
+}
+
+/**
+ * Sentences in a text that contain words already in the list: free, authentic new contexts
+ * for those words. One sentence per word, of a usable length, skipping ones already saved.
+ */
+export function findExampleSentences(text: string, language: TargetLanguage, known: readonly VocabularyEntry[]): FoundExample[] {
+  const byStem = new Map<string, VocabularyEntry>()
+  for (const e of known) {
+    if (e.language !== language || e.partOfSpeech === 'phrase' || e.lemma.includes(' ')) continue
+    byStem.set(stem(e.lemma, language), e)
+  }
+  const found = new Map<string, FoundExample>()
+  for (const sentence of splitSentences(text)) {
+    const tokens = tokenize(sentence, language)
+    if (tokens.length < 4 || tokens.length > 30) continue
+    for (const { word } of tokens) {
+      const lower = word.toLocaleLowerCase(language)
+      if (lower.length < 3) continue
+      const entry = byStem.get(stem(lower, language))
+      if (!entry || found.has(entry.id)) continue
+      if (entry.senses[0].examples.some((ex) => normalize(ex.text) === normalize(sentence))) continue
+      found.set(entry.id, { entryId: entry.id, text: sentence, form: word })
+    }
+  }
+  return [...found.values()]
+}

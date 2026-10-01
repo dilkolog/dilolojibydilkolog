@@ -47,6 +47,8 @@ export interface Settings {
   retention: number
   /** Guess a new word's meaning before it is shown (pretesting effect). */
   pretest: boolean
+  /** Offer "not sure" before answering; confident errors get extra attention. */
+  confidence: boolean
   /** Listening exercises use a different system voice each time (high-variability input). */
   varyVoices: boolean
   reminder: { enabled: boolean; time: string }
@@ -71,6 +73,7 @@ export const DEFAULT_SETTINGS: Settings = {
   speechExercises: true,
   retention: 0.9,
   pretest: true,
+  confidence: true,
   varyVoices: true,
   reminder: { enabled: false, time: '20:00' },
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },

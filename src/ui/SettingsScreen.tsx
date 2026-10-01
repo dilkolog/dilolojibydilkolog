@@ -222,6 +222,12 @@ export function SettingsScreen({
           <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
         </Row>
         <Toggle
+          label="Emin değilim seçeneği"
+          help="Cevaplamadan önce emin olmadığını işaretleyebilirsin (Shift + cevap). Emin değilken doğru bilinen kelime daha erken tekrar gelir; emin olduğun bir yanlış ise ayrıca vurgulanır ve hatalarda öne alınır."
+          checked={settings.confidence}
+          onChange={(v) => set('confidence', v)}
+        />
+        <Toggle
           label="Aksanlarda katı ol"
           help="Açıkken 'decision' yerine 'décision' yazmamak yanlış sayılır; kapalıyken 'neredeyse'."
           checked={settings.accentStrict}

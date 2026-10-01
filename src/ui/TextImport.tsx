@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
-import { extractCandidates, type Candidate } from '../engine/extract'
+import { displayForm } from '../engine/exercises'
+import { extractCandidates, findExampleSentences, type Candidate, type FoundExample } from '../engine/extract'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
-import { createEntry, wordId, type WordInput } from '../data/wordInput'
+import { addExample, createEntry, wordId, type WordInput } from '../data/wordInput'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 
@@ -45,11 +46,33 @@ export function TextImport({
   const [rows, setRows] = useState<Row[] | null>(null)
   const [busy, setBusy] = useState<string>('')
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
+  // Sentences with words already in the list: new, authentic contexts for them.
+  const [found, setFound] = useState<(FoundExample & { selected: boolean })[]>([])
 
   const find = () => {
     const candidates = extractCandidates(text, language, vocabulary)
+    const examples = findExampleSentences(text, language, vocabulary)
     setRows(candidates.map((c, i) => ({ candidate: c, selected: i < PRESELECT, word: c.surface, meaning: '' })))
-    setMessage(candidates.length ? null : { ok: false, text: 'Bu metinde listende olmayan yeni kelime bulunamadı.' })
+    setFound(examples.map((f) => ({ ...f, selected: true })))
+    setMessage(candidates.length || examples.length ? null : { ok: false, text: 'Bu metinde listende olmayan yeni kelime bulunamadı.' })
+  }
+
+  const addFoundExamples = async () => {
+    const byId = new Map(vocabulary.map((v) => [v.id, v]))
+    const updated: VocabularyEntry[] = []
+    for (const f of found.filter((x) => x.selected)) {
+      const entry = byId.get(f.entryId)
+      if (!entry) continue
+      try {
+        updated.push(addExample(entry, markForm(f.text, f.form)))
+      } catch {
+        // Already has it, or is full: nothing to add.
+      }
+    }
+    if (updated.length) await db.vocabulary.bulkPut(updated)
+    setFound([])
+    setMessage({ ok: true, text: `${updated.length} kelimeye yeni örnek cümle eklendi.` })
+    onAdded()
   }
 
   const update = (i: number, patch: Partial<Row>) => setRows((r) => r!.map((row, j) => (j === i ? { ...row, ...patch } : row)))
@@ -144,6 +167,40 @@ export function TextImport({
             Kelimeleri bul
           </button>
         </div>
+
+        {found.length > 0 && (
+          <div className="card stack found-examples">
+            <p className="small">
+              <strong>Listendeki {found.length} kelime bu metinde de geçiyor.</strong> Cümlelerini örnek olarak eklersen kelimeleri yeni bağlamlarda
+              da görürsün.
+            </p>
+            <ul className="plain stack" style={{ gap: '0.5rem' }}>
+              {found.map((f, i) => {
+                const entry = vocabulary.find((v) => v.id === f.entryId)
+                return (
+                  <li key={f.entryId}>
+                    <label className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap', gap: '0.5rem' }}>
+                      <input
+                        type="checkbox"
+                        checked={f.selected}
+                        onChange={(e) => setFound(found.map((x, j) => (j === i ? { ...x, selected: e.target.checked } : x)))}
+                      />
+                      <span>
+                        <span className="target">{entry ? displayForm(entry) : f.form}</span>{' '}
+                        <span className="small muted">{f.text}</span>
+                      </span>
+                    </label>
+                  </li>
+                )
+              })}
+            </ul>
+            <div className="row">
+              <button className="btn btn-quiet" onClick={addFoundExamples} disabled={!found.some((f) => f.selected)}>
+                Örnek cümle olarak ekle ({found.filter((f) => f.selected).length})
+              </button>
+            </div>
+          </div>
+        )}
 
         {rows && rows.length > 0 && (
           <>

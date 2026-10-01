@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { extractCandidates, splitSentences, stem } from '../extract'
+import { extractCandidates, findExampleSentences, splitSentences, stem } from '../extract'
 import { decide, decision } from './fixtures'
 
 describe('stem', () => {
@@ -53,5 +53,21 @@ describe('extractCandidates', () => {
   it('respects the limit and minimum length', () => {
     expect(extractCandidates(text, 'en', [], { limit: 2 })).toHaveLength(2)
     expect(extractCandidates('ox ax', 'en', [])).toEqual([])
+  })
+})
+
+describe('findExampleSentences', () => {
+  it('finds one sentence per known word, inflected forms included', () => {
+    const text = 'We decided to leave early that day. It was a hard decision for all of us. Decide!'
+    const found = findExampleSentences(text, 'en', [decide, decision])
+    expect(found).toEqual([
+      { entryId: 'en:decide', text: 'We decided to leave early that day.', form: 'decided' },
+      { entryId: 'en:decision', text: 'It was a hard decision for all of us.', form: 'decision' },
+    ])
+  })
+
+  it('skips sentences the word already has and very short ones', () => {
+    const existing = decision.senses[0].examples[0].text
+    expect(findExampleSentences(`${existing} Decision made.`, 'en', [decision])).toEqual([])
   })
 })

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, isFinished, retryItem, RETRY_GAP, skipRemaining, startSession, summarize } from '../session'
+import { completeItem, currentItem, isFinished, MAX_RETRIES, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, summarize } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -23,14 +23,38 @@ describe('session', () => {
     expect(isFinished(s)).toBe(true)
   })
 
-  it('re-queues a missed word a few items later, only once', () => {
+  it('re-queues a missed word a few items later', () => {
     let s = startSession(items)
     s = completeItem(s, { entryId: 'a', verdict: 'wrong' }, item('a', 'listen_choose'))
     expect(s.items[RETRY_GAP + 1]).toMatchObject({ entryId: 'a', exerciseType: 'listen_choose' })
     expect(s.items).toHaveLength(6)
-    while (currentItem(s)?.entryId !== 'a') s = completeItem(s, { entryId: currentItem(s)!.entryId, verdict: 'correct' })
-    s = completeItem(s, { entryId: 'a', verdict: 'wrong' }, item('a'))
-    expect(s.items).toHaveLength(6)
+  })
+
+  /** Answers every item; 'a' gets the given verdicts in turn, others are right. */
+  const run = (verdicts: ('correct' | 'wrong')[]) => {
+    let s = startSession(items)
+    let k = 0
+    while (!isFinished(s)) {
+      const id = currentItem(s)!.entryId
+      const verdict = id === 'a' ? (verdicts[k++] ?? 'correct') : 'correct'
+      s = completeItem(s, { entryId: id, verdict }, item(id))
+    }
+    return { s, aAnswers: k }
+  }
+
+  it('a missed word must be recalled correctly twice before it leaves the session', () => {
+    const { aAnswers } = run(['wrong'])
+    expect(aAnswers).toBe(1 + RELEARN_TARGET)
+  })
+
+  it('a correct answer never re-queues a word that was not missed', () => {
+    const { s } = run([])
+    expect(s.items).toHaveLength(5)
+  })
+
+  it('a wrong retry resets the target, but re-queues are capped', () => {
+    expect(run(['wrong', 'wrong']).aAnswers).toBe(2 + RELEARN_TARGET)
+    expect(run(['wrong', 'wrong', 'wrong', 'wrong', 'wrong']).aAnswers).toBe(1 + MAX_RETRIES)
   })
 
   it('retries in a different format', () => {

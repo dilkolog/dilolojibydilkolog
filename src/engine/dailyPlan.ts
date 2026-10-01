@@ -91,7 +91,7 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   const { now, scheduler, settings } = input
   const today = startOfDay(now)
   const scored: { item: PlanItem; r: number }[] = []
-  const extras: { item: PlanItem; lastAt: number }[] = []
+  const extras: { item: PlanItem; lastAt: number; sure: boolean }[] = []
 
   const states = input.states.filter((s) => s.language === settings.language)
   for (const state of states) {
@@ -120,6 +120,7 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
       extras.push({
         item: { kind: 'exercise', entryId: entry.id, reason: 'mistake', skill, exerciseType: pickExerciseType(skill, entry, state, rng, opts) },
         lastAt: latest.lastAt.getTime(),
+        sure: open.some((m) => m.highConfidence),
       })
     }
   }
@@ -127,7 +128,8 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   // Due words first (by reason, then weakest), then the most recent not-yet-due mistakes.
   const order = (x: { item: PlanItem; r: number }) => REASON_ORDER.indexOf(x.item.reason) * 10 + x.r
   scored.sort((a, b) => order(a) - order(b))
-  extras.sort((a, b) => b.lastAt - a.lastAt)
+  // Mistakes made while sure come first: correcting a confident error sticks best.
+  extras.sort((a, b) => Number(b.sure) - Number(a.sure) || b.lastAt - a.lastAt)
   return [...scored.map((x) => x.item), ...extras.slice(0, MAX_EXTRA_MISTAKE_ITEMS).map((x) => x.item)]
 }
 

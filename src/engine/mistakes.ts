@@ -14,6 +14,7 @@ export interface MistakeInput {
   given: string
   expected: string
   at: Date
+  highConfidence?: boolean
 }
 
 /** Returns a new array; the same error repeated is merged and re-opened rather than duplicated. */
@@ -23,7 +24,7 @@ export function recordMistake(bank: readonly Mistake[], m: MistakeInput): Mistak
   if (existing) {
     return bank.map((x) =>
       x.id === id
-        ? { ...x, count: x.count + 1, lastAt: m.at, correctSince: 0, resolved: false, exerciseType: m.exerciseType }
+        ? { ...x, count: x.count + 1, lastAt: m.at, correctSince: 0, resolved: false, exerciseType: m.exerciseType, highConfidence: x.highConfidence || m.highConfidence }
         : x,
     )
   }

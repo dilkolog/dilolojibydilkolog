@@ -42,6 +42,7 @@ export const ERROR_NAME: Record<ErrorType, string> = {
   form: 'Kelime biçimi',
   confusion: 'Karıştırılan kelime',
   collocation: 'Kalıp (collocation)',
+  false_friend: 'Sahte dost',
 }
 
 /** Shown after a near miss / error, explaining what was off rather than just "wrong". */
@@ -54,6 +55,7 @@ export const ERROR_HINT: Record<ErrorType, string> = {
   form: 'Doğru kelime ailesi, ama başka bir biçim gerekiyor.',
   confusion: 'Bu, sık karıştırılan diğer kelime.',
   collocation: 'Bu kalıp bu dilde doğal değil.',
+  false_friend: 'Sahte dost: başka bir dildeki benzer kelimenin anlamını verdin.',
 }
 
 export const POS_NAME: Record<PartOfSpeech, string> = {

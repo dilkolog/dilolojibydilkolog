@@ -4,7 +4,7 @@ import { progressStats, type DayActivity, type ProgressStats } from '../engine/p
 import type { Scheduler } from '../engine/scheduler'
 import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
-import { errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
+import { calibration, errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
 import { useGame } from './game'
 import type { KelimeDB } from '../data/db'
 import { ERROR_NAME, SKILL_NAME, STAGE_NAME } from './labels'
@@ -47,6 +47,8 @@ export function ProgressScreen({
   const forecast = reviewForecast(states, now, DAYS)
   const hard = hardWords(events, 8)
   const errors = Object.entries(errorBreakdown(events)) as [ErrorType, number][]
+  const calib = calibration(events.filter((e) => now.getTime() - e.timestamp.getTime() < 30 * 86_400_000))
+  const pct = (c: { answers: number; correct: number }) => Math.round((c.correct / c.answers) * 100)
   const byId = new Map(vocabulary.map((v) => [v.id, v]))
   const profile = skillProfile(states, scheduler, new Date())
   const maxStage = Math.max(1, stats.notStarted, ...Object.values(stats.stageCounts))
@@ -74,6 +76,34 @@ export function ProgressScreen({
         <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
         <ForecastChart forecast={forecast} />
       </section>
+
+      {calib.sure.answers + calib.unsure.answers >= 10 && (
+        <section className="section stack">
+          <h2 className="section-title">Ne kadar bildiğini ne kadar iyi biliyorsun?</h2>
+          <div className="calib">
+            {calib.sure.answers > 0 && (
+              <p>
+                <span className="calib-num">%{pct(calib.sure)}</span>
+                <span className="small muted">emin olduğun {calib.sure.answers} cevabın doğru</span>
+              </p>
+            )}
+            {calib.unsure.answers > 0 && (
+              <p>
+                <span className="calib-num">%{pct(calib.unsure)}</span>
+                <span className="small muted">emin olmadığın {calib.unsure.answers} cevabın doğru</span>
+              </p>
+            )}
+          </div>
+          <p className="small muted">
+            Son 30 gün.{' '}
+            {calib.sure.answers >= 10 && pct(calib.sure) < 85
+              ? 'Emin olduğun cevapların fazlası yanlış çıkıyor: emin değilsen Shift ile işaretle, o kelimeler daha erken tekrar gelsin.'
+              : calib.unsure.answers >= 10 && pct(calib.unsure) > 85
+                ? 'Emin olmadığın cevapların çoğu doğru: kendine biraz daha güvenebilirsin.'
+                : 'Emin olduğunda neredeyse hep doğru biliyorsan, kendini iyi tanıyorsun demektir.'}
+          </p>
+        </section>
+      )}
 
       <section className="section stack">
         <h2 className="section-title">Zorlandığın kelimeler</h2>

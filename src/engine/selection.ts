@@ -67,6 +67,7 @@ export const ERROR_SKILL: Record<ErrorType, Skill> = {
   form: 'production',
   confusion: 'recognition',
   collocation: 'collocation',
+  false_friend: 'recognition',
 }
 
 /**

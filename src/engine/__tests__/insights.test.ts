@@ -93,3 +93,13 @@ describe('forecast, hard words, report', () => {
     expect(r.lastWeek.answers).toBe(1)
   })
 })
+
+describe('calibration', () => {
+  it('counts sure and unsure answers separately, ignoring practice and unasked ones', async () => {
+    const { calibration } = await import('../insights')
+    const ev = (confidence: 'sure' | 'unsure' | undefined, verdict: 'correct' | 'wrong', mode: 'normal' | 'practice' = 'normal') =>
+      ({ confidence, verdict, mode }) as import('../types').ReviewEvent
+    const c = calibration([ev('sure', 'correct'), ev('sure', 'wrong'), ev('unsure', 'correct'), ev(undefined, 'wrong'), ev('sure', 'correct', 'practice')])
+    expect(c).toEqual({ sure: { answers: 2, correct: 1 }, unsure: { answers: 1, correct: 1 } })
+  })
+})
