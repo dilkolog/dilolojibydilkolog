@@ -213,6 +213,19 @@ export class KelimeDB extends Dexie {
     })
   }
 
+  /** Deletes many words in one transaction: either all of them go, or none. */
+  deleteWords(ids: readonly string[]) {
+    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media], async () => {
+      const entries = await this.vocabulary.bulkGet([...ids])
+      const media = entries.flatMap((e) => [e?.imageId, e?.audioId]).filter((m): m is string => !!m)
+      await this.media.bulkDelete(media)
+      await this.vocabulary.bulkDelete([...ids])
+      await this.wordStates.bulkDelete([...ids])
+      await this.events.where('entryId').anyOf([...ids]).delete()
+      await this.mistakes.where('entryId').anyOf([...ids]).delete()
+    })
+  }
+
   /** Deleting a word also deletes what was learned about it, and its picture/recording. */
   deleteWord(id: string) {
     return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media], async () => {

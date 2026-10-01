@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { displayForm } from '../engine/exercises'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
@@ -11,6 +11,7 @@ import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
+import { ConfirmDialog } from './Dialog'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
 import { TextImport } from './TextImport'
@@ -116,7 +117,17 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </div>
       </section>
       {view === 'list' ? (
-        <WordList vocabulary={vocabulary} stateById={stateById} mistakes={mistakes} onOpen={onOpen} onStudy={onStudy} />
+        <WordList
+          vocabulary={vocabulary}
+          stateById={stateById}
+          mistakes={mistakes}
+          onOpen={onOpen}
+          onStudy={onStudy}
+          onDelete={async (ids) => {
+            await db.deleteWords(ids)
+            onChanged()
+          }}
+        />
       ) : (
         <section className="stack" style={{ marginTop: '1rem' }}>
           <WordGraph vocabulary={vocabulary} states={states} onOpen={onOpen} />
@@ -405,14 +416,22 @@ function WordList({
   mistakes,
   onOpen,
   onStudy,
+  onDelete,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
   mistakes: Mistake[]
   onOpen: (id: string) => void
   onStudy: (entries: VocabularyEntry[]) => void
+  onDelete: (ids: string[]) => Promise<void>
 }) {
   const [query, setQuery] = useState('')
+  // Selection mode: rows toggle instead of opening; shift-click selects a range.
+  const [selecting, setSelecting] = useState(false)
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [anchor, setAnchor] = useState<number | null>(null)
+  const [confirmDelete, setConfirmDelete] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const [stage, setStage] = useState<StageFilter>('all')
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean }>({})
   const [tag, setTag] = useState('')
@@ -452,6 +471,44 @@ function WordList({
 
   const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
 
+  // Words that disappeared (deleted elsewhere) drop out of the selection.
+  const selectedVisible = list.filter((v) => selected.has(v.id))
+  const allVisibleSelected = list.length > 0 && selectedVisible.length === list.length
+
+  const exitSelection = () => {
+    setSelecting(false)
+    setSelected(new Set())
+    setAnchor(null)
+  }
+
+  const clickRow = (index: number, id: string, shift: boolean) => {
+    if (!selecting) return onOpen(id)
+    setSelected((prev) => {
+      const next = new Set(prev)
+      if (shift && anchor !== null) {
+        // Range follows the state of the anchor row: select or deselect the whole span.
+        const on = prev.has(list[anchor].id)
+        const [a, b] = anchor < index ? [anchor, index] : [index, anchor]
+        for (let i = a; i <= b; i++) {
+          if (on) next.add(list[i].id)
+          else next.delete(list[i].id)
+        }
+      } else if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+    setAnchor(index)
+  }
+
+  useEffect(() => {
+    if (!selecting) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !document.querySelector('[aria-modal="true"]')) exitSelection()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selecting])
+
   return (
     <section className="section stack">
       <h2 className="section-title">
@@ -469,6 +526,9 @@ function WordList({
               </svg>
               <input className="input" placeholder="Kelime, anlam ya da not ara" aria-label="Kelime ara" value={query} onChange={(e) => setQuery(e.target.value)} />
             </div>
+            <button className={`btn ${selecting ? '' : 'btn-quiet'}`} onClick={() => (selecting ? exitSelection() : setSelecting(true))}>
+              {selecting ? 'Bitti' : 'Seç'}
+            </button>
             <div className="toolbar-sort">
               <Select<Sort>
                 label="Sırala"
@@ -510,7 +570,30 @@ function WordList({
               </div>
             )}
           </div>
-          {list.length > 0 && list.length < vocabulary.length && (
+          {selecting && (
+            <div className="select-bar" role="toolbar" aria-label="Seçim">
+              <label className="row" style={{ gap: '0.5rem', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={allVisibleSelected}
+                  ref={(el) => {
+                    if (el) el.indeterminate = selectedVisible.length > 0 && !allVisibleSelected
+                  }}
+                  onChange={() => setSelected(allVisibleSelected ? new Set() : new Set(list.map((v) => v.id)))}
+                />
+                <strong>{selectedVisible.length} seçili</strong>
+              </label>
+              <span className="small muted">Shift + tık: aralık seç</span>
+              <span style={{ flex: 1 }} />
+              <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
+                Seçilenleri çalış
+              </button>
+              <button className="btn btn-bad" disabled={!selectedVisible.length} onClick={() => setConfirmDelete(true)}>
+                Sil ({selectedVisible.length})
+              </button>
+            </div>
+          )}
+          {!selecting && list.length > 0 && list.length < vocabulary.length && (
             <div className="deck-bar">
               <span>
                 {tag ? <strong>#{tag}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
@@ -524,11 +607,17 @@ function WordList({
             <p className="muted">Bu filtrelere uyan kelime yok.</p>
           ) : (
             <ul className="word-list">
-              {list.map((v) => {
+              {list.map((v, index) => {
                 const st = stateById.get(v.id)
+                const isSel = selected.has(v.id)
                 return (
-                  <li key={v.id}>
-                    <button className="word-row" onClick={() => onOpen(v.id)}>
+                  <li key={v.id} className={isSel ? 'is-selected' : ''}>
+                    <button
+                      className="word-row"
+                      onClick={(e) => clickRow(index, v.id, e.shiftKey)}
+                      aria-pressed={selecting ? isSel : undefined}
+                    >
+                      {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel ? '✓' : ''}</span>}
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
                         <span className="w">{displayForm(v)}</span>
@@ -553,6 +642,26 @@ function WordList({
             </ul>
           )}
         </>
+      )}
+      {confirmDelete && (
+        <ConfirmDialog
+          title={`${selectedVisible.length} kelime silinsin mi?`}
+          confirmLabel={deleting ? 'Siliniyor…' : 'Sil'}
+          danger
+          onCancel={() => setConfirmDelete(false)}
+          onConfirm={async () => {
+            if (deleting) return
+            setDeleting(true)
+            await onDelete(selectedVisible.map((v) => v.id))
+            setDeleting(false)
+            setConfirmDelete(false)
+            exitSelection()
+          }}
+        >
+          {selectedVisible.slice(0, 6).map(displayForm).join(', ')}
+          {selectedVisible.length > 6 && ` ve ${selectedVisible.length - 6} kelime daha`}. Bu kelimelerdeki ilerleme, hatalar,
+          görseller ve ses kayıtları da silinir. Geri alınamaz.
+        </ConfirmDialog>
       )}
     </section>
   )

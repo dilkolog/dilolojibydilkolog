@@ -120,3 +120,20 @@ describe('settings migration', () => {
     expect(s.reminder).toEqual({ enabled: false, time: '20:00' })
   })
 })
+
+describe('deleteWords', () => {
+  it('removes several words with their progress and media, and leaves the rest', async () => {
+    const { db, entry } = await seeded('t-bulk')
+    const other = SAMPLE_WORDS.fr[1]
+    const keep = SAMPLE_WORDS.fr[2]
+    const audioId = await db.addMedia('audio', new Blob(['x']))
+    await db.vocabulary.put({ ...other, audioId })
+    await db.deleteWords([entry.id, other.id])
+    expect(await db.vocabulary.get(entry.id)).toBeUndefined()
+    expect(await db.vocabulary.get(other.id)).toBeUndefined()
+    expect(await db.vocabulary.get(keep.id)).toBeDefined()
+    expect(await db.events.count()).toBe(0)
+    expect(await db.mistakes.count()).toBe(0)
+    expect(await db.media.count()).toBe(0)
+  })
+})
