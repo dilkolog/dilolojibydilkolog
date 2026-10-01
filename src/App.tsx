@@ -25,6 +25,7 @@ import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GearIcon, HomeIcon, StoryIco
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { MistakesScreen } from './ui/Mistakes'
 import { applySettings } from './ui/prefs'
+import { canListen } from './ui/speechInput'
 import { ProfileScreen } from './ui/Profile'
 import { ProgressScreen } from './ui/Progress'
 import { useReminder } from './ui/reminders'
@@ -81,7 +82,8 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>({ name: 'home' })
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const language = settings?.activeLanguage
-  const options = useMemo(() => ({ ai: !!apiKey }), [apiKey])
+  const speechOn = settings ? settings.speechExercises && canListen() : false
+  const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn }), [apiKey, speechOn])
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))

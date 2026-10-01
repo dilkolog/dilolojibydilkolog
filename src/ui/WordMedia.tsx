@@ -5,7 +5,7 @@ import { useAi } from './aiContext'
 import { AudioRecorder } from './AudioRecorder'
 import { MnemonicDialog } from './Mnemonic'
 import { ImagePicker } from './ImagePicker'
-import { playWord } from './speech'
+import { comparePronunciation, playWord } from './speech'
 import { useMediaUrl } from './useMedia'
 
 /** Picture, own recording and personal note of a word, editable in place. */
@@ -74,6 +74,9 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
               <div className="row">
                 <button className="btn btn-quiet" onClick={() => playWord(entry)}>
                   Dinle
+                </button>
+                <button className="btn btn-quiet" onClick={() => comparePronunciation(entry)} title="Önce yapay ses, hemen ardından senin kaydın">
+                  Karşılaştır
                 </button>
                 <button className="btn btn-quiet" onClick={() => setRecording(true)}>
                   Yeniden kaydet

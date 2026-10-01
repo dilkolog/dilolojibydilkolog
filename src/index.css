@@ -1044,3 +1044,22 @@ kbd {
 .hard-rate { font-weight: 800; font-size: var(--t-sm); color: var(--bad-text); min-width: 3rem; text-align: right; }
 
 .deck-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.75rem 1rem; border-radius: 1rem; background: var(--lang-soft); }
+
+/* ---------- Speech answers ---------- */
+
+.answer-wrap { position: relative; }
+.answer-wrap .answer-input { padding-right: 3.5rem; }
+.mic-btn {
+  position: absolute; right: 0.625rem; bottom: 0.625rem;
+  width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  border: 0; background: var(--surface-2); cursor: pointer; font-size: 1.125rem;
+}
+.mic-btn.is-on, .mic-big.is-on { background: var(--bad); animation: pulse 1.2s infinite; }
+.speak-answer { display: grid; justify-items: center; gap: 0.75rem; margin-top: 2rem; text-align: center; }
+.mic-big {
+  width: 6.5rem; height: 6.5rem; border-radius: 50%; border: 0; cursor: pointer; font-size: 2.5rem;
+  background: var(--lang); box-shadow: 0 6px 0 var(--lang-deep);
+}
+.mic-big:disabled { opacity: 0.6; cursor: default; }
+.heard { font-family: var(--serif); font-size: var(--t-xl); min-height: 2rem; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgb(244 63 94 / 0.5); } 70% { box-shadow: 0 0 0 16px rgb(244 63 94 / 0); } 100% { box-shadow: 0 0 0 0 rgb(244 63 94 / 0); } }

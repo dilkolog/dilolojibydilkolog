@@ -194,3 +194,12 @@ describe('markKnown', () => {
     expect(masteryStage(s)).toBe('strong')
   })
 })
+
+describe('skill tie-break', () => {
+  it('when two new skills are equally due, recall comes before listening', () => {
+    let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    s = answer(s, 'mc_meaning', minutes(15)).state
+    const due = dueSkills(s, decision, scheduler, new Date(T0.getTime() + 86_400_000))
+    expect(due.map((d) => d.skill).slice(0, 2)).toEqual(['recall', 'listening'])
+  })
+})

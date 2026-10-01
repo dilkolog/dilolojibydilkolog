@@ -52,3 +52,30 @@ export async function playWord(entry: VocabularyEntry, text = displayForm(entry)
   }
   speak(text, entry.language)
 }
+
+/** Speak and resolve when finished (for playing two clips back to back). */
+export function speakAsync(text: string, language: TargetLanguage, rate = speechPrefs.rate): Promise<void> {
+  return new Promise((resolve) => {
+    if (!canSpeak()) return resolve()
+    speak(text, language, rate)
+    const synth = window.speechSynthesis
+    const t = window.setInterval(() => {
+      if (!synth.speaking) {
+        window.clearInterval(t)
+        resolve()
+      }
+    }, 150)
+  })
+}
+
+/** Your recording right after the reference voice, to hear the difference. */
+export async function comparePronunciation(entry: VocabularyEntry) {
+  if (!entry.audioId) return
+  await speakAsync(displayForm(entry), entry.language)
+  await new Promise((r) => setTimeout(r, 350))
+  const m = await db.media.get(entry.audioId)
+  if (!m) return
+  current?.pause()
+  current = new Audio(URL.createObjectURL(m.blob))
+  await current.play().catch(() => {})
+}

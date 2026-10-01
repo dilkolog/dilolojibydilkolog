@@ -25,6 +25,8 @@ export function startOfDay(d: Date): Date {
   return x
 }
 
+const SKILL_PRIORITY: Record<Skill, number> = { recognition: 0, recall: 1, listening: 2, collocation: 3, production: 4 }
+
 export interface SkillDue {
   skill: Skill
   /** Current recall probability; 0 for a skill that has never been practised. */
@@ -50,7 +52,8 @@ export function dueSkills(
     })
     .filter((x) => x.due)
     .map(({ skill, retrievability }) => ({ skill, retrievability }))
-    .sort((a, b) => a.retrievability - b.retrievability)
+    // Ties (e.g. two never-practised skills) go to the more fundamental skill first.
+    .sort((a, b) => a.retrievability - b.retrievability || SKILL_PRIORITY[a.skill] - SKILL_PRIORITY[b.skill])
 }
 
 /** The skill a mistake type points to, so a mistake is practised where it was made. */

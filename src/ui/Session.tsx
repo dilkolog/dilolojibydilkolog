@@ -40,6 +40,7 @@ import { prefs } from './prefs'
 import { sfx } from './sounds'
 import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { useMediaUrl } from './useMedia'
+import { canListen, listen } from './speechInput'
 
 interface Props {
   items: PlanItem[]
@@ -382,6 +383,7 @@ type Graded = Evaluation & { feedback?: string }
 
 function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
+  const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
   const startedAt = useRef(performance.now())
   const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string } | null>(null)
@@ -432,14 +434,34 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
   return (
     <div>
       <p className="prompt-label">
-        {exercise.type === 'typed_translation' ? `${LANGUAGE_NAME[entry.language]} karşılığını yaz` : PROMPT_TEXT[exercise.type]}
+        {exercise.type === 'typed_translation'
+          ? `${LANGUAGE_NAME[entry.language]} karşılığını yaz`
+          : exercise.type === 'speak_word'
+            ? `${LANGUAGE_NAME[entry.language]} karşılığını söyle`
+            : PROMPT_TEXT[exercise.type]}
       </p>
       <Prompt exercise={exercise} entry={entry} />
       {exercise.kind === 'choice' ? (
         <Choices exercise={exercise} chosen={result?.chosen} answered={!!result} onChoose={(id) => submit(evaluateChoice(exercise, id), 0, 0, id)} />
       ) : (
+        exercise.type === 'speak_word' && !typeInstead ? (
+          <SpeakAnswer
+            language={entry.language}
+            answered={!!result}
+            onTypeInstead={() => setTypeInstead(true)}
+            onHeard={(alternatives) => {
+              // Any recognised alternative that is right counts: recognition errors shouldn't cost the learner.
+              const rank = { correct: 2, near: 1, wrong: 0 }
+              const best = alternatives
+                .map((a) => evaluateTyped(exercise, a, entry, catalog))
+                .sort((a, b) => rank[b.verdict] - rank[a.verdict])[0]
+              if (best) void submit(best, 0, exercise.hints.length)
+            }}
+          />
+        ) : (
         <TypedAnswer
           exercise={exercise}
+          language={entry.language}
           answered={!!result || pending}
           pending={pending}
           verdict={result?.ev.verdict}
@@ -449,6 +471,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
               : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog)), hints, exercise.hints.length)
           }
         />
+        )
       )}
       {mnemonic === 'open' && (
         <MnemonicDialog
@@ -519,6 +542,17 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
       return <Sentence text={exercise.context!} translation={exercise.contextTranslation} />
     case 'picture_choice':
       return <PictureFrame id={exercise.imageId} />
+    case 'dictation':
+      return (
+        <div className="row">
+          <SpeakButton text={exercise.audioText!} entry={entry} big auto />
+          <button className="btn btn-quiet" onClick={() => speak(exercise.audioText!, entry.language, 0.7)}>
+            🐢 Yavaş dinle
+          </button>
+        </div>
+      )
+    case 'speak_word':
+      return <p className="prompt-text">{exercise.prompt}</p>
     case 'free_sentence':
       return (
         <div className="stack">
@@ -592,18 +626,33 @@ function Choices({
  */
 function TypedAnswer({
   exercise,
+  language,
   answered,
   pending,
   verdict,
   onSubmit,
 }: {
   exercise: TypedExercise
+  language: VocabularyEntry['language']
   answered: boolean
   pending?: boolean
   verdict?: Evaluation['verdict']
   onSubmit: (text: string, hintsUsed: number) => void
 }) {
   const [text, setText] = useState('')
+  const [hearing, setHearing] = useState(false)
+  const stopListening = useRef<() => void>(() => {})
+  useEffect(() => () => stopListening.current(), [])
+  const dictate = () => {
+    if (hearing) return stopListening.current()
+    setHearing(true)
+    stopListening.current = listen(language, {
+      onInterim: (t) => setText(t),
+      onFinal: (alts) => setText(alts[0] ?? ''),
+      onError: () => setHearing(false),
+      onEnd: () => setHearing(false),
+    })
+  }
   const [shown, setShown] = useState(0)
   const [elapsed, setElapsed] = useState(0)
   const start = useRef(performance.now())
@@ -642,6 +691,7 @@ function TypedAnswer({
       <label className="sr-only" htmlFor="answer">
         Cevabın
       </label>
+      <div className="answer-wrap">
       <input
         id="answer"
         className={`answer-input${verdict ? ` is-${verdict}` : ''}`}
@@ -655,6 +705,13 @@ function TypedAnswer({
         spellCheck={false}
         lang={exercise.entryId.slice(0, 2)}
       />
+      {/* Listening exercises test spelling what you hear, so no speaking shortcut there. */}
+      {canListen() && !answered && exercise.skill !== 'listening' && (
+        <button type="button" className={`mic-btn${hearing ? ' is-on' : ''}`} onClick={dictate} aria-label={hearing ? 'Dinlemeyi durdur' : 'Sesle cevap ver'}>
+          🎤
+        </button>
+      )}
+      </div>
       {shown > 0 && (
         <div className="hints">
           {exercise.hints.slice(0, shown).map((h, i) => (
@@ -752,6 +809,63 @@ function comboOf(log: readonly SessionLogEntry[]): number {
     n++
   }
   return n
+}
+
+/** Answer by saying the word aloud. */
+function SpeakAnswer({
+  language,
+  answered,
+  onHeard,
+  onTypeInstead,
+}: {
+  language: VocabularyEntry['language']
+  answered: boolean
+  onHeard: (alternatives: string[]) => void
+  onTypeInstead: () => void
+}) {
+  const [state, setState] = useState<'idle' | 'listening' | 'done'>('idle')
+  const [heard, setHeard] = useState('')
+  const [error, setError] = useState('')
+  const stop = useRef<() => void>(() => {})
+  useEffect(() => () => stop.current(), [])
+
+  const start = () => {
+    setError('')
+    setHeard('')
+    setState('listening')
+    stop.current = listen(language, {
+      onInterim: setHeard,
+      onFinal: (alts) => {
+        setHeard(alts[0] ?? '')
+        setState('done')
+        onHeard(alts)
+      },
+      onError: (m) => {
+        setError(m)
+        setState('idle')
+      },
+      onEnd: () => setState((s) => (s === 'listening' ? 'idle' : s)),
+    })
+  }
+
+  return (
+    <div className="speak-answer">
+      <button className={`mic-big${state === 'listening' ? ' is-on' : ''}`} onClick={start} disabled={answered || state === 'listening'} aria-label="Konuş">
+        🎤
+      </button>
+      <p className="heard">{heard ? `“${heard}”` : state === 'listening' ? 'Dinliyorum…' : 'Mikrofona dokun ve kelimeyi söyle'}</p>
+      {error && (
+        <p className="error" role="alert">
+          {error}
+        </p>
+      )}
+      {!answered && (
+        <button className="link small" onClick={onTypeInstead}>
+          Yazarak cevapla
+        </button>
+      )}
+    </div>
+  )
 }
 
 /** Shortcuts are paused while a dialog is open. */

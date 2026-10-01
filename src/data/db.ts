@@ -41,6 +41,8 @@ export interface Settings {
   /** Missing/wrong accents count as wrong instead of "almost". */
   accentStrict: boolean
   showKeyLegend: boolean
+  /** Ask some answers to be spoken aloud (when the browser can recognise speech). */
+  speechExercises: boolean
   reminder: { enabled: boolean; time: string }
   profile: Profile
   story: { interests: string[]; custom: string }
@@ -60,6 +62,7 @@ export const DEFAULT_SETTINGS: Settings = {
   hintDelaySec: 6,
   accentStrict: false,
   showKeyLegend: true,
+  speechExercises: true,
   reminder: { enabled: false, time: '20:00' },
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },
