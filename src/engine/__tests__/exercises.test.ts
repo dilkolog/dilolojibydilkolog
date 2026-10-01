@@ -39,6 +39,11 @@ describe('distractors', () => {
     expect(d.map((x) => x.id)).not.toContain('en:leave')
     expect(d.map((x) => x.id)).not.toContain('en:abandon')
   })
+  it('never include two words that are confusable with each other', () => {
+    const d = pickDistractors(decision, CATALOG, 3, rng())
+    const ids = d.map((x) => x.id)
+    expect(ids.includes('en:affect') && ids.includes('en:effect')).toBe(false)
+  })
   it('prefer the same part of speech', () => {
     const d = pickDistractors(abandon, EN_CATALOG, 2, rng())
     expect(d.every((x) => x.partOfSpeech === 'verb')).toBe(true)

@@ -2,7 +2,7 @@ import { EXERCISES } from './exercises'
 import { openMistakes } from './mistakes'
 import { createRng, shuffle, type Rng } from './rng'
 import type { Scheduler } from './scheduler'
-import { dueSkills, ERROR_SKILL, pickExerciseType, unlockedSkills } from './selection'
+import { dueSkills, ERROR_SKILL, pickExerciseType, startOfDay, unlockedSkills } from './selection'
 import {
   CEFR_LEVELS,
   type CefrLevel,
@@ -71,12 +71,6 @@ const REASON_ORDER: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new'
 const itemCost = (item: PlanItem) =>
   item.kind === 'introduce' ? INTRO_COST_MS : EXERCISES[item.exerciseType!].expectedMs + OVERHEAD_MS
 
-function startOfDay(d: Date): Date {
-  const x = new Date(d)
-  x.setHours(0, 0, 0, 0)
-  return x
-}
-
 function interferingIds(entry: VocabularyEntry, catalog: readonly VocabularyEntry[]): Set<string> {
   const kinds = new Set(['synonym', 'antonym', 'confusable'])
   const ids = new Set(entry.relations.filter((r) => kinds.has(r.type)).map((r) => r.targetId))
@@ -134,17 +128,28 @@ function newWordCandidates(input: PlanInput): VocabularyEntry[] {
   const known = new Set(states.map((s) => s.entryId))
   const level = CEFR_LEVELS.indexOf(settings.level)
   const pool = catalog.filter((e) => e.language === settings.language && !known.has(e.id))
-  // Prefer words around the user's level; fall back to anything if that band is exhausted.
-  const band = pool.filter((e) => Math.abs(CEFR_LEVELS.indexOf(e.cefr) - level) <= 1)
-  const ordered = [...(band.length ? band : pool)].sort((a, b) => a.frequencyRank - b.frequencyRank)
+
+  // Words the user added themselves always come first, in the order they were added,
+  // regardless of level: choosing them was a deliberate decision.
+  const own = pool
+    .filter((e) => e.source !== 'sample')
+    .sort((a, b) => (a.addedAt?.getTime() ?? 0) - (b.addedAt?.getTime() ?? 0))
+  // Sample words: prefer those around the user's level, falling back to anything left.
+  const samples = pool.filter((e) => e.source === 'sample')
+  const band = samples.filter((e) => Math.abs(CEFR_LEVELS.indexOf(e.cefr) - level) <= 1)
+  const ordered = [...own, ...[...(band.length ? band : samples)].sort((a, b) => a.frequencyRank - b.frequencyRank)]
 
   const windowStart = now.getTime() - INTERFERENCE_WINDOW_DAYS * DAY_MS
   const recent = new Set(
     states.filter((s) => s.introducedAt.getTime() >= windowStart).map((s) => s.entryId),
   )
+  // The limit is per day, so words already introduced in an earlier session today count.
+  const today = startOfDay(now)
+  const introducedToday = states.filter((s) => s.language === settings.language && s.introducedAt >= today).length
+  const limit = Math.max(0, settings.newWordsPerDay - introducedToday)
   const chosen: VocabularyEntry[] = []
   for (const entry of ordered) {
-    if (chosen.length >= settings.newWordsPerDay) break
+    if (chosen.length >= limit) break
     const blocked = interferingIds(entry, catalog)
     if ([...blocked].some((id) => recent.has(id) || chosen.some((c) => c.id === id))) continue
     chosen.push(entry)

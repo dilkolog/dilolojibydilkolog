@@ -1,6 +1,6 @@
 import type { VocabularyEntry } from '../types'
 
-const base = { register: 'neutral' as const, tags: [], source: 'test', relations: [], wordFamily: [], collocations: [] }
+const base = { register: 'neutral' as const, tags: [], source: 'sample' as const, relations: [], wordFamily: [], collocations: [] }
 
 export const decision: VocabularyEntry = {
   ...base,

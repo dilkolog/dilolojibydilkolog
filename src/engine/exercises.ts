@@ -152,7 +152,15 @@ export function pickDistractors(
     (c.partOfSpeech === entry.partOfSpeech ? 0 : 1000) + Math.abs(c.frequencyRank - entry.frequencyRank)
   // Shuffle first so ties don't always produce the same distractors.
   const ranked = shuffle(pool, rng).sort((a, b) => score(a) - score(b))
-  return ranked.slice(0, count)
+  // Two distractors that are near-twins (an/année) let the learner eliminate both at once.
+  const linked = (a: VocabularyEntry, b: VocabularyEntry) =>
+    a.relations.some((r) => r.targetId === b.id) || b.relations.some((r) => r.targetId === a.id)
+  const picked: VocabularyEntry[] = []
+  for (const c of ranked) {
+    if (picked.length >= count) break
+    if (!picked.some((p) => linked(p, c))) picked.push(c)
+  }
+  return picked
 }
 
 function choice(

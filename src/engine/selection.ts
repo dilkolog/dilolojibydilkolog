@@ -19,13 +19,22 @@ export function unlockedSkills(state: UserWordState | undefined, entry: Vocabula
   return out
 }
 
+export function startOfDay(d: Date): Date {
+  const x = new Date(d)
+  x.setHours(0, 0, 0, 0)
+  return x
+}
+
 export interface SkillDue {
   skill: Skill
   /** Current recall probability; 0 for a skill that has never been practised. */
   retrievability: number
 }
 
-/** Unlocked skills that are due (or never practised), weakest first. */
+/**
+ * Unlocked skills that are due, weakest first. A newly unlocked skill becomes due the day after
+ * the word was last practised, so a word isn't drilled in every format on the day it's learned.
+ */
 export function dueSkills(
   state: UserWordState | undefined,
   entry: VocabularyEntry,
@@ -35,7 +44,7 @@ export function dueSkills(
   return unlockedSkills(state, entry)
     .map((skill) => {
       const card = state?.skills[skill]
-      if (!card) return { skill, retrievability: 0, due: true }
+      if (!card) return { skill, retrievability: 0, due: !state?.lastReviewAt || state.lastReviewAt < startOfDay(now) }
       return { skill, retrievability: scheduler.retrievability(card, now), due: card.due <= now }
     })
     .filter((x) => x.due)

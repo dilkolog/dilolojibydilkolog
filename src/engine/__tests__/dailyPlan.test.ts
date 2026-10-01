@@ -42,6 +42,27 @@ describe('new words', () => {
     expect(plan.newEntryIds[0]).toBe('en:decide')
   })
 
+  it("introduces the user's own words first, in the order added, regardless of level", () => {
+    const own = (lemma: string, day: number): VocabularyEntry => ({
+      ...leave,
+      id: `en:${lemma}`,
+      lemma,
+      cefr: 'C2',
+      frequencyRank: 99999,
+      source: 'user',
+      addedAt: daysAgo(day),
+    })
+    const plan = buildDailyPlan(input({ catalog: [...CATALOG, own('later', 1), own('earlier', 3)] }))
+    expect(plan.newEntryIds.slice(0, 2)).toEqual(['en:earlier', 'en:later'])
+  })
+
+  it('counts words already introduced today toward the daily limit', () => {
+    const earlier = new Date(NOW.getTime() - 3600_000)
+    const states = [learned(improve, earlier), learned(decide, earlier), learned(decision, earlier)]
+    const plan = buildDailyPlan(input({ states, settings: { ...settings, newWordsPerDay: 4, dailyMinutes: 60 } }))
+    expect(plan.newEntryIds).toHaveLength(1)
+  })
+
   it('never introduces two confusable words together (interference control)', () => {
     const plan = buildDailyPlan(input({ settings: { ...settings, newWordsPerDay: 10, dailyMinutes: 60 } }))
     const both = ['en:affect', 'en:effect'].filter((id) => plan.newEntryIds.includes(id))

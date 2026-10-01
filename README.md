@@ -12,6 +12,14 @@ npm run dev       # geliştirme sunucusu
 npm run typecheck
 ```
 
+## Kullanım
+
+1. Açılışta dil, seviye ve günlük süreyi seç.
+2. **Kelimeler** ekranından kelime ekle ya da Excel/Sheets'ten bir liste yapıştır.
+   Denemek için örnek kelimeler de yüklenebilir.
+3. Ana sayfadaki günlük görevi başlat. Seçenekli sorular 1–4 tuşlarıyla, geçişler Enter ile yapılır.
+4. **Ayarlar → Yedeği indir** ile verini yedekle; başka cihazda **Yedekten geri yükle** ile taşı.
+
 ## Öğrenme motoru (`src/engine`)
 
 UI ve veritabanından bağımsız, saf TypeScript.

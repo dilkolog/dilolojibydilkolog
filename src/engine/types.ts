@@ -100,8 +100,13 @@ export interface VocabularyEntry {
   alternativeForms?: string[]
   commonMistakes?: string[]
   tags: string[]
-  source: string
+  /** 'user' = added by hand, 'import' = bulk import, 'sample' = bundled sample set. */
+  source: EntrySource
+  /** When the user added it; user words are introduced in the order they were added. */
+  addedAt?: Date
 }
+
+export type EntrySource = 'user' | 'import' | 'sample'
 
 // ---------------------------------------------------------------------------
 // Exercises

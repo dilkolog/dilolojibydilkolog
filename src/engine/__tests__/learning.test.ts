@@ -80,11 +80,14 @@ describe('progressive unlocking', () => {
     expect(unlockedSkills(d, decide)).not.toContain('collocation')
   })
 
-  it('a never-practised unlocked skill is due first (weakest)', () => {
+  it('a newly unlocked skill waits until the next day, then is due first (weakest)', () => {
     let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
     s = answer(s, 'mc_meaning', minutes(15)).state
-    const due = dueSkills(s, decision, scheduler, minutes(16))
-    expect(due[0].retrievability).toBe(0)
+    expect(dueSkills(s, decision, scheduler, minutes(16))).toEqual([])
+    const tomorrow = new Date(T0.getTime() + 86_400_000)
+    const due = dueSkills(s, decision, scheduler, tomorrow)
+    expect(due[0]).toMatchObject({ retrievability: 0 })
+    expect(due.map((d) => d.skill)).toEqual(expect.arrayContaining(['listening', 'recall']))
   })
 })
 
