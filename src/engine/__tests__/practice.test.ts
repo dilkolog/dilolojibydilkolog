@@ -142,3 +142,13 @@ describe('speech and dictation exercises', () => {
     expect(exerciseTypesFor('listening', decision)).toContain('dictation')
   })
 })
+
+describe('pickGameWords', () => {
+  it('uses learned words first, tops up with others, and never repeats a meaning', async () => {
+    const { pickGameWords } = await import('../practice')
+    const words = pickGameWords(CATALOG.filter((e) => e.language === 'en'), [practised(decision), practised(decide)], 5, createRng(2))
+    expect(words).toHaveLength(5)
+    expect(words.slice(0, 2).map((w) => w.id).sort()).toEqual(['en:decide', 'en:decision'])
+    expect(new Set(words.map((w) => w.senses[0].gloss)).size).toBe(5)
+  })
+})

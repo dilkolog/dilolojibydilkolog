@@ -1,6 +1,7 @@
 import { interleave, type PlanItem } from './dailyPlan'
 import { exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
+import { normalize } from './answerCheck'
 import { pick, shuffle, type Rng } from './rng'
 import type { Scheduler } from './scheduler'
 import { dueSkills, ERROR_SKILL, pickExerciseType, unlockedSkills } from './selection'
@@ -101,4 +102,29 @@ export function buildDeckPlan({
     items.push(exerciseFor(entry, state, skill, rng, due.length ? 'due' : 'weak', options))
   }
   return interleave(items, rng)
+}
+
+/**
+ * Words for quick games: words being learned, weakest first with some randomness, topped up with
+ * not-yet-learned words when the learner has too few.
+ */
+export function pickGameWords(
+  catalog: readonly VocabularyEntry[],
+  states: readonly UserWordState[],
+  count: number,
+  rng: Rng,
+): VocabularyEntry[] {
+  const learned = new Set(states.map((s) => s.entryId))
+  const wrongs = new Map(states.map((s) => [s.entryId, s.stats.wrong / Math.max(1, s.stats.reviews)]))
+  const known = shuffle(catalog.filter((e) => learned.has(e.id)), rng).sort((a, b) => (wrongs.get(b.id) ?? 0) - (wrongs.get(a.id) ?? 0))
+  // Weakest half first, the rest random, so games stay varied.
+  const picked = [...known.slice(0, Math.ceil(count / 2)), ...shuffle(known.slice(Math.ceil(count / 2)), rng)]
+  const extra = shuffle(catalog.filter((e) => !learned.has(e.id)), rng)
+  // Distinct meanings, so a meaning tile can match only one word.
+  const out: VocabularyEntry[] = []
+  for (const e of [...picked, ...extra]) {
+    if (out.length >= count) break
+    if (!out.some((o) => normalize(o.senses[0].gloss) === normalize(e.senses[0].gloss))) out.push(e)
+  }
+  return out
 }

@@ -142,6 +142,7 @@ export function Home({
   onAddWords,
   onProfile,
   onStory,
+  onGames,
   onExtraNew,
   onPracticeMistakes,
   onFreePractice,
@@ -162,6 +163,7 @@ export function Home({
   onAddWords: () => void
   onProfile: () => void
   onStory?: () => void
+  onGames?: () => void
   onExtraNew: () => void
   onPracticeMistakes: () => void
   onFreePractice: () => void
@@ -321,7 +323,7 @@ export function Home({
         </div>
       </div>
 
-      {(openMistakeWords > 0 || canPractice || onStory) && (
+      {(openMistakeWords > 0 || canPractice || onStory || onGames) && (
         <section className="section stack">
           <h2 className="section-title">Ek çalışma</h2>
           <div className="tiles">
@@ -344,6 +346,17 @@ export function Home({
                 <span>
                   <strong>Hikayenin yeni bölümü</strong>
                   <span className="small muted">Zorlandığın kelimelerle yazılır</span>
+                </span>
+              </button>
+            )}
+            {onGames && (
+              <button className="tile" onClick={onGames}>
+                <span className="tile-icon">
+                  <span style={{ fontSize: '1.25rem' }}>🧩</span>
+                </span>
+                <span>
+                  <strong>Oyunlar</strong>
+                  <span className="small muted">Eşleştirme ve 60 saniye</span>
                 </span>
               </button>
             )}

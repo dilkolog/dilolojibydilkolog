@@ -149,6 +149,16 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'settings', value: settings })
   }
 
+  /** Personal bests in the games, per game and language. */
+  async getRecords(): Promise<Record<string, number>> {
+    return ((await this.meta.get('records'))?.value as Record<string, number>) ?? {}
+  }
+
+  async saveRecord(key: string, value: number) {
+    const all = await this.getRecords()
+    await this.meta.put({ key: 'records', value: { ...all, [key]: value } })
+  }
+
   /** Kept apart from settings so it is never written into a backup file. */
   async getAiKey(): Promise<string | null> {
     const row = await this.meta.get('aiKey')

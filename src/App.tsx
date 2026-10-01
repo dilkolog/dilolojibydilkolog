@@ -21,7 +21,8 @@ import type { Settings } from './data/db'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GearIcon, HomeIcon, StoryIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, StoryIcon, UserIcon } from './ui/icons'
+import { GamesScreen } from './ui/Games'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { MistakesScreen } from './ui/Mistakes'
 import { applySettings } from './ui/prefs'
@@ -45,15 +46,17 @@ type Screen =
   | { name: 'mistakes' }
   | { name: 'progress' }
   | { name: 'story' }
+  | { name: 'games' }
   | { name: 'profile' }
   | { name: 'settings' }
 
-type NavScreen = 'home' | 'words' | 'story' | 'mistakes' | 'progress' | 'profile' | 'settings'
+type NavScreen = 'home' | 'words' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
 const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
   { screen: 'story', label: 'Hikaye', icon: StoryIcon },
+  { screen: 'games', label: 'Oyunlar', icon: GameIcon },
   { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
   { screen: 'profile', label: 'Profil', icon: UserIcon },
@@ -324,6 +327,8 @@ export default function App() {
                 onChanged={reload}
                 onOpenSettings={go({ name: 'settings' })}
               />
+            ) : screen.name === 'games' ? (
+              <GamesScreen language={data.language} vocabulary={data.vocabulary} states={data.states} onChanged={reload} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} />
             ) : screen.name === 'settings' ? (
@@ -354,6 +359,7 @@ export default function App() {
                 onAddWords={go({ name: 'words' })}
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
+                onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
                 onPracticeMistakes={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
