@@ -53,3 +53,26 @@ export function wordInfoToInput(info: WordInfo) {
     confusables: info.confusables.join(', '),
   }
 }
+
+export interface EpisodeRequest {
+  language: import('../engine/types').TargetLanguage
+  interests: string[]
+  /** Free-text wish, e.g. "Paris'te geçen bir aşk hikayesi". */
+  custom: string
+  /** Words to practise: dictionary form and Turkish meaning. */
+  words: { lemma: string; gloss: string }[]
+  /** Earlier episodes, oldest first, for continuity. */
+  previous: { number: number; title: string; recap: string }[]
+}
+
+export interface EpisodeDraft {
+  title: string
+  paragraphs: { text: string; translation: string }[]
+  recap: string
+}
+
+export interface Mnemonic {
+  etymology: string
+  soundAlike: string
+  scene: string
+}

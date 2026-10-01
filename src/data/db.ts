@@ -43,6 +43,7 @@ export interface Settings {
   showKeyLegend: boolean
   reminder: { enabled: boolean; time: string }
   profile: Profile
+  story: { interests: string[]; custom: string }
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -61,11 +62,29 @@ export const DEFAULT_SETTINGS: Settings = {
   showKeyLegend: true,
   reminder: { enabled: false, time: '20:00' },
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
+  story: { interests: [], custom: '' },
 }
 
 interface MetaRow {
   key: string
   value: unknown
+}
+
+/** One episode of the learner's ongoing story (AI-written around their weak words). */
+export interface StoryEpisode {
+  id: string
+  language: TargetLanguage
+  number: number
+  title: string
+  /** Text contains {{form}} markers for the practised words. */
+  paragraphs: { text: string; translation: string }[]
+  wordIds: string[]
+  /** Two-sentence summary passed to the next episode for continuity. */
+  recap: string
+  createdAt: Date
+  completedAt?: Date
+  /** First-attempt result per blank index. */
+  answers?: Record<number, boolean>
 }
 
 /** A picture or a recording attached to a word. Stored as a Blob so it works offline. */
@@ -87,6 +106,7 @@ export class KelimeDB extends Dexie {
   mistakes!: Table<Mistake, string>
   meta!: Table<MetaRow, string>
   media!: Table<MediaRow, string>
+  stories!: Table<StoryEpisode, string>
 
   constructor(name = 'kelime-koc') {
     super(name)
@@ -98,6 +118,7 @@ export class KelimeDB extends Dexie {
       meta: 'key',
     })
     this.version(2).stores({ media: 'id, kind' })
+    this.version(3).stores({ stories: 'id, language, createdAt' })
   }
 
   async addMedia(kind: MediaRow['kind'], blob: Blob): Promise<string> {
@@ -117,6 +138,7 @@ export class KelimeDB extends Dexie {
       voices: { ...DEFAULT_SETTINGS.voices, ...v.voices },
       reminder: { ...DEFAULT_SETTINGS.reminder, ...v.reminder },
       profile: { ...DEFAULT_SETTINGS.profile, ...v.profile },
+      story: { ...DEFAULT_SETTINGS.story, ...v.story },
     }
   }
 
@@ -209,6 +231,7 @@ export interface Backup {
   events: ReviewEvent[]
   mistakes: Mistake[]
   media?: { id: string; kind: MediaRow['kind']; dataUrl: string; createdAt: string }[]
+  stories?: StoryEpisode[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -236,6 +259,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     wordStates: await db.wordStates.toArray(),
     events: await db.events.toArray(),
     mistakes: await db.mistakes.toArray(),
+    stories: await db.stories.toArray(),
     media: await Promise.all(
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
@@ -248,7 +272,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
   return JSON.stringify(backup)
 }
 
-const DATE_KEYS = new Set(['due', 'last_review', 'introducedAt', 'lastReviewAt', 'timestamp', 'firstAt', 'lastAt', 'addedAt'])
+const DATE_KEYS = new Set(['due', 'last_review', 'introducedAt', 'lastReviewAt', 'timestamp', 'firstAt', 'lastAt', 'addedAt', 'createdAt', 'completedAt'])
 const ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/
 
 export function parseBackup(json: string): Backup {
@@ -270,9 +294,10 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
   const media = await Promise.all(
     (backup.media ?? []).map(async (m) => ({ id: m.id, kind: m.kind, blob: await dataUrlToBlob(m.dataUrl), createdAt: new Date(m.createdAt) })),
   )
-  await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media], async () => {
-    await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.media.clear()])
+  await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media, db.stories], async () => {
+    await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.media.clear(), db.stories.clear()])
     await db.media.bulkPut(media)
+    await db.stories.bulkPut(backup.stories ?? [])
     await db.vocabulary.bulkPut(backup.vocabulary)
     await db.wordStates.bulkPut(backup.wordStates)
     await db.events.bulkPut(backup.events)

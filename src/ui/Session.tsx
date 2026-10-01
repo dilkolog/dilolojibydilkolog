@@ -13,7 +13,7 @@ import {
 } from '../engine/exercises'
 import { xpForAnswer } from '../engine/gamification'
 import { masteryStage } from '../engine/mastery'
-import { markKnown, newWordState, processAttempt, type AttemptInput } from '../engine/review'
+import { markKnown, needsIntervention, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import {
@@ -34,6 +34,7 @@ import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
+import { MnemonicDialog } from './Mnemonic'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon, StarIcon } from './icons'
 import { prefs } from './prefs'
 import { sfx } from './sounds'
@@ -82,7 +83,8 @@ export function SessionScreen(p: Props) {
   const answered = session.log.filter((l) => l.verdict).length
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setConfirmQuit(true)
+      // A dialog that is open (or closing on this same keypress) owns Esc.
+      if (e.key === 'Escape' && !modalOpen()) setConfirmQuit(true)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -236,6 +238,8 @@ export function SessionScreen(p: Props) {
           onAnswer={answer}
           onOverride={override}
           onContinue={proceed}
+          struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
+          onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
         />
       )}
     </div>
@@ -365,6 +369,9 @@ interface RunnerProps {
   onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number) => Promise<Omit<SessionLogEntry, 'item'>>
   onOverride: () => Promise<Omit<SessionLogEntry, 'item'> | null>
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
+  /** The word has been missed several times in a row: offer a memory hook. */
+  struggling: () => boolean
+  onEntryUpdated: (entry: VocabularyEntry) => void
 }
 
 /** With "strict accents" on, a missing accent is an error rather than a near miss. */
@@ -373,7 +380,8 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 /** An evaluation plus optional AI feedback text (free sentences). */
 type Graded = Evaluation & { feedback?: string }
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated }: RunnerProps) {
+  const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
   const startedAt = useRef(performance.now())
   const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string } | null>(null)
@@ -394,6 +402,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
     busy.current = true
     const log = await onAnswer(ev, ms, hintsUsed, maxHints)
     setResult({ ev, log, chosen })
+    if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
     playWord(entry)
   }
@@ -441,6 +450,17 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           }
         />
       )}
+      {mnemonic === 'open' && (
+        <MnemonicDialog
+          entry={entry}
+          reason="Bu kelimeye birkaç kez takıldın; bir hafıza ipucu deneyelim."
+          onClose={() => setMnemonic('offer')}
+          onSaved={(updated) => {
+            onEntryUpdated(updated)
+            setMnemonic('saved')
+          }}
+        />
+      )}
       {aiError && !result && (
         <div className="session-actions">
           <p className="error" role="alert">
@@ -458,6 +478,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             ev={result.ev}
             xp={result.log.xp}
             entry={entry}
+            mnemonic={mnemonic}
+            onMnemonic={() => setMnemonic('open')}
             continueRef={continueBtn}
             onContinue={() => onContinue(result.log)}
             onOverride={
@@ -667,8 +689,12 @@ function Feedback({
   onContinue,
   onOverride,
   xp,
+  mnemonic,
+  onMnemonic,
 }: {
   xp?: number
+  mnemonic?: 'offer' | 'open' | 'saved' | null
+  onMnemonic?: () => void
   ev: Graded
   entry: VocabularyEntry
   continueRef: React.RefObject<HTMLButtonElement | null>
@@ -697,6 +723,12 @@ function Feedback({
           </p>
         </div>
         <div className="row" style={{ gap: '0.75rem' }}>
+          {mnemonic === 'offer' && (
+            <button className="btn btn-quiet" onClick={onMnemonic}>
+              💡 Hafıza ipucu oluştur
+            </button>
+          )}
+          {mnemonic === 'saved' && <span className="small">💡 Not kaydedildi</span>}
           {onOverride && (
             <button className="link small" onClick={onOverride}>
               Cevabım da doğru

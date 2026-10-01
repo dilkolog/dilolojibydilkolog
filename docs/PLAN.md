@@ -76,3 +76,14 @@ src/
   hatırlama olasılığı şu an ≥ %85 olan kelimeler.
 - **Hataları çalış:** her hatalı kelime bir kez, son hatanın yapıldığı beceride sorulur. Normal mod.
 - **Serbest pratik:** zaten çalışılan kelimeler, zaten açılmış becerilerde; takvimi ve hata listesini etkilemez.
+
+## Hikaye modu ve hafıza ipucu
+
+- **Hikaye:** her bölüm, `pickStoryWords` ile seçilen 6 zayıf kelimeyle (en düşük hatırlama olasılığı önce,
+  açık hatası olan öne, son 2 bölümde kullanılanlar sona) AI tarafından yazılır. Önceki 3 bölümün özeti
+  süreklilik için gönderilir. Metindeki `{{biçim}}` işaretleri boşluğa çevrilir; yalnızca bölüm
+  kelimelerine ait işaretler boşluk olur. Her boşluğun ilk denemesi `mc_context` tekrarı olarak kaydedilir.
+  Bölümler cihazda (`stories` tablosu) ve yedekte durur; AI kapalıyken de okunup tamamlanabilir.
+- **Hafıza ipucu:** bir kelime 3 kez üst üste yanlış olunca yanlış cevap panelinde önerilir; AI ses
+  benzerliği, sahne ve (doğruysa) köken üretir. Kabul edilen ipucu kelimenin notuna eklenir ve sonraki
+  karşılaşmalarda gösterilir. AI yoksa kullanıcı kendi ipucunu yazar.

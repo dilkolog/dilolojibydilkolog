@@ -3,7 +3,7 @@ import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
-import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type SentenceEvaluation, type WordInfo } from './types'
+import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type Mnemonic, type SentenceEvaluation, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -149,4 +149,64 @@ export async function evaluateSentence(
     corrected: g.corrected,
     feedback: g.feedback,
   }
+}
+
+// ---------------------------------------------------------------------------
+// Story episodes
+// ---------------------------------------------------------------------------
+
+const Episode = z.object({
+  title: z.string().describe('Short episode title in the target language.'),
+  paragraphs: z
+    .array(
+      z.object({
+        text: z.string().describe('Paragraph in the target language. Every practice word appears wrapped as {{form}}.'),
+        translation: z.string().describe('Natural Turkish translation of the paragraph, without markers.'),
+      }),
+    )
+    .describe('3-5 paragraphs.'),
+  recap: z.string().describe('Two-sentence English summary of what happened, for writing the next episode.'),
+})
+
+/**
+ * Writes the next episode of the learner's serial story around their weak words. Curiosity about
+ * what happens next is the motivation; meeting the words in a meaningful context is the learning.
+ */
+export async function writeEpisode(apiKey: string, req: EpisodeRequest): Promise<EpisodeDraft> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You write an ongoing serial story in ${lang} for a Turkish adult who speaks ${lang} well and wants to practise specific words.`,
+    'Write natural, vivid, idiomatic prose (not simplified), 180-280 words in total, 3-5 short paragraphs.',
+    'Use EVERY practice word exactly once, in a context that makes its meaning clear. Inflect it as grammar requires.',
+    'Wrap each practice word occurrence in double curly braces, exactly as it appears in the sentence: {{abandoned}}. Do not mark any other word.',
+    'Continue the plot from the previous episodes if any; end on a small cliffhanger so the reader wants the next episode.',
+  ].join('\n')
+  const user = [
+    req.interests.length || req.custom ? `Reader's interests: ${[...req.interests, req.custom].filter(Boolean).join(', ')}` : 'Reader has no stated interests: pick an engaging everyday-adventure story.',
+    req.previous.length
+      ? `Previous episodes:\n${req.previous.map((p) => `Episode ${p.number} "${p.title}": ${p.recap}`).join('\n')}`
+      : 'This is episode 1: introduce the main character and setting.',
+    `Practice words (dictionary form = Turkish meaning):\n${req.words.map((w) => `- ${w.lemma} = ${w.gloss}`).join('\n')}`,
+  ].join('\n\n')
+  return structured(apiKey, Episode, system, user, 'medium')
+}
+
+// ---------------------------------------------------------------------------
+// Mnemonics
+// ---------------------------------------------------------------------------
+
+const MnemonicSchema = z.object({
+  etymology: z.string().describe('1-2 sentences in Turkish on where the word comes from, only if genuinely helpful and accurate; empty string if unknown.'),
+  soundAlike: z.string().describe('A Turkish keyword mnemonic: a Turkish word or phrase that sounds like the target word, linked to its meaning in one memorable sentence.'),
+  scene: z.string().describe('One vivid, slightly funny mental image in Turkish that ties the sound and the meaning together.'),
+})
+
+/** A memory hook for a word the learner keeps missing (mnemonic and etymology intervention). */
+export async function createMnemonic(apiKey: string, entry: VocabularyEntry): Promise<Mnemonic> {
+  const system = [
+    `You help a Turkish speaker remember ${LANGUAGE_NAME[entry.language]} words they keep forgetting.`,
+    'Be accurate about etymology; never invent it. Keep everything short, concrete and memorable, in Turkish.',
+  ].join('\n')
+  const user = `Word: ${entry.article ? `${entry.article} ` : ''}${entry.lemma} (${entry.partOfSpeech}) = ${entry.senses[0].gloss}`
+  return structured(apiKey, MnemonicSchema, system, user, 'low')
 }

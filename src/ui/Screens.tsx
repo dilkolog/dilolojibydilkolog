@@ -5,7 +5,7 @@ import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type Vocabul
 import { displayForm } from '../engine/exercises'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon } from './icons'
+import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME } from './labels'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
@@ -141,6 +141,7 @@ export function Home({
   onStart,
   onAddWords,
   onProfile,
+  onStory,
   onExtraNew,
   onPracticeMistakes,
   onFreePractice,
@@ -160,6 +161,7 @@ export function Home({
   onStart: () => void
   onAddWords: () => void
   onProfile: () => void
+  onStory?: () => void
   onExtraNew: () => void
   onPracticeMistakes: () => void
   onFreePractice: () => void
@@ -289,7 +291,7 @@ export function Home({
         </div>
       </div>
 
-      {(openMistakeWords > 0 || canPractice) && (
+      {(openMistakeWords > 0 || canPractice || onStory) && (
         <section className="section stack">
           <h2 className="section-title">Ek çalışma</h2>
           <div className="tiles">
@@ -301,6 +303,17 @@ export function Home({
                 <span>
                   <strong>Hatalarını düzelt</strong>
                   <span className="small muted">{openMistakeWords} kelimede açık hata</span>
+                </span>
+              </button>
+            )}
+            {onStory && (
+              <button className="tile" onClick={onStory}>
+                <span className="tile-icon">
+                  <StoryIcon size={22} />
+                </span>
+                <span>
+                  <strong>Hikayenin yeni bölümü</strong>
+                  <span className="small muted">Zorlandığın kelimelerle yazılır</span>
                 </span>
               </button>
             )}

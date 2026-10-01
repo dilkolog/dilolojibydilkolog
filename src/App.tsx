@@ -21,7 +21,7 @@ import type { Settings } from './data/db'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GearIcon, HomeIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GearIcon, HomeIcon, StoryIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { MistakesScreen } from './ui/Mistakes'
 import { applySettings } from './ui/prefs'
@@ -31,6 +31,7 @@ import { useReminder } from './ui/reminders'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
 import { SettingsScreen } from './ui/SettingsScreen'
+import { StoryScreen } from './ui/Story'
 import { WordDetail } from './ui/WordDetail'
 import { WordsScreen } from './ui/Words'
 
@@ -42,14 +43,16 @@ type Screen =
   | { name: 'word'; entryId: string }
   | { name: 'mistakes' }
   | { name: 'progress' }
+  | { name: 'story' }
   | { name: 'profile' }
   | { name: 'settings' }
 
-type NavScreen = 'home' | 'words' | 'mistakes' | 'progress' | 'profile' | 'settings'
+type NavScreen = 'home' | 'words' | 'story' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
 const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
+  { screen: 'story', label: 'Hikaye', icon: StoryIcon },
   { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
   { screen: 'profile', label: 'Profil', icon: UserIcon },
@@ -297,6 +300,17 @@ export default function App() {
               />
             ) : screen.name === 'progress' ? (
               <ProgressScreen db={db} language={data.language} vocabularyCount={data.vocabulary.length} states={data.states} scheduler={scheduler} />
+            ) : screen.name === 'story' ? (
+              <StoryScreen
+                language={data.language}
+                settings={settings}
+                vocabulary={data.vocabulary}
+                states={data.states}
+                mistakes={data.mistakes}
+                onSettings={updateSettings}
+                onChanged={reload}
+                onOpenSettings={go({ name: 'settings' })}
+              />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} />
             ) : screen.name === 'settings' ? (
@@ -326,6 +340,7 @@ export default function App() {
                 onStart={() => startSession(plan.items, 'normal', daySeed(new Date()))}
                 onAddWords={go({ name: 'words' })}
                 onProfile={go({ name: 'profile' })}
+                onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
                 onPracticeMistakes={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')

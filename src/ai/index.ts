@@ -1,5 +1,5 @@
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { EnrichRequest, SentenceEvaluation, WordInfo } from './types'
+import type { EnrichRequest, EpisodeDraft, EpisodeRequest, Mnemonic, SentenceEvaluation, WordInfo } from './types'
 
 export * from './types'
 
@@ -19,3 +19,12 @@ export const enrichWords = async (
 
 export const evaluateSentence = async (apiKey: string, entry: VocabularyEntry, sentence: string): Promise<SentenceEvaluation> =>
   (await sdk()).evaluateSentence(apiKey, entry, sentence)
+
+export const writeEpisode = async (apiKey: string, req: EpisodeRequest): Promise<EpisodeDraft> => (await sdk()).writeEpisode(apiKey, req)
+
+export const createMnemonic = async (apiKey: string, entry: VocabularyEntry): Promise<Mnemonic> => (await sdk()).createMnemonic(apiKey, entry)
+
+/** Turns a mnemonic into the text saved in the word's note. */
+export function mnemonicNote(m: Mnemonic): string {
+  return [m.soundAlike, m.scene, m.etymology && `Köken: ${m.etymology}`].filter(Boolean).join('\n')
+}

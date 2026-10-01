@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import type { VocabularyEntry } from '../engine/types'
 import { db } from '../data/instance'
+import { useAi } from './aiContext'
 import { AudioRecorder } from './AudioRecorder'
+import { MnemonicDialog } from './Mnemonic'
 import { ImagePicker } from './ImagePicker'
 import { playWord } from './speech'
 import { useMediaUrl } from './useMedia'
@@ -13,6 +15,8 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
   const [recording, setRecording] = useState(false)
   const [notes, setNotes] = useState(entry.notes ?? '')
   const [saved, setSaved] = useState(false)
+  const [mnemonicOpen, setMnemonicOpen] = useState(false)
+  const { apiKey } = useAi()
 
   const update = async (patch: Partial<VocabularyEntry>, removeMedia?: string) => {
     if (removeMedia) await db.media.delete(removeMedia)
@@ -106,7 +110,23 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
           onBlur={saveNotes}
         />
         <span className="help">{saved ? 'Kaydedildi.' : 'Kelime tanıtılırken ve yanlış cevaptan sonra gösterilir. Alandan çıkınca kaydedilir.'}</span>
+        <div>
+          <button className="btn btn-quiet" onClick={() => setMnemonicOpen(true)}>
+            💡 Hafıza ipucu {apiKey ? 'üret' : 'yaz'}
+          </button>
+        </div>
       </div>
+      {mnemonicOpen && (
+        <MnemonicDialog
+          entry={{ ...entry, notes: notes.trim() || undefined }}
+          onClose={() => setMnemonicOpen(false)}
+          onSaved={(updated) => {
+            setNotes(updated.notes ?? '')
+            setMnemonicOpen(false)
+            onChanged()
+          }}
+        />
+      )}
 
       {picking && (
         <ImagePicker
