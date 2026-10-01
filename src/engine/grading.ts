@@ -37,3 +37,19 @@ export function gradeAttempt(input: GradingInput): Grade {
   if (meta.input === 'typed' && input.responseMs < meta.expectedMs * FAST_FACTOR) return Rating.Easy
   return Rating.Good
 }
+
+/**
+ * Share of a word's correct answers that came slowly (beyond SLOW_FACTOR × the exercise's
+ * expected time). Right but slow means the memory is there but fragile: it needs fluency
+ * practice, not more learning.
+ */
+export function slowShare(events: readonly { exerciseType: ExerciseType; verdict: Verdict; responseMs: number; mode?: string }[]): { correct: number; slow: number } {
+  let correct = 0
+  let slow = 0
+  for (const e of events) {
+    if (e.verdict === 'wrong' || e.mode === 'practice') continue
+    correct++
+    if (e.responseMs > EXERCISES[e.exerciseType].expectedMs * SLOW_FACTOR) slow++
+  }
+  return { correct, slow }
+}

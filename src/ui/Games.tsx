@@ -1,17 +1,19 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { buildExercise, displayForm, evaluateChoice, pickDistractors, type ChoiceExercise } from '../engine/exercises'
 import { comboMultiplier } from '../engine/gamification'
+import { pairRound, type PairQuestion } from '../engine/listening'
 import { FLUENCY_MIN_WORDS, median, pickFluencyWords, pickGameWords } from '../engine/practice'
 import { newWordState, processAttempt } from '../engine/review'
 import { createRng, pick, shuffle } from '../engine/rng'
 import type { ExerciseType, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { db, scheduler } from '../data/instance'
 import { SAMPLE_WORDS } from '../data/seed'
-import { FlameIcon } from './icons'
+import { FlameIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
+import { canSpeak, speak, speakAsync } from './speech'
 
-type Game = 'match' | 'blitz' | 'fluency' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | null
 
 interface Props {
   language: TargetLanguage
@@ -51,6 +53,7 @@ export function GamesScreen(p: Props) {
   const fluencyWords = pickFluencyWords(p.vocabulary, p.states, createRng(1)).length
 
   if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
+  if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'fluency')
     return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
   if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} recordKey={blitzKey} onExit={() => setGame(null)} />
@@ -74,6 +77,12 @@ export function GamesScreen(p: Props) {
           <strong>Zamana karşı</strong>
           <span className="small muted">60 saniyede olabildiğince çok doğru. Üst üste doğrular puanı katlar.</span>
           <span className="game-record">{records[blitzKey] ? `Rekorun: ${records[blitzKey]} puan` : 'Henüz rekor yok'}</span>
+        </button>
+        <button className="game-card" disabled={!canSpeak()} onClick={() => setGame('pairs')}>
+          <span className="game-emoji">👂</span>
+          <strong>Ses ayırt etme</strong>
+          <span className="small muted">Tek sesi farklı iki kelimeden hangisini duydun? Türkçede olmayan ses farklarını kulağın ayırt etmeyi öğrenir.</span>
+          <span className="game-record">{records[`pairs:${p.language}`] ? `Rekorun: %${records[`pairs:${p.language}`]}` : canSpeak() ? 'Henüz rekor yok' : 'Bu tarayıcıda sesli okuma yok'}</span>
         </button>
         <button className="game-card" disabled={fluencyWords < FLUENCY_MIN_WORDS} onClick={() => setGame('fluency')}>
           <span className="game-emoji">🏎️</span>
@@ -586,6 +595,159 @@ function FluencyGame({
           )}
           <div className="row" style={{ justifyContent: 'center' }}>
             <button className="btn btn-lg" onClick={begin} autoFocus>
+              Tekrar oyna
+            </button>
+            <button className="btn btn-lg btn-quiet" onClick={onExit}>
+              Çık
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Minimal pairs
+// ---------------------------------------------------------------------------
+
+const PAIR_ROUND = 12
+
+/**
+ * Hear one word of a minimal pair and pick it. Every answer gets immediate feedback and the
+ * chance to hear both words back to back; voices vary between questions.
+ */
+function PairsGame({ language, best, recordKey, onExit }: Props & { best?: number; recordKey: string; onExit: () => void }) {
+  const [round, setRound] = useState<PairQuestion[]>(() => pairRound(language, PAIR_ROUND, createRng(Date.now())))
+  const [index, setIndex] = useState(0)
+  const [answers, setAnswers] = useState<{ q: PairQuestion; ok: boolean }[]>([])
+  const [chosen, setChosen] = useState<'a' | 'b' | null>(null)
+  const [record, setRecord] = useState(false)
+  const q = round[index] as PairQuestion | undefined
+  const done = index >= round.length
+
+  useEffect(() => {
+    if (q && chosen === null) speak(q.pair[q.answer].word, language, undefined, true)
+  }, [q, chosen, language])
+
+  const choose = (side: 'a' | 'b') => {
+    if (!q || chosen) return
+    const ok = side === q.answer
+    if (ok) sfx.correct()
+    else sfx.wrong()
+    setChosen(side)
+    setAnswers((a) => [...a, { q, ok }])
+  }
+
+  const next = async () => {
+    setChosen(null)
+    if (index + 1 >= round.length) {
+      const pct = Math.round(((answers.filter((a) => a.ok).length) / round.length) * 100)
+      if (pct > (best ?? 0)) {
+        await db.saveRecord(recordKey, pct)
+        setRecord(true)
+      }
+      sfx.levelUp()
+    }
+    setIndex((i) => i + 1)
+  }
+
+  const both = async () => {
+    if (!q) return
+    await speakAsync(q.pair.a.word, language)
+    await new Promise((r) => setTimeout(r, 400))
+    await speakAsync(q.pair.b.word, language)
+  }
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (done || !q) return
+      if (e.code === 'Space') {
+        e.preventDefault()
+        speak(q.pair[q.answer].word, language, undefined, true)
+      }
+      if (!chosen && (e.key === '1' || e.key === '2')) choose(q.order[Number(e.key) - 1])
+      if (chosen && e.key === 'Enter') void next()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
+
+  const right = answers.filter((a) => a.ok).length
+  const missed = new Map<string, number>()
+  for (const a of answers) if (!a.ok) missed.set(a.q.pair.contrast, (missed.get(a.q.pair.contrast) ?? 0) + 1)
+  const worst = [...missed.entries()].sort((a, b) => b[1] - a[1])[0]
+
+  return (
+    <div className="stack">
+      <div className="game-top">
+        <button className="link" onClick={onExit}>
+          ← Oyunlar
+        </button>
+        {!done && (
+          <span className="game-timer">
+            {index + 1} / {round.length}
+          </span>
+        )}
+        <span className="small muted">{best ? `Rekor: %${best}` : ''}</span>
+      </div>
+
+      {!done && q && (
+        <div className="stack">
+          <div className="row">
+            <button className="speak speak-big" onClick={() => speak(q.pair[q.answer].word, language, undefined, true)} aria-label="Tekrar dinle">
+              <SpeakerIcon size={36} />
+            </button>
+            <span className="small muted">Hangisini duydun? Boşluk: tekrar dinle · 1–2: seç · Fark: {q.pair.contrast}</span>
+          </div>
+          <div className="options">
+            {q.order.map((side, i) => {
+              const w = q.pair[side]
+              const state = chosen ? (side === q.answer ? ' is-correct' : side === chosen ? ' is-wrong' : ' is-dim') : ''
+              return (
+                <button key={side} className={`option${state}`} disabled={!!chosen} onClick={() => choose(side)}>
+                  <span className="key">{i + 1}</span>
+                  <span>
+                    <span className="option-serif" lang={language}>
+                      {w.word}
+                    </span>{' '}
+                    <span className="small muted">{w.gloss}</span>
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+          {chosen && (
+            <div className="row">
+              <button className="btn btn-quiet" onClick={both}>
+                İkisini art arda dinle
+              </button>
+              <button className="btn" onClick={next} autoFocus>
+                Devam
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {done && (
+        <div className="celebrate stack">
+          <h1>{record ? 'Yeni rekor! 🏆' : 'Tur bitti'}</h1>
+          <p className="xp-gain">
+            {right} / {round.length} doğru
+          </p>
+          <p className="muted">{worst ? `En çok karıştırdığın ses farkı: ${worst[0]}. Bu çiftleri tekrar dinlemek kulağını alıştırır.` : 'Hiç karıştırmadın; kulağın bu farklara alışmış.'}</p>
+          <div className="row" style={{ justifyContent: 'center' }}>
+            <button
+              className="btn btn-lg"
+              autoFocus
+              onClick={() => {
+                setRound(pairRound(language, PAIR_ROUND, createRng(Date.now())))
+                setIndex(0)
+                setAnswers([])
+                setRecord(false)
+              }}
+            >
               Tekrar oyna
             </button>
             <button className="btn btn-lg btn-quiet" onClick={onExit}>

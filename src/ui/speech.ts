@@ -66,18 +66,18 @@ export function speak(text: string, language: TargetLanguage, rate = speechPrefs
 let current: HTMLAudioElement | null = null
 
 /** Plays the learner's own recording of the word if there is one, otherwise TTS. */
-export async function playWord(entry: VocabularyEntry, text = displayForm(entry), vary = false) {
+export async function playWord(entry: VocabularyEntry, text = displayForm(entry), vary = false, rate = speechPrefs.rate) {
   if (entry.audioId && text === displayForm(entry)) {
     const m = await db.media.get(entry.audioId)
     if (m) {
       current?.pause()
       current = new Audio(URL.createObjectURL(m.blob))
       current.onended = () => URL.revokeObjectURL(current!.src)
-      await current.play().catch(() => speak(text, entry.language, speechPrefs.rate, vary))
+      await current.play().catch(() => speak(text, entry.language, rate, vary))
       return
     }
   }
-  speak(text, entry.language, speechPrefs.rate, vary)
+  speak(text, entry.language, rate, vary)
 }
 
 /** Speak and resolve when finished (for playing two clips back to back). */

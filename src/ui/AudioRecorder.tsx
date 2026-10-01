@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
 /** A container format this browser can record (Safari doesn't do webm). */
-function recordingType(): string | undefined {
+export function recordingType(): string | undefined {
   if (typeof MediaRecorder === 'undefined') return undefined
   return ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'].find((t) => MediaRecorder.isTypeSupported(t))
 }
 
-const canRecord = () => typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && !!recordingType()
+export const canRecord = () => typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && !!recordingType()
 
 /** Max length of a word recording; long enough for a phrase, short enough to stay small. */
 const MAX_MS = 8000

@@ -5,6 +5,7 @@ import { addExample, MAX_EXAMPLES, removeExample, WordInputError } from '../data
 import { AiError, suggestFields } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon, SpeakerIcon } from './icons'
+import { ShadowButton } from './Shadow'
 import { canSpeak, speak, speechPrefs } from './speech'
 
 /**
@@ -95,6 +96,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
               <div>
                 <p className="sentence">{ex.text}</p>
                 {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
+                <ShadowButton text={ex.text} language={entry.language} />
               </div>
               <div className="row" style={{ gap: '0.25rem', flexWrap: 'nowrap' }}>
                 {canSpeak() && (

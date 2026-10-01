@@ -37,3 +37,11 @@ describe('confidence', () => {
     expect(gradeAttempt({ ...base, verdict: 'wrong', confidence: 'unsure' })).toBe(Rating.Again)
   })
 })
+
+describe('slowShare', () => {
+  it('counts right-but-slow answers among right ones, ignoring practice', async () => {
+    const { slowShare } = await import('../grading')
+    const ev = (verdict: 'correct' | 'wrong', responseMs: number, mode = 'normal') => ({ exerciseType: 'typed_translation' as const, verdict, responseMs, mode })
+    expect(slowShare([ev('correct', 5000), ev('correct', 30000), ev('wrong', 40000), ev('correct', 30000, 'practice')])).toEqual({ correct: 2, slow: 1 })
+  })
+})

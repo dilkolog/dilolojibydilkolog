@@ -4,6 +4,7 @@ import { definiteArticle, displayForm } from '../engine/exercises'
 import { masteryStage, skillScores } from '../engine/mastery'
 import { openMistakes } from '../engine/mistakes'
 import { contextEncounters, ENCOUNTER_TARGET } from '../engine/reading'
+import { slowShare } from '../engine/grading'
 import { nextReviewAt } from '../engine/review'
 import type { Scheduler } from '../engine/scheduler'
 import { unlockedSkills } from '../engine/selection'
@@ -41,10 +42,13 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const unlocked = new Set(unlockedSkills(state, entry))
   const next = state && nextReviewAt(state)
   const [encounters, setEncounters] = useState<number | null>(null)
+  const [fragile, setFragile] = useState(false)
   useEffect(() => {
-    Promise.all([db.events.where('entryId').equals(entry.id).toArray(), db.getEncounters()]).then(([events, reading]) =>
-      setEncounters(contextEncounters(events, reading[entry.id] ?? 0)),
-    )
+    Promise.all([db.events.where('entryId').equals(entry.id).toArray(), db.getEncounters()]).then(([events, reading]) => {
+      setEncounters(contextEncounters(events, reading[entry.id] ?? 0))
+      const s = slowShare(events)
+      setFragile(s.correct >= 3 && s.slow / s.correct >= 0.4)
+    })
   }, [db, entry.id, state])
   const conjugation = conjugate(entry)
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
@@ -98,6 +102,9 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </div>
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
         <CrossLanguageNotes entry={entry} />
+        {fragile && (
+          <p className="small fragile-note">🐢 Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
+        )}
         <p className="small muted">
           {[
             entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech],

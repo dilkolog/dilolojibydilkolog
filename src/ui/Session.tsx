@@ -16,6 +16,7 @@ import {
 import { xpForAnswer } from '../engine/gamification'
 import { masteryStage } from '../engine/mastery'
 import { markKnown, needsIntervention, newWordState, processAttempt, type AttemptInput } from '../engine/review'
+import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import {
@@ -251,6 +252,7 @@ export function SessionScreen(p: Props) {
           onOverride={override}
           onContinue={proceed}
           struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
+          listenRate={listeningRate(speechPrefs.rate, states.current.get(entry.id)?.skills.listening?.stability)}
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
         />
       )}
@@ -260,9 +262,9 @@ export function SessionScreen(p: Props) {
 
 // ---------------------------------------------------------------------------
 
-function SpeakButton({ text, entry, big, auto, vary }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean }) {
+function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean; rate?: number }) {
   useEffect(() => {
-    if (auto && prefs.autoPlay) playWord(entry, text, vary)
+    if (auto && prefs.autoPlay) playWord(entry, text, vary, rate)
   }, [auto, text, entry.language])
 
   // Alt+S anywhere, or Space when not typing, replays the audio.
@@ -272,7 +274,7 @@ function SpeakButton({ text, entry, big, auto, vary }: { text: string; entry: Vo
       const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
       if ((e.altKey && e.code === 'KeyS') || (e.code === 'Space' && !typing && !(e.target instanceof HTMLButtonElement))) {
         e.preventDefault()
-        playWord(entry, text, vary)
+        playWord(entry, text, vary, rate)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -283,7 +285,7 @@ function SpeakButton({ text, entry, big, auto, vary }: { text: string; entry: Vo
     <button
       type="button"
       className={big ? 'speak speak-big' : 'speak'}
-      onClick={() => playWord(entry, text, vary)}
+      onClick={() => playWord(entry, text, vary, rate)}
       aria-label="Sesli dinle"
     >
       <SpeakerIcon size={big ? 36 : 22} />
@@ -440,6 +442,8 @@ interface RunnerProps {
   onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => Promise<Omit<SessionLogEntry, 'item'>>
   onOverride: () => Promise<Omit<SessionLogEntry, 'item'> | null>
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
+  /** Speech rate for listening exercises, adapted to how well the word is heard already. */
+  listenRate: number
   /** The word has been missed several times in a row: offer a memory hook. */
   struggling: () => boolean
   onEntryUpdated: (entry: VocabularyEntry) => void
@@ -451,7 +455,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 /** An evaluation plus optional AI feedback text (free sentences). */
 type Graded = Evaluation & { feedback?: string }
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated, listenRate }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
@@ -486,7 +490,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
     setResult({ ev, log, chosen, confidence })
     if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
-    playWord(entry, undefined, true)
+    playWord(entry, undefined, true, listenRate)
   }
 
   /** Free sentences are graded by the AI; time is measured up to submission, not the network wait. */
@@ -519,7 +523,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             ? `${LANGUAGE_NAME[entry.language]} karşılığını söyle`
             : PROMPT_TEXT[exercise.type]}
       </p>
-      <Prompt exercise={exercise} entry={entry} />
+      <Prompt exercise={exercise} entry={entry} listenRate={listenRate} />
       {asksConfidence && !result && (
         <button
           type="button"
@@ -619,7 +623,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
   )
 }
 
-function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntry }) {
+function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: VocabularyEntry; listenRate: number }) {
   switch (exercise.type) {
     case 'mc_meaning':
       return (
@@ -631,7 +635,10 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     case 'listen_choose':
     case 'listen_type':
       return canSpeak() ? (
-        <SpeakButton text={exercise.audioText!} entry={entry} big auto vary />
+        <div className="row">
+          <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
+          <RateNote rate={listenRate} />
+        </div>
       ) : (
         <p className="muted">Bu tarayıcıda sesli okuma yok. Kelime: {exercise.audioText}</p>
       )
@@ -644,7 +651,7 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     case 'dictation':
       return (
         <div className="row">
-          <SpeakButton text={exercise.audioText!} entry={entry} big auto vary />
+          <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
           <button className="btn btn-quiet" onClick={() => speak(exercise.audioText!, entry.language, 0.7, true)}>
             🐢 Yavaş dinle
           </button>
@@ -688,6 +695,16 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
     default:
       return <p className="prompt-text">{exercise.prompt}</p>
   }
+}
+
+/** Shown when listening speed differs from the base setting, so a faster voice isn't a surprise. */
+function RateNote({ rate }: { rate: number }) {
+  if (Math.abs(rate - speechPrefs.rate) < 0.01) return null
+  return (
+    <span className="small muted">
+      {rate > speechPrefs.rate ? 'Bu kelimeyi iyi tanıyorsun: daha hızlı konuşuyor' : 'Yeni kelime: biraz yavaş konuşuyor'} ({rate.toFixed(2).replace('.', ',')}×)
+    </span>
+  )
 }
 
 function PictureFrame({ id }: { id?: string }) {
