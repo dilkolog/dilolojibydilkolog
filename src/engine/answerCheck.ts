@@ -104,6 +104,34 @@ function compareOne(given: string, expected: string, opts: TypedCheckOptions): C
   return restError ? { verdict: 'near', errorType: restError } : { verdict: 'correct' }
 }
 
+const words = (s: string) =>
+  normalize(s)
+    .replace(/[-–—]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+
+/**
+ * Whole-sentence check for dictation, word by word: every word right → correct; only small slips
+ * (accents, a typo in a word) → near; any missing, extra or different word → wrong.
+ */
+export function checkSentence(givenRaw: string, expectedRaw: string, language: TargetLanguage): CheckResult & { wrongWords: number } {
+  const g = words(givenRaw)
+  const e = words(expectedRaw)
+  if (!g.length) return { verdict: 'wrong', errorType: 'meaning', wrongWords: e.length }
+  // Longest common subsequence of near-equal words, so one missing word doesn't shift all others.
+  const same = (a: string, b: string) => compareOne(a, b, { language }) !== null
+  const dp = Array.from({ length: g.length + 1 }, () => new Array<number>(e.length + 1).fill(0))
+  for (let i = 1; i <= g.length; i++)
+    for (let j = 1; j <= e.length; j++) dp[i][j] = same(g[i - 1], e[j - 1]) ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1])
+  const matched = dp[g.length][e.length]
+  const wrongWords = Math.max(e.length, g.length) - matched
+  if (wrongWords > 0) return { verdict: 'wrong', errorType: 'meaning', wrongWords }
+  const exact = g.length === e.length && g.every((w, i) => w === e[i])
+  if (exact) return { verdict: 'correct', wrongWords: 0 }
+  const accentOnly = g.every((w, i) => stripDiacritics(w) === stripDiacritics(e[i]))
+  return { verdict: 'near', errorType: accentOnly ? 'accent' : 'typo', wrongWords: 0 }
+}
+
 /**
  * Checks a typed answer against all accepted answers. Returns the most favourable result.
  * Order of evaluation encodes how forgiving we are: exact > article/gender > accent > typo.

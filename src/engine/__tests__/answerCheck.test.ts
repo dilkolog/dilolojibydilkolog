@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checkTyped, levenshtein, normalize } from '../answerCheck'
+import { checkSentence, checkTyped, levenshtein, normalize } from '../answerCheck'
 
 describe('normalize', () => {
   it('lowercases, trims and unifies apostrophes', () => {
@@ -62,5 +62,19 @@ describe('checkTyped — French / Spanish articles and accents', () => {
     const es = { language: 'es' as const, gender: 'm' as const }
     expect(checkTyped('el ano', ['el año'], es)).toEqual({ verdict: 'near', errorType: 'accent' })
     expect(checkTyped('la año', ['el año'], es).errorType).toBe('gender')
+  })
+})
+
+describe('checkSentence (dictation)', () => {
+  it('accepts the sentence ignoring case and punctuation', () => {
+    expect(checkSentence('it was a difficult decision', 'It was a difficult decision.', 'en').verdict).toBe('correct')
+  })
+  it('treats accent slips and small typos as near', () => {
+    expect(checkSentence("c'est une decision difficile", "C'est une décision difficile.", 'fr')).toMatchObject({ verdict: 'near', errorType: 'accent' })
+    expect(checkSentence('it was a dificult decision', 'It was a difficult decision.', 'en')).toMatchObject({ verdict: 'near', errorType: 'typo' })
+  })
+  it('counts missing or wrong words without shifting the rest', () => {
+    expect(checkSentence('it was difficult decision', 'It was a difficult decision.', 'en')).toMatchObject({ verdict: 'wrong', wrongWords: 1 })
+    expect(checkSentence('it is a difficult choice', 'It was a difficult decision.', 'en').wrongWords).toBe(2)
   })
 })

@@ -1,4 +1,4 @@
-import { checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
+import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
 import { pick, shuffle, type Rng } from './rng'
 import type {
   Direction,
@@ -21,6 +21,8 @@ export interface ExerciseMeta {
   applicable: (entry: VocabularyEntry) => boolean
   /** Only offered when the AI layer is available to grade it. */
   requiresAI?: boolean
+  /** Only offered when the browser can recognise speech. */
+  requiresSpeech?: boolean
 }
 
 const hasExamples = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0
@@ -61,6 +63,15 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     expectedMs: 5000,
     applicable: (e) => !!e.imageId,
   },
+  dictation: { skill: 'listening', direction: 'audio_to_target', input: 'typed', expectedMs: 20000, applicable: hasExamples },
+  speak_word: {
+    skill: 'recall',
+    direction: 'native_to_target',
+    input: 'typed',
+    expectedMs: 6000,
+    applicable: always,
+    requiresSpeech: true,
+  },
   free_sentence: {
     skill: 'production',
     direction: 'native_to_target',
@@ -73,7 +84,11 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
 
 export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry, opts: EngineOptions = {}): ExerciseType[] {
   return (Object.keys(EXERCISES) as ExerciseType[]).filter(
-    (t) => EXERCISES[t].skill === skill && EXERCISES[t].applicable(entry) && (!EXERCISES[t].requiresAI || opts.ai),
+    (t) =>
+      EXERCISES[t].skill === skill &&
+      EXERCISES[t].applicable(entry) &&
+      (!EXERCISES[t].requiresAI || opts.ai) &&
+      (!EXERCISES[t].requiresSpeech || opts.speech),
   )
 }
 
@@ -346,6 +361,28 @@ export function buildExercise(
       }
     }
 
+    case 'dictation': {
+      const ex = chooseExample(entry, rng)!
+      return {
+        ...base,
+        kind: 'typed',
+        prompt: 'Duyduğun cümleyi yaz',
+        audioText: ex.text,
+        contextTranslation: ex.translation,
+        accepted: [ex.text],
+        hints: [ex.translation || sense.gloss, blankOut(ex)],
+      }
+    }
+
+    case 'speak_word':
+      return {
+        ...base,
+        kind: 'typed',
+        prompt: sense.gloss,
+        accepted,
+        hints: buildHints(answer),
+      }
+
     case 'picture_choice': {
       // Options are words in the target language; distractors' pictures are irrelevant here.
       const options = pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map(displayForm)
@@ -418,6 +455,10 @@ export function evaluateTyped(
   const familyForms = [entry.lemma, ...entry.wordFamily.map((m) => m.lemma)].filter(
     (f) => !ex.accepted.some((a) => normalize(a) === normalize(f)),
   )
+  if (ex.type === 'dictation') {
+    const s = checkSentence(text, ex.accepted[0], entry.language)
+    return { verdict: s.verdict, errorType: s.errorType, given: normalize(text), expected: ex.accepted[0] }
+  }
   const r = checkTyped(text, ex.accepted, {
     language: entry.language,
     gender: entry.gender,

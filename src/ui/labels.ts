@@ -78,4 +78,6 @@ export const PROMPT_TEXT: Record<string, string> = {
   listen_type: 'Duyduğunu yaz',
   free_sentence: 'Kendi cümleni kur',
   picture_choice: 'Bu resim hangi kelime?',
+  dictation: 'Duyduğun cümleyi yaz',
+  speak_word: 'Söyle: hedef dildeki karşılığı',
 }

@@ -2,7 +2,8 @@ import { interleave, type PlanItem } from './dailyPlan'
 import { exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
 import { pick, shuffle, type Rng } from './rng'
-import { ERROR_SKILL, pickExerciseType, unlockedSkills } from './selection'
+import type { Scheduler } from './scheduler'
+import { dueSkills, ERROR_SKILL, pickExerciseType, unlockedSkills } from './selection'
 import type { EngineOptions, Mistake, Skill, UserWordState, VocabularyEntry } from './types'
 
 interface Input {
@@ -66,5 +67,38 @@ export function buildPracticePlan({ catalog, states, rng, limit = 12, options = 
     const skill = pick(Object.keys(state.skills) as Skill[], rng)
     return exerciseFor(entry, state, skill, rng, 'practice', options)
   })
+  return interleave(items, rng)
+}
+
+/**
+ * Study one deck (e.g. a tag) now: every word gets one item — its weakest due skill, or for an
+ * unseen word an introduction plus a first test. Normal mode: it counts like regular reviews.
+ */
+export function buildDeckPlan({
+  catalog,
+  states,
+  rng,
+  scheduler,
+  now,
+  limit = 20,
+  options = {},
+}: Input & { scheduler: Scheduler; now: Date }): PlanItem[] {
+  const stateById = new Map(states.map((s) => [s.entryId, s]))
+  const items: PlanItem[] = []
+  for (const entry of shuffle(catalog, rng).slice(0, limit)) {
+    const state = stateById.get(entry.id)
+    if (!state) {
+      items.push({ kind: 'introduce', entryId: entry.id, reason: 'new', skill: 'recognition' })
+      items.push({ kind: 'exercise', entryId: entry.id, reason: 'new', skill: 'recognition', exerciseType: pickExerciseType('recognition', entry, undefined, rng, options) })
+      continue
+    }
+    // Due skills first; otherwise the weakest skill practised so far.
+    const due = dueSkills(state, entry, scheduler, now, options)
+    const practised = unlockedSkills(state, entry, options)
+      .filter((sk) => state.skills[sk])
+      .sort((a, b) => scheduler.retrievability(state.skills[a]!, now) - scheduler.retrievability(state.skills[b]!, now))
+    const skill = due[0]?.skill ?? practised[0] ?? 'recognition'
+    items.push(exerciseFor(entry, state, skill, rng, due.length ? 'due' : 'weak', options))
+  }
   return interleave(items, rng)
 }

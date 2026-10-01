@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { recordMistake } from '../mistakes'
-import { buildMistakePlan, buildPracticePlan } from '../practice'
+import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from '../practice'
 import { answeredToday, localDate, progressStats, studyStreak } from '../progress'
 import { newWordState, processAttempt } from '../review'
 import { createRng } from '../rng'
@@ -123,5 +123,22 @@ describe('studyStreak', () => {
   })
   it('counts today’s real answers', () => {
     expect(answeredToday([at(0), at(0), at(0, 'practice'), at(1)], NOW)).toBe(2)
+  })
+})
+
+describe('buildDeckPlan', () => {
+  it('gives every deck word one item, introducing unseen words first', () => {
+    const plan = buildDeckPlan({ catalog: [decision, decide, affect], states: [practised(decision)], rng: createRng(5), scheduler, now: NOW })
+    expect(plan.filter((p) => p.kind === 'introduce').map((p) => p.entryId).sort()).toEqual(['en:affect', 'en:decide'])
+    expect(plan.filter((p) => p.kind === 'exercise')).toHaveLength(3)
+  })
+})
+
+describe('speech and dictation exercises', () => {
+  it('are offered only when supported / applicable', async () => {
+    const { exerciseTypesFor } = await import('../exercises')
+    expect(exerciseTypesFor('recall', decide)).not.toContain('speak_word')
+    expect(exerciseTypesFor('recall', decide, { speech: true })).toContain('speak_word')
+    expect(exerciseTypesFor('listening', decision)).toContain('dictation')
   })
 })

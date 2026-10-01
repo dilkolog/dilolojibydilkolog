@@ -1,5 +1,6 @@
 import { EXERCISES } from './exercises'
 import { localDate } from './progress'
+import { questBonus } from './quests'
 import type { ExerciseType, ReviewEvent, ReviewMode, Verdict } from './types'
 
 /**
@@ -18,6 +19,8 @@ export const BASE_XP: Record<ExerciseType, number> = {
   cloze_typed: 12,
   word_form: 12,
   free_sentence: 20,
+  dictation: 14,
+  speak_word: 10,
 }
 
 /** Meeting a new word. */
@@ -83,6 +86,10 @@ export function computeXp(events: readonly ReviewEvent[], introductions: readonl
   for (const d of introductions) {
     total += INTRO_XP
     add(d, INTRO_XP)
+  }
+  for (const [day, xp] of questBonus(events, introductions)) {
+    total += xp
+    byDay.set(day, (byDay.get(day) ?? 0) + xp)
   }
   return { total, today: byDay.get(localDate(now)) ?? 0, maxCombo, byDay }
 }

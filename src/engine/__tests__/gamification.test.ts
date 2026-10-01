@@ -10,6 +10,7 @@ import {
   xpToNext,
   type GameStats,
 } from '../gamification'
+import { questBonus } from '../quests'
 import type { ReviewEvent } from '../types'
 
 const NOW = new Date('2026-10-10T12:00:00')
@@ -39,6 +40,7 @@ describe('computeXp', () => {
   it('sums answers and introductions, tracks today and the longest combo', () => {
     const events = [ev(0), ev(1), ev(2, 'wrong'), ev(3), ev(0, 'correct', 1)]
     const xp = computeXp(events, [NOW], NOW)
+    // Too little activity to complete any quest (all quest targets are higher).
     expect(xp.total).toBe(10 * 4 + 1 + INTRO_XP)
     expect(xp.today).toBe(10 * 3 + 1 + INTRO_XP)
     expect(xp.maxCombo).toBe(2)
@@ -50,7 +52,8 @@ describe('computeXp', () => {
     // 15-minute gaps exceed the combo window, so the run restarts each time.
     const slow = Array.from({ length: 6 }, (_, i) => ev(i * 15))
     expect(computeXp(slow, [], NOW).maxCombo).toBe(1)
-    expect(computeXp(slow, [], NOW).total).toBe(60)
+    const bonus = [...questBonus(slow, []).values()].reduce((a, b) => a + b, 0)
+    expect(computeXp(slow, [], NOW).total).toBe(60 + bonus)
   })
 })
 

@@ -132,11 +132,15 @@ export type ExerciseType =
   | 'collocation_choice' // choose the natural collocation
   | 'free_sentence' // write your own sentence with the word; graded by the AI layer
   | 'picture_choice' // see the word's picture → choose the word
+  | 'dictation' // hear an example sentence → type the whole sentence
+  | 'speak_word' // see the Turkish meaning → say the word aloud (speech recognition)
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {
   /** The AI layer is configured, so AI-graded exercises (free_sentence) may be scheduled. */
   ai?: boolean
+  /** The browser can recognise speech, so spoken-answer exercises may be scheduled. */
+  speech?: boolean
 }
 
 export type Direction =
