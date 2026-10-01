@@ -4,7 +4,7 @@ import { progressStats, type DayActivity, type ProgressStats } from '../engine/p
 import type { Scheduler } from '../engine/scheduler'
 import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
-import { calibration, errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
+import { calibration, recallCalibration, errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
 import { useGame } from './game'
 import type { KelimeDB } from '../data/db'
 import { ERROR_NAME, SKILL_NAME, STAGE_NAME } from './labels'
@@ -47,6 +47,7 @@ export function ProgressScreen({
   const forecast = reviewForecast(states, now, DAYS)
   const hard = hardWords(events, 8)
   const errors = Object.entries(errorBreakdown(events)) as [ErrorType, number][]
+  const recallBins = recallCalibration(events)
   const calib = calibration(events.filter((e) => now.getTime() - e.timestamp.getTime() < 30 * 86_400_000))
   const pct = (c: { answers: number; correct: number }) => Math.round((c.correct / c.answers) * 100)
   const byId = new Map(vocabulary.map((v) => [v.id, v]))
@@ -76,6 +77,32 @@ export function ProgressScreen({
         <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
         <ForecastChart forecast={forecast} />
       </section>
+
+      {recallBins.reduce((n, b) => n + b.answers, 0) >= 30 && (
+        <section className="section stack">
+          <h2 className="section-title">Model tahmini ve gerçek</h2>
+          <p className="small muted">
+            Her tekrardan önce FSRS kelimeyi hatırlama ihtimalini tahmin eder. Halka tahmin, nokta gerçekte hatırladığın oran. İkisi yakınsa tekrarlar doğru
+            zamanda geliyor demektir.
+          </p>
+          <div className="recall-chart" role="table" aria-label="Tahmin edilen ve gerçek hatırlama oranı">
+            {recallBins.map((b) => (
+              <div className="recall-row" role="row" key={b.from}>
+                <span role="rowheader" className="small">
+                  %{Math.round(b.from * 100)}–{Math.round(b.to * 100)}
+                </span>
+                <div className="recall-track" role="cell" aria-label={`Tahmin %${Math.round(b.predicted * 100)}, gerçek %${Math.round(b.actual * 100)}`}>
+                  <span className="recall-pred" style={{ left: `${b.predicted * 100}%` }} title={`Tahmin %${Math.round(b.predicted * 100)}`} />
+                  <span className="recall-act" style={{ left: `${b.actual * 100}%` }} title={`Gerçek %${Math.round(b.actual * 100)}`} />
+                </div>
+                <span role="cell" className="small muted recall-n">
+                  %{Math.round(b.actual * 100)} · {b.answers}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {calib.sure.answers + calib.unsure.answers >= 10 && (
         <section className="section stack">

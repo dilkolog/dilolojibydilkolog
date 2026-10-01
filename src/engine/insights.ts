@@ -174,4 +174,41 @@ export function calibration(events: readonly ReviewEvent[]): Calibration {
   return out
 }
 
+// ---------------------------------------------------------------------------
+// Predicted vs actual recall
+// ---------------------------------------------------------------------------
+
+export interface RecallBin {
+  /** Range of predicted recall probability, e.g. 0.8–0.9. */
+  from: number
+  to: number
+  answers: number
+  /** Mean predicted probability in the bin. */
+  predicted: number
+  /** Share actually recalled. */
+  actual: number
+}
+
+const BIN_EDGES = [0, 0.5, 0.7, 0.8, 0.9, 0.95, 1.000001]
+
+/**
+ * How well the scheduler's predictions match reality: answers grouped by the recall
+ * probability FSRS gave them just before, against how often they were actually right.
+ * Never-practised skills (no prediction) and practice answers are left out.
+ */
+export function recallCalibration(events: readonly ReviewEvent[], minAnswers = 5): RecallBin[] {
+  const bins = BIN_EDGES.slice(0, -1).map((from, i) => ({ from, to: Math.min(1, BIN_EDGES[i + 1]), answers: 0, p: 0, right: 0 }))
+  for (const e of events) {
+    if (e.mode !== 'normal' || !(e.retrievabilityBefore > 0)) continue
+    const b = bins.find((x, i) => e.retrievabilityBefore >= x.from && e.retrievabilityBefore < BIN_EDGES[i + 1])
+    if (!b) continue
+    b.answers++
+    b.p += e.retrievabilityBefore
+    if (e.verdict !== 'wrong') b.right++
+  }
+  return bins
+    .filter((b) => b.answers >= minAnswers)
+    .map((b) => ({ from: b.from, to: b.to, answers: b.answers, predicted: b.p / b.answers, actual: b.right / b.answers }))
+}
+
 export type { Scheduler }

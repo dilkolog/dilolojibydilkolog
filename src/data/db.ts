@@ -49,6 +49,10 @@ export interface Settings {
   pretest: boolean
   /** Offer "not sure" before answering; confident errors get extra attention. */
   confidence: boolean
+  /** Personal FSRS weights; null = the defaults. */
+  fsrsWeights: number[] | null
+  /** When and how well the personal weights were fitted. */
+  fsrsFit: { at: string; reviews: number; improvement: number } | null
   /** Listening exercises use a different system voice each time (high-variability input). */
   varyVoices: boolean
   reminder: { enabled: boolean; time: string }
@@ -74,6 +78,8 @@ export const DEFAULT_SETTINGS: Settings = {
   retention: 0.9,
   pretest: true,
   confidence: true,
+  fsrsWeights: null,
+  fsrsFit: null,
   varyVoices: true,
   reminder: { enabled: false, time: '20:00' },
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },

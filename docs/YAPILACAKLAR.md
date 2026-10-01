@@ -15,13 +15,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 1. Kişiselleştirme ve hafıza modeli
 
-- [ ] ⭐⭐⭐ **FSRS'yi kendi geçmişine göre optimize et** (M)
+- [x] ⭐⭐⭐ **FSRS'yi kendi geçmişine göre optimize et** (M)
   Varsayılan FSRS ağırlıkları milyonlarca kullanıcının ortalaması. Birkaç yüz tekrardan sonra
   kişisel ağırlıklar tahmin hatasını belirgin şekilde azaltıyor (FSRS benchmark'ları).
   Olay geçmişi zaten tutuluyor; optimizer (fsrs-browser / wasm) ile haftalık yeniden hesapla.
 - [x] ⭐⭐⭐ **Hedef hatırlama oranı ayarı** (S)
   %85–95 arası seçim; düşük = daha az tekrar, yüksek = daha sağlam. Ayarda iş yükü tahmini göster.
-- [ ] ⭐⭐ **Gerçek vs. tahmini hatırlama grafiği** (S)
+- [x] ⭐⭐ **Gerçek vs. tahmini hatırlama grafiği** (S)
   Kalibrasyon eğrisi: "FSRS %90 dedi, sen %84 hatırladın". Modelin doğru çalıştığını görünür kılar.
 
 ## 2. Üstbiliş (metacognition)

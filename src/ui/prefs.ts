@@ -1,5 +1,5 @@
 import type { Settings } from '../data/db'
-import { setRetention } from '../data/instance'
+import { configureScheduler } from '../data/instance'
 import { speechPrefs } from './speech'
 
 /** Runtime preferences read by session components; updated whenever settings change. */
@@ -22,7 +22,7 @@ export function applySettings(s: Settings) {
   prefs.pretest = s.pretest
   prefs.confidence = s.confidence
   speechPrefs.varyVoices = s.varyVoices
-  setRetention(s.retention)
+  configureScheduler(s.retention, s.fsrsWeights)
   speechPrefs.rate = s.speechRate
   speechPrefs.voices = s.voices
   const root = document.documentElement

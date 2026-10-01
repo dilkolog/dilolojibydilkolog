@@ -5,6 +5,7 @@ import { exportBackup, parseBackup, restoreBackup, type Settings } from '../data
 import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
+import { MemoryModel } from './MemoryModel'
 import { BellIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
@@ -176,6 +177,8 @@ export function SettingsScreen({
           onChange={(v) => set('pretest', v)}
         />
       </section>
+
+      <MemoryModel settings={settings} onChange={onChange} />
 
       <section className="card stack">
         <h2 className="section-title">Ses</h2>

@@ -16,6 +16,6 @@ export const scheduler: Scheduler = {
   retrievability: (card, now) => current.retrievability(card, now),
 }
 
-export function setRetention(requestRetention: number) {
-  current = createScheduler({ requestRetention })
+export function configureScheduler(requestRetention: number, weights?: readonly number[] | null) {
+  current = createScheduler({ requestRetention, weights: weights ?? undefined })
 }

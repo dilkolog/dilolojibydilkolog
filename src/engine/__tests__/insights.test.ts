@@ -103,3 +103,17 @@ describe('calibration', () => {
     expect(c).toEqual({ sure: { answers: 2, correct: 1 }, unsure: { answers: 1, correct: 1 } })
   })
 })
+
+describe('recallCalibration', () => {
+  it('groups answers by predicted recall and compares with what happened', async () => {
+    const { recallCalibration } = await import('../insights')
+    const ev = (r: number, verdict: 'correct' | 'wrong', mode: 'normal' | 'practice' = 'normal') =>
+      ({ retrievabilityBefore: r, verdict, mode }) as import('../types').ReviewEvent
+    const events = [ev(0.92, 'correct'), ev(0.93, 'correct'), ev(0.91, 'wrong'), ev(0.94, 'correct'), ev(0, 'wrong'), ev(0.6, 'wrong'), ev(0.92, 'wrong', 'practice')]
+    const bins = recallCalibration(events, 1)
+    expect(bins).toHaveLength(2)
+    expect(bins[1]).toMatchObject({ from: 0.9, to: 0.95, answers: 4, actual: 0.75 })
+    expect(bins[1].predicted).toBeCloseTo(0.925)
+    expect(bins[0]).toMatchObject({ from: 0.5, answers: 1, actual: 0 })
+  })
+})

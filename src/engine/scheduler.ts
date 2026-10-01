@@ -9,6 +9,8 @@ export interface SchedulerOptions {
   requestRetention?: number
   /** Randomise intervals slightly so words learned together don't stay clustered. Off in tests. */
   fuzz?: boolean
+  /** Personal FSRS weights fitted from the learner's history (see optimizer.ts). */
+  weights?: readonly number[]
 }
 
 export interface Scheduler {
@@ -34,6 +36,7 @@ export function createScheduler(options: SchedulerOptions = {}): Scheduler {
     generatorParameters({
       request_retention: options.requestRetention ?? 0.9,
       enable_fuzz: options.fuzz ?? true,
+      ...(options.weights ? { w: [...options.weights] } : {}),
     }),
   )
   return {
