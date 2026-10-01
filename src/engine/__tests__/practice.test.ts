@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { recordMistake } from '../mistakes'
 import { buildMistakePlan, buildPracticePlan } from '../practice'
-import { localDate, progressStats } from '../progress'
+import { answeredToday, localDate, progressStats, studyStreak } from '../progress'
 import { newWordState, processAttempt } from '../review'
 import { createRng } from '../rng'
 import { createScheduler } from '../scheduler'
@@ -104,5 +104,24 @@ describe('progressStats', () => {
     expect(stats.activity.at(-1)).toEqual({ date: localDate(NOW), answers: 2, correct: 1 })
     expect(stats.daysPractised).toBe(2)
     expect(stats.activeVocabulary).toBe(0)
+  })
+})
+
+describe('studyStreak', () => {
+  const at = (daysAgo: number, mode: 'normal' | 'practice' = 'normal') => ({
+    timestamp: new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate() - daysAgo, 10),
+    mode,
+  })
+  it('counts consecutive days ending today', () => {
+    expect(studyStreak([at(0), at(1), at(2), at(4)], NOW)).toBe(3)
+  })
+  it('keeps yesterday’s streak alive before today’s session', () => {
+    expect(studyStreak([at(1), at(2)], NOW)).toBe(2)
+  })
+  it('ignores practice mode and resets after a gap', () => {
+    expect(studyStreak([at(0, 'practice'), at(2)], NOW)).toBe(0)
+  })
+  it('counts today’s real answers', () => {
+    expect(answeredToday([at(0), at(0), at(0, 'practice'), at(1)], NOW)).toBe(2)
   })
 })

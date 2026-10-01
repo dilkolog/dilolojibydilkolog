@@ -50,7 +50,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         <button className="link" onClick={() => setEditing(false)}>
           Kelimeye dön
         </button>
-        <h1 className="today-title">Düzenle: {displayForm(entry)}</h1>
+        <h1 className="greeting">Düzenle: {displayForm(entry)}</h1>
         <WordForm
           db={db}
           language={entry.language}
@@ -107,7 +107,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
       {sense.examples.length > 0 && (
         <section className="section stack">
-          <h2 className="today-title">Örnekler</h2>
+          <h2 className="section-title">Örnekler</h2>
           {sense.examples.map((ex) => (
             <div key={ex.text}>
               <p className="sentence">{ex.text}</p>
@@ -119,7 +119,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
       {(entry.collocations.length > 0 || entry.wordFamily.length > 0 || confusables.length > 0) && (
         <section className="section stack">
-          <h2 className="today-title">İlişkiler</h2>
+          <h2 className="section-title">İlişkiler</h2>
           {entry.collocations.length > 0 && (
             <div>
               <h3 className="field"><label>Kalıplar</label></h3>
@@ -168,7 +168,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       )}
 
       <section className="section stack">
-        <h2 className="today-title">Beceriler</h2>
+        <h2 className="section-title">Beceriler</h2>
         <div className="bars">
           {SKILLS.map((s) => (
             <div className="bar-row" key={s}>
@@ -190,7 +190,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
       {open.length > 0 && (
         <section className="section stack">
-          <h2 className="today-title">Açık hatalar</h2>
+          <h2 className="section-title">Açık hatalar</h2>
           <ul className="plain">
             {open.map((m) => (
               <li key={m.id}>

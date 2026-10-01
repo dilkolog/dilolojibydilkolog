@@ -29,6 +29,7 @@ import {
 import type { Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
+import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon } from './icons'
 import { canSpeak, speak } from './speech'
 
 interface Props {
@@ -117,17 +118,37 @@ export function SessionScreen(p: Props) {
     next(log, retry)
   }
 
+  // Consecutive correct answers at the end of the log: a small, visible reward for momentum.
+  let combo = 0
+  for (let i = session.log.length - 1; i >= 0 && session.log[i].verdict !== undefined; i--) {
+    if (session.log[i].verdict === 'wrong') break
+    combo++
+  }
+
   return (
     <div>
       <div className="session-top">
-        <div className="progress" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
-          <div style={{ width: `${progress}%` }} />
-        </div>
-        {p.mode === 'practice' && <span className="small muted">Serbest pratik</span>}
-        <button className="link" onClick={p.onQuit}>
-          Bitir
+        <button className="icon-btn" onClick={p.onQuit} aria-label="Oturumu bitir">
+          <CloseIcon size={22} />
         </button>
+        <div className="progress" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+          <div style={{ width: `${Math.max(progress, 3)}%` }} />
+        </div>
+        {combo >= 3 ? (
+          <span className="combo" key={combo}>
+            <FlameIcon size={18} /> {combo}
+          </span>
+        ) : (
+          <span className="progress-count">
+            {session.index}/{session.items.length}
+          </span>
+        )}
       </div>
+      {p.mode === 'practice' && (
+        <p style={{ marginTop: '-1.5rem', marginBottom: '1.5rem' }}>
+          <span className="badge">Serbest pratik</span>
+        </p>
+      )}
       {item.kind === 'introduce' ? (
         <Intro key={session.index} entry={entry} onContinue={introduce} />
       ) : (
@@ -159,10 +180,7 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
       onClick={() => speak(text, entry.language)}
       aria-label="Sesli dinle"
     >
-      <svg width={big ? 28 : 18} height={big ? 28 : 18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-        <path d="M11 5 6 9H2v6h4l5 4V5z" />
-        <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
-      </svg>
+      <SpeakerIcon size={big ? 36 : 22} />
     </button>
   )
 }
@@ -210,19 +228,23 @@ function Intro({ entry, onContinue }: { entry: VocabularyEntry; onContinue: () =
   const btn = useRef<HTMLButtonElement>(null)
   useEffect(() => btn.current?.focus(), [])
   return (
-    <div className="stack">
-      <p className="prompt-label">Yeni kelime{entry.partOfSpeech !== 'other' && ` (${POS_NAME[entry.partOfSpeech]})`}</p>
-      <div className="row">
-        <Word entry={entry} />
-        <SpeakButton text={displayForm(entry)} entry={entry} auto />
+    <div>
+      <p className="prompt-label">
+        <span className="badge">Yeni kelime</span>
+        {entry.partOfSpeech !== 'other' && <span className="small muted"> {POS_NAME[entry.partOfSpeech]}</span>}
+      </p>
+      <div className="intro-card stack">
+        <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+          <Word entry={entry} />
+          <SpeakButton text={displayForm(entry)} entry={entry} auto />
+        </div>
+        <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        {example && <Sentence text={example.text} translation={example.translation} />}
       </div>
-      <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
-      {example && <Sentence text={example.text} translation={example.translation} />}
       <div className="session-actions">
-        <button ref={btn} className="btn" onClick={onContinue}>
-          Devam
+        <button ref={btn} className="btn btn-lg btn-block" onClick={onContinue}>
+          Öğrendim, devam
         </button>
-        <span className="kbd">Enter</span>
       </div>
     </div>
   )
@@ -274,17 +296,15 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onContinue }: Run
         <TypedAnswer
           exercise={exercise}
           answered={!!result}
+          verdict={result?.ev.verdict}
           onSubmit={(text, hints) => submit(evaluateTyped(exercise, text, entry, catalog), hints, exercise.hints.length)}
         />
       )}
-      {result && <Feedback ev={result.ev} entry={entry} />}
       {result && (
-        <div className="session-actions">
-          <button ref={continueBtn} className="btn" onClick={() => onContinue(result.log)}>
-            Devam
-          </button>
-          <span className="kbd">Enter</span>
-        </div>
+        <>
+          <div className="sheet-spacer" />
+          <Feedback ev={result.ev} entry={entry} continueRef={continueBtn} onContinue={() => onContinue(result.log)} />
+        </>
       )}
     </div>
   )
@@ -346,7 +366,7 @@ function Choices({
             ? 'is-correct'
             : o.id === chosen
               ? 'is-wrong'
-              : ''
+              : 'is-dim'
           : ''
         return (
           <button key={o.id} className={`option ${state}`} disabled={answered} onClick={() => onChoose(o.id)}>
@@ -366,10 +386,12 @@ function Choices({
 function TypedAnswer({
   exercise,
   answered,
+  verdict,
   onSubmit,
 }: {
   exercise: TypedExercise
   answered: boolean
+  verdict?: Evaluation['verdict']
   onSubmit: (text: string, hintsUsed: number) => void
 }) {
   const [text, setText] = useState('')
@@ -399,11 +421,12 @@ function TypedAnswer({
       </label>
       <input
         id="answer"
-        className="answer-input"
+        className={`answer-input${verdict ? ` is-${verdict}` : ''}`}
         value={text}
         onChange={(e) => setText(e.target.value)}
         disabled={answered}
         autoFocus
+        placeholder="Cevabını yaz"
         autoComplete="off"
         autoCapitalize="off"
         spellCheck={false}
@@ -434,20 +457,42 @@ function TypedAnswer({
   )
 }
 
-function Feedback({ ev, entry }: { ev: Evaluation; entry: VocabularyEntry }) {
+const PRAISE = ['Harika!', 'Doğru!', 'Süper!', 'Aynen böyle!', 'Mükemmel!', 'Çok iyi!']
+
+function Feedback({
+  ev,
+  entry,
+  continueRef,
+  onContinue,
+}: {
+  ev: Evaluation
+  entry: VocabularyEntry
+  continueRef: React.RefObject<HTMLButtonElement | null>
+  onContinue: () => void
+}) {
+  const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
-  const title = ev.verdict === 'correct' ? 'Doğru' : ev.verdict === 'near' ? 'Neredeyse' : 'Doğrusu'
+  const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
   const hint = ev.errorType && ev.verdict !== 'correct' ? ERROR_HINT[ev.errorType] : ''
-  const example = entry.senses[0].examples[0]
+  const btnClass = ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
   return (
-    <div className={`feedback ${cls}`} role="status">
-      <p className="feedback-title">{title}</p>
-      {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
-      {hint && <p className="small">{hint}</p>}
-      <p className="small muted" style={{ marginTop: '0.5rem' }}>
-        {displayForm(entry)}: {entry.senses[0].gloss}
-        {example && ev.verdict !== 'correct' ? `. ${example.text}` : ''}
-      </p>
+    <div className={`sheet ${cls}`} role="status">
+      <div className="sheet-inner">
+        <div className="sheet-text">
+          <p className="sheet-title">
+            {ev.verdict === 'correct' ? <CheckIcon size={24} /> : <AlertIcon size={24} />}
+            {title}
+          </p>
+          {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
+          {hint && <p className="small">{hint}</p>}
+          <p className="small muted">
+            {displayForm(entry)}: {entry.senses[0].gloss}
+          </p>
+        </div>
+        <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue}>
+          Devam
+        </button>
+      </div>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { buildDailyPlan, type PlanItem } from './engine/dailyPlan'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
+import { answeredToday, progressStats, studyStreak } from './engine/progress'
 import { buildMistakePlan, buildPracticePlan } from './engine/practice'
 import { nextReviewAt } from './engine/review'
 import { createRng } from './engine/rng'
@@ -10,6 +11,7 @@ import type { SessionSummary } from './engine/session'
 import {
   TARGET_LANGUAGES,
   type Mistake,
+  type ReviewEvent,
   type ReviewMode,
   type TargetLanguage,
   type UserWordState,
@@ -49,7 +51,11 @@ interface LanguageData {
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
   mistakes: Mistake[]
+  /** Last ~2 months of answers, for the streak and today's progress. */
+  recentEvents: ReviewEvent[]
 }
+
+const STREAK_WINDOW_DAYS = 60
 
 /** One plan per calendar day: reopening the app the same day gives the same order. */
 const daySeed = (d: Date) => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()
@@ -67,8 +73,9 @@ export default function App() {
 
   const reload = useCallback(async () => {
     if (!language) return
-    const loaded = await db.loadLanguage(language)
-    setData({ language, ...loaded })
+    const since = new Date(Date.now() - STREAK_WINDOW_DAYS * 86_400_000)
+    const [loaded, recentEvents] = await Promise.all([db.loadLanguage(language), db.eventsSince(since, language)])
+    setData({ language, ...loaded, recentEvents })
   }, [language])
 
   useEffect(() => {
@@ -105,6 +112,7 @@ export default function App() {
   }, [settings, data])
 
   const byId = useMemo(() => new Map((data?.vocabulary ?? []).map((v) => [v.id, v])), [data])
+  const streak = data ? studyStreak(data.recentEvents, new Date()) : 0
 
   const finishSession = useCallback(
     (summary: SessionSummary) => {
@@ -140,6 +148,9 @@ export default function App() {
       {!inSession && (
         <header className="topbar">
           <button className="brand" onClick={go({ name: 'home' })}>
+            <span className="brand-mark" aria-hidden>
+              k
+            </span>
             Kelime Koçu
           </button>
           <div className="langs" role="group" aria-label="Dil">
@@ -159,7 +170,7 @@ export default function App() {
             {NAV.map((n) => (
               <button
                 key={n.screen}
-                className="link"
+                className="nav-btn"
                 aria-current={screen.name === n.screen || (n.screen === 'words' && screen.name === 'word') ? 'page' : undefined}
                 onClick={go({ name: n.screen })}
               >
@@ -188,7 +199,7 @@ export default function App() {
             }}
           />
         ) : screen.name === 'summary' ? (
-          <Summary summary={screen.summary} byId={byId} practice={screen.mode === 'practice'} onDone={go({ name: 'home' })} />
+          <Summary summary={screen.summary} byId={byId} practice={screen.mode === 'practice'} streak={streak} onDone={go({ name: 'home' })} />
         ) : screen.name === 'words' ? (
           <WordsScreen
             db={db}
@@ -245,6 +256,9 @@ export default function App() {
             profile={skillProfile(data.states, scheduler, new Date())}
             vocabularyCount={data.vocabulary.length}
             learningCount={data.states.length}
+            activeVocabulary={progressStats({ vocabularyCount: data.vocabulary.length, states: data.states, events: [], scheduler, now: new Date() }).activeVocabulary}
+            streak={streak}
+            answeredToday={answeredToday(data.recentEvents, new Date())}
             nextReview={earliest(data.states)}
             openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
             canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}

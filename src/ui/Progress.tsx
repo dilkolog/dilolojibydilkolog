@@ -38,8 +38,8 @@ export function ProgressScreen({
   return (
     <div>
       <section className="section stack">
-        <h1 className="today-title">İlerleme</h1>
-        <div className="hero-stat">
+        <h1 className="greeting">İlerleme</h1>
+        <div className="hero-stat card">
           <span className="hero-number">{stats.activeVocabulary}</span>
           <span>
             <strong>aktif kelime</strong>
@@ -52,7 +52,7 @@ export function ProgressScreen({
       </section>
 
       <section className="section stack">
-        <h2 className="today-title">Kelimeler nerede?</h2>
+        <h2 className="section-title">Kelimeler nerede?</h2>
         <div className="bars">
           {[...MASTERY_STAGES].reverse().map((stage) => (
             <StageBar key={stage} label={STAGE_NAME[stage]} value={stats.stageCounts[stage]} max={maxStage} />
@@ -62,7 +62,7 @@ export function ProgressScreen({
       </section>
 
       <section className="section stack">
-        <h2 className="today-title">Son {DAYS} gün</h2>
+        <h2 className="section-title">Son {DAYS} gün</h2>
         <p className="small muted">
           {stats.daysPractised > 0
             ? `${DAYS} günün ${stats.daysPractised} gününde çalıştın. Serbest pratik sayılmaz.`
@@ -72,7 +72,7 @@ export function ProgressScreen({
       </section>
 
       <section className="section stack">
-        <h2 className="today-title">Beceriler</h2>
+        <h2 className="section-title">Beceriler</h2>
         <div className="bars">
           {SKILLS.map((s) => (
             <div className="bar-row" key={s}>

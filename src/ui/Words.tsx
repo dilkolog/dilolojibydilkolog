@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { displayForm } from '../engine/exercises'
-import { masteryStage } from '../engine/mastery'
+import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -45,8 +45,8 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpe
   return (
     <div>
       <section className="section stack">
-        <h2 className="today-title">{LANGUAGE_NAME[language]} kelimelerin</h2>
-        <details open>
+        <h1 className="greeting">{LANGUAGE_NAME[language]} kelimelerin</h1>
+        <details open className="card">
           <summary>Kelime ekle</summary>
           <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
         </details>
@@ -66,7 +66,7 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpe
 
       <section className="section stack">
         <div className="row">
-          <h2 className="today-title" style={{ marginRight: 'auto' }}>
+          <h2 className="section-title" style={{ marginRight: 'auto' }}>
             Liste <span className="muted small">({vocabulary.length})</span>
           </h2>
           <input
@@ -89,12 +89,14 @@ export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpe
                   <button className="w word-link" onClick={() => onOpen(v.id)}>
                     {displayForm(v)}
                   </button>
-                  <span />
+                  {st ? (
+                    <span className={`pill stage-${MASTERY_STAGES.indexOf(masteryStage(st))}`}>{STAGE_NAME[masteryStage(st)]}</span>
+                  ) : (
+                    <span className="pill">Sırada</span>
+                  )}
                   <span className="meta">
                     {v.senses[0].gloss}
                     {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
-                    {'. '}
-                    {st ? STAGE_NAME[masteryStage(st)] : 'Henüz çalışılmadı'}
                     {v.source === 'sample' && ' (örnek)'}
                     {v.senses[0].examples.length === 0 && '. Örnek cümle yok'}
                   </span>
@@ -316,7 +318,7 @@ function ImportPanel({
   }
 
   return (
-    <details>
+    <details className="card">
       <summary>Toplu ekle</summary>
       <div className="stack">
         <p className="small muted">

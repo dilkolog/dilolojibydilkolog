@@ -33,7 +33,7 @@ export function MistakesScreen({
   return (
     <div>
       <section className="section stack">
-        <h1 className="today-title">Hatalar</h1>
+        <h1 className="greeting">Hatalar</h1>
         {open.length === 0 ? (
           <p className="muted">
             Açık hata yok. Yaptığın hatalar burada toplanır ve tekrarlarına özel olarak eklenir. Bir kelimeyi üst üste 3 kez
@@ -55,7 +55,7 @@ export function MistakesScreen({
 
       {groups.map((g) => (
         <section className="section stack" key={g.type}>
-          <h2 className="today-title">
+          <h2 className="section-title">
             {ERROR_NAME[g.type]} <span className="muted small">({g.items.length})</span>
           </h2>
           <MistakeList items={g.items} byId={byId} onOpen={onOpen} />

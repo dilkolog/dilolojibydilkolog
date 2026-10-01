@@ -76,3 +76,25 @@ export function progressStats(input: {
     daysPractised: activity.filter((a) => a.answers > 0).length,
   }
 }
+
+/**
+ * Consecutive days with at least one real (non-practice) answer, ending today — or yesterday,
+ * so the streak isn't shown as lost before today's session has happened.
+ */
+export function studyStreak(events: readonly Pick<ReviewEvent, 'timestamp' | 'mode'>[], now: Date): number {
+  const days = new Set(events.filter((e) => e.mode === 'normal').map((e) => localDate(e.timestamp)))
+  const day = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  if (!days.has(localDate(day))) day.setDate(day.getDate() - 1)
+  let streak = 0
+  while (days.has(localDate(day))) {
+    streak++
+    day.setDate(day.getDate() - 1)
+  }
+  return streak
+}
+
+/** Real answers given today. */
+export function answeredToday(events: readonly Pick<ReviewEvent, 'timestamp' | 'mode'>[], now: Date): number {
+  const today = localDate(now)
+  return events.filter((e) => e.mode === 'normal' && localDate(e.timestamp) === today).length
+}
