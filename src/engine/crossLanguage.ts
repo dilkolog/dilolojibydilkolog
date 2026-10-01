@@ -163,3 +163,44 @@ export function crossLanguageLinks(entry: VocabularyEntry, others: readonly Voca
     .map((o) => ({ entry: o, cognate: looksAlike(entry, o) }))
     .sort((a, b) => Number(b.cognate) - Number(a.cognate) || a.entry.language.localeCompare(b.entry.language))
 }
+
+export interface Concept {
+  /** The Turkish meaning the words share. */
+  gloss: string
+  words: Partial<Record<TargetLanguage, VocabularyEntry[]>>
+  languages: number
+  /** Some of the words are cognates. */
+  cognate: boolean
+}
+
+/**
+ * Concepts across the three languages: words joined by a shared Turkish meaning (directly or
+ * through each other). Only concepts present in at least two languages are returned.
+ */
+export function conceptGroups(all: readonly VocabularyEntry[]): Concept[] {
+  const parent = all.map((_, i) => i)
+  const find = (i: number): number => (parent[i] === i ? i : (parent[i] = find(parent[i])))
+  const firstWithGloss = new Map<string, number>()
+  all.forEach((e, i) => {
+    for (const g of glossesOf(e)) {
+      const j = firstWithGloss.get(g)
+      if (j === undefined) firstWithGloss.set(g, i)
+      else parent[find(i)] = find(j)
+    }
+  })
+  const groups = new Map<number, VocabularyEntry[]>()
+  all.forEach((e, i) => groups.set(find(i), [...(groups.get(find(i)) ?? []), e]))
+  const out: Concept[] = []
+  for (const members of groups.values()) {
+    const languages = new Set(members.map((m) => m.language))
+    if (languages.size < 2) continue
+    const counts = new Map<string, number>()
+    for (const m of members) for (const g of glossesOf(m)) counts.set(g, (counts.get(g) ?? 0) + 1)
+    const gloss = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'))[0][0]
+    const words: Concept['words'] = {}
+    for (const m of members) words[m.language] = [...(words[m.language] ?? []), m]
+    const cognate = members.some((a) => members.some((b) => a.language !== b.language && looksAlike(a, b)))
+    out.push({ gloss, words, languages: languages.size, cognate })
+  }
+  return out.sort((a, b) => b.languages - a.languages || a.gloss.localeCompare(b.gloss, 'tr'))
+}

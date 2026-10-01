@@ -1,4 +1,5 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
+import { acceptedForms, conjugate, PERSONS, PRONOUNS } from './conjugation'
 import { trapGlosses } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import type {
@@ -94,6 +95,13 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     input: 'choice',
     expectedMs: 3000,
     applicable: (e) => definiteArticle(e) !== undefined,
+  },
+  conjugation: {
+    skill: 'production',
+    direction: 'native_to_target',
+    input: 'typed',
+    expectedMs: 6000,
+    applicable: (e) => conjugate(e) !== undefined,
   },
   free_sentence: {
     skill: 'production',
@@ -455,6 +463,21 @@ export function buildExercise(
       }
     }
 
+    case 'conjugation': {
+      const conj = conjugate(entry)!
+      const lang = entry.language as 'fr' | 'es'
+      const person = pick(PERSONS, rng)
+      const form = conj.forms[person]
+      return {
+        ...base,
+        kind: 'typed',
+        prompt: `${PRONOUNS[lang][person].slice(0, 2).join(' / ')} · ${conj.infinitive}`,
+        context: `${sense.gloss}, ${lang === 'fr' ? 'présent' : 'presente'}`,
+        accepted: acceptedForms(lang, person, form),
+        hints: buildHints(form, `${conj.infinitive}: ${conj.forms.slice(0, 3).join(', ')}…`),
+      }
+    }
+
     case 'word_form': {
       const member = pick(entry.wordFamily, rng)
       return {
@@ -526,6 +549,12 @@ export function evaluateTyped(
   if (ex.type === 'dictation') {
     const s = checkSentence(text, ex.accepted[0], entry.language)
     return { verdict: s.verdict, errorType: s.errorType, given: normalize(text), expected: ex.accepted[0] }
+  }
+  if (ex.type === 'conjugation') {
+    // Another person's form of the same verb: the verb was right, the ending wasn't.
+    const forms = conjugate(entry)?.forms ?? []
+    const r = checkTyped(text, ex.accepted, { language: entry.language, gender: entry.gender, confusables: [], familyForms: forms.filter((f) => !ex.accepted.includes(f)) })
+    return { ...r, given: normalize(text), expected: ex.accepted[0] }
   }
   const r = checkTyped(text, ex.accepted, {
     language: entry.language,

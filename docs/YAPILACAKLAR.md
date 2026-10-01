@@ -60,7 +60,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 5. Diller arası (EN/FR/ES'e özel — en büyük fırsat)
 
-- [ ] ⭐⭐⭐ **Kavram kartı: üç dil yan yana** (M)
+- [x] ⭐⭐⭐ **Kavram kartı: üç dil yan yana** (M)
   "advice / conseil / consejo" bağlantısı. Bir dildeki bilgi diğerine köprü olur (soydaş
   kolaylaştırması). Kelime ağına diller arası kenar.
 - [x] ⭐⭐⭐ **Soydaş ve sahte dost tespiti** (M)
@@ -69,7 +69,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] ⭐⭐⭐ **FR/ES cinsiyet (artikel) alıştırması** (S)
   Artikel şu an sadece gösteriliyor. "le/la", "el/la" seçme sorusu + renk kodu
   (cinsiyet hataları ileri düzeyde bile kalıcı). Ayrı bir beceri kartı olabilir.
-- [ ] ⭐⭐ **Fiil çekim mini-alıştırması** (M) — sık fiiller için zaman/şahıs çekimi.
+- [x] ⭐⭐ **Fiil çekim mini-alıştırması** (M) — sık fiiller için zaman/şahıs çekimi.
 
 ## 6. Dinleme ve telaffuz
 

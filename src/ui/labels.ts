@@ -84,4 +84,5 @@ export const PROMPT_TEXT: Record<string, string> = {
   dictation: 'Duyduğun cümleyi yaz',
   speak_word: 'Söyle: hedef dildeki karşılığı',
   article_choice: 'Artikeli hangisi?',
+  conjugation: 'Fiili çek',
 }

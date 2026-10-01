@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { conjugate, PRONOUNS } from '../engine/conjugation'
 import { definiteArticle, displayForm } from '../engine/exercises'
 import { masteryStage, skillScores } from '../engine/mastery'
 import { openMistakes } from '../engine/mistakes'
@@ -45,6 +46,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       setEncounters(contextEncounters(events, reading[entry.id] ?? 0)),
     )
   }, [db, entry.id, state])
+  const conjugation = conjugate(entry)
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
 
   const remove = async () => {
@@ -143,6 +145,25 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       )}
 
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
+
+      {conjugation && (
+        <section className="section stack">
+          <h2 className="section-title">Şimdiki zaman çekimi</h2>
+          <table className="conj-table" lang={entry.language}>
+            <tbody>
+              {conjugation.forms.map((f, i) => (
+                <tr key={i}>
+                  <th scope="row">{PRONOUNS[entry.language as 'fr' | 'es'][i].slice(0, 2).join(' / ')}</th>
+                  <td>{f}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="small muted">
+            {conjugation.source === 'rule' ? 'Düzenli fiil kuralıyla üretildi. ' : ''}"Üretme" becerisi açılınca çekim soruları da gelir.
+          </p>
+        </section>
+      )}
 
       {(entry.collocations.length > 0 || entry.wordFamily.length > 0 || confusables.length > 0) && (
         <section className="section stack">

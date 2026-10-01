@@ -652,6 +652,15 @@ function Prompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntr
       )
     case 'speak_word':
       return <p className="prompt-text">{exercise.prompt}</p>
+    case 'conjugation':
+      return (
+        <div className="stack" style={{ gap: '0.375rem' }}>
+          <p className="prompt-text" lang={entry.language}>
+            {exercise.prompt}
+          </p>
+          <p className="muted">{exercise.context}</p>
+        </div>
+      )
     case 'article_choice':
       return (
         <div className="stack" style={{ gap: '0.5rem' }}>

@@ -1264,3 +1264,16 @@ kbd {
 .word-pop { position: sticky; bottom: 1rem; z-index: 5; box-shadow: var(--shadow-lg, var(--shadow)); }
 .word-pop-word { font-family: var(--serif); font-size: var(--t-xl); color: var(--lang-text); font-weight: 400; }
 .reader mark, .sentence-sm mark { background: var(--lang-soft); color: var(--lang-text); border-radius: 0.25rem; padding: 0 2px; }
+
+/* Concepts: one row per meaning, one column per language; the current language is emphasised. */
+.concepts { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.concept-row { display: grid; grid-template-columns: minmax(8rem, 1.2fr) repeat(3, minmax(0, 1fr)); gap: 0.75rem; padding: 0.625rem 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.concept-head { font-size: var(--t-sm); font-weight: 700; color: var(--ink-soft); }
+.concept-row .is-current { color: var(--lang-text); }
+.concept-gloss { font-weight: 600; }
+.concept-word { font-family: var(--serif); font-size: var(--t-lg); }
+@media (max-width: 640px) { .concept-row { grid-template-columns: 1fr 1fr; } .concept-head { display: none; } }
+
+.conj-table { border-collapse: collapse; font-family: var(--serif); font-size: var(--t-lg); }
+.conj-table th { text-align: left; font-family: var(--sans, inherit); font-weight: 500; font-size: var(--t-sm); color: var(--ink-soft); padding: 0.25rem 1.5rem 0.25rem 0; }
+.conj-table td { padding: 0.25rem 0; color: var(--lang-text); }

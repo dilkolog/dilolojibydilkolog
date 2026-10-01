@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { crossLanguageLinks, falseFriendsOf, type CrossLink } from '../engine/crossLanguage'
+import { conceptGroups, crossLanguageLinks, falseFriendsOf, type Concept, type CrossLink } from '../engine/crossLanguage'
 import { displayForm } from '../engine/exercises'
 import { TARGET_LANGUAGES, type VocabularyEntry } from '../engine/types'
 import { db } from '../data/instance'
@@ -55,5 +55,63 @@ export function CrossLanguageNotes({ entry, compact = false }: { entry: Vocabula
         <p className="small muted">Soydaş: aynı anlamda ve neredeyse aynı yazılan kelime; biri ötekini hatırlatır.</p>
       )}
     </div>
+  )
+}
+
+/** The same concept in English, French and Spanish, side by side. */
+export function ConceptsView({ language, onOpen }: { language: VocabularyEntry['language']; onOpen: (entryId: string) => void }) {
+  const [concepts, setConcepts] = useState<Concept[] | null>(null)
+  useEffect(() => {
+    db.vocabulary.toArray().then((all) => setConcepts(conceptGroups(all)))
+  }, [language])
+  if (!concepts) return null
+  if (!concepts.length) {
+    return (
+      <p className="muted" style={{ marginTop: '1rem' }}>
+        Aynı Türkçe anlamı taşıyan kelimeleri farklı dillerde eklediğinde burada yan yana görünürler. Bir dildeki kelime ötekini hatırlatır; özellikle soydaşlar.
+      </p>
+    )
+  }
+  return (
+    <section className="stack" style={{ marginTop: '1rem' }}>
+      <p className="small muted">
+        {concepts.length} kavram en az iki dilde listende. Bir dilde bildiğin kelime, diğer dildekine köprü olur. Burada sadece {LANGUAGE_SHORT[language]} kelimeleri açılabilir.
+      </p>
+      <div className="concepts" role="table" aria-label="Kavramlar">
+        <div className="concept-row concept-head" role="row">
+          <span role="columnheader">Anlam</span>
+          {TARGET_LANGUAGES.map((l) => (
+            <span role="columnheader" key={l} className={l === language ? 'is-current' : ''}>
+              {LANGUAGE_SHORT[l]}
+            </span>
+          ))}
+        </div>
+        {concepts.map((c) => (
+          <div className="concept-row" role="row" key={c.gloss + Object.values(c.words).flat()[0]?.id}>
+            <span role="cell" className="concept-gloss">
+              {c.gloss}
+              {c.cognate && <span className="cognate-tag">soydaş</span>}
+            </span>
+            {TARGET_LANGUAGES.map((l) => (
+              <span role="cell" key={l} lang={l} className={l === language ? 'is-current' : ''}>
+                {(c.words[l] ?? []).map((w, i) => (
+                  <span key={w.id}>
+                    {i > 0 && ', '}
+                    {l === language ? (
+                      <button className="word-link concept-word" onClick={() => onOpen(w.id)}>
+                        {displayForm(w)}
+                      </button>
+                    ) : (
+                      <span className="concept-word">{displayForm(w)}</span>
+                    )}
+                  </span>
+                ))}
+                {!c.words[l] && <span className="muted">·</span>}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }

@@ -135,6 +135,7 @@ export type ExerciseType =
   | 'dictation' // hear an example sentence → type the whole sentence
   | 'speak_word' // see the Turkish meaning → say the word aloud (speech recognition)
   | 'article_choice' // FR/ES noun without its article → choose le/la, el/la
+  | 'conjugation' // FR/ES verb + subject → type the present-tense form
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {

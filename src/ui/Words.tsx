@@ -11,6 +11,7 @@ import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
+import { ConceptsView } from './CrossLanguage'
 import { ConfirmDialog } from './Dialog'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
@@ -38,7 +39,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
-  const [view, setView] = useState<'list' | 'graph'>('list')
+  const [view, setView] = useState<'list' | 'graph' | 'concepts'>('list')
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
 
 
@@ -114,6 +115,9 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <button role="tab" className="segmented-btn" aria-selected={view === 'graph'} onClick={() => setView('graph')}>
             Kelime ağı
           </button>
+          <button role="tab" className="segmented-btn" aria-selected={view === 'concepts'} onClick={() => setView('concepts')}>
+            Kavramlar
+          </button>
         </div>
       </section>
       {view === 'list' ? (
@@ -128,6 +132,8 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
             onChanged()
           }}
         />
+      ) : view === 'concepts' ? (
+        <ConceptsView language={language} onOpen={onOpen} />
       ) : (
         <section className="stack" style={{ marginTop: '1rem' }}>
           <WordGraph vocabulary={vocabulary} states={states} onOpen={onOpen} />

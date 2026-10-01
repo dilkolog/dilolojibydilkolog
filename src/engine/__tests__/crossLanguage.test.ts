@@ -45,3 +45,24 @@ describe('crossLanguageLinks', () => {
     ])
   })
 })
+
+describe('conceptGroups', () => {
+  it('joins words across languages through shared meanings and skips single-language groups', async () => {
+    const { conceptGroups } = await import('../crossLanguage')
+    const all = [
+      word('en', 'advice', 'tavsiye, öğüt'),
+      word('fr', 'le conseil', 'öğüt, konsey'),
+      word('es', 'el consejo', 'tavsiye'),
+      word('en', 'decision', 'karar'),
+      word('fr', 'la décision', 'karar'),
+      word('en', 'house', 'ev'),
+      word('en', 'home', 'ev'),
+    ]
+    const groups = conceptGroups(all)
+    expect(groups.map((g) => [g.languages, Object.values(g.words).flat().map((w) => w.lemma).sort()])).toEqual([
+      [3, ['advice', 'conseil', 'consejo']],
+      [2, ['decision', 'décision']],
+    ])
+    expect(groups[1]).toMatchObject({ gloss: 'karar', cognate: true })
+  })
+})
