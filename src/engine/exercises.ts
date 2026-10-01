@@ -1,4 +1,4 @@
-import { checkTyped, normalize } from './answerCheck'
+import { checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
 import { pick, shuffle, type Rng } from './rng'
 import type {
   Direction,
@@ -53,6 +53,13 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     input: 'choice',
     expectedMs: 8000,
     applicable: (e) => e.collocations.some((c) => (c.wrongVariants?.length ?? 0) > 0),
+  },
+  picture_choice: {
+    skill: 'recognition',
+    direction: 'image_to_target',
+    input: 'choice',
+    expectedMs: 5000,
+    applicable: (e) => !!e.imageId,
   },
   free_sentence: {
     skill: 'production',
@@ -109,6 +116,8 @@ interface ExerciseBase {
   contextTranslation?: string
   /** Text the client should speak with TTS (listening exercises). */
   audioText?: string
+  /** Media id of a picture to show (picture exercises). */
+  imageId?: string
 }
 
 export interface ChoiceExercise extends ExerciseBase {
@@ -152,10 +161,17 @@ export function buildHints(answer: string, extra?: string): string[] {
   return hints
 }
 
+/** 0 = identical spelling, 1 = nothing in common. */
+function spellingDistance(a: string, b: string): number {
+  const x = stripDiacritics(normalize(a))
+  const y = stripDiacritics(normalize(b))
+  return levenshtein(x, y) / Math.max(x.length, y.length, 1)
+}
+
 /**
- * Distractors come from the same language and part of speech with similar frequency, so the
- * correct option can't be spotted by being the only noun or the only rare word. Related words
- * (synonyms) are excluded because they could also be "correct".
+ * Distractors are chosen to be confusing, not random: words the learner is known to mix up
+ * first, then look-alikes (affect/effect, désert/dessert), then the same part of speech, so the
+ * answer can't be spotted by being the only verb. Synonyms are excluded — they'd also be right.
  */
 export function pickDistractors(
   entry: VocabularyEntry,
@@ -163,17 +179,25 @@ export function pickDistractors(
   count: number,
   rng: Rng,
 ): VocabularyEntry[] {
-  const related = new Set(entry.relations.filter((r) => r.type === 'synonym').map((r) => r.targetId))
+  const synonyms = new Set(entry.relations.filter((r) => r.type === 'synonym').map((r) => r.targetId))
+  const confusable = new Set(entry.relations.filter((r) => r.type === 'confusable').map((r) => r.targetId))
+  for (const c of catalog) {
+    if (c.relations.some((r) => r.type === 'confusable' && r.targetId === entry.id)) confusable.add(c.id)
+  }
   const gloss = normalize(entry.senses[0].gloss)
   const pool = catalog.filter(
     (c) =>
       c.id !== entry.id &&
       c.language === entry.language &&
-      !related.has(c.id) &&
+      !synonyms.has(c.id) &&
       normalize(c.senses[0].gloss) !== gloss,
   )
+  const noise = new Map(pool.map((c) => [c.id, rng() * 15]))
   const score = (c: VocabularyEntry) =>
-    (c.partOfSpeech === entry.partOfSpeech ? 0 : 1000) + Math.abs(c.frequencyRank - entry.frequencyRank)
+    (confusable.has(c.id) ? 0 : 100) +
+    (c.partOfSpeech === entry.partOfSpeech ? 0 : 40) +
+    60 * spellingDistance(c.lemma, entry.lemma) +
+    noise.get(c.id)!
   // Shuffle first so ties don't always produce the same distractors.
   const ranked = shuffle(pool, rng).sort((a, b) => score(a) - score(b))
   // Two distractors that are near-twins (an/année) let the learner eliminate both at once.
@@ -182,7 +206,7 @@ export function pickDistractors(
   const picked: VocabularyEntry[] = []
   for (const c of ranked) {
     if (picked.length >= count) break
-    if (!picked.some((p) => linked(p, c))) picked.push(c)
+    if (!picked.some((p) => linked(p, c) || normalize(p.senses[0].gloss) === normalize(c.senses[0].gloss))) picked.push(c)
   }
   return picked
 }
@@ -206,6 +230,28 @@ function choice(
 
 const OPTION_COUNT = 4
 
+/**
+ * Last-resort Turkish meanings, used only when the vocabulary is too small to fill four options.
+ * Grouped by part of speech so a filler is never an obvious odd one out.
+ */
+const FILLER_GLOSSES: Record<'noun' | 'verb' | 'adjective' | 'other', string[]> = {
+  noun: ['kapı', 'deniz', 'anahtar', 'yolculuk', 'fikir', 'korku', 'sabah', 'pazar', 'gölge', 'kalabalık', 'sınav', 'hediye'],
+  verb: ['beklemek', 'unutmak', 'taşımak', 'kaçınmak', 'denemek', 'sakınmak', 'kandırmak', 'ertelemek', 'yakalamak', 'paylaşmak'],
+  adjective: ['yorgun', 'cesur', 'sessiz', 'tuhaf', 'kıskanç', 'hafif', 'karanlık', 'nazik', 'kararsız', 'dikkatli'],
+  other: ['belki', 'hemen', 'aslında', 'zaten', 'yine de', 'neredeyse', 'birlikte', 'sonunda', 'hâlâ', 'özellikle'],
+}
+
+function meaningOptions(entry: VocabularyEntry, catalog: readonly VocabularyEntry[], rng: Rng): string[] {
+  const glosses = pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map((d) => d.senses[0].gloss)
+  const pos = entry.partOfSpeech === 'noun' || entry.partOfSpeech === 'verb' || entry.partOfSpeech === 'adjective' ? entry.partOfSpeech : 'other'
+  const own = new Set([entry.senses[0].gloss, ...glosses].map(normalize))
+  for (const f of shuffle(FILLER_GLOSSES[pos], rng)) {
+    if (glosses.length >= OPTION_COUNT - 1) break
+    if (!own.has(normalize(f))) glosses.push(f)
+  }
+  return glosses
+}
+
 export function buildExercise(
   type: ExerciseType,
   entry: VocabularyEntry,
@@ -222,18 +268,13 @@ export function buildExercise(
 
   switch (type) {
     case 'mc_meaning':
-      return choice(
-        { ...base, prompt: answer },
-        sense.gloss,
-        distractors().map((d) => d.senses[0].gloss),
-        rng,
-      )
+      return choice({ ...base, prompt: answer }, sense.gloss, meaningOptions(entry, catalog, rng), rng)
 
     case 'listen_choose':
       return choice(
         { ...base, prompt: 'Duyduğun kelimenin anlamı ne?', audioText: answer },
         sense.gloss,
-        distractors().map((d) => d.senses[0].gloss),
+        meaningOptions(entry, catalog, rng),
         rng,
       )
 
@@ -253,10 +294,12 @@ export function buildExercise(
         .filter((r) => r.type === 'confusable')
         .map((r) => catalog.find((c) => c.id === r.targetId)?.lemma)
         .filter((l): l is string => !!l)
+      // Pad with look-alikes so it's never a coin toss between two options.
+      const lookAlikes = pickDistractors(entry, catalog, 2, rng).map((d) => d.senses[0].examples[0]?.form ?? d.lemma)
       return choice(
         { ...base, prompt: 'Hangisi doğru?', context: blankOut(ex), contextTranslation: ex.translation },
         ex.form,
-        confusables,
+        [...confusables, ...lookAlikes].slice(0, OPTION_COUNT - 1),
         rng,
       )
     }
@@ -301,6 +344,12 @@ export function buildExercise(
         accepted: [ex.form],
         hints: buildHints(ex.form, `${entry.lemma} — ${sense.gloss}`),
       }
+    }
+
+    case 'picture_choice': {
+      // Options are words in the target language; distractors' pictures are irrelevant here.
+      const options = pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map(displayForm)
+      return choice({ ...base, prompt: 'Bu resim hangi kelime?', imageId: entry.imageId }, answer, options, rng)
     }
 
     case 'free_sentence': {

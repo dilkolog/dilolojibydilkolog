@@ -4,8 +4,6 @@ import { createRng, shuffle, type Rng } from './rng'
 import type { Scheduler } from './scheduler'
 import { dueSkills, ERROR_SKILL, pickExerciseType, startOfDay, unlockedSkills } from './selection'
 import {
-  CEFR_LEVELS,
-  type CefrLevel,
   type EngineOptions,
   type ExerciseType,
   type Mistake,
@@ -27,7 +25,6 @@ export interface PlanItem {
 
 export interface PlanSettings {
   language: TargetLanguage
-  level: CefrLevel
   dailyMinutes: number
   newWordsPerDay: number
 }
@@ -44,12 +41,19 @@ export interface PlanInput {
   options?: EngineOptions
 }
 
+/** Why the plan has no (more) new words, so the UI can say it instead of looking stuck. */
+export type NewWordsBlock = 'limit' | 'backlog' | 'budget' | 'none_left'
+
 export interface DailyPlan {
   items: PlanItem[]
   newEntryIds: string[]
   counts: Record<PlanReason, number>
   bySkill: Partial<Record<Skill, number>>
   estimatedMinutes: number
+  /** Words in the vocabulary not yet introduced. */
+  waitingNew: number
+  /** Set when more words are waiting but none (more) were added today. */
+  newBlockedBy?: NewWordsBlock
 }
 
 /** Below this recall probability a due word is treated as forgotten and goes first. */
@@ -127,30 +131,34 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   return [...scored.map((x) => x.item), ...extras.slice(0, MAX_EXTRA_MISTAKE_ITEMS).map((x) => x.item)]
 }
 
-function newWordCandidates(input: PlanInput): VocabularyEntry[] {
-  const { settings, catalog, states, now } = input
-  const known = new Set(states.map((s) => s.entryId))
-  const level = CEFR_LEVELS.indexOf(settings.level)
-  const pool = catalog.filter((e) => e.language === settings.language && !known.has(e.id))
+function unintroduced(input: PlanInput): VocabularyEntry[] {
+  const known = new Set(input.states.map((s) => s.entryId))
+  return input.catalog.filter((e) => e.language === input.settings.language && !known.has(e.id))
+}
 
-  // Words the user added themselves always come first, in the order they were added,
-  // regardless of level: choosing them was a deliberate decision.
+/** Words introduced today in the plan's language (the daily limit is per day, not per session). */
+function introducedToday(input: PlanInput): number {
+  const today = startOfDay(input.now)
+  return input.states.filter((s) => s.language === input.settings.language && s.introducedAt >= today).length
+}
+
+/**
+ * Next words to introduce. The user's own words come first in the order they were added
+ * (choosing them was a deliberate decision); sample words follow by frequency.
+ */
+export function newWordCandidates(input: PlanInput, limit: number): VocabularyEntry[] {
+  const { catalog, states, now } = input
+  const pool = unintroduced(input)
   const own = pool
     .filter((e) => e.source !== 'sample')
     .sort((a, b) => (a.addedAt?.getTime() ?? 0) - (b.addedAt?.getTime() ?? 0))
-  // Sample words: prefer those around the user's level, falling back to anything left.
-  const samples = pool.filter((e) => e.source === 'sample')
-  const band = samples.filter((e) => Math.abs(CEFR_LEVELS.indexOf(e.cefr) - level) <= 1)
-  const ordered = [...own, ...[...(band.length ? band : samples)].sort((a, b) => a.frequencyRank - b.frequencyRank)]
+  const samples = pool.filter((e) => e.source === 'sample').sort((a, b) => a.frequencyRank - b.frequencyRank)
+  const ordered = [...own, ...samples]
 
   const windowStart = now.getTime() - INTERFERENCE_WINDOW_DAYS * DAY_MS
   const recent = new Set(
     states.filter((s) => s.introducedAt.getTime() >= windowStart).map((s) => s.entryId),
   )
-  // The limit is per day, so words already introduced in an earlier session today count.
-  const today = startOfDay(now)
-  const introducedToday = states.filter((s) => s.language === settings.language && s.introducedAt >= today).length
-  const limit = Math.max(0, settings.newWordsPerDay - introducedToday)
   const chosen: VocabularyEntry[] = []
   for (const entry of ordered) {
     if (chosen.length >= limit) break
@@ -210,25 +218,28 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   const backlog = reviews.length < allReviews.length
   const newItems: PlanItem[] = []
   const newEntryIds: string[] = []
+  const limit = Math.max(0, input.settings.newWordsPerDay - introducedToday(input))
+  let budgetHit = false
   if (!backlog) {
-    for (const entry of newWordCandidates(input)) {
-      const pair: PlanItem[] = [
-        { kind: 'introduce', entryId: entry.id, reason: 'new', skill: 'recognition' },
-        {
-          kind: 'exercise',
-          entryId: entry.id,
-          reason: 'new',
-          skill: 'recognition',
-          exerciseType: pickExerciseType('recognition', entry, undefined, rng),
-        },
-      ]
+    for (const entry of newWordCandidates(input, limit)) {
+      const pair = introductionPair(entry, rng)
       const cost = pair.reduce((s, p) => s + itemCost(p), 0)
-      if (used + cost > budget) break
+      if (used + cost > budget) {
+        budgetHit = true
+        break
+      }
       newItems.push(...pair)
       newEntryIds.push(entry.id)
       used += cost
     }
   }
+  const waitingNew = unintroduced(input).length - newEntryIds.length
+  const newBlockedBy: NewWordsBlock | undefined =
+    waitingNew <= 0 ? (newEntryIds.length === 0 ? 'none_left' : undefined)
+    : backlog ? 'backlog'
+    : budgetHit ? 'budget'
+    : limit - newEntryIds.length <= 0 ? 'limit'
+    : undefined
 
   const items = interleave([...reviews, ...newItems], rng)
   const counts = { forgotten: 0, mistake: 0, weak: 0, due: 0, new: 0, practice: 0 }
@@ -238,5 +249,24 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
     counts[it.reason]++
     bySkill[it.skill] = (bySkill[it.skill] ?? 0) + 1
   }
-  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000) }
+  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy }
+}
+
+function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {
+  return [
+    { kind: 'introduce', entryId: entry.id, reason: 'new', skill: 'recognition' },
+    {
+      kind: 'exercise',
+      entryId: entry.id,
+      reason: 'new',
+      skill: 'recognition',
+      exerciseType: pickExerciseType('recognition', entry, undefined, rng),
+    },
+  ]
+}
+
+/** "Learn N more now": extra new words beyond today's limit, on the user's explicit request. */
+export function buildExtraNewPlan(input: PlanInput, count: number): PlanItem[] {
+  const rng = createRng(input.seed)
+  return interleave(newWordCandidates(input, count).flatMap((e) => introductionPair(e, rng)), rng)
 }

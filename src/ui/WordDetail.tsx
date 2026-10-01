@@ -56,7 +56,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           language={entry.language}
           existing={others}
           entry={entry}
-          level={entry.cefr}
           onSaved={() => {
             onChanged()
             setEditing(false)

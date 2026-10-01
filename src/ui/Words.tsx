@@ -8,6 +8,7 @@ import { createEntry, entryToInput, IMPORT_COLUMNS, importWords, updateEntry, wo
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
+import { Select } from './Select'
 import { TextImport } from './TextImport'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 
@@ -16,12 +17,11 @@ interface Props {
   language: TargetLanguage
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
-  level: string
   onChanged: () => void
   onOpen: (entryId: string) => void
 }
 
-export function WordsScreen({ db, language, vocabulary, states, level, onChanged, onOpen }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, onChanged, onOpen }: Props) {
   const [query, setQuery] = useState('')
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
@@ -53,9 +53,9 @@ export function WordsScreen({ db, language, vocabulary, states, level, onChanged
         <h1 className="greeting">{LANGUAGE_NAME[language]} kelimelerin</h1>
         <details open className="card">
           <summary>Kelime ekle</summary>
-          <WordForm db={db} language={language} level={level} existing={keys} onSaved={onChanged} />
+          <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
         </details>
-        <TextImport db={db} language={language} level={level} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
+        <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
         <ImportPanel db={db} language={language} existing={keys} onImported={onChanged} />
         <div className="row small">
           {hasSamples ? (
@@ -142,7 +142,7 @@ const EXAMPLES: Record<TargetLanguage, { collocation: string; confusable: string
 
 const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslation: '', collocations: '', confusables: '' }
 
-const POS_OPTIONS: PartOfSpeech[] = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'phrase', 'other']
+const POS_OPTIONS: PartOfSpeech[] = ['other', 'noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'phrase']
 
 /**
  * Adds a new word, or edits `entry` when given. `existing` holds the keys of the other words
@@ -153,7 +153,6 @@ export function WordForm({
   language,
   existing,
   entry,
-  level = 'B1',
   onSaved,
   onCancel,
 }: {
@@ -161,8 +160,6 @@ export function WordForm({
   language: TargetLanguage
   existing: Set<string>
   entry?: VocabularyEntry
-  /** CEFR level, so AI examples match the learner. */
-  level?: string
   onSaved: (entry: VocabularyEntry) => void
   onCancel?: () => void
 }) {
@@ -180,7 +177,7 @@ export function WordForm({
     setFilling(true)
     setError('')
     try {
-      const result = await enrichWords(apiKey, language, level, [{ word: form.word.trim() }])
+      const result = await enrichWords(apiKey, language, [{ word: form.word.trim() }])
       const info = result.values().next().value
       if (!info) throw new WordInputError('AI bu kelime için sonuç döndürmedi.')
       const ai = wordInfoToInput(info)
@@ -242,33 +239,27 @@ export function WordForm({
         <div className="grid-2">
           <div className="field">
             <label htmlFor="w-pos">Tür</label>
-            <select
+            <Select
               id="w-pos"
-              className="select"
-              value={form.partOfSpeech ?? ''}
-              onChange={(e) => setForm((f) => ({ ...f, partOfSpeech: (e.target.value || undefined) as PartOfSpeech | undefined }))}
-            >
-              <option value="">Belirtme</option>
-              {POS_OPTIONS.map((p) => (
-                <option key={p} value={p}>
-                  {POS_NAME[p]}
-                </option>
-              ))}
-            </select>
+              label="Tür"
+              value={form.partOfSpeech ?? 'other'}
+              options={POS_OPTIONS.map((p) => ({ value: p, label: p === 'other' ? 'Belirtme' : POS_NAME[p] }))}
+              onChange={(v) => setForm((f) => ({ ...f, partOfSpeech: v === 'other' ? undefined : v }))}
+            />
           </div>
           {needsGender && (
             <div className="field">
               <label htmlFor="w-gender">Cinsiyet</label>
-              <select
+              <Select
                 id="w-gender"
-                className="select"
-                value={form.gender ?? ''}
-                onChange={(e) => setForm((f) => ({ ...f, gender: (e.target.value || undefined) as Gender | undefined }))}
-              >
-                <option value="">Seç</option>
-                <option value="m">Eril (le)</option>
-                <option value="f">Dişil (la)</option>
-              </select>
+                label="Cinsiyet"
+                value={form.gender}
+                options={[
+                  { value: 'm', label: 'Eril (le)' },
+                  { value: 'f', label: 'Dişil (la)' },
+                ]}
+                onChange={(v) => setForm((f) => ({ ...f, gender: v as Gender }))}
+              />
               <span className="help">l' cinsiyeti göstermediği için gerekli</span>
             </div>
           )}

@@ -90,6 +90,14 @@ export interface VocabularyEntry {
   frequencyRank: number
   ipa?: string
   audioUrl?: string
+  /** The learner's own recording of the word (media table id); played instead of TTS. */
+  audioId?: string
+  /** Picture for the word (media table id), for picture exercises and the word card. */
+  imageId?: string
+  /** Where the picture came from, e.g. "Wikimedia Commons: …". */
+  imageCredit?: string
+  /** Personal note: a mnemonic, a usage tip, where you met the word. */
+  notes?: string
   register: Register
   /** Ordered by importance; senses[0] is introduced first. */
   senses: Sense[]
@@ -123,6 +131,7 @@ export type ExerciseType =
   | 'listen_type' // hear the word → type it
   | 'collocation_choice' // choose the natural collocation
   | 'free_sentence' // write your own sentence with the word; graded by the AI layer
+  | 'picture_choice' // see the word's picture → choose the word
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {
@@ -136,6 +145,7 @@ export type Direction =
   | 'context'
   | 'audio_to_native'
   | 'audio_to_target'
+  | 'image_to_target'
 
 export type Verdict = 'correct' | 'near' | 'wrong'
 

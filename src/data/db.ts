@@ -11,14 +11,14 @@ import type {
 
 export interface Settings {
   activeLanguage: TargetLanguage
-  levels: Partial<Record<TargetLanguage, CefrLevel>>
+  /** @deprecated No longer used (level system removed); kept so old backups still load. */
+  levels?: Partial<Record<TargetLanguage, CefrLevel>>
   dailyMinutes: number
   newWordsPerDay: number
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   activeLanguage: 'en',
-  levels: {},
   dailyMinutes: 10,
   newWordsPerDay: 5,
 }

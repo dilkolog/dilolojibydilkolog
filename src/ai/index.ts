@@ -14,9 +14,8 @@ export const testKey = async (apiKey: string) => (await sdk()).testKey(apiKey)
 export const enrichWords = async (
   apiKey: string,
   language: TargetLanguage,
-  level: string,
   words: EnrichRequest[],
-): Promise<Map<string, WordInfo>> => (await sdk()).enrichWords(apiKey, language, level, words)
+): Promise<Map<string, WordInfo>> => (await sdk()).enrichWords(apiKey, language, words)
 
 export const evaluateSentence = async (apiKey: string, entry: VocabularyEntry, sentence: string): Promise<SentenceEvaluation> =>
   (await sdk()).evaluateSentence(apiKey, entry, sentence)

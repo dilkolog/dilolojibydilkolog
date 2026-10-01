@@ -30,14 +30,12 @@ function markForm(sentence: string, form: string): string {
 export function TextImport({
   db,
   language,
-  level,
   vocabulary,
   existing,
   onAdded,
 }: {
   db: KelimeDB
   language: TargetLanguage
-  level: string
   vocabulary: VocabularyEntry[]
   existing: Set<string>
   onAdded: () => void
@@ -69,7 +67,6 @@ export function TextImport({
         const result = await enrichWords(
           apiKey,
           language,
-          level,
           batch.map(({ r }) => ({ word: r.word, context: r.candidate.context })),
         )
         setRows((prev) =>

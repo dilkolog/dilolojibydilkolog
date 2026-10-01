@@ -99,12 +99,11 @@ const WordBatch = z.object({ words: z.array(WordInfo) })
 export async function enrichWords(
   apiKey: string,
   language: TargetLanguage,
-  level: string,
   words: EnrichRequest[],
 ): Promise<Map<string, WordInfo>> {
   const system = [
-    `You prepare vocabulary cards for a Turkish native speaker learning ${LANGUAGE_NAME[language]} (target language) at about CEFR ${level}.`,
-    'Be accurate: meanings must be real Turkish equivalents, examples natural and level-appropriate, collocations genuinely frequent.',
+    `You prepare vocabulary cards for a Turkish native speaker who already speaks ${LANGUAGE_NAME[language]} (target language) well and is practising to keep and widen their active vocabulary.`,
+    'Be accurate: meanings must be real Turkish equivalents, examples natural and idiomatic (not simplified), collocations genuinely frequent.',
     'If a word was given in an inflected form, return its dictionary form as the lemma.',
     'When a context sentence is given, the first meaning must be the sense used in that sentence, and the example may reuse that sentence.',
   ].join('\n')

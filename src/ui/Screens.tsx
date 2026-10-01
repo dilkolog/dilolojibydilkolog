@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import type { DailyPlan, PlanReason } from '../engine/dailyPlan'
+import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
-import { CEFR_LEVELS, SKILLS, TARGET_LANGUAGES, type CefrLevel, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
+import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
 import { DEFAULT_SETTINGS, exportBackup, parseBackup, restoreBackup, type KelimeDB, type Settings } from '../data/db'
 import { AiSettings } from './AiSettings'
@@ -47,7 +47,6 @@ const CARD_COLOR: Record<TargetLanguage, string> = { en: 'var(--en)', fr: 'var(-
 
 export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const [language, setLanguage] = useState<TargetLanguage>('en')
-  const [level, setLevel] = useState<CefrLevel>('B1')
   const [minutes, setMinutes] = useState(DEFAULT_SETTINGS.dailyMinutes)
   return (
     <div className="stack" data-lang={language}>
@@ -81,17 +80,13 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
         <p className="small muted">Diğer dilleri sonra üstteki düğmelerden açabilirsin.</p>
       </div>
       <div className="section stack">
-        <h2 className="section-title">Bu dildeki seviyen</h2>
-        <Chips label="Seviye" options={CEFR_LEVELS} value={level} onChange={setLevel} />
-      </div>
-      <div className="section stack">
         <h2 className="section-title">Günde kaç dakika ayırabilirsin?</h2>
         <Chips label="Günlük süre" options={MINUTE_OPTIONS} value={minutes} onChange={setMinutes} format={(m) => `${m} dk`} />
       </div>
       <div className="section">
         <button
           className="btn btn-lg btn-block"
-          onClick={() => onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, levels: { [language]: level }, dailyMinutes: minutes })}
+          onClick={() => onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, dailyMinutes: minutes })}
         >
           Başlayalım
         </button>
@@ -111,6 +106,14 @@ const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   practice: (n) => `${n} pratik`,
 }
 const REASONS: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new']
+
+/** Why no (more) new words today, said plainly so the plan never looks stuck. */
+const NEW_BLOCK_TEXT: Record<NewWordsBlock, (n: number) => string> = {
+  limit: (n) => `Günlük yeni kelime sınırına ulaştın; ${n} kelime sırada bekliyor.`,
+  backlog: (n) => `Önce biriken tekrarlar bitsin; ${n} yeni kelime sırada.`,
+  budget: (n) => `Günlük süren doldu; ${n} yeni kelime sırada.`,
+  none_left: () => '',
+}
 
 function greeting(now: Date): string {
   const h = now.getHours()
@@ -134,6 +137,7 @@ export function Home({
   canPractice,
   onStart,
   onAddWords,
+  onExtraNew,
   onPracticeMistakes,
   onFreePractice,
 }: {
@@ -150,6 +154,7 @@ export function Home({
   canPractice: boolean
   onStart: () => void
   onAddWords: () => void
+  onExtraNew: () => void
   onPracticeMistakes: () => void
   onFreePractice: () => void
 }) {
@@ -200,17 +205,29 @@ export function Home({
               <button className="btn btn-lg" onClick={onStart} autoFocus>
                 {answeredToday > 0 ? 'Devam et' : 'Başla'}
               </button>
+              {plan.newBlockedBy && plan.waitingNew > 0 && (
+                <p className="small muted" style={{ marginTop: '0.75rem' }}>
+                  {NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
+                </p>
+              )}
             </>
           ) : (
             <>
               <h2 className="hero-title">{answeredToday > 0 ? 'Bugünün görevi tamam!' : 'Bugün tekrar yok'}</h2>
               <p className="hero-sub">
-                {nextReview ? `Sıradaki tekrar ${relativeTime(nextReview)}. ` : ''}
-                {answeredToday > 0 ? `Bugün ${answeredToday} soru cevapladın.` : 'Yeni kelime ekleyerek devam edebilirsin.'}
+                {answeredToday > 0 && `Bugün ${answeredToday} soru cevapladın. `}
+                {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
+                {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
               </p>
-              <button className="btn btn-quiet" onClick={onAddWords}>
-                Kelime ekle
-              </button>
+              {plan.waitingNew > 0 ? (
+                <button className="btn btn-lg" onClick={onExtraNew}>
+                  +{Math.min(5, plan.waitingNew)} yeni kelime öğren
+                </button>
+              ) : (
+                <button className="btn btn-quiet" onClick={onAddWords}>
+                  Kelime ekle
+                </button>
+              )}
             </>
           )}
         </div>
@@ -449,8 +466,6 @@ export function SettingsScreen({
     }
   }
 
-  const level = settings.levels[settings.activeLanguage] ?? 'B1'
-
   return (
     <div>
       <section className="stack">
@@ -469,16 +484,6 @@ export function SettingsScreen({
           <h2 className="section-title">Günde en fazla yeni kelime</h2>
           <Chips label="Yeni kelime" options={withValue(NEW_WORD_OPTIONS, settings.newWordsPerDay)} value={settings.newWordsPerDay} onChange={(n) => onChange({ ...settings, newWordsPerDay: n })} />
           <p className="small muted">Tekrarlar birikmişse o gün yeni kelime gelmez.</p>
-        </div>
-        <div className="card stack">
-          <h2 className="section-title">{LANGUAGE_NAME[settings.activeLanguage]} seviyen</h2>
-          <Chips
-            label="Seviye"
-            options={CEFR_LEVELS}
-            value={level}
-            onChange={(l) => onChange({ ...settings, levels: { ...settings.levels, [settings.activeLanguage]: l } })}
-          />
-          <p className="small muted">Yalnızca örnek kelimelerin sırasını etkiler. Kendi eklediklerin her zaman önce gelir.</p>
         </div>
       </section>
 

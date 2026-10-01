@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildDailyPlan, interleave, type PlanInput, type PlanItem } from '../dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, interleave, type PlanInput, type PlanItem } from '../dailyPlan'
 import { recordMistake } from '../mistakes'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
@@ -10,7 +10,7 @@ const scheduler = createScheduler({ fuzz: false })
 const NOW = new Date('2026-10-10T09:00:00Z')
 const daysAgo = (n: number) => new Date(NOW.getTime() - n * 86_400_000)
 
-const settings = { language: 'en' as const, level: 'B1' as const, dailyMinutes: 12, newWordsPerDay: 4 }
+const settings = { language: 'en' as const, dailyMinutes: 12, newWordsPerDay: 4 }
 const input = (over: Partial<PlanInput> = {}): PlanInput => ({
   now: NOW,
   settings,
@@ -33,13 +33,30 @@ function learned(entry: VocabularyEntry, at: Date, verdict: 'correct' | 'wrong' 
 }
 
 describe('new words', () => {
-  it('introduces words around the user level, most frequent first, in the chosen language', () => {
+  it('introduces sample words most frequent first, in the chosen language', () => {
     const plan = buildDailyPlan(input())
     expect(plan.newEntryIds.length).toBeGreaterThan(0)
     expect(plan.newEntryIds.every((id) => id.startsWith('en:'))).toBe(true)
-    // leave is A1 — two levels below B1 — so it is outside the band.
-    expect(plan.newEntryIds).not.toContain('en:leave')
-    expect(plan.newEntryIds[0]).toBe('en:decide')
+    expect(plan.newEntryIds[0]).toBe('en:leave')
+  })
+
+  it('says why no more new words were added, and how many are waiting', () => {
+    const plan = buildDailyPlan(input({ settings: { ...settings, newWordsPerDay: 2, dailyMinutes: 60 } }))
+    expect(plan.newEntryIds).toHaveLength(2)
+    expect(plan.newBlockedBy).toBe('limit')
+    expect(plan.waitingNew).toBe(EN_CATALOG.length - 2)
+    const all = buildDailyPlan(input({ catalog: [], states: [] }))
+    expect(all.newBlockedBy).toBe('none_left')
+    const backlog = buildDailyPlan(input({ states: EN_CATALOG.slice(0, 5).map((e) => learned(e, daysAgo(20))), settings: { ...settings, dailyMinutes: 1 } }))
+    expect(backlog.newBlockedBy).toBe('backlog')
+  })
+
+  it('can add extra new words beyond the daily limit on request', () => {
+    const states = [learned(decide, NOW), learned(decision, NOW), learned(affect, NOW), learned(effect, NOW)]
+    const limited = buildDailyPlan(input({ states }))
+    expect(limited.newEntryIds).toEqual([])
+    const extra = buildExtraNewPlan(input({ states }), 2)
+    expect(extra.filter((i) => i.kind === 'introduce')).toHaveLength(2)
   })
 
   it("introduces the user's own words first, in the order added, regardless of level", () => {

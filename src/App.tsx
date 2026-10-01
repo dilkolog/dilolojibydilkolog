@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ReactElement } from 'react'
-import { buildDailyPlan, type PlanItem } from './engine/dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, type PlanItem } from './engine/dailyPlan'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
 import { answeredToday, progressStats, studyStreak } from './engine/progress'
@@ -109,14 +109,13 @@ export default function App() {
     setSettings(s)
   }
 
-  const plan = useMemo(() => {
+  const planInput = useMemo(() => {
     if (!settings || !data || data.language !== settings.activeLanguage) return null
     const now = new Date()
-    return buildDailyPlan({
+    return {
       now,
       settings: {
         language: data.language,
-        level: settings.levels[data.language] ?? 'B1',
         dailyMinutes: settings.dailyMinutes,
         newWordsPerDay: settings.newWordsPerDay,
       },
@@ -126,8 +125,9 @@ export default function App() {
       scheduler,
       seed: daySeed(now),
       options,
-    })
+    }
   }, [settings, data, options])
+  const plan = useMemo(() => (planInput ? buildDailyPlan(planInput) : null), [planInput])
 
   const byId = useMemo(() => new Map((data?.vocabulary ?? []).map((v) => [v.id, v])), [data])
   const streak = data ? studyStreak(data.recentEvents, new Date()) : 0
@@ -235,7 +235,6 @@ export default function App() {
             language={data.language}
             vocabulary={data.vocabulary}
             states={data.states}
-            level={settings.levels[data.language] ?? 'B1'}
             onChanged={reload}
             onOpen={(entryId) => setScreen({ name: 'word', entryId })}
           />
@@ -294,6 +293,7 @@ export default function App() {
             canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
             onStart={() => setScreen({ name: 'session', items: plan.items, mode: 'normal', seed: daySeed(new Date()) })}
             onAddWords={go({ name: 'words' })}
+            onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
             onPracticeMistakes={() =>
               startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
             }

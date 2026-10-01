@@ -113,3 +113,33 @@ describe('AI-graded exercises', () => {
     expect(ex.hints[0]).toBe('Anlamı: karar')
   })
 })
+
+describe('confusing distractors', () => {
+  it('puts a known confusable first among distractors', () => {
+    const d = pickDistractors(affect, EN_CATALOG, 1, rng())
+    expect(d[0].id).toBe('en:effect')
+  })
+  it('prefers look-alike spellings of the same part of speech', () => {
+    const verb = (lemma: string, gloss: string) => ({ ...decide, id: `en:${lemma}`, lemma, senses: [{ ...decide.senses[0], gloss }] })
+    const adapt = verb('adapt', 'uyum sağlamak')
+    const d = pickDistractors(adapt, [adapt, verb('adopt', 'benimsemek'), verb('swim', 'yüzmek'), verb('carry', 'taşımak')], 1, rng())
+    expect(d[0].id).toBe('en:adopt')
+  })
+  it('always offers four meanings, even with a one-word vocabulary', () => {
+    const ex = buildExercise('mc_meaning', decide, [decide], rng()) as ChoiceExercise
+    expect(ex.options).toHaveLength(4)
+    expect(new Set(ex.options.map((o) => o.label)).size).toBe(4)
+  })
+})
+
+describe('picture exercise', () => {
+  it('is offered only for words with a picture and asks for the word', () => {
+    expect(exerciseTypesFor('recognition', decision)).not.toContain('picture_choice')
+    const withPic = { ...decision, imageId: 'img1' }
+    expect(exerciseTypesFor('recognition', withPic)).toContain('picture_choice')
+    const ex = buildExercise('picture_choice', withPic, CATALOG, rng()) as ChoiceExercise
+    expect(ex.imageId).toBe('img1')
+    expect(ex.options.find((o) => o.id === ex.correctOptionId)!.label).toBe('decision')
+    expect(ex.options.length).toBeGreaterThanOrEqual(3)
+  })
+})

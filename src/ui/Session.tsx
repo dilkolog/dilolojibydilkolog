@@ -29,9 +29,11 @@ import {
 } from '../engine/session'
 import type { EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
+import { SAMPLE_WORDS } from '../data/seed'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence } from '../ai'
 import { useAi } from './aiContext'
+import { ConfirmDialog } from './Dialog'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon } from './icons'
 import { canSpeak, speak } from './speech'
 
@@ -57,6 +59,12 @@ export function SessionScreen(p: Props) {
   const lastAnswer = useRef<{ before: UserWordState; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
+  // Distractors may come from the sample set too, so options are full even with few own words.
+  const distractorPool = useMemo(() => {
+    const own = new Set(p.vocabulary.map((v) => v.id))
+    const lang = p.vocabulary[0]?.language
+    return [...p.vocabulary, ...(lang ? SAMPLE_WORDS[lang].filter((w) => !own.has(w.id)) : [])]
+  }, [p.vocabulary])
   const rng = useMemo(() => createRng(p.seed ^ 0x5bd1e995), [p.seed])
   const [session, setSession] = useState(() => startSession(p.items))
   const item = currentItem(session)
@@ -67,13 +75,15 @@ export function SessionScreen(p: Props) {
   }, [session, onFinish])
 
   const { onQuit } = p
+  const [confirmQuit, setConfirmQuit] = useState(false)
+  const answered = session.log.filter((l) => l.verdict).length
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onQuit()
+      if (e.key === 'Escape') setConfirmQuit(true)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [onQuit])
+  }, [])
 
   if (!item) return null
   const entry = byId.get(item.entryId)
@@ -167,7 +177,7 @@ export function SessionScreen(p: Props) {
   return (
     <div>
       <div className="session-top">
-        <button className="icon-btn" onClick={p.onQuit} aria-label="Oturumu bitir">
+        <button className="icon-btn" onClick={() => setConfirmQuit(true)} aria-label="Oturumu bitir">
           <CloseIcon size={22} />
         </button>
         <div className="progress" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
@@ -189,6 +199,20 @@ export function SessionScreen(p: Props) {
         </p>
       )}
       <KeyLegend />
+      {confirmQuit && (
+        <ConfirmDialog
+          title="Oturumdan çıkılsın mı?"
+          confirmLabel="Çık"
+          cancelLabel="Devam et"
+          danger
+          onConfirm={onQuit}
+          onCancel={() => setConfirmQuit(false)}
+        >
+          {answered > 0
+            ? `Verdiğin ${answered} cevap kaydedildi. Kalan ${session.items.length - session.index} soru bugünkü görevinde bekleyecek.`
+            : 'Henüz cevap vermedin; görev olduğu gibi bekleyecek.'}
+        </ConfirmDialog>
+      )}
       {item.kind === 'introduce' ? (
         <Intro key={session.index} entry={entry} onContinue={() => introduce(false)} onKnown={() => introduce(true)} />
       ) : (
@@ -196,7 +220,7 @@ export function SessionScreen(p: Props) {
           key={session.index}
           entry={entry}
           item={item}
-          catalog={p.vocabulary}
+          catalog={distractorPool}
           rng={rng}
           onAnswer={answer}
           onOverride={override}
@@ -217,6 +241,7 @@ function SpeakButton({ text, entry, big, auto }: { text: string; entry: Vocabula
   // Alt+S anywhere, or Space when not typing, replays the audio.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (modalOpen()) return
       const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
       if ((e.altKey && e.code === 'KeyS') || (e.code === 'Space' && !typing && !(e.target instanceof HTMLButtonElement))) {
         e.preventDefault()
@@ -484,6 +509,7 @@ function Choices({
   useEffect(() => {
     if (answered) return
     const onKey = (e: KeyboardEvent) => {
+      if (modalOpen()) return
       const i = Number(e.key) - 1
       if (i >= 0 && i < exercise.options.length) onChoose(exercise.options[i].id)
     }
@@ -547,6 +573,7 @@ function TypedAnswer({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (modalOpen()) return
       // e.code, not e.key: on macOS Alt+H types a special character instead of "h".
       if (e.altKey && e.code === 'KeyH') {
         e.preventDefault()
@@ -653,6 +680,9 @@ function Feedback({
     </div>
   )
 }
+
+/** Shortcuts are paused while a dialog is open. */
+const modalOpen = () => !!document.querySelector('[aria-modal="true"]')
 
 /** Shortcut reminder, only on devices with a hover-capable pointer (i.e. a real keyboard is likely). */
 function KeyLegend() {
