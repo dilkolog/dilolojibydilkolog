@@ -151,3 +151,29 @@ describe('interleave', () => {
     for (let i = 1; i < out.length; i++) expect(out[i].exerciseType).not.toBe(out[i - 1].exerciseType)
   })
 })
+
+describe('habits', () => {
+  it('with frequency first, own words come most frequent first, unknown frequency last', async () => {
+    const { newWordCandidates } = await import('../dailyPlan')
+    const own = (e: VocabularyEntry, rank: number, addedDay: number): VocabularyEntry => ({ ...e, source: 'user', frequencyRank: rank, addedAt: daysAgo(addedDay) })
+    // (abandon and leave are synonyms and would not be introduced together.)
+    const catalog = [own(abandon, 6000, 3), own(improve, 0, 2), own(decision, 500, 1)]
+    const byAdded = newWordCandidates(input({ catalog }), 3).map((e) => e.id)
+    expect(byAdded).toEqual(['en:abandon', 'en:improve', 'en:decision'])
+    const byFreq = newWordCandidates(input({ catalog, settings: { ...settings, frequencyFirst: true } }), 3).map((e) => e.id)
+    expect(byFreq).toEqual(['en:decision', 'en:abandon', 'en:improve'])
+  })
+
+  it('words met yesterday come first among equally due reviews', () => {
+    const old = learned(decide, daysAgo(3))
+    const fresh = learned(improve, daysAgo(1))
+    // Same retrievability situation: both due now with the same reason.
+    const states = [
+      { ...old, skills: { recognition: { ...old.skills.recognition!, due: daysAgo(0.1) } } },
+      { ...fresh, skills: { recognition: { ...fresh.skills.recognition!, due: daysAgo(0.1) } } },
+    ]
+    const plan = buildDailyPlan(input({ catalog: EN_CATALOG, states, settings: { ...settings, newWordsPerDay: 0 } }))
+    const reviews = plan.items.filter((i) => i.kind === 'exercise' && i.reason !== 'new').map((i) => i.entryId)
+    expect(reviews.indexOf('en:improve')).toBeLessThan(reviews.indexOf('en:decide'))
+  })
+})

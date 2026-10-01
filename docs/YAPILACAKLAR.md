@@ -96,17 +96,17 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## 9. Zamanlama, uyku, alışkanlık
 
-- [ ] ⭐⭐ **Uyku öncesi kısa tekrar + sabah kontrolü** (S)
+- [x] ⭐⭐ **Uyku öncesi kısa tekrar + sabah kontrolü** (S)
   Öğrenmeden sonra uyku pekiştirmeyi destekliyor (Diekelmann & Born 2010). Akşam hatırlatıcısı
   "yeni kelimeleri şimdi gözden geçir", sabah ilk 5 soru onlardan.
-- [ ] ⭐⭐ **Uygulama niyeti (if-then planı)** (S)
+- [x] ⭐⭐ **Uygulama niyeti (if-then planı)** (S)
   "Ne zaman ve nerede çalışacağım" sorusunu bir kez sor, hatırlatıcıyı ona bağla
   (Gollwitzer & Sheeran 2006 meta-analizi, orta-büyük etki).
-- [ ] ⭐ **Kısa oturum önerisi** (S) — uzun tek oturum yerine 2–3 kısa oturum (dağıtılmış pratik).
+- [x] ⭐ **Kısa oturum önerisi** (S) — uzun tek oturum yerine 2–3 kısa oturum (dağıtılmış pratik).
 
 ## 10. Kelime seçimi
 
-- [ ] ⭐⭐ **Sıklık bandı etiketi** (M)
+- [x] ⭐⭐ **Sıklık bandı etiketi** (M)
   Kelime eklerken "ilk 1000 / 3000 / 10000 / nadir" etiketi (açık frekans listeleri).
   Sık kelimeler daha çok getiri sağlar (Nation 2006); öncelik sıralamasında kullan.
 
@@ -115,5 +115,9 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 ## Önerilen sıra
 1. ~~Hızlı ve etkili: ön-test, artikel alıştırması, HVPT, akıcılık turu, hedef hatırlama ayarı.~~ (yapıldı)
 2. ~~Orta: güven + hiper-düzeltme, kriterli tekrar, değişen örnek cümle, soydaş/sahte dost.~~ (yapıldı)
-3. Büyük: FSRS optimizasyonu, okuma modu + kapsama, kavram kartları.
-4. AI gerektirenler anahtar girilince: geri anlatım, ters çeviri.
+3. ~~Büyük: FSRS optimizasyonu, okuma modu + kapsama, kavram kartları.~~ (yapıldı)
+4. AI gerektirenler (geri anlatım, ters çeviri) yazıldı; anahtar girilince uçtan uca denenecek.
+
+## Açık kalanlar
+- Sıklık bandı şu an elle ya da "AI ile doldur" ile belirleniyor. Hazır bir sıklık listesi (ör. OpenSubtitles tabanlı) indirilirse otomatik olur; indirme için onay gerekiyor.
+- EN için fiil çekimi yok (düzensiz geçmiş zaman listesi eklenebilir).

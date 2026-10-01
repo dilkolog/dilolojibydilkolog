@@ -50,6 +50,12 @@ export interface Settings {
   pretest: boolean
   /** Offer "not sure" before answering; confident errors get extra attention. */
   confidence: boolean
+  /** Introduce own words most frequent first. */
+  frequencyFirst: boolean
+  /** "When and where I'll study" (implementation intention); '' = not set. */
+  studyPlan: string
+  /** The plan prompt was answered or dismissed, so it isn't shown again. */
+  studyPlanAsked: boolean
   /** Personal FSRS weights; null = the defaults. */
   fsrsWeights: number[] | null
   /** When and how well the personal weights were fitted. */
@@ -79,6 +85,9 @@ export const DEFAULT_SETTINGS: Settings = {
   retention: 0.9,
   pretest: true,
   confidence: true,
+  frequencyFirst: false,
+  studyPlan: '',
+  studyPlanAsked: false,
   fsrsWeights: null,
   fsrsFit: null,
   varyVoices: true,

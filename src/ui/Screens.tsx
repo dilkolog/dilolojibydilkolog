@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
 import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
@@ -146,6 +146,7 @@ export function Home({
   onExtraNew,
   onPracticeMistakes,
   onFreePractice,
+  extra,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -167,6 +168,8 @@ export function Home({
   onExtraNew: () => void
   onPracticeMistakes: () => void
   onFreePractice: () => void
+  /** Habit nudges shown under the day's mission. */
+  extra?: ReactNode
 }) {
   const now = new Date()
   const game = useGame()
@@ -247,6 +250,8 @@ export function Home({
           )}
         </div>
       </div>
+
+      {extra}
 
       {game && (
         <button className="level-strip" onClick={onProfile}>
@@ -434,6 +439,9 @@ function headline(accuracy: number, practice?: boolean): string {
   return 'Her hata bir adım. Devam!'
 }
 
+/** Answers after which a session counts as long enough to suggest splitting it. */
+const LONG_SESSION = 40
+
 export function Summary({
   summary,
   byId,
@@ -545,6 +553,12 @@ export function Summary({
         </p>
       )}
       {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
+      {summary.answered >= LONG_SESSION && (
+        <p className="habit-tip">
+          ⏱️ Uzun bir oturumdu. Aynı süreyi gün içine yayılmış 2–3 kısa tura bölmek daha kalıcı öğretir (dağıtılmış pratik): bir sonraki turu birkaç saat sonra
+          yap.
+        </p>
+      )}
       <div className="section">
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>
           Devam

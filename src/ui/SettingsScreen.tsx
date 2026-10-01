@@ -171,6 +171,15 @@ export function SettingsScreen({
           <Chips options={RETENTIONS} value={settings.retention} onChange={(v) => set('retention', v)} format={(r) => `%${Math.round(r * 100)}`} />
         </Row>
         <Toggle
+          label="Yeni kelimeleri sık olanlardan başlat"
+          help="Açıkken eklediğin kelimeler eklenme sırası yerine sıklık bandına göre tanıtılır (önce ilk 1000). Sıklığı bilinmeyenler sona kalır."
+          checked={settings.frequencyFirst}
+          onChange={(v) => set('frequencyFirst', v)}
+        />
+        <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
+          <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
+        </Row>
+        <Toggle
           label="Yeni kelimede önce tahmin et"
           help="Anlamı göstermeden önce bir tahmin istenir. Yanlış tahmin bile kelimeyi daha iyi akılda tutmanı sağlar; tahmin puanlanmaz."
           checked={settings.pretest}

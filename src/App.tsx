@@ -31,6 +31,7 @@ import { ProfileScreen } from './ui/Profile'
 import { ProgressScreen } from './ui/Progress'
 import { ReadingScreen } from './ui/Reading'
 import { useReminder } from './ui/reminders'
+import { HabitCards } from './ui/Habits'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
 import { SettingsScreen } from './ui/SettingsScreen'
@@ -147,7 +148,7 @@ export default function App() {
   }, [screen.name])
 
   const answeredTodayAll = data ? answeredToday(data.recentEvents, new Date()) : 0
-  useReminder(settings?.reminder, answeredTodayAll, game?.streak ?? 0)
+  useReminder(settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan)
 
   const updateSettings = async (s: Settings) => {
     await db.saveSettings(s)
@@ -172,6 +173,7 @@ export default function App() {
         language: data.language,
         dailyMinutes: settings.dailyMinutes,
         newWordsPerDay: settings.newWordsPerDay,
+        frequencyFirst: settings.frequencyFirst,
       },
       catalog: data.vocabulary,
       states: data.states,
@@ -182,6 +184,14 @@ export default function App() {
     }
   }, [settings, data, options])
   const plan = useMemo(() => (planInput ? buildDailyPlan(planInput) : null), [planInput])
+  // Words met for the first time today, for the before-sleep review.
+  const newToday = useMemo(() => {
+    if (!data) return []
+    const start = new Date()
+    start.setHours(0, 0, 0, 0)
+    const ids = new Set(data.states.filter((s) => s.introducedAt >= start).map((s) => s.entryId))
+    return data.vocabulary.filter((v) => ids.has(v.id))
+  }, [data])
 
   const byId = useMemo(() => new Map((data?.vocabulary ?? []).map((v) => [v.id, v])), [data])
 
@@ -437,6 +447,16 @@ export default function App() {
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
                 }
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
+                extra={
+                  <HabitCards
+                    settings={settings}
+                    onSettings={updateSettings}
+                    newToday={newToday.length}
+                    onEveningReview={() =>
+                      startSession(buildDeckPlan({ catalog: newToday, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'practice')
+                    }
+                  />
+                }
               />
             )}
           </main>

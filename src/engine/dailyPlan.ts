@@ -27,6 +27,8 @@ export interface PlanSettings {
   language: TargetLanguage
   dailyMinutes: number
   newWordsPerDay: number
+  /** Introduce the user's words most frequent first instead of in the order they were added. */
+  frequencyFirst?: boolean
 }
 
 export interface PlanInput {
@@ -90,7 +92,8 @@ function interferingIds(entry: VocabularyEntry, catalog: readonly VocabularyEntr
 function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: Rng): PlanItem[] {
   const { now, scheduler, settings } = input
   const today = startOfDay(now)
-  const scored: { item: PlanItem; r: number }[] = []
+  const yesterday = new Date(today.getTime() - DAY_MS)
+  const scored: { item: PlanItem; r: number; fresh: boolean }[] = []
   const extras: { item: PlanItem; lastAt: number; sure: boolean }[] = []
 
   const states = input.states.filter((s) => s.language === settings.language)
@@ -112,6 +115,7 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
       scored.push({
         item: { kind: 'exercise', entryId: entry.id, reason, skill, exerciseType: pickExerciseType(skill, entry, state, rng, opts) },
         r,
+        fresh: state.introducedAt >= yesterday && state.introducedAt < today,
       })
     } else if (open.length && (!state.lastReviewAt || state.lastReviewAt < today)) {
       const latest = open.reduce((a, b) => (a.lastAt > b.lastAt ? a : b))
@@ -126,7 +130,9 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   }
 
   // Due words first (by reason, then weakest), then the most recent not-yet-due mistakes.
-  const order = (x: { item: PlanItem; r: number }) => REASON_ORDER.indexOf(x.item.reason) * 10 + x.r
+  // Within a reason, words met yesterday come first: retrieving them the morning after sleep
+  // consolidates what sleep started (Diekelmann & Born 2010).
+  const order = (x: { item: PlanItem; r: number; fresh: boolean }) => REASON_ORDER.indexOf(x.item.reason) * 10 + x.r - (x.fresh ? 1 : 0)
   scored.sort((a, b) => order(a) - order(b))
   // Mistakes made while sure come first: correcting a confident error sticks best.
   extras.sort((a, b) => Number(b.sure) - Number(a.sure) || b.lastAt - a.lastAt)
@@ -151,9 +157,12 @@ function introducedToday(input: PlanInput): number {
 export function newWordCandidates(input: PlanInput, limit: number): VocabularyEntry[] {
   const { catalog, states, now } = input
   const pool = unintroduced(input)
+  const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
+  // Unknown frequency (0) sorts after every known band.
+  const rank = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : Infinity)
   const own = pool
     .filter((e) => e.source !== 'sample')
-    .sort((a, b) => (a.addedAt?.getTime() ?? 0) - (b.addedAt?.getTime() ?? 0))
+    .sort((a, b) => (input.settings.frequencyFirst ? rank(a) - rank(b) : 0) || added(a) - added(b))
   const samples = pool.filter((e) => e.source === 'sample').sort((a, b) => a.frequencyRank - b.frequencyRank)
   const ordered = [...own, ...samples]
 

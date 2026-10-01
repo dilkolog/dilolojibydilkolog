@@ -5,7 +5,7 @@ import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
-import { createEntry, entryToInput, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
+import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
@@ -304,6 +304,7 @@ export function WordForm({
         exampleTranslation: f.exampleTranslation?.trim() ? f.exampleTranslation : ai.exampleTranslation,
         collocations: f.collocations?.trim() ? f.collocations : ai.collocations,
         confusables: f.confusables?.trim() ? f.confusables : ai.confusables,
+        frequencyRank: f.frequencyRank || ai.frequencyRank,
       }))
       setAiPos({ word: ai.word.trim(), pos: ai.partOfSpeech })
     } catch (err) {
@@ -468,6 +469,17 @@ export function WordForm({
               {aiErrorFor('notes')}
             </div>
             <div className="field">
+              <label htmlFor="w-freq">Sıklık</label>
+              <Select
+                id="w-freq"
+                label="Sıklık"
+                value={bandOf(form.frequencyRank)?.id ?? 'unknown'}
+                options={[{ value: 'unknown', label: 'Bilinmiyor' }, ...FREQUENCY_BANDS.map((b) => ({ value: b.id, label: b.label }))]}
+                onChange={(v) => setForm((f) => ({ ...f, frequencyRank: FREQUENCY_BANDS.find((b) => b.id === v)?.rank ?? 0 }))}
+              />
+              <span className="help">Sık kelimeler daha çok işe yarar; Ayarlar'dan yeni kelimeleri sık olanlardan başlatabilirsin. "AI ile doldur" bunu da tahmin eder.</span>
+            </div>
+            <div className="field">
               <div className="field-head">
                 <label htmlFor="w-tags">Etiketler</label>
                 {aiButton('tags', ['tags'], 'Etiket öner')}
@@ -524,7 +536,7 @@ export function WordForm({
 // ---------------------------------------------------------------------------
 
 type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes'
-type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest'
+type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent'
 
 const STAGE_FILTERS: [StageFilter, string][] = [
   ['all', 'Hepsi'],
@@ -596,6 +608,7 @@ function WordList({
       alpha: (a, b) => a.lemma.localeCompare(b.lemma, 'tr'),
       weakest: (a, b) => stageIndex(a) - stageIndex(b) || (stateById.get(b.id)?.stats.wrong ?? 0) - (stateById.get(a.id)?.stats.wrong ?? 0),
       strongest: (a, b) => stageIndex(b) - stageIndex(a),
+      frequent: (a, b) => (a.frequencyRank || Infinity) - (b.frequencyRank || Infinity) || a.lemma.localeCompare(b.lemma, 'tr'),
     }
     return vocabulary.filter(match).sort(by[sort])
   }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])
@@ -670,6 +683,7 @@ function WordList({
                   { value: 'alpha', label: 'Alfabetik' },
                   { value: 'weakest', label: 'En zayıf önce' },
                   { value: 'strongest', label: 'En güçlü önce' },
+                  { value: 'frequent', label: 'En sık önce' },
                 ]}
               />
             </div>
@@ -755,6 +769,7 @@ function WordList({
                         <span className="meta">
                           {v.senses[0].gloss}
                           {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
+                          {v.source !== 'sample' && bandOf(v.frequencyRank) && `, ${bandOf(v.frequencyRank)!.short}`}
                           {v.source === 'sample' && ' (örnek)'}
                           {v.audioId && ' · 🎙️'}
                           {v.tags.length > 0 && ` · ${v.tags.map((t) => `#${t}`).join(' ')}`}

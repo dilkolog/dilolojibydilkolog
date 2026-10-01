@@ -88,6 +88,9 @@ const WordInfo = z.object({
     )
     .describe('0-3 high-value collocations. Empty for function words.'),
   confusables: z.array(z.string()).describe('0-2 words in the same language commonly confused with this one (affect/effect).'),
+  frequencyBand: z
+    .enum(['top1000', 'top3000', 'top10000', 'rare'])
+    .describe('How common the word is in everyday use of the language, by frequency rank: among the 1000 most frequent words, 3000, 10000, or rarer.'),
 })
 // Compile-time check that the schema and the shared WordInfo type agree.
 const _schemaMatches: (x: z.infer<typeof WordInfo>) => WordInfo = (x) => x

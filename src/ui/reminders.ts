@@ -10,8 +10,9 @@ export async function requestNotifications(): Promise<NotificationPermission> {
   return Notification.permission === 'default' ? Notification.requestPermission() : Notification.permission
 }
 
-export async function showReminder(streak: number) {
-  const body = streak > 0 ? `🔥 ${streak} günlük serin var, bugün de devam et!` : 'Bugünkü kelime çalışman seni bekliyor.'
+export async function showReminder(streak: number, plan = '') {
+  const base = streak > 0 ? `🔥 ${streak} günlük serin var, bugün de devam et!` : 'Bugünkü kelime çalışman seni bekliyor.'
+  const body = plan ? `${plan}: ${base}` : base
   const options = { body, icon: '/pwa-192.png', tag: 'daily-reminder' }
   // Through the service worker when there is one: works while the tab is in the background.
   const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
@@ -26,7 +27,7 @@ const today = () => new Date().toDateString()
  * if nothing was studied today. Closed apps can't be woken without a server; for that, use the
  * calendar file below.
  */
-export function useReminder(reminder: Settings['reminder'] | undefined, answeredToday: number, streak: number) {
+export function useReminder(reminder: Settings['reminder'] | undefined, answeredToday: number, streak: number, plan = '') {
   useEffect(() => {
     if (!reminder?.enabled || !notificationsSupported()) return
     const check = () => {
@@ -47,12 +48,12 @@ export function useReminder(reminder: Settings['reminder'] | undefined, answered
       } catch {
         // ignore
       }
-      void showReminder(streak)
+      void showReminder(streak, plan)
     }
     check()
     const t = window.setInterval(check, 30_000)
     return () => window.clearInterval(t)
-  }, [reminder?.enabled, reminder?.time, answeredToday, streak])
+  }, [reminder?.enabled, reminder?.time, answeredToday, streak, plan])
 }
 
 /** A daily recurring calendar event with an alert, for the system calendar (works when the app is closed). */

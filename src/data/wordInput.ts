@@ -23,6 +23,8 @@ export interface WordInput {
   /** Needed only when the article doesn't show it (l'arbre). */
   gender?: Gender
   level?: CefrLevel
+  /** Frequency rank (see FREQUENCY_BANDS); 0 or absent = unknown. */
+  frequencyRank?: number
   /**
    * Example sentence. The word inside it may be marked with *asterisks* ("She *abandoned* it")
    * when it appears in a different form than typed and can't be found automatically.
@@ -40,6 +42,24 @@ export interface WordInput {
 }
 
 export class WordInputError extends Error {}
+
+/**
+ * Frequency bands. High-frequency words pay back far more per word learned (Nation 2006), so the
+ * band is shown with each word and can order new words. A band is stored as a representative rank.
+ */
+export const FREQUENCY_BANDS = [
+  { id: 'top1000', label: 'Çok sık (ilk 1000)', short: 'ilk 1000', rank: 500 },
+  { id: 'top3000', label: 'Sık (ilk 3000)', short: 'ilk 3000', rank: 2000 },
+  { id: 'top10000', label: 'Orta (ilk 10.000)', short: 'ilk 10.000', rank: 6000 },
+  { id: 'rare', label: 'Nadir', short: 'nadir', rank: 20000 },
+] as const
+
+export type FrequencyBand = (typeof FREQUENCY_BANDS)[number]['id']
+
+export function bandOf(rank: number | undefined): (typeof FREQUENCY_BANDS)[number] | undefined {
+  if (!rank) return undefined
+  return FREQUENCY_BANDS.find((b) => rank <= b.rank * 1.5) ?? FREQUENCY_BANDS[3]
+}
 
 const GENDER_BY_ARTICLE: Record<string, Gender> = { le: 'm', un: 'm', el: 'm', la: 'f', une: 'f', una: 'f' }
 
@@ -207,7 +227,7 @@ export function createEntry(
     gender,
     article: keepArticle,
     cefr: input.level ?? 'B1',
-    frequencyRank: 0,
+    frequencyRank: input.frequencyRank ?? 0,
     register: 'neutral',
     senses: [{ id: `${id}#1`, gloss: meanings[0], altGlosses: meanings.slice(1), examples }],
     collocations: parseCollocations(input.collocations),
@@ -429,6 +449,7 @@ export function entryToInput(entry: VocabularyEntry): WordInput {
       .join(', '),
     notes: entry.notes ?? '',
     tags: entry.tags.join(', '),
+    frequencyRank: entry.frequencyRank,
   }
 }
 
@@ -448,6 +469,7 @@ export function updateEntry(existing: VocabularyEntry, input: WordInput): Vocabu
     gender: edited.gender,
     article: edited.article,
     cefr: input.level ?? existing.cefr,
+    frequencyRank: input.frequencyRank ?? existing.frequencyRank,
     senses: [
       {
         ...oldSense,
