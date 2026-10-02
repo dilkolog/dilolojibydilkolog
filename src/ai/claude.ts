@@ -322,6 +322,9 @@ const Chat = z.object({
     .nullable()
     .describe("A correction of the learner's last message only if it had a real mistake; null otherwise."),
   usedWords: z.array(z.string()).describe('Practice words the learner used correctly in their last message, exactly as listed.'),
+  goalsDone: z
+    .array(z.number().int())
+    .describe('Mission only: 0-based indices of ALL goals the learner has achieved so far in the whole conversation (cumulative). Empty array when there is no mission.'),
 })
 
 /** One turn of a role-play conversation that weaves in the learner's practice words. */
@@ -333,6 +336,13 @@ export async function chatTurn(apiKey: string, req: ChatRequest): Promise<ChatRe
     `Weave these practice words into your lines over the conversation, one or two at a time, so the learner hears and can reuse them: ${req.words.map((w) => w.lemma).join(', ') || 'none'}.`,
     'Speak naturally at a normal adult level; keep each turn short so the learner talks more than you.',
     'Their messages may come from speech recognition: ignore missing punctuation and capitalisation.',
+    ...(req.goals?.length
+      ? [
+          'This is a mission. You play the other party described in the scenario, with their own interests: do not hand the learner their goals, make them work for each one with natural resistance, and give in when they argue well.',
+          `The learner's goals (in Turkish):\n${req.goals.map((g, i) => `${i}. ${g}`).join('\n')}`,
+          'A goal counts as achieved only when the learner has clearly done it themselves in the target language.',
+        ]
+      : []),
   ].join('\n')
   // The API wants the conversation to open with a user turn; the partner speaks first.
   const messages: Anthropic.Beta.BetaMessageParam[] = [

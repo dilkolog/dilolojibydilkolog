@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { AiError, chatTurn, reviewJournal, type ChatReply, type ChatTurn } from '../ai'
 import { displayForm, PERSONAL_PROMPTS } from '../engine/exercises'
 import { writingMistakes } from '../engine/mistakes'
+import { bestStars, MISSIONS, missionStars, type Mission } from '../engine/missions'
 import { pickAudioWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
@@ -33,7 +34,7 @@ function usePracticeWords(vocabulary: VocabularyEntry[], states: UserWordState[]
  * recognise. Journal works without AI (entries are kept); feedback and conversation need it.
  */
 export function ProduceScreen(p: Props) {
-  const [tab, setTab] = useState<'journal' | 'chat'>('journal')
+  const [tab, setTab] = useState<'journal' | 'chat' | 'mission'>('journal')
   return (
     <div className="stack">
       <h1 className="greeting">Yaz & konuş</h1>
@@ -44,8 +45,11 @@ export function ProduceScreen(p: Props) {
         <button role="tab" className="segmented-btn" aria-selected={tab === 'chat'} onClick={() => setTab('chat')}>
           Sohbet
         </button>
+        <button role="tab" className="segmented-btn" aria-selected={tab === 'mission'} onClick={() => setTab('mission')}>
+          Görevler
+        </button>
       </div>
-      {tab === 'journal' ? <Journal {...p} /> : <Chat {...p} />}
+      {tab === 'journal' ? <Journal {...p} /> : tab === 'chat' ? <Chat key="chat" {...p} /> : <Chat key="mission" {...p} mission />}
     </div>
   )
 }
@@ -231,9 +235,16 @@ interface Line extends ChatTurn {
   correction?: ChatReply['correction']
 }
 
-function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
+function Chat({ db, language, vocabulary, states, onOpenSettings, mission }: Props & { mission?: boolean }) {
   const { apiKey } = useAi()
-  const words = usePracticeWords(vocabulary, states, 8)
+  const words = usePracticeWords(vocabulary, states, mission ? 3 : 8)
+  const [active, setActive] = useState<Mission | null>(null)
+  const [goalsDone, setGoalsDone] = useState<Set<number>>(new Set())
+  const [best, setBest] = useState<Record<string, number>>({})
+  const [stars, setStars] = useState<number | null>(null)
+  useEffect(() => {
+    if (mission) void db.getMissions().then((r) => setBest(bestStars(r, language)))
+  }, [db, language, mission])
   const [scenario, setScenario] = useState(SCENARIOS[0])
   const [custom, setCustom] = useState('')
   const [lines, setLines] = useState<Line[] | null>(null)
@@ -261,12 +272,21 @@ function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
     )
   }
 
-  const topic = custom.trim() || scenario
-  const ask = async (history: Line[]) => {
+  const topic = active ? active.scenario : custom.trim() || scenario
+  // `m` is passed when starting, before the chosen mission has reached state.
+  const ask = async (history: Line[], m: Mission | null = active) => {
+    const topic = m ? m.scenario : custom.trim() || scenario
     setBusy(true)
     setError('')
     try {
-      const r = await chatTurn(apiKey, { language, scenario: topic, words: words.map((w) => ({ lemma: displayForm(w), gloss: w.senses[0].gloss })), history })
+      const r = await chatTurn(apiKey, {
+        language,
+        scenario: topic,
+        words: words.map((w) => ({ lemma: displayForm(w), gloss: w.senses[0].gloss })),
+        history,
+        goals: m?.goals,
+      })
+      if (m) setGoalsDone((g) => new Set([...g, ...r.goalsDone.filter((i) => i >= 0 && i < m.goals.length)]))
       const withCorrection = history.map((l, i) => (i === history.length - 1 && l.role === 'user' ? { ...l, correction: r.correction } : l))
       setLines([...withCorrection, { role: 'assistant', text: r.reply }])
       if (r.usedWords.length) setUsed((u) => new Set([...u, ...r.usedWords]))
@@ -297,6 +317,46 @@ function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
     })
   }
 
+  const begin = (m: Mission | null) => {
+    setActive(m)
+    setGoalsDone(new Set())
+    setStars(null)
+    setUsed(new Set())
+    setEnded(false)
+    setLines([])
+    void ask([], m)
+  }
+
+  if (!lines && mission) {
+    return (
+      <div className="stack">
+        <p className="small muted">
+          Gerçek bir durumda, karşı tarafı AI oynar ve sana kolayca boyun eğmez. Hedefleri kendi cümlelerinle tamamla; şu kelimeleri de kullanman
+          gerekiyor: <strong lang={language}>{words.map((w) => displayForm(w)).join(', ') || '(önce birkaç kelime öğren)'}</strong>.
+        </p>
+        <div className="mission-grid">
+          {MISSIONS.map((m) => (
+            <button key={m.id} className="mission-card" onClick={() => begin(m)}>
+              <span className="mission-head">
+                <span className="game-emoji">{m.emoji}</span>
+                <strong>{m.title}</strong>
+                <span className="mission-stars" aria-label={`${best[m.id] ?? 0} yıldız`}>
+                  {[1, 2, 3].map((i) => (i <= (best[m.id] ?? 0) ? '★' : '☆')).join('')}
+                </span>
+              </span>
+              <span className="small muted">{m.scenario}</span>
+              <ul className="mission-goals small">
+                {m.goals.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   if (!lines) {
     return (
       <section className="card stack">
@@ -317,12 +377,7 @@ function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
         <div className="row">
           <button
             className="btn"
-            onClick={() => {
-              setUsed(new Set())
-              setEnded(false)
-              setLines([])
-              void ask([])
-            }}
+            onClick={() => begin(null)}
           >
             Sohbeti başlat
           </button>
@@ -335,11 +390,54 @@ function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
   }
 
   const corrections = lines.filter((l) => l.correction)
+  const wordsUsed = words.filter((w) => used.has(displayForm(w))).length
+  const complete = !!active && goalsDone.size >= active.goals.length && wordsUsed >= words.length
+  const finish = async () => {
+    setEnded(true)
+    if (!active || stars !== null) return
+    const s = missionStars(goalsDone.size, active.goals.length, wordsUsed, words.length)
+    setStars(s)
+    await db.addMission({ mission: active.id, language, at: new Date().toISOString(), stars: s })
+  }
   return (
     <div className="stack">
-      <p className="small muted">
-        Konu: <strong>{topic}</strong>
-      </p>
+      {active ? (
+        <section className="card stack mission-brief">
+          <strong>
+            {active.emoji} {active.title}
+          </strong>
+          <ul className="mission-check">
+            {active.goals.map((g, i) => (
+              <li key={g} className={goalsDone.has(i) ? 'is-done' : ''}>
+                {goalsDone.has(i) ? '✓' : '○'} {g}
+              </li>
+            ))}
+          </ul>
+          {words.length > 0 && (
+            <p className="small">
+              Kullan:{' '}
+              {words.map((w) => (
+                <span key={w.id} className={`mission-word${used.has(displayForm(w)) ? ' is-done' : ''}`} lang={language} title={w.senses[0].gloss}>
+                  {used.has(displayForm(w)) ? '✓ ' : ''}
+                  {displayForm(w)}
+                </span>
+              ))}
+            </p>
+          )}
+          {complete && !ended && (
+            <p className="notice">
+              🎉 Bütün hedefler tamam!{' '}
+              <button className="link" onClick={finish}>
+                Görevi bitir
+              </button>
+            </p>
+          )}
+        </section>
+      ) : (
+        <p className="small muted">
+          Konu: <strong>{topic}</strong>
+        </p>
+      )}
       <ul className="chat">
         {lines.map((l, i) => (
           <li key={i} className={`chat-line ${l.role}`}>
@@ -364,14 +462,21 @@ function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
       {error && <p className="error">{error}</p>}
       {ended ? (
         <section className="card stack">
-          <strong>Sohbet bitti</strong>
+          <strong>{active ? 'Görev bitti' : 'Sohbet bitti'}</strong>
+          {active && stars !== null && (
+            <p className="mission-result">
+              <span className="mission-stars">{[1, 2, 3].map((i) => (i <= stars ? '★' : '☆')).join('')}</span>{' '}
+              {goalsDone.size}/{active.goals.length} hedef, {wordsUsed}/{words.length} kelime.{' '}
+              {stars === 3 ? 'Kusursuz!' : stars === 2 ? 'Üç yıldız için kelimelerin hepsini de kullan.' : 'Kalan hedefleri tamamlamak için tekrar dene.'}
+            </p>
+          )}
           <p className="small">
             {lines.filter((l) => l.role === 'user').length} kez konuştun, {corrections.length} düzeltme.
             {used.size > 0 && ` Doğru kullandığın kelimeler: ${[...used].join(', ')}.`}
           </p>
           <div>
             <button className="btn" onClick={() => setLines(null)}>
-              Yeni sohbet
+              {active ? 'Başka görev' : 'Yeni sohbet'}
             </button>
           </div>
         </section>
@@ -402,8 +507,8 @@ function Chat({ language, vocabulary, states, onOpenSettings }: Props) {
                 {hearing ? '⏹ Dinlemeyi bitir' : '🎤 Konuş'}
               </button>
             )}
-            <button className="link small" onClick={() => setEnded(true)}>
-              Sohbeti bitir
+            <button className="link small" onClick={finish}>
+              {active ? 'Görevi bitir' : 'Sohbeti bitir'}
             </button>
           </div>
         </div>

@@ -97,6 +97,8 @@ export interface ChatRequest {
   scenario: string
   words: { lemma: string; gloss: string }[]
   history: ChatTurn[]
+  /** Mission goals in Turkish; the reply says which ones the learner has achieved. */
+  goals?: string[]
 }
 
 export interface ChatReply {
@@ -104,6 +106,8 @@ export interface ChatReply {
   /** Correction of the learner's last message, if it had a real mistake. */
   correction: { original: string; corrected: string; note: string } | null
   usedWords: string[]
+  /** Indices of mission goals achieved so far (empty outside missions). */
+  goalsDone: number[]
 }
 
 export interface EpisodeRequest {

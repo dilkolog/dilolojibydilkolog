@@ -1542,3 +1542,23 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .swipe-actions { display: flex; justify-content: center; align-items: center; gap: 1.5rem; }
 .swipe-actions .btn { width: 4rem; height: 4rem; border-radius: 999px; padding: 0; font-size: 1.5rem; }
 .swipe-missed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
+
+/* Missions */
+.mission-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.mission-card {
+  display: grid; gap: 0.5rem; text-align: left; padding: 1rem 1.125rem; cursor: pointer;
+  border: 0; border-radius: 1.25rem; background: var(--surface); box-shadow: var(--shadow); color: var(--ink);
+}
+.mission-card:hover { box-shadow: var(--shadow), inset 0 0 0 2px var(--lang); }
+.mission-head { display: flex; align-items: center; gap: 0.5rem; }
+.mission-head .game-emoji { font-size: 1.5rem; }
+.mission-head strong { flex: 1; }
+.mission-stars { color: var(--gold); letter-spacing: 0.1em; }
+.mission-goals { margin: 0; padding-left: 1.125rem; color: var(--ink-soft); }
+.mission-brief { gap: 0.5rem; }
+.mission-check { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+.mission-check li { color: var(--ink-soft); }
+.mission-check li.is-done { color: var(--ok-text); font-weight: 600; }
+.mission-word { display: inline-block; margin: 0 0.375rem 0.25rem 0; padding: 0.0625rem 0.5rem; border-radius: 999px; background: var(--lang-soft); color: var(--lang-text); font-weight: 600; }
+.mission-word.is-done { background: var(--ok-soft); color: var(--ok-text); }
+.mission-result { font-weight: 600; }

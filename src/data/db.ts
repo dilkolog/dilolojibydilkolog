@@ -5,6 +5,7 @@ import { recordMistake, type MistakeInput } from '../engine/mistakes'
 import type { BossWin } from '../engine/bosses'
 import type { ExamResult } from '../engine/exam'
 import type { ReviewResult } from '../engine/review'
+import type { MissionResult } from '../engine/missions'
 import {
   TARGET_LANGUAGES,
   type CefrLevel,
@@ -315,6 +316,14 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'bossWins', value: [...(await this.getBossWins()), win] })
   }
 
+  async getMissions(): Promise<MissionResult[]> {
+    return ((await this.meta.get('missions'))?.value as MissionResult[]) ?? []
+  }
+
+  async addMission(result: MissionResult) {
+    await this.meta.put({ key: 'missions', value: [...(await this.getMissions()), result] })
+  }
+
   /** Journal entries of one language, newest first. */
   async getJournal(language: TargetLanguage): Promise<JournalEntry[]> {
     const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
@@ -522,6 +531,7 @@ export interface Backup {
   vocabTests?: VocabTestRecord[]
   journal?: JournalEntry[]
   bossWins?: BossWin[]
+  missions?: MissionResult[]
   exams?: ExamResult[]
   /** Ids of deleted words (sync tombstones). */
   deleted?: string[]
@@ -563,6 +573,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     vocabTests: await db.getVocabTests(),
     journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
     bossWins: await db.getBossWins(),
+    missions: await db.getMissions(),
     exams: await db.getExams(),
     deleted: await db.getDeleted(),
     media: await Promise.all(
@@ -622,6 +633,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
     if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })
     if (backup.bossWins) await db.meta.put({ key: 'bossWins', value: backup.bossWins })
+    if (backup.missions) await db.meta.put({ key: 'missions', value: backup.missions })
     if (backup.exams) await db.meta.put({ key: 'exams', value: backup.exams })
     if (backup.deleted) await db.meta.put({ key: 'deleted', value: backup.deleted })
   })

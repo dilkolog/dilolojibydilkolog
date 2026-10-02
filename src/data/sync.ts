@@ -115,6 +115,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     vocabTests: unionBy(older.vocabTests, newer.vocabTests, (t) => `${t.language}|${t.at}`),
     journal: unionBy(older.journal, newer.journal, (j) => j.id, (x, y) => (y.review || !x.review ? y : x)),
     bossWins: unionBy(older.bossWins, newer.bossWins, (w) => `${w.entryId}|${w.at}`),
+    missions: unionBy(older.missions, newer.missions, (m) => `${m.mission}|${m.at}`),
     exams: unionBy(older.exams, newer.exams, (e) => `${e.language}|${e.at}`),
     deleted: [...deleted],
     media: [],
