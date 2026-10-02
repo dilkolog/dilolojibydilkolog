@@ -1324,3 +1324,9 @@ kbd {
 .growth-rules { list-style: none; padding: 0; margin: 0.5rem 0; display: grid; gap: 0.375rem; }
 .growth-rules li { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .grew-note { display: flex; align-items: center; gap: 0.375rem; font-weight: 600; }
+
+/* Missing frequent words */
+.missing-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
+.missing-list li { display: flex; align-items: center; gap: 0.75rem; padding: 0.375rem 0; border-bottom: 1px solid var(--rule); }
+.missing-word { font-family: var(--serif); font-size: var(--t-lg); color: var(--lang-text); }
+.btn-sm { padding: 0.375rem 0.875rem; font-size: var(--t-sm); min-height: 0; }

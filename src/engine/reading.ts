@@ -152,3 +152,39 @@ export function finishReading(a: ReadingAnalysis, skipped: ReadonlySet<string> =
       }
   return { knownKeys: [...knownKeys], encounters }
 }
+
+export interface MissingWord {
+  word: string
+  /** Frequency rank of the word's most frequent form. */
+  rank: number
+  key: string
+}
+
+/**
+ * Frequent words the learner has neither in the list nor among known words: gaps that pay off
+ * most (Nation 2006). Forms sharing a stem appear once, under their most frequent form.
+ * `list` is the frequency list, most frequent first.
+ */
+export function missingFrequent(
+  list: readonly string[],
+  language: TargetLanguage,
+  vocabulary: readonly VocabularyEntry[],
+  known: ReadonlySet<string>,
+  maxRank = 3000,
+): MissingWord[] {
+  const have = new Set<string>()
+  for (const e of vocabulary) {
+    if (e.language !== language) continue
+    for (const w of [e.lemma, ...(e.alternativeForms ?? [])]) if (!w.includes(' ')) have.add(readingKey(w, language))
+  }
+  const seen = new Set<string>()
+  const out: MissingWord[] = []
+  list.slice(0, maxRank).forEach((word, i) => {
+    if (word.length < 3 || !/^[\p{Ll}'’-]+$/u.test(word) || STOP[language].has(word)) return
+    const key = readingKey(word, language)
+    if (seen.has(key)) return
+    seen.add(key)
+    if (!known.has(key) && !have.has(key)) out.push({ word, rank: i + 1, key })
+  })
+  return out
+}

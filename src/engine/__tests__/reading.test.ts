@@ -72,3 +72,16 @@ describe('contextEncounters', () => {
     expect(contextEncounters([ev('mc_context'), ev('mc_meaning'), ev('cloze_typed'), ev('dictation')], 4)).toBe(7)
   })
 })
+
+describe('missingFrequent', () => {
+  it('lists frequent words not known and not in the list, one per stem, in rank order', async () => {
+    const { missingFrequent } = await import('../reading')
+    const list = ['the', 'house', 'houses', 'decision', 'brave', 'xyz1', 'garden', 'rare']
+    const known = new Set([readingKey('brave', 'en')])
+    const out = missingFrequent(list, 'en', [decision], known, 7)
+    expect(out.map((m) => [m.word, m.rank])).toEqual([
+      ['house', 2],
+      ['garden', 7],
+    ])
+  })
+})

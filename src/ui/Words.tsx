@@ -13,6 +13,7 @@ import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView } from './CrossLanguage'
+import { MissingWords } from './MissingWords'
 import { Plant } from './Plant'
 import { growthStage, plantHealth } from '../engine/growth'
 import { scheduler } from '../data/instance'
@@ -98,6 +99,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </details>
         <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
         <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
+        <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
         <div className="row small">
           {hasSamples ? (
             <button className="link" onClick={removeSamples}>
