@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { buildExercise, displayForm, evaluateChoice, pickDistractors, type ChoiceExercise } from '../engine/exercises'
 import { comboMultiplier } from '../engine/gamification'
 import { pairRound, type PairQuestion } from '../engine/listening'
-import { FLUENCY_MIN_WORDS, median, pickFluencyWords, pickGameWords } from '../engine/practice'
+import { FLUENCY_MIN_WORDS, median, pickAudioWords, pickFluencyWords, pickGameWords, type AudioSet } from '../engine/practice'
 import { newWordState, processAttempt } from '../engine/review'
 import { createRng, pick, shuffle } from '../engine/rng'
 import type { ExerciseType, Mistake, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
@@ -12,9 +12,9 @@ import { SAMPLE_WORDS } from '../data/seed'
 import { FlameIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
-import { canSpeak, speak, speakAsync } from './speech'
+import { canSpeak, playWordAsync, preloadRecording, speak, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from './speech'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | null
 
 interface Props {
   language: TargetLanguage
@@ -57,6 +57,7 @@ export function GamesScreen(p: Props) {
   if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
   if (game === 'gender' && p.language !== 'en')
     return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
+  if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
   if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'fluency')
     return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
@@ -90,6 +91,12 @@ export function GamesScreen(p: Props) {
             <span className="game-record">{records[`gender:${p.language}`] ? `Rekorun: %${records[`gender:${p.language}`]}` : 'Henüz rekor yok'}</span>
           </button>
         )}
+        <button className="game-card" disabled={!canSpeak() || p.states.length === 0} onClick={() => setGame('audio')}>
+          <span className="game-emoji">🎧</span>
+          <strong>Sesli tekrar</strong>
+          <span className="small muted">Ekrana bakmadan dinle: kelime, düşünme payı, anlamı. Yürürken ya da yemek yaparken. Takvimi etkilemez.</span>
+          <span className="game-record">{p.states.length === 0 ? 'Önce birkaç kelime öğren' : 'Zayıf kelimelerden başlar'}</span>
+        </button>
         <button className="game-card" disabled={!canSpeak()} onClick={() => setGame('pairs')}>
           <span className="game-emoji">👂</span>
           <strong>Ses ayırt etme</strong>
@@ -942,6 +949,186 @@ function GenderGame({
             </button>
           </div>
         </div>
+      )}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Audio review
+// ---------------------------------------------------------------------------
+
+const AUDIO_SETS: [AudioSet, string][] = [
+  ['weak', 'Zayıf kelimeler'],
+  ['today', 'Bugün tanıştıklarım'],
+  ['all', 'Karışık'],
+]
+const GAPS = [2, 4, 6]
+const pause = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+/**
+ * Hands-free listening. Word → pause → meaning, or meaning → pause → word (recall: say it in
+ * your head before you hear it). Passive, so it never touches the schedule.
+ */
+function AudioReview({ language, vocabulary, states, onExit }: Props & { onExit: () => void }) {
+  const [set, setSet] = useState<AudioSet>('weak')
+  const [direction, setDirection] = useState<'target' | 'turkish'>('target')
+  const [gap, setGap] = useState(4)
+  const [withExample, setWithExample] = useState(false)
+  const words = useMemo(() => pickAudioWords(vocabulary, states, scheduler, new Date(), set, createRng(Date.now())), [vocabulary, states, set])
+  const [index, setIndex] = useState(0)
+  const [reveal, setReveal] = useState(false)
+  const [playing, setPlaying] = useState(false)
+  const run = useRef(0)
+  const lock = useRef<{ release: () => Promise<void> } | null>(null)
+
+  useEffect(() => {
+    for (const w of words) void preloadRecording(w.audioId)
+  }, [words])
+
+  const stop = useCallback(() => {
+    run.current++
+    stopSpeaking()
+    setPlaying(false)
+    void lock.current?.release().catch(() => {})
+    lock.current = null
+  }, [])
+  useEffect(() => stop, [stop])
+
+  const play = async (from: number) => {
+    const me = ++run.current
+    setPlaying(true)
+    // Keep the screen on while listening, where the browser allows it.
+    try {
+      const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<{ release: () => Promise<void> }> } }
+      lock.current = (await nav.wakeLock?.request('screen')) ?? null
+    } catch {
+      // Not available: the screen may dim, audio continues while the page is open.
+    }
+    const live = () => run.current === me
+    for (let i = from; i < words.length && live(); i++) {
+      const w = words[i]
+      const gloss = w.senses[0].gloss
+      setIndex(i)
+      setReveal(false)
+      if (direction === 'target') {
+        await playWordAsync(w)
+        if (!live()) return
+        await pause(gap * 1000)
+        if (!live()) return
+        setReveal(true)
+        await speakTurkishAsync(gloss)
+      } else {
+        await speakTurkishAsync(gloss)
+        if (!live()) return
+        await pause(gap * 1000)
+        if (!live()) return
+        setReveal(true)
+        await playWordAsync(w)
+      }
+      const example = w.senses[0].examples[0]
+      if (withExample && example && live()) {
+        await pause(500)
+        await speakAsync(example.text, language, speechPrefs.rate * 0.95)
+      }
+      if (live()) await pause(1200)
+    }
+    if (live()) {
+      setPlaying(false)
+      setIndex(words.length)
+    }
+  }
+
+  const w = words[index]
+  const done = index >= words.length && words.length > 0
+  return (
+    <div className="stack">
+      <div className="game-top">
+        <button className="link" onClick={() => (stop(), onExit())}>
+          ← Oyunlar
+        </button>
+        {words.length > 0 && !done && (
+          <span className="game-timer">
+            {index + 1} / {words.length}
+          </span>
+        )}
+        <span />
+      </div>
+      <h1 className="greeting">Sesli tekrar</h1>
+      {!playing && (
+        <div className="stack audio-options">
+          <div className="choice-row">
+            {AUDIO_SETS.map(([v, label]) => (
+              <button key={v} className="chip chip-sm" aria-pressed={set === v} onClick={() => (setSet(v), setIndex(0))}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <div className="choice-row">
+            <button className="chip chip-sm" aria-pressed={direction === 'target'} onClick={() => setDirection('target')}>
+              Kelime → anlamı
+            </button>
+            <button className="chip chip-sm" aria-pressed={direction === 'turkish'} onClick={() => setDirection('turkish')}>
+              Anlamı → kelime (hatırla)
+            </button>
+          </div>
+          <div className="choice-row">
+            <span className="small muted">Düşünme payı:</span>
+            {GAPS.map((g) => (
+              <button key={g} className="chip chip-sm" aria-pressed={gap === g} onClick={() => setGap(g)}>
+                {g} sn
+              </button>
+            ))}
+            <button className="chip chip-sm" aria-pressed={withExample} onClick={() => setWithExample(!withExample)}>
+              Örnek cümle de
+            </button>
+          </div>
+        </div>
+      )}
+      {words.length === 0 ? (
+        <p className="muted">Bu seçimde dinlenecek kelime yok.</p>
+      ) : done ? (
+        <div className="celebrate stack">
+          <h2>Bitti 🎧</h2>
+          <p className="muted">{words.length} kelimeyi dinledin. Sesli tekrar takvimi etkilemez; asıl tekrarlar günlük görevde.</p>
+          <div className="row" style={{ justifyContent: 'center' }}>
+            <button className="btn btn-lg" onClick={() => play(0)}>
+              Baştan dinle
+            </button>
+          </div>
+        </div>
+      ) : (
+        w && (
+          <div className="audio-card card stack">
+            <p className="audio-word" lang={language}>
+              {direction === 'turkish' && !reveal ? '…' : displayForm(w)}
+            </p>
+            <p className="gloss">{direction === 'target' && !reveal ? '…' : w.senses[0].gloss}</p>
+            <div className="row" style={{ justifyContent: 'center' }}>
+              {playing ? (
+                <button className="btn btn-lg btn-quiet" onClick={stop}>
+                  ⏸ Duraklat
+                </button>
+              ) : (
+                <button className="btn btn-lg" onClick={() => play(index)} autoFocus>
+                  ▶ {index === 0 ? 'Başlat' : 'Devam et'}
+                </button>
+              )}
+              <button
+                className="btn btn-lg btn-quiet"
+                onClick={() => {
+                  const was = playing
+                  stop()
+                  const next = Math.min(words.length - 1, index + 1)
+                  setIndex(next)
+                  if (was) void play(next)
+                }}
+              >
+                ⏭ Sonraki
+              </button>
+            </div>
+          </div>
+        )
       )}
     </div>
   )

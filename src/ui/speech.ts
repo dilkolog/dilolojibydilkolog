@@ -134,6 +134,48 @@ export function speakAsync(text: string, language: TargetLanguage, rate = speech
   })
 }
 
+/** Speak Turkish (meanings in audio review) and resolve when finished. */
+export function speakTurkishAsync(text: string, rate = speechPrefs.rate): Promise<void> {
+  return new Promise((resolve) => {
+    if (!canSpeak()) return resolve()
+    const synth = window.speechSynthesis
+    synth.cancel()
+    const u = new SpeechSynthesisUtterance(text)
+    u.lang = 'tr-TR'
+    u.rate = rate
+    const voice = synth.getVoices().find((v) => v.lang.toLowerCase().startsWith('tr'))
+    if (voice) u.voice = voice
+    u.onend = () => resolve()
+    u.onerror = () => resolve()
+    synth.speak(u)
+  })
+}
+
+/** The word in the learner's own recording if there is one (awaiting its end), otherwise TTS. */
+export async function playWordAsync(entry: VocabularyEntry, rate = speechPrefs.rate): Promise<void> {
+  const url = recordings.get(entry.audioId ?? '') ?? (await preloadRecording(entry.audioId))
+  if (url) {
+    current?.pause()
+    const a = new Audio(url)
+    current = a
+    const ended = new Promise<void>((resolve) => {
+      a.onended = () => resolve()
+      a.onerror = () => resolve()
+    })
+    const ok = await a.play().then(
+      () => true,
+      () => false,
+    )
+    if (ok) return ended
+  }
+  return speakAsync(displayForm(entry), entry.language, rate)
+}
+
+export function stopSpeaking() {
+  current?.pause()
+  if (canSpeak()) window.speechSynthesis.cancel()
+}
+
 /** Your recording right after the reference voice, to hear the difference. */
 export async function comparePronunciation(entry: VocabularyEntry) {
   const url = recordings.get(entry.audioId ?? '') ?? (await preloadRecording(entry.audioId))

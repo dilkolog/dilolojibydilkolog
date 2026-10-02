@@ -1354,3 +1354,8 @@ kbd {
 .reread-pill { background: var(--ok-soft); color: var(--ok-text); }
 .file-btn { position: relative; overflow: hidden; }
 .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+/* Audio review */
+.audio-card { text-align: center; padding: 2rem 1.5rem; }
+.audio-word { font-family: var(--serif); font-size: var(--t-word); color: var(--lang-text); margin: 0; overflow-wrap: anywhere; }
+.audio-options .choice-row { align-items: center; }

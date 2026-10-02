@@ -170,3 +170,18 @@ describe('pickFluencyWords', () => {
     expect(median([4, 1, 3, 2])).toBe(2.5)
   })
 })
+
+describe('pickAudioWords', () => {
+  it('weak = least likely to be recalled first; today = met today; unlearned words never', async () => {
+    const { pickAudioWords } = await import('../practice')
+    const old = practised(decision, 1)
+    const fresh = practised(decide, 1)
+    const later = new Date(NOW.getTime() + 20 * 86_400_000)
+    old.skills.recognition = { ...old.skills.recognition!, stability: 0.5 }
+    fresh.skills.recognition = { ...fresh.skills.recognition!, stability: 50 }
+    const weak = pickAudioWords(CATALOG, [fresh, old], scheduler, later, 'weak', createRng(1))
+    expect(weak.map((w) => w.id)).toEqual(['en:decision', 'en:decide'])
+    const today = pickAudioWords(CATALOG, [{ ...old, introducedAt: new Date(NOW.getTime() - 3 * 86_400_000) }, fresh], scheduler, NOW, 'today', createRng(1))
+    expect(today.map((w) => w.id)).toEqual(['en:decide'])
+  })
+})

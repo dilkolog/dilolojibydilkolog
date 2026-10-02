@@ -161,3 +161,36 @@ export function median(values: readonly number[]): number {
   const mid = Math.floor(s.length / 2)
   return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2
 }
+
+// ---------------------------------------------------------------------------
+// Audio review
+// ---------------------------------------------------------------------------
+
+export type AudioSet = 'weak' | 'today' | 'all'
+
+/**
+ * Words for hands-free listening: the weakest learned words first (lowest recall probability),
+ * today's new words, or a shuffled mix of everything learned.
+ */
+export function pickAudioWords(
+  catalog: readonly VocabularyEntry[],
+  states: readonly UserWordState[],
+  scheduler: Scheduler,
+  now: Date,
+  set: AudioSet,
+  rng: Rng,
+  limit = 20,
+): VocabularyEntry[] {
+  const byId = new Map(catalog.map((e) => [e.id, e]))
+  const learned = states.filter((s) => byId.has(s.entryId) && Object.keys(s.skills).length > 0)
+  const today = new Date(now)
+  today.setHours(0, 0, 0, 0)
+  const weakest = (s: UserWordState) => Math.min(...Object.values(s.skills).map((c) => scheduler.retrievability(c, now)))
+  const chosen =
+    set === 'today'
+      ? learned.filter((s) => s.introducedAt >= today)
+      : set === 'weak'
+        ? [...learned].sort((a, b) => weakest(a) - weakest(b))
+        : shuffle(learned, rng)
+  return chosen.slice(0, limit).map((s) => byId.get(s.entryId)!)
+}
