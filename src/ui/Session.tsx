@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
-import { falseFriendsOf } from '../engine/crossLanguage'
+import { falseFriendsOf, type IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
 import {
   BLANK,
@@ -30,10 +30,11 @@ import {
   type SessionLogEntry,
   type SessionSummary,
 } from '../engine/session'
-import type { Confidence, EngineOptions, Mistake, ReviewMode, UserWordState, VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample, WordInputError } from '../data/wordInput'
+import { loadFrequency } from '../data/frequency'
 import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
@@ -77,6 +78,22 @@ export function SessionScreen(p: Props) {
     return [...p.vocabulary, ...(lang ? SAMPLE_WORDS[lang].filter((w) => !own.has(w.id)) : [])]
   }, [p.vocabulary])
   const rng = useMemo(() => createRng(p.seed ^ 0x5bd1e995), [p.seed])
+  // Words of the other languages, to recognise an answer given in the wrong language.
+  const [intrusionSources, setIntrusionSources] = useState<IntrusionSources>()
+  useEffect(() => {
+    const lang = p.vocabulary[0]?.language
+    if (!lang) return
+    let live = true
+    const others = TARGET_LANGUAGES.filter((l) => l !== lang)
+    Promise.all([p.db.vocabulary.where('language').anyOf(others).toArray(), ...TARGET_LANGUAGES.map(loadFrequency)]).then(([otherWords, ...maps]) => {
+      if (!live) return
+      const lists = Object.fromEntries(TARGET_LANGUAGES.map((l, i) => [l, new Set(maps[i].keys())]))
+      setIntrusionSources({ others: otherWords, lists })
+    })
+    return () => {
+      live = false
+    }
+  }, [p.db, p.vocabulary])
   // Own recordings are loaded up front: Safari only plays audio started directly by a click.
   useEffect(() => {
     const ids = new Set(p.items.map((i) => i.entryId))
@@ -265,6 +282,7 @@ export function SessionScreen(p: Props) {
           onContinue={proceed}
           struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
           listenRate={listeningRate(speechPrefs.rate, states.current.get(entry.id)?.skills.listening?.stability)}
+          intrusionSources={intrusionSources}
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
         />
       )}
@@ -514,6 +532,7 @@ interface RunnerProps {
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
   /** Speech rate for listening exercises, adapted to how well the word is heard already. */
   listenRate: number
+  intrusionSources?: IntrusionSources
   /** The word has been missed several times in a row: offer a memory hook. */
   struggling: () => boolean
   onEntryUpdated: (entry: VocabularyEntry) => void
@@ -525,7 +544,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 /** An evaluation plus optional AI feedback text (free sentences). */
 type Graded = Evaluation & { feedback?: string }
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated, listenRate }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
@@ -634,7 +653,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
               // Any recognised alternative that is right counts: recognition errors shouldn't cost the learner.
               const rank = { correct: 2, near: 1, wrong: 0 }
               const best = alternatives
-                .map((a) => evaluateTyped(exercise, a, entry, catalog))
+                .map((a) => evaluateTyped(exercise, a, entry, catalog, intrusionSources))
                 .sort((a, b) => rank[b.verdict] - rank[a.verdict])[0]
               if (best) void submit(best, 0, exercise.hints.length)
             }}
@@ -649,7 +668,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           onSubmit={(text, hints, shift) =>
             exercise.type === 'free_sentence' || exercise.type === 'back_translation'
               ? submitSentence(text, hints)
-              : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog)), hints, exercise.hints.length, { shift })
+              : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog, intrusionSources)), hints, exercise.hints.length, { shift })
           }
         />
         )
@@ -1010,7 +1029,8 @@ function Feedback({
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
   const confidentError = ev.verdict === 'wrong' && confidence === 'sure'
   const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : confidentError ? 'Emindin, ama doğrusu:' : 'Olsun, doğrusu:'
-  const hint = ev.errorType && ev.verdict !== 'correct' ? ERROR_HINT[ev.errorType] : ''
+  // An intrusion gets its own, more specific note below.
+  const hint = ev.errorType && ev.verdict !== 'correct' && !ev.intrusion ? ERROR_HINT[ev.errorType] : ''
   const btnClass = ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
   const [ready, setReady] = useState(!confidentError)
   useEffect(() => {
@@ -1052,6 +1072,12 @@ function Feedback({
             <p className="small">Emin değildin; bu yüzden kelime biraz daha erken tekrar gelecek.</p>
           )}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
+          {ev.intrusion && (
+            <p className="small intrusion-note">
+              “{ev.intrusion.word}” {LANGUAGE_NAME[ev.intrusion.language]} bir kelime
+              {ev.intrusion.entry ? ` (${ev.intrusion.entry.senses[0].gloss})` : ''}. {LANGUAGE_NAME[entry.language]} doğrusu: <strong>{ev.expected}</strong>
+            </p>
+          )}
           {ev.errorType === 'false_friend' &&
             falseFriendsOf(entry).map((f) => (
               <p key={f.word} className="small">

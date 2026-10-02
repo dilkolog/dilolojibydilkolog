@@ -66,3 +66,31 @@ describe('conceptGroups', () => {
     expect(groups[1]).toMatchObject({ gloss: 'karar', cognate: true })
   })
 })
+
+describe('detectIntrusion', () => {
+  it('finds a word from the learner’s list in another language, article and accents ignored', async () => {
+    const { detectIntrusion } = await import('../crossLanguage')
+    const es = word('es', 'el consejo', 'tavsiye')
+    expect(detectIntrusion('consejo', 'fr', { others: [es] })).toMatchObject({ language: 'es', entry: es })
+    expect(detectIntrusion('el consejo', 'fr', { others: [es] })?.language).toBe('es')
+    expect(detectIntrusion('maison', 'fr', { others: [es] })).toBeUndefined()
+  })
+
+  it('uses other languages’ frequency lists, but never for a word of the target language', async () => {
+    const { detectIntrusion } = await import('../crossLanguage')
+    const lists = { fr: new Set(['pour', 'maison']), es: new Set(['para', 'casa', 'maison']) }
+    expect(detectIntrusion('casa', 'fr', { others: [], lists })?.language).toBe('es')
+    expect(detectIntrusion('maison', 'fr', { others: [], lists })).toBeUndefined()
+    expect(detectIntrusion('xyzzy', 'fr', { others: [], lists })).toBeUndefined()
+  })
+
+  it('a plain miss in a typed exercise becomes a cross-language error, a typo does not', async () => {
+    const { buildExercise, evaluateTyped } = await import('../exercises')
+    const fr = word('fr', 'le conseil', 'tavsiye')
+    const es = word('es', 'el consejo', 'tavsiye')
+    const ex = buildExercise('typed_translation', fr, [fr], createRng(1))
+    if (ex.kind !== 'typed') throw new Error('typed expected')
+    expect(evaluateTyped(ex, 'el consejo', fr, [fr], { others: [es] })).toMatchObject({ verdict: 'wrong', errorType: 'cross_language', intrusion: { language: 'es' } })
+    expect(evaluateTyped(ex, 'le conseill', fr, [fr], { others: [es] }).errorType).not.toBe('cross_language')
+  })
+})

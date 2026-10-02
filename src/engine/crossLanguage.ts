@@ -204,3 +204,49 @@ export function conceptGroups(all: readonly VocabularyEntry[]): Concept[] {
   }
   return out.sort((a, b) => b.languages - a.languages || a.gloss.localeCompare(b.gloss, 'tr'))
 }
+
+// ---------------------------------------------------------------------------
+// Cross-language intrusions
+// ---------------------------------------------------------------------------
+
+export interface Intrusion {
+  /** The language the given word belongs to. */
+  language: TargetLanguage
+  word: string
+  /** The learner's own entry for it, when the word is in their list. */
+  entry?: VocabularyEntry
+}
+
+export interface IntrusionSources {
+  /** The learner's words in the other languages. */
+  others: readonly VocabularyEntry[]
+  /** Frequency lists per language (word sets), for words not in the learner's list. */
+  lists?: Partial<Record<TargetLanguage, ReadonlySet<string>>>
+}
+
+/**
+ * Learning two close languages at once, the most common slip is answering in the other one
+ * (Spanish "consejo" for French "conseil"). A wrong typed answer counts as an intrusion when it
+ * is a word the learner has in another language, or a frequent word of another language that
+ * isn't also a word of the target language.
+ */
+export function detectIntrusion(given: string, target: TargetLanguage, sources: IntrusionSources): Intrusion | undefined {
+  const raw = normalize(given).toLocaleLowerCase()
+  if (raw.length < 3) return undefined
+  const bareOf = (s: string, l: TargetLanguage) => stripDiacritics(splitArticle(normalize(s).toLocaleLowerCase(), l).rest)
+  for (const e of sources.others) {
+    if (e.language === target) continue
+    if (bareOf(given, e.language) === bareOf(e.lemma, e.language)) return { language: e.language, word: given.trim(), entry: e }
+  }
+  const lists = sources.lists
+  if (!lists) return undefined
+  const own = lists[target]
+  const word = splitArticle(raw, target).rest
+  if (own?.has(word)) return undefined
+  for (const [language, set] of Object.entries(lists) as [TargetLanguage, ReadonlySet<string>][]) {
+    if (language === target) continue
+    const w = splitArticle(raw, language).rest
+    if (w.length >= 3 && set.has(w)) return { language, word: given.trim() }
+  }
+  return undefined
+}

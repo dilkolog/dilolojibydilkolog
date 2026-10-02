@@ -43,6 +43,7 @@ export const ERROR_NAME: Record<ErrorType, string> = {
   confusion: 'Karıştırılan kelime',
   collocation: 'Kalıp (collocation)',
   false_friend: 'Sahte dost',
+  cross_language: 'Diller arası karışma',
 }
 
 /** Shown after a near miss / error, explaining what was off rather than just "wrong". */
@@ -56,6 +57,7 @@ export const ERROR_HINT: Record<ErrorType, string> = {
   confusion: 'Bu, sık karıştırılan diğer kelime.',
   collocation: 'Bu kalıp bu dilde doğal değil.',
   false_friend: 'Sahte dost: başka bir dildeki benzer kelimenin anlamını verdin.',
+  cross_language: 'Başka bir dilindeki kelimeyle cevap verdin.',
 }
 
 export const POS_NAME: Record<PartOfSpeech, string> = {

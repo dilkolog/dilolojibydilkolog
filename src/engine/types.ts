@@ -168,6 +168,7 @@ export type ErrorType =
   | 'confusion' // picked a confusable word (affect/effect)
   | 'collocation' // unnatural word combination (do a decision)
   | 'false_friend' // gave the meaning of a look-alike word in another language (actuellement ≠ actually)
+  | 'cross_language' // answered with a word from another of the learner's languages (consejo for conseil)
 
 // ---------------------------------------------------------------------------
 // Per-user learning state

@@ -3,7 +3,7 @@ import { displayForm } from '../engine/exercises'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
 import { ERROR_NAME } from './labels'
 
-const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'false_friend', 'confusion', 'form', 'accent', 'typo', 'meaning']
+const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'cross_language', 'false_friend', 'confusion', 'form', 'accent', 'typo', 'meaning']
 
 /**
  * The Personal Mistake Bank: the learner's own errors, grouped by kind. A mistake closes after

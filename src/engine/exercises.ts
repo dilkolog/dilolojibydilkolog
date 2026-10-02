@@ -1,6 +1,6 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
 import { acceptedForms, conjugate, PERSONS, PRONOUNS } from './conjugation'
-import { trapGlosses } from './crossLanguage'
+import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import type {
   Direction,
@@ -538,6 +538,8 @@ export interface Evaluation {
   errorType?: ErrorType
   given: string
   expected: string
+  /** The wrong answer was a word of another of the learner's languages. */
+  intrusion?: Intrusion
 }
 
 const CHOICE_ERROR: Partial<Record<ExerciseType, ErrorType>> = {
@@ -555,6 +557,20 @@ export function evaluateChoice(ex: ChoiceExercise, optionId: string): Evaluation
 }
 
 export function evaluateTyped(
+  ex: TypedExercise,
+  text: string,
+  entry: VocabularyEntry,
+  catalog: readonly VocabularyEntry[],
+  intrusionSources?: IntrusionSources,
+): Evaluation {
+  const result = evaluateTypedInner(ex, text, entry, catalog)
+  // Only a plain miss is checked: a typo or accent slip is still the right word.
+  if (result.verdict !== 'wrong' || result.errorType !== 'meaning' || !intrusionSources || ex.type === 'dictation') return result
+  const intrusion = detectIntrusion(text, entry.language, intrusionSources)
+  return intrusion ? { ...result, errorType: 'cross_language', intrusion } : result
+}
+
+function evaluateTypedInner(
   ex: TypedExercise,
   text: string,
   entry: VocabularyEntry,

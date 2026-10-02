@@ -68,6 +68,7 @@ export const ERROR_SKILL: Record<ErrorType, Skill> = {
   confusion: 'recognition',
   collocation: 'collocation',
   false_friend: 'recognition',
+  cross_language: 'recall',
 }
 
 /**
