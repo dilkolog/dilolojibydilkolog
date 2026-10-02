@@ -3,10 +3,12 @@ import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
 import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
+import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
 import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
-import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME } from './labels'
+import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import { Plant } from './Plant'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
@@ -536,21 +538,32 @@ export function Summary({
         </div>
       )}
 
-      {summary.introduced.length > 0 && (
-        <p>
-          <strong>Yeni tanıştıkların:</strong> <span className="target">{summary.introduced.map(name).join(', ')}</span>
-        </p>
-      )}
-      {!practice && summary.strengthened.length > 0 && (
-        <p>
-          <strong>Bir üst seviyeye çıkanlar:</strong> <span className="target">{summary.strengthened.map(name).join(', ')}</span>
-        </p>
-      )}
-      {summary.struggling.length > 0 && (
-        <p>
-          <strong>Biraz zorlandıkların:</strong> <span className="target">{summary.struggling.map(name).join(', ')}</span>.
-          {!practice && <span className="muted"> Yakında tekrar karşına çıkacaklar.</span>}
-        </p>
+      {summary.words.length > 0 && (
+        <section className="section stack">
+          <h2 className="section-title">Bu oturumda çalıştıkların</h2>
+          <ul className="garden">
+            {summary.words.map((w) => {
+              const e = byId.get(w.entryId)
+              const before = w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
+              const after = w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : before
+              const grew = !practice && after > before
+              return (
+                <li key={w.entryId} className={grew ? 'grew' : ''}>
+                  <Plant stage={after} size={40} />
+                  <span className="garden-text">
+                    <span className="target">{name(w.entryId)}</span>
+                    {e && <span className="small muted">{e.senses[0].gloss}</span>}
+                    <span className="small">
+                      {w.correct > 0 && <span className="garden-ok">✓ {w.correct}</span>} {w.wrong > 0 && <span className="garden-bad">✗ {w.wrong}</span>}
+                      {grew && w.stageAfter && <span className="garden-grew"> 🌱 {STAGE_NAME[w.stageAfter]} oldu</span>}
+                      {!grew && w.wrong > 0 && !practice && <span className="muted"> · yakında tekrar</span>}
+                    </span>
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
       )}
       {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
       {summary.answered >= LONG_SESSION && (

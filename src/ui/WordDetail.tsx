@@ -17,6 +17,9 @@ import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
 import { CrossLanguageNotes } from './CrossLanguage'
 import { WordExamples } from './WordExamples'
+import { Plant } from './Plant'
+import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
+import { MASTERY_STAGES } from '../engine/mastery'
 import { WordMedia } from './WordMedia'
 
 interface Props {
@@ -125,6 +128,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           </button>
         </div>
       </section>
+
+      <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
 
       <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
 
@@ -259,5 +264,72 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </section>
       )}
     </div>
+  )
+}
+
+const HEALTH_NOTE: Record<Health, string> = {
+  fresh: 'Canlı: şu an büyük ihtimalle hatırlıyorsun.',
+  thirsty: 'Susamış: hatırlama ihtimalin düşmeye başladı, yakında tekrar gelecek.',
+  wilting: 'Soluyor: unutulmak üzere. Bugünkü tekrarlarda öncelikli; bir doğru cevap onu sular.',
+}
+
+const STAGE_RULES: [string, string][] = [
+  ['Yeni tanıştı', 'Kelimeyle tanıştın: filiz.'],
+  ['Tanıdık', 'Gördüğünde anlamını tanıyorsun (tanıma becerisi kalıcı tekrara geçti).'],
+  ['Hatırlanıyor', 'Türkçesinden kelimeyi kendin hatırlayabiliyorsun.'],
+  ['Sağlam', 'Tanıma ve hatırlama en az 7 gün dayanıyor.'],
+  ['Kullanılabiliyor', 'Hatırlama 7, cümlede üretme 3 gün dayanıyor: tomurcuk.'],
+  ['Oturdu', 'Üç beceri de en az 21 gün dayanıyor: çiçek açtı.'],
+]
+
+const fmtDate = (d: Date) => d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })
+
+/**
+ * The word's plant: where it is, what the next stage takes (projected with the memory model,
+ * assuming each review comes when due and is answered right) and how healthy it is now.
+ */
+function GrowthPanel({ entry, state, scheduler, now }: { entry: VocabularyEntry; state?: UserWordState; scheduler: Scheduler; now: Date }) {
+  const stage = growthStage(state)
+  const health = plantHealth(state, scheduler, now)
+  const next = state && stage < MASTERY_STAGES.length - 1 ? projectStage(state, entry, scheduler, now) : undefined
+  const mastered = state && stage < MASTERY_STAGES.length - 1 ? projectStage(state, entry, scheduler, now, {}, 'mastered') : undefined
+  const days = (d: Date) => Math.max(1, Math.ceil((d.getTime() - now.getTime()) / 86_400_000))
+  return (
+    <section className="section growth card">
+      <Plant stage={stage} health={health} size={88} />
+      <div className="stack" style={{ gap: '0.375rem' }}>
+        <strong className="growth-title">{state ? STAGE_NAME[MASTERY_STAGES[stage]] : 'Henüz ekilmedi'}</strong>
+        {!state && <p className="small muted">Bu kelime günlük görevine sırası gelince eklenir; ilk tanışmada filizlenir.</p>}
+        {state && <p className="small">{HEALTH_NOTE[health]}</p>}
+        {state && stage === MASTERY_STAGES.length - 1 && <p className="small">Çiçek açtı! Unutmaman için arada bir, giderek seyrekleşen aralıklarla tekrar gelir.</p>}
+        {next && (
+          <p className="small">
+            Sıradaki aşama <strong>{STAGE_NAME[next.stage]}</strong>: en az {next.reviews} doğru cevap daha, en erken {fmtDate(next.date)}.
+          </p>
+        )}
+        {mastered && mastered.stage !== next?.stage && (
+          <p className="small muted">
+            Çiçek açması (Oturdu) için hatasız giderse ~{mastered.reviews} doğru cevap ve ~{days(mastered.date)} gün. Her yanlış bu süreyi uzatır.
+          </p>
+        )}
+        {state && stage < MASTERY_STAGES.length - 1 && !mastered && (
+          <p className="small muted">Çiçek açması için cümlede üretme alıştırması gerekiyor: bir örnek cümle ekle.</p>
+        )}
+        <details className="small">
+          <summary>Bitkiler nasıl büyür?</summary>
+          <ol className="growth-rules">
+            {STAGE_RULES.map(([name, rule], i) => (
+              <li key={name}>
+                <Plant stage={i} size={22} /> <strong>{name}</strong> <span className="muted">{rule}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="muted">
+            Doğru cevap sayısı tek başına yetmez: hafıza zamanla sağlamlaşır, bu yüzden aşamalar günlere yayılmış tekrarlarla açılır. Hatırlama ihtimalin
+            düştükçe bitki susar ve solar; zamanında gelen bir tekrar onu sular.
+          </p>
+        </details>
+      </div>
+    </section>
   )
 }

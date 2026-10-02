@@ -14,7 +14,7 @@ import {
   type TypedExercise,
 } from '../engine/exercises'
 import { xpForAnswer } from '../engine/gamification'
-import { masteryStage } from '../engine/mastery'
+import { MASTERY_STAGES, masteryStage, type MasteryStage } from '../engine/mastery'
 import { markKnown, needsIntervention, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
@@ -34,7 +34,8 @@ import type { Confidence, EngineOptions, Mistake, ReviewMode, UserWordState, Voc
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample, WordInputError } from '../data/wordInput'
-import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT } from './labels'
+import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT, STAGE_NAME } from './labels'
+import { Plant } from './Plant'
 import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { CrossLanguageNotes } from './CrossLanguage'
@@ -680,6 +681,11 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           <Feedback
             ev={result.ev}
             confidence={result.confidence}
+            grew={
+              result.log.stageAfter && result.log.stageBefore && MASTERY_STAGES.indexOf(result.log.stageAfter) > MASTERY_STAGES.indexOf(result.log.stageBefore)
+                ? result.log.stageAfter
+                : undefined
+            }
             xp={result.log.xp}
             entry={entry}
             mnemonic={mnemonic}
@@ -979,6 +985,7 @@ const CONFIDENT_ERROR_PAUSE_MS = 1500
 function Feedback({
   ev,
   confidence,
+  grew,
   entry,
   continueRef,
   onContinue,
@@ -992,6 +999,8 @@ function Feedback({
   onMnemonic?: () => void
   ev: Graded
   confidence?: Confidence
+  /** The answer moved the word up a growth stage. */
+  grew?: MasteryStage
   entry: VocabularyEntry
   continueRef: React.RefObject<HTMLButtonElement | null>
   onContinue: () => void
@@ -1033,6 +1042,11 @@ function Feedback({
               )}
               {example && <p className="small sentence-sm">{example.text}</p>}
             </div>
+          )}
+          {grew && (
+            <p className="small grew-note">
+              <Plant stage={MASTERY_STAGES.indexOf(grew)} size={26} /> Büyüdü: artık <strong>{STAGE_NAME[grew]}</strong>
+            </p>
           )}
           {ev.verdict !== 'wrong' && confidence === 'unsure' && (
             <p className="small">Emin değildin; bu yüzden kelime biraz daha erken tekrar gelecek.</p>

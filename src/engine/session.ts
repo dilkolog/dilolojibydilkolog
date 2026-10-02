@@ -79,7 +79,17 @@ export function skipRemaining(s: Session, entryId: string): Session {
   return { ...s, items }
 }
 
+export interface WordResult {
+  entryId: string
+  correct: number
+  wrong: number
+  stageBefore?: MasteryStage
+  stageAfter?: MasteryStage
+}
+
 export interface SessionSummary {
+  /** Every word answered in the session, in first-seen order. */
+  words: WordResult[]
   answered: number
   correct: number
   /** Words whose mastery stage went up during the session. */
@@ -102,7 +112,16 @@ export function summarize(s: Session): SessionSummary {
   const rank = (st?: MasteryStage) => (st ? MASTERY_STAGES.indexOf(st) : -1)
   const errors: Partial<Record<ErrorType, number>> = {}
   for (const l of answers) if (l.errorType && l.verdict !== 'correct') errors[l.errorType] = (errors[l.errorType] ?? 0) + 1
+  const words = new Map<string, WordResult>()
+  for (const l of answers) {
+    const w = words.get(l.entryId) ?? { entryId: l.entryId, correct: 0, wrong: 0, stageBefore: l.stageBefore }
+    if (l.verdict === 'wrong') w.wrong++
+    else w.correct++
+    w.stageAfter = l.stageAfter
+    words.set(l.entryId, w)
+  }
   return {
+    words: [...words.values()],
     answered: answers.length,
     correct: answers.filter((l) => l.verdict !== 'wrong').length,
     strengthened: [...last.keys()].filter((id) => rank(last.get(id)) > rank(first.get(id))),

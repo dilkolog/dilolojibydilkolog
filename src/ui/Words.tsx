@@ -13,6 +13,9 @@ import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView } from './CrossLanguage'
+import { Plant } from './Plant'
+import { growthStage, plantHealth } from '../engine/growth'
+import { scheduler } from '../data/instance'
 import { ConfirmDialog } from './Dialog'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
@@ -592,6 +595,7 @@ function WordList({
   onStudy: (entries: VocabularyEntry[]) => void
   onDelete: (ids: string[]) => Promise<void>
 }) {
+  const now = useMemo(() => new Date(), [stateById])
   const [query, setQuery] = useState('')
   // Selection mode: rows toggle instead of opening; shift-click selects a range.
   const [selecting, setSelecting] = useState(false)
@@ -787,6 +791,7 @@ function WordList({
                       aria-pressed={selecting ? isSel : undefined}
                     >
                       {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel ? '✓' : ''}</span>}
+                      <Plant stage={growthStage(stateById.get(v.id))} health={plantHealth(stateById.get(v.id), scheduler, now)} size={30} />
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
                         <span className="w">{displayForm(v)}</span>

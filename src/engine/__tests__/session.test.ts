@@ -70,6 +70,10 @@ describe('session', () => {
     s = completeItem(s, { entryId: 'b', verdict: 'wrong', errorType: 'gender', stageBefore: 'familiar', stageAfter: 'familiar' })
     s = completeItem(s, { entryId: 'c' })
     expect(summarize(s)).toEqual({
+      words: [
+        { entryId: 'a', correct: 1, wrong: 0, stageBefore: 'introduced', stageAfter: 'familiar' },
+        { entryId: 'b', correct: 0, wrong: 1, stageBefore: 'familiar', stageAfter: 'familiar' },
+      ],
       answered: 2,
       correct: 1,
       strengthened: ['a'],
