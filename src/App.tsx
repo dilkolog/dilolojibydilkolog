@@ -48,7 +48,7 @@ import { readIncoming, type IncomingWord } from './ui/incoming'
 
 type Screen =
   | { name: 'home' }
-  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; gameBefore: GameState | null }
+  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[] }
   | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; gameBefore: GameState | null }
   | { name: 'words' }
   | { name: 'word'; entryId: string }
@@ -61,6 +61,23 @@ type Screen =
   | { name: 'games' }
   | { name: 'profile' }
   | { name: 'settings' }
+
+const SCREEN_KEY = 'kelime-koc:screen'
+/** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
+const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'word', 'reading', 'produce', 'story', 'games', 'mistakes', 'progress', 'profile', 'settings'])
+
+function restoreScreen(): Screen {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SCREEN_KEY) ?? 'null') as { name?: Screen['name']; entryId?: unknown } | null
+    if (saved?.name && RESTORABLE.has(saved.name)) {
+      if (saved.name === 'word') return typeof saved.entryId === 'string' ? { name: 'word', entryId: saved.entryId } : { name: 'words' }
+      return { name: saved.name } as Screen
+    }
+  } catch {
+    // Unreadable or blocked storage: start at home.
+  }
+  return { name: 'home' }
+}
 
 type NavScreen = 'home' | 'words' | 'reading' | 'produce' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
@@ -96,7 +113,16 @@ export default function App() {
   const [settings, setSettings] = useState<Settings | null | undefined>(undefined)
   const [data, setData] = useState<LanguageData | null>(null)
   const [game, setGame] = useState<GameState | null>(null)
-  const [screen, setScreen] = useState<Screen>({ name: 'home' })
+  const [screen, setScreen] = useState<Screen>(restoreScreen)
+  // Remember where the learner was, so reopening the app continues there.
+  useEffect(() => {
+    if (!RESTORABLE.has(screen.name)) return
+    try {
+      localStorage.setItem(SCREEN_KEY, JSON.stringify(screen.name === 'word' ? { name: 'word', entryId: screen.entryId } : { name: screen.name }))
+    } catch {
+      // Storage unavailable: the app simply opens on the home screen next time.
+    }
+  }, [screen])
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const [palette, setPalette] = useState(false)
   // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
@@ -205,6 +231,12 @@ export default function App() {
     }
   }, [settings, data, options])
   const plan = useMemo(() => (planInput ? buildDailyPlan(planInput) : null), [planInput])
+  // A session started on just-added words gets them even before the list has reloaded.
+  const sessionVocabulary = useMemo(() => {
+    if (screen.name !== 'session' || !screen.extra || !data) return undefined
+    const extra = screen.extra
+    return [...data.vocabulary.filter((v) => !extra.some((x) => x.id === v.id)), ...extra]
+  }, [screen, data])
   // Words met for the first time today, for the before-sleep review.
   const newToday = useMemo(() => {
     if (!data) return []
@@ -229,10 +261,11 @@ export default function App() {
     [reload],
   )
 
-  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31) => {
+  /** `extra`: words that may not be in the loaded list yet (just added), so the session has them. */
+  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[]) => {
     // A session cap takes a prefix: introductions always come before their first test.
     const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
-    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game })
+    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra })
   }
 
   if (settings === undefined) return null
@@ -343,7 +376,7 @@ export default function App() {
               <SessionScreen
                 items={screen.items}
                 mode={screen.mode}
-                vocabulary={data.vocabulary}
+                vocabulary={sessionVocabulary ?? data.vocabulary}
                 states={data.states}
                 mistakes={data.mistakes}
                 db={db}
@@ -377,7 +410,7 @@ export default function App() {
                 incoming={incoming && (!incoming.lang || incoming.lang === data.language) ? incoming : null}
                 onIncomingDone={() => setIncoming(null)}
                 onStudy={(deck) =>
-                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
+                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
                 }
               />
             ) : screen.name === 'word' && byId.has(screen.entryId) ? (

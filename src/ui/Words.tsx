@@ -96,7 +96,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         )}
         <details open={!incoming} className="card">
           <summary>Kelime ekle</summary>
-          <WordForm db={db} language={language} existing={keys} onSaved={onChanged} />
+          <WordForm db={db} language={language} existing={keys} onSaved={onChanged} onLearn={onStudy} />
         </details>
         <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
         <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
@@ -195,6 +195,7 @@ export function WordForm({
   initial,
   onSaved,
   onCancel,
+  onLearn,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -204,9 +205,13 @@ export function WordForm({
   initial?: WordInput
   onSaved: (entry: VocabularyEntry) => void
   onCancel?: () => void
+  /** Study the words just added, right away. */
+  onLearn?: (entries: VocabularyEntry[]) => void
 }) {
   const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : (initial ?? EMPTY)))
   const [error, setError] = useState('')
+  // Words added with this form since the last "learn now", to study them in one go.
+  const [justAdded, setJustAdded] = useState<VocabularyEntry[]>([])
   const [added, setAdded] = useState('')
   const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
   const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
@@ -357,6 +362,7 @@ export function WordForm({
       await db.vocabulary.put(saved)
       if (!entry) {
         setAdded(saved.lemma)
+        setJustAdded((list) => [...list, saved])
         setForm(EMPTY)
         setImage(null)
         setPosManual(false)
@@ -542,7 +548,25 @@ export function WordForm({
           </div>
         </details>
         {error && <p className="error" role="alert">{error}</p>}
-        {added && !error && <p className="notice" role="status">"{added}" eklendi.</p>}
+        {added && !error && (
+          <div className="row added-row">
+            <p className="notice" role="status">
+              "{added}" eklendi.{justAdded.length > 1 && ` Bu oturumda ${justAdded.length} kelime ekledin.`}
+            </p>
+            {onLearn && justAdded.length > 0 && (
+              <button
+                type="button"
+                className="btn btn-sm"
+                onClick={() => {
+                  onLearn(justAdded)
+                  setJustAdded([])
+                }}
+              >
+                Şimdi öğren{justAdded.length > 1 ? ` (${justAdded.length})` : ''}
+              </button>
+            )}
+          </div>
+        )}
         <div className="row">
           <button className="btn" type="submit">
             {entry ? 'Değişiklikleri kaydet' : 'Kelimeyi ekle'}
