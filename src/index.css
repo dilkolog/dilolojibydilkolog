@@ -1492,3 +1492,5 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 @media (display-mode: standalone) {
   html, body { overscroll-behavior-y: none; }
 }
+.icon-btn { position: relative; }
+.native-dot { position: absolute; top: 0.25rem; right: 0.25rem; width: 0.4rem; height: 0.4rem; border-radius: 999px; background: var(--ok); }

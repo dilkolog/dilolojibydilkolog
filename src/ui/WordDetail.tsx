@@ -17,7 +17,7 @@ import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
 import { CrossLanguageNotes } from './CrossLanguage'
-import { WordExamples } from './WordExamples'
+import { CorpusExamples, WordExamples } from './WordExamples'
 import { Plant } from './Plant'
 import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
@@ -160,6 +160,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       )}
 
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
+      <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
 
       {conjugation && (
         <section className="section stack">

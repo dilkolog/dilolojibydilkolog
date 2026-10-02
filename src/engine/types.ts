@@ -41,6 +41,8 @@ export interface Example {
   form: string
   /** Written by the learner about their own life (self-reference makes it stick). */
   personal?: boolean
+  /** A real sentence from a corpus (Tatoeba), with native audio when there is any. */
+  source?: { kind: 'tatoeba'; id: number; audioUrl?: string }
 }
 
 export interface Sense {
@@ -108,6 +110,8 @@ export interface VocabularyEntry {
   collocations: Collocation[]
   relations: WordRelation[]
   wordFamily: WordFamilyMember[]
+  /** Real sentences from Tatoeba, fetched in the background; [] = looked up, none found. */
+  corpus?: Example[]
   /** Other accepted spellings of the lemma (e.g. "colour"). */
   alternativeForms?: string[]
   commonMistakes?: string[]

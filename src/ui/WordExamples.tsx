@@ -6,7 +6,8 @@ import { AiError, suggestFields } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon, SpeakerIcon } from './icons'
 import { ShadowButton } from './Shadow'
-import { canSpeak, speak, speechPrefs } from './speech'
+import { canSpeak, playWord, speak, speechPrefs } from './speech'
+import { fetchCorpus } from '../data/corpus'
 
 /**
  * A word's example sentences. Several varied contexts make the word usable beyond one sentence
@@ -158,6 +159,92 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
       {error && (
         <p className="error" role="alert">
           {error}
+        </p>
+      )}
+    </section>
+  )
+}
+
+/**
+ * Real sentences from Tatoeba, filled in the background. Exercises draw on them half the time;
+ * a bad one can be removed, and the list fetched again.
+ */
+export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: VocabularyEntry; onChanged: () => void }) {
+  const corpus = entry.corpus
+  const [all, setAll] = useState(false)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const shown = all ? (corpus ?? []) : (corpus ?? []).slice(0, 4)
+
+  const refetch = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      await db.vocabulary.update(entry.id, { corpus: await fetchCorpus(entry) })
+      onChanged()
+    } catch {
+      setError('Cümleler alınamadı; internet bağlantını kontrol et.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="section stack">
+      <div className="field-head">
+        <h2 className="section-title">
+          Gerçek cümleler{corpus?.length ? <span className="muted"> ({corpus.length})</span> : null}
+        </h2>
+        <button type="button" className="link small" onClick={refetch} disabled={busy}>
+          {busy ? 'Getiriliyor…' : corpus === undefined ? 'Getir' : 'Yeniden getir'}
+        </button>
+      </div>
+      <p className="small muted">
+        İnsanların yazıp çevirdiği cümleler; 🔊 işaretlilerde ana dili konuşan birinin sesi var. Alıştırmalarda kendi cümlelerinle dönüşümlü kullanılır.
+      </p>
+      {corpus === undefined && !busy && <p className="small muted">Arka planda kendiliğinden gelecek; hemen istersen "Getir"e bas.</p>}
+      {corpus?.length === 0 && <p className="small muted">Bu kelime için uygun cümle bulunamadı.</p>}
+      {shown.length > 0 && (
+        <ul className="example-list">
+          {shown.map((ex) => (
+            <li key={ex.text}>
+              <div>
+                <p className="sentence" lang={entry.language}>
+                  {ex.text}
+                </p>
+                {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
+              </div>
+              <div className="row" style={{ gap: '0.25rem', flexWrap: 'nowrap' }}>
+                {(ex.source?.audioUrl || canSpeak()) && (
+                  <button className="icon-btn" onClick={() => playWord(entry, ex.text)} aria-label={ex.source?.audioUrl ? 'Ana dili konuşan birinden dinle' : 'Cümleyi dinle'}>
+                    <SpeakerIcon size={18} />
+                    {ex.source?.audioUrl && <span className="native-dot" aria-hidden />}
+                  </button>
+                )}
+                <button
+                  className="icon-btn"
+                  onClick={async () => {
+                    await db.vocabulary.update(entry.id, { corpus: corpus!.filter((x) => x.text !== ex.text) })
+                    onChanged()
+                  }}
+                  aria-label="Bu cümleyi kaldır"
+                >
+                  ×
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      {(corpus?.length ?? 0) > 4 && (
+        <button className="link small" onClick={() => setAll(!all)}>
+          {all ? 'Daha az göster' : `Tümünü göster (${corpus!.length})`}
+        </button>
+      )}
+      {error && <p className="error small">{error}</p>}
+      {!!corpus?.length && (
+        <p className="small muted">
+          Kaynak: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR)
         </p>
       )}
     </section>

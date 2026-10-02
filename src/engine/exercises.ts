@@ -27,7 +27,7 @@ export interface ExerciseMeta {
   requiresSpeech?: boolean
 }
 
-const hasExamples = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0
+const hasExamples = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0 || !!e.corpus?.length
 
 const DEFINITE: Record<'fr' | 'es', { m: string; f: string }> = { fr: { m: 'le', f: 'la' }, es: { m: 'el', f: 'la' } }
 
@@ -209,10 +209,15 @@ function blankOut(example: Example): string {
   return example.text.slice(0, i) + BLANK + example.text.slice(i + example.form.length)
 }
 
-/** Rotate through examples so the same sentence isn't memorised as a shape (anti-flashcard). */
+/**
+ * Rotate through examples so the same sentence isn't memorised as a shape (anti-flashcard).
+ * Half the time a real corpus sentence, so the word keeps turning up in new contexts.
+ */
 function chooseExample(entry: VocabularyEntry, rng: Rng): Example | undefined {
-  const all = entry.senses.flatMap((s) => s.examples)
-  return all.length ? pick(all, rng) : undefined
+  const own = entry.senses.flatMap((s) => s.examples)
+  const corpus = entry.corpus ?? []
+  if (corpus.length && (!own.length || rng() < 0.5)) return pick(corpus, rng)
+  return own.length ? pick(own, rng) : undefined
 }
 
 export function buildHints(answer: string, extra?: string): string[] {

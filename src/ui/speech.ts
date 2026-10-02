@@ -94,15 +94,24 @@ export async function preloadRecording(audioId: string | undefined): Promise<str
   return url
 }
 
-function playUrl(url: string): Promise<void> {
+function playUrl(url: string, rate = 1): Promise<void> {
   current?.pause()
   current = new Audio(url)
+  current.playbackRate = Math.min(1.5, Math.max(0.5, rate))
   return current.play()
 }
 
-/** Plays the learner's own recording of the word if there is one, otherwise TTS. */
+/**
+ * Plays the learner's own recording of the word if there is one; for a corpus sentence, the
+ * native speaker's recording when it has one; otherwise TTS.
+ */
 export function playWord(entry: VocabularyEntry, text = displayForm(entry), vary = false, rate = speechPrefs.rate) {
   const fallback = () => speak(text, entry.language, rate, vary)
+  const native = entry.corpus?.find((x) => x.text === text)?.source?.audioUrl
+  if (native && navigator.onLine) {
+    playUrl(native, rate).catch(fallback)
+    return
+  }
   if (entry.audioId && text === displayForm(entry)) {
     const ready = recordings.get(entry.audioId)
     if (ready) {

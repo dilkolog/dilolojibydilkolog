@@ -18,6 +18,7 @@ import {
 } from './engine/types'
 import { db, scheduler } from './data/instance'
 import type { Settings } from './data/db'
+import { fillCorpus } from './data/corpus'
 import { fillFrequencyRanks } from './data/frequency'
 import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
@@ -112,6 +113,8 @@ const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => R
   { screen: 'settings', label: 'Ayarlar', icon: GearIcon },
 ]
 
+let corpusRun: Promise<number> | null = null
+
 /** Phones get a bottom tab bar with these; the rest sit behind "Daha". */
 const TABS: NavScreen[] = ['home', 'words', 'reading', 'progress']
 
@@ -205,6 +208,11 @@ export default function App() {
     if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
       const filled = await fillFrequencyRanks(db, language)
       if (filled) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    }
+    // Real sentences for words that don't have them yet (a few per run, one run at a time).
+    if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
+      corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
+      if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
   }, [language])
 
