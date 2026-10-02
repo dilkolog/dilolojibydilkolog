@@ -2,6 +2,7 @@ import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } fr
 import { acceptedForms, conjugate, PERSONS, PRONOUNS } from './conjugation'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
+import { familyRelative, suffixVariants } from './morphology'
 import type {
   Direction,
   EngineOptions,
@@ -110,6 +111,13 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     expectedMs: 40000,
     applicable: (e) => e.senses[0].examples.some((x) => x.translation.trim()),
     requiresAI: true,
+  },
+  family_choice: {
+    skill: 'recall',
+    direction: 'native_to_target',
+    input: 'choice',
+    expectedMs: 6000,
+    applicable: (e) => !!familyRelative(e) && !e.lemma.includes(' ') && suffixVariants(e.lemma, e.language).length >= 3,
   },
   idiom_complete: {
     skill: 'collocation',
@@ -506,6 +514,11 @@ export function buildExercise(
         options: [forms.m, forms.f].map((label, i) => ({ id: String(i), label })),
         correctOptionId: correct === forms.m ? '0' : '1',
       }
+    }
+
+    case 'family_choice': {
+      const relative = familyRelative(entry)!
+      return choice({ ...base, prompt: `“${sense.gloss}” anlamındaki kelime hangisi?`, context: `${relative.lemma} (${relative.gloss}) ailesinden` }, entry.lemma, suffixVariants(entry.lemma, entry.language), rng)
     }
 
     case 'idiom_complete': {

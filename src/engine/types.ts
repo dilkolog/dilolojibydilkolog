@@ -110,6 +110,10 @@ export interface VocabularyEntry {
   collocations: Collocation[]
   relations: WordRelation[]
   wordFamily: WordFamilyMember[]
+  /** Derived and related words found in Wiktionary, offered to add (see wordInfo.ts). */
+  familyCandidates?: string[]
+  /** When Wiktionary was checked for pronunciation, definition and family. */
+  wiktAt?: string
   /** Real sentences from Tatoeba, fetched in the background; [] = looked up, none found. */
   corpus?: Example[]
   /** Other accepted spellings of the lemma (e.g. "colour"). */
@@ -146,6 +150,7 @@ export type ExerciseType =
   | 'conjugation' // FR/ES verb + subject → type the present-tense form
   | 'back_translation' // Turkish translation of an example → write it in the target language; AI-graded
   | 'idiom_complete' // idiom / phrasal verb with one word missing → choose it
+  | 'family_choice' // a relative + the meaning → choose the right derived form (décision, not décidement)
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {

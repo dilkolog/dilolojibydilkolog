@@ -18,6 +18,7 @@ import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
 import { CrossLanguageNotes, TriLanguageCard } from './CrossLanguage'
 import { PatternsSection } from './Patterns'
+import { WordFamilySection } from './WordFamily'
 import { CorpusExamples, WordExamples } from './WordExamples'
 import { Plant } from './Plant'
 import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
@@ -104,6 +105,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <section className="section stack" style={{ marginTop: '1.5rem' }}>
         <div className="row">
           <h1 className="word">{displayForm(entry)}</h1>
+          {entry.ipa && <span className="ipa">{entry.ipa}</span>}
           {canSpeak() && (
             <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -114,6 +116,11 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </div>
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        {sense.definition && (
+          <p className="definition" lang={entry.language}>
+            {sense.definition}
+          </p>
+        )}
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         <CrossLanguageNotes entry={entry} />
         {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
@@ -189,6 +196,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
       <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
       <PatternsSection db={db} entry={entry} onChanged={onChanged} />
+      <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
       <TriLanguageCard entry={entry} onAdded={onChanged} />
 
       {conjugation && (

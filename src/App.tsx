@@ -20,6 +20,7 @@ import { db, scheduler, setLoad } from './data/instance'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
+import { fillWordInfo } from './data/wordInfo'
 import { fillFrequencyRanks } from './data/frequency'
 import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
@@ -117,6 +118,7 @@ const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => R
 ]
 
 let corpusRun: Promise<number> | null = null
+let wiktRun: Promise<number> | null = null
 /** Set when opened from a reminder: start a short review as soon as the plan is ready. */
 let quickStart = false
 /** About three minutes. */
@@ -222,6 +224,11 @@ export default function App() {
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
       corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
       if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    }
+    // Pronunciation, definition and word family from Wiktionary, also in the background.
+    if (!wiktRun && loaded.vocabulary.some((v) => v.source !== 'sample' && !v.wiktAt)) {
+      wiktRun = fillWordInfo(db, language).finally(() => (wiktRun = null))
+      if (await wiktRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
   }, [language])
 

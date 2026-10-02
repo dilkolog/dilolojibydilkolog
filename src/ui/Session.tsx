@@ -471,6 +471,11 @@ function Intro({
         </div>
         {imageUrl && <img className="word-image" src={imageUrl} alt="" />}
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        {sense.definition && (
+          <p className="definition" lang={entry.language}>
+            {sense.definition}
+          </p>
+        )}
         <CrossLanguageNotes entry={entry} compact />
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         {entry.notes && <p className="note">💡 {entry.notes}</p>}
@@ -795,7 +800,7 @@ function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: Vo
         </div>
       )
     case 'speak_word':
-      return <p className="prompt-text">{exercise.prompt}</p>
+      return <MeaningPrompt exercise={exercise} entry={entry} />
     case 'back_translation':
       return (
         <div className="stack" style={{ gap: '0.375rem' }}>
@@ -803,6 +808,15 @@ function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: Vo
           <p className="muted">
             {LANGUAGE_NAME[entry.language]} yaz; <span lang={entry.language}>“{displayForm(entry)}”</span> kelimesini kullan. Birebir aynısı gerekmez, anlamı
             doğru aktarman yeter.
+          </p>
+        </div>
+      )
+    case 'family_choice':
+      return (
+        <div className="stack" style={{ gap: '0.375rem' }}>
+          <p className="prompt-text">{exercise.prompt}</p>
+          <p className="muted" lang={entry.language}>
+            {exercise.context}
           </p>
         </div>
       )
@@ -857,8 +871,32 @@ function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: Vo
         </div>
       )
     default:
-      return <p className="prompt-text">{exercise.prompt}</p>
+      return <MeaningPrompt exercise={exercise} entry={entry} />
   }
+}
+
+/**
+ * The Turkish meaning as the cue, or, in target-language mode, the word's definition in its own
+ * language (thinking in the language instead of translating); the Turkish stays one tap away.
+ */
+function MeaningPrompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntry }) {
+  const [showTurkish, setShowTurkish] = useState(false)
+  const definition = entry.senses[0].definition
+  if (!prefs.targetDefinitions || !definition || exercise.prompt !== entry.senses[0].gloss) return <p className="prompt-text">{exercise.prompt}</p>
+  return (
+    <div className="stack" style={{ gap: '0.375rem' }}>
+      <p className="prompt-text definition-prompt" lang={entry.language}>
+        {definition}
+      </p>
+      {showTurkish ? (
+        <p className="muted">Türkçesi: {exercise.prompt}</p>
+      ) : (
+        <button type="button" className="link small" onClick={() => setShowTurkish(true)}>
+          Türkçesini göster
+        </button>
+      )}
+    </div>
+  )
 }
 
 /** Shown when listening speed differs from the base setting, so a faster voice isn't a surprise. */

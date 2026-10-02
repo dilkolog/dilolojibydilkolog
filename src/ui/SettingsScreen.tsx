@@ -223,6 +223,12 @@ export function SettingsScreen({
           onChange={(v) => set('frequencyFirst', v)}
         />
         <Toggle
+          label="Anlamı hedef dilde göster"
+          help="Türkçe anlam yerine kelimenin kendi dilindeki tanımı sorulur (Wiktionary'den; tanımı olan kelimelerde). Çeviri yapmadan o dilde düşünmeye alıştırır; Türkçesi bir dokunuşla görünür."
+          checked={settings.targetDefinitions}
+          onChange={(v) => set('targetDefinitions', v)}
+        />
+        <Toggle
           label="Çok iyi bildiğin kelimeleri emekliye ayır"
           help="Tamamen öğrendiğin ve aylarca akılda kalacak kelimeler rutin tekrarlardan çıkar; günde en fazla 2 sürpriz kontrol gelir, yanılırsan kelime geri döner. Kelime sayfasından elle de yapabilirsin."
           checked={settings.autoRetire}

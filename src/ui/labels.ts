@@ -88,6 +88,7 @@ export const PROMPT_TEXT: Record<string, string> = {
   article_choice: 'Artikeli hangisi?',
   conjugation: 'Fiili çek',
   idiom_complete: 'Eksik kelime hangisi?',
+  family_choice: 'Doğru eki seç',
   back_translation: 'Bu cümleyi çevir',
 }
 

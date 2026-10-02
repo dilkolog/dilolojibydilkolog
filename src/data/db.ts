@@ -120,6 +120,8 @@ export interface Settings {
   dayWeights: number[]
   /** Retire words known so well that routine reviews only cost time. */
   autoRetire: boolean
+  /** Cue with the definition in the word's own language instead of the Turkish meaning. */
+  targetDefinitions: boolean
   /** Planned holiday: nothing scheduled, the streak waits. */
   vacation: { from: string; to: string } | null
   profile: Profile
@@ -156,6 +158,7 @@ export const DEFAULT_SETTINGS: Settings = {
   reminder: { enabled: false, time: '20:00' },
   dayWeights: [1, 1, 1, 1, 1, 1, 1],
   autoRetire: true,
+  targetDefinitions: false,
   vacation: null,
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },

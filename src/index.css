@@ -1595,3 +1595,11 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .chapter-cov.zone-easy, .chapter-cov.zone-ideal { color: var(--ok-text); }
 .chapter-cov.zone-hard { color: var(--near-text); }
 .chapter-cov.zone-too_hard { color: var(--bad-text); }
+
+/* Pronunciation, definition, family */
+.ipa { font-family: 'Charis SIL', 'Doulos SIL', 'Gentium Plus', 'Lucida Sans Unicode', serif; color: var(--ink-soft); font-size: var(--t-lg); }
+.definition { font-family: var(--serif); font-style: italic; color: var(--ink-soft); border-left: 3px solid var(--lang); padding-left: 0.75rem; }
+.family-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.family-list li { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.family-word { font-family: var(--serif); font-size: var(--t-lg); min-width: 8rem; }
+.definition-prompt { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.5; }

@@ -7,7 +7,9 @@ import type { Gender, TargetLanguage } from '../engine/types'
  * there are defined in English, which leads to the English page and its table.
  */
 
-const API = 'https://en.wiktionary.org/w/api.php'
+/** Which Wiktionary: the English one (translations, etymology, audio) or the language's own. */
+export type Site = 'en' | 'fr' | 'es'
+const api = (site: Site) => `https://${site}.wiktionary.org/w/api.php`
 const SECTION: Record<TargetLanguage, string> = { en: 'English', fr: 'French', es: 'Spanish' }
 
 const cache = new Map<string, string | null>()
@@ -17,12 +19,15 @@ const pause = (ms: number) => new Promise((r) => setTimeout(r, ms))
  * Wikitext of several pages in one request (Wikimedia rate-limits anonymous callers, so
  * requests are batched, cached and retried with a pause when the limit is hit).
  */
-export async function fetchPages(titles: string[]): Promise<Map<string, string | null>> {
-  const want = [...new Set(titles)].filter((t) => !cache.has(t))
-  if (want.length) {
+export async function fetchPages(titles: string[], site: Site = 'en'): Promise<Map<string, string | null>> {
+  const key = (t: string) => `${site}:${t}`
+  const all = [...new Set(titles)].filter((t) => !cache.has(key(t)))
+  // The API takes up to 50 titles per request.
+  for (let i = 0; i < all.length; i += 40) {
+    const want = all.slice(i, i + 40)
     const q = new URLSearchParams({ action: 'query', prop: 'revisions', rvprop: 'content', rvslots: 'main', titles: want.join('|'), format: 'json', formatversion: '2', origin: '*', redirects: '1' })
     for (let attempt = 0; attempt < 4; attempt++) {
-      const res = await fetch(`${API}?${q}`).catch(() => null)
+      const res = await fetch(`${api(site)}?${q}`).catch(() => null)
       if (res?.status === 429 || !res) {
         await pause(2000 * 2 ** attempt)
         continue
@@ -35,12 +40,12 @@ export async function fetchPages(titles: string[]): Promise<Map<string, string |
       for (const t of want) {
         let title = t
         for (let i = 0; i < 3 && alias.has(title); i++) title = alias.get(title)!
-        cache.set(t, byTitle.get(title) ?? null)
+        cache.set(key(t), byTitle.get(title) ?? null)
       }
       break
     }
   }
-  return new Map(titles.map((t) => [t, cache.get(t) ?? null]))
+  return new Map(titles.map((t) => [t, cache.get(key(t)) ?? null]))
 }
 
 export async function fetchWikitext(page: string): Promise<string | null> {

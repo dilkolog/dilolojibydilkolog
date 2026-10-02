@@ -112,6 +112,11 @@ export function playWord(entry: VocabularyEntry, text = displayForm(entry), vary
     playUrl(native, rate).catch(fallback)
     return
   }
+  // The word itself said by a native speaker (Wiktionary), unless the learner recorded their own.
+  if (entry.audioUrl && !entry.audioId && (text === displayForm(entry) || text === entry.lemma) && navigator.onLine) {
+    playUrl(entry.audioUrl).catch(fallback)
+    return
+  }
   if (entry.audioId && text === displayForm(entry)) {
     const ready = recordings.get(entry.audioId)
     if (ready) {
