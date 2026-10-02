@@ -15,6 +15,7 @@ import { BulkImport } from './BulkImport'
 import { ConceptsView } from './CrossLanguage'
 import { accentChange } from './AccentBar'
 import { MissingWords } from './MissingWords'
+import { KindleImport } from './KindleImport'
 import { GardenView, WORDS_VIEW_KEY } from './Garden'
 import { Plant } from './Plant'
 import { growthStage, plantHealth } from '../engine/growth'
@@ -116,6 +117,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </details>
         <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
         <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
+        <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
         <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
         <div className="row small">
           {hasSamples ? (

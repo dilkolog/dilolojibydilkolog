@@ -20,6 +20,7 @@
     "dexie": "^4.4.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "sql.js": "^1.14.2",
     "ts-fsrs": "^5.4.2",
     "zod": "^4.6.5"
   },
@@ -28,6 +29,7 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
+    "@types/sql.js": "^1.4.11",
     "@vitejs/plugin-react": "^6.1.1",
     "fake-indexeddb": "^6.2.5",
     "oxlint": "^1.81.0",
