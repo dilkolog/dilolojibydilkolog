@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { looksLikeSubtitles, parseSubtitles } from '../subtitles'
+import { looksLikeSubtitles, parseSubtitles, parseTimedText, youtubeId } from '../subtitles'
 
 describe('parseSubtitles', () => {
   it('cleans an SRT file into reading text', () => {
@@ -26,5 +26,20 @@ describe('parseSubtitles', () => {
     expect(out.split('\n\n')).toHaveLength(2)
     expect(out.startsWith('Línea 1. Línea 2.')).toBe(true)
     expect(looksLikeSubtitles('Just a normal text.')).toBe(false)
+  })
+})
+
+
+describe('YouTube subtitles', () => {
+  it('finds the video id in any link form', () => {
+    for (const u of ['https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=10', 'https://youtu.be/dQw4w9WgXcQ', 'https://m.youtube.com/shorts/dQw4w9WgXcQ', 'dQw4w9WgXcQ', 'https://www.youtube.com/watch?feature=x&v=dQw4w9WgXcQ']) {
+      expect(youtubeId(u)).toBe('dQw4w9WgXcQ')
+    }
+    expect(youtubeId('https://example.com/watch?v=1')).toBeNull()
+  })
+
+  it('reads timed text, auto captions included, without music marks', () => {
+    const xml = '<timedtext format="3"><body><p t="1360" d="1680">[♪♪♪]</p><p t="18640" d="3240">♪ We&#39;re no strangers ♪</p><p t="2" d="1"><s>il</s><s t="200"> fait</s><s> beau</s></p></body></timedtext>'
+    expect(parseTimedText(xml)).toBe("We're no strangers il fait beau")
   })
 })

@@ -76,6 +76,8 @@ export function ReadingScreen({
   const [message, setMessage] = useState('')
   const [bookError, setBookError] = useState('')
   const [toast, setToast] = useState('')
+  const [youtube, setYoutube] = useState('')
+  const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
   const [listenFirst, setListenFirst] = useState(false)
 
@@ -175,6 +177,43 @@ export function ReadingScreen({
     } catch (e) {
       // Our own errors explain the problem; anything else is a file we couldn't read.
       setBookError(e instanceof Error && e.name === 'EpubError' ? e.message : 'Kitap okunamadı.')
+    }
+  }
+
+  /** A YouTube video's subtitles in this language, as a reading text with a link back to the video. */
+  const importYoutube = async () => {
+    setBookError('')
+    setYtBusy(true)
+    try {
+      const res = await fetch(`/api/youtube?v=${encodeURIComponent(youtube.trim())}&lang=${language}`)
+      const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; error?: string; available?: string[] }
+      if (!res.ok || !j.text) {
+        setBookError(
+          j.error === 'no captions'
+            ? `Bu videoda ${LANGUAGE_NAME[language]} altyazı yok${j.available?.length ? ` (olanlar: ${j.available.join(', ')})` : ''}.`
+            : j.error === 'bad request'
+              ? 'Bağlantı bir YouTube videosu gibi görünmüyor.'
+              : 'Altyazı alınamadı; YouTube şu an izin vermiyor olabilir. Altyazıyı .srt olarak indirip yükleyebilirsin.',
+        )
+        return
+      }
+      const item: ReadingText = {
+        id: crypto.randomUUID(),
+        language,
+        title: `▶️ ${j.title}${j.auto ? ' (otomatik altyazı)' : ''}`,
+        text: j.text,
+        source: `https://www.youtube.com/watch?v=${j.id}`,
+        addedAt: new Date().toISOString(),
+        history: [],
+      }
+      await db.saveText(item)
+      setLibrary((lib) => [item, ...(lib ?? [])])
+      setYoutube('')
+      await open(item)
+    } catch {
+      setBookError('Altyazı alınamadı; internet bağlantını kontrol et.')
+    } finally {
+      setYtBusy(false)
     }
   }
 
@@ -337,6 +376,18 @@ export function ReadingScreen({
             <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
           </label>
         </div>
+        <form
+          className="row"
+          onSubmit={(e) => {
+            e.preventDefault()
+            void importYoutube()
+          }}
+        >
+          <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı: altyazısı metin olarak gelir" aria-label="YouTube bağlantısı" inputMode="url" />
+          <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
+            {ytBusy ? 'Getiriliyor…' : '▶️ Altyazıyı getir'}
+          </button>
+        </form>
         {bookError && (
           <p className={bookError.startsWith('📚') ? 'notice' : 'error'} role="status">
             {bookError}
@@ -434,6 +485,13 @@ export function ReadingScreen({
             <span className="small muted">{ZONE[zone].text}</span>
           </span>
         </div>
+        {current?.source && (
+          <p className="small">
+            <a className="link" href={current.source} target="_blank" rel="noreferrer">
+              {current.source.includes('youtube.com') ? '▶️ Videoyu YouTube’da aç' : 'Kaynağı aç'}
+            </a>
+          </p>
+        )}
         {current && current.history.length > 0 && startCoverage.current !== null && (
           <p className="small">
             Önceki okumada %{Math.round(current.history[0].coverage * 100)}
