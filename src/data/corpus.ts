@@ -80,7 +80,9 @@ export function toExamples(data: TatoebaSentence[], lemma: string, language: Tar
 }
 
 async function query(params: Record<string, string>): Promise<TatoebaSentence[]> {
-  const res = await fetch(`${API}?${new URLSearchParams({ sort: 'relevance', limit: '40', word_count: '4-16', include: 'audios', ...params })}`)
+  const all: Record<string, string> = { sort: 'relevance', limit: '40', word_count: '4-16', include: 'audios', ...params }
+  // An empty value leaves the parameter out.
+  const res = await fetch(`${API}?${new URLSearchParams(Object.entries(all).filter(([, v]) => v !== ''))}`)
   if (!res.ok) throw new Error(`tatoeba ${res.status}`)
   return ((await res.json()) as { data?: TatoebaSentence[] }).data ?? []
 }
@@ -93,6 +95,13 @@ export async function fetchCorpus(entry: Pick<VocabularyEntry, 'language' | 'lem
   if (translated.length >= CORPUS_SIZE / 2) return translated.slice(0, CORPUS_SIZE)
   const more = toExamples(await query({ lang, q, showtrans: 'none' }), entry.lemma, entry.language).filter((x) => !translated.some((t) => t.text === x.text))
   return [...translated, ...more].slice(0, CORPUS_SIZE)
+}
+
+/** Many plain sentences containing the word, for mining its collocations (see patterns.ts). */
+export async function fetchSentences(entry: Pick<VocabularyEntry, 'language' | 'lemma'>, limit = 100): Promise<string[]> {
+  const q = /\s/.test(entry.lemma.trim()) ? `"${entry.lemma.trim()}"` : entry.lemma.trim()
+  const data = await query({ lang: TATOEBA_LANG[entry.language], q, showtrans: 'none', limit: String(limit), word_count: '3-30', include: '' })
+  return data.filter((s) => !s.is_unapproved).map((s) => s.text)
 }
 
 /**
