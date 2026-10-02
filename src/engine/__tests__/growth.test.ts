@@ -32,3 +32,20 @@ describe('growth', () => {
     expect(growthStage(undefined)).toBe(-1)
   })
 })
+
+describe('gardenSummary', () => {
+  it('counts plants by stage and lists the driest words to water first', async () => {
+    const { gardenSummary } = await import('../growth')
+    const { decide, abandon } = await import('./fixtures')
+    const at = (d: number) => new Date(T0.getTime() + d * 86_400_000)
+    let a = newWordState(decision, T0)
+    a = processAttempt(a, { exerciseType: 'mc_meaning', verdict: 'correct', responseMs: 2000, hintsUsed: 0, maxHints: 0, at: T0 }, [], scheduler).state
+    let b = newWordState(decide, at(25))
+    b = processAttempt(b, { exerciseType: 'mc_meaning', verdict: 'correct', responseMs: 2000, hintsUsed: 0, maxHints: 0, at: at(25) }, [], scheduler).state
+    const g = gardenSummary([decision, decide, abandon], [a, b], scheduler, at(30))
+    expect(g.seeds).toBe(1)
+    expect(g.byStage[0]).toBe(2)
+    expect(g.toWater[0]).toBe('en:decision')
+    expect(g.wilting + g.thirsty).toBe(g.toWater.length)
+  })
+})

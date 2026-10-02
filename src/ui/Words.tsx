@@ -15,6 +15,7 @@ import { BulkImport } from './BulkImport'
 import { ConceptsView } from './CrossLanguage'
 import { accentChange } from './AccentBar'
 import { MissingWords } from './MissingWords'
+import { GardenView, WORDS_VIEW_KEY } from './Garden'
 import { Plant } from './Plant'
 import { growthStage, plantHealth } from '../engine/growth'
 import { scheduler } from '../data/instance'
@@ -45,7 +46,22 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
-  const [view, setView] = useState<'list' | 'graph' | 'concepts'>('list')
+  const [view, setViewState] = useState<'list' | 'garden' | 'graph' | 'concepts'>(() => {
+    try {
+      const v = localStorage.getItem(WORDS_VIEW_KEY)
+      return v === 'garden' || v === 'graph' || v === 'concepts' ? v : 'list'
+    } catch {
+      return 'list'
+    }
+  })
+  const setView = (v: typeof view) => {
+    setViewState(v)
+    try {
+      localStorage.setItem(WORDS_VIEW_KEY, v)
+    } catch {
+      // Not remembered; harmless.
+    }
+  }
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
 
 
@@ -119,6 +135,9 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
             Liste
           </button>
+          <button role="tab" className="segmented-btn" aria-selected={view === 'garden'} onClick={() => setView('garden')}>
+            Bahçe
+          </button>
           <button role="tab" className="segmented-btn" aria-selected={view === 'graph'} onClick={() => setView('graph')}>
             Kelime ağı
           </button>
@@ -139,6 +158,8 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
             onChanged()
           }}
         />
+      ) : view === 'garden' ? (
+        <GardenView vocabulary={vocabulary} states={states} onOpen={onOpen} onWater={onStudy} />
       ) : view === 'concepts' ? (
         <ConceptsView language={language} onOpen={onOpen} />
       ) : (

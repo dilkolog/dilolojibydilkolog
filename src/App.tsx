@@ -37,6 +37,8 @@ import { ProduceScreen } from './ui/Produce'
 import { VocabTestScreen } from './ui/VocabTest'
 import { useReminder } from './ui/reminders'
 import { HabitCards } from './ui/Habits'
+import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
+import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
 import { SettingsScreen } from './ui/SettingsScreen'
@@ -517,6 +519,23 @@ export default function App() {
                 }
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
                 extra={
+                  <>
+                  <GardenCard
+                    summary={gardenSummary(data.vocabulary, data.states, scheduler, new Date())}
+                    onWater={() => {
+                      const ids = gardenSummary(data.vocabulary, data.states, scheduler, new Date()).toWater.slice(0, 20)
+                      const deck = data.vocabulary.filter((v) => ids.includes(v.id))
+                      startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
+                    }}
+                    onOpen={() => {
+                      try {
+                        localStorage.setItem(WORDS_VIEW_KEY, 'garden')
+                      } catch {
+                        // The words screen just opens on its last view.
+                      }
+                      setScreen({ name: 'words' })
+                    }}
+                  />
                   <HabitCards
                     settings={settings}
                     onSettings={updateSettings}
@@ -525,6 +544,7 @@ export default function App() {
                       startSession(buildDeckPlan({ catalog: newToday, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'practice')
                     }
                   />
+                  </>
                 }
               />
             )}

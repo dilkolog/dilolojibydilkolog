@@ -76,3 +76,42 @@ export function projectStage(
   }
   return MASTERY_STAGES.indexOf(masteryStage(s)) >= goalIndex ? { stage: goal, reviews, date: t } : undefined
 }
+
+export interface GardenSummary {
+  /** Plants per growth stage (index 0–5); not-yet-planted words are counted apart. */
+  byStage: number[]
+  seeds: number
+  thirsty: number
+  wilting: number
+  /** Words to water, driest first. */
+  toWater: string[]
+}
+
+export function gardenSummary(
+  vocabulary: readonly VocabularyEntry[],
+  states: readonly UserWordState[],
+  scheduler: Scheduler,
+  now: Date,
+): GardenSummary {
+  const stateById = new Map(states.map((s) => [s.entryId, s]))
+  const byStage = MASTERY_STAGES.map(() => 0)
+  let seeds = 0
+  let thirsty = 0
+  let wilting = 0
+  const dry: { id: string; r: number }[] = []
+  for (const e of vocabulary) {
+    const s = stateById.get(e.id)
+    if (!s) {
+      seeds++
+      continue
+    }
+    byStage[growthStage(s)]++
+    const h = plantHealth(s, scheduler, now)
+    if (h === 'fresh') continue
+    if (h === 'thirsty') thirsty++
+    else wilting++
+    const cards = Object.values(s.skills).filter((c) => c.reps > 0)
+    dry.push({ id: e.id, r: Math.min(...cards.map((c) => scheduler.retrievability(c, now))) })
+  }
+  return { byStage, seeds, thirsty, wilting, toWater: dry.sort((a, b) => a.r - b.r).map((d) => d.id) }
+}
