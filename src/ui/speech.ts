@@ -1,5 +1,6 @@
 import { displayForm } from '../engine/exercises'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
+import { mediaBlob } from '../data/db'
 import { db } from '../data/instance'
 import { SPEECH_LANG } from './labels'
 
@@ -65,19 +66,57 @@ export function speak(text: string, language: TargetLanguage, rate = speechPrefs
 
 let current: HTMLAudioElement | null = null
 
+/**
+ * Object URLs of the learner's recordings, loaded ahead of time. Safari only plays audio started
+ * directly by a click; reading the recording from IndexedDB first would lose that click, so the
+ * URL has to be ready before the button is pressed.
+ */
+const recordings = new Map<string, string>()
+
+export async function preloadRecording(audioId: string | undefined): Promise<string | undefined> {
+  if (!audioId) return undefined
+  const cached = recordings.get(audioId)
+  if (cached) return cached
+  const m = await db.media.get(audioId)
+  if (!m) return undefined
+  const url = URL.createObjectURL(mediaBlob(m))
+  recordings.set(audioId, url)
+  return url
+}
+
+function playUrl(url: string): Promise<void> {
+  current?.pause()
+  current = new Audio(url)
+  return current.play()
+}
+
 /** Plays the learner's own recording of the word if there is one, otherwise TTS. */
-export async function playWord(entry: VocabularyEntry, text = displayForm(entry), vary = false, rate = speechPrefs.rate) {
+export function playWord(entry: VocabularyEntry, text = displayForm(entry), vary = false, rate = speechPrefs.rate) {
+  const fallback = () => speak(text, entry.language, rate, vary)
   if (entry.audioId && text === displayForm(entry)) {
-    const m = await db.media.get(entry.audioId)
-    if (m) {
-      current?.pause()
-      current = new Audio(URL.createObjectURL(m.blob))
-      current.onended = () => URL.revokeObjectURL(current!.src)
-      await current.play().catch(() => speak(text, entry.language, rate, vary))
+    const ready = recordings.get(entry.audioId)
+    if (ready) {
+      playUrl(ready).catch(fallback)
       return
     }
+    void preloadRecording(entry.audioId).then((url) => (url ? playUrl(url).catch(fallback) : fallback()))
+    return
   }
-  speak(text, entry.language, rate, vary)
+  fallback()
+}
+
+/**
+ * An audio element started (muted) inside the click and paused straight away: Safari then lets
+ * it play later, e.g. after a synthesized phrase has finished.
+ */
+export async function unlockedAudio(url: string): Promise<HTMLAudioElement> {
+  const a = new Audio(url)
+  a.muted = true
+  await a.play().catch(() => {})
+  a.pause()
+  a.currentTime = 0
+  a.muted = false
+  return a
 }
 
 /** Speak and resolve when finished (for playing two clips back to back). */
@@ -97,12 +136,12 @@ export function speakAsync(text: string, language: TargetLanguage, rate = speech
 
 /** Your recording right after the reference voice, to hear the difference. */
 export async function comparePronunciation(entry: VocabularyEntry) {
-  if (!entry.audioId) return
+  const url = recordings.get(entry.audioId ?? '') ?? (await preloadRecording(entry.audioId))
+  if (!url) return
+  current?.pause()
+  const mine = await unlockedAudio(url)
+  current = mine
   await speakAsync(displayForm(entry), entry.language)
   await new Promise((r) => setTimeout(r, 350))
-  const m = await db.media.get(entry.audioId)
-  if (!m) return
-  current?.pause()
-  current = new Audio(URL.createObjectURL(m.blob))
-  await current.play().catch(() => {})
+  await mine.play().catch(() => {})
 }

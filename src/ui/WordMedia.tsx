@@ -1,15 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { VocabularyEntry } from '../engine/types'
 import { db } from '../data/instance'
 import { useAi } from './aiContext'
 import { AudioRecorder } from './AudioRecorder'
 import { MnemonicDialog } from './Mnemonic'
 import { ImagePicker } from './ImagePicker'
-import { comparePronunciation, playWord } from './speech'
+import { comparePronunciation, playWord, preloadRecording } from './speech'
 import { useMediaUrl } from './useMedia'
 
 /** Picture, own recording and personal note of a word, editable in place. */
 export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChanged: () => void }) {
+  // Ready before any click, so Safari plays it straight from the button.
+  useEffect(() => {
+    void preloadRecording(entry.audioId)
+  }, [entry.audioId])
   const imageUrl = useMediaUrl(entry.imageId)
   const [picking, setPicking] = useState(false)
   const [recording, setRecording] = useState(false)

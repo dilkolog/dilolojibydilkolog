@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { TargetLanguage } from '../engine/types'
 import { canRecord, recordingType } from './AudioRecorder'
-import { canSpeak, speakAsync } from './speech'
+import { canSpeak, speakAsync, unlockedAudio } from './speech'
 
 /** Time to say a sentence back: about as long as hearing it, plus a breath. */
 const answerMs = (text: string) => Math.min(15_000, Math.max(2500, text.length * 85 + 1200))
@@ -64,9 +64,11 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
   }
 
   const compare = async () => {
+    if (!url) return
+    const mine = await unlockedAudio(url)
     await speakAsync(text, language)
     await new Promise((r) => setTimeout(r, 300))
-    if (url) await new Audio(url).play().catch(() => {})
+    await mine.play().catch(() => {})
   }
 
   const left = Math.max(0, until - performance.now())

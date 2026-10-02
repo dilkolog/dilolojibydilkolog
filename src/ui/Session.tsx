@@ -43,7 +43,7 @@ import { MnemonicDialog } from './Mnemonic'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon, StarIcon } from './icons'
 import { prefs } from './prefs'
 import { sfx } from './sounds'
-import { canSpeak, playWord, speak, speechPrefs } from './speech'
+import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './speech'
 import { useMediaUrl } from './useMedia'
 import { canListen, listen } from './speechInput'
 
@@ -76,6 +76,11 @@ export function SessionScreen(p: Props) {
     return [...p.vocabulary, ...(lang ? SAMPLE_WORDS[lang].filter((w) => !own.has(w.id)) : [])]
   }, [p.vocabulary])
   const rng = useMemo(() => createRng(p.seed ^ 0x5bd1e995), [p.seed])
+  // Own recordings are loaded up front: Safari only plays audio started directly by a click.
+  useEffect(() => {
+    const ids = new Set(p.items.map((i) => i.entryId))
+    for (const v of p.vocabulary) if (ids.has(v.id) && v.audioId) void preloadRecording(v.audioId)
+  }, [p.items, p.vocabulary])
   const [session, setSession] = useState(() => startSession(p.items))
   const item = currentItem(session)
   const { onFinish } = p

@@ -131,8 +131,20 @@ export interface StoryEpisode {
 export interface MediaRow {
   id: string
   kind: 'image' | 'audio'
-  blob: Blob
+  /**
+   * Raw bytes plus MIME type. Stored this way rather than as a Blob because Safari can lose
+   * IndexedDB-stored Blobs (they fail to load after a reload).
+   */
+  data?: ArrayBuffer
+  type?: string
+  /** Older rows only. */
+  blob?: Blob
   createdAt: Date
+}
+
+/** The row's content as a Blob, whichever way it was stored. */
+export function mediaBlob(row: MediaRow): Blob {
+  return row.blob ?? new Blob([row.data ?? new ArrayBuffer(0)], { type: row.type ?? '' })
 }
 
 /**
@@ -163,7 +175,7 @@ export class KelimeDB extends Dexie {
 
   async addMedia(kind: MediaRow['kind'], blob: Blob): Promise<string> {
     const id = crypto.randomUUID()
-    await this.media.add({ id, kind, blob, createdAt: new Date() })
+    await this.media.add({ id, kind, data: await blob.arrayBuffer(), type: blob.type, createdAt: new Date() })
     return id
   }
 
@@ -381,7 +393,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
         kind: m.kind,
-        dataUrl: await blobToDataUrl(m.blob),
+        dataUrl: await blobToDataUrl(mediaBlob(m)),
         createdAt: m.createdAt.toISOString(),
       })),
     ),
@@ -409,7 +421,10 @@ export function parseBackup(json: string): Backup {
 export async function restoreBackup(db: KelimeDB, backup: Backup) {
   // Decode media before the transaction: IndexedDB transactions close on unrelated awaits.
   const media = await Promise.all(
-    (backup.media ?? []).map(async (m) => ({ id: m.id, kind: m.kind, blob: await dataUrlToBlob(m.dataUrl), createdAt: new Date(m.createdAt) })),
+    (backup.media ?? []).map(async (m) => {
+      const blob = await dataUrlToBlob(m.dataUrl)
+      return { id: m.id, kind: m.kind, data: await blob.arrayBuffer(), type: blob.type, createdAt: new Date(m.createdAt) }
+    }),
   )
   await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media, db.stories], async () => {
     await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.media.clear(), db.stories.clear()])

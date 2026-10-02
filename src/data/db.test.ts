@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto'
 import { describe, expect, it } from 'vitest'
 import { newWordState, processAttempt } from '../engine/review'
 import { createScheduler } from '../engine/scheduler'
-import { DEFAULT_SETTINGS, exportBackup, KelimeDB, parseBackup, restoreBackup } from './db'
+import { DEFAULT_SETTINGS, exportBackup, KelimeDB, mediaBlob, parseBackup, restoreBackup } from './db'
 import { SAMPLE_WORDS } from './seed'
 
 const scheduler = createScheduler({ fuzz: false })
@@ -103,7 +103,7 @@ describe('media', () => {
     await restoreBackup(other, parseBackup(json))
     const restored = await other.media.get(imageId)
     expect(restored?.kind).toBe('image')
-    expect(await restored!.blob.text()).toBe('png-bytes')
+    expect(await mediaBlob(restored!).text()).toBe('png-bytes')
 
     await other.deleteWord(entry.id)
     expect(await other.media.count()).toBe(0)
