@@ -9,6 +9,7 @@ import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type Vocabul
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
 import { NewsPicker } from './News'
+import { AudioPanel, ListeningPicker } from './Listening'
 import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
@@ -75,6 +76,8 @@ export function ReadingScreen({
   const [message, setMessage] = useState('')
   const [bookError, setBookError] = useState('')
   const [toast, setToast] = useState('')
+  // Listening episodes start with the text hidden: listen first, then read.
+  const [listenFirst, setListenFirst] = useState(false)
 
   useEffect(() => {
     Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
@@ -121,6 +124,8 @@ export function ReadingScreen({
     setSelected(null)
     setAdding(null)
     setMessage('')
+    // A new listening episode opens with its text hidden; one already read shows it.
+    setListenFirst(!!item?.audio && !item.readAt)
   }
 
   const start = async () => {
@@ -337,6 +342,26 @@ export function ReadingScreen({
             {bookError}
           </p>
         )}
+        <ListeningPicker
+          language={language}
+          vocabulary={vocabulary}
+          states={states}
+          known={known}
+          onOpen={async (episode) => {
+            const item: ReadingText = {
+              id: crypto.randomUUID(),
+              language,
+              title: `🎧 ${episode.title}`,
+              text: episode.text,
+              audio: episode.audio,
+              addedAt: new Date().toISOString(),
+              history: [],
+            }
+            await db.saveText(item)
+            setLibrary((lib) => [item, ...(lib ?? [])])
+            await open(item)
+          }}
+        />
         <NewsPicker
           language={language}
           vocabulary={vocabulary}
@@ -439,7 +464,8 @@ export function ReadingScreen({
           {toast}
         </p>
       )}
-      {!message && (
+      {current?.audio && <AudioPanel key={current.id} src={current.audio} hidden={listenFirst} onToggleHidden={() => setListenFirst((v) => !v)} />}
+      {!message && !listenFirst && (
         <KeyWordsCard
           key={current?.id}
           db={db}
@@ -452,7 +478,10 @@ export function ReadingScreen({
         />
       )}
 
-      <article className="reader" lang={language}>
+      {listenFirst && current?.audio && (
+        <p className="small muted listen-hint">Önce bir kez sadece dinle; ne kadarını anladığını düşün. Sonra metni açıp duyduğunu oku.</p>
+      )}
+      <article className={`reader${listenFirst && current?.audio ? ' is-hidden' : ''}`} lang={language}>
         {analysis.paragraphs.map((p, i) => (
           <p key={i}>
             {p.map((s, j) => (

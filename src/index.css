@@ -1679,3 +1679,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .dd-accent { color: var(--near-text); text-decoration: underline wavy var(--near); text-underline-offset: 4px; }
 .dd-missed { color: var(--bad-text); background: var(--bad-soft); border-radius: 0.25rem; }
 .dd-extra { color: var(--ink-soft); text-decoration: line-through; }
+
+/* Listening */
+.audio-panel { position: sticky; top: calc(0.5rem + env(safe-area-inset-top)); z-index: 6; gap: 0.5rem; }
+.audio-player { width: 100%; }
+.reader.is-hidden { filter: blur(7px); user-select: none; pointer-events: none; max-height: 18rem; overflow: hidden; }
+.listen-hint { text-align: center; }

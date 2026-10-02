@@ -29,6 +29,8 @@ export interface ReadingText {
   readAt?: string
   /** Coverage when each reading started, oldest first: shows the text getting easier. */
   history: { at: string; coverage: number }[]
+  /** Audio of a listening episode: the text is its transcript. */
+  audio?: string
   /** A chapter of an imported book (EPUB): chapters share the book id and keep their order. */
   book?: { id: string; title: string; index: number; total: number }
 }
