@@ -4,6 +4,7 @@ import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadS
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
+import { NewsPicker } from './News'
 import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
@@ -176,6 +177,18 @@ export function ReadingScreen({
             <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
           </label>
         </div>
+        <NewsPicker
+          language={language}
+          vocabulary={vocabulary}
+          states={states}
+          known={known}
+          onRead={async (newsTitle, newsText) => {
+            const item: ReadingText = { id: crypto.randomUUID(), language, title: newsTitle, text: newsText, addedAt: new Date().toISOString(), history: [] }
+            await db.saveText(item)
+            setLibrary((lib) => [item, ...(lib ?? [])])
+            await open(item)
+          }}
+        />
         {library.length > 0 && (
           <section className="section stack">
             <h2 className="section-title">Kütüphanen</h2>

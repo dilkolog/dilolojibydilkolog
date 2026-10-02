@@ -4,6 +4,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Server functions (api/) run on Vercel; in local development they are reached on the live site.
+  server: { proxy: { '/api': { target: 'https://kelime-koc.vercel.app', changeOrigin: true } } },
   plugins: [
     react(),
     // Precaches the built app (JS, CSS, fonts, icons) so it opens and works without internet.
