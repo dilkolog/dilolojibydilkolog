@@ -227,7 +227,7 @@ export default function App() {
       if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // Pronunciation, definition and word family from Wiktionary, also in the background.
-    if (!wiktRun && loaded.vocabulary.some((v) => v.source !== 'sample' && !v.wiktAt)) {
+    if (!wiktRun && loaded.vocabulary.some((v) => v.source !== 'sample' && (!v.wiktAt || (v.partOfSpeech === 'noun' && v.language !== 'en' && !v.gender && v.wiktAt < '2026-10-03T12')))) {
       wiktRun = fillWordInfo(db, language).finally(() => (wiktRun = null))
       if (await wiktRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }

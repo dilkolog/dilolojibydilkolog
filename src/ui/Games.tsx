@@ -17,11 +17,12 @@ import { LANGUAGE_NAME, PROMPT_TEXT } from './labels'
 import { prefs } from './prefs'
 import { SentencesGame } from './Sentences'
 import { NativeDictation } from './NativeDictation'
+import { ArticleDrill } from './ArticleDrill'
 import { dueSentences } from '../engine/sentences'
 import { sfx } from './sounds'
 import { canSpeak, playWord, playWordAsync, preloadRecording, speak, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from './speech'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | null
 
 interface Props {
   language: TargetLanguage
@@ -72,6 +73,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
   if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
   if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
+  if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
   if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
   if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'fluency')
@@ -116,6 +118,14 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
           <span className="small muted">60 saniyede olabildiğince çok doğru. Üst üste doğrular puanı katlar.</span>
           <span className="game-record">{records[blitzKey] ? `Rekorun: ${records[blitzKey]} puan` : 'Henüz rekor yok'}</span>
         </button>
+        {p.language !== 'en' && (
+          <button className="game-card" onClick={() => setGame('article')}>
+            <span className="game-emoji">🏷️</span>
+            <strong>Artikel antrenmanı</strong>
+            <span className="small muted">Kendi isimlerinle {p.language === 'fr' ? 'le/la' : 'el/la'} sorusu, hızlı ve sırayla. Öğrendiğin kelimelerde takvimli tekrar sayılır.</span>
+            <span className="game-record">En çok karıştırdıkların önce</span>
+          </button>
+        )}
         {p.language !== 'en' && (
           <button className="game-card" onClick={() => setGame('gender')}>
             <span className="game-emoji">⚖️</span>

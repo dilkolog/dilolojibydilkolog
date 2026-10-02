@@ -1,5 +1,5 @@
 import { stripDiacritics } from '../engine/answerCheck'
-import type { TargetLanguage, VocabularyEntry } from '../engine/types'
+import type { Gender, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
 import { loadFrequency } from './frequency'
 import { fetchPages, languageSection } from './wiktionary'
@@ -10,6 +10,13 @@ import { fetchPages, languageSection } from './wiktionary'
  * native speakers); audio, and anything missing, from the English one.
  */
 
+/** A French/Spanish noun's gender from its English-Wiktionary headword ({{fr-noun|f}}, {{es-noun|m}}). */
+export function nounGender(section: string, language: TargetLanguage): Gender | undefined {
+  if (language === 'en') return undefined
+  const g = section.match(new RegExp(`\\{\\{${language}-noun\\|(m|f)\\b`))?.[1]
+  return g === 'm' || g === 'f' ? g : undefined
+}
+
 export interface WordInfo {
   /** "/de.si.de/" */
   ipa?: string
@@ -19,6 +26,8 @@ export interface WordInfo {
   definition?: string
   /** Derived and related words: décider → décision, indécis, décideur… */
   family: string[]
+  /** Noun gender, for nouns entered without a telling article (l'arbre, les gens). */
+  gender?: Gender
 }
 
 // ---------------------------------------------------------------------------
@@ -182,6 +191,7 @@ export async function lookUpWords(lemmas: string[], language: TargetLanguage): P
       audioUrl: audio ? commonsMp3(audio) : undefined,
       definition: ownSection ? firstDefinition(ownSection, language === 'es' ? 'es' : 'hash') : undefined,
       family: [...new Set(family)].slice(0, 10),
+      gender: enSection ? nounGender(enSection, language) : undefined,
     })
   }
   return out
@@ -207,7 +217,10 @@ export function commonFamily(family: readonly string[], frequency: ReadonlyMap<s
  */
 export async function fillWordInfo(db: KelimeDB, language: TargetLanguage): Promise<number> {
   if (typeof navigator !== 'undefined' && !navigator.onLine) return 0
-  const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.source !== 'sample' && !e.wiktAt).slice(0, PER_RUN)
+  const todo = (await db.vocabulary.where('language').equals(language).toArray())
+    // Nouns looked up before genders were read (2026-10-03) get one more look for their gender.
+    .filter((e) => e.source !== 'sample' && (!e.wiktAt || (e.language !== 'en' && e.partOfSpeech === 'noun' && !e.gender && e.wiktAt < '2026-10-03T12')))
+    .slice(0, PER_RUN)
   if (todo.length) await fillEntries(db, todo, language)
   return todo.length
 }
@@ -225,6 +238,8 @@ export async function fillEntries(db: KelimeDB, entries: VocabularyEntry[], lang
       audioUrl: fresh.audioUrl || i?.audioUrl,
       senses,
       familyCandidates: commonFamily(i?.family ?? [], frequency),
+      // A noun whose article didn't tell its gender (l', les) gets it from the dictionary.
+      ...(fresh.language !== 'en' && fresh.partOfSpeech === 'noun' && !fresh.gender && i?.gender ? { gender: i.gender } : {}),
     } satisfies Partial<VocabularyEntry>)
   }
 }

@@ -68,7 +68,7 @@ export function bandOf(rank: number | undefined): (typeof FREQUENCY_BANDS)[numbe
   return FREQUENCY_BANDS.find((b) => rank <= b.max)
 }
 
-const GENDER_BY_ARTICLE: Record<string, Gender> = { le: 'm', un: 'm', el: 'm', la: 'f', une: 'f', una: 'f' }
+const GENDER_BY_ARTICLE: Record<string, Gender> = { le: 'm', un: 'm', el: 'm', la: 'f', une: 'f', una: 'f', los: 'm', unos: 'm', las: 'f', unas: 'f' }
 
 // Closed word classes are short lists; open classes are guessed from articles and suffixes.
 const CLOSED: Record<TargetLanguage, Partial<Record<PartOfSpeech, string[]>>> = {
@@ -193,6 +193,8 @@ export function createEntry(
   now: Date,
   source: EntrySource = 'user',
 ): VocabularyEntry {
+  // Typographic apostrophes (l’arbre) work like the plain one, so the article is still split off.
+  input = { ...input, word: input.word.replace(/[’‘´`]/g, "'") }
   const raw = normalize(input.word)
   if (!raw) throw new WordInputError('Kelime boş olamaz.')
   const meanings = splitList(input.meaning, /,|\//)
