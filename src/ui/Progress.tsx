@@ -11,6 +11,7 @@ import { EXAM_INTERVAL_DAYS, type ExamResult } from '../engine/exam'
 import { KnownWordsCard } from './KnownWords'
 import { ErrorReportCard } from './ErrorReport'
 import { YearCalendar } from './YearCalendar'
+import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
@@ -278,6 +279,7 @@ export function ProgressScreen({
         <p className="small muted">Yüzde, o beceride çalıştığın kelimeleri şu an hatırlama olasılığının ortalaması.</p>
       </section>
       <YearCalendar db={db} />
+      <BestHoursCard db={db} />
       <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
     </div>
   )

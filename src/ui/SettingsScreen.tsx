@@ -10,6 +10,7 @@ import { MemoryModel } from './MemoryModel'
 import { SyncSettings } from './SyncSettings'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
+import { ReminderSuggestion } from './BestHours'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
@@ -370,6 +371,7 @@ export function SettingsScreen({
             <Select label="Saat" value={settings.reminder.time} onChange={(t) => set('reminder', { ...settings.reminder, time: t })} options={TIMES.map((t) => ({ value: t, label: t }))} />
           </div>
         </Row>
+        <ReminderSuggestion db={db} current={settings.reminder.time} onApply={(t) => set('reminder', { ...settings.reminder, time: t })} />
         {settings.reminder.enabled && permission !== 'granted' && (
           <p className="error small">
             Bildirim izni yok. Tarayıcının site ayarlarından bu sayfaya bildirim izni ver.{' '}
