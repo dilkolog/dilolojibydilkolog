@@ -1405,3 +1405,4 @@ kbd {
 .plant-tile:hover, .plant-tile:focus-visible { background: var(--surface); outline: none; }
 .plant-name { font-family: var(--serif); font-size: var(--t-sm); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink); }
 .garden-card-plants { display: flex; align-items: flex-end; }
+.progress-card-img { width: 100%; max-width: 22rem; border-radius: 1rem; box-shadow: var(--shadow); }

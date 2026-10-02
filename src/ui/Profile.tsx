@@ -3,6 +3,7 @@ import { levelTitle } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
+import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
 import { FlameIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
@@ -165,6 +166,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
           }}
         />
       )}
+      {game && <ProgressCardButton settings={settings} game={game} />}
     </div>
   )
 }
