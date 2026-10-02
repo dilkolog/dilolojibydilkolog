@@ -154,3 +154,22 @@ describe('reading data', () => {
     expect(await other.getEncounters()).toEqual({ 'fr:chat': 3, 'fr:chien': 1 })
   })
 })
+
+describe('reading library', () => {
+  it('stores texts per language, moves an old single text in, and survives a backup', async () => {
+    const db = new KelimeDB('t-library')
+    await db.meta.put({ key: 'reading:fr', value: 'Il était une fois un petit chat.' })
+    const lib = await db.getLibrary('fr')
+    expect(lib).toHaveLength(1)
+    expect(lib[0].title).toBe('Il était une fois un petit')
+    expect(await db.getCurrentText('fr')).toBe(lib[0].id)
+    await db.saveText({ id: 'x', language: 'es', title: 'Hola', text: 'Hola mundo', addedAt: new Date().toISOString(), history: [] })
+    expect((await db.getLibrary('es')).map((t) => t.id)).toEqual(['x'])
+    expect(await db.getLibrary('fr')).toHaveLength(1)
+    const other = new KelimeDB('t-library-restore')
+    await restoreBackup(other, parseBackup(await exportBackup(db)))
+    expect(await other.getLibrary('es')).toHaveLength(1)
+    await db.deleteText('x')
+    expect(await db.getLibrary('es')).toHaveLength(0)
+  })
+})

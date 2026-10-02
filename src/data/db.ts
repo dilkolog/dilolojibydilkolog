@@ -10,6 +10,26 @@ import {
   type VocabularyEntry,
 } from '../engine/types'
 
+/** A text in the reading library. */
+export interface ReadingText {
+  id: string
+  language: TargetLanguage
+  title: string
+  text: string
+  /** ISO dates. */
+  addedAt: string
+  /** Last time the reader finished it. */
+  readAt?: string
+  /** Coverage when each reading started, oldest first: shows the text getting easier. */
+  history: { at: string; coverage: number }[]
+}
+
+/** A short title from a text's first words. */
+export function titleOf(text: string): string {
+  const first = text.trim().split(/\s+/).slice(0, 6).join(' ')
+  return first.length > 48 ? `${first.slice(0, 47)}…` : first
+}
+
 export interface VocabTestRecord {
   language: TargetLanguage
   /** ISO date. */
@@ -238,13 +258,37 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'vocabTests', value: [...(await this.getVocabTests()), record] })
   }
 
-  /** The text open in reading mode, per language. */
-  async getReadingText(language: TargetLanguage): Promise<string> {
-    return ((await this.meta.get(`reading:${language}`))?.value as string) ?? ''
+  /** The reading library of one language, newest first. Moves an old single saved text in. */
+  async getLibrary(language: TargetLanguage): Promise<ReadingText[]> {
+    let all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    const legacy = (await this.meta.get(`reading:${language}`))?.value as string | undefined
+    if (legacy?.trim()) {
+      const item: ReadingText = { id: crypto.randomUUID(), language, title: titleOf(legacy), text: legacy, addedAt: new Date().toISOString(), history: [] }
+      all = [item, ...all]
+      await this.meta.put({ key: 'library', value: all })
+      await this.meta.delete(`reading:${language}`)
+      await this.meta.put({ key: `readingCurrent:${language}`, value: item.id })
+    }
+    return all.filter((t) => t.language === language).sort((a, b) => b.addedAt.localeCompare(a.addedAt))
   }
 
-  saveReadingText(language: TargetLanguage, text: string) {
-    return this.meta.put({ key: `reading:${language}`, value: text })
+  async saveText(text: ReadingText) {
+    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    await this.meta.put({ key: 'library', value: [text, ...all.filter((t) => t.id !== text.id)] })
+  }
+
+  async deleteText(id: string) {
+    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    await this.meta.put({ key: 'library', value: all.filter((t) => t.id !== id) })
+  }
+
+  /** Id of the text open in reading mode, per language. */
+  async getCurrentText(language: TargetLanguage): Promise<string | null> {
+    return ((await this.meta.get(`readingCurrent:${language}`))?.value as string) ?? null
+  }
+
+  setCurrentText(language: TargetLanguage, id: string | null) {
+    return this.meta.put({ key: `readingCurrent:${language}`, value: id })
   }
 
   /** Personal bests in the games, per game and language. */
@@ -357,7 +401,7 @@ export interface Backup {
   media?: { id: string; kind: MediaRow['kind']; dataUrl: string; createdAt: string }[]
   stories?: StoryEpisode[]
   /** Known-word sets and reading encounters (backup version 3+). */
-  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number> }
+  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; library?: ReadingText[] }
   vocabTests?: VocabTestRecord[]
 }
 
@@ -390,6 +434,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     reading: {
       known: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getKnownWords(l))]]))),
       encounters: await db.getEncounters(),
+      library: ((await db.meta.get('library'))?.value as ReadingText[]) ?? [],
     },
     vocabTests: await db.getVocabTests(),
     media: await Promise.all(
@@ -441,6 +486,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
     if (backup.reading) {
       for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
       await db.meta.put({ key: 'encounters', value: backup.reading.encounters })
+      if (backup.reading.library) await db.meta.put({ key: 'library', value: backup.reading.library })
     }
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
   })
