@@ -94,6 +94,7 @@ function markNode(node: Text) {
     frag.append(text.slice(last, m.index))
     const span = document.createElement('span')
     span.className = `kk-w ${mark.cls}`
+    if (mark.word) span.dataset.id = mark.word.id
     span.textContent = m[0]
     frag.append(span)
     last = m.index! + m[0].length
@@ -146,9 +147,28 @@ function processRoot(root: Node) {
   }
   if (settings.mode === 'off' || !lookup) return
   for (const n of textNodes(root)) {
-    if (processed > MAX_WORDS) return
+    if (processed > MAX_WORDS) break
     markNode(n)
   }
+  reportSightings()
+}
+
+/** List words on this page, reported once per page load (each counts as meeting the word in context). */
+const reported = new Set<string>()
+let sightingTimer: ReturnType<typeof setTimeout> | undefined
+
+function reportSightings() {
+  clearTimeout(sightingTimer)
+  sightingTimer = setTimeout(async () => {
+    const ids = [...new Set([...document.querySelectorAll<HTMLElement>('.kk-w[data-id]')].map((e) => e.dataset.id!))].filter((id) => !reported.has(id))
+    if (!ids.length) return
+    for (const id of ids) reported.add(id)
+    const s = await getStored()
+    const pending = { ...(s.pendingSightings ?? {}) }
+    const at = new Date().toISOString()
+    for (const id of ids) pending[id] = [...(pending[id] ?? []), { at, host: location.hostname.replace(/^www\./, '') }].slice(-20)
+    await chrome.storage.local.set({ pendingSightings: pending })
+  }, 3000)
 }
 
 function unmarkAll() {

@@ -22,6 +22,8 @@ export interface Stored {
   /** Marked on other sites, waiting for the app to pick them up. */
   pendingKnown?: Partial<Record<TargetLanguage, string[]>>
   pendingIgnored?: Partial<Record<TargetLanguage, string[]>>
+  /** List words seen on pages, waiting for the app: entry id → sightings. */
+  pendingSightings?: Record<string, { at: string; host: string }[]>
 }
 
 export const getStored = () => chrome.storage.local.get(null) as Promise<Stored>

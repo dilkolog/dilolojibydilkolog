@@ -10,6 +10,7 @@ const fmt = (d: Date) => d.toLocaleDateString('tr-TR', { day: 'numeric', month: 
 export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entry: VocabularyEntry; state?: UserWordState; mistakes: Mistake[] }) {
   const [steps, setSteps] = useState<JourneyStep[] | null>(null)
   const [encounters, setEncounters] = useState(0)
+  const [webWeek, setWebWeek] = useState(0)
   useEffect(() => {
     let live = true
     void Promise.all([
@@ -20,6 +21,8 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
       if (!live) return
       setSteps(wordJourney(entry, state, events, mistakes, seen))
       setEncounters(enc[entry.id] ?? 0)
+      const weekAgo = new Date(Date.now() - 7 * 86_400_000).toISOString()
+      setWebWeek(seen.filter((x) => x.at >= weekAgo).length)
     })
     return () => {
       live = false
@@ -60,7 +63,12 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
           </li>
         ))}
       </ol>
-      {encounters > 0 && <p className="small muted">Okurken toplam {encounters} kez karşılaştın.</p>}
+      {(encounters > 0 || webWeek > 0) && (
+        <p className="small muted">
+          {encounters > 0 && `Okurken ve web'de toplam ${encounters} kez karşılaştın.`}
+          {webWeek > 0 && ` Bu hafta web'de ${webWeek} kez karşına çıktı.`}
+        </p>
+      )}
     </section>
   )
 }

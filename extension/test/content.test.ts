@@ -51,6 +51,13 @@ describe('extension content script', () => {
     expect(document.querySelector('p')!.textContent).toBe('Elle a pris une décision difficile dans la maison de Pierre, chaque jour, au quotidien.')
   })
 
+  it('reports list words seen on the page once, for the app to count as encounters', async () => {
+    await new Promise((r) => setTimeout(r, 3200))
+    const seen = store.pendingSightings as Record<string, { host: string }[]>
+    expect(Object.keys(seen).sort()).toEqual(['fr:decision', 'fr:quotidien'])
+    expect(seen['fr:decision']).toHaveLength(1)
+  }, 10_000)
+
   it('a click opens the bubble; "Biliyorum" queues the word for the app and unmarks it', async () => {
     const word = [...document.querySelectorAll<HTMLElement>('.kk-new')].find((e) => e.textContent === 'difficile')!
     word.click()

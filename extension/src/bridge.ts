@@ -11,7 +11,10 @@ async function sendMarks() {
   const s = await getStored()
   const known = s.pendingKnown ?? {}
   const ignored = s.pendingIgnored ?? {}
-  if (Object.values(known).some((x) => x?.length) || Object.values(ignored).some((x) => x?.length)) post({ source: EXT_SOURCE, type: 'marks', known, ignored })
+  const sightings = s.pendingSightings ?? {}
+  if (Object.values(known).some((x) => x?.length) || Object.values(ignored).some((x) => x?.length) || Object.keys(sightings).length) {
+    post({ source: EXT_SOURCE, type: 'marks', known, ignored, sightings })
+  }
 }
 
 window.addEventListener('message', async (e) => {
@@ -22,7 +25,7 @@ window.addEventListener('message', async (e) => {
   else if (m.type === 'data') {
     await chrome.storage.local.set({ data: m.data, syncedAt: new Date().toISOString() })
     await sendMarks()
-  } else if (m.type === 'ack') await chrome.storage.local.set({ pendingKnown: {}, pendingIgnored: {} })
+  } else if (m.type === 'ack') await chrome.storage.local.set({ pendingKnown: {}, pendingIgnored: {}, pendingSightings: {} })
 })
 
 post({ source: EXT_SOURCE, type: 'hello' })

@@ -26,4 +26,11 @@ export const EXT_SOURCE = 'kelime-koc-ext'
 export type AppMessage = { source: typeof APP_SOURCE; type: 'data'; data: ExtData } | { source: typeof APP_SOURCE; type: 'ping' } | { source: typeof APP_SOURCE; type: 'ack' }
 export type ExtMessage =
   | { source: typeof EXT_SOURCE; type: 'hello' }
-  | { source: typeof EXT_SOURCE; type: 'marks'; known: Partial<Record<TargetLanguage, string[]>>; ignored: Partial<Record<TargetLanguage, string[]>> }
+  | {
+      source: typeof EXT_SOURCE
+      type: 'marks'
+      known: Partial<Record<TargetLanguage, string[]>>
+      ignored: Partial<Record<TargetLanguage, string[]>>
+      /** List words met on web pages: entry id → where and when (once per page). */
+      sightings?: Record<string, { at: string; host: string }[]>
+    }

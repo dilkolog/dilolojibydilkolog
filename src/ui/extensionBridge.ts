@@ -63,6 +63,15 @@ export function connectExtension(db: KelimeDB, onMarks: () => void): () => void 
           changed = true
         }
       }
+      // Words met on the web count as encounters in context, and are remembered per site.
+      const seen = Object.entries(m.sightings ?? {}).filter(([id, list]) => typeof id === 'string' && Array.isArray(list))
+      if (seen.length) {
+        await db.addEncounters(Object.fromEntries(seen.map(([id, list]) => [id, list.length])))
+        const all = ((await db.meta.get('webSightings'))?.value as Record<string, { at: string; host: string }[]> | undefined) ?? {}
+        for (const [id, list] of seen) all[id] = [...(all[id] ?? []), ...list.filter((x) => typeof x.host === 'string' && typeof x.at === 'string')].slice(-30)
+        await db.meta.put({ key: 'webSightings', value: all })
+        changed = true
+      }
       post({ source: APP_SOURCE, type: 'ack' })
       if (changed) onMarks()
     }
