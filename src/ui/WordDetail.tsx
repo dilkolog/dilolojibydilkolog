@@ -222,7 +222,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </section>
       )}
 
-      {(entry.collocations.length > 0 || entry.wordFamily.length > 0 || confusables.length > 0) && (
+      {(entry.collocations.length > 0 || confusables.length > 0) && (
         <section className="section stack">
           <h2 className="section-title">İlişkiler</h2>
           {entry.collocations.length > 0 && (
@@ -233,19 +233,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
                   <li key={c.phrase}>
                     <span className="target">{c.phrase}</span> {c.translation && <span className="muted">{c.translation}</span>}
                     {c.wrongVariants?.length ? <span className="small muted"> Yanlış: {c.wrongVariants.join(', ')}</span> : null}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {entry.wordFamily.length > 0 && (
-            <div>
-              <h3 className="field"><label>Kelime ailesi</label></h3>
-              <ul className="plain">
-                {entry.wordFamily.map((m) => (
-                  <li key={m.lemma}>
-                    <span className="target">{m.lemma}</span> <span className="muted">{POS_NAME[m.partOfSpeech]}, {m.gloss}</span>
-                    {m.morphology && <span className="small muted"> ({m.morphology})</span>}
                   </li>
                 ))}
               </ul>

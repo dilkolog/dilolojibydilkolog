@@ -1711,3 +1711,4 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .hour-list li.is-best .hour-bar span { background: var(--ok); }
 .hour-list li.is-thin { opacity: 0.5; }
 .hour-pct { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.family-add .input { flex: 1; min-width: 10rem; }
