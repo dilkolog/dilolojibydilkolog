@@ -8,6 +8,7 @@ import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { SyncSettings } from './SyncSettings'
+import { OfflinePack } from './OfflinePack'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
@@ -404,6 +405,8 @@ export function SettingsScreen({
       </section>
 
       <AiSettings settings={settings} onChange={onChange} />
+
+      <OfflinePack settings={settings} />
 
       <SyncSettings />
 

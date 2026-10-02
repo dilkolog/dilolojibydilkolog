@@ -51,6 +51,7 @@ import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './spee
 import { useMediaUrl } from './useMedia'
 import { canListen, listen } from './speechInput'
 import { prefetchNatural } from './naturalVoice'
+import { warmAudio } from '../data/audioCache'
 
 interface Props {
   items: PlanItem[]
@@ -127,7 +128,11 @@ export function SessionScreen(p: Props) {
     for (const v of p.vocabulary) {
       if (!ids.has(v.id)) continue
       if (v.audioId) void preloadRecording(v.audioId)
-      else prefetchNatural(displayForm(v), v.language, speechPrefs.rate)
+      else {
+        // A native recording kept on the device plays at once (and offline).
+        if (v.audioUrl) warmAudio([v.audioUrl])
+        prefetchNatural(displayForm(v), v.language, speechPrefs.rate)
+      }
     }
   }, [p.items, p.vocabulary])
   const [session, setSession] = useState(() => startSession(p.items))

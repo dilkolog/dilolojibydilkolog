@@ -3,6 +3,8 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { mediaBlob } from '../data/db'
 import { db } from '../data/instance'
 import { SPEECH_LANG } from './labels'
+import { exampleAudio } from '../data/corpus'
+import { cacheAudio, cachedAudio, readyAudio } from '../data/audioCache'
 import { naturalEnabled, playNatural, stopNatural } from './naturalVoice'
 
 export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window
@@ -107,14 +109,27 @@ function playUrl(url: string, rate = 1): Promise<void> {
  */
 export function playWord(entry: VocabularyEntry, text = displayForm(entry), vary = false, rate = speechPrefs.rate) {
   const fallback = () => speak(text, entry.language, rate, vary)
-  const native = entry.corpus?.find((x) => x.text === text)?.source?.audioUrl
+  const sentence = entry.corpus?.find((x) => x.text === text)
+  const native = sentence && exampleAudio(sentence, entry.language)
   if (native && navigator.onLine) {
     playUrl(native, rate).catch(fallback)
     return
   }
-  // The word itself said by a native speaker (Wiktionary), unless the learner recorded their own.
-  if (entry.audioUrl && !entry.audioId && (text === displayForm(entry) || text === entry.lemma) && navigator.onLine) {
-    playUrl(entry.audioUrl).catch(fallback)
+  // The word itself said by a native speaker (Wiktionary), unless the learner recorded their own:
+  // the device copy if there is one, otherwise from the web (and kept for next time).
+  if (entry.audioUrl && !entry.audioId && (text === displayForm(entry) || text === entry.lemma)) {
+    const url = entry.audioUrl
+    const ready = readyAudio(url)
+    if (ready) {
+      playUrl(ready).catch(fallback)
+      return
+    }
+    if (navigator.onLine) {
+      playUrl(url).catch(fallback)
+      void cacheAudio(url)
+      return
+    }
+    void cachedAudio(url).then((local) => (local ? playUrl(local).catch(fallback) : fallback()))
     return
   }
   if (entry.audioId && text === displayForm(entry)) {

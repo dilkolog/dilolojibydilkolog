@@ -38,7 +38,23 @@ export function naturalVoices(language: TargetLanguage, key = natural.key): Prom
       .then(({ voices = [] }) => {
         const own = voices.filter((v) => v.languageCodes.includes(SPEECH_LANG[language])).map((v) => v.name)
         const neural = own.filter((n) => n.includes('Neural2'))
-        return neural.length ? neural : own.filter((n) => n.includes('Wavenet'))
+        const list = neural.length ? neural : own.filter((n) => n.includes('Wavenet'))
+        try {
+          localStorage.setItem(`kelime-koc:voices:${language}`, JSON.stringify(list))
+        } catch {
+          // Not kept: offline playback then falls back to system voices.
+        }
+        return list
+      })
+      // Offline: the list from last time, so audio cached on the device still plays.
+      .catch((e) => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(`kelime-koc:voices:${language}`) ?? 'null') as string[] | null
+          if (saved?.length) return saved
+        } catch {
+          // fall through
+        }
+        throw e
       })
     p.catch(() => voiceLists.delete(language))
     voiceLists.set(language, p)

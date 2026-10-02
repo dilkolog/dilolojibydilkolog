@@ -180,7 +180,7 @@ export async function syncNow(db: KelimeDB, code: string): Promise<SyncResult> {
   }
   let sent = 0
   for (const mid of localMedia) {
-    if (remoteMedia.has(mid) || mid.startsWith('tts:')) continue
+    if (remoteMedia.has(mid) || mid.startsWith('tts:') || mid.startsWith('aud:')) continue
     const row = await db.media.get(mid)
     if (!row) continue
     const blob = mediaBlob(row)
@@ -190,7 +190,7 @@ export async function syncNow(db: KelimeDB, code: string): Promise<SyncResult> {
     await upload(id, await mediaPart(mid), new TextEncoder().encode(JSON.stringify({ kind: row.kind, type: blob.type, data: btoa(bin) })), code)
     sent++
   }
-  const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:'))
+  const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:'))
   await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code)
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
   return { received, sent }

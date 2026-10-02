@@ -35,7 +35,7 @@ describe('Tatoeba sentences', () => {
       'es',
     )
     expect(out).toEqual([
-      { text: 'Decidí estudiar todos los días.', translation: 'Her gün çalışmaya karar verdim.', form: 'Decidí', source: { kind: 'tatoeba', id: 1, audioUrl: 'https://a/1' } },
+      { text: 'Decidí estudiar todos los días.', translation: 'Her gün çalışmaya karar verdim.', form: 'Decidí', source: { kind: 'tatoeba', id: 1, audioUrl: 'https://audio.tatoeba.org/sentences/spa/1.mp3' } },
       { text: 'Ya lo decidiremos mañana.', translation: '', form: 'decidiremos', source: { kind: 'tatoeba', id: 5, audioUrl: undefined } },
     ])
   })

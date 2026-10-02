@@ -60,6 +60,14 @@ export function formIn(text: string, lemma: string, language: TargetLanguage): s
   return (text.match(/[\p{L}-]+/gu) ?? []).find((t) => isInflection(t, target, language))
 }
 
+/** A sentence's recording (the API's own download link redirects to a 404). */
+export const tatoebaAudio = (id: number, language: TargetLanguage) => `https://audio.tatoeba.org/sentences/${TATOEBA_LANG[language]}/${id}.mp3`
+
+/** The playable recording of a corpus example, also for ones saved with the old link. */
+export function exampleAudio(example: Example, language: TargetLanguage): string | undefined {
+  return example.source?.audioUrl ? tatoebaAudio(example.source.id, language) : undefined
+}
+
 export function toExamples(data: TatoebaSentence[], lemma: string, language: TargetLanguage): Example[] {
   const out: Example[] = []
   const seen = new Set<string>()
@@ -73,7 +81,7 @@ export function toExamples(data: TatoebaSentence[], lemma: string, language: Tar
       text: s.text,
       translation: tr?.text ?? '',
       form,
-      source: { kind: 'tatoeba', id: s.id, audioUrl: s.audios?.find((a) => a.download_url)?.download_url },
+      source: { kind: 'tatoeba', id: s.id, audioUrl: s.audios?.length ? tatoebaAudio(s.id, language) : undefined },
     })
   }
   return out

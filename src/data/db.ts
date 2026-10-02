@@ -617,8 +617,8 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     exams: await db.getExams(),
     deleted: await db.getDeleted(),
     media: await Promise.all(
-      // Cached natural-voice audio ("tts:") can be re-created, so it stays out of backups.
-      (withMedia ? await db.media.toArray() : []).filter((m) => !m.id.startsWith('tts:')).map(async (m) => ({
+      // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
+      (withMedia ? await db.media.toArray() : []).filter((m) => !m.id.startsWith('tts:') && !m.id.startsWith('aud:')).map(async (m) => ({
         id: m.id,
         kind: m.kind,
         dataUrl: await blobToDataUrl(mediaBlob(m)),
