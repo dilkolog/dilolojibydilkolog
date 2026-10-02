@@ -14,6 +14,7 @@ import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView, TriLanguageCard } from './CrossLanguage'
 import { ListHealthCard } from './ListHealth'
+import { TranslateImport } from './TranslateImport'
 import { accentChange } from './AccentBar'
 import { MissingWords } from './MissingWords'
 import { KindleImport } from './KindleImport'
@@ -129,6 +130,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
         <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
         <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
+        <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
         <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
         <div className="row small">
           {hasSamples ? (
