@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
-import { addExample, MAX_EXAMPLES, removeExample, WordInputError } from '../data/wordInput'
+import { addExample, markWord, MAX_EXAMPLES, removeExample, WordInputError } from '../data/wordInput'
 import { AiError, suggestFields } from '../ai'
 import { useAi } from './aiContext'
 import { SparkleIcon, SpeakerIcon } from './icons'
@@ -221,6 +221,24 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
                     {ex.source?.audioUrl && <span className="native-dot" aria-hidden />}
                   </button>
                 )}
+                <button
+                  className="btn btn-sm btn-quiet"
+                  onClick={async () => {
+                    setError('')
+                    try {
+                      // Into the word's own examples (with the found form marked), out of the real-sentence list.
+                      const fresh = (await db.vocabulary.get(entry.id)) ?? entry
+                      const next = addExample(fresh, markWord(ex.text, ex.form), ex.translation)
+                      await db.vocabulary.put({ ...next, corpus: (fresh.corpus ?? []).filter((x) => x.text !== ex.text) })
+                      onChanged()
+                    } catch (e) {
+                      setError(e instanceof WordInputError ? e.message : 'Eklenemedi.')
+                    }
+                  }}
+                  title="Bu cümleyi kendi örnek cümlelerine ekle"
+                >
+                  + Örneklerime
+                </button>
                 <button
                   className="icon-btn"
                   onClick={async () => {

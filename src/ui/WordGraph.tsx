@@ -35,7 +35,10 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const { nodes, links, fit } = useMemo(() => {
     // Learned words first, then the rest, capped so the picture stays readable.
-    const words = [...vocabulary].sort((a, b) => Number(stateById.has(b.id)) - Number(stateById.has(a.id))).slice(0, MAX_NODES)
+    const all = [...vocabulary].sort((a, b) => Number(stateById.has(b.id)) - Number(stateById.has(a.id)))
+    // Only words with at least one connection: lone words would just float around.
+    const linked = new Set(buildWordGraph(all).flatMap((l) => [l.source, l.target]))
+    const words = all.filter((w) => linked.has(w.id)).slice(0, MAX_NODES)
     const nodes: Node[] = words.map((w) => {
       const st = stateById.get(w.id)
       return { id: w.id, label: displayForm(w), stage: st ? MASTERY_STAGES.indexOf(masteryStage(st)) : -1 }
@@ -102,6 +105,18 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
   }, [hover, links])
 
   const kinds = [...new Set(links.map((l) => l.kind))]
+
+  if (!nodes.length) {
+    return (
+      <section className="card stack graph-empty">
+        <p>
+          <strong>Kelime ağın henüz boş.</strong> Ağ, kelimeler arasındaki bağlardan oluşur: aynı kökten kelimeler (kelime ailesi), eş ve zıt anlamlılar,
+          karıştırılabilir kelimeler ve ortak etiketler.
+        </p>
+        <p className="small muted">Bir kelimenin sayfasından aile üyesi ekle ya da kelimelerine etiket ver (iş, seyahat…); bağlar oluştukça ağ burada görünür.</p>
+      </section>
+    )
+  }
 
   return (
     <div className="graph-wrap">
