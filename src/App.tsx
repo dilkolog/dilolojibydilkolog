@@ -31,6 +31,7 @@ import { canListen } from './ui/speechInput'
 import { ProfileScreen } from './ui/Profile'
 import { ProgressScreen } from './ui/Progress'
 import { ReadingScreen } from './ui/Reading'
+import { VocabTestScreen } from './ui/VocabTest'
 import { useReminder } from './ui/reminders'
 import { HabitCards } from './ui/Habits'
 import { Home, Onboarding, Summary } from './ui/Screens'
@@ -52,6 +53,7 @@ type Screen =
   | { name: 'progress' }
   | { name: 'story' }
   | { name: 'reading' }
+  | { name: 'vocabtest' }
   | { name: 'games' }
   | { name: 'profile' }
   | { name: 'settings' }
@@ -253,6 +255,7 @@ export default function App() {
       : []),
     { id: 'mistakes', label: 'Hatalar', icon: '⚠️', run: go({ name: 'mistakes' }) },
     { id: 'progress', label: 'İlerleme', icon: '📈', run: go({ name: 'progress' }) },
+    { id: 'vocabtest', label: 'Kelime dağarcığı testi', icon: '🧪', run: go({ name: 'vocabtest' }) },
     { id: 'profile', label: 'Profil', icon: '👤', run: go({ name: 'profile' }) },
     { id: 'settings', label: 'Ayarlar', icon: '⚙️', run: go({ name: 'settings' }) },
     ...TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage).map((l) => ({
@@ -393,7 +396,10 @@ export default function App() {
                 scheduler={scheduler}
                 vocabulary={data.vocabulary}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+                onVocabTest={go({ name: 'vocabtest' })}
               />
+            ) : screen.name === 'vocabtest' ? (
+              <VocabTestScreen key={data.language} db={db} language={data.language} onDone={go({ name: 'progress' })} />
             ) : screen.name === 'story' ? (
               <StoryScreen
                 language={data.language}

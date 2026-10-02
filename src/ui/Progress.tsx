@@ -6,8 +6,8 @@ import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type Use
 import { displayForm } from '../engine/exercises'
 import { calibration, recallCalibration, errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
 import { useGame } from './game'
-import type { KelimeDB } from '../data/db'
-import { ERROR_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import type { KelimeDB, VocabTestRecord } from '../data/db'
+import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
 
@@ -19,6 +19,7 @@ export function ProgressScreen({
   scheduler,
   vocabulary,
   onOpen,
+  onVocabTest,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -27,8 +28,13 @@ export function ProgressScreen({
   scheduler: Scheduler
   vocabulary: VocabularyEntry[]
   onOpen: (entryId: string) => void
+  onVocabTest: () => void
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
+  const [tests, setTests] = useState<VocabTestRecord[]>([])
+  useEffect(() => {
+    db.getVocabTests().then((all) => setTests(all.filter((t) => t.language === language)))
+  }, [db, language])
   const [events, setEvents] = useState<ReviewEvent[]>([])
   const game = useGame()
 
@@ -67,6 +73,26 @@ export function ProgressScreen({
               İpucu olmadan cümlede üretebildiğin ve şu an hâlâ hatırladığın kelimeler. Asıl hedef bu sayının büyümesi.
             </span>
           </span>
+        </div>
+      </section>
+
+      <section className="section stack">
+        <h2 className="section-title">Kelime dağarcığı</h2>
+        {tests.length > 0 ? (
+          <p>
+            Son testte {LANGUAGE_NAME[language]} için yaklaşık <strong>{tests.at(-1)!.estimate.toLocaleString('tr-TR')}</strong> kelime (
+            {new Date(tests.at(-1)!.at).toLocaleDateString('tr-TR')}).
+            {tests.length > 1 && (
+              <span className="muted"> Önceki testler: {tests.slice(-4, -1).map((t) => t.estimate.toLocaleString('tr-TR')).join(' → ')}.</span>
+            )}
+          </p>
+        ) : (
+          <p className="small muted">Birkaç dakikalık bir testle {LANGUAGE_NAME[language]} kelime dağarcığının büyüklüğünü tahmin et; ilerlemeni zamanla buradan izle.</p>
+        )}
+        <div className="row">
+          <button className="btn btn-quiet" onClick={onVocabTest}>
+            {tests.length ? 'Testi tekrarla' : 'Testi yap'}
+          </button>
         </div>
       </section>
 
