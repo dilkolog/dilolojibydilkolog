@@ -9,6 +9,7 @@ import { useGame } from './game'
 import type { KelimeDB, VocabTestRecord } from '../data/db'
 import { EXAM_INTERVAL_DAYS, type ExamResult } from '../engine/exam'
 import { KnownWordsCard } from './KnownWords'
+import { ErrorReportCard } from './ErrorReport'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
@@ -273,6 +274,7 @@ export function ProgressScreen({
         </div>
         <p className="small muted">Yüzde, o beceride çalıştığın kelimeleri şu an hatırlama olasılığının ortalaması.</p>
       </section>
+      <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
     </div>
   )
 }

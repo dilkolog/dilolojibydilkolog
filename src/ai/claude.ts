@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -305,6 +305,46 @@ export async function reviewJournal(apiKey: string, req: JournalRequest): Promis
   ].join('\n')
   const user = [`Practice words: ${req.words.map((w) => `${w.lemma} (${w.gloss})`).join(', ') || 'none'}`, `Journal entry:\n${req.text}`].join('\n\n')
   return structured(apiKey, Journal, system, user, 'medium', 'journal')
+}
+
+// ---------------------------------------------------------------------------
+// Monthly error report
+// ---------------------------------------------------------------------------
+
+const Report = z.object({
+  summary: z.string().describe('2-3 sentences in Turkish: how the month went and the one thing to focus on.'),
+  patterns: z
+    .array(
+      z.object({
+        title: z.string().describe('Short Turkish name of the pattern, e.g. "-age ile biten kelimelerin cinsiyeti".'),
+        explanation: z.string().describe('Why this happens and the rule, in Turkish, 1-3 sentences.'),
+        examples: z.array(z.string()).describe('2-4 of the learner\'s own errors as "wrote → correct".'),
+        tip: z.string().describe('One concrete way to stop making it, in Turkish.'),
+      }),
+    )
+    .describe('2-4 recurring patterns, most important first. Only real patterns (2+ errors with the same cause); never invent.'),
+  drills: z
+    .array(
+      z.object({
+        prompt: z.string().describe('A short exercise: a target-language sentence with a ___ gap, or a Turkish phrase to translate.'),
+        answer: z.string().describe('The correct answer in the target language.'),
+        note: z.string().describe('Why, in Turkish, one short sentence.'),
+      }),
+    )
+    .describe('6 drills aimed at the patterns, mostly with words from the errors.'),
+})
+
+/** Names the patterns behind a month of errors and gives drills aimed at them. */
+export async function monthlyReport(apiKey: string, req: ErrorReportRequest): Promise<ErrorReport> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are an experienced ${lang} teacher reviewing a month of a Turkish adult learner's wrong answers in a vocabulary app. The learner already speaks ${lang} well.`,
+    'Find the underlying patterns (gender of a suffix group, a confusable pair, accents on a verb form, a false friend, a spelling rule), not a list of single mistakes.',
+    'Accents/typos that happen once are noise; recurring ones are a pattern. Error type labels: meaning, accent, typo, gender, article, form, collocation, confusion, grammar.',
+    'Write everything for the learner in Turkish, except target-language examples, answers and drills.',
+  ].join('\n')
+  const user = [`Last 30 days: ${req.answers} answers, ${req.wrong} not correct.`, 'Errors, most frequent first:', ...req.lines].join('\n')
+  return structured(apiKey, Report, system, user, 'medium', 'report')
 }
 
 // ---------------------------------------------------------------------------

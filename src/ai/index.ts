@@ -2,6 +2,8 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type {
   ChatReply,
   ChatRequest,
+  ErrorReport,
+  ErrorReportRequest,
   EnrichRequest,
   EpisodeDraft,
   EpisodeRequest,
@@ -45,6 +47,7 @@ export const evaluateRetelling = async (apiKey: string, req: RetellRequest): Pro
 
 export const reviewJournal = async (apiKey: string, req: JournalRequest): Promise<JournalReview> => (await sdk()).reviewJournal(apiKey, req)
 
+export const monthlyReport = async (apiKey: string, req: ErrorReportRequest): Promise<ErrorReport> => (await sdk()).monthlyReport(apiKey, req)
 export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatReply> => (await sdk()).chatTurn(apiKey, req)
 
 export const writeEpisode = async (apiKey: string, req: EpisodeRequest): Promise<EpisodeDraft> => (await sdk()).writeEpisode(apiKey, req)

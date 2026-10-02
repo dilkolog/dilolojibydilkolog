@@ -1633,3 +1633,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .health-list li { display: flex; align-items: center; gap: 0.5rem 0.75rem; flex-wrap: wrap; }
 .health-actions { display: flex; gap: 0.5rem; align-items: center; margin-left: auto; }
 .health-group + .health-group { border-top: 1px solid var(--rule); padding-top: 0.75rem; }
+
+/* Error report */
+.error-types { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.recurring { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.25rem; }
+.report-pattern { padding-top: 0.5rem; border-top: 1px solid var(--rule); gap: 0.25rem; }
+.drills { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.375rem; }

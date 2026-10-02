@@ -86,6 +86,22 @@ export interface JournalReview {
   usedWords: string[]
 }
 
+export interface ErrorReportRequest {
+  language: import('../engine/types').TargetLanguage
+  /** "decision [spelling]: wrote "decission", expected "decision" ×3", most frequent first. */
+  lines: string[]
+  answers: number
+  wrong: number
+}
+
+export interface ErrorReport {
+  /** Two or three sentences in Turkish: the month in a nutshell. */
+  summary: string
+  patterns: { title: string; explanation: string; examples: string[]; tip: string }[]
+  /** Short practice items aimed at the patterns. */
+  drills: { prompt: string; answer: string; note: string }[]
+}
+
 export interface ChatTurn {
   role: 'user' | 'assistant'
   text: string
