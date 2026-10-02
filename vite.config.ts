@@ -27,8 +27,18 @@ export default defineConfig({
         lang: 'tr',
         start_url: '/',
         display: 'standalone',
-        background_color: '#f2f4f6',
-        theme_color: '#2b5ba6',
+        background_color: '#f1f5f9',
+        theme_color: '#f1f5f9',
+        orientation: 'portrait',
+        id: '/',
+        // Home-screen long-press menu.
+        shortcuts: [
+          { name: 'Bugünkü çalışma', short_name: 'Çalış', url: '/?go=home' },
+          { name: 'Kelime ekle', short_name: 'Ekle', url: '/?go=add' },
+          { name: 'Okuma', short_name: 'Okuma', url: '/?go=reading' },
+        ],
+        // Android: "Share → Kelime Koçu" from any app sends the selected text here.
+        share_target: { action: '/', method: 'GET', params: { title: 'share_title', text: 'share_text', url: 'share_url' } },
         icons: [
           { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'pwa-512.png', sizes: '512x512', type: 'image/png' },

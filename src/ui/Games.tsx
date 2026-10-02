@@ -1397,7 +1397,10 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
                 placeholder="Cevabını yaz"
                 lang={language}
                 autoComplete="off"
+                autoCapitalize="off"
+                autoCorrect="off"
                 spellCheck={false}
+                enterKeyHint="done"
               />
               {!result && <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />}
             </form>

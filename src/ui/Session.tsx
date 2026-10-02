@@ -67,7 +67,31 @@ interface Props {
   onQuit: () => void
 }
 
+/** Keeps the phone screen on during a session (where supported); re-taken after switching apps. */
+function useWakeLock() {
+  useEffect(() => {
+    if (!('wakeLock' in navigator)) return
+    let lock: WakeLockSentinel | null = null
+    let alive = true
+    const take = () => {
+      if (document.visibilityState !== 'visible') return
+      navigator.wakeLock
+        .request('screen')
+        .then((l) => (alive ? (lock = l) : void l.release()))
+        .catch(() => {})
+    }
+    take()
+    document.addEventListener('visibilitychange', take)
+    return () => {
+      alive = false
+      document.removeEventListener('visibilitychange', take)
+      void lock?.release()
+    }
+  }, [])
+}
+
 export function SessionScreen(p: Props) {
+  useWakeLock()
   // State, not memo: an override can add an accepted spelling to a word mid-session.
   const [byId, setById] = useState(() => new Map(p.vocabulary.map((e) => [e.id, e])))
   /** The last answer, kept so "my answer was right too" can recompute it from the prior state. */
@@ -512,6 +536,8 @@ function OwnSentence({ entry, onSave }: { entry: VocabularyEntry; onSave: (text:
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder={`${entry.lemma} ile, kendinle ilgili bir cümle…`}
+        autoCorrect="off"
+        enterKeyHint="done"
         autoFocus
         aria-label="Kendi cümlen"
       />
@@ -988,7 +1014,9 @@ function TypedAnswer({
         placeholder="Cevabını yaz"
         autoComplete="off"
         autoCapitalize="off"
+        autoCorrect="off"
         spellCheck={false}
+        enterKeyHint="done"
         lang={exercise.entryId.slice(0, 2)}
       />
       {/* Listening exercises test spelling what you hear, so no speaking shortcut there. */}

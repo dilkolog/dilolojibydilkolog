@@ -168,7 +168,10 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
             autoFocus
             lang={language}
             autoComplete="off"
+            autoCapitalize="off"
+            autoCorrect="off"
             spellCheck={false}
+            enterKeyHint="done"
             placeholder="Cevabını yaz"
           />
           {!shown && <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />}

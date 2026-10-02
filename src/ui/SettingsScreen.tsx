@@ -238,7 +238,7 @@ export function SettingsScreen({
         <h2 className="section-title">Ses</h2>
         <NaturalVoiceSettings language={lang} />
         <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
-        <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
+        <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri; destekleyen telefonlarda kısa titreşim." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
         <Toggle
           label="Konuşarak cevap soruları"
           help={canListen() ? 'Bazı sorularda kelimeyi sesli söylemen istenir; yazılı sorularda mikrofonla da cevaplayabilirsin.' : 'Bu tarayıcı konuşma tanımayı desteklemiyor (Safari ya da Chrome kullan).'}
@@ -304,7 +304,9 @@ export function SettingsScreen({
         <Row label="Tema">
           <Chips<Settings['theme']> options={['system', 'light', 'dark']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu' })[t]} />
         </Row>
-        <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
+<div className="desktop-only">
+          <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
+        </div>
       </section>
 
       <section className="card stack">
@@ -347,7 +349,7 @@ export function SettingsScreen({
         <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
       </section>
 
-      <section className="card stack">
+      <section className="card stack desktop-only">
         <h2 className="section-title">Web'den kelime ekle</h2>
         <p className="small muted">
           Aşağıdaki butonu tarayıcının yer imleri çubuğuna sürükle. Bir makale okurken kelimeyi seçip bu yer imine tıkla:

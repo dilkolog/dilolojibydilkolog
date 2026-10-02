@@ -11,6 +11,7 @@ import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
+import { InstallHint } from './InstallHint'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
@@ -280,6 +281,7 @@ export function Home({
         </button>
       )}
 
+      <InstallHint />
       {game && <RaceCard game={game} />}
 
       {game && (

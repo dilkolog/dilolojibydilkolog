@@ -43,6 +43,14 @@ interface Props {
   onIncomingDone?: () => void
 }
 
+const hostOf = (url: string) => {
+  try {
+    return new URL(url).hostname
+  } catch {
+    return ''
+  }
+}
+
 export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
@@ -85,11 +93,12 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         {incoming && (
           <div className="card stack incoming">
             <p className="small muted">
-              🌐 Web'den geldi{incoming.src && (
+              🌐 Web'den geldi{incoming.src && hostOf(incoming.src) && (
                 <>
-                  : <a href={incoming.src} target="_blank" rel="noreferrer">{new URL(incoming.src).hostname}</a>
+                  : <a href={incoming.src} target="_blank" rel="noreferrer">{hostOf(incoming.src)}</a>
                 </>
               )}
+              {!incoming.word && ' · Cümledeki öğrenmek istediğin kelimeyi yaz.'}
             </p>
             <WordForm
               key={incoming.word + incoming.context}
@@ -99,7 +108,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
               initial={{
                 word: incoming.word,
                 meaning: '',
-                example: markWord(incoming.context, incoming.word),
+                example: incoming.word ? markWord(incoming.context, incoming.word) : incoming.context,
                 exampleTranslation: '',
                 notes: incoming.src ? `Kaynak: ${incoming.src}` : '',
               }}
@@ -408,12 +417,12 @@ export function WordForm({
         <div className="grid-2">
           <div className="field">
             <label htmlFor="w-word">Kelime</label>
-            <input id="w-word" className="input" value={form.word} onChange={accentChange(language, (word) => setForm((f) => ({ ...f, word })))} lang={language} autoComplete="off" />
+            <input id="w-word" className="input" value={form.word} onChange={accentChange(language, (word) => setForm((f) => ({ ...f, word })))} lang={language} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} />
             <span className="help">{articleHelp}</span>
           </div>
           <div className="field">
             <label htmlFor="w-meaning">Türkçe anlamı</label>
-            <input id="w-meaning" className="input" value={form.meaning} onChange={set('meaning')} autoComplete="off" />
+            <input id="w-meaning" className="input" value={form.meaning} onChange={set('meaning')} autoComplete="off" autoCapitalize="off" />
             <span className="help">Birden fazlaysa virgülle ayır</span>
           </div>
         </div>
@@ -573,7 +582,7 @@ export function WordForm({
             </div>
             <div className="field">
               <label htmlFor="w-conf">Karıştırılan kelimeler</label>
-              <input id="w-conf" className="input" value={form.confusables ?? ''} onChange={set('confusables')} lang={language} placeholder={EXAMPLES[language].confusable} />
+              <input id="w-conf" className="input" value={form.confusables ?? ''} onChange={set('confusables')} lang={language} autoCapitalize="off" autoCorrect="off" placeholder={EXAMPLES[language].confusable} />
               <span className="help">Listende varsa ayırt etme alıştırması açılır ve ikisi aynı günlerde tanıtılmaz.</span>
             </div>
           </div>
@@ -755,7 +764,7 @@ function WordList({
                 <circle cx="11" cy="11" r="7" />
                 <path d="m20 20-3.5-3.5" />
               </svg>
-              <input className="input" placeholder="Kelime, anlam ya da not ara" aria-label="Kelime ara" value={query} onChange={(e) => setQuery(e.target.value)} />
+              <input type="search" enterKeyHint="search" autoCapitalize="off" autoCorrect="off" className="input" placeholder="Kelime, anlam ya da not ara" aria-label="Kelime ara" value={query} onChange={(e) => setQuery(e.target.value)} />
             </div>
             <button className={`btn ${selecting ? '' : 'btn-quiet'}`} onClick={() => (selecting ? exitSelection() : setSelecting(true))}>
               {selecting ? 'Bitti' : 'Seç'}

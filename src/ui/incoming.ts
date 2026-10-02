@@ -10,6 +10,8 @@ export interface IncomingWord {
 
 export function readIncoming(): IncomingWord | null {
   const p = new URLSearchParams(location.search)
+  const shared = readShared(p)
+  if (shared) return shared
   const word = p.get('add')?.trim()
   if (!word) return null
   const lang = p.get('lang') as TargetLanguage | null
@@ -19,6 +21,20 @@ export function readIncoming(): IncomingWord | null {
     lang: lang && TARGET_LANGUAGES.includes(lang) ? lang : undefined,
     src: p.get('src') ?? undefined,
   }
+}
+
+/**
+ * Android "Share → Kelime Koçu" (manifest share_target): a short selection is the word itself;
+ * a longer one is the sentence it came from, and the learner picks the word in the form.
+ */
+export function readShared(p: URLSearchParams): IncomingWord | null {
+  const text = (p.get('share_text') ?? p.get('share_title') ?? '').trim()
+  // Some apps put the link in the text field.
+  const link = p.get('share_url') ?? text.match(/https?:\/\/\S+/)?.[0]
+  const clean = text.replace(/https?:\/\/\S+/g, '').replace(/^["“«]|["”»]$/g, '').trim()
+  if (!clean) return null
+  const short = clean.split(/\s+/).length <= 4
+  return { word: short ? clean : '', context: short ? '' : clean.slice(0, 400), src: link || undefined }
 }
 
 /**

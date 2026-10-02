@@ -24,7 +24,7 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, PenIcon, ReadIcon, StoryIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, UserIcon } from './ui/icons'
 import { GamesScreen } from './ui/Games'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { MistakesScreen } from './ui/Mistakes'
@@ -74,6 +74,17 @@ const SCREEN_KEY = 'kelime-koc:screen'
 const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'word', 'reading', 'produce', 'story', 'games', 'mistakes', 'progress', 'profile', 'settings'])
 
 function restoreScreen(): Screen {
+  // Home-screen shortcuts (manifest): ?go=home | add | reading
+  const shortcut = new URLSearchParams(location.search).get('go')
+  if (shortcut) {
+    history.replaceState(null, '', location.pathname)
+    if (shortcut === 'reading') return { name: 'reading' }
+    if (shortcut === 'add') {
+      setTimeout(() => document.getElementById('w-word')?.focus(), 400)
+      return { name: 'words' }
+    }
+    return { name: 'home' }
+  }
   try {
     const saved = JSON.parse(localStorage.getItem(SCREEN_KEY) ?? 'null') as { name?: Screen['name']; entryId?: unknown } | null
     if (saved?.name && RESTORABLE.has(saved.name)) {
@@ -100,6 +111,9 @@ const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => R
   { screen: 'profile', label: 'Profil', icon: UserIcon },
   { screen: 'settings', label: 'Ayarlar', icon: GearIcon },
 ]
+
+/** Phones get a bottom tab bar with these; the rest sit behind "Daha". */
+const TABS: NavScreen[] = ['home', 'words', 'reading', 'progress']
 
 interface LanguageData {
   language: TargetLanguage
@@ -132,6 +146,7 @@ export default function App() {
   }, [screen])
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const [palette, setPalette] = useState(false)
+  const [more, setMore] = useState(false)
   // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
   const language = settings?.activeLanguage
@@ -306,7 +321,10 @@ export default function App() {
     )
   }
 
-  const go = (s: Screen) => () => setScreen(s)
+  const go = (s: Screen) => () => {
+    setMore(false)
+    setScreen(s)
+  }
   const inSession = screen.name === 'session'
 
   const commands: Command[] = [
@@ -394,6 +412,56 @@ export default function App() {
                 </span>
               </button>
             </aside>
+          )}
+
+          {!inSession && (
+            <nav className="tabbar" aria-label="Ana menü">
+              {TABS.map((t) => {
+                const n = NAV.find((x) => x.screen === t)!
+                return (
+                  <button key={t} className="tab" aria-current={current(t) ? 'page' : undefined} onClick={go({ name: t })}>
+                    <n.icon size={22} />
+                    <span>{n.label}</span>
+                  </button>
+                )
+              })}
+              <button
+                className="tab"
+                aria-current={NAV.some((n) => !TABS.includes(n.screen) && current(n.screen)) ? 'page' : undefined}
+                aria-expanded={more}
+                onClick={() => setMore(true)}
+              >
+                <MoreIcon size={22} />
+                <span>Daha</span>
+              </button>
+            </nav>
+          )}
+          {more && (
+            <div className="more-backdrop" onClick={(e) => e.target === e.currentTarget && setMore(false)} onKeyDown={(e) => e.key === 'Escape' && setMore(false)}>
+              <div className="more-sheet" role="dialog" aria-modal="true" aria-label="Diğer bölümler">
+                <div className="more-grab" aria-hidden />
+                <button
+                  className="more-search"
+                  onClick={() => {
+                    setMore(false)
+                    setPalette(true)
+                  }}
+                >
+                  <SearchIcon size={18} /> Ara ya da git…
+                </button>
+                <div className="more-grid">
+                  {NAV.filter((n) => !TABS.includes(n.screen)).map((n) => (
+                    <button key={n.screen} className="more-item" aria-current={current(n.screen) ? 'page' : undefined} onClick={go({ name: n.screen })}>
+                      <n.icon size={24} />
+                      <span>{n.label}</span>
+                    </button>
+                  ))}
+                </div>
+                <button className="btn btn-quiet btn-block" onClick={() => setMore(false)} autoFocus>
+                  Kapat
+                </button>
+              </div>
+            </div>
           )}
 
           <main className="main">

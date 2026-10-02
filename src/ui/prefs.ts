@@ -32,4 +32,9 @@ export function applySettings(s: Settings) {
   const root = document.documentElement
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme
+  // Phone status bar follows the chosen theme, not only the system one.
+  document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
+    const dark = m.media.includes('dark')
+    m.content = s.theme === 'system' ? (dark ? '#0f172a' : '#f1f5f9') : s.theme === 'dark' ? '#0f172a' : '#f1f5f9'
+  })
 }
