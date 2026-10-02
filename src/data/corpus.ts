@@ -105,6 +105,23 @@ export async function fetchCorpus(entry: Pick<VocabularyEntry, 'language' | 'lem
   return [...translated, ...more].slice(0, CORPUS_SIZE)
 }
 
+export interface ListeningSentence {
+  id: number
+  text: string
+  translation: string
+  audio: string
+}
+
+/** Random sentences recorded by native speakers (many voices), with a Turkish translation when there is one. */
+export async function fetchListening(language: TargetLanguage, limit = 10): Promise<ListeningSentence[]> {
+  const lang = TATOEBA_LANG[language]
+  let data = await query({ lang, has_audio: 'yes', sort: 'random', word_count: '4-12', 'trans:lang': 'tur', showtrans: 'matching', limit: String(limit), include: '' })
+  if (data.length < limit) data = [...data, ...(await query({ lang, has_audio: 'yes', sort: 'random', word_count: '4-12', showtrans: 'none', limit: String(limit - data.length), include: '' }))]
+  return data
+    .filter((s) => !s.is_unapproved)
+    .map((s) => ({ id: s.id, text: s.text, translation: s.translations?.find((t) => t.lang === 'tur')?.text ?? '', audio: tatoebaAudio(s.id, language) }))
+}
+
 /** Many plain sentences containing the word, for mining its collocations (see patterns.ts). */
 export async function fetchSentences(entry: Pick<VocabularyEntry, 'language' | 'lemma'>, limit = 100): Promise<string[]> {
   const q = /\s/.test(entry.lemma.trim()) ? `"${entry.lemma.trim()}"` : entry.lemma.trim()

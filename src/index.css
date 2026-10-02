@@ -1672,3 +1672,10 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .journey li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr) auto; align-items: baseline; gap: 0.5rem; margin-left: -0.9rem; }
 .journey-icon { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 999px; background: var(--surface); box-shadow: var(--shadow); font-size: 0.875rem; }
 .journey li.is-down .journey-text { color: var(--ink-soft); }
+
+/* Dictation diff */
+.dictation-diff { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.7; }
+.dd-ok { color: var(--ok-text); }
+.dd-accent { color: var(--near-text); text-decoration: underline wavy var(--near); text-underline-offset: 4px; }
+.dd-missed { color: var(--bad-text); background: var(--bad-soft); border-radius: 0.25rem; }
+.dd-extra { color: var(--ink-soft); text-decoration: line-through; }

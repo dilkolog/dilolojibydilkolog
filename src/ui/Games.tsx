@@ -16,11 +16,12 @@ import { FlameIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from './labels'
 import { prefs } from './prefs'
 import { SentencesGame } from './Sentences'
+import { NativeDictation } from './NativeDictation'
 import { dueSentences } from '../engine/sentences'
 import { sfx } from './sounds'
 import { canSpeak, playWord, playWordAsync, preloadRecording, speak, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from './speech'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | null
 
 interface Props {
   language: TargetLanguage
@@ -71,6 +72,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
   if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
   if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
+  if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
   if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'fluency')
     return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
@@ -95,6 +97,12 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
           <strong>Cümle kartları</strong>
           <span className="small muted">Okurken kaydettiğin cümleler: boşluk doldurma, dikte ve çeviriyle bütün olarak tekrar. Bu bölüm takvimlidir.</span>
           <span className="game-record">{dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet'}</span>
+        </button>
+        <button className="game-card" onClick={() => setGame('dictation')}>
+          <span className="game-emoji">🎙️</span>
+          <strong>Gerçek seslerle dikte</strong>
+          <span className="small muted">Ana dili konuşan farklı insanların sesinden cümleler: dinle, yaz, kaçırdığın kelimeleri gör.</span>
+          <span className="game-record">İnternet gerekir</span>
         </button>
         <button className="game-card" disabled={p.states.length === 0} onClick={() => setGame('swipe')}>
           <span className="game-emoji">👆</span>
