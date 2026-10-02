@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { AiError, chatTurn, reviewJournal, type ChatReply, type ChatTurn } from '../ai'
 import { displayForm, PERSONAL_PROMPTS } from '../engine/exercises'
 import { writingMistakes } from '../engine/mistakes'
+import { creditUsage } from '../data/usage'
 import { bestStars, MISSIONS, missionStars, type Mission } from '../engine/missions'
 import { pickAudioWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
@@ -68,6 +69,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
   const [error, setError] = useState('')
   const [last, setLast] = useState<JournalEntry | null>(null)
   const [added, setAdded] = useState(0)
+  const [credited, setCredited] = useState(0)
   const area = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -87,7 +89,11 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
         const found = writingMistakes(review.mistakes, vocabulary, new Date())
         await db.addWritingMistakes(found)
         setAdded(found.length)
-        if (found.length) onChanged()
+        // Practice words used correctly count as real production reviews.
+        const usedEntries = words.filter((w) => review.usedWords.includes(displayForm(w)))
+        const credited = await creditUsage(db, usedEntries)
+        setCredited(credited.length)
+        if (found.length || credited.length) onChanged()
       }
       await db.saveJournal(entry)
       setEntries((e) => [entry, ...e])
@@ -149,6 +155,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
       </section>
 
       {last?.review && <Review entry={last} language={language} added={added} />}
+      {last?.review && credited > 0 && <p className="small notice">✨ {credited} kelimeyi kendiliğinden doğru kullandın; bunlar üretim tekrarı olarak işlendi.</p>}
 
       <section className="section stack">
         <h2 className="section-title">Önceki yazdıkların</h2>
@@ -235,7 +242,7 @@ interface Line extends ChatTurn {
   correction?: ChatReply['correction']
 }
 
-function Chat({ db, language, vocabulary, states, onOpenSettings, mission }: Props & { mission?: boolean }) {
+function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mission }: Props & { mission?: boolean }) {
   const { apiKey } = useAi()
   const words = usePracticeWords(vocabulary, states, mission ? 3 : 8)
   const [active, setActive] = useState<Mission | null>(null)
@@ -254,6 +261,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, mission }: Pro
   const [voice, setVoice] = useState(true)
   const [hearing, setHearing] = useState(false)
   const [used, setUsed] = useState<Set<string>>(new Set())
+  const [creditedCount, setCreditedCount] = useState(0)
   const [ended, setEnded] = useState(false)
   const stopListening = useRef<() => void>(() => {})
   const input = useRef<HTMLTextAreaElement>(null)
@@ -289,7 +297,14 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, mission }: Pro
       if (m) setGoalsDone((g) => new Set([...g, ...r.goalsDone.filter((i) => i >= 0 && i < m.goals.length)]))
       const withCorrection = history.map((l, i) => (i === history.length - 1 && l.role === 'user' ? { ...l, correction: r.correction } : l))
       setLines([...withCorrection, { role: 'assistant', text: r.reply }])
-      if (r.usedWords.length) setUsed((u) => new Set([...u, ...r.usedWords]))
+      if (r.usedWords.length) {
+        setUsed((u) => new Set([...u, ...r.usedWords]))
+        const credited = await creditUsage(db, words.filter((w) => r.usedWords.includes(displayForm(w))))
+        if (credited.length) {
+          setCreditedCount((n) => n + credited.length)
+          onChanged()
+        }
+      }
       if (voice && canSpeak()) speak(r.reply, language)
     } catch (e) {
       setError(e instanceof AiError ? e.message : 'Cevap alınamadı.')
@@ -319,6 +334,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, mission }: Pro
 
   const begin = (m: Mission | null) => {
     setActive(m)
+    setCreditedCount(0)
     setGoalsDone(new Set())
     setStars(null)
     setUsed(new Set())
@@ -473,6 +489,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, mission }: Pro
           <p className="small">
             {lines.filter((l) => l.role === 'user').length} kez konuştun, {corrections.length} düzeltme.
             {used.size > 0 && ` Doğru kullandığın kelimeler: ${[...used].join(', ')}.`}
+            {creditedCount > 0 && ` ✨ ${creditedCount} kelime üretim tekrarı olarak işlendi.`}
           </p>
           <div>
             <button className="btn" onClick={() => setLines(null)}>
