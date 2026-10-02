@@ -10,6 +10,7 @@ import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon, Story
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
+import { CHALLENGE_XP } from '../engine/challenges'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
@@ -300,6 +301,31 @@ export function Home({
                   </span>
                 </span>
                 <span className="quest-xp">+{q.xp} XP</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {game && game.weekly.length > 0 && (
+        <section className="quests">
+          <h2 className="section-title">Haftanın meydan okumaları</h2>
+          <ul className="quest-list">
+            {game.weekly.map((q) => (
+              <li key={q.id} className={q.done ? 'is-done' : ''}>
+                <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
+                <span className="quest-body">
+                  <span className="quest-top">
+                    <strong>{q.title}</strong>
+                    <span className="small muted">
+                      {q.value}/{q.target}
+                    </span>
+                  </span>
+                  <span className="quest-bar">
+                    <span style={{ width: `${(q.value / q.target) * 100}%` }} />
+                  </span>
+                </span>
+                <span className="quest-xp">+{CHALLENGE_XP} XP</span>
               </li>
             ))}
           </ul>

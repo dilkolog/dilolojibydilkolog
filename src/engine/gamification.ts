@@ -162,6 +162,10 @@ export interface GameStats {
   freeSentencesCorrect: number
   level: number
   bossesDefeated: number
+  /** Weekly challenges completed, all weeks. */
+  challengesDone: number
+  /** Weeks with all three challenges done. */
+  perfectWeeks: number
 }
 
 export interface Achievement {
@@ -196,6 +200,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'writer-25', icon: '🖋️', title: 'Yazar', description: '25 doğru cümle kur', goal: 25, stat: 'freeSentencesCorrect' },
   { id: 'boss-1', icon: '⚔️', title: 'İlk boss', description: 'Bir boss kelimeyi yen', goal: 1, stat: 'bossesDefeated' },
   { id: 'boss-10', icon: '🐉', title: 'Ejderha avcısı', description: '10 boss kelimeyi yen', goal: 10, stat: 'bossesDefeated' },
+  { id: 'weekly-1', icon: '🗓️', title: 'Haftanın işi', description: 'Bir haftalık meydan okumayı tamamla', goal: 1, stat: 'challengesDone' },
+  { id: 'weekly-perfect', icon: '🏆', title: 'Kusursuz hafta', description: 'Bir haftada üç meydan okumanın üçünü de tamamla', goal: 1, stat: 'perfectWeeks' },
   { id: 'level-10', icon: '🥉', title: 'Seviye 10', description: '10. seviyeye ulaş', goal: 10, stat: 'level' },
   { id: 'level-25', icon: '🥈', title: 'Seviye 25', description: '25. seviyeye ulaş', goal: 25, stat: 'level' },
   { id: 'level-50', icon: '🥇', title: 'Seviye 50', description: '50. seviyeye ulaş', goal: 50, stat: 'level' },

@@ -71,7 +71,7 @@ describe('levels', () => {
 })
 
 describe('achievements', () => {
-  const stats: GameStats = { wordsIntroduced: 60, mastered: 0, totalAnswers: 120, longestStreak: 7, perfectDays: 0, maxCombo: 12, languagesStudied: 1, wordsWithPicture: 2, wordsWithRecording: 0, freeSentencesCorrect: 0, level: 3, bossesDefeated: 1 }
+  const stats: GameStats = { wordsIntroduced: 60, mastered: 0, totalAnswers: 120, longestStreak: 7, perfectDays: 0, maxCombo: 12, languagesStudied: 1, wordsWithPicture: 2, wordsWithRecording: 0, freeSentencesCorrect: 0, level: 3, bossesDefeated: 1, challengesDone: 0, perfectWeeks: 0 }
   it('reports unlocked badges and progress toward the rest', () => {
     const a = achievements(stats)
     const get = (id: string) => a.find((x) => x.id === id)!
