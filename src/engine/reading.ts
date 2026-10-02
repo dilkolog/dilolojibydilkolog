@@ -215,3 +215,51 @@ export function keyUnknownWords(a: ReadingAnalysis, language: TargetLanguage, ra
   }
   return [...found.values()].sort((x, y) => y.count - x.count || rank(x.word) - rank(y.word)).slice(0, max)
 }
+
+export interface BandCoverage {
+  /** The band: the language's `max` most frequent words. */
+  max: number
+  /** Distinct words (by stem) in the band. */
+  total: number
+  known: number
+  learning: number
+}
+
+export const COVERAGE_BANDS = [1000, 2000, 5000, 10_000, 20_000]
+
+/**
+ * How much of the language's most frequent words the learner knows, band by band (Nation 2006:
+ * the first few thousand word families carry most of any text). Known = function words, words
+ * marked known while reading, and list words that graduated; learning = the rest of the list.
+ */
+export function frequencyCoverage(
+  list: readonly string[],
+  language: TargetLanguage,
+  vocabulary: readonly VocabularyEntry[],
+  states: readonly UserWordState[],
+  known: ReadonlySet<string>,
+  bands: readonly number[] = COVERAGE_BANDS,
+): BandCoverage[] {
+  const graduated = new Set(states.filter((s) => s.skills.recognition?.state === State.Review).map((s) => s.entryId))
+  const inList = new Map<string, boolean>()
+  for (const e of vocabulary) {
+    if (e.language !== language) continue
+    for (const w of [e.lemma, ...(e.alternativeForms ?? [])]) if (!w.includes(' ')) inList.set(readingKey(w, language), inList.get(readingKey(w, language)) || graduated.has(e.id))
+  }
+  const out: BandCoverage[] = bands.map((max) => ({ max, total: 0, known: 0, learning: 0 }))
+  const seen = new Set<string>()
+  list.slice(0, Math.max(...bands)).forEach((word, i) => {
+    if (word.length < 2 || !/^[\p{Ll}'’-]+$/u.test(word)) return
+    const key = readingKey(word, language)
+    if (seen.has(key)) return
+    seen.add(key)
+    const status = STOP[language].has(word) || known.has(key) || inList.get(key) === true ? 'known' : inList.has(key) ? 'learning' : 'unknown'
+    for (const band of out) {
+      if (i >= band.max) continue
+      band.total++
+      if (status === 'known') band.known++
+      else if (status === 'learning') band.learning++
+    }
+  })
+  return out
+}

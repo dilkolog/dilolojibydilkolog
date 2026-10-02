@@ -11,6 +11,7 @@ import { EXAM_INTERVAL_DAYS, type ExamResult } from '../engine/exam'
 import { KnownWordsCard } from './KnownWords'
 import { ErrorReportCard } from './ErrorReport'
 import { YearCalendar } from './YearCalendar'
+import { FrequencyCoverageCard } from './FrequencyCoverage'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
@@ -73,6 +74,7 @@ export function ProgressScreen({
       <section className="section stack">
         <h1 className="greeting">İlerleme</h1>
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
+        <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <div className="hero-stat card">
           <span className="hero-number">{stats.activeVocabulary}</span>
           <span>
