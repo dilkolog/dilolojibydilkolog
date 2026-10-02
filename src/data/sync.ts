@@ -30,7 +30,54 @@ export async function syncIdOf(code: string): Promise<string> {
   return hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`kelime-koc-id:${normalizeCode(code)}`)))
 }
 
-async function keyOf(code: string): Promise<CryptoKey> {
+// ---------------------------------------------------------------------------
+// Accounts: a username and a password instead of a code
+// ---------------------------------------------------------------------------
+
+/**
+ * An account. The id comes from the username (so another device finds it), the encryption key
+ * and a separate write/read token from the password; only the token's hash ever reaches the
+ * server, which refuses anyone without it. The password itself is never stored or sent.
+ */
+export interface Account {
+  kind: 'account'
+  username: string
+  id: string
+  /** Hex of the AES key bytes. */
+  enc: string
+  /** Hex of the access token (the server keeps its hash). */
+  auth: string
+}
+
+/** A sync code or an account. */
+export type Credential = string | Account
+
+export class SyncAuthError extends Error {
+  override name = 'SyncAuthError'
+}
+
+/** Case doesn't matter, and the Turkish I's all count as one (ALI, Ali, alı, ALİ → ali). */
+export const normalizeUsername = (u: string) => u.trim().normalize('NFC').replace(/[İIı]/g, 'i').toLowerCase()
+
+const fromHex = (h: string): Bytes => new Uint8Array(h.match(/../g)!.map((x) => parseInt(x, 16)))
+
+export async function deriveAccount(username: string, password: string): Promise<Account> {
+  const u = normalizeUsername(username)
+  const id = hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`kelime-koc-account:${u}`)))
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits'])
+  const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: new TextEncoder().encode(`kelime-koc-account-v1:${u}`), iterations: 310_000, hash: 'SHA-256' }, base, 512))
+  return { kind: 'account', username: u, id, enc: hex(bits.slice(0, 32).buffer), auth: hex(bits.slice(32).buffer) }
+}
+
+export async function credentialId(cred: Credential): Promise<string> {
+  return typeof cred === 'string' ? syncIdOf(cred) : cred.id
+}
+
+const authHeaders = (cred: Credential): Record<string, string> => (typeof cred === 'string' ? {} : { 'x-sync-auth': cred.auth })
+
+async function keyOf(cred: Credential): Promise<CryptoKey> {
+  if (typeof cred !== 'string') return crypto.subtle.importKey('raw', fromHex(cred.enc), 'AES-GCM', false, ['encrypt', 'decrypt'])
+  const code = cred
   const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(normalizeCode(code)), 'PBKDF2', false, ['deriveKey'])
   return crypto.subtle.deriveKey(
     { name: 'PBKDF2', salt: new TextEncoder().encode('kelime-koc-sync-v1'), iterations: 150_000, hash: 'SHA-256' },
@@ -46,7 +93,7 @@ async function pipe(data: Bytes, stream: CompressionStream | DecompressionStream
 }
 
 /** gzip, then AES-GCM; output = 12-byte IV followed by the ciphertext. */
-export async function seal(data: Bytes, code: string): Promise<Bytes> {
+export async function seal(data: Bytes, code: Credential): Promise<Bytes> {
   const iv = crypto.getRandomValues(new Uint8Array(12))
   const zipped = await pipe(data, new CompressionStream('gzip'))
   const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await keyOf(code), zipped))
@@ -56,7 +103,7 @@ export async function seal(data: Bytes, code: string): Promise<Bytes> {
   return out
 }
 
-export async function open(sealed: Bytes, code: string): Promise<Bytes> {
+export async function open(sealed: Bytes, code: Credential): Promise<Bytes> {
   const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: sealed.slice(0, 12) }, await keyOf(code), sealed.slice(12))
   return pipe(new Uint8Array(plain), new DecompressionStream('gzip'))
 }
@@ -127,15 +174,17 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
 // Talking to the server
 // ---------------------------------------------------------------------------
 
-async function download(id: string, part: string, code: string): Promise<Bytes | null> {
-  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`)
+async function download(id: string, part: string, code: Credential): Promise<Bytes | null> {
+  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { headers: authHeaders(code) })
   if (res.status === 404) return null
+  if (res.status === 403) throw new SyncAuthError('wrong password')
   if (!res.ok) throw new Error(`sync ${res.status}`)
   return open(new Uint8Array(await res.arrayBuffer()), code)
 }
 
-async function upload(id: string, part: string, data: Bytes, code: string) {
-  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: await seal(data, code), headers: { 'content-type': 'application/octet-stream' } })
+async function upload(id: string, part: string, data: Bytes, code: Credential) {
+  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: await seal(data, code), headers: { 'content-type': 'application/octet-stream', ...authHeaders(code) } })
+  if (res.status === 403) throw new SyncAuthError('wrong password')
   if (!res.ok) throw new Error(`sync ${res.status}`)
 }
 
@@ -154,8 +203,21 @@ export interface SyncResult {
  * Pull, merge, write locally, push. Safe to run any time: running it twice in a row changes
  * nothing the second time.
  */
-export async function syncNow(db: KelimeDB, code: string): Promise<SyncResult> {
-  const id = await syncIdOf(code)
+/**
+ * Whether an account exists and the password opens it: 'new' (nobody has it), 'ok', or 'wrong'
+ * (wrong password, or the name belongs to someone else).
+ */
+export async function accountStatus(account: Account): Promise<'new' | 'ok' | 'wrong'> {
+  try {
+    return (await download(account.id, 'core', account)) ? 'ok' : 'new'
+  } catch (e) {
+    if (e instanceof SyncAuthError || (e instanceof DOMException && e.name === 'OperationError')) return 'wrong'
+    throw e
+  }
+}
+
+export async function syncNow(db: KelimeDB, code: Credential): Promise<SyncResult> {
+  const id = await credentialId(code)
   const local = parseBackup(await exportBackup(db, new Date(), { media: false }))
   // A device joining an existing sync takes the others' settings and edits rather than its own defaults.
   if (!(await db.meta.get('syncAt'))) local.exportedAt = new Date(0).toISOString()

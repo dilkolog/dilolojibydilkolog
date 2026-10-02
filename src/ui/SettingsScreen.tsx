@@ -7,7 +7,7 @@ import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
-import { SyncSettings } from './SyncSettings'
+import { AccountSettings } from './AccountSettings'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
 import { ReminderSuggestion } from './BestHours'
@@ -413,7 +413,7 @@ export function SettingsScreen({
 
       <OfflinePack settings={settings} />
 
-      <SyncSettings />
+      <AccountSettings />
 
       <section className="card stack">
         <h2 className="section-title">Yedek</h2>

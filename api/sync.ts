@@ -6,11 +6,43 @@ import { get, put } from '@vercel/blob'
  *
  * GET  /api/sync?id=<64 hex>&part=<core | m-<40 hex>>  → the bytes, or 404
  * PUT  same query, body = bytes                         → stored
+ *
+ * Accounts (username + password) send an access token in `x-sync-auth`. The first write keeps
+ * its hash; from then on reads and writes without the matching token get 403, so a guessable
+ * username can't be read or overwritten by others. Sync codes (random ids) send no token.
  */
 const ID = /^[0-9a-f]{64}$/
 const PART = /^(core|m-[0-9a-f]{40})$/
 /** Vercel's request body limit is 4.5 MB; stay under it. */
 const MAX_BYTES = 4_400_000
+
+const TOKEN = /^[0-9a-f]{64}$/
+
+async function sha256(s: string): Promise<string> {
+  return [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+async function storedAuth(id: string): Promise<string | null> {
+  const blob = await get(`sync/${id}/auth.txt`, { access: 'private', useCache: false }).catch(() => null)
+  if (!blob || blob.statusCode !== 200 || !blob.stream) return null
+  return (await new Response(blob.stream).text()).trim()
+}
+
+/** null = allowed; otherwise the refusal. Claims the id on an account's first write. */
+async function checkAuth(request: Request, write: boolean): Promise<Response | null> {
+  const id = new URL(request.url).searchParams.get('id') ?? ''
+  const token = request.headers.get('x-sync-auth')
+  if (token !== null && !TOKEN.test(token)) return new Response('bad token', { status: 400 })
+  const stored = await storedAuth(id)
+  if (stored) return token && (await sha256(token)) === stored ? null : new Response('forbidden', { status: 403 })
+  if (token && write) {
+    const hash = await sha256(token)
+    // Two first writes at once: only one claim sticks; the other must match it.
+    await put(`sync/${id}/auth.txt`, hash, { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'text/plain' }).catch(() => {})
+    if ((await storedAuth(id)) !== hash) return new Response('forbidden', { status: 403 })
+  }
+  return null
+}
 
 function target(request: Request): string | null {
   const q = new URL(request.url).searchParams
@@ -22,6 +54,8 @@ function target(request: Request): string | null {
 export async function GET(request: Request): Promise<Response> {
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
+  const refused = await checkAuth(request, false)
+  if (refused) return refused
   const blob = await get(path, { access: 'private', useCache: false }).catch(() => null)
   if (!blob || blob.statusCode !== 200 || !blob.stream) return new Response('not found', { status: 404 })
   return new Response(blob.stream, { headers: { 'content-type': 'application/octet-stream', 'cache-control': 'no-store' } })
@@ -32,6 +66,8 @@ export async function PUT(request: Request): Promise<Response> {
   if (!path) return new Response('bad request', { status: 400 })
   const body = await request.arrayBuffer()
   if (!body.byteLength || body.byteLength > MAX_BYTES) return new Response('too large', { status: 413 })
+  const refused = await checkAuth(request, true)
+  if (refused) return refused
   await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/octet-stream' })
   return new Response(null, { status: 204 })
 }

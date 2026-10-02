@@ -1,5 +1,5 @@
 import { db } from '../data/instance'
-import { syncNow, type SyncResult } from '../data/sync'
+import { syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
 
 /** One sync at a time; listeners hear when data may have changed. */
 let running: Promise<SyncResult | null> | null = null
@@ -21,14 +21,29 @@ export async function setSyncCode(code: string | null) {
   else await db.meta.bulkDelete(['syncCode', 'syncAt'])
 }
 
-/** Syncs if a code is set; failures (offline etc.) are silent unless `throwErrors`. */
+/** The signed-in account (derived keys only; the password isn't kept). */
+export async function getAccount(): Promise<Account | null> {
+  return ((await db.meta.get('syncAccount'))?.value as Account | undefined) ?? null
+}
+
+export async function setAccount(account: Account | null) {
+  if (account) await db.meta.put({ key: 'syncAccount', value: account })
+  else await db.meta.bulkDelete(['syncAccount', 'syncAt'])
+}
+
+/** The account if signed in, otherwise the sync code, if any. */
+export async function getCredential(): Promise<Credential | null> {
+  return (await getAccount()) ?? (await getSyncCode())
+}
+
+/** Syncs if signed in (or a code is set); failures (offline etc.) are silent unless `throwErrors`. */
 export function runSync(throwErrors = false): Promise<SyncResult | null> {
   if (running) return running
   running = (async () => {
     try {
-      const code = await getSyncCode()
-      if (!code) return null
-      const result = await syncNow(db, code)
+      const cred = await getCredential()
+      if (!cred) return null
+      const result = await syncNow(db, cred)
       for (const fn of listeners) fn()
       return result
     } catch (e) {

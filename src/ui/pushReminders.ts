@@ -1,5 +1,5 @@
-import { syncIdOf } from '../data/sync'
-import { getSyncCode } from './syncRunner'
+import { credentialId } from '../data/sync'
+import { getCredential } from './syncRunner'
 
 /**
  * Reminders that arrive while the app is closed: the browser's push subscription is registered
@@ -38,7 +38,7 @@ export interface PushState {
 }
 
 async function save(sub: PushSubscription, state: PushState) {
-  const code = await getSyncCode()
+  const cred = await getCredential()
   await fetch('/api/push', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
@@ -49,7 +49,7 @@ async function save(sub: PushSubscription, state: PushState) {
       studiedDay: state.studiedToday ? localDay() : null,
       streak: state.streak,
       plan: state.plan,
-      group: code ? await syncIdOf(code) : null,
+      group: cred ? await credentialId(cred) : null,
       restWeekdays: state.restWeekdays,
       vacation: state.vacation,
       due: state.due,

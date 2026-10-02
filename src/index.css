@@ -1729,3 +1729,4 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .article-noun { font-family: var(--serif); font-size: var(--t-2xl); }
 .article-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .article-options .btn { font-family: var(--serif); font-size: var(--t-xl); }
+.account-form { max-width: 22rem; }
