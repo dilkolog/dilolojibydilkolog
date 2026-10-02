@@ -1581,3 +1581,17 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .pattern-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 .pattern-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
 .pattern-head strong { font-family: var(--serif); font-size: var(--t-lg); font-weight: 600; }
+
+/* Books in the reading library */
+.book-item { display: grid !important; gap: 0.625rem; }
+.book-head { display: flex; align-items: center; gap: 0.75rem; }
+.book-icon { font-size: 1.75rem; }
+.book-meta { display: grid; gap: 0.125rem; flex: 1; min-width: 0; }
+.book-progress { display: block; height: 0.375rem; border-radius: 999px; background: var(--bg); overflow: hidden; margin-top: 0.25rem; }
+.book-progress span { display: block; height: 100%; background: var(--lang); border-radius: inherit; }
+.book-chapters { margin: 0; padding-left: 1.5rem; display: grid; gap: 0.375rem; max-height: 22rem; overflow-y: auto; }
+.book-chapters li { display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
+.chapter-cov { font-weight: 700; }
+.chapter-cov.zone-easy, .chapter-cov.zone-ideal { color: var(--ok-text); }
+.chapter-cov.zone-hard { color: var(--near-text); }
+.chapter-cov.zone-too_hard { color: var(--bad-text); }

@@ -3,7 +3,7 @@ import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
 import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadStatus, type ReadToken } from '../engine/reading'
-import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
 import { NewsPicker } from './News'
@@ -69,6 +69,7 @@ export function ReadingScreen({
   const [adding, setAdding] = useState<{ word: string; sentence: string } | null>(null)
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
+  const [bookError, setBookError] = useState('')
 
   useEffect(() => {
     Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
@@ -134,6 +135,47 @@ export function ReadingScreen({
     setDraft(looksLikeSubtitles(raw) || /\.(srt|vtt)$/i.test(file.name) ? parseSubtitles(raw) : raw)
     setTitle(file.name.replace(/\.[^.]+$/, '').replace(/[._]+/g, ' '))
   }
+
+  /** An EPUB becomes one library entry per chapter, read in order. */
+  const importBook = async (file: File) => {
+    setMessage('')
+    setBookError('')
+    try {
+      const { parseEpub } = await import('../data/epub')
+      const book = parseEpub(new Uint8Array(await file.arrayBuffer()))
+      const lang = (TARGET_LANGUAGES as readonly string[]).includes(book.language ?? '') ? (book.language as TargetLanguage) : language
+      const id = crypto.randomUUID()
+      const addedAt = new Date().toISOString()
+      const texts: ReadingText[] = book.chapters.map((c, index) => ({
+        id: crypto.randomUUID(),
+        language: lang,
+        title: c.title,
+        text: c.text,
+        addedAt,
+        history: [],
+        book: { id, title: book.title, index, total: book.chapters.length },
+      }))
+      await db.saveTexts(texts)
+      if (lang === language) setLibrary((lib) => [...texts, ...(lib ?? [])])
+      setBookError(
+        lang === language
+          ? `📚 ${book.title}: ${texts.length} bölüm kütüphanene eklendi.`
+          : `📚 ${book.title} ${LANGUAGE_NAME[lang]} bir kitap; ${LANGUAGE_NAME[lang]} kütüphanene eklendi (${texts.length} bölüm).`,
+      )
+    } catch (e) {
+      // Our own errors explain the problem; anything else is a file we couldn't read.
+      setBookError(e instanceof Error && e.name === 'EpubError' ? e.message : 'Kitap okunamadı.')
+    }
+  }
+
+  const removeBook = async (bookId: string) => {
+    if (!confirm('Kitabın bütün bölümleri kütüphaneden silinsin mi?')) return
+    await db.deleteBook(bookId)
+    setLibrary((lib) => (lib ?? []).filter((t) => t.book?.id !== bookId))
+  }
+
+  /** The next chapter of the current book, if any. */
+  const nextChapter = current?.book ? (library ?? []).find((t) => t.book?.id === current.book!.id && t.book.index === current.book!.index + 1) : undefined
 
   const remove = async (item: ReadingText) => {
     await db.deleteText(item.id)
@@ -234,6 +276,27 @@ export function ReadingScreen({
 
   if (!text || !analysis) {
     const now = Date.now()
+    const renderText = (item: ReadingText) => {
+      const last = item.history.at(-1)
+      const since = item.readAt ? Math.floor((now - new Date(item.readAt).getTime()) / 86_400_000) : null
+      const reread = since !== null && since >= REREAD_DAYS
+      return (
+        <li key={item.id}>
+          <button className="word-link library-open" onClick={() => open(item)}>
+            <strong>{item.title}</strong>
+            <span className="small muted">
+              {item.text.split(/\s+/).length} kelime
+              {last && ` · son okumada %${Math.round(last.coverage * 100)}`}
+              {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`} okundu`}
+            </span>
+          </button>
+          {reread && <span className="pill reread-pill">Tekrar oku</span>}
+          <button className="link small" onClick={() => remove(item)} aria-label={`${item.title} sil`}>
+            Sil
+          </button>
+        </li>
+      )
+    }
     return (
       <div className="stack">
         <h1 className="greeting">Okuma</h1>
@@ -252,7 +315,16 @@ export function ReadingScreen({
             Alt yazı ya da metin dosyası yükle
             <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
           </label>
+          <label className="btn btn-quiet file-btn">
+            📚 Kitap yükle (EPUB)
+            <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
+          </label>
         </div>
+        {bookError && (
+          <p className={bookError.startsWith('📚') ? 'notice' : 'error'} role="status">
+            {bookError}
+          </p>
+        )}
         <NewsPicker
           language={language}
           vocabulary={vocabulary}
@@ -269,27 +341,23 @@ export function ReadingScreen({
           <section className="section stack">
             <h2 className="section-title">Kütüphanen</h2>
             <ul className="library">
-              {library.map((item) => {
-                const last = item.history.at(-1)
-                const since = item.readAt ? Math.floor((now - new Date(item.readAt).getTime()) / 86_400_000) : null
-                const reread = since !== null && since >= REREAD_DAYS
-                return (
-                  <li key={item.id}>
-                    <button className="word-link library-open" onClick={() => open(item)}>
-                      <strong>{item.title}</strong>
-                      <span className="small muted">
-                        {item.text.split(/\s+/).length} kelime
-                        {last && ` · son okumada %${Math.round(last.coverage * 100)}`}
-                        {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`} okundu`}
-                      </span>
-                    </button>
-                    {reread && <span className="pill reread-pill">Tekrar oku</span>}
-                    <button className="link small" onClick={() => remove(item)} aria-label={`${item.title} sil`}>
-                      Sil
-                    </button>
-                  </li>
-                )
-              })}
+              {groupBooks(library).map((group) =>
+                'chapters' in group ? (
+                  <BookItem
+                    key={group.id}
+                    title={group.title}
+                    chapters={group.chapters}
+                    language={language}
+                    vocabulary={vocabulary}
+                    states={states}
+                    known={known}
+                    onOpen={open}
+                    onRemove={() => removeBook(group.id)}
+                  />
+                ) : (
+                  renderText(group)
+                ),
+              )}
             </ul>
             <p className="small muted">
               Bitirdiğin bir metni bir hafta sonra tekrar okumak, kelimeleri yeni bağlamda değil ama yeniden karşılaşarak pekiştirir; kapsama oranının
@@ -485,6 +553,11 @@ export function ReadingScreen({
             {message}
           </p>
         )}
+        {message && nextChapter && (
+          <button className="btn" onClick={() => open(nextChapter)}>
+            Sonraki bölüm: {nextChapter.title} →
+          </button>
+        )}
       </div>
 
       {confirmFinish && (
@@ -513,5 +586,110 @@ function highlight(sentence: string, word: string) {
       <mark>{sentence.slice(i, i + word.length)}</mark>
       {sentence.slice(i + word.length)}
     </>
+  )
+}
+
+type LibraryGroup = ReadingText | { id: string; title: string; chapters: ReadingText[] }
+
+/** Books (chapters sharing a book id) become one entry, placed where their first chapter was. */
+function groupBooks(library: readonly ReadingText[]): LibraryGroup[] {
+  const out: LibraryGroup[] = []
+  const books = new Map<string, { id: string; title: string; chapters: ReadingText[] }>()
+  for (const t of library) {
+    if (!t.book) {
+      out.push(t)
+      continue
+    }
+    let b = books.get(t.book.id)
+    if (!b) {
+      b = { id: t.book.id, title: t.book.title, chapters: [] }
+      books.set(t.book.id, b)
+      out.push(b)
+    }
+    b.chapters.push(t)
+  }
+  for (const b of books.values()) b.chapters.sort((x, y) => x.book!.index - y.book!.index)
+  return out
+}
+
+/**
+ * An imported book: progress, the next chapter to read, and (opened) every chapter with how
+ * much of it you already know, so you can see the book getting easier as you go.
+ */
+function BookItem({
+  title,
+  chapters,
+  language,
+  vocabulary,
+  states,
+  known,
+  onOpen,
+  onRemove,
+}: {
+  title: string
+  chapters: ReadingText[]
+  language: TargetLanguage
+  vocabulary: VocabularyEntry[]
+  states: UserWordState[]
+  known: Set<string>
+  onOpen: (t: ReadingText) => void
+  onRemove: () => void
+}) {
+  const [expanded, setExpanded] = useState(false)
+  const read = chapters.filter((c) => c.readAt).length
+  const next = chapters.find((c) => !c.readAt)
+  const coverage = useMemo(
+    () => (expanded ? new Map(chapters.map((c) => [c.id, analyzeText(c.text, language, vocabulary, states, known)])) : null),
+    [expanded, chapters, language, vocabulary, states, known],
+  )
+  return (
+    <li className="book-item">
+      <div className="book-head">
+        <span className="book-icon" aria-hidden>
+          📚
+        </span>
+        <span className="book-meta">
+          <strong>{title}</strong>
+          <span className="small muted">
+            {chapters.length} bölüm · {read} okundu
+          </span>
+          <span className="book-progress" aria-hidden>
+            <span style={{ width: `${(read / chapters.length) * 100}%` }} />
+          </span>
+        </span>
+      </div>
+      <div className="row">
+        {next ? (
+          <button className="btn btn-sm" onClick={() => onOpen(next)}>
+            {read ? 'Sıradaki' : 'Başla'}: {next.title}
+          </button>
+        ) : (
+          <span className="small notice">Kitabı bitirdin 🎉</span>
+        )}
+        <button className="link small" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
+          {expanded ? 'Bölümleri gizle' : 'Bölümler'}
+        </button>
+        <button className="link small" onClick={onRemove}>
+          Kitabı sil
+        </button>
+      </div>
+      {expanded && coverage && (
+        <ol className="book-chapters">
+          {chapters.map((c) => {
+            const a = coverage.get(c.id)!
+            return (
+              <li key={c.id}>
+                <button className="word-link" onClick={() => onOpen(c)}>
+                  {c.title}
+                </button>
+                <span className={`small chapter-cov zone-${coverageZone(a.coverage)}`}>%{Math.round(a.coverage * 100)}</span>
+                <span className="small muted">{a.counts.unseen} yeni</span>
+                {c.readAt && <span className="small muted">✓</span>}
+              </li>
+            )
+          })}
+        </ol>
+      )}
+    </li>
   )
 }

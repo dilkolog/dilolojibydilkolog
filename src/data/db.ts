@@ -28,6 +28,8 @@ export interface ReadingText {
   readAt?: string
   /** Coverage when each reading started, oldest first: shows the text getting easier. */
   history: { at: string; coverage: number }[]
+  /** A chapter of an imported book (EPUB): chapters share the book id and keep their order. */
+  book?: { id: string; title: string; index: number; total: number }
 }
 
 /** A short title from a text's first words. */
@@ -366,12 +368,24 @@ export class KelimeDB extends Dexie {
       await this.meta.delete(`reading:${language}`)
       await this.meta.put({ key: `readingCurrent:${language}`, value: item.id })
     }
-    return all.filter((t) => t.language === language).sort((a, b) => b.addedAt.localeCompare(a.addedAt))
+    return all.filter((t) => t.language === language).sort((a, b) => b.addedAt.localeCompare(a.addedAt) || (a.book?.index ?? 0) - (b.book?.index ?? 0))
   }
 
   async saveText(text: ReadingText) {
     const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
     await this.meta.put({ key: 'library', value: [text, ...all.filter((t) => t.id !== text.id)] })
+  }
+
+  /** Several texts at once (a book's chapters). */
+  async saveTexts(texts: ReadingText[]) {
+    const ids = new Set(texts.map((t) => t.id))
+    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    await this.meta.put({ key: 'library', value: [...texts, ...all.filter((t) => !ids.has(t.id))] })
+  }
+
+  async deleteBook(bookId: string) {
+    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    await this.meta.put({ key: 'library', value: all.filter((t) => t.book?.id !== bookId) })
   }
 
   async deleteText(id: string) {
