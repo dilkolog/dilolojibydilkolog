@@ -8,6 +8,7 @@ import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { SyncSettings } from './SyncSettings'
+import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon } from './icons'
@@ -233,6 +234,8 @@ export function SettingsScreen({
       </section>
 
       <MemoryModel settings={settings} onChange={onChange} />
+
+      <StudyCalendar settings={settings} onChange={onChange} />
 
       <section className="card stack">
         <h2 className="section-title">Ses</h2>

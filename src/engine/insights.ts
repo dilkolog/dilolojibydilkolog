@@ -24,7 +24,8 @@ export interface StreakState {
  * earned by keeping a run going, so the safety net rewards consistency instead of replacing it.
  * Today not studied yet doesn't break anything.
  */
-export function streakWithFreezes(studyDays: readonly string[], now: Date): StreakState {
+/** `isRest`: holidays and chosen rest days, which neither count nor break the streak. */
+export function streakWithFreezes(studyDays: readonly string[], now: Date, isRest: (day: string) => boolean = () => false): StreakState {
   const studied = new Set(studyDays)
   if (studied.size === 0) return { streak: 0, freezes: 0, frozenDays: [] }
   const first = new Date(`${[...studied].sort()[0]}T12:00:00`)
@@ -40,6 +41,8 @@ export function streakWithFreezes(studyDays: readonly string[], now: Date): Stre
       if (streak % 7 === 0) freezes = Math.min(MAX_FREEZES, freezes + 1)
     } else if (key === today) {
       break
+    } else if (isRest(key)) {
+      continue
     } else if (freezes > 0 && streak > 0) {
       freezes--
       frozenDays.push(key)

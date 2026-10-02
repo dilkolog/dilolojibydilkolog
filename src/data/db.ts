@@ -113,6 +113,10 @@ export interface Settings {
   /** Listening exercises use a different system voice each time (high-variability input). */
   varyVoices: boolean
   reminder: { enabled: boolean; time: string }
+  /** Share of a normal day's study per weekday, Sunday first: 1 normal, 0.5 light, 0 rest. */
+  dayWeights: number[]
+  /** Planned holiday: nothing scheduled, the streak waits. */
+  vacation: { from: string; to: string } | null
   profile: Profile
   story: { interests: string[]; custom: string }
 }
@@ -145,6 +149,8 @@ export const DEFAULT_SETTINGS: Settings = {
   fsrsFit: null,
   varyVoices: true,
   reminder: { enabled: false, time: '20:00' },
+  dayWeights: [1, 1, 1, 1, 1, 1, 1],
+  vacation: null,
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },
 }

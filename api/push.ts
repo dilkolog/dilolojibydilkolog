@@ -17,6 +17,9 @@ export interface PushRecord {
   plan: string
   /** Devices sharing a sync code: studying on any of them counts for all. */
   group: string | null
+  /** No reminder on these weekdays (Date#getDay) or during the holiday. */
+  restWeekdays?: number[]
+  vacation?: { from: string; to: string } | null
 }
 
 export async function recordPath(endpoint: string): Promise<string> {
@@ -25,6 +28,8 @@ export async function recordPath(endpoint: string): Promise<string> {
 }
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/
+const isRange = (v: unknown): v is { from: string; to: string } =>
+  !!v && typeof v === 'object' && DAY.test(String((v as { from?: unknown }).from)) && DAY.test(String((v as { to?: unknown }).to))
 
 export async function POST(request: Request): Promise<Response> {
   const text = await request.text()
@@ -51,6 +56,8 @@ export async function POST(request: Request): Promise<Response> {
     streak: Number.isFinite(body.streak) ? Math.max(0, Math.floor(Number(body.streak))) : 0,
     plan: typeof body.plan === 'string' ? body.plan.slice(0, 200) : '',
     group: typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null,
+    restWeekdays: Array.isArray(body.restWeekdays) ? body.restWeekdays.filter((d): d is number => Number.isInteger(d) && d >= 0 && d <= 6) : [],
+    vacation: isRange(body.vacation) ? { from: body.vacation.from, to: body.vacation.to } : null,
   }
   await put(await recordPath(sub.endpoint), JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
   return new Response(null, { status: 204 })

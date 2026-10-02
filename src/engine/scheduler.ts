@@ -1,4 +1,6 @@
 import { createEmptyCard, fsrs, generatorParameters, type Card, type Grade } from 'ts-fsrs'
+import { localDate } from './progress'
+import { balanceCard, type Workload } from './workload'
 
 /**
  * Thin wrapper around FSRS. Kept separate so the algorithm can be swapped or re-parameterised
@@ -11,12 +13,16 @@ export interface SchedulerOptions {
   fuzz?: boolean
   /** Personal FSRS weights fitted from the learner's history (see optimizer.ts). */
   weights?: readonly number[]
+  /** Spread reviews over days by load, easy days and holidays (see workload.ts). */
+  balance?: { load: Map<string, number>; workload: Workload }
 }
 
 export interface Scheduler {
   newCard(now: Date): Card
   review(card: Card, grade: Grade, now: Date): Card
   retrievability(card: Card, now: Date): number
+  /** The same scheduler without load balancing, for what-if projections that mustn't count as load. */
+  plain?(): Scheduler
 }
 
 /** Default FSRS-6 forgetting-curve decay (w20). */
@@ -39,9 +45,21 @@ export function createScheduler(options: SchedulerOptions = {}): Scheduler {
       ...(options.weights ? { w: [...options.weights] } : {}),
     }),
   )
-  return {
+  let plain: Scheduler | undefined
+  const self: Scheduler = {
+    plain: () => (options.balance ? (plain ??= createScheduler({ ...options, balance: undefined })) : self),
     newCard: (now) => createEmptyCard(now),
-    review: (card, grade, now) => f.next(card, now, grade).card,
+    review: (card, grade, now) => {
+      const next = f.next(card, now, grade).card
+      const b = options.balance
+      if (!b) return next
+      if (card.reps > 0) {
+        const old = localDate(card.due)
+        b.load.set(old, Math.max(0, (b.load.get(old) ?? 1) - 1))
+      }
+      return balanceCard(next, now, b.load, b.workload)
+    },
     retrievability: (card, now) => (card.reps === 0 ? 0 : f.get_retrievability(card, now, false)),
   }
+  return self
 }

@@ -26,7 +26,7 @@ export function applySettings(s: Settings) {
   prefs.accentShortcuts = s.accentShortcuts
   aiConfig.model = s.aiModel
   speechPrefs.varyVoices = s.varyVoices
-  configureScheduler(s.retention, s.fsrsWeights)
+  configureScheduler(s.retention, s.fsrsWeights, { dayWeights: s.dayWeights, vacation: s.vacation })
   speechPrefs.rate = s.speechRate
   speechPrefs.voices = s.voices
   const root = document.documentElement

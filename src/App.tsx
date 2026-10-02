@@ -16,7 +16,8 @@ import {
   type UserWordState,
   type VocabularyEntry,
 } from './engine/types'
-import { db, scheduler } from './data/instance'
+import { db, scheduler, setLoad } from './data/instance'
+import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
 import { fillFrequencyRanks } from './data/frequency'
@@ -203,6 +204,7 @@ export default function App() {
     const since = new Date(Date.now() - RECENT_DAYS * 86_400_000)
     const [loaded, recentEvents, g] = await Promise.all([db.loadLanguage(language), db.eventsSince(since), loadGame(db)])
     setData({ language, ...loaded, recentEvents })
+    setLoad(loaded.states)
     setGame(g)
     // New words without a frequency band get one from the bundled list, in the background.
     if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
@@ -235,8 +237,19 @@ export default function App() {
   }, [screen.name])
 
   const answeredTodayAll = data ? answeredToday(data.recentEvents, new Date()) : 0
-  useReminder(settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan)
-  const pushState = useMemo(() => ({ studiedToday: answeredTodayAll > 0, streak: game?.streak ?? 0, plan: settings?.studyPlan ?? '' }), [answeredTodayAll, game?.streak, settings?.studyPlan])
+  // Rest days and holidays: no reminder.
+  const restToday = !!settings && isRestDay(new Date(), settings)
+  useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan)
+  const pushState = useMemo(
+    () => ({
+      studiedToday: answeredTodayAll > 0,
+      streak: game?.streak ?? 0,
+      plan: settings?.studyPlan ?? '',
+      restWeekdays: (settings?.dayWeights ?? []).flatMap((w, day) => (w === 0 ? [day] : [])),
+      vacation: settings?.vacation ?? null,
+    }),
+    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation],
+  )
   // Keeps the server's evening reminder from firing on days already studied.
   const loaded = !!data && !!game
   useEffect(() => {
@@ -265,7 +278,8 @@ export default function App() {
       settings: {
         language: data.language,
         dailyMinutes: settings.dailyMinutes,
-        newWordsPerDay: settings.newWordsPerDay,
+        // Light days introduce fewer new words; rest days and holidays none.
+        newWordsPerDay: Math.round(settings.newWordsPerDay * dayWeight(now, settings)),
         frequencyFirst: settings.frequencyFirst,
       },
       catalog: data.vocabulary,

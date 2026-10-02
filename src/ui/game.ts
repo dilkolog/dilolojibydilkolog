@@ -11,6 +11,7 @@ import {
   type XpSummary,
 } from '../engine/gamification'
 import { streakWithFreezes } from '../engine/insights'
+import { isRestDay } from '../engine/workload'
 import { BOSS_XP } from '../engine/bosses'
 import { CHALLENGE_XP, challengeStatus, completedByWeek, type ChallengeStatus } from '../engine/challenges'
 import type { JournalEntry, ReadingText } from '../data/db'
@@ -35,13 +36,14 @@ export interface GameState {
 
 /** Everything gamified is derived from the stored history, across all languages. */
 export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
-  const [events, states, vocabulary, wins, library, journal] = await Promise.all([
+  const [events, states, vocabulary, wins, library, journal, settings] = await Promise.all([
     db.events.toArray(),
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
     db.getBossWins(),
     db.meta.get('library').then((r) => (r?.value as ReadingText[] | undefined) ?? []),
     db.meta.get('journal').then((r) => (r?.value as JournalEntry[] | undefined) ?? []),
+    db.getSettings(),
   ])
   const xp = computeXp(events, states.map((s) => s.introducedAt), now)
   // Beating a boss is worth a fixed bonus, counted on the day it happened.
@@ -84,7 +86,7 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     perfectWeeks: [...weeks.values()].filter((n) => n >= 3).length,
   }
   const studyDays = [...new Set(real.map((e) => localDate(e.timestamp)))]
-  const streak = streakWithFreezes(studyDays, now)
+  const streak = streakWithFreezes(studyDays, now, (day) => !!settings && isRestDay(new Date(`${day}T12:00:00`), settings))
   const today = localDate(now)
   const quests = questStatus(
     today,

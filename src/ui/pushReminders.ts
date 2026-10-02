@@ -31,6 +31,8 @@ export interface PushState {
   studiedToday: boolean
   streak: number
   plan: string
+  restWeekdays: number[]
+  vacation: { from: string; to: string } | null
 }
 
 async function save(sub: PushSubscription, state: PushState) {
@@ -46,6 +48,8 @@ async function save(sub: PushSubscription, state: PushState) {
       streak: state.streak,
       plan: state.plan,
       group: code ? await syncIdOf(code) : null,
+      restWeekdays: state.restWeekdays,
+      vacation: state.vacation,
     }),
   })
 }

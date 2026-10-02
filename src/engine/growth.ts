@@ -51,6 +51,8 @@ export function projectStage(
   opts: EngineOptions = {},
   target?: MasteryStage,
 ): Milestone | undefined {
+  // A what-if run: it must not book load on the real calendar.
+  scheduler = scheduler.plain?.() ?? scheduler
   const goal = target ?? MASTERY_STAGES[Math.min(MASTERY_STAGES.length - 1, growthStage(state) + 1)]
   const goalIndex = MASTERY_STAGES.indexOf(goal)
   let s: UserWordState = { ...state, skills: { ...state.skills } }

@@ -16,6 +16,13 @@ export function reminderText(r: PushRecord, now: number): string {
   return r.plan ? `${r.plan}: ${base}` : base
 }
 
+/** A chosen rest day or a holiday: no reminder. */
+export function resting(r: PushRecord, now: number): boolean {
+  const day = localDay(r.tz, now)
+  if (r.vacation && day >= r.vacation.from && day <= r.vacation.to) return true
+  return !!r.restWeekdays?.includes(new Date(`${day}T12:00:00Z`).getUTCDay())
+}
+
 export async function GET(request: Request): Promise<Response> {
   if (!process.env.CRON_SECRET || request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) return new Response('unauthorized', { status: 401 })
   webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY ?? '')
@@ -41,7 +48,7 @@ export async function GET(request: Request): Promise<Response> {
   let sent = 0
   let removed = 0
   for (const { path, record: r } of records) {
-    if (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group))) continue
+    if (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now)) continue
     try {
       await webpush.sendNotification(r.subscription, JSON.stringify({ title: 'Kelime Koçu', body: reminderText(r, now) }), { TTL: 4 * 3600, urgency: 'normal' })
       sent++
