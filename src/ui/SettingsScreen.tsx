@@ -17,6 +17,7 @@ import { calendarFile, notificationsSupported, requestNotifications, showReminde
 import { Select } from './Select'
 import { canSpeak, speak, voicesFor } from './speech'
 import { canListen } from './speechInput'
+import { dictionaryHtml, toCsv } from '../data/exportList'
 import { bookmarkletCode } from './incoming'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
@@ -160,6 +161,31 @@ export function SettingsScreen({
     } catch (e) {
       setMessage({ ok: false, text: e instanceof Error ? e.message : 'Dosya okunamadı.' })
     }
+  }
+
+  const exportCsv = async (all: boolean) => {
+    const [vocabulary, states] = await Promise.all([db.vocabulary.toArray(), db.wordStates.toArray()])
+    const words = vocabulary.filter((e) => e.source !== 'sample' && (all || e.language === lang))
+    const url = URL.createObjectURL(new Blob([toCsv(words, states)], { type: 'text/csv;charset=utf-8' }))
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `kelime-kocu-${all ? 'kelimeler' : lang}-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+    setMessage({ ok: true, text: `${words.length} kelime CSV olarak indirildi.` })
+  }
+
+  const printDictionary = async () => {
+    const words = (await db.vocabulary.where('language').equals(lang).toArray()).filter((e) => e.source !== 'sample')
+    const w = window.open('', '_blank')
+    if (!w) {
+      setMessage({ ok: false, text: 'Yeni pencere açılamadı; tarayıcı açılır pencereleri engelliyor olabilir.' })
+      return
+    }
+    w.document.write(dictionaryHtml(words, lang, `${LANGUAGE_NAME[lang]} sözlüğüm`))
+    w.document.close()
+    w.focus()
+    setTimeout(() => w.print(), 300)
   }
 
   const calendar = () => {
@@ -392,6 +418,19 @@ export function SettingsScreen({
             Yedekten geri yükle
             <input type="file" accept=".json,application/json" className="sr-only" onChange={(e) => e.target.files?.[0] && restore(e.target.files[0])} />
           </label>
+        </div>
+        <h3 className="subhead">Kelime listesini dışa aktar</h3>
+        <p className="small muted">CSV, Excel ya da Google E-Tablolar'da açılır. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
+        <div className="row">
+          <button className="btn btn-quiet" onClick={() => exportCsv(false)}>
+            {LANGUAGE_NAME[lang]} listesi (CSV)
+          </button>
+          <button className="btn btn-quiet" onClick={() => exportCsv(true)}>
+            Üç dil (CSV)
+          </button>
+          <button className="btn btn-quiet" onClick={printDictionary}>
+            Yazdırılabilir sözlük
+          </button>
         </div>
       </section>
 
