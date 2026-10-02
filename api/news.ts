@@ -1,4 +1,4 @@
-import { allowedArticle, extractArticle, FEEDS, parseFeed, type Article } from '../src/engine/news'
+import { allowedArticle, extractArticle, FEEDS, parseFeed, type Article } from '../src/engine/news.js'
 
 /** Articles per request: enough to choose from, few enough to fetch quickly. */
 const LIMIT = 8
