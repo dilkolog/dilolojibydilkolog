@@ -1666,3 +1666,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .yc-key.yc-2 { background: color-mix(in srgb, var(--lang) 55%, var(--rule)); }
 .yc-key.yc-3 { background: color-mix(in srgb, var(--lang) 80%, var(--rule)); }
 .yc-key.yc-4 { background: var(--lang-deep, var(--lang)); }
+
+/* Word journey */
+.journey { list-style: none; margin: 0; padding: 0 0 0 0.25rem; display: grid; gap: 0.5rem; border-left: 2px solid var(--rule); }
+.journey li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr) auto; align-items: baseline; gap: 0.5rem; margin-left: -0.9rem; }
+.journey-icon { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 999px; background: var(--surface); box-shadow: var(--shadow); font-size: 0.875rem; }
+.journey li.is-down .journey-text { color: var(--ink-soft); }

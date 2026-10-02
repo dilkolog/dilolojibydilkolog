@@ -19,6 +19,7 @@ import { WordForm } from './Words'
 import { CrossLanguageNotes, TriLanguageCard } from './CrossLanguage'
 import { PatternsSection } from './Patterns'
 import { MemoryCurveChart } from './MemoryCurve'
+import { WordJourney } from './WordJourney'
 import { WordFamilySection } from './WordFamily'
 import { CorpusExamples, WordExamples } from './WordExamples'
 import { Plant } from './Plant'
@@ -169,6 +170,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
       <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
       <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
+      <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
 
       <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
 
