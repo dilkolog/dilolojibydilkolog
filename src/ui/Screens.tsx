@@ -9,6 +9,7 @@ import { relativeTime } from './format'
 import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
+import { RaceCard } from './Race'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
@@ -277,6 +278,8 @@ export function Home({
           </span>
         </button>
       )}
+
+      {game && <RaceCard game={game} />}
 
       {game && (
         <section className="quests">

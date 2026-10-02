@@ -11,6 +11,7 @@ import {
   type XpSummary,
 } from '../engine/gamification'
 import { streakWithFreezes } from '../engine/insights'
+import { BOSS_XP } from '../engine/bosses'
 import { masteryStage } from '../engine/mastery'
 import { localDate } from '../engine/progress'
 import { dayMetrics, questStatus, type QuestStatus } from '../engine/quests'
@@ -30,8 +31,15 @@ export interface GameState {
 
 /** Everything gamified is derived from the stored history, across all languages. */
 export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
-  const [events, states, vocabulary] = await Promise.all([db.events.toArray(), db.wordStates.toArray(), db.vocabulary.toArray()])
+  const [events, states, vocabulary, wins] = await Promise.all([db.events.toArray(), db.wordStates.toArray(), db.vocabulary.toArray(), db.getBossWins()])
   const xp = computeXp(events, states.map((s) => s.introducedAt), now)
+  // Beating a boss is worth a fixed bonus, counted on the day it happened.
+  for (const w of wins) {
+    const day = localDate(new Date(w.at))
+    xp.total += BOSS_XP
+    xp.byDay.set(day, (xp.byDay.get(day) ?? 0) + BOSS_XP)
+    if (day === localDate(now)) xp.today += BOSS_XP
+  }
   const level = levelFromXp(xp.total)
   const real = events.filter((e) => e.mode === 'normal')
   const stats: GameStats = {
@@ -46,6 +54,7 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     wordsWithRecording: vocabulary.filter((v) => v.audioId).length,
     freeSentencesCorrect: real.filter((e) => e.exerciseType === 'free_sentence' && e.verdict === 'correct').length,
     level: level.level,
+    bossesDefeated: wins.length,
   }
   const studyDays = [...new Set(real.map((e) => localDate(e.timestamp)))]
   const streak = streakWithFreezes(studyDays, now)

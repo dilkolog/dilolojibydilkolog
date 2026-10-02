@@ -2,6 +2,7 @@ import Dexie, { type Table } from 'dexie'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
 import type { JournalReview } from '../ai/types'
 import { recordMistake, type MistakeInput } from '../engine/mistakes'
+import type { BossWin } from '../engine/bosses'
 import type { ReviewResult } from '../engine/review'
 import {
   TARGET_LANGUAGES,
@@ -279,6 +280,14 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'aiUsage', value: { ...all, [key]: addToMonth(all[key], record) } })
   }
 
+  async getBossWins(): Promise<BossWin[]> {
+    return ((await this.meta.get('bossWins'))?.value as BossWin[]) ?? []
+  }
+
+  async addBossWin(win: BossWin) {
+    await this.meta.put({ key: 'bossWins', value: [...(await this.getBossWins()), win] })
+  }
+
   /** Journal entries of one language, newest first. */
   async getJournal(language: TargetLanguage): Promise<JournalEntry[]> {
     const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
@@ -453,6 +462,7 @@ export interface Backup {
   reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; library?: ReadingText[] }
   vocabTests?: VocabTestRecord[]
   journal?: JournalEntry[]
+  bossWins?: BossWin[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -488,6 +498,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     },
     vocabTests: await db.getVocabTests(),
     journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
+    bossWins: await db.getBossWins(),
     media: await Promise.all(
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
@@ -541,5 +552,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
     }
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
     if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })
+    if (backup.bossWins) await db.meta.put({ key: 'bossWins', value: backup.bossWins })
   })
 }

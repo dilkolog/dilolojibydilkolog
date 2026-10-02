@@ -71,13 +71,15 @@ describe('levels', () => {
 })
 
 describe('achievements', () => {
-  const stats: GameStats = { wordsIntroduced: 60, mastered: 0, totalAnswers: 120, longestStreak: 7, perfectDays: 0, maxCombo: 12, languagesStudied: 1, wordsWithPicture: 2, wordsWithRecording: 0, freeSentencesCorrect: 0, level: 3 }
+  const stats: GameStats = { wordsIntroduced: 60, mastered: 0, totalAnswers: 120, longestStreak: 7, perfectDays: 0, maxCombo: 12, languagesStudied: 1, wordsWithPicture: 2, wordsWithRecording: 0, freeSentencesCorrect: 0, level: 3, bossesDefeated: 1 }
   it('reports unlocked badges and progress toward the rest', () => {
     const a = achievements(stats)
     const get = (id: string) => a.find((x) => x.id === id)!
     expect(get('words-50').unlocked).toBe(true)
     expect(get('words-250')).toMatchObject({ unlocked: false, value: 60, goal: 250 })
     expect(get('streak-7').unlocked).toBe(true)
+    expect(get('boss-1').unlocked).toBe(true)
+    expect(get('boss-10')).toMatchObject({ unlocked: false, value: 1 })
     expect(get('combo-10').unlocked).toBe(true)
     expect(get('pictures-10').value).toBe(2)
   })

@@ -161,6 +161,7 @@ export interface GameStats {
   wordsWithRecording: number
   freeSentencesCorrect: number
   level: number
+  bossesDefeated: number
 }
 
 export interface Achievement {
@@ -193,6 +194,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'pictures-10', icon: '🖼️', title: 'Görsel hafıza', description: '10 kelimeye görsel ekle', goal: 10, stat: 'wordsWithPicture' },
   { id: 'voice-10', icon: '🎙️', title: 'Kendi sesin', description: '10 kelimeyi kendi sesinle kaydet', goal: 10, stat: 'wordsWithRecording' },
   { id: 'writer-25', icon: '🖋️', title: 'Yazar', description: '25 doğru cümle kur', goal: 25, stat: 'freeSentencesCorrect' },
+  { id: 'boss-1', icon: '⚔️', title: 'İlk boss', description: 'Bir boss kelimeyi yen', goal: 1, stat: 'bossesDefeated' },
+  { id: 'boss-10', icon: '🐉', title: 'Ejderha avcısı', description: '10 boss kelimeyi yen', goal: 10, stat: 'bossesDefeated' },
   { id: 'level-10', icon: '🥉', title: 'Seviye 10', description: '10. seviyeye ulaş', goal: 10, stat: 'level' },
   { id: 'level-25', icon: '🥈', title: 'Seviye 25', description: '25. seviyeye ulaş', goal: 25, stat: 'level' },
   { id: 'level-50', icon: '🥇', title: 'Seviye 50', description: '50. seviyeye ulaş', goal: 50, stat: 'level' },
