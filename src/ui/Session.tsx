@@ -42,6 +42,7 @@ import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { CrossLanguageNotes } from './CrossLanguage'
 import { ConfirmDialog } from './Dialog'
+import { AccentBar, accentChange, insertAt } from './AccentBar'
 import { MnemonicDialog } from './Mnemonic'
 import { AlertIcon, CheckIcon, CloseIcon, FlameIcon, SpeakerIcon, StarIcon } from './icons'
 import { prefs } from './prefs'
@@ -893,6 +894,7 @@ function TypedAnswer({
   onSubmit: (text: string, hintsUsed: number, shift: boolean) => void
 }) {
   const [text, setText] = useState('')
+  const input = useRef<HTMLInputElement>(null)
   const [hearing, setHearing] = useState(false)
   const stopListening = useRef<() => void>(() => {})
   useEffect(() => () => stopListening.current(), [])
@@ -947,9 +949,10 @@ function TypedAnswer({
       <div className="answer-wrap">
       <input
         id="answer"
+        ref={input}
         className={`answer-input${verdict ? ` is-${verdict}` : ''}`}
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={accentChange(language, setText)}
         onKeyDown={(e) => {
           // Shift+Enter: answer, marked as not sure.
           if (e.key === 'Enter' && e.shiftKey) {
@@ -972,6 +975,7 @@ function TypedAnswer({
         </button>
       )}
       </div>
+      {!answered && <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />}
       {shown > 0 && (
         <div className="hints">
           {exercise.hints.slice(0, shown).map((h, i) => (

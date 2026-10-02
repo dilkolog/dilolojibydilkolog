@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { relativeWorkload } from '../engine/scheduler'
+import { shortcutHelp } from '../engine/accents'
 import { TARGET_LANGUAGES } from '../engine/types'
 import { exportBackup, parseBackup, restoreBackup, type Settings } from '../data/db'
 import { db } from '../data/instance'
@@ -233,6 +234,12 @@ export function SettingsScreen({
         <Row label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
           <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
         </Row>
+        <Toggle
+          label="Aksan kısa yolları"
+          help={`Yazarken harfin ardından işaret koyunca aksanlı harfe dönüşür. FR: ${shortcutHelp('fr').join(', ')}… ES: ${shortcutHelp('es').slice(0, 4).join(', ')}, n~ → ñ. Cevap kutusunun altındaki harf çubuğu her zaman açık.`}
+          checked={settings.accentShortcuts}
+          onChange={(v) => set('accentShortcuts', v)}
+        />
         <Toggle
           label="Emin değilim seçeneği"
           help="Cevaplamadan önce emin olmadığını işaretleyebilirsin (Shift + cevap). Emin değilken doğru bilinen kelime daha erken tekrar gelir; emin olduğun bir yanlış ise ayrıca vurgulanır ve hatalarda öne alınır."

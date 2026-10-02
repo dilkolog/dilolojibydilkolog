@@ -11,6 +11,7 @@ export const prefs = {
   showKeyLegend: true,
   pretest: true,
   confidence: true,
+  accentShortcuts: true,
 }
 
 export function applySettings(s: Settings) {
@@ -21,6 +22,7 @@ export function applySettings(s: Settings) {
   prefs.showKeyLegend = s.showKeyLegend
   prefs.pretest = s.pretest
   prefs.confidence = s.confidence
+  prefs.accentShortcuts = s.accentShortcuts
   speechPrefs.varyVoices = s.varyVoices
   configureScheduler(s.retention, s.fsrsWeights)
   speechPrefs.rate = s.speechRate

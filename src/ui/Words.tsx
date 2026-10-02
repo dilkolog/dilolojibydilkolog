@@ -13,6 +13,7 @@ import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView } from './CrossLanguage'
+import { accentChange } from './AccentBar'
 import { MissingWords } from './MissingWords'
 import { Plant } from './Plant'
 import { growthStage, plantHealth } from '../engine/growth'
@@ -377,7 +378,7 @@ export function WordForm({
         <div className="grid-2">
           <div className="field">
             <label htmlFor="w-word">Kelime</label>
-            <input id="w-word" className="input" value={form.word} onChange={set('word')} lang={language} autoComplete="off" />
+            <input id="w-word" className="input" value={form.word} onChange={accentChange(language, (word) => setForm((f) => ({ ...f, word })))} lang={language} autoComplete="off" />
             <span className="help">{articleHelp}</span>
           </div>
           <div className="field">
@@ -439,7 +440,7 @@ export function WordForm({
             <label htmlFor="w-ex">Örnek cümle (isteğe bağlı)</label>
             {aiButton('example', ['example'], form.example?.trim() ? 'Başka cümle getir' : 'Cümle getir', 'Cümle yazılıyor…')}
           </div>
-          <input id="w-ex" className="input" value={form.example ?? ''} onChange={set('example')} lang={language} />
+          <input id="w-ex" className="input" value={form.example ?? ''} onChange={accentChange(language, (example) => setForm((f) => ({ ...f, example })))} lang={language} />
           <span className="help">
             Bağlam ve boşluk doldurma alıştırmalarını açar. Kelime cümlede farklı biçimdeyse yıldızla işaretle: {EXAMPLES[language].marked}
           </span>

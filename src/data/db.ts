@@ -59,6 +59,8 @@ export interface Settings {
   pretest: boolean
   /** Offer "not sure" before answering; confident errors get extra attention. */
   confidence: boolean
+  /** Turn "e'" into "é" etc. while typing. */
+  accentShortcuts: boolean
   /** Introduce own words most frequent first. */
   frequencyFirst: boolean
   /** "When and where I'll study" (implementation intention); '' = not set. */
@@ -94,6 +96,7 @@ export const DEFAULT_SETTINGS: Settings = {
   retention: 0.9,
   pretest: true,
   confidence: true,
+  accentShortcuts: true,
   frequencyFirst: false,
   studyPlan: '',
   studyPlanAsked: false,
