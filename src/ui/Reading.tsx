@@ -76,6 +76,36 @@ export function ReadingScreen({
   const [message, setMessage] = useState('')
   const [bookError, setBookError] = useState('')
   const [toast, setToast] = useState('')
+  // Several words picked at once (⌘/Ctrl+click or multi-select mode), marked in one go.
+  const [multi, setMulti] = useState<Set<string>>(new Set())
+  const [multiMode, setMultiMode] = useState(false)
+  const toggleMulti = (key: string) =>
+    setMulti((m) => {
+      const next = new Set(m)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  const markMulti = async (how: 'known' | 'skip' | 'ignore') => {
+    const keys = [...multi]
+    if (how === 'known') {
+      await db.addKnownWords(language, keys)
+      setKnown((k) => new Set([...k, ...keys]))
+    } else if (how === 'skip') setSkipped((s) => new Set([...s, ...keys]))
+    else {
+      for (const k of keys) await db.setIgnored(language, k, true)
+      setIgnored((s) => new Set([...s, ...keys]))
+    }
+    setToast(`${keys.length} kelime işaretlendi`)
+    window.setTimeout(() => setToast(''), 2500)
+    setMulti(new Set())
+  }
+  useEffect(() => {
+    if (!multi.size) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMulti(new Set())
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [multi.size])
   const [youtube, setYoutube] = useState('')
   const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
@@ -126,6 +156,7 @@ export function ReadingScreen({
     setSelected(null)
     setAdding(null)
     setMessage('')
+    setMulti(new Set())
     // A new listening episode opens with its text hidden; one already read shows it.
     setListenFirst(!!item?.audio && !item.readAt)
   }
@@ -539,6 +570,12 @@ export function ReadingScreen({
       {listenFirst && current?.audio && (
         <p className="small muted listen-hint">Önce bir kez sadece dinle; ne kadarını anladığını düşün. Sonra metni açıp duyduğunu oku.</p>
       )}
+      <div className="row reader-tools">
+        <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)}>
+          ☑︎ Çoklu seç
+        </button>
+        <span className="small muted kbd">ya da ⌘/Ctrl ile kelimelere tıkla</span>
+      </div>
       <article className={`reader${listenFirst && current?.audio ? ' is-hidden' : ''}`} lang={language}>
         {analysis.paragraphs.map((p, i) => (
           <p key={i}>
@@ -551,8 +588,16 @@ export function ReadingScreen({
                       role="button"
                       tabIndex={t.status === 'known' || t.status === 'name' ? -1 : 0}
                       data-key={t.key}
-                      className={`rw rw-${t.status}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}`}
-                      onClick={() => setSelected({ token: t, sentence: s.text })}
+                      className={`rw rw-${t.status}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}${multi.has(t.key) ? ' is-multi' : ''}`}
+                      onClick={(e) => {
+                        // ⌘/Ctrl+click (or multi-select mode) collects words to mark together.
+                        if ((e.metaKey || e.ctrlKey || multiMode) && !t.entryId) {
+                          e.preventDefault()
+                          toggleMulti(t.key!)
+                          return
+                        }
+                        setSelected({ token: t, sentence: s.text })
+                      }}
                       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelected({ token: t, sentence: s.text }))}
                     >
                       {t.text}
@@ -566,6 +611,24 @@ export function ReadingScreen({
           </p>
         ))}
       </article>
+
+      {multi.size > 0 && (
+        <section className="card multi-bar" role="toolbar" aria-label="Seçili kelimeler">
+          <strong>{multi.size} kelime seçili</strong>
+          <button className="btn btn-sm" onClick={() => markMulti('known')}>
+            Biliyorum
+          </button>
+          <button className="btn btn-sm btn-quiet" onClick={() => markMulti('skip')}>
+            Bilmiyorum
+          </button>
+          <button className="btn btn-sm btn-quiet" onClick={() => markMulti('ignore')}>
+            Yok say
+          </button>
+          <button className="link small" onClick={() => setMulti(new Set())}>
+            Temizle
+          </button>
+        </section>
+      )}
 
       {selected && selected.token.key && (
         <section className="card stack word-pop" aria-live="polite">
