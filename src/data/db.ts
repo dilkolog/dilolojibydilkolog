@@ -3,6 +3,7 @@ import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord }
 import type { JournalReview } from '../ai/types'
 import { recordMistake, type MistakeInput } from '../engine/mistakes'
 import type { BossWin } from '../engine/bosses'
+import type { ExamResult } from '../engine/exam'
 import type { ReviewResult } from '../engine/review'
 import {
   TARGET_LANGUAGES,
@@ -280,6 +281,14 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'aiUsage', value: { ...all, [key]: addToMonth(all[key], record) } })
   }
 
+  async getExams(): Promise<ExamResult[]> {
+    return ((await this.meta.get('exams'))?.value as ExamResult[]) ?? []
+  }
+
+  async addExam(result: ExamResult) {
+    await this.meta.put({ key: 'exams', value: [...(await this.getExams()), result] })
+  }
+
   async getBossWins(): Promise<BossWin[]> {
     return ((await this.meta.get('bossWins'))?.value as BossWin[]) ?? []
   }
@@ -463,6 +472,7 @@ export interface Backup {
   vocabTests?: VocabTestRecord[]
   journal?: JournalEntry[]
   bossWins?: BossWin[]
+  exams?: ExamResult[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -499,6 +509,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     vocabTests: await db.getVocabTests(),
     journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
     bossWins: await db.getBossWins(),
+    exams: await db.getExams(),
     media: await Promise.all(
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
@@ -553,5 +564,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
     if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })
     if (backup.bossWins) await db.meta.put({ key: 'bossWins', value: backup.bossWins })
+    if (backup.exams) await db.meta.put({ key: 'exams', value: backup.exams })
   })
 }

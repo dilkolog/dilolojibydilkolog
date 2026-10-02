@@ -7,6 +7,7 @@ import { displayForm } from '../engine/exercises'
 import { calibration, recallCalibration, errorBreakdown, hardWords, reviewForecast, weakestSkill, weekReport } from '../engine/insights'
 import { useGame } from './game'
 import type { KelimeDB, VocabTestRecord } from '../data/db'
+import { EXAM_INTERVAL_DAYS, type ExamResult } from '../engine/exam'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
@@ -20,6 +21,7 @@ export function ProgressScreen({
   vocabulary,
   onOpen,
   onVocabTest,
+  onExam,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -29,11 +31,14 @@ export function ProgressScreen({
   vocabulary: VocabularyEntry[]
   onOpen: (entryId: string) => void
   onVocabTest: () => void
+  onExam: () => void
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [tests, setTests] = useState<VocabTestRecord[]>([])
+  const [exams, setExams] = useState<ExamResult[]>([])
   useEffect(() => {
     db.getVocabTests().then((all) => setTests(all.filter((t) => t.language === language)))
+    db.getExams().then((all) => setExams(all.filter((t) => t.language === language)))
   }, [db, language])
   const [events, setEvents] = useState<ReviewEvent[]>([])
   const game = useGame()
@@ -94,6 +99,29 @@ export function ProgressScreen({
             {tests.length ? 'Testi tekrarla' : 'Testi yap'}
           </button>
         </div>
+      </section>
+
+      <section className="section stack">
+        <h2 className="section-title">Hatırlama sınavı</h2>
+        {exams.length > 0 ? (
+          <p>
+            Son sınavda <strong>%{Math.round(exams.at(-1)!.actual * 100)}</strong> hatırladın (model %{Math.round(exams.at(-1)!.predicted * 100)} tahmin
+            etmişti). {exams.length > 1 && <span className="muted">Önceki: {exams.slice(-4, -1).map((e) => `%${Math.round(e.actual * 100)}`).join(' → ')}</span>}
+          </p>
+        ) : (
+          <p className="small muted">Ayda bir, öğrendiğin kelimelerden habersiz 20 soru: ne kadarının gerçekten kaldığını ölçer.</p>
+        )}
+        {(() => {
+          const days = exams.length ? Math.floor((Date.now() - new Date(exams.at(-1)!.at).getTime()) / 86_400_000) : Infinity
+          return (
+            <div className="row">
+              <button className={`btn${days >= EXAM_INTERVAL_DAYS ? '' : ' btn-quiet'}`} onClick={onExam}>
+                {exams.length ? 'Sınavı tekrarla' : 'Sınava gir'}
+              </button>
+              {days >= EXAM_INTERVAL_DAYS && exams.length > 0 && <span className="small">Aylık sınav zamanı geldi.</span>}
+            </div>
+          )
+        })()}
       </section>
 
       <WeekCard report={report} focus={weakestSkill(skillProfile(states, scheduler, now))} />
