@@ -1,10 +1,21 @@
-import { useState, type FormEvent } from 'react'
-import { AI_MODEL, AiError, testKey } from '../ai'
+import { useEffect, useState, type FormEvent } from 'react'
+import { AI_MODELS, AiError, FEATURE_NAME, modelInfo, monthKey, testKey, type AiFeature, type MonthUsage } from '../ai'
+import type { Settings } from '../data/db'
+import { db } from '../data/instance'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 
+const LIMITS = [0, 2, 5, 10, 20]
+const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`.replace('.', ',')
+
 /** Turning the AI layer on/off. The key stays in this browser and is excluded from backups. */
-export function AiSettings() {
+export function AiSettings({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
+  const [usage, setUsage] = useState<Record<string, MonthUsage>>({})
+  useEffect(() => {
+    db.getAiUsage().then(setUsage)
+  }, [settings])
+  const thisMonth = usage[monthKey(new Date())]
+  const months = Object.keys(usage).sort().reverse()
   const { apiKey, setApiKey } = useAi()
   const [draft, setDraft] = useState('')
   const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null)
@@ -41,9 +52,7 @@ export function AiSettings() {
       {apiKey ? (
         <div className="row">
           <span className="pill stage-5">Açık</span>
-          <span className="small muted">
-            Model: {AI_MODEL}. Anahtar ••••{apiKey.slice(-4)}
-          </span>
+          <span className="small muted">Anahtar ••••{apiKey.slice(-4)}</span>
           <button className="btn btn-quiet" onClick={() => setApiKey(null)}>
             Kapat ve anahtarı sil
           </button>
@@ -74,6 +83,66 @@ export function AiSettings() {
           </div>
         </form>
       )}
+      <div className="field">
+        <label>Model</label>
+        <div className="choice-row">
+          {AI_MODELS.map((m) => (
+            <button key={m.id} className="chip chip-sm" aria-pressed={settings.aiModel === m.id} onClick={() => onChange({ ...settings, aiModel: m.id })}>
+              {m.label}
+            </button>
+          ))}
+        </div>
+        <span className="help">
+          {modelInfo(settings.aiModel).note} Fiyat: 1 milyon token başına giriş ${modelInfo(settings.aiModel).input}, çıkış ${modelInfo(settings.aiModel).output}.
+        </span>
+      </div>
+      <div className="field">
+        <label>Aylık bütçe sınırı</label>
+        <div className="choice-row">
+          {LIMITS.map((l) => (
+            <button key={l} className="chip chip-sm" aria-pressed={settings.aiMonthlyLimit === l} onClick={() => onChange({ ...settings, aiMonthlyLimit: l })}>
+              {l ? `$${l}` : 'Sınırsız'}
+            </button>
+          ))}
+        </div>
+        <span className="help">Sınıra ulaşınca ay sonuna kadar AI istekleri durur; uygulamanın geri kalanı çalışmaya devam eder.</span>
+      </div>
+      <div className="stack ai-usage">
+        <strong>Bu ayki kullanım</strong>
+        {thisMonth ? (
+          <>
+            <p className="small">
+              {thisMonth.requests} istek · {usd(thisMonth.cost)}
+              {settings.aiMonthlyLimit > 0 && ` / $${settings.aiMonthlyLimit}`}
+            </p>
+            {settings.aiMonthlyLimit > 0 && (
+              <div className="progress" role="progressbar" aria-valuenow={Math.round((thisMonth.cost / settings.aiMonthlyLimit) * 100)} aria-valuemin={0} aria-valuemax={100}>
+                <div style={{ width: `${Math.min(100, (thisMonth.cost / settings.aiMonthlyLimit) * 100)}%` }} />
+              </div>
+            )}
+            <ul className="plain small ai-features">
+              {(Object.entries(thisMonth.features) as [AiFeature, { requests: number; cost: number }][])
+                .sort((a, b) => b[1].cost - a[1].cost)
+                .map(([f, v]) => (
+                  <li key={f}>
+                    <span>{FEATURE_NAME[f]}</span>
+                    <span className="muted">
+                      {v.requests} istek · {usd(v.cost)}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+          </>
+        ) : (
+          <p className="small muted">Bu ay henüz AI isteği yok.</p>
+        )}
+        {months.length > 1 && (
+          <p className="small muted">
+            Önceki aylar: {months.filter((m) => m !== monthKey(new Date())).slice(0, 4).map((m) => `${m}: ${usd(usage[m].cost)}`).join(', ')}
+          </p>
+        )}
+        <p className="small muted">Tutarlar, Anthropic'in döndürdüğü token sayılarından hesaplanan tahminlerdir; kesin fatura Anthropic Console'dadır.</p>
+      </div>
       {status && (
         <p className={status.ok ? 'notice' : 'error'} role="status">
           {status.text}

@@ -1,9 +1,7 @@
 import type { ErrorType, PartOfSpeech, Verdict } from '../engine/types'
 
-/** Model used for every AI feature. */
-export const AI_MODEL = 'claude-opus-5-5'
 
-export type AiErrorKind = 'auth' | 'rate' | 'refusal' | 'network' | 'other'
+export type AiErrorKind = 'auth' | 'rate' | 'refusal' | 'network' | 'budget' | 'other'
 
 export class AiError extends Error {
   readonly kind: AiErrorKind

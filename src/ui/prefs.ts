@@ -1,5 +1,6 @@
 import type { Settings } from '../data/db'
 import { configureScheduler } from '../data/instance'
+import { aiConfig } from '../ai/usage'
 import { speechPrefs } from './speech'
 
 /** Runtime preferences read by session components; updated whenever settings change. */
@@ -23,6 +24,7 @@ export function applySettings(s: Settings) {
   prefs.pretest = s.pretest
   prefs.confidence = s.confidence
   prefs.accentShortcuts = s.accentShortcuts
+  aiConfig.model = s.aiModel
   speechPrefs.varyVoices = s.varyVoices
   configureScheduler(s.retention, s.fsrsWeights)
   speechPrefs.rate = s.speechRate

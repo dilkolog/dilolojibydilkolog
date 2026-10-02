@@ -3,7 +3,8 @@ import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod'
 import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
-import { AI_MODEL, AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { aiConfig, costOf, type AiFeature } from './usage'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -19,6 +20,7 @@ const AI_MESSAGES: Record<AiErrorKind, string> = {
   rate: 'Çok sık istek gönderildi. Biraz bekleyip tekrar dene.',
   refusal: 'Model bu isteği yanıtlamadı.',
   network: 'İnternet bağlantısı yok ya da Anthropic API\'ye ulaşılamadı.',
+  budget: 'Bu ayki AI bütçen doldu. Ayarlar → AI yardımcısı bölümünden sınırı değiştirebilirsin.',
   other: 'AI isteği başarısız oldu.',
 }
 
@@ -32,17 +34,30 @@ async function structured<S extends z.ZodType>(
   system: string,
   user: string,
   effort: 'low' | 'medium',
+  feature: AiFeature,
 ): Promise<z.infer<S>> {
+  await aiConfig.beforeRequest()
+  const model = aiConfig.model
+  // Haiku 4.5 takes neither the effort setting nor the refusal fallback; the 5.5 models get both.
+  const modern = model !== 'claude-haiku-4-5'
   try {
     const res = await client(apiKey).beta.messages.parse({
-      model: AI_MODEL,
+      model,
       max_tokens: 16000,
       // If a safety classifier declines, the API retries on a suitable fallback model in the same call.
-      betas: ['server-side-fallback-2026-07-01'],
-      fallbacks: 'default',
-      output_config: { effort, format: betaZodOutputFormat(schema) },
+      ...(modern ? { betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default' as const } : {}),
+      output_config: { ...(modern ? { effort } : {}), format: betaZodOutputFormat(schema) },
       system,
       messages: [{ role: 'user', content: user }],
+    })
+    const u = res.usage
+    aiConfig.onUsage({
+      feature,
+      model,
+      inputTokens: u.input_tokens,
+      outputTokens: u.output_tokens,
+      cost: costOf(model, u.input_tokens, u.output_tokens, u.cache_read_input_tokens ?? 0, u.cache_creation_input_tokens ?? 0),
+      at: new Date(),
     })
     if (res.stop_reason === 'refusal') throw new AiError('refusal', AI_MESSAGES.refusal)
     if (!res.parsed_output) throw new AiError('other', 'AI cevabı okunamadı.')
@@ -61,7 +76,7 @@ async function structured<S extends z.ZodType>(
 
 /** Cheapest possible call, used by the "test key" button. */
 export async function testKey(apiKey: string): Promise<void> {
-  await structured(apiKey, z.object({ ok: z.boolean() }), 'Return ok: true.', 'ping', 'low')
+  await structured(apiKey, z.object({ ok: z.boolean() }), 'Return ok: true.', 'ping', 'low', 'test')
 }
 
 // ---------------------------------------------------------------------------
@@ -111,7 +126,7 @@ export async function enrichWords(
     'When a context sentence is given, the first meaning must be the sense used in that sentence, and the example may reuse that sentence.',
   ].join('\n')
   const list = words.map((w, i) => `${i + 1}. ${w.word}${w.context ? `\n   context: ${w.context}` : ''}`).join('\n')
-  const out = await structured(apiKey, WordBatch, system, `Words:\n${list}`, 'low')
+  const out = await structured(apiKey, WordBatch, system, `Words:\n${list}`, 'low', 'word_fill')
   return new Map(out.words.map((w) => [w.input.toLocaleLowerCase(), w]))
 }
 
@@ -157,7 +172,7 @@ export async function suggestFields(apiKey: string, req: SuggestRequest): Promis
   ]
     .filter(Boolean)
     .join('\n')
-  return (await structured(apiKey, z.object(shape), system, user, 'low')) as FieldSuggestions
+  return (await structured(apiKey, z.object(shape), system, user, 'low', 'suggest')) as FieldSuggestions
 }
 
 // ---------------------------------------------------------------------------
@@ -190,7 +205,7 @@ export async function evaluateSentence(
     `Target word: ${entry.article ? `${entry.article} ` : ''}${entry.lemma} (${entry.partOfSpeech}) = ${entry.senses[0].gloss}`,
     `Learner's sentence: ${sentence}`,
   ].join('\n')
-  const g = await structured(apiKey, SentenceGrade, system, user, 'medium')
+  const g = await structured(apiKey, SentenceGrade, system, user, 'medium', 'sentence')
   return {
     verdict: g.verdict,
     errorType: g.errorType === 'none' ? undefined : g.errorType,
@@ -224,7 +239,7 @@ export async function evaluateTranslation(
     `Reference translation: ${reference}`,
     `Learner's translation: ${attempt}`,
   ].join('\n')
-  const g = await structured(apiKey, SentenceGrade, system, user, 'medium')
+  const g = await structured(apiKey, SentenceGrade, system, user, 'medium', 'translation')
   return { verdict: g.verdict, errorType: g.errorType === 'none' ? undefined : g.errorType, corrected: g.corrected, feedback: g.feedback }
 }
 
@@ -249,7 +264,7 @@ export async function evaluateRetelling(apiKey: string, req: RetellRequest): Pro
     `Practice words: ${req.words.map((w) => `${w.lemma} (${w.gloss})`).join(', ')}`,
     `Learner's retelling:\n${req.retelling}`,
   ].join('\n\n')
-  return structured(apiKey, Retell, system, user, 'medium')
+  return structured(apiKey, Retell, system, user, 'medium', 'retell')
 }
 
 // ---------------------------------------------------------------------------
@@ -289,7 +304,7 @@ export async function writeEpisode(apiKey: string, req: EpisodeRequest): Promise
       : 'This is episode 1: introduce the main character and setting.',
     `Practice words (dictionary form = Turkish meaning):\n${req.words.map((w) => `- ${w.lemma} = ${w.gloss}`).join('\n')}`,
   ].join('\n\n')
-  return structured(apiKey, Episode, system, user, 'medium')
+  return structured(apiKey, Episode, system, user, 'medium', 'story')
 }
 
 // ---------------------------------------------------------------------------
@@ -309,5 +324,5 @@ export async function createMnemonic(apiKey: string, entry: VocabularyEntry): Pr
     'Be accurate about etymology; never invent it. Keep everything short, concrete and memorable, in Turkish.',
   ].join('\n')
   const user = `Word: ${entry.article ? `${entry.article} ` : ''}${entry.lemma} (${entry.partOfSpeech}) = ${entry.senses[0].gloss}`
-  return structured(apiKey, MnemonicSchema, system, user, 'low')
+  return structured(apiKey, MnemonicSchema, system, user, 'low', 'mnemonic')
 }

@@ -2,6 +2,7 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { EnrichRequest, EpisodeDraft, EpisodeRequest, FieldSuggestions, Mnemonic, RetellEvaluation, RetellRequest, SentenceEvaluation, SuggestRequest, WordInfo } from './types'
 
 export * from './types'
+export * from './usage'
 
 /**
  * The Anthropic SDK is loaded only when an AI feature is actually used, so the app starts as

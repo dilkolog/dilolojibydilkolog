@@ -314,7 +314,7 @@ export function SettingsScreen({
         </div>
       </section>
 
-      <AiSettings />
+      <AiSettings settings={settings} onChange={onChange} />
 
       <section className="card stack">
         <h2 className="section-title">Yedek</h2>

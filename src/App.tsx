@@ -19,6 +19,8 @@ import {
 import { db, scheduler } from './data/instance'
 import type { Settings } from './data/db'
 import { fillFrequencyRanks } from './data/frequency'
+import { aiConfig, monthKey } from './ai/usage'
+import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
@@ -107,6 +109,14 @@ export default function App() {
 
   useEffect(() => {
     if (settings) applySettings(settings)
+    // AI usage is recorded per month, and the monthly limit is checked before each request.
+    const limit = settings?.aiMonthlyLimit ?? 0
+    aiConfig.onUsage = (r) => void db.addAiUsage(r)
+    aiConfig.beforeRequest = async () => {
+      if (!limit) return
+      const spent = (await db.getAiUsage())[monthKey(new Date())]?.cost ?? 0
+      if (spent >= limit) throw new AiError('budget', 'Bu ayki AI bütçen doldu. Ayarlar → AI yardımcısı bölümünden sınırı değiştirebilirsin.')
+    }
   }, [settings])
 
   // ⌘K / Ctrl+K opens the command palette (not during a session, to avoid leaving it by accident).

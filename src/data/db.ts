@@ -1,4 +1,5 @@
 import Dexie, { type Table } from 'dexie'
+import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
 import type { ReviewResult } from '../engine/review'
 import {
   TARGET_LANGUAGES,
@@ -81,6 +82,10 @@ export interface Settings {
   confidence: boolean
   /** Turn "e'" into "é" etc. while typing. */
   accentShortcuts: boolean
+  /** Claude model for AI features. */
+  aiModel: AiModel
+  /** Monthly AI spending limit in USD; 0 = no limit. */
+  aiMonthlyLimit: number
   /** Introduce own words most frequent first. */
   frequencyFirst: boolean
   /** "When and where I'll study" (implementation intention); '' = not set. */
@@ -117,6 +122,8 @@ export const DEFAULT_SETTINGS: Settings = {
   pretest: true,
   confidence: true,
   accentShortcuts: true,
+  aiModel: 'claude-opus-5-5',
+  aiMonthlyLimit: 0,
   frequencyFirst: false,
   studyPlan: '',
   studyPlanAsked: false,
@@ -247,6 +254,17 @@ export class KelimeDB extends Dexie {
     const all = await this.getEncounters()
     for (const [id, n] of Object.entries(add)) all[id] = (all[id] ?? 0) + n
     await this.meta.put({ key: 'encounters', value: all })
+  }
+
+  /** AI usage per month ("2026-10"). Kept out of backups like the key itself. */
+  async getAiUsage(): Promise<Record<string, MonthUsage>> {
+    return ((await this.meta.get('aiUsage'))?.value as Record<string, MonthUsage>) ?? {}
+  }
+
+  async addAiUsage(record: UsageRecord) {
+    const all = await this.getAiUsage()
+    const key = monthKey(record.at)
+    await this.meta.put({ key: 'aiUsage', value: { ...all, [key]: addToMonth(all[key], record) } })
   }
 
   /** Vocabulary size test results, oldest first. */

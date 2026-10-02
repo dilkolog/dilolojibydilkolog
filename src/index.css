@@ -1359,3 +1359,6 @@ kbd {
 .audio-card { text-align: center; padding: 2rem 1.5rem; }
 .audio-word { font-family: var(--serif); font-size: var(--t-word); color: var(--lang-text); margin: 0; overflow-wrap: anywhere; }
 .audio-options .choice-row { align-items: center; }
+
+.ai-usage { border-top: 1px solid var(--rule); padding-top: 1rem; }
+.ai-features li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.125rem 0; }
