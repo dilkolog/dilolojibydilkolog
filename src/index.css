@@ -1563,3 +1563,14 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .mission-word.is-done { background: var(--ok-soft); color: var(--ok-text); }
 .mission-result { font-weight: 600; }
 .retired-note { padding: 0.5rem 0.75rem; border-radius: 0.75rem; background: var(--lang-soft); }
+
+/* Three languages */
+.tri-root { padding: 0.5rem 0.75rem; border-radius: 0.75rem; background: var(--ok-soft); color: var(--ok-text); }
+.tri-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.tri-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) auto; align-items: center; gap: 0.25rem 0.75rem; padding: 0.5rem 0.75rem; border-radius: 0.875rem; background: var(--surface); box-shadow: var(--shadow); }
+.tri-list li.is-self { box-shadow: var(--shadow), inset 0 0 0 2px var(--lang); }
+.tri-lang { font-weight: 800; font-size: var(--t-sm); color: var(--ink-soft); }
+.tri-word { font-family: var(--serif); font-size: var(--t-lg); }
+.tri-from { grid-column: 2; }
+.tri-list li > :last-child:not(.tri-from) { grid-row: 1; grid-column: 3; }
+.tri-compact { margin: 0; }

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { conceptGroups, crossLanguageLinks, falseFriendsOf, type Concept, type CrossLink } from '../engine/crossLanguage'
 import { displayForm } from '../engine/exercises'
-import { TARGET_LANGUAGES, type VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
+import { findEquivalents, sourceName, withArticle, type Equivalents, type LanguageForm } from '../data/wiktionary'
+import { createEntry } from '../data/wordInput'
 import { db } from '../data/instance'
 import { LANGUAGE_SHORT } from './labels'
 
@@ -112,6 +114,133 @@ export function ConceptsView({ language, onOpen }: { language: VocabularyEntry['
           </div>
         ))}
       </div>
+    </section>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// The word in all three languages (Wiktionary)
+// ---------------------------------------------------------------------------
+
+const EQUIV_KEY = (e: VocabularyEntry) => `kelime-koc:equiv:${e.language}:${e.lemma}`
+
+function useEquivalents(entry: VocabularyEntry): Equivalents | null | 'loading' {
+  const [value, setValue] = useState<Equivalents | null | 'loading'>('loading')
+  useEffect(() => {
+    let live = true
+    try {
+      const cached = localStorage.getItem(EQUIV_KEY(entry))
+      if (cached) {
+        setValue(JSON.parse(cached) as Equivalents)
+        return
+      }
+    } catch {
+      // No storage: just ask again.
+    }
+    setValue('loading')
+    void findEquivalents(entry.lemma, entry.language).then((r) => {
+      if (!live) return
+      setValue(r)
+      try {
+        if (r) localStorage.setItem(EQUIV_KEY(entry), JSON.stringify(r))
+      } catch {
+        // Not cached; fine.
+      }
+    })
+    return () => {
+      live = false
+    }
+  }, [entry])
+  return value
+}
+
+/**
+ * The word in English, French and Spanish side by side with where each comes from. Words not in
+ * the learner's lists can be added with one tap, with the same Turkish meaning: three languages
+ * learned around one concept and, often, one Latin root.
+ */
+export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: VocabularyEntry; compact?: boolean; onAdded?: () => void }) {
+  const eq = useEquivalents(entry)
+  const links = useCrossLinks(entry)
+  const [added, setAdded] = useState<Set<TargetLanguage>>(new Set())
+  const [error, setError] = useState('')
+  if (eq === 'loading') return compact ? null : <p className="small muted">Diğer dillerdeki karşılıkları aranıyor…</p>
+  if (!eq || eq.forms.length < 2) return compact ? null : null
+
+  const add = async (f: LanguageForm) => {
+    setError('')
+    try {
+      const meaning = [entry.senses[0].gloss, ...(entry.senses[0].altGlosses ?? [])].join(', ')
+      const next = createEntry({ word: withArticle(f.word, f.language, f.gender), meaning, gender: f.gender }, f.language, new Date())
+      if (await db.vocabulary.get(next.id)) {
+        setError(`${LANGUAGE_SHORT[f.language]} ${f.word} zaten listende.`)
+        return
+      }
+      await db.vocabulary.put(next)
+      setAdded((s) => new Set(s).add(f.language))
+      onAdded?.()
+    } catch {
+      setError('Eklenemedi.')
+    }
+  }
+
+  const others = eq.forms.filter((f) => f.language !== entry.language)
+  const inList = (f: LanguageForm) => added.has(f.language) || links.some((l) => l.entry.language === f.language)
+
+  if (compact) {
+    return (
+      <p className="small tri-compact">
+        🌍{' '}
+        {others.map((f, i) => (
+          <span key={f.language}>
+            {i > 0 && ' · '}
+            {LANGUAGE_SHORT[f.language]} <em lang={f.language}>{withArticle(f.word, f.language, f.gender)}</em>{' '}
+            {inList(f) ? (
+              <span className="muted">✓</span>
+            ) : (
+              <button type="button" className="link small" onClick={() => add(f)}>
+                + ekle
+              </button>
+            )}
+          </span>
+        ))}
+        {eq.shared && <span className="muted"> · ortak kök {sourceName(eq.shared.lang)} {eq.shared.word}</span>}
+        {error && <span className="error"> {error}</span>}
+      </p>
+    )
+  }
+
+  return (
+    <section className="section stack">
+      <h2 className="section-title">Üç dilde</h2>
+      {eq.shared && (
+        <p className="tri-root">
+          🌳 Ortak kök: <strong>{sourceName(eq.shared.lang)}</strong> <em>{eq.shared.word}</em>
+        </p>
+      )}
+      <ul className="tri-list">
+        {eq.forms.map((f) => (
+          <li key={f.language} className={f.language === entry.language ? 'is-self' : ''}>
+            <span className="tri-lang">{LANGUAGE_SHORT[f.language]}</span>
+            <span className="tri-word" lang={f.language}>
+              {withArticle(f.word, f.language, f.gender)}
+            </span>
+            <span className="small muted tri-from">{f.root ? `← ${sourceName(f.root.lang)} ${f.root.word}` : ''}</span>
+            {f.language !== entry.language &&
+              (inList(f) ? (
+                <span className="small muted">listende</span>
+              ) : (
+                <button className="btn btn-sm btn-quiet" onClick={() => add(f)}>
+                  + Ekle
+                </button>
+              ))}
+          </li>
+        ))}
+      </ul>
+      {error && <p className="error small">{error}</p>}
+      <p className="small muted">
+        Eklenen kelime aynı Türkçe anlamla gelir. Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Wiktionary</a> (CC BY-SA).
+      </p>
     </section>
   )
 }

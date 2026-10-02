@@ -16,7 +16,7 @@ import { ruleFor } from '../engine/genderRules'
 import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
-import { CrossLanguageNotes } from './CrossLanguage'
+import { CrossLanguageNotes, TriLanguageCard } from './CrossLanguage'
 import { CorpusExamples, WordExamples } from './WordExamples'
 import { Plant } from './Plant'
 import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
@@ -187,6 +187,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
       <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
+      <TriLanguageCard entry={entry} onAdded={onChanged} />
 
       {conjugation && (
         <section className="section stack">

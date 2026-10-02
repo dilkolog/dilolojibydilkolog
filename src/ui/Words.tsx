@@ -12,7 +12,7 @@ import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
-import { ConceptsView } from './CrossLanguage'
+import { ConceptsView, TriLanguageCard } from './CrossLanguage'
 import { accentChange } from './AccentBar'
 import { MissingWords } from './MissingWords'
 import { KindleImport } from './KindleImport'
@@ -607,6 +607,7 @@ export function WordForm({
             )}
           </div>
         )}
+        {added && !error && justAdded.length > 0 && <TriLanguageCard key={justAdded.at(-1)!.id} entry={justAdded.at(-1)!} compact onAdded={() => onSaved(justAdded.at(-1)!)} />}
         <div className="row">
           <button className="btn" type="submit">
             {entry ? 'Değişiklikleri kaydet' : 'Kelimeyi ekle'}
