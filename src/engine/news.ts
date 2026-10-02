@@ -59,8 +59,14 @@ export function parseFeed(xml: string): FeedItem[] {
  */
 export function extractArticle(html: string, maxWords = 1500): string {
   const clean = html.replace(/<(script|style|noscript|nav|header|footer|aside|figure|form)[\s\S]*?<\/\1>/gi, ' ')
-  const scope = /<article[\s\S]*?<\/article>/i.exec(clean)?.[0] ?? clean
-  const paragraphs = (scope.match(/<p[\s>][\s\S]*?<\/p>/gi) ?? []).map(stripTags).filter((p) => p.length >= 60)
+  const paragraphsOf = (scope: string) => (scope.match(/<p[\s>][\s\S]*?<\/p>/gi) ?? []).map(stripTags).filter((p) => p.length >= 60)
+  const article = /<article[\s\S]*?<\/article>/i.exec(clean)?.[0]
+  let paragraphs = article ? paragraphsOf(article) : paragraphsOf(clean)
+  // Some sites put only a teaser inside <article>: then the whole page is a better source.
+  if (article && paragraphs.join(' ').split(/\s+/).length < 120) {
+    const whole = paragraphsOf(clean)
+    if (whole.length > paragraphs.length) paragraphs = whole
+  }
   const out: string[] = []
   let words = 0
   for (const p of paragraphs) {
