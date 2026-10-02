@@ -41,7 +41,7 @@ describe('FSRS optimizer', () => {
     // It found the real difference: first-day memories last much longer than the default assumes.
     expect(fit.weights[2]).toBeGreaterThan(default_w[2] * 2)
     expect(logLoss(fit.weights, histories)).toBeLessThan(logLoss(default_w, histories))
-  })
+  }, 30_000) // fitting is CPU-heavy; under a parallel test run it can pass 5 s
 
   it('builds per-card histories from real answers only', () => {
     const ev = (entryId: string, skill: string, day: number, rating: number, mode = 'normal') =>
