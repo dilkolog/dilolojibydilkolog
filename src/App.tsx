@@ -82,6 +82,7 @@ function restoreScreen(): Screen {
   if (shortcut) {
     history.replaceState(null, '', location.pathname)
     if (shortcut === 'reading') return { name: 'reading' }
+    if (shortcut === 'quick') quickStart = true
     if (shortcut === 'add') {
       setTimeout(() => document.getElementById('w-word')?.focus(), 400)
       return { name: 'words' }
@@ -116,6 +117,10 @@ const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => R
 ]
 
 let corpusRun: Promise<number> | null = null
+/** Set when opened from a reminder: start a short review as soon as the plan is ready. */
+let quickStart = false
+/** About three minutes. */
+const QUICK_REVIEW = 10
 
 /** Phones get a bottom tab bar with these; the rest sit behind "Daha". */
 const TABS: NavScreen[] = ['home', 'words', 'reading', 'progress']
@@ -242,25 +247,6 @@ export default function App() {
   }, [screen.name])
 
   const answeredTodayAll = data ? answeredToday(data.recentEvents, new Date()) : 0
-  // Rest days and holidays: no reminder.
-  const restToday = !!settings && isRestDay(new Date(), settings)
-  useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan)
-  const pushState = useMemo(
-    () => ({
-      studiedToday: answeredTodayAll > 0,
-      streak: game?.streak ?? 0,
-      plan: settings?.studyPlan ?? '',
-      restWeekdays: (settings?.dayWeights ?? []).flatMap((w, day) => (w === 0 ? [day] : [])),
-      vacation: settings?.vacation ?? null,
-    }),
-    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation],
-  )
-  // Keeps the server's evening reminder from firing on days already studied.
-  const loaded = !!data && !!game
-  useEffect(() => {
-    if (loaded) void reportPushState(pushState)
-  }, [loaded, pushState])
-
   const updateSettings = async (s: Settings) => {
     await db.saveSettings(s)
     setSettings(s)
@@ -297,6 +283,28 @@ export default function App() {
     }
   }, [settings, data, options])
   const plan = useMemo(() => (planInput ? buildDailyPlan(planInput) : null), [planInput])
+  // Rest days and holidays: no reminder.
+  const restToday = !!settings && isRestDay(new Date(), settings)
+  // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
+  const dueReviews = plan ? plan.items.filter((i) => i.kind === 'exercise').length : 0
+  useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan, dueReviews)
+  const pushState = useMemo(
+    () => ({
+      studiedToday: answeredTodayAll > 0,
+      streak: game?.streak ?? 0,
+      plan: settings?.studyPlan ?? '',
+      restWeekdays: (settings?.dayWeights ?? []).flatMap((w, day) => (w === 0 ? [day] : [])),
+      vacation: settings?.vacation ?? null,
+      due: dueReviews,
+    }),
+    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews],
+  )
+  // Keeps the server's evening reminder from firing on days already studied.
+  const loaded = !!data && !!game
+  useEffect(() => {
+    if (loaded) void reportPushState(pushState)
+  }, [loaded, pushState])
+
   // A session started on just-added words gets them even before the list has reloaded.
   const sessionVocabulary = useMemo(() => {
     if (screen.name !== 'session' || !screen.extra || !data) return undefined
@@ -334,6 +342,15 @@ export default function App() {
     const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra })
   }
+
+  // Opened from a reminder ("?go=quick"): straight into a short review of what's due.
+  useEffect(() => {
+    if (!quickStart || !plan || !data) return
+    quickStart = false
+    const items = plan.items.filter((i) => i.kind === 'exercise').slice(0, QUICK_REVIEW)
+    if (items.length) startSession(items, 'normal')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plan, data])
 
   if (settings === undefined) return null
   if (settings === null) {

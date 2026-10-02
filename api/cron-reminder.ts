@@ -12,8 +12,14 @@ const localDay = (tz: number, now: number) => new Date(now - tz * 60_000).toISOS
 
 export function reminderText(r: PushRecord, now: number): string {
   const yesterday = localDay(r.tz, now - 86_400_000)
-  const base = r.streak > 0 && r.studiedDay === yesterday ? `🔥 ${r.streak} günlük serin var, bugün de devam et!` : 'Bugünkü kelime çalışman seni bekliyor.'
-  return r.plan ? `${r.plan}: ${base}` : base
+  const today = localDay(r.tz, now)
+  // A count reported yesterday is still a fair lower bound for today.
+  const due = r.due && (r.reportedDay === today || r.reportedDay === yesterday) ? r.due : 0
+  const parts = [
+    r.streak > 0 && r.studiedDay === yesterday ? `🔥 ${r.streak} günlük serin var.` : '',
+    due > 0 ? `🌱 ${due} kelimen solmak üzere: ${Math.max(2, Math.min(5, Math.round(due / 3)))} dakikalık hızlı tekrar yeter.` : 'Bugünkü kelime çalışman seni bekliyor.',
+  ].filter(Boolean)
+  return r.plan ? `${r.plan}: ${parts.join(' ')}` : parts.join(' ')
 }
 
 /** A chosen rest day or a holiday: no reminder. */
@@ -50,7 +56,7 @@ export async function GET(request: Request): Promise<Response> {
   for (const { path, record: r } of records) {
     if (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now)) continue
     try {
-      await webpush.sendNotification(r.subscription, JSON.stringify({ title: 'Kelime Koçu', body: reminderText(r, now) }), { TTL: 4 * 3600, urgency: 'normal' })
+      await webpush.sendNotification(r.subscription, JSON.stringify({ title: 'Kelime Koçu', body: reminderText(r, now), url: '/?go=quick' }), { TTL: 4 * 3600, urgency: 'normal' })
       sent++
     } catch (e) {
       const status = (e as { statusCode?: number }).statusCode

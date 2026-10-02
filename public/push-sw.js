@@ -12,16 +12,19 @@ self.addEventListener('push', (event) => {
       icon: '/pwa-192.png',
       badge: '/pwa-192.png',
       tag: 'daily-reminder',
+      data: { url: data.url || '/' },
     }),
   )
 })
 
+// A tap opens the app on the reminder's page (a short review), in an open window if there is one.
 self.addEventListener('notificationclick', (event) => {
   event.notification.close()
+  const url = (event.notification.data && event.notification.data.url) || '/'
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
-      const open = list.find((c) => 'focus' in c)
-      return open ? open.focus() : self.clients.openWindow('/')
+      const open = list.find((c) => 'focus' in c && 'navigate' in c)
+      return open ? open.navigate(url).then((c) => (c || open).focus()) : self.clients.openWindow(url)
     }),
   )
 })

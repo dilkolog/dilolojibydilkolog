@@ -20,6 +20,10 @@ export interface PushRecord {
   /** No reminder on these weekdays (Date#getDay) or during the holiday. */
   restWeekdays?: number[]
   vacation?: { from: string; to: string } | null
+  /** Reviews waiting on studiedDay's report day; 0 when unknown. */
+  due?: number
+  /** Local day the `due` count was reported. */
+  reportedDay?: string | null
 }
 
 export async function recordPath(endpoint: string): Promise<string> {
@@ -58,6 +62,8 @@ export async function POST(request: Request): Promise<Response> {
     group: typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null,
     restWeekdays: Array.isArray(body.restWeekdays) ? body.restWeekdays.filter((d): d is number => Number.isInteger(d) && d >= 0 && d <= 6) : [],
     vacation: isRange(body.vacation) ? { from: body.vacation.from, to: body.vacation.to } : null,
+    due: Number.isFinite(body.due) ? Math.max(0, Math.min(999, Math.floor(Number(body.due)))) : 0,
+    reportedDay: typeof body.reportedDay === 'string' && DAY.test(body.reportedDay) ? body.reportedDay : null,
   }
   await put(await recordPath(sub.endpoint), JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
   return new Response(null, { status: 204 })

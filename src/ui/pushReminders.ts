@@ -33,6 +33,8 @@ export interface PushState {
   plan: string
   restWeekdays: number[]
   vacation: { from: string; to: string } | null
+  /** Reviews waiting today; the evening reminder names them. */
+  due: number
 }
 
 async function save(sub: PushSubscription, state: PushState) {
@@ -50,6 +52,8 @@ async function save(sub: PushSubscription, state: PushState) {
       group: code ? await syncIdOf(code) : null,
       restWeekdays: state.restWeekdays,
       vacation: state.vacation,
+      due: state.due,
+      reportedDay: localDay(),
     }),
   })
 }

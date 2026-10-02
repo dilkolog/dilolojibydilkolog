@@ -10,10 +10,19 @@ export async function requestNotifications(): Promise<NotificationPermission> {
   return Notification.permission === 'default' ? Notification.requestPermission() : Notification.permission
 }
 
-export async function showReminder(streak: number, plan = '') {
-  const base = streak > 0 ? `🔥 ${streak} günlük serin var, bugün de devam et!` : 'Bugünkü kelime çalışman seni bekliyor.'
-  const body = plan ? `${plan}: ${base}` : base
-  const options = { body, icon: '/pwa-192.png', tag: 'daily-reminder' }
+/** The reminder text: the streak at stake and, when there are any, the words about to fade. */
+export function reminderBody(streak: number, plan = '', due = 0): string {
+  const parts = [
+    streak > 0 ? `🔥 ${streak} günlük serin var.` : '',
+    due > 0 ? `🌱 ${due} kelimen solmak üzere: ${Math.max(2, Math.min(5, Math.round(due / 3)))} dakikalık hızlı tekrar yeter.` : 'Bugünkü kelime çalışman seni bekliyor.',
+  ].filter(Boolean)
+  const base = parts.join(' ')
+  return plan ? `${plan}: ${base}` : base
+}
+
+export async function showReminder(streak: number, plan = '', due = 0) {
+  // A tap opens a short review of exactly those words (see App, "?go=quick").
+  const options = { body: reminderBody(streak, plan, due), icon: '/pwa-192.png', tag: 'daily-reminder', data: { url: '/?go=quick' } }
   // Through the service worker when there is one: works while the tab is in the background.
   const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
   if (reg) await reg.showNotification('Kelime Koçu', options)
@@ -27,7 +36,7 @@ const today = () => new Date().toDateString()
  * if nothing was studied today. Closed apps can't be woken without a server; for that, use the
  * calendar file below.
  */
-export function useReminder(reminder: Settings['reminder'] | undefined, answeredToday: number, streak: number, plan = '') {
+export function useReminder(reminder: Settings['reminder'] | undefined, answeredToday: number, streak: number, plan = '', due = 0) {
   useEffect(() => {
     if (!reminder?.enabled || !notificationsSupported()) return
     const check = () => {
@@ -40,20 +49,20 @@ export function useReminder(reminder: Settings['reminder'] | undefined, answered
       }
       if (last === today()) return
       const [h, m] = reminder.time.split(':').map(Number)
-      const due = new Date()
-      due.setHours(h, m, 0, 0)
-      if (new Date() < due) return
+      const at = new Date()
+      at.setHours(h, m, 0, 0)
+      if (new Date() < at) return
       try {
         localStorage.setItem(LAST_KEY, today())
       } catch {
         // ignore
       }
-      void showReminder(streak, plan)
+      void showReminder(streak, plan, due)
     }
     check()
     const t = window.setInterval(check, 30_000)
     return () => window.clearInterval(t)
-  }, [reminder?.enabled, reminder?.time, answeredToday, streak, plan])
+  }, [reminder?.enabled, reminder?.time, answeredToday, streak, plan, due])
 }
 
 /** A daily recurring calendar event with an alert, for the system calendar (works when the app is closed). */

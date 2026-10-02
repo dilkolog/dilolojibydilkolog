@@ -33,6 +33,7 @@ export default defineConfig({
         id: '/',
         // Home-screen long-press menu.
         shortcuts: [
+          { name: 'Hızlı tekrar (3 dakika)', short_name: 'Hızlı', url: '/?go=quick' },
           { name: 'Bugünkü çalışma', short_name: 'Çalış', url: '/?go=home' },
           { name: 'Kelime ekle', short_name: 'Ekle', url: '/?go=add' },
           { name: 'Okuma', short_name: 'Okuma', url: '/?go=reading' },
