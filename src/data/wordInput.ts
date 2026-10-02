@@ -39,6 +39,8 @@ export interface WordInput {
   notes?: string
   /** Comma-separated labels, e.g. "iş, seyahat". */
   tags?: string
+  /** Idioms: word-for-word meaning. */
+  literal?: string
 }
 
 export class WordInputError extends Error {}
@@ -240,6 +242,7 @@ export function createEntry(
     wordFamily: [],
     tags: splitList(input.tags, /,/),
     notes: input.notes?.trim() || undefined,
+    literal: input.literal?.trim() || undefined,
     source,
     addedAt: now,
   }
@@ -453,6 +456,7 @@ export function entryToInput(entry: VocabularyEntry): WordInput {
       .map((r) => r.targetId.slice(r.targetId.indexOf(':') + 1))
       .join(', '),
     notes: entry.notes ?? '',
+    literal: entry.literal ?? '',
     tags: entry.tags.join(', '),
     frequencyRank: entry.frequencyRank,
   }
@@ -487,6 +491,7 @@ export function updateEntry(existing: VocabularyEntry, input: WordInput): Vocabu
     collocations: edited.collocations,
     relations: [...existing.relations.filter((r) => r.type !== 'confusable'), ...edited.relations],
     notes: edited.notes,
+    literal: edited.literal,
     tags: edited.tags,
   }
 }

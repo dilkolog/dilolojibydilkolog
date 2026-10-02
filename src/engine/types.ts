@@ -100,6 +100,8 @@ export interface VocabularyEntry {
   imageCredit?: string
   /** Personal note: a mnemonic, a usage tip, where you met the word. */
   notes?: string
+  /** Idioms: the word-for-word meaning in Turkish ("hamamböceğine sahip olmak"). */
+  literal?: string
   register: Register
   /** Ordered by importance; senses[0] is introduced first. */
   senses: Sense[]
@@ -139,6 +141,7 @@ export type ExerciseType =
   | 'article_choice' // FR/ES noun without its article → choose le/la, el/la
   | 'conjugation' // FR/ES verb + subject → type the present-tense form
   | 'back_translation' // Turkish translation of an example → write it in the target language; AI-graded
+  | 'idiom_complete' // idiom / phrasal verb with one word missing → choose it
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {

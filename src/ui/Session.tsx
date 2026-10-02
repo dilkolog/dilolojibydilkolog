@@ -443,6 +443,7 @@ function Intro({
         {imageUrl && <img className="word-image" src={imageUrl} alt="" />}
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
         <CrossLanguageNotes entry={entry} compact />
+        {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         {entry.notes && <p className="note">💡 {entry.notes}</p>}
         {example && (
           <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
@@ -771,6 +772,23 @@ function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: Vo
           <p className="muted">
             {LANGUAGE_NAME[entry.language]} yaz; <span lang={entry.language}>“{displayForm(entry)}”</span> kelimesini kullan. Birebir aynısı gerekmez, anlamı
             doğru aktarman yeter.
+          </p>
+        </div>
+      )
+    case 'idiom_complete':
+      return (
+        <div className="stack" style={{ gap: '0.375rem' }}>
+          <p className="prompt-text idiom-prompt" lang={entry.language}>
+            {exercise.prompt.split(BLANK).map((part, i, all) => (
+              <span key={i}>
+                {part}
+                {i < all.length - 1 && <span className="blank">____</span>}
+              </span>
+            ))}
+          </p>
+          <p className="muted">
+            {exercise.context}
+            {entry.literal && <span className="small"> · kelimesi kelimesine: {entry.literal}</span>}
           </p>
         </div>
       )

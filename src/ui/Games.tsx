@@ -1162,6 +1162,7 @@ const BATTLE_TYPES = new Set<ExerciseType>([
   'article_choice',
   'conjugation',
   'word_form',
+  'idiom_complete',
 ])
 const faceOf = (id: string) => BOSS_FACES[[...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % BOSS_FACES.length]
 
@@ -1433,6 +1434,21 @@ function BattlePrompt({ ex, entry, language }: { ex: Exercise; entry: Vocabulary
       <h2 className="word" lang={language}>
         <span className="blank">____</span> {ex.prompt}
       </h2>
+    )
+  if (ex.type === 'idiom_complete')
+    return (
+      <div className="stack" style={{ gap: '0.25rem' }}>
+        <p className="muted small">{label}</p>
+        <p className="prompt-text" lang={language}>
+          {ex.prompt.split(BLANK).map((part, i, all) => (
+            <span key={i}>
+              {part}
+              {i < all.length - 1 && <span className="blank">____</span>}
+            </span>
+          ))}
+        </p>
+        <p className="muted small">{ex.context}</p>
+      </div>
     )
   if (ex.context && ex.type !== 'conjugation')
     return (

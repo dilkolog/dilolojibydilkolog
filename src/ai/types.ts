@@ -22,6 +22,7 @@ export interface WordInfo {
   collocations: { phrase: string; translation: string; wrongVariants: string[] }[]
   confusables: string[]
   frequencyBand: 'top1000' | 'top3000' | 'top10000' | 'rare'
+  literal: string
 }
 
 const BAND_RANK = { top1000: 500, top3000: 2000, top10000: 6000, rare: 20000 } as const
@@ -51,6 +52,7 @@ export function wordInfoToInput(info: WordInfo) {
     collocations: collocationLines(info.collocations),
     confusables: info.confusables.join(', '),
     frequencyRank: BAND_RANK[info.frequencyBand],
+    literal: info.literal,
   }
 }
 

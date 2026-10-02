@@ -68,7 +68,7 @@ export const POS_NAME: Record<PartOfSpeech, string> = {
   preposition: 'edat',
   conjunction: 'bağlaç',
   pronoun: 'zamir',
-  phrase: 'kalıp',
+  phrase: 'deyim / kalıp',
   other: 'diğer',
 }
 
@@ -87,6 +87,7 @@ export const PROMPT_TEXT: Record<string, string> = {
   speak_word: 'Söyle: hedef dildeki karşılığı',
   article_choice: 'Artikeli hangisi?',
   conjugation: 'Fiili çek',
+  idiom_complete: 'Eksik kelime hangisi?',
   back_translation: 'Bu cümleyi çevir',
 }
 

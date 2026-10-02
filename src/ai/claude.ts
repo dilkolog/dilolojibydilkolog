@@ -104,6 +104,7 @@ const WordInfo = z.object({
     )
     .describe('0-3 high-value collocations. Empty for function words.'),
   confusables: z.array(z.string()).describe('0-2 words in the same language commonly confused with this one (affect/effect).'),
+  literal: z.string().describe('For idioms and multi-word expressions only: a word-for-word Turkish rendering (e.g. "avoir le cafard" → "hamamböceğine sahip olmak"); empty string for single words.'),
   frequencyBand: z
     .enum(['top1000', 'top3000', 'top10000', 'rare'])
     .describe('How common the word is in everyday use of the language, by frequency rank: among the 1000 most frequent words, 3000, 10000, or rarer.'),

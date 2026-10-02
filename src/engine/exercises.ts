@@ -111,6 +111,13 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     applicable: (e) => e.senses[0].examples.some((x) => x.translation.trim()),
     requiresAI: true,
   },
+  idiom_complete: {
+    skill: 'collocation',
+    direction: 'context',
+    input: 'choice',
+    expectedMs: 6000,
+    applicable: (e) => e.partOfSpeech === 'phrase' && e.lemma.trim().split(/\s+/).length >= 2,
+  },
   free_sentence: {
     skill: 'production',
     direction: 'native_to_target',
@@ -315,6 +322,31 @@ function meaningOptions(entry: VocabularyEntry, catalog: readonly VocabularyEntr
   return glosses
 }
 
+/** Particles of English phrasal verbs: the part learners mix up (give up / give in / give out). */
+const PARTICLES = ['up', 'down', 'in', 'out', 'off', 'on', 'over', 'away', 'back', 'through', 'around', 'along', 'into']
+
+/**
+ * Which word of an idiom to blank out, and three wrong options. Phrasal verbs lose their
+ * particle; other idioms lose their longest word, replaced by words from other idioms or the list.
+ */
+export function idiomGap(entry: VocabularyEntry, catalog: readonly VocabularyEntry[], rng: Rng): { words: string[]; blank: number; options: string[] } {
+  const words = entry.lemma.trim().split(/\s+/)
+  const particleAt = entry.language === 'en' ? words.findIndex((w, i) => i > 0 && PARTICLES.includes(w.toLowerCase())) : -1
+  if (particleAt >= 0) {
+    const options = shuffle(PARTICLES.filter((p) => p !== words[particleAt].toLowerCase()), rng).slice(0, OPTION_COUNT - 1)
+    return { words, blank: particleAt, options }
+  }
+  const blank = words.reduce((best, w, i) => (w.replace(/[^\p{L}]/gu, '').length > words[best].replace(/[^\p{L}]/gu, '').length ? i : best), 0)
+  const target = words[blank].toLowerCase()
+  const pool = [
+    ...catalog.filter((c) => c.id !== entry.id && c.language === entry.language && c.partOfSpeech === 'phrase').flatMap((c) => c.lemma.split(/\s+/)),
+    ...catalog.filter((c) => c.id !== entry.id && c.language === entry.language && !c.lemma.includes(' ')).map((c) => c.lemma),
+  ].filter((w) => w.length >= 3 && w.toLowerCase() !== target)
+  // Words close in length to the missing one, so length gives nothing away.
+  const options = [...new Set(shuffle(pool, rng).sort((a, b) => Math.abs(a.length - target.length) - Math.abs(b.length - target.length)))].slice(0, OPTION_COUNT - 1)
+  return { words, blank, options }
+}
+
 function withTraps(ex: ChoiceExercise, entry: VocabularyEntry): ChoiceExercise {
   const traps = trapGlosses(entry).filter((t) => ex.options.some((o) => o.label === t))
   return traps.length ? { ...ex, traps } : ex
@@ -469,6 +501,17 @@ export function buildExercise(
         options: [forms.m, forms.f].map((label, i) => ({ id: String(i), label })),
         correctOptionId: correct === forms.m ? '0' : '1',
       }
+    }
+
+    case 'idiom_complete': {
+      const { words, blank, options } = idiomGap(entry, catalog, rng)
+      const correct = words[blank]
+      return choice(
+        { ...base, prompt: words.map((w, i) => (i === blank ? BLANK : w)).join(' '), context: sense.gloss },
+        correct,
+        options,
+        rng,
+      )
     }
 
     case 'back_translation': {

@@ -356,6 +356,7 @@ export function WordForm({
         exampleTranslation: f.exampleTranslation?.trim() ? f.exampleTranslation : ai.exampleTranslation,
         collocations: f.collocations?.trim() ? f.collocations : ai.collocations,
         confusables: f.confusables?.trim() ? f.confusables : ai.confusables,
+        literal: f.literal?.trim() ? f.literal : ai.literal,
         // The frequency list is measured data; the AI's band is only a fallback for words it lacks.
         frequencyRank: f.frequencyRank || (autoRank === 0 || autoRank === UNRANKED ? ai.frequencyRank : 0),
       }))
@@ -445,6 +446,13 @@ export function WordForm({
               </div>
             )}
           </div>
+          {(posManual ? form.partOfSpeech : autoPos) === 'phrase' && (
+            <div className="field">
+              <label htmlFor="w-literal">Kelimesi kelimesine (isteğe bağlı)</label>
+              <input id="w-literal" className="input" value={form.literal ?? ''} onChange={set('literal')} placeholder="avoir le cafard → hamamböceğine sahip olmak" />
+              <span className="help">Deyimin harfi harfine anlamı: tuhaf imgesi onu akılda tutmayı kolaylaştırır.</span>
+            </div>
+          )}
           {needsGender && (
             <div className="field">
               <label htmlFor="w-gender">Cinsiyet</label>
@@ -652,7 +660,7 @@ function WordList({
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [stage, setStage] = useState<StageFilter>('all')
-  const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean }>({})
+  const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
   const [sort, setSort] = useState<Sort>('newest')
 
@@ -676,6 +684,7 @@ function WordList({
       if (flags.picture && !v.imageId) return false
       if (flags.audio && !v.audioId) return false
       if (flags.noExample && v.senses[0].examples.length > 0) return false
+      if (flags.idiom && v.partOfSpeech !== 'phrase') return false
       if (tag && !v.tags.includes(tag)) return false
       return true
     }
@@ -779,6 +788,9 @@ function WordList({
             </button>
             <button className="chip chip-sm" aria-pressed={!!flags.noExample} onClick={() => toggle('noExample')}>
               Örneksiz
+            </button>
+            <button className="chip chip-sm" aria-pressed={!!flags.idiom} onClick={() => toggle('idiom')}>
+              Deyimler
             </button>
             {tags.length > 0 && (
               <div style={{ minWidth: '10rem' }}>

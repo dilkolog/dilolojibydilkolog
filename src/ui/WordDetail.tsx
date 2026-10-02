@@ -105,6 +105,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </div>
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+        {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         <CrossLanguageNotes entry={entry} />
         {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
         {fragile && (

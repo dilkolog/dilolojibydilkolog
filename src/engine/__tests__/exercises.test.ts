@@ -199,3 +199,27 @@ describe('back_translation', () => {
     expect(ex.hints[0]).toContain('decision')
   })
 })
+
+describe('idiom_complete', () => {
+  it('blanks the particle of a phrasal verb and offers other particles', async () => {
+    const { createEntry } = await import('../../data/wordInput')
+    const { idiomGap } = await import('../exercises')
+    const give = createEntry({ word: 'give up', meaning: 'vazgeçmek', partOfSpeech: 'phrase' }, 'en', new Date())
+    const gap = idiomGap(give, CATALOG, rng())
+    expect(gap.words[gap.blank]).toBe('up')
+    expect(gap.options).toHaveLength(3)
+    expect(gap.options).not.toContain('up')
+    const ex = buildExercise('idiom_complete', give, CATALOG, rng()) as ChoiceExercise
+    expect(ex.prompt).toBe(`give ${BLANK}`)
+    expect(ex.options.find((o) => o.id === ex.correctOptionId)?.label).toBe('up')
+  })
+
+  it('blanks the longest word of other idioms and applies only to multi-word phrases', async () => {
+    const { createEntry } = await import('../../data/wordInput')
+    const { idiomGap } = await import('../exercises')
+    const cafard = createEntry({ word: 'avoir le cafard', meaning: 'morali bozuk olmak', partOfSpeech: 'phrase' }, 'fr', new Date())
+    expect(idiomGap(cafard, CATALOG, rng()).blank).toBe(2)
+    expect(exerciseTypesFor('collocation', cafard)).toContain('idiom_complete')
+    expect(exerciseTypesFor('collocation', decision)).not.toContain('idiom_complete')
+  })
+})
