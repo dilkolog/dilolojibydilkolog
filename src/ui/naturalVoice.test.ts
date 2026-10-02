@@ -8,7 +8,7 @@ describe('natural voices', () => {
 
   it('synthesizes once per text and voice, then serves the device cache, counting characters', async () => {
     natural.key = 'test-key'
-    const fetchMock = vi.fn(async (url: string) => {
+    const fetchMock = vi.fn(async (url: string, _init?: RequestInit) => {
       if (url.includes('/voices')) return new Response(JSON.stringify({ voices: [{ name: 'fr-FR-Neural2-A', languageCodes: ['fr-FR'] }, { name: 'fr-FR-Standard-A', languageCodes: ['fr-FR'] }] }))
       return new Response(JSON.stringify({ audioContent: btoa('mp3-bytes') }))
     })
