@@ -9,6 +9,7 @@ import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { SyncSettings } from './SyncSettings'
 import { OfflinePack } from './OfflinePack'
+import { IosShortcut } from './IosShortcut'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
@@ -390,6 +391,8 @@ export function SettingsScreen({
         </div>
         <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
       </section>
+
+      <IosShortcut />
 
       <section className="card stack desktop-only">
         <h2 className="section-title">Web'den kelime ekle</h2>

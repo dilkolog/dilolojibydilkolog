@@ -14,6 +14,8 @@ export function readIncoming(): IncomingWord | null {
   if (shared) return shared
   const word = p.get('add')?.trim()
   if (!word) return null
+  // A whole selection sent from an iPhone shortcut: a sentence to pick the word from.
+  if (word.split(/\s+/).length > 4 && !p.get('context')) return { word: '', context: word.slice(0, 400), lang: undefined, src: p.get('src') ?? undefined }
   const lang = p.get('lang') as TargetLanguage | null
   return {
     word,
