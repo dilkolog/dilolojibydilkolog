@@ -26,6 +26,11 @@ export interface Stored {
 
 export const getStored = () => chrome.storage.local.get(null) as Promise<Stored>
 
+/** Opens the app, which keeps the sentence as a sentence card. */
+export function sentenceUrl(sentence: string, focus: string, lang: string, src: string): string {
+  return `${APP_URL}/?${new URLSearchParams({ sentence: sentence.slice(0, 500), focus, lang, src })}`
+}
+
 export function addUrl(word: string, context: string, lang: string | null, src: string): string {
   const q = new URLSearchParams({ add: word, context: context.slice(0, 400), src })
   if (lang) q.set('lang', lang)

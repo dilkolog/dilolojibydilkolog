@@ -2,7 +2,7 @@ import { STOP, cleanToken } from '../../src/engine/extract'
 import { readingKey } from '../../src/engine/reading'
 import { TARGET_LANGUAGES, type TargetLanguage } from '../../src/engine/types'
 import type { ExtLanguageData, ExtListWord } from '../../src/ui/extensionProtocol'
-import { addUrl, DEFAULTS, getStored, type ExtSettings, type Stored } from './shared'
+import { addUrl, DEFAULTS, getStored, sentenceUrl, type ExtSettings, type Stored } from './shared'
 
 /**
  * On any page in English, French or Spanish: colours words by what you know (LingQ / Language
@@ -303,6 +303,14 @@ function openWord(span: HTMLElement) {
       const ignore = el('button', '', 'Yok say')
       ignore.onclick = () => (void queueMark('pendingIgnored', lang, key), closeBubble())
       row.append(add, knew, ignore)
+    }
+    if (sentence) {
+      const keep = el('a', '', '💬 Cümle')
+      keep.title = 'Cümleyi Kelime Koçu\'na kaydet'
+      keep.setAttribute('href', sentenceUrl(sentence, cleanToken(word, lang), lang, location.href))
+      keep.setAttribute('target', '_blank')
+      keep.onclick = () => closeBubble()
+      row.append(keep)
     }
     const dict = el('a', '', 'Çeviri')
     dict.setAttribute('href', `https://translate.google.com/?sl=${lang}&tl=tr&text=${encodeURIComponent(sentence || word)}`)

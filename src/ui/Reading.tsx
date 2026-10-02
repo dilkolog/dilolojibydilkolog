@@ -3,6 +3,7 @@ import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
 import { KeyWordsCard } from './KeyWords'
+import { saveSentence } from './Sentences'
 import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadStatus, type ReadToken } from '../engine/reading'
 import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
@@ -73,6 +74,7 @@ export function ReadingScreen({
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
   const [bookError, setBookError] = useState('')
+  const [toast, setToast] = useState('')
 
   useEffect(() => {
     Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
@@ -179,6 +181,13 @@ export function ReadingScreen({
 
   /** The next chapter of the current book, if any. */
   const nextChapter = current?.book ? (library ?? []).find((t) => t.book?.id === current.book!.id && t.book.index === current.book!.index + 1) : undefined
+
+  /** Keeps the whole sentence as a sentence card, with the word it was saved for. */
+  const keepSentence = async (sentence: string, focus: string) => {
+    const ok = await saveSentence({ language, text: sentence, focus, source: current?.title })
+    setToast(ok ? '💬 Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı')
+    window.setTimeout(() => setToast(''), 3000)
+  }
 
   const remove = async (item: ReadingText) => {
     await db.deleteText(item.id)
@@ -425,6 +434,11 @@ export function ReadingScreen({
         </p>
       </section>
 
+      {toast && (
+        <p className="toast" role="status">
+          {toast}
+        </p>
+      )}
       {!message && (
         <KeyWordsCard
           key={current?.id}
@@ -478,7 +492,12 @@ export function ReadingScreen({
           </div>
           {selectedEntry && <p className="gloss">{selectedEntry.senses[0].gloss}</p>}
           <p className="small muted">{STATUS_TEXT[selected.token.status!]}</p>
-          <p className="small sentence-sm">{selected.sentence}</p>
+          <p className="small sentence-sm">
+            {selected.sentence}{' '}
+            <button className="link small" onClick={() => keepSentence(selected.sentence, cleanToken(selected.token.text, language))}>
+              💬 Cümleyi kaydet
+            </button>
+          </p>
           <p className="small muted kbd">
             <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
           </p>
@@ -551,9 +570,14 @@ export function ReadingScreen({
                 <span className="sentence-sm" lang={language}>
                   {highlight(x.sentence, x.word)}
                 </span>
-                <button className="btn btn-quiet" onClick={() => setAdding({ word: x.word.toLocaleLowerCase(language), sentence: x.sentence })}>
-                  Ekle
-                </button>
+                <span className="row" style={{ gap: '0.375rem', flexWrap: 'nowrap' }}>
+                  <button className="btn btn-quiet" onClick={() => setAdding({ word: x.word.toLocaleLowerCase(language), sentence: x.sentence })}>
+                    Ekle
+                  </button>
+                  <button className="btn btn-quiet" onClick={() => keepSentence(x.sentence, x.word)} aria-label="Cümleyi kaydet" title="Cümleyi kaydet">
+                    💬
+                  </button>
+                </span>
               </li>
             ))}
           </ul>

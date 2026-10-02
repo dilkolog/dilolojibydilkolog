@@ -45,6 +45,7 @@ import { HabitCards } from './ui/Habits'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
+import { saveSentence } from './ui/Sentences'
 import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
@@ -69,7 +70,7 @@ type Screen =
   | { name: 'vocabtest' }
   | { name: 'produce' }
   | { name: 'exam' }
-  | { name: 'games' }
+  | { name: 'games'; game?: 'sentences' }
   | { name: 'profile' }
   | { name: 'settings' }
 
@@ -258,6 +259,21 @@ export default function App() {
     await db.saveSettings(s)
     setSettings(s)
   }
+
+  // A sentence sent from the browser extension (?sentence=…): kept as a sentence card.
+  const ready = settings !== undefined && settings !== null
+  useEffect(() => {
+    const p = new URLSearchParams(location.search)
+    const text = p.get('sentence')?.trim()
+    if (!text || !settings) return
+    history.replaceState(null, '', location.pathname)
+    const lang = (TARGET_LANGUAGES as readonly string[]).includes(p.get('lang') ?? '') ? (p.get('lang') as TargetLanguage) : settings.activeLanguage
+    void saveSentence({ language: lang, text, focus: p.get('focus') ?? undefined, source: p.get('src') ?? undefined }).then(() => {
+      if (lang !== settings.activeLanguage) void updateSettings({ ...settings, activeLanguage: lang })
+      setScreen({ name: 'games', game: 'sentences' })
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready])
 
   // Bookmarklet: switch to the page's language and open the add-word form prefilled.
   useEffect(() => {
@@ -630,7 +646,7 @@ export default function App() {
                 }
               />
             ) : screen.name === 'games' ? (
-              <GamesScreen language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
+              <GamesScreen key={screen.game} initialGame={screen.game} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} />
             ) : screen.name === 'settings' ? (

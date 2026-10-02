@@ -6,6 +6,7 @@ import type { BossWin } from '../engine/bosses'
 import type { ExamResult } from '../engine/exam'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
+import type { SentenceCard } from '../engine/sentences'
 import {
   TARGET_LANGUAGES,
   type CefrLevel,
@@ -324,6 +325,23 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'bossWins', value: [...(await this.getBossWins()), win] })
   }
 
+  /** Sentence cards; card dates come back as Dates even after a JSON round trip (backup, sync). */
+  async getSentences(): Promise<SentenceCard[]> {
+    const all = ((await this.meta.get('sentences'))?.value as SentenceCard[]) ?? []
+    return all.map((s) => ({ ...s, card: { ...s.card, due: new Date(s.card.due), last_review: s.card.last_review ? new Date(s.card.last_review) : undefined } }))
+  }
+
+  async saveSentence(sentence: SentenceCard) {
+    const all = await this.getSentences()
+    await this.meta.put({ key: 'sentences', value: [sentence, ...all.filter((s) => s.id !== sentence.id)] })
+  }
+
+  async deleteSentence(id: string) {
+    await this.meta.put({ key: 'sentences', value: (await this.getSentences()).filter((s) => s.id !== id) })
+    // Remembered, so another device's copy doesn't bring it back on sync.
+    await this.addDeleted([id])
+  }
+
   async getMissions(): Promise<MissionResult[]> {
     return ((await this.meta.get('missions'))?.value as MissionResult[]) ?? []
   }
@@ -552,6 +570,7 @@ export interface Backup {
   journal?: JournalEntry[]
   bossWins?: BossWin[]
   missions?: MissionResult[]
+  sentences?: SentenceCard[]
   exams?: ExamResult[]
   /** Ids of deleted words (sync tombstones). */
   deleted?: string[]
@@ -594,6 +613,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
     bossWins: await db.getBossWins(),
     missions: await db.getMissions(),
+    sentences: await db.getSentences(),
     exams: await db.getExams(),
     deleted: await db.getDeleted(),
     media: await Promise.all(
@@ -654,6 +674,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })
     if (backup.bossWins) await db.meta.put({ key: 'bossWins', value: backup.bossWins })
     if (backup.missions) await db.meta.put({ key: 'missions', value: backup.missions })
+    if (backup.sentences) await db.meta.put({ key: 'sentences', value: backup.sentences })
     if (backup.exams) await db.meta.put({ key: 'exams', value: backup.exams })
     if (backup.deleted) await db.meta.put({ key: 'deleted', value: backup.deleted })
   })

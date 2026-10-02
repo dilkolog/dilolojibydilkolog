@@ -15,10 +15,12 @@ import { SAMPLE_WORDS } from '../data/seed'
 import { FlameIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from './labels'
 import { prefs } from './prefs'
+import { SentencesGame } from './Sentences'
+import { dueSentences } from '../engine/sentences'
 import { sfx } from './sounds'
 import { canSpeak, playWord, playWordAsync, preloadRecording, speak, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from './speech'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | null
 
 interface Props {
   language: TargetLanguage
@@ -45,8 +47,12 @@ const FLUENCY_MIN_ACCURACY = 0.85
 
 const fmt = (ms: number) => `${(ms / 1000).toFixed(1).replace('.', ',')} sn`
 
-export function GamesScreen(p: Props) {
-  const [game, setGame] = useState<Game>(null)
+export function GamesScreen(p: Props & { initialGame?: Game }) {
+  const [game, setGame] = useState<Game>(p.initialGame ?? null)
+  const [dueSentenceCount, setDueSentenceCount] = useState(0)
+  useEffect(() => {
+    void db.getSentences().then((all) => setDueSentenceCount(dueSentences(all, p.language, new Date()).length))
+  }, [p.language, game])
   const [records, setRecords] = useState<Record<string, number>>({})
   useEffect(() => {
     db.getRecords().then(setRecords)
@@ -64,6 +70,7 @@ export function GamesScreen(p: Props) {
   if (game === 'boss') return <BossArena {...p} onExit={() => setGame(null)} />
   if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
   if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
+  if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
   if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'fluency')
     return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
@@ -82,6 +89,12 @@ export function GamesScreen(p: Props) {
           <strong>Eşleştirme</strong>
           <span className="small muted">6 kelimeyi anlamlarıyla en kısa sürede eşleştir. Yanlış eşleşme +1 saniye.</span>
           <span className="game-record">{records[matchKey] ? `Rekorun: ${fmt(records[matchKey])}` : 'Henüz rekor yok'}</span>
+        </button>
+        <button className="game-card" onClick={() => setGame('sentences')}>
+          <span className="game-emoji">💬</span>
+          <strong>Cümle kartları</strong>
+          <span className="small muted">Okurken kaydettiğin cümleler: boşluk doldurma, dikte ve çeviriyle bütün olarak tekrar. Bu bölüm takvimlidir.</span>
+          <span className="game-record">{dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet'}</span>
         </button>
         <button className="game-card" disabled={p.states.length === 0} onClick={() => setGame('swipe')}>
           <span className="game-emoji">👆</span>
