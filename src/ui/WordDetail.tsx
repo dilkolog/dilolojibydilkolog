@@ -11,7 +11,8 @@ import { unlockedSkills } from '../engine/selection'
 import { SKILLS, type Mistake, type UserWordState, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { wordKeys } from '../data/wordInput'
-import { ERROR_NAME, POS_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import { ERROR_NAME, genderRuleText, POS_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import { ruleFor } from '../engine/genderRules'
 import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
@@ -105,6 +106,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </div>
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
         <CrossLanguageNotes entry={entry} />
+        {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
         {fragile && (
           <p className="small fragile-note">🐢 Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
         )}

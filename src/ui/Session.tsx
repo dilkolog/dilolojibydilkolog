@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { falseFriendsOf, type IntrusionSources } from '../engine/crossLanguage'
+import { ruleFor } from '../engine/genderRules'
 import type { PlanItem } from '../engine/dailyPlan'
 import {
   BLANK,
@@ -35,7 +36,7 @@ import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample, WordInputError } from '../data/wordInput'
 import { loadFrequency } from '../data/frequency'
-import { ERROR_HINT, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT, STAGE_NAME } from './labels'
+import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, POS_NAME, PROMPT_TEXT, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
@@ -1072,6 +1073,7 @@ function Feedback({
             <p className="small">Emin değildin; bu yüzden kelime biraz daha erken tekrar gelecek.</p>
           )}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
+          {ev.errorType === 'gender' && ruleFor(entry) && <p className="small">{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
           {ev.intrusion && (
             <p className="small intrusion-note">
               “{ev.intrusion.word}” {LANGUAGE_NAME[ev.intrusion.language]} bir kelime

@@ -422,7 +422,7 @@ export default function App() {
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
               />
             ) : screen.name === 'games' ? (
-              <GamesScreen language={data.language} vocabulary={data.vocabulary} states={data.states} onChanged={reload} />
+              <GamesScreen language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} />
             ) : screen.name === 'settings' ? (
