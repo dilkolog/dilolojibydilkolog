@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { cleanToken } from '../engine/extract'
+import { growthStage } from '../engine/growth'
+import { KnownWordsCard } from './KnownWords'
 import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadStatus, type ReadToken } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
@@ -25,7 +27,7 @@ const STATUS_TEXT: Record<ReadStatus, string> = {
   learning: 'Listende, öğreniyorsun.',
   new: 'Listende, henüz çalışmadın.',
   unseen: 'Bu kelimeyi daha önce işaretlemedin.',
-  name: 'Özel isim gibi görünüyor; hesaba katılmıyor.',
+  name: 'Özel isim ya da yok saydığın bir kelime; hesaba katılmıyor.',
 }
 
 interface Selected {
@@ -60,6 +62,7 @@ export function ReadingScreen({
   // Coverage when this reading started: saved with the text on finishing, to show progress.
   const startCoverage = useRef<number | null>(null)
   const [known, setKnown] = useState<Set<string>>(new Set())
+  const [ignored, setIgnored] = useState<Set<string>>(new Set())
   // Words the reader left open on purpose: they don't become known when the text is finished.
   const [skipped, setSkipped] = useState<Set<string>>(new Set())
   const [selected, setSelected] = useState<Selected | null>(null)
@@ -68,14 +71,35 @@ export function ReadingScreen({
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language)]).then(([lib, id, k]) => {
+    Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
       setLibrary(lib)
       setCurrent(lib.find((t) => t.id === id) ?? null)
       setKnown(k)
+      setIgnored(ig)
     })
   }, [db, language])
 
-  const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known) : null), [text, language, vocabulary, states, known])
+  const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
+  /** List words shaded by how far along they are (LingQ's 1–4): new words strongest, nearly learned faint. */
+  const shade = useMemo(() => {
+    const byEntry = new Map(states.map((s) => [s.entryId, growthStage(s)]))
+    return (entryId: string | undefined) => {
+      const stage = entryId ? (byEntry.get(entryId) ?? -1) : -1
+      return stage <= 1 ? 'lv-a' : stage <= 3 ? 'lv-b' : 'lv-c'
+    }
+  }, [states])
+  /** Words still open in the text, in reading order, for "next word" (one per key). */
+  const openTokens = useMemo(() => {
+    const out: Selected[] = []
+    const seen = new Set<string>()
+    for (const p of analysis?.paragraphs ?? []) for (const s of p) for (const t of s.tokens) {
+      if (t.key && t.status === 'unseen' && !seen.has(t.key)) {
+        seen.add(t.key)
+        out.push({ token: t, sentence: s.text })
+      }
+    }
+    return out
+  }, [analysis])
   const existing = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
 
@@ -116,11 +140,62 @@ export function ReadingScreen({
     setLibrary((lib) => (lib ?? []).filter((t) => t.id !== item.id))
   }
 
+  /** After deciding about a word, move on to the next open one, as in LingQ. */
+  const advance = (fromKey: string, step = 1) => {
+    const keys = openTokens.map((x) => x.token.key)
+    const i = keys.indexOf(fromKey)
+    const pool = openTokens.filter((x) => x.token.key !== fromKey && !skipped.has(x.token.key!))
+    if (!pool.length) return setSelected(null)
+    const next = step > 0 ? (openTokens.slice(i + 1).find((x) => pool.includes(x)) ?? pool[0]) : ([...openTokens.slice(0, Math.max(0, i))].reverse().find((x) => pool.includes(x)) ?? pool.at(-1)!)
+    setSelected(next)
+    document.querySelector(`[data-key="${CSS.escape(next.token.key!)}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  }
+
   const markKnown = async (key: string) => {
     await db.addKnownWords(language, [key])
     setKnown((k) => new Set(k).add(key))
-    setSelected(null)
+    advance(key)
   }
+
+  const toggleIgnored = async (key: string, on: boolean) => {
+    await db.setIgnored(language, key, on)
+    setIgnored((s) => {
+      const next = new Set(s)
+      if (on) next.add(key)
+      else next.delete(key)
+      return next
+    })
+    if (on) advance(key)
+    else setSelected(null)
+  }
+
+  const skip = (key: string) => {
+    setSkipped((s) => new Set(s).add(key))
+    advance(key)
+  }
+
+  // Keys while a word is open: B biliyorum, E ekle, Y yok say, G geç, ←/→ previous/next word.
+  useEffect(() => {
+    if (!selected?.token.key || adding) return
+    const key = selected.token.key
+    const onKey = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.metaKey || e.ctrlKey || e.altKey) return
+      const listed = !!selected.token.entryId
+      const k = e.key.toLocaleLowerCase('tr')
+      if (k === 'escape') setSelected(null)
+      else if (k === 'arrowright') advance(key)
+      else if (k === 'arrowleft') advance(key, -1)
+      else if (listed) return
+      else if (k === 'b' && selected.token.status !== 'known') void markKnown(key)
+      else if (k === 'e') setAdding({ word: cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })
+      else if (k === 'y') void toggleIgnored(key, !ignored.has(key))
+      else if (k === 'g' && selected.token.status === 'unseen') skip(key)
+      else return
+      e.preventDefault()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
   const markUnknown = async (key: string) => {
     await db.removeKnownWord(language, key)
@@ -166,6 +241,7 @@ export function ReadingScreen({
           {LANGUAGE_NAME[language]} bir metin yapıştır ya da bir alt yazı dosyası yükle: bir haber, blog yazısı, kitaptan bir sayfa ya da izlediğin dizinin
           alt yazısı. Ne kadarını bildiğini gösteririm; bilmediğin kelimeleri işaretler, listene eklersin.
         </p>
+        <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
         <textarea className="textarea" style={{ minHeight: '14rem' }} lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
         <div className="row">
@@ -289,7 +365,8 @@ export function ReadingScreen({
                       key={k}
                       role="button"
                       tabIndex={t.status === 'known' || t.status === 'name' ? -1 : 0}
-                      className={`rw rw-${t.status}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}`}
+                      data-key={t.key}
+                      className={`rw rw-${t.status}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}`}
                       onClick={() => setSelected({ token: t, sentence: s.text })}
                       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelected({ token: t, sentence: s.text }))}
                     >
@@ -318,6 +395,9 @@ export function ReadingScreen({
           {selectedEntry && <p className="gloss">{selectedEntry.senses[0].gloss}</p>}
           <p className="small muted">{STATUS_TEXT[selected.token.status!]}</p>
           <p className="small sentence-sm">{selected.sentence}</p>
+          <p className="small muted kbd">
+            <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
+          </p>
           <div className="row">
             {selectedEntry ? (
               <button className="btn btn-quiet" onClick={() => onOpen(selectedEntry.id)}>
@@ -326,20 +406,27 @@ export function ReadingScreen({
             ) : (
               <>
                 <button className="btn" onClick={() => setAdding({ word: cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })}>
-                  Listeye ekle
+                  Listeye ekle <kbd className="kbd-key">E</kbd>
                 </button>
-                {selected.token.status === 'known' ? (
+                {ignored.has(selected.token.key) ? (
+                  <button className="btn btn-quiet" onClick={() => toggleIgnored(selected.token.key!, false)}>
+                    Yok saymayı kaldır
+                  </button>
+                ) : selected.token.status === 'known' ? (
                   <button className="btn btn-quiet" onClick={() => markUnknown(selected.token.key!)}>
                     Aslında bilmiyorum
                   </button>
                 ) : (
                   <>
                     <button className="btn btn-quiet" onClick={() => markKnown(selected.token.key!)}>
-                      Biliyorum
+                      Biliyorum <kbd className="kbd-key">B</kbd>
                     </button>
-                    {!skipped.has(selected.token.key) && (
-                      <button className="link small" onClick={() => (setSkipped((s) => new Set(s).add(selected.token.key!)), setSelected(null))}>
-                        Bilmiyorum, eklemeden geç
+                    <button className="btn btn-quiet" onClick={() => toggleIgnored(selected.token.key!, true)} title="Özel isim, yabancı kelime ya da yazım hatası: hesaba katılmaz">
+                      Yok say <kbd className="kbd-key">Y</kbd>
+                    </button>
+                    {!skipped.has(selected.token.key) && selected.token.status === 'unseen' && (
+                      <button className="link small" onClick={() => skip(selected.token.key!)}>
+                        Bilmiyorum, eklemeden geç <kbd className="kbd-key">G</kbd>
                       </button>
                     )}
                   </>

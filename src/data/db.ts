@@ -259,6 +259,18 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: `known:${language}`, value: [...all] })
   }
 
+  /** Words the reader chose to ignore (names, foreign words, noise): neither known nor new. */
+  async getIgnored(language: TargetLanguage): Promise<Set<string>> {
+    return new Set(((await this.meta.get(`ignored:${language}`))?.value as string[]) ?? [])
+  }
+
+  async setIgnored(language: TargetLanguage, key: string, on: boolean) {
+    const all = await this.getIgnored(language)
+    if (on) all.add(key)
+    else all.delete(key)
+    await this.meta.put({ key: `ignored:${language}`, value: [...all] })
+  }
+
   async removeKnownWord(language: TargetLanguage, key: string) {
     const all = await this.getKnownWords(language)
     all.delete(key)
@@ -506,7 +518,7 @@ export interface Backup {
   media?: { id: string; kind: MediaRow['kind']; dataUrl: string; createdAt: string }[]
   stories?: StoryEpisode[]
   /** Known-word sets and reading encounters (backup version 3+). */
-  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; library?: ReadingText[] }
+  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; library?: ReadingText[]; ignored?: Partial<Record<TargetLanguage, string[]>> }
   vocabTests?: VocabTestRecord[]
   journal?: JournalEntry[]
   bossWins?: BossWin[]
@@ -546,6 +558,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
       known: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getKnownWords(l))]]))),
       encounters: await db.getEncounters(),
       library: ((await db.meta.get('library'))?.value as ReadingText[]) ?? [],
+      ignored: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getIgnored(l))]]))),
     },
     vocabTests: await db.getVocabTests(),
     journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
@@ -604,6 +617,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
       for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
       await db.meta.put({ key: 'encounters', value: backup.reading.encounters })
       if (backup.reading.library) await db.meta.put({ key: 'library', value: backup.reading.library })
+      for (const [l, keys] of Object.entries(backup.reading.ignored ?? {})) await db.meta.put({ key: `ignored:${l}`, value: keys })
     }
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
     if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })

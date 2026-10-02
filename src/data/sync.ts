@@ -89,6 +89,8 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   const alive = <T extends { entryId: string }>(xs: T[]) => xs.filter((x) => !deleted.has(x.entryId))
   const known: NonNullable<Backup['reading']>['known'] = {}
   for (const r of [older.reading, newer.reading]) for (const [l, keys] of Object.entries(r?.known ?? {})) known[l as keyof typeof known] = [...new Set([...(known[l as keyof typeof known] ?? []), ...(keys ?? [])])]
+  const ignored: NonNullable<NonNullable<Backup['reading']>['ignored']> = {}
+  for (const r of [older.reading, newer.reading]) for (const [l, keys] of Object.entries(r?.ignored ?? {})) ignored[l as keyof typeof ignored] = [...new Set([...(ignored[l as keyof typeof ignored] ?? []), ...(keys ?? [])])]
   const encounters: Record<string, number> = { ...(older.reading?.encounters ?? {}) }
   for (const [id, n] of Object.entries(newer.reading?.encounters ?? {})) encounters[id] = Math.max(encounters[id] ?? 0, n)
 
@@ -106,6 +108,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     stories: unionBy(older.stories, newer.stories, (s) => s.id, (x, y) => (y.completedAt || !x.completedAt ? y : x)),
     reading: {
       known,
+      ignored,
       encounters,
       library: unionBy(older.reading?.library, newer.reading?.library, (t) => t.id, (x, y) => (y.history.length >= x.history.length ? y : x)),
     },

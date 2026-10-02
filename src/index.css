@@ -1259,6 +1259,11 @@ kbd {
 .rw:hover, .rw:focus-visible { background: var(--surface-2); outline: none; }
 .rw-unseen { background: var(--lang-soft); color: var(--lang-text); }
 .rw-learning, .rw-new { background: var(--near-soft); color: var(--near-text); }
+/* List words by how far along they are: new strongest, nearly learned faint (LingQ's 1–4). */
+.rw.lv-a { background: color-mix(in srgb, var(--near) 32%, transparent); }
+.rw.lv-b { background: color-mix(in srgb, var(--near) 18%, transparent); }
+.rw.lv-c { background: transparent; color: inherit; text-decoration: underline dotted var(--near); text-underline-offset: 4px; }
+.kbd-key { margin-left: 0.375rem; font-size: 0.6875rem; opacity: 0.7; }
 .rw-skipped { text-decoration: underline wavy var(--lang); text-underline-offset: 4px; }
 .rw.is-selected { box-shadow: 0 0 0 2px var(--lang); }
 .word-pop { position: sticky; bottom: 1rem; z-index: 5; box-shadow: var(--shadow-lg, var(--shadow)); }
@@ -1482,7 +1487,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 
 /* Touch screens: no keyboard hints or desktop-only tools, bigger small targets. */
 @media (hover: none) and (pointer: coarse) {
-  .kbd, .desktop-only, .palette-foot { display: none !important; }
+  .kbd, .kbd-key, .desktop-only, .palette-foot { display: none !important; }
   .btn-sm { min-height: 2.5rem; }
   .accent-key { min-width: 2.75rem; height: 2.75rem; }
   .link.small, button.link { padding-block: 0.25rem; }
@@ -1506,3 +1511,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .week-day.w-05 { border-style: dashed; border-color: var(--near); background: var(--near-soft); }
 .week-day.w-0 { border-color: transparent; background: var(--bg); color: var(--ink-soft); }
 .week-day.w-0 strong { text-decoration: line-through; }
+
+/* Known words */
+.known-number { font-size: var(--t-xl); letter-spacing: -0.02em; }
+.known-growth { color: var(--ok-text); font-weight: 700; }
+.known-bar { height: 0.625rem; border-radius: 999px; background: var(--surface-2, var(--bg)); overflow: hidden; }
+.known-bar span { display: block; height: 100%; border-radius: inherit; background: var(--lang); transition: width 0.4s ease; }

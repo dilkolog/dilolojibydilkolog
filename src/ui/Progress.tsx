@@ -8,6 +8,7 @@ import { calibration, recallCalibration, errorBreakdown, hardWords, reviewForeca
 import { useGame } from './game'
 import type { KelimeDB, VocabTestRecord } from '../data/db'
 import { EXAM_INTERVAL_DAYS, type ExamResult } from '../engine/exam'
+import { KnownWordsCard } from './KnownWords'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
@@ -69,6 +70,7 @@ export function ProgressScreen({
     <div>
       <section className="section stack">
         <h1 className="greeting">İlerleme</h1>
+        <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <div className="hero-stat card">
           <span className="hero-number">{stats.activeVocabulary}</span>
           <span>

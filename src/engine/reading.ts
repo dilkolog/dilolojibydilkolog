@@ -53,6 +53,8 @@ export function analyzeText(
   vocabulary: readonly VocabularyEntry[],
   states: readonly UserWordState[],
   known: ReadonlySet<string>,
+  /** Words the reader chose to ignore: counted like names, outside the coverage. */
+  ignored: ReadonlySet<string> = new Set(),
 ): ReadingAnalysis {
   const stateById = new Map(states.map((s) => [s.entryId, s]))
   const byKey = new Map<string, VocabularyEntry>()
@@ -91,7 +93,8 @@ export function analyzeText(
               entryId = entry.id
               const st = stateById.get(entry.id)
               status = st?.skills.recognition?.state === State.Review ? 'known' : st ? 'learning' : 'new'
-            } else if (STOP[language].has(lower) || known.has(key) || lower.length < 2) status = 'known'
+            } else if (ignored.has(key)) status = 'name'
+            else if (STOP[language].has(lower) || known.has(key) || lower.length < 2) status = 'known'
             else if (/^\p{Lu}/u.test(clean) && !first && !lowerSeen.has(key)) status = 'name'
             else status = 'unseen'
             counts[status]++
