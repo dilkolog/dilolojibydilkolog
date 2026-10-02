@@ -17,6 +17,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.
         globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*'],
+        // Server push reminders (public/push-sw.js).
+        importScripts: ['push-sw.js'],
       },
       manifest: {
         name: 'Kelime Koçu',

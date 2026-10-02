@@ -8,6 +8,7 @@ import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { SyncSettings } from './SyncSettings'
+import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
@@ -69,14 +70,55 @@ function Row({ label, help, children }: { label: string; help?: string; children
   )
 }
 
+/** Reminders while the app is closed, sent by the server (see pushReminders.ts). */
+function PushToggle({ state }: { state: PushState }) {
+  const [on, setOn] = useState<boolean | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  useEffect(() => {
+    void pushSubscription().then((s) => setOn(!!s))
+  }, [])
+  if (on === null) return null
+  return (
+    <>
+      <Toggle
+        label="Uygulama kapalıyken de hatırlat"
+        help={
+          pushSupported()
+            ? 'O gün hiç çalışmadıysan her akşam 20:00 civarı telefonuna ya da bilgisayarına bildirim gelir. Eşitleme açıksa başka cihazda çalışman da sayılır.'
+            : "Bu tarayıcı desteklemiyor. iPhone'da Paylaş → Ana Ekrana Ekle ile yükleyip oradan açınca kullanılabilir."
+        }
+        checked={on}
+        onChange={async (v) => {
+          if (busy) return
+          setBusy(true)
+          setError(null)
+          try {
+            if (v) await enablePush(state)
+            else await disablePush()
+            setOn(v)
+          } catch (e) {
+            setError(e instanceof Error ? e.message : 'Açılamadı.')
+          } finally {
+            setBusy(false)
+          }
+        }}
+      />
+      {error && <p className="error small">{error}</p>}
+    </>
+  )
+}
+
 export function SettingsScreen({
   settings,
   onChange,
   onDataChanged,
+  pushState,
 }: {
   settings: Settings
   onChange: (s: Settings) => void
   onDataChanged: () => void
+  pushState: PushState
 }) {
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value })
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
@@ -291,6 +333,7 @@ export function SettingsScreen({
             </button>
           </p>
         )}
+        <PushToggle state={pushState} />
         <div className="row">
           <button className="btn btn-quiet" onClick={calendar}>
             Takvime ekle (.ics)

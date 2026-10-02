@@ -37,6 +37,7 @@ import { ProduceScreen } from './ui/Produce'
 import { VocabTestScreen } from './ui/VocabTest'
 import { ExamScreen } from './ui/Exam'
 import { useReminder } from './ui/reminders'
+import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
@@ -212,6 +213,12 @@ export default function App() {
 
   const answeredTodayAll = data ? answeredToday(data.recentEvents, new Date()) : 0
   useReminder(settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan)
+  const pushState = useMemo(() => ({ studiedToday: answeredTodayAll > 0, streak: game?.streak ?? 0, plan: settings?.studyPlan ?? '' }), [answeredTodayAll, game?.streak, settings?.studyPlan])
+  // Keeps the server's evening reminder from firing on days already studied.
+  const loaded = !!data && !!game
+  useEffect(() => {
+    if (loaded) void reportPushState(pushState)
+  }, [loaded, pushState])
 
   const updateSettings = async (s: Settings) => {
     await db.saveSettings(s)
@@ -507,6 +514,7 @@ export default function App() {
               <SettingsScreen
                 settings={settings}
                 onChange={updateSettings}
+                pushState={pushState}
                 onDataChanged={async () => {
                   const s = await db.getSettings()
                   setSettings(s ?? null)
