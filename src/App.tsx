@@ -39,6 +39,7 @@ import { ExamScreen } from './ui/Exam'
 import { useReminder } from './ui/reminders'
 import { HabitCards } from './ui/Habits'
 import { natural } from './ui/naturalVoice'
+import { onSynced, runSync } from './ui/syncRunner'
 import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
@@ -195,6 +196,15 @@ export default function App() {
     reload()
   }, [reload])
 
+  // Pull what other devices did on start, then keep in step after every session.
+  useEffect(() => {
+    void runSync()
+    return onSynced(async () => {
+      setSettings((await db.getSettings()) ?? null)
+      reload()
+    })
+  }, [reload])
+
   // Each screen starts at the top, like a page navigation.
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -257,6 +267,7 @@ export default function App() {
   const finishSession = useCallback(
     (summary: SessionSummary) => {
       reload()
+      void runSync()
       setScreen((s) => ({
         name: 'summary',
         summary,

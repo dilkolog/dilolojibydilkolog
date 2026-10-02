@@ -443,9 +443,19 @@ export class KelimeDB extends Dexie {
     })
   }
 
+  /** Ids of deleted words, so a sync doesn't bring them back from another device. */
+  async getDeleted(): Promise<string[]> {
+    return ((await this.meta.get('deleted'))?.value as string[]) ?? []
+  }
+
+  async addDeleted(ids: readonly string[]) {
+    await this.meta.put({ key: 'deleted', value: [...new Set([...(await this.getDeleted()), ...ids])] })
+  }
+
   /** Deletes many words in one transaction: either all of them go, or none. */
   deleteWords(ids: readonly string[]) {
-    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media], async () => {
+    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media, this.meta], async () => {
+      await this.addDeleted(ids)
       const entries = await this.vocabulary.bulkGet([...ids])
       const media = entries.flatMap((e) => [e?.imageId, e?.audioId]).filter((m): m is string => !!m)
       await this.media.bulkDelete(media)
@@ -458,7 +468,8 @@ export class KelimeDB extends Dexie {
 
   /** Deleting a word also deletes what was learned about it, and its picture/recording. */
   deleteWord(id: string) {
-    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media], async () => {
+    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media, this.meta], async () => {
+      await this.addDeleted([id])
       const entry = await this.vocabulary.get(id)
       const media = [entry?.imageId, entry?.audioId].filter((m): m is string => !!m)
       if (media.length) await this.media.bulkDelete(media)
@@ -494,6 +505,8 @@ export interface Backup {
   journal?: JournalEntry[]
   bossWins?: BossWin[]
   exams?: ExamResult[]
+  /** Ids of deleted words (sync tombstones). */
+  deleted?: string[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -511,7 +524,8 @@ async function dataUrlToBlob(url: string): Promise<Blob> {
   return new Blob([bytes], { type: mime })
 }
 
-export async function exportBackup(db: KelimeDB, now = new Date()): Promise<string> {
+/** `media: false` leaves pictures and recordings out (sync sends them separately). */
+export async function exportBackup(db: KelimeDB, now = new Date(), { media: withMedia = true }: { media?: boolean } = {}): Promise<string> {
   const backup: Backup = {
     app: 'kelime-koc',
     version: BACKUP_VERSION,
@@ -531,9 +545,10 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
     bossWins: await db.getBossWins(),
     exams: await db.getExams(),
+    deleted: await db.getDeleted(),
     media: await Promise.all(
       // Cached natural-voice audio ("tts:") can be re-created, so it stays out of backups.
-      (await db.media.toArray()).filter((m) => !m.id.startsWith('tts:')).map(async (m) => ({
+      (withMedia ? await db.media.toArray() : []).filter((m) => !m.id.startsWith('tts:')).map(async (m) => ({
         id: m.id,
         kind: m.kind,
         dataUrl: await blobToDataUrl(mediaBlob(m)),
@@ -561,7 +576,8 @@ export function parseBackup(json: string): Backup {
 }
 
 /** Replaces everything on this device with the backup. */
-export async function restoreBackup(db: KelimeDB, backup: Backup) {
+/** `keepMedia`: leave this device's pictures and recordings as they are (sync merges them apart). */
+export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = false }: { keepMedia?: boolean } = {}) {
   // Decode media before the transaction: IndexedDB transactions close on unrelated awaits.
   const media = await Promise.all(
     (backup.media ?? []).map(async (m) => {
@@ -570,8 +586,8 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
     }),
   )
   await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media, db.stories], async () => {
-    await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.media.clear(), db.stories.clear()])
-    await db.media.bulkPut(media)
+    await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.stories.clear(), keepMedia ? undefined : db.media.clear()])
+    if (!keepMedia) await db.media.bulkPut(media)
     await db.stories.bulkPut(backup.stories ?? [])
     await db.vocabulary.bulkPut(backup.vocabulary)
     await db.wordStates.bulkPut(backup.wordStates)
@@ -587,5 +603,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
     if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })
     if (backup.bossWins) await db.meta.put({ key: 'bossWins', value: backup.bossWins })
     if (backup.exams) await db.meta.put({ key: 'exams', value: backup.exams })
+    if (backup.deleted) await db.meta.put({ key: 'deleted', value: backup.deleted })
   })
 }

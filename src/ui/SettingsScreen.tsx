@@ -7,6 +7,7 @@ import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
+import { SyncSettings } from './SyncSettings'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
@@ -317,6 +318,8 @@ export function SettingsScreen({
       </section>
 
       <AiSettings settings={settings} onChange={onChange} />
+
+      <SyncSettings />
 
       <section className="card stack">
         <h2 className="section-title">Yedek</h2>

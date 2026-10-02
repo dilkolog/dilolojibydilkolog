@@ -1407,3 +1407,5 @@ kbd {
 .garden-card-plants { display: flex; align-items: flex-end; }
 .progress-card-img { width: 100%; max-width: 22rem; border-radius: 1rem; box-shadow: var(--shadow); }
 .natural-voice { padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+.sync-code { font-family: ui-monospace, Menlo, monospace; letter-spacing: 0.05em; }
+.sync-input { flex: 1; min-width: 14rem; text-transform: uppercase; }
