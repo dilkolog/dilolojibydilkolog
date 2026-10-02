@@ -116,6 +116,8 @@ export interface Settings {
   reminder: { enabled: boolean; time: string }
   /** Share of a normal day's study per weekday, Sunday first: 1 normal, 0.5 light, 0 rest. */
   dayWeights: number[]
+  /** Retire words known so well that routine reviews only cost time. */
+  autoRetire: boolean
   /** Planned holiday: nothing scheduled, the streak waits. */
   vacation: { from: string; to: string } | null
   profile: Profile
@@ -151,6 +153,7 @@ export const DEFAULT_SETTINGS: Settings = {
   varyVoices: true,
   reminder: { enabled: false, time: '20:00' },
   dayWeights: [1, 1, 1, 1, 1, 1, 1],
+  autoRetire: true,
   vacation: null,
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },

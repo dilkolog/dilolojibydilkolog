@@ -22,6 +22,8 @@ import { Plant } from './Plant'
 import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { WordMedia } from './WordMedia'
+import { isRetired } from '../engine/retire'
+import { prefs } from './prefs'
 
 interface Props {
   db: KelimeDB
@@ -56,6 +58,12 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   }, [db, entry.id, state])
   const conjugation = conjugate(entry)
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
+
+  const setRetired = async (retired: boolean) => {
+    if (!state) return
+    await db.wordStates.put({ ...state, retired })
+    onChanged()
+  }
 
   const remove = async () => {
     if (!confirm(`"${entry.lemma}" ve bu kelimedeki ilerlemen silinecek. Devam edilsin mi?`)) return
@@ -122,6 +130,24 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             .filter(Boolean)
             .join(', ')}
         </p>
+        {state && isRetired(state, prefs.autoRetire) ? (
+          <p className="small retired-note">
+            🏖️ Emekli: bu kelimeyi çok iyi biliyorsun, rutin tekrarlara gelmiyor; arada bir sürpriz kontrol gelir, yanılırsan geri döner.{' '}
+            <button className="link small" onClick={() => setRetired(false)}>
+              Rutine geri al
+            </button>
+          </p>
+        ) : (
+          state &&
+          ['production_ready', 'mastered'].includes(masteryStage(state)) && (
+            <p className="small muted">
+              Bu kelimeyi artık çok iyi biliyorsan tekrarlardan çıkarabilirsin.{' '}
+              <button className="link small" onClick={() => setRetired(true)}>
+                Emekliye ayır
+              </button>
+            </p>
+          )
+        )}
         <div className="row">
           <button className="btn btn-quiet" onClick={() => setEditing(true)}>
             Düzenle

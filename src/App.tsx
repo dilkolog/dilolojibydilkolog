@@ -286,6 +286,7 @@ export default function App() {
         // Light days introduce fewer new words; rest days and holidays none.
         newWordsPerDay: Math.round(settings.newWordsPerDay * dayWeight(now, settings)),
         frequencyFirst: settings.frequencyFirst,
+        autoRetire: settings.autoRetire,
       },
       catalog: data.vocabulary,
       states: data.states,

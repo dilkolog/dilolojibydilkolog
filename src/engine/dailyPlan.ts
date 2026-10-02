@@ -1,6 +1,7 @@
 import { EXERCISES } from './exercises'
 import { openMistakes } from './mistakes'
 import { createRng, shuffle, type Rng } from './rng'
+import { isRetired, SURPRISE_PER_DAY } from './retire'
 import type { Scheduler } from './scheduler'
 import { dueSkills, ERROR_SKILL, pickExerciseType, startOfDay, unlockedSkills } from './selection'
 import {
@@ -29,6 +30,8 @@ export interface PlanSettings {
   newWordsPerDay: number
   /** Introduce the user's words most frequent first instead of in the order they were added. */
   frequencyFirst?: boolean
+  /** Retire words known so well that routine reviews only cost time (see retire.ts). */
+  autoRetire?: boolean
 }
 
 export interface PlanInput {
@@ -97,9 +100,20 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   const extras: { item: PlanItem; lastAt: number; sure: boolean }[] = []
 
   const states = input.states.filter((s) => s.language === settings.language)
+  const auto = settings.autoRetire ?? false
+  // Retired words: only a few surprise checks a day, the weakest first.
+  let surprises = SURPRISE_PER_DAY - states.filter((s) => isRetired(s, auto) && s.lastReviewAt && s.lastReviewAt >= today).length
+  const retiredDue = states
+    .filter((s) => isRetired(s, auto))
+    .map((s) => ({ s, r: Math.min(...Object.values(s.skills).map((c) => scheduler.retrievability(c, now))), due: Object.values(s.skills).some((c) => c.due <= now) }))
+    .filter((x) => x.due)
+    .sort((a, b) => a.r - b.r)
+  const checked = new Set<string>()
+  for (const x of retiredDue) if (surprises-- > 0) checked.add(x.s.entryId)
   for (const state of states) {
     const entry = byId.get(state.entryId)
     if (!entry) continue
+    if (isRetired(state, auto) && !checked.has(state.entryId)) continue
     const opts = input.options ?? {}
     const due = dueSkills(state, entry, scheduler, now, opts)
     const open = openMistakes(input.mistakes, state.entryId)

@@ -13,10 +13,12 @@ export const prefs = {
   pretest: true,
   confidence: true,
   accentShortcuts: true,
+  autoRetire: true,
 }
 
 export function applySettings(s: Settings) {
   prefs.autoPlay = s.autoPlayAudio
+  prefs.autoRetire = s.autoRetire
   prefs.hintDelayMs = s.hintDelaySec * 1000
   prefs.accentStrict = s.accentStrict
   prefs.soundEffects = s.soundEffects

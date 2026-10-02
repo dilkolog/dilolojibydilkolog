@@ -80,6 +80,8 @@ export function processAttempt(
         totalResponseMs: s.totalResponseMs + input.responseMs,
         consecutiveWrong: correct ? 0 : s.consecutiveWrong + 1,
       },
+      // A slip on a retired word brings it back into routine reviews.
+      ...(correct ? {} : { retired: undefined }),
     }
     // Near misses are still logged: an accent or gender slip is exactly what the bank is for.
     if (input.verdict !== 'correct' && input.errorType) {

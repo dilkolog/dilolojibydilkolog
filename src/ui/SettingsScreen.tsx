@@ -222,6 +222,12 @@ export function SettingsScreen({
           checked={settings.frequencyFirst}
           onChange={(v) => set('frequencyFirst', v)}
         />
+        <Toggle
+          label="Çok iyi bildiğin kelimeleri emekliye ayır"
+          help="Tamamen öğrendiğin ve aylarca akılda kalacak kelimeler rutin tekrarlardan çıkar; günde en fazla 2 sürpriz kontrol gelir, yanılırsan kelime geri döner. Kelime sayfasından elle de yapabilirsin."
+          checked={settings.autoRetire}
+          onChange={(v) => set('autoRetire', v)}
+        />
         <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
           <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
         </Row>

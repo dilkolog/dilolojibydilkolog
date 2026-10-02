@@ -199,6 +199,8 @@ export interface UserWordState {
   lastExerciseType?: ExerciseType
   lastReviewAt?: Date
   stats: WordStats
+  /** Set by hand: true = retired, false = keep in routine reviews; unset = decided automatically. */
+  retired?: boolean
 }
 
 export type ReviewMode = 'normal' | 'practice'
