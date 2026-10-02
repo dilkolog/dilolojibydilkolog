@@ -50,6 +50,7 @@ import { sfx } from './sounds'
 import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './speech'
 import { useMediaUrl } from './useMedia'
 import { canListen, listen } from './speechInput'
+import { prefetchNatural } from './naturalVoice'
 
 interface Props {
   items: PlanItem[]
@@ -99,7 +100,11 @@ export function SessionScreen(p: Props) {
   // Own recordings are loaded up front: Safari only plays audio started directly by a click.
   useEffect(() => {
     const ids = new Set(p.items.map((i) => i.entryId))
-    for (const v of p.vocabulary) if (ids.has(v.id) && v.audioId) void preloadRecording(v.audioId)
+    for (const v of p.vocabulary) {
+      if (!ids.has(v.id)) continue
+      if (v.audioId) void preloadRecording(v.audioId)
+      else prefetchNatural(displayForm(v), v.language, speechPrefs.rate)
+    }
   }, [p.items, p.vocabulary])
   const [session, setSession] = useState(() => startSession(p.items))
   const item = currentItem(session)

@@ -7,6 +7,7 @@ import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
+import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
@@ -192,6 +193,7 @@ export function SettingsScreen({
 
       <section className="card stack">
         <h2 className="section-title">Ses</h2>
+        <NaturalVoiceSettings language={lang} />
         <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
         <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
         <Toggle

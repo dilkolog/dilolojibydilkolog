@@ -38,6 +38,7 @@ import { VocabTestScreen } from './ui/VocabTest'
 import { ExamScreen } from './ui/Exam'
 import { useReminder } from './ui/reminders'
 import { HabitCards } from './ui/Habits'
+import { natural } from './ui/naturalVoice'
 import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
@@ -138,6 +139,7 @@ export default function App() {
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))
     db.getAiKey().then(setApiKeyState)
+    db.getTtsKey().then((k) => (natural.key = k))
   }, [])
 
   useEffect(() => {

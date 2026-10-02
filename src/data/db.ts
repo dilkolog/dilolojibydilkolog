@@ -378,6 +378,27 @@ export class KelimeDB extends Dexie {
     return key ? this.meta.put({ key: 'aiKey', value: key }) : this.meta.delete('aiKey')
   }
 
+  /** Google Cloud TTS key: on this device only, never in backups (like the AI key). */
+  async getTtsKey(): Promise<string | null> {
+    const row = await this.meta.get('ttsKey')
+    return typeof row?.value === 'string' && row.value ? row.value : null
+  }
+
+  saveTtsKey(key: string | null) {
+    return key ? this.meta.put({ key: 'ttsKey', value: key }) : this.meta.delete('ttsKey')
+  }
+
+  /** Characters sent to the TTS API per month ("2026-10"), against the free tier. */
+  async getTtsUsage(): Promise<Record<string, number>> {
+    return ((await this.meta.get('ttsUsage'))?.value as Record<string, number>) ?? {}
+  }
+
+  async addTtsChars(n: number) {
+    const all = await this.getTtsUsage()
+    const k = monthKey(new Date())
+    await this.meta.put({ key: 'ttsUsage', value: { ...all, [k]: (all[k] ?? 0) + n } })
+  }
+
   async loadLanguage(language: TargetLanguage) {
     const [vocabulary, states, mistakes] = await Promise.all([
       this.vocabulary.where('language').equals(language).toArray(),
@@ -511,7 +532,8 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
     bossWins: await db.getBossWins(),
     exams: await db.getExams(),
     media: await Promise.all(
-      (await db.media.toArray()).map(async (m) => ({
+      // Cached natural-voice audio ("tts:") can be re-created, so it stays out of backups.
+      (await db.media.toArray()).filter((m) => !m.id.startsWith('tts:')).map(async (m) => ({
         id: m.id,
         kind: m.kind,
         dataUrl: await blobToDataUrl(mediaBlob(m)),

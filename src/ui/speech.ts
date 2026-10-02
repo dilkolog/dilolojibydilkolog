@@ -3,6 +3,7 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { mediaBlob } from '../data/db'
 import { db } from '../data/instance'
 import { SPEECH_LANG } from './labels'
+import { naturalEnabled, playNatural, stopNatural } from './naturalVoice'
 
 export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window
 
@@ -47,6 +48,15 @@ function variedVoice(text: string, voices: SpeechSynthesisVoice[]): SpeechSynthe
  * (listening exercises) picks a different voice each time when the setting is on.
  */
 export function speak(text: string, language: TargetLanguage, rate = speechPrefs.rate, vary = false) {
+  if (naturalEnabled()) {
+    if (canSpeak()) window.speechSynthesis.cancel()
+    playNatural(text, language, rate, vary).catch(() => systemSpeak(text, language, rate, vary))
+    return
+  }
+  systemSpeak(text, language, rate, vary)
+}
+
+function systemSpeak(text: string, language: TargetLanguage, rate: number, vary: boolean) {
   if (!canSpeak()) return
   const synth = window.speechSynthesis
   synth.cancel()
@@ -121,9 +131,14 @@ export async function unlockedAudio(url: string): Promise<HTMLAudioElement> {
 
 /** Speak and resolve when finished (for playing two clips back to back). */
 export function speakAsync(text: string, language: TargetLanguage, rate = speechPrefs.rate): Promise<void> {
+  if (naturalEnabled()) return playNatural(text, language, rate).catch(() => systemSpeakAsync(text, language, rate))
+  return systemSpeakAsync(text, language, rate)
+}
+
+function systemSpeakAsync(text: string, language: TargetLanguage, rate: number): Promise<void> {
   return new Promise((resolve) => {
     if (!canSpeak()) return resolve()
-    speak(text, language, rate)
+    systemSpeak(text, language, rate, false)
     const synth = window.speechSynthesis
     const t = window.setInterval(() => {
       if (!synth.speaking) {
@@ -173,6 +188,7 @@ export async function playWordAsync(entry: VocabularyEntry, rate = speechPrefs.r
 
 export function stopSpeaking() {
   current?.pause()
+  stopNatural()
   if (canSpeak()) window.speechSynthesis.cancel()
 }
 
