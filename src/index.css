@@ -1639,3 +1639,30 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .recurring { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.25rem; }
 .report-pattern { padding-top: 0.5rem; border-top: 1px solid var(--rule); gap: 0.25rem; }
 .drills { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.375rem; }
+
+/* Forgetting curve */
+.memory-curve { width: 100%; height: auto; }
+.mc-grid { stroke: var(--rule); stroke-width: 1; }
+.mc-axis { fill: var(--ink-soft); font-size: 11px; }
+.mc-now { stroke: var(--ink-soft); stroke-dasharray: 3 3; }
+.mc-line { fill: none; stroke: var(--lang); stroke-width: 2; stroke-linejoin: round; }
+.mc-future { stroke-dasharray: 5 4; opacity: 0.6; }
+.mc-ok { fill: var(--ok); stroke: var(--surface); stroke-width: 2; }
+.mc-bad { fill: var(--bad); stroke: var(--surface); stroke-width: 2; }
+.mc-key { display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: 999px; margin: 0 0.25rem 0 0.5rem; vertical-align: middle; }
+.mc-key-ok { background: var(--ok); } .mc-key-bad { background: var(--bad); }
+
+/* Year calendar */
+.year-scroll { overflow-x: auto; direction: rtl; }
+.year-calendar { direction: ltr; display: block; }
+.yc-label { fill: var(--ink-soft); font-size: 10px; }
+.yc-cell { fill: var(--rule); }
+.yc-1 { fill: color-mix(in srgb, var(--lang) 30%, var(--rule)); }
+.yc-2 { fill: color-mix(in srgb, var(--lang) 55%, var(--rule)); }
+.yc-3 { fill: color-mix(in srgb, var(--lang) 80%, var(--rule)); }
+.yc-4 { fill: var(--lang-deep, var(--lang)); }
+.yc-key { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 3px; margin: 0 0.125rem; vertical-align: middle; background: var(--rule); }
+.yc-key.yc-1 { background: color-mix(in srgb, var(--lang) 30%, var(--rule)); }
+.yc-key.yc-2 { background: color-mix(in srgb, var(--lang) 55%, var(--rule)); }
+.yc-key.yc-3 { background: color-mix(in srgb, var(--lang) 80%, var(--rule)); }
+.yc-key.yc-4 { background: var(--lang-deep, var(--lang)); }

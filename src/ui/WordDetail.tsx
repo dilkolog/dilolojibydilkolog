@@ -18,6 +18,7 @@ import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
 import { CrossLanguageNotes, TriLanguageCard } from './CrossLanguage'
 import { PatternsSection } from './Patterns'
+import { MemoryCurveChart } from './MemoryCurve'
 import { WordFamilySection } from './WordFamily'
 import { CorpusExamples, WordExamples } from './WordExamples'
 import { Plant } from './Plant'
@@ -167,6 +168,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       </section>
 
       <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
+      <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
 
       <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
 
