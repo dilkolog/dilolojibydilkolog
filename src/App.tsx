@@ -625,6 +625,9 @@ export default function App() {
                 states={data.states}
                 onChanged={reload}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+                onStudy={(deck) =>
+                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
+                }
               />
             ) : screen.name === 'games' ? (
               <GamesScreen language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />

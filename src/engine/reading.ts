@@ -191,3 +191,27 @@ export function missingFrequent(
   })
   return out
 }
+
+export interface KeyWord {
+  key: string
+  /** As written in the text, lower case. */
+  word: string
+  count: number
+  sentence: string
+}
+
+/**
+ * The unknown words worth learning before reading (pre-teaching): those the text repeats most,
+ * then the most frequent in the language (`rank`: lower = more common), so a few words unlock
+ * the most of the text.
+ */
+export function keyUnknownWords(a: ReadingAnalysis, language: TargetLanguage, rank: (word: string) => number, max = 10): KeyWord[] {
+  const found = new Map<string, KeyWord>()
+  for (const p of a.paragraphs) for (const s of p) for (const t of s.tokens) {
+    if (t.status !== 'unseen' || !t.key) continue
+    const k = found.get(t.key)
+    if (k) k.count++
+    else found.set(t.key, { key: t.key, word: cleanToken(t.text, language).toLocaleLowerCase(language), count: 1, sentence: s.text })
+  }
+  return [...found.values()].sort((x, y) => y.count - x.count || rank(x.word) - rank(y.word)).slice(0, max)
+}

@@ -228,3 +228,48 @@ export async function fillEntries(db: KelimeDB, entries: VocabularyEntry[], lang
     } satisfies Partial<VocabularyEntry>)
   }
 }
+
+/** "{{inflection of|fr|décider||past|part}}", "{{plural of|es|casa}}", "{{es-verb form of|esperar}}" → the dictionary form. */
+export function lemmaOfForm(section: string, language: TargetLanguage): string | undefined {
+  const m = section.match(new RegExp(`\\{\\{[a-z -]*\\bof\\|${language}\\|([^|}]+)`)) ?? section.match(new RegExp(`\\{\\{${language}-[a-z ]*\\bof\\|([^|}=]+)[|}]`))
+  return m?.[1].trim()
+}
+
+/**
+ * A short English hint for words met in a text (English is the learner's other strong
+ * language): the English sense of French/Spanish words, the definition of English ones.
+ * Inflected forms lead to their dictionary form first. Two requests at most.
+ */
+export async function englishHints(words: string[], language: TargetLanguage): Promise<Map<string, { lemma: string; hint: string }>> {
+  const pages = await fetchPages(words, 'en')
+  const out = new Map<string, { lemma: string; hint: string }>()
+  const forms = new Map<string, string>()
+  const hintOf = (section: string) => (language === 'en' ? firstDefinition(section, 'hash') : englishGlossLine(section))
+  for (const w of words) {
+    const text = pages.get(w)
+    const section = text ? languageSection(text, language) : null
+    if (!section) continue
+    const lemma = lemmaOfForm(section, language)
+    if (lemma && lemma !== w) forms.set(w, lemma)
+    else {
+      const hint = hintOf(section)
+      if (hint) out.set(w, { lemma: w, hint })
+    }
+  }
+  if (forms.size) {
+    const lemmaPages = await fetchPages([...new Set(forms.values())], 'en')
+    for (const [w, lemma] of forms) {
+      const text = lemmaPages.get(lemma)
+      const section = text ? languageSection(text, language) : null
+      const hint = section ? hintOf(section) : undefined
+      if (hint) out.set(w, { lemma, hint })
+    }
+  }
+  return out
+}
+
+/** The first English sense of a French/Spanish entry, as a short phrase. */
+function englishGlossLine(section: string): string | undefined {
+  const def = firstDefinition(section, 'hash')
+  return def && def.length > 80 ? `${def.slice(0, 77).trimEnd()}…` : def
+}

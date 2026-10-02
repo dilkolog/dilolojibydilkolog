@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
+import { KeyWordsCard } from './KeyWords'
 import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadStatus, type ReadToken } from '../engine/reading'
 import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
@@ -46,6 +47,7 @@ export function ReadingScreen({
   states,
   onChanged,
   onOpen,
+  onStudy,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -53,6 +55,7 @@ export function ReadingScreen({
   states: UserWordState[]
   onChanged: () => void
   onOpen: (entryId: string) => void
+  onStudy?: (entries: VocabularyEntry[]) => void
 }) {
   const [library, setLibrary] = useState<ReadingText[] | null>(null)
   const [current, setCurrent] = useState<ReadingText | null>(null)
@@ -421,6 +424,19 @@ export function ReadingScreen({
           <span>toplam {analysis.total} kelime</span>
         </p>
       </section>
+
+      {!message && (
+        <KeyWordsCard
+          key={current?.id}
+          db={db}
+          language={language}
+          analysis={analysis}
+          existing={existing}
+          onKnown={(key) => void markKnown(key)}
+          onChanged={onChanged}
+          onStudy={onStudy}
+        />
+      )}
 
       <article className="reader" lang={language}>
         {analysis.paragraphs.map((p, i) => (
