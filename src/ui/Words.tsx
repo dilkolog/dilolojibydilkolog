@@ -13,6 +13,7 @@ import { SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView, TriLanguageCard } from './CrossLanguage'
+import { ListHealthCard } from './ListHealth'
 import { accentChange } from './AccentBar'
 import { MissingWords } from './MissingWords'
 import { KindleImport } from './KindleImport'
@@ -90,6 +91,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
     <div>
       <section className="section stack">
         <h1 className="greeting">{LANGUAGE_NAME[language]} kelimelerin</h1>
+        <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
         {incoming && (
           <div className="card stack incoming">
             <p className="small muted">
