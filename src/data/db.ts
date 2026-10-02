@@ -1,5 +1,7 @@
 import Dexie, { type Table } from 'dexie'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
+import type { JournalReview } from '../ai/types'
+import { recordMistake, type MistakeInput } from '../engine/mistakes'
 import type { ReviewResult } from '../engine/review'
 import {
   TARGET_LANGUAGES,
@@ -29,6 +31,16 @@ export interface ReadingText {
 export function titleOf(text: string): string {
   const first = text.trim().split(/\s+/).slice(0, 6).join(' ')
   return first.length > 48 ? `${first.slice(0, 47)}…` : first
+}
+
+/** A journal entry and, when the AI reviewed it, the review. */
+export interface JournalEntry {
+  id: string
+  language: TargetLanguage
+  /** ISO date. */
+  at: string
+  text: string
+  review?: JournalReview
 }
 
 export interface VocabTestRecord {
@@ -267,6 +279,25 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'aiUsage', value: { ...all, [key]: addToMonth(all[key], record) } })
   }
 
+  /** Journal entries of one language, newest first. */
+  async getJournal(language: TargetLanguage): Promise<JournalEntry[]> {
+    const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
+    return all.filter((j) => j.language === language).sort((a, b) => b.at.localeCompare(a.at))
+  }
+
+  async saveJournal(entry: JournalEntry) {
+    const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
+    await this.meta.put({ key: 'journal', value: [entry, ...all.filter((j) => j.id !== entry.id)] })
+  }
+
+  /** Records mistakes found in free writing into the Mistake Bank. */
+  async addWritingMistakes(found: readonly MistakeInput[]) {
+    for (const m of found) {
+      const bank = await this.mistakes.where('entryId').equals(m.entryId).toArray()
+      await this.mistakes.bulkPut(recordMistake(bank, m))
+    }
+  }
+
   /** Vocabulary size test results, oldest first. */
   async getVocabTests(): Promise<VocabTestRecord[]> {
     return ((await this.meta.get('vocabTests'))?.value as VocabTestRecord[]) ?? []
@@ -421,6 +452,7 @@ export interface Backup {
   /** Known-word sets and reading encounters (backup version 3+). */
   reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; library?: ReadingText[] }
   vocabTests?: VocabTestRecord[]
+  journal?: JournalEntry[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -455,6 +487,7 @@ export async function exportBackup(db: KelimeDB, now = new Date()): Promise<stri
       library: ((await db.meta.get('library'))?.value as ReadingText[]) ?? [],
     },
     vocabTests: await db.getVocabTests(),
+    journal: ((await db.meta.get('journal'))?.value as JournalEntry[]) ?? [],
     media: await Promise.all(
       (await db.media.toArray()).map(async (m) => ({
         id: m.id,
@@ -507,5 +540,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup) {
       if (backup.reading.library) await db.meta.put({ key: 'library', value: backup.reading.library })
     }
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
+    if (backup.journal) await db.meta.put({ key: 'journal', value: backup.journal })
   })
 }

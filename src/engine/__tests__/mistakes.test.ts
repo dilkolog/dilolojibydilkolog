@@ -53,3 +53,24 @@ describe('high-confidence mistakes', () => {
     expect(unsure.mistakes[0].highConfidence).toBeFalsy()
   })
 })
+
+describe('writingMistakes', () => {
+  it('keeps only mistakes about listed words, mapping general grammar to a form error', async () => {
+    const { writingMistakes } = await import('../mistakes')
+    const vocab = [{ id: 'fr:décision', lemma: 'décision', article: 'la' }]
+    const at = new Date('2026-10-02T10:00:00')
+    const out = writingMistakes(
+      [
+        { original: 'le décision', correction: 'la décision', type: 'gender', lemma: 'la décision' },
+        { original: 'je suis allé', correction: 'je suis allée', type: 'grammar', lemma: '' },
+        { original: 'décisions prend', correction: 'décisions prises', type: 'grammar', lemma: 'décision' },
+      ],
+      vocab,
+      at,
+    )
+    expect(out).toEqual([
+      { entryId: 'fr:décision', errorType: 'gender', exerciseType: 'free_sentence', given: 'le décision', expected: 'la décision', at },
+      { entryId: 'fr:décision', errorType: 'form', exerciseType: 'free_sentence', given: 'décisions prend', expected: 'décisions prises', at },
+    ])
+  })
+})

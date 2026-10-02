@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -32,7 +32,8 @@ async function structured<S extends z.ZodType>(
   apiKey: string,
   schema: S,
   system: string,
-  user: string,
+  /** One user message, or a whole conversation (chat). */
+  user: string | Anthropic.Beta.BetaMessageParam[],
   effort: 'low' | 'medium',
   feature: AiFeature,
 ): Promise<z.infer<S>> {
@@ -48,7 +49,7 @@ async function structured<S extends z.ZodType>(
       ...(modern ? { betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default' as const } : {}),
       output_config: { ...(modern ? { effort } : {}), format: betaZodOutputFormat(schema) },
       system,
-      messages: [{ role: 'user', content: user }],
+      messages: typeof user === 'string' ? [{ role: 'user', content: user }] : user,
     })
     const u = res.usage
     aiConfig.onUsage({
@@ -265,6 +266,79 @@ export async function evaluateRetelling(apiKey: string, req: RetellRequest): Pro
     `Learner's retelling:\n${req.retelling}`,
   ].join('\n\n')
   return structured(apiKey, Retell, system, user, 'medium', 'retell')
+}
+
+// ---------------------------------------------------------------------------
+// Journal
+// ---------------------------------------------------------------------------
+
+const JOURNAL_ERRORS = ['meaning', 'accent', 'typo', 'article', 'gender', 'form', 'confusion', 'collocation', 'grammar'] as const
+
+const Journal = z.object({
+  corrected: z.string().describe('The whole text, minimally corrected so it is correct and natural (identical if already correct).'),
+  feedback: z.string().describe('2-3 encouraging sentences in Turkish: what went well and the one thing most worth working on.'),
+  mistakes: z
+    .array(
+      z.object({
+        original: z.string().describe('The wrong words exactly as written.'),
+        correction: z.string(),
+        type: z.enum(JOURNAL_ERRORS),
+        explanation: z.string().describe('One short sentence in Turkish.'),
+        lemma: z.string().describe('If the mistake is about one of the practice words, that word exactly as listed; otherwise an empty string.'),
+      }),
+    )
+    .describe('Real errors only, most important first, at most 8. No style nitpicks.'),
+  suggestions: z
+    .array(z.object({ lemma: z.string().describe('A practice word, exactly as listed.'), sentence: z.string().describe('A sentence from the text rewritten to use it naturally.') }))
+    .describe('0-3 places where a practice word would have fitted naturally.'),
+  usedWords: z.array(z.string()).describe('Practice words the learner used correctly, exactly as listed.'),
+})
+
+/** Daily journal: correct the learner's few sentences and point to practice words they could use. */
+export async function reviewJournal(apiKey: string, req: JournalRequest): Promise<JournalReview> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are a warm but precise ${lang} writing coach for a Turkish adult who already speaks ${lang} well and keeps a short daily journal.`,
+    'Correct only real errors (grammar, wrong word, agreement, gender, spelling, unnatural collocations); keep the learner\'s voice and content.',
+    'Explanations and feedback in Turkish, short and kind.',
+  ].join('\n')
+  const user = [`Practice words: ${req.words.map((w) => `${w.lemma} (${w.gloss})`).join(', ') || 'none'}`, `Journal entry:\n${req.text}`].join('\n\n')
+  return structured(apiKey, Journal, system, user, 'medium', 'journal')
+}
+
+// ---------------------------------------------------------------------------
+// Conversation partner
+// ---------------------------------------------------------------------------
+
+const Chat = z.object({
+  reply: z.string().describe('Your next line in the conversation, in the target language: 1-3 natural sentences, ending with a question or prompt that keeps the conversation going.'),
+  correction: z
+    .object({
+      original: z.string(),
+      corrected: z.string(),
+      note: z.string().describe('One short sentence in Turkish.'),
+    })
+    .nullable()
+    .describe("A correction of the learner's last message only if it had a real mistake; null otherwise."),
+  usedWords: z.array(z.string()).describe('Practice words the learner used correctly in their last message, exactly as listed.'),
+})
+
+/** One turn of a role-play conversation that weaves in the learner's practice words. */
+export async function chatTurn(apiKey: string, req: ChatRequest): Promise<ChatReply> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are a friendly conversation partner speaking only ${lang} with a Turkish adult who speaks ${lang} well and wants speaking practice.`,
+    `Scenario (described in Turkish): ${req.scenario}. Stay in this role-play naturally.`,
+    `Weave these practice words into your lines over the conversation, one or two at a time, so the learner hears and can reuse them: ${req.words.map((w) => w.lemma).join(', ') || 'none'}.`,
+    'Speak naturally at a normal adult level; keep each turn short so the learner talks more than you.',
+    'Their messages may come from speech recognition: ignore missing punctuation and capitalisation.',
+  ].join('\n')
+  // The API wants the conversation to open with a user turn; the partner speaks first.
+  const messages: Anthropic.Beta.BetaMessageParam[] = [
+    { role: 'user', content: '(Start the conversation with your first line.)' },
+    ...req.history.map((t) => ({ role: t.role, content: t.text })),
+  ]
+  return structured(apiKey, Chat, system, messages, 'low', 'chat')
 }
 
 // ---------------------------------------------------------------------------

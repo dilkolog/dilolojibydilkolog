@@ -1,5 +1,20 @@
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { EnrichRequest, EpisodeDraft, EpisodeRequest, FieldSuggestions, Mnemonic, RetellEvaluation, RetellRequest, SentenceEvaluation, SuggestRequest, WordInfo } from './types'
+import type {
+  ChatReply,
+  ChatRequest,
+  EnrichRequest,
+  EpisodeDraft,
+  EpisodeRequest,
+  FieldSuggestions,
+  JournalRequest,
+  JournalReview,
+  Mnemonic,
+  RetellEvaluation,
+  RetellRequest,
+  SentenceEvaluation,
+  SuggestRequest,
+  WordInfo,
+} from './types'
 
 export * from './types'
 export * from './usage'
@@ -27,6 +42,10 @@ export const evaluateTranslation = async (apiKey: string, entry: VocabularyEntry
   (await sdk()).evaluateTranslation(apiKey, entry, turkish, reference, attempt)
 
 export const evaluateRetelling = async (apiKey: string, req: RetellRequest): Promise<RetellEvaluation> => (await sdk()).evaluateRetelling(apiKey, req)
+
+export const reviewJournal = async (apiKey: string, req: JournalRequest): Promise<JournalReview> => (await sdk()).reviewJournal(apiKey, req)
+
+export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatReply> => (await sdk()).chatTurn(apiKey, req)
 
 export const writeEpisode = async (apiKey: string, req: EpisodeRequest): Promise<EpisodeDraft> => (await sdk()).writeEpisode(apiKey, req)
 

@@ -121,6 +121,12 @@ export const ReadIcon = (p: P) => (
     <path d="M4 5h16M4 10h16M4 15h11M4 20h7" />
   </Icon>
 )
+export const PenIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4z" />
+    <path d="M13.5 6.5l4 4" />
+  </Icon>
+)
 export const GameIcon = (p: P) => (
   <Icon {...p}>
     <rect x="2" y="6" width="20" height="12" rx="4" />

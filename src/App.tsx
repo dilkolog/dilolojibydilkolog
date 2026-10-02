@@ -24,7 +24,7 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, ReadIcon, StoryIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, PenIcon, ReadIcon, StoryIcon, UserIcon } from './ui/icons'
 import { GamesScreen } from './ui/Games'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { MistakesScreen } from './ui/Mistakes'
@@ -33,6 +33,7 @@ import { canListen } from './ui/speechInput'
 import { ProfileScreen } from './ui/Profile'
 import { ProgressScreen } from './ui/Progress'
 import { ReadingScreen } from './ui/Reading'
+import { ProduceScreen } from './ui/Produce'
 import { VocabTestScreen } from './ui/VocabTest'
 import { useReminder } from './ui/reminders'
 import { HabitCards } from './ui/Habits'
@@ -56,16 +57,18 @@ type Screen =
   | { name: 'story' }
   | { name: 'reading' }
   | { name: 'vocabtest' }
+  | { name: 'produce' }
   | { name: 'games' }
   | { name: 'profile' }
   | { name: 'settings' }
 
-type NavScreen = 'home' | 'words' | 'reading' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
+type NavScreen = 'home' | 'words' | 'reading' | 'produce' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
 const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
   { screen: 'reading', label: 'Okuma', icon: ReadIcon },
+  { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
   { screen: 'story', label: 'Hikaye', icon: StoryIcon },
   { screen: 'games', label: 'Oyunlar', icon: GameIcon },
   { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
@@ -255,6 +258,7 @@ export default function App() {
     { id: 'add', label: 'Kelime ekle', icon: '➕', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
     { id: 'words', label: 'Kelimeler', icon: '📚', run: go({ name: 'words' }) },
     { id: 'reading', label: 'Okuma', icon: '📰', run: go({ name: 'reading' }) },
+    { id: 'produce', label: 'Yaz & konuş: günlük ve sohbet', icon: '✍️', run: go({ name: 'produce' }) },
     { id: 'story', label: 'Hikaye', icon: '📖', run: go({ name: 'story' }) },
     { id: 'games', label: 'Oyunlar', icon: '🧩', run: go({ name: 'games' }) },
     ...(data && data.states.some((s) => Object.keys(s.skills).length)
@@ -407,6 +411,16 @@ export default function App() {
                 vocabulary={data.vocabulary}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
                 onVocabTest={go({ name: 'vocabtest' })}
+              />
+            ) : screen.name === 'produce' ? (
+              <ProduceScreen
+                key={data.language}
+                db={db}
+                language={data.language}
+                vocabulary={data.vocabulary}
+                states={data.states}
+                onChanged={reload}
+                onOpenSettings={go({ name: 'settings' })}
               />
             ) : screen.name === 'vocabtest' ? (
               <VocabTestScreen key={data.language} db={db} language={data.language} onDone={go({ name: 'progress' })} />

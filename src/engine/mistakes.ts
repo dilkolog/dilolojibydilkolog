@@ -45,3 +45,40 @@ export function recordCorrect(bank: readonly Mistake[], entryId: string): Mistak
 export function openMistakes(bank: readonly Mistake[], entryId?: string): Mistake[] {
   return bank.filter((x) => !x.resolved && (entryId === undefined || x.entryId === entryId))
 }
+
+/** A mistake found in free writing (journal, chat), as reported by the reviewer. */
+export interface WritingMistake {
+  original: string
+  correction: string
+  /** Error type, or 'grammar' for general grammar. */
+  type: ErrorType | 'grammar'
+  /** The practice word it concerns, or '' when it is about no particular word. */
+  lemma: string
+}
+
+/**
+ * Mistakes in free writing that concern a word in the list go to the Mistake Bank, so they are
+ * practised like any other error; general grammar slips stay in the writing feedback.
+ */
+export function writingMistakes(
+  found: readonly WritingMistake[],
+  vocabulary: readonly { id: string; lemma: string; article?: string }[],
+  at: Date,
+): MistakeInput[] {
+  const norm = (s: string) => s.trim().toLocaleLowerCase().replace(/^(le |la |les |l'|el |los |las |the |to )/, '')
+  const out: MistakeInput[] = []
+  for (const m of found) {
+    if (!m.lemma) continue
+    const entry = vocabulary.find((v) => norm(v.lemma) === norm(m.lemma))
+    if (!entry) continue
+    out.push({
+      entryId: entry.id,
+      errorType: m.type === 'grammar' ? 'form' : m.type,
+      exerciseType: 'free_sentence',
+      given: m.original,
+      expected: m.correction,
+      at,
+    })
+  }
+  return out
+}

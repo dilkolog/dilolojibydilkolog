@@ -69,6 +69,41 @@ export interface RetellEvaluation {
   words: { lemma: string; used: boolean; correct: boolean }[]
 }
 
+export interface JournalRequest {
+  language: import('../engine/types').TargetLanguage
+  text: string
+  /** Words being learned, so the review can point out where one would have fitted. */
+  words: { lemma: string; gloss: string }[]
+}
+
+export interface JournalReview {
+  corrected: string
+  feedback: string
+  mistakes: { original: string; correction: string; type: ErrorType | 'grammar'; explanation: string; lemma: string }[]
+  suggestions: { lemma: string; sentence: string }[]
+  usedWords: string[]
+}
+
+export interface ChatTurn {
+  role: 'user' | 'assistant'
+  text: string
+}
+
+export interface ChatRequest {
+  language: import('../engine/types').TargetLanguage
+  /** Scenario in Turkish, e.g. "Kafede sipariş vermek". */
+  scenario: string
+  words: { lemma: string; gloss: string }[]
+  history: ChatTurn[]
+}
+
+export interface ChatReply {
+  reply: string
+  /** Correction of the learner's last message, if it had a real mistake. */
+  correction: { original: string; corrected: string; note: string } | null
+  usedWords: string[]
+}
+
 export interface EpisodeRequest {
   language: import('../engine/types').TargetLanguage
   interests: string[]
