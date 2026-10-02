@@ -43,6 +43,7 @@ import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
+import { connectExtension, pushToExtension } from './ui/extensionBridge'
 import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
@@ -205,6 +206,7 @@ export default function App() {
     const [loaded, recentEvents, g] = await Promise.all([db.loadLanguage(language), db.eventsSince(since), loadGame(db)])
     setData({ language, ...loaded, recentEvents })
     setLoad(loaded.states)
+    pushToExtension(db)
     setGame(g)
     // New words without a frequency band get one from the bundled list, in the background.
     if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
@@ -221,6 +223,9 @@ export default function App() {
   useEffect(() => {
     reload()
   }, [reload])
+
+  // Browser extension: words marked known on other sites come back here.
+  useEffect(() => connectExtension(db, reload), [reload])
 
   // Pull what other devices did on start, then keep in step after every session.
   useEffect(() => {

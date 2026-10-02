@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kelime Koçu</title>
+    <style>
+      :root { color-scheme: light dark; --bg: #fff; --ink: #0f172a; --soft: #64748b; --line: #e2e8f0; --accent: #2563eb; --chip: #f1f5f9; }
+      @media (prefers-color-scheme: dark) { :root { --bg: #1e293b; --ink: #e2e8f0; --soft: #94a3b8; --line: #334155; --accent: #60a5fa; --chip: #0f172a; } }
+      body { margin: 0; width: 320px; padding: 14px 16px 16px; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, sans-serif; }
+      h1 { font-size: 16px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+      h1 img { width: 22px; height: 22px; border-radius: 6px; }
+      h2 { font-size: 13px; margin: 14px 0 6px; }
+      .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--chip); padding: 3px; border-radius: 10px; }
+      .seg button { border: 0; background: transparent; color: var(--soft); padding: 6px 4px; border-radius: 8px; font: 600 12px system-ui; cursor: pointer; }
+      .seg button[aria-pressed='true'] { background: var(--bg); color: var(--accent); box-shadow: 0 1px 3px rgb(0 0 0 / .15); }
+      .help, .status { color: var(--soft); font-size: 12px; margin: 6px 0 0; }
+      label.toggle { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+      select { margin-top: 6px; font: inherit; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+      .legend span { display: inline-block; margin-right: 8px; }
+      .l0 { background: rgb(245 158 11 / .32); } .l2 { border-bottom: 2px dotted rgb(245 158 11 / .85); } .new { border-bottom: 2px solid rgb(37 99 235 / .45); }
+      a.open { display: block; margin-top: 14px; text-align: center; padding: 8px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; }
+      hr { border: 0; border-top: 1px solid var(--line); margin: 14px 0 0; }
+    </style>
+  </head>
+  <body>
+    <h1><img src="icon.png" alt="" /> Kelime Koçu</h1>
+    <h2>İngilizce, Fransızca ve İspanyolca sayfalarda</h2>
+    <div class="seg" role="group" aria-label="Renklendirme">
+      <button data-mode="off">Kapalı</button>
+      <button data-mode="list">Listemdekiler</button>
+      <button data-mode="all">Hepsi</button>
+    </div>
+    <p class="help legend"><span class="l0">öğreniyorum</span><span class="l2">neredeyse öğrendim</span><span class="new">yeni</span></p>
+    <p class="help">Kelimeye tıkla: anlamı, cümlesi ve "Ekle / Biliyorum / Yok say". Bağlantılarda Alt+tık. Bir kelimeyi seçince de ekleyebilirsin.</p>
+    <hr />
+    <h2>Türkçe sayfalarda</h2>
+    <label class="toggle"><input type="checkbox" id="turkish" /> <span>Listemden birkaç kelimeyi hedef dilde göster (üzerine gelince Türkçesi)</span></label>
+    <select id="turkishLang" aria-label="Hangi dil">
+      <option value="en">İngilizce</option>
+      <option value="fr">Fransızca</option>
+      <option value="es">İspanyolca</option>
+    </select>
+    <p class="status" id="status"></p>
+    <a class="open" id="open" target="_blank">Kelime Koçu'nu aç</a>
+    <script src="popup.js"></script>
+  </body>
+</html>

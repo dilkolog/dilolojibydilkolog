@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Kelime Koçu",
+  "version": "1.0.0",
+  "description": "Web'de okurken kelimelerini renklendirir; tek tıkla anlam, ekleme ve işaretleme.",
+  "icons": { "128": "icon.png" },
+  "action": { "default_popup": "popup.html", "default_icon": "icon.png", "default_title": "Kelime Koçu" },
+  "permissions": ["storage", "contextMenus"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://kelime-koc.vercel.app/*", "http://localhost:5191/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "exclude_matches": ["https://kelime-koc.vercel.app/*", "http://localhost:5191/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
