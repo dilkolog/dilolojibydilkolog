@@ -263,3 +263,27 @@ export function frequencyCoverage(
   })
   return out
 }
+
+/** The content words (stems) a text is most about: frequent in it, not function words. */
+export function topicKeys(text: string, language: TargetLanguage, max = 30): string[] {
+  const counts = new Map<string, number>()
+  for (const m of text.matchAll(new RegExp(WORD, 'gu'))) {
+    const w = cleanToken(m[0], language).toLocaleLowerCase(language)
+    if (w.length < 4 || STOP[language].has(w)) continue
+    const k = readingKey(w, language)
+    counts.set(k, (counts.get(k) ?? 0) + 1)
+  }
+  return [...counts.entries()].filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1]).slice(0, max).map(([k]) => k)
+}
+
+/**
+ * Narrow reading (Krashen 2004): how much a candidate text shares the topic of the one just read,
+ * as the share of its topic keys found in the candidate. Same-topic texts recycle vocabulary.
+ */
+export function topicOverlap(keys: readonly string[], candidate: string, language: TargetLanguage): { score: number; shared: string[] } {
+  if (!keys.length) return { score: 0, shared: [] }
+  const have = new Set<string>()
+  for (const m of candidate.matchAll(new RegExp(WORD, 'gu'))) have.add(readingKey(m[0], language))
+  const shared = keys.filter((k) => have.has(k))
+  return { score: shared.length / keys.length, shared }
+}

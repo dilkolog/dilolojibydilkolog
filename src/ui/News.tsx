@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FEEDS, type Article } from '../engine/news'
-import { analyzeText, coverageZone } from '../engine/reading'
+import { analyzeText, coverageZone, topicKeys, topicOverlap } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 
 const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
@@ -90,6 +90,77 @@ export function NewsPicker({
           ))}
         </ul>
       )}
+    </section>
+  )
+}
+
+/**
+ * Narrow reading: after a text, news on the same topic (from this language's feeds), ranked by
+ * shared topic words. Reading around one topic recycles its vocabulary (Krashen 2004; Kang 2015).
+ */
+export function SameTopic({
+  text,
+  language,
+  vocabulary,
+  states,
+  known,
+  onRead,
+}: {
+  text: string
+  language: TargetLanguage
+  vocabulary: VocabularyEntry[]
+  states: UserWordState[]
+  known: ReadonlySet<string>
+  onRead: (title: string, text: string) => void
+}) {
+  const [items, setItems] = useState<{ a: Article; score: number; shared: number; coverage: number }[] | null>(null)
+  useEffect(() => {
+    let live = true
+    const keys = topicKeys(text, language)
+    if (keys.length < 5 || !navigator.onLine) return setItems([])
+    void Promise.all(
+      FEEDS.filter((f) => f.language === language).map((f) =>
+        fetch(`/api/news?feed=${encodeURIComponent(f.id)}`)
+          .then((r) => (r.ok ? (r.json() as Promise<{ articles: Article[] }>) : { articles: [] }))
+          .then((j) => j.articles)
+          .catch(() => [] as Article[]),
+      ),
+    ).then((lists) => {
+      if (!live) return
+      const ranked = lists
+        .flat()
+        .filter((a) => a.text.split(/\s+/).length >= 80 && !text.startsWith(a.title))
+        .map((a) => {
+          const o = topicOverlap(keys, `${a.title}\n${a.text}`, language)
+          return { a, score: o.score, shared: o.shared.length, coverage: analyzeText(a.text, language, vocabulary, states, known).coverage }
+        })
+        .filter((x) => x.score >= 0.2)
+        .sort((x, y) => y.score - x.score)
+        .slice(0, 3)
+      setItems(ranked)
+    })
+    return () => {
+      live = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, language])
+  if (!items?.length) return null
+  return (
+    <section className="card stack">
+      <h2 className="section-title">Aynı konuda oku</h2>
+      <p className="small muted">Aynı konuda okumak, yeni kelimelerin kısa sürede tekrar karşına çıkmasını sağlar; ikinci metin ilkinden kolay gelir.</p>
+      <ul className="library">
+        {items.map(({ a, shared, coverage }) => (
+          <li key={a.link}>
+            <button className="word-link library-open" onClick={() => onRead(a.title, `${a.title}\n\n${a.text}`)}>
+              <strong>{a.title}</strong>
+              <span className="small muted">
+                {a.source} · {shared} ortak konu kelimesi · %{Math.round(coverage * 1000) / 10} biliyorsun
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

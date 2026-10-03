@@ -8,7 +8,7 @@ import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadS
 import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
-import { NewsPicker } from './News'
+import { NewsPicker, SameTopic } from './News'
 import { AudioPanel, ListeningPicker } from './Listening'
 import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
@@ -744,6 +744,21 @@ export function ReadingScreen({
           <p className="notice" role="status">
             {message}
           </p>
+        )}
+        {message && !nextChapter && (
+          <SameTopic
+            text={text}
+            language={language}
+            vocabulary={vocabulary}
+            states={states}
+            known={known}
+            onRead={async (t, body) => {
+              const item: ReadingText = { id: crypto.randomUUID(), language, title: t, text: body, addedAt: new Date().toISOString(), history: [] }
+              await db.saveText(item)
+              setLibrary((lib) => [item, ...(lib ?? [])])
+              await open(item)
+            }}
+          />
         )}
         {message && nextChapter && (
           <button className="btn" onClick={() => open(nextChapter)}>
