@@ -6,7 +6,7 @@ import { MASTERY_STAGES, type MasteryStage } from '../../engine/mastery'
 import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
-import { AlertIcon, CheckIcon } from '../icons'
+import { AlertIcon, BulbIcon, CheckIcon } from '../icons'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
 
@@ -136,7 +136,7 @@ export function Feedback({
         <div className="sheet-actions">
           {mnemonic === 'offer' && (
             <button className="btn btn-quiet" onClick={onMnemonic}>
-              💡 Hafıza ipucu oluştur
+              <BulbIcon size={18} /> Hafıza ipucu oluştur
             </button>
           )}
           {mnemonic === 'saved' && <span className="small">💡 Not kaydedildi</span>}

@@ -130,6 +130,9 @@ function restoreScreen(): Screen {
   return { name: 'home' }
 }
 
+/** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
+const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile'])
+
 type NavScreen = 'home' | 'words' | 'reading' | 'produce' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
 const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
@@ -618,7 +621,7 @@ export default function App() {
             </div>
           )}
 
-          <main className="main">
+          <main className={`main${WIDE_SCREENS.has(screen.name) ? ' main-wide' : ''}`}>
             {!online && !inSession && (
               <p className="offline-banner" role="status">
                 İnternet yok. Tekrarların ve kelimelerin normal çalışır; haberler, gerçek cümleler, görseller ve AI özellikleri bağlantı gelince açılır.

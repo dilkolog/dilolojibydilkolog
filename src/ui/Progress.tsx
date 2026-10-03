@@ -78,9 +78,16 @@ export function ProgressScreen({
   const byId = new Map(vocabulary.map((v) => [v.id, v]))
   const profile = skillProfile(states, scheduler, new Date())
   const maxStage = Math.max(1, stats.notStarted, ...Object.values(stats.stageCounts))
+  // Chart titles state what the chart shows (the finding); a small label above says what it is.
+  const forecastTotal = forecast.reduce((n, f) => n + f.count, 0)
+  const busiest = forecast.reduce((a, b) => (b.count > a.count ? b : a), forecast[0])
+  const topStage = [...MASTERY_STAGES].sort((a, b) => stats.stageCounts[b] - stats.stageCounts[a])[0]
+  const knownSkills = SKILLS.filter((sk) => profile[sk] !== null && (sk !== 'gender' || profile.gender !== null)).sort((a, b) => (profile[b] ?? 0) - (profile[a] ?? 0))
+  const recallTotal = recallBins.reduce((n, b) => n + b.answers, 0)
+  const recallGap = recallTotal ? Math.round((recallBins.reduce((n, b) => n + (b.actual - b.predicted) * b.answers, 0) / recallTotal) * 100) : 0
 
   return (
-    <div>
+    <div className="progress-page">
       <h1 className="greeting">İlerleme</h1>
       <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
       <GroupTitle id="p-overview">Genel bakış</GroupTitle>
@@ -147,14 +154,24 @@ export function ProgressScreen({
       <WeekCard report={report} focus={weakestSkill(skillProfile(states, scheduler, now))} />
 
       <section className="section stack">
-        <h2 className="section-title">Önümüzdeki {DAYS} günün tekrarları</h2>
+        <p className="eyebrow">Önümüzdeki {DAYS} günün tekrarları</p>
+        <h2 className="section-title">
+          {forecastTotal === 0 ? 'Yakında tekrar yok' : `${forecastTotal} tekrar; en yoğunu ${busiest === forecast[0] ? 'bugün' : dayLabel(busiest.date, { weekday: 'long' })} (${busiest.count})`}
+        </h2>
         <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
         <ForecastChart forecast={forecast} />
       </section>
 
       {recallBins.reduce((n, b) => n + b.answers, 0) >= 30 && (
         <section className="section stack">
-          <h2 className="section-title">Model tahmini ve gerçek</h2>
+          <p className="eyebrow">Model tahmini ve gerçek</p>
+          <h2 className="section-title">
+            {Math.abs(recallGap) <= 5
+              ? 'Tekrarlar doğru zamanda geliyor'
+              : recallGap < 0
+                ? `Tahminden ${-recallGap} puan az hatırlıyorsun`
+                : `Tahminden ${recallGap} puan fazla hatırlıyorsun`}
+          </h2>
           <p className="small muted">
             Her tekrardan önce FSRS kelimeyi hatırlama ihtimalini tahmin eder. Halka tahmin, nokta gerçekte hatırladığın oran. İkisi yakınsa tekrarlar doğru
             zamanda geliyor demektir.
@@ -180,7 +197,10 @@ export function ProgressScreen({
 
       {calib.sure.answers + calib.unsure.answers >= 10 && (
         <section className="section stack">
-          <h2 className="section-title">Ne kadar bildiğini ne kadar iyi biliyorsun?</h2>
+          <p className="eyebrow">Ne kadar bildiğini ne kadar iyi biliyorsun?</p>
+          <h2 className="section-title">
+            {calib.sure.answers > 0 ? `Emin olduğun cevapların %${pct(calib.sure)}'i doğru` : `Emin olmadığın cevapların %${pct(calib.unsure)}'i doğru`}
+          </h2>
           <div className="calib">
             {calib.sure.answers > 0 && (
               <p>
@@ -257,7 +277,10 @@ export function ProgressScreen({
       </section>
 
       <section className="section stack">
-        <h2 className="section-title">Kelimeler nerede?</h2>
+        <p className="eyebrow">Kelimeler nerede?</p>
+        <h2 className="section-title">
+          {stats.stageCounts[topStage] > 0 ? `En çok kelime “${STAGE_NAME[topStage]}” aşamasında (${stats.stageCounts[topStage]})` : 'Henüz başlanmış kelime yok'}
+        </h2>
         <div className="bars">
           {[...MASTERY_STAGES].reverse().map((stage) => (
             <StageBar key={stage} label={STAGE_NAME[stage]} value={stats.stageCounts[stage]} max={maxStage} />
@@ -268,12 +291,9 @@ export function ProgressScreen({
 
       <GroupTitle id="p-activity">Çalışma düzenin</GroupTitle>
       <section className="section stack">
-        <h2 className="section-title">Son {DAYS} gün</h2>
-        <p className="small muted">
-          {stats.daysPractised > 0
-            ? `${DAYS} günün ${stats.daysPractised} gününde çalıştın. Serbest pratik sayılmaz.`
-            : 'Bu dönemde henüz çalışma yok.'}
-        </p>
+        <p className="eyebrow">Son {DAYS} gün</p>
+        <h2 className="section-title">{stats.daysPractised > 0 ? `${DAYS} günün ${stats.daysPractised} gününde çalıştın` : 'Bu dönemde henüz çalışma yok'}</h2>
+        <p className="small muted">Günlük cevap sayısı; serbest pratik sayılmaz.</p>
         <ActivityChart activity={stats.activity} />
       </section>
 
@@ -282,7 +302,12 @@ export function ProgressScreen({
 
       <GroupTitle id="p-skills">Beceriler ve hatalar</GroupTitle>
       <section className="section stack">
-        <h2 className="section-title">Beceriler</h2>
+        <p className="eyebrow">Beceriler</p>
+        <h2 className="section-title">
+          {knownSkills.length >= 2
+            ? `En güçlü ${SKILL_NAME[knownSkills[0]].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills[0]]}), en zayıf ${SKILL_NAME[knownSkills.at(-1)!].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills.at(-1)!]})`
+            : 'Beceriler çalıştıkça burada görünür'}
+        </h2>
         <div className="bars">
           {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
             <div className="bar-row" key={s}>
@@ -343,7 +368,8 @@ function ActivityChart({ activity }: { activity: DayActivity[] }) {
             onBlur={() => setHover(null)}
           >
             <span
-              className={`column${hover === i ? ' is-active' : ''}`}
+              className={`column${hover === i ? ' is-active' : ''}${a.answers === max && a.answers > 0 ? ' is-peak' : ''}`}
+              data-value={a.answers}
               style={{ height: a.answers ? `${Math.max(4, (a.answers / max) * 100)}%` : 0 }}
             />
           </button>
@@ -404,7 +430,14 @@ function WeekCard({ report, focus }: { report: ReturnType<typeof weekReport>; fo
   const l = report.lastWeek
   return (
     <section className="section card stack">
-      <h2 className="section-title">Bu hafta</h2>
+      <p className="eyebrow">Bu hafta</p>
+      <h2 className="section-title">
+        {l.answers === 0
+          ? `${t.answers} cevap, ${t.daysStudied} gün`
+          : t.answers >= l.answers
+            ? `Geçen haftadan %${Math.round(((t.answers - l.answers) / l.answers) * 100)} daha fazla cevap`
+            : `Geçen haftanın %${Math.round((t.answers / l.answers) * 100)}'i kadar cevap`}
+      </h2>
       <div className="week-grid">
         <div>
           <strong>{t.xp}</strong> XP <span className="small muted">(tüm diller)</span> <Delta now={t.xp} before={l.xp} />
@@ -441,7 +474,11 @@ function ForecastChart({ forecast }: { forecast: { date: string; count: number }
       <div className="columns" onMouseLeave={() => setHover(null)}>
         {forecast.map((f, i) => (
           <button key={f.date} type="button" className="column-hit" onMouseEnter={() => setHover(i)} onFocus={() => setHover(i)} aria-label={`${f.date}: ${f.count} kelime`}>
-            <span className={`column${hover === i ? ' is-active' : ''}`} style={{ height: f.count ? `${Math.max(4, (f.count / max) * 100)}%` : 0, background: i === 0 ? 'var(--flame)' : undefined }} />
+            <span
+              className={`column${hover === i ? ' is-active' : ''}${f.count === max && f.count > 0 ? ' is-peak' : ''}`}
+              data-value={f.count}
+              style={{ height: f.count ? `${Math.max(4, (f.count / max) * 100)}%` : 0, background: i === 0 ? 'var(--flame)' : undefined }}
+            />
           </button>
         ))}
       </div>

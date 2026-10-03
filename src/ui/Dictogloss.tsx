@@ -7,6 +7,7 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speakAsync, speechPrefs, stopSpeaking } from './speech'
 import { WordForm } from './Words'
+import { PlayIcon } from './icons'
 
 /** Paragraphs of a comfortable dictogloss length, from the learner's reading library. */
 export function glossParagraphs(texts: readonly string[]): string[] {
@@ -92,7 +93,8 @@ export function Dictogloss({ db, language, vocabulary, onChanged }: { db: Kelime
       </p>
       <div className="row">
         <button className="btn" onClick={listen} disabled={playing || plays >= 2 || checked}>
-          {playing ? 'Okunuyor…' : plays === 0 ? '▶ Dinle (1/2)' : plays === 1 ? '▶ Bir kez daha (2/2)' : 'İki kez dinledin'}
+          {plays < 2 && !playing && <PlayIcon size={16} />}
+          {playing ? 'Okunuyor…' : plays === 0 ? 'Dinle (1/2)' : plays === 1 ? 'Bir kez daha (2/2)' : 'İki kez dinledin'}
         </button>
         <button className="link small" onClick={next}>
           Başka paragraf

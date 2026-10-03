@@ -29,6 +29,7 @@ import { TextImport } from './TextImport'
 import type { IncomingWord } from './incoming'
 import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
+import { EmptyState } from './EmptyState'
 
 interface Props {
   db: KelimeDB
@@ -760,7 +761,9 @@ function WordList({
         Liste <span className="muted small">({list.length === vocabulary.length ? vocabulary.length : `${list.length} / ${vocabulary.length}`})</span>
       </h2>
       {vocabulary.length === 0 ? (
-        <p className="muted">Henüz kelime yok. Yukarıdan ekleyebilir ya da bir liste yapıştırabilirsin.</p>
+        <EmptyState stage={0} title="Bahçen ekilmeyi bekliyor">
+          Öğrenmek istediğin kelimeleri yukarıdan tek tek ekle ya da bir liste yapıştır. Her kelime bir tohum: çalıştıkça büyür, çiçek açar.
+        </EmptyState>
       ) : (
         <>
           <div className="toolbar">
@@ -864,7 +867,7 @@ function WordList({
           {list.length === 0 ? (
             <p className="muted">Bu filtrelere uyan kelime yok.</p>
           ) : (
-            <ul className="word-list">
+            <ul className="word-list is-columns">
               {list.map((v, index) => {
                 const st = stateById.get(v.id)
                 const isSel = selected.has(v.id)

@@ -5,6 +5,7 @@ import { createRng } from '../../engine/rng'
 import { scheduler } from '../../data/instance'
 import { playWordAsync, preloadRecording, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from '../speech'
 import type { Props } from './shared'
+import { PauseIcon, PlayIcon } from '../icons'
 
 const AUDIO_SETS: [AudioSet, string][] = [
   ['weak', 'Zayıf kelimeler'],
@@ -155,11 +156,11 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
             <div className="row justify-center">
               {playing ? (
                 <button className="btn btn-lg btn-quiet" onClick={stop}>
-                  ⏸ Duraklat
+                  <PauseIcon size={18} /> Duraklat
                 </button>
               ) : (
                 <button className="btn btn-lg" onClick={() => play(index)} autoFocus>
-                  ▶ {index === 0 ? 'Başlat' : 'Devam et'}
+                  <PlayIcon size={16} /> {index === 0 ? 'Başlat' : 'Devam et'}
                 </button>
               )}
               <button

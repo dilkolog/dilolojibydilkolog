@@ -1,4 +1,9 @@
-/** Inline icons (Lucide-style, 24px grid, currentColor) so the app needs no icon package. */
+/**
+ * Inline icons (Lucide-style, 24px grid, currentColor) so the app needs no icon package.
+ *
+ * Rule: these line icons are for navigation and actions (menu, tiles, buttons). Emoji are for
+ * content with personality: game cards, quests, badges, plants, celebrations and notes.
+ */
 import type { ReactNode } from 'react'
 
 function Icon({ size = 20, children, className }: { size?: number; children: ReactNode; className?: string }) {
@@ -145,5 +150,36 @@ export const SearchIcon = (p: P) => (
   <Icon {...p}>
     <circle cx="11" cy="11" r="7" />
     <path d="m20 20-3.5-3.5" />
+  </Icon>
+)
+export const MicIcon = (p: P) => (
+  <Icon {...p}>
+    <rect x="9" y="2.5" width="6" height="12" rx="3" />
+    <path d="M5 11a7 7 0 0 0 14 0M12 18v3.5" />
+  </Icon>
+)
+export const PlayIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M7 4.5v15l12-7.5z" fill="currentColor" />
+  </Icon>
+)
+export const PauseIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M8 5v14M16 5v14" />
+  </Icon>
+)
+export const BulbIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M9 18h6M10 21.5h4M12 2.5a6.5 6.5 0 0 0-4 11.6c.7.6 1 1.4 1 2.4h6c0-1 .3-1.8 1-2.4a6.5 6.5 0 0 0-4-11.6z" />
+  </Icon>
+)
+export const DropIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 2.5s6.5 7 6.5 12a6.5 6.5 0 0 1-13 0c0-5 6.5-12 6.5-12z" />
+  </Icon>
+)
+export const ShuffleIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M3 6h3.5c4 0 6 12 10 12H21M3 18h3.5c1.6 0 2.8-1.9 3.9-4.2M13.6 10.2C14.7 7.9 15.9 6 17.5 6H21M18 3l3 3-3 3M18 15l3 3-3 3" />
   </Icon>
 )

@@ -19,7 +19,7 @@ export function YearCalendar({ db }: { db: KelimeDB }) {
   const height = 7 * (CELL + GAP) + 18
   let lastMonth = -1
   return (
-    <section className="section stack">
+    <section className="section stack span-2">
       <h2 className="section-title">Son bir yıl</h2>
       <p className="small muted">
         {map.activeDays} gün çalıştın, {map.total.toLocaleString('tr-TR')} cevap verdin; en uzun aralıksız dönem {map.longestStreak} gün.

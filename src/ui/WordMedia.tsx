@@ -8,6 +8,7 @@ import { ImagePicker } from './ImagePicker'
 import { comparePronunciation, playWord, preloadRecording } from './speech'
 import { useMediaUrl } from './useMedia'
 import { undoable } from './toast'
+import { BulbIcon } from './icons'
 
 /** Picture, own recording and personal note of a word, editable in place. */
 export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChanged: () => void }) {
@@ -128,7 +129,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
         <span className="help">{saved ? 'Kaydedildi.' : 'Kelime tanıtılırken ve yanlış cevaptan sonra gösterilir. Alandan çıkınca kaydedilir.'}</span>
         <div>
           <button className="btn btn-quiet" onClick={() => setMnemonicOpen(true)}>
-            💡 Hafıza ipucu {apiKey ? 'üret' : 'yaz'}
+            <BulbIcon size={18} /> Hafıza ipucu {apiKey ? 'üret' : 'yaz'}
           </button>
         </div>
       </div>

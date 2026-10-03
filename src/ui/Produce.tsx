@@ -17,6 +17,7 @@ import { SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
 import { canListen, listen } from './speechInput'
+import { EmptyState } from './EmptyState'
 
 interface Props {
   db: KelimeDB
@@ -179,7 +180,9 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
       <section className="section stack">
         <h2 className="section-title">Önceki yazdıkların</h2>
         {entries.length === 0 ? (
-          <p className="small muted">Her gün birkaç cümle: yazmak, okumanın gösteremediği eksikleri ortaya çıkarır.</p>
+          <EmptyState stage={1} title="İlk günlüğünü yaz">
+            Her gün birkaç cümle yeter: yazmak, okumanın gösteremediği eksikleri ortaya çıkarır. Yazdıkların burada birikir.
+          </EmptyState>
         ) : (
           <>
             <p className="small muted">Bu ay {days} gün yazdın.</p>

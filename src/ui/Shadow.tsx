@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { TargetLanguage } from '../engine/types'
 import { canRecord, recordingType } from './AudioRecorder'
 import { canSpeak, speakAsync, unlockedAudio } from './speech'
+import { MicIcon, PlayIcon } from './icons'
 
 /** Time to say a sentence back: about as long as hearing it, plus a breath. */
 const answerMs = (text: string) => Math.min(15_000, Math.max(2500, text.length * 85 + 1200))
@@ -76,7 +77,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
     <span className="shadow">
       {phase === 'idle' && (
         <button className="link small" onClick={start} title="Dinle, hemen tekrar et, sonra karşılaştır">
-          🗣️ Gölgele
+          <MicIcon size={18} /> Gölgele
         </button>
       )}
       {phase === 'hear' && <span className="small muted">Dinle…</span>}
@@ -88,7 +89,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
       {phase === 'done' && (
         <>
           <button className="link small" onClick={compare}>
-            ▶ Karşılaştır
+            <PlayIcon size={16} /> Karşılaştır
           </button>
           <button className="link small" onClick={start}>
             Tekrar

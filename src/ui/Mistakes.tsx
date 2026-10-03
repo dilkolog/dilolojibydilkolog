@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { displayForm } from '../engine/exercises'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
 import { ERROR_NAME } from './labels'
+import { EmptyState } from './EmptyState'
 
 const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'cross_language', 'false_friend', 'confusion', 'form', 'accent', 'typo', 'meaning']
 
@@ -35,10 +36,9 @@ export function MistakesScreen({
       <section className="section stack">
         <h1 className="greeting">Hatalar</h1>
         {open.length === 0 ? (
-          <p className="muted">
-            Açık hata yok. Yaptığın hatalar burada toplanır ve tekrarlarına özel olarak eklenir. Bir kelimeyi üst üste 3 kez
-            doğru bilince hatası kapanır.
-          </p>
+          <EmptyState stage={5} title="Açık hata yok">
+            Yaptığın hatalar burada türüne göre toplanır ve tekrarlarına özel olarak eklenir. Bir kelimeyi üst üste 3 kez doğru bilince hatası kapanır.
+          </EmptyState>
         ) : (
           <>
             <p className="muted">

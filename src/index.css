@@ -210,13 +210,15 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 @media (min-width: 64rem) {
   .shell {
-    max-width: 78rem;
+    max-width: 96rem;
     display: grid;
     grid-template-columns: 15rem minmax(0, 1fr);
     gap: 3.5rem;
     padding: 2rem 2rem 5rem;
   }
   .main { max-width: 52rem; width: 100%; }
+  /* Overview screens use the width; reading, forms and the session keep a reading measure. */
+  .main.main-wide { max-width: 76rem; }
   .sidebar {
     position: sticky;
     top: 2rem;
@@ -1886,3 +1888,77 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .mt-6 { margin-top: 1.5rem; }
 .mt-8 { margin-top: 2rem; }
 .tile-emoji { font-size: var(--t-lg); }
+
+/* ---------- Wide layouts (container queries: they follow the content width, not the window) ---------- */
+.main { container-type: inline-size; container-name: main; }
+.home-grid { display: grid; gap: 0 1.5rem; }
+.home-main, .home-side { min-width: 0; }
+@container main (min-width: 56rem) {
+  .home-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+  .home-side { position: sticky; top: 1.5rem; }
+  .home-side > .level-strip:first-child { margin-top: 1.5rem; }
+  .home-side .quests { margin-top: 1.5rem; }
+  .home-side .home-more { margin-top: 1rem; }
+
+  /* Progress: cards in two columns; group titles and wide charts span both. */
+  .progress-page { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+  .progress-page > * { margin-top: 0 !important; min-width: 0; }
+  .progress-page > :is(.greeting, .settings-nav, .settings-group-title, .span-2) { grid-column: 1 / -1; }
+  .progress-page > .settings-group-title { margin-bottom: -0.5rem; }
+
+  /* Word list: two columns of rows. */
+  .word-list.is-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container main (min-width: 72rem) {
+  .word-list.is-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- Home: today's mission in the language's colour ---------- */
+.hero-today {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: linear-gradient(140deg, var(--lang) 0%, var(--lang-deep) 100%);
+  color: var(--on-lang);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--lang) 30%, transparent);
+}
+.hero-today .hero-sub, .hero-today .small.muted, .hero-today .muted { color: color-mix(in srgb, var(--on-lang) 78%, transparent); }
+.hero-today .ring-track { stroke: color-mix(in srgb, var(--on-lang) 22%, transparent); }
+.hero-today .ring-fill, .hero-today .ring-fill.done { stroke: var(--on-lang); }
+.hero-today .ring-label, .hero-today .ring-label.done { color: var(--on-lang); }
+.hero-today .mission li { background: color-mix(in srgb, var(--on-lang) 16%, transparent); color: var(--on-lang); }
+.hero-today .btn { background: var(--surface); color: var(--lang-text); box-shadow: 0 4px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
+.hero-today .btn:active:not(:disabled) { box-shadow: 0 1px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
+.hero-today .btn-quiet { background: transparent; color: var(--on-lang); border-color: color-mix(in srgb, var(--on-lang) 40%, transparent); box-shadow: none; }
+.hero-hello {
+  position: absolute; z-index: -1; right: -0.5rem; bottom: -1.6rem;
+  font-family: var(--serif); font-style: italic; font-size: clamp(4rem, 12vw, 7rem); line-height: 1; white-space: nowrap;
+  color: var(--on-lang); opacity: 0.12; pointer-events: none; user-select: none;
+}
+
+/* Stats as one compact strip instead of three cards. */
+.stats { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); gap: 0; padding: 0.25rem 0; }
+.stats .stat { background: none; box-shadow: none; border-radius: 0; padding: 0.75rem 1rem; }
+.stats .stat + .stat { border-left: 1px solid var(--rule); }
+.stats .stat-value { font-size: var(--t-lg); }
+
+/* ---------- Empty states ---------- */
+.empty-state {
+  display: flex; align-items: center; gap: 1.25rem;
+  padding: 1.5rem; border-radius: var(--r-lg);
+  background: var(--surface); box-shadow: var(--shadow);
+}
+.empty-art {
+  flex: none; display: grid; place-items: center; width: 5.5rem; height: 5.5rem; border-radius: var(--r-full);
+  background: radial-gradient(circle at 50% 65%, var(--lang-soft), transparent 70%);
+}
+.empty-state p { max-width: 38rem; }
+@media (max-width: 30rem) { .empty-state { flex-direction: column; text-align: center; } .empty-state .row { justify-content: center; } }
+
+/* ---------- Charts: the finding as the title, numbers aligned, peaks labelled directly ---------- */
+.eyebrow + .section-title { margin-top: 0.125rem; }
+.chart-readout, .week-grid strong, .stat-label, .columns-axis { font-variant-numeric: tabular-nums; }
+.column { position: relative; }
+.column.is-peak::after {
+  content: attr(data-value); position: absolute; bottom: calc(100% + 0.25rem); left: 50%; transform: translateX(-50%);
+  font-size: var(--t-xs); font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.columns { padding-top: 1.25rem; }

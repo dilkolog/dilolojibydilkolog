@@ -6,6 +6,7 @@ import type { UserWordState, VocabularyEntry } from '../engine/types'
 import { scheduler } from '../data/instance'
 import { STAGE_NAME } from './labels'
 import { Plant } from './Plant'
+import { DropIcon } from './icons'
 
 export const WORDS_VIEW_KEY = 'kelime-koc:words-view'
 
@@ -36,7 +37,7 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
               {summary.thirsty > 0 && `${summary.thirsty} susamış`}
             </span>
             <button className="btn btn-sm" onClick={() => onWater(water.slice(0, 20))}>
-              💧 Bahçeyi sula ({Math.min(20, water.length)})
+              <DropIcon size={16} /> Bahçeyi sula ({Math.min(20, water.length)})
             </button>
           </div>
         ) : (
@@ -109,7 +110,7 @@ export function GardenCard({ summary, onWater, onOpen }: { summary: GardenSummar
       <div className="row gap-2">
         {dry > 0 && (
           <button className="btn btn-sm" onClick={onWater}>
-            💧 Sula
+            <DropIcon size={16} /> Sula
           </button>
         )}
         <button className="btn btn-sm btn-quiet" onClick={onOpen}>

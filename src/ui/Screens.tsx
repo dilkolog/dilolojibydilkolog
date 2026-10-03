@@ -6,7 +6,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, CheckIcon, FlameIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
+import { AlertIcon, BookIcon, CheckIcon, FlameIcon, GameIcon, ShuffleIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -234,242 +234,252 @@ export function Home({
         {streak > 1 ? `${streak} gündür aralıksız çalışıyorsun. Seriyi bozma!` : `Bugün ${LANGUAGE_NAME[language].toLocaleLowerCase('tr-TR')} çalışıyoruz.`}
       </p>
 
-      <div className="hero">
-        <Ring value={remaining === 0 && answeredToday > 0 ? 1 : progress} doneLabel={<CheckIcon size={40} />} />
-        <div className="hero-body">
-          {remaining > 0 ? (
-            <>
-              <h2 className="hero-title">{answeredToday > 0 ? 'Güzel gidiyor, devam!' : 'Bugünün görevi'}</h2>
-              <p className="hero-sub">
-                {remaining} soru, yaklaşık {plan.estimatedMinutes} dakika
-              </p>
-              <ul className="mission">
-                {REASONS.filter((r) => plan.counts[r] > 0).map((r) => (
-                  <li key={r}>{REASON_CHIP[r](plan.counts[r])}</li>
-                ))}
-              </ul>
-              <button className="btn btn-lg" onClick={onStart} autoFocus>
-                {answeredToday > 0 ? 'Devam et' : 'Başla'}
-              </button>
-              {plan.newBlockedBy && plan.waitingNew > 0 && (
-                <p className="small muted mt-3">
-                  {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
-                    ? `${plan.waitingNew} kelime daha sırada; günlük sınırı Ayarlar'dan artırabilirsin.`
-                    : NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
+      <div className="home-grid">
+      <div className="home-main">
+        <div className="hero hero-today">
+          {/* The language itself as decoration: a large, faint greeting behind the mission. */}
+          <span className="hero-hello" aria-hidden lang={language}>
+            {HELLO[language]}
+          </span>
+          <Ring value={remaining === 0 && answeredToday > 0 ? 1 : progress} doneLabel={<CheckIcon size={40} />} />
+          <div className="hero-body">
+            {remaining > 0 ? (
+              <>
+                <h2 className="hero-title">{answeredToday > 0 ? 'Güzel gidiyor, devam!' : 'Bugünün görevi'}</h2>
+                <p className="hero-sub">
+                  {remaining} soru, yaklaşık {plan.estimatedMinutes} dakika
                 </p>
-              )}
-            </>
-          ) : (
-            <>
-              <h2 className="hero-title">{answeredToday > 0 ? 'Bugünün görevi tamam!' : 'Bugün tekrar yok'}</h2>
-              <p className="hero-sub">
-                {answeredToday > 0 && `Bugün ${answeredToday} soru cevapladın. `}
-                {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
-                {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
-              </p>
-              {plan.waitingNew > 0 ? (
-                <button className="btn btn-lg" onClick={onExtraNew}>
-                  +{Math.min(5, plan.waitingNew)} yeni kelime öğren
+                <ul className="mission">
+                  {REASONS.filter((r) => plan.counts[r] > 0).map((r) => (
+                    <li key={r}>{REASON_CHIP[r](plan.counts[r])}</li>
+                  ))}
+                </ul>
+                <button className="btn btn-lg" onClick={onStart} autoFocus>
+                  {answeredToday > 0 ? 'Devam et' : 'Başla'}
                 </button>
-              ) : (
-                <button className="btn btn-quiet" onClick={onAddWords}>
-                  Kelime ekle
-                </button>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-
-      {extra}
-      {garden?.urgent && garden.node}
-
-      {(openMistakeWords > 0 || canPractice || onStory || onGames || onMixed) && (
-        <section className="section stack">
-          <h2 className="section-title">Ek çalışma</h2>
-          <div className="tiles">
-            {openMistakeWords > 0 && (
-              <button className="tile" onClick={onPracticeMistakes}>
-                <span className="tile-icon bad">
-                  <AlertIcon size={22} />
-                </span>
-                <span>
-                  <strong>Hatalarını düzelt</strong>
-                  <span className="small muted">{openMistakeWords} kelimede açık hata</span>
-                </span>
-              </button>
-            )}
-            {onStory && (
-              <button className="tile" onClick={onStory}>
-                <span className="tile-icon">
-                  <StoryIcon size={22} />
-                </span>
-                <span>
-                  <strong>Hikayenin yeni bölümü</strong>
-                  <span className="small muted">Zorlandığın kelimelerle yazılır</span>
-                </span>
-              </button>
-            )}
-            {onMixed && (
-              <button className="tile" onClick={onMixed}>
-                <span className="tile-icon">
-                  <span className="tile-emoji">🔀</span>
-                </span>
-                <span>
-                  <strong>Karışık tekrar</strong>
-                  <span className="small muted">Üç dilden {mixedDue} tekrar tek oturumda: dil değiştirmek ayırt etmeyi güçlendirir</span>
-                </span>
-              </button>
-            )}
-            {onGames && (
-              <button className="tile" onClick={onGames}>
-                <span className="tile-icon">
-                  <span className="tile-emoji">🧩</span>
-                </span>
-                <span>
-                  <strong>Oyunlar</strong>
-                  <span className="small muted">Tekrar, dinleme, hız ve dilbilgisi oyunları</span>
-                </span>
-              </button>
-            )}
-            {canPractice && (
-              <button className="tile" onClick={onFreePractice}>
-                <span className="tile-icon">
-                  <SparkleIcon size={22} />
-                </span>
-                <span>
-                  <strong>Serbest pratik</strong>
-                  <span className="small muted">Stressiz, hiçbir şeyi etkilemez</span>
-                </span>
-              </button>
+                {plan.newBlockedBy && plan.waitingNew > 0 && (
+                  <p className="small muted mt-3">
+                    {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
+                      ? `${plan.waitingNew} kelime daha sırada; günlük sınırı Ayarlar'dan artırabilirsin.`
+                      : NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
+                  </p>
+                )}
+              </>
+            ) : (
+              <>
+                <h2 className="hero-title">{answeredToday > 0 ? 'Bugünün görevi tamam!' : 'Bugün tekrar yok'}</h2>
+                <p className="hero-sub">
+                  {answeredToday > 0 && `Bugün ${answeredToday} soru cevapladın. `}
+                  {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
+                  {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
+                </p>
+                {plan.waitingNew > 0 ? (
+                  <button className="btn btn-lg" onClick={onExtraNew}>
+                    +{Math.min(5, plan.waitingNew)} yeni kelime öğren
+                  </button>
+                ) : (
+                  <button className="btn btn-quiet" onClick={onAddWords}>
+                    Kelime ekle
+                  </button>
+                )}
+              </>
             )}
           </div>
-        </section>
-      )}
+        </div>
 
-      {game && (
-        <button className="level-strip" onClick={onProfile}>
-          <span className="level-badge">Sv. {game.level.level}</span>
-          <span className="level-strip-body">
-            <span className="level-strip-top">
-              <strong>{game.level.title}</strong>
-              <span className="small muted">
-                {game.level.into.toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
-              </span>
-            </span>
-            <span className="xp-bar xp-bar-sm">
-              <span style={{ width: `${game.level.progress * 100}%` }} />
-            </span>
-          </span>
-          <span className={`daily-goal${game.xp.today >= dailyXpGoal ? ' is-done' : ''}`}>
-            <span className="small muted">Bugün</span>
-            <strong>
-              {game.xp.today}/{dailyXpGoal} XP
-            </strong>
-          </span>
-        </button>
-      )}
+        {extra}
+        {garden?.urgent && garden.node}
 
-      <div className="stats">
-        <div className="stat">
-          <span className="stat-value">
-            <FlameIcon className="icon-flame" size={22} /> {streak}
-            {(game?.freezes ?? 0) > 0 && (
-              <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
-                ❄️{game!.freezes}
-              </span>
-            )}
-          </span>
-          <span className="stat-label">günlük seri</span>
-        </div>
-        <div className="stat">
-          <span className="stat-value">
-            <StarIcon className="icon-star" size={22} /> {activeVocabulary}
-          </span>
-          <span className="stat-label">aktif kelime</span>
-        </div>
-        <div className="stat">
-          <span className="stat-value">
-            <BookIcon className="icon-book" size={22} /> {learningCount}
-            <span className="small muted" style={{ fontWeight: 500 }}>/{vocabularyCount}</span>
-          </span>
-          <span className="stat-label">kelime öğreniliyor</span>
-        </div>
+        {(openMistakeWords > 0 || canPractice || onStory || onGames || onMixed) && (
+          <section className="section stack">
+            <h2 className="section-title">Ek çalışma</h2>
+            <div className="tiles">
+              {openMistakeWords > 0 && (
+                <button className="tile" onClick={onPracticeMistakes}>
+                  <span className="tile-icon bad">
+                    <AlertIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Hatalarını düzelt</strong>
+                    <span className="small muted">{openMistakeWords} kelimede açık hata</span>
+                  </span>
+                </button>
+              )}
+              {onStory && (
+                <button className="tile" onClick={onStory}>
+                  <span className="tile-icon">
+                    <StoryIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Hikayenin yeni bölümü</strong>
+                    <span className="small muted">Zorlandığın kelimelerle yazılır</span>
+                  </span>
+                </button>
+              )}
+              {onMixed && (
+                <button className="tile" onClick={onMixed}>
+                  <span className="tile-icon">
+                    <ShuffleIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Karışık tekrar</strong>
+                    <span className="small muted">Üç dilden {mixedDue} tekrar tek oturumda: dil değiştirmek ayırt etmeyi güçlendirir</span>
+                  </span>
+                </button>
+              )}
+              {onGames && (
+                <button className="tile" onClick={onGames}>
+                  <span className="tile-icon">
+                    <GameIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Oyunlar</strong>
+                    <span className="small muted">Tekrar, dinleme, hız ve dilbilgisi oyunları</span>
+                  </span>
+                </button>
+              )}
+              {canPractice && (
+                <button className="tile" onClick={onFreePractice}>
+                  <span className="tile-icon">
+                    <SparkleIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Serbest pratik</strong>
+                    <span className="small muted">Stressiz, hiçbir şeyi etkilemez</span>
+                  </span>
+                </button>
+              )}
+            </div>
+          </section>
+        )}
+
       </div>
+      <div className="home-side">
+        {game && (
+          <button className="level-strip" onClick={onProfile}>
+            <span className="level-badge">Sv. {game.level.level}</span>
+            <span className="level-strip-body">
+              <span className="level-strip-top">
+                <strong>{game.level.title}</strong>
+                <span className="small muted">
+                  {game.level.into.toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
+                </span>
+              </span>
+              <span className="xp-bar xp-bar-sm">
+                <span style={{ width: `${game.level.progress * 100}%` }} />
+              </span>
+            </span>
+            <span className={`daily-goal${game.xp.today >= dailyXpGoal ? ' is-done' : ''}`}>
+              <span className="small muted">Bugün</span>
+              <strong>
+                {game.xp.today}/{dailyXpGoal} XP
+              </strong>
+            </span>
+          </button>
+        )}
 
-      <InstallHint />
-      {game && (
-        <section className="quests">
-          <h2 className="section-title">Günün görevleri</h2>
-          <ul className="quest-list">
-            {game.quests.map((q) => (
-              <li key={q.id} className={q.done ? 'is-done' : ''}>
-                <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
-                <span className="quest-body">
-                  <span className="quest-top">
-                    <strong>{q.title}</strong>
-                    <span className="small muted">
-                      {q.value}/{q.target}
+        <div className="stats">
+          <div className="stat">
+            <span className="stat-value">
+              <FlameIcon className="icon-flame" size={22} /> {streak}
+              {(game?.freezes ?? 0) > 0 && (
+                <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
+                  ❄️{game!.freezes}
+                </span>
+              )}
+            </span>
+            <span className="stat-label">günlük seri</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">
+              <StarIcon className="icon-star" size={22} /> {activeVocabulary}
+            </span>
+            <span className="stat-label">aktif kelime</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">
+              <BookIcon className="icon-book" size={22} /> {learningCount}
+              <span className="small muted" style={{ fontWeight: 500 }}>/{vocabularyCount}</span>
+            </span>
+            <span className="stat-label">kelime öğreniliyor</span>
+          </div>
+        </div>
+
+        <InstallHint />
+        {game && (
+          <section className="quests">
+            <h2 className="section-title">Günün görevleri</h2>
+            <ul className="quest-list">
+              {game.quests.map((q) => (
+                <li key={q.id} className={q.done ? 'is-done' : ''}>
+                  <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
+                  <span className="quest-body">
+                    <span className="quest-top">
+                      <strong>{q.title}</strong>
+                      <span className="small muted">
+                        {q.value}/{q.target}
+                      </span>
+                    </span>
+                    <span className="quest-bar">
+                      <span style={{ width: `${(q.value / q.target) * 100}%` }} />
                     </span>
                   </span>
-                  <span className="quest-bar">
-                    <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                  </span>
-                </span>
-                <span className="quest-xp">+{q.xp} XP</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+                  <span className="quest-xp">+{q.xp} XP</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      {/* The rest is useful now and then, not every day: closed unless opened (remembered). */}
-      <details className="home-more" open={moreOpen} onToggle={(e) => rememberMore(e.currentTarget.open)}>
-        <summary className="section-title">Haftalık hedefler, bahçe ve beceriler</summary>
-        <div className="stack">
-          {game && game.weekly.length > 0 && (
-            <section className="quests">
-              <h2 className="section-title">Haftanın meydan okumaları</h2>
-              <ul className="quest-list">
-                {game.weekly.map((q) => (
-                  <li key={q.id} className={q.done ? 'is-done' : ''}>
-                    <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
-                    <span className="quest-body">
-                      <span className="quest-top">
-                        <strong>{q.title}</strong>
-                        <span className="small muted">
-                          {q.value}/{q.target}
+        {/* The rest is useful now and then, not every day: closed unless opened (remembered). */}
+        <details className="home-more" open={moreOpen} onToggle={(e) => rememberMore(e.currentTarget.open)}>
+          <summary className="section-title">Haftalık hedefler, bahçe ve beceriler</summary>
+          <div className="stack">
+            {game && game.weekly.length > 0 && (
+              <section className="quests">
+                <h2 className="section-title">Haftanın meydan okumaları</h2>
+                <ul className="quest-list">
+                  {game.weekly.map((q) => (
+                    <li key={q.id} className={q.done ? 'is-done' : ''}>
+                      <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
+                      <span className="quest-body">
+                        <span className="quest-top">
+                          <strong>{q.title}</strong>
+                          <span className="small muted">
+                            {q.value}/{q.target}
+                          </span>
+                        </span>
+                        <span className="quest-bar">
+                          <span style={{ width: `${(q.value / q.target) * 100}%` }} />
                         </span>
                       </span>
-                      <span className="quest-bar">
-                        <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                      </span>
-                    </span>
-                    <span className="quest-xp">+{CHALLENGE_XP} XP</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-          {game && <RaceCard game={game} />}
-          {garden && !garden.urgent && garden.node}
-          <section className="section stack">
-            <h2 className="section-title">Beceriler</h2>
-            <div className="bars">
-              {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
-                <div className="bar-row" key={s}>
-                  <span>{SKILL_NAME[s]}</span>
-                  <div className="bar-track">
-                    <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
+                      <span className="quest-xp">+{CHALLENGE_XP} XP</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+            {game && <RaceCard game={game} />}
+            {garden && !garden.urgent && garden.node}
+            <section className="section stack">
+              <h2 className="section-title">Beceriler</h2>
+              <div className="bars">
+                {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
+                  <div className="bar-row" key={s}>
+                    <span>{SKILL_NAME[s]}</span>
+                    <div className="bar-track">
+                      <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
+                    </div>
+                    <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
                   </div>
-                  <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
-                </div>
-              ))}
-            </div>
-            <p className="small muted">Yüzde, o becerideki kelimeleri şu an hatırlama olasılığın.</p>
-          </section>
-        </div>
-      </details>
+                ))}
+              </div>
+              <p className="small muted">Yüzde, o becerideki kelimeleri şu an hatırlama olasılığın.</p>
+            </section>
+          </div>
+        </details>
+      </div>
+      </div>
     </div>
   )
 }

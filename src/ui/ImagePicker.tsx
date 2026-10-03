@@ -1,6 +1,7 @@
 import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { fetchImage, searchImages, type ImageResult } from '../data/imageSearch'
 import { imageFromClipboard, shrinkImage } from './imageTools'
+import { CloseIcon } from './icons'
 
 export interface PickedImage {
   blob: Blob
@@ -105,7 +106,7 @@ export function ImagePicker({
             Görsel ekle
           </h2>
           <button className="icon-btn" onClick={onClose} aria-label="Kapat">
-            ✕
+            <CloseIcon size={18} />
           </button>
         </div>
         <div className="segmented" role="tablist">

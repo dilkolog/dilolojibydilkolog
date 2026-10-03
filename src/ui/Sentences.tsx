@@ -10,6 +10,7 @@ import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
 import { undoable } from './toast'
+import { EmptyState } from './EmptyState'
 
 /** Saves a sentence met while reading (or sent from the browser extension). */
 export async function saveSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string }) {
@@ -62,7 +63,11 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
           </ul>
         </section>
       )}
-      {!mine.length && <p className="small muted">Henüz cümle yok. Okuma ekranında bir kelimeye dokunup "Cümleyi kaydet" de, ya da aşağıya yapıştır.</p>}
+      {!mine.length && (
+        <EmptyState stage={1} title="Henüz cümle yok">
+          Okuma ekranında bir kelimeye dokunup “Cümleyi kaydet” de, ya da aşağıya bir cümle yapıştır. Cümleler bütün olarak, takvimli tekrar edilir.
+        </EmptyState>
+      )}
     </div>
   )
 }

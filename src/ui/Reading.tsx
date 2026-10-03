@@ -16,6 +16,7 @@ import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
 import { WordForm } from './Words'
 import { undoable } from './toast'
+import { EmptyState } from './EmptyState'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
   easy: { title: 'Rahat okuma', text: 'Neredeyse her kelimeyi biliyorsun: akıcılık için ideal. Yeni kelime için biraz daha zor bir metin seçebilirsin.' },
@@ -404,6 +405,12 @@ export function ReadingScreen({
           alt yazısı. Ne kadarını bildiğini gösteririm; bilmediğin kelimeleri işaretler, listene eklersin.
         </p>
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
+        {library.length === 0 && (
+          <EmptyState stage={1} title="Kütüphanen boş">
+            Aşağıdan ilk metnini ekle: bir haber, kitaptan bir bölüm, bir YouTube videosunun alt yazısı. Ne kadarını bildiğini gösterir, bilmediklerini
+            listene eklemeni sağlarım.
+          </EmptyState>
+        )}
         {library.length > 0 && (
           <section className="section stack">
             <h2 className="section-title">Kütüphanen: kaldığın yerden devam et</h2>

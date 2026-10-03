@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { contour, melodySimilarity, pitchTrack, resample } from '../engine/pitch'
 import { canRecord, recordingType } from './AudioRecorder'
+import { PlayIcon } from './icons'
 
 const W = 560
 const H = 140
@@ -115,14 +116,14 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
     <div className="pitch stack">
       <div className="row">
         <button className="btn btn-sm btn-quiet" onClick={playNative}>
-          ▶ Doğrusu
+          <PlayIcon size={16} /> Doğrusu
         </button>
         <button className={`btn btn-sm${phase === 'recording' ? ' btn-bad' : ''}`} onClick={record} disabled={phase === 'working'}>
           {phase === 'recording' ? '⏹ Bitir' : phase === 'working' ? 'Çözümleniyor…' : '🎙️ Sen söyle'}
         </button>
         {mineUrl && (
           <button className="btn btn-sm btn-quiet" onClick={() => void new Audio(mineUrl).play()}>
-            ▶ Seninki
+            <PlayIcon size={16} /> Seninki
           </button>
         )}
         <span className="small muted">{label}</span>

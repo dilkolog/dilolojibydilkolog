@@ -5,6 +5,7 @@ import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { prefs } from '../prefs'
 import { canListen, listen } from '../speechInput'
 import { modalOpen } from './keys'
+import { MicIcon } from '../icons'
 
 
 /** Multiple-choice options. */
@@ -154,7 +155,7 @@ export function TypedAnswer({
       {/* Listening exercises test spelling what you hear, so no speaking shortcut there. */}
       {canListen() && !answered && exercise.skill !== 'listening' && (
         <button type="button" className={`mic-btn${hearing ? ' is-on' : ''}`} onClick={dictate} aria-label={hearing ? 'Dinlemeyi durdur' : 'Sesle cevap ver'}>
-          🎤
+          <MicIcon size={20} />
         </button>
       )}
       </div>
@@ -225,7 +226,7 @@ export function SpeakAnswer({
   return (
     <div className="speak-answer">
       <button className={`mic-big${state === 'listening' ? ' is-on' : ''}`} onClick={start} disabled={answered || state === 'listening'} aria-label="Konuş">
-        🎤
+        <MicIcon size={22} />
       </button>
       <p className="heard">{heard ? `“${heard}”` : state === 'listening' ? 'Dinliyorum…' : 'Mikrofona dokun ve kelimeyi söyle'}</p>
       {error && (
