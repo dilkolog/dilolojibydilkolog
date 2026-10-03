@@ -392,38 +392,71 @@ export function ReadingScreen({
           alt yazısı. Ne kadarını bildiğini gösteririm; bilmediğin kelimeleri işaretler, listene eklersin.
         </p>
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
-        <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
-        <textarea className="textarea" style={{ minHeight: '14rem' }} lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
-        <div className="row">
-          <button className="btn" onClick={start} disabled={!draft.trim()}>
-            Okumaya başla
-          </button>
-          <label className="btn btn-quiet file-btn">
-            Alt yazı ya da metin dosyası yükle
-            <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
-          </label>
-          <label className="btn btn-quiet file-btn">
-            📚 Kitap yükle (EPUB)
-            <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
-          </label>
-        </div>
-        <form
-          className="row"
-          onSubmit={(e) => {
-            e.preventDefault()
-            void importYoutube()
-          }}
-        >
-          <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı: altyazısı metin olarak gelir" aria-label="YouTube bağlantısı" inputMode="url" />
-          <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
-            {ytBusy ? 'Getiriliyor…' : '▶️ Altyazıyı getir'}
-          </button>
-        </form>
-        {bookError && (
-          <p className={bookError.startsWith('📚') ? 'notice' : 'error'} role="status">
-            {bookError}
-          </p>
+        {library.length > 0 && (
+          <section className="section stack">
+            <h2 className="section-title">Kütüphanen: kaldığın yerden devam et</h2>
+            <ul className="library">
+              {groupBooks(library).map((group) =>
+                'chapters' in group ? (
+                  <BookItem
+                    key={group.id}
+                    title={group.title}
+                    chapters={group.chapters}
+                    language={language}
+                    vocabulary={vocabulary}
+                    states={states}
+                    known={known}
+                    onOpen={open}
+                    onRemove={() => removeBook(group.id)}
+                  />
+                ) : (
+                  renderText(group)
+                ),
+              )}
+            </ul>
+            <p className="small muted">
+              Bitirdiğin bir metni bir hafta sonra tekrar okumak, kelimeleri yeni bağlamda değil ama yeniden karşılaşarak pekiştirir; kapsama oranının
+              nasıl arttığını da görürsün.
+            </p>
+          </section>
         )}
+        <details className="card add-text" open={!library.length}>
+          <summary>Kendi metnini ekle: yapıştır, dosya, kitap (EPUB) ya da YouTube</summary>
+          <div className="stack" style={{ marginTop: '0.75rem' }}>
+          <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
+          <textarea className="textarea" style={{ minHeight: '14rem' }} lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
+          <div className="row">
+            <button className="btn" onClick={start} disabled={!draft.trim()}>
+              Okumaya başla
+            </button>
+            <label className="btn btn-quiet file-btn">
+              Alt yazı ya da metin dosyası yükle
+              <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
+            </label>
+            <label className="btn btn-quiet file-btn">
+              📚 Kitap yükle (EPUB)
+              <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
+            </label>
+          </div>
+          <form
+            className="row"
+            onSubmit={(e) => {
+              e.preventDefault()
+              void importYoutube()
+            }}
+          >
+            <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı: altyazısı metin olarak gelir" aria-label="YouTube bağlantısı" inputMode="url" />
+            <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
+              {ytBusy ? 'Getiriliyor…' : '▶️ Altyazıyı getir'}
+            </button>
+          </form>
+          {bookError && (
+            <p className={bookError.startsWith('📚') ? 'notice' : 'error'} role="status">
+              {bookError}
+            </p>
+          )}
+          </div>
+        </details>
         <ListeningPicker
           language={language}
           vocabulary={vocabulary}
@@ -456,34 +489,6 @@ export function ReadingScreen({
             await open(item)
           }}
         />
-        {library.length > 0 && (
-          <section className="section stack">
-            <h2 className="section-title">Kütüphanen</h2>
-            <ul className="library">
-              {groupBooks(library).map((group) =>
-                'chapters' in group ? (
-                  <BookItem
-                    key={group.id}
-                    title={group.title}
-                    chapters={group.chapters}
-                    language={language}
-                    vocabulary={vocabulary}
-                    states={states}
-                    known={known}
-                    onOpen={open}
-                    onRemove={() => removeBook(group.id)}
-                  />
-                ) : (
-                  renderText(group)
-                ),
-              )}
-            </ul>
-            <p className="small muted">
-              Bitirdiğin bir metni bir hafta sonra tekrar okumak, kelimeleri yeni bağlamda değil ama yeniden karşılaşarak pekiştirir; kapsama oranının
-              nasıl arttığını da görürsün.
-            </p>
-          </section>
-        )}
         <p className="small muted">
           İlk metinlerde çok kelime "yeni" görünür; çünkü bildiğin kelimeleri henüz tanımıyorum. Okumayı bitirdiğinde işaretlemediğin kelimeler bilinen
           sayılır ve sonraki metinlerin ölçümü giderek doğrulaşır.

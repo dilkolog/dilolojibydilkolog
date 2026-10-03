@@ -127,11 +127,14 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <summary>Kelime ekle</summary>
           <WordForm db={db} language={language} existing={keys} onSaved={onChanged} onLearn={onStudy} />
         </details>
-        <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
-        <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
-        <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
-        <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
-        <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
+        <section className="card stack import-group">
+          <h2 className="section-title">Başka yerden kelime aktar</h2>
+          <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
+          <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
+          <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
+          <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
+          <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
+        </section>
         <div className="row small">
           {hasSamples ? (
             <button className="link" onClick={removeSamples}>

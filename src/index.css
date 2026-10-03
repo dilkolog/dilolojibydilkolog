@@ -1751,3 +1751,12 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 
 .game-group + .game-group { margin-top: 1.25rem; }
+
+/* Import options as one accordion */
+.import-group { gap: 0; }
+.import-group > * + * { margin-top: 0 !important; }
+.import-group > details.card { box-shadow: none; border-radius: 0; padding: 0.875rem 0; background: transparent; border-top: 1px solid var(--rule); }
+.import-group > details.card > summary { font-weight: 600; cursor: pointer; }
+.import-group > h2 { margin-bottom: 0.5rem; }
+
+.add-text > summary { font-weight: 700; cursor: pointer; }
