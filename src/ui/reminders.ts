@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { displayForm } from '../engine/exercises'
+import { isRetired } from '../engine/retire'
+import { prefs } from './prefs'
 
 const LAST_KEY = 'kelime-koc:last-reminder'
 
@@ -26,13 +28,17 @@ export function reminderBody(streak: number, plan = '', due = 0): string {
 async function dueQuestion(): Promise<{ word: string; gloss: string } | null> {
   const now = Date.now()
   const due = (await db.wordStates.toArray())
+    .filter((st) => !isRetired(st, prefs.autoRetire))
     .map((st) => ({ st, due: Math.min(...Object.values(st.skills).map((c) => c.due.getTime())) }))
     .filter((x) => Number.isFinite(x.due) && x.due <= now)
     .sort((a, b) => a.due - b.due)
     .slice(0, 5)
-  if (!due.length) return null
-  const entry = await db.vocabulary.get(due[Math.floor(Math.random() * due.length)].st.entryId)
-  return entry ? { word: displayForm(entry), gloss: entry.senses[0].gloss } : null
+  // A random one of those, skipping any whose entry is gone or has no meaning yet.
+  for (const { st } of due.sort(() => Math.random() - 0.5)) {
+    const entry = await db.vocabulary.get(st.entryId)
+    if (entry?.senses[0]?.gloss) return { word: displayForm(entry), gloss: entry.senses[0].gloss }
+  }
+  return null
 }
 
 export async function showReminder(streak: number, plan = '', due = 0) {

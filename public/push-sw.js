@@ -48,15 +48,31 @@ async function dueQuestion() {
   try {
     const now = Date.now()
     const states = await idbAll(db, 'wordStates')
+    const settings = (await idbGet(db, 'meta', 'settings'))?.value || {}
+    const autoRetire = settings.autoRetire !== false
+    // Retired words (by hand, or with every card stable for half a year as in retire.ts) only cost time.
+    const retired = (s) =>
+      s.retired !== undefined ? s.retired : autoRetire && Object.values(s.skills || {}).every((c) => c.stability >= 180)
     const due = states
+      .filter((s) => !retired(s))
       .map((s) => ({ s, due: Math.min(...Object.values(s.skills || {}).map((c) => new Date(c.due).getTime())) }))
       .filter((x) => Number.isFinite(x.due) && x.due <= now)
       .sort((a, b) => a.due - b.due)
       .slice(0, 5)
-    if (!due.length) return null
-    const pick = due[Math.floor(Math.random() * due.length)].s
-    const entry = await idbGet(db, 'vocabulary', pick.entryId)
-    if (!entry || !entry.senses || !entry.senses[0]) return null
+    // A random one of the most overdue, skipping any whose entry is gone or has no meaning yet.
+    for (let i = due.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[due[i], due[j]] = [due[j], due[i]]
+    }
+    let entry = null
+    for (const x of due) {
+      const e = await idbGet(db, 'vocabulary', x.s.entryId)
+      if (e && e.senses && e.senses[0] && e.senses[0].gloss) {
+        entry = e
+        break
+      }
+    }
+    if (!entry) return null
     const word = entry.article ? (entry.article.endsWith("'") ? entry.article + entry.lemma : entry.article + ' ' + entry.lemma) : entry.lemma
     return { word, gloss: entry.senses[0].gloss }
   } finally {
