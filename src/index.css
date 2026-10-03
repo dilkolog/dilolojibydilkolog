@@ -1779,3 +1779,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .quest-columns > * + * { margin-top: 0 !important; }
 @media (min-width: 46rem) { .quest-columns { grid-template-columns: 1fr 1fr; align-items: start; } }
 .listen-rounds { display: grid; gap: 0.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+
+/* 4/3/2 */
+.fluency-timer { font-variant-numeric: tabular-nums; font-size: var(--t-xl); font-weight: 800; color: var(--lang-text); }
+.fluency-transcript { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.6; min-height: 6rem; max-height: 16rem; overflow-y: auto; }

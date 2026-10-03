@@ -11,7 +11,7 @@ interface Recognition {
   interimResults: boolean
   maxAlternatives: number
   continuous: boolean
-  onresult: ((e: { results: RecognitionResultList }) => void) | null
+  onresult: ((e: { results: RecognitionResultList; resultIndex: number }) => void) | null
   onerror: ((e: { error: string }) => void) | null
   onend: (() => void) | null
   start(): void
@@ -66,4 +66,48 @@ export function listen(language: TargetLanguage, h: ListenHandlers): () => void 
   rec.onend = () => h.onEnd?.()
   rec.start()
   return () => rec.abort()
+}
+
+/**
+ * Listening for minutes at a time (a monologue): recognition restarts itself whenever the browser
+ * ends it after a pause, until stopped. `onText` gets everything said so far and the part still
+ * being recognised.
+ */
+export function listenContinuous(language: TargetLanguage, onText: (final: string, interim: string) => void, onError?: (message: string) => void): () => void {
+  const C = ctor()
+  if (!C) {
+    onError?.('Bu tarayıcı konuşma tanımayı desteklemiyor.')
+    return () => {}
+  }
+  let stopped = false
+  let finalText = ''
+  let rec: Recognition | null = null
+  const start = () => {
+    const r = new C()
+    rec = r
+    r.lang = SPEECH_LANG[language]
+    r.interimResults = true
+    r.continuous = true
+    r.onresult = (e) => {
+      let interim = ''
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript
+        if (e.results[i].isFinal) finalText = `${finalText} ${t}`.trim()
+        else interim += t
+      }
+      onText(finalText, interim.trim())
+    }
+    r.onerror = (e) => {
+      if (e.error !== 'no-speech' && e.error !== 'aborted') onError?.(ERRORS[e.error] ?? 'Konuşma tanınamadı.')
+    }
+    r.onend = () => {
+      if (!stopped) start()
+    }
+    r.start()
+  }
+  start()
+  return () => {
+    stopped = true
+    rec?.stop()
+  }
 }

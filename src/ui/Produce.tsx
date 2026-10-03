@@ -3,6 +3,7 @@ import { AiError, chatTurn, reviewJournal, type ChatReply, type ChatTurn } from 
 import { displayForm, PERSONAL_PROMPTS } from '../engine/exercises'
 import { writingMistakes } from '../engine/mistakes'
 import { creditUsage } from '../data/usage'
+import { Fluency432 } from './Fluency432'
 import { bestStars, MISSIONS, missionStars, type Mission } from '../engine/missions'
 import { pickAudioWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
@@ -35,7 +36,8 @@ function usePracticeWords(vocabulary: VocabularyEntry[], states: UserWordState[]
  * recognise. Journal works without AI (entries are kept); feedback and conversation need it.
  */
 export function ProduceScreen(p: Props) {
-  const [tab, setTab] = useState<'journal' | 'chat' | 'mission'>('journal')
+  const [tab, setTab] = useState<'journal' | 'chat' | 'mission' | 'fluency'>('journal')
+  const fluencyWords = usePracticeWords(p.vocabulary, p.states, 3)
   return (
     <div className="stack">
       <h1 className="greeting">Yaz & konuş</h1>
@@ -49,8 +51,19 @@ export function ProduceScreen(p: Props) {
         <button role="tab" className="segmented-btn" aria-selected={tab === 'mission'} onClick={() => setTab('mission')}>
           Görevler
         </button>
+        <button role="tab" className="segmented-btn" aria-selected={tab === 'fluency'} onClick={() => setTab('fluency')}>
+          4/3/2
+        </button>
       </div>
-      {tab === 'journal' ? <Journal {...p} /> : tab === 'chat' ? <Chat key="chat" {...p} /> : <Chat key="mission" {...p} mission />}
+      {tab === 'journal' ? (
+        <Journal {...p} />
+      ) : tab === 'chat' ? (
+        <Chat key="chat" {...p} />
+      ) : tab === 'mission' ? (
+        <Chat key="mission" {...p} mission />
+      ) : (
+        <Fluency432 language={p.language} words={fluencyWords} />
+      )}
     </div>
   )
 }
