@@ -293,7 +293,6 @@ export function SessionScreen(p: Props) {
           <span className="badge">Serbest pratik</span>
         </p>
       )}
-      {prefs.showKeyLegend && <KeyLegend />}
       {confirmQuit && (
         <ConfirmDialog
           title="Oturumdan çıkılsın mı?"
@@ -444,6 +443,16 @@ function Intro({
   useEffect(() => {
     if (!guessing) btn.current?.focus()
   }, [guessing])
+  // 0: no idea while guessing; B: already known on the card.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (modalOpen() || e.altKey || e.metaKey || e.ctrlKey || e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (guessing && /^(Digit|Numpad)0$/.test(e.code)) setGuess('skipped')
+      else if (!guessing && e.code === 'KeyB') onKnown()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [guessing, onKnown])
 
   if (guessing) {
     return (
@@ -470,6 +479,7 @@ function Intro({
             Hiç fikrim yok, göster
           </button>
         </div>
+        <KeyLegend mode="guess" />
       </div>
     )
   }
@@ -522,6 +532,7 @@ function Intro({
           Zaten biliyorum
         </button>
       </div>
+      <KeyLegend mode="intro" />
     </div>
   )
 }
@@ -605,6 +616,10 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 
 /** An evaluation plus optional AI feedback text (free sentences). */
 type Graded = Evaluation & { feedback?: string }
+
+/** A typed answer graded by the app (not the AI) can be counted as right by the learner. */
+const canOverride = (exercise: Exercise, ev: Evaluation) =>
+  exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
 function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
@@ -756,6 +771,12 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           </button>
         </div>
       )}
+      {/* Outside the feedback sheet: its entrance animation would carry a fixed child along. */}
+      <KeyLegend
+        mode={result ? 'answered' : exercise.kind === 'choice' ? 'choice' : 'typed'}
+        hints={exercise.kind === 'typed' && exercise.hints.length > 0}
+        override={!!result && canOverride(exercise, result.ev)}
+      />
       {result && (
         <>
           <div className="sheet-spacer" />
@@ -774,7 +795,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             continueRef={continueBtn}
             onContinue={() => onContinue(result.log)}
             onOverride={
-              exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && result.ev.verdict !== 'correct'
+              canOverride(exercise, result.ev)
                 ? async () => {
                     const log = await onOverride()
                     if (log) setResult({ ...result, log, ev: { ...result.ev, verdict: 'correct', errorType: undefined, feedback: 'Doğru sayıldı. Bu yazımı bundan sonra kabul edeceğim.' } })
@@ -1116,7 +1137,7 @@ function TypedAnswer({
 const PRAISE = ['Harika!', 'Doğru!', 'Süper!', 'Aynen böyle!', 'Mükemmel!', 'Çok iyi!']
 
 /** A confident error gets a moment of attention before moving on (hypercorrection). */
-const CONFIDENT_ERROR_PAUSE_MS = 1500
+const CONFIDENT_ERROR_PAUSE_MS = 800
 
 function Feedback({
   ev,
@@ -1158,6 +1179,21 @@ function Feedback({
   useEffect(() => {
     if (ready && confidentError) continueRef.current?.focus()
   }, [ready, confidentError, continueRef])
+  // Enter continues even when focus wandered off the button; Alt+D: "my answer is right too".
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (modalOpen()) return
+      if (e.key === 'Enter' && ready && !ownsKey(e.target)) {
+        e.preventDefault()
+        onContinue()
+      } else if (e.altKey && e.code === 'KeyD' && onOverride) {
+        e.preventDefault()
+        onOverride()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [ready, onContinue, onOverride])
   const example = entry.senses[0].examples[0]
   return (
     <div className={`sheet ${cls}`} role="status">
@@ -1306,16 +1342,58 @@ function SpeakAnswer({
 /** Shortcuts are paused while a dialog is open. */
 const modalOpen = () => !!document.querySelector('[aria-modal="true"]')
 
-/** Shortcut reminder, only on devices with a hover-capable pointer (i.e. a real keyboard is likely). */
-function KeyLegend() {
+type LegendMode = 'guess' | 'intro' | 'choice' | 'typed' | 'answered'
+
+/**
+ * Shortcut reminder for what is on screen right now, only on devices with a hover-capable pointer
+ * (i.e. a real keyboard is likely).
+ */
+function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?: boolean; override?: boolean }) {
+  if (!prefs.showKeyLegend) return null
+  const k = (...keys: string[]) => keys.map((key, i) => (
+    <span key={key}>
+      {i > 0 && '+'}
+      <kbd>{key}</kbd>
+    </span>
+  ))
   return (
     <p className="kbd-legend" aria-hidden>
-      <span><kbd>1</kbd>–<kbd>4</kbd> seç</span>
-      <span><kbd>Enter</kbd> onayla</span>
-      {prefs.confidence && <span><kbd>Shift</kbd> emin değilim</span>}
-      <span><kbd>Alt</kbd>+<kbd>S</kbd> dinle</span>
-      <span><kbd>Alt</kbd>+<kbd>H</kbd> ipucu</span>
-      <span><kbd>Esc</kbd> çık</span>
+      {mode === 'guess' && (
+        <>
+          <span>{k('1')}–<kbd>4</kbd> tahmin et</span>
+          <span>{k('0')} fikrim yok</span>
+        </>
+      )}
+      {mode === 'intro' && (
+        <>
+          <span>{k('Enter')} öğrendim</span>
+          <span>{k('B')} zaten biliyorum</span>
+        </>
+      )}
+      {mode === 'choice' && (
+        <>
+          <span>{k('1')}–<kbd>4</kbd> seç</span>
+          {prefs.confidence && <span>{k('Shift', '1')} emin değilim</span>}
+        </>
+      )}
+      {mode === 'typed' && (
+        <>
+          <span>{k('Enter')} kontrol et</span>
+          {prefs.confidence && <span>{k('Shift', 'Enter')} emin değilim</span>}
+          {hints && <span>{k('Alt', 'H')} ipucu</span>}
+        </>
+      )}
+      {mode === 'answered' && (
+        <>
+          <span>{k('Enter')} devam</span>
+          {override && <span>{k('Alt', 'D')} cevabım da doğru</span>}
+        </>
+      )}
+      <span>{k('Alt', 'S')} dinle</span>
+      <span>{k('Esc')} çık</span>
     </p>
   )
 }
+
+/** Typing into a field (or a button that handles Enter itself) owns the key. */
+const ownsKey = (t: EventTarget | null) => t instanceof HTMLInputElement || t instanceof HTMLTextAreaElement || t instanceof HTMLButtonElement || t instanceof HTMLSelectElement
