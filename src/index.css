@@ -1778,3 +1778,4 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .quest-columns { display: grid; gap: 1rem; }
 .quest-columns > * + * { margin-top: 0 !important; }
 @media (min-width: 46rem) { .quest-columns { grid-template-columns: 1fr 1fr; align-items: start; } }
+.listen-rounds { display: grid; gap: 0.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }

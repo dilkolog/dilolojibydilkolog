@@ -558,7 +558,7 @@ export function ReadingScreen({
           {toast}
         </p>
       )}
-      {current?.audio && <AudioPanel key={current.id} src={current.audio} hidden={listenFirst} onToggleHidden={() => setListenFirst((v) => !v)} />}
+      {current?.audio && <AudioPanel key={current.id} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}
       {!message && !listenFirst && (
         <KeyWordsCard
           key={current?.id}
@@ -572,9 +572,6 @@ export function ReadingScreen({
         />
       )}
 
-      {listenFirst && current?.audio && (
-        <p className="small muted listen-hint">Önce bir kez sadece dinle; ne kadarını anladığını düşün. Sonra metni açıp duyduğunu oku.</p>
-      )}
       <div className="row reader-tools">
         <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)}>
           ☑︎ Çoklu seç

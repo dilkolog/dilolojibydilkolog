@@ -85,15 +85,58 @@ export function ListeningPicker({
 
 const RATES = [0.75, 0.9, 1]
 
-/** The episode's audio above its text, with speed choice and a listen-first mode. */
-export function AudioPanel({ src, hidden, onToggleHidden }: { src: string; hidden: boolean; onToggleHidden: () => void }) {
+const ROUNDS = [
+  { hidden: true, title: '1. tur: sadece dinle', hint: 'Metne bakmadan dinle; ne kadarını anladığını yokla.' },
+  { hidden: false, title: '2. tur: metinle dinle', hint: 'Bu kez metni takip et; anlamadığın yerlerde kelimeleri işaretle.' },
+  { hidden: true, title: '3. tur: yine metinsiz', hint: 'Son kez metinsiz: artık çok daha fazlasını duyacaksın.' },
+] as const
+
+/**
+ * The episode's audio above its text, with speed choice and a three-round guide: without text,
+ * with text, without again. Captions help understanding and word learning most in that order
+ * (Winke, Gass & Sydorenko 2010; Montero Perez et al. 2014), and repeated listening adds up.
+ */
+export function AudioPanel({ src, hidden, onHidden }: { src: string; hidden: boolean; onHidden: (hidden: boolean) => void }) {
   const audio = useRef<HTMLAudioElement>(null)
   const [rate, setRate] = useState(1)
+  const [round, setRound] = useState<number | null>(hidden ? 0 : null)
   useEffect(() => {
     if (audio.current) audio.current.playbackRate = rate
   }, [rate])
+
+  const goTo = (r: number | null) => {
+    setRound(r)
+    if (r === null) return onHidden(false)
+    onHidden(ROUNDS[r].hidden)
+    // Each round starts the episode from the top.
+    if (audio.current) {
+      audio.current.currentTime = 0
+      void audio.current.play().catch(() => {})
+    }
+  }
+
   return (
     <section className="card stack audio-panel">
+      {round !== null && (
+        <div className="listen-rounds">
+          <strong>{ROUNDS[round].title}</strong>
+          <span className="small muted">{ROUNDS[round].hint}</span>
+          <div className="row">
+            {round < ROUNDS.length - 1 ? (
+              <button className="btn btn-sm" onClick={() => goTo(round + 1)}>
+                {ROUNDS[round + 1].title.replace(/^\d\. tur: /, 'Sonraki tur: ')}
+              </button>
+            ) : (
+              <button className="btn btn-sm" onClick={() => goTo(null)}>
+                Bitti: metni aç, kelimeleri çalış
+              </button>
+            )}
+            <span className="small muted">
+              {round + 1}/{ROUNDS.length}
+            </span>
+          </div>
+        </div>
+      )}
       <audio ref={audio} src={src} controls preload="none" className="audio-player" />
       <div className="row">
         <div className="choice-row" role="group" aria-label="Hız">
@@ -103,9 +146,15 @@ export function AudioPanel({ src, hidden, onToggleHidden }: { src: string; hidde
             </button>
           ))}
         </div>
-        <button className="link small" onClick={onToggleHidden}>
-          {hidden ? 'Metni göster' : 'Metni gizle (önce sadece dinle)'}
-        </button>
+        {round === null ? (
+          <button className="link small" onClick={() => goTo(0)}>
+            Üç turla dinle
+          </button>
+        ) : (
+          <button className="link small" onClick={() => goTo(null)}>
+            Turları bırak
+          </button>
+        )}
       </div>
     </section>
   )
