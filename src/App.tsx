@@ -27,7 +27,7 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, UserIcon, BrandMark } from './ui/icons'
+import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { canListen } from './ui/speechInput'
@@ -48,6 +48,7 @@ import { ScreenBoundary } from './ui/ScreenBoundary'
 import { Toaster } from './ui/toast'
 import { ScreenSkeleton } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
+import { StreakFlame } from './ui/StreakFlame'
 
 /*
  * Screens other than the daily loop (home, session, summary) load when first opened, so the app
@@ -495,30 +496,22 @@ export default function App() {
   const inSession = screen.name === 'session'
 
   const commands: Command[] = [
-    { id: 'home', label: 'Bugün', icon: '🏠', run: go({ name: 'home' }) },
-    ...(plan && plan.items.length ? [{ id: 'start', label: 'Bugünkü görevi başlat', icon: '▶️', run: () => startSession(plan.items, 'normal', daySeed(new Date())) }] : []),
-    { id: 'add', label: 'Kelime ekle', icon: '➕', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
-    { id: 'words', label: 'Kelimeler', icon: '📚', run: go({ name: 'words' }) },
-    { id: 'reading', label: 'Okuma', icon: '📰', run: go({ name: 'reading' }) },
-    { id: 'produce', label: 'Yaz & konuş: günlük ve sohbet', icon: '✍️', run: go({ name: 'produce' }) },
-    { id: 'story', label: 'Hikaye', icon: '📖', run: go({ name: 'story' }) },
-    { id: 'games', label: 'Oyunlar', icon: '🧩', run: go({ name: 'games' }) },
+    ...(plan && plan.items.length ? [{ id: 'start', label: 'Bugünkü görevi başlat', icon: <PlayIcon size={18} />, group: 'İşlemler', run: () => startSession(plan.items, 'normal', daySeed(new Date())) }] : []),
+    { id: 'add', label: 'Kelime ekle', icon: <PlusIcon size={18} />, group: 'İşlemler', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
     ...(data && data.states.some((s) => Object.keys(s.skills).length)
-      ? [{ id: 'practice', label: 'Serbest pratik', icon: '✨', run: () => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice') }]
+      ? [{ id: 'practice', label: 'Serbest pratik', icon: <SparkleIcon size={18} />, group: 'İşlemler', run: () => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice') }]
       : []),
     ...(data && openMistakes(data.mistakes).length
-      ? [{ id: 'mistakes-practice', label: 'Hatalarını düzelt', icon: '🩹', run: () => startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal') }]
+      ? [{ id: 'mistakes-practice', label: 'Hatalarını düzelt', icon: <AlertIcon size={18} />, group: 'İşlemler', run: () => startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal') }]
       : []),
-    { id: 'mistakes', label: 'Hatalar', icon: '⚠️', run: go({ name: 'mistakes' }) },
-    { id: 'progress', label: 'İlerleme', icon: '📈', run: go({ name: 'progress' }) },
-    { id: 'vocabtest', label: 'Kelime dağarcığı testi', icon: '🧪', run: go({ name: 'vocabtest' }) },
-    { id: 'exam', label: 'Hatırlama sınavı', icon: '📝', run: go({ name: 'exam' }) },
-    { id: 'profile', label: 'Profil', icon: '👤', run: go({ name: 'profile' }) },
-    { id: 'settings', label: 'Ayarlar', icon: '⚙️', run: go({ name: 'settings' }) },
+    { id: 'vocabtest', label: 'Kelime dağarcığı testi', icon: <TargetIcon size={18} />, group: 'İşlemler', run: go({ name: 'vocabtest' }) },
+    { id: 'exam', label: 'Hatırlama sınavı', icon: <CheckIcon size={18} />, group: 'İşlemler', run: go({ name: 'exam' }) },
+    ...NAV.map((n) => ({ id: n.screen, label: n.label, icon: <n.icon size={18} />, group: 'Ekranlar', run: go({ name: n.screen }) })),
     ...TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage).map((l) => ({
       id: `lang-${l}`,
-      label: `Dil: ${LANGUAGE_NAME[l]}`,
-      icon: '🌍',
+      label: `${LANGUAGE_NAME[l]} çalış`,
+      icon: <span className="palette-lang">{LANGUAGE_SHORT[l]}</span>,
+      group: 'Dil',
       run: () => updateSettings({ ...settings, activeLanguage: l }),
     })),
   ]
@@ -578,7 +571,7 @@ export default function App() {
                   <strong>{settings.profile.name || 'Profilin'}</strong>
                   {game && (
                     <span className="small muted">
-                      Seviye {game.level.level} · <FlameIcon size={13} className="icon-flame" /> {game.streak}
+                      Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
                     </span>
                   )}
                 </span>

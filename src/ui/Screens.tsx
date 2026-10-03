@@ -6,7 +6,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, CheckIcon, FlameIcon, GameIcon, ShuffleIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
+import { AlertIcon, BookIcon, BrandMark, CheckIcon, GameIcon, ShuffleIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -17,6 +17,7 @@ import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
 import { Medal } from './Medal'
 import { medalTier } from '../engine/gamification'
+import { StreakFlame } from './StreakFlame'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
@@ -413,7 +414,7 @@ export function Home({
         <div className="stats">
           <div className="stat">
             <span className="stat-value">
-              <FlameIcon className="icon-flame" size={22} /> {streak}
+              <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak}
               {(game?.freezes ?? 0) > 0 && (
                 <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
                   ❄️{game!.freezes}
@@ -638,7 +639,7 @@ export function Summary({
         <div className="summary-stats">
           <div className="stat">
             <span className="stat-value">
-              <FlameIcon className="icon-flame" size={22} /> {after.streak}
+              <StreakFlame streak={after.streak} frozen={after.frozenYesterday} /> {after.streak}
             </span>
             <span className="stat-label">günlük seri</span>
           </div>

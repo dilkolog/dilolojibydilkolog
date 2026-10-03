@@ -101,8 +101,8 @@ export function ImagePicker({
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog dialog-wide" role="dialog" aria-modal="true" aria-labelledby="img-title">
-        <div className="row justify-between">
-          <h2 id="img-title" className="section-title">
+        <div className="dialog-head">
+          <h2 id="img-title" className="section-title grow">
             Görsel ekle
           </h2>
           <button className="icon-btn" onClick={onClose} aria-label="Kapat">

@@ -4,7 +4,7 @@ import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
 import { db } from '../data/instance'
 import { useAi } from './aiContext'
-import { SparkleIcon } from './icons'
+import { BulbIcon, CloseIcon, SparkleIcon } from './icons'
 
 /**
  * Memory-hook intervention for a word the learner keeps missing: the AI proposes a Turkish
@@ -71,10 +71,20 @@ export function MnemonicDialog({
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog" role="dialog" aria-modal="true" aria-labelledby="mn-title">
-        <p className="small muted">{reason ?? 'Hafıza ipucu'}</p>
-        <h2 id="mn-title" className="section-title">
-          💡 <span className="target">{displayForm(entry)}</span> = {entry.senses[0].gloss}
-        </h2>
+        <div className="dialog-head">
+          <span className="dialog-badge" aria-hidden>
+            <BulbIcon size={20} />
+          </span>
+          <div className="grow">
+            <p className="small muted">{reason ?? 'Hafıza ipucu'}</p>
+            <h2 id="mn-title" className="section-title">
+              <span className="target">{displayForm(entry)}</span> = {entry.senses[0].gloss}
+            </h2>
+          </div>
+          <button className="icon-btn" onClick={onClose} aria-label="Kapat">
+            <CloseIcon size={18} />
+          </button>
+        </div>
 
         {apiKey ? (
           <>

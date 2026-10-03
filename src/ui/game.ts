@@ -26,6 +26,8 @@ export interface GameState {
   streak: number
   /** Streak freezes in reserve. */
   freezes: number
+  /** Yesterday was saved by a freeze (shown as frost on the flame). */
+  frozenYesterday?: boolean
   /** Today's three quests. */
   quests: QuestStatus[]
   /** This week's three challenges. */
@@ -97,7 +99,7 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
   )
   // Longest streak counts freeze-covered days too, so a frozen day never lowers the record.
   stats.longestStreak = Math.max(stats.longestStreak, streak.streak)
-  return { xp, level, streak: streak.streak, freezes: streak.freezes, quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats) }
+  return { xp, level, streak: streak.streak, freezes: streak.freezes, frozenYesterday: streak.frozenDays.includes(localDate(new Date(now.getTime() - 86_400_000))), quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats) }
 }
 
 export const GameContext = createContext<GameState | null>(null)

@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
+import { AlertIcon, CheckIcon } from './icons'
 
 /**
  * Modal confirmation. The safe choice (cancel) has focus, Esc cancels, and clicks outside cancel,
@@ -38,10 +39,15 @@ export function ConfirmDialog({
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onCancel()}>
       <div className="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title">
-        <h2 id="dialog-title" className="section-title">
-          {title}
-        </h2>
-        {children && <div className="muted">{children}</div>}
+        <div className="dialog-head">
+          <span className={`dialog-badge${danger ? ' is-danger' : ''}`} aria-hidden>
+            {danger ? <AlertIcon size={20} /> : <CheckIcon size={20} />}
+          </span>
+          <h2 id="dialog-title" className="section-title">
+            {title}
+          </h2>
+        </div>
+        {children && <div className="muted dialog-body">{children}</div>}
         <div className="dialog-actions">
           <button ref={cancelRef} className="btn btn-quiet" onClick={onCancel}>
             {cancelLabel}

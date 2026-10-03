@@ -49,26 +49,31 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         .map((b) => (
           <div key={b.stage} className="bed">
             <h3 className="small bed-title">
-              {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="muted">({b.words.length})</span>
+              <Plant stage={b.stage} size={20} />
+              {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="bed-count">{b.words.length}</span>
             </h3>
             <ul className="bed-plants">
-              {b.words.map((w) => (
+              {b.words.map((w) => {
+                const health = plantHealth(stateById.get(w.id), scheduler, now)
+                return (
                 <li key={w.id}>
-                  <button className="plant-tile" onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}`}>
-                    <Plant stage={b.stage} health={plantHealth(stateById.get(w.id), scheduler, now)} size={44} />
+                  <button className={`plant-tile is-${health}`} onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}${health !== 'fresh' ? ' · su istiyor' : ''}`}>
+                    <Plant stage={b.stage} health={health} size={44} />
                     <span className="plant-name" lang={w.language}>
                       {w.lemma}
                     </span>
                   </button>
                 </li>
-              ))}
+                )
+              })}
             </ul>
           </div>
         ))}
       {seeds.length > 0 && (
         <div className="bed">
           <h3 className="small bed-title">
-            Tohumlar <span className="muted">({seeds.length}, henüz ekilmedi)</span>
+            <Plant stage={-1} size={20} />
+            Tohumlar <span className="bed-count">{seeds.length}</span> <span className="muted">henüz ekilmedi</span>
           </h3>
           <ul className="bed-plants">
             {seeds.slice(0, 60).map((w) => (

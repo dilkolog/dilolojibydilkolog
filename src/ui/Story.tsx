@@ -13,6 +13,7 @@ import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { speak } from './speech'
 import { PageHeader } from './PageHeader'
+import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const GENRES = ['Bilim kurgu', 'Polisiye', 'Tarih', 'Macera', 'Romantik', 'Komedi', 'Fantastik', 'Gündelik hayat', 'İş dünyası', 'Seyahat', 'Gerilim', 'Spor']
 const WRITING = ['Kalem açılıyor…', 'Karakterler toplanıyor…', 'Olay örgüsü kuruluyor…', 'Son cümle cilalanıyor…']
@@ -245,6 +246,7 @@ function Episode({
   mistakes: Mistake[]
   onUpdated: () => void
 }) {
+  const [reader, setReader] = useReaderPrefs()
   const words = useMemo(
     () => episode.wordIds.map((id) => vocabulary.find((v) => v.id === id)).filter((v): v is VocabularyEntry => !!v),
     [episode.wordIds, vocabulary],
@@ -324,12 +326,23 @@ function Episode({
   }
 
   const firstTry = blanks.filter((b) => answers[b.index] === true).length
+  const look = readerStyle(reader)
 
   return (
-    <article className="story card">
+    <article className={`story card story-book${look.className}`} style={look.style}>
       <header className="story-head">
-        <span className="level-badge">{episode.number}. bölüm</span>
+        <div className="row justify-between items-center story-meta">
+          <span className="level-badge">{episode.number}. bölüm</span>
+          <span className="row gap-2 reader-tools">
+            <ReaderControls prefs={reader} onChange={setReader} />
+          </span>
+        </div>
         <h2 className="story-title">{episode.title}</h2>
+        {blanks.length > 0 && (
+          <div className="story-progress" aria-label={`${filled.size} / ${blanks.length} boşluk dolduruldu`}>
+            <span style={{ width: `${(filled.size / blanks.length) * 100}%` }} />
+          </div>
+        )}
       </header>
 
       {!done && (
@@ -346,7 +359,7 @@ function Episode({
       )}
 
       {paragraphs.map((para, i) => (
-        <div key={i} className="story-para">
+        <div key={i} className={`story-para${i === 0 ? ' is-first' : ''}`}>
           <p className="story-text" lang={language}>
             {para.parts.map((part, j) =>
               part.kind === 'text' ? (

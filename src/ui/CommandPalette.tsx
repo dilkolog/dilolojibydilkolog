@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
 
@@ -6,8 +6,29 @@ export interface Command {
   id: string
   label: string
   hint?: string
-  icon?: string
+  icon?: ReactNode
+  /** Where it is listed: İşlemler (do something), Ekranlar (go somewhere), Dil. */
+  group?: string
   run: () => void
+}
+
+const RECENT_KEY = 'kelime-koc:palette-recent'
+const GROUP_ORDER = ['Son kullanılanlar', 'Kelimeler', 'İşlemler', 'Ekranlar', 'Dil']
+
+function loadRecent(): string[] {
+  try {
+    return JSON.parse(localStorage.getItem(RECENT_KEY) ?? '[]') as string[]
+  } catch {
+    return []
+  }
+}
+
+function remember(id: string) {
+  try {
+    localStorage.setItem(RECENT_KEY, JSON.stringify([id, ...loadRecent().filter((x) => x !== id)].slice(0, 4)))
+  } catch {
+    // Not remembered; fine.
+  }
 }
 
 /**
@@ -41,9 +62,18 @@ export function CommandPalette({
           // Words starting with the query first.
           .sort((a, b) => Number(!a.lemma.toLocaleLowerCase('tr').startsWith(query)) - Number(!b.lemma.toLocaleLowerCase('tr').startsWith(query)))
           .slice(0, 8)
-          .map<Command>((v) => ({ id: `word:${v.id}`, label: displayForm(v), hint: v.senses[0].gloss, icon: '📖', run: () => onOpenWord(v.id) }))
+          .map<Command>((v) => ({ id: `word:${v.id}`, label: displayForm(v), hint: v.senses[0].gloss, group: 'Kelimeler', run: () => onOpenWord(v.id) }))
       : []
-    return [...words, ...cmds]
+    // Nothing typed yet: the last few commands first.
+    const recent = query
+      ? []
+      : loadRecent()
+          .map((id) => commands.find((c) => c.id === id))
+          .filter((c): c is Command => !!c)
+          .map((c) => ({ ...c, group: 'Son kullanılanlar' }))
+    const rest = cmds.filter((c) => !recent.some((r) => r.id === c.id))
+    const all = [...recent, ...words, ...rest]
+    return all.sort((a, b) => GROUP_ORDER.indexOf(a.group ?? 'Ekranlar') - GROUP_ORDER.indexOf(b.group ?? 'Ekranlar'))
   }, [q, commands, vocabulary, onOpenWord])
 
   useEffect(() => setActive(0), [q])
@@ -53,6 +83,7 @@ export function CommandPalette({
 
   const run = (c: Command | undefined) => {
     if (!c) return
+    if (!c.id.startsWith('word:')) remember(c.id)
     onClose()
     c.run()
   }
@@ -80,9 +111,14 @@ export function CommandPalette({
         />
         <ul className="palette-list" ref={list} role="listbox">
           {items.length === 0 && <li className="palette-empty">Sonuç yok</li>}
-          {items.map((c, i) => (
+          {items.map((c, i) => [
+            (c.group ?? 'Ekranlar') !== (items[i - 1]?.group ?? (i === 0 ? null : 'Ekranlar')) && (
+              <li key={`g-${c.group}`} className="palette-group" role="presentation">
+                {c.group ?? 'Ekranlar'}
+              </li>
+            ),
             <li
-              key={c.id}
+              key={`${c.group}-${c.id}`}
               data-i={i}
               role="option"
               aria-selected={i === active}
@@ -93,11 +129,16 @@ export function CommandPalette({
                 run(c)
               }}
             >
-              <span className="palette-icon">{c.icon ?? '›'}</span>
+              {!c.id.startsWith('word:') && <span className="palette-icon">{c.icon ?? '›'}</span>}
               <span className="palette-label">{c.label}</span>
               {c.hint && <span className="palette-hint">{c.hint}</span>}
-            </li>
-          ))}
+              {i === active && (
+                <kbd className="palette-enter" aria-hidden>
+                  ↵
+                </kbd>
+              )}
+            </li>,
+          ])}
         </ul>
         <p className="palette-foot small muted">
           <kbd>↑</kbd> <kbd>↓</kbd> seç &nbsp; <kbd>Enter</kbd> aç &nbsp; <kbd>Esc</kbd> kapat

@@ -68,6 +68,9 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
   const [view, setView] = useState(fit)
   useEffect(() => setView(fit), [fit])
   const [hover, setHover] = useState<string | null>(null)
+  // A click selects a word (its links stay lit, its card opens below); the card opens the word.
+  const [selected, setSelected] = useState<string | null>(null)
+  const focus = hover ?? selected
   const drag = useRef<{ x: number; y: number; vx: number; vy: number } | null>(null)
   const svg = useRef<SVGSVGElement>(null)
 
@@ -93,16 +96,27 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
   }, [])
 
   const neighbours = useMemo(() => {
-    if (!hover) return null
-    const set = new Set([hover])
+    if (!focus) return null
+    const set = new Set([focus])
     for (const l of links) {
       const s = (l.source as Node).id
       const t = (l.target as Node).id
-      if (s === hover) set.add(t)
-      if (t === hover) set.add(s)
+      if (s === focus) set.add(t)
+      if (t === focus) set.add(s)
     }
     return set
-  }, [hover, links])
+  }, [focus, links])
+  const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
+  const picked = selected ? byId.get(selected) : undefined
+  const pickedLinks = useMemo(
+    () =>
+      selected
+        ? links
+            .filter((l) => (l.source as Node).id === selected || (l.target as Node).id === selected)
+            .map((l) => ({ kind: l.kind, node: ((l.source as Node).id === selected ? l.target : l.source) as Node }))
+        : [],
+    [selected, links],
+  )
 
   const kinds = [...new Set(links.map((l) => l.kind))]
 
@@ -140,22 +154,58 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
           const s = l.source as Node
           const t = l.target as Node
           const dim = neighbours && !(neighbours.has(s.id) && neighbours.has(t.id))
-          return <line key={i} x1={s.x} y1={s.y} x2={t.x} y2={t.y} className={`edge edge-${l.kind}${dim ? ' is-dim' : ''}`} />
+          const hot = focus && (s.id === focus || t.id === focus)
+          return <line key={i} x1={s.x} y1={s.y} x2={t.x} y2={t.y} className={`edge edge-${l.kind}${dim ? ' is-dim' : ''}${hot ? ' is-hot' : ''}`} />
         })}
-        {nodes.map((n) => (
-          <g
-            key={n.id}
-            transform={`translate(${n.x},${n.y})`}
-            className={`node stage-${n.stage}${neighbours && !neighbours.has(n.id) ? ' is-dim' : ''}`}
-            onMouseEnter={() => setHover(n.id)}
-            onMouseLeave={() => setHover(null)}
-            onClick={() => onOpen(n.id)}
-          >
-            <circle r={radius(n.stage)} />
-            <text y={radius(n.stage) + 15}>{n.label}</text>
-          </g>
-        ))}
+        {nodes.map((n) => {
+          // Zoomed out, only strong words and the lit neighbourhood keep their labels, so they don't pile up.
+          const labelled = view.k >= 1.25 || n.stage >= 3 || neighbours?.has(n.id) || nodes.length <= 40
+          return (
+            <g
+              key={n.id}
+              transform={`translate(${n.x},${n.y})`}
+              className={`node stage-${n.stage}${neighbours && !neighbours.has(n.id) ? ' is-dim' : ''}${n.id === selected ? ' is-selected' : ''}`}
+              onMouseEnter={() => setHover(n.id)}
+              onMouseLeave={() => setHover(null)}
+              onClick={() => (n.id === selected ? onOpen(n.id) : setSelected(n.id))}
+            >
+              <circle r={radius(n.stage)} />
+              {labelled && <text y={radius(n.stage) + 15}>{n.label}</text>}
+            </g>
+          )
+        })}
       </svg>
+      {picked && (
+        <section className="card graph-pick" aria-live="polite">
+          <div className="row justify-between items-center">
+            <div>
+              <strong className="graph-pick-word" lang={picked.language}>
+                {displayForm(picked)}
+              </strong>{' '}
+              <span className="muted">{picked.senses[0].gloss}</span>
+            </div>
+            <div className="row gap-2">
+              <button className="btn btn-sm" onClick={() => onOpen(picked.id)}>
+                Kelimeyi aç
+              </button>
+              <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Seçimi kaldır">
+                ×
+              </button>
+            </div>
+          </div>
+          {pickedLinks.length > 0 && (
+            <ul className="graph-pick-links">
+              {pickedLinks.map((l) => (
+                <li key={`${l.kind}-${l.node.id}`}>
+                  <button className="chip chip-sm" onClick={() => setSelected(l.node.id)}>
+                    <i className={`line edge-${l.kind}`} aria-hidden /> {l.node.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
       <div className="graph-legend small">
         <span>
           <i className="dot stage--1" /> Sırada
@@ -174,7 +224,7 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
             <i className={`line edge-${k}`} /> {LINK_LABEL[k]}
           </span>
         ))}
-        <span className="muted">Tekerlek: yakınlaştır · sürükle: kaydır · tıkla: kelimeyi aç</span>
+        <span className="muted">Tekerlek: yakınlaştır · sürükle: kaydır · tıkla: seç, bir daha tıkla: aç</span>
         <button className="link small" onClick={() => setView(fit)}>
           Sığdır
         </button>

@@ -5,9 +5,10 @@ import { db } from '../data/instance'
 import { Avatar } from './Avatar'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { FlameIcon, StarIcon } from './icons'
+import { StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { Medal } from './Medal'
+import { StreakFlame } from './StreakFlame'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -121,7 +122,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
       {game && (
         <>
           <section className="stat-grid stat-grid-4">
-            <Stat value={<><FlameIcon className="icon-flame" size={22} /> {game.streak}</>} label="günlük seri" />
+            <Stat value={<><StreakFlame streak={game.streak} frozen={game.frozenYesterday} /> {game.streak}</>} label="günlük seri" />
             <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
             <Stat value={game.stats.wordsIntroduced} label="öğrenilen kelime" />
             <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />

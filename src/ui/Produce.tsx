@@ -13,12 +13,13 @@ import type { JournalEntry, KelimeDB } from '../data/db'
 import { scheduler } from '../data/instance'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
 import { useAi } from './aiContext'
-import { SpeakerIcon } from './icons'
+import { BrandMark, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
 import { canListen, listen } from './speechInput'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
+import { correctionDiff } from '../engine/correctionDiff'
 
 interface Props {
   db: KelimeDB
@@ -153,7 +154,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
         )}
         <textarea
           ref={area}
-          className="textarea"
+          className="textarea journal-editor"
           lang={language}
           value={text}
           onChange={accentChange(language, setText)}
@@ -215,9 +216,16 @@ function Review({ entry, language, added }: { entry: JournalEntry; language: Tar
     <section className="card stack journal-review">
       <p>{r.feedback}</p>
       {r.corrected.trim() !== entry.text.trim() && (
-        <div>
+        <div className="stack gap-xs">
           <strong className="small">Düzeltilmiş hali</strong>
-          <p lang={language}>{r.corrected}</p>
+          <p className="diff-text" lang={language}>
+            {correctionDiff(entry.text, r.corrected).map((part, i) =>
+              part.kind === 'same' ? <span key={i}>{part.text}</span> : <span key={i} className={`diff-${part.kind}`}>{part.text}</span>,
+            )}
+          </p>
+          <p className="small muted">
+            <span className="diff-added">eklenen</span> · <span className="diff-removed">çıkarılan</span>
+          </p>
         </div>
       )}
       {r.mistakes.length > 0 && (
@@ -480,6 +488,11 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
       <ul className="chat">
         {lines.map((l, i) => (
           <li key={i} className={`chat-line ${l.role}`}>
+            {l.role === 'assistant' && (
+              <span className="chat-avatar" aria-hidden>
+                <BrandMark size={18} />
+              </span>
+            )}
             <div className="chat-bubble" lang={language}>
               {l.text}
               {l.role === 'assistant' && canSpeak() && (
@@ -489,7 +502,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
               )}
             </div>
             {l.correction && (
-              <p className="small chat-correction">
+              <p className="small chat-correction" role="note">
                 <span className="strike">{l.correction.original}</span> → <span className="target">{l.correction.corrected}</span>{' '}
                 <span className="muted">{l.correction.note}</span>
               </p>
