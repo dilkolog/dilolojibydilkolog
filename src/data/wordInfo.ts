@@ -106,6 +106,27 @@ export function audioFileOf(section: string, language: TargetLanguage): string |
   return files.find((f) => !/^LL-/.test(f)) ?? files[0]
 }
 
+/** Every recording of the word on its page (different speakers and accents). */
+export function audioFilesOf(section: string, language: TargetLanguage): string[] {
+  return [...new Set([...section.matchAll(new RegExp(`\\{\\{audio\\|${language}\\|([^|}]+)`, 'g'))].map((m) => m[1].trim()))]
+}
+
+/**
+ * Native recordings for a set of words (one request per 40 words): word → MP3 addresses, one per
+ * speaker. High-variability phonetic training needs exactly this: many voices for each word.
+ */
+export async function nativeRecordings(words: readonly string[], language: TargetLanguage): Promise<Map<string, string[]>> {
+  const pages = await fetchPages([...words], 'en')
+  const out = new Map<string, string[]>()
+  for (const w of words) {
+    const text = pages.get(w)
+    const section = text ? languageSection(text, language) : null
+    const files = section ? audioFilesOf(section, language) : []
+    if (files.length) out.set(w, files.map(commonsMp3))
+  }
+  return out
+}
+
 /** Words listed under derived/related terms, as links or list templates. */
 export function familyOf(section: string, language: TargetLanguage, lemma: string): string[] {
   const parts = section.split(/^(={3,5}[^=\n]+={3,5})\s*$/m)

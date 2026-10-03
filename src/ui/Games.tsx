@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { BLANK, buildExercise, displayForm, evaluateChoice, evaluateTyped, exerciseTypesFor, pickDistractors, type ChoiceExercise, type Exercise } from '../engine/exercises'
 import { comboMultiplier } from '../engine/gamification'
-import { pairRound, type PairQuestion } from '../engine/listening'
+import { MINIMAL_PAIRS, pairRound, type PairQuestion } from '../engine/listening'
+import { nativeRecordings } from '../data/wordInfo'
 import { BOSS_XP, DAMAGE, findBosses, PLAYER_HEARTS, type Boss, type BossWin } from '../engine/bosses'
 import { unlockedSkills } from '../engine/selection'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
@@ -693,10 +694,33 @@ function PairsGame({ language, best, recordKey, onExit }: Props & { best?: numbe
   const [record, setRecord] = useState(false)
   const q = round[index] as PairQuestion | undefined
   const done = index >= round.length
+  // Real recordings by many speakers (high-variability training); the device voice fills gaps.
+  const [voices, setVoices] = useState<Map<string, string[]> | null>(null)
+  const lastVoice = useRef('')
+  useEffect(() => {
+    if (!navigator.onLine) return setVoices(new Map())
+    const words = MINIMAL_PAIRS[language].flatMap((p) => [p.a.word, p.b.word])
+    void nativeRecordings(words, language).then(setVoices, () => setVoices(new Map()))
+  }, [language])
+  const say = (word: string): Promise<void> => {
+    const urls = voices?.get(word) ?? []
+    if (!urls.length) return speakAsync(word, language)
+    const choices = urls.length > 1 ? urls.filter((u) => u !== lastVoice.current) : urls
+    const url = choices[Math.floor(Math.random() * choices.length)]
+    lastVoice.current = url
+    return new Promise((resolve) => {
+      const a = new Audio(url)
+      a.onended = () => resolve()
+      a.onerror = () => void speakAsync(word, language).then(resolve)
+      void a.play().catch(() => void speakAsync(word, language).then(resolve))
+    })
+  }
+  const recorded = voices ? MINIMAL_PAIRS[language].filter((p) => voices.has(p.a.word) && voices.has(p.b.word)).length : 0
 
   useEffect(() => {
-    if (q && chosen === null) speak(q.pair[q.answer].word, language, undefined, true)
-  }, [q, chosen, language])
+    if (q && chosen === null && voices) void say(q.pair[q.answer].word)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, chosen, language, voices])
 
   const choose = (side: 'a' | 'b') => {
     if (!q || chosen) return
@@ -722,9 +746,9 @@ function PairsGame({ language, best, recordKey, onExit }: Props & { best?: numbe
 
   const both = async () => {
     if (!q) return
-    await speakAsync(q.pair.a.word, language)
+    await say(q.pair.a.word)
     await new Promise((r) => setTimeout(r, 400))
-    await speakAsync(q.pair.b.word, language)
+    await say(q.pair.b.word)
   }
 
   useEffect(() => {
@@ -732,7 +756,7 @@ function PairsGame({ language, best, recordKey, onExit }: Props & { best?: numbe
       if (done || !q) return
       if (e.code === 'Space') {
         e.preventDefault()
-        speak(q.pair[q.answer].word, language, undefined, true)
+        void say(q.pair[q.answer].word)
       }
       if (!chosen && (e.key === '1' || e.key === '2')) choose(q.order[Number(e.key) - 1])
       if (chosen && e.key === 'Enter') void next()
@@ -763,11 +787,18 @@ function PairsGame({ language, best, recordKey, onExit }: Props & { best?: numbe
       {!done && q && (
         <div className="stack">
           <div className="row">
-            <button className="speak speak-big" onClick={() => speak(q.pair[q.answer].word, language, undefined, true)} aria-label="Tekrar dinle">
+            <button className="speak speak-big" onClick={() => void say(q.pair[q.answer].word)} aria-label="Tekrar dinle">
               <SpeakerIcon size={36} />
             </button>
             <span className="small muted">Hangisini duydun? Boşluk: tekrar dinle · 1–2: seç · Fark: {q.pair.contrast}</span>
           </div>
+          <p className="small muted">
+            {voices === null
+              ? 'Gerçek ses kayıtları aranıyor…'
+              : recorded
+                ? `🎙️ ${recorded} çiftte ana dili konuşanların kayıtları var; her seferinde başka bir ses çalar (çok sesle eğitim kulağı en iyi eğitiyor).`
+                : 'Gerçek kayıt bulunamadı; cihaz sesi kullanılıyor.'}
+          </p>
           <div className="options">
             {q.order.map((side, i) => {
               const w = q.pair[side]
