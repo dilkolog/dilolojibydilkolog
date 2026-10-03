@@ -556,9 +556,11 @@ export function WordForm({
             </div>
           )}
         </div>
+        <div className="form-group">
+        <span className="form-group-title">Örnek cümle · isteğe bağlı</span>
         <div className="field">
           <div className="field-head">
-            <label htmlFor="w-ex">Örnek cümle (isteğe bağlı)</label>
+            <label htmlFor="w-ex">Cümle</label>
             {aiButton('example', ['example'], form.example?.trim() ? 'Başka cümle getir' : 'Cümle getir', 'Cümle yazılıyor…')}
           </div>
           <input id="w-ex" className="input" value={form.example ?? ''} onChange={accentChange(language, (example) => setForm((f) => ({ ...f, example })))} lang={language} />
@@ -568,8 +570,9 @@ export function WordForm({
           {aiErrorFor('example')}
         </div>
         <div className="field">
-          <label htmlFor="w-ext">Örnek cümlenin çevirisi</label>
+          <label htmlFor="w-ext">Türkçesi</label>
           <input id="w-ext" className="input" value={form.exampleTranslation ?? ''} onChange={set('exampleTranslation')} />
+        </div>
         </div>
         {!entry && (
           <div className="row">

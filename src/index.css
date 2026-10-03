@@ -14,7 +14,7 @@
   --ink-soft: #57677e;    /* between slate-500 and 600: 4.5:1 on the slate-100 page too */
   --rule: #e2e8f0;        /* slate-200 */
   --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
-  --shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 4px 16px rgb(15 23 42 / 0.06);
+  --shadow: 0 0 0 1px rgb(15 23 42 / 0.04), 0 1px 2px rgb(15 23 42 / 0.05), 0 6px 20px rgb(15 23 42 / 0.06);   /* a hairline ring keeps card edges crisp on the grey page */
   --shadow-lg: 0 12px 32px rgb(15 23 42 / 0.16);
   --shadow-xl: 0 24px 60px rgb(15 23 42 / 0.3);
   --scrim: rgb(15 23 42 / 0.45);
@@ -2482,3 +2482,23 @@ section:has(> .media-split) { container-type: inline-size; }
 .game-group .game-card { grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; row-gap: 0.25rem; align-items: start; padding: 1.25rem 1.25rem 1.125rem; }
 .game-group .game-emoji { grid-row: span 3; width: 3.25rem; height: 3.25rem; font-size: 1.75rem; }
 .game-group .game-card .game-record { grid-column: 2; margin-top: 0.25rem; }
+
+/* ---------- Page atmosphere: a faint light in the language's colour across the top ---------- */
+.shell::before {
+  content: ''; position: fixed; inset: 0 0 auto 0; height: 26rem; z-index: -1; pointer-events: none;
+  background: radial-gradient(60rem 22rem at 30% -6rem, color-mix(in srgb, var(--lang-soft) 75%, transparent), transparent 70%);
+}
+
+/* ---------- Form fields: one look for every field (buttons and chips stay pressable, fields stay flat) ---------- */
+.input, .select-trigger, .search .input { min-height: 2.75rem; box-shadow: none; }
+.input, .textarea, .select-trigger { border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); transition: border-color 150ms ease-out, box-shadow 150ms ease-out; }
+.input:hover:not(:disabled), .textarea:hover:not(:disabled), .select-trigger:hover { border-color: color-mix(in srgb, var(--rule) 40%, var(--ink-soft)); }
+.input:focus, .textarea:focus, .select-trigger:focus-visible, .select-trigger.is-open {
+  outline: none; border-color: var(--lang); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lang) 18%, transparent);
+}
+.input::placeholder, .textarea::placeholder { color: color-mix(in srgb, var(--ink-soft) 80%, transparent); }
+.input:disabled, .textarea:disabled { opacity: 0.6; cursor: not-allowed; background: var(--surface-2); }
+.field label, .field > span:first-child { font-weight: 600; font-size: var(--t-sm); }
+/* A labelled group inside a long form ("Örnek cümle · isteğe bağlı"). */
+.form-group { display: grid; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.form-group-title { font-size: var(--t-sm); font-weight: 700; color: var(--ink-soft); }
