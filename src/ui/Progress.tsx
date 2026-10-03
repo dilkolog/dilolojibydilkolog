@@ -13,9 +13,18 @@ import { ErrorReportCard } from './ErrorReport'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
+import { GroupTitle, JumpNav } from './JumpNav'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 
 const DAYS = 14
+
+const PROGRESS_GROUPS = [
+  ['p-overview', 'Genel bakış'],
+  ['p-tests', 'Testler'],
+  ['p-memory', 'Tekrarlar'],
+  ['p-activity', 'Çalışma düzenin'],
+  ['p-skills', 'Beceriler ve hatalar'],
+] as const
 
 export function ProgressScreen({
   db,
@@ -72,8 +81,10 @@ export function ProgressScreen({
 
   return (
     <div>
+      <h1 className="greeting">İlerleme</h1>
+      <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
+      <GroupTitle id="p-overview">Genel bakış</GroupTitle>
       <section className="section stack">
-        <h1 className="greeting">İlerleme</h1>
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <div className="hero-stat card">
@@ -88,6 +99,7 @@ export function ProgressScreen({
         </div>
       </section>
 
+      <GroupTitle id="p-tests">Testler</GroupTitle>
       <section className="section stack">
         <h2 className="section-title">Kelime dağarcığı</h2>
         {tests.length > 0 ? (
@@ -131,6 +143,7 @@ export function ProgressScreen({
         })()}
       </section>
 
+      <GroupTitle id="p-memory">Bu hafta ve tekrarlar</GroupTitle>
       <WeekCard report={report} focus={weakestSkill(skillProfile(states, scheduler, now))} />
 
       <section className="section stack">
@@ -253,6 +266,7 @@ export function ProgressScreen({
         </div>
       </section>
 
+      <GroupTitle id="p-activity">Çalışma düzenin</GroupTitle>
       <section className="section stack">
         <h2 className="section-title">Son {DAYS} gün</h2>
         <p className="small muted">
@@ -263,6 +277,10 @@ export function ProgressScreen({
         <ActivityChart activity={stats.activity} />
       </section>
 
+      <YearCalendar db={db} />
+      <BestHoursCard db={db} />
+
+      <GroupTitle id="p-skills">Beceriler ve hatalar</GroupTitle>
       <section className="section stack">
         <h2 className="section-title">Beceriler</h2>
         <div className="bars">
@@ -278,8 +296,6 @@ export function ProgressScreen({
         </div>
         <p className="small muted">Yüzde, o beceride çalıştığın kelimeleri şu an hatırlama olasılığının ortalaması.</p>
       </section>
-      <YearCalendar db={db} />
-      <BestHoursCard db={db} />
       <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
     </div>
   )

@@ -8,6 +8,7 @@ import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { AccountSettings } from './AccountSettings'
+import { GroupTitle, JumpNav } from './JumpNav'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
 import { ReminderSuggestion } from './BestHours'
@@ -123,27 +124,6 @@ const GROUPS: [string, string][] = [
   ['s-data', 'Veriler'],
 ]
 
-/** A long page in groups: a sticky row of shortcuts jumps to each. */
-function SettingsNav() {
-  return (
-    <nav className="settings-nav" aria-label="Ayar grupları">
-      {GROUPS.map(([id, label]) => (
-        <button key={id} className="chip chip-sm" onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-          {label}
-        </button>
-      ))}
-    </nav>
-  )
-}
-
-function GroupTitle({ id, children }: { id: string; children: ReactNode }) {
-  return (
-    <h2 id={id} className="settings-group-title">
-      {children}
-    </h2>
-  )
-}
-
 export function SettingsScreen({
   settings,
   onChange,
@@ -250,7 +230,7 @@ export function SettingsScreen({
   return (
     <div className="stack">
       <h1 className="greeting">Ayarlar</h1>
-      <SettingsNav />
+      <JumpNav groups={GROUPS} label="Ayar grupları" />
 
       <GroupTitle id="s-account">Hesap</GroupTitle>
       <AccountSettings />
