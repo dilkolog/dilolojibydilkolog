@@ -436,6 +436,15 @@ export function SettingsScreen({
         <Row label="Tema">
           <Chips<Settings['theme']> options={['system', 'light', 'dark']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu' })[t]} />
         </Row>
+        <Row label="Yazı boyutu" help="Bütün uygulamayı büyütür; uzun okumalarda ve telefonda rahatlatır.">
+          <Chips<NonNullable<Settings['textScale']>>
+            options={['normal', 'large', 'xlarge']}
+            value={settings.textScale ?? 'normal'}
+            onChange={(v) => set('textScale', v)}
+            format={(t) => ({ normal: 'Normal', large: 'Büyük', xlarge: 'Çok büyük' })[t]}
+          />
+        </Row>
+        <Toggle label="Titreşim" help="Telefonda doğru cevapta kısa, yanlışta çift titreşim (Android; iPhone tarayıcıları desteklemiyor)." checked={settings.haptics ?? true} onChange={(v) => set('haptics', v)} />
 <div className="desktop-only">
           <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
         </div>

@@ -2346,3 +2346,78 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .sound-bars i:nth-child(2) { animation-delay: -0.6s; } .sound-bars i:nth-child(3) { animation-delay: -0.3s; } .sound-bars i:nth-child(4) { animation-delay: -0.45s; }
 @keyframes bars { 0%, 100% { height: 30%; } 50% { height: 100%; } }
 @media (prefers-reduced-motion: reduce) { .sound-bars i { height: 70%; } }
+
+/* A dot on another language's button when reviews wait there. */
+.lang-btn { position: relative; }
+.lang-dot { position: absolute; top: 0.25rem; right: 0.5rem; width: 0.5rem; height: 0.5rem; border-radius: var(--r-full); background: var(--bad); box-shadow: 0 0 0 2px var(--surface); }
+
+/* ---------- Mistakes: a colour and sign per kind, letters marked ---------- */
+.tone-meaning { --tone: #f43f5e; } .tone-accent { --tone: #f59e0b; } .tone-typo { --tone: #f97316; }
+.tone-article, .tone-gender { --tone: #8b5cf6; } .tone-form { --tone: #3b82f6; } .tone-confusion { --tone: #ec4899; }
+.tone-collocation { --tone: #14b8a6; } .tone-false_friend { --tone: #ef4444; } .tone-cross_language { --tone: #6366f1; }
+.mistake-group-title { display: flex; align-items: center; gap: 0.5rem; }
+.mistake-badge {
+  display: inline-grid; place-items: center; min-width: 2rem; height: 2rem; padding: 0 0.375rem; border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--tone) 16%, var(--surface)); color: color-mix(in srgb, var(--tone) 75%, var(--ink));
+  font-family: var(--serif); font-size: var(--t-base); font-weight: 700;
+}
+.mistake-pair { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0.375rem; font-family: var(--serif); font-size: var(--t-md); }
+.mistake-arrow { color: var(--ink-soft); font-family: var(--sans); }
+.mistake-given { color: var(--ink-soft); }
+.mistake-right { color: var(--lang-text); }
+.ch-wrong { color: var(--bad-text); background: var(--bad-soft); text-decoration: line-through; border-radius: 2px; }
+.ch-right { color: var(--ok-text); background: var(--ok-soft); font-weight: 700; border-radius: 2px; }
+
+/* ---------- Profile: level ring, three months, a badge shelf ---------- */
+.avatar-ring {
+  position: relative; display: inline-grid; place-items: center; padding: 6px; border-radius: var(--r-full);
+  background: conic-gradient(var(--lang) var(--ring), var(--track) 0);
+}
+.avatar-ring > * { box-shadow: 0 0 0 3px var(--surface); border-radius: var(--r-full); }
+.avatar-level {
+  position: absolute; bottom: -0.25rem; left: 50%; transform: translateX(-50%);
+  min-width: 1.75rem; padding: 0 0.375rem; border-radius: var(--r-full); text-align: center;
+  background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 800; line-height: 1.5rem;
+}
+.activity-mini { display: grid; gap: 0.75rem; padding: 1rem 1.25rem; }
+.activity-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 0.75rem); grid-auto-columns: 0.75rem; gap: 3px; overflow-x: auto; }
+.activity-cell { border-radius: 2px; background: color-mix(in srgb, var(--lang) calc(var(--level) * 100%), var(--track)); }
+.activity-cell.is-future { background: transparent; }
+.badge-shelf {
+  padding: 0.5rem 0.5rem 0.875rem; border-radius: var(--r-md);
+  background: linear-gradient(to top, color-mix(in srgb, #a16207 55%, var(--surface)) 0 6px, transparent 6px);
+}
+.badge-shelf .badge-card { background: transparent; box-shadow: none; }
+
+/* ---------- Reading library as cards ---------- */
+.library { grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 0.875rem; }
+.library li.lib-card { position: relative; padding: 0; display: block; }
+.lib-open { display: flex; align-items: center; gap: 0.875rem; width: 100%; padding: 0.875rem 2.5rem 0.875rem 0.875rem; border: 0; background: none; text-align: left; cursor: pointer; border-radius: var(--r-md); }
+.lib-open:hover { background: var(--lang-soft); }
+.lib-body { display: grid; gap: 0.25rem; flex: 1; min-width: 0; justify-items: start; }
+.lib-title { font-family: var(--serif); font-size: var(--t-md); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.lib-status { font-size: var(--t-xs); }
+.lib-status.is-new { background: var(--lang-soft); color: var(--lang-text); }
+.lib-status.is-reread { background: var(--near-soft); color: var(--near-text); }
+.lib-status.is-done { background: var(--ok-soft); color: var(--ok-text); }
+.lib-remove { position: absolute; top: 0.375rem; right: 0.375rem; }
+.lib-ring {
+  flex: none; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: var(--r-full);
+  background: radial-gradient(closest-side, var(--surface) 76%, transparent 78% 100%), conic-gradient(var(--ok) var(--p), var(--track) 0);
+  font-size: var(--t-xs); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.cover {
+  flex: none; display: grid; place-items: center; width: 3rem; height: 4rem; border-radius: var(--r-xs) var(--r-sm) var(--r-sm) var(--r-xs);
+  background: linear-gradient(150deg, hsl(var(--hue) 70% 58%), hsl(var(--hue) 65% 38%));
+  box-shadow: inset 4px 0 0 rgb(0 0 0 / 0.18), var(--shadow-sm);
+  color: #fff; font-family: var(--serif); font-size: var(--t-xl); font-weight: 600;
+}
+.cover.is-book { width: 3.25rem; height: 4.25rem; box-shadow: inset 5px 0 0 rgb(0 0 0 / 0.22), 3px 3px 0 hsl(var(--hue) 40% 75%), var(--shadow-sm); }
+
+/* ---------- Milestone moment ---------- */
+.milestone { width: min(24rem, 100%); text-align: center; justify-items: center; padding-top: 2rem; overflow: hidden; }
+.milestone-art { position: relative; display: grid; place-items: center; width: 8rem; height: 8rem; }
+.milestone-emoji { position: relative; z-index: 1; font-size: 4.5rem; line-height: 1; animation: pop 0.45s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.milestone-title { font-size: var(--t-2xl); font-weight: 800; letter-spacing: -0.02em; }
+.milestone-actions { justify-content: center; width: 100%; }
+@media (max-width: 30rem) { .milestone { border-radius: var(--r-lg) var(--r-lg) 0 0; } }

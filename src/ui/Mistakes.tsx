@@ -2,8 +2,29 @@ import { useMemo } from 'react'
 import { displayForm } from '../engine/exercises'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
 import { ERROR_NAME } from './labels'
+import { charDiff } from '../engine/correctionDiff'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
+
+/** A sign for each kind of mistake, shown on its group. */
+const ERROR_GLYPH: Record<ErrorType, string> = {
+  meaning: '≠',
+  accent: 'é',
+  typo: 'Aa',
+  article: 'le',
+  gender: 'la',
+  form: '-s',
+  confusion: '⇄',
+  collocation: '+',
+  false_friend: '≈',
+  cross_language: '↯',
+}
+
+/** Letter marks only help when the two forms are close (accent, article, spelling), not for another word. */
+function similar(a: string, b: string): boolean {
+  const same = charDiff(a, b).filter((p) => p.kind === 'same').reduce((n, p) => n + p.text.length, 0)
+  return same / Math.max(a.length, b.length) >= 0.5
+}
 
 const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'cross_language', 'false_friend', 'confusion', 'form', 'accent', 'typo', 'meaning']
 
@@ -57,8 +78,11 @@ export function MistakesScreen({
 
       {groups.map((g) => (
         <section className="section stack" key={g.type}>
-          <h2 className="section-title">
-            {ERROR_NAME[g.type]} <span className="muted small">({g.items.length})</span>
+          <h2 className={`section-title mistake-group-title tone-${g.type}`}>
+            <span className="mistake-badge" aria-hidden>
+              {ERROR_GLYPH[g.type]}
+            </span>
+            {ERROR_NAME[g.type]} <span className="bed-count">{g.items.length}</span>
           </h2>
           <MistakeList items={g.items} byId={byId} onOpen={onOpen} />
         </section>
@@ -90,10 +114,39 @@ function MistakeList({
       {items.map((m) => {
         const entry = byId.get(m.entryId)!
         return (
-          <li key={m.id}>
-            <span>
-              {m.given ? <span className="strike">{m.given}</span> : <span className="muted">(boş)</span>} →{' '}
-              <span className="target">{m.expected}</span>
+          <li key={m.id} className="mistake-row">
+            <span className="mistake-pair">
+              {m.given && !similar(m.given, m.expected) ? (
+                <>
+                  <span className="mistake-given strike" lang={entry.language}>
+                    {m.given}
+                  </span>
+                  <span className="mistake-arrow" aria-hidden>
+                    →
+                  </span>
+                  <span className="mistake-right" lang={entry.language}>
+                    {m.expected}
+                  </span>
+                </>
+              ) : m.given ? (
+                <span className="mistake-given" lang={entry.language} title="Senin cevabın">
+                  {charDiff(m.given, m.expected).map((p, i) => (p.kind === 'added' ? null : <span key={i} className={p.kind === 'removed' ? 'ch-wrong' : undefined}>{p.text}</span>))}
+                </span>
+              ) : (
+                <span className="muted">(boş)</span>
+              )}
+              {(!m.given || similar(m.given, m.expected)) && (
+                <>
+                  <span className="mistake-arrow" aria-hidden>
+                    →
+                  </span>
+                  <span className="mistake-right" lang={entry.language} title="Doğrusu">
+                    {m.given
+                      ? charDiff(m.given, m.expected).map((p, i) => (p.kind === 'removed' ? null : <span key={i} className={p.kind === 'added' ? 'ch-right' : undefined}>{p.text}</span>))
+                      : m.expected}
+                  </span>
+                </>
+              )}
             </span>
             <span className="small muted">
               {m.highConfidence && <span className="pill confident-pill">emindin</span>} {m.count > 1 ? `${m.count} kez` : ''}

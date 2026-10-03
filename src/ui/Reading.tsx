@@ -384,19 +384,28 @@ export function ReadingScreen({
       const last = item.history.at(-1)
       const since = item.readAt ? Math.floor((now - new Date(item.readAt).getTime()) / 86_400_000) : null
       const reread = since !== null && since >= REREAD_DAYS
+      const words = item.text.split(/\s+/).length
+      const status = reread ? 'Tekrar oku' : since === null ? 'Yeni' : 'Okundu'
       return (
-        <li key={item.id}>
-          <button className="word-link library-open" onClick={() => open(item)}>
-            <strong>{item.title}</strong>
-            <span className="small muted">
-              {item.text.split(/\s+/).length} kelime
-              {last && ` · son okumada %${Math.round(last.coverage * 100)}`}
-              {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`} okundu`}
+        <li key={item.id} className="lib-card">
+          <button className="lib-open" onClick={() => open(item)}>
+            <Cover title={item.title} />
+            <span className="lib-body">
+              <strong className="lib-title">{item.title}</strong>
+              <span className="small muted">
+                {words} kelime · ~{Math.max(1, Math.round(words / 150))} dk
+                {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`}`}
+              </span>
+              <span className={`pill lib-status is-${status === 'Tekrar oku' ? 'reread' : status === 'Yeni' ? 'new' : 'done'}`}>{status}</span>
             </span>
+            {last && (
+              <span className="lib-ring" style={{ ['--p' as string]: `${Math.round(last.coverage * 100)}%` }} title={`Son okumada kelimelerin %${Math.round(last.coverage * 100)}'ini biliyordun`}>
+                %{Math.round(last.coverage * 100)}
+              </span>
+            )}
           </button>
-          {reread && <span className="pill reread-pill">Tekrar oku</span>}
-          <button className="link small" onClick={() => remove(item)} aria-label={`${item.title} sil`}>
-            Sil
+          <button className="icon-btn lib-remove" onClick={() => remove(item)} aria-label={`${item.title} sil`}>
+            ×
           </button>
         </li>
       )
@@ -904,9 +913,7 @@ function BookItem({
   return (
     <li className="book-item">
       <div className="book-head">
-        <span className="book-icon" aria-hidden>
-          📚
-        </span>
+        <Cover title={title} book />
         <span className="book-meta">
           <strong>{title}</strong>
           <span className="small muted">
@@ -950,5 +957,17 @@ function BookItem({
         </ol>
       )}
     </li>
+  )
+}
+
+const COVER_HUES = [12, 32, 150, 190, 215, 262, 290, 340]
+
+/** A cover for a text or book: a colour picked from its title and its first letter. */
+function Cover({ title, book = false }: { title: string; book?: boolean }) {
+  const hue = COVER_HUES[[...title].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % COVER_HUES.length]
+  return (
+    <span className={`cover${book ? ' is-book' : ''}`} style={{ ['--hue' as string]: hue }} aria-hidden>
+      {title.trim().charAt(0).toLocaleUpperCase() || '·'}
+    </span>
   )
 }

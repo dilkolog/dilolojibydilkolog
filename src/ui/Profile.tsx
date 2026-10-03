@@ -9,6 +9,7 @@ import { StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { Medal } from './Medal'
 import { StreakFlame } from './StreakFlame'
+import { localDate } from '../engine/progress'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -47,7 +48,10 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
       <section className="card profile-card">
         <div className="profile-hero">
           <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
-            <Avatar profile={profile} size={88} />
+            <span className="avatar-ring" style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
+              <Avatar profile={profile} size={88} />
+              {game && <span className="avatar-level">{game.level.level}</span>}
+            </span>
             <span className="avatar-edit-badge">✎</span>
           </button>
           <div className="profile-fields">
@@ -127,6 +131,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
             <Stat value={game.stats.wordsIntroduced} label="öğrenilen kelime" />
             <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />
           </section>
+          <ActivityMini byDay={game.xp.byDay} />
           <p className="small muted records-line">
             Rekorların: en uzun seri {game.stats.longestStreak} gün · üst üste {game.stats.maxCombo} doğru · {unlocked.length}/{game.achievements.length} rozet
           </p>
@@ -154,7 +159,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
               {unlocked.length > 0 && (
                 <>
                   <h2 className="subhead">Kazandıkların ({unlocked.length})</h2>
-                  <div className="badge-grid badge-grid-compact">
+                  <div className="badge-grid badge-grid-compact badge-shelf">
                     {unlocked.map((a) => (
                       <Badge key={a.id} a={a} compact />
                     ))}
@@ -232,5 +237,39 @@ function Stat({ value, label }: { value: React.ReactNode; label: string }) {
       <span className="stat-value">{value}</span>
       <span className="stat-label">{label}</span>
     </div>
+  )
+}
+
+/** The last 13 weeks as small squares, darker the more XP that day. */
+function ActivityMini({ byDay }: { byDay: Map<string, number> }) {
+  const today = new Date()
+  today.setHours(12, 0, 0, 0)
+  // Start on a Monday 12 full weeks back, so columns are weeks.
+  const start = new Date(today)
+  start.setDate(start.getDate() - ((start.getDay() + 6) % 7) - 12 * 7)
+  const days: { key: string; xp: number; future: boolean }[] = []
+  for (let d = new Date(start); days.length < 13 * 7; d.setDate(d.getDate() + 1)) {
+    const key = localDate(d)
+    days.push({ key, xp: byDay.get(key) ?? 0, future: d > today })
+  }
+  const max = Math.max(1, ...days.map((d) => d.xp))
+  const active = days.filter((d) => d.xp > 0).length
+  return (
+    <section className="card activity-mini">
+      <div className="row justify-between items-center">
+        <strong>Son 3 ay</strong>
+        <span className="small muted">{active} gün çalıştın</span>
+      </div>
+      <div className="activity-grid" role="img" aria-label={`Son 13 haftada ${active} gün çalıştın`}>
+        {days.map((d) => (
+          <span
+            key={d.key}
+            className={`activity-cell${d.future ? ' is-future' : ''}`}
+            style={{ ['--level' as string]: d.xp ? 0.25 + 0.75 * (d.xp / max) : 0 }}
+            title={d.future ? undefined : `${new Date(`${d.key}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}: ${d.xp} XP`}
+          />
+        ))}
+      </div>
+    </section>
   )
 }

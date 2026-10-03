@@ -25,7 +25,7 @@ function tones(notes: [freq: number, start: number, dur: number][], type: Oscill
 
 /** A short vibration with the tone on phones that support it (Android; iPhone ignores it). */
 function buzz(pattern: number | number[]) {
-  if (prefs.soundEffects && typeof navigator !== 'undefined' && 'vibrate' in navigator) navigator.vibrate(pattern)
+  if (prefs.haptics && typeof navigator !== 'undefined' && 'vibrate' in navigator) navigator.vibrate(pattern)
 }
 
 export const sfx = {

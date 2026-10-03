@@ -254,3 +254,29 @@ export function perfectDays(events: readonly ReviewEvent[]): number {
   }
   return [...days.values()].filter((d) => d.n >= 20 && d.wrong === 0).length
 }
+
+export interface Milestone {
+  id: string
+  emoji: string
+  title: string
+  text: string
+}
+
+const WORD_STEPS = [10, 50, 100, 250, 500, 1000, 2000]
+const MASTERED_STEPS = [1, 10, 50, 100, 250, 500]
+
+/**
+ * A threshold crossed during a session, worth one full-screen moment: a new level, the first (or
+ * Nth) word that settled, the Nth word met. The biggest one wins when several are crossed at once.
+ */
+export function crossedMilestone(before: { level: number; stats: GameStats }, after: { level: number; stats: GameStats }): Milestone | null {
+  if (after.level > before.level) return { id: `level-${after.level}`, emoji: '⭐', title: `Seviye ${after.level}!`, text: 'Çalıştıkça XP birikiyor; bir seviye daha atladın.' }
+  const settled = MASTERED_STEPS.filter((n) => before.stats.mastered < n && after.stats.mastered >= n).at(-1)
+  if (settled)
+    return settled === 1
+      ? { id: 'mastered-1', emoji: '🌸', title: 'İlk kelimen çiçek açtı!', text: 'Bir kelime “Oturdu” aşamasına ulaştı: artık onu cümlede kullanabiliyorsun.' }
+      : { id: `mastered-${settled}`, emoji: '🌸', title: `${settled} kelime oturdu!`, text: `${settled} kelimeyi artık cümlede kullanabiliyorsun. Bahçen çiçeklendi.` }
+  const met = WORD_STEPS.filter((n) => before.stats.wordsIntroduced < n && after.stats.wordsIntroduced >= n).at(-1)
+  if (met) return { id: `words-${met}`, emoji: '🌱', title: `${met}. kelimen!`, text: `${met} kelimeyle tanıştın. Her biri bahçende bir tohum.` }
+  return null
+}

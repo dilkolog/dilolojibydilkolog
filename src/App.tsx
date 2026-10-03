@@ -423,11 +423,16 @@ export default function App() {
 
   // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
   const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
+  // Reviews waiting in each language: a dot on the language buttons, and the mixed session.
+  const [dueByLanguage, setDueByLanguage] = useState<Partial<Record<TargetLanguage, number>>>({})
   useEffect(() => {
     const now = new Date()
     void db.wordStates.toArray().then((all) => {
       const due = all.filter((st) => Object.values(st.skills).some((c) => c.due <= now))
       setMixedDue({ count: due.length, languages: new Set(due.map((st) => st.language)).size })
+      const by: Partial<Record<TargetLanguage, number>> = {}
+      for (const st of due) by[st.language] = (by[st.language] ?? 0) + 1
+      setDueByLanguage(by)
     })
   }, [data])
   const startMixed = async () => {
@@ -536,10 +541,12 @@ export default function App() {
                     key={l}
                     className="lang-btn"
                     aria-pressed={l === settings.activeLanguage}
-                    aria-label={LANGUAGE_NAME[l]}
+                    aria-label={`${LANGUAGE_NAME[l]}${l !== settings.activeLanguage && dueByLanguage[l] ? `, ${dueByLanguage[l]} tekrar bekliyor` : ''}`}
+                    title={l !== settings.activeLanguage && dueByLanguage[l] ? `${dueByLanguage[l]} tekrar bekliyor` : undefined}
                     onClick={() => updateSettings({ ...settings, activeLanguage: l })}
                   >
                     {LANGUAGE_SHORT[l]}
+                    {l !== settings.activeLanguage && !!dueByLanguage[l] && <span className="lang-dot" aria-hidden />}
                   </button>
                 ))}
               </div>

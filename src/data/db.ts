@@ -86,6 +86,10 @@ export interface Settings {
   /** Questions per session at most; 0 = whole plan. */
   sessionMax: number
   theme: 'system' | 'light' | 'dark'
+  /** Scales the whole interface (everything is sized in rem). */
+  textScale?: 'normal' | 'large' | 'xlarge'
+  /** Short vibrations on answers (phones that support it). */
+  haptics?: boolean
   autoPlayAudio: boolean
   speechRate: number
   /** Chosen system voice per language (voiceURI). */
@@ -144,6 +148,8 @@ export const DEFAULT_SETTINGS: Settings = {
   dailyXpGoal: 50,
   sessionMax: 0,
   theme: 'system',
+  textScale: 'normal',
+  haptics: true,
   autoPlayAudio: true,
   speechRate: 0.9,
   voices: {},

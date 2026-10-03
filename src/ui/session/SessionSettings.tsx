@@ -71,6 +71,16 @@ export function SessionSettings({ settings, onChange, onClose }: { settings: Set
         </Group>
 
         <Group title="Ses ve ekran">
+          <Choice<NonNullable<Settings['textScale']>>
+            label="Yazı boyutu"
+            options={[
+              ['normal', 'Normal'],
+              ['large', 'Büyük'],
+              ['xlarge', 'Çok büyük'],
+            ]}
+            value={settings.textScale ?? 'normal'}
+            onChange={(v) => set('textScale', v)}
+          />
           <Switch label="Sesi otomatik çal" checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
           <Switch label="Ses efektleri" checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
           <Switch label="Kısayol listesi" help="Ekranın altında klavye kısayolları." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />

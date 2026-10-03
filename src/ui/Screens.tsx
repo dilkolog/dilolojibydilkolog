@@ -16,7 +16,7 @@ import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
 import { Medal } from './Medal'
-import { medalTier } from '../engine/gamification'
+import { crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
 import { StreakFlame } from './StreakFlame'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
@@ -583,6 +583,9 @@ export function Summary({
   const errors = Object.entries(summary.errors) as [keyof typeof ERROR_NAME, number][]
   const leveledUp = !!before && !!after && after.level.level > before.level.level
   const newBadges = before && after ? after.achievements.filter((a) => a.unlocked && !before.achievements.find((b) => b.id === a.id)?.unlocked) : []
+  const [milestone, setMilestone] = useState(() =>
+    before && after && !practice ? crossedMilestone({ level: before.level.level, stats: before.stats }, { level: after.level.level, stats: after.stats }) : null,
+  )
 
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
@@ -597,6 +600,7 @@ export function Summary({
 
   return (
     <div className="summary-grid">
+      {milestone && <MilestoneMoment milestone={milestone} onClose={() => setMilestone(null)} />}
       <div className="summary-main stack">
       <div className="celebrate celebrate-card">
         {(accuracy >= 0.7 || leveledUp) && <Burst />}
@@ -731,6 +735,43 @@ export function Summary({
             </ul>
           </section>
         )}
+      </div>
+    </div>
+  )
+}
+
+/** A crossed milestone, once, full screen: big sign, a line on what it means, confetti, share. */
+function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose: () => void }) {
+  const share = async () => {
+    try {
+      await navigator.share({ title: 'Kelime Koçu', text: `${milestone.emoji} ${milestone.title} ${milestone.text}` })
+    } catch {
+      // Share sheet closed; nothing to do.
+    }
+  }
+  return (
+    <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="dialog milestone" role="dialog" aria-modal="true" aria-labelledby="ms-title">
+        <div className="milestone-art">
+          <Burst />
+          <span className="milestone-emoji" aria-hidden>
+            {milestone.emoji}
+          </span>
+        </div>
+        <h2 id="ms-title" className="milestone-title">
+          {milestone.title}
+        </h2>
+        <p className="muted">{milestone.text}</p>
+        <div className="dialog-actions milestone-actions">
+          {'share' in navigator && (
+            <button className="btn btn-quiet" onClick={share}>
+              Paylaş
+            </button>
+          )}
+          <button className="btn" onClick={onClose} autoFocus>
+            Devam
+          </button>
+        </div>
       </div>
     </div>
   )
