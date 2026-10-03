@@ -313,7 +313,9 @@ export default function App() {
     history.replaceState(null, '', location.pathname)
     if (incoming.lang && incoming.lang !== settings.activeLanguage) void updateSettings({ ...settings, activeLanguage: incoming.lang })
     setScreen({ name: 'words' })
-  }, [incoming, settings === null || settings === undefined])
+    // Once, when both the incoming word and the settings are there.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incoming, !settings])
 
 
   const planInput = useMemo(() => {

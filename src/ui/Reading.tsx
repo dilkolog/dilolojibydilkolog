@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
@@ -66,7 +66,7 @@ export function ReadingScreen({
   const [draft, setDraft] = useState('')
   const [title, setTitle] = useState('')
   // Coverage when this reading started: saved with the text on finishing, to show progress.
-  const startCoverage = useRef<number | null>(null)
+  const [startCoverage, setStartCoverage] = useState<number | null>(null)
   const [known, setKnown] = useState<Set<string>>(new Set())
   const [ignored, setIgnored] = useState<Set<string>>(new Set())
   // Words the reader left open on purpose: they don't become known when the text is finished.
@@ -149,13 +149,13 @@ export function ReadingScreen({
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
 
   useEffect(() => {
-    if (analysis && startCoverage.current === null) startCoverage.current = analysis.coverage
+    if (analysis) setStartCoverage((c) => c ?? analysis.coverage)
   }, [analysis])
 
   const open = async (item: ReadingText | null) => {
     await db.setCurrentText(language, item?.id ?? null)
     setCurrent(item)
-    startCoverage.current = null
+    setStartCoverage(null)
     setSkipped(new Set())
     setSelected(null)
     setAdding(null)
@@ -351,7 +351,7 @@ export function ReadingScreen({
       const updated: ReadingText = {
         ...current,
         readAt: new Date().toISOString(),
-        history: [...current.history, { at: new Date().toISOString(), coverage: startCoverage.current ?? analysis.coverage }],
+        history: [...current.history, { at: new Date().toISOString(), coverage: startCoverage ?? analysis.coverage }],
       }
       await db.saveText(updated)
       setCurrent(updated)
@@ -532,11 +532,11 @@ export function ReadingScreen({
             </a>
           </p>
         )}
-        {current && current.history.length > 0 && startCoverage.current !== null && (
+        {current && current.history.length > 0 && startCoverage !== null && (
           <p className="small">
             Önceki okumada %{Math.round(current.history[0].coverage * 100)}
             {current.history.length > 1 && `, son okumada %${Math.round(current.history.at(-1)!.coverage * 100)}`}; bu okumaya başlarken %
-            {Math.round(startCoverage.current * 100)}.
+            {Math.round(startCoverage * 100)}.
           </p>
         )}
         {known.size < 500 && (

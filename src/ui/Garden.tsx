@@ -11,6 +11,8 @@ export const WORDS_VIEW_KEY = 'kelime-koc:words-view'
 
 /** All words as one garden, in beds by growth stage; dry plants are watered with a review. */
 export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary: VocabularyEntry[]; states: UserWordState[]; onOpen: (id: string) => void; onWater: (entries: VocabularyEntry[]) => void }) {
+  // "Now" moves on whenever the words change (after a review), not on every render.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const now = useMemo(() => new Date(), [states])
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const summary = useMemo(() => gardenSummary(vocabulary, states, scheduler, now), [vocabulary, states, now])

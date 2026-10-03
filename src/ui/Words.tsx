@@ -670,6 +670,8 @@ function WordList({
   onStudy: (entries: VocabularyEntry[]) => void
   onDelete: (ids: string[]) => Promise<void>
 }) {
+  // "Now" moves on whenever the words change (after a review), not on every render.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const now = useMemo(() => new Date(), [stateById])
   const [query, setQuery] = useState('')
   // Selection mode: rows toggle instead of opening; shift-click selects a range.
@@ -685,12 +687,11 @@ function WordList({
 
   const withMistakes = useMemo(() => new Set(mistakes.filter((m) => !m.resolved).map((m) => m.entryId)), [mistakes])
   const tags = useMemo(() => [...new Set(vocabulary.flatMap((v) => v.tags))].sort((a, b) => a.localeCompare(b, 'tr')), [vocabulary])
-  const stageIndex = (v: VocabularyEntry) => {
-    const st = stateById.get(v.id)
-    return st ? MASTERY_STAGES.indexOf(masteryStage(st)) : -1
-  }
-
   const list = useMemo(() => {
+    const stageIndex = (v: VocabularyEntry) => {
+      const st = stateById.get(v.id)
+      return st ? MASTERY_STAGES.indexOf(masteryStage(st)) : -1
+    }
     const q = query.trim().toLocaleLowerCase('tr')
     const match = (v: VocabularyEntry) => {
       if (q && ![v.lemma, v.senses[0].gloss, ...(v.senses[0].altGlosses ?? []), v.notes ?? ''].some((t) => t.toLocaleLowerCase('tr').includes(q))) return false

@@ -347,6 +347,8 @@ export function SessionScreen(p: Props) {
 function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean; rate?: number }) {
   useEffect(() => {
     if (auto && prefs.autoPlay) playWord(entry, text, vary, rate)
+    // Auto-play once per word, not again when the entry object is updated.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auto, text, entry.language])
 
   // Alt+S anywhere, or Space when not typing, replays the audio.
@@ -361,7 +363,7 @@ function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; ent
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [text, entry.language])
+  }, [text, entry, vary, rate])
   if (!canSpeak()) return null
   return (
     <button

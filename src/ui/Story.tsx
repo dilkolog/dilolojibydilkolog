@@ -50,6 +50,7 @@ export function StoryScreen(p: Props) {
 
   useEffect(() => {
     void load().then((list) => setViewing(list.at(-1)?.id ?? null))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [p.language])
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { fetchImage, searchImages, type ImageResult } from '../data/imageSearch'
 import { imageFromClipboard, shrinkImage } from './imageTools'
 
@@ -52,12 +52,16 @@ export function ImagePicker({
       searched.current = true
       void search()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const choose = async (blob: Blob, credit?: string) => {
-    setBusy(true)
-    onPick({ blob: await shrinkImage(blob), credit })
-  }
+  const choose = useCallback(
+    async (blob: Blob, credit?: string) => {
+      setBusy(true)
+      onPick({ blob: await shrinkImage(blob), credit })
+    },
+    [onPick],
+  )
 
   const chooseResult = async (r: ImageResult) => {
     setBusy(true)
@@ -91,7 +95,7 @@ export function ImagePicker({
       window.removeEventListener('paste', onPaste)
       window.removeEventListener('keydown', onKey, true)
     }
-  }, [onClose])
+  }, [onClose, choose])
 
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>

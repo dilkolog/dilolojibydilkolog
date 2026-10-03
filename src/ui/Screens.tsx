@@ -522,6 +522,7 @@ export function Summary({
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
     // Play once when the summary opens.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
