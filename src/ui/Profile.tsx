@@ -19,6 +19,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
   const [motto, setMotto] = useState(profile.motto)
   const [editing, setEditing] = useState(false)
   const [picking, setPicking] = useState(false)
+  const [tab, setTab] = useState<'badges' | 'titles' | 'share'>('badges')
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
 
@@ -29,130 +30,161 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
 
   const nextTitle = game && LADDER.find(([l]) => l > game.level.level)
 
+  const unlocked = game ? game.achievements.filter((a) => a.unlocked) : []
+  // The badges closest to being earned: something concrete to go for next.
+  const nextBadges = game
+    ? game.achievements
+        .filter((a) => !a.unlocked)
+        .sort((a, b) => b.value / b.goal - a.value / a.goal)
+        .slice(0, 3)
+    : []
+  const locked = game ? game.achievements.filter((a) => !a.unlocked && !nextBadges.includes(a)) : []
+
   return (
-    <div className="stack">
-      <section className="profile-hero">
-        <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle">
-          <Avatar profile={profile} size={104} />
-          <span className="avatar-edit-badge">✎</span>
-        </button>
-        <div className="profile-fields">
-          <input
-            className="profile-name"
-            value={name}
-            placeholder="Adın"
-            aria-label="Adın"
-            onChange={(e) => setName(e.target.value)}
-            onBlur={() => name !== profile.name && save({ name: name.trim() })}
-            onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-          />
-          <input
-            className="profile-motto"
-            value={motto}
-            placeholder="Motton ya da hedefin (ör. Yazın Paris'te rahat konuşmak)"
-            aria-label="Motto"
-            onChange={(e) => setMotto(e.target.value)}
-            onBlur={() => motto !== profile.motto && save({ motto: motto.trim() })}
-            onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-          />
-          {game && (
-            <p className="level-line">
-              <span className="level-badge">Seviye {game.level.level}</span> {game.level.title}
-            </p>
-          )}
+    <div className="stack profile">
+      <section className="card profile-card">
+        <div className="profile-hero">
+          <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
+            <Avatar profile={profile} size={88} />
+            <span className="avatar-edit-badge">✎</span>
+          </button>
+          <div className="profile-fields">
+            <input
+              className="profile-name"
+              value={name}
+              placeholder="Adın"
+              aria-label="Adın"
+              onChange={(e) => setName(e.target.value)}
+              onBlur={() => name !== profile.name && save({ name: name.trim() })}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+            />
+            <input
+              className="profile-motto"
+              value={motto}
+              placeholder="Motton ya da hedefin (ör. Yazın Paris'te rahat konuşmak)"
+              aria-label="Motto"
+              onChange={(e) => setMotto(e.target.value)}
+              onBlur={() => motto !== profile.motto && save({ motto: motto.trim() })}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+            />
+          </div>
         </div>
-      </section>
-
-      {editing && (
-        <section className="card stack">
-          <h2 className="section-title">Avatar</h2>
-          <div className="emoji-grid">
-            {EMOJIS.map((e) => (
-              <button key={e} className="emoji-btn" aria-pressed={!profile.photoId && profile.emoji === e} onClick={() => (profile.photoId ? setPhoto(null).then(() => save({ emoji: e })) : save({ emoji: e }))}>
-                {e}
-              </button>
-            ))}
-          </div>
-          <div className="choice-row">
-            {COLORS.map((c) => (
-              <button key={c} className="swatch" style={{ background: c }} aria-label={`Renk ${c}`} aria-pressed={profile.color === c} onClick={() => save({ color: c })} />
-            ))}
-          </div>
-          <div className="row">
-            <button className="btn btn-quiet" onClick={() => setPicking(true)}>
-              Fotoğraf kullan
-            </button>
-            {profile.photoId && (
-              <button className="link small" onClick={() => setPhoto(null)}>
-                Fotoğrafı kaldır
-              </button>
-            )}
-          </div>
-        </section>
-      )}
-
-      {game && (
-        <>
-          <section className="card stack level-card">
+        {game && (
+          <div className="profile-level">
             <div className="row" style={{ justifyContent: 'space-between' }}>
-              <h2 className="section-title">
-                Seviye {game.level.level}: {game.level.title}
-              </h2>
-              <span className="muted small">{game.xp.total.toLocaleString('tr-TR')} XP toplam</span>
+              <span>
+                <span className="level-badge">Seviye {game.level.level}</span> <strong>{game.level.title}</strong>
+              </span>
+              <span className="muted small">{game.xp.total.toLocaleString('tr-TR')} XP</span>
             </div>
             <div className="xp-bar" role="progressbar" aria-valuenow={Math.round(game.level.progress * 100)} aria-valuemin={0} aria-valuemax={100}>
               <div style={{ width: `${game.level.progress * 100}%` }} />
             </div>
             <p className="small muted">
-              Sonraki seviyeye {(game.level.needed - game.level.into).toLocaleString('tr-TR')} XP kaldı.
-              {nextTitle && ` ${nextTitle[0]}. seviyede unvanın "${nextTitle[1]}" olacak.`}
+              Sonraki seviyeye {(game.level.needed - game.level.into).toLocaleString('tr-TR')} XP.
+              {nextTitle && ` ${nextTitle[0]}. seviyede unvanın "${nextTitle[1]}".`}
             </p>
-          </section>
-
-          <section className="stat-grid">
-            <Stat value={<><FlameIcon className="icon-flame" size={22} /> {game.streak}</>} label="günlük seri" />
-            <Stat value={game.stats.longestStreak} label="en uzun seri" />
-            <Stat value={game.stats.wordsIntroduced} label="kelime" />
-            <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
-            <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />
-            <Stat value={game.stats.maxCombo} label="en uzun doğru serisi" />
-          </section>
-
-          <section className="stack">
-            <h2 className="section-title">
-              Rozetler <span className="muted small">({game.achievements.filter((a) => a.unlocked).length}/{game.achievements.length})</span>
-            </h2>
-            <div className="badge-grid">
-              {[...game.achievements].sort((a, b) => Number(b.unlocked) - Number(a.unlocked)).map((a) => (
-                <div key={a.id} className={`badge-card${a.unlocked ? ' is-unlocked' : ''}`} title={a.description}>
-                  <span className="badge-icon">{a.icon}</span>
-                  <strong>{a.title}</strong>
-                  <span className="small muted">{a.description}</span>
-                  {!a.unlocked && (
-                    <span className="badge-progress">
-                      <span style={{ width: `${(a.value / a.goal) * 100}%` }} />
-                    </span>
-                  )}
-                  {!a.unlocked && (
-                    <span className="small muted">
-                      {a.value}/{a.goal}
-                    </span>
-                  )}
-                </div>
+          </div>
+        )}
+        {editing && (
+          <div className="stack avatar-editor">
+            <div className="emoji-grid">
+              {EMOJIS.map((e) => (
+                <button key={e} className="emoji-btn" aria-pressed={!profile.photoId && profile.emoji === e} onClick={() => (profile.photoId ? setPhoto(null).then(() => save({ emoji: e })) : save({ emoji: e }))}>
+                  {e}
+                </button>
               ))}
             </div>
-          </section>
-
-          <section className="card stack">
-            <h2 className="section-title">Unvan merdiveni</h2>
-            <ol className="ladder">
-              {LADDER.map(([l, title]) => (
-                <li key={l} className={game.level.level >= l ? 'is-reached' : ''}>
-                  <span className="level-badge">{l}</span> {title}
-                </li>
+            <div className="choice-row">
+              {COLORS.map((c) => (
+                <button key={c} className="swatch" style={{ background: c }} aria-label={`Renk ${c}`} aria-pressed={profile.color === c} onClick={() => save({ color: c })} />
               ))}
-            </ol>
+            </div>
+            <div className="row">
+              <button className="btn btn-sm btn-quiet" onClick={() => setPicking(true)}>
+                Fotoğraf kullan
+              </button>
+              {profile.photoId && (
+                <button className="link small" onClick={() => setPhoto(null)}>
+                  Fotoğrafı kaldır
+                </button>
+              )}
+              <button className="link small" onClick={() => setEditing(false)}>
+                Bitti
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {game && (
+        <>
+          <section className="stat-grid stat-grid-4">
+            <Stat value={<><FlameIcon className="icon-flame" size={22} /> {game.streak}</>} label="günlük seri" />
+            <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
+            <Stat value={game.stats.wordsIntroduced} label="öğrenilen kelime" />
+            <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />
           </section>
+          <p className="small muted records-line">
+            Rekorların: en uzun seri {game.stats.longestStreak} gün · üst üste {game.stats.maxCombo} doğru · {unlocked.length}/{game.achievements.length} rozet
+          </p>
+
+          <div className="segmented" role="tablist" aria-label="Profil">
+            {(['badges', 'titles', 'share'] as const).map((t) => (
+              <button key={t} role="tab" className="segmented-btn" aria-selected={tab === t} onClick={() => setTab(t)}>
+                {t === 'badges' ? 'Rozetler' : t === 'titles' ? 'Unvanlar' : 'Paylaş'}
+              </button>
+            ))}
+          </div>
+
+          {tab === 'badges' && (
+            <section className="stack">
+              {nextBadges.length > 0 && (
+                <>
+                  <h2 className="subhead">Sıradakiler</h2>
+                  <div className="badge-grid">
+                    {nextBadges.map((a) => (
+                      <Badge key={a.id} a={a} />
+                    ))}
+                  </div>
+                </>
+              )}
+              {unlocked.length > 0 && (
+                <>
+                  <h2 className="subhead">Kazandıkların ({unlocked.length})</h2>
+                  <div className="badge-grid badge-grid-compact">
+                    {unlocked.map((a) => (
+                      <Badge key={a.id} a={a} compact />
+                    ))}
+                  </div>
+                </>
+              )}
+              {locked.length > 0 && (
+                <details>
+                  <summary className="small">Diğer rozetler ({locked.length})</summary>
+                  <div className="badge-grid badge-grid-compact" style={{ marginTop: '0.75rem' }}>
+                    {locked.map((a) => (
+                      <Badge key={a.id} a={a} compact />
+                    ))}
+                  </div>
+                </details>
+              )}
+            </section>
+          )}
+
+          {tab === 'titles' && (
+            <section className="card stack">
+              <ol className="ladder">
+                {LADDER.map(([l, title]) => (
+                  <li key={l} className={game.level.level >= l ? 'is-reached' : ''}>
+                    <span className="level-badge">{l}</span> {title}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          {tab === 'share' && <ProgressCardButton settings={settings} game={game} />}
         </>
       )}
 
@@ -166,7 +198,28 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
           }}
         />
       )}
-      {game && <ProgressCardButton settings={settings} game={game} />}
+    </div>
+  )
+}
+
+type Achievement = NonNullable<ReturnType<typeof useGame>>['achievements'][number]
+
+function Badge({ a, compact = false }: { a: Achievement; compact?: boolean }) {
+  return (
+    <div className={`badge-card${a.unlocked ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`} title={a.description}>
+      <span className="badge-icon">{a.icon}</span>
+      <strong>{a.title}</strong>
+      {!compact && <span className="small muted">{a.description}</span>}
+      {!a.unlocked && (
+        <>
+          <span className="badge-progress">
+            <span style={{ width: `${Math.min(100, (a.value / a.goal) * 100)}%` }} />
+          </span>
+          <span className="small muted">
+            {a.value}/{a.goal}
+          </span>
+        </>
+      )}
     </div>
   )
 }
