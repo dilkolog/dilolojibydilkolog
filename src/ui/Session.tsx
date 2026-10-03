@@ -103,8 +103,9 @@ export function SessionScreen(p: Props) {
   // Distractors may come from the sample set too, so options are full even with few own words.
   const distractorPool = useMemo(() => {
     const own = new Set(p.vocabulary.map((v) => v.id))
-    const lang = p.vocabulary[0]?.language
-    return [...p.vocabulary, ...(lang ? SAMPLE_WORDS[lang].filter((w) => !own.has(w.id)) : [])]
+    // A mixed session spans languages: samples for each one present.
+    const langs = [...new Set(p.vocabulary.map((v) => v.language))]
+    return [...p.vocabulary, ...langs.flatMap((l) => SAMPLE_WORDS[l].filter((w) => !own.has(w.id)))]
   }, [p.vocabulary])
   const rng = useMemo(() => createRng(p.seed ^ 0x5bd1e995), [p.seed])
   // Words of the other languages, to recognise an answer given in the wrong language.

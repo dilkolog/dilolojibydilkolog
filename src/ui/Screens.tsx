@@ -148,6 +148,8 @@ export function Home({
   onProfile,
   onStory,
   onGames,
+  onMixed,
+  mixedDue = 0,
   onExtraNew,
   onPracticeMistakes,
   onFreePractice,
@@ -170,6 +172,9 @@ export function Home({
   onProfile: () => void
   onStory?: () => void
   onGames?: () => void
+  /** Reviews due in two or more languages: one interleaved session. */
+  onMixed?: () => void
+  mixedDue?: number
   onExtraNew: () => void
   onPracticeMistakes: () => void
   onFreePractice: () => void
@@ -365,7 +370,7 @@ export function Home({
       {game && <RaceCard game={game} />}
 
 
-      {(openMistakeWords > 0 || canPractice || onStory || onGames) && (
+      {(openMistakeWords > 0 || canPractice || onStory || onGames || onMixed) && (
         <section className="section stack">
           <h2 className="section-title">Ek çalışma</h2>
           <div className="tiles">
@@ -388,6 +393,17 @@ export function Home({
                 <span>
                   <strong>Hikayenin yeni bölümü</strong>
                   <span className="small muted">Zorlandığın kelimelerle yazılır</span>
+                </span>
+              </button>
+            )}
+            {onMixed && (
+              <button className="tile" onClick={onMixed}>
+                <span className="tile-icon">
+                  <span style={{ fontSize: '1.25rem' }}>🔀</span>
+                </span>
+                <span>
+                  <strong>Karışık tekrar</strong>
+                  <span className="small muted">Üç dilden {mixedDue} tekrar tek oturumda: dil değiştirmek ayırt etmeyi güçlendirir</span>
                 </span>
               </button>
             )}

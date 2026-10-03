@@ -59,7 +59,7 @@ import { readIncoming, type IncomingWord } from './ui/incoming'
 
 type Screen =
   | { name: 'home' }
-  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[] }
+  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[] }
   | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; gameBefore: GameState | null }
   | { name: 'words' }
   | { name: 'word'; entryId: string }
@@ -124,6 +124,8 @@ let wiktRun: Promise<number> | null = null
 let quickStart = false
 /** About three minutes. */
 const QUICK_REVIEW = 10
+/** A mixed session's length. */
+const MIXED_SIZE = 30
 
 /** Phones get a bottom tab bar with these; the rest sit behind "Daha". */
 const TABS: NavScreen[] = ['home', 'words', 'reading', 'progress']
@@ -366,6 +368,51 @@ export default function App() {
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra })
   }
 
+  // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
+  const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
+  useEffect(() => {
+    const now = new Date()
+    void db.wordStates.toArray().then((all) => {
+      const due = all.filter((st) => Object.values(st.skills).some((c) => c.due <= now))
+      setMixedDue({ count: due.length, languages: new Set(due.map((st) => st.language)).size })
+    })
+  }, [data])
+  const startMixed = async () => {
+    if (!settings) return
+    const now = new Date()
+    const others = TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage)
+    const loaded = await Promise.all(others.map((l) => db.loadLanguage(l)))
+    const perLanguage = [
+      { language: settings.activeLanguage, vocabulary: data!.vocabulary, states: data!.states, mistakes: data!.mistakes },
+      ...loaded.map((x, i) => ({ language: others[i], ...x })),
+    ].map((x) =>
+      buildDailyPlan({
+        now,
+        settings: { language: x.language, dailyMinutes: settings.dailyMinutes, newWordsPerDay: 0, autoRetire: settings.autoRetire },
+        catalog: x.vocabulary,
+        states: x.states,
+        mistakes: x.mistakes,
+        scheduler,
+        seed: daySeed(now) + x.language.charCodeAt(0),
+        options,
+      }).items.filter((i) => i.kind === 'exercise'),
+    )
+    // Round-robin, so the language changes from one item to the next.
+    const items: PlanItem[] = []
+    for (let i = 0; items.length < MIXED_SIZE && perLanguage.some((l) => i < l.length); i++) for (const l of perLanguage) if (l[i] && items.length < MIXED_SIZE) items.push(l[i])
+    if (!items.length) return
+    setScreen({
+      name: 'session',
+      items,
+      mode: 'normal',
+      seed: Date.now() % 2 ** 31,
+      gameBefore: game,
+      extra: loaded.flatMap((x) => x.vocabulary),
+      extraStates: loaded.flatMap((x) => x.states),
+      extraMistakes: loaded.flatMap((x) => x.mistakes),
+    })
+  }
+
   // Opened from a reminder ("?go=quick"): straight into a short review of what's due.
   useEffect(() => {
     if (!quickStart || !plan || !data) return
@@ -538,8 +585,8 @@ export default function App() {
                 items={screen.items}
                 mode={screen.mode}
                 vocabulary={sessionVocabulary ?? data.vocabulary}
-                states={data.states}
-                mistakes={data.mistakes}
+                states={screen.extraStates ? [...data.states, ...screen.extraStates] : data.states}
+                mistakes={screen.extraMistakes ? [...data.mistakes, ...screen.extraMistakes] : data.mistakes}
                 db={db}
                 scheduler={scheduler}
                 seed={screen.seed}
@@ -679,6 +726,8 @@ export default function App() {
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
+                onMixed={mixedDue.languages >= 2 ? startMixed : undefined}
+                mixedDue={mixedDue.count}
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
                 onPracticeMistakes={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
