@@ -245,7 +245,7 @@ export function SessionScreen(p: Props) {
   const sessionXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
 
   return (
-    <div>
+    <div className="session">
       <div className="session-top">
         <button className="icon-btn" onClick={() => setConfirmQuit(true)} aria-label="Oturumu bitir">
           <CloseIcon size={22} />
@@ -267,7 +267,7 @@ export function SessionScreen(p: Props) {
         </span>
       </div>
       {p.mode === 'practice' && (
-        <p style={{ marginTop: '-1.5rem', marginBottom: '1.5rem' }}>
+        <p className="practice-badge">
           <span className="badge">Serbest pratik</span>
         </p>
       )}
@@ -285,6 +285,7 @@ export function SessionScreen(p: Props) {
             : 'Henüz cevap vermedin; görev olduğu gibi bekleyecek.'}
         </ConfirmDialog>
       )}
+      <div className="session-stage">
       {item.kind === 'introduce' ? (
         <Intro
           key={session.index}
@@ -315,6 +316,7 @@ export function SessionScreen(p: Props) {
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
         />
       )}
+      </div>
     </div>
   )
 }

@@ -32,6 +32,8 @@ import { WordMedia } from './WordMedia'
 import { isRetired } from '../engine/retire'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
+import { useMediaUrl } from './useMedia'
+import { SpeakerIcon } from './icons'
 import { deleteWordsWithUndo } from './undo'
 
 interface Props {
@@ -73,6 +75,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
     })
   }, [db, entry.id, state])
   const conjugation = conjugate(entry)
+  const heroImage = useMediaUrl(entry.imageId)
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
 
   const setRetired = async (retired: boolean) => {
@@ -108,48 +111,68 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
     )
   }
 
+  const stage = growthStage(state)
+  const chips = [
+    entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech],
+    entry.cefr,
+    next && `sıradaki tekrar ${relativeTime(next)}`,
+    encounters !== null && `bağlamda ${encounters}/${ENCOUNTER_TARGET}+ karşılaşma`,
+  ].filter((c): c is string => !!c)
+
   return (
-    <div>
-      <button className="link" onClick={onBack}>
-        Kelimelere dön
+    <div className="detail-page">
+      <button className="link detail-back" onClick={onBack}>
+        ← Kelimelere dön
       </button>
 
-      <section className="section stack mt-6">
-        <div className="row">
-          <h1 className="word">{displayForm(entry)}</h1>
+      {/* The word itself up top: its plant, how it sounds, what it means, its picture. */}
+      <section className="word-hero span-2">
+        <div className="word-hero-plant" aria-hidden>
+          <Plant stage={stage} health={plantHealth(state, scheduler, now)} size={72} />
+          <span className="small">{state ? STAGE_NAME[masteryStage(state)] : 'Henüz çalışılmadı'}</span>
+        </div>
+        <div className="word-hero-body stack gap-2">
+          <div className="row items-center gap-3">
+            <h1 className="word">{displayForm(entry)}</h1>
+            {canSpeak() && (
+              <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
+                <SpeakerIcon size={20} />
+              </button>
+            )}
+          </div>
           {entry.ipa && <span className="ipa">{entry.ipa}</span>}
-          {canSpeak() && (
-            <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                <path d="M11 5 6 9H2v6h4l5 4V5z" />
-                <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
-              </svg>
-            </button>
+          <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
+          {sense.definition && (
+            <p className="definition" lang={entry.language}>
+              {sense.definition}
+            </p>
+          )}
+          {chips.length > 0 && (
+            <ul className="chip-list" aria-label="Kelime bilgisi">
+              {chips.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
           )}
         </div>
-        <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
-        {sense.definition && (
-          <p className="definition" lang={entry.language}>
-            {sense.definition}
-          </p>
-        )}
+        {heroImage && <img className="word-hero-image" src={heroImage} alt="" />}
+        <div className="word-hero-actions">
+          <button className="btn btn-sm btn-quiet" onClick={() => setEditing(true)}>
+            Düzenle
+          </button>
+          <button className="btn btn-sm btn-danger" onClick={remove}>
+            Sil
+          </button>
+        </div>
+      </section>
+
+      <section className="section stack span-2 word-notes">
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         <CrossLanguageNotes entry={entry} />
         {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
         {fragile && (
           <p className="small fragile-note">🐢 Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
         )}
-        <p className="small muted">
-          {[
-            entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech],
-            entry.cefr,
-            state ? STAGE_NAME[masteryStage(state)] : 'Henüz çalışılmadı',
-            next && `sıradaki tekrar ${relativeTime(next)}`,
-            encounters !== null && `bağlamda ${encounters}/${ENCOUNTER_TARGET}+ karşılaşma`,
-          ]
-            .filter(Boolean)
-            .join(', ')}
-        </p>
         {state && isRetired(state, prefs.autoRetire) ? (
           <p className="small retired-note">
             🏖️ Emekli: bu kelimeyi çok iyi biliyorsun, rutin tekrarlara gelmiyor; arada bir sürpriz kontrol gelir, yanılırsan geri döner.{' '}
@@ -168,14 +191,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </p>
           )
         )}
-        <div className="row">
-          <button className="btn btn-quiet" onClick={() => setEditing(true)}>
-            Düzenle
-          </button>
-          <button className="btn btn-danger" onClick={remove}>
-            Sil
-          </button>
-        </div>
       </section>
 
       <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled())} label="Kelime bölümleri" />

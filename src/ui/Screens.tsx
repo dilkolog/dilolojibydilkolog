@@ -557,9 +557,15 @@ export function Summary({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const grown = practice
+    ? []
+    : summary.words.filter((w) => (w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : -1) > (w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1))
+  const rest = summary.words.filter((w) => !grown.includes(w))
+
   return (
-    <div className="stack">
-      <div className="celebrate">
+    <div className="summary-grid">
+      <div className="summary-main stack">
+      <div className="celebrate celebrate-card">
         {(accuracy >= 0.7 || leveledUp) && <Burst />}
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         <h1>{headline(accuracy, practice)}</h1>
@@ -569,10 +575,9 @@ export function Summary({
         </p>
         <p className="xp-gain">+{summary.xp} XP</p>
       </div>
-
       {leveledUp && after && (
         <div className="level-up">
-          <span className="level-badge" style={{ fontSize: '1.25rem', height: '2.5rem', minWidth: '3rem' }}>
+          <span className="level-badge level-badge-lg">
             {after.level.level}
           </span>
           <div>
@@ -583,7 +588,6 @@ export function Summary({
           </div>
         </div>
       )}
-
       {newBadges.length > 0 && (
         <div className="stack">
           <h2 className="section-title">Yeni rozet{newBadges.length > 1 ? 'ler' : ''}!</h2>
@@ -598,7 +602,6 @@ export function Summary({
           </div>
         </div>
       )}
-
       {after && (
         <div className="summary-stats">
           <div className="stat">
@@ -621,35 +624,6 @@ export function Summary({
           </div>
         </div>
       )}
-
-      {summary.words.length > 0 && (
-        <section className="section stack">
-          <h2 className="section-title">Bu oturumda çalıştıkların</h2>
-          <ul className="garden">
-            {summary.words.map((w) => {
-              const e = byId.get(w.entryId)
-              const before = w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
-              const after = w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : before
-              const grew = !practice && after > before
-              return (
-                <li key={w.entryId} className={grew ? 'grew' : ''}>
-                  <Plant stage={after} size={40} />
-                  <span className="garden-text">
-                    <span className="target">{name(w.entryId)}</span>
-                    {e && <span className="small muted">{e.senses[0].gloss}</span>}
-                    <span className="small">
-                      {w.correct > 0 && <span className="garden-ok">✓ {w.correct}</span>} {w.wrong > 0 && <span className="garden-bad">✗ {w.wrong}</span>}
-                      {grew && w.stageAfter && <span className="garden-grew"> 🌱 {STAGE_NAME[w.stageAfter]} oldu</span>}
-                      {!grew && w.wrong > 0 && !practice && <span className="muted"> · yakında tekrar</span>}
-                    </span>
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-      )}
-      {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
       {!practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7) && (
         <p className="habit-tip">
           {accuracy > 0.93
@@ -663,10 +637,67 @@ export function Summary({
           yap.
         </p>
       )}
-      <div className="section">
+      {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
+      <div>
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>
           Devam
         </button>
+      </div>
+      </div>
+
+      <div className="summary-side stack">
+        {grown.length > 0 && (
+          <section className="stack">
+            <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>
+            <ul className="grown-list">
+              {grown.map((w) => {
+                const from = w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
+                const to = MASTERY_STAGES.indexOf(w.stageAfter!)
+                const e = byId.get(w.entryId)
+                return (
+                  <li key={w.entryId}>
+                    <span className="grown-plants" aria-hidden>
+                      <span className="grown-from">
+                        <Plant stage={from} size={30} />
+                      </span>
+                      <span className="grown-arrow">→</span>
+                      <Plant stage={to} size={46} />
+                    </span>
+                    <span className="garden-text">
+                      <span className="target">{name(w.entryId)}</span>
+                      {e && <span className="small muted">{e.senses[0].gloss}</span>}
+                      <span className="small garden-grew">{STAGE_NAME[w.stageAfter!]} oldu</span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+        )}
+        {rest.length > 0 && (
+          <section className="stack">
+            <h2 className="section-title">{grown.length ? 'Tekrar ettiklerin' : 'Bu oturumda çalıştıkların'}</h2>
+            <ul className="garden garden-compact">
+              {rest.map((w) => {
+                const e = byId.get(w.entryId)
+                const stage = w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
+                return (
+                  <li key={w.entryId}>
+                    <Plant stage={stage} size={32} />
+                    <span className="garden-text">
+                      <span className="target">{name(w.entryId)}</span>
+                      {e && <span className="small muted">{e.senses[0].gloss}</span>}
+                      <span className="small">
+                        {w.correct > 0 && <span className="garden-ok">✓ {w.correct}</span>} {w.wrong > 0 && <span className="garden-bad">✗ {w.wrong}</span>}
+                        {w.wrong > 0 && !practice && <span className="muted"> · yakında tekrar</span>}
+                      </span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+        )}
       </div>
     </div>
   )

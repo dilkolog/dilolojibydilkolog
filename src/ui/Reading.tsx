@@ -45,6 +45,18 @@ interface Selected {
  * Reading mode: paste a text, see how much of it you know, mark or add the words you don't,
  * and finish to grow your known-word set.
  */
+/** Reading comfort, remembered on this device: text size step, airier lines, sepia page. */
+const READER_KEY = 'kelime-koc:reader'
+const READER_SIZES = ['1.0625rem', '1.25rem', '1.4375rem', '1.625rem']
+function loadReaderPrefs(): { size: number; airy: boolean; sepia: boolean } {
+  try {
+    const v = JSON.parse(localStorage.getItem(READER_KEY) ?? 'null') as { size?: number; airy?: boolean; sepia?: boolean } | null
+    return { size: Math.min(READER_SIZES.length - 1, Math.max(0, v?.size ?? 1)), airy: !!v?.airy, sepia: !!v?.sepia }
+  } catch {
+    return { size: 1, airy: false, sepia: false }
+  }
+}
+
 export function ReadingScreen({
   db,
   language,
@@ -79,6 +91,14 @@ export function ReadingScreen({
   const [message, setMessage] = useState('')
   const [bookError, setBookError] = useState('')
   const [toast, setToast] = useState('')
+  const [reader, setReader] = useState(loadReaderPrefs)
+  useEffect(() => {
+    try {
+      localStorage.setItem(READER_KEY, JSON.stringify(reader))
+    } catch {
+      // Defaults next time; fine.
+    }
+  }, [reader])
   // Several words picked at once (⌘/Ctrl+click or multi-select mode), marked in one go.
   const [multi, setMulti] = useState<Set<string>>(new Set())
   const [multiMode, setMultiMode] = useState(false)
@@ -593,12 +613,34 @@ export function ReadingScreen({
       )}
 
       <div className="row reader-tools">
-        <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)}>
-          ☑︎ Çoklu seç
+        <span className="reader-legend small" aria-hidden>
+          <i className="legend-unseen">yeni</i> <i className="legend-learning">öğreniliyor</i> <i>bilinen</i>
+        </span>
+        <span className="grow" />
+        <div className="segmented reader-seg" role="group" aria-label="Yazı boyutu">
+          <button className="segmented-btn" onClick={() => setReader((r) => ({ ...r, size: Math.max(0, r.size - 1) }))} disabled={reader.size === 0} aria-label="Yazıyı küçült">
+            A−
+          </button>
+          <button className="segmented-btn" onClick={() => setReader((r) => ({ ...r, size: Math.min(READER_SIZES.length - 1, r.size + 1) }))} disabled={reader.size === READER_SIZES.length - 1} aria-label="Yazıyı büyüt">
+            A+
+          </button>
+        </div>
+        <button className="chip chip-sm" aria-pressed={reader.airy} onClick={() => setReader((r) => ({ ...r, airy: !r.airy }))}>
+          Geniş satır
         </button>
-        <span className="small muted kbd">ya da ⌘/Ctrl ile kelimelere tıkla</span>
+        <button className="chip chip-sm" aria-pressed={reader.sepia} onClick={() => setReader((r) => ({ ...r, sepia: !r.sepia }))}>
+          Sepya
+        </button>
+        <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)} title="ya da ⌘/Ctrl ile kelimelere tıkla">
+          Çoklu seç
+        </button>
       </div>
-      <article className={`reader${listenFirst && current?.audio ? ' is-hidden' : ''}`} lang={language}>
+      <div className="reader-layout">
+      <article
+        className={`reader${listenFirst && current?.audio ? ' is-hidden' : ''}${reader.sepia ? ' reader-sepia' : ''}${reader.airy ? ' reader-airy' : ''}`}
+        style={{ ['--reader-size' as string]: READER_SIZES[reader.size] }}
+        lang={language}
+      >
         {analysis.paragraphs.map((p, i) => (
           <p key={i}>
             {p.map((s, j) => (
@@ -634,6 +676,10 @@ export function ReadingScreen({
         ))}
       </article>
 
+      <aside className="reader-aside">
+      {!selected && !multi.size && !adding && (
+        <p className="reader-hint small muted">Bir kelimeye tıkla: anlamı, cümlesi ve ekleme seçenekleri burada açılır. Klavyeyle ← → yeni kelimeler arasında gezer.</p>
+      )}
       {multi.size > 0 && (
         <section className="card multi-bar" role="toolbar" aria-label="Seçili kelimeler">
           <strong>{multi.size} kelime seçili</strong>
@@ -667,7 +713,7 @@ export function ReadingScreen({
           <p className="small sentence-sm">
             {selected.sentence}{' '}
             <button className="link small" onClick={() => keepSentence(selected.sentence, cleanToken(selected.token.text, language))}>
-              💬 Cümleyi kaydet
+              Cümleyi kaydet
             </button>
           </p>
           <p className="small muted kbd">
@@ -729,6 +775,8 @@ export function ReadingScreen({
           />
         </section>
       )}
+      </aside>
+      </div>
 
       {analysis.iPlusOne.length > 0 && (
         <section className="section stack">

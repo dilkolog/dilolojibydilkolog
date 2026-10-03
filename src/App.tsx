@@ -131,7 +131,7 @@ function restoreScreen(): Screen {
 }
 
 /** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
-const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile'])
+const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile', 'summary', 'word', 'reading'])
 
 type NavScreen = 'home' | 'words' | 'reading' | 'produce' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
@@ -347,6 +347,15 @@ export default function App() {
     }
   }, [settings, data, options])
   const plan = useMemo(() => (planInput ? buildDailyPlan(planInput) : null), [planInput])
+  // What is waiting where, shown as small counts in the menu.
+  const navBadge: Partial<Record<NavScreen, number>> = useMemo(
+    () => ({
+      home: plan?.items.filter((i) => i.kind === 'exercise').length ?? 0,
+      mistakes: data ? new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size : 0,
+    }),
+    [plan, data],
+  )
+  const badgeLabel: Partial<Record<NavScreen, string>> = { home: 'soru bekliyor', mistakes: 'kelimede açık hata' }
   // Rest days and holidays: no reminder.
   const restToday = !!settings && isRestDay(new Date(), settings)
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
@@ -554,6 +563,11 @@ export default function App() {
                   >
                     <n.icon size={20} />
                     <span>{n.label}</span>
+                    {!!navBadge[n.screen] && (
+                      <span className={`nav-badge nav-badge-${n.screen}`} aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`}>
+                        {navBadge[n.screen]! > 99 ? '99+' : navBadge[n.screen]}
+                      </span>
+                    )}
                   </button>
                 ))}
               </nav>
@@ -577,7 +591,10 @@ export default function App() {
                 const n = NAV.find((x) => x.screen === t)!
                 return (
                   <button key={t} className="tab" aria-current={current(t) ? 'page' : undefined} onClick={go({ name: t })}>
-                    <n.icon size={22} />
+                    <span className="tab-icon">
+                      <n.icon size={22} />
+                      {!!navBadge[t] && <span className="tab-dot" aria-label={`${navBadge[t]} ${badgeLabel[t]}`} />}
+                    </span>
                     <span>{n.label}</span>
                   </button>
                 )
