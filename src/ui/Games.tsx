@@ -85,87 +85,104 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
     <div className="stack">
       <h1 className="greeting">Oyunlar</h1>
       <p className="greeting-sub">
-        {LANGUAGE_NAME[p.language]} kelimelerinle hızlı turlar. Pratik sayılır: XP kazandırır ama tekrar takvimini değiştirmez.
+        {LANGUAGE_NAME[p.language]} kelimelerinle turlar. Çoğu pratik sayılır (XP kazandırır, takvime dokunmaz); cümle kartları ve artikel antrenmanı
+        takvimli tekrara işler.
       </p>
       {!enough && <p className="muted">Oyunlar için en az 4 kelime gerekiyor.</p>}
-      <div className="game-cards">
-        <button className="game-card" disabled={!enough} onClick={() => setGame('match')}>
-          <span className="game-emoji">🧩</span>
-          <strong>Eşleştirme</strong>
-          <span className="small muted">6 kelimeyi anlamlarıyla en kısa sürede eşleştir. Yanlış eşleşme +1 saniye.</span>
-          <span className="game-record">{records[matchKey] ? `Rekorun: ${fmt(records[matchKey])}` : 'Henüz rekor yok'}</span>
-        </button>
-        <button className="game-card" onClick={() => setGame('sentences')}>
-          <span className="game-emoji">💬</span>
-          <strong>Cümle kartları</strong>
-          <span className="small muted">Okurken kaydettiğin cümleler: boşluk doldurma, dikte ve çeviriyle bütün olarak tekrar. Bu bölüm takvimlidir.</span>
-          <span className="game-record">{dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet'}</span>
-        </button>
-        <button className="game-card" onClick={() => setGame('dictation')}>
-          <span className="game-emoji">🎙️</span>
-          <strong>Gerçek seslerle dikte</strong>
-          <span className="small muted">Ana dili konuşan farklı insanların sesinden cümleler: dinle, yaz, kaçırdığın kelimeleri gör.</span>
-          <span className="game-record">İnternet gerekir</span>
-        </button>
-        <button className="game-card" disabled={p.states.length === 0} onClick={() => setGame('swipe')}>
-          <span className="game-emoji">👆</span>
-          <strong>Kaydırmalı kartlar</strong>
-          <span className="small muted">Tek elle hızlı tekrar: anlamı düşün, dokunup bak; bildiysen sağa, bilmediysen sola kaydır.</span>
-          <span className="game-record">{p.states.length === 0 ? 'Önce birkaç kelime öğren' : 'Zayıf kelimelerden başlar'}</span>
-        </button>
-        <button className="game-card" disabled={!enough} onClick={() => setGame('blitz')}>
-          <span className="game-emoji">⚡</span>
-          <strong>Zamana karşı</strong>
-          <span className="small muted">60 saniyede olabildiğince çok doğru. Üst üste doğrular puanı katlar.</span>
-          <span className="game-record">{records[blitzKey] ? `Rekorun: ${records[blitzKey]} puan` : 'Henüz rekor yok'}</span>
-        </button>
-        {p.language !== 'en' && (
-          <button className="game-card" onClick={() => setGame('article')}>
-            <span className="game-emoji">🏷️</span>
-            <strong>Artikel antrenmanı</strong>
-            <span className="small muted">Kendi isimlerinle {p.language === 'fr' ? 'le/la' : 'el/la'} sorusu, hızlı ve sırayla. Öğrendiğin kelimelerde takvimli tekrar sayılır.</span>
-            <span className="game-record">En çok karıştırdıkların önce</span>
+      <section className="stack game-group">
+        <h2 className="section-title">Tekrar</h2>
+        <div className="game-cards">
+          <button className="game-card" disabled={p.states.length === 0} onClick={() => setGame('swipe')}>
+            <span className="game-emoji">👆</span>
+            <strong>Kaydırmalı kartlar</strong>
+            <span className="small muted">Tek elle hızlı tekrar: anlamı düşün, dokunup bak; bildiysen sağa, bilmediysen sola kaydır.</span>
+            <span className="game-record">{p.states.length === 0 ? 'Önce birkaç kelime öğren' : 'Zayıf kelimelerden başlar'}</span>
           </button>
-        )}
-        {p.language !== 'en' && (
-          <button className="game-card" onClick={() => setGame('gender')}>
-            <span className="game-emoji">⚖️</span>
-            <strong>Cinsiyet kuralları</strong>
-            <span className="small muted">Kelimenin sonu çoğu zaman artikelini söyler (-tion → la, -age → le). Kuralları ve en çok takılınan istisnaları çalış.</span>
-            <span className="game-record">{records[`gender:${p.language}`] ? `Rekorun: %${records[`gender:${p.language}`]}` : 'Henüz rekor yok'}</span>
+          <button className="game-card" onClick={() => setGame('sentences')}>
+            <span className="game-emoji">💬</span>
+            <strong>Cümle kartları</strong>
+            <span className="small muted">Okurken kaydettiğin cümleler: boşluk doldurma, dikte ve çeviriyle bütün olarak tekrar. Bu bölüm takvimlidir.</span>
+            <span className="game-record">{dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet'}</span>
           </button>
-        )}
-        <button className="game-card game-card-boss" onClick={() => setGame('boss')}>
-          <span className="game-emoji">⚔️</span>
-          <strong>Boss savaşları</strong>
-          <span className="small muted">Bir türlü oturmayan kelimeler boss oldu. Farklı sorularla canlarını bitir, 3 canını kaybetmeden yen.</span>
-          <span className="game-record">Her zafer +{BOSS_XP} XP</span>
-        </button>
-        <button className="game-card" disabled={!canSpeak() || p.states.length === 0} onClick={() => setGame('audio')}>
-          <span className="game-emoji">🎧</span>
-          <strong>Sesli tekrar</strong>
-          <span className="small muted">Ekrana bakmadan dinle: kelime, düşünme payı, anlamı. Yürürken ya da yemek yaparken. Takvimi etkilemez.</span>
-          <span className="game-record">{p.states.length === 0 ? 'Önce birkaç kelime öğren' : 'Zayıf kelimelerden başlar'}</span>
-        </button>
-        <button className="game-card" disabled={!canSpeak()} onClick={() => setGame('pairs')}>
-          <span className="game-emoji">👂</span>
-          <strong>Ses ayırt etme</strong>
-          <span className="small muted">Tek sesi farklı iki kelimeden hangisini duydun? Türkçede olmayan ses farklarını kulağın ayırt etmeyi öğrenir.</span>
-          <span className="game-record">{records[`pairs:${p.language}`] ? `Rekorun: %${records[`pairs:${p.language}`]}` : canSpeak() ? 'Henüz rekor yok' : 'Bu tarayıcıda sesli okuma yok'}</span>
-        </button>
-        <button className="game-card" disabled={fluencyWords < FLUENCY_MIN_WORDS} onClick={() => setGame('fluency')}>
-          <span className="game-emoji">🏎️</span>
-          <strong>Akıcılık turu</strong>
-          <span className="small muted">İyi bildiğin kelimelerle {FLUENCY_ROUND} soru: Türkçesini gör, kelimeyi anında bul. Amaç öğrenmek değil, düşünmeden hatırlamak.</span>
-          <span className="game-record">
-            {fluencyWords < FLUENCY_MIN_WORDS
-              ? `İyi bildiğin en az ${FLUENCY_MIN_WORDS} kelime gerekiyor (şu an ${fluencyWords})`
-              : records[fluencyKey]
-                ? `Rekorun: soru başına ${fmt(records[fluencyKey])}`
-                : 'Henüz rekor yok'}
-          </span>
-        </button>
-      </div>
+          <button className="game-card game-card-boss" onClick={() => setGame('boss')}>
+            <span className="game-emoji">⚔️</span>
+            <strong>Boss savaşları</strong>
+            <span className="small muted">Bir türlü oturmayan kelimeler boss oldu. Farklı sorularla canlarını bitir, 3 canını kaybetmeden yen.</span>
+            <span className="game-record">Her zafer +{BOSS_XP} XP</span>
+          </button>
+          <button className="game-card" disabled={!canSpeak() || p.states.length === 0} onClick={() => setGame('audio')}>
+            <span className="game-emoji">🎧</span>
+            <strong>Sesli tekrar</strong>
+            <span className="small muted">Ekrana bakmadan dinle: kelime, düşünme payı, anlamı. Yürürken ya da yemek yaparken. Takvimi etkilemez.</span>
+            <span className="game-record">{p.states.length === 0 ? 'Önce birkaç kelime öğren' : 'Zayıf kelimelerden başlar'}</span>
+          </button>
+        </div>
+      </section>
+      <section className="stack game-group">
+        <h2 className="section-title">Dinleme ve telaffuz</h2>
+        <div className="game-cards">
+          <button className="game-card" onClick={() => setGame('dictation')}>
+            <span className="game-emoji">🎙️</span>
+            <strong>Gerçek seslerle dikte</strong>
+            <span className="small muted">Ana dili konuşan farklı insanların sesinden cümleler: dinle, yaz, kaçırdığın kelimeleri gör.</span>
+            <span className="game-record">İnternet gerekir</span>
+          </button>
+          <button className="game-card" disabled={!canSpeak()} onClick={() => setGame('pairs')}>
+            <span className="game-emoji">👂</span>
+            <strong>Ses ayırt etme</strong>
+            <span className="small muted">Tek sesi farklı iki kelimeden hangisini duydun? Türkçede olmayan ses farklarını kulağın ayırt etmeyi öğrenir.</span>
+            <span className="game-record">{records[`pairs:${p.language}`] ? `Rekorun: %${records[`pairs:${p.language}`]}` : canSpeak() ? 'Henüz rekor yok' : 'Bu tarayıcıda sesli okuma yok'}</span>
+          </button>
+        </div>
+      </section>
+      <section className="stack game-group">
+        <h2 className="section-title">Hız ve akıcılık</h2>
+        <div className="game-cards">
+          <button className="game-card" disabled={!enough} onClick={() => setGame('match')}>
+            <span className="game-emoji">🧩</span>
+            <strong>Eşleştirme</strong>
+            <span className="small muted">6 kelimeyi anlamlarıyla en kısa sürede eşleştir. Yanlış eşleşme +1 saniye.</span>
+            <span className="game-record">{records[matchKey] ? `Rekorun: ${fmt(records[matchKey])}` : 'Henüz rekor yok'}</span>
+          </button>
+          <button className="game-card" disabled={!enough} onClick={() => setGame('blitz')}>
+            <span className="game-emoji">⚡</span>
+            <strong>Zamana karşı</strong>
+            <span className="small muted">60 saniyede olabildiğince çok doğru. Üst üste doğrular puanı katlar.</span>
+            <span className="game-record">{records[blitzKey] ? `Rekorun: ${records[blitzKey]} puan` : 'Henüz rekor yok'}</span>
+          </button>
+          <button className="game-card" disabled={fluencyWords < FLUENCY_MIN_WORDS} onClick={() => setGame('fluency')}>
+            <span className="game-emoji">🏎️</span>
+            <strong>Akıcılık turu</strong>
+            <span className="small muted">İyi bildiğin kelimelerle {FLUENCY_ROUND} soru: Türkçesini gör, kelimeyi anında bul. Amaç öğrenmek değil, düşünmeden hatırlamak.</span>
+            <span className="game-record">
+              {fluencyWords < FLUENCY_MIN_WORDS
+                ? `İyi bildiğin en az ${FLUENCY_MIN_WORDS} kelime gerekiyor (şu an ${fluencyWords})`
+                : records[fluencyKey]
+                  ? `Rekorun: soru başına ${fmt(records[fluencyKey])}`
+                  : 'Henüz rekor yok'}
+            </span>
+          </button>
+        </div>
+      </section>
+      {p.language !== 'en' && (
+        <section className="stack game-group">
+          <h2 className="section-title">Dilbilgisi</h2>
+          <div className="game-cards">
+            <button className="game-card" onClick={() => setGame('article')}>
+              <span className="game-emoji">🏷️</span>
+              <strong>Artikel antrenmanı</strong>
+              <span className="small muted">Kendi isimlerinle {p.language === 'fr' ? 'le/la' : 'el/la'} sorusu, hızlı ve sırayla. Öğrendiğin kelimelerde takvimli tekrar sayılır.</span>
+              <span className="game-record">En çok karıştırdıkların önce</span>
+            </button>
+            <button className="game-card" onClick={() => setGame('gender')}>
+              <span className="game-emoji">⚖️</span>
+              <strong>Cinsiyet kuralları</strong>
+              <span className="small muted">Kelimenin sonu çoğu zaman artikelini söyler (-tion → la, -age → le). Kuralları ve en çok takılınan istisnaları çalış.</span>
+              <span className="game-record">{records[`gender:${p.language}`] ? `Rekorun: %${records[`gender:${p.language}`]}` : 'Henüz rekor yok'}</span>
+            </button>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

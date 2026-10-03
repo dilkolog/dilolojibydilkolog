@@ -114,6 +114,36 @@ function PushToggle({ state }: { state: PushState }) {
   )
 }
 
+const GROUPS: [string, string][] = [
+  ['s-account', 'Hesap'],
+  ['s-study', 'Çalışma'],
+  ['s-sound', 'Ses ve görünüm'],
+  ['s-remind', 'Bildirimler'],
+  ['s-tools', 'Araçlar'],
+  ['s-data', 'Veriler'],
+]
+
+/** A long page in groups: a sticky row of shortcuts jumps to each. */
+function SettingsNav() {
+  return (
+    <nav className="settings-nav" aria-label="Ayar grupları">
+      {GROUPS.map(([id, label]) => (
+        <button key={id} className="chip chip-sm" onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+          {label}
+        </button>
+      ))}
+    </nav>
+  )
+}
+
+function GroupTitle({ id, children }: { id: string; children: ReactNode }) {
+  return (
+    <h2 id={id} className="settings-group-title">
+      {children}
+    </h2>
+  )
+}
+
 export function SettingsScreen({
   settings,
   onChange,
@@ -220,7 +250,12 @@ export function SettingsScreen({
   return (
     <div className="stack">
       <h1 className="greeting">Ayarlar</h1>
+      <SettingsNav />
 
+      <GroupTitle id="s-account">Hesap</GroupTitle>
+      <AccountSettings />
+
+      <GroupTitle id="s-study">Çalışma</GroupTitle>
       <section className="card stack">
         <h2 className="section-title">Çalışma</h2>
         <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
@@ -278,6 +313,7 @@ export function SettingsScreen({
 
       <StudyCalendar settings={settings} onChange={onChange} />
 
+      <GroupTitle id="s-sound">Ses ve görünüm</GroupTitle>
       <section className="card stack">
         <h2 className="section-title">Ses</h2>
         <NaturalVoiceSettings language={lang} />
@@ -353,6 +389,7 @@ export function SettingsScreen({
         </div>
       </section>
 
+      <GroupTitle id="s-remind">Bildirimler</GroupTitle>
       <section className="card stack">
         <h2 className="section-title row" style={{ gap: '0.5rem' }}>
           <BellIcon size={20} /> Hatırlatıcı
@@ -394,6 +431,7 @@ export function SettingsScreen({
         <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
       </section>
 
+      <GroupTitle id="s-tools">Araçlar</GroupTitle>
       <IosShortcut />
 
       <section className="card stack desktop-only">
@@ -413,8 +451,7 @@ export function SettingsScreen({
 
       <OfflinePack settings={settings} />
 
-      <AccountSettings />
-
+      <GroupTitle id="s-data">Veriler</GroupTitle>
       <section className="card stack">
         <h2 className="section-title">Yedek</h2>
         <p className="small muted">Veriler yalnızca bu cihazda duruyor. Yedek; kelimeleri, ilerlemeyi, görselleri ve ses kayıtlarını içerir.</p>
