@@ -8,7 +8,7 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
-import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, summarize, typedFollowUp, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -119,9 +119,11 @@ export function SessionScreen(p: Props) {
       }
     }
   }, [p.items, p.vocabulary])
-  // Some recognition questions become typing (Settings → Yazma oranı); practice sessions keep their plan.
+  // Some recognition questions become typing (Settings → Yazma oranı), and a well-known word's
+  // blank is typed instead of chosen; practice sessions keep their plan.
+  const shape = (it: PlanItem, st: UserWordState | undefined) => typeStrongCloze(mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng), st)
   const [session, setSession] = useState(() =>
-    startSession(p.mode === 'practice' || !p.items.length ? p.items : [mixInTyping(p.items[0], states.current.get(p.items[0].entryId), TYPING_SHARE[prefs.typingShare], rng), ...p.items.slice(1)]),
+    startSession(p.mode === 'practice' || !p.items.length ? p.items : [shape(p.items[0], states.current.get(p.items[0].entryId)), ...p.items.slice(1)]),
   )
   const item = currentItem(session)
   const { onFinish } = p
@@ -155,7 +157,7 @@ export function SessionScreen(p: Props) {
       const upEntry = up && byId.get(up.entryId)
       if (!up || !upEntry) return after
       // Some recognition questions become typing (Settings → Yazma oranı), decided as each one comes up.
-      const mixed = p.mode === 'practice' || up.reason === 'practice' ? up : mixInTyping(up, states.current.get(up.entryId), TYPING_SHARE[prefs.typingShare], rng)
+      const mixed = p.mode === 'practice' || up.reason === 'practice' ? up : shape(up, states.current.get(up.entryId))
       const adapted = adaptExercise(mixed, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
       if (adapted === up) return after
       const items = [...after.items]
@@ -382,7 +384,10 @@ const canOverride = (exercise: Exercise, ev: Evaluation) =>
 function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [typeInstead, setTypeInstead] = useState(false)
-  const [exercise] = useState<Exercise>(() => buildExercise(item.exerciseType!, entry, catalog, rng))
+  const [exercise] = useState<Exercise>(() => {
+    const ex = buildExercise(item.exerciseType!, entry, catalog, rng)
+    return item.firstLetter && ex.kind === 'typed' && ex.context ? { ...ex, blankStart: ex.accepted[0]?.charAt(0) } : ex
+  })
   const startedAt = useRef(performance.now())
   const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string; confidence?: Confidence } | null>(null)
   // Confidence is asked before the answer (not after: hindsight inflates it). Free sentences are
@@ -462,13 +467,14 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           type="button"
           className={`unsure-chip${unsure ? ' is-on' : ''}`}
           aria-pressed={unsure}
+          title="Kısayol: cevabı Shift ile seç"
           onClick={() => {
             setUnsure((u) => !u)
             document.getElementById('answer')?.focus()
           }}
         >
-          {unsure ? '✓ Emin değilim olarak işaretlendi' : '🤔 Emin değilim'}
-          <span className="small muted">{unsure ? ' · şimdi cevabını seç' : ' · ya da Shift ile cevapla'}</span>
+          {unsure ? '✓ Emin değilim' : '🤔 Emin değilim'}
+          {unsure && <span className="small muted"> · şimdi cevabını seç</span>}
         </button>
       )}
       {exercise.kind === 'choice' ? (

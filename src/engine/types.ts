@@ -43,6 +43,8 @@ export interface Example {
   personal?: boolean
   /** A real sentence from a corpus (Tatoeba), with native audio when there is any. */
   source?: { kind: 'tatoeba'; id: number; audioUrl?: string }
+  /** Where the learner met the sentence: the title of the reading text it was saved from. */
+  metIn?: string
 }
 
 export interface Sense {

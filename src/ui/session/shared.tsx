@@ -90,7 +90,7 @@ export function Word({ entry }: { entry: VocabularyEntry }) {
 }
 
 /** A sentence with its blank drawn as a line, and its translation. */
-export function Sentence({ text, translation }: { text: string; translation?: string }) {
+export function Sentence({ text, translation, source, blankStart }: { text: string; translation?: string; source?: string; blankStart?: string }) {
   const parts = text.split(BLANK)
   return (
     <div>
@@ -99,14 +99,15 @@ export function Sentence({ text, translation }: { text: string; translation?: st
           <span key={i}>
             {part}
             {i < parts.length - 1 && (
-              <span className="blank" aria-label="boşluk">
-                ____
+              <span className="blank" aria-label={blankStart ? `${blankStart} ile başlayan boşluk` : 'boşluk'}>
+                {blankStart ? <strong className="blank-start">{blankStart}</strong> : null}____
               </span>
             )}
           </span>
         ))}
       </p>
       {translation && <p className="sentence-tr">{translation}</p>}
+      {source && <p className="sentence-source">{source}</p>}
     </div>
   )
 }

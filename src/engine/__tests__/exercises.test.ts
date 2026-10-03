@@ -9,7 +9,10 @@ import {
   evaluateTyped,
   exerciseTypesFor,
   contextForms,
+  exampleSource,
+  matchCase,
   pickDistractors,
+  slotOf,
   type ChoiceExercise,
   type TypedExercise,
 } from '../exercises'
@@ -248,5 +251,67 @@ describe('blank-in-sentence options', () => {
     const adjectives = catalog.filter((c) => c.partOfSpeech === 'adjective' && c !== lent)
     expect(contextForms(lent, 'lent', adjectives)).toEqual(['léger', 'grand'])
     expect(contextForms(lent, 'lente', adjectives)).toEqual(['légère', 'grands'])
+  })
+})
+
+describe('options that do not give the answer away', () => {
+  const noun = (lemma: string, gloss: string, extra: Partial<VocabularyEntry> = {}): VocabularyEntry => ({
+    ...decide,
+    id: `fr:${lemma}`,
+    language: 'fr',
+    lemma,
+    partOfSpeech: 'noun',
+    relations: [],
+    senses: [{ ...decide.senses[0], gloss, examples: [] }],
+    ...extra,
+  })
+  const ex = (text: string, form: string) => ({ text, translation: '', form })
+
+  it('write every option with the answer\'s initial case', () => {
+    expect(matchCase('Tassé', 'asile')).toBe('tassé')
+    expect(matchCase('indice', 'Asile')).toBe('Indice')
+    expect(matchCase('ONU', 'asile')).toBe('ONU')
+    const asile = noun('asile', 'sığınma', { senses: [{ ...decide.senses[0], gloss: 'sığınma', examples: [ex("Ils demandent l'asile politique.", 'asile')] }] })
+    const catalog = [asile, noun('Indice', 'ipucu'), noun('Analepse', 'geriye dönüş'), noun('Abri', 'barınak')]
+    const built = buildExercise('mc_context', asile, catalog, rng()) as ChoiceExercise
+    expect(built.options.every((o) => o.label === o.label.toLowerCase())).toBe(true)
+  })
+
+  it('read what the word before the blank allows', () => {
+    expect(slotOf(ex("Ils demandent l'asile politique.", 'asile'), 'fr')).toEqual({ start: 'vowel', afterDeterminer: true })
+    expect(slotOf(ex('Elle a une idée.', 'idée'), 'fr')).toMatchObject({ gender: 'f', afterDeterminer: true })
+    expect(slotOf(ex('It was an accident.', 'accident'), 'en')).toMatchObject({ start: 'vowel' })
+    expect(slotOf(ex('Tienen el problema.', 'problema'), 'es')).toMatchObject({ gender: 'm' })
+    expect(slotOf(ex('Ils marchent vite.', 'vite'), 'fr')).toEqual({})
+  })
+
+  it("after l' take words starting with a vowel, after une take feminine nouns", () => {
+    const asile = noun('asile', 'sığınma', { gender: 'm' })
+    const catalog = [asile, noun('tassement', 'çökme', { gender: 'm' }), noun('indice', 'ipucu', { gender: 'm' }), noun('abri', 'barınak', { gender: 'm' }), noun('table', 'masa', { gender: 'f' }), noun('analepse', 'geriye dönüş', { gender: 'f' })]
+    for (let seed = 0; seed < 10; seed++) {
+      const d = pickDistractors(asile, catalog, 3, createRng(seed), { inContext: true, slot: { start: 'vowel', afterDeterminer: true } })
+      expect(d.map((x) => x.lemma).sort()).toEqual(['abri', 'analepse', 'indice'])
+      const f = pickDistractors(asile, catalog, 1, createRng(seed), { inContext: true, slot: { gender: 'f', afterDeterminer: true } })
+      expect(f[0].gender).toBe('f')
+    }
+  })
+
+  it('prefer known nouns over words of unknown kind after an article', () => {
+    const asile = noun('asile', 'sığınma', { partOfSpeech: 'other', article: "l'" })
+    const catalog = [asile, noun('tassé', 'sıkışmış', { partOfSpeech: 'other' }), noun('abri', 'barınak', { article: "l'" }), noun('arbre', 'ağaç')]
+    const d = pickDistractors(asile, catalog, 2, rng(), { inContext: true, slot: { start: 'vowel', afterDeterminer: true } })
+    expect(d.map((x) => x.lemma).sort()).toEqual(['abri', 'arbre'])
+  })
+
+  it('say where a sentence comes from only when it is the learner\'s own', () => {
+    const own = noun('asile', 'sığınma', { source: 'user' })
+    const e1 = { ...ex('a', 'a'), metIn: 'Le Monde' }
+    const e2 = ex('b', 'b')
+    const withEx = { ...own, senses: [{ ...own.senses[0], examples: [e1, e2] }] }
+    expect(exampleSource(e1, withEx)).toContain('Le Monde')
+    expect(exampleSource(e2, withEx)).toBe('📌 Eklediğin cümle')
+    expect(exampleSource({ ...e2, personal: true }, { ...withEx, senses: [{ ...withEx.senses[0], examples: [{ ...e2, personal: true }] }] })).toBe('✍️ Kendi cümlen')
+    expect(exampleSource(e2, { ...withEx, source: 'sample' })).toBeUndefined()
+    expect(exampleSource(ex('c', 'c'), withEx)).toBeUndefined()
   })
 })

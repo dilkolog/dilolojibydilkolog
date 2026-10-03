@@ -87,6 +87,21 @@ export function mixInTyping(item: PlanItem, state: UserWordState | undefined, sh
   return { ...item, skill: 'recall', exerciseType: 'typed_translation' }
 }
 
+/** Days of recognition stability after which a choice in a sentence is typed instead. */
+export const STRONG_RECOGNITION_DAYS = 14
+
+/**
+ * Picking the word for a blank out of four only tests recognition; once a word has been recognised
+ * reliably for weeks and recalled at least once, the same blank is typed, with its first letter
+ * given (productive recall makes it stick; Karpicke & Roediger 2008; Clozemaster's text input).
+ */
+export function typeStrongCloze(item: PlanItem, state: UserWordState | undefined): PlanItem {
+  if (item.kind !== 'exercise' || item.exerciseType !== 'mc_context') return item
+  const { recognition, recall } = state?.skills ?? {}
+  if (!recognition || recognition.stability < STRONG_RECOGNITION_DAYS || !recall?.reps) return item
+  return { ...item, skill: 'production', exerciseType: 'cloze_typed', firstLetter: true }
+}
+
 /** The second in-session comeback of a word is typed: recognised twice, now produced. */
 export function typedFollowUp(item: PlanItem): PlanItem {
   return { ...item, kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' }

@@ -183,6 +183,10 @@ interface ExerciseBase {
   /** Sentence with the target replaced by "___". */
   context?: string
   contextTranslation?: string
+  /** Letters shown at the start of the blank (a first-letter cue). */
+  blankStart?: string
+  /** Where the sentence comes from, when it is the learner's own (a text they read, their sentence). */
+  contextSource?: string
   /** Text the client should speak with TTS (listening exercises). */
   audioText?: string
   /** Media id of a picture to show (picture exercises). */
@@ -221,6 +225,17 @@ function blankOut(example: Example): string {
  * Rotate through examples so the same sentence isn't memorised as a shape (anti-flashcard).
  * Half the time a real corpus sentence, so the word keeps turning up in new contexts.
  */
+/**
+ * A sentence the learner met or wrote is remembered with where it came from (self-reference
+ * effect; Rogers et al. 1977), so the question says so. Bundled and corpus sentences say nothing.
+ */
+export function exampleSource(ex: Example, entry: VocabularyEntry): string | undefined {
+  if (ex.metIn) return `📖 Okuduğun metinden: ${ex.metIn}`
+  if (ex.personal) return '✍️ Kendi cümlen'
+  if (ex.source || entry.source === 'sample' || !entry.senses[0].examples.includes(ex)) return undefined
+  return '📌 Eklediğin cümle'
+}
+
 function chooseExample(entry: VocabularyEntry, rng: Rng): Example | undefined {
   const own = entry.senses.flatMap((s) => s.examples)
   const corpus = entry.corpus ?? []
@@ -244,6 +259,84 @@ function spellingDistance(a: string, b: string): number {
   return levenshtein(x, y) / Math.max(x.length, y.length, 1)
 }
 
+/** Writes a word with the same initial case as `model`, so a capital never singles out an option. */
+export function matchCase(word: string, model: string): string {
+  const first = model.charAt(0)
+  if (!word || first.toLowerCase() === first.toUpperCase()) return word
+  // Acronyms (ONU, NASA) keep their capitals.
+  if (word.length > 1 && word === word.toUpperCase() && word !== word.toLowerCase()) return word
+  const upper = first !== first.toLowerCase()
+  return (upper ? word.charAt(0).toUpperCase() : word.charAt(0).toLowerCase()) + word.slice(1)
+}
+
+const sameCase = (options: readonly string[], model: string) => options.map((o) => matchCase(o, model))
+
+const VOWEL_START = /^[aeiouyhàâäéèêëîïôöûüœæ]/i
+
+/** What the word before a blank says about the word that fills it. */
+export interface Slot {
+  /** Must start with a vowel (French l'/d'/qu', English "an") or with a consonant (le, la, "a"). */
+  start?: 'vowel' | 'consonant'
+  gender?: 'm' | 'f'
+  /** Comes right after a determiner, so a noun (or an adjective before one) is expected. */
+  afterDeterminer?: boolean
+}
+
+const DETERMINERS: Record<VocabularyEntry['language'], Record<string, Slot>> = {
+  fr: {
+    le: { start: 'consonant', gender: 'm' }, la: { start: 'consonant', gender: 'f' }, les: {}, un: { gender: 'm' }, une: { gender: 'f' }, des: {},
+    du: { start: 'consonant', gender: 'm' }, au: { start: 'consonant', gender: 'm' }, aux: {}, ce: { start: 'consonant', gender: 'm' }, cet: { start: 'vowel', gender: 'm' },
+    cette: { gender: 'f' }, ces: {}, mon: {}, ton: {}, son: {}, ma: { start: 'consonant', gender: 'f' }, ta: { start: 'consonant', gender: 'f' },
+    sa: { start: 'consonant', gender: 'f' }, mes: {}, tes: {}, ses: {}, notre: {}, votre: {}, nos: {}, vos: {}, leur: {}, leurs: {}, chaque: {}, quelques: {},
+  },
+  es: {
+    el: { gender: 'm' }, la: { gender: 'f' }, los: { gender: 'm' }, las: { gender: 'f' }, un: { gender: 'm' }, una: { gender: 'f' }, unos: { gender: 'm' },
+    unas: { gender: 'f' }, del: { gender: 'm' }, al: { gender: 'm' }, este: { gender: 'm' }, esta: { gender: 'f' }, estos: { gender: 'm' }, estas: { gender: 'f' },
+    ese: { gender: 'm' }, esa: { gender: 'f' }, mi: {}, tu: {}, su: {}, mis: {}, tus: {}, sus: {}, nuestro: { gender: 'm' }, nuestra: { gender: 'f' }, cada: {},
+  },
+  en: {
+    a: { start: 'consonant' }, an: { start: 'vowel' }, the: {}, this: {}, that: {}, these: {}, those: {}, my: {}, your: {}, his: {}, her: {}, its: {}, our: {},
+    their: {}, every: {}, each: {},
+  },
+}
+
+/** Reads the word right before the blank: an elided l', an article, a possessive. */
+export function slotOf(example: Example, language: VocabularyEntry['language']): Slot {
+  const i = example.text.toLowerCase().indexOf(example.form.toLowerCase())
+  if (i <= 0) return {}
+  const before = example.text.slice(0, i)
+  // Elision (l'asile, d'abord, qu'il): only a vowel or a mute h can follow.
+  if (language === 'fr' && /\p{L}['’]$/u.test(before)) {
+    const elided = before.match(/(\p{L}+)['’]$/u)![1].toLowerCase()
+    return { start: 'vowel', afterDeterminer: elided === 'l' }
+  }
+  const word = before.match(/(\p{L}+)\s+$/u)?.[1].toLowerCase()
+  const det = word ? DETERMINERS[language][word] : undefined
+  return det ? { ...det, afterDeterminer: true } : {}
+}
+
+/**
+ * Part of speech as far as it is known: an entry with an article or gender is a noun; "other"
+ * (nothing could be guessed when it was added) counts as unknown, except French -é/-ée participles.
+ */
+function knownPos(e: VocabularyEntry): VocabularyEntry['partOfSpeech'] | undefined {
+  if (e.partOfSpeech !== 'other') return e.partOfSpeech
+  if (e.article || e.gender === 'm' || e.gender === 'f') return 'noun'
+  if (e.language === 'fr' && /ée?s?$/.test(e.lemma) && !e.lemma.includes(' ')) return 'adjective'
+  return undefined
+}
+
+/** Whether a word could grammatically fill the slot (first letter after l'/an/le, noun gender). */
+function fitsSlot(c: VocabularyEntry, slot: Slot): boolean {
+  if (slot.start) {
+    const first = c.lemma.trim()
+    // An English "a" before a vowel letter is still possible (a university), so only "an" is strict.
+    if (slot.start === 'vowel' ? !VOWEL_START.test(first) : c.language !== 'en' && VOWEL_START.test(first) && !/^h/i.test(first)) return false
+  }
+  if (slot.gender && (c.gender === 'm' || c.gender === 'f') && c.gender !== slot.gender) return false
+  return true
+}
+
 /**
  * Distractors are chosen to be confusing, not random: words the learner is known to mix up
  * first, then look-alikes (affect/effect, désert/dessert), then the same part of speech, so the
@@ -254,8 +347,11 @@ export function pickDistractors(
   catalog: readonly VocabularyEntry[],
   count: number,
   rng: Rng,
-  /** For a blank in a sentence: a word of another part of speech is ruled out by grammar alone. */
-  { inContext = false }: { inContext?: boolean } = {},
+  /**
+   * For a blank in a sentence: a word of another part of speech is ruled out by grammar alone, and
+   * so is one the word before the blank doesn't allow (l' + consonant, la + masculine noun).
+   */
+  { inContext = false, slot }: { inContext?: boolean; slot?: Slot } = {},
 ): VocabularyEntry[] {
   const synonyms = new Set(entry.relations.filter((r) => r.type === 'synonym').map((r) => r.targetId))
   const confusable = new Set(entry.relations.filter((r) => r.type === 'confusable').map((r) => r.targetId))
@@ -271,9 +367,18 @@ export function pickDistractors(
       normalize(c.senses[0].gloss) !== gloss,
   )
   const noise = new Map(pool.map((c) => [c.id, rng() * 15]))
+  const want = slot?.afterDeterminer && !knownPos(entry) ? 'noun' : knownPos(entry)
+  const posCost = (c: VocabularyEntry) => {
+    const pos = knownPos(c)
+    if (pos === want) return 0
+    // In a sentence, an unknown part of speech is a gamble; a known different one gives the answer away.
+    if (!pos || !want) return inContext ? 150 : 20
+    return inContext ? 300 : 40
+  }
   const score = (c: VocabularyEntry) =>
     (confusable.has(c.id) ? 0 : 100) +
-    (c.partOfSpeech === entry.partOfSpeech ? 0 : inContext ? 300 : 40) +
+    posCost(c) +
+    (slot && !fitsSlot(c, slot) ? 250 : 0) +
     60 * spellingDistance(c.lemma, entry.lemma) +
     noise.get(c.id)!
   // Shuffle first so ties don't always produce the same distractors.
@@ -409,10 +514,11 @@ export function buildExercise(
 
     case 'mc_context': {
       const ex = chooseExample(entry, rng)!
+      const slot = slotOf(ex, entry.language)
       return choice(
-        { ...base, prompt: 'Boşluğa hangi kelime gelir?', context: blankOut(ex), contextTranslation: ex.translation },
+        { ...base, prompt: 'Boşluğa hangi kelime gelir?', context: blankOut(ex), contextTranslation: ex.translation, contextSource: exampleSource(ex, entry) },
         ex.form,
-        contextForms(entry, ex.form, pickDistractors(entry, catalog, OPTION_COUNT - 1, rng, { inContext: true })),
+        sameCase(contextForms(entry, ex.form, pickDistractors(entry, catalog, OPTION_COUNT - 1, rng, { inContext: true, slot })), ex.form),
         rng,
       )
     }
@@ -424,11 +530,11 @@ export function buildExercise(
         .map((r) => catalog.find((c) => c.id === r.targetId)?.lemma)
         .filter((l): l is string => !!l)
       // Pad with look-alikes so it's never a coin toss between two options.
-      const lookAlikes = pickDistractors(entry, catalog, 2, rng).map((d) => d.senses[0].examples[0]?.form ?? d.lemma)
+      const lookAlikes = pickDistractors(entry, catalog, 2, rng, { slot: slotOf(ex, entry.language) }).map((d) => d.senses[0].examples[0]?.form ?? d.lemma)
       return choice(
-        { ...base, prompt: 'Hangisi doğru?', context: blankOut(ex), contextTranslation: ex.translation },
+        { ...base, prompt: 'Hangisi doğru?', context: blankOut(ex), contextTranslation: ex.translation, contextSource: exampleSource(ex, entry) },
         ex.form,
-        [...confusables, ...lookAlikes].slice(0, OPTION_COUNT - 1),
+        sameCase([...confusables, ...lookAlikes].slice(0, OPTION_COUNT - 1), ex.form),
         rng,
       )
     }
@@ -470,6 +576,7 @@ export function buildExercise(
         prompt: 'Boşluğu doğru biçimle doldur',
         context: blankOut(ex),
         contextTranslation: ex.translation,
+        contextSource: exampleSource(ex, entry),
         accepted: [ex.form],
         hints: buildHints(ex.form, `${entry.lemma} — ${sense.gloss}`),
       }
@@ -499,7 +606,7 @@ export function buildExercise(
 
     case 'picture_choice': {
       // Options are words in the target language; distractors' pictures are irrelevant here.
-      const options = pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map(displayForm)
+      const options = sameCase(pickDistractors(entry, catalog, OPTION_COUNT - 1, rng).map(displayForm), answer)
       return choice({ ...base, prompt: 'Bu resim hangi kelime?', imageId: entry.imageId }, answer, options, rng)
     }
 

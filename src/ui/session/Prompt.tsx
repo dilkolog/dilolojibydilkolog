@@ -30,7 +30,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
     case 'mc_context':
     case 'discriminate':
     case 'cloze_typed':
-      return <Sentence text={exercise.context!} translation={exercise.contextTranslation} />
+      return <Sentence text={exercise.context!} translation={exercise.contextTranslation} source={exercise.contextSource} blankStart={exercise.blankStart} />
     case 'picture_choice':
       return <PictureFrame id={exercise.imageId} />
     case 'dictation':

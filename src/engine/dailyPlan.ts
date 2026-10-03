@@ -22,6 +22,8 @@ export interface PlanItem {
   reason: PlanReason
   skill: Skill
   exerciseType?: ExerciseType
+  /** The blank shows the answer's first letter (a choice turned into typing, see typeStrongCloze). */
+  firstLetter?: boolean
 }
 
 export interface PlanSettings {

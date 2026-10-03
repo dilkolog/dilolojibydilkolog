@@ -753,7 +753,7 @@ export function ReadingScreen({
             db={db}
             language={language}
             existing={existing}
-            initial={{ word: adding.word, meaning: '', example: markWord(adding.sentence, adding.word), exampleTranslation: '' }}
+            initial={{ word: adding.word, meaning: '', example: markWord(adding.sentence, adding.word), exampleTranslation: '', exampleMetIn: current?.title }}
             onSaved={() => {
               setAdding(null)
               setSelected(null)

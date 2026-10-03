@@ -10,8 +10,10 @@ import '@fontsource/lexend/700.css'
 import './index.css'
 import App from './App.tsx'
 import { applyDensity } from './ui/density'
+import { watchForUpdates } from './ui/update'
 
 applyDensity()
+watchForUpdates()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

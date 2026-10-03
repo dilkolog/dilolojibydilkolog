@@ -2594,3 +2594,7 @@ section:has(> .media-split) { container-type: inline-size; }
 .garden-compact li { border-radius: 0; background: none; box-shadow: none; padding: 0.5rem 0.875rem; }
 .garden-compact li + li { border-top: 1px solid var(--rule); }
 [data-density='compact'] .garden-compact li { padding-block: 0.3rem; }
+
+/* Where a sentence comes from (a text the learner read, their own sentence): a quiet tag under it. */
+.sentence-source { display: inline-flex; margin-top: 0.5rem; padding: 0.125rem 0.625rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-size: var(--t-xs); font-weight: 600; }
+.blank-start { color: var(--lang-text); font-weight: 700; letter-spacing: 0; }

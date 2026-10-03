@@ -11,7 +11,8 @@ export default defineConfig({
     // Precaches the built app (JS, CSS, fonts, icons) so it opens and works without internet.
     // All data already lives in IndexedDB on the device.
     VitePWA({
-      registerType: 'autoUpdate',
+      // A new version waits for the learner's "Yenile" (src/ui/update.ts) instead of replacing the app mid-session.
+      registerType: 'prompt',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],

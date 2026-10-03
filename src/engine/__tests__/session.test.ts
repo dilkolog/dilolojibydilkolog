@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, summarize, typedFollowUp } from '../session'
+import { completeItem, currentItem, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, summarize, typedFollowUp, typeStrongCloze } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -114,5 +114,20 @@ describe('typing between multiple choice', () => {
 
   it('makes the typed comeback a recall question', () => {
     expect(typedFollowUp(item('x'))).toMatchObject({ kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' })
+  })
+})
+
+describe('typing the blank once a word is well known', () => {
+  const withSkills = (skills: object) => {
+    const st = newWordState(decision, new Date())
+    return { ...st, skills } as unknown as typeof st
+  }
+
+  it('turns a choice in a sentence into typing with the first letter, only for a strong word', () => {
+    const strong = withSkills({ recognition: { stability: STRONG_RECOGNITION_DAYS + 1 }, recall: { reps: 1 } })
+    expect(typeStrongCloze(item('x', 'mc_context'), strong)).toMatchObject({ exerciseType: 'cloze_typed', skill: 'production', firstLetter: true })
+    expect(typeStrongCloze(item('x', 'mc_meaning'), strong).exerciseType).toBe('mc_meaning')
+    expect(typeStrongCloze(item('x', 'mc_context'), withSkills({ recognition: { stability: 3 }, recall: { reps: 1 } })).exerciseType).toBe('mc_context')
+    expect(typeStrongCloze(item('x', 'mc_context'), withSkills({ recognition: { stability: 30 } })).exerciseType).toBe('mc_context')
   })
 })

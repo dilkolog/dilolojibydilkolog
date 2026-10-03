@@ -3,6 +3,7 @@ import type {
   CefrLevel,
   Collocation,
   EntrySource,
+  Example,
   Gender,
   PartOfSpeech,
   TargetLanguage,
@@ -31,6 +32,8 @@ export interface WordInput {
    */
   example?: string
   exampleTranslation?: string
+  /** Title of the reading text the example sentence was saved from. */
+  exampleMetIn?: string
   /** One per line or ";": "make a decision = karar vermek (do a decision, give a decision)" */
   collocations?: string
   /** Lemmas of words this one is easily confused with (same language). */
@@ -207,7 +210,7 @@ export function createEntry(
   const gender = input.gender ?? (keepArticle ? GENDER_BY_ARTICLE[keepArticle] : undefined)
   const partOfSpeech = input.partOfSpeech ?? (keepArticle ? 'noun' : (guessPartOfSpeech(input.word, language) ?? 'other'))
 
-  const examples = []
+  const examples: Example[] = []
   if (input.example?.trim()) {
     const form = findForm(input.example, lemma)
     if (!form) {
@@ -219,6 +222,7 @@ export function createEntry(
       text: input.example.replace(/\*/g, '').trim(),
       translation: input.exampleTranslation?.trim() ?? '',
       form,
+      ...(input.exampleMetIn ? { metIn: input.exampleMetIn } : {}),
     })
   }
 
@@ -488,7 +492,12 @@ export function entryToInput(entry: VocabularyEntry): WordInput {
 export function updateEntry(existing: VocabularyEntry, input: WordInput): VocabularyEntry {
   const edited = createEntry(input, existing.language, existing.addedAt ?? new Date(), existing.source)
   const [oldSense, ...otherSenses] = existing.senses
-  const newExample = edited.senses[0].examples[0]
+  const oldExample = oldSense.examples[0]
+  // The same sentence keeps what the form doesn't show (where it was met, a personal mark).
+  const newExample =
+    edited.senses[0].examples[0] && oldExample && normalize(edited.senses[0].examples[0].text) === normalize(oldExample.text)
+      ? { ...oldExample, ...edited.senses[0].examples[0] }
+      : edited.senses[0].examples[0]
   const otherExamples = oldSense.examples.slice(1)
   return {
     ...existing,

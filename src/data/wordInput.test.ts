@@ -232,3 +232,14 @@ describe('word lists with the sentence a word was met in', () => {
     expect(r.entries[0].senses[0].examples[0]?.text).toContain('décision difficile')
   })
 })
+
+describe('where an example was met', () => {
+  it('is kept on the example and survives an edit that keeps the sentence', () => {
+    const e = createEntry({ word: "l'asile", meaning: 'sığınma', example: "Ils demandent l'asile.", exampleMetIn: 'Le Monde' }, 'fr', new Date())
+    expect(e.senses[0].examples[0].metIn).toBe('Le Monde')
+    const edited = updateEntry(e, { ...entryToInput(e), meaning: 'sığınak' })
+    expect(edited.senses[0].examples[0].metIn).toBe('Le Monde')
+    const changed = updateEntry(e, { ...entryToInput(e), example: "L'asile est refusé." })
+    expect(changed.senses[0].examples[0].metIn).toBeUndefined()
+  })
+})
