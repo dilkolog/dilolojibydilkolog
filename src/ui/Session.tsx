@@ -21,6 +21,7 @@ import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import {
+  adaptExercise,
   completeItem,
   currentItem,
   isFinished,
@@ -159,8 +160,19 @@ export function SessionScreen(p: Props) {
   const entry = byId.get(item.entryId)
   const progress = (session.index / session.items.length) * 100
 
-  const next = (log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem) =>
-    setSession((s) => completeItem(s, log, retry))
+  const next = (log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem, followUp?: PlanItem) =>
+    setSession((s) => {
+      const after = completeItem(s, log, retry, followUp)
+      // 85 % rule: the coming item's format follows how the session is going.
+      const up = after.items[after.index]
+      const upEntry = up && byId.get(up.entryId)
+      if (!up || !upEntry) return after
+      const adapted = adaptExercise(up, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
+      if (adapted === up) return after
+      const items = [...after.items]
+      items[after.index] = adapted
+      return { ...after, items }
+    })
 
   if (!entry) {
     // The word was deleted after the plan was built.
@@ -190,7 +202,8 @@ export function SessionScreen(p: Props) {
       hintsUsed,
       maxHints,
       at: new Date(),
-      mode: p.mode,
+      // Graduated follow-ups of a new word are practice: they help memory, not the schedule.
+      mode: item.reason === 'practice' ? 'practice' : p.mode,
       confidence,
     }
     const bank = mistakes.current
@@ -200,7 +213,7 @@ export function SessionScreen(p: Props) {
     await p.db.saveReview(result)
     lastAnswer.current = { before, bank, input, eventId: result.event.id }
     const runBefore = comboOf(session.log)
-    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: ev.verdict, hintsUsed, responseMs, mode: p.mode, combo: runBefore })
+    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: ev.verdict, hintsUsed, responseMs, mode: input.mode ?? p.mode, combo: runBefore })
     const run = ev.verdict === 'wrong' ? 0 : runBefore + 1
     if (ev.verdict === 'wrong') sfx.wrong()
     else if (run === 5 || run === 10 || run === 20) sfx.combo()
@@ -244,7 +257,9 @@ export function SessionScreen(p: Props) {
   const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
     const state = states.current.get(entry.id)
     const retry = log.verdict === 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
-    next(log, retry)
+    // A new word answered right comes back a little later in another format (graduated recall).
+    const followUp = log.verdict && log.verdict !== 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
+    next(log, retry, followUp)
   }
 
   const combo = comboOf(session.log)

@@ -1,8 +1,9 @@
 import type { PlanItem } from './dailyPlan'
 import { MASTERY_STAGES, type MasteryStage } from './mastery'
 import type { Rng } from './rng'
+import { exerciseTypesFor, EXERCISES } from './exercises'
 import { pickExerciseType } from './selection'
-import type { EngineOptions, ErrorType, UserWordState, VocabularyEntry, Verdict } from './types'
+import type { EngineOptions, ErrorType, ExerciseType, UserWordState, VocabularyEntry, Verdict } from './types'
 
 export interface SessionLogEntry {
   entryId: string
@@ -22,6 +23,8 @@ export interface Session {
   retries: Record<string, number>
   /** Correct answers a missed word still needs before it may leave the session. */
   relearn: Record<string, number>
+  /** Graduated follow-ups already given to each word met for the first time this session. */
+  followUps?: Record<string, number>
   log: SessionLogEntry[]
 }
 
@@ -34,6 +37,39 @@ export const RETRY_GAP = 3
 export const RELEARN_TARGET = 2
 /** Cap on re-queues per word, so a word that won't stick can't take over the session. */
 export const MAX_RETRIES = 3
+/**
+ * Graduated interval recall (Pimsleur 1967; Landauer & Bjork 1978): a word met for the first
+ * time comes back after a few items, then after more, while it is still fragile. Expanding gaps
+ * beat a fixed one. Counted as practice, so the schedule isn't inflated by same-session repeats.
+ */
+export const GRADUATED_GAPS = [4, 9]
+
+/** The gap for a new word's next follow-up, or undefined when it's had them (or is being relearned). */
+export function graduatedGap(s: Session, entryId: string): number | undefined {
+  const isNew = s.log.some((l) => l.entryId === entryId && l.item.kind === 'introduce')
+  if (!isNew || (s.relearn[entryId] ?? 0) > 0) return undefined
+  return GRADUATED_GAPS[s.followUps?.[entryId] ?? 0]
+}
+
+/**
+ * The 85 % rule (Wilson et al. 2019): learning is fastest when about 85 % of answers are right.
+ * From the session's recent answers: above 90 %, the next item of a skill is asked in a harder
+ * format (typing instead of choosing); below 75 %, in an easier one. The skill stays the same.
+ */
+export function adaptExercise(item: PlanItem, entry: VocabularyEntry, state: UserWordState | undefined, recent: readonly (Verdict | undefined)[], rng: Rng, opts: EngineOptions = {}): PlanItem {
+  if (item.kind !== 'exercise' || !item.exerciseType) return item
+  const graded = recent.filter((v): v is Verdict => !!v).slice(-8)
+  if (graded.length < 5) return item
+  const accuracy = graded.filter((v) => v !== 'wrong').length / graded.length
+  const want = accuracy > 0.9 ? 'harder' : accuracy < 0.75 ? 'easier' : null
+  if (!want) return item
+  const isChoice = (t: ExerciseType) => EXERCISES[t].input === 'choice'
+  if (want === 'harder' ? !isChoice(item.exerciseType) : isChoice(item.exerciseType)) return item
+  const pool = exerciseTypesFor(item.skill, entry, opts).filter((t) => (want === 'harder' ? !isChoice(t) : isChoice(t)))
+  if (!pool.length) return item
+  const fresh = pool.filter((t) => t !== state?.lastExerciseType)
+  return { ...item, exerciseType: (fresh.length ? fresh : pool)[Math.floor(rng() * (fresh.length ? fresh : pool).length)] }
+}
 
 export function startSession(items: readonly PlanItem[]): Session {
   return { items: [...items], index: 0, retries: {}, relearn: {}, log: [] }
@@ -58,7 +94,7 @@ export function retryItem(
  * relearning; it is used only when the answer was wrong or the word hasn't yet reached its
  * relearning target.
  */
-export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem): Session {
+export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem, followUp?: PlanItem): Session {
   const item = s.items[s.index]
   const id = item.entryId
   const items = [...s.items]
@@ -70,7 +106,13 @@ export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, ret
     items.splice(Math.min(s.index + 1 + RETRY_GAP, items.length), 0, retry)
     retries[id] = (retries[id] ?? 0) + 1
   }
-  return { items, index: s.index + 1, retries, relearn, log: [...s.log, { ...log, item }] }
+  const followUps = { ...(s.followUps ?? {}) }
+  const gap = log.verdict && log.verdict !== 'wrong' ? graduatedGap(s, id) : undefined
+  if (followUp && gap !== undefined) {
+    items.splice(Math.min(s.index + 1 + gap, items.length), 0, { ...followUp, reason: 'practice' })
+    followUps[id] = (followUps[id] ?? 0) + 1
+  }
+  return { items, index: s.index + 1, retries, relearn, followUps, log: [...s.log, { ...log, item }] }
 }
 
 /** Drops the remaining items for a word (e.g. after "I already know this"). */
