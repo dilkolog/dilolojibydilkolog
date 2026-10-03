@@ -183,3 +183,22 @@ export const ShuffleIcon = (p: P) => (
     <path d="M3 6h3.5c4 0 6 12 10 12H21M3 18h3.5c1.6 0 2.8-1.9 3.9-4.2M13.6 10.2C14.7 7.9 15.9 6 17.5 6H21M18 3l3 3-3 3M18 15l3 3-3 3" />
   </Icon>
 )
+export const DataIcon = (p: P) => (
+  <Icon {...p}>
+    <ellipse cx="12" cy="5.5" rx="7.5" ry="3" />
+    <path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6M4.5 11.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6" />
+  </Icon>
+)
+export const ToolIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5a4 4 0 0 0-2-2z" />
+  </Icon>
+)
+/** The app's mark: a word (speech bubble) taking root (sprout), as on the app icon. */
+export const BrandMark = ({ size = 22 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden>
+    <path d="M7 10.5h18a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9.2L11 29v-3.5H7a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3z" fill="#f8fafc" />
+    <path d="M16 21.5v-8" stroke="#15803d" strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M16 15c-.6-3.6-3.5-5.8-7.2-5.5.1 3.7 3 6.1 7.2 5.5zM16 13.5c.7-4.1 4-6.6 8.1-6.2-.1 4.3-3.4 6.9-8.1 6.2z" fill="#22c55e" />
+  </svg>
+)

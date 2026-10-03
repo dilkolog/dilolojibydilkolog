@@ -15,7 +15,7 @@ import { ReminderSuggestion } from './BestHours'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
-import { BellIcon } from './icons'
+import { BellIcon, DataIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
 import { Select } from './Select'
@@ -144,6 +144,42 @@ export function SettingsScreen({
   onDataChanged: () => void
   pushState: PushState
 }) {
+  // Search: hides the settings (rows, then whole cards and group titles) that don't match.
+  const root = useRef<HTMLDivElement>(null)
+  const [query, setQuery] = useState('')
+  const [noMatch, setNoMatch] = useState(false)
+  useEffect(() => {
+    const el = root.current
+    if (!el) return
+    const q = query.trim().toLocaleLowerCase('tr-TR')
+    const has = (n: Element) => (n.textContent ?? '').toLocaleLowerCase('tr-TR').includes(q)
+    let any = false
+    for (const card of el.querySelectorAll<HTMLElement>(':scope > section, :scope > .card, :scope > div.card')) {
+      const rows = [...card.querySelectorAll<HTMLElement>('.setting-row, .toggle-row')]
+      const title = card.querySelector('.section-title')
+      const titleHit = !q || (title ? has(title) : false)
+      let cardHit = titleHit || (!rows.length && has(card))
+      for (const r of rows) {
+        const hit = !q || titleHit || has(r)
+        r.hidden = !hit
+        if (hit) cardHit = true
+      }
+      card.hidden = !cardHit
+      if (cardHit) any = true
+    }
+    // A group title shows when anything up to the next title is visible.
+    for (const t of el.querySelectorAll<HTMLElement>(':scope > .settings-group-title')) {
+      let n = t.nextElementSibling as HTMLElement | null
+      let visible = false
+      while (n && !n.classList.contains('settings-group-title')) {
+        if (!n.hidden) visible = true
+        n = n.nextElementSibling as HTMLElement | null
+      }
+      t.hidden = !!q && !visible
+    }
+    setNoMatch(!!q && !any)
+  }, [query])
+
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value })
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [voices, setVoices] = useState(() => voicesFor(settings.activeLanguage))
@@ -242,14 +278,26 @@ export function SettingsScreen({
   }
 
   return (
-    <div className="stack">
+    <div className="stack settings-page" ref={root}>
       <h1 className="greeting">Ayarlar</h1>
-      <JumpNav groups={GROUPS} label="Ayar grupları" />
+      <label className="settings-search">
+        <SearchIcon size={18} />
+        <input
+          className="input"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Ayar ara: bildirim, ses, yedek…"
+          aria-label="Ayar ara"
+        />
+      </label>
+      {query.trim() && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
+      {!query.trim() && <JumpNav groups={GROUPS} label="Ayar grupları" />}
 
-      <GroupTitle id="s-account">Hesap</GroupTitle>
+      <GroupTitle id="s-account" icon={<UserIcon size={18} />}>Hesap</GroupTitle>
       <AccountSettings />
 
-      <GroupTitle id="s-study">Çalışma</GroupTitle>
+      <GroupTitle id="s-study" icon={<TargetIcon size={18} />}>Çalışma</GroupTitle>
       <section className="card stack">
         <h2 className="section-title">Çalışma</h2>
         <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
@@ -307,7 +355,7 @@ export function SettingsScreen({
 
       <StudyCalendar settings={settings} onChange={onChange} />
 
-      <GroupTitle id="s-sound">Ses ve görünüm</GroupTitle>
+      <GroupTitle id="s-sound" icon={<SpeakerIcon size={18} />}>Ses ve görünüm</GroupTitle>
       <section className="card stack">
         <h2 className="section-title">Ses</h2>
         <NaturalVoiceSettings language={lang} />
@@ -383,7 +431,7 @@ export function SettingsScreen({
         </div>
       </section>
 
-      <GroupTitle id="s-remind">Bildirimler</GroupTitle>
+      <GroupTitle id="s-remind" icon={<BellIcon size={18} />}>Bildirimler</GroupTitle>
       <section className="card stack">
         <h2 className="section-title row gap-2">
           <BellIcon size={20} /> Hatırlatıcı
@@ -425,7 +473,7 @@ export function SettingsScreen({
         <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
       </section>
 
-      <GroupTitle id="s-tools">Araçlar</GroupTitle>
+      <GroupTitle id="s-tools" icon={<ToolIcon size={18} />}>Araçlar</GroupTitle>
       <IosShortcut />
 
       <section className="card stack desktop-only">
@@ -445,7 +493,7 @@ export function SettingsScreen({
 
       <OfflinePack settings={settings} />
 
-      <GroupTitle id="s-data">Veriler</GroupTitle>
+      <GroupTitle id="s-data" icon={<DataIcon size={18} />}>Veriler</GroupTitle>
       <section className="card stack">
         <h2 className="section-title">Yedek</h2>
         <p className="small muted">Veriler yalnızca bu cihazda duruyor. Yedek; kelimeleri, ilerlemeyi, görselleri ve ses kayıtlarını içerir.</p>

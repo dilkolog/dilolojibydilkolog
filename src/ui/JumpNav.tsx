@@ -13,9 +13,10 @@ export function JumpNav({ groups, label }: { groups: readonly (readonly [string,
   )
 }
 
-export function GroupTitle({ id, children }: { id: string; children: ReactNode }) {
+export function GroupTitle({ id, icon, children }: { id: string; icon?: ReactNode; children: ReactNode }) {
   return (
     <h2 id={id} className="settings-group-title">
+      {icon && <span className="group-icon">{icon}</span>}
       {children}
     </h2>
   )

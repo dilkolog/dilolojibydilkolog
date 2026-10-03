@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { levelTitle } from '../engine/gamification'
+import { levelTitle, medalTier } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
@@ -7,6 +7,7 @@ import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
 import { FlameIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
+import { Medal } from './Medal'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -207,7 +208,7 @@ type Achievement = NonNullable<ReturnType<typeof useGame>>['achievements'][numbe
 function Badge({ a, compact = false }: { a: Achievement; compact?: boolean }) {
   return (
     <div className={`badge-card${a.unlocked ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`} title={a.description}>
-      <span className="badge-icon">{a.icon}</span>
+      <Medal icon={a.icon} tier={medalTier(a)} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
       <strong>{a.title}</strong>
       {!compact && <span className="small muted">{a.description}</span>}
       {!a.unlocked && (

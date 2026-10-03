@@ -27,7 +27,7 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, UserIcon, BrandMark } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { canListen } from './ui/speechInput'
@@ -46,6 +46,7 @@ import { CommandPalette, type Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 import { Toaster } from './ui/toast'
+import { ScreenSkeleton } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 
 /*
@@ -532,7 +533,7 @@ export default function App() {
             <aside className="sidebar">
               <button className="brand" onClick={go({ name: 'home' })}>
                 <span className="brand-mark" aria-hidden>
-                  k
+                  <BrandMark />
                 </span>
                 Kelime Koçu
               </button>
@@ -645,8 +646,9 @@ export default function App() {
               </p>
             )}
             <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>
-            <Suspense fallback={<p className="muted screen-loading">Yükleniyor…</p>}>
-            {!data || !plan ? null : screen.name === 'session' ? (
+            <div key={screen.name === 'summary' ? 'session' : screen.name} className="screen-enter">
+            <Suspense fallback={<ScreenSkeleton />}>
+            {!data || !plan ? <ScreenSkeleton /> : screen.name === 'session' ? (
               <SessionScreen
                 items={screen.items}
                 mode={screen.mode}
@@ -835,6 +837,7 @@ export default function App() {
               />
             )}
             </Suspense>
+            </div>
             </ScreenBoundary>
           </main>
           <Toaster />

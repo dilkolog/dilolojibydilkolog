@@ -209,6 +209,16 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'level-50', icon: '🥇', title: 'Seviye 50', description: '50. seviyeye ulaş', goal: 50, stat: 'level' },
 ]
 
+export type MedalTier = 'bronze' | 'silver' | 'gold' | 'special'
+
+/** A badge's medal: its step within its family (bronze, silver, then gold); one-offs are special. */
+export function medalTier(a: Pick<Achievement, 'id' | 'stat'>): MedalTier {
+  const family = ACHIEVEMENTS.filter((x) => x.stat === a.stat).sort((x, y) => x.goal - y.goal)
+  if (family.length === 1) return 'special'
+  const i = family.findIndex((x) => x.id === a.id)
+  return i <= 0 ? 'bronze' : i === 1 ? 'silver' : 'gold'
+}
+
 export interface AchievementState extends Achievement {
   value: number
   unlocked: boolean

@@ -1,1 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#2B5BA6"/><text x="16" y="23" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#fff">k</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4ade80"/>
+      <stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- speech bubble: a word -->
+  <path d="M136 176h240a40 40 0 0 1 40 40v128a40 40 0 0 1-40 40H252l-62 50v-50h-54a40 40 0 0 1-40-40V216a40 40 0 0 1 40-40z" fill="#f8fafc"/>
+  <!-- sprout growing out of it: the word takes root -->
+  <path d="M256 330V214" stroke="#15803d" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M256 236c-8-52-50-84-104-80 2 54 44 88 104 80z" fill="url(#leaf)"/>
+  <path d="M256 214c10-60 58-96 118-90-2 62-50 100-118 90z" fill="url(#leaf)"/>
+  <ellipse cx="256" cy="334" rx="44" ry="12" fill="#cbd5e1"/>
+</svg>

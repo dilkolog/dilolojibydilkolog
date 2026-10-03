@@ -283,7 +283,6 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .eyebrow { font-size: var(--t-sm); font-weight: 600; color: var(--ink-soft); }
 
 .muted { color: var(--ink-soft); }
-.screen-loading { padding: 2rem 0; text-align: center; }
 .small { font-size: var(--t-sm); }
 
 .card { background: var(--surface); border-radius: var(--r-lg); padding: 1.5rem; box-shadow: var(--shadow); }
@@ -393,7 +392,9 @@ details[open] > summary { margin-bottom: 1rem; }
   transition: transform 0.08s ease;
 }
 .lang-card:active { transform: translateY(2px); }
-.lang-card .hello { display: block; font-family: var(--serif); font-size: var(--t-xl); color: var(--card-color); }
+.lang-card { position: relative; }
+.lang-card .hello { display: block; font-family: var(--serif); font-size: var(--t-2xl); line-height: 1.2; color: var(--card-color); }
+.lang-card-check { position: absolute; top: 0.625rem; right: 0.625rem; display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: var(--r-full); background: var(--card-color); color: var(--on-color); animation: pop 0.25s ease-out; }
 .lang-card[aria-pressed='true'] { border-color: var(--card-color); box-shadow: 0 4px 0 var(--card-color); }
 
 /* ---------- Home ---------- */
@@ -1806,9 +1807,15 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .settings-nav::-webkit-scrollbar { display: none; }
 .settings-nav .chip { white-space: nowrap; }
 .settings-group-title {
+  display: flex; align-items: center; gap: 0.5rem;
   margin-top: 1.25rem; font-size: var(--t-sm); font-weight: 800; letter-spacing: 0.04em; color: var(--ink-soft);
   scroll-margin-top: 4.5rem;
 }
+.group-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
+.settings-search { position: relative; display: block; max-width: 32rem; }
+.settings-search svg { position: absolute; left: 0.875rem; top: 50%; transform: translateY(-50%); color: var(--ink-soft); pointer-events: none; }
+.settings-search .input { padding-left: 2.5rem; }
+.settings-page [hidden] { display: none !important; }
 
 .game-group + .game-group { margin-top: 1.25rem; }
 
@@ -2084,3 +2091,55 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 @media (max-width: 63.99rem) { .nav-badge { display: none; } }
 .tab-icon { position: relative; display: inline-grid; }
 .tab-dot { position: absolute; top: 0.125rem; right: 0.75rem; width: 0.5rem; height: 0.5rem; border-radius: var(--r-full); background: var(--bad); box-shadow: 0 0 0 2px var(--surface); }
+
+/* ---------- Motion: only in answer to something the learner did ---------- */
+/* A new screen fades in (no slide: navigation should feel instant, not staged). */
+.screen-enter { animation: fade 0.16s ease-out; }
+/* A right answer gets one short lift; a wrong one already shakes. */
+@keyframes correct-pop { 0% { transform: scale(1); } 40% { transform: scale(1.035); } 100% { transform: scale(1); } }
+.option.is-correct, .answer-input.is-correct { animation: correct-pop 0.32s cubic-bezier(0.3, 1.4, 0.5, 1); }
+.option.is-correct .key { animation: pop 0.3s ease-out; }
+
+/* ---------- Loading skeleton ---------- */
+.skeleton { display: grid; gap: 0.875rem; padding-top: 0.25rem; }
+.sk { display: block; border-radius: var(--r-md); background: linear-gradient(90deg, var(--track) 0%, var(--surface-2) 50%, var(--track) 100%); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; }
+.sk-title { width: 14rem; max-width: 60%; height: 2.25rem; }
+.sk-line { width: 22rem; max-width: 85%; height: 1rem; }
+.sk-grid { display: grid; gap: 1rem; margin-top: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.sk-card { height: 7rem; border-radius: var(--r-lg); }
+.sk-card-tall { height: 11rem; grid-column: 1 / -1; }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+/* ---------- First run ---------- */
+.onboarding { padding-top: 1rem; }
+.onboarding-hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  padding: 1.75rem 1.75rem 2.25rem; border-radius: var(--r-lg);
+  background: var(--lang); color: var(--on-lang);
+  background-image: linear-gradient(140deg, transparent 0%, color-mix(in srgb, var(--lang-deep) 70%, transparent) 100%);
+  transition: background-color 0.3s ease;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--lang) 30%, transparent);
+}
+[data-lang='es'] .onboarding-hero { background-image: linear-gradient(140deg, transparent 0%, #f59e0b 100%); }
+.onboarding-brand { cursor: default; color: inherit; }
+.onboarding-brand .brand-mark { background: color-mix(in srgb, var(--on-lang) 18%, transparent); }
+.onboarding-title { margin-top: 1.75rem; max-width: 30rem; font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
+.onboarding-sub { margin-top: 0.75rem; max-width: 32rem; color: color-mix(in srgb, var(--on-lang) 82%, transparent); }
+.onboarding-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); counter-reset: step; }
+.onboarding-steps li { display: grid; gap: 0.25rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.onboarding-steps li strong::before { counter-increment: step; content: counter(step) '. '; color: var(--lang-text); }
+.onboarding-form { gap: 1.5rem; }
+.onboarding-form > * + * { margin-top: 0; }
+.onboarding-row { align-items: flex-start; }
+.onboarding-row .field { gap: 0.5rem; }
+.onboarding-row .grow { min-width: 12rem; }
+
+/* ---------- Medals ---------- */
+.medal { display: block; overflow: visible; }
+.medal .medal-art { filter: grayscale(1); opacity: 0.45; }
+.medal.is-unlocked .medal-art { filter: drop-shadow(0 2px 3px rgb(15 23 42 / 0.25)); opacity: 1; }
+.badge-card.is-unlocked { box-shadow: var(--shadow); }
+.badge-card.is-unlocked .medal { animation: pop 0.35s ease-out; }
+
+/* The mark sits on the app's own blue in every language, like the home-screen icon. */
+.brand-mark { background: linear-gradient(140deg, #3b82f6, #1e3a8a); }

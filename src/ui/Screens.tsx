@@ -6,7 +6,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, CheckIcon, FlameIcon, GameIcon, ShuffleIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
+import { AlertIcon, BookIcon, BrandMark, CheckIcon, FlameIcon, GameIcon, ShuffleIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -15,6 +15,8 @@ import { InstallHint } from './InstallHint'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
+import { Medal } from './Medal'
+import { medalTier } from '../engine/gamification'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
@@ -52,52 +54,82 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const [minutes, setMinutes] = useState(DEFAULT_SETTINGS.dailyMinutes)
   const [name, setName] = useState('')
   return (
-    <div className="stack" data-lang={language}>
-      <div className="brand" style={{ cursor: 'default' }}>
-        <span className="brand-mark">k</span> Kelime Koçu
-      </div>
-      <h1 className="greeting mt-8">
-        Kelimeleri gerçekten kullanabileceğin şekilde öğren
-      </h1>
-      <p className="muted">
-        Her gün sana özel kısa bir çalışma hazırlar, unutmak üzere olduğun kelimeleri tam zamanında geri getirir.
-      </p>
-
-      <div className="section stack">
-        <h2 className="section-title">Adın ne?</h2>
-        <input className="input" style={{ maxWidth: '20rem' }} value={name} onChange={(e) => setName(e.target.value)} placeholder="Adın" aria-label="Adın" autoFocus />
-      </div>
-      <div className="section stack">
-        <h2 className="section-title">Hangi dille başlayalım?</h2>
-        <div className="lang-cards" role="group" aria-label="Dil">
-          {TARGET_LANGUAGES.map((l) => (
-            <button
-              key={l}
-              type="button"
-              className="lang-card"
-              aria-pressed={l === language}
-              style={{ ['--card-color' as string]: CARD_COLOR[l] }}
-              onClick={() => setLanguage(l)}
-            >
-              <span className="hello">{HELLO[l]}</span>
-              <span className="muted">{LANGUAGE_NAME[l]}</span>
-            </button>
-          ))}
+    <div className="onboarding stack" data-lang={language}>
+      {/* The chosen language colours the welcome, and says hello in its own words. */}
+      <section className="onboarding-hero">
+        <span className="hero-hello" aria-hidden lang={language}>
+          {HELLO[language]}
+        </span>
+        <div className="brand onboarding-brand">
+          <span className="brand-mark" aria-hidden>
+            <BrandMark />
+          </span>{' '}
+          Kelime Koçu
         </div>
-        <p className="small muted">Diğer dilleri sonra üstteki düğmelerden açabilirsin.</p>
-      </div>
-      <div className="section stack">
-        <h2 className="section-title">Günde kaç dakika ayırabilirsin?</h2>
-        <Chips label="Günlük süre" options={MINUTE_OPTIONS} value={minutes} onChange={setMinutes} format={(m) => `${m} dk`} />
-      </div>
-      <div className="section">
+        <h1 className="onboarding-title">Kelimeleri gerçekten kullanabileceğin şekilde öğren</h1>
+        <p className="onboarding-sub">Her gün sana özel kısa bir çalışma hazırlar, unutmak üzere olduğun kelimeleri tam zamanında geri getirir.</p>
+      </section>
+
+      <ol className="onboarding-steps" aria-label="Nasıl çalışır">
+        <li>
+          <Plant stage={0} size={44} />
+          <strong>Kelimelerini ekle</strong>
+          <span className="small muted">Okuduğun, duyduğun, öğrenmek istediğin kelimeler: her biri bir tohum.</span>
+        </li>
+        <li>
+          <Plant stage={2} size={44} />
+          <strong>Her gün kısa tekrar</strong>
+          <span className="small muted">Unutmak üzere olduklarını tam zamanında sorar; birkaç dakika yeter.</span>
+        </li>
+        <li>
+          <Plant stage={5} size={44} />
+          <strong>Kelimeler çiçek açar</strong>
+          <span className="small muted">Tanımaktan cümlede kullanmaya: bildiklerin bahçende büyür.</span>
+        </li>
+      </ol>
+
+      <section className="card stack onboarding-form">
+        <div className="stack gap-2">
+          <h2 className="section-title">Hangi dille başlayalım?</h2>
+          <div className="lang-cards" role="group" aria-label="Dil">
+            {TARGET_LANGUAGES.map((l) => (
+              <button
+                key={l}
+                type="button"
+                className="lang-card"
+                aria-pressed={l === language}
+                style={{ ['--card-color' as string]: CARD_COLOR[l] }}
+                onClick={() => setLanguage(l)}
+              >
+                <span className="hello">{HELLO[l]}</span>
+                <span className="muted">{LANGUAGE_NAME[l]}</span>
+                {l === language && (
+                  <span className="lang-card-check" aria-hidden>
+                    <CheckIcon size={16} />
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+          <p className="small muted">Diğer dilleri sonra üstteki düğmelerden açabilirsin.</p>
+        </div>
+        <div className="row gap-4 onboarding-row">
+          <label className="field grow">
+            <span className="section-title">Adın ne?</span>
+            <input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Adın" autoFocus />
+          </label>
+          <div className="field">
+            <span className="section-title">Günde kaç dakika?</span>
+            <Chips label="Günlük süre" options={MINUTE_OPTIONS} value={minutes} onChange={setMinutes} format={(m) => `${m} dk`} />
+          </div>
+        </div>
         <button
           className="btn btn-lg btn-block"
           onClick={() => onDone({ ...DEFAULT_SETTINGS, activeLanguage: language, dailyMinutes: minutes, profile: { ...DEFAULT_SETTINGS.profile, name: name.trim() } })}
         >
-          Başlayalım
+          {LANGUAGE_NAME[language]} ile başlayalım
         </button>
-      </div>
+      </section>
     </div>
   )
 }
@@ -594,7 +626,7 @@ export function Summary({
           <div className="badge-grid">
             {newBadges.map((a) => (
               <div key={a.id} className="badge-card is-unlocked">
-                <span className="badge-icon">{a.icon}</span>
+                <Medal icon={a.icon} tier={medalTier(a)} unlocked size={64} />
                 <strong>{a.title}</strong>
                 <span className="small muted">{a.description}</span>
               </div>
