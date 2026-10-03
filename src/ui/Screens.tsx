@@ -617,6 +617,13 @@ export function Summary({
         </section>
       )}
       {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
+      {!practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7) && (
+        <p className="habit-tip">
+          {accuracy > 0.93
+            ? '🎯 Bu oturum biraz kolaydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: Ayarlar\'dan günlük yeni kelime sayısını artırabilirsin.'
+            : '🎯 Bu oturum zorlayıcıydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: birkaç gün yeni kelime sayısını azaltıp tekrarlara ağırlık vermek daha verimli olabilir.'}
+        </p>
+      )}
       {summary.answered >= LONG_SESSION && (
         <p className="habit-tip">
           ⏱️ Uzun bir oturumdu. Aynı süreyi gün içine yayılmış 2–3 kısa tura bölmek daha kalıcı öğretir (dağıtılmış pratik): bir sonraki turu birkaç saat sonra
