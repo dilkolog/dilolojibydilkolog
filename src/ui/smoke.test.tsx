@@ -229,6 +229,38 @@ describe('screens render', () => {
     expect(finished).not.toBeNull()
     expect(finished!.answered).toBeGreaterThan(0)
   }, 90_000)
+  it('reading an open text: word popup, ⌘-click multi-select, mark known', async () => {
+    const text = 'Le gouvernement a présenté une réforme ambitieuse. La réforme change les retraites et le travail. Les syndicats critiquent la réforme du gouvernement.'
+    const item = { id: 'smoke-text', language: 'fr' as const, title: 'Réforme', text, addedAt: new Date().toISOString(), history: [], audio: 'https://example.test/a.mp3' }
+    await db.saveText(item)
+    await db.setCurrentText('fr', item.id)
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    await act(async () => root.render(<ReadingScreen db={db} language="fr" vocabulary={vocabulary} states={states} onChanged={noop} onOpen={noop} />))
+    await act(async () => new Promise((r) => setTimeout(r, 80)))
+    expect(el.textContent).toContain('1. tur: sadece dinle')
+    // Leave the listen-first rounds so the text is clickable.
+    const leave = [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Turları bırak'))!
+    await act(async () => leave.click())
+    const words = [...el.querySelectorAll<HTMLElement>('.rw-unseen')]
+    expect(words.length).toBeGreaterThan(2)
+    await act(async () => words[0].click())
+    expect(el.querySelector('.word-pop')).not.toBeNull()
+    await act(async () => {
+      words[1].dispatchEvent(new MouseEvent('click', { bubbles: true, metaKey: true }))
+      words[2].dispatchEvent(new MouseEvent('click', { bubbles: true, ctrlKey: true }))
+    })
+    expect(el.querySelector('.multi-bar')?.textContent).toContain('2 kelime seçili')
+    const known = [...el.querySelectorAll<HTMLButtonElement>('.multi-bar button')].find((b) => b.textContent === 'Biliyorum')!
+    await act(async () => {
+      known.click()
+      await new Promise((r) => setTimeout(r, 30))
+    })
+    expect(el.querySelector('.multi-bar')).toBeNull()
+    await act(async () => root.unmount())
+    el.remove()
+  })
   it('without React warnings', () => {
     expect(problems.filter((p) => !/act\(|not wrapped in act/.test(p))).toEqual([])
   })

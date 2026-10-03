@@ -115,7 +115,10 @@ export function ReadingScreen({
   useEffect(() => {
     Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
       setLibrary(lib)
-      setCurrent(lib.find((t) => t.id === id) ?? null)
+      const open = lib.find((t) => t.id === id) ?? null
+      setCurrent(open)
+      // A listening episode not read yet resumes in listen-first mode.
+      setListenFirst(!!open?.audio && !open.readAt)
       setKnown(k)
       setIgnored(ig)
     })
@@ -559,11 +562,11 @@ export function ReadingScreen({
           {toast}
         </p>
       )}
-      {current?.audio && <AudioPanel key={current.id} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}
-      <PrequestionsCard key={current?.id} text={text} language={language} finished={!!message} />
+      {current?.audio && <AudioPanel key={`audio-${current.id}`} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}
+      <PrequestionsCard key={`pq-${current?.id}`} text={text} language={language} finished={!!message} />
       {!message && !listenFirst && (
         <KeyWordsCard
-          key={current?.id}
+          key={`kw-${current?.id}`}
           db={db}
           language={language}
           analysis={analysis}
