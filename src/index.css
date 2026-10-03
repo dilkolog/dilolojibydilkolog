@@ -1489,9 +1489,12 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 /* Touch screens: no keyboard hints or desktop-only tools, bigger small targets. */
 @media (hover: none) and (pointer: coarse) {
   .kbd, .kbd-key, .desktop-only, .palette-foot { display: none !important; }
-  .btn-sm { min-height: 2.5rem; }
+  .btn-sm, .chip-sm { min-height: 2.75rem; }
+  .icon-btn { width: 2.75rem; height: 2.75rem; }
   .accent-key { min-width: 2.75rem; height: 2.75rem; }
-  .link.small, button.link { padding-block: 0.25rem; }
+  /* Text-style buttons stay inline in sentences; an invisible margin makes them easy to hit. */
+  button.link { position: relative; padding-block: 0.25rem; }
+  button.link::after { content: ''; position: absolute; inset: -0.5rem -0.25rem; }
 }
 
 /* Installed app: the page shouldn't rubber-band behind the fixed bars. */
@@ -1809,3 +1812,5 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .screen-error-detail { font-family: ui-monospace, monospace; font-size: var(--t-xs, 0.75rem); overflow-wrap: anywhere; }
 .game-tag { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.5rem; border-radius: 999px; background: var(--ok-soft); color: var(--ok-text); font-size: var(--t-xs, 0.75rem); font-weight: 700; vertical-align: middle; }
 .game-card.is-due { box-shadow: var(--shadow), inset 0 0 0 2px var(--ok); }
+.toast-action { display: flex; align-items: center; gap: 0.75rem; padding-right: 0.5rem; }
+.toast-btn { border: 0; background: transparent; color: var(--bg); font: inherit; font-weight: 800; text-decoration: underline; text-underline-offset: 0.2em; padding: 0.375rem 0.5rem; min-height: 36px; cursor: pointer; }

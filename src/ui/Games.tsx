@@ -277,7 +277,7 @@ function MatchGame({ language, vocabulary, states, best, recordKey, onExit, onCh
               Tekrar oyna
             </button>
             <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Çık
+              Oyunlara dön
             </button>
           </div>
         </div>
@@ -473,7 +473,7 @@ function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onCh
               Tekrar oyna
             </button>
             <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Çık
+              Oyunlara dön
             </button>
           </div>
         </div>
@@ -671,7 +671,7 @@ function FluencyGame({
               Tekrar oyna
             </button>
             <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Çık
+              Oyunlara dön
             </button>
           </div>
         </div>
@@ -854,7 +854,7 @@ function PairsGame({ language, best, recordKey, onExit }: Props & { best?: numbe
               Tekrar oyna
             </button>
             <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Çık
+              Oyunlara dön
             </button>
           </div>
         </div>
@@ -1029,7 +1029,7 @@ function GenderGame({
               Tekrar oyna
             </button>
             <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Çık
+              Oyunlara dön
             </button>
           </div>
         </div>

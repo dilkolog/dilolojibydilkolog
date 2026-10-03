@@ -22,7 +22,7 @@ import { GardenView, WORDS_VIEW_KEY } from './Garden'
 import { Plant } from './Plant'
 import { growthStage, plantHealth } from '../engine/growth'
 import { scheduler } from '../data/instance'
-import { ConfirmDialog } from './Dialog'
+import { deleteWordsWithUndo } from './undo'
 import { Select } from './Select'
 import { useMediaUrl } from './useMedia'
 import { TextImport } from './TextImport'
@@ -77,15 +77,15 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
 
 
   const loadSamples = async () => {
-    await db.vocabulary.bulkPut(SAMPLE_WORDS[language].filter((w) => !ids.has(w.id)))
+    // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
+    const now = new Date()
+    await db.vocabulary.bulkPut(SAMPLE_WORDS[language].filter((w) => !ids.has(w.id)).map((w) => ({ ...w, addedAt: now })))
     onChanged()
   }
 
   const removeSamples = async () => {
     const samples = vocabulary.filter((v) => v.source === 'sample')
-    if (!confirm(`${samples.length} örnek kelime ve bunlardaki ilerlemen silinecek. Devam edilsin mi?`)) return
-    for (const s of samples) await db.deleteWord(s.id)
-    onChanged()
+    await deleteWordsWithUndo(samples.map((s) => s.id), `${samples.length} örnek kelime silindi`, onChanged)
   }
 
   return (
@@ -171,10 +171,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           mistakes={mistakes}
           onOpen={onOpen}
           onStudy={onStudy}
-          onDelete={async (ids) => {
-            await db.deleteWords(ids)
-            onChanged()
-          }}
+          onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
         />
       ) : view === 'garden' ? (
         <GardenView vocabulary={vocabulary} states={states} onOpen={onOpen} onWater={onStudy} />
@@ -678,7 +675,6 @@ function WordList({
   const [selecting, setSelecting] = useState(false)
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [anchor, setAnchor] = useState<number | null>(null)
-  const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [stage, setStage] = useState<StageFilter>('all')
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
@@ -841,7 +837,16 @@ function WordList({
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
               </button>
-              <button className="btn btn-bad" disabled={!selectedVisible.length} onClick={() => setConfirmDelete(true)}>
+              <button
+                className="btn btn-bad"
+                disabled={!selectedVisible.length || deleting}
+                onClick={async () => {
+                  setDeleting(true)
+                  await onDelete(selectedVisible.map((v) => v.id))
+                  setDeleting(false)
+                  exitSelection()
+                }}
+              >
                 Sil ({selectedVisible.length})
               </button>
             </div>
@@ -897,26 +902,6 @@ function WordList({
             </ul>
           )}
         </>
-      )}
-      {confirmDelete && (
-        <ConfirmDialog
-          title={`${selectedVisible.length} kelime silinsin mi?`}
-          confirmLabel={deleting ? 'Siliniyor…' : 'Sil'}
-          danger
-          onCancel={() => setConfirmDelete(false)}
-          onConfirm={async () => {
-            if (deleting) return
-            setDeleting(true)
-            await onDelete(selectedVisible.map((v) => v.id))
-            setDeleting(false)
-            setConfirmDelete(false)
-            exitSelection()
-          }}
-        >
-          {selectedVisible.slice(0, 6).map(displayForm).join(', ')}
-          {selectedVisible.length > 6 && ` ve ${selectedVisible.length - 6} kelime daha`}. Bu kelimelerdeki ilerleme, hatalar,
-          görseller ve ses kayıtları da silinir. Geri alınamaz.
-        </ConfirmDialog>
       )}
     </section>
   )

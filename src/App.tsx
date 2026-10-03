@@ -45,6 +45,7 @@ import { SessionScreen } from './ui/Session'
 import { CommandPalette, type Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { ScreenBoundary } from './ui/ScreenBoundary'
+import { Toaster } from './ui/toast'
 import { useOnline } from './ui/useOnline'
 
 /*
@@ -816,6 +817,7 @@ export default function App() {
             </Suspense>
             </ScreenBoundary>
           </main>
+          <Toaster />
           {palette && data && (
             <CommandPalette
               commands={commands}

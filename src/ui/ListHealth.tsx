@@ -1,9 +1,9 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import type { KelimeDB } from '../data/db'
 import { displayForm } from '../engine/exercises'
 import { keeperOf, listHealth, mergeEntries } from '../engine/listHealth'
 import type { Gender, Mistake, UserWordState, VocabularyEntry } from '../engine/types'
-import { ConfirmDialog } from './Dialog'
+import { changeWordsWithUndo, deleteWordsWithUndo } from './undo'
 
 /**
  * List check-up: doubled words to merge, leeches to relearn, missing examples and genders,
@@ -25,23 +25,33 @@ export function ListHealthCard({
   onOpen: (id: string) => void
 }) {
   const health = useMemo(() => listHealth(vocabulary, states, mistakes, new Date()), [vocabulary, states, mistakes])
-  const [confirm, setConfirm] = useState<{ title: string; body: string; run: () => Promise<void> } | null>(null)
   const total = health.duplicates.length + health.leeches.length + health.noExample.length + health.noGender.length + health.stale.length
   if (!total) return null
 
   const merge = async (group: VocabularyEntry[]) => {
     const keeper = keeperOf(group, states)
     const others = group.filter((g) => g.id !== keeper.id)
-    await db.vocabulary.put(mergeEntries(keeper, others))
-    await db.deleteWords(others.map((o) => o.id))
-    onChanged()
+    await changeWordsWithUndo(
+      group.map((g) => g.id),
+      `“${displayForm(keeper)}” birleştirildi`,
+      async () => {
+        await db.vocabulary.put(mergeEntries(keeper, others))
+        await db.deleteWords(others.map((o) => o.id))
+      },
+      onChanged,
+    )
   }
 
-  const relearn = async (e: VocabularyEntry) => {
-    await db.wordStates.delete(e.id)
-    await db.mistakes.where('entryId').equals(e.id).delete()
-    onChanged()
-  }
+  const relearn = (e: VocabularyEntry) =>
+    changeWordsWithUndo(
+      [e.id],
+      `“${displayForm(e)}” baştan öğrenilecek`,
+      async () => {
+        await db.wordStates.delete(e.id)
+        await db.mistakes.where('entryId').equals(e.id).delete()
+      },
+      onChanged,
+    )
 
   const setGender = async (e: VocabularyEntry, gender: Gender) => {
     const vowel = /^[aeiouyhéèêàâîôû]/i.test(e.lemma)
@@ -85,7 +95,7 @@ export function ListHealthCard({
               <li key={e.id}>
                 {word(e)} <span className="small muted">{e.senses[0].gloss}</span>
                 <span className="health-actions">
-                  <button className="btn btn-sm btn-quiet" onClick={() => setConfirm({ title: `"${displayForm(e)}" baştan öğrenilsin mi?`, body: 'İlerlemesi ve açık hataları silinir, yeni kelime gibi yeniden tanıtılır. Cevap geçmişi kalır.', run: () => relearn(e) })}>
+                  <button className="btn btn-sm btn-quiet" onClick={() => relearn(e)}>
                     Baştan öğren
                   </button>
                   <button className="link small" onClick={() => onOpen(e.id)}>
@@ -128,16 +138,7 @@ export function ListHealthCard({
               <span className="small">{health.stale.map((e) => displayForm(e)).join(', ')}</span>
               <button
                 className="btn btn-sm btn-danger"
-                onClick={() =>
-                  setConfirm({
-                    title: `${health.stale.length} kelime silinsin mi?`,
-                    body: 'Hiç çalışılmamış kelimeler; ilerleme kaybı yok.',
-                    run: async () => {
-                      await db.deleteWords(health.stale.map((e) => e.id))
-                      onChanged()
-                    },
-                  })
-                }
+                onClick={() => deleteWordsWithUndo(health.stale.map((e) => e.id), `${health.stale.length} kelime silindi`, onChanged)}
               >
                 Hepsini sil
               </button>
@@ -145,20 +146,6 @@ export function ListHealthCard({
           </Group>
         )}
       </div>
-      {confirm && (
-        <ConfirmDialog
-          title={confirm.title}
-          confirmLabel="Evet"
-          danger
-          onConfirm={async () => {
-            await confirm.run()
-            setConfirm(null)
-          }}
-          onCancel={() => setConfirm(null)}
-        >
-          {confirm.body}
-        </ConfirmDialog>
-      )}
     </details>
   )
 }

@@ -73,7 +73,7 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
         <p className="muted">Sınav için en az birkaç gün önce öğrenmeye başladığın 5 kelime gerekiyor (şu an {items.length}).</p>
         <div>
           <button className="btn" onClick={onDone}>
-            Geri dön
+            İlerleme’ye dön
           </button>
         </div>
       </div>

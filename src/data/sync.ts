@@ -1,4 +1,5 @@
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
+import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 
 /**
  * Sync between devices through a small server store. Everything is compressed and encrypted on
@@ -123,17 +124,18 @@ function unionBy<T>(a: readonly T[] = [], b: readonly T[] = [], key: (x: T) => s
   return [...map.values()]
 }
 
+
 const time = (d: Date | string | undefined) => (d ? new Date(d).getTime() : 0)
 
 /**
  * Merges two snapshots so nothing learned on either device is lost: answers are combined,
- * each word keeps its most recently reviewed state, and words deleted on either side stay
- * deleted. Where one item differs on both sides, the newer snapshot wins.
+ * each word keeps its most recently reviewed state, and what was deleted on either side stays
+ * deleted unless it was added again later (see tombstones.ts). Where one item differs on both sides, the newer snapshot wins.
  */
 export function mergeBackups(local: Backup, remote: Backup): Backup {
   const [older, newer] = time(local.exportedAt) >= time(remote.exportedAt) ? [remote, local] : [local, remote]
-  const deleted = new Set([...(local.deleted ?? []), ...(remote.deleted ?? [])])
-  const alive = <T extends { entryId: string }>(xs: T[]) => xs.filter((x) => !deleted.has(x.entryId))
+  const tombs = mergeTombs(tombMap(local.deleted, time(local.exportedAt)), tombMap(remote.deleted, time(remote.exportedAt)))
+  const dead = (id: string, createdAt?: Date | string) => isDead(tombs, id, createdAt)
   const known: NonNullable<Backup['reading']>['known'] = {}
   for (const r of [older.reading, newer.reading]) for (const [l, keys] of Object.entries(r?.known ?? {})) known[l as keyof typeof known] = [...new Set([...(known[l as keyof typeof known] ?? []), ...(keys ?? [])])]
   const ignored: NonNullable<NonNullable<Backup['reading']>['ignored']> = {}
@@ -146,26 +148,28 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     version: Math.max(local.version, remote.version),
     exportedAt: new Date().toISOString(),
     settings: newer.settings ?? older.settings,
-    vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (_, y) => y).filter((v) => !deleted.has(v.id)),
-    wordStates: alive(
-      unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, (x, y) => (time(y.lastReviewAt) > time(x.lastReviewAt) || (time(y.lastReviewAt) === time(x.lastReviewAt) && y.stats.reviews >= x.stats.reviews) ? y : x)),
+    vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (_, y) => y).filter((v) => !dead(v.id, v.addedAt)),
+    wordStates: unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, (x, y) => (time(y.lastReviewAt) > time(x.lastReviewAt) || (time(y.lastReviewAt) === time(x.lastReviewAt) && y.stats.reviews >= x.stats.reviews) ? y : x)).filter(
+      (s) => !dead(s.entryId, s.introducedAt),
     ),
-    events: alive(unionBy(older.events, newer.events, (e) => e.id)),
-    mistakes: alive(unionBy(older.mistakes, newer.mistakes, (m) => m.id, (x, y) => (y.count > x.count || (y.count === x.count && time(y.lastAt) >= time(x.lastAt)) ? y : x))),
+    events: unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp)),
+    mistakes: unionBy(older.mistakes, newer.mistakes, (m) => m.id, (x, y) => (y.count > x.count || (y.count === x.count && time(y.lastAt) >= time(x.lastAt)) ? y : x)).filter(
+      (m) => !dead(m.entryId, m.lastAt),
+    ),
     stories: unionBy(older.stories, newer.stories, (s) => s.id, (x, y) => (y.completedAt || !x.completedAt ? y : x)),
     reading: {
       known,
       ignored,
       encounters,
-      library: unionBy(older.reading?.library, newer.reading?.library, (t) => t.id, (x, y) => (y.history.length >= x.history.length ? y : x)),
+      library: unionBy(older.reading?.library, newer.reading?.library, (t) => t.id, (x, y) => (y.history.length >= x.history.length ? y : x)).filter((t) => !dead(t.id, t.addedAt)),
     },
     vocabTests: unionBy(older.vocabTests, newer.vocabTests, (t) => `${t.language}|${t.at}`),
     journal: unionBy(older.journal, newer.journal, (j) => j.id, (x, y) => (y.review || !x.review ? y : x)),
     bossWins: unionBy(older.bossWins, newer.bossWins, (w) => `${w.entryId}|${w.at}`),
     missions: unionBy(older.missions, newer.missions, (m) => `${m.mission}|${m.at}`),
-    sentences: unionBy(older.sentences, newer.sentences, (s) => s.id, (x, y) => (time(y.card.last_review) >= time(x.card.last_review) ? y : x)).filter((s) => !deleted.has(s.id)),
+    sentences: unionBy(older.sentences, newer.sentences, (s) => s.id, (x, y) => (time(y.card.last_review) >= time(x.card.last_review) ? y : x)).filter((s) => !dead(s.id, s.addedAt)),
     exams: unionBy(older.exams, newer.exams, (e) => `${e.language}|${e.at}`),
-    deleted: [...deleted],
+    deleted: tombList(tombs),
     media: [],
   }
 }

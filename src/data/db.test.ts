@@ -4,6 +4,7 @@ import { newWordState, processAttempt } from '../engine/review'
 import { createScheduler } from '../engine/scheduler'
 import { DEFAULT_SETTINGS, exportBackup, KelimeDB, mediaBlob, parseBackup, restoreBackup } from './db'
 import { SAMPLE_WORDS } from './seed'
+import { deadIds } from './tombstones'
 
 const scheduler = createScheduler({ fuzz: false })
 const NOW = new Date('2026-10-01T10:00:00Z')
@@ -39,6 +40,29 @@ describe('KelimeDB', () => {
     expect(await db.wordStates.count()).toBe(0)
     expect(await db.events.count()).toBe(0)
     expect(await db.mistakes.count()).toBe(0)
+  })
+
+  it('undo of a delete brings the word back with its progress, alive again for sync', async () => {
+    const { db, entry } = await seeded('t2-undo')
+    const snap = await db.snapshotWords([entry.id])
+    await db.deleteWord(entry.id)
+    expect(deadIds(await db.getDeleted()).has(entry.id)).toBe(true)
+    await db.restoreWords(snap)
+    expect(await db.vocabulary.get(entry.id)).toBeTruthy()
+    expect(await db.wordStates.count()).toBe(1)
+    expect(await db.events.count()).toBe(1)
+    expect(await db.mistakes.count()).toBe(1)
+    expect(deadIds(await db.getDeleted()).has(entry.id)).toBe(false)
+  })
+
+  it('deleted reading texts are remembered for sync and can be restored', async () => {
+    const db = new KelimeDB('t-texts')
+    const text = { id: 'r1', language: 'fr' as const, title: 'Bonjour', text: 'Bonjour tout le monde.', addedAt: NOW.toISOString(), history: [] }
+    await db.saveText(text)
+    await db.deleteText(text.id)
+    expect(deadIds(await db.getDeleted()).has(text.id)).toBe(true)
+    await db.restoreTexts([text])
+    expect((await db.getLibrary('fr')).map((t) => t.id)).toEqual([text.id])
   })
 
   it('backup round-trips with dates intact', async () => {

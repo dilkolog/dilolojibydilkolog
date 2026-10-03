@@ -32,6 +32,7 @@ import { WordMedia } from './WordMedia'
 import { isRetired } from '../engine/retire'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
+import { deleteWordsWithUndo } from './undo'
 
 interface Props {
   db: KelimeDB
@@ -81,10 +82,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   }
 
   const remove = async () => {
-    if (!confirm(`"${entry.lemma}" ve bu kelimedeki ilerlemen silinecek. Devam edilsin mi?`)) return
-    await db.deleteWord(entry.id)
-    onChanged()
     onBack()
+    await deleteWordsWithUndo([entry.id], `“${displayForm(entry)}” silindi`, onChanged)
   }
 
   if (editing) {

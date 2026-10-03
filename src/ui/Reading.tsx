@@ -15,6 +15,7 @@ import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
 import { WordForm } from './Words'
+import { undoable } from './toast'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
   easy: { title: 'Rahat okuma', text: 'Neredeyse her kelimeyi biliyorsun: akıcılık için ideal. Yeni kelime için biraz daha zor bir metin seçebilirsin.' },
@@ -253,9 +254,15 @@ export function ReadingScreen({
   }
 
   const removeBook = async (bookId: string) => {
-    if (!confirm('Kitabın bütün bölümleri kütüphaneden silinsin mi?')) return
+    const chapters = (library ?? []).filter((t) => t.book?.id === bookId)
     await db.deleteBook(bookId)
     setLibrary((lib) => (lib ?? []).filter((t) => t.book?.id !== bookId))
+    undoable(`📚 ${chapters[0]?.book?.title ?? 'Kitap'} silindi`, () => restore(chapters))
+  }
+
+  const restore = async (items: ReadingText[]) => {
+    await db.restoreTexts(items)
+    setLibrary(await db.getLibrary(language))
   }
 
   /** The next chapter of the current book, if any. */
@@ -271,6 +278,7 @@ export function ReadingScreen({
   const remove = async (item: ReadingText) => {
     await db.deleteText(item.id)
     setLibrary((lib) => (lib ?? []).filter((t) => t.id !== item.id))
+    undoable(`“${item.title}” silindi`, () => restore([item]))
   }
 
   /** After deciding about a word, move on to the next open one, as in LingQ. */

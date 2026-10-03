@@ -52,8 +52,30 @@ describe('sync', () => {
     expect(m.vocabulary.find((v) => v.id === 'fr:chat')!.senses[0].gloss).toBe('kedi, pisi')
     expect(m.wordStates.find((s) => s.entryId === 'fr:chat')!.stats.reviews).toBe(5)
     expect(m.events.map((e) => e.id).sort()).toEqual(['e1', 'e3'])
-    expect(m.deleted).toEqual(['fr:chien'])
+    expect(m.deleted).toEqual([{ id: 'fr:chien', at: '2026-10-02T12:00:00.000Z' }])
     // Merging the result again changes nothing.
     expect(mergeBackups(m, phone).events.length).toBe(2)
+  })
+
+  it('keeps a word added again after its deletion, but not an old copy of it', () => {
+    const added = (id: string, at: string) => ({ ...word(id), addedAt: new Date(at) }) as Backup['vocabulary'][number]
+    const phone = base('2026-10-02T12:00:00Z', { deleted: [{ id: 'fr:chien', at: '2026-10-02T11:00:00Z' }] })
+    // Laptop never synced since: still has the old copy. Tablet added the word again later.
+    const laptop = base('2026-10-02T13:00:00Z', { vocabulary: [added('fr:chien', '2026-09-01T00:00:00Z')] })
+    expect(mergeBackups(laptop, phone).vocabulary).toEqual([])
+    const tablet = base('2026-10-02T14:00:00Z', { vocabulary: [added('fr:chien', '2026-10-02T13:30:00Z')] })
+    expect(mergeBackups(tablet, phone).vocabulary.map((v) => v.id)).toEqual(['fr:chien'])
+  })
+
+  it('honours an undo (alive again) over the deletion, and deletes reading texts too', () => {
+    const text = { id: 't1', language: 'fr', title: 'x', text: 'x', addedAt: '2026-09-01T00:00:00Z', history: [] }
+    const a = base('2026-10-02T12:00:00Z', { vocabulary: [word('fr:chat')], deleted: [{ id: 'fr:chat', at: '2026-10-02T11:00:00Z', alive: true }] })
+    const b = base('2026-10-02T11:30:00Z', { deleted: ['fr:chat', { id: 't1', at: '2026-10-02T11:10:00Z' }], reading: { known: {}, encounters: {}, library: [text as never] } })
+    const m = mergeBackups(a, b)
+    expect(m.vocabulary.map((v) => v.id)).toEqual([])
+    // The bare legacy id counts from its snapshot (11:30), after the undo (11:00): deleted.
+    const undoLater = base('2026-10-02T12:00:00Z', { vocabulary: [word('fr:chat')], deleted: [{ id: 'fr:chat', at: '2026-10-02T11:45:00Z', alive: true }] })
+    expect(mergeBackups(undoLater, b).vocabulary.map((v) => v.id)).toEqual(['fr:chat'])
+    expect(m.reading?.library).toEqual([])
   })
 })

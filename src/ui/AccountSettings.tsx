@@ -4,6 +4,7 @@ import { accountStatus, deriveAccount, SyncAuthError, type Account } from '../da
 import { relativeTime } from './format'
 import { getAccount, getSyncCode, runSync, setAccount, setSyncCode } from './syncRunner'
 import { SyncSettings } from './SyncSettings'
+import { undoable } from './toast'
 
 /**
  * Account: sign in with a username and password and your progress is kept on the server and on
@@ -95,9 +96,13 @@ export function AccountSettings() {
             <button
               className="link small"
               onClick={async () => {
-                if (!confirm('Bu cihazda hesaptan çıkılsın mı? Veriler bu cihazda kalır, ama artık kaydedilmez.')) return
+                const previous = await getAccount()
                 await setAccount(null)
                 void refresh()
+                undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
+                  await setAccount(previous)
+                  void refresh()
+                })
               }}
             >
               Bu cihazda çıkış yap

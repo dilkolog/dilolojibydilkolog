@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { relativeWorkload } from '../engine/scheduler'
 import { shortcutHelp } from '../engine/accents'
 import { TARGET_LANGUAGES } from '../engine/types'
-import { exportBackup, parseBackup, restoreBackup, type Settings } from '../data/db'
+import { exportBackup, parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
 import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
@@ -148,6 +148,7 @@ export function SettingsScreen({
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [voices, setVoices] = useState(() => voicesFor(settings.activeLanguage))
   const [danger, setDanger] = useState<'language' | 'all' | null>(null)
+  const [pendingRestore, setPendingRestore] = useState<Backup | null>(null)
   const [permission, setPermission] = useState(() => (notificationsSupported() ? Notification.permission : 'denied'))
   const lang = settings.activeLanguage
 
@@ -174,15 +175,19 @@ export function SettingsScreen({
   const restore = async (file: File) => {
     setMessage(null)
     try {
-      const backup = parseBackup(await file.text())
-      const when = new Date(backup.exportedAt).toLocaleString('tr-TR')
-      if (!confirm(`Bu cihazdaki tüm veriler ${when} tarihli yedekle değiştirilecek. Devam edilsin mi?`)) return
-      await restoreBackup(db, backup)
-      setMessage({ ok: true, text: `Yedek geri yüklendi: ${backup.vocabulary.length} kelime.` })
-      onDataChanged()
+      setPendingRestore(parseBackup(await file.text()))
     } catch (e) {
       setMessage({ ok: false, text: e instanceof Error ? e.message : 'Dosya okunamadı.' })
     }
+  }
+
+  const confirmRestore = async () => {
+    const backup = pendingRestore
+    setPendingRestore(null)
+    if (!backup) return
+    await restoreBackup(db, backup)
+    setMessage({ ok: true, text: `Yedek geri yüklendi: ${backup.vocabulary.length} kelime.` })
+    onDataChanged()
   }
 
   const exportCsv = async (all: boolean) => {
@@ -490,6 +495,11 @@ export function SettingsScreen({
       {danger === 'language' && (
         <ConfirmDialog title={`${LANGUAGE_NAME[lang]} ilerlemesi sıfırlansın mı?`} confirmLabel="Sıfırla" danger onConfirm={resetLanguage} onCancel={() => setDanger(null)}>
           Kelimelerin kalır; tekrar takvimi, cevap geçmişi ve hatalar silinir. Diğer dillere dokunulmaz.
+        </ConfirmDialog>
+      )}
+      {pendingRestore && (
+        <ConfirmDialog title="Yedek geri yüklensin mi?" confirmLabel="Geri yükle" danger onConfirm={confirmRestore} onCancel={() => setPendingRestore(null)}>
+          Bu cihazdaki tüm veriler {new Date(pendingRestore.exportedAt).toLocaleString('tr-TR')} tarihli yedekle ({pendingRestore.vocabulary.length} kelime) değiştirilecek.
         </ConfirmDialog>
       )}
       {danger === 'all' && (

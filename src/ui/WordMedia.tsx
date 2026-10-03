@@ -7,6 +7,7 @@ import { MnemonicDialog } from './Mnemonic'
 import { ImagePicker } from './ImagePicker'
 import { comparePronunciation, playWord, preloadRecording } from './speech'
 import { useMediaUrl } from './useMedia'
+import { undoable } from './toast'
 
 /** Picture, own recording and personal note of a word, editable in place. */
 export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChanged: () => void }) {
@@ -23,9 +24,17 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
   const { apiKey } = useAi()
 
   const update = async (patch: Partial<VocabularyEntry>, removeMedia?: string) => {
+    const before = entry
+    const media = removeMedia ? await db.media.get(removeMedia) : undefined
     if (removeMedia) await db.media.delete(removeMedia)
     await db.vocabulary.put({ ...entry, ...patch })
     onChanged()
+    if (media)
+      undoable(patch.audioId === undefined && 'audioId' in patch ? 'Ses kaydı kaldırıldı' : 'Görsel kaldırıldı', async () => {
+        await db.media.put(media)
+        await db.vocabulary.put(before)
+        onChanged()
+      })
   }
 
   const saveNotes = async () => {

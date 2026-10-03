@@ -8,6 +8,7 @@ import { SparkleIcon, SpeakerIcon } from './icons'
 import { ShadowButton } from './Shadow'
 import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { fetchCorpus } from '../data/corpus'
+import { undoable } from './toast'
 
 /**
  * A word's example sentences. Several varied contexts make the word usable beyond one sentence
@@ -111,7 +112,14 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
                     <SpeakerIcon size={18} />
                   </button>
                 )}
-                <button className="icon-btn" onClick={() => save(removeExample(entry, i))} aria-label="Cümleyi sil">
+                <button
+                  className="icon-btn"
+                  onClick={async () => {
+                    await save(removeExample(entry, i))
+                    undoable('Örnek cümle silindi', () => save(entry))
+                  }}
+                  aria-label="Cümleyi sil"
+                >
                   ×
                 </button>
               </div>

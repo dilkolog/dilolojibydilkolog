@@ -7,6 +7,7 @@ import type { ExamResult } from '../engine/exam'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
 import type { SentenceCard } from '../engine/sentences'
+import { mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tombstones'
 import {
   TARGET_LANGUAGES,
   type CefrLevel,
@@ -167,6 +168,15 @@ export const DEFAULT_SETTINGS: Settings = {
   vacation: null,
   profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },
+}
+
+export interface WordSnapshot {
+  ids: string[]
+  vocabulary: VocabularyEntry[]
+  wordStates: UserWordState[]
+  events: ReviewEvent[]
+  mistakes: Mistake[]
+  media: MediaRow[]
 }
 
 interface MetaRow {
@@ -411,11 +421,13 @@ export class KelimeDB extends Dexie {
   async deleteBook(bookId: string) {
     const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
     await this.meta.put({ key: 'library', value: all.filter((t) => t.book?.id !== bookId) })
+    await this.addDeleted(all.filter((t) => t.book?.id === bookId).map((t) => t.id))
   }
 
   async deleteText(id: string) {
     const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
     await this.meta.put({ key: 'library', value: all.filter((t) => t.id !== id) })
+    await this.addDeleted([id])
   }
 
   /** Id of the text open in reading mode, per language. */
@@ -512,13 +524,23 @@ export class KelimeDB extends Dexie {
     })
   }
 
-  /** Ids of deleted words, so a sync doesn't bring them back from another device. */
-  async getDeleted(): Promise<string[]> {
-    return ((await this.meta.get('deleted'))?.value as string[]) ?? []
+  /** What was deleted, so a sync doesn't bring it back from another device. */
+  async getDeleted(): Promise<Tombstone[]> {
+    return ((await this.meta.get('deleted'))?.value as Tombstone[]) ?? []
   }
 
-  async addDeleted(ids: readonly string[]) {
-    await this.meta.put({ key: 'deleted', value: [...new Set([...(await this.getDeleted()), ...ids])] })
+  async addDeleted(ids: readonly string[], now = Date.now()) {
+    await this.markTombs(ids, { at: now, alive: false })
+  }
+
+  /** Undo of a deletion: the items count as alive again on every device. */
+  async reviveDeleted(ids: readonly string[], now = Date.now()) {
+    await this.markTombs(ids, { at: now, alive: true })
+  }
+
+  private async markTombs(ids: readonly string[], mark: Mark) {
+    const map = tombMap(await this.getDeleted(), Date.now())
+    await this.meta.put({ key: 'deleted', value: tombList(mergeTombs(map, new Map(ids.map((id) => [id, mark])))) })
   }
 
   /** Deletes many words in one transaction: either all of them go, or none. */
@@ -533,6 +555,51 @@ export class KelimeDB extends Dexie {
       await this.events.where('entryId').anyOf([...ids]).delete()
       await this.mistakes.where('entryId').anyOf([...ids]).delete()
     })
+  }
+
+  /** Everything stored about some words, taken before deleting or resetting them (for undo). */
+  snapshotWords(ids: readonly string[]): Promise<WordSnapshot> {
+    return this.transaction('r', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media], async () => {
+      const vocabulary = (await this.vocabulary.bulkGet([...ids])).filter((v): v is VocabularyEntry => !!v)
+      const mediaIds = vocabulary.flatMap((e) => [e.imageId, e.audioId]).filter((m): m is string => !!m)
+      return {
+        ids: [...ids],
+        vocabulary,
+        wordStates: (await this.wordStates.bulkGet([...ids])).filter((s): s is UserWordState => !!s),
+        events: await this.events.where('entryId').anyOf([...ids]).toArray(),
+        mistakes: await this.mistakes.where('entryId').anyOf([...ids]).toArray(),
+        media: (await this.media.bulkGet(mediaIds)).filter((m): m is MediaRow => !!m),
+      }
+    })
+  }
+
+  /** Puts words back exactly as they were in `snap` (undo of a delete, merge or reset). */
+  restoreWords(snap: WordSnapshot) {
+    return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media, this.meta], async () => {
+      await this.wordStates.bulkDelete(snap.ids)
+      await this.mistakes.where('entryId').anyOf(snap.ids).delete()
+      await this.media.bulkPut(snap.media)
+      await this.vocabulary.bulkPut(snap.vocabulary)
+      await this.wordStates.bulkPut(snap.wordStates)
+      await this.events.bulkPut(snap.events)
+      await this.mistakes.bulkPut(snap.mistakes)
+      await this.reviveDeleted(snap.ids)
+    })
+  }
+
+  /** Puts deleted reading texts back (undo). */
+  async restoreTexts(items: readonly ReadingText[]) {
+    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    const have = new Set(all.map((t) => t.id))
+    await this.meta.put({ key: 'library', value: [...all, ...items.filter((t) => !have.has(t.id))] })
+    await this.reviveDeleted(items.map((t) => t.id))
+  }
+
+  /** Puts a deleted sentence card back (undo). */
+  async restoreSentence(card: SentenceCard) {
+    const all = await this.getSentences()
+    if (!all.some((s) => s.id === card.id)) await this.meta.put({ key: 'sentences', value: [...all, card] })
+    await this.reviveDeleted([card.id])
   }
 
   /** Deleting a word also deletes what was learned about it, and its picture/recording. */
@@ -576,8 +643,8 @@ export interface Backup {
   missions?: MissionResult[]
   sentences?: SentenceCard[]
   exams?: ExamResult[]
-  /** Ids of deleted words (sync tombstones). */
-  deleted?: string[]
+  /** What was deleted, and when (sync tombstones, see tombstones.ts). */
+  deleted?: Tombstone[]
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {

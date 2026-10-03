@@ -9,6 +9,7 @@ import { SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
+import { undoable } from './toast'
 
 /** Saves a sentence met while reading (or sent from the browser extension). */
 export async function saveSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string }) {
@@ -135,6 +136,10 @@ function SentenceRow({ sentence, onChanged }: { sentence: SentenceCard; onChange
             onClick={async () => {
               await db.deleteSentence(sentence.id)
               onChanged()
+              undoable('Cümle silindi', async () => {
+                await db.restoreSentence(sentence)
+                onChanged()
+              })
             }}
           >
             Sil
