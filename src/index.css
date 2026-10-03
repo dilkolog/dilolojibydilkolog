@@ -1792,3 +1792,15 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .dg-add { font: inherit; border: 0; padding: 0; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.2em; }
 .dg-add[aria-pressed='true'] { outline: 2px solid var(--bad-text); outline-offset: 1px; }
 .segmented { flex-wrap: wrap; }
+
+/* Home: the now-and-then things, folded away. */
+.home-more { margin-top: 1.5rem; }
+.home-more > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 0; min-height: 44px; }
+.home-more > summary::-webkit-details-marker { display: none; }
+.home-more > summary::before { content: '▸'; color: var(--ink-soft); transition: transform 150ms ease-out; }
+.home-more[open] > summary::before { transform: rotate(90deg); }
+.home-more > .stack > .section { margin-top: 0; }
+@media (prefers-reduced-motion: reduce) { .home-more > summary::before { transition: none; } }
+/* Sidebar: studying above, you (progress, profile, settings) below. */
+.nav-btn.nav-group { margin-top: 0.75rem; position: relative; }
+.nav-btn.nav-group::before { content: ''; position: absolute; left: 0.75rem; right: 0.75rem; top: -0.4rem; border-top: 1px solid var(--rule); }

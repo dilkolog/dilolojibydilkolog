@@ -130,6 +130,8 @@ function greeting(now: Date): string {
   return 'İyi geceler'
 }
 
+const HOME_MORE_KEY = 'kelime-koc:home-more'
+
 export function Home({
   language,
   plan,
@@ -154,6 +156,7 @@ export function Home({
   onPracticeMistakes,
   onFreePractice,
   extra,
+  garden,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -180,6 +183,8 @@ export function Home({
   onFreePractice: () => void
   /** Habit nudges shown under the day's mission. */
   extra?: ReactNode
+  /** The garden card: up top when plants need water, otherwise with the weekly things. */
+  garden?: { node: ReactNode; urgent: boolean } | null
 }) {
   const now = new Date()
   const game = useGame()
@@ -189,6 +194,21 @@ export function Home({
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
   const goal = answeredToday + remaining
   const progress = goal ? answeredToday / goal : 0
+  const [moreOpen, setMoreOpen] = useState(() => {
+    try {
+      return localStorage.getItem(HOME_MORE_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+  const rememberMore = (open: boolean) => {
+    setMoreOpen(open)
+    try {
+      localStorage.setItem(HOME_MORE_KEY, open ? '1' : '0')
+    } catch {
+      // Opens closed next time; fine.
+    }
+  }
 
   if (vocabularyCount === 0) {
     return (
@@ -262,113 +282,7 @@ export function Home({
       </div>
 
       {extra}
-
-      {game && (
-        <button className="level-strip" onClick={onProfile}>
-          <span className="level-badge">Sv. {game.level.level}</span>
-          <span className="level-strip-body">
-            <span className="level-strip-top">
-              <strong>{game.level.title}</strong>
-              <span className="small muted">
-                {game.level.into.toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
-              </span>
-            </span>
-            <span className="xp-bar xp-bar-sm">
-              <span style={{ width: `${game.level.progress * 100}%` }} />
-            </span>
-          </span>
-          <span className={`daily-goal${game.xp.today >= dailyXpGoal ? ' is-done' : ''}`}>
-            <span className="small muted">Bugün</span>
-            <strong>
-              {game.xp.today}/{dailyXpGoal} XP
-            </strong>
-          </span>
-        </button>
-      )}
-
-      <div className="stats">
-        <div className="stat">
-          <span className="stat-value">
-            <FlameIcon className="icon-flame" size={22} /> {streak}
-            {(game?.freezes ?? 0) > 0 && (
-              <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
-                ❄️{game!.freezes}
-              </span>
-            )}
-          </span>
-          <span className="stat-label">günlük seri</span>
-        </div>
-        <div className="stat">
-          <span className="stat-value">
-            <StarIcon className="icon-star" size={22} /> {activeVocabulary}
-          </span>
-          <span className="stat-label">aktif kelime</span>
-        </div>
-        <div className="stat">
-          <span className="stat-value">
-            <BookIcon className="icon-book" size={22} /> {learningCount}
-            <span className="small muted" style={{ fontWeight: 500 }}>/{vocabularyCount}</span>
-          </span>
-          <span className="stat-label">kelime öğreniliyor</span>
-        </div>
-      </div>
-
-
-      <InstallHint />
-      <div className="quest-columns">
-        {game && (
-          <section className="quests">
-            <h2 className="section-title">Günün görevleri</h2>
-            <ul className="quest-list">
-              {game.quests.map((q) => (
-                <li key={q.id} className={q.done ? 'is-done' : ''}>
-                  <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
-                  <span className="quest-body">
-                    <span className="quest-top">
-                      <strong>{q.title}</strong>
-                      <span className="small muted">
-                        {q.value}/{q.target}
-                      </span>
-                    </span>
-                    <span className="quest-bar">
-                      <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                    </span>
-                  </span>
-                  <span className="quest-xp">+{q.xp} XP</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {game && game.weekly.length > 0 && (
-          <section className="quests">
-            <h2 className="section-title">Haftanın meydan okumaları</h2>
-            <ul className="quest-list">
-              {game.weekly.map((q) => (
-                <li key={q.id} className={q.done ? 'is-done' : ''}>
-                  <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
-                  <span className="quest-body">
-                    <span className="quest-top">
-                      <strong>{q.title}</strong>
-                      <span className="small muted">
-                        {q.value}/{q.target}
-                      </span>
-                    </span>
-                    <span className="quest-bar">
-                      <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                    </span>
-                  </span>
-                  <span className="quest-xp">+{CHALLENGE_XP} XP</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-      </div>
-
-      {game && <RaceCard game={game} />}
-
+      {garden?.urgent && garden.node}
 
       {(openMistakeWords > 0 || canPractice || onStory || onGames || onMixed) && (
         <section className="section stack">
@@ -433,21 +347,129 @@ export function Home({
         </section>
       )}
 
-      <section className="section stack">
-        <h2 className="section-title">Beceriler</h2>
-        <div className="bars">
-          {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
-            <div className="bar-row" key={s}>
-              <span>{SKILL_NAME[s]}</span>
-              <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
-              </div>
-              <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
-            </div>
-          ))}
+      {game && (
+        <button className="level-strip" onClick={onProfile}>
+          <span className="level-badge">Sv. {game.level.level}</span>
+          <span className="level-strip-body">
+            <span className="level-strip-top">
+              <strong>{game.level.title}</strong>
+              <span className="small muted">
+                {game.level.into.toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
+              </span>
+            </span>
+            <span className="xp-bar xp-bar-sm">
+              <span style={{ width: `${game.level.progress * 100}%` }} />
+            </span>
+          </span>
+          <span className={`daily-goal${game.xp.today >= dailyXpGoal ? ' is-done' : ''}`}>
+            <span className="small muted">Bugün</span>
+            <strong>
+              {game.xp.today}/{dailyXpGoal} XP
+            </strong>
+          </span>
+        </button>
+      )}
+
+      <div className="stats">
+        <div className="stat">
+          <span className="stat-value">
+            <FlameIcon className="icon-flame" size={22} /> {streak}
+            {(game?.freezes ?? 0) > 0 && (
+              <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
+                ❄️{game!.freezes}
+              </span>
+            )}
+          </span>
+          <span className="stat-label">günlük seri</span>
         </div>
-        <p className="small muted">Yüzde, o becerideki kelimeleri şu an hatırlama olasılığın.</p>
-      </section>
+        <div className="stat">
+          <span className="stat-value">
+            <StarIcon className="icon-star" size={22} /> {activeVocabulary}
+          </span>
+          <span className="stat-label">aktif kelime</span>
+        </div>
+        <div className="stat">
+          <span className="stat-value">
+            <BookIcon className="icon-book" size={22} /> {learningCount}
+            <span className="small muted" style={{ fontWeight: 500 }}>/{vocabularyCount}</span>
+          </span>
+          <span className="stat-label">kelime öğreniliyor</span>
+        </div>
+      </div>
+
+      <InstallHint />
+      {game && (
+        <section className="quests">
+          <h2 className="section-title">Günün görevleri</h2>
+          <ul className="quest-list">
+            {game.quests.map((q) => (
+              <li key={q.id} className={q.done ? 'is-done' : ''}>
+                <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
+                <span className="quest-body">
+                  <span className="quest-top">
+                    <strong>{q.title}</strong>
+                    <span className="small muted">
+                      {q.value}/{q.target}
+                    </span>
+                  </span>
+                  <span className="quest-bar">
+                    <span style={{ width: `${(q.value / q.target) * 100}%` }} />
+                  </span>
+                </span>
+                <span className="quest-xp">+{q.xp} XP</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* The rest is useful now and then, not every day: closed unless opened (remembered). */}
+      <details className="home-more" open={moreOpen} onToggle={(e) => rememberMore(e.currentTarget.open)}>
+        <summary className="section-title">Haftalık hedefler, bahçe ve beceriler</summary>
+        <div className="stack">
+          {game && game.weekly.length > 0 && (
+            <section className="quests">
+              <h2 className="section-title">Haftanın meydan okumaları</h2>
+              <ul className="quest-list">
+                {game.weekly.map((q) => (
+                  <li key={q.id} className={q.done ? 'is-done' : ''}>
+                    <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
+                    <span className="quest-body">
+                      <span className="quest-top">
+                        <strong>{q.title}</strong>
+                        <span className="small muted">
+                          {q.value}/{q.target}
+                        </span>
+                      </span>
+                      <span className="quest-bar">
+                        <span style={{ width: `${(q.value / q.target) * 100}%` }} />
+                      </span>
+                    </span>
+                    <span className="quest-xp">+{CHALLENGE_XP} XP</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+          {game && <RaceCard game={game} />}
+          {garden && !garden.urgent && garden.node}
+          <section className="section stack">
+            <h2 className="section-title">Beceriler</h2>
+            <div className="bars">
+              {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
+                <div className="bar-row" key={s}>
+                  <span>{SKILL_NAME[s]}</span>
+                  <div className="bar-track">
+                    <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
+                  </div>
+                  <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
+                </div>
+              ))}
+            </div>
+            <p className="small muted">Yüzde, o becerideki kelimeleri şu an hatırlama olasılığın.</p>
+          </section>
+        </div>
+      </details>
     </div>
   )
 }

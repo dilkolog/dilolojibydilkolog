@@ -378,6 +378,7 @@ export default function App() {
   }, [data])
 
   const byId = useMemo(() => new Map((data?.vocabulary ?? []).map((v) => [v.id, v])), [data])
+  const garden = useMemo(() => (data ? gardenSummary(data.vocabulary, data.states, scheduler, new Date()) : null), [data])
 
   const finishSession = useCallback(
     (summary: SessionSummary) => {
@@ -540,7 +541,7 @@ export default function App() {
                 {NAV.map((n) => (
                   <button
                     key={n.screen}
-                    className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}`}
+                    className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}${n.screen === 'progress' ? ' nav-group' : ''}`}
                     aria-current={current(n.screen) ? 'page' : undefined}
                     onClick={go({ name: n.screen })}
                   >
@@ -768,24 +769,29 @@ export default function App() {
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
                 }
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
+                garden={garden && {
+                  urgent: garden.wilting + garden.thirsty > 0,
+                  node: (
+                      <GardenCard
+                        summary={garden}
+                        onWater={() => {
+                          const ids = garden.toWater.slice(0, 20)
+                          const deck = data.vocabulary.filter((v) => ids.includes(v.id))
+                          startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
+                        }}
+                        onOpen={() => {
+                          try {
+                            localStorage.setItem(WORDS_VIEW_KEY, 'garden')
+                          } catch {
+                            // The words screen just opens on its last view.
+                          }
+                          setScreen({ name: 'words' })
+                        }}
+                      />
+                  ),
+                }}
                 extra={
                   <>
-                  <GardenCard
-                    summary={gardenSummary(data.vocabulary, data.states, scheduler, new Date())}
-                    onWater={() => {
-                      const ids = gardenSummary(data.vocabulary, data.states, scheduler, new Date()).toWater.slice(0, 20)
-                      const deck = data.vocabulary.filter((v) => ids.includes(v.id))
-                      startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
-                    }}
-                    onOpen={() => {
-                      try {
-                        localStorage.setItem(WORDS_VIEW_KEY, 'garden')
-                      } catch {
-                        // The words screen just opens on its last view.
-                      }
-                      setScreen({ name: 'words' })
-                    }}
-                  />
                   <HabitCards
                     settings={settings}
                     onSettings={updateSettings}
