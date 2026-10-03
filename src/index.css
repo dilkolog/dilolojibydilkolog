@@ -1804,3 +1804,6 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 /* Sidebar: studying above, you (progress, profile, settings) below. */
 .nav-btn.nav-group { margin-top: 0.75rem; position: relative; }
 .nav-btn.nav-group::before { content: ''; position: absolute; left: 0.75rem; right: 0.75rem; top: -0.4rem; border-top: 1px solid var(--rule); }
+.offline-banner { margin: 0 0 1rem; padding: 0.625rem 0.875rem; border-radius: 0.75rem; background: var(--near-soft); color: var(--near-text); font-size: var(--t-sm); }
+.screen-error { margin-top: 1rem; }
+.screen-error-detail { font-family: ui-monospace, monospace; font-size: var(--t-xs, 0.75rem); overflow-wrap: anywhere; }

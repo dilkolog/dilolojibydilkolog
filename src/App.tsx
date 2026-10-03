@@ -44,6 +44,8 @@ import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
 import { CommandPalette, type Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
+import { ScreenBoundary } from './ui/ScreenBoundary'
+import { useOnline } from './ui/useOnline'
 
 /*
  * Screens other than the daily loop (home, session, summary) load when first opened, so the app
@@ -186,6 +188,7 @@ export default function App() {
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const [palette, setPalette] = useState(false)
   const [more, setMore] = useState(false)
+  const online = useOnline()
   // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
   const language = settings?.activeLanguage
@@ -615,6 +618,12 @@ export default function App() {
           )}
 
           <main className="main">
+            {!online && !inSession && (
+              <p className="offline-banner" role="status">
+                İnternet yok. Tekrarların ve kelimelerin normal çalışır; haberler, gerçek cümleler, görseller ve AI özellikleri bağlantı gelince açılır.
+              </p>
+            )}
+            <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>
             <Suspense fallback={<p className="muted screen-loading">Yükleniyor…</p>}>
             {!data || !plan ? null : screen.name === 'session' ? (
               <SessionScreen
@@ -805,6 +814,7 @@ export default function App() {
               />
             )}
             </Suspense>
+            </ScreenBoundary>
           </main>
           {palette && data && (
             <CommandPalette
