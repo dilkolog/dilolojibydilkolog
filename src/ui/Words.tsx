@@ -33,6 +33,7 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { nextReviewAt } from '../engine/review'
 import { relativeTime } from './format'
+import { getDensity, setDensity } from './density'
 
 interface Props {
   db: KelimeDB
@@ -755,6 +756,7 @@ function WordList({
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
   const [sort, setSort] = useState<Sort>('newest')
+  const [dense, setDense] = useState(() => getDensity() === 'compact')
   // Table view (wide screens): every word on one line with its numbers, sortable by column.
   const [asTable, setAsTable] = useState(() => {
     try {
@@ -888,6 +890,18 @@ function WordList({
                 ]}
               />
             </div>
+            <button
+              type="button"
+              className="chip chip-sm density-toggle"
+              aria-pressed={dense}
+              onClick={() => {
+                setDensity(dense ? 'comfortable' : 'compact')
+                setDense(!dense)
+              }}
+              title="Satırları sıklaştır"
+            >
+              Yoğun
+            </button>
             <div className="segmented view-toggle desktop-only" role="group" aria-label="Görünüm">
               <button className="segmented-btn" aria-pressed={!asTable} onClick={() => asTable && toggleTable()}>
                 Liste

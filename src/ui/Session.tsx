@@ -263,8 +263,13 @@ export function SessionScreen(p: Props) {
         <button className="icon-btn" onClick={() => setConfirmQuit(true)} aria-label="Oturumu bitir">
           <CloseIcon size={22} />
         </button>
-        <div className="progress" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
-          <div style={{ width: `${Math.max(progress, 3)}%` }} />
+        {/* One segment per question, coloured by why it is here; done ones solid, the rest faint. */}
+        <div className="progress progress-segments" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+          {session.items.length <= 60 ? (
+            session.items.map((it, i) => <span key={i} className={`seg seg-${it.kind === 'introduce' ? 'new' : it.reason}${i < session.index ? ' is-done' : ''}${i === session.index ? ' is-now' : ''}`} />)
+          ) : (
+            <div style={{ width: `${Math.max(progress, 3)}%` }} />
+          )}
         </div>
         {combo >= 3 ? (
           <span className="combo" key={combo}>

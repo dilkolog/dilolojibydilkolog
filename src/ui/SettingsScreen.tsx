@@ -26,6 +26,7 @@ import { forecastWorkload } from '../engine/workloadForecast'
 import { bookmarkletCode } from './incoming'
 import { PageHeader } from './PageHeader'
 import type { TypingShare } from '../engine/session'
+import { getDensity, setDensity, type Density } from './density'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
 const NEW_WORDS = [0, 3, 5, 8, 12, 20]
@@ -146,6 +147,7 @@ export function SettingsScreen({
   onDataChanged: () => void
   pushState: PushState
 }) {
+  const [density, setDensityState] = useState<Density>(getDensity)
   // Search: hides the settings (rows, then whole cards and group titles) that don't match.
   const root = useRef<HTMLDivElement>(null)
   const [query, setQuery] = useState('')
@@ -435,6 +437,9 @@ export function SettingsScreen({
         <h2 className="section-title">Görünüm</h2>
         <Row label="Tema">
           <Chips<Settings['theme']> options={['system', 'light', 'dark']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu' })[t]} />
+        </Row>
+        <Row label="Liste sıklığı" help="Yoğun: kelime listesi, hatalar ve tabloda satırlar daralır, ekrana iki kat kelime sığar. Bu cihaza özel.">
+          <Chips<Density> options={['comfortable', 'compact']} value={density} onChange={(v) => (setDensity(v), setDensityState(v))} format={(d) => ({ comfortable: 'Rahat', compact: 'Yoğun' })[d]} />
         </Row>
         <Row label="Yazı boyutu" help="Bütün uygulamayı büyütür; uzun okumalarda ve telefonda rahatlatır.">
           <Chips<NonNullable<Settings['textScale']>>
