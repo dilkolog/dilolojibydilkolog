@@ -51,8 +51,8 @@ export function MemoryCurveChart({ db, entryId, refresh }: { db: KelimeDB; entry
         </text>
         <path d={path(past)} className="mc-line" />
         <path d={path(future)} className="mc-line mc-future" />
-        {curve.reviews.map((rv) => (
-          <circle key={rv.t} cx={x(rv.t)} cy={y(rv.r || 1)} r={4} className={rv.correct ? 'mc-ok' : 'mc-bad'}>
+        {curve.reviews.map((rv, i) => (
+          <circle key={`${rv.t}-${i}`} cx={x(rv.t)} cy={y(rv.r || 1)} r={4} className={rv.correct ? 'mc-ok' : 'mc-bad'}>
             <title>
               {fmt(rv.t)}: {rv.correct ? 'doğru' : 'yanlış'}
               {rv.r ? `, o an hatırlama %${Math.round(rv.r * 100)}` : ''}
