@@ -21,6 +21,7 @@ import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
 import { fillWordInfo } from './data/wordInfo'
+import { fillFromLexicon } from './data/lexicon'
 import { fillFrequencyRanks } from './data/frequency'
 import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
@@ -272,6 +273,10 @@ export default function App() {
     if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
       const filled = await fillFrequencyRanks(db, language)
       if (filled) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    }
+    // French words saved without a part of speech or a noun gender get them from Lexique (offline).
+    if (language === 'fr' && loaded.vocabulary.some((v) => v.source !== 'sample' && (v.partOfSpeech === 'other' || (v.partOfSpeech === 'noun' && !v.gender)))) {
+      if (await fillFromLexicon(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // Real sentences for words that don't have them yet (a few per run, one run at a time).
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {

@@ -5,7 +5,8 @@ import type { VocabularyEntry } from './types'
  * Present-tense conjugation for French and Spanish verbs. Teaching a wrong form is worse than
  * teaching none, so forms come from tables for irregular verbs and from rules only where the
  * rule is safe: French -er verbs without stem changes, -dre verbs and listed -ir (-iss-) verbs;
- * Spanish -ar verbs outside the stem-changing list and listed regular -er/-ir verbs. Anything
+ * Spanish -ar verbs outside the stem-changing list and listed regular -er/-ir verbs. Beyond those,
+ * forms from UniMorph for the verbs a learner is likely to meet (see addConjugations). Anything
  * else is not conjugated.
  */
 
@@ -148,8 +149,8 @@ function frRegular(v: string): string[] | undefined {
   if (FR_ISS.has(v)) return FR_ENDINGS_ISS.map((e) => v.slice(0, -2) + e)
   if (/(endre|andre|ondre|erdre|ordre)$/.test(v) && !/prendre$/.test(v)) return FR_ENDINGS_DRE.map((e) => v.slice(0, -2) + e)
   if (!v.endsWith('er') || v === 'aller') return undefined
-  // Stem changes (acheter, appeler, préférer, payer…) are irregular in spelling: leave them out.
-  if (/e[^aeiouyéè]er$/.test(v) || /é[^aeiouyéè]+er$/.test(v) || /yer$/.test(v)) return undefined
+  // Stem changes (acheter, sevrer, appeler, préférer, léguer, payer…) are irregular in spelling: leave them out.
+  if (/e(?:[^aeiouyéè]|[bcdfgptv][lr])er$/.test(v) || /é(?:[^aeiouyéè]|gu|qu)+er$/.test(v) || /yer$/.test(v)) return undefined
   const stem = v.slice(0, -2)
   return FR_ENDINGS_ER.map((e, i) => {
     if (i === 3 && stem.endsWith('g')) return `${stem}eons`
@@ -177,13 +178,25 @@ function esRegular(v: string): string[] | undefined {
   return ES_ENDINGS[type].map((e, i) => (change && i !== 3 && i !== 4 ? changeStem(stem, change) : stem) + e)
 }
 
+/** Present tense from UniMorph (src/data/conjugation, loaded by conjugationData.ts); wins over the rules. */
+const DICTIONARY: Record<'fr' | 'es', Map<string, string[]>> = { fr: new Map(), es: new Map() }
+
+/** Adds dictionary forms: one verb per line, "infinitive<TAB>six forms separated by spaces". */
+export function addConjugations(language: 'fr' | 'es', text: string) {
+  for (const line of text.split('\n')) {
+    const [verb, forms] = line.split('\t')
+    const six = forms?.trim().split(' ')
+    if (verb && six?.length === 6) DICTIONARY[language].set(verb, six)
+  }
+}
+
 const REFLEXIVE: Record<'fr' | 'es', string[]> = { fr: t('me te se nous vous se'), es: t('me te se nos os se') }
 
 export interface Conjugation {
   infinitive: string
   forms: string[]
-  /** 'table' = written out by hand; 'rule' = produced by a safe regular pattern. */
-  source: 'table' | 'rule'
+  /** 'table' = written out by hand; 'dictionary' = UniMorph; 'rule' = produced by a safe regular pattern. */
+  source: 'table' | 'dictionary' | 'rule'
 }
 
 /** Present tense of a FR/ES verb entry, or undefined when it can't be produced safely. */
@@ -202,7 +215,8 @@ export function conjugate(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'p
     v = v.slice(0, -2)
   }
   const table = (lang === 'fr' ? FR_TABLE : ES_TABLE)[v]
-  const forms = table ?? (lang === 'fr' ? frRegular(v) : esRegular(v))
+  const listed = table ? undefined : DICTIONARY[lang].get(v)
+  const forms = table ?? listed ?? (lang === 'fr' ? frRegular(v) : esRegular(v))
   if (!forms) return undefined
   const withPronoun = reflexive
     ? forms.map((f, i) => {
@@ -210,7 +224,7 @@ export function conjugate(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'p
         return lang === 'fr' && /^[aeiouéèêhâîôû]/.test(f) && (p === 'me' || p === 'te' || p === 'se') ? `${p[0]}'${f}` : `${p} ${f}`
       })
     : forms
-  return { infinitive: entry.lemma, forms: withPronoun, source: table ? 'table' : 'rule' }
+  return { infinitive: entry.lemma, forms: withPronoun, source: table ? 'table' : listed ? 'dictionary' : 'rule' }
 }
 
 /** Accepted answers for one person: the form alone, or with any of its subject pronouns. */

@@ -6,6 +6,8 @@ import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, Voca
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { loadFrequency, rankOf, UNRANKED } from '../data/frequency'
+import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
+import { turkishMeanings, type TurkishMeanings } from '../data/wordInfo'
 import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
@@ -331,7 +333,40 @@ export function WordForm({
   // Part of speech is guessed from the word (or taken from the AI) unless the user picks it.
   const [posManual, setPosManual] = useState(() => !!entry || !!initial?.partOfSpeech)
   const [aiPos, setAiPos] = useState<{ word: string; pos: PartOfSpeech } | null>(null)
-  const autoPos = aiPos && aiPos.word === form.word.trim() ? aiPos.pos : guessPartOfSpeech(form.word, language)
+  // French: part of speech and gender from Lexique, offline (see data/lexicon.ts).
+  const [lexicon, setLexicon] = useState<ReadonlyMap<string, LexiconEntry>>()
+  useEffect(() => {
+    let live = true
+    void loadLexicon(language).then((l) => live && setLexicon(l))
+    return () => {
+      live = false
+    }
+  }, [language])
+  const lex = lookUpLexicon(lexicon, form.word, language)
+  const typedArticle = splitArticle(normalize(form.word.trim()).toLocaleLowerCase(language), language).article
+  const fromAi = !!aiPos && aiPos.word === form.word.trim()
+  const fromLexicon = !fromAi && !typedArticle && !!lex?.pos.length
+  const autoPos = fromAi ? aiPos!.pos : fromLexicon ? lex!.pos[0] : guessPartOfSpeech(form.word, language)
+  // A gender the article doesn't show (l'asile, les gens, or no article) comes from the lexicon.
+  const lexGender = (!typedArticle || /^(l['’]|les)$/.test(typedArticle)) && lex?.gender ? lex.gender : undefined
+  // Turkish meanings from Wiktionary as the word is typed, offered as one-tap suggestions.
+  const [trMeanings, setTrMeanings] = useState<{ word: string } & TurkishMeanings>()
+  useEffect(() => {
+    const word = form.word.trim()
+    if (entry || word.length < 2 || (typeof navigator !== 'undefined' && !navigator.onLine)) return
+    let live = true
+    const t = window.setTimeout(() => {
+      turkishMeanings(word, language)
+        .then((r) => live && setTrMeanings({ word, ...r }))
+        .catch(() => undefined)
+    }, 700)
+    return () => {
+      live = false
+      window.clearTimeout(t)
+    }
+  }, [form.word, language, entry])
+  const meaningList = form.meaning.split(/[,/]/).map((m) => m.trim().toLocaleLowerCase('tr'))
+  const meaningSuggestions = trMeanings && trMeanings.word === form.word.trim() ? trMeanings.words.filter((w) => !meaningList.includes(w.toLocaleLowerCase('tr'))) : []
   const [moreOpen, setMoreOpen] = useState(false)
   // Frequency band looked up from the bundled list as the word is typed.
   const [autoRank, setAutoRank] = useState(0)
@@ -459,7 +494,8 @@ export function WordForm({
     e.preventDefault()
     setError('')
     try {
-      const input = posManual ? form : { ...form, partOfSpeech: autoPos }
+      const withGender = form.gender || !lexGender ? form : { ...form, gender: lexGender }
+      const input = posManual ? withGender : { ...withGender, partOfSpeech: autoPos }
       const saved = entry ? updateEntry(entry, input) : createEntry(input, language, new Date())
       if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
         throw new WordInputError(`"${saved.lemma}" zaten listende.`)
@@ -499,7 +535,23 @@ export function WordForm({
           <div className="field">
             <label htmlFor="w-meaning">Türkçe anlamı</label>
             <input id="w-meaning" className="input" value={form.meaning} onChange={set('meaning')} autoComplete="off" autoCapitalize="off" />
-            <span className="help">Birden fazlaysa virgülle ayır</span>
+            {meaningSuggestions.length > 0 ? (
+              <div className="meaning-suggest" aria-label="Wiktionary önerileri">
+                <span className="help">{trMeanings?.via ? `Wiktionary (“${trMeanings.via}” üzerinden):` : 'Wiktionary:'}</span>
+                {meaningSuggestions.map((w) => (
+                  <button
+                    key={w}
+                    type="button"
+                    className="chip chip-sm"
+                    onClick={() => setForm((f) => ({ ...f, meaning: f.meaning.trim() ? `${f.meaning.trim().replace(/,$/, '')}, ${w}` : w }))}
+                  >
+                    + {w}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <span className="help">Birden fazlaysa virgülle ayır</span>
+            )}
           </div>
         </div>
         <div className="grid-2">
@@ -529,7 +581,7 @@ export function WordForm({
             ) : (
               <div className="pos-auto" id="w-pos" role="status" aria-live="polite">
                 {autoPos ? <strong>{POS_NAME[autoPos]}</strong> : <span className="muted">{form.word.trim() ? 'Tahmin edilemedi' : 'Kelimeyi yazınca belirlenir'}</span>}
-                <span className="pos-auto-tag">{aiPos && autoPos === aiPos.pos && aiPos.word === form.word.trim() ? 'AI' : 'Otomatik'}</span>
+                <span className="pos-auto-tag">{fromAi ? 'AI' : fromLexicon ? 'Sözlük' : 'Otomatik'}</span>
               </div>
             )}
           </div>
@@ -546,14 +598,14 @@ export function WordForm({
               <Select
                 id="w-gender"
                 label="Cinsiyet"
-                value={form.gender}
+                value={form.gender ?? (lexGender === 'm' || lexGender === 'f' ? lexGender : undefined)}
                 options={[
                   { value: 'm', label: 'Eril (le)' },
                   { value: 'f', label: 'Dişil (la)' },
                 ]}
                 onChange={(v) => setForm((f) => ({ ...f, gender: v as Gender }))}
               />
-              <span className="help">l' cinsiyeti göstermediği için gerekli</span>
+              <span className="help">{!form.gender && (lexGender === 'm' || lexGender === 'f') ? 'Sözlükten (Lexique) dolduruldu' : "l' cinsiyeti göstermediği için gerekli"}</span>
             </div>
           )}
         </div>

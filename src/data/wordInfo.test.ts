@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { audioFileOf, commonFamily, commonsMp3, familyOf, firstDefinition, ipaOf, md5, wikiToText } from './wordInfo'
+import { audioFileOf, commonFamily, commonsMp3, familyOf, firstDefinition, ipaOf, md5, turkishIn, wikiToText } from './wordInfo'
 
 describe('Wiktionary word info', () => {
   it('turns wikitext into plain text', () => {
@@ -36,5 +36,14 @@ describe('Wiktionary word info', () => {
   it('offers only frequent relatives, most frequent first', () => {
     const freq = new Map([['décision', 300], ['indécis', 9000], ['décidément', 4000]])
     expect(commonFamily(['décidabilité', 'indécis', 'décision', 'contre-décision', 'décidément'], freq)).toEqual(['décision', 'décidément', 'indécis'])
+  })
+})
+
+describe('Turkish meanings in translation tables', () => {
+  it('reads the English, French and Spanish formats in order, without duplicates', () => {
+    expect(turkishIn('* Turkish: {{t+|tr|sığınak}}, {{t+|tr|iltica}}\n*: Ottoman Turkish: {{t|ota|التجا|tr=iltica}}\n* Turkish: {{t+check|tr|sığınak}}', 'en')).toEqual(['sığınak', 'iltica'])
+    expect(turkishIn('* {{T|tr}} : {{trad+|tr|ev}}, {{trad-|tr|[[mesken]]}}', 'fr')).toEqual(['ev', 'mesken'])
+    expect(turkishIn('{{t|tr|i1=s|t1=ev|i2=s|t2=konut}}', 'es')).toEqual(['ev', 'konut'])
+    expect(turkishIn('* German: {{t+|de|Haus}}', 'en')).toEqual([])
   })
 })

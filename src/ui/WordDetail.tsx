@@ -214,7 +214,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </tbody>
           </table>
           <p className="small muted">
-            {conjugation.source === 'rule' ? 'Düzenli fiil kuralıyla üretildi. ' : ''}"Üretme" becerisi açılınca çekim soruları da gelir.
+            {conjugation.source === 'rule' ? 'Düzenli fiil kuralıyla üretildi. ' : conjugation.source === 'dictionary' ? 'Çekim: UniMorph. ' : ''}"Üretme" becerisi açılınca çekim soruları da gelir.
           </p>
         </section>
       )}

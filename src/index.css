@@ -2598,3 +2598,7 @@ section:has(> .media-split) { container-type: inline-size; }
 /* Where a sentence comes from (a text the learner read, their own sentence): a quiet tag under it. */
 .sentence-source { display: inline-flex; margin-top: 0.5rem; padding: 0.125rem 0.625rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-size: var(--t-xs); font-weight: 600; }
 .blank-start { color: var(--lang-text); font-weight: 700; letter-spacing: 0; }
+
+/* Turkish meanings from Wiktionary under the meaning field: one tap adds one. */
+.meaning-suggest { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin-top: 0.125rem; }
+.meaning-suggest .help { margin: 0; }

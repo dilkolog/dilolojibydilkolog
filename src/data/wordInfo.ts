@@ -1,8 +1,8 @@
-import { stripDiacritics } from '../engine/answerCheck'
+import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
 import type { Gender, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
 import { loadFrequency } from './frequency'
-import { fetchPages, languageSection } from './wiktionary'
+import { englishGloss, fetchPages, languageSection } from './wiktionary'
 
 /**
  * Pronunciation, a definition in the language itself and the word family, from Wiktionary
@@ -308,4 +308,61 @@ export async function englishHints(words: string[], language: TargetLanguage): P
 function englishGlossLine(section: string): string | undefined {
   const def = firstDefinition(section, 'hash')
   return def && def.length > 80 ? `${def.slice(0, 77).trimEnd()}…` : def
+}
+
+// ---------------------------------------------------------------------------
+// Turkish meanings
+// ---------------------------------------------------------------------------
+
+const unlink = (s: string) => s.replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g, '$1').trim()
+
+/**
+ * Turkish words in a Wiktionary section's translation tables, in sense order: English
+ * "* Turkish: {{t+|tr|karar}}", French "{{trad+|tr|ev}}", Spanish "{{t|tr|t1=ev|t2=…}}".
+ */
+export function turkishIn(section: string, site: 'en' | 'fr' | 'es'): string[] {
+  const out: string[] = []
+  if (site === 'en') {
+    for (const line of section.split('\n').filter((l) => /^\*\s*Turkish:/.test(l))) {
+      for (const m of line.matchAll(/\{\{t[a-z+-]*\|tr\|([^|}]+)/g)) out.push(m[1])
+    }
+  } else if (site === 'fr') {
+    for (const m of section.matchAll(/\{\{trad[+-]?\|tr\|([^|}]+)/g)) out.push(m[1])
+  } else {
+    for (const m of section.matchAll(/\{\{t\|tr\|([^}]*)\}\}/g)) for (const t of m[1].matchAll(/(?:^|\|)t\d+=([^|]+)/g)) out.push(t[1])
+  }
+  return [...new Set(out.map(unlink).filter(Boolean))]
+}
+
+export interface TurkishMeanings {
+  words: string[]
+  /** Set when found through the English word (French/Spanish pages without Turkish): less exact. */
+  via?: string
+}
+
+/**
+ * Turkish meanings for a word from Wiktionary (CC BY-SA; the data Kaikki.org extracts), without
+ * the AI: the word's own Wiktionary first (French and Spanish ones translate their words), then
+ * the English page, for French/Spanish words through their English meaning.
+ */
+export async function turkishMeanings(word: string, language: TargetLanguage, max = 5): Promise<TurkishMeanings> {
+  const w = normalize(word).toLocaleLowerCase(language)
+  const lemma = splitArticle(w, language).rest || w
+  if (!lemma || /\s/.test(lemma)) return { words: [] }
+  if (language !== 'en') {
+    const own = (await fetchPages([lemma], language)).get(lemma)
+    const section = own ? (language === 'fr' ? frSection(own) : esSection(own)) : null
+    const found = section ? turkishIn(section, language) : []
+    if (found.length) return { words: found.slice(0, max) }
+  }
+  const en = (await fetchPages([lemma], 'en')).get(lemma)
+  const section = en ? languageSection(en, language) : null
+  if (!section) return { words: [] }
+  if (language === 'en') return { words: turkishIn(section, 'en').slice(0, max) }
+  const english = englishGloss(section)
+  if (!english) return { words: [] }
+  const page = (await fetchPages([english], 'en')).get(english)
+  const enSection = page ? languageSection(page, 'en') : null
+  const words = enSection ? turkishIn(enSection, 'en').slice(0, max - 1) : []
+  return words.length ? { words, via: english } : { words: [] }
 }

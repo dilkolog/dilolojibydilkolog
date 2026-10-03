@@ -73,3 +73,24 @@ describe('conjugation exercise', () => {
     expect(evaluateTyped(ex, other, entry, [entry])).toMatchObject({ verdict: 'wrong', errorType: 'form' })
   })
 })
+
+describe('dictionary forms (UniMorph)', () => {
+  it('leaves out French stem changes the rules would get wrong', async () => {
+    const { conjugate } = await import('../conjugation')
+    expect(conjugate({ language: 'fr', lemma: 'léguer', partOfSpeech: 'verb' })).toBeUndefined()
+    expect(conjugate({ language: 'fr', lemma: 'sevrer', partOfSpeech: 'verb' })).toBeUndefined()
+    expect(conjugate({ language: 'fr', lemma: 'entrer', partOfSpeech: 'verb' })?.forms[0]).toBe('entre')
+  })
+
+  it('conjugates common verbs beyond the tables, and corrects stem changes', async () => {
+    await import('../conjugationData')
+    const { conjugate } = await import('../conjugation')
+    const of = (language: 'fr' | 'es', lemma: string) => conjugate({ language, lemma, partOfSpeech: 'verb' })
+    expect(of('es', 'demostrar')).toMatchObject({ forms: ['demuestro', 'demuestras', 'demuestra', 'demostramos', 'demostráis', 'demuestran'], source: 'dictionary' })
+    expect(of('fr', 'léguer')?.forms[0]).toBe('lègue')
+    expect(of('fr', 'vaincre')?.forms[3]).toBe('vainquons')
+    expect(of('fr', 'se résoudre')?.forms[0]).toBe('me résous')
+    // Hand tables still win (paie, not the variant paye).
+    expect(of('fr', 'payer')).toMatchObject({ forms: ['paie', 'paies', 'paie', 'payons', 'payez', 'paient'], source: 'table' })
+  })
+})

@@ -156,7 +156,7 @@ export function ImagePicker({
               </div>
             )}
             <p className="small muted">
-              Wikimedia Commons'taki özgür lisanslı görseller. Soyut kelimelerde Türkçe anlamla ya da İngilizce aramak daha iyi sonuç verir.
+              Wikimedia Commons ve Openverse'teki açık lisanslı görseller. Soyut kelimelerde Türkçe anlamla ya da İngilizce aramak daha iyi sonuç verir.
             </p>
             {results && results.length === 0 && <p className="muted">Sonuç yok. Başka bir kelimeyle dene.</p>}
             {results && results.length > 0 && (
