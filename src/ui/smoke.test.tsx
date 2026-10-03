@@ -17,6 +17,8 @@ import { SettingsScreen } from './SettingsScreen'
 import { WordDetail } from './WordDetail'
 import { WordsScreen } from './Words'
 import { Home } from './Screens'
+import { SessionScreen } from './Session'
+import type { SessionSummary } from '../engine/session'
 import { buildDailyPlan } from '../engine/dailyPlan'
 import { skillProfile } from '../engine/mastery'
 
@@ -170,6 +172,63 @@ describe('screens render', () => {
     )
     expect(text).toContain('Karışık tekrar')
   })
+  it('a whole session can be clicked through to its summary', async () => {
+    const plan = buildDailyPlan({ now, settings: { language: 'fr', dailyMinutes: 30, newWordsPerDay: 2 }, catalog: vocabulary, states, mistakes: [], scheduler, seed: 3 })
+    expect(plan.items.length).toBeGreaterThan(2)
+    let finished: SessionSummary | null = null
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    await act(async () =>
+      root.render(
+        <SessionScreen
+          items={plan.items}
+          mode="normal"
+          vocabulary={vocabulary}
+          states={states}
+          mistakes={[]}
+          db={db}
+          scheduler={scheduler}
+          seed={3}
+          options={{}}
+          onFinish={(sum) => (finished = sum)}
+          onQuit={noop}
+        />,
+      ),
+    )
+    const click = async (b: HTMLElement) =>
+      act(async () => {
+        b.click()
+        await new Promise((r) => setTimeout(r, 20))
+      })
+    let waits = 0
+    for (let step = 0; step < 120 && !finished; step++) {
+      const buttons = [...el.querySelectorAll<HTMLButtonElement>('button')].filter((b) => !b.disabled)
+      const option = el.querySelector<HTMLButtonElement>('button.option:not([disabled])')
+      const input = el.querySelector<HTMLInputElement>('input.answer-input:not([disabled]), textarea.answer-input:not([disabled])')
+      const go = buttons.find((b) => /^(Devam|Anladım|Kontrol et|Tamam|Başla|Sonraki|Öğrendim)/.test(b.textContent?.trim() ?? ''))
+      if (option || input || go) waits = 0
+      if (option) await click(option)
+      else if (input) {
+        await act(async () => {
+          const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'value')!.set!
+          setter.call(input, 'xyz')
+          input.dispatchEvent(new Event('input', { bubbles: true }))
+        })
+        const check = [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => /Kontrol|Cevapla|Gönder/.test(b.textContent ?? '') && !b.disabled)
+        if (check) await click(check)
+        else await act(async () => input.form?.requestSubmit())
+      } else if (go) await click(go)
+      else if (waits++ < 8) {
+        // A pause the screen imposes on purpose (e.g. reading a confident error's correction).
+        await act(async () => new Promise((r) => setTimeout(r, 700)))
+      } else break
+    }
+    await act(async () => root.unmount())
+    el.remove()
+    expect(finished).not.toBeNull()
+    expect(finished!.answered).toBeGreaterThan(0)
+  }, 90_000)
   it('without React warnings', () => {
     expect(problems.filter((p) => !/act\(|not wrapped in act/.test(p))).toEqual([])
   })
