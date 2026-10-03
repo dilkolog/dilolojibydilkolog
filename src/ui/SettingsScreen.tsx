@@ -22,6 +22,7 @@ import { Select } from './Select'
 import { canSpeak, speak, voicesFor } from './speech'
 import { canListen } from './speechInput'
 import { dictionaryHtml, toCsv } from '../data/exportList'
+import { forecastWorkload } from '../engine/workloadForecast'
 import { bookmarkletCode } from './incoming'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
@@ -113,6 +114,14 @@ function PushToggle({ state }: { state: PushState }) {
       {error && <p className="error small">{error}</p>}
     </>
   )
+}
+
+/** The pace's cost, so the choice is an informed one (as in FSRS's workload simulator). */
+function newWordsHelp(s: Settings): string {
+  const f = forecastWorkload(s.newWordsPerDay, s.retention, s.fsrsWeights)
+  const reviews = Math.round(f.reviewsAt(30) / 5) * 5
+  const minutes = Math.max(1, Math.round(f.minutesAt(30)))
+  return `Tekrarlar birikmişse o gün yeni kelime gelmez. Bu hızla bir ay sonra yeni kelimelerden günde yaklaşık ${reviews} tekrar (~${minutes} dk) gelir; seçimini günlük süreyle dengele.`
 }
 
 const GROUPS: [string, string][] = [
@@ -241,7 +250,7 @@ export function SettingsScreen({
         <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
           <Chips options={MINUTES} value={settings.dailyMinutes} onChange={(v) => set('dailyMinutes', v)} format={(m) => `${m} dk`} />
         </Row>
-        <Row label="Günde en fazla yeni kelime" help="Tekrarlar birikmişse o gün yeni kelime gelmez.">
+        <Row label="Günde en fazla yeni kelime" help={newWordsHelp(settings)}>
           <Chips options={NEW_WORDS} value={settings.newWordsPerDay} onChange={(v) => set('newWordsPerDay', v)} />
         </Row>
         <Row label="Günlük XP hedefi" help="Ana sayfada hedef çubuğu olarak görünür.">
