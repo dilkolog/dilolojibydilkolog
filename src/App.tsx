@@ -194,6 +194,23 @@ export default function App() {
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const [palette, setPalette] = useState(false)
   const [more, setMore] = useState(false)
+  // Wide screens: the sidebar can fold to an icon rail, giving the content more room (remembered).
+  const [rail, setRail] = useState(() => {
+    try {
+      return localStorage.getItem('kelime-koc:rail') === '1'
+    } catch {
+      return false
+    }
+  })
+  const toggleRail = () =>
+    setRail((r) => {
+      try {
+        localStorage.setItem('kelime-koc:rail', r ? '0' : '1')
+      } catch {
+        // Not remembered; fine.
+      }
+      return !r
+    })
   const online = useOnline()
   // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
@@ -526,15 +543,20 @@ export default function App() {
   return (
     <AiContext.Provider value={ai}>
       <GameContext.Provider value={game}>
-        <div className={inSession ? 'app' : 'shell'} data-lang={settings.activeLanguage}>
+        <div className={inSession ? 'app' : `shell${rail ? ' is-rail' : ''}`} data-lang={settings.activeLanguage}>
           {!inSession && (
             <aside className="sidebar">
-              <button className="brand" onClick={go({ name: 'home' })}>
-                <span className="brand-mark" aria-hidden>
-                  <BrandMark />
-                </span>
-                Kelime Koçu
-              </button>
+              <div className="brand-row">
+                <button className="brand" onClick={go({ name: 'home' })} title="Kelime Koçu">
+                  <span className="brand-mark" aria-hidden>
+                    <BrandMark />
+                  </span>
+                  <span className="brand-name">Kelime Koçu</span>
+                </button>
+                <button className="icon-btn rail-toggle" onClick={toggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>
+                  <span aria-hidden>{rail ? '»' : '«'}</span>
+                </button>
+              </div>
               <div className="langs" role="group" aria-label="Dil">
                 {TARGET_LANGUAGES.map((l) => (
                   <button
@@ -550,7 +572,8 @@ export default function App() {
                   </button>
                 ))}
               </div>
-              <button className="palette-trigger" onClick={() => setPalette(true)}>
+              <button className="palette-trigger" onClick={() => setPalette(true)} title="Ara ya da git (⌘K)">
+                <SearchIcon size={16} />
                 <span>Ara ya da git…</span>
                 <kbd>⌘K</kbd>
               </button>
@@ -561,9 +584,10 @@ export default function App() {
                     className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}${n.screen === 'progress' ? ' nav-group' : ''}`}
                     aria-current={current(n.screen) ? 'page' : undefined}
                     onClick={go({ name: n.screen })}
+                    title={rail ? n.label : undefined}
                   >
                     <n.icon size={20} />
-                    <span>{n.label}</span>
+                    <span className="nav-label">{n.label}</span>
                     {!!navBadge[n.screen] && (
                       <span className={`nav-badge nav-badge-${n.screen}`} aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`}>
                         {navBadge[n.screen]! > 99 ? '99+' : navBadge[n.screen]}
@@ -579,6 +603,11 @@ export default function App() {
                   {game && (
                     <span className="small muted">
                       Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
+                    </span>
+                  )}
+                  {game && (
+                    <span className="sidebar-level" aria-hidden>
+                      <span style={{ width: `${game.level.progress * 100}%` }} />
                     </span>
                   )}
                 </span>

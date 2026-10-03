@@ -897,7 +897,7 @@ function WordList({
               </button>
             </div>
           </div>
-          <div className="choice-row">
+          <div className="choice-row filter-row">
             {STAGE_FILTERS.map(([v, label]) => (
               <button key={v} className="chip chip-sm" aria-pressed={stage === v} onClick={() => setStage(v)}>
                 {label}

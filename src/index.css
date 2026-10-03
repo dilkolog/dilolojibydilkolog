@@ -2502,3 +2502,53 @@ section:has(> .media-split) { container-type: inline-size; }
 /* A labelled group inside a long form ("Örnek cümle · isteğe bağlı"). */
 .form-group { display: grid; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 .form-group-title { font-size: var(--t-sm); font-weight: 700; color: var(--ink-soft); }
+
+/* ---------- Sidebar polish and the icon rail ---------- */
+.brand-row { display: flex; align-items: center; gap: 0.5rem; }
+.rail-toggle { display: none; margin-left: auto; font-size: var(--t-lg); line-height: 1; }
+.palette-trigger svg { display: none; }
+.sidebar-level { display: block; height: 4px; margin-top: 0.375rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
+.sidebar-level > span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--flame)); border-radius: var(--r-full); }
+.sidebar-who { display: grid; min-width: 0; flex: 1; text-align: left; }
+@media (min-width: 64rem) {
+  .rail-toggle { display: inline-grid; }
+  .nav-btn { color: var(--ink-soft); transition: background-color 150ms ease-out, color 150ms ease-out; }
+  .nav-btn:hover:not([aria-current='page']) { background: var(--surface); color: var(--ink); }
+  .nav-btn[aria-current='page'] { background: var(--lang-soft); color: var(--lang-text); font-weight: 700; }
+  .palette-trigger { gap: 0.5rem; justify-content: flex-start; }
+  .palette-trigger svg { display: block; flex: none; }
+  .palette-trigger kbd { margin-left: auto; }
+
+  /* Rail: icons only. */
+  .shell.is-rail { grid-template-columns: 4.25rem minmax(0, 1fr); gap: 2rem; }
+  .shell.is-rail .sidebar { align-items: center; gap: 1rem; }
+  .shell.is-rail .brand-row { flex-direction: column; gap: 0.5rem; }
+  .shell.is-rail .rail-toggle { margin-left: 0; }
+  .shell.is-rail .brand-name, .shell.is-rail .nav-label, .shell.is-rail .palette-trigger span, .shell.is-rail .palette-trigger kbd, .shell.is-rail .sidebar-who { display: none; }
+  .shell.is-rail .langs { flex-direction: column; width: 3rem; border-radius: var(--r-md); }
+  .shell.is-rail .lang-btn { padding: 0.375rem 0; }
+  .shell.is-rail .palette-trigger { justify-content: center; width: 3rem; padding: 0.625rem 0; }
+  .shell.is-rail .nav { align-items: center; }
+  .shell.is-rail .nav-btn { justify-content: center; width: 3rem; padding: 0.625rem 0; position: relative; }
+  .shell.is-rail .nav-btn.nav-group::before { left: 0.25rem; right: 0.25rem; }
+  .shell.is-rail .nav-badge { position: absolute; top: 0.25rem; right: 0.25rem; min-width: 0; width: 0.55rem; height: 0.55rem; padding: 0; font-size: 0; line-height: 0; }
+  .shell.is-rail .sidebar-foot { justify-content: center; padding: 0.5rem; }
+}
+
+/* ---------- Phones: less in front of the content, a sticky top bar ---------- */
+@media (max-width: 45.99rem) {
+  /* The top bar (logo, languages) stays put with a translucent background. */
+  .shell > .sidebar {
+    position: sticky; top: 0; z-index: 20;
+    margin: calc(-0.75rem - env(safe-area-inset-top)) -1rem 1rem; padding: calc(0.625rem + env(safe-area-inset-top)) 1rem 0.625rem;
+    background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  }
+  /* View switches and filter chips scroll sideways on one line instead of wrapping into rows. */
+  .segmented, .filter-row { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .segmented::-webkit-scrollbar, .filter-row::-webkit-scrollbar { display: none; }
+  .segmented > *, .filter-row > * { flex: none; scroll-snap-align: start; }
+  .filter-row { margin-inline: -1rem; padding-inline: 1rem; }
+  /* With page tabs there, the tab is the action: no extra header button. */
+  .section:has(.page-tabs) .page-header-action { display: none; }
+}
