@@ -48,8 +48,8 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
   return (
     <section className="section stack">
       <h2 className="section-title">Görsel, ses ve not</h2>
-      <div className="grid-2">
-        <div className="card stack">
+      <div className="grid-2 media-split">
+        <div className="stack media-block">
           <h3 className="field">
             <label>Görsel</label>
           </h3>
@@ -78,7 +78,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
           )}
         </div>
 
-        <div className="card stack">
+        <div className="stack media-block">
           <h3 className="field">
             <label>Kendi sesin</label>
           </h3>

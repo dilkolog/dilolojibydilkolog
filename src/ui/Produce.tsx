@@ -45,20 +45,20 @@ export function ProduceScreen(p: Props) {
   return (
     <div className="stack">
       <PageHeader title="Yaz & konuş" sub="Bildiğin kelimeleri kullanarak yaz ve konuş: asıl öğrenme burada pekişir." />
-      <div className="segmented" role="tablist" aria-label="Bölüm">
-        <button role="tab" className="segmented-btn" aria-selected={tab === 'journal'} onClick={() => setTab('journal')}>
+      <div className="page-tabs" role="tablist" aria-label="Bölüm">
+        <button role="tab" className="page-tab" aria-selected={tab === 'journal'} onClick={() => setTab('journal')}>
           Günlük
         </button>
-        <button role="tab" className="segmented-btn" aria-selected={tab === 'chat'} onClick={() => setTab('chat')}>
+        <button role="tab" className="page-tab" aria-selected={tab === 'chat'} onClick={() => setTab('chat')}>
           Sohbet
         </button>
-        <button role="tab" className="segmented-btn" aria-selected={tab === 'mission'} onClick={() => setTab('mission')}>
+        <button role="tab" className="page-tab" aria-selected={tab === 'mission'} onClick={() => setTab('mission')}>
           Görevler
         </button>
-        <button role="tab" className="segmented-btn" aria-selected={tab === 'fluency'} onClick={() => setTab('fluency')}>
+        <button role="tab" className="page-tab" aria-selected={tab === 'fluency'} onClick={() => setTab('fluency')}>
           4/3/2
         </button>
-        <button role="tab" className="segmented-btn" aria-selected={tab === 'gloss'} onClick={() => setTab('gloss')}>
+        <button role="tab" className="page-tab" aria-selected={tab === 'gloss'} onClick={() => setTab('gloss')}>
           Dinle-yaz
         </button>
       </div>

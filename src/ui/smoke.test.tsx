@@ -141,7 +141,7 @@ describe('screens render', () => {
     expect(seen.length).toBeGreaterThanOrEqual(8)
   })
   it('every produce tab opens', async () => {
-    const seen = await clickThrough(() => <ProduceScreen db={db} language="fr" vocabulary={vocabulary} states={states} onChanged={noop} onOpenSettings={noop} />, 'button.segmented-btn')
+    const seen = await clickThrough(() => <ProduceScreen db={db} language="fr" vocabulary={vocabulary} states={states} onChanged={noop} onOpenSettings={noop} />, 'button.page-tab')
     expect(seen.length).toBe(5)
   })
   it('words', async () => {
