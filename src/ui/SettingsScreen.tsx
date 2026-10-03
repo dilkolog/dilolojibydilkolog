@@ -24,6 +24,7 @@ import { canListen } from './speechInput'
 import { dictionaryHtml, toCsv } from '../data/exportList'
 import { forecastWorkload } from '../engine/workloadForecast'
 import { bookmarkletCode } from './incoming'
+import { PageHeader } from './PageHeader'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
 const NEW_WORDS = [0, 3, 5, 8, 12, 20]
@@ -279,7 +280,7 @@ export function SettingsScreen({
 
   return (
     <div className="stack settings-page" ref={root}>
-      <h1 className="greeting">Ayarlar</h1>
+      <PageHeader title="Ayarlar" sub="Çalışma temposu, ses, bildirimler, hesap ve yedekler." />
       <label className="settings-search">
         <SearchIcon size={18} />
         <input

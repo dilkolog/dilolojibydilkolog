@@ -12,6 +12,7 @@ import { CheckIcon, SparkleIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { speak } from './speech'
+import { PageHeader } from './PageHeader'
 
 const GENRES = ['Bilim kurgu', 'Polisiye', 'Tarih', 'Macera', 'Romantik', 'Komedi', 'Fantastik', 'Gündelik hayat', 'İş dünyası', 'Seyahat', 'Gerilim', 'Spor']
 const WRITING = ['Kalem açılıyor…', 'Karakterler toplanıyor…', 'Olay örgüsü kuruluyor…', 'Son cümle cilalanıyor…']
@@ -138,10 +139,10 @@ export function StoryScreen(p: Props) {
 
   return (
     <div className="stack">
-      <h1 className="greeting">Hikayen</h1>
-      <p className="greeting-sub">
-        {LANGUAGE_NAME[p.language]} dizin{episodes.length ? `: ${episodes.length} bölüm` : ''}. Her bölüm zorlandığın {WORDS_PER_EPISODE} kelimeyle yazılır.
-      </p>
+      <PageHeader
+        title="Hikayen"
+        sub={`${LANGUAGE_NAME[p.language]} dizin${episodes.length ? `: ${episodes.length} bölüm` : ''}. Her bölüm zorlandığın ${WORDS_PER_EPISODE} kelimeyle yazılır.`}
+      />
 
       <details className="card" open={episodes.length === 0}>
         <summary>Neyi seversin? {story.interests.length > 0 && <span className="small muted">({story.interests.join(', ')})</span>}</summary>

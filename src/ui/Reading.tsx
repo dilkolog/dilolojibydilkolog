@@ -17,6 +17,8 @@ import { LANGUAGE_NAME } from './labels'
 import { WordForm } from './Words'
 import { undoable } from './toast'
 import { EmptyState } from './EmptyState'
+import { PageHeader } from './PageHeader'
+import { PlusIcon } from './icons'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
   easy: { title: 'Rahat okuma', text: 'Neredeyse her kelimeyi biliyorsun: akıcılık için ideal. Yeni kelime için biraz daha zor bir metin seçebilirsin.' },
@@ -419,11 +421,24 @@ export function ReadingScreen({
     }
     return (
       <div className="stack">
-        <h1 className="greeting">Okuma</h1>
-        <p className="greeting-sub">
-          {LANGUAGE_NAME[language]} bir metin yapıştır ya da bir alt yazı dosyası yükle: bir haber, blog yazısı, kitaptan bir sayfa ya da izlediğin dizinin
-          alt yazısı. Ne kadarını bildiğini gösteririm; bilmediğin kelimeleri işaretler, listene eklersin.
-        </p>
+        <PageHeader
+          title="Okuma"
+          sub={`${LANGUAGE_NAME[language]} metinlerde ne kadarını bildiğini gör, bilmediklerini listene ekle.`}
+          action={
+            <button
+              className="btn"
+              onClick={() => {
+                const add = document.querySelector<HTMLDetailsElement>('details.add-text')
+                if (add) {
+                  add.open = true
+                  add.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }}
+            >
+              <PlusIcon size={18} /> Metin ekle
+            </button>
+          }
+        />
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         {library.length === 0 && (
           <EmptyState stage={1} title="Kütüphanen boş">

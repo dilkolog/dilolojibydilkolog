@@ -18,6 +18,7 @@ import { GenderGame } from './games/GenderGame'
 import { SwipeCards } from './games/SwipeCards'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
+import { PageHeader } from './PageHeader'
 
 type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | null
 
@@ -55,9 +56,10 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
 
   const learnFirst = 'Önce birkaç kelime öğren'
   const record = (key: string, show: (v: number) => string) => (records[key] ? `Rekorun: ${show(records[key])}` : 'Henüz rekor yok')
-  const groups: { title: string; cards: GameCard[] }[] = [
+  const groups: { title: string; tone: 'review' | 'listen' | 'speed' | 'grammar'; cards: GameCard[] }[] = [
     {
       title: 'Tekrar',
+      tone: 'review',
       cards: [
         { id: 'swipe', emoji: '👆', name: 'Kaydırmalı kartlar', text: 'Anlamı düşün, dokunup bak; bildiysen sağa, bilmediysen sola.', status: p.states.length ? 'Zayıf kelimelerden başlar' : learnFirst, disabled: p.states.length === 0 },
         { id: 'sentences', emoji: '💬', name: 'Cümle kartları', text: 'Okurken kaydettiğin cümleler: boşluk, dikte ve çeviri.', status: dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet', scheduled: true, due: dueSentenceCount > 0 },
@@ -67,6 +69,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
     },
     {
       title: 'Dinleme ve telaffuz',
+      tone: 'listen',
       cards: [
         { id: 'dictation', emoji: '🎙️', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
         { id: 'pairs', emoji: '👂', name: 'Ses ayırt etme', text: 'Tek sesi farklı iki kelimeden hangisini duydun?', status: canSpeak() ? record(`pairs:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
@@ -74,6 +77,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
     },
     {
       title: 'Hız ve akıcılık',
+      tone: 'speed',
       cards: [
         { id: 'match', emoji: '🧩', name: 'Eşleştirme', text: '6 kelimeyi anlamlarıyla en kısa sürede eşleştir.', status: enough ? record(matchKey, fmt) : 'En az 4 kelime gerekiyor', disabled: !enough },
         { id: 'blitz', emoji: '⚡', name: 'Zamana karşı', text: '60 saniyede bütün kelimelerinden olabildiğince çok doğru.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
@@ -91,6 +95,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   if (p.language !== 'en')
     groups.push({
       title: 'Dilbilgisi',
+      tone: 'grammar',
       cards: [
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
@@ -99,14 +104,17 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
 
   return (
     <div className="stack">
-      <h1 className="greeting">Oyunlar</h1>
-      <p className="greeting-sub">
-        Oyunlar pratik sayılır: XP kazandırır, tekrar takvimini değiştirmez. <span className="game-tag">takvime işler</span> etiketli olanlar takvimli
-        tekrar yerine geçer.
-      </p>
+      <PageHeader
+        title="Oyunlar"
+        sub={
+          <>
+            Pratik sayılır, takvimi değiştirmez; <span className="game-tag">takvime işler</span> etiketliler tekrar yerine geçer.
+          </>
+        }
+      />
       {groups.map((g) => (
-        <section className="stack game-group" key={g.title}>
-          <h2 className="section-title">{g.title}</h2>
+        <section className={`stack game-group tone-${g.tone}`} key={g.title}>
+          <h2 className="section-title game-group-title">{g.title}</h2>
           <div className="game-cards">
             {g.cards.map((c) => (
               <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => setGame(c.id)}>
@@ -115,7 +123,8 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
                 </span>
                 <strong>{c.name}</strong>
                 <span className="small muted">{c.text}</span>
-                <span className="game-record">
+                <span className={`game-record${c.status.startsWith('Rekorun') ? ' has-record' : ''}`}>
+                  {c.status.startsWith('Rekorun') && <span aria-hidden>🏆 </span>}
                   {c.status}
                   {c.scheduled && <span className="game-tag">takvime işler</span>}
                 </span>

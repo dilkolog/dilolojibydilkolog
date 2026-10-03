@@ -3,6 +3,7 @@ import { displayForm } from '../engine/exercises'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
 import { ERROR_NAME } from './labels'
 import { EmptyState } from './EmptyState'
+import { PageHeader } from './PageHeader'
 
 const ERROR_ORDER: ErrorType[] = ['collocation', 'gender', 'article', 'cross_language', 'false_friend', 'confusion', 'form', 'accent', 'typo', 'meaning']
 
@@ -34,22 +35,23 @@ export function MistakesScreen({
   return (
     <div>
       <section className="section stack">
-        <h1 className="greeting">Hatalar</h1>
+        <PageHeader
+          title="Hatalar"
+          sub={open.length ? `${words} kelimede ${open.length} açık hata; üst üste 3 doğru cevap bir hatayı kapatır.` : 'Hataların türüne göre burada toplanır.'}
+          action={
+            open.length > 0 && (
+              <button className="btn" onClick={onPractice}>
+                Bu kelimeleri çalış
+              </button>
+            )
+          }
+        />
         {open.length === 0 ? (
           <EmptyState stage={5} title="Açık hata yok">
             Yaptığın hatalar burada türüne göre toplanır ve tekrarlarına özel olarak eklenir. Bir kelimeyi üst üste 3 kez doğru bilince hatası kapanır.
           </EmptyState>
         ) : (
-          <>
-            <p className="muted">
-              {words} kelimede {open.length} açık hata. Bir kelimeyi üst üste 3 kez doğru bilince hatası kapanır.
-            </p>
-            <div>
-              <button className="btn" onClick={onPractice}>
-                Bu kelimeleri çalış
-              </button>
-            </div>
-          </>
+          null
         )}
       </section>
 
@@ -84,7 +86,7 @@ function MistakeList({
   onOpen: (entryId: string) => void
 }) {
   return (
-    <ul className="word-list">
+    <ul className="word-list is-columns">
       {items.map((m) => {
         const entry = byId.get(m.entryId)!
         return (

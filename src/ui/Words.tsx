@@ -9,7 +9,7 @@ import { loadFrequency, rankOf, UNRANKED } from '../data/frequency'
 import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
-import { SparkleIcon } from './icons'
+import { SparkleIcon, PlusIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView, TriLanguageCard } from './CrossLanguage'
@@ -30,6 +30,9 @@ import type { IncomingWord } from './incoming'
 import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME, POS_NAME, STAGE_NAME } from './labels'
 import { EmptyState } from './EmptyState'
+import { PageHeader } from './PageHeader'
+import { nextReviewAt } from '../engine/review'
+import { relativeTime } from './format'
 
 interface Props {
   db: KelimeDB
@@ -92,7 +95,24 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
   return (
     <div>
       <section className="section stack">
-        <h1 className="greeting">{LANGUAGE_NAME[language]} kelimelerin</h1>
+        <PageHeader
+          title={`${LANGUAGE_NAME[language]} kelimelerin`}
+          sub={vocabulary.length ? `${vocabulary.length} kelime, ${states.length} tanesi öğreniliyor.` : 'Öğrenmek istediğin kelimeleri ekle; gerisini tekrar takvimi halleder.'}
+          action={
+            <button
+              className="btn"
+              onClick={() => {
+                const input = document.getElementById('w-word')
+                const fold = input?.closest('details')
+                if (fold) fold.open = true
+                input?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                input?.focus({ preventScroll: true })
+              }}
+            >
+              <PlusIcon size={18} /> Kelime ekle
+            </button>
+          }
+        />
         <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
         {incoming && (
           <div className="card stack incoming">
@@ -636,7 +656,8 @@ export function WordForm({
 // ---------------------------------------------------------------------------
 
 type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes'
-type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent'
+type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent' | 'due'
+const VIEW_MODE_KEY = 'kelime-koc:words-table'
 
 const STAGE_FILTERS: [StageFilter, string][] = [
   ['all', 'Hepsi'],
@@ -681,6 +702,23 @@ function WordList({
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
   const [sort, setSort] = useState<Sort>('newest')
+  // Table view (wide screens): every word on one line with its numbers, sortable by column.
+  const [asTable, setAsTable] = useState(() => {
+    try {
+      return localStorage.getItem(VIEW_MODE_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+  const toggleTable = () =>
+    setAsTable((t) => {
+      try {
+        localStorage.setItem(VIEW_MODE_KEY, t ? '0' : '1')
+      } catch {
+        // Not remembered; fine.
+      }
+      return !t
+    })
 
   const withMistakes = useMemo(() => new Set(mistakes.filter((m) => !m.resolved).map((m) => m.entryId)), [mistakes])
   const tags = useMemo(() => [...new Set(vocabulary.flatMap((v) => v.tags))].sort((a, b) => a.localeCompare(b, 'tr')), [vocabulary])
@@ -705,12 +743,17 @@ function WordList({
       if (tag && !v.tags.includes(tag)) return false
       return true
     }
+    const dueKey = (v: VocabularyEntry) => {
+      const st = stateById.get(v.id)
+      return st ? (nextReviewAt(st)?.getTime() ?? Infinity) : Infinity
+    }
     const by: Record<Sort, (a: VocabularyEntry, b: VocabularyEntry) => number> = {
       newest: (a, b) => (b.addedAt?.getTime() ?? 0) - (a.addedAt?.getTime() ?? 0) || a.lemma.localeCompare(b.lemma),
       alpha: (a, b) => a.lemma.localeCompare(b.lemma, 'tr'),
       weakest: (a, b) => stageIndex(a) - stageIndex(b) || (stateById.get(b.id)?.stats.wrong ?? 0) - (stateById.get(a.id)?.stats.wrong ?? 0),
       strongest: (a, b) => stageIndex(b) - stageIndex(a),
       frequent: (a, b) => freqKey(a) - freqKey(b) || a.lemma.localeCompare(b.lemma, 'tr'),
+      due: (a, b) => dueKey(a) - dueKey(b) || a.lemma.localeCompare(b.lemma, 'tr'),
     }
     return vocabulary.filter(match).sort(by[sort])
   }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])
@@ -788,8 +831,17 @@ function WordList({
                   { value: 'weakest', label: 'En zayıf önce' },
                   { value: 'strongest', label: 'En güçlü önce' },
                   { value: 'frequent', label: 'En sık önce' },
+                  { value: 'due', label: 'Tekrarı en yakın' },
                 ]}
               />
+            </div>
+            <div className="segmented view-toggle desktop-only" role="group" aria-label="Görünüm">
+              <button className="segmented-btn" aria-pressed={!asTable} onClick={() => asTable && toggleTable()}>
+                Liste
+              </button>
+              <button className="segmented-btn" aria-pressed={asTable} onClick={() => !asTable && toggleTable()}>
+                Tablo
+              </button>
             </div>
           </div>
           <div className="choice-row">
@@ -867,6 +919,55 @@ function WordList({
           {list.length === 0 ? (
             <p className="muted">Bu filtrelere uyan kelime yok.</p>
           ) : (
+            asTable ? (
+              <div className="table-wrap">
+                <table className="word-table">
+                  <thead>
+                    <tr>
+                      {selecting && <th aria-label="Seç" />}
+                      <SortTh label="Kelime" active={sort === 'alpha'} onClick={() => setSort('alpha')} />
+                      <th scope="col">Anlam</th>
+                      <SortTh label="Aşama" active={sort === 'strongest' || sort === 'weakest'} onClick={() => setSort(sort === 'strongest' ? 'weakest' : 'strongest')} />
+                      <SortTh label="Sıradaki tekrar" active={sort === 'due'} onClick={() => setSort('due')} />
+                      <th scope="col" className="num">Doğru / yanlış</th>
+                      <SortTh label="Sıklık" active={sort === 'frequent'} onClick={() => setSort('frequent')} />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {list.map((v, index) => {
+                      const st = stateById.get(v.id)
+                      const isSel = selected.has(v.id)
+                      const due = st && nextReviewAt(st)
+                      return (
+                        <tr key={v.id} className={isSel ? 'is-selected' : ''} onClick={(e) => clickRow(index, v.id, e.shiftKey)} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && clickRow(index, v.id, e.shiftKey)}>
+                          {selecting && (
+                            <td>
+                              <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>
+                                {isSel ? '✓' : ''}
+                              </span>
+                            </td>
+                          )}
+                          <td className="w" lang={v.language}>
+                            {displayForm(v)}
+                            {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
+                          </td>
+                          <td className="muted">{v.senses[0].gloss}</td>
+                          <td>
+                            <span className="table-stage">
+                              <Plant stage={growthStage(st)} health={plantHealth(st, scheduler, now)} size={22} />
+                              {st ? STAGE_NAME[masteryStage(st)] : 'Sırada'}
+                            </span>
+                          </td>
+                          <td className="muted">{due ? relativeTime(due) : '—'}</td>
+                          <td className="num">{st ? `${st.stats.correct} / ${st.stats.wrong}` : '—'}</td>
+                          <td className="muted">{v.source !== 'sample' && bandOf(v.frequencyRank) ? bandOf(v.frequencyRank)!.short : '—'}</td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
             <ul className="word-list is-columns">
               {list.map((v, index) => {
                 const st = stateById.get(v.id)
@@ -879,7 +980,9 @@ function WordList({
                       aria-pressed={selecting ? isSel : undefined}
                     >
                       {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel ? '✓' : ''}</span>}
-                      <Plant stage={growthStage(stateById.get(v.id))} health={plantHealth(stateById.get(v.id), scheduler, now)} size={30} />
+                      <span className="word-row-plant" title={st ? STAGE_NAME[masteryStage(st)] : 'Sırada'}>
+                        <Plant stage={growthStage(st)} health={plantHealth(st, scheduler, now)} size={30} />
+                      </span>
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
                         <span className="w">{displayForm(v)}</span>
@@ -892,20 +995,28 @@ function WordList({
                           {v.tags.length > 0 && ` · ${v.tags.map((t) => `#${t}`).join(' ')}`}
                         </span>
                       </span>
-                      {withMistakes.has(v.id) && <span className="pill" style={{ background: 'var(--bad-soft)', color: 'var(--bad-text)' }}>hata</span>}
-                      {st ? (
-                        <span className={`pill stage-${MASTERY_STAGES.indexOf(masteryStage(st))}`}>{STAGE_NAME[masteryStage(st)]}</span>
-                      ) : (
-                        <span className="pill">Sırada</span>
-                      )}
+                      {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
                     </button>
                   </li>
                 )
               })}
             </ul>
+            )
           )}
         </>
       )}
     </section>
+  )
+}
+
+/** A table header that sorts by its column. */
+function SortTh({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
+  return (
+    <th scope="col" aria-sort={active ? 'ascending' : undefined}>
+      <button type="button" className={`th-sort${active ? ' is-active' : ''}`} onClick={onClick}>
+        {label}
+        {active && <span aria-hidden> ↓</span>}
+      </button>
+    </th>
   )
 }

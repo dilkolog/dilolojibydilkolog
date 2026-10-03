@@ -15,6 +15,7 @@ import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import { PageHeader } from './PageHeader'
 
 const DAYS = 14
 
@@ -88,10 +89,10 @@ export function ProgressScreen({
 
   return (
     <div className="progress-page">
-      <h1 className="greeting">İlerleme</h1>
+      <PageHeader title="İlerleme" sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın." />
       <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
       <GroupTitle id="p-overview">Genel bakış</GroupTitle>
-      <section className="section stack">
+      <section className="section stack span-2 overview-grid">
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <div className="hero-stat card">

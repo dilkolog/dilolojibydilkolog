@@ -18,6 +18,7 @@ import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
 import { canListen, listen } from './speechInput'
 import { EmptyState } from './EmptyState'
+import { PageHeader } from './PageHeader'
 
 interface Props {
   db: KelimeDB
@@ -42,7 +43,7 @@ export function ProduceScreen(p: Props) {
   const fluencyWords = usePracticeWords(p.vocabulary, p.states, 3)
   return (
     <div className="stack">
-      <h1 className="greeting">Yaz & konuş</h1>
+      <PageHeader title="Yaz & konuş" sub="Bildiğin kelimeleri kullanarak yaz ve konuş: asıl öğrenme burada pekişir." />
       <div className="segmented" role="tablist" aria-label="Bölüm">
         <button role="tab" className="segmented-btn" aria-selected={tab === 'journal'} onClick={() => setTab('journal')}>
           Günlük
