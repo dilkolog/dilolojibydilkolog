@@ -8,7 +8,7 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
-import { adaptExercise, completeItem, currentItem, isFinished, retryItem, skipRemaining, startSession, summarize, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, summarize, typedFollowUp, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -115,7 +115,10 @@ export function SessionScreen(p: Props) {
       }
     }
   }, [p.items, p.vocabulary])
-  const [session, setSession] = useState(() => startSession(p.items))
+  // Some recognition questions become typing (Settings → Yazma oranı); practice sessions keep their plan.
+  const [session, setSession] = useState(() =>
+    startSession(p.mode === 'practice' ? p.items : p.items.map((i) => mixInTyping(i, states.current.get(i.entryId), TYPING_SHARE[prefs.typingShare], rng))),
+  )
   const item = currentItem(session)
   const { onFinish } = p
 
@@ -237,7 +240,10 @@ export function SessionScreen(p: Props) {
     const state = states.current.get(entry.id)
     const retry = log.verdict === 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
     // A new word answered right comes back a little later in another format (graduated recall).
-    const followUp = log.verdict && log.verdict !== 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
+    // The second comeback is typed: picked out twice, now produced from its meaning.
+    const comebacks = session.followUps?.[entry.id] ?? 0
+    const followUp =
+      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item) : retryItem(item, entry, state, rng, p.options)) : undefined
     next(log, retry, followUp)
   }
 

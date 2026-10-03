@@ -130,7 +130,9 @@ export function Feedback({
           {ev.verdict !== 'correct' && entry.notes && <p className="small">💡 {entry.notes}</p>}
           </div>
           <p className="sheet-gloss">
-            <span lang={entry.language}>{displayForm(entry)}</span> {entry.senses[0].gloss}
+            <span lang={entry.language}>{displayForm(entry)}</span>
+            {entry.ipa && <span className="ipa">{entry.ipa}</span>}
+            {entry.senses[0].gloss}
           </p>
         </div>
         <div className="sheet-actions">

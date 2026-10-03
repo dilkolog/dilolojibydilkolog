@@ -2302,3 +2302,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .graph-pick-links .line.edge-synonym { border-color: var(--ok); }
 .graph-pick-links .line.edge-family, .graph-pick-links .line.edge-root { border-color: var(--lang); }
 .graph-pick-links .line.edge-tag { border-top: 2px dotted var(--ink-soft); }
+
+/* Pronunciation (IPA) under a new word and beside it in the answer sheet. */
+.ipa-intro { font-size: var(--t-md); }
+.sheet-gloss .ipa { font-size: var(--t-sm); color: var(--ink-soft); }

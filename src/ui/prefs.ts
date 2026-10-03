@@ -1,4 +1,5 @@
 import type { Settings } from '../data/db'
+import type { TypingShare } from '../engine/session'
 import { configureScheduler } from '../data/instance'
 import { aiConfig } from '../ai/usage'
 import { speechPrefs } from './speech'
@@ -15,11 +16,13 @@ export const prefs = {
   accentShortcuts: true,
   autoRetire: true,
   targetDefinitions: false,
+  typingShare: 'balanced' as TypingShare,
 }
 
 export function applySettings(s: Settings) {
   prefs.autoPlay = s.autoPlayAudio
   prefs.autoRetire = s.autoRetire
+  prefs.typingShare = s.typingShare ?? 'balanced'
   prefs.targetDefinitions = s.targetDefinitions
   prefs.hintDelayMs = s.hintDelaySec * 1000
   prefs.accentStrict = s.accentStrict

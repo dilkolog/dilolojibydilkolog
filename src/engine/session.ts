@@ -71,6 +71,27 @@ export function adaptExercise(item: PlanItem, entry: VocabularyEntry, state: Use
   return { ...item, exerciseType: (fresh.length ? fresh : pool)[Math.floor(rng() * (fresh.length ? fresh : pool).length)] }
 }
 
+export type TypingShare = 'low' | 'balanced' | 'high'
+/** Share of recognition questions turned into typing for words already met (Settings → Yazma oranı). */
+export const TYPING_SHARE: Record<TypingShare, number> = { low: 0, balanced: 0.25, high: 0.5 }
+
+/**
+ * Typing in between multiple choice: producing a word (recall) makes it stick better than picking
+ * it out of four (generation effect; Slamecka & Graf 1978), so for a word that has been answered at
+ * least once, some recognition questions become "type the word for this meaning".
+ */
+export function mixInTyping(item: PlanItem, state: UserWordState | undefined, share: number, rng: Rng): PlanItem {
+  if (item.kind !== 'exercise' || item.skill !== 'recognition' || share <= 0) return item
+  if (!state?.skills.recognition || state.skills.recognition.reps < 1) return item
+  if (state.lastExerciseType === 'typed_translation' || rng() >= share) return item
+  return { ...item, skill: 'recall', exerciseType: 'typed_translation' }
+}
+
+/** The second in-session comeback of a word is typed: recognised twice, now produced. */
+export function typedFollowUp(item: PlanItem): PlanItem {
+  return { ...item, kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' }
+}
+
 export function startSession(items: readonly PlanItem[]): Session {
   return { items: [...items], index: 0, retries: {}, relearn: {}, log: [] }
 }

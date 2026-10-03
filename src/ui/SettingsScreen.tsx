@@ -25,6 +25,7 @@ import { dictionaryHtml, toCsv } from '../data/exportList'
 import { forecastWorkload } from '../engine/workloadForecast'
 import { bookmarkletCode } from './incoming'
 import { PageHeader } from './PageHeader'
+import type { TypingShare } from '../engine/session'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
 const NEW_WORDS = [0, 3, 5, 8, 12, 20]
@@ -399,6 +400,14 @@ export function SettingsScreen({
 
       <section className="card stack">
         <h2 className="section-title">Cevaplar ve ipuçları</h2>
+        <Row label="Yazma oranı" help="Daha önce gördüğün kelimelerde çoktan seçmeli soruların bir kısmı yazarak cevaplanır. Yazmak, seçmekten daha kalıcı öğretir.">
+          <Chips<TypingShare>
+            options={['low', 'balanced', 'high']}
+            value={settings.typingShare ?? 'balanced'}
+            onChange={(v) => set('typingShare', v)}
+            format={(v) => ({ low: 'Az', balanced: 'Dengeli', high: 'Çok' })[v]}
+          />
+        </Row>
         <Row label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
           <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
         </Row>

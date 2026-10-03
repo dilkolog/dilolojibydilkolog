@@ -67,6 +67,7 @@ export function Intro({
         </p>
         <div className="row">
           <Word entry={entry} />
+          {entry.ipa && <span className="ipa ipa-intro">{entry.ipa}</span>}
           <SpeakButton text={displayForm(entry)} entry={entry} auto />
         </div>
         <p className="muted">Sence ne anlama geliyor?</p>
@@ -104,7 +105,14 @@ export function Intro({
       )}
       <div className="intro-card stack">
         <div className="row justify-between nowrap">
-          <Word entry={entry} />
+          <div className="stack gap-1">
+            <Word entry={entry} />
+            {entry.ipa && (
+              <span className="ipa ipa-intro" title="Okunuşu (IPA)">
+                {entry.ipa}
+              </span>
+            )}
+          </div>
           <SpeakButton text={displayForm(entry)} entry={entry} auto={!pretest} />
         </div>
         {imageUrl && <img className="word-image" src={imageUrl} alt="" />}

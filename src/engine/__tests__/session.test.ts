@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, isFinished, MAX_RETRIES, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, summarize } from '../session'
+import { completeItem, currentItem, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, summarize, typedFollowUp } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -92,5 +92,27 @@ describe('skipRemaining', () => {
     s = skipRemaining(s, 'a')
     expect(s.items.map((i) => i.entryId)).toEqual(['a', 'b', 'c'])
     expect(currentItem(s)?.entryId).toBe('b')
+  })
+})
+
+describe('typing between multiple choice', () => {
+  const met = () => {
+    const st = newWordState(decision, new Date())
+    return { ...st, skills: { recognition: { reps: 2 } } } as unknown as typeof st
+  }
+
+  it('turns some recognition questions into typing, only for words already answered', () => {
+    const rng = createRng(1)
+    const typed = Array.from({ length: 200 }, () => mixInTyping(item('fr:decision'), met(), 0.5, rng)).filter((i) => i.exerciseType === 'typed_translation')
+    expect(typed.length).toBeGreaterThan(60)
+    expect(typed.length).toBeLessThan(140)
+    expect(typed[0].skill).toBe('recall')
+    // Never for a word not answered yet, nor with the share set to "low".
+    expect(mixInTyping(item('fr:decision'), newWordState(decision, new Date()), 1, rng).exerciseType).toBe('mc_meaning')
+    expect(mixInTyping(item('fr:decision'), met(), 0, rng).exerciseType).toBe('mc_meaning')
+  })
+
+  it('makes the typed comeback a recall question', () => {
+    expect(typedFollowUp(item('x'))).toMatchObject({ kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' })
   })
 })
