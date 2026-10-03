@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addExample, createEntry, entryToInput, findForm, guessPartOfSpeech, importWords, parseCollocations, parseDelimited, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
+import { addExample, createEntry, DEFAULT_FORMAT, entryToInput, findForm, guessPartOfSpeech, importWords, parseCollocations, parseDelimited, parseWordList, removeExample, updateEntry, WordInputError, wordKeys } from './wordInput'
 
 const NOW = new Date('2026-10-01T10:00:00Z')
 
@@ -212,5 +212,23 @@ describe('addExample / removeExample', () => {
   it('removes by position', () => {
     const two = addExample(base, 'She decides quickly.')
     expect(removeExample(two, 0).senses[0].examples.map((e) => e.form)).toEqual(['decides'])
+  })
+})
+
+describe('word lists with the sentence a word was met in', () => {
+  it('takes a sentence-like third part as the example, and a fourth as its translation', () => {
+    expect(parseWordList('la décision - karar - Elle a pris une décision difficile.')).toEqual([['la décision', 'karar', 'Elle a pris une décision difficile.']])
+    expect(parseWordList('la décision = karar = Elle a pris une décision. = Zor bir karar verdi.', { ...DEFAULT_FORMAT, term: 'equals' })).toEqual([
+      ['la décision', 'karar', 'Elle a pris une décision.', 'Zor bir karar verdi.'],
+    ])
+  })
+
+  it('keeps a short third part as part of the meaning', () => {
+    expect(parseWordList('breeze - esinti - meltem')).toEqual([['breeze', 'esinti - meltem']])
+  })
+
+  it('imports the sentence as the word’s example', () => {
+    const r = importWords('la décision - karar - Elle a pris une décision difficile.', 'fr', new Set(), new Date())
+    expect(r.entries[0].senses[0].examples[0]?.text).toContain('décision difficile')
   })
 })

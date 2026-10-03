@@ -351,6 +351,12 @@ export function detectTermSeparator(lines: string[]): Exclude<TermSeparator, 'au
 const stripHtml = (s: string) => s.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
 
 /** Rows of cells from a pasted list, JSON array, CSV/TSV or Anki export. */
+/** At least three words, or ends like a sentence: a third column is an example, not more meaning. */
+function looksLikeSentence(t: string): boolean {
+  const x = t.trim()
+  return x.split(/\s+/).length >= 3 || /[.!?…]$/.test(x)
+}
+
 export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): string[][] {
   const trimmed = text.trim()
   // JSON: [{word, meaning, …}] or Quizlet-like [{term, definition}].
@@ -384,12 +390,23 @@ export function parseWordList(text: string, fmt: ListFormat = DEFAULT_FORMAT): s
     // Word-list notations split on the FIRST separator only, so meanings may contain it.
     const sep = term === 'custom' ? fmt.customTerm || '\t' : TERM_SEP[term]
     const re = term === 'dash' ? /\s[-–—]\s/ : null
-    rows = lines.map((l) => {
+    const cut = (l: string): [string, string] | null => {
       const m = re ? l.match(re) : null
       const i = re ? (m?.index ?? -1) : l.indexOf(sep)
       const len = re ? (m?.[0].length ?? 0) : sep.length
+      return i < 0 ? null : [l.slice(0, i), l.slice(i + len)]
+    }
+    rows = lines.map((l) => {
+      const first = cut(l)
       // "breeze -" (meaning left empty): drop the dangling separator from the word.
-      return i < 0 ? [l.replace(/\s*([-–—=:;|]|\t)\s*$/, '')] : [l.slice(0, i), l.slice(i + len)]
+      if (!first) return [l.replace(/\s*([-–—=:;|]|\t)\s*$/, '')]
+      const [word, rest] = first
+      // "word - meaning - sentence it was met in [- its translation]": a third part that reads like a
+      // sentence becomes the example; otherwise the separator stays part of the meaning.
+      const second = cut(rest)
+      if (!second || !looksLikeSentence(second[1].split(re ?? sep)[0] ?? '')) return [word, rest]
+      const third = cut(second[1])
+      return third && looksLikeSentence(third[1]) ? [word, second[0], third[0], third[1]] : [word, second[0], second[1]]
     })
   }
   rows = rows.map((r) => r.map((c) => stripHtml(c).trim()))

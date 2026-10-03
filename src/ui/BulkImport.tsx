@@ -24,9 +24,9 @@ const ROW_OPTIONS: [RowSeparator, string][] = [
 ]
 
 const EXAMPLE: Record<TargetLanguage, string> = {
-  en: 'decision - karar\nthrive - gelişmek, büyümek\nabandon - terk etmek',
-  fr: 'la décision - karar\népuisé - bitkin\nla librairie - kitapçı',
-  es: 'la decisión - karar\nagotado - bitkin\nla librería - kitapçı',
+  en: 'decision - karar - It was a hard decision.\nthrive - gelişmek, büyümek\nabandon - terk etmek',
+  fr: 'la décision - karar - Elle a pris une décision difficile.\népuisé - bitkin\nla librairie - kitapçı',
+  es: 'la decisión - karar - Fue una decisión difícil.\nagotado - bitkin\nla librería - kitapçı',
 }
 
 /** Bulk add from a pasted list or a file, with Quizlet-style separator options and a preview. */
@@ -107,7 +107,7 @@ export function BulkImport({
       <div className="stack">
         <p className="small muted">
           Bir liste yapıştır ya da dosya seç (CSV, TSV, TXT, JSON, Anki ya da Quizlet dışa aktarımı). Her satır bir kelime: önce
-          kelime, sonra anlam.
+          kelime, sonra anlam; istersen üçüncü olarak geçtiği cümle (örnek cümle olur), dördüncü olarak da cümlenin çevirisi.
         </p>
         <textarea
           className="textarea"

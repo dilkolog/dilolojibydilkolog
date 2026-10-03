@@ -652,6 +652,8 @@ export default function App() {
                 scheduler={scheduler}
                 seed={screen.seed}
                 options={options}
+                settings={settings}
+                onSettings={updateSettings}
                 onFinish={finishSession}
                 onQuit={() => {
                   reload()

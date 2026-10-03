@@ -2146,7 +2146,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .badge-card.is-unlocked .medal { animation: pop 0.35s ease-out; }
 
 /* The mark sits on the app's own blue in every language, like the home-screen icon. */
-.brand-mark { background: linear-gradient(140deg, #3b82f6, #1e3a8a); }
+.brand-mark { background: linear-gradient(140deg, #3b82f6, #1e3a8a); box-shadow: 0 3px 0 #172554; }
 
 /* ---------- Page header: name, one line, the main action ---------- */
 .page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem 1.5rem; flex-wrap: wrap; }
@@ -2306,3 +2306,12 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 /* Pronunciation (IPA) under a new word and beside it in the answer sheet. */
 .ipa-intro { font-size: var(--t-md); }
 .sheet-gloss .ipa { font-size: var(--t-sm); color: var(--ink-soft); }
+
+/* ---------- Study settings inside a session ---------- */
+.session-gear { flex: none; }
+.session-settings { gap: 1.25rem; }
+.ss-group { display: grid; gap: 0; }
+.ss-group .eyebrow { margin: 0 0 0.25rem; }
+.ss-group .toggle-row:first-of-type { border-top: 0; }
+.ss-choice { align-items: center; flex-wrap: wrap; }
+.ss-choice .choice-row { flex: none; }

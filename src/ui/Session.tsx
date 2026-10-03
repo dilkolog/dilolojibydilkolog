@@ -10,7 +10,7 @@ import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, summarize, typedFollowUp, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry } from '../engine/types'
-import type { KelimeDB } from '../data/db'
+import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample } from '../data/wordInput'
 import { loadFrequency } from '../data/frequency'
@@ -19,8 +19,8 @@ import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
 import { MnemonicDialog } from './Mnemonic'
-import { CloseIcon, FlameIcon, StarIcon } from './icons'
-import { prefs } from './prefs'
+import { CloseIcon, FlameIcon, GearIcon, StarIcon } from './icons'
+import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
 import { playWord, preloadRecording, speechPrefs } from './speech'
 import { prefetchNatural } from './naturalVoice'
@@ -31,6 +31,7 @@ import { Prompt } from './session/Prompt'
 import { Choices, TypedAnswer, SpeakAnswer } from './session/Answers'
 import { Feedback } from './session/Feedback'
 import { modalOpen } from './session/keys'
+import { SessionSettings } from './session/SessionSettings'
 
 interface Props {
   items: PlanItem[]
@@ -45,6 +46,9 @@ interface Props {
   options: EngineOptions
   onFinish: (summary: SessionSummary) => void
   onQuit: () => void
+  /** Study settings, adjustable from the session's gear button. */
+  settings?: Settings
+  onSettings?: (s: Settings) => void
 }
 
 /** Keeps the phone screen on during a session (where supported); re-taken after switching apps. */
@@ -117,7 +121,7 @@ export function SessionScreen(p: Props) {
   }, [p.items, p.vocabulary])
   // Some recognition questions become typing (Settings → Yazma oranı); practice sessions keep their plan.
   const [session, setSession] = useState(() =>
-    startSession(p.mode === 'practice' ? p.items : p.items.map((i) => mixInTyping(i, states.current.get(i.entryId), TYPING_SHARE[prefs.typingShare], rng))),
+    startSession(p.mode === 'practice' || !p.items.length ? p.items : [mixInTyping(p.items[0], states.current.get(p.items[0].entryId), TYPING_SHARE[prefs.typingShare], rng), ...p.items.slice(1)]),
   )
   const item = currentItem(session)
   const { onFinish } = p
@@ -128,6 +132,7 @@ export function SessionScreen(p: Props) {
 
   const { onQuit } = p
   const [confirmQuit, setConfirmQuit] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
   const answered = session.log.filter((l) => l.verdict).length
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -149,7 +154,9 @@ export function SessionScreen(p: Props) {
       const up = after.items[after.index]
       const upEntry = up && byId.get(up.entryId)
       if (!up || !upEntry) return after
-      const adapted = adaptExercise(up, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
+      // Some recognition questions become typing (Settings → Yazma oranı), decided as each one comes up.
+      const mixed = p.mode === 'practice' || up.reason === 'practice' ? up : mixInTyping(up, states.current.get(up.entryId), TYPING_SHARE[prefs.typingShare], rng)
+      const adapted = adaptExercise(mixed, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
       if (adapted === up) return after
       const items = [...after.items]
       items[after.index] = adapted
@@ -271,7 +278,22 @@ export function SessionScreen(p: Props) {
         <span className="session-xp" key={sessionXp}>
           <StarIcon size={16} className="icon-star" /> {sessionXp}
         </span>
+        {p.settings && p.onSettings && (
+          <button className="icon-btn session-gear" onClick={() => setShowSettings(true)} aria-label="Çalışma ayarları" title="Çalışma ayarları">
+            <GearIcon size={20} />
+          </button>
+        )}
       </div>
+      {showSettings && p.settings && p.onSettings && (
+        <SessionSettings
+          settings={p.settings}
+          onChange={(s) => {
+            applySettings(s)
+            p.onSettings!(s)
+          }}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
       {p.mode === 'practice' && (
         <p className="practice-badge">
           <span className="badge">Serbest pratik</span>
