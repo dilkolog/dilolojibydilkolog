@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type ReactElement } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState, type ReactElement } from 'react'
 import { buildDailyPlan, buildExtraNewPlan, type PlanItem } from './engine/dailyPlan'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
@@ -28,17 +28,9 @@ import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
 import { AlertIcon, BookIcon, ChartIcon, FlameIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, UserIcon } from './ui/icons'
-import { GamesScreen } from './ui/Games'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
-import { MistakesScreen } from './ui/Mistakes'
 import { applySettings } from './ui/prefs'
 import { canListen } from './ui/speechInput'
-import { ProfileScreen } from './ui/Profile'
-import { ProgressScreen } from './ui/Progress'
-import { ReadingScreen } from './ui/Reading'
-import { ProduceScreen } from './ui/Produce'
-import { VocabTestScreen } from './ui/VocabTest'
-import { ExamScreen } from './ui/Exam'
 import { useReminder } from './ui/reminders'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
@@ -50,12 +42,44 @@ import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
-import { SettingsScreen } from './ui/SettingsScreen'
-import { StoryScreen } from './ui/Story'
-import { WordDetail } from './ui/WordDetail'
-import { WordsScreen } from './ui/Words'
 import { CommandPalette, type Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
+
+/*
+ * Screens other than the daily loop (home, session, summary) load when first opened, so the app
+ * starts with less code; once it is idle they are fetched in the background anyway, so switching
+ * screens stays instant and works offline.
+ */
+const screenModules = {
+  Games: () => import('./ui/Games'),
+  Mistakes: () => import('./ui/Mistakes'),
+  Profile: () => import('./ui/Profile'),
+  Progress: () => import('./ui/Progress'),
+  Reading: () => import('./ui/Reading'),
+  Produce: () => import('./ui/Produce'),
+  VocabTest: () => import('./ui/VocabTest'),
+  Exam: () => import('./ui/Exam'),
+  Settings: () => import('./ui/SettingsScreen'),
+  Story: () => import('./ui/Story'),
+  WordDetail: () => import('./ui/WordDetail'),
+  Words: () => import('./ui/Words'),
+}
+const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
+const MistakesScreen = lazy(() => screenModules.Mistakes().then((m) => ({ default: m.MistakesScreen })))
+const ProfileScreen = lazy(() => screenModules.Profile().then((m) => ({ default: m.ProfileScreen })))
+const ProgressScreen = lazy(() => screenModules.Progress().then((m) => ({ default: m.ProgressScreen })))
+const ReadingScreen = lazy(() => screenModules.Reading().then((m) => ({ default: m.ReadingScreen })))
+const ProduceScreen = lazy(() => screenModules.Produce().then((m) => ({ default: m.ProduceScreen })))
+const VocabTestScreen = lazy(() => screenModules.VocabTest().then((m) => ({ default: m.VocabTestScreen })))
+const ExamScreen = lazy(() => screenModules.Exam().then((m) => ({ default: m.ExamScreen })))
+const SettingsScreen = lazy(() => screenModules.Settings().then((m) => ({ default: m.SettingsScreen })))
+const StoryScreen = lazy(() => screenModules.Story().then((m) => ({ default: m.StoryScreen })))
+const WordDetail = lazy(() => screenModules.WordDetail().then((m) => ({ default: m.WordDetail })))
+const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ default: m.WordsScreen })))
+
+function prefetchScreens() {
+  for (const load of Object.values(screenModules)) void load().catch(() => {})
+}
 
 type Screen =
   | { name: 'home' }
@@ -238,6 +262,12 @@ export default function App() {
   useEffect(() => {
     reload()
   }, [reload])
+
+  // The other screens' code, once the first screen is up.
+  useEffect(() => {
+    const t = setTimeout(prefetchScreens, 2500)
+    return () => clearTimeout(t)
+  }, [])
 
   // Browser extension: words marked known on other sites come back here.
   useEffect(() => connectExtension(db, reload), [reload])
@@ -582,6 +612,7 @@ export default function App() {
           )}
 
           <main className="main">
+            <Suspense fallback={<p className="muted screen-loading">Yükleniyor…</p>}>
             {!data || !plan ? null : screen.name === 'session' ? (
               <SessionScreen
                 items={screen.items}
@@ -765,6 +796,7 @@ export default function App() {
                 }
               />
             )}
+            </Suspense>
           </main>
           {palette && data && (
             <CommandPalette

@@ -240,6 +240,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .section-title { font-size: var(--t-lg); }
 
 .muted { color: var(--ink-soft); }
+.screen-loading { padding: 2rem 0; text-align: center; }
 .small { font-size: var(--t-sm); }
 
 .card { background: var(--surface); border-radius: 1.25rem; padding: 1.5rem; box-shadow: var(--shadow); }
