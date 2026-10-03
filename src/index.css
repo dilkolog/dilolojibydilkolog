@@ -1946,13 +1946,13 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .hero-today .ring-fill, .hero-today .ring-fill.done { stroke: var(--on-lang); }
 .hero-today .ring-label, .hero-today .ring-label.done { color: var(--on-lang); }
 .hero-today .mission li { background: color-mix(in srgb, var(--on-lang) 16%, transparent); color: var(--on-lang); }
-.hero-today .btn { background: var(--surface); color: var(--lang-text); box-shadow: 0 4px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
+.hero-today .btn { background: #ffffff; color: var(--lang-deep); box-shadow: 0 4px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
 .hero-today .btn:active:not(:disabled) { box-shadow: 0 1px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
 .hero-today .btn-quiet { background: transparent; color: var(--on-lang); border-color: color-mix(in srgb, var(--on-lang) 40%, transparent); box-shadow: none; }
 .hero-hello {
-  position: absolute; z-index: -1; right: -0.5rem; bottom: -1.6rem;
-  font-family: var(--serif); font-style: italic; font-size: clamp(4rem, 12vw, 7rem); line-height: 1; white-space: nowrap;
-  color: var(--on-lang); opacity: 0.12; pointer-events: none; user-select: none;
+  position: absolute; z-index: -1; right: -0.25rem; bottom: -1.1rem;
+  font-family: var(--serif); font-style: italic; font-size: clamp(3rem, 7vw, 4.75rem); line-height: 1; white-space: nowrap;
+  color: var(--on-lang); opacity: 0.08; pointer-events: none; user-select: none;
 }
 
 /* Stats as one compact strip instead of three cards. */
@@ -2421,3 +2421,20 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .milestone-title { font-size: var(--t-2xl); font-weight: 800; letter-spacing: -0.02em; }
 .milestone-actions { justify-content: center; width: 100%; }
 @media (max-width: 30rem) { .milestone { border-radius: var(--r-lg) var(--r-lg) 0 0; } }
+
+/* ---------- Home rhythm: fewer, clearer boxes ---------- */
+/* Level and stats in one card. */
+.status-card { margin-top: 1.5rem; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); overflow: hidden; }
+.status-card .level-strip { margin: 0; border-radius: 0; box-shadow: none; background: transparent; padding: 1rem 1.25rem; }
+.status-card .level-strip:hover { background: var(--surface-2); }
+.status-card .stats { margin: 0; border-radius: 0; box-shadow: none; background: transparent; border-top: 1px solid var(--rule); }
+.home-side > .status-card:first-child { margin-top: 1.5rem; }
+/* Quests: one card with rows, not a card per quest. */
+.quest-list { gap: 0; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); overflow: hidden; }
+.quest-list li { background: transparent; box-shadow: none; border-radius: 0; padding: 0.875rem 1.125rem; }
+.quest-list li + li { border-top: 1px solid var(--rule); }
+.quest-list li.is-done { background: color-mix(in srgb, var(--ok-soft) 70%, transparent); }
+/* Nudges (study plan question, garden, evening review) are notes, not cards: they shouldn't compete with the mission. */
+.habit.card { background: transparent; box-shadow: none; border: 1px solid var(--rule); padding: 1rem 1.25rem; }
+.habit.card .small.muted { font-size: var(--t-sm); }
+.habit-icon { font-size: var(--t-xl); }

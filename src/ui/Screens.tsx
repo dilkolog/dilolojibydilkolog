@@ -388,6 +388,8 @@ export function Home({
 
       </div>
       <div className="home-side">
+        {/* Level and the three numbers as one card, not four. */}
+        <section className="status-card">
         {game && (
           <button className="level-strip" onClick={onProfile}>
             <span className="level-badge">Sv. {game.level.level}</span>
@@ -437,6 +439,7 @@ export function Home({
             <span className="stat-label">kelime öğreniliyor</span>
           </div>
         </div>
+        </section>
 
         <InstallHint />
         {game && (
