@@ -30,6 +30,7 @@ import { growthStage, plantHealth, projectStage, type Health } from '../engine/g
 import { MASTERY_STAGES } from '../engine/mastery'
 import { WordMedia } from './WordMedia'
 import { isRetired } from '../engine/retire'
+import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
 
 interface Props {
@@ -44,6 +45,13 @@ interface Props {
 }
 
 /** Everything known about one word: its relations, how well each skill is held, its mistakes. */
+const WORD_GROUPS = [
+  ['w-use', 'Kullanım'],
+  ['w-family', 'Aile ve diller'],
+  ['w-voice', 'Telaffuz'],
+  ['w-progress', 'İlerleme'],
+] as const
+
 export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack }: Props) {
   const [editing, setEditing] = useState(false)
   const others = useMemo(() => wordKeys(vocabulary.filter((v) => v.id !== entry.id)), [vocabulary, entry.id])
@@ -171,25 +179,31 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </div>
       </section>
 
+      <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled())} label="Kelime bölümleri" />
       <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
-      {(entry.audioUrl || naturalEnabled()) && (
+      <GroupTitle id="w-use">Cümleler ve kullanım</GroupTitle>
+      <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
+      <WordExamples db={db} entry={entry} onChanged={onChanged} />
+      <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
+      <PatternsSection db={db} entry={entry} onChanged={onChanged} />
+      {conjugation && (
         <section className="section stack">
-          <h2 className="section-title">Telaffuzunu karşılaştır</h2>
+          <h2 className="section-title">Şimdiki zaman çekimi</h2>
+          <table className="conj-table" lang={entry.language}>
+            <tbody>
+              {conjugation.forms.map((f, i) => (
+                <tr key={i}>
+                  <th scope="row">{PRONOUNS[entry.language as 'fr' | 'es'][i].slice(0, 2).join(' / ')}</th>
+                  <td>{f}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <p className="small muted">
-            Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
+            {conjugation.source === 'rule' ? 'Düzenli fiil kuralıyla üretildi. ' : ''}"Üretme" becerisi açılınca çekim soruları da gelir.
           </p>
-          <PitchCompare
-            key={entry.id}
-            label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
-            reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
-          />
         </section>
       )}
-      <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
-      <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
-
-      <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
-
       {(entry.alternativeForms?.length ?? 0) > 0 && (
         <section className="section stack">
           <h2 className="section-title">Kabul edilen diğer yazımlar</h2>
@@ -212,32 +226,9 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           </div>
         </section>
       )}
-
-      <WordExamples db={db} entry={entry} onChanged={onChanged} />
-      <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
-      <PatternsSection db={db} entry={entry} onChanged={onChanged} />
+      <GroupTitle id="w-family">Aile ve diğer diller</GroupTitle>
       <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
       <TriLanguageCard entry={entry} onAdded={onChanged} />
-
-      {conjugation && (
-        <section className="section stack">
-          <h2 className="section-title">Şimdiki zaman çekimi</h2>
-          <table className="conj-table" lang={entry.language}>
-            <tbody>
-              {conjugation.forms.map((f, i) => (
-                <tr key={i}>
-                  <th scope="row">{PRONOUNS[entry.language as 'fr' | 'es'][i].slice(0, 2).join(' / ')}</th>
-                  <td>{f}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="small muted">
-            {conjugation.source === 'rule' ? 'Düzenli fiil kuralıyla üretildi. ' : ''}"Üretme" becerisi açılınca çekim soruları da gelir.
-          </p>
-        </section>
-      )}
-
       {(entry.collocations.length > 0 || confusables.length > 0) && (
         <section className="section stack">
           <h2 className="section-title">İlişkiler</h2>
@@ -274,7 +265,23 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </section>
       )}
-
+      {(entry.audioUrl || naturalEnabled()) && <GroupTitle id="w-voice">Telaffuz</GroupTitle>}
+      {(entry.audioUrl || naturalEnabled()) && (
+        <section className="section stack">
+          <h2 className="section-title">Telaffuzunu karşılaştır</h2>
+          <p className="small muted">
+            Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
+          </p>
+          <PitchCompare
+            key={entry.id}
+            label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
+            reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
+          />
+        </section>
+      )}
+      <GroupTitle id="w-progress">İlerleme</GroupTitle>
+      <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
+      <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
       <section className="section stack">
         <h2 className="section-title">Beceriler</h2>
         <div className="bars">
@@ -295,7 +302,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           {sense.examples.length === 0 && ' Üretme alıştırmaları için örnek cümle ekle.'}
         </p>
       </section>
-
       {open.length > 0 && (
         <section className="section stack">
           <h2 className="section-title">Açık hatalar</h2>
