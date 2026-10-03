@@ -202,3 +202,24 @@ export const BrandMark = ({ size = 22 }: { size?: number }) => (
     <path d="M16 15c-.6-3.6-3.5-5.8-7.2-5.5.1 3.7 3 6.1 7.2 5.5zM16 13.5c.7-4.1 4-6.6 8.1-6.2-.1 4.3-3.4 6.9-8.1 6.2z" fill="#22c55e" />
   </svg>
 )
+export const CalendarIcon = (p: P) => (
+  <Icon {...p}>
+    <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+    <path d="M3.5 10h17M8 3v4M16 3v4" />
+  </Icon>
+)
+export const BrainIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3.5 3.5 0 0 0 9 18.5V4.5zM15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2 3.5 3.5 0 0 1-5 5.8V4.5z" />
+  </Icon>
+)
+export const LeafIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14zM5 19l7-7" />
+  </Icon>
+)
+export const PulseIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M3 12h4l2.5-6 4 12 2.5-6H21" />
+  </Icon>
+)

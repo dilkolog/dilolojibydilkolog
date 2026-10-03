@@ -33,7 +33,7 @@ import { isRetired } from '../engine/retire'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
-import { SpeakerIcon } from './icons'
+import { ChartIcon, LeafIcon, PenIcon, SpeakerIcon } from './icons'
 import { deleteWordsWithUndo } from './undo'
 
 interface Props {
@@ -195,7 +195,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
       <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled())} label="Kelime bölümleri" />
       <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
-      <GroupTitle id="w-use">Cümleler ve kullanım</GroupTitle>
+      <GroupTitle id="w-use" icon={<PenIcon size={18} />}>Cümleler ve kullanım</GroupTitle>
       <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
       <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
@@ -240,7 +240,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           </div>
         </section>
       )}
-      <GroupTitle id="w-family">Aile ve diğer diller</GroupTitle>
+      <GroupTitle id="w-family" icon={<LeafIcon size={18} />}>Aile ve diğer diller</GroupTitle>
       <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
       <TriLanguageCard entry={entry} onAdded={onChanged} />
       {(entry.collocations.length > 0 || confusables.length > 0) && (
@@ -279,7 +279,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </section>
       )}
-      {(entry.audioUrl || naturalEnabled()) && <GroupTitle id="w-voice">Telaffuz</GroupTitle>}
+      {(entry.audioUrl || naturalEnabled()) && <GroupTitle id="w-voice" icon={<SpeakerIcon size={18} />}>Telaffuz</GroupTitle>}
       {(entry.audioUrl || naturalEnabled()) && (
         <section className="section stack">
           <h2 className="section-title">Telaffuzunu karşılaştır</h2>
@@ -293,7 +293,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           />
         </section>
       )}
-      <GroupTitle id="w-progress">İlerleme</GroupTitle>
+      <GroupTitle id="w-progress" icon={<ChartIcon size={18} />}>İlerleme</GroupTitle>
       <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
       <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
       <section className="section stack">

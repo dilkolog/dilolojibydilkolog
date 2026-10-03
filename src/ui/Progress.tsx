@@ -17,6 +17,7 @@ import { GroupTitle, JumpNav } from './JumpNav'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { StreakFlame } from './StreakFlame'
+import { BrainIcon, CalendarIcon, ChartIcon, CheckIcon, LeafIcon, PulseIcon, StarIcon, TargetIcon } from './icons'
 
 const DAYS = 14
 
@@ -100,7 +101,7 @@ export function ProgressScreen({
         <Kpi label="günlük seri" value={game?.streak ?? 0} icon={<StreakFlame streak={game?.streak ?? 0} frozen={game?.frozenYesterday} size={18} />} />
       </div>
       <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
-      <GroupTitle id="p-overview">Genel bakış</GroupTitle>
+      <GroupTitle id="p-overview" icon={<StarIcon size={18} />}>Genel bakış</GroupTitle>
       <section className="section stack span-2 overview-grid">
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
@@ -116,7 +117,7 @@ export function ProgressScreen({
         </div>
       </section>
 
-      <GroupTitle id="p-tests">Testler</GroupTitle>
+      <GroupTitle id="p-tests" icon={<CheckIcon size={18} />}>Testler</GroupTitle>
       <section className="section stack">
         <h2 className="section-title">Kelime dağarcığı</h2>
         {tests.length > 0 ? (
@@ -160,11 +161,11 @@ export function ProgressScreen({
         })()}
       </section>
 
-      <GroupTitle id="p-memory">Bu hafta ve tekrarlar</GroupTitle>
+      <GroupTitle id="p-memory" icon={<CalendarIcon size={18} />}>Bu hafta ve tekrarlar</GroupTitle>
       <WeekCard report={report} focus={weakestSkill(skillProfile(states, scheduler, now))} />
 
       <section className="section stack">
-        <p className="eyebrow">Önümüzdeki {DAYS} günün tekrarları</p>
+        <p className="eyebrow eyebrow-icon"><CalendarIcon size={16} /> Önümüzdeki {DAYS} günün tekrarları</p>
         <h2 className="section-title">
           {forecastTotal === 0 ? 'Yakında tekrar yok' : `${forecastTotal} tekrar; en yoğunu ${busiest === forecast[0] ? 'bugün' : dayLabel(busiest.date, { weekday: 'long' })} (${busiest.count})`}
         </h2>
@@ -174,7 +175,7 @@ export function ProgressScreen({
 
       {recallBins.reduce((n, b) => n + b.answers, 0) >= 30 && (
         <section className="section stack">
-          <p className="eyebrow">Model tahmini ve gerçek</p>
+          <p className="eyebrow eyebrow-icon"><BrainIcon size={16} /> Model tahmini ve gerçek</p>
           <h2 className="section-title">
             {Math.abs(recallGap) <= 5
               ? 'Tekrarlar doğru zamanda geliyor'
@@ -207,7 +208,7 @@ export function ProgressScreen({
 
       {calib.sure.answers + calib.unsure.answers >= 10 && (
         <section className="section stack">
-          <p className="eyebrow">Ne kadar bildiğini ne kadar iyi biliyorsun?</p>
+          <p className="eyebrow eyebrow-icon"><TargetIcon size={16} /> Ne kadar bildiğini ne kadar iyi biliyorsun?</p>
           <h2 className="section-title">
             {calib.sure.answers > 0 ? `Emin olduğun cevapların %${pct(calib.sure)}'i doğru` : `Emin olmadığın cevapların %${pct(calib.unsure)}'i doğru`}
           </h2>
@@ -287,7 +288,7 @@ export function ProgressScreen({
       </section>
 
       <section className="section stack">
-        <p className="eyebrow">Kelimeler nerede?</p>
+        <p className="eyebrow eyebrow-icon"><LeafIcon size={16} /> Kelimeler nerede?</p>
         <h2 className="section-title">
           {stats.stageCounts[topStage] > 0 ? `En çok kelime “${STAGE_NAME[topStage]}” aşamasında (${stats.stageCounts[topStage]})` : 'Henüz başlanmış kelime yok'}
         </h2>
@@ -299,9 +300,9 @@ export function ProgressScreen({
         </div>
       </section>
 
-      <GroupTitle id="p-activity">Çalışma düzenin</GroupTitle>
+      <GroupTitle id="p-activity" icon={<PulseIcon size={18} />}>Çalışma düzenin</GroupTitle>
       <section className="section stack">
-        <p className="eyebrow">Son {DAYS} gün</p>
+        <p className="eyebrow eyebrow-icon"><PulseIcon size={16} /> Son {DAYS} gün</p>
         <h2 className="section-title">{stats.daysPractised > 0 ? `${DAYS} günün ${stats.daysPractised} gününde çalıştın` : 'Bu dönemde henüz çalışma yok'}</h2>
         <p className="small muted">Günlük cevap sayısı; serbest pratik sayılmaz.</p>
         <ActivityChart activity={stats.activity} />
@@ -310,9 +311,9 @@ export function ProgressScreen({
       <YearCalendar db={db} />
       <BestHoursCard db={db} />
 
-      <GroupTitle id="p-skills">Beceriler ve hatalar</GroupTitle>
+      <GroupTitle id="p-skills" icon={<TargetIcon size={18} />}>Beceriler ve hatalar</GroupTitle>
       <section className="section stack">
-        <p className="eyebrow">Beceriler</p>
+        <p className="eyebrow eyebrow-icon"><StarIcon size={16} /> Beceriler</p>
         <h2 className="section-title">
           {knownSkills.length >= 2
             ? `En güçlü ${SKILL_NAME[knownSkills[0]].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills[0]]}), en zayıf ${SKILL_NAME[knownSkills.at(-1)!].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills.at(-1)!]})`
@@ -440,7 +441,7 @@ function WeekCard({ report, focus }: { report: ReturnType<typeof weekReport>; fo
   const l = report.lastWeek
   return (
     <section className="section card stack">
-      <p className="eyebrow">Bu hafta</p>
+      <p className="eyebrow eyebrow-icon"><ChartIcon size={16} /> Bu hafta</p>
       <h2 className="section-title">
         {l.answers === 0
           ? `${t.answers} cevap, ${t.daysStudied} gün`
