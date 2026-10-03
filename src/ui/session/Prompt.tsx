@@ -5,7 +5,7 @@ import { LANGUAGE_NAME } from '../labels'
 import { prefs } from '../prefs'
 import { canSpeak, speak, speechPrefs } from '../speech'
 import { useMediaUrl } from '../useMedia'
-import { SpeakButton, Word, Sentence } from './shared'
+import { SpeakButton, Word, Sentence, wordSize } from './shared'
 
 /** What the question shows: the word, its meaning, a sentence with a blank, audio or a picture. */
 export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: VocabularyEntry; listenRate: number }) {
@@ -94,7 +94,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       // is the gender, shown with the word as it is written.
       return entry.article?.endsWith("'") ? (
         <div className="stack gap-2">
-          <h1 className="word" lang={entry.language}>
+          <h1 className={`word${wordSize(displayForm(entry))}`} lang={entry.language}>
             {displayForm(entry)}
           </h1>
           <p className="gloss muted">
@@ -103,7 +103,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
         </div>
       ) : (
         <div className="stack gap-2">
-          <h1 className="word" lang={entry.language}>
+          <h1 className={`word${wordSize(`____ ${exercise.prompt}`)}`} lang={entry.language}>
             <span className="blank" aria-label="artikel">
               ____
             </span>{' '}

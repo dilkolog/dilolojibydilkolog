@@ -57,6 +57,8 @@ const hostOf = (url: string) => {
   }
 }
 
+const SECTION_KEY = 'kelime-koc:words-section'
+
 export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
@@ -77,6 +79,27 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       // Not remembered; harmless.
     }
   }
+  const [section, setSectionState] = useState<'words' | 'add' | 'import'>(() => {
+    if (incoming || vocabulary.length === 0) return 'add'
+    try {
+      const v = localStorage.getItem(SECTION_KEY)
+      return v === 'add' || v === 'import' ? v : 'words'
+    } catch {
+      return 'words'
+    }
+  })
+  const setSection = (v: typeof section) => {
+    setSectionState(v)
+    try {
+      localStorage.setItem(SECTION_KEY, v)
+    } catch {
+      // Not remembered; harmless.
+    }
+  }
+  // A word sent from another site opens the add form.
+  useEffect(() => {
+    if (incoming) setSectionState('add')
+  }, [incoming])
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
 
 
@@ -92,6 +115,11 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
     await deleteWordsWithUndo(samples.map((s) => s.id), `${samples.length} örnek kelime silindi`, onChanged)
   }
 
+  const goAdd = () => {
+    setSection('add')
+    setTimeout(() => document.getElementById('w-word')?.focus(), 60)
+  }
+
   return (
     <div>
       <section className="section stack">
@@ -99,55 +127,82 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           title={`${LANGUAGE_NAME[language]} kelimelerin`}
           sub={vocabulary.length ? `${vocabulary.length} kelime, ${states.length} tanesi öğreniliyor.` : 'Öğrenmek istediğin kelimeleri ekle; gerisini tekrar takvimi halleder.'}
           action={
-            <button
-              className="btn"
-              onClick={() => {
-                const input = document.getElementById('w-word')
-                const fold = input?.closest('details')
-                if (fold) fold.open = true
-                input?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                input?.focus({ preventScroll: true })
-              }}
-            >
-              <PlusIcon size={18} /> Kelime ekle
-            </button>
+            section !== 'add' && (
+              <button className="btn" onClick={goAdd}>
+                <PlusIcon size={18} /> Kelime ekle
+              </button>
+            )
           }
         />
-        <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
-        {incoming && (
-          <div className="card stack incoming">
-            <p className="small muted">
-              🌐 Web'den geldi{incoming.src && hostOf(incoming.src) && (
-                <>
-                  : <a href={incoming.src} target="_blank" rel="noreferrer">{hostOf(incoming.src)}</a>
-                </>
-              )}
-              {!incoming.word && ' · Cümledeki öğrenmek istediğin kelimeyi yaz.'}
-            </p>
-            <WordForm
-              key={incoming.word + incoming.context}
-              db={db}
-              language={language}
-              existing={keys}
-              initial={{
-                word: incoming.word,
-                meaning: '',
-                example: incoming.word ? markWord(incoming.context, incoming.word) : incoming.context,
-                exampleTranslation: '',
-                notes: incoming.src ? `Kaynak: ${incoming.src}` : '',
-              }}
-              onSaved={() => {
-                onChanged()
-                onIncomingDone?.()
-              }}
-              onCancel={onIncomingDone}
-            />
+        {/* One screen, three jobs: the words, adding one, bringing many in. */}
+        <div className="page-tabs" role="tablist" aria-label="Kelimeler bölümleri">
+          {(
+            [
+              ['words', `Kelimelerim${vocabulary.length ? ` (${vocabulary.length})` : ''}`],
+              ['add', 'Ekle'],
+              ['import', 'İçe aktar'],
+            ] as const
+          ).map(([id, label]) => (
+            <button key={id} role="tab" className="page-tab" aria-selected={section === id} onClick={() => (id === 'add' ? goAdd() : setSection(id))}>
+              {label}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {section === 'add' && (
+        <section className="section stack">
+          {incoming && (
+            <div className="card stack incoming">
+              <p className="small muted">
+                🌐 Web'den geldi{incoming.src && hostOf(incoming.src) && (
+                  <>
+                    : <a href={incoming.src} target="_blank" rel="noreferrer">{hostOf(incoming.src)}</a>
+                  </>
+                )}
+                {!incoming.word && ' · Cümledeki öğrenmek istediğin kelimeyi yaz.'}
+              </p>
+              <WordForm
+                key={incoming.word + incoming.context}
+                db={db}
+                language={language}
+                existing={keys}
+                initial={{
+                  word: incoming.word,
+                  meaning: '',
+                  example: incoming.word ? markWord(incoming.context, incoming.word) : incoming.context,
+                  exampleTranslation: '',
+                  notes: incoming.src ? `Kaynak: ${incoming.src}` : '',
+                }}
+                onSaved={() => {
+                  onChanged()
+                  onIncomingDone?.()
+                }}
+                onCancel={onIncomingDone}
+              />
+            </div>
+          )}
+          {!incoming && (
+            <div className="card stack">
+              <WordForm db={db} language={language} existing={keys} onSaved={onChanged} onLearn={onStudy} />
+            </div>
+          )}
+          <div className="row small">
+            {hasSamples ? (
+              <button className="link" onClick={removeSamples}>
+                Örnek kelimeleri kaldır
+              </button>
+            ) : (
+              <button className="link" onClick={loadSamples}>
+                Denemek için {SAMPLE_WORDS[language].length} örnek kelime yükle
+              </button>
+            )}
           </div>
-        )}
-        <details open={!incoming} className="card">
-          <summary>Kelime ekle</summary>
-          <WordForm db={db} language={language} existing={keys} onSaved={onChanged} onLearn={onStudy} />
-        </details>
+        </section>
+      )}
+
+      {section === 'import' && (
+        <section className="section stack">
         <section className="card stack import-group">
           <h2 className="section-title">Başka yerden kelime aktar</h2>
           <TextImport db={db} language={language} vocabulary={vocabulary} existing={keys} onAdded={onChanged} />
@@ -156,20 +211,13 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
         </section>
-        <div className="row small">
-          {hasSamples ? (
-            <button className="link" onClick={removeSamples}>
-              Örnek kelimeleri kaldır
-            </button>
-          ) : (
-            <button className="link" onClick={loadSamples}>
-              Denemek için {SAMPLE_WORDS[language].length} örnek kelime yükle
-            </button>
-          )}
-        </div>
-      </section>
+        </section>
+      )}
 
-      <section className="section stack">
+      {section === 'words' && (
+        <>
+          <section className="section stack">
+            <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
         <div className="segmented" role="tablist" aria-label="Görünüm">
           <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
             Liste
@@ -184,7 +232,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
             Kavramlar
           </button>
         </div>
-      </section>
+          </section>
       {view === 'list' ? (
         <WordList
           vocabulary={vocabulary}
@@ -202,6 +250,8 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         <section className="stack mt-4">
           <WordGraph vocabulary={vocabulary} states={states} onOpen={onOpen} />
         </section>
+      )}
+        </>
       )}
     </div>
   )

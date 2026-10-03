@@ -5,7 +5,7 @@ import { db } from '../data/instance'
 import { SPEECH_LANG } from './labels'
 import { exampleAudio } from '../data/corpus'
 import { cacheAudio, cachedAudio, readyAudio } from '../data/audioCache'
-import { naturalEnabled, playNatural, stopNatural } from './naturalVoice'
+import { naturalEnabled, naturalPlaying, playNatural, stopNatural } from './naturalVoice'
 
 export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window
 
@@ -94,6 +94,13 @@ export async function preloadRecording(audioId: string | undefined): Promise<str
   const url = URL.createObjectURL(mediaBlob(m))
   recordings.set(audioId, url)
   return url
+}
+
+/** Whether any word or sentence audio is sounding now (recording, native clip, natural voice or TTS). */
+export function isAudioPlaying(): boolean {
+  const el = !!current && !current.paused && !current.ended
+  const tts = typeof window !== 'undefined' && 'speechSynthesis' in window && window.speechSynthesis.speaking
+  return el || tts || naturalPlaying()
 }
 
 function playUrl(url: string, rate = 1): Promise<void> {

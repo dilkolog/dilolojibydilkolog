@@ -1,15 +1,34 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BLANK, type Evaluation } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
 import { SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
-import { canSpeak, playWord } from '../speech'
+import { canSpeak, isAudioPlaying, playWord } from '../speech'
 import { modalOpen } from './keys'
 
 /** Plays the word; Alt+S (or Space when not typing) replays it. */
 export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean; rate?: number }) {
+  // While the audio sounds (or is still loading), the button shows moving bars.
+  const [playing, setPlaying] = useState(false)
+  const watch = useRef<number | null>(null)
+  const play = () => {
+    playWord(entry, text, vary, rate)
+    setPlaying(true)
+    if (watch.current) clearInterval(watch.current)
+    const started = performance.now()
+    watch.current = window.setInterval(() => {
+      const t = performance.now() - started
+      // A grace period covers loading; give up after 20 s whatever happens.
+      if ((t > 600 && !isAudioPlaying()) || t > 20_000) {
+        clearInterval(watch.current!)
+        watch.current = null
+        setPlaying(false)
+      }
+    }, 150)
+  }
+  useEffect(() => () => void (watch.current && clearInterval(watch.current)), [])
   useEffect(() => {
-    if (auto && prefs.autoPlay) playWord(entry, text, vary, rate)
+    if (auto && prefs.autoPlay) play()
     // Auto-play once per word, not again when the entry object is updated.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auto, text, entry.language])
@@ -21,31 +40,48 @@ export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: stri
       const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement
       if ((e.altKey && e.code === 'KeyS') || (e.code === 'Space' && !typing && !(e.target instanceof HTMLButtonElement))) {
         e.preventDefault()
-        playWord(entry, text, vary, rate)
+        play()
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
+    // play() depends on exactly these.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, entry, vary, rate])
   if (!canSpeak()) return null
   return (
     <button
       type="button"
-      className={big ? 'speak speak-big' : 'speak'}
-      onClick={() => playWord(entry, text, vary, rate)}
-      aria-label="Sesli dinle"
+      className={`${big ? 'speak speak-big' : 'speak'}${playing ? ' is-playing' : ''}`}
+      onClick={play}
+      aria-label={playing ? 'Çalıyor' : 'Sesli dinle'}
     >
-      <SpeakerIcon size={big ? 36 : 22} />
+      {playing ? (
+        <span className="sound-bars" aria-hidden>
+          <i />
+          <i />
+          <i />
+          <i />
+        </span>
+      ) : (
+        <SpeakerIcon size={big ? 36 : 22} />
+      )}
     </button>
   )
 }
 
+/** Long expressions step down a size so they stay on one line ("Contrat de location"). */
+export function wordSize(text: string): string {
+  return text.length > 24 ? ' word-xlong' : text.length > 14 ? ' word-long' : ''
+}
+
 /** The word in large type, with its article. */
 export function Word({ entry }: { entry: VocabularyEntry }) {
-  if (!entry.article) return <h1 className="word">{entry.lemma}</h1>
+  const size = wordSize(`${entry.article ?? ''} ${entry.lemma}`.trim())
+  if (!entry.article) return <h1 className={`word${size}`}>{entry.lemma}</h1>
   const sep = entry.article.endsWith("'") ? '' : ' '
   return (
-    <h1 className="word">
+    <h1 className={`word${size}`}>
       <span className="article">{entry.article}</span>
       {sep}
       {entry.lemma}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { MASTERY_STAGES, skillProfile } from '../engine/mastery'
 import { progressStats, type DayActivity, type ProgressStats } from '../engine/progress'
 import type { Scheduler } from '../engine/scheduler'
@@ -16,6 +16,7 @@ import { FrequencyCoverageCard } from './FrequencyCoverage'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
+import { StreakFlame } from './StreakFlame'
 
 const DAYS = 14
 
@@ -79,6 +80,7 @@ export function ProgressScreen({
   const byId = new Map(vocabulary.map((v) => [v.id, v]))
   const profile = skillProfile(states, scheduler, new Date())
   const maxStage = Math.max(1, stats.notStarted, ...Object.values(stats.stageCounts))
+  const weeks = lastWeeks(events, now, 6)
   // Chart titles state what the chart shows (the finding); a small label above says what it is.
   const forecastTotal = forecast.reduce((n, f) => n + f.count, 0)
   const busiest = forecast.reduce((a, b) => (b.count > a.count ? b : a), forecast[0])
@@ -90,6 +92,13 @@ export function ProgressScreen({
   return (
     <div className="progress-page">
       <PageHeader title="İlerleme" sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın." />
+      {/* The page in four numbers, each with its last six weeks. */}
+      <div className="kpi-strip span-2" role="list">
+        <Kpi label="aktif kelime" value={stats.activeVocabulary} hint="cümlede üretebildiğin" />
+        <Kpi label="bu hafta cevap" value={report.thisWeek.answers} spark={weeks.map((w) => w.answers)} />
+        <Kpi label="doğruluk, bu hafta" value={report.thisWeek.answers ? `%${Math.round(report.thisWeek.accuracy * 100)}` : '—'} spark={weeks.map((w) => (w.answers ? w.accuracy : null))} />
+        <Kpi label="günlük seri" value={game?.streak ?? 0} icon={<StreakFlame streak={game?.streak ?? 0} frozen={game?.frozenYesterday} size={18} />} />
+      </div>
       <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
       <GroupTitle id="p-overview">Genel bakış</GroupTitle>
       <section className="section stack span-2 overview-grid">
@@ -488,5 +497,48 @@ function ForecastChart({ forecast }: { forecast: { date: string; count: number }
         <span>{dayLabel(forecast.at(-1)!.date, { day: 'numeric', month: 'short' })}</span>
       </div>
     </div>
+  )
+}
+
+/** Answers and accuracy per week, oldest first, for the KPI sparklines. */
+function lastWeeks(events: readonly ReviewEvent[], now: Date, count: number): { answers: number; accuracy: number }[] {
+  const WEEK = 7 * 86_400_000
+  const out = Array.from({ length: count }, () => ({ answers: 0, correct: 0 }))
+  for (const e of events) {
+    if (e.mode === 'practice') continue
+    const i = count - 1 - Math.floor((now.getTime() - e.timestamp.getTime()) / WEEK)
+    if (i < 0 || i >= count) continue
+    out[i].answers++
+    if (e.correct) out[i].correct++
+  }
+  return out.map((w) => ({ answers: w.answers, accuracy: w.answers ? w.correct / w.answers : 0 }))
+}
+
+function Kpi({ label, value, hint, spark, icon }: { label: string; value: ReactNode; hint?: string; spark?: (number | null)[]; icon?: ReactNode }) {
+  return (
+    <div className="kpi" role="listitem">
+      <span className="kpi-value">
+        {icon}
+        {value}
+      </span>
+      <span className="kpi-label">{label}</span>
+      {spark && spark.some((v) => v) ? <Sparkline values={spark} /> : hint ? <span className="small muted">{hint}</span> : null}
+    </div>
+  )
+}
+
+/** A thin trend line; the last point (this week) is marked. */
+function Sparkline({ values }: { values: (number | null)[] }) {
+  const nums = values.map((v) => v ?? 0)
+  const max = Math.max(...nums, 1e-9)
+  const W = 96
+  const H = 24
+  const pts = nums.map((v, i) => [(i / Math.max(1, nums.length - 1)) * W, H - 2 - (v / max) * (H - 4)] as const)
+  const last = pts[pts.length - 1]
+  return (
+    <svg className="sparkline" width={W} height={H} viewBox={`0 0 ${W} ${H}`} aria-hidden>
+      <polyline points={pts.map(([x, y]) => `${x},${y}`).join(' ')} fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx={last[0]} cy={last[1]} r="3" fill="currentColor" />
+    </svg>
   )
 }

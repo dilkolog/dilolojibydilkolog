@@ -141,6 +141,11 @@ function silentWav(): string {
   return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }))
 }
 
+/** Whether a natural-voice clip is sounding right now. */
+export function naturalPlaying(): boolean {
+  return !!player && !player.paused && !player.ended && !player.src.startsWith('data:')
+}
+
 export function naturalPlayer(): HTMLAudioElement {
   if (!player) {
     player = new Audio()
