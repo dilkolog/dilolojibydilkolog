@@ -98,6 +98,8 @@ export function listenContinuous(language: TargetLanguage, onText: (final: strin
       onText(finalText, interim.trim())
     }
     r.onerror = (e) => {
+      // No microphone permission or no service: restarting would only loop.
+      if (e.error === 'not-allowed' || e.error === 'service-not-allowed' || e.error === 'audio-capture') stopped = true
       if (e.error !== 'no-speech' && e.error !== 'aborted') onError?.(ERRORS[e.error] ?? 'Konuşma tanınamadı.')
     }
     r.onend = () => {
