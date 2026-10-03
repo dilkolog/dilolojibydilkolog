@@ -182,7 +182,7 @@ export function ArticleDrill({ language, vocabulary, states, onExit, onChanged }
   const rule = answer && answer !== q.answer ? ruleFor(noun) : undefined
   return (
     <div className="stack article-drill">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <button className="link" onClick={onExit}>
           ← Bitir
         </button>

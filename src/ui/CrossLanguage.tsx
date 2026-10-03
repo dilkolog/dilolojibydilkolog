@@ -69,13 +69,13 @@ export function ConceptsView({ language, onOpen }: { language: VocabularyEntry['
   if (!concepts) return null
   if (!concepts.length) {
     return (
-      <p className="muted" style={{ marginTop: '1rem' }}>
+      <p className="muted mt-4">
         Aynı Türkçe anlamı taşıyan kelimeleri farklı dillerde eklediğinde burada yan yana görünürler. Bir dildeki kelime ötekini hatırlatır; özellikle soydaşlar.
       </p>
     )
   }
   return (
-    <section className="stack" style={{ marginTop: '1rem' }}>
+    <section className="stack mt-4">
       <p className="small muted">
         {concepts.length} kavram en az iki dilde listende. Bir dilde bildiğin kelime, diğer dildekine köprü olur. Burada sadece {LANGUAGE_SHORT[language]} kelimeleri açılabilir.
       </p>

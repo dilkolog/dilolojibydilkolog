@@ -162,7 +162,7 @@ export function GenderGame({
           {missed.length > 0 && (
             <p className="muted">Kaçırdıkların: {missed.map((m) => `${art[m.q.answer]} ${m.q.noun}${m.q.exception ? ' (istisna)' : ''}`).join(', ')}</p>
           )}
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={start} autoFocus>
               Tekrar oyna
             </button>

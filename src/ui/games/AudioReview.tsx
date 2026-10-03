@@ -139,7 +139,7 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
         <div className="celebrate stack">
           <h2>Bitti 🎧</h2>
           <p className="muted">{words.length} kelimeyi dinledin. Sesli tekrar takvimi etkilemez; asıl tekrarlar günlük görevde.</p>
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={() => play(0)}>
               Baştan dinle
             </button>
@@ -152,7 +152,7 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
               {direction === 'turkish' && !reveal ? '…' : displayForm(w)}
             </p>
             <p className="gloss">{direction === 'target' && !reveal ? '…' : w.senses[0].gloss}</p>
-            <div className="row" style={{ justifyContent: 'center' }}>
+            <div className="row justify-center">
               {playing ? (
                 <button className="btn btn-lg btn-quiet" onClick={stop}>
                   ⏸ Duraklat

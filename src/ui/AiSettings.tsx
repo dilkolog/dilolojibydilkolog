@@ -41,7 +41,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
 
   return (
     <section className="section card stack">
-      <h2 className="section-title row" style={{ gap: '0.5rem' }}>
+      <h2 className="section-title row gap-2">
         <SparkleIcon size={20} className="icon-star" /> AI yardımcısı
       </h2>
       <p className="small muted">

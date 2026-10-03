@@ -329,7 +329,7 @@ export function SettingsScreen({
           <Chips options={RATES} value={settings.speechRate} onChange={(v) => set('speechRate', v)} format={(r) => `${r}×`} />
         </Row>
         <Row label={`${LANGUAGE_NAME[lang]} sesi`} help="Sistemdeki seslerden seç. macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten yenilerini indirebilirsin.">
-          <div className="row" style={{ flexWrap: 'nowrap' }}>
+          <div className="row nowrap">
             <div style={{ flex: 1, minWidth: '12rem' }}>
               <Select
                 label="Ses"
@@ -385,7 +385,7 @@ export function SettingsScreen({
 
       <GroupTitle id="s-remind">Bildirimler</GroupTitle>
       <section className="card stack">
-        <h2 className="section-title row" style={{ gap: '0.5rem' }}>
+        <h2 className="section-title row gap-2">
           <BellIcon size={20} /> Hatırlatıcı
         </h2>
         <Toggle

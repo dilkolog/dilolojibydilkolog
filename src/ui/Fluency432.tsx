@@ -90,7 +90,7 @@ export function Fluency432({ language, words }: { language: TargetLanguage; word
   if (round !== null) {
     return (
       <section className="card stack fluency-run">
-        <div className="row" style={{ justifyContent: 'space-between' }}>
+        <div className="row justify-between">
           <strong>
             {round + 1}. tur · {subject}
           </strong>

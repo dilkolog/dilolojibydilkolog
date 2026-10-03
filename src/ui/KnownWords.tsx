@@ -185,11 +185,11 @@ function GoalForm({ initial, compact, onSave, onClear }: { initial: KnownGoal; c
         <span className="small">Tarih</span>
         <input className="input" type="date" value={by} min={localDate(new Date())} onChange={(e) => setBy(e.target.value)} />
       </label>
-      <button className="btn btn-sm" type="submit" disabled={!(n > 0) || !by} style={{ alignSelf: 'end' }}>
+      <button className="btn btn-sm self-end" type="submit" disabled={!(n > 0) || !by}>
         Kaydet
       </button>
       {onClear && (
-        <button className="link small" type="button" onClick={onClear} style={{ alignSelf: 'end' }}>
+        <button className="link small self-end" type="button" onClick={onClear}>
           Hedefi kaldır
         </button>
       )}

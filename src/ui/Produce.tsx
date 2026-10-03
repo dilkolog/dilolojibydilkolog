@@ -217,7 +217,7 @@ function Review({ entry, language, added }: { entry: JournalEntry; language: Tar
         </div>
       )}
       {r.mistakes.length > 0 && (
-        <ul className="plain stack" style={{ gap: '0.375rem' }}>
+        <ul className="plain stack gap-xs">
           {r.mistakes.map((m, i) => (
             <li key={i} className="small">
               <span className="strike">{m.original}</span> → <span className="target">{m.correction}</span> <span className="muted">{m.explanation}</span>

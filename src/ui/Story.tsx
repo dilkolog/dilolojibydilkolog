@@ -455,7 +455,7 @@ function Retell({ language, story, words }: { language: TargetLanguage; story: s
               <strong>Düzeltilmiş hali:</strong> <span lang={language}>{result.corrected}</span>
             </p>
           )}
-          <div className="row" style={{ gap: '0.5rem' }}>
+          <div className="row gap-2">
             {result.words.map((w) => (
               <span key={w.lemma} className={`pill ${w.correct ? 'stage-5' : w.used ? 'stage-3' : ''}`}>
                 {w.correct ? '✓' : w.used ? '~' : '–'} {w.lemma}

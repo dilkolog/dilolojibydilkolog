@@ -54,7 +54,7 @@ export function TranslateImport({ db, language, existing, onAdded }: { db: Kelim
   return (
     <details className="card">
       <summary>Google Çeviri'den aktar</summary>
-      <div className="stack" style={{ marginTop: '0.75rem' }}>
+      <div className="stack mt-3">
         <p className="small muted">
           Google Çeviri'de yıldızladıkların: <strong>translate.google.com → Kaydedilenler → Google E-Tablolar'a aktar</strong>, açılan tabloyu{' '}
           <em>Dosya → İndir → CSV</em> ile indir ve buraya yükle. Kısa olanlar kelime, uzun olanlar cümle kartı olur; Türkçesi anlam olarak gelir.

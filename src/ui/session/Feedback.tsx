@@ -81,7 +81,12 @@ export function Feedback({
             {title}
             {xp !== undefined && xp > 0 && <span className="xp-pop">+{xp} XP</span>}
           </p>
-          {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
+          {ev.verdict !== 'correct' && (
+            <p className="expected" lang={entry.language}>
+              {ev.expected}
+            </p>
+          )}
+          <div className="sheet-notes">
           {confidentError && (
             <div className="hyper">
               <p className="small">
@@ -123,11 +128,12 @@ export function Feedback({
               </p>
             ))}
           {ev.verdict !== 'correct' && entry.notes && <p className="small">💡 {entry.notes}</p>}
-          <p className="small muted">
-            {displayForm(entry)}: {entry.senses[0].gloss}
+          </div>
+          <p className="sheet-gloss">
+            <span lang={entry.language}>{displayForm(entry)}</span> {entry.senses[0].gloss}
           </p>
         </div>
-        <div className="row" style={{ gap: '0.75rem' }}>
+        <div className="sheet-actions">
           {mnemonic === 'offer' && (
             <button className="btn btn-quiet" onClick={onMnemonic}>
               💡 Hafıza ipucu oluştur

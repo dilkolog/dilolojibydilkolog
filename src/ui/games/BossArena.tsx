@@ -185,8 +185,8 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
         <span className="boss-face boss-face-big" aria-hidden>
           {outcome === 'won' ? '💥' : face}
         </span>
-        <div className="stack" style={{ gap: '0.375rem', flex: 1 }}>
-          <div className="row" style={{ justifyContent: 'space-between' }}>
+        <div className="stack gap-xs grow">
+          <div className="row justify-between">
             <strong>{outcome === 'won' ? displayForm(entry) : 'Gizemli kelime'}</strong>
             <span className="hearts" aria-label={`${hearts} can`}>
               {'❤️'.repeat(hearts)}
@@ -221,7 +221,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
               {entry.senses[0].examples[0].text}
             </p>
           )}
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={onDone} autoFocus>
               {outcome === 'won' ? 'Zaferi topla' : 'Geri dön'}
             </button>
@@ -306,7 +306,7 @@ function BattlePrompt({ ex, entry, language }: { ex: Exercise; entry: Vocabulary
     )
   if (ex.type === 'idiom_complete')
     return (
-      <div className="stack" style={{ gap: '0.25rem' }}>
+      <div className="stack gap-1">
         <p className="muted small">{label}</p>
         <p className="prompt-text" lang={language}>
           {ex.prompt.split(BLANK).map((part, i, all) => (
@@ -321,7 +321,7 @@ function BattlePrompt({ ex, entry, language }: { ex: Exercise; entry: Vocabulary
     )
   if (ex.context && ex.type !== 'conjugation')
     return (
-      <div className="stack" style={{ gap: '0.25rem' }}>
+      <div className="stack gap-1">
         <p className="muted small">{label}</p>
         <p className="sentence" lang={language}>
           {ex.context.split(BLANK).map((part, i, all) => (
@@ -334,7 +334,7 @@ function BattlePrompt({ ex, entry, language }: { ex: Exercise; entry: Vocabulary
       </div>
     )
   return (
-    <div className="stack" style={{ gap: '0.25rem' }}>
+    <div className="stack gap-1">
       <p className="muted small">{ex.type === 'typed_translation' ? `${LANGUAGE_NAME[language]} karşılığını yaz` : label}</p>
       <p className="prompt-text" lang={ex.type === 'mc_meaning' ? language : undefined}>
         {ex.type === 'mc_meaning' ? displayForm(entry) : ex.prompt}

@@ -114,7 +114,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         Kelimelere dön
       </button>
 
-      <section className="section stack" style={{ marginTop: '1.5rem' }}>
+      <section className="section stack mt-6">
         <div className="row">
           <h1 className="word">{displayForm(entry)}</h1>
           {entry.ipa && <span className="ipa">{entry.ipa}</span>}
@@ -350,7 +350,7 @@ function GrowthPanel({ entry, state, scheduler, now }: { entry: VocabularyEntry;
   return (
     <section className="section growth card">
       <Plant stage={stage} health={health} size={88} />
-      <div className="stack" style={{ gap: '0.375rem' }}>
+      <div className="stack gap-xs">
         <strong className="growth-title">{state ? STAGE_NAME[MASTERY_STAGES[stage]] : 'Henüz ekilmedi'}</strong>
         {!state && <p className="small muted">Bu kelime günlük görevine sırası gelince eklenir; ilk tanışmada filizlenir.</p>}
         {state && <p className="small">{HEALTH_NOTE[health]}</p>}

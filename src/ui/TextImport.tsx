@@ -169,12 +169,12 @@ export function TextImport({
               <strong>Listendeki {found.length} kelime bu metinde de geçiyor.</strong> Cümlelerini örnek olarak eklersen kelimeleri yeni bağlamlarda
               da görürsün.
             </p>
-            <ul className="plain stack" style={{ gap: '0.5rem' }}>
+            <ul className="plain stack gap-2">
               {found.map((f, i) => {
                 const entry = vocabulary.find((v) => v.id === f.entryId)
                 return (
                   <li key={f.entryId}>
-                    <label className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap', gap: '0.5rem' }}>
+                    <label className="row items-start nowrap gap-2">
                       <input
                         type="checkbox"
                         checked={f.selected}
@@ -200,7 +200,7 @@ export function TextImport({
         {rows && rows.length > 0 && (
           <>
             <div className="row">
-              <span className="small muted" style={{ marginRight: 'auto' }}>
+              <span className="small muted mr-auto">
                 {rows.length} aday, {selected.length} seçili. Kelimeyi sözlük biçimine düzeltebilirsin (
                 {language === 'en' ? 'decided → decide' : language === 'fr' ? 'encouragé → encourager' : 'hablando → hablar'})
                 {language !== 'en' && !apiKey && '. İsimleri artikeliyle yaz ki cinsiyeti de öğrenilsin (la librairie)'}.

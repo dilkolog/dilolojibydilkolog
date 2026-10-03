@@ -130,7 +130,7 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
         <div className="celebrate stack">
           <h1>60 saniye hazır mısın?</h1>
           <p className="muted">Kelimenin anlamını seç. 1–4 tuşları en hızlısı. Üst üste doğrular puanı katlar.</p>
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={begin} autoFocus>
               Başla
             </button>
@@ -143,7 +143,7 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
           <div className="progress">
             <div style={{ width: `${(left / BLITZ_MS) * 100}%`, transition: 'width 0.1s linear' }} />
           </div>
-          <div className="row" style={{ justifyContent: 'space-between' }}>
+          <div className="row justify-between">
             <span className="game-score">{score} puan</span>
             {combo >= 3 && (
               <span className="combo" key={combo}>
@@ -176,7 +176,7 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
           <p className="muted">
             {total} sorudan {right} doğru{total ? ` (%${Math.round((right / total) * 100)})` : ''}.
           </p>
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={begin} autoFocus>
               Tekrar oyna
             </button>

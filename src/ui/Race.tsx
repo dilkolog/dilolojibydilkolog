@@ -17,7 +17,7 @@ export function RaceCard({ game, now = new Date() }: { game: GameState; now?: Da
           : `Geçen haftanın ${-diff} XP gerisindesin; bugün yakalayabilirsin.`
   return (
     <section className="race card">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <strong>Haftalık yarış</strong>
         {r.streak > 0 && <span className="small race-streak">🏁 {r.streak} hafta üst üste kendini geçtin</span>}
       </div>

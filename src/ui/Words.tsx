@@ -178,7 +178,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       ) : view === 'concepts' ? (
         <ConceptsView language={language} onOpen={onOpen} />
       ) : (
-        <section className="stack" style={{ marginTop: '1rem' }}>
+        <section className="stack mt-4">
           <WordGraph vocabulary={vocabulary} states={states} onOpen={onOpen} />
         </section>
       )}
@@ -821,7 +821,7 @@ function WordList({
           </div>
           {selecting && (
             <div className="select-bar" role="toolbar" aria-label="Seçim">
-              <label className="row" style={{ gap: '0.5rem', cursor: 'pointer' }}>
+              <label className="row gap-2 pointer">
                 <input
                   type="checkbox"
                   checked={allVisibleSelected}
@@ -833,7 +833,7 @@ function WordList({
                 <strong>{selectedVisible.length} seçili</strong>
               </label>
               <span className="small muted">Shift + tık: aralık seç</span>
-              <span style={{ flex: 1 }} />
+              <span className="grow" />
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
               </button>

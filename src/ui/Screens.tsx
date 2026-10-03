@@ -56,7 +56,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
       <div className="brand" style={{ cursor: 'default' }}>
         <span className="brand-mark">k</span> Kelime Koçu
       </div>
-      <h1 className="greeting" style={{ marginTop: '2rem' }}>
+      <h1 className="greeting mt-8">
         Kelimeleri gerçekten kullanabileceğin şekilde öğren
       </h1>
       <p className="muted">
@@ -252,7 +252,7 @@ export function Home({
                 {answeredToday > 0 ? 'Devam et' : 'Başla'}
               </button>
               {plan.newBlockedBy && plan.waitingNew > 0 && (
-                <p className="small muted" style={{ marginTop: '0.75rem' }}>
+                <p className="small muted mt-3">
                   {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
                     ? `${plan.waitingNew} kelime daha sırada; günlük sınırı Ayarlar'dan artırabilirsin.`
                     : NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
@@ -313,7 +313,7 @@ export function Home({
             {onMixed && (
               <button className="tile" onClick={onMixed}>
                 <span className="tile-icon">
-                  <span style={{ fontSize: '1.25rem' }}>🔀</span>
+                  <span className="tile-emoji">🔀</span>
                 </span>
                 <span>
                   <strong>Karışık tekrar</strong>
@@ -324,7 +324,7 @@ export function Home({
             {onGames && (
               <button className="tile" onClick={onGames}>
                 <span className="tile-icon">
-                  <span style={{ fontSize: '1.25rem' }}>🧩</span>
+                  <span className="tile-emoji">🧩</span>
                 </span>
                 <span>
                   <strong>Oyunlar</strong>
@@ -553,7 +553,7 @@ export function Summary({
         {(accuracy >= 0.7 || leveledUp) && <Burst />}
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         <h1>{headline(accuracy, practice)}</h1>
-        <p className="muted" style={{ marginTop: '0.5rem' }}>
+        <p className="muted mt-2">
           {summary.answered} sorudan {summary.correct} tanesini doğru bildin.
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>

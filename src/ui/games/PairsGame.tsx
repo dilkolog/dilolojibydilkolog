@@ -164,7 +164,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
             {right} / {round.length} doğru
           </p>
           <p className="muted">{worst ? `En çok karıştırdığın ses farkı: ${worst[0]}. Bu çiftleri tekrar dinlemek kulağını alıştırır.` : 'Hiç karıştırmadın; kulağın bu farklara alışmış.'}</p>
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button
               className="btn btn-lg"
               autoFocus

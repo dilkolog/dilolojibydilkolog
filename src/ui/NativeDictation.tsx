@@ -141,7 +141,7 @@ function DictationRound({ items, language, onDone }: { items: ListeningSentence[
 
   return (
     <div className="stack sentence-review">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <button className="link" onClick={onDone}>
           ← Bitir
         </button>

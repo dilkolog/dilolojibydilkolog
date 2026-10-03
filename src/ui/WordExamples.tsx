@@ -77,7 +77,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
       <div className="field-head">
         <h2 className="section-title">Örnek cümleler{examples.length > 0 && <span className="muted"> ({examples.length})</span>}</h2>
         {!full && (
-          <div className="row" style={{ gap: '0.5rem' }}>
+          <div className="row gap-2">
             <button type="button" className="ai-suggest" onClick={suggest} disabled={busy}>
               <SparkleIcon size={14} className="icon-star" />
               {busy ? 'Yazılıyor…' : 'AI ile yeni cümle'}
@@ -106,7 +106,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
                 {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
                 <ShadowButton text={ex.text} language={entry.language} />
               </div>
-              <div className="row" style={{ gap: '0.25rem', flexWrap: 'nowrap' }}>
+              <div className="row gap-1 nowrap">
                 {canSpeak() && (
                   <button className="icon-btn" onClick={() => speak(ex.text, entry.language, speechPrefs.rate * 0.95)} aria-label="Cümleyi dinle">
                     <SpeakerIcon size={18} />
@@ -222,7 +222,7 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
                 </p>
                 {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
               </div>
-              <div className="row" style={{ gap: '0.25rem', flexWrap: 'nowrap' }}>
+              <div className="row gap-1 nowrap">
                 {(ex.source?.audioUrl || canSpeak()) && (
                   <button className="icon-btn" onClick={() => playWord(entry, ex.text)} aria-label={ex.source?.audioUrl ? 'Ana dili konuşan birinden dinle' : 'Cümleyi dinle'}>
                     <SpeakerIcon size={18} />

@@ -434,7 +434,7 @@ export function ReadingScreen({
         )}
         <details className="card add-text" open={!library.length}>
           <summary>Kendi metnini ekle: yapıştır, dosya, kitap (EPUB) ya da YouTube</summary>
-          <div className="stack" style={{ marginTop: '0.75rem' }}>
+          <div className="stack mt-3">
           <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
           <textarea className="textarea" style={{ minHeight: '14rem' }} lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
           <div className="row">
@@ -517,7 +517,7 @@ export function ReadingScreen({
 
   return (
     <div className="stack">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <h1 className="greeting">Okuma</h1>
         <button className="link small" onClick={() => open(null)}>
           ← Kütüphane
@@ -647,7 +647,7 @@ export function ReadingScreen({
 
       {selected && selected.token.key && (
         <section className="card stack word-pop" aria-live="polite">
-          <div className="row" style={{ justifyContent: 'space-between' }}>
+          <div className="row justify-between">
             <strong className="word-pop-word" lang={language}>
               {selectedEntry ? `${selectedEntry.article ? `${selectedEntry.article} ` : ''}${selectedEntry.lemma}` : cleanToken(selected.token.text, language)}
             </strong>
@@ -729,13 +729,13 @@ export function ReadingScreen({
           <p className="small muted">
             Yalnızca bir kelimesini bilmediğin cümleler: yeni bir kelimeyi öğrenmenin en verimli bağlamı (i+1). Kelimeyi bu cümleyle birlikte ekle.
           </p>
-          <ul className="plain stack" style={{ gap: '0.5rem' }}>
+          <ul className="plain stack gap-2">
             {analysis.iPlusOne.slice(0, 12).map((x) => (
-              <li key={x.key} className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap', alignItems: 'flex-start' }}>
+              <li key={x.key} className="row justify-between nowrap items-start">
                 <span className="sentence-sm" lang={language}>
                   {highlight(x.sentence, x.word)}
                 </span>
-                <span className="row" style={{ gap: '0.375rem', flexWrap: 'nowrap' }}>
+                <span className="row gap-xs nowrap">
                   <button className="btn btn-quiet" onClick={() => setAdding({ word: x.word.toLocaleLowerCase(language), sentence: x.sentence })}>
                     Ekle
                   </button>

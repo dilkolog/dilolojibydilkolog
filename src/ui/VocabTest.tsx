@@ -109,7 +109,7 @@ export function VocabTestScreen({ db, language, onDone }: { db: KelimeDB; langua
 
   return (
     <div className="stack vocab-test">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <h1 className="greeting">Kelime dağarcığı testi</h1>
         <button className="link small" onClick={onDone}>
           Vazgeç
@@ -138,7 +138,7 @@ export function VocabTestScreen({ db, language, onDone }: { db: KelimeDB; langua
           <button className="link small" style={{ justifySelf: 'center' }} onClick={() => answer('skip')}>
             İsim / başka dil, atla (↓)
           </button>
-          <p className="small muted" style={{ textAlign: 'center' }}>
+          <p className="small muted text-center">
             {index + 1} / {items.length} · Klavye: ← bilmiyorum, → biliyorum
           </p>
         </>

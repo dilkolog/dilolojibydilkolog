@@ -71,7 +71,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
         </div>
         {game && (
           <div className="profile-level">
-            <div className="row" style={{ justifyContent: 'space-between' }}>
+            <div className="row justify-between">
               <span>
                 <span className="level-badge">Seviye {game.level.level}</span> <strong>{game.level.title}</strong>
               </span>
@@ -162,7 +162,7 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
               {locked.length > 0 && (
                 <details>
                   <summary className="small">Diğer rozetler ({locked.length})</summary>
-                  <div className="badge-grid badge-grid-compact" style={{ marginTop: '0.75rem' }}>
+                  <div className="badge-grid badge-grid-compact mt-3">
                     {locked.map((a) => (
                       <Badge key={a.id} a={a} compact />
                     ))}

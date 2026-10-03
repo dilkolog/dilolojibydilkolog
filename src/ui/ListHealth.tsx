@@ -71,7 +71,7 @@ export function ListHealthCard({
       <summary>
         🧹 Liste sağlığı <span className="muted small">({total} öneri)</span>
       </summary>
-      <div className="stack" style={{ marginTop: '0.75rem' }}>
+      <div className="stack mt-3">
         {health.duplicates.length > 0 && (
           <Group title="İki kez eklenmiş" help="Aynı kelime ya da bir harf farkıyla aynı anlam. Birleştirince en çok çalışılan kopya kalır; diğerlerinin örnekleri, anlamları ve etiketleri ona eklenir.">
             {health.duplicates.map((g) => (

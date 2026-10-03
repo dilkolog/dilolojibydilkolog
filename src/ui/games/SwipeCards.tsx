@@ -146,7 +146,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
   const offset = leaving === 'right' ? 600 : leaving === 'left' ? -600 : dx
   return (
     <div className="stack swipe">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <button className="link" onClick={onExit}>← Bitir</button>
         <span className="small muted">{total - deck.length + 1} / {total}</span>
       </div>

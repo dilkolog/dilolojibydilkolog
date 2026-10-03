@@ -103,7 +103,7 @@ export function Intro({
         </p>
       )}
       <div className="intro-card stack">
-        <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+        <div className="row justify-between nowrap">
           <Word entry={entry} />
           <SpeakButton text={displayForm(entry)} entry={entry} auto={!pretest} />
         </div>
@@ -118,7 +118,7 @@ export function Intro({
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         {entry.notes && <p className="note">💡 {entry.notes}</p>}
         {example && (
-          <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
+          <div className="row items-start nowrap">
             <Sentence text={example.text} translation={example.translation} />
             {canSpeak() && (
               <button className="icon-btn" onClick={() => speak(example.text, entry.language, speechPrefs.rate * 0.95)} aria-label="Cümleyi dinle">
@@ -130,7 +130,7 @@ export function Intro({
         <OwnSentence entry={entry} onSave={onOwnSentence} />
       </div>
       <div className="session-actions">
-        <button ref={btn} className="btn btn-lg" style={{ flex: 1 }} onClick={onContinue}>
+        <button ref={btn} className="btn btn-lg grow" onClick={onContinue}>
           Öğrendim, devam
         </button>
         <button className="btn btn-lg btn-quiet" onClick={onKnown}>

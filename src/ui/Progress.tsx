@@ -353,7 +353,7 @@ function ActivityChart({ activity }: { activity: DayActivity[] }) {
         <span>{dayLabel(activity[0].date, { day: 'numeric', month: 'short' })}</span>
         <span>bugün</span>
       </div>
-      <details className="small" style={{ marginTop: '0.75rem' }}>
+      <details className="small mt-3">
         <summary>Tablo olarak göster</summary>
         <table className="data-table">
           <thead>

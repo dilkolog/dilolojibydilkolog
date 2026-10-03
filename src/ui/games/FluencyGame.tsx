@@ -134,7 +134,7 @@ export function FluencyGame({
             Türkçesini gör, kelimeyi 1–4 tuşlarıyla seç. Hepsi bildiğin kelimeler; puan, doğru cevaplarındaki ortanca süre. Rekor için en az %
             {Math.round(FLUENCY_MIN_ACCURACY * 100)} doğru gerekir.
           </p>
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={begin} autoFocus>
               Başla
             </button>
@@ -188,7 +188,7 @@ export function FluencyGame({
               ))}
             </div>
           )}
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button className="btn btn-lg" onClick={begin} autoFocus>
               Tekrar oyna
             </button>

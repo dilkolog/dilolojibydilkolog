@@ -59,7 +59,7 @@ export function InstallHint() {
 
   return (
     <section className="card stack install-hint">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <strong>Uygulama olarak yükle</strong>
         <button className="link small" onClick={close}>
           Gizle

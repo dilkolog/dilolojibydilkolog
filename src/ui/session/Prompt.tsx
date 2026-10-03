@@ -46,7 +46,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       return <MeaningPrompt exercise={exercise} entry={entry} />
     case 'back_translation':
       return (
-        <div className="stack" style={{ gap: '0.375rem' }}>
+        <div className="stack gap-xs">
           <p className="prompt-text">{exercise.prompt}</p>
           <p className="muted">
             {LANGUAGE_NAME[entry.language]} yaz; <span lang={entry.language}>“{displayForm(entry)}”</span> kelimesini kullan. Birebir aynısı gerekmez, anlamı
@@ -56,7 +56,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       )
     case 'family_choice':
       return (
-        <div className="stack" style={{ gap: '0.375rem' }}>
+        <div className="stack gap-xs">
           <p className="prompt-text">{exercise.prompt}</p>
           <p className="muted" lang={entry.language}>
             {exercise.context}
@@ -65,7 +65,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       )
     case 'idiom_complete':
       return (
-        <div className="stack" style={{ gap: '0.375rem' }}>
+        <div className="stack gap-xs">
           <p className="prompt-text idiom-prompt" lang={entry.language}>
             {exercise.prompt.split(BLANK).map((part, i, all) => (
               <span key={i}>
@@ -82,7 +82,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       )
     case 'conjugation':
       return (
-        <div className="stack" style={{ gap: '0.375rem' }}>
+        <div className="stack gap-xs">
           <p className="prompt-text" lang={entry.language}>
             {exercise.prompt}
           </p>
@@ -90,8 +90,19 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
         </div>
       )
     case 'article_choice':
-      return (
-        <div className="stack" style={{ gap: '0.5rem' }}>
+      // Before a vowel the article is written l' (l'eau), so the blank would mislead: the question
+      // is the gender, shown with the word as it is written.
+      return entry.article?.endsWith("'") ? (
+        <div className="stack gap-2">
+          <h1 className="word" lang={entry.language}>
+            {displayForm(entry)}
+          </h1>
+          <p className="gloss muted">
+            {exercise.context} · l’ ile yazılır; eril mi (le), dişil mi (la)?
+          </p>
+        </div>
+      ) : (
+        <div className="stack gap-2">
           <h1 className="word" lang={entry.language}>
             <span className="blank" aria-label="artikel">
               ____
@@ -127,7 +138,7 @@ function MeaningPrompt({ exercise, entry }: { exercise: Exercise; entry: Vocabul
   const definition = entry.senses[0].definition
   if (!prefs.targetDefinitions || !definition || exercise.prompt !== entry.senses[0].gloss) return <p className="prompt-text">{exercise.prompt}</p>
   return (
-    <div className="stack" style={{ gap: '0.375rem' }}>
+    <div className="stack gap-xs">
       <p className="prompt-text definition-prompt" lang={entry.language}>
         {definition}
       </p>

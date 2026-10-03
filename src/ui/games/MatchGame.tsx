@@ -91,7 +91,7 @@ export function MatchGame({ language, vocabulary, states, best, recordKey, onExi
           <h1>{done.record ? 'Yeni rekor! 🏆' : 'Tamamlandı!'}</h1>
           <p className="xp-gain">{fmt(done.ms)}</p>
           {penalty > 0 && <p className="muted">{penalty / 1000} saniyesi yanlış eşleşme cezası.</p>}
-          <div className="row" style={{ justifyContent: 'center' }}>
+          <div className="row justify-center">
             <button
               className="btn btn-lg"
               onClick={() => {

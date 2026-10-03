@@ -126,7 +126,7 @@ export function BulkImport({
             Dosya seç
             <input type="file" accept=".csv,.tsv,.txt,.json" className="sr-only" onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])} />
           </label>
-          <label className="row small" style={{ gap: '0.5rem', cursor: 'pointer' }}>
+          <label className="row small gap-2 pointer">
             <input type="checkbox" checked={!!fmt.swap} onChange={(e) => setFmt({ ...fmt, swap: e.target.checked })} />
             Önce anlam yazılmış
           </label>
@@ -167,7 +167,7 @@ export function BulkImport({
             <input id="bulk-tags" className="input" placeholder="Örn. dizi, sezon 1" value={fmt.tags ?? ''} onChange={(e) => setFmt({ ...fmt, tags: e.target.value })} />
           </div>
           {apiKey && (
-            <label className="row small" style={{ gap: '0.5rem', alignSelf: 'end', cursor: 'pointer' }}>
+            <label className="row small gap-2 self-end pointer">
               <input type="checkbox" checked={aiFill} onChange={(e) => setAiFill(e.target.checked)} />
               <SparkleIcon size={16} className="icon-star" /> Örnek cümle, kalıp ve türü AI ile tamamla
             </label>

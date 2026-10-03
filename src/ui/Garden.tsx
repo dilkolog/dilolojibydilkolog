@@ -22,7 +22,7 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
   const water = summary.toWater.map((id) => byId.get(id)!).filter(Boolean)
 
   return (
-    <section className="stack" style={{ marginTop: '1rem' }}>
+    <section className="stack mt-4">
       <div className="garden-head card">
         <p>
           <strong>{summary.byStage[5]}</strong> çiçek açtı · <strong>{summary.byStage.slice(1, 5).reduce((a, b) => a + b, 0)}</strong> büyüyor ·{' '}
@@ -106,7 +106,7 @@ export function GardenCard({ summary, onWater, onOpen }: { summary: GardenSummar
           {dry > 0 ? ` ${dry} tanesi su istiyor.` : ' Hepsi canlı.'}
         </span>
       </div>
-      <div className="row" style={{ gap: '0.5rem' }}>
+      <div className="row gap-2">
         {dry > 0 && (
           <button className="btn btn-sm" onClick={onWater}>
             💧 Sula

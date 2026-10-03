@@ -201,7 +201,7 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
 
   return (
     <div className="stack sentence-review">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <button className="link" onClick={onDone}>
           ← Bitir
         </button>

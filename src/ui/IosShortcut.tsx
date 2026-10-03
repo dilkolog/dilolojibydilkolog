@@ -32,7 +32,7 @@ export function IosShortcut() {
         </li>
         <li>
           Eylem ekle: <strong>Metin</strong> (<em>Text</em>). İçine aşağıdaki adresi yapıştır, hemen arkasına değişken olarak <em>Kodlanmış URL</em>'yi ekle.
-          <div className="row" style={{ marginTop: '0.375rem' }}>
+          <div className="row mt-xs">
             <code className="shortcut-url">{base}add=</code>
             <button className="btn btn-sm btn-quiet" onClick={() => copy('add')}>
               {copied === 'add' ? 'Kopyalandı' : 'Kopyala'}

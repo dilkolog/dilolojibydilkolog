@@ -54,7 +54,7 @@ export function KeyWordsCard({
   if (hidden || (!words.length && !added.length)) return null
   return (
     <section className="card stack key-words">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <h2 className="section-title">Okumadan önce: anahtar kelimeler</h2>
         <button className="link small" onClick={() => setHidden(true)}>
           Gizle

@@ -104,14 +104,14 @@ export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB
           Kindle'ı bilgisayara bağla ve dosyalardan birini seç: <strong>system/vocabulary/vocab.db</strong> (sözlükte baktığın kelimeler, geçtikleri
           cümleyle) ya da <strong>documents/My Clippings.txt</strong> (vurguladıkların; en fazla üç kelimelik vurgular alınır).
         </p>
-        <label className="btn btn-quiet file-btn" style={{ justifySelf: 'start' }}>
+        <label className="btn btn-quiet file-btn justify-self-start">
           {busy || 'Kindle dosyası seç'}
           <input type="file" accept=".db,.txt" onChange={(e) => e.target.files?.[0] && load(e.target.files[0])} />
         </label>
         {rows && rows.length > 0 && (
           <>
             <div className="row">
-              <span className="small muted" style={{ marginRight: 'auto' }}>
+              <span className="small muted mr-auto">
                 {rows.length} yeni kelime, {selected.length} seçili.
               </span>
               <button className="link small" onClick={() => setRows(rows.map((r) => ({ ...r, selected: true })))}>

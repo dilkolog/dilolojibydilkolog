@@ -35,7 +35,7 @@ export function HabitCards({
           <span className="habit-icon" aria-hidden>
             🌙
           </span>
-          <div className="stack" style={{ gap: '0.375rem' }}>
+          <div className="stack gap-xs">
             <strong>Yatmadan önce 2 dakika</strong>
             <span className="small muted">
               Bugün tanıştığın {newToday} kelimeye uykudan önce bir kez daha bak. Uyku, yatmadan hemen önce tekrar ettiklerini pekiştirir; sabah ilk
@@ -54,8 +54,7 @@ export function HabitCards({
             📍
           </span>
           <form
-            className="stack"
-            style={{ gap: '0.5rem', flex: 1 }}
+            className="stack gap-2 grow"
             onSubmit={(e) => {
               e.preventDefault()
               if (cue.trim()) onSettings({ ...settings, studyPlan: cue.trim(), studyPlanAsked: true })
@@ -65,13 +64,13 @@ export function HabitCards({
             <span className="small muted">
               “Şu olduğunda, kelime çalışacağım” diye somut bir plan yapmak, niyeti alışkanlığa çevirmenin en etkili yollarından biri.
             </span>
-            <div className="row" style={{ flexWrap: 'nowrap' }}>
+            <div className="row nowrap">
               <input className="input" value={cue} onChange={(e) => setCue(e.target.value)} placeholder="Sabah kahvemi içerken" aria-label="Çalışma planın" />
               <button className="btn" type="submit" disabled={!cue.trim()}>
                 Kaydet
               </button>
             </div>
-            <button type="button" className="link small" style={{ justifySelf: 'start' }} onClick={() => onSettings({ ...settings, studyPlanAsked: true })}>
+            <button type="button" className="link small justify-self-start" onClick={() => onSettings({ ...settings, studyPlanAsked: true })}>
               Şimdi değil
             </button>
           </form>

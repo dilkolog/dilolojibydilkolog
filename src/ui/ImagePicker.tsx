@@ -100,7 +100,7 @@ export function ImagePicker({
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog dialog-wide" role="dialog" aria-modal="true" aria-labelledby="img-title">
-        <div className="row" style={{ justifyContent: 'space-between' }}>
+        <div className="row justify-between">
           <h2 id="img-title" className="section-title">
             Görsel ekle
           </h2>
@@ -126,8 +126,7 @@ export function ImagePicker({
           <div className="stack">
             <form className="row" onSubmit={search}>
               <input
-                className="input"
-                style={{ flex: 1 }}
+                className="input grow"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Ne arıyorsun?"

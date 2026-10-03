@@ -121,7 +121,7 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
   if (!entry || !ex) return null
   return (
     <div className="stack exam">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
+      <div className="row justify-between">
         <h1 className="greeting">Hatırlama sınavı</h1>
         <span className="game-timer">
           {index + 1} / {items.length}
