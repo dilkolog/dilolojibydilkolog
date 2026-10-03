@@ -3,6 +3,7 @@ import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
 import { KeyWordsCard } from './KeyWords'
+import { PrequestionsCard } from './Prequestions'
 import { saveSentence } from './Sentences'
 import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadStatus, type ReadToken } from '../engine/reading'
 import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
@@ -559,6 +560,7 @@ export function ReadingScreen({
         </p>
       )}
       {current?.audio && <AudioPanel key={current.id} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}
+      <PrequestionsCard key={current?.id} text={text} language={language} finished={!!message} />
       {!message && !listenFirst && (
         <KeyWordsCard
           key={current?.id}

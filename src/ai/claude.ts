@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -305,6 +305,25 @@ export async function reviewJournal(apiKey: string, req: JournalRequest): Promis
   ].join('\n')
   const user = [`Practice words: ${req.words.map((w) => `${w.lemma} (${w.gloss})`).join(', ') || 'none'}`, `Journal entry:\n${req.text}`].join('\n\n')
   return structured(apiKey, Journal, system, user, 'medium', 'journal')
+}
+
+// ---------------------------------------------------------------------------
+// Questions before reading
+// ---------------------------------------------------------------------------
+
+const Prequestions = z.object({
+  questions: z
+    .array(z.object({ question: z.string().describe('In Turkish, about a key point of the text.'), answer: z.string().describe('Short answer in Turkish, as the text gives it.') }))
+    .describe('Exactly 3 questions, in the order the answers appear in the text, about its main points (not trivia).'),
+})
+
+/**
+ * Three questions to read for. Prequestions focus reading and improve memory of the text as a
+ * whole, not only of the answers (Carpenter & Toftness 2017).
+ */
+export async function prequestions(apiKey: string, language: TargetLanguage, text: string): Promise<PrequestionSet> {
+  const system = `You prepare a Turkish adult who reads ${LANGUAGE_NAME[language]} well for reading a text: ask about its main points so they read with a purpose.`
+  return structured(apiKey, Prequestions, system, `Text:\n${text.slice(0, 12_000)}`, 'low', 'prequestions')
 }
 
 // ---------------------------------------------------------------------------

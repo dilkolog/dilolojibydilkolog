@@ -86,6 +86,11 @@ export interface JournalReview {
   usedWords: string[]
 }
 
+export interface PrequestionSet {
+  /** Questions in Turkish about the text's key content, with short answers (also Turkish). */
+  questions: { question: string; answer: string }[]
+}
+
 export interface ErrorReportRequest {
   language: import('../engine/types').TargetLanguage
   /** "decision [spelling]: wrote "decission", expected "decision" ×3", most frequent first. */

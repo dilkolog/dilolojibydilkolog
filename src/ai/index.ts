@@ -4,6 +4,7 @@ import type {
   ChatRequest,
   ErrorReport,
   ErrorReportRequest,
+  PrequestionSet,
   EnrichRequest,
   EpisodeDraft,
   EpisodeRequest,
@@ -47,6 +48,7 @@ export const evaluateRetelling = async (apiKey: string, req: RetellRequest): Pro
 
 export const reviewJournal = async (apiKey: string, req: JournalRequest): Promise<JournalReview> => (await sdk()).reviewJournal(apiKey, req)
 
+export const prequestions = async (apiKey: string, language: TargetLanguage, text: string): Promise<PrequestionSet> => (await sdk()).prequestions(apiKey, language, text)
 export const monthlyReport = async (apiKey: string, req: ErrorReportRequest): Promise<ErrorReport> => (await sdk()).monthlyReport(apiKey, req)
 export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatReply> => (await sdk()).chatTurn(apiKey, req)
 
