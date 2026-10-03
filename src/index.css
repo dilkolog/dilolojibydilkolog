@@ -1807,3 +1807,5 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .offline-banner { margin: 0 0 1rem; padding: 0.625rem 0.875rem; border-radius: 0.75rem; background: var(--near-soft); color: var(--near-text); font-size: var(--t-sm); }
 .screen-error { margin-top: 1rem; }
 .screen-error-detail { font-family: ui-monospace, monospace; font-size: var(--t-xs, 0.75rem); overflow-wrap: anywhere; }
+.game-tag { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.5rem; border-radius: 999px; background: var(--ok-soft); color: var(--ok-text); font-size: var(--t-xs, 0.75rem); font-weight: 700; vertical-align: middle; }
+.game-card.is-due { box-shadow: var(--shadow), inset 0 0 0 2px var(--ok); }

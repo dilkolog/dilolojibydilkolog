@@ -328,7 +328,7 @@ export function Home({
                 </span>
                 <span>
                   <strong>Oyunlar</strong>
-                  <span className="small muted">Eşleştirme ve 60 saniye</span>
+                  <span className="small muted">Tekrar, dinleme, hız ve dilbilgisi oyunları</span>
                 </span>
               </button>
             )}
