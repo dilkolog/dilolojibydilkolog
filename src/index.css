@@ -1773,3 +1773,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .badge-card.is-compact { padding: 0.625rem; gap: 0.25rem; }
 .badge-card.is-compact strong { font-size: var(--t-sm); }
 .badge-card.is-compact .badge-icon { font-size: 1.5rem; }
+
+/* Home: quests side by side on wide screens */
+.quest-columns { display: grid; gap: 1rem; }
+.quest-columns > * + * { margin-top: 0 !important; }
+@media (min-width: 46rem) { .quest-columns { grid-template-columns: 1fr 1fr; align-items: start; } }

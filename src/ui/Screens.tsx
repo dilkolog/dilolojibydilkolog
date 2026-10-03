@@ -281,59 +281,6 @@ export function Home({
         </button>
       )}
 
-      <InstallHint />
-      {game && <RaceCard game={game} />}
-
-      {game && (
-        <section className="quests">
-          <h2 className="section-title">Günün görevleri</h2>
-          <ul className="quest-list">
-            {game.quests.map((q) => (
-              <li key={q.id} className={q.done ? 'is-done' : ''}>
-                <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
-                <span className="quest-body">
-                  <span className="quest-top">
-                    <strong>{q.title}</strong>
-                    <span className="small muted">
-                      {q.value}/{q.target}
-                    </span>
-                  </span>
-                  <span className="quest-bar">
-                    <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                  </span>
-                </span>
-                <span className="quest-xp">+{q.xp} XP</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {game && game.weekly.length > 0 && (
-        <section className="quests">
-          <h2 className="section-title">Haftanın meydan okumaları</h2>
-          <ul className="quest-list">
-            {game.weekly.map((q) => (
-              <li key={q.id} className={q.done ? 'is-done' : ''}>
-                <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
-                <span className="quest-body">
-                  <span className="quest-top">
-                    <strong>{q.title}</strong>
-                    <span className="small muted">
-                      {q.value}/{q.target}
-                    </span>
-                  </span>
-                  <span className="quest-bar">
-                    <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                  </span>
-                </span>
-                <span className="quest-xp">+{CHALLENGE_XP} XP</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
       <div className="stats">
         <div className="stat">
           <span className="stat-value">
@@ -360,6 +307,63 @@ export function Home({
           <span className="stat-label">kelime öğreniliyor</span>
         </div>
       </div>
+
+
+      <InstallHint />
+      <div className="quest-columns">
+        {game && (
+          <section className="quests">
+            <h2 className="section-title">Günün görevleri</h2>
+            <ul className="quest-list">
+              {game.quests.map((q) => (
+                <li key={q.id} className={q.done ? 'is-done' : ''}>
+                  <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
+                  <span className="quest-body">
+                    <span className="quest-top">
+                      <strong>{q.title}</strong>
+                      <span className="small muted">
+                        {q.value}/{q.target}
+                      </span>
+                    </span>
+                    <span className="quest-bar">
+                      <span style={{ width: `${(q.value / q.target) * 100}%` }} />
+                    </span>
+                  </span>
+                  <span className="quest-xp">+{q.xp} XP</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {game && game.weekly.length > 0 && (
+          <section className="quests">
+            <h2 className="section-title">Haftanın meydan okumaları</h2>
+            <ul className="quest-list">
+              {game.weekly.map((q) => (
+                <li key={q.id} className={q.done ? 'is-done' : ''}>
+                  <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
+                  <span className="quest-body">
+                    <span className="quest-top">
+                      <strong>{q.title}</strong>
+                      <span className="small muted">
+                        {q.value}/{q.target}
+                      </span>
+                    </span>
+                    <span className="quest-bar">
+                      <span style={{ width: `${(q.value / q.target) * 100}%` }} />
+                    </span>
+                  </span>
+                  <span className="quest-xp">+{CHALLENGE_XP} XP</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+
+      {game && <RaceCard game={game} />}
+
 
       {(openMistakeWords > 0 || canPractice || onStory || onGames) && (
         <section className="section stack">
