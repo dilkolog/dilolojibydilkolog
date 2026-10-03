@@ -254,6 +254,8 @@ export function pickDistractors(
   catalog: readonly VocabularyEntry[],
   count: number,
   rng: Rng,
+  /** For a blank in a sentence: a word of another part of speech is ruled out by grammar alone. */
+  { inContext = false }: { inContext?: boolean } = {},
 ): VocabularyEntry[] {
   const synonyms = new Set(entry.relations.filter((r) => r.type === 'synonym').map((r) => r.targetId))
   const confusable = new Set(entry.relations.filter((r) => r.type === 'confusable').map((r) => r.targetId))
@@ -271,7 +273,7 @@ export function pickDistractors(
   const noise = new Map(pool.map((c) => [c.id, rng() * 15]))
   const score = (c: VocabularyEntry) =>
     (confusable.has(c.id) ? 0 : 100) +
-    (c.partOfSpeech === entry.partOfSpeech ? 0 : 40) +
+    (c.partOfSpeech === entry.partOfSpeech ? 0 : inContext ? 300 : 40) +
     60 * spellingDistance(c.lemma, entry.lemma) +
     noise.get(c.id)!
   // Shuffle first so ties don't always produce the same distractors.
@@ -285,6 +287,23 @@ export function pickDistractors(
     if (!picked.some((p) => linked(p, c) || normalize(p.senses[0].gloss) === normalize(c.senses[0].gloss))) picked.push(c)
   }
   return picked
+}
+
+/**
+ * Distractor forms for a blank: base forms when the answer is a base form, otherwise an inflected
+ * form of each distractor where one is known, so the ending doesn't single out the answer.
+ */
+export function contextForms(entry: VocabularyEntry, answerForm: string, distractors: readonly VocabularyEntry[]): string[] {
+  const inflected = normalize(answerForm) !== normalize(entry.lemma)
+  const answer = normalize(answerForm)
+  return distractors
+    .map((d) => {
+      if (!inflected) return d.lemma
+      const forms = [...d.senses[0].examples, ...(d.corpus ?? [])].map((x) => x.form).filter((f): f is string => !!f && normalize(f) !== normalize(d.lemma))
+      // Prefer a form ending like the answer (lente → a feminine -e form).
+      return forms.find((f) => f.slice(-1) === answerForm.slice(-1)) ?? forms[0] ?? d.lemma
+    })
+    .filter((f) => normalize(f) !== answer)
 }
 
 function choice(
@@ -377,7 +396,6 @@ export function buildExercise(
   const sense = entry.senses[0]
   const answer = displayForm(entry)
   const accepted = [answer, ...(entry.alternativeForms ?? [])]
-  const distractors = () => pickDistractors(entry, catalog, OPTION_COUNT - 1, rng)
 
   switch (type) {
     case 'mc_meaning':
@@ -394,7 +412,7 @@ export function buildExercise(
       return choice(
         { ...base, prompt: 'Boşluğa hangi kelime gelir?', context: blankOut(ex), contextTranslation: ex.translation },
         ex.form,
-        distractors().map((d) => d.senses[0].examples[0]?.form ?? d.lemma),
+        contextForms(entry, ex.form, pickDistractors(entry, catalog, OPTION_COUNT - 1, rng, { inContext: true })),
         rng,
       )
     }

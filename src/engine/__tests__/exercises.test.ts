@@ -8,11 +8,13 @@ import {
   evaluateChoice,
   evaluateTyped,
   exerciseTypesFor,
+  contextForms,
   pickDistractors,
   type ChoiceExercise,
   type TypedExercise,
 } from '../exercises'
 import { createRng } from '../rng'
+import type { VocabularyEntry } from '../types'
 import { abandon, affect, CATALOG, decide, decision, EN_CATALOG, elAno, laDecision, lArbre } from './fixtures'
 
 const rng = () => createRng(42)
@@ -221,5 +223,30 @@ describe('idiom_complete', () => {
     expect(idiomGap(cafard, CATALOG, rng()).blank).toBe(2)
     expect(exerciseTypesFor('collocation', cafard)).toContain('idiom_complete')
     expect(exerciseTypesFor('collocation', decision)).not.toContain('idiom_complete')
+  })
+})
+
+describe('blank-in-sentence options', () => {
+  const word = (lemma: string, gloss: string, partOfSpeech: VocabularyEntry['partOfSpeech'], forms: string[] = []) => ({
+    ...decide,
+    id: `fr:${lemma}`,
+    language: 'fr' as const,
+    lemma,
+    partOfSpeech,
+    relations: [],
+    senses: [{ ...decide.senses[0], gloss, examples: forms.map((f) => ({ text: `… ${f} …`, translation: '…', form: f })) }],
+  })
+  const lent = word('lent', 'yavaş', 'adjective', ['lente'])
+  const catalog = [lent, word('lait', 'süt', 'noun'), word('peur', 'korku', 'noun'), word('léger', 'hafif', 'adjective', ['légère']), word('grand', 'büyük', 'adjective', ['grands'])]
+
+  it('take words of the same part of speech, which grammar alone cannot rule out', () => {
+    const d = pickDistractors(lent, catalog, 2, rng(), { inContext: true })
+    expect(d.every((x) => x.partOfSpeech === 'adjective')).toBe(true)
+  })
+
+  it('match the answer: base forms for a base form, inflected forms (same ending first) for an inflected one', () => {
+    const adjectives = catalog.filter((c) => c.partOfSpeech === 'adjective' && c !== lent)
+    expect(contextForms(lent, 'lent', adjectives)).toEqual(['léger', 'grand'])
+    expect(contextForms(lent, 'lente', adjectives)).toEqual(['légère', 'grands'])
   })
 })

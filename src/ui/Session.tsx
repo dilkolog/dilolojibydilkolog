@@ -694,8 +694,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             document.getElementById('answer')?.focus()
           }}
         >
-          🤔 Emin değilim
-          <span className="small muted"> · ya da Shift ile cevapla</span>
+          {unsure ? '✓ Emin değilim olarak işaretlendi' : '🤔 Emin değilim'}
+          <span className="small muted">{unsure ? ' · şimdi cevabını seç' : ' · ya da Shift ile cevapla'}</span>
         </button>
       )}
       {exercise.kind === 'choice' ? (
@@ -1145,7 +1145,7 @@ function Feedback({
   const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
   const confidentError = ev.verdict === 'wrong' && confidence === 'sure'
-  const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : confidentError ? 'Emindin, ama doğrusu:' : 'Olsun, doğrusu:'
+  const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
   // An intrusion gets its own, more specific note below.
   const hint = ev.errorType && ev.verdict !== 'correct' && !ev.intrusion ? ERROR_HINT[ev.errorType] : ''
   const btnClass = ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
@@ -1171,7 +1171,10 @@ function Feedback({
           {ev.verdict !== 'correct' && <p className="expected">{ev.expected}</p>}
           {confidentError && (
             <div className="hyper">
-              <p className="small">Emin olduğun bir hatayı düzeltmek, doğrusunu en kalıcı şekilde öğrenmeni sağlar. Farka bir bak:</p>
+              <p className="small">
+                “Emin değilim” demeden yanlış cevapladın. Bildiğini sandığın bir kelimeyi düzeltmek, doğrusunu en kalıcı şekilde öğrenmeni sağlar. Farka
+                bir bak:
+              </p>
               {ev.given && (
                 <p className="small">
                   <s>{ev.given}</s> → <strong>{ev.expected}</strong>
@@ -1185,8 +1188,12 @@ function Feedback({
               <Plant stage={MASTERY_STAGES.indexOf(grew)} size={26} /> Büyüdü: artık <strong>{STAGE_NAME[grew]}</strong>
             </p>
           )}
-          {ev.verdict !== 'wrong' && confidence === 'unsure' && (
-            <p className="small">Emin değildin; bu yüzden kelime biraz daha erken tekrar gelecek.</p>
+          {confidence === 'unsure' && (
+            <p className="small">
+              {ev.verdict === 'wrong'
+                ? 'Emin olmadığını işaretlemiştin: tahmin olarak kaydedildi, kelime yakında tekrar gelecek.'
+                : 'Emin değildin; doğru bilsen de tahmin sayıldı, kelime biraz daha erken tekrar gelecek.'}
+            </p>
           )}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
           {ev.errorType === 'gender' && ruleFor(entry) && <p className="small">{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
