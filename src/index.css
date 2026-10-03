@@ -1730,3 +1730,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .article-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .article-options .btn { font-family: var(--serif); font-size: var(--t-xl); }
 .account-form { max-width: 22rem; }
+
+/* Pitch comparison */
+.pitch-chart { width: 100%; height: auto; background: var(--surface); border-radius: 0.75rem; box-shadow: var(--shadow); }
+.pitch-native { fill: none; stroke: var(--lang); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pitch-mine { fill: none; stroke: var(--near); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 0; }
+.pitch-key-native { background: var(--lang); } .pitch-key-mine { background: var(--near); }

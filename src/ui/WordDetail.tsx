@@ -19,6 +19,9 @@ import { WordForm } from './Words'
 import { CrossLanguageNotes, TriLanguageCard } from './CrossLanguage'
 import { PatternsSection } from './Patterns'
 import { MemoryCurveChart } from './MemoryCurve'
+import { PitchCompare } from './PitchCompare'
+import { cachedAudio } from '../data/audioCache'
+import { naturalEnabled, naturalUrl } from './naturalVoice'
 import { WordJourney } from './WordJourney'
 import { WordFamilySection } from './WordFamily'
 import { CorpusExamples, WordExamples } from './WordExamples'
@@ -169,6 +172,19 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       </section>
 
       <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
+      {(entry.audioUrl || naturalEnabled()) && (
+        <section className="section stack">
+          <h2 className="section-title">Telaffuzunu karşılaştır</h2>
+          <p className="small muted">
+            Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
+          </p>
+          <PitchCompare
+            key={entry.id}
+            label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
+            reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
+          />
+        </section>
+      )}
       <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
       <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
 
