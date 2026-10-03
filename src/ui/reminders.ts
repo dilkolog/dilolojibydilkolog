@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import type { Settings } from '../data/db'
+import { db } from '../data/instance'
+import { displayForm } from '../engine/exercises'
 
 const LAST_KEY = 'kelime-koc:last-reminder'
 
@@ -20,13 +22,35 @@ export function reminderBody(streak: number, plan = '', due = 0): string {
   return plan ? `${plan}: ${base}` : base
 }
 
+/** One due word as a question for the reminder (micro-retrieval), the most overdue of a few. */
+async function dueQuestion(): Promise<{ word: string; gloss: string } | null> {
+  const now = Date.now()
+  const due = (await db.wordStates.toArray())
+    .map((st) => ({ st, due: Math.min(...Object.values(st.skills).map((c) => c.due.getTime())) }))
+    .filter((x) => Number.isFinite(x.due) && x.due <= now)
+    .sort((a, b) => a.due - b.due)
+    .slice(0, 5)
+  if (!due.length) return null
+  const entry = await db.vocabulary.get(due[Math.floor(Math.random() * due.length)].st.entryId)
+  return entry ? { word: displayForm(entry), gloss: entry.senses[0].gloss } : null
+}
+
 export async function showReminder(streak: number, plan = '', due = 0) {
-  // A tap opens a short review of exactly those words (see App, "?go=quick").
-  const options = { body: reminderBody(streak, plan, due), icon: '/pwa-192.png', tag: 'daily-reminder', data: { url: '/?go=quick' } }
+  const question = await dueQuestion().catch(() => null)
+  const body = reminderBody(streak, plan, due)
+  // A tap opens a short review of exactly those words (see App, "?go=quick"); with a question,
+  // "Cevabı göster" answers it without opening the app (handled in push-sw.js).
+  const options = {
+    body: question ? `Aklından geçir, sonra bak. ${body}` : body,
+    icon: '/pwa-192.png',
+    tag: 'daily-reminder',
+    data: { url: '/?go=quick', question },
+  }
+  const title = question ? `${question.word} = ?` : 'Kelime Koçu'
   // Through the service worker when there is one: works while the tab is in the background.
   const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
-  if (reg) await reg.showNotification('Kelime Koçu', options)
-  else new Notification('Kelime Koçu', options)
+  if (reg) await reg.showNotification(title, { ...options, ...(question ? { actions: [{ action: 'reveal', title: 'Cevabı göster' }, { action: 'open', title: 'Kısa tekrar' }] } : {}) } as NotificationOptions)
+  else new Notification(title, options)
 }
 
 const today = () => new Date().toDateString()
