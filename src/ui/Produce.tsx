@@ -68,7 +68,7 @@ export function ProduceScreen(p: Props) {
       ) : tab === 'fluency' ? (
         <Fluency432 language={p.language} words={fluencyWords} />
       ) : (
-        <Dictogloss db={p.db} language={p.language} />
+        <Dictogloss db={p.db} language={p.language} vocabulary={p.vocabulary} onChanged={p.onChanged} />
       )}
     </div>
   )

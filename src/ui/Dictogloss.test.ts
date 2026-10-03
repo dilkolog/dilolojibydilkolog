@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { glossParagraphs, recallCheck } from './Dictogloss'
+import { glossParagraphs, recallCheck, sentenceWith } from './Dictogloss'
 
 describe('dictogloss', () => {
   it('takes paragraphs of a workable length', () => {
@@ -14,5 +14,11 @@ describe('dictogloss', () => {
     expect(content).toContain('réforme:true')
     expect(content).toContain('retraites:false')
     expect(r.find((t) => t.token === 'Le')?.content).toBe(false)
+  })
+
+  it('finds the sentence a missed word came from', () => {
+    const p = 'Il pleut. Le gouvernement a annoncé une réforme. Les syndicats protestent.'
+    expect(sentenceWith(p, 'réforme')).toBe('Le gouvernement a annoncé une réforme.')
+    expect(recallCheck(p, '', 'fr').find((t) => t.token === 'réforme.')?.word).toBe('réforme')
   })
 })

@@ -1789,4 +1789,6 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .dictogloss-original { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.7; }
 .dg-hit { color: var(--ok-text); background: var(--ok-soft); border-radius: 0.25rem; }
 .dg-miss { color: var(--bad-text); background: var(--bad-soft); border-radius: 0.25rem; }
+.dg-add { font: inherit; border: 0; padding: 0; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.2em; }
+.dg-add[aria-pressed='true'] { outline: 2px solid var(--bad-text); outline-offset: 1px; }
 .segmented { flex-wrap: wrap; }
