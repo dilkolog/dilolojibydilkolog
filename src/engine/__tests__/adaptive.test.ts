@@ -4,6 +4,7 @@ import { EXERCISES } from '../exercises'
 import { createRng } from '../rng'
 import { adaptExercise, completeItem, GRADUATED_GAPS, startSession } from '../session'
 import { decision } from './fixtures'
+import type { Verdict } from '../types'
 
 const ex = (exerciseType: PlanItem['exerciseType'], entryId = decision.id): PlanItem => ({ kind: 'exercise', entryId, reason: 'new', skill: EXERCISES[exerciseType!].skill, exerciseType })
 const intro = (entryId: string): PlanItem => ({ kind: 'introduce', entryId, reason: 'new', skill: 'recognition' })
@@ -12,11 +13,11 @@ const filler = (n: number) => Array.from({ length: n }, (_, i) => ex('mc_meaning
 describe('85 % rule', () => {
   const rng = createRng(1)
   it('asks a harder format when nearly everything is right, an easier one when much goes wrong', () => {
-    const allRight = Array(8).fill('correct')
+    const allRight: Verdict[] = Array(8).fill('correct')
     const harder = adaptExercise(ex('listen_choose'), decision, undefined, allRight, rng)
     expect(EXERCISES[harder.exerciseType!].input).not.toBe('choice')
     expect(EXERCISES[harder.exerciseType!].skill).toBe('listening')
-    const struggling = ['wrong', 'correct', 'wrong', 'wrong', 'correct', 'wrong']
+    const struggling: Verdict[] = ['wrong', 'correct', 'wrong', 'wrong', 'correct', 'wrong']
     const easier = adaptExercise(ex('listen_type'), decision, undefined, struggling, rng)
     expect(easier.exerciseType).toBe('listen_choose')
     // Recognition has only choice formats: nothing harder to switch to, so it stays.
