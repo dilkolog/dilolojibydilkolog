@@ -60,7 +60,7 @@ export function NewsPicker({
   return (
     <section className="section stack">
       <h2 className="section-title">Sana göre haberler</h2>
-      <p className="small muted">Günün haberleri, senin için ne kadar okunur olduklarına göre sıralı: önce bildiğin kelime oranı %95–98 olanlar.</p>
+      <p className="small muted">Günün haberleri, en rahat okuyacakların önce.</p>
       <div className="choice-row">
         {feeds.map((f) => (
           <button key={f.id} className="chip chip-sm" aria-pressed={feed === f.id} onClick={() => (setFeed(f.id), setArticles(null))}>

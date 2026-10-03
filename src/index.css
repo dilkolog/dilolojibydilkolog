@@ -2438,3 +2438,28 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .habit.card { background: transparent; box-shadow: none; border: 1px solid var(--rule); padding: 1rem 1.25rem; }
 .habit.card .small.muted { font-size: var(--t-sm); }
 .habit-icon { font-size: var(--t-xl); }
+
+/* ---------- Progress: every block the same kind of tile; lists inside tiles are rows ---------- */
+.progress-page > section.section:not(.card):not(.overview-grid):not(.kpi-strip) {
+  background: var(--surface); border-radius: var(--r-lg); padding: 1.25rem 1.5rem; box-shadow: var(--shadow);
+}
+.progress-page > section.section + section.section { margin-top: 1.5rem; }
+.card .word-list, .progress-page section.section .word-list { gap: 0; }
+.card .word-list li, .progress-page section.section .word-list li {
+  background: transparent; box-shadow: none; border-radius: 0; padding: 0.625rem 0; border-bottom: 1px solid var(--rule);
+}
+.card .word-list li:last-child, .progress-page section.section .word-list li:last-child { border-bottom: 0; }
+.overview-grid > section:not(.card), .overview-grid > div:not(.card):not(.hero-stat) {
+  background: var(--surface); border-radius: var(--r-lg); padding: 1.25rem 1.5rem; box-shadow: var(--shadow);
+}
+
+/* ---------- Reading: sources as two tiles ---------- */
+.source-tiles { display: grid; gap: 1.25rem; align-items: start; }
+.source-tiles > .section, .source-tiles > section { margin: 0; background: var(--surface); border-radius: var(--r-lg); padding: 1.25rem 1.5rem; box-shadow: var(--shadow); }
+@container main (min-width: 52rem) { .source-tiles { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Word detail: sections as the same tiles as Progress ---------- */
+.detail-page > section.section:not(.card):not(.word-hero):not(.word-notes) {
+  background: var(--surface); border-radius: var(--r-lg); padding: 1.25rem 1.5rem; box-shadow: var(--shadow);
+}
+.detail-page > section.section + section.section { margin-top: 1.5rem; }

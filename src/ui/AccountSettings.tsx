@@ -79,7 +79,7 @@ export function AccountSettings() {
   if (account === undefined) return null
   return (
     <section className="card stack">
-      <h2 className="section-title">Hesap</h2>
+      <h2 className="section-title">Giriş ve eşitleme</h2>
       {account ? (
         <>
           <p>

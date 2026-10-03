@@ -51,8 +51,8 @@ export function ListeningPicker({
   const name = sources.find((s) => s.id === source)?.name ?? ''
   return (
     <section className="section stack">
-      <h2 className="section-title">🎧 Dinle</h2>
-      <p className="small muted">Öğrenenler için hazırlanmış programlar, tam metniyle. Önce dinle, sonra duyduğunu oku: bilmediğin kelimeleri işaretleyip eklersin.</p>
+      <h2 className="section-title">Dinle</h2>
+      <p className="small muted">Öğrenenler için programlar, tam metniyle: önce dinle, sonra oku.</p>
       <div className="choice-row">
         {sources.map((s) => (
           <button key={s.id} className="chip chip-sm" aria-pressed={source === s.id} onClick={() => (setSource(s.id), setEpisodes(null))}>

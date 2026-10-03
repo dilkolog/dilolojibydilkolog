@@ -301,7 +301,7 @@ export function SettingsScreen({
 
       <GroupTitle id="s-study" icon={<TargetIcon size={18} />}>Çalışma</GroupTitle>
       <section className="card stack">
-        <h2 className="section-title">Çalışma</h2>
+        <h2 className="section-title">Tempo</h2>
         <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
           <Chips options={MINUTES} value={settings.dailyMinutes} onChange={(v) => set('dailyMinutes', v)} format={(m) => `${m} dk`} />
         </Row>
@@ -452,9 +452,7 @@ export function SettingsScreen({
 
       <GroupTitle id="s-remind" icon={<BellIcon size={18} />}>Bildirimler</GroupTitle>
       <section className="card stack">
-        <h2 className="section-title row gap-2">
-          <BellIcon size={20} /> Hatırlatıcı
-        </h2>
+        <h2 className="section-title">Hatırlatıcı</h2>
         <Toggle
           label="Günlük hatırlatma"
           help="O gün çalışmadıysan seçtiğin saatte bildirim gelir (uygulama açıkken, arka planda olsa bile)."

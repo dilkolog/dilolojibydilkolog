@@ -459,10 +459,6 @@ export function ReadingScreen({
                 ),
               )}
             </ul>
-            <p className="small muted">
-              Bitirdiğin bir metni bir hafta sonra tekrar okumak, kelimeleri yeni bağlamda değil ama yeniden karşılaşarak pekiştirir; kapsama oranının
-              nasıl arttığını da görürsün.
-            </p>
           </section>
         )}
         <details className="card add-text" open={!library.length}>
@@ -502,6 +498,8 @@ export function ReadingScreen({
           )}
           </div>
         </details>
+        {/* Ready-made sources side by side: learner programmes and today's news. */}
+        <div className="source-tiles">
         <ListeningPicker
           language={language}
           vocabulary={vocabulary}
@@ -534,10 +532,7 @@ export function ReadingScreen({
             await open(item)
           }}
         />
-        <p className="small muted">
-          İlk metinlerde çok kelime "yeni" görünür; çünkü bildiğin kelimeleri henüz tanımıyorum. Okumayı bitirdiğinde işaretlemediğin kelimeler bilinen
-          sayılır ve sonraki metinlerin ölçümü giderek doğrulaşır.
-        </p>
+        </div>
       </div>
     )
   }
