@@ -60,7 +60,7 @@ import { readIncoming, type IncomingWord } from './ui/incoming'
 type Screen =
   | { name: 'home' }
   | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[] }
-  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; gameBefore: GameState | null }
+  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[] }
   | { name: 'words' }
   | { name: 'word'; entryId: string }
   | { name: 'mistakes' }
@@ -356,6 +356,8 @@ export default function App() {
         summary,
         mode: s.name === 'session' ? s.mode : 'normal',
         gameBefore: s.name === 'session' ? s.gameBefore : null,
+        // Words of other languages (a mixed session) still get their names in the summary.
+        extra: s.name === 'session' ? s.extra : undefined,
       }))
     },
     [reload],
@@ -600,7 +602,7 @@ export default function App() {
             ) : screen.name === 'summary' ? (
               <Summary
                 summary={screen.summary}
-                byId={byId}
+                byId={screen.extra ? new Map([...byId, ...screen.extra.map((e) => [e.id, e] as const)]) : byId}
                 practice={screen.mode === 'practice'}
                 before={screen.gameBefore}
                 after={game}
