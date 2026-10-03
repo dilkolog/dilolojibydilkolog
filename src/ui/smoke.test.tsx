@@ -19,6 +19,9 @@ import { WordsScreen } from './Words'
 import { Home } from './Screens'
 import { SessionScreen } from './Session'
 import type { SessionSummary } from '../engine/session'
+import { ArticleDrill } from './ArticleDrill'
+import { SentencesGame, saveSentence } from './Sentences'
+import { GameContext, loadGame } from './game'
 import { buildDailyPlan } from '../engine/dailyPlan'
 import { skillProfile } from '../engine/mastery'
 
@@ -261,6 +264,57 @@ describe('screens render', () => {
     await act(async () => root.unmount())
     el.remove()
   })
+  it('profile with game data: every tab opens', async () => {
+    const game = await loadGame(db)
+    const seen = await clickThrough(
+      () => (
+        <GameContext.Provider value={game}>
+          <ProfileScreen settings={DEFAULT_SETTINGS} onChange={noop} />
+        </GameContext.Provider>
+      ),
+      'button.segmented-btn',
+    )
+    expect(seen).toHaveLength(3)
+  })
+
+  it('article drill plays to the end', async () => {
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    let changed = 0
+    await act(async () => root.render(<ArticleDrill language="fr" vocabulary={vocabulary} states={states} onExit={noop} onChanged={() => changed++} />))
+    const btn = (re: RegExp) => [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => re.test(b.textContent ?? '') && !b.disabled)
+    await act(async () => btn(/isimle başla/)!.click())
+    for (let i = 0; i < 20 && !el.textContent?.includes('Bitti'); i++) {
+      const option = el.querySelector<HTMLButtonElement>('.article-options button:not([disabled])')
+      await act(async () => {
+        if (option) option.click()
+        else btn(/^Devam$/)?.click()
+        await new Promise((r) => setTimeout(r, 500))
+      })
+      const cont = btn(/^Devam$/)
+      if (cont) await act(async () => cont.click())
+    }
+    expect(el.textContent).toContain('Bitti')
+    expect(changed).toBeGreaterThan(0)
+    await act(async () => root.unmount())
+    el.remove()
+  }, 30_000)
+
+  it('sentence cards: list and a review', async () => {
+    await saveSentence({ language: 'fr', text: 'Il a pris une décision difficile.', translation: 'Zor bir karar verdi.', focus: 'décision' })
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    await act(async () => root.render(<SentencesGame language="fr" onExit={noop} />))
+    await act(async () => new Promise((r) => setTimeout(r, 50)))
+    const start = [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => /tekrar bekliyor/.test(b.textContent ?? ''))!
+    await act(async () => start.click())
+    expect(el.querySelector('input.answer-input')).not.toBeNull()
+    await act(async () => root.unmount())
+    el.remove()
+  })
+
   it('without React warnings', () => {
     expect(problems.filter((p) => !/act\(|not wrapped in act/.test(p))).toEqual([])
   })
