@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState, type ReactElement } from 'react'
+import { Suspense, lazy, type ReactElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { buildDailyPlan, buildExtraNewPlan, type PlanItem } from './engine/dailyPlan'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
@@ -504,6 +504,25 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plan, data])
 
+  const navRef = useRef<HTMLElement>(null)
+  const [navMark, setNavMark] = useState<{ top: number; left: number; width: number; height: number; ready: boolean } | null>(null)
+  // The highlight of the current page slides from the previous one (vertical sidebar only).
+  useLayoutEffect(() => {
+    const place = () => {
+      const nav = navRef.current
+      const active = nav?.querySelector<HTMLElement>('.nav-btn[aria-current="page"]')
+      if (!nav || !active || getComputedStyle(nav).flexDirection !== 'column') return setNavMark(null)
+      const next = { top: active.offsetTop, left: active.offsetLeft, width: active.offsetWidth, height: active.offsetHeight }
+      setNavMark((m) => {
+        if (!m) return { ...next, ready: false }
+        const same = m.top === next.top && m.left === next.left && m.width === next.width && m.height === next.height
+        return same ? (m.ready ? m : { ...m, ready: true }) : { ...next, ready: true }
+      })
+    }
+    place()
+    window.addEventListener('resize', place)
+    return () => window.removeEventListener('resize', place)
+  })
   if (settings === undefined) return null
   if (settings === null) {
     return (
@@ -585,7 +604,14 @@ export default function App() {
                 <span>Ara ya da git…</span>
                 <kbd>⌘K</kbd>
               </button>
-              <nav className="nav">
+              <nav className={`nav${navMark ? ' has-indicator' : ''}`} ref={navRef}>
+                {navMark && (
+                  <span
+                    className={`nav-indicator${navMark.ready ? ' is-ready' : ''}`}
+                    aria-hidden
+                    style={{ transform: `translate(${navMark.left}px, ${navMark.top}px)`, width: navMark.width, height: navMark.height }}
+                  />
+                )}
                 {NAV.map((n) => (
                   <button
                     key={n.screen}
@@ -683,7 +709,7 @@ export default function App() {
               </p>
             )}
             <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>
-            <div key={screen.name === 'summary' ? 'session' : screen.name} className="screen-enter">
+            <div key={screen.name === 'summary' ? 'session' : screen.name === 'word' ? `word:${screen.entryId}` : screen.name} className="screen-enter">
             <Suspense fallback={<ScreenSkeleton />}>
             {!data || !plan ? <ScreenSkeleton /> : screen.name === 'session' ? (
               <SessionScreen

@@ -7,7 +7,7 @@ import { createRng, pick } from '../../engine/rng'
 import type { ExerciseType, TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { HeartIcon, SpeakerIcon } from '../icons'
+import { HeartIcon, SpeakerIcon, SwordsIcon, TrophyIcon } from '../icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from '../labels'
 import { sfx } from '../sounds'
 import { speak } from '../speech'
@@ -204,25 +204,26 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
       </div>
 
       {outcome ? (
-        <div className="celebrate stack">
-          <h1>{outcome === 'won' ? 'Boss yenildi!' : 'Boss kazandı'}</h1>
-          {outcome === 'won' ? (
-            <p className="xp-gain">+{BOSS_XP} XP</p>
-          ) : (
-            <p className="muted">Bir dahaki sefere hazır ol:</p>
-          )}
-          <p>
-            <span className="target" lang={language}>
-              {displayForm(entry)}
-            </span>{' '}
-            = {entry.senses[0].gloss}
-          </p>
-          {entry.senses[0].examples[0] && (
-            <p className="small muted" lang={language}>
-              {entry.senses[0].examples[0].text}
+        <div className="game-result">
+          <div className="game-result-card">
+            <span className={`game-result-badge${outcome === 'won' ? ' is-record' : ''}`} aria-hidden>
+              {outcome === 'won' ? <TrophyIcon size={34} /> : <SwordsIcon size={32} />}
+            </span>
+            <h1 className="game-result-title">{outcome === 'won' ? 'Boss yenildi!' : 'Boss kazandı'}</h1>
+            <p className="game-result-headline">{outcome === 'won' ? `+${BOSS_XP} XP` : 'Bir dahaki sefere hazır ol'}</p>
+            <p className="boss-answer">
+              <span className="target" lang={language}>
+                {displayForm(entry)}
+              </span>{' '}
+              = {entry.senses[0].gloss}
             </p>
-          )}
-          <div className="row justify-center">
+            {entry.senses[0].examples[0] && (
+              <p className="small muted game-result-note" lang={language}>
+                {entry.senses[0].examples[0].text}
+              </p>
+            )}
+          </div>
+          <div className="game-result-actions">
             <button className="btn btn-lg" onClick={onDone} autoFocus>
               {outcome === 'won' ? 'Zaferi topla' : 'Geri dön'}
             </button>

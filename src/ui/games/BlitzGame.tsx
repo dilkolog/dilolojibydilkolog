@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { GameResult } from './GameResult'
 import { buildExercise, displayForm, evaluateChoice, type ChoiceExercise } from '../../engine/exercises'
 import { comboMultiplier } from '../../engine/gamification'
 import { pickGameWords } from '../../engine/practice'
@@ -6,7 +7,7 @@ import { createRng, pick } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { FlameIcon, TrophyIcon } from '../icons'
+import { FlameIcon } from '../icons'
 import { sfx } from '../sounds'
 import { type Props, recordPractice } from './shared'
 
@@ -170,21 +171,19 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
       )}
 
       {phase === 'over' && (
-        <div className="celebrate stack">
-          <h1>{record && <TrophyIcon size={26} className="inline-icon record-icon" />}{record ? 'Yeni rekor!' : 'Süre doldu!'}</h1>
-          <p className="xp-gain">{score} puan</p>
-          <p className="muted">
-            {total} sorudan {right} doğru{total ? ` (%${Math.round((right / total) * 100)})` : ''}.
-          </p>
-          <div className="row justify-center">
-            <button className="btn btn-lg" onClick={begin} autoFocus>
-              Tekrar oyna
-            </button>
-            <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Oyunlara dön
-            </button>
-          </div>
-        </div>
+        <GameResult
+          record={record}
+          title={record ? 'Yeni rekor!' : 'Süre doldu!'}
+          headline={`${score} puan`}
+          accuracy={total ? right / total : 0}
+          stats={[
+            { label: 'soru', value: total },
+            { label: 'doğru', value: right },
+            { label: 'puan', value: score },
+          ]}
+          onAgain={begin}
+          onExit={onExit}
+        />
       )}
     </div>
   )

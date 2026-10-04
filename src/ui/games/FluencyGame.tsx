@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { TrophyIcon } from '../icons'
+import { GameResult } from './GameResult'
 import { displayForm, pickDistractors } from '../../engine/exercises'
 import { median, pickFluencyWords } from '../../engine/practice'
 import { createRng, shuffle } from '../../engine/rng'
@@ -170,18 +170,29 @@ export function FluencyGame({
       )}
 
       {phase === 'over' && result && (
-        <div className="celebrate stack">
-          <h1>{result.record && <TrophyIcon size={26} className="inline-icon record-icon" />}{result.record ? 'Yeni hız rekoru!' : 'Tur bitti'}</h1>
-          <p className="xp-gain">{times.length ? `Soru başına ${fmt(result.median)}` : 'Doğru cevap yok'}</p>
-          <p className="muted">
-            {FLUENCY_ROUND} sorudan {times.length} doğru (%{Math.round(result.accuracy * 100)}).
-            {result.previous && times.length
-              ? result.median < result.previous
-                ? ` Önceki turdan ${fmt(result.previous - result.median)} daha hızlı.`
-                : ` Önceki tur: ${fmt(result.previous)}.`
-              : ''}
-            {result.accuracy < FLUENCY_MIN_ACCURACY && times.length ? ` Rekor için en az %${Math.round(FLUENCY_MIN_ACCURACY * 100)} doğru gerekiyor.` : ''}
-          </p>
+        <GameResult
+          record={result.record}
+          title={result.record ? 'Yeni hız rekoru!' : 'Tur bitti'}
+          headline={times.length ? `Soru başına ${fmt(result.median)}` : 'Doğru cevap yok'}
+          accuracy={result.accuracy}
+          note={
+            <>
+              {result.previous && times.length
+                ? result.median < result.previous
+                  ? `Önceki turdan ${fmt(result.previous - result.median)} daha hızlı.`
+                  : `Önceki tur: ${fmt(result.previous)}.`
+                : ''}
+              {result.accuracy < FLUENCY_MIN_ACCURACY && times.length ? ` Rekor için en az %${Math.round(FLUENCY_MIN_ACCURACY * 100)} doğru gerekiyor.` : ''}
+            </>
+          }
+          stats={[
+            { label: 'soru', value: FLUENCY_ROUND },
+            { label: 'doğru', value: times.length },
+            { label: 'ortanca süre', value: times.length ? fmt(result.median) : '—' },
+          ]}
+          onAgain={begin}
+          onExit={onExit}
+        >
           {times.length > 1 && (
             <div className="fluency-bars" role="img" aria-label="Doğru cevapların süreleri, soru sırasıyla">
               {times.map((t, i) => (
@@ -189,15 +200,7 @@ export function FluencyGame({
               ))}
             </div>
           )}
-          <div className="row justify-center">
-            <button className="btn btn-lg" onClick={begin} autoFocus>
-              Tekrar oyna
-            </button>
-            <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Oyunlara dön
-            </button>
-          </div>
-        </div>
+        </GameResult>
       )}
     </div>
   )

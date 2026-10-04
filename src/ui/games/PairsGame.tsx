@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import { GameResult } from './GameResult'
 import { MINIMAL_PAIRS, pairRound, type PairQuestion } from '../../engine/listening'
 import { nativeRecordings } from '../../data/wordInfo'
 import { createRng } from '../../engine/rng'
 import { db } from '../../data/instance'
-import { SpeakerIcon, TrophyIcon } from '../icons'
+import { SpeakerIcon } from '../icons'
 import { sfx } from '../sounds'
 import { speakAsync } from '../speech'
 import type { Props } from './shared'
@@ -158,30 +159,20 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
       )}
 
       {done && (
-        <div className="celebrate stack">
-          <h1>{record && <TrophyIcon size={26} className="inline-icon record-icon" />}{record ? 'Yeni rekor!' : 'Tur bitti'}</h1>
-          <p className="xp-gain">
-            {right} / {round.length} doğru
-          </p>
-          <p className="muted">{worst ? `En çok karıştırdığın ses farkı: ${worst[0]}. Bu çiftleri tekrar dinlemek kulağını alıştırır.` : 'Hiç karıştırmadın; kulağın bu farklara alışmış.'}</p>
-          <div className="row justify-center">
-            <button
-              className="btn btn-lg"
-              autoFocus
-              onClick={() => {
-                setRound(pairRound(language, PAIR_ROUND, createRng(Date.now())))
-                setIndex(0)
-                setAnswers([])
-                setRecord(false)
-              }}
-            >
-              Tekrar oyna
-            </button>
-            <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Oyunlara dön
-            </button>
-          </div>
-        </div>
+        <GameResult
+          record={record}
+          title={record ? 'Yeni rekor!' : 'Tur bitti'}
+          headline={`${right} / ${round.length} doğru`}
+          accuracy={round.length ? right / round.length : 0}
+          note={worst ? `En çok karıştırdığın ses farkı: ${worst[0]}. Bu çiftleri tekrar dinlemek kulağını alıştırır.` : 'Hiç karıştırmadın; kulağın bu farklara alışmış.'}
+          onAgain={() => {
+            setRound(pairRound(language, PAIR_ROUND, createRng(Date.now())))
+            setIndex(0)
+            setAnswers([])
+            setRecord(false)
+          }}
+          onExit={onExit}
+        />
       )}
     </div>
   )

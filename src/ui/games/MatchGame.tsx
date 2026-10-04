@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { TrophyIcon } from '../icons'
+import { GameResult } from './GameResult'
 import { displayForm } from '../../engine/exercises'
 import { pickGameWords } from '../../engine/practice'
 import { createRng, shuffle } from '../../engine/rng'
@@ -88,29 +88,25 @@ export function MatchGame({ language, vocabulary, states, best, recordKey, onExi
         <span className="small muted">{best ? `Rekor: ${fmt(best)}` : ''}</span>
       </div>
       {done ? (
-        <div className="celebrate stack">
-          <h1>{done.record && <TrophyIcon size={26} className="inline-icon record-icon" />}{done.record ? 'Yeni rekor!' : 'Tamamlandı!'}</h1>
-          <p className="xp-gain">{fmt(done.ms)}</p>
-          {penalty > 0 && <p className="muted">{penalty / 1000} saniyesi yanlış eşleşme cezası.</p>}
-          <div className="row justify-center">
-            <button
-              className="btn btn-lg"
-              onClick={() => {
-                setRound((r) => r + 1)
-                setMatched(new Set())
-                setStart(null)
-                setPenalty(0)
-                setDone(null)
-              }}
-              autoFocus
-            >
-              Tekrar oyna
-            </button>
-            <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Oyunlara dön
-            </button>
-          </div>
-        </div>
+        <GameResult
+          record={done.record}
+          title={done.record ? 'Yeni rekor!' : 'Tamamlandı!'}
+          headline={fmt(done.ms)}
+          note={penalty > 0 ? `${penalty / 1000} saniyesi yanlış eşleşme cezası.` : undefined}
+          stats={[
+            { label: 'kelime', value: words.length },
+            { label: 'süre', value: fmt(done.ms) },
+            { label: 'ceza', value: penalty ? `${penalty / 1000} sn` : 'yok' },
+          ]}
+          onAgain={() => {
+            setRound((r) => r + 1)
+            setMatched(new Set())
+            setStart(null)
+            setPenalty(0)
+            setDone(null)
+          }}
+          onExit={onExit}
+        />
       ) : (
         <div className="match-grid" lang={language}>
           {tiles.map((t) => (

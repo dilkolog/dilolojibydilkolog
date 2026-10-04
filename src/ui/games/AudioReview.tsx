@@ -5,7 +5,7 @@ import { createRng } from '../../engine/rng'
 import { scheduler } from '../../data/instance'
 import { playWordAsync, preloadRecording, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from '../speech'
 import type { Props } from './shared'
-import { ChevronRightIcon, PauseIcon, PlayIcon } from '../icons'
+import { ChevronRightIcon, HeadphonesIcon, PauseIcon, PlayIcon } from '../icons'
 
 const AUDIO_SETS: [AudioSet, string][] = [
   ['weak', 'Zayıf kelimeler'],
@@ -137,10 +137,16 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
       {words.length === 0 ? (
         <p className="muted">Bu seçimde dinlenecek kelime yok.</p>
       ) : done ? (
-        <div className="celebrate stack">
-          <h2>Bitti</h2>
-          <p className="muted">{words.length} kelimeyi dinledin. Sesli tekrar takvimi etkilemez; asıl tekrarlar günlük görevde.</p>
-          <div className="row justify-center">
+        <div className="game-result">
+          <div className="game-result-card">
+            <span className="game-result-badge" aria-hidden>
+              <HeadphonesIcon size={32} />
+            </span>
+            <h2 className="game-result-title">Bitti</h2>
+            <p className="game-result-headline">{words.length} kelime dinledin</p>
+            <p className="muted game-result-note">Sesli tekrar takvimi etkilemez; asıl tekrarlar günlük görevde.</p>
+          </div>
+          <div className="game-result-actions">
             <button className="btn btn-lg" onClick={() => play(0)}>
               Baştan dinle
             </button>

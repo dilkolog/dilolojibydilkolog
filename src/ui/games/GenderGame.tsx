@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { TrophyIcon } from '../icons'
+import { GameResult } from './GameResult'
 import { createRng } from '../../engine/rng'
 import { GENDER_RULES, ruleQuiz, troubleRules, type RuleQuestion } from '../../engine/genderRules'
 import { db } from '../../data/instance'
@@ -155,23 +155,17 @@ export function GenderGame({
       )}
 
       {phase === 'over' && (
-        <div className="celebrate stack">
-          <h1>{record && <TrophyIcon size={26} className="inline-icon record-icon" />}{record ? 'Yeni rekor!' : 'Tur bitti'}</h1>
-          <p className="xp-gain">
-            {round.length - missed.length} / {round.length} doğru
-          </p>
-          {missed.length > 0 && (
-            <p className="muted">Kaçırdıkların: {missed.map((m) => `${art[m.q.answer]} ${m.q.noun}${m.q.exception ? ' (istisna)' : ''}`).join(', ')}</p>
-          )}
-          <div className="row justify-center">
-            <button className="btn btn-lg" onClick={start} autoFocus>
-              Tekrar oyna
-            </button>
-            <button className="btn btn-lg btn-quiet" onClick={onExit}>
-              Oyunlara dön
-            </button>
-          </div>
-        </div>
+        <GameResult
+          record={record}
+          title={record ? 'Yeni rekor!' : 'Tur bitti'}
+          headline={`${round.length - missed.length} / ${round.length} doğru`}
+          accuracy={round.length ? (round.length - missed.length) / round.length : 0}
+          missed={missed.map((m) => `${art[m.q.answer]} ${m.q.noun}${m.q.exception ? ' (istisna)' : ''}`)}
+          missedLabel="Kaçırdıkların"
+          language={language}
+          onAgain={start}
+          onExit={onExit}
+        />
       )}
     </div>
   )

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
@@ -391,28 +392,7 @@ export function Home({
       <div className="home-side">
         {/* Level and the three numbers as one card, not four. */}
         <section className="status-card">
-        {game && (
-          <button className="level-strip" onClick={onProfile}>
-            <span className="level-badge">Sv. {game.level.level}</span>
-            <span className="level-strip-body">
-              <span className="level-strip-top">
-                <strong>{game.level.title}</strong>
-                <span className="small muted">
-                  {game.level.into.toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
-                </span>
-              </span>
-              <span className="xp-bar xp-bar-sm">
-                <span style={{ width: `${game.level.progress * 100}%` }} />
-              </span>
-            </span>
-            <span className={`daily-goal${game.xp.today >= dailyXpGoal ? ' is-done' : ''}`}>
-              <span className="small muted">Bugün</span>
-              <strong>
-                {game.xp.today}/{dailyXpGoal} XP
-              </strong>
-            </span>
-          </button>
-        )}
+        {game && <LevelStrip game={game} dailyXpGoal={dailyXpGoal} onProfile={onProfile} />}
 
         <div className="stats">
           <div className="stat">
@@ -795,5 +775,34 @@ function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose
         </div>
       </div>
     </div>
+  )
+}
+
+/** Level and today's XP; both count up to their new values when you come back from a session. */
+function LevelStrip({ game, dailyXpGoal, onProfile }: { game: GameState; dailyXpGoal: number; onProfile: () => void }) {
+  const into = useCountUp(game.level.into, `into:${game.level.level}`)
+  const today = useCountUp(game.xp.today, 'today')
+  const progress = game.level.needed ? into / game.level.needed : 0
+  return (
+    <button className="level-strip" onClick={onProfile}>
+      <span className="level-badge">Sv. {game.level.level}</span>
+      <span className="level-strip-body">
+        <span className="level-strip-top">
+          <strong>{game.level.title}</strong>
+          <span className="small muted">
+            {Math.round(into).toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
+          </span>
+        </span>
+        <span className="xp-bar xp-bar-sm">
+          <span style={{ width: `${Math.min(1, progress) * 100}%` }} />
+        </span>
+      </span>
+      <span className={`daily-goal${today >= dailyXpGoal ? ' is-done' : ''}`}>
+        <span className="small muted">Bugün</span>
+        <strong>
+          {Math.round(today)}/{dailyXpGoal} XP
+        </strong>
+      </span>
+    </button>
   )
 }
