@@ -350,4 +350,39 @@ export function addAspect(language: 'fr' | 'es', rows: string[][]) {
 
 export const aspectItems = (language: 'fr' | 'es'): readonly AspectItem[] => ASPECT[language]
 
+/** Which tense an expected answer of this verb belongs to (the first, in teaching order). */
+export function tenseOfForm(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, form: string): Tense | undefined {
+  const f = normalize(form).toLocaleLowerCase(entry.language)
+  if (!f) return undefined
+  return tensesOf(entry).find((t) => [0, 1, 2, 3, 4, 5].some((p) => answersFor(entry, t, p).some((a) => normalize(a).toLocaleLowerCase(entry.language) === f)))
+}
+
+export interface TenseStat {
+  tense: Tense
+  correct: number
+  wrong: number
+}
+
+/**
+ * Right and wrong conjugation answers per tense, from the answer log (sessions and the drill):
+ * where the learner's conjugation is weak, so the drill and the mistakes page can say so.
+ */
+export function tenseStats(
+  events: readonly { entryId: string; exerciseType: string; expected?: string; correct: boolean }[],
+  byId: ReadonlyMap<string, Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>>,
+): TenseStat[] {
+  const stats = new Map<Tense, TenseStat>()
+  for (const e of events) {
+    if (e.exerciseType !== 'conjugation' || !e.expected) continue
+    const entry = byId.get(e.entryId)
+    const tense = entry && tenseOfForm(entry, e.expected)
+    if (!tense) continue
+    const s = stats.get(tense) ?? { tense, correct: 0, wrong: 0 }
+    if (e.correct) s.correct++
+    else s.wrong++
+    stats.set(tense, s)
+  }
+  return [...stats.values()]
+}
+
 export type { Person }

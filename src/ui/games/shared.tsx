@@ -11,10 +11,10 @@ export interface Props {
 }
 
 /** Games answers are stored as practice: they earn (reduced) XP but don't move the schedule. */
-export async function recordPractice(entry: VocabularyEntry, state: UserWordState | undefined, exerciseType: ExerciseType, correct: boolean, responseMs: number) {
+export async function recordPractice(entry: VocabularyEntry, state: UserWordState | undefined, exerciseType: ExerciseType, correct: boolean, responseMs: number, answer?: { given?: string; expected?: string }) {
   const result = processAttempt(
     state ?? newWordState(entry, new Date()),
-    { exerciseType, verdict: correct ? 'correct' : 'wrong', responseMs, hintsUsed: 0, maxHints: 0, at: new Date(), mode: 'practice' },
+    { exerciseType, verdict: correct ? 'correct' : 'wrong', responseMs, hintsUsed: 0, maxHints: 0, at: new Date(), mode: 'practice', ...answer },
     [],
     scheduler,
   )

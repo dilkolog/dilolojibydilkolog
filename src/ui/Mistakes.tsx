@@ -6,6 +6,7 @@ import { PlayIcon } from './icons'
 import { charDiff } from '../engine/correctionDiff'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
+import { TenseWeakness } from './TenseWeakness'
 
 /** A sign for each kind of mistake, shown on its group. */
 const ERROR_GLYPH: Record<ErrorType, string> = {
@@ -39,7 +40,10 @@ export function MistakesScreen({
   onPractice,
   onPracticeType,
   onOpen,
+  onConjugation,
 }: {
+  /** Opens the conjugation drill. */
+  onConjugation?: () => void
   mistakes: Mistake[]
   vocabulary: VocabularyEntry[]
   onPractice: () => void
@@ -80,6 +84,8 @@ export function MistakesScreen({
           null
         )}
       </section>
+
+      {vocabulary[0] && <TenseWeakness language={vocabulary[0].language} vocabulary={vocabulary} onPractice={onConjugation} />}
 
       {groups.map((g) => (
         <section className={`section stack mistake-group tone-${g.type}`} key={g.type}>

@@ -3475,3 +3475,12 @@ button.badge-card:active { transform: none; }
 .aspect-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.25rem; margin-top: 0.5rem; }
 .aspect-card > .stack { flex: 1 1 18rem; }
 .aspect-cue { background: none; color: inherit; text-decoration: underline; text-decoration-color: var(--lang); text-decoration-thickness: 2px; text-underline-offset: 0.2em; font-weight: 600; }
+/* Mistakes page: conjugation accuracy per tense. */
+.tense-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.tense-bars li { display: grid; grid-template-columns: minmax(7rem, 11rem) 1fr auto; align-items: center; gap: 0.75rem; font-size: var(--t-sm); }
+.tense-bar-name { font-weight: 600; }
+.tense-bar { height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
+.tense-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--ok); }
+.tense-bars li.is-weak .tense-bar > span { background: var(--near); }
+.tense-bars li.is-weak .tense-bar-name { color: var(--near-text); }
+.tense-bar-num { color: var(--ink-soft); font-variant-numeric: tabular-nums; }

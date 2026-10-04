@@ -101,7 +101,7 @@ export function AspectGame({
     else sfx.wrong()
     setChosen(option)
     setResults((r) => [...r, { q, ok }])
-    if (q.entry) void recordPractice(q.entry, states.find((s) => s.entryId === q.entry!.id), 'conjugation', ok, performance.now() - started.current)
+    if (q.entry) void recordPractice(q.entry, states.find((s) => s.entryId === q.entry!.id), 'conjugation', ok, performance.now() - started.current, { given: option, expected: q.form })
   }
 
   const next = () => {

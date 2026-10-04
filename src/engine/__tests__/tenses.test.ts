@@ -5,7 +5,7 @@ import sentences from '../../data/tenses/es-sentences.json'
 import frSentences from '../../data/tenses/fr-sentences.json'
 import frAspect from '../../data/tenses/fr-aspect.json'
 import esAspect from '../../data/tenses/es-aspect.json'
-import { addAspect, aspectItems, addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
+import { addAspect, aspectItems, tenseOfForm, tenseStats, addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
 import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exercises'
 import { createRng } from '../rng'
 import type { TargetLanguage, VocabularyEntry } from '../types'
@@ -228,5 +228,20 @@ describe('past tense choice items', () => {
         expect(a.text.toLocaleLowerCase(lang)).toContain(a.cue.toLocaleLowerCase(lang))
       }
     }
+  })
+})
+
+describe('conjugation answers per tense', () => {
+  it('finds the tense of an expected form and counts right and wrong per tense', () => {
+    const aller = { language: 'fr' as const, lemma: 'aller', partOfSpeech: 'verb' as const }
+    expect(tenseOfForm(aller, 'allions')).toBe('imparfait')
+    expect(tenseOfForm(aller, 'nous allions')).toBe('imparfait')
+    expect(tenseOfForm(aller, 'est allée')).toBe('passe-compose')
+    expect(tenseOfForm(aller, 'xyz')).toBeUndefined()
+    const byId = new Map([['fr:aller', aller]])
+    const ev = (expected: string, correct: boolean) => ({ entryId: 'fr:aller', exerciseType: 'conjugation', expected, correct })
+    const stats = tenseStats([ev('allions', false), ev('allais', true), ev('irai', true), { ...ev('va', true), exerciseType: 'mc_meaning' }], byId)
+    expect(stats).toEqual(expect.arrayContaining([{ tense: 'imparfait', correct: 1, wrong: 1 }, { tense: 'futur', correct: 1, wrong: 0 }]))
+    expect(stats).toHaveLength(2)
   })
 })

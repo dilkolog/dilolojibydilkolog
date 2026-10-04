@@ -809,6 +809,7 @@ export default function App() {
                 mistakes={data.mistakes}
                 vocabulary={data.vocabulary}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+                onConjugation={data.language !== 'en' ? go({ name: 'games', game: 'conjugation' }) : undefined}
                 onPractice={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
                 }

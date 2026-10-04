@@ -11,6 +11,7 @@ import { useTenses } from '../ConjugationTable'
 import { Sentence } from '../session/shared'
 import { sfx } from '../sounds'
 import { AspectGame } from './AspectGame'
+import { useTenseStats, weakestTense } from '../TenseWeakness'
 import { isPctRecord, recordPractice, type Props } from './shared'
 
 const ROUND = 10
@@ -53,14 +54,15 @@ interface Answer {
 }
 
 /** Questions spread over the chosen tenses; irregular forms come up a little more often. */
-function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng): Question[] {
+function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng, weak?: Tense): Question[] {
   const out: Question[] = []
   const pool = shuffle(verbs, rng)
   for (let i = 0; out.length < n && i < n * 6; i++) {
     const verb = pool[i % pool.length]
     const own = tenses.filter((t) => tensesOf(verb).includes(t))
     if (!own.length) continue
-    const want = tenses[out.length % tenses.length]
+    // The weakest tense (from past answers) comes up more often; the rest take turns.
+    const want = weak && tenses.includes(weak) && rng() < 0.4 ? weak : tenses[out.length % tenses.length]
     const tense = own.includes(want) ? want : pick(own, rng)
     const forms = conjugateTense(verb, tense)!
     const odd = irregularForms(verb, tense)
@@ -82,6 +84,7 @@ function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng): Questi
 export function ConjugationGame({ language, vocabulary, states, best, bestAspect, recordKey, onExit }: Props & { language: 'fr' | 'es'; best?: number; bestAspect?: number; recordKey: string; onExit: () => void }) {
   const ready = useTenses(language)
   const [aspect, setAspect] = useState(false)
+  const weak = weakestTense(useTenseStats(language, vocabulary))
   const ownVerbs = useMemo<Verb[]>(
     () => (ready ? vocabulary.filter((v) => v.partOfSpeech === 'verb' && tensesOf(v).length > 1).map((v) => ({ ...v, gloss: v.senses[0].gloss, entry: v })) : []),
     [vocabulary, ready],
@@ -108,7 +111,7 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
   const toggle = (t: Tense) => setChosen((c) => (c.includes(t) ? (c.length > 1 ? c.filter((x) => x !== t) : c) : (TENSES[language] as Tense[]).filter((x) => x === t || c.includes(x))))
 
   const start = () => {
-    setRound(buildRound(verbs, chosen, ROUND, createRng(Date.now())))
+    setRound(buildRound(verbs, chosen, ROUND, createRng(Date.now()), weak?.tense))
     setIndex(0)
     setResults([])
     setTyped('')
@@ -131,7 +134,10 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
     setAnswer(a)
     setResults((rs) => [...rs, { ...a, q }])
     if (q.verb.entry)
-      void recordPractice(q.verb.entry, states.find((s) => s.entryId === q.verb.entry!.id), 'conjugation', a.ok, performance.now() - started.current)
+      void recordPractice(q.verb.entry, states.find((s) => s.entryId === q.verb.entry!.id), 'conjugation', a.ok, performance.now() - started.current, {
+        given: a.typed,
+        expected: q.sentence ? q.sentence.form : q.forms[q.person],
+      })
   }
 
   const next = () => {
@@ -193,6 +199,11 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
               ))}
             </div>
             <p className="small muted">{chosen.map((t) => TENSE_GUIDE[t].tr).join(', ')}</p>
+            {weak && chosen.includes(weak.tense) && (
+              <p className="small notice">
+                Son cevaplarına göre en çok <strong lang={language}>{TENSE_GUIDE[weak.tense].name}</strong> zorluyor ({weak.correct}/{weak.correct + weak.wrong} doğru); bu turda daha sık gelecek.
+              </p>
+            )}
           </div>
           <div className="stack gap-2">
             <p className="prompt-label">Fiiller</p>
