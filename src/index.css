@@ -19,6 +19,13 @@
   --shadow-xl: 0 24px 60px rgb(15 23 42 / 0.3);
   --scrim: rgb(15 23 42 / 0.45);
 
+  /* Depth, four layers, each with one look:
+       page    --bg                       the canvas
+       card    --surface + --shadow        a raised block on the page
+       inset   --surface-2 + hairline ring  a box inside a card (never a card in a card)
+       overlay --surface + --shadow-xl     dialogs, sheets, menus above everything */
+  --inset-ring: inset 0 0 0 1px var(--rule);
+
   /* Language accents tuned in OKLCH to the same weight (EN/FR L 0.565 C 0.195; ES L 0.76 C 0.155, which
      takes dark text): switching language changes the hue, not how loud the screen is.
      Soft = L 0.955, text = L ~0.48 (≥ 6:1 on the page), deep = L 0.44. */
@@ -2979,3 +2986,62 @@ button.badge-card:active { transform: none; }
 .badge-dialog-status { display: inline-flex; align-items: center; gap: 0.375rem; margin: 0.25rem 0 0; font-weight: 700; color: var(--ok-text); }
 .badge-dialog .btn { width: 100%; margin-top: 0.5rem; }
 @media (prefers-reduced-motion: reduce) { button.badge-card { transition: none; } .badge-dialog-medal .medal { animation: none; } }
+
+/* ── Badges: a summary, the next three, and a case for the earned ones (no wooden shelf) ──── */
+.badges-tab { display: grid; gap: 1.5rem; }
+.badge-block { display: grid; gap: 0.75rem; }
+.badge-block > .subhead { margin: 0; }
+.badge-summary { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0.75rem 1.25rem; padding: 1.125rem 1.375rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.badge-summary-count { display: flex; align-items: baseline; gap: 0.375rem; }
+.badge-summary-count strong { font-size: var(--t-xl); font-weight: 700; font-variant-numeric: tabular-nums; }
+.badge-summary .badge-progress { margin: 0; height: 0.5rem; }
+.badge-tiers { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.badge-grid-next { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.badge-grid-next .badge-card { padding: 1.25rem 1rem 1rem; }
+.badge-case {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.25rem;
+  padding: 0.75rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow);
+}
+.badge-case .badge-card { background: transparent; box-shadow: none; border-radius: var(--r-md); }
+.badge-case button.badge-card:hover { background: var(--surface-2); transform: none; }
+.badge-case.is-locked { margin-top: 0.75rem; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--rule); }
+
+/* ── Word detail header: the word, its actions, and a status strip ───────────────────────── */
+.word-hero {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'main actions' 'status status';
+  gap: 1.25rem 1.5rem; padding: 1.75rem 1.75rem 0; align-items: start;
+  background: linear-gradient(160deg, var(--lang-soft) 0%, var(--surface) 62%);
+}
+.word-hero.has-image { grid-template-columns: minmax(0, 1fr) 13rem; grid-template-areas: 'main image' 'actions image' 'status status'; }
+.word-hero-main { grid-area: main; display: grid; gap: 0.375rem; min-width: 0; }
+.word-hero-main .chip-list { margin: 0 0 0.25rem; }
+.word-hero-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.word-hero-main .gloss { font-size: var(--t-lg); margin: 0.125rem 0 0; }
+.word-hero-main .definition { margin: 0.25rem 0 0; max-width: 60ch; }
+.word-hero-image { grid-area: image; width: 100%; height: 100%; min-height: 9rem; max-height: 13rem; object-fit: cover; border-radius: var(--r-md); grid-column: auto; grid-row: auto; }
+.word-hero-actions { grid-area: actions; grid-column: auto; display: flex; align-items: center; gap: 0.5rem; justify-content: flex-end; }
+.word-hero.has-image .word-hero-actions { justify-content: flex-start; align-self: end; }
+.word-hero-delete { color: var(--ink-soft); }
+.word-hero-delete:hover { color: var(--bad-text); background: var(--bad-soft); }
+.word-hero-status {
+  grid-area: status; margin: 0 -1.75rem; padding: 0.875rem 1.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.75rem 1.5rem;
+  border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--surface) 70%, transparent); border-radius: 0 0 var(--r-lg) var(--r-lg);
+}
+.word-hero-status > div { display: grid; gap: 0.125rem; min-width: 0; }
+.word-hero-status dt { font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); }
+.word-hero-status dd { margin: 0; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: var(--t-sm); min-height: 1.875rem; }
+.word-hero-status dd > .icon { color: var(--lang-text); }
+@container main (max-width: 40rem) {
+  .word-hero, .word-hero.has-image { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'main' 'image' 'actions' 'status'; padding: 1.375rem 1.25rem 0; }
+  .word-hero .word-hero-actions { justify-content: flex-start; }
+  .word-hero-status { margin: 0 -1.25rem; padding: 0.875rem 1.25rem; }
+  .word-hero-image { max-height: 12rem; }
+}
+
+/* A card inside a card becomes an inset box, so depth always reads page → card → inset. */
+.card .card, .dialog .card, .card .empty-state, .card .stat, .card .habit.card {
+  background: var(--surface-2); box-shadow: var(--inset-ring);
+}
+.dialog .card { border-radius: var(--r-md); }
+/* A sub-section inside a settings card starts on a hairline. */
+.settings-content .card > .subhead { margin: 0.5rem -1.375rem 0; padding: 1rem 1.375rem 0; border-top: 1px solid var(--rule); }

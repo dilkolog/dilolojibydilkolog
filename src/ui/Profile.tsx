@@ -157,31 +157,47 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           </div>
 
           {tab === 'badges' && (
-            <section className="stack">
+            <section className="badges-tab">
+              <div className="badge-summary">
+                <div className="badge-summary-count">
+                  <strong>{unlocked.length}</strong>
+                  <span className="muted">/ {game.achievements.length} rozet</span>
+                </div>
+                <span className="badge-progress" aria-hidden>
+                  <span style={{ width: `${(unlocked.length / Math.max(1, game.achievements.length)) * 100}%` }} />
+                </span>
+                <div className="badge-tiers">
+                  {(['bronze', 'silver', 'gold', 'special'] as const).map((t) => (
+                    <span key={t} className={`badge-tier tier-${t}`}>
+                      {TIER_NAME[t]} {unlocked.filter((x) => medalTier(x) === t).length}
+                    </span>
+                  ))}
+                </div>
+              </div>
               {nextBadges.length > 0 && (
-                <>
+                <div className="badge-block">
                   <h2 className="subhead">Sıradakiler</h2>
-                  <div className="badge-grid">
+                  <div className="badge-grid badge-grid-next">
                     {nextBadges.map((a) => (
                       <Badge key={a.id} a={a} onOpen={setOpenBadge} />
                     ))}
                   </div>
-                </>
+                </div>
               )}
               {unlocked.length > 0 && (
-                <>
-                  <h2 className="subhead">Kazandıkların ({unlocked.length})</h2>
-                  <div className="badge-grid badge-grid-compact badge-shelf">
+                <div className="badge-block">
+                  <h2 className="subhead">Kazandıkların</h2>
+                  <div className="badge-case">
                     {unlocked.map((a) => (
                       <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
                     ))}
                   </div>
-                </>
+                </div>
               )}
               {locked.length > 0 && (
-                <details>
+                <details className="badge-block">
                   <summary className="small">Diğer rozetler ({locked.length})</summary>
-                  <div className="badge-grid badge-grid-compact mt-3">
+                  <div className="badge-case is-locked">
                     {locked.map((a) => (
                       <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
                     ))}

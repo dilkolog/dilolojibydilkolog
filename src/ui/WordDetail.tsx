@@ -33,7 +33,7 @@ import { isRetired } from '../engine/retire'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
-import { ChartIcon, LeafIcon, PenIcon, SlowIcon, SpeakerIcon, UmbrellaIcon } from './icons'
+import { BookIcon, CalendarIcon, ChartIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TrashIcon, UmbrellaIcon } from './icons'
 import { deleteWordsWithUndo } from './undo'
 
 interface Props {
@@ -45,9 +45,13 @@ interface Props {
   scheduler: Scheduler
   onChanged: () => void
   onBack: () => void
+  /** Study just this word now. */
+  onStudy?: (entries: VocabularyEntry[]) => void
 }
 
 /** Everything known about one word: its relations, how well each skill is held, its mistakes. */
+const HEALTH_NAME: Record<Health, string> = { fresh: 'canlı', thirsty: 'susamış', wilting: 'soluyor' }
+
 const WORD_GROUPS = [
   ['w-use', 'Kullanım'],
   ['w-family', 'Aile ve diller'],
@@ -55,7 +59,7 @@ const WORD_GROUPS = [
   ['w-progress', 'İlerleme'],
 ] as const
 
-export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack }: Props) {
+export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack, onStudy }: Props) {
   const [editing, setEditing] = useState(false)
   const others = useMemo(() => wordKeys(vocabulary.filter((v) => v.id !== entry.id)), [vocabulary, entry.id])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
@@ -112,12 +116,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   }
 
   const stage = growthStage(state)
-  const chips = [
-    entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech],
-    entry.cefr,
-    next && `sıradaki tekrar ${relativeTime(next)}`,
-    encounters !== null && `bağlamda ${encounters}/${ENCOUNTER_TARGET}+ karşılaşma`,
-  ].filter((c): c is string => !!c)
+  const chips = [entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech], entry.cefr].filter((c): c is string => !!c)
+  const health = plantHealth(state, scheduler, now)
 
   return (
     <div className="detail-page">
@@ -125,14 +125,17 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         ← Kelimelere dön
       </button>
 
-      {/* The word itself up top: its plant, how it sounds, what it means, its picture. */}
-      <section className="word-hero span-2">
-        <div className="word-hero-plant" aria-hidden>
-          <Plant stage={stage} health={plantHealth(state, scheduler, now)} size={72} />
-          <span className="small">{state ? STAGE_NAME[masteryStage(state)] : 'Henüz çalışılmadı'}</span>
-        </div>
-        <div className="word-hero-body stack gap-2">
-          <div className="row items-center gap-3">
+      {/* The word itself up top: what it is, how it sounds, what it means; then where it stands. */}
+      <section className={`word-hero span-2${heroImage ? ' has-image' : ''}`}>
+        <div className="word-hero-main">
+          {chips.length > 0 && (
+            <ul className="chip-list" aria-label="Kelime bilgisi">
+              {chips.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+          )}
+          <div className="word-hero-title">
             <h1 className="word">{displayForm(entry)}</h1>
             {canSpeak() && (
               <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
@@ -147,23 +150,52 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               {sense.definition}
             </p>
           )}
-          {chips.length > 0 && (
-            <ul className="chip-list" aria-label="Kelime bilgisi">
-              {chips.map((c) => (
-                <li key={c}>{c}</li>
-              ))}
-            </ul>
-          )}
         </div>
         {heroImage && <img className="word-hero-image" src={heroImage} alt="" />}
         <div className="word-hero-actions">
+          {onStudy && (
+            <button className="btn btn-sm" onClick={() => onStudy([entry])}>
+              <PlayIcon size={15} /> Çalış
+            </button>
+          )}
           <button className="btn btn-sm btn-quiet" onClick={() => setEditing(true)}>
-            Düzenle
+            <PenIcon size={15} /> Düzenle
           </button>
-          <button className="btn btn-sm btn-danger" onClick={remove}>
-            Sil
+          <button className="icon-btn word-hero-delete" onClick={remove} aria-label="Kelimeyi sil" title="Sil">
+            <TrashIcon size={18} />
           </button>
         </div>
+        <dl className="word-hero-status">
+          <div>
+            <dt>Aşama</dt>
+            <dd>
+              <Plant stage={stage} health={health} size={30} />
+              <span>
+                {state ? STAGE_NAME[masteryStage(state)] : 'Henüz çalışılmadı'}
+                {state && <span className="muted"> · {HEALTH_NAME[health]}</span>}
+              </span>
+            </dd>
+          </div>
+          <div>
+            <dt>Sıradaki tekrar</dt>
+            <dd>
+              <CalendarIcon size={18} />
+              <span>{next ? relativeTime(next) : 'Planlanmadı'}</span>
+            </dd>
+          </div>
+          {encounters !== null && (
+            <div>
+              <dt>Bağlamda karşılaşma</dt>
+              <dd>
+                <BookIcon size={18} />
+                <span>
+                  {encounters}
+                  <span className="muted"> / {ENCOUNTER_TARGET}+</span>
+                </span>
+              </dd>
+            </div>
+          )}
+        </dl>
       </section>
 
       <section className="section stack span-2 word-notes">
