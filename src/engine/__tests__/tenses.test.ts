@@ -196,4 +196,15 @@ describe('conditional and subjunctive', () => {
     expect(irregularForms(es('ser'), 'subjuntivo')[0]).toBe(true)
     expect(irregularForms(es('salir'), 'condicional')[0]).toBe(true)
   })
+
+  it('marks irregular present forms against the verb class', () => {
+    const fr = (lemma: string) => ({ language: 'fr' as const, lemma, partOfSpeech: 'verb' as const })
+    const es = (lemma: string) => ({ language: 'es' as const, lemma, partOfSpeech: 'verb' as const })
+    expect(irregularForms(fr('parler'), 'present').some(Boolean)).toBe(false)
+    expect(irregularForms(fr('aller'), 'present')).toEqual([true, true, true, false, false, true])
+    expect(irregularForms(fr('finir'), 'present').some(Boolean)).toBe(false)
+    expect(irregularForms(es('hablar'), 'presente').some(Boolean)).toBe(false)
+    expect(irregularForms(es('tener'), 'presente')[0]).toBe(true)
+    expect(irregularForms(es('pensar'), 'presente')).toEqual([true, true, true, false, false, true])
+  })
 })

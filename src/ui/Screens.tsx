@@ -304,7 +304,6 @@ export function Home({
           <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
         </li>
         {streak > 0 && answeredToday === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
-        <li className="muted">{LANGUAGE_NAME[language]}</li>
       </ul>
 
       <div className="home-grid">

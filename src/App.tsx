@@ -359,6 +359,14 @@ export default function App() {
   }, [incoming, !settings])
 
 
+  // A word brought in (bookmarklet, ⌘K "add") belongs to that visit of the add form: leaving the
+  // words page drops it, so the page doesn't keep reopening a half-filled form.
+  const prevScreen = useRef(screen.name)
+  useEffect(() => {
+    if (prevScreen.current === 'words' && screen.name !== 'words') setIncoming(null)
+    prevScreen.current = screen.name
+  }, [screen.name])
+
   const planInput = useMemo(() => {
     if (!settings || !data || data.language !== settings.activeLanguage) return null
     const now = new Date()

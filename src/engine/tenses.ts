@@ -140,7 +140,25 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   const { key } = keyOf(entry)
   const bare = forms.map((f) => f.replace(/^(me|te|se|nous|vous|nos|os) |^[mts]'/, ''))
   let regular: string[] | undefined
-  if (entry.language === 'fr') {
+  if (tense === 'present' || tense === 'presente') {
+    // The regular pattern of the verb's class; a form off it (vais, tengo, pienso) is marked.
+    const stem = key.slice(0, -2)
+    const patterns =
+      entry.language === 'fr'
+        ? key.endsWith('er')
+          ? [['e', 'es', 'e', 'ons', 'ez', 'ent']]
+          : key.endsWith('ir')
+            ? [['is', 'is', 'it', 'issons', 'issez', 'issent']]
+            : key.endsWith('re')
+              ? [['s', 's', '', 'ons', 'ez', 'ent']]
+              : []
+        : key.endsWith('ar')
+          ? [['o', 'as', 'a', 'amos', 'áis', 'an']]
+          : key.endsWith('er')
+            ? [['o', 'es', 'e', 'emos', 'éis', 'en']]
+            : [['o', 'es', 'e', 'imos', 'ís', 'en']]
+    regular = patterns[0]?.map((e) => stem + e)
+  } else if (entry.language === 'fr') {
     if (tense === 'imparfait') {
       const nous = conjugateTense(entry, 'present')?.[3].replace(/^nous /, '')
       if (nous?.endsWith('ons')) regular = ENDINGS.frI.map((e) => nous.slice(0, -3) + e)
