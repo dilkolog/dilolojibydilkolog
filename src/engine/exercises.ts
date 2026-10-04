@@ -1,7 +1,7 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
 import { acceptedForms, PERSONS, PRONOUNS } from './conjugation'
 import { TENSE_GUIDE } from './tenseGuide'
-import { conjugateTense, tenseAnswers, tensesOf, unlockedTenses, type Tense } from './tenses'
+import { conjugateTense, tenseAnswers, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import { familyRelative, suffixVariants } from './morphology'
@@ -692,8 +692,21 @@ export function buildExercise(
       // The newest tense comes up more often while it is new; the others keep coming back.
       const tense: Tense = open.length > 1 && rng() < 0.4 ? open[open.length - 1] : pick(open, rng)
       const forms = conjugateTense(entry, tense)!
-      const person = pick(PERSONS, rng)
       const guide = TENSE_GUIDE[tense]
+      // In a sentence when there is one: the time words around the blank call for the tense.
+      const sentence = tenseSentence(entry, tense)
+      if (sentence && rng() < 0.6)
+        return {
+          ...base,
+          kind: 'typed',
+          prompt: `${entry.lemma} · ${guide.name}`,
+          context: sentence.text,
+          contextTranslation: sentence.translation,
+          tense,
+          accepted: [sentence.form, ...tenseVariants(lang, sentence.form)],
+          hints: buildHints(sentence.form, guide.short),
+        }
+      const person = pick(PERSONS, rng)
       return {
         ...base,
         kind: 'typed',

@@ -3363,3 +3363,6 @@ button.badge-card:active { transform: none; }
 .conj-mini { font-size: var(--t-md); }
 .conj-mini tr.is-asked td { font-weight: 700; color: var(--ink); }
 .conj-mini tr.is-asked th { color: var(--ink); }
+.conj-sentence { display: grid; gap: 0.25rem; margin: 0; padding-left: 0.875rem; border-left: 3px solid var(--lang-soft); max-width: 60ch; }
+.conj-sentence [lang] { font-family: var(--serif); font-size: var(--t-md); }
+.conj-sentence strong { color: var(--lang-text); font-weight: 600; }

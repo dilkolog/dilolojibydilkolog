@@ -321,10 +321,10 @@ function BattlePrompt({ ex, entry, language }: { ex: Exercise; entry: Vocabulary
         <p className="muted small">{ex.context}</p>
       </div>
     )
-  if (ex.context && ex.type !== 'conjugation')
+  if (ex.context && (ex.type !== 'conjugation' || ex.context.includes(BLANK)))
     return (
       <div className="stack gap-1">
-        <p className="muted small">{label}</p>
+        <p className="muted small">{ex.type === 'conjugation' ? ex.prompt : label}</p>
         <p className="sentence" lang={language}>
           {ex.context.split(BLANK).map((part, i, all) => (
             <span key={i}>

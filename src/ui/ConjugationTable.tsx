@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { PRONOUNS } from '../engine/conjugation'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { conjugateTense, irregularForms, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
+import { conjugateTense, irregularForms, tenseSentence, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
 import type { VocabularyEntry } from '../engine/types'
 import { loadTenses } from '../data/tenseData'
 
@@ -34,6 +34,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
   const forms = conjugateTense(entry, tense)!
   const odd = irregularForms(entry, tense)
   const guide = TENSE_GUIDE[tense]
+  const sentence = tenseSentence(entry, tense)
   return (
     <div className="stack conj">
       {tenses.length > 1 && (
@@ -69,6 +70,16 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
       {odd.some(Boolean) && (
         <p className="small muted">
           <mark className="conj-odd">Altı çizili</mark> biçimler kuralın dışında; bunlara ayrıca dikkat et.
+        </p>
+      )}
+      {sentence && (
+        <p className="conj-sentence">
+          <span lang={lang}>
+            {sentence.text.split('___')[0]}
+            <strong>{sentence.form}</strong>
+            {sentence.text.split('___')[1]}
+          </span>
+          <span className="muted small">{sentence.translation}</span>
         </p>
       )}
       <div className="conj-markers" lang={lang}>

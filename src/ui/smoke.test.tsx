@@ -21,7 +21,7 @@ import { SessionScreen } from './Session'
 import type { SessionSummary } from '../engine/session'
 import { ArticleDrill } from './ArticleDrill'
 import { ConjugationGame } from './games/ConjugationGame'
-import { conjugateTense } from '../engine/tenses'
+import { conjugateTense, tenseSentence } from '../engine/tenses'
 import { SentencesGame, saveSentence } from './Sentences'
 import { GameContext, loadGame } from './game'
 import { buildDailyPlan } from '../engine/dailyPlan'
@@ -297,11 +297,16 @@ describe('screens render', () => {
       await act(async () => btn(/Kontrol et/)!.click())
     }
     // First answer right (read from the engine), the rest wrong.
-    const [person, verb] = el.querySelector('.prompt-text')!.textContent!.split(' · ')
     const tense = el.querySelector('.prompt-label span')!.textContent!
     const id = { 'pretérito indefinido': 'preterito', 'pretérito imperfecto': 'imperfecto', 'pretérito perfecto': 'perfecto', 'futuro simple': 'futuro' }[tense] as 'preterito'
-    const p = ['yo', 'tú', 'él / ella', 'nosotros / nosotras', 'vosotros / vosotras', 'ellos / ellas'].indexOf(person)
-    await typeAnswer(conjugateTense({ language: 'es', lemma: verb, partOfSpeech: 'verb' }, id)![p])
+    if (el.querySelector('.sentence')) {
+      const verb = el.querySelector('.conj-gloss span')!.textContent!
+      await typeAnswer(tenseSentence({ language: 'es', lemma: verb }, id)!.form)
+    } else {
+      const [person, verb] = el.querySelector('.prompt-text')!.textContent!.split(' · ')
+      const p = ['yo', 'tú', 'él / ella', 'nosotros / nosotras', 'vosotros / vosotras', 'ellos / ellas'].indexOf(person)
+      await typeAnswer(conjugateTense({ language: 'es', lemma: verb, partOfSpeech: 'verb' }, id)![p])
+    }
     expect(el.textContent).toContain('Doğru!')
     for (let i = 0; i < 30 && !el.textContent?.includes('Tur bitti') && !el.textContent?.includes('Yeni rekor'); i++) {
       if (btn(/^Devam$/)) await act(async () => btn(/^Devam$/)!.click())

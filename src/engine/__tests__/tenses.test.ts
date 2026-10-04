@@ -1,14 +1,19 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
-import { addTenses, conjugateTense, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
-import type { TargetLanguage } from '../types'
+import sentences from '../../data/tenses/es-sentences.json'
+import { addTenseSentences, addTenses, conjugateTense, tenseSentence, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
+import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exercises'
+import { createRng } from '../rng'
+import type { TargetLanguage, VocabularyEntry } from '../types'
+import { elAno } from './fixtures'
 
 const verb = (language: TargetLanguage, lemma: string, tense: Tense) => conjugateTense({ language, lemma, partOfSpeech: 'verb' }, tense)
 
 beforeAll(() => {
   addTenses('fr', fr as Record<string, unknown>)
   addTenses('es', es as Record<string, unknown>)
+  addTenseSentences(sentences as Record<string, Record<string, string>>)
 })
 
 describe('French tenses', () => {
@@ -72,5 +77,50 @@ describe('Spanish tenses', () => {
     expect(tensesOf({ language: 'es', lemma: 'hablar', partOfSpeech: 'verb' })).toEqual(['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro'])
     expect(verb('es', 'mesa', 'preterito')).toBeUndefined()
     expect(conjugateTense({ language: 'es', lemma: 'hablar', partOfSpeech: 'noun' }, 'futuro')).toBeUndefined()
+  })
+})
+
+describe('Spanish example sentences', () => {
+  it('every stored form is the verb in that tense', () => {
+    let n = 0
+    for (const [lemma, row] of Object.entries(sentences as Record<string, Record<string, string>>)) {
+      for (const tense of Object.keys(row) as Tense[]) {
+        const s = tenseSentence({ language: 'es', lemma }, tense)!
+        expect(s.text).toContain('___')
+        expect(verb('es', lemma, tense)!.map((f) => f.toLowerCase())).toContain(s.form.toLowerCase())
+        n++
+      }
+    }
+    expect(n).toBeGreaterThan(3000)
+  })
+
+  it('gives the sentence with the form blanked out', () => {
+    const s = tenseSentence({ language: 'es', lemma: 'borrar' }, 'futuro')
+    expect(s?.form).toBe('borraré')
+    expect(s?.text).toMatch(/^Mañana ___ /)
+    expect(s?.translation).toContain('sileceğim')
+    expect(tenseSentence({ language: 'fr', lemma: 'parler' }, 'futur')).toBeUndefined()
+  })
+})
+
+describe('conjugation questions', () => {
+  const borrar: VocabularyEntry = { ...elAno, id: 'es:borrar', lemma: 'borrar', partOfSpeech: 'verb', article: undefined, gender: undefined, senses: [{ ...elAno.senses[0], gloss: 'silmek', examples: [] }] }
+
+  it('asks only the present for a new word, and opens tenses as it is produced', () => {
+    const seen = (reps: number) => new Set(Array.from({ length: 60 }, (_, i) => buildExercise('conjugation', borrar, [borrar], createRng(i), { productionReps: reps }).tense))
+    expect([...seen(0)]).toEqual(['presente'])
+    expect(seen(1)).toEqual(new Set(['presente', 'preterito']))
+    expect(seen(5).size).toBe(5)
+  })
+
+  it('asks in a sentence when one exists, and grades the form in it', () => {
+    const all = Array.from({ length: 80 }, (_, i) => buildExercise('conjugation', borrar, [borrar], createRng(i), { productionReps: 5 }) as TypedExercise)
+    const inSentence = all.find((e) => e.tense === 'futuro' && e.context?.includes(BLANK))!
+    expect(inSentence.accepted[0]).toBe('borraré')
+    expect(inSentence.contextTranslation).toContain('sileceğim')
+    expect(evaluateTyped(inSentence, 'borraré', borrar, [borrar]).verdict).toBe('correct')
+    // Another tense's form of the same verb is a form error, not a meaning error.
+    expect(evaluateTyped(inSentence, 'borré', borrar, [borrar]).errorType).toBe('form')
+    expect(all.some((e) => !e.context?.includes(BLANK))).toBe(true)
   })
 })

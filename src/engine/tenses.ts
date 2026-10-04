@@ -211,4 +211,28 @@ export function unlockedTenses(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   return open.length ? open : all.slice(0, 1)
 }
 
+/** Example sentences per verb and tense ("text with [form]\ttranslation"), see addTenseSentences. */
+const SENTENCES = new Map<string, Record<string, string>>()
+
+/** Loads src/data/tenses/es-sentences.json (built by scripts/build-tense-sentences.ts). */
+export function addTenseSentences(json: Record<string, Record<string, string>>) {
+  for (const [verb, row] of Object.entries(json)) SENTENCES.set(verb, row)
+}
+
+export interface TenseSentence {
+  /** The sentence with the verb form replaced by "___". */
+  text: string
+  /** The form as it stands in the sentence. */
+  form: string
+  translation: string
+}
+
+/** A sentence using the verb in this tense, when one has been checked (Spanish for now). */
+export function tenseSentence(entry: Pick<VocabularyEntry, 'language' | 'lemma'>, tense: Tense): TenseSentence | undefined {
+  if (entry.language !== 'es') return undefined
+  const raw = SENTENCES.get(normalize(entry.lemma).toLocaleLowerCase('es'))?.[tense]
+  const m = raw?.match(/^(.*)\[([^\]]+)\](.*)\t(.*)$/)
+  return m ? { text: `${m[1]}___${m[3]}`, form: m[2], translation: m[4] } : undefined
+}
+
 export type { Person }

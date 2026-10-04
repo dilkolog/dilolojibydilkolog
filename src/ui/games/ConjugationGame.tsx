@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
-import { checkTyped } from '../../engine/answerCheck'
+import { checkTyped, normalize } from '../../engine/answerCheck'
 import { acceptedForms, PRONOUNS } from '../../engine/conjugation'
 import { createRng, pick, shuffle, type Rng } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
-import { conjugateTense, irregularForms, tenseAnswers, tensesOf, TENSES, type Tense } from '../../engine/tenses'
+import { conjugateTense, irregularForms, tenseAnswers, tenseSentence, tensesOf, tenseVariants, TENSES, type Tense, type TenseSentence } from '../../engine/tenses'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { useTenses } from '../ConjugationTable'
+import { Sentence } from '../session/shared'
 import { sfx } from '../sounds'
 import { recordPractice, type Props } from './shared'
 
@@ -39,6 +40,8 @@ interface Question {
   tense: Tense
   person: number
   forms: string[]
+  /** Asked in a sentence instead (Spanish, when a checked one exists). */
+  sentence?: TenseSentence
 }
 
 interface Answer {
@@ -64,7 +67,8 @@ function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng): Questi
     const people = odd.some(Boolean) && rng() < 0.6 ? [0, 1, 2, 3, 4, 5].filter((p) => odd[p]) : [0, 1, 2, 3, 4, 5]
     const person = pick(people, rng)
     if (out.some((q) => q.verb.lemma === verb.lemma && q.tense === tense && q.person === person)) continue
-    out.push({ verb, tense, person, forms })
+    const sentence = tenseSentence(verb, tense)
+    out.push({ verb, tense, person, forms, sentence: sentence && rng() < 0.5 ? sentence : undefined })
   }
   return out
 }
@@ -115,7 +119,9 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
 
   const check = () => {
     if (!q || answer || !typed.trim()) return
-    const accepted = tenseAnswers(q.verb, q.tense, q.person).flatMap((f) => acceptedForms(language, q.person as 0, f))
+    const accepted = q.sentence
+      ? [q.sentence.form, ...tenseVariants(language, q.sentence.form)]
+      : tenseAnswers(q.verb, q.tense, q.person).flatMap((f) => acceptedForms(language, q.person as 0, f))
     const others = tensesOf(q.verb).flatMap((t) => conjugateTense(q.verb, t) ?? [])
     const r = checkTyped(typed, accepted, { language, confusables: [], familyForms: others.filter((f) => !accepted.includes(f)) })
     const a: Answer = { ok: r.verdict === 'correct', near: r.verdict === 'near', form: r.errorType === 'form', typed: typed.trim() }
@@ -217,10 +223,23 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
           <p className="prompt-label">
             <span lang={language}>{TENSE_GUIDE[q.tense].name}</span> · {TENSE_GUIDE[q.tense].tr}
           </p>
-          <p className="prompt-text" lang={language}>
-            {pronoun(q.person)} · {q.verb.lemma}
-          </p>
-          <p className="muted conj-gloss">{q.verb.gloss}</p>
+          {q.sentence ? (
+            <>
+              <p className="muted conj-gloss">
+                <span lang={language}>{q.verb.lemma}</span> · {q.verb.gloss}
+              </p>
+              <div lang={language}>
+                <Sentence text={q.sentence.text} translation={answer ? q.sentence.translation : undefined} />
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="prompt-text" lang={language}>
+                {pronoun(q.person)} · {q.verb.lemma}
+              </p>
+              <p className="muted conj-gloss">{q.verb.gloss}</p>
+            </>
+          )}
           <input
             ref={input}
             className={`input answer-input${answer ? (answer.ok ? ' is-correct' : ' is-wrong') : ''}`}
@@ -251,7 +270,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
               <table className="conj-table conj-mini" lang={language}>
                 <tbody>
                   {q.forms.map((f, i) => (
-                    <tr key={i} className={i === q.person ? 'is-asked' : undefined}>
+                    <tr key={i} className={(q.sentence ? normalize(f) === normalize(q.sentence.form) : i === q.person) ? 'is-asked' : undefined}>
                       <th scope="row">{pronoun(i)}</th>
                       <td>{f}</td>
                     </tr>
@@ -285,7 +304,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
             .map((t) => ({ t, rs: results.filter((r) => r.q.tense === t) }))
             .filter((x) => x.rs.length)
             .map(({ t, rs }) => ({ label: TENSE_GUIDE[t].name, value: `${rs.filter((r) => r.ok).length}/${rs.length}` }))}
-          missed={missed.map((m) => `${PRONOUNS[language][m.q.person][0]} ${m.q.forms[m.q.person]}`)}
+          missed={missed.map((m) => (m.q.sentence ? m.q.sentence.form.toLocaleLowerCase(language) : `${PRONOUNS[language][m.q.person][0]} ${m.q.forms[m.q.person]}`))}
           missedLabel="Doğru biçimleri"
           language={language}
           onAgain={start}

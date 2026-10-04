@@ -16,3 +16,10 @@ several sources; a verb that can't be vouched for is left out.
 Stored: French imparfait, futur, participe passé and auxiliary; Spanish indefinido, imperfecto,
 futuro and participio. Compound tenses are put together at runtime (src/engine/tenses.ts).
 Because of the Jehle data, the Spanish table is for non-commercial use (CC BY-NC-SA).
+
+## Example sentences
+
+`es-sentences.json` (3,941 sentences, 833 verbs) is built by `scripts/build-tense-sentences.ts`
+from the diloloji project's example sentences, which were written with AI help. A sentence is
+kept only when exactly one form of the verb in that tense (from the tables above) appears in it
+once and the form belongs to no other tense; the Turkish translations were sample-read.

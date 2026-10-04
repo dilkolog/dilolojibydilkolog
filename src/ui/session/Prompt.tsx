@@ -75,7 +75,14 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
         </div>
       )
     case 'conjugation':
-      return (
+      return exercise.context?.includes(BLANK) ? (
+        <div className="stack gap-xs">
+          <p className="muted" lang={entry.language}>
+            {exercise.prompt}
+          </p>
+          <Sentence text={exercise.context} translation={exercise.contextTranslation} blankStart={exercise.blankStart} />
+        </div>
+      ) : (
         <div className="stack gap-xs">
           <p className="prompt-text" lang={entry.language}>
             {exercise.prompt}
