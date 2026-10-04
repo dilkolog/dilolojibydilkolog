@@ -48,7 +48,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
 
   if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'conjugation' && p.language !== 'en')
-    return <ConjugationGame {...p} language={p.language} best={records[`conj:${p.language}`]} recordKey={`conj:${p.language}`} onExit={() => setGame(null)} />
+    return <ConjugationGame {...p} language={p.language} best={records[`conj:${p.language}`]} bestAspect={records[`aspect:${p.language}`]} recordKey={`conj:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
   if (game === 'gender' && p.language !== 'en')
     return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />

@@ -3,7 +3,9 @@ import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import sentences from '../../data/tenses/es-sentences.json'
 import frSentences from '../../data/tenses/fr-sentences.json'
-import { addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
+import frAspect from '../../data/tenses/fr-aspect.json'
+import esAspect from '../../data/tenses/es-aspect.json'
+import { addAspect, aspectItems, addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
 import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exercises'
 import { createRng } from '../rng'
 import type { TargetLanguage, VocabularyEntry } from '../types'
@@ -206,5 +208,25 @@ describe('conditional and subjunctive', () => {
     expect(irregularForms(es('hablar'), 'presente').some(Boolean)).toBe(false)
     expect(irregularForms(es('tener'), 'presente')[0]).toBe(true)
     expect(irregularForms(es('pensar'), 'presente')).toEqual([true, true, true, false, false, true])
+  })
+})
+
+describe('past tense choice items', () => {
+  it('pair a form of the tense with the same person in the other tense, with a cue in the sentence', () => {
+    addAspect('fr', frAspect as string[][])
+    addAspect('es', esAspect as string[][])
+    const pairs = { fr: ['passe-compose', 'imparfait'], es: ['preterito', 'imperfecto'] } as const
+    for (const lang of ['fr', 'es'] as const) {
+      const items = aspectItems(lang)
+      expect(items.length).toBeGreaterThan(400)
+      for (const a of items) {
+        const entry = { language: lang, lemma: a.verb, partOfSpeech: 'verb' as const }
+        const other = a.tense === pairs[lang][0] ? pairs[lang][1] : pairs[lang][0]
+        const own = [0, 1, 2, 3, 4, 5].flatMap((p) => answersFor(entry, a.tense, p))
+        expect(own).toContain(a.form.toLocaleLowerCase(lang))
+        expect(conjugateTense(entry, other)).toContain(a.other)
+        expect(a.text.toLocaleLowerCase(lang)).toContain(a.cue.toLocaleLowerCase(lang))
+      }
+    }
   })
 })

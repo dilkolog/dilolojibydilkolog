@@ -325,4 +325,29 @@ export function tenseSentence(entry: Pick<VocabularyEntry, 'language' | 'lemma'>
   return m ? { text: `${m[1]}___${m[3]}`, form: m[2], translation: m[4] || undefined } : undefined
 }
 
+/** Past perfective or imperfective in a sentence whose time words settle it (see build scripts). */
+export interface AspectItem {
+  verb: string
+  /** The tense the sentence uses. */
+  tense: Tense
+  /** The sentence with "___" where the verb was. */
+  text: string
+  form: string
+  /** The same person in the other tense, the wrong option. */
+  other: string
+  translation?: string
+  /** The time words that settle the tense ("hier", "cuando era niño"). */
+  cue: string
+}
+const ASPECT = { fr: [] as AspectItem[], es: [] as AspectItem[] }
+
+export function addAspect(language: 'fr' | 'es', rows: string[][]) {
+  ASPECT[language] = rows.flatMap(([verb, tense, marked, other, tr, cue]) => {
+    const m = marked.match(/^(.*)\[([^\]]+)\](.*)$/)
+    return m ? [{ verb, tense: tense as Tense, text: `${m[1]}___${m[3]}`, form: m[2], other, translation: tr || undefined, cue }] : []
+  })
+}
+
+export const aspectItems = (language: 'fr' | 'es'): readonly AspectItem[] => ASPECT[language]
+
 export type { Person }

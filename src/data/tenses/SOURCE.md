@@ -36,3 +36,9 @@ fra_sentences, tur_sentences and fra-tur_links from downloads.tatoeba.org (2026-
 only when one form of the verb, unique to that tense and to that verb, appears once; a subject
 pronoun before it must match its person; the subjonctif needs "que". Turkish translations (517)
 are kept only when their verb endings fit the tense.
+
+`fr-aspect.json` / `es-aspect.json`: passé composé or imparfait (indefinido or imperfecto)
+choice items, built by the same two scripts. Only sentences with time words that settle the
+tense (hier, il y a deux ans / autrefois, tous les jours; ayer, de repente / cuando era niño,
+todos los días) and none for the other; the cue may not be the verb itself. Weak cues (souvent,
+toujours, en 1990, ce matin, une fois que, que d'habitude) are left out on purpose.

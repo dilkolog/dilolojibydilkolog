@@ -7,13 +7,18 @@
  * form's person (Tatoeba has the odd slip, "il la lui ont souillé"). The présent is left to pronoun questions: its forms are
  * too often nouns (porte, livre, ferme).
  *
+ * Also builds src/data/tenses/fr-aspect.json: passé composé or imparfait, the choice learners find
+ * hardest. Only sentences whose time words call for one of the two (hier, soudain → passé
+ * composé; autrefois, tous les jours → imparfait) are used, since without such a cue both are
+ * often right. Each item: [verb, tense, sentence with [form], the other tense's form, Turkish, cue].
+ *
  * Usage: npx rolldown scripts/build-tense-sentences-fr.ts -o /tmp/f.mjs -p node && node /tmp/f.mjs <tatoeba dir>
  *   (the dir holds fra_sentences.tsv, tur_sentences.tsv and fra-tur_links.tsv from downloads.tatoeba.org)
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import fr from '../src/data/tenses/fr.json'
 import { addConjugations } from '../src/engine/conjugation'
-import { addTenses, tenseAnswers, TENSES, type Tense } from '../src/engine/tenses'
+import { addTenses, conjugateTense, tenseAnswers, TENSES, type Tense } from '../src/engine/tenses'
 
 const [dir] = process.argv.slice(2)
 addTenses('fr', fr as Record<string, unknown>)
@@ -73,6 +78,24 @@ const TR_TENSE: Partial<Record<Tense, RegExp>> = {
 }
 const fits = (tense: Tense, tr: string) => !TR_TENSE[tense] || TR_TENSE[tense]!.test(tr.toLocaleLowerCase('tr'))
 
+/** Time words that call for one tense; a sentence with words of both is left out. */
+const ASPECT_CUES: Partial<Record<Tense, RegExp>> = {
+  // Only words that settle it: "souvent", "toujours", "en 1990" or "ce matin" go with either;
+  // "une fois que" (once) and "que d'habitude" (than usual) are no cues.
+  'passe-compose': /\b(hier|avant-hier|soudain|soudainement|tout à coup|une fois(?! qu)(?!['’])|l'an dernier|l'année dernière|la semaine dernière|le mois dernier|il y a (deux|trois|quelques|\d+) (ans|jours|mois|semaines|heures|minutes))\b/i,
+  imparfait: /\b(autrefois|jadis|tous les (jours|matins|soirs|ans|étés|hivers|dimanches|week-ends)|chaque (jour|matin|soir|année|été|semaine)|(?<!que )d'habitude|habituellement|quand j'étais|quand il était|quand elle était|quand nous étions|à l'époque|pendant que|de mon temps)\b/i,
+}
+/** Where a cue of the tense stands in the sentence, outside the verb itself ("quand j'étais" can't cue étais). */
+function cueOutside(re: RegExp, text: string, start: number, end: number): string | undefined {
+  for (const m of text.matchAll(new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`))) {
+    if (m.index! + m[0].length <= start || m.index! >= end) return m[0]
+  }
+  return undefined
+}
+const aspect: [string, Tense, string, string, string, string][] = []
+const aspectCount = new Map<string, number>()
+const aspectSeen = new Set<string>()
+
 const best = new Map<string, { id: string; text: string; start: number; end: number; score: number }>()
 for (const [id, , raw] of read('fra_sentences.tsv')) {
   const text = raw?.trim()
@@ -112,6 +135,32 @@ for (const [id, , raw] of read('fra_sentences.tsv')) {
     if (subject === undefined && !can.has(2) && !can.has(5)) continue
     // vous also stands for one person (vous êtes allée).
     if (subject !== undefined && !can.has(subject) && !(subject === 4 && can.has(4))) continue
+    // Passé composé or imparfait, with a cue for exactly one of them.
+    const other: Tense | undefined = h.tense === 'passe-compose' ? 'imparfait' : h.tense === 'imparfait' ? 'passe-compose' : undefined
+    const cue = other && !ASPECT_CUES[other]!.test(text) ? cueOutside(ASPECT_CUES[h.tense]!, text, h.start, h.end) : undefined
+    const aKey = `${verb}\t${h.tense}`
+    if (other && cue && (aspectCount.get(aKey) ?? 0) < 3) {
+      const entry = { language: 'fr' as const, lemma: verb, partOfSpeech: 'verb' as const }
+      const people = subject !== undefined ? [subject] : [...can]
+      const options = new Set(people.map((p) => conjugateTense(entry, other)![p]))
+      const alt = [...options][0]
+      const before = text.slice(0, h.start)
+      const etre = (fr as Record<string, { aux: string }>)[verb].aux === 'e'
+      const ok =
+        options.size === 1 &&
+        // Elision must hold for both forms: j'ai parlé / je parlais can't share one blank.
+        !(/['’]$/.test(before) && !/^[aeiouyhéèêâîô]/i.test(alt)) &&
+        !(/\b(je|me|te|se|le|la|ne)\s$/i.test(before) && /^[aeiouyhéèêâîô]/i.test(alt)) &&
+        // A reflexive or être verb would need agreement and pronouns the blank can't carry.
+        !(other === 'passe-compose' && (etre || /\b(me|te|se|nous|vous|m['’]|t['’]|s['’])\s?$/i.test(before)))
+      const plain = text.toLocaleLowerCase('fr').replace(/[^\p{L}]+/gu, ' ').trim()
+      if (ok && !aspectSeen.has(plain)) {
+        aspectSeen.add(plain)
+        const tr = translation.get(id) ?? ''
+        aspect.push([verb, h.tense, `${before}[${text.slice(h.start, h.end)}]${text.slice(h.end)}`, alt, fits(h.tense, tr) ? tr : '', cue])
+        aspectCount.set(aKey, (aspectCount.get(aKey) ?? 0) + 1)
+      }
+    }
     // Prefer a Turkish translation, then a sentence of about eight words.
     const tr = translation.get(id)
     const score = (tr && fits(h.tense, tr) ? 100 : 0) - Math.abs(words.length - 8)
@@ -128,5 +177,7 @@ for (const [key, s] of best) {
   ;(out[verb] ??= {})[tense] = `${marked}\t${fits(tense as Tense, tr) ? tr : ''}`
 }
 writeFileSync('src/data/tenses/fr-sentences.json', JSON.stringify(out))
+writeFileSync('src/data/tenses/fr-aspect.json', JSON.stringify(aspect))
+console.log(`fr aspect: ${aspect.length} items (${aspect.filter((a) => a[1] === 'imparfait').length} imparfait)`)
 const n = best.size
 console.log(`fr: ${n} sentences for ${Object.keys(out).length} verbs, ${Object.values(out).flatMap((r) => Object.values(r)).filter((x) => !x.endsWith('\t')).length} with Turkish`)

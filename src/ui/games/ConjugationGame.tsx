@@ -10,6 +10,7 @@ import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { useTenses } from '../ConjugationTable'
 import { Sentence } from '../session/shared'
 import { sfx } from '../sounds'
+import { AspectGame } from './AspectGame'
 import { isPctRecord, recordPractice, type Props } from './shared'
 
 const ROUND = 10
@@ -78,8 +79,9 @@ function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng): Questi
  * each answer the whole tense is shown with the asked form marked, so one question teaches six.
  * Practice: XP, no schedule.
  */
-export function ConjugationGame({ language, vocabulary, states, best, recordKey, onExit }: Props & { language: 'fr' | 'es'; best?: number; recordKey: string; onExit: () => void }) {
+export function ConjugationGame({ language, vocabulary, states, best, bestAspect, recordKey, onExit }: Props & { language: 'fr' | 'es'; best?: number; bestAspect?: number; recordKey: string; onExit: () => void }) {
   const ready = useTenses(language)
+  const [aspect, setAspect] = useState(false)
   const ownVerbs = useMemo<Verb[]>(
     () => (ready ? vocabulary.filter((v) => v.partOfSpeech === 'verb' && tensesOf(v).length > 1).map((v) => ({ ...v, gloss: v.senses[0].gloss, entry: v })) : []),
     [vocabulary, ready],
@@ -172,10 +174,12 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
             {index + 1} / {round.length}
           </span>
         )}
-        <span className="small muted">{best ? `Rekor: %${best}` : ''}</span>
+        <span className="small muted">{aspect ? (bestAspect ? `Rekor: %${bestAspect}` : '') : best ? `Rekor: %${best}` : ''}</span>
       </div>
 
-      {phase === 'intro' && (
+      {aspect && <AspectGame language={language} vocabulary={vocabulary} states={states} best={bestAspect} recordKey={`aspect:${language}`} onBack={() => setAspect(false)} />}
+
+      {!aspect && phase === 'intro' && (
         <div className="stack">
           <h1 className="greeting">Çekim antrenmanı</h1>
           <p className="muted">Bir fiil, bir kişi, bir zaman: çekimini yazarsın. Her cevaptan sonra o zamanın bütün çekimi görünür; kuralın dışındaki biçimler daha sık gelir.</p>
@@ -207,10 +211,23 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
               {ready ? `${ROUND} soruluk tura başla` : 'Çekimler yükleniyor…'}
             </button>
           </div>
+          <section className="card aspect-card">
+            <div className="stack gap-xs">
+              <strong>
+                Hangi geçmiş zaman? <span className="muted" lang={language}>{language === 'fr' ? 'passé composé / imparfait' : 'indefinido / imperfecto'}</span>
+              </strong>
+              <p className="small muted">
+                Öğrencilerin en çok karıştırdığı ayrım. Cümledeki zaman ifadesine bakıp iki biçimden uyanı seçersin ({language === 'fr' ? 'hier, autrefois, tous les jours' : 'ayer, cuando era niño, todos los días'}).
+              </p>
+            </div>
+            <button className="btn btn-quiet" onClick={() => setAspect(true)} disabled={!ready}>
+              Bu turu oyna
+            </button>
+          </section>
         </div>
       )}
 
-      {phase === 'play' && q && (
+      {!aspect && phase === 'play' && q && (
         <form
           className="stack"
           onSubmit={(e) => {
@@ -298,7 +315,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
         </form>
       )}
 
-      {phase === 'over' && (
+      {!aspect && phase === 'over' && (
         <GameResult
           record={record}
           title={record ? 'Yeni rekor!' : 'Tur bitti'}

@@ -3467,3 +3467,11 @@ button.badge-card:active { transform: none; }
   .growth { flex-direction: column; gap: 0.5rem; }
   .growth > .plant { width: 4rem; height: 4rem; }
 }
+/* Aspect choice: two options side by side; the blank fills with the right form after answering. */
+.aspect-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.blank.is-filled { padding: 0 0.25rem; border-radius: var(--r-xs); font-weight: 600; }
+.blank.is-filled.is-correct { background: var(--ok-soft); color: var(--ok-text); }
+.blank.is-filled.is-wrong { background: var(--near-soft); color: var(--near-text); }
+.aspect-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.25rem; margin-top: 0.5rem; }
+.aspect-card > .stack { flex: 1 1 18rem; }
+.aspect-cue { background: none; color: inherit; text-decoration: underline; text-decoration-color: var(--lang); text-decoration-thickness: 2px; text-underline-offset: 0.2em; font-weight: 600; }

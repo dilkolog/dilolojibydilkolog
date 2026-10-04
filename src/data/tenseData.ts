@@ -1,4 +1,4 @@
-import { addTenseSentences, addTenses, tensesLoaded } from '../engine/tenses'
+import { addAspect, addTenseSentences, addTenses, tensesLoaded } from '../engine/tenses'
 
 /**
  * The tense tables are their own chunks, fetched once per language when first needed (word page,
@@ -6,13 +6,15 @@ import { addTenseSentences, addTenses, tensesLoaded } from '../engine/tenses'
  */
 const LOADERS = {
   fr: () =>
-    Promise.all([import('./tenses/fr.json'), import('./tenses/fr-sentences.json')]).then(([t, s]) => {
+    Promise.all([import('./tenses/fr.json'), import('./tenses/fr-sentences.json'), import('./tenses/fr-aspect.json')]).then(([t, s, a]) => {
       addTenseSentences('fr', s.default as Record<string, Record<string, string>>)
+      addAspect('fr', a.default as string[][])
       addTenses('fr', t.default as Record<string, unknown>)
     }),
   es: () =>
-    Promise.all([import('./tenses/es.json'), import('./tenses/es-sentences.json')]).then(([t, s]) => {
+    Promise.all([import('./tenses/es.json'), import('./tenses/es-sentences.json'), import('./tenses/es-aspect.json')]).then(([t, s, a]) => {
       addTenseSentences('es', s.default as Record<string, Record<string, string>>)
+      addAspect('es', a.default as string[][])
       addTenses('es', t.default as Record<string, unknown>)
     }),
 }
