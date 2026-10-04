@@ -135,6 +135,12 @@ export const CheckCircleIcon = (p: P) => (
     <path d="m8 12.3 2.8 2.8L16.2 9.6" />
   </Icon>
 )
+/** Almost: a tilde, for a near-miss answer. */
+export const NearIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M5 13c1.6-2.2 3.6-2.6 6-1s4.4 1.2 6-1" />
+  </Icon>
+)
 export const CloseIcon = (p: P) => (
   <Icon {...p}>
     <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />

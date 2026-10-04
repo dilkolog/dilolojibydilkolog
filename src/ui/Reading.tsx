@@ -436,9 +436,25 @@ export function ReadingScreen({
         />
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         {library.length === 0 && (
-          <EmptyState stage={1} title="Kütüphanen boş">
-            Aşağıdan ilk metnini ekle: bir haber, kitaptan bir bölüm, bir YouTube videosunun alt yazısı. Ne kadarını bildiğini gösterir, bilmediklerini
-            listene eklemeni sağlarım.
+          <EmptyState
+            art="library"
+            title="Kütüphanen boş"
+            action={
+              <button
+                className="btn"
+                onClick={() => {
+                  const add = document.querySelector<HTMLDetailsElement>('details.add-text')
+                  if (add) {
+                    add.open = true
+                    add.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }
+                }}
+              >
+                <PlusIcon size={18} /> İlk metnini ekle
+              </button>
+            }
+          >
+            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini listene eklersin.
           </EmptyState>
         )}
         {library.length > 0 && (

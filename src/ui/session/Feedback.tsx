@@ -6,7 +6,7 @@ import { MASTERY_STAGES, type MasteryStage } from '../../engine/mastery'
 import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
-import { AlertIcon, BulbIcon, CheckIcon } from '../icons'
+import { BulbIcon, CheckIcon, CloseIcon, NearIcon } from '../icons'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
 
@@ -77,7 +77,9 @@ export function Feedback({
       <div className="sheet-inner">
         <div className="sheet-text">
           <p className="sheet-title">
-            {ev.verdict === 'correct' ? <CheckIcon size={24} /> : <AlertIcon size={24} />}
+            <span className="verdict-badge" aria-hidden>
+              {ev.verdict === 'correct' ? <CheckIcon size={20} /> : ev.verdict === 'near' ? <NearIcon size={20} /> : <CloseIcon size={20} />}
+            </span>
             {title}
             {xp !== undefined && xp > 0 && <span className="xp-pop">+{xp} XP</span>}
           </p>

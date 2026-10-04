@@ -5,7 +5,7 @@ import { createRng } from '../engine/rng'
 import { dueSentences, gradeSentence, newSentence, sentenceExercise, type SentenceCard, type SentenceExercise, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
-import { SpeakerIcon } from './icons'
+import { PlusIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
@@ -61,8 +61,16 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
         </section>
       )}
       {!mine.length && (
-        <EmptyState stage={1} title="Henüz cümle yok">
-          Okuma ekranında bir kelimeye dokunup “Cümleyi kaydet” de, ya da aşağıya bir cümle yapıştır. Cümleler bütün olarak, takvimli tekrar edilir.
+        <EmptyState
+          art="sentences"
+          title="Henüz cümle yok"
+          action={
+            <button className="btn btn-quiet" onClick={() => document.querySelector<HTMLTextAreaElement>('textarea[aria-label="Cümle"]')?.focus()}>
+              <PlusIcon size={18} /> Cümle ekle
+            </button>
+          }
+        >
+          Okurken bir kelimeye dokunup “Cümleyi kaydet” de ya da aşağıya bir cümle yapıştır. Cümleler bütün olarak, takvimli tekrar edilir.
         </EmptyState>
       )}
     </div>

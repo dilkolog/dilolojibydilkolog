@@ -68,8 +68,8 @@ export function MistakesScreen({
           }
         />
         {open.length === 0 ? (
-          <EmptyState stage={5} title="Açık hata yok">
-            Yaptığın hatalar burada türüne göre toplanır ve tekrarlarına özel olarak eklenir. Bir kelimeyi üst üste 3 kez doğru bilince hatası kapanır.
+          <EmptyState art="clear" title="Açık hata yok">
+            Hataların burada türüne göre toplanır ve tekrarlarına eklenir. Bir kelimeyi üst üste 3 kez doğru bilince hatası kapanır.
           </EmptyState>
         ) : (
           null

@@ -244,6 +244,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           onOpen={onOpen}
           onStudy={onStudy}
           onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
+          onAdd={goAdd}
         />
       ) : view === 'garden' ? (
         <GardenView vocabulary={vocabulary} states={states} onOpen={onOpen} onWater={onStudy} />
@@ -787,6 +788,7 @@ function WordList({
   onOpen,
   onStudy,
   onDelete,
+  onAdd,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
@@ -794,6 +796,7 @@ function WordList({
   onOpen: (id: string) => void
   onStudy: (entries: VocabularyEntry[]) => void
   onDelete: (ids: string[]) => Promise<void>
+  onAdd: () => void
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -911,8 +914,16 @@ function WordList({
         Liste <span className="muted small">({list.length === vocabulary.length ? vocabulary.length : `${list.length} / ${vocabulary.length}`})</span>
       </h2>
       {vocabulary.length === 0 ? (
-        <EmptyState stage={0} title="Bahçen ekilmeyi bekliyor">
-          Öğrenmek istediğin kelimeleri yukarıdan tek tek ekle ya da bir liste yapıştır. Her kelime bir tohum: çalıştıkça büyür, çiçek açar.
+        <EmptyState
+          art="garden"
+          title="Bahçen ekilmeyi bekliyor"
+          action={
+            <button className="btn" onClick={onAdd}>
+              <PlusIcon size={18} /> İlk kelimeni ekle
+            </button>
+          }
+        >
+          Her kelime bir tohum: çalıştıkça büyür, çiçek açar. Tek tek ekleyebilir ya da bir listeyi yapıştırabilirsin.
         </EmptyState>
       ) : (
         <>
@@ -1036,7 +1047,25 @@ function WordList({
             </div>
           )}
           {list.length === 0 ? (
-            <p className="muted">Bu filtrelere uyan kelime yok.</p>
+            <EmptyState
+              art="search"
+              title="Bu aramaya uyan kelime yok"
+              action={
+                <button
+                  className="btn btn-quiet"
+                  onClick={() => {
+                    setQuery('')
+                    setStage('all')
+                    setFlags({})
+                    setTag('')
+                  }}
+                >
+                  Filtreleri temizle
+                </button>
+              }
+            >
+              Aramayı kısalt ya da filtrelerden birini kaldır.
+            </EmptyState>
           ) : (
             asTable ? (
               <div className="table-wrap">

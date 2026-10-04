@@ -19,9 +19,12 @@
   --shadow-xl: 0 24px 60px rgb(15 23 42 / 0.3);
   --scrim: rgb(15 23 42 / 0.45);
 
-  --en: #2563eb; --en-deep: #1e40af; --en-soft: #dbeafe; --en-text: #1d4ed8;   /* blue 600/800/100/700 */
-  --fr: #db2777; --fr-deep: #9d174d; --fr-soft: #fce7f3; --fr-text: #be185d;   /* pink 600/800/100/700 */
-  --es: #fbbf24; --es-deep: #d97706; --es-soft: #fef3c7; --es-text: #92400e;   /* amber 400/600/100/800 */
+  /* Language accents tuned in OKLCH to the same weight (EN/FR L 0.565 C 0.195; ES L 0.76 C 0.155, which
+     takes dark text): switching language changes the hue, not how loud the screen is.
+     Soft = L 0.955, text = L ~0.48 (≥ 6:1 on the page), deep = L 0.44. */
+  --en: #2f6de6; --en-deep: #1b4ba9; --en-soft: #e5f1ff; --en-text: #2b58b1;
+  --fr: #c6317c; --fr-deep: #901a57; --fr-soft: #ffe8f1; --fr-text: #9a2f62;
+  --es: #e6a313; --es-deep: #b76c00; --es-soft: #fceed9; --es-text: #844b00;
 
   --ok: #10b981; --ok-deep: #047857; --ok-soft: #d1fae5; --ok-text: #047857;           /* emerald */
   --near: #f97316; --near-deep: #c2410c; --near-soft: #ffedd5; --near-text: #c2410c;   /* orange */
@@ -86,9 +89,9 @@
     --shadow-lg: 0 0 0 1px rgb(148 163 184 / 0.12), 0 12px 32px rgb(0 0 0 / 0.45);
     --shadow-xl: 0 0 0 1px rgb(148 163 184 / 0.12), 0 24px 60px rgb(0 0 0 / 0.55);
     --scrim: rgb(2 6 23 / 0.65);
-    --en: #2563eb; --en-deep: #1e3a8a; --en-soft: #16284b; --en-text: #93c5fd;
-    --fr: #db2777; --fr-deep: #831843; --fr-soft: #321f3c; --fr-text: #f9a8d4;
-    --es: #fbbf24; --es-deep: #b45309; --es-soft: #353229; --es-text: #fcd34d;
+    --en: #2f6de6; --en-deep: #183d86; --en-soft: #22304a; --en-text: #a7cbff;
+    --fr: #c6317c; --fr-deep: #731946; --fr-soft: #3d2433; --fr-text: #ffafce;
+    --es: #e6a313; --es-deep: #663500; --es-soft: #3a2e17; --es-text: #efc37e;
     --ok: #10b981; --ok-deep: #047857; --ok-soft: #0f3138; --ok-text: #6ee7b7;
     --near: #f97316; --near-deep: #c2410c; --near-soft: #342627; --near-text: #fdba74;
     --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #341d32; --bad-text: #fda4af;
@@ -111,9 +114,9 @@
   --shadow-lg: 0 0 0 1px rgb(148 163 184 / 0.12), 0 12px 32px rgb(0 0 0 / 0.45);
   --shadow-xl: 0 0 0 1px rgb(148 163 184 / 0.12), 0 24px 60px rgb(0 0 0 / 0.55);
   --scrim: rgb(2 6 23 / 0.65);
-  --en: #2563eb; --en-deep: #1e3a8a; --en-soft: #16284b; --en-text: #93c5fd;
-  --fr: #db2777; --fr-deep: #831843; --fr-soft: #321f3c; --fr-text: #f9a8d4;
-  --es: #fbbf24; --es-deep: #b45309; --es-soft: #353229; --es-text: #fcd34d;
+  --en: #2f6de6; --en-deep: #183d86; --en-soft: #22304a; --en-text: #a7cbff;
+  --fr: #c6317c; --fr-deep: #731946; --fr-soft: #3d2433; --fr-text: #ffafce;
+  --es: #e6a313; --es-deep: #663500; --es-soft: #3a2e17; --es-text: #efc37e;
   --ok: #10b981; --ok-deep: #047857; --ok-soft: #0f3138; --ok-text: #6ee7b7;
   --near: #f97316; --near-deep: #c2410c; --near-soft: #342627; --near-text: #fdba74;
   --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #341d32; --bad-text: #fda4af;
@@ -279,14 +282,17 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .stack > :not(:first-child) { margin-top: 1rem; }
 .section + .section { margin-top: 2.5rem; }
 /*
- * Type hierarchy, four steps:
- *   page title (.greeting)          t-2xl / 700
- *   section title (.section-title)  t-lg  / 700, one step smaller inside a card
- *   card title (.subhead, cards)    t-base / 700
- *   label (.prompt-label, .eyebrow) t-md or t-sm / 600, soft ink
- * Supporting text stays body size in soft ink rather than getting smaller.
+ * Type roles (Lexend is loaded at 400–700, so nothing heavier than 700):
+ *   display   page title (.greeting, page header h1)        t-2xl 30px / 700, tight
+ *   title     a section of the page (.section-title)         t-lg  20px / 700
+ *   card      a card's heading (.card .section-title)        t-md  18px / 700
+ *   item      a row or tile's name (strong in lists, cards)  t-base 16px / 600–700
+ *   body      running text                                    t-base 16px / 400
+ *   support   descriptions, help (.small)                    t-sm  14px / 400, soft ink
+ *   caption   meta, counts, badges (.eyebrow, tags)          t-xs  12px / 600
+ * Headings balance their lines; paragraphs avoid one-word last lines.
  */
-.section-title { font-size: var(--t-lg); font-weight: 700; }
+.section-title { font-size: var(--t-lg); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
 .card .section-title, .hero .section-title, .dialog .section-title, details .section-title { font-size: var(--t-md); }
 .eyebrow { font-size: var(--t-sm); font-weight: 600; color: var(--ink-soft); }
 
@@ -1000,7 +1006,7 @@ kbd {
 .level-badge {
   display: inline-grid; place-items: center;
   min-width: 2rem; height: 1.625rem; padding: 0 0.5rem;
-  border-radius: var(--r-full); font-size: var(--t-sm); font-weight: 800;
+  border-radius: var(--r-full); font-size: var(--t-sm); font-weight: 700;
   background: linear-gradient(135deg, var(--gold), var(--flame)); color: var(--on-color);
 }
 .emoji-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr)); gap: 0.375rem; }
@@ -1048,7 +1054,7 @@ kbd {
 .xp-bar-sm > span { display: block; height: 100%; border-radius: var(--r-full); background: linear-gradient(90deg, var(--gold), var(--flame)); }
 .daily-goal { display: grid; text-align: right; padding-left: 1rem; border-left: 1px solid var(--rule); white-space: nowrap; }
 .daily-goal.is-done strong { color: var(--ok-text); }
-.xp-gain { display: inline-block; margin-top: 0.75rem; font-weight: 800; font-size: var(--t-xl); color: var(--gold-text); animation: pop var(--dur) var(--ease-out) 0.2s both; }
+.xp-gain { display: inline-block; margin-top: 0.75rem; font-weight: 700; font-size: var(--t-xl); color: var(--gold-text); animation: pop var(--dur) var(--ease-out) 0.2s both; }
 .level-up {
   display: flex; gap: 1rem; align-items: center;
   padding: 1rem 1.25rem; border-radius: var(--r-lg);
@@ -1058,7 +1064,7 @@ kbd {
 }
 
 .session-xp { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; font-size: var(--t-sm); color: var(--gold-text); animation: pop var(--dur) var(--ease-out); }
-.xp-pop { margin-left: 0.5rem; font-size: var(--t-sm); font-weight: 800; color: var(--gold-text); animation: pop var(--dur) var(--ease-out); }
+.xp-pop { margin-left: 0.5rem; font-size: var(--t-sm); font-weight: 700; color: var(--gold-text); animation: pop var(--dur) var(--ease-out); }
 
 .mnemonic-part { background: var(--surface-2); border-radius: var(--r-md); padding: 0.625rem 0.875rem; display: grid; gap: 0.125rem; }
 .mnemonic-part strong { font-size: var(--t-sm); color: var(--lang-text); }
@@ -1137,7 +1143,7 @@ kbd {
 .quest-bar { display: block; height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
 .quest-bar > span { display: block; height: 100%; border-radius: var(--r-full); background: var(--gold); transition: width 0.6s ease; }
 .is-done .quest-bar > span { background: var(--ok); }
-.quest-xp { font-weight: 800; font-size: var(--t-sm); color: var(--gold-text); white-space: nowrap; }
+.quest-xp { font-weight: 700; font-size: var(--t-sm); color: var(--gold-text); white-space: nowrap; }
 .is-done .quest-xp { color: var(--ok-text); }
 .freeze { margin-left: 0.375rem; font-size: var(--t-sm); font-weight: 700; color: var(--en-text); cursor: help; }
 
@@ -1146,7 +1152,7 @@ kbd {
 .delta { font-size: var(--t-xs); font-weight: 700; color: var(--ink-soft); margin-left: 0.25rem; }
 .delta.up { color: var(--ok-text); }
 .delta.down { color: var(--bad-text); }
-.hard-rate { font-weight: 800; font-size: var(--t-sm); color: var(--bad-text); min-width: 3rem; text-align: right; }
+.hard-rate { font-weight: 700; font-size: var(--t-sm); color: var(--bad-text); min-width: 3rem; text-align: right; }
 
 .deck-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--lang-soft); }
 
@@ -1183,9 +1189,9 @@ kbd {
 .game-emoji { font-size: 2.5rem; }
 .game-record { margin-top: 0.5rem; font-weight: 700; color: var(--gold-text); font-size: var(--t-sm); }
 .game-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.game-timer { font-size: var(--t-2xl); font-weight: 800; font-variant-numeric: tabular-nums; }
+.game-timer { font-size: var(--t-2xl); font-weight: 700; font-variant-numeric: tabular-nums; }
 .game-timer.is-low { color: var(--bad); animation: pulse 1s infinite; border-radius: var(--r-sm); }
-.game-score { font-size: var(--t-xl); font-weight: 800; color: var(--gold-text); }
+.game-score { font-size: var(--t-xl); font-weight: 700; color: var(--gold-text); }
 .match-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
 @media (max-width: 40rem) { .match-grid { grid-template-columns: repeat(3, 1fr); } }
 .match-tile {
@@ -1269,7 +1275,7 @@ kbd {
 .row-check {
   flex: none; display: grid; place-items: center;
   width: 1.375rem; height: 1.375rem; border-radius: var(--r-xs);
-  border: 2px solid var(--rule); color: var(--on-color); font-size: var(--t-sm); font-weight: 800;
+  border: 2px solid var(--rule); color: var(--on-color); font-size: var(--t-sm); font-weight: 700;
 }
 .row-check.is-on { background: var(--lang); border-color: var(--lang); }
 .word-list li.is-selected { box-shadow: inset 0 0 0 2px var(--lang); background: var(--lang-soft); }
@@ -1604,7 +1610,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .swipe-gloss { font-size: var(--t-lg); font-weight: 700; color: var(--lang-text); }
 .swipe-stamp {
   position: absolute; top: 1.25rem; padding: 0.25rem 0.75rem; border-radius: var(--r-sm); border: 3px solid;
-  font-weight: 800; letter-spacing: 0.02em; pointer-events: none;
+  font-weight: 700; letter-spacing: 0.02em; pointer-events: none;
 }
 .swipe-yes { left: 1.25rem; color: var(--ok); transform: rotate(-12deg); }
 .swipe-no { right: 1.25rem; color: var(--bad); transform: rotate(12deg); }
@@ -1638,7 +1644,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .tri-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
 .tri-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) auto; align-items: center; gap: 0.25rem 0.75rem; padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); }
 .tri-list li.is-self { box-shadow: var(--shadow), inset 0 0 0 2px var(--lang); }
-.tri-lang { font-weight: 800; font-size: var(--t-sm); color: var(--ink-soft); }
+.tri-lang { font-weight: 700; font-size: var(--t-sm); color: var(--ink-soft); }
 .tri-word { font-family: var(--serif); font-size: var(--t-lg); }
 .tri-from { grid-column: 2; }
 .tri-list li > :last-child:not(.tri-from) { grid-row: 1; grid-column: 3; }
@@ -1823,7 +1829,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .settings-nav .chip { white-space: nowrap; }
 .settings-group-title {
   display: flex; align-items: center; gap: 0.5rem;
-  margin-top: 1.25rem; font-size: var(--t-sm); font-weight: 800; letter-spacing: 0.04em; color: var(--ink-soft);
+  margin-top: 1.25rem; font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft);
   scroll-margin-top: 4.5rem;
 }
 .group-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
@@ -1863,7 +1869,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .listen-rounds { display: grid; gap: 0.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
 
 /* 4/3/2 */
-.fluency-timer { font-variant-numeric: tabular-nums; font-size: var(--t-xl); font-weight: 800; color: var(--lang-text); }
+.fluency-timer { font-variant-numeric: tabular-nums; font-size: var(--t-xl); font-weight: 700; color: var(--lang-text); }
 .fluency-transcript { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.6; min-height: 6rem; max-height: 16rem; overflow-y: auto; }
 
 /* Dictogloss */
@@ -1893,7 +1899,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .game-tag { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.5rem; border-radius: var(--r-full); background: var(--ok-soft); color: var(--ok-text); font-size: var(--t-xs); font-weight: 700; vertical-align: middle; }
 .game-card.is-due { box-shadow: var(--shadow), inset 0 0 0 2px var(--ok); }
 .toast-action { display: flex; align-items: center; gap: 0.75rem; padding-right: 0.5rem; }
-.toast-btn { border: 0; background: transparent; color: var(--bg); font: inherit; font-weight: 800; text-decoration: underline; text-underline-offset: 0.2em; padding: 0.375rem 0.5rem; min-height: 36px; cursor: pointer; }
+.toast-btn { border: 0; background: transparent; color: var(--bg); font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; padding: 0.375rem 0.5rem; min-height: 36px; cursor: pointer; }
 
 /* ---------- Utilities (spacing and alignment, on the same 4px scale everywhere) ---------- */
 .justify-between { justify-content: space-between; }
@@ -2001,7 +2007,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .columns { padding-top: 1.25rem; }
 
 /* Spanish hero: amber stays light from end to end so the dark text keeps its contrast. */
-[data-lang='es'] .hero-today { background: linear-gradient(140deg, #fcd34d 0%, #f59e0b 100%); }
+[data-lang='es'] .hero-today { background: linear-gradient(140deg, #f5d073 0%, #eba01c 100%); }
 
 /* ---------- Session on large screens: the question on its own card, with room around it ---------- */
 .practice-badge { margin: -1.5rem 0 1.5rem; }
@@ -2140,7 +2146,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   transition: background-color var(--dur) var(--ease-out);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--lang) 30%, transparent);
 }
-[data-lang='es'] .onboarding-hero { background-image: linear-gradient(140deg, transparent 0%, #f59e0b 100%); }
+[data-lang='es'] .onboarding-hero { background-image: linear-gradient(140deg, transparent 0%, #eba01c 100%); }
 .onboarding-brand { cursor: default; color: inherit; }
 .onboarding-brand .brand-mark { background: color-mix(in srgb, var(--on-lang) 18%, transparent); }
 .onboarding-title { margin-top: 1.75rem; max-width: 30rem; font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
@@ -2248,7 +2254,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .palette-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-soft); flex: none; }
 .palette-item.is-active .palette-icon { background: var(--surface); color: var(--lang-text); }
 .palette-enter { margin-left: 0.5rem; font-size: var(--t-xs); }
-.palette-lang { font-size: var(--t-xs); font-weight: 800; }
+.palette-lang { font-size: var(--t-xs); font-weight: 700; }
 
 /* ---------- Story as a book page ---------- */
 .story-book { max-width: 44rem; padding: 2rem 2.25rem; }
@@ -2393,7 +2399,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .avatar-level {
   position: absolute; bottom: -0.25rem; left: 50%; transform: translateX(-50%);
   min-width: 1.75rem; padding: 0 0.375rem; border-radius: var(--r-full); text-align: center;
-  background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 800; line-height: 1.5rem;
+  background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 700; line-height: 1.5rem;
 }
 .activity-mini { display: grid; gap: 0.75rem; padding: 1rem 1.25rem; }
 .activity-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 0.75rem); grid-auto-columns: 0.75rem; gap: 3px; overflow-x: auto; }
@@ -2434,7 +2440,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .milestone { width: min(24rem, 100%); text-align: center; justify-items: center; padding-top: 2rem; overflow: hidden; }
 .milestone-art { position: relative; display: grid; place-items: center; width: 8rem; height: 8rem; }
 .milestone-emoji { position: relative; z-index: 1; font-size: 4.5rem; line-height: 1; animation: pop var(--dur) var(--ease-spring); }
-.milestone-title { font-size: var(--t-2xl); font-weight: 800; letter-spacing: -0.02em; }
+.milestone-title { font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.02em; }
 .milestone-actions { justify-content: center; width: 100%; }
 @media (max-width: 30rem) { .milestone { border-radius: var(--r-lg) var(--r-lg) 0 0; } }
 
@@ -2672,7 +2678,7 @@ section:has(> .media-split) { container-type: inline-size; }
 .settings-content .setting-row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 2rem; }
 .settings-content .setting-row > div:last-child { justify-self: end; max-width: 100%; }
 .settings-content .setting-row:has(.input:not([type='search'])) > div:last-child { justify-self: stretch; min-width: 14rem; }
-.settings-content :is(.setting-row, .toggle-row) strong { font-size: var(--t-sm); font-weight: 650; }
+.settings-content :is(.setting-row, .toggle-row) strong { font-size: var(--t-sm); font-weight: 600; }
 .settings-content :is(.setting-row, .toggle-row) .small { display: block; margin-top: 0.125rem; font-size: var(--t-xs); line-height: 1.5; max-width: 36rem; }
 .settings-content .setting-row p { margin: 0; }
 .settings-content .toggle-row { gap: 2rem; }
@@ -2845,3 +2851,61 @@ details > summary + * { margin-top: 0.75rem; }
 .garden-card { flex-wrap: wrap; row-gap: 0.75rem; }
 .garden-card > .stack { flex: 1 1 10rem; min-width: 10rem; }
 .garden-card > .row { margin-left: auto; }
+
+/* ── Type roles in practice ────────────────────────────────────────────────────────────── */
+h1, h2, h3, .section-title, .greeting, .settings-pane-title, .auth-title, .word { text-wrap: balance; }
+p, .help, .small { text-wrap: pretty; }
+.greeting, .page-header h1, .milestone-title, .profile-name { line-height: 1.15; }
+/* Supporting text keeps a reading measure even in wide cards. */
+.card > p.small, .card > p.muted, .section > p.small, .section > p.muted, .help, .setting-row p, .toggle-row .small { max-width: 68ch; }
+/* A settings group's name is a section title, not a second page title. */
+.settings-pane-title { font-size: var(--t-lg); }
+.subhead { font-size: var(--t-base); font-weight: 700; }
+
+/* ── Answer feedback: a floating card instead of a full-width coloured band ──────────────── */
+.sheet {
+  left: 0; right: 0; margin-inline: auto; bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  width: min(52rem, calc(100% - 1.5rem));
+  --verdict: var(--ok); --verdict-text: var(--ok-text);
+  background: color-mix(in srgb, var(--verdict) 9%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--verdict) 38%, transparent);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl);
+  animation: sheet-in 260ms var(--ease-out);
+}
+.sheet.near { --verdict: var(--near); --verdict-text: var(--near-text); background: color-mix(in srgb, var(--verdict) 9%, var(--surface)); border-color: color-mix(in srgb, var(--verdict) 38%, transparent); }
+.sheet.wrong { --verdict: var(--bad); --verdict-text: var(--bad-text); background: color-mix(in srgb, var(--verdict) 9%, var(--surface)); border-color: color-mix(in srgb, var(--verdict) 38%, transparent); }
+.sheet .sheet-inner { max-width: none; padding: 1.125rem 1.375rem 1.25rem; max-height: min(60vh, 30rem); }
+.sheet .sheet-title { gap: 0.625rem; color: var(--verdict-text); }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(1.25rem); } to { opacity: 1; transform: none; } }
+
+.verdict-badge {
+  display: inline-grid; place-items: center; flex: none; width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--verdict); color: var(--on-color);
+  animation: pop var(--dur) var(--ease-spring);
+}
+.verdict-badge svg { stroke-width: 2.6; }
+/* The tick draws itself; a wrong answer's badge shakes once. */
+.sheet.ok .verdict-badge path { stroke-dasharray: 22; stroke-dashoffset: 22; animation: draw 380ms 140ms var(--ease-out) forwards; }
+.sheet.wrong .verdict-badge { animation: pop var(--dur) var(--ease-spring), shake 360ms 260ms var(--ease-out); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.sheet-spacer { height: 15rem; }
+@media (prefers-reduced-motion: reduce) {
+  .sheet, .verdict-badge, .sheet.wrong .verdict-badge { animation: none; }
+  .sheet.ok .verdict-badge path { animation: none; stroke-dashoffset: 0; }
+}
+
+/* ── Empty states: a small picture, a sentence, one action ───────────────────────────────── */
+.empty-state { gap: 1.5rem; padding: 1.75rem 2rem; }
+.empty-art { width: 7.5rem; height: 6.5rem; border-radius: 0; background: radial-gradient(ellipse at 50% 55%, var(--lang-soft), transparent 68%); color: var(--lang-text); }
+.empty-illustration { display: block; }
+.empty-body { display: grid; gap: 0.5rem; min-width: 0; }
+.empty-body > p { margin: 0; max-width: 34rem; }
+.empty-action { margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+@media (max-width: 30rem) {
+  .empty-state { padding: 1.5rem 1.25rem; }
+  .empty-body > p { margin-inline: auto; }
+  .empty-action { justify-content: center; }
+}
+.empty-art { width: 9rem; height: 7.5rem; }
+.empty-illustration { width: 8.5rem; height: auto; }

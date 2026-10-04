@@ -13,7 +13,7 @@ import type { JournalEntry, KelimeDB } from '../data/db'
 import { scheduler } from '../data/instance'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
 import { useAi } from './aiContext'
-import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon } from './icons'
+import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, PenIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon } from './icons'
 import { Glyph } from './Glyph'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
@@ -183,7 +183,15 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
       <section className="section stack">
         <h2 className="section-title">Önceki yazdıkların</h2>
         {entries.length === 0 ? (
-          <EmptyState stage={1} title="İlk günlüğünü yaz">
+          <EmptyState
+            art="journal"
+            title="İlk günlüğünü yaz"
+            action={
+              <button className="btn btn-quiet" onClick={() => document.querySelector<HTMLTextAreaElement>('.journal-editor')?.focus()}>
+                <PenIcon size={18} /> Yazmaya başla
+              </button>
+            }
+          >
             Her gün birkaç cümle yeter: yazmak, okumanın gösteremediği eksikleri ortaya çıkarır. Yazdıkların burada birikir.
           </EmptyState>
         ) : (
