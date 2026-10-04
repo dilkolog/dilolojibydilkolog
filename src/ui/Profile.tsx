@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { levelTitle, medalTier } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { GearIcon, PenIcon, StarIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, PenIcon, SproutIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { Medal } from './Medal'
 import { StreakFlame } from './StreakFlame'
@@ -23,6 +23,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const [editing, setEditing] = useState(false)
   const [picking, setPicking] = useState(false)
   const [tab, setTab] = useState<'badges' | 'titles' | 'share'>('badges')
+  const [openBadge, setOpenBadge] = useState<Achievement | null>(null)
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
 
@@ -134,8 +135,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <section className="stat-grid profile-stats">
               <Stat value={<><StreakFlame streak={game.streak} frozen={game.frozenYesterday} /> {game.streak}</>} label="günlük seri" />
               <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
-              <Stat value={game.stats.wordsIntroduced} label="öğrenilen kelime" />
-              <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />
+              <Stat value={<><SproutIcon className="stat-icon is-sprout" size={20} /> {game.stats.wordsIntroduced}</>} label="öğrenilen kelime" />
+              <Stat value={<><CheckCircleIcon className="stat-icon is-answers" size={20} /> {game.stats.totalAnswers.toLocaleString('tr-TR')}</>} label="cevap" />
             </section>
             <ActivityMini
               byDay={game.xp.byDay}
@@ -162,7 +163,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                   <h2 className="subhead">Sıradakiler</h2>
                   <div className="badge-grid">
                     {nextBadges.map((a) => (
-                      <Badge key={a.id} a={a} />
+                      <Badge key={a.id} a={a} onOpen={setOpenBadge} />
                     ))}
                   </div>
                 </>
@@ -172,7 +173,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                   <h2 className="subhead">Kazandıkların ({unlocked.length})</h2>
                   <div className="badge-grid badge-grid-compact badge-shelf">
                     {unlocked.map((a) => (
-                      <Badge key={a.id} a={a} compact />
+                      <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
                     ))}
                   </div>
                 </>
@@ -182,7 +183,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                   <summary className="small">Diğer rozetler ({locked.length})</summary>
                   <div className="badge-grid badge-grid-compact mt-3">
                     {locked.map((a) => (
-                      <Badge key={a.id} a={a} compact />
+                      <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
                     ))}
                   </div>
                 </details>
@@ -206,6 +207,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         </>
       )}
 
+      {openBadge && <BadgeDialog a={openBadge} onClose={() => setOpenBadge(null)} />}
+
       {picking && (
         <ImagePicker
           initialQuery=""
@@ -222,9 +225,16 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
 
 type Achievement = NonNullable<ReturnType<typeof useGame>>['achievements'][number]
 
-function Badge({ a, compact = false }: { a: Achievement; compact?: boolean }) {
+const TIER_NAME = { bronze: 'Bronz', silver: 'Gümüş', gold: 'Altın', special: 'Özel' } as const
+
+function Badge({ a, compact = false, onOpen }: { a: Achievement; compact?: boolean; onOpen: (a: Achievement) => void }) {
   return (
-    <div className={`badge-card${a.unlocked ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`} title={a.description}>
+    <button
+      type="button"
+      className={`badge-card${a.unlocked ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`}
+      onClick={() => onOpen(a)}
+      aria-label={`${a.title}: ${a.unlocked ? 'kazanıldı' : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
+    >
       <Medal icon={a.icon} tier={medalTier(a)} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
       <strong>{a.title}</strong>
       {!compact && <span className="small muted">{a.description}</span>}
@@ -238,6 +248,60 @@ function Badge({ a, compact = false }: { a: Achievement; compact?: boolean }) {
           </span>
         </>
       )}
+    </button>
+  )
+}
+
+/** A badge up close: the medal, what it is for, and how far along you are. */
+function BadgeDialog({ a, onClose }: { a: Achievement; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.stopImmediatePropagation()
+        onClose()
+      }
+    }
+    window.addEventListener('keydown', onKey, true)
+    return () => window.removeEventListener('keydown', onKey, true)
+  }, [onClose])
+  const tier = medalTier(a)
+  const pct = Math.min(100, Math.round((a.value / a.goal) * 100))
+  return (
+    <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="dialog badge-dialog" role="dialog" aria-modal="true" aria-labelledby="badge-title">
+        <button className="icon-btn badge-dialog-close" onClick={onClose} aria-label="Kapat">
+          <CloseIcon size={18} />
+        </button>
+        <div className={`badge-dialog-medal tier-${tier}`}>
+          <Medal icon={a.icon} tier={tier} unlocked={a.unlocked} progress={a.value / a.goal} size={104} />
+        </div>
+        <span className={`badge-tier tier-${tier}`}>{TIER_NAME[tier]} rozet</span>
+        <h2 id="badge-title" className="badge-dialog-title">
+          {a.title}
+        </h2>
+        <p className="muted">{a.description}</p>
+        {a.unlocked ? (
+          <p className="badge-dialog-status is-done">
+            <CheckCircleIcon size={18} /> Kazandın
+          </p>
+        ) : (
+          <div className="badge-dialog-progress">
+            <div className="row justify-between small">
+              <span className="muted">İlerleme</span>
+              <strong>
+                {a.value.toLocaleString('tr-TR')} / {a.goal.toLocaleString('tr-TR')}
+              </strong>
+            </div>
+            <span className="badge-progress">
+              <span style={{ width: `${pct}%` }} />
+            </span>
+            <p className="small muted">{a.goal - a.value > 0 ? `Kazanmana ${(a.goal - a.value).toLocaleString('tr-TR')} kaldı.` : 'Neredeyse!'}</p>
+          </div>
+        )}
+        <button className="btn" onClick={onClose} autoFocus>
+          Tamam
+        </button>
+      </div>
     </div>
   )
 }

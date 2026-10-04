@@ -39,7 +39,7 @@ export function Medal({ icon, tier, unlocked, progress = 0, size = 64 }: { icon:
         <circle cx="32" cy="31" r={r - 4} fill="none" stroke="rgb(255 255 255 / 0.55)" strokeWidth="1" strokeDasharray="2 3" />
         {Art ? (
           <g transform="translate(20 19)" style={{ color: t.ribbon[1] }}>
-            <Art size={24} solid />
+            <Art size={24} className="medal-glyph" />
           </g>
         ) : (
           <text x="32" y="32" textAnchor="middle" dominantBaseline="central" fontSize="22">

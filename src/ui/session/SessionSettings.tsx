@@ -23,20 +23,22 @@ export function SessionSettings({ settings, onChange, onClose }: { settings: Set
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog dialog-wide session-settings" role="dialog" aria-modal="true" aria-labelledby="ss-title">
-        <div className="dialog-head">
-          <span className="dialog-badge" aria-hidden>
-            <GearIcon size={20} />
+        <header className="ss-head">
+          <span className="ss-head-icon" aria-hidden>
+            <GearIcon size={18} />
           </span>
           <div className="grow">
-            <h2 id="ss-title" className="section-title">
+            <h2 id="ss-title" className="ss-title">
               Çalışma ayarları
             </h2>
-            <p className="small muted">Sonraki sorudan itibaren geçerli. Hepsi Ayarlar’da da var.</p>
+            <p className="small muted">Sonraki sorudan itibaren geçerli</p>
           </div>
           <button className="icon-btn" onClick={onClose} aria-label="Kapat">
             <CloseIcon size={18} />
           </button>
-        </div>
+        </header>
+
+        <div className="ss-body">
 
         <Group title="Sorular">
           <Choice<TypingShare>
@@ -86,11 +88,14 @@ export function SessionSettings({ settings, onChange, onClose }: { settings: Set
           <Switch label="Kısayol listesi" help="Ekranın altında klavye kısayolları." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
         </Group>
 
-        <div className="dialog-actions">
+        </div>
+
+        <footer className="ss-foot">
+          <span className="small muted">Hepsi Ayarlar’da da var</span>
           <button className="btn" onClick={onClose} autoFocus>
             Çalışmaya dön
           </button>
-        </div>
+        </footer>
       </div>
     </div>
   )
@@ -99,8 +104,8 @@ export function SessionSettings({ settings, onChange, onClose }: { settings: Set
 function Group({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="ss-group">
-      <h3 className="eyebrow">{title}</h3>
-      {children}
+      <h3 className="ss-group-title">{title}</h3>
+      <div className="ss-card">{children}</div>
     </section>
   )
 }
