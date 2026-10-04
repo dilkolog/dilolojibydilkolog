@@ -5,7 +5,7 @@ import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { prefs } from '../prefs'
 import { canListen, listen } from '../speechInput'
 import { modalOpen } from './keys'
-import { MicIcon } from '../icons'
+import { CheckIcon, CloseIcon, MicIcon } from '../icons'
 
 
 /** Multiple-choice options. */
@@ -35,6 +35,10 @@ export function Choices({
   }, [answered, exercise, onChoose])
 
   const targetText = exercise.type !== 'mc_meaning' && exercise.type !== 'listen_choose'
+  // "gün (gün boyu)" beside "gün": the part in brackets is what tells them apart, so it gets its
+  // own line, stronger when another option has the same main word.
+  const split = (label: string) => (targetText ? null : /^(.+?)\s*\((.+)\)$/.exec(label))
+  const mains = exercise.options.map((o) => (split(o.label)?.[1] ?? o.label).trim())
   return (
     <div className="options">
       {exercise.options.map((o, i) => {
@@ -47,8 +51,19 @@ export function Choices({
           : ''
         return (
           <button key={o.id} className={`option ${state}`} disabled={answered} onClick={(e) => onChoose(o.id, e.shiftKey)}>
-            <span className="key">{i + 1}</span>
-            <span className={targetText ? 'option-serif' : ''}>{o.label}</span>
+            {/* Once answered, the number gives way to the verdict on the option itself. */}
+            <span className="key">{state === 'is-correct' ? <CheckIcon size={14} /> : state === 'is-wrong' ? <CloseIcon size={14} /> : i + 1}</span>
+            {(() => {
+              const m = split(o.label)
+              if (!m) return <span className={targetText ? 'option-serif' : ''}>{o.label}</span>
+              const twin = mains.filter((x) => x === m[1].trim()).length > 1
+              return (
+                <span className="option-split">
+                  {m[1]}
+                  <span className={`option-note${twin ? ' is-twin' : ''}`}>{m[2]}</span>
+                </span>
+              )
+            })()}
           </button>
         )
       })}

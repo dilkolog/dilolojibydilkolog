@@ -3413,3 +3413,46 @@ button.badge-card:active { transform: none; }
 .conj-mini tr.is-asked > * { background: color-mix(in srgb, var(--surface) 70%, transparent); }
 .conj-mini tr.is-asked > :first-child { border-radius: var(--r-sm) 0 0 var(--r-sm); }
 .conj-mini tr.is-asked > :last-child { border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+/* Session summary: what was earned (level, badges) in one strip of equal tiles. */
+.rewards { display: grid; gap: 0.625rem; }
+.rewards-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.625rem; }
+.reward { display: flex; align-items: center; gap: 0.875rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); animation: pop var(--dur) var(--ease-spring) both; }
+.reward:nth-child(2) { animation-delay: 80ms; }
+.reward:nth-child(3) { animation-delay: 160ms; }
+.reward-level { background: color-mix(in srgb, var(--near-soft) 70%, var(--surface)); box-shadow: var(--shadow), inset 0 0 0 1.5px color-mix(in srgb, var(--near) 45%, transparent); }
+.reward-text { display: grid; gap: 0.125rem; min-width: 0; }
+.reward > svg, .reward > .level-badge { flex: none; }
+@media (prefers-reduced-motion: reduce) { .reward { animation: none; } }
+/* An option's note in brackets on its own line; stronger when it is the only difference. */
+.option-split { display: grid; gap: 0.0625rem; text-align: left; }
+.option-note { font-size: var(--t-sm); font-weight: 500; color: var(--ink-soft); }
+.option-note.is-twin { color: var(--lang-text); font-weight: 600; }
+.option.is-dim .option-note.is-twin { color: inherit; }
+/* Garden beds: names wrap to two lines instead of "connaît…"; the planter keeps a thin soil edge
+   rather than a strip under the names (each plant stands on its own soil). */
+.plant-name { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; text-align: center; line-height: 1.25; overflow-wrap: anywhere; hyphens: manual; }
+.bed-plants {
+  padding: 0.75rem 0.75rem 0.875rem;
+  background: color-mix(in srgb, var(--plant-leaf) 6%, var(--surface));
+  border-bottom-width: 6px;
+  border-bottom-color: color-mix(in srgb, var(--plant-soil) 85%, #78350f);
+}
+.plant-tile { align-content: start; padding-bottom: 0.375rem; }
+/* The verdict on the option's key: filled check or cross. */
+.option.is-correct .key { background: var(--ok-deep); border-color: var(--ok-deep); color: #fff; }
+.option.is-wrong .key { background: var(--bad-deep); border-color: var(--bad-deep); color: #fff; }
+/* Word page growth card: full width, with the six stages as a track. */
+.growth-track { list-style: none; margin: 0.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.25rem; counter-reset: none; }
+.growth-track li { position: relative; display: grid; justify-items: center; gap: 0.125rem; padding: 0.375rem 0.125rem; border-radius: var(--r-sm); font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); text-align: center; opacity: 0.55; }
+.growth-track li::after { content: ''; position: absolute; top: 1.3rem; left: calc(50% + 1.1rem); right: calc(-50% + 1.1rem); height: 2px; border-radius: 1px; background: var(--rule); }
+.growth-track li:last-child::after { content: none; }
+.growth-track li.is-done { opacity: 1; }
+.growth-track li.is-done::after { background: var(--plant-leaf); }
+.growth-track li.is-current { opacity: 1; color: var(--lang-text); background: var(--lang-soft); }
+@media (max-width: 30rem) { .growth-track span { display: none; } .growth-track li.is-current span { display: block; } }
+.growth > .stack { flex: 1; min-width: 0; }
+/* Home: the day at a glance under the greeting, as small labelled facts. */
+.today-status { list-style: none; margin: 0.375rem 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem 1.25rem; color: var(--ink-soft); font-size: var(--t-sm); }
+.today-status li { display: inline-flex; align-items: center; gap: 0.375rem; }
+.today-status strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+.today-status .is-nudge { color: var(--near-text); font-weight: 600; }

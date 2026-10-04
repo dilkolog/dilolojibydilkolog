@@ -422,7 +422,7 @@ function GrowthPanel({ entry, state, scheduler, now }: { entry: VocabularyEntry;
   const mastered = state && stage < MASTERY_STAGES.length - 1 ? projectStage(state, entry, scheduler, now, {}, 'mastered') : undefined
   const days = (d: Date) => Math.max(1, Math.ceil((d.getTime() - now.getTime()) / 86_400_000))
   return (
-    <section className="section growth card">
+    <section className="section growth card span-2">
       <Plant stage={stage} health={health} size={88} />
       <div className="stack gap-xs">
         <strong className="growth-title">{state ? STAGE_NAME[MASTERY_STAGES[stage]] : 'Henüz ekilmedi'}</strong>
@@ -442,6 +442,15 @@ function GrowthPanel({ entry, state, scheduler, now }: { entry: VocabularyEntry;
         {state && stage < MASTERY_STAGES.length - 1 && !mastered && (
           <p className="small muted">Çiçek açması için cümlede üretme alıştırması gerekiyor: bir örnek cümle ekle.</p>
         )}
+        {/* Where the word is on the way from seed to flower. */}
+        <ol className="growth-track" aria-label="Aşamalar">
+          {MASTERY_STAGES.map((m, i) => (
+            <li key={m} className={i < stage ? 'is-done' : i === stage ? 'is-current' : undefined} aria-current={i === stage ? 'step' : undefined}>
+              <Plant stage={i} size={30} />
+              <span>{STAGE_NAME[m]}</span>
+            </li>
+          ))}
+        </ol>
         <details className="small">
           <summary>Bitkiler nasıl büyür?</summary>
           <ol className="growth-rules">

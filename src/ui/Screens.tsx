@@ -282,10 +282,30 @@ export function Home({
 
   return (
     <div>
-      <h1 className="greeting">{greeting(now)}!</h1>
-      <p className="greeting-sub">
-        {streak > 1 ? `${streak} gündür aralıksız çalışıyorsun. Seriyi bozma!` : `Bugün ${LANGUAGE_NAME[language].toLocaleLowerCase('tr-TR')} çalışıyoruz.`}
-      </p>
+      <h1 className="greeting">{hello}</h1>
+      {/* The day at a glance: what's waiting, the streak, and whether today still counts for it. */}
+      <ul className="today-status">
+        <li>
+          {remaining > 0 ? (
+            <>
+              <BookIcon size={16} /> <strong>{remaining}</strong> soru seni bekliyor
+            </>
+          ) : answeredToday > 0 ? (
+            <>
+              <CheckCircleIcon size={16} /> Bugünkü görev tamam
+            </>
+          ) : (
+            <>
+              <CheckCircleIcon size={16} /> Bugün tekrar yok
+            </>
+          )}
+        </li>
+        <li>
+          <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
+        </li>
+        {streak > 0 && answeredToday === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
+        <li className="muted">{LANGUAGE_NAME[language]}</li>
+      </ul>
 
       <div className="home-grid">
       <div className="home-main">
@@ -637,32 +657,33 @@ export function Summary({
           </dl>
         )}
       </div>
-      {leveledUp && after && (
-        <div className="level-up">
-          <span className="level-badge level-badge-lg">
-            {after.level.level}
-          </span>
-          <div>
-            <strong>Seviye atladın!</strong>
-            <p className="small">
-              Artık {after.level.level}. seviyedesin: <strong>{after.level.title}</strong>
-            </p>
-          </div>
-        </div>
-      )}
-      {newBadges.length > 0 && (
-        <div className="stack">
-          <h2 className="section-title">Yeni rozet{newBadges.length > 1 ? 'ler' : ''}!</h2>
-          <div className="badge-grid">
+      {((leveledUp && after) || newBadges.length > 0) && (
+        // Level and badges side by side in one strip, instead of a column of separate blocks.
+        <section className="rewards" aria-label="Kazandıkların">
+          <h2 className="section-title">Kazandıkların</h2>
+          <ul className="rewards-list">
+            {leveledUp && after && (
+              <li className="reward reward-level">
+                <span className="level-badge level-badge-lg">{after.level.level}</span>
+                <span className="reward-text">
+                  <strong>Seviye atladın!</strong>
+                  <span className="small muted">
+                    {after.level.level}. seviye: {after.level.title}
+                  </span>
+                </span>
+              </li>
+            )}
             {newBadges.map((a) => (
-              <div key={a.id} className="badge-card is-unlocked">
-                <Medal icon={a.icon} tier={medalTier(a)} unlocked size={64} />
-                <strong>{a.title}</strong>
-                <span className="small muted">{a.description}</span>
-              </div>
+              <li key={a.id} className="reward">
+                <Medal icon={a.icon} tier={medalTier(a)} unlocked size={48} />
+                <span className="reward-text">
+                  <strong>{a.title}</strong>
+                  <span className="small muted">{a.description}</span>
+                </span>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </section>
       )}
       {(tooEasyOrHard || summary.answered >= LONG_SESSION) && (
         <section className="coach-note">
