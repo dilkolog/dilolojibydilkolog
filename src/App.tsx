@@ -134,7 +134,7 @@ function restoreScreen(): Screen {
 }
 
 /** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
-const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile', 'summary', 'word', 'reading'])
+const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings'])
 
 type NavScreen = 'home' | 'words' | 'reading' | 'produce' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
 
@@ -799,12 +799,13 @@ export default function App() {
             ) : screen.name === 'games' ? (
               <GamesScreen key={screen.game} initialGame={screen.game} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'profile' ? (
-              <ProfileScreen settings={settings} onChange={updateSettings} />
+              <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
             ) : screen.name === 'settings' ? (
               <SettingsScreen
                 settings={settings}
                 onChange={updateSettings}
                 pushState={pushState}
+                onOpenProfile={() => setScreen({ name: 'profile' })}
                 onDataChanged={async () => {
                   const s = await db.getSettings()
                   setSettings(s ?? null)

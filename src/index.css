@@ -1511,7 +1511,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 /* Small phones: tighter cards and headings so content, not padding, fills the screen. */
 @media (max-width: 30rem) {
-  .shell, .app { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .shell, .app { --shell-pad: 0.75rem; padding-left: 0.75rem; padding-right: 0.75rem; }
   .card { padding: 1.125rem; border-radius: var(--r-md); }
   .story { padding: 1.125rem; }
   .greeting { font-size: var(--t-xl); }
@@ -2547,7 +2547,8 @@ section:has(> .media-split) { container-type: inline-size; }
   /* The top bar (logo, languages) stays put with a translucent background. */
   .shell > .sidebar {
     position: sticky; top: 0; z-index: 20;
-    margin: calc(-0.75rem - env(safe-area-inset-top)) -1rem 1rem; padding: calc(0.625rem + env(safe-area-inset-top)) 1rem 0.625rem;
+    /* Edge to edge: cancels the shell's side padding, whatever it is at this width. */
+    margin: calc(-0.75rem - env(safe-area-inset-top)) calc(-1 * var(--shell-pad, 1rem)) 1rem; padding: calc(0.625rem + env(safe-area-inset-top)) var(--shell-pad, 1rem) 0.625rem;
     background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
     border-bottom: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
   }
@@ -2555,7 +2556,7 @@ section:has(> .media-split) { container-type: inline-size; }
   .segmented, .filter-row { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; scroll-snap-type: x proximity; }
   .segmented::-webkit-scrollbar, .filter-row::-webkit-scrollbar { display: none; }
   .segmented > *, .filter-row > * { flex: none; scroll-snap-align: start; }
-  .filter-row { margin-inline: -1rem; padding-inline: 1rem; }
+  .filter-row { margin-inline: calc(-1 * var(--shell-pad, 1rem)); padding-inline: var(--shell-pad, 1rem); }
   /* With page tabs there, the tab is the action: no extra header button. */
   .section:has(.page-tabs) .page-header-action { display: none; }
 }
@@ -2602,3 +2603,138 @@ section:has(> .media-split) { container-type: inline-size; }
 /* Turkish meanings from Wiktionary under the meaning field: one tap adds one. */
 .meaning-suggest { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin-top: 0.125rem; }
 .meaning-suggest .help { margin: 0; }
+
+/* ── Settings: a menu of groups beside one group at a time ───────────────────────────── */
+.settings-page { display: grid; gap: 1.25rem; }
+.settings-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.settings-side { display: grid; gap: 0.75rem; min-width: 0; }
+.settings-search { max-width: none; }
+.settings-search .input { min-height: 2.5rem; }
+.settings-content { display: grid; gap: 1rem; min-width: 0; scroll-margin-top: 4.5rem; }
+.settings-pane { display: grid; gap: 1rem; }
+.settings-pane > * + * { margin-top: 0; }
+.settings-pane-head { display: flex; align-items: center; gap: 0.875rem; }
+.settings-pane-icon { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); background: var(--lang-soft); color: var(--lang-text); flex: none; }
+.settings-pane-title { font-size: var(--t-xl); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+.settings-pane-head p { margin: 0.125rem 0 0; }
+/* While searching every matching group shows, each under its own head. */
+.settings-pane + .settings-pane:not([hidden]) { margin-top: 0.75rem; }
+
+.settings-profile {
+  display: flex; align-items: center; gap: 0.75rem; width: 100%; padding: 0.75rem; text-align: left; cursor: pointer;
+  border: 0; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); color: var(--ink);
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.settings-profile:hover { box-shadow: var(--shadow-lg); }
+.settings-profile:active { transform: scale(0.99); }
+.settings-profile-text { display: grid; flex: 1; min-width: 0; }
+.settings-profile-text > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.settings-profile > svg { color: var(--ink-soft); flex: none; }
+
+.settings-menu { display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; }
+.settings-menu::-webkit-scrollbar { display: none; }
+.settings-menu-item {
+  display: flex; align-items: center; gap: 0.625rem; flex: none; padding: 0.5rem 0.875rem 0.5rem 0.5rem; cursor: pointer;
+  border: 0; border-radius: var(--r-md); background: transparent; color: var(--ink-soft); font: inherit; font-weight: 600; font-size: var(--t-sm); white-space: nowrap;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.settings-menu-icon { display: grid; place-items: center; width: 1.875rem; height: 1.875rem; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-soft); transition: inherit; }
+.settings-menu-item:hover { background: var(--surface); color: var(--ink); }
+.settings-menu-item[aria-current='page'] { background: var(--lang-soft); color: var(--lang-text); }
+.settings-menu-item[aria-current='page'] .settings-menu-icon { background: var(--lang); color: var(--on-color); }
+
+@container main (min-width: 52rem) {
+  .settings-layout { grid-template-columns: 15rem minmax(0, 1fr); gap: 2rem; }
+  .settings-side { position: sticky; top: 1rem; }
+  .settings-menu { flex-direction: column; overflow: visible; }
+  .settings-menu-item { width: 100%; }
+  .settings-content { max-width: 46rem; }
+}
+
+/* Cards: a title, then rows on hairlines running edge to edge. */
+.settings-content .card { padding: 1.125rem 1.375rem; }
+.settings-content .card > .section-title { font-size: var(--t-md); }
+.settings-content .card > :is(.setting-row, .toggle-row, .desktop-only) { margin-top: 0; }
+.settings-content .card > .section-title + :is(.setting-row, .toggle-row) { margin-top: 0.5rem; }
+.settings-content :is(.setting-row, .toggle-row) {
+  margin-inline: -1.375rem; padding: 0.875rem 1.375rem; border-top: 1px solid var(--rule);
+}
+.settings-content .card > :is(.setting-row, .toggle-row):last-child, .settings-content .card > .desktop-only:last-child > .toggle-row { padding-bottom: 0.25rem; }
+.settings-content .setting-row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 2rem; }
+.settings-content .setting-row > div:last-child { justify-self: end; max-width: 100%; }
+.settings-content .setting-row:has(.input:not([type='search'])) > div:last-child { justify-self: stretch; min-width: 14rem; }
+.settings-content :is(.setting-row, .toggle-row) strong { font-size: var(--t-sm); font-weight: 650; }
+.settings-content :is(.setting-row, .toggle-row) .small { display: block; margin-top: 0.125rem; font-size: var(--t-xs); line-height: 1.5; max-width: 36rem; }
+.settings-content .setting-row p { margin: 0; }
+.settings-content .toggle-row { gap: 2rem; }
+.settings-content .setting-row > div { min-width: 0; }
+@container main (max-width: 40rem) {
+  .settings-content .setting-row { grid-template-columns: minmax(0, 1fr); }
+  .settings-content .setting-row > div:last-child { justify-self: start; }
+}
+
+/* Choices as one segmented control instead of separate chips. */
+.settings-content .choice-row { display: inline-flex; flex-wrap: nowrap; gap: 0.125rem; padding: 0.1875rem; border-radius: var(--r-md); background: var(--track); max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.settings-content .choice-row .chip {
+  border: 0; box-shadow: none; background: transparent; color: var(--ink-soft); white-space: nowrap;
+  padding: 0.375rem 0.75rem; border-radius: calc(var(--r-md) - 0.1875rem); font-size: var(--t-sm); font-weight: 600; min-height: 0;
+}
+.settings-content .choice-row .chip:hover { color: var(--ink); transform: none; }
+.settings-content .choice-row .chip[aria-pressed='true'] { background: var(--surface); color: var(--lang-text); box-shadow: var(--shadow-sm); font-weight: 700; }
+:root[data-theme='dark'] .settings-content .choice-row .chip[aria-pressed='true'] { background: var(--surface-2); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .settings-content .choice-row .chip[aria-pressed='true'] { background: var(--surface-2); } }
+
+.settings-content .danger-zone { border: 0; box-shadow: var(--shadow), inset 0 0 0 1px color-mix(in srgb, var(--bad) 35%, transparent); }
+.settings-content .danger-zone > .section-title { color: var(--bad-text); }
+
+/* ── Profile: a band in the learner's own colour, figures beside the activity map ─────────── */
+.profile-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--pcolor, var(--lang)) 24%, var(--surface)) 0, var(--surface) 7.5rem);
+}
+.profile-settings { position: absolute; top: 0.75rem; right: 0.75rem; }
+.profile-settings:hover { background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.profile-card .avatar-ring > * { box-shadow: 0 0 0 4px var(--surface); }
+.profile-overview { display: grid; gap: 0.75rem; }
+.profile-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; }
+@container main (min-width: 48rem) {
+  .profile-overview { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); align-items: stretch; }
+  .profile-stats { grid-template-rows: 1fr 1fr; }
+  .profile-stats .stat { justify-content: center; }
+}
+/* The map fills its card: 13 week columns of square days. */
+.activity-mini .activity-grid { grid-template-rows: repeat(7, auto); grid-auto-columns: minmax(0, 1fr); gap: 2px; overflow: visible; }
+.activity-mini .activity-cell { aspect-ratio: 1; border-radius: 2px; }
+.profile-records { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin: 0; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.profile-records > div { display: grid; gap: 0.125rem; }
+.profile-records dt { order: 2; }
+.profile-records dd { margin: 0; font-weight: 700; font-size: var(--t-md); font-variant-numeric: tabular-nums; }
+.profile > .page-tabs { margin-top: 0.5rem; }
+
+/* ── The word's plant beside the question (ring = way to the next stage) ─────────────────── */
+.prompt-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.prompt-head .prompt-label { margin-bottom: 1.25rem; padding-top: 0.375rem; }
+.word-plant { display: grid; justify-items: center; gap: 0.125rem; flex: none; margin: -0.5rem -0.5rem 0 0; }
+.word-plant-figure { position: relative; display: grid; place-items: center; width: 4.25rem; height: 4.25rem; }
+.word-plant-figure .plant { position: relative; transform-origin: 50% 88%; }
+.word-plant-ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.word-plant-track { fill: none; stroke: var(--track); stroke-width: 3.5; }
+.word-plant-fill { fill: none; stroke: var(--ok); stroke-width: 3.5; stroke-linecap: round; transition: stroke-dashoffset 500ms var(--ease-out); }
+.word-plant-name { font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+/* Progress made: the ring glows once. */
+.word-plant.is-watered .word-plant-ring { animation: ring-glow 900ms var(--ease-out); }
+@keyframes ring-glow { 0% { filter: drop-shadow(0 0 0 transparent); } 40% { filter: drop-shadow(0 0 6px var(--ok)); } 100% { filter: drop-shadow(0 0 0 transparent); } }
+/* A new stage: the plant springs up into its next shape. */
+.word-plant.is-growing .plant { animation: plant-grow 900ms var(--ease-spring); }
+.word-plant.is-growing .word-plant-name { color: var(--ok-text); }
+.word-plant.is-growing .word-plant-figure::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--ok);
+  animation: plant-burst 900ms var(--ease-out) forwards;
+}
+@keyframes plant-grow { 0% { transform: scale(0.6, 0.4); } 55% { transform: scale(1.12, 1.18); } 100% { transform: scale(1); } }
+@keyframes plant-burst { from { opacity: 0.9; transform: scale(0.85); } to { opacity: 0; transform: scale(1.45); } }
+.word-plant.is-reset .word-plant-fill { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .word-plant-fill { transition: none; }
+  .word-plant.is-growing .plant, .word-plant.is-growing .word-plant-figure::after, .word-plant.is-watered .word-plant-ring { animation: none; }
+}

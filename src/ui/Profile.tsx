@@ -5,7 +5,7 @@ import { db } from '../data/instance'
 import { Avatar } from './Avatar'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { StarIcon } from './icons'
+import { GearIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { Medal } from './Medal'
 import { StreakFlame } from './StreakFlame'
@@ -15,7 +15,7 @@ const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', 
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
 const LADDER: [number, string][] = [1, 3, 5, 8, 11, 15, 20, 25, 30, 40, 50].map((l) => [l, levelTitle(l)])
 
-export function ProfileScreen({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
+export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings: Settings; onChange: (s: Settings) => void; onOpenSettings?: () => void }) {
   const game = useGame()
   const profile = settings.profile
   const [name, setName] = useState(profile.name)
@@ -45,7 +45,12 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
 
   return (
     <div className="stack profile">
-      <section className="card profile-card">
+      <section className="card profile-card" style={{ ['--pcolor' as string]: profile.color }}>
+        {onOpenSettings && (
+          <button className="icon-btn profile-settings" onClick={onOpenSettings} aria-label="Ayarlar" title="Ayarlar">
+            <GearIcon size={18} />
+          </button>
+        )}
         <div className="profile-hero">
           <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
             <span className="avatar-ring" style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
@@ -125,20 +130,26 @@ export function ProfileScreen({ settings, onChange }: { settings: Settings; onCh
 
       {game && (
         <>
-          <section className="stat-grid stat-grid-4">
-            <Stat value={<><StreakFlame streak={game.streak} frozen={game.frozenYesterday} /> {game.streak}</>} label="günlük seri" />
-            <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
-            <Stat value={game.stats.wordsIntroduced} label="öğrenilen kelime" />
-            <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />
-          </section>
-          <ActivityMini byDay={game.xp.byDay} />
-          <p className="small muted records-line">
-            Rekorların: en uzun seri {game.stats.longestStreak} gün · üst üste {game.stats.maxCombo} doğru · {unlocked.length}/{game.achievements.length} rozet
-          </p>
+          <div className="profile-overview">
+            <section className="stat-grid profile-stats">
+              <Stat value={<><StreakFlame streak={game.streak} frozen={game.frozenYesterday} /> {game.streak}</>} label="günlük seri" />
+              <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
+              <Stat value={game.stats.wordsIntroduced} label="öğrenilen kelime" />
+              <Stat value={game.stats.totalAnswers.toLocaleString('tr-TR')} label="cevap" />
+            </section>
+            <ActivityMini
+              byDay={game.xp.byDay}
+              records={[
+                [`${game.stats.longestStreak} gün`, 'en uzun seri'],
+                [`${game.stats.maxCombo}`, 'üst üste doğru'],
+                [`${unlocked.length}/${game.achievements.length}`, 'rozet'],
+              ]}
+            />
+          </div>
 
-          <div className="segmented" role="tablist" aria-label="Profil">
+          <div className="page-tabs" role="tablist" aria-label="Profil">
             {(['badges', 'titles', 'share'] as const).map((t) => (
-              <button key={t} role="tab" className="segmented-btn" aria-selected={tab === t} onClick={() => setTab(t)}>
+              <button key={t} role="tab" className="page-tab" aria-selected={tab === t} onClick={() => setTab(t)}>
                 {t === 'badges' ? 'Rozetler' : t === 'titles' ? 'Unvanlar' : 'Paylaş'}
               </button>
             ))}
@@ -240,15 +251,15 @@ function Stat({ value, label }: { value: React.ReactNode; label: string }) {
   )
 }
 
-/** The last 13 weeks as small squares, darker the more XP that day. */
-function ActivityMini({ byDay }: { byDay: Map<string, number> }) {
+/** The last 26 weeks as small squares, darker the more XP that day. */
+function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records: [string, string][] }) {
   const today = new Date()
   today.setHours(12, 0, 0, 0)
-  // Start on a Monday 12 full weeks back, so columns are weeks.
+  // Start on a Monday 25 full weeks back, so columns are weeks.
   const start = new Date(today)
-  start.setDate(start.getDate() - ((start.getDay() + 6) % 7) - 12 * 7)
+  start.setDate(start.getDate() - ((start.getDay() + 6) % 7) - 25 * 7)
   const days: { key: string; xp: number; future: boolean }[] = []
-  for (let d = new Date(start); days.length < 13 * 7; d.setDate(d.getDate() + 1)) {
+  for (let d = new Date(start); days.length < 26 * 7; d.setDate(d.getDate() + 1)) {
     const key = localDate(d)
     days.push({ key, xp: byDay.get(key) ?? 0, future: d > today })
   }
@@ -257,10 +268,10 @@ function ActivityMini({ byDay }: { byDay: Map<string, number> }) {
   return (
     <section className="card activity-mini">
       <div className="row justify-between items-center">
-        <strong>Son 3 ay</strong>
+        <strong>Son 6 ay</strong>
         <span className="small muted">{active} gün çalıştın</span>
       </div>
-      <div className="activity-grid" role="img" aria-label={`Son 13 haftada ${active} gün çalıştın`}>
+      <div className="activity-grid" role="img" aria-label={`Son 26 haftada ${active} gün çalıştın`}>
         {days.map((d) => (
           <span
             key={d.key}
@@ -270,6 +281,14 @@ function ActivityMini({ byDay }: { byDay: Map<string, number> }) {
           />
         ))}
       </div>
+      <dl className="profile-records">
+        {records.map(([value, label]) => (
+          <div key={label}>
+            <dt className="small muted">{label}</dt>
+            <dd>{value}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
   )
 }

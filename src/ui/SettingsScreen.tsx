@@ -8,14 +8,15 @@ import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { AccountSettings } from './AccountSettings'
-import { GroupTitle, JumpNav } from './JumpNav'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
 import { ReminderSuggestion } from './BestHours'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
-import { BellIcon, DataIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
+import { BellIcon, ChevronRightIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
+import { Avatar } from './Avatar'
+import { useGame } from './game'
 import { LANGUAGE_NAME } from './labels'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
 import { Select } from './Select'
@@ -127,28 +128,92 @@ function newWordsHelp(s: Settings): string {
   return `Tekrarlar birikmişse o gün yeni kelime gelmez. Bu hızla bir ay sonra yeni kelimelerden günde yaklaşık ${reviews} tekrar (~${minutes} dk) gelir; seçimini günlük süreyle dengele.`
 }
 
-const GROUPS: [string, string][] = [
-  ['s-account', 'Hesap'],
-  ['s-study', 'Çalışma'],
-  ['s-sound', 'Ses ve görünüm'],
-  ['s-remind', 'Bildirimler'],
-  ['s-tools', 'Araçlar'],
-  ['s-data', 'Veriler'],
+type GroupId = 's-account' | 's-study' | 's-answers' | 's-sound' | 's-look' | 's-remind' | 's-tools' | 's-data'
+
+interface Group {
+  id: GroupId
+  name: string
+  sub: string
+  icon: ReactNode
+}
+
+/** The settings in groups, one shown at a time (all of them while searching). */
+const GROUP_LIST: Group[] = [
+  { id: 's-account', name: 'Hesap', sub: 'Giriş ve cihazlar arası eşitleme', icon: <UserIcon size={18} /> },
+  { id: 's-study', name: 'Çalışma', sub: 'Günlük tempo, yeni kelimeler ve tekrar takvimi', icon: <TargetIcon size={18} /> },
+  { id: 's-answers', name: 'Sorular', sub: 'Yazma, ipuçları ve cevapların kontrolü', icon: <PenIcon size={18} /> },
+  { id: 's-sound', name: 'Ses', sub: 'Seslendirme, sesler ve konuşarak cevap', icon: <SpeakerIcon size={18} /> },
+  { id: 's-look', name: 'Görünüm', sub: 'Tema, yazı boyutu ve liste sıklığı', icon: <PaletteIcon size={18} /> },
+  { id: 's-remind', name: 'Bildirimler', sub: 'Günlük hatırlatma ve takvim', icon: <BellIcon size={18} /> },
+  { id: 's-tools', name: 'Araçlar', sub: 'Yapay zekâ, kısayollar ve çevrimdışı paket', icon: <ToolIcon size={18} /> },
+  { id: 's-data', name: 'Veriler', sub: 'Yedek, dışa aktarma ve sıfırlama', icon: <DataIcon size={18} /> },
 ]
+const GROUP_BY_ID = Object.fromEntries(GROUP_LIST.map((g) => [g.id, g])) as Record<GroupId, Group>
+const PANE_KEY = 'kelime-koc:settings-pane'
+
+function Pane({ group, active, children }: { group: Group; active: boolean; children: ReactNode }) {
+  return (
+    <div className="settings-pane" id={group.id} data-active={active || undefined}>
+      <header className="settings-pane-head">
+        <span className="settings-pane-icon">{group.icon}</span>
+        <div>
+          <h2 className="settings-pane-title">{group.name}</h2>
+          <p className="small muted">{group.sub}</p>
+        </div>
+      </header>
+      {children}
+    </div>
+  )
+}
+
+/** Who is signed in to this device's profile, a tap away from the profile page. */
+function ProfileLink({ settings, onOpen }: { settings: Settings; onOpen: () => void }) {
+  const game = useGame()
+  return (
+    <button type="button" className="settings-profile" onClick={onOpen}>
+      <Avatar profile={settings.profile} size={40} />
+      <span className="settings-profile-text">
+        <strong>{settings.profile.name || 'Profilin'}</strong>
+        <span className="small muted">{game ? `Seviye ${game.level.level} · ${game.level.title}` : 'Profili aç'}</span>
+      </span>
+      <ChevronRightIcon size={16} />
+    </button>
+  )
+}
 
 export function SettingsScreen({
   settings,
   onChange,
   onDataChanged,
   pushState,
+  onOpenProfile,
 }: {
   settings: Settings
   onChange: (s: Settings) => void
   onDataChanged: () => void
   pushState: PushState
+  onOpenProfile?: () => void
 }) {
   const [density, setDensityState] = useState<Density>(getDensity)
-  // Search: hides the settings (rows, then whole cards and group titles) that don't match.
+  const [active, setActive] = useState<GroupId>(() => {
+    try {
+      const saved = localStorage.getItem(PANE_KEY) as GroupId | null
+      return saved && saved in GROUP_BY_ID ? saved : 's-study'
+    } catch {
+      return 's-study'
+    }
+  })
+  const choose = (id: GroupId) => {
+    setActive(id)
+    try {
+      localStorage.setItem(PANE_KEY, id)
+    } catch {
+      // Remembering the group is only a convenience.
+    }
+    root.current?.querySelector('.settings-content')?.scrollIntoView({ block: 'start' })
+  }
+  // Search: looks through every group and hides the settings (rows, then whole cards and groups)
+  // that don't match; without a query, only the chosen group shows.
   const root = useRef<HTMLDivElement>(null)
   const [query, setQuery] = useState('')
   const [noMatch, setNoMatch] = useState(false)
@@ -158,31 +223,26 @@ export function SettingsScreen({
     const q = query.trim().toLocaleLowerCase('tr-TR')
     const has = (n: Element) => (n.textContent ?? '').toLocaleLowerCase('tr-TR').includes(q)
     let any = false
-    for (const card of el.querySelectorAll<HTMLElement>(':scope > section, :scope > .card, :scope > div.card')) {
-      const rows = [...card.querySelectorAll<HTMLElement>('.setting-row, .toggle-row')]
-      const title = card.querySelector('.section-title')
-      const titleHit = !q || (title ? has(title) : false)
-      let cardHit = titleHit || (!rows.length && has(card))
-      for (const r of rows) {
-        const hit = !q || titleHit || has(r)
-        r.hidden = !hit
-        if (hit) cardHit = true
+    for (const pane of el.querySelectorAll<HTMLElement>('.settings-pane')) {
+      let paneHit = false
+      for (const card of pane.querySelectorAll<HTMLElement>(':scope > section, :scope > .card, :scope > div.card')) {
+        const rows = [...card.querySelectorAll<HTMLElement>('.setting-row, .toggle-row')]
+        const title = card.querySelector('.section-title')
+        const titleHit = !q || (title ? has(title) : false)
+        let cardHit = titleHit || (!rows.length && has(card))
+        for (const r of rows) {
+          const hit = !q || titleHit || has(r)
+          r.hidden = !hit
+          if (hit) cardHit = true
+        }
+        card.hidden = !cardHit
+        if (cardHit) paneHit = true
       }
-      card.hidden = !cardHit
-      if (cardHit) any = true
-    }
-    // A group title shows when anything up to the next title is visible.
-    for (const t of el.querySelectorAll<HTMLElement>(':scope > .settings-group-title')) {
-      let n = t.nextElementSibling as HTMLElement | null
-      let visible = false
-      while (n && !n.classList.contains('settings-group-title')) {
-        if (!n.hidden) visible = true
-        n = n.nextElementSibling as HTMLElement | null
-      }
-      t.hidden = !!q && !visible
+      pane.hidden = q ? !paneHit : pane.id !== active
+      if (q && paneHit) any = true
     }
     setNoMatch(!!q && !any)
-  }, [query])
+  }, [query, active])
 
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value })
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
@@ -281,286 +341,313 @@ export function SettingsScreen({
     location.reload()
   }
 
+  const searching = !!query.trim()
+  const pane = (id: GroupId) => ({ group: GROUP_BY_ID[id], active: searching || active === id })
+
   return (
-    <div className="stack settings-page" ref={root}>
-      <PageHeader title="Ayarlar" sub="Çalışma temposu, ses, bildirimler, hesap ve yedekler." />
-      <label className="settings-search">
-        <SearchIcon size={18} />
-        <input
-          className="input"
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Ayar ara: bildirim, ses, yedek…"
-          aria-label="Ayar ara"
-        />
-      </label>
-      {query.trim() && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
-      {!query.trim() && <JumpNav groups={GROUPS} label="Ayar grupları" />}
+    <div className="settings-page" ref={root}>
+      <PageHeader title="Ayarlar" />
+      <div className="settings-layout">
+        <aside className="settings-side">
+          {onOpenProfile && <ProfileLink settings={settings} onOpen={onOpenProfile} />}
+          <label className="settings-search">
+            <SearchIcon size={18} />
+            <input className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Ayar ara" aria-label="Ayar ara" />
+          </label>
+          <nav className="settings-menu" aria-label="Ayar grupları">
+            {GROUP_LIST.map((g) => (
+              <button
+                key={g.id}
+                type="button"
+                className="settings-menu-item"
+                aria-current={!searching && active === g.id ? 'page' : undefined}
+                onClick={() => {
+                  setQuery('')
+                  choose(g.id)
+                }}
+              >
+                <span className="settings-menu-icon">{g.icon}</span>
+                <span>{g.name}</span>
+              </button>
+            ))}
+          </nav>
+        </aside>
 
-      <GroupTitle id="s-account" icon={<UserIcon size={18} />}>Hesap</GroupTitle>
-      <AccountSettings />
+        <div className="settings-content">
+          {searching && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
 
-      <GroupTitle id="s-study" icon={<TargetIcon size={18} />}>Çalışma</GroupTitle>
-      <section className="card stack">
-        <h2 className="section-title">Tempo</h2>
-        <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
-          <Chips options={MINUTES} value={settings.dailyMinutes} onChange={(v) => set('dailyMinutes', v)} format={(m) => `${m} dk`} />
-        </Row>
-        <Row label="Günde en fazla yeni kelime" help={newWordsHelp(settings)}>
-          <Chips options={NEW_WORDS} value={settings.newWordsPerDay} onChange={(v) => set('newWordsPerDay', v)} />
-        </Row>
-        <Row label="Günlük XP hedefi" help="Ana sayfada hedef çubuğu olarak görünür.">
-          <Chips options={XP_GOALS} value={settings.dailyXpGoal} onChange={(v) => set('dailyXpGoal', v)} format={(x) => `${x} XP`} />
-        </Row>
-        <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
-          <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
-        </Row>
-        <Row
-          label="Hedef hatırlama oranı"
-          help={`Tekrar geldiğinde kelimeyi hatırlıyor olma ihtimalin. Yüksek oran daha sağlam ama daha çok tekrar demek. ${
-            settings.retention === 0.9
-              ? 'Varsayılan, çoğu kişi için en iyi denge.'
-              : `Tekrar yükü varsayılanın yaklaşık ${relativeWorkload(settings.retention).toFixed(1).replace('.', ',')} katı.`
-          }`}
-        >
-          <Chips options={RETENTIONS} value={settings.retention} onChange={(v) => set('retention', v)} format={(r) => `%${Math.round(r * 100)}`} />
-        </Row>
-        <Toggle
-          label="Yeni kelimeleri sık olanlardan başlat"
-          help="Açıkken eklediğin kelimeler eklenme sırası yerine sıklığa göre tanıtılır (önce en sık olanlar). Sıklık verisi: FrequencyWords (Hermit Dave), OpenSubtitles 2018, CC BY-SA 4.0."
-          checked={settings.frequencyFirst}
-          onChange={(v) => set('frequencyFirst', v)}
-        />
-        <Toggle
-          label="Anlamı hedef dilde göster"
-          help="Türkçe anlam yerine kelimenin kendi dilindeki tanımı sorulur (Wiktionary'den; tanımı olan kelimelerde). Çeviri yapmadan o dilde düşünmeye alıştırır; Türkçesi bir dokunuşla görünür."
-          checked={settings.targetDefinitions}
-          onChange={(v) => set('targetDefinitions', v)}
-        />
-        <Toggle
-          label="Çok iyi bildiğin kelimeleri emekliye ayır"
-          help="Tamamen öğrendiğin ve aylarca akılda kalacak kelimeler rutin tekrarlardan çıkar; günde en fazla 2 sürpriz kontrol gelir, yanılırsan kelime geri döner. Kelime sayfasından elle de yapabilirsin."
-          checked={settings.autoRetire}
-          onChange={(v) => set('autoRetire', v)}
-        />
-        <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
-          <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
-        </Row>
-        <Toggle
-          label="Yeni kelimede önce tahmin et"
-          help="Anlamı göstermeden önce bir tahmin istenir. Yanlış tahmin bile kelimeyi daha iyi akılda tutmanı sağlar; tahmin puanlanmaz."
-          checked={settings.pretest}
-          onChange={(v) => set('pretest', v)}
-        />
-      </section>
+          <Pane {...pane('s-account')}>
+            <AccountSettings />
+          </Pane>
 
-      <MemoryModel settings={settings} onChange={onChange} />
+          <Pane {...pane('s-study')}>
+            <section className="card stack">
+              <h2 className="section-title">Tempo</h2>
+            <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
+              <Chips options={MINUTES} value={settings.dailyMinutes} onChange={(v) => set('dailyMinutes', v)} format={(m) => `${m} dk`} />
+            </Row>
+            <Row label="Günde en fazla yeni kelime" help={newWordsHelp(settings)}>
+              <Chips options={NEW_WORDS} value={settings.newWordsPerDay} onChange={(v) => set('newWordsPerDay', v)} />
+            </Row>
+            <Row label="Günlük XP hedefi" help="Ana sayfada hedef çubuğu olarak görünür.">
+              <Chips options={XP_GOALS} value={settings.dailyXpGoal} onChange={(v) => set('dailyXpGoal', v)} format={(x) => `${x} XP`} />
+            </Row>
+            <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
+              <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
+            </Row>
+            <Row
+              label="Hedef hatırlama oranı"
+              help={`Tekrar geldiğinde kelimeyi hatırlıyor olma ihtimalin. Yüksek oran daha sağlam ama daha çok tekrar demek. ${
+                settings.retention === 0.9
+                  ? 'Varsayılan, çoğu kişi için en iyi denge.'
+                  : `Tekrar yükü varsayılanın yaklaşık ${relativeWorkload(settings.retention).toFixed(1).replace('.', ',')} katı.`
+              }`}
+            >
+              <Chips options={RETENTIONS} value={settings.retention} onChange={(v) => set('retention', v)} format={(r) => `%${Math.round(r * 100)}`} />
+            </Row>
+            <Toggle
+              label="Yeni kelimeleri sık olanlardan başlat"
+              help="Açıkken eklediğin kelimeler eklenme sırası yerine sıklığa göre tanıtılır (önce en sık olanlar). Sıklık verisi: FrequencyWords (Hermit Dave), OpenSubtitles 2018, CC BY-SA 4.0."
+              checked={settings.frequencyFirst}
+              onChange={(v) => set('frequencyFirst', v)}
+            />
+            <Toggle
+              label="Çok iyi bildiğin kelimeleri emekliye ayır"
+              help="Tamamen öğrendiğin ve aylarca akılda kalacak kelimeler rutin tekrarlardan çıkar; günde en fazla 2 sürpriz kontrol gelir, yanılırsan kelime geri döner. Kelime sayfasından elle de yapabilirsin."
+              checked={settings.autoRetire}
+              onChange={(v) => set('autoRetire', v)}
+            />
+            <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
+              <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
+            </Row>
+            </section>
+            <MemoryModel settings={settings} onChange={onChange} />
+            <StudyCalendar settings={settings} onChange={onChange} />
+          </Pane>
 
-      <StudyCalendar settings={settings} onChange={onChange} />
-
-      <GroupTitle id="s-sound" icon={<SpeakerIcon size={18} />}>Ses ve görünüm</GroupTitle>
-      <section className="card stack">
-        <h2 className="section-title">Ses</h2>
-        <NaturalVoiceSettings language={lang} />
-        <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
-        <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri; destekleyen telefonlarda kısa titreşim." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
-        <Toggle
-          label="Konuşarak cevap soruları"
-          help={canListen() ? 'Bazı sorularda kelimeyi sesli söylemen istenir; yazılı sorularda mikrofonla da cevaplayabilirsin.' : 'Bu tarayıcı konuşma tanımayı desteklemiyor (Safari ya da Chrome kullan).'}
-          checked={settings.speechExercises && canListen()}
-          onChange={(v) => set('speechExercises', v)}
-        />
-        <Toggle
-          label="Dinlemede farklı sesler"
-          help={`Dinleme sorularında her seferinde sistemdeki başka bir ses konuşur; kelimeyi her konuşmacıdan tanımayı öğrenirsin. ${voices.length < 2 ? `Şu an ${LANGUAGE_NAME[lang]} için tek ses var; macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten başka sesler indirebilirsin.` : `${LANGUAGE_NAME[lang]} için ${voices.length} ses var.`}`}
-          checked={settings.varyVoices}
-          onChange={(v) => set('varyVoices', v)}
-        />
-        <Row label="Konuşma hızı">
-          <Chips options={RATES} value={settings.speechRate} onChange={(v) => set('speechRate', v)} format={(r) => `${r}×`} />
-        </Row>
-        <Row label={`${LANGUAGE_NAME[lang]} sesi`} help="Sistemdeki seslerden seç. macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten yenilerini indirebilirsin.">
-          <div className="row nowrap">
-            <div style={{ flex: 1, minWidth: '12rem' }}>
-              <Select
-                label="Ses"
-                value={settings.voices[lang] ?? '__auto'}
-                onChange={(v) => set('voices', { ...settings.voices, [lang]: v === '__auto' ? undefined : v })}
-                options={[
-                  { value: '__auto', label: 'Otomatik (en iyi yerel ses)' },
-                  ...voices.map((v) => ({ value: v.voiceURI, label: v.name, hint: `${v.lang}${v.localService ? '' : ' · çevrimiçi'}` })),
-                ]}
+          <Pane {...pane('s-answers')}>
+            <section className="card stack">
+              <h2 className="section-title">Cevaplar ve ipuçları</h2>
+            <Row label="Yazma oranı" help="Daha önce gördüğün kelimelerde çoktan seçmeli soruların bir kısmı yazarak cevaplanır. Yazmak, seçmekten daha kalıcı öğretir.">
+              <Chips<TypingShare>
+                options={['low', 'balanced', 'high']}
+                value={settings.typingShare ?? 'balanced'}
+                onChange={(v) => set('typingShare', v)}
+                format={(v) => ({ low: 'Az', balanced: 'Dengeli', high: 'Çok' })[v]}
               />
+            </Row>
+            <Row label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
+              <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
+            </Row>
+            <Toggle
+              label="Aksan kısa yolları"
+              help={`Yazarken harfin ardından işaret koyunca aksanlı harfe dönüşür. FR: ${shortcutHelp('fr').join(', ')}… ES: ${shortcutHelp('es').slice(0, 4).join(', ')}, n~ → ñ. Cevap kutusunun altındaki harf çubuğu her zaman açık.`}
+              checked={settings.accentShortcuts}
+              onChange={(v) => set('accentShortcuts', v)}
+            />
+            <Toggle
+              label="Emin değilim seçeneği"
+              help="Cevaplamadan önce emin olmadığını işaretleyebilirsin (Shift + cevap). Emin değilken doğru bilinen kelime daha erken tekrar gelir; emin olduğun bir yanlış ise ayrıca vurgulanır ve hatalarda öne alınır."
+              checked={settings.confidence}
+              onChange={(v) => set('confidence', v)}
+            />
+            <Toggle
+              label="Aksanlarda katı ol"
+              help="Açıkken 'decision' yerine 'décision' yazmamak yanlış sayılır; kapalıyken 'neredeyse'."
+              checked={settings.accentStrict}
+              onChange={(v) => set('accentStrict', v)}
+            />
+            </section>
+            <section className="card stack">
+              <h2 className="section-title">Yeni kelimeler</h2>
+            <Toggle
+              label="Yeni kelimede önce tahmin et"
+              help="Anlamı göstermeden önce bir tahmin istenir. Yanlış tahmin bile kelimeyi daha iyi akılda tutmanı sağlar; tahmin puanlanmaz."
+              checked={settings.pretest}
+              onChange={(v) => set('pretest', v)}
+            />
+            <Toggle
+              label="Anlamı hedef dilde göster"
+              help="Türkçe anlam yerine kelimenin kendi dilindeki tanımı sorulur (Wiktionary'den; tanımı olan kelimelerde). Çeviri yapmadan o dilde düşünmeye alıştırır; Türkçesi bir dokunuşla görünür."
+              checked={settings.targetDefinitions}
+              onChange={(v) => set('targetDefinitions', v)}
+            />
+            </section>
+          </Pane>
+
+          <Pane {...pane('s-sound')}>
+            <section className="card stack">
+              <h2 className="section-title">Ses</h2>
+            <NaturalVoiceSettings language={lang} />
+            <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
+            <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri; destekleyen telefonlarda kısa titreşim." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
+            <Toggle
+              label="Konuşarak cevap soruları"
+              help={canListen() ? 'Bazı sorularda kelimeyi sesli söylemen istenir; yazılı sorularda mikrofonla da cevaplayabilirsin.' : 'Bu tarayıcı konuşma tanımayı desteklemiyor (Safari ya da Chrome kullan).'}
+              checked={settings.speechExercises && canListen()}
+              onChange={(v) => set('speechExercises', v)}
+            />
+            <Toggle
+              label="Dinlemede farklı sesler"
+              help={`Dinleme sorularında her seferinde sistemdeki başka bir ses konuşur; kelimeyi her konuşmacıdan tanımayı öğrenirsin. ${voices.length < 2 ? `Şu an ${LANGUAGE_NAME[lang]} için tek ses var; macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten başka sesler indirebilirsin.` : `${LANGUAGE_NAME[lang]} için ${voices.length} ses var.`}`}
+              checked={settings.varyVoices}
+              onChange={(v) => set('varyVoices', v)}
+            />
+            <Row label="Konuşma hızı">
+              <Chips options={RATES} value={settings.speechRate} onChange={(v) => set('speechRate', v)} format={(r) => `${r}×`} />
+            </Row>
+            <Row label={`${LANGUAGE_NAME[lang]} sesi`} help="Sistemdeki seslerden seç. macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten yenilerini indirebilirsin.">
+              <div className="row nowrap">
+                <div style={{ flex: 1, minWidth: '12rem' }}>
+                  <Select
+                    label="Ses"
+                    value={settings.voices[lang] ?? '__auto'}
+                    onChange={(v) => set('voices', { ...settings.voices, [lang]: v === '__auto' ? undefined : v })}
+                    options={[
+                      { value: '__auto', label: 'Otomatik (en iyi yerel ses)' },
+                      ...voices.map((v) => ({ value: v.voiceURI, label: v.name, hint: `${v.lang}${v.localService ? '' : ' · çevrimiçi'}` })),
+                    ]}
+                  />
+                </div>
+                <button className="btn btn-quiet" onClick={() => speak({ en: 'Practice makes perfect.', fr: "C'est en forgeant qu'on devient forgeron.", es: 'La práctica hace al maestro.' }[lang], lang)}>
+                  Dene
+                </button>
+              </div>
+            </Row>
+            </section>
+          </Pane>
+
+          <Pane {...pane('s-look')}>
+            <section className="card stack">
+              <h2 className="section-title">Görünüm</h2>
+            <Row label="Tema">
+              <Chips<Settings['theme']> options={['system', 'light', 'dark']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu' })[t]} />
+            </Row>
+            <Row label="Liste sıklığı" help="Yoğun: kelime listesi, hatalar ve tabloda satırlar daralır, ekrana iki kat kelime sığar. Bu cihaza özel.">
+              <Chips<Density> options={['comfortable', 'compact']} value={density} onChange={(v) => (setDensity(v), setDensityState(v))} format={(d) => ({ comfortable: 'Rahat', compact: 'Yoğun' })[d]} />
+            </Row>
+            <Row label="Yazı boyutu" help="Bütün uygulamayı büyütür; uzun okumalarda ve telefonda rahatlatır.">
+              <Chips<NonNullable<Settings['textScale']>>
+                options={['normal', 'large', 'xlarge']}
+                value={settings.textScale ?? 'normal'}
+                onChange={(v) => set('textScale', v)}
+                format={(t) => ({ normal: 'Normal', large: 'Büyük', xlarge: 'Çok büyük' })[t]}
+              />
+            </Row>
+            <Toggle label="Titreşim" help="Telefonda doğru cevapta kısa, yanlışta çift titreşim (Android; iPhone tarayıcıları desteklemiyor)." checked={settings.haptics ?? true} onChange={(v) => set('haptics', v)} />
+            <div className="desktop-only">
+              <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
             </div>
-            <button className="btn btn-quiet" onClick={() => speak({ en: 'Practice makes perfect.', fr: "C'est en forgeant qu'on devient forgeron.", es: 'La práctica hace al maestro.' }[lang], lang)}>
-              Dene
-            </button>
-          </div>
-        </Row>
-      </section>
+            </section>
+          </Pane>
 
-      <section className="card stack">
-        <h2 className="section-title">Cevaplar ve ipuçları</h2>
-        <Row label="Yazma oranı" help="Daha önce gördüğün kelimelerde çoktan seçmeli soruların bir kısmı yazarak cevaplanır. Yazmak, seçmekten daha kalıcı öğretir.">
-          <Chips<TypingShare>
-            options={['low', 'balanced', 'high']}
-            value={settings.typingShare ?? 'balanced'}
-            onChange={(v) => set('typingShare', v)}
-            format={(v) => ({ low: 'Az', balanced: 'Dengeli', high: 'Çok' })[v]}
-          />
-        </Row>
-        <Row label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
-          <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
-        </Row>
-        <Toggle
-          label="Aksan kısa yolları"
-          help={`Yazarken harfin ardından işaret koyunca aksanlı harfe dönüşür. FR: ${shortcutHelp('fr').join(', ')}… ES: ${shortcutHelp('es').slice(0, 4).join(', ')}, n~ → ñ. Cevap kutusunun altındaki harf çubuğu her zaman açık.`}
-          checked={settings.accentShortcuts}
-          onChange={(v) => set('accentShortcuts', v)}
-        />
-        <Toggle
-          label="Emin değilim seçeneği"
-          help="Cevaplamadan önce emin olmadığını işaretleyebilirsin (Shift + cevap). Emin değilken doğru bilinen kelime daha erken tekrar gelir; emin olduğun bir yanlış ise ayrıca vurgulanır ve hatalarda öne alınır."
-          checked={settings.confidence}
-          onChange={(v) => set('confidence', v)}
-        />
-        <Toggle
-          label="Aksanlarda katı ol"
-          help="Açıkken 'decision' yerine 'décision' yazmamak yanlış sayılır; kapalıyken 'neredeyse'."
-          checked={settings.accentStrict}
-          onChange={(v) => set('accentStrict', v)}
-        />
-      </section>
+          <Pane {...pane('s-remind')}>
+            <section className="card stack">
+              <h2 className="section-title">Hatırlatıcı</h2>
+            <Toggle
+              label="Günlük hatırlatma"
+              help="O gün çalışmadıysan seçtiğin saatte bildirim gelir (uygulama açıkken, arka planda olsa bile)."
+              checked={settings.reminder.enabled}
+              onChange={async (v) => {
+                if (v) setPermission(await requestNotifications())
+                set('reminder', { ...settings.reminder, enabled: v })
+              }}
+            />
+            <Row label="Saat">
+              <div style={{ width: '9rem' }}>
+                <Select label="Saat" value={settings.reminder.time} onChange={(t) => set('reminder', { ...settings.reminder, time: t })} options={TIMES.map((t) => ({ value: t, label: t }))} />
+              </div>
+            </Row>
+            <ReminderSuggestion db={db} current={settings.reminder.time} onApply={(t) => set('reminder', { ...settings.reminder, time: t })} />
+            {settings.reminder.enabled && permission !== 'granted' && (
+              <p className="error small">
+                Bildirim izni yok. Tarayıcının site ayarlarından bu sayfaya bildirim izni ver.{' '}
+                <button className="link" onClick={async () => setPermission(await requestNotifications())}>
+                  Tekrar iste
+                </button>
+              </p>
+            )}
+            <PushToggle state={pushState} />
+            <div className="row">
+              <button className="btn btn-quiet" onClick={calendar}>
+                Takvime ekle (.ics)
+              </button>
+              {permission === 'granted' && (
+                <button className="btn btn-quiet" onClick={() => showReminder(0)}>
+                  Bildirimi dene
+                </button>
+              )}
+            </div>
+            <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
+            </section>
+          </Pane>
 
-      <section className="card stack">
-        <h2 className="section-title">Görünüm</h2>
-        <Row label="Tema">
-          <Chips<Settings['theme']> options={['system', 'light', 'dark']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu' })[t]} />
-        </Row>
-        <Row label="Liste sıklığı" help="Yoğun: kelime listesi, hatalar ve tabloda satırlar daralır, ekrana iki kat kelime sığar. Bu cihaza özel.">
-          <Chips<Density> options={['comfortable', 'compact']} value={density} onChange={(v) => (setDensity(v), setDensityState(v))} format={(d) => ({ comfortable: 'Rahat', compact: 'Yoğun' })[d]} />
-        </Row>
-        <Row label="Yazı boyutu" help="Bütün uygulamayı büyütür; uzun okumalarda ve telefonda rahatlatır.">
-          <Chips<NonNullable<Settings['textScale']>>
-            options={['normal', 'large', 'xlarge']}
-            value={settings.textScale ?? 'normal'}
-            onChange={(v) => set('textScale', v)}
-            format={(t) => ({ normal: 'Normal', large: 'Büyük', xlarge: 'Çok büyük' })[t]}
-          />
-        </Row>
-        <Toggle label="Titreşim" help="Telefonda doğru cevapta kısa, yanlışta çift titreşim (Android; iPhone tarayıcıları desteklemiyor)." checked={settings.haptics ?? true} onChange={(v) => set('haptics', v)} />
-<div className="desktop-only">
-          <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
-        </div>
-      </section>
+          <Pane {...pane('s-tools')}>
+            <AiSettings settings={settings} onChange={onChange} />
+            <IosShortcut />
+            <section className="card stack desktop-only">
+              <h2 className="section-title">Web'den kelime ekle</h2>
+            <p className="small muted">
+              Aşağıdaki butonu tarayıcının yer imleri çubuğuna sürükle. Bir makale okurken kelimeyi seçip bu yer imine tıkla:
+              kelime, geçtiği cümle ve kaynağıyla birlikte ekleme formunda açılır. Sayfanın dili İngilizce, Fransızca ya da
+              İspanyolca ise doğru dile kendiliğinden geçer.
+            </p>
+            <div className="row">
+              <Bookmarklet />
+              <span className="small muted">← yer imleri çubuğuna sürükle (Safari: ⌘⇧B ile çubuğu göster)</span>
+            </div>
+            </section>
+            <OfflinePack settings={settings} />
+          </Pane>
 
-      <GroupTitle id="s-remind" icon={<BellIcon size={18} />}>Bildirimler</GroupTitle>
-      <section className="card stack">
-        <h2 className="section-title">Hatırlatıcı</h2>
-        <Toggle
-          label="Günlük hatırlatma"
-          help="O gün çalışmadıysan seçtiğin saatte bildirim gelir (uygulama açıkken, arka planda olsa bile)."
-          checked={settings.reminder.enabled}
-          onChange={async (v) => {
-            if (v) setPermission(await requestNotifications())
-            set('reminder', { ...settings.reminder, enabled: v })
-          }}
-        />
-        <Row label="Saat">
-          <div style={{ width: '9rem' }}>
-            <Select label="Saat" value={settings.reminder.time} onChange={(t) => set('reminder', { ...settings.reminder, time: t })} options={TIMES.map((t) => ({ value: t, label: t }))} />
-          </div>
-        </Row>
-        <ReminderSuggestion db={db} current={settings.reminder.time} onApply={(t) => set('reminder', { ...settings.reminder, time: t })} />
-        {settings.reminder.enabled && permission !== 'granted' && (
-          <p className="error small">
-            Bildirim izni yok. Tarayıcının site ayarlarından bu sayfaya bildirim izni ver.{' '}
-            <button className="link" onClick={async () => setPermission(await requestNotifications())}>
-              Tekrar iste
-            </button>
-          </p>
-        )}
-        <PushToggle state={pushState} />
-        <div className="row">
-          <button className="btn btn-quiet" onClick={calendar}>
-            Takvime ekle (.ics)
-          </button>
-          {permission === 'granted' && (
-            <button className="btn btn-quiet" onClick={() => showReminder(0)}>
-              Bildirimi dene
-            </button>
+          <Pane {...pane('s-data')}>
+            <section className="card stack">
+              <h2 className="section-title">Yedek</h2>
+            <p className="small muted">Veriler yalnızca bu cihazda duruyor. Yedek; kelimeleri, ilerlemeyi, görselleri ve ses kayıtlarını içerir.</p>
+            <div className="row">
+              <button className="btn btn-quiet" onClick={download}>
+                Yedeği indir
+              </button>
+              <label className="btn btn-quiet">
+                Yedekten geri yükle
+                <input type="file" accept=".json,application/json" className="sr-only" onChange={(e) => e.target.files?.[0] && restore(e.target.files[0])} />
+              </label>
+            </div>
+            <h3 className="subhead">Kelime listesini dışa aktar</h3>
+            <p className="small muted">CSV, Excel ya da Google E-Tablolar'da açılır. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
+            <div className="row">
+              <button className="btn btn-quiet" onClick={() => exportCsv(false)}>
+                {LANGUAGE_NAME[lang]} listesi (CSV)
+              </button>
+              <button className="btn btn-quiet" onClick={() => exportCsv(true)}>
+                Üç dil (CSV)
+              </button>
+              <button className="btn btn-quiet" onClick={printDictionary}>
+                Yazdırılabilir sözlük
+              </button>
+            </div>
+            </section>
+            <section className="card stack danger-zone">
+              <h2 className="section-title">Sıfırlama</h2>
+              <p className="small muted">Önce yedek almanı öneririm. Bu işlemler geri alınamaz.</p>
+            <div className="row">
+              <button className="btn btn-danger" onClick={() => setDanger('language')}>
+                {LANGUAGE_NAME[lang]} ilerlemesini sıfırla
+              </button>
+              <button className="btn btn-danger" onClick={() => setDanger('all')}>
+                Tüm verileri sil
+              </button>
+            </div>
+            </section>
+          </Pane>
+
+          {message && (
+            <p className={message.ok ? 'notice' : 'error'} role="status">
+              {message.text}
+            </p>
           )}
         </div>
-        <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
-      </section>
-
-      <GroupTitle id="s-tools" icon={<ToolIcon size={18} />}>Araçlar</GroupTitle>
-      <IosShortcut />
-
-      <section className="card stack desktop-only">
-        <h2 className="section-title">Web'den kelime ekle</h2>
-        <p className="small muted">
-          Aşağıdaki butonu tarayıcının yer imleri çubuğuna sürükle. Bir makale okurken kelimeyi seçip bu yer imine tıkla:
-          kelime, geçtiği cümle ve kaynağıyla birlikte ekleme formunda açılır. Sayfanın dili İngilizce, Fransızca ya da
-          İspanyolca ise doğru dile kendiliğinden geçer.
-        </p>
-        <div className="row">
-          <Bookmarklet />
-          <span className="small muted">← yer imleri çubuğuna sürükle (Safari: ⌘⇧B ile çubuğu göster)</span>
-        </div>
-      </section>
-
-      <AiSettings settings={settings} onChange={onChange} />
-
-      <OfflinePack settings={settings} />
-
-      <GroupTitle id="s-data" icon={<DataIcon size={18} />}>Veriler</GroupTitle>
-      <section className="card stack">
-        <h2 className="section-title">Yedek</h2>
-        <p className="small muted">Veriler yalnızca bu cihazda duruyor. Yedek; kelimeleri, ilerlemeyi, görselleri ve ses kayıtlarını içerir.</p>
-        <div className="row">
-          <button className="btn btn-quiet" onClick={download}>
-            Yedeği indir
-          </button>
-          <label className="btn btn-quiet">
-            Yedekten geri yükle
-            <input type="file" accept=".json,application/json" className="sr-only" onChange={(e) => e.target.files?.[0] && restore(e.target.files[0])} />
-          </label>
-        </div>
-        <h3 className="subhead">Kelime listesini dışa aktar</h3>
-        <p className="small muted">CSV, Excel ya da Google E-Tablolar'da açılır. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
-        <div className="row">
-          <button className="btn btn-quiet" onClick={() => exportCsv(false)}>
-            {LANGUAGE_NAME[lang]} listesi (CSV)
-          </button>
-          <button className="btn btn-quiet" onClick={() => exportCsv(true)}>
-            Üç dil (CSV)
-          </button>
-          <button className="btn btn-quiet" onClick={printDictionary}>
-            Yazdırılabilir sözlük
-          </button>
-        </div>
-      </section>
-
-      <section className="card stack danger-zone">
-        <h2 className="section-title">Sıfırlama</h2>
-        <div className="row">
-          <button className="btn btn-danger" onClick={() => setDanger('language')}>
-            {LANGUAGE_NAME[lang]} ilerlemesini sıfırla
-          </button>
-          <button className="btn btn-danger" onClick={() => setDanger('all')}>
-            Tüm verileri sil
-          </button>
-        </div>
-        <p className="small muted">Önce yedek almanı öneririm. Bu işlemler geri alınamaz.</p>
-      </section>
-
-      {message && (
-        <p className={message.ok ? 'notice' : 'error'} role="status">
-          {message.text}
-        </p>
-      )}
+      </div>
 
       {danger === 'language' && (
         <ConfirmDialog title={`${LANGUAGE_NAME[lang]} ilerlemesi sıfırlansın mı?`} confirmLabel="Sıfırla" danger onConfirm={resetLanguage} onCancel={() => setDanger(null)}>

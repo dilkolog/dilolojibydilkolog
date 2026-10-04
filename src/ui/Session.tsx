@@ -28,6 +28,7 @@ import { warmAudio } from '../data/audioCache'
 import { KeyLegend, type Graded } from './session/shared'
 import { Intro } from './session/Intro'
 import { Prompt } from './session/Prompt'
+import { WordPlant } from './session/WordPlant'
 import { Choices, TypedAnswer, SpeakAnswer } from './session/Answers'
 import { Feedback } from './session/Feedback'
 import { modalOpen } from './session/keys'
@@ -346,6 +347,7 @@ export function SessionScreen(p: Props) {
           onOverride={override}
           onContinue={proceed}
           struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
+          wordState={() => states.current.get(entry.id)}
           listenRate={listeningRate(speechPrefs.rate, states.current.get(entry.id)?.skills.listening?.stability)}
           intrusionSources={intrusionSources}
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
@@ -370,6 +372,8 @@ interface RunnerProps {
   intrusionSources?: IntrusionSources
   /** The word has been missed several times in a row: offer a memory hook. */
   struggling: () => boolean
+  /** The word's memory right now (read on each render, so it shows the answer's effect). */
+  wordState: () => UserWordState | undefined
   onEntryUpdated: (entry: VocabularyEntry) => void
 }
 
@@ -381,7 +385,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, wordState, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => {
@@ -454,13 +458,16 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
 
   return (
     <div>
-      <p className="prompt-label">
-        {exercise.type === 'typed_translation'
-          ? `${LANGUAGE_NAME[entry.language]} karşılığını yaz`
-          : exercise.type === 'speak_word'
-            ? `${LANGUAGE_NAME[entry.language]} karşılığını söyle`
-            : PROMPT_TEXT[exercise.type]}
-      </p>
+      <div className="prompt-head">
+        <p className="prompt-label">
+          {exercise.type === 'typed_translation'
+            ? `${LANGUAGE_NAME[entry.language]} karşılığını yaz`
+            : exercise.type === 'speak_word'
+              ? `${LANGUAGE_NAME[entry.language]} karşılığını söyle`
+              : PROMPT_TEXT[exercise.type]}
+        </p>
+        <WordPlant state={wordState()} />
+      </div>
       <Prompt exercise={exercise} entry={entry} listenRate={listenRate} />
       {asksConfidence && !result && (
         <button

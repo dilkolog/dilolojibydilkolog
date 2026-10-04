@@ -272,7 +272,7 @@ describe('screens render', () => {
           <ProfileScreen settings={DEFAULT_SETTINGS} onChange={noop} />
         </GameContext.Provider>
       ),
-      'button.segmented-btn',
+      'button.page-tab',
     )
     expect(seen).toHaveLength(3)
   })

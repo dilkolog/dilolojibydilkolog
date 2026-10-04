@@ -1,5 +1,5 @@
-import { Rating } from 'ts-fsrs'
-import { MASTERY_STAGES, masteryStage, type MasteryStage } from './mastery'
+import { Rating, State, type Card } from 'ts-fsrs'
+import { MASTERED_STABILITY_DAYS, MASTERY_STAGES, masteryStage, PRODUCTION_READY_STABILITY_DAYS, STRONG_STABILITY_DAYS, type MasteryStage } from './mastery'
 import type { Scheduler } from './scheduler'
 import { startOfDay, unlockedSkills } from './selection'
 import type { EngineOptions, Skill, UserWordState, VocabularyEntry } from './types'
@@ -16,6 +16,44 @@ export type Health = 'fresh' | 'thirsty' | 'wilting'
 
 export function growthStage(state: UserWordState | undefined): number {
   return state ? MASTERY_STAGES.indexOf(masteryStage(state)) : -1
+}
+
+/** ts-fsrs's default learning steps (1m, 10m) and relearning step (10m). */
+const STEPS = { learning: 2, relearning: 1 }
+
+/**
+ * How far a card is towards graduating (its learning step: good answers move it on, a miss sends
+ * it back) or, once graduated, towards a stability goal in days.
+ */
+function toward(card: Card | undefined, days?: number): number {
+  if (!card) return 0
+  if (card.state !== State.Review) return (card.learning_steps ?? 0) / (card.state === State.Relearning ? STEPS.relearning + 1 : STEPS.learning)
+  return days ? Math.min(1, card.stability / days) : 1
+}
+
+/**
+ * 0–1: how far the word is towards its next growth stage, from the same conditions as
+ * masteryStage (each needed card's progress, averaged so that every gain shows). 1 when in full
+ * bloom. Shown as the ring around the plant during a session.
+ */
+export function stageProgress(state: UserWordState | undefined): number {
+  if (!state) return 0
+  const { recognition, recall, production } = state.skills
+  const mean = (...xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length
+  switch (masteryStage(state)) {
+    case 'introduced':
+      return toward(recognition)
+    case 'familiar':
+      return toward(recall)
+    case 'recallable':
+      return mean(toward(recognition, STRONG_STABILITY_DAYS), toward(recall, STRONG_STABILITY_DAYS))
+    case 'strong':
+      return mean(toward(recall, STRONG_STABILITY_DAYS), toward(production, PRODUCTION_READY_STABILITY_DAYS))
+    case 'production_ready':
+      return mean(...[recognition, recall, production].map((c) => toward(c, MASTERED_STABILITY_DAYS)))
+    case 'mastered':
+      return 1
+  }
 }
 
 /** Recall probability of the weakest practised skill, judged as plant health. */

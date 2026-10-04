@@ -223,3 +223,16 @@ export const PulseIcon = (p: P) => (
     <path d="M3 12h4l2.5-6 4 12 2.5-6H21" />
   </Icon>
 )
+export const ChevronRightIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="m9 6 6 6-6 6" />
+  </Icon>
+)
+export const PaletteIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.5 0-.9-.7-1.3-.7-2.1 0-.8.6-1.4 1.5-1.4H16a5 5 0 0 0 5-5c0-4.4-4-8-9-8z" />
+    <circle cx="7.5" cy="11.5" r="1" />
+    <circle cx="10" cy="7.5" r="1" />
+    <circle cx="15" cy="7.5" r="1" />
+  </Icon>
+)
