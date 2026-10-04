@@ -120,3 +120,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## Açık kalanlar
 - EN için fiil çekimi yok (düzensiz geçmiş zaman listesi eklenebilir).
+- **Azure telaffuz değerlendirmesi** (en sona bırakıldı, 2026-10-04): kelimeyi ya da cümleyi
+  söyleyince Azure Speech "pronunciation assessment" ses ses puan verir, yanlış sesi gösterir
+  (fr-FR, es-ES, en-US destekli). Kullanıcının Azure anahtarı ve bölgesi gerekiyor; anahtar
+  cihazda kalır. Konuşarak cevap sorularına ve gölge okumaya bağlanabilir.
