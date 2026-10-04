@@ -3366,3 +3366,8 @@ button.badge-card:active { transform: none; }
 .conj-sentence { display: grid; gap: 0.25rem; margin: 0; padding-left: 0.875rem; border-left: 3px solid var(--lang-soft); max-width: 60ch; }
 .conj-sentence [lang] { font-family: var(--serif); font-size: var(--t-md); }
 .conj-sentence strong { color: var(--lang-text); font-weight: 600; }
+/* Session summary rows: the plant in a small round bed, so a seedling reads as an icon, not a speck. */
+.garden-compact li > .plant { flex: none; width: 2.5rem; height: 2.5rem; padding: 0.25rem; border-radius: var(--r-full); background: var(--surface-2); }
+/* The milestone sign is drawn with the app's icons (⭐ → star), on a soft disc in the language colour. */
+.milestone-emoji { display: grid; place-items: center; width: 6rem; height: 6rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); box-shadow: var(--inset-ring); }
+.milestone-emoji .icon-duo { opacity: 0.3; }

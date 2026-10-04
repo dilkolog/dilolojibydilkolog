@@ -13,6 +13,7 @@ import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 import { speak } from './speech'
 import { PageHeader } from './PageHeader'
+import { EmptyState } from './EmptyState'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const GENRES = ['Bilim kurgu', 'Polisiye', 'Tarih', 'Macera', 'Romantik', 'Komedi', 'Fantastik', 'Gündelik hayat', 'İş dünyası', 'Seyahat', 'Gerilim', 'Spor']
@@ -119,19 +120,19 @@ export function StoryScreen(p: Props) {
   if (!apiKey && episodes?.length === 0) {
     return (
       <div className="stack">
-        <h1 className="greeting">Hikayen</h1>
-        <div className="hero">
-          <div className="hero-body">
-            <h2 className="hero-title">Kelimelerinle yazılan bir dizi</h2>
-            <p className="hero-sub">
-              AI, zorlandığın kelimeleri kullanarak ilgi alanlarına göre her gün devam eden bir hikaye yazar. Boşlukları sen
-              doldurursun; her boşluk bir tekrar sayılır. Bunun için AI yardımcısını açman gerekiyor.
-            </p>
-            <button className="btn btn-lg" onClick={p.onOpenSettings}>
-              AI'ı Ayarlar'dan aç
+        <PageHeader title="Hikayen" sub={`${LANGUAGE_NAME[p.language]} dizin, zorlandığın kelimelerle yazılır.`} />
+        <EmptyState
+          art="journal"
+          title="Kelimelerinle yazılan bir dizi"
+          action={
+            <button className="btn" onClick={p.onOpenSettings}>
+              <SparkleIcon size={18} /> AI'ı Ayarlar'dan aç
             </button>
-          </div>
-        </div>
+          }
+        >
+          AI, zorlandığın kelimeleri kullanarak ilgi alanlarına göre her gün devam eden bir hikaye yazar. Boşlukları sen doldurursun; her boşluk bir
+          tekrar sayılır. Bunun için AI yardımcısını açman gerekiyor.
+        </EmptyState>
       </div>
     )
   }

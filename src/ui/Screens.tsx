@@ -739,7 +739,7 @@ export function Summary({
                 const stage = w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
                 return (
                   <li key={w.entryId}>
-                    <Plant stage={stage} size={32} />
+                    <Plant stage={stage} size={40} />
                     <span className="garden-text">
                       <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
@@ -774,7 +774,7 @@ function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose
         <div className="milestone-art">
           <Burst />
           <span className="milestone-emoji" aria-hidden>
-            {milestone.emoji}
+            <Glyph emoji={milestone.emoji} size={64} />
           </span>
         </div>
         <h2 id="ms-title" className="milestone-title">
