@@ -23,9 +23,13 @@ const STALE_DAYS = 60
 const key = (e: VocabularyEntry) => stripDiacritics(normalize(e.lemma))
 
 export function isLeech(state: UserWordState, mistakes: readonly Mistake[] = []): boolean {
+  return leech(state, mistakes.filter((m) => m.entryId === state.entryId).length)
+}
+
+function leech(state: UserWordState, mistakeCount: number): boolean {
   const { reviews, wrong, consecutiveWrong } = state.stats
   const lapses = Object.values(state.skills).reduce((n, c) => n + c.lapses, 0)
-  return consecutiveWrong >= 3 || lapses >= 5 || (reviews >= 6 && wrong / reviews >= 0.5) || mistakes.filter((m) => m.entryId === state.entryId).length >= 4
+  return consecutiveWrong >= 3 || lapses >= 5 || (reviews >= 6 && wrong / reviews >= 0.5) || mistakeCount >= 4
 }
 
 export function listHealth(vocabulary: readonly VocabularyEntry[], states: readonly UserWordState[], mistakes: readonly Mistake[], now: Date): ListHealth {
@@ -34,27 +38,40 @@ export function listHealth(vocabulary: readonly VocabularyEntry[], states: reado
 
   // Same word: same letters (accents aside), or a typo apart (one letter; two in long words,
   // e.g. swapped letters) with the same meaning.
+  // Words are bucketed by spelling and by meaning first, so only likely pairs are compared: a list
+  // of thousands stays fast (comparing every pair took seconds at 2,000 words).
+  const keys = own.map(key)
+  const glosses = own.map((e) => normalize(e.senses[0].gloss))
+  const bucket = (m: Map<string, number[]>, k: string, i: number) => m.set(k, [...(m.get(k) ?? []), i])
+  const byKey = new Map<string, number[]>()
+  const byGloss = new Map<string, number[]>()
+  own.forEach((e, i) => {
+    bucket(byKey, `${e.language}|${keys[i]}`, i)
+    bucket(byGloss, `${e.language}|${glosses[i]}`, i)
+  })
   const groups: VocabularyEntry[][] = []
   const seen = new Set<string>()
-  for (const e of own) {
-    if (seen.has(e.id)) continue
-    const group = own.filter(
-      (o) =>
-        o.language === e.language &&
-        !seen.has(o.id) &&
-        (key(o) === key(e) || (key(e).length > 4 && levenshtein(key(o), key(e)) <= (key(e).length >= 7 ? 2 : 1) && normalize(o.senses[0].gloss) === normalize(e.senses[0].gloss))),
-    )
+  own.forEach((e, i) => {
+    if (seen.has(e.id)) return
+    const k = keys[i]
+    const typo = k.length > 4 ? (byGloss.get(`${e.language}|${glosses[i]}`) ?? []).filter((j) => levenshtein(keys[j], k) <= (k.length >= 7 ? 2 : 1)) : []
+    const group = [...new Set([...(byKey.get(`${e.language}|${k}`) ?? []), ...typo])]
+      .sort((a, b) => a - b)
+      .map((j) => own[j])
+      .filter((o) => !seen.has(o.id))
     if (group.length > 1) {
       groups.push(group)
       for (const g of group) seen.add(g.id)
     }
-  }
+  })
+  const mistakeCount = new Map<string, number>()
+  for (const m of mistakes) mistakeCount.set(m.entryId, (mistakeCount.get(m.entryId) ?? 0) + 1)
 
   return {
     duplicates: groups,
     leeches: own.filter((e) => {
       const s = stateById.get(e.id)
-      return !!s && isLeech(s, mistakes)
+      return !!s && leech(s, mistakeCount.get(e.id) ?? 0)
     }),
     noExample: own.filter((e) => !e.senses.some((s) => s.examples.length) && !e.corpus?.length && e.partOfSpeech !== 'phrase'),
     noGender: own.filter((e) => e.language !== 'en' && e.partOfSpeech === 'noun' && !e.gender),

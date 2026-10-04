@@ -47,3 +47,14 @@ describe('list health', () => {
     expect(m.notes).toBe('not A\nnot B')
   })
 })
+
+describe('listHealth at scale', () => {
+  it('checks thousands of words quickly (no comparison of every pair)', () => {
+    const now = new Date()
+    const words = Array.from({ length: 4000 }, (_, i) => createEntry({ word: `palabra${i}`, meaning: `anlam ${i % 50}` }, 'es', now))
+    const t = performance.now()
+    const h = listHealth(words, [], [], now)
+    expect(performance.now() - t).toBeLessThan(2000)
+    expect(h.duplicates.length).toBeGreaterThan(0)
+  })
+})

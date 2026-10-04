@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { displayForm } from '../engine/exercises'
 import { gardenSummary, growthStage, plantHealth, type GardenSummary } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
@@ -7,6 +7,8 @@ import { scheduler } from '../data/instance'
 import { STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { DropIcon } from './icons'
+
+const BED_PREVIEW = 120
 
 export const WORDS_VIEW_KEY = 'kelime-koc:words-view'
 
@@ -21,6 +23,8 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
   const beds = [...MASTERY_STAGES.keys()].reverse().map((stage) => ({ stage, words: vocabulary.filter((v) => growthStage(stateById.get(v.id)) === stage) }))
   const seeds = vocabulary.filter((v) => !stateById.has(v.id))
   const water = summary.toWater.map((id) => byId.get(id)!).filter(Boolean)
+  // A bed shows its first plants; a big one opens fully on request (thousands of tiles are slow).
+  const [open, setOpen] = useState<Set<number>>(new Set())
 
   return (
     <section className="stack mt-4">
@@ -59,7 +63,7 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
               {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="bed-count">{b.words.length}</span>
             </h3>
             <ul className="bed-plants">
-              {b.words.map((w) => {
+              {(open.has(b.stage) ? b.words : b.words.slice(0, BED_PREVIEW)).map((w) => {
                 const health = plantHealth(stateById.get(w.id), scheduler, now)
                 return (
                 <li key={w.id}>
@@ -74,6 +78,11 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
                 )
               })}
             </ul>
+            {b.words.length > BED_PREVIEW && !open.has(b.stage) && (
+              <button type="button" className="link small" onClick={() => setOpen((o) => new Set(o).add(b.stage))}>
+                {b.words.length - BED_PREVIEW} bitki daha göster
+              </button>
+            )}
           </div>
         ))}
       {seeds.length > 0 && (

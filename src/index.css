@@ -3490,3 +3490,4 @@ button.badge-card:active { transform: none; }
 .conj-table tr:hover .conj-say, .conj-say:focus-within { opacity: 1; }
 @media (hover: none) { .conj-say { opacity: 1; } }
 .conj-sentence-say { vertical-align: middle; margin-left: 0.25rem; }
+.more-rows { margin-top: 0.75rem; }

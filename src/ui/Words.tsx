@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { displayForm } from '../engine/exercises'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
@@ -917,6 +917,11 @@ function WordList({
   }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])
   // The word page steps through the list in the order it was last shown here (filters and sort).
   useEffect(() => saveWordOrder(list.map((v) => v.id)), [list])
+  // A long list is drawn in pages as it scrolls into view: thousands of rows at once make the
+  // page slow to open, and nobody reads past the first few hundred without searching.
+  const [limit, setLimit] = useState(ROW_PAGE)
+  useEffect(() => setLimit(ROW_PAGE), [list])
+  const shown = list.length > limit ? list.slice(0, limit) : list
 
   const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
 
@@ -1132,7 +1137,7 @@ function WordList({
                     </tr>
                   </thead>
                   <tbody>
-                    {list.map((v, index) => {
+                    {shown.map((v, index) => {
                       const st = stateById.get(v.id)
                       const isSel = selected.has(v.id)
                       const due = st && nextReviewAt(st)
@@ -1167,7 +1172,7 @@ function WordList({
               </div>
             ) : (
             <ul className="word-list is-columns">
-              {list.map((v, index) => {
+              {shown.map((v, index) => {
                 const st = stateById.get(v.id)
                 const isSel = selected.has(v.id)
                 const due = st && !st.retired ? nextReviewAt(st) : undefined
@@ -1204,9 +1209,29 @@ function WordList({
             </ul>
             )
           )}
+          {list.length > limit && <MoreRows left={list.length - limit} onMore={() => setLimit((l) => l + ROW_PAGE)} />}
         </>
       )}
     </section>
+  )
+}
+
+const ROW_PAGE = 300
+
+/** The rest of a long list: loads by itself when it scrolls into view, or with a click. */
+function MoreRows({ left, onMore }: { left: number; onMore: () => void }) {
+  const ref = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const io = new IntersectionObserver((entries) => entries.some((e) => e.isIntersecting) && onMore(), { rootMargin: '400px' })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [onMore])
+  return (
+    <button ref={ref} type="button" className="btn btn-quiet btn-block more-rows" onClick={onMore}>
+      {left} kelime daha göster
+    </button>
   )
 }
 
