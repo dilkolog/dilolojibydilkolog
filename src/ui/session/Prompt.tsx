@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { SlowIcon } from '../icons'
 import { BLANK, displayForm, type Exercise } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
 import { LANGUAGE_NAME } from '../labels'
 import { prefs } from '../prefs'
-import { canSpeak, speak, speechPrefs } from '../speech'
+import { canSpeak, speechPrefs } from '../speech'
 import { useMediaUrl } from '../useMedia'
 import { SpeakButton, Word, Sentence, wordSize } from './shared'
 
@@ -35,14 +34,8 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
     case 'picture_choice':
       return <PictureFrame id={exercise.imageId} />
     case 'dictation':
-      return (
-        <div className="row">
-          <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
-          <button className="btn btn-quiet" onClick={() => speak(exercise.audioText!, entry.language, 0.7, true)}>
-            <SlowIcon size={16} className="inline-icon" />Yavaş dinle
-          </button>
-        </div>
-      )
+      // The slow replay sits beside "Emin değilim" as a small icon (see Session).
+      return <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
     case 'speak_word':
       return <MeaningPrompt exercise={exercise} entry={entry} />
     case 'back_translation':

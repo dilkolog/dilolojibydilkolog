@@ -275,7 +275,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
   }
 }
 
-.stack > * + * { margin-top: 1rem; }
+/* One step more specific than a component class, so a list's own `margin: 0` can't remove the gap. */
+.stack > :not(:first-child) { margin-top: 1rem; }
 .section + .section { margin-top: 2.5rem; }
 /*
  * Type hierarchy, four steps:
@@ -2147,8 +2148,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .onboarding-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); counter-reset: step; }
 .onboarding-steps li { display: grid; gap: 0.25rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
 .onboarding-steps li strong::before { counter-increment: step; content: counter(step) '. '; color: var(--lang-text); }
-.onboarding-form { gap: 1.5rem; }
-.onboarding-form > * + * { margin-top: 0; }
+.onboarding-form { display: grid; gap: 1.75rem; }
+.onboarding-form.stack > * { margin-top: 0; }
 .onboarding-row { align-items: flex-start; }
 .onboarding-row .field { gap: 0.5rem; }
 .onboarding-row .grow { min-width: 12rem; }
@@ -2806,3 +2807,41 @@ section:has(> .media-split) { container-type: inline-size; }
 .auth-note .icon { margin-top: 0.125rem; }
 .auth-note p { margin: 0; }
 .account-cta { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+
+/* Home: both columns are one stack with one rhythm, whatever their cards' own margins. */
+.home-grid { margin-top: 1.5rem; }
+.home-main, .home-side { display: flex; flex-direction: column; gap: 1.5rem; }
+.home-grid > .home-main > *, .home-grid > .home-side > * { margin-top: 0; margin-bottom: 0; }
+@container main (min-width: 56rem) { .home-grid > .home-side > :first-child { margin-top: 0; } }
+
+/* A stack with a gap utility is a tight group (a label and its control, a title and its line):
+   the gap sets the spacing instead of the stack's 1rem. */
+.stack.gap-1 > :not(:first-child) { margin-top: 0.25rem; }
+.stack.gap-xs > :not(:first-child) { margin-top: 0.375rem; }
+.stack.gap-2 > :not(:first-child) { margin-top: 0.5rem; }
+.stack.gap-3 > :not(:first-child) { margin-top: 0.75rem; }
+.account-name { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.75rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-weight: 700; font-size: var(--t-sm); }
+.btn-text-danger { color: var(--bad-text); }
+
+/* Small tools under the question: "Emin değilim" and, for sentences heard, a slow replay. */
+.prompt-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1rem 0; }
+.prompt-tools .unsure-chip { margin: 0; }
+.tool-chip { width: 2.25rem; height: 2.125rem; justify-content: center; padding: 0; }
+.prompt-tools .unsure-chip { min-height: 2.125rem; }
+/* What a <details> reveals starts below its summary, not against it. */
+details > summary + * { margin-top: 0.75rem; }
+
+/* Progress and word detail on narrow screens: one column with the same rhythm as the two-column
+   layout (it used to rely on the grid's gap, so titles and cards touched on phones). */
+@container main (max-width: 55.99rem) {
+  .progress-page, .detail-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .progress-page > *, .detail-page > * { margin-top: 0 !important; min-width: 0; }
+  .progress-page > .settings-group-title, .detail-page > .settings-group-title { margin-top: 0.5rem !important; margin-bottom: -0.25rem; }
+}
+.habit { align-items: flex-start; }
+.habit .habit-icon { margin-top: 0.125rem; }
+.habit.garden-card { align-items: center; }
+/* In a narrow column the garden card's button moves to its own line instead of squeezing the text. */
+.garden-card { flex-wrap: wrap; row-gap: 0.75rem; }
+.garden-card > .stack { flex: 1 1 10rem; min-width: 10rem; }
+.garden-card > .row { margin-left: auto; }

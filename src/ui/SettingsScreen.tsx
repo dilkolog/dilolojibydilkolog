@@ -213,7 +213,8 @@ export function SettingsScreen({
     } catch {
       // Remembering the group is only a convenience.
     }
-    root.current?.querySelector('.settings-content')?.scrollIntoView({ block: 'start' })
+    // Back to the top only if the page was scrolled down; never past the page title.
+    if (window.scrollY > 0) window.scrollTo({ top: 0 })
   }
   // Search: looks through every group and hides the settings (rows, then whole cards and groups)
   // that don't match; without a query, only the chosen group shows.

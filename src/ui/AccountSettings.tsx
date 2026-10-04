@@ -50,32 +50,48 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       <h2 className="section-title">Giriş ve eşitleme</h2>
       {account ? (
         <>
-          <p>
-            <UserIcon size={16} className="inline-icon" />
-            <strong>{account.username}</strong> olarak giriş yaptın. İlerlemen uygulamayı açtığında ve her oturumdan sonra kaydedilir; aynı hesapla
-            girdiğin her cihazda aynısı olur.
-          </p>
-          <div className="row">
-            <button className="btn btn-sm" onClick={syncNowClick} disabled={busy}>
-              {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
-            </button>
-            <span className="small muted">{at ? `Son kayıt ${relativeTime(at)}` : 'Henüz kaydedilmedi'}</span>
+          <div className="setting-row">
+            <div>
+              <strong>Hesap</strong>
+              <p className="small muted">Aynı kullanıcı adı ve şifreyle girdiğin her cihazda ilerlemen aynı olur.</p>
+            </div>
+            <div className="account-name">
+              <UserIcon size={16} />
+              {account.username}
+            </div>
           </div>
-          <div>
-            <button
-              className="link small"
-              onClick={async () => {
-                const previous = await getAccount()
-                await setAccount(null)
-                void refresh()
-                undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
-                  await setAccount(previous)
+          <div className="setting-row">
+            <div>
+              <strong>Eşitleme</strong>
+              <p className="small muted">{at ? `Son kayıt ${relativeTime(at)}` : 'Henüz kaydedilmedi'}; uygulamayı açtığında ve her oturumdan sonra kendiliğinden.</p>
+            </div>
+            <div>
+              <button className="btn btn-sm btn-quiet" onClick={syncNowClick} disabled={busy}>
+                {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
+              </button>
+            </div>
+          </div>
+          <div className="setting-row">
+            <div>
+              <strong>Bu cihazda çıkış yap</strong>
+              <p className="small muted">Verilerin bu cihazda kalır; istediğinde yeniden girersin.</p>
+            </div>
+            <div>
+              <button
+                className="btn btn-sm btn-quiet btn-text-danger"
+                onClick={async () => {
+                  const previous = await getAccount()
+                  await setAccount(null)
                   void refresh()
-                })
-              }}
-            >
-              Bu cihazda çıkış yap
-            </button>
+                  undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
+                    await setAccount(previous)
+                    void refresh()
+                  })
+                }}
+              >
+                Çıkış yap
+              </button>
+            </div>
           </div>
         </>
       ) : (

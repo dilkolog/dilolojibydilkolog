@@ -19,10 +19,10 @@ import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
 import { MnemonicDialog } from './Mnemonic'
-import { CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, StarIcon } from './icons'
+import { CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, SlowIcon, StarIcon } from './icons'
 import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
-import { playWord, preloadRecording, speechPrefs } from './speech'
+import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './speech'
 import { prefetchNatural } from './naturalVoice'
 import { warmAudio } from '../data/audioCache'
 import { KeyLegend, type Graded } from './session/shared'
@@ -397,6 +397,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
   // Confidence is asked before the answer (not after: hindsight inflates it). Free sentences are
   // graded by the AI and spoken answers are hands-free, so those two skip it.
   const asksConfidence = prefs.confidence && exercise.type !== 'free_sentence' && exercise.type !== 'speak_word'
+  // Listening to a sentence: a slow replay, offered as a small icon beside "Emin değilim".
+  const slowable = exercise.type === 'dictation' && !!exercise.audioText && canSpeak()
   const [unsure, setUnsure] = useState(false)
   const [pending, setPending] = useState(false)
   const [aiError, setAiError] = useState('')
@@ -469,6 +471,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
         <WordPlant state={wordState()} />
       </div>
       <Prompt exercise={exercise} entry={entry} listenRate={listenRate} />
+      {((asksConfidence && !result) || slowable) && (
+      <div className="prompt-tools">
       {asksConfidence && !result && (
         <button
           type="button"
@@ -484,6 +488,13 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           Emin değilim
           {unsure && <span className="small muted"> · şimdi cevabını seç</span>}
         </button>
+      )}
+      {slowable && (
+        <button type="button" className="unsure-chip tool-chip" aria-label="Yavaş dinle" title="Yavaş dinle" onClick={() => speak(exercise.audioText!, entry.language, 0.7, true)}>
+          <SlowIcon size={17} />
+        </button>
+      )}
+      </div>
       )}
       {exercise.kind === 'choice' ? (
         <Choices
