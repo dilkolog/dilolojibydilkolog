@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { conjugate, PRONOUNS } from '../engine/conjugation'
+import { tensesOf } from '../engine/tenses'
+import { ConjugationTable, useTenses } from './ConjugationTable'
 import { definiteArticle, displayForm } from '../engine/exercises'
 import { masteryStage, skillScores } from '../engine/mastery'
 import { openMistakes } from '../engine/mistakes'
@@ -98,7 +99,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       setFragile(s.correct >= 3 && s.slow / s.correct >= 0.4)
     })
   }, [db, entry.id, state])
-  const conjugation = conjugate(entry)
+  useTenses(entry.language)
+  const hasConjugation = tensesOf(entry).length > 0
   const heroImage = useMediaUrl(entry.imageId)
   const confusables = entry.relations.filter((r) => r.type === 'confusable').map((r) => byId.get(r.targetId))
 
@@ -268,22 +270,11 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
       <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
       <PatternsSection db={db} entry={entry} onChanged={onChanged} />
-      {conjugation && (
+      {hasConjugation && (
         <section className="section stack">
-          <h2 className="section-title">Şimdiki zaman çekimi</h2>
-          <table className="conj-table" lang={entry.language}>
-            <tbody>
-              {conjugation.forms.map((f, i) => (
-                <tr key={i}>
-                  <th scope="row">{PRONOUNS[entry.language as 'fr' | 'es'][i].slice(0, 2).join(' / ')}</th>
-                  <td>{f}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="small muted">
-            {conjugation.source === 'rule' ? 'Düzenli fiil kuralıyla üretildi. ' : conjugation.source === 'dictionary' ? 'Çekim: UniMorph. ' : ''}"Üretme" becerisi açılınca çekim soruları da gelir.
-          </p>
+          <h2 className="section-title">Fiil çekimi</h2>
+          <ConjugationTable key={entry.id} entry={entry} />
+          <p className="small muted">"Üretme" becerisi açıldıkça çekim soruları gelir: önce şimdiki zaman, kelime oturdukça geçmiş ve gelecek.</p>
         </section>
       )}
       {(entry.alternativeForms?.length ?? 0) > 0 && (

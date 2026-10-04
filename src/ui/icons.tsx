@@ -322,6 +322,14 @@ export const TagIcon = (p: P) => (
     <circle cx="8" cy="8" r="1.4" />
   </Icon>
 )
+/** A verb through time: a clock with an arrow turning back (tenses). */
+export const TenseIcon = (p: P) => (
+  <Icon {...p}>
+    <D d="M12 4a8 8 0 1 1-7.6 10.5L4 12a8 8 0 0 1 8-8z" />
+    <path d="M4.3 14.5A8 8 0 1 0 6.3 6.4L4 8.6" />
+    <path d="M4 4.8v3.8h3.8M12 8.2v4l2.8 1.8" />
+  </Icon>
+)
 export const ScaleIcon = (p: P) => (
   <Icon {...p}>
     <path d="M12 4v16.5M8 20.5h8M5 7.5h14M12 4.2l-7 3.3M12 4.2l7 3.3" />

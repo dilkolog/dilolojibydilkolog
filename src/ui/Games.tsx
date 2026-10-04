@@ -20,11 +20,12 @@ import { PairsGame } from './games/PairsGame'
 import { GenderGame } from './games/GenderGame'
 import { ACCENT_MIN_WORDS, AccentGame, accentedWords } from './games/AccentGame'
 import { SwipeCards } from './games/SwipeCards'
+import { ConjugationGame } from './games/ConjugationGame'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | 'accent' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | 'accent' | 'conjugation' | null
 
 export function GamesScreen(p: Props & { initialGame?: Game }) {
   const [game, setGame] = useState<Game>(p.initialGame ?? null)
@@ -45,6 +46,8 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   const online = useOnline()
 
   if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
+  if (game === 'conjugation' && p.language !== 'en')
+    return <ConjugationGame {...p} language={p.language} best={records[`conj:${p.language}`]} recordKey={`conj:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
   if (game === 'gender' && p.language !== 'en')
     return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
@@ -104,6 +107,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
       tone: 'grammar',
       cards: [
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
+        { id: 'conjugation', emoji: '🕰️', name: 'Çekim antrenmanı', text: `Fiilleri zamanlarıyla çek: ${p.language === 'fr' ? 'passé composé, imparfait, futur' : 'indefinido, imperfecto, futuro'} ve dahası.`, status: record(`conj:${p.language}`, (v) => `%${v}`) },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
         { id: 'accent', emoji: '✍️', name: 'Aksan antrenmanı', text: 'Sadece aksanlı kelimelerin: harfleri görürsün, aksanlarıyla yazarsın.', status: accentCount < ACCENT_MIN_WORDS ? `En az ${ACCENT_MIN_WORDS} aksanlı kelime gerekiyor (${accentCount})` : record(`accent:${p.language}`, (v) => `%${v}`), disabled: accentCount < ACCENT_MIN_WORDS },
       ],

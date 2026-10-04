@@ -1,5 +1,7 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
-import { acceptedForms, conjugate, PERSONS, PRONOUNS } from './conjugation'
+import { acceptedForms, PERSONS, PRONOUNS } from './conjugation'
+import { TENSE_GUIDE } from './tenseGuide'
+import { conjugateTense, tenseAnswers, tensesOf, unlockedTenses, type Tense } from './tenses'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import { familyRelative, suffixVariants } from './morphology'
@@ -102,7 +104,7 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     direction: 'native_to_target',
     input: 'typed',
     expectedMs: 6000,
-    applicable: (e) => conjugate(e) !== undefined,
+    applicable: (e) => tensesOf(e).length > 0,
   },
   back_translation: {
     skill: 'production',
@@ -191,6 +193,8 @@ interface ExerciseBase {
   audioText?: string
   /** Media id of a picture to show (picture exercises). */
   imageId?: string
+  /** The tense a conjugation question asks for. */
+  tense?: Tense
 }
 
 export interface ChoiceExercise extends ExerciseBase {
@@ -494,11 +498,18 @@ function withTraps(ex: ChoiceExercise, entry: VocabularyEntry): ChoiceExercise {
   return traps.length ? { ...ex, traps } : ex
 }
 
+/** What the learner has done with the word so far, for exercises that grow with it. */
+export interface ExerciseContext {
+  /** Correct productions so far (the production card's reps): opens past and future tenses. */
+  productionReps?: number
+}
+
 export function buildExercise(
   type: ExerciseType,
   entry: VocabularyEntry,
   catalog: readonly VocabularyEntry[],
   rng: Rng,
+  context: ExerciseContext = {},
 ): Exercise {
   const meta = EXERCISES[type]
   if (!meta.applicable(entry)) throw new Error(`${type} is not applicable to ${entry.id}`)
@@ -676,17 +687,21 @@ export function buildExercise(
     }
 
     case 'conjugation': {
-      const conj = conjugate(entry)!
       const lang = entry.language as 'fr' | 'es'
+      const open = unlockedTenses(entry, context.productionReps ?? 0)
+      // The newest tense comes up more often while it is new; the others keep coming back.
+      const tense: Tense = open.length > 1 && rng() < 0.4 ? open[open.length - 1] : pick(open, rng)
+      const forms = conjugateTense(entry, tense)!
       const person = pick(PERSONS, rng)
-      const form = conj.forms[person]
+      const guide = TENSE_GUIDE[tense]
       return {
         ...base,
         kind: 'typed',
-        prompt: `${PRONOUNS[lang][person].slice(0, 2).join(' / ')} · ${conj.infinitive}`,
-        context: `${sense.gloss}, ${lang === 'fr' ? 'présent' : 'presente'}`,
-        accepted: acceptedForms(lang, person, form),
-        hints: buildHints(form, `${conj.infinitive}: ${conj.forms.slice(0, 3).join(', ')}…`),
+        prompt: `${PRONOUNS[lang][person].slice(0, 2).join(' / ')} · ${entry.lemma}`,
+        context: `${sense.gloss} · ${guide.name} (${guide.tr.toLocaleLowerCase('tr')})`,
+        tense,
+        accepted: tenseAnswers(entry, tense, person).flatMap((f) => acceptedForms(lang, person, f)),
+        hints: buildHints(forms[person], `${guide.name}: ${forms.slice(0, 3).join(', ')}…`),
       }
     }
 
@@ -779,8 +794,8 @@ function evaluateTypedInner(
     return { verdict: s.verdict, errorType: s.errorType, given: normalize(text), expected: ex.accepted[0] }
   }
   if (ex.type === 'conjugation') {
-    // Another person's form of the same verb: the verb was right, the ending wasn't.
-    const forms = conjugate(entry)?.forms ?? []
+    // Another person's or tense's form of the same verb: the verb was right, the ending wasn't.
+    const forms = tensesOf(entry).flatMap((t) => conjugateTense(entry, t) ?? [])
     const r = checkTyped(text, ex.accepted, { language: entry.language, gender: entry.gender, confusables: [], familyForms: forms.filter((f) => !ex.accepted.includes(f)) })
     return { ...r, given: normalize(text), expected: ex.accepted[0] }
   }

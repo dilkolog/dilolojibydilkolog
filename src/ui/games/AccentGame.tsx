@@ -58,7 +58,7 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
     void recordPractice(q.entry, states.find((s) => s.entryId === q.id), 'typed_translation', ok, performance.now() - started.current)
   }
 
-  const next = async () => {
+  const next = () => {
     setGraded(null)
     setTyped('')
     started.current = performance.now()
@@ -67,20 +67,18 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
       requestAnimationFrame(() => input.current?.focus())
       return
     }
-    const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
-    if (pct > (best ?? 0)) {
-      await db.saveRecord(recordKey, pct)
-      setRecord(true)
-    }
-    sfx.levelUp()
+    // The round ends at once, so nothing can be answered again while the record is saved.
     setPhase('over')
+    sfx.levelUp()
+    const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
+    if (pct > (best ?? 0)) void db.saveRecord(recordKey, pct).then(() => setRecord(true))
   }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (phase === 'play' && graded && e.key === 'Enter') {
         e.preventDefault()
-        void next()
+        next()
       }
     }
     window.addEventListener('keydown', onKey)
@@ -162,7 +160,7 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
                 {graded.verdict === 'correct' ? 'Doğru!' : graded.verdict === 'accent' ? 'Harfler doğru, aksan yanlış ya da eksik: işaretli harfe bak.' : `Doğrusu yukarıda; sen “${typed.trim()}” yazdın.`}
               </p>
               <div className="row">
-                <button type="button" className="btn" onClick={() => void next()} autoFocus>
+                <button type="button" className="btn" onClick={() => next()} autoFocus>
                   Devam
                 </button>
               </div>

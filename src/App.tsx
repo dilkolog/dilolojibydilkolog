@@ -23,6 +23,7 @@ import { fillCorpus } from './data/corpus'
 import { fillWordInfo } from './data/wordInfo'
 import { fillFromLexicon } from './data/lexicon'
 import { fillFrequencyRanks } from './data/frequency'
+import { loadTenses } from './data/tenseData'
 import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
@@ -226,6 +227,11 @@ export default function App() {
     db.getAiKey().then(setApiKeyState)
     db.getTtsKey().then((k) => (natural.key = k))
   }, [])
+
+  // Past and future tense tables for the language being learned, fetched in the background.
+  useEffect(() => {
+    if (language) void loadTenses(language)
+  }, [language])
 
   useEffect(() => {
     if (settings) applySettings(settings)

@@ -3346,3 +3346,20 @@ button.badge-card:active { transform: none; }
   width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--lang); color: var(--on-lang); font-size: 0.6875rem; font-weight: 700; box-shadow: 0 0 0 2px var(--surface);
 }
 @media (prefers-reduced-motion: reduce) { .og-plant { animation: none; } }
+
+/* Verb conjugation by tense (word page, Çekim antrenmanı) */
+.tense-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+.tense-tabs .segmented-btn { white-space: nowrap; }
+.conj-lead { margin: 0; max-width: 60ch; color: var(--ink-soft); }
+.conj-lead strong { color: var(--ink); font-weight: 600; }
+.conj-odd { background: none; color: inherit; text-decoration: underline; text-decoration-color: var(--near); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+.conj-markers { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; }
+.conj-markers .pill { font-size: var(--t-sm); }
+.conj-how > summary { font-size: var(--t-sm); color: var(--ink-soft); }
+.conj-examples { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.375rem; }
+.conj-examples [lang] { font-family: var(--serif); }
+.conj-tenses { gap: 0.5rem; }
+.conj-gloss { margin: -0.5rem 0 0; }
+.conj-mini { font-size: var(--t-md); }
+.conj-mini tr.is-asked td { font-weight: 700; color: var(--ink); }
+.conj-mini tr.is-asked th { color: var(--ink); }

@@ -20,6 +20,8 @@ import { Home } from './Screens'
 import { SessionScreen } from './Session'
 import type { SessionSummary } from '../engine/session'
 import { ArticleDrill } from './ArticleDrill'
+import { ConjugationGame } from './games/ConjugationGame'
+import { conjugateTense } from '../engine/tenses'
 import { SentencesGame, saveSentence } from './Sentences'
 import { GameContext, loadGame } from './game'
 import { buildDailyPlan } from '../engine/dailyPlan'
@@ -275,6 +277,39 @@ describe('screens render', () => {
       'button.page-tab',
     )
     expect(seen).toHaveLength(3)
+  })
+
+  it('conjugation drill plays a round with the common verbs', async () => {
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    await act(async () => root.render(<ConjugationGame language="es" vocabulary={vocabulary} states={states} mistakes={[]} onChanged={noop} recordKey="conj:test" onExit={noop} />))
+    const btn = (re: RegExp) => [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => re.test(b.textContent ?? '') && !b.disabled)
+    for (let i = 0; i < 20 && !btn(/tura başla/); i++) await act(async () => new Promise((r) => setTimeout(r, 50)))
+    await act(async () => btn(/tura başla/)!.click())
+    const typeAnswer = async (text: string) => {
+      const input = el.querySelector<HTMLInputElement>('.answer-input')!
+      await act(async () => {
+        const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!
+        set.call(input, text)
+        input.dispatchEvent(new Event('input', { bubbles: true }))
+      })
+      await act(async () => btn(/Kontrol et/)!.click())
+    }
+    // First answer right (read from the engine), the rest wrong.
+    const [person, verb] = el.querySelector('.prompt-text')!.textContent!.split(' · ')
+    const tense = el.querySelector('.prompt-label span')!.textContent!
+    const id = { 'pretérito indefinido': 'preterito', 'pretérito imperfecto': 'imperfecto', 'pretérito perfecto': 'perfecto', 'futuro simple': 'futuro' }[tense] as 'preterito'
+    const p = ['yo', 'tú', 'él / ella', 'nosotros / nosotras', 'vosotros / vosotras', 'ellos / ellas'].indexOf(person)
+    await typeAnswer(conjugateTense({ language: 'es', lemma: verb, partOfSpeech: 'verb' }, id)![p])
+    expect(el.textContent).toContain('Doğru!')
+    for (let i = 0; i < 30 && !el.textContent?.includes('Tur bitti') && !el.textContent?.includes('Yeni rekor'); i++) {
+      if (btn(/^Devam$/)) await act(async () => btn(/^Devam$/)!.click())
+      else await typeAnswer('xyz')
+    }
+    expect(el.textContent).toMatch(/Tur bitti|Yeni rekor/)
+    expect(el.textContent).toContain('1 / 10 doğru')
+    await act(async () => root.unmount())
   })
 
   it('article drill plays to the end', async () => {

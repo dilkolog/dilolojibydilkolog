@@ -1,0 +1,639 @@
+{
+  "hacer": {
+    "Subjuntivo Presente": {
+      "nosotros": "hagamos",
+      "vosotros": "hagáis",
+      "ellos/ellas": "hagan"
+    }
+  },
+  "ver": {
+    "Pretérito Imperfecto": {
+      "yo": "veía",
+      "tú": "veías",
+      "él/ella": "veía",
+      "nosotros": "veíamos",
+      "vosotros": "veíais",
+      "ellos/ellas": "veían"
+    }
+  },
+  "salir": {
+    "Presente": {
+      "yo": "salgo"
+    },
+    "Subjuntivo Presente": {
+      "yo": "salga",
+      "tú": "salgas",
+      "él/ella": "salga",
+      "nosotros": "salgamos",
+      "vosotros": "salgáis",
+      "ellos/ellas": "salgan"
+    }
+  },
+  "volver": {
+    "Condicional": {
+      "yo": "volvería",
+      "él/ella": "volvería",
+      "ellos/ellas": "volverían"
+    }
+  },
+  "sentir": {
+    "Presente": {
+      "yo": "siento",
+      "tú": "sientes",
+      "él/ella": "siente",
+      "ellos/ellas": "sienten"
+    },
+    "Subjuntivo Presente": {
+      "yo": "sienta",
+      "tú": "sientas",
+      "él/ella": "sienta",
+      "ellos/ellas": "sientan"
+    }
+  },
+  "pedir": {
+    "Presente": {
+      "yo": "pido",
+      "tú": "pides",
+      "él/ella": "pide",
+      "ellos/ellas": "piden"
+    },
+    "Subjuntivo Presente": {
+      "yo": "pida",
+      "tú": "pidas",
+      "él/ella": "pida",
+      "nosotros": "pidamos",
+      "ellos/ellas": "pidan"
+    }
+  },
+  "dormir": {
+    "Condicional": {
+      "yo": "dormiría",
+      "tú": "dormirías",
+      "él/ella": "dormiría",
+      "ellos/ellas": "dormirían"
+    }
+  },
+  "servir": {
+    "Presente": {
+      "yo": "sirvo",
+      "tú": "sirves",
+      "él/ella": "sirve",
+      "ellos/ellas": "sirven"
+    },
+    "Subjuntivo Presente": {
+      "yo": "sirva",
+      "tú": "sirvas",
+      "él/ella": "sirva",
+      "ellos/ellas": "sirvan"
+    }
+  },
+  "repetir": {
+    "Presente": {
+      "yo": "repito",
+      "tú": "repites",
+      "él/ella": "repite",
+      "ellos/ellas": "repiten"
+    },
+    "Subjuntivo Presente": {
+      "yo": "repita",
+      "tú": "repitas",
+      "él/ella": "repita",
+      "ellos/ellas": "repitan"
+    }
+  },
+  "traducir": {
+    "Pretérito Indefinido": {
+      "yo": "traduje",
+      "él/ella": "tradujo"
+    }
+  },
+  "construir": {
+    "Presente": {
+      "yo": "construyo"
+    },
+    "Subjuntivo Presente": {
+      "yo": "construya",
+      "tú": "construyas",
+      "él/ella": "construya",
+      "ellos/ellas": "construyan"
+    }
+  },
+  "elegir": {
+    "Presente": {
+      "yo": "elijo",
+      "tú": "eliges",
+      "él/ella": "elige",
+      "ellos/ellas": "eligen"
+    },
+    "Subjuntivo Presente": {
+      "yo": "elija",
+      "tú": "elijas",
+      "él/ella": "elija",
+      "nosotros": "elijamos",
+      "ellos/ellas": "elijan"
+    }
+  },
+  "corregir": {
+    "Presente": {
+      "yo": "corrijo",
+      "tú": "corriges",
+      "él/ella": "corrige",
+      "ellos/ellas": "corrigen"
+    },
+    "Subjuntivo Presente": {
+      "yo": "corrija",
+      "tú": "corrijas",
+      "él/ella": "corrija",
+      "nosotros": "corrijamos",
+      "vosotros": "corrijáis",
+      "ellos/ellas": "corrijan"
+    }
+  },
+  "erguir": {
+    "Presente": {
+      "yo": "irgo",
+      "tú": "irgues",
+      "él/ella": "irgue",
+      "ellos/ellas": "irguen"
+    },
+    "Pretérito Indefinido": {
+      "yo": "erguí/irguí",
+      "él/ella": "irguió",
+      "ellos/ellas": "irguieron"
+    },
+    "Subjuntivo Presente": {
+      "yo": "irga",
+      "tú": "irgas",
+      "él/ella": "irga",
+      "nosotros": "irgamos",
+      "vosotros": "irgáis",
+      "ellos/ellas": "irgan"
+    }
+  },
+  "mover": {
+    "Condicional": {
+      "yo": "movería",
+      "tú": "moverías",
+      "él/ella": "movería",
+      "ellos/ellas": "moverían"
+    }
+  },
+  "morir": {
+    "Condicional": {
+      "yo": "moriría",
+      "tú": "morirías",
+      "él/ella": "moriría",
+      "ellos/ellas": "morirían"
+    },
+    "Subjuntivo Presente": {
+      "nosotros": "muramos",
+      "vosotros": "muráis"
+    }
+  },
+  "mentir": {
+    "Presente": {
+      "yo": "miento"
+    },
+    "Subjuntivo Presente": {
+      "yo": "mienta",
+      "tú": "mientas",
+      "él/ella": "mienta",
+      "ellos/ellas": "mientan"
+    }
+  },
+  "sonreír": {
+    "Presente": {
+      "yo": "sonrío",
+      "tú": "sonríes",
+      "él/ella": "sonríe",
+      "nosotros": "sonreímos",
+      "vosotros": "sonreís",
+      "ellos/ellas": "sonríen"
+    },
+    "Pretérito Indefinido": {
+      "yo": "sonreí",
+      "tú": "sonreíste",
+      "él/ella": "sonrió",
+      "nosotros": "sonreímos",
+      "vosotros": "sonreísteis",
+      "ellos/ellas": "sonrieron"
+    },
+    "Pretérito Imperfecto": {
+      "yo": "sonreía",
+      "tú": "sonreías",
+      "él/ella": "sonreía",
+      "nosotros": "sonreíamos",
+      "vosotros": "sonreíais",
+      "ellos/ellas": "sonreían"
+    },
+    "Pretérito Perfecto": {
+      "yo": "he sonreído",
+      "tú": "has sonreído",
+      "él/ella": "ha sonreído",
+      "nosotros": "hemos sonreído",
+      "vosotros": "habéis sonreído",
+      "ellos/ellas": "han sonreído"
+    },
+    "Futuro Simple": {
+      "yo": "sonreiré",
+      "tú": "sonreirás",
+      "él/ella": "sonreirá",
+      "nosotros": "sonreiremos",
+      "vosotros": "sonreiréis",
+      "ellos/ellas": "sonreirán"
+    },
+    "Condicional": {
+      "yo": "sonreiría",
+      "tú": "sonreirías",
+      "él/ella": "sonreiría",
+      "nosotros": "sonreiríamos",
+      "vosotros": "sonreiríais",
+      "ellos/ellas": "sonreirían"
+    },
+    "Subjuntivo Presente": {
+      "yo": "sonría",
+      "tú": "sonrías",
+      "él/ella": "sonría",
+      "nosotros": "sonriamos",
+      "vosotros": "sonriáis",
+      "ellos/ellas": "sonrían"
+    }
+  },
+  "reír": {
+    "Presente": {
+      "yo": "río",
+      "tú": "ríes",
+      "él/ella": "ríe",
+      "nosotros": "reímos",
+      "vosotros": "reís",
+      "ellos/ellas": "ríen"
+    },
+    "Pretérito Indefinido": {
+      "yo": "reí",
+      "tú": "reíste",
+      "él/ella": "rió",
+      "nosotros": "reímos",
+      "vosotros": "reísteis",
+      "ellos/ellas": "rieron"
+    },
+    "Pretérito Imperfecto": {
+      "yo": "reía",
+      "tú": "reías",
+      "él/ella": "reía",
+      "nosotros": "reíamos",
+      "vosotros": "reíais",
+      "ellos/ellas": "reían"
+    },
+    "Pretérito Perfecto": {
+      "yo": "he reído",
+      "tú": "has reído",
+      "él/ella": "ha reído",
+      "nosotros": "hemos reído",
+      "vosotros": "habéis reído",
+      "ellos/ellas": "han reído"
+    },
+    "Futuro Simple": {
+      "yo": "reiré",
+      "tú": "reirás",
+      "él/ella": "reirá",
+      "nosotros": "reiremos",
+      "vosotros": "reiréis",
+      "ellos/ellas": "reirán"
+    },
+    "Condicional": {
+      "yo": "reiría",
+      "tú": "reirías",
+      "él/ella": "reiría",
+      "nosotros": "reiríamos",
+      "vosotros": "reiríais",
+      "ellos/ellas": "reirían"
+    },
+    "Subjuntivo Presente": {
+      "yo": "ría",
+      "tú": "rías",
+      "él/ella": "ría",
+      "nosotros": "riamos",
+      "vosotros": "riáis",
+      "ellos/ellas": "rían"
+    }
+  },
+  "despedir": {
+    "Presente": {
+      "yo": "despido",
+      "tú": "despides",
+      "él/ella": "despide",
+      "ellos/ellas": "despiden"
+    },
+    "Subjuntivo Presente": {
+      "yo": "despida",
+      "tú": "despidas",
+      "él/ella": "despida",
+      "ellos/ellas": "despidan"
+    }
+  },
+  "advertir": {
+    "Presente": {
+      "yo": "advierto",
+      "tú": "adviertes",
+      "él/ella": "advierte",
+      "ellos/ellas": "advierten"
+    },
+    "Subjuntivo Presente": {
+      "yo": "advierta",
+      "tú": "adviertas",
+      "él/ella": "advierta",
+      "ellos/ellas": "adviertan"
+    }
+  },
+  "doler": {
+    "Presente": {
+      "yo": "me duele",
+      "tú": "te duele",
+      "nosotros": "nos duele",
+      "vosotros": "os duele"
+    },
+    "Pretérito Indefinido": {
+      "yo": "me dolió",
+      "tú": "te dolió",
+      "nosotros": "nos dolió",
+      "vosotros": "os dolió"
+    },
+    "Pretérito Imperfecto": {
+      "yo": "me dolía",
+      "tú": "te dolía",
+      "nosotros": "nos dolía",
+      "vosotros": "os dolía",
+      "ellos/ellas": "les dolía"
+    },
+    "Pretérito Perfecto": {
+      "yo": "me ha dolido",
+      "tú": "te ha dolido",
+      "nosotros": "nos ha dolido",
+      "vosotros": "os ha dolido"
+    },
+    "Futuro Simple": {
+      "yo": "me dolerá",
+      "tú": "te dolerá",
+      "nosotros": "nos dolerá",
+      "vosotros": "os dolerá",
+      "ellos/ellas": "les dolerá"
+    },
+    "Condicional": {
+      "yo": "dolería",
+      "tú": "dolerías",
+      "él/ella": "dolería",
+      "ellos/ellas": "dolerían"
+    }
+  },
+  "freír": {
+    "Presente": {
+      "yo": "frío",
+      "tú": "fríes",
+      "él/ella": "fríe",
+      "nosotros": "freímos",
+      "vosotros": "freís",
+      "ellos/ellas": "fríen"
+    },
+    "Pretérito Indefinido": {
+      "yo": "freí",
+      "tú": "freíste",
+      "él/ella": "frió",
+      "nosotros": "freímos",
+      "vosotros": "freísteis",
+      "ellos/ellas": "frieron"
+    },
+    "Pretérito Imperfecto": {
+      "yo": "freía",
+      "tú": "freías",
+      "él/ella": "freía",
+      "nosotros": "freíamos",
+      "vosotros": "freíais",
+      "ellos/ellas": "freían"
+    },
+    "Pretérito Perfecto": {
+      "yo": "he frito",
+      "tú": "has frito",
+      "él/ella": "ha frito",
+      "nosotros": "hemos frito",
+      "vosotros": "habéis frito",
+      "ellos/ellas": "han frito"
+    },
+    "Futuro Simple": {
+      "yo": "freiré",
+      "tú": "freirás",
+      "él/ella": "freirá",
+      "nosotros": "freiremos",
+      "vosotros": "freiréis",
+      "ellos/ellas": "freirán"
+    },
+    "Condicional": {
+      "yo": "freiría",
+      "tú": "freirías",
+      "él/ella": "freiría",
+      "nosotros": "freiríamos",
+      "vosotros": "freiríais",
+      "ellos/ellas": "freirían"
+    },
+    "Subjuntivo Presente": {
+      "yo": "fría",
+      "tú": "frías",
+      "él/ella": "fría",
+      "nosotros": "friamos",
+      "vosotros": "friáis",
+      "ellos/ellas": "frían"
+    }
+  },
+  "revolver": {
+    "Pretérito Perfecto": {
+      "yo": "he revuelto",
+      "tú": "has revuelto",
+      "él/ella": "ha revuelto",
+      "nosotros": "hemos revuelto",
+      "vosotros": "habéis revuelto",
+      "ellos/ellas": "han revuelto"
+    },
+    "Condicional": {
+      "yo": "revolvería",
+      "él/ella": "revolvería"
+    }
+  },
+  "medir": {
+    "Presente": {
+      "yo": "mido",
+      "tú": "mides",
+      "él/ella": "mide",
+      "ellos/ellas": "miden"
+    },
+    "Subjuntivo Presente": {
+      "yo": "mida",
+      "tú": "midas",
+      "él/ella": "mida",
+      "nosotros": "midamos",
+      "ellos/ellas": "midan"
+    }
+  },
+  "resolver": {
+    "Condicional": {
+      "yo": "resolvería",
+      "él/ella": "resolvería",
+      "ellos/ellas": "resolverían"
+    }
+  },
+  "destruir": {
+    "Presente": {
+      "yo": "destruyo"
+    },
+    "Subjuntivo Presente": {
+      "yo": "destruya",
+      "tú": "destruyas",
+      "él/ella": "destruya",
+      "ellos/ellas": "destruyan"
+    }
+  },
+  "devolver": {
+    "Condicional": {
+      "yo": "devolvería",
+      "él/ella": "devolvería"
+    }
+  },
+  "reducir": {
+    "Pretérito Indefinido": {
+      "él/ella": "redujo"
+    }
+  },
+  "rendir": {
+    "Presente": {
+      "yo": "rindo",
+      "tú": "rindes",
+      "él/ella": "rinde",
+      "ellos/ellas": "rinden"
+    }
+  },
+  "competir": {
+    "Presente": {
+      "yo": "compito",
+      "tú": "compites",
+      "él/ella": "compite",
+      "ellos/ellas": "compiten"
+    },
+    "Subjuntivo Presente": {
+      "yo": "compita",
+      "tú": "compitas",
+      "él/ella": "compita",
+      "ellos/ellas": "compitan"
+    }
+  },
+  "convertir": {
+    "Presente": {
+      "yo": "convierto",
+      "tú": "conviertes",
+      "él/ella": "convierte",
+      "ellos/ellas": "convierten"
+    },
+    "Subjuntivo Presente": {
+      "yo": "convierta",
+      "tú": "conviertas",
+      "él/ella": "convierta",
+      "ellos/ellas": "conviertan"
+    }
+  },
+  "andar": {
+    "Pretérito Indefinido": {
+      "yo": "anduve",
+      "tú": "anduviste",
+      "él/ella": "anduvo",
+      "nosotros": "anduvimos",
+      "vosotros": "anduvisteis",
+      "ellos/ellas": "anduvieron"
+    }
+  },
+  "caber": {
+    "Presente": {
+      "yo": "quepo"
+    },
+    "Futuro Simple": {
+      "yo": "cabré",
+      "tú": "cabrás",
+      "él/ella": "cabrá",
+      "nosotros": "cabremos",
+      "vosotros": "cabréis",
+      "ellos/ellas": "cabrán"
+    },
+    "Subjuntivo Presente": {
+      "yo": "quepa",
+      "tú": "quepas",
+      "él/ella": "quepa",
+      "nosotros": "quepamos",
+      "vosotros": "quepáis",
+      "ellos/ellas": "quepan"
+    }
+  },
+  "concluir": {
+    "Presente": {
+      "yo": "concluyo",
+      "tú": "concluyes",
+      "él/ella": "concluye",
+      "ellos/ellas": "concluyen"
+    },
+    "Subjuntivo Presente": {
+      "yo": "concluya",
+      "tú": "concluyas",
+      "él/ella": "concluya",
+      "ellos/ellas": "concluyan"
+    }
+  },
+  "impedir": {
+    "Presente": {
+      "yo": "impido"
+    }
+  },
+  "ceñir": {
+    "Presente": {
+      "tú": "ciñes",
+      "él/ella": "ciñe",
+      "ellos/ellas": "ciñen"
+    },
+    "Subjuntivo Presente": {
+      "tú": "ciñas"
+    }
+  },
+  "disolver": {
+    "Pretérito Perfecto": {
+      "yo": "he disuelto",
+      "tú": "has disuelto",
+      "él/ella": "ha disuelto",
+      "nosotros": "hemos disuelto",
+      "vosotros": "habéis disuelto",
+      "ellos/ellas": "han disuelto"
+    },
+    "Condicional": {
+      "yo": "disolvería",
+      "él/ella": "disolvería",
+      "ellos/ellas": "disolverían"
+    }
+  },
+  "vestir": {
+    "Presente": {
+      "yo": "visto",
+      "tú": "vistes",
+      "él/ella": "viste",
+      "ellos/ellas": "visten"
+    },
+    "Subjuntivo Presente": {
+      "yo": "vista",
+      "tú": "vistas",
+      "él/ella": "vista",
+      "ellos/ellas": "vistan"
+    }
+  },
+  "yacer": {
+    "Presente": {
+      "yo": "yazco"
+    },
+    "Subjuntivo Presente": {
+      "yo": "yazca",
+      "él/ella": "yazca",
+      "ellos/ellas": "yazcan"
+    }
+  }
+}

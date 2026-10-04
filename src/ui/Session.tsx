@@ -392,7 +392,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
   const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => {
-    const ex = buildExercise(item.exerciseType!, entry, catalog, rng)
+    const ex = buildExercise(item.exerciseType!, entry, catalog, rng, { productionReps: wordState()?.skills.production?.reps })
     return item.firstLetter && ex.kind === 'typed' && ex.context ? { ...ex, blankStart: ex.accepted[0]?.charAt(0) } : ex
   })
   const startedAt = useRef(performance.now())
