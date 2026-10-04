@@ -5,10 +5,14 @@ import { addTenseSentences, addTenses, tensesLoaded } from '../engine/tenses'
  * a conjugation question, the drill); after that every tense works offline.
  */
 const LOADERS = {
-  fr: () => import('./tenses/fr.json').then((m) => addTenses('fr', m.default as Record<string, unknown>)),
+  fr: () =>
+    Promise.all([import('./tenses/fr.json'), import('./tenses/fr-sentences.json')]).then(([t, s]) => {
+      addTenseSentences('fr', s.default as Record<string, Record<string, string>>)
+      addTenses('fr', t.default as Record<string, unknown>)
+    }),
   es: () =>
     Promise.all([import('./tenses/es.json'), import('./tenses/es-sentences.json')]).then(([t, s]) => {
-      addTenseSentences(s.default as Record<string, Record<string, string>>)
+      addTenseSentences('es', s.default as Record<string, Record<string, string>>)
       addTenses('es', t.default as Record<string, unknown>)
     }),
 }

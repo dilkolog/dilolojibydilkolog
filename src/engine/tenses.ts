@@ -283,11 +283,11 @@ export function unlockedTenses(entry: Pick<VocabularyEntry, 'language' | 'lemma'
 }
 
 /** Example sentences per verb and tense ("text with [form]\ttranslation"), see addTenseSentences. */
-const SENTENCES = new Map<string, Record<string, string>>()
+const SENTENCES = { fr: new Map<string, Record<string, string>>(), es: new Map<string, Record<string, string>>() }
 
-/** Loads src/data/tenses/es-sentences.json (built by scripts/build-tense-sentences.ts). */
-export function addTenseSentences(json: Record<string, Record<string, string>>) {
-  for (const [verb, row] of Object.entries(json)) SENTENCES.set(verb, row)
+/** Loads src/data/tenses/{fr,es}-sentences.json (built by scripts/build-tense-sentences*.ts). */
+export function addTenseSentences(language: 'fr' | 'es', json: Record<string, Record<string, string>>) {
+  for (const [verb, row] of Object.entries(json)) SENTENCES[language].set(verb, row)
 }
 
 export interface TenseSentence {
@@ -295,15 +295,16 @@ export interface TenseSentence {
   text: string
   /** The form as it stands in the sentence. */
   form: string
-  translation: string
+  /** Turkish, when there is a trustworthy one (most French sentences have none). */
+  translation?: string
 }
 
-/** A sentence using the verb in this tense, when one has been checked (Spanish for now). */
+/** A checked sentence using the verb in this tense, if there is one. */
 export function tenseSentence(entry: Pick<VocabularyEntry, 'language' | 'lemma'>, tense: Tense): TenseSentence | undefined {
-  if (entry.language !== 'es') return undefined
-  const raw = SENTENCES.get(normalize(entry.lemma).toLocaleLowerCase('es'))?.[tense]
+  if (entry.language === 'en') return undefined
+  const raw = SENTENCES[entry.language].get(normalize(entry.lemma).toLocaleLowerCase(entry.language))?.[tense]
   const m = raw?.match(/^(.*)\[([^\]]+)\](.*)\t(.*)$/)
-  return m ? { text: `${m[1]}___${m[3]}`, form: m[2], translation: m[4] } : undefined
+  return m ? { text: `${m[1]}___${m[3]}`, form: m[2], translation: m[4] || undefined } : undefined
 }
 
 export type { Person }

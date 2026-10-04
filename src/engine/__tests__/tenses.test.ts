@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import sentences from '../../data/tenses/es-sentences.json'
+import frSentences from '../../data/tenses/fr-sentences.json'
 import { addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
 import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exercises'
 import { createRng } from '../rng'
@@ -13,7 +14,8 @@ const verb = (language: TargetLanguage, lemma: string, tense: Tense) => conjugat
 beforeAll(() => {
   addTenses('fr', fr as Record<string, unknown>)
   addTenses('es', es as Record<string, unknown>)
-  addTenseSentences(sentences as Record<string, Record<string, string>>)
+  addTenseSentences('es', sentences as Record<string, Record<string, string>>)
+  addTenseSentences('fr', frSentences as Record<string, Record<string, string>>)
 })
 
 describe('French tenses', () => {
@@ -99,7 +101,7 @@ describe('Spanish example sentences', () => {
     expect(s?.form).toBe('borraré')
     expect(s?.text).toMatch(/^Mañana ___ /)
     expect(s?.translation).toContain('sileceğim')
-    expect(tenseSentence({ language: 'fr', lemma: 'parler' }, 'futur')).toBeUndefined()
+    expect(tenseSentence({ language: 'en', lemma: 'talk' }, 'futur')).toBeUndefined()
   })
 })
 
@@ -123,6 +125,27 @@ describe('conjugation questions', () => {
     // Another tense's form of the same verb is a form error, not a meaning error.
     expect(evaluateTyped(inSentence, 'borré', borrar, [borrar]).errorType).toBe('form')
     expect(all.some((e) => !e.context?.includes(BLANK))).toBe(true)
+  })
+})
+
+describe('French example sentences (Tatoeba)', () => {
+  it('every stored form is the verb in that tense, never the present', () => {
+    let n = 0
+    for (const [lemma, row] of Object.entries(frSentences as Record<string, Record<string, string>>)) {
+      for (const tense of Object.keys(row) as Tense[]) {
+        const s = tenseSentence({ language: 'fr', lemma }, tense)!
+        expect(tense).not.toBe('present')
+        const answers = [0, 1, 2, 3, 4, 5].flatMap((p) => answersFor({ language: 'fr', lemma, partOfSpeech: 'verb' }, tense, p))
+        expect(answers).toContain(s.form.toLocaleLowerCase('fr'))
+        n++
+      }
+    }
+    expect(n).toBeGreaterThan(4000)
+  })
+
+  it('keeps a translation only when its tense fits', () => {
+    expect(tenseSentence({ language: 'fr', lemma: 'savoir' }, 'futur')).toMatchObject({ form: 'sauras', translation: 'Gelecek yıl kayakta iyi olacaksın.' })
+    expect(tenseSentence({ language: 'fr', lemma: 'savoir' }, 'passe-compose')?.translation).toBeUndefined()
   })
 })
 

@@ -29,3 +29,10 @@ from the diloloji project's example sentences, which were written with AI help. 
 kept only when exactly one form of the verb in that tense (from the tables above) appears in it
 once and the form belongs to no other tense; the Turkish translations were sample-read and
 the slips found are corrected in the script (TR_FIXES).
+
+`fr-sentences.json` (5,165 sentences, 2,486 verbs; no présent) is built by
+`scripts/build-tense-sentences-fr.ts` from Tatoeba (https://tatoeba.org, CC BY 2.0 FR):
+fra_sentences, tur_sentences and fra-tur_links from downloads.tatoeba.org (2026-10-05). Kept
+only when one form of the verb, unique to that tense and to that verb, appears once; a subject
+pronoun before it must match its person; the subjonctif needs "que". Turkish translations (517)
+are kept only when their verb endings fit the tense.
