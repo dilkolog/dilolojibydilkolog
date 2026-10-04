@@ -158,6 +158,8 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         <section className="section stack">
           {incoming && (
             <div className="card stack incoming">
+              {/* From the web (bookmarklet, extension); a word typed in the ⌘K palette needs no note. */}
+              {(incoming.src || incoming.context || !incoming.word) && (
               <p className="small muted">
                 <GlobeIcon size={16} className="inline-icon" />Web'den geldi{incoming.src && hostOf(incoming.src) && (
                   <>
@@ -166,6 +168,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
                 )}
                 {!incoming.word && ' · Cümledeki öğrenmek istediğin kelimeyi yaz.'}
               </p>
+              )}
               <WordForm
                 key={incoming.word + incoming.context}
                 db={db}
@@ -1167,6 +1170,7 @@ function WordList({
               {list.map((v, index) => {
                 const st = stateById.get(v.id)
                 const isSel = selected.has(v.id)
+                const due = st && !st.retired ? nextReviewAt(st) : undefined
                 return (
                   <li key={v.id} className={isSel ? 'is-selected' : ''}>
                     <button
@@ -1180,7 +1184,7 @@ function WordList({
                       </span>
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
-                        <span className="w">{displayForm(v)}</span>
+                        <span className="w" lang={v.language}>{displayForm(v)}</span>
                         <span className="meta">
                           {v.senses[0].gloss}
                           {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
@@ -1191,6 +1195,8 @@ function WordList({
                         </span>
                       </span>
                       {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
+                      {/* When the word comes back: the one thing a list row can't otherwise tell. */}
+                      <span className={`word-row-due${due && due.getTime() <= now.getTime() ? ' is-due' : ''}`}>{st ? (due ? dueShort(due, now) : 'emekli') : 'sırada'}</span>
                     </button>
                   </li>
                 )
@@ -1202,6 +1208,16 @@ function WordList({
       )}
     </section>
   )
+}
+
+/** "bugün", "yarın", "5 gün", "12 Kas": short enough for the end of a list row. */
+function dueShort(d: Date, now: Date): string {
+  const day = (x: Date) => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime()
+  const diff = Math.round((day(d) - day(now)) / 86_400_000)
+  if (diff <= 0) return 'bugün'
+  if (diff === 1) return 'yarın'
+  if (diff < 30) return `${diff} gün`
+  return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })
 }
 
 /** A table header that sorts by its column. */

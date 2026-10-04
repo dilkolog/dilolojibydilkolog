@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { stripDiacritics } from '../engine/answerCheck'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
 
@@ -13,7 +14,10 @@ export interface Command {
 }
 
 const RECENT_KEY = 'kelime-koc:palette-recent'
-const GROUP_ORDER = ['Son kullanılanlar', 'Kelimeler', 'İşlemler', 'Ekranlar', 'Dil']
+const GROUP_ORDER = ['Son kullanılanlar', 'Kelimeler', 'İşlemler', 'Oyunlar', 'Ekranlar', 'Dil', 'Yeni kelime']
+
+/** Matching ignores case and accents, so "cekim" finds "Çekim" and "decision" finds "décision". */
+const fold = (s: string) => stripDiacritics(s.toLocaleLowerCase('tr')).replace(/ı/g, 'i')
 
 function loadRecent(): string[] {
   try {
@@ -33,17 +37,20 @@ function remember(id: string) {
 
 /**
  * ⌘K / Ctrl+K: jump anywhere or open any word from the keyboard. Words match on the word, its
- * meanings and notes; commands match on their label.
+ * meanings and notes; commands match on their label. A word that isn't in the list yet can be
+ * added from here.
  */
 export function CommandPalette({
   commands,
   vocabulary,
   onOpenWord,
+  onAddWord,
   onClose,
 }: {
   commands: Command[]
   vocabulary: VocabularyEntry[]
   onOpenWord: (id: string) => void
+  onAddWord?: (word: string) => void
   onClose: () => void
 }) {
   const [q, setQ] = useState('')
@@ -54,13 +61,13 @@ export function CommandPalette({
   useEffect(() => input.current?.focus(), [])
 
   const items = useMemo(() => {
-    const query = q.trim().toLocaleLowerCase('tr')
-    const cmds = commands.filter((c) => !query || c.label.toLocaleLowerCase('tr').includes(query))
+    const query = fold(q.trim())
+    const cmds = commands.filter((c) => !query || fold(c.label).includes(query))
     const words = query
       ? vocabulary
-          .filter((v) => [v.lemma, v.senses[0].gloss, ...(v.senses[0].altGlosses ?? []), v.notes ?? ''].some((t) => t.toLocaleLowerCase('tr').includes(query)))
+          .filter((v) => [v.lemma, v.senses[0].gloss, ...(v.senses[0].altGlosses ?? []), v.notes ?? ''].some((t) => fold(t).includes(query)))
           // Words starting with the query first.
-          .sort((a, b) => Number(!a.lemma.toLocaleLowerCase('tr').startsWith(query)) - Number(!b.lemma.toLocaleLowerCase('tr').startsWith(query)))
+          .sort((a, b) => Number(!fold(a.lemma).startsWith(query)) - Number(!fold(b.lemma).startsWith(query)))
           .slice(0, 8)
           .map<Command>((v) => ({ id: `word:${v.id}`, label: displayForm(v), hint: v.senses[0].gloss, group: 'Kelimeler', run: () => onOpenWord(v.id) }))
       : []
@@ -72,9 +79,15 @@ export function CommandPalette({
           .filter((c): c is Command => !!c)
           .map((c) => ({ ...c, group: 'Son kullanılanlar' }))
     const rest = cmds.filter((c) => !recent.some((r) => r.id === c.id))
-    const all = [...recent, ...words, ...rest]
+    // Not in the list yet: offer to add it, prefilled.
+    const typed = q.trim()
+    const add: Command[] =
+      onAddWord && typed && !vocabulary.some((v) => fold(v.lemma) === query)
+        ? [{ id: 'add-typed', label: `“${typed}” kelimesini ekle`, icon: '+', group: 'Yeni kelime', run: () => onAddWord(typed) }]
+        : []
+    const all = [...recent, ...words, ...rest, ...add]
     return all.sort((a, b) => GROUP_ORDER.indexOf(a.group ?? 'Ekranlar') - GROUP_ORDER.indexOf(b.group ?? 'Ekranlar'))
-  }, [q, commands, vocabulary, onOpenWord])
+  }, [q, commands, vocabulary, onOpenWord, onAddWord])
 
   useEffect(() => setActive(0), [q])
   useEffect(() => {
@@ -83,7 +96,7 @@ export function CommandPalette({
 
   const run = (c: Command | undefined) => {
     if (!c) return
-    if (!c.id.startsWith('word:')) remember(c.id)
+    if (!c.id.startsWith('word:') && c.id !== 'add-typed') remember(c.id)
     onClose()
     c.run()
   }

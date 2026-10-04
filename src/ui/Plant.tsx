@@ -16,7 +16,8 @@ export function Plant({ stage, health = 'fresh', size = 24 }: { stage: number; h
   const top = 34 - stem
   const label = stage < 0 ? 'Henüz ekilmedi' : `${STAGE_NAME[MASTERY_STAGES[stage]]}, ${HEALTH_TEXT[health]}`
   return (
-    <svg width={size} height={size} viewBox="0 0 40 40" role="img" aria-label={label} className={`plant plant-${health}`}>
+    // A seed or a sprout is tiny on the full 40-unit ground; its own, closer frame keeps it legible.
+    <svg width={size} height={size} viewBox={stage <= 0 ? '6 12 28 28' : '0 0 40 40'} role="img" aria-label={label} className={`plant plant-${health}`}>
       <title>{label}</title>
       <ellipse cx="20" cy="35.5" rx="12" ry="3.2" fill="var(--plant-soil)" />
       {stage < 0 ? (

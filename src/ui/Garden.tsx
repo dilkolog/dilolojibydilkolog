@@ -25,10 +25,14 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
   return (
     <section className="stack mt-4">
       <div className="garden-head card">
-        <p>
-          <strong>{summary.byStage[5]}</strong> çiçek açtı · <strong>{summary.byStage.slice(1, 5).reduce((a, b) => a + b, 0)}</strong> büyüyor ·{' '}
-          <strong>{summary.byStage[0]}</strong> filiz · {summary.seeds} tohum
-        </p>
+        <GardenBar
+          parts={[
+            { key: 'flower', label: 'çiçek açtı', n: summary.byStage[5] },
+            { key: 'growing', label: 'büyüyor', n: summary.byStage.slice(1, 5).reduce((a, b) => a + b, 0) },
+            { key: 'sprout', label: 'filiz', n: summary.byStage[0] },
+            { key: 'seed', label: 'tohum', n: summary.seeds },
+          ]}
+        />
         {water.length > 0 ? (
           <div className="row">
             <span className="small">
@@ -49,7 +53,9 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         .map((b) => (
           <div key={b.stage} className="bed">
             <h3 className="small bed-title">
-              <Plant stage={b.stage} size={20} />
+              <span className="bed-title-plant" aria-hidden>
+                <Plant stage={b.stage} size={26} />
+              </span>
               {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="bed-count">{b.words.length}</span>
             </h3>
             <ul className="bed-plants">
@@ -58,7 +64,8 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
                 return (
                 <li key={w.id}>
                   <button className={`plant-tile is-${health}`} onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}${health !== 'fresh' ? ' · su istiyor' : ''}`}>
-                    <Plant stage={b.stage} health={health} size={44} />
+                    <Plant stage={b.stage} health={health} size={52} />
+                    {health !== 'fresh' && <DropIcon size={14} solid className="plant-drop" />}
                     <span className="plant-name" lang={w.language}>
                       {w.lemma}
                     </span>
@@ -72,14 +79,16 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
       {seeds.length > 0 && (
         <div className="bed">
           <h3 className="small bed-title">
-            <Plant stage={-1} size={20} />
+            <span className="bed-title-plant" aria-hidden>
+              <Plant stage={-1} size={26} />
+            </span>
             Tohumlar <span className="bed-count">{seeds.length}</span> <span className="muted">henüz ekilmedi</span>
           </h3>
           <ul className="bed-plants">
             {seeds.slice(0, 60).map((w) => (
               <li key={w.id}>
                 <button className="plant-tile" onClick={() => onOpen(w.id)} title={w.senses[0].gloss}>
-                  <Plant stage={-1} size={32} />
+                  <Plant stage={-1} size={44} />
                   <span className="plant-name" lang={w.language}>
                     {w.lemma}
                   </span>
@@ -90,6 +99,31 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         </div>
       )}
     </section>
+  )
+}
+
+/** The garden in one line: how many words are at each stage, as a bar with its own legend. */
+function GardenBar({ parts }: { parts: { key: string; label: string; n: number }[] }) {
+  const total = parts.reduce((a, p) => a + p.n, 0)
+  if (!total) return null
+  return (
+    <div className="garden-bar-wrap">
+      <div className="garden-bar" role="img" aria-label={parts.map((p) => `${p.n} ${p.label}`).join(', ')}>
+        {parts
+          .filter((p) => p.n)
+          .map((p) => (
+            <span key={p.key} className={`garden-bar-seg is-${p.key}`} style={{ flexGrow: p.n }} />
+          ))}
+      </div>
+      <ul className="garden-legend">
+        {parts.map((p) => (
+          <li key={p.key} className={p.n ? undefined : 'is-zero'}>
+            <span className={`garden-key is-${p.key}`} aria-hidden />
+            <strong>{p.n}</strong> {p.label}
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

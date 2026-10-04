@@ -24,8 +24,9 @@ import { ConjugationGame } from './games/ConjugationGame'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
+import type { GameId } from './gameList'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | 'accent' | 'conjugation' | null
+type Game = GameId | null
 
 export function GamesScreen(p: Props & { initialGame?: Game }) {
   const [game, setGame] = useState<Game>(p.initialGame ?? null)

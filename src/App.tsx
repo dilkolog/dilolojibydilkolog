@@ -28,6 +28,7 @@ import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
+import { Glyph } from './ui/Glyph'
 import { GameContext, loadGame, type GameState } from './ui/game'
 import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
@@ -46,6 +47,7 @@ import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
 import { CommandPalette, type Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
+import { GAME_LIST, type GameId } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 import { AuthScreen, type AuthMode } from './ui/AuthScreen'
 import { Toaster } from './ui/toast'
@@ -102,7 +104,7 @@ type Screen =
   | { name: 'vocabtest' }
   | { name: 'produce' }
   | { name: 'exam' }
-  | { name: 'games'; game?: 'sentences' }
+  | { name: 'games'; game?: GameId }
   | { name: 'profile' }
   | { name: 'settings' }
   | { name: 'account'; mode?: AuthMode }
@@ -560,6 +562,13 @@ export default function App() {
       : []),
     { id: 'vocabtest', label: 'Kelime dağarcığı testi', icon: <TargetIcon size={18} />, group: 'İşlemler', run: go({ name: 'vocabtest' }) },
     { id: 'exam', label: 'Hatırlama sınavı', icon: <CheckIcon size={18} />, group: 'İşlemler', run: go({ name: 'exam' }) },
+    ...GAME_LIST.filter((g) => !g.grammar || settings.activeLanguage !== 'en').map((g) => ({
+      id: `game-${g.id}`,
+      label: g.name,
+      icon: <Glyph emoji={g.emoji} size={18} />,
+      group: 'Oyunlar',
+      run: go({ name: 'games', game: g.id }),
+    })),
     ...NAV.map((n) => ({ id: n.screen, label: n.label, icon: <n.icon size={18} />, group: 'Ekranlar', run: go({ name: n.screen }) })),
     ...TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage).map((l) => ({
       id: `lang-${l}`,
@@ -675,7 +684,11 @@ export default function App() {
                 aria-expanded={more}
                 onClick={() => setMore(true)}
               >
-                <MoreIcon size={22} />
+                <span className="tab-icon">
+                  <MoreIcon size={22} />
+                  {/* Something waiting behind "Daha" (open mistakes) shows here too, not only in the sheet. */}
+                  {NAV.some((n) => !TABS.includes(n.screen) && navBadge[n.screen]) && <span className="tab-dot" aria-label="Diğer bölümlerde bekleyen var" />}
+                </span>
                 <span>Daha</span>
               </button>
             </nav>
@@ -696,7 +709,14 @@ export default function App() {
                 <div className="more-grid">
                   {NAV.filter((n) => !TABS.includes(n.screen)).map((n) => (
                     <button key={n.screen} className="more-item" aria-current={current(n.screen) ? 'page' : undefined} onClick={go({ name: n.screen })}>
-                      <n.icon size={24} />
+                      <span className="tab-icon">
+                        <n.icon size={24} />
+                        {!!navBadge[n.screen] && (
+                          <span className="more-count" aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`}>
+                            {navBadge[n.screen]}
+                          </span>
+                        )}
+                      </span>
                       <span>{n.label}</span>
                     </button>
                   ))}
@@ -931,6 +951,7 @@ export default function App() {
               commands={commands}
               vocabulary={data.vocabulary}
               onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
+              onAddWord={(word) => setIncoming({ word, context: '' })}
               onClose={() => setPalette(false)}
             />
           )}
