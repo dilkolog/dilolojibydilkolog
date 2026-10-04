@@ -69,7 +69,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] ⭐⭐⭐ **FR/ES cinsiyet (artikel) alıştırması** (S)
   Artikel şu an sadece gösteriliyor. "le/la", "el/la" seçme sorusu + renk kodu
   (cinsiyet hataları ileri düzeyde bile kalıcı). Ayrı bir beceri kartı olabilir.
-- [x] ⭐⭐ **Fiil çekim mini-alıştırması** (M) — sık fiiller için zaman/şahıs çekimi.
+- [x] ⭐⭐ **Fiil çekim mini-alıştırması** (M) — sık fiiller için zaman/şahıs çekimi. 2026-10-05: FR 6, ES 7 zaman; kelime sayfasında sekmeler, oturumda kademeli açılma, Oyunlar → Çekim antrenmanı.
 
 ## 6. Dinleme ve telaffuz
 
