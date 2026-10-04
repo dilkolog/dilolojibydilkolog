@@ -33,7 +33,7 @@ import { isRetired } from '../engine/retire'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
-import { ChartIcon, LeafIcon, PenIcon, SpeakerIcon } from './icons'
+import { ChartIcon, LeafIcon, PenIcon, SlowIcon, SpeakerIcon, UmbrellaIcon } from './icons'
 import { deleteWordsWithUndo } from './undo'
 
 interface Props {
@@ -171,11 +171,11 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         <CrossLanguageNotes entry={entry} />
         {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
         {fragile && (
-          <p className="small fragile-note">🐢 Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
+          <p className="small fragile-note"><SlowIcon size={16} className="inline-icon" />Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
         )}
         {state && isRetired(state, prefs.autoRetire) ? (
           <p className="small retired-note">
-            🏖️ Emekli: bu kelimeyi çok iyi biliyorsun, rutin tekrarlara gelmiyor; arada bir sürpriz kontrol gelir, yanılırsan geri döner.{' '}
+            <UmbrellaIcon size={16} className="inline-icon" />Emekli: bu kelimeyi çok iyi biliyorsun, rutin tekrarlara gelmiyor; arada bir sürpriz kontrol gelir, yanılırsan geri döner.{' '}
             <button className="link small" onClick={() => setRetired(false)}>
               Rutine geri al
             </button>

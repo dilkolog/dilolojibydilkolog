@@ -3,7 +3,7 @@ import { MINIMAL_PAIRS, pairRound, type PairQuestion } from '../../engine/listen
 import { nativeRecordings } from '../../data/wordInfo'
 import { createRng } from '../../engine/rng'
 import { db } from '../../data/instance'
-import { SpeakerIcon } from '../icons'
+import { SpeakerIcon, TrophyIcon } from '../icons'
 import { sfx } from '../sounds'
 import { speakAsync } from '../speech'
 import type { Props } from './shared'
@@ -124,7 +124,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
             {voices === null
               ? 'Gerçek ses kayıtları aranıyor…'
               : recorded
-                ? `🎙️ ${recorded} çiftte ana dili konuşanların kayıtları var; her seferinde başka bir ses çalar (çok sesle eğitim kulağı en iyi eğitiyor).`
+                ? `${recorded} çiftte ana dili konuşanların kayıtları var; her seferinde başka bir ses çalar (çok sesle eğitim kulağı en iyi eğitiyor).`
                 : 'Gerçek kayıt bulunamadı; cihaz sesi kullanılıyor.'}
           </p>
           <div className="options">
@@ -159,7 +159,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
 
       {done && (
         <div className="celebrate stack">
-          <h1>{record ? 'Yeni rekor! 🏆' : 'Tur bitti'}</h1>
+          <h1>{record && <TrophyIcon size={26} className="inline-icon record-icon" />}{record ? 'Yeni rekor!' : 'Tur bitti'}</h1>
           <p className="xp-gain">
             {right} / {round.length} doğru
           </p>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { MoonIcon, PinIcon } from './icons'
 import type { Settings } from '../data/db'
 
 /** From this hour, a short review of today's new words before sleep is suggested. */
@@ -33,7 +34,7 @@ export function HabitCards({
       {evening && (
         <section className="habit card">
           <span className="habit-icon" aria-hidden>
-            🌙
+            <MoonIcon size={24} />
           </span>
           <div className="stack gap-xs">
             <strong>Yatmadan önce 2 dakika</strong>
@@ -51,7 +52,7 @@ export function HabitCards({
       {!settings.studyPlan && !settings.studyPlanAsked && (
         <section className="habit card">
           <span className="habit-icon" aria-hidden>
-            📍
+            <PinIcon size={24} />
           </span>
           <form
             className="stack gap-2 grow"
@@ -79,7 +80,7 @@ export function HabitCards({
 
       {settings.studyPlan && (
         <p className="small muted habit-plan">
-          📍 Planın: <strong>{settings.studyPlan}</strong>
+          <PinIcon size={16} className="inline-icon" />Planın: <strong>{settings.studyPlan}</strong>
           {settings.reminder.enabled && `, hatırlatma ${settings.reminder.time}`}
         </p>
       )}

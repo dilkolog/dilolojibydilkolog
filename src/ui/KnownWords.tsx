@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { TargetIcon } from './icons'
 import { State } from 'ts-fsrs'
 import type { KelimeDB } from '../data/db'
 import { localDate } from '../engine/progress'
@@ -145,7 +146,7 @@ function GoalStatus({ goal, forecast, onEdit }: { goal: KnownGoal; forecast: Goa
   const by = fmtDate(new Date(`${goal.by}T12:00:00`))
   return (
     <p className={`small goal-status${forecast.onTrack ? ' is-on' : ''}`}>
-      🎯 Hedef: {by} itibarıyla {goal.target.toLocaleString('tr-TR')} kelime.{' '}
+      <TargetIcon size={16} className="inline-icon" />Hedef: {by} itibarıyla {goal.target.toLocaleString('tr-TR')} kelime.{' '}
       {forecast.pace === null
         ? 'Hızını hesaplamak için bir haftalık kayıt gerekiyor.'
         : forecast.onTrack
@@ -165,7 +166,7 @@ function GoalForm({ initial, compact, onSave, onClear }: { initial: KnownGoal; c
   if (!open)
     return (
       <button className="link small" onClick={() => setOpen(true)}>
-        🎯 Hedef koy
+        <TargetIcon size={16} className="inline-icon" />Hedef koy
       </button>
     )
   const n = Number(target)

@@ -5,7 +5,7 @@ import type { VocabularyEntry } from '../../engine/types'
 import { WordInputError } from '../../data/wordInput'
 import { POS_NAME } from '../labels'
 import { CrossLanguageNotes } from '../CrossLanguage'
-import { SpeakerIcon } from '../icons'
+import { BulbIcon, PenIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { sfx } from '../sounds'
 import { canSpeak, speak, speechPrefs } from '../speech'
@@ -124,7 +124,7 @@ export function Intro({
         )}
         <CrossLanguageNotes entry={entry} compact />
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
-        {entry.notes && <p className="note">💡 {entry.notes}</p>}
+        {entry.notes && <p className="note"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
         {example && (
           <div className="row items-start nowrap">
             <Sentence text={example.text} translation={example.translation} />
@@ -160,11 +160,11 @@ function OwnSentence({ entry, onSave }: { entry: VocabularyEntry; onSave: (text:
   const [text, setText] = useState('')
   const [error, setError] = useState('')
   const [saved, setSaved] = useState(false)
-  if (saved) return <p className="small notice">✍️ Cümlen kaydedildi; alıştırmalarda karşına çıkacak.</p>
+  if (saved) return <p className="small notice"><PenIcon size={16} className="inline-icon" />Cümlen kaydedildi; alıştırmalarda karşına çıkacak.</p>
   if (!open) {
     return (
       <button className="link small own-link" onClick={() => setOpen(true)}>
-        ✍️ Bu kelimeyle kendi hayatından bir cümle yaz (isteğe bağlı)
+        <PenIcon size={16} className="inline-icon" />Bu kelimeyle kendi hayatından bir cümle yaz (isteğe bağlı)
       </button>
     )
   }

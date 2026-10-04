@@ -8,6 +8,7 @@ import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { AccountSettings } from './AccountSettings'
+import type { AuthMode } from './AuthScreen'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
 import { ReminderSuggestion } from './BestHours'
@@ -187,12 +188,14 @@ export function SettingsScreen({
   onDataChanged,
   pushState,
   onOpenProfile,
+  onOpenAuth,
 }: {
   settings: Settings
   onChange: (s: Settings) => void
   onDataChanged: () => void
   pushState: PushState
   onOpenProfile?: () => void
+  onOpenAuth?: (mode: AuthMode) => void
 }) {
   const [density, setDensityState] = useState<Density>(getDensity)
   const [active, setActive] = useState<GroupId>(() => {
@@ -377,7 +380,7 @@ export function SettingsScreen({
           {searching && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
 
           <Pane {...pane('s-account')}>
-            <AccountSettings />
+            <AccountSettings onOpenAuth={onOpenAuth} />
           </Pane>
 
           <Pane {...pane('s-study')}>

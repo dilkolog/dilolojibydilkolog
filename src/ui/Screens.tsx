@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { Glyph } from './Glyph'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
 import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
@@ -6,7 +7,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, CheckIcon, GameIcon, ShuffleIcon, SparkleIcon, StarIcon, StoryIcon } from './icons'
+import { AlertIcon, BookIcon, BrandMark, CheckCircleIcon, CheckIcon, CloseIcon, GameIcon, ShuffleIcon, SlowIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -419,7 +420,7 @@ export function Home({
               <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak}
               {(game?.freezes ?? 0) > 0 && (
                 <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
-                  ❄️{game!.freezes}
+                  <SnowflakeIcon size={15} className="inline-icon" />{game!.freezes}
                 </span>
               )}
             </span>
@@ -448,7 +449,7 @@ export function Home({
             <ul className="quest-list">
               {game.quests.map((q) => (
                 <li key={q.id} className={q.done ? 'is-done' : ''}>
-                  <span className="quest-icon">{q.done ? '✅' : q.icon}</span>
+                  <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
                   <span className="quest-body">
                     <span className="quest-top">
                       <strong>{q.title}</strong>
@@ -477,7 +478,7 @@ export function Home({
                 <ul className="quest-list">
                   {game.weekly.map((q) => (
                     <li key={q.id} className={q.done ? 'is-done' : ''}>
-                      <span className="quest-icon">{q.done ? '🏅' : q.icon}</span>
+                      <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
                       <span className="quest-body">
                         <span className="quest-top">
                           <strong>{q.title}</strong>
@@ -666,14 +667,15 @@ export function Summary({
       )}
       {!practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7) && (
         <p className="habit-tip">
+          <TargetIcon size={16} className="inline-icon" />
           {accuracy > 0.93
-            ? '🎯 Bu oturum biraz kolaydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: Ayarlar\'dan günlük yeni kelime sayısını artırabilirsin.'
-            : '🎯 Bu oturum zorlayıcıydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: birkaç gün yeni kelime sayısını azaltıp tekrarlara ağırlık vermek daha verimli olabilir.'}
+            ? 'Bu oturum biraz kolaydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: Ayarlar\'dan günlük yeni kelime sayısını artırabilirsin.'
+            : 'Bu oturum zorlayıcıydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: birkaç gün yeni kelime sayısını azaltıp tekrarlara ağırlık vermek daha verimli olabilir.'}
         </p>
       )}
       {summary.answered >= LONG_SESSION && (
         <p className="habit-tip">
-          ⏱️ Uzun bir oturumdu. Aynı süreyi gün içine yayılmış 2–3 kısa tura bölmek daha kalıcı öğretir (dağıtılmış pratik): bir sonraki turu birkaç saat sonra
+          <SlowIcon size={16} className="inline-icon" />Uzun bir oturumdu. Aynı süreyi gün içine yayılmış 2–3 kısa tura bölmek daha kalıcı öğretir (dağıtılmış pratik): bir sonraki turu birkaç saat sonra
           yap.
         </p>
       )}
@@ -728,7 +730,7 @@ export function Summary({
                       <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small">
-                        {w.correct > 0 && <span className="garden-ok">✓ {w.correct}</span>} {w.wrong > 0 && <span className="garden-bad">✗ {w.wrong}</span>}
+                        {w.correct > 0 && <span className="garden-ok"><CheckIcon size={13} className="inline-icon" />{w.correct}</span>} {w.wrong > 0 && <span className="garden-bad"><CloseIcon size={13} className="inline-icon" />{w.wrong}</span>}
                         {w.wrong > 0 && !practice && <span className="muted"> · yakında tekrar</span>}
                       </span>
                     </span>

@@ -308,9 +308,9 @@ describe('options that do not give the answer away', () => {
     const e1 = { ...ex('a', 'a'), metIn: 'Le Monde' }
     const e2 = ex('b', 'b')
     const withEx = { ...own, senses: [{ ...own.senses[0], examples: [e1, e2] }] }
-    expect(exampleSource(e1, withEx)).toContain('Le Monde')
-    expect(exampleSource(e2, withEx)).toBe('📌 Eklediğin cümle')
-    expect(exampleSource({ ...e2, personal: true }, { ...withEx, senses: [{ ...withEx.senses[0], examples: [{ ...e2, personal: true }] }] })).toBe('✍️ Kendi cümlen')
+    expect(exampleSource(e1, withEx)?.text).toContain('Le Monde')
+    expect(exampleSource(e2, withEx)).toEqual({ kind: 'added', text: 'Eklediğin cümle' })
+    expect(exampleSource({ ...e2, personal: true }, { ...withEx, senses: [{ ...withEx.senses[0], examples: [{ ...e2, personal: true }] }] })).toEqual({ kind: 'own', text: 'Kendi cümlen' })
     expect(exampleSource(e2, { ...withEx, source: 'sample' })).toBeUndefined()
     expect(exampleSource(ex('c', 'c'), withEx)).toBeUndefined()
   })

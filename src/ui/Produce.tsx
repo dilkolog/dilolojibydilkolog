@@ -13,7 +13,8 @@ import type { JournalEntry, KelimeDB } from '../data/db'
 import { scheduler } from '../data/instance'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
 import { useAi } from './aiContext'
-import { BrandMark, SpeakerIcon } from './icons'
+import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon } from './icons'
+import { Glyph } from './Glyph'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
 import { canListen, listen } from './speechInput'
@@ -177,7 +178,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
       </section>
 
       {last?.review && <Review entry={last} language={language} added={added} />}
-      {last?.review && credited > 0 && <p className="small notice">✨ {credited} kelimeyi kendiliğinden doğru kullandın; bunlar üretim tekrarı olarak işlendi.</p>}
+      {last?.review && credited > 0 && <p className="small notice"><SparkleIcon size={16} className="inline-icon" />{credited} kelimeyi kendiliğinden doğru kullandın; bunlar üretim tekrarı olarak işlendi.</p>}
 
       <section className="section stack">
         <h2 className="section-title">Önceki yazdıkların</h2>
@@ -249,7 +250,7 @@ function Review({ entry, language, added }: { entry: JournalEntry; language: Tar
           </ul>
         </div>
       )}
-      {r.usedWords.length > 0 && <p className="small">✓ Doğru kullandıkların: {r.usedWords.join(', ')}</p>}
+      {r.usedWords.length > 0 && <p className="small"><CheckIcon size={15} className="inline-icon" />Doğru kullandıkların: {r.usedWords.join(', ')}</p>}
       {added !== undefined && added > 0 && <p className="small muted">{added} hata kelimelerinin hata bankasına eklendi; tekrarlarda karşına çıkacak.</p>}
     </section>
   )
@@ -385,11 +386,9 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
           {MISSIONS.map((m) => (
             <button key={m.id} className="mission-card" onClick={() => begin(m)}>
               <span className="mission-head">
-                <span className="game-emoji">{m.emoji}</span>
+                <span className="game-emoji" aria-hidden><Glyph emoji={m.emoji} size={22} /></span>
                 <strong>{m.title}</strong>
-                <span className="mission-stars" aria-label={`${best[m.id] ?? 0} yıldız`}>
-                  {[1, 2, 3].map((i) => (i <= (best[m.id] ?? 0) ? '★' : '☆')).join('')}
-                </span>
+                <Stars n={best[m.id] ?? 0} />
               </span>
               <span className="small muted">{m.scenario}</span>
               <ul className="mission-goals small">
@@ -429,7 +428,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
             Sohbeti başlat
           </button>
           <button className="chip chip-sm" aria-pressed={voice} onClick={() => setVoice(!voice)}>
-            🔊 Cevapları sesli oku
+            <SpeakerIcon size={15} className="inline-icon" />Cevapları sesli oku
           </button>
         </div>
       </section>
@@ -456,7 +455,8 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
           <ul className="mission-check">
             {active.goals.map((g, i) => (
               <li key={g} className={goalsDone.has(i) ? 'is-done' : ''}>
-                {goalsDone.has(i) ? '✓' : '○'} {g}
+                {goalsDone.has(i) ? <CheckCircleIcon size={16} className="inline-icon" solid /> : <span className="goal-dot" aria-hidden />}
+                {g}
               </li>
             ))}
           </ul>
@@ -465,7 +465,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
               Kullan:{' '}
               {words.map((w) => (
                 <span key={w.id} className={`mission-word${used.has(displayForm(w)) ? ' is-done' : ''}`} lang={language} title={w.senses[0].gloss}>
-                  {used.has(displayForm(w)) ? '✓ ' : ''}
+                  {used.has(displayForm(w)) && <CheckIcon size={13} className="inline-icon" />}
                   {displayForm(w)}
                 </span>
               ))}
@@ -473,7 +473,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
           )}
           {complete && !ended && (
             <p className="notice">
-              🎉 Bütün hedefler tamam!{' '}
+              <SparkleIcon size={16} className="inline-icon" />Bütün hedefler tamam!{' '}
               <button className="link" onClick={finish}>
                 Görevi bitir
               </button>
@@ -517,7 +517,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
           <strong>{active ? 'Görev bitti' : 'Sohbet bitti'}</strong>
           {active && stars !== null && (
             <p className="mission-result">
-              <span className="mission-stars">{[1, 2, 3].map((i) => (i <= stars ? '★' : '☆')).join('')}</span>{' '}
+              <Stars n={stars} />{' '}
               {goalsDone.size}/{active.goals.length} hedef, {wordsUsed}/{words.length} kelime.{' '}
               {stars === 3 ? 'Kusursuz!' : stars === 2 ? 'Üç yıldız için kelimelerin hepsini de kullan.' : 'Kalan hedefleri tamamlamak için tekrar dene.'}
             </p>
@@ -525,7 +525,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
           <p className="small">
             {lines.filter((l) => l.role === 'user').length} kez konuştun, {corrections.length} düzeltme.
             {used.size > 0 && ` Doğru kullandığın kelimeler: ${[...used].join(', ')}.`}
-            {creditedCount > 0 && ` ✨ ${creditedCount} kelime üretim tekrarı olarak işlendi.`}
+            {creditedCount > 0 && ` ${creditedCount} kelime üretim tekrarı olarak işlendi.`}
           </p>
           <div>
             <button className="btn" onClick={() => setLines(null)}>
@@ -557,7 +557,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
             </button>
             {canListen() && (
               <button className={`btn btn-quiet${hearing ? ' is-on' : ''}`} onClick={talk}>
-                {hearing ? '⏹ Dinlemeyi bitir' : '🎤 Konuş'}
+                {hearing ? <><StopIcon size={14} className="inline-icon" />Dinlemeyi bitir</> : <><MicIcon size={16} className="inline-icon" />Konuş</>}
               </button>
             )}
             <button className="link small" onClick={finish}>
@@ -567,5 +567,16 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
         </div>
       )}
     </div>
+  )
+}
+
+/** A mission's result as three stars, earned ones filled. */
+function Stars({ n }: { n: number }) {
+  return (
+    <span className="mission-stars" role="img" aria-label={`${n} yıldız`}>
+      {[1, 2, 3].map((i) => (
+        <StarIcon key={i} size={16} solid={i <= n} className={i <= n ? 'is-on' : ''} />
+      ))}
+    </span>
   )
 }

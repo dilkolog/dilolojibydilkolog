@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { BLANK, type Evaluation } from '../../engine/exercises'
+import { BLANK, type ContextSource, type Evaluation } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
-import { SpeakerIcon } from '../icons'
+import { BookIcon, PenIcon, PinIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { canSpeak, isAudioPlaying, playWord } from '../speech'
 import { modalOpen } from './keys'
@@ -90,7 +90,7 @@ export function Word({ entry }: { entry: VocabularyEntry }) {
 }
 
 /** A sentence with its blank drawn as a line, and its translation. */
-export function Sentence({ text, translation, source, blankStart }: { text: string; translation?: string; source?: string; blankStart?: string }) {
+export function Sentence({ text, translation, source, blankStart }: { text: string; translation?: string; source?: ContextSource; blankStart?: string }) {
   const parts = text.split(BLANK)
   return (
     <div>
@@ -107,7 +107,12 @@ export function Sentence({ text, translation, source, blankStart }: { text: stri
         ))}
       </p>
       {translation && <p className="sentence-tr">{translation}</p>}
-      {source && <p className="sentence-source">{source}</p>}
+      {source && (
+        <p className="sentence-source">
+          {source.kind === 'reading' ? <BookIcon size={13} /> : source.kind === 'own' ? <PenIcon size={13} /> : <PinIcon size={13} />}
+          {source.text}
+        </p>
+      )}
     </div>
   )
 }

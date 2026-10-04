@@ -208,7 +208,7 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
         </button>
       </div>
       <p className="small muted">
-        İnsanların yazıp çevirdiği cümleler; 🔊 işaretlilerde ana dili konuşan birinin sesi var. Alıştırmalarda kendi cümlelerinle dönüşümlü kullanılır.
+        İnsanların yazıp çevirdiği cümleler; <SpeakerIcon size={14} className="inline-icon" />işaretlilerde ana dili konuşan birinin sesi var. Alıştırmalarda kendi cümlelerinle dönüşümlü kullanılır.
       </p>
       {corpus === undefined && !busy && <p className="small muted">Arka planda kendiliğinden gelecek; hemen istersen "Getir"e bas.</p>}
       {corpus?.length === 0 && <p className="small muted">Bu kelime için uygun cümle bulunamadı.</p>}

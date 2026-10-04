@@ -466,7 +466,7 @@ function WeekCard({ report, focus }: { report: ReturnType<typeof weekReport>; fo
           <strong>{t.daysStudied}</strong>/7 gün <Delta now={t.daysStudied} before={l.daysStudied} />
         </div>
       </div>
-      {focus && FOCUS_TEXT[focus] && <p className="small">🎯 Önerilen odak: {FOCUS_TEXT[focus]}</p>}
+      {focus && FOCUS_TEXT[focus] && <p className="small"><TargetIcon size={16} className="inline-icon" />Önerilen odak: {FOCUS_TEXT[focus]}</p>}
     </section>
   )
 }

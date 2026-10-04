@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { BulbIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { hourAdvice, hourBuckets, MIN_ANSWERS, type HourAdvice } from '../engine/hours'
 import type { ReviewEvent } from '../engine/types'
@@ -58,7 +59,7 @@ export function ReminderSuggestion({ db, current, onApply }: { db: KelimeDB; cur
   if (!advice || advice.reminder === current) return null
   return (
     <p className="small">
-      💡 Cevaplarına göre en iyi saatlerin {advice.best.label} (%{pct(advice.best.accuracy)} doğru).{' '}
+      <BulbIcon size={16} className="inline-icon" />Cevaplarına göre en iyi saatlerin {advice.best.label} (%{pct(advice.best.accuracy)} doğru).{' '}
       <button className="link small" onClick={() => onApply(advice.reminder)}>
         Hatırlatıcıyı {advice.reminder}'e al
       </button>

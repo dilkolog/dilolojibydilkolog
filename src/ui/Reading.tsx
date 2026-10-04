@@ -18,7 +18,7 @@ import { WordForm } from './Words'
 import { undoable } from './toast'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
-import { PlusIcon } from './icons'
+import { BookIcon, CheckCircleIcon, CheckIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
@@ -80,7 +80,7 @@ export function ReadingScreen({
   const [adding, setAdding] = useState<{ word: string; sentence: string } | null>(null)
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
-  const [bookError, setBookError] = useState('')
+  const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [toast, setToast] = useState('')
   const [reader, setReader] = useReaderPrefs()
   // Several words picked at once (⌘/Ctrl+click or multi-select mode), marked in one go.
@@ -192,7 +192,7 @@ export function ReadingScreen({
   /** An EPUB becomes one library entry per chapter, read in order. */
   const importBook = async (file: File) => {
     setMessage('')
-    setBookError('')
+    setBookError(null)
     try {
       const { parseEpub } = await import('../data/epub')
       const book = parseEpub(new Uint8Array(await file.arrayBuffer()))
@@ -210,32 +210,36 @@ export function ReadingScreen({
       }))
       await db.saveTexts(texts)
       if (lang === language) setLibrary((lib) => [...texts, ...(lib ?? [])])
-      setBookError(
-        lang === language
-          ? `📚 ${book.title}: ${texts.length} bölüm kütüphanene eklendi.`
-          : `📚 ${book.title} ${LANGUAGE_NAME[lang]} bir kitap; ${LANGUAGE_NAME[lang]} kütüphanene eklendi (${texts.length} bölüm).`,
-      )
+      setBookError({
+        ok: true,
+        text:
+          lang === language
+            ? `${book.title}: ${texts.length} bölüm kütüphanene eklendi.`
+            : `${book.title} ${LANGUAGE_NAME[lang]} bir kitap; ${LANGUAGE_NAME[lang]} kütüphanene eklendi (${texts.length} bölüm).`,
+      })
     } catch (e) {
       // Our own errors explain the problem; anything else is a file we couldn't read.
-      setBookError(e instanceof Error && e.name === 'EpubError' ? e.message : 'Kitap okunamadı.')
+      setBookError({ ok: false, text: e instanceof Error && e.name === 'EpubError' ? e.message : 'Kitap okunamadı.' })
     }
   }
 
   /** A YouTube video's subtitles in this language, as a reading text with a link back to the video. */
   const importYoutube = async () => {
-    setBookError('')
+    setBookError(null)
     setYtBusy(true)
     try {
       const res = await fetch(`/api/youtube?v=${encodeURIComponent(youtube.trim())}&lang=${language}`)
       const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; error?: string; available?: string[] }
       if (!res.ok || !j.text) {
-        setBookError(
-          j.error === 'no captions'
+        setBookError({
+          ok: false,
+          text:
+            j.error === 'no captions'
             ? `Bu videoda ${LANGUAGE_NAME[language]} altyazı yok${j.available?.length ? ` (olanlar: ${j.available.join(', ')})` : ''}.`
             : j.error === 'bad request'
               ? 'Bağlantı bir YouTube videosu gibi görünmüyor.'
               : 'Altyazı alınamadı; YouTube şu an izin vermiyor olabilir. Altyazıyı .srt olarak indirip yükleyebilirsin.',
-        )
+        })
         return
       }
       const item: ReadingText = {
@@ -252,7 +256,7 @@ export function ReadingScreen({
       setYoutube('')
       await open(item)
     } catch {
-      setBookError('Altyazı alınamadı; internet bağlantını kontrol et.')
+      setBookError({ ok: false, text: 'Altyazı alınamadı; internet bağlantını kontrol et.' })
     } finally {
       setYtBusy(false)
     }
@@ -262,7 +266,7 @@ export function ReadingScreen({
     const chapters = (library ?? []).filter((t) => t.book?.id === bookId)
     await db.deleteBook(bookId)
     setLibrary((lib) => (lib ?? []).filter((t) => t.book?.id !== bookId))
-    undoable(`📚 ${chapters[0]?.book?.title ?? 'Kitap'} silindi`, () => restore(chapters))
+    undoable(`${chapters[0]?.book?.title ?? 'Kitap'} silindi`, () => restore(chapters))
   }
 
   const restore = async (items: ReadingText[]) => {
@@ -276,7 +280,7 @@ export function ReadingScreen({
   /** Keeps the whole sentence as a sentence card, with the word it was saved for. */
   const keepSentence = async (sentence: string, focus: string) => {
     const ok = await saveSentence({ language, text: sentence, focus, source: current?.title })
-    setToast(ok ? '💬 Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı')
+    setToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı')
     window.setTimeout(() => setToast(''), 3000)
   }
 
@@ -475,7 +479,7 @@ export function ReadingScreen({
               <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
             </label>
             <label className="btn btn-quiet file-btn">
-              📚 Kitap yükle (EPUB)
+              <BookIcon size={16} className="inline-icon" />Kitap yükle (EPUB)
               <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
             </label>
           </div>
@@ -488,12 +492,13 @@ export function ReadingScreen({
           >
             <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı: altyazısı metin olarak gelir" aria-label="YouTube bağlantısı" inputMode="url" />
             <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
-              {ytBusy ? 'Getiriliyor…' : '▶️ Altyazıyı getir'}
+              {ytBusy ? 'Getiriliyor…' : <><PlayIcon size={14} className="inline-icon" />Altyazıyı getir</>}
             </button>
           </form>
           {bookError && (
-            <p className={bookError.startsWith('📚') ? 'notice' : 'error'} role="status">
-              {bookError}
+            <p className={bookError.ok ? 'notice' : 'error'} role="status">
+              {bookError.ok && <BookIcon size={16} className="inline-icon" />}
+              {bookError.text}
             </p>
           )}
           </div>
@@ -509,7 +514,7 @@ export function ReadingScreen({
             const item: ReadingText = {
               id: crypto.randomUUID(),
               language,
-              title: `🎧 ${episode.title}`,
+              title: episode.title,
               text: episode.text,
               audio: episode.audio,
               addedAt: new Date().toISOString(),
@@ -783,7 +788,7 @@ export function ReadingScreen({
                     Ekle
                   </button>
                   <button className="btn btn-quiet" onClick={() => keepSentence(x.sentence, x.word)} aria-label="Cümleyi kaydet" title="Cümleyi kaydet">
-                    💬
+                    <MessageIcon size={16} />
                   </button>
                 </span>
               </li>
@@ -925,7 +930,7 @@ function BookItem({
             {read ? 'Sıradaki' : 'Başla'}: {next.title}
           </button>
         ) : (
-          <span className="small notice">Kitabı bitirdin 🎉</span>
+          <span className="small notice"><CheckCircleIcon size={15} className="inline-icon" />Kitabı bitirdin</span>
         )}
         <button className="link small" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
           {expanded ? 'Bölümleri gizle' : 'Bölümler'}
@@ -945,7 +950,7 @@ function BookItem({
                 </button>
                 <span className={`small chapter-cov zone-${coverageZone(a.coverage)}`}>%{Math.round(a.coverage * 100)}</span>
                 <span className="small muted">{a.counts.unseen} yeni</span>
-                {c.readAt && <span className="small muted">✓</span>}
+                {c.readAt && <CheckIcon size={14} className="muted" />}
               </li>
             )
           })}

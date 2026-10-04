@@ -1,4 +1,6 @@
+import type { ReactNode } from 'react'
 import { useEffect, useState } from 'react'
+import { AlertIcon, FlowerIcon, GlobeIcon, LeafIcon, PlusIcon, SproutIcon, TrendDownIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { wordJourney, type JourneyStep } from '../engine/journey'
 import type { Mistake, UserWordState, VocabularyEntry } from '../engine/types'
@@ -48,7 +50,7 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
         return `Web'de karşına çıktı: ${s.where}`
     }
   }
-  const icon: Record<JourneyStep['kind'], string> = { added: '➕', introduced: '🌱', stage: '🌿', mistake: '⚠️', seen: '🌐' }
+  const icon: Record<JourneyStep['kind'], ReactNode> = { added: <PlusIcon />, introduced: <SproutIcon />, stage: <LeafIcon />, mistake: <AlertIcon />, seen: <GlobeIcon /> }
   return (
     <section className="section stack">
       <h2 className="section-title">Kelimenin yolculuğu</h2>
@@ -56,7 +58,7 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
         {steps.map((s, i) => (
           <li key={i} className={`journey-${s.kind}${s.kind === 'stage' && !s.up ? ' is-down' : ''}`}>
             <span className="journey-icon" aria-hidden>
-              {s.kind === 'stage' && s.stage === 'mastered' ? '🌸' : s.kind === 'stage' && !s.up ? '🍂' : icon[s.kind]}
+              {s.kind === 'stage' && s.stage === 'mastered' ? <FlowerIcon /> : s.kind === 'stage' && !s.up ? <TrendDownIcon /> : icon[s.kind]}
             </span>
             <span className="journey-text">{text(s)}</span>
             <span className="small muted">{fmt(s.at)}</span>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { HelpIcon } from './icons'
 import { AiError, prequestions, type PrequestionSet } from '../ai'
 import type { TargetLanguage } from '../engine/types'
 import { useAi } from './aiContext'
@@ -30,7 +31,7 @@ export function PrequestionsCard({ text, language, finished }: { text: string; l
     return (
       <div className="row">
         <button className="btn btn-sm btn-quiet" onClick={ask} disabled={busy}>
-          {busy ? 'Hazırlanıyor…' : '❓ Okumadan önce 3 soru'}
+          {busy ? 'Hazırlanıyor…' : <><HelpIcon size={16} className="inline-icon" />Okumadan önce 3 soru</>}
         </button>
         <span className="small muted">Cevaplarını arayarak okumak, metnin tamamını daha iyi akılda tutar.</span>
         {error && <span className="error small">{error}</span>}

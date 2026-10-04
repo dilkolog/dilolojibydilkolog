@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import type { MedalTier } from '../engine/gamification'
+import { glyphFor } from './Glyph'
 
 const TIER: Record<MedalTier, { rim: [string, string]; face: [string, string]; ribbon: [string, string] }> = {
   bronze: { rim: ['#e8a76f', '#9a5a2b'], face: ['#f6d3b0', '#d79a68'], ribbon: ['#c2410c', '#9a3412'] },
@@ -17,6 +18,7 @@ export function Medal({ icon, tier, unlocked, progress = 0, size = 64 }: { icon:
   const t = TIER[tier]
   const r = 25
   const arc = 2 * Math.PI * (r + 4.5)
+  const Art = glyphFor(icon)
   return (
     <svg width={size} height={size * 1.15} viewBox="0 0 64 74" className={`medal${unlocked ? ' is-unlocked' : ''}`} aria-hidden>
       <defs>
@@ -35,9 +37,15 @@ export function Medal({ icon, tier, unlocked, progress = 0, size = 64 }: { icon:
         <circle cx="32" cy="31" r={r} fill={`url(#rim${id})`} />
         <circle cx="32" cy="31" r={r - 4} fill={`url(#face${id})`} />
         <circle cx="32" cy="31" r={r - 4} fill="none" stroke="rgb(255 255 255 / 0.55)" strokeWidth="1" strokeDasharray="2 3" />
-        <text x="32" y="32" textAnchor="middle" dominantBaseline="central" fontSize="22">
-          {icon}
-        </text>
+        {Art ? (
+          <g transform="translate(20 19)" style={{ color: t.ribbon[1] }}>
+            <Art size={24} solid />
+          </g>
+        ) : (
+          <text x="32" y="32" textAnchor="middle" dominantBaseline="central" fontSize="22">
+            {icon}
+          </text>
+        )}
       </g>
       {!unlocked && progress > 0 && (
         <circle

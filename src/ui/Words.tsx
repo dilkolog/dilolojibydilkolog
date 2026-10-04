@@ -11,7 +11,7 @@ import { turkishMeanings, type TurkishMeanings } from '../data/wordInfo'
 import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
-import { SparkleIcon, PlusIcon } from './icons'
+import { CheckIcon, GlobeIcon, ImageIcon, MicIcon, PlusIcon, SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView, TriLanguageCard } from './CrossLanguage'
@@ -158,7 +158,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           {incoming && (
             <div className="card stack incoming">
               <p className="small muted">
-                🌐 Web'den geldi{incoming.src && hostOf(incoming.src) && (
+                <GlobeIcon size={16} className="inline-icon" />Web'den geldi{incoming.src && hostOf(incoming.src) && (
                   <>
                     : <a href={incoming.src} target="_blank" rel="noreferrer">{hostOf(incoming.src)}</a>
                   </>
@@ -641,7 +641,7 @@ export function WordForm({
               </>
             ) : (
               <button type="button" className="btn btn-quiet" onClick={() => setPicking(true)} disabled={!form.word.trim()}>
-                🖼️ Görsel ekle
+                <ImageIcon size={16} className="inline-icon" />Görsel ekle
               </button>
             )}
           </div>
@@ -971,10 +971,10 @@ function WordList({
             ))}
             <span className="chip-sep" aria-hidden />
             <button className="chip chip-sm" aria-pressed={!!flags.picture} onClick={() => toggle('picture')}>
-              🖼️ Resimli
+              <ImageIcon size={14} className="inline-icon" />Resimli
             </button>
             <button className="chip chip-sm" aria-pressed={!!flags.audio} onClick={() => toggle('audio')}>
-              🎙️ Sesli
+              <MicIcon size={14} className="inline-icon" />Sesli
             </button>
             <button className="chip chip-sm" aria-pressed={!!flags.noExample} onClick={() => toggle('noExample')}>
               Örneksiz
@@ -1062,7 +1062,7 @@ function WordList({
                           {selecting && (
                             <td>
                               <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>
-                                {isSel ? '✓' : ''}
+                                {isSel && <CheckIcon size={13} />}
                               </span>
                             </td>
                           )}
@@ -1098,7 +1098,7 @@ function WordList({
                       onClick={(e) => clickRow(index, v.id, e.shiftKey)}
                       aria-pressed={selecting ? isSel : undefined}
                     >
-                      {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel ? '✓' : ''}</span>}
+                      {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={13} />}</span>}
                       <span className="word-row-plant" title={st ? STAGE_NAME[masteryStage(st)] : 'Sırada'}>
                         <Plant stage={growthStage(st)} health={plantHealth(st, scheduler, now)} size={30} />
                       </span>
@@ -1110,7 +1110,7 @@ function WordList({
                           {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
                           {v.source !== 'sample' && bandOf(v.frequencyRank) && `, ${bandOf(v.frequencyRank)!.short}`}
                           {v.source === 'sample' && ' (örnek)'}
-                          {v.audioId && ' · 🎙️'}
+                          {v.audioId && <MicIcon size={12} className="inline-icon is-end" />}
                           {v.tags.length > 0 && ` · ${v.tags.map((t) => `#${t}`).join(' ')}`}
                         </span>
                       </span>

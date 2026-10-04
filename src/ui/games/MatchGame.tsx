@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { TrophyIcon } from '../icons'
 import { displayForm } from '../../engine/exercises'
 import { pickGameWords } from '../../engine/practice'
 import { createRng, shuffle } from '../../engine/rng'
@@ -88,7 +89,7 @@ export function MatchGame({ language, vocabulary, states, best, recordKey, onExi
       </div>
       {done ? (
         <div className="celebrate stack">
-          <h1>{done.record ? 'Yeni rekor! 🏆' : 'Tamamlandı!'}</h1>
+          <h1>{done.record && <TrophyIcon size={26} className="inline-icon record-icon" />}{done.record ? 'Yeni rekor!' : 'Tamamlandı!'}</h1>
           <p className="xp-gain">{fmt(done.ms)}</p>
           {penalty > 0 && <p className="muted">{penalty / 1000} saniyesi yanlış eşleşme cezası.</p>}
           <div className="row justify-center">

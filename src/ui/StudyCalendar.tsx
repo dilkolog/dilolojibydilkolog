@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AlertIcon, UmbrellaIcon } from './icons'
 import type { Settings } from '../data/db'
 import { localDate } from '../engine/progress'
 
@@ -55,13 +56,13 @@ export function StudyCalendar({ settings, onChange }: { settings: Settings; onCh
           )
         })}
       </div>
-      {rest >= 3 && <p className="small muted">⚠️ Haftada {rest} dinlenme günü var; tekrarlar kalan günlere sıkışır.</p>}
+      {rest >= 3 && <p className="small muted"><AlertIcon size={14} className="inline-icon" />Haftada {rest} dinlenme günü var; tekrarlar kalan günlere sıkışır.</p>}
 
       <h3 className="subhead">Tatil</h3>
       {vacation ? (
         <div className="row">
           <span>
-            🏖️ {fmt(vacation.from)} – {fmt(vacation.to)} {vacation.from <= today ? 'tatildesin' : 'tatil planlandı'}: bu günlere tekrar düşmez, serin bekler.
+            <UmbrellaIcon size={16} className="inline-icon" />{fmt(vacation.from)} – {fmt(vacation.to)} {vacation.from <= today ? 'tatildesin' : 'tatil planlandı'}: bu günlere tekrar düşmez, serin bekler.
           </span>
           <button className="btn btn-sm btn-quiet" onClick={() => onChange({ ...settings, vacation: null })}>
             {vacation.from <= today ? 'Tatili bitir' : 'Tatili iptal et'}

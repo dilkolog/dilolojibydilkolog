@@ -1737,9 +1737,15 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .yc-key.yc-4 { background: var(--lang-deep, var(--lang)); }
 
 /* Word journey */
-.journey { list-style: none; margin: 0; padding: 0 0 0 0.25rem; display: grid; gap: 0.5rem; border-left: 2px solid var(--rule); }
-.journey li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr) auto; align-items: baseline; gap: 0.5rem; margin-left: -0.9rem; }
-.journey-icon { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: var(--r-full); background: var(--surface); box-shadow: var(--shadow); font-size: var(--t-sm); }
+.journey { list-style: none; margin: 0; padding: 0; display: grid; }
+/* A timeline inside its own column: icons on a line that joins them, never in the card's padding. */
+.journey li { position: relative; display: grid; grid-template-columns: 1.75rem minmax(0, 1fr) auto; align-items: center; gap: 0.75rem; padding-block: 0.375rem; }
+.journey li:not(:last-child)::before { content: ''; position: absolute; left: calc(0.875rem - 1px); top: 2.125rem; bottom: -0.375rem; width: 2px; border-radius: 1px; background: var(--rule); }
+.journey-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-full); background: var(--surface-2); color: var(--ink-soft); }
+.journey-icon svg { width: 0.9375rem; height: 0.9375rem; }
+.journey-introduced .journey-icon, .journey-stage .journey-icon { background: var(--ok-soft); color: var(--ok-text); }
+.journey-mistake .journey-icon { background: var(--bad-soft); color: var(--bad-text); }
+.journey li.is-down .journey-icon { background: var(--near-soft); color: var(--near-text); }
 .journey li.is-down .journey-text { color: var(--ink-soft); }
 
 /* Dictation diff */
@@ -1873,7 +1879,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .home-more > summary::-webkit-details-marker { display: none; }
 .home-more > summary::before { content: '▸'; color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
 .home-more[open] > summary::before { transform: rotate(90deg); }
-.home-more > .stack > .section { margin-top: 0; }
+.home-more > .stack > .section:first-child { margin-top: 0; }
+/* Each block apart from the one before (the garden card used to touch "Beceriler"). */
+.home-more > .stack > * + * { margin-top: 1.5rem; }
 @media (prefers-reduced-motion: reduce) { .home-more > summary::before { transition: none; } }
 /* Sidebar: studying above, you (progress, profile, settings) below. */
 .nav-btn.nav-group { margin-top: 0.75rem; position: relative; }
@@ -2152,8 +2160,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .badge-card.is-unlocked { box-shadow: var(--shadow); }
 .badge-card.is-unlocked .medal { animation: pop var(--dur) var(--ease-out); }
 
-/* The mark sits on the app's own blue in every language, like the home-screen icon. */
-.brand-mark { background: linear-gradient(140deg, #3b82f6, #1e3a8a); box-shadow: 0 3px 0 #172554; }
+/* The mark sits on the app's own indigo in every language, like the home-screen icon. */
+.brand-mark { background: linear-gradient(140deg, #6366f1, #312e81); border-radius: 0.5625rem; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 2px 8px rgb(49 46 129 / 0.35); }
 
 /* ---------- Page header: name, one line, the main action ---------- */
 .page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem 1.5rem; flex-wrap: wrap; }
@@ -2738,3 +2746,63 @@ section:has(> .media-split) { container-type: inline-size; }
   .word-plant-fill { transition: none; }
   .word-plant.is-growing .plant, .word-plant.is-growing .word-plant-figure::after, .word-plant.is-watered .word-plant-ring { animation: none; }
 }
+
+/* The list starts below the filters, not against them. */
+.filter-row + * { margin-top: 0.875rem; }
+
+/* Language switch: one pill slides to the chosen language and takes on its colour. */
+.langs { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lang-btn { z-index: 1; transition: color var(--dur) var(--ease-out); }
+.lang-btn[aria-pressed='true'] { background: transparent; color: var(--on-lang); }
+.lang-btn:not([aria-pressed='true']):hover { color: var(--ink); }
+.langs-thumb {
+  position: absolute; top: 0.25rem; bottom: 0.25rem; left: 0.25rem; width: calc((100% - 1rem) / 3);
+  border-radius: var(--r-full); background: var(--lang); box-shadow: 0 2px 10px color-mix(in srgb, var(--lang) 40%, transparent);
+  transform: translateX(calc(var(--i, 0) * (100% + 0.25rem)));
+  transition: transform var(--dur) var(--ease-spring), background-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+@media (min-width: 64rem) {
+  .shell.is-rail .langs { grid-template-columns: 1fr; }
+  .shell.is-rail .langs-thumb { right: 0.25rem; width: auto; bottom: auto; height: calc((100% - 1rem) / 3); border-radius: var(--r-sm); transform: translateY(calc(var(--i, 0) * (100% + 0.25rem))); }
+}
+@media (prefers-reduced-motion: reduce) { .langs-thumb { transition: background-color var(--dur) var(--ease-out); } }
+
+/* ── Icons: the soft layer, inline use ───────────────────────────────────────────────────── */
+.icon { flex: none; }
+.icon-solid .icon-duo { opacity: 1; }
+/* An icon at the start of a line of text, sitting on its baseline. */
+.inline-icon { display: inline-block; vertical-align: -0.18em; margin-right: 0.35em; }
+.inline-icon.is-end { margin: 0 0 0 0.35em; }
+.game-emoji { color: color-mix(in srgb, var(--tone, var(--lang)) 75%, var(--ink)); }
+.quest-icon { display: inline-grid; place-items: center; color: var(--lang-text); }
+.quest-list li.is-done .quest-icon, .quest-icon:has(.icon-solid) { color: var(--ok-text); }
+.mission-stars { display: inline-flex; gap: 0.125rem; vertical-align: -0.2em; color: var(--ink-soft); }
+.mission-stars .is-on { color: var(--gold); }
+.hearts { display: inline-flex; gap: 0.125rem; color: var(--ink-soft); }
+.hearts .is-full { color: var(--bad); }
+.record-icon { color: var(--gold-text); vertical-align: -0.12em; }
+.goal-dot { display: inline-block; width: 0.75em; height: 0.75em; margin-right: 0.4em; border: 1.5px solid currentColor; border-radius: 50%; opacity: 0.5; vertical-align: -0.05em; }
+.habit-icon { display: inline-grid; place-items: center; color: var(--lang-text); }
+.sentence-source { align-items: center; gap: 0.3rem; }
+.garden-ok, .garden-bad { white-space: nowrap; }
+.rail-toggle svg { display: block; }
+
+/* ── Sign-in page ─────────────────────────────────────────────────────────────────────────── */
+.auth-page { display: grid; justify-items: center; gap: 1rem; padding-block: 1rem 3rem; }
+.auth-back { justify-self: start; display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 600; }
+.auth-card { width: 100%; max-width: 26rem; display: grid; gap: 1.25rem; padding: 2rem 1.75rem 1.5rem; }
+.auth-head { display: grid; justify-items: center; text-align: center; gap: 0.5rem; }
+.auth-mark { width: 3.25rem; height: 3.25rem; border-radius: 0.875rem; margin-bottom: 0.25rem; }
+.auth-title { font-size: var(--t-xl); font-weight: 700; letter-spacing: -0.015em; }
+.auth-head p { margin: 0; font-size: var(--t-sm); max-width: 22rem; }
+.auth-tabs { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+.auth-tabs .segmented-btn { justify-content: center; }
+.auth-form { display: grid; gap: 0.875rem; }
+.auth-form .field { display: grid; gap: 0.375rem; }
+.field-label { font-size: var(--t-sm); font-weight: 600; }
+.auth-form .error { margin: 0; }
+.auth-submit { width: 100%; justify-content: center; min-height: 2.875rem; margin-top: 0.25rem; }
+.auth-note { display: flex; gap: 0.625rem; align-items: flex-start; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-soft); }
+.auth-note .icon { margin-top: 0.125rem; }
+.auth-note p { margin: 0; }
+.account-cta { display: flex; flex-wrap: wrap; gap: 0.625rem; }

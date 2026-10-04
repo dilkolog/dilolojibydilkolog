@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { TrophyIcon } from '../icons'
 import { createRng } from '../../engine/rng'
 import { GENDER_RULES, ruleQuiz, troubleRules, type RuleQuestion } from '../../engine/genderRules'
 import { db } from '../../data/instance'
@@ -155,7 +156,7 @@ export function GenderGame({
 
       {phase === 'over' && (
         <div className="celebrate stack">
-          <h1>{record ? 'Yeni rekor! 🏆' : 'Tur bitti'}</h1>
+          <h1>{record && <TrophyIcon size={26} className="inline-icon record-icon" />}{record ? 'Yeni rekor!' : 'Tur bitti'}</h1>
           <p className="xp-gain">
             {round.length - missed.length} / {round.length} doğru
           </p>

@@ -127,7 +127,7 @@ export function Feedback({
                 “{f.gloss}” {LANGUAGE_NAME[f.lang]} <em>{f.word}</em> demek. {displayForm(entry)} ise “{entry.senses[0].gloss}”.
               </p>
             ))}
-          {ev.verdict !== 'correct' && entry.notes && <p className="small">💡 {entry.notes}</p>}
+          {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
           </div>
           <p className="sheet-gloss">
             <span lang={entry.language}>{displayForm(entry)}</span>
@@ -141,7 +141,7 @@ export function Feedback({
               <BulbIcon size={18} /> Hafıza ipucu oluştur
             </button>
           )}
-          {mnemonic === 'saved' && <span className="small">💡 Not kaydedildi</span>}
+          {mnemonic === 'saved' && <span className="small"><BulbIcon size={16} className="inline-icon" />Not kaydedildi</span>}
           {onOverride && (
             <button className="link small" onClick={onOverride}>
               Cevabım da doğru

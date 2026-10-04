@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BOSS_XP } from '../engine/bosses'
+import { Glyph } from './Glyph'
+import { TrophyIcon } from './icons'
 import { FLUENCY_MIN_WORDS, pickFluencyWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
 import { db } from '../data/instance'
@@ -119,12 +121,12 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
             {g.cards.map((c) => (
               <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => setGame(c.id)}>
                 <span className="game-emoji" aria-hidden>
-                  {c.emoji}
+                  <Glyph emoji={c.emoji} size={26} />
                 </span>
                 <strong>{c.name}</strong>
                 <span className="small muted">{c.text}</span>
                 <span className={`game-record${c.status.startsWith('Rekorun') ? ' has-record' : ''}`}>
-                  {c.status.startsWith('Rekorun') && <span aria-hidden>🏆 </span>}
+                  {c.status.startsWith('Rekorun') && <TrophyIcon size={15} className="inline-icon" />}
                   {c.status}
                   {c.scheduled && <span className="game-tag">takvime işler</span>}
                 </span>

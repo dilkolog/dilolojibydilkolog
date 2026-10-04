@@ -28,7 +28,7 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { canListen } from './ui/speechInput'
@@ -46,6 +46,7 @@ import { SessionScreen } from './ui/Session'
 import { CommandPalette, type Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { ScreenBoundary } from './ui/ScreenBoundary'
+import { AuthScreen, type AuthMode } from './ui/AuthScreen'
 import { Toaster } from './ui/toast'
 import { ScreenSkeleton } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
@@ -103,6 +104,7 @@ type Screen =
   | { name: 'games'; game?: 'sentences' }
   | { name: 'profile' }
   | { name: 'settings' }
+  | { name: 'account'; mode?: AuthMode }
 
 const SCREEN_KEY = 'kelime-koc:screen'
 /** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
@@ -543,7 +545,7 @@ export default function App() {
     })),
   ]
   const current = (n: NavScreen) =>
-    screen.name === n || (n === 'words' && screen.name === 'word') || (n === 'home' && screen.name === 'summary')
+    screen.name === n || (n === 'words' && screen.name === 'word') || (n === 'home' && screen.name === 'summary') || (n === 'settings' && screen.name === 'account')
 
   return (
     <AiContext.Provider value={ai}>
@@ -559,10 +561,11 @@ export default function App() {
                   <span className="brand-name">Kelime Koçu</span>
                 </button>
                 <button className="icon-btn rail-toggle" onClick={toggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>
-                  <span aria-hidden>{rail ? '»' : '«'}</span>
+                  {rail ? <ChevronRightIcon size={18} /> : <ChevronLeftIcon size={18} />}
                 </button>
               </div>
-              <div className="langs" role="group" aria-label="Dil">
+              <div className="langs" role="group" aria-label="Dil" style={{ ['--i' as string]: TARGET_LANGUAGES.indexOf(settings.activeLanguage) }}>
+                <span className="langs-thumb" aria-hidden />
                 {TARGET_LANGUAGES.map((l) => (
                   <button
                     key={l}
@@ -800,12 +803,15 @@ export default function App() {
               <GamesScreen key={screen.game} initialGame={screen.game} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
+            ) : screen.name === 'account' ? (
+              <AuthScreen key={screen.mode} initialMode={screen.mode} onDone={() => setScreen({ name: 'settings' })} onBack={() => setScreen({ name: 'settings' })} />
             ) : screen.name === 'settings' ? (
               <SettingsScreen
                 settings={settings}
                 onChange={updateSettings}
                 pushState={pushState}
                 onOpenProfile={() => setScreen({ name: 'profile' })}
+                onOpenAuth={(mode) => setScreen({ name: 'account', mode })}
                 onDataChanged={async () => {
                   const s = await db.getSettings()
                   setSettings(s ?? null)

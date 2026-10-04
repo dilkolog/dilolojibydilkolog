@@ -7,7 +7,7 @@ import { createRng, pick } from '../../engine/rng'
 import type { ExerciseType, TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { SpeakerIcon } from '../icons'
+import { HeartIcon, SpeakerIcon } from '../icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from '../labels'
 import { sfx } from '../sounds'
 import { speak } from '../speech'
@@ -189,8 +189,9 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
           <div className="row justify-between">
             <strong>{outcome === 'won' ? displayForm(entry) : 'Gizemli kelime'}</strong>
             <span className="hearts" aria-label={`${hearts} can`}>
-              {'❤️'.repeat(hearts)}
-              {'🤍'.repeat(PLAYER_HEARTS - hearts)}
+              {Array.from({ length: PLAYER_HEARTS }, (_, i) => (
+                <HeartIcon key={i} size={18} solid={i < hearts} className={i < hearts ? 'is-full' : ''} />
+              ))}
             </span>
           </div>
           <div className="boss-hp" role="progressbar" aria-label="Boss canı" aria-valuenow={hp} aria-valuemin={0} aria-valuemax={boss.hp}>
@@ -204,7 +205,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
 
       {outcome ? (
         <div className="celebrate stack">
-          <h1>{outcome === 'won' ? 'Boss yenildi! ⚔️' : 'Boss kazandı'}</h1>
+          <h1>{outcome === 'won' ? 'Boss yenildi!' : 'Boss kazandı'}</h1>
           {outcome === 'won' ? (
             <p className="xp-gain">+{BOSS_XP} XP</p>
           ) : (

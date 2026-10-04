@@ -4,7 +4,7 @@ import { pickAudioWords, type AudioSet } from '../../engine/practice'
 import { createRng } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { scheduler } from '../../data/instance'
-import { SpeakerIcon } from '../icons'
+import { CheckIcon, CloseIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { sfx } from '../sounds'
 import { playWord } from '../speech'
@@ -201,9 +201,9 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
         </div>
       </div>
       <div className="swipe-actions">
-        <button className="btn btn-bad" onClick={() => decide(false)} aria-label="Bilmiyorum">✗</button>
+        <button className="btn btn-bad" onClick={() => decide(false)} aria-label="Bilmiyorum"><CloseIcon size={22} /></button>
         <button className="speak" onClick={() => playWord(card)} aria-label="Dinle"><SpeakerIcon size={22} /></button>
-        <button className="btn btn-ok" onClick={() => decide(true)} aria-label="Biliyorum">✓</button>
+        <button className="btn btn-ok" onClick={() => decide(true)} aria-label="Biliyorum"><CheckIcon size={22} /></button>
       </div>
     </div>
   )

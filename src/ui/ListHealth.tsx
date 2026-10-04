@@ -1,4 +1,5 @@
 import { useMemo, type ReactNode } from 'react'
+import { WandIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { displayForm } from '../engine/exercises'
 import { keeperOf, listHealth, mergeEntries } from '../engine/listHealth'
@@ -69,7 +70,7 @@ export function ListHealthCard({
   return (
     <details className="card health">
       <summary>
-        🧹 Liste sağlığı <span className="muted small">({total} öneri)</span>
+        <WandIcon size={18} className="inline-icon" />Liste sağlığı <span className="muted small">({total} öneri)</span>
       </summary>
       <div className="stack mt-3">
         {health.duplicates.length > 0 && (

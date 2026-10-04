@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { SlowIcon } from '../icons'
 import { BLANK, displayForm, type Exercise } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
 import { LANGUAGE_NAME } from '../labels'
@@ -38,7 +39,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
         <div className="row">
           <SpeakButton text={exercise.audioText!} entry={entry} big auto vary rate={listenRate} />
           <button className="btn btn-quiet" onClick={() => speak(exercise.audioText!, entry.language, 0.7, true)}>
-            🐢 Yavaş dinle
+            <SlowIcon size={16} className="inline-icon" />Yavaş dinle
           </button>
         </div>
       )

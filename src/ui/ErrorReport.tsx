@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { BulbIcon } from './icons'
 import { AiError, monthlyReport, type ErrorReport } from '../ai'
 import type { KelimeDB } from '../data/db'
 import { errorDigest, type ErrorDigest } from '../engine/errorDigest'
@@ -98,7 +99,7 @@ export function ErrorReportCard({ db, language, vocabulary }: { db: KelimeDB; la
                   {p.examples.join(' · ')}
                 </p>
               )}
-              <p className="small">💡 {p.tip}</p>
+              <p className="small"><BulbIcon size={16} className="inline-icon" />{p.tip}</p>
             </div>
           ))}
           {saved.report.drills.length > 0 && (

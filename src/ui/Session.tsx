@@ -19,7 +19,7 @@ import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
 import { MnemonicDialog } from './Mnemonic'
-import { CloseIcon, FlameIcon, GearIcon, StarIcon } from './icons'
+import { CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, StarIcon } from './icons'
 import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
 import { playWord, preloadRecording, speechPrefs } from './speech'
@@ -480,7 +480,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             document.getElementById('answer')?.focus()
           }}
         >
-          {unsure ? '✓ Emin değilim' : '🤔 Emin değilim'}
+          {unsure ? <CheckIcon size={15} className="inline-icon" /> : <HelpIcon size={15} className="inline-icon" />}
+          Emin değilim
           {unsure && <span className="small muted"> · şimdi cevabını seç</span>}
         </button>
       )}

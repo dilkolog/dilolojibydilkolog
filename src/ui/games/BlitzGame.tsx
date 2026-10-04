@@ -6,7 +6,7 @@ import { createRng, pick } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
-import { FlameIcon } from '../icons'
+import { FlameIcon, TrophyIcon } from '../icons'
 import { sfx } from '../sounds'
 import { type Props, recordPractice } from './shared'
 
@@ -171,7 +171,7 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
 
       {phase === 'over' && (
         <div className="celebrate stack">
-          <h1>{record ? 'Yeni rekor! 🏆' : 'Süre doldu!'}</h1>
+          <h1>{record && <TrophyIcon size={26} className="inline-icon record-icon" />}{record ? 'Yeni rekor!' : 'Süre doldu!'}</h1>
           <p className="xp-gain">{score} puan</p>
           <p className="muted">
             {total} sorudan {right} doğru{total ? ` (%${Math.round((right / total) * 100)})` : ''}.

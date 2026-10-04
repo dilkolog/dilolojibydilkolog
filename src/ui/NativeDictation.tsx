@@ -5,7 +5,7 @@ import { shuffle, createRng } from '../engine/rng'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
-import { SpeakerIcon } from './icons'
+import { MessageIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { saveSentence } from './Sentences'
 import { sfx } from './sounds'
@@ -211,7 +211,8 @@ function DictationRound({ items, language, onDone }: { items: ListeningSentence[
                 setSaved(true)
               }}
             >
-              {saved ? '💬 Kaydedildi' : '💬 Cümle kartı yap'}
+              <MessageIcon size={16} className="inline-icon" />
+                {saved ? 'Kaydedildi' : 'Cümle kartı yap'}
             </button>
           </div>
         </section>

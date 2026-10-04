@@ -56,7 +56,7 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
             <span className="small muted">{missing.length} eksik kelime</span>
           </div>
           {missing.length === 0 ? (
-            <p className="notice">İlk {range.toLocaleString('tr-TR')} kelimenin hepsini biliyor ya da çalışıyorsun. 🎉</p>
+            <p className="notice">İlk {range.toLocaleString('tr-TR')} kelimenin hepsini biliyor ya da çalışıyorsun.</p>
           ) : (
             <>
               <ul className="missing-list">

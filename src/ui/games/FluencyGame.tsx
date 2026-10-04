@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { TrophyIcon } from '../icons'
 import { displayForm, pickDistractors } from '../../engine/exercises'
 import { median, pickFluencyWords } from '../../engine/practice'
 import { createRng, shuffle } from '../../engine/rng'
@@ -170,7 +171,7 @@ export function FluencyGame({
 
       {phase === 'over' && result && (
         <div className="celebrate stack">
-          <h1>{result.record ? 'Yeni hız rekoru! 🏆' : 'Tur bitti'}</h1>
+          <h1>{result.record && <TrophyIcon size={26} className="inline-icon record-icon" />}{result.record ? 'Yeni hız rekoru!' : 'Tur bitti'}</h1>
           <p className="xp-gain">{times.length ? `Soru başına ${fmt(result.median)}` : 'Doğru cevap yok'}</p>
           <p className="muted">
             {FLUENCY_ROUND} sorudan {times.length} doğru (%{Math.round(result.accuracy * 100)}).

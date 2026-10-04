@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { contour, melodySimilarity, pitchTrack, resample } from '../engine/pitch'
 import { canRecord, recordingType } from './AudioRecorder'
-import { PlayIcon } from './icons'
+import { MicIcon, PlayIcon, StopIcon } from './icons'
 
 const W = 560
 const H = 140
@@ -119,7 +119,7 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
           <PlayIcon size={16} /> Doğrusu
         </button>
         <button className={`btn btn-sm${phase === 'recording' ? ' btn-bad' : ''}`} onClick={record} disabled={phase === 'working'}>
-          {phase === 'recording' ? '⏹ Bitir' : phase === 'working' ? 'Çözümleniyor…' : '🎙️ Sen söyle'}
+          {phase === 'recording' ? <><StopIcon size={14} className="inline-icon" />Bitir</> : phase === 'working' ? 'Çözümleniyor…' : <><MicIcon size={16} className="inline-icon" />Sen söyle</>}
         </button>
         {mineUrl && (
           <button className="btn btn-sm btn-quiet" onClick={() => void new Audio(mineUrl).play()}>
@@ -142,7 +142,7 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
             <>
               {' '}
               · Ezgi benzerliği <strong>%{score}</strong>
-              {score >= 75 ? ' 👍 çok yakın' : score >= 50 ? ': iniş çıkışlar kısmen tutuyor, vurguyu dinleyip tekrar dene' : ': ezgi farklı; doğrusunu birkaç kez dinle, vurgulu heceye dikkat et'}
+              {score >= 75 ? ': çok yakın' : score >= 50 ? ': iniş çıkışlar kısmen tutuyor, vurguyu dinleyip tekrar dene' : ': ezgi farklı; doğrusunu birkaç kez dinle, vurgulu heceye dikkat et'}
             </>
           )}
         </p>

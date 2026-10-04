@@ -1,4 +1,5 @@
 import { weeklyRace } from '../engine/race'
+import { FlagIcon } from './icons'
 import type { GameState } from './game'
 
 /** This week's XP racing last week's XP up to the same weekday. */
@@ -11,7 +12,7 @@ export function RaceCard({ game, now = new Date() }: { game: GameState; now?: Da
     r.lastWeekTotal === 0
       ? 'İlk haftan: gelecek hafta bu haftayla yarışacaksın.'
       : diff > 0
-        ? `Geçen haftanın ${diff} XP önündesin.${r.thisWeek < r.lastWeekTotal ? ` Haftayı geçmek için ${r.lastWeekTotal - r.thisWeek + 1} XP daha.` : ' Geçen haftanın tamamını geçtin! 🏁'}`
+        ? `Geçen haftanın ${diff} XP önündesin.${r.thisWeek < r.lastWeekTotal ? ` Haftayı geçmek için ${r.lastWeekTotal - r.thisWeek + 1} XP daha.` : ' Geçen haftanın tamamını geçtin!'}`
         : diff === 0
           ? 'Geçen haftayla başa baş.'
           : `Geçen haftanın ${-diff} XP gerisindesin; bugün yakalayabilirsin.`
@@ -19,7 +20,7 @@ export function RaceCard({ game, now = new Date() }: { game: GameState; now?: Da
     <section className="race card">
       <div className="row justify-between">
         <strong>Haftalık yarış</strong>
-        {r.streak > 0 && <span className="small race-streak">🏁 {r.streak} hafta üst üste kendini geçtin</span>}
+        {r.streak > 0 && <span className="small race-streak"><FlagIcon size={14} className="inline-icon" />{r.streak} hafta üst üste kendini geçtin</span>}
       </div>
       <div className="race-lane">
         <span className="small">Bu hafta</span>

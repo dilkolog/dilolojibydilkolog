@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { AlertIcon, CheckIcon, GlobeIcon, LinkIcon, SproutIcon } from './icons'
 import { conceptGroups, crossLanguageLinks, falseFriendsOf, type Concept, type CrossLink } from '../engine/crossLanguage'
 import { displayForm } from '../engine/exercises'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
@@ -38,12 +39,12 @@ export function CrossLanguageNotes({ entry, compact = false }: { entry: Vocabula
     <div className={compact ? 'cross cross-compact' : 'cross'}>
       {friends.map((f) => (
         <p key={`${f.lang}:${f.word}`} className="cross-warn">
-          ⚠️ <strong>Sahte dost:</strong> {LANGUAGE_SHORT[f.lang]} <em lang={f.lang}>{f.word}</em> “{f.gloss}” demek; bu kelime öyle değil.
+          <AlertIcon size={16} className="inline-icon" /><strong>Sahte dost:</strong> {LANGUAGE_SHORT[f.lang]} <em lang={f.lang}>{f.word}</em> “{f.gloss}” demek; bu kelime öyle değil.
         </p>
       ))}
       {shown.length > 0 && (
         <p className="cross-links">
-          🔗 Diğer dillerde:{' '}
+          <LinkIcon size={16} className="inline-icon" />Diğer dillerde:{' '}
           {shown.map((l, i) => (
             <span key={l.entry.id}>
               {i > 0 && ', '}
@@ -190,13 +191,13 @@ export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: Vo
   if (compact) {
     return (
       <p className="small tri-compact">
-        🌍{' '}
+        <GlobeIcon size={16} className="inline-icon" />
         {others.map((f, i) => (
           <span key={f.language}>
             {i > 0 && ' · '}
             {LANGUAGE_SHORT[f.language]} <em lang={f.language}>{withArticle(f.word, f.language, f.gender)}</em>{' '}
             {inList(f) ? (
-              <span className="muted">✓</span>
+              <span className="muted"><CheckIcon size={14} /></span>
             ) : (
               <button type="button" className="link small" onClick={() => add(f)}>
                 + ekle
@@ -215,7 +216,7 @@ export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: Vo
       <h2 className="section-title">Üç dilde</h2>
       {eq.shared && (
         <p className="tri-root">
-          🌳 Ortak kök: <strong>{sourceName(eq.shared.lang)}</strong> <em>{eq.shared.word}</em>
+          <SproutIcon size={16} className="inline-icon" />Ortak kök: <strong>{sourceName(eq.shared.lang)}</strong> <em>{eq.shared.word}</em>
         </p>
       )}
       <ul className="tri-list">

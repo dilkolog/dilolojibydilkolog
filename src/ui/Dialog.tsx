@@ -23,12 +23,24 @@ export function ConfirmDialog({
   onCancel: () => void
 }) {
   const cancelRef = useRef<HTMLButtonElement>(null)
+  const actionsRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     cancelRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.stopImmediatePropagation()
         onCancel()
+        return
+      }
+      // Arrow keys move between the buttons (Tab works too); Enter presses the focused one.
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+        const buttons = [...(actionsRef.current?.querySelectorAll<HTMLButtonElement>('button') ?? [])]
+        if (!buttons.length) return
+        e.preventDefault()
+        e.stopImmediatePropagation()
+        const at = buttons.indexOf(document.activeElement as HTMLButtonElement)
+        const step = e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 1
+        buttons[(at + step + buttons.length) % buttons.length].focus()
       }
     }
     // Capture phase, so the dialog handles Esc before any screen-level shortcut.
@@ -48,7 +60,7 @@ export function ConfirmDialog({
           </h2>
         </div>
         {children && <div className="muted dialog-body">{children}</div>}
-        <div className="dialog-actions">
+        <div className="dialog-actions" ref={actionsRef}>
           <button ref={cancelRef} className="btn btn-quiet" onClick={onCancel}>
             {cancelLabel}
           </button>

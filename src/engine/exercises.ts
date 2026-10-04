@@ -186,7 +186,7 @@ interface ExerciseBase {
   /** Letters shown at the start of the blank (a first-letter cue). */
   blankStart?: string
   /** Where the sentence comes from, when it is the learner's own (a text they read, their sentence). */
-  contextSource?: string
+  contextSource?: ContextSource
   /** Text the client should speak with TTS (listening exercises). */
   audioText?: string
   /** Media id of a picture to show (picture exercises). */
@@ -229,11 +229,16 @@ function blankOut(example: Example): string {
  * A sentence the learner met or wrote is remembered with where it came from (self-reference
  * effect; Rogers et al. 1977), so the question says so. Bundled and corpus sentences say nothing.
  */
-export function exampleSource(ex: Example, entry: VocabularyEntry): string | undefined {
-  if (ex.metIn) return `📖 Okuduğun metinden: ${ex.metIn}`
-  if (ex.personal) return '✍️ Kendi cümlen'
+export interface ContextSource {
+  kind: 'reading' | 'own' | 'added'
+  text: string
+}
+
+export function exampleSource(ex: Example, entry: VocabularyEntry): ContextSource | undefined {
+  if (ex.metIn) return { kind: 'reading', text: `Okuduğun metinden: ${ex.metIn}` }
+  if (ex.personal) return { kind: 'own', text: 'Kendi cümlen' }
   if (ex.source || entry.source === 'sample' || !entry.senses[0].examples.includes(ex)) return undefined
-  return '📌 Eklediğin cümle'
+  return { kind: 'added', text: 'Eklediğin cümle' }
 }
 
 function chooseExample(entry: VocabularyEntry, rng: Rng): Example | undefined {
