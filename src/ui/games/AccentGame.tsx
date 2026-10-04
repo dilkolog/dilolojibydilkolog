@@ -8,7 +8,7 @@ import { db } from '../../data/instance'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
-import { recordPractice, type Props } from './shared'
+import { isPctRecord, recordPractice, type Props } from './shared'
 
 const ROUND = 10
 /** Enough accented words for a round to be worth playing. */
@@ -71,7 +71,7 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
     setPhase('over')
     sfx.levelUp()
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
-    if (pct > (best ?? 0)) void db.saveRecord(recordKey, pct).then(() => setRecord(true))
+    if (isPctRecord(pct, best)) void db.saveRecord(recordKey, pct).then(() => setRecord(true))
   }
 
   useEffect(() => {

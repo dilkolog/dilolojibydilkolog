@@ -3402,3 +3402,14 @@ button.badge-card:active { transform: none; }
 .plant-tile.is-thirsty::after, .plant-tile.is-wilting::after { content: none; }
 .plant-drop { position: absolute; top: 0.25rem; right: 0.625rem; color: #0ea5e9; }
 .plant-tile.is-wilting .plant-drop { color: var(--near); }
+/* Tense choice in two steps: four groups, then the tenses of the group as chips. */
+.tense-picker { display: grid; gap: 0.625rem; justify-items: start; }
+.tense-picker .tense-tabs { flex-wrap: nowrap; }
+.tense-sub { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+/* The drill's answer table: compact, the asked form on a soft band. */
+.conj-mini { width: auto; justify-self: start; border-collapse: separate; border-spacing: 0; }
+.conj-mini th, .conj-mini td { padding: 0.1875rem 0.75rem; }
+.conj-mini th { padding-left: 0.5rem; }
+.conj-mini tr.is-asked > * { background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.conj-mini tr.is-asked > :first-child { border-radius: var(--r-sm) 0 0 var(--r-sm); }
+.conj-mini tr.is-asked > :last-child { border-radius: 0 var(--r-sm) var(--r-sm) 0; }

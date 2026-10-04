@@ -19,6 +19,14 @@ export function useTenses(language: VocabularyEntry['language']): boolean {
   return ready
 }
 
+/** Tenses in four groups, so the choice fits a phone: the group first, then the tense within it. */
+const GROUPS: { label: string; tenses: Tense[] }[] = [
+  { label: 'Şimdi', tenses: ['present', 'presente'] },
+  { label: 'Geçmiş', tenses: ['passe-compose', 'imparfait', 'preterito', 'perfecto', 'imperfecto'] },
+  { label: 'Gelecek', tenses: ['futur', 'futuro'] },
+  { label: 'Kipler', tenses: ['conditionnel', 'subjonctif', 'condicional', 'subjuntivo'] },
+]
+
 /**
  * A verb's forms, one tense at a time: what the tense is for, the six forms with the irregular
  * ones marked, the time words that call for it, and how it is built.
@@ -33,20 +41,44 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
   const forms = conjugateTense(entry, tense)!
   const odd = irregularForms(entry, tense)
   const guide = TENSE_GUIDE[tense]
+  const compound = tense === 'passe-compose' || tense === 'perfecto'
   const sentence = tenseSentence(entry, tense)
   return (
     <div className="stack conj">
       {tenses.length > 1 && (
-        <div className="segmented tense-tabs" role="tablist" aria-label="Zaman">
-          {tenses.map((t) => (
-            <button key={t} role="tab" className="segmented-btn" aria-selected={t === tense} onClick={() => setPicked(t)} lang={lang}>
-              {TENSE_GUIDE[t].name}
-            </button>
-          ))}
+        <div className="tense-picker">
+          <div className="segmented tense-tabs" role="tablist" aria-label="Zaman grubu">
+            {GROUPS.map((g) => {
+              const inGroup = g.tenses.filter((t) => tenses.includes(t))
+              if (!inGroup.length) return null
+              return (
+                <button key={g.label} role="tab" className="segmented-btn" aria-selected={inGroup.includes(tense)} onClick={() => setPicked(inGroup[0])}>
+                  {g.label}
+                </button>
+              )
+            })}
+          </div>
+          {(() => {
+            const group = GROUPS.find((g) => g.tenses.includes(tense))!.tenses.filter((t) => tenses.includes(t))
+            return (
+              group.length > 1 && (
+                <div className="tense-sub" role="group" aria-label="Zaman">
+                  {group.map((t) => (
+                    <button key={t} type="button" className="chip chip-sm" aria-pressed={t === tense} onClick={() => setPicked(t)} lang={lang}>
+                      {TENSE_GUIDE[t].name}
+                    </button>
+                  ))}
+                </div>
+              )
+            )
+          })()}
         </div>
       )}
       <p className="conj-lead">
-        <strong>{guide.tr}.</strong> {guide.short}
+        <strong>
+          <span lang={lang}>{guide.name}</span> · {guide.tr}.
+        </strong>{' '}
+        {guide.short}
       </p>
       <table className="conj-table" lang={lang}>
         <tbody>
@@ -55,9 +87,19 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
               <th scope="row">{subjectLabel(lang, tense, i)}</th>
               <td>
                 {odd[i] ? (
-                  <mark className="conj-odd" title="Düzensiz">
-                    {f}
-                  </mark>
+                  compound ? (
+                    // In a compound tense the participle is what breaks the rule (ai su), not the auxiliary.
+                    <>
+                      {f.slice(0, f.lastIndexOf(' ') + 1)}
+                      <mark className="conj-odd" title="Düzensiz">
+                        {f.slice(f.lastIndexOf(' ') + 1)}
+                      </mark>
+                    </>
+                  ) : (
+                    <mark className="conj-odd" title="Düzensiz">
+                      {f}
+                    </mark>
+                  )
                 ) : (
                   f
                 )}

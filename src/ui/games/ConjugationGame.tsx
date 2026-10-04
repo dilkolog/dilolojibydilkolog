@@ -10,7 +10,7 @@ import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { useTenses } from '../ConjugationTable'
 import { Sentence } from '../session/shared'
 import { sfx } from '../sounds'
-import { recordPractice, type Props } from './shared'
+import { isPctRecord, recordPractice, type Props } from './shared'
 
 const ROUND = 10
 /** Own verbs needed before a round uses them instead of the most common verbs. */
@@ -145,7 +145,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
     setPhase('over')
     sfx.levelUp()
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
-    if (pct > (best ?? 0)) void db.saveRecord(recordKey, pct).then(() => setRecord(true))
+    if (isPctRecord(pct, best)) void db.saveRecord(recordKey, pct).then(() => setRecord(true))
   }
 
   useEffect(() => {
@@ -264,6 +264,12 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
                     : answer.near
                       ? 'Neredeyse: harflerden ya da aksandan biri farklı.'
                       : `Sen “${answer.typed}” yazdın.`}
+                {!answer.ok && (
+                  <>
+                    {' '}
+                    Doğrusu: <strong lang={language}>{q.sentence ? q.sentence.form.toLocaleLowerCase(language) : q.forms[q.person]}</strong>
+                  </>
+                )}
               </p>
               <table className="conj-table conj-mini" lang={language}>
                 <tbody>

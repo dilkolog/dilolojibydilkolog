@@ -4,7 +4,7 @@ import { createRng } from '../../engine/rng'
 import { GENDER_RULES, ruleQuiz, troubleRules, type RuleQuestion } from '../../engine/genderRules'
 import { db } from '../../data/instance'
 import { sfx } from '../sounds'
-import type { Props } from './shared'
+import { isPctRecord, type Props } from './shared'
 
 const GENDER_ROUND = 15
 
@@ -56,7 +56,7 @@ export function GenderGame({
     setChosen(null)
     if (index + 1 < round.length) return setIndex(index + 1)
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
-    if (pct > (best ?? 0)) {
+    if (isPctRecord(pct, best)) {
       await db.saveRecord(recordKey, pct)
       setRecord(true)
     }

@@ -7,7 +7,7 @@ import { db } from '../../data/instance'
 import { SpeakerIcon } from '../icons'
 import { sfx } from '../sounds'
 import { speakAsync } from '../speech'
-import type { Props } from './shared'
+import { isPctRecord, type Props } from './shared'
 
 const PAIR_ROUND = 12
 
@@ -64,7 +64,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
     setChosen(null)
     if (index + 1 >= round.length) {
       const pct = Math.round(((answers.filter((a) => a.ok).length) / round.length) * 100)
-      if (pct > (best ?? 0)) {
+      if (isPctRecord(pct, best)) {
         await db.saveRecord(recordKey, pct)
         setRecord(true)
       }
