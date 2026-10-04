@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { openMistakes } from '../engine/mistakes'
 import { BOSS_XP } from '../engine/bosses'
 import { Glyph } from './Glyph'
-import { TrophyIcon } from './icons'
+import { PlayIcon, TrophyIcon } from './icons'
 import { FLUENCY_MIN_WORDS, pickFluencyWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
 import { db } from '../data/instance'
@@ -108,6 +109,20 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
       ],
     })
 
+  // One game suggested for today, from what the learner's mistakes and lists point to.
+  const open = openMistakes(p.mistakes ?? [])
+  const openOf = (types: string[]) => new Set(open.filter((m) => types.includes(m.errorType)).map((m) => m.entryId)).size
+  const allCards = groups.flatMap((g) => g.cards.map((c) => ({ ...c, tone: g.tone })))
+  const pickCard = (id: string) => allCards.find((c) => c.id === id && !c.disabled)
+  const suggestion =
+    (openOf(['accent']) >= 2 && pickCard('accent') && { card: pickCard('accent')!, why: `${openOf(['accent'])} kelimede aksan hatan var: aksanlarını yerleştirerek düzelt.` }) ||
+    (openOf(['gender', 'article']) >= 2 && pickCard('article') && { card: pickCard('article')!, why: `${openOf(['gender', 'article'])} kelimede artikel hatan var: kısa bir artikel turu iyi gelir.` }) ||
+    (dueSentenceCount > 0 && pickCard('sentences') && { card: pickCard('sentences')!, why: `${dueSentenceCount} cümle kartının tekrar zamanı geldi.` }) ||
+    (open.length >= 3 && pickCard('boss') && { card: pickCard('boss')!, why: 'Bir türlü oturmayan kelimelerin var: farklı sorularla yenme zamanı.' }) ||
+    (fluencyWords >= FLUENCY_MIN_WORDS && pickCard('fluency') && { card: pickCard('fluency')!, why: 'İyi bildiğin kelimeler hız kazanınca konuşurken akıcı gelir.' }) ||
+    (pickCard('match') && { card: pickCard('match')!, why: 'Kısa ve eğlenceli bir ısınma: 6 kelimeyi anlamlarıyla eşleştir.' }) ||
+    null
+
   return (
     <div className="stack">
       <PageHeader
@@ -118,6 +133,21 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
           </>
         }
       />
+      {suggestion && (
+        <section className={`game-suggest tone-${suggestion.card.tone}`}>
+          <span className="game-suggest-icon" aria-hidden>
+            <Glyph emoji={suggestion.card.emoji} size={30} />
+          </span>
+          <div className="game-suggest-body">
+            <span className="small game-suggest-kicker">Bugün için önerilen</span>
+            <h2 className="game-suggest-title">{suggestion.card.name}</h2>
+            <p className="small muted">{suggestion.why}</p>
+          </div>
+          <button className="btn" onClick={() => setGame(suggestion.card.id)}>
+            <PlayIcon size={16} /> Oyna
+          </button>
+        </section>
+      )}
       {groups.map((g) => (
         <section className={`stack game-group tone-${g.tone}`} key={g.title}>
           <h2 className="section-title game-group-title">{g.title}</h2>

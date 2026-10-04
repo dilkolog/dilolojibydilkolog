@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import { displayForm } from '../engine/exercises'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
-import { ERROR_NAME } from './labels'
+import { ERROR_HINT, ERROR_NAME } from './labels'
+import { PlayIcon } from './icons'
 import { charDiff } from '../engine/correctionDiff'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
@@ -36,11 +37,14 @@ export function MistakesScreen({
   mistakes,
   vocabulary,
   onPractice,
+  onPracticeType,
   onOpen,
 }: {
   mistakes: Mistake[]
   vocabulary: VocabularyEntry[]
   onPractice: () => void
+  /** Study only the words with this kind of mistake. */
+  onPracticeType?: (type: ErrorType) => void
   onOpen: (entryId: string) => void
 }) {
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
@@ -48,6 +52,7 @@ export function MistakesScreen({
   const resolved = mistakes.filter((m) => m.resolved && byId.has(m.entryId))
   const words = new Set(open.map((m) => m.entryId)).size
 
+  const closedOf = (type: ErrorType) => resolved.filter((m) => m.errorType === type).length
   const groups = ERROR_ORDER.map((type) => ({
     type,
     items: open.filter((m) => m.errorType === type).sort((a, b) => b.lastAt.getTime() - a.lastAt.getTime()),
@@ -77,13 +82,26 @@ export function MistakesScreen({
       </section>
 
       {groups.map((g) => (
-        <section className="section stack" key={g.type}>
-          <h2 className={`section-title mistake-group-title tone-${g.type}`}>
+        <section className={`section stack mistake-group tone-${g.type}`} key={g.type}>
+          <header className="mistake-group-head">
             <span className="mistake-badge" aria-hidden>
               {ERROR_GLYPH[g.type]}
             </span>
-            {ERROR_NAME[g.type]} <span className="bed-count">{g.items.length}</span>
-          </h2>
+            <div className="mistake-group-text">
+              <h2 className="section-title mistake-group-title">
+                {ERROR_NAME[g.type]} <span className="bed-count">{g.items.length}</span>
+              </h2>
+              <p className="small muted">
+                {closedOf(g.type) > 0 ? `${closedOf(g.type)} tanesi kapandı. ` : ''}
+                {ERROR_HINT[g.type]}
+              </p>
+            </div>
+            {onPracticeType && (
+              <button className="btn btn-sm btn-quiet" onClick={() => onPracticeType(g.type)}>
+                <PlayIcon size={14} /> Bu türü çalış
+              </button>
+            )}
+          </header>
           <MistakeList items={g.items} byId={byId} onOpen={onOpen} />
         </section>
       ))}

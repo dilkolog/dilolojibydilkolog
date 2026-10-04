@@ -8,7 +8,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, BulbIcon, CheckCircleIcon, CheckIcon, CloseIcon, GameIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon } from './icons'
+import { AlertIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -71,21 +71,39 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
         </div>
         <h1 className="onboarding-title">Kelimeleri gerçekten kullanabileceğin şekilde öğren</h1>
         <p className="onboarding-sub">Her gün sana özel kısa bir çalışma hazırlar, unutmak üzere olduğun kelimeleri tam zamanında geri getirir.</p>
+        {/* A word's life in three plants: a seed, a sprout, a flower, growing in turn. */}
+        <div className="onboarding-garden" aria-hidden>
+          <span className="og-plant">
+            <Plant stage={0} size={56} />
+          </span>
+          <span className="og-plant">
+            <Plant stage={2} size={72} />
+          </span>
+          <span className="og-plant">
+            <Plant stage={5} size={92} />
+          </span>
+        </div>
       </section>
 
       <ol className="onboarding-steps" aria-label="Nasıl çalışır">
         <li>
-          <Plant stage={0} size={44} />
+          <span className="step-icon" aria-hidden>
+            <PlusIcon size={20} />
+          </span>
           <strong>Kelimelerini ekle</strong>
           <span className="small muted">Okuduğun, duyduğun, öğrenmek istediğin kelimeler: her biri bir tohum.</span>
         </li>
         <li>
-          <Plant stage={2} size={44} />
+          <span className="step-icon" aria-hidden>
+            <CalendarIcon size={20} />
+          </span>
           <strong>Her gün kısa tekrar</strong>
           <span className="small muted">Unutmak üzere olduklarını tam zamanında sorar; birkaç dakika yeter.</span>
         </li>
         <li>
-          <Plant stage={5} size={44} />
+          <span className="step-icon" aria-hidden>
+            <FlowerIcon size={20} />
+          </span>
           <strong>Kelimeler çiçek açar</strong>
           <span className="small muted">Tanımaktan cümlede kullanmaya: bildiklerin bahçende büyür.</span>
         </li>

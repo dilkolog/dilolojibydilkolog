@@ -48,7 +48,7 @@ import { readIncoming, type IncomingWord } from './ui/incoming'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 import { AuthScreen, type AuthMode } from './ui/AuthScreen'
 import { Toaster } from './ui/toast'
-import { ScreenSkeleton } from './ui/Skeleton'
+import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
 
@@ -710,8 +710,8 @@ export default function App() {
             )}
             <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>
             <div key={screen.name === 'summary' ? 'session' : screen.name === 'word' ? `word:${screen.entryId}` : screen.name} className="screen-enter">
-            <Suspense fallback={<ScreenSkeleton />}>
-            {!data || !plan ? <ScreenSkeleton /> : screen.name === 'session' ? (
+            <Suspense fallback={<ScreenSkeleton kind={skeletonFor(screen.name)} />}>
+            {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
               <SessionScreen
                 items={screen.items}
                 mode={screen.mode}
@@ -777,6 +777,12 @@ export default function App() {
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
                 onPractice={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
+                }
+                onPracticeType={(type) =>
+                  startSession(
+                    buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes.filter((m) => m.errorType === type), rng: createRng(Date.now()), options }),
+                    'normal',
+                  )
                 }
               />
             ) : screen.name === 'progress' ? (

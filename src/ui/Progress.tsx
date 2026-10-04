@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useState } from 'react'
 import { MASTERY_STAGES, skillProfile } from '../engine/mastery'
-import { progressStats, type DayActivity, type ProgressStats } from '../engine/progress'
+import { localDate, progressStats, type DayActivity, type ProgressStats } from '../engine/progress'
 import type { Scheduler } from '../engine/scheduler'
 import { SKILLS, type ErrorType, type ReviewEvent, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { displayForm } from '../engine/exercises'
@@ -17,7 +17,7 @@ import { GroupTitle, JumpNav } from './JumpNav'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { StreakFlame } from './StreakFlame'
-import { BrainIcon, CalendarIcon, ChartIcon, CheckIcon, LeafIcon, PulseIcon, StarIcon, TargetIcon } from './icons'
+import { BrainIcon, CalendarIcon, CheckIcon, LeafIcon, PulseIcon, StarIcon, TargetIcon } from './icons'
 
 const DAYS = 14
 
@@ -94,12 +94,15 @@ export function ProgressScreen({
     <div className="progress-page">
       <PageHeader title="İlerleme" sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın." />
       {/* The page in four numbers, each with its last six weeks. */}
-      <div className="kpi-strip span-2" role="list">
-        <Kpi label="aktif kelime" value={stats.activeVocabulary} hint="cümlede üretebildiğin" />
-        <Kpi label="bu hafta cevap" value={report.thisWeek.answers} spark={weeks.map((w) => w.answers)} />
-        <Kpi label="doğruluk, bu hafta" value={report.thisWeek.answers ? `%${Math.round(report.thisWeek.accuracy * 100)}` : '—'} spark={weeks.map((w) => (w.answers ? w.accuracy : null))} />
-        <Kpi label="günlük seri" value={game?.streak ?? 0} icon={<StreakFlame streak={game?.streak ?? 0} frozen={game?.frozenYesterday} size={18} />} />
-      </div>
+      <WeekHero
+        report={report}
+        events={events}
+        now={now}
+        weeks={weeks}
+        streak={<><StreakFlame streak={game?.streak ?? 0} frozen={game?.frozenYesterday} size={18} /> {game?.streak ?? 0}</>}
+        active={stats.activeVocabulary}
+        focus={weakestSkill(skillProfile(states, scheduler, now))}
+      />
       <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
       <GroupTitle id="p-overview" icon={<StarIcon size={18} />}>Genel bakış</GroupTitle>
       <section className="section stack span-2 overview-grid">
@@ -161,8 +164,7 @@ export function ProgressScreen({
         })()}
       </section>
 
-      <GroupTitle id="p-memory" icon={<CalendarIcon size={18} />}>Bu hafta ve tekrarlar</GroupTitle>
-      <WeekCard report={report} focus={weakestSkill(skillProfile(states, scheduler, now))} />
+      <GroupTitle id="p-memory" icon={<CalendarIcon size={18} />}>Tekrarlar</GroupTitle>
 
       <section className="section stack">
         <p className="eyebrow eyebrow-icon"><CalendarIcon size={16} /> Önümüzdeki {DAYS} günün tekrarları</p>
@@ -436,40 +438,6 @@ const FOCUS_TEXT: Record<string, string> = {
 }
 
 /** This week against last week, with a suggested focus. */
-function WeekCard({ report, focus }: { report: ReturnType<typeof weekReport>; focus: string | null }) {
-  const t = report.thisWeek
-  const l = report.lastWeek
-  return (
-    <section className="section card stack">
-      <p className="eyebrow eyebrow-icon"><ChartIcon size={16} /> Bu hafta</p>
-      <h2 className="section-title">
-        {l.answers === 0
-          ? `${t.answers} cevap, ${t.daysStudied} gün`
-          : t.answers >= l.answers
-            ? `Geçen haftadan %${Math.round(((t.answers - l.answers) / l.answers) * 100)} daha fazla cevap`
-            : `Geçen haftanın %${Math.round((t.answers / l.answers) * 100)}'i kadar cevap`}
-      </h2>
-      <div className="week-grid">
-        <div>
-          <strong>{t.xp}</strong> XP <span className="small muted">(tüm diller)</span> <Delta now={t.xp} before={l.xp} />
-        </div>
-        <div>
-          <strong>{t.answers}</strong> cevap <Delta now={t.answers} before={l.answers} />
-        </div>
-        <div>
-          <strong>%{Math.round(t.accuracy * 100)}</strong> doğruluk <Delta now={t.accuracy * 100} before={l.accuracy * 100} suffix=" puan" />
-        </div>
-        <div>
-          <strong>{t.newWords}</strong> yeni kelime <Delta now={t.newWords} before={l.newWords} />
-        </div>
-        <div>
-          <strong>{t.daysStudied}</strong>/7 gün <Delta now={t.daysStudied} before={l.daysStudied} />
-        </div>
-      </div>
-      {focus && FOCUS_TEXT[focus] && <p className="small"><TargetIcon size={16} className="inline-icon" />Önerilen odak: {FOCUS_TEXT[focus]}</p>}
-    </section>
-  )
-}
 
 function ForecastChart({ forecast }: { forecast: { date: string; count: number }[] }) {
   const [hover, setHover] = useState<number | null>(null)
@@ -515,18 +483,6 @@ function lastWeeks(events: readonly ReviewEvent[], now: Date, count: number): { 
   return out.map((w) => ({ answers: w.answers, accuracy: w.answers ? w.correct / w.answers : 0 }))
 }
 
-function Kpi({ label, value, hint, spark, icon }: { label: string; value: ReactNode; hint?: string; spark?: (number | null)[]; icon?: ReactNode }) {
-  return (
-    <div className="kpi" role="listitem">
-      <span className="kpi-value">
-        {icon}
-        {value}
-      </span>
-      <span className="kpi-label">{label}</span>
-      {spark && spark.some((v) => v) ? <Sparkline values={spark} /> : hint ? <span className="small muted">{hint}</span> : null}
-    </div>
-  )
-}
 
 /** A thin trend line; the last point (this week) is marked. */
 function Sparkline({ values }: { values: (number | null)[] }) {
@@ -541,5 +497,104 @@ function Sparkline({ values }: { values: (number | null)[] }) {
       <polyline points={pts.map(([x, y]) => `${x},${y}`).join(' ')} fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
       <circle cx={last[0]} cy={last[1]} r="3" fill="currentColor" />
     </svg>
+  )
+}
+
+const WEEKDAY = ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct']
+
+/**
+ * The page opens on the week: a sentence on how it compares with the last one, the seven days as
+ * dots, the figures with their change, and the one thing to focus on.
+ */
+function WeekHero({
+  report,
+  events,
+  now,
+  weeks,
+  streak,
+  active,
+  focus,
+}: {
+  report: ReturnType<typeof weekReport>
+  events: readonly ReviewEvent[]
+  now: Date
+  weeks: { answers: number; accuracy: number }[]
+  streak: ReactNode
+  active: number
+  focus: string | null
+}) {
+  const t = report.thisWeek
+  const l = report.lastWeek
+  const studied = new Set(events.filter((e) => e.mode === 'normal').map((e) => localDate(e.timestamp)))
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(now)
+    d.setHours(12, 0, 0, 0)
+    d.setDate(d.getDate() - (6 - i))
+    return { key: localDate(d), label: WEEKDAY[d.getDay()], today: i === 6 }
+  })
+  const headline =
+    t.answers === 0
+      ? 'Bu hafta henüz çalışmadın'
+      : l.answers === 0
+        ? `Bu hafta ${t.answers} cevap verdin`
+        : t.answers >= l.answers
+          ? `Geçen haftadan %${Math.round(((t.answers - l.answers) / l.answers) * 100)} daha fazla cevap`
+          : `Geçen haftanın %${Math.round((t.answers / l.answers) * 100)}'i kadar cevap`
+  return (
+    <section className="week-hero span-2">
+      <div className="week-hero-main">
+        <span className="small week-hero-kicker">Son 7 gün</span>
+        <h2 className="week-hero-title">{headline}</h2>
+        <ol className="week-dots" aria-label={`7 günün ${t.daysStudied} gününde çalıştın`}>
+          {days.map((d) => (
+            <li key={d.key} className={`${studied.has(d.key) ? 'is-on' : ''}${d.today ? ' is-today' : ''}`}>
+              <span className="week-dot" aria-hidden />
+              <span className="small">{d.label}</span>
+            </li>
+          ))}
+        </ol>
+        {focus && FOCUS_TEXT[focus] && (
+          <p className="small week-hero-focus">
+            <TargetIcon size={15} className="inline-icon" />
+            {FOCUS_TEXT[focus]}
+          </p>
+        )}
+      </div>
+      <dl className="week-hero-figures">
+        <div>
+          <dt>cevap</dt>
+          <dd>
+            {t.answers} <Delta now={t.answers} before={l.answers} />
+          </dd>
+          {weeks.some((w) => w.answers) && <Sparkline values={weeks.map((w) => w.answers)} />}
+        </div>
+        <div>
+          <dt>doğruluk</dt>
+          <dd>
+            {t.answers ? `%${Math.round(t.accuracy * 100)}` : '—'} {t.answers > 0 && <Delta now={t.accuracy * 100} before={l.accuracy * 100} />}
+          </dd>
+        </div>
+        <div>
+          <dt>yeni kelime</dt>
+          <dd>
+            {t.newWords} <Delta now={t.newWords} before={l.newWords} />
+          </dd>
+        </div>
+        <div>
+          <dt>XP</dt>
+          <dd>
+            {t.xp} <Delta now={t.xp} before={l.xp} />
+          </dd>
+        </div>
+        <div>
+          <dt>günlük seri</dt>
+          <dd>{streak}</dd>
+        </div>
+        <div>
+          <dt>aktif kelime</dt>
+          <dd>{active}</dd>
+        </div>
+      </dl>
+    </section>
   )
 }

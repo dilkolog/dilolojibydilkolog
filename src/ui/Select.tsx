@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { CheckIcon, ChevronDownIcon } from './icons'
 
 export interface SelectOption<T extends string> {
   value: T
@@ -29,6 +30,8 @@ export function Select<T extends string>({
 }) {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
+  // Opens upwards when there isn't room below (a field near the bottom of the screen).
+  const [up, setUp] = useState(false)
   const root = useRef<HTMLDivElement>(null)
   const list = useRef<HTMLUListElement>(null)
   const listId = useId()
@@ -49,6 +52,8 @@ export function Select<T extends string>({
 
   const openAt = () => {
     setActive(Math.max(0, options.findIndex((o) => o.value === value)))
+    const r = root.current?.getBoundingClientRect()
+    setUp(!!r && window.innerHeight - r.bottom < 280 && r.top > window.innerHeight - r.bottom)
     setOpen(true)
   }
 
@@ -97,12 +102,10 @@ export function Select<T extends string>({
       >
         {current?.icon}
         <span className={current ? '' : 'muted'}>{current?.label ?? placeholder}</span>
-        <svg className="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
-          <path d="m6 9 6 6 6-6" />
-        </svg>
+        <ChevronDownIcon size={16} className="select-chevron" />
       </button>
       {open && (
-        <ul className="select-list" role="listbox" id={listId} ref={list} aria-label={label}>
+        <ul className={`select-list${up ? ' is-up' : ''}`} role="listbox" id={listId} ref={list} aria-label={label}>
           {options.map((o, i) => (
             <li
               key={o.value}
@@ -121,11 +124,7 @@ export function Select<T extends string>({
                 {o.label}
                 {o.hint && <span className="select-hint">{o.hint}</span>}
               </span>
-              {o.value === value && (
-                <svg className="select-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden>
-                  <path d="m5 12.5 4.5 4.5L19 7" />
-                </svg>
-              )}
+              {o.value === value && <CheckIcon size={16} className="select-check" />}
             </li>
           ))}
         </ul>

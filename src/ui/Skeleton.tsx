@@ -1,17 +1,92 @@
+export type SkeletonKind = 'home' | 'list' | 'detail' | 'settings' | 'session' | 'grid'
+
+/** Which skeleton each screen gets: the shape of what is about to appear, so nothing jumps. */
+export function skeletonFor(screen: string): SkeletonKind {
+  if (screen === 'home') return 'home'
+  if (screen === 'words' || screen === 'mistakes') return 'list'
+  if (screen === 'word') return 'detail'
+  if (screen === 'settings') return 'settings'
+  if (screen === 'session' || screen === 'summary') return 'session'
+  return 'grid'
+}
+
 /**
- * A grey outline of a screen while its code or data loads: the layout appears at once instead of
- * an empty page with "Yükleniyor…", so opening a screen feels immediate.
+ * Placeholder while a screen loads, in the layout of that screen (soft blocks with a gentle
+ * shimmer), so the page doesn't jump when the content arrives.
  */
-export function ScreenSkeleton() {
+export function ScreenSkeleton({ kind = 'grid' }: { kind?: SkeletonKind }) {
   return (
-    <div className="skeleton" role="status" aria-label="Yükleniyor">
-      <span className="sk sk-title" />
-      <span className="sk sk-line" />
-      <div className="sk-grid">
-        <span className="sk sk-card sk-card-tall" />
-        <span className="sk sk-card" />
-        <span className="sk sk-card" />
-      </div>
+    <div className={`skeleton sk-${kind}`} role="status" aria-label="Yükleniyor">
+      {kind !== 'session' && kind !== 'detail' && (
+        <>
+          <span className="sk sk-title" />
+          <span className="sk sk-line" />
+        </>
+      )}
+      {kind === 'home' && (
+        <div className="sk-cols">
+          <div className="sk-col">
+            <span className="sk sk-card sk-hero" />
+            <span className="sk sk-card" />
+            <div className="sk-grid">
+              <span className="sk sk-card sk-small" />
+              <span className="sk sk-card sk-small" />
+            </div>
+          </div>
+          <div className="sk-col">
+            <span className="sk sk-card" />
+            <span className="sk sk-card sk-list" />
+          </div>
+        </div>
+      )}
+      {kind === 'list' && (
+        <>
+          <span className="sk sk-tabs" />
+          <span className="sk sk-toolbar" />
+          <div className="sk-rows">
+            {Array.from({ length: 8 }, (_, i) => (
+              <span key={i} className="sk sk-row" />
+            ))}
+          </div>
+        </>
+      )}
+      {kind === 'detail' && (
+        <>
+          <span className="sk sk-back" />
+          <span className="sk sk-card sk-hero" />
+          <span className="sk sk-tabs" />
+          <div className="sk-grid">
+            <span className="sk sk-card" />
+            <span className="sk sk-card" />
+          </div>
+        </>
+      )}
+      {kind === 'settings' && (
+        <div className="sk-settings">
+          <div className="sk-menu">
+            {Array.from({ length: 8 }, (_, i) => (
+              <span key={i} className="sk sk-menu-item" />
+            ))}
+          </div>
+          <div className="sk-col">
+            <span className="sk sk-line" />
+            <span className="sk sk-card sk-list" />
+          </div>
+        </div>
+      )}
+      {kind === 'session' && (
+        <div className="sk-session">
+          <span className="sk sk-progress" />
+          <span className="sk sk-card sk-question" />
+        </div>
+      )}
+      {kind === 'grid' && (
+        <div className="sk-grid">
+          <span className="sk sk-card sk-card-tall" />
+          <span className="sk sk-card" />
+          <span className="sk sk-card" />
+        </div>
+      )}
     </div>
   )
 }

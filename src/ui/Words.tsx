@@ -188,7 +188,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           )}
           {!incoming && (
             <div className="card stack">
-              <WordForm db={db} language={language} existing={keys} onSaved={onChanged} onLearn={onStudy} />
+              <WordForm db={db} language={language} existing={keys} onSaved={onChanged} onLearn={onStudy} preview />
             </div>
           )}
           <div className="row small">
@@ -308,6 +308,7 @@ export function WordForm({
   onSaved,
   onCancel,
   onLearn,
+  preview = false,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -319,6 +320,8 @@ export function WordForm({
   onCancel?: () => void
   /** Study the words just added, right away. */
   onLearn?: (entries: VocabularyEntry[]) => void
+  /** Show a live preview of the word card beside the form (on wide screens). */
+  preview?: boolean
 }) {
   const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : (initial ?? EMPTY)))
   const [error, setError] = useState('')
@@ -527,6 +530,7 @@ export function WordForm({
     language === 'en' ? 'Örn. decision' : language === 'fr' ? 'İsimleri artikeliyle yaz: la décision' : 'İsimleri artikeliyle yaz: el año'
 
   return (
+    <div className={preview ? 'word-form-layout' : undefined}>
     <form className="stack" onSubmit={submit}>
         <div className="grid-2">
           <div className="field">
@@ -758,6 +762,46 @@ export function WordForm({
           )}
         </div>
     </form>
+    {preview && <WordPreview language={language} word={form.word} meaning={form.meaning} pos={posManual ? form.partOfSpeech : autoPos} example={form.example ?? ''} translation={form.exampleTranslation ?? ''} image={image?.url} />}
+    </div>
+  )
+}
+
+/**
+ * The word as it will look, filled in as you type: the seed it starts as, its kind, how it reads
+ * with its article, the meaning and the example with the word marked.
+ */
+function WordPreview({ language, word, meaning, pos, example, translation, image }: { language: TargetLanguage; word: string; meaning: string; pos?: PartOfSpeech; example: string; translation: string; image?: string }) {
+  const w = word.trim()
+  const marked = example.includes('*') ? example.split(/\*([^*]+)\*/) : (() => {
+    const i = w ? example.toLowerCase().indexOf(splitArticle(normalize(w).toLocaleLowerCase(language), language).rest || w.toLowerCase()) : -1
+    const len = (splitArticle(normalize(w).toLocaleLowerCase(language), language).rest || w).length
+    return i >= 0 ? [example.slice(0, i), example.slice(i, i + len), example.slice(i + len)] : [example]
+  })()
+  return (
+    <aside className="word-preview" aria-label="Önizleme">
+      <span className="word-preview-kicker small">Önizleme</span>
+      <div className="word-preview-card">
+        {image && <img className="word-preview-image" src={image} alt="" />}
+        <div className="word-preview-head">
+          <Plant stage={-1} size={34} />
+          {pos && pos !== 'other' && <span className="chip-tag">{POS_NAME[pos]}</span>}
+        </div>
+        <p className={`word-preview-word${w ? '' : ' is-empty'}`} lang={language}>
+          {w || (language === 'fr' ? 'la décision' : language === 'es' ? 'la decisión' : 'decision')}
+        </p>
+        <p className={`word-preview-meaning${meaning.trim() ? '' : ' is-empty'}`}>{meaning.trim() || 'Türkçe anlamı'}</p>
+        {example.trim() && (
+          <div className="word-preview-example">
+            <p lang={language}>
+              {marked.map((part, i) => (i % 2 === 1 ? <mark key={i}>{part}</mark> : <span key={i}>{part.replace(/\*/g, '')}</span>))}
+            </p>
+            {translation.trim() && <p className="small muted">{translation}</p>}
+          </div>
+        )}
+      </div>
+      <p className="small muted">Eklenince tohum olarak başlar; çalıştıkça büyür.</p>
+    </aside>
   )
 }
 

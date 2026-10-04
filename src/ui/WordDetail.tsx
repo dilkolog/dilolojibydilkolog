@@ -121,6 +121,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         </button>
         <h1 className="greeting">Düzenle: {displayForm(entry)}</h1>
         <WordForm
+          preview
           db={db}
           language={entry.language}
           existing={others}
