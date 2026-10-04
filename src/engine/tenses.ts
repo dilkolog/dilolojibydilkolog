@@ -1,23 +1,27 @@
 import { normalize } from './answerCheck'
-import { conjugate, type Person } from './conjugation'
+import { acceptedForms, conjugate, PRONOUNS, type Person } from './conjugation'
 import type { VocabularyEntry } from './types'
 
 /**
- * Past and future tenses for French and Spanish verbs, on top of the present (conjugation.ts).
+ * Past, future, conditional and subjunctive for French and Spanish verbs, on top of the present
+ * (conjugation.ts).
  * Forms come from tables built by scripts/build-tenses.ts (src/data/tenses), each checked against
- * several sources; a verb missing from them simply has no past or future here. Compound tenses
+ * several sources; a verb missing from them simply has no such tense here. Compound tenses
  * (passé composé, pretérito perfecto) are put together from the auxiliary and the participle, so
- * reflexive verbs get être and their pronoun.
+ * reflexive verbs get être and their pronoun; the conditional from the future stem (parler-ais,
+ * tendr-ía), which holds for every verb.
  */
-export type FrTense = 'present' | 'passe-compose' | 'imparfait' | 'futur'
-export type EsTense = 'presente' | 'preterito' | 'imperfecto' | 'perfecto' | 'futuro'
+export type FrTense = 'present' | 'passe-compose' | 'imparfait' | 'futur' | 'conditionnel' | 'subjonctif'
+export type EsTense = 'presente' | 'preterito' | 'imperfecto' | 'perfecto' | 'futuro' | 'condicional' | 'subjuntivo'
 export type Tense = FrTense | EsTense
 
-/** In teaching order: the present, then the past, the past background, then the future. */
+/** In teaching order: the present, the past, the past background, the future, then the moods. */
 export const TENSES: { fr: FrTense[]; es: EsTense[] } = {
-  fr: ['present', 'passe-compose', 'imparfait', 'futur'],
-  es: ['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro'],
+  fr: ['present', 'passe-compose', 'imparfait', 'futur', 'conditionnel', 'subjonctif'],
+  es: ['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro', 'condicional', 'subjuntivo'],
 }
+
+export const isSubjunctive = (tense: Tense) => tense === 'subjonctif' || tense === 'subjuntivo'
 
 /** Endings for tenses stored as a stem (must match ENDINGS in scripts/build-tenses.ts). */
 const ENDINGS = {
@@ -28,10 +32,13 @@ const ENDINGS = {
   esFut: ['é', 'ás', 'á', 'emos', 'éis', 'án'],
   esPreAr: ['é', 'aste', 'ó', 'amos', 'asteis', 'aron'],
   esPreErIr: ['í', 'iste', 'ió', 'imos', 'isteis', 'ieron'],
+  frS: ['e', 'es', 'e', 'ions', 'iez', 'ent'],
+  esSubAr: ['e', 'es', 'e', 'emos', 'éis', 'en'],
+  esSubErIr: ['a', 'as', 'a', 'amos', 'áis', 'an'],
 }
 
-interface FrRow { i: string | string[]; f: string | string[]; pp: string | [string, string]; aux: 'a' | 'e' }
-interface EsRow { pre: string[]; imp: string | string[]; fut: string | string[]; pp: string }
+interface FrRow { i: string | string[]; f: string | string[]; s?: string | string[]; pp: string | [string, string]; aux: 'a' | 'e' }
+interface EsRow { pre: string[]; imp: string | string[]; fut: string | string[]; pp: string; sub?: string | string[] }
 const DATA = { fr: new Map<string, FrRow>(), es: new Map<string, EsRow>() }
 
 /** Loads a language's table (the JSON from src/data/tenses), done once in the background. */
@@ -76,10 +83,17 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   if (entry.language === 'fr') {
     const row = DATA.fr.get(key)
     if (!row) return undefined
-    if (tense === 'imparfait' || tense === 'futur') {
-      const forms = expand(tense === 'imparfait' ? row.i : row.f, tense === 'imparfait' ? ENDINGS.frI : ENDINGS.frF)
-      return reflexive ? forms.map((f, i) => frReflexive(i, f)) : forms
-    }
+    const simple =
+      tense === 'imparfait'
+        ? expand(row.i, ENDINGS.frI)
+        : tense === 'futur'
+          ? expand(row.f, ENDINGS.frF)
+          : tense === 'conditionnel'
+            ? ENDINGS.frI.map((e) => expand(row.f, ENDINGS.frF)[0].slice(0, -2) + e)
+            : tense === 'subjonctif' && row.s
+              ? expand(row.s, ENDINGS.frS)
+              : undefined
+    if (simple) return reflexive ? simple.map((f, i) => frReflexive(i, f)) : simple
     if (tense === 'passe-compose') {
       const etre = reflexive || row.aux === 'e'
       const [sg, pl] = typeof row.pp === 'string' ? [row.pp, `${row.pp}s`] : row.pp
@@ -102,7 +116,11 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
           ? expand(row.fut, ENDINGS.esFut)
           : tense === 'perfecto'
             ? HABER.map((h) => `${h} ${row.pp}`)
-            : undefined
+            : tense === 'condicional'
+              ? ENDINGS.esImpErIr.map((e) => expand(row.fut, ENDINGS.esFut)[0].slice(0, -1) + e)
+              : tense === 'subjuntivo' && row.sub
+                ? expand(row.sub, key.endsWith('ar') ? ENDINGS.esSubAr : ENDINGS.esSubErIr)
+                : undefined
   return forms && (reflexive ? forms.map((f, i) => `${REFL.es[i]} ${f}`) : forms)
 }
 
@@ -126,9 +144,16 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
     if (tense === 'imparfait') {
       const nous = conjugateTense(entry, 'present')?.[3].replace(/^nous /, '')
       if (nous?.endsWith('ons')) regular = ENDINGS.frI.map((e) => nous.slice(0, -3) + e)
-    } else if (tense === 'futur') {
+    } else if (tense === 'futur' || tense === 'conditionnel') {
       const stem = key.endsWith('re') ? key.slice(0, -1) : key
-      regular = ENDINGS.frF.map((e) => stem + e)
+      regular = (tense === 'futur' ? ENDINGS.frF : ENDINGS.frI).map((e) => stem + e)
+    } else if (tense === 'subjonctif') {
+      // Stem of "ils" (present) for je/tu/il/ils, the imparfait for nous/vous: prennent → prenne, prenions.
+      const ils = conjugateTense(entry, 'present')?.[5].replace(/^se /, '')
+      const imp = conjugateTense(entry, 'imparfait')?.map((f) => f.replace(/^(nous|vous) /, ''))
+      if (ils?.endsWith('ent') && imp) regular = ENDINGS.frS.map((e, i) => (i === 3 || i === 4 ? imp[i] : ils.slice(0, -3) + e))
+      // sont, ont, vont, font: no stem to build from, the whole tense is learned by heart.
+      else if (ils) regular = bare.map(() => '')
     } else if (tense === 'passe-compose') {
       const pp = key.endsWith('er') ? `${key.slice(0, -2)}é` : key.endsWith('ir') ? `${key.slice(0, -2)}i` : key.endsWith('re') ? `${key.slice(0, -2)}u` : ''
       regular = bare.map((f) => (pp && f.split(' ')[1]?.replace(/s$/, '') === pp ? f : ''))
@@ -139,6 +164,18 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
     if (tense === 'preterito') regular = (ar ? ENDINGS.esPreAr : ENDINGS.esPreErIr).map((e) => stem + e)
     else if (tense === 'imperfecto') regular = (ar ? ENDINGS.esImpAr : ENDINGS.esImpErIr).map((e) => stem + e)
     else if (tense === 'futuro') regular = ENDINGS.esFut.map((e) => key + e)
+    else if (tense === 'condicional') regular = ENDINGS.esImpErIr.map((e) => key + e)
+    else if (tense === 'subjuntivo') {
+      // From the "yo" form of the present (tengo → tenga); a stem change (pienso) stays out of
+      // nosotros/vosotros (pensemos), as in the present.
+      const yo = conjugateTense(entry, 'presente')?.[0].replace(/^me /, '')
+      if (yo?.endsWith('o')) {
+        const yoStem = yo.slice(0, -1)
+        const nosStem = yoStem.replace('ie', 'e') === stem || yoStem.replace('ue', 'o') === stem ? stem : yoStem
+        regular = (ar ? ENDINGS.esSubAr : ENDINGS.esSubErIr).map((e, i) => (i === 3 || i === 4 ? nosStem : yoStem) + e)
+      } else if (yo) regular = bare.map(() => '') // soy, voy, sé: sea, vaya, sepa are learned by heart.
+
+    }
     else if (tense === 'perfecto') {
       const pp = `${stem}${ar ? 'ado' : 'ido'}`
       regular = bare.map((f) => (f.endsWith(` ${pp}`) ? f : ''))
@@ -148,13 +185,18 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
 }
 
 /**
- * Other accepted spellings: the 1990 French reform (cèderai beside céderai) and Spanish
- * monosyllables written without the accent since 2010 (rio, guio beside rió, guió).
+ * Other accepted spellings: the 1990 French reform (cèderai beside céderai; cachète beside
+ * cachette for -eler/-eter verbs other than appeler and jeter) and Spanish monosyllables written
+ * without the accent since 2010 (rio, guio beside rió, guió).
  */
-export function tenseVariants(language: 'fr' | 'es', form: string): string[] {
+export function tenseVariants(language: 'fr' | 'es', form: string, lemma = ''): string[] {
   if (language === 'fr') {
-    const reform = form.replace(/é([^aeiouéèêy ]+)er(ai|as|a|ons|ez|ont)$/, 'è$1er$2')
-    return reform !== form ? [reform] : []
+    const out = new Set<string>()
+    out.add(form.replace(/é([^aeiouéèêy ]+)er(ai|as|a|ons|ez|ont|ais|ait|ions|iez|aient)$/, 'è$1er$2'))
+    if (/e[lt]er$/.test(lemma) && !/(jeter|appeler)$/.test(lemma))
+      out.add(form.replace(/e(l|t)\1(e|es|ent|erai|eras|era|erons|erez|eront|erais|erait|erions|eriez|eraient)$/, 'è$1$2'))
+    out.delete(form)
+    return [...out]
   }
   const words = form.split(' ')
   const last = words[words.length - 1]
@@ -171,7 +213,7 @@ export function tenseAnswers(entry: Pick<VocabularyEntry, 'language' | 'lemma' |
   const forms = conjugateTense(entry, tense)
   if (!forms || entry.language === 'en') return []
   const form = forms[person]
-  const out = new Set([form, ...tenseVariants(entry.language, form)])
+  const out = new Set([form, ...tenseVariants(entry.language, form, keyOf(entry).key)])
   if (entry.language === 'fr' && tense === 'passe-compose') {
     const { key, reflexive } = keyOf(entry)
     const row = DATA.fr.get(key)
@@ -186,17 +228,46 @@ export function tenseAnswers(entry: Pick<VocabularyEntry, 'language' | 'lemma' |
   return [...out]
 }
 
+/** "que je", "qu'il / qu'elle": the subjunctive is asked and shown after "que". */
+const que = (language: 'fr' | 'es', s: string) => (language === 'fr' && /^[aeiouyéè]/i.test(s) ? `qu'${s}` : `que ${s}`)
+
+/** The subject as a question or the table shows it: "nous", "que je", "qu'il / qu'elle". */
+export function subjectLabel(language: 'fr' | 'es', tense: Tense, person: number): string {
+  return PRONOUNS[language][person]
+    .slice(0, 2)
+    .map((p) => (isSubjunctive(tense) ? que(language, p) : p))
+    .join(' / ')
+}
+
+/** A form with its subject, as a list shows it: "j'aime", "que nous parlions". */
+export function withSubject(language: 'fr' | 'es', tense: Tense, person: number, form: string): string {
+  const full = acceptedForms(language, person as Person, form)[1]
+  return isSubjunctive(tense) ? que(language, full) : full
+}
+
+/** Accepted typed answers: the form alone or with a subject pronoun (and "que" for the subjunctive). */
+export function answersFor(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, tense: Tense, person: number): string[] {
+  if (entry.language === 'en') return []
+  const lang = entry.language
+  const withPronoun = tenseAnswers(entry, tense, person).flatMap((f) => acceptedForms(lang, person as Person, f))
+  return isSubjunctive(tense) ? [...withPronoun, ...withPronoun.filter((a) => a.includes(' ') || a.includes("'")).map((a) => que(lang, a))] : withPronoun
+}
+
 /** How many correct productions open each tense: the present first, the rest as the word settles. */
 const UNLOCK: Record<Tense, number> = {
   present: 0,
   'passe-compose': 1,
   imparfait: 3,
   futur: 5,
+  conditionnel: 6,
+  subjonctif: 8,
   presente: 0,
   preterito: 1,
   perfecto: 2,
   imperfecto: 3,
   futuro: 5,
+  condicional: 6,
+  subjuntivo: 8,
 }
 
 /**

@@ -1,7 +1,7 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
-import { acceptedForms, PERSONS, PRONOUNS } from './conjugation'
+import { PERSONS } from './conjugation'
 import { TENSE_GUIDE } from './tenseGuide'
-import { conjugateTense, tenseAnswers, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
+import { answersFor, conjugateTense, subjectLabel, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import { familyRelative, suffixVariants } from './morphology'
@@ -710,10 +710,10 @@ export function buildExercise(
       return {
         ...base,
         kind: 'typed',
-        prompt: `${PRONOUNS[lang][person].slice(0, 2).join(' / ')} · ${entry.lemma}`,
+        prompt: `${subjectLabel(lang, tense, person)} · ${entry.lemma}`,
         context: `${sense.gloss} · ${guide.name} (${guide.tr.toLocaleLowerCase('tr')})`,
         tense,
-        accepted: tenseAnswers(entry, tense, person).flatMap((f) => acceptedForms(lang, person, f)),
+        accepted: answersFor(entry, tense, person),
         hints: buildHints(forms[person], `${guide.name}: ${forms.slice(0, 3).join(', ')}…`),
       }
     }

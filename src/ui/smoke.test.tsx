@@ -298,12 +298,13 @@ describe('screens render', () => {
     }
     // First answer right (read from the engine), the rest wrong.
     const tense = el.querySelector('.prompt-label span')!.textContent!
-    const id = { 'pretérito indefinido': 'preterito', 'pretérito imperfecto': 'imperfecto', 'pretérito perfecto': 'perfecto', 'futuro simple': 'futuro' }[tense] as 'preterito'
+    const id = { 'pretérito indefinido': 'preterito', 'pretérito imperfecto': 'imperfecto', 'pretérito perfecto': 'perfecto', 'futuro simple': 'futuro', 'condicional simple': 'condicional', 'presente de subjuntivo': 'subjuntivo' }[tense] as 'preterito'
     if (el.querySelector('.sentence')) {
       const verb = el.querySelector('.conj-gloss span')!.textContent!
       await typeAnswer(tenseSentence({ language: 'es', lemma: verb }, id)!.form)
     } else {
-      const [person, verb] = el.querySelector('.prompt-text')!.textContent!.split(' · ')
+      const [label, verb] = el.querySelector('.prompt-text')!.textContent!.split(' · ')
+      const person = label.replace(/que /g, '')
       const p = ['yo', 'tú', 'él / ella', 'nosotros / nosotras', 'vosotros / vosotras', 'ellos / ellas'].indexOf(person)
       await typeAnswer(conjugateTense({ language: 'es', lemma: verb, partOfSpeech: 'verb' }, id)![p])
     }

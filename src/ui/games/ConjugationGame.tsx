@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
 import { checkTyped, normalize } from '../../engine/answerCheck'
-import { acceptedForms, PRONOUNS } from '../../engine/conjugation'
 import { createRng, pick, shuffle, type Rng } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
-import { conjugateTense, irregularForms, tenseAnswers, tenseSentence, tensesOf, tenseVariants, TENSES, type Tense, type TenseSentence } from '../../engine/tenses'
+import { answersFor, conjugateTense, irregularForms, subjectLabel, tenseSentence, withSubject, tensesOf, tenseVariants, TENSES, type Tense, type TenseSentence } from '../../engine/tenses'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
@@ -121,7 +120,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
     if (!q || answer || !typed.trim()) return
     const accepted = q.sentence
       ? [q.sentence.form, ...tenseVariants(language, q.sentence.form)]
-      : tenseAnswers(q.verb, q.tense, q.person).flatMap((f) => acceptedForms(language, q.person as 0, f))
+      : answersFor(q.verb, q.tense, q.person)
     const others = tensesOf(q.verb).flatMap((t) => conjugateTense(q.verb, t) ?? [])
     const r = checkTyped(typed, accepted, { language, confusables: [], familyForms: others.filter((f) => !accepted.includes(f)) })
     const a: Answer = { ok: r.verdict === 'correct', near: r.verdict === 'near', form: r.errorType === 'form', typed: typed.trim() }
@@ -160,7 +159,6 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
     return () => window.removeEventListener('keydown', onKey)
   })
 
-  const pronoun = (p: number) => PRONOUNS[language][p].slice(0, 2).join(' / ')
   const missed = results.filter((r) => !r.ok)
 
   return (
@@ -235,7 +233,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
           ) : (
             <>
               <p className="prompt-text" lang={language}>
-                {pronoun(q.person)} · {q.verb.lemma}
+                {subjectLabel(language, q.tense, q.person)} · {q.verb.lemma}
               </p>
               <p className="muted conj-gloss">{q.verb.gloss}</p>
             </>
@@ -271,7 +269,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
                 <tbody>
                   {q.forms.map((f, i) => (
                     <tr key={i} className={(q.sentence ? normalize(f) === normalize(q.sentence.form) : i === q.person) ? 'is-asked' : undefined}>
-                      <th scope="row">{pronoun(i)}</th>
+                      <th scope="row">{subjectLabel(language, q.tense, i)}</th>
                       <td>{f}</td>
                     </tr>
                   ))}
@@ -304,7 +302,7 @@ export function ConjugationGame({ language, vocabulary, states, best, recordKey,
             .map((t) => ({ t, rs: results.filter((r) => r.q.tense === t) }))
             .filter((x) => x.rs.length)
             .map(({ t, rs }) => ({ label: TENSE_GUIDE[t].name, value: `${rs.filter((r) => r.ok).length}/${rs.length}` }))}
-          missed={missed.map((m) => (m.q.sentence ? m.q.sentence.form.toLocaleLowerCase(language) : `${PRONOUNS[language][m.q.person][0]} ${m.q.forms[m.q.person]}`))}
+          missed={missed.map((m) => (m.q.sentence ? m.q.sentence.form.toLocaleLowerCase(language) : withSubject(language, m.q.tense, m.q.person, m.q.forms[m.q.person])))}
           missedLabel="Doğru biçimleri"
           language={language}
           onAgain={start}

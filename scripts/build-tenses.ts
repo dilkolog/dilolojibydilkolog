@@ -2,14 +2,15 @@
  * Builds src/data/tenses/{fr,es}.json: past and future tenses for the verbs a learner meets.
  *
  * French: french-verbs + french-verbs-lefff (Apache-2.0; Lefff by Benoît Sagot), for verbs in
- * Lexique (src/data/lexicon/fr.txt). Stored per verb: imparfait (i), futur (f), participe passé
+ * Lexique (src/data/lexicon/fr.txt). Stored per verb: imparfait (i), futur (f), subjonctif (s), participe passé
  * masculine singular/plural (pp) and auxiliary (aux: 'e' être / 'a' avoir); passé composé is
  * composed at runtime (reflexives need être and their pronoun).
  *
  * Spanish: spanish-verbs (Apache-2.0) with the corrections from the learner's own audit in the
  * diloloji project (scripts/es-overrides.json), for infinitives in the frequency list plus the
  * 1000 verbs of diloloji's example sentences. Stored: indefinido (pre), imperfecto (imp), futuro
- * (fut), participio (pp); pretérito perfecto is composed at runtime (haber + participio).
+ * (fut), participio (pp), presente de subjuntivo (sub, when vouched for); pretérito perfecto
+ * (haber + participio) and the conditional (future stem + -ía) are composed at runtime.
  *
  * Every form is compared with UniMorph (CC BY-SA); differences are printed for review.
  * Usage: npx rolldown scripts/build-tenses.ts -o /tmp/t.mjs -p node && node /tmp/t.mjs <unimorph dir> [diloloji dir]
@@ -32,6 +33,9 @@ const ENDINGS: Record<string, string[]> = {
   esImpAr: ['aba', 'abas', 'aba', 'ábamos', 'abais', 'aban'],
   esImpErIr: ['ía', 'ías', 'ía', 'íamos', 'íais', 'ían'],
   esFut: ['é', 'ás', 'á', 'emos', 'éis', 'án'],
+  frS: ['e', 'es', 'e', 'ions', 'iez', 'ent'],
+  esSubAr: ['e', 'es', 'e', 'emos', 'éis', 'en'],
+  esSubErIr: ['a', 'as', 'a', 'amos', 'áis', 'an'],
 }
 function pack(forms: string[], endings: string[]): string | string[] {
   const stem = forms[0].slice(0, forms[0].length - endings[0].length)
@@ -76,9 +80,11 @@ const frVerbs = readFileSync('src/data/lexicon/fr.txt', 'utf8')
 const frRef = unimorph('fra', {
   ...Object.fromEntries(PERS.map((p, i) => [`V;IND;PST;${p};IPFV`, `i${i}`])),
   ...Object.fromEntries(PERS.map((p, i) => [`V;IND;FUT;${p}`, `f${i}`])),
+  ...Object.fromEntries(PERS.map((p, i) => [`V;SBJV;PRS;${p}`, `s${i}`])),
+  ...Object.fromEntries(PERS.map((p, i) => [`V;COND;${p}`, `c${i}`])),
   'V.PTCP;PST': 'pp',
 })
-const fr: Record<string, { i: Six; f: Six; pp: [string, string]; aux: 'a' | 'e' }> = {}
+const fr: Record<string, { i: Six; f: Six; s: Six; pp: [string, string]; aux: 'a' | 'e' }> = {}
 for (const v of frVerbs) {
   try {
     const conj = (tense: string) => P.map((p) => frConj(lefff as never, v, tense as never, p, {}, false, undefined, undefined, 'Act')) as Six
@@ -86,11 +92,21 @@ for (const v of frVerbs) {
     if (!k?.[0]) continue
     const i = conj('IMPARFAIT')
     const f = conj('FUTUR')
-    if ([...i, ...f].some((x) => !x || x === 'NA' || /undefined/.test(x))) continue
-    fr[v] = { i, f, pp: [k[0], k[1] ?? `${k[0]}s`], aux: alwaysAuxEtre(v) ? 'e' : 'a' }
+    const sj = conj('SUBJONCTIF_PRESENT')
+    if ([...i, ...f, ...sj].some((x) => !x || x === 'NA' || /undefined/.test(x))) continue
+    // The conditional is built at runtime from the futur stem; checked here against the library.
+    const c = conj('CONDITIONNEL_PRESENT')
+    const stem = f[0].slice(0, -2)
+    if (!f.every((x, n) => x === stem + ENDINGS.frF[n]) || !c.every((x, n) => x === stem + ENDINGS.frI[n])) {
+      console.log(`fr ${v}: conditionnel not futur stem + imparfait endings: ${c.join(' ')}`)
+      continue
+    }
+    fr[v] = { i, f, s: sj, pp: [k[0], k[1] ?? `${k[0]}s`], aux: alwaysAuxEtre(v) ? 'e' : 'a' }
     const ref = frRef.get(v)
     compare('fr', v, 'imparfait', i, ref && Object.fromEntries(P.map((p) => [`i${p}`, ref[`i${p}`]])), 'i')
     compare('fr', v, 'futur', f, ref && Object.fromEntries(P.map((p) => [`f${p}`, ref[`f${p}`]])), 'f')
+    compare('fr', v, 'subjonctif', sj, ref && Object.fromEntries(P.map((p) => [`s${p}`, ref[`s${p}`]])), 's')
+    compare('fr', v, 'conditionnel', c, ref && Object.fromEntries(P.map((p) => [`c${p}`, ref[`c${p}`]])), 'c')
     if (ref?.pp && ref.pp !== k[0]) {
       differences++
       if (differences <= 100000) console.log(`fr ${v} participe: ours ${k[0]} | unimorph ${ref.pp}`)
@@ -99,7 +115,7 @@ for (const v of frVerbs) {
     // A verb the library can't conjugate is left out.
   }
 }
-writeFileSync('src/data/tenses/fr.json', JSON.stringify(Object.fromEntries(Object.entries(fr).map(([v, e]) => [v, { i: pack(e.i, ENDINGS.frI), f: pack(e.f, ENDINGS.frF), pp: e.pp[1] === `${e.pp[0]}s` ? e.pp[0] : e.pp, aux: e.aux }]))))
+writeFileSync('src/data/tenses/fr.json', JSON.stringify(Object.fromEntries(Object.entries(fr).map(([v, e]) => [v, { i: pack(e.i, ENDINGS.frI), f: pack(e.f, ENDINGS.frF), s: pack(e.s, ENDINGS.frS), pp: e.pp[1] === `${e.pp[0]}s` ? e.pp[0] : e.pp, aux: e.aux }]))))
 console.log(`fr: ${Object.keys(fr).length} verbs`)
 
 // ── Spanish ───────────────────────────────────────────────────────────────────────────
@@ -127,18 +143,23 @@ const esRef = unimorph('spa', {
 })
 for (const line of readFileSync(`${unimorphDir}/spa`, 'utf8').split('\n')) {
   const [lemma, form, feats] = line.split('\t')
-  const tag = { 'V;IND;PST;2;SG;PFV;INFM': 'pre1', 'V;IND;PST;2;SG;IPFV;INFM': 'imp1', 'V;IND;FUT;2;SG;INFM': 'fut1' }[feats as string]
-  if (!tag) continue
+  const tag = { 'V;IND;PST;2;SG;PFV;INFM': 'pre1', 'V;IND;PST;2;SG;IPFV;INFM': 'imp1', 'V;IND;FUT;2;SG;INFM': 'fut1', 'V;SBJV;PRS;2;SG;INFM': 'sub1' }[feats as string]
+  const sub = { 'V;SBJV;PRS;1;SG': 'sub0', 'V;SBJV;PRS;3;SG': 'sub2', 'V;SBJV;PRS;1;PL': 'sub3', 'V;SBJV;PRS;2;PL': 'sub4', 'V;SBJV;PRS;3;PL': 'sub5' }[feats as string]
+  if (!tag && !sub) continue
   const m = esRef.get(lemma) ?? {}
-  m[tag] = form
+  // The first 2nd-person form is the tú form; the second, where there is one, is voseo (hablés).
+  if (sub || tag === 'sub1') m[(sub ?? tag)!] ??= form
+  else m[tag!] = form
   esRef.set(lemma, m)
 }
 
 // Fred Jehle's database: "infinitive",…,"mood",…,"tense",…,forms 1s–3p,…,"pastparticiple".
 const jehle = new Map<string, Partial<Record<Key | 'pp', string[] | string>>>()
 const JT: Record<string, Key> = { 'Pretérito': 'pre', Imperfecto: 'imp', Futuro: 'fut' }
+const jehleSub = new Map<string, string[]>()
 for (const line of readFileSync(`${unimorphDir}/jehle_verb_database.csv`, 'utf8').split('\n').slice(1)) {
   const c = line.match(/"([^"]*)"/g)?.map((x) => x.slice(1, -1))
+  if (c?.[2] === 'Subjuntivo' && c[4] === 'Presente' && c.slice(7, 13).every((f) => f && !/ /.test(f))) jehleSub.set(c[0], c.slice(7, 13))
   if (!c || c[2] !== 'Indicativo' || !JT[c[4]]) continue
   const forms = c.slice(7, 13)
   if (forms.some((f) => !f || / /.test(f))) continue
@@ -158,6 +179,8 @@ const candidates = [...new Set([...[...esRef.keys()].filter((v) => (freq.get(v) 
 const IRREGULAR_FUTURE = ['caber', 'haber', 'poder', 'querer', 'saber', 'poner', 'salir', 'tener', 'valer', 'venir', 'decir', 'hacer']
 const IRREGULAR_PP = ['cubrir', 'scribir', 'solver', 'volver', 'poner', 'hacer', 'decir', 'ver', 'romper', 'morir', 'abrir', 'freír', 'imprimir', 'proveer']
 const FAMILY_BASE = ['tener', 'poner', 'venir', 'hacer', 'decir', 'salir', 'valer', 'cubrir', 'scribir', 'solver', 'volver', 'traer', 'caer', 'ducir', 'leer', 'creer', 'seer', 'ver', 'oír', 'seguir', 'servir', 'pedir', 'vestir', 'sentir', 'ferir', 'vertir', 'dormir']
+/** Set after reading the agreement printed below. */
+const LIBRARY_SUB_OK = false
 const NOT_IN_FAMILY = new Set(['bendecir', 'maldecir', 'prever', 'proveer', 'atraer'])
 const endsWith = (v: string, list: string[]) => list.some((b) => v === b || v.endsWith(b))
 
@@ -254,5 +277,59 @@ for (const v of Object.keys(es)) {
     dropped++
   }
 }
-writeFileSync('src/data/tenses/es.json', JSON.stringify(Object.fromEntries(Object.entries(es).map(([v, e]) => [v, { pre: e.pre, imp: pack(e.imp, e.imp[0].endsWith('aba') ? ENDINGS.esImpAr : ENDINGS.esImpErIr), fut: pack(e.fut, ENDINGS.esFut), pp: e.pp }]))))
+
+/*
+ * Presente de subjuntivo, kept apart: a verb without a vouched subjunctive keeps its other tenses.
+ * Same order of trust; the library is used only where it agreed with every authority (measured
+ * below: printed as "library agreement").
+ */
+const sub: Record<string, Six> = {}
+const libSub = (v: string) => {
+  try {
+    const f = P.map((p) => esConj(v, 'SUBJUNCTIVE_PRESENT', p)) as Six
+    return f.some((x) => !x || / |undefined/.test(x)) ? null : f
+  } catch {
+    return null
+  }
+}
+const classOf = (v: string) => (/(car|gar|zar|guar|cer|cir|ger|gir|guir|uir|iar|uar)$/.test(v) ? 'spelling' : v.slice(-2))
+const agree: Record<string, [number, number]> = {}
+const subVouched = new Set<string>()
+for (const v of Object.keys(es)) {
+  const u = esRef.get(v)
+  const fromU = P.map((p) => u?.[`sub${p}`])
+  const authority = jehleSub.get(v) ?? (fromU.every(Boolean) ? (fromU as string[]) : undefined)
+  const lib = libSub(v)
+  if (authority && lib) {
+    const k = classOf(v)
+    agree[k] ??= [0, 0]
+    agree[k][1]++
+    if (lib.every((f, i) => f === authority[i])) agree[k][0]++
+    else if (Math.random() < 0.05) console.log(`es ${v} subjuntivo: library ${lib.join(' ')} | authority ${authority.join(' ')}`)
+  }
+  if (authority) {
+    sub[v] = [...authority] as Six
+    subVouched.add(v)
+  }
+  const patch = overrides[v]?.['Subjuntivo Presente']
+  if (patch && sub[v]) for (const [person, form] of Object.entries(patch)) if (PERSON_KEY[person] !== undefined) sub[v][PERSON_KEY[person]] = form
+}
+console.log('library agreement (subjuntivo):', JSON.stringify(agree))
+// The family's base verb, then the library for plain -ar verbs (where it agrees with the authorities).
+for (const v of Object.keys(es)) {
+  if (subVouched.has(v)) continue
+  const base = NOT_IN_FAMILY.has(v) ? undefined : FAMILY_BASE.filter((b) => v !== b && v.endsWith(b) && subVouched.has(b)).sort((a, b) => b.length - a.length)[0]
+  if (base) {
+    sub[v] = sub[base].map((f) => v.slice(0, -base.length) + f) as Six
+    subVouched.add(v)
+    continue
+  }
+  const lib = libSub(v)
+  if (lib && classOf(v) === 'ar' && LIBRARY_SUB_OK) {
+    sub[v] = lib
+    subVouched.add(v)
+  }
+}
+console.log(`es subjuntivo: ${subVouched.size} of ${Object.keys(es).length} verbs`)
+writeFileSync('src/data/tenses/es.json', JSON.stringify(Object.fromEntries(Object.entries(es).map(([v, e]) => [v, { pre: e.pre, imp: pack(e.imp, e.imp[0].endsWith('aba') ? ENDINGS.esImpAr : ENDINGS.esImpErIr), fut: pack(e.fut, ENDINGS.esFut), pp: e.pp, ...(sub[v] ? { sub: pack(sub[v], v.endsWith('ar') ? ENDINGS.esSubAr : ENDINGS.esSubErIr) } : {}) }]))))
 console.log(`es: ${Object.keys(es).length} verbs (Jehle ${byJehle}, UniMorph ${byUnimorph}, base verb ${byFamily}, overrides ${byOverride}; ${dropped} left out, not vouched for)`)

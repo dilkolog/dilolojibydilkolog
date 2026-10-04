@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import sentences from '../../data/tenses/es-sentences.json'
-import { addTenseSentences, addTenses, conjugateTense, tenseSentence, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
+import { addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
 import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exercises'
 import { createRng } from '../rng'
 import type { TargetLanguage, VocabularyEntry } from '../types'
@@ -74,7 +74,7 @@ describe('Spanish tenses', () => {
   })
 
   it('lists the tenses a verb has and none for other words', () => {
-    expect(tensesOf({ language: 'es', lemma: 'hablar', partOfSpeech: 'verb' })).toEqual(['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro'])
+    expect(tensesOf({ language: 'es', lemma: 'hablar', partOfSpeech: 'verb' })).toEqual(['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro', 'condicional', 'subjuntivo'])
     expect(verb('es', 'mesa', 'preterito')).toBeUndefined()
     expect(conjugateTense({ language: 'es', lemma: 'hablar', partOfSpeech: 'noun' }, 'futuro')).toBeUndefined()
   })
@@ -111,6 +111,7 @@ describe('conjugation questions', () => {
     expect([...seen(0)]).toEqual(['presente'])
     expect(seen(1)).toEqual(new Set(['presente', 'preterito']))
     expect(seen(5).size).toBe(5)
+    expect(seen(8).size).toBe(7)
   })
 
   it('asks in a sentence when one exists, and grades the form in it', () => {
@@ -122,5 +123,54 @@ describe('conjugation questions', () => {
     // Another tense's form of the same verb is a form error, not a meaning error.
     expect(evaluateTyped(inSentence, 'borré', borrar, [borrar]).errorType).toBe('form')
     expect(all.some((e) => !e.context?.includes(BLANK))).toBe(true)
+  })
+})
+
+describe('conditional and subjunctive', () => {
+  it('French conditionnel from the futur stem, subjonctif from the table', () => {
+    expect(verb('fr', 'parler', 'conditionnel')).toEqual(['parlerais', 'parlerais', 'parlerait', 'parlerions', 'parleriez', 'parleraient'])
+    expect(verb('fr', 'être', 'conditionnel')?.[0]).toBe('serais')
+    expect(verb('fr', 'avoir', 'subjonctif')).toEqual(['aie', 'aies', 'ait', 'ayons', 'ayez', 'aient'])
+    expect(verb('fr', 'boire', 'subjonctif')).toEqual(['boive', 'boives', 'boive', 'buvions', 'buviez', 'boivent'])
+    expect(verb('fr', 'finir', 'subjonctif')?.[0]).toBe('finisse')
+    expect(verb('fr', 'se lever', 'subjonctif')?.[0]).toBe('me lève')
+  })
+
+  it('Spanish condicional and subjuntivo', () => {
+    expect(verb('es', 'tener', 'condicional')).toEqual(['tendría', 'tendrías', 'tendría', 'tendríamos', 'tendríais', 'tendrían'])
+    expect(verb('es', 'hablar', 'subjuntivo')).toEqual(['hable', 'hables', 'hable', 'hablemos', 'habléis', 'hablen'])
+    expect(verb('es', 'tener', 'subjuntivo')?.[0]).toBe('tenga')
+    expect(verb('es', 'pedir', 'subjuntivo')?.[3]).toBe('pidamos')
+    expect(verb('es', 'ser', 'subjuntivo')?.[0]).toBe('sea')
+  })
+
+  it('the subjunctive is asked and accepted with "que"', () => {
+    expect(subjectLabel('fr', 'subjonctif', 2)).toBe("qu'il / qu'elle")
+    expect(subjectLabel('es', 'subjuntivo', 0)).toBe('que yo')
+    expect(subjectLabel('fr', 'futur', 2)).toBe('il / elle')
+    const aimer = { language: 'fr' as const, lemma: 'aimer', partOfSpeech: 'verb' as const }
+    expect(answersFor(aimer, 'subjonctif', 0)).toEqual(expect.arrayContaining(['aime', "j'aime", "que j'aime"]))
+    expect(answersFor(aimer, 'subjonctif', 2)).toEqual(expect.arrayContaining(['il aime', "qu'il aime", "qu'elle aime"]))
+    expect(withSubject('fr', 'subjonctif', 3, 'aimions')).toBe('que nous aimions')
+    expect(withSubject('es', 'futuro', 0, 'hablaré')).toBe('yo hablaré')
+  })
+
+  it('accepts reform spellings in the conditional and for -eter verbs', () => {
+    expect(tenseVariants('fr', 'céderais')).toEqual(['cèderais'])
+    expect(tenseVariants('fr', 'cachette', 'cacheter')).toEqual(['cachète'])
+    expect(tenseVariants('fr', 'cachetterais', 'cacheter')).toEqual(['cachèterais'])
+    expect(tenseVariants('fr', 'jette', 'jeter')).toEqual([])
+  })
+
+  it('marks irregular moods', () => {
+    const fr = (lemma: string) => ({ language: 'fr' as const, lemma, partOfSpeech: 'verb' as const })
+    const es = (lemma: string) => ({ language: 'es' as const, lemma, partOfSpeech: 'verb' as const })
+    expect(irregularForms(fr('prendre'), 'subjonctif').some(Boolean)).toBe(false)
+    expect(irregularForms(fr('être'), 'subjonctif').every(Boolean)).toBe(true)
+    expect(irregularForms(fr('pouvoir'), 'conditionnel')[0]).toBe(true)
+    expect(irregularForms(es('hablar'), 'subjuntivo').some(Boolean)).toBe(false)
+    expect(irregularForms(es('tener'), 'subjuntivo').some(Boolean)).toBe(false)
+    expect(irregularForms(es('ser'), 'subjuntivo')[0]).toBe(true)
+    expect(irregularForms(es('salir'), 'condicional')[0]).toBe(true)
   })
 })

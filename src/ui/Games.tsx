@@ -107,7 +107,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
       tone: 'grammar',
       cards: [
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
-        { id: 'conjugation', emoji: '🕰️', name: 'Çekim antrenmanı', text: `Fiilleri zamanlarıyla çek: ${p.language === 'fr' ? 'passé composé, imparfait, futur' : 'indefinido, imperfecto, futuro'} ve dahası.`, status: record(`conj:${p.language}`, (v) => `%${v}`) },
+        { id: 'conjugation', emoji: '🕰️', name: 'Çekim antrenmanı', text: `Fiilleri zamanlarıyla çek: ${p.language === 'fr' ? 'passé composé, imparfait, futur, subjonctif' : 'indefinido, imperfecto, futuro, subjuntivo'} ve dahası.`, status: record(`conj:${p.language}`, (v) => `%${v}`) },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
         { id: 'accent', emoji: '✍️', name: 'Aksan antrenmanı', text: 'Sadece aksanlı kelimelerin: harfleri görürsün, aksanlarıyla yazarsın.', status: accentCount < ACCENT_MIN_WORDS ? `En az ${ACCENT_MIN_WORDS} aksanlı kelime gerekiyor (${accentCount})` : record(`accent:${p.language}`, (v) => `%${v}`), disabled: accentCount < ACCENT_MIN_WORDS },
       ],

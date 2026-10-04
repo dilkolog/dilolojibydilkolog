@@ -22,13 +22,24 @@ const KEYS: Record<string, Tense> = {
   'Pretérito Imperfecto': 'imperfecto',
   'Pretérito Perfecto': 'perfecto',
   'Futuro Simple': 'futuro',
+  Condicional: 'condicional',
+  'Subjuntivo Presente': 'subjuntivo',
 }
 
 type Source = Record<string, Record<string, { es: string; tr: string }>>
 const { exampleSentences } = (await import(pathToFileURL(`${dilolojiDir}/src/data/example_sentences.js`).href)) as { exampleSentences: Source }
 
 /** Spelling slips found when reading samples of the Turkish translations. */
-const TR_FIXES: [RegExp, string][] = [[/kitaları/g, 'kitapları']]
+const TR_FIXES: [RegExp, string][] = [
+  [/kitaları/g, 'kitapları'],
+  [/Susuz olsaydım/g, 'Susamış olsaydım'],
+  [/biriktirir\(di\)m/g, 'biriktirirdim'],
+  [/gelebilmen umuduyla/g, 'gelebilmeni umuyorum'],
+  [/uygulaman umuduyla/g, 'uygulamanı umuyorum'],
+  [/girmen\/adım atman umuduyla/g, 'adım atmanı umuyorum'],
+  [/su kaynatırım/g, 'su kaynatırdım'],
+  [/dondurucuda soğuturuz/g, 'dondurucuda soğuturduk'],
+]
 const fixTr = (t: string) => TR_FIXES.reduce((x, [re, to]) => x.replace(re, to), t)
 
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')

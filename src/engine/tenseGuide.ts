@@ -62,6 +62,28 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
     ],
     markers: ['demain', "l'année prochaine", 'bientôt', 'dans deux jours', 'un jour', 'plus tard'],
   },
+  conditionnel: {
+    name: 'conditionnel présent',
+    tr: 'Şart kipi (-erdi, -ardı)',
+    short: 'Bir koşula bağlı olan, nazik bir istek ya da hayal: "yapardım, ister miydiniz".',
+    formation: 'Futur kökü + imparfait ekleri (-ais, -ais, -ait, -ions, -iez, -aient): parler → je parlerais, être → je serais, avoir → j\'aurais. Koşul cümlesinde "si" ile imparfait gelir: Si j\'avais le temps, je viendrais.',
+    examples: [
+      ['Je voudrais un café, s\'il vous plaît.', 'Bir kahve rica ediyorum.'],
+      ["Si j'avais le temps, je viendrais.", 'Vaktim olsa gelirdim.'],
+    ],
+    markers: ['si j\'avais…', 'je voudrais', 'à ta place', 'volontiers', 'ce serait', 'au cas où'],
+  },
+  subjonctif: {
+    name: 'subjonctif présent',
+    tr: 'Dilek kipi (-mesi, -sin)',
+    short: 'İstek, duygu, gereklilik ya da şüphe bildiren bir ifadeden sonra "que" ile: "gelmeni istiyorum, gelmesi gerek".',
+    formation: 'ils formunun (présent) kökü + -e, -es, -e, -ent; nous ve vous imparfait gibi (-ions, -iez): ils prennent → que je prenne, que nous prenions. Düzensizler: être → que je sois, avoir → que j\'aie, aller → que j\'aille, faire → que je fasse, pouvoir → que je puisse.',
+    examples: [
+      ['Il faut que tu viennes.', 'Gelmen gerekiyor.'],
+      ["Je suis content qu'elle soit là.", 'Onun burada olmasına seviniyorum.'],
+    ],
+    markers: ['il faut que', 'je veux que', 'bien que', 'pour que', 'avant que', 'je suis content que'],
+  },
   presente: {
     name: 'presente',
     tr: 'Şimdiki / geniş zaman',
@@ -116,5 +138,27 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
       ['Saldremos al mediodía.', 'Öğlen çıkacağız.'],
     ],
     markers: ['mañana', 'el próximo año', 'pronto', 'dentro de dos días', 'algún día', 'más tarde'],
+  },
+  condicional: {
+    name: 'condicional simple',
+    tr: 'Şart kipi (-erdi, -ardı)',
+    short: 'Bir koşula bağlı olan, nazik bir istek ya da tavsiye: "yapardım, ister miydin".',
+    formation: 'Futuro kökü + -ía, -ías, -ía, -íamos, -íais, -ían: hablar → hablaría, comer → comería. Düzensiz kökler futuro ile aynı: tendría, podría, diría, haría, saldría, vendría.',
+    examples: [
+      ['Me gustaría un café.', 'Bir kahve isterdim.'],
+      ['Yo que tú, hablaría con ella.', 'Senin yerinde olsam onunla konuşurdum.'],
+    ],
+    markers: ['me gustaría', 'yo que tú', 'en tu lugar', 'si tuviera…', '¿podrías…?', 'sería'],
+  },
+  subjuntivo: {
+    name: 'presente de subjuntivo',
+    tr: 'Dilek kipi (-mesi, -sin)',
+    short: 'İstek, duygu, gereklilik ya da şüphe bildiren bir ifadeden sonra "que" ile: "gelmeni istiyorum", ve "ojalá" ile.',
+    formation: 'yo formunun (presente) -o\'su atılır, -ar fiillere -e, -es, -e, -emos, -éis, -en; -er/-ir fiillere -a, -as, -a, -amos, -áis, -an eklenir: tengo → tenga, hablo → hable. Düzensizler: ser → sea, estar → esté, ir → vaya, saber → sepa, haber → haya, dar → dé.',
+    examples: [
+      ['Quiero que vengas.', 'Gelmeni istiyorum.'],
+      ['Ojalá haga buen tiempo mañana.', 'Umarım yarın hava güzel olur.'],
+    ],
+    markers: ['quiero que', 'es importante que', 'ojalá', 'para que', 'espero que', 'aunque'],
   },
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import { PRONOUNS } from '../engine/conjugation'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { conjugateTense, irregularForms, tenseSentence, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
+import { conjugateTense, irregularForms, subjectLabel, tenseSentence, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
 import type { VocabularyEntry } from '../engine/types'
 import { loadTenses } from '../data/tenseData'
 
@@ -53,7 +52,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
         <tbody>
           {forms.map((f, i) => (
             <tr key={i}>
-              <th scope="row">{PRONOUNS[lang][i].slice(0, 2).join(' / ')}</th>
+              <th scope="row">{subjectLabel(lang, tense, i)}</th>
               <td>
                 {odd[i] ? (
                   <mark className="conj-odd" title="Düzensiz">
