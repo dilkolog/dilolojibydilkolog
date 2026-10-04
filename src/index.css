@@ -3136,3 +3136,8 @@ button.badge-card:active { transform: none; }
 .word-stepper .icon-btn:disabled { opacity: 0.35; cursor: default; }
 .word-stepper .small { min-width: 3.25rem; text-align: center; font-variant-numeric: tabular-nums; }
 .detail-page > .detail-nav { justify-self: stretch; }
+.wiki-search .search { position: relative; display: flex; align-items: center; }
+.wiki-search .search svg { position: absolute; left: 0.75rem; color: var(--ink-soft); pointer-events: none; }
+.wiki-search .search .input { padding-left: 2.25rem; width: 100%; }
+.family-ai { display: grid; gap: 0.625rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.family-ai .subhead { margin: 0; }

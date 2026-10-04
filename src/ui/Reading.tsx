@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { WikipediaPicker } from './WikipediaPicker'
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
@@ -545,6 +546,18 @@ export function ReadingScreen({
           known={known}
           onRead={async (newsTitle, newsText) => {
             const item: ReadingText = { id: crypto.randomUUID(), language, title: newsTitle, text: newsText, addedAt: new Date().toISOString(), history: [] }
+            await db.saveText(item)
+            setLibrary((lib) => [item, ...(lib ?? [])])
+            await open(item)
+          }}
+        />
+        <WikipediaPicker
+          language={language}
+          vocabulary={vocabulary}
+          states={states}
+          known={known}
+          onRead={async (wikiTitle, wikiText) => {
+            const item: ReadingText = { id: crypto.randomUUID(), language, title: wikiTitle, text: wikiText, addedAt: new Date().toISOString(), history: [] }
             await db.saveText(item)
             setLibrary((lib) => [item, ...(lib ?? [])])
             await open(item)

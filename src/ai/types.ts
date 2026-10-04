@@ -181,3 +181,13 @@ export interface FieldSuggestions {
 export function collocationLines(list: NonNullable<FieldSuggestions['collocations']>): string {
   return list.map((c) => `${c.phrase} = ${c.translation}${c.wrongVariants.length ? ` (${c.wrongVariants.join(', ')})` : ''}`).join('\n')
 }
+
+/** A relative or another form of a word, proposed by the AI for the learner to add. */
+export interface FamilySuggestion {
+  /** Written as it would be added: nouns with their article in FR/ES ("la décision"). */
+  word: string
+  meaning: string
+  kind: 'form' | 'family' | 'phrase'
+  /** e.g. "dişil", "çoğul", "isim", "zarf", "kalıp". */
+  note: string
+}

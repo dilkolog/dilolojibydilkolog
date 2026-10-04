@@ -22,7 +22,7 @@ export const AI_MODELS: ModelInfo[] = [
 
 export const modelInfo = (id: AiModel) => AI_MODELS.find((m) => m.id === id) ?? AI_MODELS[0]
 
-export type AiFeature = 'test' | 'word_fill' | 'suggest' | 'sentence' | 'translation' | 'retell' | 'story' | 'mnemonic' | 'journal' | 'chat' | 'report' | 'prequestions'
+export type AiFeature = 'test' | 'word_fill' | 'suggest' | 'sentence' | 'translation' | 'retell' | 'story' | 'mnemonic' | 'journal' | 'chat' | 'report' | 'prequestions' | 'family'
 
 export const FEATURE_NAME: Record<AiFeature, string> = {
   test: 'Anahtar testi',
@@ -33,6 +33,7 @@ export const FEATURE_NAME: Record<AiFeature, string> = {
   retell: 'Hikaye anlatma',
   story: 'Hikaye bölümü',
   mnemonic: 'Hafıza ipucu',
+  family: 'Kelime ailesi',
   journal: 'Günlük',
   chat: 'Sohbet',
   report: 'Hata raporu',

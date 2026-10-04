@@ -8,6 +8,7 @@ import type {
   EnrichRequest,
   EpisodeDraft,
   EpisodeRequest,
+  FamilySuggestion,
   FieldSuggestions,
   JournalRequest,
   JournalReview,
@@ -55,6 +56,7 @@ export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatRe
 export const writeEpisode = async (apiKey: string, req: EpisodeRequest): Promise<EpisodeDraft> => (await sdk()).writeEpisode(apiKey, req)
 
 export const createMnemonic = async (apiKey: string, entry: VocabularyEntry): Promise<Mnemonic> => (await sdk()).createMnemonic(apiKey, entry)
+export const suggestFamily = async (apiKey: string, entry: VocabularyEntry, have: string[]): Promise<FamilySuggestion[]> => (await sdk()).suggestFamily(apiKey, entry, have)
 
 /** Turns a mnemonic into the text saved in the word's note. */
 export function mnemonicNote(m: Mnemonic): string {

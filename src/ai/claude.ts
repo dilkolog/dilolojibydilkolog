@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -469,4 +469,38 @@ export async function createMnemonic(apiKey: string, entry: VocabularyEntry): Pr
   ].join('\n')
   const user = `Word: ${entry.article ? `${entry.article} ` : ''}${entry.lemma} (${entry.partOfSpeech}) = ${entry.senses[0].gloss}`
   return structured(apiKey, MnemonicSchema, system, user, 'low', 'mnemonic')
+}
+
+const FamilySchema = z.object({
+  items: z
+    .array(
+      z.object({
+        word: z.string().describe('The form or relative as it would be written in a word list; French/Spanish nouns with their definite article (la décision, el año, l\'arbre).'),
+        meaning: z.string().describe('Its Turkish meaning, short (1-3 words).'),
+        kind: z.enum(['form', 'family', 'phrase']).describe('form: another form of the same word that a learner must know (feminine, plural if irregular, past participle); family: a word from the same root with another part of speech; phrase: a very common fixed expression with the word.'),
+        note: z.string().describe('A 1-2 word Turkish label: dişil, çoğul, geçmiş zaman ortacı, isim, fiil, sıfat, zarf, kalıp…'),
+      }),
+    )
+    .describe('At most 8 items, the most useful first; only real, common words; nothing rare or invented.'),
+})
+
+/**
+ * Other forms and relatives of a word, for when Wiktionary has nothing (or little): the learner
+ * picks which to add, so nothing goes into the list unseen.
+ */
+export async function suggestFamily(apiKey: string, entry: VocabularyEntry, have: string[]): Promise<FamilySuggestion[]> {
+  const lang = LANGUAGE_NAME[entry.language]
+  const system = [
+    `You help a Turkish speaker learning ${lang} grow their vocabulary around words they already know.`,
+    'Suggest only real, frequent words a learner at that level would meet. Accuracy matters more than quantity: return fewer items rather than doubtful ones.',
+    'Do not repeat the word itself or the words the learner already has.',
+  ].join('\n')
+  const user = [
+    `Word: ${entry.article ? (entry.article.endsWith("'") ? entry.article : `${entry.article} `) : ''}${entry.lemma} (${entry.partOfSpeech}) = ${entry.senses[0].gloss}`,
+    have.length ? `Already in the list: ${have.join(', ')}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n')
+  const r = await structured(apiKey, FamilySchema, system, user, 'low', 'family')
+  return r.items.slice(0, 8)
 }

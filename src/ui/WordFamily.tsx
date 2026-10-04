@@ -5,6 +5,9 @@ import { createEntry, WordInputError } from '../data/wordInput'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
 import { POS_NAME } from './labels'
+import { AiError, suggestFamily, type FamilySuggestion } from '../ai'
+import { useAi } from './aiContext'
+import { SparkleIcon } from './icons'
 
 /**
  * The word's other forms and relatives (decide → decision → prendre une décision; lent →
@@ -17,6 +20,20 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
   const [meaning, setMeaning] = useState('')
   const [manual, setManual] = useState({ word: '', meaning: '' })
   const [error, setError] = useState('')
+  const { apiKey } = useAi()
+  const [ai, setAi] = useState<{ busy: boolean; items: FamilySuggestion[] | null; error: string }>({ busy: false, items: null, error: '' })
+
+  /** Other forms and relatives from the AI, for when Wiktionary has little: each one added by hand. */
+  const askAi = async () => {
+    if (!apiKey) return
+    setAi({ busy: true, items: null, error: '' })
+    try {
+      const have = [...entry.wordFamily.map((m) => m.lemma), ...(entry.familyCandidates ?? [])]
+      setAi({ busy: false, items: await suggestFamily(apiKey, entry, have), error: '' })
+    } catch (e) {
+      setAi({ busy: false, items: null, error: e instanceof AiError ? e.message : 'Öneri alınamadı.' })
+    }
+  }
 
   // Not looked up yet (just added): do it now rather than waiting for the background run.
   useEffect(() => {
@@ -179,6 +196,49 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
             Kaynak: <a href="https://wiktionary.org" target="_blank" rel="noreferrer">Wiktionary</a> (CC BY-SA).
           </p>
         </>
+      )}
+      {apiKey && (
+        <div className="family-ai">
+          <div className="row justify-between items-center">
+            <h3 className="subhead">AI önerileri</h3>
+            <button className="btn btn-sm btn-quiet" onClick={() => void askAi()} disabled={ai.busy}>
+              <SparkleIcon size={15} /> {ai.busy ? 'Düşünüyor…' : ai.items ? 'Yeniden öner' : 'AI ile öner'}
+            </button>
+          </div>
+          {!ai.items && !ai.busy && !ai.error && (
+            <p className="small muted">Dişil, çoğul gibi diğer halleri, aynı kökten kelimeleri ve sık kalıpları önerir; hangisini ekleyeceğine sen karar verirsin.</p>
+          )}
+          {ai.error && <p className="error small">{ai.error}</p>}
+          {ai.items && ai.items.length === 0 && <p className="small muted">Eklemeye değer başka hal ya da akraba bulunamadı.</p>}
+          {ai.items && ai.items.length > 0 && (
+            <ul className="family-list">
+              {ai.items.map((s) => {
+                const listed = byLemma.get(s.word.toLocaleLowerCase().replace(/^(le |la |les |l'|el |los |las |the |to )/, ''))
+                return (
+                  <li key={s.word}>
+                    <span className="family-word" lang={entry.language}>
+                      {s.word}
+                    </span>
+                    <span className="small muted">
+                      {s.meaning} · {s.note}
+                    </span>
+                    {listed && linkedIds.has(listed.id) ? (
+                      <span className="small muted">bağlı</span>
+                    ) : listed ? (
+                      <button className="link small" onClick={async () => (await link(listed), onChanged())}>
+                        Bağla
+                      </button>
+                    ) : (
+                      <button className="link small" onClick={() => void add(s.word, s.meaning).then(() => setAi((a) => ({ ...a, items: a.items?.filter((x) => x !== s) ?? null })))}>
+                        + Ekle
+                      </button>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </div>
       )}
       {error && <p className="error small">{error}</p>}
     </section>
