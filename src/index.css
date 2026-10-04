@@ -3484,3 +3484,9 @@ button.badge-card:active { transform: none; }
 .tense-bars li.is-weak .tense-bar > span { background: var(--near); }
 .tense-bars li.is-weak .tense-bar-name { color: var(--near-text); }
 .tense-bar-num { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+/* Small listen buttons beside forms and sentences. */
+.icon-btn-sm { width: 1.75rem; height: 1.75rem; min-width: 0; padding: 0; color: var(--ink-soft); }
+.conj-say { padding-left: 0.5rem; opacity: 0.55; transition: opacity var(--dur-fast) var(--ease-out); }
+.conj-table tr:hover .conj-say, .conj-say:focus-within { opacity: 1; }
+@media (hover: none) { .conj-say { opacity: 1; } }
+.conj-sentence-say { vertical-align: middle; margin-left: 0.25rem; }

@@ -7,7 +7,8 @@ import { aspectItems, type AspectItem, type Tense } from '../../engine/tenses'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { useTenses } from '../ConjugationTable'
-import { CheckIcon, CloseIcon } from '../icons'
+import { CheckIcon, CloseIcon, SpeakerIcon } from '../icons'
+import { canSpeak, speak } from '../speech'
 import { sfx } from '../sounds'
 import { isPctRecord, recordPractice } from './shared'
 
@@ -189,6 +190,11 @@ export function AspectGame({
           </p>
           {q.translation && <p className="small muted">{q.translation}</p>}
           <div className="row">
+            {canSpeak() && (
+              <button type="button" className="btn btn-quiet" onClick={() => speak(q.text.replace('___', q.form), language)}>
+                <SpeakerIcon size={16} /> Dinle
+              </button>
+            )}
             <button type="button" className="btn" onClick={next} autoFocus>
               Devam
             </button>

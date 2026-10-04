@@ -10,6 +10,8 @@ import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { useTenses } from '../ConjugationTable'
 import { Sentence } from '../session/shared'
 import { sfx } from '../sounds'
+import { canSpeak, speak } from '../speech'
+import { SpeakerIcon } from '../icons'
 import { AspectGame } from './AspectGame'
 import { useTenseStats, weakestTense } from '../TenseWeakness'
 import { isPctRecord, recordPractice, type Props } from './shared'
@@ -310,6 +312,17 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
                 </tbody>
               </table>
               <p className="small muted">{TENSE_GUIDE[q.tense].short}</p>
+              {canSpeak() && (
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-quiet btn-sm"
+                    onClick={() => speak(q.sentence ? q.sentence.text.replace('___', q.sentence.form) : withSubject(language, q.tense, q.person, q.forms[q.person]), language)}
+                  >
+                    <SpeakerIcon size={15} /> Dinle
+                  </button>
+                </div>
+              )}
               <div className="row">
                 <button type="button" className="btn" onClick={() => next()} autoFocus>
                   Devam

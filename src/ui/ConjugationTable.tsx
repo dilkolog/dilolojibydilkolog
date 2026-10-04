@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { conjugateTense, irregularForms, subjectLabel, tenseSentence, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
+import { canSpeak, speak } from './speech'
+import { SpeakerIcon } from './icons'
+import { conjugateTense, irregularForms, subjectLabel, tenseSentence, withSubject, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
 import type { VocabularyEntry } from '../engine/types'
 import { loadTenses } from '../data/tenseData'
 
@@ -104,6 +106,14 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
                   f
                 )}
               </td>
+              {canSpeak() && (
+                <td className="conj-say">
+                  {/* Hearing the form matters most where the ending is silent (parle, parles, parlent). */}
+                  <button type="button" className="icon-btn icon-btn-sm" onClick={() => speak(withSubject(lang, tense, i, f), lang)} aria-label={`Dinle: ${withSubject(lang, tense, i, f)}`}>
+                    <SpeakerIcon size={15} />
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
@@ -119,8 +129,13 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
             {sentence.text.split('___')[0]}
             <strong>{sentence.form}</strong>
             {sentence.text.split('___')[1]}
+            {canSpeak() && (
+              <button type="button" className="icon-btn icon-btn-sm conj-sentence-say" onClick={() => speak(sentence.text.replace('___', sentence.form), lang)} aria-label="Cümleyi dinle">
+                <SpeakerIcon size={15} />
+              </button>
+            )}
           </span>
-          <span className="muted small">{sentence.translation}</span>
+          {sentence.translation && <span className="muted small">{sentence.translation}</span>}
         </p>
       )}
       <div className="conj-markers" lang={lang}>
