@@ -152,7 +152,7 @@ h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; }
 button, input, textarea, select { font: inherit; color: inherit; }
 
-:focus-visible { outline: 3px solid var(--lang-text); outline-offset: 2px; border-radius: 6px; }   /* lang-text: visible on the page in every language (amber itself is not) */
+:focus-visible { outline: 2px solid var(--lang-text); outline-offset: 2px; }   /* lang-text: visible on the page in every language (amber itself is not) */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -3045,3 +3045,74 @@ button.badge-card:active { transform: none; }
 .dialog .card { border-radius: var(--r-md); }
 /* A sub-section inside a settings card starts on a hairline. */
 .settings-content .card > .subhead { margin: 0.5rem -1.375rem 0; padding: 1rem 1.375rem 0; border-top: 1px solid var(--rule); }
+
+/* ── Toasts: an icon for the kind, the message, an action; undo shows its time running out ── */
+.toast, .toast.toast-action {
+  display: flex; align-items: center; gap: 0.625rem; overflow: hidden;
+  padding: 0.5rem 0.5rem 0.5rem 0.625rem; border-radius: var(--r-lg);
+  background: var(--ink); color: var(--bg); box-shadow: var(--shadow-xl);
+  animation: toast-in var(--dur) var(--ease-out);
+}
+.toast-icon { display: grid; place-items: center; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; color: #fff; background: var(--ok-btn); }
+.toast-info .toast-icon { background: var(--lang); color: var(--on-lang); }
+.toast-undo .toast-icon { background: color-mix(in srgb, var(--bg) 22%, transparent); color: var(--bg); }
+.toast-text { flex: 1; min-width: 0; padding-right: 0.25rem; line-height: 1.4; }
+.toast .toast-btn { flex: none; border-radius: var(--r-sm); text-decoration: none; padding: 0.375rem 0.75rem; background: color-mix(in srgb, var(--bg) 14%, transparent); }
+.toast .toast-btn:hover { background: color-mix(in srgb, var(--bg) 24%, transparent); }
+.toast-timer { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: color-mix(in srgb, var(--bg) 55%, transparent); transform-origin: left; animation: toast-timer var(--toast-ms, 7000ms) linear forwards; }
+@keyframes toast-timer { to { transform: scaleX(0); } }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } .toast-timer { animation: none; } }
+
+/* ── Focus: one thin ring in the language's colour that follows each control's own shape ───── */
+:where(.btn, .chip, .option, .segmented-btn, .lang-btn, .nav-btn, .settings-menu-item, .icon-btn, .page-tab, .link, button.badge-card, .switch):focus-visible { outline-offset: 3px; }
+:where(.rw, .plant-tile, .word-table tbody tr):focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--lang); }
+.input:focus-visible, .textarea:focus-visible, .answer-input:focus-visible { outline: none; }
+
+/* ── Session summary: one result card with its figures, a coach's note, error chips ─────── */
+.celebrate-card { padding: 2rem 1.5rem 0; }
+.celebrate-card .xp-gain { margin-bottom: 1.5rem; }
+.celebrate-stats {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 -1.5rem; padding: 0.875rem 0.5rem;
+  border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+.celebrate-stats > div { display: grid; justify-items: center; gap: 0.125rem; }
+.celebrate-stats > div + div { border-left: 1px solid var(--rule); }
+.celebrate-stats dd { margin: 0; display: flex; align-items: center; gap: 0.375rem; font-size: var(--t-lg); font-weight: 700; font-variant-numeric: tabular-nums; }
+.celebrate-stats dt { font-size: var(--t-xs); color: var(--ink-soft); font-weight: 600; }
+/* Celebration pieces are the mark's leaf-bubble: two round corners, one pointed tail. */
+.burst span { width: 0.75rem; height: 0.75rem; border-radius: 0 100% 0 100%; top: 6rem; }
+.burst span:nth-child(3n) { width: 0.5rem; height: 0.5rem; }
+.coach-note { display: flex; gap: 0.875rem; align-items: flex-start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.coach-note-icon { display: grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
+.coach-note-body { display: grid; gap: 0.375rem; min-width: 0; }
+.coach-note-body p { margin: 0; color: var(--ink-soft); }
+.error-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; }
+.error-chips > .small { margin-right: 0.25rem; }
+.error-chip { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.1875rem 0.625rem; border-radius: var(--r-full); font-size: var(--t-xs); font-weight: 600; background: color-mix(in srgb, var(--tone, var(--bad)) 14%, var(--surface)); color: var(--ink); }
+.error-chip strong { color: var(--tone, var(--bad-text)); }
+
+/* ── Reading: the text as a page ─────────────────────────────────────────────────────────── */
+.reader {
+  max-width: 42rem; padding: 2.5rem 3rem 2.25rem; border-radius: var(--r-lg);
+  background: var(--surface); box-shadow: var(--shadow);
+  /* No hyphenation: a word the learner taps must never be split across lines. */
+  line-height: 1.8; letter-spacing: 0.003em; hyphens: manual; text-wrap: pretty;
+  font-feature-settings: 'kern', 'liga';
+}
+.reader p { margin: 0 0 1.15em; }
+.reader p:last-child { margin-bottom: 0; }
+.reader-airy { line-height: 2.15; }
+.reader-sepia { padding: 2.5rem 3rem 2.25rem; }
+@container main (max-width: 40rem) { .reader, .reader-sepia { padding: 1.5rem 1.25rem; } }
+/* Marked words: a soft highlight with an underline in the same hue; the text stays ink-dark. */
+.rw { padding: 0.04em 0.12em; margin: 0 -0.04em; border-radius: 0.3em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.rw-unseen { background: color-mix(in srgb, var(--lang-soft) 85%, transparent); color: inherit; box-shadow: inset 0 -0.12em 0 color-mix(in srgb, var(--lang) 45%, transparent); }
+.rw-learning, .rw-new { color: inherit; box-shadow: inset 0 -0.12em 0 color-mix(in srgb, var(--near) 55%, transparent); }
+.rw.lv-a { background: color-mix(in srgb, var(--near) 24%, transparent); }
+.rw.lv-b { background: color-mix(in srgb, var(--near) 13%, transparent); }
+.rw.lv-c { background: transparent; box-shadow: none; text-decoration: underline dotted color-mix(in srgb, var(--near) 80%, transparent); text-underline-offset: 0.3em; }
+.rw:hover { background: color-mix(in srgb, var(--lang) 16%, transparent); }
+.rw.is-selected { background: var(--lang-soft); box-shadow: 0 0 0 2px var(--lang); }
+.reader-sepia .rw-unseen { background: color-mix(in srgb, var(--lang) 16%, transparent); }
+.legend-unseen { background: color-mix(in srgb, var(--lang-soft) 85%, transparent); color: inherit; box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--lang) 45%, transparent); }
+.legend-learning { background: color-mix(in srgb, var(--near) 18%, transparent); color: inherit; box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--near) 55%, transparent); }

@@ -15,7 +15,7 @@ import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
 import { WordForm } from './Words'
-import { undoable } from './toast'
+import { showToast, undoable } from './toast'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { BookIcon, CheckCircleIcon, CheckIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
@@ -81,7 +81,6 @@ export function ReadingScreen({
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
   const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
-  const [toast, setToast] = useState('')
   const [reader, setReader] = useReaderPrefs()
   // Several words picked at once (⌘/Ctrl+click or multi-select mode), marked in one go.
   const [multi, setMulti] = useState<Set<string>>(new Set())
@@ -103,8 +102,7 @@ export function ReadingScreen({
       for (const k of keys) await db.setIgnored(language, k, true)
       setIgnored((s) => new Set([...s, ...keys]))
     }
-    setToast(`${keys.length} kelime işaretlendi`)
-    window.setTimeout(() => setToast(''), 2500)
+    showToast(`${keys.length} kelime işaretlendi`)
     setMulti(new Set())
   }
   useEffect(() => {
@@ -280,8 +278,7 @@ export function ReadingScreen({
   /** Keeps the whole sentence as a sentence card, with the word it was saved for. */
   const keepSentence = async (sentence: string, focus: string) => {
     const ok = await saveSentence({ language, text: sentence, focus, source: current?.title })
-    setToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı')
-    window.setTimeout(() => setToast(''), 3000)
+    showToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı', undefined, 3500, ok ? 'success' : 'info')
   }
 
   const remove = async (item: ReadingText) => {
@@ -614,11 +611,6 @@ export function ReadingScreen({
         </p>
       </section>
 
-      {toast && (
-        <p className="toast" role="status">
-          {toast}
-        </p>
-      )}
       {current?.audio && <AudioPanel key={`audio-${current.id}`} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}
       <PrequestionsCard key={`pq-${current?.id}`} text={text} language={language} finished={!!message} />
       {!message && !listenFirst && (

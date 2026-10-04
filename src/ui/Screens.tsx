@@ -7,7 +7,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, CheckCircleIcon, CheckIcon, CloseIcon, GameIcon, ShuffleIcon, SlowIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
+import { AlertIcon, BookIcon, BrandMark, BulbIcon, CheckCircleIcon, CheckIcon, CloseIcon, GameIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -523,7 +523,7 @@ export function Home({
 
 // ---------------------------------------------------------------------------
 
-const BURST_COLORS = ['var(--lang)', 'var(--ok)', 'var(--gold)', 'var(--flame)', 'var(--fr)', 'var(--en)']
+const BURST_COLORS = ['var(--lang)', 'var(--ok)', 'var(--gold)', 'var(--lang)', '#34d399', 'var(--ok)']
 
 /** One orchestrated celebration: a confetti burst behind the result ring. */
 function Burst() {
@@ -601,6 +601,7 @@ export function Summary({
     ? []
     : summary.words.filter((w) => (w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : -1) > (w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1))
   const rest = summary.words.filter((w) => !grown.includes(w))
+  const tooEasyOrHard = !practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7)
 
   return (
     <div className="summary-grid">
@@ -615,6 +616,28 @@ export function Summary({
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>
         <p className="xp-gain">+{summary.xp} XP</p>
+        {after && (
+          <dl className="celebrate-stats">
+            <div>
+              <dd>
+                <StreakFlame streak={after.streak} frozen={after.frozenYesterday} /> {after.streak}
+              </dd>
+              <dt>günlük seri</dt>
+            </div>
+            <div>
+              <dd>
+                <SproutIcon className="stat-icon is-sprout" size={20} /> {summary.introduced.length}
+              </dd>
+              <dt>yeni kelime</dt>
+            </div>
+            <div>
+              <dd>
+                <StarIcon className="icon-star" size={20} /> {practice ? 0 : summary.strengthened.length}
+              </dd>
+              <dt>güçlenen</dt>
+            </div>
+          </dl>
+        )}
       </div>
       {leveledUp && after && (
         <div className="level-up">
@@ -643,43 +666,36 @@ export function Summary({
           </div>
         </div>
       )}
-      {after && (
-        <div className="summary-stats">
-          <div className="stat">
-            <span className="stat-value">
-              <StreakFlame streak={after.streak} frozen={after.frozenYesterday} /> {after.streak}
-            </span>
-            <span className="stat-label">günlük seri</span>
+      {(tooEasyOrHard || summary.answered >= LONG_SESSION) && (
+        <section className="coach-note">
+          <span className="coach-note-icon" aria-hidden>
+            <BulbIcon size={18} />
+          </span>
+          <div className="coach-note-body">
+            <strong>Koçun notu</strong>
+            {tooEasyOrHard && (
+              <p className="small">
+                {accuracy > 0.93
+                  ? 'Bu oturum biraz kolaydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: Ayarlar\'dan günlük yeni kelime sayısını artırabilirsin.'
+                  : 'Bu oturum zorlayıcıydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: birkaç gün yeni kelime sayısını azaltıp tekrarlara ağırlık vermek daha verimli olabilir.'}
+              </p>
+            )}
+            {summary.answered >= LONG_SESSION && (
+              <p className="small">Uzun bir oturumdu. Aynı süreyi gün içine yayılmış 2–3 kısa tura bölmek daha kalıcı öğretir (dağıtılmış pratik): bir sonraki turu birkaç saat sonra yap.</p>
+            )}
           </div>
-          <div className="stat">
-            <span className="stat-value">
-              <SparkleIcon className="icon-book" size={22} /> {summary.introduced.length}
+        </section>
+      )}
+      {errors.length > 0 && (
+        <div className="error-chips" aria-label="Hata türleri">
+          <span className="small muted">Hata türleri</span>
+          {errors.map(([t, n]) => (
+            <span key={t} className={`error-chip tone-${t}`}>
+              {ERROR_NAME[t]} <strong>{n}</strong>
             </span>
-            <span className="stat-label">yeni kelime</span>
-          </div>
-          <div className="stat">
-            <span className="stat-value">
-              <StarIcon className="icon-star" size={22} /> {practice ? 0 : summary.strengthened.length}
-            </span>
-            <span className="stat-label">güçlenen</span>
-          </div>
+          ))}
         </div>
       )}
-      {!practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7) && (
-        <p className="habit-tip">
-          <TargetIcon size={16} className="inline-icon" />
-          {accuracy > 0.93
-            ? 'Bu oturum biraz kolaydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: Ayarlar\'dan günlük yeni kelime sayısını artırabilirsin.'
-            : 'Bu oturum zorlayıcıydı. Öğrenme, cevapların yaklaşık %85\'i doğruyken en hızlı ilerliyor: birkaç gün yeni kelime sayısını azaltıp tekrarlara ağırlık vermek daha verimli olabilir.'}
-        </p>
-      )}
-      {summary.answered >= LONG_SESSION && (
-        <p className="habit-tip">
-          <SlowIcon size={16} className="inline-icon" />Uzun bir oturumdu. Aynı süreyi gün içine yayılmış 2–3 kısa tura bölmek daha kalıcı öğretir (dağıtılmış pratik): bir sonraki turu birkaç saat sonra
-          yap.
-        </p>
-      )}
-      {errors.length > 0 && <p className="small muted">Hata türleri: {errors.map(([t, n]) => `${ERROR_NAME[t]} (${n})`).join(', ')}</p>}
       <div>
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>
           Devam

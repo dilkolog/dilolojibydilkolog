@@ -177,6 +177,12 @@ export const TrashIcon = (p: P) => (
     <path d="M4 7h16M9.5 7V4.5h5V7M10 11v6M14 11v6" />
   </Icon>
 )
+export const UndoIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M9 14 4 9l5-5" />
+    <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" />
+  </Icon>
+)
 export const LinkIcon = (p: P) => (
   <Icon {...p}>
     <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
