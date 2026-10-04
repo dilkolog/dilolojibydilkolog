@@ -17,12 +17,13 @@ import { BlitzGame } from './games/BlitzGame'
 import { FluencyGame } from './games/FluencyGame'
 import { PairsGame } from './games/PairsGame'
 import { GenderGame } from './games/GenderGame'
+import { ACCENT_MIN_WORDS, AccentGame, accentedWords } from './games/AccentGame'
 import { SwipeCards } from './games/SwipeCards'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
 
-type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | null
+type Game = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'dictation' | 'article' | 'accent' | null
 
 export function GamesScreen(p: Props & { initialGame?: Game }) {
   const [game, setGame] = useState<Game>(p.initialGame ?? null)
@@ -42,6 +43,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   const fluencyWords = pickFluencyWords(p.vocabulary, p.states, createRng(1)).length
   const online = useOnline()
 
+  if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
   if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
   if (game === 'gender' && p.language !== 'en')
     return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
@@ -57,6 +59,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} recordKey={blitzKey} onExit={() => setGame(null)} />
 
   const learnFirst = 'Önce birkaç kelime öğren'
+  const accentCount = accentedWords(p.vocabulary).length
   const record = (key: string, show: (v: number) => string) => (records[key] ? `Rekorun: ${show(records[key])}` : 'Henüz rekor yok')
   const groups: { title: string; tone: 'review' | 'listen' | 'speed' | 'grammar'; cards: GameCard[] }[] = [
     {
@@ -101,6 +104,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
       cards: [
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
+        { id: 'accent', emoji: '✍️', name: 'Aksan antrenmanı', text: 'Sadece aksanlı kelimelerin: harfleri görürsün, aksanlarıyla yazarsın.', status: accentCount < ACCENT_MIN_WORDS ? `En az ${ACCENT_MIN_WORDS} aksanlı kelime gerekiyor (${accentCount})` : record(`accent:${p.language}`, (v) => `%${v}`), disabled: accentCount < ACCENT_MIN_WORDS },
       ],
     })
 

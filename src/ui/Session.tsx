@@ -28,6 +28,8 @@ import { warmAudio } from '../data/audioCache'
 import { KeyLegend, type Graded } from './session/shared'
 import { Intro } from './session/Intro'
 import { Prompt } from './session/Prompt'
+import { showToast } from './toast'
+import { QuickEditDialog } from './session/QuickEdit'
 import { WordPlant } from './session/WordPlant'
 import { Choices, TypedAnswer, SpeakAnswer } from './session/Answers'
 import { Feedback } from './session/Feedback'
@@ -387,6 +389,7 @@ const canOverride = (exercise: Exercise, ev: Evaluation) =>
 
 function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, wordState, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
+  const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
   const [exercise] = useState<Exercise>(() => {
     const ex = buildExercise(item.exerciseType!, entry, catalog, rng)
@@ -544,6 +547,17 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           }}
         />
       )}
+      {editing && (
+        <QuickEditDialog
+          entry={entry}
+          onClose={() => setEditing(false)}
+          onSaved={(updated) => {
+            onEntryUpdated(updated)
+            setEditing(false)
+            showToast('Kelime düzeltildi')
+          }}
+        />
+      )}
       {aiError && !result && (
         <div className="session-actions">
           <p className="error" role="alert">
@@ -575,6 +589,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
             entry={entry}
             mnemonic={mnemonic}
             onMnemonic={() => setMnemonic('open')}
+            onEdit={() => setEditing(true)}
             continueRef={continueBtn}
             onContinue={() => onContinue(result.log)}
             onOverride={

@@ -6,7 +6,7 @@ import { MASTERY_STAGES, type MasteryStage } from '../../engine/mastery'
 import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
-import { BulbIcon, CheckIcon, CloseIcon, NearIcon } from '../icons'
+import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon } from '../icons'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
 
@@ -27,10 +27,13 @@ export function Feedback({
   xp,
   mnemonic,
   onMnemonic,
+  onEdit,
 }: {
   xp?: number
   mnemonic?: 'offer' | 'open' | 'saved' | null
   onMnemonic?: () => void
+  /** Fix a typo in the word or its meaning without leaving the session. */
+  onEdit?: () => void
   ev: Graded
   confidence?: Confidence
   /** The answer moved the word up a growth stage. */
@@ -66,11 +69,14 @@ export function Feedback({
       } else if (e.altKey && e.code === 'KeyD' && onOverride) {
         e.preventDefault()
         onOverride()
+      } else if (e.key.toLowerCase() === 'e' && !e.altKey && !e.metaKey && !e.ctrlKey && onEdit && !ownsKey(e.target)) {
+        e.preventDefault()
+        onEdit()
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [ready, onContinue, onOverride])
+  }, [ready, onContinue, onOverride, onEdit])
   const example = entry.senses[0].examples[0]
   return (
     <div className={`sheet ${cls}`} role="status">
@@ -144,10 +150,20 @@ export function Feedback({
             </button>
           )}
           {mnemonic === 'saved' && <span className="small"><BulbIcon size={16} className="inline-icon" />Not kaydedildi</span>}
-          {onOverride && (
-            <button className="link small" onClick={onOverride}>
-              Cevabım da doğru
-            </button>
+          {(onOverride || onEdit) && (
+            <span className="sheet-links">
+              {onOverride && (
+                <button className="link small" onClick={onOverride}>
+                  Cevabım da doğru
+                </button>
+              )}
+              {onEdit && (
+                <button className="link small" onClick={onEdit} title="Kelimeyi düzelt (E)">
+                  <PenIcon size={13} className="inline-icon" />
+                  Kelimeyi düzelt
+                </button>
+              )}
+            </span>
           )}
           <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue} disabled={!ready}>
             Devam

@@ -163,6 +163,7 @@ export function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?:
         <>
           <span>{k('Enter')} devam</span>
           {override && <span>{k('Alt', 'D')} cevabım da doğru</span>}
+          <span>{k('E')} düzelt</span>
         </>
       )}
       <span>{k('Alt', 'S')} dinle</span>

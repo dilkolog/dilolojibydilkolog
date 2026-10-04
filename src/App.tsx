@@ -739,6 +739,7 @@ export default function App() {
                 scheduler={scheduler}
                 onChanged={reload}
                 onBack={go({ name: 'words' })}
+                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
                 onStudy={(deck) =>
                   startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
                 }

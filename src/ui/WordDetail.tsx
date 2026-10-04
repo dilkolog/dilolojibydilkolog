@@ -33,8 +33,9 @@ import { isRetired } from '../engine/retire'
 import { GroupTitle, JumpNav } from './JumpNav'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
-import { BookIcon, CalendarIcon, ChartIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TrashIcon, UmbrellaIcon } from './icons'
+import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TrashIcon, UmbrellaIcon } from './icons'
 import { deleteWordsWithUndo } from './undo'
+import { neighbours } from './wordOrder'
 
 interface Props {
   db: KelimeDB
@@ -47,6 +48,8 @@ interface Props {
   onBack: () => void
   /** Study just this word now. */
   onStudy?: (entries: VocabularyEntry[]) => void
+  /** Open another word (previous / next in the list). */
+  onOpen?: (entryId: string) => void
 }
 
 /** Everything known about one word: its relations, how well each skill is held, its mistakes. */
@@ -59,7 +62,24 @@ const WORD_GROUPS = [
   ['w-progress', 'İlerleme'],
 ] as const
 
-export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack, onStudy }: Props) {
+export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack, onStudy, onOpen }: Props) {
+  const nav = useMemo(() => neighbours(entry.id, vocabulary), [entry.id, vocabulary])
+  // ← → step through the list, unless typing or a dialog is open.
+  useEffect(() => {
+    if (!onOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null
+      if (e.altKey || e.metaKey || e.ctrlKey || document.querySelector('[aria-modal="true"]')) return
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return
+      const to = e.key === 'ArrowLeft' ? nav.prev : e.key === 'ArrowRight' ? nav.next : undefined
+      if (to) {
+        e.preventDefault()
+        onOpen(to)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [nav, onOpen])
   const [editing, setEditing] = useState(false)
   const others = useMemo(() => wordKeys(vocabulary.filter((v) => v.id !== entry.id)), [vocabulary, entry.id])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
@@ -121,9 +141,24 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
   return (
     <div className="detail-page">
-      <button className="link detail-back" onClick={onBack}>
-        ← Kelimelere dön
-      </button>
+      <div className="detail-back detail-nav">
+        <button className="link" onClick={onBack}>
+          ← Kelimelere dön
+        </button>
+        {onOpen && nav.total > 1 && nav.index >= 0 && (
+          <div className="word-stepper" role="group" aria-label="Kelimeler arasında gez">
+            <button className="icon-btn" onClick={() => nav.prev && onOpen(nav.prev)} disabled={!nav.prev} aria-label="Önceki kelime" title="Önceki kelime (←)">
+              <ChevronLeftIcon size={18} />
+            </button>
+            <span className="small muted">
+              {nav.index + 1} / {nav.total}
+            </span>
+            <button className="icon-btn" onClick={() => nav.next && onOpen(nav.next)} disabled={!nav.next} aria-label="Sonraki kelime" title="Sonraki kelime (→)">
+              <ChevronRightIcon size={18} />
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* The word itself up top: what it is, how it sounds, what it means; then where it stands. */}
       <section className={`word-hero span-2${heroImage ? ' has-image' : ''}`}>

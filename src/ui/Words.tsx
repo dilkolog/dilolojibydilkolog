@@ -36,6 +36,7 @@ import { PageHeader } from './PageHeader'
 import { nextReviewAt } from '../engine/review'
 import { relativeTime } from './format'
 import { getDensity, setDensity } from './density'
+import { saveWordOrder } from './wordOrder'
 
 interface Props {
   db: KelimeDB
@@ -867,6 +868,8 @@ function WordList({
     }
     return vocabulary.filter(match).sort(by[sort])
   }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])
+  // The word page steps through the list in the order it was last shown here (filters and sort).
+  useEffect(() => saveWordOrder(list.map((v) => v.id)), [list])
 
   const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
 
