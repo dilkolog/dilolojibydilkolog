@@ -193,7 +193,8 @@ function FocusLine({ focus, done, onOpenLists }: { focus: NonNullable<Parameters
         </>
       ) : (
         <>
-          Yeni kelimeler “{focus.name}” listesinden{focus.level ? `, “${focus.level}” seviyesi` : ''}.
+          Yeni kelimeler “{focus.name}” listesinden{focus.level ? `, “${focus.level}” seviyesi` : ''}
+          {focus.total ? ` (${focus.met}/${focus.total} tanıştın)` : ''}.
         </>
       )}
     </p>
@@ -269,7 +270,7 @@ export function Home({
   /** The garden card: up top when plants need water, otherwise with the weekly things. */
   garden?: { node: ReactNode; urgent: boolean } | null
   /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
-  focus?: { name: string; level?: string | null }
+  focus?: { name: string; level?: string | null; met?: number; total?: number }
   onOpenLists?: () => void
 }) {
   const now = new Date()
@@ -282,10 +283,12 @@ export function Home({
   const progress = goal ? answeredToday / goal : 0
   const [moreOpen, setMoreOpen] = useState(() => {
     try {
-      return localStorage.getItem(HOME_MORE_KEY) === '1'
+      const saved = localStorage.getItem(HOME_MORE_KEY)
+      if (saved) return saved === '1'
     } catch {
-      return false
+      // Falls back to the screen size.
     }
+    return typeof matchMedia === 'function' && matchMedia('(min-width: 64rem)').matches
   })
   const rememberMore = (open: boolean) => {
     setMoreOpen(open)
@@ -354,7 +357,19 @@ export function Home({
           <span className="hero-hello" aria-hidden lang={language}>
             {HELLO[language]}
           </span>
-          <Ring value={remaining === 0 && answeredToday > 0 ? 1 : progress} doneLabel={<CheckIcon size={40} />} />
+          {/* Before the first answer the ring says how much there is, not "%0". */}
+          <Ring
+            value={remaining === 0 && answeredToday > 0 ? 1 : progress}
+            doneLabel={<CheckIcon size={40} />}
+            label={
+              answeredToday === 0 && remaining > 0 ? (
+                <span className="ring-count">
+                  <strong>{remaining}</strong>
+                  <span>soru</span>
+                </span>
+              ) : undefined
+            }
+          />
           <div className="hero-body">
             {remaining > 0 ? (
               <>
@@ -468,6 +483,53 @@ export function Home({
           </section>
         )}
 
+        {/* The rest is useful now and then: open on wide screens (room beside the side column), closed on phones; the choice is remembered. */}
+        <details className="home-more" open={moreOpen} onToggle={(e) => rememberMore(e.currentTarget.open)}>
+          <summary className="section-title">Haftalık hedefler, bahçe ve beceriler</summary>
+          <div className="stack">
+            {game && game.weekly.length > 0 && (
+              <section className="quests">
+                <h2 className="section-title">Haftanın meydan okumaları</h2>
+                <ul className="quest-list">
+                  {game.weekly.map((q) => (
+                    <li key={q.id} className={q.done ? 'is-done' : ''}>
+                      <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
+                      <span className="quest-body">
+                        <span className="quest-top">
+                          <strong>{q.title}</strong>
+                          <span className="small muted">
+                            {q.value}/{q.target}
+                          </span>
+                        </span>
+                        <span className="quest-bar">
+                          <span style={{ width: `${(q.value / q.target) * 100}%` }} />
+                        </span>
+                      </span>
+                      <span className="quest-xp">+{CHALLENGE_XP} XP</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+            {game && <RaceCard game={game} />}
+            {garden && !garden.urgent && garden.node}
+            <section className="section stack">
+              <h2 className="section-title">Beceriler</h2>
+              <div className="bars">
+                {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
+                  <div className="bar-row" key={s}>
+                    <span>{SKILL_NAME[s]}</span>
+                    <div className="bar-track">
+                      <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
+                    </div>
+                    <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="small muted">Yüzde, o becerideki kelimeleri şu an hatırlama olasılığın.</p>
+            </section>
+          </div>
+        </details>
       </div>
       <div className="home-side">
         {/* Level and the three numbers as one card, not four. */}
@@ -528,53 +590,6 @@ export function Home({
           </section>
         )}
 
-        {/* The rest is useful now and then, not every day: closed unless opened (remembered). */}
-        <details className="home-more" open={moreOpen} onToggle={(e) => rememberMore(e.currentTarget.open)}>
-          <summary className="section-title">Haftalık hedefler, bahçe ve beceriler</summary>
-          <div className="stack">
-            {game && game.weekly.length > 0 && (
-              <section className="quests">
-                <h2 className="section-title">Haftanın meydan okumaları</h2>
-                <ul className="quest-list">
-                  {game.weekly.map((q) => (
-                    <li key={q.id} className={q.done ? 'is-done' : ''}>
-                      <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
-                      <span className="quest-body">
-                        <span className="quest-top">
-                          <strong>{q.title}</strong>
-                          <span className="small muted">
-                            {q.value}/{q.target}
-                          </span>
-                        </span>
-                        <span className="quest-bar">
-                          <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                        </span>
-                      </span>
-                      <span className="quest-xp">+{CHALLENGE_XP} XP</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-            {game && <RaceCard game={game} />}
-            {garden && !garden.urgent && garden.node}
-            <section className="section stack">
-              <h2 className="section-title">Beceriler</h2>
-              <div className="bars">
-                {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
-                  <div className="bar-row" key={s}>
-                    <span>{SKILL_NAME[s]}</span>
-                    <div className="bar-track">
-                      <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
-                    </div>
-                    <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="small muted">Yüzde, o becerideki kelimeleri şu an hatırlama olasılığın.</p>
-            </section>
-          </div>
-        </details>
       </div>
       </div>
     </div>

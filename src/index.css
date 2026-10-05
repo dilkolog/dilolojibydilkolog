@@ -1997,7 +1997,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .hero-today .btn:active:not(:disabled) { box-shadow: 0 1px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
 .hero-today .btn-quiet { background: transparent; color: var(--on-lang); border-color: color-mix(in srgb, var(--on-lang) 40%, transparent); box-shadow: none; }
 .hero-hello {
-  position: absolute; z-index: -1; right: -0.25rem; bottom: -1.1rem;
+  position: absolute; z-index: -1; right: -0.25rem; bottom: -1.1rem;   /* bleeds off the corner on purpose: a texture, not text to read */
   font-family: var(--serif); font-style: italic; font-size: clamp(3rem, 7vw, 4.75rem); line-height: 1; white-space: nowrap;
   color: var(--on-lang); opacity: 0.08; pointer-events: none; user-select: none;
 }
@@ -3815,3 +3815,8 @@ button.badge-card:active { transform: none; }
 }
 .sidebar-settings { display: none; }
 @media (min-width: 64rem) { .sidebar-settings { display: flex; } }
+
+/* Today's ring before the first answer: how many questions, not "%0". */
+.ring-count { display: grid; justify-items: center; line-height: 1.1; }
+.ring-count strong { font-size: var(--t-2xl); }
+.ring-count span { font-size: var(--t-sm); font-weight: 600; opacity: 0.85; }

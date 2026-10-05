@@ -950,8 +950,10 @@ export default function App() {
                   const list = data.lists.find((l) => l.id === planInput?.settings.focusListId)
                   if (!list) return undefined
                   const met = new Map(data.states.map((st) => [st.entryId, st]))
-                  const now = currentLevel(levelGroups(list, data.vocabulary), met)
-                  return { name: list.name, level: now ? (now.level?.name ?? null) : undefined }
+                  const groups = levelGroups(list, data.vocabulary)
+                  const now = currentLevel(groups, met)
+                  const words = now ? groups[now.index].words : []
+                  return { name: list.name, level: now ? (now.level?.name ?? null) : undefined, met: words.filter((w) => met.has(w.id)).length, total: words.length }
                 })()}
                 onOpenLists={() => {
                   try {
