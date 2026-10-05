@@ -19,6 +19,11 @@ import { WordForm } from './Words'
 import { showToast, undoable } from './toast'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
+import { useTenses } from './ConjugationTable'
+import { TENSE_GUIDE } from '../engine/tenseGuide'
+import { analyzeForm, subjectLabel } from '../engine/tenses'
+import { normalize } from '../engine/answerCheck'
+import { loadFrequency } from '../data/frequency'
 import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
@@ -118,6 +123,17 @@ export function ReadingScreen({
   const [listenFirst, setListenFirst] = useState(false)
   // The coverage card opens to its explanations on request.
   const [covOpen, setCovOpen] = useState(false)
+  // Verb tables, so a tapped conjugated form can say which verb and tense it is; word frequency to
+  // put the likely verb first (allions: aller before allier).
+  useTenses(language)
+  const [freq, setFreq] = useState<ReadonlyMap<string, number>>(new Map())
+  useEffect(() => {
+    let live = true
+    void loadFrequency(language).then((m) => live && setFreq(m))
+    return () => {
+      live = false
+    }
+  }, [language])
 
   useEffect(() => {
     Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
@@ -337,7 +353,11 @@ export function ReadingScreen({
       else if (k === 'arrowleft') advance(key, -1)
       else if (listed) return
       else if (k === 'b' && selected.token.status !== 'known') void markKnown(key)
-      else if (k === 'e') setAdding({ word: cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })
+      else if (k === 'e') {
+        // A conjugated verb goes on the list as its infinitive.
+        const w = cleanToken(selected.token.text, language)
+        setAdding({ word: analyzeForm(language, w)[0]?.lemma ?? w.toLocaleLowerCase(language), sentence: selected.sentence })
+      }
       else if (k === 'y') void toggleIgnored(key, !ignored.has(key))
       else if (k === 'g' && selected.token.status === 'unseen') skip(key)
       else return
@@ -574,6 +594,14 @@ export function ReadingScreen({
   const pct = (x: number) => `%${Math.round(x * 1000) / 10}`.replace('.', ',')
   const unseenKeys = new Set(analysis.paragraphs.flat().flatMap((s) => s.tokens).filter((t) => t.status === 'unseen' && t.key && !skipped.has(t.key)).map((t) => t.key))
   const selectedEntry = selected?.token.entryId ? byId.get(selected.token.entryId) : undefined
+  // A conjugated form (allions, tuve): the verb, tense and person, and the learner's own card for
+  // that verb if there is one.
+  const verbEntry = (lemma: string) => vocabulary.find((v) => v.language === language && v.partOfSpeech === 'verb' && normalize(v.lemma).toLocaleLowerCase(language) === lemma)
+  const verbRank = (lemma: string) => (verbEntry(lemma) ? -1 : (freq.get(lemma) ?? Infinity))
+  const selectedForms = (selected?.token.key && !selectedEntry ? analyzeForm(language, cleanToken(selected.token.text, language)) : [])
+    .map((a, i) => ({ a, i }))
+    .sort((x, y) => verbRank(x.a.lemma) - verbRank(y.a.lemma) || x.i - y.i)
+    .map((x) => x.a)
   const share = (n: number) => `${(n / Math.max(1, analysis.total)) * 100}%`
 
   return (
@@ -729,6 +757,27 @@ export function ReadingScreen({
             </button>
           </div>
           {selectedEntry && <p className="gloss">{selectedEntry.senses[0].gloss}</p>}
+          {selectedForms.length > 0 && language !== 'en' && (
+            <div className="form-analysis">
+              {selectedForms.slice(0, 3).map((a) => {
+                const own = verbEntry(a.lemma)
+                return (
+                  <p key={`${a.lemma}-${a.tense}`} className="small">
+                    <strong lang={language}>{a.lemma}</strong> · <span lang={language}>{TENSE_GUIDE[a.tense].name}</span> ·{' '}
+                    {[...new Set(a.persons.map((p) => subjectLabel(language, a.tense, p).split(' / ')[0]))].join(', ')}
+                    {own && (
+                      <>
+                        {' '}
+                        <button className="link small" onClick={() => onOpen(own.id)}>
+                          kartı aç
+                        </button>
+                      </>
+                    )}
+                  </p>
+                )
+              })}
+            </div>
+          )}
           <p className="small muted">{STATUS_TEXT[selected.token.status!]}</p>
           <p className="small sentence-sm">
             {selected.sentence}{' '}
@@ -746,8 +795,12 @@ export function ReadingScreen({
               </button>
             ) : (
               <>
-                <button className="btn" onClick={() => setAdding({ word: cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })}>
-                  Listeye ekle <kbd className="kbd-key">E</kbd>
+                <button
+                  className="btn"
+                  onClick={() => setAdding({ word: selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? selectedForms[0].lemma : cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })}
+                >
+                  {/* A verb goes on the list as its infinitive (aller), not the form met (allions). */}
+                  {selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? `Listeye ekle: ${selectedForms[0].lemma}` : 'Listeye ekle'} <kbd className="kbd-key">E</kbd>
                 </button>
                 {ignored.has(selected.token.key) ? (
                   <button className="btn btn-quiet" onClick={() => toggleIgnored(selected.token.key!, false)}>

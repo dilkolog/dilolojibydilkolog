@@ -385,4 +385,46 @@ export function tenseStats(
   return [...stats.values()]
 }
 
+export interface FormAnalysis {
+  lemma: string
+  tense: Tense
+  persons: number[]
+}
+
+/** Reverse index (form → verb, tense, persons), built once per language when first needed. */
+const REVERSE: { fr?: { size: number; map: Map<string, FormAnalysis[]> }; es?: { size: number; map: Map<string, FormAnalysis[]> } } = {}
+
+function reverseIndex(language: 'fr' | 'es'): Map<string, FormAnalysis[]> {
+  const cached = REVERSE[language]
+  if (cached && cached.size === DATA[language].size) return cached.map
+  const map = new Map<string, FormAnalysis[]>()
+  for (const lemma of DATA[language].keys()) {
+    const entry = { language, lemma, partOfSpeech: 'verb' as const }
+    for (const tense of TENSES[language] as Tense[]) {
+      const forms = conjugateTense(entry, tense)
+      if (!forms) continue
+      forms.forEach((form, person) => {
+        // Single words only: a tapped word is one token (compound tenses are two).
+        if (form.includes(' ') || form === lemma) return
+        const list = map.get(form) ?? []
+        const same = list.find((a) => a.lemma === lemma && a.tense === tense)
+        if (same) same.persons.push(person)
+        else map.set(form, [...list, { lemma, tense, persons: [person] }])
+      })
+    }
+  }
+  REVERSE[language] = { size: DATA[language].size, map }
+  return map
+}
+
+/**
+ * What a conjugated word in a text is: "allions" → aller, imparfait, nous. Several answers when
+ * the form is shared (parle: présent and subjonctif). Empty when the tables aren't loaded or the
+ * word is no verb form.
+ */
+export function analyzeForm(language: 'fr' | 'es' | 'en', word: string): FormAnalysis[] {
+  if (language === 'en' || !tensesLoaded(language)) return []
+  return reverseIndex(language).get(normalize(word).toLocaleLowerCase(language)) ?? []
+}
+
 export type { Person }

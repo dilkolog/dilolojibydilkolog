@@ -255,3 +255,14 @@ describe('naming a wrong conjugation', () => {
     expect(formFeedback(aller, 'futur', 'xyz')).toBeUndefined()
   })
 })
+
+describe('reading a conjugated form', () => {
+  it('finds the verb, tense and persons of a form met in a text', async () => {
+    const { analyzeForm } = await import('../tenses')
+    expect(analyzeForm('fr', 'allions')).toEqual(expect.arrayContaining([{ lemma: 'aller', tense: 'imparfait', persons: [3] }]))
+    expect(analyzeForm('fr', 'Retournerai')).toEqual([{ lemma: 'retourner', tense: 'futur', persons: [0] }])
+    expect(analyzeForm('es', 'tuve')).toEqual([{ lemma: 'tener', tense: 'preterito', persons: [0] }])
+    expect(analyzeForm('fr', 'aller')).toEqual([])
+    expect(analyzeForm('en', 'went')).toEqual([])
+  })
+})
