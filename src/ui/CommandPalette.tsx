@@ -59,6 +59,16 @@ export function CommandPalette({
   const list = useRef<HTMLUListElement>(null)
 
   useEffect(() => input.current?.focus(), [])
+  // Esc closes it wherever focus is (it may have left the input), before any screen shortcut.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape' || input.current?.contains(e.target as Node)) return
+      e.stopImmediatePropagation()
+      onClose()
+    }
+    window.addEventListener('keydown', onKey, true)
+    return () => window.removeEventListener('keydown', onKey, true)
+  }, [onClose])
 
   const items = useMemo(() => {
     const query = fold(q.trim())

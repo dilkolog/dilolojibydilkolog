@@ -20,6 +20,7 @@ import { sfx } from './sounds'
 import { Medal } from './Medal'
 import { crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
 import { StreakFlame } from './StreakFlame'
+import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
@@ -630,6 +631,9 @@ export function Summary({
     ? []
     : summary.words.filter((w) => (w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : -1) > (w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1))
   const rest = summary.words.filter((w) => !grown.includes(w))
+  // Free recall: the words studied, and while the learner writes them the lists stay hidden.
+  const studied = summary.words.map((w) => byId.get(w.entryId)).filter((e): e is VocabularyEntry => !!e)
+  const [recalling, setRecalling] = useState(false)
   const tooEasyOrHard = !practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7)
 
   return (
@@ -669,6 +673,7 @@ export function Summary({
           </dl>
         )}
       </div>
+      {studied.length >= FREE_RECALL_MIN && <FreeRecall entries={studied} onWriting={setRecalling} />}
       {((leveledUp && after) || newBadges.length > 0) && (
         // Level and badges side by side in one strip, instead of a column of separate blocks.
         <section className="rewards" aria-label="Kazandıkların">
@@ -734,7 +739,7 @@ export function Summary({
       </div>
       </div>
 
-      <div className="summary-side stack">
+      <div className="summary-side stack" hidden={recalling}>
         {grown.length > 0 && (
           <section className="stack summary-grown">
             <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>
