@@ -113,3 +113,49 @@ export const contrastProblems = (page: Page) =>
     }
     return [...new Set(out)]
   })
+
+/**
+ * Real content a box hides instead of showing: text or a control, in the flow of the page, that
+ * reaches past the edge of an ancestor with overflow hidden and no ellipsis. Decoration (aria-hidden,
+ * absolutely positioned: the big faint greeting, a watermark icon) is meant to bleed and is skipped.
+ * Such a box never scrolls the page, so `overflow` cannot see it.
+ */
+export const clippedContent = (page: Page) =>
+  page.evaluate(() => {
+    const found: string[] = []
+    for (const box of document.querySelectorAll<HTMLElement>('main *')) {
+      const s = getComputedStyle(box)
+      if (box.clientWidth < 2 || !/hidden|clip/.test(s.overflowX) || s.textOverflow === 'ellipsis' || box.closest('svg, [aria-hidden=true]')) continue
+      const edge = box.getBoundingClientRect().right
+      const cut = [...box.querySelectorAll<HTMLElement>('*')].find((e) => {
+        if (e.closest('svg, [aria-hidden=true]') || getComputedStyle(e).textOverflow === 'ellipsis') return false
+        for (let x: HTMLElement | null = e; x && x !== box; x = x.parentElement) if (/absolute|fixed/.test(getComputedStyle(x).position)) return false
+        const hasText = [...e.childNodes].some((n) => n.nodeType === 3 && (n.textContent ?? '').trim())
+        return (hasText || e instanceof HTMLInputElement) && e.getBoundingClientRect().right > edge + 2
+      })
+      if (cut) found.push(`${box.tagName}.${String(box.className).split(' ')[0]} cuts ${cut.tagName}.${String(cut.className).split(' ')[0]} "${(cut.textContent ?? '').trim().slice(0, 24)}"`)
+    }
+    return found.slice(0, 6)
+  })
+
+/** Plays today's session to its end, answering whatever comes first. */
+export async function finishSession(page: Page) {
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  for (let i = 0; i < 150 && !(await page.locator('.celebrate-card, .summary-grid').count()); i++) {
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const guess = page.locator('.session-stage .option:not([disabled])')
+    const typed = page.locator('.session-stage input.answer-input:visible')
+    // A question to say aloud: a test has no microphone, so it is answered by typing.
+    const instead = page.getByRole('button', { name: 'Yazarak cevapla' })
+    if (await next.count()) await next.first().click()
+    else if (await guess.count()) await guess.first().click()
+    else if (await typed.count()) {
+      await typed.first().fill('x')
+      await page.keyboard.press('Enter')
+    } else if (await instead.count()) await instead.click()
+    else await page.waitForTimeout(150)
+    await page.waitForTimeout(80)
+  }
+  await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
+  await page.waitForTimeout(600)
+}

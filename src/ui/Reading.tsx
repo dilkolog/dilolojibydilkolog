@@ -530,7 +530,7 @@ export function ReadingScreen({
               void importYoutube()
             }}
           >
-            <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı: altyazısı metin olarak gelir" aria-label="YouTube bağlantısı" inputMode="url" />
+            <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı" aria-label="YouTube bağlantısı" inputMode="url" />
             <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
               {ytBusy ? 'Getiriliyor…' : <><PlayIcon size={14} className="inline-icon" />Altyazıyı getir</>}
             </button>

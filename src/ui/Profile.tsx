@@ -75,7 +75,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <input
               className="profile-motto"
               value={motto}
-              placeholder="Motton ya da hedefin (ör. Yazın Paris'te rahat konuşmak)"
+              placeholder="Hedefin (ör. Paris'te rahat konuşmak)"
               aria-label="Motto"
               onChange={(e) => setMotto(e.target.value)}
               onBlur={() => motto !== profile.motto && save({ motto: motto.trim() })}

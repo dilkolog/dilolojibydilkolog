@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { contrastProblems, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
 
 test('first run: the language choice comes right after the welcome', async ({ page }) => {
   await page.goto('/')
@@ -16,6 +16,7 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
     for (const name of SCREENS) {
       await openScreen(page, name)
       for (const o of await overflow(page)) found.push(`${name} ${scale || '100%'}: ${o}`)
+      for (const c of await clippedContent(page)) found.push(`${name} ${scale || '100%'} clipped: ${c}`)
     }
   }
   expect(found).toEqual([])
@@ -73,4 +74,15 @@ test('a long word shrinks smoothly and stays inside the screen', async ({ page }
   for (let i = 1; i < sizes.length; i++) expect(sizes[i].size).toBeLessThanOrEqual(sizes[i - 1].size)
   expect(Math.min(...sizes.map((s) => s.size))).toBeGreaterThanOrEqual(26)
   expect(sizes[0].size).toBeGreaterThan(sizes[3].size)
+})
+
+test('the bedtime card keeps a readable text column on a phone', async ({ page }) => {
+  test.setTimeout(120_000)
+  await page.clock.setFixedTime(new Date('2026-03-04T21:30:00'))
+  await startWithSamples(page)
+  await finishSession(page)
+  await openScreen(page, 'Bugün')
+  const text = page.locator('.habit > .stack', { hasText: 'Yatmadan önce' })
+  await expect(text).toBeVisible()
+  expect((await text.boundingBox())!.width).toBeGreaterThan(200)
 })
