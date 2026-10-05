@@ -58,6 +58,7 @@ import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
 import { currentLevel, levelGroups } from './engine/lists'
+import { azure } from './ui/pronunciation'
 
 /*
  * Screens other than the daily loop (home, session, summary) load when first opened, so the app
@@ -239,6 +240,10 @@ export default function App() {
     db.getSettings().then((s) => setSettings(s ?? null))
     db.getAiKey().then(setApiKeyState)
     db.getTtsKey().then((k) => (natural.key = k))
+    db.getSpeechKey().then((c) => {
+      azure.key = c?.key ?? null
+      azure.region = c?.region ?? null
+    })
   }, [])
 
   // Past and future tense tables for the language being learned, fetched in the background.

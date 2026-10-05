@@ -39,6 +39,8 @@ import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, L
 import { deleteWordsWithUndo } from './undo'
 import { neighbours } from './wordOrder'
 import { placementOptions, parsePlacement, placementValue } from './listOptions'
+import { WordPronunciation } from './PronunciationCheck'
+import { azureEnabled } from './pronunciation'
 
 interface Props {
   db: KelimeDB
@@ -377,7 +379,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </section>
       )}
-      {(entry.audioUrl || naturalEnabled()) && <GroupTitle id="w-voice" icon={<SpeakerIcon size={18} />}>Telaffuz</GroupTitle>}
+      {(entry.audioUrl || naturalEnabled() || azureEnabled()) && <GroupTitle id="w-voice" icon={<SpeakerIcon size={18} />}>Telaffuz</GroupTitle>}
+      {azureEnabled() && <WordPronunciation db={db} entry={entry} />}
       {(entry.audioUrl || naturalEnabled()) && (
         <section className="section stack">
           <h2 className="section-title">Telaffuzunu karşılaştır</h2>

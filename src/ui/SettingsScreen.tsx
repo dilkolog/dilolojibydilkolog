@@ -33,6 +33,7 @@ import { bookmarkletCode } from './incoming'
 import { PageHeader } from './PageHeader'
 import type { TypingShare } from '../engine/session'
 import { getDensity, setDensity, type Density } from './density'
+import { AzureSpeechSettings } from './AzureSpeechSettings'
 
 const MINUTES = [5, 10, 15, 20, 30, 45]
 const NEW_WORDS = [0, 3, 5, 8, 12, 20]
@@ -493,6 +494,7 @@ export function SettingsScreen({
             <section className="card stack">
               <h2 className="section-title">Ses</h2>
             <NaturalVoiceSettings language={lang} />
+            <AzureSpeechSettings />
             <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
             <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri; destekleyen telefonlarda kısa titreşim." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
             <Toggle

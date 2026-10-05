@@ -527,6 +527,28 @@ export class KelimeDB extends Dexie {
     return key ? this.meta.put({ key: 'ttsKey', value: key }) : this.meta.delete('ttsKey')
   }
 
+  /** Azure Speech key and region (pronunciation assessment): on this device only, never in backups. */
+  async getSpeechKey(): Promise<{ key: string; region: string } | null> {
+    const v = (await this.meta.get('azureSpeech'))?.value as { key?: string; region?: string } | undefined
+    return v?.key && v.region ? { key: v.key, region: v.region } : null
+  }
+
+  saveSpeechKey(cfg: { key: string; region: string } | null) {
+    return cfg ? this.meta.put({ key: 'azureSpeech', value: cfg }) : this.meta.delete('azureSpeech')
+  }
+
+  /** Pronunciation scores per word (newest last, at most 20 each), to show progress. */
+  async getPronScores(entryId: string): Promise<{ at: string; score: number }[]> {
+    const all = ((await this.meta.get('pronScores'))?.value as Record<string, { at: string; score: number }[]>) ?? {}
+    return all[entryId] ?? []
+  }
+
+  async addPronScore(entryId: string, score: number, at = new Date()) {
+    const all = ((await this.meta.get('pronScores'))?.value as Record<string, { at: string; score: number }[]>) ?? {}
+    all[entryId] = [...(all[entryId] ?? []), { at: at.toISOString(), score }].slice(-20)
+    await this.meta.put({ key: 'pronScores', value: all })
+  }
+
   /** Characters sent to the TTS API per month ("2026-10"), against the free tier. */
   async getTtsUsage(): Promise<Record<string, number>> {
     return ((await this.meta.get('ttsUsage'))?.value as Record<string, number>) ?? {}
