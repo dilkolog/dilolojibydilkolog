@@ -27,6 +27,15 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
       ) : (
         <p className="muted">Bu tarayıcıda sesli okuma yok. Kelime: {exercise.audioText}</p>
       )
+    case 'aspect_choice':
+      return (
+        <div className="stack gap-xs">
+          <p className="muted" lang={entry.language}>
+            {exercise.prompt}
+          </p>
+          <Sentence text={exercise.context!} />
+        </div>
+      )
     case 'mc_context':
     case 'discriminate':
     case 'cloze_typed':

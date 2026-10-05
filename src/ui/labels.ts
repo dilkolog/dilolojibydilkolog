@@ -90,6 +90,7 @@ export const PROMPT_TEXT: Record<string, string> = {
   idiom_complete: 'Eksik kelime hangisi?',
   family_choice: 'Doğru eki seç',
   back_translation: 'Bu cümleyi çevir',
+  aspect_choice: 'Hangi geçmiş zaman uyar?',
 }
 
 /** "-tion ile biten isimler dişildir (la)" / "İstisna: …" for a gender rule match. */

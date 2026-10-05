@@ -153,6 +153,7 @@ export type ExerciseType =
   | 'back_translation' // Turkish translation of an example → write it in the target language; AI-graded
   | 'idiom_complete' // idiom / phrasal verb with one word missing → choose it
   | 'family_choice' // a relative + the meaning → choose the right derived form (décision, not décidement)
+  | 'aspect_choice' // FR/ES sentence with a time cue → passé composé or imparfait (indefinido or imperfecto)
 
 /** Capabilities available to the engine at runtime. */
 export interface EngineOptions {

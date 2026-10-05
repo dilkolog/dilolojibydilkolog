@@ -26,6 +26,7 @@ export const BASE_XP: Record<ExerciseType, number> = {
   back_translation: 20,
   idiom_complete: 7,
   family_choice: 6,
+  aspect_choice: 6,
 }
 
 /** Meeting a new word. */

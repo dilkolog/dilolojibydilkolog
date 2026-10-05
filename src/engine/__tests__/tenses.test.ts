@@ -266,3 +266,20 @@ describe('reading a conjugated form', () => {
     expect(analyzeForm('en', 'went')).toEqual([])
   })
 })
+
+describe('past tense choice in sessions', () => {
+  it('asks which past fits, two options, and falls back before the first production', async () => {
+    const { buildExercise, evaluateChoice, BLANK } = await import('../exercises')
+    addAspect('fr', frAspect as string[][])
+    const verbEntry: VocabularyEntry = { ...elAno, id: 'fr:aller', language: 'fr', lemma: 'aller', partOfSpeech: 'verb', article: undefined, gender: undefined, senses: [{ ...elAno.senses[0], gloss: 'gitmek', examples: [] }] }
+    const ex = buildExercise('aspect_choice', verbEntry, [verbEntry], createRng(3), { productionReps: 2 })
+    expect(ex.kind).toBe('choice')
+    if (ex.kind !== 'choice') return
+    expect(ex.options).toHaveLength(2)
+    expect(ex.context).toContain(BLANK)
+    expect(ex.cue).toBeTruthy()
+    const wrong = ex.options.find((o) => o.id !== ex.correctOptionId)!
+    expect(evaluateChoice(ex, wrong.id).errorType).toBe('form')
+    expect(buildExercise('aspect_choice', verbEntry, [verbEntry], createRng(3), { productionReps: 0 }).type).toBe('conjugation')
+  })
+})

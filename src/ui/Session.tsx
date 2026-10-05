@@ -1,4 +1,4 @@
-import { formFeedback } from '../engine/tenseGuide'
+import { formFeedback, TENSE_GUIDE } from '../engine/tenseGuide'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
@@ -415,6 +415,13 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
 
   const busy = useRef(false)
 
+  // A past-tense choice names the time words that settled it, right or wrong.
+  const withCue = (ev: Graded): Graded => {
+    if (exercise.type !== 'aspect_choice' || !exercise.cue || !exercise.tense) return ev
+    const g = TENSE_GUIDE[exercise.tense]
+    return { ...ev, feedback: `“${exercise.cue}” → ${g.name}: ${g.short}` }
+  }
+
   // A conjugation answer that is another tense or person of the verb says which one it was.
   const namedForm = (ev: Graded, text: string): Graded => {
     if (exercise.type !== 'conjugation' || ev.errorType !== 'form' || !exercise.tense || ev.feedback) return ev
@@ -512,7 +519,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           exercise={exercise}
           chosen={result?.chosen}
           answered={!!result}
-          onChoose={(id, shift) => submit(evaluateChoice(exercise, id), 0, 0, { chosen: id, shift })}
+          onChoose={(id, shift) => submit(withCue(evaluateChoice(exercise, id)), 0, 0, { chosen: id, shift })}
         />
       ) : (
         exercise.type === 'speak_word' && !typeInstead ? (

@@ -1,7 +1,7 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
 import { PERSONS } from './conjugation'
 import { TENSE_GUIDE } from './tenseGuide'
-import { answersFor, conjugateTense, subjectLabel, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
+import { answersFor, aspectItemsFor, conjugateTense, subjectLabel, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
 import { familyRelative, suffixVariants } from './morphology'
@@ -51,6 +51,15 @@ const always = () => true
 export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
   mc_meaning: { skill: 'recognition', direction: 'target_to_native', input: 'choice', expectedMs: 4000, applicable: always },
   mc_context: { skill: 'recognition', direction: 'context', input: 'choice', expectedMs: 7000, applicable: hasExamples },
+  // Which past: the time words in the sentence settle it (hier → passé composé). Only for verbs
+  // with such sentences, and only once the word is produced (see buildDailyPlan / the context).
+  aspect_choice: {
+    skill: 'production',
+    direction: 'context',
+    input: 'choice',
+    expectedMs: 7000,
+    applicable: (e) => e.partOfSpeech === 'verb' && aspectItemsFor(e).length > 0,
+  },
   discriminate: {
     skill: 'recognition',
     direction: 'context',
@@ -195,6 +204,8 @@ interface ExerciseBase {
   imageId?: string
   /** The tense a conjugation question asks for. */
   tense?: Tense
+  /** The time words that settle a past-tense choice ("hier"), named in the feedback. */
+  cue?: string
 }
 
 export interface ChoiceExercise extends ExerciseBase {
@@ -718,6 +729,28 @@ export function buildExercise(
       }
     }
 
+    case 'aspect_choice': {
+      // The past tenses open with the first production (as in conjugation questions).
+      if (context.productionReps !== undefined && context.productionReps < 1 && EXERCISES.conjugation.applicable(entry)) return buildExercise('conjugation', entry, catalog, rng, context)
+      const item = pick(aspectItemsFor(entry), rng)
+      const lang = entry.language as 'fr' | 'es'
+      const atStart = item.text.startsWith(BLANK)
+      const cap = (x: string) => (atStart ? x.charAt(0).toLocaleUpperCase(lang) + x.slice(1) : x)
+      const right = cap(item.form.toLocaleLowerCase(lang))
+      const options = shuffle([right, cap(item.other)], rng).map((label, i) => ({ id: String(i), label }))
+      return {
+        ...base,
+        kind: 'choice',
+        // No translation up front: its Turkish tense would give the answer away.
+        prompt: `${entry.lemma} · ${sense.gloss}`,
+        context: item.text,
+        tense: item.tense,
+        cue: item.cue,
+        options,
+        correctOptionId: options.find((o) => o.label === right)!.id,
+      } as ChoiceExercise
+    }
+
     case 'word_form': {
       const member = pick(entry.wordFamily, rng)
       return {
@@ -765,6 +798,7 @@ const CHOICE_ERROR: Partial<Record<ExerciseType, ErrorType>> = {
   discriminate: 'confusion',
   collocation_choice: 'collocation',
   article_choice: 'gender',
+  aspect_choice: 'form',
 }
 
 export function evaluateChoice(ex: ChoiceExercise, optionId: string): Evaluation {

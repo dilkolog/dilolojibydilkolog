@@ -350,6 +350,13 @@ export function addAspect(language: 'fr' | 'es', rows: string[][]) {
 
 export const aspectItems = (language: 'fr' | 'es'): readonly AspectItem[] => ASPECT[language]
 
+/** The past-tense choice items for one verb (its own sentences). */
+export function aspectItemsFor(entry: Pick<VocabularyEntry, 'language' | 'lemma'>): AspectItem[] {
+  if (entry.language === 'en') return []
+  const key = keyOf(entry).key
+  return ASPECT[entry.language].filter((a) => a.verb === key)
+}
+
 /** Which tense an expected answer of this verb belongs to (the first, in teaching order). */
 export function tenseOfForm(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, form: string): Tense | undefined {
   const f = normalize(form).toLocaleLowerCase(entry.language)
