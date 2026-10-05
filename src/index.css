@@ -2981,7 +2981,7 @@ button.badge-card:active { transform: none; }
 .badge-dialog-medal { display: grid; place-items: center; width: 8rem; height: 8rem; border-radius: 50%; background: radial-gradient(circle at 50% 45%, var(--lang-soft), transparent 70%); margin-bottom: 0.25rem; }
 .badge-dialog-medal .medal { animation: pop var(--dur) var(--ease-spring); }
 .badge-tier { font-size: var(--t-xs); font-weight: 700; padding: 0.125rem 0.625rem; border-radius: var(--r-full); background: var(--surface-2); color: var(--ink-soft); }
-.badge-tier.tier-bronze { color: #b45309; background: color-mix(in srgb, #e8a76f 22%, var(--surface)); }
+.badge-tier.tier-bronze { color: #92400e; background: color-mix(in srgb, #e8a76f 22%, var(--surface)); }
 .badge-tier.tier-silver { color: var(--ink-soft); background: color-mix(in srgb, #cbd5e1 25%, var(--surface)); }
 .badge-tier.tier-gold { color: var(--gold-text); background: color-mix(in srgb, #fde68a 25%, var(--surface)); }
 .badge-tier.tier-special { color: #7c3aed; background: color-mix(in srgb, #c4b5fd 25%, var(--surface)); }
@@ -3647,3 +3647,5 @@ button.badge-card:active { transform: none; }
 .form-analysis p { margin: 0; }
 .form-analysis strong { font-family: var(--serif); font-weight: 600; color: var(--lang-text); }
 .lib-video { color: var(--lang-text); margin-right: 0.25rem; }
+/* A shortcut key inside a filled button: a translucent chip in the button's own ink (it was white on white). */
+.btn:not(.btn-quiet):not(.btn-ghost-on-hero) .kbd-key { background: transparent; color: inherit; opacity: 1; border-color: color-mix(in srgb, currentColor 55%, transparent); box-shadow: none; }
