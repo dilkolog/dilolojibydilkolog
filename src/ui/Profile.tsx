@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { levelTitle, medalTier } from '../engine/gamification'
+import { BADGE_CATEGORIES, badgeCategory, levelTitle, medalTier } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
@@ -211,11 +211,24 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               {locked.length > 0 && (
                 <details className="badge-block">
                   <summary className="small">Diğer rozetler ({locked.length})</summary>
-                  <div className="badge-case is-locked">
-                    {locked.map((a) => (
-                      <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
-                    ))}
-                  </div>
+                  {/* By what they count, so seventy badges read as five shelves. */}
+                  {BADGE_CATEGORIES.map((c) => {
+                    const shelf = locked.filter((a) => badgeCategory(a) === c.id)
+                    return (
+                      shelf.length > 0 && (
+                        <div key={c.id} className="badge-shelf-group">
+                          <h3 className="subhead">
+                            {c.name} <span className="muted small">({shelf.length})</span>
+                          </h3>
+                          <div className="badge-case is-locked">
+                            {shelf.map((a) => (
+                              <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    )
+                  })}
                 </details>
               )}
             </section>

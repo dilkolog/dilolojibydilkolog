@@ -4054,3 +4054,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .goal-chip { background: var(--lang-soft); color: var(--lang-text); }
 .interest-chip { background: var(--surface-2); color: var(--ink-soft); box-shadow: var(--inset-ring); }
 .profile-customize-btn { justify-self: start; }
+
+.badge-shelf-group { display: grid; gap: 0.5rem; margin-top: 1rem; }
+.badge-shelf-group .subhead { margin: 0; }

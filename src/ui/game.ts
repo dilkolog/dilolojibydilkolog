@@ -15,7 +15,9 @@ import { isRestDay } from '../engine/workload'
 import { BOSS_XP } from '../engine/bosses'
 import { CHALLENGE_XP, challengeStatus, completedByWeek, type ChallengeStatus } from '../engine/challenges'
 import type { JournalEntry, ReadingText } from '../data/db'
-import { masteryStage } from '../engine/mastery'
+import { activityStats } from '../engine/badgeStats'
+import { difficultWords } from '../engine/difficult'
+import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import { localDate } from '../engine/progress'
 import { dayMetrics, questStatus, type QuestStatus } from '../engine/quests'
 import type { KelimeDB } from '../data/db'
@@ -38,7 +40,7 @@ export interface GameState {
 
 /** Everything gamified is derived from the stored history, across all languages. */
 export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
-  const [events, states, vocabulary, wins, library, journal, settings] = await Promise.all([
+  const [events, states, vocabulary, wins, library, journal, settings, mistakes] = await Promise.all([
     db.events.toArray(),
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
@@ -46,6 +48,7 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     db.meta.get('library').then((r) => (r?.value as ReadingText[] | undefined) ?? []),
     db.meta.get('journal').then((r) => (r?.value as JournalEntry[] | undefined) ?? []),
     db.getSettings(),
+    db.mistakes.toArray(),
   ])
   const xp = computeXp(events, states.map((s) => s.introducedAt), now)
   // Beating a boss is worth a fixed bonus, counted on the day it happened.
@@ -71,7 +74,20 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
   }
   const level = levelFromXp(xp.total)
   const real = events.filter((e) => e.mode === 'normal')
+  // "Sağlam" and beyond: the word has stood on its own for a while.
+  const strongIds = new Set(states.filter((s) => MASTERY_STAGES.indexOf(masteryStage(s)) >= 3).map((s) => s.entryId))
+  const hard = difficultWords(vocabulary)
   const stats: GameStats = {
+    ...activityStats(events),
+    wordsAdded: vocabulary.filter((v) => v.source !== 'sample').length,
+    wordsWithNotes: vocabulary.filter((v) => v.notes?.trim()).length,
+    wordsStrong: strongIds.size,
+    hardMarked: hard.length,
+    hardConquered: hard.filter((v) => strongIds.has(v.id)).length,
+    textsRead: library.filter((t) => t.history.length > 0).length,
+    journalEntries: journal.length,
+    mistakesFixed: mistakes.filter((m) => m.resolved).length,
+    totalXp: xp.total,
     wordsIntroduced: states.length,
     mastered: states.filter((s) => masteryStage(s) === 'mastered').length,
     totalAnswers: real.length,
