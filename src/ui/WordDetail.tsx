@@ -72,6 +72,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       const t = e.target as HTMLElement | null
       if (e.altKey || e.metaKey || e.ctrlKey || document.querySelector('[aria-modal="true"]')) return
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return
+      // Inside tabs the arrows move between tabs (the tense groups), not between words.
+      if (t?.closest('[role="tablist"]')) return
       const to = e.key === 'ArrowLeft' ? nav.prev : e.key === 'ArrowRight' ? nav.next : undefined
       if (to) {
         e.preventDefault()

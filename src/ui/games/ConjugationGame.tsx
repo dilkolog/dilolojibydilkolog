@@ -285,8 +285,8 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
           />
           <AccentBar language={language} disabled={!!answer} onInsert={(ch) => input.current && setTyped(insertAt(input.current, ch))} />
           {answer ? (
-            <div className={`accent-result is-${answer.ok ? 'correct' : answer.near ? 'accent' : 'wrong'}`}>
-              <p className="small">
+            <div className={`accent-result is-${answer.ok ? 'correct' : answer.near ? 'accent' : 'wrong'}`} >
+              <p className="small" role="status">
                 {answer.ok
                   ? 'Doğru!'
                   : answer.form

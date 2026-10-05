@@ -165,7 +165,9 @@ export function AspectGame({
       </p>
       <p className="sentence" lang={language}>
         {chosen ? <Cue text={before} cue={q.cue} /> : before}
-        <span className={`blank${chosen ? (chosen === right ? ' is-filled is-correct' : ' is-filled is-wrong') : ''}`}>{chosen ? right : '____'}</span>
+        <span className={`blank${chosen ? (chosen === right ? ' is-filled is-correct' : ' is-filled is-wrong') : ''}`} aria-label={chosen ? undefined : 'boşluk'}>
+          {chosen ? right : '____'}
+        </span>
         {chosen ? <Cue text={after} cue={q.cue} /> : after}
       </p>
       <div className="options aspect-options">
@@ -184,8 +186,8 @@ export function AspectGame({
         ))}
       </div>
       {chosen && (
-        <div className={`accent-result is-${chosen === right ? 'correct' : 'wrong'}`}>
-          <p className="small">
+        <div className={`accent-result is-${chosen === right ? 'correct' : 'wrong'}`} >
+          <p className="small" role="status">
             {chosen === right ? 'Doğru!' : 'Bu cümle öbürünü istiyor.'} <strong lang={language}>“{q.cue}”</strong> → <strong lang={language}>{guide.name}</strong>: {guide.short}
           </p>
           {q.translation && <p className="small muted">{q.translation}</p>}

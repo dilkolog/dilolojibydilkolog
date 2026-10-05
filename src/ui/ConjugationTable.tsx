@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { canSpeak, speak } from './speech'
 import { SpeakerIcon } from './icons'
@@ -35,11 +35,31 @@ const GROUPS: { label: string; tenses: Tense[] }[] = [
  */
 export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Tense }) {
   useTenses(entry.language)
+  const uid = useId()
   const tenses = tensesOf(entry)
   const [picked, setPicked] = useState<Tense | undefined>(initial)
   const tense = picked && tenses.includes(picked) ? picked : tenses[0]
+  // After an arrow key, focus follows to the newly selected tab once it is drawn.
+  const focusTab = useRef<string | null>(null)
+  useEffect(() => {
+    if (!focusTab.current) return
+    document.getElementById(focusTab.current)?.focus()
+    focusTab.current = null
+  }, [tense])
   if (!tense || entry.language === 'en') return null
   const lang = entry.language
+  const groups = GROUPS.map((g) => ({ label: g.label, tenses: g.tenses.filter((t) => tenses.includes(t)) })).filter((g) => g.tenses.length)
+  const current = groups.find((g) => g.tenses.includes(tense))
+  // Arrow keys move between the groups (the tabs pattern); focus follows the selection.
+  const moveTab = (e: KeyboardEvent<HTMLDivElement>) => {
+    const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : e.key === 'Home' ? -Infinity : e.key === 'End' ? Infinity : 0
+    if (!step || !current) return
+    e.preventDefault()
+    const i = groups.indexOf(current)
+    const next = groups[Math.max(0, Math.min(groups.length - 1, Number.isFinite(step) ? i + step : step < 0 ? 0 : groups.length - 1))]
+    focusTab.current = `${uid}-tab-${next.label}`
+    setPicked(next.tenses[0])
+  }
   const forms = conjugateTense(entry, tense)!
   const odd = irregularForms(entry, tense)
   const guide = TENSE_GUIDE[tense]
@@ -49,12 +69,20 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
     <div className="stack conj">
       {tenses.length > 1 && (
         <div className="tense-picker">
-          <div className="segmented tense-tabs" role="tablist" aria-label="Zaman grubu">
-            {GROUPS.map((g) => {
-              const inGroup = g.tenses.filter((t) => tenses.includes(t))
-              if (!inGroup.length) return null
+          <div className="segmented tense-tabs" role="tablist" aria-label="Zaman grubu" onKeyDown={moveTab}>
+            {groups.map((g) => {
+              const on = g.tenses.includes(tense)
               return (
-                <button key={g.label} role="tab" className="segmented-btn" aria-selected={inGroup.includes(tense)} onClick={() => setPicked(inGroup[0])}>
+                <button
+                  key={g.label}
+                  id={`${uid}-tab-${g.label}`}
+                  role="tab"
+                  className="segmented-btn"
+                  aria-selected={on}
+                  aria-controls={`${uid}-panel`}
+                  tabIndex={on ? 0 : -1}
+                  onClick={() => setPicked(g.tenses[0])}
+                >
                   {g.label}
                 </button>
               )
@@ -76,6 +104,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
           })()}
         </div>
       )}
+      <div className="stack conj-panel" role={tenses.length > 1 ? 'tabpanel' : undefined} id={`${uid}-panel`} aria-labelledby={current && tenses.length > 1 ? `${uid}-tab-${current.label}` : undefined}>
       <p className="conj-lead">
         <strong>
           <span lang={lang}>{guide.name}</span> · {guide.tr}.
@@ -95,11 +124,13 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
                       {f.slice(0, f.lastIndexOf(' ') + 1)}
                       <mark className="conj-odd" title="Düzensiz">
                         {f.slice(f.lastIndexOf(' ') + 1)}
+                        <span className="sr-only"> (düzensiz)</span>
                       </mark>
                     </>
                   ) : (
                     <mark className="conj-odd" title="Düzensiz">
                       {f}
+                      <span className="sr-only"> (düzensiz)</span>
                     </mark>
                   )
                 ) : (
@@ -159,6 +190,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
           </ul>
         </div>
       </details>
+      </div>
     </div>
   )
 }
