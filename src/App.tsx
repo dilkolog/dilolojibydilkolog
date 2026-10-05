@@ -32,7 +32,7 @@ import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { Glyph } from './ui/Glyph'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, MoreIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { canListen } from './ui/speechInput'
@@ -151,16 +151,54 @@ function restoreScreen(): Screen {
 /** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
 const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings'])
 
-type NavScreen = 'home' | 'words' | 'reading' | 'produce' | 'story' | 'games' | 'mistakes' | 'progress' | 'profile' | 'settings'
+/**
+ * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
+ * and switch with tabs at the top (GROUPS); Profile and Settings open from the profile card
+ * (desktop) or the avatar (phones and tablets).
+ */
+type NavScreen = 'home' | 'words' | 'reading' | 'practice' | 'progress'
+type ScreenName = Screen['name']
 
 const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
   { screen: 'reading', label: 'Okuma', icon: ReadIcon },
-  { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
+  { screen: 'practice', label: 'Pratik', icon: GameIcon },
+  { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
+]
+
+const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: string }[]>> = {
+  words: [
+    { screen: 'words', label: 'Kelimeler' },
+    { screen: 'mistakes', label: 'Hatalar' },
+  ],
+  reading: [
+    { screen: 'reading', label: 'Metinler' },
+    { screen: 'story', label: 'Hikaye' },
+  ],
+  practice: [
+    { screen: 'games', label: 'Oyunlar' },
+    { screen: 'produce', label: 'Yaz & konuş' },
+  ],
+}
+
+/** Which menu place a screen belongs to. */
+function placeOf(name: ScreenName): NavScreen | undefined {
+  if (name === 'word') return 'words'
+  if (name === 'summary') return 'home'
+  if (name === 'home' || name === 'progress') return name
+  return (Object.keys(GROUPS) as NavScreen[]).find((k) => GROUPS[k]!.some((g) => g.screen === name))
+}
+
+/** Every screen by name, for the command palette. */
+const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
+  { screen: 'home', label: 'Bugün', icon: HomeIcon },
+  { screen: 'words', label: 'Kelimeler', icon: BookIcon },
+  { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
+  { screen: 'reading', label: 'Okuma', icon: ReadIcon },
   { screen: 'story', label: 'Hikaye', icon: StoryIcon },
   { screen: 'games', label: 'Oyunlar', icon: GameIcon },
-  { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
+  { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
   { screen: 'profile', label: 'Profil', icon: UserIcon },
   { screen: 'settings', label: 'Ayarlar', icon: GearIcon },
@@ -175,8 +213,6 @@ const QUICK_REVIEW = 10
 /** A mixed session's length. */
 const MIXED_SIZE = 30
 
-/** Phones get a bottom tab bar with these; the rest sit behind "Daha". */
-const TABS: NavScreen[] = ['home', 'words', 'reading', 'progress']
 
 interface LanguageData {
   language: TargetLanguage
@@ -211,7 +247,8 @@ export default function App() {
   }, [screen])
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const [palette, setPalette] = useState(false)
-  const [more, setMore] = useState(false)
+  // The tab last open in each menu place, so the menu returns to it.
+  const lastTab = useRef<Partial<Record<NavScreen, ScreenName>>>({})
   // Wide screens: the sidebar can fold to an icon rail, giving the content more room (remembered).
   const [rail, setRail] = useState(() => {
     try {
@@ -419,11 +456,11 @@ export default function App() {
   const navBadge: Partial<Record<NavScreen, number>> = useMemo(
     () => ({
       home: plan?.items.filter((i) => i.kind === 'exercise').length ?? 0,
-      mistakes: data ? new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size : 0,
+      words: data ? new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size : 0,
     }),
     [plan, data],
   )
-  const badgeLabel: Partial<Record<NavScreen, string>> = { home: 'soru bekliyor', mistakes: 'kelimede açık hata' }
+  const badgeLabel: Partial<Record<NavScreen, string>> = { home: 'soru bekliyor', words: 'kelimede açık hata' }
   // Rest days and holidays: no reminder.
   const restToday = !!settings && isRestDay(new Date(), settings)
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
@@ -579,10 +616,11 @@ export default function App() {
     )
   }
 
-  const go = (s: Screen) => () => {
-    setMore(false)
-    setScreen(s)
-  }
+  const go = (s: Screen) => () => setScreen(s)
+  const place = placeOf(screen.name)
+  if (place && GROUPS[place]?.some((g) => g.screen === screen.name)) lastTab.current[place] = screen.name
+  /** A menu place opens the tab last used there. */
+  const goPlace = (n: NavScreen) => go({ name: lastTab.current[n] ?? GROUPS[n]?.[0].screen ?? n } as Screen)
   const inSession = screen.name === 'session'
 
   const commands: Command[] = [
@@ -603,7 +641,7 @@ export default function App() {
       group: 'Oyunlar',
       run: go({ name: 'games', game: g.id }),
     })),
-    ...NAV.map((n) => ({ id: n.screen, label: n.label, icon: <n.icon size={18} />, group: 'Ekranlar', run: go({ name: n.screen }) })),
+    ...ALL_SCREENS.map((n) => ({ id: n.screen, label: n.label, icon: <n.icon size={18} />, group: 'Ekranlar', run: go({ name: n.screen } as Screen) })),
     ...TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage).map((l) => ({
       id: `lang-${l}`,
       label: `${LANGUAGE_NAME[l]} çalış`,
@@ -612,8 +650,8 @@ export default function App() {
       run: () => updateSettings({ ...settings, activeLanguage: l }),
     })),
   ]
-  const current = (n: NavScreen) =>
-    screen.name === n || (n === 'words' && screen.name === 'word') || (n === 'home' && screen.name === 'summary') || (n === 'settings' && screen.name === 'account')
+  const current = (n: NavScreen) => place === n
+  const inSettings = screen.name === 'settings' || screen.name === 'account'
 
   return (
     <AiContext.Provider value={ai}>
@@ -654,6 +692,9 @@ export default function App() {
                   </button>
                 ))}
               </div>
+              <button className="top-profile" onClick={go({ name: 'profile' })} aria-label="Profil ve ayarlar" title="Profil ve ayarlar">
+                <Avatar profile={settings.profile} size={32} />
+              </button>
               <button className="palette-trigger" onClick={() => setPalette(true)} title="Ara ya da git (⌘K)">
                 <SearchIcon size={16} />
                 <span>Ara ya da git…</span>
@@ -670,9 +711,9 @@ export default function App() {
                 {NAV.map((n) => (
                   <button
                     key={n.screen}
-                    className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}${n.screen === 'progress' ? ' nav-group' : ''}`}
+                    className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}`}
                     aria-current={current(n.screen) ? 'page' : undefined}
-                    onClick={go({ name: n.screen })}
+                    onClick={goPlace(n.screen)}
                     title={rail ? n.label : undefined}
                   >
                     <n.icon size={20} />
@@ -685,7 +726,11 @@ export default function App() {
                   </button>
                 ))}
               </nav>
-              <button className="sidebar-foot" onClick={go({ name: 'profile' })}>
+              <button className="nav-btn sidebar-settings" aria-current={inSettings ? 'page' : undefined} onClick={go({ name: 'settings' })} title={rail ? 'Ayarlar' : undefined}>
+                <GearIcon size={20} />
+                <span className="nav-label">Ayarlar</span>
+              </button>
+              <button className="sidebar-foot" aria-current={screen.name === 'profile' ? 'page' : undefined} onClick={go({ name: 'profile' })}>
                 <Avatar profile={settings.profile} size={40} />
                 <span className="sidebar-who">
                   <strong>{settings.profile.name || 'Profilin'}</strong>
@@ -706,69 +751,30 @@ export default function App() {
 
           {!inSession && (
             <nav className="tabbar" aria-label="Ana menü">
-              {TABS.map((t) => {
-                const n = NAV.find((x) => x.screen === t)!
-                return (
-                  <button key={t} className="tab" aria-current={current(t) ? 'page' : undefined} onClick={go({ name: t })}>
-                    <span className="tab-icon">
-                      <n.icon size={22} />
-                      {!!navBadge[t] && <span className="tab-dot" aria-label={`${navBadge[t]} ${badgeLabel[t]}`} />}
-                    </span>
-                    <span>{n.label}</span>
-                  </button>
-                )
-              })}
-              <button
-                className="tab"
-                aria-current={NAV.some((n) => !TABS.includes(n.screen) && current(n.screen)) ? 'page' : undefined}
-                aria-expanded={more}
-                onClick={() => setMore(true)}
-              >
-                <span className="tab-icon">
-                  <MoreIcon size={22} />
-                  {/* Something waiting behind "Daha" (open mistakes) shows here too, not only in the sheet. */}
-                  {NAV.some((n) => !TABS.includes(n.screen) && navBadge[n.screen]) && <span className="tab-dot" aria-label="Diğer bölümlerde bekleyen var" />}
-                </span>
-                <span>Daha</span>
-              </button>
+              {NAV.map((n) => (
+                <button key={n.screen} className="tab" aria-current={current(n.screen) ? 'page' : undefined} onClick={goPlace(n.screen)}>
+                  <span className="tab-icon">
+                    <n.icon size={22} />
+                    {!!navBadge[n.screen] && <span className="tab-dot" aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`} />}
+                  </span>
+                  <span>{n.label}</span>
+                </button>
+              ))}
             </nav>
-          )}
-          {more && (
-            <div className="more-backdrop" onClick={(e) => e.target === e.currentTarget && setMore(false)} onKeyDown={(e) => e.key === 'Escape' && setMore(false)}>
-              <div className="more-sheet" role="dialog" aria-modal="true" aria-label="Diğer bölümler">
-                <div className="more-grab" aria-hidden />
-                <button
-                  className="more-search"
-                  onClick={() => {
-                    setMore(false)
-                    setPalette(true)
-                  }}
-                >
-                  <SearchIcon size={18} /> Ara ya da git…
-                </button>
-                <div className="more-grid">
-                  {NAV.filter((n) => !TABS.includes(n.screen)).map((n) => (
-                    <button key={n.screen} className="more-item" aria-current={current(n.screen) ? 'page' : undefined} onClick={go({ name: n.screen })}>
-                      <span className="tab-icon">
-                        <n.icon size={24} />
-                        {!!navBadge[n.screen] && (
-                          <span className="more-count" aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`}>
-                            {navBadge[n.screen]}
-                          </span>
-                        )}
-                      </span>
-                      <span>{n.label}</span>
-                    </button>
-                  ))}
-                </div>
-                <button className="btn btn-quiet btn-block" onClick={() => setMore(false)} autoFocus>
-                  Kapat
-                </button>
-              </div>
-            </div>
           )}
 
           <main id="main" tabIndex={-1} className={`main${WIDE_SCREENS.has(screen.name) ? ' main-wide' : ''}`}>
+            {/* Related screens under one menu place: switch between them here. */}
+            {place && GROUPS[place]?.some((g) => g.screen === screen.name) && (
+              <nav className="hub-tabs" aria-label={NAV.find((n) => n.screen === place)!.label}>
+                {GROUPS[place]!.map((g) => (
+                  <button key={g.screen} className="hub-tab" aria-current={g.screen === screen.name ? 'page' : undefined} onClick={go({ name: g.screen } as Screen)}>
+                    {g.label}
+                    {g.screen === 'mistakes' && !!navBadge.words && <span className="hub-count">{navBadge.words}</span>}
+                  </button>
+                ))}
+              </nav>
+            )}
             {!online && !inSession && (
               <p className="offline-banner" role="status">
                 İnternet yok. Tekrarların ve kelimelerin normal çalışır; haberler, gerçek cümleler, görseller ve AI özellikleri bağlantı gelince açılır.

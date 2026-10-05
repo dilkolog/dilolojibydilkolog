@@ -6,22 +6,40 @@ export async function startWithSamples(page: Page) {
   await page.locator('.lang-card', { hasText: 'Fransızca' }).click()
   await page.getByRole('button', { name: /Fransızca ile başlayalım/ }).click()
   await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
-  await page.locator('button:visible', { hasText: /^Bugün\d*$/ }).first().click()
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
   await expect(page.getByRole('button', { name: /^(Başla|Devam et)$/ })).toBeVisible()
 }
 
-/** Opens a main screen from the menu (side menu on desktop, tab bar or "Daha" on phones). */
+/** Where each screen lives: a menu place, then (for grouped screens) a tab at the top. */
+const ROUTE: Record<string, [string, string?]> = {
+  Bugün: ['Bugün'],
+  Kelimeler: ['Kelimeler', 'Kelimeler'],
+  Hatalar: ['Kelimeler', 'Hatalar'],
+  Okuma: ['Okuma', 'Metinler'],
+  Hikaye: ['Okuma', 'Hikaye'],
+  Oyunlar: ['Pratik', 'Oyunlar'],
+  'Yaz & konuş': ['Pratik', 'Yaz & konuş'],
+  İlerleme: ['İlerleme'],
+}
+
+/** Opens a screen the way a user would: the menu (side menu or tab bar), then its tab; Profile and Settings via the avatar or the side menu. */
 export async function openScreen(page: Page, name: string) {
-  const visible = page.locator('button:visible').filter({ hasText: new RegExp(`^${name}\\d*$`) })
-  if (await visible.count()) await visible.first().click()
-  else {
-    await page.locator('button:visible', { hasText: /^Daha\d*$/ }).first().click()
-    await page.locator(':is(button,a):visible', { hasText: new RegExp(`^${name}`) }).first().click()
+  if (name === 'Profil' || name === 'Ayarlar') {
+    const side = page.locator(name === 'Profil' ? '.sidebar-foot:visible' : '.sidebar-settings:visible')
+    if (await side.count()) await side.click()
+    else {
+      await page.locator('.top-profile:visible').click()
+      if (name === 'Ayarlar') await page.getByRole('button', { name: 'Ayarlar' }).first().click()
+    }
+  } else {
+    const [place, tab] = ROUTE[name]
+    await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: new RegExp(`^${place}\\d*$`) }).first().click()
+    if (tab) await page.locator('.hub-tab').filter({ hasText: new RegExp(`^${tab}\\d*$`) }).click()
   }
   await page.waitForTimeout(400)
 }
 
-export const SCREENS = ['Bugün', 'Kelimeler', 'Okuma', 'Yaz & konuş', 'Hikaye', 'Oyunlar', 'Hatalar', 'İlerleme', 'Profil', 'Ayarlar']
+export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Okuma', 'Hikaye', 'Oyunlar', 'Yaz & konuş', 'İlerleme', 'Profil', 'Ayarlar']
 
 /** Elements wider than the screen that make the page scroll sideways. */
 export const overflow = (page: Page) =>
