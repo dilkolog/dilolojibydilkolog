@@ -3960,3 +3960,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .settings-search { width: 100%; }
   .settings-menu-item { flex-direction: column; justify-content: flex-start; gap: 0.25rem; padding: 0.5rem 0.125rem; text-align: center; font-size: var(--t-xs); white-space: normal; }
 }
+
+/* ---------- One growing language for progress ---------- */
+/* Every bar fills from its left edge when it appears, like the garden's bar; later changes keep their width transition. */
+:is(.bar-fill, .xp-bar > div, .xp-bar-sm > span, .quest-bar > span) { transform-origin: left; animation: bar-grow 700ms var(--ease-out) backwards; }
+/* A finished question lights its segment with a small spring. */
+.progress-segments .seg.is-done { animation: seg-done 380ms var(--ease-spring); }
+@keyframes seg-done { 0% { transform: scaleY(0.6); } 50% { transform: scaleY(1.7); } 100% { transform: none; } }
+/* The combo flame is alive, and a longer run burns brighter. */
+.combo svg { transform-origin: 50% 90%; animation: flicker 1.6s ease-in-out infinite; }
+.combo[data-tier='2'] { filter: drop-shadow(0 0 4px rgb(249 115 22 / 0.55)); }
+.combo[data-tier='3'] { font-size: var(--t-md); filter: drop-shadow(0 0 7px rgb(249 115 22 / 0.8)); }

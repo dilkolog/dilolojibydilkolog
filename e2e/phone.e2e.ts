@@ -171,3 +171,12 @@ test('every settings group is on screen at once, none behind a sideways scroll',
   const fits = await page.locator('.settings-menu-item').evaluateAll((els) => els.every((e) => e.scrollWidth <= e.clientWidth + 1))
   expect(fits).toBe(true)
 })
+
+test('progress bars grow in, and stand still when motion is reduced', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  const animation = () => page.locator('.xp-bar > div').first().evaluate((e) => getComputedStyle(e).animationName)
+  expect(await animation()).toBe('bar-grow')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  expect(await animation()).toBe('none')
+})
