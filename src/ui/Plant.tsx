@@ -95,3 +95,13 @@ function Leaf({ x, y, side, size, fill, delay }: { x: number; y: number; side: 1
   const tip = x + side * size * 1.6
   return <path className={`plant-leaf ${side === 1 ? 'is-r' : 'is-l'}`} style={{ '--d': `${delay}ms` } as CSSProperties} d={`M${x} ${y} Q${x + side * size * 0.6} ${y - size} ${tip} ${y - size * 0.7} Q${x + side * size * 0.9} ${y + size * 0.1} ${x} ${y}z`} fill={fill} />
 }
+
+/** A plant shown at the stage it had, then growing into the stage it reached after `delay` ms (the session summary's moment). */
+export function GrowingPlant({ from, to, delay, size }: { from: number; to: number; delay: number; size: number }) {
+  const [stage, setStage] = useState(from)
+  useEffect(() => {
+    const t = setTimeout(() => setStage(to), delay)
+    return () => clearTimeout(t)
+  }, [to, delay])
+  return <Plant stage={stage} size={size} />
+}

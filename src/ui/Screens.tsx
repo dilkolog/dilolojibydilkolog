@@ -10,7 +10,7 @@ import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
 import { AlertIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
-import { Plant } from './Plant'
+import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
 import { InstallHint } from './InstallHint'
@@ -780,7 +780,8 @@ export function Summary({
       </div>
 
       <div className="summary-side stack" hidden={recalling}>
-        {grown.length > 0 && (
+        {/* Mounted only while shown: hidden, the plants would finish growing unseen. */}
+        {!recalling && grown.length > 0 && (
           <section className="stack summary-grown">
             <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>
             <ul className="grown-list">
@@ -796,7 +797,7 @@ export function Summary({
                       </span>
                       <span className="grown-arrow">→</span>
                       <span className="grown-to">
-                        <Plant stage={to} size={46} />
+                        <GrowingPlant from={from} to={to} delay={400 + Math.min(i, 6) * 200} size={46} />
                       </span>
                     </span>
                     <span className="garden-text">

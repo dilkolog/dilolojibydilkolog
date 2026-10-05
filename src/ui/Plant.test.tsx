@@ -1,9 +1,9 @@
 // @vitest-environment happy-dom
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import type { Health } from '../engine/growth'
-import { Plant } from './Plant'
+import { GrowingPlant, Plant } from './Plant'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
@@ -39,5 +39,22 @@ describe('plant motion', () => {
     expect(seen[1]).toContain('is-water')
     const dried = await show([{ stage: 2 }, { stage: 2, health: 'thirsty' }])
     expect(dried.seen[1]).not.toContain('is-water')
+  })
+})
+
+describe('growing plant (the summary)', () => {
+  it('shows the old stage, then grows into the new one after its delay', async () => {
+    vi.useFakeTimers()
+    const el = document.createElement('div')
+    const root = createRoot(el)
+    await act(async () => root.render(<GrowingPlant from={1} to={3} delay={600} size={40} />))
+    const svg = () => el.querySelector('svg')!
+    expect(svg().getAttribute('aria-label')).toContain('Tanıdık')
+    expect(svg().getAttribute('class')).not.toContain('is-grow')
+    await act(async () => void vi.advanceTimersByTime(650))
+    expect(svg().getAttribute('class')).toContain('is-grow')
+    expect(svg().querySelectorAll('.plant-leaf')).toHaveLength(4)
+    await act(async () => root.unmount())
+    vi.useRealTimers()
   })
 })
