@@ -23,3 +23,14 @@ describe('natural voices', () => {
     expect((await db.media.toArray()).some((m) => m.id.startsWith('tts:'))).toBe(true)
   })
 })
+
+describe('Google errors in plain words', () => {
+  it('says what to fix in the Cloud console', async () => {
+    const { explainGoogleError } = await import('./naturalVoice')
+    expect(explainGoogleError(403, '{"error":{"status":"PERMISSION_DENIED","details":[{"reason":"API_KEY_HTTP_REFERRER_BLOCKED"}]}}')).toMatch(/web sitesi kısıtlaması/)
+    expect(explainGoogleError(403, 'This API method requires billing to be enabled.')).toMatch(/faturalandırma/)
+    expect(explainGoogleError(403, 'Cloud Text-to-Speech API has not been used in project 1 before or it is disabled.')).toMatch(/etkin değil/)
+    expect(explainGoogleError(400, 'API key not valid. Please pass a valid API key.')).toMatch(/geçersiz/)
+    expect(explainGoogleError(500, '')).toMatch(/500/)
+  })
+})

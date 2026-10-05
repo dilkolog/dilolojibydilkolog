@@ -37,8 +37,8 @@ export function naturalVoices(language: TargetLanguage, key = natural.key): Prom
       })
       .then(({ voices = [] }) => {
         const own = voices.filter((v) => v.languageCodes.includes(SPEECH_LANG[language])).map((v) => v.name)
-        const neural = own.filter((n) => n.includes('Neural2'))
-        const list = neural.length ? neural : own.filter((n) => n.includes('Wavenet'))
+        // Neural2 first; Google is phasing it out on some accounts, so then WaveNet, Chirp 3 HD, Standard.
+        const list = ['Neural2', 'Wavenet', 'Chirp3-HD', 'Standard'].map((kind) => own.filter((n) => n.includes(kind))).find((l) => l.length) ?? []
         try {
           localStorage.setItem(`kelime-koc:voices:${language}`, JSON.stringify(list))
         } catch {
@@ -62,13 +62,41 @@ export function naturalVoices(language: TargetLanguage, key = natural.key): Prom
   return p
 }
 
-/** Checks a key by listing voices; throws with a readable message when it doesn't work. */
-export async function testNaturalKey(key: string): Promise<void> {
-  voiceLists.clear()
-  const voices = await naturalVoices('fr', key).catch(() => {
-    throw new Error('Anahtar çalışmadı. Google Cloud\'da Text-to-Speech API\'nin açık olduğundan ve anahtarın bu API\'ye izin verdiğinden emin ol.')
+/** What Google's error says, in Turkish, with what to change in the Cloud console. */
+export function explainGoogleError(status: number, body: string): string {
+  const b = body.toLowerCase()
+  if (b.includes('referer') || b.includes('referrer')) return 'Google bu adresten gelen isteği engelledi: anahtarın web sitesi kısıtlamasına bu adresi ekle (ör. https://kelime-koc.vercel.app/*).'
+  if (b.includes('billing')) return 'Bu projede faturalandırma açık değil. Google Cloud → Billing\'den projeye bir faturalandırma hesabı bağla (ücretsiz kota için de gerekiyor).'
+  if (b.includes('service_disabled') || b.includes('has not been used') || b.includes('is disabled')) return 'Cloud Text-to-Speech API bu projede etkin değil: APIs & Services → Library\'den "Cloud Text-to-Speech API"yi etkinleştir (açıldıktan sonra birkaç dakika sürebilir).'
+  if (b.includes('api_key_invalid') || b.includes('api key not valid')) return 'Anahtar geçersiz: kopyalarken eksik ya da fazla karakter kalmış olabilir.'
+  if (b.includes('api_key_service_blocked') || b.includes('are blocked')) return 'Anahtarın API kısıtlaması Text-to-Speech\'e izin vermiyor: kısıtlamalara "Cloud Text-to-Speech API"yi ekle.'
+  if (status === 429) return 'Google\'ın istek sınırına takıldı; biraz sonra yeniden dene.'
+  return `Google bir hata döndürdü (${status}).`
+}
+
+async function googleFetch(url: string, init?: RequestInit): Promise<Response> {
+  const res = await fetch(url, init)
+  if (!res.ok) throw new Error(explainGoogleError(res.status, await res.text().catch(() => '')))
+  return res
+}
+
+/**
+ * Checks a key end to end: lists the voices, then really synthesises a word (a few characters
+ * of quota). Listing alone passes without billing, so it would hide why speech falls back to
+ * the system voices. Returns the voice used; throws a readable reason otherwise.
+ */
+export async function testNaturalKey(key: string, language: TargetLanguage = 'fr'): Promise<string> {
+  const list = (await (await googleFetch(`${API}/voices?languageCode=${SPEECH_LANG[language]}&key=${encodeURIComponent(key)}`)).json()) as { voices?: { name: string; languageCodes: string[] }[] }
+  const own = (list.voices ?? []).filter((v) => v.languageCodes.includes(SPEECH_LANG[language])).map((v) => v.name)
+  const voice = ['Neural2', 'Wavenet', 'Chirp3-HD', 'Standard'].map((kind) => own.find((n) => n.includes(kind))).find(Boolean)
+  if (!voice) throw new Error('Bu anahtarla bu dilde doğal ses bulunamadı.')
+  await googleFetch(`${API}/text:synthesize?key=${encodeURIComponent(key)}`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ input: { text: 'Bonjour' }, voice: { languageCode: SPEECH_LANG[language], name: voice }, audioConfig: { audioEncoding: 'MP3' } }),
   })
-  if (!voices.length) throw new Error('Bu anahtarla doğal ses bulunamadı.')
+  voiceLists.delete(language)
+  return voice
 }
 
 let lastVaried: { text: string; voice: string } | null = null

@@ -29,7 +29,7 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
     setBusy(true)
     setStatus(null)
     try {
-      await testNaturalKey(k)
+      await testNaturalKey(k, language)
       await db.saveTtsKey(k)
       natural.key = k
       setKey(k)
@@ -63,8 +63,25 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
           <span className="small muted">
             Anahtar ••••{key.slice(-4)} · bu ay {chars.toLocaleString('tr-TR')} karakter
           </span>
-          <button className="btn btn-quiet btn-sm" onClick={() => speak({ en: 'Practice makes perfect.', fr: "C'est en forgeant qu'on devient forgeron.", es: 'La práctica hace al maestro.' }[language], language)}>
-            Dene
+          <button
+            className="btn btn-quiet btn-sm"
+            disabled={busy}
+            onClick={async () => {
+              // Checks the real thing first, so a silent fall back to the system voice can't pass for success.
+              setBusy(true)
+              setStatus(null)
+              try {
+                const voice = await testNaturalKey(key, language)
+                setStatus({ ok: true, text: `Doğal ses çalışıyor (${voice}).` })
+                speak({ en: 'Practice makes perfect.', fr: "C'est en forgeant qu'on devient forgeron.", es: 'La práctica hace al maestro.' }[language], language)
+              } catch (err) {
+                setStatus({ ok: false, text: `${err instanceof Error ? err.message : 'Doğal ses alınamadı.'} Şu an sistem sesi kullanılıyor.` })
+              } finally {
+                setBusy(false)
+              }
+            }}
+          >
+            {busy ? 'Kontrol ediliyor…' : 'Dene'}
           </button>
           <button className="link small" onClick={off}>
             Kapat
