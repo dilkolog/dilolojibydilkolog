@@ -539,7 +539,7 @@ details[open] > summary { margin-bottom: 1rem; }
 .badge { display: inline-block; background: var(--lang-soft); color: var(--lang-text); font-weight: 700; font-size: var(--t-sm); padding: 0.125rem 0.75rem; border-radius: var(--r-full); }
 .prompt-label { font-weight: 600; font-size: var(--t-md); color: var(--ink-soft); margin-bottom: 1.25rem; }
 
-.word { font-family: var(--serif); font-size: var(--t-word); line-height: 1.1; color: var(--lang-text); font-weight: 400; overflow-wrap: anywhere; }
+.word { font-family: var(--serif); font-size: var(--t-word); line-height: 1.1; padding-bottom: 0.12em; color: var(--lang-text); font-weight: 400; overflow-wrap: anywhere; }   /* padding: Literata's descenders (p, g, ç) reach below a 1.1 line box */
 .word .article { font-style: italic; opacity: 0.6; }
 .prompt-text { font-size: var(--t-2xl); font-weight: 600; letter-spacing: -0.02em; }
 .gloss { font-size: var(--t-lg); }

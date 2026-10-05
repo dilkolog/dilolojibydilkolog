@@ -78,10 +78,15 @@ export function wordSize(text: string): string {
 /** The word in large type, with its article. */
 export function Word({ entry }: { entry: VocabularyEntry }) {
   const size = wordSize(`${entry.article ?? ''} ${entry.lemma}`.trim())
-  if (!entry.article) return <h1 className={`word${size}`}>{entry.lemma}</h1>
+  if (!entry.article)
+    return (
+      <h1 className={`word${size}`} lang={entry.language}>
+        {entry.lemma}
+      </h1>
+    )
   const sep = entry.article.endsWith("'") ? '' : ' '
   return (
-    <h1 className={`word${size}`}>
+    <h1 className={`word${size}`} lang={entry.language}>
       <span className="article">{entry.article}</span>
       {sep}
       {entry.lemma}
