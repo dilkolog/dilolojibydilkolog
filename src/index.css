@@ -3977,3 +3977,23 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .level-strike .level-badge { animation: level-flip 520ms var(--ease-spring); }
 .level-strike.is-up::after { content: ''; position: absolute; inset: -4px; border-radius: var(--r-full); border: 2px solid var(--gold); opacity: 0; animation: plant-burst 900ms var(--ease-out) forwards; pointer-events: none; }
 @keyframes level-flip { 0% { transform: rotateX(90deg) scale(0.8); opacity: 0; } 60% { transform: rotateX(0) scale(1.18); opacity: 1; } 100% { transform: none; } }
+
+/* A card that stays closed until wanted: its summary is the card's title and a line under it. */
+.ios-shortcut > summary { display: grid; gap: 0.125rem; cursor: pointer; list-style: none; }
+.ios-shortcut > summary::-webkit-details-marker { display: none; }
+.ios-shortcut > summary::after { content: '+'; position: absolute; right: 1.25rem; top: 1rem; font-size: var(--t-xl); line-height: 1; color: var(--ink-soft); }
+.ios-shortcut { position: relative; }
+.ios-shortcut[open] > summary::after { content: '–'; }
+.shortcut-url { flex: 1 1 12rem; min-width: 0; overflow-wrap: anywhere; }
+
+/* The profile's name and motto are inputs that look like text: a faint underline says they can be edited (a phone has no hover). */
+.profile-name, .profile-motto { box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-soft) 35%, transparent); }
+.profile-name:focus, .profile-motto:focus { box-shadow: inset 0 -2px 0 var(--lang); }
+/* Recent weeks: weekday names down the first column. */
+.activity-day { display: grid; align-items: center; font-size: 0.625rem; line-height: 1; color: var(--ink-soft); white-space: nowrap; }
+/* The next medals: two across on a phone, not one tall card each. */
+@media (max-width: 45.99rem) { .badge-grid-next { grid-template-columns: repeat(2, minmax(0, 1fr)); } .badge-grid-next .badge-card { padding: 1rem 0.5rem 0.75rem; } }
+
+/* A wide control must not widen its card past the screen: the card shrinks to the page, the control's labels wrap. */
+.settings-pane > * { min-width: 0; }
+@media (max-width: 30rem) { .seg-btn { white-space: normal; } }

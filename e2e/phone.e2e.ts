@@ -180,3 +180,34 @@ test('progress bars grow in, and stand still when motion is reduced', async ({ p
   await page.emulateMedia({ reducedMotion: 'reduce' })
   expect(await animation()).toBe('none')
 })
+
+test('no settings group is wider than the screen or hides content', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  const items = page.locator('.settings-menu-item')
+  await expect(items.first()).toBeVisible()
+  const found: string[] = []
+  for (let i = 0; i < (await items.count()); i++) {
+    await items.nth(i).click()
+    await page.waitForTimeout(250)
+    const name = (await items.nth(i).textContent())?.trim()
+    for (const o of await overflow(page)) found.push(`${name}: ${o}`)
+    for (const c of await clippedContent(page)) found.push(`${name} clipped: ${c}`)
+  }
+  expect(found).toEqual([])
+})
+
+test('searching settings opens a card that is closed until wanted', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await expect(page.getByLabel('Ayar ara')).toBeVisible()
+  await page.getByLabel('Ayar ara').fill('Kestirme')
+  await expect(page.locator('details.ios-shortcut')).toBeVisible()
+  await expect(page.locator('details.ios-shortcut')).toHaveJSProperty('open', true)
+  // Without a search it stays closed.
+  await page.getByLabel('Ayar ara').fill('')
+  await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
+  await expect(page.locator('details.ios-shortcut')).toHaveJSProperty('open', true)
+})

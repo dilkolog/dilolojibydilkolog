@@ -247,6 +247,8 @@ export function SettingsScreen({
           if (hit) cardHit = true
         }
         card.hidden = !cardHit
+        // A card kept closed (instructions) opens when the search lands in it.
+        if (q && cardHit && card instanceof HTMLDetailsElement) card.open = true
         if (cardHit) paneHit = true
       }
       pane.hidden = q ? !paneHit : pane.id !== active
@@ -493,8 +495,6 @@ export function SettingsScreen({
           <Pane {...pane('s-sound')}>
             <section className="card stack">
               <h2 className="section-title">Ses</h2>
-            <NaturalVoiceSettings language={lang} />
-            <AzureSpeechSettings />
             <Toggle label="Kelimeleri otomatik seslendir" help="Yeni kelimede ve dinleme sorularında ses kendiliğinden çalar." checked={settings.autoPlayAudio} onChange={(v) => set('autoPlayAudio', v)} />
             <Toggle label="Ses efektleri" help="Doğru, yanlış, seri ve seviye atlama sesleri; destekleyen telefonlarda kısa titreşim." checked={settings.soundEffects} onChange={(v) => set('soundEffects', v)} />
             <Toggle
@@ -530,6 +530,9 @@ export function SettingsScreen({
                 </button>
               </div>
             </Row>
+            {/* Cloud voices and scoring need keys and are set once: after the everyday choices, not before. */}
+            <NaturalVoiceSettings language={lang} />
+            <AzureSpeechSettings />
             </section>
           </Pane>
 

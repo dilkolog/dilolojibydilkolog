@@ -360,6 +360,12 @@ function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records:
         <span className="small muted">{active ? `${active} gün çalıştın` : 'İlk çalıştığın gün burada renklenir'}</span>
       </div>
       <div className="activity-grid" role="img" aria-label={`Son ${weeks} haftada ${active} gün çalıştın`}>
+        {/* The first column names the weekdays (Mon, Wed, Fri), so a square can be read as a day. */}
+        {['Pzt', '', 'Çar', '', 'Cum', '', ''].map((label, i) => (
+          <span key={`day${i}`} className="activity-day" aria-hidden>
+            {label}
+          </span>
+        ))}
         {days.map((d) => (
           <span
             key={d.key}
