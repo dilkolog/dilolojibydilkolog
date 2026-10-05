@@ -14,6 +14,7 @@ import { Plant } from './Plant'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
 import { InstallHint } from './InstallHint'
+import { DayPlant } from './DayPlant'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
@@ -357,19 +358,13 @@ export function Home({
           <span className="hero-hello" aria-hidden lang={language}>
             {HELLO[language]}
           </span>
-          {/* Before the first answer the ring says how much there is, not "%0". */}
-          <Ring
-            value={remaining === 0 && answeredToday > 0 ? 1 : progress}
-            doneLabel={<CheckIcon size={40} />}
-            label={
-              answeredToday === 0 && remaining > 0 ? (
-                <span className="ring-count">
-                  <strong>{remaining}</strong>
-                  <span>soru</span>
-                </span>
-              ) : undefined
-            }
-          />
+          {/* The ring is the way through the task; the plant inside grows with it. */}
+          {(() => {
+            const done = remaining === 0 && answeredToday > 0
+            const value = done ? 1 : progress
+            const plant = <DayPlant language={language} progress={value} done={done} />
+            return <Ring value={value} doneLabel={plant} label={plant} />
+          })()}
           <div className="hero-body">
             {remaining > 0 ? (
               <>
