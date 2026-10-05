@@ -14,6 +14,7 @@ import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
 import { GroupTitle, JumpNav } from './JumpNav'
+import { TenseWeakness } from './TenseWeakness'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { StreakFlame } from './StreakFlame'
@@ -336,6 +337,8 @@ export function ProgressScreen({
         </div>
         <p className="small muted">Yüzde, o beceride çalıştığın kelimeleri şu an hatırlama olasılığının ortalaması.</p>
       </section>
+      {/* Beside the skills: conjugation by tense (French and Spanish), so the row isn't half empty. */}
+      <TenseWeakness language={language} vocabulary={vocabulary} />
       <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
     </div>
   )
