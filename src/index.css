@@ -3491,3 +3491,14 @@ button.badge-card:active { transform: none; }
 @media (hover: none) { .conj-say { opacity: 1; } }
 .conj-sentence-say { vertical-align: middle; margin-left: 0.25rem; }
 .more-rows { margin-top: 0.75rem; }
+/* Home: the study-plan question as one quiet line until opened. */
+.habit-nudge { display: flex; align-items: center; gap: 0.25rem; margin-top: 1rem; padding: 0.25rem 0.375rem 0.25rem 0; border: 1px dashed var(--rule); border-radius: var(--r-md); }
+.habit-nudge-main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.75rem; border: 0; background: none; color: var(--ink); font-size: var(--t-sm); text-align: left; cursor: pointer; border-radius: var(--r-sm); }
+.habit-nudge-main > svg { flex: none; color: var(--lang-text); }
+.habit-nudge-main > span:nth-child(2) { flex: 1; min-width: 0; }
+.habit-nudge-cta { flex: none; font-weight: 700; color: var(--lang-text); }
+.habit-nudge-main:hover { background: var(--lang-soft); }
+.daily-goal.is-done strong { display: inline-flex; align-items: center; justify-content: flex-end; gap: 0.25rem; }
+.daily-extra { margin-left: 0.25rem; padding: 0 0.375rem; border-radius: var(--r-full); background: var(--ok-soft); color: var(--ok-text); font-size: var(--t-xs); font-weight: 700; font-variant-numeric: tabular-nums; }
+.level-strip-top { flex-wrap: wrap; column-gap: 0.5rem; }
+.level-strip-top .small { white-space: nowrap; }

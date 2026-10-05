@@ -835,12 +835,24 @@ function LevelStrip({ game, dailyXpGoal, onProfile }: { game: GameState; dailyXp
           <span style={{ width: `${Math.min(1, progress) * 100}%` }} />
         </span>
       </span>
-      <span className={`daily-goal${today >= dailyXpGoal ? ' is-done' : ''}`}>
-        <span className="small muted">Bugün</span>
-        <strong>
-          {Math.round(today)}/{dailyXpGoal} XP
-        </strong>
-      </span>
+      {/* Once the day's goal is met it says so; the extra is shown apart, not as 122/50. */}
+      {today >= dailyXpGoal ? (
+        <span className="daily-goal is-done">
+          <span className="small muted">Bugün</span>
+          <strong>
+            <CheckIcon size={15} className="inline-icon" />
+            Tamam
+            {today > dailyXpGoal && <span className="daily-extra">+{Math.round(today - dailyXpGoal)}</span>}
+          </strong>
+        </span>
+      ) : (
+        <span className="daily-goal">
+          <span className="small muted">Bugün</span>
+          <strong>
+            {Math.round(today)}/{dailyXpGoal} XP
+          </strong>
+        </span>
+      )}
     </button>
   )
 }

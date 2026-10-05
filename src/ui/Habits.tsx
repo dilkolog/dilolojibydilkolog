@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MoonIcon, PinIcon } from './icons'
+import { CloseIcon, MoonIcon, PinIcon } from './icons'
 import type { Settings } from '../data/db'
 
 /** From this hour, a short review of today's new words before sleep is suggested. */
@@ -27,6 +27,8 @@ export function HabitCards({
   now?: Date
 }) {
   const [cue, setCue] = useState('')
+  // The plan question starts as one line under the mission and opens only when asked for.
+  const [planOpen, setPlanOpen] = useState(false)
   const evening = now.getHours() >= EVENING_HOUR && newToday > 0
 
   return (
@@ -49,7 +51,22 @@ export function HabitCards({
         </section>
       )}
 
-      {!settings.studyPlan && !settings.studyPlanAsked && (
+      {!settings.studyPlan && !settings.studyPlanAsked && !planOpen && (
+        <div className="habit-nudge">
+          <button type="button" className="habit-nudge-main" onClick={() => setPlanOpen(true)}>
+            <PinIcon size={18} />
+            <span>
+              <strong>Ne zaman çalışacaksın?</strong> <span className="muted">Somut bir plan alışkanlığı kolaylaştırır.</span>
+            </span>
+            <span className="habit-nudge-cta">Plan yap</span>
+          </button>
+          <button type="button" className="icon-btn icon-btn-sm" aria-label="Şimdi değil" title="Şimdi değil" onClick={() => onSettings({ ...settings, studyPlanAsked: true })}>
+            <CloseIcon size={16} />
+          </button>
+        </div>
+      )}
+
+      {!settings.studyPlan && !settings.studyPlanAsked && planOpen && (
         <section className="habit card">
           <span className="habit-icon" aria-hidden>
             <PinIcon size={24} />
@@ -66,7 +83,7 @@ export function HabitCards({
               “Şu olduğunda, kelime çalışacağım” diye somut bir plan yapmak, niyeti alışkanlığa çevirmenin en etkili yollarından biri.
             </span>
             <div className="row nowrap">
-              <input className="input" value={cue} onChange={(e) => setCue(e.target.value)} placeholder="Sabah kahvemi içerken" aria-label="Çalışma planın" />
+              <input className="input" value={cue} onChange={(e) => setCue(e.target.value)} placeholder="Sabah kahvemi içerken" aria-label="Çalışma planın" autoFocus />
               <button className="btn" type="submit" disabled={!cue.trim()}>
                 Kaydet
               </button>
