@@ -19,7 +19,7 @@ import { WordForm } from './Words'
 import { showToast, undoable } from './toast'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
-import { BookIcon, CheckCircleIcon, CheckIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
+import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
@@ -116,6 +116,8 @@ export function ReadingScreen({
   const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
   const [listenFirst, setListenFirst] = useState(false)
+  // The coverage card opens to its explanations on request.
+  const [covOpen, setCovOpen] = useState(false)
 
   useEffect(() => {
     Promise.all([db.getLibrary(language), db.getCurrentText(language), db.getKnownWords(language), db.getIgnored(language)]).then(([lib, id, k, ig]) => {
@@ -583,45 +585,49 @@ export function ReadingScreen({
         </button>
       </div>
 
-      <section className={`card stack coverage zone-${zone}`}>
-        <div className="coverage-head">
+      {/* One line while reading (score, verdict, bar); the explanations open on request, so the
+          text starts near the top of the screen. */}
+      <section className={`card coverage coverage-compact zone-${zone}`}>
+        <button type="button" className="coverage-line" aria-expanded={covOpen} onClick={() => setCovOpen((o) => !o)}>
           <span className="coverage-num">{pct(analysis.coverage)}</span>
-          <span>
-            <strong>{ZONE[zone].title}</strong>
-            <br />
-            <span className="small muted">{ZONE[zone].text}</span>
+          <strong className="coverage-title">{ZONE[zone].title}</strong>
+          <span className="coverage-bar" role="img" aria-label={`Bilinen ${pct(analysis.coverage)}, listede ${pct(analysis.coverageWithList - analysis.coverage)}, yeni ${pct(1 - analysis.coverageWithList)}`}>
+            <span className="cb-known" style={{ width: share(analysis.counts.known) }} />
+            <span className="cb-list" style={{ width: share(analysis.counts.learning + analysis.counts.new) }} />
+            <span className="cb-unseen" style={{ width: share(analysis.counts.unseen) }} />
           </span>
-        </div>
+          <ChevronDownIcon size={16} className="coverage-chevron" />
+        </button>
+        {covOpen && (
+          <div className="stack gap-2 coverage-more">
+            <p className="small muted">{ZONE[zone].text}</p>
+            <p className="small muted coverage-legend">
+              <span><i className="cb-known" /> bildiğin {analysis.counts.known}</span>
+              <span><i className="cb-list" /> listende {analysis.counts.learning + analysis.counts.new}</span>
+              <span><i className="cb-unseen" /> yeni {analysis.counts.unseen}</span>
+              <span>toplam {analysis.total} kelime</span>
+            </p>
+            {current && current.history.length > 0 && startCoverage !== null && (
+              <p className="small">
+                Önceki okumada %{Math.round(current.history[0].coverage * 100)}
+                {current.history.length > 1 && `, son okumada %${Math.round(current.history.at(-1)!.coverage * 100)}`}; bu okumaya başlarken %
+                {Math.round(startCoverage * 100)}.
+              </p>
+            )}
+            {known.size < 500 && (
+              <p className="small muted">
+                Bildiğin kelimeleri henüz az tanıyorum ({known.size}). Birkaç metni bitirdikçe "yeni" görünen kelimeler azalır ve bu oran gerçeğe yaklaşır.
+              </p>
+            )}
+          </div>
+        )}
         {current?.source && (
-          <p className="small">
+          <p className="small coverage-source">
             <a className="link" href={current.source} target="_blank" rel="noreferrer">
               {current.source.includes('youtube.com') ? '▶️ Videoyu YouTube’da aç' : 'Kaynağı aç'}
             </a>
           </p>
         )}
-        {current && current.history.length > 0 && startCoverage !== null && (
-          <p className="small">
-            Önceki okumada %{Math.round(current.history[0].coverage * 100)}
-            {current.history.length > 1 && `, son okumada %${Math.round(current.history.at(-1)!.coverage * 100)}`}; bu okumaya başlarken %
-            {Math.round(startCoverage * 100)}.
-          </p>
-        )}
-        {known.size < 500 && (
-          <p className="small muted">
-            Bildiğin kelimeleri henüz az tanıyorum ({known.size}). Birkaç metni bitirdikçe "yeni" görünen kelimeler azalır ve bu oran gerçeğe yaklaşır.
-          </p>
-        )}
-        <div className="coverage-bar" role="img" aria-label={`Bilinen ${pct(analysis.coverage)}, listede ${pct(analysis.coverageWithList - analysis.coverage)}, yeni ${pct(1 - analysis.coverageWithList)}`}>
-          <span className="cb-known" style={{ width: share(analysis.counts.known) }} />
-          <span className="cb-list" style={{ width: share(analysis.counts.learning + analysis.counts.new) }} />
-          <span className="cb-unseen" style={{ width: share(analysis.counts.unseen) }} />
-        </div>
-        <p className="small muted coverage-legend">
-          <span><i className="cb-known" /> bildiğin {analysis.counts.known}</span>
-          <span><i className="cb-list" /> listende {analysis.counts.learning + analysis.counts.new}</span>
-          <span><i className="cb-unseen" /> yeni {analysis.counts.unseen}</span>
-          <span>toplam {analysis.total} kelime</span>
-        </p>
       </section>
 
       {current?.audio && <AudioPanel key={`audio-${current.id}`} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}

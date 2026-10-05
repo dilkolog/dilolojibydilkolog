@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { CheckIcon, PlusIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { loadFrequency } from '../data/frequency'
 import { englishHints } from '../data/wordInfo'
@@ -60,15 +61,18 @@ export function KeyWordsCard({
           Gizle
         </button>
       </div>
-      <p className="small muted">Bu metinde en çok işine yarayacak bilinmeyen kelimeler. Bildiklerini işaretle, gerisini ekleyip okumadan önce çalış: metin çok daha akıcı okunur.</p>
+      <p className="small muted">Bu metinde en çok işine yarayacak bilinmeyen kelimeler: bildiklerini ✓ ile işaretle, gerisini + ile ekleyip okumadan önce çalış.</p>
       <ul className="key-list">
         {words.map((w) => {
           const h = hints.get(w.word)
           return (
-            <li key={w.key}>
+            <li key={w.key} className={adding === w.word ? 'is-open' : undefined}>
+              {/* A compact tile: the word, how often it occurs, and two small actions. */}
               <div className="key-head">
-                <strong lang={language}>{w.word}</strong>
-                {w.count > 1 && <span className="small muted">×{w.count}</span>}
+                <span className="key-word">
+                  <strong lang={language}>{w.word}</strong>
+                  {w.count > 1 && <span className="key-count">×{w.count}</span>}
+                </span>
                 {h && (
                   <span className="small muted key-hint" lang="en">
                     {h.lemma !== w.word && <em lang={language}>{h.lemma}: </em>}
@@ -76,11 +80,11 @@ export function KeyWordsCard({
                   </span>
                 )}
                 <span className="key-actions">
-                  <button className="btn btn-sm btn-quiet" onClick={() => onKnown(w.key)}>
-                    Biliyorum
+                  <button className="icon-btn key-known" onClick={() => onKnown(w.key)} aria-label={`${w.word}: biliyorum`} title="Biliyorum">
+                    <CheckIcon size={16} />
                   </button>
-                  <button className="btn btn-sm" onClick={() => setAdding(adding === w.word ? null : w.word)}>
-                    Ekle
+                  <button className="icon-btn key-add" onClick={() => setAdding(adding === w.word ? null : w.word)} aria-label={`${w.word}: listeye ekle`} aria-expanded={adding === w.word} title="Listeye ekle">
+                    <PlusIcon size={16} />
                   </button>
                 </span>
               </div>
