@@ -44,7 +44,7 @@ export function cardSvg(d: CardData): string {
   <text x="180" y="148" font-size="44" font-weight="700" fill="#f8fafc">Kelime Koçu</text>
   <text x="80" y="290" font-size="64" font-weight="800" fill="#f8fafc">${esc(d.name || 'İlerlemem')}</text>
   <text x="80" y="352" font-size="38" fill="${a}">${esc(LANGUAGE_NAME[d.language])} · Seviye ${d.level} · ${esc(d.title)}</text>
-  ${stat(80, 540, `🔥 ${d.streak}`, 'günlük seri')}
+  ${stat(80, 540, `${d.streak}`, 'günlük seri')}
   ${stat(580, 540, d.vocab ? `≈${d.vocab.toLocaleString('tr-TR')}` : String(d.words), d.vocab ? 'kelime dağarcığı' : 'çalıştığım kelime')}
   ${stat(80, 760, `${d.flowers}`, `çiçek açtı (${d.growing} büyüyor)`)}
   ${stat(580, 760, `${d.weekXp}`, 'bu hafta XP')}

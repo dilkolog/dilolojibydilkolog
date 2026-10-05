@@ -262,7 +262,7 @@ export function ReadingScreen({
       const item: ReadingText = {
         id: crypto.randomUUID(),
         language,
-        title: `▶️ ${j.title}${j.auto ? ' (otomatik altyazı)' : ''}`,
+        title: `${j.title}${j.auto ? ' (otomatik altyazı)' : ''}`,
         text: j.text,
         source: `https://www.youtube.com/watch?v=${j.id}`,
         addedAt: new Date().toISOString(),
@@ -415,7 +415,11 @@ export function ReadingScreen({
           <button className="lib-open" onClick={() => open(item)}>
             <Cover title={item.title} />
             <span className="lib-body">
-              <strong className="lib-title">{item.title}</strong>
+              <strong className="lib-title">
+                {/* A video is marked with the play icon (older titles carried a ▶️ emoji; it is dropped). */}
+                {item.source?.includes('youtube.com') && <PlayIcon size={14} className="inline-icon lib-video" />}
+                {item.title.replace(/^▶️?\s*/u, '')}
+              </strong>
               <span className="small muted">
                 {words} kelime · ~{Math.max(1, Math.round(words / 150))} dk
                 {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`}`}
@@ -652,7 +656,14 @@ export function ReadingScreen({
         {current?.source && (
           <p className="small coverage-source">
             <a className="link" href={current.source} target="_blank" rel="noreferrer">
-              {current.source.includes('youtube.com') ? '▶️ Videoyu YouTube’da aç' : 'Kaynağı aç'}
+              {current.source.includes('youtube.com') ? (
+                <>
+                  <PlayIcon size={14} className="inline-icon" />
+                  Videoyu YouTube’da aç
+                </>
+              ) : (
+                'Kaynağı aç'
+              )}
             </a>
           </p>
         )}

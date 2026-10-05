@@ -3646,3 +3646,4 @@ button.badge-card:active { transform: none; }
 .form-analysis { display: grid; gap: 0.25rem; padding: 0.5rem 0.75rem; border-radius: var(--r-sm); background: var(--lang-soft); }
 .form-analysis p { margin: 0; }
 .form-analysis strong { font-family: var(--serif); font-weight: 600; color: var(--lang-text); }
+.lib-video { color: var(--lang-text); margin-right: 0.25rem; }
