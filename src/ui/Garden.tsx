@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 import { displayForm } from '../engine/exercises'
 import { gardenSummary, growthStage, plantHealth, type GardenSummary } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
@@ -9,6 +9,8 @@ import { Plant } from './Plant'
 import { DropIcon } from './icons'
 
 const BED_PREVIEW = 120
+/** Only the first plants of a bed sway: a few hundred moving icons would cost more than they give. */
+const LIVE_PER_BED = 24
 
 export const WORDS_VIEW_KEY = 'kelime-koc:words-view'
 
@@ -63,12 +65,12 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
               {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="bed-count">{b.words.length}</span>
             </h2>
             <ul className="bed-plants">
-              {(open.has(b.stage) ? b.words : b.words.slice(0, BED_PREVIEW)).map((w) => {
+              {(open.has(b.stage) ? b.words : b.words.slice(0, BED_PREVIEW)).map((w, i) => {
                 const health = plantHealth(stateById.get(w.id), scheduler, now)
                 return (
-                <li key={w.id}>
+                <li key={w.id} style={{ '--i': Math.min(i, 40) } as CSSProperties}>
                   <button className={`plant-tile is-${health}`} onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}${health !== 'fresh' ? ' · su istiyor' : ''}`}>
-                    <Plant stage={b.stage} health={health} size={52} />
+                    <Plant stage={b.stage} health={health} size={52} live={i < LIVE_PER_BED} phase={i} />
                     {health !== 'fresh' && <DropIcon size={14} solid className="plant-drop" />}
                     <span className="plant-name" lang={w.language}>
                       {w.lemma}
@@ -120,8 +122,8 @@ function GardenBar({ parts }: { parts: { key: string; label: string; n: number }
       <div className="garden-bar" role="img" aria-label={parts.map((p) => `${p.n} ${p.label}`).join(', ')}>
         {parts
           .filter((p) => p.n)
-          .map((p) => (
-            <span key={p.key} className={`garden-bar-seg is-${p.key}`} style={{ flexGrow: p.n }} />
+          .map((p, k) => (
+            <span key={p.key} className={`garden-bar-seg is-${p.key}`} style={{ flexGrow: p.n, '--k': k } as CSSProperties} />
           ))}
       </div>
       <ul className="garden-legend">
@@ -141,12 +143,15 @@ export function GardenCard({ summary, onWater, onOpen }: { summary: GardenSummar
   const growing = summary.byStage.reduce((a, b) => a + b, 0)
   if (!growing) return null
   const dry = summary.wilting + summary.thirsty
+  const cardStages = [5, 4, 3, 2, 1, 0].filter((s) => summary.byStage[s] > 0).slice(0, 4).reverse()
+  const thirst = summary.wilting ? 'wilting' : summary.thirsty ? 'thirsty' : 'fresh'
   return (
     <section className="habit card garden-card">
       <span className="garden-card-plants" aria-hidden>
-        <Plant stage={5} size={34} />
-        <Plant stage={3} health={summary.wilting ? 'wilting' : 'fresh'} size={34} />
-        <Plant stage={1} size={34} />
+        {/* The garden as it is: up to four of the stages it has, young to old; the youngest shows the thirst. */}
+        {cardStages.map((stage, i) => (
+          <Plant key={stage} stage={stage} health={i === 0 ? thirst : 'fresh'} size={36} live phase={i} />
+        ))}
       </span>
       <div className="stack">
         <strong>Bahçen</strong>

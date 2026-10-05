@@ -467,7 +467,7 @@ function GrowthPanel({ entry, state, scheduler, now }: { entry: VocabularyEntry;
   const days = (d: Date) => Math.max(1, Math.ceil((d.getTime() - now.getTime()) / 86_400_000))
   return (
     <section className="section growth card span-2">
-      <Plant stage={stage} health={health} size={88} />
+      <Plant stage={stage} health={health} size={88} live />
       <div className="stack gap-xs">
         <strong className="growth-title">{state ? STAGE_NAME[MASTERY_STAGES[stage]] : 'Henüz ekilmedi'}</strong>
         {!state && <p className="small muted">Bu kelime günlük görevine sırası gelince eklenir; ilk tanışmada filizlenir.</p>}

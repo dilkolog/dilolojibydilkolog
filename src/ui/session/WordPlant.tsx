@@ -53,7 +53,7 @@ export function WordPlant({ state }: { state: UserWordState | undefined }) {
           <circle className="word-plant-track" cx="30" cy="30" r={R} />
           <circle className="word-plant-fill" cx="30" cy="30" r={R} strokeDasharray={CIRCUMFERENCE} strokeDashoffset={CIRCUMFERENCE * (1 - shown.progress)} />
         </svg>
-        <Plant stage={shown.stage} size={50} />
+        <Plant stage={shown.stage} size={50} live />
       </span>
       <span className="word-plant-name">{name}</span>
     </div>
