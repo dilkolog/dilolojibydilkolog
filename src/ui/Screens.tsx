@@ -689,7 +689,9 @@ export function Summary({
           {summary.answered} sorudan {summary.correct} tanesini doğru bildin.
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>
-        <p className="xp-gain">+{summary.xp} XP</p>
+        <p className="xp-gain">
+          +<GainCount value={summary.xp} /> XP
+        </p>
         {after && (
           <dl className="celebrate-stats">
             <div>
@@ -721,7 +723,7 @@ export function Summary({
           <ul className="rewards-list">
             {leveledUp && after && (
               <li className="reward reward-level">
-                <span className="level-badge level-badge-lg">{after.level.level}</span>
+                <LevelUpBadge from={before!.level.level} to={after.level.level} />
                 <span className="reward-text">
                   <strong>Seviye atladın!</strong>
                   <span className="small muted">
@@ -874,6 +876,27 @@ function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose
         </div>
       </div>
     </div>
+  )
+}
+
+/** XP earned in the session, counting up from 0. */
+export function GainCount({ value }: { value: number }) {
+  return <>{Math.round(useCountUp(value, 'session-gain', 1000, 0))}</>
+}
+
+/** The new level: the badge shows the old number, flips to the new one with a ring, as if it were struck. */
+export function LevelUpBadge({ from, to }: { from: number; to: number }) {
+  const [level, setLevel] = useState(from)
+  useEffect(() => {
+    const t = setTimeout(() => setLevel(to), 800)
+    return () => clearTimeout(t)
+  }, [to])
+  return (
+    <span className={`level-strike${level === to ? ' is-up' : ''}`}>
+      <span className="level-badge level-badge-lg" key={level}>
+        {level}
+      </span>
+    </span>
   )
 }
 

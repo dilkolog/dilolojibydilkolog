@@ -3,10 +3,12 @@ import { useEffect, useRef, useState } from 'react'
 /**
  * A number that counts up (or down) from the value shown last time to the new one, so XP gained in
  * a session is seen arriving on the home screen. The last value is kept per tab under `key`.
+ * `startAt` makes it count from a fixed number (0 for "+36 XP" earned just now) instead.
  */
-export function useCountUp(value: number, key: string, ms = 900): number {
+export function useCountUp(value: number, key: string, ms = 900, startAt?: number): number {
   const storage = `kelime-koc:count:${key}`
   const [shown, setShown] = useState(() => {
+    if (startAt !== undefined) return startAt
     try {
       const last = Number(sessionStorage.getItem(storage))
       return Number.isFinite(last) && sessionStorage.getItem(storage) !== null ? last : value

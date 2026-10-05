@@ -3971,3 +3971,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .combo svg { transform-origin: 50% 90%; animation: flicker 1.6s ease-in-out infinite; }
 .combo[data-tier='2'] { filter: drop-shadow(0 0 4px rgb(249 115 22 / 0.55)); }
 .combo[data-tier='3'] { font-size: var(--t-md); filter: drop-shadow(0 0 7px rgb(249 115 22 / 0.8)); }
+
+/* A new level: the number flips, a gold ring leaves the badge. */
+.level-strike { position: relative; display: inline-grid; flex: none; }
+.level-strike .level-badge { animation: level-flip 520ms var(--ease-spring); }
+.level-strike.is-up::after { content: ''; position: absolute; inset: -4px; border-radius: var(--r-full); border: 2px solid var(--gold); opacity: 0; animation: plant-burst 900ms var(--ease-out) forwards; pointer-events: none; }
+@keyframes level-flip { 0% { transform: rotateX(90deg) scale(0.8); opacity: 0; } 60% { transform: rotateX(0) scale(1.18); opacity: 1; } 100% { transform: none; } }
