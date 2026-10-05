@@ -27,6 +27,17 @@ for (const theme of ['light', 'dark'] as const) {
   })
 }
 
+for (const theme of ['light', 'dark'] as const) {
+  test(`garden beds look the same: ${theme}`, async ({ page }) => {
+    await startWithSamples(page)
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    await openScreen(page, 'Kelimeler')
+    await page.getByRole('button', { name: /^Bahçe$/ }).or(page.getByRole('tab', { name: /Bahçe/ })).first().click()
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot(`garden-${theme}.png`, { animations: 'disabled', maxDiffPixelRatio: 0.01 })
+  })
+}
+
 /**
  * Each language tints the whole app, so each is checked: Today, the word list and the first thing a
  * session shows. The clock is fixed so the date, the greeting and the day's plan do not move.

@@ -1424,8 +1424,13 @@ main:focus { outline: none; }
 
 /* Plant (word growth) colours */
 :root { --plant-leaf: #10b981; --plant-thirsty: #a3a635; --plant-dry: #b45309; --plant-soil: #d6d3d1; --plant-seed: #a16207; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) { --plant-leaf: #34d399; --plant-thirsty: #bef264; --plant-dry: #d97706; --plant-soil: #44403c; --plant-seed: #ca8a04; } }
-:root[data-theme='dark'] { --plant-leaf: #34d399; --plant-thirsty: #bef264; --plant-dry: #d97706; --plant-soil: #44403c; --plant-seed: #ca8a04; }
+/* Dark: warm brown soil that shows against the night, and beds sunk into the page like planters; flowers carry a faint glow. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) { --plant-leaf: #34d399; --plant-thirsty: #bef264; --plant-dry: #d97706; --plant-soil: #6b5040; --plant-seed: #ca8a04; --bed-ground: color-mix(in srgb, var(--plant-leaf) 7%, var(--bg)); --bed-shade: 0.25; }
+  :root:not([data-theme='light']) .plant-bloom { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--lang) 55%, transparent)); }
+}
+:root[data-theme='dark'] { --plant-leaf: #34d399; --plant-thirsty: #bef264; --plant-dry: #d97706; --plant-soil: #6b5040; --plant-seed: #ca8a04; --bed-ground: color-mix(in srgb, var(--plant-leaf) 7%, var(--bg)); --bed-shade: 0.25; }
+:root[data-theme='dark'] .plant-bloom { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--lang) 55%, transparent)); }
 .plant { flex: none; overflow: visible; }
 /* Parts of a plant move on their own: each grows from where it joins the stem. */
 :is(.plant-body, .plant-leaf, .plant-bud, .plant-petal, .plant-core, .plant-bloom) { transform-box: fill-box; }
@@ -2411,8 +2416,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   border-radius: var(--r-md); border: 3px solid color-mix(in srgb, var(--wood) 55%, var(--surface));
   background:
     linear-gradient(to top, color-mix(in srgb, var(--plant-soil) 90%, #78350f) 0 0.75rem, transparent 0.75rem),
-    color-mix(in srgb, var(--plant-leaf) 6%, var(--surface));
-  box-shadow: inset 0 -2px 0 rgb(0 0 0 / 0.06);
+    var(--bed-ground, color-mix(in srgb, var(--plant-leaf) 6%, var(--surface)));
+  box-shadow: inset 0 -2px 0 rgb(0 0 0 / 0.06), inset 0 4px 8px rgb(0 0 0 / var(--bed-shade, 0));
 }
 .plant-tile { position: relative; transition: transform var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out); }
 .plant-tile:hover, .plant-tile:focus-visible { transform: translateY(-2px); background: color-mix(in srgb, var(--surface) 85%, transparent); }
@@ -3537,7 +3542,7 @@ button.badge-card:active { transform: none; }
 .plant-name { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; text-align: center; line-height: 1.25; overflow-wrap: anywhere; hyphens: manual; }
 .bed-plants {
   padding: 0.75rem 0.75rem 0.875rem;
-  background: color-mix(in srgb, var(--plant-leaf) 6%, var(--surface));
+  background: var(--bed-ground, color-mix(in srgb, var(--plant-leaf) 6%, var(--surface)));
   border-bottom-width: 6px;
   border-bottom-color: color-mix(in srgb, var(--plant-soil) 85%, #78350f);
 }
