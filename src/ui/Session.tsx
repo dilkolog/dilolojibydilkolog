@@ -1,5 +1,5 @@
 import { formFeedback, TENSE_GUIDE } from '../engine/tenseGuide'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
 import { buildExercise, displayForm, evaluateChoice, evaluateTyped, type Evaluation, type Exercise } from '../engine/exercises'
@@ -19,7 +19,6 @@ import { LANGUAGE_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
-import { MnemonicDialog } from './Mnemonic'
 import { CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, SlowIcon, StarIcon } from './icons'
 import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
@@ -30,12 +29,15 @@ import { KeyLegend, type Graded } from './session/shared'
 import { Intro } from './session/Intro'
 import { Prompt } from './session/Prompt'
 import { showToast } from './toast'
-import { QuickEditDialog } from './session/QuickEdit'
 import { WordPlant } from './session/WordPlant'
 import { Choices, TypedAnswer, SpeakAnswer } from './session/Answers'
 import { Feedback } from './session/Feedback'
 import { modalOpen } from './session/keys'
-import { SessionSettings } from './session/SessionSettings'
+
+// Dialogs opened now and then during a session load when first opened, not with the session.
+const MnemonicDialog = lazy(() => import('./Mnemonic').then((m) => ({ default: m.MnemonicDialog })))
+const QuickEditDialog = lazy(() => import('./session/QuickEdit').then((m) => ({ default: m.QuickEditDialog })))
+const SessionSettings = lazy(() => import('./session/SessionSettings').then((m) => ({ default: m.SessionSettings })))
 
 interface Props {
   items: PlanItem[]
@@ -317,14 +319,16 @@ export function SessionScreen(p: Props) {
         )}
       </div>
       {showSettings && p.settings && p.onSettings && (
-        <SessionSettings
-          settings={p.settings}
-          onChange={(s) => {
-            applySettings(s)
-            p.onSettings!(s)
-          }}
-          onClose={() => setShowSettings(false)}
-        />
+        <Suspense fallback={null}>
+          <SessionSettings
+            settings={p.settings}
+            onChange={(s) => {
+              applySettings(s)
+              p.onSettings!(s)
+            }}
+            onClose={() => setShowSettings(false)}
+          />
+        </Suspense>
       )}
       {showBreak && (
         <div className="break-note" role="status">
@@ -591,6 +595,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
         )
       )}
       {mnemonic === 'open' && (
+        <Suspense fallback={null}>
         <MnemonicDialog
           entry={entry}
           reason="Bu kelimeye birkaç kez takıldın; bir hafıza ipucu deneyelim."
@@ -600,8 +605,10 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
             setMnemonic('saved')
           }}
         />
+        </Suspense>
       )}
       {editing && (
+        <Suspense fallback={null}>
         <QuickEditDialog
           entry={entry}
           onClose={() => setEditing(false)}
@@ -611,6 +618,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
             showToast('Kelime düzeltildi')
           }}
         />
+        </Suspense>
       )}
       {aiError && !result && (
         <div className="session-actions">

@@ -43,16 +43,15 @@ import { PANE_KEY } from './ui/settingsPane'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
-import { saveSentence } from './ui/Sentences'
 import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
-import { CommandPalette, type Command } from './ui/CommandPalette'
+import type { Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { GAME_LIST, type GameId } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
-import { AuthScreen, type AuthMode } from './ui/AuthScreen'
+import type { AuthMode } from './ui/AuthScreen'
 import { Toaster } from './ui/toast'
 import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
@@ -76,6 +75,9 @@ const screenModules = {
   Story: () => import('./ui/Story'),
   WordDetail: () => import('./ui/WordDetail'),
   Words: () => import('./ui/Words'),
+  // Rarely opened, so not in the startup code either.
+  Auth: () => import('./ui/AuthScreen'),
+  Palette: () => import('./ui/CommandPalette'),
 }
 const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
 const MistakesScreen = lazy(() => screenModules.Mistakes().then((m) => ({ default: m.MistakesScreen })))
@@ -89,6 +91,8 @@ const SettingsScreen = lazy(() => screenModules.Settings().then((m) => ({ defaul
 const StoryScreen = lazy(() => screenModules.Story().then((m) => ({ default: m.StoryScreen })))
 const WordDetail = lazy(() => screenModules.WordDetail().then((m) => ({ default: m.WordDetail })))
 const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ default: m.WordsScreen })))
+const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
+const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 
 function prefetchScreens() {
   for (const load of Object.values(screenModules)) void load().catch(() => {})
@@ -344,10 +348,10 @@ export default function App() {
     if (!text || !settings) return
     history.replaceState(null, '', location.pathname)
     const lang = (TARGET_LANGUAGES as readonly string[]).includes(p.get('lang') ?? '') ? (p.get('lang') as TargetLanguage) : settings.activeLanguage
-    void saveSentence({ language: lang, text, focus: p.get('focus') ?? undefined, source: p.get('src') ?? undefined }).then(() => {
+    void import('./ui/Sentences').then(({ saveSentence }) => saveSentence({ language: lang, text, focus: p.get('focus') ?? undefined, source: p.get('src') ?? undefined }).then(() => {
       if (lang !== settings.activeLanguage) void updateSettings({ ...settings, activeLanguage: lang })
       setScreen({ name: 'games', game: 'sentences' })
-    })
+    }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready])
 
@@ -989,13 +993,15 @@ export default function App() {
           </main>
           <Toaster />
           {palette && data && (
-            <CommandPalette
-              commands={commands}
-              vocabulary={data.vocabulary}
-              onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
-              onAddWord={(word) => setIncoming({ word, context: '' })}
-              onClose={() => setPalette(false)}
-            />
+            <Suspense fallback={null}>
+              <CommandPalette
+                commands={commands}
+                vocabulary={data.vocabulary}
+                onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
+                onAddWord={(word) => setIncoming({ word, context: '' })}
+                onClose={() => setPalette(false)}
+              />
+            </Suspense>
           )}
         </div>
       </GameContext.Provider>

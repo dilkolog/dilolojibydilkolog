@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { buildPretest, displayForm } from '../../engine/exercises'
 import type { Rng } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { WordInputError } from '../../data/wordInput'
 import { POS_NAME } from '../labels'
-import { CrossLanguageNotes } from '../CrossLanguage'
 import { BulbIcon, PenIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { sfx } from '../sounds'
@@ -13,6 +12,9 @@ import { useMediaUrl } from '../useMedia'
 import { SpeakButton, Word, Sentence, KeyLegend } from './shared'
 import { Choices } from './Answers'
 import { modalOpen } from './keys'
+
+// Notes on the word in the other languages: fetched after the card shows.
+const CrossLanguageNotes = lazy(() => import('../CrossLanguage').then((m) => ({ default: m.CrossLanguageNotes })))
 
 /**
  * First encounter: only the word, its sound, the core meaning and one strong example.
@@ -123,7 +125,9 @@ export function Intro({
             {sense.definition}
           </p>
         )}
-        <CrossLanguageNotes entry={entry} compact />
+        <Suspense fallback={null}>
+          <CrossLanguageNotes entry={entry} compact />
+        </Suspense>
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         {entry.notes && <p className="note"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
         {example && (
