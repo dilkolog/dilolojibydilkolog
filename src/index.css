@@ -388,7 +388,7 @@ button.link { padding-block: 0.125rem; margin-block: -0.125rem; }   /* a 24px ta
 .input:focus, .textarea:focus { outline: none; border-color: var(--lang); }
 
 .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
-.grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); }
 
 .choice-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
 .chip {
@@ -483,7 +483,7 @@ details[open] > summary { margin-bottom: 1rem; }
 .icon-book { color: var(--lang); }
 @media (max-width: 26rem) { .stat-value { font-size: var(--t-lg); } .stat { padding: 0.75rem; } }
 
-.tiles { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.tiles { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); }
 .tile {
   display: flex;
   gap: 1rem;
@@ -980,7 +980,7 @@ main:focus { outline: none; }
 
 /* ---------- Settings ---------- */
 
-.setting-row { display: grid; grid-template-columns: minmax(12rem, 1fr) minmax(0, 1.6fr); gap: 0.5rem 1.5rem; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.setting-row { display: grid; grid-template-columns: minmax(min(12rem, 100%), 1fr) minmax(0, 1.6fr); gap: 0.5rem 1.5rem; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 .setting-row:first-of-type { border-top: 0; padding-top: 0; }
 @media (max-width: 40rem) { .setting-row { grid-template-columns: 1fr; } }
 .toggle-row { display: flex; align-items: center; gap: 1rem; justify-content: space-between; cursor: pointer; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
@@ -1201,7 +1201,7 @@ main:focus { outline: none; }
 
 /* ---------- Games ---------- */
 
-.game-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.game-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
 .game-card {
   display: grid; gap: 0.375rem; justify-items: start; text-align: left;
   border: 0; border-radius: var(--r-lg); padding: 1.5rem; cursor: pointer; color: inherit;
@@ -1411,7 +1411,7 @@ main:focus { outline: none; }
 .plant { flex: none; overflow: visible; }
 
 /* Session summary garden: one plant per word studied */
-.garden { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.625rem; }
+.garden { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); gap: 0.625rem; }
 .garden li { display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.75rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); }
 .garden li.grew { box-shadow: var(--shadow), inset 0 0 0 2px var(--ok); }
 .garden-text { display: grid; gap: 0.125rem; min-width: 0; }
@@ -1643,7 +1643,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .swipe-missed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
 
 /* Missions */
-.mission-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.mission-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); }
 .mission-card {
   display: grid; gap: 0.5rem; text-align: left; padding: 1rem 1.125rem; cursor: pointer;
   border: 0; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); color: var(--ink);
@@ -2179,7 +2179,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .sk { display: block; border-radius: var(--r-md); background: linear-gradient(90deg, var(--track) 0%, var(--surface-2) 50%, var(--track) 100%); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; }
 .sk-title { width: 14rem; max-width: 60%; height: 2.25rem; }
 .sk-line { width: 22rem; max-width: 85%; height: 1rem; }
-.sk-grid { display: grid; gap: 1rem; margin-top: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.sk-grid { display: grid; gap: 1rem; margin-top: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
 .sk-card { height: 7rem; border-radius: var(--r-lg); }
 .sk-card-tall { height: 11rem; grid-column: 1 / -1; }
 @keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
@@ -2199,7 +2199,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .onboarding-brand .brand-mark { background: color-mix(in srgb, var(--on-lang) 18%, transparent); }
 .onboarding-title { margin-top: 1.75rem; max-width: 30rem; font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
 .onboarding-sub { margin-top: 0.75rem; max-width: 32rem; color: color-mix(in srgb, var(--on-lang) 82%, transparent); }
-.onboarding-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); counter-reset: step; }
+.onboarding-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); counter-reset: step; }
 .onboarding-steps li { display: grid; gap: 0.25rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
 .onboarding-steps li strong::before { counter-increment: step; content: counter(step) '. '; color: var(--lang-text); }
 .onboarding-form { display: grid; gap: 1.75rem; }
@@ -2467,7 +2467,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .badge-shelf .badge-card { background: transparent; box-shadow: none; }
 
 /* ---------- Reading library as cards ---------- */
-.library { grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 0.875rem; }
+.library { grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); gap: 0.875rem; }
 .library li.lib-card { position: relative; padding: 0; display: block; }
 .lib-open { display: flex; align-items: center; gap: 0.875rem; width: 100%; padding: 0.875rem 2.5rem 0.875rem 0.875rem; border: 0; background: none; text-align: left; cursor: pointer; border-radius: var(--r-md); }
 .lib-open:hover { background: var(--lang-soft); }
@@ -2555,7 +2555,7 @@ section:has(> .media-split) { container-type: inline-size; }
 }
 
 /* ---------- Games: compact horizontal cards at every width ---------- */
-.game-group .game-cards { grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)); gap: 0.875rem; }
+.game-group .game-cards { grid-template-columns: repeat(auto-fill, minmax(min(21rem, 100%), 1fr)); gap: 0.875rem; }
 .game-group .game-card { grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; row-gap: 0.25rem; align-items: start; padding: 1.25rem 1.25rem 1.125rem; }
 .game-group .game-emoji { grid-row: span 3; width: 3.25rem; height: 3.25rem; font-size: 1.75rem; }
 .game-group .game-card .game-record { grid-column: 2; margin-top: 0.25rem; }
@@ -3044,7 +3044,7 @@ button.badge-card:active { transform: none; }
 .badge-summary-count strong { font-size: var(--t-xl); font-weight: 700; font-variant-numeric: tabular-nums; }
 .badge-summary .badge-progress { margin: 0; height: 0.5rem; }
 .badge-tiers { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.375rem; }
-.badge-grid-next { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.badge-grid-next { grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); }
 .badge-grid-next .badge-card { padding: 1.25rem 1rem 1rem; }
 .badge-case {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.25rem;
@@ -3357,7 +3357,7 @@ button.badge-card:active { transform: none; }
 .sk-list { height: 16rem; }
 .sk-tabs { height: 2.25rem; width: 18rem; max-width: 80%; border-radius: var(--r-md); }
 .sk-toolbar { height: 2.75rem; }
-.sk-rows { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
+.sk-rows { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr)); }
 .sk-row { height: 3.75rem; border-radius: var(--r-md); }
 .sk-back { height: 1rem; width: 9rem; }
 .sk-settings { display: grid; gap: 1.5rem; margin-top: 0.75rem; }
@@ -3458,7 +3458,7 @@ button.badge-card:active { transform: none; }
 .conj-mini tr.is-asked > :last-child { border-radius: 0 var(--r-sm) var(--r-sm) 0; }
 /* Session summary: what was earned (level, badges) in one strip of equal tiles. */
 .rewards { display: grid; gap: 0.625rem; }
-.rewards-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.625rem; }
+.rewards-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr)); gap: 0.625rem; }
 .reward { display: flex; align-items: center; gap: 0.875rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); animation: pop var(--dur) var(--ease-spring) both; }
 .reward:nth-child(2) { animation-delay: 80ms; }
 .reward:nth-child(3) { animation-delay: 160ms; }
@@ -3647,7 +3647,7 @@ button.badge-card:active { transform: none; }
 .btn.btn-ghost-on-hero { background: transparent; color: inherit; box-shadow: inset 0 0 0 2px color-mix(in srgb, currentColor 45%, transparent); }
 .btn.btn-ghost-on-hero:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
 /* Key words before reading: compact tiles in a grid; the add form opens across the full width. */
-.key-list { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0.5rem; }
+.key-list { grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr)); gap: 0.5rem; }
 .key-list li { padding: 0.5rem 0.5rem 0.5rem 0.875rem; border: 1px solid var(--rule); border-bottom: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); gap: 0.5rem; }
 .key-list li:last-child { border-bottom: 1px solid var(--rule); }
 .key-list li.is-open { grid-column: 1 / -1; }

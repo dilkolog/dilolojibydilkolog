@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc -b",
     "build:ext": "node extension/build.mjs",
-    "typecheck:ext": "tsc -p extension"
+    "typecheck:ext": "tsc -p extension",
+    "test:e2e": "vite build && playwright test"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",
@@ -30,6 +31,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/chrome": "^0.3.4",
     "@types/d3-force": "^3.0.10",
     "@types/node": "^24.13.3",

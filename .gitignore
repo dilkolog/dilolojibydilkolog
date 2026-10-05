@@ -28,3 +28,7 @@ extension/dist
 
 # Local Claude preview config
 .claude
+
+# Playwright
+test-results
+playwright-report
