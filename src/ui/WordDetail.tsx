@@ -42,6 +42,8 @@ import { placementOptions, parsePlacement, placementValue } from './listOptions'
 import { WordPronunciation } from './PronunciationCheck'
 import { azureEnabled } from './pronunciation'
 import { WrittenForm } from './WrittenForm'
+import { DifficultButton } from './DifficultButton'
+import { isDifficult, withDifficult } from '../engine/difficult'
 
 interface Props {
   db: KelimeDB
@@ -207,6 +209,13 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
                 <SpeakerIcon size={20} />
               </button>
             )}
+            <DifficultButton
+              marked={isDifficult(entry)}
+              onToggle={async () => {
+                await db.vocabulary.put(withDifficult(entry, !isDifficult(entry)))
+                onChanged()
+              }}
+            />
           </div>
           {entry.ipa && <span className="ipa">{entry.ipa}</span>}
           <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>

@@ -3997,3 +3997,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* A wide control must not widen its card past the screen: the card shrinks to the page, the control's labels wrap. */
 .settings-pane > * { min-width: 0; }
 @media (max-width: 30rem) { .seg-btn { white-space: normal; } }
+
+/* ---------- The lightning mark for hard words ---------- */
+.tile-icon.warm { background: var(--near-soft); color: var(--near-text); }
+.difficult-btn { color: var(--ink-soft); }
+.difficult-btn.is-marked { color: var(--near-text); background: var(--near-soft); }
+.difficult-btn.is-marked svg { animation: pop var(--dur) var(--ease-spring); }
+.difficult-mark { margin-left: 0.375rem; color: var(--near); vertical-align: -0.125em; flex: none; }

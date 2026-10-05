@@ -29,6 +29,8 @@ import { KeyLegend, type Graded } from './session/shared'
 import { Intro } from './session/Intro'
 import { Prompt } from './session/Prompt'
 import { showToast } from './toast'
+import { DifficultButton } from './DifficultButton'
+import { isDifficult, withDifficult } from '../engine/difficult'
 import { WordPlant } from './session/WordPlant'
 import { Choices, TypedAnswer, SpeakAnswer } from './session/Answers'
 import { Feedback } from './session/Feedback'
@@ -283,6 +285,13 @@ export function SessionScreen(p: Props) {
     next(log, retry, followUp)
   }
 
+  // The lightning mark, kept on the word itself, so a hard word is gathered for a practice of its own.
+  const markDifficult = async (on: boolean) => {
+    const updated = withDifficult(entry, on)
+    await p.db.vocabulary.put(updated)
+    setById((m) => new Map(m).set(updated.id, updated))
+    showToast(on ? 'Zor kelimelere eklendi: ayrı çalışmada toplanır.' : 'Zor işareti kaldırıldı.')
+  }
   const combo = comboOf(session.log)
   const sessionXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
 
@@ -312,6 +321,7 @@ export function SessionScreen(p: Props) {
         <span className="session-xp" key={sessionXp}>
           <StarIcon size={16} className="icon-star" /> {sessionXp}
         </span>
+        <DifficultButton marked={isDifficult(entry)} onToggle={() => void markDifficult(!isDifficult(entry))} />
         {p.settings && p.onSettings && (
           <button className="icon-btn session-gear" onClick={() => setShowSettings(true)} aria-label="Çalışma ayarları" title="Çalışma ayarları">
             <GearIcon size={20} />

@@ -19,6 +19,7 @@ import {
 } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
 import { SAMPLE_WORDS } from './data/seed'
+import { difficultWords } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
@@ -977,6 +978,10 @@ export default function App() {
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
                 onPracticeMistakes={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
+                }
+                difficultCount={difficultWords(data.vocabulary).length}
+                onPracticeDifficult={() =>
+                  startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
                 }
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
                 garden={garden && {

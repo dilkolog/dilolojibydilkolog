@@ -211,3 +211,25 @@ test('searching settings opens a card that is closed until wanted', async ({ pag
   await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
   await expect(page.locator('details.ios-shortcut')).toHaveJSProperty('open', true)
 })
+
+test('a word marked hard in a session is gathered for a practice of its own', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  const mark = page.locator('.session .difficult-btn')
+  await expect(mark).toHaveAttribute('aria-pressed', 'false')
+  await mark.click()
+  await expect(mark).toHaveAttribute('aria-pressed', 'true')
+  // Leave the session; the word is in the Zor filter of the list.
+  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Çık', exact: true }).click()
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /Zor \(1\)/ }).click()
+  await expect(page.getByText('Zor kelimelerin', { exact: true }).first()).toBeVisible()
+  await expect(page.locator('.difficult-mark').first()).toBeVisible()
+  // Today offers a practice of just those words, and it starts.
+  await openScreen(page, 'Bugün')
+  await page.getByRole('button', { name: /Zor kelimelerin/ }).click()
+  await expect(page.locator('.session')).toBeVisible()
+  await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
+})

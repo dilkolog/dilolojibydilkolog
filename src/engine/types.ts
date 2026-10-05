@@ -144,6 +144,8 @@ export interface VocabularyEntry {
   alternativeForms?: string[]
   commonMistakes?: string[]
   tags: string[]
+  /** Marked by the learner as hard to remember: gathered for a practice of their own (see difficult.ts). */
+  difficult?: boolean
   /** 'user' = added by hand, 'import' = bulk import, 'sample' = bundled sample set. */
   source: EntrySource
   /** When the user added it; user words are introduced in the order they were added. */

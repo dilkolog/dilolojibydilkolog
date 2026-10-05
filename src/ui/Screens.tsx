@@ -8,7 +8,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
+import { AlertIcon, BoltIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -235,6 +235,8 @@ export function Home({
   mixedDue = 0,
   onExtraNew,
   onPracticeMistakes,
+  difficultCount = 0,
+  onPracticeDifficult,
   onFreePractice,
   extra,
   garden,
@@ -265,6 +267,9 @@ export function Home({
   mixedDue?: number
   onExtraNew: () => void
   onPracticeMistakes: () => void
+  /** Words marked hard (the lightning mark) and a practice of just those. */
+  difficultCount?: number
+  onPracticeDifficult?: () => void
   onFreePractice: () => void
   /** Habit nudges shown under the day's mission. */
   extra?: ReactNode
@@ -415,7 +420,7 @@ export function Home({
         {extra}
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || canPractice || onStory || onGames || onMixed) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -427,6 +432,17 @@ export function Home({
                   <span>
                     <strong>Hatalarını düzelt</strong>
                     <span className="small muted">{openMistakeWords} kelimede açık hata</span>
+                  </span>
+                </button>
+              )}
+              {difficultCount > 0 && onPracticeDifficult && (
+                <button className="tile" onClick={onPracticeDifficult}>
+                  <span className="tile-icon warm">
+                    <BoltIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Zor kelimelerin</strong>
+                    <span className="small muted">{difficultCount} kelime zor diye işaretli: ayrı bir çalışmada topla</span>
                   </span>
                 </button>
               )}
