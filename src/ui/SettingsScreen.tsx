@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { showToast } from './toast'
 import { relativeWorkload } from '../engine/scheduler'
 import { shortcutHelp } from '../engine/accents'
 import { TARGET_LANGUAGES } from '../engine/types'
@@ -277,7 +278,7 @@ export function SettingsScreen({
     a.download = `kelime-kocu-yedek-${new Date().toISOString().slice(0, 10)}.json`
     a.click()
     URL.revokeObjectURL(url)
-    setMessage({ ok: true, text: 'Yedek indirildi.' })
+    showToast('Yedek indirildi.')
   }
 
   const restore = async (file: File) => {
@@ -294,7 +295,7 @@ export function SettingsScreen({
     setPendingRestore(null)
     if (!backup) return
     await restoreBackup(db, backup)
-    setMessage({ ok: true, text: `Yedek geri yüklendi: ${backup.vocabulary.length} kelime.` })
+    showToast(`Yedek geri yüklendi: ${backup.vocabulary.length} kelime.`)
     onDataChanged()
   }
 
@@ -307,7 +308,7 @@ export function SettingsScreen({
     a.download = `kelime-kocu-${all ? 'kelimeler' : lang}-${new Date().toISOString().slice(0, 10)}.csv`
     a.click()
     URL.revokeObjectURL(url)
-    setMessage({ ok: true, text: `${words.length} kelime CSV olarak indirildi.` })
+    showToast(`${words.length} kelime CSV olarak indirildi.`)
   }
 
   const printDictionary = async () => {
@@ -340,7 +341,7 @@ export function SettingsScreen({
       await db.mistakes.where('entryId').anyOf(ids).delete()
     })
     setDanger(null)
-    setMessage({ ok: true, text: `${LANGUAGE_NAME[lang]} ilerlemesi sıfırlandı; kelimelerin duruyor.` })
+    showToast(`${LANGUAGE_NAME[lang]} ilerlemesi sıfırlandı; kelimelerin duruyor.`)
     onDataChanged()
   }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { showToast } from './toast'
 import { UserIcon } from './icons'
 import { db } from '../data/instance'
 import { SyncAuthError, type Account } from '../data/sync'
@@ -35,7 +36,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     setMessage(null)
     try {
       await runSync(true)
-      setMessage({ ok: true, text: 'Eşitlendi.' })
+      showToast('Eşitlendi.')
     } catch (e) {
       setMessage({ ok: false, text: e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {

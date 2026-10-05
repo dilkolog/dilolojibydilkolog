@@ -1,4 +1,5 @@
 import { Help } from './SettingHelp'
+import { showToast } from './toast'
 import { useEffect, useState, type FormEvent } from 'react'
 import { AI_MODELS, AiError, FEATURE_NAME, modelInfo, monthKey, testKey, type AiFeature, type MonthUsage } from '../ai'
 import type { Settings } from '../data/db'
@@ -32,7 +33,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
       await testKey(key)
       await setApiKey(key)
       setDraft('')
-      setStatus({ ok: true, text: 'Anahtar çalışıyor, AI özellikleri açıldı.' })
+      showToast('Anahtar çalışıyor, AI özellikleri açıldı.')
     } catch (err) {
       setStatus({ ok: false, text: err instanceof AiError ? err.message : 'Anahtar doğrulanamadı.' })
     } finally {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { showToast } from './toast'
 import { db } from '../data/instance'
 import { generateSyncCode, normalizeCode } from '../data/sync'
 import { getSyncCode, runSync, setSyncCode } from './syncRunner'
@@ -28,7 +29,7 @@ export function SyncSettings() {
     try {
       if (fresh) await setSyncCode(fresh)
       const r = await runSync(true)
-      setMessage({ ok: true, text: `Eşitlendi.${r && (r.received || r.sent) ? ` ${r.received} görsel/kayıt alındı, ${r.sent} gönderildi.` : ''}` })
+      showToast(`Eşitlendi.${r && (r.received || r.sent) ? ` ${r.received} görsel/kayıt alındı, ${r.sent} gönderildi.` : ''}`)
     } catch {
       if (fresh) await setSyncCode(null)
       setMessage({ ok: false, text: fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })

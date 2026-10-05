@@ -1,4 +1,5 @@
 import { Help } from './SettingHelp'
+import { showToast } from './toast'
 import { useEffect, useState, type FormEvent } from 'react'
 import { monthKey } from '../ai/usage'
 import { db } from '../data/instance'
@@ -33,7 +34,7 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
       natural.key = k
       setKey(k)
       setDraft('')
-      setStatus({ ok: true, text: 'Doğal sesler açıldı.' })
+      showToast('Doğal sesler açıldı.')
     } catch (err) {
       setStatus({ ok: false, text: err instanceof Error ? err.message : 'Anahtar doğrulanamadı.' })
     } finally {
