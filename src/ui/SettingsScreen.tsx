@@ -3,7 +3,9 @@ import { showToast } from './toast'
 import { relativeWorkload } from '../engine/scheduler'
 import { shortcutHelp } from '../engine/accents'
 import { TARGET_LANGUAGES } from '../engine/types'
-import { exportBackup, parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
+import { parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
+import { downloadBackup } from './backup'
+import { PANE_KEY } from './settingsPane'
 import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
 import { ConfirmDialog } from './Dialog'
@@ -155,7 +157,6 @@ const GROUP_LIST: Group[] = [
   { id: 's-data', name: 'Veriler', sub: 'Yedek, dışa aktarma ve sıfırlama', icon: <DataIcon size={18} /> },
 ]
 const GROUP_BY_ID = Object.fromEntries(GROUP_LIST.map((g) => [g.id, g])) as Record<GroupId, Group>
-const PANE_KEY = 'kelime-koc:settings-pane'
 
 function Pane({ group, active, children }: { group: Group; active: boolean; children: ReactNode }) {
   return (
@@ -271,13 +272,7 @@ export function SettingsScreen({
   }, [lang])
 
   const download = async () => {
-    const json = await exportBackup(db)
-    const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }))
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `kelime-kocu-yedek-${new Date().toISOString().slice(0, 10)}.json`
-    a.click()
-    URL.revokeObjectURL(url)
+    await downloadBackup(db)
     showToast('Yedek indirildi.')
   }
 

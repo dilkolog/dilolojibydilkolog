@@ -2213,6 +2213,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .onboarding-row { align-items: flex-start; }
 .onboarding-row .field { gap: 0.5rem; }
 .onboarding-row .grow { min-width: 12rem; }
+.onboarding-row .field:has(.seg-group) { flex: 1 1 16rem; }
 
 /* ---------- Medals ---------- */
 .medal { display: block; overflow: visible; }
@@ -3733,3 +3734,6 @@ button.badge-card:active { transform: none; }
   .session-stage .option { min-height: 3.5rem; font-size: var(--t-md); }
   .session .key-legend, .session .kbd-legend { margin-top: auto; }
 }
+/* Backup nudge: the same dashed line as the plan nudge, with a way to sync instead. */
+.backup-nudge .backup-sync { flex: none; padding-inline: 0.5rem; white-space: nowrap; }
+@media (max-width: 30rem) { .backup-nudge { flex-wrap: wrap; } .backup-nudge .habit-nudge-main { flex-basis: 100%; } .backup-nudge .backup-sync { margin-left: auto; } }

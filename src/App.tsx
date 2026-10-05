@@ -38,6 +38,8 @@ import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
+import { BackupNudge } from './ui/BackupNudge'
+import { PANE_KEY } from './ui/settingsPane'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
@@ -966,6 +968,16 @@ export default function App() {
                     onEveningReview={() =>
                       startSession(buildDeckPlan({ catalog: newToday, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'practice')
                     }
+                  />
+                  <BackupNudge
+                    onOpenSync={() => {
+                      try {
+                        localStorage.setItem(PANE_KEY, 's-account')
+                      } catch {
+                        // Settings just opens on its last pane.
+                      }
+                      setScreen({ name: 'settings' })
+                    }}
                   />
                   </>
                 }
