@@ -41,6 +41,18 @@ export const FRAMES: StyleOption[] = [
   { id: 'rainbow', name: 'Gökkuşağı', unlock: { text: '30. seviyeye ulaş', test: (u) => u.level >= 30 } },
 ]
 
+/** The two colours of each banner, for drawings that cannot read the stylesheet (the share card). */
+export const BANNER_COLORS: Record<string, [string, string]> = {
+  sunrise: ['#fb923c', '#fde047'],
+  ocean: ['#0ea5e9', '#22d3ee'],
+  forest: ['#22c55e', '#a3e635'],
+  dusk: ['#8b5cf6', '#f472b6'],
+  night: ['#4f46e5', '#1e3a8a'],
+  garden: ['#10b981', '#f9a8d4'],
+  gold: ['#f59e0b', '#fde68a'],
+  galaxy: ['#7c3aed', '#db2777'],
+}
+
 export const DEFAULT_BANNER = 'color'
 export const DEFAULT_FRAME = 'ring'
 
@@ -48,7 +60,7 @@ export const bannerOf = (id: string | undefined): string => (BANNERS.some((b) =>
 export const frameOf = (id: string | undefined): string => (FRAMES.some((f) => f.id === id) ? id! : DEFAULT_FRAME)
 
 /** Titles beyond the level ones, each earned by a badge. */
-const BADGE_TITLES: { id: string; badge: string; name: string }[] = [
+export const BADGE_TITLES: { id: string; badge: string; name: string }[] = [
   { id: 'dragon', badge: 'boss-10', name: 'Ejderha Avcısı' },
   { id: 'perfect', badge: 'weekly-perfect', name: 'Kusursuz' },
   { id: 'writer', badge: 'writer-25', name: 'Yazar' },

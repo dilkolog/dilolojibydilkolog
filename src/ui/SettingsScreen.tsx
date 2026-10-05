@@ -14,6 +14,7 @@ import { AccountSettings } from './AccountSettings'
 import type { AuthMode } from './AuthScreen'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
+import { JumpNav } from './JumpNav'
 import { ReminderSuggestion } from './BestHours'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
@@ -145,6 +146,14 @@ interface Group {
   sub: string
   icon: ReactNode
 }
+
+/** The cards of the study group, for its row of shortcuts. */
+const STUDY_CARDS = [
+  ['st-goal', 'Günlük hedef'],
+  ['st-words', 'Kelimeler'],
+  ['st-memory', 'Hafıza modeli'],
+  ['st-calendar', 'Takvim'],
+] as const
 
 /** The settings in groups, one shown at a time (all of them while searching). */
 const GROUP_LIST: Group[] = [
@@ -392,8 +401,10 @@ export function SettingsScreen({
           </Pane>
 
           <Pane {...pane('s-study')}>
-            <section className="card stack">
-              <h2 className="section-title">Tempo</h2>
+            {/* Four cards, one thing each, with a row of shortcuts: the group was one long list. */}
+            {!searching && <JumpNav groups={STUDY_CARDS} label="Çalışma ayarları" />}
+            <section className="card stack" id="st-goal">
+              <h2 className="section-title">Günlük hedef</h2>
             <Row label="Günlük süre" help="Günlük görev bu süreye sığacak şekilde hazırlanır.">
               <Chips options={MINUTES} value={settings.dailyMinutes} onChange={(v) => set('dailyMinutes', v)} format={(m) => `${m} dk`} />
             </Row>
@@ -406,6 +417,12 @@ export function SettingsScreen({
             <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
               <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
             </Row>
+            <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
+              <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
+            </Row>
+            </section>
+            <section className="card stack" id="st-words">
+              <h2 className="section-title">Kelimeler ve hatırlama</h2>
             <Row
               label="Hedef hatırlama oranı"
               help={`Tekrar geldiğinde kelimeyi hatırlıyor olma ihtimalin. Yüksek oran daha sağlam ama daha çok tekrar demek. ${
@@ -428,12 +445,9 @@ export function SettingsScreen({
               checked={settings.autoRetire}
               onChange={(v) => set('autoRetire', v)}
             />
-            <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
-              <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
-            </Row>
             </section>
-            <MemoryModel settings={settings} onChange={onChange} />
-            <StudyCalendar settings={settings} onChange={onChange} />
+            <MemoryModel settings={settings} onChange={onChange} id="st-memory" />
+            <StudyCalendar settings={settings} onChange={onChange} id="st-calendar" />
           </Pane>
 
           <Pane {...pane('s-answers')}>

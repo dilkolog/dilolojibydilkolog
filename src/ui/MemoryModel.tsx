@@ -8,7 +8,7 @@ import { db } from '../data/instance'
  * Personal memory model: refits FSRS to the learner's own answers. Runs in a worker, and the
  * new weights replace the defaults only if they predict unseen answers better.
  */
-export function MemoryModel({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
+export function MemoryModel({ settings, onChange, id }: { settings: Settings; onChange: (s: Settings) => void; id?: string }) {
   const [reviews, setReviews] = useState<number | null>(null)
   const [progress, setProgress] = useState<number | null>(null)
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
@@ -46,7 +46,7 @@ export function MemoryModel({ settings, onChange }: { settings: Settings; onChan
   const enough = (reviews ?? 0) >= MIN_REVIEWS
   const fitInfo = settings.fsrsFit
   return (
-    <section className="card stack">
+    <section className="card stack" id={id}>
       <h2 className="section-title">Hafıza modeli</h2>
       <Help text="Tekrar zamanlarını FSRS belirler; yeterince cevabın olunca senin unutma hızına göre ayarlanabilir. Varsayılan ayarları milyonlarca kişinin ortalamasıdır. Yeni ayarlar ancak senin görmediği cevaplarını daha iyi tahmin ederse kullanılır." />
       <p className="small">

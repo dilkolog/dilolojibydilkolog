@@ -11,4 +11,35 @@ describe('progress card', () => {
     expect(svg).toContain('#ec4899')
     expect(svg).not.toContain('var(--')
   })
+
+  const data = { name: 'Ali', language: 'fr' as const, streak: 12, level: 4, title: 'Kaşif', xp: 1234, words: 80, flowers: 9, growing: 40, weekXp: 310, badges: 6 }
+
+  it('shows only the numbers chosen, and the extra lines when there are any', () => {
+    const svg = cardSvg({ ...data, goal: 'Hedef B2 · 40 gün kaldı', interests: ['Seyahat', 'Müzik'], pinned: ['İlk adım', 'Bir hafta'] }, { stats: ['streak', 'badges'] })
+    expect(svg).toContain('>12<')
+    expect(svg).toContain('günlük seri')
+    expect(svg).toContain('rozet<')
+    expect(svg).not.toContain('toplam XP')
+    expect(svg).not.toContain('bu hafta XP')
+    expect(svg).toContain('Hedef B2 · 40 gün kaldı')
+    expect(svg).toContain('Seyahat · Müzik')
+    expect(svg).toContain('Rozetlerim: İlk adım · Bir hafta')
+    // No goal, interests or pins: none of those lines.
+    const plain = cardSvg(data)
+    expect(plain).not.toContain('Hedef')
+    expect(plain).not.toContain('Rozetlerim')
+  })
+
+  it('draws in the colours chosen', () => {
+    expect(cardSvg(data, { theme: 'light' })).toContain('fill="#0f172a"')
+    const banner = cardSvg(data, { theme: 'banner', colors: ['#fb923c', '#fde047'] })
+    expect(banner).toContain('stop-color="#fb923c"')
+    expect(banner).toContain('stop-color="#fde047"')
+    expect(banner).toContain('fill-opacity')
+    // The accent text is not the colour of the background it sits on.
+    expect(banner).not.toContain('fill="#fb923c">Fransızca')
+    expect(banner).toContain('fill="#ffffff">Fransızca')
+    expect(banner).not.toContain('var(--')
+    expect(banner).not.toMatch(/\p{Extended_Pictographic}/u)
+  })
 })

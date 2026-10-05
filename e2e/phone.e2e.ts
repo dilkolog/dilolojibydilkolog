@@ -270,3 +270,34 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   await openScreen(page, 'Profil')
   await expect(card).toHaveAttribute('data-banner', 'sunrise')
 })
+
+test('the share card is ready at once and redraws with what is chosen', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('tab', { name: 'Paylaş' }).click()
+  const card = page.locator('.share-card')
+  const img = card.locator('.progress-card-img')
+  await expect(img).toHaveAttribute('src', /^blob:/)
+  const first = await img.getAttribute('src')
+  // Drop a number and change the colours: a new picture each time.
+  await card.getByRole('button', { name: 'Toplam XP', exact: true }).click()
+  await expect(img).not.toHaveAttribute('src', first!)
+  const second = await img.getAttribute('src')
+  await card.getByRole('radio', { name: 'Açık' }).click()
+  await expect(img).not.toHaveAttribute('src', second!)
+  // One number always stays.
+  for (const n of ['Seri', 'Kelimeler', 'Çiçekler', 'Bu hafta', 'Rozetler']) await card.getByRole('button', { name: n, exact: true }).click()
+  await expect(card.locator('[aria-label="Kartta görünecek sayılar"] [aria-pressed=true]')).toHaveCount(1)
+})
+
+test('the titles tab shows the ladder, what is next and what a badge opens', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('tab', { name: 'Unvanlar' }).click()
+  await expect(page.locator('.titles-ladder .is-current .title-tag')).toHaveText('şu an')
+  await expect(page.locator('.titles-ladder li', { hasText: 'Meraklı' })).toContainText('XP kaldı')
+  await expect(page.locator('.titles-ladder li', { hasText: 'Ejderha Avcısı' })).toContainText('rozetiyle açılır')
+  // The title reached can be shown beside the name.
+  await page.locator('.titles-ladder .is-current').getByRole('button', { name: /Göster|Gösteriliyor/ }).click()
+  await expect(page.locator('.profile-level strong').first()).toHaveText('Çaylak')
+})
