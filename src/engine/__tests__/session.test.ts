@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, summarize, typedFollowUp, typeStrongCloze } from '../session'
+import { completeItem, currentItem, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -129,5 +129,18 @@ describe('typing the blank once a word is well known', () => {
     expect(typeStrongCloze(item('x', 'mc_meaning'), strong).exerciseType).toBe('mc_meaning')
     expect(typeStrongCloze(item('x', 'mc_context'), withSkills({ recognition: { stability: 3 }, recall: { reps: 1 } })).exerciseType).toBe('mc_context')
     expect(typeStrongCloze(item('x', 'mc_context'), withSkills({ recognition: { stability: 30 } })).exerciseType).toBe('mc_context')
+  })
+})
+
+describe('break suggestion', () => {
+  const run = (verdicts: string) => [...verdicts].map((c) => ({ verdict: c === 'x' ? ('wrong' as const) : c === '-' ? undefined : ('correct' as const) }))
+  it('waits for a long session and a run of misses', () => {
+    expect(suggestBreak(run('oooooooooooxxxxx'))).toBe(true)
+    // Too early in the session, however many misses.
+    expect(suggestBreak(run('xxxxxxxx'))).toBe(false)
+    // Half right is not a slump.
+    expect(suggestBreak(run('oooooooooooooxoxoxox'))).toBe(false)
+    // Introductions (no verdict) don't count as answers.
+    expect(suggestBreak(run('-------xxxxxxxx'))).toBe(false)
   })
 })

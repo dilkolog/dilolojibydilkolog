@@ -71,6 +71,21 @@ export function adaptExercise(item: PlanItem, entry: VocabularyEntry, state: Use
   return { ...item, exerciseType: (fresh.length ? fresh : pool)[Math.floor(rng() * (fresh.length ? fresh : pool).length)] }
 }
 
+/**
+ * A long session that has turned into a run of misses: suggest a short break. Easier formats
+ * (adaptExercise) help a dip; a lasting drop late in a session is more often tiredness, and
+ * practice spread over time is remembered better than more of it in one sitting (distributed
+ * practice; Cepeda et al. 2006). Needs at least BREAK_AFTER answers and fewer than half of the
+ * last eight right.
+ */
+export const BREAK_AFTER = 15
+export function suggestBreak(log: readonly Pick<SessionLogEntry, 'verdict'>[]): boolean {
+  const graded = log.filter((l) => l.verdict)
+  if (graded.length < BREAK_AFTER) return false
+  const recent = graded.slice(-8)
+  return recent.filter((l) => l.verdict !== 'wrong').length < recent.length / 2
+}
+
 export type TypingShare = 'low' | 'balanced' | 'high'
 /** Share of recognition questions turned into typing for words already met (Settings → Yazma oranı). */
 export const TYPING_SHARE: Record<TypingShare, number> = { low: 0, balanced: 0.25, high: 0.5 }

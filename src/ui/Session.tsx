@@ -9,7 +9,7 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
-import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -143,6 +143,9 @@ export function SessionScreen(p: Props) {
   // The answer on screen is saved already but joins the log only on "Devam"; quitting counts it too.
   const [answeredAt, setAnsweredAt] = useState<number | null>(null)
   const onScreen = answeredAt === session.index ? 1 : 0
+  // Offered once per session; "Devam edeyim" puts it away for good.
+  const [breakDismissed, setBreakDismissed] = useState(false)
+  const showBreak = !breakDismissed && answeredAt !== session.index && suggestBreak(session.log)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       // A dialog that is open (or closing on this same keypress) owns Esc.
@@ -322,6 +325,21 @@ export function SessionScreen(p: Props) {
           }}
           onClose={() => setShowSettings(false)}
         />
+      )}
+      {showBreak && (
+        <div className="break-note" role="status">
+          <p>
+            <strong>Kısa bir ara iyi gelebilir.</strong> Son cevaplarda zorlanıyorsun. Aynı süreyi tek oturuma sıkıştırmak yerine araya mola koymak daha kalıcı öğretir; kalan sorular bugünkü görevinde bekler.
+          </p>
+          <div className="break-actions">
+            <button className="btn btn-quiet" onClick={() => p.onFinish(summarize(session))}>
+              Ara ver
+            </button>
+            <button className="link" onClick={() => setBreakDismissed(true)}>
+              Devam edeyim
+            </button>
+          </div>
+        </div>
       )}
       {p.mode === 'practice' && (
         <p className="practice-badge">

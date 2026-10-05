@@ -637,7 +637,8 @@ export function Summary({
       {milestone && <MilestoneMoment milestone={milestone} onClose={() => setMilestone(null)} />}
       <div className="summary-main stack">
       <div className="celebrate celebrate-card">
-        {(accuracy >= 0.7 || leveledUp) && <Burst />}
+        {/* Words that grew are the celebration (below); confetti only when none did. */}
+        {(leveledUp || (accuracy >= 0.7 && !grown.length)) && <Burst />}
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         <h1>{headline(accuracy, practice)}</h1>
         <p className="muted mt-2">
@@ -726,7 +727,7 @@ export function Summary({
           ))}
         </div>
       )}
-      <div>
+      <div className="summary-actions">
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>
           Devam
         </button>
@@ -735,21 +736,23 @@ export function Summary({
 
       <div className="summary-side stack">
         {grown.length > 0 && (
-          <section className="stack">
+          <section className="stack summary-grown">
             <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>
             <ul className="grown-list">
-              {grown.map((w) => {
+              {grown.map((w, i) => {
                 const from = w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
                 const to = MASTERY_STAGES.indexOf(w.stageAfter!)
                 const e = byId.get(w.entryId)
                 return (
-                  <li key={w.entryId}>
+                  <li key={w.entryId} style={{ ['--i' as string]: Math.min(i, 6) }}>
                     <span className="grown-plants" aria-hidden>
                       <span className="grown-from">
                         <Plant stage={from} size={30} />
                       </span>
                       <span className="grown-arrow">→</span>
-                      <Plant stage={to} size={46} />
+                      <span className="grown-to">
+                        <Plant stage={to} size={46} />
+                      </span>
                     </span>
                     <span className="garden-text">
                       <span className="target">{name(w.entryId)}</span>
@@ -763,7 +766,7 @@ export function Summary({
           </section>
         )}
         {rest.length > 0 && (
-          <section className="stack">
+          <section className="stack summary-rest">
             <h2 className="section-title">{grown.length ? 'Tekrar ettiklerin' : 'Bu oturumda çalıştıkların'}</h2>
             <ul className="garden garden-compact">
               {rest.map((w) => {

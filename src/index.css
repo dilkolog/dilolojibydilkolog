@@ -109,6 +109,7 @@
     --near: #f97316; --near-deep: #c2410c; --near-soft: #342627; --near-text: #fdba74;
     --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #341d32; --bad-text: #fda4af;
     --gold-text: #fbbf24;
+    --pill-ink: #cbd5e1;
     color-scheme: dark;
   }
 }
@@ -134,6 +135,7 @@
   --near: #f97316; --near-deep: #c2410c; --near-soft: #342627; --near-text: #fdba74;
   --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #341d32; --bad-text: #fda4af;
   --gold-text: #fbbf24;
+  --pill-ink: #cbd5e1;
   color-scheme: dark;
 }
 
@@ -347,6 +349,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .btn-near:active:not(:disabled) { box-shadow: 0 1px 0 var(--near-btn-deep); }
 
 .link { background: none; border: 0; padding: 0; color: var(--lang-text); font-weight: 500; cursor: pointer; text-decoration: none; }
+button.link { padding-block: 0.125rem; margin-block: -0.125rem; }   /* a 24px target, same line height */
 .link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .field { display: grid; gap: 0.375rem; align-content: start; }
@@ -811,7 +814,7 @@ kbd {
   padding: 0.125rem 0.625rem;
   border-radius: var(--r-full);
   background: var(--track);
-  color: var(--ink-soft);
+  color: var(--pill-ink, var(--ink-soft));   /* slate-400 on the dark track is 4:1; dark themes lift it */
   white-space: nowrap;
 }
 .pill.stage-1, .pill.stage-2 { background: var(--lang-soft); color: var(--lang-text); }
@@ -1517,7 +1520,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   .sidebar .nav { display: none; }
   .tabbar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
-    display: grid; grid-template-columns: repeat(5, 1fr);
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));   /* five equal tabs even with large text */
     padding: 0.25rem 0.25rem calc(0.25rem + env(safe-area-inset-bottom));
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -1544,10 +1547,10 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 .tab {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.125rem;
-  min-height: 3.25rem; border: 0; background: none; color: var(--ink-soft);
-  font-size: var(--t-xs); font-weight: 600; cursor: pointer;
+  min-height: 3.25rem; min-width: 0; border: 0; background: none; color: var(--ink-soft);
+  font-size: var(--t-xs); font-weight: 600; white-space: nowrap; cursor: pointer;
 }
-.tab svg { box-sizing: content-box; padding: 0.1875rem 1rem; border-radius: var(--r-full); transition: background-color var(--dur-fast) var(--ease-out); }
+.tab svg { box-sizing: content-box; padding: 0.1875rem min(1rem, 3.5vw); border-radius: var(--r-full); transition: background-color var(--dur-fast) var(--ease-out); }
 .tab[aria-current='page'] { color: var(--lang-text); }
 .tab[aria-current='page'] svg { background: var(--lang-soft); }
 
@@ -2029,6 +2032,11 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 
 /* ---------- Session on large screens: the question on its own card, with room around it ---------- */
 .practice-badge { margin: -1.5rem 0 1.5rem; }
+/* A run of misses late in a session: a quiet suggestion to stop, never a modal. */
+.break-note { display: grid; gap: 0.75rem; margin: -0.5rem 0 1.5rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); font-size: var(--t-sm); animation: fade var(--dur) var(--ease-out); }
+.break-note p { margin: 0; color: var(--ink-soft); }
+.break-note strong { color: var(--ink); }
+.break-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 @media (min-width: 64rem) {
   .app:has(> .session), .app:has(.session) { max-width: 56rem; padding-top: 2rem; }
   .session-top { margin-bottom: 1.5rem; }
@@ -2070,6 +2078,24 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   animation: pop var(--dur) var(--ease-out) both;
 }
 .grown-list li:nth-child(2) { animation-delay: 0.06s; } .grown-list li:nth-child(3) { animation-delay: 0.12s; } .grown-list li:nth-child(n + 4) { animation-delay: 0.18s; }
+/* The summary's one moment: each word's plant springs into its new stage, one after another. */
+.grown-to { position: relative; display: inline-grid; place-items: end center; }
+.grown-to .plant { transform-origin: 50% 88%; animation: plant-grow 900ms var(--ease-spring) both; animation-delay: calc(350ms + var(--i, 0) * 160ms); }
+.grown-to::after {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--ok); opacity: 0;
+  animation: plant-burst 900ms var(--ease-out) forwards; animation-delay: calc(450ms + var(--i, 0) * 160ms);
+}
+@media (prefers-reduced-motion: reduce) { .grown-to .plant, .grown-to::after { animation: none; } }
+/* Narrow screens: what grew comes right under the result, before Devam and the full list. */
+@container main (width < 52rem) {
+  .summary-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .summary-main, .summary-side { display: contents; }
+  .summary-main > *, .summary-side > * { margin-top: 0; }
+  .summary-grown { order: 1; }
+  .summary-main > :not(.celebrate-card) { order: 2; }
+  .summary-main > .summary-actions { order: 3; }
+  .summary-rest { order: 4; }
+}
 .grown-plants { display: inline-flex; align-items: flex-end; gap: 0.25rem; flex: none; }
 .grown-from { opacity: 0.45; }
 .grown-arrow { color: var(--ok-text); font-weight: 700; padding-bottom: 0.5rem; }
