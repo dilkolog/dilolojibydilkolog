@@ -1663,9 +1663,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 
 /* Study calendar */
 .subhead { font-size: var(--t-base); font-weight: 700; margin-top: 0.5rem; }
-.week-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.375rem; }
+.week-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(4.5rem, 1fr)); gap: 0.5rem; }   /* seven across only when each tile can hold "Dinlenme"; on a phone 4 + 3, and tiles wide enough to tap */
 .week-day {
-  display: grid; justify-items: center; gap: 0.125rem; padding: 0.5rem 0.125rem; cursor: pointer;
+  display: grid; justify-items: center; gap: 0.125rem; padding: 0.625rem 0.25rem; min-height: 2.75rem; cursor: pointer;
   border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font-size: var(--t-sm);
 }
 .week-day span { font-size: var(--t-xs); color: var(--ink-soft); }
@@ -3953,3 +3953,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .group-toggle .group-chevron { margin-left: auto; color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
 .group-toggle[aria-expanded='false'] .group-chevron { transform: rotate(-90deg); }
 .group-toggle:hover .group-chevron { color: var(--ink); }
+
+/* Settings groups on a narrow screen: all eight in a grid, none hidden behind a sideways scroll. */
+@container main (max-width: 51.99rem) {
+  .settings-menu { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; gap: 0.25rem; }
+  .settings-search { width: 100%; }
+  .settings-menu-item { flex-direction: column; justify-content: flex-start; gap: 0.25rem; padding: 0.5rem 0.125rem; text-align: center; font-size: var(--t-xs); white-space: normal; }
+}

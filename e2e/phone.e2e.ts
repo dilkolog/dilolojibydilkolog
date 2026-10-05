@@ -129,3 +129,45 @@ test('a word page opens on its usage and keeps the rest a tap away', async ({ pa
   await expect(page.locator('#w-progress .group-toggle')).toHaveAttribute('aria-expanded', 'true')
   await expect(page.getByText('Beceriler', { exact: true })).toBeVisible()
 })
+
+test('study calendar days hold their state name and are big enough to tap', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  const days = page.locator('.week-day')
+  await days.first().scrollIntoViewIfNeeded()
+  // Walk one day through all three states: Normal → Hafif → Dinlenme.
+  for (let state = 0; state < 3; state++) {
+    const tiles = await days.evaluateAll((els) =>
+      els.map((e) => {
+        const span = e.querySelector('span')!
+        const range = document.createRange()
+        range.selectNodeContents(span)
+        return { name: span.textContent, tile: e.getBoundingClientRect(), text: range.getBoundingClientRect() }
+      }),
+    )
+    for (const t of tiles) {
+      expect(t.text.width, `${t.name} fits its tile`).toBeLessThanOrEqual(t.tile.width - 4)
+      expect(t.tile.width, 'tap width').toBeGreaterThanOrEqual(44)
+      expect(t.tile.height, 'tap height').toBeGreaterThanOrEqual(44)
+    }
+    await days.nth(1).click()
+  }
+})
+
+test('every settings group is on screen at once, none behind a sideways scroll', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await expect(page.locator('.settings-menu-item').first()).toBeVisible()
+  const width = page.viewportSize()!.width
+  const items = await page.locator('.settings-menu-item').evaluateAll((els) => els.map((e) => ({ name: e.textContent, box: e.getBoundingClientRect() })))
+  expect(items.length).toBeGreaterThanOrEqual(8)
+  for (const i of items) {
+    expect(i.box.left, i.name ?? '').toBeGreaterThanOrEqual(0)
+    expect(i.box.right, i.name ?? '').toBeLessThanOrEqual(width)
+  }
+  // The longest name fits its tile.
+  const fits = await page.locator('.settings-menu-item').evaluateAll((els) => els.every((e) => e.scrollWidth <= e.clientWidth + 1))
+  expect(fits).toBe(true)
+})
