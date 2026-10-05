@@ -1,8 +1,8 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { canSpeak, speak } from './speech'
-import { SpeakerIcon } from './icons'
-import { conjugateTense, irregularForms, subjectLabel, tenseSentence, withSubject, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
+import { LockIcon, SpeakerIcon } from './icons'
+import { conjugateTense, irregularForms, subjectLabel, tenseSentence, unlockAt, withSubject, tensesLoaded, tensesOf, type Tense } from '../engine/tenses'
 import type { VocabularyEntry } from '../engine/types'
 import { loadTenses } from '../data/tenseData'
 
@@ -33,7 +33,7 @@ export const TENSE_GROUPS: { label: string; tenses: Tense[] }[] = [
  * A verb's forms, one tense at a time: what the tense is for, the six forms with the irregular
  * ones marked, the time words that call for it, and how it is built.
  */
-export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Tense }) {
+export function ConjugationTable({ entry, initial, productionReps }: { entry: Verb; initial?: Tense; /** When given, tenses not yet asked are marked with when they open. */ productionReps?: number }) {
   useTenses(entry.language)
   const uid = useId()
   const tenses = tensesOf(entry)
@@ -60,6 +60,8 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
     focusTab.current = `${uid}-tab-${next.label}`
     setPicked(next.tenses[0])
   }
+  // A tense the questions don't ask yet (needs more correct productions of the word).
+  const locked = (t: Tense) => productionReps !== undefined && unlockAt(t) > productionReps
   const forms = conjugateTense(entry, tense)!
   const odd = irregularForms(entry, tense)
   const guide = TENSE_GUIDE[tense]
@@ -83,6 +85,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
                   tabIndex={on ? 0 : -1}
                   onClick={() => setPicked(g.tenses[0])}
                 >
+                  {g.tenses.every(locked) && <LockIcon size={12} className="inline-icon" />}
                   {g.label}
                 </button>
               )
@@ -94,7 +97,8 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
               group.length > 1 && (
                 <div className="tense-sub" role="group" aria-label="Zaman">
                   {group.map((t) => (
-                    <button key={t} type="button" className="chip chip-sm" aria-pressed={t === tense} onClick={() => setPicked(t)} lang={lang}>
+                    <button key={t} type="button" className={`chip chip-sm${locked(t) ? ' is-locked' : ''}`} aria-pressed={t === tense} onClick={() => setPicked(t)} lang={lang}>
+                      {locked(t) && <LockIcon size={12} className="inline-icon" />}
                       {TENSE_GUIDE[t].name}
                     </button>
                   ))}
@@ -105,6 +109,12 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
         </div>
       )}
       <div className="stack conj-panel" role={tenses.length > 1 ? 'tabpanel' : undefined} id={`${uid}-panel`} aria-labelledby={current && tenses.length > 1 ? `${uid}-tab-${current.label}` : undefined}>
+      {locked(tense) && (
+        <p className="small conj-locked">
+          <LockIcon size={14} className="inline-icon" />
+          Bu zaman henüz sorulmuyor: kelimeyi {unlockAt(tense) - (productionReps ?? 0)} kez daha doğru üretince çekim sorularına girer. Tabloya şimdiden bakabilirsin.
+        </p>
+      )}
       <p className="conj-lead">
         <strong>
           <span lang={lang}>{guide.name}</span> · {guide.tr}.

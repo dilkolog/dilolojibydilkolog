@@ -294,6 +294,9 @@ const UNLOCK: Record<Tense, number> = {
  * other), and the present comes back between them. A verb without the present starts at its
  * first available tense.
  */
+/** Correct productions after which conjugation questions start asking this tense. */
+export const unlockAt = (tense: Tense) => UNLOCK[tense]
+
 export function unlockedTenses(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, reps: number): Tense[] {
   const all = tensesOf(entry)
   const open = all.filter((t) => UNLOCK[t] <= reps)

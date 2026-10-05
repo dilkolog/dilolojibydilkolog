@@ -275,7 +275,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       {hasConjugation && (
         <section className="section stack">
           <h2 className="section-title">Fiil çekimi</h2>
-          <ConjugationTable key={entry.id} entry={entry} />
+          <ConjugationTable key={entry.id} entry={entry} productionReps={state?.skills.production?.reps ?? 0} />
           <p className="small muted">"Üretme" becerisi açıldıkça çekim soruları gelir: önce şimdiki zaman, kelime oturdukça geçmiş ve gelecek.</p>
         </section>
       )}
