@@ -1,3 +1,4 @@
+import { formFeedback } from '../engine/tenseGuide'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
@@ -414,6 +415,13 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
 
   const busy = useRef(false)
 
+  // A conjugation answer that is another tense or person of the verb says which one it was.
+  const namedForm = (ev: Graded, text: string): Graded => {
+    if (exercise.type !== 'conjugation' || ev.errorType !== 'form' || !exercise.tense || ev.feedback) return ev
+    const feedback = formFeedback(entry, exercise.tense, text)
+    return feedback ? { ...ev, feedback } : ev
+  }
+
   const submit = async (
     ev: Graded,
     hintsUsed: number,
@@ -531,7 +539,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
           onSubmit={(text, hints, shift) =>
             exercise.type === 'free_sentence' || exercise.type === 'back_translation'
               ? submitSentence(text, hints)
-              : submit(strictAccents(evaluateTyped(exercise, text, entry, catalog, intrusionSources)), hints, exercise.hints.length, { shift })
+              : submit(namedForm(strictAccents(evaluateTyped(exercise, text, entry, catalog, intrusionSources)), text), hints, exercise.hints.length, { shift })
           }
         />
         )

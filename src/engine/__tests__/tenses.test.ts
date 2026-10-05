@@ -245,3 +245,13 @@ describe('conjugation answers per tense', () => {
     expect(stats).toHaveLength(2)
   })
 })
+
+describe('naming a wrong conjugation', () => {
+  it('says which tense or person the answer was', async () => {
+    const { formFeedback } = await import('../tenseGuide')
+    const aller = { language: 'fr' as const, lemma: 'aller', partOfSpeech: 'verb' as const }
+    expect(formFeedback(aller, 'passe-compose', 'allais')).toMatch(/^“allais” imparfait biçimi; burada passé composé isteniyor/)
+    expect(formFeedback(aller, 'imparfait', 'allions')).toBe('Zaman doğru, kişi değil: “allions” nous için.')
+    expect(formFeedback(aller, 'futur', 'xyz')).toBeUndefined()
+  })
+})

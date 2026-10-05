@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
 import { checkTyped, normalize } from '../../engine/answerCheck'
 import { createRng, pick, shuffle, type Rng } from '../../engine/rng'
-import { TENSE_GUIDE } from '../../engine/tenseGuide'
+import { formFeedback, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, irregularForms, subjectLabel, tenseSentence, withSubject, tensesOf, tenseVariants, TENSES, type Tense, type TenseSentence } from '../../engine/tenses'
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
@@ -301,7 +301,7 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
                 {answer.ok
                   ? 'Doğru!'
                   : answer.form
-                    ? `“${answer.typed}” bu fiilin başka bir kişi ya da zaman biçimi.`
+                    ? (formFeedback(q.verb, q.tense, answer.typed) ?? `“${answer.typed}” bu fiilin başka bir kişi ya da zaman biçimi.`)
                     : answer.near
                       ? 'Neredeyse: harflerden ya da aksandan biri farklı.'
                       : `Sen “${answer.typed}” yazdın.`}

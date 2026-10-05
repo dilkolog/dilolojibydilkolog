@@ -1,4 +1,6 @@
-import type { Tense } from './tenses'
+import { normalize } from './answerCheck'
+import { answersFor, subjectLabel, tenseOfForm, type Tense } from './tenses'
+import type { VocabularyEntry } from './types'
 
 /**
  * What each tense is for, in Turkish (adapted from the diloloji project's notes): a one-line
@@ -161,4 +163,20 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
     ],
     markers: ['quiero que', 'es importante que', 'ojalá', 'para que', 'espero que', 'aunque'],
   },
+}
+
+/**
+ * What a wrong conjugation actually was, said by name: another tense ("allais is imparfait; the
+ * question wants passé composé") or another person. Naming the error works better than only
+ * showing the right form (metalinguistic feedback; Lyster & Ranta 1997).
+ */
+export function formFeedback(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, asked: Tense, given: string): string | undefined {
+  if (entry.language === 'en') return undefined
+  const typed = given.trim()
+  const tense = tenseOfForm(entry, typed)
+  if (!tense) return undefined
+  if (tense !== asked) return `“${typed}” ${TENSE_GUIDE[tense].name} biçimi; burada ${TENSE_GUIDE[asked].name} isteniyor: ${TENSE_GUIDE[asked].short}`
+  const f = normalize(typed).toLocaleLowerCase(entry.language)
+  const person = [0, 1, 2, 3, 4, 5].find((p) => answersFor(entry, asked, p).some((a) => normalize(a).toLocaleLowerCase(entry.language) === f))
+  return person === undefined ? undefined : `Zaman doğru, kişi değil: “${typed}” ${subjectLabel(entry.language, asked, person).split(' / ')[0]} için.`
 }
