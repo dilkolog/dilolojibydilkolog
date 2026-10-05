@@ -295,10 +295,12 @@ export function ProgressScreen({
           {stats.stageCounts[topStage] > 0 ? `En çok kelime “${STAGE_NAME[topStage]}” aşamasında (${stats.stageCounts[topStage]})` : 'Henüz başlanmış kelime yok'}
         </h2>
         <div className="bars">
-          {[...MASTERY_STAGES].reverse().map((stage) => (
-            <StageBar key={stage} label={STAGE_NAME[stage]} value={stats.stageCounts[stage]} max={maxStage} />
-          ))}
-          <StageBar label="Başlanmadı" value={stats.notStarted} max={maxStage} muted />
+          {[...MASTERY_STAGES].reverse().map((stage) => {
+            const i = MASTERY_STAGES.indexOf(stage)
+            // The garden's colours: flower, growing, sprout (as in Kelimeler → Bahçe).
+            return <StageBar key={stage} label={STAGE_NAME[stage]} value={stats.stageCounts[stage]} max={maxStage} tone={i === MASTERY_STAGES.length - 1 ? 'flower' : i === 0 ? 'sprout' : 'growing'} />
+          })}
+          <StageBar label="Başlanmadı" value={stats.notStarted} max={maxStage} tone="seed" muted />
         </div>
       </section>
 
@@ -339,12 +341,12 @@ export function ProgressScreen({
   )
 }
 
-function StageBar({ label, value, max, muted }: { label: string; value: number; max: number; muted?: boolean }) {
+function StageBar({ label, value, max, muted, tone }: { label: string; value: number; max: number; muted?: boolean; tone: 'seed' | 'sprout' | 'growing' | 'flower' }) {
   return (
     <div className="bar-row">
       <span className={muted ? 'muted' : ''}>{label}</span>
       <div className="bar-track bar-track-plain">
-        {value > 0 && <div className={muted ? 'bar-fill bar-fill-muted' : 'bar-fill'} style={{ width: `${(value / max) * 100}%` }} />}
+        {value > 0 && <div className={`bar-fill stage-fill is-${tone}`} style={{ width: `${(value / max) * 100}%` }} />}
       </div>
       <span className="bar-value">{value}</span>
     </div>
@@ -465,6 +467,14 @@ function ForecastChart({ forecast }: { forecast: { date: string; count: number }
         <span>bugün</span>
         <span>{dayLabel(forecast.at(-1)!.date, { day: 'numeric', month: 'short' })}</span>
       </div>
+      <ul className="chart-legend small muted">
+        <li>
+          <span className="chart-key is-today" aria-hidden /> bugün, gecikmişler dahil
+        </li>
+        <li>
+          <span className="chart-key" aria-hidden /> sonraki günler
+        </li>
+      </ul>
     </div>
   )
 }
