@@ -41,6 +41,7 @@ import { neighbours } from './wordOrder'
 import { placementOptions, parsePlacement, placementValue } from './listOptions'
 import { WordPronunciation } from './PronunciationCheck'
 import { azureEnabled } from './pronunciation'
+import { WrittenForm } from './WrittenForm'
 
 interface Props {
   db: KelimeDB
@@ -198,7 +199,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </ul>
           )}
           <div className="word-hero-title">
-            <h1 className="word" lang={entry.language}>{displayForm(entry)}</h1>
+            <h1 className="word" lang={entry.language}><WrittenForm entry={entry} /></h1>
             {canSpeak() && (
               <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
                 <SpeakerIcon size={20} />

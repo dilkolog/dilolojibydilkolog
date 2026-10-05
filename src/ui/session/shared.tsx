@@ -5,6 +5,7 @@ import { BookIcon, PenIcon, PinIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { canSpeak, isAudioPlaying, playWord } from '../speech'
 import { modalOpen } from './keys'
+import { ArticleTag } from '../WrittenForm'
 
 /** Plays the word; Alt+S (or Space when not typing) replays it. */
 export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean; rate?: number }) {
@@ -87,7 +88,7 @@ export function Word({ entry }: { entry: VocabularyEntry }) {
   const sep = entry.article.endsWith("'") ? '' : ' '
   return (
     <h1 className={`word${size}`} lang={entry.language}>
-      <span className="article">{entry.article}</span>
+      <ArticleTag article={entry.article} entry={entry} />
       {sep}
       {entry.lemma}
     </h1>

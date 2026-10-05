@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { useTenses } from './ConjugationTable'
 import { analyzeForm } from '../engine/tenses'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { displayForm } from '../engine/exercises'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry, WordList as WordListRow } from '../engine/types'
@@ -43,6 +42,7 @@ import { getDensity, setDensity } from './density'
 import { saveWordOrder } from './wordOrder'
 import { WordListsView } from './WordLists'
 import { placementOptions, parsePlacement } from './listOptions'
+import { WrittenForm } from './WrittenForm'
 
 interface Props {
   db: KelimeDB
@@ -1291,7 +1291,7 @@ function WordList({
                             </td>
                           )}
                           <td className="w" lang={v.language}>
-                            {displayForm(v)}
+                            <WrittenForm entry={v} />
                             {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
                           </td>
                           <td className="muted">{v.senses[0].gloss}</td>
@@ -1329,7 +1329,7 @@ function WordList({
                       </span>
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
-                        <span className="w" lang={v.language}>{displayForm(v)}</span>
+                        <span className="w" lang={v.language}><WrittenForm entry={v} /></span>
                         <span className="meta">
                           {v.senses[0].gloss}
                           {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}

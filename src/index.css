@@ -46,6 +46,8 @@
   --near: #f97316; --near-deep: #c2410c; --near-soft: #ffedd5; --near-text: #c2410c;   /* orange */
   --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #ffe4e6; --bad-text: #be123c;       /* rose */
   --flame: #f97316;
+  /* Grammatical gender, apart from the language accents (blue / pink / amber) and the feedback colours. */
+  --gender-m: #0e7490; --gender-f: #7c3aed;   /* cyan-700, violet-600: both 4.5:1+ on white */
   --gold: #f59e0b;
   --gold-text: #b45309;   /* amber-700: XP numbers as text (gold itself is too light on white) */
 
@@ -94,6 +96,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg: #0f172a;        /* slate-900 */
+    --gender-m: #22d3ee; --gender-f: #a78bfa;
     --page-glow: none;
     --surface: #1e293b;   /* slate-800 */
     --surface-2: #273449;
@@ -120,6 +123,7 @@
 
 /* Dark theme chosen explicitly in Settings, regardless of the system setting. */
 :root[data-theme='dark'] {
+  --gender-m: #22d3ee; --gender-f: #a78bfa;
   --bg: #0f172a;        /* slate-900 */
   --page-glow: none;
   --surface: #1e293b;   /* slate-800 */
@@ -546,6 +550,9 @@ details[open] > summary { margin-bottom: 1rem; }
 
 .word { font-family: var(--serif); font-size: var(--t-word); line-height: 1.1; padding-bottom: 0.12em; color: var(--lang-text); font-weight: 400; overflow-wrap: anywhere; }   /* padding: Literata's descenders (p, g, ç) reach below a 1.1 line box */
 .word .article { font-style: italic; opacity: 0.6; }
+.article.gender-m, .article.gender-f { opacity: 1; font-weight: 500; }
+.article.gender-m { color: var(--gender-m); }
+.article.gender-f { color: var(--gender-f); }
 .prompt-text { font-size: var(--t-2xl); font-weight: 600; letter-spacing: -0.02em; }
 .gloss { font-size: var(--t-lg); }
 
@@ -2662,7 +2669,8 @@ section:has(> .media-split) { container-type: inline-size; }
   content: ''; position: fixed; inset: 0 0 auto 0; height: 30rem; z-index: -1; pointer-events: none;
   background: radial-gradient(56rem 24rem at 50% -8rem, color-mix(in srgb, var(--lang-soft) 80%, transparent), transparent 70%);
 }
-.session-stage > * { animation: fade var(--dur-fast) var(--ease-out); }
+.session-stage > * { animation: question-in var(--dur) var(--ease-out); }
+@keyframes question-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 /* Session summary: the "worked on" list is one card with hairline rows, not a stack of cards;
    only the words that grew keep their own highlighted tiles. */
@@ -2945,6 +2953,10 @@ p, .help, .small { text-wrap: pretty; }
   animation: pop var(--dur) var(--ease-spring);
 }
 .verdict-badge svg { stroke-width: 2.6; }
+/* A right answer sends one ring outward from the badge. */
+.verdict-badge { position: relative; }
+.sheet.ok .verdict-badge::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--verdict); animation: badge-ring 600ms 120ms var(--ease-out) both; pointer-events: none; }
+@keyframes badge-ring { from { transform: scale(1); opacity: 0.7; } to { transform: scale(2.1); opacity: 0; } }
 /* The tick draws itself; a wrong answer's badge shakes once. */
 .sheet.ok .verdict-badge path { stroke-dasharray: 22; stroke-dashoffset: 22; animation: draw 380ms 140ms var(--ease-out) forwards; }
 .sheet.wrong .verdict-badge { animation: pop var(--dur) var(--ease-spring), shake 360ms 260ms var(--ease-out); }

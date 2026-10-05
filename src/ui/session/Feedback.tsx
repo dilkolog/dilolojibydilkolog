@@ -7,6 +7,7 @@ import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
 import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon } from '../icons'
+import { WrittenForm } from '../WrittenForm'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
 
@@ -141,7 +142,7 @@ export function Feedback({
           {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
           </div>
           <p className="sheet-gloss">
-            <span lang={entry.language}>{displayForm(entry)}</span>
+            <span lang={entry.language}><WrittenForm entry={entry} /></span>
             {entry.ipa && <span className="ipa">{entry.ipa}</span>}
             {entry.senses[0].gloss}
           </p>
