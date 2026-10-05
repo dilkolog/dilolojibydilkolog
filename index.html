@@ -8,6 +8,15 @@
     <title>Kelime Koçu</title>
     <meta name="theme-color" content="#f1f5f9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Theme before the first paint (light unless chosen otherwise), so a dark system shows no dark flash.
+      try {
+        var t = localStorage.getItem('kelime-koc:theme') || 'light'
+        if (t !== 'system') document.documentElement.dataset.theme = t
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />

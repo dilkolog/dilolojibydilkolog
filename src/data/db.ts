@@ -87,6 +87,8 @@ export interface Settings {
   /** Questions per session at most; 0 = whole plan. */
   sessionMax: number
   theme: 'system' | 'light' | 'dark'
+  /** Set once the light default replaced an inherited 'system' (2026-10-06). */
+  themeLightDefault?: boolean
   /** Scales the whole interface (everything is sized in rem). */
   textScale?: 'normal' | 'large' | 'xlarge'
   /** Short vibrations on answers (phones that support it). */
@@ -152,7 +154,9 @@ export const DEFAULT_SETTINGS: Settings = {
   newWordsPerDay: 5,
   dailyXpGoal: 50,
   sessionMax: 0,
-  theme: 'system',
+  // Light by default: it reads better (the learner's choice, 2026-10-06); dark stays one tap away.
+  theme: 'light',
+  themeLightDefault: true,
   textScale: 'normal',
   haptics: true,
   autoPlayAudio: true,
@@ -273,9 +277,13 @@ export class KelimeDB extends Dexie {
     if (!row) return undefined
     // Merge nested objects too, so settings saved by an older version get the new defaults.
     const v = row.value as Partial<Settings>
+    // Settings from before the light default followed the system (often dark): move them to light once.
+    const theme = v.themeLightDefault ? v.theme : v.theme === 'system' || !v.theme ? 'light' : v.theme
     return {
       ...DEFAULT_SETTINGS,
       ...v,
+      theme: theme ?? 'light',
+      themeLightDefault: true,
       voices: { ...DEFAULT_SETTINGS.voices, ...v.voices },
       reminder: { ...DEFAULT_SETTINGS.reminder, ...v.reminder },
       profile: { ...DEFAULT_SETTINGS.profile, ...v.profile },

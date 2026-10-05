@@ -45,6 +45,12 @@ export function applySettings(s: Settings) {
   prefs.hideVosotros = s.hideVosotros ?? false
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme
+  // Read by the inline script in index.html, so the first paint already has the right theme.
+  try {
+    localStorage.setItem('kelime-koc:theme', s.theme)
+  } catch {
+    // The first paint is light then; settings correct it a moment later.
+  }
   // Phone status bar follows the chosen theme, not only the system one.
   document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
     const dark = m.media.includes('dark')

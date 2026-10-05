@@ -178,9 +178,19 @@ describe('settings migration', () => {
     const db = new KelimeDB('t-settings')
     await db.meta.put({ key: 'settings', value: { activeLanguage: 'fr', dailyMinutes: 20, newWordsPerDay: 3, profile: { name: 'Ali' } } })
     const s = (await db.getSettings())!
-    expect(s).toMatchObject({ activeLanguage: 'fr', dailyMinutes: 20, theme: 'system', dailyXpGoal: 50 })
+    expect(s).toMatchObject({ activeLanguage: 'fr', dailyMinutes: 20, theme: 'light', dailyXpGoal: 50 })
     expect(s.profile).toMatchObject({ name: 'Ali', emoji: '🦊' })
     expect(s.reminder).toEqual({ enabled: false, time: '20:00' })
+  })
+
+  it('moves an inherited system theme to light once, then keeps what the learner picks', async () => {
+    const db = new KelimeDB('t-theme')
+    await db.meta.put({ key: 'settings', value: { theme: 'system' } })
+    expect((await db.getSettings())!.theme).toBe('light')
+    await db.meta.put({ key: 'settings', value: { theme: 'dark' } })
+    expect((await db.getSettings())!.theme).toBe('dark')
+    await db.meta.put({ key: 'settings', value: { theme: 'system', themeLightDefault: true } })
+    expect((await db.getSettings())!.theme).toBe('system')
   })
 })
 
