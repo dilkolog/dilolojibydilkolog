@@ -126,24 +126,31 @@ export function Fluency432({ language, words }: { language: TargetLanguage; word
         kısaldıkça konuşma akıcılaşır ve bu kazanım yeni konulara da taşınır (Nation 1989). {LANGUAGE_NAME[language]} konuş.
       </p>
       {results.length === 0 && (
-        <>
-          <div className="choice-row">
-            {TOPICS.map((t) => (
-              <button key={t} className="chip chip-sm" aria-pressed={!custom.trim() && topic === t} onClick={() => (setTopic(t), setCustom(''))}>
-                {t}
+        // Before the first round: what to talk about and how long, as two labelled steps in one card.
+        <div className="card stack fluency-setup">
+          <div className="stack gap-2">
+            <p className="prompt-label">Konu</p>
+            <div className="choice-row">
+              {TOPICS.map((t) => (
+                <button key={t} className="chip chip-sm" aria-pressed={!custom.trim() && topic === t} onClick={() => (setTopic(t), setCustom(''))}>
+                  {t}
+                </button>
+              ))}
+            </div>
+            <input className="input" value={custom} onChange={(e) => setCustom(e.target.value)} placeholder="Ya da kendi konun" aria-label="Kendi konun" />
+          </div>
+          <div className="stack gap-2">
+            <p className="prompt-label">Süre</p>
+            <div className="seg-group" role="radiogroup" aria-label="Süre">
+              <button type="button" role="radio" className="seg-btn" aria-checked={plan === 'normal'} onClick={() => setPlan('normal')}>
+                4 / 3 / 2 dakika
               </button>
-            ))}
+              <button type="button" role="radio" className="seg-btn" aria-checked={plan === 'short'} onClick={() => setPlan('short')}>
+                Kısa: 2 / 1,5 / 1
+              </button>
+            </div>
           </div>
-          <input className="input" value={custom} onChange={(e) => setCustom(e.target.value)} placeholder="Ya da kendi konun" aria-label="Kendi konun" />
-          <div className="choice-row" role="group" aria-label="Süre">
-            <button className="chip chip-sm" aria-pressed={plan === 'normal'} onClick={() => setPlan('normal')}>
-              4 / 3 / 2 dakika
-            </button>
-            <button className="chip chip-sm" aria-pressed={plan === 'short'} onClick={() => setPlan('short')}>
-              Kısa: 2 / 1,5 / 1
-            </button>
-          </div>
-        </>
+        </div>
       )}
       {results.length > 0 && (
         <table className="data-table fluency-table">

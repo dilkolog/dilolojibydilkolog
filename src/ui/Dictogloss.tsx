@@ -91,6 +91,8 @@ export function Dictogloss({ db, language, vocabulary, onChanged }: { db: Kelime
         Okuma kütüphanendeki bir paragraf iki kez okunur. Dinlerken anahtar kelimeleri not al, sonra metni kendi cümlelerinle yeniden kur. Birebir aynısı
         gerekmez; karşılaştırınca hangi kelimeleri kaçırdığını görürsün.
       </p>
+      {/* Listening, notes and the rebuilt text in one card, as the other practice screens. */}
+      <div className="card stack dictogloss-work">
       <div className="row">
         <button className="btn" onClick={listen} disabled={playing || plays >= 2 || checked}>
           {plays < 2 && !playing && <PlayIcon size={16} />}
@@ -117,6 +119,7 @@ export function Dictogloss({ db, language, vocabulary, onChanged }: { db: Kelime
           </button>
         </div>
       )}
+      </div>
       {result && (
         <section className="card stack">
           <p>
