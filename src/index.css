@@ -6,7 +6,10 @@
  * Lexend (designed for reading fluency) for the interface, Literata for target-language words.
  */
 :root {
-  --bg: #f1f5f9;          /* slate-100 */
+  /* slate-100 with a breath of the language's colour: switching language changes the room's light. */
+  --bg: color-mix(in srgb, var(--lang) 3%, #f1f5f9);
+  /* A soft glow of the language colour at the top of the page (light theme only). */
+  --page-glow: radial-gradient(70% 100% at 50% 0%, color-mix(in srgb, var(--lang) 10%, transparent), transparent);
   --surface: #ffffff;
   --surface-2: #f8fafc;   /* slate-50 */
   --track: #e2e8f0;       /* slate-200 */
@@ -14,7 +17,7 @@
   --ink-soft: #57677e;    /* between slate-500 and 600: 4.5:1 on the slate-100 page too */
   --rule: #e2e8f0;        /* slate-200 */
   --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
-  --shadow: 0 0 0 1px rgb(15 23 42 / 0.04), 0 1px 2px rgb(15 23 42 / 0.05), 0 6px 20px rgb(15 23 42 / 0.06);   /* a hairline ring keeps card edges crisp on the grey page */
+  --shadow: 0 0 0 1px rgb(15 23 42 / 0.06), 0 1px 2px rgb(15 23 42 / 0.05), 0 6px 20px rgb(15 23 42 / 0.06);   /* a hairline ring keeps card edges crisp on the grey page */
   --shadow-lg: 0 12px 32px rgb(15 23 42 / 0.16);
   --shadow-xl: 0 24px 60px rgb(15 23 42 / 0.3);
   --scrim: rgb(15 23 42 / 0.45);
@@ -91,6 +94,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg: #0f172a;        /* slate-900 */
+    --page-glow: none;
     --surface: #1e293b;   /* slate-800 */
     --surface-2: #273449;
     --track: #334155;     /* slate-700 */
@@ -117,6 +121,7 @@
 /* Dark theme chosen explicitly in Settings, regardless of the system setting. */
 :root[data-theme='dark'] {
   --bg: #0f172a;        /* slate-900 */
+  --page-glow: none;
   --surface: #1e293b;   /* slate-800 */
   --surface-2: #273449;
   --track: #334155;     /* slate-700 */
@@ -3822,3 +3827,6 @@ button.badge-card:active { transform: none; }
 .ring-count { display: grid; justify-items: center; line-height: 1.1; }
 .ring-count strong { font-size: var(--t-2xl); }
 .ring-count span { font-size: var(--t-sm); font-weight: 600; opacity: 0.85; }
+
+/* The language glow at the top of the page: behind everything, never under the pointer. */
+body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; background: var(--page-glow); pointer-events: none; z-index: -1; }

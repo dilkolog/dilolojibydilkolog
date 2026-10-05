@@ -45,6 +45,8 @@ export function applySettings(s: Settings) {
   prefs.hideVosotros = s.hideVosotros ?? false
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme
+  // The page itself takes the language's tint (light theme), not only the app's content.
+  root.dataset.lang = s.activeLanguage
   // Read by the inline script in index.html, so the first paint already has the right theme.
   try {
     localStorage.setItem('kelime-koc:theme', s.theme)
