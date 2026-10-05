@@ -60,10 +60,11 @@ interface Props {
 /** Everything known about one word: its relations, how well each skill is held, its mistakes. */
 const HEALTH_NAME: Record<Health, string> = { fresh: 'canlı', thirsty: 'susamış', wilting: 'soluyor' }
 
+/** In order of how often they are used: sentences first, then saying it, then the rest. */
 const WORD_GROUPS = [
   ['w-use', 'Kullanım'],
-  ['w-family', 'Aile ve diller'],
   ['w-voice', 'Telaffuz'],
+  ['w-family', 'Aile ve diller'],
   ['w-progress', 'İlerleme'],
 ] as const
 
@@ -286,13 +287,10 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         )}
       </section>
 
-      <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled())} label="Kelime bölümleri" />
-      <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
+      <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled() || azureEnabled())} label="Kelime bölümleri" />
       <GroupTitle id="w-use" icon={<PenIcon size={18} />}>Cümleler ve kullanım</GroupTitle>
-      <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
       <WordExamples db={db} entry={entry} onChanged={onChanged} />
       <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
-      <PatternsSection db={db} entry={entry} onChanged={onChanged} />
       {hasConjugation && (
         <section className="section stack">
           <h2 className="section-title">Fiil çekimi</h2>
@@ -300,6 +298,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           <p className="small muted">"Üretme" becerisi açıldıkça çekim soruları gelir: önce şimdiki zaman, kelime oturdukça geçmiş ve gelecek.</p>
         </section>
       )}
+      <PatternsSection db={db} entry={entry} onChanged={onChanged} />
+      <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
       {(entry.alternativeForms?.length ?? 0) > 0 && (
         <section className="section stack">
           <h2 className="section-title">Kabul edilen diğer yazımlar</h2>
@@ -320,6 +320,21 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               </span>
             ))}
           </div>
+        </section>
+      )}
+      {(entry.audioUrl || naturalEnabled() || azureEnabled()) && <GroupTitle id="w-voice" icon={<SpeakerIcon size={18} />}>Telaffuz</GroupTitle>}
+      {azureEnabled() && <WordPronunciation db={db} entry={entry} />}
+      {(entry.audioUrl || naturalEnabled()) && (
+        <section className="section stack">
+          <h2 className="section-title">Telaffuzunu karşılaştır</h2>
+          <p className="small muted">
+            Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
+          </p>
+          <PitchCompare
+            key={entry.id}
+            label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
+            reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
+          />
         </section>
       )}
       <GroupTitle id="w-family" icon={<LeafIcon size={18} />}>Aile ve diğer diller</GroupTitle>
@@ -379,22 +394,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
         </section>
       )}
-      {(entry.audioUrl || naturalEnabled() || azureEnabled()) && <GroupTitle id="w-voice" icon={<SpeakerIcon size={18} />}>Telaffuz</GroupTitle>}
-      {azureEnabled() && <WordPronunciation db={db} entry={entry} />}
-      {(entry.audioUrl || naturalEnabled()) && (
-        <section className="section stack">
-          <h2 className="section-title">Telaffuzunu karşılaştır</h2>
-          <p className="small muted">
-            Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
-          </p>
-          <PitchCompare
-            key={entry.id}
-            label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
-            reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
-          />
-        </section>
-      )}
       <GroupTitle id="w-progress" icon={<ChartIcon size={18} />}>İlerleme</GroupTitle>
+      <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
       <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
       <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
       <section className="section stack">
