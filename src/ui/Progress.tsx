@@ -13,7 +13,7 @@ import { ErrorReportCard } from './ErrorReport'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
-import { GroupToggle, JumpNav } from './JumpNav'
+import { GroupToggle, JumpNav, useGroups } from './JumpNav'
 import { TenseWeakness } from './TenseWeakness'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
@@ -61,10 +61,7 @@ export function ProgressScreen({
   const [events, setEvents] = useState<ReviewEvent[]>([])
   const game = useGame()
   // The page is long, so on a phone only the overview starts open; a wide screen shows everything.
-  const [opened, setOpened] = useState<Set<string>>(() => (window.matchMedia('(min-width: 64rem)').matches ? new Set(PROGRESS_GROUPS.map(([id]) => id)) : new Set(['p-overview'])))
-  const isOpen = (id: string) => opened.has(id)
-  const open = (id: string) => setOpened((s) => new Set(s).add(id))
-  const toggle = (id: string) => setOpened((s) => (s.has(id) ? new Set([...s].filter((x) => x !== id)) : new Set(s).add(id)))
+  const { isOpen, open, toggle } = useGroups(PROGRESS_GROUPS.map(([id]) => id), ['p-overview'])
 
   useEffect(() => {
     const now = new Date()

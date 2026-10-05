@@ -32,7 +32,7 @@ import { growthStage, plantHealth, projectStage, type Health } from '../engine/g
 import { MASTERY_STAGES } from '../engine/mastery'
 import { WordMedia } from './WordMedia'
 import { isRetired } from '../engine/retire'
-import { GroupTitle, JumpNav } from './JumpNav'
+import { GroupToggle, JumpNav, useGroups } from './JumpNav'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
 import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TrashIcon, UmbrellaIcon } from './icons'
@@ -71,6 +71,8 @@ const WORD_GROUPS = [
 
 export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack, onStudy, onOpen }: Props) {
   const nav = useMemo(() => neighbours(entry.id, vocabulary), [entry.id, vocabulary])
+  // A word page is long: on a phone the usage group starts open, the rest on request.
+  const { isOpen, open: openGroup, toggle } = useGroups(WORD_GROUPS.map(([id]) => id), ['w-use'])
   // ← → step through the list, unless typing or a dialog is open.
   useEffect(() => {
     if (!onOpen) return
@@ -288,151 +290,167 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
         )}
       </section>
 
-      <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled() || azureEnabled())} label="Kelime bölümleri" />
-      <GroupTitle id="w-use" icon={<PenIcon size={18} />}>Cümleler ve kullanım</GroupTitle>
-      <WordExamples db={db} entry={entry} onChanged={onChanged} />
-      <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
-      {hasConjugation && (
-        <section className="section stack">
-          <h2 className="section-title">Fiil çekimi</h2>
-          <ConjugationTable key={entry.id} entry={entry} productionReps={state?.skills.production?.reps ?? 0} />
-          <p className="small muted">"Üretme" becerisi açıldıkça çekim soruları gelir: önce şimdiki zaman, kelime oturdukça geçmiş ve gelecek.</p>
-        </section>
+      <JumpNav groups={WORD_GROUPS.filter(([id]) => id !== 'w-voice' || !!entry.audioUrl || naturalEnabled() || azureEnabled())} label="Kelime bölümleri" onPick={openGroup} />
+      <GroupToggle id="w-use" icon={<PenIcon size={18} />} open={isOpen('w-use')} onToggle={() => toggle('w-use')}>Cümleler ve kullanım</GroupToggle>
+      {isOpen('w-use') && (
+        <>
+          <WordExamples db={db} entry={entry} onChanged={onChanged} />
+          <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
+          {hasConjugation && (
+            <section className="section stack">
+              <h2 className="section-title">Fiil çekimi</h2>
+              <ConjugationTable key={entry.id} entry={entry} productionReps={state?.skills.production?.reps ?? 0} />
+              <p className="small muted">"Üretme" becerisi açıldıkça çekim soruları gelir: önce şimdiki zaman, kelime oturdukça geçmiş ve gelecek.</p>
+            </section>
+          )}
+          <PatternsSection db={db} entry={entry} onChanged={onChanged} />
+          <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
+          {(entry.alternativeForms?.length ?? 0) > 0 && (
+            <section className="section stack">
+              <h2 className="section-title">Kabul edilen diğer yazımlar</h2>
+              <div className="row">
+                {entry.alternativeForms!.map((f) => (
+                  <span key={f} className="pill" style={{ fontSize: 'var(--t-sm)' }}>
+                    {f}{' '}
+                    <button
+                      className="link small"
+                      aria-label={`${f} kaldır`}
+                      onClick={async () => {
+                        await db.vocabulary.put({ ...entry, alternativeForms: entry.alternativeForms!.filter((x) => x !== f) })
+                        onChanged()
+                      }}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
       )}
-      <PatternsSection db={db} entry={entry} onChanged={onChanged} />
-      <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
-      {(entry.alternativeForms?.length ?? 0) > 0 && (
-        <section className="section stack">
-          <h2 className="section-title">Kabul edilen diğer yazımlar</h2>
-          <div className="row">
-            {entry.alternativeForms!.map((f) => (
-              <span key={f} className="pill" style={{ fontSize: 'var(--t-sm)' }}>
-                {f}{' '}
-                <button
-                  className="link small"
-                  aria-label={`${f} kaldır`}
-                  onClick={async () => {
-                    await db.vocabulary.put({ ...entry, alternativeForms: entry.alternativeForms!.filter((x) => x !== f) })
-                    onChanged()
+      {(entry.audioUrl || naturalEnabled() || azureEnabled()) && <GroupToggle id="w-voice" icon={<SpeakerIcon size={18} />} open={isOpen('w-voice')} onToggle={() => toggle('w-voice')}>Telaffuz</GroupToggle>}
+      {isOpen('w-voice') && (
+        <>
+          {azureEnabled() && <WordPronunciation db={db} entry={entry} />}
+          {(entry.audioUrl || naturalEnabled()) && (
+            <section className="section stack">
+              <h2 className="section-title">Telaffuzunu karşılaştır</h2>
+              <p className="small muted">
+                Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
+              </p>
+              <PitchCompare
+                key={entry.id}
+                label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
+                reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
+              />
+            </section>
+          )}
+        </>
+      )}
+      <GroupToggle id="w-family" icon={<LeafIcon size={18} />} open={isOpen('w-family')} onToggle={() => toggle('w-family')}>Aile ve diğer diller</GroupToggle>
+      {isOpen('w-family') && (
+        <>
+          <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
+          <TriLanguageCard entry={entry} onAdded={onChanged} />
+          {/* Which list, and which of its levels, the word is studied in. */}
+          {lists.length > 0 && (
+            <section className="section stack word-placement">
+              <h2 className="section-title">Liste ve seviye</h2>
+              <div className="word-placement-row">
+                <Select
+                  label="Liste ve seviye"
+                  value={placementValue(entry, lists)}
+                  onChange={(v) => {
+                    const { listId, levelId } = parsePlacement(v)
+                    void place({ listId: listId ?? undefined, levelId: levelId ?? undefined })
                   }}
-                >
-                  ×
-                </button>
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-      {(entry.audioUrl || naturalEnabled() || azureEnabled()) && <GroupTitle id="w-voice" icon={<SpeakerIcon size={18} />}>Telaffuz</GroupTitle>}
-      {azureEnabled() && <WordPronunciation db={db} entry={entry} />}
-      {(entry.audioUrl || naturalEnabled()) && (
-        <section className="section stack">
-          <h2 className="section-title">Telaffuzunu karşılaştır</h2>
-          <p className="small muted">
-            Doğrusunu dinle, sonra sen söyle: iki ezgi üst üste çizilir. Vurgu ve tonlama, sadece dinleyince fark edilmeyen yerlerde bile görünür olur.
-          </p>
-          <PitchCompare
-            key={entry.id}
-            label={entry.audioUrl ? 'Ana dili konuşan bir kişinin kaydı' : 'Doğal ses'}
-            reference={async () => (entry.audioUrl ? ((await cachedAudio(entry.audioUrl)) ?? entry.audioUrl) : naturalUrl(displayForm(entry), entry.language, 1))}
-          />
-        </section>
-      )}
-      <GroupTitle id="w-family" icon={<LeafIcon size={18} />}>Aile ve diğer diller</GroupTitle>
-      <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
-      <TriLanguageCard entry={entry} onAdded={onChanged} />
-      {/* Which list, and which of its levels, the word is studied in. */}
-      {lists.length > 0 && (
-        <section className="section stack word-placement">
-          <h2 className="section-title">Liste ve seviye</h2>
-          <div className="word-placement-row">
-            <Select
-              label="Liste ve seviye"
-              value={placementValue(entry, lists)}
-              onChange={(v) => {
-                const { listId, levelId } = parsePlacement(v)
-                void place({ listId: listId ?? undefined, levelId: levelId ?? undefined })
-              }}
-              options={placementOptions(lists)}
-            />
-          </div>
-        </section>
-      )}
+                  options={placementOptions(lists)}
+                />
+              </div>
+            </section>
+          )}
 
-      {(entry.collocations.length > 0 || confusables.length > 0) && (
-        <section className="section stack">
-          <h2 className="section-title">İlişkiler</h2>
-          {entry.collocations.length > 0 && (
-            <div>
-              <h3 className="field"><label>Kalıplar</label></h3>
+          {(entry.collocations.length > 0 || confusables.length > 0) && (
+            <section className="section stack">
+              <h2 className="section-title">İlişkiler</h2>
+              {entry.collocations.length > 0 && (
+                <div>
+                  <h3 className="field"><label>Kalıplar</label></h3>
+                  <ul className="plain">
+                    {entry.collocations.map((c) => (
+                      <li key={c.phrase}>
+                        <span className="target" lang={entry.language}>{c.phrase}</span> {c.translation && <span className="muted">{c.translation}</span>}
+                        {c.wrongVariants?.length ? <span className="small muted"> Yanlış: {c.wrongVariants.join(', ')}</span> : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {confusables.length > 0 && (
+                <div>
+                  <h3 className="field"><label>Karıştırılan</label></h3>
+                  <ul className="plain">
+                    {entry.relations
+                      .filter((r) => r.type === 'confusable')
+                      .map((r) => {
+                        const other = byId.get(r.targetId)
+                        return (
+                          <li key={r.targetId}>
+                            <span className="target" lang={entry.language}>{other ? displayForm(other) : r.targetId.split(':')[1]}</span>{' '}
+                            <span className="muted">{other ? other.senses[0].gloss : 'listende yok'}</span>
+                          </li>
+                        )
+                      })}
+                  </ul>
+                </div>
+              )}
+            </section>
+          )}
+        </>
+      )}
+      <GroupToggle id="w-progress" icon={<ChartIcon size={18} />} open={isOpen('w-progress')} onToggle={() => toggle('w-progress')}>İlerleme</GroupToggle>
+      {isOpen('w-progress') && (
+        <>
+          <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
+          <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
+          <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
+          <section className="section stack">
+            <h2 className="section-title">Beceriler</h2>
+            <div className="bars">
+              {SKILLS.filter((s) => s !== 'gender' || definiteArticle(entry)).map((s) => (
+                <div className="bar-row" key={s}>
+                  <span>{SKILL_NAME[s]}</span>
+                  <div className="bar-track">
+                    <div className="bar-fill" style={{ width: `${scores?.[s] ?? 0}%` }} />
+                  </div>
+                  <span className="bar-value">
+                    {state?.skills[s] ? `%${scores![s]}` : unlocked.has(s) ? 'sırada' : 'kilitli'}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="small muted">
+              Beceriler sırayla açılır: önce tanıma, sonra dinleme, artikel ve hatırlama, en son kalıplar ve üretme.
+              {sense.examples.length === 0 && ' Üretme alıştırmaları için örnek cümle ekle.'}
+            </p>
+          </section>
+          {open.length > 0 && (
+            <section className="section stack">
+              <h2 className="section-title">Açık hatalar</h2>
               <ul className="plain">
-                {entry.collocations.map((c) => (
-                  <li key={c.phrase}>
-                    <span className="target" lang={entry.language}>{c.phrase}</span> {c.translation && <span className="muted">{c.translation}</span>}
-                    {c.wrongVariants?.length ? <span className="small muted"> Yanlış: {c.wrongVariants.join(', ')}</span> : null}
+                {open.map((m) => (
+                  <li key={m.id}>
+                    <span className="strike" lang={entry.language}>{m.given}</span> → <span className="target" lang={entry.language}>{m.expected}</span>{' '}
+                    <span className="small muted">
+                      {ERROR_NAME[m.errorType]}, {m.count} kez
+                    </span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           )}
-          {confusables.length > 0 && (
-            <div>
-              <h3 className="field"><label>Karıştırılan</label></h3>
-              <ul className="plain">
-                {entry.relations
-                  .filter((r) => r.type === 'confusable')
-                  .map((r) => {
-                    const other = byId.get(r.targetId)
-                    return (
-                      <li key={r.targetId}>
-                        <span className="target" lang={entry.language}>{other ? displayForm(other) : r.targetId.split(':')[1]}</span>{' '}
-                        <span className="muted">{other ? other.senses[0].gloss : 'listende yok'}</span>
-                      </li>
-                    )
-                  })}
-              </ul>
-            </div>
-          )}
-        </section>
-      )}
-      <GroupTitle id="w-progress" icon={<ChartIcon size={18} />}>İlerleme</GroupTitle>
-      <GrowthPanel entry={entry} state={state} scheduler={scheduler} now={now} />
-      <MemoryCurveChart db={db} entryId={entry.id} refresh={state} />
-      <WordJourney db={db} entry={entry} state={state} mistakes={mistakes} />
-      <section className="section stack">
-        <h2 className="section-title">Beceriler</h2>
-        <div className="bars">
-          {SKILLS.filter((s) => s !== 'gender' || definiteArticle(entry)).map((s) => (
-            <div className="bar-row" key={s}>
-              <span>{SKILL_NAME[s]}</span>
-              <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${scores?.[s] ?? 0}%` }} />
-              </div>
-              <span className="bar-value">
-                {state?.skills[s] ? `%${scores![s]}` : unlocked.has(s) ? 'sırada' : 'kilitli'}
-              </span>
-            </div>
-          ))}
-        </div>
-        <p className="small muted">
-          Beceriler sırayla açılır: önce tanıma, sonra dinleme, artikel ve hatırlama, en son kalıplar ve üretme.
-          {sense.examples.length === 0 && ' Üretme alıştırmaları için örnek cümle ekle.'}
-        </p>
-      </section>
-      {open.length > 0 && (
-        <section className="section stack">
-          <h2 className="section-title">Açık hatalar</h2>
-          <ul className="plain">
-            {open.map((m) => (
-              <li key={m.id}>
-                <span className="strike" lang={entry.language}>{m.given}</span> → <span className="target" lang={entry.language}>{m.expected}</span>{' '}
-                <span className="small muted">
-                  {ERROR_NAME[m.errorType]}, {m.count} kez
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        </>
       )}
     </div>
   )

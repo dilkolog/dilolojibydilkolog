@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { type ReactNode, useState } from 'react'
 import { ChevronDownIcon } from './icons'
 
 /** A long page in groups: a sticky row of shortcuts that jumps to each group's title. */
@@ -38,4 +38,17 @@ export function GroupToggle({ id, icon, open, onToggle, children }: { id: string
       </button>
     </h2>
   )
+}
+
+/**
+ * Which groups of a long page are open. On a phone only `starting` ones are (the page is long); a
+ * wide screen shows everything.
+ */
+export function useGroups(ids: readonly string[], starting: readonly string[]) {
+  const [opened, setOpened] = useState<Set<string>>(() => new Set(window.matchMedia('(min-width: 64rem)').matches ? ids : starting))
+  return {
+    isOpen: (id: string) => opened.has(id),
+    open: (id: string) => setOpened((s) => new Set(s).add(id)),
+    toggle: (id: string) => setOpened((s) => (s.has(id) ? new Set([...s].filter((x) => x !== id)) : new Set(s).add(id))),
+  }
 }

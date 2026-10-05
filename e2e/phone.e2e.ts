@@ -116,3 +116,16 @@ test('an empty reading library has one way in: the open form, not three buttons'
   const form = await page.locator('.add-youtube').boundingBox()
   expect(field!.width).toBeGreaterThan(form!.width * 0.9)
 })
+
+test('a word page opens on its usage and keeps the rest a tap away', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row, tbody tr').first().click()
+  const toggles = page.locator('.group-toggle')
+  await expect(toggles.first()).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.locator('#w-progress .group-toggle')).toHaveAttribute('aria-expanded', 'false')
+  await expect(page.getByText('Beceriler', { exact: true })).toHaveCount(0)
+  await page.locator('.settings-nav .chip', { hasText: 'İlerleme' }).click()
+  await expect(page.locator('#w-progress .group-toggle')).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.getByText('Beceriler', { exact: true })).toBeVisible()
+})
