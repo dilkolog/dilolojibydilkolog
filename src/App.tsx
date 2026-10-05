@@ -11,6 +11,7 @@ import {
   TARGET_LANGUAGES,
   type Mistake,
   type ReviewEvent,
+  type WordList,
   type ReviewMode,
   type TargetLanguage,
   type UserWordState,
@@ -56,6 +57,7 @@ import { Toaster } from './ui/toast'
 import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
+import { currentSection, listWords } from './engine/lists'
 
 /*
  * Screens other than the daily loop (home, session, summary) load when first opened, so the app
@@ -182,6 +184,8 @@ interface LanguageData {
   mistakes: Mistake[]
   /** Last ~2 months of answers in ALL languages. */
   recentEvents: ReviewEvent[]
+  /** Word lists of this language. */
+  lists: WordList[]
 }
 
 const RECENT_DAYS = 60
@@ -394,6 +398,8 @@ export default function App() {
         newWordsPerDay: Math.round(settings.newWordsPerDay * dayWeight(now, settings)),
         frequencyFirst: settings.frequencyFirst,
         autoRetire: settings.autoRetire,
+        // Only a list that still exists (another device may have deleted it).
+        focusListId: data.lists.some((l) => l.id === settings.focusList?.[data.language]) ? settings.focusList?.[data.language] : undefined,
       },
       catalog: data.vocabulary,
       states: data.states,
@@ -808,6 +814,9 @@ export default function App() {
                 onStudy={(deck) =>
                   startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
                 }
+                lists={data.lists}
+                focusListId={planInput?.settings.focusListId}
+                onFocus={(listId) => void updateSettings({ ...settings, focusList: { ...settings.focusList, [data.language]: listId ?? undefined } })}
               />
             ) : screen.name === 'word' && byId.has(screen.entryId) ? (
               <WordDetail
@@ -926,6 +935,20 @@ export default function App() {
                 canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
                 onStart={() => startSession(plan.items, 'normal', daySeed(new Date()))}
                 onAddWords={go({ name: 'words' })}
+                focus={(() => {
+                  const list = data.lists.find((l) => l.id === planInput?.settings.focusListId)
+                  if (!list) return undefined
+                  const met = new Map(data.states.map((st) => [st.entryId, st]))
+                  return { name: list.name, section: currentSection(listWords(list, data.vocabulary), met) }
+                })()}
+                onOpenLists={() => {
+                  try {
+                    localStorage.setItem(WORDS_VIEW_KEY, 'lists')
+                  } catch {
+                    // The words screen just opens on its last view.
+                  }
+                  setScreen({ name: 'words' })
+                }}
                 onTrySamples={async () => {
                   // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
                   const at = new Date()

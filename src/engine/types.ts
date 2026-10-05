@@ -4,6 +4,16 @@ export type TargetLanguage = 'en' | 'fr' | 'es'
 export const TARGET_LANGUAGES: readonly TargetLanguage[] = ['en', 'fr', 'es']
 
 export type CefrLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
+
+/** A named list of words in one language, studied in sections; its words carry its id. */
+export interface WordList {
+  id: string
+  language: TargetLanguage
+  name: string
+  /** ISO dates; updatedAt settles a rename made on two devices. */
+  createdAt: string
+  updatedAt: string
+}
 export const CEFR_LEVELS: readonly CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
 export type PartOfSpeech =
@@ -92,6 +102,10 @@ export interface VocabularyEntry {
   /** Article shown with the lemma for FR/ES nouns, e.g. "la", "el", "l'". */
   article?: string
   cefr: CefrLevel
+  /** The learner chose `cefr` themselves; otherwise the level comes from frequency (see lists.ts). */
+  levelSet?: boolean
+  /** The word list it belongs to (one at most), like a course on Memrise (see lists.ts). */
+  listId?: string
   /** 1 = most frequent. */
   frequencyRank: number
   ipa?: string

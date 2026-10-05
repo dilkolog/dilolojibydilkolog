@@ -5,7 +5,8 @@ import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { displayForm } from '../engine/exercises'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
-import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry, WordList as WordListRow } from '../engine/types'
+import { showToast } from './toast'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { loadFrequency, rankOf, UNRANKED } from '../data/frequency'
@@ -40,6 +41,8 @@ import { nextReviewAt } from '../engine/review'
 import { relativeTime } from './format'
 import { getDensity, setDensity } from './density'
 import { saveWordOrder } from './wordOrder'
+import { WordListsView } from './WordLists'
+import { LEVELS, levelOf } from '../engine/lists'
 
 interface Props {
   db: KelimeDB
@@ -54,6 +57,10 @@ interface Props {
   /** A word sent from another site via the bookmarklet. */
   incoming?: IncomingWord | null
   onIncomingDone?: () => void
+  /** Word lists of this language, and the one in focus (new words come only from it). */
+  lists?: WordListRow[]
+  focusListId?: string
+  onFocus?: (listId: string | null) => void
 }
 
 const hostOf = (url: string) => {
@@ -66,14 +73,14 @@ const hostOf = (url: string) => {
 
 const SECTION_KEY = 'kelime-koc:words-section'
 
-export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone, lists = [], focusListId, onFocus = () => {} }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
-  const [view, setViewState] = useState<'list' | 'garden' | 'graph' | 'concepts'>(() => {
+  const [view, setViewState] = useState<'list' | 'lists' | 'garden' | 'graph' | 'concepts'>(() => {
     try {
       const v = localStorage.getItem(WORDS_VIEW_KEY)
-      return v === 'garden' || v === 'graph' || v === 'concepts' ? v : 'list'
+      return v === 'lists' || v === 'garden' || v === 'graph' || v === 'concepts' ? v : 'list'
     } catch {
       return 'list'
     }
@@ -230,7 +237,10 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
             <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
         <div className="segmented" role="tablist" aria-label="Görünüm">
           <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
-            Liste
+            Tümü
+          </button>
+          <button role="tab" className="segmented-btn" aria-selected={view === 'lists'} onClick={() => setView('lists')}>
+            Listeler
           </button>
           <button role="tab" className="segmented-btn" aria-selected={view === 'garden'} onClick={() => setView('garden')}>
             Bahçe
@@ -252,6 +262,26 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           onStudy={onStudy}
           onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
           onAdd={goAdd}
+          lists={lists}
+          onMove={async (ids, listId) => {
+            await db.assignList(ids, listId)
+            onChanged()
+            const name = lists.find((l) => l.id === listId)?.name
+            showToast(name ? `${ids.length} kelime "${name}" listesine taşındı.` : `${ids.length} kelime listeden çıkarıldı.`)
+          }}
+        />
+      ) : view === 'lists' ? (
+        <WordListsView
+          db={db}
+          language={language}
+          lists={lists}
+          vocabulary={vocabulary}
+          states={states}
+          focusListId={focusListId}
+          onFocus={onFocus}
+          onListsChanged={onChanged}
+          onOpen={onOpen}
+          onStudy={onStudy}
         />
       ) : view === 'garden' ? (
         <GardenView vocabulary={vocabulary} states={states} onOpen={onOpen} onWater={onStudy} />
@@ -297,6 +327,7 @@ const freqKey = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank :
 
 const splitTags = (s?: string) => (s ?? '').split(',').map((t) => t.trim()).filter(Boolean)
 
+const LAST_LIST_KEY = 'kelime-koc:last-list'
 const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslation: '', collocations: '', confusables: '' }
 
 const POS_OPTIONS: PartOfSpeech[] = ['other', 'noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'phrase']
@@ -341,6 +372,36 @@ export function WordForm({
       : undefined
   // Words added with this form since the last "learn now", to study them in one go.
   const [justAdded, setJustAdded] = useState<VocabularyEntry[]>([])
+  // A new word goes into a list: the last one chosen here, else the one in focus.
+  const [lists, setLists] = useState<WordListRow[]>([])
+  const [listId, setListIdState] = useState('')
+  useEffect(() => {
+    if (entry) return
+    let live = true
+    void Promise.all([db.getLists(language), db.getSettings()]).then(([all, s]) => {
+      if (!live) return
+      setLists(all)
+      let last = ''
+      try {
+        last = localStorage.getItem(`${LAST_LIST_KEY}:${language}`) ?? ''
+      } catch {
+        // Falls back to the focus.
+      }
+      const pick = [last, s?.focusList?.[language] ?? ''].find((id) => id === '__none' || all.some((l) => l.id === id))
+      setListIdState(pick === '__none' ? '' : (pick ?? ''))
+    })
+    return () => {
+      live = false
+    }
+  }, [db, language, entry])
+  const setListId = (id: string) => {
+    setListIdState(id)
+    try {
+      localStorage.setItem(`${LAST_LIST_KEY}:${language}`, id || '__none')
+    } catch {
+      // Not remembered; harmless.
+    }
+  }
   const [added, setAdded] = useState('')
   const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
   const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
@@ -516,6 +577,7 @@ export function WordForm({
       const withGender = form.gender || !lexGender ? form : { ...form, gender: lexGender }
       const input = posManual ? withGender : { ...withGender, partOfSpeech: autoPos }
       const saved = entry ? updateEntry(entry, input) : createEntry(input, language, new Date())
+      if (!entry && listId) saved.listId = listId
       if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
         throw new WordInputError(`"${saved.lemma}" zaten listende.`)
       }
@@ -657,6 +719,18 @@ export function WordForm({
           <input id="w-ext" className="input" value={form.exampleTranslation ?? ''} onChange={set('exampleTranslation')} />
         </div>
         </div>
+        {!entry && lists.length > 0 && (
+          <div className="field word-form-list">
+            <label htmlFor="w-list">Liste</label>
+            <Select
+              id="w-list"
+              label="Liste"
+              value={listId || '__none'}
+              onChange={(v) => setListId(v === '__none' ? '' : v)}
+              options={[...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listesiz' }]}
+            />
+          </div>
+        )}
         {!entry && (
           <div className="row">
             {image ? (
@@ -858,6 +932,8 @@ function WordList({
   onStudy,
   onDelete,
   onAdd,
+  lists = [],
+  onMove,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
@@ -866,6 +942,8 @@ function WordList({
   onStudy: (entries: VocabularyEntry[]) => void
   onDelete: (ids: string[]) => Promise<void>
   onAdd: () => void
+  lists?: WordListRow[]
+  onMove?: (ids: string[], listId: string | null) => Promise<void>
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -879,6 +957,9 @@ function WordList({
   const [stage, setStage] = useState<StageFilter>('all')
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
+  // '' all, '__none' words in no list, otherwise a list id.
+  const [inList, setInList] = useState('')
+  const [level, setLevel] = useState('')
   const [sort, setSort] = useState<Sort>('newest')
   const [dense, setDense] = useState(() => getDensity() === 'compact')
   // Table view (wide screens): every word on one line with its numbers, sortable by column.
@@ -920,6 +1001,8 @@ function WordList({
       if (flags.noExample && v.senses[0].examples.length > 0) return false
       if (flags.idiom && v.partOfSpeech !== 'phrase') return false
       if (tag && !v.tags.includes(tag)) return false
+      if (inList === '__none' ? v.listId && lists.some((l) => l.id === v.listId) : inList && v.listId !== inList) return false
+      if (level && (levelOf(v) ?? '__none') !== level) return false
       return true
     }
     const dueKey = (v: VocabularyEntry) => {
@@ -935,7 +1018,7 @@ function WordList({
       due: (a, b) => dueKey(a) - dueKey(b) || a.lemma.localeCompare(b.lemma, 'tr'),
     }
     return vocabulary.filter(match).sort(by[sort])
-  }, [vocabulary, query, stage, flags, tag, sort, stateById, withMistakes])
+  }, [vocabulary, query, stage, flags, tag, inList, level, lists, sort, stateById, withMistakes])
   // The word page steps through the list in the order it was last shown here (filters and sort).
   useEffect(() => saveWordOrder(list.map((v) => v.id)), [list])
   // A long list is drawn in pages as it scrolls into view: thousands of rows at once make the
@@ -1069,6 +1152,24 @@ function WordList({
             <button className="chip chip-sm" aria-pressed={!!flags.idiom} onClick={() => toggle('idiom')}>
               Deyimler
             </button>
+            {lists.length > 0 && (
+              <div style={{ minWidth: '10rem' }}>
+                <Select
+                  label="Liste"
+                  value={inList || '__all'}
+                  onChange={(v) => setInList(v === '__all' ? '' : v)}
+                  options={[{ value: '__all', label: 'Tüm listeler' }, ...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listesiz' }]}
+                />
+              </div>
+            )}
+            <div style={{ minWidth: '8rem' }}>
+              <Select
+                label="Seviye"
+                value={level || '__all'}
+                onChange={(v) => setLevel(v === '__all' ? '' : v)}
+                options={[{ value: '__all', label: 'Tüm seviyeler' }, ...LEVELS.map((l) => ({ value: l, label: l })), { value: '__none', label: 'Seviyesiz' }]}
+              />
+            </div>
             {tags.length > 0 && (
               <div style={{ minWidth: '10rem' }}>
                 <Select
@@ -1098,6 +1199,21 @@ function WordList({
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
               </button>
+              {onMove && lists.length > 0 && (
+                <div className="select-bar-move">
+                  <Select
+                    label="Listeye taşı"
+                    value={undefined}
+                    placeholder="Listeye taşı"
+                    onChange={async (v) => {
+                      if (!selectedVisible.length) return
+                      await onMove(selectedVisible.map((x) => x.id), v === '__none' ? null : v)
+                      exitSelection()
+                    }}
+                    options={[...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listeden çıkar' }]}
+                  />
+                </div>
+              )}
               <button
                 className="btn btn-bad"
                 disabled={!selectedVisible.length || deleting}
@@ -1115,7 +1231,7 @@ function WordList({
           {!selecting && list.length > 0 && list.length < vocabulary.length && (
             <div className="deck-bar">
               <span>
-                {tag ? <strong>#{tag}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
+                {tag ? <strong>#{tag}</strong> : inList && inList !== '__none' ? <strong>{lists.find((l) => l.id === inList)?.name}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
               </span>
               <button className="btn" onClick={() => onStudy(list)}>
                 Bu listeyi çalış

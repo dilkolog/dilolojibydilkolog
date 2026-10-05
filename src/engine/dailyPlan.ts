@@ -34,6 +34,11 @@ export interface PlanSettings {
   frequencyFirst?: boolean
   /** Retire words known so well that routine reviews only cost time (see retire.ts). */
   autoRetire?: boolean
+  /**
+   * A word list in focus: new words come only from it, in its order, so topics don't mix.
+   * Reviews still come from every list, so nothing already learned is left to fade.
+   */
+  focusListId?: string
 }
 
 export interface PlanInput {
@@ -61,6 +66,8 @@ export interface DailyPlan {
   waitingNew: number
   /** Set when more words are waiting but none (more) were added today. */
   newBlockedBy?: NewWordsBlock
+  /** The list in focus has no word left to meet. */
+  focusDone?: boolean
 }
 
 /** Below this recall probability a due word is treated as forgotten and goes first. */
@@ -157,7 +164,8 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
 
 function unintroduced(input: PlanInput): VocabularyEntry[] {
   const known = new Set(input.states.map((s) => s.entryId))
-  return input.catalog.filter((e) => e.language === input.settings.language && !known.has(e.id))
+  const focus = input.settings.focusListId
+  return input.catalog.filter((e) => e.language === input.settings.language && !known.has(e.id) && (!focus || e.listId === focus))
 }
 
 /** Words introduced today in the plan's language (the daily limit is per day, not per session). */
@@ -176,9 +184,11 @@ export function newWordCandidates(input: PlanInput, limit: number): VocabularyEn
   const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
   // Words outside the frequency list (negative) come after listed ones; unknown (0) last.
   const rank = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : e.frequencyRank < 0 ? 1e6 : 2e6)
+  // A list in focus is followed in its own order, section by section.
+  const byFrequency = input.settings.frequencyFirst && !input.settings.focusListId
   const own = pool
     .filter((e) => e.source !== 'sample')
-    .sort((a, b) => (input.settings.frequencyFirst ? rank(a) - rank(b) : 0) || added(a) - added(b))
+    .sort((a, b) => (byFrequency ? rank(a) - rank(b) : 0) || added(a) - added(b))
   const samples = pool.filter((e) => e.source === 'sample').sort((a, b) => a.frequencyRank - b.frequencyRank)
   const ordered = [...own, ...samples]
 
@@ -276,7 +286,8 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
     counts[it.reason]++
     bySkill[it.skill] = (bySkill[it.skill] ?? 0) + 1
   }
-  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy }
+  const focusDone = !!input.settings.focusListId && waitingNew <= 0
+  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, ...(focusDone ? { focusDone } : {}) }
 }
 
 function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {

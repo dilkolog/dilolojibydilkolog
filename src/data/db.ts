@@ -17,6 +17,7 @@ import {
   type TargetLanguage,
   type UserWordState,
   type VocabularyEntry,
+  type WordList,
 } from '../engine/types'
 
 /** A text in the reading library. */
@@ -92,6 +93,8 @@ export interface Settings {
   haptics?: boolean
   /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */
   hideVosotros?: boolean
+  /** The word list in focus per language: new words come only from it (see dailyPlan). */
+  focusList?: Partial<Record<TargetLanguage, string>>
   autoPlayAudio: boolean
   speechRate: number
   /** Chosen system voice per language (voiceURI). */
@@ -352,6 +355,36 @@ export class KelimeDB extends Dexie {
   }
 
   /** Sentence cards; card dates come back as Dates even after a JSON round trip (backup, sync). */
+  /** Word lists (Memrise-style courses), all languages, oldest first. */
+  async getLists(language?: TargetLanguage): Promise<WordList[]> {
+    const all = ((await this.meta.get('wordLists'))?.value as WordList[]) ?? []
+    return language ? all.filter((l) => l.language === language) : all
+  }
+
+  async saveList(list: WordList) {
+    const all = await this.getLists()
+    const at = all.findIndex((l) => l.id === list.id)
+    await this.meta.put({ key: 'wordLists', value: at < 0 ? [...all, list] : all.map((l, i) => (i === at ? list : l)) })
+  }
+
+  /** Deletes a list; its words stay, without a list. */
+  async deleteList(id: string) {
+    await this.transaction('rw', [this.vocabulary, this.meta], async () => {
+      await this.meta.put({ key: 'wordLists', value: (await this.getLists()).filter((l) => l.id !== id) })
+      await this.vocabulary.filter((v) => v.listId === id).modify((v) => void delete v.listId)
+      // Remembered, so another device's copy doesn't bring it back on sync.
+      await this.addDeleted([id])
+    })
+  }
+
+  /** Puts words in a list (one list per word), or takes them out of any (null). */
+  async assignList(ids: readonly string[], listId: string | null) {
+    await this.vocabulary.where('id').anyOf([...ids]).modify((v) => {
+      if (listId) v.listId = listId
+      else delete v.listId
+    })
+  }
+
   async getSentences(): Promise<SentenceCard[]> {
     const all = ((await this.meta.get('sentences'))?.value as SentenceCard[]) ?? []
     return all.map((s) => ({ ...s, card: { ...s.card, due: new Date(s.card.due), last_review: s.card.last_review ? new Date(s.card.last_review) : undefined } }))
@@ -493,13 +526,14 @@ export class KelimeDB extends Dexie {
   }
 
   async loadLanguage(language: TargetLanguage) {
-    const [vocabulary, states, mistakes] = await Promise.all([
+    const [vocabulary, states, mistakes, lists] = await Promise.all([
       this.vocabulary.where('language').equals(language).toArray(),
       this.wordStates.where('language').equals(language).toArray(),
       this.mistakes.toArray(),
+      this.getLists(language),
     ])
     const ids = new Set(vocabulary.map((v) => v.id))
-    return { vocabulary, states, mistakes: mistakes.filter((m) => ids.has(m.entryId)) }
+    return { vocabulary, states, mistakes: mistakes.filter((m) => ids.has(m.entryId)), lists }
   }
 
   /** Persists one answered exercise atomically: new word state, the event, and touched mistakes. */
@@ -670,6 +704,8 @@ export interface Backup {
   missions?: MissionResult[]
   sentences?: SentenceCard[]
   exams?: ExamResult[]
+  /** Word lists (backup version 3+, optional). */
+  lists?: WordList[]
   /** What was deleted, and when (sync tombstones, see tombstones.ts). */
   deleted?: Tombstone[]
 }
@@ -713,6 +749,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     missions: await db.getMissions(),
     sentences: await db.getSentences(),
     exams: await db.getExams(),
+    lists: await db.getLists(),
     deleted: await db.getDeleted(),
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -774,6 +811,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.missions) await db.meta.put({ key: 'missions', value: backup.missions })
     if (backup.sentences) await db.meta.put({ key: 'sentences', value: backup.sentences })
     if (backup.exams) await db.meta.put({ key: 'exams', value: backup.exams })
+    if (backup.lists) await db.meta.put({ key: 'wordLists', value: backup.lists })
     if (backup.deleted) await db.meta.put({ key: 'deleted', value: backup.deleted })
   })
 }

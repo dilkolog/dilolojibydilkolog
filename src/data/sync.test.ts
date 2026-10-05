@@ -78,4 +78,11 @@ describe('sync', () => {
     expect(mergeBackups(undoLater, b).vocabulary.map((v) => v.id)).toEqual(['fr:chat'])
     expect(m.reading?.library).toEqual([])
   })
+
+  it('merges word lists: the later rename wins, a deleted list stays deleted', () => {
+    const list = (id: string, name: string, updatedAt: string) => ({ id, language: 'fr' as const, name, createdAt: '2026-10-01T10:00:00Z', updatedAt })
+    const a = base('2026-10-02T10:00:00Z', { lists: [list('l1', 'Seyahat', '2026-10-02T09:00:00Z'), list('l2', 'İş', '2026-10-01T10:00:00Z')] })
+    const b = base('2026-10-02T11:00:00Z', { lists: [list('l1', 'Yolculuk', '2026-10-01T12:00:00Z')], deleted: [{ id: 'l2', at: '2026-10-02T10:30:00Z', alive: false }] })
+    expect(mergeBackups(a, b).lists).toEqual([list('l1', 'Seyahat', '2026-10-02T09:00:00Z')])
+  })
 })

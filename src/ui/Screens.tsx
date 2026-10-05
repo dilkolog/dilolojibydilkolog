@@ -8,7 +8,7 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon } from './icons'
+import { AlertIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -177,6 +177,29 @@ const NEW_BLOCK_TEXT: Record<NewWordsBlock, (n: number) => string> = {
   none_left: () => '',
 }
 
+/** Where today's new words come from when a list is in focus, and what to do once it's all met. */
+function FocusLine({ focus, done, onOpenLists }: { focus: NonNullable<Parameters<typeof Home>[0]['focus']>; done: boolean; onOpenLists?: () => void }) {
+  return (
+    <p className="small hero-focus">
+      <TargetIcon size={14} className="inline-icon" />
+      {done ? (
+        <>
+          “{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir listeye odaklan.{' '}
+          {onOpenLists && (
+            <button type="button" className="link" onClick={onOpenLists}>
+              Listeler
+            </button>
+          )}
+        </>
+      ) : (
+        <>
+          Yeni kelimeler “{focus.name}” listesinden{focus.section ? `, ${focus.section.index}. bölüm` : ''}.
+        </>
+      )}
+    </p>
+  )
+}
+
 function greeting(now: Date): string {
   const h = now.getHours()
   if (h >= 5 && h < 12) return 'Günaydın'
@@ -213,6 +236,8 @@ export function Home({
   onFreePractice,
   extra,
   garden,
+  focus,
+  onOpenLists,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -243,6 +268,9 @@ export function Home({
   extra?: ReactNode
   /** The garden card: up top when plants need water, otherwise with the weekly things. */
   garden?: { node: ReactNode; urgent: boolean } | null
+  /** The word list in focus, and the section its new words come from (none: all met). */
+  focus?: { name: string; section: { index: number; count: number } | null }
+  onOpenLists?: () => void
 }) {
   const now = new Date()
   const game = useGame()
@@ -342,6 +370,7 @@ export function Home({
                 <button className="btn btn-lg" onClick={onStart} autoFocus>
                   {answeredToday > 0 ? 'Devam et' : 'Başla'}
                 </button>
+                {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
                 {plan.newBlockedBy && plan.waitingNew > 0 && (
                   <p className="small muted mt-3">
                     {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
@@ -358,6 +387,7 @@ export function Home({
                   {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
                   {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
                 </p>
+                {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
                 {plan.waitingNew > 0 ? (
                   <button className="btn btn-lg" onClick={onExtraNew}>
                     +{Math.min(5, plan.waitingNew)} yeni kelime öğren

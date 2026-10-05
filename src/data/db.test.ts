@@ -135,6 +135,21 @@ describe('revertReview', () => {
   })
 })
 
+describe('word lists', () => {
+  it('are saved, words go in and out, and deleting a list keeps its words', async () => {
+    const { db, entry } = await seeded('t-lists')
+    const list = { id: 'list:1', language: entry.language, name: 'Seyahat', createdAt: NOW.toISOString(), updatedAt: NOW.toISOString() }
+    await db.saveList(list)
+    await db.saveList({ ...list, name: 'Yolculuk' })
+    expect((await db.getLists(entry.language)).map((l) => l.name)).toEqual(['Yolculuk'])
+    await db.assignList([entry.id], list.id)
+    expect((await db.vocabulary.get(entry.id))!.listId).toBe(list.id)
+    await db.deleteList(list.id)
+    expect(await db.getLists()).toEqual([])
+    expect((await db.vocabulary.get(entry.id))!.listId).toBeUndefined()
+  })
+})
+
 describe('media', () => {
   it('is stored, included in backups as data URLs, restored, and deleted with its word', async () => {
     const { db, entry } = await seeded('t-media')

@@ -177,3 +177,31 @@ describe('habits', () => {
     expect(reviews.indexOf('en:improve')).toBeLessThan(reviews.indexOf('en:decide'))
   })
 })
+
+describe('a word list in focus', () => {
+  const own = (lemma: string, day: number, listId?: string): VocabularyEntry => ({
+    ...leave,
+    id: `en:${lemma}`,
+    lemma,
+    frequencyRank: 99999,
+    source: 'user',
+    addedAt: daysAgo(day),
+    relations: [],
+    ...(listId ? { listId } : {}),
+  })
+  const catalog = [own('airport', 5, 'travel'), own('salary', 6, 'work'), own('ticket', 4, 'travel'), own('meeting', 7, 'work'), own('gate', 3, 'travel')]
+
+  it('takes new words only from that list, in its order', () => {
+    const plan = buildDailyPlan(input({ catalog, settings: { ...settings, newWordsPerDay: 5, dailyMinutes: 60, focusListId: 'travel' } }))
+    expect(plan.newEntryIds).toEqual(['en:airport', 'en:ticket', 'en:gate'])
+    expect(plan.focusDone).toBe(true)
+  })
+
+  it('still reviews words of other lists', () => {
+    const states = [learned(catalog[1], daysAgo(20))]
+    const plan = buildDailyPlan(input({ catalog, states, settings: { ...settings, newWordsPerDay: 1, dailyMinutes: 60, focusListId: 'travel' } }))
+    expect(plan.items.some((i) => i.entryId === 'en:salary' && i.kind === 'exercise')).toBe(true)
+    expect(plan.newEntryIds).toEqual(['en:airport'])
+    expect(plan.focusDone).toBeUndefined()
+  })
+})
