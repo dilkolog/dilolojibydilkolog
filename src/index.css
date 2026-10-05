@@ -3556,3 +3556,10 @@ button.badge-card:active { transform: none; }
 :root[data-theme='dark'] .badge-tier.tier-silver { color: #e2e8f0; background: color-mix(in srgb, #cbd5e1 14%, var(--surface)); }
 :root[data-theme='dark'] .badge-tier.tier-gold { color: #fcd34d; background: color-mix(in srgb, #fde68a 14%, var(--surface)); }
 :root[data-theme='dark'] .badge-tier.tier-special { color: #c4b5fd; background: color-mix(in srgb, #c4b5fd 16%, var(--surface)); }
+.screen-enter[data-transition='focus'] { animation: screen-focus 320ms var(--ease-out); }
+.screen-enter[data-transition='forward'] { animation: screen-forward 260ms var(--ease-out); }
+.screen-enter[data-transition='back'] { animation: screen-back 260ms var(--ease-out); }
+@keyframes screen-focus { from { opacity: 0; transform: scale(0.975); } to { opacity: 1; transform: none; } }
+@keyframes screen-forward { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@keyframes screen-back { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .screen-enter[data-transition] { animation: none; } }

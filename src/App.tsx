@@ -367,6 +367,14 @@ export default function App() {
     prevScreen.current = screen.name
   }, [screen.name])
 
+  // How a screen arrives says where it is: a session takes the stage, a word page goes a level
+  // deeper, coming back from it returns the other way. Decided once per screen, so a re-render
+  // doesn't restart the animation.
+  const screenKey = screen.name === 'summary' ? 'session' : screen.name === 'word' ? `word:${screen.entryId}` : screen.name
+  const transition = useRef<{ key: string; value?: string }>({ key: '' })
+  if (transition.current.key !== screenKey)
+    transition.current = { key: screenKey, value: screen.name === 'session' ? 'focus' : screen.name === 'word' ? 'forward' : prevScreen.current === 'word' ? 'back' : undefined }
+
   const planInput = useMemo(() => {
     if (!settings || !data || data.language !== settings.activeLanguage) return null
     const now = new Date()
@@ -743,7 +751,7 @@ export default function App() {
               </p>
             )}
             <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>
-            <div key={screen.name === 'summary' ? 'session' : screen.name === 'word' ? `word:${screen.entryId}` : screen.name} className="screen-enter">
+            <div key={screenKey} className="screen-enter" data-transition={transition.current.value}>
             <Suspense fallback={<ScreenSkeleton kind={skeletonFor(screen.name)} />}>
             {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
               <SessionScreen
