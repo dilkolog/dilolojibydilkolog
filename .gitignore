@@ -25,3 +25,6 @@ dist-ssr
 .vercel
 .env*
 extension/dist
+
+# Local Claude preview config
+.claude

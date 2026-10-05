@@ -402,7 +402,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .error { color: var(--bad-text); font-size: var(--t-sm); }
 .notice { color: var(--ok-text); font-size: var(--t-sm); font-weight: 500; }
 
-details > summary { cursor: pointer; font-weight: 600; }
+details > summary { cursor: pointer; font-weight: 600; padding-block: 0.125rem; }
+/* Touch: a disclosure line is a full 44px target without looking bigger. */
+@media (pointer: coarse) { details > summary { padding-block: 0.625rem; margin-block: -0.5rem; } }
 details[open] > summary { margin-bottom: 1rem; }
 
 /* ---------- Onboarding ---------- */
@@ -420,9 +422,10 @@ details[open] > summary { margin-bottom: 1rem; }
 }
 .lang-card:active { transform: translateY(2px); }
 .lang-card { position: relative; }
-.lang-card .hello { display: block; font-family: var(--serif); font-size: var(--t-2xl); line-height: 1.2; color: var(--card-color); }
-.lang-card-check { position: absolute; top: 0.625rem; right: 0.625rem; display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: var(--r-full); background: var(--card-color); color: var(--on-color); animation: pop var(--dur) var(--ease-out); }
-.lang-card[aria-pressed='true'] { border-color: var(--card-color); box-shadow: 0 4px 0 var(--card-color); }
+/* Each card carries its own data-lang, so its hello uses that language's text tone (legible in both themes). */
+.lang-card .hello { display: block; font-family: var(--serif); font-size: var(--t-2xl); line-height: 1.2; color: var(--lang-text); }
+.lang-card-check { position: absolute; top: 0.625rem; right: 0.625rem; display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: var(--r-full); background: var(--lang); color: var(--on-lang); animation: pop var(--dur) var(--ease-out); }
+.lang-card[aria-pressed='true'] { border-color: var(--lang); box-shadow: 0 4px 0 var(--lang); }
 
 /* ---------- Home ---------- */
 
@@ -1034,8 +1037,9 @@ kbd {
 .badge-card {
   display: grid; gap: 0.25rem; align-content: start; justify-items: center; text-align: center;
   padding: 1rem 0.75rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow);
-  opacity: 0.7;
 }
+/* Locked badges: the art is greyed, the text stays legible (opacity on text would fail contrast). */
+.badge-card:not(.is-unlocked) .medal { opacity: 0.7; }
 .badge-card .badge-icon { font-size: var(--t-2xl); filter: grayscale(1); opacity: 0.6; }
 .badge-card.is-unlocked { opacity: 1; box-shadow: var(--shadow), inset 0 0 0 2px var(--gold); }
 .badge-card.is-unlocked .badge-icon { filter: none; opacity: 1; }
@@ -1804,7 +1808,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .hour-bar { height: 0.75rem; border-radius: var(--r-full); background: var(--rule); overflow: hidden; }
 .hour-bar span { display: block; height: 100%; background: color-mix(in srgb, var(--lang) 60%, var(--rule)); border-radius: inherit; }
 .hour-list li.is-best .hour-bar span { background: var(--ok); }
-.hour-list li.is-thin { opacity: 0.5; }
+.hour-list li.is-thin .hour-bar { opacity: 0.5; }
+.hour-list li.is-thin .hour-pct { color: var(--ink-soft); }
 .hour-pct { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
 .family-add .input { flex: 1; min-width: 10rem; }
 
@@ -2168,6 +2173,12 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .onboarding-steps li { display: grid; gap: 0.25rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
 .onboarding-steps li strong::before { counter-increment: step; content: counter(step) '. '; color: var(--lang-text); }
 .onboarding-form { display: grid; gap: 1.75rem; }
+/* Phones: the choices come right after the welcome; how it works follows below them. */
+@media (max-width: 40rem) {
+  .onboarding { display: flex; flex-direction: column; }
+  .onboarding-form { order: 1; }
+  .onboarding-steps { order: 2; }
+}
 .onboarding-form.stack > * { margin-top: 0; }
 .onboarding-row { align-items: flex-start; }
 .onboarding-row .field { gap: 0.5rem; }
@@ -3390,7 +3401,8 @@ button.badge-card:active { transform: none; }
 .garden-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; font-size: var(--t-sm); color: var(--ink-soft); }
 .garden-legend li { display: inline-flex; align-items: center; gap: 0.375rem; }
 .garden-legend strong { color: var(--ink); font-variant-numeric: tabular-nums; }
-.garden-legend li.is-zero { opacity: 0.6; }
+.garden-legend li.is-zero .garden-key { opacity: 0.4; }
+.garden-legend li.is-zero strong { color: var(--ink-soft); }
 .garden-key { width: 0.625rem; height: 0.625rem; border-radius: var(--r-xs); }
 /* The flower takes the language's colour, as in Plant.tsx. */
 :is(.garden-bar-seg, .garden-key).is-flower { background: var(--lang); }
@@ -3438,17 +3450,21 @@ button.badge-card:active { transform: none; }
   border-bottom-color: color-mix(in srgb, var(--plant-soil) 85%, #78350f);
 }
 .plant-tile { align-content: start; padding-bottom: 0.375rem; }
+/* Plants share each row evenly instead of leaving a gap at the right edge. */
+.bed-plants { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr)); }
+.bed-plants > li { display: grid; justify-items: center; min-width: 0; }
+.bed-plants .plant-tile { width: 100%; max-width: 5rem; }
 /* The verdict on the option's key: filled check or cross. */
 .option.is-correct .key { background: var(--ok-deep); border-color: var(--ok-deep); color: #fff; }
 .option.is-wrong .key { background: var(--bad-deep); border-color: var(--bad-deep); color: #fff; }
 /* Word page growth card: full width, with the six stages as a track. */
 .growth-track { list-style: none; margin: 0.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.25rem; counter-reset: none; }
-.growth-track li { position: relative; display: grid; justify-items: center; gap: 0.125rem; padding: 0.375rem 0.125rem; border-radius: var(--r-sm); font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); text-align: center; opacity: 0.55; }
+.growth-track li { position: relative; display: grid; justify-items: center; gap: 0.125rem; padding: 0.375rem 0.125rem; border-radius: var(--r-sm); font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); text-align: center; }
+.growth-track li:not(.is-done):not(.is-current) > :not(span) { opacity: 0.55; }
 .growth-track li::after { content: ''; position: absolute; top: 1.3rem; left: calc(50% + 1.1rem); right: calc(-50% + 1.1rem); height: 2px; border-radius: 1px; background: var(--rule); }
 .growth-track li:last-child::after { content: none; }
-.growth-track li.is-done { opacity: 1; }
 .growth-track li.is-done::after { background: var(--plant-leaf); }
-.growth-track li.is-current { opacity: 1; color: var(--lang-text); background: var(--lang-soft); }
+.growth-track li.is-current { color: var(--lang-text); background: var(--lang-soft); }
 @media (max-width: 30rem) { .growth-track span { display: none; } .growth-track li.is-current span { display: block; } }
 .growth > .stack { flex: 1; min-width: 0; }
 /* Home: the day at a glance under the greeting, as small labelled facts. */
@@ -3581,7 +3597,7 @@ button.badge-card:active { transform: none; }
 .setting-text { display: grid; gap: 0.1875rem; min-width: 0; }
 .settings-content .setting-text > strong { font-size: var(--t-base); font-weight: 600; }
 .settings-content .setting-help { display: block; margin: 0; font-size: var(--t-sm); line-height: 1.45; max-width: 34rem; }
-.help-more { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; padding: 0; margin-left: 0.125rem; vertical-align: -0.25em; border: 0; border-radius: var(--r-full); background: none; color: var(--ink-soft); cursor: pointer; }
+.help-more { position: relative; display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; padding: 0; margin: -0.125rem 0 -0.125rem 0.125rem; vertical-align: -0.375em; border: 0; border-radius: var(--r-full); background: none; color: var(--ink-soft); cursor: pointer; }
 .help-more:hover, .help-more[aria-expanded='true'] { color: var(--lang-text); background: var(--lang-soft); }
 .help-rest { display: block; margin-top: 0.5rem; padding: 0.625rem 0.75rem; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-soft); font-size: var(--t-sm); line-height: 1.5; }
 .seg-group { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; max-width: 100%; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface-2); }
@@ -3657,6 +3673,17 @@ button.badge-card:active { transform: none; }
 .conj-table tr.is-faded > * { opacity: 0.45; }
 /* Session on tall desktop screens: the question card sits near the optical centre instead of the
    top third (the lower half used to stay empty), with larger sentence type to match. */
+/* Phones: the answer choices sit at the bottom, where the thumb reaches; the question stays on top. */
+@media (max-width: 40rem) and (min-height: 38rem) {
+  .app:has(.session) { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }   /* no tab bar during a session */
+  .session { min-height: calc(100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
+  .session-stage, .session-stage > div { flex: 1; display: flex; flex-direction: column; }
+  .session-stage > div > .options { margin-top: auto; padding-top: 2rem; }
+  /* The choices rise with the feedback sheet (so the marked answers stay in view) instead of jumping. */
+  .session-stage .sheet-spacer { animation: spacer-grow var(--dur) var(--ease-out); }
+}
+@keyframes spacer-grow { from { height: 0; } }
+@media (prefers-reduced-motion: reduce) { .session-stage .sheet-spacer { animation: none; } }
 @media (min-width: 64rem) and (min-height: 44rem) {
   .session { min-height: calc(100vh - 4rem); display: flex; flex-direction: column; }
   .session-stage { margin-top: max(3vh, calc((100vh - 4rem - 34rem) / 3)); }

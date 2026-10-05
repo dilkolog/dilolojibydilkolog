@@ -24,6 +24,7 @@ export function Feedback({
   continueRef,
   onContinue,
   onOverride,
+  onDiscard,
   xp,
   mnemonic,
   onMnemonic,
@@ -42,6 +43,8 @@ export function Feedback({
   continueRef: React.RefObject<HTMLButtonElement | null>
   onContinue: () => void
   onOverride?: () => void
+  /** A choice answered by a slip of the finger is taken back, not counted. */
+  onDiscard?: () => void
 }) {
   const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
@@ -150,11 +153,16 @@ export function Feedback({
             </button>
           )}
           {mnemonic === 'saved' && <span className="small"><BulbIcon size={16} className="inline-icon" />Not kaydedildi</span>}
-          {(onOverride || onEdit) && (
+          {(onOverride || onDiscard || onEdit) && (
             <span className="sheet-links">
               {onOverride && (
                 <button className="link small" onClick={onOverride}>
                   Cevabım da doğru
+                </button>
+              )}
+              {onDiscard && (
+                <button className="link small" onClick={onDiscard} title="Bu cevap sayılmaz, kelime olduğu gibi kalır">
+                  Yanlış dokundum, sayma
                 </button>
               )}
               {onEdit && (

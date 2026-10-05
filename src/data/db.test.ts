@@ -115,6 +115,26 @@ describe('replaceReview', () => {
   })
 })
 
+describe('revertReview', () => {
+  it('takes an answer back: no event, no mistake, and no state for a word never answered before', async () => {
+    const { db, entry } = await seeded('t-revert')
+    const [event] = await db.events.toArray()
+    await db.revertReview(event.id, null, entry.id, [])
+    expect(await db.events.count()).toBe(0)
+    expect(await db.mistakes.count()).toBe(0)
+    expect(await db.wordStates.get(entry.id)).toBeUndefined()
+  })
+
+  it('restores the state the word had before', async () => {
+    const { db, entry } = await seeded('t-revert-2')
+    const [event] = await db.events.toArray()
+    const before = newWordState(entry, NOW)
+    await db.revertReview(event.id, before, entry.id, [])
+    expect((await db.wordStates.get(entry.id))!.stats.correct).toBe(before.stats.correct)
+    expect(await db.events.count()).toBe(0)
+  })
+})
+
 describe('media', () => {
   it('is stored, included in backups as data URLs, restored, and deleted with its word', async () => {
     const { db, entry } = await seeded('t-media')

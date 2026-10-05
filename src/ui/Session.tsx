@@ -83,7 +83,7 @@ export function SessionScreen(p: Props) {
   // State, not memo: an override can add an accepted spelling to a word mid-session.
   const [byId, setById] = useState(() => new Map(p.vocabulary.map((e) => [e.id, e])))
   /** The last answer, kept so "my answer was right too" can recompute it from the prior state. */
-  const lastAnswer = useRef<{ before: UserWordState; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
+  const lastAnswer = useRef<{ before: UserWordState; hadState: boolean; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
   // Distractors may come from the sample set too, so options are full even with few own words.
@@ -140,6 +140,9 @@ export function SessionScreen(p: Props) {
   const [confirmQuit, setConfirmQuit] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const answered = session.log.filter((l) => l.verdict).length
+  // The answer on screen is saved already but joins the log only on "Devam"; quitting counts it too.
+  const [answeredAt, setAnsweredAt] = useState<number | null>(null)
+  const onScreen = answeredAt === session.index ? 1 : 0
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       // A dialog that is open (or closing on this same keypress) owns Esc.
@@ -186,6 +189,8 @@ export function SessionScreen(p: Props) {
   }
 
   const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => {
+    setAnsweredAt(session.index)
+    const hadState = states.current.has(entry.id)
     const before = states.current.get(entry.id) ?? newWordState(entry, new Date())
     const input: AttemptInput = {
       exerciseType: item.exerciseType!,
@@ -206,7 +211,7 @@ export function SessionScreen(p: Props) {
     states.current.set(entry.id, result.state)
     mistakes.current = result.mistakes
     await p.db.saveReview(result)
-    lastAnswer.current = { before, bank, input, eventId: result.event.id }
+    lastAnswer.current = { before, hadState, bank, input, eventId: result.event.id }
     const runBefore = comboOf(session.log)
     const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: ev.verdict, hintsUsed, responseMs, mode: input.mode ?? p.mode, combo: runBefore })
     const run = ev.verdict === 'wrong' ? 0 : runBefore + 1
@@ -247,6 +252,19 @@ export function SessionScreen(p: Props) {
     }
     const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: 'correct', hintsUsed: input.hintsUsed, responseMs: input.responseMs, mode: p.mode, combo: 0 })
     return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state), xp }
+  }
+
+  /** "I tapped the wrong option": the answer is taken back as if it never happened. */
+  const discard = async (): Promise<boolean> => {
+    const last = lastAnswer.current
+    if (!last) return false
+    await p.db.revertReview(last.eventId, last.hadState ? last.before : null, entry.id, last.bank)
+    if (last.hadState) states.current.set(entry.id, last.before)
+    else states.current.delete(entry.id)
+    mistakes.current = last.bank
+    lastAnswer.current = null
+    setAnsweredAt(null)
+    return true
   }
 
   const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
@@ -319,8 +337,8 @@ export function SessionScreen(p: Props) {
           onConfirm={onQuit}
           onCancel={() => setConfirmQuit(false)}
         >
-          {answered > 0
-            ? `Verdiğin ${answered} cevap kaydedildi. Kalan ${session.items.length - session.index} soru bugünkü görevinde bekleyecek.`
+          {answered + onScreen > 0
+            ? `Verdiğin ${answered + onScreen} cevap kaydedildi. Kalan ${session.items.length - session.index - onScreen} soru bugünkü görevinde bekleyecek.`
             : 'Henüz cevap vermedin; görev olduğu gibi bekleyecek.'}
         </ConfirmDialog>
       )}
@@ -348,6 +366,7 @@ export function SessionScreen(p: Props) {
           rng={rng}
           onAnswer={answer}
           onOverride={override}
+          onDiscard={discard}
           onContinue={proceed}
           struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
           wordState={() => states.current.get(entry.id)}
@@ -369,6 +388,7 @@ interface RunnerProps {
   rng: Rng
   onAnswer: (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => Promise<Omit<SessionLogEntry, 'item'>>
   onOverride: () => Promise<Omit<SessionLogEntry, 'item'> | null>
+  onDiscard: () => Promise<boolean>
   onContinue: (log: Omit<SessionLogEntry, 'item'>) => void
   /** Speech rate for listening exercises, adapted to how well the word is heard already. */
   listenRate: number
@@ -388,7 +408,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onContinue, struggling, wordState, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
@@ -612,6 +632,14 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onCon
                 ? async () => {
                     const log = await onOverride()
                     if (log) setResult({ ...result, log, ev: { ...result.ev, verdict: 'correct', errorType: undefined, feedback: 'Doğru sayıldı. Bu yazımı bundan sonra kabul edeceğim.' } })
+                  }
+                : undefined
+            }
+            onDiscard={
+              exercise.kind === 'choice' && result.ev.verdict === 'wrong'
+                ? async () => {
+                    // Not counted: no verdict in the log, so no retry and no follow-up either.
+                    if (await onDiscard()) onContinue({ entryId: entry.id })
                   }
                 : undefined
             }

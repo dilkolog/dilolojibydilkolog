@@ -536,6 +536,21 @@ export class KelimeDB extends Dexie {
     })
   }
 
+  /**
+   * Takes an answer back entirely ("I tapped the wrong option"): the event goes, the word's state
+   * is what it was before (or none, for a word never answered), and so are its mistakes.
+   */
+  revertReview(eventId: string, before: UserWordState | null, entryId: string, mistakesBefore: Mistake[]) {
+    const restore = mistakesBefore.filter((m) => m.entryId === entryId)
+    return this.transaction('rw', [this.wordStates, this.events, this.mistakes], async () => {
+      await this.events.delete(eventId)
+      if (before) await this.wordStates.put(before)
+      else await this.wordStates.delete(entryId)
+      await this.mistakes.where('entryId').equals(entryId).delete()
+      await this.mistakes.bulkPut(restore)
+    })
+  }
+
   /** What was deleted, so a sync doesn't bring it back from another device. */
   async getDeleted(): Promise<Tombstone[]> {
     return ((await this.meta.get('deleted'))?.value as Tombstone[]) ?? []

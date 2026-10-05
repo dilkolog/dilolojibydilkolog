@@ -37,9 +37,9 @@ function Chips<T extends string | number>({
   format?: (v: T) => string
 }) {
   return (
-    <div className="choice-row" role="group" aria-label={label}>
+    <div className="seg-group" role="radiogroup" aria-label={label}>
       {options.map((o) => (
-        <button key={o} type="button" className="chip" aria-pressed={o === value} onClick={() => onChange(o)}>
+        <button key={o} type="button" role="radio" className="seg-btn" aria-checked={o === value} onClick={() => onChange(o)}>
           {format(o)}
         </button>
       ))}
@@ -49,8 +49,9 @@ function Chips<T extends string | number>({
 
 // ---------------------------------------------------------------------------
 
+// On a phone a focused field opens the keyboard and scrolls past the welcome.
+const FINE_POINTER = typeof matchMedia === 'function' && matchMedia('(pointer: fine)').matches
 const HELLO: Record<TargetLanguage, string> = { en: 'Hello!', fr: 'Bonjour !', es: '¡Hola!' }
-const CARD_COLOR: Record<TargetLanguage, string> = { en: 'var(--en)', fr: 'var(--fr)', es: 'var(--es-deep)' }
 
 export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
   const [language, setLanguage] = useState<TargetLanguage>('en')
@@ -119,7 +120,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
                 type="button"
                 className="lang-card"
                 aria-pressed={l === language}
-                style={{ ['--card-color' as string]: CARD_COLOR[l] }}
+                data-lang={l}
                 onClick={() => setLanguage(l)}
               >
                 <span className="hello">{HELLO[l]}</span>
@@ -137,7 +138,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
         <div className="row gap-4 onboarding-row">
           <label className="field grow">
             <span className="section-title">Adın ne?</span>
-            <input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Adın" autoFocus />
+            <input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Adın" autoFocus={FINE_POINTER} />
           </label>
           <div className="field">
             <span className="section-title">Günde kaç dakika?</span>
