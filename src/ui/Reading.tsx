@@ -443,27 +443,9 @@ export function ReadingScreen({
         <PageHeader
           title="Okuma"
           sub={`${LANGUAGE_NAME[language]} metinlerde ne kadarını bildiğini gör, bilmediklerini listene ekle.`}
+          // With an empty library the form below is already open: one way in, not three.
           action={
-            <button
-              className="btn"
-              onClick={() => {
-                const add = document.querySelector<HTMLDetailsElement>('details.add-text')
-                if (add) {
-                  add.open = true
-                  add.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                }
-              }}
-            >
-              <PlusIcon size={18} /> Metin ekle
-            </button>
-          }
-        />
-        <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
-        {library.length === 0 && (
-          <EmptyState
-            art="library"
-            title="Kütüphanen boş"
-            action={
+            library.length > 0 ? (
               <button
                 className="btn"
                 onClick={() => {
@@ -474,11 +456,15 @@ export function ReadingScreen({
                   }
                 }}
               >
-                <PlusIcon size={18} /> İlk metnini ekle
+                <PlusIcon size={18} /> Metin ekle
               </button>
-            }
-          >
-            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini listene eklersin.
+            ) : undefined
+          }
+        />
+        <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
+        {library.length === 0 && (
+          <EmptyState art="library" title="Kütüphanen boş">
+            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini listene eklersin. Aşağıdan ilk metnini ekle.
           </EmptyState>
         )}
         {library.length > 0 && (
@@ -514,23 +500,26 @@ export function ReadingScreen({
             <button className="btn" onClick={start} disabled={!draft.trim()}>
               Okumaya başla
             </button>
+          </div>
+          <p className="small muted">ya da başka bir kaynaktan:</p>
+          <div className="add-sources">
             <label className="btn btn-quiet file-btn">
-              Alt yazı ya da metin dosyası yükle
+              Alt yazı ya da metin dosyası
               <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
             </label>
             <label className="btn btn-quiet file-btn">
-              <BookIcon size={16} className="inline-icon" />Kitap yükle (EPUB)
+              <BookIcon size={16} className="inline-icon" />Kitap (EPUB)
               <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
             </label>
           </div>
           <form
-            className="row"
+            className="add-youtube"
             onSubmit={(e) => {
               e.preventDefault()
               void importYoutube()
             }}
           >
-            <input className="input" style={{ flex: 1, minWidth: '14rem' }} value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı" aria-label="YouTube bağlantısı" inputMode="url" />
+            <input className="input" value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı" aria-label="YouTube bağlantısı" inputMode="url" />
             <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
               {ytBusy ? 'Getiriliyor…' : <><PlayIcon size={14} className="inline-icon" />Altyazıyı getir</>}
             </button>

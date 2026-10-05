@@ -103,3 +103,16 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   await toggles.nth(2).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
 })
+
+test('an empty reading library has one way in: the open form, not three buttons', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await expect(page.locator('details.add-text')).toHaveJSProperty('open', true)
+  await expect(page.getByRole('button', { name: /Metin ekle|İlk metnini ekle/ })).toHaveCount(0)
+  // The other sources sit as tiles of one width; the YouTube link has a line of its own.
+  const tiles = await page.locator('.add-sources .btn').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().width)))
+  expect(new Set(tiles).size).toBe(1)
+  const field = await page.getByLabel('YouTube bağlantısı').boundingBox()
+  const form = await page.locator('.add-youtube').boundingBox()
+  expect(field!.width).toBeGreaterThan(form!.width * 0.9)
+})
