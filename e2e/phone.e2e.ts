@@ -233,3 +233,40 @@ test('a word marked hard in a session is gathered for a practice of its own', as
   await expect(page.locator('.session')).toBeVisible()
   await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('the profile can be dressed up: banner, frame, interests, a goal; locked styles say what opens them', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await finishSession(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('button', { name: 'Özelleştir' }).click()
+  const card = page.locator('.profile-card')
+  // Free styles apply at once.
+  await page.getByRole('radio', { name: /Gün doğumu/ }).click()
+  await expect(card).toHaveAttribute('data-banner', 'sunrise')
+  await page.getByRole('radio', { name: /Noktalı/ }).click()
+  await expect(card.locator('.avatar-ring')).toHaveAttribute('data-frame', 'dots')
+  // A locked one cannot be picked and says what opens it.
+  const locked = page.getByRole('radio', { name: /Galaksi/ })
+  await expect(locked).toBeDisabled()
+  await expect(locked).toContainText('25. seviyeye ulaş')
+  // Interests and a goal show on the card.
+  await page.getByRole('button', { name: 'Seyahat', exact: true }).click()
+  await page.getByRole('radio', { name: 'B2', exact: true }).click()
+  await expect(card.locator('.interest-chip', { hasText: 'Seyahat' })).toBeVisible()
+  await expect(card.locator('.goal-chip')).toContainText('Hedef B2')
+  // Interests stop at six.
+  for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) await page.getByRole('button', { name: i, exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Sanat', exact: true })).toBeDisabled()
+  // The tinted banner keeps the card readable, in both themes.
+  const found: string[] = []
+  for (const theme of ['light', 'dark']) {
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    for (const c of await contrastProblems(page)) found.push(`${theme}: ${c}`)
+  }
+  expect(found).toEqual([])
+  // Kept after leaving and coming back.
+  await openScreen(page, 'Bugün')
+  await openScreen(page, 'Profil')
+  await expect(card).toHaveAttribute('data-banner', 'sunrise')
+})
