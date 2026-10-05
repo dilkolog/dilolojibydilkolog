@@ -26,7 +26,8 @@ export function FrequencyCoverageCard({ db, language, vocabulary, states }: { db
       <h2 className="section-title">En sık kelimelerden ne kadarını biliyorsun</h2>
       <p className="small muted">
         Bir dilin en sık birkaç bin kelimesi her metnin büyük kısmını oluşturur; rahat okumak için ilk katmanların %95'ini bilmek gerekir (Nation 2006).
-        Kelimeler kök olarak sayılır; okurken işaretlediklerin ve listende öğrendiklerin bilinen sayılır.
+        Kelimeler kök olarak sayılır; okurken işaretlediklerin, listende öğrendiklerin ve artikel, edat gibi temel kelimeler (le, de, et…) bilinen sayılır. Bu yüzden
+        hiç kelime öğrenmeden de yüzde sıfırdan başlamaz.
       </p>
       <ul className="band-list">
         {bands.map((b) => (

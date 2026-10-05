@@ -3566,6 +3566,8 @@ button.badge-card:active { transform: none; }
 /* Overview: the tall coverage card spans two rows on the right; the two short cards stack left. */
 @container main (min-width: 56rem) {
   .overview-grid > :nth-child(2) { grid-row: span 2; }
+  /* The tall card's extra height goes to the second row, so the left cards sit one under the other. */
+  .overview-grid { grid-template-rows: auto 1fr; }
 }
 /* Stage bars in the garden's colours; chart legends as small keyed items. */
 .bar-fill.stage-fill.is-flower { background: var(--lang); }
