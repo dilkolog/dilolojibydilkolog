@@ -37,6 +37,8 @@ export async function openScreen(page: Page, name: string) {
     if (tab) await page.locator('.hub-tab').filter({ hasText: new RegExp(`^${tab}\\d*$`) }).click()
   }
   await page.waitForTimeout(400)
+  // A long page keeps its groups closed on a phone; the checks that walk a screen need all of it.
+  for (let n = await page.locator('.group-toggle[aria-expanded=false]').count(); n > 0; n--) await page.locator('.group-toggle[aria-expanded=false]').first().click()
 }
 
 export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Okuma', 'Hikaye', 'Oyunlar', 'Yaz & konuş', 'İlerleme', 'Profil', 'Ayarlar']

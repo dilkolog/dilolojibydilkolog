@@ -13,7 +13,7 @@ import { ErrorReportCard } from './ErrorReport'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
-import { GroupTitle, JumpNav } from './JumpNav'
+import { GroupToggle, JumpNav } from './JumpNav'
 import { TenseWeakness } from './TenseWeakness'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
@@ -60,6 +60,11 @@ export function ProgressScreen({
   }, [db, language])
   const [events, setEvents] = useState<ReviewEvent[]>([])
   const game = useGame()
+  // The page is long, so on a phone only the overview starts open; a wide screen shows everything.
+  const [opened, setOpened] = useState<Set<string>>(() => (window.matchMedia('(min-width: 64rem)').matches ? new Set(PROGRESS_GROUPS.map(([id]) => id)) : new Set(['p-overview'])))
+  const isOpen = (id: string) => opened.has(id)
+  const open = (id: string) => setOpened((s) => new Set(s).add(id))
+  const toggle = (id: string) => setOpened((s) => (s.has(id) ? new Set([...s].filter((x) => x !== id)) : new Set(s).add(id)))
 
   useEffect(() => {
     const now = new Date()
@@ -104,242 +109,262 @@ export function ProgressScreen({
         active={stats.activeVocabulary}
         focus={weakestSkill(skillProfile(states, scheduler, now))}
       />
-      <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" />
-      <GroupTitle id="p-overview" icon={<StarIcon size={18} />}>Genel bakış</GroupTitle>
-      <section className="section stack span-2 overview-grid">
-        <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
-        <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
-        <div className="hero-stat card">
-          <span className="hero-number">{stats.activeVocabulary}</span>
-          <span>
-            <strong>aktif kelime</strong>
-            <br />
-            <span className="small muted">
-              İpucu olmadan cümlede üretebildiğin ve şu an hâlâ hatırladığın kelimeler. Asıl hedef bu sayının büyümesi.
-            </span>
-          </span>
-        </div>
-      </section>
-
-      <GroupTitle id="p-tests" icon={<CheckIcon size={18} />}>Testler</GroupTitle>
-      <section className="section stack">
-        <h2 className="section-title">Kelime dağarcığı</h2>
-        {tests.length > 0 ? (
-          <p>
-            Son testte {LANGUAGE_NAME[language]} için yaklaşık <strong>{tests.at(-1)!.estimate.toLocaleString('tr-TR')}</strong> kelime (
-            {new Date(tests.at(-1)!.at).toLocaleDateString('tr-TR')}).
-            {tests.length > 1 && (
-              <span className="muted"> Önceki testler: {tests.slice(-4, -1).map((t) => t.estimate.toLocaleString('tr-TR')).join(' → ')}.</span>
-            )}
-          </p>
-        ) : (
-          <p className="small muted">Birkaç dakikalık bir testle {LANGUAGE_NAME[language]} kelime dağarcığının büyüklüğünü tahmin et; ilerlemeni zamanla buradan izle.</p>
-        )}
-        <div className="row">
-          <button className="btn btn-quiet" onClick={onVocabTest}>
-            {tests.length ? 'Testi tekrarla' : 'Testi yap'}
-          </button>
-        </div>
-      </section>
-
-      <section className="section stack">
-        <h2 className="section-title">Hatırlama sınavı</h2>
-        {exams.length > 0 ? (
-          <p>
-            Son sınavda <strong>%{Math.round(exams.at(-1)!.actual * 100)}</strong> hatırladın (model %{Math.round(exams.at(-1)!.predicted * 100)} tahmin
-            etmişti). {exams.length > 1 && <span className="muted">Önceki: {exams.slice(-4, -1).map((e) => `%${Math.round(e.actual * 100)}`).join(' → ')}</span>}
-          </p>
-        ) : (
-          <p className="small muted">Ayda bir, öğrendiğin kelimelerden habersiz 20 soru: ne kadarının gerçekten kaldığını ölçer.</p>
-        )}
-        {(() => {
-          const days = exams.length ? Math.floor((Date.now() - new Date(exams.at(-1)!.at).getTime()) / 86_400_000) : Infinity
-          return (
-            <div className="row">
-              <button className={`btn${days >= EXAM_INTERVAL_DAYS ? '' : ' btn-quiet'}`} onClick={onExam}>
-                {exams.length ? 'Sınavı tekrarla' : 'Sınava gir'}
-              </button>
-              {days >= EXAM_INTERVAL_DAYS && exams.length > 0 && <span className="small">Aylık sınav zamanı geldi.</span>}
+      <JumpNav groups={PROGRESS_GROUPS} label="İlerleme bölümleri" onPick={open} />
+      <GroupToggle id="p-overview" icon={<StarIcon size={18} />} open={isOpen('p-overview')} onToggle={() => toggle('p-overview')}>Genel bakış</GroupToggle>
+      {isOpen('p-overview') && (
+        <>
+          <section className="section stack span-2 overview-grid">
+            <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
+            <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
+            <div className="hero-stat card">
+              <span className="hero-number">{stats.activeVocabulary}</span>
+              <span>
+                <strong>aktif kelime</strong>
+                <br />
+                <span className="small muted">
+                  İpucu olmadan cümlede üretebildiğin ve şu an hâlâ hatırladığın kelimeler. Asıl hedef bu sayının büyümesi.
+                </span>
+              </span>
             </div>
-          )
-        })()}
-      </section>
+          </section>
 
-      <GroupTitle id="p-memory" icon={<CalendarIcon size={18} />}>Tekrarlar</GroupTitle>
-
-      <section className="section stack">
-        <p className="eyebrow eyebrow-icon"><CalendarIcon size={16} /> Önümüzdeki {DAYS} günün tekrarları</p>
-        <h2 className="section-title">
-          {forecastTotal === 0 ? 'Yakında tekrar yok' : `${forecastTotal} tekrar; en yoğunu ${busiest === forecast[0] ? 'bugün' : dayLabel(busiest.date, { weekday: 'long' })} (${busiest.count})`}
-        </h2>
-        <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
-        <ForecastChart forecast={forecast} />
-      </section>
-
-      {recallBins.reduce((n, b) => n + b.answers, 0) >= 30 && (
-        <section className="section stack">
-          <p className="eyebrow eyebrow-icon"><BrainIcon size={16} /> Model tahmini ve gerçek</p>
-          <h2 className="section-title">
-            {Math.abs(recallGap) <= 5
-              ? 'Tekrarlar doğru zamanda geliyor'
-              : recallGap < 0
-                ? `Tahminden ${-recallGap} puan az hatırlıyorsun`
-                : `Tahminden ${recallGap} puan fazla hatırlıyorsun`}
-          </h2>
-          <p className="small muted">
-            Her tekrardan önce FSRS kelimeyi hatırlama ihtimalini tahmin eder. Halka tahmin, nokta gerçekte hatırladığın oran. İkisi yakınsa tekrarlar doğru
-            zamanda geliyor demektir.
-          </p>
-          <div className="recall-chart" role="table" aria-label="Tahmin edilen ve gerçek hatırlama oranı">
-            {recallBins.map((b) => (
-              <div className="recall-row" role="row" key={b.from}>
-                <span role="rowheader" className="small">
-                  %{Math.round(b.from * 100)}–{Math.round(b.to * 100)}
-                </span>
-                <div className="recall-track" role="cell" aria-label={`Tahmin %${Math.round(b.predicted * 100)}, gerçek %${Math.round(b.actual * 100)}`}>
-                  <span className="recall-pred" style={{ left: `${b.predicted * 100}%` }} title={`Tahmin %${Math.round(b.predicted * 100)}`} />
-                  <span className="recall-act" style={{ left: `${b.actual * 100}%` }} title={`Gerçek %${Math.round(b.actual * 100)}`} />
-                </div>
-                <span role="cell" className="small muted recall-n">
-                  %{Math.round(b.actual * 100)} · {b.answers}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
+        </>
       )}
-
-      {calib.sure.answers + calib.unsure.answers >= 10 && (
-        <section className="section stack">
-          <p className="eyebrow eyebrow-icon"><TargetIcon size={16} /> Ne kadar bildiğini ne kadar iyi biliyorsun?</p>
-          <h2 className="section-title">
-            {calib.sure.answers > 0 ? `Emin olduğun cevapların %${pct(calib.sure)}'i doğru` : `Emin olmadığın cevapların %${pct(calib.unsure)}'i doğru`}
-          </h2>
-          <div className="calib">
-            {calib.sure.answers > 0 && (
+      <GroupToggle id="p-tests" icon={<CheckIcon size={18} />} open={isOpen('p-tests')} onToggle={() => toggle('p-tests')}>Testler</GroupToggle>
+      {isOpen('p-tests') && (
+        <>
+          <section className="section stack">
+            <h2 className="section-title">Kelime dağarcığı</h2>
+            {tests.length > 0 ? (
               <p>
-                <span className="calib-num">%{pct(calib.sure)}</span>
-                <span className="small muted">emin olduğun {calib.sure.answers} cevabın doğru</span>
+                Son testte {LANGUAGE_NAME[language]} için yaklaşık <strong>{tests.at(-1)!.estimate.toLocaleString('tr-TR')}</strong> kelime (
+                {new Date(tests.at(-1)!.at).toLocaleDateString('tr-TR')}).
+                {tests.length > 1 && (
+                  <span className="muted"> Önceki testler: {tests.slice(-4, -1).map((t) => t.estimate.toLocaleString('tr-TR')).join(' → ')}.</span>
+                )}
               </p>
+            ) : (
+              <p className="small muted">Birkaç dakikalık bir testle {LANGUAGE_NAME[language]} kelime dağarcığının büyüklüğünü tahmin et; ilerlemeni zamanla buradan izle.</p>
             )}
-            {calib.unsure.answers > 0 && (
-              <p>
-                <span className="calib-num">%{pct(calib.unsure)}</span>
-                <span className="small muted">emin olmadığın {calib.unsure.answers} cevabın doğru</span>
-              </p>
-            )}
-          </div>
-          <p className="small muted">
-            Son 30 gün.{' '}
-            {calib.sure.answers >= 10 && pct(calib.sure) < 85
-              ? 'Emin olduğun cevapların fazlası yanlış çıkıyor: emin değilsen Shift ile işaretle, o kelimeler daha erken tekrar gelsin.'
-              : calib.unsure.answers >= 10 && pct(calib.unsure) > 85
-                ? 'Emin olmadığın cevapların çoğu doğru: kendine biraz daha güvenebilirsin.'
-                : 'Emin olduğunda neredeyse hep doğru biliyorsan, kendini iyi tanıyorsun demektir.'}
-          </p>
-        </section>
-      )}
+            <div className="row">
+              <button className="btn btn-quiet" onClick={onVocabTest}>
+                {tests.length ? 'Testi tekrarla' : 'Testi yap'}
+              </button>
+            </div>
+          </section>
 
-      <section className="section stack">
-        <h2 className="section-title">Zorlandığın kelimeler</h2>
-        {hard.length === 0 ? (
-          <p className="muted">Henüz belirgin bir zorluk yok. En az 3 kez cevapladığın kelimeler burada sıralanır.</p>
-        ) : (
-          <ul className="word-list">
-            {hard.map((h) => {
-              const e = byId.get(h.entryId)
-              if (!e) return null
+          <section className="section stack">
+            <h2 className="section-title">Hatırlama sınavı</h2>
+            {exams.length > 0 ? (
+              <p>
+                Son sınavda <strong>%{Math.round(exams.at(-1)!.actual * 100)}</strong> hatırladın (model %{Math.round(exams.at(-1)!.predicted * 100)} tahmin
+                etmişti). {exams.length > 1 && <span className="muted">Önceki: {exams.slice(-4, -1).map((e) => `%${Math.round(e.actual * 100)}`).join(' → ')}</span>}
+              </p>
+            ) : (
+              <p className="small muted">Ayda bir, öğrendiğin kelimelerden habersiz 20 soru: ne kadarının gerçekten kaldığını ölçer.</p>
+            )}
+            {(() => {
+              const days = exams.length ? Math.floor((Date.now() - new Date(exams.at(-1)!.at).getTime()) / 86_400_000) : Infinity
               return (
-                <li key={h.entryId}>
-                  <button className="word-row" onClick={() => onOpen(h.entryId)}>
-                    <span className="word-row-text">
-                      <span className="w">{displayForm(e)}</span>
-                      <span className="meta">{e.senses[0].gloss}</span>
-                    </span>
-                    <span className="small muted">
-                      {h.wrong}/{h.total} yanlış
-                    </span>
-                    <span className="hard-rate" style={{ ['--rate' as string]: h.rate }}>
-                      %{Math.round(h.rate * 100)}
-                    </span>
+                <div className="row">
+                  <button className={`btn${days >= EXAM_INTERVAL_DAYS ? '' : ' btn-quiet'}`} onClick={onExam}>
+                    {exams.length ? 'Sınavı tekrarla' : 'Sınava gir'}
                   </button>
-                </li>
+                  {days >= EXAM_INTERVAL_DAYS && exams.length > 0 && <span className="small">Aylık sınav zamanı geldi.</span>}
+                </div>
               )
-            })}
-          </ul>
-        )}
-        {errors.length > 0 && (
-          <>
-            <h3 className="field">
-              <label>Hata türleri</label>
-            </h3>
-            <div className="bars">
-              {errors
-                .sort((a, b) => b[1] - a[1])
-                .map(([t, n]) => (
-                  <div className="bar-row" key={t}>
-                    <span>{ERROR_NAME[t]}</span>
-                    <div className="bar-track bar-track-plain">
-                      <div className="bar-fill" style={{ width: `${(n / Math.max(...errors.map((x) => x[1]))) * 100}%`, background: 'var(--bad)' }} />
+            })()}
+          </section>
+
+        </>
+      )}
+      <GroupToggle id="p-memory" icon={<CalendarIcon size={18} />} open={isOpen('p-memory')} onToggle={() => toggle('p-memory')}>Tekrarlar</GroupToggle>
+      {isOpen('p-memory') && (
+        <>
+
+          <section className="section stack">
+            <p className="eyebrow eyebrow-icon"><CalendarIcon size={16} /> Önümüzdeki {DAYS} günün tekrarları</p>
+            <h2 className="section-title">
+              {forecastTotal === 0 ? 'Yakında tekrar yok' : `${forecastTotal} tekrar; en yoğunu ${busiest === forecast[0] ? 'bugün' : dayLabel(busiest.date, { weekday: 'long' })} (${busiest.count})`}
+            </h2>
+            <p className="small muted">Her gün kaç kelimenin tekrar zamanının geleceği. Bugünkü sütun, gecikmiş olanları da içerir.</p>
+            <ForecastChart forecast={forecast} />
+          </section>
+
+          {recallBins.reduce((n, b) => n + b.answers, 0) >= 30 && (
+            <section className="section stack">
+              <p className="eyebrow eyebrow-icon"><BrainIcon size={16} /> Model tahmini ve gerçek</p>
+              <h2 className="section-title">
+                {Math.abs(recallGap) <= 5
+                  ? 'Tekrarlar doğru zamanda geliyor'
+                  : recallGap < 0
+                    ? `Tahminden ${-recallGap} puan az hatırlıyorsun`
+                    : `Tahminden ${recallGap} puan fazla hatırlıyorsun`}
+              </h2>
+              <p className="small muted">
+                Her tekrardan önce FSRS kelimeyi hatırlama ihtimalini tahmin eder. Halka tahmin, nokta gerçekte hatırladığın oran. İkisi yakınsa tekrarlar doğru
+                zamanda geliyor demektir.
+              </p>
+              <div className="recall-chart" role="table" aria-label="Tahmin edilen ve gerçek hatırlama oranı">
+                {recallBins.map((b) => (
+                  <div className="recall-row" role="row" key={b.from}>
+                    <span role="rowheader" className="small">
+                      %{Math.round(b.from * 100)}–{Math.round(b.to * 100)}
+                    </span>
+                    <div className="recall-track" role="cell" aria-label={`Tahmin %${Math.round(b.predicted * 100)}, gerçek %${Math.round(b.actual * 100)}`}>
+                      <span className="recall-pred" style={{ left: `${b.predicted * 100}%` }} title={`Tahmin %${Math.round(b.predicted * 100)}`} />
+                      <span className="recall-act" style={{ left: `${b.actual * 100}%` }} title={`Gerçek %${Math.round(b.actual * 100)}`} />
                     </div>
-                    <span className="bar-value">{n}</span>
+                    <span role="cell" className="small muted recall-n">
+                      %{Math.round(b.actual * 100)} · {b.answers}
+                    </span>
                   </div>
                 ))}
-            </div>
-          </>
-        )}
-      </section>
-
-      <section className="section stack">
-        <p className="eyebrow eyebrow-icon"><LeafIcon size={16} /> Kelimeler nerede?</p>
-        <h2 className="section-title">
-          {stats.stageCounts[topStage] > 0 ? `En çok kelime “${STAGE_NAME[topStage]}” aşamasında (${stats.stageCounts[topStage]})` : 'Henüz başlanmış kelime yok'}
-        </h2>
-        <div className="bars">
-          {[...MASTERY_STAGES].reverse().map((stage) => {
-            const i = MASTERY_STAGES.indexOf(stage)
-            // The garden's colours: flower, growing, sprout (as in Kelimeler → Bahçe).
-            return <StageBar key={stage} label={STAGE_NAME[stage]} value={stats.stageCounts[stage]} max={maxStage} tone={i === MASTERY_STAGES.length - 1 ? 'flower' : i === 0 ? 'sprout' : 'growing'} />
-          })}
-          <StageBar label="Başlanmadı" value={stats.notStarted} max={maxStage} tone="seed" muted />
-        </div>
-      </section>
-
-      <GroupTitle id="p-activity" icon={<PulseIcon size={18} />}>Çalışma düzenin</GroupTitle>
-      <section className="section stack">
-        <p className="eyebrow eyebrow-icon"><PulseIcon size={16} /> Son {DAYS} gün</p>
-        <h2 className="section-title">{stats.daysPractised > 0 ? `${DAYS} günün ${stats.daysPractised} gününde çalıştın` : 'Bu dönemde henüz çalışma yok'}</h2>
-        <p className="small muted">Günlük cevap sayısı; serbest pratik sayılmaz.</p>
-        <ActivityChart activity={stats.activity} />
-      </section>
-
-      <YearCalendar db={db} />
-      <BestHoursCard db={db} />
-
-      <GroupTitle id="p-skills" icon={<TargetIcon size={18} />}>Beceriler ve hatalar</GroupTitle>
-      <section className="section stack">
-        <p className="eyebrow eyebrow-icon"><StarIcon size={16} /> Beceriler</p>
-        <h2 className="section-title">
-          {knownSkills.length >= 2
-            ? `En güçlü ${SKILL_NAME[knownSkills[0]].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills[0]]}), en zayıf ${SKILL_NAME[knownSkills.at(-1)!].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills.at(-1)!]})`
-            : 'Beceriler çalıştıkça burada görünür'}
-        </h2>
-        <div className="bars">
-          {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
-            <div className="bar-row" key={s}>
-              <span>{SKILL_NAME[s]}</span>
-              <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
               </div>
-              <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
+            </section>
+          )}
+
+          {calib.sure.answers + calib.unsure.answers >= 10 && (
+            <section className="section stack">
+              <p className="eyebrow eyebrow-icon"><TargetIcon size={16} /> Ne kadar bildiğini ne kadar iyi biliyorsun?</p>
+              <h2 className="section-title">
+                {calib.sure.answers > 0 ? `Emin olduğun cevapların %${pct(calib.sure)}'i doğru` : `Emin olmadığın cevapların %${pct(calib.unsure)}'i doğru`}
+              </h2>
+              <div className="calib">
+                {calib.sure.answers > 0 && (
+                  <p>
+                    <span className="calib-num">%{pct(calib.sure)}</span>
+                    <span className="small muted">emin olduğun {calib.sure.answers} cevabın doğru</span>
+                  </p>
+                )}
+                {calib.unsure.answers > 0 && (
+                  <p>
+                    <span className="calib-num">%{pct(calib.unsure)}</span>
+                    <span className="small muted">emin olmadığın {calib.unsure.answers} cevabın doğru</span>
+                  </p>
+                )}
+              </div>
+              <p className="small muted">
+                Son 30 gün.{' '}
+                {calib.sure.answers >= 10 && pct(calib.sure) < 85
+                  ? 'Emin olduğun cevapların fazlası yanlış çıkıyor: emin değilsen Shift ile işaretle, o kelimeler daha erken tekrar gelsin.'
+                  : calib.unsure.answers >= 10 && pct(calib.unsure) > 85
+                    ? 'Emin olmadığın cevapların çoğu doğru: kendine biraz daha güvenebilirsin.'
+                    : 'Emin olduğunda neredeyse hep doğru biliyorsan, kendini iyi tanıyorsun demektir.'}
+              </p>
+            </section>
+          )}
+
+          <section className="section stack">
+            <h2 className="section-title">Zorlandığın kelimeler</h2>
+            {hard.length === 0 ? (
+              <p className="muted">Henüz belirgin bir zorluk yok. En az 3 kez cevapladığın kelimeler burada sıralanır.</p>
+            ) : (
+              <ul className="word-list">
+                {hard.map((h) => {
+                  const e = byId.get(h.entryId)
+                  if (!e) return null
+                  return (
+                    <li key={h.entryId}>
+                      <button className="word-row" onClick={() => onOpen(h.entryId)}>
+                        <span className="word-row-text">
+                          <span className="w">{displayForm(e)}</span>
+                          <span className="meta">{e.senses[0].gloss}</span>
+                        </span>
+                        <span className="small muted">
+                          {h.wrong}/{h.total} yanlış
+                        </span>
+                        <span className="hard-rate" style={{ ['--rate' as string]: h.rate }}>
+                          %{Math.round(h.rate * 100)}
+                        </span>
+                      </button>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+            {errors.length > 0 && (
+              <>
+                <h3 className="field">
+                  <label>Hata türleri</label>
+                </h3>
+                <div className="bars">
+                  {errors
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([t, n]) => (
+                      <div className="bar-row" key={t}>
+                        <span>{ERROR_NAME[t]}</span>
+                        <div className="bar-track bar-track-plain">
+                          <div className="bar-fill" style={{ width: `${(n / Math.max(...errors.map((x) => x[1]))) * 100}%`, background: 'var(--bad)' }} />
+                        </div>
+                        <span className="bar-value">{n}</span>
+                      </div>
+                    ))}
+                </div>
+              </>
+            )}
+          </section>
+
+          <section className="section stack">
+            <p className="eyebrow eyebrow-icon"><LeafIcon size={16} /> Kelimeler nerede?</p>
+            <h2 className="section-title">
+              {stats.stageCounts[topStage] > 0 ? `En çok kelime “${STAGE_NAME[topStage]}” aşamasında (${stats.stageCounts[topStage]})` : 'Henüz başlanmış kelime yok'}
+            </h2>
+            <div className="bars">
+              {[...MASTERY_STAGES].reverse().map((stage) => {
+                const i = MASTERY_STAGES.indexOf(stage)
+                // The garden's colours: flower, growing, sprout (as in Kelimeler → Bahçe).
+                return <StageBar key={stage} label={STAGE_NAME[stage]} value={stats.stageCounts[stage]} max={maxStage} tone={i === MASTERY_STAGES.length - 1 ? 'flower' : i === 0 ? 'sprout' : 'growing'} />
+              })}
+              <StageBar label="Başlanmadı" value={stats.notStarted} max={maxStage} tone="seed" muted />
             </div>
-          ))}
-        </div>
-        <p className="small muted">Yüzde, o beceride çalıştığın kelimeleri şu an hatırlama olasılığının ortalaması.</p>
-      </section>
-      {/* Beside the skills: conjugation by tense (French and Spanish), so the row isn't half empty. */}
-      <TenseWeakness language={language} vocabulary={vocabulary} />
-      <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
+          </section>
+
+        </>
+      )}
+      <GroupToggle id="p-activity" icon={<PulseIcon size={18} />} open={isOpen('p-activity')} onToggle={() => toggle('p-activity')}>Çalışma düzenin</GroupToggle>
+      {isOpen('p-activity') && (
+        <>
+          <section className="section stack">
+            <p className="eyebrow eyebrow-icon"><PulseIcon size={16} /> Son {DAYS} gün</p>
+            <h2 className="section-title">{stats.daysPractised > 0 ? `${DAYS} günün ${stats.daysPractised} gününde çalıştın` : 'Bu dönemde henüz çalışma yok'}</h2>
+            <p className="small muted">Günlük cevap sayısı; serbest pratik sayılmaz.</p>
+            <ActivityChart activity={stats.activity} />
+          </section>
+
+          <YearCalendar db={db} />
+          <BestHoursCard db={db} />
+
+        </>
+      )}
+      <GroupToggle id="p-skills" icon={<TargetIcon size={18} />} open={isOpen('p-skills')} onToggle={() => toggle('p-skills')}>Beceriler ve hatalar</GroupToggle>
+      {isOpen('p-skills') && (
+        <>
+          <section className="section stack">
+            <p className="eyebrow eyebrow-icon"><StarIcon size={16} /> Beceriler</p>
+            <h2 className="section-title">
+              {knownSkills.length >= 2
+                ? `En güçlü ${SKILL_NAME[knownSkills[0]].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills[0]]}), en zayıf ${SKILL_NAME[knownSkills.at(-1)!].toLocaleLowerCase('tr-TR')} (%${profile[knownSkills.at(-1)!]})`
+                : 'Beceriler çalıştıkça burada görünür'}
+            </h2>
+            <div className="bars">
+              {SKILLS.filter((s) => s !== 'gender' || profile.gender !== null).map((s) => (
+                <div className="bar-row" key={s}>
+                  <span>{SKILL_NAME[s]}</span>
+                  <div className="bar-track">
+                    <div className="bar-fill" style={{ width: `${profile[s] ?? 0}%` }} />
+                  </div>
+                  <span className="bar-value">{profile[s] === null ? 'henüz yok' : `%${profile[s]}`}</span>
+                </div>
+              ))}
+            </div>
+            <p className="small muted">Yüzde, o beceride çalıştığın kelimeleri şu an hatırlama olasılığının ortalaması.</p>
+          </section>
+          {/* Beside the skills: conjugation by tense (French and Spanish), so the row isn't half empty. */}
+          <TenseWeakness language={language} vocabulary={vocabulary} />
+          <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
+        </>
+      )}
     </div>
   )
 }

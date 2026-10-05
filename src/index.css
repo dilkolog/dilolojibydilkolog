@@ -3942,3 +3942,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .garden-rain { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 30; background: linear-gradient(to bottom, rgb(56 189 248 / 0.1), transparent 60%); animation: fade 200ms var(--ease-out); }
 .garden-rain i { position: absolute; top: -30px; width: 2px; border-radius: 2px; background: linear-gradient(to bottom, transparent, #38bdf8); animation: rain-drop 0.7s linear infinite; }
 @keyframes rain-drop { to { transform: translateY(110vh); } }
+
+/* A group title that opens and closes its group. */
+.group-toggle { display: flex; align-items: center; gap: 0.5rem; width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.group-toggle .group-chevron { margin-left: auto; color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
+.group-toggle[aria-expanded='false'] .group-chevron { transform: rotate(-90deg); }
+.group-toggle:hover .group-chevron { color: var(--ink); }

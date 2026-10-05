@@ -57,7 +57,7 @@ export function ProduceScreen(p: Props) {
           Görevler
         </button>
         <button role="tab" className="page-tab" aria-selected={tab === 'fluency'} onClick={() => setTab('fluency')}>
-          4/3/2
+          Akıcılık 4/3/2
         </button>
         <button role="tab" className="page-tab" aria-selected={tab === 'gloss'} onClick={() => setTab('gloss')}>
           Dinle-yaz

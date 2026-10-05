@@ -86,3 +86,20 @@ test('the bedtime card keeps a readable text column on a phone', async ({ page }
   await expect(text).toBeVisible()
   expect((await text.boundingBox())!.width).toBeGreaterThan(200)
 })
+
+test('Progress starts with the overview and opens a group from the shortcut row', async ({ page }) => {
+  await startWithSamples(page)
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()
+  const toggles = page.locator('.group-toggle')
+  await expect(toggles.first()).toHaveAttribute('aria-expanded', 'true')
+  await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'false')
+  const closedHeight = await page.evaluate(() => document.documentElement.scrollHeight)
+  await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
+  await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
+  await page.waitForTimeout(600)
+  // It scrolled there, and the page grew by what it opened.
+  expect(await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)).toBeLessThan(250)
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
+  await toggles.nth(2).click()
+  await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
+})
