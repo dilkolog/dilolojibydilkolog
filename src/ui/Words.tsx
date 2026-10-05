@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
+import { useTenses } from './ConjugationTable'
+import { analyzeForm } from '../engine/tenses'
+import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { displayForm } from '../engine/exercises'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
@@ -328,6 +331,14 @@ export function WordForm({
 }) {
   const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : (initial ?? EMPTY)))
   const [error, setError] = useState('')
+  // A new word typed in a conjugated form (tuve, allions) → offer its infinitive. Present forms are
+  // left out: too many are also nouns (porte, livre, marche).
+  useTenses(language)
+  const typed = form.word.trim()
+  const conjugated =
+    !entry && language !== 'en' && typed && !typed.includes(' ')
+      ? analyzeForm(language, typed).find((a) => a.tense !== 'present' && a.tense !== 'presente')
+      : undefined
   // Words added with this form since the last "learn now", to study them in one go.
   const [justAdded, setJustAdded] = useState<VocabularyEntry[]>([])
   const [added, setAdded] = useState('')
@@ -539,7 +550,17 @@ export function WordForm({
           <div className="field">
             <label htmlFor="w-word">Kelime</label>
             <input id="w-word" className="input" value={form.word} onChange={accentChange(language, (word) => setForm((f) => ({ ...f, word })))} lang={language} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} />
-            <span className="help">{articleHelp}</span>
+            {conjugated ? (
+              // A conjugated form typed (tuve, allions): offer the infinitive, which is what the list keeps.
+              <span className="help form-suggest">
+                “{form.word.trim()}”, <strong lang={language}>{conjugated.lemma}</strong> fiilinin {TENSE_GUIDE[conjugated.tense].name} biçimi.{' '}
+                <button type="button" className="link small" onClick={() => setForm((f) => ({ ...f, word: conjugated.lemma }))}>
+                  {conjugated.lemma} ekle
+                </button>
+              </span>
+            ) : (
+              <span className="help">{articleHelp}</span>
+            )}
           </div>
           <div className="field">
             <label htmlFor="w-meaning">Türkçe anlamı</label>
