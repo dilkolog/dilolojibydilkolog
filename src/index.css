@@ -3655,3 +3655,12 @@ button.badge-card:active { transform: none; }
 .conj-locked .inline-icon { flex: none; margin-top: 0.15em; }
 .form-suggest { color: var(--ink); } .form-suggest strong { font-family: var(--serif); color: var(--lang-text); }
 .conj-table tr.is-faded > * { opacity: 0.45; }
+/* Session on tall desktop screens: the question card sits near the optical centre instead of the
+   top third (the lower half used to stay empty), with larger sentence type to match. */
+@media (min-width: 64rem) and (min-height: 44rem) {
+  .session { min-height: calc(100vh - 4rem); display: flex; flex-direction: column; }
+  .session-stage { margin-top: max(3vh, calc((100vh - 4rem - 34rem) / 3)); }
+  .session-stage .sentence { font-size: var(--t-xl); line-height: 1.55; }
+  .session-stage .option { min-height: 3.5rem; font-size: var(--t-md); }
+  .session .key-legend, .session .kbd-legend { margin-top: auto; }
+}
