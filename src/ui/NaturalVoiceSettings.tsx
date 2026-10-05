@@ -1,3 +1,4 @@
+import { Help } from './SettingHelp'
 import { useEffect, useState, type FormEvent } from 'react'
 import { monthKey } from '../ai/usage'
 import { db } from '../data/instance'
@@ -49,11 +50,12 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
 
   return (
     <div className="stack natural-voice">
-      <strong>Doğal sesler (Google Cloud)</strong>
-      <p className="small muted">
-        Sistem seslerinin yerine gerçek insana yakın sesler. Her metin bir kez seslendirilip bu cihazda saklanır, tekrar dinlemek ücretsizdir. Google'ın
-        aylık {FREE_CHARS.toLocaleString('tr-TR')} karakterlik ücretsiz kotası tek kişilik kullanıma genellikle yeter.
-      </p>
+      <span className="setting-text">
+        <strong>Doğal sesler (Google Cloud)</strong>
+        <Help
+          text={`Sistem seslerinin yerine gerçek insana yakın sesler. Her metin bir kez seslendirilip bu cihazda saklanır, tekrar dinlemek ücretsizdir. Google'ın aylık ${FREE_CHARS.toLocaleString('tr-TR')} karakterlik ücretsiz kotası tek kişilik kullanıma genellikle yeter.`}
+        />
+      </span>
       {key ? (
         <div className="row">
           <span className="pill stage-5">Açık</span>
@@ -76,10 +78,7 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
         </form>
       )}
       {!key && (
-        <p className="small muted">
-          Anahtar: console.cloud.google.com → yeni proje → "Cloud Text-to-Speech API"yi etkinleştir → Kimlik bilgileri → API anahtarı oluştur. Anahtarı yalnızca
-          bu API ile ve kelime-koc.vercel.app adresiyle sınırlaman önerilir. Anahtar yalnızca bu cihazda saklanır, yedeğe yazılmaz.
-        </p>
+        <Help text='Anahtar bu cihazda kalır, yedeğe yazılmaz. Nasıl alınır: console.cloud.google.com → yeni proje → "Cloud Text-to-Speech API"yi etkinleştir → Kimlik bilgileri → API anahtarı oluştur. Anahtarı yalnızca bu API ile ve kelime-koc.vercel.app adresiyle sınırlaman önerilir.' />
       )}
       {status && (
         <p className={status.ok ? 'notice' : 'error'} role="status">

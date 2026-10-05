@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { relativeWorkload } from '../engine/scheduler'
 import { shortcutHelp } from '../engine/accents'
 import { TARGET_LANGUAGES } from '../engine/types'
@@ -16,6 +16,7 @@ import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon, ChevronRightIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
+import { Help } from './SettingHelp'
 import { Avatar } from './Avatar'
 import { useGame } from './game'
 import { LANGUAGE_NAME } from './labels'
@@ -42,13 +43,14 @@ const TIMES = Array.from({ length: 36 }, (_, i) => {
   return `${String(h).padStart(2, '0')}:${i % 2 ? '30' : '00'}`
 })
 
-function Chips<T extends string | number>({ options, value, onChange, format = String }: { options: readonly T[]; value: T; onChange: (v: T) => void; format?: (v: T) => string }) {
+/** One choice among a few, as one segmented control (calmer than a row of separate chips). */
+function Chips<T extends string | number>({ options, value, onChange, format = String, label }: { options: readonly T[]; value: T; onChange: (v: T) => void; format?: (v: T) => string; label?: string }) {
   // Keep a stored non-preset value selectable, in numeric order.
   const list = options.includes(value) ? options : [...options, value].sort((a, b) => (typeof a === 'number' && typeof b === 'number' ? a - b : 0))
   return (
-    <div className="choice-row">
+    <div className="seg-group" role="radiogroup" aria-label={label}>
       {list.map((o) => (
-        <button key={o} type="button" className="chip chip-sm" aria-pressed={o === value} onClick={() => onChange(o)}>
+        <button key={o} type="button" role="radio" className="seg-btn" aria-checked={o === value} onClick={() => onChange(o)}>
           {format(o)}
         </button>
       ))}
@@ -57,13 +59,15 @@ function Chips<T extends string | number>({ options, value, onChange, format = S
 }
 
 function Toggle({ checked, onChange, label, help }: { checked: boolean; onChange: (v: boolean) => void; label: string; help?: string }) {
+  // The whole row toggles (the label points at the switch, not at the ⓘ button inside it).
+  const id = useId()
   return (
-    <label className="toggle-row">
-      <span>
+    <label className="toggle-row" htmlFor={id}>
+      <span className="setting-text">
         <strong>{label}</strong>
-        {help && <span className="small muted">{help}</span>}
+        {help && <Help text={help} />}
       </span>
-      <button type="button" role="switch" aria-checked={checked} className="switch" onClick={() => onChange(!checked)}>
+      <button id={id} type="button" role="switch" aria-checked={checked} className="switch" onClick={() => onChange(!checked)}>
         <span />
       </button>
     </label>
@@ -73,11 +77,11 @@ function Toggle({ checked, onChange, label, help }: { checked: boolean; onChange
 function Row({ label, help, children }: { label: string; help?: string; children: ReactNode }) {
   return (
     <div className="setting-row">
-      <div>
+      <div className="setting-text">
         <strong>{label}</strong>
-        {help && <p className="small muted">{help}</p>}
+        {help && <Help text={help} />}
       </div>
-      <div>{children}</div>
+      <div className="setting-control">{children}</div>
     </div>
   )
 }
@@ -349,15 +353,18 @@ export function SettingsScreen({
   const pane = (id: GroupId) => ({ group: GROUP_BY_ID[id], active: searching || active === id })
 
   return (
-    <div className="settings-page" ref={root}>
-      <PageHeader title="Ayarlar" />
-      <div className="settings-layout">
-        <aside className="settings-side">
-          {onOpenProfile && <ProfileLink settings={settings} onOpen={onOpenProfile} />}
+    <div className={`settings-page${searching ? ' is-searching' : ''}`} ref={root}>
+      <PageHeader
+        title="Ayarlar"
+        action={
           <label className="settings-search">
             <SearchIcon size={18} />
             <input className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Ayar ara" aria-label="Ayar ara" />
           </label>
+        }
+      />
+      <div className="settings-layout">
+        <aside className="settings-side">
           <nav className="settings-menu" aria-label="Ayar grupları">
             {GROUP_LIST.map((g) => (
               <button
@@ -381,6 +388,7 @@ export function SettingsScreen({
           {searching && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
 
           <Pane {...pane('s-account')}>
+            {onOpenProfile && <ProfileLink settings={settings} onOpen={onOpenProfile} />}
             <AccountSettings onOpenAuth={onOpenAuth} />
           </Pane>
 

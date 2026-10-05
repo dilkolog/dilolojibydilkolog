@@ -1,3 +1,4 @@
+import { Help } from './SettingHelp'
 import { useEffect, useState, type FormEvent } from 'react'
 import { AI_MODELS, AiError, FEATURE_NAME, modelInfo, monthKey, testKey, type AiFeature, type MonthUsage } from '../ai'
 import type { Settings } from '../data/db'
@@ -44,11 +45,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
       <h2 className="section-title row gap-2">
         <SparkleIcon size={20} className="icon-star" /> AI yardımcısı
       </h2>
-      <p className="small muted">
-        Açıkken: kelime eklerken anlam, örnek cümle ve kalıplar otomatik dolar; metinden çıkardığın kelimeler toplu
-        doldurulur; "kendi cümleni kur" alıştırması açılır ve cümlelerin değerlendirilir. Kapalıyken uygulamanın geri
-        kalanı aynen çalışır.
-      </p>
+      <Help text={'Kelime eklerken anlamı, örnek cümleyi ve kalıpları doldurur, cümlelerini değerlendirir. Açıkken ayrıca metinden çıkardığın kelimeler toplu doldurulur ve "kendi cümleni kur" alıştırması açılır. Kapalıyken uygulamanın geri kalanı aynen çalışır.'} />
       {apiKey ? (
         <div className="row">
           <span className="pill stage-5">Açık</span>
@@ -70,11 +67,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
             />
-            <span className="help">
-              console.anthropic.com adresinden alınır. Yalnızca bu tarayıcıda saklanır, yedek dosyasına yazılmaz ve
-              sadece Anthropic'e gönderilir. Kullanım kadar ücretlendirilir; tek kişilik kullanımda genelde ayda birkaç
-              dolar.
-            </span>
+            <Help text="console.anthropic.com adresinden alınır. Yalnızca bu tarayıcıda saklanır, yedek dosyasına yazılmaz ve sadece Anthropic'e gönderilir. Kullanım kadar ücretlendirilir; tek kişilik kullanımda genelde ayda birkaç dolar." />
           </div>
           <div>
             <button className="btn" type="submit" disabled={busy || !draft.trim()}>
@@ -85,9 +78,9 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
       )}
       <div className="field">
         <label>Model</label>
-        <div className="choice-row">
+        <div className="seg-group" role="radiogroup" aria-label="Model">
           {AI_MODELS.map((m) => (
-            <button key={m.id} className="chip chip-sm" aria-pressed={settings.aiModel === m.id} onClick={() => onChange({ ...settings, aiModel: m.id })}>
+            <button key={m.id} type="button" role="radio" className="seg-btn" aria-checked={settings.aiModel === m.id} onClick={() => onChange({ ...settings, aiModel: m.id })}>
               {m.label}
             </button>
           ))}
@@ -98,9 +91,9 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
       </div>
       <div className="field">
         <label>Aylık bütçe sınırı</label>
-        <div className="choice-row">
+        <div className="seg-group" role="radiogroup" aria-label="Aylık bütçe sınırı">
           {LIMITS.map((l) => (
-            <button key={l} className="chip chip-sm" aria-pressed={settings.aiMonthlyLimit === l} onClick={() => onChange({ ...settings, aiMonthlyLimit: l })}>
+            <button key={l} type="button" role="radio" className="seg-btn" aria-checked={settings.aiMonthlyLimit === l} onClick={() => onChange({ ...settings, aiMonthlyLimit: l })}>
               {l ? `$${l}` : 'Sınırsız'}
             </button>
           ))}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Help } from './SettingHelp'
 import { AlertIcon, UmbrellaIcon } from './icons'
 import type { Settings } from '../data/db'
 import { localDate } from '../engine/progress'
@@ -40,11 +41,7 @@ export function StudyCalendar({ settings, onChange }: { settings: Settings; onCh
   return (
     <section className="card stack">
       <h2 className="section-title">Çalışma takvimi</h2>
-      <p className="small muted">
-        Bir güne dokunarak değiştir: <strong>Hafif</strong> günlere tekrarların yaklaşık yarısı, <strong>Dinlenme</strong> günlerine hiç tekrar düşmez; yeni
-        kelime de o oranda gelir. Tekrarlar hatırlamanı etkilemeyecek kadar kaydırılır ve kalabalık günlerden boş günlere yayılır. Dinlenme günleri
-        seriyi bozmaz.
-      </p>
+      <Help text="Bir güne dokunarak değiştir: Hafif günlere tekrarların yaklaşık yarısı, Dinlenme günlerine hiç tekrar düşmez. Yeni kelime de o oranda gelir. Tekrarlar hatırlamanı etkilemeyecek kadar kaydırılır ve kalabalık günlerden boş günlere yayılır. Dinlenme günleri seriyi bozmaz." />
       <div className="week-row" role="group" aria-label="Haftanın günleri">
         {WEEK.map(({ day, label }) => {
           const w = String(weights[day] ?? 1)

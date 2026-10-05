@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Help } from './SettingHelp'
 import { cacheAudio } from '../data/audioCache'
 import { fetchCorpus } from '../data/corpus'
 import type { Settings } from '../data/db'
@@ -64,15 +65,13 @@ export function OfflinePack({ settings }: { settings: Settings }) {
   return (
     <section className="card stack">
       <h2 className="section-title">Çevrimdışı paket</h2>
-      <p className="small muted">
-        Yolculuktan önce: önümüzdeki günlerin {LANGUAGE_NAME[lang].toLocaleLowerCase('tr-TR')} tekrarları ve sıradaki yeni kelimeler için sesler, gerçek
-        cümleler ve kelime bilgileri şimdi indirilir; internet olmadan da aynı şekilde çalışırsın. Gerçek cümlelerdeki insan sesleri indirilemiyor, onların
-        yerine cihaz sesi okur.
-      </p>
+      <Help
+        text={`Yolculuktan önce indir, internet olmadan da aynı şekilde çalış. Önümüzdeki günlerin ${LANGUAGE_NAME[lang].toLocaleLowerCase('tr-TR')} tekrarları ve sıradaki yeni kelimeler için sesler, gerçek cümleler ve kelime bilgileri şimdi indirilir. Gerçek cümlelerdeki insan sesleri indirilemiyor, onların yerine cihaz sesi okur.`}
+      />
       <div className="row">
-        <div className="choice-row" role="group" aria-label="Kaç gün">
+        <div className="seg-group" role="radiogroup" aria-label="Kaç gün">
           {DAYS.map((d) => (
-            <button key={d} className="chip chip-sm" aria-pressed={days === d} onClick={() => setDays(d)} disabled={!!progress}>
+            <button key={d} type="button" role="radio" className="seg-btn" aria-checked={days === d} onClick={() => setDays(d)} disabled={!!progress}>
               {d} gün
             </button>
           ))}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Help } from './SettingHelp'
 import { historiesFrom, MIN_REVIEWS, scoredReviews, type FitResult } from '../engine/optimizer'
 import type { Settings } from '../data/db'
 import { db } from '../data/instance'
@@ -47,10 +48,7 @@ export function MemoryModel({ settings, onChange }: { settings: Settings; onChan
   return (
     <section className="card stack">
       <h2 className="section-title">Hafıza modeli</h2>
-      <p className="small muted">
-        Tekrar zamanlarını FSRS belirler. Varsayılan ayarları milyonlarca kişinin ortalamasıdır; yeterince cevabın olunca model senin unutma hızına göre
-        yeniden ayarlanabilir. Yeni ayarlar ancak senin görmediği cevaplarını daha iyi tahmin ederse kullanılır.
-      </p>
+      <Help text="Tekrar zamanlarını FSRS belirler; yeterince cevabın olunca senin unutma hızına göre ayarlanabilir. Varsayılan ayarları milyonlarca kişinin ortalamasıdır. Yeni ayarlar ancak senin görmediği cevaplarını daha iyi tahmin ederse kullanılır." />
       <p className="small">
         {fitInfo && settings.fsrsWeights
           ? `Kişisel model kullanılıyor (${new Date(fitInfo.at).toLocaleDateString('tr-TR')}, ${fitInfo.reviews} tekrardan).`
