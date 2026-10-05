@@ -18,6 +18,7 @@ export const prefs = {
   targetDefinitions: false,
   typingShare: 'balanced' as TypingShare,
   haptics: true,
+  hideVosotros: false,
 }
 
 export function applySettings(s: Settings) {
@@ -41,6 +42,7 @@ export function applySettings(s: Settings) {
   // Text size: the root font size scales every rem in the app.
   root.style.fontSize = { normal: '', large: '112.5%', xlarge: '125%' }[s.textScale ?? 'normal']
   prefs.haptics = s.haptics ?? true
+  prefs.hideVosotros = s.hideVosotros ?? false
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme
   // Phone status bar follows the chosen theme, not only the system one.

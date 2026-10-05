@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
+import { prefs } from './prefs'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { canSpeak, speak } from './speech'
 import { LockIcon, SpeakerIcon } from './icons'
@@ -124,7 +125,7 @@ export function ConjugationTable({ entry, initial, productionReps }: { entry: Ve
       <table className="conj-table" lang={lang}>
         <tbody>
           {forms.map((f, i) => (
-            <tr key={i}>
+            <tr key={i} className={lang === 'es' && i === 4 && prefs.hideVosotros ? 'is-faded' : undefined} title={lang === 'es' && i === 4 && prefs.hideVosotros ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : undefined}>
               <th scope="row">{subjectLabel(lang, tense, i)}</th>
               <td>
                 {odd[i] ? (

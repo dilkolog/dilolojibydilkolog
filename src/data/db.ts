@@ -90,6 +90,8 @@ export interface Settings {
   textScale?: 'normal' | 'large' | 'xlarge'
   /** Short vibrations on answers (phones that support it). */
   haptics?: boolean
+  /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */
+  hideVosotros?: boolean
   autoPlayAudio: boolean
   speechRate: number
   /** Chosen system voice per language (voiceURI). */

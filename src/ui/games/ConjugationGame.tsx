@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { prefs } from '../prefs'
 import { GameResult } from './GameResult'
 import { checkTyped, normalize } from '../../engine/answerCheck'
 import { createRng, pick, shuffle, type Rng } from '../../engine/rng'
@@ -68,7 +69,10 @@ function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng, weak?: 
     const tense = own.includes(want) ? want : pick(own, rng)
     const forms = conjugateTense(verb, tense)!
     const odd = irregularForms(verb, tense)
-    const people = odd.some(Boolean) && rng() < 0.6 ? [0, 1, 2, 3, 4, 5].filter((p) => odd[p]) : [0, 1, 2, 3, 4, 5]
+    // Vosotros stays out for learners of Latin American Spanish (Ayarlar → Sorular).
+    const all = [0, 1, 2, 3, 4, 5].filter((p) => !(verb.language === 'es' && prefs.hideVosotros && p === 4))
+    const irregular = all.filter((p) => odd[p])
+    const people = irregular.length && rng() < 0.6 ? irregular : all
     const person = pick(people, rng)
     if (out.some((q) => q.verb.lemma === verb.lemma && q.tense === tense && q.person === person)) continue
     const sentence = tenseSentence(verb, tense)

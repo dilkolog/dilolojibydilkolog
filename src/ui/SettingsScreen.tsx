@@ -464,6 +464,12 @@ export function SettingsScreen({
               onChange={(v) => set('confidence', v)}
             />
             <Toggle
+              label="İspanyolcada vosotros'u sorma"
+              help="Latin Amerika İspanyolcasında vosotros yerine ustedes kullanılır. Açıkken vosotros biçimleri çekim sorularında çıkmaz ve tablolarda soluk görünür."
+              checked={settings.hideVosotros ?? false}
+              onChange={(v) => set('hideVosotros', v)}
+            />
+            <Toggle
               label="Aksanlarda katı ol"
               help="Açıkken 'decision' yerine 'décision' yazmamak yanlış sayılır; kapalıyken 'neredeyse'."
               checked={settings.accentStrict}

@@ -283,3 +283,13 @@ describe('past tense choice in sessions', () => {
     expect(buildExercise('aspect_choice', verbEntry, [verbEntry], createRng(3), { productionReps: 0 }).type).toBe('conjugation')
   })
 })
+
+describe('vosotros off', () => {
+  it('never asks the vosotros form when told to skip it', async () => {
+    const { buildExercise } = await import('../exercises')
+    const hablar: VocabularyEntry = { ...elAno, id: 'es:hablar', lemma: 'hablar', partOfSpeech: 'verb', article: undefined, gender: undefined, senses: [{ ...elAno.senses[0], gloss: 'konuşmak', examples: [] }] }
+    const prompts = Array.from({ length: 80 }, (_, i) => buildExercise('conjugation', hablar, [hablar], createRng(i), { productionReps: 0, skipPersons: [4] }).prompt)
+    expect(prompts.some((p) => p.startsWith('vosotros'))).toBe(false)
+    expect(prompts.some((p) => p.startsWith('nosotros'))).toBe(true)
+  })
+})

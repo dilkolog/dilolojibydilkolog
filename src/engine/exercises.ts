@@ -513,6 +513,8 @@ function withTraps(ex: ChoiceExercise, entry: VocabularyEntry): ChoiceExercise {
 export interface ExerciseContext {
   /** Correct productions so far (the production card's reps): opens past and future tenses. */
   productionReps?: number
+  /** Persons not to ask (4 = vosotros, for learners of Latin American Spanish). */
+  skipPersons?: number[]
 }
 
 export function buildExercise(
@@ -717,7 +719,7 @@ export function buildExercise(
           accepted: [sentence.form, ...tenseVariants(lang, sentence.form)],
           hints: buildHints(sentence.form, guide.short),
         }
-      const person = pick(PERSONS, rng)
+      const person = pick(entry.language === 'es' && context.skipPersons?.length ? PERSONS.filter((p) => !context.skipPersons!.includes(p)) : PERSONS, rng)
       return {
         ...base,
         kind: 'typed',
