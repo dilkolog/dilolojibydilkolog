@@ -5,6 +5,7 @@ import { MASTERY_STAGES } from '../engine/mastery'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
 import { scheduler } from '../data/instance'
 import { STAGE_NAME } from './labels'
+import { GardenSky } from './GardenSky'
 import { Plant } from './Plant'
 import { DropIcon } from './icons'
 
@@ -24,13 +25,23 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
   const beds = [...MASTERY_STAGES.keys()].reverse().map((stage) => ({ stage, words: vocabulary.filter((v) => growthStage(stateById.get(v.id)) === stage) }))
   const seeds = vocabulary.filter((v) => !stateById.has(v.id))
-  const water = summary.toWater.map((id) => byId.get(id)!).filter(Boolean)
+  const dry = summary.toWater.map((id) => byId.get(id)!).filter(Boolean)
   // A bed shows its first plants; a big one opens fully on request (thousands of tiles are slow).
   const [open, setOpen] = useState<Set<number>>(new Set())
+  // Watering: rain falls over the garden for a moment, then the review of those plants begins.
+  const [raining, setRaining] = useState(false)
+  const water = (entries: VocabularyEntry[]) => {
+    if (raining) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return onWater(entries)
+    setRaining(true)
+    setTimeout(() => onWater(entries), 1100)
+  }
 
   return (
-    <section className="stack mt-4">
+    <section className="stack mt-4 garden-view">
+      {raining && <Rain />}
       <div className="garden-head card">
+        <GardenSky now={now} flowers={summary.byStage[5]} growing={summary.byStage.slice(1, 5).reduce((a, b) => a + b, 0)} />
         <GardenBar
           parts={[
             { key: 'flower', label: 'çiçek açtı', n: summary.byStage[5] },
@@ -39,16 +50,23 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
             { key: 'seed', label: 'tohum', n: summary.seeds },
           ]}
         />
-        {water.length > 0 ? (
+        {dry.length > 0 ? (
           <div className="row">
             <span className="small">
               {summary.wilting > 0 && `${summary.wilting} soluyor`}
               {summary.wilting > 0 && summary.thirsty > 0 && ', '}
               {summary.thirsty > 0 && `${summary.thirsty} susamış`}
             </span>
-            <button className="btn btn-sm" onClick={() => onWater(water.slice(0, 20))}>
-              <DropIcon size={16} /> Bahçeyi sula ({Math.min(20, water.length)})
-            </button>
+            <span className="row gap-2">
+              {dry.length > 5 && (
+                <button className="btn btn-sm btn-quiet" onClick={() => water(dry.slice(0, 5))} disabled={raining}>
+                  Hızlı sula (5)
+                </button>
+              )}
+              <button className="btn btn-sm" onClick={() => water(dry.slice(0, 20))} disabled={raining}>
+                <DropIcon size={16} /> Bahçeyi sula ({Math.min(20, dry.length)})
+              </button>
+            </span>
           </div>
         ) : (
           <p className="small muted">Bütün bitkilerin canlı. Bir sonraki tekrarlar zamanı gelince bahçe yine su isteyecek.</p>
@@ -110,6 +128,18 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         </div>
       )}
     </section>
+  )
+}
+
+/** Rain over the whole garden: drops of different length and speed, for a little over a second. */
+function Rain() {
+  const drops = useMemo(() => Array.from({ length: 36 }, (_, i) => ({ x: (i * 97) % 100, d: ((i * 53) % 40) / 100, h: 10 + ((i * 7) % 12), s: 0.55 + ((i * 11) % 30) / 100 })), [])
+  return (
+    <div className="garden-rain" aria-hidden>
+      {drops.map((d, i) => (
+        <i key={i} style={{ left: `${d.x}%`, height: `${d.h}px`, animationDelay: `${d.d}s`, animationDuration: `${d.s}s` }} />
+      ))}
+    </div>
   )
 }
 

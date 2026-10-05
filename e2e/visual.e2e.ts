@@ -29,6 +29,7 @@ for (const theme of ['light', 'dark'] as const) {
 
 for (const theme of ['light', 'dark'] as const) {
   test(`garden beds look the same: ${theme}`, async ({ page }) => {
+    await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))   // the sky follows the clock
     await startWithSamples(page)
     await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
     await openScreen(page, 'Kelimeler')

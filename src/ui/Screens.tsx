@@ -694,7 +694,7 @@ export function Summary({
           <dl className="celebrate-stats">
             <div>
               <dd>
-                <StreakFlame streak={after.streak} frozen={after.frozenYesterday} /> {after.streak}
+                <StreakFlame streak={after.streak} frozen={after.frozenYesterday} ignite={!!before && after.streak > before.streak} /> {after.streak}
               </dd>
               <dt>günlük seri</dt>
             </div>
