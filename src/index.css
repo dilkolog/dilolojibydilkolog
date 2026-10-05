@@ -3545,3 +3545,14 @@ button.badge-card:active { transform: none; }
 @container main (min-width: 50rem) and (max-width: 62rem) { .reader { padding: 2rem 2rem 1.75rem; } }
 /* A tappable word never breaks across lines, not even at its hyphen (grand-mère). */
 .rw { white-space: nowrap; }
+/* Badge tiers stay legible in the dark theme (the light-theme inks were too dark on dark). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .badge-tier.tier-bronze { color: #f0b27a; background: color-mix(in srgb, #e8a76f 16%, var(--surface)); }
+  :root:not([data-theme='light']) .badge-tier.tier-silver { color: #e2e8f0; background: color-mix(in srgb, #cbd5e1 14%, var(--surface)); }
+  :root:not([data-theme='light']) .badge-tier.tier-gold { color: #fcd34d; background: color-mix(in srgb, #fde68a 14%, var(--surface)); }
+  :root:not([data-theme='light']) .badge-tier.tier-special { color: #c4b5fd; background: color-mix(in srgb, #c4b5fd 16%, var(--surface)); }
+}
+:root[data-theme='dark'] .badge-tier.tier-bronze { color: #f0b27a; background: color-mix(in srgb, #e8a76f 16%, var(--surface)); }
+:root[data-theme='dark'] .badge-tier.tier-silver { color: #e2e8f0; background: color-mix(in srgb, #cbd5e1 14%, var(--surface)); }
+:root[data-theme='dark'] .badge-tier.tier-gold { color: #fcd34d; background: color-mix(in srgb, #fde68a 14%, var(--surface)); }
+:root[data-theme='dark'] .badge-tier.tier-special { color: #c4b5fd; background: color-mix(in srgb, #c4b5fd 16%, var(--surface)); }
