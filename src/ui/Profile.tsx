@@ -331,15 +331,21 @@ function Stat({ value, label }: { value: React.ReactNode; label: string }) {
   )
 }
 
-/** The last 26 weeks as small squares, darker the more XP that day. */
+/**
+ * Recent weeks as small squares, darker the more XP that day. The span grows with the history
+ * (8 weeks at first, up to 26), so a new learner sees a few lively weeks, not a grey block.
+ */
 function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records: [string, string][] }) {
   const today = new Date()
   today.setHours(12, 0, 0, 0)
-  // Start on a Monday 25 full weeks back, so columns are weeks.
+  const first = [...byDay.keys()].filter((k) => (byDay.get(k) ?? 0) > 0).sort()[0]
+  const weeksSince = first ? Math.ceil((today.getTime() - new Date(`${first}T12:00:00`).getTime()) / (7 * 86_400_000)) + 1 : 0
+  const weeks = Math.min(26, Math.max(8, weeksSince + 1))
+  // Start on a Monday (weeks - 1) full weeks back, so columns are weeks.
   const start = new Date(today)
-  start.setDate(start.getDate() - ((start.getDay() + 6) % 7) - 25 * 7)
+  start.setDate(start.getDate() - ((start.getDay() + 6) % 7) - (weeks - 1) * 7)
   const days: { key: string; xp: number; future: boolean }[] = []
-  for (let d = new Date(start); days.length < 26 * 7; d.setDate(d.getDate() + 1)) {
+  for (let d = new Date(start); days.length < weeks * 7; d.setDate(d.getDate() + 1)) {
     const key = localDate(d)
     days.push({ key, xp: byDay.get(key) ?? 0, future: d > today })
   }
@@ -348,10 +354,10 @@ function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records:
   return (
     <section className="card activity-mini">
       <div className="row justify-between items-center">
-        <strong>Son 6 ay</strong>
-        <span className="small muted">{active} gün çalıştın</span>
+        <strong>{weeks >= 26 ? 'Son 6 ay' : `Son ${weeks} hafta`}</strong>
+        <span className="small muted">{active ? `${active} gün çalıştın` : 'İlk çalıştığın gün burada renklenir'}</span>
       </div>
-      <div className="activity-grid" role="img" aria-label={`Son 26 haftada ${active} gün çalıştın`}>
+      <div className="activity-grid" role="img" aria-label={`Son ${weeks} haftada ${active} gün çalıştın`}>
         {days.map((d) => (
           <span
             key={d.key}

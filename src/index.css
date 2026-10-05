@@ -3628,3 +3628,11 @@ button.badge-card:active { transform: none; }
 .coverage-more > p, .coverage-source { margin: 0; }
 .key-word { flex-wrap: wrap; }
 .key-word strong { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
+/* Profile activity: squares stay small when the span is short (8 weeks), instead of ballooning. */
+.activity-mini .activity-grid { grid-auto-columns: minmax(0, 1.5rem); justify-content: center; }
+/* Progress: cards side by side share their row's height, so pairs line up instead of leaving
+   ragged gaps; content stays at the top of each card. */
+@container main (min-width: 56rem) {
+  .progress-page { align-items: stretch; }
+  .progress-page > section.section { align-content: start; }
+}
