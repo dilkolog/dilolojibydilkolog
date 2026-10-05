@@ -26,3 +26,37 @@ for (const theme of ['light', 'dark'] as const) {
     await expect(page).toHaveScreenshot(`word-page-${theme}.png`, shot)
   })
 }
+
+/**
+ * Each language tints the whole app, so each is checked: Today, the word list and the first thing a
+ * session shows. The clock is fixed so the date, the greeting and the day's plan do not move.
+ */
+const LANGUAGES = [
+  { short: 'FR', name: 'fr' },
+  { short: 'EN', name: 'en' },
+  { short: 'ES', name: 'es' },
+] as const
+
+for (const lang of LANGUAGES) {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`Today, words and a session look the same: ${lang.name} ${theme}`, async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
+      await startWithSamples(page)
+      await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+      if (lang.name !== 'fr') {
+        await page.locator('.lang-btn:visible', { hasText: lang.short }).first().click()
+        await openScreen(page, 'Kelimeler')
+        await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
+      }
+      const shot = { animations: 'disabled', maxDiffPixelRatio: 0.01 } as const
+      await openScreen(page, 'Kelimeler')
+      await expect(page).toHaveScreenshot(`${lang.name}-words-${theme}.png`, shot)
+      await openScreen(page, 'Bugün')
+      await expect(page).toHaveScreenshot(`${lang.name}-today-${theme}.png`, shot)
+      await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+      await expect(page.locator('.session-stage')).toBeVisible()
+      await page.waitForTimeout(600)
+      await expect(page).toHaveScreenshot(`${lang.name}-session-${theme}.png`, shot)
+    })
+  }
+}
