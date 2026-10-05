@@ -143,21 +143,22 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   if (tense === 'present' || tense === 'presente') {
     // The regular pattern of the verb's class; a form off it (vais, tengo, pienso) is marked.
     const stem = key.slice(0, -2)
-    const patterns =
+    // French -ir verbs follow one of three patterns (finir, partir, ouvrir); the one matching
+    // most forms is the verb's own, so only real breaks are marked (not partons, dormez).
+    const fr = (endings: string[], sing = stem) => endings.map((e, i) => (i < 3 ? sing : stem) + e)
+    const candidates =
       entry.language === 'fr'
         ? key.endsWith('er')
-          ? [['e', 'es', 'e', 'ons', 'ez', 'ent']]
-          : key.endsWith('ir')
-            ? [['is', 'is', 'it', 'issons', 'issez', 'issent']]
+          ? [fr(['e', 'es', 'e', 'ons', 'ez', 'ent'])]
+          : key.endsWith('ir') && !key.endsWith('oir')
+            ? [fr(['is', 'is', 'it', 'issons', 'issez', 'issent']), fr(['s', 's', 't', 'ons', 'ez', 'ent'], stem.slice(0, -1)), fr(['e', 'es', 'e', 'ons', 'ez', 'ent'])]
             : key.endsWith('re')
-              ? [['s', 's', '', 'ons', 'ez', 'ent']]
+              ? [fr(['s', 's', '', 'ons', 'ez', 'ent'])]
               : []
-        : key.endsWith('ar')
-          ? [['o', 'as', 'a', 'amos', 'áis', 'an']]
-          : key.endsWith('er')
-            ? [['o', 'es', 'e', 'emos', 'éis', 'en']]
-            : [['o', 'es', 'e', 'imos', 'ís', 'en']]
-    regular = patterns[0]?.map((e) => stem + e)
+        : [(key.endsWith('ar') ? ['o', 'as', 'a', 'amos', 'áis', 'an'] : key.endsWith('er') ? ['o', 'es', 'e', 'emos', 'éis', 'en'] : ['o', 'es', 'e', 'imos', 'ís', 'en']).map((e) => stem + e)]
+    const fit = (c: string[]) => c.filter((f, i) => f === bare[i]).length
+    // -oir verbs (savoir, voir, pouvoir) have no regular pattern: every present form is learned.
+    regular = entry.language === 'fr' && key.endsWith('oir') ? bare.map(() => '') : candidates.sort((x, y) => fit(y) - fit(x))[0]
   } else if (entry.language === 'fr') {
     if (tense === 'imparfait') {
       const nous = conjugateTense(entry, 'present')?.[3].replace(/^nous /, '')

@@ -205,6 +205,11 @@ describe('conditional and subjunctive', () => {
     expect(irregularForms(fr('parler'), 'present').some(Boolean)).toBe(false)
     expect(irregularForms(fr('aller'), 'present')).toEqual([true, true, true, false, false, true])
     expect(irregularForms(fr('finir'), 'present').some(Boolean)).toBe(false)
+    // partir and ouvrir have their own regular patterns: nothing to mark.
+    expect(irregularForms(fr('partir'), 'present').some(Boolean)).toBe(false)
+    expect(irregularForms(fr('ouvrir'), 'present').some(Boolean)).toBe(false)
+    expect(irregularForms(fr('venir'), 'present')[0]).toBe(true)
+    expect(irregularForms(fr('savoir'), 'present').every(Boolean)).toBe(true)
     expect(irregularForms(es('hablar'), 'presente').some(Boolean)).toBe(false)
     expect(irregularForms(es('tener'), 'presente')[0]).toBe(true)
     expect(irregularForms(es('pensar'), 'presente')).toEqual([true, true, true, false, false, true])
