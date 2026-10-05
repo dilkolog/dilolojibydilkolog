@@ -7,7 +7,7 @@ import { answersFor, conjugateTense, irregularForms, subjectLabel, tenseSentence
 import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { useTenses } from '../ConjugationTable'
+import { TENSE_GROUPS, useTenses } from '../ConjugationTable'
 import { Sentence } from '../session/shared'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
@@ -83,9 +83,9 @@ function buildRound(verbs: Verb[], tenses: Tense[], n: number, rng: Rng, weak?: 
  * each answer the whole tense is shown with the asked form marked, so one question teaches six.
  * Practice: XP, no schedule.
  */
-export function ConjugationGame({ language, vocabulary, states, best, bestAspect, recordKey, onExit }: Props & { language: 'fr' | 'es'; best?: number; bestAspect?: number; recordKey: string; onExit: () => void }) {
+export function ConjugationGame({ language, vocabulary, states, best, bestAspect, recordKey, startWithAspect, onExit }: Props & { language: 'fr' | 'es'; best?: number; bestAspect?: number; recordKey: string; startWithAspect?: boolean; onExit: () => void }) {
   const ready = useTenses(language)
-  const [aspect, setAspect] = useState(false)
+  const [aspect, setAspect] = useState(!!startWithAspect)
   const weak = weakestTense(useTenseStats(language, vocabulary))
   const ownVerbs = useMemo<Verb[]>(
     () => (ready ? vocabulary.filter((v) => v.partOfSpeech === 'verb' && tensesOf(v).length > 1).map((v) => ({ ...v, gloss: v.senses[0].gloss, entry: v })) : []),
@@ -185,7 +185,7 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
         <span className="small muted">{aspect ? (bestAspect ? `Rekor: %${bestAspect}` : '') : best ? `Rekor: %${best}` : ''}</span>
       </div>
 
-      {aspect && <AspectGame language={language} vocabulary={vocabulary} states={states} best={bestAspect} recordKey={`aspect:${language}`} onBack={() => setAspect(false)} />}
+      {aspect && <AspectGame language={language} vocabulary={vocabulary} states={states} best={bestAspect} recordKey={`aspect:${language}`} onBack={startWithAspect ? onExit : () => setAspect(false)} />}
 
       {!aspect && phase === 'intro' && (
         <div className="stack">
@@ -193,14 +193,25 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
           <p className="muted">Bir fiil, bir kişi, bir zaman: çekimini yazarsın. Her cevaptan sonra o zamanın bütün çekimi görünür; kuralın dışındaki biçimler daha sık gelir.</p>
           <div className="stack gap-2">
             <p className="prompt-label">Zamanlar</p>
-            <div className="row conj-tenses">
-              {(TENSES[language] as Tense[]).map((t) => (
-                <button key={t} type="button" className="chip" aria-pressed={chosen.includes(t)} onClick={() => toggle(t)} lang={language}>
-                  {TENSE_GUIDE[t].name}
-                </button>
-              ))}
+            {/* Grouped as on the word page, each tense with its Turkish meaning. */}
+            <div className="conj-tense-groups">
+              {TENSE_GROUPS.map((g) => {
+                const own = g.tenses.filter((t) => (TENSES[language] as Tense[]).includes(t))
+                return (
+                  <div key={g.label} className="conj-tense-group" role="group" aria-label={g.label}>
+                    <span className="conj-tense-group-label">{g.label}</span>
+                    <div className="conj-tenses">
+                      {own.map((t) => (
+                        <button key={t} type="button" className="chip conj-tense-chip" aria-pressed={chosen.includes(t)} onClick={() => toggle(t)}>
+                          <span lang={language}>{TENSE_GUIDE[t].name}</span>
+                          <span className="conj-tense-tr">{TENSE_GUIDE[t].tr}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-            <p className="small muted">{chosen.map((t) => TENSE_GUIDE[t].tr).join(', ')}</p>
             {weak && chosen.includes(weak.tense) && (
               <p className="small notice">
                 Son cevaplarına göre en çok <strong lang={language}>{TENSE_GUIDE[weak.tense].name}</strong> zorluyor ({weak.correct}/{weak.correct + weak.wrong} doğru); bu turda daha sık gelecek.

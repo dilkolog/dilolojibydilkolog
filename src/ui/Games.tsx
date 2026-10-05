@@ -47,8 +47,18 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   const online = useOnline()
 
   if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
-  if (game === 'conjugation' && p.language !== 'en')
-    return <ConjugationGame {...p} language={p.language} best={records[`conj:${p.language}`]} bestAspect={records[`aspect:${p.language}`]} recordKey={`conj:${p.language}`} onExit={() => setGame(null)} />
+  if ((game === 'conjugation' || game === 'aspect') && p.language !== 'en')
+    return (
+      <ConjugationGame
+        {...p}
+        language={p.language}
+        best={records[`conj:${p.language}`]}
+        bestAspect={records[`aspect:${p.language}`]}
+        recordKey={`conj:${p.language}`}
+        startWithAspect={game === 'aspect'}
+        onExit={() => setGame(null)}
+      />
+    )
   if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
   if (game === 'gender' && p.language !== 'en')
     return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
@@ -109,6 +119,13 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
       cards: [
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
         { id: 'conjugation', emoji: '🕰️', name: 'Çekim antrenmanı', text: `Fiilleri zamanlarıyla çek: ${p.language === 'fr' ? 'passé composé, imparfait, futur, subjonctif' : 'indefinido, imperfecto, futuro, subjuntivo'} ve dahası.`, status: record(`conj:${p.language}`, (v) => `%${v}`) },
+        {
+          id: 'aspect',
+          emoji: '⏳',
+          name: 'Hangi geçmiş zaman?',
+          text: `${p.language === 'fr' ? 'Passé composé mı, imparfait mı' : 'Indefinido mu, imperfecto mu'}? Cümledeki zaman ifadesi söyler.`,
+          status: record(`aspect:${p.language}`, (v) => `%${v}`),
+        },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
         { id: 'accent', emoji: '✍️', name: 'Aksan antrenmanı', text: 'Sadece aksanlı kelimelerin: harfleri görürsün, aksanlarıyla yazarsın.', status: accentCount < ACCENT_MIN_WORDS ? `En az ${ACCENT_MIN_WORDS} aksanlı kelime gerekiyor (${accentCount})` : record(`accent:${p.language}`, (v) => `%${v}`), disabled: accentCount < ACCENT_MIN_WORDS },
       ],
@@ -161,6 +178,10 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
               <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => setGame(c.id)}>
                 <span className="game-emoji" aria-hidden>
                   <Glyph emoji={c.emoji} size={26} />
+                </span>
+                {/* The same sign, large and faint in the corner: each card its own face. */}
+                <span className="game-watermark" aria-hidden>
+                  <Glyph emoji={c.emoji} size={96} />
                 </span>
                 <strong>{c.name}</strong>
                 <span className="small muted">{c.text}</span>

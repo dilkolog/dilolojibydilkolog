@@ -322,6 +322,14 @@ export const TagIcon = (p: P) => (
     <circle cx="8" cy="8" r="1.4" />
   </Icon>
 )
+/** An hourglass: which of two pasts (a finished moment or ongoing time). */
+export const HourglassIcon = (p: P) => (
+  <Icon {...p}>
+    <D d="M7.5 4.5h9c0 4-4.5 5.5-4.5 7.5S16.5 15.5 16.5 19.5h-9c0-4 4.5-5.5 4.5-7.5S7.5 8.5 7.5 4.5z" />
+    <path d="M6 3.5h12M6 20.5h12M7.5 3.5c0 4.5 4.5 6 4.5 8.5s-4.5 4-4.5 8.5M16.5 3.5c0 4.5-4.5 6-4.5 8.5s4.5 4 4.5 8.5" />
+    <path d="M9.5 18.5h5L12 16z" />
+  </Icon>
+)
 /** A verb through time: a clock with an arrow turning back (tenses). */
 export const TenseIcon = (p: P) => (
   <Icon {...p}>

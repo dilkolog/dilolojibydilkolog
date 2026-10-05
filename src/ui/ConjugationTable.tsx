@@ -22,7 +22,7 @@ export function useTenses(language: VocabularyEntry['language']): boolean {
 }
 
 /** Tenses in four groups, so the choice fits a phone: the group first, then the tense within it. */
-const GROUPS: { label: string; tenses: Tense[] }[] = [
+export const TENSE_GROUPS: { label: string; tenses: Tense[] }[] = [
   { label: 'Şimdi', tenses: ['present', 'presente'] },
   { label: 'Geçmiş', tenses: ['passe-compose', 'imparfait', 'preterito', 'perfecto', 'imperfecto'] },
   { label: 'Gelecek', tenses: ['futur', 'futuro'] },
@@ -48,7 +48,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
   }, [tense])
   if (!tense || entry.language === 'en') return null
   const lang = entry.language
-  const groups = GROUPS.map((g) => ({ label: g.label, tenses: g.tenses.filter((t) => tenses.includes(t)) })).filter((g) => g.tenses.length)
+  const groups = TENSE_GROUPS.map((g) => ({ label: g.label, tenses: g.tenses.filter((t) => tenses.includes(t)) })).filter((g) => g.tenses.length)
   const current = groups.find((g) => g.tenses.includes(tense))
   // Arrow keys move between the groups (the tabs pattern); focus follows the selection.
   const moveTab = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -89,7 +89,7 @@ export function ConjugationTable({ entry, initial }: { entry: Verb; initial?: Te
             })}
           </div>
           {(() => {
-            const group = GROUPS.find((g) => g.tenses.includes(tense))!.tenses.filter((t) => tenses.includes(t))
+            const group = TENSE_GROUPS.find((g) => g.tenses.includes(tense))!.tenses.filter((t) => tenses.includes(t))
             return (
               group.length > 1 && (
                 <div className="tense-sub" role="group" aria-label="Zaman">
