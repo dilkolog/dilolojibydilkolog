@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { tensesOf } from '../engine/tenses'
 import { ConjugationTable, useTenses } from './ConjugationTable'
 import { definiteArticle, displayForm } from '../engine/exercises'
@@ -199,7 +199,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </ul>
           )}
           <div className="word-hero-title">
-            <h1 className="word" lang={entry.language}><WrittenForm entry={entry} /></h1>
+            <h1 className="word" style={{ '--len': displayForm(entry).length } as CSSProperties} lang={entry.language}><WrittenForm entry={entry} /></h1>
             {canSpeak() && (
               <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
                 <SpeakerIcon size={20} />

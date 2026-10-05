@@ -51,3 +51,26 @@ test('in a session the answer choices sit within thumb reach', async ({ page }) 
   expect(last!.y + last!.height).toBeGreaterThan(height * 0.8)
   expect(last!.y + last!.height).toBeLessThanOrEqual(height)
 })
+
+test('a long word shrinks smoothly and stays inside the screen', async ({ page }) => {
+  await startWithSamples(page)
+  const words = ['an', 'la maison', 'contrat de location', "l'assurance maladie complémentaire", 'abstraction-déterminisme-incompréhensible-extraordinairement']
+  const sizes = await page.evaluate((list) => {
+    return list.map((text) => {
+      const h = document.createElement('h1')
+      h.className = 'word'
+      h.style.setProperty('--len', String(text.length))
+      h.textContent = text
+      document.querySelector('main')!.append(h)
+      const size = parseFloat(getComputedStyle(h).fontSize)
+      const fits = h.scrollWidth <= h.clientWidth + 1
+      h.remove()
+      return { text, size, fits }
+    })
+  }, words)
+  for (const s of sizes) expect(s.fits, s.text).toBe(true)
+  // Never bigger for a longer word; never smaller than the floor.
+  for (let i = 1; i < sizes.length; i++) expect(sizes[i].size).toBeLessThanOrEqual(sizes[i - 1].size)
+  expect(Math.min(...sizes.map((s) => s.size))).toBeGreaterThanOrEqual(26)
+  expect(sizes[0].size).toBeGreaterThan(sizes[3].size)
+})

@@ -548,7 +548,12 @@ details[open] > summary { margin-bottom: 1rem; }
 .badge { display: inline-block; background: var(--lang-soft); color: var(--lang-text); font-weight: 700; font-size: var(--t-sm); padding: 0.125rem 0.75rem; border-radius: var(--r-full); }
 .prompt-label { font-weight: 600; font-size: var(--t-md); color: var(--ink-soft); margin-bottom: 1.25rem; }
 
-.word { font-family: var(--serif); font-size: var(--t-word); line-height: 1.1; padding-bottom: 0.12em; color: var(--lang-text); font-weight: 400; overflow-wrap: anywhere; }   /* padding: Literata's descenders (p, g, ç) reach below a 1.1 line box */
+.word {
+  /* The size follows the word's length (--len, set by the component): full size up to 11 characters, then smoothly smaller, never below 1.625rem. */
+  --word-size: var(--t-word);
+  font-size: clamp(1.625rem, calc(var(--word-size) * 11 / max(var(--len, 0), 11)), var(--word-size));
+  text-wrap: balance;
+  font-family: var(--serif); line-height: 1.1; padding-bottom: 0.12em; color: var(--lang-text); font-weight: 400; overflow-wrap: anywhere; }   /* padding: Literata's descenders (p, g, ç) reach below a 1.1 line box */
 .word .article { font-style: italic; opacity: 0.6; }
 .article.gender-m, .article.gender-f { opacity: 1; font-weight: 500; }
 .article.gender-m { color: var(--gender-m); }
@@ -2108,7 +2113,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
   .session-stage .option.is-correct { background: var(--ok-soft); }
   .session-stage .option.is-wrong { background: var(--bad-soft); }
   .session-stage .intro-card { box-shadow: none; padding: 0; background: none; }
-  .session-stage .word { font-size: clamp(3rem, 5vw, 4.5rem); }
+  .session-stage .word { --word-size: clamp(3rem, 5vw, 4.5rem); }
   .sheet-inner { max-width: 56rem; padding-inline: 2rem; }
 }
 
@@ -2456,8 +2461,6 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .page-tab[aria-selected='true'] { color: var(--lang-text); border-bottom-color: var(--lang); }
 
 /* Long expressions step down so they stay on one line. */
-.word.word-long, .session-stage .word.word-long { font-size: clamp(2rem, 5.5vw, 3.25rem); }
-.word.word-xlong, .session-stage .word.word-xlong { font-size: clamp(1.625rem, 4.5vw, 2.5rem); }
 
 /* ---------- Progress: the page in four numbers ---------- */
 .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0; margin-top: 1rem; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); }
