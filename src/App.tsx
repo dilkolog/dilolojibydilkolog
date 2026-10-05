@@ -32,6 +32,7 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { Glyph } from './ui/Glyph'
+import { BadgeWatcher } from './ui/BadgeWatcher'
 import { GameContext, loadGame, type GameState } from './ui/game'
 import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
@@ -1046,6 +1047,7 @@ export default function App() {
             </Suspense>
           )}
         </div>
+      <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} />
       </GameContext.Provider>
     </AiContext.Provider>
   )

@@ -2289,8 +2289,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .badge-card.is-unlocked .medal { animation: pop var(--dur) var(--ease-out); }
 .medal-shine { animation: glint 1.2s 0.5s var(--ease-out) both; }
 .medal:hover .medal-shine { animation: glint-again 1s var(--ease-out) both; }
-@keyframes glint { from { transform: skewX(-20deg) translateX(0); } to { transform: skewX(-20deg) translateX(95px); } }
-@keyframes glint-again { from { transform: skewX(-20deg) translateX(0); } to { transform: skewX(-20deg) translateX(95px); } }
+@keyframes glint { from { transform: skewX(-20deg) translateX(0); } to { transform: skewX(-20deg) translateX(140px); } }   /* far enough that the band, which slants left going down, ends clear of the medal */
+@keyframes glint-again { from { transform: skewX(-20deg) translateX(0); } to { transform: skewX(-20deg) translateX(140px); } }
 
 /* The mark sits on the app's own indigo in every language, like the home-screen icon. */
 .brand-mark { background: linear-gradient(140deg, #6366f1, #312e81); border-radius: 0.5625rem; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 2px 8px rgb(49 46 129 / 0.35); }
@@ -4069,3 +4069,39 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .title-lock { margin-left: auto; }
 .progress-card-wait { display: grid; place-items: center; aspect-ratio: 1080 / 1350; background: var(--surface-2); color: var(--ink-soft); }
 .share-card .chip[aria-pressed='true'] { font-weight: 700; }
+
+/* A new badge's moment: the medal is struck, a ring in its metal leaves it. */
+.badge-moment { gap: 0.5rem; }
+.badge-moment-art { width: 9.5rem; height: 9.5rem; --tier: #94a3b8; }
+.badge-moment-art.tier-bronze { --tier: #e8a76f; }
+.badge-moment-art.tier-silver { --tier: #94a3b8; }
+.badge-moment-art.tier-gold { --tier: #f59e0b; }
+.badge-moment-art.tier-special { --tier: #8b5cf6; }
+.badge-moment-art .medal { position: relative; z-index: 1; animation: medal-strike 760ms var(--ease-spring) both; }
+.badge-moment-ring { position: absolute; inset: 0.5rem; border-radius: 50%; border: 3px solid var(--tier); opacity: 0; animation: plant-burst 1200ms 360ms var(--ease-out) forwards; }
+@keyframes medal-strike { 0% { transform: scale(0.3) rotate(-14deg); opacity: 0; } 60% { transform: scale(1.18) rotate(4deg); opacity: 1; } 100% { transform: none; } }
+.moment-dots { display: inline-flex; gap: 0.375rem; margin: 0.25rem 0; }
+.moment-dots i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--track); transition: background-color var(--dur-fast), transform var(--dur-fast); }
+.moment-dots i.is-done { background: var(--lang); opacity: 0.5; }
+.moment-dots i.is-now { background: var(--lang); transform: scale(1.35); }
+
+/* Settings on a wide screen: one column. The title row, the group strip and the cards share one width
+   (they used to end at three different right edges), and the strip is one capsule whose tabs share
+   the width evenly (icon over name, as on a phone), the current one tinted, instead of a flat band
+   with a pill and bare labels that ran past its edge. */
+@container main (min-width: 52rem) {
+  .settings-page { max-width: 50rem; }
+  .settings-side { position: sticky; top: 0.5rem; z-index: 6; margin: 0; padding: 0; background: none; }
+  .settings-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr)); overflow: visible; gap: 0.125rem; padding: 0.25rem; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow); }
+  .settings-menu-item { flex-direction: column; justify-content: flex-start; gap: 0.25rem; padding: 0.5rem 0.125rem; border-radius: var(--r-md); text-align: center; font-size: var(--t-xs); white-space: normal; }
+  .settings-menu-item[aria-current='page'] { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--lang) 22%, transparent); }
+}
+
+/* Words marked hard glow in the garden: a warm light behind the plant, a small bolt in the corner. */
+.plant-tile > :is(.plant, .plant-name) { position: relative; }   /* above the glow behind them */
+.plant-tile.is-hard::before { content: ''; position: absolute; inset: 0.125rem 0.375rem 1.375rem; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--near) 42%, transparent) 0, transparent 70%); pointer-events: none; }
+.plant-tile.is-hard.is-pulse::before { animation: hard-glow 2.8s ease-in-out infinite alternate; }
+.plant-tile.is-hard .plant-name { color: var(--near-text); font-weight: 600; }
+.plant-hard-mark { position: absolute; top: 0.125rem; left: 0.5rem; color: var(--near); }
+@keyframes hard-glow { from { opacity: 0.55; transform: scale(0.92); } to { opacity: 1; transform: scale(1.08); } }
+.garden-hard-row { justify-content: space-between; align-items: center; gap: 0.5rem; }

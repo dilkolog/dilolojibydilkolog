@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
@@ -14,6 +14,9 @@ import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
 import { InstallHint } from './InstallHint'
+import { BadgeMoment } from './BadgeMoment'
+import { markBadgesSeen } from './badgeSeen'
+import { Burst } from './Burst'
 import { DayPlant } from './DayPlant'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
@@ -609,37 +612,6 @@ export function Home({
 
 // ---------------------------------------------------------------------------
 
-const BURST_COLORS = ['var(--lang)', 'var(--ok)', 'var(--gold)', 'var(--lang)', '#34d399', 'var(--ok)']
-
-/** One orchestrated celebration: a confetti burst behind the result ring. */
-function Burst() {
-  const pieces = useMemo(
-    () =>
-      Array.from({ length: 28 }, (_, i) => {
-        const angle = (i / 28) * Math.PI * 2
-        const dist = 90 + ((i * 37) % 70)
-        return {
-          x: `${Math.cos(angle) * dist * 1.6}px`,
-          y: `${Math.sin(angle) * dist - 30}px`,
-          r: `${(i * 47) % 360}deg`,
-          color: BURST_COLORS[i % BURST_COLORS.length],
-          delay: `${(i % 5) * 30}ms`,
-        }
-      }),
-    [],
-  )
-  return (
-    <div className="burst" aria-hidden>
-      {pieces.map((p, i) => (
-        <span
-          key={i}
-          style={{ background: p.color, animationDelay: p.delay, ['--x' as string]: p.x, ['--y' as string]: p.y, ['--r' as string]: p.r }}
-        />
-      ))}
-    </div>
-  )
-}
-
 function headline(accuracy: number, practice?: boolean): string {
   if (accuracy >= 0.9) return 'Muhteşem bir oturum!'
   if (accuracy >= 0.7) return 'Çok iyi gidiyorsun!'
@@ -677,6 +649,10 @@ export function Summary({
     before && after && !practice ? crossedMilestone({ level: before.level.level, stats: before.stats }, { level: after.level.level, stats: after.stats }) : null,
   )
 
+  // A badge earned in this session gets its moment, after the level or milestone one.
+  // Derived, not an initial value: the game state after the session may arrive a moment after the summary opens.
+  const [badgeMomentDone, setBadgeMomentDone] = useState(false)
+  const badgeMoment = !practice && !badgeMomentDone && newBadges.length > 0
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
     // Play once when the summary opens.
@@ -695,6 +671,15 @@ export function Summary({
   return (
     <div className="summary-grid">
       {milestone && <MilestoneMoment milestone={milestone} onClose={() => setMilestone(null)} />}
+      {!milestone && badgeMoment && (
+        <BadgeMoment
+          badges={newBadges}
+          onClose={() => {
+            markBadgesSeen(newBadges.map((a) => a.id))
+            setBadgeMomentDone(true)
+          }}
+        />
+      )}
       <div className="summary-main stack">
       <div className="celebrate celebrate-card">
         {/* Words that grew are the celebration (below); confetti only when none did. */}

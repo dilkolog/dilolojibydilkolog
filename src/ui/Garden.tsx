@@ -1,4 +1,5 @@
 import { useMemo, useState, type CSSProperties } from 'react'
+import { isDifficult } from '../engine/difficult'
 import { displayForm } from '../engine/exercises'
 import { gardenSummary, growthStage, plantHealth, type GardenSummary } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
@@ -7,7 +8,7 @@ import { scheduler } from '../data/instance'
 import { STAGE_NAME } from './labels'
 import { GardenSky } from './GardenSky'
 import { Plant } from './Plant'
-import { DropIcon } from './icons'
+import { BoltIcon, DropIcon } from './icons'
 
 const BED_PREVIEW = 120
 /** Only the first plants of a bed sway: a few hundred moving icons would cost more than they give. */
@@ -23,8 +24,13 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const summary = useMemo(() => gardenSummary(vocabulary, states, scheduler, now), [vocabulary, states, now])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
-  const beds = [...MASTERY_STAGES.keys()].reverse().map((stage) => ({ stage, words: vocabulary.filter((v) => growthStage(stateById.get(v.id)) === stage) }))
-  const seeds = vocabulary.filter((v) => !stateById.has(v.id))
+  // Words marked hard glow in the garden; the filter shows only those (and goes away when none is left).
+  const hard = useMemo(() => vocabulary.filter(isDifficult), [vocabulary])
+  const [hardOnly, setHardOnly] = useState(false)
+  const showHardOnly = hardOnly && hard.length > 0
+  const shown = showHardOnly ? hard : vocabulary
+  const beds = [...MASTERY_STAGES.keys()].reverse().map((stage) => ({ stage, words: shown.filter((v) => growthStage(stateById.get(v.id)) === stage) }))
+  const seeds = shown.filter((v) => !stateById.has(v.id))
   const dry = summary.toWater.map((id) => byId.get(id)!).filter(Boolean)
   // A bed shows its first plants; a big one opens fully on request (thousands of tiles are slow).
   const [open, setOpen] = useState<Set<number>>(new Set())
@@ -71,6 +77,24 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         ) : (
           <p className="small muted">Bütün bitkilerin canlı. Bir sonraki tekrarlar zamanı gelince bahçe yine su isteyecek.</p>
         )}
+        {hard.length > 0 && (
+          <div className="row garden-hard-row">
+            <div className="choice-row" role="group" aria-label="Bahçede göster">
+              <button type="button" className="chip chip-sm" aria-pressed={!showHardOnly} onClick={() => setHardOnly(false)}>
+                Hepsi
+              </button>
+              <button type="button" className="chip chip-sm" aria-pressed={showHardOnly} onClick={() => setHardOnly(true)}>
+                <BoltIcon size={14} className="inline-icon" />
+                Zor ({hard.length})
+              </button>
+            </div>
+            {showHardOnly && (
+              <button className="btn btn-sm" onClick={() => onWater(hard)}>
+                <BoltIcon size={16} /> Zor kelimeleri çalış ({hard.length})
+              </button>
+            )}
+          </div>
+        )}
       </div>
       {beds
         .filter((b) => b.words.length)
@@ -87,9 +111,10 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
                 const health = plantHealth(stateById.get(w.id), scheduler, now)
                 return (
                 <li key={w.id} style={{ '--i': Math.min(i, 40) } as CSSProperties}>
-                  <button className={`plant-tile is-${health}`} onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}${health !== 'fresh' ? ' · su istiyor' : ''}`}>
+                  <button className={`plant-tile is-${health}${w.difficult ? ` is-hard${i < LIVE_PER_BED ? ' is-pulse' : ''}` : ''}`} onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}${health !== 'fresh' ? ' · su istiyor' : ''}${w.difficult ? ' · zor işaretli' : ''}`}>
                     <Plant stage={b.stage} health={health} size={52} live={i < LIVE_PER_BED} phase={i} />
                     {health !== 'fresh' && <DropIcon size={14} solid className="plant-drop" />}
+                    {w.difficult && <BoltIcon size={14} solid className="plant-hard-mark" />}
                     <span className="plant-name" lang={w.language}>
                       {w.lemma}
                     </span>
@@ -114,10 +139,11 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
             Tohumlar <span className="bed-count">{seeds.length}</span> <span className="muted">henüz ekilmedi</span>
           </h2>
           <ul className="bed-plants">
-            {seeds.slice(0, 60).map((w) => (
-              <li key={w.id}>
-                <button className="plant-tile" onClick={() => onOpen(w.id)} title={w.senses[0].gloss}>
+            {seeds.slice(0, 60).map((w, i) => (
+              <li key={w.id} style={{ '--i': Math.min(i, 40) } as CSSProperties}>
+                <button className={`plant-tile${w.difficult ? ` is-hard${i < LIVE_PER_BED ? ' is-pulse' : ''}` : ''}`} onClick={() => onOpen(w.id)} title={`${w.senses[0].gloss}${w.difficult ? ' · zor işaretli' : ''}`}>
                   <Plant stage={-1} size={44} />
+                  {w.difficult && <BoltIcon size={14} solid className="plant-hard-mark" />}
                   <span className="plant-name" lang={w.language}>
                     {w.lemma}
                   </span>

@@ -7,6 +7,7 @@ import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
 import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, PenIcon, SproutIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
+import { TIER_NAME } from './BadgeMoment'
 import { Medal } from './Medal'
 import { StreakFlame } from './StreakFlame'
 import { localDate } from '../engine/progress'
@@ -259,7 +260,6 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
 
 type Achievement = NonNullable<ReturnType<typeof useGame>>['achievements'][number]
 
-const TIER_NAME = { bronze: 'Bronz', silver: 'Gümüş', gold: 'Altın', special: 'Özel' } as const
 
 function Badge({ a, compact = false, onOpen }: { a: Achievement; compact?: boolean; onOpen: (a: Achievement) => void }) {
   return (

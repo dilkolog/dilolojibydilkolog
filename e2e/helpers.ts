@@ -140,8 +140,8 @@ export const clippedContent = (page: Page) =>
     return found.slice(0, 6)
   })
 
-/** Plays today's session to its end, answering whatever comes first. */
-export async function finishSession(page: Page) {
+/** Plays today's session to its summary, answering whatever comes first, and stops there. */
+export async function playSession(page: Page) {
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   for (let i = 0; i < 150 && !(await page.locator('.celebrate-card, .summary-grid').count()); i++) {
     const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
@@ -158,6 +158,12 @@ export async function finishSession(page: Page) {
     else await page.waitForTimeout(150)
     await page.waitForTimeout(80)
   }
+}
+
+/** Plays the session through and leaves the summary: a moment on top (a new badge) is closed first. */
+export async function finishSession(page: Page) {
+  await playSession(page)
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(600)
 }

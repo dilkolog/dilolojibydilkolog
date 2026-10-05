@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
 
 test('first run: the language choice comes right after the welcome', async ({ page }) => {
   await page.goto('/')
@@ -300,4 +300,52 @@ test('the titles tab shows the ladder, what is next and what a badge opens', asy
   // The title reached can be shown beside the name.
   await page.locator('.titles-ladder .is-current').getByRole('button', { name: /Göster|Gösteriliyor/ }).click()
   await expect(page.locator('.profile-level strong').first()).toHaveText('Çaylak')
+})
+
+test('a badge earned in a session gets its moment once, and so does one earned outside', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await playSession(page)
+  // The first session earns "İlk adım": struck on the summary.
+  const moment = page.locator('.badge-moment')
+  await expect(moment).toBeVisible()
+  await expect(moment.locator('h2')).toHaveText('İlk adım')
+  await expect(moment.locator('.medal')).toBeVisible()
+  await moment.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(moment).toHaveCount(0)
+  // Not again on the home screen.
+  await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
+  await openScreen(page, 'Bugün')
+  await page.waitForTimeout(500)
+  await expect(moment).toHaveCount(0)
+  // Outside a session: marking hard words earns "Zorluk avcısı", and the moment says so.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.getByRole('checkbox').first().check()
+  await page.getByRole('button', { name: 'Zor işaretle' }).click()
+  await expect(moment.locator('h2')).toHaveText('Zorluk avcısı')
+  await moment.getByRole('button', { name: 'Profilde gör' }).click()
+  await expect(moment).toHaveCount(0)
+  await expect(page.getByRole('tab', { name: 'Rozetler' })).toBeVisible()
+})
+
+test('hard words glow in the garden, and the Zor filter shows just those', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.locator('.word-row').first().click()
+  await page.getByRole('button', { name: 'Zor işaretle' }).click()
+  // A new badge may open its moment; close it if so.
+  await page.locator('.badge-moment').getByRole('button', { name: 'Devam', exact: true }).click({ timeout: 1500 }).catch(() => {})
+  await page.getByRole('button', { name: /^Bahçe$/ }).or(page.getByRole('tab', { name: /Bahçe/ })).first().click()
+  const tiles = page.locator('.plant-tile')
+  expect(await tiles.count()).toBeGreaterThan(10)
+  await expect(page.locator('.plant-tile.is-hard')).toHaveCount(1)
+  await expect(page.locator('.plant-tile.is-hard .plant-hard-mark')).toHaveCount(1)
+  // The filter: only that plant stays.
+  await page.getByRole('button', { name: /Zor \(1\)/ }).click()
+  await expect(tiles).toHaveCount(1)
+  await page.getByRole('button', { name: /Zor kelimeleri çalış/ }).click()
+  await expect(page.locator('.session')).toBeVisible()
 })
