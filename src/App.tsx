@@ -17,6 +17,7 @@ import {
   type VocabularyEntry,
 } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
+import { SAMPLE_WORDS } from './data/seed'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
@@ -913,6 +914,12 @@ export default function App() {
                 canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
                 onStart={() => startSession(plan.items, 'normal', daySeed(new Date()))}
                 onAddWords={go({ name: 'words' })}
+                onTrySamples={async () => {
+                  // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
+                  const at = new Date()
+                  await db.vocabulary.bulkPut(SAMPLE_WORDS[data.language].map((w) => ({ ...w, addedAt: at })))
+                  await reload()
+                }}
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}

@@ -200,6 +200,7 @@ export function Home({
   canPractice,
   onStart,
   onAddWords,
+  onTrySamples,
   onProfile,
   onStory,
   onGames,
@@ -225,6 +226,8 @@ export function Home({
   canPractice: boolean
   onStart: () => void
   onAddWords: () => void
+  /** First run: load the sample words to try the app before adding one's own. */
+  onTrySamples?: () => void
   onProfile: () => void
   onStory?: () => void
   onGames?: () => void
@@ -270,10 +273,17 @@ export function Home({
         <div className="hero">
           <div className="hero-body">
             <h2 className="hero-title">{LANGUAGE_NAME[language]} için ilk kelimelerini ekle</h2>
-            <p className="hero-sub">Öğrenmek istediğin kelimeleri yaz ya da bir listeyi yapıştır. Denemek için örnek kelimeler de var.</p>
-            <button className="btn btn-lg" onClick={onAddWords}>
-              Kelime ekle
-            </button>
+            <p className="hero-sub">Öğrenmek istediğin kelimeleri yaz ya da bir listeyi yapıştır. Önce denemek istersen hazır örnek kelimelerle başlayabilirsin.</p>
+            <div className="row hero-actions">
+              <button className="btn btn-lg" onClick={onAddWords}>
+                Kelime ekle
+              </button>
+              {onTrySamples && (
+                <button className="btn btn-lg btn-ghost-on-hero" onClick={onTrySamples}>
+                  Örnek kelimelerle dene
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -303,7 +313,8 @@ export function Home({
         <li>
           <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
         </li>
-        {streak > 0 && answeredToday === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
+        {/* The streak counts any language, so today's XP (all languages) says whether it is safe. */}
+        {streak > 0 && (game?.xp.today ?? 0) === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
       </ul>
 
       <div className="home-grid">
