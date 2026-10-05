@@ -3709,6 +3709,18 @@ button.badge-card:active { transform: none; }
   .session-stage .sheet-spacer { animation: spacer-grow var(--dur) var(--ease-out); }
 }
 @keyframes spacer-grow { from { height: 0; } }
+/* Games on phones, the same way: the stage fills the screen down to the tab bar, the choices sit at its foot. */
+@media (max-width: 40rem) and (min-height: 38rem) {
+  .game-stage { display: flex; flex-direction: column; min-height: calc(100dvh - 9.5rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
+  /* Every box between the stage and the choices stretches, however deep a game nests them. */
+  .game-stage > :only-child, .game-stage :has(> :is(.options, .article-options, .swipe-actions, .audio-options)),
+  .game-stage :has(> * > :is(.options, .article-options, .swipe-actions, .audio-options)) { flex: 1; display: flex; flex-direction: column; }
+  .game-stage :is(.options, .article-options, .swipe-actions, .audio-options) { margin-top: auto; padding-top: 1.5rem; }
+  /* What appears under the choices after an answer opens up, so they slide up rather than jump. */
+  .game-stage :is(.options, .article-options, .swipe-actions, .audio-options) ~ * { animation: open-below var(--dur) var(--ease-out); overflow: hidden; }
+}
+@keyframes open-below { from { max-height: 0; opacity: 0; } to { max-height: 12rem; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .game-stage :is(.options, .article-options, .swipe-actions, .audio-options) ~ * { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .session-stage .sheet-spacer { animation: none; } }
 @media (min-width: 64rem) and (min-height: 44rem) {
   .session { min-height: calc(100vh - 4rem); display: flex; flex-direction: column; }

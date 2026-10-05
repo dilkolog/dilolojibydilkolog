@@ -7,7 +7,7 @@ several sources; a verb that can't be vouched for is left out.
   and french-verbs-lefff (Apache-2.0; data from the Lefff lexicon by Benoît Sagot). Compared with
   UniMorph: the differences were spelling-reform variants (céderai/cèderai, both accepted) and
   UniMorph errors.
-- **Spanish** (`es.json`, 1,288 verbs): forms in order of trust from the learner's own audit
+- **Spanish** (`es.json`, 1,293 verbs): forms in order of trust from the learner's own audit
   (`scripts/es-overrides.json`, from the diloloji project), Fred Jehle's Conjugated Spanish Verb
   Database (637 verbs, CC BY-NC-SA 3.0, compiled by B. Ghidinelli), UniMorph (CC BY-SA), the
   family's base verb (obtener like tener), and spanish-verbs (Apache-2.0) only where it proved
@@ -17,9 +17,11 @@ several sources; a verb that can't be vouched for is left out.
   -er/-ir verbs no source covers get the regular indefinido (absorbí, partió), but only outside
   every class that breaks it (strong stems, -ducir, vowel stems, -ñir, -ir verbs that change
   their stem); the rule matched all 164 verbs the authorities vouch for. Typos and foreign words
-  in the diloloji list (apovar, enlargar) are left out by hand.
+  in the diloloji list (apovar, enlargar) are left out by hand. The last few verbs no source
+  covers (concluir, arrepentir, conceder…) were checked against Wiktionary's tables by hand
+  (`scripts/es-checked.json`); atardecer is left without a subjunctive table, being impersonal.
 Stored: French imparfait, futur, subjonctif présent, participe passé and auxiliary; Spanish
-indefinido, imperfecto, futuro, participio and presente de subjuntivo (1,282 verbs: from Jehle,
+indefinido, imperfecto, futuro, participio and presente de subjuntivo (1,292 verbs: from Jehle,
 UniMorph, the audit and base verbs, then the regular subjunctive built from a plain present —
 adjunte, rocé → roce — which matched all 967 verbs the authorities vouch for; the library got
 stem-changing verbs wrong, so it is not used for it). Compound tenses and the conditional (futur stem + imparfait endings) are put
@@ -30,7 +32,7 @@ Because of the Jehle data, the Spanish table is for non-commercial use (CC BY-NC
 
 ## Example sentences
 
-`es-sentences.json` (5,092 sentences, 881 verbs; condicional and subjuntivo included) is built by `scripts/build-tense-sentences.ts`
+`es-sentences.json` (5,109 sentences, 885 verbs; condicional and subjuntivo included) is built by `scripts/build-tense-sentences.ts`
 from the diloloji project's example sentences, which were written with AI help. A sentence is
 kept only when exactly one form of the verb in that tense (from the tables above) appears in it
 once and the form belongs to no other tense; the Turkish translations were sample-read and

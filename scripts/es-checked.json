@@ -1,0 +1,14 @@
+{
+  "_source": "Wiktionary conjugation tables, read 2026-10-05, for verbs no other source vouches for. atardecer is left out: impersonal, only the third person singular.",
+  "arrepentir": {"pres": ["arrepiento", "arrepientes", "arrepiente", "arrepentimos", "arrepentís", "arrepienten"], "pre": ["arrepentí", "arrepentiste", "arrepintió", "arrepentimos", "arrepentisteis", "arrepintieron"], "sub": ["arrepienta", "arrepientas", "arrepienta", "arrepintamos", "arrepintáis", "arrepientan"]},
+  "cernir": {"pres": ["cierno", "ciernes", "cierne", "cernimos", "cernís", "ciernen"], "pre": ["cerní", "cerniste", "cernió", "cernimos", "cernisteis", "cernieron"], "sub": ["cierna", "ciernas", "cierna", "cernamos", "cernáis", "ciernan"]},
+  "concluir": {"pres": ["concluyo", "concluyes", "concluye", "concluimos", "concluís", "concluyen"], "pre": ["concluí", "concluiste", "concluyó", "concluimos", "concluisteis", "concluyeron"], "sub": ["concluya", "concluyas", "concluya", "concluyamos", "concluyáis", "concluyan"]},
+  "desteñir": {"pres": ["destiño", "destiñes", "destiñe", "desteñimos", "desteñís", "destiñen"], "pre": ["desteñí", "desteñiste", "destiñó", "desteñimos", "desteñisteis", "destiñeron"], "sub": ["destiña", "destiñas", "destiña", "destiñamos", "destiñáis", "destiñan"]},
+  "ebullir": {"pres": ["ebullo", "ebulles", "ebulle", "ebullimos", "ebullís", "ebullen"], "pre": ["ebullí", "ebulliste", "ebulló", "ebullimos", "ebullisteis", "ebulleron"], "sub": ["ebulla", "ebullas", "ebulla", "ebullamos", "ebulláis", "ebullan"]},
+  "coexistir": {"pres": ["coexisto", "coexistes", "coexiste", "coexistimos", "coexistís", "coexisten"], "sub": ["coexista", "coexistas", "coexista", "coexistamos", "coexistáis", "coexistan"]},
+  "conceder": {"pres": ["concedo", "concedes", "concede", "concedemos", "concedéis", "conceden"], "sub": ["conceda", "concedas", "conceda", "concedamos", "concedáis", "concedan"]},
+  "corresponder": {"pres": ["correspondo", "correspondes", "corresponde", "correspondemos", "correspondéis", "corresponden"], "sub": ["corresponda", "correspondas", "corresponda", "correspondamos", "correspondáis", "correspondan"]},
+  "difundir": {"pres": ["difundo", "difundes", "difunde", "difundimos", "difundís", "difunden"], "sub": ["difunda", "difundas", "difunda", "difundamos", "difundáis", "difundan"]},
+  "lamber": {"pres": ["lambo", "lambes", "lambe", "lambemos", "lambéis", "lamben"], "sub": ["lamba", "lambas", "lamba", "lambamos", "lambáis", "lamban"]},
+  "extraer": {"pres": ["extraigo", "extraes", "extrae", "extraemos", "extraéis", "extraen"]}
+}

@@ -130,6 +130,9 @@ console.log(`fr: ${Object.keys(fr).length} verbs`)
  * left out: better no past tense for it than a wrong one.
  */
 const overrides = JSON.parse(readFileSync('scripts/es-overrides.json', 'utf8')) as Record<string, Record<string, Record<string, string>>>
+/** Forms checked by hand (Wiktionary) for the few verbs no other source vouches for. */
+const checked = JSON.parse(readFileSync('scripts/es-checked.json', 'utf8')) as Record<string, { pre?: Six; sub?: Six }>
+let byChecked = 0
 type Key = 'pre' | 'imp' | 'fut'
 const LABEL: Record<Key, string> = { pre: 'Pretérito Indefinido', imp: 'Pretérito Imperfecto', fut: 'Futuro Simple' }
 const PERSON_KEY: Record<string, number> = { yo: 0, tú: 1, tu: 1, 'él/ella': 2, él: 2, el: 2, nosotros: 3, vosotros: 4, 'ellos/ellas': 5, ellos: 5 }
@@ -233,6 +236,11 @@ for (const v of candidates) {
       for (const [person, form] of Object.entries(patch)) if (PERSON_KEY[person] !== undefined) e[key][PERSON_KEY[person]] = form
       byOverride++
     }
+  }
+  if (!ok.pre && checked[v]?.pre) {
+    e.pre = [...checked[v].pre!] as Six
+    ok.pre = true
+    byChecked++
   }
   if (typeof j?.pp === 'string' && j.pp) {
     e.pp = j.pp
@@ -378,6 +386,12 @@ console.log('library agreement (subjuntivo):', JSON.stringify(agree))
 // The family's base verb, then the library for plain -ar verbs (where it agrees with the authorities).
 for (const v of Object.keys(es)) {
   if (subVouched.has(v)) continue
+  if (checked[v]?.sub) {
+    sub[v] = [...checked[v].sub!] as Six
+    subVouched.add(v)
+    byChecked++
+    continue
+  }
   const base = NOT_IN_FAMILY.has(v) ? undefined : FAMILY_BASE.filter((b) => v !== b && v.endsWith(b) && subVouched.has(b)).sort((a, b) => b.length - a.length)[0]
   if (base) {
     sub[v] = sub[base].map((f) => v.slice(0, -base.length) + f) as Six
@@ -439,4 +453,4 @@ console.log(`regular subjunctive rule filled ${bySubRule} verbs`)
 console.log(`es subjuntivo: ${subVouched.size} of ${Object.keys(es).length} verbs`)
 if (process.env.NO_SUB) writeFileSync(process.env.NO_SUB, Object.keys(es).filter((v) => !subVouched.has(v)).join('\n'))
 writeFileSync('src/data/tenses/es.json', JSON.stringify(Object.fromEntries(Object.entries(es).map(([v, e]) => [v, { pre: e.pre, imp: pack(e.imp, e.imp[0].endsWith('aba') ? ENDINGS.esImpAr : ENDINGS.esImpErIr), fut: pack(e.fut, ENDINGS.esFut), pp: e.pp, ...(sub[v] ? { sub: pack(sub[v], v.endsWith('ar') ? ENDINGS.esSubAr : ENDINGS.esSubErIr) } : {}) }]))))
-console.log(`es: ${Object.keys(es).length} verbs (Jehle ${byJehle}, UniMorph ${byUnimorph}, base verb ${byFamily}, overrides ${byOverride}; ${dropped} left out, not vouched for)`)
+console.log(`es: ${Object.keys(es).length} verbs (Jehle ${byJehle}, UniMorph ${byUnimorph}, base verb ${byFamily}, overrides ${byOverride}, checked by hand ${byChecked}; ${dropped} left out, not vouched for)`)

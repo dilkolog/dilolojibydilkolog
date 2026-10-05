@@ -69,6 +69,9 @@ describe('Spanish tenses', () => {
     expect(verb('es', 'madrugar', 'subjuntivo')?.[0]).toBe('madrugue')
     expect(verb('es', 'rozar', 'subjuntivo')?.[0]).toBe('roce')
     expect(verb('es', 'consolar', 'subjuntivo')?.[0]).toBe('consuele')
+    // Checked by hand (Wiktionary): no other source had them.
+    expect(verb('es', 'concluir', 'preterito')?.[2]).toBe('concluyó')
+    expect(verb('es', 'conceder', 'subjuntivo')?.[0]).toBe('conceda')
     expect(verb('es', 'apovar', 'preterito')).toBeUndefined()
     expect(verb('es', 'enlargar', 'preterito')).toBeUndefined()
   })

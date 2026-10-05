@@ -20,6 +20,7 @@ aplaudir	aplaudo aplaudes aplaude aplaudimos aplaudís aplauden
 apostar	apuesto apuestas apuesta apostamos apostáis apuestan
 apretar	aprieto aprietas aprieta apretamos apretáis aprietan
 arder	ardo ardes arde ardemos ardéis arden
+arrepentir	arrepiento arrepientes arrepiente arrepentimos arrepentís arrepienten
 ascender	asciendo asciendes asciende ascendemos ascendéis ascienden
 asumir	asumo asumes asume asumimos asumís asumen
 atraer	atraigo atraes atrae atraemos atraéis atraen
@@ -30,7 +31,9 @@ caber	quepo cabes cabe cabemos cabéis caben
 carecer	carezco careces carece carecemos carecéis carecen
 ceder	cedo cedes cede cedemos cedéis ceden
 ceñir	ciño ciñes ciñe ceñimos ceñís ciñen
+cernir	cierno ciernes cierne cernimos cernís ciernen
 cimentar	cimiento cimientas cimienta cimentamos cimentáis cimientan
+coexistir	coexisto coexistes coexiste coexistimos coexistís coexisten
 coger	cojo coges coge cogemos cogéis cogen
 coincidir	coincido coincides coincide coincidimos coincidís coinciden
 combatir	combato combates combate combatimos combatís combaten
@@ -41,6 +44,8 @@ comprimir	comprimo comprimes comprime comprimimos comprimís comprimen
 comprobar	compruebo compruebas comprueba comprobamos comprobáis comprueban
 comprometer	comprometo comprometes compromete comprometemos comprometéis comprometen
 concebir	concibo concibes concibe concebimos concebís conciben
+conceder	concedo concedes concede concedemos concedéis conceden
+concluir	concluyo concluyes concluye concluimos concluís concluyen
 confiar	confío confías confía confiamos confiáis confían
 confundir	confundo confundes confunde confundimos confundís confunden
 conmover	conmuevo conmueves conmueve conmovemos conmovéis conmueven
@@ -60,6 +65,7 @@ convenir	convengo convienes conviene convenimos convenís convienen
 convergir	converjo converges converge convergimos convergís convergen
 convivir	convivo convives convive convivimos convivís conviven
 corregir	corrijo corriges corrige corregimos corregís corrigen
+corresponder	correspondo correspondes corresponde correspondemos correspondéis corresponden
 crecer	crezco creces crece crecemos crecéis crecen
 criar	crío crías cría criamos criais crían
 crujir	crujo crujes cruje crujimos crujís crujen
@@ -81,6 +87,7 @@ descender	desciendo desciendes desciende descendemos descendéis descienden
 desconfiar	desconfío desconfías desconfía desconfiamos desconfiáis desconfían
 deshacer	deshago deshaces deshace deshacemos deshacéis deshacen
 desobedecer	desobedezco desobedeces desobedece desobedecemos desobedecéis desobedecen
+desteñir	destiño destiñes destiñe desteñimos desteñís destiñen
 desterrar	destierro destierras destierra desterramos desterráis destierran
 destituir	destituyo destituyes destituye destituimos destituís destituyen
 destruir	destruyo destruyes destruye destruimos destruís destruyen
@@ -89,6 +96,7 @@ desviar	desvío desvías desvía desviamos desviáis desvían
 detener	detengo detienes detiene detenemos detenéis detienen
 devaluar	devalúo devalúas devalúa devaluamos devaluáis devalúan
 diferir	difiero difieres difiere diferimos diferís difieren
+difundir	difundo difundes difunde difundimos difundís difunden
 dirigir	dirijo diriges dirige dirigimos dirigís dirigen
 discernir	discierno disciernes discierne discernimos discernís disciernen
 disentir	disiento disientes disiente disentimos disentís disienten
@@ -100,6 +108,7 @@ distraer	distraigo distraes distrae distraemos distraéis distraen
 distribuir	distribuyo distribuyes distribuye distribuimos distribuís distribuyen
 dividir	divido divides divide dividimos dividís dividen
 doler	duelo dueles duele dolemos doléis duelen
+ebullir	ebullo ebulles ebulle ebullimos ebullís ebullen
 efectuar	efectúo efectúas efectúa efectuamos efectuáis efectúan
 ejercer	ejerzo ejerces ejerce ejercemos ejercéis ejercen
 emitir	emito emites emite emitimos emitís emiten
@@ -137,6 +146,7 @@ exigir	exijo exiges exige exigimos exigís exigen
 expandir	expando expandes expande expandimos expandís expanden
 exponer	expongo expones expone exponemos exponéis exponen
 extinguir	extingo extingues extingue extinguimos extinguís extinguen
+extraer	extraigo extraes extrae extraemos extraéis extraen
 fiar	fío fías fía fiamos fiais fían
 fingir	finjo finges finge fingimos fingís fingen
 florecer	florezco floreces florece florecemos florecéis florecen
@@ -166,6 +176,7 @@ intuir	intuyo intuyes intuye intuimos intuís intuyen
 invadir	invado invades invade invadimos invadís invaden
 invertir	invierto inviertes invierte invertimos invertís invierten
 joder	jodo jodes jode jodemos jodéis joden
+lamber	lambo lambes lambe lambemos lambéis lamben
 latir	lato lates late latimos latís laten
 licuar	licuo licuas licua licuamos licuáis licuan
 llover	lluevo llueves llueve llovemos llovéis llueven

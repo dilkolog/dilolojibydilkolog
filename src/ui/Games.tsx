@@ -46,32 +46,37 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   const fluencyWords = pickFluencyWords(p.vocabulary, p.states, createRng(1)).length
   const online = useOnline()
 
-  if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
-  if ((game === 'conjugation' || game === 'aspect') && p.language !== 'en')
-    return (
-      <ConjugationGame
-        {...p}
-        language={p.language}
-        best={records[`conj:${p.language}`]}
-        bestAspect={records[`aspect:${p.language}`]}
-        recordKey={`conj:${p.language}`}
-        startWithAspect={game === 'aspect'}
-        onExit={() => setGame(null)}
-      />
-    )
-  if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
-  if (game === 'gender' && p.language !== 'en')
-    return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
-  if (game === 'boss') return <BossArena {...p} onExit={() => setGame(null)} />
-  if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
-  if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
-  if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
-  if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
-  if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
-  if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
-  if (game === 'fluency')
-    return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
-  if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} recordKey={blitzKey} onExit={() => setGame(null)} />
+  // The game being played, in a stage that (on phones) puts its answer buttons within thumb reach.
+  const active = (() => {
+    if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
+    if ((game === 'conjugation' || game === 'aspect') && p.language !== 'en')
+      return (
+        <ConjugationGame
+          {...p}
+          language={p.language}
+          best={records[`conj:${p.language}`]}
+          bestAspect={records[`aspect:${p.language}`]}
+          recordKey={`conj:${p.language}`}
+          startWithAspect={game === 'aspect'}
+          onExit={() => setGame(null)}
+        />
+      )
+    if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
+    if (game === 'gender' && p.language !== 'en')
+      return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
+    if (game === 'boss') return <BossArena {...p} onExit={() => setGame(null)} />
+    if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
+    if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
+    if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
+    if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
+    if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
+    if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
+    if (game === 'fluency')
+      return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
+    if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} recordKey={blitzKey} onExit={() => setGame(null)} />
+    return null
+  })()
+  if (active) return <div className="game-stage">{active}</div>
 
   const learnFirst = 'Önce birkaç kelime öğren'
   const accentCount = accentedWords(p.vocabulary).length

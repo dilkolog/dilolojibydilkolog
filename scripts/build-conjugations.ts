@@ -1,7 +1,8 @@
 /**
  * Builds src/data/conjugation/{fr,es}.txt from UniMorph (CC BY-SA 3.0):
  *   https://github.com/unimorph/fra, https://github.com/unimorph/spa
- * and, for Spanish verbs UniMorph lacks, Fred Jehle's verb database (jehle_verb_database.csv, as in build-tenses.ts).
+ * and, for Spanish verbs UniMorph lacks, Fred Jehle's verb database (jehle_verb_database.csv, as in build-tenses.ts),
+ * then the hand-checked forms in scripts/es-checked.json.
  * Present indicative of every verb a learner is likely to meet (French: a verb in Lexique;
  * Spanish: an infinitive in the frequency list, or a verb with other tenses in src/data/tenses/es.json —
  * the safe rules would otherwise give consolo for consuelo), kept only where the hand tables and safe rules in conjugation.ts don't
@@ -55,6 +56,11 @@ for (const [lang, file] of [['fr', 'fra'], ['es', 'spa']] as const) {
       // Defective rows (llover: only the third person, the columns shifted) are left out.
       if (forms.every((f) => f && !/ /.test(f)) && forms[1].endsWith('s') && forms[5].endsWith('n')) verbs.set(c[0], forms)
     }
+  }
+  // Last, the forms checked by hand (scripts/es-checked.json, from Wiktionary) for verbs neither has.
+  if (lang === 'es') {
+    const checked = JSON.parse(readFileSync('scripts/es-checked.json', 'utf8')) as Record<string, { pres?: string[] }>
+    for (const [v, c] of Object.entries(checked)) if (c.pres && !verbs.get(v)?.every(Boolean)) verbs.set(v, c.pres)
   }
   const out: string[] = []
   let agree = 0
