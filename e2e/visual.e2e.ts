@@ -72,3 +72,39 @@ for (const lang of LANGUAGES) {
     })
   }
 }
+
+/**
+ * The long screens of a phone, top to bottom: Progress (groups closed, as it opens), Settings and a
+ * word page. The tab bar is hidden (a fixed bar would sit in the middle of a full-page shot) and
+ * the clock is fixed so dates and the week strip do not move.
+ */
+for (const theme of ['light', 'dark'] as const) {
+  test(`long phone screens look the same: ${theme}`, async ({ page }, info) => {
+    test.skip(info.project.name !== 'phone', 'the long screens are a phone matter')
+    await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
+    await startWithSamples(page)
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    const shot = { fullPage: true, scale: 'css', animations: 'disabled', maxDiffPixelRatio: 0.01 } as const
+    // The bar is hidden only for the shot: the walk between screens needs it.
+    const snap = async (name: string) => {
+      const hide = await page.addStyleTag({ content: '.tabbar { display: none !important }' })
+      await expect(page).toHaveScreenshot(name, shot)
+      await hide.evaluate((e) => e.remove())
+    }
+
+    await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()
+    await page.waitForTimeout(600)
+    await snap(`long-progress-${theme}.png`)
+
+    await openScreen(page, 'Profil')
+    await page.locator('.profile-settings').click()
+    await expect(page.locator('.settings-menu-item').first()).toBeVisible()
+    await page.waitForTimeout(400)
+    await snap(`long-settings-${theme}.png`)
+
+    await openScreen(page, 'Kelimeler')
+    await page.locator('.word-row, tbody tr').first().click()
+    await page.waitForTimeout(600)
+    await snap(`long-word-${theme}.png`)
+  })
+}
