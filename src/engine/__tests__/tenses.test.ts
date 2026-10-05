@@ -62,6 +62,17 @@ describe('Spanish tenses', () => {
     expect(verb('es', 'levantarse', 'preterito')?.[2]).toBe('se levantó')
   })
 
+  it('covers verbs no single source had, and no typos from the word lists', () => {
+    expect(verb('es', 'partir', 'preterito')?.[2]).toBe('partió')
+    expect(verb('es', 'absorber', 'preterito')?.[0]).toBe('absorbí')
+    expect(verb('es', 'haber', 'preterito')?.[2]).toBe('hubo')
+    expect(verb('es', 'madrugar', 'subjuntivo')?.[0]).toBe('madrugue')
+    expect(verb('es', 'rozar', 'subjuntivo')?.[0]).toBe('roce')
+    expect(verb('es', 'consolar', 'subjuntivo')?.[0]).toBe('consuele')
+    expect(verb('es', 'apovar', 'preterito')).toBeUndefined()
+    expect(verb('es', 'enlargar', 'preterito')).toBeUndefined()
+  })
+
   it('accepts unaccented monosyllables', () => {
     expect(tenseVariants('es', 'rió')).toEqual(['rio'])
     expect(tenseVariants('es', 'se rió')).toEqual(['se rio'])

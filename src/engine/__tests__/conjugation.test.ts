@@ -87,6 +87,9 @@ describe('dictionary forms (UniMorph)', () => {
     const { conjugate } = await import('../conjugation')
     const of = (language: 'fr' | 'es', lemma: string) => conjugate({ language, lemma, partOfSpeech: 'verb' })
     expect(of('es', 'demostrar')).toMatchObject({ forms: ['demuestro', 'demuestras', 'demuestra', 'demostramos', 'demostráis', 'demuestran'], source: 'dictionary' })
+    // Rarer verbs with other tenses in the app: consuelo, not consolo; aliento from Jehle.
+    expect(of('es', 'consolar')?.forms[0]).toBe('consuelo')
+    expect(of('es', 'alentar')?.forms[0]).toBe('aliento')
     expect(of('fr', 'léguer')?.forms[0]).toBe('lègue')
     expect(of('fr', 'vaincre')?.forms[3]).toBe('vainquons')
     expect(of('fr', 'se résoudre')?.forms[0]).toBe('me résous')

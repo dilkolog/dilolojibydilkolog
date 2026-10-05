@@ -1,14 +1,16 @@
 /**
  * Builds src/data/conjugation/{fr,es}.txt from UniMorph (CC BY-SA 3.0):
  *   https://github.com/unimorph/fra, https://github.com/unimorph/spa
+ * and, for Spanish verbs UniMorph lacks, Fred Jehle's verb database (jehle_verb_database.csv, as in build-tenses.ts).
  * Present indicative of every verb a learner is likely to meet (French: a verb in Lexique;
- * Spanish: an infinitive in the frequency list), kept only where the hand tables and safe rules in conjugation.ts don't
+ * Spanish: an infinitive in the frequency list, or a verb with other tenses in src/data/tenses/es.json —
+ * the safe rules would otherwise give consolo for consuelo), kept only where the hand tables and safe rules in conjugation.ts don't
  * already give the same forms. One line per verb: "infinitive<TAB>je tu il nous vous ils".
  *
  * Usage (files downloaded beforehand):
  *   npx rolldown scripts/build-conjugations.ts -o /tmp/conj.mjs -p node && node /tmp/conj.mjs <dir with fra, spa>
  */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { conjugate } from '../src/engine/conjugation'
 
 const dir = process.argv[2]
@@ -29,6 +31,7 @@ const FR_VERBS = new Set(
     .filter((l) => /\t.*v/.test(l))
     .map((l) => l.split('\t')[0]),
 )
+const ES_TENSE_VERBS = new Set(Object.keys(JSON.parse(readFileSync('src/data/tenses/es.json', 'utf8'))))
 
 for (const [lang, file] of [['fr', 'fra'], ['es', 'spa']] as const) {
   const freq = new Map<string, number>()
@@ -43,12 +46,22 @@ for (const [lang, file] of [['fr', 'fra'], ['es', 'spa']] as const) {
     forms[at] ??= form
     verbs.set(lemma, forms)
   }
+  // Fred Jehle's database (the one build-tenses.ts uses) for Spanish verbs UniMorph lacks (alentar).
+  if (lang === 'es' && existsSync(`${dir}/jehle_verb_database.csv`)) {
+    for (const line of readFileSync(`${dir}/jehle_verb_database.csv`, 'utf8').split('\n').slice(1)) {
+      const c = line.match(/"[^"]*"/g)?.map((f) => f.slice(1, -1))
+      if (c?.[2] !== 'Indicativo' || c[4] !== 'Presente' || verbs.get(c[0])?.every(Boolean)) continue
+      const forms = c.slice(7, 13)
+      // Defective rows (llover: only the third person, the columns shifted) are left out.
+      if (forms.every((f) => f && !/ /.test(f)) && forms[1].endsWith('s') && forms[5].endsWith('n')) verbs.set(c[0], forms)
+    }
+  }
   const out: string[] = []
   let agree = 0
   let disagree = 0
   for (const [lemma, forms] of verbs) {
     if (forms.some((f) => !f)) continue
-    const known = lang === 'fr' ? FR_VERBS.has(lemma) : (freq.get(lemma) ?? Infinity) <= LEMMA_RANK
+    const known = lang === 'fr' ? FR_VERBS.has(lemma) : (freq.get(lemma) ?? Infinity) <= LEMMA_RANK || ES_TENSE_VERBS.has(lemma)
     if (!known) continue
     if (WRONG.has(lemma)) continue
     const conj = conjugate({ language: lang, lemma, partOfSpeech: 'verb' })

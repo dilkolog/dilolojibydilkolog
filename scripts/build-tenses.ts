@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { getConjugation as frConj, alwaysAuxEtre } from 'french-verbs'
 import lefff from 'french-verbs-lefff/dist/conjugations.json'
 import { getConjugation as esConj } from 'spanish-verbs'
+import { addConjugations, conjugate } from '../src/engine/conjugation'
 
 const [unimorphDir, dilolojiDir] = process.argv.slice(2)
 type Six = [string, string, string, string, string, string]
@@ -135,15 +136,16 @@ const PERSON_KEY: Record<string, number> = { yo: 0, tú: 1, tu: 1, 'él/ella': 2
 const freq = new Map<string, number>()
 readFileSync('src/data/frequency/es.txt', 'utf8').split('\n').forEach((w, i) => w && !freq.has(w) && freq.set(w, i + 1))
 
+// Spanish UniMorph puts the aspect before the person (V;IND;PST;PFV;1;SG), French after it.
 const esRef = unimorph('spa', {
-  ...Object.fromEntries(PERS.map((p, i) => [`V;IND;PST;${p};PFV`, `pre${i}`])),
-  ...Object.fromEntries(PERS.map((p, i) => [`V;IND;PST;${p};IPFV`, `imp${i}`])),
+  ...Object.fromEntries(PERS.map((p, i) => [`V;IND;PST;PFV;${p}`, `pre${i}`])),
+  ...Object.fromEntries(PERS.map((p, i) => [`V;IND;PST;IPFV;${p}`, `imp${i}`])),
   ...Object.fromEntries(PERS.map((p, i) => [`V;IND;FUT;${p}`, `fut${i}`])),
   'V;V.PTCP;PST;MASC;SG': 'pp',
 })
 for (const line of readFileSync(`${unimorphDir}/spa`, 'utf8').split('\n')) {
   const [lemma, form, feats] = line.split('\t')
-  const tag = { 'V;IND;PST;2;SG;PFV;INFM': 'pre1', 'V;IND;PST;2;SG;IPFV;INFM': 'imp1', 'V;IND;FUT;2;SG;INFM': 'fut1', 'V;SBJV;PRS;2;SG;INFM': 'sub1' }[feats as string]
+  const tag = { 'V;IND;PST;PFV;2;SG;INFM': 'pre1', 'V;IND;PST;IPFV;2;SG;INFM': 'imp1', 'V;IND;FUT;2;SG;INFM': 'fut1', 'V;SBJV;PRS;2;SG;INFM': 'sub1' }[feats as string]
   const sub = { 'V;SBJV;PRS;1;SG': 'sub0', 'V;SBJV;PRS;3;SG': 'sub2', 'V;SBJV;PRS;1;PL': 'sub3', 'V;SBJV;PRS;2;PL': 'sub4', 'V;SBJV;PRS;3;PL': 'sub5' }[feats as string]
   if (!tag && !sub) continue
   const m = esRef.get(lemma) ?? {}
@@ -172,7 +174,11 @@ for (const line of readFileSync(`${unimorphDir}/jehle_verb_database.csv`, 'utf8'
 const dilolojiVerbs = dilolojiDir && existsSync(`${dilolojiDir}/src/data/example_sentences.js`)
   ? Object.keys(JSON.parse(readFileSync(`${dilolojiDir}/src/data/example_sentences.js`, 'utf8').replace(/^export const exampleSentences = /, '').replace(/;\s*$/, '')))
   : []
-const candidates = [...new Set([...[...esRef.keys()].filter((v) => (freq.get(v) ?? Infinity) <= 40000), ...dilolojiVerbs, ...jehle.keys()])]
+// diloloji's list has typos and stray foreign words; the frequency list is too short to vouch for rare but
+// real verbs (madrugar, edificar), so these are listed by hand.
+const NOT_SPANISH = new Set(['acelgar', 'antender', 'apovar', 'bronquear', 'bronzear', 'consoladar', 'contraatar', 'cordializar', 'electrolyzer', 'enlargar', 'supervisionar'])
+addConjugations('es', readFileSync('src/data/conjugation/es.txt', 'utf8'))
+const candidates = [...new Set([...[...esRef.keys()].filter((v) => (freq.get(v) ?? Infinity) <= 40000), ...dilolojiVerbs.filter((v) => !NOT_SPANISH.has(v)), ...jehle.keys()])]
   .filter((v) => /^[a-zñáéíóú]*(ar|er|ir|ír)$/.test(v))
   .sort()
 
@@ -271,12 +277,66 @@ for (const v of Object.keys(es)) {
   }
 }
 
+/*
+ * Pass 3: the regular -er/-ir indefinido (absorbí, absorbió…) for what is still unvouched, but only
+ * outside every class that breaks it: strong stems (tuve), -ducir, vowel stems (leyó, construyó),
+ * -ñir/-llir (ciñó), and -ir verbs whose present changes the stem (pido → pidió). The rule is first
+ * checked against every verb Jehle or UniMorph vouch for; it is used only if it never disagrees.
+ */
+const STRONG = ['tener', 'estar', 'poder', 'poner', 'saber', 'hacer', 'querer', 'venir', 'decir', 'traer', 'haber', 'caber', 'andar', 'ducir', 'facer']
+// Matched whole: as endings they would catch every -ir verb.
+const STRONG_EXACT = ['ser', 'ir', 'dar', 'ver']
+const BREAKS = ['eer', 'aer', 'uir', 'oír', 'ñir', 'llir', 'güir', 'ñer', 'ller', 'reír', 'eír']
+const PRE_ER_IR = ['í', 'iste', 'ió', 'imos', 'isteis', 'ieron']
+function regularPreterite(v: string): Six | null {
+  if (!/(er|ir)$/.test(v) || STRONG_EXACT.includes(v) || endsWith(v, STRONG) || endsWith(v, BREAKS)) return null
+  const stem = v.slice(0, -2)
+  if (v.endsWith('ir')) {
+    // No stem change in the present (pido would mean pidió) — or, with no present at hand, a stem
+    // whose last vowel is a, i or u: only e and o change (pedir, dormir). The u of gu/qu is silent.
+    const yo = conjugate({ language: 'es', lemma: v, partOfSpeech: 'verb' })?.forms[0]
+    const vowels = stem.replace(/([gq])u(?=[eiéí])/g, '$1').replace(/[^aeiouáéíóú]/g, '')
+    if (yo ? yo !== `${stem}o` : !/[aiuáíú]$/.test(vowels)) return null
+  }
+  return PRE_ER_IR.map((e) => stem + e) as Six
+}
+let ruleChecked = 0
+let ruleWrong = 0
+for (const v of Object.keys(es)) {
+  const r = regularPreterite(v)
+  const auth = (jehle.get(v)?.pre as string[] | undefined) ?? (P.every((p) => esRef.get(v)?.[`pre${p}`]) ? P.map((p) => esRef.get(v)![`pre${p}`]) : undefined)
+  // A defective row (doler: only third persons, the columns shifted) is no reference.
+  if (!r || !auth || !/[óo]$/.test(auth[2]) || !auth[5].endsWith('ron')) continue
+  ruleChecked++
+  if (r.some((f, i) => f !== auth[i])) {
+    ruleWrong++
+    console.log(`es ${v} regular preterite rule: ${r.join(' ')} | authority ${auth.join(' ')}`)
+  }
+}
+console.log(`regular preterite rule: ${ruleChecked - ruleWrong}/${ruleChecked} agree`)
+let byRule = 0
+if (ruleWrong === 0) {
+  for (const v of Object.keys(es)) {
+    if (vouched[v].pre) continue
+    const r = regularPreterite(v)
+    if (r) {
+      es[v].pre = r
+      vouched[v].pre = true
+      byRule++
+    }
+  }
+}
+console.log(`regular preterite rule filled ${byRule} verbs`)
+
+const droppedList: string[] = []
 for (const v of Object.keys(es)) {
   if (!Object.values(vouched[v]).every(Boolean)) {
+    droppedList.push(`${v}\t${Object.entries(vouched[v]).filter(([, ok]) => !ok).map(([k]) => k).join(',')}`)
     delete es[v]
     dropped++
   }
 }
+if (process.env.DROPPED) writeFileSync(process.env.DROPPED, droppedList.join('\n'))
 
 /*
  * Presente de subjuntivo, kept apart: a verb without a vouched subjunctive keeps its other tenses.
@@ -330,6 +390,53 @@ for (const v of Object.keys(es)) {
     subVouched.add(v)
   }
 }
+/*
+ * Then the regular subjunctive (adjunte, conceda), built from the present tense of our own conjugation
+ * engine, and only where that present is plain: yo = stem + o, él = stem + a/e, nosotros regular. A
+ * stem or spelling change in yo (venzo, conozco, pienso) rules it out. Checked first against every verb
+ * the authorities vouch for, split by whether the present came from the dictionary or the rule; used
+ * only if it never disagrees.
+ */
+function regularSubjunctive(v: string): { forms: Six; source: string } | null {
+  if (!/(ar|er|ir)$/.test(v) || STRONG_EXACT.includes(v)) return null
+  const c = conjugate({ language: 'es', lemma: v, partOfSpeech: 'verb' })
+  if (!c) return null
+  const stem = v.slice(0, -2)
+  const ar = v.endsWith('ar')
+  const we = ar ? 'amos' : v.endsWith('er') ? 'emos' : 'imos'
+  if (c.forms[0] !== `${stem}o` || c.forms[2] !== `${stem}${ar ? 'a' : 'e'}` || c.forms[3] !== `${stem}${we}`) return null
+  // hablar → hable; buscar → busque, pagar → pague, cruzar → cruce, averiguar → averigüe.
+  const base = ar ? stem.replace(/gu$/, 'gü').replace(/c$/, 'qu').replace(/g$/, 'gu').replace(/z$/, 'c') : stem
+  const ends = ar ? ['e', 'es', 'e', 'emos', 'éis', 'en'] : ['a', 'as', 'a', 'amos', 'áis', 'an']
+  return { forms: ends.map((e) => base + e) as Six, source: c.source }
+}
+const subRule: Record<string, [number, number]> = {}
+for (const v of Object.keys(es)) {
+  const r = regularSubjunctive(v)
+  const u = esRef.get(v)
+  const fromU = P.map((p) => u?.[`sub${p}`])
+  const auth = jehleSub.get(v) ?? (fromU.every(Boolean) ? (fromU as string[]) : undefined)
+  // A defective row (ocurrir: only third persons, the columns shifted) is no reference.
+  if (!r || !auth || !auth[1].endsWith('s') || !auth[5].endsWith('n')) continue
+  subRule[r.source] ??= [0, 0]
+  subRule[r.source][1]++
+  if (r.forms.every((f, i) => f === auth[i])) subRule[r.source][0]++
+  else console.log(`es ${v} regular subjunctive rule (${r.source}): ${r.forms.join(' ')} | authority ${auth.join(' ')}`)
+}
+console.log('regular subjunctive rule agreement:', JSON.stringify(subRule))
+let bySubRule = 0
+if (Object.values(subRule).every(([ok, n]) => ok === n)) {
+  for (const v of Object.keys(es)) {
+    const r = !subVouched.has(v) && regularSubjunctive(v)
+    if (r) {
+      sub[v] = r.forms
+      subVouched.add(v)
+      bySubRule++
+    }
+  }
+}
+console.log(`regular subjunctive rule filled ${bySubRule} verbs`)
 console.log(`es subjuntivo: ${subVouched.size} of ${Object.keys(es).length} verbs`)
+if (process.env.NO_SUB) writeFileSync(process.env.NO_SUB, Object.keys(es).filter((v) => !subVouched.has(v)).join('\n'))
 writeFileSync('src/data/tenses/es.json', JSON.stringify(Object.fromEntries(Object.entries(es).map(([v, e]) => [v, { pre: e.pre, imp: pack(e.imp, e.imp[0].endsWith('aba') ? ENDINGS.esImpAr : ENDINGS.esImpErIr), fut: pack(e.fut, ENDINGS.esFut), pp: e.pp, ...(sub[v] ? { sub: pack(sub[v], v.endsWith('ar') ? ENDINGS.esSubAr : ENDINGS.esSubErIr) } : {}) }]))))
 console.log(`es: ${Object.keys(es).length} verbs (Jehle ${byJehle}, UniMorph ${byUnimorph}, base verb ${byFamily}, overrides ${byOverride}; ${dropped} left out, not vouched for)`)
