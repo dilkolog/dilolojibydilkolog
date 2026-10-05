@@ -755,7 +755,7 @@ export function Summary({
                       </span>
                     </span>
                     <span className="garden-text">
-                      <span className="target">{name(w.entryId)}</span>
+                      <span className="target" lang={e?.language}>{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small garden-grew">{STAGE_NAME[w.stageAfter!]} oldu</span>
                     </span>
@@ -776,7 +776,7 @@ export function Summary({
                   <li key={w.entryId}>
                     <Plant stage={stage} size={40} />
                     <span className="garden-text">
-                      <span className="target">{name(w.entryId)}</span>
+                      <span className="target" lang={e?.language}>{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small">
                         {w.correct > 0 && <span className="garden-ok"><CheckIcon size={13} className="inline-icon" />{w.correct}</span>} {w.wrong > 0 && <span className="garden-bad"><CloseIcon size={13} className="inline-icon" />{w.wrong}</span>}

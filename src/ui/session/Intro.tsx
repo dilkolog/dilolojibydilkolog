@@ -74,6 +74,7 @@ export function Intro({
         <Choices
           exercise={pretest}
           answered={false}
+          lang={entry.language}
           onChoose={(id) => {
             const label = pretest.options.find((o) => o.id === id)!.label
             if (id === pretest.correctOptionId) sfx.correct()
@@ -127,7 +128,7 @@ export function Intro({
         {entry.notes && <p className="note"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
         {example && (
           <div className="row items-start nowrap">
-            <Sentence text={example.text} translation={example.translation} />
+            <Sentence text={example.text} translation={example.translation} lang={entry.language} />
             {canSpeak() && (
               <button className="icon-btn" onClick={() => speak(example.text, entry.language, speechPrefs.rate * 0.95)} aria-label="Cümleyi dinle">
                 <SpeakerIcon size={20} />

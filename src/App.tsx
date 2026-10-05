@@ -602,6 +602,12 @@ export default function App() {
     <AiContext.Provider value={ai}>
       <GameContext.Provider value={game}>
         <div className={inSession ? 'app' : `shell${rail ? ' is-rail' : ''}`} data-lang={settings.activeLanguage}>
+          {/* Keyboard: the first Tab offers a jump past the menu to the screen itself. */}
+          {!inSession && (
+            <a className="skip-link" href="#main" onClick={(e) => (e.preventDefault(), document.getElementById('main')?.focus())}>
+              İçeriğe geç
+            </a>
+          )}
           {!inSession && (
             <aside className="sidebar">
               <div className="brand-row">
@@ -745,7 +751,7 @@ export default function App() {
             </div>
           )}
 
-          <main className={`main${WIDE_SCREENS.has(screen.name) ? ' main-wide' : ''}`}>
+          <main id="main" tabIndex={-1} className={`main${WIDE_SCREENS.has(screen.name) ? ' main-wide' : ''}`}>
             {!online && !inSession && (
               <p className="offline-banner" role="status">
                 İnternet yok. Tekrarların ve kelimelerin normal çalışır; haberler, gerçek cümleler, görseller ve AI özellikleri bağlantı gelince açılır.

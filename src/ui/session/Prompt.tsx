@@ -33,13 +33,13 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
           <p className="muted" lang={entry.language}>
             {exercise.prompt}
           </p>
-          <Sentence text={exercise.context!} />
+          <Sentence text={exercise.context!} lang={entry.language} />
         </div>
       )
     case 'mc_context':
     case 'discriminate':
     case 'cloze_typed':
-      return <Sentence text={exercise.context!} translation={exercise.contextTranslation} source={exercise.contextSource} blankStart={exercise.blankStart} />
+      return <Sentence text={exercise.context!} translation={exercise.contextTranslation} source={exercise.contextSource} blankStart={exercise.blankStart} lang={entry.language} />
     case 'picture_choice':
       return <PictureFrame id={exercise.imageId} />
     case 'dictation':
@@ -89,7 +89,7 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
           <p className="muted" lang={entry.language}>
             {exercise.prompt}
           </p>
-          <Sentence text={exercise.context} translation={exercise.contextTranslation} blankStart={exercise.blankStart} />
+          <Sentence text={exercise.context} translation={exercise.contextTranslation} blankStart={exercise.blankStart} lang={entry.language} />
         </div>
       ) : (
         <div className="stack gap-xs">

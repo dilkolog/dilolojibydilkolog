@@ -272,7 +272,7 @@ export function ConjugationGame({ language, vocabulary, states, best, bestAspect
                 <span lang={language}>{q.verb.lemma}</span> · {q.verb.gloss}
               </p>
               <div lang={language}>
-                <Sentence text={q.sentence.text} translation={answer ? q.sentence.translation : undefined} />
+                <Sentence text={q.sentence.text} translation={answer ? q.sentence.translation : undefined} lang={language} />
               </div>
             </>
           ) : (

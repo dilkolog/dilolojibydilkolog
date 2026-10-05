@@ -557,6 +557,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
           exercise={exercise}
           chosen={result?.chosen}
           answered={!!result}
+          lang={entry.language}
           onChoose={(id, shift) => submit(withCue(evaluateChoice(exercise, id)), 0, 0, { chosen: id, shift })}
         />
       ) : (

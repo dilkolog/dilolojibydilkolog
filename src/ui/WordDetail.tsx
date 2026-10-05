@@ -176,7 +176,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </ul>
           )}
           <div className="word-hero-title">
-            <h1 className="word">{displayForm(entry)}</h1>
+            <h1 className="word" lang={entry.language}>{displayForm(entry)}</h1>
             {canSpeak() && (
               <button className="speak" onClick={() => playWord(entry)} aria-label="Sesli dinle">
                 <SpeakerIcon size={20} />
@@ -313,7 +313,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               <ul className="plain">
                 {entry.collocations.map((c) => (
                   <li key={c.phrase}>
-                    <span className="target">{c.phrase}</span> {c.translation && <span className="muted">{c.translation}</span>}
+                    <span className="target" lang={entry.language}>{c.phrase}</span> {c.translation && <span className="muted">{c.translation}</span>}
                     {c.wrongVariants?.length ? <span className="small muted"> Yanlış: {c.wrongVariants.join(', ')}</span> : null}
                   </li>
                 ))}
@@ -330,7 +330,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
                     const other = byId.get(r.targetId)
                     return (
                       <li key={r.targetId}>
-                        <span className="target">{other ? displayForm(other) : r.targetId.split(':')[1]}</span>{' '}
+                        <span className="target" lang={entry.language}>{other ? displayForm(other) : r.targetId.split(':')[1]}</span>{' '}
                         <span className="muted">{other ? other.senses[0].gloss : 'listende yok'}</span>
                       </li>
                     )
@@ -383,7 +383,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           <ul className="plain">
             {open.map((m) => (
               <li key={m.id}>
-                <span className="strike">{m.given}</span> → <span className="target">{m.expected}</span>{' '}
+                <span className="strike" lang={entry.language}>{m.given}</span> → <span className="target" lang={entry.language}>{m.expected}</span>{' '}
                 <span className="small muted">
                   {ERROR_NAME[m.errorType]}, {m.count} kez
                 </span>

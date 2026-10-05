@@ -90,11 +90,12 @@ export function Word({ entry }: { entry: VocabularyEntry }) {
 }
 
 /** A sentence with its blank drawn as a line, and its translation. */
-export function Sentence({ text, translation, source, blankStart }: { text: string; translation?: string; source?: ContextSource; blankStart?: string }) {
+export function Sentence({ text, translation, source, blankStart, lang }: { text: string; translation?: string; source?: ContextSource; blankStart?: string; lang?: string }) {
   const parts = text.split(BLANK)
   return (
     <div>
-      <p className="sentence">
+      {/* lang: a screen reader reads the sentence in its own language, not Turkish. */}
+      <p className="sentence" lang={lang}>
         {parts.map((part, i) => (
           <span key={i}>
             {part}

@@ -14,11 +14,14 @@ export function Choices({
   chosen,
   answered,
   onChoose,
+  lang,
 }: {
   exercise: ChoiceExercise
   chosen?: string
   answered: boolean
   onChoose: (id: string, shift: boolean) => void
+  /** Language of options written in the target language (read aloud in it by screen readers). */
+  lang?: string
 }) {
   // Number keys pick an option, so a whole session can run from the keyboard. Shift+number
   // (e.code: Shift changes e.key to a symbol) answers as "not sure".
@@ -55,7 +58,7 @@ export function Choices({
             <span className="key">{state === 'is-correct' ? <CheckIcon size={14} /> : state === 'is-wrong' ? <CloseIcon size={14} /> : i + 1}</span>
             {(() => {
               const m = split(o.label)
-              if (!m) return <span className={targetText ? 'option-serif' : ''}>{o.label}</span>
+              if (!m) return <span className={targetText ? 'option-serif' : ''} lang={targetText ? lang : undefined}>{o.label}</span>
               const twin = mains.filter((x) => x === m[1].trim()).length > 1
               return (
                 <span className="option-split">

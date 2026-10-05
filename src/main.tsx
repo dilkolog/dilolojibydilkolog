@@ -12,9 +12,11 @@ import './engine/conjugationData'
 import App from './App.tsx'
 import { applyDensity } from './ui/density'
 import { watchForUpdates } from './ui/update'
+import { installFocusTrap } from './ui/focusTrap'
 
 applyDensity()
 watchForUpdates()
+installFocusTrap()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

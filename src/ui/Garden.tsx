@@ -56,12 +56,12 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         .filter((b) => b.words.length)
         .map((b) => (
           <div key={b.stage} className="bed">
-            <h3 className="small bed-title">
+            <h2 className="small bed-title">
               <span className="bed-title-plant" aria-hidden>
                 <Plant stage={b.stage} size={26} />
               </span>
               {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="bed-count">{b.words.length}</span>
-            </h3>
+            </h2>
             <ul className="bed-plants">
               {(open.has(b.stage) ? b.words : b.words.slice(0, BED_PREVIEW)).map((w) => {
                 const health = plantHealth(stateById.get(w.id), scheduler, now)
@@ -87,12 +87,12 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         ))}
       {seeds.length > 0 && (
         <div className="bed">
-          <h3 className="small bed-title">
+          <h2 className="small bed-title">
             <span className="bed-title-plant" aria-hidden>
               <Plant stage={-1} size={26} />
             </span>
             Tohumlar <span className="bed-count">{seeds.length}</span> <span className="muted">henüz ekilmedi</span>
-          </h3>
+          </h2>
           <ul className="bed-plants">
             {seeds.slice(0, 60).map((w) => (
               <li key={w.id}>

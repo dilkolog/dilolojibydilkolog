@@ -99,7 +99,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
           {examples.map((ex, i) => (
             <li key={ex.text}>
               <div>
-                <p className="sentence">
+                <p className="sentence" lang={entry.language}>
                   {ex.text}
                   {ex.personal && <span className="personal-tag">senin cümlen</span>}
                 </p>

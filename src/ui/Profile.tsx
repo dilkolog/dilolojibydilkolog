@@ -52,6 +52,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <GearIcon size={18} />
           </button>
         )}
+        {/* The name is an input, so the page's heading is for screen readers only. */}
+        <h1 className="sr-only">Profil</h1>
         <div className="profile-hero">
           <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
             <span className="avatar-ring" style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
