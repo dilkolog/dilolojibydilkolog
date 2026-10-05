@@ -39,6 +39,8 @@ export interface PlanSettings {
    * Reviews still come from every list, so nothing already learned is left to fade.
    */
   focusListId?: string
+  /** That list's levels in order: its new words come level by level, the ones with no level last. */
+  focusLevels?: readonly string[]
 }
 
 export interface PlanInput {
@@ -184,11 +186,17 @@ export function newWordCandidates(input: PlanInput, limit: number): VocabularyEn
   const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
   // Words outside the frequency list (negative) come after listed ones; unknown (0) last.
   const rank = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : e.frequencyRank < 0 ? 1e6 : 2e6)
-  // A list in focus is followed in its own order, section by section.
-  const byFrequency = input.settings.frequencyFirst && !input.settings.focusListId
+  // A list in focus is followed in its own order, level by level.
+  const focus = input.settings.focusListId
+  const levels = input.settings.focusLevels ?? []
+  const levelAt = (e: VocabularyEntry) => {
+    const i = e.levelId ? levels.indexOf(e.levelId) : -1
+    return i < 0 ? levels.length : i
+  }
+  const byFrequency = input.settings.frequencyFirst && !focus
   const own = pool
     .filter((e) => e.source !== 'sample')
-    .sort((a, b) => (byFrequency ? rank(a) - rank(b) : 0) || added(a) - added(b))
+    .sort((a, b) => (focus ? levelAt(a) - levelAt(b) : 0) || (byFrequency ? rank(a) - rank(b) : 0) || added(a) - added(b))
   const samples = pool.filter((e) => e.source === 'sample').sort((a, b) => a.frequencyRank - b.frequencyRank)
   const ordered = [...own, ...samples]
 

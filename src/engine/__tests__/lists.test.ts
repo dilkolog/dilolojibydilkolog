@@ -1,38 +1,50 @@
 import { describe, expect, it } from 'vitest'
-import { currentSection, levelOf, listWords, progressOf, sections, SECTION_SIZE } from '../lists'
+import { currentLevel, levelGroups, listWords, progressOf } from '../lists'
 import { newWordState } from '../review'
-import type { VocabularyEntry } from '../types'
+import type { VocabularyEntry, WordList } from '../types'
 import { leave } from './fixtures'
 
+const day = (n: number) => new Date(2026, 9, n)
 const word = (lemma: string, over: Partial<VocabularyEntry> = {}): VocabularyEntry => ({ ...leave, id: `en:${lemma}`, lemma, source: 'user', ...over })
+const list: WordList = {
+  id: 'travel',
+  language: 'en',
+  name: 'Seyahat',
+  levels: [
+    { id: 'hotel', name: 'Otel' },
+    { id: 'airport', name: 'Havalimanı' },
+  ],
+  createdAt: '',
+  updatedAt: '',
+}
+const words = [
+  word('gate', { listId: 'travel', levelId: 'airport', addedAt: day(1) }),
+  word('room', { listId: 'travel', levelId: 'hotel', addedAt: day(3) }),
+  word('map', { listId: 'travel', addedAt: day(0) }),
+  word('key', { listId: 'travel', levelId: 'hotel', addedAt: day(2) }),
+  word('salary', { listId: 'work', addedAt: day(0) }),
+]
 
-describe('levels', () => {
-  it('come from frequency unless the learner set one', () => {
-    expect(levelOf(word('a', { frequencyRank: 300 }))).toBe('A1')
-    expect(levelOf(word('b', { frequencyRank: 1500 }))).toBe('A2')
-    expect(levelOf(word('c', { frequencyRank: 3000 }))).toBe('B1')
-    expect(levelOf(word('d', { frequencyRank: 4500 }))).toBe('B2')
-    expect(levelOf(word('e', { frequencyRank: 7000 }))).toBe('C1')
-    expect(levelOf(word('f', { frequencyRank: -1 }))).toBe('C2')
-    expect(levelOf(word('g', { frequencyRank: 0 }))).toBeNull()
-    expect(levelOf(word('h', { frequencyRank: 300, cefr: 'B2', levelSet: true }))).toBe('B2')
+describe('word lists with the learner’s own levels', () => {
+  it('order words level by level (the learner’s order), then the ones with no level', () => {
+    expect(listWords(list, words).map((w) => w.lemma)).toEqual(['key', 'room', 'gate', 'map'])
+    expect(levelGroups(list, words).map((g) => [g.level?.name ?? null, g.words.map((w) => w.lemma)])).toEqual([
+      ['Otel', ['key', 'room']],
+      ['Havalimanı', ['gate']],
+      [null, ['map']],
+    ])
   })
-})
 
-describe('lists', () => {
-  const day = (n: number) => new Date(2026, 9, n)
-  const words = Array.from({ length: 20 }, (_, i) => word(`w${i}`, { listId: 'l', addedAt: day(20 - i) }))
-
-  it('keep their words in the order added, in sections', () => {
-    const ordered = listWords({ id: 'l' }, [word('other'), ...words])
-    expect(ordered[0].lemma).toBe('w19')
-    expect(sections(ordered).map((s) => s.length)).toEqual([SECTION_SIZE, 20 - SECTION_SIZE])
+  it('know the level in progress, and how far each is', () => {
+    const groups = levelGroups(list, words)
+    const met = new Map([words[3], words[1]].map((w) => [w.id, newWordState(w, day(5))]))
+    expect(currentLevel(groups, met)).toEqual({ index: 1, level: { id: 'airport', name: 'Havalimanı' } })
+    expect(progressOf(groups[0].words, met)).toEqual({ total: 2, met: 2, learned: 0 })
   })
 
-  it('know the section in progress and how far it is', () => {
-    const ordered = listWords({ id: 'l' }, words)
-    const met = new Map(ordered.slice(0, SECTION_SIZE).map((w) => [w.id, newWordState(w, day(25))]))
-    expect(currentSection(ordered, met)).toEqual({ index: 2, count: 2 })
-    expect(progressOf(ordered, met)).toEqual({ total: 20, met: SECTION_SIZE, learned: 0 })
+  it('treat a word whose level was deleted as having none', () => {
+    const groups = levelGroups({ ...list, levels: [{ id: 'hotel', name: 'Otel' }] }, words)
+    expect(groups.map((g) => g.level?.name ?? null)).toEqual(['Otel', null])
+    expect(groups[1].words.map((w) => w.lemma)).toEqual(['map', 'gate'])
   })
 })

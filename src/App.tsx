@@ -57,7 +57,7 @@ import { Toaster } from './ui/toast'
 import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
-import { currentSection, listWords } from './engine/lists'
+import { currentLevel, levelGroups } from './engine/lists'
 
 /*
  * Screens other than the daily loop (home, session, summary) load when first opened, so the app
@@ -399,7 +399,7 @@ export default function App() {
         frequencyFirst: settings.frequencyFirst,
         autoRetire: settings.autoRetire,
         // Only a list that still exists (another device may have deleted it).
-        focusListId: data.lists.some((l) => l.id === settings.focusList?.[data.language]) ? settings.focusList?.[data.language] : undefined,
+        ...((focus) => (focus ? { focusListId: focus.id, focusLevels: (focus.levels ?? []).map((l) => l.id) } : {}))(data.lists.find((l) => l.id === settings.focusList?.[data.language])),
       },
       catalog: data.vocabulary,
       states: data.states,
@@ -939,7 +939,8 @@ export default function App() {
                   const list = data.lists.find((l) => l.id === planInput?.settings.focusListId)
                   if (!list) return undefined
                   const met = new Map(data.states.map((st) => [st.entryId, st]))
-                  return { name: list.name, section: currentSection(listWords(list, data.vocabulary), met) }
+                  const now = currentLevel(levelGroups(list, data.vocabulary), met)
+                  return { name: list.name, level: now ? (now.level?.name ?? null) : undefined }
                 })()}
                 onOpenLists={() => {
                   try {

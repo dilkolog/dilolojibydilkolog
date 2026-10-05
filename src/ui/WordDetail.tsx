@@ -9,7 +9,7 @@ import { slowShare } from '../engine/grading'
 import { nextReviewAt } from '../engine/review'
 import type { Scheduler } from '../engine/scheduler'
 import { unlockedSkills } from '../engine/selection'
-import { SKILLS, type CefrLevel, type Mistake, type UserWordState, type VocabularyEntry, type WordList } from '../engine/types'
+import { SKILLS, type Mistake, type UserWordState, type VocabularyEntry, type WordList } from '../engine/types'
 import { Select } from './Select'
 import type { KelimeDB } from '../data/db'
 import { wordKeys } from '../data/wordInput'
@@ -38,7 +38,7 @@ import { useMediaUrl } from './useMedia'
 import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TrashIcon, UmbrellaIcon } from './icons'
 import { deleteWordsWithUndo } from './undo'
 import { neighbours } from './wordOrder'
-import { LEVELS, levelOf } from '../engine/lists'
+import { placementOptions, parsePlacement, placementValue } from './listOptions'
 
 interface Props {
   db: KelimeDB
@@ -97,6 +97,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const place = async (patch: Partial<VocabularyEntry>) => {
     const next = { ...entry, ...patch }
     if (!next.listId) delete next.listId
+    if (!next.levelId) delete next.levelId
     await db.vocabulary.put(next)
     onChanged()
   }
@@ -158,7 +159,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
 
   const stage = growthStage(state)
   const list = lists.find((l) => l.id === entry.listId)
-  const chips = [entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech], levelOf(entry), list?.name].filter((c): c is string => !!c)
+  const level = list?.levels?.find((l) => l.id === entry.levelId)
+  const chips = [entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech], list && (level ? `${list.name} › ${level.name}` : list.name)].filter((c): c is string => !!c)
   const health = plantHealth(state, scheduler, now)
 
   return (
@@ -321,30 +323,23 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <GroupTitle id="w-family" icon={<LeafIcon size={18} />}>Aile ve diğer diller</GroupTitle>
       <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
       <TriLanguageCard entry={entry} onAdded={onChanged} />
-      {/* Which list it is studied in, and its level (from frequency unless set here). */}
-      <section className="section stack word-placement">
-        <h2 className="section-title">Liste ve seviye</h2>
-        <div className="row word-placement-row">
-          <div className="field">
-            <span className="small muted">Liste</span>
+      {/* Which list, and which of its levels, the word is studied in. */}
+      {lists.length > 0 && (
+        <section className="section stack word-placement">
+          <h2 className="section-title">Liste ve seviye</h2>
+          <div className="word-placement-row">
             <Select
-              label="Liste"
-              value={entry.listId && list ? entry.listId : '__none'}
-              onChange={(v) => void place({ listId: v === '__none' ? undefined : v })}
-              options={[...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listesiz' }]}
+              label="Liste ve seviye"
+              value={placementValue(entry, lists)}
+              onChange={(v) => {
+                const { listId, levelId } = parsePlacement(v)
+                void place({ listId: listId ?? undefined, levelId: levelId ?? undefined })
+              }}
+              options={placementOptions(lists)}
             />
           </div>
-          <div className="field">
-            <span className="small muted">Seviye</span>
-            <Select
-              label="Seviye"
-              value={entry.levelSet ? entry.cefr : '__auto'}
-              onChange={(v) => void place(v === '__auto' ? { levelSet: false } : { cefr: v as CefrLevel, levelSet: true })}
-              options={[{ value: '__auto', label: `Sıklıktan (${levelOf({ ...entry, levelSet: false }) ?? 'yok'})` }, ...LEVELS.map((l) => ({ value: l, label: l }))]}
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {(entry.collocations.length > 0 || confusables.length > 0) && (
         <section className="section stack">

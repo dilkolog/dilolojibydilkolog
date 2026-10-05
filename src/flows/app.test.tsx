@@ -149,7 +149,7 @@ describe('a learner’s day', () => {
     expect(Number(localStorage.getItem('kelime-koc:last-backup'))).toBeGreaterThan(0)
   })
 
-  it('a word list: create it, move words in, focus it, and Today takes new words from it', { timeout: 20_000 }, async () => {
+  it('a word list with a level of one’s own: create, move words in, focus, and Today takes new words from it', { timeout: 20_000 }, async () => {
     const tab = (name: string) => [...el.querySelectorAll<HTMLButtonElement>('[role=tab]')].find((b) => b.textContent?.trim() === name)
     await click(button(/^Kelimeler\d*$/))
     await until(() => tab('Listeler'), 'Listeler tab')
@@ -157,19 +157,23 @@ describe('a learner’s day', () => {
     await type(el.querySelector<HTMLInputElement>('.wl-create input')!, 'Seyahat')
     await click(el.querySelector<HTMLButtonElement>('.wl-create button[type=submit]'))
     await until(() => [...el.querySelectorAll('.wl-name')].some((n) => n.textContent?.startsWith('Seyahat')), 'the new list')
+    // A level of the learner's own, like on Memrise.
+    await type(el.querySelector<HTMLInputElement>('.wl-add-level input')!, 'Havalimanı')
+    await click(el.querySelector<HTMLButtonElement>('.wl-add-level button[type=submit]'))
+    await until(() => el.querySelector('.wl-sections summary')?.textContent?.includes('1. Havalimanı'), 'the new level')
     // Into it from "Tümü": select all, "Listeye taşı".
     await click(tab('Tümü'))
     await click(button(/^Seç$/))
     await click(el.querySelector<HTMLInputElement>('.select-bar input[type=checkbox]'))
     await click(el.querySelector<HTMLButtonElement>('.select-bar-move button'))
     // The list's options answer to mousedown (so the field keeps focus).
-    const option = [...el.querySelectorAll<HTMLElement>('.select-list li')].find((o) => o.textContent?.trim() === 'Seyahat')!
+    const option = [...el.querySelectorAll<HTMLElement>('.select-list li')].find((o) => o.textContent?.trim() === 'Seyahat › Havalimanı')!
     await act(async () => {
       option.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }))
       await new Promise((r) => setTimeout(r, 50))
     })
-    const listId = (await db.getLists('fr'))[0].id
-    const inList = async () => (await db.vocabulary.where('language').equals('fr').toArray()).filter((v) => v.listId === listId).length
+    const [saved] = await db.getLists('fr')
+    const inList = async () => (await db.vocabulary.where('language').equals('fr').toArray()).filter((v) => v.listId === saved.id && v.levelId === saved.levels![0].id).length
     for (let i = 0; i < 40 && !(await inList()); i++) await sleep(50)
     expect(await inList()).toBe(await db.vocabulary.where('language').equals('fr').count())
     await click(tab('Listeler'))
@@ -177,6 +181,6 @@ describe('a learner’s day', () => {
     await until(() => el.querySelector('.wl-card.is-focus'), 'list in focus')
     await click(button(/^Bugün\d*$/))
     await until(() => el.querySelector('.hero-focus'), 'focus line on Today')
-    expect(el.querySelector('.hero-focus')?.textContent).toContain('Seyahat')
+    expect(el.querySelector('.hero-focus')?.textContent).toMatch(/Seyahat.*Havalimanı/)
   })
 })

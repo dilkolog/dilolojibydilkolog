@@ -1,43 +1,41 @@
 import { masteryStage, MASTERY_STAGES } from './mastery'
-import type { CefrLevel, UserWordState, VocabularyEntry, WordList } from './types'
+import type { ListLevel, UserWordState, VocabularyEntry, WordList } from './types'
 
 /**
- * Word lists (Memrise-style courses) and levels.
- *
- * A list is studied in sections of SECTION_SIZE words, in the order they were added, so a
- * session's new words come from one topic at a time when the list is in focus (see dailyPlan).
+ * Word lists, like courses on Memrise: a list holds the learner's own levels (named categories
+ * in an order they choose), and each word sits in one list and, optionally, one of its levels.
+ * When a list is in focus, its new words come level by level (see dailyPlan).
  */
-export const SECTION_SIZE = 15
-
-export const LEVELS: CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-
-/**
- * The level of a word from how frequent it is, unless the learner set it. Bands follow the rough
- * vocabulary sizes reported per CEFR level (Milton 2010: about 1000 words for A1, 2000 for A2,
- * 3000–3500 for B1, 4000–5000 for B2, more beyond): a word among the 1000 most frequent is
- * met at A1, and so on. Approximate by nature; a word outside the frequency list is C2,
- * an unknown rank has no level. Sample words carry a level set by hand.
- */
-export function levelOf(entry: VocabularyEntry): CefrLevel | null {
-  if (entry.levelSet || entry.source === 'sample') return entry.cefr
-  const r = entry.frequencyRank
-  if (r < 0) return 'C2'
-  if (!r) return null
-  return r <= 1000 ? 'A1' : r <= 2000 ? 'A2' : r <= 3500 ? 'B1' : r <= 5000 ? 'B2' : r <= 8000 ? 'C1' : 'C2'
-}
 
 const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
 
-/** The words of a list in study order (as they were added). */
-export function listWords(list: Pick<WordList, 'id'>, vocabulary: readonly VocabularyEntry[]): VocabularyEntry[] {
-  return vocabulary.filter((e) => e.listId === list.id).sort((a, b) => added(a) - added(b) || a.id.localeCompare(b.id))
+/** Where a word stands in its list's order: its level's position; words with no level last. */
+export function levelRank(list: Pick<WordList, 'levels'> | undefined, e: VocabularyEntry): number {
+  const i = list?.levels?.findIndex((l) => l.id === e.levelId) ?? -1
+  return i < 0 ? Number.MAX_SAFE_INTEGER : i
 }
 
-/** Consecutive sections of SECTION_SIZE words. */
-export function sections<T>(words: readonly T[]): T[][] {
-  const out: T[][] = []
-  for (let i = 0; i < words.length; i += SECTION_SIZE) out.push(words.slice(i, i + SECTION_SIZE))
-  return out
+/** The words of a list in study order: level by level, each in the order added. */
+export function listWords(list: Pick<WordList, 'id' | 'levels'>, vocabulary: readonly VocabularyEntry[]): VocabularyEntry[] {
+  return vocabulary
+    .filter((e) => e.listId === list.id)
+    .sort((a, b) => levelRank(list, a) - levelRank(list, b) || added(a) - added(b) || a.id.localeCompare(b.id))
+}
+
+export interface LevelGroup {
+  /** null: the list's words with no level (or a level since deleted). */
+  level: ListLevel | null
+  words: VocabularyEntry[]
+}
+
+/** The list's levels with their words, in order (empty levels too), then the words with no level. */
+export function levelGroups(list: Pick<WordList, 'id' | 'levels'>, vocabulary: readonly VocabularyEntry[]): LevelGroup[] {
+  const words = listWords(list, vocabulary)
+  const levels = list.levels ?? []
+  const known = new Set(levels.map((l) => l.id))
+  const groups: LevelGroup[] = levels.map((level) => ({ level, words: words.filter((w) => w.levelId === level.id) }))
+  const rest = words.filter((w) => !w.levelId || !known.has(w.levelId))
+  return rest.length ? [...groups, { level: null, words: rest }] : groups
 }
 
 export interface GroupProgress {
@@ -61,9 +59,10 @@ export function progressOf(words: readonly VocabularyEntry[], stateById: Readonl
   return { total: words.length, met, learned }
 }
 
-/** The section the learner is in: the first one with a word not met yet (1-based), or null when all are met. */
-export function currentSection(words: readonly VocabularyEntry[], stateById: ReadonlyMap<string, UserWordState>): { index: number; count: number } | null {
-  const all = sections(words)
-  const i = all.findIndex((sec) => sec.some((w) => !stateById.has(w.id)))
-  return i < 0 ? null : { index: i + 1, count: all.length }
+/** The level the learner is in: the first group with a word not met yet, or null when all are met. */
+export function currentLevel(groups: readonly LevelGroup[], stateById: ReadonlyMap<string, UserWordState>): { index: number; level: ListLevel | null } | null {
+  const index = groups.findIndex((g) => g.words.some((w) => !stateById.has(w.id)))
+  return index < 0 ? null : { index, level: groups[index].level }
 }
+
+export const newLevelId = () => `lvl:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`

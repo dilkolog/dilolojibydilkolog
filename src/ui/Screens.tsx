@@ -193,7 +193,7 @@ function FocusLine({ focus, done, onOpenLists }: { focus: NonNullable<Parameters
         </>
       ) : (
         <>
-          Yeni kelimeler “{focus.name}” listesinden{focus.section ? `, ${focus.section.index}. bölüm` : ''}.
+          Yeni kelimeler “{focus.name}” listesinden{focus.level ? `, “${focus.level}” seviyesi` : ''}.
         </>
       )}
     </p>
@@ -268,8 +268,8 @@ export function Home({
   extra?: ReactNode
   /** The garden card: up top when plants need water, otherwise with the weekly things. */
   garden?: { node: ReactNode; urgent: boolean } | null
-  /** The word list in focus, and the section its new words come from (none: all met). */
-  focus?: { name: string; section: { index: number; count: number } | null }
+  /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
+  focus?: { name: string; level?: string | null }
   onOpenLists?: () => void
 }) {
   const now = new Date()

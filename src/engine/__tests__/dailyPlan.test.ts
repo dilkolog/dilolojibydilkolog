@@ -197,6 +197,12 @@ describe('a word list in focus', () => {
     expect(plan.focusDone).toBe(true)
   })
 
+  it('follows the list’s levels in the learner’s order', () => {
+    const leveled = [own('airport', 5, 'travel'), own('ticket', 4, 'travel'), own('gate', 3, 'travel')].map((e, i) => ({ ...e, levelId: ['b', 'a', 'b'][i] }))
+    const plan = buildDailyPlan(input({ catalog: leveled, settings: { ...settings, newWordsPerDay: 5, dailyMinutes: 60, focusListId: 'travel', focusLevels: ['a', 'b'] } }))
+    expect(plan.newEntryIds).toEqual(['en:ticket', 'en:airport', 'en:gate'])
+  })
+
   it('still reviews words of other lists', () => {
     const states = [learned(catalog[1], daysAgo(20))]
     const plan = buildDailyPlan(input({ catalog, states, settings: { ...settings, newWordsPerDay: 1, dailyMinutes: 60, focusListId: 'travel' } }))

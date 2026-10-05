@@ -3776,3 +3776,6 @@ button.badge-card:active { transform: none; }
 .word-placement-row { gap: 1rem; align-items: flex-end; }
 .word-placement-row .field { min-width: 11rem; gap: 0.25rem; }
 .select-bar-move { min-width: 11rem; }
+.wl-add-level .input { flex: 1; min-width: 0; }
+.wl-level-actions { align-items: center; gap: 0.25rem 0.75rem; }
+.wl-up svg { transform: rotate(180deg); }

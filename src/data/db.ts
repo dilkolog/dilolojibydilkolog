@@ -371,17 +371,30 @@ export class KelimeDB extends Dexie {
   async deleteList(id: string) {
     await this.transaction('rw', [this.vocabulary, this.meta], async () => {
       await this.meta.put({ key: 'wordLists', value: (await this.getLists()).filter((l) => l.id !== id) })
-      await this.vocabulary.filter((v) => v.listId === id).modify((v) => void delete v.listId)
+      await this.vocabulary.filter((v) => v.listId === id).modify((v) => {
+        delete v.listId
+        delete v.levelId
+      })
       // Remembered, so another device's copy doesn't bring it back on sync.
       await this.addDeleted([id])
     })
   }
 
-  /** Puts words in a list (one list per word), or takes them out of any (null). */
-  async assignList(ids: readonly string[], listId: string | null) {
+  /** Puts words in a list and one of its levels (one list per word), or takes them out (null). */
+  async assignList(ids: readonly string[], listId: string | null, levelId: string | null = null) {
     await this.vocabulary.where('id').anyOf([...ids]).modify((v) => {
       if (listId) v.listId = listId
       else delete v.listId
+      if (listId && levelId) v.levelId = levelId
+      else delete v.levelId
+    })
+  }
+
+  /** Removes a level from a list; its words stay in the list, with no level. */
+  async deleteLevel(list: WordList, levelId: string) {
+    await this.transaction('rw', [this.vocabulary, this.meta], async () => {
+      await this.saveList({ ...list, levels: (list.levels ?? []).filter((l) => l.id !== levelId), updatedAt: new Date().toISOString() })
+      await this.vocabulary.filter((v) => v.listId === list.id && v.levelId === levelId).modify((v) => void delete v.levelId)
     })
   }
 

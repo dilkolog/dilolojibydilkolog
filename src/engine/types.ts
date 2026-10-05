@@ -5,11 +5,19 @@ export const TARGET_LANGUAGES: readonly TargetLanguage[] = ['en', 'fr', 'es']
 
 export type CefrLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
-/** A named list of words in one language, studied in sections; its words carry its id. */
+/** A level inside a list: a category the learner names and orders, like a Memrise level. */
+export interface ListLevel {
+  id: string
+  name: string
+}
+
+/** A named list of words in one language (a Memrise-style course); its words carry its id. */
 export interface WordList {
   id: string
   language: TargetLanguage
   name: string
+  /** In study order. Words with no level come after them. */
+  levels?: ListLevel[]
   /** ISO dates; updatedAt settles a rename made on two devices. */
   createdAt: string
   updatedAt: string
@@ -102,10 +110,10 @@ export interface VocabularyEntry {
   /** Article shown with the lemma for FR/ES nouns, e.g. "la", "el", "l'". */
   article?: string
   cefr: CefrLevel
-  /** The learner chose `cefr` themselves; otherwise the level comes from frequency (see lists.ts). */
-  levelSet?: boolean
   /** The word list it belongs to (one at most), like a course on Memrise (see lists.ts). */
   listId?: string
+  /** The learner's own level (category) inside that list, e.g. "Selamlaşma". */
+  levelId?: string
   /** 1 = most frequent. */
   frequencyRank: number
   ipa?: string

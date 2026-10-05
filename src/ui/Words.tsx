@@ -42,7 +42,7 @@ import { relativeTime } from './format'
 import { getDensity, setDensity } from './density'
 import { saveWordOrder } from './wordOrder'
 import { WordListsView } from './WordLists'
-import { LEVELS, levelOf } from '../engine/lists'
+import { placementOptions, parsePlacement } from './listOptions'
 
 interface Props {
   db: KelimeDB
@@ -263,10 +263,11 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
           onAdd={goAdd}
           lists={lists}
-          onMove={async (ids, listId) => {
-            await db.assignList(ids, listId)
+          onMove={async (ids, placement) => {
+            const { listId, levelId } = parsePlacement(placement)
+            await db.assignList(ids, listId, levelId)
             onChanged()
-            const name = lists.find((l) => l.id === listId)?.name
+            const name = placementOptions(lists).find((o) => o.value === placement && listId)?.label
             showToast(name ? `${ids.length} kelime "${name}" listesine taşındı.` : `${ids.length} kelime listeden çıkarıldı.`)
           }}
         />
@@ -387,7 +388,8 @@ export function WordForm({
       } catch {
         // Falls back to the focus.
       }
-      const pick = [last, s?.focusList?.[language] ?? ''].find((id) => id === '__none' || all.some((l) => l.id === id))
+      const valid = new Set(placementOptions(all).map((o) => o.value))
+      const pick = [last, s?.focusList?.[language] ?? ''].find((v) => valid.has(v))
       setListIdState(pick === '__none' ? '' : (pick ?? ''))
     })
     return () => {
@@ -577,7 +579,11 @@ export function WordForm({
       const withGender = form.gender || !lexGender ? form : { ...form, gender: lexGender }
       const input = posManual ? withGender : { ...withGender, partOfSpeech: autoPos }
       const saved = entry ? updateEntry(entry, input) : createEntry(input, language, new Date())
-      if (!entry && listId) saved.listId = listId
+      if (!entry && listId) {
+        const at = parsePlacement(listId)
+        if (at.listId) saved.listId = at.listId
+        if (at.levelId) saved.levelId = at.levelId
+      }
       if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
         throw new WordInputError(`"${saved.lemma}" zaten listende.`)
       }
@@ -727,7 +733,7 @@ export function WordForm({
               label="Liste"
               value={listId || '__none'}
               onChange={(v) => setListId(v === '__none' ? '' : v)}
-              options={[...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listesiz' }]}
+              options={placementOptions(lists)}
             />
           </div>
         )}
@@ -943,7 +949,8 @@ function WordList({
   onDelete: (ids: string[]) => Promise<void>
   onAdd: () => void
   lists?: WordListRow[]
-  onMove?: (ids: string[], listId: string | null) => Promise<void>
+  /** Moves words to a list or one of its levels ("list|level"), or out of any ('__none'). */
+  onMove?: (ids: string[], placement: string) => Promise<void>
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -958,8 +965,8 @@ function WordList({
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
   // '' all, '__none' words in no list, otherwise a list id.
+  // '' all, '__none' words in no list, a list id, or "list|level".
   const [inList, setInList] = useState('')
-  const [level, setLevel] = useState('')
   const [sort, setSort] = useState<Sort>('newest')
   const [dense, setDense] = useState(() => getDensity() === 'compact')
   // Table view (wide screens): every word on one line with its numbers, sortable by column.
@@ -1001,8 +1008,12 @@ function WordList({
       if (flags.noExample && v.senses[0].examples.length > 0) return false
       if (flags.idiom && v.partOfSpeech !== 'phrase') return false
       if (tag && !v.tags.includes(tag)) return false
-      if (inList === '__none' ? v.listId && lists.some((l) => l.id === v.listId) : inList && v.listId !== inList) return false
-      if (level && (levelOf(v) ?? '__none') !== level) return false
+      if (inList === '__none') {
+        if (v.listId && lists.some((l) => l.id === v.listId)) return false
+      } else if (inList) {
+        const at = parsePlacement(inList)
+        if (v.listId !== at.listId || (at.levelId && v.levelId !== at.levelId)) return false
+      }
       return true
     }
     const dueKey = (v: VocabularyEntry) => {
@@ -1018,7 +1029,7 @@ function WordList({
       due: (a, b) => dueKey(a) - dueKey(b) || a.lemma.localeCompare(b.lemma, 'tr'),
     }
     return vocabulary.filter(match).sort(by[sort])
-  }, [vocabulary, query, stage, flags, tag, inList, level, lists, sort, stateById, withMistakes])
+  }, [vocabulary, query, stage, flags, tag, inList, lists, sort, stateById, withMistakes])
   // The word page steps through the list in the order it was last shown here (filters and sort).
   useEffect(() => saveWordOrder(list.map((v) => v.id)), [list])
   // A long list is drawn in pages as it scrolls into view: thousands of rows at once make the
@@ -1158,18 +1169,10 @@ function WordList({
                   label="Liste"
                   value={inList || '__all'}
                   onChange={(v) => setInList(v === '__all' ? '' : v)}
-                  options={[{ value: '__all', label: 'Tüm listeler' }, ...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listesiz' }]}
+                  options={[{ value: '__all', label: 'Tüm listeler' }, ...placementOptions(lists)]}
                 />
               </div>
             )}
-            <div style={{ minWidth: '8rem' }}>
-              <Select
-                label="Seviye"
-                value={level || '__all'}
-                onChange={(v) => setLevel(v === '__all' ? '' : v)}
-                options={[{ value: '__all', label: 'Tüm seviyeler' }, ...LEVELS.map((l) => ({ value: l, label: l })), { value: '__none', label: 'Seviyesiz' }]}
-              />
-            </div>
             {tags.length > 0 && (
               <div style={{ minWidth: '10rem' }}>
                 <Select
@@ -1207,10 +1210,10 @@ function WordList({
                     placeholder="Listeye taşı"
                     onChange={async (v) => {
                       if (!selectedVisible.length) return
-                      await onMove(selectedVisible.map((x) => x.id), v === '__none' ? null : v)
+                      await onMove(selectedVisible.map((x) => x.id), v)
                       exitSelection()
                     }}
-                    options={[...lists.map((l) => ({ value: l.id, label: l.name })), { value: '__none', label: 'Listeden çıkar' }]}
+                    options={placementOptions(lists, 'Listeden çıkar')}
                   />
                 </div>
               )}
@@ -1231,7 +1234,7 @@ function WordList({
           {!selecting && list.length > 0 && list.length < vocabulary.length && (
             <div className="deck-bar">
               <span>
-                {tag ? <strong>#{tag}</strong> : inList && inList !== '__none' ? <strong>{lists.find((l) => l.id === inList)?.name}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
+                {tag ? <strong>#{tag}</strong> : inList && inList !== '__none' ? <strong>{placementOptions(lists).find((o) => o.value === inList)?.label}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
               </span>
               <button className="btn" onClick={() => onStudy(list)}>
                 Bu listeyi çalış
