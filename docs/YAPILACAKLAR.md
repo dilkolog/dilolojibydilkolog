@@ -119,8 +119,15 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 4. AI gerektirenler (geri anlatım, ters çeviri) yazıldı; anahtar girilince uçtan uca denenecek.
 
 ## Açık kalanlar
-- EN için fiil çekimi yok (düzensiz geçmiş zaman listesi eklenebilir).
-- **Azure telaffuz değerlendirmesi** (en sona bırakıldı, 2026-10-04): kelimeyi ya da cümleyi
-  söyleyince Azure Speech "pronunciation assessment" ses ses puan verir, yanlış sesi gösterir
-  (fr-FR, es-ES, en-US destekli). Kullanıcının Azure anahtarı ve bölgesi gerekiyor; anahtar
-  cihazda kalır. Konuşarak cevap sorularına ve gölge okumaya bağlanabilir.
+- EN için fiil çekimi yok; kullanıcı istemiyor (2026-10-05), eklenmeyecek.
+- **Azure telaffuz değerlendirmesi:** yapıldı (2026-10-06): Ayarlar > Ses'te anahtar ve bölge,
+  kelime sayfasında "Söyle ve puanla". Sonraya bırakılanlar: oturumdaki konuşma sorularına
+  Azure puanı, telaffuzu zayıf kelimelerin ayrı alıştırma listesi.
+- **İçe aktarmada liste/seviye seçimi** (CSV, Kindle, metin; kitaptan aktarınca listeyi kitap
+  adıyla oluşturmak): kullanıcı şimdilik istemedi (2026-10-06).
+- **AI ile kişisel cümle bankası** (sonraya, 2026-10-06): her yeni kelime için kullanıcının
+  ilgi alanlarına (profildeki hedeflere) göre 2–3 örnek cümle üretip karta eklemek. Kendine
+  dair cümleler daha iyi hatırlanır (öz-referans etkisi). AI anahtarı var; maliyeti düşük.
+- **Oturum sonunda AI'dan tek cümlelik yorum** (sonraya, 2026-10-06): o oturumun hatalarından
+  ("le/la ayrımında 3 hata; dişil -ette sonlarına dikkat") kısa, somut bir öneri. Hata verisi
+  zaten tutuluyor; yalnızca özetlemek gerekiyor.
