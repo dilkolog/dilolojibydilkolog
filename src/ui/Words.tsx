@@ -14,7 +14,7 @@ import { turkishMeanings, type TurkishMeanings } from '../data/wordInfo'
 import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
-import { BoltIcon, CheckIcon, GlobeIcon, ImageIcon, MicIcon, PlusIcon, SparkleIcon } from './icons'
+import { BoltIcon, CheckIcon, ChevronLeftIcon, GlobeIcon, ImageIcon, MicIcon, PlusIcon, SlidersIcon, SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView, TriLanguageCard } from './CrossLanguage'
@@ -47,7 +47,8 @@ import { WordLabel } from './WordLabel'
 import { displayForm } from '../engine/exercises'
 import { isDifficult, withDifficult } from '../engine/difficult'
 import { imageCandidates, skippedImages } from '../data/imageQueue'
-import { ImageQueue, ImageQueueChip } from './ImageQueue'
+import { MenuItem, Popover } from './Popover'
+import { ImageQueue } from './ImageQueue'
 
 interface Props {
   db: KelimeDB
@@ -158,30 +159,54 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       )}
       <section className="section stack">
         <PageHeader
+          inline
           title={`${LANGUAGE_NAME[language]} kelimelerin`}
           sub={vocabulary.length ? `${vocabulary.length} kelime, ${states.length} tanesi öğreniliyor.` : 'Öğrenmek istediğin kelimeleri ekle; gerisini tekrar takvimi halleder.'}
           action={
-            section !== 'add' && (
-              <button className="btn" onClick={goAdd}>
-                <PlusIcon size={18} /> Kelime ekle
-              </button>
+            section === 'words' && (
+              <Popover
+                kind="menu"
+                align="end"
+                label="Kelime ekle"
+                buttonClassName="btn"
+                button={
+                  <>
+                    <PlusIcon size={18} /> Ekle
+                  </>
+                }
+              >
+                {(close) => (
+                  <>
+                    <MenuItem
+                      icon={<PlusIcon size={18} />}
+                      title="Tek kelime ekle"
+                      hint="Kelimeyi, anlamını ve bir örnek cümleyi yaz"
+                      onSelect={() => {
+                        close()
+                        goAdd()
+                      }}
+                    />
+                    <MenuItem
+                      icon={<GlobeIcon size={18} />}
+                      title="Birçok kelime ekle"
+                      hint="Liste yapıştır, dosya, Kindle ya da metin"
+                      onSelect={() => {
+                        close()
+                        setSection('import')
+                      }}
+                    />
+                  </>
+                )}
+              </Popover>
             )
           }
         />
-        {/* One screen, three jobs: the words, adding one, bringing many in. */}
-        <div className="page-tabs" role="tablist" aria-label="Kelimeler bölümleri">
-          {(
-            [
-              ['words', `Kelimelerim${vocabulary.length ? ` (${vocabulary.length})` : ''}`],
-              ['add', 'Ekle'],
-              ['import', 'İçe aktar'],
-            ] as const
-          ).map(([id, label]) => (
-            <button key={id} role="tab" className="page-tab" aria-selected={section === id} onClick={() => (id === 'add' ? goAdd() : setSection(id))}>
-              {label}
-            </button>
-          ))}
-        </div>
+        {/* Adding and importing are their own pages; one way back to the words. */}
+        {section !== 'words' && (
+          <button type="button" className="link back-link" onClick={() => setSection('words')}>
+            <ChevronLeftIcon size={16} className="inline-icon" /> Kelimelerim{vocabulary.length ? ` (${vocabulary.length})` : ''}
+          </button>
+        )}
       </section>
 
       {section === 'add' && (
@@ -265,12 +290,35 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <button role="tab" className="segmented-btn" aria-selected={view === 'garden'} onClick={() => setView('garden')}>
             Bahçe
           </button>
-          <button role="tab" className="segmented-btn" aria-selected={view === 'graph'} onClick={() => setView('graph')}>
-            Kelime ağı
-          </button>
-          <button role="tab" className="segmented-btn" aria-selected={view === 'concepts'} onClick={() => setView('concepts')}>
-            Kavramlar
-          </button>
+          <Popover
+            kind="menu"
+            align="end"
+            label="Diğer görünümler"
+            buttonClassName="segmented-btn"
+            buttonProps={{ role: 'tab', 'aria-selected': view === 'graph' || view === 'concepts' }}
+            button={<>{view === 'graph' ? 'Kelime ağı' : view === 'concepts' ? 'Kavramlar' : 'Daha fazla'} ▾</>}
+          >
+            {(close) => (
+              <>
+                <MenuItem
+                  title="Kelime ağı"
+                  hint="Kelimeler arasındaki bağlar, bir harita olarak"
+                  onSelect={() => {
+                    close()
+                    setView('graph')
+                  }}
+                />
+                <MenuItem
+                  title="Kavramlar"
+                  hint="Aynı anlam üç dilde yan yana"
+                  onSelect={() => {
+                    close()
+                    setView('concepts')
+                  }}
+                />
+              </>
+            )}
+          </Popover>
         </div>
           </section>
       {view === 'list' ? (
@@ -285,6 +333,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           lists={lists}
           onSuggestImages={() => setSuggestingImages(true)}
           pictureTick={pictureTick}
+          onRemoveSamples={hasSamples ? removeSamples : undefined}
           onMark={async (ids, difficult) => {
             const set = new Set(ids)
             await db.vocabulary.bulkPut(vocabulary.filter((v) => set.has(v.id)).map((v) => withDifficult(v, difficult)))
@@ -985,6 +1034,7 @@ function WordList({
   onMark,
   onSuggestImages,
   pictureTick = 0,
+  onRemoveSamples,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
@@ -1002,6 +1052,8 @@ function WordList({
   onSuggestImages?: () => void
   /** Changes when the picture suggestions closed, so words passed over are counted out. */
   pictureTick?: number
+  /** Removes the bundled sample words. */
+  onRemoveSamples?: () => void
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1036,24 +1088,18 @@ function WordList({
       return false
     }
   })
-  const toggleGallery = () =>
-    setGallery((g) => {
-      try {
-        localStorage.setItem(GALLERY_KEY, g ? '0' : '1')
-      } catch {
-        // Not remembered; fine.
-      }
-      return !g
-    })
-  const toggleTable = () =>
-    setAsTable((t) => {
-      try {
-        localStorage.setItem(VIEW_MODE_KEY, t ? '0' : '1')
-      } catch {
-        // Not remembered; fine.
-      }
-      return !t
-    })
+  // List, gallery or table: one choice, remembered.
+  const layout: 'list' | 'gallery' | 'table' = gallery ? 'gallery' : asTable ? 'table' : 'list'
+  const setLayout = (l: typeof layout) => {
+    try {
+      localStorage.setItem(GALLERY_KEY, l === 'gallery' ? '1' : '0')
+      localStorage.setItem(VIEW_MODE_KEY, l === 'table' ? '1' : '0')
+    } catch {
+      // Not remembered; fine.
+    }
+    setGallery(l === 'gallery')
+    setAsTable(l === 'table')
+  }
 
   const difficultCount = useMemo(() => vocabulary.filter(isDifficult).length, [vocabulary])
   const reviewCount = useMemo(() => vocabulary.filter((v) => v.review).length, [vocabulary])
@@ -1113,6 +1159,20 @@ function WordList({
   const shown = list.length > limit ? list.slice(0, limit) : list
 
   const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
+  // What the filter panel has set apart from its defaults, for the badge on its button.
+  const flagCount = Object.values(flags).filter(Boolean).length
+  const activeCount = flagCount + (sort !== 'newest' ? 1 : 0) + (layout !== 'list' ? 1 : 0) + (dense ? 1 : 0) + (tag ? 1 : 0) + (inList ? 1 : 0)
+  const clearView = () => {
+    setFlags({})
+    setSort('newest')
+    setLayout('list')
+    setTag('')
+    setInList('')
+    if (dense) {
+      setDensity('comfortable')
+      setDense(false)
+    }
+  }
 
   // Words that disappeared (deleted elsewhere) drop out of the selection.
   const selectedVisible = list.filter((v) => selected.has(v.id))
@@ -1154,9 +1214,6 @@ function WordList({
 
   return (
     <section className="section stack">
-      <h2 className="section-title">
-        Liste <span className="muted small">({list.length === vocabulary.length ? vocabulary.length : `${list.length} / ${vocabulary.length}`})</span>
-      </h2>
       {vocabulary.length === 0 ? (
         <EmptyState
           art="garden"
@@ -1171,7 +1228,7 @@ function WordList({
         </EmptyState>
       ) : (
         <>
-          <div className="toolbar">
+          <div className="words-bar">
             <div className="search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
                 <circle cx="11" cy="11" r="7" />
@@ -1182,46 +1239,127 @@ function WordList({
             <button className={`btn ${selecting ? '' : 'btn-quiet'}`} onClick={() => (selecting ? exitSelection() : setSelecting(true))}>
               {selecting ? 'Bitti' : 'Seç'}
             </button>
-            <div className="toolbar-sort">
-              <Select<Sort>
-                label="Sırala"
-                value={sort}
-                onChange={setSort}
-                options={[
-                  { value: 'newest', label: 'En yeni' },
-                  { value: 'alpha', label: 'Alfabetik' },
-                  { value: 'weakest', label: 'En zayıf önce' },
-                  { value: 'strongest', label: 'En güçlü önce' },
-                  { value: 'frequent', label: 'En sık önce' },
-                  { value: 'due', label: 'Tekrarı en yakın' },
-                ]}
-              />
-            </div>
-            <button
-              type="button"
-              className="chip chip-sm density-toggle"
-              aria-pressed={dense}
-              onClick={() => {
-                setDensity(dense ? 'comfortable' : 'compact')
-                setDense(!dense)
-              }}
-              title="Satırları sıklaştır"
+            <Popover
+              label="Süz ve görünüm"
+              align="end"
+              buttonClassName={`btn btn-quiet filter-btn${activeCount ? ' has-active' : ''}`}
+              buttonProps={{ 'aria-label': activeCount ? `Süz ve görünüm, ${activeCount} etkin` : 'Süz ve görünüm' }}
+              button={
+                <>
+                  <SlidersIcon size={18} />
+                  <span className="filter-btn-text">Süz</span>
+                  {activeCount > 0 && <span className="filter-count" aria-hidden>{activeCount}</span>}
+                </>
+              }
             >
-              Yoğun
-            </button>
-            <button type="button" className="chip chip-sm" aria-pressed={gallery} onClick={toggleGallery} title="Kelimeleri görselleriyle bir ızgarada göster">
-              Galeri
-            </button>
-            <div className="segmented view-toggle desktop-only" role="group" aria-label="Görünüm">
-              <button className="segmented-btn" aria-pressed={!asTable} onClick={() => asTable && toggleTable()}>
-                Liste
-              </button>
-              <button className="segmented-btn" aria-pressed={asTable} onClick={() => !asTable && toggleTable()}>
-                Tablo
-              </button>
-            </div>
+              {(close) => (
+                <>
+                  <div className="panel-group">
+                    <span className="panel-label">Görünüm</span>
+                    <div className="segmented" role="group" aria-label="Görünüm biçimi">
+                      <button className="segmented-btn" aria-pressed={layout === 'list'} onClick={() => setLayout('list')}>
+                        Liste
+                      </button>
+                      <button className="segmented-btn" aria-pressed={layout === 'gallery'} onClick={() => setLayout('gallery')}>
+                        Galeri
+                      </button>
+                      <button className="segmented-btn desktop-only" aria-pressed={layout === 'table'} onClick={() => setLayout('table')}>
+                        Tablo
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      className="chip chip-sm density-toggle"
+                      aria-pressed={dense}
+                      onClick={() => {
+                        setDensity(dense ? 'comfortable' : 'compact')
+                        setDense(!dense)
+                      }}
+                      title="Satırları sıklaştır"
+                    >
+                      Yoğun satırlar
+                    </button>
+                  </div>
+                  <div className="panel-group">
+                    <span className="panel-label">Sırala</span>
+                    <Select<Sort>
+                      label="Sırala"
+                      value={sort}
+                      onChange={setSort}
+                      options={[
+                        { value: 'newest', label: 'En yeni' },
+                        { value: 'alpha', label: 'Alfabetik' },
+                        { value: 'weakest', label: 'En zayıf önce' },
+                        { value: 'strongest', label: 'En güçlü önce' },
+                        { value: 'frequent', label: 'En sık önce' },
+                        { value: 'due', label: 'Tekrarı en yakın' },
+                      ]}
+                    />
+                  </div>
+                  {(lists.length > 0 || tags.length > 0) && (
+                    <div className="panel-group">
+                      <span className="panel-label">Liste ve etiket</span>
+                      {lists.length > 0 && (
+                        <Select
+                          label="Liste"
+                          value={inList || '__all'}
+                          onChange={(v) => setInList(v === '__all' ? '' : v)}
+                          options={[{ value: '__all', label: 'Tüm listeler' }, ...placementOptions(lists)]}
+                        />
+                      )}
+                      {tags.length > 0 && (
+                        <Select
+                          label="Etiket"
+                          value={tag || '__all'}
+                          onChange={(v) => setTag(v === '__all' ? '' : v)}
+                          options={[{ value: '__all', label: 'Tüm etiketler' }, ...tags.map((t) => ({ value: t, label: `#${t}` }))]}
+                        />
+                      )}
+                    </div>
+                  )}
+                  <div className="panel-group">
+                    <span className="panel-label">Sadece olanlar</span>
+                    <div className="panel-choices">
+                      <button className="chip chip-sm" aria-pressed={!!flags.picture} onClick={() => toggle('picture')}>
+                        <ImageIcon size={14} className="inline-icon" />Resimli
+                      </button>
+                      <button className="chip chip-sm" aria-pressed={!!flags.audio} onClick={() => toggle('audio')}>
+                        <MicIcon size={14} className="inline-icon" />Sesli
+                      </button>
+                      <button className="chip chip-sm" aria-pressed={!!flags.noExample} onClick={() => toggle('noExample')}>
+                        Örneksiz
+                      </button>
+                      <button className="chip chip-sm" aria-pressed={!!flags.idiom} onClick={() => toggle('idiom')}>
+                        Deyimler
+                      </button>
+                    </div>
+                  </div>
+                  {(onSuggestImages && pictureCandidates > 0) || activeCount > 0 ? (
+                    <div className="panel-group panel-actions">
+                      {onSuggestImages && pictureCandidates > 0 && (
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-quiet"
+                          onClick={() => {
+                            close()
+                            onSuggestImages()
+                          }}
+                        >
+                          <ImageIcon size={14} className="inline-icon" />Görsel öner ({pictureCandidates})
+                        </button>
+                      )}
+                      {activeCount > 0 && (
+                        <button type="button" className="link small" onClick={clearView}>
+                          Hepsini sıfırla
+                        </button>
+                      )}
+                    </div>
+                  ) : null}
+                </>
+              )}
+            </Popover>
           </div>
-          <div className="choice-row filter-row">
+          <div className="choice-row filter-row stage-row" role="group" aria-label="Aşama">
             {STAGE_FILTERS.filter(([v]) => (v !== 'difficult' || difficultCount > 0 || stage === 'difficult') && (v !== 'review' || reviewCount > 0 || stage === 'review')).map(([v, label]) => (
               <button key={v} className="chip chip-sm" aria-pressed={stage === v} onClick={() => setStage(v)}>
                 {v === 'difficult' && <BoltIcon size={14} className="inline-icon" />}
@@ -1230,41 +1368,15 @@ function WordList({
                 {v === 'review' && ` (${reviewCount})`}
               </button>
             ))}
-            {onSuggestImages && pictureCandidates > 0 && <ImageQueueChip count={pictureCandidates} onOpen={onSuggestImages} />}
-            <span className="chip-sep" aria-hidden />
-            <button className="chip chip-sm" aria-pressed={!!flags.picture} onClick={() => toggle('picture')}>
-              <ImageIcon size={14} className="inline-icon" />Resimli
-            </button>
-            <button className="chip chip-sm" aria-pressed={!!flags.audio} onClick={() => toggle('audio')}>
-              <MicIcon size={14} className="inline-icon" />Sesli
-            </button>
-            <button className="chip chip-sm" aria-pressed={!!flags.noExample} onClick={() => toggle('noExample')}>
-              Örneksiz
-            </button>
-            <button className="chip chip-sm" aria-pressed={!!flags.idiom} onClick={() => toggle('idiom')}>
-              Deyimler
-            </button>
-            {lists.length > 0 && (
-              <div style={{ minWidth: '10rem' }}>
-                <Select
-                  label="Liste"
-                  value={inList || '__all'}
-                  onChange={(v) => setInList(v === '__all' ? '' : v)}
-                  options={[{ value: '__all', label: 'Tüm listeler' }, ...placementOptions(lists)]}
-                />
-              </div>
-            )}
-            {tags.length > 0 && (
-              <div style={{ minWidth: '10rem' }}>
-                <Select
-                  label="Etiket"
-                  value={tag || '__all'}
-                  onChange={(v) => setTag(v === '__all' ? '' : v)}
-                  options={[{ value: '__all', label: 'Tüm etiketler' }, ...tags.map((t) => ({ value: t, label: `#${t}` }))]}
-                />
-              </div>
-            )}
           </div>
+          {onRemoveSamples && !selecting && stage === 'all' && !query && activeCount === 0 && (
+            <p className="small muted sample-note">
+              Bunlar denemek için yüklenen örnek kelimeler.{' '}
+              <button type="button" className="link small" onClick={onRemoveSamples}>
+                Örnekleri kaldır
+              </button>
+            </p>
+          )}
           {selecting && (
             <div className="select-bar" role="toolbar" aria-label="Seçim">
               <label className="row gap-2 pointer">
@@ -1455,14 +1567,13 @@ function WordList({
                             </>
                           )}
                           {v.source !== 'sample' && bandOf(v.frequencyRank) && `, ${bandOf(v.frequencyRank)!.short}`}
-                          {v.source === 'sample' && ' (örnek)'}
                           {v.audioId && <MicIcon size={12} className="inline-icon is-end" />}
                           {v.tags.length > 0 && ` · ${v.tags.map((t) => `#${t}`).join(' ')}`}
                         </span>
                       </span>
                       {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
                       {/* When the word comes back: the one thing a list row can't otherwise tell. */}
-                      <span className={`word-row-due${due && due.getTime() <= now.getTime() ? ' is-due' : ''}`}>{st ? (due ? dueShort(due, now) : 'emekli') : 'sırada'}</span>
+                      {st && <span className={`word-row-due${due && due.getTime() <= now.getTime() ? ' is-due' : ''}`}>{due ? dueShort(due, now) : 'emekli'}</span>}
                     </button>
                   </li>
                 )

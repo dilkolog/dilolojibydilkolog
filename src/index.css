@@ -4395,3 +4395,58 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .clip-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-md); overflow: hidden; background: #000; }
 .clip-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .clip-now { margin: 0; font-family: var(--serif); font-size: var(--t-lg); line-height: 1.35; }
+
+/* A button with a small panel under it (menus, filters). */
+.popover { position: relative; display: inline-block; }
+.popover-panel { position: absolute; top: calc(100% + 0.5rem); z-index: 40; min-width: 16rem; max-width: min(22rem, calc(100vw - 2rem)); padding: 0.75rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow-lg), 0 0 0 1px var(--rule); animation: pop-in var(--dur-fast) var(--ease-out); }
+.popover-panel.is-start { left: 0; }
+.popover-panel.is-end { right: 0; }
+.popover-panel.is-menu { padding: 0.375rem; min-width: 15rem; }
+@media (max-width: 30rem) { .popover-panel { position: fixed; left: 1rem; right: 1rem; top: auto; bottom: calc(4.5rem + env(safe-area-inset-bottom)); max-width: none; max-height: 70vh; overflow-y: auto; } }
+.menu-item { display: flex; align-items: center; gap: 0.75rem; width: 100%; padding: 0.625rem 0.75rem; border: 0; border-radius: var(--r-md); background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.menu-item:hover:not(:disabled), .menu-item:focus-visible { background: var(--lang-soft); outline: none; }
+.menu-item-icon { display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border-radius: 0.625rem; background: var(--surface-2); color: var(--lang-text); }
+.menu-item-text { display: grid; gap: 0.125rem; }
+.panel-group { display: grid; gap: 0.5rem; padding-block: 0.625rem; border-top: 1px solid var(--rule); }
+.panel-group:first-child { border-top: 0; padding-top: 0; }
+.panel-group:last-child { padding-bottom: 0; }
+.panel-label { font-size: var(--t-xs); font-weight: 700; color: var(--ink-soft); letter-spacing: 0.02em; text-transform: uppercase; }
+.panel-choices { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+/* Badge cards: the medal, the title (always two lines tall), the description and the progress sit on the same lines in every card of a row,
+   however long a name is; the progress sits at the foot. */
+.badge-card { gap: 0; grid-template-rows: auto auto auto 1fr; align-content: stretch; }
+.badge-card > .medal, .badge-card > :first-child { margin-bottom: 0.375rem; }
+.badge-title { display: flex; align-items: center; justify-content: center; min-height: 2.5em; line-height: 1.25; overflow-wrap: anywhere; }
+.badge-desc { margin-top: 0.125rem; }
+.badge-foot { align-self: end; display: grid; gap: 0.125rem; justify-items: center; width: 100%; margin-top: 0.5rem; }
+.badge-foot .badge-progress { margin-top: 0; }
+.badge-card.is-compact .badge-title { min-height: 2.5em; }
+
+/* Words: one bar (search, select, filters), one row of stage chips; the rest lives in the filter panel. */
+.words-bar { display: flex; gap: 0.5rem; align-items: stretch; }
+.words-bar .search { flex: 1; min-width: 0; }
+.words-bar > .btn, .words-bar .filter-btn { white-space: nowrap; }
+.filter-btn { position: relative; gap: 0.375rem; }
+.filter-btn.has-active { border-color: var(--lang); color: var(--lang-text); }
+.filter-count { display: inline-grid; place-items: center; min-width: 1.25rem; height: 1.25rem; padding: 0 0.3125rem; border-radius: var(--r-full); background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (max-width: 30rem) { .filter-btn-text { display: none; } }
+.stage-row { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; scroll-snap-type: x proximity; padding-bottom: 0.125rem; }
+.stage-row::-webkit-scrollbar { display: none; }
+.stage-row > * { flex: none; scroll-snap-align: start; }
+.panel-group .segmented { width: 100%; }
+.panel-group .segmented .segmented-btn { flex: 1; justify-content: center; }
+.panel-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.back-link { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 600; margin-top: 0.25rem; }
+.sample-note { margin: 0; }
+
+/* A header whose action stays beside the title on a phone. */
+.page-header.is-inline { flex-wrap: nowrap; align-items: flex-end; }
+.page-header.is-inline .page-header-text { flex: 1 1 0; min-width: 0; }
+.page-header.is-inline .page-header-action { flex: none; padding-bottom: 0.25rem; }
+/* The filter panel on a phone: a sheet above the tab bar, with the page's margins on both sides. */
+@media (max-width: 30rem) {
+  .popover-panel.is-start, .popover-panel.is-end { left: 1rem; right: 1rem; }
+}
+.stage-row, .filter-row { scroll-padding-inline: var(--shell-pad, 1rem); }
+.panel-group .density-toggle { justify-self: start; }

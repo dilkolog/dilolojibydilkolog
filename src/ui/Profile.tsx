@@ -270,17 +270,17 @@ function Badge({ a, compact = false, onOpen }: { a: Achievement; compact?: boole
       aria-label={`${a.title}: ${a.unlocked ? 'kazanıldı' : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
     >
       <Medal icon={a.icon} tier={medalTier(a)} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
-      <strong>{a.title}</strong>
-      {!compact && <span className="small muted">{a.description}</span>}
+      <strong className="badge-title">{a.title}</strong>
+      {!compact && <span className="small muted badge-desc">{a.description}</span>}
       {!a.unlocked && (
-        <>
+        <span className="badge-foot">
           <span className="badge-progress">
             <span style={{ width: `${Math.min(100, (a.value / a.goal) * 100)}%` }} />
           </span>
           <span className="small muted">
             {a.value}/{a.goal}
           </span>
-        </>
+        </span>
       )}
     </button>
   )
