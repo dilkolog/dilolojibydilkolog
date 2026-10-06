@@ -1,11 +1,48 @@
 import { expect, test } from '@playwright/test'
 import { clippedContent, contrastProblems, finishSession, playSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
 
-test('first run: the language choice comes right after the welcome', async ({ page }) => {
+test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
-  const form = await page.locator('.onboarding-form').boundingBox()
-  const steps = await page.locator('.onboarding-steps').boundingBox()
-  expect(form!.y).toBeLessThan(steps!.y)
+  const inView = async (name: string | RegExp) => {
+    const box = await page.getByRole('button', { name }).first().boundingBox()
+    expect(box, `${name} is visible`).not.toBeNull()
+    expect(box!.y + box!.height, `${name} is above the fold`).toBeLessThanOrEqual(page.viewportSize()!.height)
+  }
+  const sound = async (where: string) => {
+    await page.waitForTimeout(400) // a step slides in; contrast is read once it has settled
+    expect(await overflow(page), `${where} overflow`).toEqual([])
+    expect(await contrastProblems(page), `${where} contrast`).toEqual([])
+  }
+  // 1. Welcome
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused({ timeout: 100 }).catch(() => {})
+  await inView('Başlayalım')
+  await sound('welcome')
+  await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
+  // 2. Language
+  await expect(page.getByRole('heading', { name: 'Hangi dille başlayalım?' })).toBeFocused()
+  await page.locator('.lang-card', { hasText: 'İspanyolca' }).click()
+  await inView('Devam')
+  await sound('language')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  // 3. Goal
+  await page.getByPlaceholder('Adın').fill('Ayşe')
+  await page.getByRole('radio', { name: '20 dk' }).click()
+  await page.getByRole('radio', { name: '8', exact: true }).click()
+  await inView('Devam')
+  await sound('goal')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  // 4. Ready: a recap of the choices, and the way back
+  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
+  await expect(page.locator('.ob-recap')).toContainText('İspanyolca')
+  await expect(page.locator('.ob-recap')).toContainText('20 dk')
+  await expect(page.locator('.ob-recap')).toContainText('günde 8')
+  await inView(/ile başlayalım/)
+  await sound('ready')
+  await page.getByRole('button', { name: 'Geri' }).click()
+  await expect(page.getByRole('radio', { name: '20 dk' })).toHaveAttribute('aria-checked', 'true')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await page.getByRole('button', { name: /İspanyolca ile başlayalım/ }).click()
+  await expect(page.getByRole('button', { name: /örnek kelime yükle/ })).toBeVisible()
 })
 
 test('no screen scrolls sideways, even at the largest text size', async ({ page }) => {
@@ -508,6 +545,8 @@ test('pictures can be suggested for the words that have none, taken with one tap
   await page.route('https://upload.wikimedia.org/**', (route) => route.fulfill({ status: 200, headers: cors, contentType: 'image/png', body: png }))
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
+  const openPanel = () => page.getByRole('button', { name: /^Süz ve görünüm/ }).click()
+  await openPanel()
   const chip = page.getByRole('button', { name: /Görsel öner \((\d+)\)/ })
   await expect(chip).toBeVisible()
   const before = Number((await chip.textContent())!.match(/\((\d+)\)/)![1])
@@ -528,6 +567,7 @@ test('pictures can be suggested for the words that have none, taken with one tap
   // The word that took a picture shows it in the list.
   await expect(page.locator('.word-row img').first()).toBeVisible()
   // Two words left the queue: the one with a picture and the one passed over.
+  await openPanel()
   await expect(page.getByRole('button', { name: new RegExp(`Görsel öner \\(${before - 2}\\)`) })).toBeVisible()
   expect(await overflow(page)).toEqual([])
 })
@@ -552,7 +592,9 @@ test('a word card shows how full it is, and a missing part takes you to where it
 test('the word list can be a gallery: pictures where there are any, letters where there are not, and a tap opens the word', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /^Süz ve görünüm/ }).click()
   await page.getByRole('button', { name: 'Galeri', exact: true }).click()
+  await page.keyboard.press('Escape')
   const tiles = page.locator('.gallery-tile')
   expect(await tiles.count()).toBeGreaterThan(5)
   await expect(page.locator('.gallery-letter').first()).toBeVisible()
@@ -695,6 +737,33 @@ test('without a YouTube key the section says what is needed instead of failing',
   await page.locator('.word-row').first().click()
   await page.locator('.clips').getByRole('button', { name: 'Videolarda ara' }).click()
   await expect(page.locator('.clips [role=alert]')).toContainText('YOUTUBE_API_KEY')
+})
+
+test('badge cards line up: in a row the medals, titles and progress bars sit on the same lines, however long a name is', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('tab', { name: 'Rozetler' }).click()
+  await page.waitForTimeout(300)
+  const rows = await page.locator('.badge-card').evaluateAll((cards) => {
+    const byRow = new Map<number, { medal: number; title: number; titleH: number; bar: number | null; h: number }[]>()
+    for (const c of cards) {
+      const r = c.getBoundingClientRect()
+      if (!r.width) continue
+      const key = Math.round(r.top / 4)
+      const bar = c.querySelector('.badge-progress')?.getBoundingClientRect()
+      const t = c.querySelector('.badge-title')!.getBoundingClientRect()
+      byRow.set(key, [...(byRow.get(key) ?? []), { medal: Math.round(c.firstElementChild!.getBoundingClientRect().top - r.top), title: Math.round(t.top - r.top), titleH: Math.round(t.height), bar: bar ? Math.round(bar.top - r.top) : null, h: Math.round(r.height) }])
+    }
+    return [...byRow.values()]
+  })
+  expect(rows.length).toBeGreaterThan(1)
+  for (const row of rows) {
+    expect(new Set(row.map((c) => c.medal)).size, 'medals').toBe(1)
+    expect(new Set(row.map((c) => c.title)).size, 'titles').toBe(1)
+    expect(new Set(row.map((c) => c.titleH)).size, 'title heights').toBe(1)
+    expect(new Set(row.filter((c) => c.bar !== null).map((c) => c.bar)).size, 'progress bars').toBeLessThanOrEqual(1)
+    expect(new Set(row.map((c) => c.h)).size, 'card heights').toBe(1)
+  }
 })
 
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {

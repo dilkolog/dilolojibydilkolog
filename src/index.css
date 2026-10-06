@@ -1453,7 +1453,7 @@ main:focus { outline: none; }
 .plant-core, .plant-bloom { transform-origin: 50% 50%; }
 .plant-leaf.is-l { transform-origin: 100% 75%; }
 .plant-leaf.is-r { transform-origin: 0% 75%; }
-.plant-stem, .plant-leaf { transition: stroke var(--dur), fill var(--dur); }   /* a plant greens or dries over a moment, not in a blink */
+.plant-stem, .plant-leaf path { transition: stroke var(--dur), fill var(--dur); }   /* a plant greens or dries over a moment, not in a blink */
 
 /* A new stage: the plant springs up, the stem draws itself, leaves unfurl, petals open one by one. */
 .plant.is-grow { transform-origin: 50% 88%; animation: plant-grow 900ms var(--ease-spring); }
@@ -2284,12 +2284,29 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .onboarding-steps li { display: grid; gap: 0.25rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
 .onboarding-steps li strong::before { counter-increment: step; content: counter(step) '. '; color: var(--lang-text); }
 .onboarding-form { display: grid; gap: 1.75rem; }
-/* Phones: the choices come right after the welcome; how it works follows below them. */
-@media (max-width: 40rem) {
-  .onboarding { display: flex; flex-direction: column; }
-  .onboarding-form { order: 1; }
-  .onboarding-steps { order: 2; }
-}
+/* After the welcome the hero shrinks to a banner, so the question stays in view on a phone. */
+.onboarding:not(.is-step-0) .onboarding-hero { padding: 1rem 1.25rem; }
+.onboarding:not(.is-step-0) .hero-hello { display: none; }
+.ob-heading { font-size: var(--t-xl); letter-spacing: -0.02em; }
+.ob-heading:focus { outline: none; }
+.onboarding-title:focus { outline: none; }
+.ob-progress ol { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 0.25rem; }
+.ob-progress li { display: flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.5rem; color: var(--ink-soft); font-size: var(--t-sm); font-weight: 600; }
+.ob-progress li:not(:last-child)::after { content: ''; width: 1.25rem; height: 2px; margin-left: 0.25rem; border-radius: 1px; background: var(--rule); }
+.ob-dot { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: var(--r-full); background: var(--track); color: var(--ink-soft); font-size: 0.75rem; font-weight: 700; }
+.ob-progress li.is-now { color: var(--ink); }
+.ob-progress li.is-now .ob-dot, .ob-progress li.is-done .ob-dot { background: var(--lang); color: var(--on-lang); }
+@media (max-width: 30rem) { .ob-progress li:not(.is-now) .ob-label { display: none; } .ob-progress li:not(:last-child)::after { width: 0.75rem; } }
+.ob-step { animation: ob-in 280ms var(--ease-out) both; }
+/* The welcome is already there when the page opens: only the steps after it slide in. */
+.is-step-0 .ob-step { animation: none; }
+@keyframes ob-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.ob-actions { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+.ob-actions .btn-lg { flex: 1 1 auto; }
+.ob-ready { text-align: center; justify-items: center; }
+.ob-ready-art { display: flex; align-items: flex-end; justify-content: center; gap: 0.5rem; }
+.ob-recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; width: 100%; max-width: 22rem; text-align: left; }
+.ob-recap li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.625rem 0.875rem; border-radius: var(--r-md); background: var(--lang-soft); }
 .onboarding-form.stack > * { margin-top: 0; }
 .onboarding-row { align-items: flex-start; }
 .onboarding-row .field { gap: 0.5rem; }
@@ -4353,13 +4370,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .sk-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.5rem; }
 .sk-tile { aspect-ratio: 4 / 3; border-radius: var(--r-md); }
 
-/* The end of a session as a small garden under the sky of the hour. */
+/* The end of a session as a small garden under the sky of the hour: plants stand on a strip of ground, in front of the hills. */
 .summary-scene { position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
-.summary-scene .garden-sky { height: 9rem; margin: 0; border-radius: 0; }
-.scene-plants { position: absolute; inset: auto 0.75rem 1.75rem; list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-evenly; gap: 0.25rem; }
-.scene-plants li { display: block; animation: scene-pop var(--dur) var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 80ms); }
+.summary-scene .garden-sky { height: 10.5rem; margin: 0; border-radius: 0; }
+.scene-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 2.25rem; background: linear-gradient(to bottom, color-mix(in srgb, var(--plant-leaf) 78%, #14532d), color-mix(in srgb, var(--plant-leaf) 48%, #052e16)); box-shadow: inset 0 3px 0 rgb(255 255 255 / 0.2); }
+.scene-plants { position: absolute; inset: auto 0.75rem 1.6rem; list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-evenly; gap: 0.25rem; }
+.scene-plants li { display: block; transform-origin: 50% 100%; animation: scene-pop var(--dur) var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 80ms); }
 @keyframes scene-pop { from { transform: translateY(0.75rem) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
-.scene-caption { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 0.25rem 0.75rem; text-align: center; font-weight: 700; color: #fff; background: linear-gradient(to top, rgb(0 0 0 / 0.35), transparent); }
+.scene-caption { position: absolute; left: 0; right: 0; bottom: 0; height: 2.25rem; display: grid; place-items: center; margin: 0; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / 0.35); }
 
 /* A word as written in a list: article, lemma, and its small marks on one line. */
 .word-label { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.375rem; }
@@ -4394,3 +4412,58 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .clip-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-md); overflow: hidden; background: #000; }
 .clip-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .clip-now { margin: 0; font-family: var(--serif); font-size: var(--t-lg); line-height: 1.35; }
+
+/* A button with a small panel under it (menus, filters). */
+.popover { position: relative; display: inline-block; }
+.popover-panel { position: absolute; top: calc(100% + 0.5rem); z-index: 40; min-width: 16rem; max-width: min(22rem, calc(100vw - 2rem)); padding: 0.75rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow-lg), 0 0 0 1px var(--rule); animation: pop-in var(--dur-fast) var(--ease-out); }
+.popover-panel.is-start { left: 0; }
+.popover-panel.is-end { right: 0; }
+.popover-panel.is-menu { padding: 0.375rem; min-width: 15rem; }
+@media (max-width: 30rem) { .popover-panel { position: fixed; left: 1rem; right: 1rem; top: auto; bottom: calc(4.5rem + env(safe-area-inset-bottom)); max-width: none; max-height: 70vh; overflow-y: auto; } }
+.menu-item { display: flex; align-items: center; gap: 0.75rem; width: 100%; padding: 0.625rem 0.75rem; border: 0; border-radius: var(--r-md); background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.menu-item:hover:not(:disabled), .menu-item:focus-visible { background: var(--lang-soft); outline: none; }
+.menu-item-icon { display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border-radius: 0.625rem; background: var(--surface-2); color: var(--lang-text); }
+.menu-item-text { display: grid; gap: 0.125rem; }
+.panel-group { display: grid; gap: 0.5rem; padding-block: 0.625rem; border-top: 1px solid var(--rule); }
+.panel-group:first-child { border-top: 0; padding-top: 0; }
+.panel-group:last-child { padding-bottom: 0; }
+.panel-label { font-size: var(--t-xs); font-weight: 700; color: var(--ink-soft); letter-spacing: 0.02em; text-transform: uppercase; }
+.panel-choices { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+/* Badge cards: the medal, the title (always two lines tall), the description and the progress sit on the same lines in every card of a row,
+   however long a name is; the progress sits at the foot. */
+.badge-card { gap: 0; grid-template-rows: auto auto auto 1fr; align-content: stretch; }
+.badge-card > .medal, .badge-card > :first-child { margin-bottom: 0.375rem; }
+.badge-title { display: flex; align-items: center; justify-content: center; min-height: 2.5em; line-height: 1.25; overflow-wrap: anywhere; }
+.badge-desc { margin-top: 0.125rem; }
+.badge-foot { align-self: end; display: grid; gap: 0.125rem; justify-items: center; width: 100%; margin-top: 0.5rem; }
+.badge-foot .badge-progress { margin-top: 0; }
+.badge-card.is-compact .badge-title { min-height: 2.5em; }
+
+/* Words: one bar (search, select, filters), one row of stage chips; the rest lives in the filter panel. */
+.words-bar { display: flex; gap: 0.5rem; align-items: stretch; }
+.words-bar .search { flex: 1; min-width: 0; }
+.words-bar > .btn, .words-bar .filter-btn { white-space: nowrap; }
+.filter-btn { position: relative; gap: 0.375rem; }
+.filter-btn.has-active { border-color: var(--lang); color: var(--lang-text); }
+.filter-count { display: inline-grid; place-items: center; min-width: 1.25rem; height: 1.25rem; padding: 0 0.3125rem; border-radius: var(--r-full); background: var(--lang); color: var(--on-lang); font-size: var(--t-xs); font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (max-width: 30rem) { .filter-btn-text { display: none; } }
+.stage-row { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; scroll-snap-type: x proximity; padding-bottom: 0.125rem; }
+.stage-row::-webkit-scrollbar { display: none; }
+.stage-row > * { flex: none; scroll-snap-align: start; }
+.panel-group .segmented { width: 100%; }
+.panel-group .segmented .segmented-btn { flex: 1; justify-content: center; }
+.panel-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.back-link { display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 600; margin-top: 0.25rem; }
+.sample-note { margin: 0; }
+
+/* A header whose action stays beside the title on a phone. */
+.page-header.is-inline { flex-wrap: nowrap; align-items: flex-end; }
+.page-header.is-inline .page-header-text { flex: 1 1 0; min-width: 0; }
+.page-header.is-inline .page-header-action { flex: none; padding-bottom: 0.25rem; }
+/* The filter panel on a phone: a sheet above the tab bar, with the page's margins on both sides. */
+@media (max-width: 30rem) {
+  .popover-panel.is-start, .popover-panel.is-end { left: 1rem; right: 1rem; }
+}
+.stage-row, .filter-row { scroll-padding-inline: var(--shell-pad, 1rem); }
+.panel-group .density-toggle { justify-self: start; }
