@@ -22,11 +22,16 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
   expect(found).toEqual([])
 })
 
-test('text stays readable in the light and the dark theme', async ({ page }) => {
+test('text stays readable in the light, the dark and the calm theme', async ({ page }) => {
   await startWithSamples(page)
   const found: string[] = []
-  for (const theme of ['light', 'dark']) {
-    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+  for (const theme of ['light', 'dark', 'calm']) {
+    // Calm is the dark theme with a flag that turns its colours down.
+    await page.evaluate((t) => {
+      document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t
+      if (t === 'calm') document.documentElement.dataset.calm = ''
+      else delete document.documentElement.dataset.calm
+    }, theme)
     for (const name of SCREENS) {
       await openScreen(page, name)
       for (const p of await contrastProblems(page)) found.push(`${theme} ${name}: ${p}`)
@@ -395,4 +400,25 @@ test('a word carries its part of speech as a shape on the list and the word page
   expect(shapes).toBeGreaterThanOrEqual(2)   // nouns and verbs among the samples
   await page.locator('.word-row').first().click()
   await expect(page.locator('.word-hero .pos-chip .pos-tag')).toBeVisible()
+})
+
+test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
+  await page.getByRole('radio', { name: 'Sakin' }).or(page.getByRole('button', { name: 'Sakin', exact: true })).first().click()
+  const root = page.locator('html')
+  await expect(root).toHaveAttribute('data-theme', 'dark')
+  await expect(root).toHaveAttribute('data-calm', '')
+  const bg = (sel: string) => page.evaluate((s) => getComputedStyle(document.documentElement).getPropertyValue(s).trim(), sel)
+  expect(await bg('--bg')).toBe('#15171c')
+  // Plain dark again: the flag goes away and the dark colours come back.
+  await page.getByRole('radio', { name: 'Koyu' }).or(page.getByRole('button', { name: 'Koyu', exact: true })).first().click()
+  await expect(root).not.toHaveAttribute('data-calm', '')
+  expect(await bg('--bg')).toBe('#0f172a')
+  // Kept across a reload, before the first paint.
+  await page.getByRole('radio', { name: 'Sakin' }).or(page.getByRole('button', { name: 'Sakin', exact: true })).first().click()
+  await page.reload()
+  await expect(root).toHaveAttribute('data-calm', '')
 })

@@ -98,7 +98,8 @@ export interface Settings {
   dailyXpGoal: number
   /** Questions per session at most; 0 = whole plan. */
   sessionMax: number
-  theme: 'system' | 'light' | 'dark'
+  /** 'calm': the dark theme with its colours turned down, for working at night. */
+  theme: 'system' | 'light' | 'dark' | 'calm'
   /** Set once the light default replaced an inherited 'system' (2026-10-06). */
   themeLightDefault?: boolean
   /** Scales the whole interface (everything is sized in rem). */

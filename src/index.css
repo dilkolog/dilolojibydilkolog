@@ -4147,3 +4147,22 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .home-side { position: sticky; top: 1rem; }
   .home-grid > .home-side > :first-child { margin-top: 0; }
 }
+
+/* Calm: the dark theme (set alongside it) with its colours turned down: warmer greys, accents mixed toward
+   them, softer feedback tones. Last in the file so it wins over both dark blocks. */
+:root[data-calm] {
+  --bg: #15171c; --surface: #1d2027; --surface-2: #242830; --track: #2f343e; --rule: #2f343e;
+  --ink: #e8e6e3; --ink-soft: #a3a1a8;
+  --page-glow: none;
+  --shadow: 0 0 0 1px rgb(148 163 184 / 0.08), 0 4px 16px rgb(0 0 0 / 0.2);
+  --en: #4f73aa; --en-deep: #34507a; --en-soft: #232c3a; --en-text: #aec4e3;
+  --fr: #9c5f7f; --fr-deep: #6b3f57; --fr-soft: #33262f; --fr-text: #e0b5cb;
+  --es: #b99556; --es-deep: #6e5524; --es-soft: #322b1f; --es-text: #dcc28f;
+  --ok: #4fa58a; --ok-deep: #2f7a63; --ok-soft: #1c302d; --ok-text: #93d3bc;
+  --near: #cf8a56; --near-deep: #a65f35; --near-soft: #302722; --near-text: #e6b48b;
+  --bad: #cf6a7a; --bad-deep: #a8485a; --bad-soft: #31242a; --bad-text: #e8a3ae;
+  --ok-btn: #2f7d68; --ok-btn-deep: #276654; --near-btn: #a65f35; --near-btn-deep: #8a4f2b; --bad-btn: #a8485a; --bad-btn-deep: #8a3b4a;
+  --gold: #d1a94f; --gold-text: #dcbb6a; --flame: #cf8a56;
+  --gender-m: #5cb8c8; --gender-f: #a493d6;
+  --plant-leaf: #5fb596; --plant-thirsty: #b8c37a; --plant-dry: #b97a3a;
+}

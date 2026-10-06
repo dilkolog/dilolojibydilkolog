@@ -43,8 +43,11 @@ export function applySettings(s: Settings) {
   root.style.fontSize = { normal: '', large: '112.5%', xlarge: '125%' }[s.textScale ?? 'normal']
   prefs.haptics = s.haptics ?? true
   prefs.hideVosotros = s.hideVosotros ?? false
+  // Calm is the dark theme plus a flag that turns its colours down (see index.css).
   if (s.theme === 'system') delete root.dataset.theme
-  else root.dataset.theme = s.theme
+  else root.dataset.theme = s.theme === 'calm' ? 'dark' : s.theme
+  if (s.theme === 'calm') root.dataset.calm = ''
+  else delete root.dataset.calm
   // The page itself takes the language's tint (light theme), not only the app's content.
   root.dataset.lang = s.activeLanguage
   // Read by the inline script in index.html, so the first paint already has the right theme.
@@ -56,6 +59,6 @@ export function applySettings(s: Settings) {
   // Phone status bar follows the chosen theme, not only the system one.
   document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
     const dark = m.media.includes('dark')
-    m.content = s.theme === 'system' ? (dark ? '#0f172a' : '#f1f5f9') : s.theme === 'dark' ? '#0f172a' : '#f1f5f9'
+    m.content = s.theme === 'system' ? (dark ? '#0f172a' : '#f1f5f9') : s.theme === 'calm' ? '#15171c' : s.theme === 'dark' ? '#0f172a' : '#f1f5f9'
   })
 }

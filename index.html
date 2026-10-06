@@ -12,7 +12,8 @@
       // Theme before the first paint (light unless chosen otherwise), so a dark system shows no dark flash.
       try {
         var t = localStorage.getItem('kelime-koc:theme') || 'light'
-        if (t !== 'system') document.documentElement.dataset.theme = t
+        if (t !== 'system') document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t
+        if (t === 'calm') document.documentElement.dataset.calm = ''
       } catch (e) {
         document.documentElement.dataset.theme = 'light'
       }

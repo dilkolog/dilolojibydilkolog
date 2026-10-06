@@ -7,7 +7,7 @@ import { Feedback } from './Feedback'
 
 const show = (verdict: 'correct' | 'near' | 'wrong', confidence?: 'sure' | 'unsure') =>
   renderToStaticMarkup(
-    <Feedback ev={{ verdict, correct: verdict === 'correct', expected: 'decision' } as Graded} confidence={confidence} entry={decision} continueRef={createRef()} onContinue={() => {}} />,
+    <Feedback ev={{ verdict, correct: verdict === 'correct', expected: 'decision' } as unknown as Graded} confidence={confidence} entry={decision} continueRef={createRef()} onContinue={() => {}} />,
   )
 
 describe('feedback after an answer', () => {
