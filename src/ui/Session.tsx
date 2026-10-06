@@ -19,7 +19,7 @@ import { LANGUAGE_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
-import { CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, SlowIcon, StarIcon } from './icons'
+import { BoltIcon, CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, SlowIcon, StarIcon } from './icons'
 import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
 import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './speech'
@@ -405,6 +405,7 @@ export function SessionScreen(p: Props) {
           listenRate={listeningRate(speechPrefs.rate, states.current.get(entry.id)?.skills.listening?.stability)}
           intrusionSources={intrusionSources}
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
+          onToggleDifficult={() => void markDifficult(!isDifficult(entry))}
         />
       )}
       </div>
@@ -430,6 +431,7 @@ interface RunnerProps {
   /** The word's memory right now (read on each render, so it shows the answer's effect). */
   wordState: () => UserWordState | undefined
   onEntryUpdated: (entry: VocabularyEntry) => void
+  onToggleDifficult: () => void
 }
 
 /** With "strict accents" on, a missing accent is an error rather than a near miss. */
@@ -440,7 +442,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, listenRate, intrusionSources }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
@@ -541,7 +543,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
         <WordPlant state={wordState()} />
       </div>
       <Prompt exercise={exercise} entry={entry} listenRate={listenRate} />
-      {((asksConfidence && !result) || slowable) && (
+      {(!result || slowable) && (
       <div className="prompt-tools">
       {asksConfidence && !result && (
         <button
@@ -557,6 +559,12 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
           {unsure ? <CheckIcon size={15} className="inline-icon" /> : <HelpIcon size={15} className="inline-icon" />}
           Emin değilim
           {unsure && <span className="small muted"> · şimdi cevabını seç</span>}
+        </button>
+      )}
+      {!result && (
+        <button type="button" className={`unsure-chip difficult-chip${isDifficult(entry) ? ' is-on' : ''}`} aria-pressed={isDifficult(entry)} title="Zor diye işaretle: bu kelimeleri ayrı bir çalışmada toplarız" onClick={onToggleDifficult}>
+          <BoltIcon size={15} className="inline-icon" solid={isDifficult(entry)} />
+          Zor
         </button>
       )}
       {slowable && (

@@ -239,6 +239,28 @@ test('a word marked hard in a session is gathered for a practice of its own', as
   await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks the word like the bolt does', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  // Past the new-word cards, to the first question.
+  const chip = page.locator('.prompt-tools .difficult-chip')
+  for (let i = 0; i < 40 && !(await chip.count()); i++) {
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const guess = page.locator('.session-stage .option:not([disabled])')
+    if (await next.count()) await next.first().click()
+    else if (await guess.count()) await guess.first().click()
+    await page.waitForTimeout(200)
+  }
+  await expect(chip).toBeVisible()
+  await expect(chip).toHaveText('Zor')
+  await expect(page.locator('.prompt-tools .unsure-chip').first()).toBeVisible()
+  await chip.click()
+  await expect(chip).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
+  expect(await overflow(page)).toEqual([])
+})
+
 test('the profile can be dressed up: banner, frame, interests, a goal; locked styles say what opens them', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)
