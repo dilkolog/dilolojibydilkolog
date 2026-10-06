@@ -36,7 +36,8 @@ import { isRetired } from '../engine/retire'
 import { GroupToggle, JumpNav, useGroups } from './JumpNav'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
-import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TrashIcon, UmbrellaIcon } from './icons'
+import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TenseIcon, TrashIcon, UmbrellaIcon } from './icons'
+import { verbKey } from './verbs/labShared'
 import { deleteWordsWithUndo } from './undo'
 import { neighbours } from './wordOrder'
 import { placementOptions, parsePlacement, placementValue } from './listOptions'
@@ -62,6 +63,8 @@ interface Props {
   onStudy?: (entries: VocabularyEntry[]) => void
   /** Open another word (previous / next in the list). */
   onOpen?: (entryId: string) => void
+  /** Open a verb in the verb lab. */
+  onOpenLab?: (verb: string) => void
 }
 
 /** Everything known about one word: its relations, how well each skill is held, its mistakes. */
@@ -75,7 +78,7 @@ const WORD_GROUPS = [
   ['w-progress', 'İlerleme'],
 ] as const
 
-export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack, onStudy, onOpen }: Props) {
+export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, onChanged, onBack, onStudy, onOpen, onOpenLab }: Props) {
   const nav = useMemo(() => neighbours(entry.id, vocabulary), [entry.id, vocabulary])
   // A word page is long: on a phone the usage group starts open, the rest on request.
   const { isOpen, open: openGroup, toggle } = useGroups(WORD_GROUPS.map(([id]) => id), ['w-use'])
@@ -323,6 +326,13 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             <section className="section stack">
               <h2 className="section-title">Fiil çekimi</h2>
               <ConjugationTable key={entry.id} entry={entry} productionReps={state?.skills.production?.reps ?? 0} />
+              {onOpenLab && entry.language !== 'en' && (
+                <div>
+                  <button type="button" className="btn btn-quiet btn-sm" onClick={() => onOpenLab(verbKey(entry.language as 'fr' | 'es', entry.lemma))}>
+                    <TenseIcon size={16} /> Fiil laboratuvarında aç
+                  </button>
+                </div>
+              )}
               <p className="small muted">"Üretme" becerisi açıldıkça çekim soruları gelir: önce şimdiki zaman, kelime oturdukça geçmiş ve gelecek.</p>
             </section>
           )}

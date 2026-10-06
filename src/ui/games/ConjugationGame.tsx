@@ -24,7 +24,7 @@ export const CONJ_MIN_VERBS = 3
 type Verb = Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'> & { gloss: string; entry?: VocabularyEntry }
 
 /** The verbs every learner needs first, for when the list has few verbs of its own. */
-const COMMON: Record<'fr' | 'es', [string, string][]> = {
+export const COMMON: Record<'fr' | 'es', [string, string][]> = {
   fr: [
     ['être', 'olmak'], ['avoir', 'sahip olmak'], ['aller', 'gitmek'], ['faire', 'yapmak'], ['dire', 'söylemek'], ['pouvoir', '-ebilmek'],
     ['vouloir', 'istemek'], ['savoir', 'bilmek'], ['venir', 'gelmek'], ['devoir', 'zorunda olmak'], ['prendre', 'almak'], ['voir', 'görmek'],
