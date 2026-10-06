@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import { addTenses, conjugateTense, irregularForms, labTensesOf, tenseAnswers, tensesOf, verbParts, isCompound, isSubjunctive, type Tense } from '../tenses'
-import { TENSE_GUIDE } from '../tenseGuide'
+import { TENSE_BRIDGE, TENSE_GUIDE } from '../tenseGuide'
 import type { TargetLanguage } from '../types'
 
 const entry = (language: TargetLanguage, lemma: string) => ({ language, lemma, partOfSpeech: 'verb' as const })
@@ -92,6 +92,12 @@ describe('the tense lists', () => {
       for (const t of labTensesOf(entry(language, language === 'fr' ? 'parler' : 'hablar'))) {
         expect(TENSE_GUIDE[t].short.length).toBeGreaterThan(20)
         expect(TENSE_GUIDE[t].examples).toHaveLength(2)
+      }
+    // Every tense is seen from Turkish too.
+    for (const language of ['fr', 'es'] as const)
+      for (const t of labTensesOf(entry(language, language === 'fr' ? 'parler' : 'hablar'))) {
+        expect(TENSE_BRIDGE[t].suffix.length).toBeGreaterThan(3)
+        expect(TENSE_BRIDGE[t].note.length).toBeGreaterThan(30)
       }
     expect(isSubjunctive('subjuntivo-imperfecto')).toBe(true)
     expect(isSubjunctive('futuro-perfecto')).toBe(false)

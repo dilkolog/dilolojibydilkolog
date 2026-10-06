@@ -4657,3 +4657,28 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-aspect-card:hover { border-color: var(--lang); }
 .lab-review-empty { padding: 1.5rem 0; }
 .lab-tab .lab-count { margin-left: 0.375rem; }
+
+/* Verb lab: Turkish bridge, families */
+.lab-bridge { display: grid; gap: 0.375rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--lang-soft); }
+.lab-bridge p { margin: 0; }
+.lab-bridge-kicker { font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lang-text); }
+.lab-bridge-trap { color: var(--ink); font-size: var(--t-sm); }
+.lab-bridge-line { margin: 0; }
+.lab-families { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin: 0; }
+.lab-shape { display: inline-flex; gap: 0.25rem; flex-wrap: wrap; font-size: var(--t-sm); }
+.lab-shape span { min-width: 2.75rem; padding: 0.25rem 0.5rem; border-radius: var(--r-sm); background: var(--surface-2); box-shadow: var(--inset-ring); text-align: center; color: var(--ink-soft); }
+.lab-shape span.is-change { background: var(--near-soft); color: var(--near-text); font-weight: 700; box-shadow: inset 0 0 0 1px var(--near); }
+.lab-family-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.lab-family { border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.lab-family.is-open { box-shadow: inset 0 0 0 2px var(--lang); }
+.lab-family-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 0.875rem 1rem; border: 0; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.lab-family-body { padding: 0 1rem 1rem; }
+.lab-family-body p { margin: 0; }
+.lab-family-examples { margin: 0; padding-left: 1.25rem; font-family: var(--serif); font-size: var(--t-lg); }
+.lab-find-grid { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr)); }
+.lab-find-card { display: grid; gap: 0.125rem; padding: 0.875rem 1rem; border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); box-shadow: 0 3px 0 var(--rule); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.lab-find-card strong { font-family: var(--serif); font-size: var(--t-lg); }
+.lab-find-card[aria-pressed='true'] { border-color: var(--lang); background: var(--lang-soft); }
+.lab-find-card.is-member { border-color: var(--ok); background: var(--ok-soft); }
+.lab-find-card.is-other[aria-pressed='true'] { border-color: var(--bad); background: var(--bad-soft); }
+.lab-target { margin: 0; font-family: var(--serif); font-size: var(--t-lg); }

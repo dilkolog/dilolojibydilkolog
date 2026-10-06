@@ -11,18 +11,21 @@ import { CompareTab } from './CompareTab'
 import { LearnTab } from './LearnTab'
 import { MasteryTab } from './MasteryTab'
 import { PracticeTab } from './PracticeTab'
+import { PatternsTab } from './PatternsTab'
 import { ReviewTab } from './ReviewTab'
+import { verbFamilies, type FamilyId } from '../../engine/verbFamilies'
 import { TimedTab } from './TimedTab'
 import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, verbEntry, verbKey, type LabLanguage } from './labShared'
 
-export type LabTab = 'learn' | 'practice' | 'review' | 'timed' | 'compare' | 'mastery'
+export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'timed' | 'compare' | 'mastery'
 
 const TABS: { id: LabTab; label: string }[] = [
   { id: 'learn', label: 'Öğrenme' },
   { id: 'practice', label: 'Alıştırma' },
   { id: 'review', label: 'Tekrar' },
+  { id: 'patterns', label: 'Kalıplar' },
   { id: 'timed', label: 'Zamana karşı' },
   { id: 'compare', label: 'Kıyaslama' },
   { id: 'mastery', label: 'Ustalık' },
@@ -71,6 +74,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   const [tense, setTense] = useState<Tense>(() => (initialTense && isLabTense(language, initialTense) ? initialTense : PRESENT[language]))
   const [tab, setTab] = useState<LabTab>(initialTab ?? 'learn')
   const [level, setLevel] = useState<Level | null>(null)
+  const [family, setFamily] = useState<FamilyId | undefined>()
   const main = useRef<HTMLElement>(null)
 
   const ownVerbs = useMemo(() => {
@@ -115,7 +119,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     setTab('practice')
     showLesson()
   }
-  const onAnswer = (v: string, t: Tense, ok: boolean, given: string, expected: string) => {
+  const onAnswer = (v: string, t: Tense, ok: boolean, given: string, expected: string, _person?: number) => {
     // A verb that is one of the learner's own words keeps its history (and the weak-tense hints) too.
     const entry = ownEntry(vocabulary, language, v)
     if (entry) void recordPractice(entry, states.find((s) => s.entryId === entry.id), 'conjugation', ok, 0, { given, expected })
@@ -163,6 +167,11 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 favorite={lab.favorites.includes(verb)}
                 onTense={setTense}
                 onFavorite={() => update((l) => toggleFavorite(l, verb))}
+                families={verbFamilies(language, verb)}
+                onFamily={(id) => {
+                  setFamily(id)
+                  setTab('patterns')
+                }}
                 inReview={reviewable.filter((t) => lab.records[labKey(verb, t)]).length}
                 reviewable={reviewable.length}
                 onAddReview={() => update((l) => addToReview(l, scheduler, verb, reviewable, new Date()))}
@@ -188,6 +197,21 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                   onAnswer(v, t, ok, given, expected)
                 }}
                 onOpen={choose}
+              />
+            ) : tab === 'patterns' ? (
+              <PatternsTab
+                key={family ?? 'all'}
+                language={language}
+                frequency={frequency}
+                initial={family}
+                onVerb={(v) => {
+                  choose(v)
+                  setTab('learn')
+                }}
+                onCheck={(v, t, ok, given, expected, person) => {
+                  update((l) => recordCheck(l, scheduler, v, t, ok, new Date()))
+                  onAnswer(v, t, ok, given, expected, person)
+                }}
               />
             ) : tab === 'timed' ? (
               <TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />

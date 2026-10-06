@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TENSE_GUIDE } from '../../engine/tenseGuide'
+import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { irregularForms, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
 import { FormTable } from './FormTable'
@@ -43,6 +43,9 @@ export function CompareTab({ language, verb, available }: { language: LabLanguag
                 <h3 lang={language}>{tenseName(t)}</h3>
               </header>
               <p className="small muted">{TENSE_GUIDE[t].short}</p>
+              <p className="small lab-bridge-line">
+                <span className="muted">Türkçede:</span> {TENSE_BRIDGE[t].suffix}
+              </p>
               <FormTable language={language} tense={t} forms={forms} irregular={irregularForms(entry, t)} layout="single" speakable={false} />
               <p className="small lab-markers" lang={language}>
                 {TENSE_GUIDE[t].markers.slice(0, 4).join(' · ')}

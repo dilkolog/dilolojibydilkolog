@@ -5,13 +5,14 @@ import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { HeadphonesIcon, HeartIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { HeadphonesIcon, HeartIcon, MessageIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { TensePicker } from './LearnTab'
+import { TenseQuiz } from './TenseQuiz'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
-type Mode = 'type' | 'choose' | 'listen' | 'match'
+type Mode = 'type' | 'choose' | 'listen' | 'match' | 'tense'
 const HEARTS = 3
 
 const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
@@ -19,6 +20,7 @@ const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'choose', label: 'Seç', icon: TargetIcon },
   { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
   { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
+  { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
 ]
 
 /** The people the round asks: all six, without vosotros for a learner of Latin American Spanish. */
@@ -62,7 +64,7 @@ export function PracticeTab({
   /** A finished round: how many of the forms were right. */
   onRound: (verb: string, tense: Tense, result: RoundResult) => void
   /** Each single answer, for the word's own history. */
-  onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string) => void
+  onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
   onTimed: () => void
 }) {
   const [mode, setMode] = useState<Mode>('type')
@@ -99,7 +101,7 @@ export function PracticeTab({
     setHearts(lives)
     if (ok) sfx.correct()
     else sfx.wrong()
-    onAnswer?.(verb, tense, ok, given, forms?.[person] ?? '')
+    onAnswer?.(verb, tense, ok, given, forms?.[person] ?? '', person)
     if (!defer && (lives <= 0 || Object.keys(next).length === people.length)) finish(next)
   }
   /** The round of one-by-one questions ends when the learner moves on from the last answer. */
@@ -113,7 +115,7 @@ export function PracticeTab({
     setHearts(Math.max(0, hearts - lost))
     if (lost) sfx.wrong()
     else sfx.correct()
-    for (const [p, ok] of Object.entries(marks)) onAnswer?.(verb, tense, ok, given[Number(p)] ?? '', forms?.[Number(p)] ?? '')
+    for (const [p, ok] of Object.entries(marks)) onAnswer?.(verb, tense, ok, given[Number(p)] ?? '', forms?.[Number(p)] ?? '', Number(p))
     finish(next)
   }
 
@@ -123,21 +125,25 @@ export function PracticeTab({
 
   return (
     <div className="stack lab-practice">
-      <div className="lab-practice-top">
-        <span className="small muted">
-          {answered} / {people.length} çekim
-        </span>
-        <Hearts left={hearts} />
-      </div>
-      <div className="lab-bar lab-practice-bar" aria-hidden>
-        <span style={{ width: `${(answered / people.length) * 100}%` }} />
-      </div>
+      {mode !== 'tense' && (
+        <>
+          <div className="lab-practice-top">
+            <span className="small muted">
+              {answered} / {people.length} çekim
+            </span>
+            <Hearts left={hearts} />
+          </div>
+          <div className="lab-bar lab-practice-bar" aria-hidden>
+            <span style={{ width: `${(answered / people.length) * 100}%` }} />
+          </div>
+        </>
+      )}
 
       <div className="lab-practice-head">
         <h2 className="lab-verb" lang={language}>
           {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
         </h2>
-        <TensePicker language={language} tense={tense} onPick={onTense} available={available} />
+        {mode !== 'tense' && <TensePicker language={language} tense={tense} onPick={onTense} available={available} />}
         <div className="lab-modes" role="group" aria-label="Alıştırma türü">
           {MODES.map((m) => (
             <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={m.id === 'listen' && !canSpeak()} title={m.label}>
@@ -163,8 +169,9 @@ export function PracticeTab({
       {!finished && mode === 'listen' && <OneByOne key={round} kind="listen" {...props} />}
       {!finished && mode === 'choose' && <OneByOne key={round} kind="choose" {...props} />}
       {!finished && mode === 'match' && <MatchRound key={round} {...props} />}
+      {mode === 'tense' && <TenseQuiz key={verb} language={language} verb={verb} available={available} />}
 
-      {finished && (
+      {finished && mode !== 'tense' && (
         <section className="lab-result" role="status">
           <h3>{wrong === 0 ? 'Hepsi doğru!' : hearts <= 0 ? 'Canların bitti' : `${answered - wrong} / ${people.length} doğru`}</h3>
           {wrong > 0 && (
@@ -193,7 +200,7 @@ export function PracticeTab({
           </div>
         </section>
       )}
-      <p className="small muted lab-tip">{TENSE_GUIDE[tense].short}</p>
+      {mode !== 'tense' && <p className="small muted lab-tip">{TENSE_GUIDE[tense].short}</p>}
     </div>
   )
 }

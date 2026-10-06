@@ -29,7 +29,7 @@ function personFor(language: LabLanguage, item: LabItem, seed: number): number {
  * Review: the forms that are due, one person of each. Right is Good for the scheduler, wrong is
  * Again, so what is shaky comes back soon and what is solid goes far out.
  */
-export function ReviewTab({ language, lab, onCheck, onOpen }: { language: LabLanguage; lab: LabData; onCheck: (verb: string, tense: LabItem['tense'], ok: boolean, given: string, expected: string) => void; onOpen: (verb: string) => void }) {
+export function ReviewTab({ language, lab, onCheck, onOpen }: { language: LabLanguage; lab: LabData; onCheck: (verb: string, tense: LabItem['tense'], ok: boolean, given: string, expected: string, person: number) => void; onOpen: (verb: string) => void }) {
   // The queue is fixed when the sitting starts; the answers change `lab` under it.
   const queue = useMemo<Asked[]>(() => dueItems(lab, new Date()).slice(0, REVIEW_SIZE).map((item, i) => ({ item, person: personFor(language, item, Date.now() + i) })), []) // eslint-disable-line react-hooks/exhaustive-deps
   const total = useRef(dueItems(lab, new Date()).length)
@@ -49,7 +49,7 @@ export function ReviewTab({ language, lab, onCheck, onOpen }: { language: LabLan
       setRight((n) => n + 1)
       sfx.correct()
     } else sfx.wrong()
-    onCheck(asked.item.verb, asked.item.tense, ok, typed.trim(), forms[asked.person])
+    onCheck(asked.item.verb, asked.item.tense, ok, typed.trim(), forms[asked.person], asked.person)
   }
   const next = () => {
     setShown(null)

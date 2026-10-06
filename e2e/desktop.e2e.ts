@@ -208,3 +208,36 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
   await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
 })
+
+test('verb lab: the Turkish bridge, the verb families and the find-the-tense quiz', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  // The tense seen from Turkish, with where it misleads.
+  await expect(main.locator('.lab-bridge')).toContainText('Türkçedeki karşılığı')
+  await expect(main.locator('.lab-bridge')).toContainText('-iyor')
+  // A verb shows its family; it opens the patterns tab on that family.
+  await expect(main.locator('.lab-families')).toContainText('-er fiilleri')
+  await main.locator('.lab-families .chip', { hasText: '-er fiilleri' }).click()
+  await expect(main.locator('.lab-family.is-open')).toContainText('kök + -e, -es')
+  // Spelling-change families: a drill asks one person for a handful of their verbs.
+  await main.locator('.lab-family-head', { hasText: '-cer: ç' }).click()
+  await main.getByRole('button', { name: 'Bu kalıpla çalış' }).click()
+  await page.locator('.lab-drill input.answer-input').fill('x')
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.lab-drill .accent-result')).toContainText('çons')
+  await main.getByRole('button', { name: 'Çık' }).click()
+  await main.getByRole('button', { name: 'Kalıbı tanı' }).click()
+  await expect(main.locator('.lab-find-card')).toHaveCount(6)
+  await main.locator('.lab-find-card').first().click()
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.getByRole('status')).toContainText('/ 6 doğru')
+  // Think in Turkish: a Turkish sentence, choose its tense.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Zamanı bul' }).click()
+  await expect(main.locator('.lab-tensequiz .prompt-text')).toBeVisible()
+  await expect(main.locator('.lab-tensequiz .lab-option')).toHaveCount(4)
+  await main.locator('.lab-tensequiz .lab-option').first().click()
+  await expect(main.locator('.lab-tensequiz .accent-result')).toContainText('Türkçede')
+  expect(await overflow(page)).toEqual([])
+})

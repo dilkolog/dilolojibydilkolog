@@ -106,7 +106,7 @@ export function TimedTab({
   levels: ReadonlyMap<string, Level>
   vocabulary: readonly VocabularyEntry[]
   states: readonly UserWordState[]
-  onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string) => void
+  onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
 }) {
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null)
   const [aspect, setAspect] = useState(false)
@@ -193,7 +193,7 @@ function TimedRun({
   best?: number
   onSaved: (score: number) => void
   onExit: () => void
-  onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string) => void
+  onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
 }) {
   const setup = SETUPS[difficulty]
   const verbs = useMemo(() => {
@@ -241,7 +241,7 @@ function TimedRun({
     setShown({ ok, late })
     if (ok) sfx.correct()
     else sfx.wrong()
-    onAnswer?.(q.verb, q.tense, ok, given, forms[q.person])
+    onAnswer?.(q.verb, q.tense, ok, given, forms[q.person], q.person)
   }
 
   const submit = () => {

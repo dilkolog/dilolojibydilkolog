@@ -918,11 +918,11 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
   await check('learn')
   await main.getByRole('button', { name: 'Detaylı' }).click()
   await check('learn detailed')
-  for (const tab of ['Alıştırma', 'Zamana karşı', 'Kıyaslama', 'Ustalık']) {
+  for (const tab of ['Alıştırma', 'Tekrar', 'Kalıplar', 'Zamana karşı', 'Kıyaslama', 'Ustalık']) {
     await main.getByRole('tab', { name: tab }).click()
     await check(tab)
     if (tab === 'Alıştırma')
-      for (const mode of ['Seç', 'Eşleştir']) {
+      for (const mode of ['Seç', 'Eşleştir', 'Zamanı bul']) {
         await main.getByRole('button', { name: mode }).click()
         await check(`${tab} ${mode}`)
       }
