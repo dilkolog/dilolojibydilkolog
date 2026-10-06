@@ -48,3 +48,29 @@ test('settings on a wide screen: title row, group strip and cards end on one lin
   const widths = tabs.map((t) => Math.round(t.width))
   expect(Math.max(...widths) - Math.min(...widths)).toBeLessThanOrEqual(1)
 })
+
+test('tablet width: one top bar row, the word list in two columns, the profile numbers in one row', async ({ page }) => {
+  await startWithSamples(page)
+  await page.setViewportSize({ width: 820, height: 900 })
+  await page.waitForTimeout(300)
+  // Brand, languages, places and profile share one row; the brand name stays on one line.
+  const top = await page.evaluate(() => {
+    const y = (sel: string) => Math.round(document.querySelector(sel)!.getBoundingClientRect().top)
+    return { brand: y('.brand-row'), langs: y('.langs'), nav: y('.sidebar .nav'), profile: y('.top-profile'), brandHeight: Math.round(document.querySelector('.brand-row')!.getBoundingClientRect().height) }
+  })
+  expect(Math.abs(top.langs - top.brand)).toBeLessThan(20)
+  expect(Math.abs(top.nav - top.brand)).toBeLessThan(20)
+  expect(Math.abs(top.profile - top.brand)).toBeLessThan(20)
+  expect(top.brandHeight).toBeLessThan(50)
+  // The word list: two columns.
+  await page.locator('.nav-btn:visible', { hasText: /^Kelimeler/ }).first().click()
+  const rows = page.locator('.word-list .word-row')
+  await expect(rows.first()).toBeVisible()
+  const lefts = await rows.evaluateAll((els) => els.slice(0, 4).map((e) => Math.round(e.getBoundingClientRect().left)))
+  expect(new Set(lefts).size).toBe(2)
+  // The profile: four numbers across.
+  await page.locator('.top-profile').click()
+  await expect(page.locator('.profile-stats .stat').first()).toBeVisible()
+  const tops = await page.locator('.profile-stats .stat').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().top)))
+  expect(new Set(tops).size).toBe(1)
+})

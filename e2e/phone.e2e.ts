@@ -349,3 +349,40 @@ test('hard words glow in the garden, and the Zor filter shows just those', async
   await page.getByRole('button', { name: /Zor kelimeleri çalış/ }).click()
   await expect(page.locator('.session')).toBeVisible()
 })
+
+test('the garden card on Today counts the hard words and starts their practice in one tap', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await finishSession(page)
+  // No hard words yet: the card has nothing to say about them.
+  // The card lives under "Haftalık hedefler, bahçe ve beceriler" until a plant is thirsty.
+  const openGarden = async () => {
+    await openScreen(page, 'Bugün')
+    if (!(await page.locator('.garden-card').isVisible())) await page.getByText('Haftalık hedefler, bahçe ve beceriler').click()
+    await expect(page.locator('.garden-card')).toBeVisible()
+  }
+  await openGarden()
+  await expect(page.locator('.garden-hard-line')).toHaveCount(0)
+  // Mark two words hard.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.locator('.word-row').nth(0).click()
+  await page.locator('.word-row').nth(1).click()
+  await page.getByRole('button', { name: 'Zor işaretle' }).click()
+  await page.locator('.badge-moment').getByRole('button', { name: 'Devam', exact: true }).click({ timeout: 1500 }).catch(() => {})
+  await openGarden()
+  await expect(page.locator('.garden-hard-line')).toContainText('2 zor kelime')
+  // The count opens the garden on just those words.
+  await page.locator('.garden-hard-line').click()
+  await expect(page.getByRole('button', { name: /Zor \(2\)/ })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.plant-tile')).toHaveCount(2)
+  // ...once: the next visit to the garden is whole again.
+  await openGarden()
+  await page.locator('.garden-card').getByRole('button', { name: 'Bahçeye git' }).click()
+  await expect(page.getByRole('button', { name: /Zor \(2\)/ })).toHaveAttribute('aria-pressed', 'false')
+  // One tap from Today starts the practice.
+  await openGarden()
+  await page.locator('.garden-card').getByRole('button', { name: 'Zorları çalış' }).click()
+  await expect(page.locator('.session')).toBeVisible()
+  await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
+})

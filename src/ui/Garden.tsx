@@ -15,6 +15,19 @@ const BED_PREVIEW = 120
 const LIVE_PER_BED = 24
 
 export const WORDS_VIEW_KEY = 'kelime-koc:words-view'
+/** Set (for one visit) to open the garden already filtered to the hard words. */
+export const GARDEN_HARD_KEY = 'kelime-koc:garden-hard'
+
+/** Reads and clears the one-visit flag: the garden opens on the Zor filter once, not every time. */
+function takeHardFlag(): boolean {
+  try {
+    const on = sessionStorage.getItem(GARDEN_HARD_KEY) === '1'
+    sessionStorage.removeItem(GARDEN_HARD_KEY)
+    return on
+  } catch {
+    return false
+  }
+}
 
 /** All words as one garden, in beds by growth stage; dry plants are watered with a review. */
 export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary: VocabularyEntry[]; states: UserWordState[]; onOpen: (id: string) => void; onWater: (entries: VocabularyEntry[]) => void }) {
@@ -26,7 +39,7 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
   // Words marked hard glow in the garden; the filter shows only those (and goes away when none is left).
   const hard = useMemo(() => vocabulary.filter(isDifficult), [vocabulary])
-  const [hardOnly, setHardOnly] = useState(false)
+  const [hardOnly, setHardOnly] = useState(takeHardFlag)
   const showHardOnly = hardOnly && hard.length > 0
   const shown = showHardOnly ? hard : vocabulary
   const beds = [...MASTERY_STAGES.keys()].reverse().map((stage) => ({ stage, words: shown.filter((v) => growthStage(stateById.get(v.id)) === stage) }))
@@ -195,7 +208,22 @@ function GardenBar({ parts }: { parts: { key: string; label: string; n: number }
 }
 
 /** Home-screen summary of the garden with a shortcut to water it. */
-export function GardenCard({ summary, onWater, onOpen }: { summary: GardenSummary; onWater: () => void; onOpen: () => void }) {
+export function GardenCard({
+  summary,
+  onWater,
+  onOpen,
+  hardCount = 0,
+  onPracticeHard,
+  onOpenHard,
+}: {
+  summary: GardenSummary
+  onWater: () => void
+  onOpen: () => void
+  /** Words marked hard, a practice of just those, and the garden opened on them. */
+  hardCount?: number
+  onPracticeHard?: () => void
+  onOpenHard?: () => void
+}) {
   const growing = summary.byStage.reduce((a, b) => a + b, 0)
   if (!growing) return null
   const dry = summary.wilting + summary.thirsty
@@ -215,8 +243,18 @@ export function GardenCard({ summary, onWater, onOpen }: { summary: GardenSummar
           {summary.byStage[5]} çiçek, {growing - summary.byStage[5]} büyüyen bitki.
           {dry > 0 ? ` ${dry} tanesi su istiyor.` : ' Hepsi canlı.'}
         </span>
+        {hardCount > 0 && (
+          <button type="button" className="garden-hard-line" onClick={onOpenHard} title="Bahçede zor kelimeleri göster">
+            <BoltIcon size={14} solid /> {hardCount} zor kelime
+          </button>
+        )}
       </div>
       <div className="row gap-2">
+        {hardCount > 0 && onPracticeHard && (
+          <button className="btn btn-sm" onClick={onPracticeHard}>
+            <BoltIcon size={16} /> Zorları çalış
+          </button>
+        )}
         {dry > 0 && (
           <button className="btn btn-sm" onClick={onWater}>
             <DropIcon size={16} /> Sula

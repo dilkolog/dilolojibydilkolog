@@ -46,7 +46,7 @@ import { PANE_KEY } from './ui/settingsPane'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
-import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
+import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
@@ -525,6 +525,9 @@ export default function App() {
     const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra })
   }
+  /** A practice of just the words marked hard, apart from the day's plan. */
+  const practiceDifficult = () =>
+    data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
 
   // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
   const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
@@ -981,15 +984,24 @@ export default function App() {
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
                 }
                 difficultCount={difficultWords(data.vocabulary).length}
-                onPracticeDifficult={() =>
-                  startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
-                }
+                onPracticeDifficult={practiceDifficult}
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
                 garden={garden && {
                   urgent: garden.wilting + garden.thirsty > 0,
                   node: (
                       <GardenCard
                         summary={garden}
+                        hardCount={difficultWords(data.vocabulary).length}
+                        onPracticeHard={practiceDifficult}
+                        onOpenHard={() => {
+                          try {
+                            localStorage.setItem(WORDS_VIEW_KEY, 'garden')
+                            sessionStorage.setItem(GARDEN_HARD_KEY, '1')
+                          } catch {
+                            // The garden just opens unfiltered.
+                          }
+                          setScreen({ name: 'words' })
+                        }}
                         onWater={() => {
                           const ids = garden.toWater.slice(0, 20)
                           const deck = data.vocabulary.filter((v) => ids.includes(v.id))
