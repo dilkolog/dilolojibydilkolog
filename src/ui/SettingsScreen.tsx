@@ -534,8 +534,8 @@ export function SettingsScreen({
           <Pane {...pane('s-look')}>
             <section className="card stack">
               <h2 className="section-title">Görünüm</h2>
-            <Row label="Tema" help="Sakin: koyu tema, renkleri kısılmış; geceleri ve uzun çalışmada gözü yormaz.">
-              <Chips<Settings['theme']> options={['system', 'light', 'dark', 'calm']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu', calm: 'Sakin' })[t]} />
+            <Row label="Tema" help="Sakin: koyu tema, renkleri kısılmış; geceleri ve uzun çalışmada gözü yormaz. Kontrast: beyaz zemin, siyah yazı, belirgin çerçeveler.">
+              <Chips<Settings['theme']> options={['system', 'light', 'dark', 'calm', 'contrast']} value={settings.theme} onChange={(v) => set('theme', v)} format={(t) => ({ system: 'Sistem', light: 'Açık', dark: 'Koyu', calm: 'Sakin', contrast: 'Kontrast' })[t]} />
             </Row>
             <Row label="Liste sıklığı" help="Yoğun: kelime listesi, hatalar ve tabloda satırlar daralır, ekrana iki kat kelime sığar. Bu cihaza özel.">
               <Chips<Density> options={['comfortable', 'compact']} value={density} onChange={(v) => (setDensity(v), setDensityState(v))} format={(d) => ({ comfortable: 'Rahat', compact: 'Yoğun' })[d]} />

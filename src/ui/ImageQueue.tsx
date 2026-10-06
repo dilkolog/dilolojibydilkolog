@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { TilesSkeleton } from './Skeleton'
 import type { KelimeDB } from '../data/db'
 import { fetchImage } from '../data/imageSearch'
 import { imageCandidates, skipImage, skippedImages, suggestImages, type ImageSuggestion } from '../data/imageQueue'
@@ -90,7 +91,7 @@ export function ImageQueue({ db, vocabulary, onClose, onChanged }: { db: KelimeD
             <p className="iq-word">
               <strong lang={current.language}>{displayForm(current)}</strong> <span className="muted">{current.senses[0].gloss}</span>
             </p>
-            {suggestions === null && <p className="small muted">Görseller aranıyor…</p>}
+            {suggestions === null && <TilesSkeleton count={4} label="Görseller aranıyor" />}
             {suggestions?.length === 0 && <p className="small muted">Bu kelime için görsel bulunamadı.</p>}
             {suggestions && suggestions.length > 0 && (
               <ul className="iq-grid">

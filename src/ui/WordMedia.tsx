@@ -47,7 +47,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
   }
 
   return (
-    <section className="section stack">
+    <section className="section stack" id="word-media">
       <h2 className="section-title">Görsel, ses ve not</h2>
       <div className="grid-2 media-split">
         <div className="stack media-block">
@@ -149,11 +149,12 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
       {picking && (
         <ImagePicker
           initialQuery={entry.lemma}
+          language={entry.language}
           suggestions={[entry.senses[0].gloss, ...(entry.senses[0].altGlosses ?? [])]}
           onClose={() => setPicking(false)}
           onPick={async (img) => {
             const imageId = await db.addMedia('image', img.blob)
-            await update({ imageId, imageCredit: img.credit, sources: withSources({ ...entry, imageId }, { image: 'commons' }).sources }, entry.imageId)
+            await update({ imageId, imageCredit: img.credit, sources: withSources({ ...entry, imageId }, { image: img.from === 'wikidata' ? 'wikidata' : 'commons' }).sources }, entry.imageId)
             setPicking(false)
           }}
         />

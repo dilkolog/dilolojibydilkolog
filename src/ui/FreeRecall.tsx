@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { displayForm } from '../engine/exercises'
+import { WordLabel } from './WordLabel'
 import { freeRecall } from '../engine/freeRecall'
 import type { VocabularyEntry } from '../engine/types'
 import { BrainIcon } from './icons'
@@ -59,8 +59,8 @@ export function FreeRecall({ entries, onWriting }: { entries: VocabularyEntry[];
       {recalled.length > 0 && (
         <ul className="recall-chips" aria-label="Hatırladıkların">
           {recalled.map((e) => (
-            <li key={e.id} className="is-recalled" lang={e.language}>
-              {displayForm(e)}
+            <li key={e.id} className="is-recalled">
+              <WordLabel entry={e} />
             </li>
           ))}
         </ul>
@@ -71,7 +71,7 @@ export function FreeRecall({ entries, onWriting }: { entries: VocabularyEntry[];
           <ul className="recall-chips" aria-label="Aklına gelmeyenler">
             {missed.map((e) => (
               <li key={e.id}>
-                <span lang={e.language}>{displayForm(e)}</span> <span className="muted">{e.senses[0].gloss}</span>
+                <WordLabel entry={e} /> <span className="muted">{e.senses[0].gloss}</span>
               </li>
             ))}
           </ul>

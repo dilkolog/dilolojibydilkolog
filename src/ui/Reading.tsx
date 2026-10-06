@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
@@ -757,6 +758,7 @@ export function ReadingScreen({
             </button>
           </div>
           {selectedEntry && <p className="gloss">{selectedEntry.senses[0].gloss}</p>}
+          <WordPopExtras language={language} lemma={selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language)} entry={selectedEntry ?? undefined} />
           {selectedForms.length > 0 && language !== 'en' && (
             <div className="form-analysis">
               {selectedForms.slice(0, 3).map((a) => {

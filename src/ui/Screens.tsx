@@ -4,7 +4,6 @@ import { Glyph } from './Glyph'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { SessionSummary } from '../engine/session'
 import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
-import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
@@ -21,6 +20,8 @@ import { markBadgesSeen } from './badgeSeen'
 import { Burst } from './Burst'
 import { DayPlant } from './DayPlant'
 import { Ring } from './Ring'
+import { WordLabel } from './WordLabel'
+import { SummaryGarden } from './SummaryGarden'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
 import { Medal } from './Medal'
@@ -680,7 +681,7 @@ export function Summary({
 }) {
   const name = (id: string) => {
     const e = byId.get(id)
-    return e ? displayForm(e) : id
+    return e ? <WordLabel entry={e} /> : id
   }
   const accuracy = summary.answered ? summary.correct / summary.answered : 0
   const errors = Object.entries(summary.errors) as [keyof typeof ERROR_NAME, number][]
@@ -833,6 +834,7 @@ export function Summary({
 
       <div className="summary-side stack" hidden={recalling}>
         {/* Mounted only while shown: hidden, the plants would finish growing unseen. */}
+        {!recalling && <SummaryGarden summary={summary} />}
         {!recalling && grown.length > 0 && (
           <section className="stack summary-grown">
             <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>
@@ -853,7 +855,7 @@ export function Summary({
                       </span>
                     </span>
                     <span className="garden-text">
-                      <span className="target" lang={e?.language}>{name(w.entryId)}</span>
+                      <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small garden-grew">{STAGE_NAME[w.stageAfter!]} oldu</span>
                     </span>
@@ -877,7 +879,7 @@ export function Summary({
                       {out ? <CheckIcon size={16} /> : <BoltIcon size={16} />}
                     </span>
                     <span className="garden-text">
-                      <span className="target" lang={e?.language}>{name(w.entryId)}</span>
+                      <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small">
                         {out ? <span className="garden-ok">Zor listesinden çıktı</span> : clean ? <span className="garden-ok">Bu sefer hepsi doğru</span> : <span className="muted">Zor kalıyor: yakında yine karşına çıkar</span>}
@@ -912,7 +914,7 @@ export function Summary({
                   <li key={w.entryId}>
                     <Plant stage={stage} size={40} />
                     <span className="garden-text">
-                      <span className="target" lang={e?.language}>{name(w.entryId)}</span>
+                      <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small">
                         {w.correct > 0 && <span className="garden-ok"><CheckIcon size={13} className="inline-icon" />{w.correct}</span>} {w.wrong > 0 && <span className="garden-bad"><CloseIcon size={13} className="inline-icon" />{w.wrong}</span>}

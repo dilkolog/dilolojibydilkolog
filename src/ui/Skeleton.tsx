@@ -90,3 +90,25 @@ export function ScreenSkeleton({ kind = 'grid' }: { kind?: SkeletonKind }) {
     </div>
   )
 }
+
+/** Placeholder lines for a small block that is loading (instead of a line of text saying so). `label` is what a screen reader hears. */
+export function LinesSkeleton({ lines = 3, label = 'Yükleniyor' }: { lines?: number; label?: string }) {
+  return (
+    <div className="sk-inline" role="status" aria-label={label}>
+      {Array.from({ length: lines }, (_, i) => (
+        <span key={i} className="sk sk-line" style={{ width: `${100 - ((i * 17) % 40)}%` }} />
+      ))}
+    </div>
+  )
+}
+
+/** Placeholder pictures for a grid that is loading. */
+export function TilesSkeleton({ count = 4, label = 'Yükleniyor' }: { count?: number; label?: string }) {
+  return (
+    <div className="sk-tiles" role="status" aria-label={label}>
+      {Array.from({ length: count }, (_, i) => (
+        <span key={i} className="sk sk-tile" />
+      ))}
+    </div>
+  )
+}

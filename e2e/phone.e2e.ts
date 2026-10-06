@@ -22,15 +22,17 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
   expect(found).toEqual([])
 })
 
-test('text stays readable in the light, the dark and the calm theme', async ({ page }) => {
+test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
   await startWithSamples(page)
   const found: string[] = []
-  for (const theme of ['light', 'dark', 'calm']) {
-    // Calm is the dark theme with a flag that turns its colours down.
+  for (const theme of ['light', 'dark', 'calm', 'contrast']) {
+    // Calm is the dark theme with a flag that turns its colours down; contrast is the light one with a flag that turns them up.
     await page.evaluate((t) => {
-      document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t
+      document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t === 'contrast' ? 'light' : t
       if (t === 'calm') document.documentElement.dataset.calm = ''
       else delete document.documentElement.dataset.calm
+      if (t === 'contrast') document.documentElement.dataset.contrast = ''
+      else delete document.documentElement.dataset.contrast
     }, theme)
     for (const name of SCREENS) {
       await openScreen(page, name)
@@ -492,8 +494,9 @@ test('pictures can be suggested for the words that have none, taken with one tap
   const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64')
   const cors = { 'access-control-allow-origin': '*' }
   const json = (body: unknown) => ({ status: 200, headers: cors, contentType: 'application/json', body: JSON.stringify(body) })
-  await page.route('https://www.wikidata.org/**', (route) => {
+  await page.route('https://www.wikidata.org/**', async (route) => {
     const action = new URL(route.request().url()).searchParams.get('action')
+    await new Promise((r) => setTimeout(r, 700))   // slow enough to see the placeholders
     return route.fulfill(
       json(action === 'wbsearchentities' ? { search: [{ id: 'Q1' }] } : { entities: { Q1: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Maison.jpg' } } }] } } } }),
     )
@@ -511,7 +514,9 @@ test('pictures can be suggested for the words that have none, taken with one tap
   await chip.click()
   const dialog = page.getByRole('dialog', { name: 'Görsel öner' })
   await expect(dialog).toBeVisible()
+  await expect(dialog.locator('.sk-tiles')).toBeVisible()   // placeholders while the suggestions are fetched
   await expect(dialog.getByText('Önerilen')).toBeVisible()
+  await expect(dialog.locator('.sk-tiles')).toHaveCount(0)
   // Take the first suggestion: the word has its picture, and the next word comes up.
   await dialog.locator('.iq-pick').first().click()
   await expect(dialog.getByText(/^2 \//)).toBeVisible()
@@ -525,6 +530,171 @@ test('pictures can be suggested for the words that have none, taken with one tap
   // Two words left the queue: the one with a picture and the one passed over.
   await expect(page.getByRole('button', { name: new RegExp(`Görsel öner \\(${before - 2}\\)`) })).toBeVisible()
   expect(await overflow(page)).toEqual([])
+})
+
+test('a word card shows how full it is, and a missing part takes you to where it is added', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  const fill = page.locator('.card-fill')
+  await expect(fill).toBeVisible()
+  const before = Number((await fill.getByRole('progressbar').getAttribute('aria-valuenow')))
+  // The note is typed into the field the chip leads to.
+  await fill.getByRole('button', { name: '+ hafıza ipucu' }).click()
+  await expect(page.locator('#w-notes')).toBeFocused()
+  await page.locator('#w-notes').fill('bir ipucu')
+  await page.locator('#w-notes').blur()
+  await expect(fill.getByRole('progressbar')).toHaveAttribute('aria-valuenow', String(before + 25))
+  await expect(fill.getByRole('button', { name: '+ hafıza ipucu' })).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('the word list can be a gallery: pictures where there are any, letters where there are not, and a tap opens the word', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Galeri', exact: true }).click()
+  const tiles = page.locator('.gallery-tile')
+  expect(await tiles.count()).toBeGreaterThan(5)
+  await expect(page.locator('.gallery-letter').first()).toBeVisible()
+  // Two columns on a phone, nothing sideways.
+  const xs = await tiles.evaluateAll((els) => new Set(els.slice(0, 6).map((e) => Math.round(e.getBoundingClientRect().x))).size)
+  expect(xs).toBe(2)
+  expect(await overflow(page)).toEqual([])
+  // Kept after leaving, and a tap opens the word.
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+  await expect(tiles.first()).toBeVisible()
+  await tiles.first().click()
+  await expect(page.locator('.word-hero')).toBeVisible()
+})
+
+test('a session ends in a small garden: a plant for each word, under the sky of the hour', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await playSession(page)
+  const scene = page.locator('.summary-scene')
+  await expect(scene).toBeVisible()
+  expect(await scene.locator('.scene-plants li').count()).toBeGreaterThan(0)
+  await expect(scene.locator('.garden-sky')).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
+
+test('high contrast is a choice in Settings: white page, black text, strong borders, a heavy focus ring', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
+  await page.getByRole('radio', { name: 'Kontrast' }).or(page.getByRole('button', { name: 'Kontrast', exact: true })).first().click()
+  const root = page.locator('html')
+  await expect(root).toHaveAttribute('data-theme', 'light')
+  await expect(root).toHaveAttribute('data-contrast', '')
+  const css = (v: string) => page.evaluate((s) => getComputedStyle(document.documentElement).getPropertyValue(s).trim(), v)
+  // The build writes #000 and #fff for #000000 and #ffffff.
+  expect(['#000', '#000000']).toContain(await css('--ink'))
+  expect(['#fff', '#ffffff']).toContain(await css('--bg'))
+  // Kept before the first paint, and switched off again by another choice.
+  await page.reload()
+  await expect(root).toHaveAttribute('data-contrast', '')
+  await page.locator('.top-profile:visible').click()
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
+  await page.getByRole('radio', { name: 'Açık', exact: true }).or(page.getByRole('button', { name: 'Açık', exact: true })).first().click()
+  await expect(root).not.toHaveAttribute('data-contrast', '')
+})
+
+test('an elided article stays attached to its word in the list: l\'an, not l\' an', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  const row = page.locator('.word-row .w', { hasText: /^l'\s*an$/ }).first()
+  await expect(row).toBeVisible()
+  // How far the lemma starts from the article's right edge: none, as in the word page, not a label's gap.
+  const dx = await row.evaluate((el) => {
+    const article = el.querySelector('.article')!.getBoundingClientRect()
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.textContent!.trim() !== 'an') continue
+      const range = document.createRange()
+      range.selectNodeContents(n)
+      return range.getBoundingClientRect().left - article.right
+    }
+    return NaN
+  })
+  expect(dx).toBeLessThan(2)
+})
+
+test('the picture search on a word puts the picture Wikidata keeps for the thing first, and says so in the sources', async ({ page }) => {
+  test.setTimeout(90_000)
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64')
+  const cors = { 'access-control-allow-origin': '*' }
+  const json = (body: unknown) => ({ status: 200, headers: cors, contentType: 'application/json', body: JSON.stringify(body) })
+  await page.route('https://www.wikidata.org/**', (route) => {
+    const action = new URL(route.request().url()).searchParams.get('action')
+    return route.fulfill(json(action === 'wbsearchentities' ? { search: [{ id: 'Q1' }] } : { entities: { Q1: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Wd.jpg' } } }] } } } }))
+  })
+  await page.route('https://commons.wikimedia.org/**', (route) =>
+    route.fulfill(json({ query: { pages: { a: { title: 'File:Wd.jpg', index: 1, imageinfo: [{ thumburl: 'https://upload.wikimedia.org/wd.png', extmetadata: { Artist: { value: 'Léa' }, LicenseShortName: { value: 'CC BY-SA 4.0' } } }] } } } })),
+  )
+  await page.route('https://api.openverse.org/**', (route) => route.fulfill(json({ results: [{ id: '1', title: 'Another', license: 'cc0', thumbnail: 'https://upload.wikimedia.org/other.png' }] })))
+  await page.route('https://upload.wikimedia.org/**', (route) => route.fulfill({ status: 200, headers: cors, contentType: 'image/png', body: png }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  await page.getByRole('button', { name: 'Görsel ekle' }).click()
+  const first = page.locator('.image-cell').first()
+  await expect(first.locator('.iq-badge')).toHaveText('Önerilen')
+  await first.click()
+  await expect(page.locator('.word-image-sm')).toBeVisible()
+  await expect(page.locator('.source-list li', { hasText: 'Görsel' })).toContainText('Wikidata')
+})
+
+test('a word shows where it is spoken in videos; a line opens the video at that moment', async ({ page }) => {
+  test.setTimeout(90_000)
+  const clips = [
+    { id: 'abc12345678', title: 'Un jour à Paris', channel: 'Chaîne', start: 12.4, end: 15, text: 'Il faut décider maintenant.', form: 'décider', after: 'Autre chose.' },
+    { id: 'zzz12345678', title: 'Une autre vidéo', channel: 'Autre', start: 40, end: 43, text: 'Elle a décidé de partir.', form: 'décidé', auto: true },
+  ]
+  let asked = ''
+  await page.route('**/api/clips**', (route) => {
+    asked = route.request().url()
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ clips }) })
+  })
+  await page.route('https://www.youtube-nocookie.com/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<p>video</p>' }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  const section = page.locator('.clips')
+  await section.getByRole('button', { name: 'Videolarda ara' }).click()
+  await expect(section.locator('.clip')).toHaveCount(2)
+  expect(asked).toContain('lang=fr')
+  await expect(section.locator('.clip mark').first()).toHaveText('décider')
+  await expect(section.getByText('otomatik altyazı')).toBeVisible()
+  // A line opens the player at that moment: a second early, a second late, captions in the language.
+  await section.locator('.clip').first().click()
+  const dialog = page.getByRole('dialog', { name: 'Un jour à Paris' })
+  await expect(dialog).toBeVisible()
+  const src = await dialog.locator('iframe').getAttribute('src')
+  expect(src).toContain('youtube-nocookie.com/embed/abc12345678')
+  expect(src).toContain('start=11')
+  expect(src).toContain('end=16')
+  expect(src).toContain('cc_lang_pref=fr')
+  await expect(dialog.getByRole('button', { name: '‹ Önceki' })).toBeDisabled()
+  await dialog.getByRole('button', { name: 'Sonraki ›' }).click()
+  await expect(page.getByRole('dialog', { name: 'Une autre vidéo' }).locator('iframe')).toHaveAttribute('src', /start=39/)
+  // The line can go into the word's own sentences.
+  await page.getByRole('button', { name: '+ Örneklerime' }).click()
+  await expect(page.getByText('Örneklerine eklendi.')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('without a YouTube key the section says what is needed instead of failing', async ({ page }) => {
+  await page.route('**/api/clips**', (route) => route.fulfill({ status: 501, contentType: 'application/json', body: JSON.stringify({ error: 'no key' }) }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  await page.locator('.clips').getByRole('button', { name: 'Videolarda ara' }).click()
+  await expect(page.locator('.clips [role=alert]')).toContainText('YOUTUBE_API_KEY')
 })
 
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {

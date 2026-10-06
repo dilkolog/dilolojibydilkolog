@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { displayForm } from '../engine/exercises'
+import { WordLabel } from './WordLabel'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'
 import { ERROR_HINT, ERROR_NAME } from './labels'
 import { PlayIcon } from './icons'
@@ -177,7 +177,7 @@ function MistakeList({
             </span>
             <span className="meta">
               <button className="link" onClick={() => onOpen(entry.id)}>
-                {displayForm(entry)}
+                <WordLabel entry={entry} />
               </button>
               , {entry.senses[0].gloss}
               {m.resolved ? '. Kapandı' : m.correctSince > 0 ? `. ${m.correctSince}/3 doğru` : ''}

@@ -26,7 +26,7 @@ export function parseSubtitles(raw: string): string {
 }
 
 /** One subtitle line without markup, sound descriptions, music notes or speaker dashes. */
-function cleanCue(l: string): string {
+export function cleanCue(l: string): string {
   return l
     .replace(/<[^>]+>/g, '')
     .replace(/\{[^}]*\}/g, '')
