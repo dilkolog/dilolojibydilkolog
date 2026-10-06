@@ -963,6 +963,7 @@ export default function App() {
                   const words = now ? groups[now.index].words : []
                   return { name: list.name, level: now ? (now.level?.name ?? null) : undefined, met: words.filter((w) => met.has(w.id)).length, total: words.length }
                 })()}
+                pinned={settings.profile.pinned}
                 onOpenLists={() => {
                   try {
                     localStorage.setItem(WORDS_VIEW_KEY, 'lists')

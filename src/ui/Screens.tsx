@@ -9,6 +9,7 @@ import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
+import { pinnedBadges } from '../engine/profileStyle'
 import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
@@ -256,6 +257,7 @@ export function Home({
   garden,
   focus,
   onOpenLists,
+  pinned,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -292,10 +294,14 @@ export function Home({
   /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
   focus?: { name: string; level?: string | null; met?: number; total?: number }
   onOpenLists?: () => void
+  /** The badges the learner put on show (ids); they sit beside the greeting and open the profile. */
+  pinned?: readonly string[]
 }) {
   const now = new Date()
   const game = useGame()
   const streak = game?.streak ?? 0
+  const earned = new Set(game?.achievements.filter((a) => a.unlocked).map((a) => a.id))
+  const showcase = pinnedBadges(pinned, earned).map((id) => game?.achievements.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => !!a)
   const hello = `${greetingFor(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
@@ -345,7 +351,20 @@ export function Home({
 
   return (
     <div>
-      <h1 className="greeting"><DayMark now={now} />{hello}</h1>
+      <div className="greeting-row">
+        <h1 className="greeting"><DayMark now={now} />{hello}</h1>
+        {showcase.length > 0 && (
+          <ul className="today-showcase" aria-label="Rozet vitrini">
+            {showcase.map((a) => (
+              <li key={a.id}>
+                <button type="button" className="showcase-badge" onClick={onProfile} aria-label={`${a.title}: profilde gör`} title={a.title}>
+                  <Medal icon={a.icon} tier={medalTier(a)} unlocked size={38} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       {/* The day at a glance: what's waiting, the streak, and whether today still counts for it. */}
       <ul className="today-status">
         <li>

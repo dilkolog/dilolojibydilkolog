@@ -459,3 +459,25 @@ test('the page is lit for the hour: greeting, a sun or moon beside it, a faint w
     await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
   }
 })
+
+test('the badges on show sit beside the greeting on Today and open the profile', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await expect(page.locator('.today-showcase')).toHaveCount(0)
+  await playSession(page)
+  await page.locator('.badge-moment').getByRole('button', { name: 'Devam', exact: true }).click()
+  await openScreen(page, 'Profil')
+  await page.getByRole('button', { name: 'Özelleştir' }).click()
+  await page.locator('.pin-tile', { hasText: 'İlk adım' }).click()
+  await openScreen(page, 'Bugün')
+  const badge = page.locator('.today-showcase .showcase-badge')
+  await expect(badge).toHaveCount(1)
+  await expect(badge).toHaveAttribute('aria-label', /İlk adım/)
+  // On the greeting's line, not wider than the screen.
+  const [g, b] = await Promise.all([page.locator('h1.greeting').boundingBox(), badge.boundingBox()])
+  expect(b!.x + b!.width).toBeLessThanOrEqual(375)
+  expect(Math.abs(b!.y + b!.height / 2 - (g!.y + g!.height / 2))).toBeLessThan(40)
+  expect(await overflow(page)).toEqual([])
+  await badge.click()
+  await expect(page.getByRole('tab', { name: 'Rozetler' })).toBeVisible()
+})

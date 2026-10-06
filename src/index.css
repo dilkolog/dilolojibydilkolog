@@ -4210,3 +4210,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .day-mark.is-dusk { color: color-mix(in srgb, #ec4899 70%, var(--ink)); }
 .day-mark.is-night { color: color-mix(in srgb, #6366f1 75%, var(--ink)); }
 .day-mark.is-dawn { color: color-mix(in srgb, #f97316 75%, var(--ink)); }
+
+/* Today: the badges on show sit at the end of the greeting's line, and drop under it when the line is full. */
+.greeting-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.today-showcase { list-style: none; display: flex; gap: 0.125rem; margin: 0; padding: 0; }
+.today-showcase .showcase-badge { padding: 0.125rem; }
