@@ -155,8 +155,8 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   Betik `src/data/wordpack/{en,fr,es}.json` yazar ve kelime sayısı, boyut, alan kapsamını basar;
   boyut ve Türkçe kapsam kabul edilebilirse commit'lenir (uygulama dosya varsa kendiliğinden kullanır,
   yoksa hiçbir şey yapmaz). Türkçe karşılıklar İngilizce kelimelerin çeviri tablolarından İngilizce
-  üzerinden eşlenir; kapsam ölçülmeden vaat edilmez. PWA önbelleğine eklenmemesi gerekebilir (workbox
-  `globPatterns` json'u zaten kapsamıyor).
+  üzerinden eşlenir; kapsam ölçülmeden vaat edilmez. Dikkat: Vite JSON'u JS parçasına çevirdiği için paket dosyaları
+  workbox'ın `**/*.js` kuralıyla ilk kurulumda önbelleğe alınır; boyutu büyükse `globIgnores`/ayrı önbellek düşünülmeli.
 - **Paralel cümleler** (Tatoeba'da bir cümlenin FR/ES/EN çevirileri) yapılmadı: sorgu parametresini
   (`showtrans` değerleri) canlı API'de doğrulayamadım.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
