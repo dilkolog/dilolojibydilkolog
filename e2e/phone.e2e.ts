@@ -544,6 +544,25 @@ test('a word card shows how full it is, and a missing part takes you to where it
   expect(await overflow(page)).toEqual([])
 })
 
+test('the word list can be a gallery: pictures where there are any, letters where there are not, and a tap opens the word', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Galeri', exact: true }).click()
+  const tiles = page.locator('.gallery-tile')
+  expect(await tiles.count()).toBeGreaterThan(5)
+  await expect(page.locator('.gallery-letter').first()).toBeVisible()
+  // Two columns on a phone, nothing sideways.
+  const xs = await tiles.evaluateAll((els) => new Set(els.slice(0, 6).map((e) => Math.round(e.getBoundingClientRect().x))).size)
+  expect(xs).toBe(2)
+  expect(await overflow(page)).toEqual([])
+  // Kept after leaving, and a tap opens the word.
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+  await expect(tiles.first()).toBeVisible()
+  await tiles.first().click()
+  await expect(page.locator('.word-hero')).toBeVisible()
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')

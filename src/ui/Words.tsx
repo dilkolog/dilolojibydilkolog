@@ -44,6 +44,7 @@ import { WordListsView } from './WordLists'
 import { placementOptions, parsePlacement } from './listOptions'
 import { PosTag } from './PosTag'
 import { WrittenForm } from './WrittenForm'
+import { displayForm } from '../engine/exercises'
 import { isDifficult, withDifficult } from '../engine/difficult'
 import { imageCandidates, skippedImages } from '../data/imageQueue'
 import { ImageQueue, ImageQueueChip } from './ImageQueue'
@@ -941,6 +942,7 @@ function WordPreview({ language, word, meaning, pos, example, translation, image
 type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes' | 'difficult' | 'review'
 type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent' | 'due'
 const VIEW_MODE_KEY = 'kelime-koc:words-table'
+const GALLERY_KEY = 'kelime-koc:words-gallery'
 
 const STAGE_FILTERS: [StageFilter, string][] = [
   ['all', 'Hepsi'],
@@ -956,6 +958,17 @@ const STAGE_FILTERS: [StageFilter, string][] = [
 function WordThumb({ id }: { id?: string }) {
   const url = useMediaUrl(id)
   return url ? <img className="thumb" src={url} alt="" /> : null
+}
+
+/** The picture of a word in the gallery, or its first letter on a tile in the colour of its part of speech. */
+function GalleryArt({ entry }: { entry: VocabularyEntry }) {
+  const url = useMediaUrl(entry.imageId)
+  if (url) return <img className="gallery-art" src={url} alt="" loading="lazy" />
+  return (
+    <span className="gallery-art gallery-letter" data-pos={entry.partOfSpeech} lang={entry.language} aria-hidden>
+      {displayForm(entry).charAt(0).toLocaleUpperCase(entry.language)}
+    </span>
+  )
 }
 
 /** Searchable, filterable word list. */
@@ -1015,6 +1028,23 @@ function WordList({
       return false
     }
   })
+  // Gallery: a grid of pictures (or letters) instead of rows; it works on a phone too.
+  const [gallery, setGallery] = useState(() => {
+    try {
+      return localStorage.getItem(GALLERY_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+  const toggleGallery = () =>
+    setGallery((g) => {
+      try {
+        localStorage.setItem(GALLERY_KEY, g ? '0' : '1')
+      } catch {
+        // Not remembered; fine.
+      }
+      return !g
+    })
   const toggleTable = () =>
     setAsTable((t) => {
       try {
@@ -1179,6 +1209,9 @@ function WordList({
             >
               Yoğun
             </button>
+            <button type="button" className="chip chip-sm" aria-pressed={gallery} onClick={toggleGallery} title="Kelimeleri görselleriyle bir ızgarada göster">
+              Galeri
+            </button>
             <div className="segmented view-toggle desktop-only" role="group" aria-label="Görünüm">
               <button className="segmented-btn" aria-pressed={!asTable} onClick={() => asTable && toggleTable()}>
                 Liste
@@ -1324,6 +1357,25 @@ function WordList({
             >
               Aramayı kısalt ya da filtrelerden birini kaldır.
             </EmptyState>
+          ) : gallery ? (
+            <ul className="word-gallery">
+              {shown.map((v, index) => {
+                const isSel = selected.has(v.id)
+                return (
+                  <li key={v.id}>
+                    <button className={`gallery-tile${isSel ? ' is-selected' : ''}`} onClick={(e) => clickRow(index, v.id, e.shiftKey)} aria-pressed={selecting ? isSel : undefined}>
+                      <GalleryArt entry={v} />
+                      {v.difficult && <BoltIcon size={14} solid className="gallery-bolt" />}
+                      {selecting && <span className={`row-check gallery-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={13} />}</span>}
+                      <span className="w" lang={v.language}>
+                        <WrittenForm entry={v} />
+                      </span>
+                      <span className="meta">{v.senses[0].gloss}</span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
           ) : (
             asTable ? (
               <div className="table-wrap">

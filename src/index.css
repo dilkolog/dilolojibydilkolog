@@ -4329,3 +4329,21 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .card-fill-track { height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
 .card-fill-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--lang), color-mix(in srgb, var(--lang) 60%, var(--ok))); transition: width var(--dur) var(--ease-out); }
 .card-fill-chips { list-style: none; margin: 0.25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+/* Gallery: the word list as a grid of pictures, or of letters in the colour of the part of speech. */
+.word-gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: 0.75rem; }
+.gallery-tile { position: relative; display: grid; gap: 0.125rem; width: 100%; padding: 0.375rem 0.375rem 0.625rem; border: 2px solid transparent; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
+.gallery-tile:hover { transform: translateY(-2px); border-color: var(--lang); }
+.gallery-tile.is-selected { border-color: var(--lang); background: var(--lang-soft); }
+.gallery-tile .w { font-family: var(--serif); font-size: var(--t-md); line-height: 1.2; overflow-wrap: anywhere; padding-inline: 0.25rem; }
+.gallery-tile .meta { font-size: var(--t-xs); color: var(--ink-soft); padding-inline: 0.25rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gallery-art { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: calc(var(--r-md) - 4px); object-fit: cover; background: var(--surface-2); }
+.gallery-letter { display: grid; place-items: center; font-family: var(--serif); font-size: 2.5rem; font-weight: 700; --pos: var(--ink-soft); color: var(--pos); background: color-mix(in srgb, var(--pos) 14%, var(--surface)); }
+.gallery-letter[data-pos='noun'] { --pos: color-mix(in srgb, #475569 75%, var(--ink)); }
+.gallery-letter[data-pos='verb'] { --pos: color-mix(in srgb, #15803d 78%, var(--ink)); }
+.gallery-letter[data-pos='adjective'] { --pos: color-mix(in srgb, #b45309 78%, var(--ink)); }
+.gallery-letter[data-pos='adverb'] { --pos: color-mix(in srgb, #4f46e5 75%, var(--ink)); }
+.gallery-letter[data-pos='phrase'] { --pos: color-mix(in srgb, #0f766e 78%, var(--ink)); }
+.gallery-bolt { position: absolute; right: 0.75rem; top: 0.75rem; color: var(--near-text); background: var(--surface); border-radius: 50%; padding: 0.125rem; box-shadow: var(--shadow-sm); }
+.gallery-check { position: absolute; left: 0.75rem; top: 0.75rem; }
+@media (max-width: 30rem) { .word-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; } }
