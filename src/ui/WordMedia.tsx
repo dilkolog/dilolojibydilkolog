@@ -47,7 +47,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
   }
 
   return (
-    <section className="section stack">
+    <section className="section stack" id="word-media">
       <h2 className="section-title">Görsel, ses ve not</h2>
       <div className="grid-2 media-split">
         <div className="stack media-block">

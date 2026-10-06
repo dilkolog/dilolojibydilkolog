@@ -44,6 +44,7 @@ import { azureEnabled } from './pronunciation'
 import { WrittenForm } from './WrittenForm'
 import { DifficultButton } from './DifficultButton'
 import { WordSources } from './WordSources'
+import { CardCompleteness } from './CardCompleteness'
 import { PosTag } from './PosTag'
 import { isDifficult, withDifficult } from '../engine/difficult'
 
@@ -246,6 +247,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             <TrashIcon size={18} />
           </button>
         </div>
+        <CardCompleteness entry={entry} />
         <dl className="word-hero-status">
           <div>
             <dt>Aşama</dt>
@@ -311,7 +313,9 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <GroupToggle id="w-use" icon={<PenIcon size={18} />} open={isOpen('w-use')} onToggle={() => toggle('w-use')}>Cümleler ve kullanım</GroupToggle>
       {isOpen('w-use') && (
         <>
-          <WordExamples db={db} entry={entry} onChanged={onChanged} />
+          <div id="word-examples">
+            <WordExamples db={db} entry={entry} onChanged={onChanged} />
+          </div>
           <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
           {hasConjugation && (
             <section className="section stack">

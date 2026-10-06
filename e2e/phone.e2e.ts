@@ -527,6 +527,23 @@ test('pictures can be suggested for the words that have none, taken with one tap
   expect(await overflow(page)).toEqual([])
 })
 
+test('a word card shows how full it is, and a missing part takes you to where it is added', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  const fill = page.locator('.card-fill')
+  await expect(fill).toBeVisible()
+  const before = Number((await fill.getByRole('progressbar').getAttribute('aria-valuenow')))
+  // The note is typed into the field the chip leads to.
+  await fill.getByRole('button', { name: '+ hafıza ipucu' }).click()
+  await expect(page.locator('#w-notes')).toBeFocused()
+  await page.locator('#w-notes').fill('bir ipucu')
+  await page.locator('#w-notes').blur()
+  await expect(fill.getByRole('progressbar')).toHaveAttribute('aria-valuenow', String(before + 25))
+  await expect(fill.getByRole('button', { name: '+ hafıza ipucu' })).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')
