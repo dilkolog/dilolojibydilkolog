@@ -1,11 +1,48 @@
 import { expect, test } from '@playwright/test'
 import { clippedContent, contrastProblems, finishSession, playSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
 
-test('first run: the language choice comes right after the welcome', async ({ page }) => {
+test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
-  const form = await page.locator('.onboarding-form').boundingBox()
-  const steps = await page.locator('.onboarding-steps').boundingBox()
-  expect(form!.y).toBeLessThan(steps!.y)
+  const inView = async (name: string | RegExp) => {
+    const box = await page.getByRole('button', { name }).first().boundingBox()
+    expect(box, `${name} is visible`).not.toBeNull()
+    expect(box!.y + box!.height, `${name} is above the fold`).toBeLessThanOrEqual(page.viewportSize()!.height)
+  }
+  const sound = async (where: string) => {
+    await page.waitForTimeout(400) // a step slides in; contrast is read once it has settled
+    expect(await overflow(page), `${where} overflow`).toEqual([])
+    expect(await contrastProblems(page), `${where} contrast`).toEqual([])
+  }
+  // 1. Welcome
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused({ timeout: 100 }).catch(() => {})
+  await inView('Başlayalım')
+  await sound('welcome')
+  await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
+  // 2. Language
+  await expect(page.getByRole('heading', { name: 'Hangi dille başlayalım?' })).toBeFocused()
+  await page.locator('.lang-card', { hasText: 'İspanyolca' }).click()
+  await inView('Devam')
+  await sound('language')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  // 3. Goal
+  await page.getByPlaceholder('Adın').fill('Ayşe')
+  await page.getByRole('radio', { name: '20 dk' }).click()
+  await page.getByRole('radio', { name: '8', exact: true }).click()
+  await inView('Devam')
+  await sound('goal')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  // 4. Ready: a recap of the choices, and the way back
+  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
+  await expect(page.locator('.ob-recap')).toContainText('İspanyolca')
+  await expect(page.locator('.ob-recap')).toContainText('20 dk')
+  await expect(page.locator('.ob-recap')).toContainText('günde 8')
+  await inView(/ile başlayalım/)
+  await sound('ready')
+  await page.getByRole('button', { name: 'Geri' }).click()
+  await expect(page.getByRole('radio', { name: '20 dk' })).toHaveAttribute('aria-checked', 'true')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await page.getByRole('button', { name: /İspanyolca ile başlayalım/ }).click()
+  await expect(page.getByRole('button', { name: /örnek kelime yükle/ })).toBeVisible()
 })
 
 test('no screen scrolls sideways, even at the largest text size', async ({ page }) => {

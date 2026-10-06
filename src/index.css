@@ -2284,12 +2284,29 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .onboarding-steps li { display: grid; gap: 0.25rem; align-content: start; padding: 1rem 1.125rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
 .onboarding-steps li strong::before { counter-increment: step; content: counter(step) '. '; color: var(--lang-text); }
 .onboarding-form { display: grid; gap: 1.75rem; }
-/* Phones: the choices come right after the welcome; how it works follows below them. */
-@media (max-width: 40rem) {
-  .onboarding { display: flex; flex-direction: column; }
-  .onboarding-form { order: 1; }
-  .onboarding-steps { order: 2; }
-}
+/* After the welcome the hero shrinks to a banner, so the question stays in view on a phone. */
+.onboarding:not(.is-step-0) .onboarding-hero { padding: 1rem 1.25rem; }
+.onboarding:not(.is-step-0) .hero-hello { display: none; }
+.ob-heading { font-size: var(--t-xl); letter-spacing: -0.02em; }
+.ob-heading:focus { outline: none; }
+.onboarding-title:focus { outline: none; }
+.ob-progress ol { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 0.25rem; }
+.ob-progress li { display: flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.5rem; color: var(--ink-soft); font-size: var(--t-sm); font-weight: 600; }
+.ob-progress li:not(:last-child)::after { content: ''; width: 1.25rem; height: 2px; margin-left: 0.25rem; border-radius: 1px; background: var(--rule); }
+.ob-dot { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: var(--r-full); background: var(--track); color: var(--ink-soft); font-size: 0.75rem; font-weight: 700; }
+.ob-progress li.is-now { color: var(--ink); }
+.ob-progress li.is-now .ob-dot, .ob-progress li.is-done .ob-dot { background: var(--lang); color: var(--on-lang); }
+@media (max-width: 30rem) { .ob-progress li:not(.is-now) .ob-label { display: none; } .ob-progress li:not(:last-child)::after { width: 0.75rem; } }
+.ob-step { animation: ob-in 280ms var(--ease-out) both; }
+/* The welcome is already there when the page opens: only the steps after it slide in. */
+.is-step-0 .ob-step { animation: none; }
+@keyframes ob-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.ob-actions { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+.ob-actions .btn-lg { flex: 1 1 auto; }
+.ob-ready { text-align: center; justify-items: center; }
+.ob-ready-art { display: flex; align-items: flex-end; justify-content: center; gap: 0.5rem; }
+.ob-recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; width: 100%; max-width: 22rem; text-align: left; }
+.ob-recap li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.625rem 0.875rem; border-radius: var(--r-md); background: var(--lang-soft); }
 .onboarding-form.stack > * { margin-top: 0; }
 .onboarding-row { align-items: flex-start; }
 .onboarding-row .field { gap: 0.5rem; }
