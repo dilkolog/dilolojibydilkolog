@@ -481,3 +481,51 @@ test('the badges on show sit beside the greeting on Today and open the profile',
   await badge.click()
   await expect(page.getByRole('tab', { name: 'Rozetler' })).toBeVisible()
 })
+
+test('the account card says where you stand: three reasons and wide buttons signed out, who and when signed in', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  const card = page.locator('.account-card')
+  await expect(card.locator('.status-pill')).toHaveText(/hesapsız/)
+  await expect(card.locator('.account-perks li')).toHaveCount(3)
+  // On a phone the two ways in are full-width buttons, inside the card.
+  const box = await card.boundingBox()
+  for (const name of ['Giriş yap', 'Hesap oluştur']) {
+    const b = await card.getByRole('button', { name, exact: true }).boundingBox()
+    expect(b!.width).toBeGreaterThan(box!.width * 0.8)
+    expect(b!.x + b!.width).toBeLessThanOrEqual(box!.x + box!.width)
+  }
+  expect(await overflow(page)).toEqual([])
+  // Signed in (the account is only a record on this device here): the pill, the name and the actions.
+  await page.evaluate(() =>
+    indexedDB.databases().then((dbs) =>
+      Promise.all(
+        dbs.map(
+          (d) =>
+            new Promise<void>((ok) => {
+              const o = indexedDB.open(d.name!)
+              o.onsuccess = () => {
+                const db = o.result
+                if (!db.objectStoreNames.contains('meta')) return ok(db.close())
+                const tx = db.transaction('meta', 'readwrite')
+                tx.objectStore('meta').put({ key: 'syncAccount', value: { username: 'ali', key: 'x' } })
+                tx.oncomplete = () => (db.close(), ok())
+              }
+            }),
+        ),
+      ),
+    ),
+  )
+  await page.reload()
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  await expect(card.locator('.status-pill')).toHaveText(/Giriş yapıldı/)
+  await expect(card.locator('.account-facts')).toContainText('ali')
+  await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toBeVisible()
+  await expect(card.getByRole('button', { name: 'Bu cihazda çıkış yap' })).toBeVisible()
+  expect(await contrastProblems(page)).toEqual([])
+  expect(await overflow(page)).toEqual([])
+})
