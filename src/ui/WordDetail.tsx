@@ -13,7 +13,7 @@ import { SKILLS, type Mistake, type UserWordState, type VocabularyEntry, type Wo
 import { Select } from './Select'
 import type { KelimeDB } from '../data/db'
 import { wordKeys } from '../data/wordInput'
-import { ERROR_NAME, genderRuleText, POS_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import { ERROR_NAME, genderRuleText, SKILL_NAME, STAGE_NAME } from './labels'
 import { ruleFor } from '../engine/genderRules'
 import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
@@ -43,6 +43,7 @@ import { WordPronunciation } from './PronunciationCheck'
 import { azureEnabled } from './pronunciation'
 import { WrittenForm } from './WrittenForm'
 import { DifficultButton } from './DifficultButton'
+import { PosTag } from './PosTag'
 import { isDifficult, withDifficult } from '../engine/difficult'
 
 interface Props {
@@ -168,7 +169,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const stage = growthStage(state)
   const list = lists.find((l) => l.id === entry.listId)
   const level = list?.levels?.find((l) => l.id === entry.levelId)
-  const chips = [entry.partOfSpeech !== 'other' && POS_NAME[entry.partOfSpeech], list && (level ? `${list.name} › ${level.name}` : list.name)].filter((c): c is string => !!c)
+  const chips = [list && (level ? `${list.name} › ${level.name}` : list.name)].filter((c): c is string => !!c)
   const health = plantHealth(state, scheduler, now)
 
   return (
@@ -195,8 +196,13 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       {/* The word itself up top: what it is, how it sounds, what it means; then where it stands. */}
       <section className={`word-hero span-2${heroImage ? ' has-image' : ''}`}>
         <div className="word-hero-main">
-          {chips.length > 0 && (
+          {(chips.length > 0 || entry.partOfSpeech !== 'other') && (
             <ul className="chip-list" aria-label="Kelime bilgisi">
+              {entry.partOfSpeech !== 'other' && (
+                <li className="pos-chip">
+                  <PosTag pos={entry.partOfSpeech} label />
+                </li>
+              )}
               {chips.map((c) => (
                 <li key={c}>{c}</li>
               ))}

@@ -7,6 +7,7 @@ import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
 import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon } from '../icons'
+import { PosTag } from '../PosTag'
 import { WrittenForm } from '../WrittenForm'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
@@ -143,6 +144,7 @@ export function Feedback({
           </div>
           <p className="sheet-gloss">
             <span lang={entry.language}><WrittenForm entry={entry} /></span>
+            {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} />}
             {entry.ipa && <span className="ipa">{entry.ipa}</span>}
             {entry.senses[0].gloss}
           </p>

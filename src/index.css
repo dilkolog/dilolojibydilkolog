@@ -4125,3 +4125,13 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .profile-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .activity-mini .activity-grid { grid-auto-columns: minmax(0, 1.75rem); }
 }
+
+/* Part of speech: a shape and a tone (see PosTag). Tones are muted and mixed with the ink so they hold in both themes. */
+.pos-tag { display: inline-flex; align-items: center; gap: 0.25rem; vertical-align: baseline; font-size: var(--t-xs); font-weight: 600; color: var(--pos, var(--ink-soft)); }
+.pos-tag svg { flex: none; }
+.pos-tag[data-pos='noun'] { --pos: color-mix(in srgb, #475569 75%, var(--ink)); }
+.pos-tag[data-pos='verb'] { --pos: color-mix(in srgb, #15803d 78%, var(--ink)); }
+.pos-tag[data-pos='adjective'] { --pos: color-mix(in srgb, #b45309 78%, var(--ink)); }
+.pos-tag[data-pos='adverb'] { --pos: color-mix(in srgb, #4f46e5 75%, var(--ink)); }
+.pos-tag[data-pos='phrase'] { --pos: color-mix(in srgb, #0f766e 78%, var(--ink)); }
+.pos-tag.is-chip { padding: 0.125rem 0.5rem; border-radius: var(--r-full); background: color-mix(in srgb, var(--pos, var(--ink-soft)) 12%, var(--surface)); }

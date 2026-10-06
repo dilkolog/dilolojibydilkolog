@@ -386,3 +386,13 @@ test('the garden card on Today counts the hard words and starts their practice i
   await expect(page.locator('.session')).toBeVisible()
   await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('a word carries its part of speech as a shape on the list and the word page', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await expect(page.locator('.word-row .pos-tag').first()).toBeVisible()
+  const shapes = await page.locator('.word-row .pos-tag svg').evaluateAll((els) => new Set(els.map((e) => e.innerHTML)).size)
+  expect(shapes).toBeGreaterThanOrEqual(2)   // nouns and verbs among the samples
+  await page.locator('.word-row').first().click()
+  await expect(page.locator('.word-hero .pos-chip .pos-tag')).toBeVisible()
+})

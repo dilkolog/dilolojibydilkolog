@@ -3,7 +3,7 @@ import { buildPretest, displayForm } from '../../engine/exercises'
 import type { Rng } from '../../engine/rng'
 import type { VocabularyEntry } from '../../engine/types'
 import { WordInputError } from '../../data/wordInput'
-import { POS_NAME } from '../labels'
+import { PosTag } from '../PosTag'
 import { BulbIcon, PenIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { sfx } from '../sounds'
@@ -97,7 +97,7 @@ export function Intro({
     <div>
       <p className="prompt-label">
         <span className="badge">Yeni kelime</span>
-        {entry.partOfSpeech !== 'other' && <span className="small muted"> {POS_NAME[entry.partOfSpeech]}</span>}
+        {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} label className="is-chip" />}
       </p>
       {guess && guess !== 'skipped' && (
         <p className={`guess-result ${guess.correct ? 'is-right' : 'is-wrong'}`} role="status">

@@ -42,6 +42,7 @@ import { getDensity, setDensity } from './density'
 import { saveWordOrder } from './wordOrder'
 import { WordListsView } from './WordLists'
 import { placementOptions, parsePlacement } from './listOptions'
+import { PosTag } from './PosTag'
 import { WrittenForm } from './WrittenForm'
 import { isDifficult, withDifficult } from '../engine/difficult'
 
@@ -1366,7 +1367,12 @@ function WordList({
                         </span>
                         <span className="meta">
                           {v.senses[0].gloss}
-                          {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
+                          {v.partOfSpeech !== 'other' && (
+                            <>
+                              {' · '}
+                              <PosTag pos={v.partOfSpeech} label />
+                            </>
+                          )}
                           {v.source !== 'sample' && bandOf(v.frequencyRank) && `, ${bandOf(v.frequencyRank)!.short}`}
                           {v.source === 'sample' && ' (örnek)'}
                           {v.audioId && <MicIcon size={12} className="inline-icon is-end" />}
