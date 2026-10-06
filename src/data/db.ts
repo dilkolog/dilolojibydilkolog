@@ -4,6 +4,7 @@ import type { JournalReview } from '../ai/types'
 import { recordMistake, type MistakeInput } from '../engine/mistakes'
 import type { BossWin } from '../engine/bosses'
 import type { ExamResult } from '../engine/exam'
+import { emptyLab, type LabData } from '../engine/labProgress'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
 import type { SentenceCard } from '../engine/sentences'
@@ -526,6 +527,16 @@ export class KelimeDB extends Dexie {
   async saveRecord(key: string, value: number) {
     const all = await this.getRecords()
     await this.meta.put({ key: 'records', value: { ...all, [key]: value } })
+  }
+
+  /** The verb lab's favourites, recent verbs and practice records, per language (see engine/labProgress). */
+  async getLab(language: TargetLanguage): Promise<LabData> {
+    const v = (await this.meta.get(`lab:${language}`))?.value as Partial<LabData> | undefined
+    return { ...emptyLab(), ...v }
+  }
+
+  saveLab(language: TargetLanguage, lab: LabData) {
+    return this.meta.put({ key: `lab:${language}`, value: lab })
   }
 
   /** Kept apart from settings so it is never written into a backup file. */

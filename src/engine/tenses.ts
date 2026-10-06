@@ -13,15 +13,41 @@ import type { VocabularyEntry } from './types'
  */
 export type FrTense = 'present' | 'passe-compose' | 'imparfait' | 'futur' | 'conditionnel' | 'subjonctif'
 export type EsTense = 'presente' | 'preterito' | 'imperfecto' | 'perfecto' | 'futuro' | 'condicional' | 'subjuntivo'
-export type Tense = FrTense | EsTense
+/** Further tenses, put together from the auxiliary and the participle (or the preterite stem): the verb lab and the reader know them; the daily questions do not ask them. */
+export type FrMoreTense = 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe'
+export type EsMoreTense = 'pluscuamperfecto' | 'futuro-perfecto' | 'condicional-perfecto' | 'subjuntivo-imperfecto' | 'subjuntivo-perfecto' | 'subjuntivo-pluscuamperfecto'
+export type Tense = FrTense | EsTense | FrMoreTense | EsMoreTense
 
-/** In teaching order: the present, the past, the past background, the future, then the moods. */
+/** In teaching order: the present, the past, the past background, the future, then the moods. These are the tenses the questions and the word page use. */
 export const TENSES: { fr: FrTense[]; es: EsTense[] } = {
   fr: ['present', 'passe-compose', 'imparfait', 'futur', 'conditionnel', 'subjonctif'],
   es: ['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro', 'condicional', 'subjuntivo'],
 }
 
-export const isSubjunctive = (tense: Tense) => tense === 'subjonctif' || tense === 'subjuntivo'
+/** Every tense the verb lab shows, by mood: the indicative, then the conditional and the subjunctive. */
+export const LAB_TENSES: { fr: (FrTense | FrMoreTense)[]; es: (EsTense | EsMoreTense)[] } = {
+  fr: ['present', 'imparfait', 'passe-compose', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe'],
+  es: ['presente', 'imperfecto', 'preterito', 'perfecto', 'pluscuamperfecto', 'futuro', 'futuro-perfecto', 'condicional', 'condicional-perfecto', 'subjuntivo', 'subjuntivo-imperfecto', 'subjuntivo-perfecto', 'subjuntivo-pluscuamperfecto'],
+}
+
+export const isSubjunctive = (tense: Tense) => tense.startsWith('subjonctif') || tense.startsWith('subjuntivo')
+
+/** Which tense of the auxiliary a compound tense uses: "j'ai parlé" (present), "había comido" (imparfait). */
+const COMPOUND_AUX: Partial<Record<Tense, 'present' | 'imparfait' | 'futur' | 'conditionnel' | 'subjonctif'>> = {
+  'passe-compose': 'present',
+  'plus-que-parfait': 'imparfait',
+  'futur-anterieur': 'futur',
+  'conditionnel-passe': 'conditionnel',
+  'subjonctif-passe': 'subjonctif',
+  perfecto: 'present',
+  pluscuamperfecto: 'imparfait',
+  'futuro-perfecto': 'futur',
+  'condicional-perfecto': 'conditionnel',
+  'subjuntivo-perfecto': 'subjonctif',
+  'subjuntivo-pluscuamperfecto': 'imparfait',
+}
+/** A tense built from the auxiliary and the participle. */
+export const isCompound = (tense: Tense) => tense in COMPOUND_AUX
 
 /** Endings for tenses stored as a stem (must match ENDINGS in scripts/build-tenses.ts). */
 const ENDINGS = {
@@ -51,9 +77,41 @@ export const tensesLoaded = (language: 'fr' | 'es') => DATA[language].size > 0
 
 const expand = (v: string | string[], endings: string[]) => (typeof v === 'string' ? endings.map((e) => v + e) : [...v])
 
-const AVOIR = ['ai', 'as', 'a', 'avons', 'avez', 'ont']
-const ETRE = ['suis', 'es', 'est', 'sommes', 'êtes', 'sont']
-const HABER = ['he', 'has', 'ha', 'hemos', 'habéis', 'han']
+const AUX = {
+  avoir: {
+    present: ['ai', 'as', 'a', 'avons', 'avez', 'ont'],
+    imparfait: ['avais', 'avais', 'avait', 'avions', 'aviez', 'avaient'],
+    futur: ['aurai', 'auras', 'aura', 'aurons', 'aurez', 'auront'],
+    conditionnel: ['aurais', 'aurais', 'aurait', 'aurions', 'auriez', 'auraient'],
+    subjonctif: ['aie', 'aies', 'ait', 'ayons', 'ayez', 'aient'],
+  },
+  etre: {
+    present: ['suis', 'es', 'est', 'sommes', 'êtes', 'sont'],
+    imparfait: ['étais', 'étais', 'était', 'étions', 'étiez', 'étaient'],
+    futur: ['serai', 'seras', 'sera', 'serons', 'serez', 'seront'],
+    conditionnel: ['serais', 'serais', 'serait', 'serions', 'seriez', 'seraient'],
+    subjonctif: ['sois', 'sois', 'soit', 'soyons', 'soyez', 'soient'],
+  },
+  haber: {
+    present: ['he', 'has', 'ha', 'hemos', 'habéis', 'han'],
+    imparfait: ['había', 'habías', 'había', 'habíamos', 'habíais', 'habían'],
+    futur: ['habré', 'habrás', 'habrá', 'habremos', 'habréis', 'habrán'],
+    conditionnel: ['habría', 'habrías', 'habría', 'habríamos', 'habríais', 'habrían'],
+    subjonctif: ['haya', 'hayas', 'haya', 'hayamos', 'hayáis', 'hayan'],
+  },
+  /** hubiera, hubieras…: the "-ra" form of haber, for the pluperfect subjunctive. */
+  hubiera: ['hubiera', 'hubieras', 'hubiera', 'hubiéramos', 'hubierais', 'hubieran'],
+}
+
+/** Spanish imperfect subjunctive from the preterite "ellos" form: comieron → comiera, comieras, comiéramos… */
+function subjunctiveImperfect(pre: readonly string[]): string[] | undefined {
+  const third = pre[5]
+  if (!third?.endsWith('ron')) return undefined
+  const stem = third.slice(0, -3)
+  // The stress stays on the syllable before -ramos: comiéramos, fuéramos.
+  const accented = stem.replace(/([aeiou])([^aeiou]*)$/i, (_, v: string, rest: string) => ({ a: 'á', e: 'é', i: 'í', o: 'ó', u: 'ú' })[v.toLowerCase()] + rest)
+  return [`${stem}ra`, `${stem}ras`, `${stem}ra`, `${accented}ramos`, `${stem}rais`, `${stem}ran`]
+}
 const REFL = { fr: ['me', 'te', 'se', 'nous', 'vous', 'se'], es: ['me', 'te', 'se', 'nos', 'os', 'se'] }
 
 /** The verb's dictionary key and whether it is reflexive: "se lever" → lever, "levantarse" → levantar. */
@@ -94,10 +152,11 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
               ? expand(row.s, ENDINGS.frS)
               : undefined
     if (simple) return reflexive ? simple.map((f, i) => frReflexive(i, f)) : simple
-    if (tense === 'passe-compose') {
+    const compound = COMPOUND_AUX[tense]
+    if (compound) {
       const etre = reflexive || row.aux === 'e'
       const [sg, pl] = typeof row.pp === 'string' ? [row.pp, `${row.pp}s`] : row.pp
-      return (etre ? ETRE : AVOIR).map((aux, i) => {
+      return AUX[etre ? 'etre' : 'avoir'][compound].map((aux, i) => {
         // With être the participle agrees with the subject: plural for nous, vous, ils.
         const form = `${aux} ${etre && i >= 3 ? pl : sg}`
         return reflexive ? frReflexive(i, form) : form
@@ -107,6 +166,7 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   }
   const row = DATA.es.get(key)
   if (!row) return undefined
+  const aux = COMPOUND_AUX[tense]
   const forms =
     tense === 'preterito'
       ? [...row.pre]
@@ -114,17 +174,25 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
         ? expand(row.imp, key.endsWith('ar') ? ENDINGS.esImpAr : ENDINGS.esImpErIr)
         : tense === 'futuro'
           ? expand(row.fut, ENDINGS.esFut)
-          : tense === 'perfecto'
-            ? HABER.map((h) => `${h} ${row.pp}`)
+          : aux
+            ? (tense === 'subjuntivo-pluscuamperfecto' ? AUX.hubiera : AUX.haber[aux]).map((h) => `${h} ${row.pp}`)
             : tense === 'condicional'
               ? ENDINGS.esImpErIr.map((e) => expand(row.fut, ENDINGS.esFut)[0].slice(0, -1) + e)
               : tense === 'subjuntivo' && row.sub
                 ? expand(row.sub, key.endsWith('ar') ? ENDINGS.esSubAr : ENDINGS.esSubErIr)
-                : undefined
+                : tense === 'subjuntivo-imperfecto'
+                  ? subjunctiveImperfect(row.pre)
+                  : undefined
   return forms && (reflexive ? forms.map((f, i) => `${REFL.es[i]} ${f}`) : forms)
 }
 
-/** Tenses the verb has, in teaching order. */
+/** Every tense the verb lab can show for the verb, by mood. */
+export function labTensesOf(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>): Tense[] {
+  if (entry.language === 'en') return []
+  return (LAB_TENSES[entry.language] as Tense[]).filter((t) => hasTense(entry, t))
+}
+
+/** Tenses the verb has among those the questions and the word page use, in teaching order. */
 export function tensesOf(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>): Tense[] {
   if (entry.language === 'en') return []
   return (TENSES[entry.language] as Tense[]).filter((t) => hasTense(entry, t))
@@ -173,7 +241,7 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
       if (ils?.endsWith('ent') && imp) regular = ENDINGS.frS.map((e, i) => (i === 3 || i === 4 ? imp[i] : ils.slice(0, -3) + e))
       // sont, ont, vont, font: no stem to build from, the whole tense is learned by heart.
       else if (ils) regular = bare.map(() => '')
-    } else if (tense === 'passe-compose') {
+    } else if (isCompound(tense)) {
       const pp = key.endsWith('er') ? `${key.slice(0, -2)}é` : key.endsWith('ir') ? `${key.slice(0, -2)}i` : key.endsWith('re') ? `${key.slice(0, -2)}u` : ''
       regular = bare.map((f) => (pp && f.split(' ')[1]?.replace(/s$/, '') === pp ? f : ''))
     }
@@ -195,9 +263,15 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
       } else if (yo) regular = bare.map(() => '') // soy, voy, sé: sea, vaya, sepa are learned by heart.
 
     }
-    else if (tense === 'perfecto') {
+    else if (isCompound(tense)) {
       const pp = `${stem}${ar ? 'ado' : 'ido'}`
       regular = bare.map((f) => (f.endsWith(` ${pp}`) ? f : ''))
+    } else if (tense === 'subjuntivo-imperfecto') {
+      // From the preterite "ellos" form, so the whole tense is irregular when the preterite is.
+      const pre = (ar ? ENDINGS.esPreAr : ENDINGS.esPreErIr).map((e) => stem + e)
+      const regularSub = subjunctiveImperfect(pre)
+      const row = DATA.es.get(key)
+      regular = row && row.pre[5] === pre[5] ? regularSub : bare.map(() => '')
     }
   }
   return regular ? bare.map((f, i) => f !== regular![i]) : bare.map(() => false)
@@ -233,7 +307,10 @@ export function tenseAnswers(entry: Pick<VocabularyEntry, 'language' | 'lemma' |
   if (!forms || entry.language === 'en') return []
   const form = forms[person]
   const out = new Set([form, ...tenseVariants(entry.language, form, keyOf(entry).key)])
-  if (entry.language === 'fr' && tense === 'passe-compose') {
+  // The -se forms of the imperfect subjunctive (comiese) are as right as the -ra ones.
+  if (tense === 'subjuntivo-pluscuamperfecto') out.add(form.replace(/^hubi(é|e)ra(s|mos|is|n)?/, (_m, v: string, e: string | undefined) => `hubi${v}se${e ?? ''}`))
+  if (tense === 'subjuntivo-imperfecto') out.add(form.replace(/ra(s|mos|is|n)?$/, (_m, e: string | undefined) => `se${e ?? ''}`))
+  if (entry.language === 'fr' && isCompound(tense)) {
     const { key, reflexive } = keyOf(entry)
     const row = DATA.fr.get(key)
     const etre = reflexive || row?.aux === 'e'
@@ -287,6 +364,17 @@ const UNLOCK: Record<Tense, number> = {
   futuro: 5,
   condicional: 6,
   subjuntivo: 8,
+  // Only the verb lab asks these.
+  'plus-que-parfait': 99,
+  'futur-anterieur': 99,
+  'conditionnel-passe': 99,
+  'subjonctif-passe': 99,
+  pluscuamperfecto: 99,
+  'futuro-perfecto': 99,
+  'condicional-perfecto': 99,
+  'subjuntivo-imperfecto': 99,
+  'subjuntivo-perfecto': 99,
+  'subjuntivo-pluscuamperfecto': 99,
 }
 
 /**
@@ -411,7 +499,7 @@ function reverseIndex(language: 'fr' | 'es'): Map<string, FormAnalysis[]> {
   const map = new Map<string, FormAnalysis[]>()
   for (const lemma of DATA[language].keys()) {
     const entry = { language, lemma, partOfSpeech: 'verb' as const }
-    for (const tense of TENSES[language] as Tense[]) {
+    for (const tense of LAB_TENSES[language] as Tense[]) {
       const forms = conjugateTense(entry, tense)
       if (!forms) continue
       forms.forEach((form, person) => {
@@ -436,6 +524,66 @@ function reverseIndex(language: 'fr' | 'es'): Map<string, FormAnalysis[]> {
 export function analyzeForm(language: 'fr' | 'es' | 'en', word: string): FormAnalysis[] {
   if (language === 'en' || !tensesLoaded(language)) return []
   return reverseIndex(language).get(normalize(word).toLocaleLowerCase(language)) ?? []
+}
+
+/** The verbs the tables hold (dictionary keys, without any reflexive pronoun), in the order they were built. */
+export const tenseVerbs = (language: 'fr' | 'es'): string[] => [...DATA[language].keys()]
+
+export interface VerbParts {
+  infinitive: string
+  /** Present participle in French (parlant), gerund in Spanish (hablando). */
+  gerund?: string
+  /** Past participle: parlé, hablado. */
+  participle?: string
+  /** Reflexive in the list ("se lever", "levantarse"). */
+  reflexive: boolean
+  /** Some present form breaks the regular pattern. */
+  irregular: boolean
+}
+
+/** Spanish gerunds that the preterite does not reveal. */
+const ES_GERUND_FIXED: Record<string, string> = { ir: 'yendo', poder: 'pudiendo' }
+
+function spanishGerund(key: string, pre: readonly string[]): string {
+  const fixed = ES_GERUND_FIXED[key]
+  if (fixed) return fixed
+  if (key.endsWith('decir')) return `${key.slice(0, -5)}diciendo`
+  if (key.endsWith('venir')) return `${key.slice(0, -5)}viniendo`
+  if (key.endsWith('eír')) return `${key.slice(0, -3)}iendo`
+  const stem = key.slice(0, -2)
+  if (key.endsWith('ar')) return `${stem}ando`
+  const third = pre[2] ?? ''
+  // -ir verbs that change their stem show it in the preterite "él" form (pidió, durmió, sintió).
+  if (key.endsWith('ir') && third.endsWith('ió') && third.slice(0, -2) !== stem) return `${third.slice(0, -2)}iendo`
+  // riñó, bulló: the i is absorbed by ñ and ll.
+  if (key.endsWith('ir') && /(ñó|lló)$/.test(third)) return `${third.slice(0, -1)}endo`
+  if (/(ñ|ll)$/.test(stem)) return `${stem}endo`
+  // A vowel before the ending: leyendo, cayendo, huyendo (but seguir: gu + iendo).
+  if (/[aeiouáéíóú]$/.test(stem) && !/[gq]u$/.test(stem)) return `${stem}yendo`
+  return `${stem}iendo`
+}
+
+/** The verb's non-finite forms, for the lab's header line. */
+export function verbParts(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>): VerbParts | undefined {
+  if (entry.language === 'en' || entry.partOfSpeech !== 'verb') return undefined
+  const { key, reflexive } = keyOf(entry)
+  const irregular = irregularForms(entry, entry.language === 'fr' ? 'present' : 'presente').some(Boolean)
+  if (entry.language === 'fr') {
+    const row = DATA.fr.get(key)
+    if (!row) return undefined
+    const nous = conjugate({ ...entry, lemma: key })?.forms[3]
+    const fixed: Record<string, string> = { être: 'étant', avoir: 'ayant', savoir: 'sachant' }
+    return {
+      infinitive: key,
+      gerund: fixed[key] ?? (nous?.endsWith('ons') ? `${nous.slice(0, -3)}ant` : undefined),
+      participle: typeof row.pp === 'string' ? row.pp : row.pp[0],
+      reflexive,
+      irregular,
+    }
+  }
+  const row = DATA.es.get(key)
+  if (!row) return undefined
+  return { infinitive: key, gerund: spanishGerund(key, row.pre), participle: row.pp, reflexive, irregular }
 }
 
 export type { Person }
