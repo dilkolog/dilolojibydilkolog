@@ -43,7 +43,7 @@ import { saveWordOrder } from './wordOrder'
 import { WordListsView } from './WordLists'
 import { placementOptions, parsePlacement } from './listOptions'
 import { PosTag } from './PosTag'
-import { WrittenForm } from './WrittenForm'
+import { WordLabel } from './WordLabel'
 import { displayForm } from '../engine/exercises'
 import { isDifficult, withDifficult } from '../engine/difficult'
 import { imageCandidates, skippedImages } from '../data/imageQueue'
@@ -1365,10 +1365,9 @@ function WordList({
                   <li key={v.id}>
                     <button className={`gallery-tile${isSel ? ' is-selected' : ''}`} onClick={(e) => clickRow(index, v.id, e.shiftKey)} aria-pressed={selecting ? isSel : undefined}>
                       <GalleryArt entry={v} />
-                      {v.difficult && <BoltIcon size={14} solid className="gallery-bolt" />}
                       {selecting && <span className={`row-check gallery-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={13} />}</span>}
-                      <span className="w" lang={v.language}>
-                        <WrittenForm entry={v} />
+                      <span className="w">
+                        <WordLabel entry={v} />
                       </span>
                       <span className="meta">{v.senses[0].gloss}</span>
                     </button>
@@ -1405,9 +1404,8 @@ function WordList({
                               </span>
                             </td>
                           )}
-                          <td className="w" lang={v.language}>
-                            <WrittenForm entry={v} />
-                            {v.difficult && <BoltIcon size={14} solid className="difficult-mark" />}
+                          <td className="w">
+                            <WordLabel entry={v} />
                             {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
                           </td>
                           <td className="muted">{v.senses[0].gloss}</td>
@@ -1445,9 +1443,8 @@ function WordList({
                       </span>
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
-                        <span className="w" lang={v.language}>
-                          <WrittenForm entry={v} />
-                          {v.difficult && <BoltIcon size={14} solid className="difficult-mark" />}
+                        <span className="w">
+                          <WordLabel entry={v} />
                         </span>
                         <span className="meta">
                           {v.senses[0].gloss}
