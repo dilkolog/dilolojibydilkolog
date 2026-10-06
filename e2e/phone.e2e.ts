@@ -545,7 +545,7 @@ test('pictures can be suggested for the words that have none, taken with one tap
   await page.route('https://upload.wikimedia.org/**', (route) => route.fulfill({ status: 200, headers: cors, contentType: 'image/png', body: png }))
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
-  const openPanel = () => page.getByRole('button', { name: /^Süz ve görünüm/ }).click()
+  const openPanel = () => page.getByRole('button', { name: /^Filtrele ve görünüm/ }).click()
   await openPanel()
   const chip = page.getByRole('button', { name: /Görsel öner \((\d+)\)/ })
   await expect(chip).toBeVisible()
@@ -592,7 +592,7 @@ test('a word card shows how full it is, and a missing part takes you to where it
 test('the word list can be a gallery: pictures where there are any, letters where there are not, and a tap opens the word', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: /^Süz ve görünüm/ }).click()
+  await page.getByRole('button', { name: /^Filtrele ve görünüm/ }).click()
   await page.getByRole('button', { name: 'Galeri', exact: true }).click()
   await page.keyboard.press('Escape')
   const tiles = page.locator('.gallery-tile')

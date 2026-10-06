@@ -1240,14 +1240,14 @@ function WordList({
               {selecting ? 'Bitti' : 'Seç'}
             </button>
             <Popover
-              label="Süz ve görünüm"
+              label="Filtrele ve görünüm"
               align="end"
               buttonClassName={`btn btn-quiet filter-btn${activeCount ? ' has-active' : ''}`}
-              buttonProps={{ 'aria-label': activeCount ? `Süz ve görünüm, ${activeCount} etkin` : 'Süz ve görünüm' }}
+              buttonProps={{ 'aria-label': activeCount ? `Filtrele ve görünüm, ${activeCount} etkin` : 'Filtrele ve görünüm' }}
               button={
                 <>
                   <SlidersIcon size={18} />
-                  <span className="filter-btn-text">Süz</span>
+                  <span className="filter-btn-text">Filtrele</span>
                   {activeCount > 0 && <span className="filter-count" aria-hidden>{activeCount}</span>}
                 </>
               }
