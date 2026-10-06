@@ -151,13 +151,33 @@ export function Feedback({
           )}
           {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
           </div>
-          <p className="sheet-gloss">
-            <span lang={entry.language}><WrittenForm entry={entry} /></span>
-            {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} />}
-            {entry.ipa && <span className="ipa">{entry.ipa}</span>}
-            {entry.senses[0].gloss}
-          </p>
         </div>
+        <p className="sheet-gloss">
+          <span lang={entry.language}><WrittenForm entry={entry} /></span>
+          {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} />}
+          {entry.ipa && <span className="ipa">{entry.ipa}</span>}
+          {entry.senses[0].gloss}
+        </p>
+        {(onOverride || onDiscard || onEdit) && (
+          <span className="sheet-links">
+            {onOverride && (
+              <button className="link small" onClick={onOverride}>
+                Cevabım da doğru
+              </button>
+            )}
+            {onDiscard && (
+              <button className="link small" onClick={onDiscard} title="Bu cevap sayılmaz, kelime olduğu gibi kalır">
+                Yanlış dokundum, sayma
+              </button>
+            )}
+            {onEdit && (
+              <button className="link small" onClick={onEdit} title="Kelimeyi düzelt (E)">
+                <PenIcon size={13} className="inline-icon" />
+                Kelimeyi düzelt
+              </button>
+            )}
+          </span>
+        )}
         <div className="sheet-actions">
           {mnemonic === 'offer' && (
             <button className="btn btn-quiet" onClick={onMnemonic}>
@@ -165,26 +185,6 @@ export function Feedback({
             </button>
           )}
           {mnemonic === 'saved' && <span className="small"><BulbIcon size={16} className="inline-icon" />Not kaydedildi</span>}
-          {(onOverride || onDiscard || onEdit) && (
-            <span className="sheet-links">
-              {onOverride && (
-                <button className="link small" onClick={onOverride}>
-                  Cevabım da doğru
-                </button>
-              )}
-              {onDiscard && (
-                <button className="link small" onClick={onDiscard} title="Bu cevap sayılmaz, kelime olduğu gibi kalır">
-                  Yanlış dokundum, sayma
-                </button>
-              )}
-              {onEdit && (
-                <button className="link small" onClick={onEdit} title="Kelimeyi düzelt (E)">
-                  <PenIcon size={13} className="inline-icon" />
-                  Kelimeyi düzelt
-                </button>
-              )}
-            </span>
-          )}
           <button ref={continueRef} className={`btn btn-lg ${btnClass}`} onClick={onContinue} disabled={!ready}>
             Devam
           </button>

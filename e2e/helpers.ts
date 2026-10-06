@@ -141,8 +141,8 @@ export const clippedContent = (page: Page) =>
   })
 
 /** Plays today's session to its summary, answering whatever comes first, and stops there. */
-export async function playSession(page: Page) {
-  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+export async function playSession(page: Page, start = true) {
+  if (start) await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   for (let i = 0; i < 150 && !(await page.locator('.celebrate-card, .summary-grid').count()); i++) {
     const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')

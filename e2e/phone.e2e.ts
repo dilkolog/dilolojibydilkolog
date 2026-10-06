@@ -239,6 +239,44 @@ test('a word marked hard in a session is gathered for a practice of its own', as
   await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('the end of a practice of hard words is about them, and a word that went well can leave the list', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  await page.locator('.session .difficult-btn').click()
+  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Çık', exact: true }).click()
+  await openScreen(page, 'Bugün')
+  await page.getByRole('button', { name: /Zor kelimelerin/ }).click()
+  await playSession(page, false)
+  await expect(page.locator('.topic-chip')).toHaveText(/Zor kelime çalışması/)
+  await expect(page.locator('.hard-list li')).toHaveCount(1)
+  expect(await overflow(page)).toEqual([])
+  const graduate = page.getByRole('button', { name: 'Artık zor değil' })
+  if (await graduate.count()) {
+    await graduate.click()
+    await expect(page.getByText('Zor listesinden çıktı')).toBeVisible()
+  }
+})
+
+test('a new word can be asked as a guess or shown as a card first, and one tap makes the card the habit', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  // The first word comes as a guess, with the way out beside "Hiç fikrim yok".
+  await expect(page.getByText('Sence ne anlama geliyor?')).toBeVisible()
+  await page.getByRole('button', { name: 'Hep önce kartı göster' }).click()
+  // Now it is the card; the guess question is gone.
+  await expect(page.getByText('Sence ne anlama geliyor?')).toHaveCount(0)
+  await expect(page.locator('.session-stage button:visible', { hasText: /^(Anladım|Öğrendim|Devam)/ }).first()).toBeVisible()
+  // Kept: the setting is off, and the next new words come as cards too.
+  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Çık', exact: true }).click()
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  await expect(page.getByText('Sence ne anlama geliyor?')).toHaveCount(0)
+  await expect(page.locator('.session-stage .badge', { hasText: 'Yeni kelime' })).toBeVisible()
+})
+
 test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks the word like the bolt does', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)
@@ -273,10 +311,17 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   await expect(card).toHaveAttribute('data-banner', 'sunrise')
   await page.getByRole('radio', { name: /Noktalı/ }).click()
   await expect(card.locator('.avatar-ring')).toHaveAttribute('data-frame', 'dots')
-  // A locked one cannot be picked and says what opens it.
+  // A locked one is a picture with a lock: no words in the square, it cannot be picked, and a tap says what opens it.
   const locked = page.getByRole('radio', { name: /Galaksi/ })
-  await expect(locked).toBeDisabled()
-  await expect(locked).toContainText('25. seviyeye ulaş')
+  await expect(locked).toHaveAttribute('aria-disabled', 'true')
+  await expect(locked).toHaveText('')
+  await expect(locked.locator('.style-lock')).toBeVisible()
+  await locked.click({ force: true })   // aria-disabled: Playwright waits for "enabled", a real finger just taps
+  await expect(card).not.toHaveAttribute('data-banner', 'galaxy')
+  await expect(page.locator('.style-caption').first()).toContainText('25. seviyeye ulaş')
+  // Every square holds still and inside its row.
+  const tiles = await page.locator('.style-tile').evaluateAll((els) => els.map((e) => { const r = e.getBoundingClientRect(), p = e.parentElement!.getBoundingClientRect(); return r.right <= p.right + 1 && r.left >= p.left - 1 && e.scrollWidth <= e.clientWidth + 1 }))
+  expect(tiles.every(Boolean)).toBe(true)
   // Interests and a goal show on the card.
   await page.getByRole('button', { name: 'Seyahat', exact: true }).click()
   await page.getByRole('radio', { name: 'B2', exact: true }).click()
@@ -510,6 +555,10 @@ test('the account card says where you stand: three reasons and wide buttons sign
   await page.locator('.profile-settings').click()
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
   const card = page.locator('.account-card')
+  // One way to the profile (the avatar in the top bar), not a second one inside Settings.
+  await expect(page.locator('.settings-profile')).toHaveCount(0)
+  await expect(page.locator('.top-profile:visible')).toHaveCount(1)
+  await expect(card.locator('.avatar, .account-initial')).toHaveCount(0)
   await expect(card.locator('.status-pill')).toHaveText(/hesapsız/)
   await expect(card.locator('.account-perks li')).toHaveCount(3)
   // On a phone the two ways in are full-width buttons, inside the card.

@@ -383,6 +383,7 @@ export function SessionScreen(p: Props) {
           rng={rng}
           onContinue={() => introduce(false)}
           onKnown={() => introduce(true)}
+          onPretestOff={p.settings && p.onSettings ? () => { const next = { ...p.settings!, pretest: false }; applySettings(next); p.onSettings!(next); showToast('Yeni kelimeler artık önce kart olarak gösterilecek. Geri açmak için Ayarlar > Sorular.') } : undefined}
           onOwnSentence={async (text) => {
             const updated = addExample(entry, text, '', true)
             await p.db.vocabulary.put(updated)

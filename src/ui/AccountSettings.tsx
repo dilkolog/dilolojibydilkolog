@@ -50,7 +50,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
     <section className={`card account-card ${account ? 'is-in' : 'is-out'}`}>
       <header className="account-head">
         <span className="account-mark" aria-hidden>
-          {account ? <span className="account-initial">{account.username.slice(0, 1).toUpperCase()}</span> : <GlobeIcon size={24} />}
+          <GlobeIcon size={24} />
         </span>
         <div className="account-title">
           <h2 className="section-title">Giriş ve eşitleme</h2>

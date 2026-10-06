@@ -31,6 +31,7 @@ export function Intro({
   onContinue,
   onKnown,
   onOwnSentence,
+  onPretestOff,
 }: {
   entry: VocabularyEntry
   catalog: VocabularyEntry[]
@@ -39,6 +40,8 @@ export function Intro({
   onKnown: () => void
   /** Saves a sentence the learner wrote about their own life as an example. */
   onOwnSentence: (text: string) => Promise<void>
+  /** Turns the first-guess question off for good (a setting); the card is shown instead. Absent: no such link. */
+  onPretestOff?: () => void
 }) {
   const sense = entry.senses[0]
   const example = sense.examples[0]
@@ -87,6 +90,18 @@ export function Intro({
           <button className="link small" onClick={() => setGuess('skipped')}>
             Hiç fikrim yok, göster
           </button>
+          {onPretestOff && (
+            <button
+              className="link small"
+              title="Yeni kelimede önce tahmin istenmez, kelime kart olarak gösterilir (Ayarlar > Sorular'dan geri açabilirsin)"
+              onClick={() => {
+                onPretestOff()
+                setGuess('skipped')
+              }}
+            >
+              Hep önce kartı göster
+            </button>
+          )}
         </div>
         <KeyLegend mode="guess" />
       </div>
