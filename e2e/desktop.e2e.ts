@@ -74,3 +74,18 @@ test('tablet width: one top bar row, the word list in two columns, the profile n
   const tops = await page.locator('.profile-stats .stat').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().top)))
   expect(new Set(tops).size).toBe(1)
 })
+
+test('tablet width: Today in two columns, the mission beside the numbers', async ({ page }) => {
+  await startWithSamples(page)
+  await page.setViewportSize({ width: 820, height: 900 })
+  await page.waitForTimeout(300)
+  const boxes = await page.evaluate(() => {
+    const r = (sel: string) => document.querySelector(sel)!.getBoundingClientRect()
+    return { main: r('.home-main'), side: r('.home-side') }
+  })
+  // Side by side: the side column starts where the main one ends, and both start at the same height.
+  expect(boxes.side.left).toBeGreaterThanOrEqual(boxes.main.right - 1)
+  expect(Math.abs(boxes.side.top - boxes.main.top)).toBeLessThan(40)
+  // And nothing runs past the screen.
+  expect(boxes.side.right).toBeLessThanOrEqual(820)
+})

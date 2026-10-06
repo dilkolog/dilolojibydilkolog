@@ -4139,3 +4139,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* After a miss: a small sprout that sways, and a kind line. */
 .return-note { display: flex; align-items: center; gap: 0.5rem; color: var(--ink-soft); font-weight: 500; }
 .return-note .plant { flex: none; }
+
+/* Today on a tablet (and a small laptop beside its menu): two columns, the day's mission on the left,
+   the numbers, quests and garden on the right, instead of one long column on a wide screen. */
+@container main (min-width: 40rem) and (max-width: 55.99rem) {
+  .home-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; column-gap: 1.25rem; }
+  .home-side { position: sticky; top: 1rem; }
+  .home-grid > .home-side > :first-child { margin-top: 0; }
+}
