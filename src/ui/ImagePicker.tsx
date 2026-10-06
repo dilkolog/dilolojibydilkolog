@@ -1,11 +1,15 @@
 import { type FormEvent, useCallback, useEffect, useRef, useState } from 'react'
-import { fetchImage, searchImages, type ImageResult } from '../data/imageSearch'
+import { fetchImage, searchImages } from '../data/imageSearch'
+import { suggestImages, type ImageSuggestion } from '../data/imageQueue'
+import type { TargetLanguage } from '../engine/types'
 import { imageFromClipboard, shrinkImage } from './imageTools'
 import { CloseIcon } from './icons'
 
 export interface PickedImage {
   blob: Blob
   credit?: string
+  /** 'wikidata': the picture Wikidata keeps for the thing; otherwise a search result or the learner's own. */
+  from?: 'wikidata' | 'search'
 }
 
 type Tab = 'search' | 'upload' | 'paste'
@@ -16,11 +20,14 @@ type Tab = 'search' | 'upload' | 'paste'
  */
 export function ImagePicker({
   initialQuery,
+  language,
   suggestions = [],
   onPick,
   onClose,
 }: {
   initialQuery: string
+  /** The word's language: with it, the picture Wikidata keeps for the thing comes first. */
+  language?: TargetLanguage
   /** Other queries worth one click, e.g. the Turkish meaning for abstract words. */
   suggestions?: string[]
   onPick: (img: PickedImage) => void
@@ -28,7 +35,7 @@ export function ImagePicker({
 }) {
   const [tab, setTab] = useState<Tab>('search')
   const [query, setQuery] = useState(initialQuery)
-  const [results, setResults] = useState<ImageResult[] | null>(null)
+  const [results, setResults] = useState<ImageSuggestion[] | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const searched = useRef(false)
@@ -39,7 +46,10 @@ export function ImagePicker({
     setBusy(true)
     setError('')
     try {
-      setResults(await searchImages(q.trim()))
+      // With the word's language, Wikidata's own picture for the thing comes first; the word itself is looked up
+      // in its language, the Turkish meaning chips in Turkish.
+      const found = language ? await suggestImages({ language: q.trim() === initialQuery.trim() ? language : ('tr' as TargetLanguage), lemma: q.trim() }, 18) : (await searchImages(q.trim())).map((r) => ({ ...r, from: 'search' as const }))
+      setResults(found)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Arama başarısız oldu.')
     } finally {
@@ -57,18 +67,18 @@ export function ImagePicker({
   }, [])
 
   const choose = useCallback(
-    async (blob: Blob, credit?: string) => {
+    async (blob: Blob, credit?: string, from?: PickedImage['from']) => {
       setBusy(true)
-      onPick({ blob: await shrinkImage(blob), credit })
+      onPick({ blob: await shrinkImage(blob), credit, from })
     },
     [onPick],
   )
 
-  const chooseResult = async (r: ImageResult) => {
+  const chooseResult = async (r: ImageSuggestion) => {
     setBusy(true)
     setError('')
     try {
-      await choose(await fetchImage(r.thumbUrl), r.credit)
+      await choose(await fetchImage(r.thumbUrl), r.credit, r.from)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Görsel alınamadı.')
       setBusy(false)
@@ -169,6 +179,7 @@ export function ImagePicker({
                       loading="lazy"
                       onError={(e) => ((e.currentTarget.parentElement as HTMLElement).style.display = 'none')}
                     />
+                    {r.from === 'wikidata' && <span className="iq-badge small">Önerilen</span>}
                   </button>
                 ))}
               </div>

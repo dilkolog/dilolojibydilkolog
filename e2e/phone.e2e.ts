@@ -622,6 +622,31 @@ test('an elided article stays attached to its word in the list: l\'an, not l\' a
   expect(dx).toBeLessThan(2)
 })
 
+test('the picture search on a word puts the picture Wikidata keeps for the thing first, and says so in the sources', async ({ page }) => {
+  test.setTimeout(90_000)
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64')
+  const cors = { 'access-control-allow-origin': '*' }
+  const json = (body: unknown) => ({ status: 200, headers: cors, contentType: 'application/json', body: JSON.stringify(body) })
+  await page.route('https://www.wikidata.org/**', (route) => {
+    const action = new URL(route.request().url()).searchParams.get('action')
+    return route.fulfill(json(action === 'wbsearchentities' ? { search: [{ id: 'Q1' }] } : { entities: { Q1: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Wd.jpg' } } }] } } } }))
+  })
+  await page.route('https://commons.wikimedia.org/**', (route) =>
+    route.fulfill(json({ query: { pages: { a: { title: 'File:Wd.jpg', index: 1, imageinfo: [{ thumburl: 'https://upload.wikimedia.org/wd.png', extmetadata: { Artist: { value: 'Léa' }, LicenseShortName: { value: 'CC BY-SA 4.0' } } }] } } } })),
+  )
+  await page.route('https://api.openverse.org/**', (route) => route.fulfill(json({ results: [{ id: '1', title: 'Another', license: 'cc0', thumbnail: 'https://upload.wikimedia.org/other.png' }] })))
+  await page.route('https://upload.wikimedia.org/**', (route) => route.fulfill({ status: 200, headers: cors, contentType: 'image/png', body: png }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  await page.getByRole('button', { name: 'Görsel ekle' }).click()
+  const first = page.locator('.image-cell').first()
+  await expect(first.locator('.iq-badge')).toHaveText('Önerilen')
+  await first.click()
+  await expect(page.locator('.word-image-sm')).toBeVisible()
+  await expect(page.locator('.source-list li', { hasText: 'Görsel' })).toContainText('Wikidata')
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')
