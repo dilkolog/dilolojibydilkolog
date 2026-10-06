@@ -9,7 +9,7 @@ import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
+import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -343,6 +343,8 @@ export function Home({
   onProfile,
   onStory,
   onGames,
+  formsDue = 0,
+  onForms,
   onMixed,
   mixedDue = 0,
   onExtraNew,
@@ -375,6 +377,9 @@ export function Home({
   onProfile: () => void
   onStory?: () => void
   onGames?: () => void
+  /** Verb forms due for review, and the way to review them. */
+  formsDue?: number
+  onForms?: () => void
   /** Reviews due in two or more languages: one interleaved session. */
   onMixed?: () => void
   mixedDue?: number
@@ -550,7 +555,7 @@ export function Home({
         {extra}
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed || (formsDue > 0 && onForms)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -584,6 +589,17 @@ export function Home({
                   <span>
                     <strong>Hikayenin yeni bölümü</strong>
                     <span className="small muted">Zorlandığın kelimelerle yazılır</span>
+                  </span>
+                </button>
+              )}
+              {formsDue > 0 && onForms && (
+                <button className="tile" onClick={onForms}>
+                  <span className="tile-icon">
+                    <TenseIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Fiil çekimi tekrarı</strong>
+                    <span className="small muted">{formsDue} çekim unutulmak üzere: kısa bir tur (yaklaşık 2 dk)</span>
                   </span>
                 </button>
               )}

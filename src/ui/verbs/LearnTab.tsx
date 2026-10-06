@@ -62,6 +62,9 @@ export function LearnTab({
   favorite,
   onTense,
   onFavorite,
+  inReview,
+  reviewable,
+  onAddReview,
   onPractice,
 }: {
   language: LabLanguage
@@ -73,6 +76,11 @@ export function LearnTab({
   favorite: boolean
   onTense: (t: Tense) => void
   onFavorite: () => void
+  /** How many of the verb's forms are in the review queue already. */
+  inReview: number
+  /** How many forms can be put in the queue (the tenses the questions use). */
+  reviewable: number
+  onAddReview: () => void
   onPractice: () => void
 }) {
   const [detail, setDetail] = useState(false)
@@ -172,9 +180,14 @@ export function LearnTab({
           <p className="small muted">
             {known}/{available.length} çekim denendi
           </p>
-          <button type="button" className="btn btn-sm" onClick={onPractice}>
-            <BookIcon size={16} /> Alıştırmaya geç
-          </button>
+          <span className="row gap-2">
+            <button type="button" className="btn btn-quiet btn-sm" onClick={onAddReview} disabled={inReview >= reviewable}>
+              {inReview >= reviewable ? 'Tekrar listende' : inReview ? 'Hepsini tekrar listeme ekle' : 'Tekrar listeme ekle'}
+            </button>
+            <button type="button" className="btn btn-sm" onClick={onPractice}>
+              <BookIcon size={16} /> Alıştırmaya geç
+            </button>
+          </span>
         </div>
       </section>
 

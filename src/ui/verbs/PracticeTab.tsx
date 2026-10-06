@@ -214,7 +214,7 @@ interface RoundProps {
 }
 
 /** Whether what was typed is a right answer for the person: the form alone or with its subject. */
-function judge(language: LabLanguage, verb: string, tense: Tense, person: number, typed: string): boolean {
+export function judge(language: LabLanguage, verb: string, tense: Tense, person: number, typed: string): boolean {
   const entry = verbEntry(language, verb)
   const accepted = answersFor(entry, tense, person)
   const others = labTensesOf(entry).flatMap((t) => conjugateTense(entry, t) ?? [])

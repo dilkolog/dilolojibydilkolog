@@ -3,6 +3,8 @@ import { checkTyped } from '../../engine/answerCheck'
 import { createRng, pick } from '../../engine/rng'
 import { answersFor, conjugateTense, labTensesOf, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
 import type { Level } from '../../engine/verbLab'
+import type { UserWordState, VocabularyEntry } from '../../engine/types'
+import { AspectGame } from '../games/AspectGame'
 import { db } from '../../data/instance'
 import { prefs } from '../prefs'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
@@ -95,19 +97,29 @@ export function TimedTab({
   language,
   byFrequency,
   levels,
+  vocabulary,
+  states,
   onAnswer,
 }: {
   language: LabLanguage
   byFrequency: readonly string[]
   levels: ReadonlyMap<string, Level>
+  vocabulary: readonly VocabularyEntry[]
+  states: readonly UserWordState[]
   onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string) => void
 }) {
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null)
+  const [aspect, setAspect] = useState(false)
   const [records, setRecords] = useState<Record<string, number>>({})
   useEffect(() => {
     void db.getRecords().then(setRecords)
   }, [difficulty])
   const key = (d: Difficulty) => `verbtimed:${language}:${d}`
+
+  if (aspect)
+    return (
+      <AspectGame language={language} vocabulary={vocabulary} states={states} best={records[`aspect:${language}`]} recordKey={`aspect:${language}`} onBack={() => setAspect(false)} />
+    )
 
   if (!difficulty)
     return (
@@ -139,6 +151,12 @@ export function TimedTab({
             )
           })}
         </div>
+        <button type="button" className="lab-aspect-card" onClick={() => setAspect(true)}>
+          <strong>
+            Hangi geçmiş zaman? <span className="muted" lang={language}>{language === 'fr' ? 'passé composé / imparfait' : 'indefinido / imperfecto'}</span>
+          </strong>
+          <span className="small muted">Cümledeki zaman ifadesine bakıp iki biçimden uyanı seç. En çok karıştırılan ayrım.{records[`aspect:${language}`] ? ` Rekor: %${records[`aspect:${language}`]}` : ''}</span>
+        </button>
         <p className="small muted center">{LIVES} can · Süre dolunca doğru cevap gösterilir · Üst üste doğrular puanı katlar</p>
       </div>
     )

@@ -52,6 +52,7 @@ import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { VerbLab, type LabTab } from './ui/verbs/VerbLab'
+import { useFormsDue } from './ui/verbs/labShared'
 import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
@@ -622,6 +623,7 @@ export default function App() {
     window.addEventListener('resize', place)
     return () => window.removeEventListener('resize', place)
   })
+  const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
   if (settings === undefined) return null
   if (settings === null) {
     return (
@@ -659,7 +661,8 @@ export default function App() {
       label: g.name,
       icon: <Glyph emoji={g.emoji} size={18} />,
       group: 'Oyunlar',
-      run: go({ name: 'games', game: g.id }),
+      // The conjugation games live in the verb lab now.
+      run: g.id === 'conjugation' || g.id === 'aspect' ? go({ name: 'verbs', tab: 'timed' }) : go({ name: 'games', game: g.id }),
     })),
     ...ALL_SCREENS.map((n) => ({ id: n.screen, label: n.label, icon: <n.icon size={18} />, group: 'Ekranlar', run: go({ name: n.screen } as Screen) })),
     ...TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage).map((l) => ({
@@ -939,9 +942,9 @@ export default function App() {
                 }
               />
             ) : screen.name === 'games' ? (
-              <GamesScreen key={screen.game} initialGame={screen.game} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
+              <GamesScreen key={screen.game} initialGame={screen.game} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'verbs' ? (
-              <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} />
+              <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
             ) : screen.name === 'account' ? (
@@ -1001,6 +1004,8 @@ export default function App() {
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
+                formsDue={formsDue}
+                onForms={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'review' }) : undefined}
                 onMixed={mixedDue.languages >= 2 ? startMixed : undefined}
                 mixedDue={mixedDue.count}
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}

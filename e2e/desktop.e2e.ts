@@ -181,3 +181,30 @@ test('verb lab: a verb the tables lack is said so, the shuffle picks another, fa
   await page.locator('.lab-fold-head', { hasText: 'Favorilerim' }).click()
   await expect(page.locator('.lab-fold', { hasText: 'Favorilerim' }).locator('.chip')).toHaveCount(1)
 })
+
+test('verb lab: forms put in the review queue come back on Today and in the review, and the garden shows them', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('button', { name: 'Tekrar listeme ekle' }).click()
+  await expect(main.getByRole('button', { name: 'Tekrar listende' })).toBeDisabled()
+  // Today offers the review.
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  await expect(page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' })).toContainText('6 çekim')
+  await page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' }).click()
+  // The review asks one person of each form; a wrong answer is corrected and goes to the garden as shaky.
+  for (let i = 0; i < 6; i++) {
+    await page.locator('.lab-review-run input.answer-input').fill('x')
+    await page.keyboard.press('Enter')
+    await expect(page.locator('.lab-review-run .accent-result')).toContainText('Doğrusu')
+    await page.keyboard.press('Enter')
+  }
+  await expect(main.getByRole('status')).toContainText('Tekrar bitti')
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await expect(main.locator('.lab-garden')).toContainText('parler')
+  // The old conjugation game card is gone from Games: one place for verbs.
+  await openScreen(page, 'Oyunlar')
+  await expect(page.locator('.game-card', { hasText: 'Çekim antrenmanı' })).toHaveCount(0)
+  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+})
