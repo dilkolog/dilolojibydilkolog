@@ -40,8 +40,8 @@ export function AspectGame({
   onBack,
 }: {
   language: 'fr' | 'es'
-  vocabulary: VocabularyEntry[]
-  states: UserWordState[]
+  vocabulary: readonly VocabularyEntry[]
+  states: readonly UserWordState[]
   best?: number
   recordKey: string
   onBack: () => void

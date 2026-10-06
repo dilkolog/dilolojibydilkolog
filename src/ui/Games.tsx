@@ -20,7 +20,6 @@ import { PairsGame } from './games/PairsGame'
 import { GenderGame } from './games/GenderGame'
 import { ACCENT_MIN_WORDS, AccentGame, accentedWords } from './games/AccentGame'
 import { SwipeCards } from './games/SwipeCards'
-import { ConjugationGame } from './games/ConjugationGame'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
@@ -28,7 +27,7 @@ import type { GameId } from './gameList'
 
 type Game = GameId | null
 
-export function GamesScreen(p: Props & { initialGame?: Game }) {
+export function GamesScreen(p: Props & { initialGame?: Game; /** Opens the verb lab (the conjugation practice lives there). */ onOpenVerbs?: () => void }) {
   const [game, setGame] = useState<Game>(p.initialGame ?? null)
   const [dueSentenceCount, setDueSentenceCount] = useState(0)
   useEffect(() => {
@@ -49,18 +48,6 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
   // The game being played, in a stage that (on phones) puts its answer buttons within thumb reach.
   const active = (() => {
     if (game === 'accent') return <AccentGame {...p} best={records[`accent:${p.language}`]} recordKey={`accent:${p.language}`} onExit={() => setGame(null)} />
-    if ((game === 'conjugation' || game === 'aspect') && p.language !== 'en')
-      return (
-        <ConjugationGame
-          {...p}
-          language={p.language}
-          best={records[`conj:${p.language}`]}
-          bestAspect={records[`aspect:${p.language}`]}
-          recordKey={`conj:${p.language}`}
-          startWithAspect={game === 'aspect'}
-          onExit={() => setGame(null)}
-        />
-      )
     if (game === 'match') return <MatchGame {...p} best={records[matchKey]} recordKey={matchKey} onExit={() => setGame(null)} />
     if (game === 'gender' && p.language !== 'en')
       return <GenderGame {...p} language={p.language} best={records[`gender:${p.language}`]} recordKey={`gender:${p.language}`} onExit={() => setGame(null)} />
@@ -123,13 +110,13 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
       tone: 'grammar',
       cards: [
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
-        { id: 'conjugation', emoji: '🕰️', name: 'Çekim antrenmanı', text: `Fiilleri zamanlarıyla çek: ${p.language === 'fr' ? 'passé composé, imparfait, futur, subjonctif' : 'indefinido, imperfecto, futuro, subjuntivo'} ve dahası.`, status: record(`conj:${p.language}`, (v) => `%${v}`) },
         {
-          id: 'aspect',
-          emoji: '⏳',
-          name: 'Hangi geçmiş zaman?',
-          text: `${p.language === 'fr' ? 'Passé composé mı, imparfait mı' : 'Indefinido mu, imperfecto mu'}? Cümledeki zaman ifadesi söyler.`,
-          status: record(`aspect:${p.language}`, (v) => `%${v}`),
+          id: 'verbs',
+          emoji: '🕰️',
+          name: 'Fiil laboratuvarı',
+          text: 'Her fiili her zamanda çek: öğren, alıştır, zamana karşı dene, hangi geçmiş zaman olduğunu bul.',
+          status: 'Pratik → Fiiller',
+          open: p.onOpenVerbs,
         },
         { id: 'gender', emoji: '⚖️', name: 'Cinsiyet kuralları', text: 'Kelimenin sonu artikelini söyler (-tion → la, -age → le).', status: record(`gender:${p.language}`, (v) => `%${v}`) },
         { id: 'accent', emoji: '✍️', name: 'Aksan antrenmanı', text: 'Sadece aksanlı kelimelerin: harfleri görürsün, aksanlarıyla yazarsın.', status: accentCount < ACCENT_MIN_WORDS ? `En az ${ACCENT_MIN_WORDS} aksanlı kelime gerekiyor (${accentCount})` : record(`accent:${p.language}`, (v) => `%${v}`), disabled: accentCount < ACCENT_MIN_WORDS },
@@ -170,7 +157,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
             <h2 className="game-suggest-title">{suggestion.card.name}</h2>
             <p className="small muted">{suggestion.why}</p>
           </div>
-          <button className="btn" onClick={() => setGame(suggestion.card.id)}>
+          <button className="btn" onClick={() => (suggestion.card.open ? suggestion.card.open() : setGame(suggestion.card.id as Game))}>
             <PlayIcon size={16} /> Oyna
           </button>
         </section>
@@ -180,7 +167,7 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
           <h2 className="section-title game-group-title">{g.title}</h2>
           <div className="game-cards">
             {g.cards.map((c) => (
-              <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => setGame(c.id)}>
+              <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => (c.open ? c.open() : setGame(c.id as Game))}>
                 <span className="game-emoji" aria-hidden>
                   <Glyph emoji={c.emoji} size={26} />
                 </span>
@@ -205,8 +192,10 @@ export function GamesScreen(p: Props & { initialGame?: Game }) {
 }
 
 interface GameCard {
-  id: Exclude<Game, null>
+  id: Exclude<Game, null> | 'verbs'
   emoji: string
+  /** Opens somewhere else instead of starting a game here. */
+  open?: () => void
   name: string
   /** What you do, in one line. */
   text: string

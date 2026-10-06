@@ -181,3 +181,95 @@ test('verb lab: a verb the tables lack is said so, the shuffle picks another, fa
   await page.locator('.lab-fold-head', { hasText: 'Favorilerim' }).click()
   await expect(page.locator('.lab-fold', { hasText: 'Favorilerim' }).locator('.chip')).toHaveCount(1)
 })
+
+test('verb lab: forms put in the review queue come back on Today and in the review, and the garden shows them', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('button', { name: 'Tekrar listeme ekle' }).click()
+  await expect(main.getByRole('button', { name: 'Tekrar listende' })).toBeDisabled()
+  // Today offers the review.
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  await expect(page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' })).toContainText('6 çekim')
+  await page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' }).click()
+  // The review asks one person of each form; a wrong answer is corrected and goes to the garden as shaky.
+  for (let i = 0; i < 6; i++) {
+    await page.locator('.lab-review-run input.answer-input').fill('x')
+    await page.keyboard.press('Enter')
+    await expect(page.locator('.lab-review-run .accent-result')).toContainText('Doğrusu')
+    await page.keyboard.press('Enter')
+  }
+  await expect(main.getByRole('status')).toContainText('Tekrar bitti')
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await expect(main.locator('.lab-garden')).toContainText('parler')
+  // The old conjugation game card is gone from Games: one place for verbs.
+  await openScreen(page, 'Oyunlar')
+  await expect(page.locator('.game-card', { hasText: 'Çekim antrenmanı' })).toHaveCount(0)
+  await page.locator('.game-card', { hasText: 'Fiil laboratuvarı' }).click()
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+})
+
+test('verb lab: the Turkish bridge, the verb families and the find-the-tense quiz', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  // The tense seen from Turkish, with where it misleads.
+  await expect(main.locator('.lab-bridge')).toContainText('Türkçedeki karşılığı')
+  await expect(main.locator('.lab-bridge')).toContainText('-iyor')
+  // A verb shows its family; it opens the patterns tab on that family.
+  await expect(main.locator('.lab-families')).toContainText('-er fiilleri')
+  await main.locator('.lab-families .chip', { hasText: '-er fiilleri' }).click()
+  await expect(main.locator('.lab-family.is-open')).toContainText('kök + -e, -es')
+  // Spelling-change families: a drill asks one person for a handful of their verbs.
+  await main.locator('.lab-family-head', { hasText: '-cer: ç' }).click()
+  await main.getByRole('button', { name: 'Bu kalıpla çalış' }).click()
+  await page.locator('.lab-drill input.answer-input').fill('x')
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.lab-drill .accent-result')).toContainText('çons')
+  await main.getByRole('button', { name: 'Çık' }).click()
+  await main.getByRole('button', { name: 'Kalıbı tanı' }).click()
+  await expect(main.locator('.lab-find-card')).toHaveCount(6)
+  await main.locator('.lab-find-card').first().click()
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.getByRole('status')).toContainText('/ 6 doğru')
+  // Think in Turkish: a Turkish sentence, choose its tense.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Zamanı bul' }).click()
+  await expect(main.locator('.lab-tensequiz .prompt-text')).toBeVisible()
+  await expect(main.locator('.lab-tensequiz .lab-option')).toHaveCount(4)
+  await main.locator('.lab-tensequiz .lab-option').first().click()
+  await expect(main.locator('.lab-tensequiz .accent-result')).toContainText('Türkçede')
+  expect(await overflow(page)).toEqual([])
+})
+
+test('verb lab: wrong answers are named, they show in the weak-spot map, and "which verb?" traces a form back', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Tek tek' }).click()
+  // The form of another person is named as such: "parles" for a question that asks another person.
+  for (let i = 0; i < 6; i++) {
+    const prompt = await main.locator('.lab-single .prompt-text').textContent()
+    // Any other person's form: je → parles, tu → parle (never the right one for the person asked).
+    await main.locator('.lab-single input.answer-input').fill(/^je\b/.test(prompt ?? '') ? 'parles' : 'parlons')
+    await page.keyboard.press('Enter')
+    await expect(main.locator('.lab-diagnosis')).toContainText(/Kişi karıştırma|Zaman karıştırma|Yazım|Düzensiz|Diğer|Aksan/)
+    await page.keyboard.press('Enter')
+    if (await main.locator('.lab-result').count()) break
+  }
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await expect(main.locator('.lab-weak')).toContainText('Zayıf noktaların')
+  await expect(main.locator('.lab-heat')).toBeVisible()
+  await expect(main.locator('.lab-kinds')).toContainText('%')
+  // Which verb? A conjugated word to trace back: the verb, then the tense.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Hangi fiil?' }).click()
+  await expect(main.locator('.lab-reverse .prompt-text')).toBeVisible()
+  await main.locator('.lab-reverse input').fill('zzz')
+  await page.keyboard.press('Enter')
+  await expect(main.locator('.lab-reverse')).toContainText('Fiil:')
+  await main.locator('.lab-reverse .lab-option').first().click()
+  await expect(main.locator('.lab-reverse .accent-result')).toContainText('=')
+  expect(await overflow(page)).toEqual([])
+})

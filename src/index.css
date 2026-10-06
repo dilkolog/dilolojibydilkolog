@@ -4647,3 +4647,54 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .lab-side, .lab-tabs, .lab-tools, .lab-progress, .page-header, .hub-tabs { display: none !important; }
 }
 @media (max-width: 30rem) { .lab-answer-row { grid-template-columns: minmax(0, 1fr) auto; } .lab-answer-row .lab-subject { grid-column: 1 / -1; } .lab-answer-row .lab-right { grid-column: 1 / -1; } .lab-match { gap: 0.5rem; } .lab-match-btn { padding-inline: 0.625rem; font-size: var(--t-base, 1rem); } }
+
+/* Verb lab: garden, review, the aspect card */
+.lab-garden-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr)); }
+.lab-garden-plot { display: grid; justify-items: center; gap: 0.125rem; width: 100%; padding: 0.625rem 0.375rem; border: 0; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); color: var(--ink); font: inherit; cursor: pointer; }
+.lab-garden-plot:hover, .lab-garden-plot.is-current { box-shadow: inset 0 0 0 2px var(--lang); }
+.lab-garden-plot strong { font-family: var(--serif); font-size: var(--t-base, 1rem); overflow-wrap: anywhere; text-align: center; }
+.lab-aspect-card { display: grid; gap: 0.25rem; padding: 1rem 1.25rem; border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.lab-aspect-card:hover { border-color: var(--lang); }
+.lab-review-empty { padding: 1.5rem 0; }
+.lab-tab .lab-count { margin-left: 0.375rem; }
+
+/* Verb lab: Turkish bridge, families */
+.lab-bridge { display: grid; gap: 0.375rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--lang-soft); }
+.lab-bridge p { margin: 0; }
+.lab-bridge-kicker { font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lang-text); }
+.lab-bridge-trap { color: var(--ink); font-size: var(--t-sm); }
+.lab-bridge-line { margin: 0; }
+.lab-families { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin: 0; }
+.lab-shape { display: inline-flex; gap: 0.25rem; flex-wrap: wrap; font-size: var(--t-sm); }
+.lab-shape span { min-width: 2.75rem; padding: 0.25rem 0.5rem; border-radius: var(--r-sm); background: var(--surface-2); box-shadow: var(--inset-ring); text-align: center; color: var(--ink-soft); }
+.lab-shape span.is-change { background: var(--near-soft); color: var(--near-text); font-weight: 700; box-shadow: inset 0 0 0 1px var(--near); }
+.lab-family-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.lab-family { border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.lab-family.is-open { box-shadow: inset 0 0 0 2px var(--lang); }
+.lab-family-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 0.875rem 1rem; border: 0; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.lab-family-body { padding: 0 1rem 1rem; }
+.lab-family-body p { margin: 0; }
+.lab-family-examples { margin: 0; padding-left: 1.25rem; font-family: var(--serif); font-size: var(--t-lg); }
+.lab-find-grid { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr)); }
+.lab-find-card { display: grid; gap: 0.125rem; padding: 0.875rem 1rem; border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); box-shadow: 0 3px 0 var(--rule); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.lab-find-card strong { font-family: var(--serif); font-size: var(--t-lg); }
+.lab-find-card[aria-pressed='true'] { border-color: var(--lang); background: var(--lang-soft); }
+.lab-find-card.is-member { border-color: var(--ok); background: var(--ok-soft); }
+.lab-find-card.is-other[aria-pressed='true'] { border-color: var(--bad); background: var(--bad-soft); }
+.lab-target { margin: 0; font-family: var(--serif); font-size: var(--t-lg); }
+
+/* Verb lab: weak spots */
+.lab-diagnosis { margin: 0; color: var(--ink-soft); }
+.lab-heat-wrap { overflow-x: auto; }
+.lab-heat { border-collapse: separate; border-spacing: 0.25rem; width: 100%; font-size: var(--t-sm); }
+.lab-heat th { font-weight: 600; color: var(--ink-soft); text-align: center; white-space: nowrap; padding: 0.25rem 0.375rem; }
+.lab-heat th[scope='row'] { text-align: left; color: var(--ink); }
+.lab-heat td { min-width: 2.75rem; padding: 0.5rem 0.25rem; border-radius: var(--r-sm); text-align: center; font-variant-numeric: tabular-nums; background: var(--surface-2); color: var(--ink-soft); box-shadow: var(--inset-ring); }
+.lab-heat td.is-good { background: var(--ok-soft); color: var(--ok-text); }
+.lab-heat td.is-some { background: var(--near-soft); color: var(--near-text); }
+.lab-heat td.is-many { background: color-mix(in srgb, var(--bad) 22%, var(--surface)); color: var(--ink); }
+.lab-heat td.is-bad { background: var(--bad-soft); color: var(--bad-text); font-weight: 700; }
+.lab-weak-worst { margin: 0; }
+.lab-kinds { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
+.lab-kinds li { display: grid; grid-template-columns: 10rem 1fr 3rem; align-items: center; gap: 0.75rem; }
+@media (max-width: 30rem) { .lab-kinds li { grid-template-columns: 7rem 1fr 2.5rem; } }

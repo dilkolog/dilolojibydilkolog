@@ -46,7 +46,7 @@ export function TenseWeakness({ language, vocabulary, onPractice }: { language: 
         <h2 className="section-title">Çekim: zamanlara göre</h2>
         {onPractice && (
           <button className="btn btn-sm btn-quiet" onClick={onPractice}>
-            <PlayIcon size={14} /> Çekim antrenmanı
+            <PlayIcon size={14} /> Fiil laboratuvarı
           </button>
         )}
       </header>

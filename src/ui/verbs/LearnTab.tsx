@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { TENSE_GUIDE } from '../../engine/tenseGuide'
+import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
+import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
 import { irregularForms, tenseSentence, verbParts, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
 import { masteryLevel, labKey, verbMastery, type LabData } from '../../engine/labProgress'
@@ -62,6 +63,11 @@ export function LearnTab({
   favorite,
   onTense,
   onFavorite,
+  inReview,
+  reviewable,
+  families,
+  onFamily,
+  onAddReview,
   onPractice,
 }: {
   language: LabLanguage
@@ -73,6 +79,14 @@ export function LearnTab({
   favorite: boolean
   onTense: (t: Tense) => void
   onFavorite: () => void
+  /** How many of the verb's forms are in the review queue already. */
+  inReview: number
+  /** How many forms can be put in the queue (the tenses the questions use). */
+  reviewable: number
+  /** The families the verb belongs to, and the way to open one. */
+  families: FamilyId[]
+  onFamily: (id: FamilyId) => void
+  onAddReview: () => void
   onPractice: () => void
 }) {
   const [detail, setDetail] = useState(false)
@@ -121,6 +135,17 @@ export function LearnTab({
           </button>
         </div>
       </div>
+
+      {families.length > 0 && (
+        <p className="lab-families small">
+          <span className="muted">Kalıp:</span>
+          {families.map((f) => (
+            <button key={f} type="button" className="chip chip-sm" onClick={() => onFamily(f)} title={FAMILIES[f].rule}>
+              {FAMILIES[f].name}
+            </button>
+          ))}
+        </p>
+      )}
 
       {parts && (
         <p className="lab-parts small muted" lang={language}>
@@ -172,9 +197,14 @@ export function LearnTab({
           <p className="small muted">
             {known}/{available.length} çekim denendi
           </p>
-          <button type="button" className="btn btn-sm" onClick={onPractice}>
-            <BookIcon size={16} /> Alıştırmaya geç
-          </button>
+          <span className="row gap-2">
+            <button type="button" className="btn btn-quiet btn-sm" onClick={onAddReview} disabled={inReview >= reviewable}>
+              {inReview >= reviewable ? 'Tekrar listende' : inReview ? 'Hepsini tekrar listeme ekle' : 'Tekrar listeme ekle'}
+            </button>
+            <button type="button" className="btn btn-sm" onClick={onPractice}>
+              <BookIcon size={16} /> Alıştırmaya geç
+            </button>
+          </span>
         </div>
       </section>
 
@@ -186,6 +216,14 @@ export function LearnTab({
             </strong>{' '}
             {guide.short}
           </p>
+          <section className="lab-bridge" aria-label="Türkçedeki karşılığı">
+            <span className="lab-bridge-kicker">Türkçedeki karşılığı</span>
+            <p>
+              <strong>{TENSE_BRIDGE[tense].suffix}</strong>
+            </p>
+            <p>{TENSE_BRIDGE[tense].note}</p>
+            {TENSE_BRIDGE[tense].trap && <p className="lab-bridge-trap">Dikkat: {TENSE_BRIDGE[tense].trap}</p>}
+          </section>
           <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
           {odd.some(Boolean) && (
             <p className="small muted">

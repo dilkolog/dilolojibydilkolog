@@ -290,3 +290,124 @@ export function formFeedback(entry: Pick<VocabularyEntry, 'language' | 'lemma' |
   const person = [0, 1, 2, 3, 4, 5].find((p) => answersFor(entry, asked, p).some((a) => normalize(a).toLocaleLowerCase(entry.language) === f))
   return person === undefined ? undefined : `Zaman doğru, kişi değil: “${typed}” ${subjectLabel(entry.language, asked, person).split(' / ')[0]} için.`
 }
+
+/**
+ * A tense seen from Turkish: which Turkish tense or suffix it answers to, and where the two do not
+ * line up. A learner thinks in Turkish first; saying where the bridge is and where it breaks is
+ * what makes a tense usable rather than only memorised.
+ */
+export interface TenseBridge {
+  /** The Turkish tense or suffix it is closest to. */
+  suffix: string
+  /** How the two compare, with a Turkish example. */
+  note: string
+  /** Where the comparison misleads, if it does. */
+  trap?: string
+}
+
+const PRESENT_BRIDGE: TenseBridge = {
+  suffix: '-iyor (şimdiki) ve -ir/-er (geniş)',
+  note: 'Türkçede “yapıyorum” ile “yaparım” ayrı zamanlardır; burada ikisi de tek biçimle söylenir. “Okuyorum” da “okurum” da aynı çekim.',
+  trap: 'Yakın gelecek de bununla söylenir: “yarın giderim” = yarın gidiyorum/gidiyoruz.',
+}
+
+export const TENSE_BRIDGE: Record<Tense, TenseBridge> = {
+  present: PRESENT_BRIDGE,
+  presente: PRESENT_BRIDGE,
+  'passe-compose': {
+    suffix: '-di (görülen geçmiş)',
+    note: '“Yedim, gittim, aradım”: bitmiş, sınırı belli olay. Konuşmada Fransızcanın ana geçmiş zamanı.',
+    trap: 'Yardımcı fiil (avoir/être) + ortaç iki parçadır; Türkçede tek kelime olduğu için yardımcı fiili atlamak sık hata.',
+  },
+  imparfait: {
+    suffix: '-iyordu / -erdi (hikâye ve alışkanlık geçmişi)',
+    note: '“Yağmur yağıyordu”, “Her yaz denize giderdik”: süren durum ve alışkanlık. “Yağmur yağdı” (olup bitti) ise passé composé.',
+    trap: 'Türkçede “-di” ve “-iyordu” ayrımını sen zaten yapıyorsun: aynı ayrım burada passé composé / imparfait.',
+  },
+  futur: {
+    suffix: '-ecek',
+    note: '“Yarın gelecek, yapacağım”: Türkçedeki gelecek zamanla birebir.',
+    trap: 'Konuşmada çoğu zaman “aller + mastar” (yakın gelecek) tercih edilir: “je vais manger” = yiyeceğim.',
+  },
+  conditionnel: {
+    suffix: '-erdi / -ir miydi (nazik istek, varsayım)',
+    note: '“İsterdim, gelirdi, yapar mısınız?”: nazik rica ve koşulun sonucu. “Bir kahve isterdim” = je voudrais un café.',
+    trap: '“Si” ile koşul kurarken “si” cümlesinde conditionnel olmaz: “si j’avais” (imparfait), sonuçta conditionnel.',
+  },
+  subjonctif: {
+    suffix: '-sin / -mesi (istek, gereklilik)',
+    note: '“Gelmeni istiyorum”, “gelmesi gerek”: iki cümleyi “que” bağlar ve ikinci fiil subjonctif olur. Türkçede bunu ad-fiil (-mA) ve istek eki (-sIn) üstlenir.',
+    trap: 'Özneler aynıysa subjonctif yok, mastar kullanılır: “je veux partir”; özne değişince “je veux que tu partes”.',
+  },
+  'plus-que-parfait': {
+    suffix: '-miştim (geçmişte geçmiş)',
+    note: '“Geldiğimde film başlamıştı”: geçmişteki başka bir olaydan önce bitmiş olan.',
+  },
+  'futur-anterieur': {
+    suffix: '-miş olacak',
+    note: '“Yarın öğlene kadar bitirmiş olacağım”: gelecekteki bir andan önce tamamlanmış olacak.',
+    trap: 'Türkçede “bitirdiğinde ara” dersin; Fransızcada “quand/dès que” sonrası bitmiş eylem için futur antérieur gelir: Quand tu auras fini, appelle-moi.',
+  },
+  'conditionnel-passe': {
+    suffix: '-miş olurdu / -saydı … -erdi',
+    note: '“Bilseydim gelirdim”: gerçekleşmemiş geçmişin sonucu ve pişmanlık: “j’aurais dû” = yapmalıydım.',
+  },
+  'subjonctif-passe': {
+    suffix: '-miş olması',
+    note: '“Başarmış olmana sevindim”: istek/duygu ifadesinden sonra tamamlanmış eylem.',
+  },
+  preterito: {
+    suffix: '-di (görülen geçmiş)',
+    note: '“Yedim, gittim, geldi”: bitmiş, belli bir anda olan olay. En çok kullanacağın geçmiş zaman.',
+    trap: 'Türkçedeki “-miş” (öğrenilen geçmiş) için ayrı bir İspanyolca zaman yok; “dicen que vino” gibi cümleyle söylenir.',
+  },
+  imperfecto: {
+    suffix: '-iyordu / -erdi (arka plan, alışkanlık)',
+    note: '“Yağmur yağıyordu”, “Çocukken futbol oynardım”: süren durum ve alışkanlık.',
+    trap: '“Dün yağmur yağdı” → indefinido, “yağmur yağıyordu” → imperfecto: Türkçedeki ayrımı aynen kullan.',
+  },
+  perfecto: {
+    suffix: '-di / -miş (bugünle bağlı geçmiş)',
+    note: '“Bugün yedim, hiç gitmedim, bu hafta çalıştım”: henüz bitmemiş bir zaman diliminde olan şeyler ve yaşanmışlık.',
+    trap: 'Latin Amerika’da konuşmada çoğu zaman indefinido tercih edilir; İspanya’da bugünle ilgili olaylar için perfecto.',
+  },
+  pluscuamperfecto: {
+    suffix: '-miştim (geçmişte geçmiş)',
+    note: '“Geldiğimde film başlamıştı”: geçmişteki başka bir olaydan önce bitmiş.',
+  },
+  futuro: {
+    suffix: '-ecek / -ir (tahmin)',
+    note: '“Yarın gelecek, yapacağım”: gelecek zaman. Aynı zamanda tahmin: “serán las dos” = saat ikidir herhalde.',
+    trap: 'Konuşmada “ir a + mastar” yaygın: “voy a comer” = yiyeceğim.',
+  },
+  'futuro-perfecto': {
+    suffix: '-miş olacak / -miş olmalı',
+    note: '“Yarına kadar bitirmiş olacağım” ve tahmin: “ya habrán llegado” = çoktan varmışlardır.',
+  },
+  condicional: {
+    suffix: '-erdi / -ir miydi (nazik istek, varsayım)',
+    note: '“İsterdim, gelirdi, yapar mısın?”: nazik rica ve koşulun sonucu: “me gustaría un café” = bir kahve isterdim.',
+    trap: '“Si” cümlesinde condicional olmaz: “si tuviera tiempo” (subjuntivo imperfecto), sonuçta condicional: “viajaría”.',
+  },
+  'condicional-perfecto': {
+    suffix: '-miş olurdu / -saydı … -erdi',
+    note: '“Bilseydim gelirdim”: gerçekleşmemiş geçmişin sonucu ve pişmanlık.',
+  },
+  subjuntivo: {
+    suffix: '-sin / -mesi / -e (istek, umut)',
+    note: '“Gelmeni istiyorum”, “umarım gelir”: “que” ile bağlanan ikinci fiil subjuntivo olur. Türkçedeki ad-fiil (-mA) ve istek eki (-A, -sIn) işini yapar.',
+    trap: 'Özneler aynıysa subjuntivo yok, mastar kullanılır: “quiero salir”; özne değişince “quiero que salgas”.',
+  },
+  'subjuntivo-imperfecto': {
+    suffix: '-sa / -saydı (koşul), -mesini istiyordum',
+    note: '“Vaktim olsa daha çok gezerdim”, “gelmeni istiyordum”: geçmişteki istek ve gerçek dışı koşul. “Si” cümlesinde hep bu zaman gelir.',
+  },
+  'subjuntivo-perfecto': {
+    suffix: '-miş olması / -miştir umarım',
+    note: '“Umarım iyi varmışsındır”, “geldiklerine sevindim”: tamamlanmış eylem + istek/duygu.',
+  },
+  'subjuntivo-pluscuamperfecto': {
+    suffix: '-saydı (bilseydim)',
+    note: '“Bilseydim seni arardım”, “keşke daha çok çalışsaydım”: geçmişte gerçekleşmemiş koşul ve pişmanlık.',
+  },
+}

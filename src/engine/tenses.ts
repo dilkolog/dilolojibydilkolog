@@ -539,6 +539,8 @@ export interface VerbParts {
   reflexive: boolean
   /** Some present form breaks the regular pattern. */
   irregular: boolean
+  /** The auxiliary of the compound tenses (French: être for movement verbs and the reflexive ones). */
+  auxiliary?: 'avoir' | 'être'
 }
 
 /** Spanish gerunds that the preterite does not reveal. */
@@ -579,6 +581,7 @@ export function verbParts(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'p
       participle: typeof row.pp === 'string' ? row.pp : row.pp[0],
       reflexive,
       irregular,
+      auxiliary: reflexive || row.aux === 'e' ? 'être' : 'avoir',
     }
   }
   const row = DATA.es.get(key)

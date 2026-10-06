@@ -63,6 +63,7 @@ export function ReadingScreen({
   onChanged,
   onOpen,
   onStudy,
+  onOpenLab,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -71,6 +72,8 @@ export function ReadingScreen({
   onChanged: () => void
   onOpen: (entryId: string) => void
   onStudy?: (entries: VocabularyEntry[]) => void
+  /** Open a verb form's verb and tense in the verb lab. */
+  onOpenLab?: (verb: string, tense: string) => void
 }) {
   const [library, setLibrary] = useState<ReadingText[] | null>(null)
   const [current, setCurrent] = useState<ReadingText | null>(null)
@@ -772,6 +775,14 @@ export function ReadingScreen({
                         {' '}
                         <button className="link small" onClick={() => onOpen(own.id)}>
                           kartı aç
+                        </button>
+                      </>
+                    )}
+                    {onOpenLab && (
+                      <>
+                        {' '}
+                        <button className="link small" onClick={() => onOpenLab(a.lemma, a.tense)}>
+                          fiil laboratuvarında aç
                         </button>
                       </>
                     )}

@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { db } from '../../data/instance'
 import { loadFrequency } from '../../data/frequency'
-import { emptyLab, type LabData } from '../../engine/labProgress'
+import { adoptCards, dueItems, emptyLab, type LabData } from '../../engine/labProgress'
+import type { Scheduler } from '../../engine/scheduler'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { LAB_TENSES, tenseVerbs, type Tense } from '../../engine/tenses'
 import { verbLevels, type Level } from '../../engine/verbLab'
@@ -43,15 +44,17 @@ export function ownEntry(vocabulary: readonly VocabularyEntry[], language: LabLa
 }
 
 /** The lab's saved data (favourites, recent verbs, practice), with a setter that saves as it updates. */
-export function useLab(language: LabLanguage) {
+export function useLab(language: LabLanguage, scheduler: Scheduler) {
   const [lab, setLab] = useState<LabData>(emptyLab)
   const [ready, setReady] = useState(false)
   const ref = useRef<LabData>(lab)
   useEffect(() => {
     let live = true
     setReady(false)
-    void db.getLab(language).then((l) => {
+    void db.getLab(language).then((saved) => {
       if (!live) return
+      // Records from before the review queue existed get a card.
+      const l = adoptCards(saved, scheduler, new Date())
       ref.current = l
       setLab(l)
       setReady(true)
@@ -59,7 +62,7 @@ export function useLab(language: LabLanguage) {
     return () => {
       live = false
     }
-  }, [language])
+  }, [language, scheduler])
   const update = useCallback(
     (change: (l: LabData) => LabData) => {
       ref.current = change(ref.current)
@@ -132,4 +135,38 @@ export function splitEndings(forms: readonly string[], compound: boolean): Seg[]
       { text: pp.slice(ppCut), kind: 'pp' as const },
     ]
   })
+}
+
+/** The verbs every learner needs first, for when the list has few verbs of its own. */
+export const COMMON: Record<'fr' | 'es', [string, string][]> = {
+  fr: [
+    ['être', 'olmak'], ['avoir', 'sahip olmak'], ['aller', 'gitmek'], ['faire', 'yapmak'], ['dire', 'söylemek'], ['pouvoir', '-ebilmek'],
+    ['vouloir', 'istemek'], ['savoir', 'bilmek'], ['venir', 'gelmek'], ['devoir', 'zorunda olmak'], ['prendre', 'almak'], ['voir', 'görmek'],
+    ['donner', 'vermek'], ['parler', 'konuşmak'], ['mettre', 'koymak'], ['partir', 'ayrılmak'], ['trouver', 'bulmak'], ['croire', 'inanmak'],
+    ['finir', 'bitirmek'], ['comprendre', 'anlamak'],
+  ],
+  es: [
+    ['ser', 'olmak'], ['estar', 'bulunmak, olmak'], ['tener', 'sahip olmak'], ['hacer', 'yapmak'], ['ir', 'gitmek'], ['poder', '-ebilmek'],
+    ['decir', 'söylemek'], ['dar', 'vermek'], ['ver', 'görmek'], ['saber', 'bilmek'], ['querer', 'istemek'], ['llegar', 'varmak'],
+    ['pasar', 'geçmek'], ['poner', 'koymak'], ['salir', 'çıkmak'], ['venir', 'gelmek'], ['hablar', 'konuşmak'], ['comer', 'yemek'],
+    ['vivir', 'yaşamak'], ['pedir', 'istemek, rica etmek'],
+  ],
+}
+
+
+/** How many verb forms are due for review in a language (0 for English): for the Today screen. Reads again when `key` changes. */
+export function useFormsDue(language: TargetLanguage, key: unknown): number {
+  const [due, setDue] = useState(0)
+  useEffect(() => {
+    if (language === 'en') {
+      setDue(0)
+      return
+    }
+    let live = true
+    void db.getLab(language).then((lab) => live && setDue(dueItems(lab, new Date()).length))
+    return () => {
+      live = false
+    }
+  }, [language, key])
+  return due
 }

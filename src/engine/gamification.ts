@@ -184,6 +184,9 @@ export interface GameStats extends ActivityStats {
   journalEntries: number
   /** Mistakes put right in the Mistake Bank. */
   mistakesFixed: number
+  /** Verb forms practised in the verb lab, and those known to the full (60 points). */
+  formsPracticed: number
+  formsMastered: number
   totalXp: number
 }
 
@@ -193,7 +196,7 @@ export const emptyStats: GameStats = {
   articleCorrect: 0, conjugationCorrect: 0, fastCorrect: 0,
   wordsIntroduced: 0, mastered: 0, totalAnswers: 0, longestStreak: 0, perfectDays: 0, maxCombo: 0, languagesStudied: 0, wordsWithPicture: 0,
   wordsWithRecording: 0, freeSentencesCorrect: 0, level: 1, bossesDefeated: 0, challengesDone: 0, perfectWeeks: 0,
-  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, totalXp: 0,
+  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, formsPracticed: 0, formsMastered: 0, totalXp: 0,
 }
 
 export interface Achievement {
@@ -270,6 +273,9 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'speak-25', icon: '🎙️', title: 'Konuşkan', description: '25 konuşma sorusunu doğru cevapla', goal: 25, stat: 'speakCorrect' },
   { id: 'article-50', icon: '🏷️', title: 'Artikel ustası', description: '50 artikel sorusunu doğru cevapla', goal: 50, stat: 'articleCorrect' },
   { id: 'conj-50', icon: '🕰️', title: 'Fiil ustası', description: '50 fiil çekimini doğru yaz', goal: 50, stat: 'conjugationCorrect' },
+  { id: 'forms-25', icon: '🌿', title: 'Fiil bahçıvanı', description: 'Fiil laboratuvarında 25 çekimi çalış', goal: 25, stat: 'formsPracticed' },
+  { id: 'forms-10-master', icon: '🌻', title: 'Çekim ustası', description: 'Fiil laboratuvarında 10 çekimde tam ustalığa ulaş (60/60)', goal: 10, stat: 'formsMastered' },
+  { id: 'forms-50-master', icon: '🌳', title: 'Fiil bahçesi', description: 'Fiil laboratuvarında 50 çekimde tam ustalığa ulaş', goal: 50, stat: 'formsMastered' },
   { id: 'fast-100', icon: '🏎️', title: 'Şimşek', description: '100 soruyu 2 saniyeden kısa sürede, ipucusuz ve emin doğru cevapla', goal: 100, stat: 'fastCorrect' },
   { id: 'fixed-10', icon: '🧩', title: 'Hatadan öğrenen', description: 'Hata bankasından 10 hatayı düzelt', goal: 10, stat: 'mistakesFixed' },
   { id: 'fixed-50', icon: '🧠', title: 'Hata avcısı', description: 'Hata bankasından 50 hatayı düzelt', goal: 50, stat: 'mistakesFixed' },
@@ -298,7 +304,7 @@ export const BADGE_CATEGORIES: { id: BadgeCategory; name: string }[] = [
 const CATEGORY_OF: Record<keyof GameStats, BadgeCategory> = {
   wordsIntroduced: 'words', mastered: 'words', wordsStrong: 'words', wordsAdded: 'words', wordsWithNotes: 'words', wordsWithPicture: 'words', wordsWithRecording: 'words', hardMarked: 'words', hardConquered: 'words',
   longestStreak: 'habit', daysStudied: 'habit', comebacks: 'habit', nightDays: 'habit', earlyDays: 'habit', weekendDays: 'habit', maxDayAnswers: 'habit', perfectDays: 'habit', challengesDone: 'habit', perfectWeeks: 'habit',
-  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
+  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', formsPracticed: 'skills', formsMastered: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
   textsRead: 'writing', journalEntries: 'writing', freeSentencesCorrect: 'writing',
   level: 'level', totalXp: 'level',
 }
