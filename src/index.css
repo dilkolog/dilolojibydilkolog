@@ -4166,3 +4166,31 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   --gender-m: #5cb8c8; --gender-f: #a493d6;
   --plant-leaf: #5fb596; --plant-thirsty: #b8c37a; --plant-dry: #b97a3a;
 }
+
+/* Empty screens, alive: each picture does one small thing (reduced motion stills them all). */
+:is(.art-sway, .art-breathe, .art-pop, .art-pen, .art-scan, .art-fly, .art-wing, .art-drop) { transform-box: fill-box; }
+.art-sway { transform-origin: 50% 100%; animation: art-sway 3.6s ease-in-out infinite alternate; }
+@keyframes art-sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+.art-drop { animation: art-drop 4.4s ease-in infinite; opacity: 0; }
+@keyframes art-drop { 0%, 30% { transform: translateY(0); opacity: 0; } 38% { opacity: 0.9; } 70% { transform: translateY(46px); opacity: 0.9; } 78%, 100% { transform: translateY(50px); opacity: 0; } }
+.art-fly { animation: art-fly 6s ease-in-out infinite; }
+@keyframes art-fly { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(-18px, -6px); } 60% { transform: translate(-8px, 10px); } 80% { transform: translate(6px, 2px); } }
+.art-wing { animation: art-flap 0.32s ease-in-out infinite alternate; }
+.art-wing-l { transform-origin: 100% 50%; }
+.art-wing-r { transform-origin: 0% 50%; }
+@keyframes art-flap { from { transform: scaleX(1); } to { transform: scaleX(0.3); } }
+.art-write { stroke-dasharray: 1; animation: art-write 5s ease-in-out infinite; }
+.art-write-2 { animation-delay: 0.6s; }
+.art-write-3 { animation-delay: 1.2s; }
+@keyframes art-write { 0% { stroke-dashoffset: 1; } 22%, 78% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }
+.art-pen { transform-origin: 20% 90%; animation: art-pen 2.5s ease-in-out infinite alternate; }
+@keyframes art-pen { from { transform: translate(0, 0) rotate(-3deg); } to { transform: translate(-6px, -3px) rotate(2deg); } }
+.art-pop { transform-origin: 50% 80%; animation: art-pop 4s ease-in-out infinite; }
+.art-pop-late { animation-delay: 2s; }
+@keyframes art-pop { 0%, 60%, 100% { transform: scale(1); } 15% { transform: scale(1.06); } }
+.art-breathe { transform-origin: 50% 60%; animation: art-breathe 3.4s ease-in-out infinite alternate; }
+@keyframes art-breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
+.art-scan { animation: art-scan 5s ease-in-out infinite; }
+@keyframes art-scan { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(-16px, -12px); } 65% { transform: translate(-4px, -18px); } }
+.art-twinkle { animation: twinkle 3.2s ease-in-out infinite; }
+.art-twinkle-late { animation-delay: -1.4s; }

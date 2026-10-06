@@ -422,3 +422,14 @@ test('the calm theme is a choice in Settings and turns the dark theme down', asy
   await page.reload()
   await expect(root).toHaveAttribute('data-calm', '')
 })
+
+test('an empty screen has a small living picture, and it holds still for reduced motion', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Hatalar')
+  const art = page.locator('.empty-art, .empty-state svg').first()
+  await expect(art).toBeVisible()
+  const names = () => page.locator('.empty-state svg [class^="art-"], .empty-state svg [class*=" art-"]').evaluateAll((els) => els.map((e) => getComputedStyle(e).animationName))
+  expect((await names()).some((n) => n !== 'none')).toBe(true)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  expect((await names()).every((n) => n === 'none')).toBe(true)
+})
