@@ -19,7 +19,7 @@ import {
 } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
 import { SAMPLE_WORDS } from './data/seed'
-import { difficultWords } from './engine/difficult'
+import { difficultWords, withDifficult } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
@@ -106,8 +106,8 @@ function prefetchScreens() {
 
 type Screen =
   | { name: 'home' }
-  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[] }
-  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; gameBefore: GameState | null; extra?: VocabularyEntry[] }
+  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[] }
+  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[] }
   | { name: 'words' }
   | { name: 'word'; entryId: string }
   | { name: 'mistakes' }
@@ -514,6 +514,7 @@ export default function App() {
         name: 'summary',
         summary,
         mode: s.name === 'session' ? s.mode : 'normal',
+        topic: s.name === 'session' ? s.topic : undefined,
         gameBefore: s.name === 'session' ? s.gameBefore : null,
         // Words of other languages (a mixed session) still get their names in the summary.
         extra: s.name === 'session' ? s.extra : undefined,
@@ -523,14 +524,14 @@ export default function App() {
   )
 
   /** `extra`: words that may not be in the loaded list yet (just added), so the session has them. */
-  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[]) => {
+  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult') => {
     // A session cap takes a prefix: introductions always come before their first test.
     const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
-    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra })
+    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic })
   }
   /** A practice of just the words marked hard, apart from the day's plan. */
   const practiceDifficult = () =>
-    data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
+    data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, undefined, 'difficult')
 
   // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
   const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
@@ -815,6 +816,12 @@ export default function App() {
                 summary={screen.summary}
                 byId={screen.extra ? new Map([...byId, ...screen.extra.map((e) => [e.id, e] as const)]) : byId}
                 practice={screen.mode === 'practice'}
+                topic={screen.topic}
+                onUnmarkDifficult={async (entryId) => {
+                  const e = byId.get(entryId)
+                  if (e) await db.vocabulary.put(withDifficult(e, false))
+                  reload()
+                }}
                 before={screen.gameBefore}
                 after={game}
                 onDone={go({ name: 'home' })}
@@ -930,7 +937,6 @@ export default function App() {
                 settings={settings}
                 onChange={updateSettings}
                 pushState={pushState}
-                onOpenProfile={() => setScreen({ name: 'profile' })}
                 onOpenAuth={(mode) => setScreen({ name: 'account', mode })}
                 onDataChanged={async () => {
                   const s = await db.getSettings()

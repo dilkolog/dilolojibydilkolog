@@ -642,6 +642,12 @@ export function Home({
 
 // ---------------------------------------------------------------------------
 
+function hardHeadline(accuracy: number): string {
+  if (accuracy >= 0.9) return 'Zor kelimelerin yola geliyor!'
+  if (accuracy >= 0.7) return 'Zorlandıkça öğreniyorsun'
+  return 'Zor kelimeler zor, bu yüzden buradasın'
+}
+
 function headline(accuracy: number, practice?: boolean): string {
   if (accuracy >= 0.9) return 'Muhteşem bir oturum!'
   if (accuracy >= 0.7) return 'Çok iyi gidiyorsun!'
@@ -656,6 +662,8 @@ export function Summary({
   summary,
   byId,
   practice,
+  topic,
+  onUnmarkDifficult,
   before,
   after,
   onDone,
@@ -663,6 +671,9 @@ export function Summary({
   summary: SessionSummary
   byId: Map<string, VocabularyEntry>
   practice?: boolean
+  /** 'difficult': a practice of the words marked hard; the summary is about them and lets the ones that went well graduate. */
+  topic?: 'difficult'
+  onUnmarkDifficult?: (entryId: string) => void | Promise<void>
   before: GameState | null
   after: GameState | null
   onDone: () => void
@@ -696,7 +707,8 @@ export function Summary({
   // Free recall: the words studied, and while the learner writes them the lists stay hidden.
   const studied = summary.words.map((w) => byId.get(w.entryId)).filter((e): e is VocabularyEntry => !!e)
   const [recalling, setRecalling] = useState(false)
-  const tooEasyOrHard = !practice && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7)
+  const tooEasyOrHard = !practice && !topic && summary.answered >= 12 && (accuracy > 0.93 || accuracy < 0.7)
+  const [graduated, setGraduated] = useState<Set<string>>(() => new Set())
 
   return (
     <div className="summary-grid">
@@ -715,9 +727,16 @@ export function Summary({
         {/* Words that grew are the celebration (below); confetti only when none did. */}
         {(leveledUp || (accuracy >= 0.7 && !grown.length)) && <Burst />}
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
-        <h1>{headline(accuracy, practice)}</h1>
+        {topic === 'difficult' && (
+          <span className="topic-chip">
+            <BoltIcon size={15} /> Zor kelime çalışması
+          </span>
+        )}
+        <h1>{topic === 'difficult' ? hardHeadline(accuracy) : headline(accuracy, practice)}</h1>
         <p className="muted mt-2">
-          {summary.answered} sorudan {summary.correct} tanesini doğru bildin.
+          {topic === 'difficult'
+            ? `${summary.words.length} zor kelimeyle çalıştın: ${summary.answered} sorudan ${summary.correct} tanesini doğru bildin.`
+            : `${summary.answered} sorudan ${summary.correct} tanesini doğru bildin.`}
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>
         <p className="xp-gain">
@@ -844,7 +863,45 @@ export function Summary({
             </ul>
           </section>
         )}
-        {rest.length > 0 && (
+        {topic === 'difficult' && summary.words.length > 0 && (
+          <section className="stack summary-hard">
+            <h2 className="section-title">Zor kelimelerin</h2>
+            <ul className="garden garden-compact hard-list">
+              {summary.words.map((w) => {
+                const e = byId.get(w.entryId)
+                const clean = w.wrong === 0 && w.correct > 0
+                const out = graduated.has(w.entryId)
+                return (
+                  <li key={w.entryId}>
+                    <span className={`hard-mark${clean || out ? ' is-clean' : ''}`} aria-hidden>
+                      {out ? <CheckIcon size={16} /> : <BoltIcon size={16} />}
+                    </span>
+                    <span className="garden-text">
+                      <span className="target" lang={e?.language}>{name(w.entryId)}</span>
+                      {e && <span className="small muted">{e.senses[0].gloss}</span>}
+                      <span className="small">
+                        {out ? <span className="garden-ok">Zor listesinden çıktı</span> : clean ? <span className="garden-ok">Bu sefer hepsi doğru</span> : <span className="muted">Zor kalıyor: yakında yine karşına çıkar</span>}
+                      </span>
+                    </span>
+                    {clean && !out && onUnmarkDifficult && (
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-quiet"
+                        onClick={async () => {
+                          await onUnmarkDifficult(w.entryId)
+                          setGraduated((g) => new Set(g).add(w.entryId))
+                        }}
+                      >
+                        Artık zor değil
+                      </button>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+        )}
+        {topic !== 'difficult' && rest.length > 0 && (
           <section className="stack summary-rest">
             <h2 className="section-title">{grown.length ? 'Tekrar ettiklerin' : 'Bu oturumda çalıştıkların'}</h2>
             <ul className="garden garden-compact">

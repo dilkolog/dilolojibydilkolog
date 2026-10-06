@@ -19,10 +19,8 @@ import { ReminderSuggestion } from './BestHours'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
-import { BellIcon, ChevronRightIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
+import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { Help } from './SettingHelp'
-import { Avatar } from './Avatar'
-import { useGame } from './game'
 import { LANGUAGE_NAME } from './labels'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
 import { Select } from './Select'
@@ -184,33 +182,17 @@ function Pane({ group, active, children }: { group: Group; active: boolean; chil
 }
 
 /** Who is signed in to this device's profile, a tap away from the profile page. */
-function ProfileLink({ settings, onOpen }: { settings: Settings; onOpen: () => void }) {
-  const game = useGame()
-  return (
-    <button type="button" className="settings-profile" onClick={onOpen}>
-      <Avatar profile={settings.profile} size={40} />
-      <span className="settings-profile-text">
-        <strong>{settings.profile.name || 'Profilin'}</strong>
-        <span className="small muted">{game ? `Seviye ${game.level.level} · ${game.level.title}` : 'Profili aç'}</span>
-      </span>
-      <ChevronRightIcon size={16} />
-    </button>
-  )
-}
-
 export function SettingsScreen({
   settings,
   onChange,
   onDataChanged,
   pushState,
-  onOpenProfile,
   onOpenAuth,
 }: {
   settings: Settings
   onChange: (s: Settings) => void
   onDataChanged: () => void
   pushState: PushState
-  onOpenProfile?: () => void
   onOpenAuth?: (mode: AuthMode) => void
 }) {
   const [density, setDensityState] = useState<Density>(getDensity)
@@ -396,7 +378,6 @@ export function SettingsScreen({
           {searching && noMatch && <p className="muted">“{query.trim()}” ile eşleşen bir ayar yok.</p>}
 
           <Pane {...pane('s-account')}>
-            {onOpenProfile && <ProfileLink settings={settings} onOpen={onOpenProfile} />}
             <AccountSettings onOpenAuth={onOpenAuth} />
           </Pane>
 

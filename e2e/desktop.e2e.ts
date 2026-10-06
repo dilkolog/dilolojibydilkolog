@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { startWithSamples } from './helpers'
+import { openScreen, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -88,4 +88,30 @@ test('tablet width: Today in two columns, the mission beside the numbers', async
   expect(Math.abs(boxes.side.top - boxes.main.top)).toBeLessThan(40)
   // And nothing runs past the screen.
   expect(boxes.side.right).toBeLessThanOrEqual(820)
+})
+
+test('Settings has no second way to the profile: the side menu already has it', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  await expect(page.locator('.settings-profile')).toHaveCount(0)
+  await expect(page.locator('.sidebar-foot:visible')).toHaveCount(1)
+  await page.locator('.sidebar-foot:visible').click()
+  await expect(page.locator('.profile-settings')).toBeVisible()
+})
+
+test('the key legend stays at the bottom of the screen while a question eases in', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  // Slow every animation down, so the moment the legend used to sit inside the card lasts long enough to see.
+  await page.addStyleTag({ content: '*, *::before, *::after { animation-duration: 4s !important; animation-delay: 0s !important; }' })
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  const legend = page.locator('.kbd-legend')
+  await expect(legend).toBeVisible()
+  for (let i = 0; i < 4; i++) {
+    const box = await legend.boundingBox()
+    const view = page.viewportSize()!
+    expect(view.height - (box!.y + box!.height)).toBeLessThan(40)
+    await page.waitForTimeout(150)
+  }
 })

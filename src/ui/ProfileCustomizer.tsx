@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Profile } from '../data/db'
 import { medalTier } from '../engine/gamification'
 import {
@@ -31,29 +32,34 @@ export function ProfileCustomizer({ profile, game, unlockables, save }: { profil
   const earned = game.achievements.filter((a) => a.unlocked)
   const pinned = (profile.pinned ?? []).filter((id) => unlockables.badges.has(id))
   const interests = profile.interests ?? []
+  // One line under each row of styles: the chosen one's name, or what a locked one opens with (hovered, focused or tapped).
+  const [hint, setHint] = useState<{ row: string; text: string } | null>(null)
+  const caption = (row: string, chosenName: string) => (hint?.row === row ? hint.text : chosenName)
 
   return (
     <div className="stack customizer">
       <Group title="Afiş" note="Kartının üst kısmı.">
-        <div className="style-grid" role="radiogroup" aria-label="Afiş">
+        <div className="style-grid" role="radiogroup" aria-label="Afiş" onMouseLeave={() => setHint(null)}>
           {BANNERS.map((b) => (
-            <StyleTile key={b.id} option={b} unlockables={unlockables} chosen={banner === b.id} onPick={() => save({ banner: b.id })}>
+            <StyleTile key={b.id} option={b} unlockables={unlockables} chosen={banner === b.id} onPick={() => save({ banner: b.id })} onShow={(text) => setHint({ row: 'banner', text })} onHide={() => setHint(null)}>
               <span className="style-swatch banner-preview" data-banner={b.id} style={{ ['--pcolor' as string]: profile.color }} />
             </StyleTile>
           ))}
         </div>
+        <p className="style-caption small muted" aria-live="polite">{caption('banner', BANNERS.find((b) => b.id === banner)?.name ?? '')}</p>
       </Group>
 
       <Group title="Avatar çerçevesi" note="Fotoğrafının ya da emojinin çevresi.">
-        <div className="style-grid" role="radiogroup" aria-label="Avatar çerçevesi">
+        <div className="style-grid" role="radiogroup" aria-label="Avatar çerçevesi" onMouseLeave={() => setHint(null)}>
           {FRAMES.map((f) => (
-            <StyleTile key={f.id} option={f} unlockables={unlockables} chosen={frame === f.id} onPick={() => save({ frame: f.id })}>
+            <StyleTile key={f.id} option={f} unlockables={unlockables} chosen={frame === f.id} onPick={() => save({ frame: f.id })} onShow={(text) => setHint({ row: 'frame', text })} onHide={() => setHint(null)}>
               <span className="avatar-ring frame-preview" data-frame={f.id} style={{ ['--ring' as string]: '62%' }}>
                 <span className="frame-dot" style={{ background: profile.color }} />
               </span>
             </StyleTile>
           ))}
         </div>
+        <p className="style-caption small muted" aria-live="polite">{caption('frame', FRAMES.find((f) => f.id === frame)?.name ?? '')}</p>
       </Group>
 
       <Group title="Unvan" note="Adının yanında görünür; seviyeyle ve rozetlerle yenileri açılır.">
@@ -127,18 +133,24 @@ function Group({ title, note, children }: { title: string; note: string; childre
   )
 }
 
-function StyleTile({ option, unlockables, chosen, onPick, children }: { option: StyleOption; unlockables: Unlockables; chosen: boolean; onPick: () => void; children: React.ReactNode }) {
+function StyleTile({ option, unlockables, chosen, onPick, onShow, onHide, children }: { option: StyleOption; unlockables: Unlockables; chosen: boolean; onPick: () => void; onShow: (text: string) => void; onHide: () => void; children: React.ReactNode }) {
   const open = isUnlocked(option, unlockables)
+  const text = open ? option.name : `${option.name}: ${option.unlock!.text}`
   return (
-    <button type="button" role="radio" aria-checked={chosen} className={`style-tile${chosen ? ' is-chosen' : ''}${open ? '' : ' is-locked'}`} disabled={!open} onClick={onPick} title={open ? option.name : `Açılması için: ${option.unlock!.text}`}>
+    <button
+      type="button"
+      role="radio"
+      aria-checked={chosen}
+      aria-disabled={!open || undefined}
+      aria-label={open ? option.name : `${option.name}, kilitli: ${option.unlock!.text}`}
+      className={`style-tile${chosen ? ' is-chosen' : ''}${open ? '' : ' is-locked'}`}
+      onClick={() => (open ? onPick() : onShow(text))}
+      onMouseEnter={() => onShow(text)}
+      onFocus={() => onShow(text)}
+      onBlur={onHide}
+    >
       {children}
-      <span className="small">{option.name}</span>
-      {!open && (
-        <span className="style-lock small">
-          <LockIcon size={12} className="inline-icon" />
-          {option.unlock!.text}
-        </span>
-      )}
+      {!open && <LockIcon size={16} className="style-lock" />}
     </button>
   )
 }
