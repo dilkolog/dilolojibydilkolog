@@ -7,7 +7,8 @@ import { useAi } from './aiContext'
 import { SparkleIcon, SpeakerIcon } from './icons'
 import { ShadowButton } from './Shadow'
 import { canSpeak, playWord, speak, speechPrefs } from './speech'
-import { fetchCorpus } from '../data/corpus'
+import { easyFor, fetchCorpus } from '../data/corpus'
+import { patchWithSources } from '../data/provenance'
 import { undoable } from './toast'
 
 /**
@@ -188,7 +189,7 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
     setBusy(true)
     setError('')
     try {
-      await db.vocabulary.update(entry.id, { corpus: await fetchCorpus(entry) })
+      await db.vocabulary.update(entry.id, patchWithSources(entry, { corpus: await fetchCorpus(entry, await easyFor(db, entry.language)) }, { corpus: 'tatoeba' }))
       onChanged()
     } catch {
       setError('Cümleler alınamadı; internet bağlantını kontrol et.')

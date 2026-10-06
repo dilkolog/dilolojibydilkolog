@@ -469,6 +469,64 @@ test('a word carries its part of speech as a shape on the list and the word page
   await expect(page.locator('.word-hero .pos-chip .pos-tag')).toBeVisible()
 })
 
+test('a word page says where its data came from, and a word can be flagged to look at again', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  const sources = page.locator('.word-sources')
+  await expect(sources.getByRole('heading', { name: 'Veri kaynakları' })).toBeVisible()
+  const flag = sources.getByRole('button', { name: 'Gözden geçir' })
+  await expect(flag).toHaveAttribute('aria-pressed', 'false')
+  await flag.click()
+  await expect(flag).toHaveAttribute('aria-pressed', 'true')
+  // The word list can show just those.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /Gözden geçir \(1\)/ }).click()
+  await expect(page.locator('.word-row')).toHaveCount(1)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('pictures can be suggested for the words that have none, taken with one tap or passed over', async ({ page }) => {
+  test.setTimeout(90_000)
+  // The picture services answered by hand: Wikidata knows a file, Commons describes it, a thumbnail is a 1-pixel PNG.
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64')
+  const cors = { 'access-control-allow-origin': '*' }
+  const json = (body: unknown) => ({ status: 200, headers: cors, contentType: 'application/json', body: JSON.stringify(body) })
+  await page.route('https://www.wikidata.org/**', (route) => {
+    const action = new URL(route.request().url()).searchParams.get('action')
+    return route.fulfill(
+      json(action === 'wbsearchentities' ? { search: [{ id: 'Q1' }] } : { entities: { Q1: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Maison.jpg' } } }] } } } }),
+    )
+  })
+  await page.route('https://commons.wikimedia.org/**', (route) =>
+    route.fulfill(json({ query: { pages: { a: { title: 'File:Maison.jpg', index: 1, imageinfo: [{ thumburl: 'https://upload.wikimedia.org/maison.png', extmetadata: { Artist: { value: 'Léa' }, LicenseShortName: { value: 'CC BY-SA 4.0' } } }] } } } })),
+  )
+  await page.route('https://api.openverse.org/**', (route) => route.fulfill(json({ results: [] })))
+  await page.route('https://upload.wikimedia.org/**', (route) => route.fulfill({ status: 200, headers: cors, contentType: 'image/png', body: png }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  const chip = page.getByRole('button', { name: /Görsel öner \((\d+)\)/ })
+  await expect(chip).toBeVisible()
+  const before = Number((await chip.textContent())!.match(/\((\d+)\)/)![1])
+  await chip.click()
+  const dialog = page.getByRole('dialog', { name: 'Görsel öner' })
+  await expect(dialog).toBeVisible()
+  await expect(dialog.getByText('Önerilen')).toBeVisible()
+  // Take the first suggestion: the word has its picture, and the next word comes up.
+  await dialog.locator('.iq-pick').first().click()
+  await expect(dialog.getByText(/^2 \//)).toBeVisible()
+  // Pass over the second.
+  await dialog.getByRole('button', { name: 'Atla' }).click()
+  await expect(dialog.getByText(/^3 \//)).toBeVisible()
+  await dialog.getByRole('button', { name: 'Kapat', exact: true }).first().click()
+  await expect(dialog).toHaveCount(0)
+  // The word that took a picture shows it in the list.
+  await expect(page.locator('.word-row img').first()).toBeVisible()
+  // Two words left the queue: the one with a picture and the one passed over.
+  await expect(page.getByRole('button', { name: new RegExp(`Görsel öner \\(${before - 2}\\)`) })).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')

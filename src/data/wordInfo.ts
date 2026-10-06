@@ -2,6 +2,7 @@ import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
 import type { Gender, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
 import { loadFrequency } from './frequency'
+import { patchWithSources, type FieldName, type SourceKind } from './provenance'
 import { englishGloss, fetchPages, languageSection } from './wiktionary'
 
 /**
@@ -253,7 +254,7 @@ export async function fillEntries(db: KelimeDB, entries: VocabularyEntry[], lang
     const i = info.get(e.lemma)
     const fresh = (await db.vocabulary.get(e.id)) ?? e
     const senses = i?.definition && !fresh.senses[0]?.definition ? [{ ...fresh.senses[0], definition: i.definition }, ...fresh.senses.slice(1)] : fresh.senses
-    await db.vocabulary.update(e.id, {
+    const patch = {
       wiktAt: new Date().toISOString(),
       ipa: fresh.ipa || i?.ipa,
       audioUrl: fresh.audioUrl || i?.audioUrl,
@@ -261,7 +262,14 @@ export async function fillEntries(db: KelimeDB, entries: VocabularyEntry[], lang
       familyCandidates: commonFamily(i?.family ?? [], frequency),
       // A noun whose article didn't tell its gender (l', les) gets it from the dictionary.
       ...(fresh.language !== 'en' && fresh.partOfSpeech === 'noun' && !fresh.gender && i?.gender ? { gender: i.gender } : {}),
-    } satisfies Partial<VocabularyEntry>)
+    } satisfies Partial<VocabularyEntry>
+    // What this lookup wrote (and nobody had written before) is recorded as Wiktionary's.
+    const wrote: Partial<Record<FieldName, SourceKind>> = {}
+    if (!fresh.ipa && patch.ipa) wrote.ipa = 'wiktionary'
+    if (!fresh.audioUrl && patch.audioUrl) wrote.audio = 'wiktionary'
+    if (!fresh.senses[0]?.definition && senses[0]?.definition) wrote.definition = 'wiktionary'
+    if (!fresh.gender && 'gender' in patch) wrote.gender = 'wiktionary'
+    await db.vocabulary.update(e.id, patchWithSources(fresh, patch, wrote))
   }
 }
 

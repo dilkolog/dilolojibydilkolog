@@ -1,6 +1,7 @@
 import { normalize, splitArticle } from '../engine/answerCheck'
 import type { Gender, PartOfSpeech, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
+import { patchWithSources } from './provenance'
 
 /**
  * Part of speech and noun gender for French words from Lexique 3.83 (see lexicon/SOURCE.md),
@@ -57,7 +58,7 @@ export async function fillFromLexicon(db: KelimeDB, language: TargetLanguage): P
   for (const e of await db.vocabulary.where('language').equals(language).toArray()) {
     const update = lexiconUpdate(e, lexicon)
     if (!update) continue
-    await db.vocabulary.update(e.id, update)
+    await db.vocabulary.update(e.id, patchWithSources(e, update, { ...(update.partOfSpeech ? { partOfSpeech: 'lexique' as const } : {}), ...(update.gender ? { gender: 'lexique' as const } : {}) }))
     changed++
   }
   return changed

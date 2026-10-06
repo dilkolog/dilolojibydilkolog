@@ -8,6 +8,7 @@ import { ImagePicker } from './ImagePicker'
 import { comparePronunciation, playWord, preloadRecording } from './speech'
 import { useMediaUrl } from './useMedia'
 import { undoable } from './toast'
+import { withSources } from '../data/provenance'
 import { BulbIcon } from './icons'
 
 /** Picture, own recording and personal note of a word, editable in place. */
@@ -152,7 +153,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
           onClose={() => setPicking(false)}
           onPick={async (img) => {
             const imageId = await db.addMedia('image', img.blob)
-            await update({ imageId, imageCredit: img.credit }, entry.imageId)
+            await update({ imageId, imageCredit: img.credit, sources: withSources({ ...entry, imageId }, { image: 'commons' }).sources }, entry.imageId)
             setPicking(false)
           }}
         />

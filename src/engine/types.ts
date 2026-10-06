@@ -63,6 +63,8 @@ export interface Example {
   source?: { kind: 'tatoeba'; id: number; audioUrl?: string }
   /** Where the learner met the sentence: the title of the reading text it was saved from. */
   metIn?: string
+  /** Words in it, besides the target, the learner would not know yet: 0–1 is the sweet spot (see sentenceFit.ts). */
+  fit?: number
 }
 
 export interface Sense {
@@ -97,6 +99,13 @@ export interface WordFamilyMember {
   /** Morphology note, e.g. "decide + -sion". */
   morphology?: string
   entryId?: string
+}
+
+/** Who wrote a field, and a fingerprint of the value at that time: if the value still matches, nobody has edited it since. */
+export interface FieldSource {
+  kind: 'pack' | 'wiktionary' | 'tatoeba' | 'commons' | 'wikidata' | 'lexique' | 'ai'
+  h: string
+  at: string
 }
 
 export interface VocabularyEntry {
@@ -146,6 +155,16 @@ export interface VocabularyEntry {
   tags: string[]
   /** Marked by the learner as hard to remember: gathered for a practice of their own (see difficult.ts). */
   difficult?: boolean
+  /** Where automatically filled fields came from, and a fingerprint of what was written (see provenance.ts). */
+  sources?: Record<string, FieldSource>
+  /** The learner wants to look at this word's data again (a doubtful meaning, a wrong picture). */
+  review?: boolean
+  /** Where the word comes from, in a line (from the word pack; Wiktionary). */
+  etymology?: string
+  synonyms?: string[]
+  antonyms?: string[]
+  /** The word in the other two languages, from the word pack: ["decidir"]. */
+  translations?: Partial<Record<TargetLanguage, string[]>>
   /** 'user' = added by hand, 'import' = bulk import, 'sample' = bundled sample set. */
   source: EntrySource
   /** When the user added it; user words are introduced in the order they were added. */
