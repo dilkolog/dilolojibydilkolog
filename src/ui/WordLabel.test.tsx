@@ -20,3 +20,11 @@ describe('a word as written in a list', () => {
     expect(renderToStaticMarkup(<WordLabel entry={{ ...entry('xyz'), partOfSpeech: 'other' }} pos />)).not.toContain('pos-tag')
   })
 })
+
+describe('the elided article stays attached', () => {
+  it('keeps the article and the lemma in one piece, so "l\'an" is never drawn as "l\' an"', () => {
+    const html = renderToStaticMarkup(<WordLabel entry={entry("l'an")} pos />)
+    // The article and lemma sit in one inline span, apart from the marks that the label spaces out.
+    expect(html).toMatch(/<span><span class="article[^"]*"[^>]*>l(?:'|&#x27;)<\/span>an<\/span>/)
+  })
+})

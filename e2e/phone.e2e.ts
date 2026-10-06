@@ -602,6 +602,26 @@ test('high contrast is a choice in Settings: white page, black text, strong bord
   await expect(root).not.toHaveAttribute('data-contrast', '')
 })
 
+test('an elided article stays attached to its word in the list: l\'an, not l\' an', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  const row = page.locator('.word-row .w', { hasText: /^l'\s*an$/ }).first()
+  await expect(row).toBeVisible()
+  // How far the lemma starts from the article's right edge: none, as in the word page, not a label's gap.
+  const dx = await row.evaluate((el) => {
+    const article = el.querySelector('.article')!.getBoundingClientRect()
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.textContent!.trim() !== 'an') continue
+      const range = document.createRange()
+      range.selectNodeContents(n)
+      return range.getBoundingClientRect().left - article.right
+    }
+    return NaN
+  })
+  expect(dx).toBeLessThan(2)
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')

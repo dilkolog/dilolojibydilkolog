@@ -11,7 +11,7 @@ import { WrittenForm } from './WrittenForm'
 export function WordLabel({ entry, pos = false, className }: { entry: VocabularyEntry; pos?: boolean; className?: string }) {
   return (
     <span className={`word-label${className ? ` ${className}` : ''}`} lang={entry.language}>
-      <WrittenForm entry={entry} />
+      <span><WrittenForm entry={entry} /></span>
       {pos && entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} />}
       {entry.difficult && <BoltIcon size={14} solid className="difficult-mark" />}
     </span>
