@@ -469,6 +469,23 @@ test('a word carries its part of speech as a shape on the list and the word page
   await expect(page.locator('.word-hero .pos-chip .pos-tag')).toBeVisible()
 })
 
+test('a word page says where its data came from, and a word can be flagged to look at again', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  const sources = page.locator('.word-sources')
+  await expect(sources.getByRole('heading', { name: 'Veri kaynakları' })).toBeVisible()
+  const flag = sources.getByRole('button', { name: 'Gözden geçir' })
+  await expect(flag).toHaveAttribute('aria-pressed', 'false')
+  await flag.click()
+  await expect(flag).toHaveAttribute('aria-pressed', 'true')
+  // The word list can show just those.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /Gözden geçir \(1\)/ }).click()
+  await expect(page.locator('.word-row')).toHaveCount(1)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')

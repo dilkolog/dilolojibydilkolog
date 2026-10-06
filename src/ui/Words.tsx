@@ -919,7 +919,7 @@ function WordPreview({ language, word, meaning, pos, example, translation, image
 
 // ---------------------------------------------------------------------------
 
-type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes' | 'difficult'
+type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes' | 'difficult' | 'review'
 type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent' | 'due'
 const VIEW_MODE_KEY = 'kelime-koc:words-table'
 
@@ -931,6 +931,7 @@ const STAGE_FILTERS: [StageFilter, string][] = [
   ['mastered', 'Oturdu'],
   ['mistakes', 'Hatalı'],
   ['difficult', 'Zor'],
+  ['review', 'Gözden geçir'],
 ]
 
 function WordThumb({ id }: { id?: string }) {
@@ -1000,6 +1001,7 @@ function WordList({
     })
 
   const difficultCount = useMemo(() => vocabulary.filter(isDifficult).length, [vocabulary])
+  const reviewCount = useMemo(() => vocabulary.filter((v) => v.review).length, [vocabulary])
   const withMistakes = useMemo(() => new Set(mistakes.filter((m) => !m.resolved).map((m) => m.entryId)), [mistakes])
   const tags = useMemo(() => [...new Set(vocabulary.flatMap((v) => v.tags))].sort((a, b) => a.localeCompare(b, 'tr')), [vocabulary])
   const list = useMemo(() => {
@@ -1017,6 +1019,7 @@ function WordList({
       if (stage === 'mastered' && i !== 5) return false
       if (stage === 'mistakes' && !withMistakes.has(v.id)) return false
       if (stage === 'difficult' && !v.difficult) return false
+      if (stage === 'review' && !v.review) return false
       if (flags.picture && !v.imageId) return false
       if (flags.audio && !v.audioId) return false
       if (flags.noExample && v.senses[0].examples.length > 0) return false
@@ -1159,11 +1162,12 @@ function WordList({
             </div>
           </div>
           <div className="choice-row filter-row">
-            {STAGE_FILTERS.filter(([v]) => v !== 'difficult' || difficultCount > 0 || stage === 'difficult').map(([v, label]) => (
+            {STAGE_FILTERS.filter(([v]) => (v !== 'difficult' || difficultCount > 0 || stage === 'difficult') && (v !== 'review' || reviewCount > 0 || stage === 'review')).map(([v, label]) => (
               <button key={v} className="chip chip-sm" aria-pressed={stage === v} onClick={() => setStage(v)}>
                 {v === 'difficult' && <BoltIcon size={14} className="inline-icon" />}
                 {label}
                 {v === 'difficult' && ` (${difficultCount})`}
+                {v === 'review' && ` (${reviewCount})`}
               </button>
             ))}
             <span className="chip-sep" aria-hidden />

@@ -1,5 +1,6 @@
 import type { Example, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
+import { patchWithSources } from './provenance'
 
 /**
  * Real sentences for each word from Tatoeba (sentences written and translated by people,
@@ -139,7 +140,7 @@ export async function fillCorpus(db: KelimeDB, language: TargetLanguage): Promis
   let done = 0
   for (const e of todo) {
     try {
-      await db.vocabulary.update(e.id, { corpus: await fetchCorpus(e) })
+      await db.vocabulary.update(e.id, patchWithSources(e, { corpus: await fetchCorpus(e) }, { corpus: 'tatoeba' }))
       done++
     } catch {
       break // offline or the service is down: try again next time

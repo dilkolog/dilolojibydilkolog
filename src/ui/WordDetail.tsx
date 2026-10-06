@@ -43,6 +43,7 @@ import { WordPronunciation } from './PronunciationCheck'
 import { azureEnabled } from './pronunciation'
 import { WrittenForm } from './WrittenForm'
 import { DifficultButton } from './DifficultButton'
+import { WordSources } from './WordSources'
 import { PosTag } from './PosTag'
 import { isDifficult, withDifficult } from '../engine/difficult'
 
@@ -320,6 +321,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           )}
           <PatternsSection db={db} entry={entry} onChanged={onChanged} />
           <WordMedia key={entry.id + (entry.imageId ?? '') + (entry.audioId ?? '')} entry={entry} onChanged={onChanged} />
+          <WordSources entry={entry} onChanged={onChanged} />
           {(entry.alternativeForms?.length ?? 0) > 0 && (
             <section className="section stack">
               <h2 className="section-title">Kabul edilen diğer yazımlar</h2>
