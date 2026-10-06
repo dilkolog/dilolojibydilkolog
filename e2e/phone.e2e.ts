@@ -22,15 +22,17 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
   expect(found).toEqual([])
 })
 
-test('text stays readable in the light, the dark and the calm theme', async ({ page }) => {
+test('text stays readable in the light, the dark, the calm and the high-contrast theme', async ({ page }) => {
   await startWithSamples(page)
   const found: string[] = []
-  for (const theme of ['light', 'dark', 'calm']) {
-    // Calm is the dark theme with a flag that turns its colours down.
+  for (const theme of ['light', 'dark', 'calm', 'contrast']) {
+    // Calm is the dark theme with a flag that turns its colours down; contrast is the light one with a flag that turns them up.
     await page.evaluate((t) => {
-      document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t
+      document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t === 'contrast' ? 'light' : t
       if (t === 'calm') document.documentElement.dataset.calm = ''
       else delete document.documentElement.dataset.calm
+      if (t === 'contrast') document.documentElement.dataset.contrast = ''
+      else delete document.documentElement.dataset.contrast
     }, theme)
     for (const name of SCREENS) {
       await openScreen(page, name)
@@ -575,6 +577,29 @@ test('a session ends in a small garden: a plant for each word, under the sky of 
   expect(await scene.locator('.scene-plants li').count()).toBeGreaterThan(0)
   await expect(scene.locator('.garden-sky')).toBeVisible()
   expect(await overflow(page)).toEqual([])
+})
+
+test('high contrast is a choice in Settings: white page, black text, strong borders, a heavy focus ring', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
+  await page.getByRole('radio', { name: 'Kontrast' }).or(page.getByRole('button', { name: 'Kontrast', exact: true })).first().click()
+  const root = page.locator('html')
+  await expect(root).toHaveAttribute('data-theme', 'light')
+  await expect(root).toHaveAttribute('data-contrast', '')
+  const css = (v: string) => page.evaluate((s) => getComputedStyle(document.documentElement).getPropertyValue(s).trim(), v)
+  // The build writes #000 and #fff for #000000 and #ffffff.
+  expect(['#000', '#000000']).toContain(await css('--ink'))
+  expect(['#fff', '#ffffff']).toContain(await css('--bg'))
+  // Kept before the first paint, and switched off again by another choice.
+  await page.reload()
+  await expect(root).toHaveAttribute('data-contrast', '')
+  await page.locator('.top-profile:visible').click()
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
+  await page.getByRole('radio', { name: 'Açık', exact: true }).or(page.getByRole('button', { name: 'Açık', exact: true })).first().click()
+  await expect(root).not.toHaveAttribute('data-contrast', '')
 })
 
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
