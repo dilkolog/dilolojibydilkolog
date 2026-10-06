@@ -647,6 +647,56 @@ test('the picture search on a word puts the picture Wikidata keeps for the thing
   await expect(page.locator('.source-list li', { hasText: 'Görsel' })).toContainText('Wikidata')
 })
 
+test('a word shows where it is spoken in videos; a line opens the video at that moment', async ({ page }) => {
+  test.setTimeout(90_000)
+  const clips = [
+    { id: 'abc12345678', title: 'Un jour à Paris', channel: 'Chaîne', start: 12.4, end: 15, text: 'Il faut décider maintenant.', form: 'décider', after: 'Autre chose.' },
+    { id: 'zzz12345678', title: 'Une autre vidéo', channel: 'Autre', start: 40, end: 43, text: 'Elle a décidé de partir.', form: 'décidé', auto: true },
+  ]
+  let asked = ''
+  await page.route('**/api/clips**', (route) => {
+    asked = route.request().url()
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ clips }) })
+  })
+  await page.route('https://www.youtube-nocookie.com/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<p>video</p>' }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  const section = page.locator('.clips')
+  await section.getByRole('button', { name: 'Videolarda ara' }).click()
+  await expect(section.locator('.clip')).toHaveCount(2)
+  expect(asked).toContain('lang=fr')
+  await expect(section.locator('.clip mark').first()).toHaveText('décider')
+  await expect(section.getByText('otomatik altyazı')).toBeVisible()
+  // A line opens the player at that moment: a second early, a second late, captions in the language.
+  await section.locator('.clip').first().click()
+  const dialog = page.getByRole('dialog', { name: 'Un jour à Paris' })
+  await expect(dialog).toBeVisible()
+  const src = await dialog.locator('iframe').getAttribute('src')
+  expect(src).toContain('youtube-nocookie.com/embed/abc12345678')
+  expect(src).toContain('start=11')
+  expect(src).toContain('end=16')
+  expect(src).toContain('cc_lang_pref=fr')
+  await expect(dialog.getByRole('button', { name: '‹ Önceki' })).toBeDisabled()
+  await dialog.getByRole('button', { name: 'Sonraki ›' }).click()
+  await expect(page.getByRole('dialog', { name: 'Une autre vidéo' }).locator('iframe')).toHaveAttribute('src', /start=39/)
+  // The line can go into the word's own sentences.
+  await page.getByRole('button', { name: '+ Örneklerime' }).click()
+  await expect(page.getByText('Örneklerine eklendi.')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('without a YouTube key the section says what is needed instead of failing', async ({ page }) => {
+  await page.route('**/api/clips**', (route) => route.fulfill({ status: 501, contentType: 'application/json', body: JSON.stringify({ error: 'no key' }) }))
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row').first().click()
+  await page.locator('.clips').getByRole('button', { name: 'Videolarda ara' }).click()
+  await expect(page.locator('.clips [role=alert]')).toContainText('YOUTUBE_API_KEY')
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')

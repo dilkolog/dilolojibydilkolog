@@ -27,6 +27,7 @@ import { naturalEnabled, naturalUrl } from './naturalVoice'
 import { WordJourney } from './WordJourney'
 import { WordFamilySection } from './WordFamily'
 import { CorpusExamples, WordExamples } from './WordExamples'
+import { ClipsSection } from './Clips'
 import { Plant } from './Plant'
 import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
@@ -317,6 +318,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             <WordExamples db={db} entry={entry} onChanged={onChanged} />
           </div>
           <CorpusExamples db={db} entry={entry} onChanged={onChanged} />
+          <ClipsSection db={db} entry={entry} onChanged={onChanged} />
           {hasConjugation && (
             <section className="section stack">
               <h2 className="section-title">Fiil çekimi</h2>

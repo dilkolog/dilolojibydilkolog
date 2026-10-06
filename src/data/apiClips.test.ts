@@ -1,0 +1,79 @@
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { GET } from '../../api/clips'
+import { GET as GET_YOUTUBE } from '../../api/youtube'
+
+const TIMED = '<timedtext><body><p t="1000" d="2000">Il faut décider maintenant.</p><p t="3000" d="2000">Autre chose.</p></body></timedtext>'
+const player = (tracks: unknown[]) => ({ playabilityStatus: { status: 'OK' }, videoDetails: { title: 'Un jour', author: 'Chaîne' }, captions: { playerCaptionsTracklistRenderer: { captionTracks: tracks } } })
+
+/** YouTube's three services answered by hand. */
+function stubYouTube(opts: { search?: unknown; searchStatus?: number; tracks?: unknown[] } = {}) {
+  vi.stubGlobal('fetch', async (url: string) => {
+    if (url.includes('googleapis.com/youtube/v3/search')) {
+      const status = opts.searchStatus ?? 200
+      return new Response(JSON.stringify(opts.search ?? { items: [{ id: { videoId: 'abc12345678' }, snippet: { title: 'Un jour', channelTitle: 'Chaîne' } }, { id: {} }] }), { status })
+    }
+    if (url.includes('youtubei/v1/player')) return new Response(JSON.stringify(player(opts.tracks ?? [{ baseUrl: 'https://yt/timedtext', languageCode: 'fr' }])))
+    return new Response(TIMED)
+  })
+}
+
+const call = (q: string) => GET(new Request(`https://x/api/clips?${q}`))
+
+describe('/api/clips', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.unstubAllEnvs()
+  })
+
+  it('refuses bad requests and says when no YouTube key is set', async () => {
+    expect((await call('lang=fr')).status).toBe(400)
+    expect((await call('q=décider&lang=de')).status).toBe(400)
+    expect((await call(`q=${'x'.repeat(41)}&lang=fr`)).status).toBe(400)
+    vi.stubEnv('YOUTUBE_API_KEY', '')
+    const res = await call('q=d%C3%A9cider&lang=fr')
+    expect(res.status).toBe(501)
+    expect(await res.json()).toEqual({ error: 'no key' })
+  })
+
+  it('returns the lines of the videos found that hold the word, and caches the answer', async () => {
+    vi.stubEnv('YOUTUBE_API_KEY', 'k')
+    stubYouTube()
+    const res = await call('q=d%C3%A9cider&lang=fr')
+    expect(res.status).toBe(200)
+    expect(res.headers.get('cache-control')).toContain('s-maxage=604800')
+    const { clips } = (await res.json()) as { clips: { id: string; start: number; text: string; form: string; auto: boolean }[] }
+    expect(clips).toHaveLength(1)
+    expect(clips[0]).toMatchObject({ id: 'abc12345678', start: 1, text: 'Il faut décider maintenant.', form: 'décider', auto: false })
+  })
+
+  it('skips a video with no captions in the language instead of failing', async () => {
+    vi.stubEnv('YOUTUBE_API_KEY', 'k')
+    stubYouTube({ tracks: [{ baseUrl: 'https://yt/timedtext', languageCode: 'en' }] })
+    const res = await call('q=d%C3%A9cider&lang=fr')
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({ clips: [] })
+  })
+
+  it('tells a used-up quota from other trouble', async () => {
+    vi.stubEnv('YOUTUBE_API_KEY', 'k')
+    stubYouTube({ searchStatus: 403 })
+    expect((await call('q=d%C3%A9cider&lang=fr')).status).toBe(429)
+    stubYouTube({ searchStatus: 500 })
+    expect((await call('q=d%C3%A9cider&lang=fr')).status).toBe(502)
+  })
+})
+
+describe('/api/youtube still gives subtitles as reading text', () => {
+  afterEach(() => vi.unstubAllGlobals())
+
+  it('answers with the text, and says when there are no captions', async () => {
+    stubYouTube()
+    const ok = await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr'))
+    expect(ok.status).toBe(200)
+    expect(await ok.json()).toMatchObject({ id: 'abc12345678', title: 'Un jour', channel: 'Chaîne', auto: false, text: expect.stringContaining('décider') })
+    stubYouTube({ tracks: [{ baseUrl: 'https://yt/timedtext', languageCode: 'en' }] })
+    const none = await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr'))
+    expect(none.status).toBe(404)
+    expect(await none.json()).toMatchObject({ error: 'no captions', available: ['en'] })
+  })
+})

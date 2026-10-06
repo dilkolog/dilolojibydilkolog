@@ -4382,3 +4382,15 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 :root[data-contrast] :focus-visible { outline: 3px solid #000; outline-offset: 3px; }
 :root[data-contrast] .btn:focus-visible::after { border: 3px solid #000; }
 :root[data-contrast] .input, :root[data-contrast] .textarea, :root[data-contrast] .select-trigger { border-color: #334155; }
+
+/* Videolarda duy: caption lines that open a video at that moment. */
+.clip-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.clip { display: flex; align-items: center; gap: 0.75rem; width: 100%; padding: 0.625rem 0.75rem; border: 0; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out); }
+.clip:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 2px var(--lang); }
+.clip-play { display: grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--lang); color: var(--on-lang); }
+.clip-text { display: grid; gap: 0.125rem; min-width: 0; }
+.clip-line { font-family: var(--serif); font-size: var(--t-md); line-height: 1.35; }
+.clip mark, .clip-now mark { background: var(--lang-soft); color: var(--lang-text); font-weight: 700; border-radius: 0.25rem; padding: 0 0.125rem; }
+.clip-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-md); overflow: hidden; background: #000; }
+.clip-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.clip-now { margin: 0; font-family: var(--serif); font-size: var(--t-lg); line-height: 1.35; }
