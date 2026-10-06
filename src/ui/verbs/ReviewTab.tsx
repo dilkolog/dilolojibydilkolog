@@ -5,6 +5,7 @@ import { dueItems, type LabData, type LabItem } from '../../engine/labProgress'
 import { conjugateTense, irregularForms, subjectLabel, withSubject } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { sfx } from '../sounds'
+import { Diagnosis } from './Diagnosis'
 import { judge } from './PracticeTab'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
@@ -139,6 +140,7 @@ export function ReviewTab({ language, lab, onCheck, onOpen }: { language: LabLan
               {shown ? 'Doğru!' : 'Doğrusu: '}
               {!shown && forms && <strong lang={language}>{withSubject(language, asked.item.tense, asked.person, forms[asked.person])}</strong>}
             </p>
+            {!shown && <Diagnosis language={language} verb={asked.item.verb} tense={asked.item.tense} person={asked.person} typed={typed} />}
             <div className="row">
               <button type="button" className="btn" onClick={next} autoFocus>
                 {index + 1 >= queue.length ? 'Bitir' : 'Devam'}

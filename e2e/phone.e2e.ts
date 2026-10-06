@@ -922,7 +922,7 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
     await main.getByRole('tab', { name: tab }).click()
     await check(tab)
     if (tab === 'Alıştırma')
-      for (const mode of ['Seç', 'Eşleştir', 'Zamanı bul']) {
+      for (const mode of ['Seç', 'Eşleştir', 'Zamanı bul', 'Hangi fiil?']) {
         await main.getByRole('button', { name: mode }).click()
         await check(`${tab} ${mode}`)
       }

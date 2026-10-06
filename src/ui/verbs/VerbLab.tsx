@@ -4,7 +4,8 @@ import { EmptyState } from '../EmptyState'
 import { useTenses } from '../ConjugationTable'
 import { recordPractice } from '../games/shared'
 import { labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
-import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordRound, toggleFavorite } from '../../engine/labProgress'
+import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, toggleFavorite } from '../../engine/labProgress'
+import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
 import { CompareTab } from './CompareTab'
@@ -119,7 +120,12 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     setTab('practice')
     showLesson()
   }
-  const onAnswer = (v: string, t: Tense, ok: boolean, given: string, expected: string, _person?: number) => {
+  const onAnswer = (v: string, t: Tense, ok: boolean, given: string, expected: string, person?: number) => {
+    // Where the slips are: counted per tense and person, and a wrong one by what kind it was.
+    if (person !== undefined) {
+      const kind = ok ? undefined : diagnose(verbEntry(language, v), t, person, given)
+      update((l) => recordForm(l, t, person, ok, kind))
+    }
     // A verb that is one of the learner's own words keeps its history (and the weak-tense hints) too.
     const entry = ownEntry(vocabulary, language, v)
     if (entry) void recordPractice(entry, states.find((s) => s.entryId === entry.id), 'conjugation', ok, 0, { given, expected })
@@ -187,6 +193,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 onRound={(v, t, r) => update((l) => recordRound(l, scheduler, v, t, r, new Date()))}
                 onAnswer={onAnswer}
                 onTimed={() => setTab('timed')}
+                byFrequency={byFrequency}
               />
             ) : tab === 'review' ? (
               <ReviewTab
@@ -230,6 +237,10 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 onOpenVerb={(v) => {
                   choose(v)
                   setTab('learn')
+                }}
+                onWeak={(t) => {
+                  setTense(t)
+                  setTab('practice')
                 }}
               />
             )}

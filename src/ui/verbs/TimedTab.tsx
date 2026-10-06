@@ -10,6 +10,7 @@ import { prefs } from '../prefs'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { FlameIcon, HeartIcon, SproutIcon, BoltIcon } from '../icons'
 import { sfx } from '../sounds'
+import { Diagnosis } from './Diagnosis'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
 type Difficulty = 'easy' | 'medium' | 'hard'
@@ -381,6 +382,7 @@ function TimedRun({
                 </>
               )}
             </p>
+            {!shown.ok && !shown.late && <Diagnosis language={language} verb={q.verb} tense={q.tense} person={q.person} typed={typed} />}
             <div className="row">
               <button type="button" className="btn" onClick={next} autoFocus>
                 {lives <= 0 || index + 1 >= round.length ? 'Bitir' : 'Devam'}

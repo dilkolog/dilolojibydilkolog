@@ -241,3 +241,35 @@ test('verb lab: the Turkish bridge, the verb families and the find-the-tense qui
   await expect(main.locator('.lab-tensequiz .accent-result')).toContainText('Türkçede')
   expect(await overflow(page)).toEqual([])
 })
+
+test('verb lab: wrong answers are named, they show in the weak-spot map, and "which verb?" traces a form back', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Tek tek' }).click()
+  // The form of another person is named as such: "parles" for a question that asks another person.
+  for (let i = 0; i < 6; i++) {
+    const prompt = await main.locator('.lab-single .prompt-text').textContent()
+    // Any other person's form: je → parles, tu → parle (never the right one for the person asked).
+    await main.locator('.lab-single input.answer-input').fill(/^je\b/.test(prompt ?? '') ? 'parles' : 'parlons')
+    await page.keyboard.press('Enter')
+    await expect(main.locator('.lab-diagnosis')).toContainText(/Kişi karıştırma|Zaman karıştırma|Yazım|Düzensiz|Diğer|Aksan/)
+    await page.keyboard.press('Enter')
+    if (await main.locator('.lab-result').count()) break
+  }
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await expect(main.locator('.lab-weak')).toContainText('Zayıf noktaların')
+  await expect(main.locator('.lab-heat')).toBeVisible()
+  await expect(main.locator('.lab-kinds')).toContainText('%')
+  // Which verb? A conjugated word to trace back: the verb, then the tense.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Hangi fiil?' }).click()
+  await expect(main.locator('.lab-reverse .prompt-text')).toBeVisible()
+  await main.locator('.lab-reverse input').fill('zzz')
+  await page.keyboard.press('Enter')
+  await expect(main.locator('.lab-reverse')).toContainText('Fiil:')
+  await main.locator('.lab-reverse .lab-option').first().click()
+  await expect(main.locator('.lab-reverse .accent-result')).toContainText('=')
+  expect(await overflow(page)).toEqual([])
+})

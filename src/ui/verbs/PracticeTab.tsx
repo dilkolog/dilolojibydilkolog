@@ -5,15 +5,19 @@ import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { HeadphonesIcon, HeartIcon, MessageIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { TensePicker } from './LearnTab'
+import { Diagnosis } from './Diagnosis'
+import { ReverseQuiz } from './ReverseQuiz'
 import { TenseQuiz } from './TenseQuiz'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
-type Mode = 'type' | 'choose' | 'listen' | 'match' | 'tense'
+type Mode = 'type' | 'choose' | 'listen' | 'match' | 'tense' | 'reverse'
 const HEARTS = 3
+/** Modes with their own questions and counting: no lives and no tense picker. */
+const QUIZ: Mode[] = ['tense', 'reverse']
 
 const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'type', label: 'Yaz', icon: PenIcon },
@@ -21,6 +25,7 @@ const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
   { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
   { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
+  { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
 ]
 
 /** The people the round asks: all six, without vosotros for a learner of Latin American Spanish. */
@@ -55,6 +60,7 @@ export function PracticeTab({
   onRound,
   onAnswer,
   onTimed,
+  byFrequency,
 }: {
   language: LabLanguage
   verb: string
@@ -66,6 +72,8 @@ export function PracticeTab({
   /** Each single answer, for the word's own history. */
   onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
   onTimed: () => void
+  /** Verbs of the tables, most common first (for the "which verb?" questions). */
+  byFrequency: readonly string[]
 }) {
   const [mode, setMode] = useState<Mode>('type')
   const [list, setList] = useState(true)
@@ -125,7 +133,7 @@ export function PracticeTab({
 
   return (
     <div className="stack lab-practice">
-      {mode !== 'tense' && (
+      {!QUIZ.includes(mode) && (
         <>
           <div className="lab-practice-top">
             <span className="small muted">
@@ -143,7 +151,7 @@ export function PracticeTab({
         <h2 className="lab-verb" lang={language}>
           {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
         </h2>
-        {mode !== 'tense' && <TensePicker language={language} tense={tense} onPick={onTense} available={available} />}
+        {!QUIZ.includes(mode) && <TensePicker language={language} tense={tense} onPick={onTense} available={available} />}
         <div className="lab-modes" role="group" aria-label="Alıştırma türü">
           {MODES.map((m) => (
             <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={m.id === 'listen' && !canSpeak()} title={m.label}>
@@ -170,8 +178,9 @@ export function PracticeTab({
       {!finished && mode === 'choose' && <OneByOne key={round} kind="choose" {...props} />}
       {!finished && mode === 'match' && <MatchRound key={round} {...props} />}
       {mode === 'tense' && <TenseQuiz key={verb} language={language} verb={verb} available={available} />}
+      {mode === 'reverse' && <ReverseQuiz key={language} language={language} byFrequency={byFrequency} />}
 
-      {finished && mode !== 'tense' && (
+      {finished && !QUIZ.includes(mode) && (
         <section className="lab-result" role="status">
           <h3>{wrong === 0 ? 'Hepsi doğru!' : hearts <= 0 ? 'Canların bitti' : `${answered - wrong} / ${people.length} doğru`}</h3>
           {wrong > 0 && (
@@ -200,7 +209,7 @@ export function PracticeTab({
           </div>
         </section>
       )}
-      {mode !== 'tense' && <p className="small muted lab-tip">{TENSE_GUIDE[tense].short}</p>}
+      {!QUIZ.includes(mode) && <p className="small muted lab-tip">{TENSE_GUIDE[tense].short}</p>}
     </div>
   )
 }
@@ -412,6 +421,7 @@ function OneByOne({ kind, language, verb, tense, forms, people, hearts, settle, 
             {shown.ok ? 'Doğru!' : 'Doğrusu: '}
             {!shown.ok && <strong lang={language}>{withSubject(language, tense, person, forms[person])}</strong>}
           </p>
+          {!shown.ok && kind !== 'choose' && <Diagnosis language={language} verb={verb} tense={tense} person={person} typed={shown.picked ?? ''} />}
           <div className="row">
             <button type="button" className="btn" onClick={next} autoFocus>
               Devam

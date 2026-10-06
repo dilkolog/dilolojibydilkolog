@@ -1,4 +1,5 @@
 import { Rating, type Card } from 'ts-fsrs'
+import type { ErrorKind } from './formDiagnosis'
 import type { Scheduler } from './scheduler'
 import type { Tense } from './tenses'
 
@@ -19,6 +20,10 @@ export interface LabData {
   favorites: string[]
   recent: string[]
   records: Record<string, LabRecord>
+  /** Right and wrong answers per tense and person ("tense|person"): where the slips cluster. */
+  tally?: Record<string, { ok: number; wrong: number }>
+  /** Wrong answers by what kind of slip they were. */
+  kinds?: Partial<Record<ErrorKind, number>>
 }
 
 export const MASTERY_MAX = 60
@@ -153,3 +158,44 @@ export function gardenVerbs(lab: LabData, now: Date): { verb: string; points: nu
 
 /** Verb-and-tense pairs with full points, for the badges. */
 export const masteredForms = (lab: LabData): number => items(lab).filter((i) => i.record.points >= MASTERY_MAX).length
+
+/** One answer counted per tense and person, and a wrong one by its kind of slip. */
+export function recordForm(lab: LabData, tense: Tense, person: number, ok: boolean, kind?: ErrorKind): LabData {
+  const key = `${tense}|${person}`
+  const before = lab.tally?.[key] ?? { ok: 0, wrong: 0 }
+  return {
+    ...lab,
+    tally: { ...lab.tally, [key]: { ok: before.ok + (ok ? 1 : 0), wrong: before.wrong + (ok ? 0 : 1) } },
+    kinds: !ok && kind ? { ...lab.kinds, [kind]: (lab.kinds?.[kind] ?? 0) + 1 } : lab.kinds,
+  }
+}
+
+export interface TallyCell {
+  tense: Tense
+  person: number
+  ok: number
+  wrong: number
+  /** Share of wrong answers, 0 to 1. */
+  rate: number
+}
+
+export function tallyCells(lab: LabData): TallyCell[] {
+  return Object.entries(lab.tally ?? {}).map(([key, t]) => {
+    const [tense, person] = key.split('|')
+    return { tense: tense as Tense, person: Number(person), ok: t.ok, wrong: t.wrong, rate: t.wrong / Math.max(1, t.ok + t.wrong) }
+  })
+}
+
+/** The tense and person that go worst, once there are enough answers to say (and some were wrong). */
+export function weakestCell(lab: LabData, minAnswers = 3): TallyCell | undefined {
+  return tallyCells(lab)
+    .filter((c) => c.ok + c.wrong >= minAnswers && c.wrong > 0)
+    .sort((a, b) => b.rate - a.rate || b.wrong - a.wrong)[0]
+}
+
+/** The kinds of slip, most common first, with their share of all wrong answers. */
+export function errorBreakdown(lab: LabData): { kind: ErrorKind; count: number; share: number }[] {
+  const entries = Object.entries(lab.kinds ?? {}) as [ErrorKind, number][]
+  const total = entries.reduce((sum, [, n]) => sum + n, 0)
+  return entries.map(([kind, count]) => ({ kind, count, share: count / Math.max(1, total) })).sort((a, b) => b.count - a.count)
+}

@@ -1,14 +1,19 @@
-import { MASTERY_MAX, gardenVerbs, labKey, masteryLevel, plantStage, verbMastery, type LabData, type MasteryLevel } from '../../engine/labProgress'
+import { ERROR_TEXT } from '../../engine/formDiagnosis'
+import { MASTERY_MAX, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, tallyCells, verbMastery, weakestCell, type LabData, type MasteryLevel } from '../../engine/labProgress'
 import { Plant } from '../Plant'
-import type { Tense } from '../../engine/tenses'
+import { subjectLabel, type Tense } from '../../engine/tenses'
 import { tenseName, type LabLanguage } from './labShared'
 
 const LEVEL_TEXT: Record<MasteryLevel, string> = { new: 'Yeni', learning: 'Öğreniliyor', good: 'İyi', master: 'Usta' }
 
 /** Mastery: how well each tense of the verb is known, from the lab's own practice. */
-export function MasteryTab({ language, verb, available, lab, onPractice, onOpenVerb }: { language: LabLanguage; verb: string; available: readonly Tense[]; lab: LabData; onPractice: (t: Tense) => void; onOpenVerb: (verb: string) => void }) {
+export function MasteryTab({ language, verb, available, lab, onPractice, onOpenVerb, onWeak }: { language: LabLanguage; verb: string; available: readonly Tense[]; lab: LabData; onPractice: (t: Tense) => void; onOpenVerb: (verb: string) => void; onWeak: (tense: Tense) => void }) {
   const score = verbMastery(lab, verb, available)
   const garden = gardenVerbs(lab, new Date())
+  const cells = tallyCells(lab)
+  const tenses = [...new Set(cells.map((c) => c.tense))]
+  const worst = weakestCell(lab)
+  const kinds = errorBreakdown(lab)
   return (
     <div className="stack lab-mastery">
       <header className="lab-mastery-head">
@@ -37,6 +42,67 @@ export function MasteryTab({ language, verb, available, lab, onPractice, onOpenV
           )
         })}
       </ul>
+      {cells.length > 0 && (
+        <section className="stack gap-2 lab-weak" aria-label="Zayıf noktaların">
+          <h3 className="lab-mood-title">Zayıf noktaların</h3>
+          {worst && (
+            <p className="lab-weak-worst">
+              En çok zorlandığın: <strong lang={language}>{tenseName(worst.tense)}</strong> · {subjectLabel(language, worst.tense, worst.person).split(' / ')[0]} ({worst.wrong}/{worst.ok + worst.wrong} yanlış).{' '}
+              <button type="button" className="link" onClick={() => onWeak(worst.tense)}>
+                Bu zamanı çalış
+              </button>
+            </p>
+          )}
+          <div className="lab-heat-wrap">
+            <table className="lab-heat">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span className="sr-only">Zaman</span>
+                  </th>
+                  {[0, 1, 2, 3, 4, 5].map((p) => (
+                    <th key={p} scope="col">
+                      {subjectLabel(language, tenses[0], p).split(' / ')[0].replace(/^que |^qu'/, '')}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {tenses.map((t) => (
+                  <tr key={t}>
+                    <th scope="row" lang={language}>
+                      {tenseName(t)}
+                    </th>
+                    {[0, 1, 2, 3, 4, 5].map((p) => {
+                      const c = cells.find((x) => x.tense === t && x.person === p)
+                      const level = !c ? 'none' : c.wrong === 0 ? 'good' : c.rate < 0.3 ? 'some' : c.rate < 0.6 ? 'many' : 'bad'
+                      return (
+                        <td key={p} className={`is-${level}`} title={c ? `${c.wrong} yanlış, ${c.ok} doğru` : 'Henüz sorulmadı'}>
+                          {c ? `${c.ok}/${c.ok + c.wrong}` : '·'}
+                        </td>
+                      )
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {kinds.length > 0 && (
+            <ul className="lab-kinds" aria-label="Hata türleri">
+              {kinds.map((k) => (
+                <li key={k.kind} title={ERROR_TEXT[k.kind].hint}>
+                  <span>{ERROR_TEXT[k.kind].name}</span>
+                  <span className="lab-bar" aria-hidden>
+                    <span style={{ width: `${k.share * 100}%` }} />
+                  </span>
+                  <span className="small muted">%{Math.round(k.share * 100)}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="small muted">Hücrelerde doğru/toplam cevap görünür; kırmızıya yakın hücreler çalışılacak yerler.</p>
+        </section>
+      )}
       {garden.length > 0 && (
         <section className="stack gap-2 lab-garden" aria-label="Fiil bahçem">
           <h3 className="lab-mood-title">Fiil bahçem</h3>

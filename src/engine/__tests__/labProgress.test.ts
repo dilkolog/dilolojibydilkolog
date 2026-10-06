@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { errorBreakdown, recordForm, tallyCells, weakestCell, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -125,5 +125,38 @@ describe('mastery and the garden', () => {
     expect(garden.map((g) => g.verb)).toEqual(['comer', 'ir'])
     expect(garden[0]).toMatchObject({ forms: 2, percent: 17, due: 2 })
     expect(garden[1]).toMatchObject({ forms: 1, percent: 0 })
+  })
+})
+
+describe('where the slips are', () => {
+  it('counts answers per tense and person, wrong ones by kind', () => {
+    let lab = emptyLab()
+    lab = recordForm(lab, 'preterito', 5, true)
+    lab = recordForm(lab, 'preterito', 5, false, 'person')
+    lab = recordForm(lab, 'preterito', 5, false, 'person')
+    lab = recordForm(lab, 'presente', 0, false, 'accent')
+    expect(tallyCells(lab).find((c) => c.tense === 'preterito' && c.person === 5)).toMatchObject({ ok: 1, wrong: 2 })
+    expect(errorBreakdown(lab)).toEqual([
+      { kind: 'person', count: 2, share: 2 / 3 },
+      { kind: 'accent', count: 1, share: 1 / 3 },
+    ])
+  })
+
+  it('names the worst place only with enough answers and some wrong', () => {
+    let lab = emptyLab()
+    lab = recordForm(lab, 'preterito', 5, false, 'tense')
+    lab = recordForm(lab, 'preterito', 5, false, 'tense')
+    expect(weakestCell(lab)).toBeUndefined()
+    lab = recordForm(lab, 'preterito', 5, true)
+    lab = recordForm(lab, 'presente', 0, true)
+    lab = recordForm(lab, 'presente', 0, true)
+    lab = recordForm(lab, 'presente', 0, true)
+    expect(weakestCell(lab)).toMatchObject({ tense: 'preterito', person: 5, wrong: 2 })
+    expect(weakestCell(emptyLab())).toBeUndefined()
+  })
+
+  it('old data without a tally still reads', () => {
+    expect(tallyCells(emptyLab())).toEqual([])
+    expect(errorBreakdown(emptyLab())).toEqual([])
   })
 })
