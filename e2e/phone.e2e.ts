@@ -566,6 +566,17 @@ test('the word list can be a gallery: pictures where there are any, letters wher
   await expect(page.locator('.word-hero')).toBeVisible()
 })
 
+test('a session ends in a small garden: a plant for each word, under the sky of the hour', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await playSession(page)
+  const scene = page.locator('.summary-scene')
+  await expect(scene).toBeVisible()
+  expect(await scene.locator('.scene-plants li').count()).toBeGreaterThan(0)
+  await expect(scene.locator('.garden-sky')).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
+
 test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Profil')

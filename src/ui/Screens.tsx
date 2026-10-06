@@ -21,6 +21,7 @@ import { markBadgesSeen } from './badgeSeen'
 import { Burst } from './Burst'
 import { DayPlant } from './DayPlant'
 import { Ring } from './Ring'
+import { SummaryGarden } from './SummaryGarden'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
 import { Medal } from './Medal'
@@ -833,6 +834,7 @@ export function Summary({
 
       <div className="summary-side stack" hidden={recalling}>
         {/* Mounted only while shown: hidden, the plants would finish growing unseen. */}
+        {!recalling && <SummaryGarden summary={summary} />}
         {!recalling && grown.length > 0 && (
           <section className="stack summary-grown">
             <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>

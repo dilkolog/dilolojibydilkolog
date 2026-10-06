@@ -4353,3 +4353,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .sk-inline .sk-line { height: 0.875rem; }
 .sk-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.5rem; }
 .sk-tile { aspect-ratio: 4 / 3; border-radius: var(--r-md); }
+
+/* The end of a session as a small garden under the sky of the hour. */
+.summary-scene { position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
+.summary-scene .garden-sky { height: 9rem; margin: 0; border-radius: 0; }
+.scene-plants { position: absolute; inset: auto 0.75rem 1.75rem; list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-evenly; gap: 0.25rem; }
+.scene-plants li { display: block; animation: scene-pop var(--dur) var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 80ms); }
+@keyframes scene-pop { from { transform: translateY(0.75rem) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
+.scene-caption { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 0.25rem 0.75rem; text-align: center; font-weight: 700; color: #fff; background: linear-gradient(to top, rgb(0 0 0 / 0.35), transparent); }
