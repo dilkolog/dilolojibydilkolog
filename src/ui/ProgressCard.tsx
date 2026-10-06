@@ -193,6 +193,8 @@ export function ProgressCardButton({ settings, game }: { settings: Settings; gam
       if (!live) return
       made = URL.createObjectURL(blob)
       setPng({ blob, url: made })
+    }).catch(() => {
+      // No picture (no canvas, or the image would not decode): the card stays empty rather than failing.
     })
     return () => {
       live = false

@@ -35,7 +35,7 @@ import { Avatar } from './ui/Avatar'
 import { Glyph } from './ui/Glyph'
 import { BadgeWatcher } from './ui/BadgeWatcher'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, TenseIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
@@ -51,6 +51,7 @@ import { connectExtension, pushToExtension } from './ui/extensionBridge'
 import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
+import { VerbLab, type LabTab } from './ui/verbs/VerbLab'
 import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
@@ -119,13 +120,14 @@ type Screen =
   | { name: 'produce' }
   | { name: 'exam' }
   | { name: 'games'; game?: GameId }
+  | { name: 'verbs'; verb?: string; tense?: string; tab?: LabTab }
   | { name: 'profile' }
   | { name: 'settings' }
   | { name: 'account'; mode?: AuthMode }
 
 const SCREEN_KEY = 'kelime-koc:screen'
 /** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
-const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'word', 'reading', 'produce', 'story', 'games', 'mistakes', 'progress', 'profile', 'settings'])
+const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
 
 function restoreScreen(): Screen {
   // Home-screen shortcuts (manifest): ?go=home | add | reading
@@ -153,7 +155,7 @@ function restoreScreen(): Screen {
 }
 
 /** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
-const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings'])
+const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings'])
 
 /**
  * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
@@ -182,6 +184,7 @@ const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: string }[]>
   ],
   practice: [
     { screen: 'games', label: 'Oyunlar' },
+    { screen: 'verbs', label: 'Fiiller' },
     { screen: 'produce', label: 'Yaz & konuş' },
   ],
 }
@@ -202,6 +205,7 @@ const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?: numbe
   { screen: 'reading', label: 'Okuma', icon: ReadIcon },
   { screen: 'story', label: 'Hikaye', icon: StoryIcon },
   { screen: 'games', label: 'Oyunlar', icon: GameIcon },
+  { screen: 'verbs', label: 'Fiil laboratuvarı', icon: TenseIcon },
   { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
   { screen: 'profile', label: 'Profil', icon: UserIcon },
@@ -783,7 +787,7 @@ export default function App() {
             {/* Related screens under one menu place: switch between them here. */}
             {place && GROUPS[place]?.some((g) => g.screen === screen.name) && (
               <nav className="hub-tabs" aria-label={NAV.find((n) => n.screen === place)!.label}>
-                {GROUPS[place]!.map((g) => (
+                {GROUPS[place]!.filter((g) => g.screen !== 'verbs' || settings.activeLanguage !== 'en').map((g) => (
                   <button key={g.screen} className="hub-tab" aria-current={g.screen === screen.name ? 'page' : undefined} onClick={go({ name: g.screen } as Screen)}>
                     {g.label}
                     {g.screen === 'mistakes' && !!navBadge.words && <span className="hub-count">{navBadge.words}</span>}
@@ -863,6 +867,7 @@ export default function App() {
                 onChanged={reload}
                 onBack={go({ name: 'words' })}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
+                onOpenLab={(verb) => setScreen({ name: 'verbs', verb })}
                 onStudy={(deck) =>
                   startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
                 }
@@ -872,7 +877,7 @@ export default function App() {
                 mistakes={data.mistakes}
                 vocabulary={data.vocabulary}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
-                onConjugation={data.language !== 'en' ? go({ name: 'games', game: 'conjugation' }) : undefined}
+                onConjugation={data.language !== 'en' ? go({ name: 'verbs', tab: 'practice' }) : undefined}
                 onPractice={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
                 }
@@ -935,6 +940,8 @@ export default function App() {
               />
             ) : screen.name === 'games' ? (
               <GamesScreen key={screen.game} initialGame={screen.game} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
+            ) : screen.name === 'verbs' ? (
+              <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
             ) : screen.name === 'account' ? (

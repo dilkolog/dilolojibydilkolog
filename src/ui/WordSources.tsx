@@ -17,7 +17,7 @@ export function WordSources({ entry, onChanged }: { entry: VocabularyEntry; onCh
           type="button"
           className={`chip chip-sm review-toggle${entry.review ? ' is-on' : ''}`}
           aria-pressed={!!entry.review}
-          title="Bu kelimenin verisine sonra yine bakmak istiyorsan işaretle; kelime listesinde süzülür"
+          title="Bu kelimenin verisine sonra yine bakmak istiyorsan işaretle; kelime listesinde filtrelenir"
           onClick={async () => {
             await db.vocabulary.put({ ...entry, review: entry.review ? undefined : true })
             onChanged()

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { openScreen, startWithSamples } from './helpers'
+import { openScreen, openVerbLab, overflow, contrastProblems, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -114,4 +114,70 @@ test('the key legend stays at the bottom of the screen while a question eases in
     expect(view.height - (box!.y + box!.height)).toBeLessThan(40)
     await page.waitForTimeout(150)
   }
+})
+
+test('verb lab: pick a verb and a tense, learn, practise, compare, and the practice shows in mastery', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  // Learn: the present table with the endings, then another tense from the menu.
+  await expect(main.locator('.lab-forms')).toContainText('parlons')
+  await page.getByRole('button', { name: /^Présent/ }).first().click()
+  await page.getByRole('menuitem', { name: /Passé composé/ }).click()
+  await expect(main.locator('.lab-forms')).toContainText('avons parlé')
+  // Detailed: every tense by mood, the compound ones included.
+  await main.getByRole('button', { name: 'Detaylı' }).click()
+  await expect(main.locator('.lab-card', { hasText: 'Plus-que-parfait' })).toContainText('avions parlé')
+  await expect(main.locator('.lab-card', { hasText: 'Subjonctif passé' })).toContainText('aie parlé')
+  await main.getByRole('button', { name: 'Basit' }).click()
+  // The alternatives: negative and reflexive.
+  await main.getByRole('button', { name: 'Olumsuz' }).click()
+  await expect(main.locator('.lab-forms')).toContainText("n'ai pas parlé")
+  await main.getByRole('button', { name: 'Olumsuz' }).click()
+  // Practice, all six at once: a wrong form is marked and costs a life.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await page.getByRole('button', { name: /^Passé composé/ }).first().click()
+  await page.getByRole('menuitem', { name: /Présent/ }).click()
+  const answers = ['parle', 'parles', 'parle', 'parlons', 'parlez', 'parlent']
+  for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(i === 1 ? 'parlais' : a)
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.locator('.lab-answer-row.is-bad')).toHaveCount(1)
+  await expect(main.locator('.lab-result')).toContainText('5 / 6 doğru')
+  // Again, all right: the round is marked and lands in mastery.
+  await main.getByRole('button', { name: 'Tekrar' }).click()
+  for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.locator('.lab-result')).toContainText('Hepsi doğru!')
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  // Both rounds count (one form in six missed is still a right round): 20 of 60 points.
+  await expect(main.getByRole('button', { name: /^Présent:/ })).toContainText('Öğreniliyor (20/60)')
+  // Choosing among forms, and the pairs.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Seç' }).click()
+  await expect(main.locator('.lab-option')).toHaveCount(4)
+  await main.getByRole('button', { name: 'Eşleştir' }).click()
+  await expect(main.locator('.lab-match-btn')).toHaveCount(12)
+  // Compare shows three tenses at once; time against the clock offers three levels.
+  await main.getByRole('tab', { name: 'Kıyaslama' }).click()
+  await expect(main.locator('.lab-compare-cards .lab-card')).toHaveCount(3)
+  await main.getByRole('tab', { name: 'Zamana karşı' }).click()
+  await expect(main.locator('.lab-levelcard')).toHaveCount(3)
+  expect(await overflow(page)).toEqual([])
+  expect(await contrastProblems(page)).toEqual([])
+})
+
+test('verb lab: a verb the tables lack is said so, the shuffle picks another, favourites and recent are kept', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'finir')
+  const input = page.getByRole('combobox')
+  await input.fill('zzzzz')
+  await input.press('Enter')
+  await expect(page.getByRole('status').filter({ hasText: 'tablolarda yok' })).toBeVisible()
+  await page.getByRole('button', { name: 'Rastgele fiil' }).click()
+  await expect(page.locator('.lab-main .lab-verb').first()).not.toHaveText(/^Finir$/)
+  await page.locator('.lab-main').getByRole('button', { name: 'Favorilere ekle' }).click()
+  await page.reload()
+  await openVerbLab(page)
+  await page.locator('.lab-fold-head', { hasText: 'Favorilerim' }).click()
+  await expect(page.locator('.lab-fold', { hasText: 'Favorilerim' }).locator('.chip')).toHaveCount(1)
 })

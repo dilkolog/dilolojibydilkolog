@@ -13,6 +13,19 @@ export async function startWithSamples(page: Page) {
   await expect(page.getByRole('button', { name: /^(Başla|Devam et)$/ })).toBeVisible()
 }
 
+/** Opens the verb lab (Pratik → Fiiller) and picks a verb by typing it. */
+export async function openVerbLab(page: Page, verb?: string) {
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Pratik\d*$/ }).first().click()
+  await page.locator('.hub-tab').filter({ hasText: /^Fiiller$/ }).click()
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+  if (verb) {
+    const input = page.getByRole('combobox')
+    await input.fill(verb)
+    await input.press('Enter')
+    await expect(page.locator('.lab-main .lab-verb').first()).toHaveText(new RegExp(`^${verb}$`, 'i'))
+  }
+}
+
 /** Where each screen lives: a menu place, then (for grouped screens) a tab at the top. */
 const ROUTE: Record<string, [string, string?]> = {
   Bugün: ['Bugün'],
@@ -21,6 +34,7 @@ const ROUTE: Record<string, [string, string?]> = {
   Okuma: ['Okuma', 'Metinler'],
   Hikaye: ['Okuma', 'Hikaye'],
   Oyunlar: ['Pratik', 'Oyunlar'],
+  Fiiller: ['Pratik', 'Fiiller'],
   'Yaz & konuş': ['Pratik', 'Yaz & konuş'],
   İlerleme: ['İlerleme'],
 }
@@ -44,7 +58,7 @@ export async function openScreen(page: Page, name: string) {
   for (let n = await page.locator('.group-toggle[aria-expanded=false]').count(); n > 0; n--) await page.locator('.group-toggle[aria-expanded=false]').first().click()
 }
 
-export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Okuma', 'Hikaye', 'Oyunlar', 'Yaz & konuş', 'İlerleme', 'Profil', 'Ayarlar']
+export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Okuma', 'Hikaye', 'Oyunlar', 'Fiiller', 'Yaz & konuş', 'İlerleme', 'Profil', 'Ayarlar']
 
 /** Elements wider than the screen that make the page scroll sideways. */
 export const overflow = (page: Page) =>

@@ -163,6 +163,116 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
     ],
     markers: ['quiero que', 'es importante que', 'ojalá', 'para que', 'espero que', 'aunque'],
   },
+  'plus-que-parfait': {
+    name: 'plus-que-parfait',
+    tr: 'Geçmişte geçmiş (-mişti)',
+    short: 'Geçmişteki başka bir olaydan önce tamamlanmış eylem: "yapmıştım".',
+    formation: 'avoir ya da être (imparfait) + participe passé: j\'avais parlé, elle était partie. Hangi yardımcı fiilin geldiği passé composé ile aynıdır.',
+    examples: [
+      ['Quand je suis arrivé, le film avait déjà commencé.', 'Vardığımda film çoktan başlamıştı.'],
+      ["Elle était déjà partie quand tu as appelé.", 'Sen aradığında o çoktan gitmişti.'],
+    ],
+    markers: ['déjà', 'quand', 'avant', 'la veille', 'ce jour-là', 'depuis longtemps'],
+  },
+  'futur-anterieur': {
+    name: 'futur antérieur',
+    tr: 'Bitmiş gelecek (-miş olacak)',
+    short: 'Gelecekte belli bir andan önce tamamlanmış olacak eylem: "yapmış olacağım".',
+    formation: 'avoir ya da être (futur) + participe passé: j\'aurai fini, elle sera partie. "quand" ve "dès que" ile futur simple yerine de gelir: Quand tu auras fini, appelle-moi.',
+    examples: [
+      ["Demain à midi, j'aurai fini mon travail.", 'Yarın öğlene kadar işimi bitirmiş olacağım.'],
+      ['Quand tu arriveras, ils seront déjà partis.', 'Sen vardığında onlar çoktan gitmiş olacak.'],
+    ],
+    markers: ['demain à midi', "d'ici là", 'quand', 'dès que', 'avant', 'déjà'],
+  },
+  'conditionnel-passe': {
+    name: 'conditionnel passé',
+    tr: 'Geçmiş şart (-miş olurdu)',
+    short: 'Geçmişte gerçekleşmemiş bir şeyin sonucu ya da pişmanlık: "yapmış olurdum".',
+    formation: 'avoir ya da être (conditionnel) + participe passé: j\'aurais mangé, il serait venu. "Si + plus-que-parfait" cümlesinin sonucudur: Si j\'avais su, je serais venu.',
+    examples: [
+      ["Si j'avais su, je serais venu.", 'Bilseydim gelirdim.'],
+      ["J'aurais voulu t'aider.", 'Sana yardım etmek isterdim.'],
+    ],
+    markers: ["si j'avais su", "j'aurais dû", "j'aurais voulu", 'à ta place', 'sans toi', 'jamais'],
+  },
+  'subjonctif-passe': {
+    name: 'subjonctif passé',
+    tr: 'Dilek kipi, tamamlanmış (-miş olması)',
+    short: 'Dilek kipi gerektiren bir ifadeden sonra, tamamlanmış eylem: "başarmış olmana sevindim".',
+    formation: 'avoir ya da être (subjonctif) + participe passé: que j\'aie fini, qu\'elle soit partie. Ana eylemden önce biten bir şey için kullanılır.',
+    examples: [
+      ['Je suis content que tu aies réussi.', 'Başarmış olmana sevindim.'],
+      ["Il faut qu'ils soient partis avant midi.", 'Öğlenden önce gitmiş olmaları gerekiyor.'],
+    ],
+    markers: ['je suis content que', 'bien que', 'il faut que', 'dommage que', 'je doute que', 'il est possible que'],
+  },
+  pluscuamperfecto: {
+    name: 'pretérito pluscuamperfecto',
+    tr: 'Geçmişte geçmiş (-mişti)',
+    short: 'Geçmişteki başka bir olaydan önce tamamlanmış eylem: "yapmıştım".',
+    formation: 'haber (imperfecto: había, habías, había, habíamos, habíais, habían) + participio: había comido, habían llegado. Düzensiz participiolar perfecto ile aynı: hecho, dicho, visto, escrito.',
+    examples: [
+      ['Cuando llegué, la película ya había empezado.', 'Vardığımda film çoktan başlamıştı.'],
+      ['Ya habíamos cenado cuando llamaste.', 'Sen aradığında biz çoktan akşam yemeğini yemiştik.'],
+    ],
+    markers: ['ya', 'todavía no', 'antes de', 'cuando llegué', 'hasta entonces', 'nunca antes'],
+  },
+  'futuro-perfecto': {
+    name: 'futuro perfecto',
+    tr: 'Bitmiş gelecek (-miş olacak)',
+    short: 'Gelecekte belli bir andan önce bitmiş olacak eylem, ya da geçmişe dair tahmin: "yapmış olacağım, yapmış olmalı".',
+    formation: 'haber (futuro: habré, habrás, habrá, habremos, habréis, habrán) + participio: habré terminado.',
+    examples: [
+      ['Para mañana habré terminado el trabajo.', 'Yarına kadar işi bitirmiş olacağım.'],
+      ['Ya habrán llegado a casa.', 'Evlerine varmış olmalılar.'],
+    ],
+    markers: ['para mañana', 'dentro de una hora', 'para entonces', 'cuando llegues', 'ya', 'seguramente'],
+  },
+  'condicional-perfecto': {
+    name: 'condicional perfecto',
+    tr: 'Geçmiş şart (-miş olurdu)',
+    short: 'Geçmişte gerçekleşmemiş bir şeyin sonucu ya da pişmanlık: "yapmış olurdum".',
+    formation: 'haber (condicional: habría, habrías, habría, habríamos, habríais, habrían) + participio: habría ido. "Si + pluscuamperfecto de subjuntivo" ile gelir: Si hubiera sabido, habría venido.',
+    examples: [
+      ['Si hubiera sabido, habría venido.', 'Bilseydim gelirdim.'],
+      ['Habría preferido quedarme en casa.', 'Evde kalmayı tercih ederdim.'],
+    ],
+    markers: ['si hubiera sabido', 'habría querido', 'en tu lugar', 'sin ti', 'ojalá', 'nunca'],
+  },
+  'subjuntivo-imperfecto': {
+    name: 'pretérito imperfecto de subjuntivo',
+    tr: 'Dilek kipi, geçmiş (-seydi, -sa)',
+    short: 'Geçmişteki bir istek ya da gerçek dışı koşul: "gelmeni istiyordum", "olsaydı".',
+    formation: 'Pretérito indefinido\'nun ellos formundan -ron atılır, -ra, -ras, -ra, -ramos, -rais, -ran eklenir: comieron → comiera, tuvieron → tuviera. -se biçimi de doğrudur (comiese). Nosotros\'ta vurgu işareti gelir: comiéramos.',
+    examples: [
+      ['Quería que vinieras a la fiesta.', 'Partiye gelmeni istiyordum.'],
+      ['Si tuviera tiempo, viajaría más.', 'Vaktim olsa daha çok seyahat ederdim.'],
+    ],
+    markers: ['si tuviera…', 'como si', 'quería que', 'me gustaría que', 'sería mejor que', 'ojalá tuviera'],
+  },
+  'subjuntivo-perfecto': {
+    name: 'pretérito perfecto de subjuntivo',
+    tr: 'Dilek kipi, tamamlanmış (-miş olması)',
+    short: 'Dilek kipi gerektiren bir ifadeden sonra, tamamlanmış eylem: "gelmiş olmana sevindim".',
+    formation: 'haber (presente de subjuntivo: haya, hayas, haya, hayamos, hayáis, hayan) + participio: haya comido.',
+    examples: [
+      ['Espero que hayas llegado bien.', 'Umarım iyi varmışsındır.'],
+      ['Me alegro de que hayan venido.', 'Geldiklerine sevindim.'],
+    ],
+    markers: ['espero que', 'me alegro de que', 'es posible que', 'no creo que', 'dudo que', 'ojalá'],
+  },
+  'subjuntivo-pluscuamperfecto': {
+    name: 'pluscuamperfecto de subjuntivo',
+    tr: 'Dilek kipi, geçmişte geçmiş (-seydi)',
+    short: 'Geçmişte gerçekleşmemiş koşul ya da pişmanlık: "bilseydim, keşke yapsaydım".',
+    formation: 'haber (imperfecto de subjuntivo: hubiera, hubieras, hubiera, hubiéramos, hubierais, hubieran) + participio: hubiera comido. -se biçimi de doğrudur: hubiese comido.',
+    examples: [
+      ['Si hubiera sabido, te habría llamado.', 'Bilseydim seni arardım.'],
+      ['Ojalá hubiera estudiado más.', 'Keşke daha çok çalışsaydım.'],
+    ],
+    markers: ['si hubiera…', 'ojalá hubiera', 'como si hubiera', 'de haber sabido', 'hubiera querido', 'ojalá'],
+  },
 }
 
 /**

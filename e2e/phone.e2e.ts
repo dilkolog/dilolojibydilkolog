@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, playSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, startWithSamples } from './helpers'
 
 test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
@@ -545,7 +545,7 @@ test('pictures can be suggested for the words that have none, taken with one tap
   await page.route('https://upload.wikimedia.org/**', (route) => route.fulfill({ status: 200, headers: cors, contentType: 'image/png', body: png }))
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
-  const openPanel = () => page.getByRole('button', { name: /^Süz ve görünüm/ }).click()
+  const openPanel = () => page.getByRole('button', { name: /^Filtrele ve görünüm/ }).click()
   await openPanel()
   const chip = page.getByRole('button', { name: /Görsel öner \((\d+)\)/ })
   await expect(chip).toBeVisible()
@@ -592,7 +592,7 @@ test('a word card shows how full it is, and a missing part takes you to where it
 test('the word list can be a gallery: pictures where there are any, letters where there are not, and a tap opens the word', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
-  await page.getByRole('button', { name: /^Süz ve görünüm/ }).click()
+  await page.getByRole('button', { name: /^Filtrele ve görünüm/ }).click()
   await page.getByRole('button', { name: 'Galeri', exact: true }).click()
   await page.keyboard.press('Escape')
   const tiles = page.locator('.gallery-tile')
@@ -783,6 +783,8 @@ test('the calm theme is a choice in Settings and turns the dark theme down', asy
   expect(await bg('--bg')).toBe('#0f172a')
   // Kept across a reload, before the first paint.
   await page.getByRole('radio', { name: 'Sakin' }).or(page.getByRole('button', { name: 'Sakin', exact: true })).first().click()
+  // The choice is written to the page's own storage a moment after the click; reload only once it is.
+  await page.waitForFunction(() => localStorage.getItem('kelime-koc:theme') === 'calm')
   await page.reload()
   await expect(root).toHaveAttribute('data-calm', '')
 })
@@ -896,4 +898,34 @@ test('the account card says where you stand: three reasons and wide buttons sign
   await expect(card.getByRole('button', { name: 'Bu cihazda çıkış yap' })).toBeVisible()
   expect(await contrastProblems(page)).toEqual([])
   expect(await overflow(page)).toEqual([])
+})
+
+test('verb lab on a phone: every tab fits, the lesson comes right after the verb and tense', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'avoir')
+  const lesson = await page.locator('.lab-main').boundingBox()
+  const lists = await page.locator('.lab-lists').boundingBox()
+  expect(lesson!.y, 'the lesson is above the verb lists').toBeLessThan(lists!.y)
+  expect(lesson!.y, 'the lesson starts within the first screen').toBeLessThan(page.viewportSize()!.height)
+  const found: string[] = []
+  const check = async (where: string) => {
+    await page.waitForTimeout(250)
+    for (const o of await overflow(page)) found.push(`${where}: ${o}`)
+    for (const c of await clippedContent(page)) found.push(`${where} clipped: ${c}`)
+    for (const c of await contrastProblems(page)) found.push(`${where} contrast: ${c}`)
+  }
+  const main = page.locator('.lab-main')
+  await check('learn')
+  await main.getByRole('button', { name: 'Detaylı' }).click()
+  await check('learn detailed')
+  for (const tab of ['Alıştırma', 'Zamana karşı', 'Kıyaslama', 'Ustalık']) {
+    await main.getByRole('tab', { name: tab }).click()
+    await check(tab)
+    if (tab === 'Alıştırma')
+      for (const mode of ['Seç', 'Eşleştir']) {
+        await main.getByRole('button', { name: mode }).click()
+        await check(`${tab} ${mode}`)
+      }
+  }
+  expect(found).toEqual([])
 })
