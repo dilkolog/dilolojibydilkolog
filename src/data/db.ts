@@ -74,6 +74,18 @@ export interface Profile {
   /** Avatar photo (media table id). */
   photoId?: string
   motto: string
+  /** Card banner and avatar frame (ids from profileStyle.ts); unknown ids fall back to the defaults. */
+  banner?: string
+  frame?: string
+  /** The title shown beside the level: 'auto' / undefined follows the level (see availableTitles). */
+  title?: string
+  /** Badges shown on the card (at most three), by id. */
+  pinned?: string[]
+  /** Interests, shown as chips (at most six). */
+  interests?: string[]
+  /** A goal: a CEFR level and, optionally, a date to reach it by (ISO). */
+  goalLevel?: string
+  goalDate?: string
 }
 
 export interface Settings {
@@ -86,7 +98,8 @@ export interface Settings {
   dailyXpGoal: number
   /** Questions per session at most; 0 = whole plan. */
   sessionMax: number
-  theme: 'system' | 'light' | 'dark'
+  /** 'calm': the dark theme with its colours turned down, for working at night. */
+  theme: 'system' | 'light' | 'dark' | 'calm'
   /** Set once the light default replaced an inherited 'system' (2026-10-06). */
   themeLightDefault?: boolean
   /** Scales the whole interface (everything is sized in rem). */

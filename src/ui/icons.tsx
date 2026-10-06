@@ -406,6 +406,13 @@ export const MoonIcon = (p: P) => (
     <S d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.5 6.5 0 0 0 10.1 10.1z" />
   </Icon>
 )
+export const SunIcon = (p: P) => (
+  <Icon {...p}>
+    <D d="M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z" />
+    <circle cx="12" cy="12" r="4.5" />
+    <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6" />
+  </Icon>
+)
 export const UmbrellaIcon = (p: P) => (
   <Icon {...p}>
     <S d="M12 3.5a8.5 8.5 0 0 1 8.5 8.5h-17A8.5 8.5 0 0 1 12 3.5z" />

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import {
+  ACHIEVEMENTS,
+  BADGE_CATEGORIES,
+  badgeCategory,
+  emptyStats,
+  medalTier,
   achievements,
   computeXp,
   INTRO_XP,
@@ -71,7 +76,7 @@ describe('levels', () => {
 })
 
 describe('achievements', () => {
-  const stats: GameStats = { wordsIntroduced: 60, mastered: 0, totalAnswers: 120, longestStreak: 7, perfectDays: 0, maxCombo: 12, languagesStudied: 1, wordsWithPicture: 2, wordsWithRecording: 0, freeSentencesCorrect: 0, level: 3, bossesDefeated: 1, challengesDone: 0, perfectWeeks: 0 }
+  const stats: GameStats = { ...emptyStats, wordsIntroduced: 60, totalAnswers: 120, longestStreak: 7, maxCombo: 12, languagesStudied: 1, wordsWithPicture: 2, level: 3, bossesDefeated: 1 }
   it('reports unlocked badges and progress toward the rest', () => {
     const a = achievements(stats)
     const get = (id: string) => a.find((x) => x.id === id)!
@@ -89,5 +94,32 @@ describe('achievements', () => {
     expect(longestStreak([at(10), at(9), at(8), at(5), at(4)])).toBe(3)
     expect(perfectDays([...Array(20)].map(() => at(1)))).toBe(1)
     expect(perfectDays([...[...Array(20)].map(() => at(2)), at(2, 'wrong')])).toBe(0)
+  })
+})
+
+describe('the badge set', () => {
+  it('shelves every counted stat in a category', () => {
+    for (const a of ACHIEVEMENTS) expect(BADGE_CATEGORIES.some((c) => c.id === badgeCategory(a)), a.id).toBe(true)
+    for (const c of BADGE_CATEGORIES) expect(ACHIEVEMENTS.some((a) => badgeCategory(a) === c.id), c.name).toBe(true)
+  })
+
+  it('has unique ids, a reachable goal and a stat that is counted', () => {
+    const ids = ACHIEVEMENTS.map((a) => a.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    for (const a of ACHIEVEMENTS) {
+      expect(a.goal, a.id).toBeGreaterThan(0)
+      expect(a.stat in emptyStats, `${a.id} counts ${a.stat}`).toBe(true)
+      expect(a.title.length, a.id).toBeGreaterThan(0)
+    }
+    expect(ACHIEVEMENTS.length).toBeGreaterThanOrEqual(70)
+  })
+
+  it('gives each kind of badge bronze at the start and gold at the top, one-offs special', () => {
+    const family = ACHIEVEMENTS.filter((a) => a.stat === 'longestStreak').sort((a, b) => a.goal - b.goal)
+    expect(medalTier(family[0])).toBe('bronze')
+    expect(medalTier(family.at(-1)!)).toBe('gold')
+    const alone = ACHIEVEMENTS.filter((a) => ACHIEVEMENTS.filter((x) => x.stat === a.stat).length === 1)
+    expect(alone.length).toBeGreaterThan(0)
+    for (const a of alone) expect(medalTier(a)).toBe('special')
   })
 })

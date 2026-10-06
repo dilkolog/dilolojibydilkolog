@@ -14,8 +14,13 @@ export function IosShortcut() {
     setTimeout(() => setCopied(null), 2000)
   }
   return (
-    <section className="card stack">
-      <h2 className="section-title">iPhone ve iPad: paylaşarak ekleme</h2>
+    // Closed until wanted: five steps of instructions most people need once.
+    <details className="card ios-shortcut">
+      <summary>
+        <span className="section-title">iPhone ve iPad: paylaşarak ekleme</span>
+        <span className="small muted">Bir kere kurulan kısa bir Kestirme, beş adım.</span>
+      </summary>
+      <div className="stack mt-3">
       <p className="small muted">
         iPhone, web uygulamalarını Paylaş menüsüne koymuyor. Bir kere kuracağın kısa bir Kestirme ile her uygulamada (Safari, Kindle, Notlar…) seçtiğin metni
         Paylaş → <strong>Kelime Koçu'na ekle</strong> ile gönderebilirsin.
@@ -43,17 +48,18 @@ export function IosShortcut() {
           Eylem ekle: <strong>URL'leri Aç</strong> (<em>Open URLs</em>). Bitti.
         </li>
       </ol>
-      <p className="small">
-        Bütün bir cümleyi cümle kartı olarak göndermek için aynı kestirmeyi "Cümleyi kaydet" adıyla bir kez daha kur, adresi şununla değiştir:{' '}
-        <code className="shortcut-url">{base}sentence=</code>{' '}
+      <p className="small">Bütün bir cümleyi cümle kartı olarak göndermek için aynı kestirmeyi "Cümleyi kaydet" adıyla bir kez daha kur, adresi şununla değiştir:</p>
+      <div className="row">
+        <code className="shortcut-url">{base}sentence=</code>
         <button className="btn btn-sm btn-quiet" onClick={() => copy('sentence')}>
           {copied === 'sentence' ? 'Kopyalandı' : 'Kopyala'}
         </button>
-      </p>
+      </div>
       <p className="small muted">
         Not: Kestirme bağlantıyı Safari'de açar. iPhone'da ana ekrana eklenen uygulama ile Safari ayrı veri tutar; Safari'de de bir kez Ayarlar →
         Cihazlar arası eşitleme'den kodunu girersen, eklediğin kelimeler ana ekrandaki uygulamana da gelir.
       </p>
-    </section>
+      </div>
+    </details>
   )
 }

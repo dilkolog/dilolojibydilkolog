@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { BLANK, type ContextSource, type Evaluation } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
 import { BookIcon, PenIcon, PinIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
 import { canSpeak, isAudioPlaying, playWord } from '../speech'
 import { modalOpen } from './keys'
+import { ArticleTag } from '../WrittenForm'
 
 /** Plays the word; Alt+S (or Space when not typing) replays it. */
 export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean; rate?: number }) {
@@ -70,24 +71,24 @@ export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: stri
   )
 }
 
-/** Long expressions step down a size so they stay on one line ("Contrat de location"). */
-export function wordSize(text: string): string {
-  return text.length > 24 ? ' word-xlong' : text.length > 14 ? ' word-long' : ''
+/** The word's length for the large type: a long expression shrinks smoothly to stay on a line ("Contrat de location"). */
+export function wordFit(text: string): CSSProperties {
+  return { '--len': text.length } as CSSProperties
 }
 
 /** The word in large type, with its article. */
 export function Word({ entry }: { entry: VocabularyEntry }) {
-  const size = wordSize(`${entry.article ?? ''} ${entry.lemma}`.trim())
+  const fit = wordFit(`${entry.article ?? ''} ${entry.lemma}`.trim())
   if (!entry.article)
     return (
-      <h1 className={`word${size}`} lang={entry.language}>
+      <h1 className="word" style={fit} lang={entry.language}>
         {entry.lemma}
       </h1>
     )
   const sep = entry.article.endsWith("'") ? '' : ' '
   return (
-    <h1 className={`word${size}`} lang={entry.language}>
-      <span className="article">{entry.article}</span>
+    <h1 className="word" style={fit} lang={entry.language}>
+      <ArticleTag article={entry.article} entry={entry} />
       {sep}
       {entry.lemma}
     </h1>

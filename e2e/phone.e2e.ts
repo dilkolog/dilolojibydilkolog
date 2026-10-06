@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { contrastProblems, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, overflow, SCREENS, startWithSamples } from './helpers'
 
 test('first run: the language choice comes right after the welcome', async ({ page }) => {
   await page.goto('/')
@@ -16,16 +16,22 @@ test('no screen scrolls sideways, even at the largest text size', async ({ page 
     for (const name of SCREENS) {
       await openScreen(page, name)
       for (const o of await overflow(page)) found.push(`${name} ${scale || '100%'}: ${o}`)
+      for (const c of await clippedContent(page)) found.push(`${name} ${scale || '100%'} clipped: ${c}`)
     }
   }
   expect(found).toEqual([])
 })
 
-test('text stays readable in the light and the dark theme', async ({ page }) => {
+test('text stays readable in the light, the dark and the calm theme', async ({ page }) => {
   await startWithSamples(page)
   const found: string[] = []
-  for (const theme of ['light', 'dark']) {
-    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+  for (const theme of ['light', 'dark', 'calm']) {
+    // Calm is the dark theme with a flag that turns its colours down.
+    await page.evaluate((t) => {
+      document.documentElement.dataset.theme = t === 'calm' ? 'dark' : t
+      if (t === 'calm') document.documentElement.dataset.calm = ''
+      else delete document.documentElement.dataset.calm
+    }, theme)
     for (const name of SCREENS) {
       await openScreen(page, name)
       for (const p of await contrastProblems(page)) found.push(`${theme} ${name}: ${p}`)
@@ -50,4 +56,498 @@ test('in a session the answer choices sit within thumb reach', async ({ page }) 
   const height = page.viewportSize()!.height
   expect(last!.y + last!.height).toBeGreaterThan(height * 0.8)
   expect(last!.y + last!.height).toBeLessThanOrEqual(height)
+})
+
+test('a long word shrinks smoothly and stays inside the screen', async ({ page }) => {
+  await startWithSamples(page)
+  const words = ['an', 'la maison', 'contrat de location', "l'assurance maladie complémentaire", 'abstraction-déterminisme-incompréhensible-extraordinairement']
+  const sizes = await page.evaluate((list) => {
+    return list.map((text) => {
+      const h = document.createElement('h1')
+      h.className = 'word'
+      h.style.setProperty('--len', String(text.length))
+      h.textContent = text
+      document.querySelector('main')!.append(h)
+      const size = parseFloat(getComputedStyle(h).fontSize)
+      const fits = h.scrollWidth <= h.clientWidth + 1
+      h.remove()
+      return { text, size, fits }
+    })
+  }, words)
+  for (const s of sizes) expect(s.fits, s.text).toBe(true)
+  // Never bigger for a longer word; never smaller than the floor.
+  for (let i = 1; i < sizes.length; i++) expect(sizes[i].size).toBeLessThanOrEqual(sizes[i - 1].size)
+  expect(Math.min(...sizes.map((s) => s.size))).toBeGreaterThanOrEqual(26)
+  expect(sizes[0].size).toBeGreaterThan(sizes[3].size)
+})
+
+test('the bedtime card keeps a readable text column on a phone', async ({ page }) => {
+  test.setTimeout(120_000)
+  await page.clock.setFixedTime(new Date('2026-03-04T21:30:00'))
+  await startWithSamples(page)
+  await finishSession(page)
+  await openScreen(page, 'Bugün')
+  const text = page.locator('.habit > .stack', { hasText: 'Yatmadan önce' })
+  await expect(text).toBeVisible()
+  expect((await text.boundingBox())!.width).toBeGreaterThan(200)
+})
+
+test('Progress starts with the overview and opens a group from the shortcut row', async ({ page }) => {
+  await startWithSamples(page)
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()
+  const toggles = page.locator('.group-toggle')
+  await expect(toggles.first()).toHaveAttribute('aria-expanded', 'true')
+  await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'false')
+  const closedHeight = await page.evaluate(() => document.documentElement.scrollHeight)
+  await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
+  await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
+  await page.waitForTimeout(600)
+  // It scrolled there, and the page grew by what it opened.
+  expect(await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)).toBeLessThan(250)
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
+  await toggles.nth(2).click()
+  await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
+})
+
+test('an empty reading library has one way in: the open form, not three buttons', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await expect(page.locator('details.add-text')).toHaveJSProperty('open', true)
+  await expect(page.getByRole('button', { name: /Metin ekle|İlk metnini ekle/ })).toHaveCount(0)
+  // The other sources sit as tiles of one width; the YouTube link has a line of its own.
+  const tiles = await page.locator('.add-sources .btn').evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().width)))
+  expect(new Set(tiles).size).toBe(1)
+  const field = await page.getByLabel('YouTube bağlantısı').boundingBox()
+  const form = await page.locator('.add-youtube').boundingBox()
+  expect(field!.width).toBeGreaterThan(form!.width * 0.9)
+})
+
+test('a word page opens on its usage and keeps the rest a tap away', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row, tbody tr').first().click()
+  const toggles = page.locator('.group-toggle')
+  await expect(toggles.first()).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.locator('#w-progress .group-toggle')).toHaveAttribute('aria-expanded', 'false')
+  await expect(page.getByText('Beceriler', { exact: true })).toHaveCount(0)
+  await page.locator('.settings-nav .chip', { hasText: 'İlerleme' }).click()
+  await expect(page.locator('#w-progress .group-toggle')).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.getByText('Beceriler', { exact: true })).toBeVisible()
+})
+
+test('study calendar days hold their state name and are big enough to tap', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  const days = page.locator('.week-day')
+  await days.first().scrollIntoViewIfNeeded()
+  // Walk one day through all three states: Normal → Hafif → Dinlenme.
+  for (let state = 0; state < 3; state++) {
+    const tiles = await days.evaluateAll((els) =>
+      els.map((e) => {
+        const span = e.querySelector('span')!
+        const range = document.createRange()
+        range.selectNodeContents(span)
+        return { name: span.textContent, tile: e.getBoundingClientRect(), text: range.getBoundingClientRect() }
+      }),
+    )
+    for (const t of tiles) {
+      expect(t.text.width, `${t.name} fits its tile`).toBeLessThanOrEqual(t.tile.width - 4)
+      expect(t.tile.width, 'tap width').toBeGreaterThanOrEqual(44)
+      expect(t.tile.height, 'tap height').toBeGreaterThanOrEqual(44)
+    }
+    await days.nth(1).click()
+  }
+})
+
+test('every settings group is on screen at once, none behind a sideways scroll', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await expect(page.locator('.settings-menu-item').first()).toBeVisible()
+  const width = page.viewportSize()!.width
+  const items = await page.locator('.settings-menu-item').evaluateAll((els) => els.map((e) => ({ name: e.textContent, box: e.getBoundingClientRect() })))
+  expect(items.length).toBeGreaterThanOrEqual(8)
+  for (const i of items) {
+    expect(i.box.left, i.name ?? '').toBeGreaterThanOrEqual(0)
+    expect(i.box.right, i.name ?? '').toBeLessThanOrEqual(width)
+  }
+  // The longest name fits its tile.
+  const fits = await page.locator('.settings-menu-item').evaluateAll((els) => els.every((e) => e.scrollWidth <= e.clientWidth + 1))
+  expect(fits).toBe(true)
+})
+
+test('progress bars grow in, and stand still when motion is reduced', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  const animation = () => page.locator('.xp-bar > div').first().evaluate((e) => getComputedStyle(e).animationName)
+  expect(await animation()).toBe('bar-grow')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  expect(await animation()).toBe('none')
+})
+
+test('no settings group is wider than the screen or hides content', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  const items = page.locator('.settings-menu-item')
+  await expect(items.first()).toBeVisible()
+  const found: string[] = []
+  for (let i = 0; i < (await items.count()); i++) {
+    await items.nth(i).click()
+    await page.waitForTimeout(250)
+    const name = (await items.nth(i).textContent())?.trim()
+    for (const o of await overflow(page)) found.push(`${name}: ${o}`)
+    for (const c of await clippedContent(page)) found.push(`${name} clipped: ${c}`)
+  }
+  expect(found).toEqual([])
+})
+
+test('searching settings opens a card that is closed until wanted', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await expect(page.getByLabel('Ayar ara')).toBeVisible()
+  await page.getByLabel('Ayar ara').fill('Kestirme')
+  await expect(page.locator('details.ios-shortcut')).toBeVisible()
+  await expect(page.locator('details.ios-shortcut')).toHaveJSProperty('open', true)
+  // Without a search it stays closed.
+  await page.getByLabel('Ayar ara').fill('')
+  await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
+  await expect(page.locator('details.ios-shortcut')).toHaveJSProperty('open', true)
+})
+
+test('a word marked hard in a session is gathered for a practice of its own', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  const mark = page.locator('.session .difficult-btn')
+  await expect(mark).toHaveAttribute('aria-pressed', 'false')
+  await mark.click()
+  await expect(mark).toHaveAttribute('aria-pressed', 'true')
+  // Leave the session; the word is in the Zor filter of the list.
+  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Çık', exact: true }).click()
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /Zor \(1\)/ }).click()
+  await expect(page.getByText('Zor kelimelerin', { exact: true }).first()).toBeVisible()
+  await expect(page.locator('.difficult-mark').first()).toBeVisible()
+  // Today offers a practice of just those words, and it starts.
+  await openScreen(page, 'Bugün')
+  await page.getByRole('button', { name: /Zor kelimelerin/ }).click()
+  await expect(page.locator('.session')).toBeVisible()
+  await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
+})
+
+test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks the word like the bolt does', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  // Past the new-word cards, to the first question.
+  const chip = page.locator('.prompt-tools .difficult-chip')
+  for (let i = 0; i < 40 && !(await chip.count()); i++) {
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const guess = page.locator('.session-stage .option:not([disabled])')
+    if (await next.count()) await next.first().click()
+    else if (await guess.count()) await guess.first().click()
+    await page.waitForTimeout(200)
+  }
+  await expect(chip).toBeVisible()
+  await expect(chip).toHaveText('Zor')
+  await expect(page.locator('.prompt-tools .unsure-chip').first()).toBeVisible()
+  await chip.click()
+  await expect(chip).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
+  expect(await overflow(page)).toEqual([])
+})
+
+test('the profile can be dressed up: banner, frame, interests, a goal; locked styles say what opens them', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await finishSession(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('button', { name: 'Özelleştir' }).click()
+  const card = page.locator('.profile-card')
+  // Free styles apply at once.
+  await page.getByRole('radio', { name: /Gün doğumu/ }).click()
+  await expect(card).toHaveAttribute('data-banner', 'sunrise')
+  await page.getByRole('radio', { name: /Noktalı/ }).click()
+  await expect(card.locator('.avatar-ring')).toHaveAttribute('data-frame', 'dots')
+  // A locked one cannot be picked and says what opens it.
+  const locked = page.getByRole('radio', { name: /Galaksi/ })
+  await expect(locked).toBeDisabled()
+  await expect(locked).toContainText('25. seviyeye ulaş')
+  // Interests and a goal show on the card.
+  await page.getByRole('button', { name: 'Seyahat', exact: true }).click()
+  await page.getByRole('radio', { name: 'B2', exact: true }).click()
+  await expect(card.locator('.interest-chip', { hasText: 'Seyahat' })).toBeVisible()
+  await expect(card.locator('.goal-chip')).toContainText('Hedef B2')
+  // Interests stop at six.
+  for (const i of ['Yemek', 'İş', 'Müzik', 'Spor', 'Doğa']) await page.getByRole('button', { name: i, exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Sanat', exact: true })).toBeDisabled()
+  // The tinted banner keeps the card readable, in both themes.
+  const found: string[] = []
+  for (const theme of ['light', 'dark']) {
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    for (const c of await contrastProblems(page)) found.push(`${theme}: ${c}`)
+  }
+  expect(found).toEqual([])
+  // Kept after leaving and coming back.
+  await openScreen(page, 'Bugün')
+  await openScreen(page, 'Profil')
+  await expect(card).toHaveAttribute('data-banner', 'sunrise')
+})
+
+test('the share card is ready at once and redraws with what is chosen', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('tab', { name: 'Paylaş' }).click()
+  const card = page.locator('.share-card')
+  const img = card.locator('.progress-card-img')
+  await expect(img).toHaveAttribute('src', /^blob:/)
+  const first = await img.getAttribute('src')
+  // Drop a number and change the colours: a new picture each time.
+  await card.getByRole('button', { name: 'Toplam XP', exact: true }).click()
+  await expect(img).not.toHaveAttribute('src', first!)
+  const second = await img.getAttribute('src')
+  await card.getByRole('radio', { name: 'Açık' }).click()
+  await expect(img).not.toHaveAttribute('src', second!)
+  // One number always stays.
+  for (const n of ['Seri', 'Kelimeler', 'Çiçekler', 'Bu hafta', 'Rozetler']) await card.getByRole('button', { name: n, exact: true }).click()
+  await expect(card.locator('[aria-label="Kartta görünecek sayılar"] [aria-pressed=true]')).toHaveCount(1)
+})
+
+test('the titles tab shows the ladder, what is next and what a badge opens', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.getByRole('tab', { name: 'Unvanlar' }).click()
+  await expect(page.locator('.titles-ladder .is-current .title-tag')).toHaveText('şu an')
+  await expect(page.locator('.titles-ladder li', { hasText: 'Meraklı' })).toContainText('XP kaldı')
+  await expect(page.locator('.titles-ladder li', { hasText: 'Ejderha Avcısı' })).toContainText('rozetiyle açılır')
+  // The title reached can be shown beside the name.
+  await page.locator('.titles-ladder .is-current').getByRole('button', { name: /Göster|Gösteriliyor/ }).click()
+  await expect(page.locator('.profile-level strong').first()).toHaveText('Çaylak')
+})
+
+test('a badge earned in a session gets its moment once, and so does one earned outside', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await playSession(page)
+  // The first session earns "İlk adım": struck on the summary.
+  const moment = page.locator('.badge-moment')
+  await expect(moment).toBeVisible()
+  await expect(moment.locator('h2')).toHaveText('İlk adım')
+  await expect(moment.locator('.medal')).toBeVisible()
+  await moment.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(moment).toHaveCount(0)
+  // Not again on the home screen.
+  await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
+  await openScreen(page, 'Bugün')
+  await page.waitForTimeout(500)
+  await expect(moment).toHaveCount(0)
+  // Outside a session: marking hard words earns "Zorluk avcısı", and the moment says so.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.getByRole('checkbox').first().check()
+  await page.getByRole('button', { name: 'Zor işaretle' }).click()
+  await expect(moment.locator('h2')).toHaveText('Zorluk avcısı')
+  await moment.getByRole('button', { name: 'Profilde gör' }).click()
+  await expect(moment).toHaveCount(0)
+  await expect(page.getByRole('tab', { name: 'Rozetler' })).toBeVisible()
+})
+
+test('hard words glow in the garden, and the Zor filter shows just those', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.locator('.word-row').first().click()
+  await page.getByRole('button', { name: 'Zor işaretle' }).click()
+  // A new badge may open its moment; close it if so.
+  await page.locator('.badge-moment').getByRole('button', { name: 'Devam', exact: true }).click({ timeout: 1500 }).catch(() => {})
+  await page.getByRole('button', { name: /^Bahçe$/ }).or(page.getByRole('tab', { name: /Bahçe/ })).first().click()
+  const tiles = page.locator('.plant-tile')
+  expect(await tiles.count()).toBeGreaterThan(10)
+  await expect(page.locator('.plant-tile.is-hard')).toHaveCount(1)
+  await expect(page.locator('.plant-tile.is-hard .plant-hard-mark')).toHaveCount(1)
+  // The filter: only that plant stays.
+  await page.getByRole('button', { name: /Zor \(1\)/ }).click()
+  await expect(tiles).toHaveCount(1)
+  await page.getByRole('button', { name: /Zor kelimeleri çalış/ }).click()
+  await expect(page.locator('.session')).toBeVisible()
+})
+
+test('the garden card on Today counts the hard words and starts their practice in one tap', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await finishSession(page)
+  // No hard words yet: the card has nothing to say about them.
+  // The card lives under "Haftalık hedefler, bahçe ve beceriler" until a plant is thirsty.
+  const openGarden = async () => {
+    await openScreen(page, 'Bugün')
+    if (!(await page.locator('.garden-card').isVisible())) await page.getByText('Haftalık hedefler, bahçe ve beceriler').click()
+    await expect(page.locator('.garden-card')).toBeVisible()
+  }
+  await openGarden()
+  await expect(page.locator('.garden-hard-line')).toHaveCount(0)
+  // Mark two words hard.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.locator('.word-row').nth(0).click()
+  await page.locator('.word-row').nth(1).click()
+  await page.getByRole('button', { name: 'Zor işaretle' }).click()
+  await page.locator('.badge-moment').getByRole('button', { name: 'Devam', exact: true }).click({ timeout: 1500 }).catch(() => {})
+  await openGarden()
+  await expect(page.locator('.garden-hard-line')).toContainText('2 zor kelime')
+  // The count opens the garden on just those words.
+  await page.locator('.garden-hard-line').click()
+  await expect(page.getByRole('button', { name: /Zor \(2\)/ })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.plant-tile')).toHaveCount(2)
+  // ...once: the next visit to the garden is whole again.
+  await openGarden()
+  await page.locator('.garden-card').getByRole('button', { name: 'Bahçeye git' }).click()
+  await expect(page.getByRole('button', { name: /Zor \(2\)/ })).toHaveAttribute('aria-pressed', 'false')
+  // One tap from Today starts the practice.
+  await openGarden()
+  await page.locator('.garden-card').getByRole('button', { name: 'Zorları çalış' }).click()
+  await expect(page.locator('.session')).toBeVisible()
+  await expect(page.locator('.session .difficult-btn')).toHaveAttribute('aria-pressed', 'true')
+})
+
+test('a word carries its part of speech as a shape on the list and the word page', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await expect(page.locator('.word-row .pos-tag').first()).toBeVisible()
+  const shapes = await page.locator('.word-row .pos-tag svg').evaluateAll((els) => new Set(els.map((e) => e.innerHTML)).size)
+  expect(shapes).toBeGreaterThanOrEqual(2)   // nouns and verbs among the samples
+  await page.locator('.word-row').first().click()
+  await expect(page.locator('.word-hero .pos-chip .pos-tag')).toBeVisible()
+})
+
+test('the calm theme is a choice in Settings and turns the dark theme down', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Görünüm' }).click()
+  await page.getByRole('radio', { name: 'Sakin' }).or(page.getByRole('button', { name: 'Sakin', exact: true })).first().click()
+  const root = page.locator('html')
+  await expect(root).toHaveAttribute('data-theme', 'dark')
+  await expect(root).toHaveAttribute('data-calm', '')
+  const bg = (sel: string) => page.evaluate((s) => getComputedStyle(document.documentElement).getPropertyValue(s).trim(), sel)
+  expect(await bg('--bg')).toBe('#15171c')
+  // Plain dark again: the flag goes away and the dark colours come back.
+  await page.getByRole('radio', { name: 'Koyu' }).or(page.getByRole('button', { name: 'Koyu', exact: true })).first().click()
+  await expect(root).not.toHaveAttribute('data-calm', '')
+  expect(await bg('--bg')).toBe('#0f172a')
+  // Kept across a reload, before the first paint.
+  await page.getByRole('radio', { name: 'Sakin' }).or(page.getByRole('button', { name: 'Sakin', exact: true })).first().click()
+  await page.reload()
+  await expect(root).toHaveAttribute('data-calm', '')
+})
+
+test('an empty screen has a small living picture, and it holds still for reduced motion', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Hatalar')
+  const art = page.locator('.empty-art, .empty-state svg').first()
+  await expect(art).toBeVisible()
+  const names = () => page.locator('.empty-state svg [class^="art-"], .empty-state svg [class*=" art-"]').evaluateAll((els) => els.map((e) => getComputedStyle(e).animationName))
+  expect((await names()).some((n) => n !== 'none')).toBe(true)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  expect((await names()).every((n) => n === 'none')).toBe(true)
+})
+
+test('the page is lit for the hour: greeting, a sun or moon beside it, a faint wash of light in the light theme only', async ({ page }) => {
+  const cases: [string, string, string, string][] = [
+    ['2026-03-04T06:30:00', 'dawn', 'Günaydın', 'is-dawn'],
+    ['2026-03-04T10:00:00', 'day', 'Günaydın', 'is-day'],
+    ['2026-03-04T19:00:00', 'dusk', 'İyi akşamlar', 'is-dusk'],
+    ['2026-03-04T23:30:00', 'night', 'İyi geceler', 'is-night'],
+  ]
+  const wash = () => page.evaluate(() => getComputedStyle(document.body, '::before').backgroundImage)
+  for (const [time, part, hello, mark] of cases) {
+    await page.clock.setFixedTime(new Date(time))
+    await startWithSamples(page)
+    await expect(page.locator('html')).toHaveAttribute('data-daypart', part)
+    await expect(page.locator('h1.greeting')).toContainText(hello)
+    await expect(page.locator(`h1.greeting .day-mark.${mark}`)).toBeVisible()
+    await page.waitForTimeout(700)   // the screen fades in
+    if (part === 'day') expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
+    else expect(await wash()).toMatch(/rgba\((251|244|99)/)
+    expect(await contrastProblems(page)).toEqual([])
+    // Dark and calm keep their own light: no wash.
+    await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
+    expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
+    await page.evaluate(() => delete document.documentElement.dataset.theme)
+    await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
+  }
+})
+
+test('the badges on show sit beside the greeting on Today and open the profile', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await expect(page.locator('.today-showcase')).toHaveCount(0)
+  await playSession(page)
+  await page.locator('.badge-moment').getByRole('button', { name: 'Devam', exact: true }).click()
+  await openScreen(page, 'Profil')
+  await page.getByRole('button', { name: 'Özelleştir' }).click()
+  await page.locator('.pin-tile', { hasText: 'İlk adım' }).click()
+  await openScreen(page, 'Bugün')
+  const badge = page.locator('.today-showcase .showcase-badge')
+  await expect(badge).toHaveCount(1)
+  await expect(badge).toHaveAttribute('aria-label', /İlk adım/)
+  // On the greeting's line, not wider than the screen.
+  const [g, b] = await Promise.all([page.locator('h1.greeting').boundingBox(), badge.boundingBox()])
+  expect(b!.x + b!.width).toBeLessThanOrEqual(375)
+  expect(Math.abs(b!.y + b!.height / 2 - (g!.y + g!.height / 2))).toBeLessThan(40)
+  expect(await overflow(page)).toEqual([])
+  await badge.click()
+  await expect(page.getByRole('tab', { name: 'Rozetler' })).toBeVisible()
+})
+
+test('the account card says where you stand: three reasons and wide buttons signed out, who and when signed in', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  const card = page.locator('.account-card')
+  await expect(card.locator('.status-pill')).toHaveText(/hesapsız/)
+  await expect(card.locator('.account-perks li')).toHaveCount(3)
+  // On a phone the two ways in are full-width buttons, inside the card.
+  const box = await card.boundingBox()
+  for (const name of ['Giriş yap', 'Hesap oluştur']) {
+    const b = await card.getByRole('button', { name, exact: true }).boundingBox()
+    expect(b!.width).toBeGreaterThan(box!.width * 0.8)
+    expect(b!.x + b!.width).toBeLessThanOrEqual(box!.x + box!.width)
+  }
+  expect(await overflow(page)).toEqual([])
+  // Signed in (the account is only a record on this device here): the pill, the name and the actions.
+  await page.evaluate(() =>
+    indexedDB.databases().then((dbs) =>
+      Promise.all(
+        dbs.map(
+          (d) =>
+            new Promise<void>((ok) => {
+              const o = indexedDB.open(d.name!)
+              o.onsuccess = () => {
+                const db = o.result
+                if (!db.objectStoreNames.contains('meta')) return ok(db.close())
+                const tx = db.transaction('meta', 'readwrite')
+                tx.objectStore('meta').put({ key: 'syncAccount', value: { username: 'ali', key: 'x' } })
+                tx.oncomplete = () => (db.close(), ok())
+              }
+            }),
+        ),
+      ),
+    ),
+  )
+  await page.reload()
+  await openScreen(page, 'Profil')
+  await page.locator('.profile-settings').click()
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  await expect(card.locator('.status-pill')).toHaveText(/Giriş yapıldı/)
+  await expect(card.locator('.account-facts')).toContainText('ali')
+  await expect(card.getByRole('button', { name: 'Şimdi eşitle' })).toBeVisible()
+  await expect(card.getByRole('button', { name: 'Bu cihazda çıkış yap' })).toBeVisible()
+  expect(await contrastProblems(page)).toEqual([])
+  expect(await overflow(page)).toEqual([])
 })

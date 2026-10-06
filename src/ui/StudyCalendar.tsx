@@ -23,7 +23,7 @@ const fmt = (key: string) => new Date(`${key}T12:00:00`).toLocaleDateString('tr-
  * Easy days and holidays: reviews are spread so that light days get about half the load, rest
  * days and holidays none (Anki's "easy days"), and neither breaks the streak.
  */
-export function StudyCalendar({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
+export function StudyCalendar({ settings, onChange, id }: { settings: Settings; onChange: (s: Settings) => void; id?: string }) {
   const today = localDate(new Date())
   const [from, setFrom] = useState(today)
   const [to, setTo] = useState(today)
@@ -39,7 +39,7 @@ export function StudyCalendar({ settings, onChange }: { settings: Settings; onCh
   }
 
   return (
-    <section className="card stack">
+    <section className="card stack" id={id}>
       <h2 className="section-title">Çalışma takvimi</h2>
       <Help text="Bir güne dokunarak değiştir: Hafif günlere tekrarların yaklaşık yarısı, Dinlenme günlerine hiç tekrar düşmez. Yeni kelime de o oranda gelir. Tekrarlar hatırlamanı etkilemeyecek kadar kaydırılır ve kalabalık günlerden boş günlere yayılır. Dinlenme günleri seriyi bozmaz." />
       <div className="week-row" role="group" aria-label="Haftanın günleri">

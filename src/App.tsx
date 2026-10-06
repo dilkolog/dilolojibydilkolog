@@ -19,6 +19,7 @@ import {
 } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
 import { SAMPLE_WORDS } from './data/seed'
+import { difficultWords } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
@@ -31,10 +32,12 @@ import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
 import { Avatar } from './ui/Avatar'
 import { Glyph } from './ui/Glyph'
+import { BadgeWatcher } from './ui/BadgeWatcher'
 import { GameContext, loadGame, type GameState } from './ui/game'
 import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
+import { useDayPart } from './ui/dayPart'
 import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
 import { reportPushState } from './ui/pushReminders'
@@ -44,7 +47,7 @@ import { PANE_KEY } from './ui/settingsPane'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
-import { GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
+import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import { SessionScreen } from './ui/Session'
@@ -282,6 +285,8 @@ export default function App() {
       azure.region = c?.region ?? null
     })
   }, [])
+
+  useDayPart()
 
   // Past and future tense tables for the language being learned, fetched in the background.
   useEffect(() => {
@@ -523,6 +528,9 @@ export default function App() {
     const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
     if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra })
   }
+  /** A practice of just the words marked hard, apart from the day's plan. */
+  const practiceDifficult = () =>
+    data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
 
   // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
   const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
@@ -955,6 +963,7 @@ export default function App() {
                   const words = now ? groups[now.index].words : []
                   return { name: list.name, level: now ? (now.level?.name ?? null) : undefined, met: words.filter((w) => met.has(w.id)).length, total: words.length }
                 })()}
+                pinned={settings.profile.pinned}
                 onOpenLists={() => {
                   try {
                     localStorage.setItem(WORDS_VIEW_KEY, 'lists')
@@ -978,12 +987,25 @@ export default function App() {
                 onPracticeMistakes={() =>
                   startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
                 }
+                difficultCount={difficultWords(data.vocabulary).length}
+                onPracticeDifficult={practiceDifficult}
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
                 garden={garden && {
                   urgent: garden.wilting + garden.thirsty > 0,
                   node: (
                       <GardenCard
                         summary={garden}
+                        hardCount={difficultWords(data.vocabulary).length}
+                        onPracticeHard={practiceDifficult}
+                        onOpenHard={() => {
+                          try {
+                            localStorage.setItem(WORDS_VIEW_KEY, 'garden')
+                            sessionStorage.setItem(GARDEN_HARD_KEY, '1')
+                          } catch {
+                            // The garden just opens unfiltered.
+                          }
+                          setScreen({ name: 'words' })
+                        }}
                         onWater={() => {
                           const ids = garden.toWater.slice(0, 20)
                           const deck = data.vocabulary.filter((v) => ids.includes(v.id))
@@ -1041,6 +1063,7 @@ export default function App() {
             </Suspense>
           )}
         </div>
+      <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} />
       </GameContext.Provider>
     </AiContext.Provider>
   )

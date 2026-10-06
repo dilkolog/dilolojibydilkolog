@@ -7,8 +7,13 @@ import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
 import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon } from '../icons'
+import { PosTag } from '../PosTag'
+import { WrittenForm } from '../WrittenForm'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
+
+/** After a miss: kind, short, and true (the word is asked once more in a moment). */
+const SOFT = ['Olur böyle.', 'Hata, öğrenmenin yarısı.', 'Beynin bunu şimdi kaydetti.', 'Bir sonrakinde sende.']
 
 const PRAISE = ['Harika!', 'Doğru!', 'Süper!', 'Aynen böyle!', 'Mükemmel!', 'Çok iyi!']
 
@@ -47,6 +52,7 @@ export function Feedback({
   onDiscard?: () => void
 }) {
   const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
+  const [soft] = useState(() => SOFT[Math.floor(Math.random() * SOFT.length)])
   const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
   const confidentError = ev.verdict === 'wrong' && confidence === 'sure'
   const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
@@ -138,10 +144,16 @@ export function Feedback({
                 “{f.gloss}” {LANGUAGE_NAME[f.lang]} <em>{f.word}</em> demek. {displayForm(entry)} ise “{entry.senses[0].gloss}”.
               </p>
             ))}
+          {ev.verdict === 'wrong' && !confidentError && (
+            <p className="small return-note">
+              <Plant stage={1} size={26} live /> {soft} Bu kelimeyi birazdan bir kez daha soracağım.
+            </p>
+          )}
           {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
           </div>
           <p className="sheet-gloss">
-            <span lang={entry.language}>{displayForm(entry)}</span>
+            <span lang={entry.language}><WrittenForm entry={entry} /></span>
+            {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} />}
             {entry.ipa && <span className="ipa">{entry.ipa}</span>}
             {entry.senses[0].gloss}
           </p>

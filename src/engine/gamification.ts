@@ -1,3 +1,4 @@
+import type { ActivityStats } from './badgeStats'
 import { EXERCISES } from './exercises'
 import { localDate } from './progress'
 import { questBonus } from './quests'
@@ -151,7 +152,7 @@ export function levelFromXp(xp: number): LevelInfo {
 // Achievements
 // ---------------------------------------------------------------------------
 
-export interface GameStats {
+export interface GameStats extends ActivityStats {
   wordsIntroduced: number
   mastered: number
   totalAnswers: number
@@ -169,6 +170,30 @@ export interface GameStats {
   challengesDone: number
   /** Weeks with all three challenges done. */
   perfectWeeks: number
+  /** Words the learner added or imported themselves (not the bundled samples). */
+  wordsAdded: number
+  /** Words with a note or a memory aid of the learner's own. */
+  wordsWithNotes: number
+  /** Words at "Sağlam" or beyond. */
+  wordsStrong: number
+  /** Words marked hard, and of those the ones that have since become strong. */
+  hardMarked: number
+  hardConquered: number
+  /** Reading texts opened and read, and journal entries written. */
+  textsRead: number
+  journalEntries: number
+  /** Mistakes put right in the Mistake Bank. */
+  mistakesFixed: number
+  totalXp: number
+}
+
+/** Nothing done yet: the starting point for tests and for a fresh install. */
+export const emptyStats: GameStats = {
+  daysStudied: 0, maxDayAnswers: 0, nightDays: 0, earlyDays: 0, weekendDays: 0, comebacks: 0, listeningCorrect: 0, typedCorrect: 0, speakCorrect: 0,
+  articleCorrect: 0, conjugationCorrect: 0, fastCorrect: 0,
+  wordsIntroduced: 0, mastered: 0, totalAnswers: 0, longestStreak: 0, perfectDays: 0, maxCombo: 0, languagesStudied: 0, wordsWithPicture: 0,
+  wordsWithRecording: 0, freeSentencesCorrect: 0, level: 1, bossesDefeated: 0, challengesDone: 0, perfectWeeks: 0,
+  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, totalXp: 0,
 }
 
 export interface Achievement {
@@ -208,16 +233,90 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'level-10', icon: '🥉', title: 'Seviye 10', description: '10. seviyeye ulaş', goal: 10, stat: 'level' },
   { id: 'level-25', icon: '🥈', title: 'Seviye 25', description: '25. seviyeye ulaş', goal: 25, stat: 'level' },
   { id: 'level-50', icon: '🥇', title: 'Seviye 50', description: '50. seviyeye ulaş', goal: 50, stat: 'level' },
+  // ── More: words ──
+  { id: 'words-100', icon: '📖', title: 'Yüzlük', description: '100 kelimeyle tanış', goal: 100, stat: 'wordsIntroduced' },
+  { id: 'words-500', icon: '🏛️', title: 'Kelime kütüphanesi', description: '500 kelimeyle tanış', goal: 500, stat: 'wordsIntroduced' },
+  { id: 'mastered-1', icon: '🌸', title: 'İlk çiçek', description: 'İlk kelimeni "Oturdu" seviyesine çıkar', goal: 1, stat: 'mastered' },
+  { id: 'mastered-500', icon: '🌟', title: 'Çiçek bahçesi', description: '500 kelimeyi "Oturdu" seviyesine çıkar', goal: 500, stat: 'mastered' },
+  { id: 'strong-25', icon: '🌟', title: 'Sağlam kökler', description: '25 kelimeyi "Sağlam" seviyesine çıkar', goal: 25, stat: 'wordsStrong' },
+  { id: 'strong-100', icon: '⭐', title: 'Derin kökler', description: '100 kelimeyi "Sağlam" seviyesine çıkar', goal: 100, stat: 'wordsStrong' },
+  { id: 'added-25', icon: '📚', title: 'Kütüphaneci', description: 'Kendi 25 kelimeni ekle', goal: 25, stat: 'wordsAdded' },
+  { id: 'added-100', icon: '🏛️', title: 'Büyük kütüphane', description: 'Kendi 100 kelimeni ekle', goal: 100, stat: 'wordsAdded' },
+  { id: 'notes-10', icon: '🧠', title: 'Hafıza ustası', description: '10 kelimeye kendi notunu ya da hafıza ipucunu yaz', goal: 10, stat: 'wordsWithNotes' },
+  { id: 'hard-5', icon: '⚡', title: 'Zorluk avcısı', description: '5 kelimeyi zor diye işaretle', goal: 5, stat: 'hardMarked' },
+  { id: 'hard-conquered-5', icon: '⚔️', title: 'Zoru yendin', description: 'Zor işaretlediğin 5 kelimeyi "Sağlam" seviyesine çıkar', goal: 5, stat: 'hardConquered' },
+  // ── More: showing up ──
+  { id: 'streak-14', icon: '🔥', title: 'İki hafta', description: '14 gün üst üste çalış', goal: 14, stat: 'longestStreak' },
+  { id: 'streak-60', icon: '🗓️', title: 'İki ay', description: '60 gün üst üste çalış', goal: 60, stat: 'longestStreak' },
+  { id: 'streak-365', icon: '🏆', title: 'Bir yıl', description: '365 gün üst üste çalış', goal: 365, stat: 'longestStreak' },
+  { id: 'days-30', icon: '📅', title: 'Düzenli', description: 'Toplam 30 farklı günde çalış', goal: 30, stat: 'daysStudied' },
+  { id: 'days-100', icon: '🗓️', title: 'Adanmış', description: 'Toplam 100 farklı günde çalış', goal: 100, stat: 'daysStudied' },
+  { id: 'days-365', icon: '🏆', title: 'Yıl boyu', description: 'Toplam 365 farklı günde çalış', goal: 365, stat: 'daysStudied' },
+  { id: 'comeback-1', icon: '🌱', title: 'Geri dönüş', description: 'Bir haftadan uzun aradan sonra yeniden çalış', goal: 1, stat: 'comebacks' },
+  { id: 'night-5', icon: '🦉', title: 'Gece kuşu', description: '5 ayrı gün gece 22.00–05.00 arasında çalış', goal: 5, stat: 'nightDays' },
+  { id: 'early-5', icon: '🌅', title: 'Erken kuş', description: '5 ayrı gün sabah 05.00–08.00 arasında çalış', goal: 5, stat: 'earlyDays' },
+  { id: 'weekend-10', icon: '🏠', title: 'Hafta sonu savaşçısı', description: '10 hafta sonu gününde çalış', goal: 10, stat: 'weekendDays' },
+  { id: 'marathon-100', icon: '🏎️', title: 'Maraton', description: 'Bir günde 100 soru cevapla', goal: 100, stat: 'maxDayAnswers' },
+  { id: 'marathon-300', icon: '⚡', title: 'Ultra maraton', description: 'Bir günde 300 soru cevapla', goal: 300, stat: 'maxDayAnswers' },
+  // ── More: skills ──
+  { id: 'answers-500', icon: '✍️', title: 'Beş yüz soru', description: '500 soru cevapla', goal: 500, stat: 'totalAnswers' },
+  { id: 'answers-5000', icon: '🏔️', title: 'Beş bin soru', description: '5000 soru cevapla', goal: 5000, stat: 'totalAnswers' },
+  { id: 'combo-5', icon: '🎯', title: 'Isınma atışı', description: '5 doğru üst üste', goal: 5, stat: 'maxCombo' },
+  { id: 'combo-50', icon: '🚀', title: 'Kesintisiz', description: '50 doğru üst üste', goal: 50, stat: 'maxCombo' },
+  { id: 'perfect-5', icon: '💎', title: 'Kusursuz beşli', description: '5 ayrı günü yanlışsız tamamla', goal: 5, stat: 'perfectDays' },
+  { id: 'listen-50', icon: '👂', title: 'İnce kulak', description: '50 dinleme sorusunu doğru cevapla', goal: 50, stat: 'listeningCorrect' },
+  { id: 'listen-250', icon: '🎧', title: 'Dinleme ustası', description: '250 dinleme sorusunu doğru cevapla', goal: 250, stat: 'listeningCorrect' },
+  { id: 'typed-100', icon: '⌨️', title: 'Hızlı parmaklar', description: '100 yazılı soruyu doğru cevapla', goal: 100, stat: 'typedCorrect' },
+  { id: 'speak-25', icon: '🎙️', title: 'Konuşkan', description: '25 konuşma sorusunu doğru cevapla', goal: 25, stat: 'speakCorrect' },
+  { id: 'article-50', icon: '🏷️', title: 'Artikel ustası', description: '50 artikel sorusunu doğru cevapla', goal: 50, stat: 'articleCorrect' },
+  { id: 'conj-50', icon: '🕰️', title: 'Fiil ustası', description: '50 fiil çekimini doğru yaz', goal: 50, stat: 'conjugationCorrect' },
+  { id: 'fast-100', icon: '🏎️', title: 'Şimşek', description: '100 soruyu 2 saniyeden kısa sürede, ipucusuz ve emin doğru cevapla', goal: 100, stat: 'fastCorrect' },
+  { id: 'fixed-10', icon: '🧩', title: 'Hatadan öğrenen', description: 'Hata bankasından 10 hatayı düzelt', goal: 10, stat: 'mistakesFixed' },
+  { id: 'fixed-50', icon: '🧠', title: 'Hata avcısı', description: 'Hata bankasından 50 hatayı düzelt', goal: 50, stat: 'mistakesFixed' },
+  // ── More: reading, writing, XP, levels ──
+  { id: 'read-5', icon: '📖', title: 'Okur', description: '5 metin oku', goal: 5, stat: 'textsRead' },
+  { id: 'read-25', icon: '📚', title: 'Kitap kurdu', description: '25 metin oku', goal: 25, stat: 'textsRead' },
+  { id: 'journal-7', icon: '🖋️', title: 'Günlükçü', description: '7 günlük yaz', goal: 7, stat: 'journalEntries' },
+  { id: 'journal-30', icon: '✍️', title: 'Kalem', description: '30 günlük yaz', goal: 30, stat: 'journalEntries' },
+  { id: 'xp-1000', icon: '🌟', title: 'Bin XP', description: 'Toplam 1000 XP kazan', goal: 1000, stat: 'totalXp' },
+  { id: 'xp-10000', icon: '⭐', title: 'On bin XP', description: 'Toplam 10.000 XP kazan', goal: 10000, stat: 'totalXp' },
+  { id: 'level-5', icon: '🥉', title: 'Seviye 5', description: '5. seviyeye ulaş', goal: 5, stat: 'level' },
+  { id: 'level-40', icon: '🥇', title: 'Seviye 40', description: '40. seviyeye ulaş', goal: 40, stat: 'level' },
 ]
+
+
+export type BadgeCategory = 'words' | 'habit' | 'skills' | 'writing' | 'level'
+
+export const BADGE_CATEGORIES: { id: BadgeCategory; name: string }[] = [
+  { id: 'words', name: 'Kelimeler' },
+  { id: 'habit', name: 'Düzen' },
+  { id: 'skills', name: 'Beceriler' },
+  { id: 'writing', name: 'Okuma ve yazma' },
+  { id: 'level', name: 'Seviye ve XP' },
+]
+
+const CATEGORY_OF: Record<keyof GameStats, BadgeCategory> = {
+  wordsIntroduced: 'words', mastered: 'words', wordsStrong: 'words', wordsAdded: 'words', wordsWithNotes: 'words', wordsWithPicture: 'words', wordsWithRecording: 'words', hardMarked: 'words', hardConquered: 'words',
+  longestStreak: 'habit', daysStudied: 'habit', comebacks: 'habit', nightDays: 'habit', earlyDays: 'habit', weekendDays: 'habit', maxDayAnswers: 'habit', perfectDays: 'habit', challengesDone: 'habit', perfectWeeks: 'habit',
+  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
+  textsRead: 'writing', journalEntries: 'writing', freeSentencesCorrect: 'writing',
+  level: 'level', totalXp: 'level',
+}
+
+/** Where a badge is shelved in the profile: by what it counts. */
+export const badgeCategory = (a: Pick<Achievement, 'stat'>): BadgeCategory => CATEGORY_OF[a.stat]
 
 export type MedalTier = 'bronze' | 'silver' | 'gold' | 'special'
 
-/** A badge's medal: its step within its family (bronze, silver, then gold); one-offs are special. */
+/**
+ * A badge's medal: its place among the badges of the same kind, in thirds (the first third bronze,
+ * the middle silver, the top gold); a badge with no siblings is a special one-off.
+ */
 export function medalTier(a: Pick<Achievement, 'id' | 'stat'>): MedalTier {
   const family = ACHIEVEMENTS.filter((x) => x.stat === a.stat).sort((x, y) => x.goal - y.goal)
   if (family.length === 1) return 'special'
-  const i = family.findIndex((x) => x.id === a.id)
-  return i <= 0 ? 'bronze' : i === 1 ? 'silver' : 'gold'
+  const place = family.findIndex((x) => x.id === a.id) / (family.length - 1)
+  return place <= 0.34 ? 'bronze' : place <= 0.67 ? 'silver' : 'gold'
 }
 
 export interface AchievementState extends Achievement {

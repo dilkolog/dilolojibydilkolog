@@ -30,6 +30,9 @@ export function Medal({ icon, tier, unlocked, progress = 0, size = 64 }: { icon:
           <stop offset="0" stopColor={t.face[0]} />
           <stop offset="1" stopColor={t.face[1]} />
         </linearGradient>
+        <clipPath id={`clip${id}`}>
+          <circle cx="32" cy="31" r={r} />
+        </clipPath>
       </defs>
       <g className="medal-art">
         <path d="M20 44 L13 72 L22 67 L27 73 L32 50 Z" fill={t.ribbon[1]} />
@@ -47,6 +50,12 @@ export function Medal({ icon, tier, unlocked, progress = 0, size = 64 }: { icon:
           </text>
         )}
       </g>
+      {unlocked && (
+        // A glint crosses the face once when it appears, and again whenever it is pointed at.
+        <g clipPath={`url(#clip${id})`}>
+          <rect className="medal-shine" x="-30" y="2" width="12" height="58" fill="rgb(255 255 255 / 0.55)" transform="skewX(-20)" />
+        </g>
+      )}
       {!unlocked && progress > 0 && (
         <circle
           cx="32"

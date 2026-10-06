@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { useTenses } from './ConjugationTable'
 import { analyzeForm } from '../engine/tenses'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { displayForm } from '../engine/exercises'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry, WordList as WordListRow } from '../engine/types'
@@ -15,7 +14,7 @@ import { turkishMeanings, type TurkishMeanings } from '../data/wordInfo'
 import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, markWord, updateEntry, wordId, WordInputError, wordKeys, type WordInput } from '../data/wordInput'
 import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
 import { useAi } from './aiContext'
-import { CheckIcon, GlobeIcon, ImageIcon, MicIcon, PlusIcon, SparkleIcon } from './icons'
+import { BoltIcon, CheckIcon, GlobeIcon, ImageIcon, MicIcon, PlusIcon, SparkleIcon } from './icons'
 import { ImagePicker, type PickedImage } from './ImagePicker'
 import { BulkImport } from './BulkImport'
 import { ConceptsView, TriLanguageCard } from './CrossLanguage'
@@ -43,6 +42,9 @@ import { getDensity, setDensity } from './density'
 import { saveWordOrder } from './wordOrder'
 import { WordListsView } from './WordLists'
 import { placementOptions, parsePlacement } from './listOptions'
+import { PosTag } from './PosTag'
+import { WrittenForm } from './WrittenForm'
+import { isDifficult, withDifficult } from '../engine/difficult'
 
 interface Props {
   db: KelimeDB
@@ -263,6 +265,12 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
           onAdd={goAdd}
           lists={lists}
+          onMark={async (ids, difficult) => {
+            const set = new Set(ids)
+            await db.vocabulary.bulkPut(vocabulary.filter((v) => set.has(v.id)).map((v) => withDifficult(v, difficult)))
+            onChanged()
+            showToast(difficult ? `${ids.length} kelime zor diye işaretlendi.` : `${ids.length} kelimenin zor işareti kaldırıldı.`)
+          }}
           onMove={async (ids, placement) => {
             const { listId, levelId } = parsePlacement(placement)
             await db.assignList(ids, listId, levelId)
@@ -911,7 +919,7 @@ function WordPreview({ language, word, meaning, pos, example, translation, image
 
 // ---------------------------------------------------------------------------
 
-type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes'
+type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes' | 'difficult'
 type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent' | 'due'
 const VIEW_MODE_KEY = 'kelime-koc:words-table'
 
@@ -922,6 +930,7 @@ const STAGE_FILTERS: [StageFilter, string][] = [
   ['strong', 'Sağlam'],
   ['mastered', 'Oturdu'],
   ['mistakes', 'Hatalı'],
+  ['difficult', 'Zor'],
 ]
 
 function WordThumb({ id }: { id?: string }) {
@@ -940,6 +949,7 @@ function WordList({
   onAdd,
   lists = [],
   onMove,
+  onMark,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
@@ -951,6 +961,8 @@ function WordList({
   lists?: WordListRow[]
   /** Moves words to a list or one of its levels ("list|level"), or out of any ('__none'). */
   onMove?: (ids: string[], placement: string) => Promise<void>
+  /** Marks words as hard (or clears the mark). */
+  onMark?: (ids: string[], difficult: boolean) => Promise<void>
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -987,6 +999,7 @@ function WordList({
       return !t
     })
 
+  const difficultCount = useMemo(() => vocabulary.filter(isDifficult).length, [vocabulary])
   const withMistakes = useMemo(() => new Set(mistakes.filter((m) => !m.resolved).map((m) => m.entryId)), [mistakes])
   const tags = useMemo(() => [...new Set(vocabulary.flatMap((v) => v.tags))].sort((a, b) => a.localeCompare(b, 'tr')), [vocabulary])
   const list = useMemo(() => {
@@ -1003,6 +1016,7 @@ function WordList({
       if (stage === 'strong' && !(i === 3 || i === 4)) return false
       if (stage === 'mastered' && i !== 5) return false
       if (stage === 'mistakes' && !withMistakes.has(v.id)) return false
+      if (stage === 'difficult' && !v.difficult) return false
       if (flags.picture && !v.imageId) return false
       if (flags.audio && !v.audioId) return false
       if (flags.noExample && v.senses[0].examples.length > 0) return false
@@ -1145,9 +1159,11 @@ function WordList({
             </div>
           </div>
           <div className="choice-row filter-row">
-            {STAGE_FILTERS.map(([v, label]) => (
+            {STAGE_FILTERS.filter(([v]) => v !== 'difficult' || difficultCount > 0 || stage === 'difficult').map(([v, label]) => (
               <button key={v} className="chip chip-sm" aria-pressed={stage === v} onClick={() => setStage(v)}>
+                {v === 'difficult' && <BoltIcon size={14} className="inline-icon" />}
                 {label}
+                {v === 'difficult' && ` (${difficultCount})`}
               </button>
             ))}
             <span className="chip-sep" aria-hidden />
@@ -1202,6 +1218,21 @@ function WordList({
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
               </button>
+              {onMark && (
+                <button
+                  className="btn btn-quiet"
+                  disabled={!selectedVisible.length}
+                  onClick={async () => {
+                    // All marked already: this unmarks them; otherwise it marks the rest.
+                    const on = selectedVisible.some((v) => !v.difficult)
+                    await onMark(selectedVisible.map((v) => v.id), on)
+                    exitSelection()
+                  }}
+                >
+                  <BoltIcon size={16} className="inline-icon" />
+                  {selectedVisible.length && selectedVisible.every((v) => v.difficult) ? 'Zor işaretini kaldır' : 'Zor işaretle'}
+                </button>
+              )}
               {onMove && lists.length > 0 && (
                 <div className="select-bar-move">
                   <Select
@@ -1234,7 +1265,7 @@ function WordList({
           {!selecting && list.length > 0 && list.length < vocabulary.length && (
             <div className="deck-bar">
               <span>
-                {tag ? <strong>#{tag}</strong> : inList && inList !== '__none' ? <strong>{placementOptions(lists).find((o) => o.value === inList)?.label}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
+                {stage === 'difficult' ? <strong>Zor kelimelerin</strong> : tag ? <strong>#{tag}</strong> : inList && inList !== '__none' ? <strong>{placementOptions(lists).find((o) => o.value === inList)?.label}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
               </span>
               <button className="btn" onClick={() => onStudy(list)}>
                 Bu listeyi çalış
@@ -1291,7 +1322,8 @@ function WordList({
                             </td>
                           )}
                           <td className="w" lang={v.language}>
-                            {displayForm(v)}
+                            <WrittenForm entry={v} />
+                            {v.difficult && <BoltIcon size={14} solid className="difficult-mark" />}
                             {withMistakes.has(v.id) && <span className="pill pill-bad">hata</span>}
                           </td>
                           <td className="muted">{v.senses[0].gloss}</td>
@@ -1329,10 +1361,18 @@ function WordList({
                       </span>
                       <WordThumb id={v.imageId} />
                       <span className="word-row-text">
-                        <span className="w" lang={v.language}>{displayForm(v)}</span>
+                        <span className="w" lang={v.language}>
+                          <WrittenForm entry={v} />
+                          {v.difficult && <BoltIcon size={14} solid className="difficult-mark" />}
+                        </span>
                         <span className="meta">
                           {v.senses[0].gloss}
-                          {v.partOfSpeech !== 'other' && `, ${POS_NAME[v.partOfSpeech]}`}
+                          {v.partOfSpeech !== 'other' && (
+                            <>
+                              {' · '}
+                              <PosTag pos={v.partOfSpeech} label />
+                            </>
+                          )}
                           {v.source !== 'sample' && bandOf(v.frequencyRank) && `, ${bandOf(v.frequencyRank)!.short}`}
                           {v.source === 'sample' && ' (örnek)'}
                           {v.audioId && <MicIcon size={12} className="inline-icon is-end" />}

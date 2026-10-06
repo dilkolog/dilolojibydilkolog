@@ -68,6 +68,12 @@ export function splitArticle(s: string, language: TargetLanguage): { article?: s
   return { rest: s }
 }
 
+/** The gender an article shows (le/la, el/la); undefined for l', les, English and anything unknown. */
+export function genderOfArticle(article: string | undefined, language: TargetLanguage): 'm' | 'f' | undefined {
+  const g = article ? ARTICLES[language][article] : undefined
+  return g === 'm' || g === 'f' ? g : undefined
+}
+
 function articleGender(article: string, language: TargetLanguage, fallback?: Gender): ArticleGender {
   const g = ARTICLES[language][article] ?? 'neutral'
   if (g === 'neutral' && fallback && fallback !== 'mf') return fallback

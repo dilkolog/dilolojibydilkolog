@@ -131,3 +131,18 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - **Oturum sonunda AI'dan tek cümlelik yorum** (sonraya, 2026-10-06): o oturumun hatalarından
   ("le/la ayrımında 3 hata; dişil -ette sonlarına dikkat") kısa, somut bir öneri. Hata verisi
   zaten tutuluyor; yalnızca özetlemek gerekiyor.
+- **Hesap, giriş ve erişim güvenliği** (sonraya, 2026-10-08; kullanıcı "ileride döneceğiz" dedi).
+  Durum: hesap = kullanıcı adı + şifre, şifreden iki anahtar türetilir (veri şifreleme + sunucu
+  erişimi); sunucu (`api/sync.ts`) yalnızca şifreli blob saklar. Kayıt herkese açık, kullanıcı
+  adını ilk yazan sahiplenir. AI, kullanıcının kendi Anthropic anahtarıyla tarayıcıdan çağrılır;
+  anahtar yalnızca IndexedDB'de durur (yedeğe ve senkrona girmez).
+  Karar: kullanıcı teoride tek kullanıcı; amaç başkasının önemli şeylere (özellikle API anahtarı)
+  erişmemesi. "Hesap + onay paneli + sunucu AI aracısı" şimdilik gereksiz bulundu.
+  Seçenekler, küçükten büyüğe: (1) sunucuda hesap izin listesi (ortam değişkeni; listede
+  olmayan kayıt olamaz/yazamaz; depolamayı ve ad kapmayı önler), (2) AI sunucudan geçerse
+  anahtar yalnızca ortam değişkeninde, (3) isteğe bağlı uygulama kilidi (anahtarı parolayla
+  şifreli sakla), (4) isteğe bağlı anahtarı şifreli hesap verisiyle cihazlar arası taşı,
+  (5) Anthropic konsolunda uygulamaya ayrı anahtar + harcama sınırı.
+  Başkalarına açılırsa: bekleyen/onaylı/askıda durumları, oturum jetonu, yönetici ekranı, sunucuda
+  kota, şifre kurtarma anahtarı (e-posta veri kurtarmaz), AI için gizlilik metni güncellemesi.
+  Dönmeden önce sorulacaklar: ileride başkalarına açılacak mı, birden çok cihaz var mı.

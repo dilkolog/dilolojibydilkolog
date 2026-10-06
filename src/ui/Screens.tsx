@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
@@ -8,12 +8,18 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
+import { greetingFor, dayPart } from './dayPart'
+import { pinnedBadges } from '../engine/profileStyle'
+import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
-import { Plant } from './Plant'
+import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
 import { InstallHint } from './InstallHint'
+import { BadgeMoment } from './BadgeMoment'
+import { markBadgesSeen } from './badgeSeen'
+import { Burst } from './Burst'
+import { DayPlant } from './DayPlant'
 import { Ring } from './Ring'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
@@ -201,12 +207,22 @@ function FocusLine({ focus, done, onOpenLists }: { focus: NonNullable<Parameters
   )
 }
 
-function greeting(now: Date): string {
-  const h = now.getHours()
-  if (h >= 5 && h < 12) return 'Günaydın'
-  if (h >= 12 && h < 18) return 'İyi günler'
-  if (h >= 18 && h < 23) return 'İyi akşamlar'
-  return 'İyi geceler'
+/** The light of the hour beside the greeting: the sun high, on the horizon (dawn and dusk), or the moon. */
+function DayMark({ now }: { now: Date }) {
+  const part = dayPart(now)
+  return (
+    <span className={`day-mark is-${part}`} aria-hidden>
+      {part === 'day' ? (
+        <SunIcon size={22} />
+      ) : part === 'night' ? (
+        <MoonIcon size={22} />
+      ) : (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+          <path d="M6.5 16a5.5 5.5 0 0 1 11 0M3 19h18M12 6v2.2M4.6 9.6l1.6 1.4M19.4 9.6l-1.6 1.4" />
+        </svg>
+      )}
+    </span>
+  )
 }
 
 const HOME_MORE_KEY = 'kelime-koc:home-more'
@@ -234,11 +250,14 @@ export function Home({
   mixedDue = 0,
   onExtraNew,
   onPracticeMistakes,
+  difficultCount = 0,
+  onPracticeDifficult,
   onFreePractice,
   extra,
   garden,
   focus,
   onOpenLists,
+  pinned,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -264,6 +283,9 @@ export function Home({
   mixedDue?: number
   onExtraNew: () => void
   onPracticeMistakes: () => void
+  /** Words marked hard (the lightning mark) and a practice of just those. */
+  difficultCount?: number
+  onPracticeDifficult?: () => void
   onFreePractice: () => void
   /** Habit nudges shown under the day's mission. */
   extra?: ReactNode
@@ -272,11 +294,15 @@ export function Home({
   /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
   focus?: { name: string; level?: string | null; met?: number; total?: number }
   onOpenLists?: () => void
+  /** The badges the learner put on show (ids); they sit beside the greeting and open the profile. */
+  pinned?: readonly string[]
 }) {
   const now = new Date()
   const game = useGame()
   const streak = game?.streak ?? 0
-  const hello = `${greeting(now)}${name ? `, ${name}` : ''}!`
+  const earned = new Set(game?.achievements.filter((a) => a.unlocked).map((a) => a.id))
+  const showcase = pinnedBadges(pinned, earned).map((id) => game?.achievements.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => !!a)
+  const hello = `${greetingFor(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
   const goal = answeredToday + remaining
@@ -302,7 +328,7 @@ export function Home({
   if (vocabularyCount === 0) {
     return (
       <div className="stack">
-        <h1 className="greeting">{hello}</h1>
+        <h1 className="greeting"><DayMark now={now} />{hello}</h1>
         <div className="hero">
           <div className="hero-body">
             <h2 className="hero-title">{LANGUAGE_NAME[language]} için ilk kelimelerini ekle</h2>
@@ -325,7 +351,20 @@ export function Home({
 
   return (
     <div>
-      <h1 className="greeting">{hello}</h1>
+      <div className="greeting-row">
+        <h1 className="greeting"><DayMark now={now} />{hello}</h1>
+        {showcase.length > 0 && (
+          <ul className="today-showcase" aria-label="Rozet vitrini">
+            {showcase.map((a) => (
+              <li key={a.id}>
+                <button type="button" className="showcase-badge" onClick={onProfile} aria-label={`${a.title}: profilde gör`} title={a.title}>
+                  <Medal icon={a.icon} tier={medalTier(a)} unlocked size={38} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       {/* The day at a glance: what's waiting, the streak, and whether today still counts for it. */}
       <ul className="today-status">
         <li>
@@ -357,19 +396,13 @@ export function Home({
           <span className="hero-hello" aria-hidden lang={language}>
             {HELLO[language]}
           </span>
-          {/* Before the first answer the ring says how much there is, not "%0". */}
-          <Ring
-            value={remaining === 0 && answeredToday > 0 ? 1 : progress}
-            doneLabel={<CheckIcon size={40} />}
-            label={
-              answeredToday === 0 && remaining > 0 ? (
-                <span className="ring-count">
-                  <strong>{remaining}</strong>
-                  <span>soru</span>
-                </span>
-              ) : undefined
-            }
-          />
+          {/* The ring is the way through the task; the plant inside grows with it. */}
+          {(() => {
+            const done = remaining === 0 && answeredToday > 0
+            const value = done ? 1 : progress
+            const plant = <DayPlant language={language} progress={value} done={done} />
+            return <Ring value={value} doneLabel={plant} label={plant} />
+          })()}
           <div className="hero-body">
             {remaining > 0 ? (
               <>
@@ -420,7 +453,7 @@ export function Home({
         {extra}
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || canPractice || onStory || onGames || onMixed) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -432,6 +465,17 @@ export function Home({
                   <span>
                     <strong>Hatalarını düzelt</strong>
                     <span className="small muted">{openMistakeWords} kelimede açık hata</span>
+                  </span>
+                </button>
+              )}
+              {difficultCount > 0 && onPracticeDifficult && (
+                <button className="tile" onClick={onPracticeDifficult}>
+                  <span className="tile-icon warm">
+                    <BoltIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Zor kelimelerin</strong>
+                    <span className="small muted">{difficultCount} kelime zor diye işaretli: ayrı bir çalışmada topla</span>
                   </span>
                 </button>
               )}
@@ -598,37 +642,6 @@ export function Home({
 
 // ---------------------------------------------------------------------------
 
-const BURST_COLORS = ['var(--lang)', 'var(--ok)', 'var(--gold)', 'var(--lang)', '#34d399', 'var(--ok)']
-
-/** One orchestrated celebration: a confetti burst behind the result ring. */
-function Burst() {
-  const pieces = useMemo(
-    () =>
-      Array.from({ length: 28 }, (_, i) => {
-        const angle = (i / 28) * Math.PI * 2
-        const dist = 90 + ((i * 37) % 70)
-        return {
-          x: `${Math.cos(angle) * dist * 1.6}px`,
-          y: `${Math.sin(angle) * dist - 30}px`,
-          r: `${(i * 47) % 360}deg`,
-          color: BURST_COLORS[i % BURST_COLORS.length],
-          delay: `${(i % 5) * 30}ms`,
-        }
-      }),
-    [],
-  )
-  return (
-    <div className="burst" aria-hidden>
-      {pieces.map((p, i) => (
-        <span
-          key={i}
-          style={{ background: p.color, animationDelay: p.delay, ['--x' as string]: p.x, ['--y' as string]: p.y, ['--r' as string]: p.r }}
-        />
-      ))}
-    </div>
-  )
-}
-
 function headline(accuracy: number, practice?: boolean): string {
   if (accuracy >= 0.9) return 'Muhteşem bir oturum!'
   if (accuracy >= 0.7) return 'Çok iyi gidiyorsun!'
@@ -666,6 +679,10 @@ export function Summary({
     before && after && !practice ? crossedMilestone({ level: before.level.level, stats: before.stats }, { level: after.level.level, stats: after.stats }) : null,
   )
 
+  // A badge earned in this session gets its moment, after the level or milestone one.
+  // Derived, not an initial value: the game state after the session may arrive a moment after the summary opens.
+  const [badgeMomentDone, setBadgeMomentDone] = useState(false)
+  const badgeMoment = !practice && !badgeMomentDone && newBadges.length > 0
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
     // Play once when the summary opens.
@@ -684,6 +701,15 @@ export function Summary({
   return (
     <div className="summary-grid">
       {milestone && <MilestoneMoment milestone={milestone} onClose={() => setMilestone(null)} />}
+      {!milestone && badgeMoment && (
+        <BadgeMoment
+          badges={newBadges}
+          onClose={() => {
+            markBadgesSeen(newBadges.map((a) => a.id))
+            setBadgeMomentDone(true)
+          }}
+        />
+      )}
       <div className="summary-main stack">
       <div className="celebrate celebrate-card">
         {/* Words that grew are the celebration (below); confetti only when none did. */}
@@ -694,12 +720,14 @@ export function Summary({
           {summary.answered} sorudan {summary.correct} tanesini doğru bildin.
           {practice && ' Serbest pratikti: takvimin ve hata listen değişmedi.'}
         </p>
-        <p className="xp-gain">+{summary.xp} XP</p>
+        <p className="xp-gain">
+          +<GainCount value={summary.xp} /> XP
+        </p>
         {after && (
           <dl className="celebrate-stats">
             <div>
               <dd>
-                <StreakFlame streak={after.streak} frozen={after.frozenYesterday} /> {after.streak}
+                <StreakFlame streak={after.streak} frozen={after.frozenYesterday} ignite={!!before && after.streak > before.streak} /> {after.streak}
               </dd>
               <dt>günlük seri</dt>
             </div>
@@ -726,7 +754,7 @@ export function Summary({
           <ul className="rewards-list">
             {leveledUp && after && (
               <li className="reward reward-level">
-                <span className="level-badge level-badge-lg">{after.level.level}</span>
+                <LevelUpBadge from={before!.level.level} to={after.level.level} />
                 <span className="reward-text">
                   <strong>Seviye atladın!</strong>
                   <span className="small muted">
@@ -785,7 +813,8 @@ export function Summary({
       </div>
 
       <div className="summary-side stack" hidden={recalling}>
-        {grown.length > 0 && (
+        {/* Mounted only while shown: hidden, the plants would finish growing unseen. */}
+        {!recalling && grown.length > 0 && (
           <section className="stack summary-grown">
             <h2 className="section-title">Bugün büyüyenler ({grown.length})</h2>
             <ul className="grown-list">
@@ -801,7 +830,7 @@ export function Summary({
                       </span>
                       <span className="grown-arrow">→</span>
                       <span className="grown-to">
-                        <Plant stage={to} size={46} />
+                        <GrowingPlant from={from} to={to} delay={400 + Math.min(i, 6) * 200} size={46} />
                       </span>
                     </span>
                     <span className="garden-text">
@@ -878,6 +907,27 @@ function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose
         </div>
       </div>
     </div>
+  )
+}
+
+/** XP earned in the session, counting up from 0. */
+export function GainCount({ value }: { value: number }) {
+  return <>{Math.round(useCountUp(value, 'session-gain', 1000, 0))}</>
+}
+
+/** The new level: the badge shows the old number, flips to the new one with a ring, as if it were struck. */
+export function LevelUpBadge({ from, to }: { from: number; to: number }) {
+  const [level, setLevel] = useState(from)
+  useEffect(() => {
+    const t = setTimeout(() => setLevel(to), 800)
+    return () => clearTimeout(t)
+  }, [to])
+  return (
+    <span className={`level-strike${level === to ? ' is-up' : ''}`}>
+      <span className="level-badge level-badge-lg" key={level}>
+        {level}
+      </span>
+    </span>
   )
 }
 

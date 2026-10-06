@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
-import { levelTitle, medalTier } from '../engine/gamification'
+import { BADGE_CATEGORIES, badgeCategory, levelTitle, medalTier } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, PenIcon, SproutIcon, StarIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, PenIcon, SproutIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
+import { TIER_NAME } from './BadgeMoment'
 import { Medal } from './Medal'
 import { StreakFlame } from './StreakFlame'
 import { localDate } from '../engine/progress'
+import { bannerOf, daysUntil, frameOf, pinnedBadges, titleName, type Unlockables } from '../engine/profileStyle'
+import { ProfileCustomizer } from './ProfileCustomizer'
+import { ProfileTitles } from './ProfileTitles'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -21,6 +25,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const [name, setName] = useState(profile.name)
   const [motto, setMotto] = useState(profile.motto)
   const [editing, setEditing] = useState(false)
+  const [customizing, setCustomizing] = useState(false)
   const [picking, setPicking] = useState(false)
   const [tab, setTab] = useState<'badges' | 'titles' | 'share'>('badges')
   const [openBadge, setOpenBadge] = useState<Achievement | null>(null)
@@ -33,6 +38,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   }
 
   const nextTitle = game && LADDER.find(([l]) => l > game.level.level)
+  // What the profile's styles ask for: progress, never a purchase.
+  const unlockables: Unlockables | null = game ? { level: game.level.level, stats: game.stats, badges: new Set(game.achievements.filter((a) => a.unlocked).map((a) => a.id)) } : null
 
   const unlocked = game ? game.achievements.filter((a) => a.unlocked) : []
   // The badges closest to being earned: something concrete to go for next.
@@ -46,7 +53,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
 
   return (
     <div className="stack profile">
-      <section className="card profile-card" style={{ ['--pcolor' as string]: profile.color }}>
+      <section className="card profile-card" data-banner={bannerOf(profile.banner)} style={{ ['--pcolor' as string]: profile.color }}>
         {onOpenSettings && (
           <button className="icon-btn profile-settings" onClick={onOpenSettings} aria-label="Ayarlar" title="Ayarlar">
             <GearIcon size={18} />
@@ -56,7 +63,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         <h1 className="sr-only">Profil</h1>
         <div className="profile-hero">
           <button className="avatar-edit" onClick={() => setEditing((e) => !e)} aria-label="Avatarı düzenle" aria-expanded={editing}>
-            <span className="avatar-ring" style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
+            <span className="avatar-ring" data-frame={frameOf(profile.frame)} style={{ ['--ring' as string]: `${(game?.level.progress ?? 0) * 100}%` }}>
               <Avatar profile={profile} size={88} />
               {game && <span className="avatar-level">{game.level.level}</span>}
             </span>
@@ -75,7 +82,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <input
               className="profile-motto"
               value={motto}
-              placeholder="Motton ya da hedefin (ör. Yazın Paris'te rahat konuşmak)"
+              placeholder="Hedefin (ör. Paris'te rahat konuşmak)"
               aria-label="Motto"
               onChange={(e) => setMotto(e.target.value)}
               onBlur={() => motto !== profile.motto && save({ motto: motto.trim() })}
@@ -87,7 +94,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           <div className="profile-level">
             <div className="row justify-between">
               <span>
-                <span className="level-badge">Seviye {game.level.level}</span> <strong>{game.level.title}</strong>
+                <span className="level-badge">Seviye {game.level.level}</span> <strong>{unlockables ? titleName(profile.title, unlockables) : game.level.title}</strong>
               </span>
               <span className="muted small">{game.xp.total.toLocaleString('tr-TR')} XP</span>
             </div>
@@ -100,6 +107,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             </p>
           </div>
         )}
+        {game && unlockables && <ProfileAbout profile={profile} game={game} unlockables={unlockables} onOpenBadge={setOpenBadge} onCustomize={() => setCustomizing((c) => !c)} customizing={customizing} />}
         {editing && (
           <div className="stack avatar-editor">
             <div className="emoji-grid">
@@ -130,6 +138,12 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           </div>
         )}
       </section>
+
+      {customizing && game && unlockables && (
+        <section className="card" aria-label="Profili özelleştir">
+          <ProfileCustomizer profile={profile} game={game} unlockables={unlockables} save={save} />
+        </section>
+      )}
 
       {game && (
         <>
@@ -199,27 +213,30 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               {locked.length > 0 && (
                 <details className="badge-block">
                   <summary className="small">Diğer rozetler ({locked.length})</summary>
-                  <div className="badge-case is-locked">
-                    {locked.map((a) => (
-                      <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
-                    ))}
-                  </div>
+                  {/* By what they count, so seventy badges read as five shelves. */}
+                  {BADGE_CATEGORIES.map((c) => {
+                    const shelf = locked.filter((a) => badgeCategory(a) === c.id)
+                    return (
+                      shelf.length > 0 && (
+                        <div key={c.id} className="badge-shelf-group">
+                          <h3 className="subhead">
+                            {c.name} <span className="muted small">({shelf.length})</span>
+                          </h3>
+                          <div className="badge-case is-locked">
+                            {shelf.map((a) => (
+                              <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    )
+                  })}
                 </details>
               )}
             </section>
           )}
 
-          {tab === 'titles' && (
-            <section className="card stack">
-              <ol className="ladder">
-                {LADDER.map(([l, title]) => (
-                  <li key={l} className={game.level.level >= l ? 'is-reached' : ''}>
-                    <span className="level-badge">{l}</span> {title}
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
+          {tab === 'titles' && unlockables && <ProfileTitles profile={profile} game={game} unlockables={unlockables} save={save} />}
 
           {tab === 'share' && <ProgressCardButton settings={settings} game={game} />}
         </>
@@ -243,7 +260,6 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
 
 type Achievement = NonNullable<ReturnType<typeof useGame>>['achievements'][number]
 
-const TIER_NAME = { bronze: 'Bronz', silver: 'Gümüş', gold: 'Altın', special: 'Özel' } as const
 
 function Badge({ a, compact = false, onOpen }: { a: Achievement; compact?: boolean; onOpen: (a: Achievement) => void }) {
   return (
@@ -360,6 +376,12 @@ function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records:
         <span className="small muted">{active ? `${active} gün çalıştın` : 'İlk çalıştığın gün burada renklenir'}</span>
       </div>
       <div className="activity-grid" role="img" aria-label={`Son ${weeks} haftada ${active} gün çalıştın`}>
+        {/* The first column names the weekdays (Mon, Wed, Fri), so a square can be read as a day. */}
+        {['Pzt', '', 'Çar', '', 'Cum', '', ''].map((label, i) => (
+          <span key={`day${i}`} className="activity-day" aria-hidden>
+            {label}
+          </span>
+        ))}
         {days.map((d) => (
           <span
             key={d.key}
@@ -378,5 +400,46 @@ function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records:
         ))}
       </dl>
     </section>
+  )
+}
+
+/** Under the level: the badges on show, interests and the goal, and the way into the customizer. */
+function ProfileAbout({ profile, game, unlockables, onOpenBadge, onCustomize, customizing }: { profile: Profile; game: NonNullable<ReturnType<typeof useGame>>; unlockables: Unlockables; onOpenBadge: (a: Achievement) => void; onCustomize: () => void; customizing: boolean }) {
+  const shown = pinnedBadges(profile.pinned, unlockables.badges).map((id) => game.achievements.find((a) => a.id === id)!).filter(Boolean)
+  const left = daysUntil(profile.goalDate, new Date())
+  const interests = profile.interests ?? []
+  return (
+    <div className="profile-about">
+      {shown.length > 0 && (
+        <ul className="profile-showcase" aria-label="Rozet vitrini">
+          {shown.map((a) => (
+            <li key={a.id}>
+              <button type="button" className="showcase-badge" onClick={() => onOpenBadge(a)} aria-label={`${a.title}: ayrıntı`} title={a.title}>
+                <Medal icon={a.icon} tier={medalTier(a)} unlocked size={46} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      {(interests.length > 0 || profile.goalLevel) && (
+        <div className="profile-tags">
+          {profile.goalLevel && (
+            <span className="goal-chip">
+              Hedef {profile.goalLevel}
+              {left !== null && (left > 0 ? ` · ${left} gün kaldı` : left === 0 ? ' · bugün' : ' · tarih geçti')}
+            </span>
+          )}
+          {interests.map((i) => (
+            <span key={i} className="interest-chip">
+              {i}
+            </span>
+          ))}
+        </div>
+      )}
+      <button type="button" className="btn btn-sm btn-quiet profile-customize-btn" aria-expanded={customizing} onClick={onCustomize}>
+        <PaletteIcon size={16} className="inline-icon" />
+        {customizing ? 'Özelleştirmeyi kapat' : 'Özelleştir'}
+      </button>
+    </div>
   )
 }
