@@ -2,6 +2,7 @@ import 'fake-indexeddb/auto'
 import { describe, expect, it } from 'vitest'
 import { newWordState, processAttempt } from '../engine/review'
 import { createScheduler } from '../engine/scheduler'
+import { emptyLab, dueItems, recordCheck, toggleFavorite } from '../engine/labProgress'
 import { DEFAULT_SETTINGS, exportBackup, KelimeDB, mediaBlob, parseBackup, restoreBackup } from './db'
 import { SAMPLE_WORDS } from './seed'
 import { deadIds } from './tombstones'
@@ -77,6 +78,22 @@ describe('KelimeDB', () => {
     expect(state.skills.recall!.due.getTime()).toBe((await db.wordStates.toArray())[0].skills.recall!.due.getTime())
     expect(await other.events.count()).toBe(1)
     expect((await other.getSettings())?.activeLanguage).toBe('fr')
+  })
+
+  it('the verb lab and the game records travel in a backup, review dates intact', async () => {
+    const { db } = await seeded('t-lab')
+    const scheduler = createScheduler({ fuzz: false })
+    const lab = recordCheck(toggleFavorite(emptyLab(), 'comer'), scheduler, 'comer', 'presente', true, NOW)
+    await db.saveLab('es', lab)
+    await db.saveRecord('verbtimed:es:easy', 120)
+    const other = new KelimeDB('t-lab-restore')
+    await restoreBackup(other, parseBackup(await exportBackup(db, NOW)))
+    const back = await other.getLab('es')
+    expect(back.favorites).toEqual(['comer'])
+    expect(back.records['comer|presente'].ok).toBe(1)
+    expect(back.records['comer|presente'].card.due).toBeInstanceOf(Date)
+    expect(dueItems(back, new Date(NOW.getTime() + 60 * 86_400_000)).map((i) => i.verb)).toEqual(['comer'])
+    expect((await other.getRecords())['verbtimed:es:easy']).toBe(120)
   })
 
   it('rejects files that are not backups', () => {

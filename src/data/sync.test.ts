@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { Backup } from './db'
-import { generateSyncCode, mergeBackups, normalizeCode, open, seal, syncIdOf } from './sync'
+import type { LabData } from '../engine/labProgress'
+import { generateSyncCode, mergeBackups, mergeLab, normalizeCode, open, seal, syncIdOf } from './sync'
 
 const base = (exportedAt: string, over: Partial<Backup> = {}): Backup => ({
   app: 'kelime-koc',
@@ -84,5 +85,41 @@ describe('sync', () => {
     const a = base('2026-10-02T10:00:00Z', { lists: [list('l1', 'Seyahat', '2026-10-02T09:00:00Z'), list('l2', 'İş', '2026-10-01T10:00:00Z')] })
     const b = base('2026-10-02T11:00:00Z', { lists: [list('l1', 'Yolculuk', '2026-10-01T12:00:00Z')], deleted: [{ id: 'l2', at: '2026-10-02T10:30:00Z', alive: false }] })
     expect(mergeBackups(a, b).lists).toEqual([list('l1', 'Seyahat', '2026-10-02T09:00:00Z')])
+  })
+})
+
+describe('the verb lab across devices', () => {
+  const rec = (ok: number, wrong: number, last: string) => ({ ok, wrong, points: ok * 10, card: { last_review: new Date(last) } }) as unknown as LabData['records'][string]
+  const lab = (over: Partial<LabData>): LabData => ({ favorites: [], recent: [], records: {}, ...over })
+
+  it('joins favourites and recent verbs, newest device first', () => {
+    const m = mergeLab(lab({ favorites: ['comer'], recent: ['comer', 'ir'] }), lab({ favorites: ['hablar'], recent: ['hablar', 'comer'] }))!
+    expect(m.favorites).toEqual(['hablar', 'comer'])
+    expect(m.recent).toEqual(['hablar', 'comer', 'ir'])
+  })
+
+  it('each form keeps the record with more answers; counts keep the larger', () => {
+    const m = mergeLab(
+      lab({ records: { 'comer|presente': rec(2, 0, '2026-10-01T10:00:00Z'), 'ir|presente': rec(1, 0, '2026-10-01T10:00:00Z') }, tally: { 'presente|0': { ok: 3, wrong: 1 } }, kinds: { accent: 2 } }),
+      lab({ records: { 'comer|presente': rec(5, 1, '2026-10-02T10:00:00Z') }, tally: { 'presente|0': { ok: 2, wrong: 4 } }, kinds: { accent: 1, person: 3 } }),
+    )!
+    expect(m.records['comer|presente'].ok).toBe(5)
+    expect(m.records['ir|presente'].ok).toBe(1)
+    expect(m.tally!['presente|0']).toEqual({ ok: 3, wrong: 4 })
+    expect(m.kinds).toEqual({ accent: 2, person: 3 })
+  })
+
+  it('a device that never used the lab changes nothing', () => {
+    const l = lab({ favorites: ['comer'] })
+    expect(mergeLab(undefined, l)).toBe(l)
+    expect(mergeLab(l, undefined)).toBe(l)
+  })
+
+  it('travels in the merged backup, with the game records (the larger of each)', () => {
+    const a = base('2026-10-02T10:00:00Z', { lab: { es: lab({ favorites: ['comer'] }) }, records: { 'verbtimed:es:easy': 80, 'match:es': 10 } })
+    const b = base('2026-10-03T10:00:00Z', { lab: { es: lab({ favorites: ['hablar'] }) }, records: { 'verbtimed:es:easy': 60, 'blitz:es': 7 } })
+    const m = mergeBackups(a, b)
+    expect(m.lab?.es?.favorites).toEqual(['hablar', 'comer'])
+    expect(m.records).toEqual({ 'verbtimed:es:easy': 80, 'match:es': 10, 'blitz:es': 7 })
   })
 })

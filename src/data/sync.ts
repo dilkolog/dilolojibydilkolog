@@ -1,3 +1,4 @@
+import type { LabData } from '../engine/labProgress'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 
@@ -132,6 +133,31 @@ const time = (d: Date | string | undefined) => (d ? new Date(d).getTime() : 0)
  * each word keeps its most recently reviewed state, and what was deleted on either side stays
  * deleted unless it was added again later (see tombstones.ts). Where one item differs on both sides, the newer snapshot wins.
  */
+/** The verb lab of two devices: favourites and recent verbs joined, each form keeping its more practised record, counts keeping the larger. */
+export function mergeLab(older: LabData | undefined, newer: LabData | undefined): LabData | undefined {
+  if (!older || !newer) return newer ?? older
+  const records: LabData['records'] = { ...older.records }
+  for (const [key, r] of Object.entries(newer.records)) {
+    const o = records[key]
+    const answers = (x: typeof r) => x.ok + x.wrong
+    records[key] = !o || answers(r) > answers(o) || (answers(r) === answers(o) && time(r.card?.last_review) >= time(o.card?.last_review)) ? r : o
+  }
+  const most = <T extends Record<string, number>>(a: T = {} as T, b: T = {} as T) => Object.fromEntries([...new Set([...Object.keys(a), ...Object.keys(b)])].map((k) => [k, Math.max(a[k] ?? 0, b[k] ?? 0)]))
+  const tally: NonNullable<LabData['tally']> = {}
+  for (const k of new Set([...Object.keys(older.tally ?? {}), ...Object.keys(newer.tally ?? {})])) {
+    const a = older.tally?.[k]
+    const b = newer.tally?.[k]
+    tally[k] = { ok: Math.max(a?.ok ?? 0, b?.ok ?? 0), wrong: Math.max(a?.wrong ?? 0, b?.wrong ?? 0) }
+  }
+  return {
+    favorites: [...new Set([...newer.favorites, ...older.favorites])],
+    recent: [...new Set([...newer.recent, ...older.recent])].slice(0, 12),
+    records,
+    tally,
+    kinds: most(older.kinds as Record<string, number>, newer.kinds as Record<string, number>),
+  }
+}
+
 export function mergeBackups(local: Backup, remote: Backup): Backup {
   const [older, newer] = time(local.exportedAt) >= time(remote.exportedAt) ? [remote, local] : [local, remote]
   const tombs = mergeTombs(tombMap(local.deleted, time(local.exportedAt)), tombMap(remote.deleted, time(remote.exportedAt)))
@@ -171,6 +197,8 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     exams: unionBy(older.exams, newer.exams, (e) => `${e.language}|${e.at}`),
     lists: unionBy(older.lists, newer.lists, (l) => l.id, (x, y) => (time(y.updatedAt) >= time(x.updatedAt) ? y : x)).filter((l) => !dead(l.id, l.createdAt)),
     deleted: tombList(tombs),
+    lab: { fr: mergeLab(older.lab?.fr, newer.lab?.fr), es: mergeLab(older.lab?.es, newer.lab?.es) },
+    records: Object.fromEntries([...new Set([...Object.keys(older.records ?? {}), ...Object.keys(newer.records ?? {})])].map((k) => [k, Math.max(older.records?.[k] ?? 0, newer.records?.[k] ?? 0)])),
     media: [],
   }
 }
