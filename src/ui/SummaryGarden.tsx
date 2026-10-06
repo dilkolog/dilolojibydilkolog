@@ -26,13 +26,14 @@ export function SummaryGarden({ summary, now = new Date() }: { summary: SessionS
   return (
     <section className="summary-scene" aria-label={`Bahçen: ${words.length} bitki, ${grown.length} tanesi büyüdü`}>
       <GardenSky now={now} flowers={flowers} growing={grown.length} />
+      <div className="scene-ground" aria-hidden />
       <ul className="scene-plants" aria-hidden>
         {words.map((w, i) => {
           const from = rank(w.stageBefore)
           const to = rank(w.stageAfter ?? w.stageBefore)
           return (
             <li key={w.entryId} style={{ ['--i' as string]: i }}>
-              {to > from ? <GrowingPlant from={from} to={to} delay={500 + i * 220} size={44} /> : <Plant stage={to} size={36} />}
+              {to > from ? <GrowingPlant from={from} to={to} delay={500 + i * 220} size={68} /> : <Plant stage={to} size={58} />}
             </li>
           )
         })}
