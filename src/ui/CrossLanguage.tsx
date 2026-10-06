@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { LinesSkeleton } from './Skeleton'
 import { AlertIcon, CheckIcon, GlobeIcon, LinkIcon, SproutIcon } from './icons'
 import { conceptGroups, crossLanguageLinks, falseFriendsOf, type Concept, type CrossLink } from '../engine/crossLanguage'
 import { displayForm } from '../engine/exercises'
@@ -181,7 +182,7 @@ export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: Vo
   const links = useCrossLinks(entry)
   const [added, setAdded] = useState<Set<TargetLanguage>>(new Set())
   const [error, setError] = useState('')
-  if (eq === 'loading') return compact ? null : <p className="small muted">Diğer dillerdeki karşılıkları aranıyor…</p>
+  if (eq === 'loading') return compact ? null : <LinesSkeleton lines={2} label="Diğer dillerdeki karşılıklar aranıyor" />
   if (!eq || eq.forms.length < 2) return compact ? null : null
 
   const add = async (f: LanguageForm) => {

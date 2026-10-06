@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { LinesSkeleton } from '../Skeleton'
 import { GameResult } from './GameResult'
 import { normalize } from '../../engine/answerCheck'
 import { createRng, shuffle } from '../../engine/rng'
@@ -128,7 +129,7 @@ export function AspectGame({
     return () => window.removeEventListener('keydown', onKey)
   })
 
-  if (!ready) return <p className="muted">Cümleler yükleniyor…</p>
+  if (!ready) return <LinesSkeleton lines={3} label="Cümleler yükleniyor" />
   if (phase === 'over')
     return (
       <GameResult

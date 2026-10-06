@@ -4347,3 +4347,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .gallery-bolt { position: absolute; right: 0.75rem; top: 0.75rem; color: var(--near-text); background: var(--surface); border-radius: 50%; padding: 0.125rem; box-shadow: var(--shadow-sm); }
 .gallery-check { position: absolute; left: 0.75rem; top: 0.75rem; }
 @media (max-width: 30rem) { .word-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; } }
+
+/* Small loading placeholders: a few lines, a few pictures. */
+.sk-inline { display: grid; gap: 0.5rem; }
+.sk-inline .sk-line { height: 0.875rem; }
+.sk-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.5rem; }
+.sk-tile { aspect-ratio: 4 / 3; border-radius: var(--r-md); }

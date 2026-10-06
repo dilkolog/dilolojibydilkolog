@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { LinesSkeleton } from './Skeleton'
 import type { KelimeDB } from '../data/db'
 import { fetchSentences, isInflection } from '../data/corpus'
 import { minePatterns, wrongVariantsFor, type Pattern } from '../engine/patterns'
@@ -49,7 +50,7 @@ export function PatternsSection({ db, entry, onChanged }: { db: KelimeDB; entry:
   const patterns = usePatterns(entry)
   const [open, setOpen] = useState<string | null>(null)
   const [translation, setTranslation] = useState('')
-  if (patterns === 'loading') return <p className="small muted">Gerçek cümlelerde sık kalıplar aranıyor…</p>
+  if (patterns === 'loading') return <LinesSkeleton lines={2} label="Sık kalıplar aranıyor" />
   if (!patterns?.length) return null
 
   const have = new Set(entry.collocations.map((c) => c.phrase.toLocaleLowerCase(entry.language)))

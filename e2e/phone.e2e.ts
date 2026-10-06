@@ -492,8 +492,9 @@ test('pictures can be suggested for the words that have none, taken with one tap
   const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64')
   const cors = { 'access-control-allow-origin': '*' }
   const json = (body: unknown) => ({ status: 200, headers: cors, contentType: 'application/json', body: JSON.stringify(body) })
-  await page.route('https://www.wikidata.org/**', (route) => {
+  await page.route('https://www.wikidata.org/**', async (route) => {
     const action = new URL(route.request().url()).searchParams.get('action')
+    await new Promise((r) => setTimeout(r, 700))   // slow enough to see the placeholders
     return route.fulfill(
       json(action === 'wbsearchentities' ? { search: [{ id: 'Q1' }] } : { entities: { Q1: { claims: { P18: [{ mainsnak: { datavalue: { value: 'Maison.jpg' } } }] } } } }),
     )
@@ -511,7 +512,9 @@ test('pictures can be suggested for the words that have none, taken with one tap
   await chip.click()
   const dialog = page.getByRole('dialog', { name: 'Görsel öner' })
   await expect(dialog).toBeVisible()
+  await expect(dialog.locator('.sk-tiles')).toBeVisible()   // placeholders while the suggestions are fetched
   await expect(dialog.getByText('Önerilen')).toBeVisible()
+  await expect(dialog.locator('.sk-tiles')).toHaveCount(0)
   // Take the first suggestion: the word has its picture, and the next word comes up.
   await dialog.locator('.iq-pick').first().click()
   await expect(dialog.getByText(/^2 \//)).toBeVisible()
