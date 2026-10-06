@@ -433,3 +433,29 @@ test('an empty screen has a small living picture, and it holds still for reduced
   await page.emulateMedia({ reducedMotion: 'reduce' })
   expect((await names()).every((n) => n === 'none')).toBe(true)
 })
+
+test('the page is lit for the hour: greeting, a sun or moon beside it, a faint wash of light in the light theme only', async ({ page }) => {
+  const cases: [string, string, string, string][] = [
+    ['2026-03-04T06:30:00', 'dawn', 'Günaydın', 'is-dawn'],
+    ['2026-03-04T10:00:00', 'day', 'Günaydın', 'is-day'],
+    ['2026-03-04T19:00:00', 'dusk', 'İyi akşamlar', 'is-dusk'],
+    ['2026-03-04T23:30:00', 'night', 'İyi geceler', 'is-night'],
+  ]
+  const wash = () => page.evaluate(() => getComputedStyle(document.body, '::before').backgroundImage)
+  for (const [time, part, hello, mark] of cases) {
+    await page.clock.setFixedTime(new Date(time))
+    await startWithSamples(page)
+    await expect(page.locator('html')).toHaveAttribute('data-daypart', part)
+    await expect(page.locator('h1.greeting')).toContainText(hello)
+    await expect(page.locator(`h1.greeting .day-mark.${mark}`)).toBeVisible()
+    await page.waitForTimeout(700)   // the screen fades in
+    if (part === 'day') expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
+    else expect(await wash()).toMatch(/rgba\((251|244|99)/)
+    expect(await contrastProblems(page)).toEqual([])
+    // Dark and calm keep their own light: no wash.
+    await page.evaluate(() => (document.documentElement.dataset.theme = 'dark'))
+    expect(await wash()).not.toMatch(/rgba\((251|244|99)/)
+    await page.evaluate(() => delete document.documentElement.dataset.theme)
+    await page.evaluate(() => indexedDB.databases().then((dbs) => Promise.all(dbs.map((d) => indexedDB.deleteDatabase(d.name!)))))
+  }
+})

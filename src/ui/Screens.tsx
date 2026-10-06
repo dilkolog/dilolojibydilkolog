@@ -8,7 +8,8 @@ import { displayForm } from '../engine/exercises'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
-import { AlertIcon, BoltIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
+import { greetingFor, dayPart } from './dayPart'
+import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -205,12 +206,22 @@ function FocusLine({ focus, done, onOpenLists }: { focus: NonNullable<Parameters
   )
 }
 
-function greeting(now: Date): string {
-  const h = now.getHours()
-  if (h >= 5 && h < 12) return 'Günaydın'
-  if (h >= 12 && h < 18) return 'İyi günler'
-  if (h >= 18 && h < 23) return 'İyi akşamlar'
-  return 'İyi geceler'
+/** The light of the hour beside the greeting: the sun high, on the horizon (dawn and dusk), or the moon. */
+function DayMark({ now }: { now: Date }) {
+  const part = dayPart(now)
+  return (
+    <span className={`day-mark is-${part}`} aria-hidden>
+      {part === 'day' ? (
+        <SunIcon size={22} />
+      ) : part === 'night' ? (
+        <MoonIcon size={22} />
+      ) : (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+          <path d="M6.5 16a5.5 5.5 0 0 1 11 0M3 19h18M12 6v2.2M4.6 9.6l1.6 1.4M19.4 9.6l-1.6 1.4" />
+        </svg>
+      )}
+    </span>
+  )
 }
 
 const HOME_MORE_KEY = 'kelime-koc:home-more'
@@ -285,7 +296,7 @@ export function Home({
   const now = new Date()
   const game = useGame()
   const streak = game?.streak ?? 0
-  const hello = `${greeting(now)}${name ? `, ${name}` : ''}!`
+  const hello = `${greetingFor(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
   const goal = answeredToday + remaining
@@ -311,7 +322,7 @@ export function Home({
   if (vocabularyCount === 0) {
     return (
       <div className="stack">
-        <h1 className="greeting">{hello}</h1>
+        <h1 className="greeting"><DayMark now={now} />{hello}</h1>
         <div className="hero">
           <div className="hero-body">
             <h2 className="hero-title">{LANGUAGE_NAME[language]} için ilk kelimelerini ekle</h2>
@@ -334,7 +345,7 @@ export function Home({
 
   return (
     <div>
-      <h1 className="greeting">{hello}</h1>
+      <h1 className="greeting"><DayMark now={now} />{hello}</h1>
       {/* The day at a glance: what's waiting, the streak, and whether today still counts for it. */}
       <ul className="today-status">
         <li>

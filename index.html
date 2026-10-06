@@ -18,6 +18,11 @@
         document.documentElement.dataset.theme = 'light'
       }
     </script>
+    <script>
+      // The light of the hour before the first paint (same hours as the garden sky; the app keeps it current).
+      var h = new Date().getHours() + new Date().getMinutes() / 60
+      document.documentElement.dataset.daypart = h >= 5.5 && h < 8 ? 'dawn' : h >= 8 && h < 17 ? 'day' : h >= 17 && h < 20.5 ? 'dusk' : 'night'
+    </script>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />

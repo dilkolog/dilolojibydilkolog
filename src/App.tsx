@@ -37,6 +37,7 @@ import { GameContext, loadGame, type GameState } from './ui/game'
 import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
+import { useDayPart } from './ui/dayPart'
 import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
 import { reportPushState } from './ui/pushReminders'
@@ -284,6 +285,8 @@ export default function App() {
       azure.region = c?.region ?? null
     })
   }, [])
+
+  useDayPart()
 
   // Past and future tense tables for the language being learned, fetched in the background.
   useEffect(() => {
