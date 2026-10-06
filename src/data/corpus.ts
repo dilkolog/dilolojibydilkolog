@@ -1,6 +1,8 @@
 import type { Example, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
-import { patchWithSources } from './provenance'
+import { loadFrequency } from './frequency'
+import { isUntouched, patchWithSources } from './provenance'
+import { easyWords, rankByFit, type Easy } from '../engine/sentenceFit'
 
 /**
  * Real sentences for each word from Tatoeba (sentences written and translated by people,
@@ -96,8 +98,22 @@ async function query(params: Record<string, string>): Promise<TatoebaSentence[]>
   return ((await res.json()) as { data?: TatoebaSentence[] }).data ?? []
 }
 
-/** Sentences with a Turkish translation first; topped up with untranslated ones (fine for cloze). */
-export async function fetchCorpus(entry: Pick<VocabularyEntry, 'language' | 'lemma'>): Promise<Example[]> {
+/**
+ * Which words count as known when rating a sentence: the language's frequent words and the
+ * learner's own words (sentenceFit.ts).
+ */
+export async function easyFor(db: KelimeDB, language: TargetLanguage): Promise<Easy> {
+  const [rank, own] = await Promise.all([loadFrequency(language), db.vocabulary.where('language').equals(language).toArray()])
+  return easyWords(language, rank, own.map((e) => e.lemma))
+}
+
+/** Sentences with a Turkish translation first; topped up with untranslated ones (fine for cloze). With `easy`, best fit first. */
+export async function fetchCorpus(entry: Pick<VocabularyEntry, 'language' | 'lemma'>, easy?: Easy): Promise<Example[]> {
+  const found = await fetchRaw(entry)
+  return easy ? rankByFit(found, entry.lemma, easy) : found
+}
+
+async function fetchRaw(entry: Pick<VocabularyEntry, 'language' | 'lemma'>): Promise<Example[]> {
   const lang = TATOEBA_LANG[entry.language]
   const q = /\s/.test(entry.lemma.trim()) ? `"${entry.lemma.trim()}"` : entry.lemma.trim()
   const translated = toExamples(await query({ lang, q, 'trans:lang': 'tur', showtrans: 'matching' }), entry.lemma, entry.language)
@@ -138,13 +154,30 @@ export async function fillCorpus(db: KelimeDB, language: TargetLanguage): Promis
   if (typeof navigator !== 'undefined' && !navigator.onLine) return 0
   const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.source !== 'sample' && e.corpus === undefined).slice(0, PER_RUN)
   let done = 0
+  const easy = todo.length ? await easyFor(db, language) : undefined
   for (const e of todo) {
     try {
-      await db.vocabulary.update(e.id, patchWithSources(e, { corpus: await fetchCorpus(e) }, { corpus: 'tatoeba' }))
+      await db.vocabulary.update(e.id, patchWithSources(e, { corpus: await fetchCorpus(e, easy) }, { corpus: 'tatoeba' }))
       done++
     } catch {
       break // offline or the service is down: try again next time
     }
   }
   return done
+}
+
+/**
+ * Rates the sentences already saved that were never rated (no network): puts the best fit first.
+ * A list the learner never touched stays "Tatoeba's" for the source note; one they trimmed stays theirs.
+ */
+export async function scoreCorpus(db: KelimeDB, language: TargetLanguage): Promise<number> {
+  const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.corpus?.some((x) => x.fit === undefined))
+  if (!todo.length) return 0
+  const easy = await easyFor(db, language)
+  for (const e of todo) {
+    const corpus = rankByFit(e.corpus!, e.lemma, easy)
+    const kind = e.sources?.corpus?.kind
+    await db.vocabulary.update(e.id, kind && isUntouched(e, 'corpus') ? patchWithSources(e, { corpus }, { corpus: kind }) : { corpus })
+  }
+  return todo.length
 }

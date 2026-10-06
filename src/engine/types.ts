@@ -63,6 +63,8 @@ export interface Example {
   source?: { kind: 'tatoeba'; id: number; audioUrl?: string }
   /** Where the learner met the sentence: the title of the reading text it was saved from. */
   metIn?: string
+  /** Words in it, besides the target, the learner would not know yet: 0–1 is the sweet spot (see sentenceFit.ts). */
+  fit?: number
 }
 
 export interface Sense {

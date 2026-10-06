@@ -4,6 +4,7 @@ import { TENSE_GUIDE } from './tenseGuide'
 import { answersFor, aspectItemsFor, conjugateTense, subjectLabel, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
+import { sweetSpot } from './sentenceFit'
 import { familyRelative, suffixVariants } from './morphology'
 import type {
   Direction,
@@ -259,7 +260,8 @@ export function exampleSource(ex: Example, entry: VocabularyEntry): ContextSourc
 function chooseExample(entry: VocabularyEntry, rng: Rng): Example | undefined {
   const own = entry.senses.flatMap((s) => s.examples)
   const corpus = entry.corpus ?? []
-  if (corpus.length && (!own.length || rng() < 0.5)) return pick(corpus, rng)
+  // Real sentences with at most one word the learner doesn't know come first (i + 1), when there are any.
+  if (corpus.length && (!own.length || rng() < 0.5)) return pick(sweetSpot(corpus), rng)
   return own.length ? pick(own, rng) : undefined
 }
 
