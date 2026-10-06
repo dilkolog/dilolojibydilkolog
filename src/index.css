@@ -4306,3 +4306,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .source-list li { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 0.375rem; border-bottom: 1px solid var(--rule); font-size: var(--t-sm); }
 .source-list li:last-child { border-bottom: 0; }
 .review-toggle.is-on { background: var(--near-soft); border-color: var(--near); color: var(--near-text); }
+
+/* The Turkish word that came from this one, and where a word comes from. */
+.cross-kin { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.5rem; }
+.cross-kin em { font-style: normal; font-weight: 700; color: var(--lang-text); }
+.origin-notes { display: grid; gap: 0.25rem; }
+.origin-notes p { margin: 0; }

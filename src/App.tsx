@@ -25,6 +25,7 @@ import type { Settings } from './data/db'
 import { fillCorpus } from './data/corpus'
 import { fillWordInfo } from './data/wordInfo'
 import { fillFromLexicon } from './data/lexicon'
+import { fillFromPack } from './data/wordpack'
 import { fillFrequencyRanks } from './data/frequency'
 import { loadTenses } from './data/tenseData'
 import { aiConfig, monthKey } from './ai/usage'
@@ -346,6 +347,8 @@ export default function App() {
     if (language === 'fr' && loaded.vocabulary.some((v) => v.source !== 'sample' && (v.partOfSpeech === 'other' || (v.partOfSpeech === 'noun' && !v.gender)))) {
       if (await fillFromLexicon(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
+    // The word pack (other languages, origins, synonyms, recordings), offline, for languages that ship one.
+    if (await fillFromPack(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     // Real sentences for words that don't have them yet (a few per run, one run at a time).
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
       corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))

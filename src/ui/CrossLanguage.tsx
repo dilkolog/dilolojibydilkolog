@@ -4,6 +4,8 @@ import { conceptGroups, crossLanguageLinks, falseFriendsOf, type Concept, type C
 import { displayForm } from '../engine/exercises'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { findEquivalents, sourceName, withArticle, type Equivalents, type LanguageForm } from '../data/wiktionary'
+import { equivalentsFromPack } from '../data/wordpack'
+import { turkishKin } from '../engine/turkishKin'
 import { createEntry } from '../data/wordInput'
 import { db } from '../data/instance'
 import { LANGUAGE_SHORT } from './labels'
@@ -33,10 +35,18 @@ function useCrossLinks(entry: VocabularyEntry): CrossLink[] {
 export function CrossLanguageNotes({ entry, compact = false }: { entry: VocabularyEntry; compact?: boolean }) {
   const links = useCrossLinks(entry)
   const friends = falseFriendsOf(entry)
-  if (!links.length && !friends.length) return null
+  const kin = turkishKin(entry)
+  if (!links.length && !friends.length && !kin) return null
   const shown = compact ? links.slice(0, 3) : links
   return (
     <div className={compact ? 'cross cross-compact' : 'cross'}>
+      {kin && (
+        <p className="cross-kin">
+          <SproutIcon size={16} className="inline-icon" />
+          <strong>Türkçedeki akrabası:</strong> <em lang="tr">{kin.tr}</em>
+          {kin.note && <span className="small muted"> ({kin.note})</span>}
+        </p>
+      )}
       {friends.map((f) => (
         <p key={`${f.lang}:${f.word}`} className="cross-warn">
           <AlertIcon size={16} className="inline-icon" /><strong>Sahte dost:</strong> {LANGUAGE_SHORT[f.lang]} <em lang={f.lang}>{f.word}</em> “{f.gloss}” demek; bu kelime öyle değil.
@@ -129,6 +139,12 @@ function useEquivalents(entry: VocabularyEntry): Equivalents | null | 'loading' 
   const [value, setValue] = useState<Equivalents | null | 'loading'>('loading')
   useEffect(() => {
     let live = true
+    // The word pack already knows them: no network, no waiting.
+    const packed = equivalentsFromPack(entry)
+    if (packed) {
+      setValue(packed)
+      return
+    }
     try {
       const cached = localStorage.getItem(EQUIV_KEY(entry))
       if (cached) {
@@ -243,5 +259,29 @@ export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: Vo
         Eklenen kelime aynı Türkçe anlamla gelir. Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Wiktionary</a> (CC BY-SA).
       </p>
     </section>
+  )
+}
+
+/** Where the word comes from, its synonyms and antonyms (from the word pack), when there are any. */
+export function OriginNotes({ entry }: { entry: VocabularyEntry }) {
+  if (!entry.etymology && !entry.synonyms?.length && !entry.antonyms?.length) return null
+  return (
+    <div className="origin-notes">
+      {entry.etymology && (
+        <p className="small">
+          <strong>Köken:</strong> <span lang="en">{entry.etymology}</span>
+        </p>
+      )}
+      {entry.synonyms && entry.synonyms.length > 0 && (
+        <p className="small">
+          <strong>Eş anlamlılar:</strong> <span lang={entry.language}>{entry.synonyms.join(', ')}</span>
+        </p>
+      )}
+      {entry.antonyms && entry.antonyms.length > 0 && (
+        <p className="small">
+          <strong>Zıt anlamlılar:</strong> <span lang={entry.language}>{entry.antonyms.join(', ')}</span>
+        </p>
+      )}
+    </div>
   )
 }

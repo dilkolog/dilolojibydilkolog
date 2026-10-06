@@ -18,7 +18,7 @@ import { ruleFor } from '../engine/genderRules'
 import { relativeTime } from './format'
 import { canSpeak, playWord } from './speech'
 import { WordForm } from './Words'
-import { CrossLanguageNotes, TriLanguageCard } from './CrossLanguage'
+import { CrossLanguageNotes, OriginNotes, TriLanguageCard } from './CrossLanguage'
 import { PatternsSection } from './Patterns'
 import { MemoryCurveChart } from './MemoryCurve'
 import { PitchCompare } from './PitchCompare'
@@ -282,6 +282,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <section className="section stack span-2 word-notes">
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         <CrossLanguageNotes entry={entry} />
+        <OriginNotes entry={entry} />
         {ruleFor(entry) && <p className={`small gender-rule${ruleFor(entry)!.exception ? ' is-exception' : ''}`}>{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
         {fragile && (
           <p className="small fragile-note"><SlowIcon size={16} className="inline-icon" />Doğru biliyorsun ama yavaş hatırlıyorsun: bilgi kırılgan. Akıcılık turu ve hızlı tekrarlar onu otomatikleştirir.</p>
