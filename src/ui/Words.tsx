@@ -45,6 +45,8 @@ import { placementOptions, parsePlacement } from './listOptions'
 import { PosTag } from './PosTag'
 import { WrittenForm } from './WrittenForm'
 import { isDifficult, withDifficult } from '../engine/difficult'
+import { imageCandidates, skippedImages } from '../data/imageQueue'
+import { ImageQueue, ImageQueueChip } from './ImageQueue'
 
 interface Props {
   db: KelimeDB
@@ -131,6 +133,10 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
     await deleteWordsWithUndo(samples.map((s) => s.id), `${samples.length} örnek kelime silindi`, onChanged)
   }
 
+  const [suggestingImages, setSuggestingImages] = useState(false)
+  // Words passed over are kept outside the word list, so closing the dialog tells the list to count again.
+  const [pictureTick, setPictureTick] = useState(0)
+
   const goAdd = () => {
     setSection('add')
     setTimeout(() => document.getElementById('w-word')?.focus(), 60)
@@ -138,6 +144,17 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
 
   return (
     <div>
+      {suggestingImages && (
+        <ImageQueue
+          db={db}
+          vocabulary={vocabulary}
+          onClose={() => {
+            setSuggestingImages(false)
+            setPictureTick((t) => t + 1)
+          }}
+          onChanged={onChanged}
+        />
+      )}
       <section className="section stack">
         <PageHeader
           title={`${LANGUAGE_NAME[language]} kelimelerin`}
@@ -265,6 +282,8 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
           onAdd={goAdd}
           lists={lists}
+          onSuggestImages={() => setSuggestingImages(true)}
+          pictureTick={pictureTick}
           onMark={async (ids, difficult) => {
             const set = new Set(ids)
             await db.vocabulary.bulkPut(vocabulary.filter((v) => set.has(v.id)).map((v) => withDifficult(v, difficult)))
@@ -951,6 +970,8 @@ function WordList({
   lists = [],
   onMove,
   onMark,
+  onSuggestImages,
+  pictureTick = 0,
 }: {
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
@@ -964,6 +985,10 @@ function WordList({
   onMove?: (ids: string[], placement: string) => Promise<void>
   /** Marks words as hard (or clears the mark). */
   onMark?: (ids: string[], difficult: boolean) => Promise<void>
+  /** Opens the picture suggestions for words without one. */
+  onSuggestImages?: () => void
+  /** Changes when the picture suggestions closed, so words passed over are counted out. */
+  pictureTick?: number
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1002,6 +1027,8 @@ function WordList({
 
   const difficultCount = useMemo(() => vocabulary.filter(isDifficult).length, [vocabulary])
   const reviewCount = useMemo(() => vocabulary.filter((v) => v.review).length, [vocabulary])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const pictureCandidates = useMemo(() => imageCandidates(vocabulary, skippedImages()).length, [vocabulary, pictureTick])
   const withMistakes = useMemo(() => new Set(mistakes.filter((m) => !m.resolved).map((m) => m.entryId)), [mistakes])
   const tags = useMemo(() => [...new Set(vocabulary.flatMap((v) => v.tags))].sort((a, b) => a.localeCompare(b, 'tr')), [vocabulary])
   const list = useMemo(() => {
@@ -1170,6 +1197,7 @@ function WordList({
                 {v === 'review' && ` (${reviewCount})`}
               </button>
             ))}
+            {onSuggestImages && pictureCandidates > 0 && <ImageQueueChip count={pictureCandidates} onOpen={onSuggestImages} />}
             <span className="chip-sep" aria-hidden />
             <button className="chip chip-sm" aria-pressed={!!flags.picture} onClick={() => toggle('picture')}>
               <ImageIcon size={14} className="inline-icon" />Resimli

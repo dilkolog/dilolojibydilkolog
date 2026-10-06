@@ -27,9 +27,7 @@ export function WordSources({ entry, onChanged }: { entry: VocabularyEntry; onCh
           Gözden geçir
         </button>
       </div>
-      {origins.length === 0 ? (
-        <p className="small muted">Bu kelimenin verisi sana ait; otomatik doldurulmuş bir alan yok.</p>
-      ) : (
+      {origins.length > 0 && (
         <ul className="source-list">
           {origins.map(({ field, origin }) => (
             <li key={field}>
