@@ -232,7 +232,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
       {index && (
         <section className="section">
           <p className="small muted">
-            Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Vikisözlük</a> (CC BY-SA), her dilde en sık 9–16 bin kelime. Türkçe karşılıklar İngilizce üzerinden eşlenir; emin olmadığında Vikisözlük sayfasına bak.
+            Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Vikisözlük</a> (CC BY-SA), her dilde en sık 9–16 bin kelime. Türkçe karşılıklar Türkçe Vikisözlük’ten ve İngilizce üzerinden gelir; emin olmadığında Vikisözlük sayfasına bak ya da “Anlamı düzelt”.
           </p>
         </section>
       )}
