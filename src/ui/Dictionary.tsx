@@ -10,6 +10,7 @@ import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../
 import { useAi } from './aiContext'
 import { BookIcon, CheckIcon, PlusIcon, SparkleIcon, SpeakerIcon, TenseIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
+import { DictionaryExamples } from './DictionaryExamples'
 import { PageHeader } from './PageHeader'
 import { PosTag } from './PosTag'
 import { speak, unlockedAudio } from './speech'
@@ -325,6 +326,8 @@ function WordCard({
           </dl>
         )}
       </section>
+
+      <DictionaryExamples language={language} word={word} />
 
       {(rec.e || rec.s?.length || rec.n?.length) && (
         <section className="section stack">
