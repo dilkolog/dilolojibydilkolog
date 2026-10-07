@@ -5,7 +5,7 @@ import { KelimeDB } from './db'
 import { createEntry } from './wordInput'
 import { isUntouched, originOf, withSources } from './provenance'
 import { applyPack, packKeys, packRecord, packUpdate } from './wordpack'
-import { glossHeads, nounGender, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
+import { glossHeads, nounGender, turkishEquivalents, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
 
 /** Lines shaped like Wiktextract's output, cut down to what the builder reads. */
 const DUMP: WtEntry[] = [
@@ -245,6 +245,45 @@ describe('part of speech and gender', () => {
     expect(packUpdate(masc, { p: 'n', g: 'f' })).toBeUndefined()
     // English nouns have no gender.
     expect(packUpdate(createEntry({ word: 'house', meaning: 'ev' }, 'en', now), { p: 'n', g: 'f' })?.patch).toEqual({ partOfSpeech: 'noun' })
+  })
+})
+
+describe('Turkish Wiktionary', () => {
+  it('keeps the short Turkish equivalents of a gloss, not a definition or a note about a form', () => {
+    expect(turkishEquivalents('ev, konut')).toEqual(['ev', 'konut'])
+    expect(turkishEquivalents('karar vermek (bir konuda); seçmek.')).toEqual(['karar vermek', 'seçmek'])
+    expect(turkishEquivalents('aller sözcüğünün çekimi:')).toEqual([])
+    expect(turkishEquivalents('bir kişinin veya ailenin içinde yaşadığı yer, içinde insanların yaşadığı yapı')).toEqual([])
+    // A name, an English expansion, a description of use.
+    expect(turkishEquivalents('Bir soyadı')).toEqual([])
+    expect(turkishEquivalents('Subject Expert Teams')).toEqual([])
+    expect(turkishEquivalents('hâlihazırda anlamı verir')).toEqual([])
+  })
+
+  it('puts Turkish editors\' meanings of the main part of speech first, then the pivot, then their other ones, then reverse translations', () => {
+    const b = new PackBuilder()
+    // English Wiktionary: run is mainly a verb; its table gives "koşmak".
+    b.add({ word: 'run', lang_code: 'en', pos: 'verb', senses: [{ glosses: ['to move fast'], translations: [{ lang_code: 'tr', word: 'seyirtmek', sense: 'move' }] }] })
+    // Turkish Wiktionary: the noun entry comes first there.
+    b.addTurkish({ word: 'run', lang_code: 'en', pos: 'noun', senses: [{ glosses: ['koşu'] }] })
+    b.addTurkish({ word: 'run', lang_code: 'en', pos: 'verb', senses: [{ glosses: ['koşmak'] }, { glosses: ['yarışmak'] }] })
+    // A Turkish entry listing run in its table.
+    b.addTurkish({ word: 'koşturmak', lang_code: 'tr', pos: 'verb', senses: [{ glosses: ['x'] }], translations: [{ lang_code: 'en', word: 'run' }] })
+    expect(b.finish('en', ['run'], 'v1').w.run.t).toEqual(['koşmak', 'yarışmak', 'seyirtmek', 'koşu'])
+  })
+
+  it('gives a word with no other source its Turkish meaning, and ignores forms and rude senses', () => {
+    const b = new PackBuilder()
+    b.addTurkish({ word: 'casa', lang_code: 'es', pos: 'noun', senses: [{ glosses: ['ev'] }] })
+    b.addTurkish({ word: 'casa', lang_code: 'es', pos: 'name', senses: [{ glosses: ['bir soyadı'] }] })
+    b.addTurkish({ word: 'casas', lang_code: 'es', pos: 'noun', senses: [{ glosses: ['casa sözcüğünün çoğulu'], form_of: [{ word: 'casa' }] }] })
+    b.addTurkish({ word: 'coger', lang_code: 'es', pos: 'verb', senses: [{ glosses: ['almak'] }, { glosses: ['sikişmek'], tags: ['vulgar'] }] })
+    b.addTurkish({ word: 'ev', lang_code: 'tr', pos: 'noun', senses: [{ glosses: ['yapı'] }], translations: [{ lang_code: 'es', word: 'casa' }, { lang_code: 'es', word: 'hogar' }] })
+    const w = b.finish('es', ['casa', 'casas', 'coger', 'hogar'], 'v1').w
+    expect(w.casa.t).toEqual(['ev'])
+    expect(w.casas).toBeUndefined()
+    expect(w.coger.t).toEqual(['almak'])
+    expect(w.hogar.t).toEqual(['ev'])
   })
 })
 
