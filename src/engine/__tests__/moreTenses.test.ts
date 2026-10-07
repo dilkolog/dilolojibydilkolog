@@ -13,6 +13,31 @@ beforeAll(() => {
   addTenses('es', es as Record<string, unknown>)
 })
 
+describe('French passé simple', () => {
+  it('the three regular sets and the irregular verbs', () => {
+    expect(forms('fr', 'parler', 'passe-simple')).toEqual(['parlai', 'parlas', 'parla', 'parlâmes', 'parlâtes', 'parlèrent'])
+    expect(forms('fr', 'finir', 'passe-simple')).toEqual(['finis', 'finis', 'finit', 'finîmes', 'finîtes', 'finirent'])
+    expect(forms('fr', 'courir', 'passe-simple')).toEqual(['courus', 'courus', 'courut', 'courûmes', 'courûtes', 'coururent'])
+    expect(forms('fr', 'être', 'passe-simple')?.[2]).toBe('fut')
+    expect(forms('fr', 'avoir', 'passe-simple')?.[2]).toBe('eut')
+    expect(forms('fr', 'venir', 'passe-simple')).toEqual(['vins', 'vins', 'vint', 'vînmes', 'vîntes', 'vinrent'])
+    expect(forms('fr', 'naître', 'passe-simple')?.[2]).toBe('naquit')
+  })
+
+  it('takes the reflexive pronoun, and defective verbs have none', () => {
+    expect(forms('fr', 'se lever', 'passe-simple')?.slice(0, 3)).toEqual(['me levai', 'te levas', 'se leva'])
+    expect(forms('fr', "s'asseoir", 'passe-simple')?.[2]).toBe("s'assit")
+    // traire, extraire, absoudre have no passé simple; their other tenses stay.
+    expect(forms('fr', 'extraire', 'passe-simple')).toBeUndefined()
+    expect(forms('fr', 'extraire', 'imparfait')?.[0]).toBe('extrayais')
+    expect(labTensesOf(entry('fr', 'extraire'))).not.toContain('passe-simple')
+  })
+
+  it('is for the lab only, not the daily questions', () => {
+    expect(tensesOf(entry('fr', 'parler'))).not.toContain('passe-simple')
+  })
+})
+
 describe('Spanish compound tenses', () => {
   it('pluscuamperfecto, futuro perfecto, condicional perfecto', () => {
     expect(forms('es', 'comer', 'pluscuamperfecto')).toEqual(['había comido', 'habías comido', 'había comido', 'habíamos comido', 'habíais comido', 'habían comido'])
@@ -84,7 +109,7 @@ describe('the tense lists', () => {
   it('the lab knows more tenses than the questions ask', () => {
     expect(labTensesOf(entry('es', 'comer')).length).toBeGreaterThan(tensesOf(entry('es', 'comer')).length)
     expect(tensesOf(entry('es', 'comer'))).not.toContain('pluscuamperfecto')
-    expect(labTensesOf(entry('fr', 'parler'))).toEqual(['present', 'imparfait', 'passe-compose', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe'])
+    expect(labTensesOf(entry('fr', 'parler'))).toEqual(['present', 'imparfait', 'passe-compose', 'passe-simple', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe'])
   })
 
   it('every lab tense has a guide, and the flags follow the name', () => {

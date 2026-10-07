@@ -13,8 +13,12 @@ import type { VocabularyEntry } from './types'
  */
 export type FrTense = 'present' | 'passe-compose' | 'imparfait' | 'futur' | 'conditionnel' | 'subjonctif'
 export type EsTense = 'presente' | 'preterito' | 'imperfecto' | 'perfecto' | 'futuro' | 'condicional' | 'subjuntivo'
-/** Further tenses, put together from the auxiliary and the participle (or the preterite stem): the verb lab and the reader know them; the daily questions do not ask them. */
-export type FrMoreTense = 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe'
+/**
+ * Further tenses, mostly put together from the auxiliary and the participle (or the preterite stem),
+ * plus the passé simple of written French: the verb lab and the reader know them; the daily
+ * questions do not ask them.
+ */
+export type FrMoreTense = 'passe-simple' | 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe'
 export type EsMoreTense = 'pluscuamperfecto' | 'futuro-perfecto' | 'condicional-perfecto' | 'subjuntivo-imperfecto' | 'subjuntivo-perfecto' | 'subjuntivo-pluscuamperfecto'
 export type Tense = FrTense | EsTense | FrMoreTense | EsMoreTense
 
@@ -26,7 +30,7 @@ export const TENSES: { fr: FrTense[]; es: EsTense[] } = {
 
 /** Every tense the verb lab shows, by mood: the indicative, then the conditional and the subjunctive. */
 export const LAB_TENSES: { fr: (FrTense | FrMoreTense)[]; es: (EsTense | EsMoreTense)[] } = {
-  fr: ['present', 'imparfait', 'passe-compose', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe'],
+  fr: ['present', 'imparfait', 'passe-compose', 'passe-simple', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe'],
   es: ['presente', 'imperfecto', 'preterito', 'perfecto', 'pluscuamperfecto', 'futuro', 'futuro-perfecto', 'condicional', 'condicional-perfecto', 'subjuntivo', 'subjuntivo-imperfecto', 'subjuntivo-perfecto', 'subjuntivo-pluscuamperfecto'],
 }
 
@@ -63,7 +67,8 @@ const ENDINGS = {
   esSubErIr: ['a', 'as', 'a', 'amos', 'áis', 'an'],
 }
 
-interface FrRow { i: string | string[]; f: string | string[]; s?: string | string[]; pp: string | [string, string]; aux: 'a' | 'e' }
+/** ps: the passé simple as "stem:a|i|u" (regular sets in PASSE_SIMPLE) or six forms; none for defective verbs (traire). */
+interface FrRow { i: string | string[]; f: string | string[]; s?: string | string[]; ps?: string | string[]; pp: string | [string, string]; aux: 'a' | 'e' }
 interface EsRow { pre: string[]; imp: string | string[]; fut: string | string[]; pp: string; sub?: string | string[] }
 const DATA = { fr: new Map<string, FrRow>(), es: new Map<string, EsRow>() }
 
@@ -76,6 +81,18 @@ export function addTenses(language: 'fr' | 'es', json: Record<string, unknown>) 
 export const tensesLoaded = (language: 'fr' | 'es') => DATA[language].size > 0
 
 const expand = (v: string | string[], endings: string[]) => (typeof v === 'string' ? endings.map((e) => v + e) : [...v])
+
+/** Must match PASSE_SIMPLE in scripts/build-tenses.ts. */
+const PASSE_SIMPLE: Record<string, string[]> = {
+  a: ['ai', 'as', 'a', 'âmes', 'âtes', 'èrent'],
+  i: ['is', 'is', 'it', 'îmes', 'îtes', 'irent'],
+  u: ['us', 'us', 'ut', 'ûmes', 'ûtes', 'urent'],
+}
+function passeSimple(ps: string | string[]): string[] | undefined {
+  if (typeof ps !== 'string') return [...ps]
+  const [stem, set] = ps.split(':')
+  return PASSE_SIMPLE[set]?.map((e) => stem + e)
+}
 
 const AUX = {
   avoir: {
@@ -150,7 +167,9 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
             ? ENDINGS.frI.map((e) => expand(row.f, ENDINGS.frF)[0].slice(0, -2) + e)
             : tense === 'subjonctif' && row.s
               ? expand(row.s, ENDINGS.frS)
-              : undefined
+              : tense === 'passe-simple' && row.ps
+                ? passeSimple(row.ps)
+                : undefined
     if (simple) return reflexive ? simple.map((f, i) => frReflexive(i, f)) : simple
     const compound = COMPOUND_AUX[tense]
     if (compound) {
@@ -365,6 +384,7 @@ const UNLOCK: Record<Tense, number> = {
   condicional: 6,
   subjuntivo: 8,
   // Only the verb lab asks these.
+  'passe-simple': 99,
   'plus-que-parfait': 99,
   'futur-anterieur': 99,
   'conditionnel-passe': 99,
