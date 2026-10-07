@@ -6,6 +6,8 @@ export interface IncomingWord {
   context: string
   lang?: TargetLanguage
   src?: string
+  /** A meaning already known (the dictionary's), filled into the form. */
+  meaning?: string
 }
 
 export function readIncoming(): IncomingWord | null {

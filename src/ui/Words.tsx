@@ -231,7 +231,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
                 existing={keys}
                 initial={{
                   word: incoming.word,
-                  meaning: '',
+                  meaning: incoming.meaning ?? '',
                   example: incoming.word ? markWord(incoming.context, incoming.word) : incoming.context,
                   exampleTranslation: '',
                   notes: incoming.src ? `Kaynak: ${incoming.src}` : '',

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { stripDiacritics } from '../engine/answerCheck'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
+import { SearchIcon } from './icons'
 
 export interface Command {
   id: string
@@ -14,7 +15,7 @@ export interface Command {
 }
 
 const RECENT_KEY = 'kelime-koc:palette-recent'
-const GROUP_ORDER = ['Son kullanılanlar', 'Kelimeler', 'İşlemler', 'Oyunlar', 'Ekranlar', 'Dil', 'Yeni kelime']
+const GROUP_ORDER = ['Son kullanılanlar', 'Kelimeler', 'Sözlük', 'İşlemler', 'Oyunlar', 'Ekranlar', 'Dil', 'Yeni kelime']
 
 /** Matching ignores case and accents, so "cekim" finds "Çekim" and "decision" finds "décision". */
 const fold = (s: string) => stripDiacritics(s.toLocaleLowerCase('tr')).replace(/ı/g, 'i')
@@ -45,12 +46,15 @@ export function CommandPalette({
   vocabulary,
   onOpenWord,
   onAddWord,
+  onLookUp,
   onClose,
 }: {
   commands: Command[]
   vocabulary: VocabularyEntry[]
   onOpenWord: (id: string) => void
   onAddWord?: (word: string) => void
+  /** Any typed word, in the list or not, looked up in the dictionary. */
+  onLookUp?: (query: string) => void
   onClose: () => void
 }) {
   const [q, setQ] = useState('')
@@ -95,9 +99,10 @@ export function CommandPalette({
       onAddWord && typed && !vocabulary.some((v) => fold(v.lemma) === query)
         ? [{ id: 'add-typed', label: `“${typed}” kelimesini ekle`, icon: '+', group: 'Yeni kelime', run: () => onAddWord(typed) }]
         : []
-    const all = [...recent, ...words, ...rest, ...add]
+    const lookUp: Command[] = onLookUp && typed ? [{ id: 'look-up', label: `“${typed}” sözlükte ara`, icon: <SearchIcon size={18} />, group: 'Sözlük', run: () => onLookUp(typed) }] : []
+    const all = [...recent, ...words, ...lookUp, ...rest, ...add]
     return all.sort((a, b) => GROUP_ORDER.indexOf(a.group ?? 'Ekranlar') - GROUP_ORDER.indexOf(b.group ?? 'Ekranlar'))
-  }, [q, commands, vocabulary, onOpenWord, onAddWord])
+  }, [q, commands, vocabulary, onOpenWord, onAddWord, onLookUp])
 
   useEffect(() => setActive(0), [q])
   useEffect(() => {

@@ -85,6 +85,7 @@ const screenModules = {
   WordDetail: () => import('./ui/WordDetail'),
   Words: () => import('./ui/Words'),
   VerbLab: () => import('./ui/verbs/VerbLab'),
+  Dictionary: () => import('./ui/Dictionary'),
   // Rarely opened, so not in the startup code either.
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
@@ -102,6 +103,7 @@ const StoryScreen = lazy(() => screenModules.Story().then((m) => ({ default: m.S
 const WordDetail = lazy(() => screenModules.WordDetail().then((m) => ({ default: m.WordDetail })))
 const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ default: m.WordsScreen })))
 const VerbLab = lazy(() => screenModules.VerbLab().then((m) => ({ default: m.VerbLab })))
+const DictionaryScreen = lazy(() => screenModules.Dictionary().then((m) => ({ default: m.DictionaryScreen })))
 const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
 const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 
@@ -114,6 +116,7 @@ type Screen =
   | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[] }
   | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[] }
   | { name: 'words' }
+  | { name: 'dictionary'; query?: string }
   | { name: 'word'; entryId: string }
   | { name: 'mistakes' }
   | { name: 'progress' }
@@ -130,7 +133,7 @@ type Screen =
 
 const SCREEN_KEY = 'kelime-koc:screen'
 /** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
-const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
+const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
 
 function restoreScreen(): Screen {
   // Home-screen shortcuts (manifest): ?go=home | add | reading
@@ -179,6 +182,7 @@ const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => R
 const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: string }[]>> = {
   words: [
     { screen: 'words', label: 'Kelimeler' },
+    { screen: 'dictionary', label: 'Sözlük' },
     { screen: 'mistakes', label: 'Hatalar' },
   ],
   reading: [
@@ -204,6 +208,7 @@ function placeOf(name: ScreenName): NavScreen | undefined {
 const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
+  { screen: 'dictionary', label: 'Sözlük', icon: SearchIcon },
   { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
   { screen: 'reading', label: 'Okuma', icon: ReadIcon },
   { screen: 'story', label: 'Hikaye', icon: StoryIcon },
@@ -875,6 +880,17 @@ export default function App() {
                   startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
                 }
               />
+            ) : screen.name === 'dictionary' ? (
+              <DictionaryScreen
+                key={`${data.language}:${screen.query ?? ''}`}
+                language={data.language}
+                vocabulary={data.vocabulary}
+                initialQuery={screen.query}
+                onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
+                // The add form, with the dictionary's meaning filled in (the incoming-word effect opens Words).
+                onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
+                onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
+              />
             ) : screen.name === 'mistakes' ? (
               <MistakesScreen
                 mistakes={data.mistakes}
@@ -1084,6 +1100,7 @@ export default function App() {
                 vocabulary={data.vocabulary}
                 onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
                 onAddWord={(word) => setIncoming({ word, context: '' })}
+                onLookUp={(query) => setScreen({ name: 'dictionary', query })}
                 onClose={() => setPalette(false)}
               />
             </Suspense>
