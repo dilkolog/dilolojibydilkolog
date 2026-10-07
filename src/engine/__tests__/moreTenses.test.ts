@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
-import { addTenses, answersFor, personsOf, subjectLabel, withSubject, conjugateTense, irregularForms, labTensesOf, tenseAnswers, tensesOf, verbParts, isCompound, isSubjunctive, type Tense } from '../tenses'
+import { addTenses, analyzeImperative, sentenceImperative, answersFor, personsOf, subjectLabel, withSubject, conjugateTense, irregularForms, labTensesOf, tenseAnswers, tensesOf, verbParts, isCompound, isSubjunctive, type Tense } from '../tenses'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../tenseGuide'
 import { labForms } from '../verbLab'
 import type { TargetLanguage } from '../types'
@@ -93,6 +93,24 @@ describe('the imperative', () => {
     expect(labForms(entry('fr', 'aller'), 'imperatif', { negative: true })?.[1]).toBe("ne va pas")
     expect(labForms(entry('fr', 'lever'), 'imperatif', { negative: true, reflexive: true })).toEqual(['', 'ne te lève pas', '', 'ne nous levons pas', 'ne vous levez pas', ''])
     expect(labForms(entry('fr', 'habiller'), 'imperatif', { negative: true, reflexive: true })?.[1]).toBe("ne t'habille pas")
+  })
+})
+
+describe('imperatives in a text', () => {
+  it('knows a word as some verb\'s imperative', () => {
+    expect(analyzeImperative('fr', 'viens')[0]).toMatchObject({ lemma: 'venir', tense: 'imperatif', persons: [1] })
+    expect(analyzeImperative('fr', 'écoutez')[0]?.lemma).toBe('écouter')
+    expect(analyzeImperative('es', 'ven')[0]).toMatchObject({ lemma: 'venir', tense: 'imperativo' })
+    expect(analyzeImperative('es', 'hablad')[0]?.lemma).toBe('hablar')
+    expect(analyzeImperative('fr', 'maison')).toEqual([])
+  })
+
+  it('reads a sentence as an imperative only when it starts with one and ends with "!"', () => {
+    expect(sentenceImperative('fr', 'Viens ici !')).toMatchObject({ form: 'viens', analysis: { lemma: 'venir' } })
+    expect(sentenceImperative('fr', '« Écoutez-moi bien ! »')?.analysis.lemma).toBe('écouter')
+    expect(sentenceImperative('es', '¡Ven aquí!')?.analysis.lemma).toBe('venir')
+    expect(sentenceImperative('fr', 'Il parle !')).toBeUndefined()
+    expect(sentenceImperative('fr', 'Parle plus fort.')).toBeUndefined()
   })
 })
 
