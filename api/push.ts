@@ -1,4 +1,5 @@
 import { del, put } from '@vercel/blob'
+import { allowedIds } from './_allow.js'
 
 /**
  * Push reminder subscriptions. The app registers its browser push subscription here and reports
@@ -6,6 +7,9 @@ import { del, put } from '@vercel/blob'
  *
  * POST /api/push  { action: 'save', subscription, tz, studiedDay?, streak, plan, group? }
  * POST /api/push  { action: 'remove', endpoint }
+ *
+ * When SYNC_ALLOWED is set (see _allow.ts), only devices of a listed account or sync code (`group`)
+ * may save a reminder, so strangers can't fill the store; removing one's own is always allowed.
  */
 export interface PushRecord {
   subscription: { endpoint: string; keys: { p256dh: string; auth: string } }
@@ -53,6 +57,8 @@ export async function POST(request: Request): Promise<Response> {
   if (body.action !== 'save' || !sub || typeof sub.endpoint !== 'string' || !sub.endpoint.startsWith('https://') || !sub.keys?.p256dh || !sub.keys?.auth) {
     return new Response('bad request', { status: 400 })
   }
+  const allowed = await allowedIds()
+  if (allowed && !(typeof body.group === 'string' && allowed.has(body.group))) return new Response('not allowed', { status: 403 })
   const record: PushRecord = {
     subscription: { endpoint: sub.endpoint, keys: { p256dh: String(sub.keys.p256dh), auth: String(sub.keys.auth) } },
     tz: Number.isFinite(body.tz) ? Math.max(-840, Math.min(840, Number(body.tz))) : 0,
