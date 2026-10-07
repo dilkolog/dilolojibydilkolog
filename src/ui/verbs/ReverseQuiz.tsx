@@ -1,14 +1,15 @@
 import { useMemo, useRef, useState } from 'react'
 import { normalize } from '../../engine/answerCheck'
 import { createRng, pick, shuffle } from '../../engine/rng'
-import { analyzeForm, conjugateTense, subjectLabel, LAB_TENSES, type FormAnalysis, type Tense } from '../../engine/tenses'
+import { analyzeForm, conjugateTense, isImperative, subjectLabel, LAB_TENSES, type FormAnalysis, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { sfx } from '../sounds'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
 const ROUND = 6
 /** The tenses a single word can be: the compound ones are two words. */
-const SIMPLE = (t: Tense) => !t.includes('perfect') && !t.includes('passe') && !t.includes('anterieur') && !t.includes('plus-que')
+// Not the imperative either: its forms are the present's (parle), so the form alone can't tell it.
+const SIMPLE = (t: Tense) => !t.includes('perfect') && !t.includes('passe') && !t.includes('anterieur') && !t.includes('plus-que') && !isImperative(t)
 
 interface Question {
   form: string

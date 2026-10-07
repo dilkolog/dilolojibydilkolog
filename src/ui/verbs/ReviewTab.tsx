@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { prefs } from '../prefs'
 import { createRng, pick } from '../../engine/rng'
 import { dueItems, type LabData, type LabItem } from '../../engine/labProgress'
-import { conjugateTense, irregularForms, subjectLabel, withSubject } from '../../engine/tenses'
+import { conjugateTense, irregularForms, personsOf, subjectLabel, withSubject } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { sfx } from '../sounds'
 import { Diagnosis } from './Diagnosis'
@@ -20,7 +20,7 @@ interface Asked {
 /** The person asked for a form: the ones that break the rule come up a little more often. */
 function personFor(language: LabLanguage, item: LabItem, seed: number): number {
   const rng = createRng(seed)
-  const all = [0, 1, 2, 3, 4, 5].filter((p) => !(language === 'es' && prefs.hideVosotros && p === 4))
+  const all = personsOf(language, item.tense).filter((p) => !(language === 'es' && prefs.hideVosotros && p === 4))
   const odd = irregularForms(verbEntry(language, item.verb), item.tense)
   const irregular = all.filter((p) => odd[p])
   return pick(irregular.length && rng() < 0.6 ? irregular : all, rng)

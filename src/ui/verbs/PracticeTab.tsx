@@ -3,7 +3,7 @@ import { prefs } from '../prefs'
 import { checkTyped } from '../../engine/answerCheck'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
-import { answersFor, conjugateTense, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
+import { answersFor, conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
@@ -81,7 +81,7 @@ export function PracticeTab({
   const [hearts, setHearts] = useState(HEARTS)
   const [outcome, setOutcome] = useState<Record<number, boolean>>({})
   const [finished, setFinished] = useState(false)
-  const people = useMemo(() => peopleFor(language), [language])
+  const people = useMemo(() => peopleFor(language).filter((p) => personsOf(language, tense).includes(p)), [language, tense])
   const entry = verbEntry(language, verb)
   const forms = conjugateTense(entry, tense)
   const answered = Object.keys(outcome).length

@@ -1,4 +1,4 @@
-import { conjugateTense, tenseVerbs, type Tense } from './tenses'
+import { conjugateTense, isImperative, tenseVerbs, type Tense } from './tenses'
 import type { VocabularyEntry } from './types'
 
 /**
@@ -43,9 +43,27 @@ export function plainOf(entry: Verb): Verb {
 export function labForms(entry: Verb, tense: Tense, options: { reflexive?: boolean; negative?: boolean }): string[] | undefined {
   if (entry.language === 'en') return undefined
   const base = options.reflexive ? (reflexiveOf(entry) ?? entry) : entry
+  if (options.negative && isImperative(tense)) return negativeImperative(base)
   const forms = conjugateTense(base, tense)
   if (!forms || !options.negative) return forms
   return forms.map((f) => negated(entry.language as 'fr' | 'es', f))
+}
+
+/**
+ * The negative imperative, which is not the affirmative with "no": Spanish takes the subjunctive
+ * (no hables, no te levantes), French puts a reflexive pronoun back in front (ne te lève pas).
+ */
+function negativeImperative(entry: Verb): string[] | undefined {
+  if (entry.language === 'es') {
+    const sub = conjugateTense(entry, 'subjuntivo')
+    return sub && ['', ...sub.slice(1).map((f) => `no ${f}`)]
+  }
+  const plain = plainOf(entry)
+  const forms = conjugateTense(plain, 'imperatif')
+  if (!forms) return undefined
+  if (plain.lemma === entry.lemma.trim()) return forms.map((f) => (f ? negated('fr', f) : ''))
+  const pronoun = ['', 'te', '', 'nous', 'vous', '']
+  return forms.map((f, i) => (f ? `ne ${pronoun[i] === 'te' && /^[aeiouyéèêâîôûh]/i.test(f) ? `t'${f}` : `${pronoun[i]} ${f}`} pas` : ''))
 }
 
 export type Level = 'A1' | 'A2' | 'B1' | 'B2' | 'C1'

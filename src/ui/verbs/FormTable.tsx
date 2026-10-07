@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { prefs } from '../prefs'
-import { subjectLabel, isCompound, withSubject, type Tense } from '../../engine/tenses'
+import { subjectLabel, isCompound, personsOf, withSubject, type Tense } from '../../engine/tenses'
 import { canSpeak, speak } from '../speech'
 import { SpeakerIcon } from '../icons'
 import { splitEndings, type LabLanguage, type Seg } from './labShared'
@@ -38,8 +38,10 @@ export function FormTable({
   speakable?: boolean
 }) {
   const [shown, setShown] = useState<ReadonlySet<number>>(new Set())
-  const segs = splitEndings(forms, isCompound(tense))
-  const order = [0, 1, 2, 3, 4, 5]
+  // The persons the tense has (the imperative speaks to some only); endings are coloured among those.
+  const order = personsOf(language, tense)
+  const shownSegs = splitEndings(order.map((i) => forms[i]), isCompound(tense))
+  const segs = Object.fromEntries(order.map((i, n) => [i, shownSegs[n]]))
   return (
     <div className={`lab-forms is-${layout}`} lang={language} role="table" aria-label="Çekim">
       {order.map((i) => {
