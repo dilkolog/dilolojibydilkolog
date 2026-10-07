@@ -23,6 +23,7 @@ import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { Help } from './SettingHelp'
 import { LANGUAGE_NAME } from './labels'
+import { askClipboard, clipboardSupported } from './clipboardSuggest'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
 import { Select } from './Select'
 import { canSpeak, speak, voicesFor } from './speech'
@@ -255,6 +256,10 @@ export function SettingsScreen({
   const [danger, setDanger] = useState<'language' | 'all' | null>(null)
   const [pendingRestore, setPendingRestore] = useState<Backup | null>(null)
   const usualHour = useUsualStudyHour(db)
+  const [clipboardOk, setClipboardOk] = useState(false)
+  useEffect(() => {
+    void clipboardSupported().then(setClipboardOk)
+  }, [])
   const [permission, setPermission] = useState(() => (notificationsSupported() ? Notification.permission : 'denied'))
   const lang = settings.activeLanguage
 
@@ -617,6 +622,23 @@ export function SettingsScreen({
 
           <Pane {...pane('s-tools')}>
             <AiSettings settings={settings} onChange={onChange} />
+            {clipboardOk && (
+              <section className="card stack">
+                <h2 className="section-title">Panodan kelime ekle</h2>
+                <Toggle
+                  label="Kopyaladığım kelimeyi öner"
+                  help="Başka bir uygulamada bir kelimeyi kopyalayıp buraya dönünce, listende yoksa eklemeyi önerir. Pano yalnızca bu cihazda okunur, hiçbir yere gönderilmez."
+                  checked={settings.clipboardSuggest ?? false}
+                  onChange={async (v) => {
+                    if (v && !(await askClipboard())) {
+                      showToast('Pano izni verilmedi; tarayıcının site ayarlarından açabilirsin.', undefined, 5000, 'info')
+                      return
+                    }
+                    set('clipboardSuggest', v)
+                  }}
+                />
+              </section>
+            )}
             <IosShortcut />
             <section className="card stack desktop-only">
               <h2 className="section-title">Web'den kelime ekle</h2>

@@ -10,6 +10,8 @@ vi.mock('@vercel/blob', () => ({
     return {}
   },
   get: async (path: string) => (blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)!.slice()).body } : null),
+  list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
+  del: async (path: string) => void blobs.delete(path),
 }))
 
 const api = await import('../../api/sync')
