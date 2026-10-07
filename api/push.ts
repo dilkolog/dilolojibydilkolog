@@ -30,6 +30,8 @@ export interface PushRecord {
   reportedDay?: string | null
   /** The learner's week in one line (written on the device), for Sunday evening. */
   week?: string
+  /** Local hour (0–23) to remind at: the chosen time or the usual study hour; 20 when missing. */
+  hour?: number
 }
 
 export async function recordPath(endpoint: string): Promise<string> {
@@ -73,6 +75,7 @@ export async function POST(request: Request): Promise<Response> {
     due: Number.isFinite(body.due) ? Math.max(0, Math.min(999, Math.floor(Number(body.due)))) : 0,
     reportedDay: typeof body.reportedDay === 'string' && DAY.test(body.reportedDay) ? body.reportedDay : null,
     week: typeof body.week === 'string' ? body.week.slice(0, 200) : '',
+    hour: Number.isInteger(body.hour) && Number(body.hour) >= 0 && Number(body.hour) <= 23 ? Number(body.hour) : 20,
   }
   await put(await recordPath(sub.endpoint), JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
   return new Response(null, { status: 204 })
