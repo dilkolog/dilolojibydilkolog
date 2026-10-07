@@ -1,4 +1,5 @@
 import { get, put } from '@vercel/blob'
+import { isAllowed } from './_allow.js'
 
 /**
  * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
@@ -10,6 +11,7 @@ import { get, put } from '@vercel/blob'
  * Accounts (username + password) send an access token in `x-sync-auth`. The first write keeps
  * its hash; from then on reads and writes without the matching token get 403, so a guessable
  * username can't be read or overwritten by others. Sync codes (random ids) send no token.
+ * When SYNC_ALLOWED is set (see _allow.ts), ids not on it get 403 "not allowed".
  */
 const ID = /^[0-9a-f]{64}$/
 const PART = /^(core|m-[0-9a-f]{40})$/
@@ -54,6 +56,7 @@ function target(request: Request): string | null {
 export async function GET(request: Request): Promise<Response> {
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
+  if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
   const refused = await checkAuth(request, false)
   if (refused) return refused
   const blob = await get(path, { access: 'private', useCache: false }).catch(() => null)
@@ -64,6 +67,7 @@ export async function GET(request: Request): Promise<Response> {
 export async function PUT(request: Request): Promise<Response> {
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
+  if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
   const body = await request.arrayBuffer()
   if (!body.byteLength || body.byteLength > MAX_BYTES) return new Response('too large', { status: 413 })
   const refused = await checkAuth(request, true)

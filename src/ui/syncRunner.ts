@@ -1,6 +1,9 @@
 import { db } from '../data/instance'
 import { syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
 
+/** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
+export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
+
 /** One sync at a time; listeners hear when data may have changed. */
 let running: Promise<SyncResult | null> | null = null
 const listeners = new Set<() => void>()

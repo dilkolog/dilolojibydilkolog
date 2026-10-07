@@ -20,6 +20,9 @@ export default defineConfig({
         globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*'],
         // Server push reminders (public/push-sw.js).
         importScripts: ['push-sw.js'],
+        // Word packs (src/data/wordpack.ts) are fetched when a language first needs one, then kept
+        // for offline use; their names change with their content, so a kept one is never stale.
+        runtimeCaching: [{ urlPattern: /\/assets\/(en|fr|es)-[\w-]+\.json$/, handler: 'CacheFirst', options: { cacheName: 'word-packs', expiration: { maxEntries: 6 } } }],
       },
       manifest: {
         name: 'Kelime Koçu',

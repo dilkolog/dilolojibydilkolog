@@ -39,18 +39,40 @@ export interface WtEntry {
   word: string
   lang_code?: string
   pos?: string
-  senses?: { glosses?: string[]; synonyms?: { word?: string }[]; antonyms?: { word?: string }[]; form_of?: unknown[]; alt_of?: unknown[] }[]
+  senses?: { glosses?: string[]; tags?: string[]; synonyms?: { word?: string }[]; antonyms?: { word?: string }[]; form_of?: unknown[]; alt_of?: unknown[]; translations?: WtTranslation[] }[]
   sounds?: { ipa?: string; mp3_url?: string; ogg_url?: string }[]
   etymology_text?: string
   synonyms?: { word?: string }[]
   antonyms?: { word?: string }[]
-  translations?: { lang_code?: string; code?: string; word?: string; sense?: string }[]
+  translations?: WtTranslation[]
+}
+
+export interface WtTranslation {
+  lang_code?: string
+  code?: string
+  word?: string
+  sense?: string
 }
 
 const LANGS: TargetLanguage[] = ['en', 'fr', 'es']
 const MAX_LIST = 4
 const MAX_SYN = 6
 const MAX_ETYMOLOGY = 220
+/** Translation rows kept per word before ordering; plenty for the four meanings that are shown. */
+const MAX_ROWS = 40
+/** Senses with these tags are not offered as meanings (their translations are left out). */
+const RUDE = new Set(['vulgar', 'offensive', 'derogatory', 'slur'])
+
+/**
+ * The English equivalents a French or Spanish entry gives, in its own order:
+ * "to run, to jog (quickly)" → run, jog. Used to put the main meaning first.
+ */
+export function glossHeads(glosses: readonly string[]): string[] {
+  return glosses
+    .flatMap((g) => g.replace(/\([^)]*\)/g, '').split(/[,;]/))
+    .map((h) => clean(h).replace(/^(to|a|an|the) /i, '').toLowerCase())
+    .filter((h) => h && h.split(' ').length <= 3)
+}
 
 const clean = (s: string | undefined) => (s ?? '').replace(/\s+/g, ' ').trim()
 const isLanguage = (c: string | undefined): c is TargetLanguage => c === 'en' || c === 'fr' || c === 'es'
@@ -78,11 +100,23 @@ export function shortEtymology(text: string | undefined): string | undefined {
 /** Only an inflected form or spelling variant of another word: its data belongs to the main entry. */
 const isFormOnly = (e: WtEntry) => !!e.senses?.length && e.senses.every((s) => s.form_of?.length || s.alt_of?.length)
 
+/** One row of an English translation table: words that share one English meaning. */
+interface Row {
+  en: string
+  words: Partial<Record<TargetLanguage | 'tr', string[]>>
+}
+
 export class PackBuilder {
   private readonly words: Record<TargetLanguage, Map<string, PackRecord>> = { en: new Map(), fr: new Map(), es: new Map() }
+  /** Rows each word appears in, ordered only at the end (the English dump may come before or after the word's own). */
+  private readonly rows: Record<TargetLanguage, Map<string, Row[]>> = { en: new Map(), fr: new Map(), es: new Map() }
+  /** A French or Spanish word's English equivalents from its own entry, main meaning first. */
+  private readonly heads: Record<TargetLanguage, Map<string, string[]>> = { en: new Map(), fr: new Map(), es: new Map() }
+
+  private key = (language: TargetLanguage, word: string) => word.toLocaleLowerCase(language)
 
   private rec(language: TargetLanguage, word: string): PackRecord {
-    const key = word.toLocaleLowerCase(language)
+    const key = this.key(language, word)
     let r = this.words[language].get(key)
     if (!r) this.words[language].set(key, (r = {}))
     return r
@@ -103,33 +137,61 @@ export class PackBuilder {
       const names = (xs: { word?: string }[] | undefined) => (xs ?? []).map((x) => clean(x.word)).filter(Boolean)
       r.s = add(r.s, [...names(entry.synonyms), ...(entry.senses ?? []).flatMap((s) => names(s.synonyms))], MAX_SYN)
       r.n = add(r.n, [...names(entry.antonyms), ...(entry.senses ?? []).flatMap((s) => names(s.antonyms))], MAX_SYN)
+      if (language !== 'en') {
+        const polite = (entry.senses ?? []).filter((s) => !s.tags?.some((t) => RUDE.has(t)))
+        const key = this.key(language, word)
+        this.heads[language].set(key, [...(this.heads[language].get(key) ?? []), ...glossHeads(polite.flatMap((s) => s.glosses ?? []))])
+      }
     }
-    if (language === 'en' && entry.translations?.length) this.pivot(word, entry.translations)
+    if (language !== 'en') return
+    // Translation tables sit on the entry in older dumps and on each sense in newer ones; a rude sense's are left out.
+    const senses = entry.senses ?? []
+    const allRude = senses.length > 0 && senses.every((s) => s.tags?.some((t) => RUDE.has(t)))
+    const translations = [...(allRude ? [] : (entry.translations ?? [])), ...senses.filter((s) => !s.tags?.some((t) => RUDE.has(t))).flatMap((s) => s.translations ?? [])]
+    if (translations.length) this.pivot(word, translations)
   }
 
   /** Words in one translation row (same English meaning) are translations of each other, and of the Turkish ones. */
-  private pivot(english: string, translations: NonNullable<WtEntry['translations']>) {
-    const rows = new Map<string, Record<string, string[]>>()
+  private pivot(english: string, translations: readonly WtTranslation[]) {
+    const rows = new Map<string, Row>()
     for (const t of translations) {
       const code = t.lang_code ?? t.code
       const w = clean(t.word)
       if (!w || !code || (!isLanguage(code) && code !== 'tr')) continue
-      const row = rows.get(t.sense ?? '') ?? { en: [english] }
-      row[code] = add(row[code], [w]) ?? []
+      const row = rows.get(t.sense ?? '') ?? { en: english, words: { en: [english] } }
+      row.words[code] = add(row.words[code], [w], Infinity)
       rows.set(t.sense ?? '', row)
     }
     for (const row of rows.values()) {
       for (const language of LANGS) {
-        for (const w of row[language] ?? []) {
-          const r = this.rec(language, w)
-          r.t = add(r.t, row.tr ?? [])
-          for (const other of LANGS) {
-            if (other === language || !row[other]?.length) continue
-            r.x = { ...r.x, [other]: add(r.x?.[other], row[other]) }
-          }
+        for (const w of row.words[language] ?? []) {
+          const key = this.key(language, w)
+          const list = this.rows[language].get(key) ?? []
+          if (list.length < MAX_ROWS) list.push(row)
+          this.rows[language].set(key, list)
         }
       }
     }
+  }
+
+  /** Turkish meanings and other-language forms of a word, main meaning first (by its own entry's order). */
+  private meanings(language: TargetLanguage, key: string): Pick<PackRecord, 't' | 'x'> {
+    const heads = this.heads[language].get(key) ?? []
+    const rank = (row: Row) => {
+      const i = heads.indexOf(row.en.toLowerCase())
+      return i < 0 ? Infinity : i
+    }
+    const rows = (this.rows[language].get(key) ?? []).map((row, i) => ({ row, i })).sort((a, b) => rank(a.row) - rank(b.row) || a.i - b.i)
+    let t: string[] | undefined
+    let x: PackRecord['x']
+    for (const { row } of rows) {
+      t = add(t, row.words.tr ?? [])
+      for (const other of LANGS) {
+        if (other === language || !row.words[other]?.length) continue
+        x = { ...x, [other]: add(x?.[other], row.words[other]!) }
+      }
+    }
+    return { t, x }
   }
 
   /**
@@ -141,11 +203,13 @@ export class PackBuilder {
     let n = 0
     for (const word of wanted) {
       if (n >= limit) break
-      const r = this.words[language].get(word.toLocaleLowerCase(language))
-      if (!r) continue
+      const key = this.key(language, word)
+      const own = this.words[language].get(key)
+      if (!own && !this.rows[language].has(key)) continue
+      const r = { ...own, ...this.meanings(language, key) }
       const kept = Object.fromEntries(Object.entries(r).filter(([, v]) => v !== undefined)) as PackRecord
       if (!Object.keys(kept).length) continue
-      w[word.toLocaleLowerCase(language)] = kept
+      w[key] = kept
       n++
     }
     return { v: version, w }

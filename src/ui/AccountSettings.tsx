@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { showToast } from './toast'
 import { ChartIcon, CheckIcon, GlobeIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
-import { SyncAuthError, type Account } from '../data/sync'
+import { SyncAuthError, SyncNotAllowedError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { getAccount, getSyncCode, runSync, setAccount } from './syncRunner'
+import { getAccount, getSyncCode, NOT_ALLOWED, runSync, setAccount } from './syncRunner'
 import { SyncSettings } from './SyncSettings'
 import { undoable } from './toast'
 
@@ -38,7 +38,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       await runSync(true)
       showToast('Eşitlendi.')
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
+      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()

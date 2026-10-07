@@ -58,6 +58,16 @@ export class SyncAuthError extends Error {
   override name = 'SyncAuthError'
 }
 
+/** The server only serves the accounts and codes on its list (SYNC_ALLOWED), and this isn't one. */
+export class SyncNotAllowedError extends Error {
+  override name = 'SyncNotAllowedError'
+}
+
+/** A 403 is either a wrong password or an id the server doesn't serve. */
+async function refusal(res: Response): Promise<Error> {
+  return (await res.text().catch(() => '')) === 'not allowed' ? new SyncNotAllowedError('not allowed') : new SyncAuthError('wrong password')
+}
+
 /** Case doesn't matter, and the Turkish I's all count as one (ALI, Ali, alı, ALİ → ali). */
 export const normalizeUsername = (u: string) => u.trim().normalize('NFC').replace(/[İIı]/g, 'i').toLowerCase()
 
@@ -210,14 +220,14 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
 async function download(id: string, part: string, code: Credential): Promise<Bytes | null> {
   const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { headers: authHeaders(code) })
   if (res.status === 404) return null
-  if (res.status === 403) throw new SyncAuthError('wrong password')
+  if (res.status === 403) throw await refusal(res)
   if (!res.ok) throw new Error(`sync ${res.status}`)
   return open(new Uint8Array(await res.arrayBuffer()), code)
 }
 
 async function upload(id: string, part: string, data: Bytes, code: Credential) {
   const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: await seal(data, code), headers: { 'content-type': 'application/octet-stream', ...authHeaders(code) } })
-  if (res.status === 403) throw new SyncAuthError('wrong password')
+  if (res.status === 403) throw await refusal(res)
   if (!res.ok) throw new Error(`sync ${res.status}`)
 }
 

@@ -51,7 +51,7 @@ import { connectExtension, pushToExtension } from './ui/extensionBridge'
 import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
-import { VerbLab, type LabTab } from './ui/verbs/VerbLab'
+import type { LabTab } from './ui/verbs/VerbLab'
 import { useFormsDue } from './ui/verbs/labShared'
 import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
@@ -84,6 +84,7 @@ const screenModules = {
   Story: () => import('./ui/Story'),
   WordDetail: () => import('./ui/WordDetail'),
   Words: () => import('./ui/Words'),
+  VerbLab: () => import('./ui/verbs/VerbLab'),
   // Rarely opened, so not in the startup code either.
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
@@ -100,6 +101,7 @@ const SettingsScreen = lazy(() => screenModules.Settings().then((m) => ({ defaul
 const StoryScreen = lazy(() => screenModules.Story().then((m) => ({ default: m.StoryScreen })))
 const WordDetail = lazy(() => screenModules.WordDetail().then((m) => ({ default: m.WordDetail })))
 const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ default: m.WordsScreen })))
+const VerbLab = lazy(() => screenModules.VerbLab().then((m) => ({ default: m.VerbLab })))
 const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
 const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 
@@ -354,10 +356,8 @@ export default function App() {
     }
     // The word pack (other languages, origins, synonyms, recordings), offline, for languages that ship one.
     if (await fillFromPack(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
-    // Sentences saved before they were rated get rated now (offline): the ones with at most one unknown word come first.
-    if (loaded.vocabulary.some((v) => v.corpus?.some((x) => x.fit === undefined))) {
-      if (await scoreCorpus(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
-    }
+    // Sentences get rated (offline), and re-rated once the word list has grown: the ones with at most one unknown word come first.
+    if (await scoreCorpus(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     // Real sentences for words that don't have them yet (a few per run, one run at a time).
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
       corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
