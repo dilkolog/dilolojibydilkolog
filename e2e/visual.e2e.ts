@@ -1,6 +1,13 @@
 import { expect, test } from '@playwright/test'
 import { openScreen, startWithSamples } from './helpers'
 
+// A screenshot must not depend on the network: what Wiktionary or Tatoeba send (a word's patterns,
+// its real sentences) came in before the shot or not, so the page was taller one time than the next.
+// Every request off this machine is cut, and each screen is taken as it looks offline.
+test.beforeEach(async ({ page }) => {
+  await page.route((url) => !['localhost', '127.0.0.1'].includes(url.hostname), (route) => route.abort())
+})
+
 /**
  * Screenshots of the screens whose look matters most, in both themes. Baselines live next to this
  * file per project and platform; after a deliberate design change, refresh them with
