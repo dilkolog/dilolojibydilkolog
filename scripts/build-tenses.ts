@@ -2,7 +2,8 @@
  * Builds src/data/tenses/{fr,es}.json: past and future tenses for the verbs a learner meets.
  *
  * French: french-verbs + french-verbs-lefff (Apache-2.0; Lefff by Benoît Sagot), for verbs in
- * Lexique (src/data/lexicon/fr.txt). Stored per verb: imparfait (i), futur (f), subjonctif (s), participe passé
+ * Lexique (src/data/lexicon/fr.txt). Stored per verb: imparfait (i), futur (f), subjonctif (s), passé simple (ps),
+ * participe passé
  * masculine singular/plural (pp) and auxiliary (aux: 'e' être / 'a' avoir); passé composé is
  * composed at runtime (reflexives need être and their pronoun).
  *
@@ -14,6 +15,7 @@
  *
  * Every form is compared with UniMorph (CC BY-SA); differences are printed for review.
  * Usage: npx rolldown scripts/build-tenses.ts -o /tmp/t.mjs -p node && node /tmp/t.mjs <unimorph dir> [diloloji dir]
+ * With ONLY=fr only the French table is rebuilt (the Spanish one needs sources outside this repo).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { getConjugation as frConj, alwaysAuxEtre } from 'french-verbs'
@@ -37,6 +39,19 @@ const ENDINGS: Record<string, string[]> = {
   frS: ['e', 'es', 'e', 'ions', 'iez', 'ent'],
   esSubAr: ['e', 'es', 'e', 'emos', 'éis', 'en'],
   esSubErIr: ['a', 'as', 'a', 'amos', 'áis', 'an'],
+}
+/** Passé simple: one of three regular sets (parl-ai, fin-is, cour-us), stored as "stem:a|i|u"; others (vins, tins) as six forms. */
+const PASSE_SIMPLE: Record<'a' | 'i' | 'u', string[]> = {
+  a: ['ai', 'as', 'a', 'âmes', 'âtes', 'èrent'],
+  i: ['is', 'is', 'it', 'îmes', 'îtes', 'irent'],
+  u: ['us', 'us', 'ut', 'ûmes', 'ûtes', 'urent'],
+}
+function packPasseSimple(forms: string[]): string | string[] {
+  for (const [set, endings] of Object.entries(PASSE_SIMPLE)) {
+    const packed = pack(forms, endings)
+    if (typeof packed === 'string') return `${packed}:${set}`
+  }
+  return forms
 }
 function pack(forms: string[], endings: string[]): string | string[] {
   const stem = forms[0].slice(0, forms[0].length - endings[0].length)
@@ -83,9 +98,10 @@ const frRef = unimorph('fra', {
   ...Object.fromEntries(PERS.map((p, i) => [`V;IND;FUT;${p}`, `f${i}`])),
   ...Object.fromEntries(PERS.map((p, i) => [`V;SBJV;PRS;${p}`, `s${i}`])),
   ...Object.fromEntries(PERS.map((p, i) => [`V;COND;${p}`, `c${i}`])),
+  ...Object.fromEntries(PERS.map((p, i) => [`V;IND;PST;${p};PFV`, `p${i}`])),
   'V.PTCP;PST': 'pp',
 })
-const fr: Record<string, { i: Six; f: Six; s: Six; pp: [string, string]; aux: 'a' | 'e' }> = {}
+const fr: Record<string, { i: Six; f: Six; s: Six; ps?: Six; pp: [string, string]; aux: 'a' | 'e' }> = {}
 for (const v of frVerbs) {
   try {
     const conj = (tense: string) => P.map((p) => frConj(lefff as never, v, tense as never, p, {}, false, undefined, undefined, 'Act')) as Six
@@ -102,12 +118,22 @@ for (const v of frVerbs) {
       console.log(`fr ${v}: conditionnel not futur stem + imparfait endings: ${c.join(' ')}`)
       continue
     }
-    fr[v] = { i, f, s: sj, pp: [k[0], k[1] ?? `${k[0]}s`], aux: alwaysAuxEtre(v) ? 'e' : 'a' }
+    // The passé simple is optional: defective verbs have none (traire, extraire, absoudre: the
+    // library throws for them), and they keep their other tenses.
+    let ps: Six = ['', '', '', '', '', '']
+    try {
+      ps = conj('PASSE_SIMPLE')
+    } catch {
+      // No passé simple.
+    }
+    const psOk = ps.every((x) => x && x !== 'NA' && !/undefined/.test(x))
+    fr[v] = { i, f, s: sj, ...(psOk ? { ps } : {}), pp: [k[0], k[1] ?? `${k[0]}s`], aux: alwaysAuxEtre(v) ? 'e' : 'a' }
     const ref = frRef.get(v)
     compare('fr', v, 'imparfait', i, ref && Object.fromEntries(P.map((p) => [`i${p}`, ref[`i${p}`]])), 'i')
     compare('fr', v, 'futur', f, ref && Object.fromEntries(P.map((p) => [`f${p}`, ref[`f${p}`]])), 'f')
     compare('fr', v, 'subjonctif', sj, ref && Object.fromEntries(P.map((p) => [`s${p}`, ref[`s${p}`]])), 's')
     compare('fr', v, 'conditionnel', c, ref && Object.fromEntries(P.map((p) => [`c${p}`, ref[`c${p}`]])), 'c')
+    if (psOk) compare('fr', v, 'passé simple', ps, ref && Object.fromEntries(P.map((p) => [`p${p}`, ref[`p${p}`]])), 'p')
     if (ref?.pp && ref.pp !== k[0]) {
       differences++
       if (differences <= 100000) console.log(`fr ${v} participe: ours ${k[0]} | unimorph ${ref.pp}`)
@@ -116,8 +142,12 @@ for (const v of frVerbs) {
     // A verb the library can't conjugate is left out.
   }
 }
-writeFileSync('src/data/tenses/fr.json', JSON.stringify(Object.fromEntries(Object.entries(fr).map(([v, e]) => [v, { i: pack(e.i, ENDINGS.frI), f: pack(e.f, ENDINGS.frF), s: pack(e.s, ENDINGS.frS), pp: e.pp[1] === `${e.pp[0]}s` ? e.pp[0] : e.pp, aux: e.aux }]))))
-console.log(`fr: ${Object.keys(fr).length} verbs`)
+writeFileSync('src/data/tenses/fr.json', JSON.stringify(Object.fromEntries(Object.entries(fr).map(([v, e]) => [v, { i: pack(e.i, ENDINGS.frI), f: pack(e.f, ENDINGS.frF), s: pack(e.s, ENDINGS.frS), ...(e.ps ? { ps: packPasseSimple(e.ps) } : {}), pp: e.pp[1] === `${e.pp[0]}s` ? e.pp[0] : e.pp, aux: e.aux }]))))
+console.log(`fr: ${Object.keys(fr).length} verbs, ${Object.values(fr).filter((e) => e.ps).length} with the passé simple`)
+if (process.env.ONLY === 'fr') {
+  console.log(`differences from UniMorph: ${differences}`)
+  process.exit(0)
+}
 
 // ── Spanish ───────────────────────────────────────────────────────────────────────────
 /*

@@ -163,6 +163,17 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
     ],
     markers: ['quiero que', 'es importante que', 'ojalá', 'para que', 'espero que', 'aunque'],
   },
+  'passe-simple': {
+    name: 'passé simple',
+    tr: 'Yazı dilinde geçmiş (-di)',
+    short: 'Romanlarda, masallarda ve tarih yazılarında olup biten eylem: "yaptı". Konuşmada yerini passé composé alır; okurken tanıman yeter.',
+    formation: '-er fiilleri: kök + -ai, -as, -a, -âmes, -âtes, -èrent (il parla). Çoğu -ir ve -re fiili: -is, -is, -it, -îmes, -îtes, -irent (il finit, il prit). Bir kısmı: -us… (il eut, il fut, il put). venir/tenir: je vins, il tint.',
+    examples: [
+      ['Il ouvrit la porte et sortit sans un mot.', 'Kapıyı açtı ve tek kelime etmeden çıktı.'],
+      ['Victor Hugo naquit en 1802.', 'Victor Hugo 1802’de doğdu.'],
+    ],
+    markers: ['soudain', 'alors', 'un jour', 'ce soir-là', 'il était une fois', 'en 1802'],
+  },
   'plus-que-parfait': {
     name: 'plus-que-parfait',
     tr: 'Geçmişte geçmiş (-mişti)',
@@ -338,6 +349,11 @@ export const TENSE_BRIDGE: Record<Tense, TenseBridge> = {
     suffix: '-sin / -mesi (istek, gereklilik)',
     note: '“Gelmeni istiyorum”, “gelmesi gerek”: iki cümleyi “que” bağlar ve ikinci fiil subjonctif olur. Türkçede bunu ad-fiil (-mA) ve istek eki (-sIn) üstlenir.',
     trap: 'Özneler aynıysa subjonctif yok, mastar kullanılır: “je veux partir”; özne değişince “je veux que tu partes”.',
+  },
+  'passe-simple': {
+    suffix: '-di (yazıda)',
+    note: '“Kapıyı açtı, çıktı”: anlatıdaki olup bitmiş olay; anlamı passé composé ile aynı, yalnız yazı dilinde. Arka plandaki durum yine imparfait’dir: “Il pleuvait. Il ouvrit la porte.” = Yağmur yağıyordu. Kapıyı açtı.',
+    trap: 'Biçimleri sık kullanılan fiillerde tanınmaz hâle gelir: il fut (être), il eut (avoir), il fit (faire), il vit (voir). “Il fit” = yaptı, “il fut” = oldu/idi.',
   },
   'plus-que-parfait': {
     suffix: '-miştim (geçmişte geçmiş)',

@@ -13,7 +13,7 @@ export type LabLanguage = 'fr' | 'es'
 /** The tenses by mood, the way a grammar lists them: the indicative, the conditional, the subjunctive. */
 export const MOODS: Record<LabLanguage, { label: string; tenses: Tense[] }[]> = {
   fr: [
-    { label: 'Haber kipi (Indicatif)', tenses: ['present', 'imparfait', 'passe-compose', 'plus-que-parfait', 'futur', 'futur-anterieur'] },
+    { label: 'Haber kipi (Indicatif)', tenses: ['present', 'imparfait', 'passe-compose', 'passe-simple', 'plus-que-parfait', 'futur', 'futur-anterieur'] },
     { label: 'Şart kipi (Conditionnel)', tenses: ['conditionnel', 'conditionnel-passe'] },
     { label: 'Dilek kipi (Subjonctif)', tenses: ['subjonctif', 'subjonctif-passe'] },
   ],

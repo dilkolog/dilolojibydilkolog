@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { splitEndings } from './labShared'
+import { LAB_TENSES } from '../../engine/tenses'
+import { MOODS, splitEndings } from './labShared'
 
 const text = (segs: { text: string }[]) => segs.map((s) => s.text).join('')
 const ending = (segs: { text: string; kind: string }[], kind: string) => segs.filter((s) => s.kind === kind).map((s) => s.text).join('')
@@ -37,5 +38,11 @@ describe('splitEndings', () => {
     const segs = splitEndings(forms, true)
     expect(segs.map(text)).toEqual(forms)
     expect(segs[0][0]).toEqual({ text: 'me ', kind: 'stem' })
+  })
+})
+
+describe('MOODS', () => {
+  it('groups exactly the tenses the lab knows, in the same order (a tense added to one list must reach the menu)', () => {
+    for (const language of ['fr', 'es'] as const) expect(MOODS[language].flatMap((m) => m.tenses)).toEqual(LAB_TENSES[language])
   })
 })

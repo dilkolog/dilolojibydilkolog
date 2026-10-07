@@ -21,15 +21,17 @@ interface Question {
 function buildQuestions(language: LabLanguage, verb: string, available: readonly Tense[], seed: number): Question[] {
   const rng = createRng(seed)
   const entry = verbEntry(language, verb)
+  // Nor the passé simple: Turkish says "açtı" for it and for the passé composé alike (the difference is register, not time).
+  const askable = available.filter((t) => t !== 'passe-simple')
   // The simple tenses only: a Turkish sentence cannot tell the subjunctive from the indicative by itself.
   const pool = shuffle(
-    available.filter((t) => TENSE_GUIDE[t].examples.length),
+    askable.filter((t) => TENSE_GUIDE[t].examples.length),
     rng,
   ).slice(0, ROUND)
   return pool.map((tense) => {
     const own = tenseSentence(entry, tense)
     const [target, turkish] = own?.translation ? [own.text.replace('___', own.form), own.translation] : shuffle([...TENSE_GUIDE[tense].examples], rng)[0]
-    const others = shuffle(available.filter((t) => t !== tense), rng).slice(0, OPTIONS - 1)
+    const others = shuffle(askable.filter((t) => t !== tense), rng).slice(0, OPTIONS - 1)
     return { tense, turkish, target, options: shuffle([tense, ...others], rng) }
   })
 }
