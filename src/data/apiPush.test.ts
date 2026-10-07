@@ -25,7 +25,7 @@ vi.mock('web-push', () => ({
 }))
 
 const { POST, recordPath } = await import('../../api/push')
-const { GET: CRON, reminderText, resting } = await import('../../api/cron-reminder')
+const { GET: CRON, reminderText, resting, weeklyText } = await import('../../api/cron-reminder')
 
 const sub = (endpoint = 'https://push.example/1') => ({ endpoint, keys: { p256dh: 'p', auth: 'a' } })
 const post = (body: unknown) => POST(new Request('https://app.test/api/push', { method: 'POST', body: typeof body === 'string' ? body : JSON.stringify(body) }))
@@ -79,6 +79,7 @@ describe('/api/push', () => {
       vacation: null,
       due: 999,
       reportedDay: null,
+      week: '',
     })
   })
 
@@ -130,6 +131,20 @@ describe('reminder text and rest days', () => {
   })
 })
 
+describe('the week on Sunday', () => {
+  // 2026-10-11 is a Sunday; 17:00 UTC = 20:00 in Turkey.
+  const SUNDAY = Date.UTC(2026, 9, 11, 17)
+  const week = '5 gün · 312 cevap (%86 doğru)'
+  it('is sent on the learner\'s Sunday when it was reported lately, and not on a holiday', () => {
+    expect(weeklyText(record({ week, reportedDay: '2026-10-11' }), SUNDAY)).toBe(week)
+    expect(weeklyText(record({ week, reportedDay: '2026-10-10' }), SUNDAY)).toBe(week)
+    expect(weeklyText(record({ week, reportedDay: '2026-10-04' }), SUNDAY)).toBeUndefined()
+    expect(weeklyText(record({ week, reportedDay: '2026-10-11' }), NOW)).toBeUndefined()
+    expect(weeklyText(record({ week, reportedDay: '2026-10-11', vacation: { from: '2026-10-10', to: '2026-10-12' } }), SUNDAY)).toBeUndefined()
+    expect(weeklyText(record({ reportedDay: '2026-10-11' }), SUNDAY)).toBeUndefined()
+  })
+})
+
 describe('/api/cron-reminder', () => {
   const cron = (auth?: string) => CRON(new Request('https://app.test/api/cron-reminder', { headers: auth ? { authorization: auth } : {} }))
   const save = async (r: PushRecord) => blobs.set(await recordPath(r.subscription.endpoint), JSON.stringify(r))
@@ -160,6 +175,15 @@ describe('/api/cron-reminder', () => {
     expect(await res.json()).toEqual({ devices: 6, sent: 1, removed: 1 })
     expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/idle'])
     expect(JSON.parse(sent[0].body)).toMatchObject({ title: 'Kelime Koçu', url: '/?go=quick' })
+  })
+
+  it('on Sunday sends the week instead, also to someone who studied', async () => {
+    vi.stubEnv('CRON_SECRET', 's3cret')
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.UTC(2026, 9, 11, 17))
+    await save(record({ subscription: sub('https://push.example/week'), studiedDay: '2026-10-11', week: '5 gün · 40 cevap', reportedDay: '2026-10-11' }))
+    await cron('Bearer s3cret')
+    expect(sent.map((s) => JSON.parse(s.body))).toEqual([{ title: 'Haftan', body: '5 gün · 40 cevap', url: '/?go=progress' }])
     expect(blobs.has(await recordPath('https://push.example/gone'))).toBe(false)
   })
 })

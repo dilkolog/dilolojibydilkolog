@@ -44,6 +44,8 @@ import { useReminder } from './ui/reminders'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
+import { WeeklyNudge } from './ui/WeeklyNudge'
+import { weekLine, weekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
 import { PANE_KEY } from './ui/settingsPane'
 import { natural } from './ui/naturalVoice'
@@ -137,11 +139,13 @@ const SCREEN_KEY = 'kelime-koc:screen'
 const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
 
 function restoreScreen(): Screen {
-  // Home-screen shortcuts (manifest): ?go=home | add | reading
+  // Home-screen shortcuts (manifest) and push links: ?go=home | add | reading | quick | progress
   const shortcut = new URLSearchParams(location.search).get('go')
   if (shortcut) {
     history.replaceState(null, '', location.pathname)
     if (shortcut === 'reading') return { name: 'reading' }
+    // The Sunday push about the week opens Progress.
+    if (shortcut === 'progress') return { name: 'progress' }
     if (shortcut === 'quick') quickStart = true
     if (shortcut === 'add') {
       setTimeout(() => document.getElementById('w-word')?.focus(), 400)
@@ -494,6 +498,20 @@ export default function App() {
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
   const dueReviews = plan ? plan.items.filter((i) => i.kind === 'exercise').length : 0
   useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan, dueReviews)
+  // The week in one line: on Today on Sunday and Monday, and in Sunday evening's push.
+  const [weekText, setWeekText] = useState('')
+  useEffect(() => {
+    if (!data) return
+    let live = true
+    void (async () => {
+      const [texts, lab] = await Promise.all([db.getLibrary(data.language), data.language === 'en' ? undefined : db.getLab(data.language)])
+      const line = weekLine(weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts, seen: lab?.seen }))
+      if (live) setWeekText(line)
+    })()
+    return () => {
+      live = false
+    }
+  }, [data])
   const pushState = useMemo(
     () => ({
       studiedToday: answeredTodayAll > 0,
@@ -502,8 +520,9 @@ export default function App() {
       restWeekdays: (settings?.dayWeights ?? []).flatMap((w, day) => (w === 0 ? [day] : [])),
       vacation: settings?.vacation ?? null,
       due: dueReviews,
+      week: weekText,
     }),
-    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews],
+    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText],
   )
   // Keeps the server's evening reminder from firing on days already studied.
   const loaded = !!data && !!game
@@ -1085,6 +1104,7 @@ export default function App() {
                     }
                   />
                   {lookupNudge}
+                  <WeeklyNudge line={weekText} now={new Date()} onOpen={go({ name: 'progress' })} />
                   <BackupNudge
                     onOpenSync={() => {
                       try {
