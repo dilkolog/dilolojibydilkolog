@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { showToast } from './toast'
 import { db } from '../data/instance'
-import { generateSyncCode, normalizeCode } from '../data/sync'
-import { getSyncCode, runSync, setSyncCode } from './syncRunner'
+import { generateSyncCode, normalizeCode, SyncNotAllowedError } from '../data/sync'
+import { getSyncCode, NOT_ALLOWED, runSync, setSyncCode } from './syncRunner'
 import { relativeTime } from './format'
 
 /** Sync between devices: start with a new code here, or enter the code from another device. */
@@ -30,9 +30,9 @@ export function SyncSettings() {
       if (fresh) await setSyncCode(fresh)
       const r = await runSync(true)
       showToast(`Eşitlendi.${r && (r.received || r.sent) ? ` ${r.received} görsel/kayıt alındı, ${r.sent} gönderildi.` : ''}`)
-    } catch {
+    } catch (e) {
       if (fresh) await setSyncCode(null)
-      setMessage({ ok: false, text: fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
+      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
