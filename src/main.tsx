@@ -13,10 +13,12 @@ import App from './App.tsx'
 import { applyDensity } from './ui/density'
 import { watchForUpdates } from './ui/update'
 import { installFocusTrap } from './ui/focusTrap'
+import { installErrorReporting } from './data/errorReport'
 
 applyDensity()
 watchForUpdates()
 installFocusTrap()
+installErrorReporting()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
