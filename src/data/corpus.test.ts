@@ -35,8 +35,8 @@ describe('Tatoeba sentences', () => {
       'es',
     )
     expect(out).toEqual([
-      { text: 'Decidí estudiar todos los días.', translation: 'Her gün çalışmaya karar verdim.', form: 'Decidí', source: { kind: 'tatoeba', id: 1, audioUrl: 'https://audio.tatoeba.org/sentences/spa/1.mp3' } },
-      { text: 'Ya lo decidiremos mañana.', translation: '', form: 'decidiremos', source: { kind: 'tatoeba', id: 5, audioUrl: undefined } },
+      { text: 'Decidí estudiar todos los días.', translation: 'Her gün çalışmaya karar verdim.', form: 'Decidí', source: { kind: 'tatoeba', id: 1, audioUrl: 'https://audio.tatoeba.org/sentences/spa/1.mp3' }, parallel: {} },
+      { text: 'Ya lo decidiremos mañana.', translation: '', form: 'decidiremos', source: { kind: 'tatoeba', id: 5, audioUrl: undefined }, parallel: {} },
     ])
   })
 
@@ -63,8 +63,8 @@ describe('Tatoeba sentences', () => {
     )
     expect(ex.translation).toBe('Öğrenmeye kararlıyım.')
     expect(ex.parallel).toEqual({ en: 'I am determined to learn.', fr: 'Je suis déterminé à apprendre.' })
-    // No parallel field at all when there is none.
-    expect(Object.keys(toExamples([{ id: 8, text: 'Decidieron quedarse.' }], 'decidir', 'es')[0])).not.toContain('parallel')
+    // None found is an empty one: the sentence counts as looked at (fillParallel skips it).
+    expect(toExamples([{ id: 8, text: 'Decidieron quedarse.' }], 'decidir', 'es')[0].parallel).toEqual({})
   })
 
   it('asks Tatoeba for Turkish and the other two languages, and only those', async () => {

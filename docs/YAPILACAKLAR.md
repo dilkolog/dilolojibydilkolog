@@ -163,8 +163,9 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   sürüm değişince uygular); boyut için `LIMIT=…`. İspanyolca için ses kaydı yok (dökümde yok).
 - **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
   (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
-  cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelerde
-  yoktur; "Yeniden getir" ile gelir.
+  cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelere
+  arka planda, Tatoeba kimliğiyle tek tek sorularak eklenir (`fillParallel`, çalışma başına 24 cümle); liste ve
+  sıra değişmez, bulunamayana boş `{}` yazılır ki tekrar sorulmasın.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
   (`engine/sentenceFit.ts`). Liste son tam derecelendirmeden bu yana onda bir (en az 10 kelime) büyüyünce
   bütün kayıtlı cümleler yeniden derecelendirilir (`needsRescore`, 2026-10-07); yalnızca sırası değişen kelimeler yazılır.
