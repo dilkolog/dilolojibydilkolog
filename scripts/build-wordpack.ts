@@ -7,6 +7,8 @@
  *   French / Spanish words (pronunciation, recordings, origins, synonyms):
  *     https://kaikki.org/dictionary/French/kaikki.org-dictionary-French.jsonl
  *     https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl
+ * Turkish meanings also come from the Turkish Wiktionary (a file whose name contains "trwiktionary":
+ *   https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl): its entries define words in Turkish.
  * The English file is the big one (about 2 GB). Words come from the frequency lists in
  * src/data/frequency, most frequent first, up to LIMIT per language.
  *
@@ -27,11 +29,14 @@ if (!version || !files.length) {
 
 const builder = new PackBuilder()
 for (const file of files) {
+  // The Turkish Wiktionary's dump (kaikki.org/trwiktionary) is read for Turkish meanings only.
+  const turkish = /trwiktionary/.test(file)
   let n = 0
   for await (const line of createInterface({ input: createReadStream(file, 'utf8'), crlfDelay: Infinity })) {
     if (!line) continue
     try {
-      builder.add(JSON.parse(line) as WtEntry)
+      if (turkish) builder.addTurkish(JSON.parse(line) as WtEntry)
+      else builder.add(JSON.parse(line) as WtEntry)
     } catch {
       continue // a broken line is not worth stopping for
     }

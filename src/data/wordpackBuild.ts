@@ -119,6 +119,24 @@ export function shortEtymology(text: string | undefined): string | undefined {
   return out.length > MAX_ETYMOLOGY ? out.slice(0, MAX_ETYMOLOGY - 1).trimEnd() + '…' : out
 }
 
+/**
+ * The Turkish equivalents in a Turkish Wiktionary gloss: "ev, konut" → ev, konut. A definition
+ * ("bir kişinin içinde yaşadığı yer…"), a note about a form ("aller sözcüğünün çekimi") and
+ * anything longer than a few words is not an equivalent and is left out.
+ */
+export function turkishEquivalents(gloss: string | undefined): string[] {
+  if (!gloss || /sözcüğünün|kelimesinin|çoğulu|biçimi|çekimi|anlam|:/.test(gloss)) return []
+  // A gloss this long as a whole is a definition, even split at its commas.
+  if (gloss.length > 60 || gloss.split(' ').length > 8) return []
+  return gloss
+    .replace(/\([^)]*\)/g, '')
+    .split(/[,;]/)
+    .map((x) => clean(x).replace(/\.$/, ''))
+    // A Turkish equivalent is written in lower case; "Bir soyadı" (a surname) or an English expansion of
+    // an abbreviation ("Subject Expert Teams") is not one.
+    .filter((x) => x && x.length <= 40 && x.split(' ').length <= 4 && !/^[A-ZÇĞİÖŞÜ]/.test(x))
+}
+
 /** Only an inflected form or spelling variant of another word: its data belongs to the main entry. */
 const isFormOnly = (e: WtEntry) => !!e.senses?.length && e.senses.every((s) => s.form_of?.length || s.alt_of?.length)
 
@@ -136,6 +154,10 @@ export class PackBuilder {
   private readonly heads: Record<TargetLanguage, Map<string, string[]>> = { en: new Map(), fr: new Map(), es: new Map() }
   /** An inflected form or spelling variant and the word it belongs to (its first such entry). */
   private readonly formOf: Record<TargetLanguage, Map<string, string>> = { en: new Map(), fr: new Map(), es: new Map() }
+  /** Turkish Wiktionary's own Turkish glosses of a word, per entry (part of speech), in its order. */
+  private readonly trDirect: Record<TargetLanguage, Map<string, { pos?: string; t: string[] }[]>> = { en: new Map(), fr: new Map(), es: new Map() }
+  /** Turkish words whose translation table in Turkish Wiktionary lists this word (ev → maison). */
+  private readonly trReverse: Record<TargetLanguage, Map<string, string[]>> = { en: new Map(), fr: new Map(), es: new Map() }
 
   private key = (language: TargetLanguage, word: string) => word.toLocaleLowerCase(language)
 
@@ -189,6 +211,36 @@ export class PackBuilder {
     if (translations.length) this.pivot(word, translations)
   }
 
+  /**
+   * Feeds one line of the Turkish Wiktionary's dump. A French, Spanish or English entry there is
+   * defined in Turkish ("maison: ev"): its short glosses are Turkish meanings straight from Turkish
+   * editors, no pivot through English. A Turkish entry's translation table gives its word as a
+   * meaning of each word it lists (ev → maison, house, casa).
+   */
+  addTurkish(entry: WtEntry): void {
+    if (!entry.word) return
+    const polite = (entry.senses ?? []).filter((s) => !s.tags?.some((t) => RUDE.has(t)))
+    if (entry.lang_code === 'tr') {
+      const head = clean(entry.word)
+      if (head.split(' ').length > 3) return
+      for (const t of [...(entry.translations ?? []), ...polite.flatMap((s) => s.translations ?? [])]) {
+        const code = t.lang_code ?? t.code
+        const w = clean(t.word)
+        if (!isLanguage(code) || !w) continue
+        const key = this.key(code, w)
+        this.trReverse[code].set(key, add(this.trReverse[code].get(key), [head], MAX_ROWS) ?? [])
+      }
+      return
+    }
+    const language = entry.lang_code
+    // Only real parts of speech: not names, abbreviations, prefixes, symbols.
+    if (!isLanguage(language) || isFormOnly(entry) || !POS_LETTER[entry.pos ?? '']) return
+    const t = polite.filter((s) => !s.form_of?.length).flatMap((s) => turkishEquivalents(s.glosses?.[0]))
+    if (!t.length) return
+    const key = this.key(language, clean(entry.word))
+    this.trDirect[language].set(key, [...(this.trDirect[language].get(key) ?? []), { pos: POS_LETTER[entry.pos ?? ''], t }])
+  }
+
   /** Words in one translation row (same English meaning) are translations of each other, and of the Turkish ones. */
   private pivot(english: string, translations: readonly WtTranslation[]) {
     const rows = new Map<string, Row>()
@@ -220,7 +272,13 @@ export class PackBuilder {
       return i < 0 ? Infinity : i
     }
     const rows = (this.rows[language].get(key) ?? []).map((row, i) => ({ row, i })).sort((a, b) => rank(a.row) - rank(b.row) || a.i - b.i)
-    let t: string[] | undefined
+    // Turkish editors' own glosses of the word's main part of speech first (run: koşmak), then the
+    // pivot through English, then their glosses of its other parts of speech (koşu), then the Turkish
+    // words that list it. A word with no main part of speech known takes Turkish Wiktionary's first.
+    const groups = this.trDirect[language].get(key) ?? []
+    const main = this.words[language].get(key)?.p ?? groups[0]?.pos
+    const isMain = (g: { pos?: string }) => g.pos === main
+    let t: string[] | undefined = add(undefined, groups.filter(isMain).flatMap((g) => g.t))
     let x: PackRecord['x']
     for (const { row } of rows) {
       t = add(t, row.words.tr ?? [])
@@ -229,13 +287,16 @@ export class PackBuilder {
         x = { ...x, [other]: add(x?.[other], row.words[other]!) }
       }
     }
+    t = add(t, groups.filter((g) => !isMain(g)).flatMap((g) => g.t))
+    // Last, the Turkish words that list it in their translation table.
+    t = add(t, this.trReverse[language].get(key) ?? [])
     return { t, x }
   }
 
   /** Everything known about one word, or undefined when there is nothing to say. */
   private record(language: TargetLanguage, key: string): PackRecord | undefined {
     const own = this.words[language].get(key)
-    if (!own && !this.rows[language].has(key)) return undefined
+    if (!own && !this.rows[language].has(key) && !this.trDirect[language].has(key) && !this.trReverse[language].has(key)) return undefined
     const kept = Object.fromEntries(Object.entries({ ...own, ...this.meanings(language, key) }).filter(([, v]) => v !== undefined)) as PackRecord
     return Object.keys(kept).length ? kept : undefined
   }
