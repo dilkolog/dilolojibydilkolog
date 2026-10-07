@@ -4,8 +4,8 @@ import { badgeSupported, updateAppBadge } from './appBadge'
 const nav = navigator as Navigator & { setAppBadge?: unknown; clearAppBadge?: unknown }
 
 afterEach(() => {
-  delete nav.setAppBadge
-  delete nav.clearAppBadge
+  Reflect.deleteProperty(nav, 'setAppBadge')
+  Reflect.deleteProperty(nav, 'clearAppBadge')
 })
 
 describe('app icon badge', () => {
