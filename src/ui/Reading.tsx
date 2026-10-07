@@ -64,6 +64,7 @@ export function ReadingScreen({
   onOpen,
   onStudy,
   onOpenLab,
+  onLookUp,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -74,6 +75,8 @@ export function ReadingScreen({
   onStudy?: (entries: VocabularyEntry[]) => void
   /** Open a verb form's verb and tense in the verb lab. */
   onOpenLab?: (verb: string, tense: string) => void
+  /** The word in the dictionary: every meaning, its sound, the other languages. */
+  onLookUp?: (word: string) => void
 }) {
   const [library, setLibrary] = useState<ReadingText[] | null>(null)
   const [current, setCurrent] = useState<ReadingText | null>(null)
@@ -762,6 +765,13 @@ export function ReadingScreen({
           </div>
           {selectedEntry && <p className="gloss">{selectedEntry.senses[0].gloss}</p>}
           <WordPopExtras language={language} lemma={selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language)} entry={selectedEntry ?? undefined} />
+          {onLookUp && (
+            <p className="small">
+              <button className="link small" onClick={() => onLookUp(selectedEntry?.lemma ?? selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language))}>
+                Sözlükte aç
+              </button>
+            </p>
+          )}
           {selectedForms.length > 0 && language !== 'en' && (
             <div className="form-analysis">
               {selectedForms.slice(0, 3).map((a) => {

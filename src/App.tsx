@@ -954,6 +954,7 @@ export default function App() {
                 onChanged={reload}
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
                 onOpenLab={data.language !== 'en' ? (verb, tense) => setScreen({ name: 'verbs', verb, tense }) : undefined}
+                onLookUp={(query) => setScreen({ name: 'dictionary', query })}
                 onStudy={(deck) =>
                   startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
                 }
