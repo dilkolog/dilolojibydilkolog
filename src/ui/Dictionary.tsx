@@ -423,7 +423,7 @@ function WordCard({
         )}
       </section>
 
-      <DictionaryExamples language={language} word={word} />
+      <DictionaryExamples language={language} word={word} bundled={rec.c} />
 
       {(rec.e || rec.s?.length || rec.n?.length) && (
         <section className="section stack">
