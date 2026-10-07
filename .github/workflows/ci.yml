@@ -25,3 +25,26 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npx vite build
+
+  e2e:
+    # Flows in a real browser (phone and desktop). The screenshot comparisons (visual.e2e.ts) are
+    # left out: their baselines depend on the machine's fonts and are refreshed by hand.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx vite build
+      - run: npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+

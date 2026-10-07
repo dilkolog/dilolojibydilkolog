@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { openScreen, openVerbLab, overflow, contrastProblems, startWithSamples } from './helpers'
+import { contrastProblems, labFavorites, openScreen, openVerbLab, overflow, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -176,6 +176,8 @@ test('verb lab: a verb the tables lack is said so, the shuffle picks another, fa
   await page.getByRole('button', { name: 'Rastgele fiil' }).click()
   await expect(page.locator('.lab-main .lab-verb').first()).not.toHaveText(/^Finir$/)
   await page.locator('.lab-main').getByRole('button', { name: 'Favorilere ekle' }).click()
+  // The favourite is written to the database in the background: wait for it before reloading.
+  await expect.poll(() => labFavorites(page, 'fr')).toHaveLength(1)
   await page.reload()
   await openVerbLab(page)
   await page.locator('.lab-fold-head', { hasText: 'Favorilerim' }).click()
@@ -251,8 +253,8 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   // The form of another person is named as such: "parles" for a question that asks another person.
   for (let i = 0; i < 6; i++) {
     const prompt = await main.locator('.lab-single .prompt-text').textContent()
-    // Any other person's form: je → parles, tu → parle (never the right one for the person asked).
-    await main.locator('.lab-single input.answer-input').fill(/^je\b/.test(prompt ?? '') ? 'parles' : 'parlons')
+    // Another person's form, never the right one for the person asked: je and nous → parles, the rest → parlons.
+    await main.locator('.lab-single input.answer-input').fill(/^(je|nous)\b/.test(prompt ?? '') ? 'parles' : 'parlons')
     await page.keyboard.press('Enter')
     await expect(main.locator('.lab-diagnosis')).toContainText(/Kişi karıştırma|Zaman karıştırma|Yazım|Düzensiz|Diğer|Aksan/)
     await page.keyboard.press('Enter')
