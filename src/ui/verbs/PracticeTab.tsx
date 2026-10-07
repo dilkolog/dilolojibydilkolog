@@ -1,23 +1,23 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { prefs } from '../prefs'
 import { checkTyped } from '../../engine/answerCheck'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { BoltIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
-import { TensePicker } from './LearnTab'
 import { Diagnosis } from './Diagnosis'
 import { ReverseQuiz } from './ReverseQuiz'
 import { TenseQuiz } from './TenseQuiz'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
-type Mode = 'type' | 'choose' | 'listen' | 'match' | 'tense' | 'reverse'
+export type PracticeMode = 'type' | 'choose' | 'listen' | 'match' | 'tense' | 'reverse' | 'timed'
+type Mode = PracticeMode
 const HEARTS = 3
-/** Modes with their own questions and counting: no lives and no tense picker. */
-const QUIZ: Mode[] = ['tense', 'reverse']
+/** Modes with their own questions and counting: no lives and no tense tip. */
+const QUIZ: Mode[] = ['tense', 'reverse', 'timed']
 
 const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'type', label: 'Yaz', icon: PenIcon },
@@ -26,6 +26,7 @@ const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
   { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
   { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
+  { id: 'timed', label: 'Zamana karşı', icon: BoltIcon },
 ]
 
 /** The people the round asks: all six, without vosotros for a learner of Latin American Spanish. */
@@ -59,7 +60,8 @@ export function PracticeTab({
   onTense,
   onRound,
   onAnswer,
-  onTimed,
+  timed,
+  initialMode = 'type',
   byFrequency,
 }: {
   language: LabLanguage
@@ -71,11 +73,13 @@ export function PracticeTab({
   onRound: (verb: string, tense: Tense, result: RoundResult) => void
   /** Each single answer, for the word's own history. */
   onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
-  onTimed: () => void
+  /** The race against the clock (many verbs and tenses), shown as the last mode. */
+  timed: ReactNode
+  initialMode?: Mode
   /** Verbs of the tables, most common first (for the "which verb?" questions). */
   byFrequency: readonly string[]
 }) {
-  const [mode, setMode] = useState<Mode>('type')
+  const [mode, setMode] = useState<Mode>(initialMode)
   const [list, setList] = useState(true)
   const [round, setRound] = useState(0)
   const [hearts, setHearts] = useState(HEARTS)
@@ -157,7 +161,6 @@ export function PracticeTab({
         <h2 className="lab-verb" lang={language}>
           {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
         </h2>
-        {!QUIZ.includes(mode) && <TensePicker language={language} tense={tense} onPick={onTense} available={available} />}
         <div className="lab-modes" role="group" aria-label="Alıştırma türü">
           {MODES.map((m) => (
             <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={m.id === 'listen' && !canSpeak()} title={m.label}>
@@ -185,6 +188,7 @@ export function PracticeTab({
       {!finished && mode === 'match' && <MatchRound key={round} {...props} />}
       {mode === 'tense' && <TenseQuiz key={verb} language={language} verb={verb} available={available} />}
       {mode === 'reverse' && <ReverseQuiz key={language} language={language} byFrequency={byFrequency} />}
+      {mode === 'timed' && timed}
 
       {finished && !QUIZ.includes(mode) && (
         <section className="lab-result" role="status">
@@ -209,7 +213,7 @@ export function PracticeTab({
                 Sıradaki: <span lang={language}>{tenseName(nextTense)}</span>
               </button>
             )}
-            <button type="button" className="btn btn-quiet" onClick={onTimed}>
+            <button type="button" className="btn btn-quiet" onClick={() => setMode('timed')}>
               Zamana karşı
             </button>
           </div>
