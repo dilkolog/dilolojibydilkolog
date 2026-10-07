@@ -160,7 +160,12 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
 
           {result.fromTurkish.length > 0 && (
             <section className="section stack">
-              <h2 className="section-title">Türkçesi “{typed}” olanlar</h2>
+              <h2 className="section-title">Türkçesi “{result.turkishAs ?? typed}” olanlar</h2>
+              {result.turkishAs && (
+                <p className="small muted">
+                  “{typed}” → {result.turkishAs}
+                </p>
+              )}
               <ul className="word-list">
                 {result.fromTurkish.map((h) => (
                   <li key={h.word}>
@@ -196,7 +201,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
       {index && (
         <section className="section">
           <p className="small muted">
-            Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Vikisözlük</a> (CC BY-SA), en sık 8000 kelime. Türkçe karşılıklar İngilizce üzerinden eşlenir; emin olmadığında Vikisözlük sayfasına bak.
+            Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Vikisözlük</a> (CC BY-SA), her dilde en sık 9–16 bin kelime. Türkçe karşılıklar İngilizce üzerinden eşlenir; emin olmadığında Vikisözlük sayfasına bak.
           </p>
         </section>
       )}
@@ -434,7 +439,7 @@ function NotFound({
       ) : (
         <>
           <p>
-            “<span lang={language}>{word}</span>” sözlük paketinde yok. Paket en sık 8000 kelimeyi taşır; çekimli bir biçimse sözlükteki hâlini dene.
+            “<span lang={language}>{word}</span>” sözlük paketinde yok. Paket her dilde en sık 9–16 bin kelimeyi taşır; çekimli bir biçimse sözlükteki hâlini dene.
           </p>
           <div className="row">
             {apiKey && (
