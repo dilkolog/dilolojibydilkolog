@@ -3508,7 +3508,7 @@ button.badge-card:active { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) { .og-plant { animation: none; } }
 
-/* Verb conjugation by tense (word page, Çekim antrenmanı) */
+/* Verb conjugation by tense (word page, fiil laboratuvarı) */
 .tense-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
 .tense-tabs .segmented-btn { white-space: nowrap; }
 .conj-lead { margin: 0; max-width: 60ch; color: var(--ink-soft); }

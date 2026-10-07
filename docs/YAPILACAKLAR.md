@@ -161,3 +161,11 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   (`showtrans` değerleri) canlı API'de doğrulayamadım.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
   (`engine/sentenceFit.ts`); kullanıcı kelimeleri öğrendikçe eski dereceler eskir, yeniden derecelendirme yok.
+
+## Fiil laboratuvarı (2026-10-06)
+- [x] Pratik → Fiiller: öğrenme, alıştırma (yaz/seç/dinle/eşleştir/zamanı bul/hangi fiil), FSRS tekrarı, kalıplar (fiil aileleri), zamana karşı, kıyaslama, ustalık ve fiil bahçesi. Çekim oyunları buraya taşındı.
+- [x] Lab verisi (favoriler, tekrar, bahçe) ve oyun rekorları yedeğe ve eşitlemeye girdi.
+- [ ] Emir kipi (imperativo / impératif) ve passé simple.
+- [ ] "Metinde gördüğün çekimler" listesi (okuma → Ustalık).
+- [ ] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
+

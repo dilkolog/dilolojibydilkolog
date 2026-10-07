@@ -12,7 +12,7 @@ export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French an
   { id: 'blitz', name: 'Zamana karşı', emoji: '⚡' },
   { id: 'fluency', name: 'Akıcılık turu', emoji: '🏎️' },
   { id: 'article', name: 'Artikel antrenmanı', emoji: '🏷️', grammar: true },
-  { id: 'conjugation', name: 'Çekim antrenmanı', emoji: '🕰️', grammar: true },
+  { id: 'conjugation', name: 'Fiil laboratuvarı (zamana karşı)', emoji: '🕰️', grammar: true },
   { id: 'aspect', name: 'Hangi geçmiş zaman?', emoji: '⏳', grammar: true },
   { id: 'gender', name: 'Cinsiyet kuralları', emoji: '⚖️', grammar: true },
   { id: 'accent', name: 'Aksan antrenmanı', emoji: '✍️' },
