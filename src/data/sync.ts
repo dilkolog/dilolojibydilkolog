@@ -1,4 +1,5 @@
 import { mergeSeen, type LabData } from '../engine/labProgress'
+import { mergeNotes } from '../engine/dictionaryNotes'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 
@@ -209,6 +210,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     lists: unionBy(older.lists, newer.lists, (l) => l.id, (x, y) => (time(y.updatedAt) >= time(x.updatedAt) ? y : x)).filter((l) => !dead(l.id, l.createdAt)),
     deleted: tombList(tombs),
     lab: { fr: mergeLab(older.lab?.fr, newer.lab?.fr), es: mergeLab(older.lab?.es, newer.lab?.es) },
+    dictionary: { en: mergeNotes(older.dictionary?.en, newer.dictionary?.en), fr: mergeNotes(older.dictionary?.fr, newer.dictionary?.fr), es: mergeNotes(older.dictionary?.es, newer.dictionary?.es) },
     records: Object.fromEntries([...new Set([...Object.keys(older.records ?? {}), ...Object.keys(newer.records ?? {})])].map((k) => [k, Math.max(older.records?.[k] ?? 0, newer.records?.[k] ?? 0)])),
     media: [],
   }
