@@ -138,17 +138,39 @@ export async function fillCorpus(db: KelimeDB, language: TargetLanguage): Promis
 }
 
 /**
- * Rates the sentences already saved that were never rated (no network): puts the best fit first.
- * A list the learner never touched stays "Tatoeba's" for the source note; one they trimmed stays theirs.
+ * Ratings go stale as the learner's own word list grows (a word learned since is no longer
+ * unknown). They are redone for every word when the list has grown by a tenth (at least 10 words)
+ * since the last full pass, or when there never was one.
+ */
+export function needsRescore(ownWords: number, ratedAt: number | undefined): boolean {
+  return ratedAt === undefined || ownWords >= ratedAt + Math.max(10, Math.ceil(ratedAt / 10))
+}
+
+const sameOrder = (a: readonly Example[], b: readonly Example[]) => a.length === b.length && a.every((x, i) => x.text === b[i].text && x.fit === b[i].fit)
+
+/**
+ * Rates saved sentences (no network) and puts the best fit first: the never-rated ones always,
+ * all of them when needsRescore says the ratings are stale. Only words whose list actually
+ * changes are written. A list the learner never touched stays "Tatoeba's" for the source note;
+ * one they trimmed stays theirs. Returns how many words changed.
  */
 export async function scoreCorpus(db: KelimeDB, language: TargetLanguage): Promise<number> {
-  const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.corpus?.some((x) => x.fit === undefined))
-  if (!todo.length) return 0
-  const easy = await easyFor(db, language)
-  for (const e of todo) {
-    const corpus = rankByFit(e.corpus!, e.lemma, easy)
-    const kind = e.sources?.corpus?.kind
-    await db.vocabulary.update(e.id, kind && isUntouched(e, 'corpus') ? patchWithSources(e, { corpus }, { corpus: kind }) : { corpus })
+  const words = await db.vocabulary.where('language').equals(language).toArray()
+  const key = `corpusRated:${language}`
+  const ratedAt = (await db.meta.get(key))?.value as number | undefined
+  const full = needsRescore(words.length, ratedAt)
+  const todo = words.filter((e) => e.corpus?.length && (full || e.corpus.some((x) => x.fit === undefined)))
+  let changed = 0
+  if (todo.length) {
+    const easy = await easyFor(db, language)
+    for (const e of todo) {
+      const corpus = rankByFit(e.corpus!, e.lemma, easy)
+      if (sameOrder(corpus, e.corpus!)) continue
+      const kind = e.sources?.corpus?.kind
+      await db.vocabulary.update(e.id, kind && isUntouched(e, 'corpus') ? patchWithSources(e, { corpus }, { corpus: kind }) : { corpus })
+      changed++
+    }
   }
-  return todo.length
+  if (full) await db.meta.put({ key, value: words.length })
+  return changed
 }
