@@ -1,4 +1,4 @@
-import { get, put } from '@vercel/blob'
+import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
 
 /**
@@ -12,9 +12,14 @@ import { isAllowed } from './_allow.js'
  * its hash; from then on reads and writes without the matching token get 403, so a guessable
  * username can't be read or overwritten by others. Sync codes (random ids) send no token.
  * When SYNC_ALLOWED is set (see _allow.ts), ids not on it get 403 "not allowed".
+ *
+ * Restore points: before the day's first new core replaces the old one, the old one is kept as
+ * that day's point (part "h-YYYY-MM-DD", read-only, the same access check); a week of them is kept.
+ * GET ?id=…&history=1 lists the days.
  */
 const ID = /^[0-9a-f]{64}$/
-const PART = /^(core|m-[0-9a-f]{40})$/
+const PART = /^(core|m-[0-9a-f]{40}|h-\d{4}-\d{2}-\d{2})$/
+const POINTS_KEPT = 7
 /** Vercel's request body limit is 4.5 MB; stay under it. */
 const MAX_BYTES = 4_400_000
 
@@ -53,7 +58,37 @@ function target(request: Request): string | null {
   return ID.test(id) && PART.test(part) ? `sync/${id}/${part}.bin` : null
 }
 
+/** The restore points of an id, newest first (days, YYYY-MM-DD). */
+async function points(id: string): Promise<{ day: string; pathname: string }[]> {
+  const { blobs } = await list({ prefix: `sync/${id}/h-` })
+  return blobs
+    .map((b) => ({ day: b.pathname.match(/h-(\d{4}-\d{2}-\d{2})\.bin$/)?.[1] ?? '', pathname: b.pathname }))
+    .filter((p) => p.day)
+    .sort((a, b) => b.day.localeCompare(a.day))
+}
+
+/** Keeps the core about to be replaced as today's point (once a day) and drops the oldest beyond a week. */
+async function keepPoint(id: string, today: string) {
+  // Most syncs of a day find today's point made: nothing to read then.
+  if ((await list({ prefix: `sync/${id}/h-${today}` })).blobs.length) return
+  const old = await get(`sync/${id}/core.bin`, { access: 'private', useCache: false }).catch(() => null)
+  if (!old || old.statusCode !== 200 || !old.stream) return
+  const bytes = await new Response(old.stream).arrayBuffer()
+  await put(`sync/${id}/h-${today}.bin`, bytes, { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'application/octet-stream' }).catch(() => {})
+  const all = await points(id)
+  for (const p of all.slice(POINTS_KEPT)) await del(p.pathname).catch(() => {})
+}
+
 export async function GET(request: Request): Promise<Response> {
+  const q = new URL(request.url).searchParams
+  if (q.get('history') === '1') {
+    const id = q.get('id') ?? ''
+    if (!ID.test(id)) return new Response('bad request', { status: 400 })
+    if (!(await isAllowed(id))) return new Response('not allowed', { status: 403 })
+    const refused = await checkAuth(request, false)
+    if (refused) return refused
+    return Response.json({ days: (await points(id)).map((p) => p.day) }, { headers: { 'cache-control': 'no-store' } })
+  }
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
   if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
@@ -67,11 +102,15 @@ export async function GET(request: Request): Promise<Response> {
 export async function PUT(request: Request): Promise<Response> {
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
+  // Restore points are made here, never sent.
+  if (new URL(request.url).searchParams.get('part')?.startsWith('h-')) return new Response('read only', { status: 405 })
   if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
   const body = await request.arrayBuffer()
   if (!body.byteLength || body.byteLength > MAX_BYTES) return new Response('too large', { status: 413 })
   const refused = await checkAuth(request, true)
   if (refused) return refused
+  const q = new URL(request.url).searchParams
+  if (q.get('part') === 'core') await keepPoint(q.get('id')!, new Date().toISOString().slice(0, 10))
   await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/octet-stream' })
   return new Response(null, { status: 204 })
 }

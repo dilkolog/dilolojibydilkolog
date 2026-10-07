@@ -172,6 +172,11 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   paketinkinin yerine gösterilir, paketteki altta kalır; dil başına `dict:<dil>`, yedeğe ve eşitlemeye girer).
   Kartı 1,5 sn açık kalan kelime "bakıldı" sayılır; 2 kez bakılıp listede olmayan kelime Bugün'de tek tek önerilir
   (boş listede de), "×" bir daha önermez.
+- **Geri dönüş noktaları** (2026-10-07): sunucu, eşitlenen çekirdeğin üzerine yazmadan önce günün ilk hâlini
+  `sync/<id>/h-<gün>.bin` olarak saklar (şifreli, son 7 gün; eskisi silinir, istemci yazamaz). Ayarlar → hesap /
+  eşitleme kodu altında "Geri dönüş noktaları" → "Bu güne dön": o günkü kopya yerel veriyle birleştirilir
+  (`restoreFrom`); o gün olan kayıtlara `alive` işareti konur, böylece sonradaki silmeler diğer cihazlarda da geri
+  alınır, sonradan eklenenler kalır.
 - **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
   (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
   cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelere
