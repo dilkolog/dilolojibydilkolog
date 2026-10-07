@@ -12,6 +12,10 @@ Recordings for Spanish words that Wiktionary has none for: **Lingua Libre** on W
 (Category:Lingua_Libre_pronunciation-spa, CC BY-SA; the original files), listed by
 `scripts/fetch-commons-audio.ts`.
 
+Example sentences (`c`, the 3 000 most frequent words, two each with Turkish): **Tatoeba**
+(CC BY 2.0 FR), per-language exports; French and Spanish sentences without a Turkish translation of
+their own take their English translation's. Added by `scripts/build-pack-sentences.ts`.
+
 Content license: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
 Changes: cut down to the fields above; Turkish meanings first from the Turkish Wiktionary's own short
 glosses of the word (its main part of speech), then reached through English translation tables, ordered

@@ -160,7 +160,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   (`senses[].translations`); anlamlar kelimenin kendi tanımlarındaki sıraya göre, kaba/hakaret etiketli anlamlar
   alınmıyor. Paketler düz JSON (gzip EN 1,8 MB, FR 0,9, ES 0,8): kurulum indirmesine girmiyor, dil ilk gerektiğinde
   iniyor ve `word-packs` önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca
-  sürüm değişince uygular); boyut için `LIMIT=…`. İspanyolca için ses kaydı yok (dökümde yok).
+  sürüm değişince uygular); boyut için `LIMIT=…`.
+  İspanyolca ses kayıtları Lingua Libre'den (Commons, `scripts/fetch-commons-audio.ts` → `*.audio.json`): %0 → %65.
+  Örnek cümleler: en sık 3000 kelimeye ikişer Tatoeba cümlesi Türkçesiyle (`scripts/build-pack-sentences.ts`, `c` alanı);
+  sözlük kartı bunları hemen ve internetsiz gösterir, internet varsa Tatoeba'nın zengin hâli yerine geçer.
 - **Türkçe Vikisözlük ikinci kaynak** (2026-10-07): kaikki.org/trwiktionary dökümü (EN/FR/ES kelimeleri Türkçe
   tanımlı). Sıra: Türkçe editörlerin kelimenin ana türündeki kısa karşılıkları → İngilizce üzerinden pivot → diğer
   türlerdeki karşılıklar → Türkçe maddelerin çeviri tablolarından ters karşılık. Özel ad, kısaltma açılımı,
