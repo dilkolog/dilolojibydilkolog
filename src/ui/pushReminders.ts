@@ -35,6 +35,8 @@ export interface PushState {
   vacation: { from: string; to: string } | null
   /** Reviews waiting today; the evening reminder names them. */
   due: number
+  /** The week in one line, sent instead of the reminder on Sunday evening. */
+  week: string
 }
 
 async function save(sub: PushSubscription, state: PushState) {
@@ -54,6 +56,7 @@ async function save(sub: PushSubscription, state: PushState) {
       vacation: state.vacation,
       due: state.due,
       reportedDay: localDay(),
+      week: state.week,
     }),
   })
 }
