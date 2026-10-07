@@ -16,11 +16,13 @@ export const MOODS: Record<LabLanguage, { label: string; tenses: Tense[] }[]> = 
     { label: 'Haber kipi (Indicatif)', tenses: ['present', 'imparfait', 'passe-compose', 'passe-simple', 'plus-que-parfait', 'futur', 'futur-anterieur'] },
     { label: 'Şart kipi (Conditionnel)', tenses: ['conditionnel', 'conditionnel-passe'] },
     { label: 'Dilek kipi (Subjonctif)', tenses: ['subjonctif', 'subjonctif-passe'] },
+    { label: 'Emir kipi (Impératif)', tenses: ['imperatif'] },
   ],
   es: [
     { label: 'Haber kipi (Indicativo)', tenses: ['presente', 'imperfecto', 'preterito', 'perfecto', 'pluscuamperfecto', 'futuro', 'futuro-perfecto'] },
     { label: 'Şart kipi (Condicional)', tenses: ['condicional', 'condicional-perfecto'] },
     { label: 'Dilek kipi (Subjuntivo)', tenses: ['subjuntivo', 'subjuntivo-imperfecto', 'subjuntivo-perfecto', 'subjuntivo-pluscuamperfecto'] },
+    { label: 'Emir kipi (Imperativo)', tenses: ['imperativo'] },
   ],
 }
 
@@ -29,7 +31,8 @@ export const PRESENT: Record<LabLanguage, Tense> = { fr: 'present', es: 'present
 /** Whether the tense is one of the lab's for the language (a restored tense from the other one is not). */
 export const isLabTense = (language: LabLanguage, t: string): t is Tense => (LAB_TENSES[language] as string[]).includes(t)
 
-const upper = (s: string) => s.charAt(0).toLocaleUpperCase('tr') + s.slice(1)
+/** Tense names are French and Spanish words: no Turkish capital İ (Imparfait, not İmparfait). */
+const upper = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 /** "Pretérito indefinido": the name the language gives, first letter up. */
 export const tenseName = (t: Tense) => upper(TENSE_GUIDE[t].name)
 

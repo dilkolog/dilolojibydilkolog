@@ -174,6 +174,17 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
     ],
     markers: ['soudain', 'alors', 'un jour', 'ce soir-là', 'il était une fois', 'en 1802'],
   },
+  imperatif: {
+    name: 'impératif',
+    tr: 'Emir (-sana, -in)',
+    short: 'Birine bir şey yapmasını söylemek: "konuş!", "konuşalım!", "konuşun!". Öznesi yoktur.',
+    formation: 'Présent\'in tu, nous, vous biçimleri, öznesiz. -er fiillerinde ve aller\'de tu biçimi -s\'yi atar: parle, va (ama finis, prends). Düzensizler: sois (être), aie (avoir), sache (savoir), veuille (vouloir). Dönüşlüde zamir sona gelir: lève-toi, levons-nous.',
+    examples: [
+      ['Parle plus lentement, s\'il te plaît.', 'Lütfen daha yavaş konuş.'],
+      ['Allons au cinéma ce soir !', 'Bu akşam sinemaya gidelim!'],
+    ],
+    markers: ["s'il te plaît", "s'il vous plaît", 'vite', 'allez', 'ne… pas'],
+  },
   'plus-que-parfait': {
     name: 'plus-que-parfait',
     tr: 'Geçmişte geçmiş (-mişti)',
@@ -217,6 +228,17 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
       ["Il faut qu'ils soient partis avant midi.", 'Öğlenden önce gitmiş olmaları gerekiyor.'],
     ],
     markers: ['je suis content que', 'bien que', 'il faut que', 'dommage que', 'je doute que', 'il est possible que'],
+  },
+  imperativo: {
+    name: 'imperativo',
+    tr: 'Emir (-sana, -in)',
+    short: 'Birine bir şey yapmasını söylemek: "konuş!", "konuşun!". tú, usted, nosotros, vosotros, ustedes için; öznesi yoktur.',
+    formation: 'tú: présente\'in él biçimi (habla, come); kısa düzensizler: di, haz, ve, pon, sal, sé, ten, ven. usted, nosotros, ustedes: subjuntivo (hable, hablemos, hablen). vosotros: mastarın -r\'si yerine -d (hablad). Olumsuzu hep subjuntivo: no hables.',
+    examples: [
+      ['Habla más despacio, por favor.', 'Lütfen daha yavaş konuş.'],
+      ['Pasen ustedes, por favor.', 'Buyurun, girin lütfen.'],
+    ],
+    markers: ['por favor', 'ya', 'venga', 'no…'],
   },
   pluscuamperfecto: {
     name: 'pretérito pluscuamperfecto',
@@ -354,6 +376,16 @@ export const TENSE_BRIDGE: Record<Tense, TenseBridge> = {
     suffix: '-di (yazıda)',
     note: '“Kapıyı açtı, çıktı”: anlatıdaki olup bitmiş olay; anlamı passé composé ile aynı, yalnız yazı dilinde. Arka plandaki durum yine imparfait’dir: “Il pleuvait. Il ouvrit la porte.” = Yağmur yağıyordu. Kapıyı açtı.',
     trap: 'Biçimleri sık kullanılan fiillerde tanınmaz hâle gelir: il fut (être), il eut (avoir), il fit (faire), il vit (voir). “Il fit” = yaptı, “il fut” = oldu/idi.',
+  },
+  imperatif: {
+    suffix: 'emir kipi (-Ø, -alım, -in)',
+    note: '“Konuş, konuşalım, konuşun”: Türkçedeki emir kipiyle birebir, nous biçimi de “-alım” dileğiyle.',
+    trap: 'Öznesiz söylenir; tu biçiminde -er fiillerinin -s\'si düşer: “tu parles” ama “parle !”.',
+  },
+  imperativo: {
+    suffix: 'emir kipi (-Ø, -in) ve kibar “-ınız”',
+    note: '“Konuş” (tú), “konuşun / buyurun” (usted, ustedes), “konuşalım” (nosotros): Türkçedeki sen/siz ayrımı burada tú/usted.',
+    trap: 'Olumsuzu emir biçiminden değil subjuntivo\'dan yapılır: “habla” ama “no hables”.',
   },
   'plus-que-parfait': {
     suffix: '-miştim (geçmişte geçmiş)',

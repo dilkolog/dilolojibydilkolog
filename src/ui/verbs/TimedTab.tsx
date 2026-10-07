@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { checkTyped } from '../../engine/answerCheck'
 import { createRng, pick } from '../../engine/rng'
-import { answersFor, conjugateTense, labTensesOf, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
+import { answersFor, conjugateTense, labTensesOf, personsOf, subjectLabel, withSubject, type Tense } from '../../engine/tenses'
 import type { Level } from '../../engine/verbLab'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
 import { AspectGame } from '../games/AspectGame'
@@ -77,11 +77,10 @@ interface Question {
 
 function buildRound(language: LabLanguage, verbs: readonly string[], tenses: readonly Tense[], rng: () => number): Question[] {
   const out: Question[] = []
-  const people = [0, 1, 2, 3, 4, 5].filter((p) => !(language === 'es' && prefs.hideVosotros && p === 4))
   for (let i = 0; out.length < ROUND && i < ROUND * 20; i++) {
     const verb = pick(verbs, rng)
     const tense = pick(tenses, rng)
-    const person = pick(people, rng)
+    const person = pick(personsOf(language, tense).filter((p) => !(language === 'es' && prefs.hideVosotros && p === 4)), rng)
     if (!conjugateTense(verbEntry(language, verb), tense)) continue
     if (out.some((q) => q.verb === verb && q.tense === tense && q.person === person)) continue
     out.push({ verb, tense, person })

@@ -18,8 +18,8 @@ export type EsTense = 'presente' | 'preterito' | 'imperfecto' | 'perfecto' | 'fu
  * plus the passé simple of written French: the verb lab and the reader know them; the daily
  * questions do not ask them.
  */
-export type FrMoreTense = 'passe-simple' | 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe'
-export type EsMoreTense = 'pluscuamperfecto' | 'futuro-perfecto' | 'condicional-perfecto' | 'subjuntivo-imperfecto' | 'subjuntivo-perfecto' | 'subjuntivo-pluscuamperfecto'
+export type FrMoreTense = 'imperatif' | 'passe-simple' | 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe'
+export type EsMoreTense = 'imperativo' | 'pluscuamperfecto' | 'futuro-perfecto' | 'condicional-perfecto' | 'subjuntivo-imperfecto' | 'subjuntivo-perfecto' | 'subjuntivo-pluscuamperfecto'
 export type Tense = FrTense | EsTense | FrMoreTense | EsMoreTense
 
 /** In teaching order: the present, the past, the past background, the future, then the moods. These are the tenses the questions and the word page use. */
@@ -30,8 +30,17 @@ export const TENSES: { fr: FrTense[]; es: EsTense[] } = {
 
 /** Every tense the verb lab shows, by mood: the indicative, then the conditional and the subjunctive. */
 export const LAB_TENSES: { fr: (FrTense | FrMoreTense)[]; es: (EsTense | EsMoreTense)[] } = {
-  fr: ['present', 'imparfait', 'passe-compose', 'passe-simple', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe'],
-  es: ['presente', 'imperfecto', 'preterito', 'perfecto', 'pluscuamperfecto', 'futuro', 'futuro-perfecto', 'condicional', 'condicional-perfecto', 'subjuntivo', 'subjuntivo-imperfecto', 'subjuntivo-perfecto', 'subjuntivo-pluscuamperfecto'],
+  fr: ['present', 'imparfait', 'passe-compose', 'passe-simple', 'plus-que-parfait', 'futur', 'futur-anterieur', 'conditionnel', 'conditionnel-passe', 'subjonctif', 'subjonctif-passe', 'imperatif'],
+  es: ['presente', 'imperfecto', 'preterito', 'perfecto', 'pluscuamperfecto', 'futuro', 'futuro-perfecto', 'condicional', 'condicional-perfecto', 'subjuntivo', 'subjuntivo-imperfecto', 'subjuntivo-perfecto', 'subjuntivo-pluscuamperfecto', 'imperativo'],
+}
+
+/** The imperative: addressed to someone, so it has no "I" (nor "he" in French). */
+export const isImperative = (tense: Tense) => tense === 'imperatif' || tense === 'imperativo'
+
+/** The persons a tense has: all six, except the imperative (tu, nous, vous; tú, usted, nosotros, vosotros, ustedes). */
+export function personsOf(language: 'fr' | 'es', tense: Tense): number[] {
+  if (!isImperative(tense)) return [0, 1, 2, 3, 4, 5]
+  return language === 'fr' ? [1, 3, 4] : [1, 2, 3, 4, 5]
 }
 
 export const isSubjunctive = (tense: Tense) => tense.startsWith('subjonctif') || tense.startsWith('subjuntivo')
@@ -154,6 +163,7 @@ export function hasTense(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'pa
 export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, tense: Tense): string[] | undefined {
   if (entry.language === 'en' || entry.partOfSpeech !== 'verb') return undefined
   if (tense === 'present' || tense === 'presente') return conjugate(entry)?.forms
+  if (isImperative(tense)) return imperative(entry)
   const { key, reflexive } = keyOf(entry)
   if (entry.language === 'fr') {
     const row = DATA.fr.get(key)
@@ -205,6 +215,47 @@ export function conjugateTense(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   return forms && (reflexive ? forms.map((f, i) => `${REFL.es[i]} ${f}`) : forms)
 }
 
+/** French imperatives that are not the present's (sois, aie, sache, veuille). */
+const FR_IMPERATIVE: Record<string, [string, string, string]> = {
+  être: ['sois', 'soyons', 'soyez'],
+  avoir: ['aie', 'ayons', 'ayez'],
+  savoir: ['sache', 'sachons', 'sachez'],
+  vouloir: ['veuille', 'veuillons', 'veuillez'],
+}
+
+/** Spanish "tú" imperatives that are not the present's "él" form; compounds keep the pattern with an accent (obtén, supón). */
+function esTu(key: string, present: string): string {
+  const exact: Record<string, string> = { decir: 'di', ir: 've', ser: 'sé', salir: 'sal', tener: 'ten', venir: 'ven', poner: 'pon', hacer: 'haz' }
+  if (exact[key]) return exact[key]
+  for (const [base, form, accented] of [['tener', 'ten', 'tén'], ['venir', 'ven', 'vén'], ['poner', 'pon', 'pón'], ['hacer', 'haz', 'haz'], ['salir', 'sal', 'sal']] as const)
+    if (key.endsWith(base) && key.length > base.length) return key.slice(0, -base.length) + (accented ?? form)
+  return present
+}
+
+/**
+ * The imperative, as six slots with "" for the persons it lacks (personsOf). French: the present
+ * of tu (-es and vas drop the s: parle, ouvre, va), nous, vous, with the reflexive pronoun after
+ * (lève-toi, levons-nous). Spanish: tú from the present (habla) or its short irregulars (di, haz,
+ * ve), usted / nosotros / ustedes from the subjunctive, vosotros from the infinitive (hablad).
+ * A Spanish reflexive (levántate, the stress mark moves) is not built here.
+ */
+function imperative(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>): string[] | undefined {
+  const { key, reflexive } = keyOf(entry)
+  const present = conjugate({ ...entry, lemma: key })?.forms
+  if (!present) return undefined
+  if (entry.language === 'fr') {
+    const [tu, nous, vous] = FR_IMPERATIVE[key] ?? [/(es|^vas)$/.test(present[1]) ? present[1].slice(0, -1) : present[1], present[3], present[4]]
+    const forms = reflexive ? [`${tu}-toi`, `${nous}-nous`, `${vous}-vous`] : [tu, nous, vous]
+    return ['', forms[0], '', forms[1], forms[2], '']
+  }
+  if (reflexive) return undefined
+  const row = DATA.es.get(key)
+  if (!row?.sub) return undefined
+  const sub = expand(row.sub, key.endsWith('ar') ? ENDINGS.esSubAr : ENDINGS.esSubErIr)
+  // ir: "vamos" (not vayamos) and "id".
+  return ['', esTu(key, present[2]), sub[2], key === 'ir' ? 'vamos' : sub[3], key === 'ir' ? 'id' : `${key.slice(0, -1)}d`, sub[5]]
+}
+
 /** Every tense the verb lab can show for the verb, by mood. */
 export function labTensesOf(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>): Tense[] {
   if (entry.language === 'en') return []
@@ -225,6 +276,13 @@ export function irregularForms(entry: Pick<VocabularyEntry, 'language' | 'lemma'
   const forms = conjugateTense(entry, tense)
   if (!forms) return []
   const { key } = keyOf(entry)
+  // The imperative is irregular where it is not the regular source's: sois, aie (not the present);
+  // di, haz, ten, obtén (not the present's él form); vamos (not the subjunctive).
+  if (isImperative(tense)) {
+    if (entry.language === 'fr') return forms.map((f) => !!f && key in FR_IMPERATIVE)
+    const present = conjugate({ ...entry, lemma: key })?.forms
+    return forms.map((f, i) => (i === 1 ? !!present && f !== present[2] : i === 3 && key === 'ir'))
+  }
   const bare = forms.map((f) => f.replace(/^(me|te|se|nous|vous|nos|os) |^[mts]'/, ''))
   let regular: string[] | undefined
   if (tense === 'present' || tense === 'presente') {
@@ -348,6 +406,8 @@ const que = (language: 'fr' | 'es', s: string) => (language === 'fr' && /^[aeiou
 
 /** The subject as a question or the table shows it: "nous", "que je", "qu'il / qu'elle". */
 export function subjectLabel(language: 'fr' | 'es', tense: Tense, person: number): string {
+  // The imperative has no subject; the person it speaks to, in brackets.
+  if (isImperative(tense)) return `(${language === 'es' && person === 2 ? 'usted' : language === 'es' && person === 5 ? 'ustedes' : PRONOUNS[language][person][0]})`
   return PRONOUNS[language][person]
     .slice(0, 2)
     .map((p) => (isSubjunctive(tense) ? que(language, p) : p))
@@ -356,6 +416,7 @@ export function subjectLabel(language: 'fr' | 'es', tense: Tense, person: number
 
 /** A form with its subject, as a list shows it: "j'aime", "que nous parlions". */
 export function withSubject(language: 'fr' | 'es', tense: Tense, person: number, form: string): string {
+  if (isImperative(tense)) return language === 'es' ? `¡${form}!` : `${form} !`
   const full = acceptedForms(language, person as Person, form)[1]
   return isSubjunctive(tense) ? que(language, full) : full
 }
@@ -364,6 +425,8 @@ export function withSubject(language: 'fr' | 'es', tense: Tense, person: number,
 export function answersFor(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'partOfSpeech'>, tense: Tense, person: number): string[] {
   if (entry.language === 'en') return []
   const lang = entry.language
+  // Said without a subject: "parle", not "tu parle".
+  if (isImperative(tense)) return tenseAnswers(entry, tense, person)
   const withPronoun = tenseAnswers(entry, tense, person).flatMap((f) => acceptedForms(lang, person as Person, f))
   return isSubjunctive(tense) ? [...withPronoun, ...withPronoun.filter((a) => a.includes(' ') || a.includes("'")).map((a) => que(lang, a))] : withPronoun
 }
@@ -385,6 +448,8 @@ const UNLOCK: Record<Tense, number> = {
   subjuntivo: 8,
   // Only the verb lab asks these.
   'passe-simple': 99,
+  imperatif: 99,
+  imperativo: 99,
   'plus-que-parfait': 99,
   'futur-anterieur': 99,
   'conditionnel-passe': 99,
@@ -519,7 +584,8 @@ function reverseIndex(language: 'fr' | 'es'): Map<string, FormAnalysis[]> {
   const map = new Map<string, FormAnalysis[]>()
   for (const lemma of DATA[language].keys()) {
     const entry = { language, lemma, partOfSpeech: 'verb' as const }
-    for (const tense of LAB_TENSES[language] as Tense[]) {
+    // Not the imperative: its forms are the present's (parle, habla), so a tapped word would read twice.
+    for (const tense of (LAB_TENSES[language] as Tense[]).filter((t) => !isImperative(t))) {
       const forms = conjugateTense(entry, tense)
       if (!forms) continue
       forms.forEach((form, person) => {
