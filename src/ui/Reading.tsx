@@ -22,7 +22,9 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './ConjugationTable'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { analyzeForm, subjectLabel } from '../engine/tenses'
+import { analyzeForm, subjectLabel, type Tense } from '../engine/tenses'
+import { addSeenForms } from '../engine/labProgress'
+import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
 import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
@@ -385,11 +387,33 @@ export function ReadingScreen({
     setSelected(null)
   }
 
+  /** The verb forms of the text, for the verb lab's "seen in texts" (the reading's real usage). */
+  const keepSeenForms = async (lang: 'fr' | 'es') => {
+    if (!analysis) return
+    await loadTenses(lang)
+    const found: { form: string; lemma: string; tense: Tense }[] = []
+    for (const p of analysis.paragraphs)
+      for (const sentence of p)
+        for (const t of sentence.tokens) {
+          if (!t.key) continue
+          const form = cleanToken(t.text, lang).toLocaleLowerCase(lang)
+          // An ambiguous form (finis: présent or passé simple) counts once, as its first reading.
+          const seenLemmas = new Set<string>()
+          for (const a of analyzeForm(lang, form)) {
+            if (seenLemmas.has(a.lemma)) continue
+            seenLemmas.add(a.lemma)
+            found.push({ form, lemma: a.lemma, tense: a.tense })
+          }
+        }
+    if (found.length) await db.saveLab(lang, addSeenForms(await db.getLab(lang), found, current?.title, new Date().toISOString()))
+  }
+
   const finish = async () => {
     if (!analysis) return
     const { knownKeys, encounters } = finishReading(analysis, skipped)
     await db.addKnownWords(language, knownKeys)
     await db.addEncounters(encounters)
+    if (language !== 'en') await keepSeenForms(language)
     setKnown(await db.getKnownWords(language))
     if (current) {
       const updated: ReadingText = {

@@ -17,7 +17,8 @@ import { createReadStream, mkdirSync, readFileSync, writeFileSync } from 'node:f
 import { createInterface } from 'node:readline'
 import { PackBuilder, packStats, type WtEntry } from '../src/data/wordpackBuild'
 
-const LIMIT = 8000
+/** Words per language, most frequent first (LIMIT=… to change). */
+const LIMIT = Number(process.env.LIMIT ?? 20000)
 const [version, ...files] = process.argv.slice(2)
 if (!version || !files.length) {
   console.error('Usage: node w.mjs <version> <wiktextract.jsonl> [...]')

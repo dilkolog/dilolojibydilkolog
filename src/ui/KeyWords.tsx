@@ -3,7 +3,7 @@ import { CheckIcon, PlusIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { loadFrequency } from '../data/frequency'
 import { englishHints } from '../data/wordInfo'
-import { loadPack, packRecord } from '../data/wordpack'
+import { baseForm, loadPack, packRecord } from '../data/wordpack'
 import type { Pack } from '../data/wordpackBuild'
 import { markWord } from '../data/wordInput'
 import { keyUnknownWords, type ReadingAnalysis } from '../engine/reading'
@@ -71,7 +71,10 @@ export function KeyWordsCard({
       <ul className="key-list">
         {words.map((w) => {
           const h = hints.get(w.word)
-          const turkish = (packRecord(pack, h?.lemma ?? w.word, language) ?? packRecord(pack, w.word, language))?.t ?? []
+          // Offline, the pack's own form table finds the dictionary form (allons → aller) that Wiktionary gives online.
+          const base = h?.lemma ?? baseForm(pack, w.word, language)
+          const lemma = base ?? w.word
+          const turkish = (packRecord(pack, lemma, language) ?? packRecord(pack, w.word, language))?.t ?? []
           return (
             <li key={w.key} className={adding === w.word ? 'is-open' : undefined}>
               {/* A compact tile: the word, how often it occurs, and two small actions. */}
@@ -82,7 +85,7 @@ export function KeyWordsCard({
                 </span>
                 {(turkish.length > 0 || h) && (
                   <span className="small muted key-hint" lang={turkish.length ? 'tr' : 'en'}>
-                    {h && h.lemma !== w.word && <em lang={language}>{h.lemma}: </em>}
+                    {lemma !== w.word && <em lang={language}>{lemma}: </em>}
                     {turkish.length ? turkish.slice(0, 3).join(', ') : h!.hint}
                   </span>
                 )}
@@ -100,7 +103,7 @@ export function KeyWordsCard({
                   db={db}
                   language={language}
                   existing={existing}
-                  initial={{ word: h?.lemma ?? w.word, meaning: turkish.slice(0, 2).join(', '), example: markWord(w.sentence, w.word), exampleTranslation: '' }}
+                  initial={{ word: lemma, meaning: turkish.slice(0, 2).join(', '), example: markWord(w.sentence, w.word), exampleTranslation: '' }}
                   onSaved={(entry) => {
                     setAdding(null)
                     setAdded((a) => [...a, entry])

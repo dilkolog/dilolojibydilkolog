@@ -5,7 +5,7 @@ import { KelimeDB } from './db'
 import { createEntry } from './wordInput'
 import { isUntouched, originOf, withSources } from './provenance'
 import { applyPack, packKeys, packRecord, packUpdate } from './wordpack'
-import { glossHeads, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
+import { glossHeads, nounGender, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
 
 /** Lines shaped like Wiktextract's output, cut down to what the builder reads. */
 const DUMP: WtEntry[] = [
@@ -107,9 +107,31 @@ describe('building a pack from a Wiktextract dump', () => {
     expect(fr.n).toEqual(['hésiter'])
   })
 
-  it('ignores inflected forms and other languages', () => {
-    const fr = built().finish('fr', ['décidé', 'maison'], 'v1').w
-    expect(fr).toEqual({})
+  it('an inflected form brings in the word it belongs to, with that word\'s data, and is kept for searching', () => {
+    const pack = built().finish('fr', ['décidé', 'maison'], 'v1')
+    // décidé is a form of décider: décider comes in at its rank; the form's own entry gives nothing.
+    expect(Object.keys(pack.w)).toEqual(['décider'])
+    expect(pack.w['décider'].i).toBe('\\de.si.de\\')
+    expect(pack.f).toEqual({ décidé: 'décider' })
+    // Maison is a German line in this dump: other languages are ignored.
+    expect(pack.w.maison).toBeUndefined()
+  })
+
+  it('keeps the link for a word that is also a form of another (Allons ! and aller)', () => {
+    const b = new PackBuilder()
+    b.add({ word: 'aller', lang_code: 'fr', pos: 'verb', senses: [{ glosses: ['to go'] }] })
+    b.add({ word: 'allons', lang_code: 'fr', pos: 'intj', sounds: [{ ipa: '/a.lɔ̃/' }], senses: [{ glosses: ["let's go!"] }, { glosses: ['first-person plural of aller'], form_of: [{ word: 'aller' }] }] })
+    // Only when aller is itself a frequent word.
+    expect(b.finish('fr', ['allons'], 'v1').f).toBeUndefined()
+    const pack = b.finish('fr', ['allons', 'aller'], 'v1')
+    expect(Object.keys(pack.w)).toEqual(['allons', 'aller'])
+    expect(pack.f).toEqual({ allons: 'aller' })
+  })
+
+  it('counts a word brought in by its form only once, and against the limit', () => {
+    const pack = built().finish('fr', ['décidé', 'décider', 'trancher'], 'v1', 1)
+    expect(Object.keys(pack.w)).toEqual(['décider'])
+    expect(pack.f).toEqual({ décidé: 'décider' })
   })
 
   it('keeps only the wanted words, most wanted first, up to the limit, and reports coverage', () => {
@@ -183,3 +205,46 @@ describe('using a pack for the learner\'s words', () => {
     expect((await db.vocabulary.toArray()).find((x) => x.lemma === 'décider')!.ipa).toBe('/mon-ipa/')
   })
 })
+
+describe('part of speech and gender', () => {
+  const noun = (word: string, lang: string, g: string): WtEntry => ({ word, lang_code: lang, pos: 'noun', senses: [{ glosses: ['x'] }], head_templates: [{ name: `${lang}-noun`, args: { '1': g } }] })
+
+  it('reads a noun\'s gender from its headword template', () => {
+    expect(nounGender(noun('casa', 'es', 'f'), 'es')).toBe('f')
+    expect(nounGender(noun('gafas', 'es', 'f-p'), 'es')).toBe('f')
+    expect(nounGender(noun('capital', 'es', 'mfbysense'), 'es')).toBe('e')
+    expect(nounGender(noun('chose', 'fr', '?'), 'fr')).toBeUndefined()
+    // A French template is not read for a Spanish word.
+    expect(nounGender(noun('casa', 'fr', 'f'), 'es')).toBeUndefined()
+  })
+
+  it('takes the main entry\'s part of speech and gender, not a later one or an inflected form', () => {
+    const b = new PackBuilder()
+    b.add({ word: 'casa', lang_code: 'es', pos: 'verb', senses: [{ glosses: ['third-person of casar'], form_of: [{ word: 'casar' }] }] })
+    b.add(noun('livre', 'fr', 'm'))
+    b.add(noun('livre', 'fr', 'f'))
+    b.add(noun('casa', 'es', 'f'))
+    b.add({ word: 'maison', lang_code: 'fr', pos: 'adj', senses: [{ glosses: ['homemade'] }] })
+    b.add({ word: 'house', lang_code: 'en', pos: 'noun', senses: [{ glosses: ['a building'] }], head_templates: [{ name: 'en-noun', args: {} }] })
+    expect(b.finish('fr', ['livre', 'maison'], 'v1').w).toMatchObject({ livre: { p: 'n', g: 'm' }, maison: { p: 'a' } })
+    expect(b.finish('es', ['casa'], 'v1').w.casa).toMatchObject({ p: 'n', g: 'f' })
+    expect(b.finish('en', ['house'], 'v1').w.house).toEqual({ p: 'n' })
+  })
+
+  it('fills a word saved as "other" and a noun without gender, never over the learner\'s choice', () => {
+    const now = new Date()
+    const other = createEntry({ word: 'casa', meaning: 'ev' }, 'es', now)
+    expect(other.partOfSpeech).toBe('other')
+    expect(packUpdate(other, { p: 'n', g: 'f' })?.patch).toMatchObject({ partOfSpeech: 'noun', gender: 'f' })
+    // A verb the learner chose stays a verb, and gets no gender.
+    const verb = createEntry({ word: 'casa', meaning: 'evlenir', partOfSpeech: 'verb' }, 'es', now)
+    expect(packUpdate(verb, { p: 'n', g: 'f' })).toBeUndefined()
+    // "el problema": the article already said masculine.
+    const masc = createEntry({ word: 'el problema', meaning: 'sorun', partOfSpeech: 'noun' }, 'es', now)
+    expect(masc.gender).toBe('m')
+    expect(packUpdate(masc, { p: 'n', g: 'f' })).toBeUndefined()
+    // English nouns have no gender.
+    expect(packUpdate(createEntry({ word: 'house', meaning: 'ev' }, 'en', now), { p: 'n', g: 'f' })?.patch).toEqual({ partOfSpeech: 'noun' })
+  })
+})
+

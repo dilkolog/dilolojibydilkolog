@@ -39,6 +39,20 @@ export function exampleAudio(example: Example, language: TargetLanguage): string
   return example.source?.audioUrl ? tatoebaAudio(example.source.id, language) : undefined
 }
 
+/** A direct translation (made from this sentence) before one reached through another language. */
+const bestTranslation = (s: Pick<TatoebaSentence, 'translations'>, lang: string) =>
+  (s.translations ?? []).filter((t) => t.lang === lang && !t.is_unapproved).sort((a, b) => Number(!!b.is_direct) - Number(!!a.is_direct))[0]?.text
+
+/** The sentence in the other two target languages, where Tatoeba has it. */
+function parallelOf(s: Pick<TatoebaSentence, 'translations'>, language: TargetLanguage): Partial<Record<TargetLanguage, string>> {
+  return Object.fromEntries(
+    others(language).flatMap((l) => {
+      const t = bestTranslation(s, TATOEBA_LANG[l])
+      return t ? [[l, t]] : []
+    }),
+  )
+}
+
 export function toExamples(data: TatoebaSentence[], lemma: string, language: TargetLanguage): Example[] {
   const out: Example[] = []
   const seen = new Set<string>()
@@ -47,15 +61,13 @@ export function toExamples(data: TatoebaSentence[], lemma: string, language: Tar
     const form = formIn(s.text, lemma, language)
     if (!form) continue
     seen.add(s.text)
-    // A direct translation (made from this sentence) before one reached through another language.
-    const best = (lang: string) => (s.translations ?? []).filter((t) => t.lang === lang && !t.is_unapproved).sort((a, b) => Number(!!b.is_direct) - Number(!!a.is_direct))[0]?.text
-    const parallel = Object.fromEntries(others(language).flatMap((l) => (best(TATOEBA_LANG[l]) ? [[l, best(TATOEBA_LANG[l])!]] : [])))
     out.push({
       text: s.text,
-      translation: best('tur') ?? '',
+      translation: bestTranslation(s, 'tur') ?? '',
       form,
       source: { kind: 'tatoeba', id: s.id, audioUrl: s.audios?.length ? tatoebaAudio(s.id, language) : undefined },
-      ...(Object.keys(parallel).length ? { parallel } : {}),
+      // Always set, empty when there is none: it marks the sentence as looked at (see fillParallel).
+      parallel: parallelOf(s, language),
     })
   }
   return out
@@ -135,6 +147,51 @@ export async function fillCorpus(db: KelimeDB, language: TargetLanguage): Promis
     }
   }
   return done
+}
+
+/** Sentences looked up per background run: the other languages of each is one request. */
+const PARALLEL_PER_RUN = 24
+
+/**
+ * Background top-up for sentences saved before they came with their other-language versions
+ * (no `parallel` yet): each is looked up by its Tatoeba id. Only that field is added, so the
+ * learner's list, order and trims stay; a sentence with none gets an empty one, so it isn't asked again.
+ */
+export async function fillParallel(db: KelimeDB, language: TargetLanguage, budget = PARALLEL_PER_RUN): Promise<number> {
+  if (typeof navigator !== 'undefined' && !navigator.onLine) return 0
+  const show = others(language).map((l) => TATOEBA_LANG[l]).join(',')
+  let asked = 0
+  let changed = 0
+  for (const e of await db.vocabulary.where('language').equals(language).toArray()) {
+    if (asked >= budget) break
+    if (!e.corpus?.some((x) => x.source?.kind === 'tatoeba' && x.parallel === undefined)) continue
+    const found = new Map<number, Partial<Record<TargetLanguage, string>>>()
+    let stop = false
+    for (const x of e.corpus) {
+      if (asked >= budget) break
+      if (x.source?.kind !== 'tatoeba' || x.parallel !== undefined) continue
+      asked++
+      const res = await fetch(`${API}/${x.source.id}?${new URLSearchParams({ 'showtrans:lang': show })}`).catch(() => null)
+      // Offline, rate-limited or down: keep what was found and try the rest next time.
+      if (!res || res.status === 429 || res.status >= 500) {
+        stop = true
+        break
+      }
+      // A sentence gone from Tatoeba (404) has nothing to add.
+      const data = res.ok ? ((await res.json()) as { data?: TatoebaSentence }).data : undefined
+      found.set(x.source.id, data ? parallelOf(data, language) : {})
+    }
+    if (found.size) {
+      // Onto the word as it is now: a sentence the learner removed meanwhile stays removed.
+      const fresh = (await db.vocabulary.get(e.id)) ?? e
+      const corpus = (fresh.corpus ?? []).map((x) => (x.source && x.parallel === undefined && found.has(x.source.id) ? { ...x, parallel: found.get(x.source.id) } : x))
+      const kind = fresh.sources?.corpus?.kind
+      await db.vocabulary.update(e.id, kind && isUntouched(fresh, 'corpus') ? patchWithSources(fresh, { corpus }, { corpus: kind }) : { corpus })
+      changed++
+    }
+    if (stop) break
+  }
+  return changed
 }
 
 /**

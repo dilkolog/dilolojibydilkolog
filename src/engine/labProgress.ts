@@ -24,6 +24,60 @@ export interface LabData {
   tally?: Record<string, { ok: number; wrong: number }>
   /** Wrong answers by what kind of slip they were. */
   kinds?: Partial<Record<ErrorKind, number>>
+  /** Forms met in finished readings, by verb: what real texts used, most met first. */
+  seen?: Record<string, SeenForm[]>
+}
+
+/** A conjugated form met in a text: which tense it is, how often, and where it was last met. */
+export interface SeenForm {
+  form: string
+  tense: Tense
+  count: number
+  /** Title of the last text it was met in. */
+  title?: string
+  /** ISO time it was last met. */
+  at: string
+}
+
+const SEEN_PER_VERB = 24
+
+/**
+ * A finished reading's verb forms added to what the learner has met: counts add up, the title and
+ * time are the latest, and each verb keeps its most met forms.
+ */
+export function addSeenForms(lab: LabData, found: readonly { form: string; lemma: string; tense: Tense }[], title: string | undefined, at: string): LabData {
+  if (!found.length) return lab
+  const seen: Record<string, SeenForm[]> = { ...lab.seen }
+  for (const f of found) {
+    const list = [...(seen[f.lemma] ?? [])]
+    const i = list.findIndex((x) => x.form === f.form && x.tense === f.tense)
+    if (i >= 0) list[i] = { ...list[i], count: list[i].count + 1, at, ...(title ? { title } : {}) }
+    else list.push({ form: f.form, tense: f.tense, count: 1, at, ...(title ? { title } : {}) })
+    seen[f.lemma] = list
+  }
+  for (const verb of new Set(found.map((f) => f.lemma))) seen[verb] = sortSeen(seen[verb]).slice(0, SEEN_PER_VERB)
+  return { ...lab, seen }
+}
+
+const sortSeen = (list: readonly SeenForm[]) => [...list].sort((a, b) => b.count - a.count || b.at.localeCompare(a.at))
+
+/** The verbs met most in texts, with how many times in all. */
+export function seenVerbs(lab: LabData, limit = 8): { verb: string; count: number }[] {
+  return Object.entries(lab.seen ?? {})
+    .map(([verb, forms]) => ({ verb, count: forms.reduce((n, f) => n + f.count, 0) }))
+    .sort((a, b) => b.count - a.count || a.verb.localeCompare(b.verb))
+    .slice(0, limit)
+}
+
+/** Two devices' forms of one verb together: the larger count, the latest place. */
+export function mergeSeen(a: readonly SeenForm[] = [], b: readonly SeenForm[] = []): SeenForm[] {
+  const by = new Map<string, SeenForm>()
+  for (const f of [...a, ...b]) {
+    const key = `${f.form}|${f.tense}`
+    const o = by.get(key)
+    by.set(key, !o ? f : { ...(f.at >= o.at ? f : o), count: Math.max(f.count, o.count) })
+  }
+  return sortSeen([...by.values()]).slice(0, SEEN_PER_VERB)
 }
 
 export const MASTERY_MAX = 60

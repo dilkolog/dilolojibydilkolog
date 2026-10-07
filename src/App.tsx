@@ -22,7 +22,7 @@ import { SAMPLE_WORDS } from './data/seed'
 import { difficultWords, withDifficult } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
-import { fillCorpus, scoreCorpus } from './data/corpus'
+import { fillCorpus, fillParallel, scoreCorpus } from './data/corpus'
 import { fillWordInfo } from './data/wordInfo'
 import { fillFromLexicon } from './data/lexicon'
 import { fillFromPack } from './data/wordpack'
@@ -366,6 +366,11 @@ export default function App() {
     // Real sentences for words that don't have them yet (a few per run, one run at a time).
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
       corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
+      if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    }
+    // Sentences saved before they came with their French/Spanish/English versions get them, a few per run.
+    if (!corpusRun && loaded.vocabulary.some((v) => v.corpus?.some((x) => x.source?.kind === 'tatoeba' && x.parallel === undefined))) {
+      corpusRun = fillParallel(db, language).finally(() => (corpusRun = null))
       if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // Pronunciation, definition and word family from Wiktionary, also in the background.

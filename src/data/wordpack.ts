@@ -3,7 +3,7 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
 import { canFill, patchWithSources, type FieldName, type SourceKind } from './provenance'
 import type { Equivalents } from './wiktionary'
-import type { Pack, PackRecord } from './wordpackBuild'
+import { genderOfCode, POS_CODE, type Pack, type PackRecord } from './wordpackBuild'
 
 /**
  * The word pack (see wordpackBuild.ts): Turkish meanings, pronunciation, recordings, origins,
@@ -50,6 +50,20 @@ export function packRecord(pack: Pack | undefined, lemma: string, language: Targ
 }
 
 /** Turkish meanings the pack suggests for a word being added (before the learner has typed one). */
+/**
+ * The word an inflected form belongs to, from the pack's form table (allons → aller), when the
+ * pack has that word. Only for looking up: a word in the list is filled from its own record, never
+ * from another word's (décidé, an adjective, is not décider).
+ */
+export function baseForm(pack: Pack | undefined, word: string, language: TargetLanguage): string | undefined {
+  if (!pack?.f) return undefined
+  for (const k of packKeys(word, language)) {
+    const base = pack.f[k]
+    if (base && pack.w[base]) return base
+  }
+  return undefined
+}
+
 export async function suggestMeanings(word: string, language: TargetLanguage): Promise<string[]> {
   return packRecord(await loadPack(language), word, language)?.t ?? []
 }
@@ -73,6 +87,18 @@ export function packUpdate(entry: VocabularyEntry, rec: PackRecord): { patch: Pa
   const others = rec.x && Object.fromEntries(Object.entries(rec.x).filter(([l]) => l !== entry.language))
   put('translations', 'translations', others && Object.keys(others).length ? (others as VocabularyEntry['translations']) : undefined, JSON.stringify(others) === JSON.stringify(entry.translations))
   if (rec.n && !entry.antonyms?.length) patch.antonyms = rec.n
+  // Like Lexique (lexicon.ts): a part of speech only for a word saved as "other", a gender only
+  // for a noun without one; never over what the learner chose.
+  const pos = rec.p ? POS_CODE[rec.p] : undefined
+  if (pos && entry.partOfSpeech === 'other') {
+    patch.partOfSpeech = pos
+    wrote.partOfSpeech = 'pack'
+  }
+  const gender = genderOfCode(rec.g)
+  if (gender && entry.language !== 'en' && (patch.partOfSpeech ?? entry.partOfSpeech) === 'noun' && !entry.gender) {
+    patch.gender = gender
+    wrote.gender = 'pack'
+  }
   return Object.keys(patch).length ? { patch, wrote } : undefined
 }
 

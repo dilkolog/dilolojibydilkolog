@@ -82,6 +82,17 @@ describe('/api/push', () => {
     })
   })
 
+  it('with SYNC_ALLOWED set, saves only for a listed account or code, and still removes', async () => {
+    const listed = 'a'.repeat(64)
+    vi.stubEnv('SYNC_ALLOWED', listed)
+    expect((await post({ action: 'save', subscription: sub(), tz: -180 })).status).toBe(403)
+    expect((await post({ action: 'save', subscription: sub(), tz: -180, group: 'b'.repeat(64) })).status).toBe(403)
+    expect(blobs.size).toBe(0)
+    expect((await post({ action: 'save', subscription: sub(), tz: -180, group: listed })).status).toBe(204)
+    expect((await post({ action: 'remove', endpoint: sub().endpoint })).status).toBe(204)
+    expect(blobs.size).toBe(0)
+  })
+
   it('stores under a hash of the endpoint and removes on request', async () => {
     await post({ action: 'save', subscription: sub(), tz: -180 })
     const path = await recordPath(sub().endpoint)

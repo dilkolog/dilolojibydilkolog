@@ -1,4 +1,4 @@
-import type { TargetLanguage } from '../engine/types'
+import type { Gender, PartOfSpeech, TargetLanguage } from '../engine/types'
 
 /**
  * The word pack, built offline from Wiktionary's structured dump (Wiktextract, https://kaikki.org;
@@ -26,12 +26,33 @@ export interface PackRecord {
   n?: string[]
   /** The word in other languages. */
   x?: Partial<Record<TargetLanguage, string[]>>
+  /** Part of speech of the word's main entry, as a letter (POS_CODE). */
+  p?: string
+  /** A French or Spanish noun's gender: m, f, or e (either, by sense). */
+  g?: 'm' | 'f' | 'e'
+}
+
+/** Wiktextract's parts of speech, as one letter (the same letters as the Lexique file). */
+const POS_LETTER: Record<string, string> = { noun: 'n', verb: 'v', adj: 'a', adv: 'd', prep: 'p', conj: 'c', pron: 'r', phrase: 'h', proverb: 'h' }
+export const POS_CODE: Record<string, PartOfSpeech> = { n: 'noun', v: 'verb', a: 'adjective', d: 'adverb', p: 'preposition', c: 'conjunction', r: 'pronoun', h: 'phrase' }
+export const genderOfCode = (g: PackRecord['g']): Gender | undefined => (g === 'e' ? 'mf' : g)
+
+/** A noun's gender from its headword template ({{es-noun|f}}): m, f, or e for one that is either by sense. */
+export function nounGender(entry: WtEntry, language: TargetLanguage): PackRecord['g'] {
+  const arg = entry.head_templates?.find((h) => h.name === `${language}-noun`)?.args?.['1']
+  if (!arg) return undefined
+  if (/^m(-p)?$/.test(arg)) return 'm'
+  if (/^f(-p)?$/.test(arg)) return 'f'
+  if (/^(mf|mfbysense|mfequiv|m,f|f,m)/.test(arg)) return 'e'
+  return undefined
 }
 
 export interface Pack {
   /** Version of the data, to refill words only when it changes. */
   v: string
   w: Record<string, PackRecord>
+  /** Inflected forms of the frequency list and the word they belong to: allons → aller, went → go. */
+  f?: Record<string, string>
 }
 
 /** The fields of a Wiktextract JSONL line that are used here. */
@@ -39,12 +60,13 @@ export interface WtEntry {
   word: string
   lang_code?: string
   pos?: string
-  senses?: { glosses?: string[]; tags?: string[]; synonyms?: { word?: string }[]; antonyms?: { word?: string }[]; form_of?: unknown[]; alt_of?: unknown[]; translations?: WtTranslation[] }[]
+  senses?: { glosses?: string[]; tags?: string[]; synonyms?: { word?: string }[]; antonyms?: { word?: string }[]; form_of?: { word?: string }[]; alt_of?: { word?: string }[]; translations?: WtTranslation[] }[]
   sounds?: { ipa?: string; mp3_url?: string; ogg_url?: string }[]
   etymology_text?: string
   synonyms?: { word?: string }[]
   antonyms?: { word?: string }[]
   translations?: WtTranslation[]
+  head_templates?: { name?: string; args?: Record<string, string> }[]
 }
 
 export interface WtTranslation {
@@ -112,6 +134,8 @@ export class PackBuilder {
   private readonly rows: Record<TargetLanguage, Map<string, Row[]>> = { en: new Map(), fr: new Map(), es: new Map() }
   /** A French or Spanish word's English equivalents from its own entry, main meaning first. */
   private readonly heads: Record<TargetLanguage, Map<string, string[]>> = { en: new Map(), fr: new Map(), es: new Map() }
+  /** An inflected form or spelling variant and the word it belongs to (its first such entry). */
+  private readonly formOf: Record<TargetLanguage, Map<string, string>> = { en: new Map(), fr: new Map(), es: new Map() }
 
   private key = (language: TargetLanguage, word: string) => word.toLocaleLowerCase(language)
 
@@ -122,18 +146,32 @@ export class PackBuilder {
     return r
   }
 
-  /** Feeds one dump line. Lines of other languages and of inflected forms are ignored. */
+  private noteForm(language: TargetLanguage, word: string, entry: WtEntry) {
+    const base = clean(entry.senses!.flatMap((s) => [...(s.form_of ?? []), ...(s.alt_of ?? [])])[0]?.word)
+    const key = this.key(language, word)
+    if (base && this.key(language, base) !== key && !this.formOf[language].has(key)) this.formOf[language].set(key, this.key(language, base))
+  }
+
+  /** Feeds one dump line. Lines of other languages are ignored; an inflected form only links to its word. */
   add(entry: WtEntry): void {
     const language = entry.lang_code
     if (!isLanguage(language) || !entry.word || /^[-*]/.test(entry.word)) return
     const word = clean(entry.word)
-    if (!isFormOnly(entry)) {
+    if (isFormOnly(entry)) {
+      this.noteForm(language, word, entry)
+    } else {
+      // A word can be both: "allons" (an interjection) and a form of aller; the link is kept too.
+      if (entry.senses?.some((s) => s.form_of?.length)) this.noteForm(language, word, entry)
       const r = this.rec(language, word)
       const sound = entry.sounds?.find((s) => s.ipa)
       if (!r.i && sound?.ipa) r.i = clean(sound.ipa)
       const audio = entry.sounds?.find((s) => s.mp3_url || s.ogg_url)
       if (!r.a && audio) r.a = audio.mp3_url ?? audio.ogg_url
       if (!r.e) r.e = shortEtymology(entry.etymology_text)
+      // The word's first entry is its main one (livre: the masculine "book" before the feminine "pound").
+      const pos = POS_LETTER[entry.pos ?? '']
+      if (pos && !r.p) r.p = pos
+      if (entry.pos === 'noun' && language !== 'en' && !r.g) r.g = nounGender(entry, language)
       const names = (xs: { word?: string }[] | undefined) => (xs ?? []).map((x) => clean(x.word)).filter(Boolean)
       r.s = add(r.s, [...names(entry.synonyms), ...(entry.senses ?? []).flatMap((s) => names(s.synonyms))], MAX_SYN)
       r.n = add(r.n, [...names(entry.antonyms), ...(entry.senses ?? []).flatMap((s) => names(s.antonyms))], MAX_SYN)
@@ -194,25 +232,43 @@ export class PackBuilder {
     return { t, x }
   }
 
+  /** Everything known about one word, or undefined when there is nothing to say. */
+  private record(language: TargetLanguage, key: string): PackRecord | undefined {
+    const own = this.words[language].get(key)
+    if (!own && !this.rows[language].has(key)) return undefined
+    const kept = Object.fromEntries(Object.entries({ ...own, ...this.meanings(language, key) }).filter(([, v]) => v !== undefined)) as PackRecord
+    return Object.keys(kept).length ? kept : undefined
+  }
+
   /**
-   * The pack for one language: only the wanted words (a frequency list), and only those with
-   * something to say. `limit` keeps the file small: the first `limit` of `wanted` that have data.
+   * The pack for one language: the wanted words (a frequency list) that have something to say, up to
+   * `limit`. A frequency list counts forms (subtitles say "allons", not "aller"), so a form brings in
+   * the word it belongs to, at the form's rank, and is kept in `f` so a search for it finds the word.
    */
   finish(language: TargetLanguage, wanted: readonly string[], version: string, limit = Infinity): Pack {
     const w: Record<string, PackRecord> = {}
+    const f: Record<string, string> = {}
     let n = 0
-    for (const word of wanted) {
-      if (n >= limit) break
-      const key = this.key(language, word)
-      const own = this.words[language].get(key)
-      if (!own && !this.rows[language].has(key)) continue
-      const r = { ...own, ...this.meanings(language, key) }
-      const kept = Object.fromEntries(Object.entries(r).filter(([, v]) => v !== undefined)) as PackRecord
-      if (!Object.keys(kept).length) continue
-      w[key] = kept
+    const take = (key: string) => {
+      if (w[key]) return true
+      if (n >= limit) return false
+      const r = this.record(language, key)
+      if (!r) return false
+      w[key] = r
       n++
+      return true
     }
-    return { v: version, w }
+    // A word of its own that is also a form ("allons !", agua) links on only to a frequent word (aller,
+    // not aguar): a rare verb behind a common noun is noise.
+    const frequent = new Set(wanted.map((w) => this.key(language, w)))
+    for (const word of wanted) {
+      const key = this.key(language, word)
+      const own = take(key)
+      const base = this.formOf[language].get(key)
+      if (base && (!own || frequent.has(base)) && take(base)) f[key] = base
+      if (n >= limit) break
+    }
+    return { v: version, w, ...(Object.keys(f).length ? { f } : {}) }
   }
 }
 
@@ -226,7 +282,7 @@ export interface PackStats {
 /** What a pack holds, for the build script to print before anyone ships it. */
 export function packStats(pack: Pack): PackStats {
   const records = Object.values(pack.w)
-  const keys = ['t', 'i', 'a', 'e', 's', 'n', 'x'] as const
+  const keys = ['t', 'i', 'a', 'e', 's', 'n', 'x', 'p', 'g'] as const
   const coverage = Object.fromEntries(keys.map((k) => [k, records.length ? records.filter((r) => (k === 'x' ? Object.keys(r.x ?? {}).length : r[k]?.length)).length / records.length : 0])) as PackStats['coverage']
   return { words: records.length, bytes: JSON.stringify(pack).length, coverage }
 }

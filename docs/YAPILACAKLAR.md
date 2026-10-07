@@ -131,6 +131,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - **Oturum sonunda AI'dan tek cümlelik yorum** (sonraya, 2026-10-06): o oturumun hatalarından
   ("le/la ayrımında 3 hata; dişil -ette sonlarına dikkat") kısa, somut bir öneri. Hata verisi
   zaten tutuluyor; yalnızca özetlemek gerekiyor.
+- **Eşitleme izin listesini açmak** (sonraya, 2026-10-07; kullanıcı "daha sonra yaparız" dedi): kod hazır
+  (`api/_allow.ts`, PR #11; bildirim kayıtları da aynı listeye bağlı). Açmak için Vercel'de `SYNC_ALLOWED` ortam
+  değişkenine kullanıcı adı (ve varsa eşitleme kodunun kimliği) yazılır; boşken her şey açık. Yanlış ad yazılırsa
+  kendi eşitlemen kapanır: önce kullanıcı adını doğrula.
 - **Hesap, giriş ve erişim güvenliği** (sonraya, 2026-10-08; kullanıcı "ileride döneceğiz" dedi).
   Durum: hesap = kullanıcı adı + şifre, şifreden iki anahtar türetilir (veri şifreleme + sunucu
   erişimi); sunucu (`api/sync.ts`) yalnızca şifreli blob saklar. Kayıt herkese açık, kullanıcı
@@ -147,17 +151,21 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   kota, şifre kurtarma anahtarı (e-posta veri kurtarmaz), AI için gizlilik metni güncellemesi.
   Dönmeden önce sorulacaklar: ileride başkalarına açılacak mı, birden çok cihaz var mı.
 
-- **Sözlük paketi** (2026-10-07): üretildi ve eklendi (`src/data/wordpack/`, kaynak notu SOURCE.md).
-  Her dil için en sık 8000 kelime; Türkçe anlam EN %61, FR %74, ES %77; diğer dillerdeki karşılık %80–93.
-  Yeni dökümlerde çeviri tabloları anlamların içinde (`senses[].translations`); anlamlar kelimenin kendi
-  tanımlarındaki sıraya göre diziliyor, kaba/hakaret etiketli anlamlar alınmıyor. Paketler JS değil düz JSON
-  dosyası olarak sunuluyor: kurulum indirmesine girmiyor, dil ilk gerektiğinde iniyor ve `word-packs`
-  önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca sürüm değişince uygular).
-  İspanyolca için ses kaydı yok (dökümde yok).
+- **Sözlük paketi** (2026-10-07, büyütüldü): sıklık listesinin ilk 20 000 girdisi; listede çekimli biçim varsa
+  (altyazı listesi: "allons") ait olduğu kelime girer ve biçim `f` tablosunda tutulur (sözlükte "allons" → aller).
+  EN 16 476, FR 10 556, ES 9 383 kelime; Türkçe anlamlı kelime sayısı %20–65 arttı. Her kelimede tür (p) ve
+  FR/ES isimlerde cinsiyet (g) var; listedeki "other" türlü kelimeye ve cinsiyetsiz isme pakettan dolar (Lexique
+  kuralıyla aynı: kullanıcının seçtiğinin üstüne yazılmaz). Form tablosu yalnızca aramada kullanılır, listedeki
+  kelimeyi başka kelimenin verisiyle doldurmaz. Yeni dökümlerde çeviri tabloları anlamların içinde
+  (`senses[].translations`); anlamlar kelimenin kendi tanımlarındaki sıraya göre, kaba/hakaret etiketli anlamlar
+  alınmıyor. Paketler düz JSON (gzip EN 1,8 MB, FR 0,9, ES 0,8): kurulum indirmesine girmiyor, dil ilk gerektiğinde
+  iniyor ve `word-packs` önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca
+  sürüm değişince uygular); boyut için `LIMIT=…`. İspanyolca için ses kaydı yok (dökümde yok).
 - **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
   (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
-  cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelerde
-  yoktur; "Yeniden getir" ile gelir.
+  cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelere
+  arka planda, Tatoeba kimliğiyle tek tek sorularak eklenir (`fillParallel`, çalışma başına 24 cümle); liste ve
+  sıra değişmez, bulunamayana boş `{}` yazılır ki tekrar sorulmasın.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
   (`engine/sentenceFit.ts`). Liste son tam derecelendirmeden bu yana onda bir (en az 10 kelime) büyüyünce
   bütün kayıtlı cümleler yeniden derecelendirilir (`needsRescore`, 2026-10-07); yalnızca sırası değişen kelimeler yazılır.
@@ -167,6 +175,6 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] Lab verisi (favoriler, tekrar, bahçe) ve oyun rekorları yedeğe ve eşitlemeye girdi.
 - [x] Passé simple (2026-10-07): 4103 fiilin 4094'ünde; traire, extraire, absoudre gibi eksik (defective) fiillerde yok. Yalnızca laboratuvarda; Türkçeden zaman bulma sorusunda sorulmaz ("açtı" passé composé ile aynı).
 - [x] Emir kipi (2026-10-07): laboratuvarda ayrı kip ("Emir kipi"); alıştırmalar yalnızca olan kişileri sorar (`personsOf`: FR tu/nous/vous, ES tú/usted/nosotros/vosotros/ustedes). Biçimler veriden türetilir (FR présent + sois/aie/sache/veuille, dönüşlüde lève-toi; ES tú présent'ten ya da di/haz/ve/pon/sal/sé/ten/ven ve bileşikleri, usted/nosotros/ustedes subjuntivo, vosotros -d, ir → vamos/id). Olumsuzu ayrı: ES no + subjuntivo, FR ne te lève pas. İspanyolca dönüşlü emir (levántate: vurgu kayar) yok. "Hangi fiil?" ve okumadaki biçim çözümlemesi emir kipini kullanmaz (biçimleri présent'inkiyle aynı).
-- [ ] "Metinde gördüğün çekimler" listesi (okuma → Ustalık).
+- [x] "Metinde gördüğün çekimler" (2026-10-07): okuma bitirilince metindeki fiil çekimleri laboratuvara kaydedilir (`LabData.seen`, fiil başına en çok 24 biçim, eşitlemede birleşir); Ustalık'ta "Metinlerde gördüklerin" (biçim · zaman · kaç kez · hangi metin, dokununca o zamanı alıştırır) ve "Metinlerde en çok gördüğün fiiller".
 - [x] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
 
