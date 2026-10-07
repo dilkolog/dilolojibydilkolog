@@ -3,6 +3,7 @@ import { AiError, enrichWords } from '../ai'
 import { fold, loadIndex, search, wiktionaryUrl, type DictIndex } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
 import { loadTenses } from '../data/tenseData'
+import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
@@ -138,6 +139,8 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
           {result.exact ? (
             <WordCard
               key={result.exact.word}
+              form={result.form}
+              alsoFormOf={result.alsoFormOf}
               language={language}
               word={result.exact.word}
               rec={result.exact.rec}
@@ -204,6 +207,8 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
 /** The pack's word: the word-page header, made for a word that may not be in the list. */
 function WordCard({
   language,
+  form,
+  alsoFormOf,
   word,
   rec,
   rank,
@@ -219,6 +224,10 @@ function WordCard({
   rank: number
   own?: VocabularyEntry
   onOpenWord: (id: string) => void
+  /** What was typed, when it is an inflected form of the word. */
+  form?: string
+  /** The word this one is also a form of (allons: aller). */
+  alsoFormOf?: string
   /** `written`: the word as the add form wants it (a French noun with its article when the gender is known). */
   onAdd: (written: string, meaning: string) => void
   onOpenLab?: (verb: string) => void
@@ -236,8 +245,11 @@ function WordCard({
   }, [word, language, onOpenLab])
 
   const meanings = rec.t ?? []
-  const isNoun = lexicon?.pos[0] === 'noun'
-  const written = isNoun && (lexicon.gender === 'm' || lexicon.gender === 'f') ? (/^[aeiouyéèêàâîôûh]/i.test(word) ? `l'${word}` : `${lexicon.gender === 'f' ? 'la' : 'le'} ${word}`) : word
+  // The pack's part of speech and gender (any language), Lexique's for French words the pack lacks them for.
+  const pos = (rec.p && POS_CODE[rec.p]) || lexicon?.pos[0]
+  const gender = pos === 'noun' ? (genderOfCode(rec.g) ?? lexicon?.gender) : undefined
+  // French only: Spanish feminine nouns starting with a stressed a- take "el" (el agua), which the pack can't tell.
+  const written = language === 'fr' && (gender === 'm' || gender === 'f') ? (/^[aeiouyéèêàâîôûh]/i.test(word) ? `l'${word}` : `${gender === 'f' ? 'la' : 'le'} ${word}`) : word
   const others = TARGET_LANGUAGES.filter((l) => l !== language && rec.x?.[l]?.length)
   const play = () => {
     if (!rec.a) return speak(word, language)
@@ -251,12 +263,17 @@ function WordCard({
       <section className="section word-hero" aria-label={`${word} sözlükte`}>
         <div className="word-hero-main">
           <ul className="chip-list" aria-label="Kelime bilgisi">
-            {lexicon?.pos[0] && (
-              <li className="pos-chip">
-                <PosTag pos={lexicon.pos[0]} label />
+            {form && (
+              <li>
+                “<span lang={language}>{form}</span>” biçiminden
               </li>
             )}
-            {lexicon?.gender && lexicon.gender !== 'mf' && <li>{lexicon.gender === 'f' ? 'dişil' : 'eril'}</li>}
+            {pos && (
+              <li className="pos-chip">
+                <PosTag pos={pos} label />
+              </li>
+            )}
+            {gender && <li>{gender === 'f' ? 'dişil' : gender === 'm' ? 'eril' : 'eril ya da dişil'}</li>}
             {rank <= 1000 ? <li>En sık 1000 kelimeden</li> : rank <= 3000 ? <li>En sık 3000 kelimeden</li> : null}
           </ul>
           <div className="word-hero-title">
@@ -269,6 +286,15 @@ function WordCard({
           </div>
           {rec.i && <span className="ipa">{rec.i}</span>}
           {meanings.length > 0 ? <p className="gloss">{meanings.join(', ')}</p> : <p className="gloss muted">Türkçe karşılığı pakette yok.</p>}
+          {alsoFormOf && (
+            <p className="small">
+              Aynı zamanda{' '}
+              <button type="button" className="link small" lang={language} onClick={() => onPick(alsoFormOf)}>
+                {alsoFormOf}
+              </button>{' '}
+              kelimesinin çekimli biçimi.
+            </p>
+          )}
         </div>
         <div className="word-hero-actions">
           {own ? (

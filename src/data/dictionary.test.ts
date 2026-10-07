@@ -70,6 +70,24 @@ describe('dictionary search', () => {
     expect(words(r.fromTurkish)).toEqual([])
   })
 
+  it('takes an inflected form to the word it belongs to, and says so', () => {
+    const pack: Pack = { v: 't', w: { aller: { t: ['gitmek'] }, maison: { t: ['ev'] } }, f: { allons: 'aller', vont: 'aller', maisons: 'maison' } }
+    const r = search(buildIndex(pack, 'fr'), 'allons')
+    expect(r.exact?.word).toBe('aller')
+    expect(r.form).toBe('allons')
+    expect(search(buildIndex(pack, 'fr'), 'les maisons').exact?.word).toBe('maison')
+    // A word that is itself in the pack is never taken for a form.
+    expect(search(buildIndex(pack, 'fr'), 'maison').form).toBeUndefined()
+  })
+
+  it('shows a word of its own that is also a form, and points to the word it is a form of', () => {
+    const pack: Pack = { v: 't', w: { aller: { t: ['gitmek'] }, allons: { t: ['haydi'] } }, f: { allons: 'aller' } }
+    const r = search(buildIndex(pack, 'fr'), 'allons')
+    expect(r.exact?.word).toBe('allons')
+    expect(r.form).toBeUndefined()
+    expect(r.alsoFormOf).toBe('aller')
+  })
+
   it('returns nothing for an empty query', () => {
     expect(search(ix, '  ')).toEqual({ similar: [], fromTurkish: [] })
   })

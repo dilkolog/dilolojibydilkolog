@@ -151,13 +151,16 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   kota, şifre kurtarma anahtarı (e-posta veri kurtarmaz), AI için gizlilik metni güncellemesi.
   Dönmeden önce sorulacaklar: ileride başkalarına açılacak mı, birden çok cihaz var mı.
 
-- **Sözlük paketi** (2026-10-07): üretildi ve eklendi (`src/data/wordpack/`, kaynak notu SOURCE.md).
-  Her dil için en sık 8000 kelime; Türkçe anlam EN %61, FR %74, ES %77; diğer dillerdeki karşılık %80–93.
-  Yeni dökümlerde çeviri tabloları anlamların içinde (`senses[].translations`); anlamlar kelimenin kendi
-  tanımlarındaki sıraya göre diziliyor, kaba/hakaret etiketli anlamlar alınmıyor. Paketler JS değil düz JSON
-  dosyası olarak sunuluyor: kurulum indirmesine girmiyor, dil ilk gerektiğinde iniyor ve `word-packs`
-  önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca sürüm değişince uygular).
-  İspanyolca için ses kaydı yok (dökümde yok).
+- **Sözlük paketi** (2026-10-07, büyütüldü): sıklık listesinin ilk 20 000 girdisi; listede çekimli biçim varsa
+  (altyazı listesi: "allons") ait olduğu kelime girer ve biçim `f` tablosunda tutulur (sözlükte "allons" → aller).
+  EN 16 476, FR 10 556, ES 9 383 kelime; Türkçe anlamlı kelime sayısı %20–65 arttı. Her kelimede tür (p) ve
+  FR/ES isimlerde cinsiyet (g) var; listedeki "other" türlü kelimeye ve cinsiyetsiz isme pakettan dolar (Lexique
+  kuralıyla aynı: kullanıcının seçtiğinin üstüne yazılmaz). Form tablosu yalnızca aramada kullanılır, listedeki
+  kelimeyi başka kelimenin verisiyle doldurmaz. Yeni dökümlerde çeviri tabloları anlamların içinde
+  (`senses[].translations`); anlamlar kelimenin kendi tanımlarındaki sıraya göre, kaba/hakaret etiketli anlamlar
+  alınmıyor. Paketler düz JSON (gzip EN 1,8 MB, FR 0,9, ES 0,8): kurulum indirmesine girmiyor, dil ilk gerektiğinde
+  iniyor ve `word-packs` önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca
+  sürüm değişince uygular); boyut için `LIMIT=…`. İspanyolca için ses kaydı yok (dökümde yok).
 - **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
   (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
   cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelerde

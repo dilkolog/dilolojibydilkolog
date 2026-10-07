@@ -1,6 +1,6 @@
 import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
 import type { TargetLanguage } from '../engine/types'
-import { loadPack, packKeys } from './wordpack'
+import { baseForm, loadPack, packKeys } from './wordpack'
 import type { Pack, PackRecord } from './wordpackBuild'
 
 /**
@@ -28,6 +28,10 @@ export interface DictIndex {
 
 export interface DictResult {
   exact?: DictHit
+  /** What was typed, when it is an inflected form of `exact` (allons for aller). */
+  form?: string
+  /** The word `exact` is also a form of, when it is a word of its own too ("Allons !", and a form of aller). */
+  alsoFormOf?: string
   /** Other words starting the same way, most frequent first. */
   similar: DictHit[]
   /** Words whose Turkish meaning matches what was typed. */
@@ -64,6 +68,15 @@ export function search(index: DictIndex, query: string): DictResult {
   // The word itself: as written first, then without accents (decider → décider).
   let exactAt = packKeys(query, language).map((k) => index.keys.indexOf(k)).find((i) => i >= 0) ?? -1
   if (exactAt < 0) exactAt = index.folded.findIndex((f) => f === bare || f === q)
+  // An inflected form: the word it belongs to (allons → aller, went → go).
+  let form: string | undefined
+  if (exactAt < 0) {
+    const base = baseForm(index.pack, query, language)
+    if (base) {
+      exactAt = index.keys.indexOf(base)
+      form = query.trim()
+    }
+  }
   const exact = exactAt >= 0 ? hit(index, exactAt) : undefined
 
   const similar: DictHit[] = []
@@ -97,7 +110,8 @@ export function search(index: DictIndex, query: string): DictResult {
     .slice(0, LIMIT)
     .map(([i]) => hit(index, i))
 
-  return { exact, similar, fromTurkish }
+  const also = exact && !form ? index.pack.f?.[exact.word] : undefined
+  return { exact, ...(form ? { form } : {}), ...(also && also !== exact?.word && index.pack.w[also] ? { alsoFormOf: also } : {}), similar, fromTurkish }
 }
 
 const indexes = new Map<TargetLanguage, Promise<DictIndex | undefined>>()
