@@ -249,6 +249,34 @@ export interface SyncResult {
  * Pull, merge, write locally, push. Safe to run any time: running it twice in a row changes
  * nothing the second time.
  */
+/** The days the server kept a restore point for (newest first; see api/sync.ts). */
+export async function restorePoints(code: Credential): Promise<string[]> {
+  const res = await fetch(`/api/sync?id=${await credentialId(code)}&history=1`, { headers: authHeaders(code) })
+  if (res.status === 403) throw await refusal(res)
+  if (!res.ok) throw new Error(`sync ${res.status}`)
+  return ((await res.json()) as { days?: string[] }).days ?? []
+}
+
+/**
+ * Brings back what was there on `day`: that day's copy merged into this device's data. Words,
+ * sentences and texts in it come back even if deleted since (they get an "alive again" mark, newer
+ * than the deletion, so other devices keep them too); what was added or edited later stays.
+ * The next sync sends the result to the other devices.
+ */
+export async function restoreFrom(db: KelimeDB, code: Credential, day: string, now = new Date()): Promise<number> {
+  const bytes = await download(await credentialId(code), `h-${day}`, code)
+  if (!bytes) throw new Error('no such restore point')
+  const point = parseBackup(new TextDecoder().decode(bytes))
+  const at = now.toISOString()
+  const ids = [...point.vocabulary.map((v) => v.id), ...(point.sentences ?? []).map((x) => x.id), ...(point.reading?.library ?? []).map((t) => t.id)]
+  point.deleted = [...(point.deleted ?? []).filter((t) => !ids.includes(typeof t === 'string' ? t : t.id)), ...ids.map((id) => ({ id, at, alive: true }))]
+  const local = parseBackup(await exportBackup(db, now, { media: false }))
+  const before = new Set(local.vocabulary.map((v) => v.id))
+  const merged = mergeBackups(local, point)
+  await restoreBackup(db, merged, { keepMedia: true })
+  return merged.vocabulary.filter((v) => !before.has(v.id)).length
+}
+
 /**
  * Whether an account exists and the password opens it: 'new' (nobody has it), 'ok', or 'wrong'
  * (wrong password, or the name belongs to someone else).
