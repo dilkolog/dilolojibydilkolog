@@ -612,6 +612,46 @@ export function analyzeForm(language: 'fr' | 'es' | 'en', word: string): FormAna
   return reverseIndex(language).get(normalize(word).toLocaleLowerCase(language)) ?? []
 }
 
+/** Imperative forms (parle, venez, ven, hablad) → their verb; built once per language, apart from the reverse index above. */
+const IMPERATIVES: { fr?: { size: number; map: Map<string, FormAnalysis[]> }; es?: { size: number; map: Map<string, FormAnalysis[]> } } = {}
+
+/** Which verbs' imperative this word is, if any. */
+export function analyzeImperative(language: 'fr' | 'es', word: string): FormAnalysis[] {
+  if (!tensesLoaded(language)) return []
+  let cached = IMPERATIVES[language]
+  if (!cached || cached.size !== DATA[language].size) {
+    const map = new Map<string, FormAnalysis[]>()
+    const tense: Tense = language === 'fr' ? 'imperatif' : 'imperativo'
+    for (const lemma of DATA[language].keys()) {
+      conjugateTense({ language, lemma, partOfSpeech: 'verb' }, tense)?.forEach((form, person) => {
+        if (!form || form.includes(' ')) return
+        const list = map.get(form) ?? []
+        const same = list.find((a) => a.lemma === lemma)
+        if (same) same.persons.push(person)
+        else list.push({ lemma, tense, persons: [person] })
+        map.set(form, list)
+      })
+    }
+    cached = IMPERATIVES[language] = { size: DATA[language].size, map }
+  }
+  return cached.map.get(normalize(word).toLocaleLowerCase(language)) ?? []
+}
+
+/**
+ * The imperative of a sentence, when it is one: it ends with "!" and starts with a verb's
+ * imperative ("Viens ici !", "¡Hablad más alto!"). Its forms are the present's (parle, habla), so
+ * this is the only place they are read as imperatives; "Il parle !" is not one.
+ */
+export function sentenceImperative(language: 'fr' | 'es', sentence: string): { form: string; analysis: FormAnalysis } | undefined {
+  const text = sentence.trim()
+  if (!/!\s*[»"”)]*$/.test(text)) return undefined
+  const first = text.replace(/^[\s¡¿«"“(—–-]+/, '').match(/^[\p{L}'’]+/u)?.[0]
+  if (!first) return undefined
+  const form = first.toLocaleLowerCase(language)
+  const [analysis] = analyzeImperative(language, form)
+  return analysis && { form, analysis }
+}
+
 /** The verbs the tables hold (dictionary keys, without any reflexive pronoun), in the order they were built. */
 export const tenseVerbs = (language: 'fr' | 'es'): string[] => [...DATA[language].keys()]
 

@@ -22,7 +22,7 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './ConjugationTable'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { analyzeForm, subjectLabel, type Tense } from '../engine/tenses'
+import { analyzeForm, sentenceImperative, subjectLabel, type Tense } from '../engine/tenses'
 import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
@@ -393,10 +393,14 @@ export function ReadingScreen({
     await loadTenses(lang)
     const found: { form: string; lemma: string; tense: Tense }[] = []
     for (const p of analysis.paragraphs)
-      for (const sentence of p)
+      for (const sentence of p) {
+        // "Viens ici !": its first word is an imperative, which the forms alone can't tell from the present.
+        const imperative = sentenceImperative(lang, sentence.tokens.map((t) => t.text).join(''))
+        if (imperative) found.push({ form: imperative.form, lemma: imperative.analysis.lemma, tense: imperative.analysis.tense })
         for (const t of sentence.tokens) {
           if (!t.key) continue
           const form = cleanToken(t.text, lang).toLocaleLowerCase(lang)
+          if (imperative?.form === form) continue
           // An ambiguous form (finis: présent or passé simple) counts once, as its first reading.
           const seenLemmas = new Set<string>()
           for (const a of analyzeForm(lang, form)) {
@@ -405,6 +409,7 @@ export function ReadingScreen({
             found.push({ form, lemma: a.lemma, tense: a.tense })
           }
         }
+      }
     if (found.length) await db.saveLab(lang, addSeenForms(await db.getLab(lang), found, current?.title, new Date().toISOString()))
   }
 
