@@ -5,7 +5,7 @@ import { KelimeDB } from './db'
 import { createEntry } from './wordInput'
 import { isUntouched, originOf, withSources } from './provenance'
 import { applyPack, packKeys, packRecord, packUpdate } from './wordpack'
-import { PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
+import { glossHeads, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
 
 /** Lines shaped like Wiktextract's output, cut down to what the builder reads. */
 const DUMP: WtEntry[] = [
@@ -44,6 +44,55 @@ describe('building a pack from a Wiktextract dump', () => {
     // The other table row ("to rule") is its own meaning: trancher gets hükmetmek, not karar vermek.
     expect(fr['trancher'].t).toEqual(['hükmetmek'])
     expect(fr['trancher'].x).toEqual({ en: ['decide'] })
+  })
+
+  it('puts the meaning the word’s own entry gives first, whatever order the English entries came in', () => {
+    const b = new PackBuilder()
+    // English entries arrive alphabetically: "close" (correr las cortinas) before "run".
+    b.add({ word: 'close', lang_code: 'en', senses: [{ glosses: ['to shut'], translations: [{ lang_code: 'tr', word: 'kapatmak', sense: 'to shut' }, { lang_code: 'es', word: 'correr', sense: 'to shut' }] }] })
+    b.add({ word: 'run', lang_code: 'en', senses: [{ glosses: ['to move fast'], translations: [{ lang_code: 'tr', word: 'koşmak', sense: 'to move fast' }, { lang_code: 'es', word: 'correr', sense: 'to move fast' }, { lang_code: 'fr', word: 'courir', sense: 'to move fast' }] }] })
+    b.add({ word: 'correr', lang_code: 'es', senses: [{ glosses: ['to run, to jog (quickly)'] }, { glosses: ['to draw (curtains); to close'] }] })
+    const es = b.finish('es', ['correr'], 'v1').w.correr
+    expect(es.t).toEqual(['koşmak', 'kapatmak'])
+    expect(es.x).toEqual({ en: ['run', 'close'], fr: ['courir'] })
+  })
+
+  it('leaves out the translations of vulgar or offensive senses', () => {
+    const b = new PackBuilder()
+    b.add({
+      word: 'screw',
+      lang_code: 'en',
+      senses: [
+        { glosses: ['to fasten with a screw'], translations: [{ lang_code: 'tr', word: 'vidalamak', sense: 'fasten' }, { lang_code: 'es', word: 'atornillar', sense: 'fasten' }] },
+        { glosses: ['to have sex with'], tags: ['vulgar'], translations: [{ lang_code: 'tr', word: 'kaba', sense: 'sex' }, { lang_code: 'es', word: 'coger', sense: 'sex' }] },
+      ],
+    })
+    b.add({ word: 'damn', lang_code: 'en', senses: [{ glosses: ['x'], tags: ['offensive'] }], translations: [{ lang_code: 'tr', word: 'lanet', sense: 'x' }] })
+    expect(b.finish('en', ['screw', 'damn'], 'v1').w.screw.t).toEqual(['vidalamak'])
+    expect(b.finish('en', ['damn'], 'v1').w.damn).toBeUndefined()
+    expect(b.finish('es', ['coger'], 'v1').w.coger).toBeUndefined()
+  })
+
+  it('reads the English equivalents out of glosses', () => {
+    expect(glossHeads(['to run, to jog (quickly)', 'to draw (curtains); to close'])).toEqual(['run', 'jog', 'draw', 'close'])
+    expect(glossHeads(['a house', 'something long and complicated that is not one word at all'])).toEqual(['house'])
+  })
+
+  it('reads translation tables kept on each sense, as newer dumps do', () => {
+    const b = new PackBuilder()
+    b.add({
+      word: 'choose',
+      lang_code: 'en',
+      senses: [
+        { glosses: ['to pick'], translations: [{ lang_code: 'tr', word: 'seçmek', sense: 'to pick' }, { lang_code: 'fr', word: 'choisir', sense: 'to pick' }] },
+        { glosses: ['to elect'], translations: [{ code: 'tr', word: 'seçmek', sense: 'to elect' }, { lang_code: 'es', word: 'elegir', sense: 'to elect' }] },
+      ],
+    })
+    expect(b.finish('en', ['choose'], 'v1').w.choose.t).toEqual(['seçmek'])
+    const fr = b.finish('fr', ['choisir'], 'v1').w.choisir
+    expect(fr.t).toEqual(['seçmek'])
+    expect(fr.x).toEqual({ en: ['choose'] })
+    expect(b.finish('es', ['elegir'], 'v1').w.elegir.x).toEqual({ en: ['choose'] })
   })
 
   it('takes pronunciation, recording, origin and relations from the word\'s own entry', () => {
