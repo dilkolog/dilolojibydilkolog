@@ -131,6 +131,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - **Oturum sonunda AI'dan tek cümlelik yorum** (sonraya, 2026-10-06): o oturumun hatalarından
   ("le/la ayrımında 3 hata; dişil -ette sonlarına dikkat") kısa, somut bir öneri. Hata verisi
   zaten tutuluyor; yalnızca özetlemek gerekiyor.
+- **Eşitleme izin listesini açmak** (sonraya, 2026-10-07; kullanıcı "daha sonra yaparız" dedi): kod hazır
+  (`api/_allow.ts`, PR #11; bildirim kayıtları da aynı listeye bağlı). Açmak için Vercel'de `SYNC_ALLOWED` ortam
+  değişkenine kullanıcı adı (ve varsa eşitleme kodunun kimliği) yazılır; boşken her şey açık. Yanlış ad yazılırsa
+  kendi eşitlemen kapanır: önce kullanıcı adını doğrula.
 - **Hesap, giriş ve erişim güvenliği** (sonraya, 2026-10-08; kullanıcı "ileride döneceğiz" dedi).
   Durum: hesap = kullanıcı adı + şifre, şifreden iki anahtar türetilir (veri şifreleme + sunucu
   erişimi); sunucu (`api/sync.ts`) yalnızca şifreli blob saklar. Kayıt herkese açık, kullanıcı
