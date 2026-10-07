@@ -9,6 +9,7 @@ import { markWord } from '../data/wordInput'
 import { keyUnknownWords, type ReadingAnalysis } from '../engine/reading'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { WordForm } from './Words'
+import { PreReadingLesson, type LessonItem } from './PreReadingLesson'
 
 /**
  * Before reading: the few unknown words that unlock most of the text (pre-teaching). Mark the
@@ -38,6 +39,7 @@ export function KeyWordsCard({
   const [adding, setAdding] = useState<string | null>(null)
   const [added, setAdded] = useState<VocabularyEntry[]>([])
   const [hidden, setHidden] = useState(false)
+  const [lesson, setLesson] = useState(false)
   const [pack, setPack] = useState<Pack | undefined>()
 
   useEffect(() => {
@@ -58,7 +60,40 @@ export function KeyWordsCard({
     }
   }, [wanted, language])
 
+  /** A word of the text as the dictionary has it (aller for "allons"), and its Turkish meaning from the pack. */
+  const lookUp = (word: string) => {
+    const lemma = hints.get(word)?.lemma ?? baseForm(pack, word, language) ?? word
+    return { lemma, turkish: (packRecord(pack, lemma, language) ?? packRecord(pack, word, language))?.t ?? [] }
+  }
+  // The pre-reading lesson: the key words that have a meaning to learn, up to six.
+  const lessonWords = words
+    .map((w) => ({ w, ...lookUp(w.word) }))
+    .filter((x) => x.turkish.length)
+    .slice(0, 6)
+  const lessonItems: LessonItem[] = lessonWords.map((x) => ({ word: x.lemma, meaning: x.turkish.slice(0, 2).join(', ') }))
+
   if (hidden || (!words.length && !added.length)) return null
+  if (lesson)
+    return (
+      <section className="card stack key-words">
+        <div className="row justify-between">
+          <h2 className="section-title">Okumadan önce: kısa ders</h2>
+          <button className="link small" onClick={() => setLesson(false)}>
+            Kapat
+          </button>
+        </div>
+        <PreReadingLesson
+          language={language}
+          items={lessonItems}
+          onAdd={(lemma) => {
+            const x = lessonWords.find((l) => l.lemma === lemma)
+            setLesson(false)
+            if (x) setAdding(x.w.word)
+          }}
+          onClose={() => setLesson(false)}
+        />
+      </section>
+    )
   return (
     <section className="card stack key-words">
       <div className="row justify-between">
@@ -68,13 +103,18 @@ export function KeyWordsCard({
         </button>
       </div>
       <p className="small muted">Bu metinde en çok işine yarayacak bilinmeyen kelimeler: bildiklerini ✓ ile işaretle, gerisini + ile ekleyip okumadan önce çalış.</p>
+      {lessonItems.length >= 3 && (
+        <div>
+          <button type="button" className="btn btn-sm" onClick={() => setLesson(true)}>
+            2 dakikalık ön ders ({lessonItems.length} kelime)
+          </button>
+        </div>
+      )}
       <ul className="key-list">
         {words.map((w) => {
           const h = hints.get(w.word)
           // Offline, the pack's own form table finds the dictionary form (allons → aller) that Wiktionary gives online.
-          const base = h?.lemma ?? baseForm(pack, w.word, language)
-          const lemma = base ?? w.word
-          const turkish = (packRecord(pack, lemma, language) ?? packRecord(pack, w.word, language))?.t ?? []
+          const { lemma, turkish } = lookUp(w.word)
           return (
             <li key={w.key} className={adding === w.word ? 'is-open' : undefined}>
               {/* A compact tile: the word, how often it occurs, and two small actions. */}
