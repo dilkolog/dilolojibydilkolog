@@ -108,6 +108,8 @@ export interface Settings {
   textScale?: 'normal' | 'large' | 'xlarge'
   /** Short vibrations on answers (phones that support it). */
   haptics?: boolean
+  /** Reviews waiting shown as a number on the app icon (installed app); default on. */
+  appBadge?: boolean
   /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */
   hideVosotros?: boolean
   /** The word list in focus per language: new words come only from it (see dailyPlan). */
