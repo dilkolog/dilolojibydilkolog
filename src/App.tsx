@@ -18,7 +18,6 @@ import {
   type VocabularyEntry,
 } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
-import { SAMPLE_WORDS } from './data/seed'
 import { difficultWords, withDifficult } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
@@ -56,7 +55,6 @@ import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import type { LabTab } from './ui/verbs/VerbLab'
 import { useFormsDue } from './ui/verbs/labShared'
-import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { GAME_LIST, type GameId } from './ui/gameList'
@@ -70,11 +68,13 @@ import { currentLevel, levelGroups } from './engine/lists'
 import { azure } from './ui/pronunciation'
 
 /*
- * Screens other than the daily loop (home, session, summary) load when first opened, so the app
+ * Screens other than Today and the session summary load when first opened, so the app
  * starts with less code; once it is idle they are fetched in the background anyway, so switching
  * screens stays instant and works offline.
  */
 const screenModules = {
+  // The daily loop's session too: Today comes first, and the idle prefetch has it long before a tap.
+  Session: () => import('./ui/Session'),
   Games: () => import('./ui/Games'),
   Mistakes: () => import('./ui/Mistakes'),
   Profile: () => import('./ui/Profile'),
@@ -93,6 +93,7 @@ const screenModules = {
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
 }
+const SessionScreen = lazy(() => screenModules.Session().then((m) => ({ default: m.SessionScreen })))
 const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
 const MistakesScreen = lazy(() => screenModules.Mistakes().then((m) => ({ default: m.MistakesScreen })))
 const ProfileScreen = lazy(() => screenModules.Profile().then((m) => ({ default: m.ProfileScreen })))
@@ -1043,6 +1044,7 @@ export default function App() {
                 onTrySamples={async () => {
                   // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
                   const at = new Date()
+                  const { SAMPLE_WORDS } = await import('./data/seed')
                   await db.vocabulary.bulkPut(SAMPLE_WORDS[data.language].map((w) => ({ ...w, addedAt: at })))
                   await reload()
                 }}
