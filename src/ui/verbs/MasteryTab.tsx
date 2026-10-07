@@ -1,5 +1,5 @@
 import { ERROR_TEXT } from '../../engine/formDiagnosis'
-import { MASTERY_MAX, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, tallyCells, verbMastery, weakestCell, type LabData, type MasteryLevel } from '../../engine/labProgress'
+import { MASTERY_MAX, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, seenVerbs, tallyCells, verbMastery, weakestCell, type LabData, type MasteryLevel } from '../../engine/labProgress'
 import { Plant } from '../Plant'
 import { subjectLabel, type Tense } from '../../engine/tenses'
 import { tenseName, type LabLanguage } from './labShared'
@@ -14,6 +14,8 @@ export function MasteryTab({ language, verb, available, lab, onPractice, onOpenV
   const tenses = [...new Set(cells.map((c) => c.tense))]
   const worst = weakestCell(lab)
   const kinds = errorBreakdown(lab)
+  const seen = lab.seen?.[verb] ?? []
+  const metVerbs = seenVerbs(lab).filter((v) => v.verb !== verb)
   return (
     <div className="stack lab-mastery">
       <header className="lab-mastery-head">
@@ -101,6 +103,40 @@ export function MasteryTab({ language, verb, available, lab, onPractice, onOpenV
             </ul>
           )}
           <p className="small muted">Hücrelerde doğru/toplam cevap görünür; kırmızıya yakın hücreler çalışılacak yerler.</p>
+        </section>
+      )}
+      {seen.length > 0 && (
+        <section className="stack gap-2" aria-label="Metinlerde gördüklerin">
+          <h3 className="lab-mood-title">Metinlerde gördüklerin</h3>
+          <ul className="word-list">
+            {seen.slice(0, 8).map((f) => (
+              <li key={`${f.form}|${f.tense}`}>
+                <button type="button" className="word-row" onClick={() => onPractice(f.tense)} aria-label={`${f.form}: ${tenseName(f.tense)}, alıştır`}>
+                  <span className="word-row-text">
+                    <span className="w" lang={language}>
+                      {f.form}
+                    </span>
+                    <span className="meta">
+                      {tenseName(f.tense)} · {f.count} kez{f.title && <> · {f.title}</>}
+                    </span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p className="small muted">Okumayı bitirdiğin metinlerdeki çekimler; birine dokununca o zamanı alıştırırsın.</p>
+        </section>
+      )}
+      {metVerbs.length > 0 && (
+        <section className="stack gap-2" aria-label="Metinlerde en çok gördüğün fiiller">
+          <h3 className="lab-mood-title">Metinlerde en çok gördüğün fiiller</h3>
+          <div className="choice-row" role="group" aria-label="Metinlerde en çok gördüğün fiiller">
+            {metVerbs.map((v) => (
+              <button key={v.verb} type="button" className="chip chip-sm" lang={language} onClick={() => onOpenVerb(v.verb)}>
+                {v.verb} <span className="muted">×{v.count}</span>
+              </button>
+            ))}
+          </div>
         </section>
       )}
       {garden.length > 0 && (

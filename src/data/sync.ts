@@ -1,4 +1,4 @@
-import type { LabData } from '../engine/labProgress'
+import { mergeSeen, type LabData } from '../engine/labProgress'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 
@@ -165,6 +165,7 @@ export function mergeLab(older: LabData | undefined, newer: LabData | undefined)
     records,
     tally,
     kinds: most(older.kinds as Record<string, number>, newer.kinds as Record<string, number>),
+    seen: Object.fromEntries([...new Set([...Object.keys(older.seen ?? {}), ...Object.keys(newer.seen ?? {})])].map((v) => [v, mergeSeen(older.seen?.[v], newer.seen?.[v])])),
   }
 }
 
