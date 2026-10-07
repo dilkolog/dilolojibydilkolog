@@ -3580,7 +3580,9 @@ button.badge-card:active { transform: none; }
 /* Session summary: what was earned (level, badges) in one strip of equal tiles. */
 .rewards { display: grid; gap: 0.625rem; }
 .rewards-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr)); gap: 0.625rem; }
-.reward { display: flex; align-items: center; gap: 0.875rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); animation: pop var(--dur) var(--ease-spring) both; }
+.reward { display: flex; align-items: center; gap: 0.875rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow); animation: reward-pop var(--dur) var(--ease-spring) both; }
+/* A full-width card can't grow like a small badge does (pop's 1.1, more with the spring's overshoot): on a phone it would pass the screen edge and scroll the page sideways mid-animation. */
+@keyframes reward-pop { 0% { transform: translateY(6px) scale(0.96); opacity: 0; } 70% { transform: scale(1.01); } 100% { transform: none; opacity: 1; } }
 .reward:nth-child(2) { animation-delay: 80ms; }
 .reward:nth-child(3) { animation-delay: 160ms; }
 .reward-level { background: color-mix(in srgb, var(--near-soft) 70%, var(--surface)); box-shadow: var(--shadow), inset 0 0 0 1.5px color-mix(in srgb, var(--near) 45%, transparent); }
