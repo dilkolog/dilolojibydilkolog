@@ -93,8 +93,14 @@ export function PracticeTab({
     setOutcome({})
     setFinished(false)
   }
-  // A new verb, tense or way of practising starts a new round.
-  useEffect(reset, [verb, tense, mode, list]) // eslint-disable-line react-hooks/exhaustive-deps
+  // A new verb, tense or way of practising starts a new round. Done while rendering, not in an
+  // effect: an effect runs after the new inputs are on screen, and would wipe what was typed there.
+  const roundOf = `${verb}|${tense}|${mode}|${list}`
+  const [shownRound, setShownRound] = useState(roundOf)
+  if (shownRound !== roundOf) {
+    setShownRound(roundOf)
+    reset()
+  }
 
   const finish = (final: Record<number, boolean>) => {
     setFinished(true)

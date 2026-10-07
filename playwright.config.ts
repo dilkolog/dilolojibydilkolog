@@ -10,7 +10,9 @@ export default defineConfig({
   testMatch: '**/*.e2e.ts',
   timeout: 60_000,
   fullyParallel: true,
-  reporter: [['list']],
+  // CI machines are slower: tests that wait on animations and background writes stay reliable one at a time.
+  workers: process.env.CI ? 1 : undefined,
+  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : [['list']],
   use: { baseURL: 'http://localhost:4179', serviceWorkers: 'block' },
   webServer: { command: 'npx vite preview --port 4179 --strictPort', url: 'http://localhost:4179', reuseExistingServer: true },
   projects: [

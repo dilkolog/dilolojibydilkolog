@@ -184,3 +184,20 @@ export async function finishSession(page: Page) {
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await page.waitForTimeout(600)
 }
+
+/** The verb lab favourites saved in the app's database (to wait for a background write). */
+export function labFavorites(page: Page, language: string): Promise<string[]> {
+  return page.evaluate(
+    (key) =>
+      new Promise<string[]>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const get = open.result.transaction('meta').objectStore('meta').get(key)
+          get.onsuccess = () => resolve((get.result?.value?.favorites as string[] | undefined) ?? [])
+          get.onerror = () => resolve([])
+        }
+        open.onerror = () => resolve([])
+      }),
+    `lab:${language}`,
+  )
+}
