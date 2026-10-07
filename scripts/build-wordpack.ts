@@ -9,6 +9,7 @@
  *     https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl
  * Turkish meanings also come from the Turkish Wiktionary (a file whose name contains "trwiktionary":
  *   https://kaikki.org/trwiktionary/raw-wiktextract-data.jsonl): its entries define words in Turkish.
+ * Recordings for words Wiktionary has none for: a "*.audio.json" from scripts/fetch-commons-audio.ts.
  * The English file is the big one (about 2 GB). Words come from the frequency lists in
  * src/data/frequency, most frequent first, up to LIMIT per language.
  *
@@ -29,6 +30,13 @@ if (!version || !files.length) {
 
 const builder = new PackBuilder()
 for (const file of files) {
+  // Recordings from elsewhere (scripts/fetch-commons-audio.ts): { language, words: { word: url } }.
+  if (file.endsWith('.audio.json')) {
+    const { language, words } = JSON.parse(readFileSync(file, 'utf8')) as { language: 'en' | 'fr' | 'es'; words: Record<string, string> }
+    for (const [word, url] of Object.entries(words)) builder.addAudio(language, word, url)
+    console.error(`${file}: ${Object.keys(words).length} recordings`)
+    continue
+  }
   // The Turkish Wiktionary's dump (kaikki.org/trwiktionary) is read for Turkish meanings only.
   const turkish = /trwiktionary/.test(file)
   let n = 0
