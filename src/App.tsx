@@ -58,11 +58,12 @@ import type { LabTab } from './ui/verbs/VerbLab'
 import { useFormsDue } from './ui/verbs/labShared'
 import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
+import { clipboardSuggestion } from './ui/clipboardSuggest'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { GAME_LIST, type GameId } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 import type { AuthMode } from './ui/AuthScreen'
-import { Toaster } from './ui/toast'
+import { Toaster, showToast } from './ui/toast'
 import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
@@ -443,6 +444,24 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incoming, !settings])
 
+
+  // A word copied elsewhere, offered on coming back (Settings → Panodan kelime ekle).
+  const lemmasRef = useRef<string[]>([])
+  useEffect(() => {
+    lemmasRef.current = data?.vocabulary.map((v) => v.lemma) ?? []
+  }, [data])
+  const clipboardOn = !!data && !!settings?.clipboardSuggest
+  useEffect(() => {
+    if (!clipboardOn) return
+    const check = async () => {
+      if (document.visibilityState !== 'visible') return
+      const word = await clipboardSuggestion(lemmasRef.current)
+      if (word) showToast(`Panoda “${word}” var; listene eklensin mi?`, { label: 'Ekle', run: () => setIncoming({ word, context: '' }) }, 8000, 'info')
+    }
+    void check()
+    document.addEventListener('visibilitychange', check)
+    return () => document.removeEventListener('visibilitychange', check)
+  }, [clipboardOn])
 
   // A word brought in (bookmarklet, ⌘K "add") belongs to that visit of the add form: leaving the
   // words page drops it, so the page doesn't keep reopening a half-filled form.
