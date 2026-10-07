@@ -161,6 +161,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   alınmıyor. Paketler düz JSON (gzip EN 1,8 MB, FR 0,9, ES 0,8): kurulum indirmesine girmiyor, dil ilk gerektiğinde
   iniyor ve `word-packs` önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca
   sürüm değişince uygular); boyut için `LIMIT=…`. İspanyolca için ses kaydı yok (dökümde yok).
+- **Türkçe Vikisözlük ikinci kaynak** (2026-10-07): kaikki.org/trwiktionary dökümü (EN/FR/ES kelimeleri Türkçe
+  tanımlı). Sıra: Türkçe editörlerin kelimenin ana türündeki kısa karşılıkları → İngilizce üzerinden pivot → diğer
+  türlerdeki karşılıklar → Türkçe maddelerin çeviri tablolarından ters karşılık. Özel ad, kısaltma açılımı,
+  büyük harfle başlayan ve tanım gibi uzun açıklamalar alınmaz. İngilizcede Türkçe anlamlı kelime %49 → %59 (1 743 yeni).
 - **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
   (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
   cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelere
