@@ -1,4 +1,5 @@
 import { Component, type ReactNode } from 'react'
+import { reportError } from '../data/errorReport'
 
 /** A screen's code failed to download: offline before it was cached, or replaced by a new version. */
 export function isChunkError(error: unknown): boolean {
@@ -23,6 +24,8 @@ export class ScreenBoundary extends Component<{ resetKey: string; onHome: () => 
 
   componentDidCatch(error: unknown) {
     console.error(error)
+    // A screen that failed to download is expected after a deploy or offline; not a bug.
+    if (!isChunkError(error)) reportError(error, this.props.resetKey)
   }
 
   render() {
