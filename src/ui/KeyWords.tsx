@@ -3,6 +3,8 @@ import { CheckIcon, PlusIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { loadFrequency } from '../data/frequency'
 import { englishHints } from '../data/wordInfo'
+import { loadPack, packRecord } from '../data/wordpack'
+import type { Pack } from '../data/wordpackBuild'
 import { markWord } from '../data/wordInput'
 import { keyUnknownWords, type ReadingAnalysis } from '../engine/reading'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
@@ -10,7 +12,9 @@ import { WordForm } from './Words'
 
 /**
  * Before reading: the few unknown words that unlock most of the text (pre-teaching). Mark the
- * ones you know, add the others, learn them right away, then read with them in mind.
+ * ones you know, add the others, learn them right away, then read with them in mind. Meanings
+ * come in Turkish from the word pack (offline); Wiktionary's English gloss is the fallback, and also
+ * turns a form in the text into its dictionary form (allons → aller) for the pack to find.
  */
 export function KeyWordsCard({
   db,
@@ -34,9 +38,11 @@ export function KeyWordsCard({
   const [adding, setAdding] = useState<string | null>(null)
   const [added, setAdded] = useState<VocabularyEntry[]>([])
   const [hidden, setHidden] = useState(false)
+  const [pack, setPack] = useState<Pack | undefined>()
 
   useEffect(() => {
     void loadFrequency(language).then(setFrequency)
+    void loadPack(language).then(setPack)
   }, [language])
   const words = useMemo(
     () => (frequency ? keyUnknownWords(analysis, language, (w) => frequency.get(w) ?? 99_999) : []),
@@ -65,6 +71,7 @@ export function KeyWordsCard({
       <ul className="key-list">
         {words.map((w) => {
           const h = hints.get(w.word)
+          const turkish = (packRecord(pack, h?.lemma ?? w.word, language) ?? packRecord(pack, w.word, language))?.t ?? []
           return (
             <li key={w.key} className={adding === w.word ? 'is-open' : undefined}>
               {/* A compact tile: the word, how often it occurs, and two small actions. */}
@@ -73,10 +80,10 @@ export function KeyWordsCard({
                   <strong lang={language}>{w.word}</strong>
                   {w.count > 1 && <span className="key-count">×{w.count}</span>}
                 </span>
-                {h && (
-                  <span className="small muted key-hint" lang="en">
-                    {h.lemma !== w.word && <em lang={language}>{h.lemma}: </em>}
-                    {h.hint}
+                {(turkish.length > 0 || h) && (
+                  <span className="small muted key-hint" lang={turkish.length ? 'tr' : 'en'}>
+                    {h && h.lemma !== w.word && <em lang={language}>{h.lemma}: </em>}
+                    {turkish.length ? turkish.slice(0, 3).join(', ') : h!.hint}
                   </span>
                 )}
                 <span className="key-actions">
@@ -93,7 +100,7 @@ export function KeyWordsCard({
                   db={db}
                   language={language}
                   existing={existing}
-                  initial={{ word: h?.lemma ?? w.word, meaning: '', example: markWord(w.sentence, w.word), exampleTranslation: '' }}
+                  initial={{ word: h?.lemma ?? w.word, meaning: turkish.slice(0, 2).join(', '), example: markWord(w.sentence, w.word), exampleTranslation: '' }}
                   onSaved={(entry) => {
                     setAdding(null)
                     setAdded((a) => [...a, entry])
