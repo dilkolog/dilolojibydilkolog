@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -b",
+    "typecheck": "tsc -b && tsc -p tsconfig.api.json",
     "build:ext": "node extension/build.mjs",
     "typecheck:ext": "tsc -p extension",
     "test:e2e": "vite build && playwright test"

@@ -1,0 +1,122 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+// An in-memory Blob store behind the real /api/sync handlers.
+const blobs = new Map<string, Uint8Array>()
+vi.mock('@vercel/blob', () => ({
+  put: async (path: string, body: ArrayBuffer | string, opts: { allowOverwrite?: boolean }) => {
+    if (opts.allowOverwrite === false && blobs.has(path)) throw new Error('exists')
+    blobs.set(path, typeof body === 'string' ? new TextEncoder().encode(body) : new Uint8Array(body))
+    return {}
+  },
+  get: async (path: string) => (blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)!.slice()).body } : null),
+}))
+
+const { GET, PUT } = await import('../../api/sync')
+const { allowedIds } = await import('../../api/_allow')
+const { deriveAccount, syncIdOf } = await import('./sync')
+
+const ID = 'a'.repeat(64)
+const OTHER = 'b'.repeat(64)
+const TOKEN = 'c'.repeat(64)
+const WRONG = 'd'.repeat(64)
+
+function req(opts: { id?: string; part?: string; token?: string; body?: string | Uint8Array<ArrayBuffer> } = {}) {
+  const q = new URLSearchParams({ id: opts.id ?? ID, part: opts.part ?? 'core' })
+  const headers: Record<string, string> = opts.token ? { 'x-sync-auth': opts.token } : {}
+  return new Request(`https://app.test/api/sync?${q}`, opts.body === undefined ? { headers } : { method: 'PUT', headers, body: opts.body })
+}
+const read = async (r: Response) => ({ status: r.status, text: await r.text() })
+
+beforeEach(() => blobs.clear())
+afterEach(() => vi.unstubAllEnvs())
+
+describe('/api/sync requests', () => {
+  it('refuses malformed ids, parts and tokens before touching storage', async () => {
+    expect((await GET(req({ id: 'abc' }))).status).toBe(400)
+    expect((await GET(req({ id: ID.toUpperCase() }))).status).toBe(400)
+    expect((await GET(req({ part: '../core' }))).status).toBe(400)
+    expect((await GET(req({ part: 'm-123' }))).status).toBe(400)
+    expect((await GET(req({ token: 'short' }))).status).toBe(400)
+    expect((await PUT(req({ id: 'abc', body: 'x' }))).status).toBe(400)
+    expect(blobs.size).toBe(0)
+  })
+
+  it('refuses an empty or oversized body', async () => {
+    expect((await PUT(req({ body: '' }))).status).toBe(413)
+    expect((await PUT(req({ body: new Uint8Array(4_400_001) }))).status).toBe(413)
+    expect(blobs.size).toBe(0)
+  })
+
+  it('stores and returns the bytes of a sync code (no token), and 404s what is missing', async () => {
+    expect((await GET(req())).status).toBe(404)
+    expect((await PUT(req({ body: 'sealed' }))).status).toBe(204)
+    expect(await read(await GET(req()))).toEqual({ status: 200, text: 'sealed' })
+    // Media parts live next to the core under the same id.
+    const media = `m-${'0'.repeat(40)}`
+    expect((await PUT(req({ part: media, body: 'pic' }))).status).toBe(204)
+    expect(await read(await GET(req({ part: media })))).toEqual({ status: 200, text: 'pic' })
+    expect(blobs.has(`sync/${ID}/auth.txt`)).toBe(false)
+  })
+})
+
+describe('/api/sync accounts', () => {
+  it('claims an id on its first write and then refuses everyone without the token', async () => {
+    expect((await PUT(req({ token: TOKEN, body: 'mine' }))).status).toBe(204)
+    expect(blobs.has(`sync/${ID}/auth.txt`)).toBe(true)
+    // The token itself is never stored, only its hash.
+    expect(new TextDecoder().decode(blobs.get(`sync/${ID}/auth.txt`))).not.toContain(TOKEN)
+
+    expect(await read(await GET(req({ token: TOKEN })))).toEqual({ status: 200, text: 'mine' })
+    expect(await read(await GET(req()))).toEqual({ status: 403, text: 'forbidden' })
+    expect(await read(await GET(req({ token: WRONG })))).toEqual({ status: 403, text: 'forbidden' })
+    expect((await PUT(req({ body: 'theirs' }))).status).toBe(403)
+    expect((await PUT(req({ token: WRONG, body: 'theirs' }))).status).toBe(403)
+    expect(await read(await GET(req({ token: TOKEN })))).toEqual({ status: 200, text: 'mine' })
+  })
+
+  it('does not claim an id on a read', async () => {
+    expect((await GET(req({ token: TOKEN }))).status).toBe(404)
+    expect(blobs.has(`sync/${ID}/auth.txt`)).toBe(false)
+    // So the first writer, whoever it is, still gets it.
+    expect((await PUT(req({ token: WRONG, body: 'x' }))).status).toBe(204)
+    expect((await GET(req({ token: TOKEN }))).status).toBe(403)
+  })
+
+  it('keeps the first claim when two first writes race', async () => {
+    const [a, b] = await Promise.all([PUT(req({ token: TOKEN, body: 'a' })), PUT(req({ token: WRONG, body: 'b' }))])
+    expect([a.status, b.status].sort()).toEqual([204, 403])
+  })
+})
+
+describe('/api/sync allowlist (SYNC_ALLOWED)', () => {
+  it('lets everyone in when the list is unset or empty', async () => {
+    expect(await allowedIds(undefined)).toBeNull()
+    expect(await allowedIds(' , ')).toBeNull()
+    vi.stubEnv('SYNC_ALLOWED', '')
+    expect((await PUT(req({ id: OTHER, body: 'x' }))).status).toBe(204)
+  })
+
+  it('turns usernames into the ids the app derives, in any case, and keeps hex ids as they are', async () => {
+    const ali = await deriveAccount('Ali', 'pw')
+    const code = await syncIdOf('ABCDE-FGHIJ')
+    const ids = await allowedIds(` ALİ,\n${code.toUpperCase()} `)
+    expect(ids).toEqual(new Set([ali.id, code]))
+    expect((await allowedIds('alı'))?.has(ali.id)).toBe(true)
+  })
+
+  it('refuses ids not on the list for reads and writes, with a reason the app can tell apart', async () => {
+    vi.stubEnv('SYNC_ALLOWED', `someone, ${ID}`)
+    expect(await read(await PUT(req({ id: OTHER, body: 'x' })))).toEqual({ status: 403, text: 'not allowed' })
+    expect(await read(await GET(req({ id: OTHER })))).toEqual({ status: 403, text: 'not allowed' })
+    expect(blobs.size).toBe(0)
+    expect((await PUT(req({ body: 'x' }))).status).toBe(204)
+    expect((await GET(req())).status).toBe(200)
+  })
+
+  it('still checks the token for an allowed account', async () => {
+    const ali = await deriveAccount('ali', 'pw')
+    vi.stubEnv('SYNC_ALLOWED', 'ali')
+    expect((await PUT(req({ id: ali.id, token: ali.auth, body: 'x' }))).status).toBe(204)
+    expect(await read(await GET(req({ id: ali.id, token: WRONG })))).toEqual({ status: 403, text: 'forbidden' })
+  })
+})

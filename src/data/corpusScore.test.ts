@@ -28,4 +28,29 @@ describe('rating the saved sentences', () => {
     // Nothing left to rate.
     expect(await scoreCorpus(db, 'fr')).toBe(0)
   })
+
+  it('re-rates every word once the list has grown enough, since learned words are no longer unknown', async () => {
+    const db = new KelimeDB('t-score-2')
+    const now = new Date()
+    const hard = 'Cette maison dissimule mystérieusement tout'
+    const e = { ...createEntry({ word: 'maison', meaning: 'ev', partOfSpeech: 'noun' }, 'fr', now), corpus: [{ text: hard, translation: '', form: 'maison' }] }
+    await db.vocabulary.put(e)
+    await scoreCorpus(db, 'fr')
+    const fitOf = async () => (await db.vocabulary.get(e.id))!.corpus![0].fit
+    const before = await fitOf()
+    expect(before).toBeGreaterThanOrEqual(2)
+
+    // The learner adds the two hard words and 7 more: 10 words, not yet enough to redo the ratings (1 + 10).
+    const add = (word: string) => db.vocabulary.put(createEntry({ word, meaning: 'x' }, 'fr', now))
+    for (const w of ['dissimuler', 'dissimule', 'mystérieusement', 'aa', 'bb', 'cc', 'dd', 'ee', 'ff']) await add(w)
+    expect(await scoreCorpus(db, 'fr')).toBe(0)
+    expect(await fitOf()).toBe(before)
+
+    // One more makes 11: every saved list is rated again, and the sentence got easier.
+    await add('gg')
+    expect(await scoreCorpus(db, 'fr')).toBe(1)
+    expect(await fitOf()).toBe(before! - 2)
+    // Nothing changes on the next run.
+    expect(await scoreCorpus(db, 'fr')).toBe(0)
+  })
 })

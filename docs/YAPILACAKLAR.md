@@ -154,10 +154,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   dosyası olarak sunuluyor: kurulum indirmesine girmiyor, dil ilk gerektiğinde iniyor ve `word-packs`
   önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca sürüm değişince uygular).
   İspanyolca için ses kaydı yok (dökümde yok).
-- **Paralel cümleler** (Tatoeba'da bir cümlenin FR/ES/EN çevirileri) yapılmadı: sorgu parametresini
-  (`showtrans` değerleri) canlı API'de doğrulayamadım.
+- **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
+  (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
+  cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelerde
+  yoktur; "Yeniden getir" ile gelir.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
-  (`engine/sentenceFit.ts`); kullanıcı kelimeleri öğrendikçe eski dereceler eskir, yeniden derecelendirme yok.
+  (`engine/sentenceFit.ts`). Liste son tam derecelendirmeden bu yana onda bir (en az 10 kelime) büyüyünce
+  bütün kayıtlı cümleler yeniden derecelendirilir (`needsRescore`, 2026-10-07); yalnızca sırası değişen kelimeler yazılır.
 
 ## Fiil laboratuvarı (2026-10-06)
 - [x] Pratik → Fiiller: öğrenme, alıştırma (yaz/seç/dinle/eşleştir/zamanı bul/hangi fiil), FSRS tekrarı, kalıplar (fiil aileleri), zamana karşı, kıyaslama, ustalık ve fiil bahçesi. Çekim oyunları buraya taşındı.
