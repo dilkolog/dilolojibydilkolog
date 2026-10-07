@@ -6,6 +6,7 @@ import { SyncAuthError, SyncNotAllowedError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
 import { getAccount, getSyncCode, NOT_ALLOWED, runSync, setAccount } from './syncRunner'
+import { RestorePoints } from './RestorePoints'
 import { SyncSettings } from './SyncSettings'
 import { undoable } from './toast'
 
@@ -101,6 +102,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
             </button>
           </div>
           <p className="small muted account-foot">Çıkış yapınca verilerin bu cihazda kalır; istediğinde yeniden girersin.</p>
+          <RestorePoints />
         </>
       ) : (
         <>

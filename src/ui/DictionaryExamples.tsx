@@ -12,10 +12,15 @@ const KEY = (language: TargetLanguage, word: string) => `kelime-koc:dict-sentenc
 const MAX_AGE = 30 * 86_400_000
 const SHOWN = 4
 
-function useSentences(language: TargetLanguage, word: string): Example[] | null | 'loading' {
-  const [value, setValue] = useState<Example[] | null | 'loading'>('loading')
+/** Sentences in the word pack (the most frequent words): shown at once and offline. */
+const fromPack = (bundled: readonly [string, string][] | undefined): Example[] | undefined =>
+  bundled?.length ? bundled.map(([text, translation]) => ({ text, translation, form: '' })) : undefined
+
+function useSentences(language: TargetLanguage, word: string, bundled?: readonly [string, string][]): Example[] | null | 'loading' {
+  const [value, setValue] = useState<Example[] | null | 'loading'>(() => fromPack(bundled) ?? 'loading')
   useEffect(() => {
     let live = true
+    const packed = fromPack(bundled)
     try {
       const cached = JSON.parse(localStorage.getItem(KEY(language, word)) ?? 'null') as { at: number; examples: Example[] } | null
       if (cached && Date.now() - cached.at < MAX_AGE) {
@@ -25,12 +30,15 @@ function useSentences(language: TargetLanguage, word: string): Example[] | null 
     } catch {
       // Unreadable cache: fetch again.
     }
-    setValue('loading')
+    // The pack's sentences stand until Tatoeba's arrive (with sound and the other languages); offline they stay.
+    setValue(packed ?? 'loading')
     fetchCorpus({ language, lemma: word })
       .then((found) => {
         // The ones with a Turkish translation first: they say what the word means in use.
         const examples = [...found.filter((x) => x.translation), ...found.filter((x) => !x.translation)].slice(0, SHOWN)
         if (!live) return
+        // Nothing from Tatoeba for it now: the pack's sentences stay.
+        if (!examples.length && packed) return setValue(packed)
         setValue(examples)
         try {
           localStorage.setItem(KEY(language, word), JSON.stringify({ at: Date.now(), examples }))
@@ -38,10 +46,12 @@ function useSentences(language: TargetLanguage, word: string): Example[] | null 
           // Not kept; fine.
         }
       })
-      .catch(() => live && setValue(null))
+      .catch(() => live && setValue(packed ?? null))
     return () => {
       live = false
     }
+    // The pack's sentences come with the word; a new word is a new effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language, word])
   return value
 }
@@ -50,8 +60,8 @@ function useSentences(language: TargetLanguage, word: string): Example[] | null 
  * The word in use, under its dictionary card: a few real sentences (with their Turkish and the
  * other languages) and the word's most frequent neighbours. Read-only: adding them is for words in the list.
  */
-export function DictionaryExamples({ language, word }: { language: TargetLanguage; word: string }) {
-  const sentences = useSentences(language, word)
+export function DictionaryExamples({ language, word, bundled }: { language: TargetLanguage; word: string; bundled?: readonly [string, string][] }) {
+  const sentences = useSentences(language, word, bundled)
   const entry = useMemo(() => ({ language, lemma: word }), [language, word])
   const patterns = usePatterns(entry)
   const hasSentences = Array.isArray(sentences) && sentences.length > 0
