@@ -285,5 +285,18 @@ describe('Turkish Wiktionary', () => {
     expect(w.coger.t).toEqual(['almak'])
     expect(w.hogar.t).toEqual(['ev'])
   })
+
+  it('completes a word\'s missing recording from another source, and adds no word by itself', () => {
+    const b = new PackBuilder()
+    b.add({ word: 'casa', lang_code: 'es', pos: 'noun', senses: [{ glosses: ['house'] }] })
+    b.add({ word: 'perro', lang_code: 'es', pos: 'noun', sounds: [{ mp3_url: 'https://wikt/perro.mp3' }], senses: [{ glosses: ['dog'] }] })
+    b.addAudio('es', 'Casa', 'https://ll/casa.mp3')
+    b.addAudio('es', 'perro', 'https://ll/perro.mp3')
+    b.addAudio('es', 'gato', 'https://ll/gato.mp3')
+    const w = b.finish('es', ['casa', 'perro', 'gato'], 'v1').w
+    expect(w.casa.a).toBe('https://ll/casa.mp3')
+    expect(w.perro.a).toBe('https://wikt/perro.mp3')
+    expect(w.gato).toBeUndefined()
+  })
 })
 

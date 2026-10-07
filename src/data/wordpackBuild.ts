@@ -158,6 +158,8 @@ export class PackBuilder {
   private readonly formOf: Record<TargetLanguage, Map<string, string>> = { en: new Map(), fr: new Map(), es: new Map() }
   /** Turkish Wiktionary's own Turkish glosses of a word, per entry (part of speech), in its order. */
   private readonly trDirect: Record<TargetLanguage, Map<string, { pos?: string; t: string[] }[]>> = { en: new Map(), fr: new Map(), es: new Map() }
+  /** Recordings from elsewhere (Lingua Libre on Commons) for words whose Wiktionary entry has none. */
+  private readonly audio: Record<TargetLanguage, Map<string, string>> = { en: new Map(), fr: new Map(), es: new Map() }
   /** Turkish words whose translation table in Turkish Wiktionary lists this word (ev → maison). */
   private readonly trReverse: Record<TargetLanguage, Map<string, string[]>> = { en: new Map(), fr: new Map(), es: new Map() }
 
@@ -243,6 +245,12 @@ export class PackBuilder {
     this.trDirect[language].set(key, [...(this.trDirect[language].get(key) ?? []), { pos: POS_LETTER[entry.pos ?? ''], t }])
   }
 
+  /** A recording of the word from another source, used when Wiktionary gives none. */
+  addAudio(language: TargetLanguage, word: string, url: string): void {
+    const key = this.key(language, clean(word))
+    if (!this.audio[language].has(key)) this.audio[language].set(key, url)
+  }
+
   /** Words in one translation row (same English meaning) are translations of each other, and of the Turkish ones. */
   private pivot(english: string, translations: readonly WtTranslation[]) {
     const rows = new Map<string, Row>()
@@ -300,7 +308,10 @@ export class PackBuilder {
     const own = this.words[language].get(key)
     if (!own && !this.rows[language].has(key) && !this.trDirect[language].has(key) && !this.trReverse[language].has(key)) return undefined
     const kept = Object.fromEntries(Object.entries({ ...own, ...this.meanings(language, key) }).filter(([, v]) => v !== undefined)) as PackRecord
-    return Object.keys(kept).length ? kept : undefined
+    if (!Object.keys(kept).length) return undefined
+    // A recording from elsewhere only completes a word the pack has anyway.
+    if (!kept.a && this.audio[language].has(key)) kept.a = this.audio[language].get(key)
+    return kept
   }
 
   /**
