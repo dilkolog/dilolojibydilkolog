@@ -8,6 +8,7 @@ import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
 import { emptyNotes, noteLookup, parseMeanings, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
+import { levelFromRank } from '../engine/wordLevel'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
 import { BookIcon, CheckIcon, PlusIcon, SparkleIcon, SpeakerIcon, TenseIcon } from './icons'
@@ -318,7 +319,7 @@ function WordCard({
               </li>
             )}
             {gender && <li>{gender === 'f' ? 'dişil' : gender === 'm' ? 'eril' : 'eril ya da dişil'}</li>}
-            {rank <= 1000 ? <li>En sık 1000 kelimeden</li> : rank <= 3000 ? <li>En sık 3000 kelimeden</li> : null}
+            <li title={`Sıklığa göre yaklaşık seviye: en sık ${rank.toLocaleString('tr')}. kelime`}>≈ {levelFromRank(rank)}</li>
           </ul>
           <div className="word-hero-title">
             <h2 className="word" style={{ '--len': written.length } as CSSProperties} lang={language}>
