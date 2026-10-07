@@ -353,6 +353,7 @@ export function Home({
   onPracticeDifficult,
   onFreePractice,
   extra,
+  firstWords,
   garden,
   focus,
   onOpenLists,
@@ -391,6 +392,8 @@ export function Home({
   onFreePractice: () => void
   /** Habit nudges shown under the day's mission. */
   extra?: ReactNode
+  /** Shown under the empty list's invitation: a word looked up in the dictionary is a good first one. */
+  firstWords?: ReactNode
   /** The garden card: up top when plants need water, otherwise with the weekly things. */
   garden?: { node: ReactNode; urgent: boolean } | null
   /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
@@ -447,6 +450,7 @@ export function Home({
             </div>
           </div>
         </div>
+        {firstWords}
       </div>
     )
   }

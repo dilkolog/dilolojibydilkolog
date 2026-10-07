@@ -686,6 +686,8 @@ export default function App() {
   ]
   const current = (n: NavScreen) => place === n
   const inSettings = screen.name === 'settings' || screen.name === 'account'
+  // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
+  const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
   return (
     <AiContext.Provider value={ai}>
@@ -1071,6 +1073,7 @@ export default function App() {
                       />
                   ),
                 }}
+                firstWords={lookupNudge}
                 extra={
                   <>
                   <HabitCards
@@ -1081,7 +1084,7 @@ export default function App() {
                       startSession(buildDeckPlan({ catalog: newToday, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'practice')
                     }
                   />
-                  <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
+                  {lookupNudge}
                   <BackupNudge
                     onOpenSync={() => {
                       try {
