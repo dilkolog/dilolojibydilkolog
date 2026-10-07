@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildIndex, fold, search, wiktionaryUrl } from './dictionary'
+import { buildIndex, fold, search, turkishBases, wiktionaryUrl } from './dictionary'
 import type { Pack } from './wordpackBuild'
 
 // Most frequent first, as the pack is built.
@@ -95,4 +95,25 @@ describe('dictionary search', () => {
   it('links to the word on Wiktionary at its language', () => {
     expect(wiktionaryUrl('décider', 'fr')).toBe('https://en.wiktionary.org/wiki/d%C3%A9cider#French')
   })
+
+  it('finds an inflected Turkish word by its root', () => {
+    const pack: Pack = { v: 't', w: { maison: { t: ['ev'] }, aller: { t: ['gitmek'] }, livre: { t: ['kitap'] }, venir: { t: ['gelmek'] } } }
+    const ix2 = buildIndex(pack, 'fr')
+    expect(words(search(ix2, 'evler').fromTurkish)).toEqual(['maison'])
+    expect(search(ix2, 'evlerde').turkishAs).toBe('ev')
+    expect(words(search(ix2, 'gittim').fromTurkish)).toEqual(['aller'])
+    expect(search(ix2, 'gidiyorum').turkishAs).toBe('gitmek')
+    expect(words(search(ix2, 'kitabı').fromTurkish)).toEqual(['livre'])
+    expect(words(search(ix2, 'geleceğim').fromTurkish)).toEqual(['venir'])
+    // A word found as typed needs no root.
+    expect(search(ix2, 'kitap').turkishAs).toBeUndefined()
+  })
+
+  it('takes suffixes off a Turkish word, at most two, and tries the root as a verb', () => {
+    const bases = turkishBases('gidiyorum')
+    expect(bases).toContain('gitmek')
+    expect(turkishBases('evlerde')).toContain('ev')
+    expect(turkishBases('evlerde')[0]).toBe('evler')
+  })
 })
+

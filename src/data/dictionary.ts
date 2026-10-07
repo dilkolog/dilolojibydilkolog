@@ -36,6 +36,8 @@ export interface DictResult {
   similar: DictHit[]
   /** Words whose Turkish meaning matches what was typed. */
   fromTurkish: DictHit[]
+  /** The Turkish word they were found through, when it took away a suffix ("gittim" → gitmek). */
+  turkishAs?: string
 }
 
 const LIMIT = 8
@@ -105,13 +107,77 @@ export function search(index: DictIndex, query: string): DictResult {
       if (!was || s < was[0] || (s === was[0] && order < was[1])) best.set(at, [s, order])
     }
   }
-  const fromTurkish = [...best]
+  let fromTurkish = [...best]
     .sort((a, b) => a[1][0] - b[1][0] || a[1][1] - b[1][1] || a[0] - b[0])
     .slice(0, LIMIT)
     .map(([i]) => hit(index, i))
+  // Nothing for the word as typed: an inflected Turkish word, looked up by its root (evler → ev, gittim → gitmek).
+  let turkishAs: string | undefined
+  if (!fromTurkish.length && q.length >= 4) {
+    for (const base of turkishBases(q)) {
+      const carriers = index.turkish.get(base)
+      if (!carriers) continue
+      fromTurkish = [...carriers]
+        .filter((c) => c.at !== exactAt)
+        .sort((a, b) => a.order - b.order || a.at - b.at)
+        .slice(0, LIMIT)
+        .map((c) => hit(index, c.at))
+      if (fromTurkish.length) {
+        turkishAs = base
+        break
+      }
+    }
+  }
 
   const also = exact && !form ? index.pack.f?.[exact.word] : undefined
-  return { exact, ...(form ? { form } : {}), ...(also && also !== exact?.word && index.pack.w[also] ? { alsoFormOf: also } : {}), similar, fromTurkish }
+  return { exact, ...(form ? { form } : {}), ...(also && also !== exact?.word && index.pack.w[also] ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}) }
+}
+
+/**
+ * Turkish suffixes, folded like the index (no ı, ö, ü, ş, ç, ğ), longest first: verb endings
+ * (gidiyorum, gittim, gidecek, gitmiş, giderim) and noun endings (evler, evde, evden, evim).
+ */
+const SUFFIXES = [
+  'iyorsunuz', 'iyorlar', 'iyorum', 'iyorsun', 'iyoruz', 'uyorum', 'uyorsun', 'uyoruz', 'uyorlar', 'iyor', 'uyor', 'yor',
+  'eceksiniz', 'acaksiniz', 'ecegim', 'acagim', 'ecegiz', 'acagiz', 'ecekler', 'acaklar', 'eceksin', 'acaksin', 'ecek', 'acak',
+  'dikleri', 'tikleri', 'diniz', 'tiniz', 'dunuz', 'tunuz', 'diler', 'tiler', 'dular', 'tular',
+  'dim', 'din', 'dik', 'tim', 'tin', 'tik', 'dum', 'dun', 'duk', 'tum', 'tun', 'tuk', 'di', 'ti', 'du', 'tu',
+  'misim', 'mussun', 'mislar', 'misler', 'mis', 'mus', 'meli', 'mali', 'abil', 'ebil',
+  'lerinden', 'larindan', 'lerinde', 'larinda', 'lerini', 'larini', 'lerin', 'larin', 'leri', 'lari', 'ler', 'lar',
+  'imiz', 'umuz', 'iniz', 'unuz', 'nden', 'ndan', 'nde', 'nda', 'den', 'dan', 'ten', 'tan', 'de', 'da', 'te', 'ta',
+  'nin', 'nun', 'yla', 'yle', 'la', 'le', 'yi', 'yu', 'ya', 'ye', 'si', 'su', 'im', 'um', 'in', 'un',
+  'ir', 'ur', 'ar', 'er', 'i', 'u', 'a', 'e',
+]
+
+/** A root's final consonant before a vowel suffix is softened (git → gid-iyor, kitap → kitab-ı): back to the hard one. */
+const HARDEN: Record<string, string> = { d: 't', b: 'p', g: 'k', c: 'c' }
+
+/**
+ * Where an inflected Turkish word (folded) may come from, nearest first: its roots with up to two
+ * suffixes taken away, each as it is, with its final consonant hardened, and as a verb (+mak/+mek).
+ */
+export function turkishBases(word: string): string[] {
+  const roots: string[] = []
+  let layer = [word]
+  for (let depth = 0; depth < 2; depth++) {
+    const next: string[] = []
+    for (const w of layer)
+      for (const suffix of SUFFIXES)
+        if (w.endsWith(suffix) && w.length - suffix.length >= 2) {
+          const root = w.slice(0, -suffix.length)
+          if (!roots.includes(root)) {
+            roots.push(root)
+            next.push(root)
+          }
+        }
+    layer = next
+  }
+  const out: string[] = []
+  for (const root of roots) {
+    const hard = HARDEN[root.slice(-1)] ? root.slice(0, -1) + HARDEN[root.slice(-1)] : root
+    for (const r of [...new Set([root, hard])]) out.push(r, `${r}mek`, `${r}mak`)
+  }
+  return [...new Set(out)].filter((b) => b !== word)
 }
 
 const indexes = new Map<TargetLanguage, Promise<DictIndex | undefined>>()

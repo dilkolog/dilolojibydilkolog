@@ -165,6 +165,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   tanımlı). Sıra: Türkçe editörlerin kelimenin ana türündeki kısa karşılıkları → İngilizce üzerinden pivot → diğer
   türlerdeki karşılıklar → Türkçe maddelerin çeviri tablolarından ters karşılık. Özel ad, kısaltma açılımı,
   büyük harfle başlayan ve tanım gibi uzun açıklamalar alınmaz. İngilizcede Türkçe anlamlı kelime %49 → %59 (1 743 yeni).
+- **Sözlükte düzeltme ve bakılan kelimeler** (2026-10-07): sözlük kartında "Anlamı düzelt" (kendi anlamların
+  paketinkinin yerine gösterilir, paketteki altta kalır; dil başına `dict:<dil>`, yedeğe ve eşitlemeye girer).
+  Kartı 1,5 sn açık kalan kelime "bakıldı" sayılır; 2 kez bakılıp listede olmayan kelime Bugün'de tek tek önerilir
+  (boş listede de), "×" bir daha önermez.
 - **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
   (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
   cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelere

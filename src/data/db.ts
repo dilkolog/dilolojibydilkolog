@@ -5,6 +5,7 @@ import { recordMistake, type MistakeInput } from '../engine/mistakes'
 import type { BossWin } from '../engine/bosses'
 import type { ExamResult } from '../engine/exam'
 import { emptyLab, type LabData } from '../engine/labProgress'
+import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
 import type { SentenceCard } from '../engine/sentences'
@@ -539,6 +540,16 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: `lab:${language}`, value: lab })
   }
 
+  /** The learner's dictionary corrections and look-ups, per language (see engine/dictionaryNotes). */
+  async getDictionaryNotes(language: TargetLanguage): Promise<DictionaryNotes> {
+    const v = (await this.meta.get(`dict:${language}`))?.value as Partial<DictionaryNotes> | undefined
+    return { ...emptyNotes(), ...v }
+  }
+
+  saveDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
+    return this.meta.put({ key: `dict:${language}`, value: notes })
+  }
+
   /** Kept apart from settings so it is never written into a backup file. */
   async getAiKey(): Promise<string | null> {
     const row = await this.meta.get('aiKey')
@@ -778,6 +789,8 @@ export interface Backup {
   /** The verb lab's favourites, recent verbs and practice (per language), and the personal bests of the games. */
   lab?: Partial<Record<'fr' | 'es', LabData>>
   records?: Record<string, number>
+  /** Dictionary corrections and look-ups, per language. */
+  dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
 
 async function blobToDataUrl(blob: Blob): Promise<string> {
@@ -823,6 +836,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     deleted: await db.getDeleted(),
     lab: { fr: await db.getLab('fr'), es: await db.getLab('es') },
     records: await db.getRecords(),
+    dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
       (withMedia ? await db.media.toArray() : []).filter((m) => !m.id.startsWith('tts:') && !m.id.startsWith('aud:')).map(async (m) => ({
@@ -886,6 +900,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.lists) await db.meta.put({ key: 'wordLists', value: backup.lists })
     if (backup.deleted) await db.meta.put({ key: 'deleted', value: backup.deleted })
     for (const [l, lab] of Object.entries(backup.lab ?? {})) if (lab) await db.meta.put({ key: `lab:${l}`, value: lab })
+    for (const [l, notes] of Object.entries(backup.dictionary ?? {})) if (notes) await db.meta.put({ key: `dict:${l}`, value: notes })
     if (backup.records) await db.meta.put({ key: 'records', value: backup.records })
   })
 }
