@@ -12,7 +12,7 @@ alınan kararları ve sapmaları kaydeder.
 | Hedef diller | İngilizce, Fransızca, İspanyolca (ana dil: Türkçe) | — |
 | Depolama | IndexedDB (Dexie), cihaz içi | Offline-first; sunucu yok |
 | Scheduler | FSRS (`ts-fsrs`), **beceri başına ayrı kart** | Recognition ile production ayrı ölçülür (şartname §4 kritik kural) |
-| AI | Şimdilik yok | En sonda birlikte karar verilecek; motor AI olmadan çalışır |
+| AI | İsteğe bağlı, kullanıcının kendi Claude API anahtarıyla (bkz. "AI katmanı") | Motor AI olmadan da tam çalışır; AI yalnızca içerik üretir ve değerlendirir |
 | Kelime verisi | **Kullanıcı kendisi ekler** (form veya CSV/TSV yapıştırma). Hazır örnek setler yalnızca deneme/test için | Hangi kelimelerin öğrenileceğine kullanıcı karar verir |
 | Cihazlar arası taşıma | JSON yedek indir / geri yükle | Sunucusuz kalır; otomatik senkron gerekirse sonra |
 
@@ -53,7 +53,7 @@ src/
 1. **Faz 1 — Motor + testler** ✅
 2. **Faz 2 — Vertical slice:** ✅ açılış → kelime ekleme/içe aktarma → günlük görev → oturum → özet → sonraki tekrar
 3. **Faz 3 — MVP'yi tamamlama:** ✅ PWA/offline, kelime detay/düzenleme, Hatalar ve İlerleme ekranları, serbest pratik
-4. **Faz 4 — AI katmanı** (karar sonra)
+4. **Faz 4 — AI katmanı** ✅ isteğe bağlı, Claude API ile
 5. **Sonrası:** PDF/altyazı/web metninden kelime çıkarma, hikaye modu, graph view, konuşma
 
 ## Kullanıcının kelime eklemesi
@@ -76,6 +76,24 @@ src/
   hatırlama olasılığı şu an ≥ %85 olan kelimeler.
 - **Hataları çalış:** her hatalı kelime bir kez, son hatanın yapıldığı beceride sorulur. Normal mod.
 - **Serbest pratik:** zaten çalışılan kelimeler, zaten açılmış becerilerde; takvimi ve hata listesini etkilemez.
+
+## AI katmanı (`src/ai`)
+
+- **İsteğe bağlı:** Ayarlar → AI yardımcısı bölümüne kullanıcı kendi Anthropic API anahtarını girer.
+  Anahtar yoksa öğrenme akışı aynen çalışır; kelime doldurma, hafıza ipucu gibi işler elle yapılır,
+  sohbet ve hata raporu gibi yalnızca AI'lı özellikler kullanılamaz.
+- **Doğrudan tarayıcıdan:** istekler cihazdan Claude API'ye gider, araya sunucu girmez. Anahtar
+  `meta` tablosunda ayarlardan ayrı tutulur; yedek dosyasına ve senkrona hiç yazılmaz.
+- **Geç yükleme:** Anthropic SDK yalnızca bir AI özelliği ilk kullanıldığında yüklenir; AI'sız açılış yavaşlamaz.
+- **Model:** Claude Opus 5.5 (varsayılan), Sonnet 5.5 veya Haiku 4.5 seçilir. Cevaplar Zod şemasıyla
+  yapılandırılmış çıktı olarak alınır.
+- **Bütçe:** her istek için token ve maliyet aylık olarak, özellik bazında kaydedilir (bu kayıtlar da yedeğe
+  girmez). Aylık sınır seçilebilir ($2 / $5 / $10 / $20 ya da sınırsız); dolunca istek gönderilmez.
+- **Kullanan özellikler:** kelime doldurma ve alan önerileri, cümle ve ters çeviri değerlendirme, yeniden
+  anlatma, hikaye bölümü, hafıza ipucu, kelime ailesi, günlük düzeltme, sohbet, aylık hata raporu,
+  okuma öncesi sorular.
+- **Sınır:** AI notlamaya ve takvime doğrudan karar vermez; değerlendirmesi (verdict + hata türü) normal
+  cevap gibi motordan geçer.
 
 ## Hikaye modu ve hafıza ipucu
 
