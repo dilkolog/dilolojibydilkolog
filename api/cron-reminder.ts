@@ -22,6 +22,15 @@ export function reminderText(r: PushRecord, now: number): string {
   return r.plan ? `${r.plan}: ${parts.join(' ')}` : parts.join(' ')
 }
 
+/** On the learner's Sunday, their week (reported in the last two days), unless they are on holiday. */
+export function weeklyText(r: PushRecord, now: number): string | undefined {
+  const day = localDay(r.tz, now)
+  if (new Date(`${day}T12:00:00Z`).getUTCDay() !== 0 || !r.week) return undefined
+  if (r.vacation && day >= r.vacation.from && day <= r.vacation.to) return undefined
+  const yesterday = localDay(r.tz, now - 86_400_000)
+  return r.reportedDay === day || r.reportedDay === yesterday ? r.week : undefined
+}
+
 /** A chosen rest day or a holiday: no reminder. */
 export function resting(r: PushRecord, now: number): boolean {
   const day = localDay(r.tz, now)
@@ -54,9 +63,12 @@ export async function GET(request: Request): Promise<Response> {
   let sent = 0
   let removed = 0
   for (const { path, record: r } of records) {
-    if (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now)) continue
+    // Sunday evening: the week in one line, studied today or not (not on a holiday).
+    const week = weeklyText(r, now)
+    if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) continue
     try {
-      await webpush.sendNotification(r.subscription, JSON.stringify({ title: 'Kelime Koçu', body: reminderText(r, now), url: '/?go=quick' }), { TTL: 4 * 3600, urgency: 'normal' })
+      const message = week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Kelime Koçu', body: reminderText(r, now), url: '/?go=quick' }
+      await webpush.sendNotification(r.subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal' })
       sent++
     } catch (e) {
       const status = (e as { statusCode?: number }).statusCode
