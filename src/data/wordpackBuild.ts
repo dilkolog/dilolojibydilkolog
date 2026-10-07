@@ -30,6 +30,8 @@ export interface PackRecord {
   p?: string
   /** A French or Spanish noun's gender: m, f, or e (either, by sense). */
   g?: 'm' | 'f' | 'e'
+  /** Example sentences with their Turkish (Tatoeba), for the most frequent words: [sentence, Turkish][]. */
+  c?: [string, string][]
 }
 
 /** Wiktextract's parts of speech, as one letter (the same letters as the Lexique file). */
@@ -343,7 +345,7 @@ export interface PackStats {
 /** What a pack holds, for the build script to print before anyone ships it. */
 export function packStats(pack: Pack): PackStats {
   const records = Object.values(pack.w)
-  const keys = ['t', 'i', 'a', 'e', 's', 'n', 'x', 'p', 'g'] as const
+  const keys = ['t', 'i', 'a', 'e', 's', 'n', 'x', 'p', 'g', 'c'] as const
   const coverage = Object.fromEntries(keys.map((k) => [k, records.length ? records.filter((r) => (k === 'x' ? Object.keys(r.x ?? {}).length : r[k]?.length)).length / records.length : 0])) as PackStats['coverage']
   return { words: records.length, bytes: JSON.stringify(pack).length, coverage }
 }
