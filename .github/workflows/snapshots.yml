@@ -1,0 +1,56 @@
+name: Refresh screenshots
+
+# The screenshot baselines (e2e/visual.e2e.ts-snapshots) depend on the machine's rendering, so they
+# are made where CI compares them: on GitHub's Linux runner. Push a branch named snapshots/… (or run
+# this by hand on any branch): the baselines are retaken, checked to come out the same a second
+# time, and committed back to the branch for review in a pull request.
+
+on:
+  push:
+    branches: ['snapshots/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snapshots-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx vite build
+      - run: npx playwright test e2e/visual.e2e.ts --update-snapshots
+        env:
+          CI: '1'
+      # A baseline that differs on a second run would make CI flaky: refuse it here.
+      - run: npx playwright test e2e/visual.e2e.ts
+        env:
+          CI: '1'
+      - name: Commit the new baselines
+        run: |
+          git add e2e/visual.e2e.ts-snapshots
+          if git diff --cached --quiet; then
+            echo "Baselines unchanged."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Refresh screenshot baselines on the CI runner"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
