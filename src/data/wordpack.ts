@@ -9,17 +9,25 @@ import type { Pack, PackRecord } from './wordpackBuild'
  * The word pack (see wordpackBuild.ts): Turkish meanings, pronunciation, recordings, origins,
  * synonyms and the word in the other two languages, from Wiktionary's dump, offline and instant.
  * A pack is a JSON file per language in ./wordpack/ (built by scripts/build-wordpack.ts); with
- * none there, everything here quietly does nothing. Each is its own chunk, loaded when needed.
+ * none there, everything here quietly does nothing. Packs are served as plain files (not code,
+ * so they stay out of the install download) and fetched when a language first needs one; the
+ * service worker keeps them, so they work offline from then on (vite.config.ts).
  */
-const FILES = import.meta.glob<{ default: Pack }>('./wordpack/*.json')
+const FILES = import.meta.glob<string>('./wordpack/*.json', { query: '?url', import: 'default', eager: true })
 
 const cache = new Map<TargetLanguage, Promise<Pack | undefined>>()
 
 export function loadPack(language: TargetLanguage): Promise<Pack | undefined> {
   let p = cache.get(language)
   if (!p) {
-    const load = FILES[`./wordpack/${language}.json`]
-    p = load ? load().then((m) => m.default) : Promise.resolve(undefined)
+    const url = FILES[`./wordpack/${language}.json`]
+    p = url
+      ? fetch(url)
+          .then((r) => (r.ok ? (r.json() as Promise<Pack>) : undefined))
+          .catch(() => undefined)
+      : Promise.resolve(undefined)
+    // Offline before the pack was ever fetched: try again next time instead of remembering "none".
+    void p.then((pack) => pack || cache.delete(language))
     cache.set(language, p)
   }
   return p

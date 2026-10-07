@@ -147,16 +147,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   kota, şifre kurtarma anahtarı (e-posta veri kurtarmaz), AI için gizlilik metni güncellemesi.
   Dönmeden önce sorulacaklar: ileride başkalarına açılacak mı, birden çok cihaz var mı.
 
-- **Sözlük paketi** (2026-10-06): kod hazır, **paket henüz üretilmedi**. Oturumun ağ politikası
-  kaikki.org, Wikidata, Tatoeba ve Wiktionary'ye çıkışı reddetti (403), bu yüzden gerçek veriyle
-  derleme ve boyut/Türkçe kapsam ölçümü yapılamadı. Üretmek için: kaikki.org'dan İngilizce, Fransızca
-  ve İspanyolca JSONL dökümlerini indir, sonra
-  `npx rolldown scripts/build-wordpack.ts -o /tmp/w.mjs -p node && node /tmp/w.mjs <sürüm> <jsonl>...`.
-  Betik `src/data/wordpack/{en,fr,es}.json` yazar ve kelime sayısı, boyut, alan kapsamını basar;
-  boyut ve Türkçe kapsam kabul edilebilirse commit'lenir (uygulama dosya varsa kendiliğinden kullanır,
-  yoksa hiçbir şey yapmaz). Türkçe karşılıklar İngilizce kelimelerin çeviri tablolarından İngilizce
-  üzerinden eşlenir; kapsam ölçülmeden vaat edilmez. Dikkat: Vite JSON'u JS parçasına çevirdiği için paket dosyaları
-  workbox'ın `**/*.js` kuralıyla ilk kurulumda önbelleğe alınır; boyutu büyükse `globIgnores`/ayrı önbellek düşünülmeli.
+- **Sözlük paketi** (2026-10-07): üretildi ve eklendi (`src/data/wordpack/`, kaynak notu SOURCE.md).
+  Her dil için en sık 8000 kelime; Türkçe anlam EN %61, FR %74, ES %77; diğer dillerdeki karşılık %80–93.
+  Yeni dökümlerde çeviri tabloları anlamların içinde (`senses[].translations`); anlamlar kelimenin kendi
+  tanımlarındaki sıraya göre diziliyor, kaba/hakaret etiketli anlamlar alınmıyor. Paketler JS değil düz JSON
+  dosyası olarak sunuluyor: kurulum indirmesine girmiyor, dil ilk gerektiğinde iniyor ve `word-packs`
+  önbelleğinde offline kalıyor. Yeniden üretirken sürümü değiştir (`applyPack` yalnızca sürüm değişince uygular).
+  İspanyolca için ses kaydı yok (dökümde yok).
 - **Paralel cümleler** (Tatoeba'da bir cümlenin FR/ES/EN çevirileri) yapılmadı: sorgu parametresini
   (`showtrans` değerleri) canlı API'de doğrulayamadım.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
@@ -167,5 +164,5 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] Lab verisi (favoriler, tekrar, bahçe) ve oyun rekorları yedeğe ve eşitlemeye girdi.
 - [ ] Emir kipi (imperativo / impératif) ve passé simple.
 - [ ] "Metinde gördüğün çekimler" listesi (okuma → Ustalık).
-- [ ] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
+- [x] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
 
