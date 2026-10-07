@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { addExample, markWord, MAX_EXAMPLES, removeExample, WordInputError } from '../data/wordInput'
 import { AiError, suggestFields } from '../ai'
@@ -10,6 +10,7 @@ import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { easyFor, fetchCorpus } from '../data/corpus'
 import { patchWithSources } from '../data/provenance'
 import { undoable } from './toast'
+import { LANGUAGE_SHORT } from './labels'
 
 /**
  * A word's example sentences. Several varied contexts make the word usable beyond one sentence
@@ -209,7 +210,7 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
         </button>
       </div>
       <p className="small muted">
-        İnsanların yazıp çevirdiği cümleler; <SpeakerIcon size={14} className="inline-icon" />işaretlilerde ana dili konuşan birinin sesi var. Alıştırmalarda kendi cümlelerinle dönüşümlü kullanılır.
+        İnsanların yazıp çevirdiği cümleler; <SpeakerIcon size={14} className="inline-icon" />işaretlilerde ana dili konuşan birinin sesi var. Varsa aynı cümlenin diğer iki dildeki hâli de altında. Alıştırmalarda kendi cümlelerinle dönüşümlü kullanılır.
       </p>
       {corpus === undefined && !busy && <p className="small muted">Arka planda kendiliğinden gelecek; hemen istersen "Getir"e bas.</p>}
       {corpus?.length === 0 && <p className="small muted">Bu kelime için uygun cümle bulunamadı.</p>}
@@ -222,6 +223,11 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
                   {ex.text}
                 </p>
                 {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
+                {TARGET_LANGUAGES.filter((l) => ex.parallel?.[l]).map((l) => (
+                  <p key={l} className="sentence-parallel small" lang={l}>
+                    <abbr className="parallel-lang" title="Aynı cümle bu dilde">{LANGUAGE_SHORT[l]}</abbr> {ex.parallel![l]}
+                  </p>
+                ))}
               </div>
               <div className="row gap-1 nowrap">
                 {(ex.source?.audioUrl || canSpeak()) && (

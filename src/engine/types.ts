@@ -61,6 +61,8 @@ export interface Example {
   personal?: boolean
   /** A real sentence from a corpus (Tatoeba), with native audio when there is any. */
   source?: { kind: 'tatoeba'; id: number; audioUrl?: string }
+  /** The same sentence in the other target languages (Tatoeba translations), when there is one. */
+  parallel?: Partial<Record<TargetLanguage, string>>
   /** Where the learner met the sentence: the title of the reading text it was saved from. */
   metIn?: string
   /** Words in it, besides the target, the learner would not know yet: 0–1 is the sweet spot (see sentenceFit.ts). */
