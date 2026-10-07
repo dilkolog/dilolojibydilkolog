@@ -58,6 +58,7 @@ import type { LabTab } from './ui/verbs/VerbLab'
 import { useFormsDue } from './ui/verbs/labShared'
 import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
+import { recordVisit } from './ui/screenUsage'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { GAME_LIST, type GameId } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
@@ -444,6 +445,11 @@ export default function App() {
   }, [incoming, !settings])
 
 
+  // Which screens are used, counted on this device only (Settings → Görünüm → Kullanım).
+  useEffect(() => {
+    recordVisit(screen.name)
+  }, [screen.name])
+
   // A word brought in (bookmarklet, ⌘K "add") belongs to that visit of the add form: leaving the
   // words page drops it, so the page doesn't keep reopening a half-filled form.
   const prevScreen = useRef(screen.name)
@@ -822,7 +828,9 @@ export default function App() {
             {/* Related screens under one menu place: switch between them here. */}
             {place && GROUPS[place]?.some((g) => g.screen === screen.name) && (
               <nav className="hub-tabs" aria-label={NAV.find((n) => n.screen === place)!.label}>
-                {GROUPS[place]!.filter((g) => g.screen !== 'verbs' || settings.activeLanguage !== 'en').map((g) => (
+                {GROUPS[place]!.filter(
+                  (g) => (g.screen !== 'verbs' || settings.activeLanguage !== 'en') && (g.screen === screen.name || !settings.hiddenTabs?.includes(g.screen)),
+                ).map((g) => (
                   <button key={g.screen} className="hub-tab" aria-current={g.screen === screen.name ? 'page' : undefined} onClick={go({ name: g.screen } as Screen)}>
                     {g.label}
                     {g.screen === 'mistakes' && !!navBadge.words && <span className="hub-count">{navBadge.words}</span>}
