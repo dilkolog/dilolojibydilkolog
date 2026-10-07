@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState, type CSSProperties } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { AiError, enrichWords } from '../ai'
 import { fold, loadIndex, search, wiktionaryUrl, type DictIndex } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
 import { loadTenses } from '../data/tenseData'
+import { db } from '../data/instance'
 import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
+import { emptyNotes, noteLookup, parseMeanings, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
@@ -61,21 +63,47 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
   const [query, setQuery] = useState(initialQuery)
   const [index, setIndex] = useState<DictIndex | null | undefined>(undefined)
   const [recent, setRecent] = useState(() => loadRecent(language))
+  const [notes, setNotes] = useState<DictionaryNotes>(emptyNotes)
+  const notesRef = useRef(notes)
 
   useEffect(() => {
     let live = true
     setIndex(undefined)
     setRecent(loadRecent(language))
     void loadIndex(language).then((ix) => live && setIndex(ix ?? null))
+    void db.getDictionaryNotes(language).then((n) => {
+      if (!live) return
+      notesRef.current = n
+      setNotes(n)
+    })
     return () => {
       live = false
     }
   }, [language])
 
+  /** Changes the learner's notes and saves them (corrections, look-ups). */
+  const updateNotes = (change: (n: DictionaryNotes) => DictionaryNotes) => {
+    notesRef.current = change(notesRef.current)
+    setNotes(notesRef.current)
+    void db.saveDictionaryNotes(language, notesRef.current)
+  }
+
   const result = useMemo(() => (index ? search(index, query) : { similar: [], fromTurkish: [] }), [index, query])
   const typed = query.trim()
   const exactWord = result.exact?.word
   const own = typed ? ownEntry(vocabulary, exactWord ?? typed, language) : undefined
+
+  // A word whose card stays up a moment was really looked up (not just passed while typing): once a visit.
+  const counted = useRef(new Set<string>())
+  useEffect(() => {
+    if (!exactWord || counted.current.has(exactWord)) return
+    const t = setTimeout(() => {
+      counted.current.add(exactWord)
+      updateNotes((n) => noteLookup(n, exactWord, new Date().toISOString()))
+    }, 1500)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exactWord])
 
   /** Look a word up, as if typed, and remember it. */
   const pick = (word: string) => {
@@ -146,6 +174,8 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               rec={result.exact.rec}
               rank={result.exact.rank}
               own={own}
+              fix={notes.fixes[result.exact.word]?.t}
+              onFix={(meanings) => updateNotes((n) => setFix(n, result.exact!.word, meanings, new Date().toISOString()))}
               onOpenWord={onOpenWord}
               onAdd={(written, meaning) => {
                 setRecent(saveRecent(language, result.exact!.word))
@@ -213,6 +243,8 @@ function WordCard({
   rec,
   rank,
   own,
+  fix,
+  onFix,
   onOpenWord,
   onAdd,
   onOpenLab,
@@ -223,6 +255,10 @@ function WordCard({
   rec: NonNullable<ReturnType<typeof search>['exact']>['rec']
   rank: number
   own?: VocabularyEntry
+  /** The learner's own meanings of the word, shown in place of the pack's. */
+  fix?: string[]
+  /** Saves the learner's meanings; none goes back to the pack's. */
+  onFix: (meanings: string[]) => void
   onOpenWord: (id: string) => void
   /** What was typed, when it is an inflected form of the word. */
   form?: string
@@ -244,7 +280,10 @@ function WordCard({
     }
   }, [word, language, onOpenLab])
 
-  const meanings = rec.t ?? []
+  const packMeanings = rec.t ?? []
+  const meanings = fix ?? packMeanings
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState('')
   // The pack's part of speech and gender (any language), Lexique's for French words the pack lacks them for.
   const pos = (rec.p && POS_CODE[rec.p]) || lexicon?.pos[0]
   const gender = pos === 'noun' ? (genderOfCode(rec.g) ?? lexicon?.gender) : undefined
@@ -285,7 +324,58 @@ function WordCard({
             </button>
           </div>
           {rec.i && <span className="ipa">{rec.i}</span>}
-          {meanings.length > 0 ? <p className="gloss">{meanings.join(', ')}</p> : <p className="gloss muted">Türkçe karşılığı pakette yok.</p>}
+          {editing ? (
+            <form
+              className="stack gap-2"
+              onSubmit={(e) => {
+                e.preventDefault()
+                onFix(parseMeanings(draft))
+                setEditing(false)
+              }}
+            >
+              <label className="small" htmlFor="dict-fix">
+                Türkçe anlamları (virgülle ayır)
+              </label>
+              <input id="dict-fix" className="input" lang="tr" autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} />
+              <div className="row">
+                <button type="submit" className="btn btn-sm">
+                  Kaydet
+                </button>
+                <button type="button" className="btn btn-sm btn-quiet" onClick={() => setEditing(false)}>
+                  Vazgeç
+                </button>
+                {fix && (
+                  <button
+                    type="button"
+                    className="link small"
+                    onClick={() => {
+                      onFix([])
+                      setEditing(false)
+                    }}
+                  >
+                    Paketteki anlama dön
+                  </button>
+                )}
+              </div>
+            </form>
+          ) : (
+            <>
+              {meanings.length > 0 ? <p className="gloss">{meanings.join(', ')}</p> : <p className="gloss muted">Türkçe karşılığı pakette yok.</p>}
+              <p className="small">
+                {fix && <span className="muted">Senin düzeltmen{packMeanings.length > 0 && <> · paketteki: {packMeanings.join(', ')}</>} · </span>}
+                <button
+                  type="button"
+                  className="link small"
+                  onClick={() => {
+                    setDraft(meanings.join(', '))
+                    setEditing(true)
+                  }}
+                >
+                  {meanings.length ? 'Anlamı düzelt' : 'Anlamını ekle'}
+                </button>
+              </p>
+            </>
+          )}
           {alsoFormOf && (
             <p className="small">
               Aynı zamanda{' '}

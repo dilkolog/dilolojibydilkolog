@@ -44,6 +44,7 @@ import { useReminder } from './ui/reminders'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
+import { LookupNudge } from './ui/LookupNudge'
 import { PANE_KEY } from './ui/settingsPane'
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
@@ -1080,6 +1081,7 @@ export default function App() {
                       startSession(buildDeckPlan({ catalog: newToday, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'practice')
                     }
                   />
+                  <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
                   <BackupNudge
                     onOpenSync={() => {
                       try {
