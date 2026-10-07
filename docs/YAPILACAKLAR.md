@@ -157,8 +157,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   yoksa hiçbir şey yapmaz). Türkçe karşılıklar İngilizce kelimelerin çeviri tablolarından İngilizce
   üzerinden eşlenir; kapsam ölçülmeden vaat edilmez. Dikkat: Vite JSON'u JS parçasına çevirdiği için paket dosyaları
   workbox'ın `**/*.js` kuralıyla ilk kurulumda önbelleğe alınır; boyutu büyükse `globIgnores`/ayrı önbellek düşünülmeli.
-- **Paralel cümleler** (Tatoeba'da bir cümlenin FR/ES/EN çevirileri) yapılmadı: sorgu parametresini
-  (`showtrans` değerleri) canlı API'de doğrulayamadım.
+- **Paralel cümleler** (2026-10-07): yapıldı. Tatoeba sorgusu `showtrans:lang=tur,<diğer iki dil>` ile
+  (`showtrans` yalnızca all/none/matching alır ve `showtrans:lang` ile birlikte kullanılamaz). Gerçek
+  cümlelerin altında diğer iki dildeki hâli görünür (`Example.parallel`). Önceden getirilmiş cümlelerde
+  yoktur; "Yeniden getir" ile gelir.
 - Cümle zorluğu (i+1): cümleler sıklık listesi ve kullanıcının kendi kelimeleriyle derecelenir
   (`engine/sentenceFit.ts`); kullanıcı kelimeleri öğrendikçe eski dereceler eskir, yeniden derecelendirme yok.
 

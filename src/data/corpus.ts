@@ -1,4 +1,4 @@
-import type { Example, TargetLanguage, VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type Example, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
 import { loadFrequency } from './frequency'
 import { isUntouched, patchWithSources } from './provenance'
@@ -12,6 +12,9 @@ import { easyWords, rankByFit, type Easy } from '../engine/sentenceFit'
 
 const API = 'https://api.tatoeba.org/unstable/sentences'
 const TATOEBA_LANG: Record<TargetLanguage, string> = { en: 'eng', fr: 'fra', es: 'spa' }
+const others = (language: TargetLanguage) => TARGET_LANGUAGES.filter((l) => l !== language)
+/** Which translations to bring along: Turkish and/or the other two target languages (parallel sentences). */
+const showLangs = (language: TargetLanguage, turkish: boolean) => [...(turkish ? ['tur'] : []), ...others(language).map((l) => TATOEBA_LANG[l])].join(',')
 /** Enough variety without bloating each word. */
 export const CORPUS_SIZE = 12
 /** Words looked up per background run, so the app never floods the service. */
@@ -44,12 +47,15 @@ export function toExamples(data: TatoebaSentence[], lemma: string, language: Tar
     const form = formIn(s.text, lemma, language)
     if (!form) continue
     seen.add(s.text)
-    const tr = (s.translations ?? []).filter((t) => t.lang === 'tur' && !t.is_unapproved).sort((a, b) => Number(!!b.is_direct) - Number(!!a.is_direct))[0]
+    // A direct translation (made from this sentence) before one reached through another language.
+    const best = (lang: string) => (s.translations ?? []).filter((t) => t.lang === lang && !t.is_unapproved).sort((a, b) => Number(!!b.is_direct) - Number(!!a.is_direct))[0]?.text
+    const parallel = Object.fromEntries(others(language).flatMap((l) => (best(TATOEBA_LANG[l]) ? [[l, best(TATOEBA_LANG[l])!]] : [])))
     out.push({
       text: s.text,
-      translation: tr?.text ?? '',
+      translation: best('tur') ?? '',
       form,
       source: { kind: 'tatoeba', id: s.id, audioUrl: s.audios?.length ? tatoebaAudio(s.id, language) : undefined },
+      ...(Object.keys(parallel).length ? { parallel } : {}),
     })
   }
   return out
@@ -81,9 +87,9 @@ export async function fetchCorpus(entry: Pick<VocabularyEntry, 'language' | 'lem
 async function fetchRaw(entry: Pick<VocabularyEntry, 'language' | 'lemma'>): Promise<Example[]> {
   const lang = TATOEBA_LANG[entry.language]
   const q = /\s/.test(entry.lemma.trim()) ? `"${entry.lemma.trim()}"` : entry.lemma.trim()
-  const translated = toExamples(await query({ lang, q, 'trans:lang': 'tur', showtrans: 'matching' }), entry.lemma, entry.language)
+  const translated = toExamples(await query({ lang, q, 'trans:lang': 'tur', 'showtrans:lang': showLangs(entry.language, true) }), entry.lemma, entry.language)
   if (translated.length >= CORPUS_SIZE / 2) return translated.slice(0, CORPUS_SIZE)
-  const more = toExamples(await query({ lang, q, showtrans: 'none' }), entry.lemma, entry.language).filter((x) => !translated.some((t) => t.text === x.text))
+  const more = toExamples(await query({ lang, q, 'showtrans:lang': showLangs(entry.language, false) }), entry.lemma, entry.language).filter((x) => !translated.some((t) => t.text === x.text))
   return [...translated, ...more].slice(0, CORPUS_SIZE)
 }
 

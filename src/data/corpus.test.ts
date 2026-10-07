@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
-import { formIn, isInflection, toExamples } from './corpus'
+import { describe, expect, it, vi } from 'vitest'
+import { fetchCorpus, formIn, isInflection, toExamples } from './corpus'
 
 describe('Tatoeba sentences', () => {
   it('finds inflected forms and phrases', () => {
@@ -39,4 +39,49 @@ describe('Tatoeba sentences', () => {
       { text: 'Ya lo decidiremos mañana.', translation: '', form: 'decidiremos', source: { kind: 'tatoeba', id: 5, audioUrl: undefined } },
     ])
   })
+
+  it('keeps the same sentence in the other two target languages, direct and approved first', () => {
+    const [ex] = toExamples(
+      [
+        {
+          id: 7,
+          text: 'Estoy decidido a aprender.',
+          translations: [
+            { text: "I'm determined to learn.", lang: 'eng' },
+            { text: 'I am determined to learn.', lang: 'eng', is_direct: true },
+            { text: 'Je suis décidé à apprendre.', lang: 'fra', is_unapproved: true },
+            { text: 'Je suis déterminé à apprendre.', lang: 'fra' },
+            { text: 'Estoy determinado a aprender.', lang: 'spa' },
+            { text: 'Ich bin entschlossen zu lernen.', lang: 'deu' },
+            { text: 'Öğrenmeye kararlıyım.', lang: 'tur' },
+          ],
+        },
+        { id: 8, text: 'Decidieron quedarse.', translations: [{ text: 'Kalmaya karar verdiler.', lang: 'tur' }] },
+      ],
+      'decidir',
+      'es',
+    )
+    expect(ex.translation).toBe('Öğrenmeye kararlıyım.')
+    expect(ex.parallel).toEqual({ en: 'I am determined to learn.', fr: 'Je suis déterminé à apprendre.' })
+    // No parallel field at all when there is none.
+    expect(Object.keys(toExamples([{ id: 8, text: 'Decidieron quedarse.' }], 'decidir', 'es')[0])).not.toContain('parallel')
+  })
+
+  it('asks Tatoeba for Turkish and the other two languages, and only those', async () => {
+    const asked: URL[] = []
+    vi.stubGlobal('fetch', async (url: string) => {
+      asked.push(new URL(url))
+      return new Response(JSON.stringify({ data: [] }))
+    })
+    await fetchCorpus({ language: 'fr', lemma: 'décider' })
+    vi.unstubAllGlobals()
+    expect(asked).toHaveLength(2)
+    expect(asked[0].searchParams.get('trans:lang')).toBe('tur')
+    expect(asked[0].searchParams.get('showtrans:lang')).toBe('tur,eng,spa')
+    expect(asked[1].searchParams.get('trans:lang')).toBeNull()
+    expect(asked[1].searchParams.get('showtrans:lang')).toBe('eng,spa')
+    // The API refuses showtrans and showtrans:lang together.
+    expect(asked.every((u) => !u.searchParams.has('showtrans'))).toBe(true)
+  })
 })
+
