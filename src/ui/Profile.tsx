@@ -98,7 +98,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               </span>
               <span className="muted small">{game.xp.total.toLocaleString('tr-TR')} XP</span>
             </div>
-            <div className="xp-bar" role="progressbar" aria-valuenow={Math.round(game.level.progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+            <div className="xp-bar" role="progressbar" aria-label="Sonraki seviyeye ilerleme" aria-valuenow={Math.round(game.level.progress * 100)} aria-valuemin={0} aria-valuemax={100}>
               <div style={{ width: `${game.level.progress * 100}%` }} />
             </div>
             <p className="small muted">
