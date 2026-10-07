@@ -1,5 +1,5 @@
 import 'fake-indexeddb/auto'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // An in-memory Blob store behind the real /api/sync handlers.
 const blobs = new Map<string, Uint8Array>()
@@ -13,7 +13,7 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const api = await import('../../api/sync')
-const { accountStatus, deriveAccount, syncNow, SyncAuthError } = await import('./sync')
+const { accountStatus, deriveAccount, syncNow, SyncAuthError, SyncNotAllowedError } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
@@ -24,6 +24,7 @@ beforeEach(() => {
     return req.method === 'PUT' ? api.PUT(req) : api.GET(req)
   })
 })
+afterEach(() => vi.unstubAllEnvs())
 
 describe('accounts', () => {
   it('derives the same id for a name in any case, and keys that depend on the password', async () => {
@@ -60,4 +61,12 @@ describe('accounts', () => {
     await syncNow(other, await deriveAccount('ALI', 'correct horse'))
     expect((await other.vocabulary.toArray()).map((e) => e.lemma)).toContain('decision')
   }, 60_000)
+
+  it('tells an account the server does not serve apart from a wrong password', async () => {
+    vi.stubEnv('SYNC_ALLOWED', 'ali')
+    const stranger = await deriveAccount('veli', 'correct horse')
+    await expect(accountStatus(stranger)).rejects.toBeInstanceOf(SyncNotAllowedError)
+    await expect(syncNow(new KelimeDB('t-account-4'), stranger)).rejects.toBeInstanceOf(SyncNotAllowedError)
+    expect(await accountStatus(await deriveAccount('ALİ', 'correct horse'))).toBe('new')
+  }, 20_000)
 })
