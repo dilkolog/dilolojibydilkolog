@@ -167,6 +167,6 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] Lab verisi (favoriler, tekrar, bahçe) ve oyun rekorları yedeğe ve eşitlemeye girdi.
 - [x] Passé simple (2026-10-07): 4103 fiilin 4094'ünde; traire, extraire, absoudre gibi eksik (defective) fiillerde yok. Yalnızca laboratuvarda; Türkçeden zaman bulma sorusunda sorulmaz ("açtı" passé composé ile aynı).
 - [ ] Emir kipi (imperativo / impératif): 3 kişi (tu/nous/vous; tú/vosotros/usted…), olumsuzda İspanyolca subjuntivo; laboratuvarın 6 kişilik yapısına nasıl gireceğine karar verilecek.
-- [ ] "Metinde gördüğün çekimler" listesi (okuma → Ustalık).
+- [x] "Metinde gördüğün çekimler" (2026-10-07): okuma bitirilince metindeki fiil çekimleri laboratuvara kaydedilir (`LabData.seen`, fiil başına en çok 24 biçim, eşitlemede birleşir); Ustalık'ta "Metinlerde gördüklerin" (biçim · zaman · kaç kez · hangi metin, dokununca o zamanı alıştırır) ve "Metinlerde en çok gördüğün fiiller".
 - [x] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { errorBreakdown, recordForm, tallyCells, weakestCell, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -160,3 +160,40 @@ describe('where the slips are', () => {
     expect(errorBreakdown(emptyLab())).toEqual([])
   })
 })
+
+describe('forms seen in texts', () => {
+  const T1 = '2026-10-01T10:00:00Z'
+  const T2 = '2026-10-07T10:00:00Z'
+
+  it('adds up a finished reading\'s forms per verb, most met first, with the latest text', () => {
+    let lab = addSeenForms(emptyLab(), [{ form: 'est', lemma: 'être', tense: 'present' }, { form: 'était', lemma: 'être', tense: 'imparfait' }, { form: 'est', lemma: 'être', tense: 'present' }], 'Le Petit Prince', T1)
+    lab = addSeenForms(lab, [{ form: 'était', lemma: 'être', tense: 'imparfait' }, { form: 'était', lemma: 'être', tense: 'imparfait' }, { form: 'fut', lemma: 'être', tense: 'passe-simple' }, { form: 'allons', lemma: 'aller', tense: 'present' }], 'Le Monde', T2)
+    expect(lab.seen!['être']).toEqual([
+      { form: 'était', tense: 'imparfait', count: 3, title: 'Le Monde', at: T2 },
+      { form: 'est', tense: 'present', count: 2, title: 'Le Petit Prince', at: T1 },
+      { form: 'fut', tense: 'passe-simple', count: 1, title: 'Le Monde', at: T2 },
+    ])
+    expect(seenVerbs(lab)).toEqual([
+      { verb: 'être', count: 6 },
+      { verb: 'aller', count: 1 },
+    ])
+  })
+
+  it('leaves the lab as it is when the text had no verb forms', () => {
+    const lab = emptyLab()
+    expect(addSeenForms(lab, [], 'x', T1)).toBe(lab)
+  })
+
+  it('merges two devices: the larger count, the latest place, no doubles', () => {
+    const a = [{ form: 'est', tense: 'present' as const, count: 4, title: 'A', at: T1 }]
+    const b = [
+      { form: 'est', tense: 'present' as const, count: 2, title: 'B', at: T2 },
+      { form: 'fut', tense: 'passe-simple' as const, count: 1, at: T1 },
+    ]
+    expect(mergeSeen(a, b)).toEqual([
+      { form: 'est', tense: 'present', count: 4, title: 'B', at: T2 },
+      { form: 'fut', tense: 'passe-simple', count: 1, at: T1 },
+    ])
+  })
+})
+
