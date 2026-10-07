@@ -4,6 +4,7 @@ import { db } from '../data/instance'
 import { generateSyncCode, normalizeCode, SyncNotAllowedError } from '../data/sync'
 import { getSyncCode, NOT_ALLOWED, runSync, setSyncCode } from './syncRunner'
 import { relativeTime } from './format'
+import { RestorePoints } from './RestorePoints'
 
 /** Sync between devices: start with a new code here, or enter the code from another device. */
 export function SyncSettings() {
@@ -75,6 +76,7 @@ export function SyncSettings() {
               Bu cihazda eşitlemeyi kapat
             </button>
           </div>
+          <RestorePoints />
         </>
       ) : (
         <>

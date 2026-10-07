@@ -9,6 +9,8 @@ vi.mock('@vercel/blob', () => ({
     return {}
   },
   get: async (path: string) => (blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)!.slice()).body } : null),
+  list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
+  del: async (path: string) => void blobs.delete(path),
 }))
 
 const { GET, PUT } = await import('../../api/sync')
@@ -119,4 +121,50 @@ describe('/api/sync allowlist (SYNC_ALLOWED)', () => {
     expect((await PUT(req({ id: ali.id, token: ali.auth, body: 'x' }))).status).toBe(204)
     expect(await read(await GET(req({ id: ali.id, token: WRONG })))).toEqual({ status: 403, text: 'forbidden' })
   })
+
 })
+
+describe('/api/sync restore points', () => {
+  const history = (id = ID, token?: string) => new Request(`https://app.test/api/sync?id=${id}&history=1`, { headers: token ? { 'x-sync-auth': token } : {} })
+
+  it('keeps the core it replaces as the day\'s point, once a day, and lists the days', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(new Date('2026-10-05T10:00:00Z'))
+    expect((await PUT(req({ body: 'v1' }))).status).toBe(204)
+    // The first core has nothing before it.
+    expect(blobs.has(`sync/${ID}/h-2026-10-05.bin`)).toBe(false)
+    await PUT(req({ body: 'v2' }))
+    await PUT(req({ body: 'v3' }))
+    // Today's point is the day's first replaced core, not overwritten later.
+    expect(await read(await GET(req({ part: 'h-2026-10-05' })))).toEqual({ status: 200, text: 'v1' })
+    vi.setSystemTime(new Date('2026-10-06T10:00:00Z'))
+    await PUT(req({ body: 'v4' }))
+    expect(await read(await GET(req({ part: 'h-2026-10-06' })))).toEqual({ status: 200, text: 'v3' })
+    expect(await (await GET(history())).json()).toEqual({ days: ['2026-10-06', '2026-10-05'] })
+    vi.useRealTimers()
+  })
+
+  it('keeps a week of points', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    for (let d = 1; d <= 10; d++) {
+      vi.setSystemTime(new Date(`2026-10-${String(d).padStart(2, '0')}T10:00:00Z`))
+      await PUT(req({ body: `v${d}` }))
+    }
+    const { days } = (await (await GET(history())).json()) as { days: string[] }
+    expect(days).toHaveLength(7)
+    expect(days[0]).toBe('2026-10-10')
+    expect(days[6]).toBe('2026-10-04')
+    vi.useRealTimers()
+  })
+
+  it('never takes a point sent from outside, and guards points like the core', async () => {
+    expect((await PUT(req({ part: 'h-2026-10-05', body: 'forged' }))).status).toBe(405)
+    // An account's points need its token.
+    await PUT(req({ token: TOKEN, body: 'mine' }))
+    await PUT(req({ token: TOKEN, body: 'mine2' }))
+    expect((await GET(history(ID))).status).toBe(403)
+    expect((await GET(history(ID, TOKEN))).status).toBe(200)
+    expect((await GET(history('zz'))).status).toBe(400)
+  })
+})
+

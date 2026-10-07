@@ -110,6 +110,8 @@ export interface Settings {
   haptics?: boolean
   /** Reviews waiting shown as a number on the app icon (installed app); default on. */
   appBadge?: boolean
+  /** Offer a word copied elsewhere on coming back to the app (needs clipboard permission); default off. */
+  clipboardSuggest?: boolean
   /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */
   hideVosotros?: boolean
   /** The word list in focus per language: new words come only from it (see dailyPlan). */
