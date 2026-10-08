@@ -31,9 +31,10 @@ const mistake = (entryId: string, errorType: 'collocation' | 'confusion' | 'mean
 
 describe('buildMistakePlan', () => {
   it('practises each word with open mistakes once, in the skill of its latest mistake', () => {
-    // decision has recall practised, so collocation is unlocked.
+    // decision's recall has graduated (two right answers through its learning step), so collocation is unlocked.
     let s = practised(decision, 2)
-    s = processAttempt(s, { exerciseType: 'typed_translation', verdict: 'correct', responseMs: 5000, hintsUsed: 0, maxHints: 3, at: NOW }, [], scheduler, () => 'x').state
+    for (const at of [NOW, new Date(NOW.getTime() + 15 * 60_000)])
+      s = processAttempt(s, { exerciseType: 'typed_translation', verdict: 'correct', responseMs: 5000, hintsUsed: 0, maxHints: 3, at }, [], scheduler, () => 'x').state
     let bank = recordMistake([], mistake('en:decision', 'meaning', new Date(NOW.getTime() - 2000)))
     bank = recordMistake(bank, mistake('en:decision', 'collocation', NOW))
     bank = recordMistake(bank, mistake('en:affect', 'confusion', NOW))

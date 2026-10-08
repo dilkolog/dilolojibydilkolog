@@ -1,4 +1,4 @@
-import { EXERCISES } from './exercises'
+import { EXERCISES, exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
 import { createRng, shuffle, type Rng } from './rng'
 import { isRetired, SURPRISE_PER_DAY } from './retire'
@@ -89,6 +89,12 @@ export const INTRO_GAP = 2
 
 const INTRO_COST_MS = 20000
 const OVERHEAD_MS = 4000
+/**
+ * What a new word costs beyond its introduction and first test: the session brings it back twice
+ * more while it is fragile (GRADUATED_GAPS in session.ts: once by choice, once typed). Counting
+ * them keeps the estimate honest and the day's new words within the time the learner gave.
+ */
+const NEW_FOLLOW_UPS_MS = EXERCISES.mc_meaning.expectedMs + EXERCISES.typed_translation.expectedMs + 2 * OVERHEAD_MS
 const DAY_MS = 86_400_000
 const REASON_ORDER: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new', 'practice']
 
@@ -138,11 +144,14 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
       const skill = r < FORGOTTEN_R ? practised[0].skill : due[0].skill
       const reason: PlanReason =
         r < FORGOTTEN_R ? 'forgotten' : open.length ? 'mistake' : r < WEAK_R ? 'weak' : 'due'
-      scored.push({
-        item: { kind: 'exercise', entryId: entry.id, reason, skill, exerciseType: pickExerciseType(skill, entry, state, rng, opts) },
-        r,
-        fresh: state.introducedAt >= yesterday && state.introducedAt < today,
-      })
+      const fresh = state.introducedAt >= yesterday && state.introducedAt < today
+      // Met yesterday: seen again today inside a sentence, where it lives (and is retrieved from context,
+      // not only from its translation). A recognition item turns into the sentence; otherwise one is added.
+      const inSentence = fresh && exerciseTypesFor('recognition', entry, opts).includes('mc_context')
+      const exerciseType = inSentence && skill === 'recognition' ? 'mc_context' : pickExerciseType(skill, entry, state, rng, opts)
+      scored.push({ item: { kind: 'exercise', entryId: entry.id, reason, skill, exerciseType }, r, fresh })
+      if (inSentence && skill !== 'recognition')
+        scored.push({ item: { kind: 'exercise', entryId: entry.id, reason, skill: 'recognition', exerciseType: 'mc_context' }, r, fresh })
     } else if (open.length && (!state.lastReviewAt || state.lastReviewAt < today)) {
       const latest = open.reduce((a, b) => (a.lastAt > b.lastAt ? a : b))
       const wanted = ERROR_SKILL[latest.errorType]
@@ -269,7 +278,7 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   if (!backlog) {
     for (const entry of newWordCandidates(input, limit)) {
       const pair = introductionPair(entry, rng)
-      const cost = pair.reduce((s, p) => s + itemCost(p), 0)
+      const cost = pair.reduce((s, p) => s + itemCost(p), 0) + NEW_FOLLOW_UPS_MS
       if (used + cost > budget) {
         budgetHit = true
         break

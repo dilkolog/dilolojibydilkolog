@@ -783,6 +783,7 @@ export function Summary({
   onUnmarkDifficult,
   before,
   after,
+  firstSitting,
   onDone,
 }: {
   summary: SessionSummary
@@ -793,6 +794,8 @@ export function Summary({
   onUnmarkDifficult?: (entryId: string) => void | Promise<void>
   before: GameState | null
   after: GameState | null
+  /** The first of a long day's two sittings: the rest waits on Today. */
+  firstSitting?: boolean
   onDone: () => void
 }) {
   const name = (id: string) => {
@@ -940,6 +943,9 @@ export function Summary({
             </span>
           ))}
         </div>
+      )}
+      {firstSitting && (
+        <p className="note">Günün ilk yarısı tamam. Kalanı Bugün'de hazır; birkaç saat sonra yaparsan araya giren zaman sayesinde daha kalıcı olur.</p>
       )}
       <div className="summary-actions">
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>

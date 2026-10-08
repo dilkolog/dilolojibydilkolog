@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
+import { completeItem, currentItem, firstSittingEnd, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -142,5 +142,22 @@ describe('break suggestion', () => {
     expect(suggestBreak(run('oooooooooooooxoxoxox'))).toBe(false)
     // Introductions (no verdict) don't count as answers.
     expect(suggestBreak(run('-------xxxxxxxx'))).toBe(false)
+  })
+})
+
+describe('two sittings for a long day', () => {
+  const intro = (id: string): PlanItem => ({ kind: 'introduce', entryId: id, reason: 'new', skill: 'recognition' })
+  const test_ = (id: string, reason: PlanItem['reason'] = 'new'): PlanItem => ({ kind: 'exercise', entryId: id, reason, skill: 'recognition', exerciseType: 'mc_meaning' })
+
+  it('ends the first sitting about halfway', () => {
+    const items = ['a', 'b', 'c', 'd', 'e', 'f'].map((id) => test_(id, 'due'))
+    expect(firstSittingEnd(items)).toBe(3)
+  })
+
+  it('never between a word and its first test', () => {
+    const items = [test_('a', 'due'), test_('b', 'due'), intro('n'), test_('c', 'due'), test_('n'), test_('d', 'due')]
+    // Halfway (3) would leave "n" introduced and untested; the cut moves past its test.
+    expect(firstSittingEnd(items)).toBe(5)
+    expect(firstSittingEnd([])).toBe(0)
   })
 })

@@ -31,7 +31,7 @@ import { Select } from './Select'
 import { canSpeak, speak, voicesFor } from './speech'
 import { canListen } from './speechInput'
 import { dictionaryHtml, toCsv } from '../data/exportList'
-import { forecastWorkload } from '../engine/workloadForecast'
+import { forecastWorkload, monthlyMinutes, recommendedNewWords } from '../engine/workloadForecast'
 import { bookmarkletCode } from './incoming'
 import { PageHeader } from './PageHeader'
 import type { TypingShare } from '../engine/session'
@@ -129,6 +129,32 @@ function PushToggle({ state }: { state: PushState }) {
       />
       {error && <p className="error small">{error}</p>}
     </>
+  )
+}
+
+/**
+ * The pace's cost in plain sight, under the choice: what a day will take a month on, and when that
+ * outgrows the daily minutes, the pace that fits (one tap). Too many new words a day is the most
+ * common reason study stops feeling useful: reviews pile up and new words stop coming.
+ */
+function PaceNote({ settings: s, onApply }: { settings: Settings; onApply: (n: number) => void }) {
+  if (!s.newWordsPerDay) return null
+  const minutes = Math.round(monthlyMinutes(s.newWordsPerDay, s.retention, s.fsrsWeights))
+  const fits = recommendedNewWords(NEW_WORDS, s.dailyMinutes, s.retention, s.fsrsWeights)
+  if (minutes <= s.dailyMinutes)
+    return <p className="small muted">Bu hızla bir ay sonra günlük çalışma yaklaşık {minutes} dakika sürer; {s.dailyMinutes} dakikana sığıyor.</p>
+  return (
+    <p className="note">
+      Bu hızla bir ay sonra günlük çalışma yaklaşık {minutes} dakika sürer, günlük süren {s.dailyMinutes} dakika: tekrarlar birikir ve yeni kelimeler çoğu gün gelmez.
+      {fits > 0 && fits !== s.newWordsPerDay && (
+        <>
+          {' '}Bu süreye günde {fits} yeni kelime sığar.{' '}
+          <button type="button" className="link" onClick={() => onApply(fits)}>
+            {fits} yap
+          </button>
+        </>
+      )}
+    </p>
   )
 }
 
@@ -401,12 +427,21 @@ export function SettingsScreen({
             <Row label="Günde en fazla yeni kelime" help={newWordsHelp(settings)}>
               <Chips options={NEW_WORDS} value={settings.newWordsPerDay} onChange={(v) => set('newWordsPerDay', v)} />
             </Row>
+            <PaceNote settings={settings} onApply={(n) => set('newWordsPerDay', n)} />
             <Row label="Günlük XP hedefi" help="Ana sayfada hedef çubuğu olarak görünür.">
               <Chips options={XP_GOALS} value={settings.dailyXpGoal} onChange={(v) => set('dailyXpGoal', v)} format={(x) => `${x} XP`} />
             </Row>
             <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
               <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
             </Row>
+            {!settings.sessionMax && (
+              <Toggle
+                label="Uzun günü ikiye böl"
+                help="Günün görevi 15 dakikayı aşınca ilk oturum yarıda biter, kalanı Bugün'de bekler. Aynı çalışma iki oturuma yayılınca daha kalıcı olur ve ikinci yarı yorgun yapılmaz."
+                checked={settings.splitLongDays ?? true}
+                onChange={(v) => set('splitLongDays', v)}
+              />
+            )}
             <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
               <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
             </Row>

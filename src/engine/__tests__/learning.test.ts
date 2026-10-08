@@ -62,21 +62,39 @@ describe('progressive unlocking', () => {
     expect(unlockedSkills(newWordState(decision, T0), decision)).toEqual(['recognition'])
   })
 
-  it('listening unlocks after first exposure, recall after recognition graduates', () => {
-    let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+  it('recall unlocks right after the first recognition, before it graduates', () => {
+    const s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
     expect(s.skills.recognition!.state).not.toBe(State.Review)
-    expect(unlockedSkills(s, decision)).toEqual(['recognition', 'listening'])
-
-    s = answer(s, 'mc_meaning', minutes(15)).state
-    expect(s.skills.recognition!.state).toBe(State.Review)
     expect(unlockedSkills(s, decision)).toContain('recall')
+    expect(unlockedSkills(newWordState(decision, T0), decision)).toEqual(['recognition'])
   })
 
-  it('the article skill unlocks after first exposure, only for FR/ES nouns', () => {
-    const fr = answer(newWordState(laDecision, T0), 'mc_meaning', T0).state
+  it('a right choice holds the next question to a day until the word has been typed right once', () => {
+    let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    s = answer(s, 'mc_meaning', minutes(15)).state
+    expect(s.skills.recognition!.due.getTime() - minutes(15).getTime()).toBeLessThanOrEqual(86_400_000)
+    // Recalled once: choices may now push the word out as far as FSRS says.
+    s = answer(s, 'typed_translation', minutes(30)).state
+    s = answer(s, 'mc_meaning', new Date(s.skills.recognition!.due.getTime() + 60_000)).state
+    expect(s.skills.recognition!.scheduled_days).toBeGreaterThan(1)
+  })
+
+  it('the article skill unlocks once the word has been recalled, only for FR/ES nouns', () => {
+    let fr = answer(newWordState(laDecision, T0), 'mc_meaning', T0).state
+    expect(unlockedSkills(fr, laDecision)).not.toContain('gender')
+    fr = answer(fr, 'typed_translation', minutes(15)).state
     expect(unlockedSkills(fr, laDecision)).toContain('gender')
-    const en = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    let en = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    en = answer(en, 'typed_translation', minutes(15)).state
     expect(unlockedSkills(en, decision)).not.toContain('gender')
+  })
+
+  it('listening, patterns and production wait until recall has graduated', () => {
+    let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    s = answer(s, 'typed_translation', minutes(15)).state
+    expect(unlockedSkills(s, decision)).toEqual(['recognition', 'recall'])
+    s = answer(s, 'typed_translation', minutes(30)).state
+    expect(unlockedSkills(s, decision)).toEqual(expect.arrayContaining(['listening', 'collocation', 'production']))
   })
 
   it('collocation and production unlock only when the word has data for them', () => {
@@ -94,8 +112,8 @@ describe('progressive unlocking', () => {
     expect(dueSkills(s, decision, scheduler, minutes(16))).toEqual([])
     const tomorrow = new Date(T0.getTime() + 86_400_000)
     const due = dueSkills(s, decision, scheduler, tomorrow)
-    expect(due[0]).toMatchObject({ retrievability: 0 })
-    expect(due.map((d) => d.skill)).toEqual(expect.arrayContaining(['listening', 'recall']))
+    expect(due[0]).toMatchObject({ skill: 'recall', retrievability: 0 })
+    expect(due.map((d) => d.skill)).not.toContain('listening')
   })
 })
 
@@ -204,11 +222,13 @@ describe('markKnown', () => {
 })
 
 describe('skill tie-break', () => {
-  it('when two new skills are equally due, recall comes before listening', () => {
+  it('when two new skills are equally due, the more fundamental one comes first', () => {
     let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
-    s = answer(s, 'mc_meaning', minutes(15)).state
+    s = answer(s, 'typed_translation', minutes(15)).state
+    s = answer(s, 'typed_translation', minutes(30)).state
     const due = dueSkills(s, decision, scheduler, new Date(T0.getTime() + 86_400_000))
-    expect(due.map((d) => d.skill).slice(0, 2)).toEqual(['recall', 'listening'])
+    const fresh = due.filter((d) => d.retrievability === 0).map((d) => d.skill)
+    expect(fresh.indexOf('listening')).toBeLessThan(fresh.indexOf('collocation'))
   })
 })
 

@@ -40,3 +40,19 @@ export function forecastWorkload(perDay: number, retention: number, weights?: re
   }
   return { reviewsAt, minutesAt: (day) => (reviewsAt(day) * SECONDS_PER_REVIEW) / 60 }
 }
+
+/** Minutes a new word takes on its first day: introduction, first test and two follow-ups. */
+export const NEW_WORD_MINUTES = 0.8
+
+/**
+ * The daily minutes a pace settles into after a month: the reviews it has built up plus the new
+ * words themselves. Above the learner's daily minutes, new words would stop coming most days.
+ */
+export function monthlyMinutes(perDay: number, retention: number, weights?: readonly number[] | null): number {
+  return forecastWorkload(perDay, retention, weights).minutesAt(30) + perDay * NEW_WORD_MINUTES
+}
+
+/** The largest of `options` that still fits `dailyMinutes` a month on (0 when none does). */
+export function recommendedNewWords(options: readonly number[], dailyMinutes: number, retention: number, weights?: readonly number[] | null): number {
+  return [...options].sort((a, b) => b - a).find((n) => monthlyMinutes(n, retention, weights) <= dailyMinutes) ?? 0
+}
