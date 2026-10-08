@@ -6,7 +6,7 @@ import { answeredToday, progressStats } from './engine/progress'
 import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/practice'
 import { nextReviewAt } from './engine/review'
 import { createRng } from './engine/rng'
-import type { SessionSummary } from './engine/session'
+import { firstSittingEnd, SPLIT_ABOVE_MINUTES, type SessionSummary } from './engine/session'
 import {
   TARGET_LANGUAGES,
   type Mistake,
@@ -120,8 +120,8 @@ function prefetchScreens() {
 
 type Screen =
   | { name: 'home' }
-  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[] }
-  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[] }
+  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[]; firstSitting?: boolean }
+  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; firstSitting?: boolean }
   | { name: 'words' }
   | { name: 'dictionary'; query?: string }
   | { name: 'word'; entryId: string }
@@ -598,16 +598,24 @@ export default function App() {
         gameBefore: s.name === 'session' ? s.gameBefore : null,
         // Words of other languages (a mixed session) still get their names in the summary.
         extra: s.name === 'session' ? s.extra : undefined,
+        firstSitting: s.name === 'session' ? s.firstSitting : undefined,
       }))
     },
     [reload],
   )
 
   /** `extra`: words that may not be in the loaded list yet (just added), so the session has them. */
-  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult') => {
+  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult', firstSitting?: boolean) => {
     // A session cap takes a prefix: introductions always come before their first test.
     const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
-    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic })
+    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic, firstSitting })
+  }
+  /** The day's plan; a long day (and no session cap set) in two sittings, the first ending about halfway. */
+  const startDay = () => {
+    if (!plan) return
+    const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
+    const end = split ? firstSittingEnd(plan.items) : plan.items.length
+    startSession(plan.items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < plan.items.length)
   }
   /** A practice of just the words marked hard, apart from the day's plan. */
   const practiceDifficult = () =>
@@ -714,7 +722,7 @@ export default function App() {
   const inSession = screen.name === 'session'
 
   const commands: Command[] = [
-    ...(plan && plan.items.length ? [{ id: 'start', label: 'Bugünkü görevi başlat', icon: <PlayIcon size={18} />, group: 'İşlemler', run: () => startSession(plan.items, 'normal', daySeed(new Date())) }] : []),
+    ...(plan && plan.items.length ? [{ id: 'start', label: 'Bugünkü görevi başlat', icon: <PlayIcon size={18} />, group: 'İşlemler', run: startDay }] : []),
     { id: 'add', label: 'Kelime ekle', icon: <PlusIcon size={18} />, group: 'İşlemler', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
     ...(data && data.states.some((s) => Object.keys(s.skills).length)
       ? [{ id: 'practice', label: 'Serbest pratik', icon: <SparkleIcon size={18} />, group: 'İşlemler', run: () => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice') }]
@@ -908,6 +916,7 @@ export default function App() {
                 }}
                 before={screen.gameBefore}
                 after={game}
+                firstSitting={screen.firstSitting}
                 onDone={go({ name: 'home' })}
               />
             ) : screen.name === 'words' ? (
@@ -1058,7 +1067,7 @@ export default function App() {
                 nextReview={earliest(data.states)}
                 openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
                 canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
-                onStart={() => startSession(plan.items, 'normal', daySeed(new Date()))}
+                onStart={startDay}
                 onAddWords={go({ name: 'words' })}
                 focus={(() => {
                   const list = data.lists.find((l) => l.id === planInput?.settings.focusListId)

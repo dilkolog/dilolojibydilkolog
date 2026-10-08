@@ -224,3 +224,22 @@ export function summarize(s: Session): SessionSummary {
     xp: s.log.reduce((sum, l) => sum + (l.xp ?? 0), 0),
   }
 }
+
+/** A day estimated above this many minutes is done in two sittings (unless a session cap is set). */
+export const SPLIT_ABOVE_MINUTES = 15
+
+/**
+ * Where to end the first of two sittings: about halfway, but never between a word's introduction
+ * and its first test, so no word is left introduced and untested until later. Practice spread over
+ * two sittings is remembered better than the same practice in one (distributed practice;
+ * Cepeda et al. 2006), and the second half isn't done tired.
+ */
+export function firstSittingEnd(items: readonly PlanItem[]): number {
+  const half = Math.ceil(items.length / 2)
+  for (let end = half; end < items.length; end++) {
+    const before = items.slice(0, end)
+    const open = before.some((it) => it.kind === 'introduce' && !before.some((x) => x.kind === 'exercise' && x.entryId === it.entryId))
+    if (!open) return end
+  }
+  return items.length
+}

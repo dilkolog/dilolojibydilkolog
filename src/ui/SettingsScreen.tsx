@@ -433,6 +433,14 @@ export function SettingsScreen({
             <Row label="Bir oturumda en fazla" help="Uzun görevleri parçalara böler; kalanı sonraki oturuma kalır.">
               <Chips options={SESSION_MAX} value={settings.sessionMax} onChange={(v) => set('sessionMax', v)} format={(n) => (n ? `${n} soru` : 'Sınırsız')} />
             </Row>
+            {!settings.sessionMax && (
+              <Toggle
+                label="Uzun günü ikiye böl"
+                help="Günün görevi 15 dakikayı aşınca ilk oturum yarıda biter, kalanı Bugün'de bekler. Aynı çalışma iki oturuma yayılınca daha kalıcı olur ve ikinci yarı yorgun yapılmaz."
+                checked={settings.splitLongDays ?? true}
+                onChange={(v) => set('splitLongDays', v)}
+              />
+            )}
             <Row label="Çalışma planın" help="Ne zaman ve nerede çalışacağını önceden belirlemek, alışkanlığa dönüşmesini belirgin şekilde kolaylaştırır. Hatırlatma bildiriminde de görünür.">
               <input className="input" value={settings.studyPlan} onChange={(e) => onChange({ ...settings, studyPlan: e.target.value, studyPlanAsked: true })} placeholder="Sabah kahvemi içerken" />
             </Row>
