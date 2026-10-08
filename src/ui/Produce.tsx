@@ -20,6 +20,7 @@ import { canSpeak, speak } from './speech'
 import { canListen, listen } from './speechInput'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
+import { useTabIndicator } from './useTabIndicator'
 import { correctionDiff } from '../engine/correctionDiff'
 
 interface Props {
@@ -42,11 +43,12 @@ function usePracticeWords(vocabulary: VocabularyEntry[], states: UserWordState[]
  */
 export function ProduceScreen(p: Props) {
   const [tab, setTab] = useState<'journal' | 'chat' | 'mission' | 'fluency' | 'gloss'>('journal')
+  const tabsRef = useTabIndicator(tab)
   const fluencyWords = usePracticeWords(p.vocabulary, p.states, 3)
   return (
     <div className="stack">
       <PageHeader title="Yaz & konuş" sub="Bildiğin kelimeleri kullanarak yaz ve konuş: asıl öğrenme burada pekişir." />
-      <div className="page-tabs" role="tablist" aria-label="Bölüm">
+      <div className="page-tabs ind-line" role="tablist" aria-label="Bölüm" ref={tabsRef}>
         <button role="tab" className="page-tab" aria-selected={tab === 'journal'} onClick={() => setTab('journal')}>
           Günlük
         </button>

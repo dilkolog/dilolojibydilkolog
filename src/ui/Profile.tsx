@@ -13,6 +13,7 @@ import { StreakFlame } from './StreakFlame'
 import { localDate } from '../engine/progress'
 import { bannerOf, daysUntil, frameOf, pinnedBadges, titleName, type Unlockables } from '../engine/profileStyle'
 import { ProfileCustomizer } from './ProfileCustomizer'
+import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
@@ -28,6 +29,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const [customizing, setCustomizing] = useState(false)
   const [picking, setPicking] = useState(false)
   const [tab, setTab] = useState<'badges' | 'titles' | 'share'>('badges')
+  const tabsRef = useTabIndicator(tab)
   const [openBadge, setOpenBadge] = useState<Achievement | null>(null)
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
@@ -164,7 +166,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             />
           </div>
 
-          <div className="page-tabs" role="tablist" aria-label="Profil">
+          <div className="page-tabs ind-line" role="tablist" aria-label="Profil" ref={tabsRef}>
             {(['badges', 'titles', 'share'] as const).map((t) => (
               <button key={t} role="tab" className="page-tab" aria-selected={tab === t} onClick={() => setTab(t)}>
                 {t === 'badges' ? 'Rozetler' : t === 'titles' ? 'Unvanlar' : 'Paylaş'}
