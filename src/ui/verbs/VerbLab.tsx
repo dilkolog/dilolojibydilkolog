@@ -234,6 +234,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 available={available}
                 lab={lab}
                 byFrequency={byFrequency}
+                onItem={openItem}
                 onCheck={(v, t, ok, given, expected, person) => {
                   update((l) => recordCheck(l, scheduler, v, t, ok, new Date()))
                   onAnswer(v, t, ok, given, expected, person)
@@ -255,7 +256,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
           </div>
         </section>
         <aside className="card lab-lists" aria-label="Fiil listeleri">
-          <PickerLists language={language} verb={verb} tense={current} lab={lab} level={level} onLevel={setLevel} levels={levels} byFrequency={byFrequency} ownVerbs={ownVerbs} onVerb={choose} onItem={openItem} />
+          <PickerLists language={language} verb={verb} tense={current} lab={lab} level={level} onLevel={setLevel} levels={levels} byFrequency={byFrequency} ownVerbs={ownVerbs} onVerb={choose} />
         </aside>
       </div>
     </div>

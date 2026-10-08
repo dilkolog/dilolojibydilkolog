@@ -181,8 +181,12 @@ test('verb lab: a verb the tables lack is said so, the shuffle picks another, fa
   await expect.poll(() => labFavorites(page, 'fr')).toHaveLength(1)
   await page.reload()
   await openVerbLab(page)
-  await page.locator('.lab-fold-head', { hasText: 'Favorilerim' }).click()
-  await expect(page.locator('.lab-fold', { hasText: 'Favorilerim' }).locator('.chip')).toHaveCount(1)
+  // One list with a filter: favourites come first when there are any; recent is a tap away.
+  const lists = page.locator('.lab-lists')
+  await expect(lists.getByRole('button', { name: /Favori/ })).toHaveAttribute('aria-pressed', 'true')
+  await expect(lists.locator('.lab-chips .chip')).toHaveCount(1)
+  await lists.getByRole('button', { name: /Son bakılan/ }).click()
+  await expect(lists.locator('.lab-chips .chip').first()).toBeVisible()
 })
 
 test('verb lab: forms put in the review queue come back on Today and in the review, and the garden shows them', async ({ page }) => {

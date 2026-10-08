@@ -5,7 +5,7 @@ import { irregularForms, tenseSentence, verbParts, type Tense } from '../../engi
 import { labForms } from '../../engine/verbLab'
 import { masteryLevel, labKey, verbMastery, type LabData } from '../../engine/labProgress'
 import { canSpeak, speak } from '../speech'
-import { BookIcon, CheckIcon, ChevronDownIcon, SpeakerIcon, StarIcon } from '../icons'
+import { BookIcon, CheckIcon, ChevronDownIcon, MoreIcon, SpeakerIcon, StarIcon } from '../icons'
 import { Popover, MenuItem } from '../Popover'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
@@ -110,15 +110,6 @@ export function LearnTab({
   if (!forms) return null
   return (
     <div className="stack lab-learn">
-      <p className="lab-uses" lang={language}>
-        <span className="small muted">{tenseName(tense)} ile kullanılır:</span>
-        {guide.markers.map((m) => (
-          <span key={m} className="pill">
-            {m}
-          </span>
-        ))}
-      </p>
-
       <div className="lab-verb-head">
         <h2 className="lab-verb" lang={language}>
           {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
@@ -191,9 +182,18 @@ export function LearnTab({
             Olumsuz
           </button>
         </span>
-        <button type="button" className="btn btn-quiet btn-sm lab-print" onClick={() => window.print()}>
-          Yazdır
-        </button>
+        <Popover button={<MoreIcon size={18} />} buttonClassName="icon-btn lab-more" buttonProps={{ 'aria-label': 'Diğer' }} label="Diğer" kind="menu" align="end">
+          {(close) => (
+            <MenuItem
+              title="Yazdır"
+              hint="Tabloyu kâğıda ya da PDF'e"
+              onSelect={() => {
+                close()
+                window.print()
+              }}
+            />
+          )}
+        </Popover>
       </div>
 
       <section className="lab-progress" aria-label="Bu fiili ne kadar biliyorsun">
@@ -229,6 +229,15 @@ export function LearnTab({
               <span lang={language}>{guide.name}</span> · {guide.tr}.
             </strong>{' '}
             {guide.short}
+          </p>
+          {/* The words that go with the tense, next to what it is for (they used to sit above the verb). */}
+          <p className="lab-uses" lang={language}>
+            <span className="small muted">Sık birlikte:</span>
+            {guide.markers.map((m) => (
+              <span key={m} className="pill">
+                {m}
+              </span>
+            ))}
           </p>
           <section className="lab-bridge" aria-label="Türkçedeki karşılığı">
             <span className="lab-bridge-kicker">Türkçedeki karşılığı</span>

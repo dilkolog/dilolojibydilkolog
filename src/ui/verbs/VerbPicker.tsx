@@ -1,26 +1,11 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { ChevronDownIcon, ShuffleIcon, StarIcon } from '../icons'
-import { difficultItems, type LabData, type LabItem } from '../../engine/labProgress'
+import { ShuffleIcon, StarIcon } from '../icons'
+import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 import { TensePicker } from './LearnTab'
-
-/** A section that opens and closes: the list inside is only built while it is open. */
-function Fold({ title, count, tone, children }: { title: ReactNode; count?: number; tone?: 'warn'; children: () => ReactNode }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <section className={`lab-fold${tone ? ` is-${tone}` : ''}`}>
-      <button type="button" className="lab-fold-head" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        <span className="lab-fold-title">{title}</span>
-        {count !== undefined && <span className="lab-count">{count}</span>}
-        <ChevronDownIcon size={16} className={open ? 'lab-chev is-open' : 'lab-chev'} />
-      </button>
-      {open && <div className="lab-fold-body">{children()}</div>}
-    </section>
-  )
-}
 
 const MORE = 36
 
@@ -180,7 +165,13 @@ export function PickerTop({
   )
 }
 
-/** The lists of verbs: favourites, own verbs, levels, irregular, recent and the difficult forms. */
+type ListId = 'favorites' | 'own' | 'recent' | 'irregular' | Level
+
+/**
+ * The learner's verbs in one list with a filter: favourites, the verbs of their own word list, the
+ * ones looked at lately, the ones irregular in the chosen tense, or the verbs of a level (by
+ * frequency). One list instead of five folded ones: the choice is one tap, not a hunt.
+ */
 export function PickerLists({
   language,
   verb,
@@ -192,7 +183,6 @@ export function PickerLists({
   byFrequency,
   ownVerbs,
   onVerb,
-  onItem,
 }: PickerBase & {
   lab: LabData
   level: Level | null
@@ -200,68 +190,54 @@ export function PickerLists({
   levels: ReadonlyMap<string, Level>
   byFrequency: readonly string[]
   ownVerbs: readonly string[]
-  /** A due or difficult item: open that verb in that tense for practice. */
-  onItem: (verb: string, tense: Tense) => void
 }) {
-  const difficult = difficultItems(lab)
-  const irregular = () => {
-    const odd = byFrequency.slice(0, 700).filter((v) => irregularForms(verbEntry(language, v), tense).some(Boolean))
-    return <VerbChips verbs={odd} language={language} onVerb={onVerb} current={verb} />
+  const first: ListId = lab.favorites.length ? 'favorites' : ownVerbs.length ? 'own' : lab.recent.length ? 'recent' : 'A1'
+  const [picked, setPicked] = useState<ListId | null>(null)
+  const list: ListId = level ?? picked ?? first
+  const choose = (id: ListId) => {
+    if ((LEVELS as readonly string[]).includes(id)) {
+      onLevel(id as Level)
+      setPicked(null)
+    } else {
+      onLevel(null)
+      setPicked(id)
+    }
   }
-  const itemChips = (items: LabItem[]) => (
-    <div className="lab-chips" lang={language}>
-      {items.slice(0, 24).map((i) => (
-        <button key={`${i.verb}|${i.tense}`} type="button" className="chip chip-sm" onClick={() => onItem(i.verb, i.tense)}>
-          {i.verb} <span className="muted">· {tenseName(i.tense)}</span>
-        </button>
-      ))}
-    </div>
+  const irregular = useMemo(
+    () => (list === 'irregular' ? byFrequency.slice(0, 700).filter((v) => irregularForms(verbEntry(language, v), tense).some(Boolean)) : []),
+    [list, byFrequency, language, tense],
   )
+  const verbs =
+    list === 'favorites' ? lab.favorites
+    : list === 'own' ? ownVerbs
+    : list === 'recent' ? lab.recent
+    : list === 'irregular' ? irregular
+    : byFrequency.filter((v) => levels.get(v) === list)
+  const filters: { id: ListId; label: ReactNode; count?: number }[] = [
+    { id: 'favorites', label: <><StarIcon size={14} className="lab-star is-on" /> Favori</>, count: lab.favorites.length },
+    ...(ownVerbs.length ? [{ id: 'own' as const, label: 'Listemde', count: ownVerbs.length }] : []),
+    { id: 'recent', label: 'Son bakılan', count: lab.recent.length },
+    { id: 'irregular', label: <><span lang={language}>{tenseName(tense)}</span>’de düzensiz</> },
+    ...LEVELS.map((l) => ({ id: l, label: l })),
+  ]
+  const empty: Partial<Record<ListId, string>> = {
+    favorites: 'Fiil başlığındaki yıldıza dokunarak favori ekle.',
+    recent: 'Baktığın fiiller burada birikir.',
+  }
 
   return (
     <div className="stack lab-picker">
-      <Fold
-        title={
-          <>
-            <StarIcon size={15} className="lab-star is-on" /> Favorilerim
-          </>
-        }
-        count={lab.favorites.length}
-      >
-        {() => (lab.favorites.length ? <VerbChips verbs={lab.favorites} language={language} onVerb={onVerb} current={verb} /> : <p className="small muted">Fiil başlığındaki yıldıza dokunarak favori ekle.</p>)}
-      </Fold>
-
-      {ownVerbs.length > 0 && (
-        <Fold title="Kelimelerimdeki fiiller" count={ownVerbs.length}>
-          {() => <VerbChips verbs={ownVerbs} language={language} onVerb={onVerb} current={verb} />}
-        </Fold>
-      )}
-
-      <div className="stack gap-2">
-        <span className="section-title">Seviyelere göre keşfet</span>
-        <div className="lab-levels" role="group" aria-label="Seviye">
-          {LEVELS.map((l) => (
-            <button key={l} type="button" className="chip" aria-pressed={level === l} onClick={() => onLevel(level === l ? null : l)}>
-              {l}
-            </button>
-          ))}
-        </div>
-        {level && <VerbChips key={level} verbs={byFrequency.filter((v) => levels.get(v) === level)} language={language} onVerb={onVerb} current={verb} />}
-        {level && <p className="small muted">Seviyeler sıklığa göre yaklaşıktır: en çok duyulan fiiller önce öğrenilir.</p>}
+      <span className="section-title">Fiillerim</span>
+      <div className="lab-filters" role="group" aria-label="Fiil listesi">
+        {filters.map((f) => (
+          <button key={f.id} type="button" className="chip chip-sm" aria-pressed={list === f.id} onClick={() => choose(f.id)}>
+            {f.label}
+            {f.count ? <span className="muted"> {f.count}</span> : null}
+          </button>
+        ))}
       </div>
-
-      <Fold title={<span><span lang={language}>{tenseName(tense)}</span>’de düzensiz</span>} key={tense}>
-        {irregular}
-      </Fold>
-
-      <Fold title="Geçmiş" count={lab.recent.length}>
-        {() => <VerbChips verbs={lab.recent} language={language} onVerb={onVerb} current={verb} />}
-      </Fold>
-
-      <section className="lab-review">
-        <h3 className="lab-review-title is-hard">Zorlandıklarım [{difficult.length}]</h3>
-        {difficult.length ? itemChips(difficult) : <p className="small muted">Henüz kayıt yok: alıştırmada yanlış yaptıkça buraya düşer.</p>}
-      </section>
+      {verbs.length ? <VerbChips key={list} verbs={verbs} language={language} onVerb={onVerb} current={verb} /> : <p className="small muted">{empty[list] ?? 'Bu listede fiil yok.'}</p>}
+      {(LEVELS as readonly string[]).includes(list) && <p className="small muted">Seviyeler sıklığa göre yaklaşıktır: en çok duyulan fiiller önce öğrenilir.</p>}
     </div>
   )
 }

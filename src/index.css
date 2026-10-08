@@ -4524,20 +4524,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-chips .chip.is-more { font-family: inherit; color: var(--ink-soft); }
 .lab-levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.375rem; }
 .lab-levels .chip { justify-content: center; padding-inline: 0; }
-.lab-fold { border-top: 1px solid var(--rule); padding-top: 0.75rem; }
-.lab-fold-head { display: flex; align-items: center; gap: 0.5rem; width: 100%; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; text-align: left; }
-.lab-fold-title { flex: 1; display: inline-flex; align-items: center; gap: 0.375rem; }
+.lab-filters { display: flex; flex-wrap: wrap; gap: 0.375rem; }
 .lab-count { min-width: 1.5rem; padding: 0.0625rem 0.5rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-size: var(--t-sm); font-weight: 700; text-align: center; }
-.lab-chev { color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
-.lab-chev.is-open { transform: rotate(180deg); }
-.lab-fold-body { padding-top: 0.75rem; }
 .lab-star { color: var(--ink-soft); }
 .lab-star.is-on { color: var(--near); fill: currentColor; }
-.lab-review { border-top: 1px solid var(--rule); padding-top: 0.75rem; display: grid; gap: 0.5rem; }
-.lab-review-title { margin: 0; font-size: var(--t-sm); }
-.lab-review-title.is-due { color: var(--bad-text); }
-.lab-review-title.is-hard { margin-top: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
-.lab-done { color: var(--ok-text); font-style: italic; }
 .lab-tick-gap { display: inline-block; width: 16px; }
 .lab-mood { padding-block: 0.25rem; }
 .lab-mood-label { margin: 0; padding: 0.25rem 0.75rem; font-size: var(--t-sm); color: var(--ink-soft); }
@@ -4560,8 +4550,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-kind.is-odd { color: var(--near-text); }
 .lab-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
 .lab-alt { display: inline-flex; align-items: center; gap: 0.375rem; margin-left: auto; }
-.lab-print { display: none; }
-@media (min-width: 40rem) { .lab-print { display: inline-flex; } }
 .lab-progress { display: grid; gap: 0.5rem; padding: 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
 .lab-progress-top { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .lab-pct { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--lang-text); }
