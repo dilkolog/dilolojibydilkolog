@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
+import { AiError, suggestFields } from '../ai'
 import { fetchCorpus } from '../data/corpus'
+import { cleanToken } from '../engine/extract'
 import { TARGET_LANGUAGES, type Example, type TargetLanguage } from '../engine/types'
-import { SpeakerIcon } from './icons'
+import { useAi } from './aiContext'
+import { SparkleIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_SHORT } from './labels'
 import { usePatterns } from './usePatterns'
 import { LinesSkeleton } from './Skeleton'
@@ -56,29 +59,132 @@ function useSentences(language: TargetLanguage, word: string, bundled?: readonly
   return value
 }
 
+/** Renders sentence tokens as clickable buttons that look up words in the dictionary. */
+export function ClickableSentence({
+  text,
+  language,
+  activeWord,
+  onPick,
+}: {
+  text: string
+  language: TargetLanguage
+  activeWord?: string
+  onPick?: (w: string) => void
+}) {
+  if (!onPick) return <>{text}</>
+  const tokens = text.split(/([\p{L}][\p{L}'’-]*)/gu)
+  const normActive = activeWord ? cleanToken(activeWord, language).toLocaleLowerCase(language) : ''
+
+  return (
+    <>
+      {tokens.map((part, i) => {
+        if (!/[\p{L}]/u.test(part)) return <span key={i}>{part}</span>
+        const clean = cleanToken(part, language)
+        if (!clean) return <span key={i}>{part}</span>
+        const isActive = !!normActive && clean.toLocaleLowerCase(language) === normActive
+        return (
+          <button
+            key={i}
+            type="button"
+            className={`sentence-word-btn${isActive ? ' is-active' : ''}`}
+            onClick={() => onPick(clean)}
+            title={`Sözlükte bak: ${clean}`}
+          >
+            {part}
+          </button>
+        )
+      })}
+    </>
+  )
+}
+
 /**
- * The word in use, under its dictionary card: a few real sentences (with their Turkish and the
- * other languages) and the word's most frequent neighbours. Read-only: adding them is for words in the list.
+ * The word in use, under its dictionary card: real sentences (with their Turkish and the
+ * other languages), clickable words, and the word's most frequent neighbours.
+ * Also provides on-demand optional AI sentence generation when requested.
  */
-export function DictionaryExamples({ language, word, bundled }: { language: TargetLanguage; word: string; bundled?: readonly [string, string][] }) {
+export function DictionaryExamples({
+  language,
+  word,
+  bundled,
+  meaning,
+  onPick,
+}: {
+  language: TargetLanguage
+  word: string
+  bundled?: readonly [string, string][]
+  meaning?: string
+  onPick?: (w: string) => void
+}) {
   const sentences = useSentences(language, word, bundled)
   const entry = useMemo(() => ({ language, lemma: word }), [language, word])
   const patterns = usePatterns(entry)
-  const hasSentences = Array.isArray(sentences) && sentences.length > 0
+  const { apiKey } = useAi()
+  const [aiLoading, setAiLoading] = useState(false)
+  const [aiError, setAiError] = useState('')
+  const [extraExamples, setExtraExamples] = useState<Example[]>([])
+
+  useEffect(() => {
+    setExtraExamples([])
+    setAiError('')
+    setAiLoading(false)
+  }, [language, word])
+
+  const allSentences = useMemo(() => {
+    const base = Array.isArray(sentences) ? sentences : []
+    return [...extraExamples, ...base]
+  }, [extraExamples, sentences])
+
+  const hasSentences = allSentences.length > 0
   const hasPatterns = Array.isArray(patterns) && patterns.length > 0
+
+  const askAi = async () => {
+    if (!apiKey) return
+    setAiLoading(true)
+    setAiError('')
+    try {
+      const res = await suggestFields(apiKey, {
+        language,
+        word,
+        meaning: meaning ?? '',
+        fields: ['example'],
+        existingTags: [],
+      })
+      if (res.example) {
+        const newEx: Example = {
+          text: res.example.replace(/\*/g, ''),
+          translation: res.exampleTranslation ?? '',
+          form: word,
+        }
+        setExtraExamples((prev) => [newEx, ...prev])
+        try {
+          const cached = JSON.parse(localStorage.getItem(KEY(language, word)) ?? 'null') as { at: number; examples: Example[] } | null
+          const updated = [newEx, ...(cached?.examples ?? [])]
+          localStorage.setItem(KEY(language, word), JSON.stringify({ at: Date.now(), examples: updated }))
+        } catch {
+          // Ignore cache write error
+        }
+      }
+    } catch (err) {
+      setAiError(err instanceof AiError ? err.message : 'AI cümle oluşturamadı.')
+    } finally {
+      setAiLoading(false)
+    }
+  }
+
   if (sentences === 'loading') return <LinesSkeleton lines={2} label="Örnek cümleler getiriliyor" />
-  if (!hasSentences && !hasPatterns) return null
+
   return (
     <>
-      {hasSentences && (
+      {hasSentences ? (
         <section className="section stack">
           <h2 className="section-title">Cümlede</h2>
           <ul className="example-list">
-            {sentences.map((ex) => (
+            {allSentences.map((ex) => (
               <li key={ex.text}>
                 <div>
                   <p className="sentence" lang={language}>
-                    {ex.text}
+                    <ClickableSentence text={ex.text} language={language} activeWord={word} onPick={onPick} />
                   </p>
                   {ex.translation && <p className="sentence-tr">{ex.translation}</p>}
                   {TARGET_LANGUAGES.filter((l) => ex.parallel?.[l]).map((l) => (
@@ -98,6 +204,29 @@ export function DictionaryExamples({ language, word, bundled }: { language: Targ
               </li>
             ))}
           </ul>
+          {apiKey && (
+            <div className="row">
+              <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={aiLoading}>
+                <SparkleIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile yeni örnek cümle üret'}
+              </button>
+            </div>
+          )}
+          {aiError && <p className="error small">{aiError}</p>}
+        </section>
+      ) : (
+        <section className="section stack">
+          <h2 className="section-title">Cümlede</h2>
+          <div className="card stack">
+            <p className="small muted">Bu kelime için kayıtlı örnek cümle bulunamadı.</p>
+            {apiKey && (
+              <div className="row">
+                <button type="button" className="btn btn-sm" onClick={askAi} disabled={aiLoading}>
+                  <SparkleIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile örnek cümle üret'}
+                </button>
+              </div>
+            )}
+            {aiError && <p className="error small">{aiError}</p>}
+          </div>
         </section>
       )}
       {hasPatterns && (
@@ -118,9 +247,11 @@ export function DictionaryExamples({ language, word, bundled }: { language: Targ
           </ul>
         </section>
       )}
-      <p className="small muted">
-        Kaynak: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR)
-      </p>
+      {hasSentences && (
+        <p className="small muted">
+          Kaynak: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR)
+        </p>
+      )}
     </>
   )
 }
