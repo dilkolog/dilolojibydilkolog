@@ -1,33 +1,15 @@
 import { useEffect, useState } from 'react'
 import { LinesSkeleton } from './Skeleton'
+import { useCrossLinks, useEquivalents } from './useCrossLanguage'
 import { AlertIcon, CheckIcon, GlobeIcon, LinkIcon, SproutIcon } from './icons'
-import { conceptGroups, crossLanguageLinks, falseFriendsOf, type Concept, type CrossLink } from '../engine/crossLanguage'
+import { conceptGroups, falseFriendsOf, type Concept } from '../engine/crossLanguage'
 import { displayForm } from '../engine/exercises'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
-import { findEquivalents, sourceName, withArticle, type Equivalents, type LanguageForm } from '../data/wiktionary'
-import { equivalentsFromPack } from '../data/wordpack'
+import { sourceName, withArticle, type LanguageForm } from '../data/wiktionary'
 import { turkishKin } from '../engine/turkishKin'
 import { createEntry } from '../data/wordInput'
 import { db } from '../data/instance'
 import { LANGUAGE_SHORT } from './labels'
-
-/** The same concept in the learner's other languages, read from their own word list. */
-function useCrossLinks(entry: VocabularyEntry): CrossLink[] {
-  const [links, setLinks] = useState<CrossLink[]>([])
-  useEffect(() => {
-    let live = true
-    const others = TARGET_LANGUAGES.filter((l) => l !== entry.language)
-    db.vocabulary
-      .where('language')
-      .anyOf(others)
-      .toArray()
-      .then((all) => live && setLinks(crossLanguageLinks(entry, all)))
-    return () => {
-      live = false
-    }
-  }, [entry])
-  return links
-}
 
 /**
  * False-friend warning and links to the same word in the other languages. `compact` is the
@@ -133,44 +115,6 @@ export function ConceptsView({ language, onOpen }: { language: VocabularyEntry['
 // ---------------------------------------------------------------------------
 // The word in all three languages (Wiktionary)
 // ---------------------------------------------------------------------------
-
-const EQUIV_KEY = (e: VocabularyEntry) => `kelime-koc:equiv:${e.language}:${e.lemma}`
-
-function useEquivalents(entry: VocabularyEntry): Equivalents | null | 'loading' {
-  const [value, setValue] = useState<Equivalents | null | 'loading'>('loading')
-  useEffect(() => {
-    let live = true
-    // The word pack already knows them: no network, no waiting.
-    const packed = equivalentsFromPack(entry)
-    if (packed) {
-      setValue(packed)
-      return
-    }
-    try {
-      const cached = localStorage.getItem(EQUIV_KEY(entry))
-      if (cached) {
-        setValue(JSON.parse(cached) as Equivalents)
-        return
-      }
-    } catch {
-      // No storage: just ask again.
-    }
-    setValue('loading')
-    void findEquivalents(entry.lemma, entry.language).then((r) => {
-      if (!live) return
-      setValue(r)
-      try {
-        if (r) localStorage.setItem(EQUIV_KEY(entry), JSON.stringify(r))
-      } catch {
-        // Not cached; fine.
-      }
-    })
-    return () => {
-      live = false
-    }
-  }, [entry])
-  return value
-}
 
 /**
  * The word in English, French and Spanish side by side with where each comes from. Words not in
