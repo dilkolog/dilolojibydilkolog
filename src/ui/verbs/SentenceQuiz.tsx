@@ -48,10 +48,7 @@ export function SentenceQuiz({
   const [round, setRound] = useState(0)
   const [questions, setQuestions] = useState<Cloze[] | null>(null)
   const [index, setIndex] = useState(0)
-  const [typed, setTyped] = useState('')
-  const [shown, setShown] = useState<boolean | null>(null)
   const [right, setRight] = useState(0)
-  const input = useRef<HTMLInputElement>(null)
   const key = verbs.slice(0, 1).join()
 
   useEffect(() => {
@@ -81,8 +78,6 @@ export function SentenceQuiz({
               setRound((r) => r + 1)
               setIndex(0)
               setRight(0)
-              setShown(null)
-              setTyped('')
             }}
           >
             Yeni cümleler
@@ -91,29 +86,61 @@ export function SentenceQuiz({
       </section>
     )
 
-  const check = () => {
-    if (!typed.trim() || shown !== null) return
-    const ok = clozeRight(q, typed, language)
-    setShown(ok)
-    if (ok) {
-      setRight((n) => n + 1)
-      sfx.correct()
-    } else sfx.wrong()
-    onAnswer?.(q.verb, q.tense, ok, typed.trim(), q.form)
-  }
-  const next = () => {
-    setShown(null)
-    setTyped('')
-    setIndex((i) => i + 1)
-    requestAnimationFrame(() => input.current?.focus())
-  }
-  const whole = `${q.before}${q.form}${q.after}`
-
   return (
     <div className="stack lab-sentencequiz">
       <p className="small muted">
         {index + 1} / {questions.length} · Cümledeki boşluğa fiilin çekimini yaz
       </p>
+      <ClozeQuestion
+        key={index}
+        language={language}
+        cloze={q}
+        last={index + 1 >= questions.length}
+        onAnswered={(ok, given) => {
+          if (ok) setRight((n) => n + 1)
+          onAnswer?.(q.verb, q.tense, ok, given, q.form)
+        }}
+        onContinue={() => setIndex((i) => i + 1)}
+      />
+      <p className="small muted">
+        Cümleler: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR)
+      </p>
+    </div>
+  )
+}
+
+/**
+ * One sentence with the verb's form taken out: the verb and the tense given, the form to write.
+ * Used by the sentence quiz and the day's verb round.
+ */
+export function ClozeQuestion({
+  language,
+  cloze: q,
+  last = false,
+  onAnswered,
+  onContinue,
+}: {
+  language: LabLanguage
+  cloze: Cloze
+  /** The last question of a round: the button says "Bitir". */
+  last?: boolean
+  onAnswered: (ok: boolean, given: string) => void
+  onContinue: () => void
+}) {
+  const [typed, setTyped] = useState('')
+  const [shown, setShown] = useState<boolean | null>(null)
+  const input = useRef<HTMLInputElement>(null)
+  const check = () => {
+    if (!typed.trim() || shown !== null) return
+    const ok = clozeRight(q, typed, language)
+    setShown(ok)
+    if (ok) sfx.correct()
+    else sfx.wrong()
+    onAnswered(ok, typed.trim())
+  }
+  const whole = `${q.before}${q.form}${q.after}`
+  return (
+    <div className="stack">
       <p className="prompt-label" lang={language}>
         {q.verb} · {tenseName(q.tense)}
       </p>
@@ -127,7 +154,7 @@ export function SentenceQuiz({
         className="stack"
         onSubmit={(e) => {
           e.preventDefault()
-          if (shown !== null) next()
+          if (shown !== null) onContinue()
           else check()
         }}
       >
@@ -165,16 +192,13 @@ export function SentenceQuiz({
               )}
             </p>
             <div className="row">
-              <button type="button" className="btn" onClick={next} autoFocus>
-                {index + 1 >= questions.length ? 'Bitir' : 'Devam'}
+              <button type="button" className="btn" onClick={onContinue} autoFocus>
+                {last ? 'Bitir' : 'Devam'}
               </button>
             </div>
           </div>
         )}
       </form>
-      <p className="small muted">
-        Cümleler: <a href="https://tatoeba.org" target="_blank" rel="noreferrer">Tatoeba</a> (CC BY 2.0 FR)
-      </p>
     </div>
   )
 }

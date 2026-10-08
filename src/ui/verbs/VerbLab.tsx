@@ -3,7 +3,7 @@ import { PageHeader } from '../PageHeader'
 import { EmptyState } from '../EmptyState'
 import { useTenses } from '../ConjugationTable'
 import { recordPractice } from '../games/shared'
-import { labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
+import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
 import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, toggleFavorite } from '../../engine/labProgress'
 import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
@@ -21,7 +21,8 @@ import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
 import { recordVisit } from '../screenUsage'
 import { useTabIndicator } from '../useTabIndicator'
-import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, verbEntry, verbKey, type LabLanguage } from './labShared'
+import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, useVerbOfDay, verbEntry, verbKey, type LabLanguage } from './labShared'
+import { TourCard, TourRun, useTour } from './LabTour'
 
 /**
  * 'timed' opens practice on its race against the clock (the conjugation games link there);
@@ -79,6 +80,11 @@ export function VerbLab({
 function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTense, initialTab, onAdded }: { language: LabLanguage; vocabulary: readonly VocabularyEntry[]; states: readonly UserWordState[]; scheduler: Scheduler; initialVerb?: string; initialTense?: string; initialTab?: LabTab; onAdded?: () => void }) {
   const ready = useTenses(language)
   const { lab, update, ready: labReady } = useLab(language, scheduler)
+  // The day's round: one button to practise, the lab deciding what and how.
+  const verbOfDay = useVerbOfDay(language, vocabulary, null)?.verb
+  const [tourRound, setTourRound] = useState(0)
+  const [touring, setTouring] = useState(false)
+  const tour = useTour(language, lab, verbOfDay, ready && labReady, tourRound)
   const { frequency, levels, byFrequency } = useVerbLevels(language, ready)
   const [picked, setPicked] = useState<string | undefined>(initialVerb)
   const [tense, setTense] = useState<Tense>(() => (initialTense && isLabTense(language, initialTense) ? initialTense : PRESENT[language]))
@@ -155,9 +161,35 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     void t
   }
 
+  const endTour = () => {
+    setTouring(false)
+    setTourRound((r) => r + 1)
+  }
+
+  if (touring)
+    return (
+      <div className="stack verb-lab">
+        <PageHeader title="Fiil laboratuvarı" />
+        <TourRun
+          language={language}
+          items={tour}
+          onAnswer={(item, ok, given) => {
+            update((l) => recordCheck(l, scheduler, item.verb, item.tense, ok, new Date()))
+            onAnswer(item.verb, item.tense, ok, given, conjugateTense(verbEntry(language, item.verb), item.tense)?.[item.person] ?? '', item.person)
+          }}
+          onOpenVerb={(v) => {
+            endTour()
+            choose(v)
+          }}
+          onClose={endTour}
+        />
+      </div>
+    )
+
   return (
     <div className="stack verb-lab">
       <PageHeader title="Fiil laboratuvarı" />
+      <TourCard language={language} items={tour} onStart={() => setTouring(true)} />
       <div className="lab-grid">
         <div className="card lab-top">
           <PickerTop language={language} verb={verb} level={level} levels={levels} byFrequency={byFrequency} frequency={frequency} onVerb={choose} />

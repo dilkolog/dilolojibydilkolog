@@ -623,3 +623,33 @@ test('tabs: one indicator slides to the chosen tab; reading lights the sentence 
   await page.locator('.rw', { hasText: /^chat$/ }).first().click()
   await expect(page.locator('.rs.is-lit')).toHaveText('Le chat dort.')
 })
+
+test("verb lab: the day's round, one button: questions picked for you, then done for today", async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page)
+  const card = page.getByRole('region', { name: 'Bugünün fiil turu' })
+  await expect(card).toContainText(/\d+ soru · yaklaşık \d+ dk/)
+  await card.getByRole('button', { name: /Başla/ }).click()
+  const run = page.getByRole('region', { name: 'Fiil turu' })
+  await expect(run).toBeVisible()
+  // The rest of the lab steps aside while the round runs.
+  await expect(page.locator('.lab-grid')).toHaveCount(0)
+  for (let i = 0; i < 20 && (await run.count()); i++) {
+    const option = run.locator('.option:not([disabled])')
+    const input = run.locator('input.answer-input:not([disabled])')
+    if (await option.count()) await option.first().click()
+    else if (await input.count()) {
+      await input.fill('x')
+      await input.press('Enter')
+    }
+    await run.getByRole('button', { name: /^(Devam|Bitir)$/ }).click()
+  }
+  const done = page.getByRole('status').filter({ hasText: 'Bugünkü fiil turun bitti' })
+  await expect(done).toContainText(/\d+ çekim, \d+ doğru/)
+  await done.getByRole('button', { name: 'Laboratuvara dön' }).click()
+  await expect(page.getByRole('region', { name: 'Bugünün fiil turu' })).toContainText('Bugünkü fiil turun bitti')
+  await expect(page.getByRole('region', { name: 'Bugünün fiil turu' }).getByRole('button', { name: /Bir tur daha/ })).toBeVisible()
+  // The answers went to the lab: the forms are in its review queue now.
+  await page.locator('.lab-main').getByRole('tab', { name: 'Ustalık' }).click()
+  await expect(page.locator('.lab-main .lab-weeks')).toContainText('Bu hafta')
+})
