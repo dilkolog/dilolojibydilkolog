@@ -105,8 +105,15 @@ export function buildDeckPlan({
   return interleave(items, rng)
 }
 
+/** The word's card for `skill` is due: a game's answer on it is a real review. */
+export function isDueFor(state: UserWordState, skill: Skill, now: Date): boolean {
+  const card = state.skills[skill]
+  return !!card && !state.retired && new Date(card.due).getTime() <= now.getTime()
+}
+
 /**
- * Words for quick games: words being learned, weakest first with some randomness, topped up with
+ * Words for quick games: words whose recognition review is due first (a game then does the
+ * review's work), then the words being learned, weakest first with some randomness, topped up with
  * not-yet-learned words when the learner has too few.
  */
 export function pickGameWords(
@@ -114,12 +121,16 @@ export function pickGameWords(
   states: readonly UserWordState[],
   count: number,
   rng: Rng,
+  now = new Date(),
 ): VocabularyEntry[] {
   const learned = new Set(states.map((s) => s.entryId))
+  const due = new Set(states.filter((s) => isDueFor(s, 'recognition', now)).map((s) => s.entryId))
   const wrongs = new Map(states.map((s) => [s.entryId, s.stats.wrong / Math.max(1, s.stats.reviews)]))
-  const known = shuffle(catalog.filter((e) => learned.has(e.id)), rng).sort((a, b) => (wrongs.get(b.id) ?? 0) - (wrongs.get(a.id) ?? 0))
-  // Weakest half first, the rest random, so games stay varied.
-  const picked = [...known.slice(0, Math.ceil(count / 2)), ...shuffle(known.slice(Math.ceil(count / 2)), rng)]
+  const known = shuffle(catalog.filter((e) => learned.has(e.id) && !due.has(e.id)), rng).sort((a, b) => (wrongs.get(b.id) ?? 0) - (wrongs.get(a.id) ?? 0))
+  // Due words first; then the weakest half, the rest random, so games stay varied.
+  const dueFirst = shuffle(catalog.filter((e) => due.has(e.id)), rng)
+  const rest = Math.max(0, count - dueFirst.length)
+  const picked = [...dueFirst, ...known.slice(0, Math.ceil(rest / 2)), ...shuffle(known.slice(Math.ceil(rest / 2)), rng)]
   const extra = shuffle(catalog.filter((e) => !learned.has(e.id)), rng)
   // Distinct meanings, so a meaning tile can match only one word.
   const out: VocabularyEntry[] = []

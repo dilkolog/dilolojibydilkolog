@@ -60,7 +60,7 @@ export function MatchGame({ language, vocabulary, states, best, recordKey, onExi
       setMatched(next)
       setSelected(null)
       const entry = vocabulary.find((v) => v.id === t.entryId)!
-      void recordPractice(entry, stateById.get(entry.id), 'mc_meaning', true, 2000)
+      void recordPractice(entry, stateById.get(entry.id), 'mc_meaning', true, 2000, undefined, { schedule: false })
       if (next.size === words.length) {
         const ms = performance.now() - s + penalty
         const record = !best || ms < best
