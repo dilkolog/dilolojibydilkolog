@@ -934,3 +934,35 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
   }
   expect(found).toEqual([])
 })
+
+test('verb lab: a sideways swipe over the table steps the tense; a scroll does not', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  const hint = main.locator('.lab-swipe-hint')
+  await expect(hint).toBeVisible()
+  const swipe = (dx: number, dy: number) =>
+    main.locator('.lab-forms').evaluate(
+      (el, [dx, dy]) => {
+        const r = el.getBoundingClientRect()
+        const x = r.left + r.width / 2
+        const y = r.top + 20
+        const touch = (cx: number, cy: number) => new Touch({ identifier: 1, target: el, clientX: cx, clientY: cy })
+        el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, touches: [touch(x, y)], changedTouches: [touch(x, y)] }))
+        el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, touches: [], changedTouches: [touch(x + dx, y + dy)] }))
+      },
+      [dx, dy],
+    )
+  const bar = main.getByRole('group', { name: 'Zaman' })
+  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+  // Mostly downwards: a scroll, nothing changes.
+  await swipe(-60, 120)
+  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+  // Leftwards: the next tense, and the hint has done its job.
+  await swipe(-120, 10)
+  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'false')
+  await expect(hint).toHaveCount(0)
+  // Rightwards: back again.
+  await swipe(120, 5)
+  await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
+})

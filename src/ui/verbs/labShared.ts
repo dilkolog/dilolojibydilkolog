@@ -299,3 +299,9 @@ export function useDayForms(language: TargetLanguage, key: unknown, max: number)
   }, [language, key, max])
   return forms
 }
+
+/** The tense before or after `tense` in teaching order (by mood), among the verb's: for ←/→ and swipes. */
+export function stepTense(language: LabLanguage, available: readonly Tense[], tense: Tense, dir: 1 | -1): Tense | undefined {
+  const list = MOODS[language].flatMap((m) => m.tenses).filter((t) => available.includes(t))
+  return list[list.indexOf(tense) + dir]
+}
