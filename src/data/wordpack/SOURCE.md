@@ -8,9 +8,9 @@ only to a frequent word) (allons → aller, went → go) for looking them up.
 From **Wiktionary** via **Wiktextract** (https://kaikki.org, English edition dumps of 2026-10-03; Turkish
 edition, https://kaikki.org/trwiktionary, dump of 2026-09-01).
 
-Recordings for Spanish words that Wiktionary has none for: **Lingua Libre** on Wikimedia Commons
-(Category:Lingua_Libre_pronunciation-spa, CC BY-SA; the original files), listed by
-`scripts/fetch-commons-audio.ts`.
+Recordings for words that Wiktionary has none for: **Lingua Libre** on Wikimedia Commons
+(Category:Lingua_Libre_pronunciation-fra, Lingua_Libre_pronunciation-eng, Lingua_Libre_pronunciation-spa,
+CC BY-SA; the original files), listed by `scripts/fetch-commons-audio.ts`.
 
 Example sentences (`c`, the 3 000 most frequent words, two each with Turkish): **Tatoeba**
 (CC BY 2.0 FR), per-language exports; French and Spanish sentences without a Turkish translation of
@@ -24,6 +24,6 @@ definition-like glosses left out);
 translations of senses tagged vulgar/offensive/derogatory left out; part of speech and gender from
 the word's main (first) entry.
 
-Built by `scripts/build-wordpack.ts` (version `2026-10-07.4`):
-en 16 548 words (Turkish 59 %, recordings 85 %); fr 10 589 (Turkish 74 %, gender 58 %, recordings 82 %);
-es 9 404 (Turkish 76 %, gender 60 %, recordings 65 %, from 0 % with Lingua Libre).
+Built by `scripts/build-wordpack.ts` (version `2026-10-08.1`):
+en 16 548 words (Turkish 59 %, recordings 89 %); fr 10 589 (Turkish 74 %, gender 58 %, recordings 96 %);
+es 9 404 (Turkish 76 %, gender 60 %, recordings 65 %).
