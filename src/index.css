@@ -4556,6 +4556,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-tense-sentinel { display: block; height: 1px; margin-bottom: -1px; }
 .lab-tense-bar.is-stuck { box-shadow: 0 1px 0 var(--rule); }
 .lab-tense-verb { font-family: var(--serif); font-size: var(--t-lg); margin-right: 0.25rem; }
+/* Words a phone's narrow heading can do without (the icon says it). */
+@media (max-width: 30rem) { .lab-wide { display: none; } }
+/* A shortcut's key on a button: for keyboards only. */
+.lab-kbd { margin-left: 0.125rem; font-size: 0.75em; }
+@media (hover: none) { .lab-kbd { display: none; } }
 .lab-tense-more { display: inline-flex; align-items: center; gap: 0.25rem; }
 .lab-table-head { margin: 0 0 -0.5rem; }
 .lab-progress-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }

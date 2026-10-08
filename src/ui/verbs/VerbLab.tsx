@@ -50,6 +50,7 @@ export function VerbLab({
   initialVerb,
   initialTense,
   initialTab,
+  onAdded,
 }: {
   language: 'en' | 'fr' | 'es'
   vocabulary: readonly VocabularyEntry[]
@@ -58,6 +59,8 @@ export function VerbLab({
   initialVerb?: string
   initialTense?: string
   initialTab?: LabTab
+  /** A verb was added to the word list from the lab. */
+  onAdded?: () => void
 }) {
   if (language === 'en')
     return (
@@ -68,10 +71,10 @@ export function VerbLab({
         </EmptyState>
       </div>
     )
-  return <Lab language={language} vocabulary={vocabulary} states={states} scheduler={scheduler} initialVerb={initialVerb} initialTense={initialTense} initialTab={initialTab} />
+  return <Lab language={language} vocabulary={vocabulary} states={states} scheduler={scheduler} initialVerb={initialVerb} initialTense={initialTense} initialTab={initialTab} onAdded={onAdded} />
 }
 
-function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTense, initialTab }: { language: LabLanguage; vocabulary: readonly VocabularyEntry[]; states: readonly UserWordState[]; scheduler: Scheduler; initialVerb?: string; initialTense?: string; initialTab?: LabTab }) {
+function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTense, initialTab, onAdded }: { language: LabLanguage; vocabulary: readonly VocabularyEntry[]; states: readonly UserWordState[]; scheduler: Scheduler; initialVerb?: string; initialTense?: string; initialTab?: LabTab; onAdded?: () => void }) {
   const ready = useTenses(language)
   const { lab, update, ready: labReady } = useLab(language, scheduler)
   const { frequency, levels, byFrequency } = useVerbLevels(language, ready)
@@ -171,6 +174,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 tense={current}
                 available={available}
                 gloss={gloss}
+                inList={!!own}
+                onAdded={onAdded}
                 lab={lab}
                 favorite={lab.favorites.includes(verb)}
                 onTense={setTense}
