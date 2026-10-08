@@ -197,7 +197,7 @@ export function LearnTab({
           <strong>Bu fiilin çekimlerini ne kadar biliyorsun?</strong>
           <span className="lab-pct">%{mastery}</span>
         </div>
-        <div className="lab-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={mastery}>
+        <div className="lab-bar" role="progressbar" aria-label="Bu fiilin çekimlerini ne kadar biliyorsun" aria-valuemin={0} aria-valuemax={100} aria-valuenow={mastery}>
           <span style={{ width: `${mastery}%` }} />
         </div>
         <div className="lab-progress-foot">

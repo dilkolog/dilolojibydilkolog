@@ -27,6 +27,7 @@ import { cachedAudio } from '../data/audioCache'
 import { naturalEnabled, naturalUrl } from './naturalVoice'
 import { WordJourney } from './WordJourney'
 import { WordFamilySection } from './WordFamily'
+import { WordFamilyMap } from './WordFamilyMap'
 import { CorpusExamples, WordExamples } from './WordExamples'
 import { ClipsSection } from './Clips'
 import { Plant } from './Plant'
@@ -389,6 +390,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       <GroupToggle id="w-family" icon={<LeafIcon size={18} />} open={isOpen('w-family')} onToggle={() => toggle('w-family')}>Aile ve diğer diller</GroupToggle>
       {isOpen('w-family') && (
         <>
+          <WordFamilyMap entry={entry} vocabulary={vocabulary} onOpen={onOpen} />
           <WordFamilySection db={db} entry={entry} vocabulary={vocabulary} onChanged={onChanged} />
           <TriLanguageCard entry={entry} onAdded={onChanged} />
           {/* Which list, and which of its levels, the word is studied in. */}

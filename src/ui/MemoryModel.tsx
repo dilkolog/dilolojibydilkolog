@@ -56,7 +56,7 @@ export function MemoryModel({ settings, onChange, id }: { settings: Settings; on
         {reviews !== null && !enough && `Kişiselleştirmek için en az ${MIN_REVIEWS} tekrar gerekiyor (aynı gün içindeki tekrarlar sayılmaz); şu an ${reviews}.`}
       </p>
       {progress !== null && (
-        <div className="progress" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <div className="progress" role="progressbar" aria-label="Kişisel modelin hesaplanması" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
           <div style={{ width: `${Math.max(4, progress * 100)}%` }} />
         </div>
       )}

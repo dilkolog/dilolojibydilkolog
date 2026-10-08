@@ -110,7 +110,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
               {settings.aiMonthlyLimit > 0 && ` / $${settings.aiMonthlyLimit}`}
             </p>
             {settings.aiMonthlyLimit > 0 && (
-              <div className="progress" role="progressbar" aria-valuenow={Math.round((thisMonth.cost / settings.aiMonthlyLimit) * 100)} aria-valuemin={0} aria-valuemax={100}>
+              <div className="progress" role="progressbar" aria-label="Bu ayki bütçenin kullanılan kısmı" aria-valuenow={Math.round((thisMonth.cost / settings.aiMonthlyLimit) * 100)} aria-valuemin={0} aria-valuemax={100}>
                 <div style={{ width: `${Math.min(100, (thisMonth.cost / settings.aiMonthlyLimit) * 100)}%` }} />
               </div>
             )}
