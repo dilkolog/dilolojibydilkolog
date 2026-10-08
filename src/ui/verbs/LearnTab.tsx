@@ -3,7 +3,7 @@ import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
 import { irregularForms, personsOf, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
-import { masteryLevel, labKey, verbMastery, type LabData } from '../../engine/labProgress'
+import { masteryLevel, labKey, verbMastery, weakPersons, type LabData } from '../../engine/labProgress'
 import { canSpeak, speak } from '../speech'
 import { BookIcon, CheckIcon, ChevronDownIcon, MoreIcon, PlusIcon, SpeakerIcon, StarIcon } from '../icons'
 import { db } from '../../data/instance'
@@ -220,6 +220,7 @@ export function LearnTab({
   const advanced = available.filter((t) => !core.includes(t))
   const tried = (ts: readonly Tense[]) => ts.filter((t) => masteryLevel(lab.records[labKey(verb, t)]) !== 'new').length
   const mastery = verbMastery(lab, verb, core)
+  const weak = useMemo(() => (reflexive || negative ? {} : weakPersons(lab, tense)), [lab, tense, reflexive, negative])
   if (!forms) return null
   return (
     <div className="stack lab-learn">
@@ -289,7 +290,8 @@ export function LearnTab({
         <>
           {/* The table first: it is what the learner came for. */}
           {(reflexive || negative) && <p className="small muted lab-table-head">{[reflexive && 'Dönüşlü', negative && 'olumsuz'].filter(Boolean).join(', ')} biçim</p>}
-          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} weak={weak} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          {Object.keys(weak).length > 0 && <p className="small muted lab-weak-note">Turuncu çizgili kişiler bu zamanda en çok yanlış yaptıkların; onlara ayrıca dikkat et.</p>}
           {odd.some(Boolean) && (
             <p className="small muted">
               <mark className="conj-odd">Altı çizili</mark> biçimler kuralın dışında; bunlara ayrıca dikkat et.

@@ -180,6 +180,30 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   expect(await contrastProblems(page)).toEqual([])
 })
 
+test('verb lab: a person often missed in a tense is marked in its table', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-row.is-weak')).toHaveCount(0)
+  // Two rounds with "tu" wrong.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  const answers = ['parle', 'parlais', 'parle', 'parlons', 'parlez', 'parlent']
+  for (let round = 0; round < 2; round++) {
+    if (round) await main.getByRole('button', { name: 'Tekrar' }).click()
+    for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
+    await main.getByRole('button', { name: 'Kontrol et' }).click()
+    await expect(main.locator('.lab-result')).toContainText('5 / 6 doğru')
+  }
+  // Back in the table, "tu" has the orange edge and says why; the other tenses are clean.
+  await main.getByRole('tab', { name: 'Öğrenme' }).click()
+  await expect(main.locator('.lab-row.is-weak')).toHaveCount(1)
+  await expect(main.locator('.lab-row.is-weak')).toHaveAttribute('title', /2\/2 yanlış/)
+  await expect(main.locator('.lab-weak-note')).toBeVisible()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' }).click()
+  await expect(main.locator('.lab-row.is-weak')).toHaveCount(0)
+})
+
 test('verb lab: a verb the tables lack is said so, the shuffle picks another, favourites and recent are kept', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'finir')
