@@ -4516,7 +4516,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-picker { gap: 1.25rem; }
 .lab-input { position: relative; display: flex; gap: 0.5rem; align-items: center; }
 .lab-input .input { flex: 1; min-width: 0; font-size: var(--t-lg); }
-.lab-suggest { position: absolute; z-index: 20; left: 0; right: 2.75rem; top: calc(100% + 0.25rem); margin: 0; padding: 0.25rem; list-style: none; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow-lg); max-height: 16rem; overflow-y: auto; font-family: var(--serif); font-size: var(--t-lg); }
+.lab-find { display: grid; gap: 0.5rem; }
+/* Suggestions and the accented letters open over the page while typing: nothing below moves. */
+.lab-drop { position: absolute; z-index: 20; left: 0; right: 2.75rem; top: calc(100% + 0.25rem); display: grid; gap: 0.375rem; padding: 0.375rem; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow-lg); }
+.lab-drop .accent-bar { margin-top: 0; }
+.lab-suggest { margin: 0; padding: 0; list-style: none; max-height: 16rem; overflow-y: auto; font-family: var(--serif); font-size: var(--t-lg); }
 .lab-suggest li { padding: 0.5rem 0.75rem; border-radius: var(--r-sm); cursor: pointer; }
 .lab-suggest li.is-active, .lab-suggest li:hover { background: var(--lang-soft); color: var(--lang-text); }
 .lab-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
@@ -4548,11 +4552,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-parts { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0; padding-block: 0.5rem; border-block: 1px solid var(--rule); }
 .lab-kind { color: var(--ok-text); font-weight: 600; }
 .lab-kind.is-odd { color: var(--near-text); }
-.lab-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
-.lab-alt { display: inline-flex; align-items: center; gap: 0.375rem; margin-left: auto; }
-.lab-progress { display: grid; gap: 0.5rem; padding: 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
-.lab-progress-top { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
-.lab-pct { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--lang-text); }
+.lab-tense-bar { position: sticky; top: 0; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin: -0.25rem 0 0.75rem; padding-block: 0.5rem; background: var(--surface); }
+.lab-tense-sentinel { display: block; height: 1px; margin-bottom: -1px; }
+.lab-tense-bar.is-stuck { box-shadow: 0 1px 0 var(--rule); }
+.lab-tense-verb { font-family: var(--serif); font-size: var(--t-lg); margin-right: 0.25rem; }
+.lab-tense-more { display: inline-flex; align-items: center; gap: 0.25rem; }
+.lab-table-head { margin: 0 0 -0.5rem; }
+.lab-progress-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); }
+.lab-progress-line .lab-bar { flex: 1 1 6rem; min-width: 6rem; }
 .lab-bar { height: 0.5rem; background: var(--track); border-radius: var(--r-full); overflow: hidden; }
 .lab-bar > span { display: block; height: 100%; background: var(--lang); border-radius: inherit; transition: width var(--dur) var(--ease-out); }
 
@@ -4564,8 +4571,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-subject { flex: 0 1 7rem; min-width: 0; color: var(--ink-soft); font-size: var(--t-sm); }
 .lab-subject::first-letter { text-transform: uppercase; }
 .lab-picker .section-title { display: block; }
-.lab-progress-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.lab-progress-foot p { margin: 0; }
 .lab-row .lab-cell { margin-left: 0; }
 .lab-cell { min-width: 0; display: inline-flex; align-items: center; gap: 0.25rem; font-family: var(--serif); font-size: var(--t-lg); }
 .lab-ending { color: var(--lang-text); font-weight: 700; }
@@ -4597,6 +4602,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-heart { color: var(--bad); fill: currentColor; }
 .lab-heart.is-lost { color: var(--track); }
 .lab-practice-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.lab-mode-groups { display: grid; gap: 0.5rem; justify-items: end; margin-left: auto; }
+.lab-mode-group { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.5rem; }
+.lab-mode-group .lab-modes { margin-left: 0; }
+@media (max-width: 30rem) { .lab-mode-groups { justify-items: start; margin-left: 0; } .lab-mode-group { justify-content: flex-start; } }
 .lab-modes { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; padding: 0.25rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); margin-left: auto; }
 .lab-mode { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.625rem; border: 0; border-radius: var(--r-sm); background: none; color: var(--ink-soft); font: inherit; font-size: var(--t-sm); font-weight: 600; cursor: pointer; }
 .lab-mode[aria-pressed='true'] { background: var(--surface); color: var(--lang-text); box-shadow: var(--shadow); }
@@ -4656,7 +4665,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-level.is-master { color: var(--ok-text); }
 .lab-level.is-learning { color: var(--lang-text); }
 @media print {
-  .lab-side, .lab-tabs, .lab-tools, .lab-progress, .page-header, .hub-tabs { display: none !important; }
+  .lab-side, .lab-tabs, .lab-tense-bar, .lab-table-head, .lab-progress-line, .page-header, .hub-tabs { display: none !important; }
 }
 @media (max-width: 30rem) { .lab-answer-row { grid-template-columns: minmax(0, 1fr) auto; } .lab-answer-row .lab-subject { grid-column: 1 / -1; } .lab-answer-row .lab-right { grid-column: 1 / -1; } .lab-match { gap: 0.5rem; } .lab-match-btn { padding-inline: 0.625rem; font-size: var(--t-base, 1rem); } }
 
@@ -4673,6 +4682,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* Verb lab: Turkish bridge, families */
 .lab-bridge { display: grid; gap: 0.375rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--lang-soft); }
 .lab-bridge p { margin: 0; }
+.lab-bridge > summary { cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.5rem; }
+.lab-bridge:not([open]) { padding-block: 0.625rem; }
 .lab-bridge-kicker { font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lang-text); }
 .lab-bridge-trap { color: var(--ink); font-size: var(--t-sm); }
 .lab-twin-kicker { font-weight: 600; }

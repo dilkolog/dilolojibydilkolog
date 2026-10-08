@@ -120,24 +120,37 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
   const main = page.locator('.lab-main')
-  // Learn: the present table with the endings, then another tense from the menu.
+  // The whole table is in view once the verb is chosen: no scrolling past explanations to reach it.
+  const table = await main.locator('.lab-forms').boundingBox()
+  expect(table!.y + table!.height).toBeLessThan(page.viewportSize()!.height)
+  // Learn: the present table with the endings, then another tense from the chips above the table,
+  // one from the "Diğer" menu, and back with the arrow keys.
   await expect(main.locator('.lab-forms')).toContainText('parlons')
-  await page.getByRole('button', { name: /^Présent/ }).first().click()
-  await page.getByRole('menuitem', { name: /Passé composé/ }).click()
+  const bar = main.getByRole('group', { name: 'Zaman' })
+  await bar.getByRole('button', { name: 'Passé composé' }).click()
+  await expect(main.locator('.lab-forms')).toContainText('avons parlé')
+  await bar.getByRole('button', { name: /Diğer/ }).click()
+  await page.getByRole('menuitem', { name: /Plus-que-parfait/ }).click()
+  await expect(main.locator('.lab-forms')).toContainText('avions parlé')
+  await page.locator('body').click({ position: { x: 5, y: 5 } })
+  await page.keyboard.press('ArrowLeft')
+  await expect(main.locator('.lab-forms')).not.toContainText('avions parlé')
+  await bar.getByRole('button', { name: 'Passé composé' }).click()
   await expect(main.locator('.lab-forms')).toContainText('avons parlé')
   // Detailed: every tense by mood, the compound ones included.
   await main.getByRole('button', { name: 'Detaylı' }).click()
   await expect(main.locator('.lab-card', { hasText: 'Plus-que-parfait' })).toContainText('avions parlé')
   await expect(main.locator('.lab-card', { hasText: 'Subjonctif passé' })).toContainText('aie parlé')
   await main.getByRole('button', { name: 'Basit' }).click()
-  // The alternatives: negative and reflexive.
-  await main.getByRole('button', { name: 'Olumsuz' }).click()
+  // The alternatives (negative, reflexive) in the "⋯" menu.
+  await main.getByRole('button', { name: 'Diğer seçenekler' }).click()
+  await page.getByRole('menuitem', { name: /Olumsuz/ }).click()
   await expect(main.locator('.lab-forms')).toContainText("n'ai pas parlé")
-  await main.getByRole('button', { name: 'Olumsuz' }).click()
+  await main.getByRole('button', { name: 'Diğer seçenekler' }).click()
+  await page.getByRole('menuitem', { name: /Olumsuz/ }).click()
   // Practice, all six at once: a wrong form is marked and costs a life.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
-  await page.getByRole('button', { name: /^Passé composé/ }).first().click()
-  await page.getByRole('menuitem', { name: /Présent/ }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
   const answers = ['parle', 'parles', 'parle', 'parlons', 'parlez', 'parlent']
   for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(i === 1 ? 'parlais' : a)
   await main.getByRole('button', { name: 'Kontrol et' }).click()

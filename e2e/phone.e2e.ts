@@ -907,6 +907,9 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
   const lists = await page.locator('.lab-lists').boundingBox()
   expect(lesson!.y, 'the lesson is above the verb lists').toBeLessThan(lists!.y)
   expect(lesson!.y, 'the lesson starts within the first screen').toBeLessThan(page.viewportSize()!.height)
+  // The table itself is on the first screen, not under explanations.
+  const table = await page.locator('.lab-main .lab-forms').boundingBox()
+  expect(table!.y + 120, 'the conjugation table starts on the first screen').toBeLessThan(page.viewportSize()!.height)
   const found: string[] = []
   const check = async (where: string) => {
     await page.waitForTimeout(250)

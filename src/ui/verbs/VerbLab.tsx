@@ -15,6 +15,7 @@ import { PatternsTab } from './PatternsTab'
 import { ReviewTab } from './ReviewTab'
 import { verbFamilies, type FamilyId } from '../../engine/verbFamilies'
 import { SentenceQuiz } from './SentenceQuiz'
+import { TenseBar } from './TenseBar'
 import { TimedTab } from './TimedTab'
 import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
@@ -113,10 +114,13 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   /** The forms the questions use: what "add to my review" puts in the queue. */
   const reviewable = tensesOf(verbEntry(language, verb))
   const gloss = own?.senses[0]?.gloss ?? COMMON[language].find(([l]) => l === verb)?.[1]
-  /** On a phone the lists sit below the lesson: after picking from them, bring the lesson back into view. */
+  /** After choosing a verb (typed or from the lists), the lesson in view: on a phone it can be off screen. */
   const showLesson = () =>
     requestAnimationFrame(() => {
-      if ((main.current?.getBoundingClientRect().top ?? 0) < 0) main.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      const top = main.current?.getBoundingClientRect().top ?? 0
+      const tableEnd = main.current?.querySelector('.lab-forms')?.getBoundingClientRect().bottom ?? 0
+      // Above the screen, or low enough that the table would start or end below it: bring the lesson up.
+      if (top < 0 || top > innerHeight / 2 || (top > 0 && tableEnd > innerHeight)) main.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })
     })
   const choose = (v: string) => {
     setPicked(v)
@@ -142,21 +146,10 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
 
   return (
     <div className="stack verb-lab">
-      <PageHeader title="Fiil laboratuvarı" sub="Herhangi bir fiili ve zamanı seç: öğren, alıştır, zamana karşı dene." />
+      <PageHeader title="Fiil laboratuvarı" />
       <div className="lab-grid">
         <div className="card lab-top">
-          <PickerTop
-            language={language}
-            verb={verb}
-            tense={current}
-            available={available}
-            level={level}
-            levels={levels}
-            byFrequency={byFrequency}
-            frequency={frequency}
-            onVerb={choose}
-            onTense={setTense}
-          />
+          <PickerTop language={language} verb={verb} level={level} levels={levels} byFrequency={byFrequency} frequency={frequency} onVerb={choose} />
         </div>
         <section className="card lab-main" ref={main} aria-label="Fiil çalışması">
           <div className="lab-tabs" role="tablist" aria-label="Çalışma türü">
@@ -167,6 +160,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
               </button>
             ))}
           </div>
+          {(tab === 'learn' || tab === 'practice') && available.length > 0 && <TenseBar language={language} verb={verb} tense={current} available={available} onTense={setTense} />}
           <div id="lab-panel" role="tabpanel" aria-labelledby={`lab-tab-${tab}`} className="lab-panel">
             {available.length === 0 ? (
               <p className="muted">Bu fiilin çekim tablosu yok.</p>
