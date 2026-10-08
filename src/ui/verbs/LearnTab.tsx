@@ -9,6 +9,7 @@ import { BookIcon, CheckIcon, ChevronDownIcon, SpeakerIcon, StarIcon } from '../
 import { Popover, MenuItem } from '../Popover'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
+import { TwinTense } from './TwinTense'
 import { CORE_TENSES, MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
@@ -259,6 +260,7 @@ export function LearnTab({
               )}
             </div>
           )}
+          <TwinTense language={language} verb={verb} tense={tense} />
           <details className="conj-how">
             <summary>Nasıl kurulur?</summary>
             <div className="stack">

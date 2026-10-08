@@ -5,7 +5,7 @@ import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { BoltIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { BoltIcon, ReadIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { Diagnosis } from './Diagnosis'
@@ -13,17 +13,18 @@ import { ReverseQuiz } from './ReverseQuiz'
 import { TenseQuiz } from './TenseQuiz'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
-export type PracticeMode = 'type' | 'choose' | 'listen' | 'match' | 'tense' | 'reverse' | 'timed'
+export type PracticeMode = 'type' | 'choose' | 'listen' | 'match' | 'sentence' | 'tense' | 'reverse' | 'timed'
 type Mode = PracticeMode
 const HEARTS = 3
 /** Modes with their own questions and counting: no lives and no tense tip. */
-const QUIZ: Mode[] = ['tense', 'reverse', 'timed']
+const QUIZ: Mode[] = ['sentence', 'tense', 'reverse', 'timed']
 
 const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'type', label: 'Yaz', icon: PenIcon },
   { id: 'choose', label: 'Seç', icon: TargetIcon },
   { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
   { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
+  { id: 'sentence', label: 'Cümlede', icon: ReadIcon },
   { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
   { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
   { id: 'timed', label: 'Zamana karşı', icon: BoltIcon },
@@ -61,6 +62,7 @@ export function PracticeTab({
   onRound,
   onAnswer,
   timed,
+  sentences,
   initialMode = 'type',
   byFrequency,
 }: {
@@ -75,6 +77,8 @@ export function PracticeTab({
   onAnswer?: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void
   /** The race against the clock (many verbs and tenses), shown as the last mode. */
   timed: ReactNode
+  /** Real sentences with the verb's form to write back. */
+  sentences: ReactNode
   initialMode?: Mode
   /** Verbs of the tables, most common first (for the "which verb?" questions). */
   byFrequency: readonly string[]
@@ -188,6 +192,7 @@ export function PracticeTab({
       {!finished && mode === 'match' && <MatchRound key={round} {...props} />}
       {mode === 'tense' && <TenseQuiz key={verb} language={language} verb={verb} available={available} />}
       {mode === 'reverse' && <ReverseQuiz key={language} language={language} byFrequency={byFrequency} />}
+      {mode === 'sentence' && sentences}
       {mode === 'timed' && timed}
 
       {finished && !QUIZ.includes(mode) && (
