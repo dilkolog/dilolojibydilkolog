@@ -160,6 +160,12 @@ export function mergeLab(older: LabData | undefined, newer: LabData | undefined)
     const b = newer.tally?.[k]
     tally[k] = { ok: Math.max(a?.ok ?? 0, b?.ok ?? 0), wrong: Math.max(a?.wrong ?? 0, b?.wrong ?? 0) }
   }
+  const days: NonNullable<LabData['days']> = {}
+  for (const k of new Set([...Object.keys(older.days ?? {}), ...Object.keys(newer.days ?? {})])) {
+    const a = older.days?.[k]
+    const b = newer.days?.[k]
+    days[k] = { ok: Math.max(a?.ok ?? 0, b?.ok ?? 0), wrong: Math.max(a?.wrong ?? 0, b?.wrong ?? 0) }
+  }
   return {
     favorites: [...new Set([...newer.favorites, ...older.favorites])],
     recent: [...new Set([...newer.recent, ...older.recent])].slice(0, 12),
@@ -167,6 +173,7 @@ export function mergeLab(older: LabData | undefined, newer: LabData | undefined)
     tally,
     kinds: most(older.kinds as Record<string, number>, newer.kinds as Record<string, number>),
     seen: Object.fromEntries([...new Set([...Object.keys(older.seen ?? {}), ...Object.keys(newer.seen ?? {})])].map((v) => [v, mergeSeen(older.seen?.[v], newer.seen?.[v])])),
+    days,
   }
 }
 
