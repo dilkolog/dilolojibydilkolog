@@ -9,7 +9,7 @@ import { BookIcon, CheckIcon, ChevronDownIcon, SpeakerIcon, StarIcon } from '../
 import { Popover, MenuItem } from '../Popover'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
-import { MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { CORE_TENSES, MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
 export function TensePicker({ language, tense, onPick, available }: { language: LabLanguage; tense: Tense; onPick: (t: Tense) => void; available: readonly Tense[] }) {
@@ -101,8 +101,11 @@ export function LearnTab({
   const forms = labForms(entry, tense, { reflexive, negative })
   const odd = !reflexive && !negative ? irregularForms(entry, tense) : []
   const sentence = tenseSentence(entry, tense)
-  const known = available.filter((t) => masteryLevel(lab.records[labKey(verb, t)]) !== 'new').length
-  const mastery = verbMastery(lab, verb, available)
+  // Mastery counts the four tenses learned first; a percentage over all fourteen would stay near zero for months.
+  const core = CORE_TENSES[language].filter((t) => available.includes(t))
+  const advanced = available.filter((t) => !core.includes(t))
+  const tried = (ts: readonly Tense[]) => ts.filter((t) => masteryLevel(lab.records[labKey(verb, t)]) !== 'new').length
+  const mastery = verbMastery(lab, verb, core)
   if (!forms) return null
   return (
     <div className="stack lab-learn">
@@ -194,15 +197,16 @@ export function LearnTab({
 
       <section className="lab-progress" aria-label="Bu fiili ne kadar biliyorsun">
         <div className="lab-progress-top">
-          <strong>Bu fiilin çekimlerini ne kadar biliyorsun?</strong>
+          <strong title={core.map(tenseName).join(', ')}>Temel zamanlarda bu fiili ne kadar biliyorsun?</strong>
           <span className="lab-pct">%{mastery}</span>
         </div>
-        <div className="lab-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={mastery}>
+        <div className="lab-bar" role="progressbar" aria-label="Temel zamanlarda bu fiili ne kadar biliyorsun" aria-valuemin={0} aria-valuemax={100} aria-valuenow={mastery}>
           <span style={{ width: `${mastery}%` }} />
         </div>
         <div className="lab-progress-foot">
           <p className="small muted">
-            {known}/{available.length} çekim denendi
+            {tried(core)}/{core.length} temel zaman denendi
+            {advanced.length > 0 && ` · ileri zamanlar ${tried(advanced)}/${advanced.length}`}
           </p>
           <span className="row gap-2">
             <button type="button" className="btn btn-quiet btn-sm" onClick={onAddReview} disabled={inReview >= reviewable}>

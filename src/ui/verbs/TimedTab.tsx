@@ -11,7 +11,7 @@ import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { FlameIcon, HeartIcon, SproutIcon, BoltIcon } from '../icons'
 import { sfx } from '../sounds'
 import { Diagnosis } from './Diagnosis'
-import { tenseName, verbEntry, type LabLanguage } from './labShared'
+import { CORE_TENSES, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 type Difficulty = 'easy' | 'medium' | 'hard'
 
@@ -27,10 +27,7 @@ interface Setup {
   summary: (language: LabLanguage) => string
 }
 
-const BASIC: Record<LabLanguage, Tense[]> = {
-  fr: ['present', 'passe-compose', 'imparfait', 'futur'],
-  es: ['presente', 'preterito', 'imperfecto', 'futuro'],
-}
+const BASIC = CORE_TENSES
 const WIDER: Record<LabLanguage, Tense[]> = {
   fr: [...BASIC.fr, 'conditionnel', 'subjonctif'],
   es: [...BASIC.es, 'perfecto', 'condicional', 'subjuntivo'],
