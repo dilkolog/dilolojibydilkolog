@@ -980,6 +980,10 @@ export default function App() {
                 // The add form, with the dictionary's meaning filled in (the incoming-word effect opens Words).
                 onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
                 onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
+                onSwitchLanguage={(targetLang, query) => {
+                  if (settings) void updateSettings({ ...settings, activeLanguage: targetLang })
+                  setScreen({ name: 'dictionary', query })
+                }}
               />
             ) : screen.name === 'mistakes' ? (
               <MistakesScreen

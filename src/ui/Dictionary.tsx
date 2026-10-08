@@ -33,6 +33,7 @@ interface Props {
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
   onOpenLab?: (verb: string) => void
+  onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
 }
 
 const RECENT_KEY = (l: TargetLanguage) => `kelime-koc:dictionary:${l}`
@@ -63,7 +64,7 @@ const ownEntry = (vocabulary: readonly VocabularyEntry[], word: string, language
   return vocabulary.find((v) => fold(splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest) === key)
 }
 
-export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOpenWord, onAdd, onOpenLab }: Props) {
+export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOpenWord, onAdd, onOpenLab, onSwitchLanguage }: Props) {
   const [query, setQuery] = useState(initialQuery)
   const [pack, setPack] = useState<Pack | null | undefined>(undefined)
   const [recent, setRecent] = useState(() => loadRecent(language))
@@ -192,6 +193,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               }}
               onOpenLab={onOpenLab}
               onPick={pick}
+              onSwitchLanguage={onSwitchLanguage}
             />
           ) : (
             <NotFound key={typed} language={language} word={typed} own={own} onOpenWord={onOpenWord} onAdd={onAdd} hasOthers={result.similar.length + result.fromTurkish.length > 0} />
@@ -271,6 +273,7 @@ function WordCard({
   onAdd,
   onOpenLab,
   onPick,
+  onSwitchLanguage,
 }: {
   language: TargetLanguage
   word: string
@@ -290,6 +293,7 @@ function WordCard({
   onAdd: (written: string, meaning: string) => void
   onOpenLab?: (verb: string) => void
   onPick: (word: string) => void
+  onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
 }) {
   const [lexicon, setLexicon] = useState<LexiconEntry | undefined>()
   const [isVerb, setIsVerb] = useState(false)
@@ -430,7 +434,19 @@ function WordCard({
               <div key={l}>
                 <dt>{LANGUAGE_NAME[l]}</dt>
                 <dd lang={l}>
-                  <span>{rec.x![l]!.slice(0, 3).join(', ')}</span>
+                  <div className="choice-row" style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '4px' }}>
+                    {rec.x![l]!.slice(0, 3).map((w) => (
+                      <button
+                        key={w}
+                        type="button"
+                        className="chip chip-sm"
+                        onClick={() => (onSwitchLanguage ? onSwitchLanguage(l, w) : onPick(w))}
+                        title={`${LANGUAGE_NAME[l]} sözlüğünde aç: ${w}`}
+                      >
+                        {w}
+                      </button>
+                    ))}
+                  </div>
                 </dd>
               </div>
             ))}
@@ -438,7 +454,13 @@ function WordCard({
         )}
       </section>
 
-      <DictionaryExamples language={language} word={word} bundled={rec.c} />
+      <DictionaryExamples
+        language={language}
+        word={word}
+        bundled={rec.c}
+        meaning={meanings.join(', ')}
+        onPick={onPick}
+      />
 
       {(rec.e || rec.s?.length || rec.n?.length) && (
         <section className="section stack">
