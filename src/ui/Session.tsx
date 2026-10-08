@@ -10,7 +10,7 @@ import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
-import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample } from '../data/wordInput'
@@ -27,6 +27,7 @@ import { prefetchNatural } from './naturalVoice'
 import { warmAudio } from '../data/audioCache'
 import { KeyLegend, type Graded } from './session/shared'
 import { Intro } from './session/Intro'
+import { FormQuestion } from './session/FormQuestion'
 import { Prompt } from './session/Prompt'
 import { showToast } from './toast'
 import { DifficultButton } from './DifficultButton'
@@ -57,6 +58,8 @@ interface Props {
   /** Study settings, adjustable from the session's gear button. */
   settings?: Settings
   onSettings?: (s: Settings) => void
+  /** A verb lab form mixed into the day was answered (it goes to the lab's own review). */
+  onFormAnswer?: (form: NonNullable<PlanItem['form']>, ok: boolean, given: string) => void
 }
 
 /** Keeps the phone screen on during a session (where supported); re-taken after switching apps. */
@@ -135,6 +138,8 @@ export function SessionScreen(p: Props) {
   )
   const item = currentItem(session)
   const { onFinish } = p
+  // The verdict of a lab form on screen, logged when the learner moves on.
+  const formVerdict = useRef<Verdict | undefined>(undefined)
 
   useEffect(() => {
     if (isFinished(session)) onFinish(summarize(session))
@@ -160,7 +165,8 @@ export function SessionScreen(p: Props) {
   }, [])
 
   if (!item) return null
-  const entry = byId.get(item.entryId)
+  const form = item.form
+  const found = byId.get(item.entryId)
   const progress = (session.index / session.items.length) * 100
 
   const next = (log: Omit<SessionLogEntry, 'item'>, retry?: PlanItem, followUp?: PlanItem) =>
@@ -179,11 +185,13 @@ export function SessionScreen(p: Props) {
       return { ...after, items }
     })
 
-  if (!entry) {
+  if (!found && !form) {
     // The word was deleted after the plan was built.
     queueMicrotask(() => next({ entryId: item.entryId }))
     return null
   }
+  // A lab form has no word: the word-only actions below are never reached for it.
+  const entry = found as VocabularyEntry
 
   const introduce = async (known = false) => {
     const now = new Date()
@@ -321,7 +329,7 @@ export function SessionScreen(p: Props) {
         <span className="session-xp" key={sessionXp}>
           <StarIcon size={16} className="icon-star" /> {sessionXp}
         </span>
-        <DifficultButton marked={isDifficult(entry)} onToggle={() => void markDifficult(!isDifficult(entry))} />
+        {!form && <DifficultButton marked={isDifficult(entry)} onToggle={() => void markDifficult(!isDifficult(entry))} />}
         {p.settings && p.onSettings && (
           <button className="icon-btn session-gear" onClick={() => setShowSettings(true)} aria-label="Çalışma ayarları" title="Çalışma ayarları">
             <GearIcon size={20} />
@@ -375,7 +383,18 @@ export function SessionScreen(p: Props) {
         </ConfirmDialog>
       )}
       <div className="session-stage">
-      {item.kind === 'introduce' ? (
+      {form ? (
+        <FormQuestion
+          key={session.index}
+          form={form}
+          onAnswered={(ok, given) => {
+            setAnsweredAt(session.index)
+            formVerdict.current = ok ? 'correct' : 'wrong'
+            p.onFormAnswer?.(form, ok, given)
+          }}
+          onContinue={() => next({ entryId: item.entryId, verdict: formVerdict.current })}
+        />
+      ) : item.kind === 'introduce' ? (
         <Intro
           key={session.index}
           entry={entry}

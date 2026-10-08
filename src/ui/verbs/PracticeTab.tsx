@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { prefs } from '../prefs'
-import { checkTyped } from '../../engine/answerCheck'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
-import { answersFor, conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
+import { conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { BoltIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
@@ -14,7 +13,7 @@ import { MoodQuiz } from './MoodQuiz'
 import { SpeakQuiz } from './SpeakQuiz'
 import { canListen } from '../speechInput'
 import { TenseQuiz } from './TenseQuiz'
-import { tenseName, verbEntry, type LabLanguage } from './labShared'
+import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'tense' | 'mood' | 'reverse' | 'timed'
 type Mode = PracticeMode
@@ -271,13 +270,6 @@ interface RoundProps {
 }
 
 /** Whether what was typed is a right answer for the person: the form alone or with its subject. */
-export function judge(language: LabLanguage, verb: string, tense: Tense, person: number, typed: string): boolean {
-  const entry = verbEntry(language, verb)
-  const accepted = answersFor(entry, tense, person)
-  const others = labTensesOf(entry).flatMap((t) => conjugateTense(entry, t) ?? [])
-  const r = checkTyped(typed, accepted, { language, confusables: [], familyForms: others.filter((f) => !accepted.includes(f)) })
-  return r.verdict === 'correct'
-}
 
 /** All six forms at once, each in its own row; "Kontrol et" marks them together. */
 function TypeList({ language, verb, tense, forms, people, settleMany }: RoundProps) {

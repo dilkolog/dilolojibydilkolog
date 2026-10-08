@@ -5,7 +5,7 @@ import { conjugateTense, subjectLabel, withSubject, type Tense } from '../../eng
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { sfx } from '../sounds'
 import { FormTable } from './FormTable'
-import { judge } from './PracticeTab'
+import { judge } from './labShared'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
 const SHORT: Record<LabLanguage, string[]> = {
