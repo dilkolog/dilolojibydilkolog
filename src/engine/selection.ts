@@ -90,8 +90,13 @@ export function pickExerciseType(
 ): ExerciseType {
   const types = exerciseTypesFor(skill, entry, opts)
   if (!types.length) throw new Error(`no exercise for ${skill} on ${entry.id}`)
-  const fresh = types.filter((t) => t !== state?.lastExerciseType)
-  return pick(fresh.length ? fresh : types, rng)
+  // A phrase or a term of several words: its meaning is easy to pick among four by elimination,
+  // so it is recognised in a sentence instead (its own example) whenever there is one.
+  const multiword = entry.partOfSpeech === 'phrase' || entry.lemma.trim().includes(' ')
+  const inContext = skill === 'recognition' && multiword ? types.filter((t) => EXERCISES[t].direction === 'context') : []
+  const pool = inContext.length ? inContext : types
+  const fresh = pool.filter((t) => t !== state?.lastExerciseType)
+  return pick(fresh.length ? fresh : pool, rng)
 }
 
 export function skillOf(type: ExerciseType): Skill {
