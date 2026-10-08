@@ -78,3 +78,37 @@ export function hourAdvice(buckets: readonly HourBucket[]): HourAdvice | null {
   const hour = day.from === 21 ? 21 : day.from + 1
   return { best, worst, reminder: `${String(hour).padStart(2, '0')}:${day.from === 21 ? '30' : '00'}` }
 }
+
+/** Days with a study start counted for the usual hour; fewer say nothing yet. */
+export const MIN_STUDY_DAYS = 5
+
+/**
+ * The hour the learner usually starts studying: the most common hour of each day's first answer
+ * over the last `days` days (ties: the earlier hour). A reminder at that hour comes when studying
+ * already fits the day (habit cue: Lally et al. 2010). Night hours (0–6) don't count as a time to remind.
+ */
+export function usualStudyHour(events: readonly ReviewEvent[], now: Date, days = 30): number | null {
+  const since = now.getTime() - days * 86_400_000
+  const first = new Map<string, Date>()
+  for (const e of events) {
+    const t = new Date(e.timestamp)
+    if (t.getTime() < since || t > now) continue
+    const day = `${t.getFullYear()}-${t.getMonth()}-${t.getDate()}`
+    const seen = first.get(day)
+    if (!seen || t < seen) first.set(day, t)
+  }
+  if (first.size < MIN_STUDY_DAYS) return null
+  const counts = new Map<number, number>()
+  for (const t of first.values()) {
+    const h = t.getHours()
+    if (h >= 7) counts.set(h, (counts.get(h) ?? 0) + 1)
+  }
+  let best: number | null = null
+  for (const [h, n] of counts) if (best === null || n > counts.get(best)! || (n === counts.get(best)! && h < best)) best = h
+  return best
+}
+
+/** The time reminders use: the usual study hour when `auto` and known, otherwise the chosen time. */
+export function reminderTime(reminder: { time: string; auto?: boolean }, usualHour: number | null): string {
+  return reminder.auto !== false && usualHour !== null ? `${String(usualHour).padStart(2, '0')}:00` : reminder.time
+}

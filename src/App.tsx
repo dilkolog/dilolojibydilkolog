@@ -40,6 +40,7 @@ import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
 import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
+import { reminderTime, usualStudyHour } from './engine/hours'
 import { updateAppBadge } from './ui/appBadge'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
@@ -527,7 +528,10 @@ export default function App() {
   const restToday = !!settings && isRestDay(new Date(), settings)
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
   const dueReviews = plan ? plan.items.filter((i) => i.kind === 'exercise').length : 0
-  useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan, dueReviews)
+  // The reminder comes at the usual study hour (unless a fixed time was chosen), here and from the server.
+  const usualHour = useMemo(() => (data ? usualStudyHour(data.recentEvents, new Date()) : null), [data])
+  const reminder = useMemo(() => settings && { ...settings.reminder, time: reminderTime(settings.reminder, usualHour) }, [settings, usualHour])
+  useReminder(restToday ? undefined : (reminder ?? undefined), answeredTodayAll, game?.streak ?? 0, settings?.studyPlan, dueReviews)
   useEffect(() => {
     if (plan) updateAppBadge(dueReviews, settings?.appBadge ?? true)
   }, [plan, dueReviews, settings?.appBadge])
@@ -554,8 +558,9 @@ export default function App() {
       vacation: settings?.vacation ?? null,
       due: dueReviews,
       week: weekText,
+      hour: Number((reminder?.time ?? '20:00').slice(0, 2)),
     }),
-    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText],
+    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText, reminder?.time],
   )
   // Keeps the server's evening reminder from firing on days already studied.
   const loaded = !!data && !!game
