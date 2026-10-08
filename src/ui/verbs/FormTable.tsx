@@ -29,6 +29,7 @@ export function FormTable({
   hide = false,
   speakable = true,
   weak = {},
+  turkish,
 }: {
   language: LabLanguage
   tense: Tense
@@ -39,6 +40,8 @@ export function FormTable({
   speakable?: boolean
   /** Persons the learner often gets wrong in this tense, with a short note ("3/5 yanlış"). */
   weak?: Readonly<Record<number, string>>
+  /** The same forms in Turkish (bekliyorum…), by person, when the verb's meaning allows it. */
+  turkish?: readonly string[]
 }) {
   const [shown, setShown] = useState<ReadonlySet<number>>(new Set())
   // The persons the tense has (the imperative speaks to some only); endings are coloured among those.
@@ -50,26 +53,40 @@ export function FormTable({
       {order.map((i) => {
         const faded = language === 'es' && i === 4 && prefs.hideVosotros
         const covered = hide && !shown.has(i)
+        const content = (
+          <>
+            {covered ? (
+              <button type="button" className="lab-cover" onClick={() => setShown(new Set(shown).add(i))} aria-label={`${subjectLabel(language, tense, i)} biçimini göster`}>
+                • • •
+              </button>
+            ) : (
+              <Form segs={segs[i]} odd={!!irregular[i]} />
+            )}
+            {speakable && canSpeak() && !covered && (
+              <button type="button" className="icon-btn icon-btn-sm lab-say" onClick={() => speak(withSubject(language, tense, i, forms[i]), language)} aria-label={`Dinle: ${withSubject(language, tense, i, forms[i])}`}>
+                <SpeakerIcon size={15} />
+              </button>
+            )}
+          </>
+        )
         return (
-          <div key={i} className={`lab-row${faded ? ' is-faded' : ''}${weak[i] ? ' is-weak' : ''}`} role="row" title={faded ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : weak[i] ? `Bu zamanda bu kişide ${weak[i]}` : undefined}>
+          <div key={i} className={`lab-row${faded ? ' is-faded' : ''}${weak[i] ? ' is-weak' : ''}${turkish?.[i] ? ' has-tr' : ''}`} role="row" title={faded ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : weak[i] ? `Bu zamanda bu kişide ${weak[i]}` : undefined}>
             <span className="lab-subject" role="rowheader">
               {subjectLabel(language, tense, i)}
               {weak[i] && <span className="sr-only">, sık yanlış yaptığın biçim ({weak[i]})</span>}
             </span>
-            <span className="lab-cell" role="cell">
-              {covered ? (
-                <button type="button" className="lab-cover" onClick={() => setShown(new Set(shown).add(i))} aria-label={`${subjectLabel(language, tense, i)} biçimini göster`}>
-                  • • •
-                </button>
-              ) : (
-                <Form segs={segs[i]} odd={!!irregular[i]} />
-              )}
-              {speakable && canSpeak() && !covered && (
-                <button type="button" className="icon-btn icon-btn-sm lab-say" onClick={() => speak(withSubject(language, tense, i, forms[i]), language)} aria-label={`Dinle: ${withSubject(language, tense, i, forms[i])}`}>
-                  <SpeakerIcon size={15} />
-                </button>
-              )}
-            </span>
+            {turkish?.[i] ? (
+              <span className="lab-stack" role="cell">
+                <span className="lab-cell">{content}</span>
+                <span className="lab-tr" lang="tr">
+                  {turkish[i]}
+                </span>
+              </span>
+            ) : (
+              <span className="lab-cell" role="cell">
+                {content}
+              </span>
+            )}
           </div>
         )
       })}

@@ -4610,6 +4610,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-form.is-odd { text-decoration: underline; text-decoration-color: var(--near); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
 .lab-cover { border: 0; background: var(--track); border-radius: var(--r-sm); padding: 0.125rem 0.75rem; color: var(--ink-soft); cursor: pointer; letter-spacing: 0.1em; }
 .lab-say { opacity: 0.6; }
+/* The Turkish of the form, quiet under it (the subject stays level with the form). */
+.lab-row.has-tr { padding-block: 0.4rem; }
+.lab-stack { display: inline-flex; flex-direction: column; flex-shrink: 0; max-width: 100%; }
+.lab-tr { color: var(--ink-soft); font-size: var(--t-xs); line-height: 1.2; }
 .lab-row:hover .lab-say, .lab-say:focus-visible { opacity: 1; }
 @media (max-width: 30rem) { .lab-forms.is-columns { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-auto-flow: row; } .lab-forms.is-columns .lab-row { padding-block: 0.5rem; } }
 .lab-example { position: relative; display: grid; gap: 0.25rem; padding: 1rem 3rem 1rem 1rem; border-radius: var(--r-md); background: var(--lang-soft); }

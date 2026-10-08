@@ -3,6 +3,7 @@ import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
 import { irregularForms, personsOf, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
+import { turkishForms, turkishTenseOf } from '../../engine/turkishVerb'
 import { masteryLevel, labKey, verbMastery, weakPersons, type LabData } from '../../engine/labProgress'
 import { canSpeak, speak } from '../speech'
 import { BookIcon, CheckIcon, ChevronDownIcon, MoreIcon, PlusIcon, SpeakerIcon, StarIcon } from '../icons'
@@ -213,6 +214,9 @@ export function LearnTab({
   const parts = useMemo(() => verbParts(entry), [language, verb]) // eslint-disable-line react-hooks/exhaustive-deps
   const guide = TENSE_GUIDE[tense]
   const forms = labForms(entry, tense, { reflexive, negative })
+  // The Turkish beside each form (bekliyorum), for the plain verb in a core tense; none when unsure.
+  const trTense = turkishTenseOf(tense)
+  const turkish = meaning && trTense && !reflexive && !negative ? turkishForms(meaning, trTense) : undefined
   const odd = !reflexive && !negative ? irregularForms(entry, tense) : []
   const sentence = tenseSentence(entry, tense)
   // Mastery counts the four tenses learned first; a percentage over all fourteen would stay near zero for months.
@@ -290,7 +294,7 @@ export function LearnTab({
         <>
           {/* The table first: it is what the learner came for. */}
           {(reflexive || negative) && <p className="small muted lab-table-head">{[reflexive && 'Dönüşlü', negative && 'olumsuz'].filter(Boolean).join(', ')} biçim</p>}
-          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} weak={weak} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} weak={weak} turkish={turkish} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
           {Object.keys(weak).length > 0 && <p className="small muted lab-weak-note">Turuncu çizgili kişiler bu zamanda en çok yanlış yaptıkların; onlara ayrıca dikkat et.</p>}
           {odd.some(Boolean) && (
             <p className="small muted">
