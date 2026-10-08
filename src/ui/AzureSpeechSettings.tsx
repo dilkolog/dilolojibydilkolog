@@ -76,8 +76,8 @@ export function AzureSpeechSettings() {
         </div>
       ) : (
         <form className="row" onSubmit={save}>
-          <input className="input" type="password" autoComplete="off" placeholder="KEY 1" aria-label="Azure Speech anahtarı" value={key} onChange={(e) => setKey(e.target.value)} style={{ flex: 2, minWidth: '12rem' }} />
-          <input className="input" autoComplete="off" placeholder="Bölge, ör. francecentral" aria-label="Azure bölgesi" value={region} onChange={(e) => setRegion(e.target.value)} style={{ flex: 1, minWidth: '9rem' }} />
+          <input className="input azure-key-input" type="password" autoComplete="off" placeholder="KEY 1" aria-label="Azure Speech anahtarı" value={key} onChange={(e) => setKey(e.target.value)} />
+          <input className="input azure-region-input" autoComplete="off" placeholder="Bölge, ör. francecentral" aria-label="Azure bölgesi" value={region} onChange={(e) => setRegion(e.target.value)} />
           <button className="btn" type="submit" disabled={busy || !key.trim() || !region.trim()}>
             {busy ? 'Kontrol ediliyor…' : 'Kaydet ve dene'}
           </button>

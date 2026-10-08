@@ -129,7 +129,7 @@ function SentenceRow({ sentence, onChanged }: { sentence: SentenceCard; onChange
             onChanged()
           }}
         >
-          <input className="input" style={{ flex: 1, minWidth: '12rem' }} value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="Türkçesi" autoFocus aria-label="Türkçesi" />
+          <input className="input sentence-trans-input" value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="Türkçesi" autoFocus aria-label="Türkçesi" />
           <button className="btn btn-sm" type="submit">
             Kaydet
           </button>

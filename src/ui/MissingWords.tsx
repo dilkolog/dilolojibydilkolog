@@ -66,7 +66,7 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
                       {m.word}
                     </span>
                     <span className="small muted">#{m.rank}</span>
-                    <span className="row" style={{ gap: '0.5rem', marginLeft: 'auto' }}>
+                    <span className="row missing-word-actions">
                       <button className="btn btn-quiet btn-sm" onClick={() => markKnown([m.key])}>
                         Biliyorum
                       </button>

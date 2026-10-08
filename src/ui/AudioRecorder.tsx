@@ -82,7 +82,7 @@ export function AudioRecorder({ onSave }: { onSave: (blob: Blob) => void }) {
         )}
         {state === 'review' && url && (
           <>
-            <audio src={url} controls style={{ height: '2.25rem' }} />
+            <audio src={url} controls className="audio-preview" />
             <button className="btn" onClick={() => blob && onSave(blob)}>
               Bu kaydı kullan
             </button>

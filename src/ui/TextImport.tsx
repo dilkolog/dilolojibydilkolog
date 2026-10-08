@@ -149,8 +149,7 @@ export function TextImport({
           birlikte çıkarılır. Cümle, kelimenin örnek cümlesi olur.
         </p>
         <textarea
-          className="textarea"
-          style={{ minHeight: '10rem' }}
+          className="textarea text-import-textarea"
           lang={language}
           aria-label="Metin"
           placeholder="Metni buraya yapıştır…"

@@ -756,7 +756,7 @@ export function Home({
           <div className="stat">
             <span className="stat-value">
               <BookIcon className="icon-book" size={22} /> {learningCount}
-              <span className="small muted" style={{ fontWeight: 500 }}>/{vocabularyCount}</span>
+              <span className="small muted stat-total">/{vocabularyCount}</span>
             </span>
             <span className="stat-label">kelime öğreniliyor</span>
           </div>

@@ -180,7 +180,7 @@ function GoalForm({ initial, compact, onSave, onClear }: { initial: KnownGoal; c
     >
       <label className="field">
         <span className="small">Bilinen kelime</span>
-        <input className="input" type="number" min={1} step={100} value={target} onChange={(e) => setTarget(e.target.value)} style={{ width: '8rem' }} />
+        <input className="input known-target-input" type="number" min={1} step={100} value={target} onChange={(e) => setTarget(e.target.value)} />
       </label>
       <label className="field">
         <span className="small">Tarih</span>

@@ -120,8 +120,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
         <label htmlFor="w-notes">Not / hafıza ipucu</label>
         <textarea
           id="w-notes"
-          className="textarea"
-          style={{ minHeight: '5rem' }}
+          className="textarea word-notes-textarea"
           placeholder="Örn. 'abandon' → 'a band on' (bir grup sahneyi terk ediyor)"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
