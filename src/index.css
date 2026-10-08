@@ -4610,6 +4610,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-form.is-odd { text-decoration: underline; text-decoration-color: var(--near); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
 .lab-cover { border: 0; background: var(--track); border-radius: var(--r-sm); padding: 0.125rem 0.75rem; color: var(--ink-soft); cursor: pointer; letter-spacing: 0.1em; }
 .lab-say { opacity: 0.6; }
+/* Memorise mode: knew it or not, once a form is uncovered; then a quiet mark of the answer. */
+.lab-grade { display: inline-flex; gap: 0.125rem; margin-left: 0.25rem; }
+.lab-grade .is-ok { color: var(--ok-text); }
+.lab-grade .is-no { color: var(--bad-text); }
+.lab-graded { display: inline-flex; margin-left: 0.25rem; }
+.lab-graded.is-ok { color: var(--ok-text); }
+.lab-graded.is-no { color: var(--bad-text); }
+.lab-memo-result { margin: -0.25rem 0 0; }
 /* The Turkish of the form, quiet under it (the subject stays level with the form). */
 .lab-row.has-tr { padding-block: 0.4rem; }
 .lab-stack { display: inline-flex; flex-direction: column; flex-shrink: 0; max-width: 100%; }

@@ -156,6 +156,7 @@ export function LearnTab({
   onFamily,
   onAddReview,
   onPractice,
+  onMemorised,
 }: {
   language: LabLanguage
   verb: string
@@ -179,11 +180,17 @@ export function LearnTab({
   onFamily: (id: FamilyId) => void
   onAddReview: () => void
   onPractice: () => void
+  /** Memorise mode marked through for the plain verb: counted toward mastery. */
+  onMemorised?: (tense: Tense, results: { person: number; ok: boolean }[]) => void
 }) {
   const [view, setView] = useState<'simple' | 'detail' | 'compare'>('simple')
   const [reflexive, setReflexive] = useState(false)
   const [negative, setNegative] = useState(false)
   const [memorise, setMemorise] = useState(false)
+  // A memorise round marked through: its score, and a new round (all covered again) on request.
+  const [memo, setMemo] = useState<{ key: string; right: number; total: number } | null>(null)
+  const [memoRound, setMemoRound] = useState(0)
+  useEffect(() => setMemo(null), [memorise])
   const [added, setAdded] = useState(false)
   const packGloss = usePackGloss(language, verb, !gloss)
   const meaning = gloss ?? packGloss
@@ -304,7 +311,39 @@ export function LearnTab({
         <>
           {/* The table first: it is what the learner came for. */}
           {(reflexive || negative) && <p className="small muted lab-table-head">{[reflexive && 'Dönüşlü', negative && 'olumsuz'].filter(Boolean).join(', ')} biçim</p>}
-          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} weak={weak} turkish={turkish} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          <FormTable
+            language={language}
+            tense={tense}
+            forms={forms}
+            irregular={odd}
+            hide={memorise}
+            weak={weak}
+            turkish={turkish}
+            onMemorised={
+              onMemorised && !reflexive && !negative
+                ? (results) => {
+                    onMemorised(tense, results)
+                    setMemo({ key: `${verb}|${tense}`, right: results.filter((r) => r.ok).length, total: results.length })
+                  }
+                : undefined
+            }
+            key={`${verb}${tense}${reflexive}${negative}${memorise}${memoRound}`}
+          />
+          {memorise && memo?.key === `${verb}|${tense}` && (
+            <p className="small lab-memo-result" role="status">
+              {memo.right}/{memo.total} bildin; ustalığa sayıldı.{' '}
+              <button
+                type="button"
+                className="link"
+                onClick={() => {
+                  setMemo(null)
+                  setMemoRound((r) => r + 1)
+                }}
+              >
+                Yeniden kapat
+              </button>
+            </p>
+          )}
           {Object.keys(weak).length > 0 && <p className="small muted lab-weak-note">Turuncu çizgili kişiler bu zamanda en çok yanlış yaptıkların; onlara ayrıca dikkat et.</p>}
           {odd.some(Boolean) && (
             <p className="small muted">
