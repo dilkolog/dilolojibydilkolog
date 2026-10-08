@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
+import { ClassicsPicker } from './ClassicsPicker'
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
@@ -500,7 +501,7 @@ export function ReadingScreen({
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         {library.length === 0 && (
           <EmptyState art="library" title="Kütüphanen boş">
-            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini listene eklersin. Aşağıdan ilk metnini ekle.
+            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini listene eklersin. Aşağıdan ilk metnini ekle veya klasik masallar ve öyküler koleksiyonundan başla.
           </EmptyState>
         )}
         {library.length > 0 && (
@@ -612,6 +613,48 @@ export function ReadingScreen({
             await db.saveText(item)
             setLibrary((lib) => [item, ...(lib ?? [])])
             await open(item)
+          }}
+        />
+        <ClassicsPicker
+          language={language}
+          vocabulary={vocabulary}
+          states={states}
+          known={known}
+          onRead={async (classicTitle, classicText, source) => {
+            const item: ReadingText = {
+              id: crypto.randomUUID(),
+              language,
+              title: classicTitle,
+              text: classicText,
+              source,
+              addedAt: new Date().toISOString(),
+              history: [],
+            }
+            await db.saveText(item)
+            setLibrary((lib) => [item, ...(lib ?? [])])
+            await open(item)
+          }}
+          onAddAll={async (items) => {
+            const now = new Date().toISOString()
+            const existingTitles = new Set((library ?? []).map((t) => t.title))
+            const newTexts: ReadingText[] = items
+              .filter((c) => !existingTitles.has(c.title))
+              .map((c) => ({
+                id: crypto.randomUUID(),
+                language,
+                title: c.title,
+                text: c.text,
+                source: `Klasik Koleksiyon: ${c.author}`,
+                addedAt: now,
+                history: [],
+              }))
+            if (newTexts.length > 0) {
+              await db.saveTexts(newTexts)
+              setLibrary((lib) => [...newTexts, ...(lib ?? [])])
+              showToast(`${newTexts.length} klasik metin kütüphanene eklendi.`)
+            } else {
+              showToast('Bu klasikler zaten kütüphanende var.')
+            }
           }}
         />
         </div>
