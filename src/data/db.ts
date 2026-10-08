@@ -110,6 +110,8 @@ export interface Settings {
   haptics?: boolean
   /** Tabs taken out of the menu (still in ⌘K and links); see HIDEABLE_TABS. */
   hiddenTabs?: string[]
+  /** Reviews waiting shown as a number on the app icon (installed app); default on. */
+  appBadge?: boolean
   /** Offer a word copied elsewhere on coming back to the app (needs clipboard permission); default off. */
   clipboardSuggest?: boolean
   /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */

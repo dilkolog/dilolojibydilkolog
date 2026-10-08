@@ -18,7 +18,6 @@ import {
   type VocabularyEntry,
 } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
-import { SAMPLE_WORDS } from './data/seed'
 import { difficultWords, withDifficult } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
@@ -41,6 +40,7 @@ import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
 import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
+import { updateAppBadge } from './ui/appBadge'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
@@ -56,7 +56,6 @@ import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import type { LabTab } from './ui/verbs/VerbLab'
 import { useFormsDue } from './ui/verbs/labShared'
-import { SessionScreen } from './ui/Session'
 import type { Command } from './ui/CommandPalette'
 import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
@@ -72,11 +71,13 @@ import { currentLevel, levelGroups } from './engine/lists'
 import { azure } from './ui/pronunciation'
 
 /*
- * Screens other than the daily loop (home, session, summary) load when first opened, so the app
+ * Screens other than Today and the session summary load when first opened, so the app
  * starts with less code; once it is idle they are fetched in the background anyway, so switching
  * screens stays instant and works offline.
  */
 const screenModules = {
+  // The daily loop's session too: Today comes first, and the idle prefetch has it long before a tap.
+  Session: () => import('./ui/Session'),
   Games: () => import('./ui/Games'),
   Mistakes: () => import('./ui/Mistakes'),
   Profile: () => import('./ui/Profile'),
@@ -95,6 +96,7 @@ const screenModules = {
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
 }
+const SessionScreen = lazy(() => screenModules.Session().then((m) => ({ default: m.SessionScreen })))
 const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
 const MistakesScreen = lazy(() => screenModules.Mistakes().then((m) => ({ default: m.MistakesScreen })))
 const ProfileScreen = lazy(() => screenModules.Profile().then((m) => ({ default: m.ProfileScreen })))
@@ -523,6 +525,9 @@ export default function App() {
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
   const dueReviews = plan ? plan.items.filter((i) => i.kind === 'exercise').length : 0
   useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan, dueReviews)
+  useEffect(() => {
+    if (plan) updateAppBadge(dueReviews, settings?.appBadge ?? true)
+  }, [plan, dueReviews, settings?.appBadge])
   // The week in one line: on Today on Sunday and Monday, and in Sunday evening's push.
   const [weekText, setWeekText] = useState('')
   useEffect(() => {
@@ -1070,6 +1075,7 @@ export default function App() {
                 onTrySamples={async () => {
                   // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
                   const at = new Date()
+                  const { SAMPLE_WORDS } = await import('./data/seed')
                   await db.vocabulary.bulkPut(SAMPLE_WORDS[data.language].map((w) => ({ ...w, addedAt: at })))
                   await reload()
                 }}

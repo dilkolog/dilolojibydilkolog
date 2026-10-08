@@ -1283,6 +1283,24 @@ main:focus { outline: none; }
 .node text { font-family: var(--serif); font-size: 14px; fill: var(--ink); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
 .node:hover circle { stroke: var(--ink); }
 .node.is-dim { opacity: 0.2; }
+/* Word family map on the word page: relatives above, other languages below (WordFamilyMap). */
+.family-map { width: 100%; max-width: 30rem; height: auto; margin-inline: auto; display: block; overflow: visible; }
+.fm-edge { stroke: var(--rule); stroke-width: 1.5; }
+.fm-edge.fm-family { stroke: var(--lang); }
+.fm-edge.fm-language, .fm-edge.fm-child { stroke-dasharray: 4 3; }
+.fm-node rect { fill: var(--surface); stroke: var(--rule); stroke-width: 1.5; }
+.fm-node text { font-family: var(--serif); font-size: 14px; fill: var(--ink); }
+.fm-node.is-known rect { fill: var(--surface-2); stroke: var(--lang); }
+.fm-node.is-suggested rect { stroke-dasharray: 4 3; }
+.fm-node.is-suggested text { fill: var(--ink-soft); }
+.fm-center rect { fill: var(--lang); stroke: none; }
+.fm-center text { fill: var(--on-lang); font-weight: 600; }
+.fm-tag { font-family: var(--sans); font-size: 11px; font-weight: 600; fill: var(--ink-soft); }
+.fm-root { font-size: 12px; fill: var(--ink-soft); }
+.fm-node[role='link'] { cursor: pointer; }
+.fm-node[role='link']:hover rect { stroke: var(--ink); }
+.fm-node[role='link']:focus-visible { outline: none; }
+.fm-node[role='link']:focus-visible rect { stroke: var(--lang-text); stroke-width: 3; }
 .graph-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; color: var(--ink-soft); }
 .graph-legend i { display: inline-block; vertical-align: middle; margin-right: 0.25rem; }
 .graph-legend .dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; background: var(--track); }
