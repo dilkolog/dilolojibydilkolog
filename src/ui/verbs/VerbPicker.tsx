@@ -1,11 +1,10 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { ChevronDownIcon, ShuffleIcon, StarIcon } from '../icons'
-import { difficultItems, dueItems, type LabData, type LabItem } from '../../engine/labProgress'
+import { difficultItems, type LabData, type LabItem } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
-import { REVIEW_SIZE } from './ReviewTab'
 import { TensePicker } from './LearnTab'
 
 /** A section that opens and closes: the list inside is only built while it is open. */
@@ -181,7 +180,7 @@ export function PickerTop({
   )
 }
 
-/** The lists of verbs and the review queue: favourites, own verbs, levels, irregular, recent, due and difficult. */
+/** The lists of verbs: favourites, own verbs, levels, irregular, recent and the difficult forms. */
 export function PickerLists({
   language,
   verb,
@@ -194,7 +193,6 @@ export function PickerLists({
   ownVerbs,
   onVerb,
   onItem,
-  onReview,
 }: PickerBase & {
   lab: LabData
   level: Level | null
@@ -204,10 +202,7 @@ export function PickerLists({
   ownVerbs: readonly string[]
   /** A due or difficult item: open that verb in that tense for practice. */
   onItem: (verb: string, tense: Tense) => void
-  /** Start the review of what is due. */
-  onReview: () => void
 }) {
-  const due = dueItems(lab, new Date())
   const difficult = difficultItems(lab)
   const irregular = () => {
     const odd = byFrequency.slice(0, 700).filter((v) => irregularForms(verbEntry(language, v), tense).some(Boolean))
@@ -264,17 +259,6 @@ export function PickerLists({
       </Fold>
 
       <section className="lab-review">
-        <h3 className={due.length ? 'lab-review-title is-due' : 'lab-review-title'}>Bugünün tekrarları ({due.length})</h3>
-        {due.length ? (
-          <>
-            {itemChips(due)}
-            <button type="button" className="btn btn-sm" onClick={onReview}>
-              Tekrarı başlat ({Math.min(due.length, REVIEW_SIZE)})
-            </button>
-          </>
-        ) : (
-          <p className="small lab-done">Bugün tüm tekrarlar tamam!</p>
-        )}
         <h3 className="lab-review-title is-hard">Zorlandıklarım [{difficult.length}]</h3>
         {difficult.length ? itemChips(difficult) : <p className="small muted">Henüz kayıt yok: alıştırmada yanlış yaptıkça buraya düşer.</p>}
       </section>

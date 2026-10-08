@@ -11,7 +11,7 @@ const START: Record<LabLanguage, Tense[]> = {
   es: ['presente', 'imperfecto', 'preterito'],
 }
 
-/** Compare: up to three tenses of the verb side by side, each with what it is for. */
+/** Compare (a view of the learn tab): three tenses of the verb side by side, each with what it is for. */
 export function CompareTab({ language, verb, available }: { language: LabLanguage; verb: string; available: readonly Tense[] }) {
   const [picked, setPicked] = useState<Tense[]>(() => START[language].filter((t) => available.includes(t)))
   const chosen = [0, 1, 2].map((i) => picked[i] ?? available[i] ?? available[0])

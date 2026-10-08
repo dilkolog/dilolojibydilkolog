@@ -22,6 +22,7 @@ import { disablePush, enablePush, pushSubscription, pushSupported, type PushStat
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { Help } from './SettingHelp'
+import { HIDEABLE_TABS, readUsage, SCREEN_LABEL, trackedSince, usageSummary } from './screenUsage'
 import { LANGUAGE_NAME } from './labels'
 import { badgeSupported } from './appBadge'
 import { askClipboard, clipboardSupported } from './clipboardSuggest'
@@ -596,6 +597,7 @@ export function SettingsScreen({
               <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
             </div>
             </section>
+            <UsageCard hidden={settings.hiddenTabs ?? []} english={lang === 'en'} onChange={(tabs) => set('hiddenTabs', tabs)} />
           </Pane>
 
           <Pane {...pane('s-remind')}>
@@ -764,6 +766,54 @@ export function SettingsScreen({
         </ConfirmDialog>
       )}
     </div>
+  )
+}
+
+/**
+ * Which screens are opened, counted on this device only, and the tabs that can leave the menu:
+ * a tab never opened in a month is worth hiding (⌘K and links still open it).
+ */
+function UsageCard({ hidden, english, onChange }: { hidden: string[]; english: boolean; onChange: (tabs: string[]) => void }) {
+  const [log] = useState(readUsage)
+  const now = new Date()
+  const uses = usageSummary(log, now)
+  const since = trackedSince(log)
+  const max = Math.max(1, ...uses.map((u) => u.opens))
+  const tabs = HIDEABLE_TABS.filter((t) => t !== 'verbs' || !english)
+  const unused = (t: string) => !uses.some((u) => u.screen === t)
+  // "Never opened" says something only after a couple of weeks of counting.
+  const longEnough = !!since && now.getTime() - new Date(`${since}T00:00:00`).getTime() >= 14 * 86_400_000
+  return (
+    <section className="card stack">
+      <h2 className="section-title">Kullanım</h2>
+      <p className="small muted">Son 30 günde hangi ekranı kaç kez açtığın. Yalnızca bu cihazda sayılır; hiçbir yere gönderilmez.</p>
+      {uses.length > 0 ? (
+        <ul className="hour-list">
+          {uses.slice(0, 8).map((u) => (
+            <li key={u.screen}>
+              <span className="hour-label">{SCREEN_LABEL[u.screen] ?? u.screen}</span>
+              <span className="hour-bar">
+                <span style={{ width: `${(u.opens / max) * 100}%` }} />
+              </span>
+              <span className="hour-pct">{u.opens}</span>
+              <span className="small muted">{u.days} gün</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="small muted">Henüz sayılmış bir şey yok.</p>
+      )}
+      <h3 className="subhead">Menüdeki sekmeler</h3>
+      <p className="small muted">Kullanmadığın sekmeleri menüden kaldırabilirsin; ⌘K ile ya da bağlantılardan yine açılırlar.</p>
+      {tabs.map((t) => (
+        <Toggle
+          key={t}
+          label={`${SCREEN_LABEL[t]}${longEnough && unused(t) && !hidden.includes(t) ? ' · 30 gündür açılmadı' : ''}`}
+          checked={!hidden.includes(t)}
+          onChange={(show) => onChange(show ? hidden.filter((x) => x !== t) : [...hidden, t])}
+        />
+      ))}
+    </section>
   )
 }
 
