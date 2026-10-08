@@ -12,6 +12,7 @@ import {
   type TargetLanguage,
   type UserWordState,
   type VocabularyEntry,
+  addedTime,
 } from './types'
 
 export type PlanReason = 'forgotten' | 'mistake' | 'weak' | 'due' | 'new' | 'practice'
@@ -183,7 +184,7 @@ function introducedToday(input: PlanInput): number {
 export function newWordCandidates(input: PlanInput, limit: number): VocabularyEntry[] {
   const { catalog, states, now } = input
   const pool = unintroduced(input)
-  const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
+  const added = (e: VocabularyEntry) => addedTime(e)
   // Words outside the frequency list (negative) come after listed ones; unknown (0) last.
   const rank = (e: VocabularyEntry) => (e.frequencyRank > 0 ? e.frequencyRank : e.frequencyRank < 0 ? 1e6 : 2e6)
   // A list in focus is followed in its own order, level by level.
