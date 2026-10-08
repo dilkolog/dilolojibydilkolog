@@ -22,17 +22,28 @@ const HEARTS = 3
 /** Modes with their own questions and counting: no lives and no tense tip. */
 const QUIZ: Mode[] = ['speak', 'sentence', 'tense', 'mood', 'reverse', 'timed']
 
-const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
-  { id: 'type', label: 'Yaz', icon: PenIcon },
-  { id: 'choose', label: 'Seç', icon: TargetIcon },
-  { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
-  { id: 'speak', label: 'Söyle', icon: MicIcon },
-  { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
-  { id: 'sentence', label: 'Cümlede', icon: ReadIcon },
-  { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
-  { id: 'mood', label: 'Kip seç', icon: ScaleIcon },
-  { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
-  { id: 'timed', label: 'Zamana karşı', icon: BoltIcon },
+/** Two kinds of practice: the six forms of the tense, and the verb in use (sentences, choices, the clock). */
+const MODE_GROUPS: { label: string; modes: { id: Mode; label: string; icon: typeof PenIcon }[] }[] = [
+  {
+    label: 'Biçim',
+    modes: [
+      { id: 'type', label: 'Yaz', icon: PenIcon },
+      { id: 'choose', label: 'Seç', icon: TargetIcon },
+      { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
+      { id: 'speak', label: 'Söyle', icon: MicIcon },
+      { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
+    ],
+  },
+  {
+    label: 'Kullanım',
+    modes: [
+      { id: 'sentence', label: 'Cümlede', icon: ReadIcon },
+      { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
+      { id: 'mood', label: 'Kip seç', icon: ScaleIcon },
+      { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
+      { id: 'timed', label: 'Zamana karşı', icon: BoltIcon },
+    ],
+  },
 ]
 
 /** The people the round asks: all six, without vosotros for a learner of Latin American Spanish. */
@@ -171,12 +182,19 @@ export function PracticeTab({
         <h2 className="lab-verb" lang={language}>
           {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
         </h2>
-        <div className="lab-modes" role="group" aria-label="Alıştırma türü">
-          {MODES.map((m) => (
-            <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())} title={m.label}>
-              <m.icon size={18} />
-              <span>{m.label}</span>
-            </button>
+        <div className="lab-mode-groups">
+          {MODE_GROUPS.map((g) => (
+            <div key={g.label} className="lab-mode-group">
+              <span className="small muted">{g.label}</span>
+              <div className="lab-modes" role="group" aria-label={`${g.label} alıştırmaları`}>
+                {g.modes.map((m) => (
+                  <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())} title={m.label}>
+                    <m.icon size={18} />
+                    <span>{m.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
         {mode === 'type' && (

@@ -5,7 +5,6 @@ import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
-import { TensePicker } from './LearnTab'
 
 const MORE = 36
 
@@ -37,27 +36,23 @@ interface PickerBase {
 }
 
 /**
- * The top of the lab's side panel: type a verb (with suggestions), shuffle one, and choose the
- * tense. Always in view; the lists of verbs below it are a separate card (PickerLists).
+ * The top of the lab: one row to type a verb (with suggestions) or shuffle one. The accented
+ * letters come in the panel that opens while typing, over the page, so nothing below moves and
+ * the conjugation table stays close. The tense is chosen above the table (TenseBar).
  */
 export function PickerTop({
   language,
   verb,
-  tense,
-  available,
   level,
   levels,
   byFrequency,
   frequency,
   onVerb,
-  onTense,
-}: PickerBase & {
-  available: readonly Tense[]
+}: Omit<PickerBase, 'tense'> & {
   level: Level | null
   levels: ReadonlyMap<string, Level>
   byFrequency: readonly string[]
   frequency: ReadonlyMap<string, number>
-  onTense: (t: Tense) => void
 }) {
   const [text, setText] = useState(verb)
   const [open, setOpen] = useState(false)
@@ -92,11 +87,10 @@ export function PickerTop({
   }
 
   return (
-    <div className="stack lab-picker">
-      <div className="stack gap-2">
-        <label className="section-title" htmlFor={`${listId}-in`}>
-          Fiil girin
-        </label>
+    <div className="lab-find">
+      <label className="sr-only" htmlFor={`${listId}-in`}>
+        Fiil
+      </label>
         <div className="lab-input">
           <input
             id={`${listId}-in`}
@@ -138,29 +132,26 @@ export function PickerTop({
           <button type="button" className="icon-btn lab-shuffle" onClick={shuffle} aria-label="Rastgele fiil">
             <ShuffleIcon size={18} />
           </button>
-          {suggestions.length > 0 && (
-            <ul className="lab-suggest" id={`${listId}-list`} role="listbox" lang={language}>
-              {suggestions.map((s, i) => (
-                <li key={s} id={`${listId}-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? 'is-active' : undefined} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(s)}>
-                  {s}
-                </li>
-              ))}
-            </ul>
+          {open && (
+            <div className="lab-drop">
+              {suggestions.length > 0 && (
+                <ul className="lab-suggest" id={`${listId}-list`} role="listbox" lang={language}>
+                  {suggestions.map((s, i) => (
+                    <li key={s} id={`${listId}-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? 'is-active' : undefined} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(s)}>
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />
+            </div>
           )}
         </div>
-        <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />
         {missing && (
           <p className="small notice" role="status">
             “{text}” tablolarda yok. Mastar biçimini yaz (örn. {language === 'fr' ? 'finir' : 'vivir'}).
           </p>
         )}
-      </div>
-
-      <div className="stack gap-2">
-        <span className="section-title">Zaman seçin</span>
-        <TensePicker language={language} tense={tense} onPick={onTense} available={available} />
-      </div>
-
     </div>
   )
 }

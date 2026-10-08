@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
 import { irregularForms, tenseSentence, verbParts, type Tense } from '../../engine/tenses'
@@ -13,16 +13,31 @@ import { TwinTense } from './TwinTense'
 import { CORE_TENSES, MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
-export function TensePicker({ language, tense, onPick, available }: { language: LabLanguage; tense: Tense; onPick: (t: Tense) => void; available: readonly Tense[] }) {
+export function TensePicker({
+  language,
+  tense,
+  onPick,
+  available,
+  label,
+  buttonClassName = 'btn btn-quiet lab-tense-btn',
+}: {
+  language: LabLanguage
+  tense: Tense
+  onPick: (t: Tense) => void
+  available: readonly Tense[]
+  /** The button's text instead of the tense's name (e.g. "Diğer zamanlar" next to the core ones). */
+  label?: string
+  buttonClassName?: string
+}) {
   return (
     <Popover
       button={
         <>
-          <span lang={language}>{tenseName(tense)}</span>
+          {label ?? <span lang={language}>{tenseName(tense)}</span>}
           <ChevronDownIcon size={16} />
         </>
       }
-      buttonClassName="btn btn-quiet lab-tense-btn" label="Zaman seç" kind="menu" align="start">
+      buttonClassName={buttonClassName} label="Zaman seç" kind="menu" align="start">
       {(close) =>
         MOODS[language].map((m) => {
           const own = m.tenses.filter((t) => available.includes(t))
@@ -47,6 +62,45 @@ export function TensePicker({ language, tense, onPick, available }: { language: 
         })
       }
     </Popover>
+  )
+}
+
+const BRIDGE_SEEN = 'kelime-koc:bridge-seen'
+
+/** Tenses whose Turkish counterpart the learner has already been shown open (per device). */
+function bridgeSeen(): Set<string> {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(BRIDGE_SEEN) ?? '[]') as string[])
+  } catch {
+    return new Set()
+  }
+}
+
+/**
+ * The tense from the Turkish side: open the first time a tense is studied, after that one line
+ * (its Turkish ending in the summary) that opens on request, so it doesn't push the page down.
+ */
+function TenseBridge({ tense }: { tense: Tense }) {
+  const [open] = useState(() => !bridgeSeen().has(tense))
+  useEffect(() => {
+    const seen = bridgeSeen()
+    if (seen.has(tense)) return
+    seen.add(tense)
+    try {
+      localStorage.setItem(BRIDGE_SEEN, JSON.stringify([...seen]))
+    } catch {
+      // Shown open again next time; harmless.
+    }
+  }, [tense])
+  const b = TENSE_BRIDGE[tense]
+  return (
+    <details className="lab-bridge" open={open} aria-label="Türkçedeki karşılığı">
+      <summary>
+        <span className="lab-bridge-kicker">Türkçedeki karşılığı</span> <strong>{b.suffix}</strong>
+      </summary>
+      <p>{b.note}</p>
+      {b.trap && <p className="lab-bridge-trap">Dikkat: {b.trap}</p>}
+    </details>
   )
 }
 
@@ -136,101 +190,96 @@ export function LearnTab({
             </button>
           ))}
         </div>
-      </div>
-
-      {/* "Regular" says nothing the Kurallı label below doesn't; the irregular patterns are worth a link. */}
-      {families.some((f) => !f.endsWith('-regular')) && (
-        <p className="lab-families small">
-          <span className="muted">Kalıp:</span>
-          {families.filter((f) => !f.endsWith('-regular')).map((f) => (
-            <button key={f} type="button" className="chip chip-sm" onClick={() => onFamily(f)} title={FAMILIES[f].rule}>
-              {FAMILIES[f].name}
-            </button>
-          ))}
-        </p>
-      )}
-
-      {parts && (
-        <p className="lab-parts small muted" lang={language}>
-          <span>
-            Mastar: <strong>{parts.infinitive}</strong>
-          </span>
-          {parts.gerund && (
-            <span>
-              {language === 'fr' ? 'Ulaç' : 'Ulaç'}: <strong>{parts.gerund}</strong>
-            </span>
-          )}
-          {parts.participle && (
-            <span>
-              Geçmiş ortaç: <strong>{parts.participle}</strong>
-            </span>
-          )}
-          <span className={parts.irregular ? 'lab-kind is-odd' : 'lab-kind'}>{parts.irregular ? 'Düzensiz' : 'Kurallı'}</span>
-        </p>
-      )}
-
-      <div className="lab-tools">
-        <button type="button" className="btn btn-quiet btn-sm" aria-pressed={memorise} onClick={() => setMemorise((m) => !m)}>
-          {memorise ? 'Formları göster' : 'Ezber modu'}
-        </button>
-        <span className="lab-alt">
-          <span className="small muted">Alternatif:</span>
-          <button type="button" className="chip chip-sm" aria-pressed={reflexive} onClick={() => setReflexive((r) => !r)}>
-            Dönüşlü
+        {view === 'simple' && (
+          <button type="button" className="chip chip-sm" aria-pressed={memorise} onClick={() => setMemorise((m) => !m)} title="Biçimleri gizler; dokundukça açılır">
+            Ezber
           </button>
-          <button type="button" className="chip chip-sm" aria-pressed={negative} onClick={() => setNegative((n) => !n)}>
-            Olumsuz
-          </button>
-        </span>
-        <Popover button={<MoreIcon size={18} />} buttonClassName="icon-btn lab-more" buttonProps={{ 'aria-label': 'Diğer' }} label="Diğer" kind="menu" align="end">
+        )}
+        <Popover button={<MoreIcon size={18} />} buttonClassName="icon-btn lab-more" buttonProps={{ 'aria-label': 'Diğer seçenekler' }} label="Diğer seçenekler" kind="menu" align="end">
           {(close) => (
-            <MenuItem
-              title="Yazdır"
-              hint="Tabloyu kâğıda ya da PDF'e"
-              onSelect={() => {
-                close()
-                window.print()
-              }}
-            />
+            <>
+              <MenuItem icon={reflexive ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Dönüşlü" hint="se laver / lavarse" onSelect={() => (setReflexive((r) => !r), close())} />
+              <MenuItem icon={negative ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Olumsuz" hint="ne… pas / no…" onSelect={() => (setNegative((n) => !n), close())} />
+              <MenuItem
+                icon={<span className="lab-tick-gap" />}
+                title="Yazdır"
+                hint="Tabloyu kâğıda ya da PDF'e"
+                onSelect={() => {
+                  close()
+                  window.print()
+                }}
+              />
+            </>
           )}
         </Popover>
       </div>
-
-      <section className="lab-progress" aria-label="Bu fiili ne kadar biliyorsun">
-        <div className="lab-progress-top">
-          <strong title={core.map(tenseName).join(', ')}>Temel zamanlarda bu fiili ne kadar biliyorsun?</strong>
-          <span className="lab-pct">%{mastery}</span>
-        </div>
-        <div className="lab-bar" role="progressbar" aria-label="Temel zamanlarda bu fiili ne kadar biliyorsun" aria-valuemin={0} aria-valuemax={100} aria-valuenow={mastery}>
-          <span style={{ width: `${mastery}%` }} />
-        </div>
-        <div className="lab-progress-foot">
-          <p className="small muted">
-            {tried(core)}/{core.length} temel zaman denendi
-            {advanced.length > 0 && ` · ileri zamanlar ${tried(advanced)}/${advanced.length}`}
-          </p>
-          <span className="row gap-2">
-            <button type="button" className="btn btn-quiet btn-sm" onClick={onAddReview} disabled={inReview >= reviewable}>
-              {inReview >= reviewable ? 'Tekrar listende' : inReview ? 'Hepsini tekrar listeme ekle' : 'Tekrar listeme ekle'}
-            </button>
-            <button type="button" className="btn btn-sm" onClick={onPractice}>
-              <BookIcon size={16} /> Alıştırmaya geç
-            </button>
-          </span>
-        </div>
-      </section>
 
       {view === 'compare' ? (
         <CompareTab language={language} verb={verb} available={available} />
       ) : view === 'simple' ? (
         <>
+          {/* The table first: it is what the learner came for. */}
+          {(reflexive || negative) && <p className="small muted lab-table-head">{[reflexive && 'Dönüşlü', negative && 'olumsuz'].filter(Boolean).join(', ')} biçim</p>}
+          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          {odd.some(Boolean) && (
+            <p className="small muted">
+              <mark className="conj-odd">Altı çizili</mark> biçimler kuralın dışında; bunlara ayrıca dikkat et.
+            </p>
+          )}
+
+          {/* One line about the verb: its pattern (a link to it), or regular/irregular, and its non-finite forms. */}
+          {parts && (
+            <p className="lab-parts small muted" lang={language}>
+              {families.length > 0 ? (
+                <span className="lab-families">
+                  {families.map((f) => (
+                    <button key={f} type="button" className="chip chip-sm" onClick={() => onFamily(f)} title={FAMILIES[f].rule}>
+                      {FAMILIES[f].name}
+                    </button>
+                  ))}
+                </span>
+              ) : (
+                <span className={parts.irregular ? 'lab-kind is-odd' : 'lab-kind'}>{parts.irregular ? 'Düzensiz' : 'Kurallı'}</span>
+              )}
+              <span>
+                Mastar: <strong>{parts.infinitive}</strong>
+              </span>
+              {parts.gerund && (
+                <span>
+                  Ulaç: <strong>{parts.gerund}</strong>
+                </span>
+              )}
+              {parts.participle && (
+                <span>
+                  Geçmiş ortaç: <strong>{parts.participle}</strong>
+                </span>
+              )}
+            </p>
+          )}
+
+          <div className="lab-progress-line">
+            <span className="small">
+              <strong>%{mastery}</strong> <span className="muted">temel zamanlarda · {tried(core)}/{core.length} denendi{advanced.length > 0 && `, ileri ${tried(advanced)}/${advanced.length}`}</span>
+            </span>
+            <span className="lab-bar" role="progressbar" aria-label="Temel zamanlarda bu fiili ne kadar biliyorsun" title={core.map(tenseName).join(', ')} aria-valuemin={0} aria-valuemax={100} aria-valuenow={mastery}>
+              <span style={{ width: `${mastery}%` }} />
+            </span>
+            <span className="row gap-2">
+              <button type="button" className="btn btn-quiet btn-sm" onClick={onAddReview} disabled={inReview >= reviewable}>
+                {inReview >= reviewable ? 'Tekrar listende' : inReview ? 'Hepsini tekrar listeme ekle' : 'Tekrar listeme ekle'}
+              </button>
+              <button type="button" className="btn btn-sm" onClick={onPractice}>
+                <BookIcon size={16} /> Alıştır
+              </button>
+            </span>
+          </div>
+
           <p className="conj-lead">
             <strong>
               <span lang={language}>{guide.name}</span> · {guide.tr}.
             </strong>{' '}
             {guide.short}
           </p>
-          {/* The words that go with the tense, next to what it is for (they used to sit above the verb). */}
           <p className="lab-uses" lang={language}>
             <span className="small muted">Sık birlikte:</span>
             {guide.markers.map((m) => (
@@ -239,20 +288,7 @@ export function LearnTab({
               </span>
             ))}
           </p>
-          <section className="lab-bridge" aria-label="Türkçedeki karşılığı">
-            <span className="lab-bridge-kicker">Türkçedeki karşılığı</span>
-            <p>
-              <strong>{TENSE_BRIDGE[tense].suffix}</strong>
-            </p>
-            <p>{TENSE_BRIDGE[tense].note}</p>
-            {TENSE_BRIDGE[tense].trap && <p className="lab-bridge-trap">Dikkat: {TENSE_BRIDGE[tense].trap}</p>}
-          </section>
-          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
-          {odd.some(Boolean) && (
-            <p className="small muted">
-              <mark className="conj-odd">Altı çizili</mark> biçimler kuralın dışında; bunlara ayrıca dikkat et.
-            </p>
-          )}
+          <TenseBridge key={tense} tense={tense} />
           {sentence && (
             <div className="lab-example">
               <span className="lab-example-kicker">Örnek</span>
