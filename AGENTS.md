@@ -33,12 +33,10 @@ Son güncelleme: 2026-10-08.
 - Bir `useEffect` içinden gelen `reload` sonuçları dil değişince atılıyor (`languageRef`, #51 birleşti) — bu deseni koru.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
-## Durum (2026-10-08 akşamı, Claude Code'dan devir)
-Birleşti: #37–#61 (fiil laboratuvarı yığını, kelime çalışması, oturuma fiil çekimleri #59, tabloda zayıf kişiler #61 dahil).
+## Durum (2026-10-08)
+Birleşti: #37–#63 (#62 toplu ekleme satır sebebi ve #63 devir notu dahil).
 
-Açık:
-- **#62** (`import-row-reason`) toplu eklemede satırın neden eklenemediğini yazıyor; kelimenin geçmediği cümle de ekleniyor (boşluk doldurmada kullanılmıyor, `form: ''`). Yerelde tüm testler geçti; CI yeşilse birleştir.
-- **Bu devir notunun PR'ı** (`agents-handoff`): yeşilse birleştir.
+Açık PR: Yok.
 
 ## Görevler (sırayla; her biri ayrı küçük PR)
 Kullanıcı fiil laboratuvarı fikirlerini "sırayla, parça parça" istedi. 1 (#59) ve 2 (#61) bitti. Kalanlar:
