@@ -566,7 +566,7 @@ export function ReadingScreen({
           <summary>Kendi metnini ekle: yapıştır, dosya, kitap (EPUB) ya da YouTube</summary>
           <div className="stack mt-3">
           <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
-          <textarea className="textarea" style={{ minHeight: '14rem' }} lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
+          <textarea className="textarea reading-draft-textarea" lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
           <div className="row">
             <button className="btn" onClick={start} disabled={!draft.trim()}>
               Okumaya başla

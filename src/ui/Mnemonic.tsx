@@ -131,8 +131,7 @@ export function MnemonicDialog({
               (AI açıksa bunu senin yerine önerir.)
             </p>
             <textarea
-              className="textarea"
-              style={{ minHeight: '5rem' }}
+              className="textarea mnemonic-textarea"
               autoFocus
               value={own}
               onChange={(e) => setOwn(e.target.value)}

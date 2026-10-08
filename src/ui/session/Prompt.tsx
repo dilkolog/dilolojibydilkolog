@@ -175,5 +175,5 @@ function RateNote({ rate }: { rate: number }) {
 
 function PictureFrame({ id }: { id?: string }) {
   const url = useMediaUrl(id)
-  return url ? <img className="word-image" src={url} alt="Kelimenin görseli" /> : <div className="word-image" style={{ height: '12rem', background: 'var(--surface-2)' }} />
+  return url ? <img className="word-image" src={url} alt="Kelimenin görseli" /> : <div className="word-image word-image-placeholder" />
 }

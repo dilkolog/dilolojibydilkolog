@@ -553,7 +553,7 @@ export function SettingsScreen({
             </Row>
             <Row label={`${LANGUAGE_NAME[lang]} sesi`} help="Sistemdeki seslerden seç. macOS'te Ayarlar → Erişilebilirlik → Okunan İçerik'ten yenilerini indirebilirsin.">
               <div className="row nowrap">
-                <div style={{ flex: 1, minWidth: '12rem' }}>
+                <div className="settings-voice-select">
                   <Select
                     label="Ses"
                     value={settings.voices[lang] ?? '__auto'}
@@ -628,7 +628,7 @@ export function SettingsScreen({
                   <p className="small muted">Alışkanlık saatin en az 5 gün çalışınca belli olur; o zamana kadar seçtiğin saat kullanılır.</p>
                 )}
                 <Row label="Saat">
-                  <div style={{ width: '9rem' }}>
+                  <div className="settings-time-select">
                     <Select label="Saat" value={settings.reminder.time} onChange={(t) => set('reminder', { ...settings.reminder, time: t })} options={TIMES.map((t) => ({ value: t, label: t }))} />
                   </div>
                 </Row>

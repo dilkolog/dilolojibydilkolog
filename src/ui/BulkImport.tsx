@@ -128,8 +128,7 @@ export function BulkImport({
           kelime, sonra anlam; istersen üçüncü olarak geçtiği cümle (örnek cümle olur), dördüncü olarak da cümlenin çevirisi.
         </p>
         <textarea
-          className="textarea"
-          style={{ minHeight: '9rem' }}
+          className="textarea bulk-import-textarea"
           lang={language}
           aria-label="Kelime listesi"
           placeholder={EXAMPLE[language]}

@@ -62,7 +62,7 @@ export function PatternsSection({ db, entry, onChanged }: { db: KelimeDB; entry:
                   void add(p)
                 }}
               >
-                <input className="input" style={{ flex: 1, minWidth: '12rem' }} value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="Türkçesi: karar vermek" aria-label="Türkçesi" autoFocus />
+                <input className="input pattern-trans-input" value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="Türkçesi: karar vermek" aria-label="Türkçesi" autoFocus />
                 <button className="btn btn-sm" type="submit" disabled={!translation.trim()}>
                   Ekle
                 </button>

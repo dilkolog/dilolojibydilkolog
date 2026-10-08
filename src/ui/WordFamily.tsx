@@ -169,7 +169,7 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
                         if (meaning.trim()) void add(w, meaning)
                       }}
                     >
-                      <input className="input" style={{ width: '12rem' }} value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Türkçe anlamı" aria-label={`${w} Türkçe anlamı`} autoFocus />
+                      <input className="input word-family-meaning-input" value={meaning} onChange={(e) => setMeaning(e.target.value)} placeholder="Türkçe anlamı" aria-label={`${w} Türkçe anlamı`} autoFocus />
                       <button className="btn btn-sm" type="submit" disabled={!meaning.trim()}>
                         Ekle
                       </button>

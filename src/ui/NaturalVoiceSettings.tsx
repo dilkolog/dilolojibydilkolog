@@ -89,7 +89,7 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
         </div>
       ) : (
         <form className="row" onSubmit={save}>
-          <input className="input" type="password" autoComplete="off" placeholder="Google Cloud API anahtarı" value={draft} onChange={(e) => setDraft(e.target.value)} style={{ flex: 1, minWidth: '14rem' }} />
+          <input className="input voice-key-input" type="password" autoComplete="off" placeholder="Google Cloud API anahtarı" value={draft} onChange={(e) => setDraft(e.target.value)} />
           <button className="btn" type="submit" disabled={busy || !draft.trim()}>
             {busy ? 'Kontrol ediliyor…' : 'Kaydet ve dene'}
           </button>
