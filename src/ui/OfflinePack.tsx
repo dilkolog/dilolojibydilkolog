@@ -81,7 +81,7 @@ export function OfflinePack({ settings }: { settings: Settings }) {
         </button>
       </div>
       {progress && progress.total > 0 && (
-        <div className="known-bar" role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
+        <div className="known-bar" role="progressbar" aria-label="Paketin indirilmesi" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
           <span style={{ width: `${(progress.done / progress.total) * 100}%` }} />
         </div>
       )}

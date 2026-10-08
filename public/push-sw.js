@@ -32,7 +32,10 @@ function idbGet(db, store, key) {
   })
 }
 
-/** A word due for review (the most overdue of a few), as { word, gloss }, or null. */
+/**
+ * A word due for review (the most overdue of a few), as { word, gloss } (or null), and how many are
+ * due, for the app icon's badge (unless turned off in Settings).
+ */
 async function dueQuestion() {
   const db = await new Promise((resolve) => {
     const req = indexedDB.open(DB_NAME)
@@ -44,7 +47,7 @@ async function dueQuestion() {
       resolve(null)
     }
   })
-  if (!db) return null
+  if (!db) return { question: null, due: 0, badge: false }
   try {
     const now = Date.now()
     const states = await idbAll(db, 'wordStates')
@@ -53,12 +56,12 @@ async function dueQuestion() {
     // Retired words (by hand, or with every card stable for half a year as in retire.ts) only cost time.
     const retired = (s) =>
       s.retired !== undefined ? s.retired : autoRetire && Object.values(s.skills || {}).every((c) => c.stability >= 180)
-    const due = states
+    const allDue = states
       .filter((s) => !retired(s))
       .map((s) => ({ s, due: Math.min(...Object.values(s.skills || {}).map((c) => new Date(c.due).getTime())) }))
       .filter((x) => Number.isFinite(x.due) && x.due <= now)
       .sort((a, b) => a.due - b.due)
-      .slice(0, 5)
+    const due = allDue.slice(0, 5)
     // A random one of the most overdue, skipping any whose entry is gone or has no meaning yet.
     for (let i = due.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -72,9 +75,10 @@ async function dueQuestion() {
         break
       }
     }
-    if (!entry) return null
+    const badge = settings.appBadge !== false
+    if (!entry) return { question: null, due: allDue.length, badge }
     const word = entry.article ? (entry.article.endsWith("'") ? entry.article + entry.lemma : entry.article + ' ' + entry.lemma) : entry.lemma
-    return { word, gloss: entry.senses[0].gloss }
+    return { question: { word, gloss: entry.senses[0].gloss }, due: allDue.length, badge }
   } finally {
     db.close()
   }
@@ -90,9 +94,10 @@ self.addEventListener('push', (event) => {
   const body = data.body || 'Bugünkü kelime çalışman seni bekliyor.'
   event.waitUntil(
     dueQuestion()
-      .catch(() => null)
-      .then((q) =>
-        self.registration.showNotification(q ? `${q.word} = ?` : data.title || 'Kelime Koçu', {
+      .catch(() => ({ question: null, due: 0, badge: false }))
+      .then(({ question: q, due, badge }) => {
+        if (badge && due > 0 && self.navigator.setAppBadge) self.navigator.setAppBadge(Math.min(due, 99)).catch(() => {})
+        return self.registration.showNotification(q ? `${q.word} = ?` : data.title || 'Kelime Koçu', {
           body: q ? `Aklından geçir, sonra bak. ${body}` : body,
           icon: '/pwa-192.png',
           badge: '/pwa-192.png',
@@ -104,8 +109,8 @@ self.addEventListener('push', (event) => {
                 { action: 'open', title: 'Kısa tekrar' },
               ]
             : [],
-        }),
-      ),
+        })
+      }),
   )
 })
 
