@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Tense } from '../../engine/tenses'
 import { TensePicker } from './LearnTab'
-import { CORE_TENSES, MOODS, tenseName, type LabLanguage } from './labShared'
-
-/** The verb's tenses in teaching order (by mood), for stepping with the arrow keys. */
-const ordered = (language: LabLanguage, available: readonly Tense[]) => MOODS[language].flatMap((m) => m.tenses).filter((t) => available.includes(t))
+import { CORE_TENSES, stepTense, tenseName, type LabLanguage } from './labShared'
 
 /**
  * The tense, right above the table: the four core tenses one tap away, the rest in a menu, and ←/→
@@ -30,9 +27,7 @@ export function TenseBar({ language, verb, tense, available, onTense }: { langua
       if (e.metaKey || e.ctrlKey || e.altKey) return
       const el = e.target as HTMLElement | null
       if (el && (el.closest('input, textarea, select, [contenteditable="true"], [role="menu"], [role="tablist"], [role="slider"]') || el.isContentEditable)) return
-      const list = ordered(language, available)
-      const i = list.indexOf(tense)
-      const next = list[e.key === 'ArrowRight' ? i + 1 : i - 1]
+      const next = stepTense(language, available, tense, e.key === 'ArrowRight' ? 1 : -1)
       if (!next) return
       e.preventDefault()
       onTense(next)

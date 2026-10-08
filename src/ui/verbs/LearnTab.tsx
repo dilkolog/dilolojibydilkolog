@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
 import { irregularForms, personsOf, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
@@ -15,7 +15,7 @@ import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
 import { TwinTense } from './TwinTense'
 import { recordVisit } from '../screenUsage'
-import { CORE_TENSES, MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { CORE_TENSES, MOODS, stepTense, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
 export function TensePicker({
@@ -221,6 +221,11 @@ export function LearnTab({
   const advanced = available.filter((t) => !core.includes(t))
   const tried = (ts: readonly Tense[]) => ts.filter((t) => masteryLevel(lab.records[labKey(verb, t)]) !== 'new').length
   const mastery = verbMastery(lab, verb, core)
+  const swipe = useTenseSwipe((dir) => {
+    const next = stepTense(language, available, tense, dir)
+    if (next) onTense(next)
+    return !!next
+  })
   const weak = useMemo(() => (reflexive || negative ? {} : weakPersons(lab, tense)), [lab, tense, reflexive, negative])
   if (!forms) return null
   return (
@@ -300,7 +305,10 @@ export function LearnTab({
         <>
           {/* The table first: it is what the learner came for. */}
           {(reflexive || negative) && <p className="small muted lab-table-head">{[reflexive && 'Dönüşlü', negative && 'olumsuz'].filter(Boolean).join(', ')} biçim</p>}
-          <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} weak={weak} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          <div onTouchStart={swipe.start} onTouchEnd={swipe.end}>
+            <FormTable language={language} tense={tense} forms={forms} irregular={odd} hide={memorise} weak={weak} key={`${verb}${tense}${reflexive}${negative}${memorise}`} />
+          </div>
+          {swipe.hint && <p className="small muted lab-swipe-hint">Tabloyu sola ya da sağa kaydırarak zamanı değiştirebilirsin.</p>}
           {Object.keys(weak).length > 0 && <p className="small muted lab-weak-note">Turuncu çizgili kişiler bu zamanda en çok yanlış yaptıkların; onlara ayrıca dikkat et.</p>}
           {odd.some(Boolean) && (
             <p className="small muted">
@@ -434,4 +442,44 @@ export function LearnTab({
       )}
     </div>
   )
+}
+
+const SWIPED_KEY = 'kelime-koc:lab-swiped'
+
+/**
+ * A sideways swipe over the table steps the tense (left: the next one, right: the one before), as
+ * ←/→ do on a keyboard. Only clearly sideways and quick, so scrolling the page is left alone. On a
+ * touch screen a line says so until the first swipe.
+ */
+function useTenseSwipe(step: (dir: 1 | -1) => boolean) {
+  const from = useRef<{ x: number; y: number; at: number } | null>(null)
+  const [hint, setHint] = useState(() => {
+    try {
+      return typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches && !localStorage.getItem(SWIPED_KEY)
+    } catch {
+      return false
+    }
+  })
+  const start = (e: TouchEvent) => {
+    const t = e.touches[0]
+    from.current = e.touches.length === 1 && t ? { x: t.clientX, y: t.clientY, at: Date.now() } : null
+  }
+  const end = (e: TouchEvent) => {
+    const f = from.current
+    const t = e.changedTouches[0]
+    from.current = null
+    if (!f || !t) return
+    const dx = t.clientX - f.x
+    const dy = t.clientY - f.y
+    if (Math.abs(dx) < 50 || Math.abs(dx) < 1.5 * Math.abs(dy) || Date.now() - f.at > 800) return
+    if (step(dx < 0 ? 1 : -1) && hint) {
+      setHint(false)
+      try {
+        localStorage.setItem(SWIPED_KEY, '1')
+      } catch {
+        // Storage off: the hint comes back next time.
+      }
+    }
+  }
+  return { start, end, hint }
 }
