@@ -1052,7 +1052,7 @@ export default function App() {
             ) : screen.name === 'games' ? (
               <GamesScreen key={screen.game} initialGame={screen.game} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'verbs' ? (
-              <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} />
+              <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
             ) : screen.name === 'profile' ? (
               <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
             ) : screen.name === 'account' ? (

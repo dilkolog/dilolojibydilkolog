@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
-import { irregularForms, tenseSentence, verbParts, type Tense } from '../../engine/tenses'
+import { irregularForms, personsOf, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
 import { masteryLevel, labKey, verbMastery, type LabData } from '../../engine/labProgress'
 import { canSpeak, speak } from '../speech'
-import { BookIcon, CheckIcon, ChevronDownIcon, MoreIcon, SpeakerIcon, StarIcon } from '../icons'
+import { BookIcon, CheckIcon, ChevronDownIcon, MoreIcon, PlusIcon, SpeakerIcon, StarIcon } from '../icons'
+import { db } from '../../data/instance'
+import { createEntry } from '../../data/wordInput'
+import { loadPack, packRecord } from '../../data/wordpack'
+import { showToast } from '../toast'
 import { Popover, MenuItem } from '../Popover'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
@@ -65,6 +69,28 @@ export function TensePicker({
   )
 }
 
+/** The six forms with their subjects as one utterance, a pause between each. */
+const sayAll = (language: LabLanguage, tense: Tense, forms: readonly string[]) =>
+  personsOf(language, tense)
+    .filter((p) => forms[p])
+    .map((p) => withSubject(language, tense, p, forms[p]))
+    .join('. ')
+
+/** The verb's Turkish meaning from the word pack, for a verb in neither the list nor the common ones. */
+function usePackGloss(language: LabLanguage, verb: string, wanted: boolean): string | undefined {
+  const [gloss, setGloss] = useState<string | undefined>()
+  useEffect(() => {
+    setGloss(undefined)
+    if (!wanted) return
+    let live = true
+    void loadPack(language).then((pack) => live && setGloss(packRecord(pack, verb, language)?.t?.slice(0, 2).join(', ')))
+    return () => {
+      live = false
+    }
+  }, [language, verb, wanted])
+  return gloss
+}
+
 const BRIDGE_SEEN = 'kelime-koc:bridge-seen'
 
 /** Tenses whose Turkish counterpart the learner has already been shown open (per device). */
@@ -116,6 +142,8 @@ export function LearnTab({
   tense,
   available,
   gloss,
+  inList = true,
+  onAdded,
   lab,
   favorite,
   onTense,
@@ -132,6 +160,10 @@ export function LearnTab({
   tense: Tense
   available: readonly Tense[]
   gloss?: string
+  /** The verb is already in the learner's word list. */
+  inList?: boolean
+  /** Added to the word list from here (the app reloads the words). */
+  onAdded?: () => void
   lab: LabData
   favorite: boolean
   onTense: (t: Tense) => void
@@ -150,7 +182,34 @@ export function LearnTab({
   const [reflexive, setReflexive] = useState(false)
   const [negative, setNegative] = useState(false)
   const [memorise, setMemorise] = useState(false)
+  const [added, setAdded] = useState(false)
+  const packGloss = usePackGloss(language, verb, !gloss)
+  const meaning = gloss ?? packGloss
   const entry = verbEntry(language, verb)
+  // E: memorise mode; A: on to practice. Not while typing, nor with a modifier.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+      const el = e.target as HTMLElement | null
+      if (el && (el.closest('input, textarea, select, [contenteditable="true"]') || el.isContentEditable)) return
+      const key = e.key.toLocaleLowerCase('tr')
+      if (key === 'e') setMemorise((m) => !m)
+      else if (key === 'a') onPractice()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onPractice])
+  const addToList = async () => {
+    if (!meaning) return
+    try {
+      await db.vocabulary.put(createEntry({ word: verb, meaning, partOfSpeech: 'verb' }, language, new Date()))
+      setAdded(true)
+      showToast(`${verb} kelimelerine eklendi.`)
+      onAdded?.()
+    } catch {
+      showToast('Eklenemedi.', undefined, 4000, 'info')
+    }
+  }
   const parts = useMemo(() => verbParts(entry), [language, verb]) // eslint-disable-line react-hooks/exhaustive-deps
   const guide = TENSE_GUIDE[tense]
   const forms = labForms(entry, tense, { reflexive, negative })
@@ -176,7 +235,12 @@ export function LearnTab({
             <SpeakerIcon size={20} />
           </button>
         )}
-        {gloss && <span className="lab-gloss">{gloss}</span>}
+        {meaning && <span className="lab-gloss">{meaning}</span>}
+        {!inList && !added && meaning && (
+          <button type="button" className="chip chip-sm" onClick={addToList}>
+            <PlusIcon size={14} /> <span className="lab-wide">Kelimelerime </span>ekle
+          </button>
+        )}
         <div className="segmented lab-detail-toggle" role="group" aria-label="Görünüm">
           {(
             [
@@ -190,8 +254,13 @@ export function LearnTab({
             </button>
           ))}
         </div>
+        {view === 'simple' && canSpeak() && (
+          <button type="button" className="chip chip-sm" onClick={() => speak(sayAll(language, tense, forms), language)} title="Altı biçimi zamirleriyle sırayla dinle" aria-label="Tümünü dinle">
+            <SpeakerIcon size={14} /> <span className="lab-wide">Tümü</span>
+          </button>
+        )}
         {view === 'simple' && (
-          <button type="button" className="chip chip-sm" aria-pressed={memorise} onClick={() => setMemorise((m) => !m)} title="Biçimleri gizler; dokundukça açılır">
+          <button type="button" className="chip chip-sm" aria-pressed={memorise} onClick={() => setMemorise((m) => !m)} title="Biçimleri gizler; dokundukça açılır (E)">
             Ezber
           </button>
         )}
@@ -269,7 +338,7 @@ export function LearnTab({
                 {inReview >= reviewable ? 'Tekrar listende' : inReview ? 'Hepsini tekrar listeme ekle' : 'Tekrar listeme ekle'}
               </button>
               <button type="button" className="btn btn-sm" onClick={onPractice}>
-                <BookIcon size={16} /> Alıştır
+                <BookIcon size={16} /> Alıştır <kbd className="lab-kbd">A</kbd>
               </button>
             </span>
           </div>
