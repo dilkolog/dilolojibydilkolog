@@ -21,7 +21,6 @@ test('a dialog keeps keyboard focus while it is open', async ({ page }) => {
   await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   await expect(page.locator('.session')).toBeVisible()
   await page.keyboard.press('Escape')
-  await page.waitForTimeout(1000)
   const dialog = page.locator('[role=alertdialog]')
   await expect(dialog).toBeVisible()
   expect(await page.evaluate(() => !!document.activeElement?.closest('[role=alertdialog]'))).toBe(true)
@@ -434,6 +433,20 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })
 
+test('verb lab: the Turkish of each form beside it, in the core tenses, never when unsure', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-tr')).toHaveText(['konuşuyorum', 'konuşuyorsun', 'konuşuyor', 'konuşuyoruz', 'konuşuyorsunuz', 'konuşuyorlar'])
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Passé composé' }).click()
+  await expect(main.locator('.lab-tr').first()).toHaveText('konuştum')
+  // "être" is "olmak": "oluyorum" would be wrong, so nothing is shown.
+  await openVerbLab(page, 'être')
+  await expect(main.locator('.lab-forms')).toContainText('avons été')
+  await expect(main.locator('.lab-tr')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('Today: the verb of the day opens its table in the verb lab', async ({ page }) => {
   await startWithSamples(page)
   const tile = page.locator('.tile', { hasText: 'Günün fiili' })
@@ -458,4 +471,22 @@ test('verb lab: the tabs and modes used are counted in Settings → Kullanım', 
   await expect(card.locator('.hour-list').last()).toContainText('Alıştırma · Seç')
   await expect(card.locator('.hour-list').last()).toContainText('Öğrenme')
   await expect(card.locator('.hour-list').first()).not.toContainText('Alıştırma')
+})
+
+test('verb lab: Ustalık shows the share of right answers week by week', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  const answers = ['parle', 'parlais', 'parle', 'parlons', 'parlez', 'parlent']
+  for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
+  await main.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(main.locator('.lab-result')).toContainText('5 / 6 doğru')
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  const weeks = main.getByRole('region', { name: 'Haftalar' })
+  await expect(weeks).toContainText('Bu hafta 6 cevap, %83 doğru')
+  await expect(weeks.locator('.bar-row').first()).toContainText('Bu hafta')
+  await expect(weeks.locator('.bar-row').first()).toContainText('%83 · 6')
+  await expect(weeks.locator('.bar-row')).toHaveCount(6)
 })
