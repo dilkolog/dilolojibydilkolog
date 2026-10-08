@@ -1,5 +1,6 @@
 import { allowedArticle } from '../src/engine/news.js'
 import { inlineTranscript, parsePodcastFeed, PODCASTS, rfiTranscript, voaEpisode, type Episode } from '../src/engine/podcasts.js'
+import { parseSubtitles } from '../src/engine/subtitles.js'
 
 /** Episodes per request: a week or two of a daily programme. */
 const LIMIT = 8
@@ -23,8 +24,18 @@ export async function GET(request: Request): Promise<Response> {
     const items = parsePodcastFeed(await fetchText(source.feed, 8000)).slice(0, LIMIT)
     const episodes = await Promise.all(
       items.map(async (item): Promise<Episode> => {
-        const { description, ...rest } = item
+        const { description, transcriptUrl, ...rest } = item
         if (source.kind === 'inline') return { ...rest, text: inlineTranscript(description) }
+        if (source.kind === 'transcript' && transcriptUrl) {
+          if (!allowedArticle(transcriptUrl, source.hosts)) return { ...rest, text: '' }
+          try {
+            const raw = await fetchText(transcriptUrl, 7000)
+            const text = transcriptUrl.endsWith('.vtt') || transcriptUrl.endsWith('.srt') || raw.startsWith('WEBVTT') ? parseSubtitles(raw) : raw
+            return { ...rest, text }
+          } catch {
+            return { ...rest, text: '' }
+          }
+        }
         if (!allowedArticle(item.link, source.hosts)) return { ...rest, text: '' }
         try {
           const html = await fetchText(item.link, 7000)

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { directAudio, inlineTranscript, parsePodcastFeed, rfiTranscript, voaEpisode } from '../podcasts'
+import { directAudio, inlineTranscript, parsePodcastFeed, PODCASTS, rfiTranscript, voaEpisode } from '../podcasts'
 
 describe('listening sources', () => {
   it('reads feed items, keeping only audio enclosures, without tracking redirects', () => {
@@ -22,5 +22,24 @@ describe('listening sources', () => {
     expect(rfiTranscript(rfi)).toBe('RFI. À Paris, il est 18 heures.\n\nBonjour.')
     const voa = `<a href="https://voa-audio.voanews.eu/vle/2025/03/14/abc_hq.mp3">hq</a><a href="https://voa-audio.voanews.eu/vle/2025/03/14/abc.mp3?download=1">dl</a><article><p>${'Word '.repeat(80)}</p></article>`
     expect(voaEpisode(voa).audio).toBe('https://voa-audio.voanews.eu/vle/2025/03/14/abc.mp3')
+  })
+
+  it('parses podcast:transcript url when present (preferring vtt)', () => {
+    const xml = `<rss><channel><item><title>La belleza</title><link>https://ex/1</link>
+      <podcast:transcript url="https://ex/t.json" type="application/json" />
+      <podcast:transcript url="https://ex/t.vtt" type="text/vtt" />
+      <enclosure url="https://ex/a.mp3" type="audio/mpeg" />
+    </item></channel></rss>`
+    const items = parsePodcastFeed(xml)
+    expect(items[0]?.transcriptUrl).toBe('https://ex/t.vtt')
+    expect(items[0]?.audio).toBe('https://ex/a.mp3')
+  })
+
+  it('has multiple podcast sources across all target languages', () => {
+    const langs = ['en', 'fr', 'es'] as const
+    for (const l of langs) {
+      const list = PODCASTS.filter((p) => p.language === l)
+      expect(list.length).toBeGreaterThanOrEqual(3)
+    }
   })
 })
