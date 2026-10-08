@@ -54,6 +54,8 @@ export function ReverseQuiz({ language, byFrequency }: { language: LabLanguage; 
   // The tense is chosen among the readings of the verb the form comes from, plus wrong ones.
   const lemmas = q ? [...new Set(q.analyses.map((a) => a.lemma))] : []
   const typedLemma = normalize(typed).toLocaleLowerCase(language)
+  // Worked out again once the verb is answered (with the verb typed then), not on every keystroke.
+  const askingVerb = step === 'verb'
   const options = useMemo(() => {
     if (!q) return []
     const rng = createRng(index + 11)
@@ -61,7 +63,7 @@ export function ReverseQuiz({ language, byFrequency }: { language: LabLanguage; 
     const right = readings.map((a) => a.tense)
     const rest = shuffle((LAB_TENSES[language] as Tense[]).filter((t) => !right.includes(t) && SIMPLE(t)), rng)
     return shuffle([...new Set([...right, ...rest])].slice(0, 4), rng)
-  }, [index, language, q, step === 'verb']) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [index, language, q, askingVerb]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!questions.length) return <p className="muted">Soru hazırlanıyor…</p>
   if (!q)
@@ -93,13 +95,15 @@ export function ReverseQuiz({ language, byFrequency }: { language: LabLanguage; 
     if (!typed.trim()) return
     const ok = lemmas.includes(typedLemma)
     setVerbOk(ok)
-    ok ? sfx.correct() : sfx.wrong()
+    if (ok) sfx.correct()
+    else sfx.wrong()
     setStep('tense')
   }
   const chooseTense = (t: Tense) => {
     const ok = q.analyses.some((a) => a.tense === t)
     setTenseOk(ok)
-    ok ? sfx.correct() : sfx.wrong()
+    if (ok) sfx.correct()
+    else sfx.wrong()
     if (ok && verbOk) setRight((n) => n + 1)
     setStep('done')
   }

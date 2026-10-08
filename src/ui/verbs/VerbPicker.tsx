@@ -66,7 +66,8 @@ export function PickerTop({
   }, [verb])
 
   const suggestions = useMemo(() => (open && text !== verb ? suggestVerbs(language, text, frequency) : []), [open, text, verb, language, frequency])
-  const known = useMemo(() => new Set(tenseVerbs(language)), [language, byFrequency])
+  // byFrequency arrives once the tables have loaded: tenseVerbs() reads them, so it stands for "loaded".
+  const known = useMemo(() => new Set(tenseVerbs(language)), [language, byFrequency]) // eslint-disable-line react-hooks/exhaustive-deps
   const pick = (v: string) => {
     setOpen(false)
     setMissing(false)

@@ -99,6 +99,3 @@ export function pickExerciseType(
   return pick(fresh.length ? fresh : pool, rng)
 }
 
-export function skillOf(type: ExerciseType): Skill {
-  return EXERCISES[type].skill
-}

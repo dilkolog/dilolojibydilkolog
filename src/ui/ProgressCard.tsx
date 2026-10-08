@@ -8,8 +8,15 @@ import { db, scheduler } from '../data/instance'
 import type { GameState } from './game'
 import { LANGUAGE_NAME } from './labels'
 
-/** Accent per language, as in the app (Tailwind blue / pink / amber). */
-const ACCENT: Record<TargetLanguage, string> = { en: '#3b82f6', fr: '#ec4899', es: '#f59e0b' }
+/**
+ * The app's language colours (DESIGN.md: --en / --fr / --es): the fill, the ink on it (amber takes
+ * dark text), and the text shade for a dark or light card (--*-text of each theme).
+ */
+const ACCENT: Record<TargetLanguage, { fill: string; on: string; text: { dark: string; light: string } }> = {
+  en: { fill: '#2f6de6', on: '#ffffff', text: { dark: '#a7cbff', light: '#2b58b1' } },
+  fr: { fill: '#c6317c', on: '#ffffff', text: { dark: '#ffafce', light: '#9a2f62' } },
+  es: { fill: '#e6a313', on: '#451a03', text: { dark: '#efc37e', light: '#844b00' } },
+}
 
 export interface CardData {
   name: string
@@ -63,10 +70,12 @@ export function cardSvg(d: CardData, style: CardStyle = {}): string {
   const theme = style.theme ?? 'dark'
   const p = PALETTE[theme]
   const chosen = CARD_STATS.map((s) => s.id).filter((id) => (style.stats ?? CARD_STATS.map((s) => s.id)).includes(id))
-  const [c1, c2] = style.colors ?? [ACCENT[d.language], ACCENT[d.language]]
+  const accent = ACCENT[d.language]
+  const [c1, c2] = style.colors ?? [accent.fill, accent.fill]
   // On the banner's own colours the accent would vanish into the background: it turns white there.
-  const a = theme === 'banner' ? '#ffffff' : ACCENT[d.language]
-  const onAccent = theme === 'banner' ? c1 : '#fff'
+  const a = theme === 'banner' ? '#ffffff' : accent.fill
+  const aText = theme === 'banner' ? '#ffffff' : accent.text[theme === 'light' ? 'light' : 'dark']
+  const onAccent = theme === 'banner' ? c1 : accent.on
   const value: Record<CardStat, [string, string]> = {
     streak: [`${d.streak}`, 'günlük seri'],
     words: [d.vocab ? `≈${d.vocab.toLocaleString('tr-TR')}` : String(d.words), d.vocab ? 'kelime dağarcığı' : 'çalıştığım kelime'],
@@ -87,7 +96,7 @@ export function cardSvg(d: CardData, style: CardStyle = {}): string {
   const lines: string[] = []
   let y = 410
   if (d.goal) {
-    lines.push(`<text x="80" y="${y}" font-size="36" font-weight="700" fill="${a}">${esc(d.goal)}</text>`)
+    lines.push(`<text x="80" y="${y}" font-size="36" font-weight="700" fill="${aText}">${esc(d.goal)}</text>`)
     y += 50
   }
   if (d.interests?.length) lines.push(`<text x="80" y="${y}" font-size="32" fill="${p.label}">${esc(d.interests.join(' · '))}</text>`)
@@ -100,7 +109,7 @@ export function cardSvg(d: CardData, style: CardStyle = {}): string {
   <rect x="80" y="96" width="76" height="76" rx="20" fill="${a}"/><text x="118" y="152" font-size="52" font-weight="800" fill="${onAccent}" text-anchor="middle">k</text>
   <text x="180" y="148" font-size="44" font-weight="700" fill="${p.ink}">Kelime Koçu</text>
   <text x="80" y="290" font-size="64" font-weight="800" fill="${p.ink}">${esc(d.name || 'İlerlemem')}</text>
-  <text x="80" y="352" font-size="38" fill="${a}">${esc(LANGUAGE_NAME[d.language])} · Seviye ${d.level} · ${esc(d.title)}</text>
+  <text x="80" y="352" font-size="38" fill="${aText}">${esc(LANGUAGE_NAME[d.language])} · Seviye ${d.level} · ${esc(d.title)}</text>
   ${lines.join('\n  ')}
   ${chosen.map((id, i) => stat(i, id)).join('\n  ')}
   ${flower(820, 1150, 2.4, a)}${flower(930, 1190, 1.6, '#a78bfa')}${flower(720, 1200, 1.4, '#f472b6')}

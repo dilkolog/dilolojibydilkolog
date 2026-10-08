@@ -1,4 +1,3 @@
-import type { PlanReason } from '../engine/dailyPlan'
 import type { MasteryStage } from '../engine/mastery'
 import type { ErrorType, PartOfSpeech, Skill, TargetLanguage } from '../engine/types'
 
@@ -22,15 +21,6 @@ export const STAGE_NAME: Record<MasteryStage, string> = {
   strong: 'Sağlam',
   production_ready: 'Kullanılabiliyor',
   mastered: 'Oturdu',
-}
-
-export const REASON_TEXT: Record<PlanReason, (n: number) => string> = {
-  forgotten: (n) => `${n} unutulmaya yüz tutmuş kelime`,
-  mistake: (n) => `${n} kelimede yaptığın hatalar`,
-  weak: (n) => `${n} zayıf kelime`,
-  due: (n) => `${n} tekrar zamanı gelen kelime`,
-  new: (n) => `${n} yeni kelime`,
-  practice: (n) => `${n} serbest pratik sorusu`,
 }
 
 export const ERROR_NAME: Record<ErrorType, string> = {

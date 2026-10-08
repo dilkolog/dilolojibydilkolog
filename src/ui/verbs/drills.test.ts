@@ -43,7 +43,7 @@ describe('focused rounds by kind of slip', () => {
   it('accent: only forms that carry an accent', () => {
     const q = drillQueue('accent', lab(), 'es', common, 3)
     expect(q.length).toBeGreaterThan(0)
-    expect(q.every((a) => /[^\u0000-\u007f]/.test(form(a)))).toBe(true)
+    expect(q.every((a) => /[^\x20-\x7e]/.test(form(a)))).toBe(true)
   })
 
   it('irregular: only forms that break the rule', () => {
