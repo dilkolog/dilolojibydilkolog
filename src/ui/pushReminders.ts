@@ -3,7 +3,8 @@ import { getCredential } from './syncRunner'
 
 /**
  * Reminders that arrive while the app is closed: the browser's push subscription is registered
- * with our server, which sends one around 20:00 (Turkey time) on days nothing was studied.
+ * with our server, which sends one at the reminder hour (the usual study hour, or the chosen time)
+ * on days nothing was studied.
  * Needs a service worker; on iPhone the app must be added to the Home Screen first.
  */
 const VAPID_PUBLIC_KEY = 'BB1ttPY6-CMNk_Zl7lmm6aJuyxi0cIHr6TUagJ0u_Fpjt3YdaK6vM6c2koor8osB4pIXbPbv57X7TUBmJOhuCIg'
@@ -37,6 +38,8 @@ export interface PushState {
   due: number
   /** The week in one line, sent instead of the reminder on Sunday evening. */
   week: string
+  /** Local hour (0–23) the server reminds at. */
+  hour: number
 }
 
 async function save(sub: PushSubscription, state: PushState) {
@@ -57,6 +60,7 @@ async function save(sub: PushSubscription, state: PushState) {
       due: state.due,
       reportedDay: localDay(),
       week: state.week,
+      hour: state.hour,
     }),
   })
 }

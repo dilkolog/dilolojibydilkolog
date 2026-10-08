@@ -1,5 +1,5 @@
 import { masteryStage, MASTERY_STAGES } from './mastery'
-import type { ListLevel, UserWordState, VocabularyEntry, WordList } from './types'
+import { addedTime, type ListLevel, type UserWordState, type VocabularyEntry, type WordList } from './types'
 
 /**
  * Word lists, like courses on Memrise: a list holds the learner's own levels (named categories
@@ -7,7 +7,7 @@ import type { ListLevel, UserWordState, VocabularyEntry, WordList } from './type
  * When a list is in focus, its new words come level by level (see dailyPlan).
  */
 
-const added = (e: VocabularyEntry) => e.addedAt?.getTime() ?? 0
+const added = (e: VocabularyEntry) => addedTime(e)
 
 /** Where a word stands in its list's order: its level's position; words with no level last. */
 export function levelRank(list: Pick<WordList, 'levels'> | undefined, e: VocabularyEntry): number {
