@@ -15,7 +15,8 @@ import type { AuthMode } from './AuthScreen'
 import { OfflinePack } from './OfflinePack'
 import { IosShortcut } from './IosShortcut'
 import { JumpNav } from './JumpNav'
-import { ReminderSuggestion } from './BestHours'
+import { ReminderSuggestion, useUsualStudyHour } from './BestHours'
+import { reminderTime } from '../engine/hours'
 import { StudyCalendar } from './StudyCalendar'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
@@ -106,7 +107,7 @@ function PushToggle({ state }: { state: PushState }) {
         label="Uygulama kapalıyken de hatırlat"
         help={
           pushSupported()
-            ? 'O gün hiç çalışmadıysan her akşam 20:00 civarı telefonuna ya da bilgisayarına bildirim gelir. Eşitleme açıksa başka cihazda çalışman da sayılır.'
+            ? 'O gün hiç çalışmadıysan hatırlatma saatinde (yukarıda) telefonuna ya da bilgisayarına bildirim gelir. Eşitleme açıksa başka cihazda çalışman da sayılır.'
             : "Bu tarayıcı desteklemiyor. iPhone'da Paylaş → Ana Ekrana Ekle ile yükleyip oradan açınca kullanılabilir."
         }
         checked={on}
@@ -255,6 +256,7 @@ export function SettingsScreen({
   const [voices, setVoices] = useState(() => voicesFor(settings.activeLanguage))
   const [danger, setDanger] = useState<'language' | 'all' | null>(null)
   const [pendingRestore, setPendingRestore] = useState<Backup | null>(null)
+  const usualHour = useUsualStudyHour(db)
   const [clipboardOk, setClipboardOk] = useState(false)
   useEffect(() => {
     void clipboardSupported().then(setClipboardOk)
@@ -320,7 +322,7 @@ export function SettingsScreen({
   }
 
   const calendar = () => {
-    const url = URL.createObjectURL(new Blob([calendarFile(settings.reminder.time, location.origin)], { type: 'text/calendar' }))
+    const url = URL.createObjectURL(new Blob([calendarFile(reminderTime(settings.reminder, usualHour ?? null), location.origin)], { type: 'text/calendar' }))
     const a = document.createElement('a')
     a.href = url
     a.download = 'kelime-kocu-hatirlatma.ics'
@@ -573,12 +575,29 @@ export function SettingsScreen({
                 set('reminder', { ...settings.reminder, enabled: v })
               }}
             />
-            <Row label="Saat">
-              <div style={{ width: '9rem' }}>
-                <Select label="Saat" value={settings.reminder.time} onChange={(t) => set('reminder', { ...settings.reminder, time: t })} options={TIMES.map((t) => ({ value: t, label: t }))} />
-              </div>
-            </Row>
-            <ReminderSuggestion db={db} current={settings.reminder.time} onApply={(t) => set('reminder', { ...settings.reminder, time: t })} />
+            <Toggle
+              label="Çalıştığım saate göre"
+              help="Son 30 günde genelde hangi saatte çalışmaya başladığına bakar; hatırlatma (uygulama kapalıyken gelen dahil) o saatte gelir. Kapatırsan aşağıda seçtiğin saat kullanılır."
+              checked={settings.reminder.auto !== false}
+              onChange={(v) => set('reminder', { ...settings.reminder, auto: v })}
+            />
+            {settings.reminder.auto !== false && usualHour != null ? (
+              <p className="small muted">
+                Genelde {String(usualHour).padStart(2, '0')}:00 civarında çalışmaya başlıyorsun; hatırlatma o saatte gelir.
+              </p>
+            ) : (
+              <>
+                {settings.reminder.auto !== false && usualHour === null && (
+                  <p className="small muted">Alışkanlık saatin en az 5 gün çalışınca belli olur; o zamana kadar seçtiğin saat kullanılır.</p>
+                )}
+                <Row label="Saat">
+                  <div style={{ width: '9rem' }}>
+                    <Select label="Saat" value={settings.reminder.time} onChange={(t) => set('reminder', { ...settings.reminder, time: t })} options={TIMES.map((t) => ({ value: t, label: t }))} />
+                  </div>
+                </Row>
+                <ReminderSuggestion db={db} current={settings.reminder.time} onApply={(t) => set('reminder', { ...settings.reminder, time: t, auto: false })} />
+              </>
+            )}
             {settings.reminder.enabled && permission !== 'granted' && (
               <p className="error small">
                 Bildirim izni yok. Tarayıcının site ayarlarından bu sayfaya bildirim izni ver.{' '}

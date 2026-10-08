@@ -152,7 +152,8 @@ export interface Settings {
   fsrsFit: { at: string; reviews: number; improvement: number } | null
   /** Listening exercises use a different system voice each time (high-variability input). */
   varyVoices: boolean
-  reminder: { enabled: boolean; time: string }
+  /** `auto` (default on): remind at the usual study hour once there is one (usualStudyHour), else at `time`. */
+  reminder: { enabled: boolean; time: string; auto?: boolean }
   /** Share of a normal day's study per weekday, Sunday first: 1 normal, 0.5 light, 0 rest. */
   dayWeights: number[]
   /** Retire words known so well that routine reviews only cost time. */

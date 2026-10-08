@@ -117,7 +117,7 @@ const noop = () => {}
 
 describe('screens render', () => {
   it('settings', async () => {
-    expect(await render(<SettingsScreen settings={{ ...DEFAULT_SETTINGS, activeLanguage: 'fr' }} onChange={noop} onDataChanged={noop} pushState={{ studiedToday: false, streak: 0, plan: '', restWeekdays: [], vacation: null, due: 0, week: '' }} />)).toContain('Hesap')
+    expect(await render(<SettingsScreen settings={{ ...DEFAULT_SETTINGS, activeLanguage: 'fr' }} onChange={noop} onDataChanged={noop} pushState={{ studiedToday: false, streak: 0, plan: '', restWeekdays: [], vacation: null, due: 0, week: '', hour: 20 }} />)).toContain('Hesap')
   })
   it('profile', async () => {
     expect(await render(<ProfileScreen settings={DEFAULT_SETTINGS} onChange={noop} />)).toBeTruthy()
