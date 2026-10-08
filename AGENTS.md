@@ -22,7 +22,8 @@ Son güncelleme: 2026-10-08.
   - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~2 dk)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**
 - Referans görüntüleri yenilemek: `gh workflow run snapshots.yml --ref <dal>` (CI'da Linux'ta çeker, iki kez doğrular, dala commit eder).
-- CI: `.github/workflows/ci.yml` — `check` + e2e 3 parça.
+- CI: `.github/workflows/ci.yml` — tek iş (kontrol + birim + E2E), yalnızca PR'larda; main'e push'ta ve yalnızca `.md`/`docs/` değişince çalışmaz, taslak PR'da çalışmaz. Elle: Actions → CI → Run workflow.
+- **Actions dakikaları sınırlı** (özel depo, ücretsiz plan: ayda 2.000 dk; 2026-10-08'de doldu, işler "payments failed / spending limit" hatasıyla başlamadı). Gereksiz push yapma; bir PR'a art arda küçük commit'ler atmak yerine yerelde tam doğrulayıp tek seferde push'la. Ekran görüntüsü yenilemeyi (snapshots.yml) yalnızca görünüm gerçekten değiştiğinde çalıştır.
 
 ## Bilinen tuzaklar
 - **macOS dosya sistemi büyük/küçük harf duyarsız:** `twinTense.ts` ile `TwinTense.tsx` aynı klasörde olamaz (tsc hata verir). Mantık dosyasına farklı ad ver (ör. `tenseTwin.ts`, `moodRound.ts`).
@@ -33,26 +34,15 @@ Son güncelleme: 2026-10-08.
 - Bir `useEffect` içinden gelen `reload` sonuçları dil değişince atılıyor (`languageRef`, #51 birleşti) — bu deseni koru.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
-## Durum (2026-10-08)
-Birleşti: #37–#63 (#62 toplu ekleme satır sebebi ve #63 devir notu dahil).
+## Durum (2026-10-08 gece)
+Birleşti: #37–#77. Fiil laboratuvarı görev listesinin 7 maddesi bitti (#71 kullanım sayacı, #72 Okuma→laboratuvar testi, #73 Günün fiili, #74 çekimlerin Türkçesi, #75 haftalık ilerleme, #76 kaydırarak zaman, #77 Ezber'de bildim/bilemedim). Antigravity: #64–#70 (sözlük paketi sesleri ve 35.000 kelime, kişisel sözlük, sözlükte keşif, podcast'ler, Vikidia, klasik metinler).
 
-Açık PR: Yok.
+- Depo Actions kotası yüzünden **geçici olarak public** yapıldı (2026-10-08). Kullanıcının planı: iş bitince yeniden private'a almak; sonraki işlerde CI'ı az dakikayla çalıştırmak (yukarıdaki CI notu).
+- Görsel test referansları: #73, #74, #76 için yenilendi; sonraki görünüm değişikliklerinde `gh workflow run snapshots.yml --ref <dal>`.
 
-## Görevler (sırayla; her biri ayrı küçük PR)
-Kullanıcı fiil laboratuvarı fikirlerini "sırayla, parça parça" istedi. 1 (#59) ve 2 (#61) bitti. Kalanlar:
-
-1. **Laboratuvar sekme/mod kullanım sayacı.** `src/ui/screenUsage.ts` içindeki `recordVisit(screen)` var. `src/ui/verbs/VerbLab.tsx` içinde `setTab` her çağrıldığında `recordVisit(`verbs:${t}`)`, alıştırma modu değişince `recordVisit(`verbs:practice:${mode}`)`. Kullanım özeti (`usageSummary`) nerede gösteriliyorsa (Ayarlar/İlerleme) laboratuvar satırlarının okunur Türkçe adları olsun. Birim testi ekle.
-2. **Okuma → laboratuvar köprüsü.** Okuma'da (`src/ui/Reading.tsx`) çekimli bir fiile dokununca açılan kartta "Fiil laboratuvarında aç" düğmesi: laboratuvarı o fiil + o zamanla açsın (Reading zaten `{ form, lemma, tense }` çıkarıyor, ~399. satır). App'te VerbLab'e başlangıç fiili/zamanı geçirme yolu var mı bak (`openVerbLab` e2e yardımcısı ve `initialTab` örnek).
-3. **Bugün'de "Günün fiili" kartı.** Fiillerim listesinden (yoksa sıklık listesinden) güne göre sabit bir fiil (labShared'deki `dayPerson` gibi kararlı hash), tek dokunuşla laboratuvarda açılsın. Mevcut kart sınıflarını (`card`, `habit-nudge`) kullan; Bugün ekranını kalabalıklaştırma, ısınma kartıyla birlikte tek satır olabilir.
-4. **Çekimlerin altında Türkçe karşılık** (bekliyorum, bekliyorsun…). Önce présent/presente ve passé composé/pretérito. Türkçe ünlü uyumu ve ünsüz yumuşaması dikkat (gitmek → gidiyorum, beklemek → bekliyorum, okumak → okuyorum). Fiilin Türkçe anlamı sözlük paketinden (`usePackGloss`). Emin olunmayan durumda hiç gösterme. Bol birim testi.
-5. **Ustalıkta zaman içinde ilerleme** (Ustalık sekmesi): haftalık doğru/yanlış ya da ustalık puanı çizgisi. Gerekirse `LabData`'ya günlük özet alanı ekle (eski veriyle uyumlu, opsiyonel alan).
-6. **Telefonda kaydırarak zaman değiştirme:** tablo üzerinde yatay kaydırma (swipe) ile `TenseBar`'daki ←/→ ile aynı sırada önceki/sonraki zaman. Dikey kaydırmayı bozmasın.
-7. **Ezber modu bildim/bilemedim kaydı:** LearnTab'daki Ezber (gizli tablo, `• • •`'e dokunup açma) sonunda "bildim / bilemedim" kaydı → `recordForm` / `recordCheck` ile ustalığa sayılsın.
-
-Diğer işler (fiil maddelerinden sonra ya da kullanıcı isterse):
-- **Sözlük paketi + FR/EN/ES Lingua Libre sesleri** (aşağıda "Yarım kalan işler" 1). Girdilerin hepsi hazır: `~/kelime-koc-data/kaikki/` (FR ses listesi de tamam).
-- **Tasarım kuralları:** kullanıcı Antigravity'nin `premium-design` becerisi / AGENTS.md'ye tasarım bölümü hazırlamasını istiyordu; bu dosya main'de, hazırlanabilir.
-- Görsel test referansları değişen ekranlarda `gh workflow run snapshots.yml --ref <dal>` ile yenilenmeli.
+## Sıradaki olası işler
+- Tasarım kuralları bölümü / `premium-design` becerisi (kullanıcı Antigravity'den istemişti, yapılmadı).
+- Fiil laboratuvarı Ayarlar → Kullanım'daki sayımlara bakıp hiç kullanılmayan modları sadeleştirmek (birkaç hafta veri birikince).
 
 ## Kullanıcıya önerilen ama onun yapacağı
 - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
