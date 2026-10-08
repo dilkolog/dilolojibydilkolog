@@ -31,13 +31,18 @@ import { TourCard, TourRun, useTour } from './LabTour'
 export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'mastery' | 'timed' | 'warmup'
 type ShownTab = Exclude<LabTab, 'timed' | 'warmup'>
 
+/**
+ * Three tabs: learn the verb, practise freely, see how it goes. The verb families (Kalıplar) open
+ * inside Öğren from the verb's family; the review queue opens inside İlerleme (and comes first in
+ * the day's round anyway).
+ */
 const TABS: { id: ShownTab; label: string }[] = [
-  { id: 'learn', label: 'Öğrenme' },
+  { id: 'learn', label: 'Öğren' },
   { id: 'practice', label: 'Alıştırma' },
-  { id: 'review', label: 'Tekrar' },
-  { id: 'patterns', label: 'Kalıplar' },
-  { id: 'mastery', label: 'Ustalık' },
+  { id: 'mastery', label: 'İlerleme' },
 ]
+/** The tab a view belongs to: Kalıplar under Öğren, the review queue under İlerleme. */
+const PARENT: Record<ShownTab, ShownTab> = { learn: 'learn', patterns: 'learn', practice: 'practice', review: 'mastery', mastery: 'mastery' }
 
 /**
  * The verb lab: pick any French or Spanish verb and a tense, learn its forms (simple or every
@@ -197,14 +202,19 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
         <section className="card lab-main" ref={main} aria-label="Fiil çalışması">
           <div className="lab-tabs ind-line" role="tablist" aria-label="Çalışma türü" ref={tabsRef}>
             {TABS.map((t) => (
-              <button key={t.id} id={`lab-tab-${t.id}`} role="tab" aria-selected={tab === t.id} aria-controls="lab-panel" className="lab-tab" onClick={() => setTab(t.id)}>
+              <button key={t.id} id={`lab-tab-${t.id}`} role="tab" aria-selected={PARENT[tab] === t.id} aria-controls="lab-panel" className="lab-tab" onClick={() => setTab(t.id)}>
                 {t.label}
-                {t.id === 'review' && dueCount > 0 && <span className="lab-count">{Math.min(dueCount, 99)}</span>}
+                {t.id === 'mastery' && dueCount > 0 && <span className="lab-count">{Math.min(dueCount, 99)}</span>}
               </button>
             ))}
           </div>
           {(tab === 'learn' || tab === 'practice') && available.length > 0 && <TenseBar language={language} verb={verb} tense={current} available={available} onTense={setTense} />}
-          <div id="lab-panel" role="tabpanel" aria-labelledby={`lab-tab-${tab}`} className="lab-panel">
+          <div id="lab-panel" role="tabpanel" aria-labelledby={`lab-tab-${PARENT[tab]}`} className="lab-panel">
+            {tab !== PARENT[tab] && (
+              <button type="button" className="link lab-back" onClick={() => setTab(PARENT[tab])}>
+                {tab === 'patterns' ? '← Fiile dön' : '← İlerleme'}
+              </button>
+            )}
             {available.length === 0 ? (
               <p className="muted">Bu fiilin çekim tablosu yok.</p>
             ) : tab === 'learn' ? (
@@ -301,6 +311,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                   setTense(t)
                   setTab('practice')
                 }}
+                dueCount={dueCount}
+                onReview={() => setTab('review')}
               />
             )}
           </div>

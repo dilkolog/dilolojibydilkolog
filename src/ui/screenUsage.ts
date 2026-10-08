@@ -100,9 +100,9 @@ export const SCREEN_LABEL: Record<string, string> = {
 
 /** The verb lab's tabs, practice modes and learn views, as `recordVisit("verbs:…")` counts them. */
 const LAB_PART: Record<string, string> = {
-  learn: 'Öğrenme',
-  'learn:compare': 'Öğrenme · Kıyasla',
-  'learn:detail': 'Öğrenme · Detaylı',
+  learn: 'Öğren',
+  'learn:compare': 'Öğren · Kıyasla',
+  'learn:detail': 'Öğren · Detaylı',
   practice: 'Alıştırma',
   'practice:type': 'Alıştırma · Yaz',
   'practice:choose': 'Alıştırma · Seç',
@@ -114,9 +114,9 @@ const LAB_PART: Record<string, string> = {
   'practice:mood': 'Alıştırma · Kip seç',
   'practice:reverse': 'Alıştırma · Hangi fiil?',
   'practice:timed': 'Alıştırma · Zamana karşı',
-  review: 'Tekrar',
-  patterns: 'Kalıplar',
-  mastery: 'Ustalık',
+  review: 'İlerleme · Tekrar sırası',
+  patterns: 'Öğren · Kalıplar',
+  mastery: 'İlerleme',
 }
 
 /** A counted name as the learner knows it: a screen, or a part of the verb lab. */

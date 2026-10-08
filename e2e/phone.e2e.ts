@@ -923,15 +923,25 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
   await check('learn detailed')
   await main.getByRole('button', { name: 'Kıyasla' }).click()
   await check('learn compare')
-  for (const tab of ['Alıştırma', 'Tekrar', 'Kalıplar', 'Ustalık']) {
+  for (const tab of ['Alıştırma', 'İlerleme']) {
     await main.getByRole('tab', { name: tab }).click()
     await check(tab)
-    if (tab === 'Alıştırma')
-      for (const mode of ['Seç', 'Eşleştir', 'Cümlede', 'Zamanı bul', 'Kip seç', 'Hangi fiil?', 'Zamana karşı']) {
+    if (tab === 'Alıştırma') {
+      for (const mode of ['Seç', 'Cümlede', 'Zamana karşı']) {
         await main.getByRole('button', { name: mode, exact: true }).click()
         await check(`${tab} ${mode}`)
       }
+      for (const mode of ['Eşleştir', 'Zamanı bul', 'Kip seç', 'Hangi fiil?']) {
+        await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
+        await page.getByRole('menuitem', { name: new RegExp(`^${mode.replace('?', '\\?')}`) }).click()
+        await check(`${tab} ${mode}`)
+      }
+    }
   }
+  // The review queue and the verb families open inside their tabs.
+  await main.getByRole('button', { name: /^(Tekrar et|Sırayı gör)$/ }).click()
+  await check('İlerleme review')
+  await main.getByRole('button', { name: '← İlerleme' }).click()
   expect(found).toEqual([])
 })
 

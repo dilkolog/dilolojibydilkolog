@@ -4684,10 +4684,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-heart { color: var(--bad); fill: currentColor; }
 .lab-heart.is-lost { color: var(--track); }
 .lab-practice-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
-.lab-mode-groups { display: grid; gap: 0.5rem; justify-items: end; margin-left: auto; }
-.lab-mode-group { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.5rem; }
-.lab-mode-group .lab-modes { margin-left: 0; }
-@media (max-width: 30rem) { .lab-mode-groups { justify-items: start; margin-left: 0; } .lab-mode-group { justify-content: flex-start; } }
+/* Kalıplar and the review queue open inside their tab, with the way back on top. */
+.lab-back { display: inline-block; margin-bottom: 0.75rem; }
+.lab-queue-line { justify-content: space-between; }
 .lab-modes { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; padding: 0.25rem; border-radius: var(--r-md); background: var(--surface-2); box-shadow: var(--inset-ring); margin-left: auto; }
 .lab-mode { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.625rem; border: 0; border-radius: var(--r-sm); background: none; color: var(--ink-soft); font: inherit; font-size: var(--t-sm); font-weight: 600; cursor: pointer; }
 .lab-mode[aria-pressed='true'] { background: var(--surface); color: var(--lang-text); box-shadow: var(--shadow); }

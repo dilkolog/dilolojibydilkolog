@@ -29,11 +29,11 @@ describe('screen usage', () => {
     for (const screen of ['verbs', 'verbs:learn', 'verbs:practice', 'verbs:practice:choose', 'verbs:practice:choose', 'verbs:learn']) log = addVisit(log, screen, at(3))
     expect(usageSummary(log, at(5)).map((u) => u.screen)).toEqual(['verbs'])
     expect(partsSummary(log, 'verbs', at(5)).map((u) => [usageLabel(u.screen), u.opens])).toEqual([
-      ['Öğrenme', 2],
+      ['Öğren', 2],
       ['Alıştırma · Seç', 2],
       ['Alıştırma', 1],
     ])
     expect(usageLabel('reading')).toBe('Okuma')
-    expect(usageLabel('verbs:mastery')).toBe('Ustalık')
+    expect(usageLabel('verbs:mastery')).toBe('İlerleme')
   })
 })
