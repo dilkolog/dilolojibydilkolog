@@ -1,13 +1,30 @@
 import type { TargetLanguage } from '../engine/types'
 
 /**
- * Reading material from Wikipedia (CC BY-SA): search a topic in the language's Wikipedia (Simple
- * English for English, written for learners), then read the article as plain text. No key; the
- * API answers the browser directly (origin=*).
+ * Reading material from Wikipedia and Vikidia (CC BY-SA): search a topic in the learner's
+ * preferred encyclopedia (Simple English or Vikidia for learners, standard Wikipedia for full breadth),
+ * then read the article as plain text. No key; the API answers the browser directly (origin=*).
  */
-export type WikiSite = TargetLanguage | 'simple'
+export type WikiSite = TargetLanguage | 'simple' | 'vikidia-fr' | 'vikidia-es'
 
-const api = (site: WikiSite) => `https://${site}.wikipedia.org/w/api.php`
+export function wikiApiUrl(site: WikiSite): string {
+  if (site === 'vikidia-fr') return 'https://fr.vikidia.org/w/api.php'
+  if (site === 'vikidia-es') return 'https://es.vikidia.org/w/api.php'
+  return `https://${site}.wikipedia.org/w/api.php`
+}
+
+export function wikiPageUrl(site: WikiSite, title: string): string {
+  const enc = encodeURIComponent(title.replace(/ /g, '_'))
+  if (site === 'vikidia-fr') return `https://fr.vikidia.org/wiki/${enc}`
+  if (site === 'vikidia-es') return `https://es.vikidia.org/wiki/${enc}`
+  return `https://${site}.wikipedia.org/wiki/${enc}`
+}
+
+export function defaultWikiSite(language: TargetLanguage, easy = true): WikiSite {
+  if (language === 'en') return easy ? 'simple' : 'en'
+  if (language === 'fr') return easy ? 'vikidia-fr' : 'fr'
+  return easy ? 'vikidia-es' : 'es'
+}
 
 export interface WikiResult {
   title: string
@@ -17,8 +34,8 @@ export interface WikiResult {
 
 async function call(site: WikiSite, params: Record<string, string>) {
   const q = new URLSearchParams({ format: 'json', formatversion: '2', origin: '*', ...params })
-  const res = await fetch(`${api(site)}?${q}`)
-  if (!res.ok) throw new Error(`Wikipedia yanıt vermedi (${res.status}).`)
+  const res = await fetch(`${wikiApiUrl(site)}?${q}`)
+  if (!res.ok) throw new Error(`Ansiklopedi yanıt vermedi (${res.status}).`)
   return res.json()
 }
 
