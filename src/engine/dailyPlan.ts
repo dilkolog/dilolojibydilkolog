@@ -89,6 +89,12 @@ export const INTRO_GAP = 2
 
 const INTRO_COST_MS = 20000
 const OVERHEAD_MS = 4000
+/**
+ * What a new word costs beyond its introduction and first test: the session brings it back twice
+ * more while it is fragile (GRADUATED_GAPS in session.ts: once by choice, once typed). Counting
+ * them keeps the estimate honest and the day's new words within the time the learner gave.
+ */
+const NEW_FOLLOW_UPS_MS = EXERCISES.mc_meaning.expectedMs + EXERCISES.typed_translation.expectedMs + 2 * OVERHEAD_MS
 const DAY_MS = 86_400_000
 const REASON_ORDER: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new', 'practice']
 
@@ -269,7 +275,7 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   if (!backlog) {
     for (const entry of newWordCandidates(input, limit)) {
       const pair = introductionPair(entry, rng)
-      const cost = pair.reduce((s, p) => s + itemCost(p), 0)
+      const cost = pair.reduce((s, p) => s + itemCost(p), 0) + NEW_FOLLOW_UPS_MS
       if (used + cost > budget) {
         budgetHit = true
         break

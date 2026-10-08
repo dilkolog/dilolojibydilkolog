@@ -51,6 +51,14 @@ describe('new words', () => {
     expect(backlog.newBlockedBy).toBe('backlog')
   })
 
+  it("counts a new word's two follow-ups in the session, so the day fits the minutes given", () => {
+    // Intro 20 s + first test 8 s + follow-ups (choice 8 s, typed 12 s) ≈ 48 s a word: two minutes hold two.
+    const plan = buildDailyPlan(input({ settings: { ...settings, newWordsPerDay: 10, dailyMinutes: 2 } }))
+    expect(plan.newEntryIds).toHaveLength(2)
+    expect(plan.newBlockedBy).toBe('budget')
+    expect(plan.estimatedMinutes).toBe(2)
+  })
+
   it('can add extra new words beyond the daily limit on request', () => {
     const states = [learned(decide, NOW), learned(decision, NOW), learned(affect, NOW), learned(effect, NOW)]
     const limited = buildDailyPlan(input({ states }))
