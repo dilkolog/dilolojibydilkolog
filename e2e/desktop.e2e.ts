@@ -433,6 +433,19 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })
 
+test('reading: a conjugated form opens the verb lab at its verb and tense', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Nous parlions souvent de la mer.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.locator('.rw', { hasText: /^parlions$/ }).click()
+  await expect(page.locator('.form-analysis')).toContainText('parler')
+  await page.locator('.form-analysis').getByRole('button', { name: 'fiil laboratuvarında aç' }).first().click()
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-forms')).toContainText('parlions')
+  await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
+})
+
 test('verb lab: the Turkish of each form beside it, in the core tenses, never when unsure', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
