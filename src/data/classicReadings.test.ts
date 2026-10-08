@@ -6,7 +6,7 @@ describe('classicReadings', () => {
   it('covers all target languages with multiple readings', () => {
     for (const lang of TARGET_LANGUAGES) {
       const list = classicsFor(lang)
-      expect(list.length).toBeGreaterThanOrEqual(3)
+      expect(list.length).toBeGreaterThanOrEqual(7)
       for (const item of list) {
         expect(item.language).toBe(lang)
         expect(item.title.trim().length).toBeGreaterThan(0)
@@ -41,6 +41,16 @@ describe('classicReadings', () => {
     expect(hare).toBeDefined()
     expect(hare?.title).toBe('The Tortoise and the Hare')
     expect(hare?.author).toBe('Aesop')
+
+    const lievre = findClassic('classic-fr-lievre-tortue')
+    expect(lievre).toBeDefined()
+    expect(lievre?.title).toBe('Le Lièvre et la Tortue')
+    expect(lievre?.author).toBe('Jean de La Fontaine')
+
+    const lechera = findClassic('classic-es-lechera')
+    expect(lechera).toBeDefined()
+    expect(lechera?.title).toBe('La lechera')
+    expect(lechera?.author).toBe('Félix María de Samaniego')
 
     const unknown = findClassic('non-existent-id')
     expect(unknown).toBeUndefined()
