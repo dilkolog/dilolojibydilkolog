@@ -22,7 +22,7 @@ import { disablePush, enablePush, pushSubscription, pushSupported, type PushStat
 import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { Help } from './SettingHelp'
-import { HIDEABLE_TABS, readUsage, SCREEN_LABEL, trackedSince, usageSummary } from './screenUsage'
+import { HIDEABLE_TABS, partsSummary, readUsage, SCREEN_LABEL, trackedSince, usageLabel, usageSummary, type ScreenUse } from './screenUsage'
 import { LANGUAGE_NAME } from './labels'
 import { badgeSupported } from './appBadge'
 import { askClipboard, clipboardSupported } from './clipboardSuggest'
@@ -777,8 +777,8 @@ function UsageCard({ hidden, english, onChange }: { hidden: string[]; english: b
   const [log] = useState(readUsage)
   const now = new Date()
   const uses = usageSummary(log, now)
+  const lab = english ? [] : partsSummary(log, 'verbs', now)
   const since = trackedSince(log)
-  const max = Math.max(1, ...uses.map((u) => u.opens))
   const tabs = HIDEABLE_TABS.filter((t) => t !== 'verbs' || !english)
   const unused = (t: string) => !uses.some((u) => u.screen === t)
   // "Never opened" says something only after a couple of weeks of counting.
@@ -787,21 +787,13 @@ function UsageCard({ hidden, english, onChange }: { hidden: string[]; english: b
     <section className="card stack">
       <h2 className="section-title">Kullanım</h2>
       <p className="small muted">Son 30 günde hangi ekranı kaç kez açtığın. Yalnızca bu cihazda sayılır; hiçbir yere gönderilmez.</p>
-      {uses.length > 0 ? (
-        <ul className="hour-list">
-          {uses.slice(0, 8).map((u) => (
-            <li key={u.screen}>
-              <span className="hour-label">{SCREEN_LABEL[u.screen] ?? u.screen}</span>
-              <span className="hour-bar">
-                <span style={{ width: `${(u.opens / max) * 100}%` }} />
-              </span>
-              <span className="hour-pct">{u.opens}</span>
-              <span className="small muted">{u.days} gün</span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="small muted">Henüz sayılmış bir şey yok.</p>
+      {uses.length > 0 ? <UsageList uses={uses.slice(0, 8)} /> : <p className="small muted">Henüz sayılmış bir şey yok.</p>}
+      {lab.length > 0 && (
+        <>
+          <h3 className="subhead">Fiil laboratuvarı</h3>
+          <p className="small muted">Hangi sekme ve alıştırmayı kullandığın; hiç açılmayanlar sadeleştirilebilir.</p>
+          <UsageList uses={lab.slice(0, 10)} />
+        </>
       )}
       <h3 className="subhead">Menüdeki sekmeler</h3>
       <p className="small muted">Kullanmadığın sekmeleri menüden kaldırabilirsin; ⌘K ile ya da bağlantılardan yine açılırlar.</p>
@@ -814,6 +806,24 @@ function UsageCard({ hidden, english, onChange }: { hidden: string[]; english: b
         />
       ))}
     </section>
+  )
+}
+
+function UsageList({ uses }: { uses: readonly ScreenUse[] }) {
+  const max = Math.max(1, ...uses.map((u) => u.opens))
+  return (
+    <ul className="hour-list">
+      {uses.map((u) => (
+        <li key={u.screen}>
+          <span className="hour-label">{usageLabel(u.screen)}</span>
+          <span className="hour-bar">
+            <span style={{ width: `${(u.opens / max) * 100}%` }} />
+          </span>
+          <span className="hour-pct">{u.opens}</span>
+          <span className="small muted">{u.days} gün</span>
+        </li>
+      ))}
+    </ul>
   )
 }
 

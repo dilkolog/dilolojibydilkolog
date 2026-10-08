@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addVisit, trackedSince, usageSummary, type UsageLog } from './screenUsage'
+import { addVisit, partsSummary, trackedSince, usageLabel, usageSummary, type UsageLog } from './screenUsage'
 
 const at = (d: number) => new Date(2026, 9, d, 12)
 
@@ -22,5 +22,18 @@ describe('screen usage', () => {
     const log = addVisit({ home: { '2026-07-01': 5, '2026-09-30': 1 }, story: { '2026-06-01': 2 } }, 'home', at(7))
     expect(log).toEqual({ home: { '2026-09-30': 1, '2026-10-07': 1 } })
     expect(trackedSince({})).toBeNull()
+  })
+
+  it('lists the verb lab\'s tabs and modes apart from the screens, with their names', () => {
+    let log: UsageLog = {}
+    for (const screen of ['verbs', 'verbs:learn', 'verbs:practice', 'verbs:practice:choose', 'verbs:practice:choose', 'verbs:learn']) log = addVisit(log, screen, at(3))
+    expect(usageSummary(log, at(5)).map((u) => u.screen)).toEqual(['verbs'])
+    expect(partsSummary(log, 'verbs', at(5)).map((u) => [usageLabel(u.screen), u.opens])).toEqual([
+      ['Öğrenme', 2],
+      ['Alıştırma · Seç', 2],
+      ['Alıştırma', 1],
+    ])
+    expect(usageLabel('reading')).toBe('Okuma')
+    expect(usageLabel('verbs:mastery')).toBe('Ustalık')
   })
 })
