@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ERROR_TEXT, type ErrorKind } from '../../engine/formDiagnosis'
-import { MASTERY_MAX, difficultItems, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, seenVerbs, tallyCells, verbMastery, weakestCell, type LabData, type MasteryLevel } from '../../engine/labProgress'
+import { MASTERY_MAX, difficultItems, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, seenVerbs, tallyCells, verbMastery, weakestCell, weeklyProgress, type LabData, type WeekProgress, type MasteryLevel } from '../../engine/labProgress'
 import { Plant } from '../Plant'
 import { subjectLabel, type Tense } from '../../engine/tenses'
 import { DRILL_TEXT, DRILLABLE, drillQueue } from './drills'
@@ -214,6 +214,7 @@ export function MasteryTab({
           )}
         </section>
       )}
+      <WeeklyProgress weeks={weeklyProgress(lab, new Date())} />
       {seen.length > 0 && (
         <section className="stack gap-2" aria-label="Metinlerde gördüklerin">
           <h3 className="lab-mood-title">Metinlerde gördüklerin</h3>
@@ -272,5 +273,42 @@ export function MasteryTab({
       )}
       <p className="small muted">Her doğru cevap 10 puan ekler, her yanlış 10 puan alır; {MASTERY_MAX} puan bir zamanda ustalık demek. Alıştırdıkça tekrarı gelen çekimler Tekrar sekmesine düşer.</p>
     </div>
+  )
+}
+
+const pct = (w: WeekProgress) => Math.round((w.ok / Math.max(1, w.ok + w.wrong)) * 100)
+const MONTHS = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara']
+
+/** The share of right answers week by week (all verbs): whether the practice is paying off. */
+function WeeklyProgress({ weeks }: { weeks: readonly WeekProgress[] }) {
+  const active = weeks.filter((w) => w.ok + w.wrong > 0)
+  if (!active.length) return null
+  const now = weeks.at(-1)!
+  const before = [...weeks.slice(0, -1)].reverse().find((w) => w.ok + w.wrong > 0)
+  const label = (w: WeekProgress, i: number) => {
+    if (i === weeks.length - 1) return 'Bu hafta'
+    if (i === weeks.length - 2) return 'Geçen hafta'
+    const [, m, d] = w.start.split('-').map(Number)
+    return `${d} ${MONTHS[m - 1]}`
+  }
+  return (
+    <section className="stack gap-2 lab-weeks" aria-label="Haftalar">
+      <h3 className="lab-mood-title">Haftalar</h3>
+      <p className="small muted">
+        {now.ok + now.wrong > 0 ? `Bu hafta ${now.ok + now.wrong} cevap, %${pct(now)} doğru` : 'Bu hafta henüz cevap yok'}
+        {now.ok + now.wrong > 0 && before ? ` (önceki çalıştığın hafta %${pct(before)})` : ''}. Tüm fiillerde doğru cevap oranı.
+      </p>
+      <div className="bars">
+        {[...weeks.entries()].reverse().map(([i, w]) => (
+          <div className="bar-row" key={w.start}>
+            <span className="small">{label(w, i)}</span>
+            <div className="bar-track">
+              <div className="bar-fill" style={{ width: `${w.ok + w.wrong > 0 ? pct(w) : 0}%` }} />
+            </div>
+            <span className="bar-value">{w.ok + w.wrong > 0 ? `%${pct(w)} · ${w.ok + w.wrong}` : '—'}</span>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
