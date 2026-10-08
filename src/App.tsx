@@ -294,6 +294,10 @@ export default function App() {
   // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
   const language = settings?.activeLanguage
+  const languageRef = useRef(language)
+  useLayoutEffect(() => {
+    languageRef.current = language
+  }, [language])
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn }), [apiKey, speechOn])
 
@@ -352,39 +356,44 @@ export default function App() {
 
   const reload = useCallback(async () => {
     if (!language) return
+    // The background steps below can outlast a switch to another language: their results are
+    // dropped then, or the old language's data would come back and the new one never show.
+    const current = () => languageRef.current === language
+    const apply = (next: LanguageData) => current() && setData(next)
     const since = new Date(Date.now() - RECENT_DAYS * 86_400_000)
     const [loaded, recentEvents, g] = await Promise.all([db.loadLanguage(language), db.eventsSince(since), loadGame(db)])
-    setData({ language, ...loaded, recentEvents })
+    apply({ language, ...loaded, recentEvents })
+    if (!current()) return
     setLoad(loaded.states)
     pushToExtension(db)
     setGame(g)
     // New words without a frequency band get one from the bundled list, in the background.
     if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
       const filled = await fillFrequencyRanks(db, language)
-      if (filled) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (filled) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // French words saved without a part of speech or a noun gender get them from Lexique (offline).
     if (language === 'fr' && loaded.vocabulary.some((v) => v.source !== 'sample' && (v.partOfSpeech === 'other' || (v.partOfSpeech === 'noun' && !v.gender)))) {
-      if (await fillFromLexicon(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await fillFromLexicon(db, language)) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // The word pack (other languages, origins, synonyms, recordings), offline, for languages that ship one.
-    if (await fillFromPack(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    if (await fillFromPack(db, language)) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     // Sentences get rated (offline), and re-rated once the word list has grown: the ones with at most one unknown word come first.
-    if (await scoreCorpus(db, language)) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+    if (await scoreCorpus(db, language)) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     // Real sentences for words that don't have them yet (a few per run, one run at a time).
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
       corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
-      if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await corpusRun) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // Sentences saved before they came with their French/Spanish/English versions get them, a few per run.
     if (!corpusRun && loaded.vocabulary.some((v) => v.corpus?.some((x) => x.source?.kind === 'tatoeba' && x.parallel === undefined))) {
       corpusRun = fillParallel(db, language).finally(() => (corpusRun = null))
-      if (await corpusRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await corpusRun) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
     // Pronunciation, definition and word family from Wiktionary, also in the background.
     if (!wiktRun && loaded.vocabulary.some((v) => v.source !== 'sample' && (!v.wiktAt || (v.partOfSpeech === 'noun' && v.language !== 'en' && !v.gender && v.wiktAt < '2026-10-03T12')))) {
       wiktRun = fillWordInfo(db, language).finally(() => (wiktRun = null))
-      if (await wiktRun) setData({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await wiktRun) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
     }
   }, [language])
 
