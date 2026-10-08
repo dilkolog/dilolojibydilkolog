@@ -27,6 +27,57 @@ export function PatternShape({ family }: { family: Family }) {
 }
 
 const DRILL_SIZE = 8
+/** Verbs side by side in a family's table: enough to see the rule repeat, few enough to read. */
+const TABLE_VERBS = 6
+
+/**
+ * The family's most common verbs side by side in its tense, the persons that change marked: the same
+ * change down each column shows the rule better than any one verb's table.
+ */
+function FamilyTable({ family, verbs }: { family: Family; verbs: readonly string[] }) {
+  const language = family.language
+  const tense = family.tense as Tense
+  const rows = verbs
+    .slice(0, 20)
+    .map((v) => ({ verb: v, forms: conjugateTense(verbEntry(language, v), tense) }))
+    .filter((r): r is { verb: string; forms: string[] } => !!r.forms)
+    .slice(0, TABLE_VERBS)
+  if (rows.length < 2) return null
+  // The persons that change, and one that doesn't to compare with: the table fits a phone.
+  const steady = [0, 1, 2, 3, 4, 5].find((p) => !family.persons.includes(p))
+  const cols = [...family.persons, ...(steady === undefined ? [] : [steady])].sort((a, b) => a - b)
+  return (
+    <div className="lab-heat-wrap">
+      <table className="data-table lab-family-table" lang={language}>
+        <caption className="small muted">
+          <span lang={language}>{tenseName(tense)}</span>: altı çizili biçimlerde aynı değişiklik her fiilde tekrar ediyor
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">
+              <span className="sr-only">Fiil</span>
+            </th>
+            {cols.map((p) => (
+              <th key={p} scope="col">
+                {SHORT[language][p]}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.verb}>
+              <th scope="row">{r.verb}</th>
+              {cols.map((i) => (
+                <td key={i}>{family.persons.includes(i) ? <mark className="conj-odd">{r.forms[i]}</mark> : r.forms[i]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
 /** Drill: one person of the family's tense for a handful of its verbs; after each answer the whole tense shows the shape. */
 function FamilyDrill({ family, verbs, onCheck, onClose }: { family: Family; verbs: readonly string[]; onCheck: (verb: string, tense: Tense, ok: boolean, given: string, expected: string, person: number) => void; onClose: () => void }) {
@@ -261,6 +312,7 @@ export function PatternsTab({
                       <li key={e}>{e}</li>
                     ))}
                   </ul>
+                  {f.persons.length > 0 && <FamilyTable family={f} verbs={verbs} />}
                   <div className="lab-chips" lang={language}>
                     {verbs.slice(0, 24).map((v) => (
                       <button key={v} type="button" className="chip chip-sm" onClick={() => onVerb(v)}>

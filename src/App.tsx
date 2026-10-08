@@ -58,7 +58,7 @@ import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import type { LabTab } from './ui/verbs/VerbLab'
-import { useFormsDue } from './ui/verbs/labShared'
+import { useFormsDue, useWarmup } from './ui/verbs/labShared'
 import type { Command } from './ui/CommandPalette'
 import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
@@ -708,6 +708,7 @@ export default function App() {
     return () => window.removeEventListener('resize', place)
   })
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
+  const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
   if (settings === undefined) return null
   if (settings === null) {
     return (
@@ -1109,6 +1110,8 @@ export default function App() {
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
                 formsDue={formsDue}
                 onForms={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'review' }) : undefined}
+                warmup={warmup}
+                onWarmup={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'warmup' }) : undefined}
                 onMixed={mixedDue.languages >= 2 ? startMixed : undefined}
                 mixedDue={mixedDue.count}
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}

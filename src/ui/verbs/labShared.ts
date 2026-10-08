@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { db } from '../../data/instance'
 import { loadFrequency } from '../../data/frequency'
-import { adoptCards, dueItems, emptyLab, type LabData } from '../../engine/labProgress'
+import { adoptCards, dueItems, emptyLab, weakestCell, type LabData } from '../../engine/labProgress'
 import type { Scheduler } from '../../engine/scheduler'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
-import { LAB_TENSES, tenseVerbs, type Tense } from '../../engine/tenses'
+import { LAB_TENSES, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
 import { verbLevels, type Level } from '../../engine/verbLab'
 import type { TargetLanguage, VocabularyEntry } from '../../engine/types'
 
@@ -178,4 +178,28 @@ export function useFormsDue(language: TargetLanguage, key: unknown): number {
     }
   }, [language, key])
   return due
+}
+
+/**
+ * The lab's weakest spot as a short label ("Présent · nous"), for a warm-up on Today when nothing
+ * is due; null when the lab has no slip worth practising.
+ */
+export function useWarmup(language: TargetLanguage, key: unknown): string | null {
+  const [label, setLabel] = useState<string | null>(null)
+  useEffect(() => {
+    if (language === 'en') {
+      setLabel(null)
+      return
+    }
+    let live = true
+    void db.getLab(language).then((lab) => {
+      // A cell with a few answers first; with less data, any slip is worth a warm-up.
+      const cell = weakestCell(lab) ?? weakestCell(lab, 1)
+      if (live) setLabel(cell ? `${tenseName(cell.tense)} · ${subjectLabel(language, cell.tense, cell.person).split(' / ')[0]}` : null)
+    })
+    return () => {
+      live = false
+    }
+  }, [language, key])
+  return label
 }

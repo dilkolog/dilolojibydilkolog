@@ -19,6 +19,7 @@ export function MasteryTab({
   available,
   lab,
   byFrequency,
+  startDrill: startOnOpen = false,
   onPractice,
   onOpenVerb,
   onWeak,
@@ -30,6 +31,8 @@ export function MasteryTab({
   available: readonly Tense[]
   lab: LabData
   byFrequency: readonly string[]
+  /** Open straight on a round for the most common drillable kind of slip (Today's warm-up). */
+  startDrill?: boolean
   onPractice: (t: Tense) => void
   onOpenVerb: (verb: string) => void
   onWeak: (tense: Tense) => void
@@ -40,7 +43,16 @@ export function MasteryTab({
 }) {
   // A focused round on one kind of slip, with its questions fixed when it starts.
   const [allPlots, setAllPlots] = useState(false)
-  const [drill, setDrill] = useState<{ kind: ErrorKind; queue: Asked[] } | null>(null)
+  const [drill, setDrill] = useState<{ kind: ErrorKind; queue: Asked[] } | null>(() => {
+    if (!startOnOpen) return null
+    // The most common slip that has a round; with none recorded yet, the persons missed most.
+    const kinds = [...errorBreakdown(lab).map((k) => k.kind).filter((k) => DRILLABLE.includes(k)), 'person' as const]
+    for (const kind of kinds) {
+      const queue = drillQueue(kind, lab, language, byFrequency, Date.now())
+      if (queue.length) return { kind, queue }
+    }
+    return null
+  })
   const core = CORE_TENSES[language].filter((t) => available.includes(t))
   const advanced = available.filter((t) => !core.includes(t))
   const score = verbMastery(lab, verb, core)

@@ -5,27 +5,32 @@ import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { BoltIcon, ReadIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { BoltIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { Diagnosis } from './Diagnosis'
 import { ReverseQuiz } from './ReverseQuiz'
+import { MoodQuiz } from './MoodQuiz'
+import { SpeakQuiz } from './SpeakQuiz'
+import { canListen } from '../speechInput'
 import { TenseQuiz } from './TenseQuiz'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
-export type PracticeMode = 'type' | 'choose' | 'listen' | 'match' | 'sentence' | 'tense' | 'reverse' | 'timed'
+export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'tense' | 'mood' | 'reverse' | 'timed'
 type Mode = PracticeMode
 const HEARTS = 3
 /** Modes with their own questions and counting: no lives and no tense tip. */
-const QUIZ: Mode[] = ['sentence', 'tense', 'reverse', 'timed']
+const QUIZ: Mode[] = ['speak', 'sentence', 'tense', 'mood', 'reverse', 'timed']
 
 const MODES: { id: Mode; label: string; icon: typeof PenIcon }[] = [
   { id: 'type', label: 'Yaz', icon: PenIcon },
   { id: 'choose', label: 'Seç', icon: TargetIcon },
   { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
+  { id: 'speak', label: 'Söyle', icon: MicIcon },
   { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
   { id: 'sentence', label: 'Cümlede', icon: ReadIcon },
   { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
+  { id: 'mood', label: 'Kip seç', icon: ScaleIcon },
   { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
   { id: 'timed', label: 'Zamana karşı', icon: BoltIcon },
 ]
@@ -84,6 +89,7 @@ export function PracticeTab({
   byFrequency: readonly string[]
 }) {
   const [mode, setMode] = useState<Mode>(initialMode)
+  const moodVerbs = useMemo(() => [verb, ...byFrequency.slice(0, 80)], [verb, byFrequency])
   const [list, setList] = useState(true)
   const [round, setRound] = useState(0)
   const [hearts, setHearts] = useState(HEARTS)
@@ -167,7 +173,7 @@ export function PracticeTab({
         </h2>
         <div className="lab-modes" role="group" aria-label="Alıştırma türü">
           {MODES.map((m) => (
-            <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={m.id === 'listen' && !canSpeak()} title={m.label}>
+            <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())} title={m.label}>
               <m.icon size={18} />
               <span>{m.label}</span>
             </button>
@@ -191,6 +197,8 @@ export function PracticeTab({
       {!finished && mode === 'choose' && <OneByOne key={round} kind="choose" {...props} />}
       {!finished && mode === 'match' && <MatchRound key={round} {...props} />}
       {mode === 'tense' && <TenseQuiz key={verb} language={language} verb={verb} available={available} />}
+      {mode === 'speak' && <SpeakQuiz key={`${verb}${available.join()}`} language={language} verb={verb} available={available} onAnswer={onAnswer} />}
+      {mode === 'mood' && <MoodQuiz key={verb} language={language} verbs={moodVerbs} />}
       {mode === 'reverse' && <ReverseQuiz key={language} language={language} byFrequency={byFrequency} />}
       {mode === 'sentence' && sentences}
       {mode === 'timed' && timed}

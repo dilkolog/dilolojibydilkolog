@@ -20,9 +20,12 @@ import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, verbEntry, verbKey, type LabLanguage } from './labShared'
 
-/** 'timed' opens practice on its race against the clock (the conjugation games link there). */
-export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'mastery' | 'timed'
-type ShownTab = Exclude<LabTab, 'timed'>
+/**
+ * 'timed' opens practice on its race against the clock (the conjugation games link there);
+ * 'warmup' opens Ustalık with a round on the most common kind of slip (Today's verb warm-up).
+ */
+export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'mastery' | 'timed' | 'warmup'
+type ShownTab = Exclude<LabTab, 'timed' | 'warmup'>
 
 const TABS: { id: ShownTab; label: string }[] = [
   { id: 'learn', label: 'Öğrenme' },
@@ -73,7 +76,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   const { frequency, levels, byFrequency } = useVerbLevels(language, ready)
   const [picked, setPicked] = useState<string | undefined>(initialVerb)
   const [tense, setTense] = useState<Tense>(() => (initialTense && isLabTense(language, initialTense) ? initialTense : PRESENT[language]))
-  const [tab, setTabState] = useState<ShownTab>(initialTab === 'timed' ? 'practice' : (initialTab ?? 'learn'))
+  const [tab, setTabState] = useState<ShownTab>(initialTab === 'timed' ? 'practice' : initialTab === 'warmup' ? 'mastery' : (initialTab ?? 'learn'))
   const [timedFirst, setTimedFirst] = useState(initialTab === 'timed')
   const setTab = (t: ShownTab) => {
     setTimedFirst(false)
@@ -234,6 +237,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 available={available}
                 lab={lab}
                 byFrequency={byFrequency}
+                startDrill={initialTab === 'warmup'}
                 onItem={openItem}
                 onCheck={(v, t, ok, given, expected, person) => {
                   update((l) => recordCheck(l, scheduler, v, t, ok, new Date()))
