@@ -18,7 +18,7 @@ Son güncelleme: 2026-10-08.
 - Komutlar:
   - `npm run typecheck` (= `tsc -b && tsc -p tsconfig.api.json`)
   - `npx oxlint src api e2e`
-  - `npx vitest run` (birim, ~790 test)
+  - `npx vitest run` (birim, ~810 test)
   - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~2 dk)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**
 - Referans görüntüleri yenilemek: `gh workflow run snapshots.yml --ref <dal>` (CI'da Linux'ta çeker, iki kez doğrular, dala commit eder).
@@ -28,34 +28,33 @@ Son güncelleme: 2026-10-08.
 - **macOS dosya sistemi büyük/küçük harf duyarsız:** `twinTense.ts` ile `TwinTense.tsx` aynı klasörde olamaz (tsc hata verir). Mantık dosyasına farklı ad ver (ör. `tenseTwin.ts`, `moodRound.ts`).
 - Playwright'ın `page.clock` sabit saati, sahte `Date`'i IndexedDB'ye düz nesne olarak yazdırır. Tarih okurken `addedTime()` gibi savunmacı yardımcılar kullan (`src/engine/types.ts`).
 - E2E'de örnek kelimeler yüklendikten sonra `packApplied(page)` (e2e/helpers.ts) sözlük paketinin uygulanmasını bekler (#53 ile geldi).
+- Örnek cümlenin `form` alanı boş (`''`) olabilir (#62): kelime cümlede geçmiyor demek. Boşluk doldurma/bağlam soruları `form`u olan cümleleri kullanır; yeni kod da `ex.form`un dolu olduğunu varsaymasın.
+- Fiil laboratuvarı verisi: `LabData` (`src/engine/labProgress.ts`): `records['fiil|zaman']`, `tally['zaman|kişi']` (`weakestCell`, `weakPersons`), `kinds` (hata türleri). Kayıt için `recordLabAnswer` (`src/ui/verbs/labShared.ts`).
 - Bir `useEffect` içinden gelen `reload` sonuçları dil değişince atılıyor (`languageRef`, #51 birleşti) — bu deseni koru.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
-## Açık PR'lar ve birleştirme sırası (2026-10-08 akşamı)
-Birleşti: #37–#45, #47, #51, #44, #46, #48.
+## Durum (2026-10-08 akşamı, Claude Code'dan devir)
+Birleşti: #37–#61 (fiil laboratuvarı yığını, kelime çalışması, oturuma fiil çekimleri #59, tabloda zayıf kişiler #61 dahil).
 
-Bağımsız (main'e):
-- **#52** kelime çalışması: gerçekçi süre, hatırlama erken, beceri sırası, iki oturum, ertesi gün cümlede, kazanımlar
-- **#53** sözlük paketi sonradan eklenen kelimelere de uygulanıyor (+ kararsız görsel testin düzeltmesi)
-- (#52 ve #53'ün son commit'ini referans yenileme botu attı; bot commit'i CI'ı tetiklemez → main'i dala alıp push et ki CI çalışsın.)
+Açık:
+- **#62** (`import-row-reason`) toplu eklemede satırın neden eklenemediğini yazıyor; kelimenin geçmediği cümle de ekleniyor (boşluk doldurmada kullanılmıyor, `form: ''`). Yerelde tüm testler geçti; CI yeşilse birleştir.
+- **Bu devir notunun PR'ı** (`agents-handoff`): yeşilse birleştir.
 
-Fiil laboratuvarı yığını — **bu sırayla**, her adımda önce üsttekinin tabanını main'e çevir:
-1. **#49** temel zamanlara göre ustalık + hata türüne göre alıştırma (taban: main)
-2. **#50** gerçek cümlede çekim + öteki dilde aynı fiil (taban: verb-lab-mastery)
-3. **#54** tek "Fiillerim" listesi, Zorlandıklarım → Ustalık, başlık sadeleştirme (taban: verb-lab-sentences)
-4. **#55** kip seçimi, Söyle modu, kalıp tablosu, Bugün'de fiil ısınması (taban: verb-lab-2)
+## Görevler (sırayla; her biri ayrı küçük PR)
+Kullanıcı fiil laboratuvarı fikirlerini "sırayla, parça parça" istedi. 1 (#59) ve 2 (#61) bitti. Kalanlar:
 
-#52 ve #53 kendi ekran görüntüsü referanslarını yeniledi; ikisi birden birleşince `e2e/visual.e2e.ts-snapshots/*.png` çakışabilir → birleştirmelerden sonra referansları `gh workflow run snapshots.yml --ref <dal>` ile yeniden çek.
+1. **Laboratuvar sekme/mod kullanım sayacı.** `src/ui/screenUsage.ts` içindeki `recordVisit(screen)` var. `src/ui/verbs/VerbLab.tsx` içinde `setTab` her çağrıldığında `recordVisit(`verbs:${t}`)`, alıştırma modu değişince `recordVisit(`verbs:practice:${mode}`)`. Kullanım özeti (`usageSummary`) nerede gösteriliyorsa (Ayarlar/İlerleme) laboratuvar satırlarının okunur Türkçe adları olsun. Birim testi ekle.
+2. **Okuma → laboratuvar köprüsü.** Okuma'da (`src/ui/Reading.tsx`) çekimli bir fiile dokununca açılan kartta "Fiil laboratuvarında aç" düğmesi: laboratuvarı o fiil + o zamanla açsın (Reading zaten `{ form, lemma, tense }` çıkarıyor, ~399. satır). App'te VerbLab'e başlangıç fiili/zamanı geçirme yolu var mı bak (`openVerbLab` e2e yardımcısı ve `initialTab` örnek).
+3. **Bugün'de "Günün fiili" kartı.** Fiillerim listesinden (yoksa sıklık listesinden) güne göre sabit bir fiil (labShared'deki `dayPerson` gibi kararlı hash), tek dokunuşla laboratuvarda açılsın. Mevcut kart sınıflarını (`card`, `habit-nudge`) kullan; Bugün ekranını kalabalıklaştırma, ısınma kartıyla birlikte tek satır olabilir.
+4. **Çekimlerin altında Türkçe karşılık** (bekliyorum, bekliyorsun…). Önce présent/presente ve passé composé/pretérito. Türkçe ünlü uyumu ve ünsüz yumuşaması dikkat (gitmek → gidiyorum, beklemek → bekliyorum, okumak → okuyorum). Fiilin Türkçe anlamı sözlük paketinden (`usePackGloss`). Emin olunmayan durumda hiç gösterme. Bol birim testi.
+5. **Ustalıkta zaman içinde ilerleme** (Ustalık sekmesi): haftalık doğru/yanlış ya da ustalık puanı çizgisi. Gerekirse `LabData`'ya günlük özet alanı ekle (eski veriyle uyumlu, opsiyonel alan).
+6. **Telefonda kaydırarak zaman değiştirme:** tablo üzerinde yatay kaydırma (swipe) ile `TenseBar`'daki ←/→ ile aynı sırada önceki/sonraki zaman. Dikey kaydırmayı bozmasın.
+7. **Ezber modu bildim/bilemedim kaydı:** LearnTab'daki Ezber (gizli tablo, `• • •`'e dokunup açma) sonunda "bildim / bilemedim" kaydı → `recordForm` / `recordCheck` ile ustalığa sayılsın.
 
-## Yarım kalan işler
-1. **FR/EN Lingua Libre sesleri → sözlük paketi.**
-   - Dal: `fr-en-audio` (betik `scripts/fetch-commons-audio.ts` ağ hatalarına dayanıklı ve kaldığı yerden devam eder hâle getirildi; henüz PR yok).
-   - Girdiler: **`~/kelime-koc-data/kaikki/`** (proje dışında; ~7 GB, Vite/git/editör taramasın diye). İçerik: kaikki dökümleri (English/French/Spanish.jsonl, trwiktionary.jsonl, eswiktionary.jsonl) ve `lingualibre-en.audio.json`, `lingualibre-es.audio.json`, `lingualibre-fr.audio.json`. Klasör yoksa dökümler https://kaikki.org/ adresinden yeniden indirilebilir. (2026-10-08'de buraya taşındı; FR listesi tamam: 306.569 kelime.)
-   - FR listesi: `npx rolldown scripts/fetch-commons-audio.ts -o /tmp/a.mjs -p node && node /tmp/a.mjs fr ~/kelime-koc-data/kaikki/lingualibre-fr.audio.json` (yarıda kalırsa aynı komut `.partial`'dan devam eder).
-   - Paket: `npx rolldown scripts/build-wordpack.ts -o /tmp/w.mjs -p node && node /tmp/w.mjs <yeni-sürüm> <jsonl'ler…> <*.audio.json'lar…>`; sürümü değiştir (ör. `2026-10-08.1`), cümleler için `scripts/build-pack-sentences.ts`. Sonra PR.
-2. **Laboratuvar sekmeleri için kullanım sayacı** — #46 (screenUsage.ts) birleşince `VerbLab` sekme değişimlerinde `recordVisit('verbs:<tab>')`.
-3. **Ekran görüntüsü referanslarının genel yenilenmesi** (yukarıda).
-4. **SYNC_ALLOWED** (api/_allow.ts) etkinleştirme ertelendi: kullanıcının kullanıcı adı gerekiyor; yanlış ad kullanıcının kendi eşitlemesini kapatır.
+Diğer işler (fiil maddelerinden sonra ya da kullanıcı isterse):
+- **Sözlük paketi + FR/EN/ES Lingua Libre sesleri** (aşağıda "Yarım kalan işler" 1). Girdilerin hepsi hazır: `~/kelime-koc-data/kaikki/` (FR ses listesi de tamam).
+- **Tasarım kuralları:** kullanıcı Antigravity'nin `premium-design` becerisi / AGENTS.md'ye tasarım bölümü hazırlamasını istiyordu; bu dosya main'de, hazırlanabilir.
+- Görsel test referansları değişen ekranlarda `gh workflow run snapshots.yml --ref <dal>` ile yenilenmeli.
 
 ## Kullanıcıya önerilen ama onun yapacağı
 - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
