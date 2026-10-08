@@ -239,3 +239,23 @@ describe('relativeWorkload', () => {
     expect(relativeWorkload(0.85)).toBeLessThan(0.75)
   })
 })
+
+describe('phrases are recognised in a sentence', () => {
+  it('a phrase with an example gets the in-context question, a single word any of them', async () => {
+    const { pickExerciseType } = await import('../selection')
+    const { createEntry } = await import('../../data/wordInput')
+    const { createRng } = await import('../rng')
+    const at = new Date('2026-10-08T10:00:00')
+    const phrase = createEntry({ word: 'tomar el pelo', meaning: 'dalga geçmek', partOfSpeech: 'phrase', example: 'Me estás tomando el pelo.' }, 'es', at)
+    const bare = createEntry({ word: 'echar de menos', meaning: 'özlemek', partOfSpeech: 'phrase' }, 'es', at)
+    const word = createEntry({ word: 'la casa', meaning: 'ev', example: 'La casa es grande.' }, 'es', at)
+    const rng = createRng(7)
+    const kinds = (e: typeof phrase) => new Set(Array.from({ length: 30 }, () => pickExerciseType('recognition', e, undefined, rng)))
+    expect([...kinds(phrase)].every((t) => t === 'mc_context' || t === 'discriminate')).toBe(true)
+    // No sentence to put it in: the meaning question stays.
+    expect(kinds(bare).has('mc_meaning')).toBe(true)
+    expect(kinds(word).has('mc_meaning')).toBe(true)
+    // Other skills are untouched.
+    expect(pickExerciseType('recall', phrase, undefined, rng)).toBe('typed_translation')
+  })
+})
