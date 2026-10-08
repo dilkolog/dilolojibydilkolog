@@ -125,6 +125,64 @@ The eyes of the Happy Prince were filled with tears, and tears were running down
 
 "When I was alive and had a human heart," answered the statue, "I did not know what tears were, for I lived in the Palace of Sans-Souci, where sorrow is not allowed to enter. My courtiers called me the Happy Prince, and happy indeed I was, if pleasure be happiness. So I lived, and so I died. And now that I am dead they have set me up here so high that I can see all the ugliness and all the misery of my city, and though my heart is made of lead yet I cannot choose but weep."`,
   },
+  {
+    id: 'classic-en-fox-crow',
+    language: 'en',
+    title: 'The Fox and the Crow',
+    author: 'Aesop',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Ağzındaki peynirle ağaçta duran karga ve onun sesini öven kurnaz tilki.',
+    text: `One day a Crow sat on a high branch of a tree, holding a piece of cheese in her beak. A hungry Fox smelled the cheese and came running to the foot of the tree.
+
+"Good day, noble Crow!" said the Fox in his sweetest voice. "How beautiful your feathers are! How bright your eyes! Surely a bird with such lovely feathers must have a voice sweeter than all others. If you would only sing for me, I would hail you as the Queen of Birds."
+
+The Crow was deeply flattered by this praise. Wanting to prove she could sing, she lifted her head and opened her beak wide to utter a loud "Caw!"
+
+Down fell the piece of cheese directly into the Fox's waiting mouth. He caught it, swallowed it with a grin, and walked away laughing.
+
+Do not trust flatterers.`,
+  },
+  {
+    id: 'classic-en-ant-grasshopper',
+    language: 'en',
+    title: 'The Ant and the Grasshopper',
+    author: 'Aesop',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Güneşli yaz günlerini eğlenerek geçiren ağustosböceği ile kışa buğday biriktiren karınca.',
+    text: `On a warm summer day, a Grasshopper was hopping about in a field, chirping and singing to his heart's content. An Ant passed by, bearing along with great effort an ear of corn he was taking to the nest.
+
+"Why not come and chat with me," asked the Grasshopper, "instead of toiling and moiling in that way?"
+
+"I am helping to lay up food for the winter," said the Ant, "and recommend you to do the same."
+
+"Why bother about winter?" said the Grasshopper. "We have got plenty of food at present."
+
+But the Ant went on its way and continued its toil. When the winter came the Grasshopper had no food and found itself dying of hunger, while it saw the ants distributing every day corn and grain from the stores they had collected in the summer.
+
+It is best to prepare for days of need.`,
+  },
+  {
+    id: 'classic-en-town-country-mouse',
+    language: 'en',
+    title: 'The Town Mouse and the Country Mouse',
+    author: 'Aesop',
+    category: 'fable',
+    level: 'A2-B1',
+    summary: 'Zenginliğin tehlikeleri ile sade yaşamın huzurunu kıyaslayan iki farenin hikayesi.',
+    text: `A Town Mouse once visited his cousin in the country. The Country Mouse offered him wheat stalks, acorns, and cold water from a brook. The Town Mouse turned up his nose.
+
+"My poor cousin," said he, "you live here like an ant. Come with me to the city, and you shall feast on honey, cakes, and cheese every night."
+
+The Country Mouse agreed, and they set out together. When they reached the city mansion, the dining table was laden with leftover pastries, jellies, and fine cheeses. But just as the Country Mouse began to nibble a sweet crumb, the doors burst open. Two fierce mastiffs rushed in, barking loudly.
+
+The mice scrambled into a dark hole behind the baseboard, trembling with fear. When all was quiet again, the Country Mouse took his little travel bag.
+
+"You may have your dainties and grand rooms," said he, "but I prefer my simple acorn in peace to a banquet in fear."
+
+Better beans in freedom than cake in fear.`,
+  },
 
   // --- FRENCH ---
   {
@@ -247,6 +305,110 @@ Tout bourgeois veut bâtir comme les grands seigneurs,
 Tout petit prince a des ambassadeurs,
 Tout marquis veut avoir des pages.`,
   },
+  {
+    id: 'classic-fr-lievre-tortue',
+    language: 'fr',
+    title: 'Le Lièvre et la Tortue',
+    author: 'Jean de La Fontaine',
+    category: 'fable',
+    level: 'A2-B1',
+    summary: 'Kendine güvenip oyalanan tavşan ile azimle yoluna devam eden kaplumbağa.',
+    text: `Rien ne sert de courir ; il faut partir à point.
+Le Lièvre et la Tortue en sont un témoignage.
+« Gageons, dit celle-ci, que vous n'atteindrez point
+Si tôt que moi ce but. — Si tôt ? Êtes-vous sage ?
+Repartit l'animal léger.
+Ma commère, il vous faut purger
+Avec quatre grains d'ellébore.
+— Sage ou non, je parie encore. »
+Ainsi fut fait : et de tous deux
+On mit la récompense auprès du but.
+
+Le Lièvre n'avait que quatre pas à faire ;
+J'entends de ceux qu'il fait lorsque prêt d'être atteint
+Il s'éloigne des chiens. Il s'amuse à brouter,
+À dormir, et à écouter d'où vient le vent.
+La Tortue va son train ; elle part, elle s'évertue,
+Elle se hâte avec lenteur.
+Lui cependant méprise une telle victoire.
+
+Quand il vit que la Tortue approchait du terme,
+Il partit comme un trait ; mais les élans qu'il fit
+Furent vains : la Tortue arriva la première.
+« Eh bien ! lui cria-t-elle, avais-je pas raison ?
+De quoi vous sert votre vitesse ?
+Moi, l'emporter ! et que serait-ce
+Si vous portiez une maison ? »`,
+  },
+  {
+    id: 'classic-fr-loup-agneau',
+    language: 'fr',
+    title: "Le Loup et l'Agneau",
+    author: 'Jean de La Fontaine',
+    category: 'fable',
+    level: 'A2-B1',
+    summary: 'Duru bir dereden su içen masum kuzu ile onu suçlayacak bahane arayan aç kurt.',
+    text: `La raison du plus fort est toujours la meilleure :
+Nous l'allons montrer tout à l'heure.
+
+Un Agneau se désaltérait
+Dans le courant d'une onde pure.
+Un Loup survient à jeun, qui cherchait aventure,
+Et que la faim en ces lieux attirait.
+« Qui te rend si hardi de troubler mon breuvage ?
+Dit cet animal plein de rage :
+Tu seras châtié de ta témérité.
+— Sire, répond l'Agneau, que votre Majesté
+Ne se mette pas en colère ;
+Mais plutôt qu'elle considère
+Que je me vas désaltérant
+Dans le courant,
+Plus de vingt pas au-dessous d'Elle ;
+Et que par conséquent, en aucune façon,
+Je ne puis troubler sa boisson.
+— Tu la troubles, reprit cette bête cruelle,
+Et je sais que de moi tu médis l'an passé.
+— Comment l'aurais-je fait si je n'étais pas né ?
+Reprit l'Agneau. — Si ce n'est toi, c'est donc ton frère.
+— Je n'en ai point. — C'est donc quelqu'un des tiens :
+Car vous ne m'épargnez guère,
+Vous, vos bergers, et vos chiens. »
+
+Là-dessus, au fond des forêts
+Le Loup l'emporte, et puis le mange,
+Sans autre forme de procès.`,
+  },
+  {
+    id: 'classic-fr-lion-rat',
+    language: 'fr',
+    title: 'Le Lion et le Rat',
+    author: 'Jean de La Fontaine',
+    category: 'fable',
+    level: 'A2-B1',
+    summary: 'Küçük bir farenin hayatını bağışlayan ormanlar kralı aslan ve farenin gösterdiği vefa.',
+    text: `Il faut, autant qu'on peut, obliger tout le monde :
+On a souvent besoin d'un plus petit que soi.
+De cette vérité deux fables feront foi,
+Tant la chose en preuves abonde.
+
+Entre les pattes d'un Lion,
+Un Rat sortit de terre assez à l'étourdie.
+Le Roi des animaux, en cette occasion,
+Montra sa générosité,
+Et lui donna la vie.
+Ce bienfait ne fut pas perdu.
+
+Quelqu'un aurait-il jamais cru
+Qu'un Lion d'un Rat eût affaire ?
+Cependant il advint qu'au sortir des forêts
+Ce Lion fut pris dans des rets,
+Dont ses rugissements ne le purent défaire.
+Sire Rat accourut, et fit tant par ses dents
+Qu'une maille rongée emporta tout l'ouvrage.
+
+Patience et longueur de temps
+Font plus que force ni que rage.`,
+  },
 
   // --- SPANISH ---
   {
@@ -368,6 +530,77 @@ Luego vio que la pobre tortuga estaba muy herida. Aunque tenía hambre y la carn
 Poco después, el hombre cayó enfermo con fiebre muy alta en medio de la selva. No podía levantarse ni buscar comida o agua.
 
 Entonces la tortuga agradecida lo cuidó, le trajo agua en su caparazón y raíces para comer, y cuando vio que el hombre se moría si no llegaba a la ciudad, lo cargó sobre su lomo y caminó días y noches por la selva hasta llegar a Buenos Aires para salvarle la vida.`,
+  },
+  {
+    id: 'classic-es-leon-raton',
+    language: 'es',
+    title: 'El león y el ratón',
+    author: 'Félix María de Samaniego',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Ufacık bir farenin canını bağışlayan ve sonra onun sayesinde ağlardan kurtulan aslan.',
+    text: `Dormía plácidamente un león en el bosque cuando unos ratoncillos del campo se pusieron a jugar a su alrededor. Uno de ellos, sin querer, despertó al soberbio animal saltando sobre su garra.
+
+El rey de la selva lo atrapó al instante entre sus uñas. El infeliz ratón suplicó clemencia:
+—¡Perdóname, señor! Deja que viva, y tal vez algún día pueda devolverte este favor.
+
+Rió el león con gran soberbia al pensar que un animal tan diminuto pudiera serle útil, pero compadecido de su pequeñez, lo dejó marchar.
+
+Poco tiempo después, el león cayó en una red tendida por cazadores. Rugía con tanta furia que los montes retumbaban, sin poder soltar las cuerdas. Al oír sus lamentos acudió el ratón, y con sus afilados dientes royó la red hasta romper los nudos y poner en libertad al fiero león.
+
+Los pequeños amigos pueden prestar grandes servicios.`,
+  },
+  {
+    id: 'classic-es-lechera',
+    language: 'es',
+    title: 'La lechera',
+    author: 'Félix María de Samaniego',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Başındaki süt testisini satıp zengin olma hayalleri kurarken testiyi deviren sütçü kız.',
+    text: `Llevaba en la cabeza
+una lechera el cántaro al mercado,
+con aquella presteza,
+aquel aire sencillo y desahogado,
+que bien mostraba sus risueñas mañas.
+
+Iba la muchacha diciendo entre sí:
+«Por esta leche me darán dinero;
+con él compraré cien huevos;
+sacaré de ellos cien hermosos pollos;
+los pollos crecerán y valdrán mucho;
+compraré luego un lechoncito gordo;
+con bellotas y castañas lo engordaré;
+lo venderé por buen precio y compraré una vaca
+con un ternero que saltará en el prado.»
+
+En esto, loca de alegría ante su fortuna imaginaria,
+dio un salto gracioso la doncella:
+¡ay, qué dolor! El cántaro cayó al suelo,
+rompiéndose en mil pedazos.
+Con la leche derramada se fueron los huevos,
+los pollos, el lechón, la vaca y el ternero.
+
+No anheles impaciente el bien futuro,
+mira que ni el presente está seguro.`,
+  },
+  {
+    id: 'classic-es-perro-reflejo',
+    language: 'es',
+    title: 'El perro y su reflejo',
+    author: 'Félix María de Samaniego',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Ağzındaki et parçasıyla köprüden geçerken sudaki yansımasına göz diken açgözlü köpek.',
+    text: `Cruzaba un perro un río cristalino sobre un estrecho madero, llevando en la boca un sabroso pedazo de carne que acababa de conseguir.
+
+Al mirar hacia el agua, vio reflejada su propia imagen, pero creyó que se trataba de otro perro que llevaba una presa mucho más grande que la suya.
+
+Ciego de codicia y queriendo arrebatar el pedazo al supuesto rival, abrió la boca y ladró con fuerza lanzándose hacia el reflejo. En ese instante, la verdadera carne se desprendió de sus fauces, cayó a la corriente profunda y se perdió para siempre en el fondo del agua.
+
+El ambicioso can se quedó sin su comida y sin la sombra que perseguía, aprendiendo una triste lección en la orilla.
+
+Quien codicia lo ajeno pierde con justicia lo propio.`,
   },
 ]
 
