@@ -7,8 +7,7 @@ import { ConfirmDialog } from './Dialog'
 import { EmptyState } from './EmptyState'
 import { ChevronDownIcon, PlusIcon, TargetIcon } from './icons'
 import { showToast } from './toast'
-
-export const newListId = () => `list:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`
+import { newListId } from './wordListId'
 
 /** Met and learned as one bar: the learned part solid, the met part lighter. */
 function Bar({ p }: { p: GroupProgress }) {

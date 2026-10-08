@@ -1,7 +1,8 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import type { SessionSummary, WordResult } from '../engine/session'
-import { SummaryGarden, sceneWords } from './SummaryGarden'
+import { SummaryGarden } from './SummaryGarden'
+import { sceneWords } from './summaryGardenWords'
 
 const word = (id: string, before: WordResult['stageBefore'], after: WordResult['stageAfter']): WordResult => ({ entryId: id, correct: 1, wrong: 0, stageBefore: before, stageAfter: after })
 const summary = (words: WordResult[]): SessionSummary => ({ words, answered: words.length, correct: words.length, strengthened: [], struggling: [], errors: {}, introduced: [], xp: 10 })

@@ -2,17 +2,11 @@ import { MASTERY_STAGES } from '../engine/mastery'
 import type { SessionSummary, WordResult } from '../engine/session'
 import { GardenSky } from './GardenSky'
 import { GrowingPlant, Plant } from './Plant'
+import { sceneWords } from './summaryGardenWords'
 
-const MAX_PLANTS = 9
 const STAGE_FLOWER = MASTERY_STAGES.length - 1
 
 const rank = (s?: WordResult['stageBefore']) => (s ? MASTERY_STAGES.indexOf(s) : -1)
-
-/** The words that grew first, then the rest, as many as fit the scene. */
-export function sceneWords(words: readonly WordResult[]): WordResult[] {
-  const grew = (w: WordResult) => rank(w.stageAfter) > rank(w.stageBefore)
-  return [...words].sort((a, b) => Number(grew(b)) - Number(grew(a))).slice(0, MAX_PLANTS)
-}
 
 /**
  * The end of a session as a small garden under the sky of the hour: a plant for each word worked on,

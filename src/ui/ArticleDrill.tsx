@@ -1,28 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { db, scheduler } from '../data/instance'
-import { definiteArticle } from '../engine/exercises'
 import { ruleFor } from '../engine/genderRules'
 import { newWordState, processAttempt } from '../engine/review'
 import { createRng, shuffle } from '../engine/rng'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
+import { articleQuestion } from './articleQuestion'
 import { genderRuleText, LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
 
 const ROUND = 20
-
-/** The two choices for a noun, and the right one. Before a vowel French hides the gender (l'), so un/une is asked. */
-export function articleQuestion(e: VocabularyEntry): { options: [string, string]; answer: string } | null {
-  if (e.language === 'fr') {
-    if (e.gender !== 'm' && e.gender !== 'f') return null
-    const vowel = /^[aeiouyhéèêàâîôûœ]/i.test(e.lemma)
-    return vowel ? { options: ['un', 'une'], answer: e.gender === 'm' ? 'un' : 'une' } : { options: ['le', 'la'], answer: e.gender === 'm' ? 'le' : 'la' }
-  }
-  if (e.language === 'es') {
-    const article = definiteArticle(e)
-    return article ? { options: ['el', 'la'], answer: article } : null
-  }
-  return null
-}
 
 /**
  * Gender drill: noun after noun, choose the article. Fast, focused retrieval of the one fact
