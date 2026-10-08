@@ -26,6 +26,8 @@ export interface DictIndex {
   folded: string[]
   /** Keys present in the learner's personal vocabulary. */
   ownKeys: Set<string>
+  /** Own words the pack lacks: their records, built from the learner's entries. */
+  extra?: Map<string, PackRecord>
   /** Each Turkish meaning (folded) with the words that carry it: position in the pack and in the word's own meanings. */
   turkish: Map<string, { at: number; order: number }[]>
 }
@@ -77,65 +79,80 @@ export function entryToRecord(entry: VocabularyEntry): PackRecord {
 /** Case, accents and the Turkish dotless i don't matter when searching: Décider = decider, KOŞMAK = kosmak. */
 export const fold = (s: string) => stripDiacritics(s.trim().toLocaleLowerCase('tr')).replace(/ı/g, 'i').replace(/\s+/g, ' ')
 
+/** The pack's own index: built once per pack (it is the slow part, tens of milliseconds), then reused. */
+interface BaseIndex {
+  keys: string[]
+  folded: string[]
+  turkish: Map<string, { at: number; order: number }[]>
+  position: Map<string, number>
+}
+const bases = new WeakMap<Pack, BaseIndex>()
+
+function baseIndex(pack: Pack): BaseIndex {
+  let base = bases.get(pack)
+  if (!base) {
+    const keys = Object.keys(pack.w)
+    const turkish = new Map<string, { at: number; order: number }[]>()
+    keys.forEach((k, i) => {
+      for (const [order, m] of (pack.w[k].t ?? []).entries()) {
+        const f = fold(m)
+        const list = turkish.get(f) ?? []
+        if (!list.some((x) => x.at === i)) list.push({ at: i, order })
+        turkish.set(f, list)
+      }
+    })
+    base = { keys, folded: keys.map(fold), turkish, position: new Map(keys.map((k, i) => [k, i])) }
+    bases.set(pack, base)
+  }
+  return base
+}
+
+/**
+ * The search index: the pack's (cached), with the learner's own words laid over it: a word the
+ * pack lacks is added at the end, and every own word's Turkish meanings find it first. Only the
+ * own words are worked through on each call, so a changed word list costs little.
+ */
 export function buildIndex(pack: Pack, language: TargetLanguage, vocabulary?: readonly VocabularyEntry[]): DictIndex {
-  const ownKeys = new Set<string>()
-  const keys = [...Object.keys(pack.w)]
-  let effectivePack = pack
-
-  if (vocabulary?.length) {
-    let overlay: Record<string, PackRecord> | undefined
-    for (const v of vocabulary) {
-      if (v.language !== language) continue
-      const bare = splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest
-      if (!bare) continue
-      ownKeys.add(bare)
-      if (!pack.w[bare]) {
-        if (!overlay) overlay = Object.create(pack.w) as Record<string, PackRecord>
-        overlay[bare] = entryToRecord(v)
-        keys.push(bare)
-      }
-    }
-    if (overlay) {
-      effectivePack = { ...pack, w: overlay }
-    }
+  const base = baseIndex(pack)
+  const own: { entry: VocabularyEntry; key: string }[] = []
+  for (const entry of vocabulary ?? []) {
+    if (entry.language !== language) continue
+    const key = splitArticle(normalize(entry.lemma).toLocaleLowerCase(language), language).rest
+    if (key) own.push({ entry, key })
   }
+  if (!own.length) return { language, pack, keys: base.keys, folded: base.folded, ownKeys: new Set(), turkish: base.turkish }
 
-  const turkish = new Map<string, { at: number; order: number }[]>()
-  keys.forEach((k, i) => {
-    for (const [order, m] of (effectivePack.w[k].t ?? []).entries()) {
-      const f = fold(m)
-      const list = turkish.get(f) ?? []
-      if (!list.some((x) => x.at === i)) list.push({ at: i, order })
-      turkish.set(f, list)
-    }
-  })
-
-  // Index custom meanings from personal vocabulary with top priority:
-  if (vocabulary?.length) {
-    for (const v of vocabulary) {
-      if (v.language !== language) continue
-      const bare = splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest
-      const at = keys.indexOf(bare)
-      if (at < 0) continue
-      for (const sense of v.senses) {
-        for (const m of [sense.gloss, ...(sense.altGlosses ?? [])]) {
-          const f = fold(m)
-          const list = turkish.get(f) ?? []
-          if (!list.some((x) => x.at === at)) list.unshift({ at, order: 0 })
-          turkish.set(f, list)
-        }
-      }
-    }
+  const keys = [...base.keys]
+  const folded = [...base.folded]
+  const extra = new Map<string, PackRecord>()
+  const position = (key: string) => base.position.get(key) ?? keys.indexOf(key, base.keys.length)
+  for (const { entry, key } of own) {
+    if (Object.hasOwn(pack.w, key) || extra.has(key)) continue
+    extra.set(key, entryToRecord(entry))
+    keys.push(key)
+    folded.push(fold(key))
   }
-
-  return { language, pack: effectivePack, keys, folded: keys.map(fold), ownKeys, turkish }
+  // Copy only the meaning lists that change; the rest are shared with the cached index.
+  const turkish = new Map(base.turkish)
+  const add = (meaning: string, at: number, first: boolean) => {
+    const f = fold(meaning)
+    const list = turkish.get(f) ?? []
+    if (list.some((x) => x.at === at)) return
+    turkish.set(f, first ? [{ at, order: 0 }, ...list] : [...list, { at, order: 0 }])
+  }
+  for (const { entry, key } of own) {
+    const at = position(key)
+    if (at < 0) continue
+    for (const sense of entry.senses) for (const m of [sense.gloss, ...(sense.altGlosses ?? [])]) add(m, at, true)
+  }
+  return { language, pack, keys, folded, ownKeys: new Set(own.map((o) => o.key)), turkish, extra }
 }
 
 const hit = (index: DictIndex, i: number): DictHit => ({
   word: index.keys[i],
-  rec: index.pack.w[index.keys[i]],
+  rec: index.extra?.get(index.keys[i]) ?? index.pack.w[index.keys[i]],
   rank: i + 1,
-  isOwn: index.ownKeys?.has(index.keys[i]),
+  isOwn: index.ownKeys.has(index.keys[i]),
 })
 
 export function search(index: DictIndex, query: string): DictResult {
@@ -207,7 +224,7 @@ export function search(index: DictIndex, query: string): DictResult {
   }
 
   const also = exact && !form ? index.pack.f?.[exact.word] : undefined
-  return { exact, ...(form ? { form } : {}), ...(also && also !== exact?.word && index.pack.w[also] ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}) }
+  return { exact, ...(form ? { form } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}) }
 }
 
 /**

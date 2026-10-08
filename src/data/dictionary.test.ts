@@ -147,5 +147,20 @@ describe('dictionary search', () => {
     const hitYuva = search(ixUser, 'yuva')
     expect(words(hitYuva.fromTurkish)).toContain('maison')
   })
+
+  it('builds the pack part once: a changed word list reuses it, and the pack is left untouched', () => {
+    const pack: Pack = { v: 't', w: { maison: { t: ['ev'] }, chat: { t: ['kedi'] } } }
+    const plain = buildIndex(pack, 'fr')
+    const withOwn = buildIndex(pack, 'fr', [createEntry({ word: 'ornithorynque', meaning: 'ornitorenk' }, 'fr', new Date())])
+    expect(buildIndex(pack, 'fr').turkish).toBe(plain.turkish)
+    expect(withOwn.keys).toEqual(['maison', 'chat', 'ornithorynque'])
+    expect(plain.keys).toEqual(['maison', 'chat'])
+    expect(Object.keys(pack.w)).toEqual(['maison', 'chat'])
+    expect(search(plain, 'ornitorenk').fromTurkish).toEqual([])
+    // A word of another language, or one listed twice, doesn't change the index twice.
+    const twice = buildIndex(pack, 'fr', [createEntry({ word: 'le loup', meaning: 'kurt' }, 'fr', new Date()), createEntry({ word: 'loup', meaning: 'kurt' }, 'fr', new Date()), createEntry({ word: 'wolf', meaning: 'kurt' }, 'en', new Date())])
+    expect(twice.keys.filter((k) => k === 'loup')).toHaveLength(1)
+    expect(words(search(twice, 'kurt').fromTurkish)).toEqual(['loup'])
+  })
 })
 
