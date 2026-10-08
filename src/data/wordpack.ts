@@ -102,20 +102,23 @@ export function packUpdate(entry: VocabularyEntry, rec: PackRecord): { patch: Pa
   return Object.keys(patch).length ? { patch, wrote } : undefined
 }
 
-const VERSION_KEY = (language: TargetLanguage) => `wordpack:${language}`
-
-/** Fills the learner's words of one language from a pack; once per pack version. Returns how many words changed. */
+/**
+ * Fills the learner's words of one language from a pack. Each word records the pack version it
+ * got, so a word added later (by hand, a sample, an import or another device) gets the pack on the
+ * next pass too, and a new pack version reaches every word once. Returns how many words changed.
+ */
 export async function applyPack(db: KelimeDB, language: TargetLanguage, pack: Pack): Promise<number> {
-  if ((await db.meta.get(VERSION_KEY(language)))?.value === pack.v) return 0
+  const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.packV !== pack.v)
+  if (!todo.length) return 0
   let changed = 0
-  for (const e of await db.vocabulary.where('language').equals(language).toArray()) {
-    const rec = packRecord(pack, e.lemma, language)
-    const update = rec && packUpdate(e, rec)
-    if (!update) continue
-    await db.vocabulary.update(e.id, patchWithSources(e, update.patch, update.wrote))
-    changed++
-  }
-  await db.meta.put({ key: VERSION_KEY(language), value: pack.v })
+  await db.transaction('rw', db.vocabulary, async () => {
+    for (const e of todo) {
+      const rec = packRecord(pack, e.lemma, language)
+      const update = rec && packUpdate(e, rec)
+      if (update) changed++
+      await db.vocabulary.update(e.id, update ? { ...patchWithSources(e, update.patch, update.wrote), packV: pack.v } : { packV: pack.v })
+    }
+  })
   return changed
 }
 

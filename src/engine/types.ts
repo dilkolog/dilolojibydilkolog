@@ -147,6 +147,8 @@ export interface VocabularyEntry {
   wordFamily: WordFamilyMember[]
   /** Derived and related words found in Wiktionary, offered to add (see wordInfo.ts). */
   familyCandidates?: string[]
+  /** The word pack version last applied to this word (see applyPack): a word added later still gets it. */
+  packV?: string
   /** When Wiktionary was checked for pronunciation, definition and family. */
   wiktAt?: string
   /** Real sentences from Tatoeba, fetched in the background; [] = looked up, none found. */
