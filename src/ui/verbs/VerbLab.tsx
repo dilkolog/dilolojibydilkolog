@@ -19,6 +19,7 @@ import { TenseBar } from './TenseBar'
 import { TimedTab } from './TimedTab'
 import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
+import { recordVisit } from '../screenUsage'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, verbEntry, verbKey, type LabLanguage } from './labShared'
 
 /**
@@ -86,6 +87,11 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     setTimedFirst(false)
     setTabState(t)
   }
+  // Which tabs are used, on this device only (Settings → Kullanım): the shown tab, the first one too.
+  useEffect(() => {
+    recordVisit(`verbs:${tab}`)
+    if (timedFirst) recordVisit('verbs:practice:timed')
+  }, [tab]) // eslint-disable-line react-hooks/exhaustive-deps
   const [level, setLevel] = useState<Level | null>(null)
   const [family, setFamily] = useState<FamilyId | undefined>()
   const main = useRef<HTMLElement>(null)
