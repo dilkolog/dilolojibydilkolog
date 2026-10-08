@@ -25,7 +25,7 @@ vi.mock('web-push', () => ({
 }))
 
 const { POST, recordPath } = await import('../../api/push')
-const { GET: CRON, reminderText, resting, weeklyText } = await import('../../api/cron-reminder')
+const { GET: CRON, dueNow, localHour, reminderText, resting, weeklyText } = await import('../../api/cron-reminder')
 
 const sub = (endpoint = 'https://push.example/1') => ({ endpoint, keys: { p256dh: 'p', auth: 'a' } })
 const post = (body: unknown) => POST(new Request('https://app.test/api/push', { method: 'POST', body: typeof body === 'string' ? body : JSON.stringify(body) }))
@@ -65,6 +65,7 @@ describe('/api/push', () => {
       vacation: { from: '2026-12-01', to: 'soon' },
       due: 5000,
       reportedDay: 'yesterday',
+      hour: 25,
     })
     expect(res.status).toBe(204)
     const r = await stored(sub().endpoint)
@@ -80,6 +81,7 @@ describe('/api/push', () => {
       due: 999,
       reportedDay: null,
       week: '',
+      hour: 20,
     })
   })
 
@@ -145,8 +147,25 @@ describe('the week on Sunday', () => {
   })
 })
 
+describe('reminder hour', () => {
+  it('turns the cron\'s UTC hour into the learner\'s local hour', () => {
+    expect(localHour(-180, 17)).toBe(20)
+    expect(localHour(-180, 22)).toBe(1)
+    expect(localHour(300, 2)).toBe(21)
+    expect(localHour(-330, 14)).toBe(19)
+  })
+
+  it('reminds at the chosen hour, and at 20:00 for records saved before hours existed', () => {
+    expect(dueNow(record(), 17)).toBe(true)
+    expect(dueNow(record(), 18)).toBe(false)
+    expect(dueNow(record({ hour: 9 }), 6)).toBe(true)
+    expect(dueNow(record({ hour: 9 }), 17)).toBe(false)
+  })
+})
+
 describe('/api/cron-reminder', () => {
-  const cron = (auth?: string) => CRON(new Request('https://app.test/api/cron-reminder', { headers: auth ? { authorization: auth } : {} }))
+  const cron = (auth?: string, h?: number) =>
+    CRON(new Request(`https://app.test/api/cron-reminder${h === undefined ? '' : `?h=${h}`}`, { headers: auth ? { authorization: auth } : {} }))
   const save = async (r: PushRecord) => blobs.set(await recordPath(r.subscription.endpoint), JSON.stringify(r))
 
   it('refuses callers without the secret, and everyone when no secret is set', async () => {
@@ -175,6 +194,20 @@ describe('/api/cron-reminder', () => {
     expect(await res.json()).toEqual({ devices: 6, sent: 1, removed: 1 })
     expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/idle'])
     expect(JSON.parse(sent[0].body)).toMatchObject({ title: 'Kelime Koçu', url: '/?go=quick' })
+  })
+
+  it('each hourly run reaches only the devices whose reminder hour it is', async () => {
+    vi.stubEnv('CRON_SECRET', 's3cret')
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.UTC(2026, 9, 7, 6, 40))
+    await save(record({ subscription: sub('https://push.example/morning'), hour: 9 }))
+    await save(record({ subscription: sub('https://push.example/evening') }))
+    // Scheduled for 06:00 UTC, run late: the hour named in the path counts.
+    vi.setSystemTime(Date.UTC(2026, 9, 7, 7, 2))
+    expect(await (await cron('Bearer s3cret', 6)).json()).toMatchObject({ sent: 1 })
+    expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/morning'])
+    await cron('Bearer s3cret', 17)
+    expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/morning', 'https://push.example/evening'])
   })
 
   it('on Sunday sends the week instead, also to someone who studied', async () => {
