@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { buildIndex, fold, search, turkishBases, wiktionaryUrl } from './dictionary'
 import type { Pack } from './wordpackBuild'
+import { createEntry } from './wordInput'
 
 // Most frequent first, as the pack is built.
 const FR: Pack = {
@@ -114,6 +115,37 @@ describe('dictionary search', () => {
     expect(bases).toContain('gitmek')
     expect(turkishBases('evlerde')).toContain('ev')
     expect(turkishBases('evlerde')[0]).toBe('evler')
+  })
+
+  it('indexes personal vocabulary: finds user words by lemma, prefix, and Turkish meaning', () => {
+    const pack: Pack = { v: 't', w: { maison: { t: ['ev'] } } }
+    const custom = createEntry({ word: 'ornithorynque', meaning: 'ornitorenk', partOfSpeech: 'noun' }, 'fr', new Date())
+    const existing = createEntry({ word: 'maison', meaning: 'ev, yuva', partOfSpeech: 'noun' }, 'fr', new Date())
+    const ixUser = buildIndex(pack, 'fr', [custom, existing])
+
+    // Exact match for user-added word not in pack
+    const hitCustom = search(ixUser, 'ornithorynque')
+    expect(hitCustom.exact?.word).toBe('ornithorynque')
+    expect(hitCustom.exact?.isOwn).toBe(true)
+    expect(hitCustom.exact?.rec.t).toEqual(['ornitorenk'])
+
+    // Word already in pack is marked isOwn
+    const hitPack = search(ixUser, 'maison')
+    expect(hitPack.exact?.word).toBe('maison')
+    expect(hitPack.exact?.isOwn).toBe(true)
+
+    // Prefix search includes user word
+    const hitPrefix = search(ixUser, 'orni')
+    expect(words(hitPrefix.similar)).toContain('ornithorynque')
+
+    // Turkish search finds user-added word
+    const hitTr = search(ixUser, 'ornitorenk')
+    expect(words(hitTr.fromTurkish)).toContain('ornithorynque')
+    expect(hitTr.fromTurkish.find((h) => h.word === 'ornithorynque')?.isOwn).toBe(true)
+
+    // Custom meaning added by user for an existing word is indexed
+    const hitYuva = search(ixUser, 'yuva')
+    expect(words(hitYuva.fromTurkish)).toContain('maison')
   })
 })
 

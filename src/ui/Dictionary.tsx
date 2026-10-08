@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { AiError, enrichWords } from '../ai'
-import { fold, loadIndex, search, wiktionaryUrl, type DictIndex } from '../data/dictionary'
+import { buildIndex, fold, search, wiktionaryUrl } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
 import { loadTenses } from '../data/tenseData'
+import { loadPack } from '../data/wordpack'
+import type { Pack } from '../data/wordpackBuild'
 import { db } from '../data/instance'
 import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
 import { emptyNotes, noteLookup, parseMeanings, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
@@ -63,16 +65,16 @@ const ownEntry = (vocabulary: readonly VocabularyEntry[], word: string, language
 
 export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOpenWord, onAdd, onOpenLab }: Props) {
   const [query, setQuery] = useState(initialQuery)
-  const [index, setIndex] = useState<DictIndex | null | undefined>(undefined)
+  const [pack, setPack] = useState<Pack | null | undefined>(undefined)
   const [recent, setRecent] = useState(() => loadRecent(language))
   const [notes, setNotes] = useState<DictionaryNotes>(emptyNotes)
   const notesRef = useRef(notes)
 
   useEffect(() => {
     let live = true
-    setIndex(undefined)
+    setPack(undefined)
     setRecent(loadRecent(language))
-    void loadIndex(language).then((ix) => live && setIndex(ix ?? null))
+    void loadPack(language).then((p) => live && setPack(p ?? null))
     void db.getDictionaryNotes(language).then((n) => {
       if (!live) return
       notesRef.current = n
@@ -82,6 +84,11 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
       live = false
     }
   }, [language])
+
+  const index = useMemo(() => {
+    if (!pack) return pack
+    return buildIndex(pack, language, vocabulary)
+  }, [pack, language, vocabulary])
 
   /** Changes the learner's notes and saves them (corrections, look-ups). */
   const updateNotes = (change: (n: DictionaryNotes) => DictionaryNotes) => {
@@ -205,6 +212,11 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
                       <span className="word-row-text">
                         <span className="w" lang={language}>
                           {h.word}
+                          {h.isOwn && (
+                            <span className="chip chip-sm" style={{ marginLeft: 6, fontSize: '0.75rem', padding: '1px 6px' }}>
+                              Listende
+                            </span>
+                          )}
                         </span>
                         <span className="meta">{h.rec.t?.join(', ')}</span>
                       </span>
@@ -233,7 +245,10 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
       {index && (
         <section className="section">
           <p className="small muted">
-            Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Vikisözlük</a> (CC BY-SA), her dilde en sık 9–16 bin kelime. Türkçe karşılıklar Türkçe Vikisözlük’ten ve İngilizce üzerinden gelir; emin olmadığında Vikisözlük sayfasına bak ya da “Anlamı düzelt”.
+            Kaynak: <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer">Vikisözlük</a> (CC BY-SA), her dilde en sık 14–27 bin kelime. Türkçe karşılıklar Türkçe Vikisözlük’ten ve İngilizce üzerinden gelir; emin olmadığında Vikisözlük sayfasına bak ya da “Anlamı düzelt”.
+            {vocabulary.filter((v) => v.language === language).length > 0 && (
+              <> Metin okurken ve toplu aktarımla eklediğin <strong>{vocabulary.filter((v) => v.language === language).length} kişisel kelime</strong> de bu sözlükte aranır.</>
+            )}
           </p>
         </section>
       )}
@@ -480,6 +495,7 @@ function NotFound({
 }) {
   const { apiKey } = useAi()
   const [ai, setAi] = useState<{ lemma: string; meanings: string[] } | null>(null)
+  const [customMeaning, setCustomMeaning] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
@@ -533,11 +549,34 @@ function NotFound({
       ) : (
         <>
           <p>
-            “<span lang={language}>{word}</span>” sözlük paketinde yok. Paket her dilde en sık 9–16 bin kelimeyi taşır; çekimli bir biçimse sözlükteki hâlini dene.
+            “<span lang={language}>{word}</span>” sözlük paketinde veya listende henüz yok. Anlamını biliyorsan doğrudan sözlüğüne ekleyebilirsin:
           </p>
-          <div className="row">
+          <form
+            className="row gap-xs"
+            onSubmit={(e) => {
+              e.preventDefault()
+              const m = customMeaning.trim()
+              if (m) {
+                onAdd(word, m)
+                setCustomMeaning('')
+              }
+            }}
+          >
+            <input
+              type="text"
+              className="input"
+              placeholder="Türkçe anlamını yaz ve sözlüğe ekle…"
+              value={customMeaning}
+              onChange={(e) => setCustomMeaning(e.target.value)}
+              aria-label="Türkçe anlamı"
+            />
+            <button type="submit" className="btn btn-sm" disabled={!customMeaning.trim()}>
+              <PlusIcon size={15} /> Sözlüğe ekle
+            </button>
+          </form>
+          <div className="row gap-xs">
             {apiKey && (
-              <button className="btn btn-sm" onClick={askAi} disabled={busy}>
+              <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={busy}>
                 <SparkleIcon size={15} /> {busy ? 'Soruluyor…' : 'AI ile anlamını bul'}
               </button>
             )}

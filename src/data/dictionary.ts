@@ -1,5 +1,5 @@
 import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
-import type { TargetLanguage } from '../engine/types'
+import type { PartOfSpeech, TargetLanguage, VocabularyEntry } from '../engine/types'
 import { baseForm, loadPack, packKeys } from './wordpack'
 import type { Pack, PackRecord } from './wordpackBuild'
 
@@ -15,6 +15,8 @@ export interface DictHit {
   rec: PackRecord
   /** Position in the frequency list (1 = most frequent). */
   rank: number
+  /** Whether this hit is in the learner's personal vocabulary. */
+  isOwn?: boolean
 }
 
 export interface DictIndex {
@@ -22,6 +24,8 @@ export interface DictIndex {
   pack: Pack
   keys: string[]
   folded: string[]
+  /** Keys present in the learner's personal vocabulary. */
+  ownKeys: Set<string>
   /** Each Turkish meaning (folded) with the words that carry it: position in the pack and in the word's own meanings. */
   turkish: Map<string, { at: number; order: number }[]>
 }
@@ -42,24 +46,97 @@ export interface DictResult {
 
 const LIMIT = 8
 
+const POS_TO_LETTER: Partial<Record<PartOfSpeech, string>> = {
+  noun: 'n',
+  verb: 'v',
+  adjective: 'a',
+  adverb: 'd',
+  preposition: 'p',
+  conjunction: 'c',
+  pronoun: 'r',
+  phrase: 'h',
+}
+
+export function entryToRecord(entry: VocabularyEntry): PackRecord {
+  const meanings = entry.senses.map((s) => s.gloss).concat(entry.senses.flatMap((s) => s.altGlosses ?? []))
+  const examples = entry.senses.flatMap((s) => s.examples)
+  return {
+    t: meanings.length ? meanings : undefined,
+    i: entry.ipa || undefined,
+    a: entry.audioUrl || undefined,
+    e: entry.etymology || undefined,
+    s: entry.synonyms?.length ? entry.synonyms : undefined,
+    n: entry.antonyms?.length ? entry.antonyms : undefined,
+    x: entry.translations && Object.keys(entry.translations).length ? entry.translations : undefined,
+    p: entry.partOfSpeech && entry.partOfSpeech !== 'other' ? POS_TO_LETTER[entry.partOfSpeech] : undefined,
+    g: entry.gender === 'mf' ? 'e' : entry.gender,
+    c: examples.length ? examples.map((e) => [e.text, e.translation ?? ''] as [string, string]) : undefined,
+  }
+}
+
 /** Case, accents and the Turkish dotless i don't matter when searching: Décider = decider, KOŞMAK = kosmak. */
 export const fold = (s: string) => stripDiacritics(s.trim().toLocaleLowerCase('tr')).replace(/ı/g, 'i').replace(/\s+/g, ' ')
 
-export function buildIndex(pack: Pack, language: TargetLanguage): DictIndex {
-  const keys = Object.keys(pack.w)
+export function buildIndex(pack: Pack, language: TargetLanguage, vocabulary?: readonly VocabularyEntry[]): DictIndex {
+  const ownKeys = new Set<string>()
+  const keys = [...Object.keys(pack.w)]
+  let effectivePack = pack
+
+  if (vocabulary?.length) {
+    let overlay: Record<string, PackRecord> | undefined
+    for (const v of vocabulary) {
+      if (v.language !== language) continue
+      const bare = splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest
+      if (!bare) continue
+      ownKeys.add(bare)
+      if (!pack.w[bare]) {
+        if (!overlay) overlay = Object.create(pack.w) as Record<string, PackRecord>
+        overlay[bare] = entryToRecord(v)
+        keys.push(bare)
+      }
+    }
+    if (overlay) {
+      effectivePack = { ...pack, w: overlay }
+    }
+  }
+
   const turkish = new Map<string, { at: number; order: number }[]>()
   keys.forEach((k, i) => {
-    for (const [order, m] of (pack.w[k].t ?? []).entries()) {
+    for (const [order, m] of (effectivePack.w[k].t ?? []).entries()) {
       const f = fold(m)
       const list = turkish.get(f) ?? []
       if (!list.some((x) => x.at === i)) list.push({ at: i, order })
       turkish.set(f, list)
     }
   })
-  return { language, pack, keys, folded: keys.map(fold), turkish }
+
+  // Index custom meanings from personal vocabulary with top priority:
+  if (vocabulary?.length) {
+    for (const v of vocabulary) {
+      if (v.language !== language) continue
+      const bare = splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest
+      const at = keys.indexOf(bare)
+      if (at < 0) continue
+      for (const sense of v.senses) {
+        for (const m of [sense.gloss, ...(sense.altGlosses ?? [])]) {
+          const f = fold(m)
+          const list = turkish.get(f) ?? []
+          if (!list.some((x) => x.at === at)) list.unshift({ at, order: 0 })
+          turkish.set(f, list)
+        }
+      }
+    }
+  }
+
+  return { language, pack: effectivePack, keys, folded: keys.map(fold), ownKeys, turkish }
 }
 
-const hit = (index: DictIndex, i: number): DictHit => ({ word: index.keys[i], rec: index.pack.w[index.keys[i]], rank: i + 1 })
+const hit = (index: DictIndex, i: number): DictHit => ({
+  word: index.keys[i],
+  rec: index.pack.w[index.keys[i]],
+  rank: i + 1,
+  isOwn: index.ownKeys?.has(index.keys[i]),
+})
 
 export function search(index: DictIndex, query: string): DictResult {
   const q = fold(query)
