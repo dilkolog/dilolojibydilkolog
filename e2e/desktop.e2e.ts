@@ -284,3 +284,24 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   await expect(main.locator('.lab-reverse .accent-result')).toContainText('=')
   expect(await overflow(page)).toEqual([])
 })
+
+test('verb lab: the verb in real sentences, and the same verb in the other language', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'avoir')
+  const main = page.locator('.lab-main')
+  // Learn: avoir in Spanish (tener), the forms and the tense's name.
+  const twin = main.locator('.lab-twin')
+  await expect(twin.locator('summary')).toContainText('İspanyolcada')
+  await twin.locator('summary').click()
+  await expect(twin.locator('.lab-twin-forms li')).toHaveCount(6)
+  // In a sentence: a real sentence with the form taken out, the verb and the tense given.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Cümlede' }).click()
+  const quiz = main.locator('.lab-sentencequiz')
+  await expect(quiz.locator('.lab-blank')).toHaveText('_____')
+  await quiz.locator('input.answer-input').fill('zzz')
+  await page.keyboard.press('Enter')
+  await expect(quiz.locator('.accent-result')).toContainText('Doğrusu')
+  await expect(quiz.locator('.lab-blank')).not.toHaveText('_____')
+  expect(await overflow(page)).toEqual([])
+})
