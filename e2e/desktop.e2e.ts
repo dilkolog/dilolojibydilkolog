@@ -331,3 +331,26 @@ test('verb lab: the verb in real sentences, and the same verb in the other langu
   await expect(quiz.locator('.lab-blank')).not.toHaveText('_____')
   expect(await overflow(page)).toEqual([])
 })
+
+test('verb lab: add a verb to the list, hear all six, the E and A keys', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'finir')
+  const main = page.locator('.lab-main')
+  const lists = page.locator('.lab-lists')
+  // Not in the list yet: one tap adds it, with the meaning shown in the heading.
+  await expect(main.locator('.lab-gloss')).not.toBeEmpty()
+  const own = async () => Number((await lists.getByRole('button', { name: /Listemde/ }).textContent())?.match(/\d+/)?.[0] ?? 0)
+  const before = await own()
+  await main.getByRole('button', { name: /Kelimelerime ekle/ }).click()
+  await expect(main.getByRole('button', { name: /Kelimelerime ekle/ })).toHaveCount(0)
+  await expect.poll(own).toBe(before + 1)
+  // E covers the forms (memorise), E again shows them; A goes on to practice.
+  await expect(main.getByRole('button', { name: 'Tümünü dinle' })).toBeVisible()
+  await page.locator('body').click({ position: { x: 5, y: 5 } })
+  await page.keyboard.press('e')
+  await expect(main.getByRole('button', { name: 'Ezber' })).toHaveAttribute('aria-pressed', 'true')
+  await page.keyboard.press('e')
+  await expect(main.getByRole('button', { name: 'Ezber' })).toHaveAttribute('aria-pressed', 'false')
+  await page.keyboard.press('a')
+  await expect(main.getByRole('tab', { name: 'Alıştırma' })).toHaveAttribute('aria-selected', 'true')
+})
