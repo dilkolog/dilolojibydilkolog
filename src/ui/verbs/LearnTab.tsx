@@ -14,6 +14,7 @@ import { Popover, MenuItem } from '../Popover'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
 import { TwinTense } from './TwinTense'
+import { recordVisit } from '../screenUsage'
 import { CORE_TENSES, MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
@@ -250,7 +251,16 @@ export function LearnTab({
               ['detail', 'Detaylı'],
             ] as const
           ).map(([id, label]) => (
-            <button key={id} type="button" className="segmented-btn" aria-pressed={view === id} onClick={() => setView(id)}>
+            <button
+              key={id}
+              type="button"
+              className="segmented-btn"
+              aria-pressed={view === id}
+              onClick={() => {
+                setView(id)
+                if (id !== 'simple') recordVisit(`verbs:learn:${id}`)
+              }}
+            >
               {label}
             </button>
           ))}

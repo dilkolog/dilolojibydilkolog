@@ -32,8 +32,20 @@ export interface ScreenUse {
   days: number
 }
 
-/** Opens per screen over the last `days` days, most used first. */
+/**
+ * Opens per screen over the last `days` days, most used first. Parts of a screen are counted as
+ * "screen:part" (the verb lab's tabs and modes): left out here, listed by `partsSummary`.
+ */
 export function usageSummary(log: UsageLog, now: Date, days = 30): ScreenUse[] {
+  return summarise(log, now, days).filter((u) => !u.screen.includes(':'))
+}
+
+/** The parts of one screen ("verbs:practice:type"), most used first. */
+export function partsSummary(log: UsageLog, screen: string, now: Date, days = 30): ScreenUse[] {
+  return summarise(log, now, days).filter((u) => u.screen.startsWith(`${screen}:`))
+}
+
+function summarise(log: UsageLog, now: Date, days: number): ScreenUse[] {
   const since = daysAgo(now, days - 1)
   return Object.entries(log)
     .map(([screen, byDay]) => {
@@ -84,6 +96,33 @@ export const SCREEN_LABEL: Record<string, string> = {
   exam: 'Hatırlama sınavı',
   profile: 'Profil',
   settings: 'Ayarlar',
+}
+
+/** The verb lab's tabs, practice modes and learn views, as `recordVisit("verbs:…")` counts them. */
+const LAB_PART: Record<string, string> = {
+  learn: 'Öğrenme',
+  'learn:compare': 'Öğrenme · Kıyasla',
+  'learn:detail': 'Öğrenme · Detaylı',
+  practice: 'Alıştırma',
+  'practice:type': 'Alıştırma · Yaz',
+  'practice:choose': 'Alıştırma · Seç',
+  'practice:listen': 'Alıştırma · Dinle',
+  'practice:speak': 'Alıştırma · Söyle',
+  'practice:match': 'Alıştırma · Eşleştir',
+  'practice:sentence': 'Alıştırma · Cümlede',
+  'practice:tense': 'Alıştırma · Zamanı bul',
+  'practice:mood': 'Alıştırma · Kip seç',
+  'practice:reverse': 'Alıştırma · Hangi fiil?',
+  'practice:timed': 'Alıştırma · Zamana karşı',
+  review: 'Tekrar',
+  patterns: 'Kalıplar',
+  mastery: 'Ustalık',
+}
+
+/** A counted name as the learner knows it: a screen, or a part of the verb lab. */
+export function usageLabel(screen: string): string {
+  if (screen.startsWith('verbs:')) return LAB_PART[screen.slice(6)] ?? screen.slice(6)
+  return SCREEN_LABEL[screen] ?? screen
 }
 
 /** Tabs that may leave the menu: the second and later ones of a place (the first is the place itself). */
