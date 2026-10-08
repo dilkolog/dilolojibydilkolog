@@ -41,6 +41,7 @@ import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
 import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
+import { updateAppBadge } from './ui/appBadge'
 import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
@@ -517,6 +518,9 @@ export default function App() {
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
   const dueReviews = plan ? plan.items.filter((i) => i.kind === 'exercise').length : 0
   useReminder(restToday ? undefined : settings?.reminder, answeredTodayAll, game?.streak ?? 0, settings?.studyPlan, dueReviews)
+  useEffect(() => {
+    if (plan) updateAppBadge(dueReviews, settings?.appBadge ?? true)
+  }, [plan, dueReviews, settings?.appBadge])
   // The week in one line: on Today on Sunday and Monday, and in Sunday evening's push.
   const [weekText, setWeekText] = useState('')
   useEffect(() => {
