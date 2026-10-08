@@ -23,6 +23,7 @@ import { NaturalVoiceSettings } from './NaturalVoiceSettings'
 import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, TargetIcon, ToolIcon, UserIcon } from './icons'
 import { Help } from './SettingHelp'
 import { LANGUAGE_NAME } from './labels'
+import { badgeSupported } from './appBadge'
 import { askClipboard, clipboardSupported } from './clipboardSuggest'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
 import { Select } from './Select'
@@ -606,6 +607,14 @@ export function SettingsScreen({
               </p>
             )}
             <PushToggle state={pushState} />
+            {badgeSupported() && (
+              <Toggle
+                label="Simgede tekrar sayısı"
+                help="Ana ekrana eklenmiş uygulamanın simgesinde bekleyen tekrar sayısı görünür; hepsi bitince kaybolur."
+                checked={settings.appBadge ?? true}
+                onChange={(v) => set('appBadge', v)}
+              />
+            )}
             <div className="row">
               <button className="btn btn-quiet" onClick={calendar}>
                 Takvime ekle (.ics)

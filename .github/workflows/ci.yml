@@ -29,8 +29,14 @@ jobs:
   e2e:
     # Flows and screenshots in a real browser (phone and desktop). Screenshot baselines are made on
     # this same runner by snapshots.yml (push a snapshots/… branch after a deliberate design change).
+    # Three machines take a third of the tests each (one at a time on each, as before): about a third
+    # of the wait.
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -40,11 +46,10 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npx vite build
-      - run: npx playwright test
+      - run: npx playwright test --shard=${{ matrix.shard }}/3
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.shard }}
           path: playwright-report
           retention-days: 7
-
