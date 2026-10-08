@@ -58,6 +58,7 @@ import { Home, Onboarding, Summary } from './ui/Screens'
 import type { LabTab } from './ui/verbs/VerbLab'
 import { useFormsDue } from './ui/verbs/labShared'
 import type { Command } from './ui/CommandPalette'
+import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
 import { readIncoming, type IncomingWord } from './ui/incoming'
 import { GAME_LIST, type GameId } from './ui/gameList'
@@ -456,6 +457,11 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incoming, !settings])
 
+
+  // Which screens are used, counted on this device only (Settings → Görünüm → Kullanım).
+  useEffect(() => {
+    recordVisit(screen.name)
+  }, [screen.name])
 
   // A word copied elsewhere, offered on coming back (Settings → Panodan kelime ekle).
   const lemmasRef = useRef<string[]>([])
@@ -860,7 +866,9 @@ export default function App() {
             {/* Related screens under one menu place: switch between them here. */}
             {place && GROUPS[place]?.some((g) => g.screen === screen.name) && (
               <nav className="hub-tabs" aria-label={NAV.find((n) => n.screen === place)!.label}>
-                {GROUPS[place]!.filter((g) => g.screen !== 'verbs' || settings.activeLanguage !== 'en').map((g) => (
+                {GROUPS[place]!.filter(
+                  (g) => (g.screen !== 'verbs' || settings.activeLanguage !== 'en') && (g.screen === screen.name || !settings.hiddenTabs?.includes(g.screen)),
+                ).map((g) => (
                   <button key={g.screen} className="hub-tab" aria-current={g.screen === screen.name ? 'page' : undefined} onClick={go({ name: g.screen } as Screen)}>
                     {g.label}
                     {g.screen === 'mistakes' && !!navBadge.words && <span className="hub-count">{navBadge.words}</span>}
