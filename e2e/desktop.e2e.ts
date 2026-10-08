@@ -446,6 +446,20 @@ test('reading: a conjugated form opens the verb lab at its verb and tense', asyn
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('verb lab: the Turkish of each form beside it, in the core tenses, never when unsure', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-tr')).toHaveText(['konuşuyorum', 'konuşuyorsun', 'konuşuyor', 'konuşuyoruz', 'konuşuyorsunuz', 'konuşuyorlar'])
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Passé composé' }).click()
+  await expect(main.locator('.lab-tr').first()).toHaveText('konuştum')
+  // "être" is "olmak": "oluyorum" would be wrong, so nothing is shown.
+  await openVerbLab(page, 'être')
+  await expect(main.locator('.lab-forms')).toContainText('avons été')
+  await expect(main.locator('.lab-tr')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('Today: the verb of the day opens its table in the verb lab', async ({ page }) => {
   await startWithSamples(page)
   const tile = page.locator('.tile', { hasText: 'Günün fiili' })
