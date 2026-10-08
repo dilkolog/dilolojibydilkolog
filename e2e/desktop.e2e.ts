@@ -446,3 +446,18 @@ test('reading: a conjugated form opens the verb lab at its verb and tense', asyn
   await expect(main.locator('.lab-forms')).toContainText('parlions')
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('verb lab: the tabs and modes used are counted in Settings → Kullanım', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('button', { name: 'Seç', exact: true }).click()
+  await openScreen(page, 'Ayarlar')
+  await page.getByRole('searchbox', { name: 'Ayar ara' }).fill('Kullanım')
+  const card = page.locator('section.card', { has: page.getByRole('heading', { name: 'Kullanım', exact: true }) })
+  await expect(card.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+  await expect(card.locator('.hour-list').last()).toContainText('Alıştırma · Seç')
+  await expect(card.locator('.hour-list').last()).toContainText('Öğrenme')
+  await expect(card.locator('.hour-list').first()).not.toContainText('Alıştırma')
+})

@@ -13,6 +13,7 @@ import { MoodQuiz } from './MoodQuiz'
 import { SpeakQuiz } from './SpeakQuiz'
 import { canListen } from '../speechInput'
 import { TenseQuiz } from './TenseQuiz'
+import { recordVisit } from '../screenUsage'
 import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'tense' | 'mood' | 'reverse' | 'timed'
@@ -187,7 +188,10 @@ export function PracticeTab({
               <span className="small muted">{g.label}</span>
               <div className="lab-modes" role="group" aria-label={`${g.label} alıştırmaları`}>
                 {g.modes.map((m) => (
-                  <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => setMode(m.id)} disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())} title={m.label}>
+                  <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => {
+                      setMode(m.id)
+                      recordVisit(`verbs:practice:${m.id}`)
+                    }} disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())} title={m.label}>
                     <m.icon size={18} />
                     <span>{m.label}</span>
                   </button>
