@@ -8,7 +8,6 @@ import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, rec
 import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
-import { CompareTab } from './CompareTab'
 import { LearnTab } from './LearnTab'
 import { MasteryTab } from './MasteryTab'
 import { PracticeTab } from './PracticeTab'
@@ -20,15 +19,15 @@ import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, verbEntry, verbKey, type LabLanguage } from './labShared'
 
-export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'timed' | 'compare' | 'mastery'
+/** 'timed' opens practice on its race against the clock (the conjugation games link there). */
+export type LabTab = 'learn' | 'practice' | 'review' | 'patterns' | 'mastery' | 'timed'
+type ShownTab = Exclude<LabTab, 'timed'>
 
-const TABS: { id: LabTab; label: string }[] = [
+const TABS: { id: ShownTab; label: string }[] = [
   { id: 'learn', label: 'Öğrenme' },
   { id: 'practice', label: 'Alıştırma' },
   { id: 'review', label: 'Tekrar' },
   { id: 'patterns', label: 'Kalıplar' },
-  { id: 'timed', label: 'Zamana karşı' },
-  { id: 'compare', label: 'Kıyaslama' },
   { id: 'mastery', label: 'Ustalık' },
 ]
 
@@ -73,7 +72,12 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   const { frequency, levels, byFrequency } = useVerbLevels(language, ready)
   const [picked, setPicked] = useState<string | undefined>(initialVerb)
   const [tense, setTense] = useState<Tense>(() => (initialTense && isLabTense(language, initialTense) ? initialTense : PRESENT[language]))
-  const [tab, setTab] = useState<LabTab>(initialTab ?? 'learn')
+  const [tab, setTabState] = useState<ShownTab>(initialTab === 'timed' ? 'practice' : (initialTab ?? 'learn'))
+  const [timedFirst, setTimedFirst] = useState(initialTab === 'timed')
+  const setTab = (t: ShownTab) => {
+    setTimedFirst(false)
+    setTabState(t)
+  }
   const [level, setLevel] = useState<Level | null>(null)
   const [family, setFamily] = useState<FamilyId | undefined>()
   const main = useRef<HTMLElement>(null)
@@ -192,7 +196,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 onTense={setTense}
                 onRound={(v, t, r) => update((l) => recordRound(l, scheduler, v, t, r, new Date()))}
                 onAnswer={onAnswer}
-                onTimed={() => setTab('timed')}
+                initialMode={timedFirst ? 'timed' : undefined}
+                timed={<TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />}
                 byFrequency={byFrequency}
               />
             ) : tab === 'review' ? (
@@ -220,10 +225,6 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                   onAnswer(v, t, ok, given, expected, person)
                 }}
               />
-            ) : tab === 'timed' ? (
-              <TimedTab language={language} byFrequency={byFrequency} levels={levels} vocabulary={vocabulary} states={states} onAnswer={onAnswer} />
-            ) : tab === 'compare' ? (
-              <CompareTab language={language} verb={verb} available={available} />
             ) : (
               <MasteryTab
                 language={language}
@@ -247,7 +248,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
           </div>
         </section>
         <aside className="card lab-lists" aria-label="Fiil listeleri">
-          <PickerLists language={language} verb={verb} tense={current} lab={lab} level={level} onLevel={setLevel} levels={levels} byFrequency={byFrequency} ownVerbs={ownVerbs} onVerb={choose} onItem={openItem} onReview={() => setTab('review')} />
+          <PickerLists language={language} verb={verb} tense={current} lab={lab} level={level} onLevel={setLevel} levels={levels} byFrequency={byFrequency} ownVerbs={ownVerbs} onVerb={choose} onItem={openItem} />
         </aside>
       </div>
     </div>

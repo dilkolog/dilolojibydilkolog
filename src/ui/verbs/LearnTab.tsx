@@ -7,6 +7,7 @@ import { masteryLevel, labKey, verbMastery, type LabData } from '../../engine/la
 import { canSpeak, speak } from '../speech'
 import { BookIcon, CheckIcon, ChevronDownIcon, SpeakerIcon, StarIcon } from '../icons'
 import { Popover, MenuItem } from '../Popover'
+import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
 import { MOODS, tenseName, verbEntry, type LabLanguage } from './labShared'
 
@@ -49,7 +50,8 @@ export function TensePicker({ language, tense, onPick, available }: { language: 
 }
 
 /**
- * Learn: the verb in the chosen tense. Simple shows one table with what the tense is for; detailed
+ * Learn: the verb in the chosen tense. Simple shows one table with what the tense is for; compare
+ * puts three chosen tenses side by side; detailed
  * puts every tense side by side, by mood. Reflexive and negative forms are one tap away, and
  * memorise mode covers the forms until they are tapped.
  */
@@ -89,7 +91,7 @@ export function LearnTab({
   onAddReview: () => void
   onPractice: () => void
 }) {
-  const [detail, setDetail] = useState(false)
+  const [view, setView] = useState<'simple' | 'detail' | 'compare'>('simple')
   const [reflexive, setReflexive] = useState(false)
   const [negative, setNegative] = useState(false)
   const [memorise, setMemorise] = useState(false)
@@ -127,19 +129,25 @@ export function LearnTab({
         )}
         {gloss && <span className="lab-gloss">{gloss}</span>}
         <div className="segmented lab-detail-toggle" role="group" aria-label="Görünüm">
-          <button type="button" className="segmented-btn" aria-pressed={!detail} onClick={() => setDetail(false)}>
-            Basit
-          </button>
-          <button type="button" className="segmented-btn" aria-pressed={detail} onClick={() => setDetail(true)}>
-            Detaylı
-          </button>
+          {(
+            [
+              ['simple', 'Basit'],
+              ['compare', 'Kıyasla'],
+              ['detail', 'Detaylı'],
+            ] as const
+          ).map(([id, label]) => (
+            <button key={id} type="button" className="segmented-btn" aria-pressed={view === id} onClick={() => setView(id)}>
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 
-      {families.length > 0 && (
+      {/* "Regular" says nothing the Kurallı label below doesn't; the irregular patterns are worth a link. */}
+      {families.some((f) => !f.endsWith('-regular')) && (
         <p className="lab-families small">
           <span className="muted">Kalıp:</span>
-          {families.map((f) => (
+          {families.filter((f) => !f.endsWith('-regular')).map((f) => (
             <button key={f} type="button" className="chip chip-sm" onClick={() => onFamily(f)} title={FAMILIES[f].rule}>
               {FAMILIES[f].name}
             </button>
@@ -167,7 +175,6 @@ export function LearnTab({
       )}
 
       <div className="lab-tools">
-        {!detail && <TensePicker language={language} tense={tense} onPick={onTense} available={available} />}
         <button type="button" className="btn btn-quiet btn-sm" aria-pressed={memorise} onClick={() => setMemorise((m) => !m)}>
           {memorise ? 'Formları göster' : 'Ezber modu'}
         </button>
@@ -208,7 +215,9 @@ export function LearnTab({
         </div>
       </section>
 
-      {!detail ? (
+      {view === 'compare' ? (
+        <CompareTab language={language} verb={verb} available={available} />
+      ) : view === 'simple' ? (
         <>
           <p className="conj-lead">
             <strong>
