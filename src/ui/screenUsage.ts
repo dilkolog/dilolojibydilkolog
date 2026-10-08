@@ -127,4 +127,3 @@ export function usageLabel(screen: string): string {
 
 /** Tabs that may leave the menu: the second and later ones of a place (the first is the place itself). */
 export const HIDEABLE_TABS = ['dictionary', 'mistakes', 'story', 'verbs', 'produce'] as const
-export type HideableTab = (typeof HIDEABLE_TABS)[number]

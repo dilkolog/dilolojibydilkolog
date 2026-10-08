@@ -229,9 +229,6 @@ export interface TypedExercise extends ExerciseBase {
 
 export type Exercise = ChoiceExercise | TypedExercise
 
-/** Hints unlock only after a delay, so the user first makes a real retrieval attempt. */
-export const HINT_DELAYS_MS = [6000, 12000, 18000]
-
 export const BLANK = '___'
 
 function blankOut(example: Example): string {

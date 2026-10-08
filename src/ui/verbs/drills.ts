@@ -19,7 +19,7 @@ export const DRILL_TEXT: Partial<Record<ErrorKind, string>> = {
   irregular: 'Sık fiillerin kuralın dışındaki biçimleri.',
 }
 
-const ACCENTED = /[^\u0000-\u007f]/
+const ACCENTED = /[^\x20-\x7e]/
 const people = (language: LabLanguage, tense: Tense) => personsOf(language, tense).filter((p) => !(language === 'es' && prefs.hideVosotros && p === 4))
 
 /** The verbs worked on in the lab, else the most common ones. */

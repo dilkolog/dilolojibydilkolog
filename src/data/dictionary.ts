@@ -1,6 +1,6 @@
 import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
 import type { PartOfSpeech, TargetLanguage, VocabularyEntry } from '../engine/types'
-import { baseForm, loadPack, packKeys } from './wordpack'
+import { baseForm, packKeys } from './wordpack'
 import type { Pack, PackRecord } from './wordpackBuild'
 
 /**
@@ -255,19 +255,6 @@ export function turkishBases(word: string): string[] {
     for (const r of [...new Set([root, hard])]) out.push(r, `${r}mek`, `${r}mak`)
   }
   return [...new Set(out)].filter((b) => b !== word)
-}
-
-const indexes = new Map<TargetLanguage, Promise<DictIndex | undefined>>()
-
-/** The language's index, built once from its pack; undefined while there is no pack (offline before it was ever fetched). */
-export function loadIndex(language: TargetLanguage): Promise<DictIndex | undefined> {
-  let p = indexes.get(language)
-  if (!p) {
-    p = loadPack(language).then((pack) => (pack ? buildIndex(pack, language) : undefined))
-    void p.then((ix) => ix || indexes.delete(language))
-    indexes.set(language, p)
-  }
-  return p
 }
 
 /** Wiktionary's page for the word, at the section of its language. */

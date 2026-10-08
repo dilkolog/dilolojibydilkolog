@@ -24,7 +24,6 @@ const write = (key: string, at: number) => {
   }
 }
 
-export const lastBackupAt = () => read(LAST_KEY)
 export const dismissBackupNudge = (now = Date.now()) => write(DISMISS_KEY, now)
 
 /**

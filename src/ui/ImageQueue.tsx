@@ -6,7 +6,7 @@ import { imageCandidates, skipImage, skippedImages, suggestImages, type ImageSug
 import { withSources } from '../data/provenance'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
-import { CloseIcon, ImageIcon } from './icons'
+import { CloseIcon } from './icons'
 import { shrinkImage } from './imageTools'
 
 /**
@@ -126,11 +126,3 @@ export function ImageQueue({ db, vocabulary, onClose, onChanged }: { db: KelimeD
   )
 }
 
-export function ImageQueueChip({ count, onOpen }: { count: number; onOpen: () => void }) {
-  return (
-    <button type="button" className="chip chip-sm" onClick={onOpen} title="Görseli olmayan somut isimlere görsel öner">
-      <ImageIcon size={14} className="inline-icon" />
-      Görsel öner ({count})
-    </button>
-  )
-}

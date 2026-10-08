@@ -8,7 +8,7 @@ describe('progress card', () => {
     expect(svg).toContain('Ali &lt;3')
     expect(svg).toContain('>12<')
     expect(svg).not.toMatch(/\p{Extended_Pictographic}/u)
-    expect(svg).toContain('#ec4899')
+    expect(svg).toContain('#c6317c')   // the app's French colour (DESIGN.md --fr)
     expect(svg).not.toContain('var(--')
   })
 

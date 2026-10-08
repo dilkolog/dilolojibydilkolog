@@ -349,7 +349,6 @@ Ad, iz ve değer üç sütun; dolgu `--chart-data`. Grafiklerde tek veri rengi v
 
 > Bu bölüm **kural değildir**; bugünkü kodun yukarıdaki kurallardan saptığı yerlerin listesi.
 
-- **Paylaşım kartındaki eski dil renkleri.** Kural: `--en/--fr/--es` (#2f6de6 / #c6317c / #e6a313). Gerçek: `#3b82f6 / #ec4899 / #f59e0b`. Yer: `src/ui/ProgressCard.tsx:12` (`ACCENT`), 3 yer. Durum: düzeltilmeli; resim canvas'ta çizildiği için değerler token'dan okunabilir ya da elle eşitlenebilir.
 - **Kategori renkleri token'sız.** Kural: Token Kuralı. Gerçek: hata ve beceri türleri için `--tone` değerleri düz Tailwind hex'i (#3b82f6, #8b5cf6, #14b8a6, #ef4444…). Yer: `src/index.css` 2409–2411, 2597–2599 civarı, yaklaşık 19 kural. Durum: düzeltilmeli; bir `--cat-*` kategori paleti tanımlanıp koyu ve sakin temaya da eklenmeli.
 - **Süs öğelerinde düz renkler.** Gerçek: seri alevi seviyeleri, profil afişleri, avatar çerçeveleri, madalyalar düz hex kullanıyor. Yer: `src/index.css` 2453–2455, 4092–4110; `src/ui/Medal.tsx` (24 yer). Durum: izin verilen istisna olarak öneriliyor (illüstrasyon ve kozmetik; arayüz anlamı taşımıyor). Senin onayınla kesinleşir.
 - **Sol kenar şeritleri.** `border-left: 3px` beş yerde (tanım, hikâye çevirisi, karışma notu, günlük, `.hyper`). Tutarlı bir desen gibi kullanılıyor; şimdilik izin verilen istisna. Yeni yerlerde iç kutu (`.note`) tercih edilmeli.

@@ -59,8 +59,6 @@ export const FREQUENCY_BANDS = [
   { id: 'rare', label: 'Nadir', short: 'nadir', rank: 20000, max: Infinity },
 ] as const
 
-export type FrequencyBand = (typeof FREQUENCY_BANDS)[number]['id']
-
 /**
  * Band of a rank. 0 = not looked up yet; -1 = not in the frequency list (rarer than its 20 000
  * words); -2 = can't be ranked (a phrase).
@@ -259,16 +257,6 @@ export function createEntry(
 // ---------------------------------------------------------------------------
 // Bulk import (CSV / TSV pasted from a spreadsheet)
 // ---------------------------------------------------------------------------
-
-/** Column order of the import format. Shown to the user in the import screen. */
-export const IMPORT_COLUMNS = [
-  'kelime',
-  'anlam',
-  'örnek cümle',
-  'örnek çevirisi',
-  "collocation'lar",
-  'karıştırılan kelimeler',
-] as const
 
 /** Minimal CSV parser: handles quoted cells, doubled quotes and newlines inside quotes. */
 export function parseDelimited(text: string): string[][] {
