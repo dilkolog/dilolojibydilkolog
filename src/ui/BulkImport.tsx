@@ -92,13 +92,31 @@ export function BulkImport({
     onImported()
   }
 
-  const statusOf = (cells: string[]) => {
+  const statusOf = (cells: string[], row: number) => {
     const word = cells[0]?.trim()
-    if (!word) return null
-    const ok = result?.entries.find((e) => displayForm(e) === word || e.lemma === word)
-    if (ok) return <span className="pill stage-5">eklenecek</span>
+    if (!word || (row === 0 && ['kelime', 'word', 'term', 'anlam', 'meaning'].includes(word.toLocaleLowerCase('tr')))) return null
+    // Errors are numbered by row, the same rows the preview shows.
+    const error = result?.errors.find((e) => e.line === row + 1)
+    if (error) {
+      const label = cells[1]?.trim() ? 'eklenemiyor' : 'anlam yok'
+      return (
+        <>
+          <span className="pill" style={{ background: 'var(--bad-soft)', color: 'var(--bad-text)' }}>
+            {label}
+          </span>
+          {cells[1]?.trim() && <span className="small muted import-reason">{error.message}</span>}
+        </>
+      )
+    }
     if (result?.duplicates.some((d) => word.toLowerCase().endsWith(d.toLowerCase()))) return <span className="pill">zaten var</span>
-    return <span className="pill" style={{ background: 'var(--bad-soft)', color: 'var(--bad-text)' }}>eksik</span>
+    if (!result?.entries.length) return null
+    const warning = result.warnings.find((w) => w.line === row + 1)
+    return (
+      <>
+        <span className="pill stage-5">eklenecek</span>
+        {warning && <span className="small muted import-reason">{warning.message}</span>}
+      </>
+    )
   }
 
   return (
@@ -191,7 +209,7 @@ export function BulkImport({
                     <td className="target">{cells[0]}</td>
                     <td>{cells[1]}</td>
                     <td className="small muted">{cells[2]}</td>
-                    <td>{statusOf(cells)}</td>
+                    <td>{statusOf(cells, i)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -207,7 +225,7 @@ export function BulkImport({
             </button>
             <span className="small muted">
               {result.duplicates.length > 0 && `${result.duplicates.length} zaten listende. `}
-              {result.errors.length > 0 && `${result.errors.length} satırda anlam eksik.`}
+              {result.errors.length > 0 && `${result.errors.length} satır eklenemiyor; sebebi tabloda yazıyor.`}
             </span>
           </div>
         )}

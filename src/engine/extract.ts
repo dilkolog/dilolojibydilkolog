@@ -128,7 +128,7 @@ export function extractCandidates(
     for (const w of [e.lemma, ...(e.alternativeForms ?? []), ...e.wordFamily.map((m) => m.lemma)]) {
       knownStems.add(stem(w, language))
     }
-    for (const ex of e.senses.flatMap((s) => s.examples)) knownStems.add(stem(ex.form, language))
+    for (const ex of e.senses.flatMap((s) => s.examples)) if (ex.form) knownStems.add(stem(ex.form, language))
   }
 
   const groups = new Map<string, { forms: Map<string, number>; count: number; context: string; lowerSeen: boolean; capMid: boolean }>()

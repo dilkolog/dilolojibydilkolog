@@ -995,6 +995,7 @@ main:focus { outline: none; }
 .note { background: var(--surface-2); border-radius: var(--r-md); padding: 0.5rem 0.75rem; font-size: var(--t-sm); }
 .preview { max-height: 20rem; overflow: auto; border: 1px solid var(--rule); border-radius: var(--r-md); padding: 0 0.75rem; }
 .preview-table { width: 100%; margin: 0; }
+.import-reason { display: block; margin-top: 0.25rem; max-width: 18rem; }
 .preview-table th { position: sticky; top: 0; background: var(--surface); padding-top: 0.5rem; }
 
 /* ---------- Avatar, profile ---------- */

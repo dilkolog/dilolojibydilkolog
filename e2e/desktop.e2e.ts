@@ -354,3 +354,26 @@ test('verb lab: add a verb to the list, hear all six, the E and A keys', async (
   await page.keyboard.press('a')
   await expect(main.getByRole('tab', { name: 'Alıştırma' })).toHaveAttribute('aria-selected', 'true')
 })
+
+test('bulk import: each row says why it cannot be added, a sentence without the word is kept, a stray apostrophe is forgiven', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Ekle', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Birçok kelime ekle/ }).click()
+  await page.locator('summary', { hasText: 'Toplu ekle' }).click()
+  await page.locator('details[open] textarea').fill(
+    [
+      "l'aïus\tUzun, sıkıcı konuşma\tLe directeur nous a fait un long laïus sur la ponctualité.",
+      'topo\tKısa sunum\tIl a fait un exposé.',
+      'causerie\t',
+    ].join('\n'),
+  )
+  const rows = page.locator('.preview-table tbody tr')
+  await expect(rows.nth(0)).toContainText('eklenecek')
+  // A sentence the word isn't in is still added, with a note; a row without a meaning is not.
+  await expect(rows.nth(1)).toContainText('eklenecek')
+  await expect(rows.nth(1)).toContainText('"topo" cümlede geçmiyor')
+  await expect(rows.nth(2)).toContainText('anlam yok')
+  await expect(page.getByRole('button', { name: '2 kelimeyi ekle' })).toBeVisible()
+  await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
+})
