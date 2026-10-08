@@ -503,3 +503,23 @@ test('verb lab: Ustalık shows the share of right answers week by week', async (
   await expect(weeks.locator('.bar-row').first()).toContainText('%83 · 6')
   await expect(weeks.locator('.bar-row')).toHaveCount(6)
 })
+
+test('verb lab: memorise mode asks knew it or not, and a marked-through table counts toward mastery', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('button', { name: 'Ezber' }).click()
+  const table = main.locator('.lab-forms')
+  await expect(table.locator('.lab-cover')).toHaveCount(6)
+  for (let i = 0; i < 6; i++) {
+    await table.locator('.lab-cover').first().click()
+    await table.locator('.lab-grade').first().getByRole('button', { name: i === 2 ? 'Bilemedim' : 'Bildim' }).click()
+  }
+  await expect(table.locator('.lab-graded.is-ok')).toHaveCount(5)
+  await expect(table.locator('.lab-graded.is-no')).toHaveCount(1)
+  await expect(main.locator('.lab-memo-result')).toContainText('5/6 bildin')
+  await main.locator('.lab-memo-result').getByRole('button', { name: 'Yeniden kapat' }).click()
+  await expect(table.locator('.lab-cover')).toHaveCount(6)
+  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await expect(main.getByRole('button', { name: /^Présent:/ })).toContainText('Öğreniliyor (10/60)')
+})

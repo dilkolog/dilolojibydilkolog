@@ -178,6 +178,13 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 language={language}
                 verb={verb}
                 tense={current}
+                onMemorised={(t, results) =>
+                  update((l) => {
+                    // Saying "I knew it" counts like a round: per person in the tally, and the tense's points.
+                    const tallied = results.reduce((x, r) => recordForm(x, t, r.person, r.ok), l)
+                    return recordRound(tallied, scheduler, verb, t, { correct: results.filter((r) => r.ok).length, total: results.length }, new Date())
+                  })
+                }
                 available={available}
                 gloss={gloss}
                 inList={!!own}
