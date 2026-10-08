@@ -5,20 +5,24 @@ import type { Scheduler } from './scheduler'
 import type { EngineOptions, ErrorType, ExerciseType, Skill, UserWordState, VocabularyEntry } from './types'
 
 /**
- * Progressive disclosure: harder skills unlock only once the easier ones hold, so a new word
- * starts with recognition and isn't immediately tested on production.
+ * Progressive disclosure: recognition, then recall; the rest (article, listening, patterns,
+ * production) once recall holds, so a new word isn't tested in every format before it is known.
  */
 export function unlockedSkills(state: UserWordState | undefined, entry: VocabularyEntry, opts: EngineOptions = {}): Skill[] {
   const out: Skill[] = ['recognition']
   if (!state) return out
   const { recognition, recall } = state.skills
-  if (recognition && recognition.reps > 0) out.push('listening')
-  if (recognition && recognition.reps > 0 && exerciseTypesFor('gender', entry).length) out.push('gender')
   // Recall (typing the word from its meaning) right after the first recognition: what is only
   // recognised feels known but doesn't come to mind when needed.
   if (recognition && recognition.reps > 0) out.push('recall')
-  if (recall && recall.reps > 0 && exerciseTypesFor('collocation', entry).length) out.push('collocation')
-  if (recall?.state === State.Review && exerciseTypesFor('production', entry, opts).length) out.push('production')
+  // The other skills wait until the word can be recalled, so a new word's first days go to
+  // getting it into memory rather than to six separate schedules (fewer, deeper cards).
+  const recalledOnce = !!recall && recall.reps > 0 && recall.stability >= 1
+  const recallHeld = recall?.state === State.Review
+  if (recalledOnce && exerciseTypesFor('gender', entry).length) out.push('gender')
+  if (recallHeld) out.push('listening')
+  if (recallHeld && exerciseTypesFor('collocation', entry).length) out.push('collocation')
+  if (recallHeld && exerciseTypesFor('production', entry, opts).length) out.push('production')
   return out
 }
 
