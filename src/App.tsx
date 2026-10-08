@@ -46,6 +46,8 @@ import { reportPushState } from './ui/pushReminders'
 import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
 import { WeeklyNudge } from './ui/WeeklyNudge'
+import { GainsNudge } from './ui/GainsNudge'
+import { studyGains } from './engine/gains'
 import { weekLine, weekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
 import { PANE_KEY } from './ui/settingsPane'
@@ -1152,6 +1154,7 @@ export default function App() {
                     }
                   />
                   {lookupNudge}
+                  <GainsNudge gains={studyGains(data.states, data.recentEvents, data.language, new Date())} target={settings.retention} onOpen={go({ name: 'progress' })} />
                   <WeeklyNudge line={weekText} now={new Date()} onOpen={go({ name: 'progress' })} />
                   <BackupNudge
                     onOpenSync={() => {
