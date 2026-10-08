@@ -21,7 +21,7 @@ import { createInterface } from 'node:readline'
 import { PackBuilder, packStats, type WtEntry } from '../src/data/wordpackBuild'
 
 /** Words per language, most frequent first (LIMIT=… to change). */
-const LIMIT = Number(process.env.LIMIT ?? 20000)
+const LIMIT = Number(process.env.LIMIT ?? 35000)
 const [version, ...files] = process.argv.slice(2)
 if (!version || !files.length) {
   console.error('Usage: node w.mjs <version> <wiktextract.jsonl> [...]')
