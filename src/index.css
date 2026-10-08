@@ -993,6 +993,9 @@ main:focus { outline: none; }
 .credit { font-size: var(--t-xs); color: var(--ink-soft); }
 
 .note { background: var(--surface-2); border-radius: var(--r-md); padding: 0.5rem 0.75rem; font-size: var(--t-sm); }
+/* Games: the day's reviews first, one line with its start button. */
+.games-day-first { justify-content: space-between; flex-wrap: nowrap; }
+@media (max-width: 30rem) { .games-day-first { flex-wrap: wrap; } }
 .preview { max-height: 20rem; overflow: auto; border: 1px solid var(--rule); border-radius: var(--r-md); padding: 0 0.75rem; }
 .preview-table { width: 100%; margin: 0; }
 .import-reason { display: block; margin-top: 0.25rem; max-width: 18rem; }

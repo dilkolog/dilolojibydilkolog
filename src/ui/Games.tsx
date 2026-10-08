@@ -27,7 +27,16 @@ import type { GameId } from './gameList'
 
 type Game = GameId | null
 
-export function GamesScreen(p: Props & { initialGame?: Game; /** Opens the verb lab (the conjugation practice lives there). */ onOpenVerbs?: () => void }) {
+export function GamesScreen(
+  p: Props & {
+    initialGame?: Game
+    /** Opens the verb lab (the conjugation practice lives there). */
+    onOpenVerbs?: () => void
+    /** The day's reviews still waiting, and the way to start the day's session. */
+    dayDue?: { reviews: number; minutes: number }
+    onStartDay?: () => void
+  },
+) {
   const [game, setGame] = useState<Game>(p.initialGame ?? null)
   const [dueSentenceCount, setDueSentenceCount] = useState(0)
   useEffect(() => {
@@ -147,6 +156,16 @@ export function GamesScreen(p: Props & { initialGame?: Game; /** Opens the verb 
           </>
         }
       />
+      {p.dayDue && p.dayDue.reviews > 0 && p.onStartDay && (
+        <div className="note row games-day-first" role="status">
+          <span>
+            Önce bugünkü görevin: <strong>{p.dayDue.reviews} tekrar</strong> bekliyor (yaklaşık {Math.max(1, p.dayDue.minutes)} dk). Oyunlarda da sayılırlar, ama oturum hepsini doğru sırayla ve yazarak da sorar.
+          </span>
+          <button type="button" className="btn btn-sm" onClick={p.onStartDay}>
+            Başlat
+          </button>
+        </div>
+      )}
       {suggestion && (
         <section className={`game-suggest tone-${suggestion.card.tone}`}>
           <span className="game-suggest-icon" aria-hidden>

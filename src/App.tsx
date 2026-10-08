@@ -539,6 +539,8 @@ export default function App() {
   const restToday = !!settings && isRestDay(new Date(), settings)
   // Words waiting for review today: the reminder names them, so it's a concrete, small ask.
   const dueReviews = plan ? plan.items.filter((i) => i.kind === 'exercise').length : 0
+  /** Reviews of words already met (not a new word's follow-ups): what Games asks to do first. */
+  const reviewsWaiting = plan ? plan.items.filter((i) => i.kind === 'exercise' && i.reason !== 'new' && i.reason !== 'practice').length : 0
   // The reminder comes at the usual study hour (unless a fixed time was chosen), here and from the server.
   const usualHour = useMemo(() => (data ? usualStudyHour(data.recentEvents, new Date()) : null), [data])
   const reminder = useMemo(() => settings && { ...settings.reminder, time: reminderTime(settings.reminder, usualHour) }, [settings, usualHour])
@@ -1057,7 +1059,7 @@ export default function App() {
                 }
               />
             ) : screen.name === 'games' ? (
-              <GamesScreen key={screen.game} initialGame={screen.game} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
+              <GamesScreen key={screen.game} initialGame={screen.game} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} dayDue={plan ? { reviews: reviewsWaiting, minutes: plan.estimatedMinutes } : undefined} onStartDay={startDay} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
             ) : screen.name === 'verbs' ? (
               <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
             ) : screen.name === 'profile' ? (
