@@ -153,7 +153,7 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   await expect(main.getByRole('button', { name: /^Présent:/ })).toContainText('Öğreniliyor (20/60)')
   // Choosing among forms, and the pairs.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
-  await main.getByRole('button', { name: 'Seç' }).click()
+  await main.getByRole('button', { name: 'Seç', exact: true }).click()
   await expect(main.locator('.lab-option')).toHaveCount(4)
   await main.getByRole('button', { name: 'Eşleştir' }).click()
   await expect(main.locator('.lab-match-btn')).toHaveCount(12)
@@ -287,6 +287,15 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   await main.locator('.lab-reverse .lab-option').first().click()
   await expect(main.locator('.lab-reverse .accent-result')).toContainText('=')
   expect(await overflow(page)).toEqual([])
+  // Subjunctive or not: two real forms, and why after the answer.
+  await main.getByRole('button', { name: 'Kip seç' }).click()
+  await expect(main.locator('.lab-moodquiz .lab-option')).toHaveCount(2)
+  await main.locator('.lab-moodquiz .lab-option').first().click()
+  await expect(main.locator('.lab-moodquiz .accent-result')).toBeVisible()
+  // With nothing due, Today offers a warm-up on the weakest spot; it opens straight on a round.
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  await page.getByRole('button', { name: /Fiil ısınması/ }).click()
+  await expect(page.locator('.lab-drill h2')).toContainText('hedefli alıştırma')
 })
 
 test('verb lab: the verb in real sentences, and the same verb in the other language', async ({ page }) => {

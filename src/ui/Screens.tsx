@@ -345,6 +345,8 @@ export function Home({
   onGames,
   formsDue = 0,
   onForms,
+  warmup,
+  onWarmup,
   onMixed,
   mixedDue = 0,
   onExtraNew,
@@ -381,6 +383,9 @@ export function Home({
   /** Verb forms due for review, and the way to review them. */
   formsDue?: number
   onForms?: () => void
+  /** The verb lab's weakest spot ("Présent · nous"), for a short warm-up when no form is due. */
+  warmup?: string | null
+  onWarmup?: () => void
   /** Reviews due in two or more languages: one interleaved session. */
   onMixed?: () => void
   mixedDue?: number
@@ -559,7 +564,7 @@ export function Home({
         {extra}
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed || (formsDue > 0 && onForms)) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -604,6 +609,19 @@ export function Home({
                   <span>
                     <strong>Fiil çekimi tekrarı</strong>
                     <span className="small muted">{formsDue} çekim unutulmak üzere: kısa bir tur (yaklaşık 2 dk)</span>
+                  </span>
+                </button>
+              )}
+              {formsDue === 0 && warmup && onWarmup && (
+                <button className="tile" onClick={onWarmup}>
+                  <span className="tile-icon">
+                    <TenseIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Fiil ısınması</strong>
+                    <span className="small muted">
+                      En çok karıştırdığın: <span lang={language}>{warmup}</span>. Kısa bir hedefli tur (yaklaşık 2 dk)
+                    </span>
                   </span>
                 </button>
               )}
