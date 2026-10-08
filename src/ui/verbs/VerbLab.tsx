@@ -204,9 +204,9 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
               <ReviewTab
                 language={language}
                 lab={lab}
-                onCheck={(v, t, ok, given, expected) => {
+                onCheck={(v, t, ok, given, expected, person) => {
                   update((l) => recordCheck(l, scheduler, v, t, ok, new Date()))
-                  onAnswer(v, t, ok, given, expected)
+                  onAnswer(v, t, ok, given, expected, person)
                 }}
                 onOpen={choose}
               />
@@ -231,6 +231,11 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 verb={verb}
                 available={available}
                 lab={lab}
+                byFrequency={byFrequency}
+                onCheck={(v, t, ok, given, expected, person) => {
+                  update((l) => recordCheck(l, scheduler, v, t, ok, new Date()))
+                  onAnswer(v, t, ok, given, expected, person)
+                }}
                 onPractice={(t) => {
                   setTense(t)
                   setTab('practice')

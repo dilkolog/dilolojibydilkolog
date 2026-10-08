@@ -28,6 +28,12 @@ export const MOODS: Record<LabLanguage, { label: string; tenses: Tense[] }[]> = 
 
 export const PRESENT: Record<LabLanguage, Tense> = { fr: 'present', es: 'presente' }
 
+/** The four tenses an A1–B1 learner needs first: mastery is counted on these, the rest shown apart. */
+export const CORE_TENSES: Record<LabLanguage, Tense[]> = {
+  fr: ['present', 'passe-compose', 'imparfait', 'futur'],
+  es: ['presente', 'preterito', 'imperfecto', 'futuro'],
+}
+
 /** Whether the tense is one of the lab's for the language (a restored tense from the other one is not). */
 export const isLabTense = (language: LabLanguage, t: string): t is Tense => (LAB_TENSES[language] as string[]).includes(t)
 

@@ -265,6 +265,14 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   await expect(main.locator('.lab-weak')).toContainText('Zayıf noktaların')
   await expect(main.locator('.lab-heat')).toBeVisible()
   await expect(main.locator('.lab-kinds')).toContainText('%')
+  // A kind of slip opens a round aimed at it: persons missed, typed one by one, then back.
+  await main.getByRole('button', { name: 'Kişi karıştırma: hedefli alıştırma' }).click()
+  await expect(main.locator('.lab-drill h2')).toContainText('Kişi karıştırma')
+  await main.locator('.lab-drill input.answer-input').fill('x')
+  await page.keyboard.press('Enter')
+  await expect(main.locator('.lab-drill .accent-result')).toContainText('Doğrusu')
+  await main.getByRole('button', { name: 'Ustalığa dön' }).click()
+  await expect(main.locator('.lab-kinds')).toBeVisible()
   // Which verb? A conjugated word to trace back: the verb, then the tense.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('button', { name: 'Hangi fiil?' }).click()
