@@ -26,6 +26,8 @@ export interface LabData {
   kinds?: Partial<Record<ErrorKind, number>>
   /** Forms met in finished readings, by verb: what real texts used, most met first. */
   seen?: Record<string, SeenForm[]>
+  /** Right and wrong answers per local day ("2026-10-08"), the last DAYS_KEPT days: progress over time. */
+  days?: Record<string, { ok: number; wrong: number }>
 }
 
 /** A conjugated form met in a text: which tense it is, how often, and where it was last met. */
@@ -213,15 +215,49 @@ export function gardenVerbs(lab: LabData, now: Date): { verb: string; points: nu
 /** Verb-and-tense pairs with full points, for the badges. */
 export const masteredForms = (lab: LabData): number => items(lab).filter((i) => i.record.points >= MASTERY_MAX).length
 
-/** One answer counted per tense and person, and a wrong one by its kind of slip. */
-export function recordForm(lab: LabData, tense: Tense, person: number, ok: boolean, kind?: ErrorKind): LabData {
+/** Days of answers kept for the weekly progress. */
+const DAYS_KEPT = 120
+const dayKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+const addDays = (d: Date, n: number) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n)
+
+/** One answer counted per tense and person, per day, and a wrong one by its kind of slip. */
+export function recordForm(lab: LabData, tense: Tense, person: number, ok: boolean, kind?: ErrorKind, at = new Date()): LabData {
   const key = `${tense}|${person}`
   const before = lab.tally?.[key] ?? { ok: 0, wrong: 0 }
+  const today = dayKey(at)
+  const oldest = dayKey(addDays(at, -(DAYS_KEPT - 1)))
+  const day = lab.days?.[today] ?? { ok: 0, wrong: 0 }
+  const days = Object.fromEntries(Object.entries(lab.days ?? {}).filter(([d]) => d >= oldest))
+  days[today] = { ok: day.ok + (ok ? 1 : 0), wrong: day.wrong + (ok ? 0 : 1) }
   return {
     ...lab,
     tally: { ...lab.tally, [key]: { ok: before.ok + (ok ? 1 : 0), wrong: before.wrong + (ok ? 0 : 1) } },
     kinds: !ok && kind ? { ...lab.kinds, [kind]: (lab.kinds?.[kind] ?? 0) + 1 } : lab.kinds,
+    days,
   }
+}
+
+export interface WeekProgress {
+  /** The week's Monday ("2026-10-05"). */
+  start: string
+  ok: number
+  wrong: number
+}
+
+/** Right and wrong answers per week (Monday to Sunday), the last `weeks` of them, this week last. */
+export function weeklyProgress(lab: LabData, now: Date, weeks = 6): WeekProgress[] {
+  const monday = addDays(now, -((now.getDay() + 6) % 7))
+  return Array.from({ length: weeks }, (_, w) => {
+    const start = addDays(monday, -7 * (weeks - 1 - w))
+    let ok = 0
+    let wrong = 0
+    for (let d = 0; d < 7; d++) {
+      const day = lab.days?.[dayKey(addDays(start, d))]
+      ok += day?.ok ?? 0
+      wrong += day?.wrong ?? 0
+    }
+    return { start: dayKey(start), ok, wrong }
+  })
 }
 
 export interface TallyCell {

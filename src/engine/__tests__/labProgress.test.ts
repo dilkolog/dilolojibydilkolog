@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, weeklyProgress, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -212,3 +212,26 @@ describe('forms seen in texts', () => {
   })
 })
 
+describe('progress over time', () => {
+  it('counts answers per day and sums them per week, Monday first, this week last', () => {
+    const wed = new Date(2026, 9, 7, 12) // Wednesday 7 October 2026
+    let lab = emptyLab()
+    lab = recordForm(lab, 'present', 0, true, undefined, wed)
+    lab = recordForm(lab, 'present', 1, false, 'person', wed)
+    lab = recordForm(lab, 'present', 1, true, undefined, new Date(2026, 9, 5, 9)) // Monday
+    lab = recordForm(lab, 'present', 1, true, undefined, new Date(2026, 9, 4, 9)) // the Sunday before
+    expect(lab.days?.['2026-10-07']).toEqual({ ok: 1, wrong: 1 })
+    expect(weeklyProgress(lab, wed, 3)).toEqual([
+      { start: '2026-09-21', ok: 0, wrong: 0 },
+      { start: '2026-09-28', ok: 1, wrong: 0 },
+      { start: '2026-10-05', ok: 2, wrong: 1 },
+    ])
+  })
+
+  it('keeps four months of days', () => {
+    let lab = recordForm(emptyLab(), 'present', 0, true, undefined, new Date(2026, 0, 10))
+    lab = recordForm(lab, 'present', 0, true, undefined, new Date(2026, 9, 7))
+    expect(Object.keys(lab.days ?? {})).toEqual(['2026-10-07'])
+    expect(weeklyProgress(emptyLab(), new Date(2026, 9, 7), 2).every((w) => w.ok + w.wrong === 0)).toBe(true)
+  })
+})
