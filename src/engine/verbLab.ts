@@ -108,3 +108,15 @@ export function suggestVerbs(language: 'fr' | 'es', typed: string, frequency: Re
   const rest = verbs.filter((v) => !v.startsWith(q) && v.includes(q))
   return [...starts.sort((a, b) => rank(a) - rank(b)), ...rest.sort((a, b) => rank(a) - rank(b))].slice(0, limit)
 }
+
+/**
+ * The day's verb: one of the learner's own verbs not yet mastered (else any of their own, else a
+ * common one), the same all day and another the next. `day` is a date number such as 20261008.
+ */
+export function verbOfTheDay(own: readonly string[], common: readonly string[], mastery: (verb: string) => number, day: number): string | undefined {
+  const learning = own.filter((v) => mastery(v) < 100)
+  const pool = [...(learning.length ? learning : own.length ? own : common)].sort()
+  if (!pool.length) return undefined
+  // Consecutive days land far apart in the list (Knuth's multiplicative hash).
+  return pool[(Math.imul(day, 2654435761) >>> 0) % pool.length]
+}

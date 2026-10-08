@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import { addTenses, tenseVerbs } from '../tenses'
-import { labForms, negated, plainOf, reflexiveOf, suggestVerbs, verbLevels, LEVELS } from '../verbLab'
+import { labForms, negated, plainOf, reflexiveOf, suggestVerbs, verbLevels, verbOfTheDay, LEVELS } from '../verbLab'
 
 const entry = (language: 'fr' | 'es', lemma: string) => ({ language, lemma, partOfSpeech: 'verb' as const })
 
@@ -75,5 +75,24 @@ describe('levels and suggestions', () => {
     expect(s[0]).toBe('tener')
     expect(s.every((v) => v.includes('ten'))).toBe(true)
     expect(suggestVerbs('es', '', freq)).toEqual([])
+  })
+})
+
+describe('verb of the day', () => {
+  const mastery = (m: Record<string, number>) => (v: string) => m[v] ?? 0
+  it('picks one of the own verbs still being learnt, the same all day, others on other days', () => {
+    const own = ['venir', 'parler', 'finir', 'prendre']
+    const pick = verbOfTheDay(own, ['être'], mastery({ finir: 100 }), 20261008)
+    expect(['venir', 'parler', 'prendre']).toContain(pick)
+    expect(verbOfTheDay([...own].reverse(), ['être'], mastery({ finir: 100 }), 20261008)).toBe(pick)
+    const week = new Set([20261008, 20261009, 20261010, 20261011, 20261012].map((d) => verbOfTheDay(own, [], mastery({ finir: 100 }), d)))
+    expect(week.size).toBeGreaterThan(1)
+    expect(week.has('finir')).toBe(false)
+  })
+
+  it('falls back to all own verbs, then the common ones, then nothing', () => {
+    expect(verbOfTheDay(['finir'], ['être'], mastery({ finir: 100 }), 20261008)).toBe('finir')
+    expect(verbOfTheDay([], ['être', 'avoir'], mastery({}), 20261008)).toMatch(/^(être|avoir)$/)
+    expect(verbOfTheDay([], [], mastery({}), 20261008)).toBeUndefined()
   })
 })
