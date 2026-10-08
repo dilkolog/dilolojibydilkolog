@@ -194,3 +194,41 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] "Metinde gördüğün çekimler" (2026-10-07): okuma bitirilince metindeki fiil çekimleri laboratuvara kaydedilir (`LabData.seen`, fiil başına en çok 24 biçim, eşitlemede birleşir); Ustalık'ta "Metinlerde gördüklerin" (biçim · zaman · kaç kez · hangi metin, dokununca o zamanı alıştırır) ve "Metinlerde en çok gördüğün fiiller".
 - [x] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
 
+## 2026-10-08 Geliştirmeleri (#71–#89 ve sonrası)
+- [x] **Fiil laboratuvarı geliştirmeleri (#71–#77):**
+  - #71: Ayarlar → Kullanım ekranında fiil lab sekme ve mod sayaçları.
+  - #72: Okuma metnindeki çekimli fiilden laboratuvara doğrudan geçiş köprüsü.
+  - #73: Bugün ekranında Günün Fiili kartı.
+  - #74: Çekim tablolarında 4 temel zamanda Türkçe form karşılıkları.
+  - #75: Ustalık sekmesinde haftalık başarı oranı grafiği.
+  - #76: Tablo üzerinde kaydırarak (swipe) zaman değiştirme.
+  - #77: Ezber modu (Biliyorum/Bilmiyorum) ve ustalığa katkısı.
+- [x] **CI ve Tasarım Sistemi (#78, #79):**
+  - #78: CI dakikaları optimizasyonu (tek iş, tarayıcı önbellekleme, salt doküman değişikliklerini atlama).
+  - #79: `DESIGN.md` tasarım sistemi rehberi (renk, tipografi, hareket tokenları ve bileşen standartları).
+- [x] **Kişisel Öğrenme Analizi İyileştirmeleri (#80–#85):**
+  - #80: Oyunlarda zamanı gelen kelimeler gerçek tekrar sayılır ve önceliklendirilir.
+  - #81: Oyunlar sekmesinde "Önce bugünkü tekrarlar" uyarısı ve başlatma butonu.
+  - #82: Okuma modunda sona gelindiğinde kelime karşılaşmalarının otomatik kaydedilmesi.
+  - #83: Arama motoru robotlarının engellenmesi (robots.txt, meta noindex).
+  - #84: Deyim ve kalıpların çoktan seçmeli yerine kendi cümlesinde bağlamla sorulması.
+  - #85: Zamana karşı (Blitz) oyununda isteğe bağlı klavyeden yazma modu.
+- [x] **Görsel Dokunuşlar ve Altyapı (#86–#89):**
+  - #86: Kayan sekme göstergesi, kombo patlaması efekti, seviye rozeti animasyonu, okumada seçili cümlenin aydınlatılması.
+  - #87: Kullanılmayan kodların temizliği, uygulama temasına uygun paylaşım kartı tasarımı.
+  - #88: Sözlük dizini hızlandırma (paket dizini tek seferde derlenir).
+  - #89: `AGENTS.md` devir teslim notunun güncellenmesi.
+- [x] **Sıradaki Adımlar (#90–#95):**
+  - #90, #93: Fiil laboratuvarı günün turu ve alıştırma ekranı sadeleştirmesi.
+  - #91: Satır içi stillerin `index.css` sınıflarına taşınması.
+  - #92: Kategori renklerinin `--cat-*` tokenlarına alınması (açık/koyu/sakin temalar).
+  - #94: Fast Refresh uyarılarının ilk grubu için yardımcı modüller (`.ts`).
+  - #95: Her dil için 3 yeni kamu malı klasik okuma metni (Ezop, La Fontaine, Samaniego).
+
+## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
+- **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranında toplanan mod sayaçlarına bakılarak en az kullanılan modların elenmesi / birleştirilmesi (yeterli veri birikince).
+- **Görsel test referansları:** GitHub Actions dakikaları açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
+- **Fast Refresh uyarılarının devamı:** `oxlint` çıktısındaki kalan bileşen dosyalarında bileşen dışı fonksiyon/sabitlerin ayrı dosyalara taşınması (PR başına maks. 5 dosya).
+- **Günlük kelime hedefi:** Kullanıcının Ayarlar'da günlük yeni kelime hedefini 20'den 5–8'e indirmesi (#52 önerisi).
+- **Kişisel öğrenme analizi:** Kullanıcının isteğine bağlı olarak verilerini indirip yeni öğrenme analizi istemesi.
+
