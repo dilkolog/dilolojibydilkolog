@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { ERROR_TEXT, type ErrorKind } from '../../engine/formDiagnosis'
-import { MASTERY_MAX, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, seenVerbs, tallyCells, verbMastery, weakestCell, type LabData, type MasteryLevel } from '../../engine/labProgress'
+import { MASTERY_MAX, difficultItems, errorBreakdown, gardenVerbs, labKey, masteryLevel, plantStage, seenVerbs, tallyCells, verbMastery, weakestCell, type LabData, type MasteryLevel } from '../../engine/labProgress'
 import { Plant } from '../Plant'
 import { subjectLabel, type Tense } from '../../engine/tenses'
 import { DRILL_TEXT, DRILLABLE, drillQueue } from './drills'
 import { FormRun, type Asked, type RunCheck } from './ReviewTab'
 import { CORE_TENSES, tenseName, type LabLanguage } from './labShared'
+
+/** Plots shown in the verb garden before "show all": the ones needing water come first anyway. */
+const GARDEN_SHOWN = 8
 
 const LEVEL_TEXT: Record<MasteryLevel, string> = { new: 'Yeni', learning: 'Öğreniliyor', good: 'İyi', master: 'Usta' }
 
@@ -19,6 +22,7 @@ export function MasteryTab({
   onPractice,
   onOpenVerb,
   onWeak,
+  onItem,
   onCheck,
 }: {
   language: LabLanguage
@@ -29,10 +33,13 @@ export function MasteryTab({
   onPractice: (t: Tense) => void
   onOpenVerb: (verb: string) => void
   onWeak: (tense: Tense) => void
+  /** A form the learner struggles with: open that verb in that tense for practice. */
+  onItem: (verb: string, tense: Tense) => void
   /** An answer in a focused round (counted like a review answer). */
   onCheck: RunCheck
 }) {
   // A focused round on one kind of slip, with its questions fixed when it starts.
+  const [allPlots, setAllPlots] = useState(false)
   const [drill, setDrill] = useState<{ kind: ErrorKind; queue: Asked[] } | null>(null)
   const core = CORE_TENSES[language].filter((t) => available.includes(t))
   const advanced = available.filter((t) => !core.includes(t))
@@ -43,6 +50,7 @@ export function MasteryTab({
   const tenses = [...new Set(cells.map((c) => c.tense))]
   const worst = weakestCell(lab)
   const kinds = errorBreakdown(lab)
+  const difficult = difficultItems(lab)
   const seen = lab.seen?.[verb] ?? []
   const metVerbs = seenVerbs(lab).filter((v) => v.verb !== verb)
   const startDrill = (kind: ErrorKind) => {
@@ -180,6 +188,18 @@ export function MasteryTab({
             </ul>
           )}
           <p className="small muted">Hücrelerde doğru/toplam cevap görünür; kırmızıya yakın hücreler çalışılacak yerler.</p>
+          {difficult.length > 0 && (
+            <>
+              <h3 className="lab-mood-title">Zorlandığın çekimler</h3>
+              <div className="lab-chips" lang={language}>
+                {difficult.slice(0, 24).map((i) => (
+                  <button key={`${i.verb}|${i.tense}`} type="button" className="chip chip-sm" onClick={() => onItem(i.verb, i.tense)}>
+                    {i.verb} <span className="muted">· {tenseName(i.tense)}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </section>
       )}
       {seen.length > 0 && (
@@ -220,7 +240,7 @@ export function MasteryTab({
         <section className="stack gap-2 lab-garden" aria-label="Fiil bahçem">
           <h3 className="lab-mood-title">Fiil bahçem</h3>
           <ul className="lab-garden-grid">
-            {garden.map((g) => (
+            {(allPlots ? garden : [...garden].sort((a, b) => Number(b.due > 0) - Number(a.due > 0)).slice(0, GARDEN_SHOWN)).map((g) => (
               <li key={g.verb}>
                 <button type="button" className={`lab-garden-plot${g.verb === verb ? ' is-current' : ''}`} onClick={() => onOpenVerb(g.verb)} aria-label={`${g.verb}: %${g.percent}${g.due ? `, ${g.due} çekim tekrar bekliyor` : ''}`}>
                   <Plant stage={plantStage((g.points / g.forms))} health={g.due ? (g.due >= g.forms ? 'wilting' : 'thirsty') : 'fresh'} size={44} />
@@ -230,6 +250,11 @@ export function MasteryTab({
               </li>
             ))}
           </ul>
+          {garden.length > GARDEN_SHOWN && (
+            <button type="button" className="link small" onClick={() => setAllPlots((a) => !a)}>
+              {allPlots ? 'Daha az göster' : `Hepsini göster (${garden.length})`}
+            </button>
+          )}
           <p className="small muted">Her bitki bir fiil; çekimleri oturdukça büyür, tekrarı gelince susar.</p>
         </section>
       )}
