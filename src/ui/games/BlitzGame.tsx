@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
+import { checkTyped } from '../../engine/answerCheck'
 import { buildExercise, displayForm, evaluateChoice, type ChoiceExercise } from '../../engine/exercises'
 import { comboMultiplier } from '../../engine/gamification'
 import { pickGameWords } from '../../engine/practice'
@@ -12,9 +13,21 @@ import { sfx } from '../sounds'
 import { type Props, recordPractice } from './shared'
 
 const BLITZ_MS = 60_000
+/** Points for a right answer before the streak multiplier: writing the word is worth more than choosing it. */
+const POINTS = { choose: 10, type: 25 } as const
+type Mode = keyof typeof POINTS
 
-/** Against the clock: as many right answers as possible in 60 seconds; a streak multiplies points. */
-export function BlitzGame({ language, vocabulary, states, best, recordKey, onExit, onChanged }: Props & { best?: number; recordKey: string; onExit: () => void }) {
+/**
+ * Against the clock: as many right answers as possible in 60 seconds; a streak multiplies points.
+ * Choose the meaning (recognition), or write the word from its meaning (recall: what comes to mind
+ * when speaking). Each way keeps its own record.
+ */
+export function BlitzGame({ language, vocabulary, states, best: bestChoose, bestTyped, recordKey: chooseKey, onExit, onChanged }: Props & { best?: number; bestTyped?: number; recordKey: string; onExit: () => void }) {
+  const [mode, setMode] = useState<Mode>('choose')
+  const best = mode === 'type' ? bestTyped : bestChoose
+  const recordKey = mode === 'type' ? `${chooseKey}:typed` : chooseKey
+  const [typed, setTyped] = useState('')
+  const [shownAnswer, setShownAnswer] = useState<string | null>(null)
   const pool = useMemo(() => {
     const own = new Set(vocabulary.map((v) => v.id))
     return [...vocabulary, ...SAMPLE_WORDS[language].filter((w) => !own.has(w.id))]
@@ -62,30 +75,49 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
     return () => clearInterval(t)
   }, [phase, ends, finish])
 
-  const answer = (optionId: string) => {
-    if (phase !== 'play' || flash || !q) return
-    const ev = evaluateChoice(q.ex, optionId)
-    const ok = ev.verdict === 'correct'
-    void recordPractice(q.entry, stateById.get(q.entry.id), 'mc_meaning', ok, performance.now() - shownAt.current)
+  /** One answer, either way: counted, scored, and the next question after a moment. */
+  const settle = (ok: boolean, given?: string) => {
+    if (!q) return
+    const expected = displayForm(q.entry)
+    void recordPractice(q.entry, stateById.get(q.entry.id), mode === 'type' ? 'typed_translation' : 'mc_meaning', ok, performance.now() - shownAt.current, given === undefined ? undefined : { given, expected })
     setTotal((t) => t + 1)
     if (ok) {
       sfx.correct()
       setRight((r) => r + 1)
-      setScore((s) => s + Math.round(10 * comboMultiplier(combo)))
+      setScore((s) => s + Math.round(POINTS[mode] * comboMultiplier(combo)))
       setCombo((c) => c + 1)
     } else {
       sfx.wrong()
       setCombo(0)
     }
-    setFlash({ id: optionId, ok, correctId: q.ex.correctOptionId })
     setTimeout(
       () => {
         setFlash(null)
+        setShownAnswer(null)
+        setTyped('')
         setQ(nextQuestion())
         shownAt.current = performance.now()
       },
-      ok ? 250 : 700,
+      ok ? 250 : mode === 'type' ? 1200 : 700,
     )
+  }
+
+  const answer = (optionId: string) => {
+    if (phase !== 'play' || flash || !q) return
+    const ok = evaluateChoice(q.ex, optionId).verdict === 'correct'
+    setFlash({ id: optionId, ok, correctId: q.ex.correctOptionId })
+    settle(ok)
+  }
+
+  const submitTyped = () => {
+    if (phase !== 'play' || flash || shownAnswer !== null || !q || !typed.trim()) return
+    const accepted = [displayForm(q.entry), q.entry.lemma, ...(q.entry.alternativeForms ?? [])]
+    // An accent slip is close enough under the clock: the near verdict counts, the right form is shown.
+    const verdict = checkTyped(typed, accepted, { language, gender: q.entry.gender }).verdict
+    const ok = verdict !== 'wrong'
+    setFlash({ id: '', ok, correctId: '' })
+    if (verdict !== 'correct') setShownAnswer(displayForm(q.entry))
+    settle(ok, typed)
   }
 
   const begin = () => {
@@ -109,7 +141,7 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
         begin()
       }
       const i = Number(e.key) - 1
-      if (phase === 'play' && q && i >= 0 && i < q.ex.options.length) answer(q.ex.options[i].id)
+      if (phase === 'play' && mode === 'choose' && q && i >= 0 && i < q.ex.options.length) answer(q.ex.options[i].id)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -130,7 +162,24 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
       {phase === 'ready' && (
         <div className="celebrate stack">
           <h1>60 saniye hazır mısın?</h1>
-          <p className="muted">Kelimenin anlamını seç. 1–4 tuşları en hızlısı. Üst üste doğrular puanı katlar.</p>
+          <div className="segmented" role="group" aria-label="Nasıl">
+            {(
+              [
+                ['choose', 'Anlamı seç'],
+                ['type', 'Kelimeyi yaz'],
+              ] as const
+            ).map(([id, label]) => (
+              <button key={id} type="button" className="segmented-btn" aria-pressed={mode === id} onClick={() => setMode(id)}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <p className="muted">
+            {mode === 'type'
+              ? `Türkçesini gör, kelimeyi yaz, Enter. Hatırlamak tanımaktan zordur: her doğru ${POINTS.type} puan.`
+              : 'Kelimenin anlamını seç. 1–4 tuşları en hızlısı.'}{' '}
+            Üst üste doğrular puanı katlar.
+          </p>
           <div className="row justify-center">
             <button className="btn btn-lg" onClick={begin} autoFocus>
               Başla
@@ -152,10 +201,39 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
               </span>
             )}
           </div>
-          <h2 className="word" lang={language}>
-            {displayForm(q.entry)}
-          </h2>
-          <div className="options">
+          {mode === 'type' ? (
+            <form
+              className="stack blitz-typed"
+              onSubmit={(e) => {
+                e.preventDefault()
+                submitTyped()
+              }}
+            >
+              <h2 className="blitz-meaning">{q.entry.senses[0].gloss}</h2>
+              <input
+                className={`input answer-input${flash ? (flash.ok ? ' is-correct' : ' is-wrong') : ''}`}
+                lang={language}
+                value={typed}
+                onChange={(e) => setTyped(e.target.value)}
+                aria-label="Kelimeyi yaz"
+                autoFocus
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                readOnly={!!flash}
+              />
+              {shownAnswer && (
+                <p className="small" role="status">
+                  Doğrusu: <strong lang={language}>{shownAnswer}</strong>
+                </p>
+              )}
+            </form>
+          ) : (
+            <h2 className="word" lang={language}>
+              {displayForm(q.entry)}
+            </h2>
+          )}
+          {mode === 'choose' && <div className="options">
             {q.ex.options.map((o, i) => (
               <button
                 key={o.id}
@@ -166,7 +244,7 @@ export function BlitzGame({ language, vocabulary, states, best, recordKey, onExi
                 <span>{o.label}</span>
               </button>
             ))}
-          </div>
+          </div>}
         </>
       )}
 

@@ -69,7 +69,7 @@ export function GamesScreen(
     if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
     if (game === 'fluency')
       return <FluencyGame {...p} best={records[fluencyKey]} last={records[`${fluencyKey}:last`]} recordKey={fluencyKey} onExit={() => setGame(null)} />
-    if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} recordKey={blitzKey} onExit={() => setGame(null)} />
+    if (game === 'blitz') return <BlitzGame {...p} best={records[blitzKey]} bestTyped={records[`${blitzKey}:typed`]} recordKey={blitzKey} onExit={() => setGame(null)} />
     return null
   })()
   if (active) return <div className="game-stage">{active}</div>
@@ -101,7 +101,7 @@ export function GamesScreen(
       tone: 'speed',
       cards: [
         { id: 'match', emoji: '🧩', name: 'Eşleştirme', text: '6 kelimeyi anlamlarıyla en kısa sürede eşleştir.', status: enough ? record(matchKey, fmt) : 'En az 4 kelime gerekiyor', disabled: !enough },
-        { id: 'blitz', emoji: '⚡', name: 'Zamana karşı', text: '60 saniyede bütün kelimelerinden olabildiğince çok doğru.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
+        { id: 'blitz', emoji: '⚡', name: 'Zamana karşı', text: '60 saniyede olabildiğince çok doğru: anlamı seç ya da kelimeyi yaz.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
         {
           id: 'fluency',
           emoji: '🏎️',
