@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react'
+import { type KeyboardEvent, type ReactNode, useEffect, useState } from 'react'
 import { MASTERY_STAGES, skillProfile } from '../engine/mastery'
 import { localDate, progressStats, type DayActivity, type ProgressStats } from '../engine/progress'
 import type { Scheduler } from '../engine/scheduler'
@@ -381,6 +381,27 @@ function StageBar({ label, value, max, muted, tone }: { label: string; value: nu
 const dayLabel = (iso: string, opts: Intl.DateTimeFormatOptions) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('tr-TR', opts)
 
+/**
+ * A column chart is one stop for the keyboard: arrows move between the days (Home/End to the ends)
+ * and the readout above says the day's numbers. The columns aren't buttons, so a pointer only hovers
+ * them and there are no tiny targets to hit.
+ */
+function columnKeys(count: number, hover: number | null, setHover: (i: number | null) => void) {
+  return {
+    tabIndex: 0,
+    onFocus: () => setHover(hover ?? count - 1),
+    onBlur: () => setHover(null),
+    onMouseLeave: () => setHover(null),
+    onKeyDown: (e: KeyboardEvent) => {
+      const at = hover ?? count - 1
+      const next = { ArrowLeft: at - 1, ArrowRight: at + 1, Home: 0, End: count - 1 }[e.key]
+      if (next === undefined) return
+      e.preventDefault()
+      setHover(Math.max(0, Math.min(count - 1, next)))
+    },
+  }
+}
+
 /** Answers per day as thin columns; hover (or focus) shows the exact numbers. */
 function ActivityChart({ activity }: { activity: DayActivity[] }) {
   const [hover, setHover] = useState<number | null>(null)
@@ -396,23 +417,15 @@ function ActivityChart({ activity }: { activity: DayActivity[] }) {
             }`
           : `En yoğun gün: ${max} cevap`}
       </p>
-      <div className="columns" onMouseLeave={() => setHover(null)}>
+      <div className="columns" role="group" aria-label="Günlük cevaplar; ok tuşlarıyla günler arasında gez" {...columnKeys(activity.length, hover, setHover)}>
         {activity.map((a, i) => (
-          <button
-            key={a.date}
-            type="button"
-            className="column-hit"
-            aria-label={`${dayLabel(a.date, { day: 'numeric', month: 'long' })}: ${a.answers} cevap`}
-            onMouseEnter={() => setHover(i)}
-            onFocus={() => setHover(i)}
-            onBlur={() => setHover(null)}
-          >
+          <span key={a.date} className="column-hit" onMouseEnter={() => setHover(i)}>
             <span
               className={`column${hover === i ? ' is-active' : ''}${a.answers === max && a.answers > 0 ? ' is-peak' : ''}`}
               data-value={a.answers}
               style={{ height: a.answers ? `${Math.max(4, (a.answers / max) * 100)}%` : 0 }}
             />
-          </button>
+          </span>
         ))}
       </div>
       <div className="columns-axis small muted">
@@ -472,20 +485,20 @@ function ForecastChart({ forecast }: { forecast: { date: string; count: number }
   const shown = hover !== null ? forecast[hover] : null
   return (
     <div>
-      <p className="chart-readout small">
+      <p className="chart-readout small" aria-live="polite">
         {shown
           ? `${dayLabel(shown.date, { day: 'numeric', month: 'long', weekday: 'short' })}: ${shown.count} kelime`
           : `Toplam ${forecast.reduce((s, f) => s + f.count, 0)} kelime`}
       </p>
-      <div className="columns" onMouseLeave={() => setHover(null)}>
+      <div className="columns" role="group" aria-label="Önümüzdeki günlerin tekrarları; ok tuşlarıyla günler arasında gez" {...columnKeys(forecast.length, hover, setHover)}>
         {forecast.map((f, i) => (
-          <button key={f.date} type="button" className="column-hit" onMouseEnter={() => setHover(i)} onFocus={() => setHover(i)} aria-label={`${f.date}: ${f.count} kelime`}>
+          <span key={f.date} className="column-hit" onMouseEnter={() => setHover(i)}>
             <span
               className={`column${hover === i ? ' is-active' : ''}${f.count === max && f.count > 0 ? ' is-peak' : ''}`}
               data-value={f.count}
               style={{ height: f.count ? `${Math.max(4, (f.count / max) * 100)}%` : 0, background: i === 0 ? 'var(--flame)' : undefined }}
             />
-          </button>
+          </span>
         ))}
       </div>
       <div className="columns-axis small muted">

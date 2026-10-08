@@ -119,7 +119,7 @@ export function VocabTestScreen({ db, language, onDone }: { db: KelimeDB; langua
         Anlamını bildiğin kelimelere "Biliyorum" de. Bazıları uydurma; onlara da biliyorum dersen tahmin düşer, o yüzden emin değilsen "Bilmiyorum". Özel isim ya
         da başka dilden bir kelimeyse atla.
       </p>
-      <div className="progress" role="progressbar" aria-valuenow={index} aria-valuemin={0} aria-valuemax={items.length}>
+      <div className="progress" role="progressbar" aria-label="Testin ilerlemesi" aria-valuenow={index} aria-valuemin={0} aria-valuemax={items.length}>
         <div style={{ width: `${(index / items.length) * 100}%` }} />
       </div>
       {item && (
