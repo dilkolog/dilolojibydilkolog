@@ -215,9 +215,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
                         <span className="w" lang={language}>
                           {h.word}
                           {h.isOwn && (
-                            <span className="chip chip-sm" style={{ marginLeft: 6, fontSize: '0.75rem', padding: '1px 6px' }}>
-                              Listende
-                            </span>
+                            <span className="pill stage-5 dict-own">Listende</span>
                           )}
                         </span>
                         <span className="meta">{h.rec.t?.join(', ')}</span>
@@ -434,7 +432,7 @@ function WordCard({
               <div key={l}>
                 <dt>{LANGUAGE_NAME[l]}</dt>
                 <dd lang={l}>
-                  <div className="choice-row" style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '4px' }}>
+                  <div className="choice-row dict-x-words">
                     {rec.x![l]!.slice(0, 3).map((w) => (
                       <button
                         key={w}
