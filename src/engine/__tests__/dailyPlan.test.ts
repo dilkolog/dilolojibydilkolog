@@ -47,7 +47,7 @@ describe('new words', () => {
     expect(plan.waitingNew).toBe(EN_CATALOG.length - 2)
     const all = buildDailyPlan(input({ catalog: [], states: [] }))
     expect(all.newBlockedBy).toBe('none_left')
-    const backlog = buildDailyPlan(input({ states: EN_CATALOG.slice(0, 5).map((e) => learned(e, daysAgo(20))), settings: { ...settings, dailyMinutes: 1 } }))
+    const backlog = buildDailyPlan(input({ states: EN_CATALOG.slice(0, 5).map((e) => learned(e, daysAgo(20))), settings: { ...settings, dailyMinutes: 0.5 } }))
     expect(backlog.newBlockedBy).toBe('backlog')
   })
 

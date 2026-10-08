@@ -14,7 +14,9 @@ export function unlockedSkills(state: UserWordState | undefined, entry: Vocabula
   const { recognition, recall } = state.skills
   if (recognition && recognition.reps > 0) out.push('listening')
   if (recognition && recognition.reps > 0 && exerciseTypesFor('gender', entry).length) out.push('gender')
-  if (recognition?.state === State.Review) out.push('recall')
+  // Recall (typing the word from its meaning) right after the first recognition: what is only
+  // recognised feels known but doesn't come to mind when needed.
+  if (recognition && recognition.reps > 0) out.push('recall')
   if (recall && recall.reps > 0 && exerciseTypesFor('collocation', entry).length) out.push('collocation')
   if (recall?.state === State.Review && exerciseTypesFor('production', entry, opts).length) out.push('production')
   return out

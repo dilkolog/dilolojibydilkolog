@@ -1,4 +1,4 @@
-import { Rating } from 'ts-fsrs'
+import { Rating, type Card } from 'ts-fsrs'
 import { EXERCISES } from './exercises'
 import { gradeAttempt } from './grading'
 import { recordCorrect, recordMistake } from './mistakes'
@@ -14,6 +14,8 @@ import type {
   VocabularyEntry,
   Verdict,
 } from './types'
+
+const DAY_MS = 86_400_000
 
 export function newWordState(entry: VocabularyEntry, now: Date): UserWordState {
   return {
@@ -46,6 +48,20 @@ export interface ReviewResult {
   mistakes: Mistake[]
 }
 
+/** Typed from Turkish right at least once: a recall card that has held (a lapse leaves it below a day). */
+export const recallProven = (state: UserWordState) => (state.skills.recall?.reps ?? 0) > 0 && (state.skills.recall?.stability ?? 0) >= 1
+
+/**
+ * A right choice says less than a right typed answer (one in four is a guess, and picking out is
+ * easier than bringing to mind). Until the word has been recalled, a choice question's interval
+ * is held to a day, so the word comes back tomorrow, when recall is asked, instead of in a week.
+ */
+export function holdUntilRecalled(card: Card, state: UserWordState, input: { exerciseType: ExerciseType }, now: Date): Card {
+  if (EXERCISES[input.exerciseType].input !== 'choice' || recallProven(state)) return card
+  const limit = new Date(now.getTime() + DAY_MS)
+  return card.due > limit ? { ...card, due: limit, scheduled_days: 1 } : card
+}
+
 export function processAttempt(
   state: UserWordState,
   input: AttemptInput,
@@ -65,7 +81,7 @@ export function processAttempt(
   let nextMistakes = [...mistakes]
 
   if (mode === 'normal') {
-    const nextCard = scheduler.review(card, rating, now)
+    const nextCard = holdUntilRecalled(scheduler.review(card, rating, now), state, input, now)
     const s = state.stats
     nextState = {
       ...state,

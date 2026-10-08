@@ -62,14 +62,21 @@ describe('progressive unlocking', () => {
     expect(unlockedSkills(newWordState(decision, T0), decision)).toEqual(['recognition'])
   })
 
-  it('listening unlocks after first exposure, recall after recognition graduates', () => {
-    let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+  it('recall unlocks right after the first recognition, before it graduates', () => {
+    const s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
     expect(s.skills.recognition!.state).not.toBe(State.Review)
-    expect(unlockedSkills(s, decision)).toEqual(['recognition', 'listening'])
-
-    s = answer(s, 'mc_meaning', minutes(15)).state
-    expect(s.skills.recognition!.state).toBe(State.Review)
     expect(unlockedSkills(s, decision)).toContain('recall')
+    expect(unlockedSkills(newWordState(decision, T0), decision)).toEqual(['recognition'])
+  })
+
+  it('a right choice holds the next question to a day until the word has been typed right once', () => {
+    let s = answer(newWordState(decision, T0), 'mc_meaning', T0).state
+    s = answer(s, 'mc_meaning', minutes(15)).state
+    expect(s.skills.recognition!.due.getTime() - minutes(15).getTime()).toBeLessThanOrEqual(86_400_000)
+    // Recalled once: choices may now push the word out as far as FSRS says.
+    s = answer(s, 'typed_translation', minutes(30)).state
+    s = answer(s, 'mc_meaning', new Date(s.skills.recognition!.due.getTime() + 60_000)).state
+    expect(s.skills.recognition!.scheduled_days).toBeGreaterThan(1)
   })
 
   it('the article skill unlocks after first exposure, only for FR/ES nouns', () => {
