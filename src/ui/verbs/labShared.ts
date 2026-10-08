@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { db } from '../../data/instance'
 import { loadFrequency } from '../../data/frequency'
-import { adoptCards, dueItems, emptyLab, recordCheck, recordForm, weakestCell, type LabData, type LabItem } from '../../engine/labProgress'
+import { adoptCards, dueItems, emptyLab, recordCheck, recordForm, verbMastery, weakestCell, type LabData, type LabItem } from '../../engine/labProgress'
 import type { Scheduler } from '../../engine/scheduler'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { answersFor, conjugateTense, LAB_TENSES, labTensesOf, personsOf, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
@@ -9,7 +9,7 @@ import { loadTenses } from '../../data/tenseData'
 import { prefs } from '../prefs'
 import { checkTyped } from '../../engine/answerCheck'
 import { diagnose } from '../../engine/formDiagnosis'
-import { verbLevels, type Level } from '../../engine/verbLab'
+import { verbLevels, verbOfTheDay, type Level } from '../../engine/verbLab'
 import type { TargetLanguage, VocabularyEntry } from '../../engine/types'
 
 export type LabLanguage = 'fr' | 'es'
@@ -243,6 +243,35 @@ function dayPerson(language: LabLanguage, item: LabItem, day: number): number {
   return people[h % people.length]
 }
 
+/** Today as a date number (20261008): the same verb, person or item all day. */
+const dayNumber = (now: Date) => now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+
+/** Today's verb for the Today screen, with its meaning: one of the learner's own still being learnt. */
+export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], key: unknown): { verb: string; gloss?: string } | null {
+  const [pick, setPick] = useState<{ verb: string; gloss?: string } | null>(null)
+  useEffect(() => {
+    if (language === 'en') {
+      setPick(null)
+      return
+    }
+    let live = true
+    void loadTenses(language)
+      .then(() => db.getLab(language))
+      .then((lab) => {
+        const known = new Set(tenseVerbs(language))
+        const own = [...new Set(vocabulary.filter((v) => v.partOfSpeech === 'verb').map((v) => verbKey(language, v.lemma)))].filter((v) => known.has(v))
+        const verb = verbOfTheDay(own, COMMON[language].map(([v]) => v), (v) => verbMastery(lab, v, CORE_TENSES[language]), dayNumber(new Date()))
+        const gloss = verb && (ownEntry(vocabulary, language, verb)?.senses[0]?.gloss ?? COMMON[language].find(([v]) => v === verb)?.[1])
+        if (live) setPick(verb ? { verb, gloss } : null)
+      })
+      .catch(() => live && setPick(null))
+    return () => {
+      live = false
+    }
+  }, [language, vocabulary, key])
+  return pick
+}
+
 /**
  * The lab's due forms, most overdue first, ready to mix into the day's session (MAX_DAY_FORMS of
  * them): the tables are loaded first, so the session can check the answers.
@@ -259,7 +288,7 @@ export function useDayForms(language: TargetLanguage, key: unknown, max: number)
       .then(() => db.getLab(language))
       .then((lab) => {
         const now = new Date()
-        const day = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+        const day = dayNumber(now)
         const due = dueItems(lab, now).filter((i) => conjugateTense(verbEntry(language, i.verb), i.tense))
         if (live) setForms(due.slice(0, max).map((i) => ({ language, verb: i.verb, tense: i.tense, person: dayPerson(language, i, day) })))
       })

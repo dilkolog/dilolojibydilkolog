@@ -434,6 +434,17 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })
 
+test('Today: the verb of the day opens its table in the verb lab', async ({ page }) => {
+  await startWithSamples(page)
+  const tile = page.locator('.tile', { hasText: 'Günün fiili' })
+  await expect(tile).toBeVisible()
+  const verb = (await tile.locator('strong [lang]').textContent())!.trim()
+  await tile.click()
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+  await expect(page.locator('.lab-main .lab-verb').first()).toHaveText(new RegExp(`^${verb}$`, 'i'))
+  await expect(page.locator('.lab-main .lab-forms')).toBeVisible()
+})
+
 test('verb lab: the tabs and modes used are counted in Settings → Kullanım', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')

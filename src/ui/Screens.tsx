@@ -349,6 +349,8 @@ export function Home({
   onForms,
   warmup,
   onWarmup,
+  verbOfDay,
+  onVerbOfDay,
   onMixed,
   mixedDue = 0,
   onExtraNew,
@@ -388,6 +390,9 @@ export function Home({
   /** The verb lab's weakest spot ("Présent · nous"), for a short warm-up when no form is due. */
   warmup?: string | null
   onWarmup?: () => void
+  /** One of the learner's verbs still being learnt, a new one each day: its table in the lab. */
+  verbOfDay?: { verb: string; gloss?: string } | null
+  onVerbOfDay?: (verb: string) => void
   /** Reviews due in two or more languages: one interleaved session. */
   onMixed?: () => void
   mixedDue?: number
@@ -566,7 +571,7 @@ export function Home({
         {extra}
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup)) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -624,6 +629,19 @@ export function Home({
                     <span className="small muted">
                       En çok karıştırdığın: <span lang={language}>{warmup}</span>. Kısa bir hedefli tur (yaklaşık 2 dk)
                     </span>
+                  </span>
+                </button>
+              )}
+              {formsDue === 0 && verbOfDay && onVerbOfDay && (
+                <button className="tile" onClick={() => onVerbOfDay(verbOfDay.verb)}>
+                  <span className="tile-icon">
+                    <TenseIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>
+                      Günün fiili: <span lang={language}>{verbOfDay.verb}</span>
+                    </strong>
+                    <span className="small muted">{verbOfDay.gloss ? `${verbOfDay.gloss} · ` : ''}tablosuna bak, kısa bir alıştırma yap</span>
                   </span>
                 </button>
               )}

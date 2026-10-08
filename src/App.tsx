@@ -59,7 +59,7 @@ import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import type { LabTab } from './ui/verbs/VerbLab'
-import { recordLabAnswer, useDayForms, useFormsDue, useWarmup } from './ui/verbs/labShared'
+import { recordLabAnswer, useDayForms, useFormsDue, useWarmup, useVerbOfDay } from './ui/verbs/labShared'
 import type { Command } from './ui/CommandPalette'
 import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
@@ -79,6 +79,8 @@ import { azure } from './ui/pronunciation'
  * starts with less code; once it is idle they are fetched in the background anyway, so switching
  * screens stays instant and works offline.
  */
+/** A stable empty list while the words load (a fresh [] each render would re-run the hooks). */
+const NO_WORDS: readonly VocabularyEntry[] = []
 const screenModules = {
   // The daily loop's session too: Today comes first, and the idle prefetch has it long before a tap.
   Session: () => import('./ui/Session'),
@@ -713,6 +715,7 @@ export default function App() {
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
   const dayForms = useDayForms(settings?.activeLanguage ?? 'en', screen.name, MAX_DAY_FORMS)
   const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
+  const verbOfDay = useVerbOfDay(settings?.activeLanguage ?? 'en', data?.vocabulary ?? NO_WORDS, screen.name)
   if (settings === undefined) return null
   if (settings === null) {
     return (
@@ -1122,6 +1125,8 @@ export default function App() {
                 onForms={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'review' }) : undefined}
                 warmup={warmup}
                 onWarmup={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'warmup' }) : undefined}
+                verbOfDay={verbOfDay}
+                onVerbOfDay={(verb) => setScreen({ name: 'verbs', verb })}
                 onMixed={mixedDue.languages >= 2 ? startMixed : undefined}
                 mixedDue={mixedDue.count}
                 onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
