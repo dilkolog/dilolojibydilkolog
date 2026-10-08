@@ -302,7 +302,7 @@ export function SessionScreen(p: Props) {
           <CloseIcon size={22} />
         </button>
         {/* One segment per question, coloured by why it is here; done ones solid, the rest faint. */}
-        <div className="progress progress-segments" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+        <div className="progress progress-segments" role="progressbar" aria-label="Oturumun ilerlemesi" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
           {session.items.length <= 60 ? (
             session.items.map((it, i) => <span key={i} className={`seg seg-${it.kind === 'introduce' ? 'new' : it.reason}${i < session.index ? ' is-done' : ''}${i === session.index ? ' is-now' : ''}`} />)
           ) : (
