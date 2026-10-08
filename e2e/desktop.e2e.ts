@@ -543,3 +543,31 @@ test("Games: the day's reviews come first, with a start button", async ({ page }
   await note.getByRole('button', { name: 'Başlat' }).click()
   await expect(page.locator('.session-stage')).toBeVisible()
 })
+
+test('reading: reaching the end saves the meetings with list words on its own; finishing is up top too', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill("L'arbre est grand. Cette année, l'arbre a beaucoup grandi.")
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  const met = page.getByRole('status').filter({ hasText: 'karşılaşman kaydedildi' })
+  await page.getByRole('button', { name: 'Okumayı bitir' }).last().scrollIntoViewIfNeeded()
+  // A glance is not a reading: nothing for the first seconds.
+  await page.waitForTimeout(3000)
+  await expect(met).toHaveCount(0)
+  await expect(met).toContainText(/Listendeki \d+ kelimeyle karşılaşman kaydedildi/, { timeout: 25_000 })
+  const saved = await page.evaluate(
+    () =>
+      new Promise<number>((done) => {
+        const req = indexedDB.open('kelime-koc')
+        req.onsuccess = () => {
+          const get = req.result.transaction('meta').objectStore('meta').get('encounters')
+          get.onsuccess = () => done(Object.keys((get.result?.value as Record<string, number>) ?? {}).length)
+        }
+      }),
+  )
+  expect(saved).toBeGreaterThan(0)
+  // The finish button at the top opens the same confirmation.
+  await page.locator('.reader-tools').getByRole('button', { name: 'Okumayı bitir' }).click()
+  await expect(page.getByRole('alertdialog', { name: 'Okumayı bitir' })).toBeVisible()
+})

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
 import { ClassicsPicker } from './ClassicsPicker'
@@ -96,6 +96,15 @@ export function ReadingScreen({
   const [adding, setAdding] = useState<{ word: string; sentence: string } | null>(null)
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
+  /**
+   * The text (by id) whose meetings with list words are saved already: reaching the end of a text
+   * saves them on its own, since "Okumayı bitir" (which also marks the rest as known) was often
+   * never pressed and the reading then counted for nothing. Finishing doesn't count them twice.
+   */
+  const metSaved = useRef<string | null>(null)
+  const [metNote, setMetNote] = useState('')
+  /** When the text on screen was opened, and which it is: a glance at a short text is not a reading. */
+  const opened = useRef<{ key: string | null; at: number }>({ key: null, at: 0 })
   const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [reader, setReader] = useReaderPrefs()
   // Several words picked at once (⌘/Ctrl+click or multi-select mode), marked in one go.
@@ -414,12 +423,35 @@ export function ReadingScreen({
     if (found.length) await db.saveLab(lang, addSeenForms(await db.getLab(lang), found, current?.title, new Date().toISOString()))
   }
 
+  const readKey = current?.id ?? text
+  /** The list words met in this text, and the verb forms in it, saved once per opened text. */
+  const saveMet = async () => {
+    if (!analysis || !readKey || metSaved.current === readKey) return 0
+    metSaved.current = readKey
+    const { encounters } = finishReading(analysis, skipped)
+    await db.addEncounters(encounters)
+    if (language !== 'en') await keepSeenForms(language)
+    return Object.keys(encounters).length
+  }
+  if (readKey && opened.current.key !== readKey) opened.current = { key: readKey, at: Date.now() }
+  const endSeen = useSeen(readKey, () => {
+    const key = readKey
+    // At the end, after at least MIN_READ_MS with the text open (and still the same text then).
+    setTimeout(async () => {
+      if (opened.current.key !== key) return
+      const met = await saveMet()
+      if (met) {
+        setMetNote(`Listendeki ${met} kelimeyle karşılaşman kaydedildi.`)
+        onChanged()
+      }
+    }, Math.max(0, opened.current.at + MIN_READ_MS - Date.now()))
+  })
+
   const finish = async () => {
     if (!analysis) return
     const { knownKeys, encounters } = finishReading(analysis, skipped)
     await db.addKnownWords(language, knownKeys)
-    await db.addEncounters(encounters)
-    if (language !== 'en') await keepSeenForms(language)
+    await saveMet()
     setKnown(await db.getKnownWords(language))
     if (current) {
       const updated: ReadingText = {
@@ -758,6 +790,9 @@ export function ReadingScreen({
         </span>
         <span className="grow" />
         <ReaderControls prefs={reader} onChange={setReader} />
+        <button type="button" className="chip chip-sm" onClick={() => setConfirmFinish(true)}>
+          Okumayı bitir
+        </button>
         <button className={`chip chip-sm${multiMode ? ' is-on' : ''}`} aria-pressed={multiMode} onClick={() => setMultiMode((m) => !m)} title="ya da ⌘/Ctrl ile kelimelere tıkla">
           Çoklu seç
         </button>
@@ -972,10 +1007,15 @@ export function ReadingScreen({
         </section>
       )}
 
-      <div className="row">
+      <div className="row" ref={endSeen}>
         <button className="btn btn-lg" onClick={() => setConfirmFinish(true)}>
           Okumayı bitir
         </button>
+        {metNote && !message && (
+          <p className="small muted" role="status">
+            {metNote}
+          </p>
+        )}
         {message && (
           <p className="notice" role="status">
             {message}
@@ -1145,4 +1185,25 @@ function Cover({ title, book = false }: { title: string; book?: boolean }) {
       {title.trim().charAt(0).toLocaleUpperCase() || '·'}
     </span>
   )
+}
+
+/** A text open for less than this has been glanced at, not read: its meetings aren't saved on their own. */
+const MIN_READ_MS = 20_000
+
+/** A callback ref that runs `onSeen` the first time its element comes into view (again for a new `key`). */
+function useSeen(key: unknown, onSeen: () => void) {
+  const latest = useRef(onSeen)
+  latest.current = onSeen
+  const observer = useRef<IntersectionObserver | null>(null)
+  return useCallback((node: HTMLElement | null) => {
+    observer.current?.disconnect()
+    observer.current = null
+    if (!node || typeof IntersectionObserver === 'undefined') return
+    observer.current = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return
+      observer.current?.disconnect()
+      latest.current()
+    })
+    observer.current.observe(node)
+  }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
 }
