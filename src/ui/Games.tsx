@@ -143,7 +143,7 @@ export function GamesScreen(p: Props & { initialGame?: Game; /** Opens the verb 
         title="Oyunlar"
         sub={
           <>
-            Pratik sayılır, takvimi değiştirmez; <span className="game-tag">takvime işler</span> etiketliler tekrar yerine geçer.
+            Tekrar zamanı gelmiş kelimeler oyunlarda da tekrar sayılır ve önce onlar gelir; diğer cevaplar pratiktir. <span className="game-tag">takvime işler</span> etiketliler her zaman tekrar yerine geçer.
           </>
         }
       />

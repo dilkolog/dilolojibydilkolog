@@ -152,6 +152,24 @@ describe('pickGameWords', () => {
     expect(words.slice(0, 2).map((w) => w.id).sort()).toEqual(['en:decide', 'en:decision'])
     expect(new Set(words.map((w) => w.senses[0].gloss)).size).toBe(5)
   })
+
+  it('puts the words whose review is due first, and says which are due', async () => {
+    const { pickGameWords, isDueFor } = await import('../practice')
+    const en = CATALOG.filter((e) => e.language === 'en')
+    const fresh = practised(decision, 3)
+    const due = practised(affect)
+    const later = new Date(NOW.getTime() + 30 * 86_400_000)
+    // A month on, both are due; right after practice, neither.
+    expect(isDueFor(due, 'recognition', later)).toBe(true)
+    expect(isDueFor(due, 'recognition', NOW)).toBe(false)
+    expect(isDueFor(due, 'recall', later)).toBe(false)
+    expect(isDueFor({ ...due, retired: true }, 'recognition', later)).toBe(false)
+    const soon = new Date(NOW.getTime() + 3 * 86_400_000)
+    const dueSoon = [fresh, due].filter((s) => isDueFor(s, 'recognition', soon)).map((s) => s.entryId)
+    const words = pickGameWords(en, [fresh, due], 4, createRng(5), soon)
+    expect(dueSoon).toContain('en:affect')
+    expect(words.slice(0, dueSoon.length).map((w) => w.id).sort()).toEqual([...dueSoon].sort())
+  })
 })
 
 describe('pickFluencyWords', () => {
