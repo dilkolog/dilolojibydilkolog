@@ -108,6 +108,8 @@ export interface Settings {
   textScale?: 'normal' | 'large' | 'xlarge'
   /** Short vibrations on answers (phones that support it). */
   haptics?: boolean
+  /** Tabs taken out of the menu (still in ⌘K and links); see HIDEABLE_TABS. */
+  hiddenTabs?: string[]
   /** Reviews waiting shown as a number on the app icon (installed app); default on. */
   appBadge?: boolean
   /** Offer a word copied elsewhere on coming back to the app (needs clipboard permission); default off. */

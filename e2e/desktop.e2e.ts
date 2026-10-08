@@ -157,11 +157,12 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   await expect(main.locator('.lab-option')).toHaveCount(4)
   await main.getByRole('button', { name: 'Eşleştir' }).click()
   await expect(main.locator('.lab-match-btn')).toHaveCount(12)
-  // Compare shows three tenses at once; time against the clock offers three levels.
-  await main.getByRole('tab', { name: 'Kıyaslama' }).click()
-  await expect(main.locator('.lab-compare-cards .lab-card')).toHaveCount(3)
-  await main.getByRole('tab', { name: 'Zamana karşı' }).click()
+  // Time against the clock is a practice mode with three levels; compare (a learn view) shows three tenses at once.
+  await main.getByRole('button', { name: 'Zamana karşı' }).click()
   await expect(main.locator('.lab-levelcard')).toHaveCount(3)
+  await main.getByRole('tab', { name: 'Öğrenme' }).click()
+  await main.getByRole('button', { name: 'Kıyasla' }).click()
+  await expect(main.locator('.lab-compare-cards .lab-card')).toHaveCount(3)
   expect(await overflow(page)).toEqual([])
   expect(await contrastProblems(page)).toEqual([])
 })
