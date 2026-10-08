@@ -183,6 +183,17 @@ describe('using a pack for the learner\'s words', () => {
     expect(packUpdate(edited, { e: 'Du latin decidere.' })).toBeUndefined()
   })
 
+  it('a word added after the pack was applied still gets it on the next pass', async () => {
+    const db = new KelimeDB('t-pack-later')
+    // The first pass runs on an empty list (as on a first run, before the sample words come in).
+    expect(await applyPack(db, 'fr', pack())).toBe(0)
+    await db.vocabulary.put(createEntry({ word: 'décider', meaning: 'karar vermek', partOfSpeech: 'verb' }, 'fr', new Date()))
+    expect(await applyPack(db, 'fr', pack())).toBe(1)
+    expect((await db.vocabulary.toArray())[0]).toMatchObject({ ipa: '\\de.si.de\\', packV: pack().v })
+    // Each word is looked up once per version.
+    expect(await applyPack(db, 'fr', pack())).toBe(0)
+  })
+
   it('fills a whole language once per pack version', async () => {
     const db = new KelimeDB('t-pack-1')
     await db.vocabulary.bulkPut([

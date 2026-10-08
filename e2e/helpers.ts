@@ -11,6 +11,31 @@ export async function startWithSamples(page: Page) {
   await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
   await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
   await expect(page.getByRole('button', { name: /^(Başla|Devam et)$/ })).toBeVisible()
+  await packApplied(page)
+}
+
+/**
+ * Waits until the word pack has reached every word (each records the version it got): pronunciations,
+ * recordings and the other languages arrive in the background, and a screenshot or a check taken
+ * before that would depend on how fast the machine was.
+ */
+export async function packApplied(page: Page) {
+  await page.waitForFunction(
+    () =>
+      new Promise<boolean>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onerror = () => resolve(false)
+        open.onsuccess = () => {
+          const all = open.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+          all.onsuccess = () => resolve(all.result.length > 0 && all.result.every((v: { packV?: string }) => !!v.packV))
+          all.onerror = () => resolve(false)
+        }
+      }),
+    undefined,
+    { polling: 250, timeout: 15_000 },
+  )
+  // The screen re-reads the words once the pack is in.
+  await page.waitForTimeout(300)
 }
 
 /** Opens the verb lab (Pratik → Fiiller) and picks a verb by typing it. */

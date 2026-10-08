@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { openScreen, startWithSamples } from './helpers'
+import { openScreen, packApplied, startWithSamples } from './helpers'
 
 // A screenshot must not depend on the network: what Wiktionary or Tatoeba send (a word's patterns,
 // its real sentences) came in before the shot or not, so the page was taller one time than the next.
@@ -66,6 +66,7 @@ for (const lang of LANGUAGES) {
         await page.locator('.lang-btn:visible', { hasText: lang.short }).first().click()
         await openScreen(page, 'Kelimeler')
         await page.getByRole('button', { name: /örnek kelime yükle/ }).click()
+        await packApplied(page)
       }
       const shot = { animations: 'disabled', maxDiffPixelRatio: 0.01 } as const
       await openScreen(page, 'Kelimeler')
