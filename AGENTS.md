@@ -7,7 +7,7 @@ Son güncelleme: 2026-10-08.
 - **Kullanıcıya her yanıt Türkçe.** Özet, rapor, liste, soru, ara notlar dahil. İngilizce özet verme (kullanıcı birkaç kez itiraz etti).
 - Kod, kod yorumları ve commit mesajları İngilizce (projenin mevcut dili). PR başlık/açıklamaları Türkçe.
 - **CI'ı geçen (yeşil) PR'ları kullanıcıya sormadan sırayla birleştir** (`gh pr merge N --merge --delete-branch`); kullanıcı her seferinde onay istenmesinden yoruldu (2026-10-08). Kırmızıysa önce düzelt. Birleştirdiklerini kısaca Türkçe bildir.
-- Tasarımda sitenin kendi sınıflarını/bileşenlerini kullan (`card`, `section-title`, `chip`, `btn`, `Toggle`, `ConfirmDialog`, `note`, `habit-nudge`, `hour-list`, `Popover`/`MenuItem`…); yeni görsel dil uydurma.
+- **Tasarım kuralları: `DESIGN.md`** (renk/yazı/köşe/gölge/hareket tokenları, bileşenler, Yap/Yapma, bilinen sapmalar). Arayüz yazmadan önce oku. Sitenin kendi sınıflarını/bileşenlerini kullan (`card`, `section-title`, `chip`, `btn`, `Toggle`, `ConfirmDialog`, `note`, `habit-nudge`, `hour-list`, `Popover`/`MenuItem`…); yeni görsel dil uydurma.
 - CI'ı sürekli yoklama (polling) yapma; sonuç gerekiyorsa bir kez bak.
 - **Üst üste kurulu PR'larda:** alttakini birleştirmeden ÖNCE üstündekinin tabanını main'e çevir (`gh pr edit <üstteki> --base main`). Yoksa `--delete-branch` taban dalı silince GitHub üstteki PR'ı kapatır (2026-10-08'de #49'da oldu; dal geri oluşturulup PR yeniden açıldı).
 - Commit sonu: `Co-Authored-By: <model adı> <noreply@…>` tarzı bir satır kullanılıyordu; PR açıklaması sonu "🤖 Generated with …" satırı. Kendi aracının kuralına uy.
@@ -41,7 +41,6 @@ Birleşti: #37–#77. Fiil laboratuvarı görev listesinin 7 maddesi bitti (#71 
 - Görsel test referansları: #73, #74, #76 için yenilendi; sonraki görünüm değişikliklerinde `gh workflow run snapshots.yml --ref <dal>`.
 
 ## Sıradaki olası işler
-- Tasarım kuralları bölümü / `premium-design` becerisi (kullanıcı Antigravity'den istemişti, yapılmadı).
 - Fiil laboratuvarı Ayarlar → Kullanım'daki sayımlara bakıp hiç kullanılmayan modları sadeleştirmek (birkaç hafta veri birikince).
 
 ## Kullanıcıya önerilen ama onun yapacağı
