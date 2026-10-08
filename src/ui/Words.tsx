@@ -4,7 +4,7 @@ import { analyzeForm } from '../engine/tenses'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
-import type { Gender, Mistake, PartOfSpeech, TargetLanguage, UserWordState, VocabularyEntry, WordList as WordListRow } from '../engine/types'
+import { addedTime, type Gender, type Mistake, type PartOfSpeech, type TargetLanguage, type UserWordState, type VocabularyEntry, type WordList as WordListRow } from '../engine/types'
 import { showToast } from './toast'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -1141,7 +1141,7 @@ function WordList({
       return st ? (nextReviewAt(st)?.getTime() ?? Infinity) : Infinity
     }
     const by: Record<Sort, (a: VocabularyEntry, b: VocabularyEntry) => number> = {
-      newest: (a, b) => (b.addedAt?.getTime() ?? 0) - (a.addedAt?.getTime() ?? 0) || a.lemma.localeCompare(b.lemma),
+      newest: (a, b) => addedTime(b) - addedTime(a) || a.lemma.localeCompare(b.lemma),
       alpha: (a, b) => a.lemma.localeCompare(b.lemma, 'tr'),
       weakest: (a, b) => stageIndex(a) - stageIndex(b) || (stateById.get(b.id)?.stats.wrong ?? 0) - (stateById.get(a.id)?.stats.wrong ?? 0),
       strongest: (a, b) => stageIndex(b) - stageIndex(a),
