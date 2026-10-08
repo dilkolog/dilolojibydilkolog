@@ -4573,6 +4573,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-forms.is-single { grid-template-columns: minmax(0, 1fr); }
 .lab-row { display: flex; align-items: baseline; justify-content: flex-start; gap: 0.75rem; padding: 0.625rem 0.25rem; border-bottom: 1px solid var(--rule); }
 .lab-row.is-faded { opacity: 0.45; }
+/* A person the learner often misses in this tense: an orange edge, the colour of a near miss. */
+.lab-row.is-weak { box-shadow: inset 3px 0 0 var(--near); padding-left: 0.625rem; }
+.lab-weak-note { margin: -0.25rem 0 0; }
 .lab-subject { flex: 0 1 7rem; min-width: 0; color: var(--ink-soft); font-size: var(--t-sm); }
 .lab-subject::first-letter { text-transform: uppercase; }
 .lab-picker .section-title { display: block; }

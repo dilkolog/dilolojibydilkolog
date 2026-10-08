@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -153,6 +153,21 @@ describe('where the slips are', () => {
     lab = recordForm(lab, 'presente', 0, true)
     expect(weakestCell(lab)).toMatchObject({ tense: 'preterito', person: 5, wrong: 2 })
     expect(weakestCell(emptyLab())).toBeUndefined()
+  })
+
+  it('marks the persons of a tense that often go wrong, with the count', () => {
+    let lab = emptyLab()
+    lab = recordForm(lab, 'presente', 3, false)
+    expect(weakPersons(lab, 'presente')).toEqual({})
+    lab = recordForm(lab, 'presente', 3, false)
+    lab = recordForm(lab, 'presente', 3, true)
+    lab = recordForm(lab, 'presente', 0, false)
+    for (let i = 0; i < 6; i++) lab = recordForm(lab, 'presente', 0, i > 0)
+    lab = recordForm(lab, 'preterito', 1, false)
+    lab = recordForm(lab, 'preterito', 1, false)
+    expect(weakPersons(lab, 'presente')).toEqual({ 3: '2/3 yanlış' })
+    expect(weakPersons(lab, 'preterito')).toEqual({ 1: '2/2 yanlış' })
+    expect(weakPersons(emptyLab(), 'presente')).toEqual({})
   })
 
   it('old data without a tally still reads', () => {

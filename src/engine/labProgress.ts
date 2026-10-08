@@ -253,3 +253,16 @@ export function errorBreakdown(lab: LabData): { kind: ErrorKind; count: number; 
   const total = entries.reduce((sum, [, n]) => sum + n, 0)
   return entries.map(([kind, count]) => ({ kind, count, share: count / Math.max(1, total) })).sort((a, b) => b.count - a.count)
 }
+
+/**
+ * The persons of a tense the learner often gets wrong (any verb): at least two misses and at least a
+ * third of the answers wrong. For marking them in the table, with "3/5 yanlış".
+ */
+export function weakPersons(lab: LabData, tense: Tense): Record<number, string> {
+  const out: Record<number, string> = {}
+  for (const c of tallyCells(lab)) {
+    if (c.tense !== tense || c.wrong < 2 || c.rate < 1 / 3) continue
+    out[c.person] = `${c.wrong}/${c.ok + c.wrong} yanlış`
+  }
+  return out
+}
