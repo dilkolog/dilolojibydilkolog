@@ -300,8 +300,8 @@ describe('screens render', () => {
     }
     await act(async () => btn(/Kontrol et/)!.click())
     expect(el.textContent).toContain('Hepsi doğru!')
-    // The round is in the garden: it shows under Ustalık.
-    await act(async () => btn(/^Ustalık$/)!.click())
+    // The round is in the garden: it shows under İlerleme.
+    await act(async () => btn(/^İlerleme/)!.click())
     expect(el.querySelector('.lab-garden')?.textContent).toContain('hablar')
     await act(async () => root.unmount())
   })

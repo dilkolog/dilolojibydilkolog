@@ -160,19 +160,20 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
   await main.getByRole('button', { name: 'Kontrol et' }).click()
   await expect(main.locator('.lab-result')).toContainText('Hepsi doğru!')
-  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await main.getByRole('tab', { name: 'İlerleme' }).click()
   // Both rounds count (one form in six missed is still a right round): 20 of 60 points.
   await expect(main.getByRole('button', { name: /^Présent:/ })).toContainText('Öğreniliyor (20/60)')
   // Choosing among forms, and the pairs.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('button', { name: 'Seç', exact: true }).click()
   await expect(main.locator('.lab-option')).toHaveCount(4)
-  await main.getByRole('button', { name: 'Eşleştir' }).click()
+  await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
+  await page.getByRole('menuitem', { name: /^Eşleştir/ }).click()
   await expect(main.locator('.lab-match-btn')).toHaveCount(12)
   // Time against the clock is a practice mode with three levels; compare (a learn view) shows three tenses at once.
   await main.getByRole('button', { name: 'Zamana karşı' }).click()
   await expect(main.locator('.lab-levelcard')).toHaveCount(3)
-  await main.getByRole('tab', { name: 'Öğrenme' }).click()
+  await main.getByRole('tab', { name: 'Öğren' }).click()
   await main.getByRole('button', { name: 'Kıyasla' }).click()
   await expect(main.locator('.lab-compare-cards .lab-card')).toHaveCount(3)
   expect(await overflow(page)).toEqual([])
@@ -195,7 +196,7 @@ test('verb lab: a person often missed in a tense is marked in its table', async 
     await expect(main.locator('.lab-result')).toContainText('5 / 6 doğru')
   }
   // Back in the table, "tu" has the orange edge and says why; the other tenses are clean.
-  await main.getByRole('tab', { name: 'Öğrenme' }).click()
+  await main.getByRole('tab', { name: 'Öğren' }).click()
   await expect(main.locator('.lab-row.is-weak')).toHaveCount(1)
   await expect(main.locator('.lab-row.is-weak')).toHaveAttribute('title', /2\/2 yanlış/)
   await expect(main.locator('.lab-weak-note')).toBeVisible()
@@ -243,7 +244,7 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
     await page.keyboard.press('Enter')
   }
   await expect(main.getByRole('status')).toContainText('Tekrar bitti')
-  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await main.getByRole('tab', { name: 'İlerleme' }).click()
   await expect(main.locator('.lab-garden')).toContainText('parler')
   // The old conjugation game card is gone from Games: one place for verbs.
   await openScreen(page, 'Oyunlar')
@@ -277,7 +278,8 @@ test('verb lab: the Turkish bridge, the verb families and the find-the-tense qui
   await expect(main.getByRole('status')).toContainText('/ 6 doğru')
   // Think in Turkish: a Turkish sentence, choose its tense.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
-  await main.getByRole('button', { name: 'Zamanı bul' }).click()
+  await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
+  await page.getByRole('menuitem', { name: /^Zamanı\ bul/ }).click()
   await expect(main.locator('.lab-tensequiz .prompt-text')).toBeVisible()
   await expect(main.locator('.lab-tensequiz .lab-option')).toHaveCount(4)
   await main.locator('.lab-tensequiz .lab-option').first().click()
@@ -301,7 +303,7 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
     await page.keyboard.press('Enter')
     if (await main.locator('.lab-result').count()) break
   }
-  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await main.getByRole('tab', { name: 'İlerleme' }).click()
   await expect(main.locator('.lab-weak')).toContainText('Zayıf noktaların')
   await expect(main.locator('.lab-heat')).toBeVisible()
   await expect(main.locator('.lab-kinds')).toContainText('%')
@@ -315,7 +317,8 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   await expect(main.locator('.lab-kinds')).toBeVisible()
   // Which verb? A conjugated word to trace back: the verb, then the tense.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
-  await main.getByRole('button', { name: 'Hangi fiil?' }).click()
+  await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
+  await page.getByRole('menuitem', { name: /^Hangi\ fiil\?/ }).click()
   await expect(main.locator('.lab-reverse .prompt-text')).toBeVisible()
   await main.locator('.lab-reverse input').fill('zzz')
   await page.keyboard.press('Enter')
@@ -324,7 +327,8 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   await expect(main.locator('.lab-reverse .accent-result')).toContainText('=')
   expect(await overflow(page)).toEqual([])
   // Subjunctive or not: two real forms, and why after the answer.
-  await main.getByRole('button', { name: 'Kip seç' }).click()
+  await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
+  await page.getByRole('menuitem', { name: /^Kip\ seç/ }).click()
   await expect(main.locator('.lab-moodquiz .lab-option')).toHaveCount(2)
   await main.locator('.lab-moodquiz .lab-option').first().click()
   await expect(main.locator('.lab-moodquiz .accent-result')).toBeVisible()
@@ -482,7 +486,7 @@ test('verb lab: the tabs and modes used are counted in Settings → Kullanım', 
   const card = page.locator('section.card', { has: page.getByRole('heading', { name: 'Kullanım', exact: true }) })
   await expect(card.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
   await expect(card.locator('.hour-list').last()).toContainText('Alıştırma · Seç')
-  await expect(card.locator('.hour-list').last()).toContainText('Öğrenme')
+  await expect(card.locator('.hour-list').last()).toContainText('Öğren')
   await expect(card.locator('.hour-list').first()).not.toContainText('Alıştırma')
 })
 
@@ -496,7 +500,7 @@ test('verb lab: Ustalık shows the share of right answers week by week', async (
   for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
   await main.getByRole('button', { name: 'Kontrol et' }).click()
   await expect(main.locator('.lab-result')).toContainText('5 / 6 doğru')
-  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await main.getByRole('tab', { name: 'İlerleme' }).click()
   const weeks = main.getByRole('region', { name: 'Haftalar' })
   await expect(weeks).toContainText('Bu hafta 6 cevap, %83 doğru')
   await expect(weeks.locator('.bar-row').first()).toContainText('Bu hafta')
@@ -520,7 +524,7 @@ test('verb lab: memorise mode asks knew it or not, and a marked-through table co
   await expect(main.locator('.lab-memo-result')).toContainText('5/6 bildin')
   await main.locator('.lab-memo-result').getByRole('button', { name: 'Yeniden kapat' }).click()
   await expect(table.locator('.lab-cover')).toHaveCount(6)
-  await main.getByRole('tab', { name: 'Ustalık' }).click()
+  await main.getByRole('tab', { name: 'İlerleme' }).click()
   await expect(main.getByRole('button', { name: /^Présent:/ })).toContainText('Öğreniliyor (10/60)')
 })
 
@@ -615,7 +619,7 @@ test('tabs: one indicator slides to the chosen tab; reading lights the sentence 
   const tabs = page.locator('.lab-main .lab-tabs')
   const placed = () => tabs.evaluate((el) => [parseFloat(getComputedStyle(el).getPropertyValue('--ind-x')), (el.querySelector('[aria-selected="true"]') as HTMLElement).offsetLeft])
   await expect(tabs).toHaveClass(/has-ind/)
-  await tabs.getByRole('tab', { name: 'Ustalık' }).click()
+  await tabs.getByRole('tab', { name: 'İlerleme' }).click()
   await expect.poll(async () => { const [x, left] = await placed(); return x === left && left > 0 }).toBe(true)
   await openScreen(page, 'Okuma')
   await page.getByLabel('Metin', { exact: true }).fill("L'arbre est grand. Le chat dort.")
@@ -650,6 +654,6 @@ test("verb lab: the day's round, one button: questions picked for you, then done
   await expect(page.getByRole('region', { name: 'Bugünün fiil turu' })).toContainText('Bugünkü fiil turun bitti')
   await expect(page.getByRole('region', { name: 'Bugünün fiil turu' }).getByRole('button', { name: /Bir tur daha/ })).toBeVisible()
   // The answers went to the lab: the forms are in its review queue now.
-  await page.locator('.lab-main').getByRole('tab', { name: 'Ustalık' }).click()
+  await page.locator('.lab-main').getByRole('tab', { name: 'İlerleme' }).click()
   await expect(page.locator('.lab-main .lab-weeks')).toContainText('Bu hafta')
 })

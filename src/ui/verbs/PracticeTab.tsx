@@ -4,7 +4,7 @@ import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
-import { BoltIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { BoltIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { Diagnosis } from './Diagnosis'
@@ -14,6 +14,7 @@ import { SpeakQuiz } from './SpeakQuiz'
 import { canListen } from '../speechInput'
 import { TenseQuiz } from './TenseQuiz'
 import { recordVisit } from '../screenUsage'
+import { MenuItem, Popover } from '../Popover'
 import { judge, tenseName, verbEntry, type LabLanguage } from './labShared'
 
 export type PracticeMode = 'type' | 'choose' | 'listen' | 'speak' | 'match' | 'sentence' | 'tense' | 'mood' | 'reverse' | 'timed'
@@ -22,28 +23,22 @@ const HEARTS = 3
 /** Modes with their own questions and counting: no lives and no tense tip. */
 const QUIZ: Mode[] = ['speak', 'sentence', 'tense', 'mood', 'reverse', 'timed']
 
-/** Two kinds of practice: the six forms of the tense, and the verb in use (sentences, choices, the clock). */
-const MODE_GROUPS: { label: string; modes: { id: Mode; label: string; icon: typeof PenIcon }[] }[] = [
-  {
-    label: 'Biçim',
-    modes: [
-      { id: 'type', label: 'Yaz', icon: PenIcon },
-      { id: 'choose', label: 'Seç', icon: TargetIcon },
-      { id: 'listen', label: 'Dinle', icon: HeadphonesIcon },
-      { id: 'speak', label: 'Söyle', icon: MicIcon },
-      { id: 'match', label: 'Eşleştir', icon: PuzzleIcon },
-    ],
-  },
-  {
-    label: 'Kullanım',
-    modes: [
-      { id: 'sentence', label: 'Cümlede', icon: ReadIcon },
-      { id: 'tense', label: 'Zamanı bul', icon: MessageIcon },
-      { id: 'mood', label: 'Kip seç', icon: ScaleIcon },
-      { id: 'reverse', label: 'Hangi fiil?', icon: SearchIcon },
-      { id: 'timed', label: 'Zamana karşı', icon: BoltIcon },
-    ],
-  },
+/**
+ * The ways to practise. Four are on show (write the forms, pick them, write them into sentences,
+ * race the clock); the rest wait in "Diğer", so practising starts with a choice of four, not ten.
+ * The day's round (the card on top of the lab) picks for the learner; this is free practice.
+ */
+const MODES: { id: Mode; label: string; hint: string; icon: typeof PenIcon; main?: boolean }[] = [
+  { id: 'type', label: 'Yaz', hint: 'Altı biçimi yaz', icon: PenIcon, main: true },
+  { id: 'choose', label: 'Seç', hint: 'Doğru biçimi seç', icon: TargetIcon, main: true },
+  { id: 'sentence', label: 'Cümlede', hint: 'Gerçek cümlenin boşluğuna yaz', icon: ReadIcon, main: true },
+  { id: 'timed', label: 'Zamana karşı', hint: 'Birçok fiil, 60 saniye', icon: BoltIcon, main: true },
+  { id: 'listen', label: 'Dinle', hint: 'Duyduğun biçimi yaz', icon: HeadphonesIcon },
+  { id: 'speak', label: 'Söyle', hint: 'Biçimi sesli söyle', icon: MicIcon },
+  { id: 'match', label: 'Eşleştir', hint: 'Kişileri biçimleriyle eşleştir', icon: PuzzleIcon },
+  { id: 'tense', label: 'Zamanı bul', hint: 'Cümledeki zamanı seç', icon: MessageIcon },
+  { id: 'mood', label: 'Kip seç', hint: 'Subjonctif mi, indicatif mi?', icon: ScaleIcon },
+  { id: 'reverse', label: 'Hangi fiil?', hint: 'Çekimden fiile ve zamana', icon: SearchIcon },
 ]
 
 /** The people the round asks: all six, without vosotros for a learner of Latin American Spanish. */
@@ -100,6 +95,10 @@ export function PracticeTab({
   byFrequency: readonly string[]
 }) {
   const [mode, setMode] = useState<Mode>(initialMode)
+  const pickMode = (m: Mode) => {
+    setMode(m)
+    recordVisit(`verbs:practice:${m}`)
+  }
   const moodVerbs = useMemo(() => [verb, ...byFrequency.slice(0, 80)], [verb, byFrequency])
   const [list, setList] = useState(true)
   const [round, setRound] = useState(0)
@@ -182,23 +181,44 @@ export function PracticeTab({
         <h2 className="lab-verb" lang={language}>
           {verb[0].toLocaleUpperCase(language) + verb.slice(1)}
         </h2>
-        <div className="lab-mode-groups">
-          {MODE_GROUPS.map((g) => (
-            <div key={g.label} className="lab-mode-group">
-              <span className="small muted">{g.label}</span>
-              <div className="lab-modes" role="group" aria-label={`${g.label} alıştırmaları`}>
-                {g.modes.map((m) => (
-                  <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => {
-                      setMode(m.id)
-                      recordVisit(`verbs:practice:${m.id}`)
-                    }} disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())} title={m.label}>
-                    <m.icon size={18} />
-                    <span>{m.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+        <div className="lab-modes" role="group" aria-label="Alıştırma türü">
+          {MODES.filter((m) => m.main || m.id === mode).map((m) => (
+            <button key={m.id} type="button" className="lab-mode" aria-pressed={mode === m.id} onClick={() => pickMode(m.id)} aria-label={m.label} title={m.hint}>
+              <m.icon size={18} />
+              <span>{m.label}</span>
+            </button>
           ))}
+          <Popover
+            kind="menu"
+            align="end"
+            label="Diğer alıştırmalar"
+            buttonClassName="lab-mode lab-mode-more"
+            buttonProps={{ 'aria-label': 'Diğer alıştırmalar', title: 'Diğer alıştırmalar' }}
+            button={
+              <>
+                <MoreIcon size={18} />
+                <span>Diğer</span>
+              </>
+            }
+          >
+            {(close) => (
+              <>
+                {MODES.filter((m) => !m.main).map((m) => (
+                  <MenuItem
+                    key={m.id}
+                    icon={<m.icon size={18} />}
+                    title={m.label}
+                    hint={m.hint}
+                    disabled={(m.id === 'listen' && !canSpeak()) || (m.id === 'speak' && !canListen())}
+                    onSelect={() => {
+                      close()
+                      pickMode(m.id)
+                    }}
+                  />
+                ))}
+              </>
+            )}
+          </Popover>
         </div>
         {mode === 'type' && (
           <div className="segmented lab-layout" role="group" aria-label="Düzen">
@@ -298,7 +318,7 @@ function TypeList({ language, verb, tense, forms, people, settleMany }: RoundPro
     >
       {people.map((p, n) => (
         <div key={p} className={`lab-answer-row${checked ? (checked[p] ? ' is-ok' : ' is-bad') : ''}`}>
-          <label htmlFor={`lab-in-${p}`} className="lab-subject">
+          <label htmlFor={`lab-in-${p}`} className="lab-subject" lang={language}>
             {subjectLabel(language, tense, p)}
           </label>
           <input

@@ -25,6 +25,8 @@ export function MasteryTab({
   onWeak,
   onItem,
   onCheck,
+  dueCount = 0,
+  onReview,
 }: {
   language: LabLanguage
   verb: string
@@ -40,6 +42,9 @@ export function MasteryTab({
   onItem: (verb: string, tense: Tense) => void
   /** An answer in a focused round (counted like a review answer). */
   onCheck: RunCheck
+  /** Forms whose review is due, and the way to the queue. */
+  dueCount?: number
+  onReview?: () => void
 }) {
   // A focused round on one kind of slip, with its questions fixed when it starts.
   const [allPlots, setAllPlots] = useState(false)
@@ -121,6 +126,14 @@ export function MasteryTab({
   }
   return (
     <div className="stack lab-mastery">
+      {onReview && (
+        <div className="note row lab-queue-line">
+          <span>{dueCount > 0 ? `Tekrar sıranda ${dueCount} çekim bekliyor.` : 'Tekrar sırasında bekleyen çekim yok.'}</span>
+          <button type="button" className={dueCount > 0 ? 'btn btn-sm' : 'btn btn-sm btn-quiet'} onClick={onReview}>
+            {dueCount > 0 ? 'Tekrar et' : 'Sırayı gör'}
+          </button>
+        </div>
+      )}
       <header className="lab-mastery-head">
         <h2 lang={language}>{verb[0].toLocaleUpperCase(language) + verb.slice(1)}</h2>
         <p className="muted">
