@@ -244,7 +244,7 @@ function dayPerson(language: LabLanguage, item: LabItem, day: number): number {
 }
 
 /** Today as a date number (20261008): the same verb, person or item all day. */
-const dayNumber = (now: Date) => now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+export const dayNumber = (now: Date) => now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
 
 /** Today's verb for the Today screen, with its meaning: one of the learner's own still being learnt. */
 export function useVerbOfDay(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], key: unknown): { verb: string; gloss?: string } | null {

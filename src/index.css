@@ -4586,6 +4586,16 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-mood-label { margin: 0; padding: 0.25rem 0.75rem; font-size: var(--t-sm); color: var(--ink-soft); }
 .lab-tense-btn { min-width: 12rem; justify-content: space-between; }
 
+/* The day's verb round: one card on top of the lab (one button), then the round alone on screen. */
+.lab-tour-card { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 1.125rem; }
+.lab-tour-card .section-title { margin: 0; }
+.lab-tour-card .small { margin: 0.25rem 0 0; }
+.lab-tour-card.is-done { box-shadow: var(--inset-ring); background: var(--surface-2); }
+.lab-tour-run { max-width: 40rem; width: 100%; margin-inline: auto; }
+.lab-tour-top { justify-content: space-between; }
+.lab-tour-run .options { margin-top: 1rem; }
+.lab-tour-run .option > span:last-child { font-family: var(--serif); font-size: var(--t-md); }
+.lab-tour-done { max-width: 40rem; width: 100%; margin-inline: auto; }
 .lab-tabs { display: flex; gap: 0.25rem; margin: -0.25rem -0.25rem 1rem; border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
 .lab-tab { flex: 0 0 auto; padding: 0.625rem 0.75rem; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--ink-soft); font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap; }
 .lab-tab[aria-selected='true'] { color: var(--lang-text); border-bottom-color: var(--lang); }
