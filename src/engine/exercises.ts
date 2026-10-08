@@ -31,7 +31,10 @@ export interface ExerciseMeta {
   requiresSpeech?: boolean
 }
 
-const hasExamples = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0 || !!e.corpus?.length
+/** A sentence with the word in it, which can be blanked out (a pasted sentence may lack the word). */
+const hasForm = (x: Example) => !!x.form
+const hasExamples = (e: VocabularyEntry) => !!e.senses[0]?.examples.some(hasForm) || !!e.corpus?.length
+const hasSentences = (e: VocabularyEntry) => e.senses[0]?.examples.length > 0 || !!e.corpus?.length
 
 const DEFINITE: Record<'fr' | 'es', { m: string; f: string }> = { fr: { m: 'le', f: 'la' }, es: { m: 'el', f: 'la' } }
 
@@ -93,7 +96,7 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
     expectedMs: 5000,
     applicable: (e) => !!e.imageId,
   },
-  dictation: { skill: 'listening', direction: 'audio_to_target', input: 'typed', expectedMs: 20000, applicable: hasExamples },
+  dictation: { skill: 'listening', direction: 'audio_to_target', input: 'typed', expectedMs: 20000, applicable: hasSentences },
   speak_word: {
     skill: 'recall',
     direction: 'native_to_target',
@@ -232,6 +235,7 @@ export const HINT_DELAYS_MS = [6000, 12000, 18000]
 export const BLANK = '___'
 
 function blankOut(example: Example): string {
+  if (!example.form) return example.text
   const i = example.text.toLowerCase().indexOf(example.form.toLowerCase())
   if (i < 0) return example.text
   return example.text.slice(0, i) + BLANK + example.text.slice(i + example.form.length)
@@ -257,8 +261,8 @@ export function exampleSource(ex: Example, entry: VocabularyEntry): ContextSourc
   return { kind: 'added', text: 'Eklediğin cümle' }
 }
 
-function chooseExample(entry: VocabularyEntry, rng: Rng): Example | undefined {
-  const own = entry.senses.flatMap((s) => s.examples)
+function chooseExample(entry: VocabularyEntry, rng: Rng, needForm = true): Example | undefined {
+  const own = entry.senses.flatMap((s) => s.examples).filter((x) => !needForm || hasForm(x))
   const corpus = entry.corpus ?? []
   // Real sentences with at most one word the learner doesn't know come first (i + 1), when there are any.
   if (corpus.length && (!own.length || rng() < 0.5)) return pick(sweetSpot(corpus), rng)
@@ -561,7 +565,7 @@ export function buildExercise(
         .map((r) => catalog.find((c) => c.id === r.targetId)?.lemma)
         .filter((l): l is string => !!l)
       // Pad with look-alikes so it's never a coin toss between two options.
-      const lookAlikes = pickDistractors(entry, catalog, 2, rng, { slot: slotOf(ex, entry.language) }).map((d) => d.senses[0].examples[0]?.form ?? d.lemma)
+      const lookAlikes = pickDistractors(entry, catalog, 2, rng, { slot: slotOf(ex, entry.language) }).map((d) => d.senses[0].examples.find(hasForm)?.form ?? d.lemma)
       return choice(
         { ...base, prompt: 'Hangisi doğru?', context: blankOut(ex), contextTranslation: ex.translation, contextSource: exampleSource(ex, entry) },
         ex.form,
@@ -614,7 +618,7 @@ export function buildExercise(
     }
 
     case 'dictation': {
-      const ex = chooseExample(entry, rng)!
+      const ex = chooseExample(entry, rng, false)!
       return {
         ...base,
         kind: 'typed',
@@ -622,7 +626,7 @@ export function buildExercise(
         audioText: ex.text,
         contextTranslation: ex.translation,
         accepted: [ex.text],
-        hints: [ex.translation || sense.gloss, blankOut(ex)],
+        hints: ex.form ? [ex.translation || sense.gloss, blankOut(ex)] : [ex.translation || sense.gloss],
       }
     }
 

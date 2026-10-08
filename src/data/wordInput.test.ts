@@ -47,8 +47,9 @@ describe('createEntry', () => {
     expect(e.senses[0].examples[0]).toEqual({ text: 'No sé dónde está.', translation: 'Nerede olduğunu bilmiyorum.', form: 'sé' })
   })
 
-  it('explains how to fix an example where the word is missing', () => {
-    expect(() => createEntry({ word: 'saber', meaning: 'bilmek', example: 'No sé.' }, 'es', NOW)).toThrow(WordInputError)
+  it('keeps a sentence the word is not found in, with no form to blank out', () => {
+    const e = createEntry({ word: 'saber', meaning: 'bilmek', example: 'No sé.' }, 'es', NOW)
+    expect(e.senses[0].examples[0]).toEqual({ text: 'No sé.', translation: '', form: '' })
   })
 
   it('requires word and meaning', () => {
@@ -97,6 +98,21 @@ describe('importWords', () => {
     expect(r.errors).toEqual([{ line: 5, message: 'Türkçe anlamı yaz.' }])
     // File order is kept as introduction order.
     expect(r.entries[0].addedAt!.getTime()).toBeLessThan(r.entries[1].addedAt!.getTime())
+  })
+  it('a stray apostrophe ("l\'aïus" for "laïus") is read off the sentence; a sentence without the word is kept', () => {
+    const r = importWords(
+      [
+        "l'aïus\tuzun, sıkıcı konuşma\tLe directeur nous a fait un long laïus sur la ponctualité.",
+        "l'arbre\tağaç\tL'arbre est grand.",
+        'topo\tkısa sunum\tIl a fait un exposé.',
+      ].join('\n'),
+      'fr',
+      new Set(),
+      NOW,
+    )
+    expect(r.entries.map((e) => [e.article, e.lemma])).toEqual([[undefined, 'laïus'], ["l'", 'arbre'], [undefined, 'topo']])
+    expect(r.errors).toEqual([])
+    expect(r.warnings).toEqual([{ line: 3, message: expect.stringContaining('"topo" cümlede geçmiyor') }])
   })
 })
 
@@ -204,9 +220,10 @@ describe('addExample / removeExample', () => {
     expect(two.senses[0].examples).toHaveLength(3)
   })
 
-  it('rejects duplicates and sentences without the word', () => {
+  it('rejects duplicates; keeps a sentence without the word, unless it is the learner\'s own', () => {
     expect(() => addExample(base, 'I decided to stay.')).toThrow(WordInputError)
-    expect(() => addExample(base, 'Nothing here.')).toThrow(WordInputError)
+    expect(addExample(base, 'Nothing here.').senses[0].examples.at(-1)).toMatchObject({ text: 'Nothing here.', form: '' })
+    expect(() => addExample(base, 'Nothing here.', '', true)).toThrow(WordInputError)
   })
 
   it('removes by position', () => {

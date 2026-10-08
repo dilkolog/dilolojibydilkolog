@@ -143,6 +143,7 @@ export function guessPartOfSpeech(word: string, language: TargetLanguage): PartO
 
 /** Marks the first occurrence of `word` in `sentence` with asterisks, as the add-word form expects. */
 export function markWord(sentence: string, word: string): string {
+  if (!word) return sentence
   const i = sentence.toLowerCase().indexOf(word.toLowerCase())
   return i < 0 ? sentence : `${sentence.slice(0, i)}*${sentence.slice(i, i + word.length)}*${sentence.slice(i + word.length)}`
 }
@@ -213,15 +214,16 @@ export function createEntry(
   const examples: Example[] = []
   if (input.example?.trim()) {
     const form = findForm(input.example, lemma)
-    if (!form) {
-      throw new WordInputError(
-        `Örnek cümlede "${lemma}" bulunamadı. Cümlede kelimeyi *yıldız* içine al: "She *abandoned* it".`,
-      )
+    // "l'aïus" with "un long laïus" in the sentence: the apostrophe was a slip, the word is "laïus".
+    if (!form && keepArticle?.endsWith("'") && findForm(input.example, keepArticle.slice(0, -1) + lemma)) {
+      return createEntry({ ...input, word: keepArticle.slice(0, -1) + lemma }, language, now, source)
     }
+    // A sentence without the word is still kept (to read and to write from dictation); with no form
+    // to blank out, it stays out of the fill-in-the-blank questions.
     examples.push({
       text: input.example.replace(/\*/g, '').trim(),
       translation: input.exampleTranslation?.trim() ?? '',
-      form,
+      form: form ?? '',
       ...(input.exampleMetIn ? { metIn: input.exampleMetIn } : {}),
     })
   }
@@ -308,6 +310,8 @@ export interface ImportResult {
   errors: { line: number; message: string }[]
   /** Words already in the vocabulary (or repeated in the file); skipped. */
   duplicates: string[]
+  /** Rows added with a note, e.g. a sentence the word isn't found in. */
+  warnings: { line: number; message: string }[]
 }
 
 /** How a pasted word list is laid out (Quizlet-style options). */
@@ -425,7 +429,7 @@ export function importWords(
   fmt: ListFormat = DEFAULT_FORMAT,
 ): ImportResult {
   const rows = parseWordList(text, fmt)
-  const result: ImportResult = { entries: [], errors: [], duplicates: [] }
+  const result: ImportResult = { entries: [], errors: [], duplicates: [], warnings: [] }
   const seen = new Set(existingIds)
   rows.forEach((cells, i) => {
     const line = i + 1
@@ -445,6 +449,9 @@ export function importWords(
       }
       seen.add(entry.id)
       result.entries.push(entry)
+      if (entry.senses[0].examples[0]?.form === '') {
+        result.warnings.push({ line, message: `"${entry.lemma}" cümlede geçmiyor; cümle yine eklenir ama boşluk doldurmada çıkmaz. Çekimli hâliyse *yıldız* içine al.` })
+      }
     } catch (e) {
       result.errors.push({ line, message: e instanceof Error ? e.message : String(e) })
     }
@@ -461,7 +468,7 @@ export function entryToInput(entry: VocabularyEntry): WordInput {
   const sense = entry.senses[0]
   const ex = sense.examples[0]
   // Only mark the form with asterisks when automatic detection wouldn't find it again.
-  const example = ex && findForm(ex.text, entry.lemma) !== ex.form ? ex.text.replace(ex.form, `*${ex.form}*`) : ex?.text
+  const example = ex && ex.form && findForm(ex.text, entry.lemma) !== ex.form ? ex.text.replace(ex.form, `*${ex.form}*`) : ex?.text
   const article = entry.article ? (entry.article.endsWith("'") ? entry.article : `${entry.article} `) : ''
   return {
     word: `${article}${entry.lemma}`,
@@ -537,8 +544,9 @@ export function addExample(entry: VocabularyEntry, text: string, translation = '
   if (!clean) throw new WordInputError('Cümle boş olamaz.')
   if (sense.examples.some((e) => normalize(e.text) === normalize(clean))) throw new WordInputError('Bu cümle zaten var.')
   if (sense.examples.length >= MAX_EXAMPLES) throw new WordInputError(`En fazla ${MAX_EXAMPLES} örnek cümle eklenebilir.`)
-  const form = findForm(text, entry.lemma)
-  if (!form) {
+  const form = findForm(text, entry.lemma) ?? (personal ? undefined : '')
+  // The learner's own sentence is about using the word, so it has to be in it; any other may lack it.
+  if (form === undefined) {
     throw new WordInputError(`Cümlede "${entry.lemma}" bulunamadı. Cümlede kelimeyi *yıldız* içine al: "She *abandoned* it".`)
   }
   const example = { text: clean, translation: translation.trim(), form, ...(personal ? { personal: true } : {}) }
