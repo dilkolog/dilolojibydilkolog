@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { contrastProblems, labFavorites, openScreen, openVerbLab, overflow, startWithSamples } from './helpers'
+import { contrastProblems, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -180,6 +180,30 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   expect(await contrastProblems(page)).toEqual([])
 })
 
+test('verb lab: a person often missed in a tense is marked in its table', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-row.is-weak')).toHaveCount(0)
+  // Two rounds with "tu" wrong.
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  const answers = ['parle', 'parlais', 'parle', 'parlons', 'parlez', 'parlent']
+  for (let round = 0; round < 2; round++) {
+    if (round) await main.getByRole('button', { name: 'Tekrar' }).click()
+    for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
+    await main.getByRole('button', { name: 'Kontrol et' }).click()
+    await expect(main.locator('.lab-result')).toContainText('5 / 6 doğru')
+  }
+  // Back in the table, "tu" has the orange edge and says why; the other tenses are clean.
+  await main.getByRole('tab', { name: 'Öğrenme' }).click()
+  await expect(main.locator('.lab-row.is-weak')).toHaveCount(1)
+  await expect(main.locator('.lab-row.is-weak')).toHaveAttribute('title', /2\/2 yanlış/)
+  await expect(main.locator('.lab-weak-note')).toBeVisible()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' }).click()
+  await expect(main.locator('.lab-row.is-weak')).toHaveCount(0)
+})
+
 test('verb lab: a verb the tables lack is said so, the shuffle picks another, favourites and recent are kept', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'finir')
@@ -208,9 +232,9 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   const main = page.locator('.lab-main')
   await main.getByRole('button', { name: 'Tekrar listeme ekle' }).click()
   await expect(main.getByRole('button', { name: 'Tekrar listende' })).toBeDisabled()
-  // Today offers the review.
+  // Today: three of the six join the day's session; the tile offers the other three.
   await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
-  await expect(page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' })).toContainText('6 çekim')
+  await expect(page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' })).toContainText('3 çekim')
   await page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' }).click()
   // The review asks one person of each form; a wrong answer is corrected and goes to the garden as shaky.
   for (let i = 0; i < 6; i++) {
@@ -330,6 +354,38 @@ test('verb lab: the verb in real sentences, and the same verb in the other langu
   await expect(quiz.locator('.accent-result')).toContainText('Doğrusu')
   await expect(quiz.locator('.lab-blank')).not.toHaveText('_____')
   expect(await overflow(page)).toEqual([])
+})
+
+test('verb lab forms due are mixed into the day\'s session, and the answers go to the lab', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  await page.locator('.lab-main').getByRole('button', { name: 'Tekrar listeme ekle' }).click()
+  await expect(page.locator('.lab-main').getByRole('button', { name: 'Tekrar listende' })).toBeDisabled()
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  // Watch for the form questions while the session is played through (every answer is wrong).
+  await page.evaluate(() => {
+    ;(window as unknown as { formsSeen: number }).formsSeen = 0
+    new MutationObserver(() => {
+      if (document.querySelector('.session-form:not([data-seen])')) {
+        document.querySelector('.session-form')!.setAttribute('data-seen', '')
+        ;(window as unknown as { formsSeen: number }).formsSeen++
+      }
+    }).observe(document.body, { childList: true, subtree: true })
+  })
+  await playSession(page)
+  expect(await page.evaluate(() => (window as unknown as { formsSeen: number }).formsSeen)).toBe(3)
+  const wrong = () =>
+    page.evaluate(
+      () =>
+        new Promise<number>((resolve) => {
+          const open = indexedDB.open('kelime-koc')
+          open.onsuccess = () => {
+            const get = open.result.transaction('meta').objectStore('meta').get('lab:fr')
+            get.onsuccess = () => resolve(Object.values((get.result?.value?.records ?? {}) as Record<string, { wrong: number }>).reduce((n, r) => n + r.wrong, 0))
+          }
+        }),
+    )
+  await expect.poll(wrong).toBe(3)
 })
 
 test('verb lab: add a verb to the list, hear all six, the E and A keys', async ({ page }) => {

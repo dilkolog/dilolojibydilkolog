@@ -28,6 +28,7 @@ export function FormTable({
   layout = 'columns',
   hide = false,
   speakable = true,
+  weak = {},
 }: {
   language: LabLanguage
   tense: Tense
@@ -36,6 +37,8 @@ export function FormTable({
   layout?: 'columns' | 'single'
   hide?: boolean
   speakable?: boolean
+  /** Persons the learner often gets wrong in this tense, with a short note ("3/5 yanlış"). */
+  weak?: Readonly<Record<number, string>>
 }) {
   const [shown, setShown] = useState<ReadonlySet<number>>(new Set())
   // The persons the tense has (the imperative speaks to some only); endings are coloured among those.
@@ -48,9 +51,10 @@ export function FormTable({
         const faded = language === 'es' && i === 4 && prefs.hideVosotros
         const covered = hide && !shown.has(i)
         return (
-          <div key={i} className={`lab-row${faded ? ' is-faded' : ''}`} role="row" title={faded ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : undefined}>
+          <div key={i} className={`lab-row${faded ? ' is-faded' : ''}${weak[i] ? ' is-weak' : ''}`} role="row" title={faded ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : weak[i] ? `Bu zamanda bu kişide ${weak[i]}` : undefined}>
             <span className="lab-subject" role="rowheader">
               {subjectLabel(language, tense, i)}
+              {weak[i] && <span className="sr-only">, sık yanlış yaptığın biçim ({weak[i]})</span>}
             </span>
             <span className="lab-cell" role="cell">
               {covered ? (

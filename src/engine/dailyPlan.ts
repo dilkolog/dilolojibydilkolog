@@ -25,6 +25,33 @@ export interface PlanItem {
   exerciseType?: ExerciseType
   /** The blank shows the answer's first letter (a choice turned into typing, see typeStrongCloze). */
   firstLetter?: boolean
+  /**
+   * A conjugated form from the verb lab's review queue, mixed into the day (entryId is then
+   * `form:<verb>|<tense>`): the person's form of the verb in the tense, typed.
+   */
+  form?: { language: 'fr' | 'es'; verb: string; tense: string; person: number }
+}
+
+/** At most this many lab forms join a day's session; the rest stay in the lab's own review. */
+export const MAX_DAY_FORMS = 3
+
+/** A form item's id, and whether an id is one. */
+export const formId = (verb: string, tense: string) => `form:${verb}|${tense}`
+export const isFormId = (id: string) => id.startsWith('form:')
+
+/**
+ * Mixes a few due lab forms into the day's items, spread out (not in a block, not first or last):
+ * mixing kinds of question helps more than practising each apart (interleaving).
+ */
+export function mixForms(items: readonly PlanItem[], forms: readonly NonNullable<PlanItem['form']>[]): PlanItem[] {
+  const picked = forms.slice(0, MAX_DAY_FORMS)
+  if (!picked.length || !items.length) return [...items]
+  const out = [...items]
+  picked.forEach((form, i) => {
+    const at = Math.min(out.length, Math.round(((i + 1) * items.length) / (picked.length + 1)) + i)
+    out.splice(at, 0, { kind: 'exercise', entryId: formId(form.verb, form.tense), reason: 'due', skill: 'production', exerciseType: 'conjugation', form })
+  })
+  return out
 }
 
 export interface PlanSettings {

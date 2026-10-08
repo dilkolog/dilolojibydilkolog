@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
-import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
+import { isFormId, type DailyPlan, type NewWordsBlock, type PlanReason } from '../engine/dailyPlan'
+import { TENSE_GUIDE } from '../engine/tenseGuide'
+import type { Tense } from '../engine/tenses'
 import type { SessionSummary } from '../engine/session'
 import { SKILLS, TARGET_LANGUAGES, type Skill, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { MASTERY_STAGES } from '../engine/mastery'
@@ -818,7 +820,13 @@ export function Summary({
 }) {
   const name = (id: string) => {
     const e = byId.get(id)
-    return e ? <WordLabel entry={e} /> : id
+    if (e) return <WordLabel entry={e} />
+    // A verb lab form mixed into the session: "attendre · Présent".
+    if (isFormId(id)) {
+      const [verb, tense] = id.slice('form:'.length).split('|')
+      return `${verb} · ${TENSE_GUIDE[tense as Tense]?.name ?? tense}`
+    }
+    return id
   }
   const accuracy = summary.answered ? summary.correct / summary.answered : 0
   const errors = Object.entries(summary.errors) as [keyof typeof ERROR_NAME, number][]

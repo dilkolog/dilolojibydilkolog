@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildDailyPlan, buildExtraNewPlan, interleave, type PlanInput, type PlanItem } from '../dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, interleave, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
 import { recordMistake } from '../mistakes'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
@@ -231,5 +231,28 @@ describe('a word list in focus', () => {
     expect(plan.items.some((i) => i.entryId === 'en:salary' && i.kind === 'exercise')).toBe(true)
     expect(plan.newEntryIds).toEqual(['en:airport'])
     expect(plan.focusDone).toBeUndefined()
+  })
+})
+
+describe('verb lab forms in the day', () => {
+  const item = (id: string): PlanItem => ({ kind: 'exercise', entryId: id, reason: 'due', skill: 'recognition', exerciseType: 'mc_meaning' })
+  const form = (verb: string) => ({ language: 'fr' as const, verb, tense: 'present', person: 1 })
+
+  it('spreads up to three forms through the session, never first or last', () => {
+    const items = Array.from({ length: 12 }, (_, i) => item(`en:w${i}`))
+    const mixed = mixForms(items, [form('aller'), form('faire'), form('venir'), form('dire')])
+    const at = mixed.flatMap((it, i) => (it.form ? [i] : []))
+    expect(at).toHaveLength(MAX_DAY_FORMS)
+    expect(at[0]).toBeGreaterThan(0)
+    expect(at.at(-1)!).toBeLessThan(mixed.length - 1)
+    expect(at[1] - at[0]).toBeGreaterThan(1)
+    expect(mixed.find((it) => it.form)).toMatchObject({ entryId: 'form:aller|present', exerciseType: 'conjugation' })
+    expect(isFormId(mixed[at[0]].entryId)).toBe(true)
+  })
+
+  it('leaves the day as it is with no forms or no items', () => {
+    const items = [item('en:a')]
+    expect(mixForms(items, [])).toEqual(items)
+    expect(mixForms([], [form('aller')])).toEqual([])
   })
 })
