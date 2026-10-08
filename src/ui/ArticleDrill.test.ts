@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createEntry } from '../data/wordInput'
 import { nounGender } from '../data/wordInfo'
-import { articleQuestion } from './ArticleDrill'
+import { articleQuestion } from './articleQuestion'
 
 const NOW = new Date('2026-10-03T10:00:00Z')
 
