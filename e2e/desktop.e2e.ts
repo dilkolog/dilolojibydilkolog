@@ -571,3 +571,40 @@ test('reading: reaching the end saves the meetings with list words on its own; f
   await page.locator('.reader-tools').getByRole('button', { name: 'Okumayı bitir' }).click()
   await expect(page.getByRole('alertdialog', { name: 'Okumayı bitir' })).toBeVisible()
 })
+
+test('Games: against the clock can be played by writing the word from its meaning', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.getByRole('button', { name: /^Zamana karşı 60 saniyede/ }).click()
+  await page.getByRole('button', { name: 'Kelimeyi yaz' }).click()
+  await expect(page.getByRole('button', { name: 'Kelimeyi yaz' })).toHaveAttribute('aria-pressed', 'true')
+  await page.getByRole('button', { name: 'Başla', exact: true }).click()
+  const meaning = page.locator('.blitz-meaning')
+  await expect(meaning).toBeVisible()
+  // Find the word for the meaning shown, from the app's own list.
+  const gloss = (await meaning.textContent())!.trim()
+  const word = await page.evaluate(
+    (g) =>
+      new Promise<string>((done) => {
+        const req = indexedDB.open('kelime-koc')
+        req.onsuccess = () => {
+          const all = req.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+          all.onsuccess = () => {
+            const e = (all.result as { lemma: string; article?: string; senses: { gloss: string }[] }[]).find((v) => v.senses[0].gloss === g)
+            done(e ? `${e.article ? (e.article.endsWith("'") ? e.article : `${e.article} `) : ''}${e.lemma}` : '')
+          }
+        }
+      }),
+    gloss,
+  )
+  const input = page.getByRole('textbox', { name: 'Kelimeyi yaz' })
+  expect(word).not.toBe('')
+  await input.fill(word)
+  await input.press('Enter')
+  await expect(page.locator('.game-score')).toHaveText('25 puan')
+  await expect(input).toHaveValue('')
+  // A wrong one shows the right form.
+  await input.fill('zzzz')
+  await input.press('Enter')
+  await expect(page.getByRole('status').filter({ hasText: 'Doğrusu:' })).toBeVisible()
+})

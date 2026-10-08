@@ -4568,6 +4568,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-tab[aria-selected='true'] { color: var(--lang-text); border-bottom-color: var(--lang); }
 .lab-panel { min-width: 0; }
 .segmented-btn[aria-pressed='true'] { background: var(--surface); color: var(--lang-text); font-weight: 700; box-shadow: var(--shadow); }
+/* Blitz, writing mode: the Turkish meaning is the prompt (interface type, not the target language's serif). */
+.blitz-meaning { margin: 0; text-align: center; font-size: var(--t-xl); font-weight: 700; line-height: 1.3; text-wrap: balance; }
+.blitz-typed .answer-input { text-align: center; font-family: var(--serif); font-size: var(--t-lg); }
 
 .lab-uses { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0; }
 .lab-verb-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
