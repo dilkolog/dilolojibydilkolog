@@ -121,7 +121,8 @@ describe('reviews', () => {
   })
 
   it('adds words with open mistakes even when not due', () => {
-    const s = learned(decide, daysAgo(1))
+    // Met three days ago (a word met yesterday is also asked in a sentence; see "the day after").
+    const s = learned(decide, daysAgo(3))
     const fresh = { ...s, skills: { recognition: { ...s.skills.recognition!, due: daysAgo(-5) } } }
     const mistakes = recordMistake([], {
       entryId: 'en:decide',
@@ -183,6 +184,19 @@ describe('habits', () => {
     const plan = buildDailyPlan(input({ catalog: EN_CATALOG, states, settings: { ...settings, newWordsPerDay: 0 } }))
     const reviews = plan.items.filter((i) => i.kind === 'exercise' && i.reason !== 'new').map((i) => i.entryId)
     expect(reviews.indexOf('en:improve')).toBeLessThan(reviews.indexOf('en:decide'))
+  })
+})
+
+describe('the day after', () => {
+  it('a word met yesterday is also asked inside a sentence, one met earlier is not', () => {
+    const states = [learned(decide, daysAgo(1)), learned(affect, daysAgo(4))].map((s) => ({
+      ...s,
+      skills: { recognition: { ...s.skills.recognition!, due: daysAgo(0.1) } },
+    }))
+    const plan = buildDailyPlan(input({ states, settings: { ...settings, newWordsPerDay: 0, dailyMinutes: 30 } }))
+    const of = (id: string) => plan.items.filter((i) => i.entryId === id).map((i) => i.exerciseType)
+    expect(of('en:decide')).toContain('mc_context')
+    expect(of('en:affect')).not.toContain('mc_context')
   })
 })
 
