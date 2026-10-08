@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { contrastProblems, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
+import { contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -522,4 +522,24 @@ test('verb lab: memorise mode asks knew it or not, and a marked-through table co
   await expect(table.locator('.lab-cover')).toHaveCount(6)
   await main.getByRole('tab', { name: 'Ustalık' }).click()
   await expect(main.getByRole('button', { name: /^Présent:/ })).toContainText('Öğreniliyor (10/60)')
+})
+
+test("Games: the day's reviews come first, with a start button", async ({ page }) => {
+  test.setTimeout(120_000)
+  await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  // Nothing due yet: only new words wait, no note.
+  await expect(page.locator('.games-day-first')).toHaveCount(0)
+  await openScreen(page, 'Bugün')
+  await finishSession(page)
+  // Two days on, the words met today are due.
+  await page.clock.setFixedTime(new Date('2026-03-06T10:00:00'))
+  await page.reload()
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
+  await openScreen(page, 'Oyunlar')
+  const note = page.locator('.games-day-first')
+  await expect(note).toContainText(/Önce bugünkü görevin: \d+ tekrar/)
+  await note.getByRole('button', { name: 'Başlat' }).click()
+  await expect(page.locator('.session-stage')).toBeVisible()
 })
