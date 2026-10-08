@@ -51,6 +51,18 @@
   --gold: #f59e0b;
   --gold-text: #b45309;   /* amber-700: XP numbers as text (gold itself is too light on white) */
 
+  /* Category / topic palette: games and mistake kinds (distinct from feedback ok/near/bad). */
+  --cat-blue: #3b82f6;
+  --cat-emerald: #10b981;
+  --cat-orange: #f97316;
+  --cat-violet: #8b5cf6;
+  --cat-rose: #f43f5e;
+  --cat-amber: #f59e0b;
+  --cat-pink: #ec4899;
+  --cat-teal: #14b8a6;
+  --cat-red: #ef4444;
+  --cat-indigo: #6366f1;
+
   /* Feedback buttons carry white text: the 600/700 steps reach 4.5:1. */
   --ok-btn: #047857; --ok-btn-deep: #065f46;
   --near-btn: #c2410c; --near-btn-deep: #9a3412;
@@ -117,6 +129,16 @@
     --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #341d32; --bad-text: #fda4af;
     --gold-text: #fbbf24;
     --pill-ink: #cbd5e1;
+    --cat-blue: #60a5fa;
+    --cat-emerald: #34d399;
+    --cat-orange: #fb923c;
+    --cat-violet: #a78bfa;
+    --cat-rose: #fb7185;
+    --cat-amber: #fbbf24;
+    --cat-pink: #f472b6;
+    --cat-teal: #2dd4bf;
+    --cat-red: #f87171;
+    --cat-indigo: #818cf8;
     color-scheme: dark;
   }
 }
@@ -145,6 +167,16 @@
   --bad: #f43f5e; --bad-deep: #be123c; --bad-soft: #341d32; --bad-text: #fda4af;
   --gold-text: #fbbf24;
   --pill-ink: #cbd5e1;
+  --cat-blue: #60a5fa;
+  --cat-emerald: #34d399;
+  --cat-orange: #fb923c;
+  --cat-violet: #a78bfa;
+  --cat-rose: #fb7185;
+  --cat-amber: #fbbf24;
+  --cat-pink: #f472b6;
+  --cat-teal: #2dd4bf;
+  --cat-red: #f87171;
+  --cat-indigo: #818cf8;
   color-scheme: dark;
 }
 
@@ -2413,10 +2445,10 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .th-sort.is-active { color: var(--ink); }
 
 /* ---------- Games: each group in its own colour ---------- */
-.tone-review { --tone: #10b981; }
-.tone-listen { --tone: #3b82f6; }
-.tone-speed { --tone: #f97316; }
-.tone-grammar { --tone: #8b5cf6; }
+.tone-review { --tone: var(--cat-emerald); }
+.tone-listen { --tone: var(--cat-blue); }
+.tone-speed { --tone: var(--cat-orange); }
+.tone-grammar { --tone: var(--cat-violet); }
 .game-group-title { display: flex; align-items: center; gap: 0.5rem; }
 .game-group-title::before { content: ''; width: 0.75rem; height: 0.75rem; border-radius: var(--r-xs); background: var(--tone); }
 .game-group .game-card { position: relative; overflow: hidden; padding-top: 1.75rem; }
@@ -2613,9 +2645,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .lang-dot { position: absolute; top: 0.25rem; right: 0.5rem; width: 0.5rem; height: 0.5rem; border-radius: var(--r-full); background: var(--bad); box-shadow: 0 0 0 2px var(--surface); }
 
 /* ---------- Mistakes: a colour and sign per kind, letters marked ---------- */
-.tone-meaning { --tone: #f43f5e; } .tone-accent { --tone: #f59e0b; } .tone-typo { --tone: #f97316; }
-.tone-article, .tone-gender { --tone: #8b5cf6; } .tone-form { --tone: #3b82f6; } .tone-confusion { --tone: #ec4899; }
-.tone-collocation { --tone: #14b8a6; } .tone-false_friend { --tone: #ef4444; } .tone-cross_language { --tone: #6366f1; }
+.tone-meaning { --tone: var(--cat-rose); } .tone-accent { --tone: var(--cat-amber); } .tone-typo { --tone: var(--cat-orange); }
+.tone-article, .tone-gender { --tone: var(--cat-violet); } .tone-form { --tone: var(--cat-blue); } .tone-confusion { --tone: var(--cat-pink); }
+.tone-collocation { --tone: var(--cat-teal); } .tone-false_friend { --tone: var(--cat-red); } .tone-cross_language { --tone: var(--cat-indigo); }
 .mistake-group-title { display: flex; align-items: center; gap: 0.5rem; }
 .mistake-badge {
   display: inline-grid; place-items: center; min-width: 2rem; height: 2rem; padding: 0 0.375rem; border-radius: var(--r-sm);
@@ -4265,6 +4297,16 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   --gold: #d1a94f; --gold-text: #dcbb6a; --flame: #cf8a56;
   --gender-m: #5cb8c8; --gender-f: #a493d6;
   --plant-leaf: #5fb596; --plant-thirsty: #b8c37a; --plant-dry: #b97a3a;
+  --cat-blue: #5b82b6;
+  --cat-emerald: #4fa58a;
+  --cat-orange: #cf8a56;
+  --cat-violet: #8f7ebd;
+  --cat-rose: #cf6a7a;
+  --cat-amber: #d1a94f;
+  --cat-pink: #bd6e93;
+  --cat-teal: #4ea39c;
+  --cat-red: #c45b5b;
+  --cat-indigo: #6f75b8;
 }
 
 /* Empty screens, alive: each picture does one small thing (reduced motion stills them all). */

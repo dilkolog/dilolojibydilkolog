@@ -57,6 +57,17 @@ colors:
   flame: "#f97316"
   plant-leaf: "#10b981"
   plant-seed: "#a16207"
+  # Kategori ve konu paleti: oyun grupları ve hata türleri
+  cat-blue: "#3b82f6"
+  cat-emerald: "#10b981"
+  cat-orange: "#f97316"
+  cat-violet: "#8b5cf6"
+  cat-rose: "#f43f5e"
+  cat-amber: "#f59e0b"
+  cat-pink: "#ec4899"
+  cat-teal: "#14b8a6"
+  cat-red: "#ef4444"
+  cat-indigo: "#6366f1"
   # Grafikler
   chart-data: "{colors.lang}"
   chart-grid: "{colors.rule}"
@@ -227,6 +238,7 @@ Slate nötrler üzerinde dil başına bir vurgu; geri bildirim için ayrı, sabi
 ### Ayrı anlam katmanları
 - **Dilbilgisel cinsiyet**: `--gender-m` (camgöbeği), `--gender-f` (mor). Dil renklerinden ve geri bildirimden bilerek ayrı.
 - **Ödül**: `--gold` / `--gold-text` (XP), `--flame` (seri). **Bahçe**: `--plant-*`.
+- **Kategori / konu paleti**: `--cat-*` (oyun grupları ve hata türleri: mavi, zümrüt, turuncu, mor, gül, kehribar, pembe, turkuaz, kırmızı, çivit).
 
 **Tek Ses Kuralı.** Bir ekranda yalnızca bir vurgu ailesi vardır: aktif dilin `--lang`'ı. Başka bir dilin rengi yalnızca o dili etiketlerken (dil seçici, dil rozeti) görünür.
 
@@ -349,6 +361,5 @@ Ad, iz ve değer üç sütun; dolgu `--chart-data`. Grafiklerde tek veri rengi v
 
 > Bu bölüm **kural değildir**; bugünkü kodun yukarıdaki kurallardan saptığı yerlerin listesi.
 
-- **Kategori renkleri token'sız.** Kural: Token Kuralı. Gerçek: hata ve beceri türleri için `--tone` değerleri düz Tailwind hex'i (#3b82f6, #8b5cf6, #14b8a6, #ef4444…). Yer: `src/index.css` 2409–2411, 2597–2599 civarı, yaklaşık 19 kural. Durum: düzeltilmeli; bir `--cat-*` kategori paleti tanımlanıp koyu ve sakin temaya da eklenmeli.
 - **Süs öğelerinde düz renkler.** Gerçek: seri alevi seviyeleri, profil afişleri, avatar çerçeveleri, madalyalar düz hex kullanıyor. Yer: `src/index.css` 2453–2455, 4092–4110; `src/ui/Medal.tsx` (24 yer). Durum: izin verilen istisna olarak öneriliyor (illüstrasyon ve kozmetik; arayüz anlamı taşımıyor). Senin onayınla kesinleşir.
 - **Sol kenar şeritleri.** `border-left: 3px` beş yerde (tanım, hikâye çevirisi, karışma notu, günlük, `.hyper`). Tutarlı bir desen gibi kullanılıyor; şimdilik izin verilen istisna. Yeni yerlerde iç kutu (`.note`) tercih edilmeli.
