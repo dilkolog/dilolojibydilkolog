@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { contrastProblems, labFavorites, openScreen, openVerbLab, overflow, startWithSamples } from './helpers'
+import { contrastProblems, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -208,9 +208,9 @@ test('verb lab: forms put in the review queue come back on Today and in the revi
   const main = page.locator('.lab-main')
   await main.getByRole('button', { name: 'Tekrar listeme ekle' }).click()
   await expect(main.getByRole('button', { name: 'Tekrar listende' })).toBeDisabled()
-  // Today offers the review.
+  // Today: three of the six join the day's session; the tile offers the other three.
   await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
-  await expect(page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' })).toContainText('6 çekim')
+  await expect(page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' })).toContainText('3 çekim')
   await page.locator('.tile', { hasText: 'Fiil çekimi tekrarı' }).click()
   // The review asks one person of each form; a wrong answer is corrected and goes to the garden as shaky.
   for (let i = 0; i < 6; i++) {
@@ -330,4 +330,36 @@ test('verb lab: the verb in real sentences, and the same verb in the other langu
   await expect(quiz.locator('.accent-result')).toContainText('Doğrusu')
   await expect(quiz.locator('.lab-blank')).not.toHaveText('_____')
   expect(await overflow(page)).toEqual([])
+})
+
+test('verb lab forms due are mixed into the day\'s session, and the answers go to the lab', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  await page.locator('.lab-main').getByRole('button', { name: 'Tekrar listeme ekle' }).click()
+  await expect(page.locator('.lab-main').getByRole('button', { name: 'Tekrar listende' })).toBeDisabled()
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  // Watch for the form questions while the session is played through (every answer is wrong).
+  await page.evaluate(() => {
+    ;(window as unknown as { formsSeen: number }).formsSeen = 0
+    new MutationObserver(() => {
+      if (document.querySelector('.session-form:not([data-seen])')) {
+        document.querySelector('.session-form')!.setAttribute('data-seen', '')
+        ;(window as unknown as { formsSeen: number }).formsSeen++
+      }
+    }).observe(document.body, { childList: true, subtree: true })
+  })
+  await playSession(page)
+  expect(await page.evaluate(() => (window as unknown as { formsSeen: number }).formsSeen)).toBe(3)
+  const wrong = () =>
+    page.evaluate(
+      () =>
+        new Promise<number>((resolve) => {
+          const open = indexedDB.open('kelime-koc')
+          open.onsuccess = () => {
+            const get = open.result.transaction('meta').objectStore('meta').get('lab:fr')
+            get.onsuccess = () => resolve(Object.values((get.result?.value?.records ?? {}) as Record<string, { wrong: number }>).reduce((n, r) => n + r.wrong, 0))
+          }
+        }),
+    )
+  await expect.poll(wrong).toBe(3)
 })

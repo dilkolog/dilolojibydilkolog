@@ -6,7 +6,7 @@ import { conjugateTense, irregularForms, personsOf, subjectLabel, withSubject, t
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { sfx } from '../sounds'
 import { Diagnosis } from './Diagnosis'
-import { judge } from './PracticeTab'
+import { judge } from './labShared'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 
 /** How many forms one review sitting asks: short enough to fit a spare two minutes. */

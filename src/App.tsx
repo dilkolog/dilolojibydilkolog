@@ -1,5 +1,6 @@
 import { Suspense, lazy, type ReactElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, buildExtraNewPlan, type PlanItem } from './engine/dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, type PlanItem } from './engine/dailyPlan'
+import type { Tense as LabTense } from './engine/tenses'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
 import { answeredToday, progressStats } from './engine/progress'
@@ -58,7 +59,7 @@ import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
 import type { LabTab } from './ui/verbs/VerbLab'
-import { useFormsDue, useWarmup } from './ui/verbs/labShared'
+import { recordLabAnswer, useDayForms, useFormsDue, useWarmup } from './ui/verbs/labShared'
 import type { Command } from './ui/CommandPalette'
 import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
@@ -621,9 +622,11 @@ export default function App() {
   /** The day's plan; a long day (and no session cap set) in two sittings, the first ending about halfway. */
   const startDay = () => {
     if (!plan) return
+    // A few of the verb lab's due forms join the words (interleaving), spread through the session.
+    const items = mixForms(plan.items, dayForms)
     const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
-    const end = split ? firstSittingEnd(plan.items) : plan.items.length
-    startSession(plan.items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < plan.items.length)
+    const end = split ? firstSittingEnd(items) : items.length
+    startSession(items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
   }
   /** A practice of just the words marked hard, apart from the day's plan. */
   const practiceDifficult = () =>
@@ -708,6 +711,7 @@ export default function App() {
     return () => window.removeEventListener('resize', place)
   })
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
+  const dayForms = useDayForms(settings?.activeLanguage ?? 'en', screen.name, MAX_DAY_FORMS)
   const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
   if (settings === undefined) return null
   if (settings === null) {
@@ -908,6 +912,7 @@ export default function App() {
                 options={options}
                 settings={settings}
                 onSettings={updateSettings}
+                onFormAnswer={(f, ok, given) => void recordLabAnswer(scheduler, f.language, f.verb, f.tense as LabTense, f.person, ok, given)}
                 onFinish={finishSession}
                 onQuit={() => {
                   reload()
@@ -1108,7 +1113,8 @@ export default function App() {
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
-                formsDue={formsDue}
+                // The forms mixed into the day's session are counted there, not on a tile of their own.
+                formsDue={Math.max(0, formsDue - dayForms.length)}
                 onForms={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'review' }) : undefined}
                 warmup={warmup}
                 onWarmup={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'warmup' }) : undefined}
