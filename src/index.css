@@ -1430,6 +1430,8 @@ main:focus { outline: none; }
 
 .reader { font-family: var(--serif); font-size: var(--reader-size, var(--t-lg)); line-height: 1.85; max-width: 42rem; }
 .reader p { margin: 0 0 1.25rem; }
+/* The sentence of the word being looked at, softly lit: where the eye should come back to. */
+.reader .rs.is-lit { background: color-mix(in srgb, var(--lang) 7%, transparent); border-radius: var(--r-xs); box-decoration-break: clone; -webkit-box-decoration-break: clone; transition: background-color var(--dur-fast) var(--ease-out); }
 .rw { cursor: pointer; border-radius: var(--r-xs); padding: 0 1px; transition: background-color var(--dur-fast) var(--ease-out); }
 .rw:hover, .rw:focus-visible { background: var(--surface-2); outline: none; }
 .rw-unseen { background: var(--lang-soft); color: var(--lang-text); }
@@ -2571,6 +2573,17 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 .page-tab:hover { color: var(--ink); background: var(--surface-2); }
 .page-tab[aria-selected='true'] { color: var(--lang-text); border-bottom-color: var(--lang); }
+/*
+ * Sliding tab indicator (useTabIndicator): one bar or pill that moves to the chosen tab instead of
+ * jumping. The tab's own underline or background steps aside while the indicator is there.
+ */
+.has-ind { position: relative; isolation: isolate; }
+.has-ind.ind-line::after { content: ''; position: absolute; left: 0; bottom: var(--ind-bottom, 0); height: 3px; width: var(--ind-w); transform: translateX(var(--ind-x)); background: var(--lang); border-radius: 3px 3px 0 0; pointer-events: none; }
+.page-tabs.has-ind { --ind-bottom: -2px; }
+.has-ind.ind-line > [aria-selected='true'] { border-bottom-color: transparent; }
+.has-ind.ind-pill::before { content: ''; position: absolute; left: 0; top: 0; z-index: -1; width: var(--ind-w); height: var(--ind-h); transform: translate(var(--ind-x), var(--ind-y)); background: var(--lang-soft); border-radius: var(--r-full); pointer-events: none; }
+.has-ind.ind-pill > [aria-current='page'] { background: transparent; }
+.ind-ready.ind-line::after, .ind-ready.ind-pill::before { transition: transform var(--dur) var(--ease-out), width var(--dur) var(--ease-out); }
 
 /* Long expressions step down so they stay on one line. */
 
@@ -2664,6 +2677,7 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .milestone-art { position: relative; display: grid; place-items: center; width: 8rem; height: 8rem; }
 .milestone-emoji { position: relative; z-index: 1; font-size: 4.5rem; line-height: 1; animation: pop var(--dur) var(--ease-spring); }
 .milestone-title { font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.02em; }
+.milestone-level { position: relative; z-index: 1; display: grid; place-items: center; }
 .milestone-actions { justify-content: center; width: 100%; }
 @media (max-width: 30rem) { .milestone { border-radius: var(--r-lg) var(--r-lg) 0 0; } }
 
@@ -4053,6 +4067,12 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* The combo flame is alive, and a longer run burns brighter. */
 .combo svg { transform-origin: 50% 90%; animation: flicker 1.6s ease-in-out infinite; }
 .combo[data-tier='2'] { filter: drop-shadow(0 0 4px rgb(249 115 22 / 0.55)); }
+/* 5, 10, 20 in a row: the count springs up and the flame throws two embers, once. */
+.combo { position: relative; }
+.combo[data-burst] { animation: combo-burst 560ms var(--ease-spring); }
+.combo[data-burst]::before, .combo[data-burst]::after { content: ''; position: absolute; left: 0.5rem; bottom: 60%; width: 3px; height: 3px; border-radius: 50%; background: var(--flame); opacity: 0; pointer-events: none; animation: ember 900ms ease-out 2; --dx: -6px; }
+.combo[data-burst]::after { left: 0.75rem; --dx: 6px; animation-delay: 150ms; }
+@keyframes combo-burst { 0% { transform: scale(1); } 45% { transform: scale(1.35); } 100% { transform: none; } }
 .combo[data-tier='3'] { font-size: var(--t-md); filter: drop-shadow(0 0 7px rgb(249 115 22 / 0.8)); }
 
 /* A new level: the number flips, a gold ring leaves the badge. */

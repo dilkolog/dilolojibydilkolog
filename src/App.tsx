@@ -72,6 +72,7 @@ import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
 import { currentLevel, levelGroups } from './engine/lists'
+import { useTabIndicator } from './ui/useTabIndicator'
 import { azure } from './ui/pronunciation'
 
 /*
@@ -717,6 +718,7 @@ export default function App() {
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
   const dayForms = useDayForms(settings?.activeLanguage ?? 'en', screen.name, MAX_DAY_FORMS)
   const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
+  const hubTabsRef = useTabIndicator(screen.name)
   const verbOfDay = useVerbOfDay(settings?.activeLanguage ?? 'en', data?.vocabulary ?? NO_WORDS, screen.name)
   if (settings === undefined) return null
   if (settings === null) {
@@ -885,7 +887,7 @@ export default function App() {
           <main id="main" tabIndex={-1} className={`main${WIDE_SCREENS.has(screen.name) ? ' main-wide' : ''}`}>
             {/* Related screens under one menu place: switch between them here. */}
             {place && GROUPS[place]?.some((g) => g.screen === screen.name) && (
-              <nav className="hub-tabs" aria-label={NAV.find((n) => n.screen === place)!.label}>
+              <nav className="hub-tabs ind-pill" aria-label={NAV.find((n) => n.screen === place)!.label} ref={hubTabsRef}>
                 {GROUPS[place]!.filter(
                   (g) => (g.screen !== 'verbs' || settings.activeLanguage !== 'en') && (g.screen === screen.name || !settings.hiddenTabs?.includes(g.screen)),
                 ).map((g) => (

@@ -366,6 +366,8 @@ export interface Milestone {
   emoji: string
   title: string
   text: string
+  /** A level reached: the badge strikes from the old number to the new one. */
+  level?: { from: number; to: number }
 }
 
 const WORD_STEPS = [10, 50, 100, 250, 500, 1000, 2000]
@@ -376,7 +378,17 @@ const MASTERED_STEPS = [1, 10, 50, 100, 250, 500]
  * Nth) word that settled, the Nth word met. The biggest one wins when several are crossed at once.
  */
 export function crossedMilestone(before: { level: number; stats: GameStats }, after: { level: number; stats: GameStats }): Milestone | null {
-  if (after.level > before.level) return { id: `level-${after.level}`, emoji: '⭐', title: `Seviye ${after.level}!`, text: 'Çalıştıkça XP birikiyor; bir seviye daha atladın.' }
+  if (after.level > before.level) {
+    const title = levelTitle(after.level)
+    const newTitle = title !== levelTitle(before.level)
+    return {
+      id: `level-${after.level}`,
+      emoji: '⭐',
+      title: `Seviye ${after.level}!`,
+      text: newTitle ? `Yeni unvanın: ${title}. Çalıştıkça XP birikiyor; bir basamak daha çıktın.` : 'Çalıştıkça XP birikiyor; bir seviye daha atladın.',
+      level: { from: before.level, to: after.level },
+    }
+  }
   const settled = MASTERED_STEPS.filter((n) => before.stats.mastered < n && after.stats.mastered >= n).at(-1)
   if (settled)
     return settled === 1

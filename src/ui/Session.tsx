@@ -318,7 +318,7 @@ export function SessionScreen(p: Props) {
           )}
         </div>
         {combo >= 3 ? (
-          <span className="combo" key={combo} data-tier={combo >= 10 ? 3 : combo >= 5 ? 2 : 1}>
+          <span className="combo" key={combo} data-tier={combo >= 10 ? 3 : combo >= 5 ? 2 : 1} data-burst={combo === 5 || combo === 10 || combo === 20 ? '' : undefined}>
             <FlameIcon size={18} /> {combo}
           </span>
         ) : (

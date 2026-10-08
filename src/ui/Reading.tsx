@@ -52,6 +52,8 @@ const STATUS_TEXT: Record<ReadStatus, string> = {
 interface Selected {
   token: ReadToken
   sentence: string
+  /** Where the sentence is ("paragraph.sentence"), to light it in the text. */
+  at?: string
 }
 
 /**
@@ -806,7 +808,7 @@ export function ReadingScreen({
         {analysis.paragraphs.map((p, i) => (
           <p key={i}>
             {p.map((s, j) => (
-              <span key={j}>
+              <span key={j} className={selected && (selected.at ? selected.at === `${i}.${j}` : selected.sentence === s.text) ? 'rs is-lit' : undefined}>
                 {s.tokens.map((t, k) =>
                   t.key ? (
                     <span
@@ -822,9 +824,9 @@ export function ReadingScreen({
                           toggleMulti(t.key!)
                           return
                         }
-                        setSelected({ token: t, sentence: s.text })
+                        setSelected({ token: t, sentence: s.text, at: `${i}.${j}` })
                       }}
-                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelected({ token: t, sentence: s.text }))}
+                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelected({ token: t, sentence: s.text, at: `${i}.${j}` }))}
                     >
                       {t.text}
                     </span>

@@ -608,3 +608,18 @@ test('Games: against the clock can be played by writing the word from its meanin
   await input.press('Enter')
   await expect(page.getByRole('status').filter({ hasText: 'Doğrusu:' })).toBeVisible()
 })
+
+test('tabs: one indicator slides to the chosen tab; reading lights the sentence of the chosen word', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const tabs = page.locator('.lab-main .lab-tabs')
+  const placed = () => tabs.evaluate((el) => [parseFloat(getComputedStyle(el).getPropertyValue('--ind-x')), (el.querySelector('[aria-selected="true"]') as HTMLElement).offsetLeft])
+  await expect(tabs).toHaveClass(/has-ind/)
+  await tabs.getByRole('tab', { name: 'Ustalık' }).click()
+  await expect.poll(async () => { const [x, left] = await placed(); return x === left && left > 0 }).toBe(true)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill("L'arbre est grand. Le chat dort.")
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.locator('.rw', { hasText: /^chat$/ }).first().click()
+  await expect(page.locator('.rs.is-lit')).toHaveText('Le chat dort.')
+})

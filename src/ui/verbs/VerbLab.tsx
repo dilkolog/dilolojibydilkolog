@@ -20,6 +20,7 @@ import { TimedTab } from './TimedTab'
 import { PickerLists, PickerTop } from './VerbPicker'
 import type { Level } from '../../engine/verbLab'
 import { recordVisit } from '../screenUsage'
+import { useTabIndicator } from '../useTabIndicator'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, verbEntry, verbKey, type LabLanguage } from './labShared'
 
 /**
@@ -92,6 +93,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     recordVisit(`verbs:${tab}`)
     if (timedFirst) recordVisit('verbs:practice:timed')
   }, [tab]) // eslint-disable-line react-hooks/exhaustive-deps
+  const tabsRef = useTabIndicator(tab)
   const [level, setLevel] = useState<Level | null>(null)
   const [family, setFamily] = useState<FamilyId | undefined>()
   const main = useRef<HTMLElement>(null)
@@ -161,7 +163,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
           <PickerTop language={language} verb={verb} level={level} levels={levels} byFrequency={byFrequency} frequency={frequency} onVerb={choose} />
         </div>
         <section className="card lab-main" ref={main} aria-label="Fiil çalışması">
-          <div className="lab-tabs" role="tablist" aria-label="Çalışma türü">
+          <div className="lab-tabs ind-line" role="tablist" aria-label="Çalışma türü" ref={tabsRef}>
             {TABS.map((t) => (
               <button key={t.id} id={`lab-tab-${t.id}`} role="tab" aria-selected={tab === t.id} aria-controls="lab-panel" className="lab-tab" onClick={() => setTab(t.id)}>
                 {t.label}

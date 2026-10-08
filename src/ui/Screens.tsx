@@ -1112,9 +1112,15 @@ function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose
       <div className="dialog milestone" role="dialog" aria-modal="true" aria-labelledby="ms-title">
         <div className="milestone-art">
           <Burst />
-          <span className="milestone-emoji" aria-hidden>
-            <Glyph emoji={milestone.emoji} size={64} />
-          </span>
+          {milestone.level ? (
+            <span className="milestone-level" aria-hidden>
+              <LevelUpBadge from={milestone.level.from} to={milestone.level.to} />
+            </span>
+          ) : (
+            <span className="milestone-emoji" aria-hidden>
+              <Glyph emoji={milestone.emoji} size={64} />
+            </span>
+          )}
         </div>
         <h2 id="ms-title" className="milestone-title">
           {milestone.title}
