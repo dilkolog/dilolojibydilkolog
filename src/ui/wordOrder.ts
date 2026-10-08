@@ -2,6 +2,8 @@
  * The order of the word list as last shown (search, filters, sort), so the word page can step to
  * the previous and next word in that same order. Per tab, like the list itself.
  */
+import { addedTime } from '../engine/types'
+
 const KEY = 'kelime-koc:word-order'
 
 export function saveWordOrder(ids: readonly string[]) {
@@ -25,7 +27,7 @@ export function loadWordOrder(): string[] {
 export function neighbours<T extends { id: string; addedAt?: Date }>(id: string, vocabulary: readonly T[], saved: readonly string[] = loadWordOrder()) {
   const known = new Set(vocabulary.map((v) => v.id))
   let order = saved.filter((x) => known.has(x))
-  if (!order.includes(id)) order = [...vocabulary].sort((a, b) => (b.addedAt?.getTime() ?? 0) - (a.addedAt?.getTime() ?? 0)).map((v) => v.id)
+  if (!order.includes(id)) order = [...vocabulary].sort((a, b) => addedTime(b) - addedTime(a)).map((v) => v.id)
   const i = order.indexOf(id)
   return { prev: i > 0 ? order[i - 1] : undefined, next: i >= 0 && i < order.length - 1 ? order[i + 1] : undefined, index: i, total: order.length }
 }

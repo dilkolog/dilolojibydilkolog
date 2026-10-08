@@ -3,8 +3,10 @@ import webpush from 'web-push'
 import type { PushRecord } from './push.js'
 
 /**
- * Daily (vercel.json cron, ~20:00 Turkey time): a push reminder to every device whose learner
- * hasn't studied today, on any of their synced devices. Expired subscriptions are removed.
+ * Every hour (vercel.json: one daily cron per UTC hour, `?h=` its hour, as the Hobby plan runs each
+ * cron once a day and anywhere within its hour): a push reminder to the devices whose local hour is
+ * their reminder hour (default 20:00) and whose learner hasn't studied today, on any of their synced
+ * devices. Expired subscriptions are removed.
  */
 const PUBLIC_KEY = 'BB1ttPY6-CMNk_Zl7lmm6aJuyxi0cIHr6TUagJ0u_Fpjt3YdaK6vM6c2koor8osB4pIXbPbv57X7TUBmJOhuCIg'
 
@@ -38,10 +40,18 @@ export function resting(r: PushRecord, now: number): boolean {
   return !!r.restWeekdays?.includes(new Date(`${day}T12:00:00Z`).getUTCDay())
 }
 
+/** The learner's local hour (0–23) during UTC hour `utcHour`; `tz` as Date#getTimezoneOffset. */
+export const localHour = (tz: number, utcHour: number) => Math.floor((((utcHour * 60 - tz) % 1440) + 1440) % 1440 / 60)
+
+/** This run's reminders are for the devices whose reminder hour it is now where they are. */
+export const dueNow = (r: PushRecord, utcHour: number) => localHour(r.tz, utcHour) === (r.hour ?? 20)
+
 export async function GET(request: Request): Promise<Response> {
   if (!process.env.CRON_SECRET || request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) return new Response('unauthorized', { status: 401 })
   webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY ?? '')
   const now = Date.now()
+  const h = new URL(request.url).searchParams.get('h')
+  const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()
 
   const records: { path: string; record: PushRecord }[] = []
   let cursor: string | undefined
@@ -63,6 +73,7 @@ export async function GET(request: Request): Promise<Response> {
   let sent = 0
   let removed = 0
   for (const { path, record: r } of records) {
+    if (!dueNow(r, utcHour)) continue
     // Sunday evening: the week in one line, studied today or not (not on a holiday).
     const week = weeklyText(r, now)
     if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) continue
