@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 import { relativeWorkload } from '../engine/scheduler'
 import { shortcutHelp } from '../engine/accents'
 import { TARGET_LANGUAGES } from '../engine/types'

@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { db } from '../data/instance'
 import { azure, testAzureKey } from './pronunciation'
 import { Help } from './SettingHelp'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 
 /** Azure Speech key + region for pronunciation scoring: entry, test, off. */
 export function AzureSpeechSettings() {

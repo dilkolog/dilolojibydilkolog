@@ -7,7 +7,7 @@ import { LANGUAGE_NAME } from './labels'
 import { saveSentence } from './saveSentence'
 import { canSpeak, speak } from './speech'
 import { useTranslationReady } from './useTranslationReady'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 import { PlusIcon, SpeakerIcon } from './icons'
 import { MAX_TOTAL, sentencesOf } from './translateSentences'
 

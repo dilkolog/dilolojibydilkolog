@@ -7,7 +7,7 @@ import { MnemonicDialog } from './Mnemonic'
 import { ImagePicker } from './ImagePicker'
 import { comparePronunciation, playWord, preloadRecording } from './speech'
 import { useMediaUrl } from './useMedia'
-import { undoable } from './toast'
+import { undoable } from './toastFeed'
 import { withSources } from '../data/provenance'
 import { BulbIcon } from './icons'
 

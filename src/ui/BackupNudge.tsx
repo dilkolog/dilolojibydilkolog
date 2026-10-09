@@ -3,7 +3,7 @@ import { db } from '../data/instance'
 import { BACKUP_MIN_WORDS, backupState, dismissBackupNudge, downloadBackup, keepStorage } from './backup'
 import { getCredential } from './syncRunner'
 import { CloseIcon, DataIcon } from './icons'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 
 /** One line on the home screen when the words live only on this device and no recent backup exists. */
 export function BackupNudge({ onOpenSync }: { onOpenSync: () => void }) {

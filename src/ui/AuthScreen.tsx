@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { accountStatus, deriveAccount, SyncAuthError, SyncNotAllowedError } from '../data/sync'
 import { BrandMark, ChevronLeftIcon, LockIcon } from './icons'
 import { getSyncCode, NOT_ALLOWED, runSync, setAccount, setSyncCode } from './syncRunner'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 
 export type AuthMode = 'login' | 'create'
 

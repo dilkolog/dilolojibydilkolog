@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-pwa/client" />
 import { registerSW } from 'virtual:pwa-register'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 
 const HOUR = 60 * 60 * 1000
 

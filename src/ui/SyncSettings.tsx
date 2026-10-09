@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 import { db } from '../data/instance'
 import { generateSyncCode, normalizeCode, SyncNotAllowedError } from '../data/sync'
 import { getSyncCode, NOT_ALLOWED, runSync, setSyncCode } from './syncRunner'

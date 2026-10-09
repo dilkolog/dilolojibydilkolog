@@ -4,7 +4,7 @@ import type { AchievementState, BadgeLog } from '../engine/gamification'
 import { BadgeMoment } from './BadgeMoment'
 import { markBadgesSeen, seenBadges } from './badgeSeen'
 import type { GameState } from './game'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 
 /** More new badges than this at once did not just happen: a backup restored, a sync, a new device. */
 export const CELEBRATE_MAX = 3

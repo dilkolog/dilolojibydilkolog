@@ -286,7 +286,7 @@ test('verb lab: the Turkish bridge, the verb families and the find-the-tense qui
   // Think in Turkish: a Turkish sentence, choose its tense.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
-  await page.getByRole('menuitem', { name: /^Zamanı\ bul/ }).click()
+  await page.getByRole('menuitem', { name: /^Zamanı bul/ }).click()
   await expect(main.locator('.lab-tensequiz .prompt-text')).toBeVisible()
   await expect(main.locator('.lab-tensequiz .lab-option')).toHaveCount(4)
   await main.locator('.lab-tensequiz .lab-option').first().click()
@@ -325,7 +325,7 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   // Which verb? A conjugated word to trace back: the verb, then the tense.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
-  await page.getByRole('menuitem', { name: /^Hangi\ fiil\?/ }).click()
+  await page.getByRole('menuitem', { name: /^Hangi fiil\?/ }).click()
   await expect(main.locator('.lab-reverse .prompt-text')).toBeVisible()
   await main.locator('.lab-reverse input').fill('zzz')
   await page.keyboard.press('Enter')
@@ -335,7 +335,7 @@ test('verb lab: wrong answers are named, they show in the weak-spot map, and "wh
   expect(await overflow(page)).toEqual([])
   // Subjunctive or not: two real forms, and why after the answer.
   await main.getByRole('button', { name: 'Diğer alıştırmalar' }).click()
-  await page.getByRole('menuitem', { name: /^Kip\ seç/ }).click()
+  await page.getByRole('menuitem', { name: /^Kip seç/ }).click()
   await expect(main.locator('.lab-moodquiz .lab-option')).toHaveCount(2)
   await main.locator('.lab-moodquiz .lab-option').first().click()
   await expect(main.locator('.lab-moodquiz .accent-result')).toBeVisible()
