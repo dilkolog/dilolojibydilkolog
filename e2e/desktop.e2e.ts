@@ -684,11 +684,13 @@ test('badges: earned with a date, shown newest first on the profile, one card pe
 })
 
 test('translation: "Çevir" fills the Turkish of a sentence when the server can translate, and is absent when not', async ({ page }) => {
+  // Initially simulate server unavailable so button is absent regardless of live backend proxy.
+  await page.route('**/api/translate?usage=1', (r) => r.fulfill({ status: 503, json: { error: 'unavailable' } }))
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
   await page.getByRole('button', { name: 'Ekle', exact: true }).click()
   await page.getByRole('menuitem').first().click()
-  // The preview has no server functions: no translation, no button.
+  // When the server has no translation function, the button stays absent.
   await page.getByLabel('Cümle', { exact: true }).first().fill('Le chat dort.')
   await expect(page.getByRole('button', { name: /Çevir/ })).toHaveCount(0)
   // With the server answering (stubbed here), the button appears and fills the field.
