@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BADGE_CATEGORIES, badgeCategory, levelTitle, medalTier } from '../engine/gamification'
+import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, type BadgeSeries } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
@@ -30,7 +30,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const [picking, setPicking] = useState(false)
   const [tab, setTab] = useState<'badges' | 'titles' | 'share'>('badges')
   const tabsRef = useTabIndicator(tab)
-  const [openBadge, setOpenBadge] = useState<Achievement | null>(null)
+  const [openBadge, setOpenBadge] = useState<BadgeSeries | null>(null)
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
 
@@ -44,14 +44,16 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const unlockables: Unlockables | null = game ? { level: game.level.level, stats: game.stats, badges: new Set(game.achievements.filter((a) => a.unlocked).map((a) => a.id)) } : null
 
   const unlocked = game ? game.achievements.filter((a) => a.unlocked) : []
-  // The badges closest to being earned: something concrete to go for next.
-  const nextBadges = game
-    ? game.achievements
-        .filter((a) => !a.unlocked)
-        .sort((a, b) => b.value / b.goal - a.value / a.goal)
-        .slice(0, 3)
-    : []
-  const locked = game ? game.achievements.filter((a) => !a.unlocked && !nextBadges.includes(a)) : []
+  // One card per series (50, 100, 250… words is one badge with steps).
+  const series = game ? badgeSeries(game.achievements) : []
+  const progressOf = (s: BadgeSeries) => (s.next ? s.next.value / s.next.goal : 1)
+  // The series closest to their next step: something concrete to go for next.
+  const nextBadges = series
+    .filter((s) => s.next)
+    .sort((a, b) => progressOf(b) - progressOf(a))
+    .slice(0, 3)
+  const earnedSeries = series.filter((s) => s.earned > 0)
+  const locked = series.filter((s) => s.earned === 0 && !nextBadges.includes(s))
 
   return (
     <div className="stack profile">
@@ -109,7 +111,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             </p>
           </div>
         )}
-        {game && unlockables && <ProfileAbout profile={profile} game={game} unlockables={unlockables} onOpenBadge={setOpenBadge} onCustomize={() => setCustomizing((c) => !c)} customizing={customizing} />}
+        {game && unlockables && <ProfileAbout profile={profile} game={game} unlockables={unlockables} onOpenBadge={(a) => setOpenBadge(series.find((x) => x.stat === a.stat) ?? null)} onCustomize={() => setCustomizing((c) => !c)} customizing={customizing} />}
         {editing && (
           <div className="stack avatar-editor">
             <div className="emoji-grid">
@@ -178,8 +180,10 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             <section className="badges-tab">
               <div className="badge-summary">
                 <div className="badge-summary-count">
-                  <strong>{unlocked.length}</strong>
-                  <span className="muted">/ {game.achievements.length} rozet</span>
+                  <strong>{earnedSeries.length}</strong>
+                  <span className="muted">
+                    / {series.length} rozet · {unlocked.length}/{game.achievements.length} kademe
+                  </span>
                 </div>
                 <span className="badge-progress" aria-hidden>
                   <span style={{ width: `${(unlocked.length / Math.max(1, game.achievements.length)) * 100}%` }} />
@@ -196,18 +200,18 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                 <div className="badge-block">
                   <h2 className="subhead">Sıradakiler</h2>
                   <div className="badge-grid badge-grid-next">
-                    {nextBadges.map((a) => (
-                      <Badge key={a.id} a={a} onOpen={setOpenBadge} />
+                    {nextBadges.map((s) => (
+                      <Badge key={s.stat} s={s} onOpen={setOpenBadge} />
                     ))}
                   </div>
                 </div>
               )}
-              {unlocked.length > 0 && (
+              {earnedSeries.length > 0 && (
                 <div className="badge-block">
                   <h2 className="subhead">Kazandıkların</h2>
                   <div className="badge-case">
-                    {unlocked.map((a) => (
-                      <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
+                    {earnedSeries.map((s) => (
+                      <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />
                     ))}
                   </div>
                 </div>
@@ -217,7 +221,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                   <summary className="small">Diğer rozetler ({locked.length})</summary>
                   {/* By what they count, so seventy badges read as five shelves. */}
                   {BADGE_CATEGORIES.map((c) => {
-                    const shelf = locked.filter((a) => badgeCategory(a) === c.id)
+                    const shelf = locked.filter((s) => badgeCategory(s.steps[0]) === c.id)
                     return (
                       shelf.length > 0 && (
                         <div key={c.id} className="badge-shelf-group">
@@ -225,8 +229,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                             {c.name} <span className="muted small">({shelf.length})</span>
                           </h3>
                           <div className="badge-case is-locked">
-                            {shelf.map((a) => (
-                              <Badge key={a.id} a={a} compact onOpen={setOpenBadge} />
+                            {shelf.map((s) => (
+                              <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />
                             ))}
                           </div>
                         </div>
@@ -244,7 +248,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         </>
       )}
 
-      {openBadge && <BadgeDialog a={openBadge} onClose={() => setOpenBadge(null)} />}
+      {openBadge && <BadgeDialog s={openBadge} onClose={() => setOpenBadge(null)} />}
 
       {picking && (
         <ImagePicker
@@ -263,24 +267,40 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
 type Achievement = NonNullable<ReturnType<typeof useGame>>['achievements'][number]
 
 
-function Badge({ a, compact = false, onOpen }: { a: Achievement; compact?: boolean; onOpen: (a: Achievement) => void }) {
+/** The steps of a series as stars: earned ones filled. Nothing for a badge of one step. */
+function Stars({ s }: { s: BadgeSeries }) {
+  if (s.steps.length < 2) return null
+  return (
+    <span className="badge-stars" role="img" aria-label={`${s.earned}/${s.steps.length} kademe`}>
+      {s.steps.map((step) => (
+        <i key={step.id} className={step.unlocked ? 'is-on' : undefined} />
+      ))}
+    </span>
+  )
+}
+
+/** One series on the shelf: the highest step earned (else the first to earn), its stars, the way to the next. */
+function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boolean; onOpen: (s: BadgeSeries) => void }) {
+  const a = s.top ?? s.next ?? s.steps[0]
+  const next = s.next
   return (
     <button
       type="button"
-      className={`badge-card${a.unlocked ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`}
-      onClick={() => onOpen(a)}
-      aria-label={`${a.title}: ${a.unlocked ? 'kazanıldı' : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
+      className={`badge-card${s.earned ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`}
+      onClick={() => onOpen(s)}
+      aria-label={`${a.title}: ${s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
     >
       <Medal icon={a.icon} tier={medalTier(a)} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
       <strong className="badge-title">{a.title}</strong>
-      {!compact && <span className="small muted badge-desc">{a.description}</span>}
-      {!a.unlocked && (
+      <Stars s={s} />
+      {!compact && <span className="small muted badge-desc">{next ? next.description : a.description}</span>}
+      {next && !compact && (
         <span className="badge-foot">
           <span className="badge-progress">
-            <span style={{ width: `${Math.min(100, (a.value / a.goal) * 100)}%` }} />
+            <span style={{ width: `${Math.min(100, (next.value / next.goal) * 100)}%` }} />
           </span>
           <span className="small muted">
-            {a.value}/{a.goal}
+            {next.value}/{next.goal}
           </span>
         </span>
       )}
@@ -288,8 +308,10 @@ function Badge({ a, compact = false, onOpen }: { a: Achievement; compact?: boole
   )
 }
 
-/** A badge up close: the medal, what it is for, and how far along you are. */
-function BadgeDialog({ a, onClose }: { a: Achievement; onClose: () => void }) {
+const fmtDay = (iso: string) => new Date(iso).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
+
+/** A badge up close: the medal of its highest step, what it is for, and every step with its date or how far along. */
+function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -300,8 +322,10 @@ function BadgeDialog({ a, onClose }: { a: Achievement; onClose: () => void }) {
     window.addEventListener('keydown', onKey, true)
     return () => window.removeEventListener('keydown', onKey, true)
   }, [onClose])
+  const a = s.top ?? s.next ?? s.steps[0]
   const tier = medalTier(a)
-  const pct = Math.min(100, Math.round((a.value / a.goal) * 100))
+  const next = s.next
+  const pct = next ? Math.min(100, Math.round((next.value / next.goal) * 100)) : 100
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog badge-dialog" role="dialog" aria-modal="true" aria-labelledby="badge-title">
@@ -315,23 +339,38 @@ function BadgeDialog({ a, onClose }: { a: Achievement; onClose: () => void }) {
         <h2 id="badge-title" className="badge-dialog-title">
           {a.title}
         </h2>
+        <Stars s={s} />
         <p className="muted">{a.description}</p>
-        {a.unlocked ? (
+        {s.steps.length > 1 ? (
+          <ol className="badge-steps">
+            {s.steps.map((step) => (
+              <li key={step.id} className={step.unlocked ? 'is-done' : undefined}>
+                <span>
+                  <strong>{step.title}</strong> <span className="muted small">· {step.description}</span>
+                </span>
+                <span className="small muted">
+                  {step.unlocked ? (step.unlockedAt ? fmtDay(step.unlockedAt) : 'kazandın') : `${step.value.toLocaleString('tr-TR')}/${step.goal.toLocaleString('tr-TR')}`}
+                </span>
+              </li>
+            ))}
+          </ol>
+        ) : a.unlocked ? (
           <p className="badge-dialog-status is-done">
-            <CheckCircleIcon size={18} /> {a.unlockedAt ? `${new Date(a.unlockedAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })} günü kazandın` : 'Kazandın'}
+            <CheckCircleIcon size={18} /> {a.unlockedAt ? `${fmtDay(a.unlockedAt)} günü kazandın` : 'Kazandın'}
           </p>
-        ) : (
+        ) : null}
+        {next && (
           <div className="badge-dialog-progress">
             <div className="row justify-between small">
-              <span className="muted">İlerleme</span>
+              <span className="muted">{s.steps.length > 1 ? `Sonraki kademe: ${next.title}` : 'İlerleme'}</span>
               <strong>
-                {a.value.toLocaleString('tr-TR')} / {a.goal.toLocaleString('tr-TR')}
+                {next.value.toLocaleString('tr-TR')} / {next.goal.toLocaleString('tr-TR')}
               </strong>
             </div>
             <span className="badge-progress">
               <span style={{ width: `${pct}%` }} />
             </span>
-            <p className="small muted">{a.goal - a.value > 0 ? `Kazanmana ${(a.goal - a.value).toLocaleString('tr-TR')} kaldı.` : 'Neredeyse!'}</p>
+            <p className="small muted">{next.goal - next.value > 0 ? `Kazanmana ${(next.goal - next.value).toLocaleString('tr-TR')} kaldı.` : 'Neredeyse!'}</p>
           </div>
         )}
         <button className="btn" onClick={onClose} autoFocus>
