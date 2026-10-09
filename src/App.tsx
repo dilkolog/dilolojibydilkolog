@@ -1218,7 +1218,7 @@ export default function App() {
             </Suspense>
           )}
         </div>
-      <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} />
+      <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} onLogged={reload} />
       </GameContext.Provider>
     </AiContext.Provider>
   )

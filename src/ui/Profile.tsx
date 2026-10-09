@@ -318,7 +318,7 @@ function BadgeDialog({ a, onClose }: { a: Achievement; onClose: () => void }) {
         <p className="muted">{a.description}</p>
         {a.unlocked ? (
           <p className="badge-dialog-status is-done">
-            <CheckCircleIcon size={18} /> Kazandın
+            <CheckCircleIcon size={18} /> {a.unlockedAt ? `${new Date(a.unlockedAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })} günü kazandın` : 'Kazandın'}
           </p>
         ) : (
           <div className="badge-dialog-progress">

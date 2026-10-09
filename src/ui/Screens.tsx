@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { db } from '../data/instance'
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import { isFormId, type DailyPlan, type NewWordsBlock, type PlanReason } from '../engine/dailyPlan'
@@ -858,6 +859,13 @@ export function Summary({
   // Derived, not an initial value: the game state after the session may arrive a moment after the summary opens.
   const [badgeMomentDone, setBadgeMomentDone] = useState(false)
   const badgeMoment = !practice && !badgeMomentDone && newBadges.length > 0
+  // The session's badges go into the log now, dated, so they are kept (and not celebrated again later).
+  useEffect(() => {
+    if (practice || !newBadges.length) return
+    const at = new Date().toISOString()
+    void db.logBadges(Object.fromEntries(newBadges.map((a) => [a.id, at])))
+    markBadgesSeen(newBadges.map((a) => a.id))
+  }, [newBadges.map((a) => a.id).join()]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
     // Play once when the summary opens.

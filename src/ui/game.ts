@@ -41,7 +41,7 @@ export interface GameState {
 
 /** Everything gamified is derived from the stored history, across all languages. */
 export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
-  const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs] = await Promise.all([
+  const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog] = await Promise.all([
     db.events.toArray(),
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
@@ -52,6 +52,7 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     db.mistakes.toArray(),
     db.getLab('fr'),
     db.getLab('es'),
+    db.getBadgeLog(),
   ])
   const xp = computeXp(events, states.map((s) => s.introducedAt), now)
   // Beating a boss is worth a fixed bonus, counted on the day it happened.
@@ -120,7 +121,7 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
   )
   // Longest streak counts freeze-covered days too, so a frozen day never lowers the record.
   stats.longestStreak = Math.max(stats.longestStreak, streak.streak)
-  return { xp, level, streak: streak.streak, freezes: streak.freezes, frozenYesterday: streak.frozenDays.includes(localDate(new Date(now.getTime() - 86_400_000))), quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats) }
+  return { xp, level, streak: streak.streak, freezes: streak.freezes, frozenYesterday: streak.frozenDays.includes(localDate(new Date(now.getTime() - 86_400_000))), quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats, badgeLog) }
 }
 
 export const GameContext = createContext<GameState | null>(null)

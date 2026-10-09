@@ -1,4 +1,5 @@
 import Dexie, { type Table } from 'dexie'
+import type { BadgeLog } from '../engine/gamification'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
 import type { JournalReview } from '../ai/types'
 import { recordMistake, type MistakeInput } from '../engine/mistakes'
@@ -530,6 +531,18 @@ export class KelimeDB extends Dexie {
   }
 
   /** Personal bests in the games, per game and language. */
+  /** Badges earned and when (see engine/gamification BadgeLog). */
+  async getBadgeLog(): Promise<BadgeLog> {
+    return ((await this.meta.get('badges'))?.value as BadgeLog) ?? {}
+  }
+
+  /** Adds badges to the log (earned now, or at the given dates); a badge already there keeps its date. */
+  async logBadges(add: BadgeLog) {
+    const all = await this.getBadgeLog()
+    const next = { ...add, ...all }
+    if (Object.keys(next).length !== Object.keys(all).length) await this.meta.put({ key: 'badges', value: next })
+  }
+
   async getRecords(): Promise<Record<string, number>> {
     return ((await this.meta.get('records'))?.value as Record<string, number>) ?? {}
   }
@@ -798,6 +811,8 @@ export interface Backup {
   /** The verb lab's favourites, recent verbs and practice (per language), and the personal bests of the games. */
   lab?: Partial<Record<'fr' | 'es', LabData>>
   records?: Record<string, number>
+  /** Badges earned and when. */
+  badges?: BadgeLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
@@ -845,6 +860,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     deleted: await db.getDeleted(),
     lab: { fr: await db.getLab('fr'), es: await db.getLab('es') },
     records: await db.getRecords(),
+    badges: await db.getBadgeLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -911,5 +927,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     for (const [l, lab] of Object.entries(backup.lab ?? {})) if (lab) await db.meta.put({ key: `lab:${l}`, value: lab })
     for (const [l, notes] of Object.entries(backup.dictionary ?? {})) if (notes) await db.meta.put({ key: `dict:${l}`, value: notes })
     if (backup.records) await db.meta.put({ key: 'records', value: backup.records })
+    if (backup.badges) await db.meta.put({ key: 'badges', value: backup.badges })
   })
 }
