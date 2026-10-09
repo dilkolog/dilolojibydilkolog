@@ -40,7 +40,7 @@ Son güncelleme: 2026-10-09.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
 ## Durum (2026-10-09)
-Birleşti: #37–#131.
+Birleşti: #37–#133.
 - Çeviri (#111, #113, #114, #120): DeepL ile cümle çevirisi (her cihazda hazır), Çeviri ekranı, çeviri belleği, okumada "Cümlenin Türkçesi" ve paragraf altında "Türkçesi".
 - Dinleme ve üretim (#118, #122):
   - dinlerken duyulan cümle aydınlanır, "Bu cümleden dinle" (`src/engine/listenFollow.ts`; zamanlı altyazılı beslemelerde kesin, diğerlerinde yaklaşık);
@@ -50,7 +50,8 @@ Birleşti: #37–#131.
 - CEFR seviyeleri (#129): FLELex/ELELex → `src/data/cefr/{fr,es}.txt` (`scripts/build-cefr.ts`, CC BY-NC-SA, `SOURCE.md`); kelime ayrıntısı/sözlükte seviye, İlerleme'de seviyeye göre kapsam, eksik kelimelerde A1–B2. Uygulamadaki eski "seviye sistemi" bilerek kaldırılmıştı; bu yalnızca ölçüm ve seçim için.
 - Metin seviyesi tahmini denendi, **yapılmadı**: kısa metinlerde konuya özgü kelimeler (%7–15) listelerde olmadığı için tahmin gürültülü çıktı; kişisel kapsam (%) daha iyi gösterge.
 - Yazma denetimi (#131): LanguageTool'un ücretsiz API'si tarayıcıdan doğrudan (CORS açık), yalnızca dokununca; Günlük ve Hikaye özetinde. Şartları: dakikada ≤20 istek, görünür bağlantı.
-- İçerik kaynakları raporu ve listeleri (#130): `docs/kaynaklar/` (açık lisanslı hikâyeler, transkriptli podcastler). Sıradaki: hikâyeleri okuma kütüphanesine aktarmak.
+- İçerik kaynakları raporu ve listeleri (#130): `docs/kaynaklar/` (açık lisanslı hikâyeler, transkriptli podcastler).
+- Kolay resimli hikâyeler (#133): Global Storybooks'tan 29 FR + 29 ES (CC BY), `scripts/build-storybooks.ts` → `src/data/storybooks/{fr,es}.json` (sayfa metni, tam ses, sayfa resimleri, künye, sayfa sayfa Türkçe). Okuma → "Kolay resimli hikâyeler"; `ReadingText.turkish/images/credit`; "Türkçesi" bu metinlerde kendi Türkçesini kullanır (DeepL'e gitmez). Listede `audioUrl` yalnızca başlık sayfasının sesiydi; tam ses sayfadaki `#audioplayer`'dan alınır.
 - Bugün sadeleşti (#116): tek öneri, uzun günde "yeni kelimeyi 8'e indir", ek çalışma günün tekrarı bitince; tekrarlar bitince cümle kartı / geri çeviri kutucuğu (#124).
 - Rozetler (#103, #105, #107, #109, #110, #112): kazanılma günlüğü, kademeli rozetler, zaman tüneli.
 - Antigravity: #101, #102, #104, #106, #108, #115 (metin birliği), #117/#119/#123/#126 (Fast Refresh uyarıları; oxlint artık 0 uyarı), #121 (kararsız E2E), #128 (img alt metinleri), #130 (kaynak listeleri).
@@ -67,11 +68,20 @@ Birleşti: #37–#131.
 - Kod temizliği (#87) ve sözlük dizini hızlandırma (#88).
 - Antigravity: #64–#70, #83, #91 (satır içi stiller), #92 (kategori renk tokenları).
 
-- Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122/#127 okuma araç satırı, #122/#125 Oyunlar, #129 İlerleme kapsam kartı değişti).
+- Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122/#127 okuma araç satırı, #122/#125 Oyunlar, #129 İlerleme kapsam kartı, #133 okuma kaynakları değişti).
 - **Aynı klasörde iki ajan:** Antigravity ile Claude Code aynı anda `~/Downloads/kelime-koc`'ta çalışınca, dal değiştirme commit edilmemiş değişiklikleri sildi (2026-10-08). Claude Code artık ayrı bir git worktree'de (`~/Downloads/kelime-koc-claude`) çalışıyor. Başka dala geçmeden önce `git status`'a bak; commit edilmemiş başkasına ait değişiklik varsa dokunma.
 - **E2E portu:** iki klasör aynı anda test koşarsa aynı önizleme sunucusunu paylaşıp birbirinin derlemesini test eder (`reuseExistingServer`). Port `E2E_PORT` ile ayarlanır: Claude Code `E2E_PORT=4180`, Antigravity `E2E_PORT=4181`. İki ajan aynı anda yoğun test koşunca bazı birim/E2E testleri zaman aşımıyla düşebilir; tek başına tekrar çalıştırıp doğrula.
 
+## Bekleyenler (2026-10-09 akşam)
+- **Kullanıcı:** hafta sonu yeni özellikleri deneyecek (geri çeviri, dikte, gölgeleme, kaçırdıkların, LanguageTool, hikâyeler); haftaya yeni yedek dosyası verecek → kişisel öğrenme analizi (bu özellikler kullanılıyor mu, dikte en çok neyi kaçırıyor, cümle kartlarının tutma oranı, CEFR seviyesine göre kapsam).
+- **Antigravity'ye verilen işler** (`docs/kaynaklar/` altına, kod yok):
+  1. podcast listelerini doğrulamak (RSS gerçekten açılıyor mu, `<podcast:transcript>` türü) → zamanlı altyazılı (VTT/SRT) olanlar dinleme kaynaklarına eklenebilir (`src/engine/podcasts.ts` deseni);
+  2. yalnızca metin olan 32 hikâyenin metni ve künyesi (`storybooks-text.json`) → okuma kütüphanesine eklenebilir;
+  3. Global Storybooks'un tüm hikâyelerinin listesi (`storybooks-all.json`) → CC BY ve sesli olanlar `scripts/build-storybooks.ts`'e girdi olarak verilip eklenebilir (betik şu an `storybooks.json`'u okuyor).
+- Görsel test referansları: Actions kotası dönünce (aşağıya bak).
+
 ## Sıradaki olası işler
+- LibriVox + Gutenberg (B1+ sesli kitaplar), COERLL (Français interactif) dil bilgisi içeriği — `docs/kaynaklar` raporundaki sıra.
 - Kullanıcı 1–2 hafta sonra yeni yedek verince öğrenme analizi: geri çeviri ve dikte kullanılıyor mu, dikte en çok hangi kelimeleri kaçırıyor, cümle kartlarının tutma oranı.
 - Fiil laboratuvarı Ayarlar → Kullanım'daki sayımlara bakıp hiç kullanılmayan modları sadeleştirmek (birkaç hafta veri birikince).
 

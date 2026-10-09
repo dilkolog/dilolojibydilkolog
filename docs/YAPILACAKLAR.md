@@ -246,11 +246,12 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **CEFR seviyeleri (#129):** FLELex/ELELex; kelime ayrıntısı, sözlük, İlerleme'de seviye kapsamı, eksik kelimelerde seviye.
 - [x] **Yazma denetimi (#131):** LanguageTool ile yazım ve dil bilgisi (AI gerekmez).
 - [x] **Kaynak listeleri (#130, Antigravity):** `docs/kaynaklar/`.
+- [x] **Kolay resimli hikâyeler (#133):** 58 sesli hikâye (FR/ES), sayfa resimleri ve kendi Türkçeleriyle.
 - [ ] ~~Metin seviyesi rozeti~~: denendi, kısa metinlerde güvenilir çıkmadı (konuya özgü kelimeler listelerde yok); yapılmadı.
 - [x] **Altyapı (Antigravity: #101, #102, #104, #106, #108, #117, #119, #121, #123):** erişilebilirlik etiketi, birim testleri, klasik metinler, belge güncellemeleri, Fast Refresh uyarıları, kararsız E2E düzeltmesi.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **Kolay sesli hikâyeler:** `docs/kaynaklar/storybooks.json` (90 hikâye, 58'i sesli) okuma kütüphanesine aktarılacak.
+- **Hikâyelerin devamı:** yalnızca metin olan 32 hikâye ve Global Storybooks'un diğer CC BY hikâyeleri (Antigravity listeleri çıkarıyor).
 - **LibriVox + Gutenberg** (B1+ sesli kitaplar), **COERLL** dil bilgisi içeriği: sırada.
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
