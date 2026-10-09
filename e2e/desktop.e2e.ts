@@ -218,12 +218,17 @@ test('verb lab: a verb the tables lack is said so, the shuffle picks another, fa
   await expect.poll(() => labFavorites(page, 'fr')).toHaveLength(1)
   await page.reload()
   await openVerbLab(page)
-  // One list with a filter: favourites come first when there are any; recent is a tap away.
+  // One list with a filter, folded until asked for: favourites come first when there are any; recent is a tap away.
+  await expect(page.locator('.lab-lists')).toHaveCount(0)
+  await page.getByRole('button', { name: /Fiil listeleri/ }).click()
   const lists = page.locator('.lab-lists')
   await expect(lists.getByRole('button', { name: /Favori/ })).toHaveAttribute('aria-pressed', 'true')
   await expect(lists.locator('.lab-chips .chip')).toHaveCount(1)
   await lists.getByRole('button', { name: /Son bakılan/ }).click()
   await expect(lists.locator('.lab-chips .chip').first()).toBeVisible()
+  // Picking a verb there folds the lists away again.
+  await lists.locator('.lab-chips .chip').first().click()
+  await expect(page.locator('.lab-lists')).toHaveCount(0)
 })
 
 test('verb lab: forms put in the review queue come back on Today and in the review, and the garden shows them', async ({ page }) => {
@@ -395,6 +400,7 @@ test('verb lab: add a verb to the list, hear all six, the E and A keys', async (
   await startWithSamples(page)
   await openVerbLab(page, 'finir')
   const main = page.locator('.lab-main')
+  await page.getByRole('button', { name: /Fiil listeleri/ }).click()
   const lists = page.locator('.lab-lists')
   // Not in the list yet: one tap adds it, with the meaning shown in the heading.
   await expect(main.locator('.lab-gloss')).not.toBeEmpty()
