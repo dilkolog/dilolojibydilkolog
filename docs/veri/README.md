@@ -92,3 +92,15 @@ En sık 5.000 kelimelik sıklık listelerinde (`src/data/frequency/{dil}.txt`) y
 - **İspanyolca (`tr-missing-es.csv`):** 2.486 eksik kelime (151 yüksek, 1.898 orta, 437 düşük). Çekimli fiiller (*estoy, tengo, quiero*) ve edat tamlamaları.
 - **Biçim:** `kelime,sira,ingilizce,oneri_turkce,guven` (yüksek / orta / düşük).
 - *Kullanım:* Bu listeler kullanıcı veya Claude tarafından gözden geçirilip `src/data/wordpackBuild.ts` içerisine entegre edilebilir bir taslak öneri niteliğindedir.
+
+---
+
+## 5. Örnek Cümle Kapsamı (`sentence-coverage.md`)
+
+En sık 3.001–10.000 arasındaki kelimeler (dil başına 7.000 kelime) için Tatoeba dışa aktarımları taranmış; doğrudan ve köprülü Türkçe çeviri kapsamı hesaplanmıştır:
+
+- **İngilizce (EN):** 7.000 kelimeden **6.812'sinin cümlesi var (%97,3)**; **6.323'ünün Türkçe çevirisi var (%90,3)**.
+- **Fransızca (FR):** 7.000 kelimeden **6.298'inin cümlesi var (%90,0)**; **5.875'inin Türkçe çevirisi var (%83,9)**.
+- **İspanyolca (ES):** 7.000 kelimeden **6.617'sinin cümlesi var (%94,5)**; **6.172'sinin Türkçe çevirisi var (%88,2)**.
+- *Sonuç:* Sözlük paketlerinin 3.000 kelimeden 10.000 kelimeye genişletilmesi durumunda kelimelerin %84–%90'ı için kaliteli Türkçe çevirili örnek cümle mevcuttur.
+- *Ayrıntılı döküm:* [`sentence-coverage.md`](./sentence-coverage.md) dosyasındadır.
