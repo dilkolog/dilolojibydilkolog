@@ -919,9 +919,11 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
   }
   const main = page.locator('.lab-main')
   await check('learn')
-  await main.getByRole('button', { name: 'Detaylı' }).click()
+  await main.getByRole('button', { name: 'Diğer seçenekler' }).click()
+  await page.getByRole('menuitem', { name: /^Detaylı/ }).click()
   await check('learn detailed')
-  await main.getByRole('button', { name: 'Kıyasla' }).click()
+  await main.getByRole('button', { name: 'Diğer seçenekler' }).click()
+  await page.getByRole('menuitem', { name: /^Kıyasla/ }).click()
   await check('learn compare')
   for (const tab of ['Alıştırma', 'İlerleme']) {
     await main.getByRole('tab', { name: tab }).click()

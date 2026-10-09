@@ -259,33 +259,6 @@ export function LearnTab({
             <PlusIcon size={14} /> <span className="lab-wide">Kelimelerime </span>ekle
           </button>
         )}
-        <div className="segmented lab-detail-toggle" role="group" aria-label="Görünüm">
-          {(
-            [
-              ['simple', 'Basit'],
-              ['compare', 'Kıyasla'],
-              ['detail', 'Detaylı'],
-            ] as const
-          ).map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              className="segmented-btn"
-              aria-pressed={view === id}
-              onClick={() => {
-                setView(id)
-                if (id !== 'simple') recordVisit(`verbs:learn:${id}`)
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        {view === 'simple' && canSpeak() && (
-          <button type="button" className="chip chip-sm" onClick={() => speak(sayAll(language, tense, forms), language)} title="Altı biçimi zamirleriyle sırayla dinle" aria-label="Tümünü dinle">
-            <SpeakerIcon size={14} /> <span className="lab-wide">Tümü</span>
-          </button>
-        )}
         {view === 'simple' && (
           <button type="button" className="chip chip-sm" aria-pressed={memorise} onClick={() => setMemorise((m) => !m)} title="Biçimleri gizler; dokundukça açılır (E)">
             Ezber
@@ -294,6 +267,35 @@ export function LearnTab({
         <Popover button={<MoreIcon size={18} />} buttonClassName="icon-btn lab-more" buttonProps={{ 'aria-label': 'Diğer seçenekler' }} label="Diğer seçenekler" kind="menu" align="end">
           {(close) => (
             <>
+              {view === 'simple' && canSpeak() && (
+                <MenuItem
+                  icon={<SpeakerIcon size={16} />}
+                  title="Altısını dinle"
+                  hint="Biçimler zamirleriyle sırayla"
+                  onSelect={() => {
+                    close()
+                    speak(sayAll(language, tense, forms), language)
+                  }}
+                />
+              )}
+              {(
+                [
+                  ['compare', 'Kıyasla', 'Üç zaman yan yana'],
+                  ['detail', 'Detaylı', 'Bütün zamanlar, kiplere göre'],
+                ] as const
+              ).map(([id, title, hint]) => (
+                <MenuItem
+                  key={id}
+                  icon={view === id ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />}
+                  title={title}
+                  hint={hint}
+                  onSelect={() => {
+                    close()
+                    setView(view === id ? 'simple' : id)
+                    if (view !== id) recordVisit(`verbs:learn:${id}`)
+                  }}
+                />
+              ))}
               <MenuItem icon={reflexive ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Dönüşlü" hint="se laver / lavarse" onSelect={() => (setReflexive((r) => !r), close())} />
               <MenuItem icon={negative ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />} title="Olumsuz" hint="ne… pas / no…" onSelect={() => (setNegative((n) => !n), close())} />
               <MenuItem
@@ -310,6 +312,11 @@ export function LearnTab({
         </Popover>
       </div>
 
+      {view !== 'simple' && (
+        <button type="button" className="link lab-back" onClick={() => setView('simple')}>
+          ← Basit görünüm
+        </button>
+      )}
       {view === 'compare' ? (
         <CompareTab language={language} verb={verb} available={available} />
       ) : view === 'simple' ? (
@@ -359,6 +366,23 @@ export function LearnTab({
             </p>
           )}
 
+          {/* A real sentence right after the table: the forms in use, before any explanation. */}
+          {sentence && (
+            <div className="lab-example">
+              <span className="lab-example-kicker">Örnek</span>
+              <p lang={language}>
+                {sentence.text.split('___')[0]}
+                <strong>{sentence.form}</strong>
+                {sentence.text.split('___')[1]}
+              </p>
+              {sentence.translation && <p className="muted small">{sentence.translation}</p>}
+              {canSpeak() && (
+                <button type="button" className="icon-btn icon-btn-sm" aria-label="Cümleyi dinle" onClick={() => speak(sentence.text.replace('___', sentence.form), language)}>
+                  <SpeakerIcon size={15} />
+                </button>
+              )}
+            </div>
+          )}
           {/* One line about the verb: its pattern (a link to it), or regular/irregular, and its non-finite forms. */}
           {parts && (
             <p className="lab-parts small muted" lang={language}>
@@ -421,22 +445,6 @@ export function LearnTab({
             ))}
           </p>
           <TenseBridge key={tense} tense={tense} />
-          {sentence && (
-            <div className="lab-example">
-              <span className="lab-example-kicker">Örnek</span>
-              <p lang={language}>
-                {sentence.text.split('___')[0]}
-                <strong>{sentence.form}</strong>
-                {sentence.text.split('___')[1]}
-              </p>
-              {sentence.translation && <p className="muted small">{sentence.translation}</p>}
-              {canSpeak() && (
-                <button type="button" className="icon-btn icon-btn-sm" aria-label="Cümleyi dinle" onClick={() => speak(sentence.text.replace('___', sentence.form), language)}>
-                  <SpeakerIcon size={15} />
-                </button>
-              )}
-            </div>
-          )}
           <TwinTense language={language} verb={verb} tense={tense} />
           <details className="conj-how">
             <summary>Nasıl kurulur?</summary>
