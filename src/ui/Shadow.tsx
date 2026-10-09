@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { TargetLanguage } from '../engine/types'
-import { canRecord, recordingType } from './AudioRecorder'
+import { canRecord, recordingType } from './audioRecord'
 import { canSpeak, speakAsync, unlockedAudio } from './speech'
 import { MicIcon, PlayIcon } from './icons'
 

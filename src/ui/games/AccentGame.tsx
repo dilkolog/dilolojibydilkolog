@@ -3,18 +3,14 @@ import { GameResult } from './GameResult'
 import { accentRound, gradeAccents, hasAccent, type AccentAnswer } from '../../engine/accents'
 import { displayForm } from '../../engine/exercises'
 import { createRng } from '../../engine/rng'
-import type { VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { AccentBar, accentChange, insertAt } from '../AccentBar'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 import { isPctRecord, recordPractice, type Props } from './shared'
+import { ACCENT_MIN_WORDS } from './accentedWords'
 
 const ROUND = 10
-/** Enough accented words for a round to be worth playing. */
-export const ACCENT_MIN_WORDS = 4
-
-export const accentedWords = (vocabulary: readonly VocabularyEntry[]) => vocabulary.filter((v) => hasAccent(displayForm(v)))
 
 /**
  * Accent drill: only words that carry an accent. The meaning and the bare letters are shown

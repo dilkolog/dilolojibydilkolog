@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { sentencesOf } from './TranslateScreen'
+import { sentencesOf } from './translateSentences'
 
 describe('translation screen', () => {
   it('cuts a text into sentences, lines apart, none longer than one request', () => {
