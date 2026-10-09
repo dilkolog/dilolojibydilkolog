@@ -31,3 +31,17 @@ export function wordDiff(given: string, expected: string): DiffPart[] {
   while (i < n) out.push({ word: a[i++], status: 'extra' })
   return out
 }
+
+/** Of the original's words, how many were written (accent slips count as written). */
+export function diffScore(parts: readonly DiffPart[]): { right: number; total: number; missed: string[] } {
+  let right = 0
+  let total = 0
+  const missed: string[] = []
+  for (const p of parts) {
+    if (p.status === 'extra') continue
+    total++
+    if (p.status === 'missed') missed.push(p.word)
+    else right++
+  }
+  return { right, total, missed }
+}

@@ -103,7 +103,9 @@ export function AudioPanel({
   onTime,
   onDuration,
   seekRef,
+  rangeRef,
   follow,
+  still = false,
 }: {
   src: string
   hidden: boolean
@@ -113,8 +115,12 @@ export function AudioPanel({
   onDuration?: (seconds: number) => void
   /** Set to a function that jumps to a time and plays (a sentence's start). */
   seekRef?: { current: ((seconds: number) => void) | null }
+  /** Set to a function that plays one stretch and stops (dictation: one sentence), slower on request. */
+  rangeRef?: { current: ((from: number, to: number, slow?: boolean) => void) | null }
   /** How the text follows the audio: exactly (timed subtitles) or approximately; none when it can't. */
   follow?: 'exact' | 'approx' | null
+  /** Not pinned to the top while scrolling (dictation needs the space below it). */
+  still?: boolean
 }) {
   const audio = useRef<HTMLAudioElement>(null)
   useEffect(() => {
@@ -130,6 +136,37 @@ export function AudioPanel({
     }
   }, [seekRef])
   const [rate, setRate] = useState(1)
+  const rateRef = useRef(rate)
+  rateRef.current = rate
+  useEffect(() => {
+    if (!rangeRef) return
+    let frame = 0
+    rangeRef.current = (from: number, to: number, slow = false) => {
+      const a = audio.current
+      if (!a) return
+      cancelAnimationFrame(frame)
+      a.playbackRate = slow ? 0.75 : rateRef.current
+      a.currentTime = Math.max(0, from - 0.1)
+      // Watched every frame (timeupdate comes only a few times a second): stop right at the end.
+      const watch = () => {
+        if (a.paused) return void (a.playbackRate = rateRef.current)
+        if (a.currentTime >= to - 0.05) {
+          a.pause()
+          a.playbackRate = rateRef.current
+          return
+        }
+        frame = requestAnimationFrame(watch)
+      }
+      void a
+        .play()
+        .then(() => (frame = requestAnimationFrame(watch)))
+        .catch(() => {})
+    }
+    return () => {
+      cancelAnimationFrame(frame)
+      rangeRef.current = null
+    }
+  }, [rangeRef])
   const [round, setRound] = useState<number | null>(hidden ? 0 : null)
   useEffect(() => {
     if (audio.current) audio.current.playbackRate = rate
@@ -147,7 +184,7 @@ export function AudioPanel({
   }
 
   return (
-    <section className="card stack audio-panel">
+    <section className={`card stack audio-panel${still ? ' is-still' : ''}`}>
       {round !== null && (
         <div className="listen-rounds">
           <strong>{ROUNDS[round].title}</strong>
