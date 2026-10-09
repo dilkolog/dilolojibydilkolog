@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
@@ -27,6 +27,7 @@ import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { analyzeForm, sentenceImperative, subjectLabel, type Tense } from '../engine/tenses'
+import { useSheetSwipe } from './useSheetSwipe'
 import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
@@ -221,6 +222,37 @@ export function ReadingScreen({
     if (recorded && times && rangeRef.current) return rangeRef.current(times[i], sentenceEnd(i), slow)
     return speakAsync(sentencesFlat[i], language, slow ? 0.7 : undefined)
   }
+  const sheet = useSheetSwipe(() => setSelected(null))
+  // A tapped word must not end up behind the sheet that opens for it (on a narrow screen the card covers the lower part of the page).
+  // Where the sheet stands: as wide as the text column (a sidebar may take the left of the screen).
+  const [sheetBox, setSheetBox] = useState<{ left: number; width: number } | null>(null)
+  const openKey = selected?.token.key
+  const openAt = selected?.at
+  useEffect(() => {
+    if (!openKey) return
+    const measure = () => {
+      const layout = document.querySelector<HTMLElement>('.reader-layout')
+      if (layout) setSheetBox({ left: Math.round(layout.getBoundingClientRect().left), width: Math.round(layout.getBoundingClientRect().width) })
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [openKey])
+  useEffect(() => {
+    if (!openKey) return
+    const frame = requestAnimationFrame(() => {
+      const card = document.querySelector<HTMLElement>('.word-pop')
+      // The word in the lit sentence (the same word may stand earlier in the text).
+      const key = CSS.escape(openKey)
+      const word = document.querySelector<HTMLElement>(`.rs.is-lit [data-key="${key}"]`) ?? document.querySelector<HTMLElement>(`[data-key="${key}"]`)
+      if (!card || !word || getComputedStyle(card).position !== 'fixed') return
+      // Where the sheet will stand (it is still rising into place, so its rectangle is not the answer yet).
+      const top = innerHeight - parseFloat(getComputedStyle(card).bottom) - card.offsetHeight
+      const covered = word.getBoundingClientRect().bottom - (top - 12)
+      if (covered > 0) window.scrollBy({ top: covered + 8, behavior: 'smooth' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [openKey, openAt])
   // The heard sentence kept in view while listening (only when it has left the screen).
   useEffect(() => {
     if (heard < 0) return
@@ -934,7 +966,7 @@ export function ReadingScreen({
           onClose={() => setShadowing(null)}
         />
       )}
-      <div className="reader-layout">
+      <div className={`reader-layout${selected?.token.key ? ' has-sheet' : ''}`}>
       <article
         className={`reader${(listenFirst && current?.audio) || dictating !== null ? ' is-hidden' : ''}${readerStyle(reader).className}`}
         style={readerStyle(reader).style}
@@ -1013,16 +1045,20 @@ export function ReadingScreen({
       )}
 
       {selected && selected.token.key && (
-        <section className="card stack word-pop" aria-live="polite">
-          <div className="row justify-between">
-            <strong className="word-pop-word" lang={language}>
-              {selectedEntry ? `${selectedEntry.article ? `${selectedEntry.article} ` : ''}${selectedEntry.lemma}` : cleanToken(selected.token.text, language)}
-            </strong>
-            <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Kapat">
-              ×
-            </button>
+        <section className="card stack word-pop" aria-live="polite" style={{ ...(sheetBox ? ({ '--sheet-left': `${sheetBox.left}px`, '--sheet-w': `${sheetBox.width}px` } as CSSProperties) : {}), ...(sheet.dy ? { transform: `translateY(${sheet.dy}px)`, transition: 'none' } : {}) }}>
+          {/* On a narrow screen this card is a bottom sheet: the head stays put while the rest scrolls, and a pull on it closes the sheet. */}
+          <div className="word-pop-head" {...sheet.handlers}>
+            <span className="sheet-handle" aria-hidden />
+            <div className="row justify-between">
+              <strong className="word-pop-word" lang={language}>
+                {selectedEntry ? `${selectedEntry.article ? `${selectedEntry.article} ` : ''}${selectedEntry.lemma}` : cleanToken(selected.token.text, language)}
+              </strong>
+              <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Kapat">
+                ×
+              </button>
+            </div>
           </div>
-          {selectedEntry && <p className="gloss">{selectedEntry.senses[0].gloss}</p>}
+          {selectedEntry && <p className="gloss word-pop-gloss">{selectedEntry.senses[0].gloss}</p>}
           <WordPopExtras language={language} lemma={selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language)} entry={selectedEntry ?? undefined} />
           {onLookUp && (
             <p className="small">
@@ -1083,7 +1119,7 @@ export function ReadingScreen({
           <p className="small muted kbd">
             <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
           </p>
-          <div className="row">
+          <div className="row word-pop-actions">
             {selectedEntry ? (
               <button className="btn btn-quiet" onClick={() => onOpen(selectedEntry.id)}>
                 Kelimeyi aç
