@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { TargetLanguage } from '../engine/types'
 import { diffScore, wordDiff } from '../engine/wordDiff'
+import { noteDictation } from '../data/earLog'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { MessageIcon, SpeakerIcon } from './icons'
@@ -28,6 +29,7 @@ export function TextDictation({
   start = 0,
   voice,
   play,
+  closeLabel = 'Metne dön',
   onClose,
 }: {
   sentences: string[]
@@ -37,6 +39,7 @@ export function TextDictation({
   /** Whose voice: the recording's or the device's. */
   voice: 'recording' | 'device'
   play: (index: number, slow: boolean) => void
+  closeLabel?: string
   onClose: () => void
 }) {
   // One-word sentences ("Oui.") are left out: nothing to write down.
@@ -67,6 +70,7 @@ export function TextDictation({
     const parts = text.trim() ? wordDiff(text, sentence) : []
     const score = text.trim() ? diffScore(parts) : { right: 0, total: sentence.split(/\s+/).length, missed: sentence.split(/\s+/) }
     setResults((r) => [...r, score])
+    if (text.trim()) void noteDictation(language, sentence, parts)
     setChecked(true)
     if (score.right === score.total && parts.every((p) => p.status === 'ok')) sfx.correct()
     else if (score.right === score.total) sfx.near()
@@ -83,7 +87,7 @@ export function TextDictation({
         <h2 className="section-title">Dikte bitti</h2>
         {results.length ? (
           <p>
-            {results.length} cümlede kelimelerin %{total ? Math.round((right / total) * 100) : 0}’ini doğru yazdın.
+            {results.length} cümle · doğru yazdığın kelimeler: %{total ? Math.round((right / total) * 100) : 0} ({right}/{total})
           </p>
         ) : (
           <p className="muted">Hiç cümle yazmadın.</p>
@@ -102,7 +106,7 @@ export function TextDictation({
         )}
         <div className="row">
           <button className="btn" onClick={onClose} autoFocus>
-            Metne dön
+            {closeLabel}
           </button>
         </div>
       </section>
@@ -116,7 +120,7 @@ export function TextDictation({
           Dikte · {step + 1} / {order.length}
         </strong>
         <button className="link small" onClick={() => setDone(true)}>
-          Bitir
+          Dikteyi bitir
         </button>
       </div>
       <div className="row">
@@ -172,7 +176,7 @@ export function TextDictation({
           </p>
           <div className="row">
             <button className="btn" onClick={next} autoFocus>
-              {step + 1 < order.length ? 'Devam' : 'Bitir'}
+              {step + 1 < order.length ? 'Devam' : 'Sonucu gör'}
             </button>
             <button
               className="link small"

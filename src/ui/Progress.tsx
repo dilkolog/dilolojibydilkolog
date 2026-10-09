@@ -10,6 +10,7 @@ import type { KelimeDB, VocabTestRecord } from '../data/db'
 import { EXAM_INTERVAL_DAYS, type ExamResult } from '../engine/exam'
 import { KnownWordsCard } from './KnownWords'
 import { ErrorReportCard } from './ErrorReport'
+import { EarMissesCard } from './EarMisses'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
@@ -41,6 +42,7 @@ export function ProgressScreen({
   onOpen,
   onVocabTest,
   onExam,
+  onEarPractice,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -51,6 +53,8 @@ export function ProgressScreen({
   onOpen: (entryId: string) => void
   onVocabTest: () => void
   onExam: () => void
+  /** Opens the practice of the words missed in dictation. */
+  onEarPractice?: () => void
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [tests, setTests] = useState<VocabTestRecord[]>([])
@@ -361,6 +365,7 @@ export function ProgressScreen({
           {/* Beside the skills: conjugation by tense (French and Spanish), so the row isn't half empty. */}
           <TenseWeakness language={language} vocabulary={vocabulary} />
           <ErrorReportCard db={db} language={language} vocabulary={vocabulary} />
+          <EarMissesCard language={language} onPractice={onEarPractice} />
         </>
       )}
     </div>

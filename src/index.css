@@ -2866,6 +2866,9 @@ section:has(> .media-split) { container-type: inline-size; }
     background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
     border-bottom: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
   }
+  /* Things pinned to the top of a screen sit below the top bar, not under it. */
+  .shell { --topbar-h: calc(3.75rem + env(safe-area-inset-top)); }
+  .audio-panel, .select-bar, .settings-nav, .word-bank { top: calc(var(--topbar-h) + 0.5rem); }
   /* View switches and filter chips scroll sideways on one line instead of wrapping into rows. */
   .segmented, .filter-row { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; scroll-snap-type: x proximity; }
   .segmented::-webkit-scrollbar, .filter-row::-webkit-scrollbar { display: none; }

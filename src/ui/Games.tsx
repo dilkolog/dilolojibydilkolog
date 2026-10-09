@@ -9,6 +9,8 @@ import { db } from '../data/instance'
 import { SentencesGame } from './Sentences'
 import { NativeDictation } from './NativeDictation'
 import { BackTranslation } from './BackTranslation'
+import { EarMissesGame } from './EarMisses'
+import { stillMissed } from '../engine/earMisses'
 import { loadBackItems } from '../data/backItems'
 import { ArticleDrill } from './ArticleDrill'
 import { dueSentences } from '../engine/sentences'
@@ -50,6 +52,11 @@ export function GamesScreen(
   useEffect(() => {
     void loadBackItems(p.language).then((items) => setBackCount(items.length))
   }, [p.language, game])
+  // Words missed in dictation and not yet written right as often.
+  const [earCount, setEarCount] = useState(0)
+  useEffect(() => {
+    void db.getEarLog().then((log) => setEarCount(Object.values(log[p.language] ?? {}).filter(stillMissed).length))
+  }, [p.language, game])
   const [records, setRecords] = useState<Record<string, number>>({})
   useEffect(() => {
     db.getRecords().then(setRecords)
@@ -72,6 +79,7 @@ export function GamesScreen(
     if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
     if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
     if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
+    if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
     if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
     if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
@@ -103,6 +111,7 @@ export function GamesScreen(
       tone: 'listen',
       cards: [
         { id: 'dictation', emoji: '🎙️', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
+        { id: 'ear', emoji: '🎯', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
         { id: 'pairs', emoji: '👂', name: 'Ses ayırt etme', text: 'Tek sesi farklı iki kelimeden hangisini duydun?', status: canSpeak() ? record(`pairs:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
       ],
     },

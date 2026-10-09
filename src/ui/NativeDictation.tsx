@@ -4,6 +4,7 @@ import { gradeSentence } from '../engine/sentences'
 import { shuffle, createRng } from '../engine/rng'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
+import { noteDictation } from '../data/earLog'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { MessageIcon, SpeakerIcon } from './icons'
@@ -132,6 +133,7 @@ function DictationRound({ items, language, onDone }: { items: ListeningSentence[
   const check = () => {
     if (checked || !text.trim()) return
     setChecked(true)
+    void noteDictation(language, item.text, wordDiff(text, item.text))
     const v = gradeSentence({ kind: 'dictation', answer: item.text }, text)
     if (v === 'correct') {
       setScore((s) => s + 1)
