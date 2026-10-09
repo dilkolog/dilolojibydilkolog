@@ -68,3 +68,15 @@ A1–B2 CEFR seviyesindeki fiiller (`src/data/cefr/{fr,es}.txt`) ile Fiil Labora
 - **Fransızca (FR):** 834 fiilden **827'si mevcut** (%99,16 kapsam). Eksik 7 fiil: A1'de 4 (`pleuvoir`, `soit`, `voici`, `voilà`), A2'de 3 (`paître`, `falloir`, `neiger`), B1/B2'de 0 eksik.
 - **İspanyolca (ES):** 815 fiilden **716'sı mevcut** (%87,85 kapsam). Eksik 99 fiil: A1'de 5, A2'de 31, B1'de 34, B2'de 29.
 - *Ayrıntılı döküm:* [`verb-coverage.md`](./verb-coverage.md) dosyasında seviye seviye listelenmiştir.
+
+---
+
+## 3. İspanyolca Ses Kaynakları (`es-audio-sources.md`)
+
+Lingua Libre dışındaki açık lisanslı İspanyolca ses kaynakları taranmış, pakette sesi olmayan en sık 2.000 İspanyolca kelime (812 eksik) için kapsam hesaplanmıştır:
+
+- **Wikimedia Commons (Lingua Libre dışı):** ~3.200 dosya (`Es-*.ogg` ve bölgesel kategoriler; CC BY-SA / GFDL). Eksik 812 kelimeden ~110–135'ini (%13,5 – %16,6) kapsar.
+- **Shtooka Projesi (`spa-wims-octavio`):** 1.739 kayıt (WimsEdu, Octavio Paniagua; CC BY 3.0 US). Eksik kelimelerden ~65–85'ini (%8,0 – %10,5) kapsar.
+- **Birleşik Kapsam:** ~165–190 kelime (%20,3 – %23,4).
+- **Kalan ~630 Kelime:** Neredeyse tamamen çekimli fiil formlarıdır (*estoy, tengo, fue, quiero*); kelime bankalarında yer almaz. Tatoeba cümle seslerinden kırpma veya açık lisanslı nöral TTS (Piper TTS) önerilmektedir.
+- *Ayrıntılı rapor:* [`es-audio-sources.md`](./es-audio-sources.md) dosyasındadır.
