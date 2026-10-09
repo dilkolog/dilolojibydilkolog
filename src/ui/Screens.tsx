@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { SPLIT_ABOVE_MINUTES } from '../engine/session'
 import { db } from '../data/instance'
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
@@ -326,6 +327,8 @@ function DayMark({ now }: { now: Date }) {
 }
 
 const HOME_MORE_KEY = 'kelime-koc:home-more'
+/** The daily new words a long day is offered to come down to. */
+const LIGHTER_NEW = 8
 
 export function Home({
   language,
@@ -359,6 +362,8 @@ export function Home({
   difficultCount = 0,
   onPracticeDifficult,
   onFreePractice,
+  newWordsPerDay,
+  onLowerNew,
   extra,
   firstWords,
   garden,
@@ -403,6 +408,9 @@ export function Home({
   difficultCount?: number
   onPracticeDifficult?: () => void
   onFreePractice: () => void
+  /** The daily new words, and a one-tap way down to LIGHTER_NEW when the day runs long. */
+  newWordsPerDay?: number
+  onLowerNew?: () => void
   /** Habit nudges shown under the day's mission. */
   extra?: ReactNode
   /** Shown under the empty list's invitation: a word looked up in the dictionary is a good first one. */
@@ -422,6 +430,8 @@ export function Home({
   const showcase = pinnedBadges(pinned, earned).map((id) => game?.achievements.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => !!a)
   const hello = `${greetingFor(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
+  // A day over the split length with many new words: the hint suggests fewer, not more.
+  const long = !!onLowerNew && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES && (newWordsPerDay ?? 0) > LIGHTER_NEW
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
   const goal = answeredToday + remaining
   const progress = goal ? answeredToday / goal : 0
@@ -432,7 +442,8 @@ export function Home({
     } catch {
       // Falls back to the screen size.
     }
-    return typeof matchMedia === 'function' && matchMedia('(min-width: 64rem)').matches
+    // Closed by default: Today is about the day's work; this is a tap away.
+    return false
   })
   const rememberMore = (open: boolean) => {
     setMoreOpen(open)
@@ -538,12 +549,24 @@ export function Home({
                   {answeredToday > 0 ? 'Devam et' : 'Başla'}
                 </button>
                 {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
-                {plan.newBlockedBy && plan.waitingNew > 0 && (
-                  <p className="small muted mt-3">
-                    {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
-                      ? `${plan.waitingNew} kelime daha sırada; günlük sınırı Ayarlar'dan artırabilirsin.`
-                      : NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
+                {long ? (
+                  // A long day is the opposite of a time to add more: the lighter day, one tap away.
+                  <p className="small mt-3 hero-long">
+                    Gün uzun. Günlük yeni kelime {newWordsPerDay}; {LIGHTER_NEW}'e indirirsen tekrarların birikmez ve günler kısalır.{' '}
+                    <button type="button" className="link" onClick={onLowerNew}>
+                      {LIGHTER_NEW}'e indir
+                    </button>
                   </p>
+                ) : (
+                  plan.newBlockedBy &&
+                  plan.waitingNew > 0 && (
+                    <p className="small muted mt-3">
+                      {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
+                        ? // Said, not urged: more new words a day is what makes days long.
+                          `${plan.waitingNew} kelime daha sırada; her gün ${plan.newEntryIds.length} tanesiyle tanışıyorsun.`
+                        : NEW_BLOCK_TEXT[plan.newBlockedBy](plan.waitingNew)}
+                    </p>
+                  )
                 )}
               </>
             ) : (
@@ -569,10 +592,11 @@ export function Home({
           </div>
         </div>
 
-        {extra}
+        {/* One suggestion at a time (a habit, a word looked up, gains, the week, a backup): the first that has something to say. */}
+        <div className="home-nudges">{extra}</div>
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || difficultCount > 0 || canPractice || onStory || onGames || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || (remaining === 0 && (canPractice || onGames)) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -633,7 +657,7 @@ export function Home({
                   </span>
                 </button>
               )}
-              {formsDue === 0 && verbOfDay && onVerbOfDay && (
+              {formsDue === 0 && !(warmup && onWarmup) && verbOfDay && onVerbOfDay && (
                 <button className="tile" onClick={() => onVerbOfDay(verbOfDay.verb)}>
                   <span className="tile-icon">
                     <TenseIcon size={22} />
@@ -657,7 +681,7 @@ export function Home({
                   </span>
                 </button>
               )}
-              {onGames && (
+              {remaining === 0 && onGames && (
                 <button className="tile" onClick={onGames}>
                   <span className="tile-icon">
                     <GameIcon size={22} />
@@ -668,7 +692,7 @@ export function Home({
                   </span>
                 </button>
               )}
-              {canPractice && (
+              {remaining === 0 && canPractice && (
                 <button className="tile" onClick={onFreePractice}>
                   <span className="tile-icon">
                     <SparkleIcon size={22} />

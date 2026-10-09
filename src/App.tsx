@@ -1147,6 +1147,11 @@ export default function App() {
                 difficultCount={difficultWords(data.vocabulary).length}
                 onPracticeDifficult={practiceDifficult}
                 onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
+                newWordsPerDay={settings.newWordsPerDay}
+                onLowerNew={() => {
+                  void updateSettings({ ...settings, newWordsPerDay: 8 })
+                  showToast('Günlük yeni kelime 8 oldu; Ayarlar’dan istediğin zaman değiştirebilirsin.')
+                }}
                 garden={garden && {
                   urgent: garden.wilting + garden.thirsty > 0,
                   node: (
