@@ -35,6 +35,7 @@ Son güncelleme: 2026-10-09.
 - E2E'de örnek kelimeler yüklendikten sonra `packApplied(page)` (e2e/helpers.ts) sözlük paketinin uygulanmasını bekler (#53 ile geldi).
 - Örnek cümlenin `form` alanı boş (`''`) olabilir (#62): kelime cümlede geçmiyor demek. Boşluk doldurma/bağlam soruları `form`u olan cümleleri kullanır; yeni kod da `ex.form`un dolu olduğunu varsaymasın.
 - Fiil laboratuvarı verisi: `LabData` (`src/engine/labProgress.ts`): `records['fiil|zaman']`, `tally['zaman|kişi']` (`weakestCell`, `weakPersons`), `kinds` (hata türleri). Kayıt için `recordLabAnswer` (`src/ui/verbs/labShared.ts`).
+- **Okuma kelime kartı (`.word-pop`):** dar kapsayıcıda (`.main` < 50rem) alttan çekmece: `position: fixed`, sol/genişlik `--sheet-left`/`--sheet-w` ile metin sütununa ölçülür (Reading.tsx), altında `.has-sheet` boşluğu. `position: sticky` burada çalışmadı (grid/flex öğesi kendi alanında sıkışıyor). Çekmece yükselirken `getBoundingClientRect` animasyon yüzünden yanıltır: konumu `innerHeight - bottom - offsetHeight` ile hesapla. Geniş kapsayıcıda kart yan sütunda statik kalır.
 - Bir `useEffect` içinden gelen `reload` sonuçları dil değişince atılıyor (`languageRef`, #51 birleşti) — bu deseni koru.
 - **`vite preview` `/api`'yi canlı siteye (kelime-koc.vercel.app) yönlendirir.** E2E'de `startWithSamples` çeviriyi varsayılan olarak 503 ile kapatır (yoksa testler gerçek DeepL'i çağırır). Çeviri isteyen test, başladıktan sonra kendi taklidini kurar; URL'yi glob ile değil, işlevle eşle: `(u) => u.pathname === '/api/translate' && u.searchParams.has('usage' | 'text')`.
 - Sesli (dinleme) metinler okumada **önce gizli** açılır ("önce dinle" turları). Testte metne tıklamadan önce "Turları bırak"a bas.
@@ -93,5 +94,6 @@ Birleşti: #37–#148.
 - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
 
 ## Daha fazla bağlam
+- `docs/ANTIGRAVITY-GOREVLER.md`: Antigravity'nin görev listesi (turlar, dosya sahipliği, PR kontrol listesi).
 - `PLAN.md`, `docs/YAPILACAKLAR.md` (yapılanlar ve açık kalanlar, tarihli notlar), `docs/YOUTUBE.md`.
 - PR açıklamaları neyin neden yapıldığını Türkçe ve ayrıntılı anlatıyor: `gh pr view N`.

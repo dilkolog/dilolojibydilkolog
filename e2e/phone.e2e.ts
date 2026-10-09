@@ -984,6 +984,50 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
   await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, the word stays in view, a pull on it closes it', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.locator('main button', { hasText: 'La décision' }).first().click()
+  const words = page.locator('.rw-unseen')
+  await expect(words.first()).toBeVisible()
+  const target = words.nth(12)
+  // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
+  await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
+  await target.evaluate((el) => (el as HTMLElement).click())
+  const sheet = page.locator('.word-pop')
+  await expect(sheet).toBeVisible()
+  await expect.poll(async () => (await sheet.evaluate((el) => getComputedStyle(el).position))).toBe('fixed')
+  await page.waitForTimeout(700)
+  const view = page.viewportSize()!
+  const box = (await sheet.boundingBox())!
+  const tabbar = (await page.locator('nav.tabbar').boundingBox())!
+  expect(box.y + box.height, 'the sheet ends above the tab bar').toBeLessThanOrEqual(tabbar.y + 1)
+  expect(box.height, 'the sheet leaves room for the text').toBeLessThan(view.height * 0.6)
+  expect(box.x).toBeGreaterThanOrEqual(0)
+  expect(box.x + box.width).toBeLessThanOrEqual(view.width)
+  // The tapped word is above the sheet, not behind it.
+  const word = (await target.boundingBox())!
+  expect(word.y + word.height, 'the tapped word is not under the sheet').toBeLessThanOrEqual(box.y)
+  // What the learner does with the word is at the top of the sheet, within reach without scrolling it.
+  const add = (await sheet.getByRole('button', { name: /^Kelimelerime ekle/ }).boundingBox())!
+  expect(add.y + add.height).toBeLessThanOrEqual(box.y + box.height)
+  expect(await overflow(page)).toEqual([])
+  expect(await contrastProblems(page)).toEqual([])
+  // A short pull does not close it; a long one does.
+  const pull = (distance: number) =>
+    page.locator('.word-pop-head').evaluate(async (head, dy) => {
+      const rect = head.getBoundingClientRect()
+      const init = { pointerId: 7, pointerType: 'touch', bubbles: true, clientX: rect.left + 40 }
+      head.dispatchEvent(new PointerEvent('pointerdown', { ...init, clientY: rect.top + 10 }))
+      head.dispatchEvent(new PointerEvent('pointermove', { ...init, clientY: rect.top + 10 + dy }))
+      head.dispatchEvent(new PointerEvent('pointerup', { ...init, clientY: rect.top + 10 + dy }))
+    }, distance)
+  await pull(30)
+  await expect(sheet).toBeVisible()
+  await pull(140)
+  await expect(sheet).toHaveCount(0)
+})
+
 test('shows an offline badge when internet is disconnected and hides when online', async ({ page, context }) => {
   await startWithSamples(page)
   const badge = page.locator('.offline-badge')
@@ -995,4 +1039,3 @@ test('shows an offline badge when internet is disconnected and hides when online
   await context.setOffline(false)
   await expect(badge).not.toBeVisible()
 })
-

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildDailyPlan, buildExtraNewPlan, interleave, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
+import { BACKLOG_AT, buildDailyPlan, buildExtraNewPlan, interleave, shortRound, SHORT_ROUND, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
 import { recordMistake } from '../mistakes'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
@@ -254,5 +254,33 @@ describe('verb lab forms in the day', () => {
     const items = [item('en:a')]
     expect(mixForms(items, [])).toEqual(items)
     expect(mixForms([], [form('aller')])).toEqual([])
+  })
+})
+
+describe('a pile of reviews', () => {
+  const item = (id: string, reason: PlanItem['reason']): PlanItem => ({ kind: 'exercise', entryId: id, reason, skill: 'recognition', exerciseType: 'mc_meaning' })
+
+  it('counts every review due, also what the day\'s minutes leave out', () => {
+    const states = EN_CATALOG.map((e) => learned(e, daysAgo(30)))
+    const cut = buildDailyPlan(input({ states, settings: { ...settings, dailyMinutes: 0.5 } }))
+    const full = buildDailyPlan(input({ states, settings: { ...settings, dailyMinutes: 60 } }))
+    expect(cut.items.length).toBeLessThan(full.items.length)
+    expect(cut.dueTotal).toBe(full.dueTotal)
+    expect(cut.dueTotal).toBeGreaterThanOrEqual(EN_CATALOG.length)
+    expect(buildDailyPlan(input()).dueTotal).toBe(0)
+    expect(BACKLOG_AT).toBeGreaterThan(SHORT_ROUND)
+  })
+
+  it('a short round takes the most urgent questions, in the plan\'s own order', () => {
+    const items = [item('a', 'due'), item('b', 'forgotten'), item('c', 'weak'), item('d', 'forgotten'), item('e', 'mistake'), item('f', 'due')]
+    expect(shortRound(items, 3).map((i) => i.entryId)).toEqual(['b', 'd', 'e'])
+    expect(shortRound(items, 4).map((i) => i.entryId)).toEqual(['b', 'c', 'd', 'e'])
+    expect(shortRound(items, 99)).toEqual(items)
+    expect(shortRound([], 5)).toEqual([])
+  })
+
+  it('introductions are not part of a short round', () => {
+    const intro: PlanItem = { kind: 'introduce', entryId: 'n', reason: 'new', skill: 'recognition' }
+    expect(shortRound([intro, item('a', 'due')], 5).map((i) => i.entryId)).toEqual(['a'])
   })
 })
