@@ -5,8 +5,13 @@ import type { KelimeDB } from '../data/db'
 import { frequencyWords } from '../data/frequency'
 import { wordKeys } from '../data/wordInput'
 import { WordForm } from './Words'
+import { wordsAt } from '../engine/cefrLevels'
+import type { CefrLevel } from '../engine/types'
+import { useCefr } from './useCefr'
 
 const RANGES = [1000, 3000, 10000] as const
+/** Levels offered when the language has graded word levels (C1 and up are thin and specialised). */
+const LEVELS: readonly CefrLevel[] = ['A1', 'A2', 'B1', 'B2']
 const PAGE = 15
 
 /**
@@ -17,7 +22,9 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
   const [open, setOpen] = useState(false)
   const [list, setList] = useState<string[] | null>(null)
   const [known, setKnown] = useState<Set<string>>(new Set())
-  const [range, setRange] = useState<(typeof RANGES)[number]>(3000)
+  // The first so many frequent words, or a level's words (French, Spanish).
+  const [range, setRange] = useState<(typeof RANGES)[number] | CefrLevel>(3000)
+  const cefr = useCefr(language)
   const [shown, setShown] = useState(PAGE)
   const [adding, setAdding] = useState<string | null>(null)
 
@@ -29,7 +36,10 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
     })
   }, [open, language, db])
 
-  const missing = useMemo(() => (list ? missingFrequent(list, language, vocabulary, known, range) : []), [list, language, vocabulary, known, range])
+  const missing = useMemo(() => {
+    if (typeof range === 'string') return cefr ? missingFrequent(wordsAt(cefr, range), language, vocabulary, known, Infinity) : []
+    return list ? missingFrequent(list, language, vocabulary, known, range) : []
+  }, [list, cefr, language, vocabulary, known, range])
   const page = missing.slice(0, shown)
   const existing = useMemo(() => wordKeys(vocabulary), [vocabulary])
 
@@ -53,10 +63,16 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
                 İlk {r.toLocaleString('tr-TR')}
               </button>
             ))}
+            {cefr &&
+              LEVELS.map((l) => (
+                <button key={l} className="chip chip-sm" aria-pressed={range === l} onClick={() => (setRange(l), setShown(PAGE))} title={`Ders kitaplarında ${l} seviyesinde kullanılmaya başlanan kelimeler`}>
+                  {l}
+                </button>
+              ))}
             <span className="small muted">{missing.length} eksik kelime</span>
           </div>
           {missing.length === 0 ? (
-            <p className="notice">İlk {range.toLocaleString('tr-TR')} kelimenin hepsini biliyor ya da çalışıyorsun.</p>
+            <p className="notice">{typeof range === 'string' ? `${range} kelimelerinin` : `İlk ${range.toLocaleString('tr-TR')} kelimenin`} hepsini biliyor ya da çalışıyorsun.</p>
           ) : (
             <>
               <ul className="missing-list">
@@ -65,7 +81,7 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
                     <span className="missing-word" lang={language}>
                       {m.word}
                     </span>
-                    <span className="small muted">#{m.rank}</span>
+                    {typeof range === 'number' && <span className="small muted">#{m.rank}</span>}
                     <span className="row missing-word-actions">
                       <button className="btn btn-quiet btn-sm" onClick={() => markKnown([m.key])}>
                         Biliyorum

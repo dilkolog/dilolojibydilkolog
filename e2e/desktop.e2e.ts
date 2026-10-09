@@ -923,3 +923,27 @@ test('shadowing a text: a sentence played from its recording, then said back, th
   await panel.getByRole('button', { name: 'Gölgelemeyi bitir' }).click()
   await expect(panel).toHaveCount(0)
 })
+
+test('CEFR levels: progress by textbook level, the missing words of a level, a word’s level', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'İlerleme')
+  await expect(page.getByRole('heading', { name: 'Seviyelerin kelimelerinden ne kadarını biliyorsun' })).toBeVisible()
+  const rows = page.locator('.band-list li')
+  await expect(rows.first()).toContainText(/^A1 \(/)
+  await expect(page.getByText(/Sıradaki hedefin: A1 kelimelerinde %90/)).toBeVisible()
+  await page.getByRole('button', { name: 'Sıklığa göre' }).click()
+  await expect(page.getByRole('heading', { name: 'En sık kelimelerden ne kadarını biliyorsun' })).toBeVisible()
+  await expect(rows.first()).toContainText('İlk 1.000')
+  // A sample word's level comes from the textbook list, not its frequency.
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row, tbody tr', { hasText: 'maison' }).first().click()
+  await expect(page.getByRole('list', { name: 'Kelime bilgisi' }).getByText('A1', { exact: true })).toBeVisible()
+  // Words → add many → missing frequent words, by level.
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /Ekle/ }).first().click()
+  await page.getByText('Birçok kelime ekle').click()
+  await page.getByText('Eksik sık kelimeler').click()
+  await page.getByRole('button', { name: 'A2', exact: true }).click()
+  await expect(page.locator('.missing-list li').first()).toBeVisible()
+  await expect(page.locator('.missing-list li').first()).not.toContainText('#')
+})
