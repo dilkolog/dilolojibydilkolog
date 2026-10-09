@@ -106,7 +106,7 @@ export function WikipediaPicker({
         <button className="btn btn-sm" type="submit" disabled={!query.trim() || busy === 'search'}>
           {busy === 'search' ? 'Aranıyor…' : 'Ara'}
         </button>
-        <button className="btn btn-sm btn-quiet" type="button" onClick={() => void search('')} disabled={busy === 'search'} title="Rastgele makaleler">
+        <button className="btn btn-sm btn-quiet" type="button" onClick={() => void search('')} disabled={busy === 'search'} aria-label="Rastgele makaleler" title="Rastgele makaleler">
           <ShuffleIcon size={15} />
         </button>
       </form>
