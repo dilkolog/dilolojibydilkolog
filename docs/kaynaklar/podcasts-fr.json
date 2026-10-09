@@ -8,7 +8,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Hugo Cotton / innerFrench)",
-    "notes": "Orta seviye için anlaşılır, akıcı ve ilgi çekici felsefi, toplumsal ve kültürel temalar. Tüm bölümlerin tam transkripti web sitesinde ücretsiz bir hesapla erişilebilirdir."
+    "notes": "Orta seviye için anlaşılır, akıcı ve ilgi çekici felsefi, toplumsal ve kültürel temalar. Tüm bölümlerin tam transkripti web sitesinde ücretsiz bir hesapla erişilebilirdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Mon, 14 Sep 2026 17:09:25 +0200"
   },
   {
     "title": "LanguaTalk Slow French",
@@ -19,7 +22,10 @@
     "hasTimedSubtitles": false,
     "level": "A2-B1",
     "license": "Telif hakkı saklıdır (LanguaTalk / Gaëlle)",
-    "notes": "Fransa kültürü ve günlük yaşam üzerine yavaş ve net Fransızca. Web sitesinde interaktif transkriptler ücretsiz olarak sunulmaktadır."
+    "notes": "Fransa kültürü ve günlük yaşam üzerine yavaş ve net Fransızca. Web sitesinde interaktif transkriptler ücretsiz olarak sunulmaktadır.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Thu, 01 Oct 2026 17:11:18 GMT"
   },
   {
     "title": "Duolingo French Podcast",
@@ -30,7 +36,10 @@
     "hasTimedSubtitles": false,
     "level": "A2-B1",
     "license": "Telif hakkı saklıdır (Duolingo)",
-    "notes": "Gerçek hayat hikayeleri, ara İngilizce anlatımlarla desteklenmiş berrak Fransızca. Her bölümün tam transkripti web sayfasında ücretsizdir."
+    "notes": "Gerçek hayat hikayeleri, ara İngilizce anlatımlarla desteklenmiş berrak Fransızca. Her bölümün tam transkripti web sayfasında ücretsizdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Tue, 27 Feb 2024 01:00:00 GMT"
   },
   {
     "title": "Français Authentique",
@@ -41,7 +50,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Johan Tekfak / Français Authentique)",
-    "notes": "Deyimler, kişisel gelişim ve dil ipuçları. Her bölümün transkripti hem sitede metin hem de indirilebilir PDF formatında ücretsizdir."
+    "notes": "Deyimler, kişisel gelişim ve dil ipuçları. Her bölümün transkripti hem sitede metin hem de indirilebilir PDF formatında ücretsizdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Wed, 07 Oct 2026 16:00:00 +0000"
   },
   {
     "title": "Français avec Pierre",
@@ -52,7 +64,10 @@
     "hasTimedSubtitles": false,
     "level": "A2-B1",
     "license": "Telif hakkı saklıdır (Pierre Babon / Français avec Pierre)",
-    "notes": "Fransız dili kuralları, diyaloglar ve telaffuz. Web sitesinde bölümlerin açıklama ve transkript metinleri blog yazısı olarak ücretsizdir."
+    "notes": "Fransız dili kuralları, diyaloglar ve telaffuz. Web sitesinde bölümlerin açıklama ve transkript metinleri blog yazısı olarak ücretsizdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Wed, 07 Oct 2026 08:55:57 +0000"
   },
   {
     "title": "Choses à Savoir - Culture générale",
@@ -63,7 +78,10 @@
     "hasTimedSubtitles": false,
     "level": "B2-C1",
     "license": "Telif hakkı saklıdır (Louis Guillaume / Choses à Savoir)",
-    "notes": "Günlük 2-3 dakikalık kısa, net ve tempolu kültürel/bilimsel sorular ve yanıtları. Web sitesinde her bölümün birebir yazılı makalesi ücretsiz yayınlanmaktadır."
+    "notes": "Günlük 2-3 dakikalık kısa, net ve tempolu kültürel/bilimsel sorular ve yanıtları. Web sitesinde her bölümün birebir yazılı makalesi ücretsiz yayınlanmaktadır.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Fri, 09 Oct 2026 04:00:00 GMT"
   },
   {
     "title": "France Inter · Géopolitique",
@@ -74,7 +92,10 @@
     "hasTimedSubtitles": false,
     "level": "B2-C1",
     "license": "Telif hakkı saklıdır (Radio France / France Inter)",
-    "notes": "Uluslararası ilişkiler ve güncel dünya olayları üzerine günlük 3-4 dakikalık uzman köşe yazısı. France Inter web sitesinde metin makale olarak ücretsiz mevcuttur."
+    "notes": "Uluslararası ilişkiler ve güncel dünya olayları üzerine günlük 3-4 dakikalık uzman köşe yazısı. France Inter web sitesinde metin makale olarak ücretsiz mevcuttur.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Thu, 03 Mar 2011 23:59:59 +0100"
   },
   {
     "title": "One Thing In A French Day",
@@ -85,7 +106,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Laetitia Perraut)",
-    "notes": "Paris ve Fransız gündelik hayatından 3-5 dakikalık kesitler, doğal konuşma hızı. Ses kaydı ücretsiz, tam transkriptler bülten aboneliği (haftalık ücretli bülten) ile iletilir."
+    "notes": "Paris ve Fransız gündelik hayatından 3-5 dakikalık kesitler, doğal konuşma hızı. Ses kaydı ücretsiz, tam transkriptler bülten aboneliği (haftalık ücretli bülten) ile iletilir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Thu, 08 Oct 2026 05:39:00 +0200"
   },
   {
     "title": "Learn French by Podcast",
@@ -96,6 +120,9 @@
     "hasTimedSubtitles": false,
     "level": "A1-B2",
     "license": "Telif hakkı saklıdır (Learn French by Podcast)",
-    "notes": "Güncel haberler ve durumlar üzerine diyaloglar ve analizler. Ses bölümleri ücretsiz, ayrıntılı ders kılavuzu ve transkript paketleri ücretli satılmaktadır."
+    "notes": "Güncel haberler ve durumlar üzerine diyaloglar ve analizler. Ses bölümleri ücretsiz, ayrıntılı ders kılavuzu ve transkript paketleri ücretli satılmaktadır.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Mon, 10 Aug 2026 09:40:00 +0000"
   }
 ]
