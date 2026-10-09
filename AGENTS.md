@@ -35,7 +35,8 @@ Son güncelleme: 2026-10-08.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
 ## Durum (2026-10-08 gece)
-Birleşti: #37–#88.
+Birleşti: #37–#99.
+- Fiil laboratuvarı sadeleştirme (#90 günlük tur, #93 3 sekme/4 mod, #97 arama şeridi + katlı listeler, #99 sade ders başlığı). Tur mantığı: `src/engine/labTour.ts`.
 - Fiil laboratuvarı listesi (#71–#77).
 - Tasarım kuralları `DESIGN.md` (#79).
 - Kişisel öğrenme analizinden çıkanlar:
@@ -46,10 +47,11 @@ Birleşti: #37–#88.
   - #85: Zamana karşı'da yazma modu.
 - Görsel dokunuşlar (#86).
 - Kod temizliği (#87) ve sözlük dizini hızlandırma (#88).
-- Antigravity: #64–#70, #83.
+- Antigravity: #64–#70, #83, #91 (satır içi stiller), #92 (kategori renk tokenları).
 
 - Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı ekranı değişti).
 - **Aynı klasörde iki ajan:** Antigravity ile Claude Code aynı anda `~/Downloads/kelime-koc`'ta çalışınca, dal değiştirme commit edilmemiş değişiklikleri sildi (2026-10-08). Claude Code artık ayrı bir git worktree'de (`~/Downloads/kelime-koc-claude`) çalışıyor. Başka dala geçmeden önce `git status`'a bak; commit edilmemiş başkasına ait değişiklik varsa dokunma.
+- **E2E portu:** iki klasör aynı anda test koşarsa aynı önizleme sunucusunu paylaşıp birbirinin derlemesini test eder (`reuseExistingServer`). Port `E2E_PORT` ile ayarlanır: Claude Code `E2E_PORT=4180`, Antigravity `E2E_PORT=4181`. İki ajan aynı anda yoğun test koşunca bazı birim/E2E testleri zaman aşımıyla düşebilir; tek başına tekrar çalıştırıp doğrula.
 
 ## Sıradaki olası işler
 - Fiil laboratuvarı Ayarlar → Kullanım'daki sayımlara bakıp hiç kullanılmayan modları sadeleştirmek (birkaç hafta veri birikince).
