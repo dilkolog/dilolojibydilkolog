@@ -983,3 +983,16 @@ test('verb lab: a sideways swipe over the table steps the tense; a scroll does n
   await swipe(120, 5)
   await expect(bar.getByRole('button', { name: 'Présent' })).toHaveAttribute('aria-pressed', 'true')
 })
+
+test('shows an offline badge when internet is disconnected and hides when online', async ({ page, context }) => {
+  await startWithSamples(page)
+  const badge = page.locator('.offline-badge')
+  await expect(badge).not.toBeVisible()
+  await context.setOffline(true)
+  await expect(badge).toBeVisible()
+  await expect(badge).toHaveText(/Çevrimdışı/)
+  expect(await overflow(page)).toEqual([])
+  await context.setOffline(false)
+  await expect(badge).not.toBeVisible()
+})
+

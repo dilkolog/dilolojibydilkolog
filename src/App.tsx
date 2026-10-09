@@ -58,6 +58,7 @@ import { connectExtension, pushToExtension } from './ui/extensionBridge'
 import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
 import { gardenSummary } from './engine/growth'
 import { Home, Onboarding, Summary } from './ui/Screens'
+import { OfflineBadge } from './ui/OfflineBadge'
 import type { LabTab } from './ui/verbs/VerbLab'
 import { recordLabAnswer, useDayForms, useFormsDue, useWarmup, useVerbOfDay } from './ui/verbs/labShared'
 import type { Command } from './ui/CommandPalette'
@@ -800,6 +801,7 @@ export default function App() {
                   </span>
                   <span className="brand-name">Kelime Koçu</span>
                 </button>
+                <OfflineBadge />
                 <button className="icon-btn rail-toggle" onClick={toggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>
                   {rail ? <ChevronRightIcon size={18} /> : <ChevronLeftIcon size={18} />}
                 </button>
