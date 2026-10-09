@@ -979,3 +979,30 @@ test('grammar check: the journal text flagged by LanguageTool, a suggestion appl
   await editor.pressSequentially(' Super.')
   await expect(check).toHaveCount(0)
 })
+
+test('easy stories: an illustrated story read aloud, with its credits, pictures and its own Turkish', async ({ page }) => {
+  await startWithSamples(page)
+  // The pictures and the recording stay on the story's servers: answered here.
+  await page.route(/raw\.githubusercontent\.com|globalstorybooks\.net/, (r) => r.fulfill({ status: 200, body: '' }))
+  const asked: string[] = []
+  page.on('request', (r) => r.url().includes('/api/translate?') && r.url().includes('text=') && asked.push(r.url()))
+  await openScreen(page, 'Okuma')
+  const picker = page.locator('section', { has: page.getByRole('heading', { name: 'Kolay resimli hikâyeler' }) })
+  await expect(picker.locator('.library li')).toHaveCount(29)
+  await picker.getByRole('button', { name: 'Seviye 1', exact: true }).click()
+  await picker.getByText('Qu’est-ce que tu fais ?').click()
+  await page.getByRole('button', { name: 'Turları bırak' }).click()
+  await expect(page.getByText(/Yazan: Nina Orange · Çizen: Wiehan de Jager .* · Global Storybooks · CC BY 3\.0/)).toBeVisible()
+  const pages = await page.locator('.reader p:not(.reader-tr)').count()
+  await expect(page.locator('.reader .reader-img')).toHaveCount(pages)
+  // Its Turkish comes with it: no translation server, no quota.
+  await page.getByRole('button', { name: /Türkçesi/ }).click()
+  await expect(page.locator('.reader-tr').first()).toHaveText('Ben şarkı söylüyorum.')
+  expect(asked).toEqual([])
+  // Opened again: the same text, not a second copy.
+  await page.getByRole('button', { name: /Kütüphane/ }).click()
+  await picker.getByText('Qu’est-ce que tu fais ?').click()
+  await page.getByRole('button', { name: /Kütüphane/ }).click()
+  // Once in the library, once in the picker.
+  await expect(page.locator('.library li', { hasText: 'Qu’est-ce que tu fais ?' })).toHaveCount(2)
+})
