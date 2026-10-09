@@ -97,8 +97,8 @@ export function ImageQueue({ db, vocabulary, onClose, onChanged }: { db: KelimeD
               <ul className="iq-grid">
                 {suggestions.map((s) => (
                   <li key={s.thumbUrl}>
-                    <button type="button" className="iq-pick" disabled={busy} onClick={() => pick(s)} title={s.credit}>
-                      <img src={s.thumbUrl} alt={s.title} loading="lazy" />
+                    <button type="button" className="iq-pick" disabled={busy} onClick={() => pick(s)} title={s.credit} aria-label={s.title ? `${s.title} görselini seç` : `${current.lemma} için görsel seç`}>
+                      <img src={s.thumbUrl} alt={s.title || `${current.lemma} için önerilen görsel`} loading="lazy" />
                       {s.from === 'wikidata' && <span className="iq-badge small">Önerilen</span>}
                     </button>
                   </li>

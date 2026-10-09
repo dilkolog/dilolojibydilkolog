@@ -56,7 +56,7 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
           </h3>
           {imageUrl ? (
             <>
-              <img className="word-image-sm" src={imageUrl} alt={entry.lemma} />
+              <img className="word-image-sm" src={imageUrl} alt={`${entry.lemma} görseli`} />
               {entry.imageCredit && <p className="credit">{entry.imageCredit}</p>}
               <div className="row">
                 <button className="btn btn-quiet" onClick={() => setPicking(true)}>

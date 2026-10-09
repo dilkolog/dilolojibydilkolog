@@ -133,7 +133,7 @@ export function Intro({
           </div>
           <SpeakButton text={displayForm(entry)} entry={entry} auto={!pretest} />
         </div>
-        {imageUrl && <img className="word-image" src={imageUrl} alt="" />}
+        {imageUrl && <img className="word-image" src={imageUrl} alt={`${displayForm(entry)} görseli`} />}
         <p className="gloss">{[sense.gloss, ...(sense.altGlosses ?? [])].join(', ')}</p>
         {sense.definition && (
           <p className="definition" lang={entry.language}>

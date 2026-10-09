@@ -244,7 +244,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             </p>
           )}
         </div>
-        {heroImage && <img className="word-hero-image" src={heroImage} alt="" />}
+        {heroImage && <img className="word-hero-image" src={heroImage} alt={`${entry.lemma} görseli`} />}
         <div className="word-hero-actions">
           {onStudy && (
             <button className="btn btn-sm" onClick={() => onStudy([entry])}>
