@@ -178,6 +178,19 @@ describe('screens render', () => {
     )
     expect(text).toContain('Karışık tekrar')
   })
+  it('home: a deep pile of reviews offers a short round of the most urgent questions', async () => {
+    const base = buildDailyPlan({ now, settings: { language: 'fr', dailyMinutes: 10, newWordsPerDay: 3 }, catalog: vocabulary, states, mistakes: [], scheduler, seed: 1 })
+    const exercise = { kind: 'exercise', entryId: vocabulary[0].id, reason: 'due', skill: 'recognition', exerciseType: 'mc_meaning' } as const
+    const piled = { ...base, items: Array.from({ length: 30 }, () => exercise), dueTotal: 83 }
+    const props = { language: 'fr', plan: piled, profile: skillProfile(states, scheduler, now), vocabularyCount: vocabulary.length, learningCount: states.length, activeVocabulary: 1, name: '', dailyXpGoal: 50, answeredToday: 0, openMistakeWords: 0, canPractice: true, onStart: noop, onAddWords: noop, onProfile: noop, onExtraNew: noop, onPracticeMistakes: noop, onFreePractice: noop } as const
+    const text = await render(<Home {...props} onShortRound={noop} />)
+    expect(text).toContain('83 tekrar birikmiş')
+    expect(text).toContain('Kısa tur (15 soru)')
+    // Not offered for an ordinary day, when the pile fits in a short round anyway, or with no way to start it.
+    expect(await render(<Home {...props} plan={{ ...piled, dueTotal: 20 }} onShortRound={noop} />)).not.toContain('birikmiş')
+    expect(await render(<Home {...props} plan={{ ...piled, items: piled.items.slice(0, 12) }} onShortRound={noop} />)).not.toContain('birikmiş')
+    expect(await render(<Home {...props} />)).not.toContain('birikmiş')
+  })
   it('home: once the day is done, the sentences translated are offered to write back', async () => {
     await db.saveTranslations([{ text: 'Le chat dort sur le canapé.', translation: 'Kedi kanepede uyuyor.', from: 'fr', to: 'tr', at: now.toISOString() }])
     const plan = { ...buildDailyPlan({ now, settings: { language: 'fr', dailyMinutes: 10, newWordsPerDay: 3 }, catalog: vocabulary, states, mistakes: [], scheduler, seed: 1 }), items: [] }

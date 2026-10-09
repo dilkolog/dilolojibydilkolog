@@ -1,5 +1,5 @@
 import { Suspense, lazy, type ReactElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, type PlanItem } from './engine/dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem } from './engine/dailyPlan'
 import type { Tense as LabTense } from './engine/tenses'
 import { skillProfile } from './engine/mastery'
 import { openMistakes } from './engine/mistakes'
@@ -640,6 +640,8 @@ export default function App() {
     const end = split ? firstSittingEnd(items) : items.length
     startSession(items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
   }
+  /** A short round of the day's most urgent questions, when the pile of reviews is deep. */
+  const startShortRound = () => plan && startSession(shortRound(plan.items), 'normal', daySeed(new Date()))
   /** A practice of just the words marked hard, apart from the day's plan. */
   const practiceDifficult = () =>
     data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, undefined, 'difficult')
@@ -1134,6 +1136,7 @@ export default function App() {
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
+                onShortRound={startShortRound}
                 onSentenceGame={(game) => setScreen({ name: 'games', game })}
                 // The forms mixed into the day's session are counted there, not on a tile of their own.
                 formsDue={Math.max(0, formsDue - dayForms.length)}

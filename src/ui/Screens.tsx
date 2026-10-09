@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { SPLIT_ABOVE_MINUTES } from '../engine/session'
+import { BACKLOG_AT, SHORT_ROUND } from '../engine/dailyPlan'
 import { db } from '../data/instance'
 import { loadBackItems } from '../data/backItems'
 import { dueSentences } from '../engine/sentences'
@@ -351,6 +352,7 @@ export function Home({
   onProfile,
   onStory,
   onGames,
+  onShortRound,
   onSentenceGame,
   formsDue = 0,
   onForms,
@@ -393,6 +395,8 @@ export function Home({
   onProfile: () => void
   onStory?: () => void
   onGames?: () => void
+  /** A short round of the most urgent questions, for a pile of reviews too big to face at once. */
+  onShortRound?: () => void
   /** Sentence practice: due sentence cards, else back-translation of the sentences translated. */
   onSentenceGame?: (game: 'sentences' | 'back') => void
   /** Verb forms due for review, and the way to review them. */
@@ -436,6 +440,8 @@ export function Home({
   const hello = `${greetingFor(now)}${name ? `, ${name}` : ''}!`
   const remaining = plan.items.filter((i) => i.kind === 'exercise').length
   // A day over the split length with many new words: the hint suggests fewer, not more.
+  // A deep pile of due reviews: not all of it has to be done today; the most urgent few are one tap away.
+  const piled = !!onShortRound && plan.dueTotal >= BACKLOG_AT && remaining > SHORT_ROUND
   const long = !!onLowerNew && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES && (newWordsPerDay ?? 0) > LIGHTER_NEW
   // Today's goal = what was already answered + what is still planned, so the ring fills as you go.
   const goal = answeredToday + remaining
@@ -568,7 +574,14 @@ export function Home({
                   {answeredToday > 0 ? 'Devam et' : 'Başla'}
                 </button>
                 {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
-                {long ? (
+                {piled ? (
+                  <p className="small mt-3 hero-long">
+                    {plan.dueTotal} tekrar birikmiş. Hepsini bugün bitirmen gerekmiyor: en çok unutulmak üzere olan {SHORT_ROUND} soruyla başla, kalanı sırada bekler.{' '}
+                    <button type="button" className="link" onClick={onShortRound}>
+                      Kısa tur ({SHORT_ROUND} soru)
+                    </button>
+                  </p>
+                ) : long ? (
                   // A long day is the opposite of a time to add more: the lighter day, one tap away.
                   <p className="small mt-3 hero-long">
                     Gün uzun. Günlük yeni kelime {newWordsPerDay}; {LIGHTER_NEW}'e indirirsen tekrarların birikmez ve günler kısalır.{' '}

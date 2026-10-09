@@ -192,7 +192,7 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
    Mobilde okunan metinde kelimeye dokunulduğunda, kelimenin üstünü kapatan popover yerine ekranın altından yükselen kompakt bir anlam/telaffuz kartı kullanılmalı.
 5. **İlerleme Ekranında Katlanabilir Kartlar:**  
    `Progress.tsx` ekranındaki ikincil analizler (ör. "En İyi Saatler", "Hata Geçmişi") varsayılan olarak katlı veya segmentli bir yapıya kavuşturularak sayfa boyu kısaltılmalı.
-6. **Birikmiş Tekrar Kolaylaştırıcı:**  
+6. **Birikmiş Tekrar Kolaylaştırıcı:** ✅ Yapıldı (2026-10-09): 50+ tekrar birikince Bugün'de "Kısa tur (15 soru)" (`shortRound`, `BACKLOG_AT`).  
    50'den fazla tekrar biriktiğinde Bugün ekranında çıkan *"Yeni kelimeleri duraklat / tekrarı böl"* uyarısı doğrudan tek tıkla oturum boyutunu 15'e bölen bir hızlı filtre sunmalı.
 
 ### 🔵 Öncelik 3: Deneyim Zenginleştirme

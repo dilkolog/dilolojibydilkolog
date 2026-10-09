@@ -98,7 +98,14 @@ export interface DailyPlan {
   newBlockedBy?: NewWordsBlock
   /** The list in focus has no word left to meet. */
   focusDone?: boolean
+  /** Every review due, before the day's minutes cut it: how deep the pile is. */
+  dueTotal: number
 }
+
+/** From this many reviews due, Today offers a short round instead of the whole pile. */
+export const BACKLOG_AT = 50
+/** The questions of a short round. */
+export const SHORT_ROUND = 15
 
 /** Below this recall probability a due word is treated as forgotten and goes first. */
 export const FORGOTTEN_R = 0.7
@@ -332,7 +339,7 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
     bySkill[it.skill] = (bySkill[it.skill] ?? 0) + 1
   }
   const focusDone = !!input.settings.focusListId && waitingNew <= 0
-  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, ...(focusDone ? { focusDone } : {}) }
+  return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, dueTotal: allReviews.length, ...(focusDone ? { focusDone } : {}) }
 }
 
 function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {
@@ -352,4 +359,18 @@ function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {
 export function buildExtraNewPlan(input: PlanInput, count: number): PlanItem[] {
   const rng = createRng(input.seed)
   return interleave(newWordCandidates(input, count).flatMap((e) => introductionPair(e, rng)), rng)
+}
+
+/**
+ * The most urgent `n` questions of a plan, kept in the order the plan has them: what is about to
+ * be forgotten first, then mistakes, the weak, the merely due. For a pile too big to face at once,
+ * a short round that still starts with what matters most; the rest waits, due, for another day.
+ */
+export function shortRound(items: readonly PlanItem[], n = SHORT_ROUND): PlanItem[] {
+  const urgent = items
+    .map((item, at) => ({ item, at }))
+    .filter((x) => x.item.kind === 'exercise')
+    .sort((a, b) => REASON_ORDER.indexOf(a.item.reason) - REASON_ORDER.indexOf(b.item.reason) || a.at - b.at)
+    .slice(0, n)
+  return urgent.sort((a, b) => a.at - b.at).map((x) => x.item)
 }
