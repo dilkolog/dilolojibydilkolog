@@ -2,7 +2,8 @@
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { describe, expect, it, vi } from 'vitest'
-import { isChunkError, ScreenBoundary } from './ScreenBoundary'
+import { ScreenBoundary } from './ScreenBoundary'
+import { isChunkError } from './chunkError'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 

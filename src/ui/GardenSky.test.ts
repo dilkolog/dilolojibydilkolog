@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bodyPosition, skyPhase, visitors } from './GardenSky'
+import { bodyPosition, skyPhase, visitors } from './gardenSkyCalculations'
 
 describe('garden sky', () => {
   it('follows the hour', () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { skyPhase, type SkyPhase } from './GardenSky'
+import { skyPhase, type SkyPhase } from './gardenSkyCalculations'
 
 /** The part of the day the whole app is lit for (the same hours as the garden's sky). */
 export function dayPart(now: Date): SkyPhase {
