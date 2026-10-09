@@ -4948,3 +4948,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .reader-layout.has-sheet { padding-bottom: min(52vh, 28rem); }
 }
 @media (prefers-reduced-motion: reduce) { .word-pop.stack { animation: none; } }
+
+/* Reading: the verb forms of the open text, a tense at a time. */
+.text-forms-group > summary { cursor: pointer; padding: 0.25rem 0; }
+.text-forms-group > .word-list { margin-top: 0.25rem; }
