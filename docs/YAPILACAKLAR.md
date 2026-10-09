@@ -194,8 +194,16 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] "Metinde gördüğün çekimler" (2026-10-07): okuma bitirilince metindeki fiil çekimleri laboratuvara kaydedilir (`LabData.seen`, fiil başına en çok 24 biçim, eşitlemede birleşir); Ustalık'ta "Metinlerde gördüklerin" (biçim · zaman · kaç kez · hangi metin, dokununca o zamanı alıştırır) ve "Metinlerde en çok gördüğün fiiller".
 - [x] Gerçek sözlük paketini internetli ortamda derlemek (scripts/build-wordpack.ts).
 
-## 2026-10-08 Geliştirmeleri (#71–#89 ve sonrası)
-- [x] **Fiil laboratuvarı geliştirmeleri (#71–#77):**
+## 2026-10-07 ve 2026-10-08 Geliştirmeleri (#64–#93)
+- [x] **Sözlük ve İçerik Genişletme (#64–#70):**
+  - #64: İspanyolca ses kayıtlarının Lingua Libre / Commons üzerinden pakete eklenmesi (%0 → %65).
+  - #65: Sözlük paketinin büyütülmesi (20.000 kelime, çekimli formlar `f` tablosu, zengin Tatoeba örnekleri).
+  - #66: Kişisel sözlük büyümesi: sözlükte anlam düzeltme (`dict:<dil>`), bakılan kelimelerin takibi ve Bugün ekranında önerilmesi.
+  - #67: Sözlük aramasında AI ile keşif ve anlam bulma desteği.
+  - #68: Dinleme kütüphanesine podcast ve ses kaynaklarının eklenmesi ve genişletilmesi.
+  - #69: Vikidia entegrasyonu ile kolay Fransızca/İspanyolca makalelerin okuma kütüphanesine eklenmesi.
+  - #70: Klasik kamu malı okuma metinleri koleksiyonu (Ezop, La Fontaine, Samaniego; çevrimdışı).
+- [x] **Fiil Laboratuvarı Geliştirmeleri (#71–#77):**
   - #71: Ayarlar → Kullanım ekranında fiil lab sekme ve mod sayaçları.
   - #72: Okuma metnindeki çekimli fiilden laboratuvara doğrudan geçiş köprüsü.
   - #73: Bugün ekranında Günün Fiili kartı.
@@ -218,17 +226,17 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - #87: Kullanılmayan kodların temizliği, uygulama temasına uygun paylaşım kartı tasarımı.
   - #88: Sözlük dizini hızlandırma (paket dizini tek seferde derlenir).
   - #89: `AGENTS.md` devir teslim notunun güncellenmesi.
-- [x] **Sıradaki Adımlar (#90–#95):**
-  - #90, #93: Fiil laboratuvarı günün turu ve alıştırma ekranı sadeleştirmesi.
+- [x] **Fiil Laboratuvarı Sadeleştirme ve Token Dönüşümleri (#90–#93):**
+  - #90: Günlük tur modu (kişiselleştirilmiş 4-6 soruluk hızlı fiil turu, `labTour.ts`).
   - #91: Satır içi stillerin `index.css` sınıflarına taşınması.
   - #92: Kategori renklerinin `--cat-*` tokenlarına alınması (açık/koyu/sakin temalar).
-  - #94: Fast Refresh uyarılarının ilk grubu için yardımcı modüller (`.ts`).
-  - #95: Her dil için 3 yeni kamu malı klasik okuma metni (Ezop, La Fontaine, Samaniego).
+  - #93: Fiil laboratuvarının 3 sekme ve 4 odaklı moda sadeleştirilmesi.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranında toplanan mod sayaçlarına bakılarak en az kullanılan modların elenmesi / birleştirilmesi (yeterli veri birikince).
-- **Görsel test referansları:** GitHub Actions dakikaları açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
-- **Fast Refresh uyarılarının devamı:** `oxlint` çıktısındaki kalan bileşen dosyalarında bileşen dışı fonksiyon/sabitlerin ayrı dosyalara taşınması (PR başına maks. 5 dosya).
-- **Günlük kelime hedefi:** Kullanıcının Ayarlar'da günlük yeni kelime hedefini 20'den 5–8'e indirmesi (#52 önerisi).
-- **Kişisel öğrenme analizi:** Kullanıcının isteğine bağlı olarak verilerini indirip yeni öğrenme analizi istemesi.
+- **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
+- **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı ekranı değişti).
+- **Kullanıcıya önerilen ama onun yapacağı:**
+  - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
+  - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
+
 
