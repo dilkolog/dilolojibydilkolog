@@ -39,6 +39,7 @@ import { TextDictation } from './TextDictation'
 import { canSpeak, speakAsync } from './speech'
 import { canRecord } from './audioRecord'
 import { TextShadow } from './TextShadow'
+import { reportError } from '../data/errorReport'
 import { useTranslationReady } from './useTranslationReady'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
@@ -156,6 +157,7 @@ export function ReadingScreen({
   const [listenFirst, setListenFirst] = useState(false)
   // The text's Turkish under each paragraph, on request (per text: each new text starts without it).
   const [showTurkish, setShowTurkish] = useState(false)
+  const [loadFailed, setLoadFailed] = useState(false)
   // Dictation of this text, from a sentence on (null: reading).
   const [dictating, setDictating] = useState<number | null>(null)
   // Shadowing this text, from a sentence on (null: reading).
@@ -188,6 +190,12 @@ export function ReadingScreen({
       setKnown(k)
       setIgnored(ig)
     })
+      // Whatever goes wrong in loading, the screen still opens (with a note), never blank.
+      .catch((e) => {
+        reportError(e, 'reading-load')
+        setLoadFailed(true)
+        setLibrary((l) => l ?? [])
+      })
   }, [db, language])
 
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
@@ -586,6 +594,7 @@ export function ReadingScreen({
             ) : undefined
           }
         />
+        {loadFailed && <p className="note">Kütüphanen şu an okunamadı; metinlerin silinmedi. Sayfayı yenile; düzelmezse haber ver.</p>}
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         {library.length === 0 && (
           <EmptyState art="library" title="Kütüphanen boş">
