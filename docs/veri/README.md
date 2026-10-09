@@ -80,3 +80,15 @@ Lingua Libre dışındaki açık lisanslı İspanyolca ses kaynakları taranmı�
 - **Birleşik Kapsam:** ~165–190 kelime (%20,3 – %23,4).
 - **Kalan ~630 Kelime:** Neredeyse tamamen çekimli fiil formlarıdır (*estoy, tengo, fue, quiero*); kelime bankalarında yer almaz. Tatoeba cümle seslerinden kırpma veya açık lisanslı nöral TTS (Piper TTS) önerilmektedir.
 - *Ayrıntılı rapor:* [`es-audio-sources.md`](./es-audio-sources.md) dosyasındadır.
+
+---
+
+## 4. Eksik Türkçe Anlamlar (`tr-missing-{en,fr,es}.csv`)
+
+En sık 5.000 kelimelik sıklık listelerinde (`src/data/frequency/{dil}.txt`) yer alıp sözlük paketinde Türkçesi (`t`) bulunmayan kelimeler için öneri tabloları oluşturulmuştur:
+
+- **İngilizce (`tr-missing-en.csv`):** 1.582 eksik kelime (34 yüksek, 1.024 orta, 524 düşük). Ağırlıklı olarak çekimli fiiller (*was, got, were*), bağlaçlar ve konuşma dili kısaltmaları (*gonna, wanna, didn't*).
+- **Fransızca (`tr-missing-fr.csv`):** 2.243 eksik kelime (172 yüksek, 1.412 orta, 659 düşük). Form tablosu köprülemesiyle çekimli fiil kök anlamları ve İngilizce karşılık üzerinden doğrudan Türkçe çeviriler.
+- **İspanyolca (`tr-missing-es.csv`):** 2.486 eksik kelime (151 yüksek, 1.898 orta, 437 düşük). Çekimli fiiller (*estoy, tengo, quiero*) ve edat tamlamaları.
+- **Biçim:** `kelime,sira,ingilizce,oneri_turkce,guven` (yüksek / orta / düşük).
+- *Kullanım:* Bu listeler kullanıcı veya Claude tarafından gözden geçirilip `src/data/wordpackBuild.ts` içerisine entegre edilebilir bir taslak öneri niteliğindedir.

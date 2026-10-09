@@ -1,0 +1,1583 @@
+kelime,sira,ingilizce,oneri_turkce,guven
+the,3,,belirteç (harf-i tarif / belirli artikel),yüksek
+was,23,,"idi, oldu (be geçmiş zamanı)",yüksek
+don,28,,"efendi, saygı unvanı / giyinmek",yüksek
+yeah,57,,"evet, aynen",yüksek
+got,59,,"aldı, sahip oldu (get geçmiş zamanı)",yüksek
+did,64,,"yapmak, etmek, temizlik yapmak (do çekimi)",orta
+were,83,,"imek, var, bulunmak (be çekimi)",orta
+had,86,,"sahip olmak, benim ...(I)m var, senin ...(I)n var (have çekimi)",orta
+been,88,,"imek, var, bulunmak (be çekimi)",orta
+gonna,90,,"yapacak, edecek (going to)",yüksek
+could,97,,"-ebilmek, -abilmek, kutu (can çekimi)",orta
+didn,98,,yapmadı (did not kısaltması),yüksek
+has,102,,"sahip olmak, benim ...(I)m var, senin ...(I)n var (have çekimi)",orta
+am,123,,,düşük
+uh,146,,"ııı, şey (duraklama ünlemi)",yüksek
+won,156,,"kazanmak, yenmek, galibiyet (win çekimi)",orta
+told,169,,"söylemek, anlatmak, bildirmek (tell çekimi)",orta
+things,171,,"cisim, nesne, şey (thing çekimi)",orta
+years,175,,"sene, yıl (year çekimi)",orta
+does,177,,"yapmak, etmek, temizlik yapmak (do çekimi)",orta
+doesn,180,,yapmaz (does not kısaltması),yüksek
+guys,185,,ahbap (guy çekimi),orta
+isn,190,,değil (is not kısaltması),yüksek
+done,194,,"yapmak, etmek, temizlik yapmak (do çekimi)",orta
+happened,215,,"olmak, oluşmak, yer bulmak (happen çekimi)",orta
+came,216,,"gelmek, olmak, gel (come çekimi)",orta
+getting,239,,"afallatmak, şaşırtmak, karşılaşmak (get çekimi)",orta
+went,246,,"gitmek, go, gezmek (go çekimi)",orta
+wasn,251,,,düşük
+wouldn,268,,yapmazdı (would not kısaltması),yüksek
+seen,272,,"görmek, izlemek, anlamak (see çekimi)",orta
+huh,276,,,düşük
+heard,279,,"işitmek, duymak (hear çekimi)",orta
+called,283,,"çağırmak, seslenmek, telefon etmek (call çekimi)",orta
+knew,286,,"tanımak, bilmek, yatmış olmak (know çekimi)",orta
+took,296,,"almak, tutmak, kabul etmek (take çekimi)",orta
+men,299,,"belli bir yere, sınıfa, gruba ait adam (man çekimi)",orta
+tonight,312,,,düşük
+wanna,315,,istemek (want to),yüksek
+ah,317,,"ha, vah, ah (anlama/ferahlama ünlemi)",yüksek
+gone,321,,"gitmek, go, gezmek (go çekimi)",orta
+um,322,,"şey, kem küm (duraklama ünlemi)",yüksek
+couldn,328,,yapamadı (could not kısaltması),yüksek
+friends,332,,"arkadaş, dost, eş (friend çekimi)",orta
+gotta,333,,zorunda olmak (got to),yüksek
+killed,337,,"öldürmek, öldürme (kill çekimi)",orta
+wants,347,,"bir şeyi istemek, arzulamak, istemek (want çekimi)",orta
+says,348,,"demek, söylemek, telaffuz etmek (say çekimi)",orta
+having,360,,"sahip olmak, benim ...(I)m var, senin ...(I)n var (have çekimi)",orta
+kids,373,,"oğlak, çebiç, diği (kid çekimi)",orta
+gave,386,,vermek (give çekimi),orta
+knows,392,,"tanımak, bilmek, yatmış olmak (know çekimi)",orta
+eyes,395,,göz (eye çekimi),orta
+aren,397,,değiller (are not kısaltması),yüksek
+hands,403,,"el, ibre, akrep (hand çekimi)",orta
+makes,410,,"yapmak, yaratmak, etmek (make çekimi)",orta
+asked,411,,"sormak, istemek, dilemek (ask çekimi)",orta
+ain,424,,değil / yok (argo olumsuzluk),yüksek
+comes,429,,"gelmek, olmak, gel (come çekimi)",orta
+shall,432,,,düşük
+girls,444,,"kız, taze (girl çekimi)",orta
+mr,450,,"bay, beyefendi (mister)",yüksek
+children,451,,"çocuk, evlat (child çekimi)",orta
+started,457,,"başlangıç, start, çıkış (start çekimi)",orta
+supposed,459,,,düşük
+goes,462,,"gitmek, go, gezmek (go çekimi)",orta
+hours,463,,"saat, sögen (hour çekimi)",orta
+women,465,,"kadın, hatun, bayan (woman çekimi)",orta
+anymore,472,,artık (any more çekimi),orta
+gets,474,,"afallatmak, şaşırtmak, karşılaşmak (get çekimi)",orta
+met,484,,"karşılaşmak, rastlamak, rastlaşmak (meet çekimi)",orta
+brought,487,,"getirmek, telefon çalma sesi (bring çekimi)",orta
+died,494,,"ölmek, vefat etmek, zar (die çekimi)",orta
+seems,498,,"gözükmek, görünmek (seem çekimi)",orta
+tried,505,,"denemek, teşebbüs etmek, çalışmak (try çekimi)",orta
+boys,510,,"oğlan, olan (boy çekimi)",orta
+months,518,,ay (month çekimi),orta
+l,527,,,düşük
+needs,528,,"ihtiyaç, gereksinim, lüzum (need çekimi)",orta
+sighs,551,,"ahlamak, iç çekmek, of çekmek (sigh çekimi)",orta
+shouldn,554,,yapmamalıydı (should not kısaltması),yüksek
+taken,559,,"almak, tutmak, kabul etmek (take çekimi)",orta
+ma,561,,,düşük
+sent,563,,"göndermek, yollamak, postalamak (send çekimi)",orta
+lives,569,,"hayatta kalmak, ikamet etmek, yaşamak (live çekimi)",orta
+s,572,,-in / is / has kısaltması,yüksek
+sounds,576,,"sağlıklı, iyi, ses (sound çekimi)",orta
+ha,580,,"a, diye biri, sapıkça (a çekimi)",orta
+laughs,593,,gülmek (laugh çekimi),orta
+hmm,599,,,düşük
+happens,607,,"olmak, oluşmak, yer bulmak (happen çekimi)",orta
+chuckles,612,,,düşük
+words,617,,"kavil, kelime, söz (word çekimi)",orta
+others,624,,"diğer, öbür, başka (other çekimi)",orta
+longer,646,,"uzun, uzağa, özlemek (long çekimi)",orta
+worked,648,,"iş, eser, yapıt (work çekimi)",orta
+looked,650,,"bakmak, görünmek, bakma (look çekimi)",orta
+weeks,658,,"hafta, yedil (week çekimi)",orta
+weren,659,,değillerdi (were not kısaltması),yüksek
+takes,667,,"almak, tutmak, kabul etmek (take çekimi)",orta
+gentlemen,670,,"beyefendi, centilmen, efendi (gentleman çekimi)",orta
+loved,671,,"aşk, sevgi, sevi (love çekimi)",orta
+changed,672,,"değişmek, değiştirmek, üstünü değiştirmek (change çekimi)",orta
+turned,677,,"dönmek, döndürmek, doldurmak (turn çekimi)",orta
+ladies,679,,"bayan, hanım, hanımefendi (lady çekimi)",orta
+feet,691,,"ayak, fit, hesabı ödemek (foot çekimi)",orta
+moving,702,,"hareket etmek, taşımak, kımıldatmak (move çekimi)",orta
+sam,706,,,düşük
+ones,709,,bir (one çekimi),orta
+works,710,,,düşük
+happening,720,,"olmak, oluşmak, yer bulmak (happen çekimi)",orta
+kidding,726,,"oğlak, çebiç, diği (kid çekimi)",orta
+decided,727,,"karar vermek, hükmetmek, kararlaştırmak (decide çekimi)",orta
+ya,728,,"""senin"", genel olarak herhangi biri, kim olursa (you çekimi)",orta
+kept,733,,"muhafaza etmek, saklamak, alıkoymak (keep çekimi)",orta
+eh,737,,,düşük
+caught,746,,"gırtlaksı kapantılı, kapmak, yakalamak (catch çekimi)",orta
+meant,748,,"plânlamak, tasarlamak, anlama gelmek (mean çekimi)",orta
+watching,751,,"kol saatı, saat, nöbet (watch çekimi)",orta
+suppose,753,,,düşük
+t,757,,not kısaltması,yüksek
+born,764,,"ayı, götürmek, katlanmak (bear çekimi)",orta
+hasn,783,,sahip olmadı (has not kısaltması),yüksek
+thinks,800,,"düşünmek, sanmak, zannetmek (think çekimi)",orta
+joe,803,,,düşük
+talked,805,,"konuşmak, konuşma, laf etmek (talk çekimi)",orta
+lovely,808,,,düşük
+using,814,,"yarar, fayda, avantaj (use çekimi)",orta
+ran,816,,"koşmak, yarışmak, kaçmak (run çekimi)",orta
+anywhere,821,,,düşük
+york,824,,,düşük
+bought,827,,"satın almak, sakmak, almak (buy çekimi)",orta
+sitting,842,,"oturmak, oturulmak (sit çekimi)",orta
+d,846,,would / had kısaltması,yüksek
+forgot,848,,"unutmak, bir şeyi hatırında tutamamak, bir işi yapmayı unutmak (forget çekimi)",orta
+charlie,852,,,düşük
+mike,855,,,düşük
+miles,865,,mil (mile çekimi),orta
+wearing,879,,"giymek, takmak, yıpranma (wear çekimi)",orta
+fell,884,,"düşmek, güz, sonbahar (fall çekimi)",orta
+problems,892,,"problem, sorun, soru (problem çekimi)",orta
+stopped,902,,"durmak, durdurmak, kesmek (stop çekimi)",orta
+whether,904,,,düşük
+screaming,918,,"çığlık, bağırma, haykırış (scream çekimi)",orta
+fighting,923,,"dövüşmek, savaşmak, kavga etmek (fight çekimi)",orta
+paul,928,,,düşük
+missed,931,,"özlemek, kaçırmak, ıskalamak (miss çekimi)",orta
+saved,935,,"para biriktirmek, tasarruf etmek, kurtarmak (save çekimi)",orta
+mm,936,,ay (month çekimi),orta
+feels,942,,"hissetmek, bir şeyi elle yoklamak, dokunmak (feel çekimi)",orta
+mm-hmm,949,,,düşük
+ben,953,,,düşük
+starting,961,,"başlangıç, start, çıkış (start çekimi)",orta
+calls,962,,"çağırmak, seslenmek, telefon etmek (call çekimi)",orta
+y,963,,"sene, yıl (year çekimi)",orta
+spent,964,,"harcamak, para harcamak, vakit geçirmek (spend çekimi)",orta
+moved,974,,"hareket etmek, taşımak, kımıldatmak (move çekimi)",orta
+i-i,979,,,düşük
+lt,983,,,düşük
+became,994,,"dönüşmek, ...haline gelmek, olmak (become çekimi)",orta
+lived,995,,"hayatta kalmak, ikamet etmek, yaşamak (live çekimi)",orta
+loves,1006,,"aşk, sevgi, sevi (love çekimi)",orta
+la,1012,,,düşük
+liked,1013,,"beğenmek, hoşlanmak, sevmek (like çekimi)",orta
+likes,1024,,"beğenmek, hoşlanmak, sevmek (like çekimi)",orta
+wrote,1033,,yazmak (write çekimi),orta
+continues,1054,,"devam etmek, sürmek, sürdürmek (continue çekimi)",orta
+mmm,1055,,,düşük
+mrs,1059,,"bayan, hanımefendi (evli kadınlar için)",yüksek
+putting,1064,,koymak (put çekimi),orta
+stuck,1069,,"sopa, çubuk, dayak (stick çekimi)",orta
+rules,1072,,"kural, kaide, nizam (rule çekimi)",orta
+grunts,1073,,"homurdanma, homurtu (grunt çekimi)",orta
+max,1078,,,düşük
+seconds,1080,,"ikinci, saniye, katılmak (second çekimi)",orta
+gives,1082,,vermek (give çekimi),orta
+staying,1095,,"kalmak, olunmak, durmak (stay çekimi)",orta
+dreams,1096,,"rüya, hayal, düş (dream çekimi)",orta
+lots,1101,,"Lut, ad çekme, kura (lot çekimi)",orta
+shoes,1102,,"ayakkabı, başmak, pabuç (shoe çekimi)",orta
+er,1103,,,düşük
+rid,1105,,"binmek, transport, denize açılmak (ride çekimi)",orta
+yo,1106,,"iyelik zamiri -n, senin, hazretleri (your çekimi)",orta
+harry,1109,,,düşük
+aah,1116,,,düşük
+passed,1118,,"aktarmak, geçmek, göndermek (pass çekimi)",orta
+m,1119,,ben -im (am kısaltması),yüksek
+arms,1127,,"kol, silah, silahlandırmak (arm çekimi)",orta
+turns,1128,,"dönmek, döndürmek, doldurmak (turn çekimi)",orta
+ow,1130,,,düşük
+gasps,1132,,"nefes nefese kalmak, hızlı solumak, nefes (gasp çekimi)",orta
+grand,1133,,,düşük
+yep,1134,,"evet, hı hı",yüksek
+de,1137,,de (dee çekimi),orta
+themselves,1139,,,düşük
+hadn,1146,,sahip olmamıştı (had not kısaltması),yüksek
+crap,1148,,,düşük
+drugs,1149,,"uyuşturucu hap, ilaç, uyuşturucu (drug çekimi)",orta
+rings,1151,,"çember, ring, yüzük (ring çekimi)",orta
+picked,1155,,"kazma, ajine, çilingir (pick çekimi)",orta
+books,1159,,"kitap, betik, cilt (book çekimi)",orta
+danny,1161,,,düşük
+allowed,1163,,"izin vermek, mümkün kılmak, kabul etmek (allow çekimi)",orta
+orders,1164,,"düzen, tertip, emir (order çekimi)",orta
+arrived,1167,,"ulaşmak, varmak, gelmek (arrive çekimi)",orta
+pictures,1170,,"resim, tasvir, çizim (picture çekimi)",orta
+played,1174,,"oynamak, çalgı çalmak, çalmak (play çekimi)",orta
+feelings,1187,,"duygusal, duyarlı, hassas (feeling çekimi)",orta
+alex,1191,,,düşük
+dollars,1192,,dolar (dollar çekimi),orta
+jim,1201,,,düşük
+legs,1205,,"bacak, paça, ayak (leg çekimi)",orta
+bigger,1212,,"büyük, iri, yaşça büyük (big çekimi)",orta
+grunting,1213,,"homurdanma, homurtu (grunt çekimi)",orta
+names,1218,,"ad, isim, şöhret (name çekimi)",orta
+upstairs,1220,,,düşük
+jimmy,1223,,,düşük
+twice,1225,,,düşük
+ways,1227,,"yol, yöntem, metod (way çekimi)",orta
+indeed,1229,,,düşük
+helped,1235,,"yardım, imdat, yardımcı (help çekimi)",orta
+fired,1236,,"ateş, yangın, elektrik veya gaz ocağı (fire çekimi)",orta
+tony,1238,,,düşük
+places,1241,,"yer, mekan, açık alan (place çekimi)",orta
+brothers,1244,,"erkek kardeş, birader, dadaş (brother çekimi)",orta
+starts,1245,,"başlangıç, start, çıkış (start çekimi)",orta
+sold,1248,,"satmak, satışa çıkarmak (sell çekimi)",orta
+figured,1254,,"figür, beti, değişmece (figure çekimi)",orta
+ringing,1256,,"çember, ring, yüzük (ring çekimi)",orta
+steve,1261,,,düşük
+seemed,1262,,"gözükmek, görünmek (seem çekimi)",orta
+stole,1274,,"çalmak, hırsızlık etmek, aşırmak (steal çekimi)",orta
+plans,1292,,"tasar, plan, planlamak (plan çekimi)",orta
+built,1295,,"yapmak, inşa etmek, kurmak (build çekimi)",orta
+groans,1300,,"inilti, inleme, inlemek (groan çekimi)",orta
+richard,1303,,,düşük
+animals,1305,,"hayvan, canlı, döngül (animal çekimi)",orta
+dogs,1320,,"adam, herif, köpek (dog çekimi)",orta
+showed,1326,,"göstermek, gösteri, şov (show çekimi)",orta
+billy,1327,,,düşük
+shooting,1328,,"ateş etmek, vurmak, şut çekmek (shoot çekimi)",orta
+keeps,1329,,"muhafaza etmek, saklamak, alıkoymak (keep çekimi)",orta
+guns,1331,,"tabanca, tüfek, top (gun çekimi)",orta
+hoping,1334,,"ummak, umut etmek, ümit etmek (hope çekimi)",orta
+flowers,1338,,"çiçek, çiçeklenmek (flower çekimi)",orta
+asleep,1340,,,düşük
+keys,1343,,"biçem düzlemi, anahtar, açar (key çekimi)",orta
+goddamn,1349,,,düşük
+jane,1351,,,düşük
+wondering,1355,,"harika, mucize, tansık (wonder çekimi)",orta
+asshole,1363,,,düşük
+c,1365,,,düşük
+fuckin,1368,,"boktan, lanet, kahrolasıca (fucking çekimi)",orta
+cheering,1371,,,düşük
+whoever,1376,,,düşük
+walked,1378,,"yürümek, gezdirmek, yürüyüşe çıkarmak (walk çekimi)",orta
+lights,1390,,"ışık, hafif vurgulu, ışık tutma (light çekimi)",orta
+agreed,1397,,"katılmak, kabul etmek, onaylamak (agree çekimi)",orta
+johnny,1398,,,düşük
+tommy,1402,,,düşük
+stars,1407,,"yıldız, şöhret, ünlü (star çekimi)",orta
+cars,1409,,"araba, oto, otomobil (car çekimi)",orta
+folks,1410,,"halk, tuy, ahali (folk çekimi)",orta
+shows,1415,,"göstermek, gösteri, şov (show çekimi)",orta
+leaves,1417,,yaprak (leaf çekimi),orta
+gotten,1424,,"afallatmak, şaşırtmak, karşılaşmak (get çekimi)",orta
+tells,1427,,"söylemek, anlatmak, bildirmek (tell çekimi)",orta
+lies,1428,,"uzanmak, yatmak, yalan söylemek (lie çekimi)",orta
+pulled,1430,,"çekmek, çekme (pull çekimi)",orta
+stories,1433,,"hikâye, öykü, story (story çekimi)",orta
+held,1436,,"tutmak, kavramak, bulundurmak (hold çekimi)",orta
+murdered,1438,,"cinayet, adam öldürme, karga sürüsü (murder çekimi)",orta
+eddie,1448,,,düşük
+states,1451,,"devlet, durum, görkem (state çekimi)",orta
+weapons,1460,,"pusat, silah, yarak (weapon çekimi)",orta
+jake,1465,,,düşük
+taught,1470,,"öğretmek, ders vermek, okutmak (teach çekimi)",orta
+robert,1471,,,düşük
+biggest,1472,,"büyük, iri, yaşça büyük (big çekimi)",orta
+plays,1473,,"oynamak, çalgı çalmak, çalmak (play çekimi)",orta
+dancing,1475,,"dans, raks, bar (dance çekimi)",orta
+martin,1478,,"ağaç sansarı, zerdeva, sansar (marten çekimi)",orta
+chris,1484,,,düşük
+towards,1489,,"gelecek, yaklaşan, gelecek vadeden (toward çekimi)",orta
+dropped,1491,,"damla, katre, meyan (drop çekimi)",orta
+lied,1493,,"uzanmak, yatmak, yalan söylemek (lie çekimi)",orta
+aw,1501,,,düşük
+greatest,1504,,"çok iyi, harika, şahane (great çekimi)",orta
+games,1505,,"oyun, av hayvanı, katılmaya istekli (game çekimi)",orta
+arrested,1508,,"tutuklama, durdurma, önleme (arrest çekimi)",orta
+noticed,1514,,"uyarı, farkına varmak, farketmek (notice çekimi)",orta
+screams,1516,,"çığlık, bağırma, haykırış (scream çekimi)",orta
+ideas,1518,,"düşünce, fikir (idea çekimi)",orta
+older,1521,,"eski, yaşlı, önceki (old çekimi)",orta
+soldiers,1523,,"asker, er, çeri (soldier çekimi)",orta
+doc,1525,,doktora (doctorate çekimi),orta
+teeth,1538,,diş (tooth çekimi),orta
+charles,1540,,,düşük
+records,1552,,"kayıt, rekor, plak (record çekimi)",orta
+sweetie,1554,,,düşük
+belong,1558,,,düşük
+whoo,1559,,,düşük
+amy,1561,,,düşük
+forgotten,1562,,"unutmak, bir şeyi hatırında tutamamak, bir işi yapmayı unutmak (forget çekimi)",orta
+invited,1570,,"davet etmek, çağırmak, çanak tutmak (invite çekimi)",orta
+easier,1573,,"kolay, rahat, kolayca (easy çekimi)",orta
+hurts,1576,,"fiziksel zarar vermek, incitmek, sözleriyle veya eylemleriyle kırmak (hurt çekimi)",orta
+nowhere,1583,,,düşük
+kim,1585,,,düşük
+pieces,1599,,"parça, tane, uzuv (piece çekimi)",orta
+letting,1601,,"kiralamak, kiralanmış oda veya ev, bir şeyin kiralandığı periyod (let çekimi)",orta
+began,1602,,"başlamak, başlatmak, başlanmak (begin çekimi)",orta
+jeff,1604,,,düşük
+ho,1607,,,düşük
+cards,1608,,"kart, kartvizit (card çekimi)",orta
+destroyed,1612,,"yok etmek, mahvetmek, tahrip etmek (destroy çekimi)",orta
+ended,1613,,"son, ölüm, sonuç (end çekimi)",orta
+movies,1617,,"sinema, film, yedinci sanat (movie çekimi)",orta
+matters,1630,,"madde, özdek, konu (matter çekimi)",orta
+believed,1637,,"birine inanmak, bir şeyin varlığına inanmak, birine güvenmek (believe çekimi)",orta
+h,1639,,"saat, sögen (hour çekimi)",orta
+threw,1644,,"atmak, fırlatmak, satmak (throw çekimi)",orta
+created,1647,,"yaratmak, atamak, düşmek (create çekimi)",orta
+realized,1648,,"bilincine varmak, farkına varmak, fark etmek (realize çekimi)",orta
+nuts,1651,,"fındık, civata somunu, kaçık (nut çekimi)",orta
+students,1652,,"öğrenci, üniversiteli, üniversite öğrencisi (student çekimi)",orta
+birds,1653,,kuş (bird çekimi),orta
+bodies,1656,,"cisim, beden, vücut (body çekimi)",orta
+bucks,1660,,,düşük
+kevin,1661,,,düşük
+ryan,1664,,,düşük
+dan,1666,,"göre, -den, -dan (than çekimi)",orta
+opens,1667,,"açık, açmak, geniş (open çekimi)",orta
+followed,1669,,"izlemek, takip etmek, düşmek (follow çekimi)",orta
+letters,1673,,"harf, mektup, name (letter çekimi)",orta
+daniel,1674,,,düşük
+anna,1677,,,düşük
+lately,1678,,,düşük
+stayed,1679,,"kalmak, olunmak, durmak (stay çekimi)",orta
+ends,1682,,"son, ölüm, sonuç (end çekimi)",orta
+thousands,1689,,bin (thousand çekimi),orta
+fucked,1694,,"beraber olma, yatma, sikmek (fuck çekimi)",orta
+indistinct,1704,,,düşük
+received,1706,,"almak, karşılamak (receive çekimi)",orta
+disappeared,1710,,"kaybolmak, gözden kaybolmak, ortadan kalkmak (disappear çekimi)",orta
+expecting,1712,,"ummak, beklemek (expect çekimi)",orta
+horses,1715,,"at, kasa, beygir (horse çekimi)",orta
+thomas,1720,,,düşük
+lines,1723,,"çizgi, hat, satır (line çekimi)",orta
+ordered,1733,,"düzen, tertip, emir (order çekimi)",orta
+slept,1737,,"uyumak, uyku, çapak (sleep çekimi)",orta
+brings,1742,,"getirmek, telefon çalma sesi (bring çekimi)",orta
+failed,1749,,"sınıfta bırakmak, sınıfta kalmak (fail çekimi)",orta
+discovered,1752,,"keşfetmek, bulmak (discover çekimi)",orta
+cares,1756,,"bakım, dikkat, özen (care çekimi)",orta
+fingers,1758,,"parmak, işaret etmek, parmak atmak (finger çekimi)",orta
+san,1759,,,düşük
+scott,1760,,,düşük
+sees,1766,,"görmek, izlemek, anlamak (see çekimi)",orta
+basically,1767,,,düşük
+al,1768,,,düşük
+ohh,1781,,,düşük
+streets,1790,,"cadde, sokak (street çekimi)",orta
+doors,1793,,"kapı, gümrük kapısı, bap (door çekimi)",orta
+pete,1794,,,düşük
+ed,1795,,,düşük
+nah,1798,,,düşük
+members,1800,,"üye, aza, uzuv (member çekimi)",orta
+kate,1801,,,düşük
+returned,1804,,"geri dönmek, kayıtmak, geri çekilmek (return çekimi)",orta
+harder,1805,,"sert, zor, çetin (hard çekimi)",orta
+fbi,1806,,,düşük
+good-bye,1814,,"güle güle, hoşça kal, görüşürüz (goodbye çekimi)",orta
+drinks,1815,,"içmek, içecek, meşrubat (drink çekimi)",orta
+dave,1816,,,düşük
+brian,1818,,,düşük
+changes,1822,,"değişmek, değiştirmek, üstünü değiştirmek (change çekimi)",orta
+details,1823,,"ayrıntı, teferruat, tafsilat (detail çekimi)",orta
+thoughts,1824,,"düşünce, fikir, düşünüş (thought çekimi)",orta
+maria,1827,,"kısrak, deniz (mare çekimi)",orta
+william,1834,,,düşük
+outta,1836,,,düşük
+sooner,1840,,"birazdan, biraz sonra, hemen (soon çekimi)",orta
+larry,1842,,kamyon (lorry çekimi),orta
+ears,1845,,"kulak, başak, başaklanmak (ear çekimi)",orta
+simon,1846,,,düşük
+cos,1850,,,düşük
+personally,1851,,,düşük
+jerry,1856,,,düşük
+tickets,1858,,"bilet, hizmet bileti (ticket çekimi)",orta
+eggs,1861,,yumurta (egg çekimi),orta
+goin,1862,,"gitme, giden (going çekimi)",orta
+andy,1867,,,düşük
+caused,1875,,"neden, sebep, uğratmak (cause çekimi)",orta
+beeping,1876,,"düt, bip (beep çekimi)",orta
+santa,1882,,,düşük
+reasons,1887,,"neden, sebep, akıl (reason çekimi)",orta
+trees,1890,,"ağaç, ağaca tırmandırmak (tree çekimi)",orta
+doctors,1891,,"doktor, tabip (doctor çekimi)",orta
+nights,1897,,gece (night çekimi),orta
+runs,1899,,"koşmak, yarışmak, kaçmak (run çekimi)",orta
+matt,1902,,"donuk, mat, opak (matte çekimi)",orta
+ate,1905,,yemek (eat çekimi),orta
+grew,1906,,"büyümek, büyütmek, yetiştirmek (grow çekimi)",orta
+tim,1908,,,düşük
+parts,1910,,"parça, kısım, bölüm (part çekimi)",orta
+cases,1917,,"durum, dava, hâl (case çekimi)",orta
+memories,1921,,"bellek, dağarcık, akıl (memory çekimi)",orta
+da,1922,,,düşük
+buying,1923,,"satın almak, sakmak, almak (buy çekimi)",orta
+lisa,1932,,,düşük
+planned,1937,,"tasar, plan, planlamak (plan çekimi)",orta
+emily,1938,,,düşük
+victims,1940,,kurban (victim çekimi),orta
+mentioned,1941,,"bahsetmek, değinmek, dile getirmek (mention çekimi)",orta
+bones,1942,,"kemik, sünük, süyek (bone çekimi)",orta
+re,1947,,"hakkında, konusunda / are kısaltması",yüksek
+madame,1953,,"evli kadın, hanımefendi, efendim (madam çekimi)",orta
+tears,1967,,"parçalamak, yırtmak, kırmak (tear çekimi)",orta
+reached,1969,,"ulaşmak, varmak, gelmek (reach çekimi)",orta
+higher,1970,,"yüksek, aşırı, uca (high çekimi)",orta
+kelly,1975,,,düşük
+jobs,1978,,"meslek, iş, görev (job çekimi)",orta
+walter,1980,,,düşük
+woods,1984,,"odun, tahta, orman (wood çekimi)",orta
+n,1985,,,düşük
+stops,1991,,"durmak, durdurmak, kesmek (stop çekimi)",orta
+secrets,1992,,"giz, sır, gizli (secret çekimi)",orta
+laura,1993,,,düşük
+photos,1995,,"fotoğraf çekmek, fotoğraf (photo çekimi)",orta
+finds,1996,,"bulmak, buluntu, buluş (find çekimi)",orta
+younger,1999,,"genç, gençlik (young çekimi)",orta
+humans,2001,,"beşeri, insani, insanca (human çekimi)",orta
+belongs,2006,,,düşük
+attacked,2007,,"atak, hücum, saldırı (attack çekimi)",orta
+hired,2009,,"kira, kiralama eylemi, yeni işe alınmış kişi (hire çekimi)",orta
+b,2012,,,düşük
+led,2013,,,düşük
+guests,2014,,"konuk, misafir, mihman (guest çekimi)",orta
+powers,2020,,"güç, kuvvet, iktidar (power çekimi)",orta
+ashamed,2021,,,düşük
+officers,2027,,"subay, zabit, memur (officer çekimi)",orta
+pounds,2028,,"libre, parçalara ayırmak (pound çekimi)",orta
+depends,2032,,bağlı olmak (depend çekimi),orta
+waited,2034,,beklemek (wait çekimi),orta
+families,2038,,"aile, ocak, akraba (family çekimi)",orta
+doin,2039,,"yapma, etme (doing çekimi)",orta
+forces,2040,,"güç, kuvvet, zorlamak (force çekimi)",orta
+walls,2042,,"duvar, sur (wall çekimi)",orta
+speaks,2046,,"konuşmak, yazışma, iletişim kurmak (speak çekimi)",orta
+fought,2047,,"dövüşmek, savaşmak, kavga etmek (fight çekimi)",orta
+answers,2050,,"yanıt, cevap, cevap vermek (answer çekimi)",orta
+millions,2054,,"bir milyon, milyon (million çekimi)",orta
+offered,2055,,"teklif, öneri, arz (offer çekimi)",orta
+carrying,2057,,"taşımak, elde, beslemek (carry çekimi)",orta
+faces,2066,,"yüz, sıfat, sima (face çekimi)",orta
+becomes,2067,,"dönüşmek, ...haline gelmek, olmak (become çekimi)",orta
+closes,2068,,"kapatmak, örtmek, kitlemek (close çekimi)",orta
+raised,2075,,"büyütmek, kaldırmak, yükseltmek (raise çekimi)",orta
+panting,2076,,,düşük
+clears,2079,,"ince, belli (clear çekimi)",orta
+patients,2081,,"sabırlı, hasta, dayançlı (patient çekimi)",orta
+watched,2082,,"kol saatı, saat, nöbet (watch çekimi)",orta
+arthur,2086,,,düşük
+wherever,2087,,,düşük
+hm,2092,,"kaça, ne kadar (how much çekimi)",orta
+shots,2094,,"aşınmak, saçma, iğne (shot çekimi)",orta
+lucy,2095,,,düşük
+dealing,2096,,"anlaşma, dağıtım, dağıtış (deal çekimi)",orta
+charges,2098,,"akın, saldırı, hücum (charge çekimi)",orta
+phil,2099,,"felsefe, düşünbilim, felsefe dersi (philosophy çekimi)",orta
+babies,2106,,"bebeğim, yavrum, bebek (baby çekimi)",orta
+picking,2110,,"kazma, ajine, çilingir (pick çekimi)",orta
+sat,2111,,"oturmak, oturulmak (sit çekimi)",orta
+terms,2118,,terim (term çekimi),orta
+emma,2120,,,düşük
+checking,2121,,"çek, kontrol, şah (check çekimi)",orta
+managed,2123,,"idare etmek, yönetmek (manage çekimi)",orta
+jenny,2130,,,düşük
+chose,2134,,,düşük
+carl,2136,,,düşük
+rick,2138,,,düşük
+stood,2139,,"ayakta durmak, durmak, dayanmak (stand çekimi)",orta
+kicked,2140,,"tekmelemek, tekme atmak, atmak (kick çekimi)",orta
+annie,2141,,,düşük
+screwed,2162,,"vida, vidalamak, sikmek (screw çekimi)",orta
+enemies,2163,,"düşman, hasım, yağı (enemy çekimi)",orta
+gary,2164,,,düşük
+chuckling,2166,,,düşük
+heh,2175,,,düşük
+touched,2176,,"dokunmak, ellemek, değmek (touch çekimi)",orta
+moves,2184,,"hareket etmek, taşımak, kımıldatmak (move çekimi)",orta
+gods,2187,,"büyük bir etki bırakan, hayran olunan kişi, tanrı (god çekimi)",orta
+dies,2195,,"ölmek, vefat etmek, zar (die çekimi)",orta
+claire,2200,,,düşük
+fred,2201,,,düşük
+songs,2202,,"şarkı, türkü (song çekimi)",orta
+pills,2206,,"hap, tablet, komprime (pill çekimi)",orta
+burned,2209,,"yanık, yanma, yakmak (burn çekimi)",orta
+smells,2210,,"koku, koklama, koklamak (smell çekimi)",orta
+joking,2211,,"fıkra, şaka, latife (joke çekimi)",orta
+carter,2219,,,düşük
+extremely,2223,,,düşük
+passing,2227,,"aktarmak, geçmek, göndermek (pass çekimi)",orta
+sisters,2231,,"bacı, abla, kız kardeş (sister çekimi)",orta
+laid,2232,,"yatırmak, döşemek, yumurtlamak (lay çekimi)",orta
+guards,2234,,"gard, bekçi (guard çekimi)",orta
+louis,2235,,,düşük
+stronger,2241,,"güçlü, şiddetli, kuvvetli (strong çekimi)",orta
+josh,2250,,,düşük
+ted,2252,,,düşük
+sean,2256,,"ablatya, Sen (seine çekimi)",orta
+tied,2259,,"bağlamak, berabere kalmak (tie çekimi)",orta
+ahh,2263,,,düşük
+mountains,2264,,"dağ, dağ (dağ gibi), yığın (yığınla) (mountain çekimi)",orta
+scoffs,2269,,,düşük
+hundreds,2270,,yüz (hundred çekimi),orta
+motherfucker,2271,,,düşük
+bags,2273,,"torba, çanta, çuval (bag çekimi)",orta
+appears,2275,,"ortaya çıkmak, görünür olmak, belirmek (appear çekimi)",orta
+issues,2279,,"konu, mesele, ihraç (issue çekimi)",orta
+pissed,2283,,çiş (piss çekimi),orta
+properly,2294,,,düşük
+woke,2310,,"uyanmak, kaldırmak, uyandırmak (wake çekimi)",orta
+winning,2313,,"kazanmak, yenmek, galibiyet (win çekimi)",orta
+escaped,2316,,"kaçmak, kurtulmak, firar (escape çekimi)",orta
+kyle,2323,,,düşük
+someday,2324,,,düşük
+monsieur,2330,,,düşük
+tires,2333,,"yorulmak, yormak, çember (tire çekimi)",orta
+clark,2336,,"yazman, kâtip, görevli (clerk çekimi)",orta
+americans,2337,,"Amerikalı, Amerikan, Amerikanca (american çekimi)",orta
+notes,2338,,"not, nota, muhtıra (note çekimi)",orta
+hank,2340,,,düşük
+ls,2341,,,düşük
+rooms,2345,,"boş alan, boş yer, oda (room çekimi)",orta
+treated,2347,,"muamele etmek, tedavi etmek, davranmak (treat çekimi)",orta
+released,2349,,"bırakım, serbest bırakma, tahliye etmek (release çekimi)",orta
+considered,2352,,"addetmek, dikkate almak, itibar etmek (consider çekimi)",orta
+steps,2355,,"adım, adım atmak, mertebe (step çekimi)",orta
+blake,2356,,,düşük
+files,2360,,"dosya, uzun kuyruk, sıra (file çekimi)",orta
+hung,2364,,"asmak, asılı durmak, asılı olmak (hang çekimi)",orta
+carried,2365,,"taşımak, elde, beslemek (carry çekimi)",orta
+mistakes,2369,,"yanlış anlamak, yanlış yapmak, hata yapmak (mistake çekimi)",orta
+chattering,2371,,"çene çalmak, gevezelik (chatter çekimi)",orta
+brains,2372,,"beyin, öke, bilge (brain çekimi)",orta
+lf,2379,,,düşük
+ll,2380,,gelecek zaman eki (-ecek / will kısaltması),yüksek
+elizabeth,2382,,,düşük
+karen,2385,,,düşük
+served,2388,,"hizmet etmek, kulluk etmek, servis etmek (serve çekimi)",orta
+marks,2392,,"not, mark, leke (mark çekimi)",orta
+jackson,2398,,,düşük
+julie,2417,,,düşük
+blew,2419,,"üflemek, esmek, darbe (blow çekimi)",orta
+victor,2420,,,düşük
+talks,2421,,"konuşmak, konuşma, laf etmek (talk çekimi)",orta
+reports,2425,,"raporlamak, bildirmek, rapor (report çekimi)",orta
+eaten,2431,,yemek (eat çekimi),orta
+knees,2433,,"diz, paraçol (knee çekimi)",orta
+parking,2435,,"park, park etmek (park çekimi)",orta
+staring,2437,,"dik dik bakmak, gözünü dikmek, öküz gibi bakmak (stare çekimi)",orta
+chances,2438,,"şans, fırsat, talih (chance çekimi)",orta
+circumstances,2439,,"durum, hâl (circumstance çekimi)",orta
+gordon,2441,,,düşük
+moments,2450,,"moment, an, lâhza (moment çekimi)",orta
+trapped,2454,,"hendek, tuzak, kapan (trap çekimi)",orta
+helps,2455,,"yardım, imdat, yardımcı (help çekimi)",orta
+tests,2460,,"test, sınavtest, denemetest (test çekimi)",orta
+rocks,2462,,"kaya, rock, buzlu (rock çekimi)",orta
+searching,2465,,"arama, aramak, incelemek (search çekimi)",orta
+connected,2467,,"bağlamak, düşmek, bağlanmak (connect çekimi)",orta
+pushed,2469,,"itmek, itelemek, iteklemek (push çekimi)",orta
+greg,2483,,,düşük
+leading,2484,,"kurşun, rehberlik, önderlik (lead çekimi)",orta
+jones,2486,,,düşük
+julia,2489,,,düşük
+mustn,2491,,,düşük
+spending,2493,,"harcamak, para harcamak, vakit geçirmek (spend çekimi)",orta
+elevator,2499,,,düşük
+ricky,2501,,,düşük
+jamie,2502,,,düşük
+amanda,2506,,,düşük
+kinds,2508,,"sınıf, tür, ılımlı (kind çekimi)",orta
+sometime,2510,,,düşük
+sucks,2512,,"emmek, çekmek, somurmak (suck çekimi)",orta
+workers,2515,,"çalışan, işçi, emekçi (worker çekimi)",orta
+cameras,2517,,"kamera, fotoğraf makinesi, izçeker (camera çekimi)",orta
+beeps,2520,,"düt, bip (beep çekimi)",orta
+gasping,2523,,"nefes nefese kalmak, hızlı solumak, nefes (gasp çekimi)",orta
+morgan,2528,,,düşük
+bastards,2535,,"melez, piç, piçler (bastard çekimi)",orta
+puts,2536,,koymak (put çekimi),orta
+leads,2537,,"kurşun, rehberlik, önderlik (lead çekimi)",orta
+blows,2539,,"üflemek, esmek, darbe (blow çekimi)",orta
+sons,2540,,"evlat edinilmiş erkek, oğul, oğlan (son çekimi)",orta
+customers,2542,,"alıcı, müşteri (customer çekimi)",orta
+maggie,2543,,,düşük
+sobbing,2554,,,düşük
+clients,2559,,"alıcı, müşteri, istemci (client çekimi)",orta
+marty,2562,,,düşük
+witnesses,2564,,"şahit, tanıklık, tanık (witness çekimi)",orta
+howard,2569,,,düşük
+previously,2572,,,düşük
+sports,2573,,"spor, yöndün, giymek (sport çekimi)",orta
+wishes,2576,,"istek, dilek, arzu (wish çekimi)",orta
+facts,2583,,"olgu, hakikat (fact çekimi)",orta
+remembered,2584,,"hatırlamak, anımsamak, bellemek öğrenmek (remember çekimi)",orta
+joined,2588,,"birleşmek, birleştirmek, katılmak (join çekimi)",orta
+wings,2593,,kanat (wing çekimi),orta
+growling,2594,,"hırlama, hırlamak, guruldamak (growl çekimi)",orta
+thrown,2595,,"atmak, fırlatmak, satmak (throw çekimi)",orta
+exhales,2597,,nefes vermek (exhale çekimi),orta
+hitting,2602,,"çarpmak, dövmek, vurmak (hit çekimi)",orta
+knocked,2604,,"çalmak, tıklatmak, vurmak (knock çekimi)",orta
+studying,2605,,"çalışmak, öğrenmek, okumak (study çekimi)",orta
+barry,2606,,,düşük
+skills,2618,,"beceri, hüner, marifet (skill çekimi)",orta
+films,2619,,"film, yanka, film çekmek (film çekimi)",orta
+anne,2623,,,düşük
+highly,2625,,,düşük
+nothin,2630,,"hiçbir şey, önemsiz bir şey, ehemmiyetsiz (nothing çekimi)",orta
+services,2632,,"hizmet, askerlik, servis (service çekimi)",orta
+hates,2634,,"nefret, kin, nefret etmek (hate çekimi)",orta
+fed,2635,,,düşük
+johnson,2638,,,düşük
+patrick,2640,,,düşük
+ships,2643,,"gemi, göndermek, shiplemek (ship çekimi)",orta
+parties,2645,,"parti, zümre, taraf (party çekimi)",orta
+stands,2646,,"ayakta durmak, durmak, dayanmak (stand çekimi)",orta
+terry,2647,,,düşük
+events,2649,,"hadise, olay, vaka (event çekimi)",orta
+begins,2655,,"başlamak, başlatmak, başlanmak (begin çekimi)",orta
+andrew,2656,,,düşük
+fellas,2660,,,düşük
+accepted,2661,,"onaylamak, teslim almak, kabul etmek (accept çekimi)",orta
+minds,2665,,"zihin, akıl, zeka (mind çekimi)",orta
+blowing,2667,,"üflemek, esmek, darbe (blow çekimi)",orta
+hollywood,2668,,,düşük
+jackie,2670,,,düşük
+pushing,2671,,"itmek, itelemek, iteklemek (push çekimi)",orta
+whispering,2674,,"fısıltı, fısıldamak (whisper çekimi)",orta
+jesse,2677,,,düşük
+pa,2683,,Pensilvanya (pennsylvania çekimi),orta
+kissed,2692,,"öpmek, öp!, öpüşmek (kiss çekimi)",orta
+maid,2698,,,düşük
+embarrassing,2699,,rezil etmek (embarrass çekimi),orta
+wasting,2701,,"atık, israf, harcamak (waste çekimi)",orta
+sara,2704,,,düşük
+f,2708,,"yanlış, yalan, yapay (false çekimi)",orta
+heavily,2710,,,düşük
+perform,2712,,,düşük
+mac,2715,,makarna (macaroni çekimi),orta
+no-one,2721,,"kimse, hiç kimse (no one çekimi)",orta
+quietly,2728,,,düşük
+stan,2729,,,düşük
+latest,2732,,"geç, ölmüş, merhum (late çekimi)",orta
+hurting,2733,,"fiziksel zarar vermek, incitmek, sözleriyle veya eylemleriyle kırmak (hurt çekimi)",orta
+drew,2737,,"berabere kalmak, çizmek, içine çekmek (draw çekimi)",orta
+marie,2740,,,düşük
+hits,2741,,onun (its çekimi),orta
+doug,2742,,,düşük
+threatened,2745,,"tehdit etmek, gözünü korkutmak (threaten çekimi)",orta
+molly,2747,,Mali (mali çekimi),orta
+stays,2749,,"kalmak, olunmak, durmak (stay çekimi)",orta
+subtitles,2751,,"alt başlık, alt yazı, altyazı (subtitle çekimi)",orta
+wins,2753,,"kazanmak, yenmek, galibiyet (win çekimi)",orta
+chasing,2755,,"peşinde koşma, kovalama, kovalamaca (chase çekimi)",orta
+agents,2760,,"ajan, kılıcı, yapıcı (agent çekimi)",orta
+carol,2761,,,düşük
+lets,2762,,"kiralamak, kiralanmış oda veya ev, bir şeyin kiralandığı periyod (let çekimi)",orta
+approaching,2771,,"yaklaşmak, yaklaşım, ele almak (approach çekimi)",orta
+jo,2772,,,düşük
+jumped,2777,,"zıplamak, zıplatmak, sekmek (jump çekimi)",orta
+firing,2778,,"ateş, yangın, elektrik veya gaz ocağı (fire çekimi)",orta
+abby,2780,,"manastır, keşişhane, dergâh (abbey çekimi)",orta
+stopping,2781,,"durmak, durdurmak, kesmek (stop çekimi)",orta
+asks,2782,,"sormak, istemek, dilemek (ask çekimi)",orta
+linda,2787,,,düşük
+erm,2789,,,düşük
+fella,2798,,,düşük
+cheer,2803,,"sandalye, chairperson kavramının farklı yazılışı, ray takozu (chair çekimi)",orta
+vegas,2804,,,düşük
+los,2809,,"kayıp, yitim, hasar (loss çekimi)",orta
+clicks,2810,,"şaklama, tık, tıklamak (click çekimi)",orta
+bye-bye,2812,,,düşük
+bruce,2817,,,düşük
+prisoners,2819,,"mahkum, mahpus, esir (prisoner çekimi)",orta
+katie,2822,,,düşük
+roy,2827,,,düşük
+voices,2830,,"çatı, ses, bina (voice çekimi)",orta
+g,2831,,,düşük
+cheating,2832,,"aldatmak, hile yapmak, dolandırmak (cheat çekimi)",orta
+todd,2840,,,düşük
+warned,2842,,uyarmak (warn çekimi),orta
+kills,2844,,"öldürmek, öldürme (kill çekimi)",orta
+crossed,2845,,"haç, çarpı, çarmıh (cross çekimi)",orta
+lou,2846,,,düşük
+laws,2849,,"kanun, yasa, hukuk (law çekimi)",orta
+bullets,2851,,"öge imi, mermi, kurşun (bullet çekimi)",orta
+trained,2853,,"tren, katar, öyretmək (train çekimi)",orta
+boots,2855,,"bot, çizme, önyükleme (boot çekimi)",orta
+albert,2857,,,düşük
+germans,2860,,"kökeni Alman olan kişi, Alman, Almanca (german çekimi)",orta
+parker,2865,,,düşük
+refused,2868,,"reddetmek, çöp (refuse çekimi)",orta
+hong,2871,,"asmak, asılı durmak, asılı olmak (hang çekimi)",orta
+jokes,2872,,"fıkra, şaka, latife (joke çekimi)",orta
+breaks,2873,,"kırmak, sındırmak, kırılmak (break çekimi)",orta
+oliver,2880,,,düşük
+believes,2883,,"birine inanmak, bir şeyin varlığına inanmak, birine güvenmek (believe çekimi)",orta
+decisions,2884,,karar (decision çekimi),orta
+embarrassed,2885,,rezil etmek (embarrass çekimi),orta
+terribly,2888,,,düşük
+sec,2889,,,düşük
+charity,2890,,,düşük
+considering,2891,,"addetmek, dikkate almak, itibar etmek (consider çekimi)",orta
+donna,2893,,,düşük
+protecting,2894,,"korumak, muhafaza etmek, kayırmak (protect çekimi)",orta
+kidnapped,2896,,"kaçırmak, alıkoymak (kidnap çekimi)",orta
+creatures,2899,,"yaratık, mahluk (creature çekimi)",orta
+vincent,2903,,,düşük
+entered,2904,,"içine girmek, bilgisayara yazı yazmak, girmek (enter çekimi)",orta
+angela,2906,,,düşük
+degrees,2908,,"derece, mertebe, dizil (degree çekimi)",orta
+steven,2919,,,düşük
+partners,2924,,"eş, ortak, şerik (partner çekimi)",orta
+ages,2925,,"yaş, çağ, çığır (age çekimi)",orta
+charlotte,2926,,,düşük
+bars,2929,,"çikolata, gofret, sabun v.s. kalıbı (bar çekimi)",orta
+conditions,2932,,"kondisyon, şart, durum (condition çekimi)",orta
+suffered,2940,,"ıstırap çekmek, acı çekmek, başına gelmek (suffer çekimi)",orta
+reported,2941,,"raporlamak, bildirmek, rapor (report çekimi)",orta
+rip,2943,,,düşük
+messed,2946,,"teşevvüş, pislik (mess çekimi)",orta
+designed,2948,,"dizayn, tasarım, çizit (design çekimi)",orta
+justin,2952,,,düşük
+ghosts,2953,,"hayalet, ruh, görüntü (ghost çekimi)",orta
+crimes,2954,,"suç, sabıka, cinayet (crime çekimi)",orta
+costs,2955,,"fiyatı olmak, mal olmak, masraf (cost çekimi)",orta
+deserves,2956,,"hak etmek, hak kazanmak (deserve çekimi)",orta
+dreaming,2957,,"rüya, hayal, düş (dream çekimi)",orta
+kong,2961,,,düşük
+messages,2962,,"mesaj, haber, bildiri (message çekimi)",orta
+enjoying,2963,,"zevk almak, haz almak, eylenmek (enjoy çekimi)",orta
+arranged,2972,,"aranje etmek, düzenlemek, ayarlamak (arrange çekimi)",orta
+suits,2973,,"takım elbise, kostüm, simge (suit çekimi)",orta
+tricks,2982,,"dümen, hile, numara (trick çekimi)",orta
+betty,2983,,,düşük
+edward,2994,,,düşük
+marcus,2997,,,düşük
+frankie,3001,,,düşük
+shown,3002,,"göstermek, gösteri, şov (show çekimi)",orta
+survived,3004,,"sağ kalmak, atlatmak, hayatta kalmak (survive çekimi)",orta
+bills,3007,,"fatura, layiha, kanun tasarısı (bill çekimi)",orta
+nathan,3011,,,düşük
+margaret,3015,,,düşük
+ross,3017,,,düşük
+lewis,3022,,,düşük
+betrayed,3023,,"ihanet etmek, ele vermek (betray çekimi)",orta
+cap,3025,,,düşük
+tyler,3026,,,düşük
+practically,3028,,,düşük
+catherine,3029,,,düşük
+burns,3032,,"yanık, yanma, yakmak (burn çekimi)",orta
+j,3033,,"âdil, ahlakî açıdan doğru, adil (just çekimi)",orta
+scientists,3040,,"bilim insanı, bilim adamı, âlim (scientist çekimi)",orta
+beaten,3041,,"vurmak, atmak, yenmek (beat çekimi)",orta
+heck,3042,,,düşük
+fans,3044,,"yelpaze, vantilatör, fan (fan çekimi)",orta
+coughing,3049,,"öksürmek, öksürük, öksürme (cough çekimi)",orta
+cats,3051,,"kedi, pişik, enik (cat çekimi)",orta
+uh-oh,3056,,,düşük
+realise,3062,,,düşük
+rebecca,3066,,,düşük
+barbara,3068,,,düşük
+footsteps,3069,,ayak izi (footstep çekimi),orta
+removed,3071,,"çıkarmak, temizlemek, silmek (remove çekimi)",orta
+pretending,3072,,"taslamak, kandırmak, üç kağıda getirmek (pretend çekimi)",orta
+wasted,3073,,"atık, israf, harcamak (waste çekimi)",orta
+goodnight,3075,,,düşük
+reminds,3083,,"hatırlatmak, anımsatmak, andırmak (remind çekimi)",orta
+walks,3084,,"yürümek, gezdirmek, yürüyüşe çıkarmak (walk çekimi)",orta
+dumped,3090,,"döküm, dökmek, boşaltmak (dump çekimi)",orta
+murders,3094,,"cinayet, adam öldürme, karga sürüsü (murder çekimi)",orta
+tina,3095,,,düşük
+jeremy,3096,,,düşük
+ellen,3099,,,düşük
+wore,3100,,"giymek, takmak, yıpranma (wear çekimi)",orta
+surrounded,3101,,"etrafını sarmak, kuşatmak, çevrelemek (surround çekimi)",orta
+struck,3102,,"vurmak, grev, hava saldırısı (strike çekimi)",orta
+prints,3107,,"yazdırmak, basmak, matbaacılık (print çekimi)",orta
+players,3108,,"kumarbaz, kumarcı, oyuncu (player çekimi)",orta
+charged,3109,,"akın, saldırı, hücum (charge çekimi)",orta
+begging,3110,,"yalvarmak, dilenmek, bey (beg çekimi)",orta
+delivered,3111,,"iletmek, dağıtmak, indirmek (deliver çekimi)",orta
+kenny,3112,,,düşük
+nina,3114,,,düşük
+cells,3119,,"birim, hücre, küvet (cell çekimi)",orta
+lucas,3128,,,düşük
+greetings,3130,,"tebrik, selam (greeting çekimi)",orta
+neighbors,3131,,"komşu, komşu olmak, belli bir sınırı paylaşmak (neighbor çekimi)",orta
+hannah,3134,,,düşük
+idiots,3138,,"ahmak, alık, aptal (idiot çekimi)",orta
+enjoyed,3140,,"zevk almak, haz almak, eylenmek (enjoy çekimi)",orta
+teams,3146,,"takım, ekip, koşum (team çekimi)",orta
+whispers,3149,,"fısıltı, fısıldamak (whisper çekimi)",orta
+presents,3151,,"şimdiki, hâlihazırda, şimdiki zaman (present çekimi)",orta
+chffffff,3154,,,düşük
+carlos,3156,,,düşük
+uses,3159,,"yarar, fayda, avantaj (use çekimi)",orta
+michelle,3160,,,düşük
+systems,3162,,"sistem, dizge, usul (system çekimi)",orta
+waves,3164,,dalga (wave çekimi),orta
+brad,3166,,,düşük
+sophie,3168,,,düşük
+phones,3171,,"telefon, sesbirimcik, selenli sesbirimbirim (phone çekimi)",orta
+ken,3172,,,düşük
+incredibly,3175,,,düşük
+chill,3176,,,düşük
+tracks,3178,,"iz, çığır, patika (track çekimi)",orta
+oscar,3179,,,düşük
+sounded,3182,,"sağlıklı, iyi, ses (sound çekimi)",orta
+spirits,3183,,"ruh, tin, ispirto (spirit çekimi)",orta
+worries,3189,,"endişelenmek, merak etmek, meraklanmak (worry çekimi)",orta
+units,3192,,"bir, birim, tekil (unit çekimi)",orta
+chloe,3197,,,düşük
+fields,3199,,"saha, mıntıka, muhit (field çekimi)",orta
+recording,3201,,"kayıt, rekor, plak (record çekimi)",orta
+davis,3205,,,düşük
+wayne,3207,,,düşük
+injured,3208,,,düşük
+somethin,3209,,,düşük
+ian,3210,,,düşük
+digging,3213,,"kazmak, kazı (dig çekimi)",orta
+seats,3215,,koltuk (seat çekimi),orta
+cleaned,3217,,"temiz, arı, arın (clean çekimi)",orta
+visiting,3220,,"ziyaret etmek, cezalandırmak, ziyaret (visit çekimi)",orta
+jews,3221,,"Yahudi, Musevi, Çıfıt (jew çekimi)",orta
+someplace,3224,,,düşük
+citizens,3225,,"vatandaş, yurttaş, sivil (citizen çekimi)",orta
+nancy,3227,,,düşük
+affairs,3228,,"iş, olay, vaka (affair çekimi)",orta
+russell,3236,,,düşük
+raped,3241,,"ırza tecavüz, ırza geçme, tecâvüz (rape çekimi)",orta
+judy,3243,,,düşük
+starving,3246,,"açlıktan ölmek, aç bırakmak (starve çekimi)",orta
+documents,3247,,"belge, doküman, vesika (document çekimi)",orta
+beth,3249,,,düşük
+r,3252,,"ar, yok (are çekimi)",orta
+forth,3253,,dördüncü (fourth çekimi),orta
+fetch,3254,,,düşük
+banks,3255,,"banka, yalı, kenar (bank çekimi)",orta
+placed,3256,,"yer, mekan, açık alan (place çekimi)",orta
+angeles,3264,,,düşük
+actions,3268,,"aksiyon, eylem, iş (action çekimi)",orta
+officially,3270,,,düşük
+martha,3271,,,düşük
+machines,3272,,"mekanizma, motorlu araç, makine (machine çekimi)",orta
+smaller,3273,,"küçük, ufak, yaşça küçük (small çekimi)",orta
+determined,3274,,"belirlemek, belirlenmek, belirtmek (determine çekimi)",orta
+blown,3275,,"üflemek, esmek, darbe (blow çekimi)",orta
+cleared,3281,,"ince, belli (clear çekimi)",orta
+packed,3282,,"paket, paketlemek (pack çekimi)",orta
+randy,3284,,,düşük
+behalf,3285,,,düşük
+homes,3288,,"ev, yuva, baba evi (home çekimi)",orta
+cigarettes,3291,,"sigara, çilim (cigarette çekimi)",orta
+le,3292,,,düşük
+harvey,3294,,,düşük
+beings,3296,,"varlık, var olma, canlı olma (being çekimi)",orta
+dealer,3298,,,düşük
+wounds,3301,,"yara, cerahat, yaralamak (wound çekimi)",orta
+ouch,3302,,,düşük
+ann,3303,,"yıldönümü, devriye, yıl dönümü (anniversary çekimi)",orta
+drank,3305,,"içmek, içecek, meşrubat (drink çekimi)",orta
+effects,3306,,"etki, görge, tesir (effect çekimi)",orta
+jonathan,3307,,,düşük
+p,3311,,"posta, direk, kazık (post çekimi)",orta
+ve,3313,,sahip olmak (have kısaltması),yüksek
+dylan,3315,,,düşük
+unlike,3316,,,düşük
+owns,3317,,"sahip olmak, bir şeye sahip olmak, elde etmek (own çekimi)",orta
+boxes,3318,,"kutu, kutu sandık, loca (box çekimi)",orta
+busted,3322,,meme (bust çekimi),orta
+eva,3330,,,düşük
+freaking,3331,,"acube, manyak (freak çekimi)",orta
+francisco,3336,,,düşük
+heroes,3337,,"kahraman, alp, yiğit (hero çekimi)",orta
+meantime,3341,,,düşük
+jess,3342,,"jet, jet motoru, jet makinesi (jet çekimi)",orta
+hills,3344,,"tepe, yokuş, bayır (hill çekimi)",orta
+earl,3348,,,düşük
+jennifer,3357,,,düşük
+holes,3358,,"delik, çukur, göz (hole çekimi)",orta
+figures,3363,,"figür, beti, değişmece (figure çekimi)",orta
+landed,3367,,"kara, ülke, arazi (land çekimi)",orta
+buzzing,3368,,"cızıltı, cızırtı, mırıltı (buzz çekimi)",orta
+ron,3375,,,düşük
+souls,3377,,"can, can kuşu, ruh (soul çekimi)",orta
+tries,3380,,"denemek, teşebbüs etmek, çalışmak (try çekimi)",orta
+returning,3382,,"geri dönmek, kayıtmak, geri çekilmek (return çekimi)",orta
+answered,3383,,"yanıt, cevap, cevap vermek (answer çekimi)",orta
+plants,3385,,"bitki, fabrika, üretimevi (plant çekimi)",orta
+hopes,3389,,"ummak, umut etmek, ümit etmek (hope çekimi)",orta
+punk,3393,,,düşük
+mistaken,3396,,"yanlış anlamak, yanlış yapmak, hata yapmak (mistake çekimi)",orta
+bothering,3398,,"uğraşmak, zahmet etmek, rahatsız etmek (bother çekimi)",orta
+st,3399,,,düşük
+gifts,3402,,"hediye, armağan, yetenek (gift çekimi)",orta
+na,3404,,,düşük
+lawyers,3406,,avukat (lawyer çekimi),orta
+criminals,3409,,"suçlu, kabahatli, mücrim (criminal çekimi)",orta
+hoped,3411,,"ummak, umut etmek, ümit etmek (hope çekimi)",orta
+earned,3412,,"kazanmak, hak etmek, para kazanmak (earn çekimi)",orta
+appeared,3414,,"ortaya çıkmak, görünür olmak, belirmek (appear çekimi)",orta
+derek,3415,,,düşük
+heavens,3416,,"cennet, gökyüzü, gök (heaven çekimi)",orta
+wives,3420,,"karı, avrat, zenne (wife çekimi)",orta
+instructions,3424,,yönerge (instruction çekimi),orta
+worrying,3426,,"endişelenmek, merak etmek, meraklanmak (worry çekimi)",orta
+vince,3427,,,düşük
+comin,3428,,"gelme, gelen (coming çekimi)",orta
+cried,3429,,"ağlamak, bağırmak, inlemek (cry çekimi)",orta
+bells,3431,,"zil, çan, çalma (bell çekimi)",orta
+x,3432,,iks (ex çekimi),orta
+robbed,3434,,araklamak (rob çekimi),orta
+odds,3438,,"acayip, garip, arada sırada (odd çekimi)",orta
+captured,3442,,"yemek, ele geçirmek, yakalamak (capture çekimi)",orta
+lessons,3443,,"ders, çimke, sebak (lesson çekimi)",orta
+sets,3445,,"kurmak, koymak, belirlemek (set çekimi)",orta
+invented,3448,,"icat etmek, yaratmak, uydurmak (invent çekimi)",orta
+auntie,3451,,"hala, bibi, eme (aunt çekimi)",orta
+francis,3453,,,düşük
+angels,3454,,"melek, ===Köken===anne=gel, ferişte (angel çekimi)",orta
+hers,3455,,"onu, ona, onun (her çekimi)",orta
+classes,3456,,"sınıf, küme, derslik (class çekimi)",orta
+mm-hm,3457,,,düşük
+blah,3460,,,düşük
+options,3462,,"seçenek, opsiyon, tercih (option çekimi)",orta
+claims,3463,,"iddia, iddia etmek, öne sürmek (claim çekimi)",orta
+flies,3464,,"sinek, uçuş, gitmek (fly çekimi)",orta
+pat,3465,,"buluş belgesi, patent, açık (patent çekimi)",orta
+hid,3467,,"gizlemek, saklamak, saklanmak (hide çekimi)",orta
+wailing,3468,,"mızmızlanmak, inilti, ağlama (wail çekimi)",orta
+listened,3469,,"dinlemek, duymak (listen çekimi)",orta
+countries,3470,,"kır, taşra, eyalet (country çekimi)",orta
+vic,3471,,,düşük
+rats,3473,,"sıçan, fare, keme (rat çekimi)",orta
+wondered,3474,,"harika, mucize, tansık (wonder çekimi)",orta
+companies,3477,,"arkadaşlık, şirket, işletme (company çekimi)",orta
+casey,3483,,,düşük
+holds,3484,,"tutmak, kavramak, bulundurmak (hold çekimi)",orta
+flew,3485,,"sinek, uçuş, gitmek (fly çekimi)",orta
+dishes,3489,,"sahan, tanner, tabak (dish çekimi)",orta
+fools,3494,,"aptal, kandırmak, salak (fool çekimi)",orta
+screeching,3495,,gacırdamak (screech çekimi),orta
+moaning,3500,,"ahlamak, inlemek (moan çekimi)",orta
+mickey,3504,,,düşük
+clouds,3507,,"bulut, grup, küme (cloud çekimi)",orta
+slipped,3508,,düşmek (slip çekimi),orta
+messing,3516,,"teşevvüş, pislik (mess çekimi)",orta
+interests,3519,,"faiz, getiri, ürem (interest çekimi)",orta
+cheated,3520,,"aldatmak, hile yapmak, dolandırmak (cheat çekimi)",orta
+liz,3521,,,düşük
+accounts,3526,,"hesap, hesap verme, rapor (account çekimi)",orta
+gettin,3528,,,düşük
+cia,3529,,,düşük
+ii,3530,,,düşük
+pays,3531,,"ödemek, tediye etmek (pay çekimi)",orta
+jeez,3534,,,düşük
+lovers,3541,,"âşık, vurgun, sevgili (lover çekimi)",orta
+math,3544,,,düşük
+oi,3547,,,düşük
+talkin,3551,,konuşma (talking çekimi),orta
+gus,3555,,,düşük
+investigate,3561,,,düşük
+marrying,3566,,"evlenmek, izdivaç etmek, dünya evine girmek (marry çekimi)",orta
+ripped,3567,,,düşük
+attacks,3568,,"atak, hücum, saldırı (attack çekimi)",orta
+dates,3571,,"hurma, buluşma, randevuya çıkılan kişi (date çekimi)",orta
+unable,3572,,,düşük
+gates,3573,,kapı (gate çekimi),orta
+artists,3575,,"artist, sanat adamı, sanat eri (artist çekimi)",orta
+tastes,3577,,"tat, çeşni, lezzet (taste çekimi)",orta
+cared,3578,,"bakım, dikkat, özen (care çekimi)",orta
+bottles,3579,,"şişe, şişelemek (bottle çekimi)",orta
+highest,3580,,"yüksek, aşırı, uca (high çekimi)",orta
+whirring,3581,,,düşük
+nate,3583,,,düşük
+grabbed,3584,,"kapmak, yakalamak, kabzetmek (grab çekimi)",orta
+pigs,3585,,"domuz, hınzır, tiksindirici (pig çekimi)",orta
+olivia,3587,,,düşük
+wheels,3588,,"tekerlek, teker, çark (wheel çekimi)",orta
+reverend,3590,,,düşük
+louise,3595,,,düşük
+beats,3598,,"vurmak, atmak, yenmek (beat çekimi)",orta
+williams,3599,,,düşük
+threatening,3600,,"tehdit etmek, gözünü korkutmak (threaten çekimi)",orta
+acts,3603,,,düşük
+shared,3607,,"hisse senedi, pay, hisse (share çekimi)",orta
+ralph,3608,,,düşük
+consequences,3609,,"sonuç, netice, akıbet (consequence çekimi)",orta
+schools,3611,,"okul, ekol, mektep (school çekimi)",orta
+softly,3612,,,düşük
+bombs,3613,,"bomba, bombalamak (bomb çekimi)",orta
+caroline,3614,,,düşük
+succeed,3618,,,düşük
+sneak,3620,,,düşük
+studies,3621,,"çalışmak, öğrenmek, okumak (study çekimi)",orta
+keith,3623,,,düşük
+monsters,3625,,"canavar, öcü, dev (monster çekimi)",orta
+punished,3627,,"cezalandırmak, ceza vermek (punish çekimi)",orta
+malcolm,3629,,,düşük
+ethan,3633,,,düşük
+jumping,3636,,"zıplamak, zıplatmak, sekmek (jump çekimi)",orta
+groups,3637,,"grup, küme, öbek (group çekimi)",orta
+exhausted,3638,,"salmak, eritmek, tüketmek (exhaust çekimi)",orta
+walker,3641,,,düşük
+imagined,3643,,,düşük
+investigating,3645,,,düşük
+elena,3648,,,düşük
+cole,3652,,"taş kömürü, maden kömürü, kömür (coal çekimi)",orta
+cries,3653,,"ağlamak, bağırmak, inlemek (cry çekimi)",orta
+stanley,3654,,,düşük
+rita,3655,,,düşük
+blocks,3657,,"blok, kalıp, küme (block çekimi)",orta
+emotions,3658,,"duygu, his (emotion çekimi)",orta
+begun,3659,,"başlamak, başlatmak, başlanmak (begin çekimi)",orta
+serving,3662,,"hizmet etmek, kulluk etmek, servis etmek (serve çekimi)",orta
+matches,3663,,"maç, kibrit, müsabaka (match çekimi)",orta
+granted,3665,,"vermek, bağışlamak, bahşetmek (grant çekimi)",orta
+deeper,3669,,"derin, koyu, dip (deep çekimi)",orta
+typical,3670,,,düşük
+kicking,3671,,"tekmelemek, tekme atmak, atmak (kick çekimi)",orta
+daughters,3675,,"birinin kız çocuğu, kız, kız evlat (daughter çekimi)",orta
+teachers,3678,,"öğretmen, muallim, hoca (teacher çekimi)",orta
+toby,3679,,,düşük
+dragged,3681,,"sürükleme, fırt, çekmek (drag çekimi)",orta
+compared,3686,,"karşılaştırmak, kıyaslamak (compare çekimi)",orta
+helpful,3688,,,düşük
+sync,3690,,,düşük
+passes,3692,,"aktarmak, geçmek, göndermek (pass çekimi)",orta
+joan,3693,,,düşük
+choices,3695,,"dikey eksen, seçme, seçim (choice çekimi)",orta
+alibi,3699,,,düşük
+sammy,3700,,,düşük
+philip,3713,,,düşük
+carrie,3715,,"taşımak, elde, beslemek (carry çekimi)",orta
+ashley,3719,,,düşük
+suspects,3721,,"varsaymak, şüphelenmek, kuşkulanmak (suspect çekimi)",orta
+tools,3725,,"alet, araç, alet ile işlemek (tool çekimi)",orta
+driven,3726,,"sürmek, araç sürmek, araba sürmek (drive çekimi)",orta
+safely,3729,,,düşük
+lads,3732,,oğlan ya da delikanlı (lad çekimi),orta
+conversations,3734,,"sohbet, konuşma, muhabbet (conversation çekimi)",orta
+waters,3735,,"su, karasuyu, idrar (water çekimi)",orta
+lookin,3736,,,düşük
+humming,3740,,"mırıldanmak, vızıldamak (hum çekimi)",orta
+washed,3741,,"yıkamak, yumak (wash çekimi)",orta
+drives,3742,,"sürmek, araç sürmek, araba sürmek (drive çekimi)",orta
+li,3744,,,düşük
+troubles,3747,,"sorun, dert, efor (trouble çekimi)",orta
+painted,3750,,"boya, resim yapmak, boyamak (paint çekimi)",orta
+thieves,3755,,"hırsız, uğru, kuldur (thief çekimi)",orta
+lois,3767,,,düşük
+required,3768,,"gerekmek, ihtiyaç duymak, gerek duymak (require çekimi)",orta
+victoria,3769,,,düşük
+twins,3771,,ikiz (twin çekimi),orta
+characters,3772,,"karakter, orijinal kimse, kişilik (character çekimi)",orta
+cooked,3773,,"aşçı, ahçı, pişirmek (cook çekimi)",orta
+ln,3774,,"şerit, kulvar, dar yol (lane çekimi)",orta
+ruth,3775,,,düşük
+dreamed,3776,,"rüya, hayal, düş (dream çekimi)",orta
+arts,3777,,"sanat, dörüt, sanatsallık (art çekimi)",orta
+stabbed,3779,,"bıçaklamak, şişlemek, saplamak (stab çekimi)",orta
+tend,3780,,,düşük
+diane,3781,,,düşük
+images,3786,,"imaj, görüntü, şekil (image çekimi)",orta
+craig,3793,,,düşük
+fits,3794,,"uygun, hazır, fit (fit çekimi)",orta
+forms,3796,,"biçim, şekil, form (form çekimi)",orta
+votes,3797,,"oy, rey, oylama (vote çekimi)",orta
+harold,3798,,,düşük
+monica,3800,,,düşük
+nerves,3804,,"sinir, asap (nerve çekimi)",orta
+arguing,3805,,"münakaşa etmek, tartışmak, kavga etmek (argue çekimi)",orta
+relatives,3807,,"görece, izafi, bağıl (relative çekimi)",orta
+gloves,3809,,eldiven (glove çekimi),orta
+tracking,3810,,"iz, çığır, patika (track çekimi)",orta
+zoe,3811,,,düşük
+diana,3820,,,düşük
+areas,3822,,"alan, yüz ölçümü, mesaha (area çekimi)",orta
+solved,3826,,"çözmek, halletmek, hâlletmek (solve çekimi)",orta
+bitches,3828,,"fahişe, orospu, sürtük (bitch çekimi)",orta
+sang,3830,,"şarkı söylemek, ötmek, ırlamak (sing çekimi)",orta
+gimme,3831,,,düşük
+plates,3832,,"katman, levha, plaka (plate çekimi)",orta
+shoulders,3833,,"omuz, çiğin (shoulder çekimi)",orta
+recorded,3835,,"kayıt, rekor, plak (record çekimi)",orta
+counts,3837,,"saymak, sayılmak, kont (count çekimi)",orta
+visitors,3847,,"ziyaretçi, konuk, misafir (visitor çekimi)",orta
+bo,3848,,,düşük
+owen,3851,,,düşük
+cities,3852,,"kent, şehir (city çekimi)",orta
+banging,3856,,"gümleme, kakül, ünlem işareti (bang çekimi)",orta
+marshall,3859,,mareşal (marshal çekimi),orta
+creating,3861,,"yaratmak, atamak, düşmek (create çekimi)",orta
+fights,3867,,"dövüşmek, savaşmak, kavga etmek (fight çekimi)",orta
+indians,3868,,"Hint, Hintli, Hindistanlı (indian çekimi)",orta
+growls,3870,,"hırlama, hırlamak, guruldamak (growl çekimi)",orta
+nicole,3871,,,düşük
+sins,3872,,"günah, vebal, kabahat (sin çekimi)",orta
+happily,3875,,,düşük
+bout,3876,,,düşük
+occurred,3878,,"olmak, aklına gelmek, hatırlamak (occur çekimi)",orta
+beans,3879,,"fasulye, lobya, eleman (bean çekimi)",orta
+pages,3882,,"sayfa, sahife, bet (page çekimi)",orta
+relationships,3884,,"akrabalık, hısımlık, ilişki (relationship çekimi)",orta
+catching,3888,,"gırtlaksı kapantılı, kapmak, yakalamak (catch çekimi)",orta
+exposed,3889,,"açığa çıkarmak, uğratmak (expose çekimi)",orta
+dont,3891,,"cevaplama, yanıtlama (don't çekimi)",orta
+han,3892,,"sahip olmak, benim ...(I)m var, senin ...(I)n var (have çekimi)",orta
+von,3893,,,düşük
+marco,3895,,,düşük
+whistling,3897,,"ıslık, düdük, ıslık çalmak (whistle çekimi)",orta
+buildings,3898,,"yapı, bina, yapma (building çekimi)",orta
+transferred,3903,,"transfer etmek, aktarmak, yollamak (transfer çekimi)",orta
+drawn,3904,,"berabere kalmak, çizmek, içine çekmek (draw çekimi)",orta
+tits,3905,,baştankara (tit çekimi),orta
+clicking,3906,,"şaklama, tık, tıklamak (click çekimi)",orta
+employees,3909,,"çalışan, personel, hizmetli (employee çekimi)",orta
+mothers,3911,,"anne, ana, valide (mother çekimi)",orta
+feeding,3913,,"beslemek, doyurmak, yemlemek (feed çekimi)",orta
+checks,3915,,"çek, kontrol, şah (check çekimi)",orta
+bears,3916,,"ayı, götürmek, katlanmak (bear çekimi)",orta
+cookies,3917,,"çerez, bisküvi, kurabiye (cookie çekimi)",orta
+awfully,3919,,,düşük
+stepped,3920,,"adım, adım atmak, mertebe (step çekimi)",orta
+toys,3921,,"oyun aracı, oyuncak, oynayacak (toy çekimi)",orta
+levels,3922,,"su terazisi, düzey, seviye (level çekimi)",orta
+differently,3923,,,düşük
+leaders,3927,,"lider, rehber, önder (leader çekimi)",orta
+herr,3929,,,düşük
+deadly,3934,,,düşük
+resources,3940,,kaynak (resource çekimi),orta
+centuries,3942,,"asır, yüzyıl (century çekimi)",orta
+karl,3943,,,düşük
+socks,3949,,çorap (sock çekimi),orta
+fingerprints,3950,,parmak izi (fingerprint çekimi),orta
+colors,3955,,"renk, boya, ıl (color çekimi)",orta
+promises,3957,,"söz, yemin, vaat (promise çekimi)",orta
+explained,3958,,"açıklamak, izah etmek, anlatmak (explain çekimi)",orta
+sends,3961,,"göndermek, yollamak, postalamak (send çekimi)",orta
+aii,3963,,,düşük
+shawn,3964,,,düşük
+ultimate,3965,,,düşük
+russians,3973,,"Rus, Rusça, Rusyalı (russian çekimi)",orta
+actors,3974,,"aktör, oyuncu, aracı-yapan (actor çekimi)",orta
+colleagues,3977,,"çalışma arkadaşı, meslektaş, koldaş (colleague çekimi)",orta
+roads,3980,,yol (road çekimi),orta
+bits,3987,,"gem, oyan, matkap (bit çekimi)",orta
+visited,3993,,"ziyaret etmek, cezalandırmak, ziyaret (visit çekimi)",orta
+rumbling,3995,,"gümbürtü, gürültü, gürleme (rumble çekimi)",orta
+natalie,4006,,,düşük
+wars,4007,,"harp, savaş, muharebe (war çekimi)",orta
+nelson,4010,,,düşük
+w,4013,,,düşük
+janet,4017,,,düşük
+coughs,4024,,"öksürmek, öksürük, öksürme (cough çekimi)",orta
+indistinctly,4031,,,düşük
+harris,4032,,,düşük
+labor,4034,,"emek, iş, işçiler (labour çekimi)",orta
+willie,4035,,"pipi, çük, sik (willy çekimi)",orta
+proved,4038,,"kanıtlamak, ispat etmek, ispatlamak (prove çekimi)",orta
+meetings,4041,,"toplantı, miting, dernek (meeting çekimi)",orta
+handed,4046,,"el, ibre, akrep (hand çekimi)",orta
+mia,4047,,,düşük
+raymond,4049,,,düşük
+tons,4050,,ton (ton çekimi),orta
+treating,4056,,"muamele etmek, tedavi etmek, davranmak (treat çekimi)",orta
+flip,4058,,,düşük
+entering,4059,,"içine girmek, bilgisayara yazı yazmak, girmek (enter çekimi)",orta
+sonny,4067,,,düşük
+wendy,4068,,,düşük
+juan,4069,,,düşük
+riley,4072,,,düşük
+sticks,4074,,"sopa, çubuk, dayak (stick çekimi)",orta
+searched,4075,,"arama, aramak, incelemek (search çekimi)",orta
+bothered,4078,,"uğraşmak, zahmet etmek, rahatsız etmek (bother çekimi)",orta
+neil,4084,,,düşük
+sighing,4088,,"ahlamak, iç çekmek, of çekmek (sigh çekimi)",orta
+retired,4089,,,düşük
+kings,4090,,"kral, papaz, şah (king çekimi)",orta
+cents,4092,,sent (cent çekimi),orta
+drops,4096,,"damla, katre, meyan (drop çekimi)",orta
+necessarily,4097,,,düşük
+meters,4099,,"metre, saat, sayaç (meter çekimi)",orta
+booked,4100,,"kitap, betik, cilt (book çekimi)",orta
+returns,4101,,"geri dönmek, kayıtmak, geri çekilmek (return çekimi)",orta
+gloria,4102,,,düşük
+fires,4103,,"ateş, yangın, elektrik veya gaz ocağı (fire çekimi)",orta
+introduced,4108,,"tanıştırmak, uygulamaya koymak, tanıtmak (introduce çekimi)",orta
+suspected,4116,,"varsaymak, şüphelenmek, kuşkulanmak (suspect çekimi)",orta
+suggested,4117,,"önermek, akla getirmek, izlenim uyandırmak (suggest çekimi)",orta
+sticking,4119,,"sopa, çubuk, dayak (stick çekimi)",orta
+shane,4121,,,düşük
+quinn,4126,,,düşük
+owned,4127,,"sahip olmak, bir şeye sahip olmak, elde etmek (own çekimi)",orta
+finest,4129,,"az, belli belirsiz, ince (fine çekimi)",orta
+felix,4130,,,düşük
+valentine,4132,,,düşük
+sorts,4134,,"cins, soy, tür (sort çekimi)",orta
+warren,4136,,,düşük
+slaves,4137,,"köle, kul, abd (slave çekimi)",orta
+largest,4144,,"büyük, geniş, ulu (large çekimi)",orta
+washing,4145,,"yıkamak, yumak (wash çekimi)",orta
+causes,4147,,"neden, sebep, uğratmak (cause çekimi)",orta
+k,4148,,,düşük
+mo,4149,,Missouri (missouri çekimi),orta
+logan,4153,,,düşük
+evan,4160,,,düşük
+christine,4162,,,düşük
+cuts,4165,,"kesmek, biçmek, kesik (cut çekimi)",orta
+eats,4166,,yemek (eat çekimi),orta
+pops,4172,,"pop, baba, pop müzik (pop çekimi)",orta
+yards,4173,,"evin bahçesi, ağıl, seren (yard çekimi)",orta
+terrified,4174,,"dehşete düşürmek, gözünü korkutmak, yıldırmak (terrify çekimi)",orta
+preparing,4177,,"anıklamak, hazırlamak, kurmak (prepare çekimi)",orta
+wears,4180,,"giymek, takmak, yıpranma (wear çekimi)",orta
+chirping,4181,,cıvıldamak (chirp çekimi),orta
+suggesting,4185,,"önermek, akla getirmek, izlenim uyandırmak (suggest çekimi)",orta
+assumed,4191,,"varsaymak, farz etmek, takınmak (assume çekimi)",orta
+mel,4193,,,düşük
+engines,4198,,motor (engine çekimi),orta
+acted,4201,,"hareket, eylem, kanun (act çekimi)",orta
+tested,4204,,"test, sınavtest, denemetest (test çekimi)",orta
+roses,4207,,"gül, itburnu (rose çekimi)",orta
+wrapped,4209,,"paketlemek, sarmak, dürüm (wrap çekimi)",orta
+graham,4211,,,düşük
+fu,4213,,,düşük
+ivan,4214,,,düşük
+focused,4215,,"odak, odaklanmak (focus çekimi)",orta
+liam,4216,,,düşük
+carla,4218,,,düşük
+demons,4219,,"demon, iblis, şeytan (demon çekimi)",orta
+rounds,4220,,"yuvarlak, küresel, yumuşak (round çekimi)",orta
+gathered,4222,,"toplamak, biriktirmek, toplanmak (gather çekimi)",orta
+uhh,4223,,,düşük
+yells,4224,,bağırmak (yell çekimi),orta
+lincoln,4225,,,düşük
+crossing,4226,,"haç, çarpı, çarmıh (cross çekimi)",orta
+travis,4229,,,düşük
+pockets,4230,,"cep, yancık, delik (pocket çekimi)",orta
+paintings,4232,,"boyama, resim, ressamlık (painting çekimi)",orta
+sis,4235,,,düşük
+intended,4236,,niyet etmek (intend çekimi),orta
+computers,4238,,"hesaplayan bir insan, bilgisayar, kompüter (computer çekimi)",orta
+chicks,4241,,"civciv, hatun, piliç (chick çekimi)",orta
+leslie,4245,,,düşük
+lauren,4246,,,düşük
+brandon,4249,,,düşük
+colin,4251,,,düşük
+recognized,4252,,"tanımak, farkına varmak, kabul etmek (recognize çekimi)",orta
+holmes,4253,,,düşük
+aliens,4256,,"yabancı, ecnebi, yaratık (alien çekimi)",orta
+gunshots,4257,,"silah sesi, mermi (gunshot çekimi)",orta
+demands,4261,,"talep, istek, icap (demand çekimi)",orta
+rangers,4268,,"korucu, bekçi (ranger çekimi)",orta
+antonio,4271,,,düşük
+passengers,4272,,yolcu (passenger çekimi),orta
+cellphone,4276,,,düşük
+operations,4278,,"harekât, ameliyat, operasyon (operation çekimi)",orta
+planes,4279,,"düzlem, yüzey, rende (plane çekimi)",orta
+bunny,4280,,,düşük
+gunfire,4281,,,düşük
+iike,4287,,,düşük
+petty,4289,,,düşük
+raising,4292,,"büyütmek, kaldırmak, yükseltmek (raise çekimi)",orta
+fucker,4295,,,düşük
+mitch,4298,,,düşük
+diego,4302,,,düşük
+chanting,4310,,"şarkı söylemek, terennüm etmek, ilahi okumak (chant çekimi)",orta
+dammit,4311,,,düşük
+spencer,4312,,,düşük
+recovered,4313,,iyileşmek (recover çekimi),orta
+registered,4314,,"kayıt, kesit, özel değişke (register çekimi)",orta
+packing,4316,,"paket, paketlemek (pack çekimi)",orta
+scenes,4317,,sahne (scene çekimi),orta
+questioning,4319,,"soru, sual, sival (question çekimi)",orta
+ancestors,4322,,"cet, ata, dede (ancestor çekimi)",orta
+completed,4324,,"tamamlamak, tamam, eksiksiz (complete çekimi)",orta
+prayers,4327,,"dua, duacı, namaz (prayer çekimi)",orta
+fried,4329,,"elektirikli sandalyede idam etmek, tavada kızgın yağda kızartmak, kızarmak (fry çekimi)",orta
+newspapers,4333,,"gazete, günce, gaste (newspaper çekimi)",orta
+complaining,4335,,"şikâyet etmek, söylenmek (complain çekimi)",orta
+senses,4336,,"duyu, duyum, his (sense çekimi)",orta
+understands,4340,,"idrak etmek, mana çıkarmak, anlamak (understand çekimi)",orta
+grows,4341,,"büyümek, büyütmek, yetiştirmek (grow çekimi)",orta
+inspired,4342,,"coşturmak, esinlemek, ilham vermek (inspire çekimi)",orta
+celebrating,4344,,"kutlamak, tesit etmek (celebrate çekimi)",orta
+requires,4347,,"gerekmek, ihtiyaç duymak, gerek duymak (require çekimi)",orta
+bonnie,4348,,,düşük
+bugs,4349,,"böcek, bug, dinleme cihazı (bug çekimi)",orta
+leonard,4350,,,düşük
+elliot,4351,,,düşük
+hooked,4352,,"kanca, çengel, kroşe (hook çekimi)",orta
+jill,4353,,,düşük
+ranch,4354,,,düşük
+safer,4355,,"güvenli, emin, güvenilir (safe çekimi)",orta
+crashing,4357,,"kaza, otobüs veya uçak kazası, sabahlamak (crash çekimi)",orta
+lands,4358,,"kara, ülke, arazi (land çekimi)",orta
+grounds,4362,,"toprak, yer, dip (ground çekimi)",orta
+assuming,4363,,"varsaymak, farz etmek, takınmak (assume çekimi)",orta
+nails,4364,,"tırnak, çivi, mıh (nail çekimi)",orta
+dana,4365,,,düşük
+pierre,4368,,,düşük
+rumors,4370,,"rivayet, söylenti, şayia (rumor çekimi)",orta
+megan,4372,,,düşük
+boats,4377,,"bot, kayık, sandal (boat çekimi)",orta
+adults,4381,,"yetişkin, ergin, erişkin (adult çekimi)",orta
+kang,4383,,kanguru (kangaroo çekimi),orta
+closely,4384,,,düşük
+adrian,4387,,,düşük
+shouts,4389,,"bağırmak, haykırmak, kışkırmak (shout çekimi)",orta
+donald,4390,,,düşük
+happier,4391,,"mesut, memnun, neşeli (happy çekimi)",orta
+struggling,4393,,"mücadele, vuruşma, mücadele etmek (struggle çekimi)",orta
+larger,4395,,"büyük, geniş, ulu (large çekimi)",orta
+laughed,4399,,gülmek (laugh çekimi),orta
+debbie,4400,,,düşük
+honking,4402,,korna çalmak (honk çekimi),orta
+concerns,4403,,"cesaretsizlik, önyargı, şaşkınlık (concern çekimi)",orta
+sore,4405,,,düşük
+breasts,4408,,"meme, göğüs (breast çekimi)",orta
+fairly,4409,,,düşük
+recognise,4411,,"tanımak, farkına varmak, kabul etmek (recognize çekimi)",orta
+holidays,4414,,"bayram, tatil, izin (holiday çekimi)",orta
+raining,4415,,"yağmur, baran, yağış (rain çekimi)",orta
+forgetting,4416,,"unutmak, bir şeyi hatırında tutamamak, bir işi yapmayı unutmak (forget çekimi)",orta
+shadows,4419,,gölge (shadow çekimi),orta
+sarge,4421,,,düşük
+deserved,4425,,"hak etmek, hak kazanmak (deserve çekimi)",orta
+ronnie,4426,,,düşük
+gina,4427,,,düşük
+types,4430,,"karakter, yazıtipi, tip (type çekimi)",orta
+bloke,4431,,,düşük
+belonged,4434,,,düşük
+identified,4435,,"belirlemek, tanımak, tespit etmek (identify çekimi)",orta
+di,4436,,,düşük
+closest,4438,,"kapatmak, örtmek, kitlemek (close çekimi)",orta
+detectives,4444,,"dedektif, hafiye (detective çekimi)",orta
+franklin,4448,,,düşük
+splendid,4450,,,düşük
+dismissed,4451,,"kovmak, reddetmek, kabul etmemek (dismiss çekimi)",orta
+pm,4452,,,düşük
+yang,4453,,,düşük
+ellie,4455,,,düşük
+vulnerable,4456,,,düşük
+continued,4457,,"devam etmek, sürmek, sürdürmek (continue çekimi)",orta
+comrades,4459,,yoldaş (comrade çekimi),orta
+harper,4462,,,düşük
+carson,4464,,,düşük
+benny,4465,,,düşük
+chan,4471,,,düşük
+borrowed,4474,,"borç almak, nakletmek, iktibas etmek (borrow çekimi)",orta
+parked,4475,,"park, park etmek (park çekimi)",orta
+voted,4477,,"oy, rey, oylama (vote çekimi)",orta
+muffled,4478,,,düşük
+sebastian,4479,,,düşük
+mmm-hmm,4480,,,düşük
+kisses,4482,,"öpmek, öp!, öpüşmek (kiss çekimi)",orta
+masters,4487,,"] usta, üstad, komodor (master çekimi)",orta
+buddies,4489,,"yakın arkadaş, dost, kanka (buddy çekimi)",orta
+denied,4491,,inkâr etmek (deny çekimi),orta
+photographs,4496,,"fotoğraf, kılık, yaçın (photograph çekimi)",orta
+alicia,4499,,,düşük
+produced,4502,,"üretmek, kazandırmak (produce çekimi)",orta
+christina,4503,,,düşük
+stations,4505,,"istasyon, durak, gar (station çekimi)",orta
+eli,4506,,İlyas (elijah çekimi),orta
+samantha,4507,,,düşük
+sire,4509,,,düşük
+roaring,4510,,"kükremek, kükreme (roar çekimi)",orta
+servants,4513,,"odacı, hizmetçi, hizmetli (servant çekimi)",orta
+limits,4514,,"limit, sınır, uç (limit çekimi)",orta
+whimpering,4517,,,düşük
+sheets,4519,,"varak, sayfa, çarşaf (sheet çekimi)",orta
+tara,4523,,,düşük
+toes,4525,,"ayak parmağı, parmak (toe çekimi)",orta
+objects,4529,,"amaç, gaye, hedef (object çekimi)",orta
+sirens,4538,,siren (siren çekimi),orta
+dorothy,4539,,,düşük
+explains,4542,,"açıklamak, izah etmek, anlatmak (explain çekimi)",orta
+tracy,4545,,,düşük
+rex,4546,,,düşük
+barney,4547,,,düşük
+worlds,4551,,"dünya, alem, cihan (world çekimi)",orta
+clara,4553,,,düşük
+et,4556,,,düşük
+mitchell,4560,,,düşük
+lit,4567,,"ışık, hafif vurgulu, ışık tutma (light çekimi)",orta
+killers,4569,,"katil, öldürücü (killer çekimi)",orta
+connor,4570,,,düşük
+mario,4571,,,düşük
+deaths,4574,,"ölüm, mevt, memat (death çekimi)",orta
+elements,4576,,"kimyasal element, elemenynt, unsur (element çekimi)",orta
+laying,4578,,"yatırmak, döşemek, yumurtlamak (lay çekimi)",orta
+paula,4580,,,düşük
+louder,4583,,"yüksek, gürültülü, parlak (loud çekimi)",orta
+handled,4584,,"kabza, sap, tutak (handle çekimi)",orta
+taxes,4590,,"vergi, salma (tax çekimi)",orta
+injuries,4591,,zarar (injury çekimi),orta
+jen,4592,,,düşük
+posted,4597,,"posta, direk, kazık (post çekimi)",orta
+skinny,4598,,,düşük
+revealed,4601,,"açığa vurmak, dökmek (reveal çekimi)",orta
+infected,4602,,,düşük
+relieved,4603,,"iç açmak, rahatlatmak, hafifletmek (relieve çekimi)",orta
+terrorists,4607,,"terörist, yıldırıcı (terrorist çekimi)",orta
+elsewhere,4608,,,düşük
+apologies,4617,,"itizar, özür, mazeret (apology çekimi)",orta
+samples,4621,,"örnek, numune, örneklem (sample çekimi)",orta
+allen,4625,,,düşük
+audrey,4626,,,düşük
+spotted,4627,,"benek, leke, spot (spot çekimi)",orta
+corrected,4629,,"doğru, düzeltmek, düzgün (correct çekimi)",orta
+located,4630,,yerleştirmek (locate çekimi),orta
+insisted,4632,,"iddia etmek, ısrar etmek, bastırmak (insist çekimi)",orta
+rely,4634,,,düşük
+singh,4635,,,düşük
+fooled,4636,,"aptal, kandırmak, salak (fool çekimi)",orta
+arrives,4637,,"ulaşmak, varmak, gelmek (arrive çekimi)",orta
+leon,4638,,,düşük
+walt,4639,,,düşük
+ay,4641,,"evet, hı (aye çekimi)",orta
+anderson,4645,,,düşük
+nora,4648,,,düşük
+planted,4653,,"bitki, fabrika, üretimevi (plant çekimi)",orta
+oldest,4654,,"eski, yaşlı, önceki (old çekimi)",orta
+islands,4660,,"ada, aral, cezire (island çekimi)",orta
+jules,4662,,,düşük
+sings,4664,,"şarkı söylemek, ötmek, ırlamak (sing çekimi)",orta
+scum,4665,,,düşük
+giggling,4667,,"kıkırdamak, kıkırdama, kıkırtı (giggle çekimi)",orta
+described,4668,,"tanımlamak, resmetmek (describe çekimi)",orta
+geez,4669,,,düşük
+inches,4670,,inç (inch çekimi),orta
+cows,4674,,"inek, sığır (cow çekimi)",orta
+andrea,4681,,,düşük
+fathers,4683,,"baba, peder, papaz (father çekimi)",orta
+uh-uh,4686,,,düşük
+trevor,4691,,,düşük
+freddy,4694,,,düşük
+allison,4696,,,düşük
+chap,4698,,"kaşe, doğramak (chop çekimi)",orta
+dated,4699,,"hurma, buluşma, randevuya çıkılan kişi (date çekimi)",orta
+excuses,4700,,"mazur görmek, muaf tutmak, bahane (excuse çekimi)",orta
+shitty,4701,,,düşük
+crushed,4705,,"ezme, ezmek, parçalamak (crush çekimi)",orta
+efforts,4706,,"çaba, ceht, efor (effort çekimi)",orta
+realised,4709,,,düşük
+del,4710,,delege (delegate çekimi),orta
+rap,4711,,,düşük
+luckily,4715,,,düşük
+peggy,4719,,,düşük
+murphy,4721,,,düşük
+attracted,4722,,,düşük
+vanessa,4726,,,düşük
+ahem,4727,,,düşük
+crashed,4730,,"kaza, otobüs veya uçak kazası, sabahlamak (crash çekimi)",orta
+formed,4733,,"biçim, şekil, form (form çekimi)",orta
+hon,4734,,,düşük
+duncan,4738,,,düşük
+gibbs,4746,,,düşük
+drowned,4747,,"boğulmak, suda boğulmak, suda boğmak (drown çekimi)",orta
+wolves,4748,,"kurt, börü (wolf çekimi)",orta
+filming,4749,,"film, yanka, film çekmek (film çekimi)",orta
+dunno,4750,,bilmiyorum (don't know),yüksek
+watson,4756,,,düşük
+copies,4766,,"kopyalanmış olan, kopya, benzer yazım (copy çekimi)",orta
+stinks,4770,,"pis koku, kokmak (stink çekimi)",orta
+arrangements,4772,,"aranjman, düzenleme, düzenleyim (arrangement çekimi)",orta
+wished,4773,,"istek, dilek, arzu (wish çekimi)",orta
+honored,4774,,,düşük
+discussed,4776,,"tartışmak, görüşmek, söz etmek (discuss çekimi)",orta
+assigned,4777,,tahsis etmek (assign çekimi),orta
+rosa,4778,,,düşük
+jenna,4780,,,düşük
+attacking,4781,,"atak, hücum, saldırı (attack çekimi)",orta
+sonic,4783,,,düşük
+fears,4793,,"korku, korkmak, ürkmek (fear çekimi)",orta
+dedicated,4795,,"adamak, adanmak (dedicate çekimi)",orta
+dining,4799,,akşam yemeği yemek (dine çekimi),orta
+ms,4800,,"bayan, hanım (medeni hal belirtmeyen)",yüksek
+jon,4803,,,düşük
+replaced,4804,,"değiştirmek, yerine koymak (replace çekimi)",orta
+bailey,4805,,,düşük
+heels,4807,,"topuk, ökçe, adi (heel çekimi)",orta
+duties,4808,,"görev, ödev, vazife (duty çekimi)",orta
+smarter,4809,,"acımak, ağrımak, becerikli (smart çekimi)",orta
+existed,4810,,"var olmak, var (exist çekimi)",orta
+requested,4813,,"rica etmek, istek, talep (request çekimi)",orta
+models,4818,,"kalıp, prototip, manken (model çekimi)",orta
+planets,4823,,"gezegen, planet, seyyare (planet çekimi)",orta
+wha,4825,,"ne, ne kadar, -den dolayı (what çekimi)",orta
+surprises,4826,,"şaşırtı, sürpriz, şaşırtmak (surprise çekimi)",orta
+rosie,4827,,"gül, itburnu (rose çekimi)",orta
+dings,4828,,,düşük
+tables,4831,,"çizelge, masa, tablo (table çekimi)",orta
+lawrence,4834,,,düşük
+tapes,4836,,bant (tape çekimi),orta
+sandra,4838,,,düşük
+teenage,4839,,,düşük
+risks,4842,,"risk, riziko, riske atmak (risk çekimi)",orta
+dug,4843,,"kazmak, kazı (dig çekimi)",orta
+arriving,4845,,"ulaşmak, varmak, gelmek (arrive çekimi)",orta
+ties,4847,,"bağlamak, berabere kalmak (tie çekimi)",orta
+items,4848,,"öge, madde, item (item çekimi)",orta
+relations,4850,,"görelik, bağıntı, izafet (relation çekimi)",orta
+paige,4854,,,düşük
+lloyd,4855,,,düşük
+claimed,4856,,"iddia, iddia etmek, öne sürmek (claim çekimi)",orta
+flames,4859,,"alev, yalım, yalın (flame çekimi)",orta
+loses,4861,,"kaybetmek, yitirmek, zayıflamak (lose çekimi)",orta
+activities,4868,,"etkinlik, aktivite, faaliyet (activity çekimi)",orta
+boarding,4870,,"tahta, heyet, kurul (board çekimi)",orta
+stuffed,4872,,"şey, eşya, mal (stuff çekimi)",orta
+connie,4875,,,düşük
+strikes,4877,,"vurmak, grev, hava saldırısı (strike çekimi)",orta
+wiped,4878,,"silmek, kurulamak (wipe çekimi)",orta
+whistles,4880,,"ıslık, düdük, ıslık çalmak (whistle çekimi)",orta
+curtis,4883,,,düşük
+threats,4885,,tehdit (threat çekimi),orta
+claudia,4886,,,düşük
+sid,4887,,,düşük
+twisted,4888,,"burmak, birşeyi burmak, bükmek (twist çekimi)",orta
+suspended,4889,,"askıya almak, ara vermek, geçici olarak durdurmak (suspend çekimi)",orta
+cameron,4894,,,düşük
+controlled,4896,,"denetlemek, yönetmek, kontrol etmek (control çekimi)",orta
+nigga,4898,,,düşük
+imperial,4901,,,düşük
+pam,4902,,,düşük
+signing,4904,,"işaret, gösterge, alamet (sign çekimi)",orta
+candles,4907,,"mum, kandela (candle çekimi)",orta
+becky,4909,,,düşük
+positions,4916,,"yer, konum, pozisyon (position çekimi)",orta
+cindy,4917,,,düşük
+stuart,4920,,,düşük
+faced,4922,,"yüz, sıfat, sima (face çekimi)",orta
+handling,4928,,"kabza, sap, tutak (handle çekimi)",orta
+sits,4933,,"oturmak, oturulmak (sit çekimi)",orta
+spots,4935,,"benek, leke, spot (spot çekimi)",orta
+francs,4936,,,düşük
+destroying,4938,,"yok etmek, mahvetmek, tahrip etmek (destroy çekimi)",orta
+pacific,4941,,,düşük
+filed,4944,,"dosya, uzun kuyruk, sıra (file çekimi)",orta
+cam,4946,,,düşük
+deals,4947,,"anlaşma, dağıtım, dağıtış (deal çekimi)",orta
+pos,4948,,"pozitif, olumlu, emin (positive çekimi)",orta
+fooling,4949,,"aptal, kandırmak, salak (fool çekimi)",orta
+persons,4950,,"kişi, şahıs, nefer (person çekimi)",orta
+executed,4952,,"idam etmek, idame etmek (execute çekimi)",orta
+brakes,4953,,"fren, eğleç, fren yapmak (brake çekimi)",orta
+blank,4954,,,düşük
+kurt,4956,,,düşük
+prey,4964,,,düşük
+anyways,4967,,,düşük
+ned,4971,,,düşük
+judging,4972,,"hakem, hakim, yargıç (judge çekimi)",orta
+doubts,4973,,"şüphelenmek, kuşkulanmak, kuşku (doubt çekimi)",orta
+practicing,4976,,"pratik, uygulama, deneme (practice çekimi)",orta
+attempted,4979,,"teşebbüs etmek, denemek, girişmek (attempt çekimi)",orta
+generations,4981,,"jenerasyon, kuşak, nesil (generation çekimi)",orta
+yöu,4982,,,düşük
+warriors,4984,,"savaşçı, asker (warrior çekimi)",orta
+mick,4985,,,düşük
+collins,4987,,,düşük
+sobs,4988,,,düşük
+couples,4989,,"çift, azıcık (couple çekimi)",orta
+miranda,4992,,,düşük
