@@ -2,6 +2,7 @@ import { Rating, type Card } from 'ts-fsrs'
 import type { ErrorKind } from './formDiagnosis'
 import type { Scheduler } from './scheduler'
 import type { Tense } from './tenses'
+import { timeOf } from './types'
 
 /**
  * What the verb lab remembers: the verbs starred, the ones looked at last, and for each verb and
@@ -101,7 +102,7 @@ export function pushRecent(lab: LabData, verb: string): LabData {
   return lab.recent[0] === verb ? lab : { ...lab, recent: [verb, ...lab.recent.filter((v) => v !== verb)].slice(0, RECENT_MAX) }
 }
 
-const dueOf = (r: LabRecord) => new Date(r.card.due)
+const dueOf = (r: LabRecord) => new Date(timeOf(r.card.due))
 
 const bump = (points: number, ok: boolean) => Math.max(0, Math.min(MASTERY_MAX, points + (ok ? STEP : -STEP)))
 

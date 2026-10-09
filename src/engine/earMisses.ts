@@ -1,4 +1,4 @@
-import type { TargetLanguage } from './types'
+import { timeOf, type TargetLanguage } from './types'
 import type { DiffPart } from './wordDiff'
 
 /**
@@ -37,7 +37,7 @@ export function recordDictation(log: EarLog, language: TargetLanguage, sentence:
     else if (had) words[key] = { ...had, ok: had.ok + 1 }
   }
   const kept = Object.entries(words)
-    .sort((a, b) => b[1].last.localeCompare(a[1].last))
+    .sort((a, b) => timeOf(b[1].last) - timeOf(a[1].last))
     .slice(0, EAR_MAX)
   return { ...log, [language]: Object.fromEntries(kept) }
 }
@@ -49,7 +49,7 @@ export const stillMissed = (m: EarMiss) => m.n > m.ok
 export function topMisses(log: EarLog, language: TargetLanguage, k = 10): { word: string; miss: EarMiss }[] {
   return Object.entries(log[language] ?? {})
     .filter(([, m]) => stillMissed(m))
-    .sort(([, a], [, b]) => b.n - b.ok - (a.n - a.ok) || b.last.localeCompare(a.last))
+    .sort(([, a], [, b]) => b.n - b.ok - (a.n - a.ok) || timeOf(b.last) - timeOf(a.last))
     .slice(0, k)
     .map(([word, miss]) => ({ word, miss }))
 }
@@ -61,7 +61,7 @@ export function mergeEarLogs(a: EarLog = {}, b: EarLog = {}): EarLog {
     const words: Record<string, EarMiss> = { ...(a[language] ?? {}) }
     for (const [w, m] of Object.entries(b[language] ?? {})) {
       const had = words[w]
-      words[w] = had ? { n: Math.max(had.n, m.n), ok: Math.max(had.ok, m.ok), ...(m.last > had.last ? { last: m.last, sentence: m.sentence } : { last: had.last, sentence: had.sentence }) } : m
+      words[w] = had ? { n: Math.max(had.n, m.n), ok: Math.max(had.ok, m.ok), ...(timeOf(m.last) > timeOf(had.last) ? { last: m.last, sentence: m.sentence } : { last: had.last, sentence: had.sentence }) } : m
     }
     out[language] = words
   }

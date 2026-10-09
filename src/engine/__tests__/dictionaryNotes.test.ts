@@ -54,4 +54,21 @@ describe('two devices', () => {
     })
     expect(mergeNotes(undefined, b)).toBe(b)
   })
+
+  it('handles Date objects and plain {} objects defensively', () => {
+    const notes = {
+      fixes: {
+        chat: { t: ['kedi'], at: new Date('2026-10-05T10:00:00Z') as unknown as string },
+        chien: { t: ['köpek'], at: {} as unknown as string },
+      },
+      looked: {
+        chat: { n: 2, at: new Date('2026-10-05T10:00:00Z') as unknown as string },
+        chien: { n: 2, at: {} as unknown as string },
+      },
+    }
+    expect(() => lookupSuggestions(notes, () => false)).not.toThrow()
+    const suggestions = lookupSuggestions(notes, () => false)
+    expect(suggestions.map((s) => s.word)).toEqual(['chat', 'chien'])
+    expect(() => mergeNotes(notes, notes)).not.toThrow()
+  })
 })

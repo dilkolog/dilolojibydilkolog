@@ -9,7 +9,7 @@ import { Dictogloss } from './Dictogloss'
 import { bestStars, MISSIONS, missionStars, type Mission } from '../engine/missions'
 import { pickAudioWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
-import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import { timeOf, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import type { JournalEntry, KelimeDB } from '../data/db'
 import { scheduler } from '../data/instance'
 import { AccentBar } from './AccentBar'
@@ -133,8 +133,9 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
     }
   }
 
-  const thisMonth = entries.filter((e) => e.at.slice(0, 7) === new Date().toISOString().slice(0, 7))
-  const days = new Set(thisMonth.map((e) => e.at.slice(0, 10))).size
+  const iso = (at: unknown) => (typeof at === 'string' ? at : new Date(timeOf(at)).toISOString())
+  const thisMonth = entries.filter((e) => iso(e.at).slice(0, 7) === new Date().toISOString().slice(0, 7))
+  const days = new Set(thisMonth.map((e) => iso(e.at).slice(0, 10))).size
   const wordsCount = text.trim() ? text.trim().split(/\s+/).length : 0
 
   return (
@@ -207,7 +208,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
                 <li key={e.id}>
                   <details>
                     <summary>
-                      <span className="small muted">{new Date(e.at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}</span> {e.text.slice(0, 70)}
+                      <span className="small muted">{new Date(timeOf(e.at)).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}</span> {e.text.slice(0, 70)}
                       {e.text.length > 70 ? '…' : ''}
                       {e.review && <span className="small muted"> · {e.review.mistakes.length} düzeltme</span>}
                     </summary>

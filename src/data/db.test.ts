@@ -263,3 +263,91 @@ describe('reading library', () => {
     expect(await db.getLibrary('es')).toHaveLength(0)
   })
 })
+
+describe('defensive date normalization in meta records', () => {
+  it('normalizes Date and plain {} values in journal, translations, vocabTests, sentences and earLog', async () => {
+    const db = new KelimeDB('t-dates-defense')
+
+    // Journal
+    await db.meta.put({
+      key: 'journal',
+      value: [
+        { id: 'j1', language: 'fr', text: 'Bonjour', at: new Date('2026-10-01T10:00:00Z') },
+        { id: 'j2', language: 'fr', text: 'Salut', at: {} },
+      ],
+    })
+    const journal = await db.getJournal('fr')
+    expect(journal).toHaveLength(2)
+    expect(typeof journal[0].at).toBe('string')
+    expect(typeof journal[1].at).toBe('string')
+    expect(journal[0].id).toBe('j1') // 2026-10-01 > 0
+
+    // Translations
+    await db.meta.put({
+      key: 'translations',
+      value: [
+        { text: 'Chat', translation: 'Kedi', from: 'fr', to: 'tr', at: new Date('2026-10-02T10:00:00Z') },
+        { text: 'Chien', translation: 'Köpek', from: 'fr', to: 'tr', at: {} },
+      ],
+    })
+    const translations = await db.getTranslations()
+    expect(translations).toHaveLength(2)
+    expect(typeof translations[0].at).toBe('string')
+    expect(typeof translations[1].at).toBe('string')
+
+    // Vocab tests
+    await db.meta.put({
+      key: 'vocabTests',
+      value: [
+        { language: 'fr', at: new Date('2026-10-03T10:00:00Z'), estimate: 1000 },
+        { language: 'fr', at: {}, estimate: 1200 },
+      ],
+    })
+    const vocabTests = await db.getVocabTests()
+    expect(vocabTests).toHaveLength(2)
+    expect(typeof vocabTests[0].at).toBe('string')
+    expect(typeof vocabTests[1].at).toBe('string')
+
+    // Sentences
+    await db.meta.put({
+      key: 'sentences',
+      value: [
+        {
+          id: 's1',
+          language: 'fr',
+          text: 'Il dort.',
+          translation: 'O uyuyor.',
+          card: { due: new Date(), state: 0, reps: 0, lapses: 0, stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 0 },
+          addedAt: new Date('2026-10-04T10:00:00Z'),
+        },
+        {
+          id: 's2',
+          language: 'fr',
+          text: 'Il mange.',
+          translation: 'O yiyor.',
+          card: { due: new Date(), state: 0, reps: 0, lapses: 0, stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 0 },
+          addedAt: {},
+        },
+      ],
+    })
+    const sentences = await db.getSentences()
+    expect(sentences).toHaveLength(2)
+    expect(typeof sentences[0].addedAt).toBe('string')
+    expect(typeof sentences[1].addedAt).toBe('string')
+
+    // Ear log
+    await db.meta.put({
+      key: 'earMisses',
+      value: {
+        fr: {
+          chat: { n: 2, ok: 0, last: new Date('2026-10-05T10:00:00Z'), sentence: 'Un chat.' },
+          chien: { n: 1, ok: 0, last: {}, sentence: 'Un chien.' },
+        },
+      },
+    })
+    const earLog = await db.getEarLog()
+    expect(typeof earLog.fr?.chat.last).toBe('string')
+    expect(typeof earLog.fr?.chien.last).toBe('string')
+  })
+})
+
