@@ -48,6 +48,7 @@ import { displayForm } from '../engine/exercises'
 import { isDifficult, withDifficult } from '../engine/difficult'
 import { imageCandidates, skippedImages } from '../data/imageQueue'
 import { MenuItem, Popover } from './Popover'
+import { TranslateButton } from './TranslateButton'
 import { ImageQueue } from './ImageQueue'
 
 interface Props {
@@ -798,7 +799,10 @@ export function WordForm({
           {aiErrorFor('example')}
         </div>
         <div className="field">
-          <label htmlFor="w-ext">Türkçesi</label>
+          <span className="row justify-between">
+            <label htmlFor="w-ext">Türkçesi</label>
+            {!form.exampleTranslation?.trim() && <TranslateButton text={form.example ?? ''} from={language} onTranslated={(t) => setForm((f) => ({ ...f, exampleTranslation: t }))} />}
+          </span>
           <input id="w-ext" className="input" value={form.exampleTranslation ?? ''} onChange={set('exampleTranslation')} />
         </div>
         </div>

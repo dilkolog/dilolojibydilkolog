@@ -8,6 +8,7 @@ import { downloadBackup } from './backup'
 import { PANE_KEY } from './settingsPane'
 import { db } from '../data/instance'
 import { AiSettings } from './AiSettings'
+import { TranslationSettings } from './TranslationSettings'
 import { ConfirmDialog } from './Dialog'
 import { MemoryModel } from './MemoryModel'
 import { AccountSettings } from './AccountSettings'
@@ -668,6 +669,7 @@ export function SettingsScreen({
 
           <Pane {...pane('s-tools')}>
             <AiSettings settings={settings} onChange={onChange} />
+            <TranslationSettings />
             {clipboardOk && (
               <section className="card stack">
                 <h2 className="section-title">Panodan kelime ekle</h2>

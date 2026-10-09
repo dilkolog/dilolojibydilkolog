@@ -682,3 +682,23 @@ test('badges: earned with a date, shown newest first on the profile, one card pe
   await page.locator('.badge-case .badge-card', { hasText: 'İlk adım' }).click()
   await expect(page.locator('.badge-steps li.is-done').first()).toContainText(today)
 })
+
+test('translation: "Çevir" fills the Turkish of a sentence when the server can translate, and is absent when not', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Ekle', exact: true }).click()
+  await page.getByRole('menuitem').first().click()
+  // The preview has no server functions: no translation, no button.
+  await page.getByLabel('Cümle', { exact: true }).first().fill('Le chat dort.')
+  await expect(page.getByRole('button', { name: /Çevir/ })).toHaveCount(0)
+  // With the server answering (stubbed here), the button appears and fills the field.
+  await page.route('**/api/translate?usage=1', (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
+  await page.route('**/api/translate?text=*', (r) => r.fulfill({ json: { translation: 'Kedi uyuyor.' } }))
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+  // The words screen remembers it was on the add form.
+  await expect(page.getByLabel('Cümle', { exact: true }).first()).toBeVisible()
+  await page.getByLabel('Cümle', { exact: true }).first().fill('Le chat dort.')
+  await page.getByRole('button', { name: /Çevir/ }).click()
+  await expect(page.getByLabel('Türkçesi', { exact: true })).toHaveValue('Kedi uyuyor.')
+})
