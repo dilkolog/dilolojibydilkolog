@@ -905,7 +905,7 @@ export function WordForm({
             <div className="field">
               <label htmlFor="w-conf">Karıştırılan kelimeler</label>
               <input id="w-conf" className="input" value={form.confusables ?? ''} onChange={set('confusables')} lang={language} autoCapitalize="off" autoCorrect="off" placeholder={EXAMPLES[language].confusable} />
-              <span className="help">Listende varsa ayırt etme alıştırması açılır ve ikisi aynı günlerde tanıtılmaz.</span>
+              <span className="help">Kelimelerinde varsa ayırt etme alıştırması açılır ve ikisi aynı günlerde tanıtılmaz.</span>
             </div>
           </div>
         </details>
@@ -1005,7 +1005,7 @@ const STAGE_FILTERS: [StageFilter, string][] = [
   ['mastered', 'Oturdu'],
   ['mistakes', 'Hatalı'],
   ['difficult', 'Zor'],
-  ['review', 'Gözden geçir'],
+  ['review', 'İşaretlenenler'],
 ]
 
 function WordThumb({ id }: { id?: string }) {

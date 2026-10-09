@@ -569,7 +569,7 @@ test('reading: reaching the end saves the meetings with list words on its own; f
   // A glance is not a reading: nothing for the first seconds.
   await page.waitForTimeout(3000)
   await expect(met).toHaveCount(0)
-  await expect(met).toContainText(/Listendeki \d+ kelimeyle karşılaşman kaydedildi/, { timeout: 25_000 })
+  await expect(met).toContainText(/Kelimelerindeki \d+ kelimeyle karşılaşman kaydedildi/, { timeout: 25_000 })
   const saved = await page.evaluate(
     () =>
       new Promise<number>((done) => {

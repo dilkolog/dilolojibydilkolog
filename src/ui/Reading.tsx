@@ -45,8 +45,8 @@ const REREAD_DAYS = 7
 
 const STATUS_TEXT: Record<ReadStatus, string> = {
   known: 'Bildiğin bir kelime.',
-  learning: 'Listende, öğreniyorsun.',
-  new: 'Listende, henüz çalışmadın.',
+  learning: 'Kelimelerinde, öğreniyorsun.',
+  new: 'Kelimelerinde, henüz çalışmadın.',
   unseen: 'Bu kelimeyi daha önce işaretlemedin.',
   name: 'Özel isim ya da yok saydığın bir kelime; hesaba katılmıyor.',
 }
@@ -447,7 +447,7 @@ export function ReadingScreen({
       if (opened.current.key !== key) return
       const met = await saveMet()
       if (met) {
-        setMetNote(`Listendeki ${met} kelimeyle karşılaşman kaydedildi.`)
+        setMetNote(`Kelimelerindeki ${met} kelimeyle karşılaşman kaydedildi.`)
         onChanged()
       }
     }, Math.max(0, opened.current.at + MIN_READ_MS - Date.now()))
@@ -471,7 +471,7 @@ export function ReadingScreen({
     }
     setConfirmFinish(false)
     const met = Object.keys(encounters).length
-    setMessage(`${knownKeys.length} kelime bilinen kelimelerine eklendi${met ? `, listendeki ${met} kelimeyle bir kez daha karşılaştın` : ''}.`)
+    setMessage(`${knownKeys.length} kelime bilinen kelimelerine eklendi${met ? `, kelimelerindeki ${met} kelimeyle bir kez daha karşılaştın` : ''}.`)
     onChanged()
   }
 
@@ -517,7 +517,7 @@ export function ReadingScreen({
       <div className="stack">
         <PageHeader
           title="Okuma"
-          sub={`${LANGUAGE_NAME[language]} metinlerde ne kadarını bildiğini gör, bilmediklerini listene ekle.`}
+          sub={`${LANGUAGE_NAME[language]} metinlerde ne kadarını bildiğini gör, bilmediklerini kelimelerine ekle.`}
           // With an empty library the form below is already open: one way in, not three.
           action={
             library.length > 0 ? (
@@ -539,7 +539,7 @@ export function ReadingScreen({
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
         {library.length === 0 && (
           <EmptyState art="library" title="Kütüphanen boş">
-            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini listene eklersin. Aşağıdan ilk metnini ekle veya klasik masallar ve öyküler koleksiyonundan başla.
+            Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini kelimelerine eklersin. Aşağıdan ilk metnini ekle veya klasik masallar ve öyküler koleksiyonundan başla.
           </EmptyState>
         )}
         {library.length > 0 && (
@@ -729,7 +729,7 @@ export function ReadingScreen({
         <button type="button" className="coverage-line" aria-expanded={covOpen} onClick={() => setCovOpen((o) => !o)}>
           <span className="coverage-num">{pct(analysis.coverage)}</span>
           <strong className="coverage-title">{ZONE[zone].title}</strong>
-          <span className="coverage-bar" role="img" aria-label={`Bilinen ${pct(analysis.coverage)}, listede ${pct(analysis.coverageWithList - analysis.coverage)}, yeni ${pct(1 - analysis.coverageWithList)}`}>
+          <span className="coverage-bar" role="img" aria-label={`Bilinen ${pct(analysis.coverage)}, kelimelerinde ${pct(analysis.coverageWithList - analysis.coverage)}, yeni ${pct(1 - analysis.coverageWithList)}`}>
             <span className="cb-known" style={{ width: share(analysis.counts.known) }} />
             <span className="cb-list" style={{ width: share(analysis.counts.learning + analysis.counts.new) }} />
             <span className="cb-unseen" style={{ width: share(analysis.counts.unseen) }} />
@@ -741,7 +741,7 @@ export function ReadingScreen({
             <p className="small muted">{ZONE[zone].text}</p>
             <p className="small muted coverage-legend">
               <span><i className="cb-known" /> bildiğin {analysis.counts.known}</span>
-              <span><i className="cb-list" /> listende {analysis.counts.learning + analysis.counts.new}</span>
+              <span><i className="cb-list" /> kelimelerinde {analysis.counts.learning + analysis.counts.new}</span>
               <span><i className="cb-unseen" /> yeni {analysis.counts.unseen}</span>
               <span>toplam {analysis.total} kelime</span>
             </p>
@@ -937,7 +937,7 @@ export function ReadingScreen({
                   onClick={() => setAdding({ word: selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? selectedForms[0].lemma : cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })}
                 >
                   {/* A verb goes on the list as its infinitive (aller), not the form met (allions). */}
-                  {selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? `Listeye ekle: ${selectedForms[0].lemma}` : 'Listeye ekle'} <kbd className="kbd-key">E</kbd>
+                  {selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? `Kelimelerime ekle: ${selectedForms[0].lemma}` : 'Kelimelerime ekle'} <kbd className="kbd-key">E</kbd>
                 </button>
                 {ignored.has(selected.token.key) ? (
                   <button className="btn btn-quiet" onClick={() => toggleIgnored(selected.token.key!, false)}>
@@ -970,7 +970,7 @@ export function ReadingScreen({
 
       {adding && (
         <section className="card stack">
-          <h2 className="section-title">Listeye ekle</h2>
+          <h2 className="section-title">Kelimelerime ekle</h2>
           <WordForm
             db={db}
             language={language}
@@ -1059,8 +1059,8 @@ export function ReadingScreen({
           onCancel={() => setConfirmFinish(false)}
         >
           {unseenKeys.size > 0
-            ? `İşaretlemediğin ${unseenKeys.size} kelime bilinen kelimelerine eklenecek. Bilmediğin varsa önce "Bilmiyorum" ya da "Listeye ekle" ile işaretle.`
-            : 'Yeni kelime kalmadı; listendeki kelimelerle karşılaşmaların kaydedilecek.'}
+            ? `İşaretlemediğin ${unseenKeys.size} kelime bilinen kelimelerine eklenecek. Bilmediğin varsa önce "Bilmiyorum" ya da "Kelimelerime ekle" ile işaretle.`
+            : 'Yeni kelime kalmadı; kelimelerindeki kelimelerle karşılaşmaların kaydedilecek.'}
         </ConfirmDialog>
       )}
     </div>

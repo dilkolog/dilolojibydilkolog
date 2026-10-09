@@ -105,7 +105,7 @@ export function Dictogloss({ db, language, vocabulary, onChanged }: { db: Kelime
             {result.map((t, i) => {
               if (!t.content || t.recalled) return <span key={i} className={t.content ? 'dg-hit' : undefined}>{t.token}</span>
               const key = readingKey(t.word, language)
-              if (inList.has(key) || added.has(key)) return <span key={i} className="dg-miss" title="Listende var">{t.token}</span>
+              if (inList.has(key) || added.has(key)) return <span key={i} className="dg-miss" title="Kelimelerinde var">{t.token}</span>
               // Missed and not in the list yet: a tap opens the add form with this sentence as example.
               const lead = t.token.slice(0, t.token.indexOf(t.word))
               const tail = t.token.slice(t.token.indexOf(t.word) + t.word.length)

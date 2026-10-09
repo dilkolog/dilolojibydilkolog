@@ -215,7 +215,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
                         <span className="w" lang={language}>
                           {h.word}
                           {h.isOwn && (
-                            <span className="pill stage-5 dict-own">Listende</span>
+                            <span className="pill stage-5 dict-own">Kelimelerinde</span>
                           )}
                         </span>
                         <span className="meta">{h.rec.t?.join(', ')}</span>
@@ -413,11 +413,11 @@ function WordCard({
         <div className="word-hero-actions">
           {own ? (
             <button className="btn btn-sm btn-quiet" onClick={() => onOpenWord(own.id)}>
-              <CheckIcon size={15} /> Listende: aç
+              <CheckIcon size={15} /> Kelimelerinde: aç
             </button>
           ) : (
             <button className="btn btn-sm" onClick={() => onAdd(written, meanings.slice(0, 2).join(', '))}>
-              <PlusIcon size={15} /> Listeme ekle
+              <PlusIcon size={15} /> Kelimelerime ekle
             </button>
           )}
           {isVerb && onOpenLab && (
@@ -562,14 +562,14 @@ function NotFound({
           </p>
           <div>
             <button className="btn btn-sm" onClick={() => onAdd(ai.lemma, ai.meanings.slice(0, 2).join(', '))}>
-              <PlusIcon size={15} /> Listeme ekle
+              <PlusIcon size={15} /> Kelimelerime ekle
             </button>
           </div>
         </>
       ) : (
         <>
           <p>
-            “<span lang={language}>{word}</span>” sözlük paketinde veya listende henüz yok. Anlamını biliyorsan doğrudan sözlüğüne ekleyebilirsin:
+            “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok. Anlamını biliyorsan doğrudan sözlüğüne ekleyebilirsin:
           </p>
           <form
             className="row gap-xs"

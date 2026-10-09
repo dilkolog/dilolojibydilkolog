@@ -24,7 +24,7 @@ export function WordSources({ entry, onChanged }: { entry: VocabularyEntry; onCh
           }}
         >
           <FlagIcon size={14} className="inline-icon" />
-          Gözden geçir
+          İşaretlenenler
         </button>
       </div>
       {origins.length > 0 && (

@@ -133,7 +133,7 @@ export function KeyWordsCard({
                   <button className="icon-btn key-known" onClick={() => onKnown(w.key)} aria-label={`${w.word}: biliyorum`} title="Biliyorum">
                     <CheckIcon size={16} />
                   </button>
-                  <button className="icon-btn key-add" onClick={() => setAdding(adding === w.word ? null : w.word)} aria-label={`${w.word}: listeye ekle`} aria-expanded={adding === w.word} title="Listeye ekle">
+                  <button className="icon-btn key-add" onClick={() => setAdding(adding === w.word ? null : w.word)} aria-label={`${w.word}: kelimelerime ekle`} aria-expanded={adding === w.word} title="Kelimelerime ekle">
                     <PlusIcon size={16} />
                   </button>
                 </span>
