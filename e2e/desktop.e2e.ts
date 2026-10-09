@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 import { contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
@@ -747,9 +747,8 @@ test('translation memory: a reading sentence translated on request, the recent o
   await expect(page.locator('#w-word, input[name="word"]').first()).toHaveValue(/maison/)
 })
 
-test('listening: the sentence heard is lit, and a sentence can be played from its start', async ({ page }) => {
-  await startWithSamples(page)
-  // A short listening text with timed cues and a few seconds of silence as its audio.
+/** A short listening text with timed cues and a few seconds of silence as its audio. */
+async function addTimedListening(page: Page) {
   await page.evaluate(async () => {
     const rate = 8000
     const seconds = 6
@@ -772,6 +771,11 @@ test('listening: the sentence heard is lit, and a sentence can be played from it
       }
     })
   })
+}
+
+test('listening: the sentence heard is lit, and a sentence can be played from its start', async ({ page }) => {
+  await startWithSamples(page)
+  await addTimedListening(page)
   await openScreen(page, 'Okuma')
   await page.getByText('Écoute').first().click()
   await expect(page.locator('audio.audio-player')).toHaveCount(1)
@@ -812,4 +816,67 @@ test('reading: the whole text in Turkish under each paragraph, each sentence tra
   await turkish.click()
   await expect(page.locator('.reader-tr')).toHaveText(['Kedi uyuyor. Hava güzel.', 'Gidiyoruz.'])
   expect(asked.sort()).toEqual(['Il fait beau.', 'Le chat dort.', 'Nous partons.'])
+})
+
+test('dictation of a text: each sentence played from its recording, written, compared; the missed words listed', async ({ page }) => {
+  await startWithSamples(page)
+  await addTimedListening(page)
+  await openScreen(page, 'Okuma')
+  await page.getByText('Écoute').first().click()
+  await page.getByRole('button', { name: /Dikte/ }).click()
+  const panel = page.getByRole('region', { name: 'Dikte' })
+  await expect(panel).toContainText('Dikte · 1 / 3')
+  await expect(panel).toContainText('Metnin kendi kaydından')
+  await expect(page.locator('.reader')).toHaveClass(/is-hidden/)
+  // The first sentence plays and stops where the second begins.
+  const audio = page.locator('audio.audio-player')
+  await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => (a.paused && a.currentTime > 1.5 ? a.currentTime : 0)), { timeout: 8000 }).toBeLessThan(2.3)
+  const answer = page.getByLabel('Duyduğun cümle')
+  await answer.fill('le chat dort')
+  await answer.press('Enter')
+  await expect(panel.locator('.dd-missed')).toHaveCount(0)
+  await answer.press('Enter')
+  await expect(panel).toContainText('Dikte · 2 / 3')
+  await answer.fill('Il fait')
+  await panel.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(panel.locator('.dd-missed')).toHaveText(['beau.'])
+  await panel.getByRole('button', { name: 'Devam' }).click()
+  await panel.getByRole('button', { name: 'Göster' }).click()
+  await panel.getByRole('button', { name: 'Bitir' }).last().click()
+  await expect(panel).toContainText('3 cümlede kelimelerin %56’ini doğru yazdın.')
+  await expect(panel.locator('.dd-missed')).toHaveText(['beau', 'nous', 'partons', 'demain'])
+  await panel.getByRole('button', { name: 'Metne dön' }).click()
+  await expect(panel).toHaveCount(0)
+})
+
+test('back-translation: sentences translated before come back as their Turkish, written and kept as sentence cards', async ({ page }) => {
+  await startWithSamples(page)
+  const tr: Record<string, string> = { 'Le chat dort sur le canapé.': 'Kedi kanepede uyuyor.', 'Nous partons tôt demain.': 'Yarın erken yola çıkıyoruz.' }
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 1000000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => r.fulfill({ json: { translation: tr[new URL(r.request().url()).searchParams.get('text')!] ?? '?' } }))
+  await openScreen(page, 'Çeviri')
+  await page.getByLabel('Çevrilecek metin').fill('Le chat dort sur le canapé. Nous partons tôt demain.')
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
+  await expect(page.getByRole('region', { name: 'Çeviri' })).toContainText('Yarın erken yola çıkıyoruz.')
+  await openScreen(page, 'Oyunlar')
+  const card = page.locator('.game-card', { hasText: 'Geri çeviri' })
+  await expect(card).toContainText('2 cümle hazır')
+  await card.click()
+  // Newest first: the second sentence was translated last.
+  await expect(page.locator('.prompt-text')).toHaveText('Yarın erken yola çıkıyoruz.')
+  await page.getByLabel('Cevabın').fill('Nous partons tot demain')
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.locator('.sentence-result')).toContainText('Doğru!')
+  await page.getByRole('button', { name: 'Devam' }).click()
+  await expect(page.locator('.prompt-text')).toHaveText('Kedi kanepede uyuyor.')
+  await page.getByLabel('Cevabın').fill('Le chat dort')
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.locator('.sentence-result .dd-missed')).toHaveText(['sur', 'le', 'canapé.'])
+  await page.getByRole('button', { name: 'Yanlıştı' }).click()
+  await expect(page.getByText('2 cümleden 1 tanesini doğru yazdın.', { exact: false })).toBeVisible()
+  await page.getByRole('button', { name: 'Oyunlara dön' }).click()
+  // Both are sentence cards now: nothing left to write back.
+  await expect(card).toContainText('Okurken “Cümlenin Türkçesi”ne bas')
+  await page.locator('.game-card', { hasText: 'Cümle kartları' }).click()
+  await expect(page.getByRole('region', { name: /Cümlelerin/ }).or(page.locator('.sentence-list'))).toContainText('Nous partons tôt demain.')
 })
