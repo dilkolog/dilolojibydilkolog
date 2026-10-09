@@ -20,3 +20,11 @@ describe('badge series', () => {
     expect(series.find((s) => s.stat === 'bossesDefeated')).toMatchObject({ earned: 0, top: undefined })
   })
 })
+
+describe('closest step', () => {
+  it('the step most nearly earned, once half way; nothing below that', async () => {
+    const { closestStep } = await import('../gamification')
+    expect(closestStep(achievements({ ...emptyStats, wordsIntroduced: 40, longestStreak: 2 }))?.id).toBe('words-50')
+    expect(closestStep(achievements({ ...emptyStats, wordsIntroduced: 1 }))).toBeUndefined()
+  })
+})

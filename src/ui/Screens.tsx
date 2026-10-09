@@ -28,7 +28,7 @@ import { SummaryGarden } from './SummaryGarden'
 import { useGame, type GameState } from './game'
 import { sfx } from './sounds'
 import { Medal } from './Medal'
-import { crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
+import { closestStep, crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
 import { StreakFlame } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 
@@ -966,6 +966,19 @@ export function Summary({
           </ul>
         </section>
       )}
+      {!practice && after && (() => {
+        const step = closestStep(after.achievements)
+        return (
+          step && (
+            <p className="note row summary-next">
+              <Medal icon={step.icon} tier={medalTier(step)} unlocked={false} progress={step.value / step.goal} size={32} />
+              <span>
+                Sıradaki rozet: <strong>{step.title}</strong>, {(step.goal - step.value).toLocaleString('tr-TR')} kaldı <span className="muted">({step.description.toLocaleLowerCase('tr')})</span>
+              </span>
+            </p>
+          )
+        )
+      })()}
       {(tooEasyOrHard || summary.answered >= LONG_SESSION) && (
         <section className="coach-note">
           <span className="coach-note-icon" aria-hidden>
