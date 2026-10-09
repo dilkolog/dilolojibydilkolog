@@ -32,3 +32,7 @@ extension/dist
 # Playwright
 test-results
 playwright-report
+
+# Backups: personal data, never committed
+kelime-kocu-yedek-*.json
+*yedek*.json

@@ -4,6 +4,9 @@
  * Nothing is stored, and the request's address and browser aren't written.
  *
  * POST /api/log  { name, message, stack: string[], where }
+ * POST /api/log?csp=1  a browser's Content-Security-Policy violation report ({ "csp-report": … }):
+ * one `[csp-report]` line with the directive and the blocked origin (no paths or queries), to see
+ * what the report-only policy would block before enforcing it.
  */
 const MAX_BODY = 4096
 
@@ -17,6 +20,20 @@ export async function POST(request: Request): Promise<Response> {
     body = JSON.parse(text) as Record<string, unknown>
   } catch {
     return new Response(null, { status: 400 })
+  }
+  const csp = body['csp-report']
+  if (csp && typeof csp === 'object') {
+    const r = csp as Record<string, unknown>
+    const origin = (v: unknown) => {
+      const raw = str(v, 300)
+      try {
+        return new URL(raw).origin
+      } catch {
+        return raw.slice(0, 40)
+      }
+    }
+    console.warn('[csp-report]', JSON.stringify({ directive: str(r['effective-directive'] ?? r['violated-directive'], 60), blocked: origin(r['blocked-uri']), page: str(r['document-uri'], 300).replace(/[?#].*$/, '').replace(/^https?:\/\/[^/]+/, '') }))
+    return new Response(null, { status: 204 })
   }
   const report = {
     name: str(body.name, 40),
