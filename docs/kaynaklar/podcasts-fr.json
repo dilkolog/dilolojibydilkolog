@@ -1,0 +1,101 @@
+[
+  {
+    "title": "innerFrench",
+    "feedUrl": "https://podcast.innerfrench.com/feed.xml",
+    "websiteUrl": "https://innerfrench.com/podcast/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Hugo Cotton / innerFrench)",
+    "notes": "Orta seviye için anlaşılır, akıcı ve ilgi çekici felsefi, toplumsal ve kültürel temalar. Tüm bölümlerin tam transkripti web sitesinde ücretsiz bir hesapla erişilebilirdir."
+  },
+  {
+    "title": "LanguaTalk Slow French",
+    "feedUrl": "https://anchor.fm/s/e1ba1904/podcast/rss",
+    "websiteUrl": "https://languatalk.com/blog/podcast/french/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "A2-B1",
+    "license": "Telif hakkı saklıdır (LanguaTalk / Gaëlle)",
+    "notes": "Fransa kültürü ve günlük yaşam üzerine yavaş ve net Fransızca. Web sitesinde interaktif transkriptler ücretsiz olarak sunulmaktadır."
+  },
+  {
+    "title": "Duolingo French Podcast",
+    "feedUrl": "https://anchor.fm/s/fb438900/podcast/rss",
+    "websiteUrl": "https://podcast.duolingo.com/french",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "A2-B1",
+    "license": "Telif hakkı saklıdır (Duolingo)",
+    "notes": "Gerçek hayat hikayeleri, ara İngilizce anlatımlarla desteklenmiş berrak Fransızca. Her bölümün tam transkripti web sayfasında ücretsizdir."
+  },
+  {
+    "title": "Français Authentique",
+    "feedUrl": "https://francaisauthentique.libsyn.com/rss",
+    "websiteUrl": "https://www.francaisauthentique.com/podcasts/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Johan Tekfak / Français Authentique)",
+    "notes": "Deyimler, kişisel gelişim ve dil ipuçları. Her bölümün transkripti hem sitede metin hem de indirilebilir PDF formatında ücretsizdir."
+  },
+  {
+    "title": "Français avec Pierre",
+    "feedUrl": "https://www.francaisavecpierre.com/feed/podcast/",
+    "websiteUrl": "https://www.francaisavecpierre.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "A2-B1",
+    "license": "Telif hakkı saklıdır (Pierre Babon / Français avec Pierre)",
+    "notes": "Fransız dili kuralları, diyaloglar ve telaffuz. Web sitesinde bölümlerin açıklama ve transkript metinleri blog yazısı olarak ücretsizdir."
+  },
+  {
+    "title": "Choses à Savoir - Culture générale",
+    "feedUrl": "https://feeds.acast.com/public/shows/66057de88268a800162cadf2",
+    "websiteUrl": "https://www.chosesasavoir.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B2-C1",
+    "license": "Telif hakkı saklıdır (Louis Guillaume / Choses à Savoir)",
+    "notes": "Günlük 2-3 dakikalık kısa, net ve tempolu kültürel/bilimsel sorular ve yanıtları. Web sitesinde her bölümün birebir yazılı makalesi ücretsiz yayınlanmaktadır."
+  },
+  {
+    "title": "France Inter · Géopolitique",
+    "feedUrl": "https://radiofrance-podcast.net/podcast09/rss_11741.xml",
+    "websiteUrl": "https://www.radiofrance.fr/franceinter/podcasts/geopolitique",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B2-C1",
+    "license": "Telif hakkı saklıdır (Radio France / France Inter)",
+    "notes": "Uluslararası ilişkiler ve güncel dünya olayları üzerine günlük 3-4 dakikalık uzman köşe yazısı. France Inter web sitesinde metin makale olarak ücretsiz mevcuttur."
+  },
+  {
+    "title": "One Thing In A French Day",
+    "feedUrl": "https://onethinginafrenchday.podbean.com/feed.xml",
+    "websiteUrl": "https://onethinginafrenchday.podbean.com/",
+    "transcriptLocation": "web+bülten",
+    "transcriptFree": false,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Laetitia Perraut)",
+    "notes": "Paris ve Fransız gündelik hayatından 3-5 dakikalık kesitler, doğal konuşma hızı. Ses kaydı ücretsiz, tam transkriptler bülten aboneliği (haftalık ücretli bülten) ile iletilir."
+  },
+  {
+    "title": "Learn French by Podcast",
+    "feedUrl": "https://rss.libsyn.com/shows/19268/destinations/15770.xml",
+    "websiteUrl": "https://learnfrenchbypodcast.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": false,
+    "hasTimedSubtitles": false,
+    "level": "A1-B2",
+    "license": "Telif hakkı saklıdır (Learn French by Podcast)",
+    "notes": "Güncel haberler ve durumlar üzerine diyaloglar ve analizler. Ses bölümleri ücretsiz, ayrıntılı ders kılavuzu ve transkript paketleri ücretli satılmaktadır."
+  }
+]

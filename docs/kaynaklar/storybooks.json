@@ -1,0 +1,902 @@
+[
+  {
+    "title": "Un homme très grand",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0001/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0001/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0001/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 216
+  },
+  {
+    "title": "Chèvre, Chien et Vache",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0004/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0004/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0004/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 347
+  },
+  {
+    "title": "Anansi et la sagesse",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0006/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0006/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0006/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 620
+  },
+  {
+    "title": "Qu’est-ce que tu fais&nbsp;?",
+    "language": "fr",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0008/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0008/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0008/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 97
+  },
+  {
+    "title": "La décision",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0027/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0027/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0027/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 487
+  },
+  {
+    "title": "Simbegwire",
+    "language": "fr",
+    "level": 5,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0052/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0052/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0052/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1833
+  },
+  {
+    "title": "Nozibele et les trois cheveux",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0066/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0066/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0066/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 873
+  },
+  {
+    "title": "La revanche de l’indicateur",
+    "language": "fr",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0072/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0072/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0072/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1419
+  },
+  {
+    "title": "J’aime lire",
+    "language": "fr",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0087/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0087/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0087/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 155
+  },
+  {
+    "title": "Khalai parle aux plantes",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0089/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0089/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0089/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 359
+  },
+  {
+    "title": "Zama est formidable&nbsp;!",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0095/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0095/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0095/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 339
+  },
+  {
+    "title": "Une petite graine&nbsp;: l’histoire de Wangari Maathai",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0110/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0110/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0110/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 938
+  },
+  {
+    "title": "Pourquoi les hippopotames n’ont pas de poils",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0111/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0111/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0111/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 485
+  },
+  {
+    "title": "La poule et le millepatte",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0141/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0141/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0141/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 715
+  },
+  {
+    "title": "Le crocodile qui avait très faim",
+    "language": "fr",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0156/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0156/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0156/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 135
+  },
+  {
+    "title": "Poule et Aigle",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0158/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0158/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0158/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 852
+  },
+  {
+    "title": "L’enfant-âne",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0201/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0201/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0201/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1053
+  },
+  {
+    "title": "Tingi et les vaches",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0210/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0210/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0210/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 225
+  },
+  {
+    "title": "Les vacances avec grand-maman",
+    "language": "fr",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0243/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0243/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0243/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1367
+  },
+  {
+    "title": "Magozwe",
+    "language": "fr",
+    "level": 5,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0262/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0262/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0262/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1799
+  },
+  {
+    "title": "Que va dire la sœur de Vusi&nbsp;?",
+    "language": "fr",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0291/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0291/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0291/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1149
+  },
+  {
+    "title": "Les bananes de grand-mère",
+    "language": "fr",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0294/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0294/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0294/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1223
+  },
+  {
+    "title": "Tom le vendeur de bananes",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0296/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0296/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0296/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 348
+  },
+  {
+    "title": "Le feu",
+    "language": "fr",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0302/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0302/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0302/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 111
+  },
+  {
+    "title": "La chanson de Sakima",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0315/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0315/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0315/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 995
+  },
+  {
+    "title": "Le jour où je quittai la maison pour la ville",
+    "language": "fr",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0324/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0324/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0324/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 969
+  },
+  {
+    "title": "Compter les animaux",
+    "language": "fr",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0327/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0327/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0327/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 173
+  },
+  {
+    "title": "Les enfants de cire",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0337/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0337/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0337/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 310
+  },
+  {
+    "title": "Punition",
+    "language": "fr",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-french/stories/fr/0342/",
+    "textUrl": "https://global-asp.github.io/storybooks-french/stories/fr/0342/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/fr/0342/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 315
+  },
+  {
+    "title": "Un hombre muy alto",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0001/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0001/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0001/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 216
+  },
+  {
+    "title": "La Cabra, el Perro y la Vaca",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0004/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0004/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0004/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 371
+  },
+  {
+    "title": "Anansi y la sabiduría",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0006/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0006/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0006/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 554
+  },
+  {
+    "title": "¿Qué estás haciendo?",
+    "language": "es",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0008/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0008/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0008/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 77
+  },
+  {
+    "title": "La decisión",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0027/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0027/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0027/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 475
+  },
+  {
+    "title": "Simbegwire",
+    "language": "es",
+    "level": 5,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0052/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0052/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0052/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1855
+  },
+  {
+    "title": "Nozibele y sus tres cabellos",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0066/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0066/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0066/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 855
+  },
+  {
+    "title": "La venganza del Pájaro Miel",
+    "language": "es",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0072/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0072/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0072/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1439
+  },
+  {
+    "title": "¡Me gusta leer!",
+    "language": "es",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0087/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0087/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0087/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 128
+  },
+  {
+    "title": "Khalai le habla a las plantas",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0089/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0089/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0089/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 387
+  },
+  {
+    "title": "¡Zama es genial!",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0095/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0095/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0095/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 343
+  },
+  {
+    "title": "Una pequeña semilla: la historia de Wangari Maathai",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0110/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0110/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0110/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 939
+  },
+  {
+    "title": "¿Por qué los hipopótamos no tienen pelo?",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0111/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0111/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0111/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 501
+  },
+  {
+    "title": "El Pollo y el Milpiés",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0141/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0141/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0141/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 631
+  },
+  {
+    "title": "El cocodrilo hambriento",
+    "language": "es",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0156/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0156/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0156/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 117
+  },
+  {
+    "title": "La Gallina y el Águila",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0158/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0158/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0158/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 922
+  },
+  {
+    "title": "El Niño Burro",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0201/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0201/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0201/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1053
+  },
+  {
+    "title": "Tingi y las vacas",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0210/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0210/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0210/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 218
+  },
+  {
+    "title": "De vacaciones con la abuela",
+    "language": "es",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0243/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0243/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0243/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1283
+  },
+  {
+    "title": "Magozwe",
+    "language": "es",
+    "level": 5,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0262/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0262/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0262/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1790
+  },
+  {
+    "title": "Lo que la hermana de Vusi dijo",
+    "language": "es",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0291/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0291/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0291/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1157
+  },
+  {
+    "title": "Los plátanos de mi abuela",
+    "language": "es",
+    "level": 4,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0294/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0294/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0294/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 1129
+  },
+  {
+    "title": "Tom, el vendedor de plátanos",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0296/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0296/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0296/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 342
+  },
+  {
+    "title": "El fuego",
+    "language": "es",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0302/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0302/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0302/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 93
+  },
+  {
+    "title": "La canción de Sakima",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0315/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0315/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0315/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 1025
+  },
+  {
+    "title": "El día que dejé mi casa para irme a la ciudad",
+    "language": "es",
+    "level": 3,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0324/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0324/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0324/mp3/01.mp3",
+    "license": "CC BY 4.0",
+    "wordCount": 975
+  },
+  {
+    "title": "Contando animales",
+    "language": "es",
+    "level": 1,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0327/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0327/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0327/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 183
+  },
+  {
+    "title": "Niños de cera",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0337/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0337/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0337/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 342
+  },
+  {
+    "title": "Castigo",
+    "language": "es",
+    "level": 2,
+    "url": "https://global-asp.github.io/storybooks-spanish/stories/es/0342/",
+    "textUrl": "https://global-asp.github.io/storybooks-spanish/stories/es/0342/",
+    "audioUrl": "https://globalstorybooks.net/media/audio/es/0342/mp3/01.mp3",
+    "license": "CC BY 3.0",
+    "wordCount": 290
+  },
+  {
+    "title": "Anansi et Tortue",
+    "language": "fr",
+    "level": 3,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0005_anansi-et-tortue.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 633
+  },
+  {
+    "title": "Père et fils",
+    "language": "fr",
+    "level": 1,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0011_père-et-fils.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 121
+  },
+  {
+    "title": "La fille du nom de Norah",
+    "language": "fr",
+    "level": 1,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0014_la-fille-du-nom-de-norah.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 139
+  },
+  {
+    "title": "Pourquoi Yayeri est-elle grande ?",
+    "language": "fr",
+    "level": 2,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0018_pourquoi-yayeri-est-elle-grande.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 222
+  },
+  {
+    "title": "Ma première visite du marché",
+    "language": "fr",
+    "level": 4,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0019_ma-premiere-visite-du-marche.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 727
+  },
+  {
+    "title": "Le lion qui voulait un ami",
+    "language": "fr",
+    "level": 2,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0023_le-lion-qui-voulait-un-ami.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 192
+  },
+  {
+    "title": "Le vent",
+    "language": "fr",
+    "level": 1,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0035_le_vent.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 145
+  },
+  {
+    "title": "Le roi des oiseaux",
+    "language": "fr",
+    "level": 3,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0037_le-roi-des-oiseaux.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 547
+  },
+  {
+    "title": "La visite de Neyman en Afrique",
+    "language": "fr",
+    "level": 2,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0038_la-visite-de-neyman-en-afrique.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 239
+  },
+  {
+    "title": "Le premier homme et la première femme",
+    "language": "fr",
+    "level": 3,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0039_le-premier-homme-et-la-premiere-femme.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 390
+  },
+  {
+    "title": "Le chacal affamé et les raisins acidulés",
+    "language": "fr",
+    "level": 2,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0042_le-chacal-affame-et-les-raisins-acidules.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 183
+  },
+  {
+    "title": "L'histoire du feu",
+    "language": "fr",
+    "level": 1,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0043_lhistoire-du-feu.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 61
+  },
+  {
+    "title": "Le lapin sous un arbre",
+    "language": "fr",
+    "level": 3,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0048_le-lapin-sous-un-arbre.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 588
+  },
+  {
+    "title": "Un arc-en-ciel de passage au village",
+    "language": "fr",
+    "level": 2,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0051_un-arc-en-ciel-de-passage-au-village.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 194
+  },
+  {
+    "title": "Un bébé enlevé par des grues",
+    "language": "fr",
+    "level": 3,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0055_un-bebe-enleve-par-des-grues.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 513
+  },
+  {
+    "title": "Une partie de football",
+    "language": "fr",
+    "level": 1,
+    "url": "https://africanstorybook.org/",
+    "textUrl": "https://raw.githubusercontent.com/global-asp/asp-source/master/fr/0058_une-partie-de-football.md",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 72
+  },
+  {
+    "title": "¡Todo revuelto!",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/423522-all-jumbled-up",
+    "textUrl": "https://storyweaver.org.in/stories/423522-all-jumbled-up",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "¡Hola, Sol!",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/594896-hello-sun",
+    "textUrl": "https://storyweaver.org.in/stories/594896-hello-sun",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "¿Una calle o un zoo?",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/128208-oona-kayye-o-oon-zoo",
+    "textUrl": "https://storyweaver.org.in/stories/128208-oona-kayye-o-oon-zoo",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "¿Qué pasaría si...?",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/193225-what-will-happen",
+    "textUrl": "https://storyweaver.org.in/stories/193225-what-will-happen",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  },
+  {
+    "title": "¿En qué anda Ameena?",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/124067-en-ke-andaa-ameena",
+    "textUrl": "https://storyweaver.org.in/stories/124067-en-ke-andaa-ameena",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "Cuentos antes de dormir",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/130676-cooentos-antes-dey-dormir",
+    "textUrl": "https://storyweaver.org.in/stories/130676-cooentos-antes-dey-dormir",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "Quiero o no quiero......",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/130744-kiero-o-no-kiero",
+    "textUrl": "https://storyweaver.org.in/stories/130744-kiero-o-no-kiero",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "Los fantásticos lentes de Amelia",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/182012-amelia-s-fantastic-glasses",
+    "textUrl": "https://storyweaver.org.in/stories/182012-amelia-s-fantastic-glasses",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  },
+  {
+    "title": "El regalo de Navidad de Sam",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/128420-el-reygalo-de-navidad-de-sam",
+    "textUrl": "https://storyweaver.org.in/stories/128420-el-reygalo-de-navidad-de-sam",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "Una sonrisa de mariposa",
+    "language": "es",
+    "level": 3,
+    "url": "https://storyweaver.org.in/stories/128983-oona-sonrisa-dey-mariposa",
+    "textUrl": "https://storyweaver.org.in/stories/128983-oona-sonrisa-dey-mariposa",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 550
+  },
+  {
+    "title": "¡Es la hora del baño!",
+    "language": "es",
+    "level": 1,
+    "url": "https://storyweaver.org.in/stories/128846-es-la-ora-del-banyo",
+    "textUrl": "https://storyweaver.org.in/stories/128846-es-la-ora-del-banyo",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 120
+  },
+  {
+    "title": "Una piedra en mi zapato",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/193695-a-pebble-in-my-shoe",
+    "textUrl": "https://storyweaver.org.in/stories/193695-a-pebble-in-my-shoe",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  },
+  {
+    "title": "¡El señor conejo se va de fiesta!",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/171287-iel-senor-conejo-se-va-de-fiesta",
+    "textUrl": "https://storyweaver.org.in/stories/171287-iel-senor-conejo-se-va-de-fiesta",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  },
+  {
+    "title": "¡Contigo, Ma!",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/448563-with-you-ma",
+    "textUrl": "https://storyweaver.org.in/stories/448563-with-you-ma",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  },
+  {
+    "title": "¡Hay algo debajo de mi cama!",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/125537-ay-algo-debakho-de-me-cama",
+    "textUrl": "https://storyweaver.org.in/stories/125537-ay-algo-debakho-de-me-cama",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  },
+  {
+    "title": "Croac",
+    "language": "es",
+    "level": 2,
+    "url": "https://storyweaver.org.in/stories/458431-croak",
+    "textUrl": "https://storyweaver.org.in/stories/458431-croak",
+    "audioUrl": null,
+    "license": "CC BY 4.0",
+    "wordCount": 280
+  }
+]
