@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AiError, chatTurn, reviewJournal, type ChatReply, type ChatTurn } from '../ai'
+import { GrammarCheck } from './GrammarCheck'
 import { displayForm, PERSONAL_PROMPTS } from '../engine/exercises'
 import { writingMistakes } from '../engine/mistakes'
 import { creditUsage } from '../data/usage'
@@ -166,6 +167,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
           aria-label="Günlük"
         />
         <AccentBar language={language} onInsert={(ch) => area.current && setText(insertAt(area.current, ch))} />
+        <GrammarCheck text={text} language={language} onChange={setText} />
         <div className="row">
           <button className="btn" onClick={save} disabled={busy || wordsCount < 3}>
             {busy ? 'Düzeltiliyor…' : apiKey ? 'Kaydet ve düzelt' : 'Kaydet'}

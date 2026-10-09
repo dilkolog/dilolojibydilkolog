@@ -947,3 +947,35 @@ test('CEFR levels: progress by textbook level, the missing words of a level, a w
   await expect(page.locator('.missing-list li').first()).toBeVisible()
   await expect(page.locator('.missing-list li').first()).not.toContainText('#')
 })
+
+test('grammar check: the journal text flagged by LanguageTool, a suggestion applied in one tap', async ({ page }) => {
+  await startWithSamples(page)
+  const text = 'Je suis allé a la plage et il fesait beau.'
+  await page.route('https://api.languagetool.org/v2/check', (r) => {
+    const body = new URLSearchParams(r.request().postData() ?? '')
+    expect(body.get('language')).toBe('fr')
+    return r.fulfill({
+      json: {
+        matches: [
+          { offset: 13, length: 1, message: 'La préposition « a » prend un accent grave.', replacements: [{ value: 'à' }], rule: { issueType: 'grammar', category: { id: 'HOMONYMS' } } },
+          { offset: 30, length: 6, message: 'Faute de frappe possible.', replacements: [{ value: 'faisait' }, { value: 'fessait' }], rule: { issueType: 'misspelling', category: { id: 'TYPOS' } } },
+        ],
+      },
+    })
+  })
+  await openScreen(page, 'Yaz & konuş')
+  const editor = page.getByLabel('Günlük')
+  await editor.fill(text)
+  await page.getByRole('button', { name: /Yazım ve dil bilgisini denetle/ }).click()
+  const check = page.getByRole('region', { name: 'Denetim' })
+  await expect(check.locator('.gc-mark')).toHaveText(['a', 'fesait'])
+  await check.getByRole('button', { name: 'faisait' }).click()
+  await expect(editor).toHaveValue('Je suis allé a la plage et il faisait beau.')
+  await check.getByRole('button', { name: 'à', exact: true }).click()
+  await expect(editor).toHaveValue('Je suis allé à la plage et il faisait beau.')
+  await expect(check).toContainText('Kalan hata yok.')
+  // Typing on hides the marks: they no longer fit the text.
+  await editor.press('End')
+  await editor.pressSequentially(' Super.')
+  await expect(check).toHaveCount(0)
+})

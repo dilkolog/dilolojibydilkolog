@@ -14,6 +14,7 @@ import { sfx } from './sounds'
 import { speak } from './speech'
 import { PageHeader } from './PageHeader'
 import { EmptyState } from './EmptyState'
+import { GrammarCheck } from './GrammarCheck'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
 
@@ -456,6 +457,7 @@ function Retell({ language, story, words }: { language: TargetLanguage; story: s
         Bölümü {LANGUAGE_NAME[language]} birkaç cümleyle özetle; mümkün olduğunca bölümün kelimelerini kullan. Kullanmak, tanımaktan çok daha kalıcı öğretir.
       </p>
       <textarea className="textarea" lang={language} value={text} onChange={(e) => setText(e.target.value)} aria-label="Özetin" placeholder="Bu bölümde…" />
+      <GrammarCheck text={text} language={language} onChange={setText} />
       <div className="row">
         <button className="btn" onClick={check} disabled={busy || text.trim().split(/\s+/).length < 5}>
           {busy ? 'Değerlendiriliyor…' : 'Değerlendir'}
