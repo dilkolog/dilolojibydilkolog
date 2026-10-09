@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { TargetIcon } from './icons'
 import type { KelimeDB } from '../data/db'
 import { localDate } from '../engine/progress'
-import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import { timeOf, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from './labels'
 import {
   knownTotal,
@@ -34,7 +34,7 @@ export function KnownWordsCard({ db, language, vocabulary, states }: { db: Kelim
       const [known, tests] = await Promise.all([db.getKnownWords(language), db.getVocabTests()])
       const total = knownTotal(known, vocabulary, states, language)
       const log = await logTotal(db, language, total)
-      const estimate = tests.filter((t) => t.language === language).sort((a, b) => b.at.localeCompare(a.at))[0]?.estimate ?? null
+      const estimate = tests.filter((t) => t.language === language).sort((a, b) => timeOf(b.at) - timeOf(a.at))[0]?.estimate ?? null
       const saved = ((await db.meta.get(`knownGoal:${language}`))?.value as KnownGoal | undefined) ?? null
       if (alive) {
         setView({ total, growth: weeklyGrowth(log, total), estimate, log })

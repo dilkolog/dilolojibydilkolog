@@ -1,3 +1,5 @@
+import { timeOf } from './types'
+
 /**
  * What the learner adds to the dictionary for one language: their own corrections of a word's
  * Turkish meaning (shown first from then on, on every device), and how often they looked a word
@@ -44,7 +46,7 @@ export function dismissLookup(notes: DictionaryNotes, word: string): DictionaryN
 export function lookupSuggestions(notes: DictionaryNotes, inList: (word: string) => boolean, min = 2, limit = 6): { word: string; n: number }[] {
   return Object.entries(notes.looked)
     .filter(([word, l]) => l.n >= min && !l.dismissed && !inList(word))
-    .sort((a, b) => b[1].n - a[1].n || b[1].at.localeCompare(a[1].at))
+    .sort((a, b) => b[1].n - a[1].n || timeOf(b[1].at) - timeOf(a[1].at))
     .slice(0, limit)
     .map(([word, l]) => ({ word, n: l.n }))
 }
@@ -53,11 +55,11 @@ export function lookupSuggestions(notes: DictionaryNotes, inList: (word: string)
 export function mergeNotes(a: DictionaryNotes | undefined, b: DictionaryNotes | undefined): DictionaryNotes | undefined {
   if (!a || !b) return b ?? a
   const fixes = { ...a.fixes }
-  for (const [w, f] of Object.entries(b.fixes)) if (!fixes[w] || f.at >= fixes[w].at) fixes[w] = f
+  for (const [w, f] of Object.entries(b.fixes)) if (!fixes[w] || timeOf(f.at) >= timeOf(fixes[w].at)) fixes[w] = f
   const looked = { ...a.looked }
   for (const [w, l] of Object.entries(b.looked)) {
     const o = looked[w]
-    looked[w] = o ? { n: Math.max(o.n, l.n), at: o.at >= l.at ? o.at : l.at, ...(o.dismissed || l.dismissed ? { dismissed: true } : {}) } : l
+    looked[w] = o ? { n: Math.max(o.n, l.n), at: timeOf(o.at) >= timeOf(l.at) ? o.at : l.at, ...(o.dismissed || l.dismissed ? { dismissed: true } : {}) } : l
   }
   return { fixes, looked }
 }

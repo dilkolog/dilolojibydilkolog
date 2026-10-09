@@ -304,12 +304,20 @@ export interface Mistake {
 }
 
 /**
+ * Epoch ms of a date value (0 when unknown or invalid). Read defensively: data from an old backup,
+ * another device or a test clock can hold a Date, a string, a number or a plain object where text
+ * is expected.
+ */
+export function timeOf(at: unknown): number {
+  const ms = at instanceof Date ? at.getTime() : typeof at === 'string' || typeof at === 'number' ? new Date(at).getTime() : NaN
+  return Number.isFinite(ms) ? ms : 0
+}
+
+/**
  * When a word was added, in ms (0 when unknown). Read defensively: data from an old backup, another
  * device or a test clock can hold a string or a plain object where a Date is expected, and one odd
  * entry must not break a sort for the whole list.
  */
 export function addedTime(entry: { addedAt?: unknown }): number {
-  const at = entry.addedAt
-  const ms = at instanceof Date ? at.getTime() : typeof at === 'string' || typeof at === 'number' ? new Date(at).getTime() : NaN
-  return Number.isFinite(ms) ? ms : 0
+  return timeOf(entry.addedAt)
 }

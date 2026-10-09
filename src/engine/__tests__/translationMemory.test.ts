@@ -27,4 +27,12 @@ describe('translation memory', () => {
     ])
     expect(mergeMemories(undefined, undefined)).toEqual([])
   })
+
+  it('handles Date objects and plain {} objects defensively without crashing', () => {
+    const a = [{ text: 'Chat', translation: 'Kedi', from: 'fr' as const, to: 'tr' as const, at: new Date('2026-10-05T10:00:00Z') as unknown as string }]
+    const b = [{ text: 'Chien', translation: 'Köpek', from: 'fr' as const, to: 'tr' as const, at: {} as unknown as string }]
+    expect(() => mergeMemories(a, b)).not.toThrow()
+    const merged = mergeMemories(a, b)
+    expect(merged.map((x) => x.text)).toEqual(['Chat', 'Chien'])
+  })
 })

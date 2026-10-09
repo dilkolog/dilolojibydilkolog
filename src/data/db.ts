@@ -1,7 +1,7 @@
 import Dexie, { type Table } from 'dexie'
 import type { Cue } from '../engine/subtitles'
 import type { TranslationEntry } from '../engine/translationMemory'
-import type { EarLog } from '../engine/earMisses'
+import type { EarLog, EarMiss } from '../engine/earMisses'
 import type { BadgeLog } from '../engine/gamification'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
 import type { JournalReview } from '../ai/types'
@@ -18,6 +18,7 @@ import type { TypingShare } from '../engine/session'
 import {
   TARGET_LANGUAGES,
   addedTime,
+  timeOf,
   type CefrLevel,
   type Mistake,
   type ReviewEvent,
@@ -444,7 +445,11 @@ export class KelimeDB extends Dexie {
   }
 
   async getSentences(): Promise<SentenceCard[]> {
-    const all = ((await this.meta.get('sentences'))?.value as SentenceCard[]) ?? []
+    let all = ((await this.meta.get('sentences'))?.value as SentenceCard[]) ?? []
+    if (all.some((s) => typeof s.addedAt !== 'string')) {
+      all = all.map((s) => (typeof s.addedAt === 'string' ? s : { ...s, addedAt: new Date(timeOf(s.addedAt)).toISOString() }))
+      await this.meta.put({ key: 'sentences', value: all })
+    }
     return all.map((s) => ({ ...s, card: { ...s.card, due: new Date(s.card.due), last_review: s.card.last_review ? new Date(s.card.last_review) : undefined } }))
   }
 
@@ -469,8 +474,12 @@ export class KelimeDB extends Dexie {
 
   /** Journal entries of one language, newest first. */
   async getJournal(language: TargetLanguage): Promise<JournalEntry[]> {
-    const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
-    return all.filter((j) => j.language === language).sort((a, b) => b.at.localeCompare(a.at))
+    let all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
+    if (all.some((j) => typeof j.at !== 'string')) {
+      all = all.map((j) => (typeof j.at === 'string' ? j : { ...j, at: new Date(timeOf(j.at)).toISOString() }))
+      await this.meta.put({ key: 'journal', value: all })
+    }
+    return all.filter((j) => j.language === language).sort((a, b) => timeOf(b.at) - timeOf(a.at))
   }
 
   async saveJournal(entry: JournalEntry) {
@@ -488,7 +497,12 @@ export class KelimeDB extends Dexie {
 
   /** Vocabulary size test results, oldest first. */
   async getVocabTests(): Promise<VocabTestRecord[]> {
-    return ((await this.meta.get('vocabTests'))?.value as VocabTestRecord[]) ?? []
+    let all = ((await this.meta.get('vocabTests'))?.value as VocabTestRecord[]) ?? []
+    if (all.some((t) => typeof t.at !== 'string')) {
+      all = all.map((t) => (typeof t.at === 'string' ? t : { ...t, at: new Date(timeOf(t.at)).toISOString() }))
+      await this.meta.put({ key: 'vocabTests', value: all })
+    }
+    return all
   }
 
   async addVocabTest(record: VocabTestRecord) {
@@ -551,7 +565,12 @@ export class KelimeDB extends Dexie {
   /** Personal bests in the games, per game and language. */
   /** Sentences and words translated, newest first (see engine/translationMemory). */
   async getTranslations(): Promise<TranslationEntry[]> {
-    return ((await this.meta.get('translations'))?.value as TranslationEntry[]) ?? []
+    let all = ((await this.meta.get('translations'))?.value as TranslationEntry[]) ?? []
+    if (all.some((t) => typeof t.at !== 'string')) {
+      all = all.map((t) => (typeof t.at === 'string' ? t : { ...t, at: new Date(timeOf(t.at)).toISOString() }))
+      await this.meta.put({ key: 'translations', value: all })
+    }
+    return all
   }
 
   saveTranslations(list: TranslationEntry[]) {
@@ -560,7 +579,25 @@ export class KelimeDB extends Dexie {
 
   /** The words missed in dictation, per language (see engine/earMisses). */
   async getEarLog(): Promise<EarLog> {
-    return ((await this.meta.get('earMisses'))?.value as EarLog) ?? {}
+    const raw = ((await this.meta.get('earMisses'))?.value as EarLog) ?? {}
+    let dirty = false
+    const log: EarLog = {}
+    for (const [lang, words] of Object.entries(raw)) {
+      const fixed: Record<string, EarMiss> = {}
+      for (const [w, m] of Object.entries(words ?? {})) {
+        if (typeof m.last !== 'string') {
+          dirty = true
+          fixed[w] = { ...m, last: new Date(timeOf(m.last)).toISOString() }
+        } else {
+          fixed[w] = m
+        }
+      }
+      log[lang as TargetLanguage] = fixed
+    }
+    if (dirty) {
+      await this.meta.put({ key: 'earMisses', value: log })
+    }
+    return log
   }
 
   saveEarLog(log: EarLog) {

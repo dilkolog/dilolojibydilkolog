@@ -12,6 +12,7 @@ import { Medal } from './Medal'
 import { StreakFlame } from './StreakFlame'
 import { localDate } from '../engine/progress'
 import { bannerOf, daysUntil, frameOf, pinnedBadges, titleName, type Unlockables } from '../engine/profileStyle'
+import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
@@ -56,7 +57,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const earnedSeries = series.filter((s) => s.earned > 0)
   const locked = series.filter((s) => s.earned === 0 && !nextBadges.includes(s))
   // The badges with a date, newest first: the way here, step by step.
-  const dated = unlocked.filter((a) => a.unlockedAt).sort((a, b) => b.unlockedAt!.localeCompare(a.unlockedAt!))
+  const dated = unlocked.filter((a) => a.unlockedAt).sort((a, b) => timeOf(b.unlockedAt) - timeOf(a.unlockedAt))
 
   return (
     <div className="stack profile">
@@ -334,7 +335,10 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
   )
 }
 
-const fmtDay = (iso: string) => new Date(iso).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
+const fmtDay = (iso: unknown) => {
+  const ms = timeOf(iso)
+  return ms ? new Date(ms).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
+}
 
 /** A badge up close: the medal of its highest step, what it is for, and every step with its date or how far along. */
 function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {

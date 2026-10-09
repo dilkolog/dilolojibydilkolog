@@ -2,6 +2,8 @@
  * Every sentence (or word) translated, kept on the device: the same text is never sent again,
  * it shows offline too, and the translation screen lists the recent ones. Backed up and synced.
  */
+import { timeOf } from './types'
+
 export type MemoryLang = 'en' | 'fr' | 'es' | 'tr'
 
 export interface TranslationEntry {
@@ -36,7 +38,7 @@ export function mergeMemories(a: readonly TranslationEntry[] = [], b: readonly T
   for (const e of [...a, ...b]) {
     const key = memoryKey(e)
     const had = by.get(key)
-    if (!had || e.at > had.at) by.set(key, e)
+    if (!had || timeOf(e.at) > timeOf(had.at)) by.set(key, e)
   }
-  return [...by.values()].sort((x, y) => y.at.localeCompare(x.at)).slice(0, max)
+  return [...by.values()].sort((x, y) => timeOf(y.at) - timeOf(x.at)).slice(0, max)
 }
