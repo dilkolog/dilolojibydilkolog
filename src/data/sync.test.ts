@@ -58,6 +58,12 @@ describe('sync', () => {
     expect(mergeBackups(m, phone).events.length).toBe(2)
   })
 
+  it('badges earned on either device are kept, at the earlier date', () => {
+    const laptop = base('2026-10-02T10:00:00Z', { badges: { 'first-word': '2026-09-20T08:00:00Z', 'streak-3': '' } })
+    const phone = base('2026-10-02T12:00:00Z', { badges: { 'first-word': '2026-09-25T08:00:00Z', 'words-50': '2026-10-01T08:00:00Z' } })
+    expect(mergeBackups(laptop, phone).badges).toEqual({ 'first-word': '2026-09-20T08:00:00Z', 'streak-3': '', 'words-50': '2026-10-01T08:00:00Z' })
+  })
+
   it('keeps a word added again after its deletion, but not an old copy of it', () => {
     const added = (id: string, at: string) => ({ ...word(id), addedAt: new Date(at) }) as Backup['vocabulary'][number]
     const phone = base('2026-10-02T12:00:00Z', { deleted: [{ id: 'fr:chien', at: '2026-10-02T11:00:00Z' }] })

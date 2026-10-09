@@ -328,10 +328,32 @@ export function medalTier(a: Pick<Achievement, 'id' | 'stat'>): MedalTier {
 export interface AchievementState extends Achievement {
   value: number
   unlocked: boolean
+  /** When it was earned (ISO); '' when earned before dates were kept. */
+  unlockedAt?: string
 }
 
-export function achievements(stats: GameStats): AchievementState[] {
-  return ACHIEVEMENTS.map((a) => ({ ...a, value: Math.min(stats[a.stat], a.goal), unlocked: stats[a.stat] >= a.goal }))
+/** Badges earned, by id, with when ('' = earned before dates were kept). Kept, backed up and synced. */
+export type BadgeLog = Record<string, string>
+
+/**
+ * Every badge with its progress. One earned stays earned (`log`), even if its number later falls
+ * (a picture removed, a word deleted): a badge is a moment that happened, not a live reading.
+ */
+export function achievements(stats: GameStats, log: BadgeLog = {}): AchievementState[] {
+  return ACHIEVEMENTS.map((a) => {
+    const earned = a.id in log
+    return { ...a, value: earned ? a.goal : Math.min(stats[a.stat], a.goal), unlocked: earned || stats[a.stat] >= a.goal, ...(earned ? { unlockedAt: log[a.id] } : {}) }
+  })
+}
+
+/** Two logs together: a badge earned on either, at the earlier date (a known date over an unknown one). */
+export function mergeBadgeLogs(a: BadgeLog = {}, b: BadgeLog = {}): BadgeLog {
+  const out: BadgeLog = { ...a }
+  for (const [id, at] of Object.entries(b)) {
+    const mine = out[id]
+    out[id] = mine === undefined ? at : !mine ? at : !at ? mine : mine < at ? mine : at
+  }
+  return out
 }
 
 /** Longest run of consecutive study days (real answers only). */

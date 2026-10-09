@@ -6,8 +6,9 @@ import { byTier, TIER_NAME } from './badgeTier'
 
 /**
  * A new badge, full screen, once: the medal is struck (it springs in, a ring leaves it in its
- * metal's colour, a glint crosses it), a line on what it was for, confetti. Several at once come
- * one after another, the best last.
+ * metal's colour, a glint crosses it), a line on what it was for, confetti. Several at once (two
+ * or three; more go in quietly, see BadgeWatcher) share one screen, side by side, the best last:
+ * one moment, not a row of "Sonraki".
  */
 export function BadgeMoment({ badges, onClose, onProfile }: { badges: AchievementState[]; onClose: () => void; onProfile?: () => void }) {
   const ordered = [...badges].sort(byTier)
@@ -34,6 +35,37 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
       // Share sheet closed; nothing to do.
     }
   }
+
+  if (ordered.length > 1)
+    return (
+      <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+        <div className="dialog milestone badge-moment" role="dialog" aria-modal="true" aria-labelledby="badge-moment-title">
+          <Burst />
+          <h2 id="badge-moment-title" className="milestone-title">
+            {ordered.length} yeni rozet
+          </h2>
+          <ul className="badge-moment-group">
+            {ordered.map((b) => (
+              <li key={b.id} className={`badge-moment-art tier-${medalTier(b)}`}>
+                <Medal icon={b.icon} tier={medalTier(b)} unlocked size={72} />
+                <strong>{b.title}</strong>
+                <span className="small muted">{b.description}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="dialog-actions milestone-actions">
+            {onProfile && (
+              <button className="btn btn-quiet" onClick={onProfile}>
+                Profilde gör
+              </button>
+            )}
+            <button className="btn" onClick={onClose} autoFocus>
+              Devam
+            </button>
+          </div>
+        </div>
+      </div>
+    )
 
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
