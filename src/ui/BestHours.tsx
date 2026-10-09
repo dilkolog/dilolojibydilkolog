@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { BulbIcon } from './icons'
 import type { KelimeDB } from '../data/db'
-import { hourAdvice, hourBuckets, MIN_ANSWERS, usualStudyHour, type HourAdvice } from '../engine/hours'
+import { hourAdvice, hourBuckets, MIN_ANSWERS, type HourAdvice } from '../engine/hours'
 import type { ReviewEvent } from '../engine/types'
 
 function useHourData(db: KelimeDB) {
@@ -67,12 +67,3 @@ export function ReminderSuggestion({ db, current, onApply }: { db: KelimeDB; cur
   )
 }
 
-/** The hour the learner usually starts studying (last 30 days), or null until there are enough days. */
-export function useUsualStudyHour(db: KelimeDB): number | null | undefined {
-  const [hour, setHour] = useState<number | null | undefined>(undefined)
-  useEffect(() => {
-    const now = new Date()
-    void db.eventsSince(new Date(now.getTime() - 30 * 86_400_000)).then((events) => setHour(usualStudyHour(events, now)))
-  }, [db])
-  return hour
-}

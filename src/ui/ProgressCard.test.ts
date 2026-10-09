@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cardSvg } from './ProgressCard'
+import { cardSvg } from './progressCardSvg'
 
 describe('progress card', () => {
   it('renders the numbers into a standalone SVG and escapes the name', () => {

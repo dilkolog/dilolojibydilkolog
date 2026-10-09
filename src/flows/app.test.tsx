@@ -180,6 +180,7 @@ describe('a learner’s day', () => {
     for (let i = 0; i < 40 && !(await inList()); i++) await sleep(50)
     expect(await inList()).toBe(await db.vocabulary.where('language').equals('fr').count())
     await click(tab('Listeler'))
+    await until(() => button(/^Odaklan$/), 'odaklan button')
     await click(button(/^Odaklan$/))
     await until(() => el.querySelector('.wl-card.is-focus'), 'list in focus')
     await click(button(/^Bugün\d*$/))
