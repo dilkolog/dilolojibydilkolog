@@ -241,9 +241,17 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Okumada "Türkçesi" (#120):** her paragrafın altında Türkçesi; yalnızca ekrana gelen paragraflar, sırayla çevrilir.
 - [x] **Geri çeviri ve dikte (#122):** çeviri belleğindeki cümleler Türkçesinden yazılır ve cümle kartı olur; okunan metin cümle cümle dikte edilir (kayıttan ya da cihaz sesiyle), sonunda kaçırılan kelimeler.
 - [x] **Bugün'de cümle çalışması (#124):** günün tekrarları bitince cümle kartı tekrarı ya da geri çeviri önerilir.
+- [x] **Kaçırdıkların (#125):** dikte hataları kaydedilir; Oyunlar'da kendi cümleleriyle dinle-yaz, İlerleme'de kart. Telefonda yapışık öğeler üst çubuğun altına girmez.
+- [x] **Gölgeleme (#127):** Okuma → Gölgele, cümle cümle, kaydın kendi sesiyle (yoksa cihaz sesi).
+- [x] **CEFR seviyeleri (#129):** FLELex/ELELex; kelime ayrıntısı, sözlük, İlerleme'de seviye kapsamı, eksik kelimelerde seviye.
+- [x] **Yazma denetimi (#131):** LanguageTool ile yazım ve dil bilgisi (AI gerekmez).
+- [x] **Kaynak listeleri (#130, Antigravity):** `docs/kaynaklar/`.
+- [ ] ~~Metin seviyesi rozeti~~: denendi, kısa metinlerde güvenilir çıkmadı (konuya özgü kelimeler listelerde yok); yapılmadı.
 - [x] **Altyapı (Antigravity: #101, #102, #104, #106, #108, #117, #119, #121, #123):** erişilebilirlik etiketi, birim testleri, klasik metinler, belge güncellemeleri, Fast Refresh uyarıları, kararsız E2E düzeltmesi.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
+- **Kolay sesli hikâyeler:** `docs/kaynaklar/storybooks.json` (90 hikâye, 58'i sesli) okuma kütüphanesine aktarılacak.
+- **LibriVox + Gutenberg** (B1+ sesli kitaplar), **COERLL** dil bilgisi içeriği: sırada.
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
 - **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122 okuma araç satırı ve Oyunlar değişti).

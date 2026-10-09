@@ -26,6 +26,8 @@ Son güncelleme: 2026-10-09.
 - **Actions dakikaları sınırlı** (özel depo, ücretsiz plan: ayda 2.000 dk; 2026-10-08'de doldu, işler "payments failed / spending limit" hatasıyla başlamadı). Gereksiz push yapma; bir PR'a art arda küçük commit'ler atmak yerine yerelde tam doğrulayıp tek seferde push'la. Ekran görüntüsü yenilemeyi (snapshots.yml) yalnızca görünüm gerçekten değiştiğinde çalıştır.
 
 ## Bilinen tuzaklar
+- **Telefonda yapışık öğeler:** üst çubuk da yapışık; altına girmemeleri için `top: calc(var(--topbar-h) + 0.5rem)` (`.shell` telefonda `--topbar-h` tanımlar, #125).
+- E2E'de mikrofon yok: gölgeleme testi `getUserMedia`'yı sessiz bir `AudioContext` akışıyla taklit eder (#127). LanguageTool testi `page.route('https://api.languagetool.org/v2/check', …)` ile taklit edilir.
 - **macOS dosya sistemi büyük/küçük harf duyarsız:** `twinTense.ts` ile `TwinTense.tsx` aynı klasörde olamaz (tsc hata verir). Mantık dosyasına farklı ad ver (ör. `tenseTwin.ts`, `moodRound.ts`).
 - Playwright'ın `page.clock` sabit saati, sahte `Date`'i IndexedDB'ye düz nesne olarak yazdırır. Tarih okurken `addedTime()` gibi savunmacı yardımcılar kullan (`src/engine/types.ts`).
 - E2E'de örnek kelimeler yüklendikten sonra `packApplied(page)` (e2e/helpers.ts) sözlük paketinin uygulanmasını bekler (#53 ile geldi).
@@ -38,15 +40,20 @@ Son güncelleme: 2026-10-09.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
 ## Durum (2026-10-09)
-Birleşti: #37–#124.
+Birleşti: #37–#131.
 - Çeviri (#111, #113, #114, #120): DeepL ile cümle çevirisi (her cihazda hazır), Çeviri ekranı, çeviri belleği, okumada "Cümlenin Türkçesi" ve paragraf altında "Türkçesi".
 - Dinleme ve üretim (#118, #122):
   - dinlerken duyulan cümle aydınlanır, "Bu cümleden dinle" (`src/engine/listenFollow.ts`; zamanlı altyazılı beslemelerde kesin, diğerlerinde yaklaşık);
   - Okuma → "Dikte": metin cümle cümle dinlenip yazılır (`src/ui/TextDictation.tsx`);
   - Oyunlar → "Geri çeviri": çeviri belleğindeki cümleler Türkçesinden yazılır, denenen her cümle cümle kartı olur (`src/engine/backTranslation.ts`).
+- Dinleme ve konuşma devamı (#125, #127): dikte hataları kaydedilir (`src/engine/earMisses.ts`, `meta 'earMisses'`, yedek + eşitleme) → Oyunlar → "Kaçırdıkların" ve İlerleme kartı; Okuma → "Gölgele" (cümle cümle, kaydın kendi sesiyle; `ShadowControls` her sesle çalışır). Ses panelinin `rangeRef`'i parça bitince çözülen Promise döndürür.
+- CEFR seviyeleri (#129): FLELex/ELELex → `src/data/cefr/{fr,es}.txt` (`scripts/build-cefr.ts`, CC BY-NC-SA, `SOURCE.md`); kelime ayrıntısı/sözlükte seviye, İlerleme'de seviyeye göre kapsam, eksik kelimelerde A1–B2. Uygulamadaki eski "seviye sistemi" bilerek kaldırılmıştı; bu yalnızca ölçüm ve seçim için.
+- Metin seviyesi tahmini denendi, **yapılmadı**: kısa metinlerde konuya özgü kelimeler (%7–15) listelerde olmadığı için tahmin gürültülü çıktı; kişisel kapsam (%) daha iyi gösterge.
+- Yazma denetimi (#131): LanguageTool'un ücretsiz API'si tarayıcıdan doğrudan (CORS açık), yalnızca dokununca; Günlük ve Hikaye özetinde. Şartları: dakikada ≤20 istek, görünür bağlantı.
+- İçerik kaynakları raporu ve listeleri (#130): `docs/kaynaklar/` (açık lisanslı hikâyeler, transkriptli podcastler). Sıradaki: hikâyeleri okuma kütüphanesine aktarmak.
 - Bugün sadeleşti (#116): tek öneri, uzun günde "yeni kelimeyi 8'e indir", ek çalışma günün tekrarı bitince; tekrarlar bitince cümle kartı / geri çeviri kutucuğu (#124).
 - Rozetler (#103, #105, #107, #109, #110, #112): kazanılma günlüğü, kademeli rozetler, zaman tüneli.
-- Antigravity: #101, #102, #104, #106, #108, #115 (metin birliği), #117/#119/#123 (Fast Refresh uyarıları), #121 (kararsız E2E).
+- Antigravity: #101, #102, #104, #106, #108, #115 (metin birliği), #117/#119/#123/#126 (Fast Refresh uyarıları; oxlint artık 0 uyarı), #121 (kararsız E2E), #128 (img alt metinleri), #130 (kaynak listeleri).
 - Fiil laboratuvarı sadeleştirme (#90 günlük tur, #93 3 sekme/4 mod, #97 arama şeridi + katlı listeler, #99 sade ders başlığı). Tur mantığı: `src/engine/labTour.ts`.
 - Fiil laboratuvarı listesi (#71–#77).
 - Tasarım kuralları `DESIGN.md` (#79).
@@ -60,7 +67,7 @@ Birleşti: #37–#124.
 - Kod temizliği (#87) ve sözlük dizini hızlandırma (#88).
 - Antigravity: #64–#70, #83, #91 (satır içi stiller), #92 (kategori renk tokenları).
 
-- Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122 okuma araç satırı ve Oyunlar değişti).
+- Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122/#127 okuma araç satırı, #122/#125 Oyunlar, #129 İlerleme kapsam kartı değişti).
 - **Aynı klasörde iki ajan:** Antigravity ile Claude Code aynı anda `~/Downloads/kelime-koc`'ta çalışınca, dal değiştirme commit edilmemiş değişiklikleri sildi (2026-10-08). Claude Code artık ayrı bir git worktree'de (`~/Downloads/kelime-koc-claude`) çalışıyor. Başka dala geçmeden önce `git status`'a bak; commit edilmemiş başkasına ait değişiklik varsa dokunma.
 - **E2E portu:** iki klasör aynı anda test koşarsa aynı önizleme sunucusunu paylaşıp birbirinin derlemesini test eder (`reuseExistingServer`). Port `E2E_PORT` ile ayarlanır: Claude Code `E2E_PORT=4180`, Antigravity `E2E_PORT=4181`. İki ajan aynı anda yoğun test koşunca bazı birim/E2E testleri zaman aşımıyla düşebilir; tek başına tekrar çalıştırıp doğrula.
 
