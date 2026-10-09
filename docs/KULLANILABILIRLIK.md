@@ -188,7 +188,7 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
    Çalışma oturumunda cevaptan vazgeçme / geri alma (`revertReview`) butonunun görünürlük süresi ve dokunma alanı belirginleştirilmeli.
 
 ### 🟡 Öncelik 2: Orta Vadeli Tasarım Rafinasyonları
-4. **Okuma Kelime Seçiminde Bottom-Sheet:**  
+4. **Okuma Kelime Seçiminde Bottom-Sheet:** ✅ Yapıldı (2026-10-09): dar ekranda kelime kartı alttan yükselen çekmece (`word-pop`, `useSheetSwipe`).  
    Mobilde okunan metinde kelimeye dokunulduğunda, kelimenin üstünü kapatan popover yerine ekranın altından yükselen kompakt bir anlam/telaffuz kartı kullanılmalı.
 5. **İlerleme Ekranında Katlanabilir Kartlar:**  
    `Progress.tsx` ekranındaki ikincil analizler (ör. "En İyi Saatler", "Hata Geçmişi") varsayılan olarak katlı veya segmentli bir yapıya kavuşturularak sayfa boyu kısaltılmalı.
