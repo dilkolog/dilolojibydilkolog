@@ -11,6 +11,7 @@ import { nextReviewAt } from '../engine/review'
 import type { Scheduler } from '../engine/scheduler'
 import { unlockedSkills } from '../engine/selection'
 import { SKILLS, type Mistake, type UserWordState, type VocabularyEntry, type WordList } from '../engine/types'
+import { LevelChip } from './LevelChip'
 import { levelFromRank } from '../engine/wordLevel'
 import { Select } from './Select'
 import type { KelimeDB } from '../data/db'
@@ -180,8 +181,6 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const list = lists.find((l) => l.id === entry.listId)
   const level = list?.levels?.find((l) => l.id === entry.levelId)
   const chips = [list && (level ? `${list.name} › ${level.name}` : list.name)].filter((c): c is string => !!c)
-  // How common the word is, as an approximate level (not the list's own levels above).
-  const wordLevel = levelFromRank(entry.frequencyRank)
   const health = plantHealth(state, scheduler, now)
 
   return (
@@ -208,7 +207,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       {/* The word itself up top: what it is, how it sounds, what it means; then where it stands. */}
       <section className={`word-hero span-2${heroImage ? ' has-image' : ''}`}>
         <div className="word-hero-main">
-          {(chips.length > 0 || entry.partOfSpeech !== 'other' || wordLevel) && (
+          {(chips.length > 0 || entry.partOfSpeech !== 'other' || levelFromRank(entry.frequencyRank) || entry.language !== 'en') && (
             <ul className="chip-list" aria-label="Kelime bilgisi">
               {entry.partOfSpeech !== 'other' && (
                 <li className="pos-chip">
@@ -218,7 +217,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               {chips.map((c) => (
                 <li key={c}>{c}</li>
               ))}
-              {wordLevel && <li title={`Sıklığa göre yaklaşık seviye: en sık ${entry.frequencyRank.toLocaleString('tr')}. kelime`}>≈ {wordLevel}</li>}
+              <LevelChip language={entry.language} lemma={entry.lemma} rank={entry.frequencyRank} />
             </ul>
           )}
           <div className="word-hero-title">
