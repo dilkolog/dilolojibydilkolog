@@ -118,6 +118,7 @@ describe('the verb lab across devices', () => {
   it('answers per day keep the larger count from either device', () => {
     const m = mergeLab(lab({ days: { '2026-10-06': { ok: 4, wrong: 1 }, '2026-10-07': { ok: 1, wrong: 0 } } }), lab({ days: { '2026-10-07': { ok: 3, wrong: 2 } } }))!
     expect(m.days).toEqual({ '2026-10-06': { ok: 4, wrong: 1 }, '2026-10-07': { ok: 3, wrong: 2 } })
+    expect(mergeLab(lab({ tourDays: ['2026-10-06'] }), lab({ tourDays: ['2026-10-07', '2026-10-06'] }))!.tourDays).toEqual(['2026-10-06', '2026-10-07'])
   })
 
   it('a device that never used the lab changes nothing', () => {

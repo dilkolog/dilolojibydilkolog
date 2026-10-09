@@ -20,3 +20,23 @@ describe('badge log', () => {
     expect(mergeBadgeLogs(undefined, undefined)).toEqual({})
   })
 })
+
+describe('learning badges', () => {
+  it('counts words saved from forgetting: right answers with the recall chance under 70%, not first meetings', async () => {
+    const { activityStats } = await import('../badgeStats')
+    const at = new Date('2026-10-08T10:00:00')
+    const ev = (r: number, correct = true, mode: 'normal' | 'practice' = 'normal') =>
+      ({ id: String(Math.random()), entryId: 'x', language: 'fr', skill: 'recall', exerciseType: 'typed_translation', direction: 'native_to_target', verdict: correct ? 'correct' : 'wrong', correct, rating: 3, responseMs: 3000, hintsUsed: 0, retrievabilityBefore: r, stabilityAfter: 1, scheduledDays: 1, mode, timestamp: at }) as never
+    expect(activityStats([ev(0.5), ev(0.69), ev(0.9), ev(0), ev(0.4, false), ev(0.3, true, 'practice')]).rescued).toBe(2)
+  })
+
+  it('a whole verb is all its core tenses at full points; a round day counts once', async () => {
+    const { emptyLab, labKey, wholeVerbs, recordTourDay, MASTERY_MAX } = await import('../labProgress')
+    const card = {} as never
+    const full = { ok: 6, wrong: 0, points: MASTERY_MAX, card }
+    const lab = { ...emptyLab(), records: { [labKey('parler', 'present')]: full, [labKey('parler', 'futur')]: full, [labKey('aller', 'present')]: full } }
+    expect(wholeVerbs(lab, ['present', 'futur'])).toBe(1)
+    const twice = recordTourDay(recordTourDay(emptyLab(), '2026-10-08'), '2026-10-08')
+    expect(twice.tourDays).toEqual(['2026-10-08'])
+  })
+})

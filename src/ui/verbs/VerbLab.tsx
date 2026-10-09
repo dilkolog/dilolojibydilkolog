@@ -4,7 +4,8 @@ import { EmptyState } from '../EmptyState'
 import { useTenses } from '../ConjugationTable'
 import { recordPractice } from '../games/shared'
 import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
-import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, toggleFavorite } from '../../engine/labProgress'
+import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, recordTourDay, toggleFavorite } from '../../engine/labProgress'
+import { localDate } from '../../engine/progress'
 import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
@@ -190,6 +191,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
             choose(v)
           }}
           onClose={endTour}
+          onFinished={() => update((l) => recordTourDay(l, localDate(new Date())))}
         />
       </div>
     )

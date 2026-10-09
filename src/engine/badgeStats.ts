@@ -23,9 +23,16 @@ export interface ActivityStats {
   conjugationCorrect: number
   /** Right answers given in under two seconds, to a question that is not a guess. */
   fastCorrect: number
+  /**
+   * Words saved from forgetting: answered right when their recall chance had fallen below 70%.
+   * This is what spaced repetition is for, so it is the badge that rewards it.
+   */
+  rescued: number
 }
 
 const COMEBACK_GAP_DAYS = 7
+/** Below this recall chance a word was about to be forgotten (the daily plan's FORGOTTEN_R). */
+const RESCUE_R = 0.7
 const FAST_MS = 2000
 
 /** Badge counts that come straight from the answer history (real answers only; practice does not count). */
@@ -64,5 +71,7 @@ export function activityStats(events: readonly ReviewEvent[]): ActivityStats {
     articleCorrect: real.filter((e) => right(e, ['article_choice'])).length,
     conjugationCorrect: real.filter((e) => right(e, ['conjugation'])).length,
     fastCorrect: real.filter((e) => e.correct && e.responseMs > 0 && e.responseMs < FAST_MS && e.hintsUsed === 0 && e.confidence !== 'unsure').length,
+    // A chance of 0 is a first meeting, not a word about to be lost.
+    rescued: real.filter((e) => e.correct && e.retrievabilityBefore > 0 && e.retrievabilityBefore < RESCUE_R).length,
   }
 }

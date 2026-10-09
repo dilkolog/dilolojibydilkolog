@@ -108,10 +108,13 @@ export function TourRun({
   onAnswer,
   onOpenVerb,
   onClose,
+  onFinished,
 }: {
   language: LabLanguage
   items: readonly TourItem[]
   onAnswer: (item: TourItem, ok: boolean, given: string) => void
+  /** The round was answered to the end (kept as a round day, for the badges). */
+  onFinished?: () => void
   onOpenVerb: (verb: string) => void
   onClose: () => void
 }) {
@@ -135,8 +138,9 @@ export function TourRun({
         // Storage off: the start card just won't say "done".
       }
       sfx.levelUp()
+      onFinished?.()
     }
-  }, [questions, index, language])
+  }, [questions, index, language]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!questions) return <LinesSkeleton lines={4} label="Tur hazırlanıyor" />
 
