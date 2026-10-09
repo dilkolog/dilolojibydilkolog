@@ -1,0 +1,123 @@
+[
+  {
+    "title": "Siempre Spanish Beginner Podcast",
+    "feedUrl": "https://anchor.fm/s/fc28a490/podcast/rss",
+    "websiteUrl": "https://www.langoly.com/siempre-spanish-beginner-podcast/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "A1-A2",
+    "license": "Telif hakkı saklıdır (Langoly)",
+    "notes": "Başlangıç seviyesi için yavaş ve anlaşılır İspanyolca. Her bölümün tam metin transkripti web sitesinde ücretsiz sunulmaktadır."
+  },
+  {
+    "title": "Español con Juan",
+    "feedUrl": "https://espanolconjuan.blubrry.net/feed/podcast/",
+    "websiteUrl": "https://1001reasonstolearnspanish.com/podcasts/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Juan Fernández)",
+    "notes": "Doğal bağlamda hikaye anlatımı ve deyimler. Transkriptler web sitesinde blog gönderisi olarak ücretsiz erişilebilirdir."
+  },
+  {
+    "title": "Spanish Language Coach · Spanish for False Beginners",
+    "feedUrl": "https://rss.buzzsprout.com/2437041.rss",
+    "websiteUrl": "https://www.spanishlanguagecoach.com/",
+    "transcriptLocation": "rss+web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": true,
+    "level": "A2",
+    "license": "Telif hakkı saklıdır (César / Spanish Language Coach)",
+    "notes": "Buzzsprout üzerinde barındırılmakta olup RSS feed içinde doğrudan <podcast:transcript> etiketiyle zamanlı VTT ve SRT altyazı bağlantıları sağlar. Web sitesinde de transkript ücretsizdir."
+  },
+  {
+    "title": "Unlimited Spanish with Oscar",
+    "feedUrl": "https://rss.libsyn.com/shows/73741/destinations/320894.xml",
+    "websiteUrl": "https://unlimitedspanish.com/podcasts/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "A2-B1",
+    "license": "Telif hakkı saklıdır (Òscar Pellus)",
+    "notes": "Soru-cevap tekniği ve hikayeler. Her bölümün transkripti web sayfasında ve indirilebilir PDF olarak tamamen ücretsizdir."
+  },
+  {
+    "title": "Radio Ambulante",
+    "feedUrl": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/b3c9b6e7-72ba-45c4-aff9-b1e7012d213b/092b66a8-4329-4183-bb12-b1e7012d216f/podcast.rss",
+    "websiteUrl": "https://radioambulante.org/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B2-C1",
+    "license": "Telif hakkı saklıdır (Radio Ambulante Estudios / NPR)",
+    "notes": "Latin Amerika hikaye anlatımı ve araştırmacı gazetecilik. Tüm bölümlerin eksiksiz İspanyolca transkripti web sitesinde ücretsiz yayınlanır."
+  },
+  {
+    "title": "Duolingo Spanish Podcast",
+    "feedUrl": "https://anchor.fm/s/fc714074/podcast/rss",
+    "websiteUrl": "https://podcast.duolingo.com/spanish",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "A2-B1",
+    "license": "Telif hakkı saklıdır (Duolingo)",
+    "notes": "Gerçek hayat hikayeleri, ara İngilizce anlatımla desteklenmiş kolay İspanyolca. Her bölümün iki dilli tam transkripti web sitesinde ücretsizdir."
+  },
+  {
+    "title": "LanguaTalk Spanish",
+    "feedUrl": "https://anchor.fm/s/e1bb6bb0/podcast/rss",
+    "websiteUrl": "https://languatalk.com/blog/podcast/spanish/",
+    "transcriptLocation": "web",
+    "transcriptFree": true,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (LanguaTalk)",
+    "notes": "Doğal sohbetler ve kültürel konular. Web sitesinde etkileşimli transkript ücretsiz sunulmaktadır."
+  },
+  {
+    "title": "Hoy Hablamos: Podcast diario para aprender español",
+    "feedUrl": "https://www.hoyhablamos.com/category/podcast/feed/",
+    "websiteUrl": "https://www.hoyhablamos.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": false,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Hoy Hablamos)",
+    "notes": "Hafta içi her gün yeni bölüm. Ses akışı ücretsizdir, ancak tam transkriptler ücretli üyelik (suscripción) gerektirir."
+  },
+  {
+    "title": "Hoy Hablamos Básico",
+    "feedUrl": "https://www.hoyhablamos.com/feed/podcast-basico/",
+    "websiteUrl": "https://www.hoyhablamos.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": false,
+    "hasTimedSubtitles": false,
+    "level": "A1-A2",
+    "license": "Telif hakkı saklıdır (Hoy Hablamos)",
+    "notes": "Temel ve başlangıç seviyesine yönelik bölümler. Ses ücretsiz, transkriptler ücretli üyelik kapsamındadır."
+  },
+  {
+    "title": "Charlas Hispanas",
+    "feedUrl": "https://charlashispanas.com/feed/podcast/",
+    "websiteUrl": "https://charlashispanas.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": false,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Charlas Hispanas)",
+    "notes": "Latin Amerika varyantları ve kültürü. Ses ücretsiz, transkript ve çalışma sayfaları ücretli üyelik gerektirir."
+  },
+  {
+    "title": "Notes in Spanish Intermediate",
+    "feedUrl": "https://rss.libsyn.com/shows/18817/destinations/13969.xml",
+    "websiteUrl": "https://www.notesinspanish.com/",
+    "transcriptLocation": "web",
+    "transcriptFree": false,
+    "hasTimedSubtitles": false,
+    "level": "B1-B2",
+    "license": "Telif hakkı saklıdır (Ben & Marina)",
+    "notes": "Doğal diyaloglar ve kültürel tartışmalar. Ses kaydı ücretsiz, transkriptler ve kelime kılavuzları satın alınan çalışma sayfaları olarak sunulur."
+  }
+]
