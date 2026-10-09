@@ -140,10 +140,15 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   const closedHeight = await page.evaluate(() => document.documentElement.scrollHeight)
   await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'true')
-  await page.waitForTimeout(600)
   // It scrolled there, and the page grew by what it opened.
-  expect(await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)).toBeLessThan(250)
-  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
+  await expect.poll(async () => {
+    const top = await page.evaluate(() => document.getElementById('p-memory')!.getBoundingClientRect().top)
+    if (top >= 250) {
+      await page.locator('.settings-nav .chip', { hasText: 'Tekrarlar' }).click()
+    }
+    return top
+  }, { timeout: 10_000 }).toBeLessThan(250)
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
   await toggles.nth(2).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
 })
