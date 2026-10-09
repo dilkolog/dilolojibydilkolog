@@ -1,0 +1,28 @@
+import { createElement, type ComponentType, type ReactNode } from 'react'
+import {
+  BookIcon, BoltIcon, EarIcon, GaugeIcon, HandIcon, MessageIcon, PuzzleIcon, ScaleIcon, TagIcon, BoxIcon, BrainIcon, BriefcaseIcon, CalendarIcon, CheckCircleIcon, FilmIcon, FlameIcon, FlowerIcon, GlobeIcon, HeadphonesIcon, HomeIcon,
+  ImageIcon, KeyboardIcon, MicIcon, MountainIcon, PenIcon, SparkleIcon, SpeakerIcon, SproutIcon, StarIcon, StethoscopeIcon, SuitcaseIcon, SwordsIcon,
+  TargetIcon, TenseIcon, HourglassIcon, TrophyIcon, UtensilsIcon, MoonIcon, SunIcon,
+} from './icons'
+
+export type IconC = ComponentType<{ size?: number; className?: string; solid?: boolean }>
+
+/**
+ * The engine names quests, badges and scenes with an emoji (a short, readable key); the interface
+ * draws them with the app's own icons. Unknown keys fall back to the emoji itself.
+ */
+const BY_EMOJI: Record<string, IconC> = {
+  '✍': PenIcon, '🖋': PenIcon, '🎯': TargetIcon, '🔥': FlameIcon, '⌨': KeyboardIcon, '🌱': SproutIcon, '🎧': HeadphonesIcon, '🧠': BrainIcon,
+  '⚔': SwordsIcon, '🐉': SwordsIcon, '📅': CalendarIcon, '🗓': CalendarIcon, '📖': BookIcon, '📚': BookIcon, '🏛': BookIcon, '⚡': BoltIcon, '🚀': BoltIcon,
+  '⭐': StarIcon, '🌟': StarIcon, '🌍': GlobeIcon, '🌸': FlowerIcon, '🎙': MicIcon, '🏆': TrophyIcon, '🥇': TrophyIcon, '🥈': TrophyIcon, '🥉': TrophyIcon,
+  '🖼': ImageIcon, '💯': CheckCircleIcon, '💎': SparkleIcon, '🌌': SparkleIcon, '🏔': MountainIcon, '🔊': SpeakerIcon,
+  '👆': HandIcon, '💬': MessageIcon, '👂': EarIcon, '🧩': PuzzleIcon, '🏎': GaugeIcon, '🏷': TagIcon, '⚖': ScaleIcon, '🕰': TenseIcon, '⏳': HourglassIcon,
+  '🦉': MoonIcon, '🌅': SunIcon, '🍽': UtensilsIcon, '🎬': FilmIcon, '🏠': HomeIcon, '💼': BriefcaseIcon, '📦': BoxIcon, '🧳': SuitcaseIcon, '🩺': StethoscopeIcon,
+}
+
+export const glyphFor = (emoji: string): IconC | undefined => BY_EMOJI[emoji.replace(/️/g, '')]
+
+export function renderGlyph(emoji: string, props: { size?: number; className?: string; solid?: boolean } = {}): ReactNode {
+  const C = glyphFor(emoji)
+  return C ? createElement(C, props) : null
+}

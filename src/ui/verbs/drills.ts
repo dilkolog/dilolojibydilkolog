@@ -3,7 +3,7 @@ import { tallyCells, type LabData } from '../../engine/labProgress'
 import { createRng, shuffle } from '../../engine/rng'
 import { conjugateTense, irregularForms, personsOf, type Tense } from '../../engine/tenses'
 import { prefs } from '../prefs'
-import { personFor, type Asked } from './ReviewTab'
+import { personFor, type Asked } from './reviewSelection'
 import { CORE_TENSES, verbEntry, type LabLanguage } from './labShared'
 
 /** A focused round: short like a review sitting. */

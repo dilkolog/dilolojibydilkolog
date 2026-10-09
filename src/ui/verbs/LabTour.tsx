@@ -1,17 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { loadPack, packRecord } from '../../data/wordpack'
-import { buildTour, tourVerbs, type TourItem } from '../../engine/labTour'
-import type { LabData } from '../../engine/labProgress'
+import { tourVerbs, type TourItem } from '../../engine/labTour'
 import { createRng, shuffle } from '../../engine/rng'
-import { conjugateTense, labTensesOf, subjectLabel, type Tense } from '../../engine/tenses'
+import { conjugateTense, subjectLabel } from '../../engine/tenses'
 import { PlayIcon, CheckIcon } from '../icons'
 import { LinesSkeleton } from '../Skeleton'
 import { FormQuestion } from '../session/FormQuestion'
 import { sfx } from '../sounds'
-import { people } from './drills'
-import { CORE_TENSES, dayNumber, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { dayNumber, tenseName, verbEntry, type LabLanguage } from './labShared'
 import { clozesFor, type Cloze } from './sentenceCloze'
 import { ClozeQuestion } from './SentenceQuiz'
+import { formOptions } from './labTourItems'
 
 /** About how long one question takes, for the estimate on the start card. */
 const SECONDS_PER_QUESTION = 15
@@ -23,25 +22,6 @@ const doneToday = (language: LabLanguage, day: number) => {
   } catch {
     return false
   }
-}
-
-/** The round for today, from the lab's own data and today's verb. */
-export function useTour(language: LabLanguage, lab: LabData, verbOfDay: string | undefined, ready: boolean, round = 0): TourItem[] {
-  return useMemo(() => {
-    if (!ready) return []
-    const now = new Date()
-    return buildTour({
-      lab,
-      now,
-      verbOfDay,
-      core: CORE_TENSES[language],
-      persons: (_verb, tense) => people(language, tense),
-      has: (verb, tense) => labTensesOf(verbEntry(language, verb)).includes(tense) && !!conjugateTense(verbEntry(language, verb), tense),
-      day: dayNumber(now),
-    })
-    // The round is set when the lab opens (and again after one ends): answering inside it must not reshuffle it.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, verbOfDay, ready, round])
 }
 
 /**
@@ -198,16 +178,6 @@ export function TourRun({
   )
 }
 
-/** The form among four: the right one, the same tense for other persons, the same person in another tense. */
-export function formOptions(language: LabLanguage, verb: string, tense: Tense, person: number, seed: number): string[] {
-  const entry = verbEntry(language, verb)
-  const right = conjugateTense(entry, tense)?.[person] ?? ''
-  const rng = createRng(seed)
-  const sameTense = (conjugateTense(entry, tense) ?? []).filter(Boolean)
-  const samePerson = CORE_TENSES[language].filter((t) => t !== tense).map((t) => conjugateTense(entry, t)?.[person])
-  const others = shuffle([...new Set([...sameTense, ...samePerson].filter((f): f is string => !!f && f !== right))], rng)
-  return shuffle([right, ...others.slice(0, 3)], rng)
-}
 
 function ChooseForm({ language, item, onAnswered, onContinue }: { language: LabLanguage; item: TourItem; onAnswered: (ok: boolean, given: string) => void; onContinue: () => void }) {
   const { verb, tense, person } = item

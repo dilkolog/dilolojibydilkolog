@@ -24,7 +24,8 @@ import { recordVisit } from '../screenUsage'
 import { useTabIndicator } from '../useTabIndicator'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, useVerbOfDay, verbEntry, verbKey, type LabLanguage } from './labShared'
 import { BookIcon, ChevronDownIcon } from '../icons'
-import { TourCard, TourRun, useTour } from './LabTour'
+import { TourCard, TourRun } from './LabTour'
+import { useTour } from './labTourItems'
 
 /**
  * 'timed' opens practice on its race against the clock (the conjugation games link there);

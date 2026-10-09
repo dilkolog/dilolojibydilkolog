@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, GlobeIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
 import { SyncAuthError, SyncNotAllowedError, type Account } from '../data/sync'
@@ -8,7 +8,7 @@ import type { AuthMode } from './AuthScreen'
 import { getAccount, getSyncCode, NOT_ALLOWED, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { SyncSettings } from './SyncSettings'
-import { undoable } from './toast'
+import { undoable } from './toastFeed'
 
 /**
  * Account in Settings: who is signed in and syncing, or the way to the sign-in page (AuthScreen),

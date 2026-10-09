@@ -4,7 +4,8 @@ import { MASTERY_MAX, difficultItems, errorBreakdown, gardenVerbs, labKey, maste
 import { Plant } from '../Plant'
 import { subjectLabel, type Tense } from '../../engine/tenses'
 import { DRILL_TEXT, DRILLABLE, drillQueue } from './drills'
-import { FormRun, type Asked, type RunCheck } from './ReviewTab'
+import { FormRun, type RunCheck } from './ReviewTab'
+import type { Asked } from './reviewSelection'
 import { CORE_TENSES, tenseName, type LabLanguage } from './labShared'
 
 /** Plots shown in the verb garden before "show all": the ones needing water come first anyway. */

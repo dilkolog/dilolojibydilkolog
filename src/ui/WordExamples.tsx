@@ -9,7 +9,7 @@ import { ShadowButton } from './Shadow'
 import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { easyFor, fetchCorpus } from '../data/corpus'
 import { patchWithSources } from '../data/provenance'
-import { undoable } from './toast'
+import { undoable } from './toastFeed'
 import { TranslateButton } from './TranslateButton'
 import { LANGUAGE_SHORT } from './labels'
 

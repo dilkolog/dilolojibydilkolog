@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fillTranslations, missingTranslations } from '../data/fillTranslations'
 import { translationUsage } from '../data/translate'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 import { Help } from './SettingHelp'
 
 /** Sentence translation (DeepL through the app's server): whether it is on, and this month's use. */

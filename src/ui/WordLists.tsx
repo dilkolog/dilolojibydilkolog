@@ -6,7 +6,7 @@ import type { KelimeDB } from '../data/db'
 import { ConfirmDialog } from './Dialog'
 import { EmptyState } from './EmptyState'
 import { ChevronDownIcon, PlusIcon, TargetIcon } from './icons'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 import { newListId } from './wordListId'
 
 /** Met and learned as one bar: the learned part solid, the met part lighter. */

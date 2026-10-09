@@ -19,7 +19,7 @@ import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
 import { WordForm } from './Words'
-import { showToast, undoable } from './toast'
+import { showToast, undoable } from './toastFeed'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
@@ -36,7 +36,8 @@ import { ParagraphTranslation } from './ReaderTranslation'
 import { TextDictation } from './TextDictation'
 import { canSpeak, speak } from './speech'
 import { useTranslationReady } from './useTranslationReady'
-import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
+import { ReaderControls } from './readerPrefs'
+import { readerStyle, useReaderPrefs } from './readerSettings'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
   easy: { title: 'Rahat okuma', text: 'Neredeyse her kelimeyi biliyorsun: akıcılık için ideal. Yeni kelime için biraz daha zor bir metin seçebilirsin.' },

@@ -1,5 +1,5 @@
 import { db } from '../data/instance'
-import { undoable } from './toast'
+import { undoable } from './toastFeed'
 
 /**
  * Changes words (delete, merge, reset) after keeping a copy of everything about them, then offers

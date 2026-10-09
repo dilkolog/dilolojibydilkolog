@@ -3,7 +3,7 @@ import { db } from '../data/instance'
 import { restoreFrom, restorePoints, SyncNotAllowedError } from '../data/sync'
 import { ConfirmDialog } from './Dialog'
 import { getCredential, NOT_ALLOWED, runSync } from './syncRunner'
-import { showToast } from './toast'
+import { showToast } from './toastFeed'
 
 const dayLabel = (day: string) => new Date(`${day}T12:00:00`).toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })
 

@@ -10,7 +10,7 @@ import { BookIcon, CheckIcon, ChevronDownIcon, MoreIcon, PlusIcon, SpeakerIcon, 
 import { db } from '../../data/instance'
 import { createEntry } from '../../data/wordInput'
 import { loadPack, packRecord } from '../../data/wordpack'
-import { showToast } from '../toast'
+import { showToast } from '../toastFeed'
 import { Popover, MenuItem } from '../Popover'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'

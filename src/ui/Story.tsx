@@ -14,7 +14,8 @@ import { sfx } from './sounds'
 import { speak } from './speech'
 import { PageHeader } from './PageHeader'
 import { EmptyState } from './EmptyState'
-import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
+import { ReaderControls } from './readerPrefs'
+import { readerStyle, useReaderPrefs } from './readerSettings'
 
 const GENRES = ['Bilim kurgu', 'Polisiye', 'Tarih', 'Macera', 'Romantik', 'Komedi', 'Fantastik', 'Gündelik hayat', 'İş dünyası', 'Seyahat', 'Gerilim', 'Spor']
 const WRITING = ['Kalem açılıyor…', 'Karakterler toplanıyor…', 'Olay örgüsü kuruluyor…', 'Son cümle cilalanıyor…']
