@@ -1466,6 +1466,7 @@ main:focus { outline: none; }
 .reader { font-family: var(--serif); font-size: var(--reader-size, var(--t-lg)); line-height: 1.85; max-width: 42rem; }
 .reader p { margin: 0 0 1.25rem; }
 /* The sentence of the word being looked at, softly lit: where the eye should come back to. */
+.reader .rs.is-heard { background: color-mix(in srgb, var(--lang) 12%, transparent); border-radius: var(--r-xs); box-decoration-break: clone; -webkit-box-decoration-break: clone; transition: background-color var(--dur) var(--ease-out); }
 .reader .rs.is-lit { background: color-mix(in srgb, var(--lang) 7%, transparent); border-radius: var(--r-xs); box-decoration-break: clone; -webkit-box-decoration-break: clone; transition: background-color var(--dur-fast) var(--ease-out); }
 .rw { cursor: pointer; border-radius: var(--r-xs); padding: 0 1px; transition: background-color var(--dur-fast) var(--ease-out); }
 .rw:hover, .rw:focus-visible { background: var(--surface-2); outline: none; }
