@@ -34,6 +34,10 @@ describe('/api/translate', () => {
     expect(calls).toEqual([])
     expect(fromApp(new Request('https://x/', { headers: { referer: 'https://kelime-koc-git-deepl-ali.vercel.app/words' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'http://localhost:5174' } }))).toBe(true)
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://nigalingo.online' } }))).toBe(true)
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://www.nigalingo.online' } }))).toBe(true)
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://evil-nigalingo.online' } }))).toBe(false)
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://nigalingo.online.evil.com' } }))).toBe(false)
   })
 
   it('asks DeepL with the key in the header, and lets the CDN keep the answer', async () => {
