@@ -30,6 +30,7 @@ import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
 import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
 import { translate, translationReady } from '../data/translate'
+import { SentenceTranslation } from './TranslateButton'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
@@ -920,6 +921,7 @@ export function ReadingScreen({
               Cümleyi kaydet
             </button>
           </p>
+          <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />
           <p className="small muted kbd">
             <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
           </p>

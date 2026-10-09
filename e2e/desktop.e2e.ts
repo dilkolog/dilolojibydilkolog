@@ -723,3 +723,26 @@ test('translation screen: a short text translated sentence by sentence, side by 
   await expect(pairs.nth(0).getByRole('button', { name: /Kaydedildi/ })).toBeDisabled()
   expect(await overflow(page)).toEqual([])
 })
+
+test('translation memory: a reading sentence translated on request, the recent ones listed, a single word one tap from the add form', async ({ page }) => {
+  await startWithSamples(page)
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 1000000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => {
+    const text = new URL(r.request().url()).searchParams.get('text')!
+    return r.fulfill({ json: { translation: { 'Le chat dort.': 'Kedi uyuyor.', maison: 'ev' }[text] ?? '?' } })
+  })
+  // Reading: the sentence of the word looked up, in Turkish on one tap.
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Le chat dort.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.locator('.rw', { hasText: /^chat$/ }).first().click()
+  await page.getByRole('button', { name: /Cümlenin Türkçesi/ }).click()
+  await expect(page.locator('.sentence-tr', { hasText: 'Kedi uyuyor.' })).toBeVisible()
+  // Translation screen: that sentence is in the memory; a single word goes to the add form.
+  await openScreen(page, 'Çeviri')
+  await expect(page.getByRole('region', { name: 'Son çevirilerin' })).toContainText('Kedi uyuyor.')
+  await page.getByLabel('Çevrilecek metin').fill('maison')
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
+  await page.getByRole('button', { name: /Kelimelerime ekle/ }).click()
+  await expect(page.locator('#w-word, input[name="word"]').first()).toHaveValue(/maison/)
+})
