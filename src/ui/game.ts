@@ -16,11 +16,12 @@ import { BOSS_XP } from '../engine/bosses'
 import { CHALLENGE_XP, challengeStatus, completedByWeek, type ChallengeStatus } from '../engine/challenges'
 import type { JournalEntry, ReadingText } from '../data/db'
 import { activityStats } from '../engine/badgeStats'
-import { masteredForms } from '../engine/labProgress'
+import { masteredForms, wholeVerbs } from '../engine/labProgress'
 import { difficultWords } from '../engine/difficult'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import { localDate } from '../engine/progress'
 import { dayMetrics, questStatus, type QuestStatus } from '../engine/quests'
+import { CORE_TENSES } from './verbs/labShared'
 import type { KelimeDB } from '../data/db'
 
 export interface GameState {
@@ -93,6 +94,8 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     mistakesFixed: mistakes.filter((m) => m.resolved).length,
     formsPracticed: Object.keys(labFr.records).length + Object.keys(labEs.records).length,
     formsMastered: masteredForms(labFr) + masteredForms(labEs),
+    verbsMastered: wholeVerbs(labFr, CORE_TENSES.fr) + wholeVerbs(labEs, CORE_TENSES.es),
+    tourDays: new Set([...(labFr.tourDays ?? []), ...(labEs.tourDays ?? [])]).size,
     totalXp: xp.total,
     wordsIntroduced: states.length,
     mastered: states.filter((s) => masteryStage(s) === 'mastered').length,

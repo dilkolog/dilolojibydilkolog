@@ -28,6 +28,8 @@ export interface LabData {
   seen?: Record<string, SeenForm[]>
   /** Right and wrong answers per local day ("2026-10-08"), the last DAYS_KEPT days: progress over time. */
   days?: Record<string, { ok: number; wrong: number }>
+  /** Local days ("2026-10-08") the daily verb round was finished. */
+  tourDays?: string[]
 }
 
 /** A conjugated form met in a text: which tense it is, how often, and where it was last met. */
@@ -301,4 +303,15 @@ export function weakPersons(lab: LabData, tense: Tense): Record<number, string> 
     out[c.person] = `${c.wrong}/${c.ok + c.wrong} yanlış`
   }
   return out
+}
+
+/** The daily round finished today (a local day "2026-10-08"); once per day. */
+export function recordTourDay(lab: LabData, day: string): LabData {
+  return lab.tourDays?.includes(day) ? lab : { ...lab, tourDays: [...(lab.tourDays ?? []), day].sort() }
+}
+
+/** Verbs whose every one of `core` tenses is known to the full. */
+export function wholeVerbs(lab: LabData, core: readonly Tense[]): number {
+  const verbs = new Set(Object.keys(lab.records).map((k) => k.split('|')[0]))
+  return [...verbs].filter((v) => core.every((t) => (lab.records[labKey(v, t)]?.points ?? 0) >= MASTERY_MAX)).length
 }

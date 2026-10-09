@@ -187,6 +187,10 @@ export interface GameStats extends ActivityStats {
   /** Verb forms practised in the verb lab, and those known to the full (60 points). */
   formsPracticed: number
   formsMastered: number
+  /** Verbs known to the full in all their core tenses. */
+  verbsMastered: number
+  /** Days the verb lab's daily round was finished. */
+  tourDays: number
   totalXp: number
 }
 
@@ -196,7 +200,7 @@ export const emptyStats: GameStats = {
   articleCorrect: 0, conjugationCorrect: 0, fastCorrect: 0,
   wordsIntroduced: 0, mastered: 0, totalAnswers: 0, longestStreak: 0, perfectDays: 0, maxCombo: 0, languagesStudied: 0, wordsWithPicture: 0,
   wordsWithRecording: 0, freeSentencesCorrect: 0, level: 1, bossesDefeated: 0, challengesDone: 0, perfectWeeks: 0,
-  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, formsPracticed: 0, formsMastered: 0, totalXp: 0,
+  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, formsPracticed: 0, formsMastered: 0, verbsMastered: 0, tourDays: 0, totalXp: 0, rescued: 0,
 }
 
 export interface Achievement {
@@ -276,6 +280,14 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'forms-25', icon: '🌿', title: 'Fiil bahçıvanı', description: 'Fiil laboratuvarında 25 çekimi çalış', goal: 25, stat: 'formsPracticed' },
   { id: 'forms-10-master', icon: '🌻', title: 'Çekim ustası', description: 'Fiil laboratuvarında 10 çekimde tam ustalığa ulaş (60/60)', goal: 10, stat: 'formsMastered' },
   { id: 'forms-50-master', icon: '🌳', title: 'Fiil bahçesi', description: 'Fiil laboratuvarında 50 çekimde tam ustalığa ulaş', goal: 50, stat: 'formsMastered' },
+  // Learning itself: words saved from forgetting, whole verbs known, the daily verb round kept up.
+  { id: 'rescue-10', icon: '🧠', title: 'Kurtarıcı', description: 'Unutmak üzere olduğun 10 kelimeyi doğru hatırla', goal: 10, stat: 'rescued' },
+  { id: 'rescue-50', icon: '🧠', title: 'Hafıza bekçisi', description: 'Unutmak üzere olduğun 50 kelimeyi doğru hatırla', goal: 50, stat: 'rescued' },
+  { id: 'rescue-250', icon: '🧠', title: 'Unutmaya inat', description: 'Unutmak üzere olduğun 250 kelimeyi doğru hatırla', goal: 250, stat: 'rescued' },
+  { id: 'verb-whole-1', icon: '🏔', title: 'Tam fiil', description: 'Bir fiilin dört temel zamanında tam ustalığa ulaş', goal: 1, stat: 'verbsMastered' },
+  { id: 'verb-whole-10', icon: '🏔', title: 'Fiil zirvesi', description: '10 fiilin dört temel zamanında tam ustalığa ulaş', goal: 10, stat: 'verbsMastered' },
+  { id: 'tour-7', icon: '🕰', title: 'Tur alışkanlığı', description: 'Günlük fiil turunu 7 gün bitir', goal: 7, stat: 'tourDays' },
+  { id: 'tour-30', icon: '🕰', title: 'Fiil ritmi', description: 'Günlük fiil turunu 30 gün bitir', goal: 30, stat: 'tourDays' },
   { id: 'fast-100', icon: '🏎️', title: 'Şimşek', description: '100 soruyu 2 saniyeden kısa sürede, ipucusuz ve emin doğru cevapla', goal: 100, stat: 'fastCorrect' },
   { id: 'fixed-10', icon: '🧩', title: 'Hatadan öğrenen', description: 'Hata bankasından 10 hatayı düzelt', goal: 10, stat: 'mistakesFixed' },
   { id: 'fixed-50', icon: '🧠', title: 'Hata avcısı', description: 'Hata bankasından 50 hatayı düzelt', goal: 50, stat: 'mistakesFixed' },
@@ -304,7 +316,7 @@ export const BADGE_CATEGORIES: { id: BadgeCategory; name: string }[] = [
 const CATEGORY_OF: Record<keyof GameStats, BadgeCategory> = {
   wordsIntroduced: 'words', mastered: 'words', wordsStrong: 'words', wordsAdded: 'words', wordsWithNotes: 'words', wordsWithPicture: 'words', wordsWithRecording: 'words', hardMarked: 'words', hardConquered: 'words',
   longestStreak: 'habit', daysStudied: 'habit', comebacks: 'habit', nightDays: 'habit', earlyDays: 'habit', weekendDays: 'habit', maxDayAnswers: 'habit', perfectDays: 'habit', challengesDone: 'habit', perfectWeeks: 'habit',
-  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', formsPracticed: 'skills', formsMastered: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
+  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', formsPracticed: 'skills', formsMastered: 'skills', verbsMastered: 'skills', tourDays: 'habit', rescued: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
   textsRead: 'writing', journalEntries: 'writing', freeSentencesCorrect: 'writing',
   level: 'level', totalXp: 'level',
 }
