@@ -58,3 +58,13 @@ Aşağıdaki kelimeler korpuslarda geçmeyen kısaltmalar, argo veya türemiş b
   - `pesas` (*la pesa*): `f`
   - `quemarropa` (*a quemarropa*): `m`
   - `sabiendas` (*a sabiendas*): `f`
+
+---
+
+## 2. Fiil Tablosu Kapsamı (`verb-coverage.md`)
+
+A1–B2 CEFR seviyesindeki fiiller (`src/data/cefr/{fr,es}.txt`) ile Fiil Laboratuvarı çekim tabloları (`src/data/tenses/{fr,es}.json`) karşılaştırılmıştır.
+
+- **Fransızca (FR):** 834 fiilden **827'si mevcut** (%99,16 kapsam). Eksik 7 fiil: A1'de 4 (`pleuvoir`, `soit`, `voici`, `voilà`), A2'de 3 (`paître`, `falloir`, `neiger`), B1/B2'de 0 eksik.
+- **İspanyolca (ES):** 815 fiilden **716'sı mevcut** (%87,85 kapsam). Eksik 99 fiil: A1'de 5, A2'de 31, B1'de 34, B2'de 29.
+- *Ayrıntılı döküm:* [`verb-coverage.md`](./verb-coverage.md) dosyasında seviye seviye listelenmiştir.
