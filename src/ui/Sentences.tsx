@@ -4,6 +4,7 @@ import { db, scheduler } from '../data/instance'
 import { createRng } from '../engine/rng'
 import { dueSentences, gradeSentence, newSentence, sentenceExercise, type SentenceCard, type SentenceExercise, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
+import { wordDiff } from '../engine/wordDiff'
 import { AccentBar, accentChange, insertAt } from './AccentBar'
 import { PlusIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
@@ -283,9 +284,19 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
       ) : (
         <section className={`card stack sentence-result is-${verdict}`}>
           <strong>{verdict === 'correct' ? 'Doğru!' : verdict === 'near' ? 'Neredeyse' : 'Doğrusu'}</strong>
-          <p className="sentence-sm" lang={card.language}>
-            {card.text}
-          </p>
+          {ex.kind !== 'cloze' && text.trim() ? (
+            <p className="dictation-diff" lang={card.language}>
+              {wordDiff(text, card.text).map((p, i) => (
+                <span key={i} className={`dd-${p.status}`}>
+                  {p.word}{' '}
+                </span>
+              ))}
+            </p>
+          ) : (
+            <p className="sentence-sm" lang={card.language}>
+              {card.text}
+            </p>
+          )}
           <div className="row">
             {ex.kind === 'translate' && verdict !== 'correct' ? (
               <>
