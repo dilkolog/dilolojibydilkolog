@@ -4,10 +4,11 @@ import { gradeSentence } from '../engine/sentences'
 import { shuffle, createRng } from '../engine/rng'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
-import { AccentBar, accentChange, insertAt } from './AccentBar'
+import { AccentBar } from './AccentBar'
+import { accentChange, insertAt } from './accentCaret'
 import { MessageIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
-import { saveSentence } from './Sentences'
+import { saveSentence } from './saveSentence'
 import { sfx } from './sounds'
 
 const ROUND = 10

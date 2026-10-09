@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PageHeader } from '../PageHeader'
 import { EmptyState } from '../EmptyState'
-import { useTenses } from '../ConjugationTable'
+import { useTenses } from '../tenseGroups'
 import { recordPractice } from '../games/shared'
 import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
 import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, recordTourDay, toggleFavorite } from '../../engine/labProgress'

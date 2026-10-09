@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BLANK, type ContextSource, type Evaluation } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
 import { BookIcon, PenIcon, PinIcon, SpeakerIcon } from '../icons'
@@ -6,6 +6,7 @@ import { prefs } from '../prefs'
 import { canSpeak, isAudioPlaying, playWord } from '../speech'
 import { modalOpen } from './keys'
 import { ArticleTag } from '../WrittenForm'
+import { wordFit } from './wordFit'
 
 /** Plays the word; Alt+S (or Space when not typing) replays it. */
 export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: string; entry: VocabularyEntry; big?: boolean; auto?: boolean; vary?: boolean; rate?: number }) {
@@ -71,10 +72,7 @@ export function SpeakButton({ text, entry, big, auto, vary, rate }: { text: stri
   )
 }
 
-/** The word's length for the large type: a long expression shrinks smoothly to stay on a line ("Contrat de location"). */
-export function wordFit(text: string): CSSProperties {
-  return { '--len': text.length } as CSSProperties
-}
+
 
 /** The word in large type, with its article. */
 export function Word({ entry }: { entry: VocabularyEntry }) {

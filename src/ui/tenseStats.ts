@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { tenseStats, type TenseStat } from '../engine/tenses'
 import type { VocabularyEntry } from '../engine/types'
 import { db } from '../data/instance'
-import { useTenses } from './ConjugationTable'
+import { useTenses } from './tenseGroups'
 
 /** Answers needed in a tense before it is called weak or strong. */
 export const MIN_ANSWERS = 3

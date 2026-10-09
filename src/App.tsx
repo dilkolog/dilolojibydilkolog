@@ -68,7 +68,8 @@ import { GAME_LIST, type GameId } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 import type { AuthMode } from './ui/AuthScreen'
 import { Toaster, showToast } from './ui/toast'
-import { ScreenSkeleton, skeletonFor } from './ui/Skeleton'
+import { ScreenSkeleton } from './ui/Skeleton'
+import { skeletonFor } from './ui/skeletonFor'
 import { useOnline } from './ui/useOnline'
 import { StreakFlame } from './ui/StreakFlame'
 import { currentLevel, levelGroups } from './engine/lists'
@@ -451,7 +452,7 @@ export default function App() {
     if (!text || !settings) return
     history.replaceState(null, '', location.pathname)
     const lang = (TARGET_LANGUAGES as readonly string[]).includes(p.get('lang') ?? '') ? (p.get('lang') as TargetLanguage) : settings.activeLanguage
-    void import('./ui/Sentences').then(({ saveSentence }) => saveSentence({ language: lang, text, focus: p.get('focus') ?? undefined, source: p.get('src') ?? undefined }).then(() => {
+    void import('./ui/saveSentence').then(({ saveSentence }) => saveSentence({ language: lang, text, focus: p.get('focus') ?? undefined, source: p.get('src') ?? undefined }).then(() => {
       if (lang !== settings.activeLanguage) void updateSettings({ ...settings, activeLanguage: lang })
       setScreen({ name: 'games', game: 'sentences' })
     }))

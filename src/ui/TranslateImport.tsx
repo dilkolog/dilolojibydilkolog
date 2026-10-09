@@ -4,7 +4,7 @@ import { readTranslateExport, type TranslateImport as Parsed } from '../data/tra
 import { createEntry } from '../data/wordInput'
 import type { TargetLanguage } from '../engine/types'
 import { LANGUAGE_NAME } from './labels'
-import { saveSentence } from './Sentences'
+import { saveSentence } from './saveSentence'
 
 /** Google Translate's saved translations: words into the list, sentences into sentence cards. */
 export function TranslateImport({ db, language, existing, onAdded }: { db: KelimeDB; language: TargetLanguage; existing: Set<string>; onAdded: () => void }) {
