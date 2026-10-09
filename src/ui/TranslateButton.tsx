@@ -1,19 +1,7 @@
-import { useEffect, useState } from 'react'
-import { translate, translationReady, TranslateError, type TranslateLang } from '../data/translate'
+import { useState } from 'react'
+import { translate, TranslateError, type TranslateLang } from '../data/translate'
 import { GlobeIcon } from './icons'
-
-/** Whether sentence translation is on (the server has a key); false until known. */
-export function useTranslationReady(): boolean {
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    let live = true
-    void translationReady().then((r) => live && setReady(r))
-    return () => {
-      live = false
-    }
-  }, [])
-  return ready
-}
+import { useTranslationReady } from './useTranslationReady'
 
 /**
  * "Çevir": fills a Turkish translation field from the sentence (DeepL through the app's server).

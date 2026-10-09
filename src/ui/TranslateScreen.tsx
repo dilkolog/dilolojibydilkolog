@@ -6,7 +6,7 @@ import { PageHeader } from './PageHeader'
 import { LANGUAGE_NAME } from './labels'
 import { saveSentence } from './Sentences'
 import { canSpeak, speak } from './speech'
-import { useTranslationReady } from './TranslateButton'
+import { useTranslationReady } from './useTranslationReady'
 import { showToast } from './toast'
 import { PlusIcon, SpeakerIcon } from './icons'
 
