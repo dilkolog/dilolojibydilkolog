@@ -2723,6 +2723,13 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 /* Profile: badges earned, newest first, with their dates. */
 .badge-timeline { list-style: none; margin: 0 0 0.5rem; padding: 0; display: grid; gap: 0.25rem; }
 .badge-timeline li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.75rem; padding: 0.375rem 0; border-bottom: 1px solid var(--rule); }
+/* Translation screen: each sentence above its translation; the learner's language in the serif. */
+.translate-pairs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.translate-pairs li { display: grid; gap: 0.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
+.translate-pairs p { margin: 0; }
+.translate-pairs p:not(:lang(tr)) { font-family: var(--serif); font-size: var(--t-md); }
+.translate-pairs .translate-target:lang(tr) { color: var(--ink-soft); }
+.translate-screen .textarea { min-height: 7rem; }
 /* The session summary's one line about the next badge. */
 .summary-next { flex-wrap: nowrap; gap: 0.75rem; }
 /* Two or three new badges on one screen, side by side. */

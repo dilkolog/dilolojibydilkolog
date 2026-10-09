@@ -35,7 +35,7 @@ import { Avatar } from './ui/Avatar'
 import { Glyph } from './ui/Glyph'
 import { BadgeWatcher } from './ui/BadgeWatcher'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, TenseIcon, UserIcon } from './ui/icons'
+import { GlobeIcon, AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, TenseIcon, UserIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
@@ -99,6 +99,7 @@ const screenModules = {
   Words: () => import('./ui/Words'),
   VerbLab: () => import('./ui/verbs/VerbLab'),
   Dictionary: () => import('./ui/Dictionary'),
+  Translate: () => import('./ui/TranslateScreen'),
   // Rarely opened, so not in the startup code either.
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
@@ -106,6 +107,7 @@ const screenModules = {
 const SessionScreen = lazy(() => screenModules.Session().then((m) => ({ default: m.SessionScreen })))
 const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
 const MistakesScreen = lazy(() => screenModules.Mistakes().then((m) => ({ default: m.MistakesScreen })))
+const TranslateScreen = lazy(() => screenModules.Translate().then((m) => ({ default: m.TranslateScreen })))
 const ProfileScreen = lazy(() => screenModules.Profile().then((m) => ({ default: m.ProfileScreen })))
 const ProgressScreen = lazy(() => screenModules.Progress().then((m) => ({ default: m.ProgressScreen })))
 const ReadingScreen = lazy(() => screenModules.Reading().then((m) => ({ default: m.ReadingScreen })))
@@ -131,6 +133,7 @@ type Screen =
   | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; firstSitting?: boolean }
   | { name: 'words' }
   | { name: 'dictionary'; query?: string }
+  | { name: 'translate' }
   | { name: 'word'; entryId: string }
   | { name: 'mistakes' }
   | { name: 'progress' }
@@ -147,7 +150,7 @@ type Screen =
 
 const SCREEN_KEY = 'kelime-koc:screen'
 /** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
-const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
+const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
 
 function restoreScreen(): Screen {
   // Home-screen shortcuts (manifest) and push links: ?go=home | add | reading | quick | progress
@@ -199,6 +202,7 @@ const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: string }[]>
   words: [
     { screen: 'words', label: 'Kelimeler' },
     { screen: 'dictionary', label: 'Sözlük' },
+    { screen: 'translate', label: 'Çeviri' },
     { screen: 'mistakes', label: 'Hatalar' },
   ],
   reading: [
@@ -225,6 +229,7 @@ const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?: numbe
   { screen: 'home', label: 'Bugün', icon: HomeIcon },
   { screen: 'words', label: 'Kelimeler', icon: BookIcon },
   { screen: 'dictionary', label: 'Sözlük', icon: SearchIcon },
+  { screen: 'translate', label: 'Çeviri', icon: GlobeIcon },
   { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
   { screen: 'reading', label: 'Okuma', icon: ReadIcon },
   { screen: 'story', label: 'Hikaye', icon: StoryIcon },
@@ -992,6 +997,8 @@ export default function App() {
                   setScreen({ name: 'dictionary', query })
                 }}
               />
+            ) : screen.name === 'translate' ? (
+              <TranslateScreen key={data.language} language={data.language} />
             ) : screen.name === 'mistakes' ? (
               <MistakesScreen
                 mistakes={data.mistakes}

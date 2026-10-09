@@ -20,12 +20,16 @@ const MESSAGES: Record<string, string> = {
   'bad text': `Çeviri bir seferde en fazla ${MAX_CHARS} karakter.`,
 }
 
-/** Whether the server can translate (it has a key and answers). Asked once per session. */
+/** Whether the server can translate (it has a key and answers). */
 export function translationReady(): Promise<boolean> {
   if (typeof navigator !== 'undefined' && !navigator.onLine) return Promise.resolve(false)
-  ready ??= fetch('/api/translate?usage=1')
-    .then((r) => r.ok)
-    .catch(() => false)
+  // A real answer carries the month's limit; a page served in its place (no server function) does not.
+  // A yes is kept for the session; a no is asked again next time (offline at first, online later).
+  ready ??= translationUsage().then((u) => {
+    const yes = !!u && u.limit > 0
+    if (!yes) ready = null
+    return yes
+  })
   return ready
 }
 
@@ -33,7 +37,9 @@ export function translationReady(): Promise<boolean> {
 export async function translationUsage(): Promise<{ count: number; limit: number } | null> {
   try {
     const r = await fetch('/api/translate?usage=1')
-    return r.ok ? ((await r.json()) as { count: number; limit: number }) : null
+    if (!r.ok) return null
+    const u = (await r.json()) as { count?: unknown; limit?: unknown }
+    return typeof u.count === 'number' && typeof u.limit === 'number' ? { count: u.count, limit: u.limit } : null
   } catch {
     return null
   }

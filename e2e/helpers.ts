@@ -2,6 +2,9 @@ import { expect, type Page } from '@playwright/test'
 
 /** First run in a fresh browser: French, the sample words, then Today. */
 export async function startWithSamples(page: Page) {
+  // The preview passes /api on to the live site: translation would call the real DeepL (and use
+  // the month's characters). Off by default; a test about translation stubs it after this.
+  await page.route('**/api/translate**', (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
   await page.goto('/')
   await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
   await page.locator('.lang-card', { hasText: 'Fransızca' }).click()
@@ -56,6 +59,7 @@ const ROUTE: Record<string, [string, string?]> = {
   Bugün: ['Bugün'],
   Kelimeler: ['Kelimeler', 'Kelimeler'],
   Hatalar: ['Kelimeler', 'Hatalar'],
+  Çeviri: ['Kelimeler', 'Çeviri'],
   Okuma: ['Okuma', 'Metinler'],
   Hikaye: ['Okuma', 'Hikaye'],
   Oyunlar: ['Pratik', 'Oyunlar'],
@@ -83,7 +87,7 @@ export async function openScreen(page: Page, name: string) {
   for (let n = await page.locator('.group-toggle[aria-expanded=false]').count(); n > 0; n--) await page.locator('.group-toggle[aria-expanded=false]').first().click()
 }
 
-export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Okuma', 'Hikaye', 'Oyunlar', 'Fiiller', 'Yaz & konuş', 'İlerleme', 'Profil', 'Ayarlar']
+export const SCREENS = ['Bugün', 'Kelimeler', 'Hatalar', 'Çeviri', 'Okuma', 'Hikaye', 'Oyunlar', 'Fiiller', 'Yaz & konuş', 'İlerleme', 'Profil', 'Ayarlar']
 
 /** Elements wider than the screen that make the page scroll sideways. */
 export const overflow = (page: Page) =>
