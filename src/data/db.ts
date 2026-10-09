@@ -17,6 +17,7 @@ import { mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tomb
 import type { TypingShare } from '../engine/session'
 import {
   TARGET_LANGUAGES,
+  addedTime,
   type CefrLevel,
   type Mistake,
   type ReviewEvent,
@@ -497,6 +498,12 @@ export class KelimeDB extends Dexie {
   /** The reading library of one language, newest first. Moves an old single saved text in. */
   async getLibrary(language: TargetLanguage): Promise<ReadingText[]> {
     let all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    // A date stored as a Date (or anything but text) is put right once, here: sorting by it would
+    // otherwise fail and leave the reading screen empty.
+    if (all.some((t) => typeof t.addedAt !== 'string')) {
+      all = all.map((t) => (typeof t.addedAt === 'string' ? t : { ...t, addedAt: new Date(addedTime(t)).toISOString() }))
+      await this.meta.put({ key: 'library', value: all })
+    }
     const legacy = (await this.meta.get(`reading:${language}`))?.value as string | undefined
     if (legacy?.trim()) {
       const item: ReadingText = { id: crypto.randomUUID(), language, title: titleOf(legacy), text: legacy, addedAt: new Date().toISOString(), history: [] }
@@ -505,7 +512,7 @@ export class KelimeDB extends Dexie {
       await this.meta.delete(`reading:${language}`)
       await this.meta.put({ key: `readingCurrent:${language}`, value: item.id })
     }
-    return all.filter((t) => t.language === language).sort((a, b) => b.addedAt.localeCompare(a.addedAt) || (a.book?.index ?? 0) - (b.book?.index ?? 0))
+    return all.filter((t) => t.language === language).sort((a, b) => addedTime(b) - addedTime(a) || (a.book?.index ?? 0) - (b.book?.index ?? 0))
   }
 
   async saveText(text: ReadingText) {
