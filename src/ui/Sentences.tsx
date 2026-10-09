@@ -11,6 +11,7 @@ import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
 import { undoable } from './toast'
 import { EmptyState } from './EmptyState'
+import { TranslateButton } from './TranslateButton'
 import { PageHeader } from './PageHeader'
 
 /** Saves a sentence met while reading (or sent from the browser extension). */
@@ -99,6 +100,7 @@ function AddSentence({ language, onAdded }: { language: TargetLanguage; onAdded:
       >
         <textarea className="textarea textarea-sm" lang={language} value={text} onChange={(e) => setText(e.target.value)} placeholder={`${LANGUAGE_NAME[language]} bir cümle`} aria-label="Cümle" />
         <input className="input" value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="Türkçesi (isteğe bağlı: çeviri alıştırmasını açar)" aria-label="Türkçesi" />
+        {!translation.trim() && <TranslateButton text={text} from={language} onTranslated={setTranslation} />}
         <div className="row">
           <button className="btn" type="submit" disabled={!text.trim()}>
             Ekle
@@ -130,6 +132,7 @@ function SentenceRow({ sentence, onChanged }: { sentence: SentenceCard; onChange
           }}
         >
           <input className="input sentence-trans-input" value={translation} onChange={(e) => setTranslation(e.target.value)} placeholder="Türkçesi" autoFocus aria-label="Türkçesi" />
+          {!translation.trim() && <TranslateButton text={sentence.text} from={sentence.language} onTranslated={setTranslation} />}
           <button className="btn btn-sm" type="submit">
             Kaydet
           </button>

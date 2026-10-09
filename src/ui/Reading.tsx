@@ -29,6 +29,7 @@ import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
 import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
+import { translate, translationReady } from '../data/translate'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
@@ -317,7 +318,9 @@ export function ReadingScreen({
 
   /** Keeps the whole sentence as a sentence card, with the word it was saved for. */
   const keepSentence = async (sentence: string, focus: string) => {
-    const ok = await saveSentence({ language, text: sentence, focus, source: current?.title })
+    // With translation on, the card comes with its Turkish (and so with the translation exercise).
+    const translation = (await translationReady()) ? await translate(sentence, language).catch(() => '') : ''
+    const ok = await saveSentence({ language, text: sentence, focus, source: current?.title, ...(translation ? { translation } : {}) })
     showToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı', undefined, 3500, ok ? 'success' : 'info')
   }
 

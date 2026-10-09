@@ -10,6 +10,7 @@ import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { easyFor, fetchCorpus } from '../data/corpus'
 import { patchWithSources } from '../data/provenance'
 import { undoable } from './toast'
+import { TranslateButton } from './TranslateButton'
 import { LANGUAGE_SHORT } from './labels'
 
 /**
@@ -144,7 +145,10 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
             <span className="help">Kelime cümlede farklı biçimdeyse yıldızla işaretle: She *abandoned* it.</span>
           </div>
           <div className="field">
-            <label htmlFor="ex-tr">Çevirisi (isteğe bağlı)</label>
+            <span className="row justify-between">
+              <label htmlFor="ex-tr">Çevirisi (isteğe bağlı)</label>
+              {!translation.trim() && <TranslateButton text={text} from={entry.language} onTranslated={setTranslation} />}
+            </span>
             <input id="ex-tr" className="input" value={translation} onChange={(e) => setTranslation(e.target.value)} />
           </div>
           <div className="row">
