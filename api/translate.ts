@@ -28,7 +28,15 @@ export function fromApp(request: Request): boolean {
   if (!from) return false
   try {
     const host = new URL(from).hostname
-    return host === 'kelime-koc.vercel.app' || /^kelime-koc-[a-z0-9-]+\.vercel\.app$/.test(host) || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.localhost')
+    return (
+      host === 'kelime-koc.vercel.app' ||
+      /^kelime-koc-[a-z0-9-]+\.vercel\.app$/.test(host) ||
+      host === 'nigalingo.online' ||
+      host === 'www.nigalingo.online' ||
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host.endsWith('.localhost')
+    )
   } catch {
     return false
   }
