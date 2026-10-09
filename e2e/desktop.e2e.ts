@@ -460,6 +460,21 @@ test('reading: a conjugated form opens the verb lab at its verb and tense', asyn
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('reading: the verb forms of the text listed by tense, each opening the lab', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Nous parlions souvent. Nous parlions de la mer. Je parle bien.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Çekimler' }).click()
+  const card = page.getByRole('region', { name: 'Metindeki çekimler' })
+  await expect(card).toContainText('parlions')
+  await expect(card.locator('.word-row', { hasText: 'parlions' })).toContainText('2 kez')
+  await card.locator('.word-row', { hasText: 'parlions' }).click()
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-forms')).toContainText('parlions')
+  await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
+})
+
 test('verb lab: the Turkish of each form beside it, in the core tenses, never when unsure', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')

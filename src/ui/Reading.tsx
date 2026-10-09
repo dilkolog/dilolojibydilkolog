@@ -26,7 +26,9 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { analyzeForm, sentenceImperative, subjectLabel, type Tense } from '../engine/tenses'
+import { analyzeForm, subjectLabel } from '../engine/tenses'
+import { groupByTense, textForms } from '../engine/textForms'
+import { TextForms } from './TextForms'
 import { useSheetSwipe } from './useSheetSwipe'
 import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
@@ -168,7 +170,9 @@ export function ReadingScreen({
   const [covOpen, setCovOpen] = useState(false)
   // Verb tables, so a tapped conjugated form can say which verb and tense it is; word frequency to
   // put the likely verb first (allions: aller before allier).
-  useTenses(language)
+  const tensesReady = useTenses(language)
+  // The verb forms of this text, listed on request.
+  const [showForms, setShowForms] = useState(false)
   const [freq, setFreq] = useState<ReadonlyMap<string, number>>(new Map())
   useEffect(() => {
     let live = true
@@ -200,6 +204,7 @@ export function ReadingScreen({
   }, [db, language])
 
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
+  const formGroups = useMemo(() => (showForms && tensesReady && analysis && language !== 'en' ? groupByTense(textForms(language, analysis)) : []), [showForms, tensesReady, analysis, language])
   // Listening: the sentence being heard, lit in the text; a sentence's start, to jump to.
   const [audioDuration, setAudioDuration] = useState<number>()
   const [heard, setHeard] = useState(-1)
@@ -497,25 +502,7 @@ export function ReadingScreen({
   const keepSeenForms = async (lang: 'fr' | 'es') => {
     if (!analysis) return
     await loadTenses(lang)
-    const found: { form: string; lemma: string; tense: Tense }[] = []
-    for (const p of analysis.paragraphs)
-      for (const sentence of p) {
-        // "Viens ici !": its first word is an imperative, which the forms alone can't tell from the present.
-        const imperative = sentenceImperative(lang, sentence.tokens.map((t) => t.text).join(''))
-        if (imperative) found.push({ form: imperative.form, lemma: imperative.analysis.lemma, tense: imperative.analysis.tense })
-        for (const t of sentence.tokens) {
-          if (!t.key) continue
-          const form = cleanToken(t.text, lang).toLocaleLowerCase(lang)
-          if (imperative?.form === form) continue
-          // An ambiguous form (finis: présent or passé simple) counts once, as its first reading.
-          const seenLemmas = new Set<string>()
-          for (const a of analyzeForm(lang, form)) {
-            if (seenLemmas.has(a.lemma)) continue
-            seenLemmas.add(a.lemma)
-            found.push({ form, lemma: a.lemma, tense: a.tense })
-          }
-        }
-      }
+    const found = textForms(lang, analysis)
     if (found.length) await db.saveLab(lang, addSeenForms(await db.getLab(lang), found, current?.title, new Date().toISOString()))
   }
 
@@ -944,6 +931,11 @@ export function ReadingScreen({
             <MicIcon size={14} /> Gölgele
           </button>
         )}
+        {language !== 'en' && !listenFirst && (
+          <button type="button" className="chip chip-sm" aria-pressed={showForms} onClick={() => setShowForms((v) => !v)} title="Metindeki fiil çekimleri, zamana göre">
+            Çekimler
+          </button>
+        )}
         <button type="button" className="chip chip-sm" onClick={() => setConfirmFinish(true)}>
           Okumayı bitir
         </button>
@@ -951,6 +943,7 @@ export function ReadingScreen({
           Çoklu seç
         </button>
       </div>
+      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
       )}
