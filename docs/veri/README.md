@@ -104,3 +104,16 @@ En sık 3.001–10.000 arasındaki kelimeler (dil başına 7.000 kelime) için T
 - **İspanyolca (ES):** 7.000 kelimeden **6.617'sinin cümlesi var (%94,5)**; **6.172'sinin Türkçe çevirisi var (%88,2)**.
 - *Sonuç:* Sözlük paketlerinin 3.000 kelimeden 10.000 kelimeye genişletilmesi durumunda kelimelerin %84–%90'ı için kaliteli Türkçe çevirili örnek cümle mevcuttur.
 - *Ayrıntılı döküm:* [`sentence-coverage.md`](./sentence-coverage.md) dosyasındadır.
+
+---
+
+## 6. Bozuk Ses Bağlantıları (`dead-audio.json`)
+
+Sözlük paketlerindeki (`src/data/wordpack/{en,fr,es}.json`) ses URL'lerine (`a` alanı) Wikimedia sunucularını yormamak amacıyla istekler arasında 350 ms beklenerek HEAD istekleri atılmıştır:
+
+- **Tespit Edilen Bozuk Bağlantılar:**
+  - **Fransızca (FR):** `plus` -> `https://upload.wikimedia.org/wikipedia/commons/transcoded/f/f5/Fr-plus.ogg/Fr-plus.ogg.mp3` (404 Not Found). Wikimedia Commons transcode kuyruğunda MP3 türevi eksiktir; orijinal OGG (`Fr-plus.ogg`) mevcuttur.
+  - **İngilizce (EN):** Taranan yüksek sıklıklı transcoded MP3 adreslerinde 404 bulunmamıştır.
+  - **İspanyolca (ES):** Paketteki 6 transcoded adresin tamamı 200 dönmektedir; kalan 7.873 ses doğrudan Lingua Libre WAV dosyası olup Commons ana depolamasında yer almaktadır.
+- **Teknik Not (Rate Limiting):** Wikimedia Commons CDN'i (upload.wikimedia.org), aynı IP adresinden 300 ms aralıkla dahi gelse birkaç yüz istekten sonra geçici olarak `429 Too Many Requests` döndürmektedir. Bu nedenle tüm paketlerin periyodik kontrolü için istek aralıklarının 500–1000 ms tutulması önerilir.
+- *Çıktı:* [`dead-audio.json`](./dead-audio.json) dosyasında dile göre listelenmiştir.
