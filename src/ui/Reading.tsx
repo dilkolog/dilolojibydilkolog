@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
@@ -29,9 +29,11 @@ import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
+import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, GlobeIcon, MessageIcon, PlayIcon, PlusIcon } from './icons'
 import { translate, translationReady } from '../data/translate'
 import { SentenceTranslation } from './TranslateButton'
+import { ParagraphTranslation } from './ReaderTranslation'
+import { useTranslationReady } from './useTranslationReady'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
 const ZONE: Record<CoverageZone, { title: string; text: string }> = {
@@ -145,6 +147,9 @@ export function ReadingScreen({
   const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
   const [listenFirst, setListenFirst] = useState(false)
+  // The text's Turkish under each paragraph, on request (per text: each new text starts without it).
+  const [showTurkish, setShowTurkish] = useState(false)
+  const canTranslate = useTranslationReady()
   // The coverage card opens to its explanations on request.
   const [covOpen, setCovOpen] = useState(false)
   // Verb tables, so a tapped conjugated form can say which verb and tense it is; word frequency to
@@ -166,6 +171,7 @@ export function ReadingScreen({
       setCurrent(open)
       // A listening episode not read yet resumes in listen-first mode.
       setListenFirst(!!open?.audio && !open.readAt)
+      setShowTurkish(false)
       setKnown(k)
       setIgnored(ig)
     })
@@ -830,6 +836,11 @@ export function ReadingScreen({
         </span>
         <span className="grow" />
         <ReaderControls prefs={reader} onChange={setReader} />
+        {canTranslate && !listenFirst && (
+          <button className="chip chip-sm" aria-pressed={showTurkish} onClick={() => setShowTurkish((v) => !v)} title="Her paragrafın altında Türkçesi">
+            <GlobeIcon size={14} /> Türkçesi
+          </button>
+        )}
         <button type="button" className="chip chip-sm" onClick={() => setConfirmFinish(true)}>
           Okumayı bitir
         </button>
@@ -844,7 +855,8 @@ export function ReadingScreen({
         lang={language}
       >
         {analysis.paragraphs.map((p, i) => (
-          <p key={i}>
+          <Fragment key={i}>
+          <p>
             {p.map((s, j) => (
               <span
                 key={j}
@@ -886,6 +898,8 @@ export function ReadingScreen({
               </span>
             ))}
           </p>
+          {showTurkish && !listenFirst && <ParagraphTranslation sentences={p.map((x) => x.text)} from={language} />}
+          </Fragment>
         ))}
       </article>
 

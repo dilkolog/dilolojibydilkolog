@@ -4896,3 +4896,4 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .word-notes-textarea { min-height: 5rem; }
 .word-image-placeholder { height: 12rem; background: var(--surface-2); }
 
+.reader .reader-tr { font-family: var(--sans); font-size: var(--t-sm); line-height: 1.6; color: var(--ink-soft); margin: -0.75rem 0 1.5rem; padding-left: 0.75rem; border-left: 2px solid var(--rule); }
