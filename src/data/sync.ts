@@ -1,4 +1,5 @@
 import { mergeSeen, type LabData } from '../engine/labProgress'
+import { mergeMemories } from '../engine/translationMemory'
 import { mergeBadgeLogs } from '../engine/gamification'
 import { mergeNotes } from '../engine/dictionaryNotes'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
@@ -222,6 +223,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     dictionary: { en: mergeNotes(older.dictionary?.en, newer.dictionary?.en), fr: mergeNotes(older.dictionary?.fr, newer.dictionary?.fr), es: mergeNotes(older.dictionary?.es, newer.dictionary?.es) },
     records: Object.fromEntries([...new Set([...Object.keys(older.records ?? {}), ...Object.keys(newer.records ?? {})])].map((k) => [k, Math.max(older.records?.[k] ?? 0, newer.records?.[k] ?? 0)])),
     badges: mergeBadgeLogs(older.badges, newer.badges),
+    translations: mergeMemories(older.translations, newer.translations),
     media: [],
   }
 }

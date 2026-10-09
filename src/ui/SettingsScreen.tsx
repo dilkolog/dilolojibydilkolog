@@ -669,7 +669,7 @@ export function SettingsScreen({
 
           <Pane {...pane('s-tools')}>
             <AiSettings settings={settings} onChange={onChange} />
-            <TranslationSettings />
+            <TranslationSettings onFilled={onDataChanged} />
             {clipboardOk && (
               <section className="card stack">
                 <h2 className="section-title">Panodan kelime ekle</h2>

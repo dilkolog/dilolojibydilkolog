@@ -998,7 +998,7 @@ export default function App() {
                 }}
               />
             ) : screen.name === 'translate' ? (
-              <TranslateScreen key={data.language} language={data.language} />
+              <TranslateScreen key={data.language} language={data.language} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
             ) : screen.name === 'mistakes' ? (
               <MistakesScreen
                 mistakes={data.mistakes}

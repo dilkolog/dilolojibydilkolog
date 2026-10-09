@@ -58,6 +58,12 @@ describe('sync', () => {
     expect(mergeBackups(m, phone).events.length).toBe(2)
   })
 
+  it('the translation memories of two devices merge', () => {
+    const laptop = base('2026-10-02T10:00:00Z', { translations: [{ text: 'Oui.', translation: 'Evet.', from: 'fr', to: 'tr', at: '2026-10-01T00:00:00Z' }] })
+    const phone = base('2026-10-02T12:00:00Z', { translations: [{ text: 'Non.', translation: 'Hayır.', from: 'fr', to: 'tr', at: '2026-10-02T00:00:00Z' }] })
+    expect(mergeBackups(laptop, phone).translations!.map((t) => t.text)).toEqual(['Non.', 'Oui.'])
+  })
+
   it('badges earned on either device are kept, at the earlier date', () => {
     const laptop = base('2026-10-02T10:00:00Z', { badges: { 'first-word': '2026-09-20T08:00:00Z', 'streak-3': '' } })
     const phone = base('2026-10-02T12:00:00Z', { badges: { 'first-word': '2026-09-25T08:00:00Z', 'words-50': '2026-10-01T08:00:00Z' } })

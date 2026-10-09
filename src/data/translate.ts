@@ -1,10 +1,12 @@
+import { recall, remember, type TranslationEntry } from '../engine/translationMemory'
 import type { TargetLanguage } from '../engine/types'
+import { db } from './instance'
 
 /**
  * Sentence translation through the app's server (DeepL with the owner's key; see api/translate.ts).
  * Nothing to set up on the device: when the server has no key, `translationReady` says no and
- * the buttons stay hidden. Translations are kept for the session, and the server's CDN keeps them
- * for good, so a sentence is paid for once.
+ * the buttons stay hidden. Every translation is kept in the device's translation memory (backed
+ * up and synced): asked again, the same text is answered from there, offline too.
  */
 export type TranslateLang = TargetLanguage | 'tr'
 
@@ -45,6 +47,16 @@ export async function translationUsage(): Promise<{ count: number; limit: number
   }
 }
 
+/** Writes one at a time: many translations at once (filling a list) must not overwrite each other. */
+let writing: Promise<unknown> = Promise.resolve()
+function keep(entry: TranslationEntry) {
+  writing = writing.then(async () => db.saveTranslations(remember(await db.getTranslations(), entry))).catch(() => undefined)
+  return writing
+}
+
+/** The memory, newest first (the translation screen's "recent"). */
+export const recentTranslations = () => db.getTranslations()
+
 /** One sentence into Turkish (or `to`), from the learner's language when known. */
 export function translate(text: string, from: TranslateLang | undefined, to: TranslateLang = 'tr'): Promise<string> {
   const clean = text.replace(/\*/g, '').trim()
@@ -54,15 +66,24 @@ export function translate(text: string, from: TranslateLang | undefined, to: Tra
   let p = cache.get(key)
   if (!p) {
     const q = new URLSearchParams({ text: clean, to, ...(from ? { from } : {}) })
-    p = fetch(`/api/translate?${q}`)
-      .catch(() => {
-        throw new TranslateError('Çeviri için internet gerekiyor.')
-      })
-      .then(async (r) => {
-        const body = (await r.json().catch(() => ({}))) as { translation?: string; error?: string }
-        if (!r.ok || !body.translation) throw new TranslateError(MESSAGES[body.error ?? ''] ?? 'Çeviri şu an alınamadı.')
-        return body.translation
-      })
+    p = db
+      .getTranslations()
+      .catch(() => [] as TranslationEntry[])
+      .then((memory) => recall(memory, clean, from, to)?.translation)
+      .then(
+        (known) =>
+          known ??
+          fetch(`/api/translate?${q}`)
+            .catch(() => {
+              throw new TranslateError('Çeviri için internet gerekiyor.')
+            })
+            .then(async (r) => {
+              const body = (await r.json().catch(() => ({}))) as { translation?: string; error?: string }
+              if (!r.ok || !body.translation) throw new TranslateError(MESSAGES[body.error ?? ''] ?? 'Çeviri şu an alınamadı.')
+              void keep({ text: clean, translation: body.translation, ...(from ? { from } : {}), to, at: new Date().toISOString() })
+              return body.translation
+            }),
+      )
     // A failure is not remembered: the next tap tries again.
     p.catch(() => cache.delete(key))
     cache.set(key, p)

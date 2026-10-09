@@ -19,7 +19,7 @@ export function useTranslationReady(): boolean {
  * "Çevir": fills a Turkish translation field from the sentence (DeepL through the app's server).
  * Hidden when translation is off or there is nothing to translate.
  */
-export function TranslateButton({ text, from, onTranslated }: { text: string; from: TranslateLang; onTranslated: (translation: string) => void }) {
+export function TranslateButton({ text, from, onTranslated, label = 'Çevir' }: { text: string; from: TranslateLang; onTranslated: (translation: string) => void; label?: string }) {
   const ready = useTranslationReady()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -42,7 +42,7 @@ export function TranslateButton({ text, from, onTranslated }: { text: string; fr
           }
         }}
       >
-        <GlobeIcon size={14} className="inline-icon" /> {busy ? 'Çevriliyor…' : 'Çevir'}
+        <GlobeIcon size={14} className="inline-icon" /> {busy ? 'Çevriliyor…' : label}
       </button>
       {error && (
         <span className="small error" role="status">
@@ -51,4 +51,19 @@ export function TranslateButton({ text, from, onTranslated }: { text: string; fr
       )}
     </span>
   )
+}
+
+/**
+ * A sentence's Turkish on request, right under it (reading: the sentence of the word looked up).
+ * One tap; the answer comes from the translation memory when the sentence was translated before.
+ */
+export function SentenceTranslation({ sentence, from }: { sentence: string; from: TranslateLang }) {
+  const [shown, setShown] = useState('')
+  if (shown)
+    return (
+      <p className="small muted sentence-tr" lang="tr">
+        {shown}
+      </p>
+    )
+  return <TranslateButton text={sentence} from={from} onTranslated={setShown} label="Cümlenin Türkçesi" />
 }
