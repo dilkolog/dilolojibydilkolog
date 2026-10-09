@@ -183,6 +183,60 @@ The mice scrambled into a dark hole behind the baseboard, trembling with fear. W
 
 Better beans in freedom than cake in fear.`,
   },
+  {
+    id: 'classic-en-crow-pitcher',
+    language: 'en',
+    title: 'The Crow and the Pitcher',
+    author: 'Aesop',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Susuzluktan ölmek üzere olan karganın taşlar atarak testideki suyu yükseltmesi.',
+    text: `A Crow, half-dead with thirst, came upon a Pitcher which had once been full of water. But when the Crow put his beak into the mouth of the Pitcher, he found that only very little water was left in it, and that he could not reach far enough down to get at it. He tried and he tried, but at last had to give up in despair.
+
+Then a thought came to him. He took a pebble and dropped it into the Pitcher. Then he took another pebble and dropped it into the Pitcher. Then he took another, and another, and another.
+
+At last, at last, the water rose to the brim, and the Crow was able to quench his thirst.
+
+Little by little does the trick.`,
+  },
+  {
+    id: 'classic-en-fox-grapes',
+    language: 'en',
+    title: 'The Fox and the Grapes',
+    author: 'Aesop',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Asılı duran üzümlere ulaşamayınca üzümlerin koruk olduğunu söyleyen tilki.',
+    text: `A Fox one day spied a beautiful bunch of ripe grapes hanging from a vine trained along the branches of a tree. The grapes seemed ready to burst with juice, and the Fox's mouth watered as he gazed longingly at them.
+
+The bunch hung from a high branch, and the Fox had to jump for it. The first time he jumped he missed it by a long way. So he walked off a short distance and took a running leap at it, only to fall short once more. Again and again he tried, but in vain.
+
+Now he sat down and looked at the grapes in disgust.
+
+"What a fool I am," he said. "Here I am wearing myself out to get a bunch of sour grapes that are not worth gaping for."
+
+And off he walked very proudly with his head held high.
+
+It is easy to despise what you cannot get.`,
+  },
+  {
+    id: 'classic-en-star-talers',
+    language: 'en',
+    title: 'The Star Money',
+    author: 'Brothers Grimm',
+    category: 'fairy-tale',
+    level: 'A2-B1',
+    summary: 'Elindeki her şeyi yoksullara veren küçük kızın gökten yağan yıldızlarla ödüllendirilmesi.',
+    text: `There was once a little girl whose father and mother were dead, and she was so poor that she no longer had any little room to live in, or bed to sleep in, and at last nothing but the clothes on her back and a little piece of bread in her hand. She was, however, good and pious.
+
+As she went out into the field, a poor man met her and said, "Give me something to eat, I am so hungry." She gave him the whole piece of bread, and said, "May God bless it to you," and went on.
+
+Then came a child who wept and said, "My head is so cold, give me something to cover it." So she took off her hood and gave it to him. And when she had walked a little farther, she met another child who had no jacket and was freezing, so she gave him her jacket.
+
+At last she arrived in a forest, and it was already dark, and there came yet another child who asked for a little shirt. The good girl thought to herself, "It is a dark night and no one sees you, you can very well give your shirt away," and she took it off and gave that also away.
+
+As she stood there and had not one thing left, suddenly some stars fell from the sky, and they were hard round pieces of silver money. And though she had just given her shirt away, she now had on a new one of the finest linen. Then she gathered together the money into it, and was rich all the days of her life.`,
+  },
 
   // --- FRENCH ---
   {
@@ -409,6 +463,82 @@ Qu'une maille rongée emporta tout l'ouvrage.
 Patience et longueur de temps
 Font plus que force ni que rage.`,
   },
+  {
+    id: 'classic-fr-renard-raisins',
+    language: 'fr',
+    title: 'Le Renard et les Raisins',
+    author: 'Jean de La Fontaine',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Erişemediği olgun üzümlere bakıp ekşi olduklarını iddia eden aç tilki.',
+    text: `Certain Renard gascon, d'autres disent normand,
+Mourant presque de faim, vit au haut d'une treille
+Des raisins mûrs apparemment,
+Et couverts d'une peau vermeille.
+Le galant en eût fait volontiers un repas ;
+Mais comme il n'y pouvait atteindre :
+« Ils sont trop verts, dit-il, et bons pour des goujats. »
+
+Fit-il pas mieux que de se plaindre ?`,
+  },
+  {
+    id: 'classic-fr-chene-roseau',
+    language: 'fr',
+    title: 'Le Chêne et le Roseau',
+    author: 'Jean de La Fontaine',
+    category: 'fable',
+    level: 'A2-B1',
+    summary: 'Rüzgâr karşısında kırılmayıp eğilen kamış ile gücüne güvenip kökünden sökülen meşe.',
+    text: `Le Chêne un jour dit au Roseau :
+« Vous avez bien sujet d'accuser la nature ;
+Un roitelet pour vous est un pesant fardeau ;
+Le moindre vent qui d'aventure
+Fait rider la face de l'eau
+Vous oblige à baisser la tête.
+Cependant que mon front, au Caucase pareil,
+Non content d'arrêter les rayons du soleil,
+Brave l'effort de la tempête. »
+
+Le Roseau répondit : « Votre compassion
+Part d'un bon naturel ; mais quittez ce souci :
+Les vents me sont moins qu'à vous redoutables.
+Je plie, et ne romps pas. Vous avez jusqu'ici
+Contre leurs coups épouvantables
+Résisté sans courber le dos ;
+Mais attendons la fin. »
+
+Comme il disait ces mots,
+Du bout de l'horizon accourt avec furie
+Le plus terrible des enfants
+Que le Nord eût portés jusque-là dans ses flancs.
+L'arbre tient bon ; le roseau plie.
+Le vent redouble ses efforts,
+Et fait si bien qu'il déracine
+Celui de qui la tête au ciel était voisine,
+Et dont les pieds touchaient à l'empire des morts.`,
+  },
+  {
+    id: 'classic-fr-poule-oeufs-or',
+    language: 'fr',
+    title: "La Poule aux œufs d'or",
+    author: 'Jean de La Fontaine',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Her gün altın yumurtlayan tavuğunu daha çok zengin olmak için kesip her şeyini kaybeden adam.',
+    text: `L'Avarice perd tout en voulant tout gagner.
+Je ne veux, pour le témoigner,
+Que celui dont la Poule, à ce que dit la fable,
+Pondait tous les jours un œuf d'or.
+Il crut que dans son corps elle avait un trésor.
+Il la tua, l'ouvrit, et la trouva semblable
+À celles dont les œufs ne lui rapportaient rien,
+S'étant lui-même ôté le plus beau de son bien.
+
+Belle leçon pour les gens chiches :
+Pendant ces derniers temps, combien en a-t-on vus
+Qui du soir au matin sont pauvres devenus
+Pour vouloir trop tôt être riches ?`,
+  },
 
   // --- SPANISH ---
   {
@@ -601,6 +731,97 @@ Ciego de codicia y queriendo arrebatar el pedazo al supuesto rival, abrió la bo
 El ambicioso can se quedó sin su comida y sin la sombra que perseguía, aprendiendo una triste lección en la orilla.
 
 Quien codicia lo ajeno pierde con justicia lo propio.`,
+  },
+  {
+    id: 'classic-es-dos-conejos',
+    language: 'es',
+    title: 'Los dos conejos',
+    author: 'Tomás de Iriarte',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Kendilerini kovalayan köpeklerin cinsini tartışırken yakalanan iki tavşan.',
+    text: `Por entre unas matas,
+seguido de perros,
+no diré corría,
+volaba un conejo.
+
+De su madriguera
+salió un compañero,
+y le dijo: «Tente,
+amigo, ¿qué es esto?»
+
+«¿Qué ha de ser?», responde;
+«sin aliento llego...
+dos pícaros galgos
+me vienen siguiendo.»
+
+«Sí», replica el otro,
+«por allí los veo;
+pero no son galgos.»
+«¿Pues qué son?» «Podencos.»
+
+«¿Podencos dices?
+¡Sí, como mi abuelo!
+Galgos son, te digo,
+míralos al pelo.»
+
+«Son podencos, vaya,
+que no entiendes de eso.»
+«Son galgos, te digo.»
+«Digo que podencos.»
+
+En esta disputa
+llegando los perros,
+pillan descuidados
+a entrambos conejos.
+
+Viendo que sus dudas
+no tuvieron seso,
+dejar las cuestiones
+deberían primero.`,
+  },
+  {
+    id: 'classic-es-la-mona',
+    language: 'es',
+    title: 'La mona',
+    author: 'Tomás de Iriarte',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'İpek elbise giyse de maymunun maymun kalacağını anlatan klasik fabl.',
+    text: `Subió una mona a un nogal,
+y cogiendo una nuez verde,
+en la cáscara la muerde;
+con que le supo muy mal.
+Arrojola el animal,
+y se quedó sin comer.
+
+Así suele suceder
+a quien sufre con desdén
+un trabajo que algún bien
+le pudiera prometer.
+
+Aunque la mona se vista de seda,
+mona se queda.
+El hábito no hace al monje,
+ni el disfraz oculta lo que uno es.`,
+  },
+  {
+    id: 'classic-es-zorro-ciguena',
+    language: 'es',
+    title: 'El zorro y la cigüeña',
+    author: 'Félix María de Samaniego',
+    category: 'fable',
+    level: 'A1-A2',
+    summary: 'Leyleğe düz tabakta çorba ikram eden kurnaz tilkinin, uzun boyunlu sürahide sunulan yemekle dersini alması.',
+    text: `Convidó el zorro a la cigüeña a comer un día, y para burlarse de ella, le sirvió un caldo claro en un plato llano y poco profundo. Por más que la cigüeña picaba con su largo pico, no pudo probar ni una sola gota, mientras que el zorro lamió todo el plato en un instante, riéndose de su huésped.
+
+La cigüeña disimuló su enfado y, a los pocos días, invitó al zorro a cenar a su casa. Muy contento acudió el zorro, pues tenía buen apetito.
+
+Cuando llegó la hora de la comida, la cigüeña trajo la carne picada y sabrosa, pero servida dentro de una vasija de cuello largo y estrecho. La cigüeña metía fácilmente su pico y comía a su gusto, mientras que el zorro apenas podía lamer el borde exterior del jarro sin alcanzar bocado alguno.
+
+Avergonzado y con la barriga vacía, tuvo que marcharse el pícaro zorro, reconociendo la justicia del castigo.
+
+Quien engaña a su semejante debe esperar que le paguen con la misma moneda.`,
   },
 ]
 
