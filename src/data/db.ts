@@ -1,4 +1,5 @@
 import Dexie, { type Table } from 'dexie'
+import type { Cue } from '../engine/subtitles'
 import type { TranslationEntry } from '../engine/translationMemory'
 import type { BadgeLog } from '../engine/gamification'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
@@ -38,6 +39,8 @@ export interface ReadingText {
   history: { at: string; coverage: number }[]
   /** Audio of a listening episode: the text is its transcript. */
   audio?: string
+  /** The transcript's timed cues, when it had them: the audio is followed sentence by sentence. */
+  cues?: Cue[]
   /** Where the text came from (a YouTube video, a page), shown as a link. */
   source?: string
   /** A chapter of an imported book (EPUB): chapters share the book id and keep their order. */

@@ -63,3 +63,32 @@ export function youtubeId(input: string): string | null {
 
 /** True when the text looks like a subtitle file rather than prose. */
 export const looksLikeSubtitles = (raw: string) => /\d{2}:\d{2}:\d{2}[,.]\d{3}\s*-->/.test(raw)
+
+/** A subtitle line with when it starts, in seconds. */
+export interface Cue {
+  start: number
+  text: string
+}
+
+const toSeconds = (t: string) => {
+  const parts = t.replace(',', '.').split(':').map(Number)
+  return parts.reduce((s, p) => s * 60 + p, 0)
+}
+
+/** SRT or WebVTT cues with their start times (for following the audio sentence by sentence). */
+export function parseTimedCues(raw: string): Cue[] {
+  const out: Cue[] = []
+  for (const block of raw.replace(/^﻿/, '').replace(/\r/g, '').split(/\n\s*\n/)) {
+    const lines = block.split('\n').map((l) => l.trim())
+    const timing = lines.find((l) => l.includes('-->'))
+    const m = timing?.match(/^((?:\d+:)?\d{1,2}:\d{2}[.,]\d{1,3})\s*-->/)
+    if (!m) continue
+    const text = lines
+      .slice(lines.indexOf(timing!) + 1)
+      .map(cleanCue)
+      .filter(Boolean)
+      .join(' ')
+    if (text) out.push({ start: toSeconds(m[1]), text })
+  }
+  return out
+}

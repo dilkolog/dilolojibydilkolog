@@ -96,8 +96,39 @@ const ROUNDS = [
  * with text, without again. Captions help understanding and word learning most in that order
  * (Winke, Gass & Sydorenko 2010; Montero Perez et al. 2014), and repeated listening adds up.
  */
-export function AudioPanel({ src, hidden, onHidden }: { src: string; hidden: boolean; onHidden: (hidden: boolean) => void }) {
+export function AudioPanel({
+  src,
+  hidden,
+  onHidden,
+  onTime,
+  onDuration,
+  seekRef,
+  follow,
+}: {
+  src: string
+  hidden: boolean
+  onHidden: (hidden: boolean) => void
+  /** The playing time, a few times a second (the reader lights the sentence heard). */
+  onTime?: (seconds: number) => void
+  onDuration?: (seconds: number) => void
+  /** Set to a function that jumps to a time and plays (a sentence's start). */
+  seekRef?: { current: ((seconds: number) => void) | null }
+  /** How the text follows the audio: exactly (timed subtitles) or approximately; none when it can't. */
+  follow?: 'exact' | 'approx' | null
+}) {
   const audio = useRef<HTMLAudioElement>(null)
+  useEffect(() => {
+    if (!seekRef) return
+    seekRef.current = (seconds: number) => {
+      const a = audio.current
+      if (!a) return
+      a.currentTime = Math.max(0, seconds - 0.15)
+      void a.play().catch(() => {})
+    }
+    return () => {
+      seekRef.current = null
+    }
+  }, [seekRef])
   const [rate, setRate] = useState(1)
   const [round, setRound] = useState<number | null>(hidden ? 0 : null)
   useEffect(() => {
@@ -137,7 +168,21 @@ export function AudioPanel({ src, hidden, onHidden }: { src: string; hidden: boo
           </div>
         </div>
       )}
-      <audio ref={audio} src={src} controls preload="none" className="audio-player" />
+      <audio
+        ref={audio}
+        src={src}
+        controls
+        preload="metadata"
+        className="audio-player"
+        onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime)}
+        onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
+      />
+      {follow && (
+        <p className="small muted">
+          {follow === 'exact' ? 'Dinlerken duyduğun cümle metinde aydınlanır.' : 'Dinlerken duyduğun cümle metinde aydınlanır (yaklaşık: bu kaynağın zaman bilgisi yok).'} Bir
+          kelimeye dokunup “Bu cümleden dinle” ile oraya atlayabilirsin.
+        </p>
+      )}
       <div className="row">
         <div className="choice-row" role="group" aria-label="Hız">
           {RATES.map((r) => (

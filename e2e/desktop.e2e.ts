@@ -746,3 +746,46 @@ test('translation memory: a reading sentence translated on request, the recent o
   await page.getByRole('button', { name: /Kelimelerime ekle/ }).click()
   await expect(page.locator('#w-word, input[name="word"]').first()).toHaveValue(/maison/)
 })
+
+test('listening: the sentence heard is lit, and a sentence can be played from its start', async ({ page }) => {
+  await startWithSamples(page)
+  // A short listening text with timed cues and a few seconds of silence as its audio.
+  await page.evaluate(async () => {
+    const rate = 8000
+    const seconds = 6
+    const samples = rate * seconds
+    const buf = new ArrayBuffer(44 + samples)
+    const v = new DataView(buf)
+    const str = (o: number, s: string) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)))
+    str(0, 'RIFF'); v.setUint32(4, 36 + samples, true); str(8, 'WAVE'); str(12, 'fmt ')
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true)
+    str(36, 'data'); v.setUint32(40, samples, true)
+    for (let i = 0; i < samples; i++) v.setUint8(44 + i, 128)
+    const audio = await new Promise<string>((done) => { const r = new FileReader(); r.onload = () => done(r.result as string); r.readAsDataURL(new Blob([buf], { type: 'audio/wav' })) })
+    const text = { id: 'listen-test', language: 'fr', title: 'Écoute', text: 'Le chat dort. Il fait beau. Nous partons demain.', audio, addedAt: new Date().toISOString(), history: [], cues: [{ start: 0, text: 'Le chat dort.' }, { start: 2, text: 'Il fait beau.' }, { start: 4, text: 'Nous partons demain.' }] }
+    await new Promise<void>((done) => {
+      const req = indexedDB.open('kelime-koc')
+      req.onsuccess = () => {
+        const tx = req.result.transaction('meta', 'readwrite')
+        tx.objectStore('meta').put({ key: 'library', value: [text] })
+        tx.oncomplete = () => done()
+      }
+    })
+  })
+  await openScreen(page, 'Okuma')
+  await page.getByText('Écoute').first().click()
+  await expect(page.locator('audio.audio-player')).toHaveCount(1)
+  await expect(page.getByText('Dinlerken duyduğun cümle metinde aydınlanır.')).toBeVisible()
+  const heard = page.locator('.reader .rs.is-heard')
+  await page.locator('audio.audio-player').evaluate((a: HTMLAudioElement) => {
+    a.currentTime = 2.5
+    a.dispatchEvent(new Event('timeupdate'))
+  })
+  await expect(heard).toHaveText('Il fait beau.')
+  // From the word panel: play from the third sentence's start.
+  // A text with audio starts hidden (listen first); leaving the rounds shows it.
+  await page.getByRole('button', { name: 'Turları bırak' }).click()
+  await page.locator('.rw', { hasText: /^demain$/ }).click()
+  await page.getByRole('button', { name: /Bu cümleden dinle/ }).click()
+  await expect.poll(() => page.locator('audio.audio-player').evaluate((a: HTMLAudioElement) => a.currentTime)).toBeGreaterThan(3.7)
+})

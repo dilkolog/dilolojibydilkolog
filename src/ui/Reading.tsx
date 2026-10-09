@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
 import { ClassicsPicker } from './ClassicsPicker'
@@ -171,6 +172,27 @@ export function ReadingScreen({
   }, [db, language])
 
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
+  // Listening: the sentence being heard, lit in the text; a sentence's start, to jump to.
+  const [audioDuration, setAudioDuration] = useState<number>()
+  const [heard, setHeard] = useState(-1)
+  const seekRef = useRef<((seconds: number) => void) | null>(null)
+  const sentencesFlat = useMemo(() => (analysis ? analysis.paragraphs.flatMap((p) => p.map((s) => s.text)) : []), [analysis])
+  const paragraphStart = useMemo(() => (analysis ? analysis.paragraphs.map((_, i) => analysis.paragraphs.slice(0, i).reduce((n, p) => n + p.length, 0)) : []), [analysis])
+  const times = useMemo(() => (current?.audio ? sentenceTimes(sentencesFlat, current.cues, audioDuration) : null), [current, sentencesFlat, audioDuration])
+  const timesRef = useRef(times)
+  timesRef.current = times
+  const followTime = useCallback((t: number) => {
+    const i = timesRef.current && t > 0 ? sentenceAt(timesRef.current, t) : -1
+    setHeard((h) => (h === i ? h : i))
+  }, [])
+  // The heard sentence kept in view while listening (only when it has left the screen).
+  useEffect(() => {
+    if (heard < 0) return
+    const el = document.querySelector<HTMLElement>(`[data-s="${heard}"]`)
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    if (r.top < 80 || r.bottom > innerHeight - 40) el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  }, [heard])
   /** List words shaded by how far along they are (LingQ's 1–4): new words strongest, nearly learned faint. */
   const shade = useMemo(() => {
     const byEntry = new Map(states.map((s) => [s.entryId, growthStage(s)]))
@@ -621,6 +643,7 @@ export function ReadingScreen({
               title: episode.title,
               text: episode.text,
               audio: episode.audio,
+              ...(episode.cues?.length ? { cues: episode.cues } : {}),
               addedAt: new Date().toISOString(),
               history: [],
             }
@@ -775,7 +798,18 @@ export function ReadingScreen({
         )}
       </section>
 
-      {current?.audio && <AudioPanel key={`audio-${current.id}`} src={current.audio} hidden={listenFirst} onHidden={setListenFirst} />}
+      {current?.audio && (
+        <AudioPanel
+          key={`audio-${current.id}`}
+          src={current.audio}
+          hidden={listenFirst}
+          onHidden={setListenFirst}
+          onTime={followTime}
+          onDuration={setAudioDuration}
+          seekRef={seekRef}
+          follow={current.cues?.length ? 'exact' : 'approx'}
+        />
+      )}
       <PrequestionsCard key={`pq-${current?.id}`} text={text} language={language} finished={!!message} />
       {!message && !listenFirst && (
         <KeyWordsCard
@@ -812,7 +846,18 @@ export function ReadingScreen({
         {analysis.paragraphs.map((p, i) => (
           <p key={i}>
             {p.map((s, j) => (
-              <span key={j} className={selected && (selected.at ? selected.at === `${i}.${j}` : selected.sentence === s.text) ? 'rs is-lit' : undefined}>
+              <span
+                key={j}
+                data-s={paragraphStart[i] + j}
+                className={
+                  [
+                    selected && (selected.at ? selected.at === `${i}.${j}` : selected.sentence === s.text) ? 'rs is-lit' : '',
+                    heard === paragraphStart[i] + j ? 'rs is-heard' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ') || undefined
+                }
+              >
                 {s.tokens.map((t, k) =>
                   t.key ? (
                     <span
@@ -922,6 +967,18 @@ export function ReadingScreen({
             </button>
           </p>
           <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />
+          {times && selected.at && (
+            <button
+              type="button"
+              className="link small"
+              onClick={() => {
+                const [pi, si] = selected.at!.split('.').map(Number)
+                seekRef.current?.(times[paragraphStart[pi] + si] ?? 0)
+              }}
+            >
+              <PlayIcon size={14} className="inline-icon" /> Bu cümleden dinle
+            </button>
+          )}
           <p className="small muted kbd">
             <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
           </p>

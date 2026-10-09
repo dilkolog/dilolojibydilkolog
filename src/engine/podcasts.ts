@@ -1,3 +1,4 @@
+import type { Cue } from './subtitles'
 import { decodeEntities, extractArticle } from './news.js'
 import type { TargetLanguage } from './types.js'
 
@@ -84,6 +85,8 @@ export interface Episode {
   link: string
   audio?: string
   text: string
+  /** Timed subtitles, when the transcript had them (exact sentence following). */
+  cues?: Cue[]
 }
 
 const tag = (item: string, name: string) => item.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`))?.[1]

@@ -1,6 +1,6 @@
 import { allowedArticle } from '../src/engine/news.js'
 import { inlineTranscript, parsePodcastFeed, PODCASTS, rfiTranscript, voaEpisode, type Episode } from '../src/engine/podcasts.js'
-import { parseSubtitles } from '../src/engine/subtitles.js'
+import { parseSubtitles, parseTimedCues } from '../src/engine/subtitles.js'
 
 /** Episodes per request: a week or two of a daily programme. */
 const LIMIT = 8
@@ -30,8 +30,9 @@ export async function GET(request: Request): Promise<Response> {
           if (!allowedArticle(transcriptUrl, source.hosts)) return { ...rest, text: '' }
           try {
             const raw = await fetchText(transcriptUrl, 7000)
-            const text = transcriptUrl.endsWith('.vtt') || transcriptUrl.endsWith('.srt') || raw.startsWith('WEBVTT') ? parseSubtitles(raw) : raw
-            return { ...rest, text }
+            const timed = transcriptUrl.endsWith('.vtt') || transcriptUrl.endsWith('.srt') || raw.startsWith('WEBVTT')
+            // Timed subtitles also go out as cues, so the app can follow the audio sentence by sentence.
+            return timed ? { ...rest, text: parseSubtitles(raw), cues: parseTimedCues(raw) } : { ...rest, text: raw }
           } catch {
             return { ...rest, text: '' }
           }
