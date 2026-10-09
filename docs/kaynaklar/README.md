@@ -4,6 +4,21 @@ Bu dizin, Kelime Koçu'nun dinleme ve okuma kütüphanesine dahil edilebilecek a
 
 ---
 
+## ⚡️ Doğrudan Uygulamaya Eklenebilir Kaynaklar (Zamanlı Altyazılı)
+
+Aşağıdaki podcast beslemeleri, RSS akışlarında senkronize zamanlı altyazı (`<podcast:transcript>` türü WebVTT) sağladığı doğrulanmıştır. Kelime Koçu'nun dinleme ve cümle takip altyapısına (`src/engine/podcasts.ts`, `listenFollow.ts`) doğrudan bağlanabilir:
+
+1. **Spanish Language Coach · Spanish for False Beginners** (İspanyolca, A2)
+   - **RSS:** `https://rss.buzzsprout.com/2437041.rss`
+   - **Altyazı:** WebVTT (`text/vtt`)
+   - **Durum:** Doğrulandı (`verified: true`, `timedTranscript: "vtt"`). Buzzsprout üzerinden her bölüm için zaman damgalı altyazı sağlar.
+2. **Radio Ambulante** (İspanyolca, B1-B2)
+   - **RSS:** `https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/b3c9b6e7-72ba-45c4-aff9-b1e7012d213b/092b66a8-4329-4183-bb12-b1e7012d216f/podcast.rss`
+   - **Altyazı:** WebVTT (`text/vtt`)
+   - **Durum:** Doğrulandı (`verified: true`, `timedTranscript: "vtt"`). Omny Studio üzerinden VTT altyazı sağlar.
+
+---
+
 ## 1. Kolay Sesli Hikâyeler (`storybooks.json`)
 
 **Toplam Öğe Sayısı:** 90 hikâye (45 Fransızca, 45 İspanyolca)

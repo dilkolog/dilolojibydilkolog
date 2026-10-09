@@ -8,7 +8,10 @@
     "hasTimedSubtitles": false,
     "level": "A1-A2",
     "license": "Telif hakkı saklıdır (Langoly)",
-    "notes": "Başlangıç seviyesi için yavaş ve anlaşılır İspanyolca. Her bölümün tam metin transkripti web sitesinde ücretsiz sunulmaktadır."
+    "notes": "Başlangıç seviyesi için yavaş ve anlaşılır İspanyolca. Her bölümün tam metin transkripti web sitesinde ücretsiz sunulmaktadır.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Tue, 18 Mar 2025 10:24:46 GMT"
   },
   {
     "title": "Español con Juan",
@@ -19,7 +22,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Juan Fernández)",
-    "notes": "Doğal bağlamda hikaye anlatımı ve deyimler. Transkriptler web sitesinde blog gönderisi olarak ücretsiz erişilebilirdir."
+    "notes": "Doğal bağlamda hikaye anlatımı ve deyimler. Transkriptler web sitesinde blog gönderisi olarak ücretsiz erişilebilirdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Mon, 05 Oct 2026 08:50:19 +0000"
   },
   {
     "title": "Spanish Language Coach · Spanish for False Beginners",
@@ -30,7 +36,10 @@
     "hasTimedSubtitles": true,
     "level": "A2",
     "license": "Telif hakkı saklıdır (César / Spanish Language Coach)",
-    "notes": "Buzzsprout üzerinde barındırılmakta olup RSS feed içinde doğrudan <podcast:transcript> etiketiyle zamanlı VTT ve SRT altyazı bağlantıları sağlar. Web sitesinde de transkript ücretsizdir."
+    "notes": "Buzzsprout üzerinde barındırılmakta olup RSS feed içinde doğrudan <podcast:transcript> etiketiyle zamanlı VTT ve SRT altyazı bağlantıları sağlar. Web sitesinde de transkript ücretsizdir.",
+    "verified": true,
+    "timedTranscript": "vtt",
+    "lastEpisodeDate": "Thu, 01 Oct 2026 13:00:00 +0200"
   },
   {
     "title": "Unlimited Spanish with Oscar",
@@ -41,7 +50,10 @@
     "hasTimedSubtitles": false,
     "level": "A2-B1",
     "license": "Telif hakkı saklıdır (Òscar Pellus)",
-    "notes": "Soru-cevap tekniği ve hikayeler. Her bölümün transkripti web sayfasında ve indirilebilir PDF olarak tamamen ücretsizdir."
+    "notes": "Soru-cevap tekniği ve hikayeler. Her bölümün transkripti web sayfasında ve indirilebilir PDF olarak tamamen ücretsizdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Thu, 08 Oct 2026 08:02:00 +0000"
   },
   {
     "title": "Radio Ambulante",
@@ -52,7 +64,10 @@
     "hasTimedSubtitles": false,
     "level": "B2-C1",
     "license": "Telif hakkı saklıdır (Radio Ambulante Estudios / NPR)",
-    "notes": "Latin Amerika hikaye anlatımı ve araştırmacı gazetecilik. Tüm bölümlerin eksiksiz İspanyolca transkripti web sitesinde ücretsiz yayınlanır."
+    "notes": "Latin Amerika hikaye anlatımı ve araştırmacı gazetecilik. Tüm bölümlerin eksiksiz İspanyolca transkripti web sitesinde ücretsiz yayınlanır.",
+    "verified": true,
+    "timedTranscript": "vtt",
+    "lastEpisodeDate": "Thu, 10 Sep 2026 04:15:00 +0000"
   },
   {
     "title": "Duolingo Spanish Podcast",
@@ -63,7 +78,10 @@
     "hasTimedSubtitles": false,
     "level": "A2-B1",
     "license": "Telif hakkı saklıdır (Duolingo)",
-    "notes": "Gerçek hayat hikayeleri, ara İngilizce anlatımla desteklenmiş kolay İspanyolca. Her bölümün iki dilli tam transkripti web sitesinde ücretsizdir."
+    "notes": "Gerçek hayat hikayeleri, ara İngilizce anlatımla desteklenmiş kolay İspanyolca. Her bölümün iki dilli tam transkripti web sitesinde ücretsizdir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Thu, 29 Feb 2024 01:00:00 GMT"
   },
   {
     "title": "LanguaTalk Spanish",
@@ -74,7 +92,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (LanguaTalk)",
-    "notes": "Doğal sohbetler ve kültürel konular. Web sitesinde etkileşimli transkript ücretsiz sunulmaktadır."
+    "notes": "Doğal sohbetler ve kültürel konular. Web sitesinde etkileşimli transkript ücretsiz sunulmaktadır.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Wed, 14 Jun 2023 16:29:18 GMT"
   },
   {
     "title": "Hoy Hablamos: Podcast diario para aprender español",
@@ -85,7 +106,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Hoy Hablamos)",
-    "notes": "Hafta içi her gün yeni bölüm. Ses akışı ücretsizdir, ancak tam transkriptler ücretli üyelik (suscripción) gerektirir."
+    "notes": "Hafta içi her gün yeni bölüm. Ses akışı ücretsizdir, ancak tam transkriptler ücretli üyelik (suscripción) gerektirir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Thu, 08 Oct 2026 20:22:22 +0000"
   },
   {
     "title": "Hoy Hablamos Básico",
@@ -96,7 +120,10 @@
     "hasTimedSubtitles": false,
     "level": "A1-A2",
     "license": "Telif hakkı saklıdır (Hoy Hablamos)",
-    "notes": "Temel ve başlangıç seviyesine yönelik bölümler. Ses ücretsiz, transkriptler ücretli üyelik kapsamındadır."
+    "notes": "Temel ve başlangıç seviyesine yönelik bölümler. Ses ücretsiz, transkriptler ücretli üyelik kapsamındadır.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Fri, 02 Oct 2026 15:41:37 +0000"
   },
   {
     "title": "Charlas Hispanas",
@@ -107,7 +134,10 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Charlas Hispanas)",
-    "notes": "Latin Amerika varyantları ve kültürü. Ses ücretsiz, transkript ve çalışma sayfaları ücretli üyelik gerektirir."
+    "notes": "Latin Amerika varyantları ve kültürü. Ses ücretsiz, transkript ve çalışma sayfaları ücretli üyelik gerektirir.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Fri, 09 Oct 2026 09:12:44 +0000"
   },
   {
     "title": "Notes in Spanish Intermediate",
@@ -118,6 +148,9 @@
     "hasTimedSubtitles": false,
     "level": "B1-B2",
     "license": "Telif hakkı saklıdır (Ben & Marina)",
-    "notes": "Doğal diyaloglar ve kültürel tartışmalar. Ses kaydı ücretsiz, transkriptler ve kelime kılavuzları satın alınan çalışma sayfaları olarak sunulur."
+    "notes": "Doğal diyaloglar ve kültürel tartışmalar. Ses kaydı ücretsiz, transkriptler ve kelime kılavuzları satın alınan çalışma sayfaları olarak sunulur.",
+    "verified": true,
+    "timedTranscript": null,
+    "lastEpisodeDate": "Wed, 27 Feb 2008 08:48:00 +0000"
   }
 ]
