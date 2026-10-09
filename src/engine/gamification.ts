@@ -384,6 +384,17 @@ export function badgeSeries(all: readonly AchievementState[]): BadgeSeries[] {
   })
 }
 
+/**
+ * The badge step closest to being earned, once it is at least half way: one concrete thing to go
+ * for, shown at the end of a session (not on Today, which stays about the day's work).
+ */
+export function closestStep(all: readonly AchievementState[], atLeast = 0.5): AchievementState | undefined {
+  return badgeSeries(all)
+    .map((s) => s.next)
+    .filter((n): n is AchievementState => !!n && n.value / n.goal >= atLeast && n.value < n.goal)
+    .sort((a, b) => b.value / b.goal - a.value / a.goal || a.goal - a.value - (b.goal - b.value))[0]
+}
+
 /** Two logs together: a badge earned on either, at the earlier date (a known date over an unknown one). */
 export function mergeBadgeLogs(a: BadgeLog = {}, b: BadgeLog = {}): BadgeLog {
   const out: BadgeLog = { ...a }
