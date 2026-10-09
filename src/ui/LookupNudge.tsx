@@ -36,7 +36,7 @@ export function LookupNudge({ language, vocabulary, onAdd }: { language: TargetL
         <span>
           <strong lang={language}>{shown.word}</strong> <span className="muted">· sözlükte {shown.n} kez baktın{shown.meaning && `: ${shown.meaning}`}</span>
         </span>
-        <span className="habit-nudge-cta">Listeme ekle</span>
+        <span className="habit-nudge-cta">Kelimelerime ekle</span>
       </button>
       <button
         type="button"

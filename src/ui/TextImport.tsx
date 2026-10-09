@@ -49,7 +49,7 @@ export function TextImport({
     const examples = findExampleSentences(text, language, vocabulary)
     setRows(candidates.map((c, i) => ({ candidate: c, selected: i < PRESELECT, word: c.surface, meaning: '' })))
     setFound(examples.map((f) => ({ ...f, selected: true })))
-    setMessage(candidates.length || examples.length ? null : { ok: false, text: 'Bu metinde listende olmayan yeni kelime bulunamadı.' })
+    setMessage(candidates.length || examples.length ? null : { ok: false, text: 'Bu metinde kelimelerinde olmayan yeni kelime bulunamadı.' })
   }
 
   const addFoundExamples = async () => {
@@ -123,7 +123,7 @@ export function TextImport({
         } catch {
           entry = createEntry({ ...input, example: markWord(r.candidate.context, r.candidate.surface), exampleTranslation: '' }, language, new Date(now + i), 'import')
         }
-        if (keys.has(entry.id) || keys.has(wordId(language, entry.lemma))) return problems.push(`${entry.lemma}: zaten listende`)
+        if (keys.has(entry.id) || keys.has(wordId(language, entry.lemma))) return problems.push(`${entry.lemma}: zaten kelimelerinde`)
         keys.add(entry.id)
         entries.push(entry)
       } catch (e) {
@@ -145,7 +145,7 @@ export function TextImport({
       <summary>Metinden kelime çıkar</summary>
       <div className="stack">
         <p className="small muted">
-          Okuduğun bir makaleyi, şarkı sözünü ya da ders notunu yapıştır. Listende olmayan kelimeler, geçtikleri cümleyle
+          Okuduğun bir makaleyi, şarkı sözünü ya da ders notunu yapıştır. Kelimelerinde olmayan kelimeler, geçtikleri cümleyle
           birlikte çıkarılır. Cümle, kelimenin örnek cümlesi olur.
         </p>
         <textarea
@@ -165,7 +165,7 @@ export function TextImport({
         {found.length > 0 && (
           <div className="card stack found-examples">
             <p className="small">
-              <strong>Listendeki {found.length} kelime bu metinde de geçiyor.</strong> Cümlelerini örnek olarak eklersen kelimeleri yeni bağlamlarda
+              <strong>Kelimelerindeki {found.length} kelime bu metinde de geçiyor.</strong> Cümlelerini örnek olarak eklersen kelimeleri yeni bağlamlarda
               da görürsün.
             </p>
             <ul className="plain stack gap-2">

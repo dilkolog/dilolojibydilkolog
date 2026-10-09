@@ -114,7 +114,7 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
               {Math.min(ROUND, available)} soruluk tura başla
             </button>
           </div>
-          {available < ACCENT_MIN_WORDS && <p className="small muted">Listende en az {ACCENT_MIN_WORDS} aksanlı {LANGUAGE_NAME[language]} kelime olunca açılır.</p>}
+          {available < ACCENT_MIN_WORDS && <p className="small muted">Kelimelerinde en az {ACCENT_MIN_WORDS} aksanlı {LANGUAGE_NAME[language]} kelime olunca açılır.</p>}
         </div>
       )}
 

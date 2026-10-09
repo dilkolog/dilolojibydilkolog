@@ -25,6 +25,12 @@ Kullanıcının kelime deposuna ve listesine atıfta bulunurken farklı sahiplik
 > - Kullanıcı butonlarında birinci şahıs eki ("Kelimelerime ekle", "Listeme ekle") ile üçüncü şahıs eki ("Listeye ekle") karışıyor.
 > - Buton eylemlerinde tutarlı olarak **"Listeme ekle"** veya **"Kelimelerime ekle"** benimsenmeli.
 > - Uygulamanın kullanıcıya hitabında "Kelime listen" / "Listende" kullanımı korunabilir; ancak özel oluşturulan "Listeler" (WordLists) ile ana kelime havuzu ("Kelimelerim") arasındaki ayrım daha belirgin tutulmalıdır.
+>
+> **Uygulandı (2026-10-09):**
+> - Kişinin ana kelime havuzuna ekleyen düğmeler **"Kelimelerime ekle"** olarak standartlaştırıldı (`Dictionary`, `LookupNudge`, `KeyWords`, `Reading`).
+> - Kelimenin havuzda olduğunu belirten etiket ve metinler **"Kelimelerinde"** yapıldı (`Dictionary`, `Dictogloss`, `Reading`, `TextImport`, `Words`, `AccentGame`).
+> - Kullanıcının özel listeleri **"Listeler"** olarak korundu.
+> - Kelimeye elle konan `review` bayrağı arayüzde **"İşaretlenenler"** olarak adlandırıldı (`WordSources`, `Words`).
 
 ---
 
@@ -109,9 +115,9 @@ Oturum, tur ve görev bitişlerinde kullanılan kutlama ve durum bildirimleri:
 
 | Kavram | Mevcut Karışık Terimler | Önerilen Standart Terim |
 | :--- | :--- | :--- |
-| Kelime Koleksiyonu | Kelimeler / Kelimelerim / Listen / Kelime listen | **Kelimelerim** (Sayfa adı) / **Listeme ekle** (Düğme) |
+| Kelime Koleksiyonu | Kelimeler / Kelimelerim / Listen / Kelime listen | **Kelimelerim** (Sayfa) / **Kelimelerime ekle** (Düğme) / **Kelimelerinde** (Durum) *(Uygulandı)* |
 | Algoritmik FSRS | Tekrar / Çalış / Günün tekrarları | **Tekrar** / **Tekrara başla** |
-| Manuel İşaretli Kelimeler | Gözden geçir / Review | **İşaretlenenler** (veya **İnceleme listesi**) |
+| Manuel İşaretli Kelimeler | Gözden geçir / Review | **İşaretlenenler** *(Uygulandı)* |
 | Algoritmik Zayıf Kelimeler | Zayıf kelimeler / En zayıflar / Zorlananlar | **Zayıf kelimeler** |
 | Manuel Zor İşareti | Zor diye işaretle / Zor kelimeler | **Zor işaretle** / **Zor kelimeler** |
 | Süreç Bitişi | Bitti / Tamamlandı / Görev bitti | **Tamamlandı** (Başarı) / **Bitti** (Sona erme) |
