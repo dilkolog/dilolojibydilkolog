@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { tensesOf } from '../engine/tenses'
-import { ConjugationTable, useTenses } from './ConjugationTable'
+import { ConjugationTable } from './ConjugationTable'
+import { useTenses } from './tenseGroups'
 import { definiteArticle, displayForm } from '../engine/exercises'
 import { masteryStage, skillScores } from '../engine/mastery'
 import { openMistakes } from '../engine/mistakes'

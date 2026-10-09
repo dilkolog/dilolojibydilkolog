@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
-import { AccentBar, accentChange, insertAt } from '../AccentBar'
+import { AccentBar } from '../AccentBar'
+import { accentChange, insertAt } from '../accentCaret'
 import { ShuffleIcon, StarIcon } from '../icons'
 import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'

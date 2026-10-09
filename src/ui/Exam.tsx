@@ -7,7 +7,8 @@ import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/t
 import type { KelimeDB } from '../data/db'
 import { scheduler } from '../data/instance'
 import { SAMPLE_WORDS } from '../data/seed'
-import { AccentBar, accentChange, insertAt } from './AccentBar'
+import { AccentBar } from './AccentBar'
+import { accentChange, insertAt } from './accentCaret'
 import { LANGUAGE_NAME } from './labels'
 
 const pct = (x: number) => `%${Math.round(x * 100)}`

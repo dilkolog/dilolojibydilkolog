@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { loadPack, packRecord } from '../../data/wordpack'
 import { withSubject, type Tense } from '../../engine/tenses'
-import { useTenses } from '../ConjugationTable'
+import { useTenses } from '../tenseGroups'
 import { LANGUAGE_NAME } from '../labels'
 import { tenseName, type LabLanguage } from './labShared'
 import { otherLab, twinOf } from './tenseTwin'

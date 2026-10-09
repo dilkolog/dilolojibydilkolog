@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { TargetLanguage } from '../engine/types'
 import { diffScore, wordDiff } from '../engine/wordDiff'
-import { AccentBar, accentChange, insertAt } from './AccentBar'
+import { AccentBar } from './AccentBar'
+import { accentChange, insertAt } from './accentCaret'
 import { MessageIcon, SpeakerIcon } from './icons'
-import { saveSentence } from './Sentences'
+import { saveSentence } from './saveSentence'
 import { sfx } from './sounds'
 
 interface Result {

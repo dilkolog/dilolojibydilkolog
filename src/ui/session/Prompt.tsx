@@ -5,7 +5,8 @@ import { LANGUAGE_NAME } from '../labels'
 import { prefs } from '../prefs'
 import { canSpeak, speechPrefs } from '../speech'
 import { useMediaUrl } from '../useMedia'
-import { SpeakButton, Word, Sentence, wordFit } from './shared'
+import { SpeakButton, Word, Sentence } from './shared'
+import { wordFit } from './wordFit'
 
 /** What the question shows: the word, its meaning, a sentence with a blank, audio or a picture. */
 export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; entry: VocabularyEntry; listenRate: number }) {

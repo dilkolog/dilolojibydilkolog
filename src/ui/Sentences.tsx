@@ -2,10 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Rating } from 'ts-fsrs'
 import { db, scheduler } from '../data/instance'
 import { createRng } from '../engine/rng'
-import { dueSentences, gradeSentence, newSentence, sentenceExercise, type SentenceCard, type SentenceExercise, type SentenceVerdict } from '../engine/sentences'
+import { dueSentences, gradeSentence, sentenceExercise, type SentenceCard, type SentenceExercise, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
-import { AccentBar, accentChange, insertAt } from './AccentBar'
+import { AccentBar } from './AccentBar'
+import { accentChange, insertAt } from './accentCaret'
 import { PlusIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { sfx } from './sounds'
@@ -15,14 +16,7 @@ import { EmptyState } from './EmptyState'
 import { TranslateButton } from './TranslateButton'
 import { PageHeader } from './PageHeader'
 
-/** Saves a sentence met while reading (or sent from the browser extension). */
-export async function saveSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string }) {
-  const all = await db.getSentences()
-  const text = input.text.replace(/\s+/g, ' ').trim()
-  if (!text || all.some((s) => s.language === input.language && s.text === text)) return false
-  await db.saveSentence(newSentence({ ...input, text }, scheduler, new Date()))
-  return true
-}
+import { saveSentence } from './saveSentence'
 
 /**
  * Sentence cards: the list (add, translate, delete) and a review of the due ones. Each review
