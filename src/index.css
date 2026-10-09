@@ -4901,3 +4901,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .word-image-placeholder { height: 12rem; background: var(--surface-2); }
 
 .reader .reader-tr { font-family: var(--sans); font-size: var(--t-sm); line-height: 1.6; color: var(--ink-soft); margin: -0.75rem 0 1.5rem; padding-left: 0.75rem; border-left: 2px solid var(--rule); }
+
+/* Grammar check (LanguageTool): flagged stretches underlined by kind. */
+.gc-text { font-family: var(--serif); font-size: var(--t-md); line-height: 1.8; }
+.gc-mark { background: none; color: inherit; text-decoration: underline wavy; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+.gc-spelling { text-decoration-color: var(--bad); }
+.gc-grammar { text-decoration-color: var(--near); }
+.gc-style { text-decoration-color: var(--ink-soft); }
+.gc-list li { display: grid; gap: 0.375rem; }
