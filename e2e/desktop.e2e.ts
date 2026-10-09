@@ -667,3 +667,18 @@ test("verb lab: the day's round, one button: questions picked for you, then done
   await page.locator('.lab-main').getByRole('tab', { name: 'İlerleme' }).click()
   await expect(page.locator('.lab-main .lab-weeks')).toContainText('Bu hafta')
 })
+
+test('badges: earned with a date, shown newest first on the profile, one card per series', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await finishSession(page)
+  await openScreen(page, 'Profil')
+  const today = await page.evaluate(() => new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }))
+  const timeline = page.locator('.badge-timeline')
+  await expect(timeline).toContainText('İlk adım')
+  await expect(timeline).toContainText(today)
+  // The words series is one card: its first step earned, the rest as stars.
+  await expect(page.locator('.badge-summary-count')).toContainText(/\/ \d+ rozet · \d+\/\d+ kademe/)
+  await page.locator('.badge-case .badge-card', { hasText: 'İlk adım' }).click()
+  await expect(page.locator('.badge-steps li.is-done').first()).toContainText(today)
+})

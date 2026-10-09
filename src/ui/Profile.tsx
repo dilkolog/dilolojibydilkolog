@@ -31,6 +31,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const [tab, setTab] = useState<'badges' | 'titles' | 'share'>('badges')
   const tabsRef = useTabIndicator(tab)
   const [openBadge, setOpenBadge] = useState<BadgeSeries | null>(null)
+  const [timelineAll, setTimelineAll] = useState(false)
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
 
@@ -54,6 +55,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
     .slice(0, 3)
   const earnedSeries = series.filter((s) => s.earned > 0)
   const locked = series.filter((s) => s.earned === 0 && !nextBadges.includes(s))
+  // The badges with a date, newest first: the way here, step by step.
+  const dated = unlocked.filter((a) => a.unlockedAt).sort((a, b) => b.unlockedAt!.localeCompare(a.unlockedAt!))
 
   return (
     <div className="stack profile">
@@ -204,6 +207,29 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                       <Badge key={s.stat} s={s} onOpen={setOpenBadge} />
                     ))}
                   </div>
+                </div>
+              )}
+              {dated.length > 0 && (
+                <div className="badge-block">
+                  <h2 className="subhead">Son kazandıkların</h2>
+                  <ol className="badge-timeline">
+                    {dated.slice(0, timelineAll ? undefined : 5).map((a) => (
+                      <li key={a.id}>
+                        <Medal icon={a.icon} tier={medalTier(a)} unlocked size={36} />
+                        <span>
+                          <strong>{a.title}</strong> <span className="small muted">· {a.description}</span>
+                        </span>
+                        <time className="small muted" dateTime={a.unlockedAt}>
+                          {fmtDay(a.unlockedAt!)}
+                        </time>
+                      </li>
+                    ))}
+                  </ol>
+                  {dated.length > 5 && (
+                    <button type="button" className="link small" onClick={() => setTimelineAll((v) => !v)}>
+                      {timelineAll ? 'Daha az göster' : `Tümünü göster (${dated.length})`}
+                    </button>
+                  )}
                 </div>
               )}
               {earnedSeries.length > 0 && (
