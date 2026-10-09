@@ -346,6 +346,32 @@ export function achievements(stats: GameStats, log: BadgeLog = {}): AchievementS
   })
 }
 
+/**
+ * Badges counting the same thing (50, 100, 250… words) as one badge with steps: the shelf shows
+ * one card per series, its highest step earned, and the stars of the steps.
+ */
+export interface BadgeSeries {
+  stat: keyof GameStats
+  /** The steps, smallest goal first. */
+  steps: AchievementState[]
+  /** Steps earned. */
+  earned: number
+  /** The highest step earned. */
+  top?: AchievementState
+  /** The next step to earn; none when the series is complete. */
+  next?: AchievementState
+}
+
+export function badgeSeries(all: readonly AchievementState[]): BadgeSeries[] {
+  const by = new Map<keyof GameStats, AchievementState[]>()
+  for (const a of all) by.set(a.stat, [...(by.get(a.stat) ?? []), a])
+  return [...by.entries()].map(([stat, list]) => {
+    const steps = [...list].sort((a, b) => a.goal - b.goal)
+    const won = steps.filter((s) => s.unlocked)
+    return { stat, steps, earned: won.length, top: won.at(-1), next: steps.find((s) => !s.unlocked) }
+  })
+}
+
 /** Two logs together: a badge earned on either, at the earlier date (a known date over an unknown one). */
 export function mergeBadgeLogs(a: BadgeLog = {}, b: BadgeLog = {}): BadgeLog {
   const out: BadgeLog = { ...a }
