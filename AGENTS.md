@@ -94,5 +94,6 @@ Birleşti: #37–#148.
 - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
 
 ## Daha fazla bağlam
+- `docs/ANTIGRAVITY-GOREVLER.md`: Antigravity'nin görev listesi (turlar, dosya sahipliği, PR kontrol listesi).
 - `PLAN.md`, `docs/YAPILACAKLAR.md` (yapılanlar ve açık kalanlar, tarihli notlar), `docs/YOUTUBE.md`.
 - PR açıklamaları neyin neden yapıldığını Türkçe ve ayrıntılı anlatıyor: `gh pr view N`.
