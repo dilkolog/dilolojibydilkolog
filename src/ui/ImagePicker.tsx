@@ -172,10 +172,10 @@ export function ImagePicker({
             {results && results.length > 0 && (
               <div className="image-grid">
                 {results.map((r) => (
-                  <button key={r.thumbUrl} className="image-cell" onClick={() => chooseResult(r)} disabled={busy} title={r.credit}>
+                  <button key={r.thumbUrl} className="image-cell" onClick={() => chooseResult(r)} disabled={busy} title={r.credit} aria-label={r.title || 'Görsel seç'}>
                     <img
                       src={r.thumbUrl}
-                      alt={r.title}
+                      alt={r.title || 'Arama sonucu görseli'}
                       loading="lazy"
                       onError={(e) => ((e.currentTarget.parentElement as HTMLElement).style.display = 'none')}
                     />

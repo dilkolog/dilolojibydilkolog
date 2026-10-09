@@ -822,7 +822,7 @@ export function WordForm({
           <div className="row">
             {image ? (
               <>
-                <img className="thumb" src={image.url} alt="" />
+                <img className="thumb" src={image.url} alt="Seçilen görsel" />
                 <button type="button" className="link small" onClick={() => setPicking(true)}>
                   Görseli değiştir
                 </button>
@@ -967,7 +967,7 @@ function WordPreview({ language, word, meaning, pos, example, translation, image
     <aside className="word-preview" aria-label="Önizleme">
       <span className="word-preview-kicker small">Önizleme</span>
       <div className="word-preview-card">
-        {image && <img className="word-preview-image" src={image} alt="" />}
+        {image && <img className="word-preview-image" src={image} alt={`${w || 'Kelime'} görseli`} />}
         <div className="word-preview-head">
           <Plant stage={-1} size={34} />
           {pos && pos !== 'other' && <span className="chip-tag">{POS_NAME[pos]}</span>}
