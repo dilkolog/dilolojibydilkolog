@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { dayStage } from './DayPlant'
+import { dayStage } from './dayPlantStage'
 
 describe('the day plant', () => {
   it('is a seed until the first answer and in bloom only when the task is done', () => {

@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
-import { medalTier, type AchievementState, type MedalTier } from '../engine/gamification'
+import { medalTier, type AchievementState } from '../engine/gamification'
 import { Burst } from './Burst'
 import { Medal } from './Medal'
-
-export const TIER_NAME: Record<MedalTier, string> = { bronze: 'Bronz', silver: 'Gümüş', gold: 'Altın', special: 'Özel' }
-
-/** Smaller medals first, so a session that earned several ends on its best. */
-const RANK: Record<MedalTier, number> = { bronze: 0, silver: 1, special: 2, gold: 3 }
-export const byTier = (a: AchievementState, b: AchievementState) => RANK[medalTier(a)] - RANK[medalTier(b)]
+import { byTier, TIER_NAME } from './badgeTier'
 
 /**
  * A new badge, full screen, once: the medal is struck (it springs in, a ring leaves it in its

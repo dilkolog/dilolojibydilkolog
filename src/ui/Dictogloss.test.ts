@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { glossParagraphs, recallCheck, sentenceWith } from './Dictogloss'
+import { glossParagraphs, recallCheck, sentenceWith } from './dictoglossReconstruct'
 
 describe('dictogloss', () => {
   it('takes paragraphs of a workable length', () => {
