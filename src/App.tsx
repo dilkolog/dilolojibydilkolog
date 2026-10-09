@@ -1132,6 +1132,7 @@ export default function App() {
                 onProfile={go({ name: 'profile' })}
                 onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
                 onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
+                onSentenceGame={(game) => setScreen({ name: 'games', game })}
                 // The forms mixed into the day's session are counted there, not on a tile of their own.
                 formsDue={Math.max(0, formsDue - dayForms.length)}
                 onForms={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'review' }) : undefined}

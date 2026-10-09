@@ -232,9 +232,21 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - #92: Kategori renklerinin `--cat-*` tokenlarına alınması (açık/koyu/sakin temalar).
   - #93: Fiil laboratuvarının 3 sekme ve 4 odaklı moda sadeleştirilmesi.
 
+## 2026-10-08 ve 2026-10-09 Geliştirmeleri (#100–#124)
+- [x] **Rozetler (#103, #105, #107, #109, #110, #112):** kazanılma tarihi kalıcı (geri yüklemede yeniden kutlama yok), kademeli rozetler (75 kart → 37), öğrenmeyi ödüllendiren yeni rozetler, oturum özetinde "sıradaki rozet", Profil'de zaman tüneli, metin denetimi.
+- [x] **Çeviri (#111, #113, #114):** DeepL ile cümle çevirisi (sunucuda anahtar, her cihazda hazır), Çeviri ekranı (kısa metin, cümle cümle yan yana, kart yap, kelimelerime ekle), çeviri belleği (yedek + eşitleme), eksik çevirileri doldurma, okumada "Cümlenin Türkçesi".
+- [x] **Metin birliği (#115):** "Kelimelerime ekle", "Kelimelerinde", "İşaretlenenler".
+- [x] **Bugün sadeleşti (#116):** uzun günde yeni kelimeyi 8'e indirme önerisi, aynı anda tek öneri, ek çalışma günün tekrarları bitince.
+- [x] **Dinlerken cümle takibi (#118):** duyulan cümle aydınlanır; "Bu cümleden dinle". SRT/VTT'li beslemelerde kesin, diğerlerinde yaklaşık.
+- [x] **Okumada "Türkçesi" (#120):** her paragrafın altında Türkçesi; yalnızca ekrana gelen paragraflar, sırayla çevrilir.
+- [x] **Geri çeviri ve dikte (#122):** çeviri belleğindeki cümleler Türkçesinden yazılır ve cümle kartı olur; okunan metin cümle cümle dikte edilir (kayıttan ya da cihaz sesiyle), sonunda kaçırılan kelimeler.
+- [x] **Bugün'de cümle çalışması (#124):** günün tekrarları bitince cümle kartı tekrarı ya da geri çeviri önerilir.
+- [x] **Altyapı (Antigravity: #101, #102, #104, #106, #108, #117, #119, #121, #123):** erişilebilirlik etiketi, birim testleri, klasik metinler, belge güncellemeleri, Fast Refresh uyarıları, kararsız E2E düzeltmesi.
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
+- **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
-- **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı ekranı değişti).
+- **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122 okuma araç satırı ve Oyunlar değişti).
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.

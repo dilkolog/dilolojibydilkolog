@@ -1,7 +1,7 @@
 # Kelime Koçu — ajanlar için devir notu
 
 Bu dosya, projede çalışacak bir yapay zekâ ajanının (Claude Code'dan devralan) bilmesi gerekenleri toplar.
-Son güncelleme: 2026-10-08.
+Son güncelleme: 2026-10-09.
 
 ## Kullanıcıyla çalışma kuralları
 - **Kullanıcıya her yanıt Türkçe.** Özet, rapor, liste, soru, ara notlar dahil. İngilizce özet verme (kullanıcı birkaç kez itiraz etti).
@@ -18,8 +18,8 @@ Son güncelleme: 2026-10-08.
 - Komutlar:
   - `npm run typecheck` (= `tsc -b && tsc -p tsconfig.api.json`)
   - `npx oxlint src api e2e`
-  - `npx vitest run` (birim, ~810 test)
-  - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~2 dk)
+  - `npx vitest run` (birim, ~900 test)
+  - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~3 dk; `E2E_PORT` için aşağıya bak)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**
 - Referans görüntüleri yenilemek: `gh workflow run snapshots.yml --ref <dal>` (CI'da Linux'ta çeker, iki kez doğrular, dala commit eder).
 - CI: `.github/workflows/ci.yml` — tek iş (kontrol + birim + E2E), yalnızca PR'larda; main'e push'ta ve yalnızca `.md`/`docs/` değişince çalışmaz, taslak PR'da çalışmaz. Elle: Actions → CI → Run workflow.
@@ -32,10 +32,21 @@ Son güncelleme: 2026-10-08.
 - Örnek cümlenin `form` alanı boş (`''`) olabilir (#62): kelime cümlede geçmiyor demek. Boşluk doldurma/bağlam soruları `form`u olan cümleleri kullanır; yeni kod da `ex.form`un dolu olduğunu varsaymasın.
 - Fiil laboratuvarı verisi: `LabData` (`src/engine/labProgress.ts`): `records['fiil|zaman']`, `tally['zaman|kişi']` (`weakestCell`, `weakPersons`), `kinds` (hata türleri). Kayıt için `recordLabAnswer` (`src/ui/verbs/labShared.ts`).
 - Bir `useEffect` içinden gelen `reload` sonuçları dil değişince atılıyor (`languageRef`, #51 birleşti) — bu deseni koru.
+- **`vite preview` `/api`'yi canlı siteye (kelime-koc.vercel.app) yönlendirir.** E2E'de `startWithSamples` çeviriyi varsayılan olarak 503 ile kapatır (yoksa testler gerçek DeepL'i çağırır). Çeviri isteyen test, başladıktan sonra kendi taklidini kurar; URL'yi glob ile değil, işlevle eşle: `(u) => u.pathname === '/api/translate' && u.searchParams.has('usage' | 'text')`.
+- Sesli (dinleme) metinler okumada **önce gizli** açılır ("önce dinle" turları). Testte metne tıklamadan önce "Turları bırak"a bas.
+- Çeviri: sunucu `api/translate.ts` (DeepL, anahtar Vercel ortam değişkeni `DEEPL_AUTH_KEY`; anahtarı asla koda ya da sohbete yazma). Her çeviri cihazdaki **çeviri belleğinde** (`meta 'translations'`, `src/engine/translationMemory.ts`) saklanır, yedeğe ve eşitlemeye girer; aynı cümle bir daha sunucuya gitmez. Kotayı koruyan kod (sırayla çeviri, yalnızca ekrana gelen paragraf) bu deseni bozmasın.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
-## Durum (2026-10-08 gece)
-Birleşti: #37–#99.
+## Durum (2026-10-09)
+Birleşti: #37–#124.
+- Çeviri (#111, #113, #114, #120): DeepL ile cümle çevirisi (her cihazda hazır), Çeviri ekranı, çeviri belleği, okumada "Cümlenin Türkçesi" ve paragraf altında "Türkçesi".
+- Dinleme ve üretim (#118, #122):
+  - dinlerken duyulan cümle aydınlanır, "Bu cümleden dinle" (`src/engine/listenFollow.ts`; zamanlı altyazılı beslemelerde kesin, diğerlerinde yaklaşık);
+  - Okuma → "Dikte": metin cümle cümle dinlenip yazılır (`src/ui/TextDictation.tsx`);
+  - Oyunlar → "Geri çeviri": çeviri belleğindeki cümleler Türkçesinden yazılır, denenen her cümle cümle kartı olur (`src/engine/backTranslation.ts`).
+- Bugün sadeleşti (#116): tek öneri, uzun günde "yeni kelimeyi 8'e indir", ek çalışma günün tekrarı bitince; tekrarlar bitince cümle kartı / geri çeviri kutucuğu (#124).
+- Rozetler (#103, #105, #107, #109, #110, #112): kazanılma günlüğü, kademeli rozetler, zaman tüneli.
+- Antigravity: #101, #102, #104, #106, #108, #115 (metin birliği), #117/#119/#123 (Fast Refresh uyarıları), #121 (kararsız E2E).
 - Fiil laboratuvarı sadeleştirme (#90 günlük tur, #93 3 sekme/4 mod, #97 arama şeridi + katlı listeler, #99 sade ders başlığı). Tur mantığı: `src/engine/labTour.ts`.
 - Fiil laboratuvarı listesi (#71–#77).
 - Tasarım kuralları `DESIGN.md` (#79).
@@ -49,11 +60,12 @@ Birleşti: #37–#99.
 - Kod temizliği (#87) ve sözlük dizini hızlandırma (#88).
 - Antigravity: #64–#70, #83, #91 (satır içi stiller), #92 (kategori renk tokenları).
 
-- Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı ekranı değişti).
+- Depo **özel (private)**; Actions kotası bu ay dolu, CI çalışmıyor. PR'lar yerelde tam doğrulamayla (typecheck, oxlint, vitest, E2E) birleştiriliyor. Görsel test referansları (Linux) kota dönünce `gh workflow run snapshots.yml --ref main` ile yenilenmeli (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122 okuma araç satırı ve Oyunlar değişti).
 - **Aynı klasörde iki ajan:** Antigravity ile Claude Code aynı anda `~/Downloads/kelime-koc`'ta çalışınca, dal değiştirme commit edilmemiş değişiklikleri sildi (2026-10-08). Claude Code artık ayrı bir git worktree'de (`~/Downloads/kelime-koc-claude`) çalışıyor. Başka dala geçmeden önce `git status`'a bak; commit edilmemiş başkasına ait değişiklik varsa dokunma.
 - **E2E portu:** iki klasör aynı anda test koşarsa aynı önizleme sunucusunu paylaşıp birbirinin derlemesini test eder (`reuseExistingServer`). Port `E2E_PORT` ile ayarlanır: Claude Code `E2E_PORT=4180`, Antigravity `E2E_PORT=4181`. İki ajan aynı anda yoğun test koşunca bazı birim/E2E testleri zaman aşımıyla düşebilir; tek başına tekrar çalıştırıp doğrula.
 
 ## Sıradaki olası işler
+- Kullanıcı 1–2 hafta sonra yeni yedek verince öğrenme analizi: geri çeviri ve dikte kullanılıyor mu, dikte en çok hangi kelimeleri kaçırıyor, cümle kartlarının tutma oranı.
 - Fiil laboratuvarı Ayarlar → Kullanım'daki sayımlara bakıp hiç kullanılmayan modları sadeleştirmek (birkaç hafta veri birikince).
 
 ## Kullanıcıya önerilen ama onun yapacağı

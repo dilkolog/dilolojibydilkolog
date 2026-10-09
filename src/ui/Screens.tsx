@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { SPLIT_ABOVE_MINUTES } from '../engine/session'
 import { db } from '../data/instance'
+import { loadBackItems } from '../data/backItems'
+import { dueSentences } from '../engine/sentences'
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import { isFormId, type DailyPlan, type NewWordsBlock, type PlanReason } from '../engine/dailyPlan'
@@ -13,7 +15,7 @@ import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon } from './icons'
+import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, BrandMark, BulbIcon, CalendarIcon, CheckCircleIcon, CheckIcon, CloseIcon, FlowerIcon, GameIcon, MessageIcon, PlusIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, SproutIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon } from './icons'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 import { RaceCard } from './Race'
@@ -349,6 +351,7 @@ export function Home({
   onProfile,
   onStory,
   onGames,
+  onSentenceGame,
   formsDue = 0,
   onForms,
   warmup,
@@ -390,6 +393,8 @@ export function Home({
   onProfile: () => void
   onStory?: () => void
   onGames?: () => void
+  /** Sentence practice: due sentence cards, else back-translation of the sentences translated. */
+  onSentenceGame?: (game: 'sentences' | 'back') => void
   /** Verb forms due for review, and the way to review them. */
   formsDue?: number
   onForms?: () => void
@@ -445,6 +450,20 @@ export function Home({
     // Closed by default: Today is about the day's work; this is a tap away.
     return false
   })
+  // Sentence work once the day's reviews are done: the cards due, else sentences to write back.
+  const [sentenceWork, setSentenceWork] = useState<{ due: number; back: number } | null>(null)
+  const sentencesOn = !!onSentenceGame
+  useEffect(() => {
+    if (remaining > 0 || !sentencesOn) return
+    let live = true
+    void Promise.all([db.getSentences(), loadBackItems(language)])
+      .then(([cards, back]) => live && setSentenceWork({ due: dueSentences(cards, language, new Date()).length, back: back.length }))
+      .catch(() => undefined)
+    return () => {
+      live = false
+    }
+  }, [remaining, language, sentencesOn])
+  const sentenceTile = remaining === 0 && onSentenceGame && sentenceWork && (sentenceWork.due > 0 || sentenceWork.back > 0) ? sentenceWork : null
   const rememberMore = (open: boolean) => {
     setMoreOpen(open)
     try {
@@ -596,7 +615,7 @@ export function Home({
         <div className="home-nudges">{extra}</div>
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || difficultCount > 0 || (remaining === 0 && (canPractice || onGames)) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
+        {(openMistakeWords > 0 || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames)) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -619,6 +638,26 @@ export function Home({
                   <span>
                     <strong>Zor kelimelerin</strong>
                     <span className="small muted">{difficultCount} kelime zor diye işaretli: ayrı bir çalışmada topla</span>
+                  </span>
+                </button>
+              )}
+              {sentenceTile && onSentenceGame && (
+                <button className="tile" onClick={() => onSentenceGame(sentenceTile.due > 0 ? 'sentences' : 'back')}>
+                  <span className="tile-icon">
+                    <MessageIcon size={22} />
+                  </span>
+                  <span>
+                    {sentenceTile.due > 0 ? (
+                      <>
+                        <strong>Cümle kartları</strong>
+                        <span className="small muted">{sentenceTile.due} cümle tekrar bekliyor: boşluk, dikte ve çeviri</span>
+                      </>
+                    ) : (
+                      <>
+                        <strong>Geri çeviri</strong>
+                        <span className="small muted">Çevirdiğin {sentenceTile.back} cümle hazır: Türkçesinden kendin yaz</span>
+                      </>
+                    )}
                   </span>
                 </button>
               )}
