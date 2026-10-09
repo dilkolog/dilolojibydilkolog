@@ -3,6 +3,8 @@ import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 import { WordPopExtras } from './WordPopExtras'
 import { WikipediaPicker } from './WikipediaPicker'
 import { ClassicsPicker } from './ClassicsPicker'
+import { StorybooksPicker } from './StorybooksPicker'
+import { storyCredit } from '../data/storybooks'
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
@@ -657,6 +659,33 @@ export function ReadingScreen({
         </details>
         {/* Ready-made sources side by side: learner programmes and today's news. */}
         <div className="source-tiles">
+        <StorybooksPicker
+          language={language}
+          vocabulary={vocabulary}
+          states={states}
+          known={known}
+          onRead={async (story) => {
+            // Opened before: the same text, with its reading history.
+            const had = (library ?? []).find((t) => t.source === story.url)
+            if (had) return void (await open(had))
+            const item: ReadingText = {
+              id: crypto.randomUUID(),
+              language,
+              title: story.title,
+              text: story.pages.join('\n\n'),
+              audio: story.audio,
+              source: story.url,
+              credit: storyCredit(story),
+              images: story.images,
+              ...(story.turkish ? { turkish: story.turkish } : {}),
+              addedAt: new Date().toISOString(),
+              history: [],
+            }
+            await db.saveText(item)
+            setLibrary((lib) => [item, ...(lib ?? [])])
+            await open(item)
+          }}
+        />
         <ListeningPicker
           language={language}
           vocabulary={vocabulary}
@@ -808,6 +837,7 @@ export function ReadingScreen({
             )}
           </div>
         )}
+        {current?.credit && <p className="small muted">{current.credit}</p>}
         {current?.source && (
           <p className="small coverage-source">
             <a className="link" href={current.source} target="_blank" rel="noreferrer">
@@ -858,7 +888,7 @@ export function ReadingScreen({
         </span>
         <span className="grow" />
         <ReaderControls prefs={reader} onChange={setReader} />
-        {canTranslate && !listenFirst && (
+        {(canTranslate || !!current?.turkish) && !listenFirst && (
           <button className="chip chip-sm" aria-pressed={showTurkish} onClick={() => setShowTurkish((v) => !v)} title="Her paragrafın altında Türkçesi">
             <GlobeIcon size={14} /> Türkçesi
           </button>
@@ -903,6 +933,7 @@ export function ReadingScreen({
       >
         {analysis.paragraphs.map((p, i) => (
           <Fragment key={i}>
+          {current?.images?.[i] && <img className="reader-img" src={current.images[i]} alt="" loading="lazy" />}
           <p>
             {p.map((s, j) => (
               <span
@@ -945,7 +976,7 @@ export function ReadingScreen({
               </span>
             ))}
           </p>
-          {showTurkish && !listenFirst && dictating === null && <ParagraphTranslation sentences={p.map((x) => x.text)} from={language} />}
+          {showTurkish && !listenFirst && dictating === null && <ParagraphTranslation sentences={p.map((x) => x.text)} from={language} given={current?.turkish?.[i]} />}
           </Fragment>
         ))}
       </article>

@@ -44,6 +44,12 @@ export interface ReadingText {
   cues?: Cue[]
   /** Where the text came from (a YouTube video, a page), shown as a link. */
   source?: string
+  /** Each paragraph's Turkish, when the text came with one (a story's Turkish edition). */
+  turkish?: string[]
+  /** Each paragraph's picture, when the text is an illustrated story ('' for none). */
+  images?: string[]
+  /** Who made it and under which licence, shown with the text (open licences ask for it). */
+  credit?: string
   /** A chapter of an imported book (EPUB): chapters share the book id and keep their order. */
   book?: { id: string; title: string; index: number; total: number }
 }

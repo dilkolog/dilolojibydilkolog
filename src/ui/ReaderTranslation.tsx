@@ -10,11 +10,23 @@ function inTurn<T>(job: () => Promise<T>): Promise<T> {
 }
 
 /**
- * A paragraph's Turkish under it ("Türkçesi" in the reader), sentence by sentence. Translated only
- * when the paragraph comes near the screen, so a long text left half-read costs only what was
- * read; sentences translated before come from the translation memory at no cost.
+ * A paragraph's Turkish under it ("Türkçesi" in the reader): the text's own when it came with one
+ * (a story's Turkish edition), else translated sentence by sentence, only when the paragraph comes
+ * near the screen, so a long text left half-read costs only what was read; sentences translated
+ * before come from the translation memory at no cost.
  */
-export function ParagraphTranslation({ sentences, from }: { sentences: string[]; from: TranslateLang }) {
+export function ParagraphTranslation({ sentences, from, given }: { sentences: string[]; from: TranslateLang; given?: string }) {
+  if (given)
+    return (
+      <p className="reader-tr" lang="tr">
+        {given}
+      </p>
+    )
+  return <TranslatedParagraph sentences={sentences} from={from} />
+}
+
+/** A paragraph translated by the server, sentence by sentence, once near the screen. */
+function TranslatedParagraph({ sentences, from }: { sentences: string[]; from: TranslateLang }) {
   const ref = useRef<HTMLParagraphElement>(null)
   const [near, setNear] = useState(false)
   const [done, setDone] = useState<string[]>([])
