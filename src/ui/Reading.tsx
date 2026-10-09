@@ -29,12 +29,14 @@ import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, GlobeIcon, MessageIcon, EarIcon, PlayIcon, PlusIcon } from './icons'
+import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, GlobeIcon, MessageIcon, EarIcon, MicIcon, PlayIcon, PlusIcon } from './icons'
 import { translate, translationReady } from '../data/translate'
 import { SentenceTranslation } from './TranslateButton'
 import { ParagraphTranslation } from './ReaderTranslation'
 import { TextDictation } from './TextDictation'
-import { canSpeak, speak } from './speech'
+import { canSpeak, speakAsync } from './speech'
+import { canRecord } from './audioRecord'
+import { TextShadow } from './TextShadow'
 import { useTranslationReady } from './useTranslationReady'
 import { ReaderControls, readerStyle, useReaderPrefs } from './readerPrefs'
 
@@ -153,6 +155,8 @@ export function ReadingScreen({
   const [showTurkish, setShowTurkish] = useState(false)
   // Dictation of this text, from a sentence on (null: reading).
   const [dictating, setDictating] = useState<number | null>(null)
+  // Shadowing this text, from a sentence on (null: reading).
+  const [shadowing, setShadowing] = useState<number | null>(null)
   const canTranslate = useTranslationReady()
   // The coverage card opens to its explanations on request.
   const [covOpen, setCovOpen] = useState(false)
@@ -177,6 +181,7 @@ export function ReadingScreen({
       setListenFirst(!!open?.audio && !open.readAt)
       setShowTurkish(false)
       setDictating(null)
+      setShadowing(null)
       setKnown(k)
       setIgnored(ig)
     })
@@ -187,7 +192,7 @@ export function ReadingScreen({
   const [audioDuration, setAudioDuration] = useState<number>()
   const [heard, setHeard] = useState(-1)
   const seekRef = useRef<((seconds: number) => void) | null>(null)
-  const rangeRef = useRef<((from: number, to: number, slow?: boolean) => void) | null>(null)
+  const rangeRef = useRef<((from: number, to: number, slow?: boolean) => Promise<void>) | null>(null)
   const sentencesFlat = useMemo(() => (analysis ? analysis.paragraphs.flatMap((p) => p.map((s) => s.text)) : []), [analysis])
   const paragraphStart = useMemo(() => (analysis ? analysis.paragraphs.map((_, i) => analysis.paragraphs.slice(0, i).reduce((n, p) => n + p.length, 0)) : []), [analysis])
   const times = useMemo(() => (current?.audio ? sentenceTimes(sentencesFlat, current.cues, audioDuration) : null), [current, sentencesFlat, audioDuration])
@@ -200,9 +205,10 @@ export function ReadingScreen({
   // Dictation plays a sentence from the text's own recording when its subtitles time it exactly,
   // else the device reads it (approximate times would cut sentences in the middle).
   const recorded = !!(current?.audio && current.cues?.length && times)
-  const playSentence = (i: number, slow: boolean) => {
-    if (recorded && times && rangeRef.current) return rangeRef.current(times[i], times[i + 1] ?? audioDuration ?? times[i] + 10, slow)
-    speak(sentencesFlat[i], language, slow ? 0.7 : undefined)
+  const sentenceEnd = (i: number) => (times ? (times[i + 1] ?? audioDuration ?? times[i] + 10) : 0)
+  const playSentence = (i: number, slow: boolean): Promise<void> => {
+    if (recorded && times && rangeRef.current) return rangeRef.current(times[i], sentenceEnd(i), slow)
+    return speakAsync(sentencesFlat[i], language, slow ? 0.7 : undefined)
   }
   // The heard sentence kept in view while listening (only when it has left the screen).
   useEffect(() => {
@@ -827,7 +833,7 @@ export function ReadingScreen({
           onDuration={setAudioDuration}
           seekRef={seekRef}
           rangeRef={rangeRef}
-          still={dictating !== null}
+          still={dictating !== null || shadowing !== null}
           follow={current.cues?.length ? 'exact' : 'approx'}
         />
       )}
@@ -857,8 +863,13 @@ export function ReadingScreen({
           </button>
         )}
         {(recorded || canSpeak()) && (
-          <button className="chip chip-sm" aria-pressed={dictating !== null} onClick={() => setDictating((d) => (d === null ? Math.max(0, heard) : null))} title="Metni cümle cümle dinleyip yaz">
+          <button className="chip chip-sm" aria-pressed={dictating !== null} onClick={() => (setShadowing(null), setDictating((d) => (d === null ? Math.max(0, heard) : null)))} title="Metni cümle cümle dinleyip yaz">
             <EarIcon size={14} /> Dikte
+          </button>
+        )}
+        {(recorded || canSpeak()) && canRecord() && (
+          <button className="chip chip-sm" aria-pressed={shadowing !== null} onClick={() => (setDictating(null), setShadowing((d) => (d === null ? Math.max(0, heard) : null)))} title="Cümleyi dinle, hemen ardından söyle, sonra karşılaştır">
+            <MicIcon size={14} /> Gölgele
           </button>
         )}
         <button type="button" className="chip chip-sm" onClick={() => setConfirmFinish(true)}>
@@ -870,6 +881,18 @@ export function ReadingScreen({
       </div>
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
+      )}
+      {shadowing !== null && (
+        <TextShadow
+          key={`shadow-${current?.id}-${shadowing}`}
+          sentences={sentencesFlat}
+          language={language}
+          start={shadowing}
+          voice={recorded ? 'recording' : 'device'}
+          hear={(i) => playSentence(i, false)}
+          seconds={recorded && times ? (i) => sentenceEnd(i) - times[i] : undefined}
+          onClose={() => setShadowing(null)}
+        />
       )}
       <div className="reader-layout">
       <article

@@ -13,6 +13,15 @@ const answerMs = (text: string) => Math.min(15_000, Math.max(2500, text.length *
  * The recording stays in memory and is never saved.
  */
 export function ShadowButton({ text, language }: { text: string; language: TargetLanguage }) {
+  if (!canSpeak()) return null
+  return <ShadowControls hear={() => speakAsync(text, language)} ms={answerMs(text)} />
+}
+
+/**
+ * The shadowing steps for any voice: `hear` plays the model (the device reading a sentence, or a
+ * stretch of a recording) and resolves when it ends; then `ms` of recording, then both in turn.
+ */
+export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { hear: () => Promise<void>; ms: number; startLabel?: string }) {
   const [phase, setPhase] = useState<'idle' | 'hear' | 'speak' | 'done'>('idle')
   const [error, setError] = useState('')
   const [url, setUrl] = useState<string>()
@@ -34,7 +43,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
     return () => clearInterval(t)
   }, [phase])
 
-  if (!canSpeak() || !canRecord()) return null
+  if (!canRecord()) return null
 
   const start = async () => {
     setError('')
@@ -46,7 +55,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
       return
     }
     setPhase('hear')
-    await speakAsync(text, language)
+    await hear()
     if (!live.current) return stream.getTracks().forEach((t) => t.stop())
     const rec = new MediaRecorder(stream, { mimeType: recordingType() })
     const chunks: Blob[] = []
@@ -57,7 +66,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
       setUrl(URL.createObjectURL(new Blob(chunks, { type: rec.mimeType })))
       setPhase('done')
     }
-    const ms = answerMs(text)
+    const ms = answer
     setUntil(performance.now() + ms)
     setPhase('speak')
     rec.start()
@@ -67,7 +76,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
   const compare = async () => {
     if (!url) return
     const mine = await unlockedAudio(url)
-    await speakAsync(text, language)
+    await hear()
     await new Promise((r) => setTimeout(r, 300))
     await mine.play().catch(() => {})
   }
@@ -77,13 +86,13 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
     <span className="shadow">
       {phase === 'idle' && (
         <button className="link small" onClick={start} title="Dinle, hemen tekrar et, sonra karşılaştır">
-          <MicIcon size={18} /> Gölgele
+          <MicIcon size={18} /> {startLabel}
         </button>
       )}
       {phase === 'hear' && <span className="small muted">Dinle…</span>}
       {phase === 'speak' && (
         <span className="small shadow-rec">
-          ● Şimdi sen söyle <span className="shadow-bar" style={{ width: `${(left / answerMs(text)) * 3}rem` }} />
+          ● Şimdi sen söyle <span className="shadow-bar" style={{ width: `${(left / answer) * 3}rem` }} />
         </span>
       )}
       {phase === 'done' && (

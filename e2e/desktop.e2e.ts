@@ -893,3 +893,33 @@ test('back-translation: sentences translated before come back as their Turkish, 
   await page.locator('.game-card', { hasText: 'Cümle kartları' }).click()
   await expect(page.getByRole('region', { name: /Cümlelerin/ }).or(page.locator('.sentence-list'))).toContainText('Nous partons tôt demain.')
 })
+
+test('shadowing a text: a sentence played from its recording, then said back, then both compared', async ({ page }) => {
+  // No microphone in a test: a silent stream stands in for it.
+  await page.addInitScript(() => {
+    navigator.mediaDevices.getUserMedia = async () => {
+      const ctx = new AudioContext()
+      const out = ctx.createMediaStreamDestination()
+      ctx.createOscillator().connect(out)
+      return out.stream
+    }
+  })
+  await startWithSamples(page)
+  await addTimedListening(page)
+  await openScreen(page, 'Okuma')
+  await page.getByText('Écoute').first().click()
+  await page.getByRole('button', { name: 'Turları bırak' }).click()
+  await page.getByRole('button', { name: /Gölgele$/ }).click()
+  const panel = page.getByRole('region', { name: 'Gölgeleme' })
+  await expect(panel).toContainText('Gölgeleme · 1 / 3')
+  await expect(panel.locator('.sentence')).toHaveText('Le chat dort.')
+  await panel.getByRole('button', { name: /Dinle ve söyle/ }).click()
+  // The sentence plays to its end (2 s), then it is the learner's turn.
+  await expect(panel.getByText('Şimdi sen söyle')).toBeVisible({ timeout: 8000 })
+  expect(await page.locator('audio.audio-player').evaluate((a: HTMLAudioElement) => a.paused && a.currentTime > 1.5 && a.currentTime < 2.3)).toBe(true)
+  await expect(panel.getByRole('button', { name: /Karşılaştır/ })).toBeVisible({ timeout: 8000 })
+  await panel.getByRole('button', { name: 'Sonraki' }).click()
+  await expect(panel.locator('.sentence')).toHaveText('Il fait beau.')
+  await panel.getByRole('button', { name: 'Gölgelemeyi bitir' }).click()
+  await expect(panel).toHaveCount(0)
+})
