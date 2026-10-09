@@ -2730,6 +2730,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .translate-pairs p:not(:lang(tr)) { font-family: var(--serif); font-size: var(--t-md); }
 .translate-pairs .translate-target:lang(tr) { color: var(--ink-soft); }
 .translate-screen .textarea { min-height: 7rem; }
+/* Today: one suggestion card at a time (the first that renders); the rest wait for another day. */
+.home-nudges > :nth-child(n + 2) { display: none; }
+.hero-long .link { color: inherit; text-decoration: underline; font-weight: 700; }
 /* The session summary's one line about the next badge. */
 .summary-next { flex-wrap: nowrap; gap: 0.75rem; }
 /* Two or three new badges on one screen, side by side. */
