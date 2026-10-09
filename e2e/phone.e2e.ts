@@ -990,6 +990,22 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   await page.locator('main button', { hasText: 'La décision' }).first().click()
   const words = page.locator('.rw-unseen')
   await expect(words.first()).toBeVisible()
+  // Wait for images to load so they do not cause layout shifts while measuring.
+  await page.evaluate(async () => {
+    const imgs = Array.from(document.querySelectorAll('article.reader img'))
+    await Promise.all(
+      imgs.map(
+        (img) =>
+          new Promise((resolve) => {
+            if ((img as HTMLImageElement).complete) resolve(null)
+            else {
+              img.addEventListener('load', () => resolve(null), { once: true })
+              img.addEventListener('error', () => resolve(null), { once: true })
+            }
+          }),
+      ),
+    )
+  })
   const target = words.nth(12)
   // The audio panel above the text can sit over a word; a real tap scrolls first, so do the same.
   await target.evaluate((el) => el.scrollIntoView({ block: 'center' }))
