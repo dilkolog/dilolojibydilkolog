@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { milestone, weeklyGrowth } from './KnownWords'
+import { milestone, weeklyGrowth } from './knownMilestones'
 import { analyzeText, readingKey } from '../engine/reading'
 
 describe('known-word count', () => {

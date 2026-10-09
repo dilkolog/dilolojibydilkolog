@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { contour, melodySimilarity, pitchTrack, resample } from '../engine/pitch'
-import { canRecord, recordingType } from './AudioRecorder'
+import { canRecord, recordingType } from './audioRecord'
 import { MicIcon, PlayIcon, StopIcon } from './icons'
 
 const W = 560

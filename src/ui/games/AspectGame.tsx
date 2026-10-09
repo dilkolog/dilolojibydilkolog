@@ -4,7 +4,7 @@ import { GameResult } from './GameResult'
 import { normalize } from '../../engine/answerCheck'
 import { createRng, shuffle } from '../../engine/rng'
 import { TENSE_GUIDE } from '../../engine/tenseGuide'
-import { aspectItems, type AspectItem, type Tense } from '../../engine/tenses'
+import { aspectItems, type AspectItem } from '../../engine/tenses'
 import type { UserWordState, VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { useTenses } from '../ConjugationTable'
@@ -12,11 +12,9 @@ import { CheckIcon, CloseIcon, SpeakerIcon } from '../icons'
 import { canSpeak, speak } from '../speech'
 import { sfx } from '../sounds'
 import { isPctRecord, recordPractice } from './shared'
+import { ASPECT_PAIR } from './aspectPair'
 
 const ROUND = 10
-
-/** The two past tenses the choice is between, in each language. */
-export const ASPECT_PAIR: Record<'fr' | 'es', [Tense, Tense]> = { fr: ['passe-compose', 'imparfait'], es: ['preterito', 'imperfecto'] }
 
 interface Question extends AspectItem {
   options: string[]
