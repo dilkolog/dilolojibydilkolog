@@ -904,8 +904,8 @@ test('verb lab on a phone: every tab fits, the lesson comes right after the verb
   await startWithSamples(page)
   await openVerbLab(page, 'avoir')
   const lesson = await page.locator('.lab-main').boundingBox()
-  const lists = await page.locator('.lab-lists').boundingBox()
-  expect(lesson!.y, 'the lesson is above the verb lists').toBeLessThan(lists!.y)
+  // The verb lists are folded away: nothing between the search and the lesson.
+  await expect(page.locator('.lab-lists')).toHaveCount(0)
   expect(lesson!.y, 'the lesson starts within the first screen').toBeLessThan(page.viewportSize()!.height)
   // The table itself is on the first screen, not under explanations.
   // (Choosing the verb may scroll the lesson into view, smoothly: wait for it to settle.)

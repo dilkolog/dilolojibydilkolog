@@ -22,6 +22,7 @@ import type { Level } from '../../engine/verbLab'
 import { recordVisit } from '../screenUsage'
 import { useTabIndicator } from '../useTabIndicator'
 import { COMMON, isLabTense, ownEntry, PRESENT, useLab, useVerbLevels, useVerbOfDay, verbEntry, verbKey, type LabLanguage } from './labShared'
+import { BookIcon, ChevronDownIcon } from '../icons'
 import { TourCard, TourRun, useTour } from './LabTour'
 
 /**
@@ -106,6 +107,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   }, [tab]) // eslint-disable-line react-hooks/exhaustive-deps
   const tabsRef = useTabIndicator(tab)
   const [level, setLevel] = useState<Level | null>(null)
+  // The verb lists stay folded: once a verb is chosen they would only crowd the lesson.
+  const [listsOpen, setListsOpen] = useState(false)
   const [family, setFamily] = useState<FamilyId | undefined>()
   const main = useRef<HTMLElement>(null)
 
@@ -196,9 +199,33 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
       <PageHeader title="Fiil laboratuvarı" />
       <TourCard language={language} items={tour} onStart={() => setTouring(true)} />
       <div className="lab-grid">
+        {/* One strip on top: find a verb, or open the lists (favourites, levels, own verbs) when wanted. */}
         <div className="card lab-top">
           <PickerTop language={language} verb={verb} level={level} levels={levels} byFrequency={byFrequency} frequency={frequency} onVerb={choose} />
+          <button type="button" className="chip lab-lists-toggle" aria-label="Fiil listeleri" aria-expanded={listsOpen} aria-controls="lab-lists" onClick={() => setListsOpen((o) => !o)}>
+            <BookIcon size={18} /> <span className="lab-wide">Fiil listeleri</span>
+            <ChevronDownIcon size={16} className={listsOpen ? 'is-flipped' : undefined} />
+          </button>
         </div>
+        {listsOpen && (
+          <aside id="lab-lists" className="card lab-lists" aria-label="Fiil listeleri">
+            <PickerLists
+              language={language}
+              verb={verb}
+              tense={current}
+              lab={lab}
+              level={level}
+              onLevel={setLevel}
+              levels={levels}
+              byFrequency={byFrequency}
+              ownVerbs={ownVerbs}
+              onVerb={(v) => {
+                setListsOpen(false)
+                choose(v)
+              }}
+            />
+          </aside>
+        )}
         <section className="card lab-main" ref={main} aria-label="Fiil çalışması">
           <div className="lab-tabs ind-line" role="tablist" aria-label="Çalışma türü" ref={tabsRef}>
             {TABS.map((t) => (
@@ -317,9 +344,6 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
             )}
           </div>
         </section>
-        <aside className="card lab-lists" aria-label="Fiil listeleri">
-          <PickerLists language={language} verb={verb} tense={current} lab={lab} level={level} onLevel={setLevel} levels={levels} byFrequency={byFrequency} ownVerbs={ownVerbs} onVerb={choose} />
-        </aside>
       </div>
     </div>
   )
