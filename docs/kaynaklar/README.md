@@ -24,7 +24,7 @@ Aşağıdaki podcast beslemeleri, RSS akışlarında senkronize zamanlı altyaz�
 **Toplam Öğe Sayısı:** 90 hikâye (45 Fransızca, 45 İspanyolca)
 
 - **Sesli Hikâyeler (58 adet):** 29 Fransızca ve 29 İspanyolca hikâye. Global Storybooks platformu üzerinden hem yazılı metin hem de profesyonel seslendirme (`audioUrl`) içerir. Listenin başında yer alırlar.
-- **Yalnızca Metin Hikâyeler (32 adet):** 16 Fransızca (African Storybook) ve 16 İspanyolca (StoryWeaver) hikâye. Okuma kütüphanesinde kullanılabilir.
+- **Yalnızca Metin Hikâyeler (`storybooks-text.json`, 32 adet):** 16 Fransızca (African Storybook) ve 16 İspanyolca (StoryWeaver) hikâye. Sayfa sayfa metinler, yazar, çizer, çevirmen ve CC BY lisans bilgileri ayrıntılı olarak çıkarılmıştır. Fransızca hikâyelerin 16'sının da tüm sayfa metinleri eksiksiz kaydedilmiştir. StoryWeaver (İspanyolca) platformu sayfa metinleri için oturum açma zorunluluğu (HTTP 401) getirdiğinden bu hikâyeler künye bilgileriyle listelenip hata durumuyla belgelenmiştir.
 
 ### Lisans ve Erişim Notları:
 - **Lisans Filtresi:** Tüm hikâyeler kesin olarak **CC BY 3.0** ya da **CC BY 4.0** lisanslıdır. Global Storybooks'taki 11 Fransızca ve 11 İspanyolca hikâye ticari olmayan kullanım kısıtı taşıdığı için (`CC BY-NC`) elenmiş ve listeye alınmamıştır.
