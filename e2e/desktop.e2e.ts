@@ -789,3 +789,27 @@ test('listening: the sentence heard is lit, and a sentence can be played from it
   await page.getByRole('button', { name: /Bu cümleden dinle/ }).click()
   await expect.poll(() => page.locator('audio.audio-player').evaluate((a: HTMLAudioElement) => a.currentTime)).toBeGreaterThan(3.7)
 })
+
+test('reading: the whole text in Turkish under each paragraph, each sentence translated once', async ({ page }) => {
+  await startWithSamples(page)
+  const asked: string[] = []
+  const tr: Record<string, string> = { 'Le chat dort.': 'Kedi uyuyor.', 'Il fait beau.': 'Hava güzel.', 'Nous partons.': 'Gidiyoruz.' }
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 1000000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => {
+    const text = new URL(r.request().url()).searchParams.get('text')!
+    asked.push(text)
+    return r.fulfill({ json: { translation: tr[text] ?? '?' } })
+  })
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Le chat dort. Il fait beau.\n\nNous partons.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  const turkish = page.getByRole('button', { name: /Türkçesi/ })
+  await turkish.click()
+  await expect(page.locator('.reader-tr')).toHaveText(['Kedi uyuyor. Hava güzel.', 'Gidiyoruz.'])
+  // Off and on again: answered from memory, nothing asked twice.
+  await turkish.click()
+  await expect(page.locator('.reader-tr')).toHaveCount(0)
+  await turkish.click()
+  await expect(page.locator('.reader-tr')).toHaveText(['Kedi uyuyor. Hava güzel.', 'Gidiyoruz.'])
+  expect(asked.sort()).toEqual(['Il fait beau.', 'Le chat dort.', 'Nous partons.'])
+})
