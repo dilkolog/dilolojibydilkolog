@@ -1027,3 +1027,15 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
   await pull(140)
   await expect(sheet).toHaveCount(0)
 })
+
+test('shows an offline badge when internet is disconnected and hides when online', async ({ page, context }) => {
+  await startWithSamples(page)
+  const badge = page.locator('.offline-badge')
+  await expect(badge).not.toBeVisible()
+  await context.setOffline(true)
+  await expect(badge).toBeVisible()
+  await expect(badge).toHaveText(/Çevrimdışı/)
+  expect(await overflow(page)).toEqual([])
+  await context.setOffline(false)
+  await expect(badge).not.toBeVisible()
+})
