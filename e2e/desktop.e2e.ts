@@ -842,11 +842,24 @@ test('dictation of a text: each sentence played from its recording, written, com
   await expect(panel.locator('.dd-missed')).toHaveText(['beau.'])
   await panel.getByRole('button', { name: 'Devam' }).click()
   await panel.getByRole('button', { name: 'Göster' }).click()
-  await panel.getByRole('button', { name: 'Bitir' }).last().click()
-  await expect(panel).toContainText('3 cümlede kelimelerin %56’ini doğru yazdın.')
+  await panel.getByRole('button', { name: 'Sonucu gör' }).click()
+  await expect(panel).toContainText('3 cümle · doğru yazdığın kelimeler: %56 (5/9)')
   await expect(panel.locator('.dd-missed')).toHaveText(['beau', 'nous', 'partons', 'demain'])
   await panel.getByRole('button', { name: 'Metne dön' }).click()
   await expect(panel).toHaveCount(0)
+  // The word missed (the shown-only sentence aside) waits in Games, heard again in its sentence.
+  await openScreen(page, 'Oyunlar')
+  const ear = page.locator('.game-card', { hasText: 'Kaçırdıkların' })
+  await expect(ear).toContainText('1 kelime')
+  await ear.click()
+  await expect(page.locator('.dd-missed')).toHaveText(['beau'])
+  await page.getByRole('button', { name: /1 cümle dinle ve yaz/ }).click()
+  await page.getByLabel('Duyduğun cümle').fill('Il fait beau')
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await page.getByRole('button', { name: 'Sonucu gör' }).click()
+  await page.getByRole('button', { name: 'Listeye dön' }).click()
+  // Written right as often as missed: off the list.
+  await expect(page.getByText('Henüz kaçırdığın kelime yok')).toBeVisible()
 })
 
 test('back-translation: sentences translated before come back as their Turkish, written and kept as sentence cards', async ({ page }) => {

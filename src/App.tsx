@@ -1027,6 +1027,7 @@ export default function App() {
                 onOpen={(entryId) => setScreen({ name: 'word', entryId })}
                 onVocabTest={go({ name: 'vocabtest' })}
                 onExam={go({ name: 'exam' })}
+                onEarPractice={go({ name: 'games', game: 'ear' })}
               />
             ) : screen.name === 'produce' ? (
               <ProduceScreen

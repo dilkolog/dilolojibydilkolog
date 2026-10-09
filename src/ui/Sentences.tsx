@@ -5,6 +5,7 @@ import { createRng } from '../engine/rng'
 import { dueSentences, gradeSentence, sentenceExercise, type SentenceCard, type SentenceExercise, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
+import { noteDictation } from '../data/earLog'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { PlusIcon, SpeakerIcon } from './icons'
@@ -201,6 +202,7 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
   const check = () => {
     if (verdict || !text.trim()) return
     const v = gradeSentence(ex, text)
+    if (ex.kind === 'dictation') void noteDictation(card.language, card.text, wordDiff(text, card.text))
     setVerdict(v)
     if (v === 'correct') sfx.correct()
     else if (v === 'near') sfx.near()
