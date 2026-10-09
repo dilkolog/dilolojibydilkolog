@@ -116,7 +116,7 @@ export function AudioPanel({
   /** Set to a function that jumps to a time and plays (a sentence's start). */
   seekRef?: { current: ((seconds: number) => void) | null }
   /** Set to a function that plays one stretch and stops (dictation: one sentence), slower on request. */
-  rangeRef?: { current: ((from: number, to: number, slow?: boolean) => void) | null }
+  rangeRef?: { current: ((from: number, to: number, slow?: boolean) => Promise<void>) | null }
   /** How the text follows the audio: exactly (timed subtitles) or approximately; none when it can't. */
   follow?: 'exact' | 'approx' | null
   /** Not pinned to the top while scrolling (dictation needs the space below it). */
@@ -141,29 +141,39 @@ export function AudioPanel({
   useEffect(() => {
     if (!rangeRef) return
     let frame = 0
-    rangeRef.current = (from: number, to: number, slow = false) => {
-      const a = audio.current
-      if (!a) return
-      cancelAnimationFrame(frame)
-      a.playbackRate = slow ? 0.75 : rateRef.current
-      a.currentTime = Math.max(0, from - 0.1)
-      // Watched every frame (timeupdate comes only a few times a second): stop right at the end.
-      const watch = () => {
-        if (a.paused) return void (a.playbackRate = rateRef.current)
-        if (a.currentTime >= to - 0.05) {
-          a.pause()
+    let finish: (() => void) | null = null
+    rangeRef.current = (from: number, to: number, slow = false) =>
+      new Promise<void>((resolve) => {
+        const a = audio.current
+        if (!a) return resolve()
+        // A stretch still playing ends here: the new one takes over.
+        cancelAnimationFrame(frame)
+        finish?.()
+        finish = resolve
+        const done = () => {
           a.playbackRate = rateRef.current
-          return
+          finish = null
+          resolve()
         }
-        frame = requestAnimationFrame(watch)
-      }
-      void a
-        .play()
-        .then(() => (frame = requestAnimationFrame(watch)))
-        .catch(() => {})
-    }
+        a.playbackRate = slow ? 0.75 : rateRef.current
+        a.currentTime = Math.max(0, from - 0.1)
+        // Watched every frame (timeupdate comes only a few times a second): stop right at the end.
+        const watch = () => {
+          if (a.paused) return done()
+          if (a.currentTime >= to - 0.05) {
+            a.pause()
+            return done()
+          }
+          frame = requestAnimationFrame(watch)
+        }
+        void a
+          .play()
+          .then(() => (frame = requestAnimationFrame(watch)))
+          .catch(done)
+      })
     return () => {
       cancelAnimationFrame(frame)
+      finish?.()
       rangeRef.current = null
     }
   }, [rangeRef])
