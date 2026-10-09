@@ -25,6 +25,7 @@ Aşağıdaki podcast beslemeleri, RSS akışlarında senkronize zamanlı altyaz�
 
 - **Sesli Hikâyeler (58 adet):** 29 Fransızca ve 29 İspanyolca hikâye. Global Storybooks platformu üzerinden hem yazılı metin hem de profesyonel seslendirme (`audioUrl`) içerir. Listenin başında yer alırlar.
 - **Yalnızca Metin Hikâyeler (`storybooks-text.json`, 32 adet):** 16 Fransızca (African Storybook) ve 16 İspanyolca (StoryWeaver) hikâye. Sayfa sayfa metinler, yazar, çizer, çevirmen ve CC BY lisans bilgileri ayrıntılı olarak çıkarılmıştır. Fransızca hikâyelerin 16'sının da tüm sayfa metinleri eksiksiz kaydedilmiştir. StoryWeaver (İspanyolca) platformu sayfa metinleri için oturum açma zorunluluğu (HTTP 401) getirdiğinden bu hikâyeler künye bilgileriyle listelenip hata durumuyla belgelenmiştir.
+- **Global Storybooks Tüm Hikâyeler Envanteri (`storybooks-all.json`, 80 adet):** Global Storybooks platformundaki 40 Fransızca ve 40 İspanyolca hikâyenin tamamı listelenmiştir. Her hikâye için kimlik (`0001`…), başlık, seviye (1–5), sayfadaki özgün lisans metni, ses kaydı (`hasAudio`), Türkçe sürüm (`hasTurkish`) ve Kelime Koçu'nda yer alma durumu (`inApp`) belgelenmiştir. 58 hikâye (29 FR + 29 ES) uygulamada entegredir (`inApp: true`); kalan 22 hikâye CC BY-NC lisansı nedeniyle elenmiştir (`inApp: false`).
 
 ### Lisans ve Erişim Notları:
 - **Lisans Filtresi:** Tüm hikâyeler kesin olarak **CC BY 3.0** ya da **CC BY 4.0** lisanslıdır. Global Storybooks'taki 11 Fransızca ve 11 İspanyolca hikâye ticari olmayan kullanım kısıtı taşıdığı için (`CC BY-NC`) elenmiş ve listeye alınmamıştır.
