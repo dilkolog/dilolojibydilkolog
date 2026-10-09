@@ -690,15 +690,34 @@ test('translation: "Çevir" fills the Turkish of a sentence when the server can 
   await page.getByRole('menuitem').first().click()
   // The preview has no server functions: no translation, no button.
   await page.getByLabel('Cümle', { exact: true }).first().fill('Le chat dort.')
-  await expect(page.getByRole('button', { name: /Çevir/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Çevir', exact: true })).toHaveCount(0)
   // With the server answering (stubbed here), the button appears and fills the field.
-  await page.route('**/api/translate?usage=1', (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
-  await page.route('**/api/translate?text=*', (r) => r.fulfill({ json: { translation: 'Kedi uyuyor.' } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => r.fulfill({ json: { translation: 'Kedi uyuyor.' } }))
   await page.reload()
   await openScreen(page, 'Kelimeler')
   // The words screen remembers it was on the add form.
   await expect(page.getByLabel('Cümle', { exact: true }).first()).toBeVisible()
   await page.getByLabel('Cümle', { exact: true }).first().fill('Le chat dort.')
-  await page.getByRole('button', { name: /Çevir/ }).click()
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
   await expect(page.getByLabel('Türkçesi', { exact: true })).toHaveValue('Kedi uyuyor.')
+})
+
+test('translation screen: a short text translated sentence by sentence, side by side; a pair kept as a sentence card', async ({ page }) => {
+  await startWithSamples(page)
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 1000000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => {
+    const text = new URL(r.request().url()).searchParams.get('text')!
+    return r.fulfill({ json: { translation: { 'Le chat dort.': 'Kedi uyuyor.', 'Il fait beau.': 'Hava güzel.' }[text] ?? '?' } })
+  })
+  await openScreen(page, 'Çeviri')
+  await page.getByLabel('Çevrilecek metin').fill('Le chat dort. Il fait beau.')
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
+  const pairs = page.locator('.translate-pairs li')
+  await expect(pairs).toHaveCount(2)
+  await expect(pairs.nth(0)).toContainText('Kedi uyuyor.')
+  await expect(pairs.nth(1)).toContainText('Hava güzel.')
+  await pairs.nth(0).getByRole('button', { name: /Kart yap/ }).click()
+  await expect(pairs.nth(0).getByRole('button', { name: /Kaydedildi/ })).toBeDisabled()
+  expect(await overflow(page)).toEqual([])
 })

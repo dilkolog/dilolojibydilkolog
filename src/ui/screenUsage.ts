@@ -85,6 +85,7 @@ export const SCREEN_LABEL: Record<string, string> = {
   words: 'Kelimeler',
   word: 'Kelime sayfası',
   dictionary: 'Sözlük',
+  translate: 'Çeviri',
   mistakes: 'Hatalar',
   reading: 'Okuma',
   story: 'Hikaye',
@@ -126,4 +127,4 @@ export function usageLabel(screen: string): string {
 }
 
 /** Tabs that may leave the menu: the second and later ones of a place (the first is the place itself). */
-export const HIDEABLE_TABS = ['dictionary', 'mistakes', 'story', 'verbs', 'produce'] as const
+export const HIDEABLE_TABS = ['dictionary', 'translate', 'mistakes', 'story', 'verbs', 'produce'] as const
