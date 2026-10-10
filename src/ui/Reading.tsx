@@ -1,22 +1,18 @@
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
-import { WordPopExtras } from './WordPopExtras'
-import { WikipediaPicker } from './WikipediaPicker'
-import { ClassicsPicker } from './ClassicsPicker'
-import { StorybooksPicker } from './StorybooksPicker'
-import { storyCredit } from '../data/storybooks'
+
 import { cleanToken } from '../engine/extract'
 import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
 import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
 import { saveSentence } from './saveSentence'
-import { analyzeText, coverageZone, finishReading, type CoverageZone, type ReadStatus, type ReadToken } from '../engine/reading'
+import { analyzeText, finishReading, type ReadToken } from '../engine/reading'
 import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
-import { NewsPicker, SameTopic } from './News'
-import { AudioPanel, ListeningPicker } from './Listening'
+import { SameTopic } from './News'
+import { AudioPanel } from './Listening'
 import { markWord, wordKeys } from '../data/wordInput'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
@@ -25,20 +21,24 @@ import { showToast, undoable } from './toastFeed'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
-import { TENSE_GUIDE } from '../engine/tenseGuide'
-import { analyzeForm, subjectLabel } from '../engine/tenses'
+
+import { analyzeForm } from '../engine/tenses'
 import { groupByTense, textForms } from '../engine/textForms'
 import { TextForms } from './TextForms'
-import { BookItem, Cover } from './ReadingBooks'
-import { MIN_READ_MS, groupBooks, highlight, useSeen } from './readingHelpers'
+import { WordCard, type Selected } from './WordCard'
+import { BookItem } from './ReadingBooks'
+import { AddTextCard, LibraryItem, SourcePickers } from './ReadingLibrary'
+import { CoverageCard } from './CoverageCard'
+import { SingleUnknownSentences } from './SingleUnknownSentences'
+import { MIN_READ_MS, groupBooks, useSeen } from './readingHelpers'
 import { useSheetSwipe } from './useSheetSwipe'
 import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { BookIcon, ChevronDownIcon, GlobeIcon, MessageIcon, EarIcon, MicIcon, PlayIcon, PlusIcon } from './icons'
+import { GlobeIcon, EarIcon, MicIcon, PlusIcon } from './icons'
 import { translate, translationReady } from '../data/translate'
-import { SentenceTranslation } from './TranslateButton'
+
 import { ParagraphTranslation } from './ReaderTranslation'
 import { TextDictation } from './TextDictation'
 import { canSpeak, speakAsync } from './speech'
@@ -48,31 +48,6 @@ import { reportError } from '../data/errorReport'
 import { useTranslationReady } from './useTranslationReady'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
-
-const ZONE: Record<CoverageZone, { title: string; text: string }> = {
-  easy: { title: 'Rahat okuma', text: 'Neredeyse her kelimeyi biliyorsun: akıcılık için ideal. Yeni kelime için biraz daha zor bir metin seçebilirsin.' },
-  ideal: { title: 'Öğrenmek için ideal', text: 'Bilmediğin kelimeleri bağlamdan çıkarabileceğin aralıktasın (%95–98).' },
-  hard: { title: 'Zorlayıcı', text: 'Bağlamdan anlam çıkarmak zorlaşıyor. Önce işaretli kelimelere bak, sonra oku.' },
-  too_hard: { title: 'Çok zor', text: 'Bu metin şu an çoğunlukla çözümleme olur. Daha kolay bir metin seçmek daha verimli.' },
-}
-
-/** Days after finishing a text when re-reading it is suggested. */
-const REREAD_DAYS = 7
-
-const STATUS_TEXT: Record<ReadStatus, string> = {
-  known: 'Bildiğin bir kelime.',
-  learning: 'Kelimelerinde, öğreniyorsun.',
-  new: 'Kelimelerinde, henüz çalışmadın.',
-  unseen: 'Bu kelimeyi daha önce işaretlemedin.',
-  name: 'Özel isim ya da yok saydığın bir kelime; hesaba katılmıyor.',
-}
-
-interface Selected {
-  token: ReadToken
-  sentence: string
-  /** Where the sentence is ("paragraph.sentence"), to light it in the text. */
-  at?: string
-}
 
 /**
  * Reading mode: paste a text, see how much of it you know, mark or add the words you don't,
@@ -558,40 +533,6 @@ export function ReadingScreen({
 
   if (!text || !analysis) {
     const now = Date.now()
-    const renderText = (item: ReadingText) => {
-      const last = item.history.at(-1)
-      const since = item.readAt ? Math.floor((now - new Date(item.readAt).getTime()) / 86_400_000) : null
-      const reread = since !== null && since >= REREAD_DAYS
-      const words = item.text.split(/\s+/).length
-      const status = reread ? 'Tekrar oku' : since === null ? 'Yeni' : 'Okundu'
-      return (
-        <li key={item.id} className="lib-card">
-          <button className="lib-open" onClick={() => open(item)}>
-            <Cover title={item.title} />
-            <span className="lib-body">
-              <strong className="lib-title">
-                {/* A video is marked with the play icon (older titles carried a ▶️ emoji; it is dropped). */}
-                {item.source?.includes('youtube.com') && <PlayIcon size={14} className="inline-icon lib-video" />}
-                {item.title.replace(/^▶️?\s*/u, '')}
-              </strong>
-              <span className="small muted">
-                {words} kelime · ~{Math.max(1, Math.round(words / 150))} dk
-                {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`}`}
-              </span>
-              <span className={`pill lib-status is-${status === 'Tekrar oku' ? 'reread' : status === 'Yeni' ? 'new' : 'done'}`}>{status}</span>
-            </span>
-            {last && (
-              <span className="lib-ring" style={{ ['--p' as string]: `${Math.round(last.coverage * 100)}%` }} title={`Son okumada kelimelerin %${Math.round(last.coverage * 100)}'ini biliyordun`}>
-                %{Math.round(last.coverage * 100)}
-              </span>
-            )}
-          </button>
-          <button className="icon-btn lib-remove" onClick={() => remove(item)} aria-label={`${item.title} sil`}>
-            ×
-          </button>
-        </li>
-      )
-    }
     return (
       <div className="stack">
         <PageHeader
@@ -640,176 +581,33 @@ export function ReadingScreen({
                     onRemove={() => removeBook(group.id)}
                   />
                 ) : (
-                  renderText(group)
+                  <LibraryItem key={group.id} item={group} now={now} onOpen={open} onRemove={remove} />
                 ),
               )}
             </ul>
           </section>
         )}
-        <details className="card add-text" open={!library.length}>
-          <summary>Kendi metnini ekle: yapıştır, dosya, kitap (EPUB) ya da YouTube</summary>
-          <div className="stack mt-3">
-          <input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Başlık (isteğe bağlı)" aria-label="Başlık" />
-          <textarea className="textarea reading-draft-textarea" lang={language} aria-label="Metin" placeholder="Metni buraya yapıştır…" value={draft} onChange={(e) => setDraft(e.target.value)} />
-          <div className="row">
-            <button className="btn" onClick={start} disabled={!draft.trim()}>
-              Okumaya başla
-            </button>
-          </div>
-          <p className="small muted">ya da başka bir kaynaktan:</p>
-          <div className="add-sources">
-            <label className="btn btn-quiet file-btn">
-              Alt yazı ya da metin dosyası
-              <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && loadFile(e.target.files[0])} />
-            </label>
-            <label className="btn btn-quiet file-btn">
-              <BookIcon size={16} className="inline-icon" />Kitap (EPUB)
-              <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && importBook(e.target.files[0])} />
-            </label>
-          </div>
-          <form
-            className="add-youtube"
-            onSubmit={(e) => {
-              e.preventDefault()
-              void importYoutube()
-            }}
-          >
-            <input className="input" value={youtube} onChange={(e) => setYoutube(e.target.value)} placeholder="YouTube bağlantısı" aria-label="YouTube bağlantısı" inputMode="url" />
-            <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
-              {ytBusy ? 'Getiriliyor…' : <><PlayIcon size={14} className="inline-icon" />Altyazıyı getir</>}
-            </button>
-          </form>
-          {bookError && (
-            <p className={bookError.ok ? 'notice' : 'error'} role="status">
-              {bookError.ok && <BookIcon size={16} className="inline-icon" />}
-              {bookError.text}
-            </p>
-          )}
-          </div>
-        </details>
-        {/* Ready-made sources side by side: learner programmes and today's news. */}
-        <div className="source-tiles">
-        <StorybooksPicker
+        <AddTextCard
           language={language}
-          vocabulary={vocabulary}
-          states={states}
-          known={known}
-          onRead={async (story) => {
-            // Opened before: the same text, with its reading history.
-            const had = (library ?? []).find((t) => t.source === story.url)
-            if (had) return void (await open(had))
-            const item: ReadingText = {
-              id: crypto.randomUUID(),
-              language,
-              title: story.title,
-              text: story.pages.join('\n\n'),
-              audio: story.audio,
-              source: story.url,
-              credit: storyCredit(story),
-              images: story.images,
-              ...(story.turkish ? { turkish: story.turkish } : {}),
-              addedAt: new Date().toISOString(),
-              history: [],
-            }
-            await db.saveText(item)
-            setLibrary((lib) => [item, ...(lib ?? [])])
-            await open(item)
-          }}
+          startOpen={!library.length}
+          title={title}
+          onTitle={setTitle}
+          draft={draft}
+          onDraft={setDraft}
+          onStart={start}
+          onFile={loadFile}
+          onBook={importBook}
+          youtube={youtube}
+          onYoutube={setYoutube}
+          onFetchYoutube={() => void importYoutube()}
+          ytBusy={ytBusy}
+          bookError={bookError}
         />
-        <ListeningPicker
-          language={language}
-          vocabulary={vocabulary}
-          states={states}
-          known={known}
-          onOpen={async (episode) => {
-            const item: ReadingText = {
-              id: crypto.randomUUID(),
-              language,
-              title: episode.title,
-              text: episode.text,
-              audio: episode.audio,
-              ...(episode.cues?.length ? { cues: episode.cues } : {}),
-              addedAt: new Date().toISOString(),
-              history: [],
-            }
-            await db.saveText(item)
-            setLibrary((lib) => [item, ...(lib ?? [])])
-            await open(item)
-          }}
-        />
-        <NewsPicker
-          language={language}
-          vocabulary={vocabulary}
-          states={states}
-          known={known}
-          onRead={async (newsTitle, newsText) => {
-            const item: ReadingText = { id: crypto.randomUUID(), language, title: newsTitle, text: newsText, addedAt: new Date().toISOString(), history: [] }
-            await db.saveText(item)
-            setLibrary((lib) => [item, ...(lib ?? [])])
-            await open(item)
-          }}
-        />
-        <WikipediaPicker
-          language={language}
-          vocabulary={vocabulary}
-          states={states}
-          known={known}
-          onRead={async (wikiTitle, wikiText) => {
-            const item: ReadingText = { id: crypto.randomUUID(), language, title: wikiTitle, text: wikiText, addedAt: new Date().toISOString(), history: [] }
-            await db.saveText(item)
-            setLibrary((lib) => [item, ...(lib ?? [])])
-            await open(item)
-          }}
-        />
-        <ClassicsPicker
-          language={language}
-          vocabulary={vocabulary}
-          states={states}
-          known={known}
-          onRead={async (classicTitle, classicText, source) => {
-            const item: ReadingText = {
-              id: crypto.randomUUID(),
-              language,
-              title: classicTitle,
-              text: classicText,
-              source,
-              addedAt: new Date().toISOString(),
-              history: [],
-            }
-            await db.saveText(item)
-            setLibrary((lib) => [item, ...(lib ?? [])])
-            await open(item)
-          }}
-          onAddAll={async (items) => {
-            const now = new Date().toISOString()
-            const existingTitles = new Set((library ?? []).map((t) => t.title))
-            const newTexts: ReadingText[] = items
-              .filter((c) => !existingTitles.has(c.title))
-              .map((c) => ({
-                id: crypto.randomUUID(),
-                language,
-                title: c.title,
-                text: c.text,
-                source: `Klasik Koleksiyon: ${c.author}`,
-                addedAt: now,
-                history: [],
-              }))
-            if (newTexts.length > 0) {
-              await db.saveTexts(newTexts)
-              setLibrary((lib) => [...newTexts, ...(lib ?? [])])
-              showToast(`${newTexts.length} klasik metin kütüphanene eklendi.`)
-            } else {
-              showToast('Bu klasikler zaten kütüphanende var.')
-            }
-          }}
-        />
-        </div>
+        <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />
       </div>
     )
   }
 
-  const zone = coverageZone(analysis.coverage)
-  const pct = (x: number) => `%${Math.round(x * 1000) / 10}`.replace('.', ',')
   const unseenKeys = new Set(analysis.paragraphs.flat().flatMap((s) => s.tokens).filter((t) => t.status === 'unseen' && t.key && !skipped.has(t.key)).map((t) => t.key))
   const selectedEntry = selected?.token.entryId ? byId.get(selected.token.entryId) : undefined
   // A conjugated form (allions, tuve): the verb, tense and person, and the learner's own card for
@@ -820,7 +618,6 @@ export function ReadingScreen({
     .map((a, i) => ({ a, i }))
     .sort((x, y) => verbRank(x.a.lemma) - verbRank(y.a.lemma) || x.i - y.i)
     .map((x) => x.a)
-  const share = (n: number) => `${(n / Math.max(1, analysis.total)) * 100}%`
 
   return (
     <div className="stack">
@@ -831,58 +628,7 @@ export function ReadingScreen({
         </button>
       </div>
 
-      {/* One line while reading (score, verdict, bar); the explanations open on request, so the
-          text starts near the top of the screen. */}
-      <section className={`card coverage coverage-compact zone-${zone}`}>
-        <button type="button" className="coverage-line" aria-expanded={covOpen} onClick={() => setCovOpen((o) => !o)}>
-          <span className="coverage-num">{pct(analysis.coverage)}</span>
-          <strong className="coverage-title">{ZONE[zone].title}</strong>
-          <span className="coverage-bar" role="img" aria-label={`Bilinen ${pct(analysis.coverage)}, kelimelerinde ${pct(analysis.coverageWithList - analysis.coverage)}, yeni ${pct(1 - analysis.coverageWithList)}`}>
-            <span className="cb-known" style={{ width: share(analysis.counts.known) }} />
-            <span className="cb-list" style={{ width: share(analysis.counts.learning + analysis.counts.new) }} />
-            <span className="cb-unseen" style={{ width: share(analysis.counts.unseen) }} />
-          </span>
-          <ChevronDownIcon size={16} className="coverage-chevron" />
-        </button>
-        {covOpen && (
-          <div className="stack gap-2 coverage-more">
-            <p className="small muted">{ZONE[zone].text}</p>
-            <p className="small muted coverage-legend">
-              <span><i className="cb-known" /> bildiğin {analysis.counts.known}</span>
-              <span><i className="cb-list" /> kelimelerinde {analysis.counts.learning + analysis.counts.new}</span>
-              <span><i className="cb-unseen" /> yeni {analysis.counts.unseen}</span>
-              <span>toplam {analysis.total} kelime</span>
-            </p>
-            {current && current.history.length > 0 && startCoverage !== null && (
-              <p className="small">
-                Önceki okumada %{Math.round(current.history[0].coverage * 100)}
-                {current.history.length > 1 && `, son okumada %${Math.round(current.history.at(-1)!.coverage * 100)}`}; bu okumaya başlarken %
-                {Math.round(startCoverage * 100)}.
-              </p>
-            )}
-            {known.size < 500 && (
-              <p className="small muted">
-                Bildiğin kelimeleri henüz az tanıyorum ({known.size}). Birkaç metni bitirdikçe "yeni" görünen kelimeler azalır ve bu oran gerçeğe yaklaşır.
-              </p>
-            )}
-          </div>
-        )}
-        {current?.credit && <p className="small muted">{current.credit}</p>}
-        {current?.source && (
-          <p className="small coverage-source">
-            <a className="link" href={current.source} target="_blank" rel="noreferrer">
-              {current.source.includes('youtube.com') ? (
-                <>
-                  <PlayIcon size={14} className="inline-icon" />
-                  Videoyu YouTube’da aç
-                </>
-              ) : (
-                'Kaynağı aç'
-              )}
-            </a>
-          </p>
-        )}
-      </section>
+      <CoverageCard analysis={analysis} current={current} startCoverage={startCoverage} knownCount={known.size} expanded={covOpen} onToggle={() => setCovOpen((o) => !o)} />
 
       {current?.audio && (
         <AudioPanel
@@ -1040,121 +786,32 @@ export function ReadingScreen({
       )}
 
       {selected && selected.token.key && (
-        <section className="card stack word-pop" aria-live="polite" style={{ ...(sheetBox ? ({ '--sheet-left': `${sheetBox.left}px`, '--sheet-w': `${sheetBox.width}px` } as CSSProperties) : {}), ...(sheet.dy ? { transform: `translateY(${sheet.dy}px)`, transition: 'none' } : {}) }}>
-          {/* On a narrow screen this card is a bottom sheet: the head stays put while the rest scrolls, and a pull on it closes the sheet. */}
-          <div className="word-pop-head" {...sheet.handlers}>
-            <span className="sheet-handle" aria-hidden />
-            <div className="row justify-between">
-              <strong className="word-pop-word" lang={language}>
-                {selectedEntry ? `${selectedEntry.article ? `${selectedEntry.article} ` : ''}${selectedEntry.lemma}` : cleanToken(selected.token.text, language)}
-              </strong>
-              <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Kapat">
-                ×
-              </button>
-            </div>
-          </div>
-          {selectedEntry && <p className="gloss word-pop-gloss">{selectedEntry.senses[0].gloss}</p>}
-          <WordPopExtras language={language} lemma={selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language)} entry={selectedEntry ?? undefined} />
-          {onLookUp && (
-            <p className="small">
-              <button className="link small" onClick={() => onLookUp(selectedEntry?.lemma ?? selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language))}>
-                Sözlükte aç
-              </button>
-            </p>
-          )}
-          {selectedForms.length > 0 && language !== 'en' && (
-            <div className="form-analysis">
-              {selectedForms.slice(0, 3).map((a) => {
-                const own = verbEntry(a.lemma)
-                return (
-                  <p key={`${a.lemma}-${a.tense}`} className="small">
-                    <strong lang={language}>{a.lemma}</strong> · <span lang={language}>{TENSE_GUIDE[a.tense].name}</span> ·{' '}
-                    {[...new Set(a.persons.map((p) => subjectLabel(language, a.tense, p).split(' / ')[0]))].join(', ')}
-                    {own && (
-                      <>
-                        {' '}
-                        <button className="link small" onClick={() => onOpen(own.id)}>
-                          kartı aç
-                        </button>
-                      </>
-                    )}
-                    {onOpenLab && (
-                      <>
-                        {' '}
-                        <button className="link small" onClick={() => onOpenLab(a.lemma, a.tense)}>
-                          fiil laboratuvarında aç
-                        </button>
-                      </>
-                    )}
-                  </p>
-                )
-              })}
-            </div>
-          )}
-          <p className="small muted">{STATUS_TEXT[selected.token.status!]}</p>
-          <p className="small sentence-sm">
-            {selected.sentence}{' '}
-            <button className="link small" onClick={() => keepSentence(selected.sentence, cleanToken(selected.token.text, language))}>
-              Cümleyi kaydet
-            </button>
-          </p>
-          <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />
-          {times && selected.at && (
-            <button
-              type="button"
-              className="link small"
-              onClick={() => {
-                const [pi, si] = selected.at!.split('.').map(Number)
-                seekRef.current?.(times[paragraphStart[pi] + si] ?? 0)
-              }}
-            >
-              <PlayIcon size={14} className="inline-icon" /> Bu cümleden dinle
-            </button>
-          )}
-          <p className="small muted kbd">
-            <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
-          </p>
-          <div className="row word-pop-actions">
-            {selectedEntry ? (
-              <button className="btn btn-quiet" onClick={() => onOpen(selectedEntry.id)}>
-                Kelimeyi aç
-              </button>
-            ) : (
-              <>
-                <button
-                  className="btn"
-                  onClick={() => setAdding({ word: selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? selectedForms[0].lemma : cleanToken(selected.token.text, language).toLocaleLowerCase(language), sentence: selected.sentence })}
-                >
-                  {/* A verb goes on the list as its infinitive (aller), not the form met (allions). */}
-                  {selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? `Kelimelerime ekle: ${selectedForms[0].lemma}` : 'Kelimelerime ekle'} <kbd className="kbd-key">E</kbd>
-                </button>
-                {ignored.has(selected.token.key) ? (
-                  <button className="btn btn-quiet" onClick={() => toggleIgnored(selected.token.key!, false)}>
-                    Yok saymayı kaldır
-                  </button>
-                ) : selected.token.status === 'known' ? (
-                  <button className="btn btn-quiet" onClick={() => markUnknown(selected.token.key!)}>
-                    Aslında bilmiyorum
-                  </button>
-                ) : (
-                  <>
-                    <button className="btn btn-quiet" onClick={() => markKnown(selected.token.key!)}>
-                      Biliyorum <kbd className="kbd-key">B</kbd>
-                    </button>
-                    <button className="btn btn-quiet" onClick={() => toggleIgnored(selected.token.key!, true)} title="Özel isim, yabancı kelime ya da yazım hatası: hesaba katılmaz">
-                      Yok say <kbd className="kbd-key">Y</kbd>
-                    </button>
-                    {!skipped.has(selected.token.key) && selected.token.status === 'unseen' && (
-                      <button className="link small" onClick={() => skip(selected.token.key!)}>
-                        Bilmiyorum, eklemeden geç <kbd className="kbd-key">G</kbd>
-                      </button>
-                    )}
-                  </>
-                )}
-              </>
-            )}
-          </div>
-        </section>
+        <WordCard
+          selected={selected as Selected & { token: ReadToken & { key: string } }}
+          entry={selectedEntry}
+          forms={selectedForms}
+          verbEntry={verbEntry}
+          language={language}
+          sheetBox={sheetBox}
+          sheet={sheet}
+          ignored={ignored}
+          skipped={skipped}
+          canListenFrom={!!times}
+          onClose={() => setSelected(null)}
+          onLookUp={onLookUp}
+          onOpen={onOpen}
+          onOpenLab={onOpenLab}
+          onKeepSentence={keepSentence}
+          onListenFrom={(at) => {
+            const [pi, si] = at.split('.').map(Number)
+            seekRef.current?.(times?.[paragraphStart[pi] + si] ?? 0)
+          }}
+          onAdd={(word, sentence) => setAdding({ word, sentence })}
+          onIgnore={toggleIgnored}
+          onUnknown={markUnknown}
+          onKnown={markKnown}
+          onSkip={skip}
+        />
       )}
 
       {adding && (
@@ -1177,31 +834,7 @@ export function ReadingScreen({
       </aside>
       </div>
 
-      {analysis.iPlusOne.length > 0 && (
-        <section className="section stack">
-          <h2 className="section-title">Tek bilinmeyenli cümleler</h2>
-          <p className="small muted">
-            Yalnızca bir kelimesini bilmediğin cümleler: yeni bir kelimeyi öğrenmenin en verimli bağlamı (i+1). Kelimeyi bu cümleyle birlikte ekle.
-          </p>
-          <ul className="plain stack gap-2">
-            {analysis.iPlusOne.slice(0, 12).map((x) => (
-              <li key={x.key} className="row justify-between nowrap items-start">
-                <span className="sentence-sm" lang={language}>
-                  {highlight(x.sentence, x.word)}
-                </span>
-                <span className="row gap-xs nowrap">
-                  <button className="btn btn-quiet" onClick={() => setAdding({ word: x.word.toLocaleLowerCase(language), sentence: x.sentence })}>
-                    Ekle
-                  </button>
-                  <button className="btn btn-quiet" onClick={() => keepSentence(x.sentence, x.word)} aria-label="Cümleyi kaydet" title="Cümleyi kaydet">
-                    <MessageIcon size={16} />
-                  </button>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {analysis.iPlusOne.length > 0 && <SingleUnknownSentences analysis={analysis} language={language} onAdd={(word, sentence) => setAdding({ word, sentence })} onKeep={keepSentence} />}
 
       <div className="row" ref={endSeen}>
         <button className="btn btn-lg" onClick={() => setConfirmFinish(true)}>
