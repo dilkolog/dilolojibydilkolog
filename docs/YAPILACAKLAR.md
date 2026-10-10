@@ -280,22 +280,45 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - #201: Cümle parçaları için sütun bazlı `{ s, t }` ve kompakt TSV çözücü desteği (`wordpack.ts`, `wordpackSentences.test.ts`).
 - [x] **İçerik ve Araştırma Envanteri (#165, #166, #177, #187, #190, #200, #206):**
   - #206: İngilizce sesli içerik envanteri ve lisans değerlendirme raporu (`docs/kaynaklar/english-audio.md`: Global Storybooks, VOA Learning English, LibriVox, Simple English Wikipedia, BBC).
-- [x] **Test Sağlamlığı ve Erişilebilirlik (#156, #172, #173, #179, #181, #194, #208):**
+- [x] **Test Sağlamlığı ve Erişilebilirlik (#156, #172, #173, #179, #181, #194, #208, #224):**
   - #156: Test edilmemiş 5 engine modülüne kapsamlı birim testleri (`hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
   - #172: E2E test sağlamlaştırma (dinamik görünürlük beklemeleri ve fonksiyonel rota eşlemeleri).
   - #173: Dahili kullanılan dışa aktarımlar raporu ve temizliği (`docs/KULLANILMAYAN-DISA-AKTARIMLAR.md`).
   - #179: Bölünen yeni UI bileşenlerine birim testleri (`TextForms`, `CoverageCard`, `WordCard`, `ReadingLibrary`, `AppSidebar`).
-  - #181, #194, #208: Genişletilmiş erişilebilirlik (a11y) test kapsamı (Onboarding, Çekimler kartı, mobil çekmece, oturum özeti, Çeviri temaları, Unuttum durumu, çevrimdışı rozeti, sesli kitaplar, telaffuz çalışması, kişisel cümleler, liste seçimi ve kota satırı açık/koyu/sakin temalarda axe doğrulaması).
+  - #181, #194, #208, #224: Genişletilmiş erişilebilirlik (a11y) test kapsamı (Onboarding, Çekimler kartı, mobil çekmece, oturum özeti, Çeviri temaları, Unuttum durumu, çevrimdışı rozeti, sesli kitaplar, telaffuz çalışması, kişisel cümleler, liste seçimi, kota satırı, Dilbilgisi soruları, Refleks turu, Tuzak kelimeler, Ses ayırt etme, Zihin tohumu ve Kör noktalar kartı açık/koyu/sakin temalarda axe doğrulaması).
+
+## 2026-10-10 Geliştirmeleri — 9. Tur (#209–#225)
+- [x] **Hesap Onayı ve Erişim Denetimi (#210):**
+  - Güvenli çoklu kullanıcı mimarisi: Onaysız hesaplar kelime ekleyip çalışabilir; onaylı hesaplar sunucu eşitleme, DeepL çeviri, YouTube altyazısı ve AI servislerini kullanır (`api/_account.ts`, `data/access.ts`, `useAccessStatus.ts`).
+- [x] **Dilbilgisi Soruları & Genişletme (#211, #221):**
+  - B1–C1 dilbilgisi pratik motoru (`GrammarPractice.tsx`, `grammar.ts`). Boşluk doldurma (cloze), seçenekli (choice) ve hatalı kelime bulma (error) soru tipleri.
+  - Açık lisanslı alıştırma envanteri (`docs/kaynaklar/gramer-alistirmalari.md`).
+  - Mevcut 96 sorunun pedagojik denetimi (`docs/veri/gramer-gozden-gecirme.md`).
+  - 120 yeni doğrulanmış soru (`src/data/grammar/{fr,es,en}-2.json`, subjonctif, participe passé, inversion, cleft, mixed conditionals vb.).
+- [x] **Tuzak Kelimeler / Yalancı Eşdeğerler (#218):**
+  - Hedef dilde başka dille karışan sözcükler için pratik oyunu (`TrapRound.tsx`, `traps.ts`).
+  - 121 yeni doğrulanmış kelime ve örnek cümle (`src/data/traps/{fr,es,en}-2.json`).
+  - Kelime detay sayfasında ve Sözlük'te "Tuzak kelime" çipi. Rapor: `docs/kaynaklar/tuzak-kelimeler.md`.
+- [x] **Refleks Turu (#219):**
+  - 3 saniye kuralıyla günlük konuşma kalıplarını hızla hatırlama oyunu (`ReflexRound.tsx`, `reflex.ts`).
+  - 62 yeni dört dilli paralel kalıp (`src/data/reflex/phrases-2.json`, TR/FR/ES/EN).
+- [x] **Ses Ayırt Etme Kayıt Denetimi (#222):**
+  - `MINIMAL_PAIRS` listesindeki yeni çiftlerin Wiktionary ve Commons üzerindeki ana dil konuşmacısı sayısı denetimi ve açık lisanslı kaynak raporu (`docs/veri/minimal-cift-kayitlari.md`).
+- [x] **Zihin Tohumu & Kör Nokta Röntgeni:**
+  - Bugün ekranında ekrandan uzakta hedef dilde düşünme önerisi (`MindSeed.tsx`, `mindSeed.ts`).
+  - İlerleme ekranında öğrencinin en zayıf olduğu konuları tespit edip doğrudan tamir oyununa yönlendiren kart (`BlindSpots.tsx`, `blindSpots.ts`).
+- [x] **Günün Mikro Haberi Araştırması (#225):**
+  - RFI Journal en français facile, VOA Learning English ve VOA Noticias için RSS, doğrudan MP3 akışı, tam transkript ve lisans fizibilite raporu (`docs/kaynaklar/gunun-haberi.md`).
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
+- **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince dilbilgisi, refleks ve tuzak kelimeler oyunlarının kullanım oranları incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
 - **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
-- **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) (Hata Avcısı, Cümle Dönüşümü, Minimum Çiftler kulak eğitimi, Eşdizimlilik/Collocations, Tuzak Kelimeler / Faux Amis, RFI/VOA Günün Mikro Haberi).
-- **Açık Lisanslı Gramer Alıştırmaları:** [`docs/kaynaklar/gramer-alistirmalari.md`](kaynaklar/gramer-alistirmalari.md) (COERLL, Entrada Libre, H5P paketleri ve B2/C1 soru motoru kararı).
+- **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) 14 fikir yol haritası.
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
+
 
 
 

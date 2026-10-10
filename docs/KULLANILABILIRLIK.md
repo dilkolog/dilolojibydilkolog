@@ -59,13 +59,13 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 │   ├── Sesli kitaplar ─────────> B1+ LibriVox & Gutenberg bölümlü sesli kitaplar
 │   └── Hikaye ─────────────────> Kolay resimli hikâyeler (Global Storybooks)
 ├── Pratik (Practice Hub)
-│   ├── Oyunlar ────────────────> Zamana karşı, eşleştirme, geri çeviri, kaçırdıkların, telaffuz çalışması
+│   ├── Oyunlar ────────────────> Zamana karşı, eşleştirme, geri çeviri, kaçırdıkların, telaffuz, dilbilgisi, refleks, tuzak kelimeler, ses ayırt etme
 │   ├── Fiiller ────────────────> Fiil laboratuvarı (Öğren, Çalış, Ustalık)
 │   └── Yaz & konuş ────────────> Serbest günlük, sesli gölgeleme, LanguageTool denetimi
-└── İlerleme (Progress) ─────────> Bahçe görünümü, CEFR kapsamı, haftalık çalışma, rozetler
+└── İlerleme (Progress) ─────────> Bahçe görünümü, CEFR kapsamı, haftalık çalışma, kör noktalar kartı, rozetler
 [Üst Çubuk / Profil]
 ├── Profil ─────────────────────> Seviye, unvan, afiş/çerçeve, rozet vitrini
-└── Ayarlar ────────────────────> Günlük süre/kelime, tema, yedekleme/eşitleme (kota/güvenlik), AI anahtarı
+└── Ayarlar ────────────────────> Günlük süre/kelime, tema, yedekleme/eşitleme (hesap onayı/kota/güvenlik), AI anahtarı
 ```
 
 ### 3.1. Güçlü Yönler
@@ -146,6 +146,19 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 ### 4.8. Ayarlar ve Veri Güvenliği (Settings)
 - **Şeffaflık:** Vercel Blob senkronizasyonu şifrelidir; AI anahtarı cihazda saklanır ve yedek dosyasına dahil edilmez (`#139`, `GUVENLIK.md`).
 - **Veri Sahipliği:** Yedeği tek tıkla indirme ve geri yükleme imkânı kullanıcının verisini sahiplenmesini sağlar.
+- **Hesap Durumu ve Onay:** Onaysız ve onaylı hesap ayrımı şeffaf bir rozet ve durum metniyle gösterilir (#210); sunucu limitleri ve eşitleme durumu kullanıcıya açıkça iletilir.
+
+### 4.9. İleri Seviye Pratik & Bilişsel İçgörü Kartları (9. Tur)
+- **Dilbilgisi Soruları (`GrammarPractice.tsx`):**
+  - B1–C1 seviyelerinde cloze, choice ve error soru modelleri. Kural açıklamaları (`explanation`) hatanın nedenini anında Türkçe açıklar; öğrenciyi kuramsal netliğe kavuşturur.
+- **Tuzak Kelimeler / Faux Amis (`TrapRound.tsx`):**
+  - Sözlükte ve kelime kartında belirgin bir "Tuzak kelime" çipi yer alır. Pratik turunda ise hedef dildeki anlam ile yanıltıcı benzer dil anlamı karşılaştırmalı sorulur.
+- **Refleks Turu (`ReflexRound.tsx`):**
+  - 3 saniyelik mikro geri sayımla günlük konuşma kalıplarını hatırlatma; öğrencinin zihinsel çeviri bariyerini aşmasını ve konuşma refleksini hızlandırmasını hedefler.
+- **Zihin Tohumu (`MindSeed.tsx`):**
+  - Bugün ekranında ekran başında kalmayı değil, ekranı kapatıp gün içinde hedef dilde düşünmeyi teşvik eden mikro-eylem önerisi.
+- **Kör Nokta Röntgeni (`BlindSpots.tsx`):**
+  - İlerleme ekranında öğrencinin en çok hata yaptığı dilbilgisi konularını, fiil çekimlerini ve tuzak kelimeleri tek bakışta analiz eder; tek tıkla doğrudan ilgili tamir turunu başlatır.
 
 ---
 
@@ -166,6 +179,11 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 | **11** | **Kişiselleştirilmiş Cümleler** (`PersonalSentences.tsx`) | Standart sözlük örnekleri yerine ilgi alanlarına ve hedeflere özel cümle ihtiyacı | Öz-referans Etkisi | ✅ Çözüldü (#204) |
 | **12** | **İçe Aktarma Hedef Belirsizliği** (`ImportPlacement.tsx`) | Toplu ekleme ve Kindle içe aktarmalarında hedef liste ve seviyenin baştan seçilememesi | Kullanıcı Denetimi & Özgürlüğü | ✅ Çözüldü (#204) |
 | **13** | **Eşitleme Şeffaflığı ve Güvenliği** (`SyncSettings.tsx`, `DataSettings.tsx`) | Medya boyutu/kota durumu belirsizliği ve geri yükleme öncesi olası veri kaybı endişesi | Hataları Önleme & Görünürlük | ✅ Çözüldü (#197, #200) |
+| **14** | **B1+ Dilbilgisi Tıkanması** (`GrammarPractice.tsx`) | Kelime bilinse dahi karmaşık yapıların (subjonctif, inversion) bağlam içinde pekiştirilememesi | Bilişsel Yük & Derin Öğrenme | ✅ Çözüldü (#211, #221) |
+| **15** | **Yalancı Eşdeğer Yanılgıları** (`TrapRound.tsx`) | Benzer yazılan sözcüklerin hedef dildeki anlamının yanlış öğrenilmesi ve fark edilmemesi | Hataları Önleme | ✅ Çözüldü (#218) |
+| **16** | **Konuşma Hızı ve Çeviri Refleksi** (`ReflexRound.tsx`) | Günlük kalıpların kafada önce Türkçeden çevrilmesi nedeniyle oluşan gecikme ve tutukluk | Hatırlama yerine Tanıma & Akıcılık | ✅ Çözüldü (#219) |
+| **17** | **Zayıf Alanları Teşhis Zorluğu** (`BlindSpots.tsx`) | Hangi dilbilgisi veya fiil çekiminde sürekli hata yapıldığının dağınık kalması | Hataları Teşhis & Telafi | ✅ Çözüldü (#224) |
+| **18** | **Çoklu Kullanıcı ve Hesap Ayrımı** (`useAccessStatus.ts`) | Cihazlar arası eşitlemede onaysız hesapların sunucu kaynaklarını tüketmesi ve belirsizlik | Sistem Durumu Görünürlüğü & Güvenlik | ✅ Çözüldü (#210) |
 
 ---
 
@@ -180,6 +198,8 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 3. **Ekran Okuyucu Desteği:**
    - İkon düğmelerinin çoğunda `aria-label` veya gizli `.sr-only` metinler mevcuttur.
    - İkincil sekmelerde ve filtrelerde `aria-pressed` / `aria-selected` öznitelikleri doğru işletilmektedir.
+4. **9. Tur Genişletilmiş Axe Kapsamı (#224):**
+   - Yeni eklenen tüm bileşenler (`GrammarPractice`, `ReflexRound`, `TrapRound`, `PairsGame`, `MindSeed`, `BlindSpots`) açık, koyu ve sakin temaların tümünde axe-core WCAG 2.2 AA taramalarından 0 ihlalle geçirilmiştir.
 
 ---
 
@@ -215,10 +235,25 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 13. **Veri Güvenliği ve Eşitleme Şeffaflığı:** ✅ Yapıldı (#197, #200, #207):  
     Geri yükleme öncesi otomatik cihaz kopyası (`safetyBackup.ts`), Ayarlar'da eşitlenen veri boyutu / kota göstergesi ve 3 MB medya koruması.
 
+### 🟣 Öncelik 4: İleri Seviye Pedagojik Derinlik ve Akıcılık (9. Tur)
+14. **Dilbilgisi Alıştırma Motoru:** ✅ Yapıldı (#211, #221):  
+    B1–C1 dilbilgisi pratik motoru (`GrammarPractice.tsx`, `grammar.ts`), üç soru modeli ve 216 doğrulanmış alıştırma.
+15. **Tuzak Kelimeler / Faux Amis Pratiği:** ✅ Yapıldı (#218):  
+    Hedef dilde başka dille karışan sözcükler için pratik oyunu (`TrapRound.tsx`), 121 yeni kelime ve sözlükte tuzak çipi.
+16. **Refleks Turu:** ✅ Yapıldı (#219):  
+    3 saniye kuralıyla günlük konuşma kalıplarını hızla hatırlama oyunu (`ReflexRound.tsx`), 62 dört dilli kalıp.
+17. **Ses Ayırt Etme (Minimal Çiftler):** ✅ Yapıldı (#222):  
+    Wiktionary/Commons ses kayıt denetimiyle fonetik ayırt etme pratiği (`PairsGame.tsx`).
+18. **Zihin Tohumu ve Kör Nokta Röntgeni:** ✅ Yapıldı (#224):  
+    Bugün ekranında ekrandan bağımsız düşünme önerisi (`MindSeed.tsx`) ve İlerleme ekranında zayıf alanları tek tıkla tamir eden analiz kartı (`BlindSpots.tsx`).
+19. **Hesap Onayı ve Erişim Güvenliği:** ✅ Yapıldı (#210):  
+    Onaysız/onaylı hesap ayrımı, şeffaf durum bildirimi ve kota yönetimi (`api/_account.ts`, `data/access.ts`).
+
 ---
 
 ## 8. Sonuç
 
 Kelime Koçu; temiz tipografisi (Lexend + Literata uyumu), tek dil vurgusu prensibi, dokunsal düğme basma hissi ve yargılamayan bahçe metaforuyla piyasadaki aşırı oyunlaştırılmış (gamified) ve dikkat dağıtıcı dil uygulamalarına kıyasla son derece dingin, ergonomik ve amaca odaklı bir kullanıcı deneyimi sunmaktadır.
 
-Yukarıda sıralanan küçük sürtünme noktalarının (özellikle mobil ikincil sekme netliği, okuma popover yerleşimi ve biriken tekrar yumuşatmaları) giderilmesiyle, uygulamanın kullanılabilirlik standardı en üst seviyeye taşınacaktır.
+9. turla birlikte gelen ileri seviye B1–C1 dilbilgisi pratikleri, refleks kalıpları, tuzak kelime farkındalığı ve kör nokta röntgeni; uygulamayı salt bir kelime ezberleme aracından tam teşekküllü bir dil edinim ve akıcılık platformuna dönüştürmüştür.
+
