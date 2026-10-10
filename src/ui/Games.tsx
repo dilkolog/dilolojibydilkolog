@@ -39,6 +39,7 @@ import { SwipeCards } from './games/SwipeCards'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
+import { recordVisit } from './screenUsage'
 import type { GameId } from './gameList'
 
 type Game = GameId | null
@@ -54,6 +55,10 @@ export function GamesScreen(
   },
 ) {
   const [game, setGame] = useState<Game>(p.initialGame ?? null)
+  // Which games are played, counted on this device (Ayarlar → Kullanım).
+  useEffect(() => {
+    if (game) recordVisit(`games:${game}`)
+  }, [game])
   const [dueSentenceCount, setDueSentenceCount] = useState(0)
   useEffect(() => {
     void db.getSentences().then((all) => setDueSentenceCount(dueSentences(all, p.language, new Date()).length))

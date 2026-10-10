@@ -34,6 +34,8 @@ describe('screen usage', () => {
       ['Alıştırma', 1],
     ])
     expect(usageLabel('reading')).toBe('Okuma')
+    expect(usageLabel('games:grammar')).toBe('Dilbilgisi soruları')
+    expect(usageLabel('games:nope')).toBe('nope')
     expect(usageLabel('verbs:mastery')).toBe('İlerleme')
   })
 })
