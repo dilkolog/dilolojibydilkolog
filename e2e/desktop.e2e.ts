@@ -759,6 +759,27 @@ test('translation screen: a short text translated sentence by sentence, side by 
   expect(await overflow(page)).toEqual([])
 })
 
+test('translation: a pasted "Örnek:" label is not translated, and a pair translated both ways is listed once', async ({ page }) => {
+  await startWithSamples(page)
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 1000000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => {
+    const text = new URL(r.request().url()).searchParams.get('text')!
+    return r.fulfill({ json: { translation: { 'Le chat dort.': 'Kedi uyuyor.', 'Kedi uyuyor.': 'Le chat dort.' }[text] ?? `?${text}` } })
+  })
+  await openScreen(page, 'Çeviri')
+  await page.getByLabel('Çevrilecek metin').fill('Örnek: Le chat dort.')
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
+  const pairs = page.getByRole('region', { name: 'Çeviri', exact: true }).locator('.translate-pairs li')
+  await expect(pairs).toHaveCount(1)
+  await expect(pairs.first().locator('.translate-source')).toHaveText('Le chat dort.')
+  // The same pair the other way round (the swap button turns the translation into the new text).
+  await page.getByRole('button', { name: 'Yönü değiştir' }).click()
+  await expect(page.getByLabel('Çevrilecek metin')).toHaveValue('Kedi uyuyor.')
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
+  await expect(pairs.first().locator('.translate-target')).toHaveText('Le chat dort.')
+  await expect(page.getByRole('region', { name: 'Son çevirilerin' }).locator('.translate-recent li')).toHaveCount(1)
+})
+
 test('translation memory: a reading sentence translated on request, the recent ones listed, a single word one tap from the add form', async ({ page }) => {
   await startWithSamples(page)
   await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 1000000 } }))
