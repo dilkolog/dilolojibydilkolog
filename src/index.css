@@ -5180,3 +5180,5 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .blind-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
 .blind-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow-sm); }
 .blind-text { display: grid; gap: 0.125rem; min-width: min(16rem, 100%); flex: 1 1 16rem; }
+/* A question of two lines (the sentence to rewrite, then the one with the gap) keeps its line break. */
+.grammar-sentence { white-space: pre-line; }

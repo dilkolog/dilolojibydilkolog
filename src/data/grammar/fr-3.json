@@ -1,0 +1,276 @@
+[
+ {
+  "id": "fr-conn_fr-01",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Il a beaucoup travaillé. ___, il a échoué à l'examen.",
+  "answer": "Pourtant",
+  "options": [
+   "Pourtant",
+   "Donc",
+   "Ainsi",
+   "D'ailleurs"
+  ],
+  "explanation": "İlk cümlenin beklentisine ters düşen sonuç: zıtlık bağlacı gerekir. « Pourtant » = “yine de, buna rağmen”; « donc » ve « ainsi » sonuç bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-02",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Il pleuvait très fort. ___, nous sommes restés à la maison.",
+  "answer": "C'est pourquoi",
+  "options": [
+   "C'est pourquoi",
+   "Cependant",
+   "En revanche",
+   "Pourtant"
+  ],
+  "explanation": "İkinci cümle birincinin sonucu: « c’est pourquoi » (bu yüzden). Diğer üçü zıtlık bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-03",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Marie aime le théâtre, ___ son frère préfère le cinéma.",
+  "answer": "alors que",
+  "options": [
+   "alors que",
+   "parce que",
+   "afin que",
+   "pourvu que"
+  ],
+  "explanation": "İki durumu karşılaştırmak için « alors que » (-iken, oysa) kullanılır; nedeni, amacı ya da şartı değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-04",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Je viendrai à la fête, ___ tu me préviennes à temps.",
+  "answer": "pourvu que",
+  "options": [
+   "pourvu que",
+   "parce que",
+   "puisque",
+   "alors que"
+  ],
+  "explanation": "Şart bildiren « pourvu que » (-mek şartıyla) subjonctif ister: tu préviennes.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-05",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Il est très compétent. ___, il manque d'expérience.",
+  "answer": "En revanche",
+  "options": [
+   "En revanche",
+   "Par conséquent",
+   "Ainsi",
+   "Sinon"
+  ],
+  "explanation": "Olumlu bir özelliğin karşısına olumsuz bir özellik koyar: « en revanche » (buna karşılık).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-06",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Elle n'a pas pu venir ___ son fils était malade.",
+  "answer": "parce que",
+  "options": [
+   "parce que",
+   "bien que",
+   "afin que",
+   "à moins que"
+  ],
+  "explanation": "Neden bildirir ve indicatif alır (était). « Bien que », « afin que » ve « à moins que » subjonctif ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-07",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Prends un parapluie ; ___, tu risques d'être mouillé.",
+  "answer": "sinon",
+  "options": [
+   "sinon",
+   "donc",
+   "pourtant",
+   "d'ailleurs"
+  ],
+  "explanation": "« Sinon » = “aksi hâlde”: yapılmazsa olacak sonucu bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-08",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Ce restaurant est excellent. ___, il est très abordable.",
+  "answer": "De plus",
+  "options": [
+   "De plus",
+   "Néanmoins",
+   "Sinon",
+   "Faute de quoi"
+  ],
+  "explanation": "Aynı yönde bir bilgi ekler: « de plus » (üstelik). « Néanmoins » zıtlık, « sinon » ve « faute de quoi » koşul bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-09",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Nous avons raté le train ; ___ nous sommes arrivés en retard.",
+  "answer": "par conséquent",
+  "options": [
+   "par conséquent",
+   "pourtant",
+   "en revanche",
+   "quoique"
+  ],
+  "explanation": "İkinci cümle birincinin sonucu: « par conséquent » (bunun sonucunda).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-10",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Je ne sortirai pas, ___ tu viennes avec moi.",
+  "answer": "à moins que",
+  "options": [
+   "à moins que",
+   "parce que",
+   "puisque",
+   "alors que"
+  ],
+  "explanation": "« À moins que » (-mediği sürece) subjonctif ister: tu viennes. Diğerleri indicatif ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conn_fr-11",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conn_fr",
+  "type": "choice",
+  "prompt": "Il a réussi, ___ à son travail acharné.",
+  "answer": "grâce",
+  "options": [
+   "grâce",
+   "à cause",
+   "malgré",
+   "faute"
+  ],
+  "explanation": "Olumlu bir neden için « grâce à » (sayesinde); « à cause de » olumsuz neden, « malgré » zıtlık bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rewrite_fr-01",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Bien qu'il fasse froid, nous sortons.\nNous sortons ___.",
+  "answer": "malgré le froid",
+  "hint": "Anahtar kelime: MALGRÉ (2–3 kelime)",
+  "alternatives": [
+   "malgré ce froid"
+  ],
+  "explanation": "« Bien que » + subjonctif yerine isimle « malgré + isim » kullanılır: malgré le froid.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rewrite_fr-02",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il s'est levé tôt pour ne pas rater le train.\nIl s'est levé tôt ___ le train.",
+  "answer": "afin de ne pas rater",
+  "hint": "Anahtar kelime: AFIN (4 kelime)",
+  "alternatives": [
+   "de peur de rater"
+  ],
+  "explanation": "« Pour » yerine « afin de » + mastar: afin de ne pas rater.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rewrite_fr-03",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Elle a réussi grâce à son travail.\nSon travail ___ réussir.",
+  "answer": "lui a permis de",
+  "hint": "Anahtar kelime: PERMIS (3 kelime)",
+  "explanation": "« Grâce à » yerine « permettre à qqn de » yapısı: son travail lui a permis de réussir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rewrite_fr-04",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il est probable qu'il viendra.\nIl viendra ___.",
+  "answer": "sans doute",
+  "hint": "Anahtar kelime: SANS (2 kelime)",
+  "alternatives": [
+   "sans aucun doute"
+  ],
+  "explanation": "« Sans doute » “muhtemelen” demektir (kesinlik değil): il viendra sans doute.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rewrite_fr-05",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Nous avons mangé, puis il est arrivé.\nNous avions déjà mangé ___ arrivée.",
+  "answer": "avant son",
+  "hint": "Anahtar kelime: AVANT (2 kelime)",
+  "alternatives": [
+   "avant l'"
+  ],
+  "explanation": "« Avant que il arrive » yerine isimle « avant son arrivée »: eylem ismi aynı özneli olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rewrite_fr-06",
+  "language": "fr",
+  "level": "C1",
+  "topic": "rewrite_fr",
+  "type": "cloze",
+  "prompt": "Il est interdit de fumer ici.\nOn ___ fumer ici.",
+  "answer": "ne peut pas",
+  "hint": "Anahtar kelime: PEUT (3 kelime)",
+  "alternatives": [
+   "ne doit pas"
+  ],
+  "explanation": "Yasağı « on ne peut pas » ile de söyleyebilirsin: on ne peut pas fumer ici.",
+  "source": "Diloloji (özgün)"
+ }
+]

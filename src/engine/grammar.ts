@@ -51,6 +51,12 @@ export const TOPIC_NAME: Record<string, string> = {
   subjunctive: 'Subjunctive',
   participle_clauses: 'Participle clauses',
   gerund_infinitive: 'Gerund ve infinitive',
+  conn_fr: 'Bağlaçlar (fikrin yönü)',
+  conn_es: 'Bağlaçlar (fikrin yönü)',
+  conn_en: 'Bağlaçlar (fikrin yönü)',
+  rewrite_fr: 'Cümle dönüşümü',
+  rewrite_es: 'Cümle dönüşümü',
+  rewrite_en: 'Cümle dönüşümü',
 }
 
 export const topicName = (topic: string) => TOPIC_NAME[topic] ?? topic

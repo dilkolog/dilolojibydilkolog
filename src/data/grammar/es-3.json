@@ -1,0 +1,279 @@
+[
+ {
+  "id": "es-conn_es-01",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Estudió mucho. ___, suspendió el examen.",
+  "answer": "Sin embargo",
+  "options": [
+   "Sin embargo",
+   "Por lo tanto",
+   "Además",
+   "Así que"
+  ],
+  "explanation": "Beklentiye ters düşen sonuç: « sin embargo » (yine de). « Por lo tanto » ve « así que » sonuç, « además » ekleme bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-02",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Llovía a cántaros; ___, nos quedamos en casa.",
+  "answer": "por eso",
+  "options": [
+   "por eso",
+   "sin embargo",
+   "en cambio",
+   "aunque"
+  ],
+  "explanation": "İkinci cümle birincinin sonucu: « por eso » (bu yüzden).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-03",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "A Marta le gusta el teatro, ___ a su hermano le encanta el cine.",
+  "answer": "mientras que",
+  "options": [
+   "mientras que",
+   "porque",
+   "para que",
+   "siempre que"
+  ],
+  "explanation": "İki durumu karşılaştırır: « mientras que » (-iken, oysa).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-04",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Iré a la fiesta ___ me avises con tiempo.",
+  "answer": "siempre que",
+  "options": [
+   "siempre que",
+   "porque",
+   "ya que",
+   "puesto que"
+  ],
+  "explanation": "Şart bildiren « siempre que » (-mek şartıyla) subjuntivo ister: avises. Diğerleri neden bildirir ve indicativo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-05",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Es muy competente. ___, le falta experiencia.",
+  "answer": "En cambio",
+  "options": [
+   "En cambio",
+   "Por consiguiente",
+   "Además",
+   "Es decir"
+  ],
+  "explanation": "Bir olumlu özelliğe karşı olumsuz bir özellik: « en cambio » (buna karşılık).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-06",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "No pudo venir ___ estaba enfermo.",
+  "answer": "porque",
+  "options": [
+   "porque",
+   "para que",
+   "a menos que",
+   "antes de que"
+  ],
+  "explanation": "Neden bildirir, indicativo alır (estaba). Diğerleri subjuntivo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-07",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Lleva un paraguas; ___, te mojarás.",
+  "answer": "si no",
+  "options": [
+   "si no",
+   "por eso",
+   "sin embargo",
+   "de hecho"
+  ],
+  "explanation": "« Si no » = “aksi hâlde”: yapılmazsa olacak sonuç.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-08",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Este restaurante es excelente. ___, es muy barato.",
+  "answer": "Además",
+  "options": [
+   "Además",
+   "Sin embargo",
+   "De lo contrario",
+   "Por eso"
+  ],
+  "explanation": "Aynı yönde bir bilgi ekler: « además » (üstelik).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-09",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Perdimos el tren; ___ llegamos tarde.",
+  "answer": "por consiguiente",
+  "options": [
+   "por consiguiente",
+   "sin embargo",
+   "en cambio",
+   "aunque"
+  ],
+  "explanation": "Sonuç bildirir: « por consiguiente » (dolayısıyla).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-10",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "No saldré ___ tú vengas conmigo.",
+  "answer": "a menos que",
+  "options": [
+   "a menos que",
+   "porque",
+   "ya que",
+   "mientras que"
+  ],
+  "explanation": "« A menos que » (-mediği sürece) subjuntivo ister: vengas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-conn_es-11",
+  "language": "es",
+  "level": "B2",
+  "topic": "conn_es",
+  "type": "choice",
+  "prompt": "Lo logró, ___ a su trabajo constante.",
+  "answer": "gracias",
+  "options": [
+   "gracias",
+   "por culpa",
+   "a pesar",
+   "en vez"
+  ],
+  "explanation": "Olumlu neden için « gracias a » (sayesinde). « Por culpa de » olumsuz nedendir, « a pesar de » zıtlıktır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rewrite_es-01",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Aunque hace frío, salimos.\nSalimos ___.",
+  "answer": "a pesar del frío",
+  "hint": "Anahtar kelime: A PESAR (3 kelime)",
+  "alternatives": [
+   "a pesar de este frío"
+  ],
+  "explanation": "« Aunque » + cümle yerine « a pesar de » + isim: a pesar del frío (de + el = del).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rewrite_es-02",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Es necesario que estudies más.\nTú ___ más.",
+  "answer": "deberías estudiar",
+  "hint": "Anahtar kelime: DEBERÍAS (2 kelime)",
+  "alternatives": [
+   "tendrías que estudiar"
+  ],
+  "explanation": "Zorunluluk bildiren « es necesario que » yerine tavsiye kipi: deberías + mastar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rewrite_es-03",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Probablemente llegará tarde.\n___ llegue tarde.",
+  "answer": "Quizá",
+  "hint": "Anahtar kelime: QUIZÁ",
+  "alternatives": [
+   "Quizás",
+   "Tal vez",
+   "Puede que",
+   "Es posible que"
+  ],
+  "explanation": "Olasılık bildiren « quizá / tal vez » + subjuntivo: Quizá llegue tarde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rewrite_es-04",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Nunca he visto una película tan aburrida.\nEs ___ aburrida que he visto.",
+  "answer": "la película más",
+  "hint": "Anahtar kelime: MÁS (3 kelime)",
+  "alternatives": [
+   "la película mas"
+  ],
+  "explanation": "Üstünlük derecesi: la película más aburrida que he visto.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rewrite_es-05",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Pedro dijo: «Mañana iré al médico».\nPedro dijo que ___ al médico.",
+  "answer": "al día siguiente iría",
+  "hint": "Anahtar kelime: SIGUIENTE (3 kelime)",
+  "alternatives": [
+   "iría al día siguiente"
+  ],
+  "explanation": "Dolaylı anlatımda « mañana » → « al día siguiente » ve gelecek → condicional: al día siguiente iría.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rewrite_es-06",
+  "language": "es",
+  "level": "C1",
+  "topic": "rewrite_es",
+  "type": "cloze",
+  "prompt": "Probablemente se ha perdido.\nSe ___ perdido.",
+  "answer": "habrá",
+  "hint": "Anahtar kelime: HABRÁ",
+  "explanation": "Geçmişe dair tahmin gelecek zamanla yapılır (futuro compuesto): se habrá perdido.",
+  "source": "Diloloji (özgün)"
+ }
+]
