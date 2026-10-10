@@ -2,6 +2,10 @@ import type { TargetLanguage } from './types'
 
 /** News feeds the server may fetch: an allowlist, so the endpoint can't be used as an open proxy. */
 export const FEEDS: { id: string; language: TargetLanguage; name: string; url: string; hosts: string[] }[] = [
+  // Bulletins made for learners, with their recording: read and listen (VOA is public domain; RFI streams its podcast).
+  { id: 'rfi-facile', language: 'fr', name: 'RFI · Journal en français facile', url: 'https://www.rfi.fr/fr/podcasts/journal-fran%C3%A7ais-facile/podcast', hosts: ['rfi.fr'] },
+  { id: 'voa-learning', language: 'en', name: 'VOA Learning English · As It Is', url: 'https://learningenglish.voanews.com/api/zkm-ql-vomx-tpej-rqi', hosts: ['learningenglish.voanews.com'] },
+  { id: 'voa-es', language: 'es', name: 'Voz de América · Noticias', url: 'https://www.vozdeamerica.com/api/zp_opey_ip', hosts: ['vozdeamerica.com'] },
   { id: 'lemonde', language: 'fr', name: 'Le Monde', url: 'https://www.lemonde.fr/rss/une.xml', hosts: ['lemonde.fr'] },
   { id: 'france24', language: 'fr', name: 'France 24', url: 'https://www.france24.com/fr/rss', hosts: ['france24.com'] },
   { id: 'rfi', language: 'fr', name: 'RFI', url: 'https://www.rfi.fr/fr/rss', hosts: ['rfi.fr'] },
@@ -18,6 +22,8 @@ export interface FeedItem {
   title: string
   link: string
   description: string
+  /** The recording of the item (an RSS enclosure), when the feed has one. */
+  audio?: string
 }
 
 export interface Article extends FeedItem {
@@ -48,7 +54,14 @@ export function parseFeed(xml: string): FeedItem[] {
   return blocks
     .map((b) => {
       const atomLink = /<link[^>]*href="([^"]+)"/i.exec(b)?.[1]
-      return { title: tag(b, 'title'), link: (tag(b, 'link') || atomLink || '').trim(), description: tag(b, 'description') || tag(b, 'summary') }
+      const audio = /<enclosure\b[^>]*\burl=["'](https:\/\/[^"']+)["'][^>]*>/i.exec(b)?.[1]
+      const enclosureIsAudio = audio ? !/\btype=["'](?!audio\/)/i.test(/<enclosure\b[^>]*>/i.exec(b)![0]) : false
+      return {
+        title: tag(b, 'title'),
+        link: (tag(b, 'link') || atomLink || '').trim(),
+        description: tag(b, 'description') || tag(b, 'summary'),
+        ...(audio && enclosureIsAudio ? { audio: decodeEntities(audio) } : {}),
+      }
     })
     .filter((i) => i.title && /^https:\/\//.test(i.link))
 }

@@ -15,6 +15,23 @@ describe('news parsing', () => {
     expect(parseFeed(xml)[0]).toEqual({ title: 'Hola', link: 'https://elpais.com/x', description: 'Resumen del artículo' })
   })
 
+  it('reads the recording of an item (an https audio enclosure), and nothing else', () => {
+    const xml = `<rss><channel>
+      <item><title>Bulletin</title><link>https://www.rfi.fr/a</link><enclosure url="https://audio.example.fr/a.mp3?x=1&amp;y=2" length="0" type="audio/mpeg"/></item>
+      <item><title>Picture</title><link>https://www.rfi.fr/b</link><enclosure url="https://img.example.fr/b.jpg" type="image/jpeg"/></item>
+      <item><title>Plain</title><link>https://www.rfi.fr/c</link><enclosure url="http://audio.example.fr/c.mp3" type="audio/mpeg"/></item>
+      <item><title>No type</title><link>https://www.rfi.fr/d</link><enclosure url="https://audio.example.fr/d.mp3"/></item>
+    </channel></rss>`
+    expect(parseFeed(xml).map((i) => i.audio)).toEqual(['https://audio.example.fr/a.mp3?x=1&y=2', undefined, undefined, 'https://audio.example.fr/d.mp3'])
+  })
+
+  it('has bulletins with their recording for each language, first in the list', () => {
+    for (const language of ['fr', 'en', 'es'] as const) {
+      const first = FEEDS.find((f) => f.language === language)!
+      expect(first.id).toMatch(/^(rfi-facile|voa-learning|voa-es)$/)
+    }
+  })
+
   it('extracts article paragraphs, skipping scripts, menus and short fragments', () => {
     const long = 'Ceci est un paragraphe assez long pour être gardé dans le texte de l’article.'
     const html = `<html><nav><p>${long} menu</p></nav><article><script>var x=1</script><p>${long}</p><p>Court.</p><figure><p>${long} légende</p></figure><p>${long} Deux.</p></article></html>`
