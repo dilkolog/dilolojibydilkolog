@@ -264,6 +264,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - #165: LibriVox + Gutenberg B1+ sesli kitaplar envanteri (`audiobooks-fr.json`, `audiobooks-es.json`, `README.md`).
   - #166: COERLL dil bilgisi içerikleri araştırma raporu (`docs/kaynaklar/coerll.md`).
   - #177: İkon denetimi raporu (`docs/IKON-DENETIMI.md`) ve telefon koyu tema ekran görüntüleri.
+  - TV5Monde ve DELE Ahora içerik kullanım şartları ve telif hakları raporu (`docs/kaynaklar/tv5monde-dele-ahora.md`).
 - [x] **Test Sağlamlığı ve Kapsam (#156, #172, #173, #179, #181):**
   - #156: Test edilmemiş 5 engine modülüne kapsamlı birim testleri (`hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
   - #172: E2E test sağlamlaştırma (dinamik görünürlük beklemeleri ve fonksiyonel rota eşlemeleri).

@@ -112,3 +112,19 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 - **Doğrudan MP3 Erişimi:** Tüm ses dosyaları `archive.org/download/...` üzerinden doğrudan ve CORS dostu MP3 URL'si olarak sağlanır. `HEAD` isteği ile HTTP 200 ve `audio/mpeg` durumu doğrulanmıştır.
 - **Doğrulanmış Metinler:** Project Gutenberg (`gutenberg.org/ebooks/...`) veya Wikisource üzerinden eşleşen tam metin bağlantıları mevcuttur; tüm bağlantılar HTTP 200 döndürmektedir.
 - **Kamu Malı Güvencesi:** Tüm eserlerin yazarları 70+ yıl önce vefat etmiş olup metinleri kamu malıdır (Public Domain). LibriVox gönüllü seslendirmeleri ise CC0 / Public Domain olarak lisanslanmıştır.
+
+---
+
+## 5. Dil Bilgisi Açık Kaynak Araştırması (`coerll.md`)
+
+- **UT Austin COERLL (Français interactif):** CC BY 4.0 açık lisanslı ~600 sayfalık ders kitabı ve zengin dil bilgisi/alıştırma arşivi. A1'den B2'ye tam müfredat sağlar; doğrudan uygulamaya entegrasyon için tam uygundur.
+- **Spanish Grammar in Context:** CC BY-NC-SA 4.0 lisanslıdır; ticari olmayan (NC) kısıt nedeniyle doğrudan koda eklenmez, harici bağlantı olarak önerilir.
+
+---
+
+## 6. İçerik Kullanım Şartları ve Telif Hakları Araştırması (`tv5monde-dele-ahora.md`)
+
+- **TV5Monde (Apprendre le français):** Kamu yayıncısı konsorsiyumu; tüm hakları saklıdır (All Rights Reserved). Açık lisans yoktur. Doğrudan içerik kopyalama yasaktır; harici link verme serbesttir.
+- **DELE Ahora (deleahora.com):** Özel yayın girişimi; tüm hakları saklıdır. Ücretsiz web alıştırmaları reklam/e-kitap modeliyle çalışır. Kopyalama kesinlikle yasaktır; harici link serbesttir.
+- Rapor, her iki platform için telif analizini, karar matrisini ve resmi izin talep e-posta taslaklarını içerir.
+
