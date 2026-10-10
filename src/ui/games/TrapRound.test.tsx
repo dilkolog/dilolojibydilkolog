@@ -40,7 +40,7 @@ describe('TrapRound', () => {
     expect(host.textContent).toContain('1 / 8')
     const w = current(host)
     expect(host.querySelectorAll('.option')).toHaveLength(3)
-    await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.textContent?.includes(w.meaning)))
+    await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.querySelector('.option-serif')?.textContent === w.meaning))
     expect(host.textContent).toContain(`“${w.looks}” gibi görünür`)
     expect(host.textContent).toContain(w.tr)
     expect((await db.getTrapLog())[w.id]).toMatchObject({ ok: 1, wrong: 0 })
@@ -51,7 +51,7 @@ describe('TrapRound', () => {
     await click(byText(host, 'tura başla'))
     for (let i = 0; i < 8; i++) {
       const w = current(host)
-      await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.textContent?.includes(w.trap)))
+      await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.querySelector('.option-serif')?.textContent === w.trap))
       await click(byText(host, 'Devam'))
     }
     await wait()

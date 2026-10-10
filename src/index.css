@@ -5182,3 +5182,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .blind-text { display: grid; gap: 0.125rem; min-width: min(16rem, 100%); flex: 1 1 16rem; }
 /* A question of two lines (the sentence to rewrite, then the one with the gap) keeps its line break. */
 .grammar-sentence { white-space: pre-line; }
+
+/* Deduction mode: an unknown word hidden until tapped. */
+.rw-masked { background: var(--lang-soft); color: var(--lang-text); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }

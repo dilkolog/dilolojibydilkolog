@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { approveAccount, clippedContent, openScreen, playSession, SCREENS, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -87,6 +87,25 @@ test('reading passes accessibility checks with verb forms card and mobile bottom
   await expect(page.locator('.word-pop')).toBeVisible()
   problems.push(...(await scan(page, 'phone-word-bottom-sheet')))
 
+  expect(problems).toEqual([])
+})
+
+test('reading in deduction mode passes accessibility checks: a hidden word and the guess rating, in light and dark', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Hier soir, nous avons mangé des champignons délicieux avec nos voisins.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Çıkarım' }).click()
+  await expect(page.locator('.rw-masked')).toHaveCount(1)
+  const problems = await scan(page, 'deduction-hidden-word')
+  for (const theme of ['light', 'dark'] as const) {
+    await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    await page.waitForTimeout(600) // colours ease between themes
+    for (const c of await contrastProblems(page)) problems.push(`${theme} hidden word: ${c}`)
+  }
+  await page.locator('.rw-masked').click()
+  await expect(page.getByRole('region', { name: 'Tahmin' })).toBeVisible()
+  problems.push(...(await scan(page, 'deduction-guess-rating')))
   expect(problems).toEqual([])
 })
 

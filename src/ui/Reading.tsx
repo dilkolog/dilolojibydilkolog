@@ -39,7 +39,9 @@ import { scheduler } from '../data/instance'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { GlobeIcon, PlusIcon, ConjugationsIcon, DictationIcon, ShadowingIcon } from './icons'
+import { BrainIcon, GlobeIcon, PlusIcon, ConjugationsIcon, DictationIcon, ShadowingIcon } from './icons'
+import { maskPositions, posKey } from '../engine/deduction'
+import { GuessRating } from './GuessRating'
 import { translate, translationReady } from '../data/translate'
 
 import { ParagraphTranslation } from './ReaderTranslation'
@@ -138,6 +140,16 @@ export function ReadingScreen({
   const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
   const [listenFirst, setListenFirst] = useState(false)
+  // Deduction mode: some unknown words are hidden until tapped; the guess is rated after.
+  const [deduce, setDeduce] = useState(() => {
+    try {
+      return localStorage.getItem('diloloji:deduce') === '1'
+    } catch {
+      return false
+    }
+  })
+  const [revealed, setRevealed] = useState<Set<string>>(new Set())
+  const [guess, setGuess] = useState<string | null>(null)
   // The text's Turkish under each paragraph, on request (per text: each new text starts without it).
   const [showTurkish, setShowTurkish] = useState(false)
   const [loadFailed, setLoadFailed] = useState(false)
@@ -186,6 +198,7 @@ export function ReadingScreen({
   }, [db, language])
 
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
+  const masks = useMemo(() => (deduce && !listenFirst && analysis ? maskPositions(analysis.paragraphs, language) : new Set<string>()), [deduce, listenFirst, analysis, language])
   const formGroups = useMemo(() => (showForms && tensesReady && analysis && language !== 'en' ? groupByTense(textForms(language, analysis)) : []), [showForms, tensesReady, analysis, language])
   // Listening: the sentence being heard, lit in the text; a sentence's start, to jump to.
   const [audioDuration, setAudioDuration] = useState<number>()
@@ -287,11 +300,19 @@ export function ReadingScreen({
     if (analysis) setStartCoverage((c) => c ?? analysis.coverage)
   }, [analysis])
 
+  // A word that is opened (tap, arrow keys) stays shown.
+  const openedKey = selected?.token.key
+  useEffect(() => {
+    if (deduce && openedKey) setRevealed((r) => (r.has(openedKey) ? r : new Set(r).add(openedKey)))
+  }, [deduce, openedKey])
+
   const open = async (item: ReadingText | null) => {
     await db.setCurrentText(language, item?.id ?? null)
     setCurrent(item)
     setStartCoverage(null)
     setSkipped(new Set())
+    setRevealed(new Set())
+    setGuess(null)
     setSelected(null)
     setAdding(null)
     setMessage('')
@@ -739,6 +760,27 @@ export function ReadingScreen({
             <ShadowingIcon size={14} /> Gölgele
           </button>
         )}
+        {!listenFirst && dictating === null && (
+          <button
+            type="button"
+            className="chip chip-sm"
+            aria-pressed={deduce}
+            onClick={() => {
+              setDeduce((v) => {
+                try {
+                  localStorage.setItem('diloloji:deduce', v ? '0' : '1')
+                } catch {
+                  // Just not remembered.
+                }
+                return !v
+              })
+              setGuess(null)
+            }}
+            title="Bilinmeyen kelimelerin bir kısmı gizlenir: anlamını cümleden tahmin et, sonra dokunup aç"
+          >
+            <BrainIcon size={14} /> Çıkarım
+          </button>
+        )}
         {language !== 'en' && !listenFirst && (
           <button type="button" className="chip chip-sm" aria-pressed={showForms} onClick={() => setShowForms((v) => !v)} title="Metindeki fiil çekimleri, zamana göre">
             <ConjugationsIcon size={14} /> Çekimler
@@ -791,14 +833,20 @@ export function ReadingScreen({
                     .join(' ') || undefined
                 }
               >
-                {s.tokens.map((t, k) =>
-                  t.key ? (
+                {s.tokens.map((t, k) => {
+                  const hidden = !!t.key && masks.has(posKey(i, j, k)) && !revealed.has(t.key)
+                  const pick = () => {
+                    if (hidden) setGuess(t.key!)
+                    setSelected({ token: t, sentence: s.text, at: `${i}.${j}` })
+                  }
+                  return t.key ? (
                     <span
                       key={k}
                       role="button"
                       tabIndex={t.status === 'known' || t.status === 'name' ? -1 : 0}
                       data-key={t.key}
-                      className={`rw rw-${t.status}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}${multi.has(t.key) ? ' is-multi' : ''}`}
+                      aria-label={hidden ? 'Gizli kelime: anlamını cümleden tahmin et, sonra aç' : undefined}
+                      className={`rw rw-${t.status}${hidden ? ' rw-masked' : ''}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}${multi.has(t.key) ? ' is-multi' : ''}`}
                       onClick={(e) => {
                         // ⌘/Ctrl+click (or multi-select mode) collects words to mark together.
                         if ((e.metaKey || e.ctrlKey || multiMode) && !t.entryId) {
@@ -806,16 +854,16 @@ export function ReadingScreen({
                           toggleMulti(t.key!)
                           return
                         }
-                        setSelected({ token: t, sentence: s.text, at: `${i}.${j}` })
+                        pick()
                       }}
-                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setSelected({ token: t, sentence: s.text, at: `${i}.${j}` }))}
+                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), pick())}
                     >
-                      {t.text}
+                      {hidden ? '[ ? ]' : t.text}
                     </span>
                   ) : (
                     <span key={k}>{t.text}</span>
-                  ),
-                )}{' '}
+                  )
+                })}{' '}
               </span>
             ))}
           </p>
@@ -846,6 +894,7 @@ export function ReadingScreen({
         </section>
       )}
 
+      {deduce && guess && selected?.token.key === guess && <GuessRating word={cleanToken(selected.token.text, language)} language={language} onDone={() => setGuess(null)} />}
       {selected && selected.token.key && (
         <WordCard
           selected={selected as Selected & { token: ReadToken & { key: string } }}

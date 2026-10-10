@@ -536,6 +536,28 @@ test('reading: the forms list finds a reflexive compound tense and lights the fo
   await expect(page.locator('.reader .rs.is-flash')).toContainText("Elle s'est lavée ce matin.")
 })
 
+test('reading, deduction mode: an unknown word is hidden, tapping shows it and asks how close the guess was', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Hier soir, nous avons mangé des champignons délicieux avec nos voisins.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await expect(page.locator('.rw-masked')).toHaveCount(0)
+  await page.getByRole('button', { name: 'Çıkarım' }).click()
+  const hidden = page.locator('.rw-masked')
+  await expect(hidden).toHaveCount(1)
+  await expect(hidden).toHaveText('[ ? ]')
+  await hidden.click()
+  await expect(page.locator('.rw-masked')).toHaveCount(0)
+  await expect(page.locator('.reader')).toContainText('champignons')
+  const rating = page.getByRole('region', { name: 'Tahmin' })
+  await expect(rating).toContainText('tahminin ne kadar yakındı')
+  await rating.getByRole('button', { name: 'Yaklaştım' }).click()
+  await expect(rating).toHaveCount(0)
+  // Turned off, nothing is hidden (and the word stays as it was).
+  await page.getByRole('button', { name: 'Çıkarım' }).click()
+  await expect(page.locator('.rw-masked')).toHaveCount(0)
+})
+
 test('the dark, calm and high-contrast themes keep the main screens readable', async ({ page }) => {
   test.setTimeout(120_000)
   await startWithSamples(page)

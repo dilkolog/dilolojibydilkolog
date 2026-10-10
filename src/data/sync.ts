@@ -2,6 +2,7 @@ import { mergeSeen, type LabData } from '../engine/labProgress'
 import { mergeMemories } from '../engine/translationMemory'
 import { mergeEarLogs } from '../engine/earMisses'
 import { mergeGrammarLogs } from '../engine/grammar'
+import { mergeDeductionLogs } from '../engine/deduction'
 import { mergeBadgeLogs } from '../engine/gamification'
 import { mergeNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
@@ -296,6 +297,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     reflex: mergeGrammarLogs(older.reflex, newer.reflex),
     traps: mergeGrammarLogs(older.traps, newer.traps),
     pairs: mergeGrammarLogs(older.pairs, newer.pairs),
+    deduction: mergeDeductionLogs(older.deduction, newer.deduction),
     media: [],
   }
 }
