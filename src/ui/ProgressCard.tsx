@@ -147,7 +147,7 @@ export function ProgressCardButton({ settings, game }: { settings: Settings; gam
           İndir
         </a>
         {canShare && (
-          <button className="btn btn-quiet" onClick={() => navigator.share({ files: [file()], title: 'Kelime Koçu ilerlemem' }).catch(() => {})}>
+          <button className="btn btn-quiet" onClick={() => navigator.share({ files: [file()], title: 'Diloloji ilerlemem' }).catch(() => {})}>
             Paylaş
           </button>
         )}

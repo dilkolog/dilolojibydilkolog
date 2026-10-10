@@ -30,7 +30,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
 
   const share = async () => {
     try {
-      await navigator.share({ title: 'Kelime Koçu', text: `Yeni rozet: ${a.title}. ${a.description}` })
+      await navigator.share({ title: 'Diloloji', text: `Yeni rozet: ${a.title}. ${a.description}` })
     } catch {
       // Share sheet closed; nothing to do.
     }

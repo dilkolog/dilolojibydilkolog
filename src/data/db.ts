@@ -961,7 +961,7 @@ export function parseBackup(json: string): Backup {
     DATE_KEYS.has(key) && typeof value === 'string' && ISO.test(value) ? new Date(value) : value,
   )
   if (data?.app !== 'kelime-koc' || !Array.isArray(data.vocabulary)) {
-    throw new Error('Bu dosya bir Kelime Koçu yedeği değil.')
+    throw new Error('Bu dosya bir Diloloji yedeği değil.')
   }
   if (data.version > BACKUP_VERSION) {
     throw new Error('Yedek, uygulamanın daha yeni bir sürümüyle alınmış. Önce uygulamayı güncelle.')

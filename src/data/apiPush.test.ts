@@ -193,7 +193,7 @@ describe('/api/cron-reminder', () => {
     const res = await cron('Bearer s3cret')
     expect(await res.json()).toEqual({ devices: 6, sent: 1, removed: 1 })
     expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/idle'])
-    expect(JSON.parse(sent[0].body)).toMatchObject({ title: 'Kelime Koçu', url: '/?go=quick' })
+    expect(JSON.parse(sent[0].body)).toMatchObject({ title: 'Diloloji', url: '/?go=quick' })
   })
 
   it('each hourly run reaches only the devices whose reminder hour it is', async () => {

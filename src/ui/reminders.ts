@@ -52,7 +52,7 @@ export async function showReminder(streak: number, plan = '', due = 0) {
     tag: 'daily-reminder',
     data: { url: '/?go=quick', question },
   }
-  const title = question ? `${question.word} = ?` : 'Kelime Koçu'
+  const title = question ? `${question.word} = ?` : 'Diloloji'
   // Through the service worker when there is one: works while the tab is in the background.
   const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
   if (reg) await reg.showNotification(title, { ...options, ...(question ? { actions: [{ action: 'reveal', title: 'Cevabı göster' }, { action: 'open', title: 'Kısa tekrar' }] } : {}) } as NotificationOptions)
@@ -111,7 +111,7 @@ export function calendarFile(time: string, url: string): string {
     `DTSTART:${ymd}T${h}${m}00`,
     'DURATION:PT15M',
     'RRULE:FREQ=DAILY',
-    'SUMMARY:Kelime Koçu – günlük çalışma',
+    'SUMMARY:Diloloji – günlük çalışma',
     `DESCRIPTION:Bugünkü kelimelerini çalış: ${url}`,
     `URL:${url}`,
     'BEGIN:VALARM',

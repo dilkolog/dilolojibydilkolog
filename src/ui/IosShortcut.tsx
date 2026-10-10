@@ -23,11 +23,11 @@ export function IosShortcut() {
       <div className="stack mt-3">
       <p className="small muted">
         iPhone, web uygulamalarını Paylaş menüsüne koymuyor. Bir kere kuracağın kısa bir Kestirme ile her uygulamada (Safari, Kindle, Notlar…) seçtiğin metni
-        Paylaş → <strong>Kelime Koçu'na ekle</strong> ile gönderebilirsin.
+        Paylaş → <strong>Diloloji'ye ekle</strong> ile gönderebilirsin.
       </p>
       <ol className="shortcut-steps small">
         <li>
-          <strong>Kestirmeler</strong> uygulamasını aç, sağ üstteki <strong>+</strong> ile yeni kestirme oluştur; adını "Kelime Koçu'na ekle" yap.
+          <strong>Kestirmeler</strong> uygulamasını aç, sağ üstteki <strong>+</strong> ile yeni kestirme oluştur; adını "Diloloji'ye ekle" yap.
         </li>
         <li>
           Alttaki <strong>ⓘ</strong> (Ayrıntılar) → <strong>Paylaşma Ekranında Göster</strong>'i aç. Girdi türlerinden yalnızca <em>Metin</em> kalsın.

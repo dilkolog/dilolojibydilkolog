@@ -85,5 +85,5 @@ export function dictionaryHtml(entries: readonly VocabularyEntry[], language: Ta
     .ipa { color: #555; font-family: 'Charis SIL', 'Lucida Sans Unicode', serif; }
     .d { font-style: italic; color: #333; } .x { color: #333; font-size: 9.5pt; } .x span { color: #666; }
     @media screen { body { max-width: 190mm; margin: 10mm auto; padding: 0 6mm; } }
-  </style></head><body><header><h1>${esc(title)}</h1><p>${sorted.length} kelime · Kelime Koçu · ${new Date().toLocaleDateString('tr-TR')}</p></header><main>${body}</main></body></html>`
+  </style></head><body><header><h1>${esc(title)}</h1><p>${sorted.length} kelime · Diloloji · ${new Date().toLocaleDateString('tr-TR')}</p></header><main>${body}</main></body></html>`
 }

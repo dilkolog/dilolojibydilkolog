@@ -97,7 +97,7 @@ self.addEventListener('push', (event) => {
       .catch(() => ({ question: null, due: 0, badge: false }))
       .then(({ question: q, due, badge }) => {
         if (badge && due > 0 && self.navigator.setAppBadge) self.navigator.setAppBadge(Math.min(due, 99)).catch(() => {})
-        return self.registration.showNotification(q ? `${q.word} = ?` : data.title || 'Kelime Koçu', {
+        return self.registration.showNotification(q ? `${q.word} = ?` : data.title || 'Diloloji', {
           body: q ? `Aklından geçir, sonra bak. ${body}` : body,
           icon: '/pwa-192.png',
           badge: '/pwa-192.png',
