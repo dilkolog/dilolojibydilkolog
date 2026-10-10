@@ -101,3 +101,32 @@ Fransızca koleksiyonu, Lingua Libre projesinin zengin katkısı sayesinde kelim
    - Gelecek turlarda İspanyolca çiftler seçilirken çekimli fiil vurgularından ziyade (`hablo/habló`), sözlükte bağımsız başlık olarak yer alan ve Commons/Lingua Libre kaydı bulunan kelime çiftlerine öncelik verilmelidir (ör. *peso / beso*, *vino / pino*, *mar / bar*, *pata / bata*).
 3. **Shtooka İspanyolca Paketi (`spa-wims-octavio`):**
    - 1.739 kelimelik açık lisanslı Shtooka seti yerel önbelleğe alınarak eksik temel kelimeler için ikinci bir ses katmanı olarak devreye sokulabilir.
+
+---
+
+## 6. İspanyolca Minimal Çift Ses Kayıtları Taraması (10.2 Turu — 2026-10-10)
+
+`MINIMAL_PAIRS.es` içindeki 19 çiftin tamamı (38 kelime) Wikimedia Commons ve Lingua Libre üzerinde taranmış, açık lisanslı MP3/WAV kayıtları ayıklanarak `docs/veri/es-ses-kayitlari.json` dosyasına işlenmiştir.
+
+### 6.1. Tarama İstatistikleri
+- **Taranan Kelime:** 38
+- **Kayıt Bulunan Kelime:** 35 (%92,1 kapsama)
+- **Kayıt Bulunamayan Kelime:** 3 (`ahorra`, `pollo`, `terminó`)
+- **≥2 Farklı Konuşmacısı Olan Kelimeler:** 13 kelime (`pero`, `perro`, `caro`, `carro`, `para`, `corro`, `ahora`, `casa`, `vez`, `papa`, `esta`, `está`, `vino`, `pino`, `mar`)
+
+### 6.2. Kaydı Bulunamayan Kelimeler İçin Alternatif Çift Önerileri
+
+1. **`polo` / `pollo` (`l / ll` kontrastı):**
+   - *Sorun:* `pollo` için Commons üzerinde bağımsız ses kaydı bulunmamaktadır.
+   - *Öneri 1:* `mala` (kötü) / `malla` (ağ / tayt) — Lingua Libre'de her iki kelimenin de kaydı vardır.
+   - *Öneri 2:* `cala` (koy) / `calla` (susar) — Her iki kelime için konuşmacı kayıtları mevcuttur.
+
+2. **`ahora` / `ahorra` (`r / rr` kontrastı):**
+   - *Sorun:* `ahorra` (3. tekil tasarruf etmek) çekimli fiil formudur ve kaydı yoktur.
+   - *Öneri:* Bu kontrast için halihazırda `pero / perro` (3 vs 6 konuşmacı), `caro / carro` (2 vs 2 konuşmacı), `cero / cerro` ve `para / parra` çiftleri eksiksiz kayda sahiptir; `ahora / ahorra` yerine bağımsız isim/sıfat olan `coral` (mercan) / `corral` (avlu) çifti kullanılabilir.
+
+3. **`termino` / `terminó` (vurgu kontrastı):**
+   - *Sorun:* `terminó` geçmiş zaman çekimidir ve bağımsız ses kaydı bulunmamaktadır.
+   - *Mevcut Durum:* Vurgu kontrastı için listedeki `esta / está` (her iki tarafta 2 kayıt), `hablo / habló` (her iki tarafta kayıt var) ve `papa / papá` (3 vs 1 kayıt) çalışmaktadır.
+   - *Öneri:* Çekimli fiil yerine isim vurgu kontrastı: `bebe` (içer) / `bebé` (bebek) — `bebé` için Commons'ta 3 farklı ana dil konuşmacısı kaydı bulunmaktadır (`LL-Q1321 (spa)-...-bebé.wav`).
+
