@@ -11,10 +11,10 @@ export const azure: { key: string | null; region: string | null } = { key: null,
 export const azureEnabled = () => !!azure.key && !!azure.region
 
 /** Spanish follows the learner's variety: without vosotros, Latin American (Mexico). */
-export const assessLocale = (language: TargetLanguage) => (language === 'fr' ? 'fr-FR' : language === 'es' ? (prefs.hideVosotros ? 'es-MX' : 'es-ES') : 'en-US')
+const assessLocale = (language: TargetLanguage) => (language === 'fr' ? 'fr-FR' : language === 'es' ? (prefs.hideVosotros ? 'es-MX' : 'es-ES') : 'en-US')
 
 /** Any recording the browser can decode, as 16 kHz mono 16-bit PCM WAV (what the API takes). */
-export async function toWav16k(blob: Blob): Promise<Blob> {
+async function toWav16k(blob: Blob): Promise<Blob> {
   const ctx = new AudioContext()
   let decoded: AudioBuffer
   try {

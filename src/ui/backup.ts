@@ -5,7 +5,7 @@ const LAST_KEY = 'kelime-koc:last-backup'
 const DISMISS_KEY = 'kelime-koc:backup-nudge-dismissed'
 /** Enough words that losing them would hurt. */
 export const BACKUP_MIN_WORDS = 20
-export const BACKUP_EVERY_DAYS = 30
+const BACKUP_EVERY_DAYS = 30
 const DAY = 86_400_000
 
 const read = (key: string): number | null => {

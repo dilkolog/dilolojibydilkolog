@@ -33,7 +33,7 @@ export function alreadyOffered(word: string): boolean {
   }
 }
 
-export function markOffered(word: string) {
+function markOffered(word: string) {
   try {
     localStorage.setItem(LAST_KEY, tag(word))
   } catch {
@@ -42,7 +42,7 @@ export function markOffered(word: string) {
 }
 
 /** Clipboard reading already allowed (Chromium); elsewhere the browser would ask on every read, so no. */
-export async function clipboardGranted(): Promise<boolean> {
+async function clipboardGranted(): Promise<boolean> {
   try {
     const status = await navigator.permissions.query({ name: 'clipboard-read' as PermissionName })
     return status.state === 'granted'

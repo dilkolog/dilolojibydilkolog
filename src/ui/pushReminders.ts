@@ -17,7 +17,7 @@ function keyBytes(base64url: string): Uint8Array<ArrayBuffer> {
 }
 
 /** Local YYYY-MM-DD, as the server computes it from the time zone offset. */
-export const localDay = (d = new Date()) => new Date(d.getTime() - d.getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
+const localDay = (d = new Date()) => new Date(d.getTime() - d.getTimezoneOffset() * 60_000).toISOString().slice(0, 10)
 
 async function registration(): Promise<ServiceWorkerRegistration | null> {
   if (!pushSupported()) return null
