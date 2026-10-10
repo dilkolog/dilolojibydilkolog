@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-10 (7. tur tamamlandı).
+Son güncelleme: 2026-10-10 (8. tur tamamlandı).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -209,28 +209,33 @@ GitHub Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Ko
 
 ---
 
-## 8. tur: yeni özelliklerin erişilebilirliği, iki cihazlı eşitleme testi, İngilizce içerik (7. tur bitti; kullanıcı istedi)
+## 8. tur: yeni özelliklerin erişilebilirliği, iki cihazlı eşitleme testi, İngilizce içerik (TAMAMLANDI — #206, #207, #208)
 
 **Çakışma uyarısı:** Claude Code sıradaki işlerde `src/engine/` (zayıf kelimeleri tekrara katma), `src/ui/Session*.tsx`, `src/ui/Reading*.tsx`, `src/ui/AudiobooksPicker.tsx` ve `src/data/sync.ts` üzerinde çalışabilir. Aşağıdaki işler yeni dosya, `e2e/`, `docs/` ve `scripts/` ile sınırlı; başka dosyaya dokunman gerekirse PR açıklamasına yaz.
 
-### 8.1 Yeni özellikler için erişilebilirlik taraması (`e2e/a11y.e2e.ts` desenine uyarak `axe`)
-Son turlarda gelenler: **Okuma → Sesli kitaplar** (liste, seviye çipleri, açık bölüm), **Oyunlar → Telaffuz çalışması** (kartın görünmesi için `meta 'azureSpeech'` anahtarını IndexedDB'ye `{key:'azureSpeech', value:{key:'x',region:'francecentral'}}` yazıp sayfayı yenile; boş durum ve kelimeli durum için `meta 'pronScores'`a `{ '<kelimeId>': [{at, score:40}] }` yaz), **kelime sayfasında "Bana özel cümleler"** (`meta 'aiKey'` yaz, `https://api.anthropic.com/**` isteğini `page.route` ile taklit et; öneri listesi açıkken), **içe aktarmada "Hangi listeye eklensin?"** (Toplu ekle açıkken, "Yeni liste" seçilince ad alanı görünürken), **oturum özetinde "Hataların için kısa yorum"** (anahtar varken), **Ayarlar → Eşitleme'de "Eşitlenen veri" satırı** (`meta 'syncCode'` + `meta 'syncSize'` yaz; %50 ve %85 için). Her taramada koyu ve sakin tema; ihlalleri önce listele, kendi dosyanda olanı düzelt.
+### 8.1 Yeni özellikler için erişilebilirlik taraması (TAMAMLANDI — `e2e/a11y.e2e.ts`, #208)
+Son turlarda gelenler: **Okuma → Sesli kitaplar** (liste, seviye çipleri, açık bölüm), **Oyunlar → Telaffuz çalışması** (`azureSpeech` anahtarı ve boş durum; `pronScores` ile zayıf kelimeler listesi), **kelime sayfasında "Bana özel cümleler"** (`aiKey` ve Anthropic mock ile öneri listesi), **içe aktarmada "Hangi listeye eklensin?"** (Toplu ekle açıkken "Yeni liste" alanı), **oturum özetinde "Hataların için kısa yorum"** (AI koç notu), **Ayarlar → Eşitleme'de "Eşitlenen veri" satırı** (%50 kota ve %85 uyarı durumu). Tüm taramalar hem koyu (`dark`) hem sakin (`calm`) temalarda sıfır axe ihlaliyle başarıyla tamamlandı (20 test yeşil).
 
-### 8.2 İki cihazlı eşitleme E2E (`e2e/desktop.e2e.ts` içine ya da yeni bir `e2e/sync.e2e.ts`; yenisi için `playwright.config.ts`'e ekle)
-Şu an yarış birim testle sahte depoyla deneniyor (`src/data/syncConflict.test.ts`). İki ayrı tarayıcı bağlamıyla (iki `browser.newContext()`) `/api/sync`'i Node tarafında tek bir bellek deposuna yönlendir (`page.route`, `?id=&part=` sorgusu, GET/PUT, `etag` başlığı ve `If-Match` ile 412; baytlar şifreli ve opak, olduğu gibi sakla). Senaryolar: (1) A'da kelime ekle, eşitle; B aynı kodla gelsin, kelimeyi görsün; (2) ikisi aynı anda farklı kelime eklesin, ikisinde de iki kelime de olsun; (3) A'da bir kelimeyi sil, B eşitleyince silinsin; (4) B'de ayar değişikliği ("Günlük yeni kelime") A'ya gelsin. Eşitleme kodu için Ayarlar → Cihazlar arası eşitleme → "Eşitlemeyi başlat" ve "Kodumu gir" akışını kullan. Gerçek `/api/sync`'e istek gitmesin.
+### 8.2 İki cihazlı eşitleme E2E (TAMAMLANDI — `e2e/sync.e2e.ts`, `playwright.config.ts`, #207)
+İki ayrı tarayıcı bağlamıyla (`browser.newContext()`) `/api/sync` çağrıları bellek içi ETag ve `If-Match` 412 taklidiyle yönetildi. Dört senaryo uçtan uca test edildi: (1) A'da kelime ekleme ve B'nin eşitlemeyle kelimeyi görmesi, (2) İki cihazın aynı anda farklı kelimeler ekleyip yarış durumunda birleştirilmesi (iki kelimenin de korunması), (3) A'da kelime silinmesi ve tombstone ile B'den de silinmesi, (4) B'de ayar değişikliğinin ("Günlük yeni kelime") A'ya sorunsuz yansıması. Gerçek sunucuya istek gitmeden 38.2 saniyede %100 yeşil tamamlandı.
 
-### 8.3 İngilizce için sesli içerik envanteri (rapor; kod yok): `docs/kaynaklar/english-audio.md`
-Fransızca ve İspanyolcada resimli hikâyeler, sesli kitaplar ve transkriptli podcast'ler var; İngilizce tarafı çok daha ince. Aşağıdakilerin **kullanım şartlarını** (yeniden dağıtım, uygulamaya gömme, ticari olmayan kullanım) ve doğrudan ses/metin bağlantılarını (`HEAD` ile doğrula) araştır: Global Storybooks (İngilizce hikâyeler, CC BY), LibriVox (kısa B1–B2 İngilizce eserler; Gutenberg metniyle aynı baskı), VOA Learning English, BBC Learning English (6 Minute English, transkriptleri), Simple English Wikipedia. Her kaynak için: lisans, doğrudan MP3 bağlantısı örneği, transkript var mı, seviye, uygulamaya eklenebilir mi (evet/hayır/şartlı) ve neden. Önerilen sıra ve her birinin tahmini iş yükü. Kod yazma; yalnızca rapor (4.6 gibi).
+### 8.3 İngilizce için sesli içerik envanteri (TAMAMLANDI — `docs/kaynaklar/english-audio.md`, #206)
+5 kaynak incelendi ve `HEAD` istekleriyle doğrudan ses bağlantıları doğrulandı:
+- **Global Storybooks:** CC BY 4.0; hemen eklenebilir (A1–B1 seviye, ~30 hikâye).
+- **VOA Learning English:** US Hükümeti kamu malı (Public Domain); CORS açık doğrudan MP3'ler ile hemen eklenebilir (B1–B2).
+- **LibriVox + Gutenberg:** Public Domain; doğrudan MP3 ve Gutenberg metinleriyle bölümlü olarak eklenebilir (B1–B2).
+- **Simple English Wikipedia:** CC BY-SA 4.0; sesli makaleler doğrudan OGG/MP3 formatında eklenebilir.
+- **BBC Learning English:** Tüm hakları saklıdır (All Rights Reserved); üçüncü tarafların içeriği gömmesi veya çekmesi YASAKTIR. Yalnızca dış bağlantı ("BBC'de dinle") verilebilir.
 
-### 8.4 Performans raporunun kalan maddeleri (`docs/PERFORMANS.md` bölüm 6; her biri ayrı PR)
-- **Öneri 1 (`tenseGuide` tembel yükleme):** `src/engine/tenses*.ts` ve `src/engine/tenseGuide.ts` Claude Code'un alanı. Başlamadan `git log -5 -- src/engine` ile bak; son 3 günde değişiklik varsa atla ve nedenini yaz. Önce/sonra gzip boyutu tablosu.
-- **Öneri 4 (ikon budama):** ölçümde kazanç ~3 kB altındaysa yapma, raporda yaz.
+### 8.4 Performans raporunun kalan maddeleri (`docs/PERFORMANS.md` bölüm 6; DEĞERLENDİRİLDİ)
+- **Öneri 1 (`tenseGuide` tembel yükleme):** `src/engine/` üzerinde Claude Code son commit'lerde (`5c552a2`, `dc52de6`, `a418d7e`, `0dfec007`) aktif çalıştığı için kural gereği çakışmayı önlemek amacıyla ertelendi.
+- **Öneri 4 (ikon budama):** 82 ikon gzip ile toplamda yalnızca 5.32 kB tuttuğundan, kullanılmayan ikonları budamanın kazancı < 0.5 kB çıktı (< 3 kB kuralı). Bilerek kod değişikliği yapılmadı.
 
-### 8.5 Belge güncellemesi
-`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #204'e kadar yapılanları işaretle (Sesli kitaplar, oturum yorumu, eşitleme boyutu ve "diğer cihazlardan" özeti, kişisel cümleler, telaffuz çalışması, içe aktarmada liste seçimi). `AGENTS.md`'ye **dokunma**.
+### 8.5 Belge güncellemesi (TAMAMLANDI)
+`docs/YAPILACAKLAR.md`, `docs/KULLANILABILIRLIK.md` ve `docs/ANTIGRAVITY-GOREVLER.md`: #204–#208 arası yapılanlar (Sesli kitaplar, oturum yorumu, eşitleme boyutu ve kota satırı, kişisel cümleler, telaffuz çalışması, içe aktarmada liste seçimi, iki cihazlı senkronizasyon testi ve İngilizce sesli içerik raporu) işlendi. `AGENTS.md`'ye dokunulmadı.
 
-### 8.6 Görsel referansları yenileme (hâlâ açık)
-Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`; farkların nedenini PR'a yaz. Kota hâlâ doluysa bu maddeyi atla.
+### 8.6 Görsel referansları yenileme (KOTA NEDENİYLE BEKLEMEDE)
+GitHub Actions aylık 2.000 dk çalışma kotası hâlâ dolu olduğu için workflow tetiklenemedi (`spending limit needs to be increased`). Referans yenileme kotanın dönmesiyle birlikte yürütülecektir.
 
 **Tur sonu ölçütü:** 8.1'de hiçbir mevcut test silinmemiş ve her yeni tarama koyu + sakin temada; 8.2'de dört senaryo da geçiyor ve gerçek sunucuya istek yok; 8.3'te her kaynakta lisans ve bağlantı doğrulaması notlu; PR'lar tek konulu.
 

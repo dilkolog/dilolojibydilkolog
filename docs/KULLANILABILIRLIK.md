@@ -1,6 +1,6 @@
 # Kelime Koçu — Kullanılabilirlik ve Arayüz Denetimi Raporu
 
-**Tarih:** 2026-10-09  
+**Tarih:** 2026-10-10  
 **Kapsam:** Arayüz bileşenleri (`src/ui/`), kullanıcı akışları, mobil/masaüstü gezinme ergonomisi, bilişsel yük ve erişilebilirlik  
 **Referans Belgeler:** [`DESIGN.md`](../DESIGN.md), [`METIN-DENETIMI.md`](METIN-DENETIMI.md), [`ANIMASYON-DENETIMI.md`](ANIMASYON-DENETIMI.md)
 
@@ -51,20 +51,21 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 [Alt Çubuk / Kenar Çubuğu]
 ├── Bugün (Today) ───────────────> Günlük seans başlatma, FSRS özeti, seri ve odak
 ├── Kelimeler (Words Hub)
-│   ├── Kelimeler ──────────────> Kelime listesi, filtreler, arama, kelime detay
+│   ├── Kelimeler ──────────────> Kelime listesi, filtreler, arama, kelime detay (Bana özel cümleler)
 │   ├── Hatalar ────────────────> Hata türleri, zor kelimeler, odaklı pratik
 │   └── Çeviri ─────────────────> Hızlı çeviri (DeepL), çeviri belleği, kelimeye ekleme
 ├── Okuma (Reading Hub)
 │   ├── Metinler ───────────────> Kütüphane, seviyeli metinler, içe aktarma, podcast/dikte
+│   ├── Sesli kitaplar ─────────> B1+ LibriVox & Gutenberg bölümlü sesli kitaplar
 │   └── Hikaye ─────────────────> Kolay resimli hikâyeler (Global Storybooks)
 ├── Pratik (Practice Hub)
-│   ├── Oyunlar ────────────────> Zamana karşı, eşleştirme, geri çeviri, kaçırdıkların
+│   ├── Oyunlar ────────────────> Zamana karşı, eşleştirme, geri çeviri, kaçırdıkların, telaffuz çalışması
 │   ├── Fiiller ────────────────> Fiil laboratuvarı (Öğren, Çalış, Ustalık)
 │   └── Yaz & konuş ────────────> Serbest günlük, sesli gölgeleme, LanguageTool denetimi
 └── İlerleme (Progress) ─────────> Bahçe görünümü, CEFR kapsamı, haftalık çalışma, rozetler
 [Üst Çubuk / Profil]
 ├── Profil ─────────────────────> Seviye, unvan, afiş/çerçeve, rozet vitrini
-└── Ayarlar ────────────────────> Günlük süre/kelime, tema, yedekleme/eşitleme, AI anahtarı
+└── Ayarlar ────────────────────> Günlük süre/kelime, tema, yedekleme/eşitleme (kota/güvenlik), AI anahtarı
 ```
 
 ### 3.1. Güçlü Yönler
@@ -160,6 +161,11 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 | **6** | **Geri Alma ve Hatırlayamama** (`Session.tsx`) | Kart cevabında emin olunmadığında veya hatırlanmadığında bekleme; yanlışlıkla basılan butonun geri alınması | Kullanıcı Denetimi & Özgürlüğü | ✅ Çözüldü (#188) |
 | **7** | **Klavyeli Kullanımda Odak Kaybı** | Diyalog veya alt sayfa açılıp kapandığında odak noktasının tetikleyici butona her zaman dönememesi | Erişilebilirlik (WCAG 2.4.3) | ✅ Çözüldü (`ConfirmDialog`) |
 | **8** | **Çoklu Seviye Seçimi** (`Words.tsx`) | Kelime listelerinde birden fazla CEFR seviyesini aynı anda filtreleme esnekliğinin olmaması | Kullanım Esnekliği & Verimliliği | ✅ Çözüldü (#159) |
+| **9** | **Sesli Kitap Keşfi** (`AudiobooksPicker.tsx`) | Kütüphanede B1+ sesli kitapların bölümlü ve süre/seviye etiketleriyle seçilebilmesi | Hatırlama yerine Tanıma | ✅ Çözüldü (#200) |
+| **10** | **Zayıf Telaffuz Pratiği** (`PronPractice.tsx`) | Azure ile puanlanan kelimelerden zayıf olanların (<75) ayrı bir alıştırma listesinde pratik edilememesi | Hataları Teşhis & Telafi | ✅ Çözüldü (#204) |
+| **11** | **Kişiselleştirilmiş Cümleler** (`PersonalSentences.tsx`) | Standart sözlük örnekleri yerine ilgi alanlarına ve hedeflere özel cümle ihtiyacı | Öz-referans Etkisi | ✅ Çözüldü (#204) |
+| **12** | **İçe Aktarma Hedef Belirsizliği** (`ImportPlacement.tsx`) | Toplu ekleme ve Kindle içe aktarmalarında hedef liste ve seviyenin baştan seçilememesi | Kullanıcı Denetimi & Özgürlüğü | ✅ Çözüldü (#204) |
+| **13** | **Eşitleme Şeffaflığı ve Güvenliği** (`SyncSettings.tsx`, `DataSettings.tsx`) | Medya boyutu/kota durumu belirsizliği ve geri yükleme öncesi olası veri kaybı endişesi | Hataları Önleme & Görünürlük | ✅ Çözüldü (#197, #200) |
 
 ---
 
@@ -198,6 +204,16 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
    Kelime listesinde aynı anda birden fazla CEFR seviyesini seçebilme imkânı (`WordsCefrFilter.tsx`, çoklu seçim chip'leri).
 8. **Sözlük Düzeltme Notunun Keşfedilebilirliği:** ✅ Yapıldı (#159):  
    Sözlük detayında "Kendi anlamını ekle / düzelt" alanı için dokunsal kalem daveti ve belirginleştirilmiş buton.
+9. **Sesli Kitaplar Kütüphanesi:** ✅ Yapıldı (#200):  
+   Okuma ekranında LibriVox ve Gutenberg kaynaklı B1+ sesli kitapların bölüm, süre ve seviye filtreleriyle sunulması (`AudiobooksPicker.tsx`).
+10. **Zayıf Telaffuz Pratiği Listesi:** ✅ Yapıldı (#204):  
+    Oyunlar menüsünde ortalama puanı 75'in altındaki kelimeler için hedefe yönelik pratik kartı (`PronPractice.tsx`).
+11. **Bana Özel Cümleler & AI Koç Notu:** ✅ Yapıldı (#200, #204):  
+    Kullanıcının ilgi alanlarına göre tek tıkla karta eklenebilen örnek cümleler (`PersonalSentences.tsx`) ve oturum hata analizi (`SessionNote.tsx`).
+12. **İçe Aktarmada Liste & Seviye Seçimi:** ✅ Yapıldı (#204):  
+    Toplu ekleme, metin, Kindle ve Google Çeviri içe aktarmalarında hedef liste veya yeni liste belirleme (`ImportPlacement.tsx`).
+13. **Veri Güvenliği ve Eşitleme Şeffaflığı:** ✅ Yapıldı (#197, #200, #207):  
+    Geri yükleme öncesi otomatik cihaz kopyası (`safetyBackup.ts`), Ayarlar'da eşitlenen veri boyutu / kota göstergesi ve 3 MB medya koruması.
 
 ---
 
