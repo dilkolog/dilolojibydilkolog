@@ -150,16 +150,16 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 
 ## 5. Tespit Edilen Kullanılabilirlik Sürtünmeleri
 
-| No | Alan / Bileşen | Sürtünme Noktası | Heuristic / İlke | Şiddet |
+| No | Alan / Bileşen | Sürtünme Noktası | Heuristic / İlke | Durum |
 |:---|:---|:---|:---|:---:|
-| **1** | **Mobil Gezinme** (`.hub-tab`) | Üst sekmelerin (Kelimeler/Hatalar/Çeviri veya Oyunlar/Fiiller) ekran başlığının altında içerik gibi algılanıp gözden kaçabilmesi | Görünürlük & Keşfedilebilirlik | Orta |
-| **2** | **Okuma Sözlük İpucu** (`Reading.tsx`) | Metin içinde kelimeye tıklandığında açılan Popover'ın parmağın altında kalabilmesi veya metin satırını örtmesi | Ergonomi & Fitts Kanunu | Düşük |
-| **3** | **Uzun İlerleme Sayfası** (`Progress.tsx`) | 8 farklı istatistik kartının tek sütunda ardışık dizilmesiyle oluşan dikey kaydırma yorgunluğu | Bilişsel Yük & Minimalizm | Orta |
-| **4** | **Çevrimdışı Durum Geri Bildirimi** | İnternet kesildiğinde DeepL çevirisi ve LanguageTool denetiminin hata vermesi veya sessiz kalması | Sistem Durumu Görünürlüğü | Düşük |
-| **5** | **Sözlük Anlam Düzenleme** (`Dictionary.tsx`) | Kullanıcının kelimeye kendi çevirisini ekleme özelliğinin keşfedilmesinin zorluğu | Hatırlama yerine Tanıma | Düşük |
-| **6** | **Geri Alma (Undo) Süresi** (`Session.tsx`) | Kart cevabında yanlışlıkla basılan butonun geri alınması için sunulan sürenin kısalığı | Kullanıcı Denetimi & Özgürlüğü | Orta |
-| **7** | **Klavyeli Kullanımda Odak Kaybı** | Diyalog veya alt sayfa açılıp kapandığında odak noktasının tetikleyici butona her zaman dönememesi | Erişilebilirlik (WCAG 2.4.3) | Düşük |
-| **8** | **Çoklu Seviye Seçimi** (`Words.tsx`) | Kelime listelerinde birden fazla CEFR seviyesini aynı anda filtreleme esnekliğinin olmaması | Kullanım Esnekliği & Verimliliği | Düşük |
+| **1** | **Mobil Gezinme** (`.hub-tab`) | Üst sekmelerin (Kelimeler/Hatalar/Çeviri veya Oyunlar/Fiiller) ekran başlığının altında içerik gibi algılanıp gözden kaçabilmesi | Görünürlük & Keşfedilebilirlik | ✅ Çözüldü (#155) |
+| **2** | **Okuma Sözlük İpucu** (`Reading.tsx`) | Metin içinde kelimeye tıklandığında açılan Popover'ın parmağın altında kalabilmesi veya metin satırını örtmesi | Ergonomi & Fitts Kanunu | ✅ Çözüldü (#125) |
+| **3** | **Uzun İlerleme Sayfası** (`Progress.tsx`) | 8 farklı istatistik kartının tek sütunda ardışık dizilmesiyle oluşan dikey kaydırma yorgunluğu | Bilişsel Yük & Minimalizm | ✅ Çözüldü (#158) |
+| **4** | **Çevrimdışı Durum Geri Bildirimi** | İnternet kesildiğinde DeepL çevirisi ve LanguageTool denetiminin hata vermesi veya sessiz kalması | Sistem Durumu Görünürlüğü | ✅ Çözüldü (#153) |
+| **5** | **Sözlük Anlam Düzenleme** (`Dictionary.tsx`) | Kullanıcının kelimeye kendi çevirisini ekleme özelliğinin keşfedilmesinin zorluğu | Hatırlama yerine Tanıma | ✅ Çözüldü (#159) |
+| **6** | **Geri Alma ve Hatırlayamama** (`Session.tsx`) | Kart cevabında emin olunmadığında veya hatırlanmadığında bekleme; yanlışlıkla basılan butonun geri alınması | Kullanıcı Denetimi & Özgürlüğü | ✅ Çözüldü (#188) |
+| **7** | **Klavyeli Kullanımda Odak Kaybı** | Diyalog veya alt sayfa açılıp kapandığında odak noktasının tetikleyici butona her zaman dönememesi | Erişilebilirlik (WCAG 2.4.3) | ✅ Çözüldü (`ConfirmDialog`) |
+| **8** | **Çoklu Seviye Seçimi** (`Words.tsx`) | Kelime listelerinde birden fazla CEFR seviyesini aynı anda filtreleme esnekliğinin olmaması | Kullanım Esnekliği & Verimliliği | ✅ Çözüldü (#159) |
 
 ---
 
@@ -169,7 +169,7 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
    - Slate zemin üzerinde `--lang-text` değerleri en az 6:1 oranında tutulmuştur.
    - Kehribar dilinde (`es`) beyaz metin yerine koyu kahverengi metin (`--on-lang: #451a03`) kullanılması WCAG AAA seviyesinde okunabilirlik sağlar (`DESIGN.md`).
 2. **Klavye Erişilebilirliği:**
-   - Oturum ekranında tuşlar (`1-4`, `Boşluk`, `Enter`), diyaloglarda `Escape` tuşu ve `⌘K` paleti kusursuz çalışmaktadır.
+   - Oturum ekranında tuşlar (`1-4`, `Boşluk`, `Enter`, `Alt+U` Unuttum), diyaloglarda `Escape` tuşu ve `⌘K` paleti kusursuz çalışmaktadır.
    - Sütun grafiklerinde ok tuşlarıyla günlerin seslendirilmesi ve okunması (`a11y.e2e.ts`) örnek bir erişilebilirlik desenidir.
 3. **Ekran Okuyucu Desteği:**
    - İkon düğmelerinin çoğunda `aria-label` veya gizli `.sr-only` metinler mevcuttur.
@@ -184,8 +184,8 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
    `src/index.css` içindeki `.hub-tab` elemanlarının seçili durumuna alt çizgi göstergesi ve kaydırma ipucu eklendi.
 2. **Çevrimdışı Durum Göstergesi:** ✅ Yapıldı (#153):  
    İnternet bağlantısı kesildiğinde üst çubukta sakin, sessiz bir `Çevrimdışı` rozeti (`OfflineBadge.tsx`) gösterilir; çevrimiçi olunca kaybolur.
-3. **Geri Bildirim Süresi İpucu:**  
-   Çalışma oturumunda cevaptan vazgeçme / geri alma (`revertReview`) butonunun görünürlük süresi ve dokunma alanı belirginleştirilmeli.
+3. **Geri Bildirim Süresi İpucu ve Hızlı Vazgeçme:** ✅ Yapıldı (#188):  
+   Oturumda "Unuttum" çipi (`SessionForgot`, `Alt+U`) ile cevaba anında ulaşma ve geri alma (`revertReview`) buton görünürlüğü sağlandı.
 
 ### 🟡 Öncelik 2: Orta Vadeli Tasarım Rafinasyonları
 4. **Okuma Kelime Seçiminde Bottom-Sheet:** ✅ Yapıldı (#125, 2026-10-09): dar ekranda kelime kartı alttan yükselen çekmece (`word-pop`, `useSheetSwipe`).
