@@ -119,7 +119,7 @@
   "prompt": "Marie est ___ (partir) tôt ce matin.",
   "answer": "partie",
   "hint": "être ile",
-  "explanation": "« Être » ile kurulan zamanlarda ortak özneyle uyar: Marie est partie.",
+  "explanation": "« Être » ile kurulan zamanlarda ortaç özneyle uyar: Marie est partie.",
   "source": "Diloloji (özgün)"
  },
  {
@@ -160,7 +160,7 @@
   "prompt": "Les pommes que j’ai mangé étaient bonnes.",
   "answer": "mangé",
   "fix": "mangées",
-  "explanation": "COD « que » (= les pommes) fiilden önce: avoir ile bile ortak nesneyle uyar → mangées.",
+  "explanation": "COD « que » (= les pommes) fiilden önce: avoir ile bile ortaç nesneyle uyar → mangées.",
   "source": "Diloloji (özgün)"
  },
  {
