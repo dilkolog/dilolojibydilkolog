@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { BackupVersionError } from '../data/db'
 import { accountStatus, deriveAccount, SyncAuthError, SyncNotAllowedError } from '../data/sync'
 import { BrandMark, ChevronLeftIcon, LockIcon } from './icons'
-import { getSyncCode, NOT_ALLOWED, runSync, setAccount, setSyncCode } from './syncRunner'
+import { getSyncCode, NEWER_VERSION, NOT_ALLOWED, runSync, setAccount, setSyncCode } from './syncRunner'
 import { showToast } from './toastFeed'
 
 export type AuthMode = 'login' | 'create'
@@ -46,7 +47,7 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
       onDone()
     } catch (e) {
       await setAccount(null)
-      setError(e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof SyncAuthError ? 'Şifre yanlış.' : 'Bağlanılamadı; internet bağlantını kontrol et.')
+      setError(e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncAuthError ? 'Şifre yanlış.' : 'Bağlanılamadı; internet bağlantını kontrol et.')
     } finally {
       setBusy(false)
     }

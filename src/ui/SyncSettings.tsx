@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { db } from '../data/instance'
+import { BackupVersionError } from '../data/db'
 import { generateSyncCode, normalizeCode, SyncNotAllowedError } from '../data/sync'
-import { getSyncCode, NOT_ALLOWED, runSync, setSyncCode } from './syncRunner'
+import { getSyncCode, NEWER_VERSION, NOT_ALLOWED, runSync, setSyncCode } from './syncRunner'
 import { relativeTime } from './format'
 import { RestorePoints } from './RestorePoints'
 
@@ -34,7 +35,7 @@ export function SyncSettings() {
       if (r?.skipped) setMessage({ ok: false, text: `${r.skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.` })
     } catch (e) {
       if (fresh) await setSyncCode(null)
-      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
+      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()

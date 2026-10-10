@@ -2,7 +2,7 @@ import { mergeSeen, type LabData } from '../engine/labProgress'
 import { mergeMemories } from '../engine/translationMemory'
 import { mergeEarLogs } from '../engine/earMisses'
 import { mergeBadgeLogs } from '../engine/gamification'
-import { mergeNotes } from '../engine/dictionaryNotes'
+import { mergeNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
 import { saveSafetySnapshot } from './safetyBackup'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
@@ -182,6 +182,56 @@ export function mergeLab(older: LabData | undefined, newer: LabData | undefined)
   }
 }
 
+type WordState = Backup['wordStates'][number]
+
+/**
+ * One word's state on two devices: the more recently reviewed side's state wins, but the skills
+ * only the other side practised are kept (each skill's card is the more recently reviewed one),
+ * the counters never go down (they are totals of answers both devices keep as events), and the
+ * word counts as introduced from the earlier date.
+ */
+export function mergeWordState(x: WordState, y: WordState): WordState {
+  const yWins = time(y.lastReviewAt) > time(x.lastReviewAt) || (time(y.lastReviewAt) === time(x.lastReviewAt) && y.stats.reviews >= x.stats.reviews)
+  const [lose, win] = yWins ? [x, y] : [y, x]
+  const skills: WordState['skills'] = { ...lose.skills }
+  for (const [skill, card] of Object.entries(win.skills ?? {}) as [keyof WordState['skills'], NonNullable<WordState['skills'][keyof WordState['skills']]>][]) {
+    const other = lose.skills?.[skill]
+    skills[skill] = !other || time(card.last_review) >= time(other.last_review) ? card : other
+  }
+  const most = (k: keyof WordState['stats']) => Math.max(win.stats[k] ?? 0, lose.stats[k] ?? 0)
+  return {
+    ...win,
+    skills,
+    introducedAt: time(lose.introducedAt) && time(lose.introducedAt) < time(win.introducedAt) ? lose.introducedAt : win.introducedAt,
+    stats: { ...win.stats, reviews: most('reviews'), correct: most('correct'), wrong: most('wrong'), hints: most('hints'), totalResponseMs: most('totalResponseMs') },
+  }
+}
+
+/** Favourite verbs taken out on one device (mark "fav:fr:parler") are gone from the merged list. */
+function withoutRemoved(lab: LabData | undefined, language: string, dead: (id: string, createdAt?: Date | string) => boolean): LabData | undefined {
+  return lab && { ...lab, favorites: lab.favorites.filter((v) => !dead(`fav:${language}:${v}`)) }
+}
+
+/** A dictionary correction taken back (mark "fix:fr:word") stays gone, unless it was written again later. */
+function withoutTakenBack(notes: DictionaryNotes | undefined, language: string, dead: (id: string, createdAt?: Date | string) => boolean): DictionaryNotes | undefined {
+  return notes && { ...notes, fixes: Object.fromEntries(Object.entries(notes.fixes).filter(([w, f]) => !dead(`fix:${language}:${w}`, f.at))) }
+}
+
+/** Settings field by field: each takes the value from the side that changed it last (no stamp on either: the newer snapshot's). */
+function mergeSettings(older: Backup, newer: Backup): Pick<Backup, 'settings' | 'settingsAt'> {
+  if (!older.settings || !newer.settings) return { settings: newer.settings ?? older.settings, settingsAt: newer.settingsAt ?? older.settingsAt }
+  const settings: Record<string, unknown> = { ...older.settings, ...newer.settings }
+  const settingsAt: Record<string, string> = {}
+  for (const k of Object.keys(settings)) {
+    const o = older.settingsAt?.[k]
+    const n = newer.settingsAt?.[k]
+    if (time(o) > time(n)) settings[k] = (older.settings as unknown as Record<string, unknown>)[k]
+    const at = time(o) > time(n) ? o : n
+    if (at) settingsAt[k] = at
+  }
+  return { settings: settings as unknown as Backup['settings'], settingsAt }
+}
+
 export function mergeBackups(local: Backup, remote: Backup): Backup {
   const [older, newer] = time(local.exportedAt) >= time(remote.exportedAt) ? [remote, local] : [local, remote]
   const tombs = mergeTombs(tombMap(local.deleted, time(local.exportedAt)), tombMap(remote.deleted, time(remote.exportedAt)))
@@ -195,6 +245,9 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   for (const r of [older.reading, newer.reading]) for (const [l, keys] of Object.entries(r?.known ?? {})) known[l as keyof typeof known] = [...new Set([...(known[l as keyof typeof known] ?? []), ...(keys ?? [])])]
   const ignored: NonNullable<NonNullable<Backup['reading']>['ignored']> = {}
   for (const r of [older.reading, newer.reading]) for (const [l, keys] of Object.entries(r?.ignored ?? {})) ignored[l as keyof typeof ignored] = [...new Set([...(ignored[l as keyof typeof ignored] ?? []), ...(keys ?? [])])]
+  // Words taken out of the known/ignored lists on one device stay out on the others (marks "known:fr:word").
+  for (const [l, keys] of Object.entries(known)) known[l as keyof typeof known] = keys.filter((k) => !dead(`known:${l}:${k}`))
+  for (const [l, keys] of Object.entries(ignored)) ignored[l as keyof typeof ignored] = keys.filter((k) => !dead(`ignored:${l}:${k}`))
   const encounters: Record<string, number> = { ...(older.reading?.encounters ?? {}) }
   for (const [id, n] of Object.entries(newer.reading?.encounters ?? {})) encounters[id] = Math.max(encounters[id] ?? 0, n)
 
@@ -202,9 +255,9 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     app: 'kelime-koc',
     version: Math.max(local.version, remote.version),
     exportedAt: new Date().toISOString(),
-    settings: newer.settings ?? older.settings,
+    ...mergeSettings(older, newer),
     vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (_, y) => y).filter((v) => !dead(v.id, v.addedAt)),
-    wordStates: unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, (x, y) => (time(y.lastReviewAt) > time(x.lastReviewAt) || (time(y.lastReviewAt) === time(x.lastReviewAt) && y.stats.reviews >= x.stats.reviews) ? y : x)).filter(
+    wordStates: unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, mergeWordState).filter(
       (s) => !dead(s.entryId, s.introducedAt) && !resetOf(s.language, latest(s.lastReviewAt, s.introducedAt)),
     ),
     events: unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp)),
@@ -226,8 +279,8 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     exams: unionBy(older.exams, newer.exams, (e) => `${e.language}|${e.at}`),
     lists: unionBy(older.lists, newer.lists, (l) => l.id, (x, y) => (time(y.updatedAt) >= time(x.updatedAt) ? y : x)).filter((l) => !dead(l.id, l.createdAt)),
     deleted: tombList(tombs),
-    lab: { fr: mergeLab(older.lab?.fr, newer.lab?.fr), es: mergeLab(older.lab?.es, newer.lab?.es) },
-    dictionary: { en: mergeNotes(older.dictionary?.en, newer.dictionary?.en), fr: mergeNotes(older.dictionary?.fr, newer.dictionary?.fr), es: mergeNotes(older.dictionary?.es, newer.dictionary?.es) },
+    lab: { fr: withoutRemoved(mergeLab(older.lab?.fr, newer.lab?.fr), 'fr', dead), es: withoutRemoved(mergeLab(older.lab?.es, newer.lab?.es), 'es', dead) },
+    dictionary: Object.fromEntries((['en', 'fr', 'es'] as const).map((l) => [l, withoutTakenBack(mergeNotes(older.dictionary?.[l], newer.dictionary?.[l]), l, dead)])),
     records: Object.fromEntries([...new Set([...Object.keys(older.records ?? {}), ...Object.keys(newer.records ?? {})])].map((k) => [k, Math.max(older.records?.[k] ?? 0, newer.records?.[k] ?? 0)])),
     badges: mergeBadgeLogs(older.badges, newer.badges),
     translations: mergeMemories(older.translations, newer.translations),
@@ -240,17 +293,28 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
 // Talking to the server
 // ---------------------------------------------------------------------------
 
-async function download(id: string, part: string, code: Credential): Promise<Bytes | null> {
+/** The part's bytes and the ETag the server read them with (none for a 404, or a store that gives none). */
+async function fetchPart(id: string, part: string, code: Credential): Promise<{ bytes: Bytes; etag?: string } | null> {
   const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { headers: authHeaders(code) })
   if (res.status === 404) return null
   if (res.status === 403) throw await refusal(res)
   if (!res.ok) throw new Error(`sync ${res.status}`)
-  return open(new Uint8Array(await res.arrayBuffer()), code)
+  return { bytes: await open(new Uint8Array(await res.arrayBuffer()), code), etag: res.headers.get('etag') ?? undefined }
 }
 
-async function upload(id: string, part: string, data: Bytes, code: Credential) {
-  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: await seal(data, code), headers: { 'content-type': 'application/octet-stream', ...authHeaders(code) } })
+async function download(id: string, part: string, code: Credential): Promise<Bytes | null> {
+  return (await fetchPart(id, part, code))?.bytes ?? null
+}
+
+/** Another device wrote the file after this one read it (HTTP 412). */
+export class SyncConflictError extends Error {
+  override name = 'SyncConflictError'
+}
+
+async function upload(id: string, part: string, data: Bytes, code: Credential, ifMatch?: string) {
+  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: await seal(data, code), headers: { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}) } })
   if (res.status === 403) throw await refusal(res)
+  if (res.status === 412) throw new SyncConflictError('changed meanwhile')
   if (!res.ok) throw new Error(`sync ${res.status}`)
 }
 
@@ -320,8 +384,20 @@ export async function accountStatus(account: Account): Promise<'new' | 'ok' | 'w
 }
 
 export async function syncNow(db: KelimeDB, code: Credential): Promise<SyncResult> {
+  // Two devices syncing at once: the one that loses the race on the core file merges again with what the other wrote.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await syncOnce(db, code)
+    } catch (e) {
+      if (!(e instanceof SyncConflictError) || attempt >= 3) throw e
+    }
+  }
+}
+
+async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const id = await credentialId(code)
-  const remoteBytes = await download(id, 'core', code)
+  const fetched = await fetchPart(id, 'core', code)
+  const remoteBytes = fetched?.bytes ?? null
   // The device's own data is read only now, after the download: what was answered while the network
   // was being waited for must be in it, or writing the merge back (it replaces the tables) would erase it.
   const local = parseBackup(await exportBackup(db, new Date(), { media: false }))
@@ -377,7 +453,7 @@ export async function syncNow(db: KelimeDB, code: Credential): Promise<SyncResul
   }
   // Items that did not go up stay off the list, so other devices don't ask for what the server doesn't have.
   const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:') && !unsent.has(m))
-  await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code)
+  await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code, fetched?.etag)
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
   return { received, sent, skipped }
 }
