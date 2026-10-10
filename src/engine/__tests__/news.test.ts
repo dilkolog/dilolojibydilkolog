@@ -28,7 +28,7 @@ describe('news parsing', () => {
   it('has bulletins with their recording for each language, first in the list', () => {
     for (const language of ['fr', 'en', 'es'] as const) {
       const first = FEEDS.find((f) => f.language === language)!
-      expect(first.id).toMatch(/^(rfi-facile|voa-learning|voa-es)$/)
+      expect(first.id).toMatch(/^(rfi-facile|voa-learning|voa-es-news)$/)
     }
   })
 

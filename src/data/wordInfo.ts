@@ -4,6 +4,7 @@ import type { KelimeDB } from './db'
 import { loadFrequency } from './frequency'
 import { patchWithSources, type FieldName, type SourceKind } from './provenance'
 import { englishGloss, fetchPages, languageSection } from './wiktionary'
+import esPairs from './audio/es-pairs.json'
 
 /**
  * Pronunciation, a definition in the language itself and the word family, from Wiktionary
@@ -139,6 +140,15 @@ export async function nativeRecordings(words: readonly string[], language: Targe
       const section = text ? frSection(text) : null
       const files = section ? frAudioFilesOf(section) : []
       if (files.length) out.set(w, files.map(commonsMp3))
+    }
+  }
+  // Spanish: the English Wiktionary's new pronunciation template hides most recordings; the sound pairs' words
+  // have Commons / Lingua Libre recordings listed (docs/veri/es-ses-kayitlari.json, licences noted there).
+  if (language === 'es') {
+    const table = esPairs as Record<string, { file: string }[]>
+    for (const w of words) {
+      const files = table[w]?.map((r) => r.file) ?? []
+      if (!out.has(w) && files.length) out.set(w, files.map(commonsMp3))
     }
   }
   return out

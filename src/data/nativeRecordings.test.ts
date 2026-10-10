@@ -34,4 +34,14 @@ describe('nativeRecordings', () => {
     await nativeRecordings(['vez'], 'es')
     expect(asked).toEqual([])
   })
+
+  it('knows Spanish recordings the English Wiktionary does not give, and keeps its own when it has them', async () => {
+    pages.en.set('pero', '==Spanish==\n{{audio|es|Es-pero-own.ogg}}\n')
+    const out = await nativeRecordings(['pero', 'perro', 'zzzz'], 'es')
+    expect(out.get('pero')).toHaveLength(1)
+    expect(out.get('pero')![0]).toContain('Es-pero-own.ogg')
+    expect(out.get('perro')!.length).toBeGreaterThanOrEqual(2)
+    expect(out.get('perro')!.every((u) => u.startsWith('https://upload.wikimedia.org/wikipedia/commons/transcoded/'))).toBe(true)
+    expect(out.has('zzzz')).toBe(false)
+  })
 })
