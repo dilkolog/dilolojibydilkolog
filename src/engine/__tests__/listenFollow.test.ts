@@ -75,4 +75,38 @@ describe('following the audio sentence by sentence', () => {
     expect(sentenceAt([0, 10, 20], 9.9)).toBe(1)
     expect(sentenceAt([5, 10], 1)).toBe(-1)
   })
+
+  it('handles edge cases: empty list, single sentence, and unknown or zero duration', () => {
+    expect(sentenceTimes([], undefined, 60)).toEqual([])
+    expect(sentenceTimes([], undefined, undefined)).toBeNull()
+
+    const single = sentenceTimes(['Bonjour le monde.'], undefined, 10)!
+    expect(single).toHaveLength(1)
+    expect(single[0]).toBeGreaterThan(0)
+    expect(single[0]).toBeLessThan(10)
+
+    expect(sentenceTimes(['Sentence 1', 'Sentence 2'], undefined, undefined)).toBeNull()
+
+    // Duration 0 (like undefined) means length is not known yet; returns null
+    expect(sentenceTimes(['Single sentence'], undefined, 0)).toBeNull()
+
+    const punctuationOnly = sentenceTimes(['...', '!!!'], undefined, 10)!
+    expect(punctuationOnly).toHaveLength(2)
+  })
+
+  it('handles anchor edge cases: out of bounds indices and negative target times', () => {
+    const base = [0, 10, 20]
+    expect(withAnchors(base, [{ sentence: -1, time: 5 }, { sentence: 99, time: 50 }])).toEqual([0, 10, 20])
+    // Shift -10 pulls [-10, 0, 10], clamped at zero produces [0, 0, 10]
+    expect(withAnchors(base, [{ sentence: 0, time: -10 }])).toEqual([0, 0, 10])
+  })
+
+  it('handles cues when cue text does not match text sentences (fallback to offsets)', () => {
+    const cues = parseTimedCues('1\n00:00:02,000 --> 00:00:06,000\nCompletely different audio words.')
+    const sentences = ['Bonjour ici.', 'Comment ça va?']
+    const times = sentenceTimes(sentences, cues, undefined)!
+    expect(times).toHaveLength(2)
+    expect(times[0]).toBeGreaterThanOrEqual(0)
+    expect(times[1]).toBeGreaterThanOrEqual(times[0])
+  })
 })
