@@ -15,8 +15,10 @@ import { azureEnabled } from './pronunciation'
 import { weakPronWords } from '../engine/pronWeak'
 import { stillMissed } from '../engine/earMisses'
 import { loadBackItems } from '../data/backItems'
+import { loopItems } from '../engine/backTranslation'
 import { ArticleDrill } from './ArticleDrill'
 import { GrammarPractice } from './games/GrammarPractice'
+import { ReflexRound } from './games/ReflexRound'
 import { grammarExercises } from '../data/grammar'
 import { dueSentences } from '../engine/sentences'
 import { useOnline } from './useOnline'
@@ -54,8 +56,9 @@ export function GamesScreen(
   }, [p.language, game])
   // Sentences translated and not yet written back (back-translation).
   const [backCount, setBackCount] = useState(0)
+  const [backRested, setBackRested] = useState(0)
   useEffect(() => {
-    void loadBackItems(p.language).then((items) => setBackCount(items.length))
+    void loadBackItems(p.language).then((items) => (setBackCount(items.length), setBackRested(loopItems(items, new Date()).length)))
   }, [p.language, game])
   // Words missed in dictation and not yet written right as often.
   const [earCount, setEarCount] = useState(0)
@@ -93,6 +96,7 @@ export function GamesScreen(
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
+    if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'grammar') return <GrammarPractice language={p.language} onExit={() => setGame(null)} />
     if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
     if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
@@ -114,7 +118,7 @@ export function GamesScreen(
       cards: [
         { id: 'swipe', emoji: '👆', name: 'Kaydırmalı kartlar', text: 'Anlamı düşün, dokunup bak; bildiysen sağa, bilmediysen sola.', status: p.states.length ? 'Zayıf kelimelerden başlar' : learnFirst, disabled: p.states.length === 0 },
         { id: 'sentences', emoji: '💬', name: 'Cümle kartları', text: 'Okurken kaydettiğin cümleler: boşluk, dikte ve çeviri.', status: dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet', scheduled: true, due: dueSentenceCount > 0 },
-        { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz; farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
+        { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz (en iyisi ertesi gün); farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır${backRested ? ` · ${backRested} tanesi önceki günlerden` : ''}` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
         { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss' },
         { id: 'audio', emoji: '🎧', name: 'Sesli tekrar', text: 'Ekrana bakmadan dinle: kelime, düşünme payı, anlamı.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : p.states.length ? 'Yürürken, yemek yaparken' : learnFirst, disabled: !canSpeak() || p.states.length === 0 },
       ],
@@ -136,6 +140,7 @@ export function GamesScreen(
       tone: 'speed',
       cards: [
         { id: 'match', emoji: '🧩', name: 'Eşleştirme', text: '6 kelimeyi anlamlarıyla en kısa sürede eşleştir.', status: enough ? record(matchKey, fmt) : 'En az 4 kelime gerekiyor', disabled: !enough },
+        { id: 'reflex', emoji: '⚡', name: 'Refleks turu', text: 'Günlük kalıpların Türkçesi çıkar; karşılığını 3 saniyede seç.', status: 'Konuşurken çabuk gelmesi için' },
         { id: 'blitz', emoji: '⏱️', name: 'Zamana karşı', text: '60 saniyede olabildiğince çok doğru: anlamı seç ya da kelimeyi yaz.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
         {
           id: 'fluency',

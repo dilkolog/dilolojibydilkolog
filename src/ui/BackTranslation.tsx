@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Rating } from 'ts-fsrs'
 import { db, scheduler } from '../data/instance'
 import { loadBackItems } from '../data/backItems'
-import { BACK_ROUND, type BackItem } from '../engine/backTranslation'
+import { BACK_ROUND, loopItems, type BackItem } from '../engine/backTranslation'
 import { gradeSentence, newSentence, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
 import { wordDiff } from '../engine/wordDiff'
@@ -23,6 +23,9 @@ const RATING: Record<SentenceVerdict, Rating.Again | Rating.Hard | Rating.Good> 
  * becomes a sentence card with that first grade, so it returns on the review schedule.
  */
 export function BackTranslation({ language, onExit }: { language: TargetLanguage; onExit: () => void }) {
+  const [pool, setPool] = useState<BackItem[] | null>(null)
+  // The loop: only what was translated on an earlier day, so the wording is no longer in your head.
+  const [mode, setMode] = useState<'loop' | 'all'>('all')
   const [items, setItems] = useState<BackItem[] | null>(null)
   const [index, setIndex] = useState(0)
   const [text, setText] = useState('')
@@ -32,14 +35,23 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
   const input = useRef<HTMLInputElement>(null)
   const name = LANGUAGE_NAME[language]
 
-  const load = () =>
+  const start = (all: BackItem[], m: 'loop' | 'all') => {
+    const source = m === 'loop' ? loopItems(all, new Date()) : all
+    setMode(m)
+    setItems(source.slice(0, BACK_ROUND))
+    setLeft(Math.max(0, source.length - BACK_ROUND))
+    setIndex(0)
+    setRight(0)
+  }
+  /** Reads the memory again (what was tried is a card now) and starts a round: in the mode kept, else the loop when something has rested. */
+  const load = (keep?: 'loop' | 'all') =>
     void loadBackItems(language).then((all) => {
-      setItems(all.slice(0, BACK_ROUND))
-      setLeft(Math.max(0, all.length - BACK_ROUND))
-      setIndex(0)
-      setRight(0)
+      setPool(all)
+      const rest = loopItems(all, new Date()).length
+      start(all, keep === 'all' || !rest ? 'all' : 'loop')
     })
-  useEffect(load, [language]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => load(), [language]) // eslint-disable-line react-hooks/exhaustive-deps
+  const rested = pool ? loopItems(pool, new Date()).length : 0
 
   const item = items?.[index]
   useEffect(() => {
@@ -73,7 +85,7 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
         </p>
         <div className="row">
           {left > 0 && (
-            <button className="btn" onClick={load}>
+            <button className="btn" onClick={() => load(mode)}>
               Bir tur daha ({left} cümle kaldı)
             </button>
           )}
@@ -110,7 +122,19 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
           {index + 1} / {items.length}
         </span>
       </div>
-      <p className="muted">{name} yaz</p>
+      {index === 0 && !verdict && pool && rested > 0 && (
+        <div className="choice-row" role="group" aria-label="Hangi cümleler">
+          <button type="button" className="chip chip-sm" aria-pressed={mode === 'loop'} onClick={() => start(pool, 'loop')}>
+            Önceki günlerin çevirileri ({rested})
+          </button>
+          <button type="button" className="chip chip-sm" aria-pressed={mode === 'all'} onClick={() => start(pool, 'all')}>
+            Hepsi ({pool.length})
+          </button>
+        </div>
+      )}
+      <p className="muted">
+        {name} yaz{mode === 'loop' && <span className="game-tag">döngü</span>}
+      </p>
       <p className="prompt-text" lang="tr">
         {item.turkish}
       </p>

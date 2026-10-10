@@ -639,6 +639,15 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'grammar', value: log })
   }
 
+  /** How the phrases of the 3-second round went, per phrase (same shape as the grammar log). */
+  async getReflexLog(): Promise<GrammarLog> {
+    return ((await this.meta.get('reflex'))?.value as GrammarLog) ?? {}
+  }
+
+  saveReflexLog(log: GrammarLog) {
+    return this.meta.put({ key: 'reflex', value: log })
+  }
+
   /** Badges earned and when (see engine/gamification BadgeLog). */
   async getBadgeLog(): Promise<BadgeLog> {
     return ((await this.meta.get('badges'))?.value as BadgeLog) ?? {}
@@ -953,6 +962,8 @@ export interface Backup {
   earMisses?: EarLog
   /** How the grammar questions went. */
   grammar?: GrammarLog
+  /** How the 3-second round went. */
+  reflex?: GrammarLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
@@ -1005,6 +1016,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     translations: await db.getTranslations(),
     earMisses: await db.getEarLog(),
     grammar: await db.getGrammarLog(),
+    reflex: await db.getReflexLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -1089,5 +1101,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.translations) await db.meta.put({ key: 'translations', value: backup.translations })
     if (backup.earMisses) await db.meta.put({ key: 'earMisses', value: backup.earMisses })
     if (backup.grammar) await db.meta.put({ key: 'grammar', value: backup.grammar })
+    if (backup.reflex) await db.meta.put({ key: 'reflex', value: backup.reflex })
   })
 }

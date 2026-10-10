@@ -136,23 +136,17 @@ export function topicStats(log: GrammarLog, exercises: readonly GrammarExercise[
 export const GRAMMAR_ROUND = 8
 
 /**
- * A round of questions: the ones never tried and the ones more often wrong than right come first,
- * then the rest, the longest untried first; no question twice. A topic can be asked for.
+ * A round of items: the ones never tried and the ones more often wrong than right come first,
+ * then the rest, the longest untried first; no item twice.
  */
-export function pickGrammarRound(
-  exercises: readonly GrammarExercise[],
-  log: GrammarLog,
-  rng: () => number,
-  { topic, size = GRAMMAR_ROUND }: { topic?: string; size?: number } = {},
-): GrammarExercise[] {
-  const pool = exercises.filter((e) => !topic || e.topic === topic)
-  const weight = (e: GrammarExercise) => {
+export function pickWeighted<T extends { id: string }>(pool: readonly T[], log: GrammarLog, rng: () => number, size: number): T[] {
+  const weight = (e: T) => {
     const r = log[e.id]
     if (!r) return 3
     if (r.wrong > r.ok) return 4
     return 1 / (1 + r.ok - r.wrong)
   }
-  const chosen: GrammarExercise[] = []
+  const chosen: T[] = []
   const left = [...pool]
   while (chosen.length < size && left.length) {
     const total = left.reduce((n, e) => n + weight(e), 0)
@@ -162,4 +156,19 @@ export function pickGrammarRound(
     chosen.push(left.splice(i, 1)[0])
   }
   return chosen
+}
+
+/** A round of grammar questions (see pickWeighted); a topic can be asked for. */
+export function pickGrammarRound(
+  exercises: readonly GrammarExercise[],
+  log: GrammarLog,
+  rng: () => number,
+  { topic, size = GRAMMAR_ROUND }: { topic?: string; size?: number } = {},
+): GrammarExercise[] {
+  return pickWeighted(
+    exercises.filter((e) => !topic || e.topic === topic),
+    log,
+    rng,
+    size,
+  )
 }
