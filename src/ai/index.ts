@@ -5,6 +5,8 @@ import type {
   ErrorReport,
   ErrorReportRequest,
   SessionNoteRequest,
+  PersonalSentence,
+  PersonalSentencesRequest,
   PrequestionSet,
   EnrichRequest,
   EpisodeDraft,
@@ -52,6 +54,7 @@ export const reviewJournal = async (apiKey: string, req: JournalRequest): Promis
 
 export const prequestions = async (apiKey: string, language: TargetLanguage, text: string): Promise<PrequestionSet> => (await sdk()).prequestions(apiKey, language, text)
 export const monthlyReport = async (apiKey: string, req: ErrorReportRequest): Promise<ErrorReport> => (await sdk()).monthlyReport(apiKey, req)
+export const personalSentences = async (apiKey: string, req: PersonalSentencesRequest): Promise<PersonalSentence[]> => (await sdk()).personalSentences(apiKey, req)
 export const sessionNote = async (apiKey: string, req: SessionNoteRequest): Promise<string> => (await sdk()).sessionNote(apiKey, req)
 export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatReply> => (await sdk()).chatTurn(apiKey, req)
 

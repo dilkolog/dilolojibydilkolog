@@ -3,11 +3,14 @@ import type { KelimeDB } from '../data/db'
 import { readTranslateExport, type TranslateImport as Parsed } from '../data/translateImport'
 import { createEntry } from '../data/wordInput'
 import type { TargetLanguage } from '../engine/types'
+import { ImportPlacement } from './ImportPlacement'
 import { LANGUAGE_NAME } from './labels'
+import { useImportList } from './useImportList'
 import { saveSentence } from './saveSentence'
 
 /** Google Translate's saved translations: words into the list, sentences into sentence cards. */
 export function TranslateImport({ db, language, existing, onAdded }: { db: KelimeDB; language: TargetLanguage; existing: Set<string>; onAdded: () => void }) {
+  const importList = useImportList(db, language)
   const [parsed, setParsed] = useState<Parsed | null>(null)
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [busy, setBusy] = useState(false)
@@ -42,7 +45,7 @@ export function TranslateImport({ db, language, existing, onAdded }: { db: Kelim
         return []
       }
     })
-    await db.vocabulary.bulkPut(entries)
+    await db.vocabulary.bulkPut(await importList.place(entries, 'Google Çeviri'))
     let sentences = 0
     for (const s of mine.sentences) if (await saveSentence({ language, text: s.text, translation: s.turkish, source: 'Google Çeviri' })) sentences++
     setBusy(false)
@@ -77,6 +80,7 @@ export function TranslateImport({ db, language, existing, onAdded }: { db: Kelim
                 {mine.words.length > 12 ? '…' : ''}
               </p>
             )}
+            <ImportPlacement list={importList} id="translate-list" suggested="Google Çeviri" />
             <div>
               <button className="btn" onClick={run} disabled={busy || (!mine.words.length && !mine.sentences.length)}>
                 {busy ? 'Ekleniyor…' : 'Hepsini ekle'}

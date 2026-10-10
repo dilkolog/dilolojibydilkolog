@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { ImportPlacement } from './ImportPlacement'
+import { useImportList } from './useImportList'
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { displayForm } from '../engine/exercises'
 import { extractCandidates, findExampleSentences, type Candidate, type FoundExample } from '../engine/extract'
@@ -37,6 +39,7 @@ export function TextImport({
   onAdded: () => void
 }) {
   const { apiKey } = useAi()
+  const importList = useImportList(db, language)
   const [text, setText] = useState('')
   const [rows, setRows] = useState<Row[] | null>(null)
   const [busy, setBusy] = useState<string>('')
@@ -130,7 +133,7 @@ export function TextImport({
         problems.push(`${r.word}: ${e instanceof Error ? e.message : 'eklenemedi'}`)
       }
     })
-    if (entries.length) await db.vocabulary.bulkPut(entries)
+    if (entries.length) await db.vocabulary.bulkPut(await importList.place(entries))
     const addedWords = new Set(entries.map((e) => e.lemma))
     setRows((prev) => prev!.filter((r) => !(r.selected && (addedWords.has(r.word) || addedWords.has(createLemma(r.word, language))))))
     setMessage({
@@ -234,6 +237,7 @@ export function TextImport({
                 </li>
               ))}
             </ul>
+            <ImportPlacement list={importList} id="text-list" />
             <div className="row">
               {apiKey && (
                 <button className="btn btn-quiet" onClick={fillWithAi} disabled={!!busy || selected.length === 0}>

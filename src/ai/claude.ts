@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type PersonalSentence, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -364,6 +364,36 @@ export async function monthlyReport(apiKey: string, req: ErrorReportRequest): Pr
   ].join('\n')
   const user = [`Last 30 days: ${req.answers} answers, ${req.wrong} not correct.`, 'Errors, most frequent first:', ...req.lines].join('\n')
   return structured(apiKey, Report, system, user, 'medium', 'report')
+}
+
+const PersonalSentencesSchema = z.object({
+  sentences: z
+    .array(
+      z.object({
+        text: z.string().describe('A natural sentence in the target language, in the first person or about the learner\'s own life, with the word\'s form in asterisks: "She *abandoned* the plan."'),
+        translation: z.string().describe('Turkish translation.'),
+      }),
+    )
+    .describe('Exactly 3 sentences, each in a different situation.'),
+})
+
+/** Three sentences with the word, about the learner's own interests (self-reference makes words stick). */
+export async function personalSentences(apiKey: string, req: PersonalSentencesRequest): Promise<PersonalSentence[]> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You write example sentences for a Turkish native speaker who speaks ${lang} well and is building a vocabulary list.`,
+    'Each sentence must use the given word naturally and correctly (in the sense given), be about the learner\'s own world (first person or "my ..."), and stay short (under 15 words).',
+    'Use the learner\'s interests as the settings and topics, one per sentence where they fit; with no interests, use everyday situations. No textbook-simplified sentences.',
+  ].join('\n')
+  const user = [
+    `Word: ${req.word}`,
+    req.meaning.trim() && `Turkish meaning: ${req.meaning}`,
+    `Interests: ${req.interests.length ? req.interests.join(', ') : '(none given: everyday life)'}`,
+    req.existing.length > 0 && `Sentences the word already has (write different ones): ${req.existing.join(' / ')}`,
+  ]
+    .filter(Boolean)
+    .join('\n')
+  return (await structured(apiKey, PersonalSentencesSchema, system, user, 'low', 'personal_sentences')).sentences.slice(0, 3)
 }
 
 const SessionNoteSchema = z.object({

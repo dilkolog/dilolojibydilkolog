@@ -10,6 +10,9 @@ import { SentencesGame } from './Sentences'
 import { NativeDictation } from './NativeDictation'
 import { BackTranslation } from './BackTranslation'
 import { EarMissesGame } from './EarMisses'
+import { PronPractice } from './PronPractice'
+import { azureEnabled } from './pronunciation'
+import { weakPronWords } from '../engine/pronWeak'
 import { stillMissed } from '../engine/earMisses'
 import { loadBackItems } from '../data/backItems'
 import { ArticleDrill } from './ArticleDrill'
@@ -62,6 +65,12 @@ export function GamesScreen(
     db.getRecords().then(setRecords)
   }, [game])
 
+  // Words whose pronunciation score is still low (only with an Azure key).
+  const [pronCount, setPronCount] = useState(0)
+  useEffect(() => {
+    void db.getAllPronScores().then((scores) => setPronCount(weakPronWords(scores, p.vocabulary, p.language, 50).length))
+  }, [p.language, p.vocabulary, game])
+
   const enough = p.vocabulary.length >= 4
   const matchKey = `match:${p.language}`
   const blitzKey = `blitz:${p.language}`
@@ -80,6 +89,7 @@ export function GamesScreen(
     if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
     if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
+    if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
     if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
     if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
@@ -112,6 +122,9 @@ export function GamesScreen(
       cards: [
         { id: 'dictation', emoji: '📝', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
         { id: 'ear', emoji: '🦻', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
+        ...(azureEnabled()
+          ? [{ id: 'pron' as const, emoji: '🗣️', name: 'Telaffuz çalışması', text: 'Puanı düşük kalan kelimeleri söyle ve puanla; iyileşenler listeden çıkar.', status: pronCount ? `${pronCount} kelime zayıf` : 'Kelime sayfasında puanladıkça birikir', disabled: pronCount === 0 }]
+          : []),
         { id: 'pairs', emoji: '👂', name: 'Ses ayırt etme', text: 'Tek sesi farklı iki kelimeden hangisini duydun?', status: canSpeak() ? record(`pairs:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
       ],
     },

@@ -447,6 +447,39 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })
 
+test('bulk import: the words go to a new list named in the form', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Ekle', exact: true }).click()
+  await page.getByRole('menuitem', { name: /Birçok kelime ekle/ }).click()
+  await page.locator('summary', { hasText: 'Toplu ekle' }).click()
+  const box = page.locator('details[open]')
+  await box.locator('textarea').fill('la fenêtre - pencere\nle rideau - perde')
+  await box.getByRole('button', { name: /^Liste:/ }).click()
+  await page.getByRole('option', { name: '+ Yeni liste' }).click()
+  await box.getByLabel('Yeni listenin adı').fill('Ev eşyaları')
+  await box.getByRole('button', { name: '2 kelimeyi ekle' }).click()
+  await expect(page.getByText('2 kelime eklendi.')).toBeVisible()
+  const placed = await page.evaluate(
+    () =>
+      new Promise<{ names: string[]; inList: number }>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction(['meta', 'vocabulary'])
+          const lists = tx.objectStore('meta').get('wordLists')
+          const words = tx.objectStore('vocabulary').getAll()
+          tx.oncomplete = () => {
+            const all = (lists.result?.value ?? []) as { id: string; name: string }[]
+            const mine = (words.result as { listId?: string; lemma: string }[]).filter((w) => w.lemma === 'fenêtre' || w.lemma === 'rideau')
+            resolve({ names: all.map((l) => l.name), inList: mine.filter((w) => all.some((l) => l.id === w.listId && l.name === 'Ev eşyaları')).length })
+          }
+        }
+      }),
+  )
+  expect(placed).toEqual({ names: ['Ev eşyaları'], inList: 2 })
+})
+
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')
