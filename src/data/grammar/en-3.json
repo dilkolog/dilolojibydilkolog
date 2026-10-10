@@ -1,0 +1,296 @@
+[
+ {
+  "id": "en-conn_en-01",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "He worked very hard. ___, he failed the exam.",
+  "answer": "Nevertheless",
+  "options": [
+   "Nevertheless",
+   "Therefore",
+   "Moreover",
+   "Consequently"
+  ],
+  "explanation": "Beklentiye ters düşen sonuç: « nevertheless » (yine de). Diğerleri sonuç ya da ekleme bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-02",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "It was raining heavily; ___, we stayed at home.",
+  "answer": "consequently",
+  "options": [
+   "consequently",
+   "however",
+   "whereas",
+   "unless"
+  ],
+  "explanation": "İkinci cümle birincinin sonucu: « consequently » (bu yüzden).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "Anna loves the theatre, ___ her brother prefers the cinema.",
+  "answer": "whereas",
+  "options": [
+   "whereas",
+   "because",
+   "unless",
+   "provided"
+  ],
+  "explanation": "İki durumu karşılaştırır: « whereas » (oysa, -iken).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-04",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "I won't go out ___ it stops raining.",
+  "answer": "unless",
+  "options": [
+   "unless",
+   "because",
+   "whereas",
+   "since"
+  ],
+  "explanation": "« Unless » = “-medikçe”: yağmur dinmedikçe çıkmam. Diğerleri anlam olarak uymaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "He is very competent. ___, he lacks experience.",
+  "answer": "However",
+  "options": [
+   "However",
+   "Moreover",
+   "Consequently",
+   "Furthermore"
+  ],
+  "explanation": "Olumlu bir özelliğe karşı olumsuz bir özellik: « however » (ancak). « Moreover » ve « furthermore » aynı yönde ekler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-06",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "She couldn't come ___ her son was ill.",
+  "answer": "because",
+  "options": [
+   "because",
+   "unless",
+   "so that",
+   "provided"
+  ],
+  "explanation": "Neden bildirir: « because ». Diğerleri koşul ya da amaç bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-07",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "Take an umbrella; ___, you'll get wet.",
+  "answer": "otherwise",
+  "options": [
+   "otherwise",
+   "therefore",
+   "moreover",
+   "meanwhile"
+  ],
+  "explanation": "« Otherwise » = “aksi hâlde”: yapılmazsa olacak sonuç.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-08",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "This restaurant is excellent. ___, it is very cheap.",
+  "answer": "Moreover",
+  "options": [
+   "Moreover",
+   "However",
+   "Otherwise",
+   "Consequently"
+  ],
+  "explanation": "Aynı yönde bir bilgi ekler: « moreover » (üstelik).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-09",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "We missed the train; ___ we arrived late.",
+  "answer": "consequently",
+  "options": [
+   "consequently",
+   "nevertheless",
+   "whereas",
+   "unless"
+  ],
+  "explanation": "Sonuç bildirir: « consequently » (bu nedenle).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-10",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "He got the job ___ his lack of experience.",
+  "answer": "despite",
+  "options": [
+   "despite",
+   "because of",
+   "thanks to",
+   "due to"
+  ],
+  "explanation": "Zıtlık bildirir: « despite » (-e rağmen). Diğerleri neden bildirir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-11",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "___ the weather was terrible, the match went ahead.",
+  "answer": "Although",
+  "options": [
+   "Although",
+   "Because",
+   "Unless",
+   "So that"
+  ],
+  "explanation": "Zıtlık bağlacı: « although » (-e rağmen, -se de).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-conn_en-12",
+  "language": "en",
+  "level": "B2",
+  "topic": "conn_en",
+  "type": "choice",
+  "prompt": "The results were poor; ___, further research is needed.",
+  "answer": "therefore",
+  "options": [
+   "therefore",
+   "whereas",
+   "although",
+   "unless"
+  ],
+  "explanation": "Sonuç bildirir: « therefore » (bu nedenle).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rewrite_en-01",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "I haven't seen her for five years.\nThe ___ five years ago.",
+  "answer": "last time I saw her was",
+  "hint": "Anahtar kelime: TIME (5 kelime)",
+  "alternatives": [
+   "last time I saw her was"
+  ],
+  "explanation": "« I haven't seen her for five years » = “the last time I saw her was five years ago”: for + süre yerine « the last time + past simple + was … ago ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rewrite_en-02",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "It's a pity you didn't come.\nI wish ___ come.",
+  "answer": "you had",
+  "hint": "Anahtar kelime: HAD (2 kelime)",
+  "alternatives": [
+   "you'd"
+  ],
+  "explanation": "Geçmişteki pişmanlık için « wish + past perfect »: I wish you had come.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rewrite_en-03",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "Although it was cold, we went out.\nWe went out ___ the cold.",
+  "answer": "despite",
+  "hint": "Anahtar kelime: DESPITE",
+  "alternatives": [
+   "in spite of"
+  ],
+  "explanation": "« Although » + cümle yerine « despite / in spite of » + isim: despite the cold.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rewrite_en-04",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "He is too young to drive.\nHe isn't ___ to drive.",
+  "answer": "old enough",
+  "hint": "Anahtar kelime: OLD (2 kelime)",
+  "alternatives": [
+   "old enough"
+  ],
+  "explanation": "« Too + sıfat » yerine olumsuz « not + sıfat + enough »: not old enough.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rewrite_en-05",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "People say he is a genius.\nHe ___ a genius.",
+  "answer": "is said to be",
+  "hint": "Anahtar kelime: SAID (3 kelime)",
+  "alternatives": [
+   "is said to be"
+  ],
+  "explanation": "« People say that… » edilgen yapı: he is said to be a genius.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rewrite_en-06",
+  "language": "en",
+  "level": "C1",
+  "topic": "rewrite_en",
+  "type": "cloze",
+  "prompt": "She started learning French three years ago.\nShe ___ French for three years.",
+  "answer": "has been learning",
+  "hint": "Anahtar kelime: BEEN (3 kelime)",
+  "alternatives": [
+   "has been studying"
+  ],
+  "explanation": "Başlamış ve hâlâ süren eylem: present perfect continuous (has been learning + for).",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -25,6 +25,8 @@ describe('the grammar questions', () => {
       if (e.type === 'error') {
         expect(e.fix, e.id).toBeTruthy()
         expect(sentenceTokens(e).filter((t) => t.wrong), e.id).toHaveLength(1)
+        // The wrong word is in the sentence once only: tapping the same word elsewhere would be "wrong" though it reads right.
+        expect(sentenceTokens(e).filter((t) => t.word && t.text.toLowerCase() === e.answer.toLowerCase()), e.id).toHaveLength(1)
       } else {
         expect(e.prompt, e.id).toContain('___')
         expect(checkGrammar(e, e.answer), e.id).toBe('correct')
