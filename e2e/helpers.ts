@@ -242,12 +242,14 @@ export function labFavorites(page: Page, language: string): Promise<string[]> {
  * says so: the AI screens open (no server is asked: with no account there is nothing to ask).
  */
 export async function approveAccount(page: Page) {
+  await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'approved', exists: true, match: true, enabled: true } }))
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
         const open = indexedDB.open('kelime-koc')
         open.onsuccess = () => {
           const tx = open.result.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'syncAccount', value: { kind: 'account', username: 'testuser', id: 'a'.repeat(64), enc: 'e'.repeat(64), auth: '1'.repeat(64) } })
           tx.objectStore('meta').put({ key: 'accessStatus', value: { status: 'approved', at: new Date().toISOString() } })
           tx.oncomplete = () => {
             window.dispatchEvent(new Event('diloloji:account'))
