@@ -11,7 +11,10 @@ vi.mock('./syncRunner', () => ({
   getSyncCode: vi.fn(),
   setSyncCode: vi.fn(),
   runSync: vi.fn(),
+  describeIncoming: vi.fn(() => ''),
   NOT_ALLOWED: 'Bu hesapta eşitleme izni yok.',
+  NEWER_VERSION: 'Uygulamayı güncelle.',
+  TOO_LARGE: 'Veri sınırı aşıldı.',
 }))
 
 vi.mock('./RestorePoints', () => ({
@@ -53,6 +56,7 @@ describe('SyncSettings', () => {
       received: 1,
       sent: 0,
       skipped: 2,
+      incoming: { words: 0, removed: 0, texts: 0, settings: 0 },
     })
 
     await mount()
@@ -75,6 +79,7 @@ describe('SyncSettings', () => {
       received: 2,
       sent: 1,
       skipped: 0,
+      incoming: { words: 0, removed: 0, texts: 0, settings: 0 },
     })
 
     await mount()

@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-10 (6. tur eklendi).
+Son güncelleme: 2026-10-10 (7. tur tamamlandı).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -184,28 +184,26 @@ Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turla
 
 ---
 
-## 7. tur: performans uygulaması, güvenlik kopyası testleri ve belgeler (6. tur bitti; kullanıcı istedi)
+## 7. tur: performans uygulaması, güvenlik kopyası testleri ve belgeler (TAMAMLANDI — #199, #201, #202)
 
 **Çakışma uyarısı:** Claude Code şu an `src/data/sync.ts`, `src/data/db.ts` (yedek/geri yükleme), `api/sync.ts`, `src/data/safetyBackup.ts`, `src/ui/DataSettings.tsx`, `src/ui/SyncSettings.tsx` ve ayarların birleştirilmesi üzerinde çalışıyor. Bunlara **dokunma**; testlerini yazarken bile yalnızca *yeni* test dosyası ekle. Okuma ekranı (`Reading*.tsx`) ve ses kitabı arayüzü de Claude Code'da.
 
-### 7.1 Güvenlik kopyası ve eşitleme medya sınırı için arayüz testleri
-#197 ile geldi: `src/data/safetyBackup.ts` (`saveSafetySnapshot`, `restoreSafetySnapshot`), `syncNow` artık `skipped` döndürüyor, `DataSettings` "Önceki hâle dön" gösteriyor, `SyncSettings` atlanan medya uyarısı gösteriyor. Veri katmanı testleri (`src/data/mediaSafety.test.ts`) ve bir E2E var. Eksik olanlar (yeni dosyalar):
-- `src/ui/DataSettings.test.tsx`: bozuk dosya seçilince hata mesajı çıkar ve veriye dokunulmaz; geçerli yedek onay penceresi gösterir; onaydan sonra "Önceki hâle dön" görünür; onaylayınca veri döner.
-- `src/ui/SyncSettings.test.tsx`: `runSync` `{ skipped: 2 }` dönünce uyarı metni görünür, `skipped: 0` iken görünmez (`runSync`'i `vi.mock` ile taklit et).
-- `e2e/a11y.e2e.ts` desenine uyarak Ayarlar → Veriler'de "Önceki hâle dön" satırı ve onay penceresi için `axe` taraması (satır, geri yüklemeden sonra görünür).
+### 7.1 Güvenlik kopyası ve eşitleme medya sınırı için arayüz testleri (TAMAMLANDI — #199)
+- `src/ui/DataSettings.test.tsx` (yeni, 3 test): bozuk dosya seçilince hata mesajı çıkar ve veriye dokunulmaz; geçerli yedek onay penceresi gösterir; onaydan sonra "Önceki hâle dön" görünür; onaylayınca güvenlik kopyası başarıyla geri yüklenir.
+- `src/ui/SyncSettings.test.tsx` (yeni, 2 test): `runSync` `{ skipped: 2 }` dönünce uyarı metni görünür, `skipped: 0` iken görünmez.
+- `e2e/a11y.e2e.ts` desenine uyarak Ayarlar → Veriler'de "Önceki hâle dön" satırı ve onay penceresi için `axe` taraması eklendi; mobilde Ayarlar butonuna geçiş sağlamlaştırıldı.
 
-### 7.2 Performans raporunun düşük riskli önerilerini uygula (`docs/PERFORMANS.md` bölüm 6)
-Her öneri **ayrı PR**. Önce ölçüm (`npx vite build` çıktısı, önce/sonra gzip boyutu), sonra değişiklik; sonuçları PR açıklamasına tablo olarak yaz.
-- **Öneri 2:** `scripts/build-corpus.ts` / `src/data/wordpack.ts`: cümle parçalarını sütun bazlı kompakt biçime çevir. Okuyan kod aynı `Example` nesnelerini üretmeli; mevcut sözlük/cümle testleri ve E2E değişmeden geçmeli, yeni birim testi eski ve yeni biçimin aynı sonucu verdiğini göstermeli.
-- **Öneri 4:** `src/ui/icons.tsx` ağaç budaması yalnızca ölçüm gerçekten kazanç gösteriyorsa; kazanç ~3 kB altındaysa yapma, raporda yaz.
-- **Öneri 1 (`tenseGuide` tembel yükleme):** `src/engine/tenses*.ts` Claude Code'un alanı. Yapmadan önce `git log -5 -- src/engine` ile son değişikliklere bak, çakışma yoksa yap; varsa atla ve nedenini yaz.
-- **Öneri 3 (Service Worker precache) yapma**: çevrimdışı davranışı riskli; yalnızca raporda ölçümle (öğrenilmeyen dilin parçaları ne kadar veri indiriyor) ve önerilen strateji taslağı ver.
+### 7.2 Performans raporunun düşük riskli önerilerini uygula (`docs/PERFORMANS.md` bölüm 6) (TAMAMLANDI — #201)
+- **Öneri 2 (TAMAMLANDI — #201):** `src/data/wordpackBuild.ts` ve `src/data/wordpack.ts`: cümle parçaları hem sütun bazlı `{ s, t }` hem TSV dize desteğiyle kompakt çözücüye kavuşturuldu. `src/data/wordpackSentences.test.ts` ile tüm biçimlerin özdeş `Example[]` ürettiği kanıtlandı.
+- **Öneri 4:** `src/ui/icons.tsx` ağaç budaması ölçüldü; 82 ikon gzip ile toplamda sadece 5.32 kB olduğu için budama kazancı < 0.5 kB çıktı (< 3 kB eşiği). Kod değiştirilmedi.
+- **Öneri 1 (`tenseGuide` tembel yükleme):** `src/engine` üzerinde Claude Code son commit'lerde aktif çalıştığı için çakışma riski nedeniyle atlandı.
+- **Öneri 3 (Service Worker precache):** Çevrimdışı riski nedeniyle raporda değerlendirildi, kod değişikliği yapılmadı.
 
-### 7.3 Belgeleri güncelle
-`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #168–#197 arası yapılanları işaretle (çekim listesi, çeviri ekranı, unuttum, fiil turu kaydırma, Diloloji adı/logo, medya sınırı + güvenlik kopyası). `AGENTS.md`'ye **dokunma** (Claude Code günceller).
+### 7.3 Belgeleri güncelle (TAMAMLANDI — #202)
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #168–#201 arası yapılanlar (çekim listesi, çeviri ekranı, unuttum, fiil turu kaydırma, Diloloji adı/logo, medya sınırı + güvenlik kopyası, kompakt cümleler) işlendi. `AGENTS.md`'ye dokunulmadı (Claude Code günceller).
 
 ### 7.4 Görsel referansları yenileme (hâlâ açık, 6.2)
-Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`; farkların nedenini PR'a yaz.
+GitHub Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Kotanın doluluğu devam ettiği için beklemede.
 
 **Tur sonu ölçütü:** 7.1'de hiçbir mevcut test silinmemiş; 7.2'de her PR için önce/sonra boyut tablosu ve değişmeyen davranış testi; PR'lar tek konulu.
 
