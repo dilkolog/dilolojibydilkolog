@@ -92,7 +92,17 @@ test('reading passes accessibility checks with verb forms card and mobile bottom
 
 test('session summary passes the automated accessibility check', async ({ page }) => {
   test.setTimeout(90_000)
+  await page.route((u) => u.pathname === '/api/translate', (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
   await startWithSamples(page)
+  // Seed AI key so SessionNote appears on mistake digests
+  await page.evaluate(() => {
+    const req = indexedDB.open('kelime-koc')
+    req.onsuccess = () => {
+      const db = req.result
+      const tx = db.transaction('meta', 'readwrite')
+      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test' })
+    }
+  })
   await playSession(page)
   // Close any celebration modal or badge moment overlay if present
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
@@ -103,6 +113,12 @@ test('session summary passes the automated accessibility check', async ({ page }
   }
   await expect(page.locator('.summary-grid')).toBeVisible()
   const problems = await scan(page, 'session-summary')
+
+  const coachNote = page.locator('.coach-note')
+  if (await coachNote.count()) {
+    problems.push(...(await scan(page, 'session-coach-note')))
+  }
+
   expect(problems).toEqual([])
 })
 
@@ -229,4 +245,189 @@ test('settings data screen passes accessibility check with safety snapshot undo 
 
   expect(problems).toEqual([])
 })
+
+test('new features pass accessibility check in dark and calm themes (audiobooks, pron practice, personal sentences, import placement, sync size)', async ({ page }) => {
+  await startWithSamples(page)
+
+  const setTheme = (t: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      root.dataset.theme = theme === 'calm' ? 'dark' : theme
+      if (theme === 'calm') root.dataset.calm = ''
+      else delete root.dataset.calm
+    }, t)
+
+  const problems: string[] = []
+
+  // 1. Okuma → Sesli kitaplar (liste, seviye çipleri ve açık bölüm)
+  await openScreen(page, 'Okuma')
+  const audiobooksCard = page.locator('section:has(h2:has-text("Sesli kitaplar"))')
+  if (await audiobooksCard.count()) {
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `audiobooks-picker-${theme}`)))
+    }
+    // Filter by B1 level chip
+    const b1Chip = audiobooksCard.getByRole('button', { name: 'B1', exact: true })
+    if (await b1Chip.count()) {
+      await b1Chip.click()
+      for (const theme of ['dark', 'calm'] as const) {
+        await setTheme(theme)
+        problems.push(...(await scan(page, `audiobooks-b1-chip-${theme}`)))
+      }
+    }
+    // Open first audiobook chapter
+    const firstChapter = audiobooksCard.locator('.lib-open').first()
+    if (await firstChapter.count()) {
+      await firstChapter.click()
+      await expect(page.locator('.reading-surface, .reader-text')).toBeVisible()
+      for (const theme of ['dark', 'calm'] as const) {
+        await setTheme(theme)
+        problems.push(...(await scan(page, `audiobook-chapter-open-${theme}`)))
+      }
+    }
+  }
+
+  // 2. Oyunlar → Telaffuz çalışması (boş ve kelimeli durumlar)
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const req = indexedDB.open('kelime-koc')
+      req.onsuccess = () => {
+        const db = req.result
+        const tx = db.transaction('meta', 'readwrite')
+        tx.objectStore('meta').put({ key: 'azureSpeech', value: { key: 'fake-key', region: 'francecentral' } })
+        tx.oncomplete = () => resolve()
+      }
+    })
+  })
+  await page.reload()
+  await openScreen(page, 'Oyunlar')
+  const pronBtn = page.locator('button:has-text("Telaffuz çalışması"), a:has-text("Telaffuz çalışması")').first()
+  if (await pronBtn.count()) {
+    await pronBtn.click()
+    // Empty state scan
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `pron-practice-empty-${theme}`)))
+    }
+    // Seed pronScores to test populated state
+    await page.evaluate(() => {
+      return new Promise<void>((resolve) => {
+        const req = indexedDB.open('kelime-koc')
+        req.onsuccess = () => {
+          const db = req.result
+          const tx = db.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'pronScores', value: { 'fr:bonjour': [{ at: new Date().toISOString(), score: 40 }] } })
+          tx.oncomplete = () => resolve()
+        }
+      })
+    })
+    await page.reload()
+    await openScreen(page, 'Oyunlar')
+    await page.locator('button:has-text("Telaffuz çalışması"), a:has-text("Telaffuz çalışması")').first().click()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `pron-practice-populated-${theme}`)))
+    }
+  }
+
+  // 3. Kelime sayfasında "Bana özel cümleler" (öneri listesi açıkken)
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const req = indexedDB.open('kelime-koc')
+      req.onsuccess = () => {
+        const db = req.result
+        const tx = db.transaction('meta', 'readwrite')
+        tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test' })
+        tx.oncomplete = () => resolve()
+      }
+    })
+  })
+  await page.route('https://api.anthropic.com/**', (route) => {
+    route.fulfill({
+      status: 200,
+      json: {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify([
+              { text: 'J’aime manger une pomme après le sport.', translation: 'Spordan sonra elma yemeyi severim.' },
+              { text: 'La pomme est un fruit délicieux pour voyager.', translation: 'Elma seyahat etmek için lezzetli bir meyvedir.' },
+            ]),
+          },
+        ],
+      },
+    })
+  })
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+  const firstWord = page.locator('.word-row, .card-word, .word-btn').first()
+  if (await firstWord.count()) {
+    await firstWord.click()
+    const personalBtn = page.locator('button', { hasText: /Bana özel cümleler/ })
+    if (await personalBtn.count()) {
+      await personalBtn.click()
+      await expect(page.locator('.coach-sentences, .personal-sentences, .personal-item')).toBeVisible({ timeout: 8_000 })
+      for (const theme of ['dark', 'calm'] as const) {
+        await setTheme(theme)
+        problems.push(...(await scan(page, `personal-sentences-${theme}`)))
+      }
+    }
+  }
+
+  // 4. İçe aktarmada "Hangi listeye eklensin?" (+ Yeni liste seçilince ad alanı açıkken)
+  await openScreen(page, 'Kelimeler')
+  const addPopoverBtn = page.getByRole('button', { name: 'Ekle', exact: true })
+  if (await addPopoverBtn.count()) {
+    await addPopoverBtn.click()
+    await page.getByRole('menuitem', { name: 'Birçok kelime ekle' }).click()
+    const selectTrigger = page.locator('.import-list button[role="combobox"], .import-list select').first()
+    if (await selectTrigger.count()) {
+      await selectTrigger.click()
+      const newOption = page.getByRole('option', { name: '+ Yeni liste' })
+      if (await newOption.count()) {
+        await newOption.click()
+      }
+      await expect(page.locator('input[aria-label="Yeni listenin adı"]')).toBeVisible()
+      for (const theme of ['dark', 'calm'] as const) {
+        await setTheme(theme)
+        problems.push(...(await scan(page, `import-placement-new-list-${theme}`)))
+      }
+    }
+  }
+
+  // 5. Ayarlar → Eşitleme'de "Eşitlenen veri" satırı (%50 ve %85 kota uyarısı için)
+  for (const size of [2_200_000, 3_740_000]) {
+    await page.evaluate((s) => {
+      return new Promise<void>((resolve) => {
+        const req = indexedDB.open('kelime-koc')
+        req.onsuccess = () => {
+          const db = req.result
+          const tx = db.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'syncCode', value: 'ABCDE-FGHIJ-KLMNO-PQRST' })
+          tx.objectStore('meta').put({ key: 'syncSize', value: s })
+          tx.oncomplete = () => resolve()
+        }
+      })
+    }, size)
+    await page.reload()
+    await openScreen(page, 'Ayarlar')
+    await page.locator('nav[aria-label="Ayar grupları"] button', { hasText: 'Hesap' }).click()
+    const summary = page.locator('summary', { hasText: /Hesapsız: eşitleme koduyla eşitle/ })
+    if (await summary.count()) {
+      const isOpen = await summary.evaluate((el) => (el.parentElement as HTMLDetailsElement)?.open)
+      if (!isOpen) await summary.click()
+    }
+    await expect(page.locator('p:has-text("Eşitlenen veri:")')).toBeVisible()
+    const label = size === 2_200_000 ? 'sync-size-50' : 'sync-size-85-warning'
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `${label}-${theme}`)))
+    }
+  }
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
 
