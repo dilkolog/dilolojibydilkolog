@@ -1151,3 +1151,41 @@ test('easy stories: an illustrated story read aloud, with its credits, pictures 
   // Once in the library, once in the picker.
   await expect(page.locator('.library li', { hasText: 'Qu’est-ce que tu fais ?' })).toHaveCount(2)
 })
+
+test('restoring a backup keeps a copy of what was there: a bad file changes nothing, "Önceki hâle dön" brings the data back', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Veriler' }).click()
+  const file = page.locator('input[type=file]')
+  const count = () =>
+    page.evaluate(
+      () =>
+        new Promise<number>((resolve) => {
+          const open = indexedDB.open('kelime-koc')
+          open.onsuccess = () => {
+            const c = open.result.transaction('vocabulary').objectStore('vocabulary').count()
+            c.onsuccess = () => resolve(c.result)
+          }
+        }),
+    )
+  const before = await count()
+  expect(before).toBeGreaterThan(0)
+
+  // A file that is not one of ours is turned away before anything is touched.
+  await file.setInputFiles({ name: 'bozuk.json', mimeType: 'application/json', buffer: Buffer.from('{"app":"kelime-koc","vocabulary":[{"lemma":"x"}]}') })
+  await expect(page.getByRole('status').filter({ hasText: 'bozuk' })).toBeVisible()
+  expect(await count()).toBe(before)
+
+  // An empty (but valid) backup replaces everything; the copy lets it be taken back.
+  const empty = { app: 'kelime-koc', version: 3, exportedAt: '2026-10-01T10:00:00.000Z', vocabulary: [], wordStates: [], events: [], mistakes: [] }
+  await file.setInputFiles({ name: 'bos.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(empty)) })
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Geri yükle' }).click()
+  await expect(page.getByText('Yedek geri yüklendi: 0 kelime.')).toBeVisible()
+  await expect.poll(count).toBe(0)
+
+  await page.getByRole('button', { name: 'Önceki hâle dön' }).click()
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Önceki hâle dön' }).click()
+  await expect(page.getByText('Geri yüklemeden önceki hâle dönüldü.')).toBeVisible()
+  await expect.poll(count).toBe(before)
+})

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
 import { dictionaryHtml, toCsv } from '../data/exportList'
 import { db } from '../data/instance'
+import { getSafetySnapshot, restoreSafetySnapshot, saveSafetySnapshot, type SafetySnapshot } from '../data/safetyBackup'
 import { TARGET_LANGUAGES } from '../engine/types'
 import { downloadBackup } from './backup'
 import { ConfirmDialog } from './Dialog'
@@ -18,6 +19,12 @@ export function DataSettings({
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [danger, setDanger] = useState<'language' | 'all' | null>(null)
   const [pendingRestore, setPendingRestore] = useState<Backup | null>(null)
+  const [safety, setSafety] = useState<SafetySnapshot | null>(null)
+  const [pendingUndo, setPendingUndo] = useState(false)
+
+  useEffect(() => {
+    void getSafetySnapshot(db).then(setSafety)
+  }, [])
 
   const download = async () => {
     await downloadBackup(db)
@@ -37,8 +44,28 @@ export function DataSettings({
     const backup = pendingRestore
     setPendingRestore(null)
     if (!backup) return
-    await restoreBackup(db, backup)
+    try {
+      // The data on this device is about to be replaced: keep a copy so a wrong file can be taken back.
+      setSafety(await saveSafetySnapshot(db))
+      await restoreBackup(db, backup)
+    } catch {
+      setMessage({ ok: false, text: 'Yedek geri yüklenemedi; dosya bozuk olabilir. Veriler olduğu gibi duruyor.' })
+      return
+    }
     showToast(`Yedek geri yüklendi: ${backup.vocabulary.length} kelime.`)
+    onDataChanged()
+  }
+
+  const undoRestore = async () => {
+    setPendingUndo(false)
+    try {
+      if (!(await restoreSafetySnapshot(db))) return
+    } catch {
+      setMessage({ ok: false, text: 'Önceki hâle dönülemedi.' })
+      return
+    }
+    setSafety(null)
+    showToast('Geri yüklemeden önceki hâle dönüldü.')
     onDataChanged()
   }
 
@@ -100,6 +127,16 @@ export function DataSettings({
             <input type="file" accept=".json,application/json" className="sr-only" onChange={(e) => e.target.files?.[0] && restore(e.target.files[0])} />
           </label>
         </div>
+        {safety && (
+          <div className="row">
+            <span className="small muted">
+              Geri yüklemeden önce bu cihazın hâli otomatik saklandı ({new Date(safety.at).toLocaleString('tr-TR')}, {safety.words} kelime).
+            </span>
+            <button className="btn btn-sm btn-quiet" onClick={() => setPendingUndo(true)}>
+              Önceki hâle dön
+            </button>
+          </div>
+        )}
         <h3 className="subhead">Kelime listesini dışa aktar</h3>
         <p className="small muted">CSV, Excel ya da Google E-Tablolar'da açılır. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
         <div className="row">
@@ -141,6 +178,11 @@ export function DataSettings({
       {pendingRestore && (
         <ConfirmDialog title="Yedek geri yüklensin mi?" confirmLabel="Geri yükle" danger onConfirm={confirmRestore} onCancel={() => setPendingRestore(null)}>
           Bu cihazdaki tüm veriler {new Date(pendingRestore.exportedAt).toLocaleString('tr-TR')} tarihli yedekle ({pendingRestore.vocabulary.length} kelime) değiştirilecek.
+        </ConfirmDialog>
+      )}
+      {pendingUndo && safety && (
+        <ConfirmDialog title="Önceki hâle dönülsün mü?" confirmLabel="Önceki hâle dön" danger onConfirm={undoRestore} onCancel={() => setPendingUndo(false)}>
+          Bu cihazdaki veriler {new Date(safety.at).toLocaleString('tr-TR')} tarihindeki hâliyle ({safety.words} kelime) değiştirilecek.
         </ConfirmDialog>
       )}
       {danger === 'all' && (

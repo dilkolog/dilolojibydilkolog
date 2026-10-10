@@ -4,6 +4,7 @@ import { mergeEarLogs } from '../engine/earMisses'
 import { mergeBadgeLogs } from '../engine/gamification'
 import { mergeNotes } from '../engine/dictionaryNotes'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
+import { saveSafetySnapshot } from './safetyBackup'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 
 /**
@@ -258,10 +259,18 @@ async function mediaPart(mediaId: string): Promise<string> {
   return `m-${hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(mediaId))).slice(0, 40)}`
 }
 
+/**
+ * The most a single picture or recording may weigh to be synced: it travels as base64 inside one
+ * request, which the server caps (MAX_BYTES in api/sync.ts, 4.4 MB), and base64 adds a third.
+ */
+export const MAX_MEDIA_BYTES = 3_000_000
+
 export interface SyncResult {
   /** Media items fetched from / sent to the other devices. */
   received: number
   sent: number
+  /** Media items left out (too big, or failing to travel): the rest of the sync went through anyway. */
+  skipped: number
 }
 
 /**
@@ -292,6 +301,7 @@ export async function restoreFrom(db: KelimeDB, code: Credential, day: string, n
   const local = parseBackup(await exportBackup(db, now, { media: false }))
   const before = new Set(local.vocabulary.map((v) => v.id))
   const merged = mergeBackups(local, point)
+  await saveSafetySnapshot(db, now)
   await restoreBackup(db, merged, { keepMedia: true })
   return merged.vocabulary.filter((v) => !before.has(v.id)).length
 }
@@ -325,30 +335,49 @@ export async function syncNow(db: KelimeDB, code: Credential): Promise<SyncResul
   const localMedia = new Set((await db.media.toCollection().primaryKeys()) as string[])
   const remoteMedia = new Set((remote as (Backup & { mediaIds?: string[] }) | null)?.mediaIds ?? [])
   let received = 0
+  let skipped = 0
+  // One broken or oversized item must not stop the rest, least of all the core file that carries the words.
+  const isolated = async (work: () => Promise<void>) => {
+    try {
+      await work()
+    } catch (e) {
+      if (e instanceof SyncAuthError || e instanceof SyncNotAllowedError) throw e
+      skipped++
+    }
+  }
   for (const mid of remoteMedia) {
     if (localMedia.has(mid)) continue
-    const bytes = await download(id, await mediaPart(mid), code)
-    if (!bytes) continue
-    const { kind, type, data } = JSON.parse(new TextDecoder().decode(bytes)) as { kind: 'image' | 'audio'; type: string; data: string }
-    const raw = Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
-    await db.media.put({ id: mid, kind, type, data: raw.buffer, createdAt: new Date() })
-    localMedia.add(mid)
-    received++
+    await isolated(async () => {
+      const bytes = await download(id, await mediaPart(mid), code)
+      if (!bytes) return
+      const { kind, type, data } = JSON.parse(new TextDecoder().decode(bytes)) as { kind: 'image' | 'audio'; type: string; data: string }
+      const raw = Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
+      await db.media.put({ id: mid, kind, type, data: raw.buffer, createdAt: new Date() })
+      localMedia.add(mid)
+      received++
+    })
   }
   let sent = 0
+  const unsent = new Set<string>()
   for (const mid of localMedia) {
     if (remoteMedia.has(mid) || mid.startsWith('tts:') || mid.startsWith('aud:')) continue
-    const row = await db.media.get(mid)
-    if (!row) continue
-    const blob = mediaBlob(row)
-    const bytes = new Uint8Array(await blob.arrayBuffer())
-    let bin = ''
-    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
-    await upload(id, await mediaPart(mid), new TextEncoder().encode(JSON.stringify({ kind: row.kind, type: blob.type, data: btoa(bin) })), code)
-    sent++
+    await isolated(async () => {
+      const row = await db.media.get(mid)
+      if (!row) return
+      unsent.add(mid)
+      const blob = mediaBlob(row)
+      if (blob.size > MAX_MEDIA_BYTES) throw new Error('media too large')
+      const bytes = new Uint8Array(await blob.arrayBuffer())
+      let bin = ''
+      for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+      await upload(id, await mediaPart(mid), new TextEncoder().encode(JSON.stringify({ kind: row.kind, type: blob.type, data: btoa(bin) })), code)
+      unsent.delete(mid)
+      sent++
+    })
   }
-  const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:'))
+  // Items that did not go up stay off the list, so other devices don't ask for what the server doesn't have.
+  const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:') && !unsent.has(m))
   await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code)
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
-  return { received, sent }
+  return { received, sent, skipped }
 }
