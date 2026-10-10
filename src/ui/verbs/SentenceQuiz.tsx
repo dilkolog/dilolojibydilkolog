@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { loadPack, packRecord } from '../../data/wordpack'
+import { loadPack, packRecord, unpackSentences } from '../../data/wordpack'
 import { createRng, shuffle } from '../../engine/rng'
 import { labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar } from '../AccentBar'
@@ -21,7 +21,7 @@ async function buildRound(language: LabLanguage, verbs: readonly string[], seed:
   const [first, ...rest] = verbs
   const out: Cloze[] = []
   for (const verb of [first, ...shuffle(rest, rng)]) {
-    const sentences = packRecord(pack, verb, language)?.c
+    const sentences = unpackSentences(packRecord(pack, verb, language)?.c)
     if (!sentences?.length) continue
     // The core tenses win when a form belongs to several; the rest of the verb's tenses after them.
     const tenses: Tense[] = [...CORE_TENSES[language], ...labTensesOf(verbEntry(language, verb)).filter((t) => !CORE_TENSES[language].includes(t))]
