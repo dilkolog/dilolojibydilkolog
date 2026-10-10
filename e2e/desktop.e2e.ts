@@ -1190,6 +1190,21 @@ test('reflex round and false friends: a phrase picked from its Turkish, a word�
   await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
 })
 
+test('register game: a situation and a thought, the way of saying it that suits is picked, all three ways are shown after', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Kayıt farkı' }).click()
+  await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
+  for (let i = 1; i <= 8; i++) {
+    await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
+    await expect(page.locator('.option')).toHaveCount(3)
+    await page.locator('.option').first().click()
+    await expect(page.locator('.register-ladder li')).toHaveCount(3)
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  }
+  await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
+})
+
 test('shadowing a text: a sentence played from its recording, then said back, then both compared', async ({ page }) => {
   // No microphone in a test: a silent stream stands in for it.
   await page.addInitScript(() => {

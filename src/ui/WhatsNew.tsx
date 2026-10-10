@@ -45,8 +45,8 @@ export function WhatsNew({ words, onReading, onPractice, onGrammar }: { words: n
           <span className="small muted"> İlerleme → Genel bakış'ta: en çok takıldığın yerler, yanında çalışacağın oyunla. Bugün'de de her gün bir "zihin tohumu".</span>
         </li>
         <li>
-          <strong>Refleks turu ve Tuzak kelimeler</strong>
-          <span className="small muted"> Pratik → Oyunlar'da: günlük kalıpları 3 saniyede seç; benzeyip başka şey diyen kelimelere (kelime sayfasında ⚠ çipi) düşme.</span>
+          <strong>Refleks turu, Tuzak kelimeler ve Kayıt farkı</strong>
+          <span className="small muted"> Pratik → Oyunlar'da: günlük kalıpları 3 saniyede seç; benzeyip başka şey diyen kelimelere (kelime sayfasında ⚠ çipi) düşme; sokakta, standart ve resmî söyleyişi ayırt et.</span>
         </li>
         <li>
           <button type="button" className="link" onClick={go(onReading)}>

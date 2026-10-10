@@ -5185,3 +5185,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 
 /* Deduction mode: an unknown word hidden until tapped. */
 .rw-masked { background: var(--lang-soft); color: var(--lang-text); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
+
+/* Register game: the three ways of saying it, listed after the answer. */
+.register-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }

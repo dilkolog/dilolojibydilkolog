@@ -286,6 +286,34 @@ Kota dönene kadar bekle (8.6).
 
 ---
 
+## 10. tur: canlı doğrulama, İspanyolca ses ve yeni özelliklerin içerik denetimi (9. tur bitti; kullanıcı istedi)
+
+**Bağlam:** 9. turdan sonra Claude Code şunları ekledi: **Günün mikro haberi** (`src/engine/news.ts` `FEEDS` başındaki `rfi-facile`, `voa-learning`, `voa-es`; `parseFeed` RSS `<enclosure>` sesini alır; `api/news.ts`), **Çıkarım modu** (`src/engine/deduction.ts`, Okuma'da "Çıkarım" çipi), **Ses ayırt etme**'ye Fransızca Wiktionary yedeği (`frAudioFilesOf`, `nativeRecordings`) ve 4 İspanyolca çift, **Kayıt farkı oyunu** (`src/engine/register.ts`, `src/data/register/*.json`; bu turda eklenecek). Claude Code'un ortamında dış sitelere erişim yok: aşağıdakilerin hepsi **gerçek ağ erişimi gerektiriyor.**
+
+**Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/`, `api/`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Bu turdaki işler `scripts/`, `docs/`, yeni veri dosyaları ve `e2e/` ile sınırlı. Başka dosyaya dokunman gerekirse PR açıklamasına yaz. Genel veri kuralları 9. turdakiyle aynı (kaynak + lisans satırı, uydurma yok, doğrulanamayanlar raporda ayrı).
+
+### 10.1 Haber beslemelerinin canlı doğrulaması (script + rapor)
+Mikro haber için eklenen üç besleme gerçekte çalışıyor mu? `scripts/check-news-feeds.ts` yaz: `src/engine/news.ts`'teki `FEEDS` içinden `rfi-facile`, `voa-learning`, `voa-es` için (a) beslemeyi çek, `parseFeed` ile ayrıştır (kaç madde, kaç tanesinde `audio` var), (b) ilk 3 maddenin sayfasını çek ve `extractArticle` ile çıkan metnin kelime sayısını yaz (80'in altı "başarısız"), (c) `audio` adreslerine `HEAD` at: durum kodu, `content-type`, yönlendirme zinciri, `access-control-allow-origin`. Sonuçları `docs/kaynaklar/gunun-haberi.md` sonuna "Canlı doğrulama (tarih)" bölümü olarak ekle. Bir kaynakta sorun varsa (boş metin, sesi olmayan madde, engelleme) nedenini ve önerilen düzeltmeyi (hangi seçici/başlık) yaz; `src/engine/news.ts`i **sen düzeltme**, Claude Code düzeltir.
+
+### 10.2 İspanyolca ses kayıtları (veri + rapor)
+`docs/veri/minimal-cift-kayitlari.md`: İspanyolca çiftlerin hiç kaydı yok. Şunu çıkar: `src/engine/listening.ts` `MINIMAL_PAIRS.es` içindeki tüm kelimeler (eski 10 + yeni çiftler) için Wikimedia Commons / Lingua Libre / Shtooka (`spa-wims-octavio` vb.) üzerinde **lisansı açık** ses dosyası var mı? Kelime başına dosya adı + konuşmacı + lisans: `docs/veri/es-ses-kayitlari.json` (`{ "kelime": [{ "file": "...", "speaker": "...", "license": "..." }] }`) ve kısa bir rapor. Commons dosyaları için `commonsMp3` adres biçimine uyan dosya adı ver. Çekimli fiillerin (está, habló…) kaydı yoksa alternatif çift öner.
+
+### 10.3 Çıkarım modunda hangi kelimeler gizleniyor? (rapor)
+`src/engine/deduction.ts` `maskPositions` kuralını gerçek metinlerde dene: `src/data/storybooks/{fr,es}.json`, `src/data/audiobooks/{fr,es}.json` ve 10.1'deki haber metinlerinden dil başına 5 metin al, `analyzeText` ile boş kelime listesi (kimse hiçbir kelime bilmiyor ve `known` boş) ve orta bir kelime listesiyle (en sık 1000 kelime bilinen: `src/data/frequency`) gizlenen kelimeleri listele. Rapor: `docs/veri/cikarim-modu-denetimi.md`: kaç kelime gizlendi, gizlenenlerin kaçı anlamsız (özel ad, tek başına anlaşılmaz sözcük, fiil çekimi vb.), kuralı iyileştirmek için somut öneriler (en az 5 örnekle). Kod değişikliği yok.
+
+### 10.4 Kayıt farkı listesinin denetimi (rapor; Claude Code listeyi ekledikten sonra)
+Claude Code `src/data/register/{fr,es,en}.json` içine her dilde günlük / standart / resmî karşılık üçlüleri ekleyecek (örn. `bouffer / manger / se restaurer`). Her üçlüyü bir ana dil kaynağıyla (Wiktionary etiketleri: `informal`, `slang`, `formal`; ya da güvenilir bir sözlük) denetle: kayıt etiketi doğru mu, üç ifade aynı anlamda mı, bölgeye özgü (İspanya/Latin Amerika) mü? `docs/veri/kayit-farki-denetimi.md`: sorunlu kayıtlar + önerilen düzeltme. JSON'u düzeltme, rapor yaz.
+
+### 10.5 Belge güncellemesi
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #227 sonrası yapılanlar (çıkarım modu, mikro haber, ses çifti yedeği, kayıt farkı). `AGENTS.md`'ye dokunma.
+
+### 10.6 Görsel referansları yenileme (Aralık'ta; KOTA)
+Kota dönene kadar bekle.
+
+**Tur sonu ölçütü:** Her rapor tarih ve komut çıktısıyla; doğrulanamayanlar ayrı listede; yeni veri dosyaları `npx vitest run src/data` ile yeşil; PR'lar tek konulu.
+
+---
+
 ## Her PR için kontrol listesi
 - [ ] Tek konu, Türkçe açıklama (neyi, neden)
 - [ ] `typecheck`, `oxlint` (0 uyarı), `vitest`, E2E yerelde yeşil

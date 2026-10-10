@@ -1,5 +1,5 @@
 /** Every game by id, for the command palette (kept apart so the palette doesn't load the games). */
-export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps'
+export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register'
 
 export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French and Spanish only. */ grammar?: boolean }[] = [
   { id: 'swipe', name: 'Kaydırmalı kartlar', emoji: '👆' },
@@ -22,4 +22,5 @@ export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French an
   { id: 'grammar', name: 'Dilbilgisi soruları', emoji: '📐' },
   { id: 'reflex', name: 'Refleks turu', emoji: '⚡' },
   { id: 'traps', name: 'Tuzak kelimeler', emoji: '⚠️' },
+  { id: 'register', name: 'Kayıt farkı', emoji: '🎭' },
 ]
