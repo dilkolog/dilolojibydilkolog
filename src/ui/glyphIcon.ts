@@ -20,7 +20,7 @@ const BY_EMOJI: Record<string, IconC> = {
   '🦉': MoonIcon, '🌅': SunIcon, '🍽': UtensilsIcon, '🎬': FilmIcon, '🏠': HomeIcon, '💼': BriefcaseIcon, '📦': BoxIcon, '🧳': SuitcaseIcon, '🩺': StethoscopeIcon,
 }
 
-export const glyphFor = (emoji: string): IconC | undefined => BY_EMOJI[emoji.replace(/️/g, '')]
+const glyphFor = (emoji: string): IconC | undefined => BY_EMOJI[emoji.replace(/️/g, '')]
 
 export function renderGlyph(emoji: string, props: { size?: number; className?: string; solid?: boolean } = {}): ReactNode {
   const C = glyphFor(emoji)

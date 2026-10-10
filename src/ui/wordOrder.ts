@@ -14,7 +14,7 @@ export function saveWordOrder(ids: readonly string[]) {
   }
 }
 
-export function loadWordOrder(): string[] {
+function loadWordOrder(): string[] {
   try {
     const v = JSON.parse(sessionStorage.getItem(KEY) ?? '[]')
     return Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []

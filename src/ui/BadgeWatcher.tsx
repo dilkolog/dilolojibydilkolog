@@ -7,7 +7,7 @@ import type { GameState } from './game'
 import { showToast } from './toastFeed'
 
 /** More new badges than this at once did not just happen: a backup restored, a sync, a new device. */
-export const CELEBRATE_MAX = 3
+const CELEBRATE_MAX = 3
 
 /**
  * Gives a badge its moment wherever it was earned (marking hard words, adding words, writing a

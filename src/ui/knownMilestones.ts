@@ -7,7 +7,7 @@ import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/t
  * The known-word count, the main yardstick of extensive-reading tools (LingQ): words marked
  * known while reading plus list words that have graduated. Milestones give it a next target.
  */
-export const KNOWN_MILESTONES = [500, 1000, 2000, 3000, 5000, 7500, 10_000, 12_500, 15_000, 20_000, 25_000, 30_000, 40_000, 50_000]
+const KNOWN_MILESTONES = [500, 1000, 2000, 3000, 5000, 7500, 10_000, 12_500, 15_000, 20_000, 25_000, 30_000, 40_000, 50_000]
 
 export function knownTotal(known: ReadonlySet<string>, vocabulary: readonly VocabularyEntry[], states: readonly UserWordState[], language: TargetLanguage): number {
   const keys = new Set(known)
