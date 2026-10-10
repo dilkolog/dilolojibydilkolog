@@ -1,12 +1,27 @@
 import type { SentenceCard } from './sentences'
 import type { TranslationEntry } from './translationMemory'
-import type { TargetLanguage } from './types'
+import { timeOf, type TargetLanguage } from './types'
 
 /** A sentence to write back from its Turkish: `text` in the learner's language, `turkish` shown. */
 export interface BackItem {
   text: string
   turkish: string
+  /** When it was translated (ISO). */
+  at: string
 }
+
+/**
+ * How long a translation rests before the loop takes it back: long enough to have forgotten the
+ * wording, short enough to be yesterday's reading (the bidirectional loop: translate on one day,
+ * write it back the next, then compare with the original).
+ */
+export const LOOP_AFTER_MS = 12 * 3600_000
+
+/** Whether the sentence was translated long enough ago for the loop. */
+export const loopReady = (item: Pick<BackItem, 'at'>, now: Date) => now.getTime() - timeOf(item.at) >= LOOP_AFTER_MS
+
+/** The sentences that have rested (see LOOP_AFTER_MS), in the order given. */
+export const loopItems = (items: readonly BackItem[], now: Date) => items.filter((i) => loopReady(i, now))
 
 /** Sentences asked per round: enough to warm up, short enough to finish. */
 export const BACK_ROUND = 8
@@ -32,7 +47,7 @@ export function backTranslationItems(memory: readonly TranslationEntry[], cards:
     const n = wordCount(text)
     if (n < 3 || n > 25 || carded.has(text) || seen.has(text)) continue
     seen.add(text)
-    out.push({ text, turkish: flat(pair.turkish) })
+    out.push({ text, turkish: flat(pair.turkish), at: e.at })
   }
   return out
 }

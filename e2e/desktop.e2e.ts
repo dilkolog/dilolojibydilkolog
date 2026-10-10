@@ -1138,6 +1138,34 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   await expect(page.getByRole('button', { name: /Participe passé uyumu · %\d+/ })).toBeVisible()
 })
 
+test('reflex round and false friends: a phrase picked from its Turkish, a word’s meaning picked from its sentence, both kept in the log', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Refleks turu' }).click()
+  await page.getByRole('button', { name: /Süre yok/ }).click()
+  await page.getByRole('button', { name: /10 soruluk tura başla/ }).click()
+  await expect(page.locator('.game-timer')).toHaveText('1 / 10')
+  await expect(page.locator('.option')).toHaveCount(4)
+  await page.locator('.option').first().click()
+  // A right answer moves on by itself, a miss waits for Devam.
+  const next = page.getByRole('button', { name: 'Devam', exact: true })
+  await expect(next.or(page.locator('.game-timer', { hasText: '2 / 10' }))).toBeVisible()
+  if (await next.count()) await next.click()
+  await expect(page.locator('.game-timer')).toHaveText('2 / 10')
+  await page.getByRole('button', { name: '← Oyunlar' }).click()
+
+  await page.locator('.game-card', { hasText: 'Tuzak kelimeler' }).click()
+  await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
+  for (let i = 1; i <= 8; i++) {
+    await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
+    await expect(page.locator('.option')).toHaveCount(3)
+    await page.locator('.option').first().click()
+    await expect(page.getByText('gibi görünür ama')).toBeVisible()
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  }
+  await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
+})
+
 test('shadowing a text: a sentence played from its recording, then said back, then both compared', async ({ page }) => {
   // No microphone in a test: a silent stream stands in for it.
   await page.addInitScript(() => {

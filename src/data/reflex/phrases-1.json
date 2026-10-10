@@ -1,0 +1,330 @@
+[
+ {
+  "id": "degistir",
+  "group": "görüş",
+  "tr": "Fikrimi değiştirdim",
+  "fr": "J'ai changé d'avis",
+  "es": "He cambiado de opinión",
+  "en": "I changed my mind"
+ },
+ {
+  "id": "haklisin",
+  "group": "görüş",
+  "tr": "Bence haklısın",
+  "fr": "Je pense que tu as raison",
+  "es": "Creo que tienes razón",
+  "en": "I think you're right"
+ },
+ {
+  "id": "katilmiyorum",
+  "group": "görüş",
+  "tr": "Katılmıyorum",
+  "fr": "Je ne suis pas d'accord",
+  "es": "No estoy de acuerdo",
+  "en": "I don't agree"
+ },
+ {
+  "id": "katiliyorum",
+  "group": "görüş",
+  "tr": "Tamamen katılıyorum",
+  "fr": "Je suis tout à fait d'accord",
+  "es": "Estoy totalmente de acuerdo",
+  "en": "I totally agree"
+ },
+ {
+  "id": "farketmez",
+  "group": "görüş",
+  "tr": "Benim için fark etmez",
+  "fr": "Ça m'est égal",
+  "es": "Me da igual",
+  "en": "I don't mind"
+ },
+ {
+  "id": "bilmiyorum",
+  "group": "görüş",
+  "tr": "Bilmiyorum",
+  "fr": "Je ne sais pas",
+  "es": "No lo sé",
+  "en": "I don't know"
+ },
+ {
+  "id": "emin",
+  "group": "görüş",
+  "tr": "Emin değilim",
+  "fr": "Je n'en suis pas sûr",
+  "es": "No estoy seguro",
+  "en": "I'm not sure"
+ },
+ {
+  "id": "tekrar",
+  "group": "rica",
+  "tr": "Tekrar eder misin?",
+  "fr": "Tu peux répéter ?",
+  "es": "¿Puedes repetir?",
+  "en": "Could you say that again?"
+ },
+ {
+  "id": "yavas",
+  "group": "rica",
+  "tr": "Daha yavaş konuşabilir misin?",
+  "fr": "Tu peux parler plus lentement ?",
+  "es": "¿Puedes hablar más despacio?",
+  "en": "Could you speak more slowly?"
+ },
+ {
+  "id": "yardim",
+  "group": "rica",
+  "tr": "Bana yardım eder misin?",
+  "fr": "Tu peux m'aider ?",
+  "es": "¿Puedes ayudarme?",
+  "en": "Could you help me?"
+ },
+ {
+  "id": "anlamadim",
+  "group": "rica",
+  "tr": "Anlamadım",
+  "fr": "Je n'ai pas compris",
+  "es": "No he entendido",
+  "en": "I didn't catch that"
+ },
+ {
+  "id": "demek",
+  "group": "rica",
+  "tr": "Ne demek istiyorsun?",
+  "fr": "Qu'est-ce que tu veux dire ?",
+  "es": "¿Qué quieres decir?",
+  "en": "What do you mean?"
+ },
+ {
+  "id": "bu-ne",
+  "group": "rica",
+  "tr": "Bu ne demek?",
+  "fr": "Qu'est-ce que ça veut dire ?",
+  "es": "¿Qué significa esto?",
+  "en": "What does this mean?"
+ },
+ {
+  "id": "saniye",
+  "group": "rica",
+  "tr": "Bir saniye bekle",
+  "fr": "Attends une seconde",
+  "es": "Espera un momento",
+  "en": "Hold on a second"
+ },
+ {
+  "id": "lafi-olmaz",
+  "group": "tepki",
+  "tr": "Lafı bile olmaz",
+  "fr": "De rien",
+  "es": "No hay de qué",
+  "en": "Don't mention it"
+ },
+ {
+  "id": "nazik",
+  "group": "tepki",
+  "tr": "Çok naziksin",
+  "fr": "Tu es très gentil",
+  "es": "Eres muy amable",
+  "en": "That's very kind of you"
+ },
+ {
+  "id": "gecmis-olsun",
+  "group": "tepki",
+  "tr": "Geçmiş olsun",
+  "fr": "Bon rétablissement",
+  "es": "Que te mejores",
+  "en": "Get well soon"
+ },
+ {
+  "id": "yazik",
+  "group": "tepki",
+  "tr": "Ne yazık!",
+  "fr": "Quel dommage !",
+  "es": "¡Qué pena!",
+  "en": "What a pity!"
+ },
+ {
+  "id": "harika",
+  "group": "tepki",
+  "tr": "Harika!",
+  "fr": "Génial !",
+  "es": "¡Genial!",
+  "en": "Great!"
+ },
+ {
+  "id": "saka",
+  "group": "tepki",
+  "tr": "Şaka yapıyorsun!",
+  "fr": "Tu plaisantes !",
+  "es": "¡Estás bromeando!",
+  "en": "You're kidding!"
+ },
+ {
+  "id": "bana-uyar",
+  "group": "tepki",
+  "tr": "Bana uyar",
+  "fr": "Ça me va",
+  "es": "Me parece bien",
+  "en": "Works for me"
+ },
+ {
+  "id": "sorun-degil",
+  "group": "tepki",
+  "tr": "Sorun değil",
+  "fr": "Pas de problème",
+  "es": "No hay problema",
+  "en": "No problem"
+ },
+ {
+  "id": "ne-zaman",
+  "group": "plan",
+  "tr": "Ne zaman buluşuyoruz?",
+  "fr": "On se retrouve quand ?",
+  "es": "¿Cuándo quedamos?",
+  "en": "When shall we meet?"
+ },
+ {
+  "id": "ararim",
+  "group": "plan",
+  "tr": "Seni sonra ararım",
+  "fr": "Je t'appelle plus tard",
+  "es": "Te llamo luego",
+  "en": "I'll call you later"
+ },
+ {
+  "id": "gec",
+  "group": "plan",
+  "tr": "Geç kalacağım",
+  "fr": "Je vais être en retard",
+  "es": "Voy a llegar tarde",
+  "en": "I'm going to be late"
+ },
+ {
+  "id": "yoldayim",
+  "group": "plan",
+  "tr": "Yoldayım",
+  "fr": "Je suis en route",
+  "es": "Estoy de camino",
+  "en": "I'm on my way"
+ },
+ {
+  "id": "sabirsiz",
+  "group": "plan",
+  "tr": "Seni görmek için sabırsızlanıyorum",
+  "fr": "J'ai hâte de te voir",
+  "es": "Tengo ganas de verte",
+  "en": "I can't wait to see you"
+ },
+ {
+  "id": "kayip",
+  "group": "sorun",
+  "tr": "Yolumu kaybettim",
+  "fr": "Je me suis perdu",
+  "es": "Me he perdido",
+  "en": "I'm lost"
+ },
+ {
+  "id": "anahtar",
+  "group": "sorun",
+  "tr": "Anahtarlarımı unuttum",
+  "fr": "J'ai oublié mes clés",
+  "es": "Me he olvidado las llaves",
+  "en": "I forgot my keys"
+ },
+ {
+  "id": "sorun-var",
+  "group": "sorun",
+  "tr": "Bir sorun var",
+  "fr": "Il y a un problème",
+  "es": "Hay un problema",
+  "en": "There's a problem"
+ },
+ {
+  "id": "calismiyor",
+  "group": "sorun",
+  "tr": "Bu çalışmıyor",
+  "fr": "Ça ne marche pas",
+  "es": "No funciona",
+  "en": "It doesn't work"
+ },
+ {
+  "id": "ne-oldu",
+  "group": "sorun",
+  "tr": "Ne oldu?",
+  "fr": "Qu'est-ce qui s'est passé ?",
+  "es": "¿Qué ha pasado?",
+  "en": "What happened?"
+ },
+ {
+  "id": "acele",
+  "group": "sorun",
+  "tr": "Acelem var",
+  "fr": "Je suis pressé",
+  "es": "Tengo prisa",
+  "en": "I'm in a hurry"
+ },
+ {
+  "id": "ne-yapiyorsun",
+  "group": "günlük",
+  "tr": "Ne yapıyorsun?",
+  "fr": "Qu'est-ce que tu fais ?",
+  "es": "¿Qué haces?",
+  "en": "What are you doing?"
+ },
+ {
+  "id": "nasil-gidiyor",
+  "group": "günlük",
+  "tr": "Nasıl gidiyor?",
+  "fr": "Comment ça va ?",
+  "es": "¿Qué tal?",
+  "en": "How's it going?"
+ },
+ {
+  "id": "hesap",
+  "group": "günlük",
+  "tr": "Hesap lütfen",
+  "fr": "L'addition, s'il vous plaît",
+  "es": "La cuenta, por favor",
+  "en": "Could I have the bill, please?"
+ },
+ {
+  "id": "kahve",
+  "group": "günlük",
+  "tr": "Bir kahve lütfen",
+  "fr": "Un café, s'il vous plaît",
+  "es": "Un café, por favor",
+  "en": "A coffee, please"
+ },
+ {
+  "id": "kac",
+  "group": "günlük",
+  "tr": "Bu ne kadar?",
+  "fr": "Ça coûte combien ?",
+  "es": "¿Cuánto cuesta?",
+  "en": "How much is this?"
+ },
+ {
+  "id": "doydum",
+  "group": "günlük",
+  "tr": "Karnım doydu",
+  "fr": "Je n'ai plus faim",
+  "es": "Ya no tengo hambre",
+  "en": "I'm not hungry anymore"
+ },
+ {
+  "id": "yorgun",
+  "group": "günlük",
+  "tr": "Çok yorgunum",
+  "fr": "Je suis épuisé",
+  "es": "Estoy agotado",
+  "en": "I'm exhausted"
+ },
+ {
+  "id": "ac",
+  "group": "günlük",
+  "tr": "Açım",
+  "fr": "J'ai faim",
+  "es": "Tengo hambre",
+  "en": "I'm hungry"
+ }
+]

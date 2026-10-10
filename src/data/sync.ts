@@ -293,6 +293,9 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     translations: mergeMemories(older.translations, newer.translations),
     earMisses: mergeEarLogs(older.earMisses, newer.earMisses),
     grammar: mergeGrammarLogs(older.grammar, newer.grammar),
+    reflex: mergeGrammarLogs(older.reflex, newer.reflex),
+    traps: mergeGrammarLogs(older.traps, newer.traps),
+    pairs: mergeGrammarLogs(older.pairs, newer.pairs),
     media: [],
   }
 }

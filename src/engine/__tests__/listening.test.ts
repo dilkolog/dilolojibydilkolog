@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { listeningRate, MINIMAL_PAIRS, pairRound } from '../listening'
+import { listeningRate, MINIMAL_PAIRS, pairKey, pairRound } from '../listening'
+import { recordGrammar } from '../grammar'
 import { createRng } from '../rng'
 
 describe('listeningRate', () => {
@@ -19,5 +20,19 @@ describe('minimal pairs', () => {
     expect(round).toHaveLength(12)
     expect(new Set(round.map((q) => q.pair.a.word)).size).toBeGreaterThan(6)
     expect(new Set(round.map((q) => q.answer))).toEqual(new Set(['a', 'b']))
+  })
+
+  it('puts the pairs missed before first, and keys them by language and words', () => {
+    const missed = MINIMAL_PAIRS.fr[3]
+    let log = recordGrammar({}, pairKey('fr', missed), false, new Date())
+    for (const q of MINIMAL_PAIRS.fr) if (q !== missed) log = recordGrammar(log, pairKey('fr', q), true, new Date())
+    const leads = new Set<string>()
+    for (let seed = 1; seed <= 20; seed++) leads.add(pairRound('fr', 5, createRng(seed), log)[0].pair.a.word)
+    expect(leads.has(missed.a.word)).toBe(true)
+    expect(pairKey('fr', missed)).toBe(`fr:${missed.a.word}|${missed.b.word}`)
+  })
+
+  it('has no pair twice in a language', () => {
+    for (const pairs of Object.values(MINIMAL_PAIRS)) expect(new Set(pairs.map((x) => `${x.a.word}|${x.b.word}`)).size).toBe(pairs.length)
   })
 })

@@ -241,6 +241,51 @@ GitHub Actions aylık 2.000 dk çalışma kotası hâlâ dolu olduğu için work
 
 ---
 
+## 9. tur: yeni oyunlar için içerik ve denetim (kullanıcı istedi; 8. tur bitti)
+
+**Bağlam:** Claude Code şu oyunları ekledi: **Dilbilgisi soruları** (`src/engine/grammar.ts`, `src/data/grammar/{fr,es,en}.json`), **Refleks turu** (`src/engine/reflex.ts`, `src/data/reflex/phrases-1.json`), **Tuzak kelimeler** (`src/engine/traps.ts`, `src/data/traps/{fr,es,en}.json`, kelime sayfasında ve sözlükte "Tuzak kelime" çipi), **Ses ayırt etme**'ye yeni çiftler ve çift başına kayıt (`src/engine/listening.ts`) ve **Geri çeviri döngü modu** (`src/engine/backTranslation.ts`). Her veri klasörü `import.meta.glob` ile okunur: **yeni bir `*.json` dosyası koymak yeni içerik ekler, kodda değişiklik gerekmez.**
+
+**Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/games/`, `src/ui/Games.tsx`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Aşağıdaki işler **yeni veri dosyaları, `e2e/`, `docs/` ve `scripts/`** ile sınırlı. Mevcut veri dosyalarını (`*-1.json`, `fr.json`, `es.json`, `en.json`) düzenleme; yeni dosya ekle. Başka dosyaya dokunman gerekirse PR açıklamasına yaz.
+
+**Genel kurallar (veri için):** Sadece lisansı belli kaynaklardan al ya da kendin yaz; her kayıtta `source` alanına kaynak + lisans yaz (örn. `"Wiktionary (CC BY-SA 4.0)"`, `"Diloloji (özgün)"`). Uydurma kayıt yok: emin olmadığın bir şeyi ekleme, raporda "doğrulanamadı" diye listele. Türkçe karşılıklar doğal Türkçe olsun. Her yeni dosyanın doğruluğunu `npx vitest run src/data` ile sına (veri bütünlüğü testleri var).
+
+### 9.1 Tuzak kelime (yalancı eşdeğer) listesini genişlet (veri)
+- Yeni dosyalar: `src/data/traps/fr-2.json`, `es-2.json`, `en-2.json`. Şema `src/engine/traps.ts` içindeki `TrapWord`: `{ id: "<dil>-<lemma>", language, lemma, looks, trap, meaning, text, tr, source }`. Örnek için `src/data/traps/fr.json`'a bak. `id` mevcutlarla çakışmasın.
+- Her dil için en az **40 yeni kelime**: Fransızca/İspanyolca için İngilizceye benzeyenler (`looks` = İngilizce kelime), İngilizce için Türkçeye benzeyenler (`looks` = Türkçe kelime). Türkçe öğrenen biri için asıl tuzaklar: Fransızca/İngilizce kökenli Türkçe sözcüklerin (pasta, kolej, şef, pansiyon, dekolte, kabine, kondisyon, mevsim gibi) hedef dilde başka anlam taşıdığı durumlar; bunları ayrıca `looks` Türkçe olacak şekilde ekle.
+- `trap` = benzeyen kelimenin düşündürdüğü yanlış anlam, `meaning` = gerçek anlam (kısa Türkçe), `text` = o kelimenin geçtiği kısa, doğal bir hedef dil cümlesi (kelime olduğu gibi ya da çekimli geçebilir), `tr` = Türkçesi.
+- Rapor: `docs/kaynaklar/tuzak-kelimeler.md` (kaynaklar, lisans, kaç kayıt, doğrulanamayan adaylar).
+
+### 9.2 Refleks turu kalıplarını genişlet (veri)
+- Yeni dosya: `src/data/reflex/phrases-2.json` (şema `ReflexPhrase`: `{ id, group, tr, fr, es, en }`; örnek `phrases-1.json`). Tek dosyada dört dil yan yana olur: aynı durumun Türkçesi, Fransızcası, İspanyolcası, İngilizcesi.
+- **En az 60 yeni kalıp.** Mevcut gruplar: görüş, rica, tepki, plan, sorun, günlük. Yeni gruplar ekleyebilirsin: iş/ofis, seyahat, sağlık, alışveriş, telefon, sosyal (tanışma, davet, özür). Her kalıp **en çok 8 kelime**, günlük konuşmada gerçekten kullanılan hâliyle; kitap dili değil. Aynı dilde iki kalıp aynı metin olmasın (test bunu denetler).
+- Dikkat: Fransızca "tu/vous" ve cinsiyetli biçimlerde (`fatigué(e)`) tek bir doğal biçim seç.
+- Rapor: ek olarak PR açıklamasında kalıpların hangi kaynağa göre kontrol edildiğini yaz (Tatoeba, Wiktionary, sözlükler).
+
+### 9.3 Dilbilgisi sorularını gözden geçir ve genişlet
+- **(a) Gözden geçirme (rapor; kod yok):** `src/data/grammar/{fr,es,en}.json` içindeki 96 soruyu, cevap ve Türkçe kural açıklamalarıyla, birer birer doğrula. Birden fazla doğru cevap çıkan, tartışmalı ya da yanlış olan her soruyu `docs/veri/gramer-gozden-gecirme.md` dosyasına (soru kimliği + sorun + önerilen düzeltme) yaz. JSON'u kendin düzeltme; Claude Code düzeltir.
+- **(b) Yeni sorular:** `src/data/grammar/fr-2.json`, `es-2.json`, `en-2.json`. Şema `GrammarExercise` (`src/engine/grammar.ts`): `type` = `cloze` (boşluk `___`, cevap `answer`, `alternatives` ile diğer doğrular) / `choice` (`options` içinde tek doğru) / `error` (cümlede hatalı kelime `answer`, doğrusu `fix`). `topic` mevcut anahtarlardan biri olsun ya da yeni konu eklersen `TOPIC_NAME` listesine eklenmesi için PR açıklamasında yaz (konu adını Türkçe öner). Dil başına en az 40 soru, B1–C1, kural açıklaması Türkçe ve tek cümleden uzun olabilir ama net olsun. COERLL (Français interactif, español), Tatoeba ve Wiktionary kural sayfalarından esinlen; lisanslı metni birebir kopyalıyorsan `source`'a lisans yaz, aksi hâlde kendi cümleni kur.
+- Zor sorular, belirsiz cevaplar yok: bir boşluğa iki farklı sözcük uyuyorsa `alternatives` ekle ya da soruyu at.
+
+### 9.4 "Ses ayırt etme" yeni çiftleri: kayıt denetimi (rapor)
+- `src/engine/listening.ts` içindeki `MINIMAL_PAIRS`'e son 30 kadar yeni çift eklendi (İngilizce 14, Fransızca 7, İspanyolca 5). Oyun, kelimelerin ana dili konuşanların kayıtlarını `nativeRecordings()` (`src/data/wordInfo.ts`) ile arıyor. Her yeni çift için iki kelimenin de **en az iki farklı konuşmacının** kaydı olup olmadığını (Forvo, Shtooka, Wikimedia Commons; lisansa dikkat) kontrol et.
+- Rapor: `docs/veri/minimal-cift-kayitlari.md` (çift, her kelimenin kaç kaydı, lisans, kaynak). Kaydı hiç olmayan çiftler için aynı ses farkını taşıyan alternatif çift öner. Çiftlerin Türkçe karşılıklarındaki hataları da işaretle.
+
+### 9.5 Erişilebilirlik taraması (E2E; `e2e/a11y.e2e.ts`)
+Yeni ekranlar için `axe` taraması, hem koyu (`dark`) hem sakin (`calm`) temada, sıfır ihlal: **Oyunlar → Dilbilgisi soruları** (giriş, boşluk sorusu, seçenek sorusu, hatalı kelime sorusu, cevap sonrası açıklama, tur sonu), **Refleks turu** (süreli ve süresiz; süre çubuğu animasyonu axe'i bozmasın), **Tuzak kelimeler** (soru ve cevap), **kelime sayfasında ve Sözlük'te "Tuzak kelime" çipi** (örn. Fransızca "actuellement" kelimesini ekleyip aç; çipin renk kontrastı koyu temada da yeterli mi), **Geri çeviri** (döngü çipleri). Testleri uzun tutma: bir testte çok tarama varsa `test.setTimeout` ver.
+
+### 9.6 Günün mikro haberi için kaynak araştırması (rapor; kod yok)
+`docs/GELISIM-FIKIRLERI.md` fikir 6: **RFI Savoirs (Le journal en français facile)**, **VOA Learning English**, İspanyolca için eşdeğer (RTVE "Telediario", "Radio Francia Internacional – en español", "VOA Noticias", "Deutsche Welle Aprender español"/benzeri) için: RSS/API adresi, günde kaç içerik, ses + tam transkript var mı, **lisans ve yeniden kullanım şartları** (özellikle uygulama içinde gösterim ve ses akışı), tarayıcıdan doğrudan çekmeye CORS izni, ses bağlantısının kalıcı olup olmadığı, seviye (A2–C1 tahmini). Rapor: `docs/kaynaklar/gunun-haberi.md`; uygun olanı sıralı öner. `HEAD` ile doğrulanmamış bağlantıyı "doğrulanamadı" diye işaretle.
+
+### 9.7 Belge güncellemesi
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #209–sonrası yapılanlar (hesap onayı, dilbilgisi soruları, refleks turu, tuzak kelimeler, ses ayırt etme çiftleri, geri çeviri döngüsü, sesli içerikte devam, yenilikler kartı). `AGENTS.md`'ye dokunma (Claude Code günceller).
+
+### 9.8 Görsel referansları yenileme (Aralık'ta; KOTA)
+Kota dönene kadar bekle (8.6).
+
+**Tur sonu ölçütü:** Her yeni veri dosyası `npx vitest run src/data` ile yeşil; her kayıtta `source`; uydurma yok ve doğrulanamayanlar raporda ayrı listede; 9.5'te hiçbir mevcut test silinmemiş, yeni taramalar koyu + sakin temada; PR'lar tek konulu.
+
+---
+
 ## Her PR için kontrol listesi
 - [ ] Tek konu, Türkçe açıklama (neyi, neden)
 - [ ] `typecheck`, `oxlint` (0 uyarı), `vitest`, E2E yerelde yeşil

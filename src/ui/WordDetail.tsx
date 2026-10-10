@@ -12,6 +12,9 @@ import type { Scheduler } from '../engine/scheduler'
 import { unlockedSkills } from '../engine/selection'
 import { SKILLS, type Mistake, type UserWordState, type VocabularyEntry, type WordList } from '../engine/types'
 import { LevelChip } from './LevelChip'
+import { TrapChip } from './TrapChip'
+import { trapOf } from '../engine/traps'
+import { trapWords } from '../data/traps'
 import { levelFromRank } from '../engine/wordLevel'
 import { Select } from './Select'
 import type { KelimeDB } from '../data/db'
@@ -207,7 +210,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       {/* The word itself up top: what it is, how it sounds, what it means; then where it stands. */}
       <section className={`word-hero span-2${heroImage ? ' has-image' : ''}`}>
         <div className="word-hero-main">
-          {(chips.length > 0 || entry.partOfSpeech !== 'other' || levelFromRank(entry.frequencyRank) || entry.language !== 'en') && (
+          {(chips.length > 0 || entry.partOfSpeech !== 'other' || levelFromRank(entry.frequencyRank) || entry.language !== 'en' || trapOf(trapWords, entry.language, entry.lemma)) && (
             <ul className="chip-list" aria-label="Kelime bilgisi">
               {entry.partOfSpeech !== 'other' && (
                 <li className="pos-chip">
@@ -218,6 +221,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
                 <li key={c}>{c}</li>
               ))}
               <LevelChip language={entry.language} lemma={entry.lemma} rank={entry.frequencyRank} />
+              <TrapChip language={entry.language} lemma={entry.lemma} />
             </ul>
           )}
           <div className="word-hero-title">
