@@ -190,8 +190,8 @@ export function BlitzGame({ language, vocabulary, states, best: bestChoose, best
 
       {phase === 'play' && q && (
         <>
-          <div className="progress">
-            <div style={{ width: `${(left / BLITZ_MS) * 100}%`, transition: 'width 0.1s linear' }} />
+          <div className="progress progress-timer">
+            <div style={{ transform: `scaleX(${Math.max(0, Math.min(1, left / BLITZ_MS))})` }} />
           </div>
           <div className="row justify-between">
             <span className="game-score">{score} puan</span>

@@ -1499,7 +1499,7 @@ main:focus { outline: none; }
 /* Shadowing: a quiet inline control under an example sentence. */
 .shadow { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem; }
 .shadow-rec { color: var(--bad-text); display: inline-flex; align-items: center; gap: 0.5rem; }
-.shadow-bar { display: inline-block; height: 0.25rem; border-radius: var(--r-full); background: var(--bad); transition: width 0.1s linear; }
+.shadow-bar { display: inline-block; width: 3rem; height: 0.25rem; border-radius: var(--r-full); background: var(--bad); transform-origin: left; transition: transform 100ms linear; }
 .fragile-note { padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); color: var(--ink-soft); }
 .retell { border-top: 1px solid var(--rule); padding-top: 1.25rem; margin-top: 0.5rem; }
 .personal-tag { margin-left: 0.5rem; font-family: var(--sans, inherit); font-size: var(--t-xs); font-weight: 700; padding: 0.0625rem 0.5rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); vertical-align: middle; }
@@ -4868,7 +4868,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-levelcard-foot:first-of-type { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--rule); }
 .lab-levelcard-foot b { color: var(--ink); }
 .lab-clock { height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
-.lab-clock > span { display: block; height: 100%; background: var(--ok); border-radius: inherit; transition: width 100ms linear; }
+.lab-clock > span { display: block; width: 100%; height: 100%; background: var(--ok); border-radius: inherit; transform-origin: left; transition: transform 100ms linear; }
 .lab-clock.is-low > span { background: var(--bad); }
 .lab-timed-stats { display: flex; justify-content: space-between; align-items: center; }
 .lab-combo { display: inline-flex; align-items: center; gap: 0.25rem; color: var(--near-text); font-weight: 700; }
@@ -5002,3 +5002,22 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* Reading: the verb forms of the open text, a tense at a time. */
 .text-forms-group > summary { cursor: pointer; padding: 0.25rem 0; }
 .text-forms-group > .word-list { margin-top: 0.25rem; }
+
+/* ---------- Motion pass 1: answer, confirmation, summary, timers ---------- */
+/* A time bar only shrinks: a transform keeps it off the layout (it updates ten times a second). */
+.progress-timer > div { width: 100%; transform-origin: left; transition: transform 100ms linear; }
+
+/* A right answer springs up a little more than before, and settles. */
+@keyframes correct-pop { 0% { transform: scale(1); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* The tick of a success toast ("added", "saved") pops in a beat after the toast itself. */
+@keyframes check-pop { 0% { transform: scale(0.4); opacity: 0; } 60% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); } }
+.toast-success .toast-icon { animation: check-pop var(--dur) var(--ease-spring) 80ms backwards; }
+
+/* The summary arrives in order: celebration, then each card, 60 ms apart. */
+@keyframes rise-in { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: none; } }
+.summary-main > *, .summary-side > * { animation: rise-in var(--dur) var(--ease-out) backwards; }
+.summary-main > :nth-child(2), .summary-side > :nth-child(1) { animation-delay: 60ms; }
+.summary-main > :nth-child(3), .summary-side > :nth-child(2) { animation-delay: 120ms; }
+.summary-main > :nth-child(4), .summary-side > :nth-child(3) { animation-delay: 180ms; }
+.summary-main > :nth-child(n + 5), .summary-side > :nth-child(n + 4) { animation-delay: 240ms; }
