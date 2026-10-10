@@ -77,7 +77,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
           <span className="brand-mark" aria-hidden>
             <BrandMark />
           </span>{' '}
-          Kelime Koçu
+          Diloloji
         </div>
         {step === 0 && (
           <>

@@ -354,7 +354,7 @@ export function Summary({
 function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose: () => void }) {
   const share = async () => {
     try {
-      await navigator.share({ title: 'Kelime Koçu', text: `${milestone.emoji} ${milestone.title} ${milestone.text}` })
+      await navigator.share({ title: 'Diloloji', text: `${milestone.emoji} ${milestone.title} ${milestone.text}` })
     } catch {
       // Share sheet closed; nothing to do.
     }

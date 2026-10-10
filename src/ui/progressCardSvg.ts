@@ -100,7 +100,7 @@ export function cardSvg(d: CardData, style: CardStyle = {}): string {
   ${p.veil ? `<rect width="1080" height="1350" fill="#0f172a" fill-opacity="${p.veil}"/>` : ''}
   <rect x="0" y="0" width="1080" height="14" fill="${a}"/>
   <rect x="80" y="96" width="76" height="76" rx="20" fill="${a}"/><text x="118" y="152" font-size="52" font-weight="800" fill="${onAccent}" text-anchor="middle">k</text>
-  <text x="180" y="148" font-size="44" font-weight="700" fill="${p.ink}">Kelime Koçu</text>
+  <text x="180" y="148" font-size="44" font-weight="700" fill="${p.ink}">Diloloji</text>
   <text x="80" y="290" font-size="64" font-weight="800" fill="${p.ink}">${esc(d.name || 'İlerlemem')}</text>
   <text x="80" y="352" font-size="38" fill="${aText}">${esc(LANGUAGE_NAME[d.language])} · Seviye ${d.level} · ${esc(d.title)}</text>
   ${lines.join('\n  ')}

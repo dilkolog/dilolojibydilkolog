@@ -25,8 +25,8 @@ export default defineConfig({
         runtimeCaching: [{ urlPattern: /\/assets\/(en|fr|es)-[\w-]+\.json$/, handler: 'CacheFirst', options: { cacheName: 'word-packs', expiration: { maxEntries: 6 } } }],
       },
       manifest: {
-        name: 'Kelime Koçu',
-        short_name: 'Kelime Koçu',
+        name: 'Diloloji',
+        short_name: 'Diloloji',
         description: 'Kişisel, adaptif kelime öğrenme',
         lang: 'tr',
         start_url: '/',

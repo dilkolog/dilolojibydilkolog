@@ -78,7 +78,7 @@ export async function GET(request: Request): Promise<Response> {
     const week = weeklyText(r, now)
     if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) continue
     try {
-      const message = week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Kelime Koçu', body: reminderText(r, now), url: '/?go=quick' }
+      const message = week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' }
       await webpush.sendNotification(r.subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal' })
       sent++
     } catch (e) {

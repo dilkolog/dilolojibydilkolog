@@ -67,7 +67,7 @@ export function InstallHint() {
       </div>
       {ios ? (
         <p className="small">
-          Safari'de alttaki <strong>Paylaş</strong> düğmesine (kare ve yukarı ok) dokun, <strong>Ana Ekrana Ekle</strong>'yi seç. Kelime Koçu tam ekran açılır,
+          Safari'de alttaki <strong>Paylaş</strong> düğmesine (kare ve yukarı ok) dokun, <strong>Ana Ekrana Ekle</strong>'yi seç. Diloloji tam ekran açılır,
           internet olmadan da çalışır ve akşam hatırlatma bildirimi alabilirsin.
         </p>
       ) : (

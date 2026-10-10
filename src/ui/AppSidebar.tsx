@@ -53,11 +53,11 @@ export function Sidebar({
   return (
     <aside className="sidebar">
       <div className="brand-row">
-        <button className="brand" onClick={go({ name: 'home' })} title="Kelime Koçu">
+        <button className="brand" onClick={go({ name: 'home' })} title="Diloloji">
           <span className="brand-mark" aria-hidden>
             <BrandMark />
           </span>
-          <span className="brand-name">Kelime Koçu</span>
+          <span className="brand-name">Diloloji</span>
         </button>
         <OfflineBadge />
         <button className="icon-btn rail-toggle" onClick={onToggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>

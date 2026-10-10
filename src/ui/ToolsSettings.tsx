@@ -17,7 +17,7 @@ function Bookmarklet() {
   }, [])
   return (
     <a ref={ref} className="btn bookmarklet" onClick={(e) => e.preventDefault()} title="Yer imleri çubuğuna sürükle">
-      + Kelime Koçu'na ekle
+      + Diloloji'ye ekle
     </a>
   )
 }
