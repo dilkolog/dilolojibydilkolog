@@ -36,3 +36,7 @@ playwright-report
 # Backups: personal data, never committed
 kelime-kocu-yedek-*.json
 *yedek*.json
+
+# Build cache
+.cache
+

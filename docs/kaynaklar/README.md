@@ -128,3 +128,11 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 - **DELE Ahora (deleahora.com):** Özel yayın girişimi; tüm hakları saklıdır. Ücretsiz web alıştırmaları reklam/e-kitap modeliyle çalışır. Kopyalama kesinlikle yasaktır; harici link serbesttir.
 - Rapor, her iki platform için telif analizini, karar matrisini ve resmi izin talep e-posta taslaklarını içerir.
 
+---
+
+## 7. Bölüm Bazlı Metin-Ses Eşleştirilmiş Klasik Ses Kitapları (`audiobooks-chapters.md`)
+
+- **Bölüm Parçalama:** `scripts/build-audiobook-chapters.ts` Gutenberg metinlerini bölüm bölüm ayıklar ve LibriVox doğrudan MP3 bağlantılarıyla (`HEAD` ile doğrulanmış HTTP 200) eşleştirir.
+- **Veri Dosyaları:** `src/data/audiobooks/fr.json` (13 bölüm; Daudet, Maupassant, La Fontaine) ve `src/data/audiobooks/es.json` (10 bölüm; Quiroga, Bécquer).
+- **Entegrasyon Modülü:** `src/data/audiobooks.ts` (`loadAudiobookChapters`, `chapterToReadingText`).
+
