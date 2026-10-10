@@ -35,7 +35,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
       await testKey(key)
       await setApiKey(key)
       setDraft('')
-      showToast('Anahtar çalışıyor, AI özellikleri açıldı.')
+      showToast('Anahtar çalışıyor, YZ özellikleri açıldı.')
     } catch (err) {
       setStatus({ ok: false, text: err instanceof AiError ? err.message : 'Anahtar doğrulanamadı.' })
     } finally {
@@ -46,16 +46,16 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
   return (
     <section className="section card stack">
       <h2 className="section-title row gap-2">
-        <WandIcon size={20} className="icon-star" /> AI yardımcısı
+        <WandIcon size={20} className="icon-star" /> YZ yardımcısı
       </h2>
       <Help text={'Kelime eklerken anlamı, örnek cümleyi ve kalıpları doldurur, cümlelerini değerlendirir. Açıkken ayrıca metinden çıkardığın kelimeler toplu doldurulur ve "kendi cümleni kur" alıştırması açılır. Kapalıyken uygulamanın geri kalanı aynen çalışır.'} />
       {needsApproval ? (
         <p className="note" role="status">
           {access === 'signedOut'
-            ? 'AI özellikleri, site sahibinin onayladığı hesaplara açık. Ayarlar → Hesap bölümünden hesap oluşturursan başvurun ona gider.'
+            ? 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Ayarlar → Hesap bölümünden hesap oluşturursan başvurun ona gider.'
             : access === 'rejected'
-              ? 'Hesabın AI özellikleri için onaylanmadı.'
-              : 'AI özellikleri, site sahibinin onayladığı hesaplara açık. Hesabın onay bekliyor; onaylanınca burada anahtarını girebilirsin.'}
+              ? 'Hesabın YZ özellikleri için onaylanmadı.'
+              : 'YZ özellikleri, site sahibinin onayladığı hesaplara açık. Hesabın onay bekliyor; onaylanınca burada anahtarını girebilirsin.'}
         </p>
       ) : apiKey ? (
         <div className="row">
@@ -109,7 +109,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
             </button>
           ))}
         </div>
-        <span className="help">Sınıra ulaşınca ay sonuna kadar AI istekleri durur; uygulamanın geri kalanı çalışmaya devam eder.</span>
+        <span className="help">Sınıra ulaşınca ay sonuna kadar YZ istekleri durur; uygulamanın geri kalanı çalışmaya devam eder.</span>
       </div>
       <div className="stack ai-usage">
         <strong>Bu ayki kullanım</strong>
@@ -138,7 +138,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
             </ul>
           </>
         ) : (
-          <p className="small muted">Bu ay henüz AI isteği yok.</p>
+          <p className="small muted">Bu ay henüz YZ isteği yok.</p>
         )}
         {months.length > 1 && (
           <p className="small muted">

@@ -176,7 +176,7 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
           <span className="small muted">{wordsCount} kelime</span>
           {!apiKey && (
             <button className="link small" onClick={onOpenSettings}>
-              Düzeltme için AI'ı aç
+              Düzeltme için YZ'yi aç
             </button>
           )}
         </div>
@@ -316,10 +316,10 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
   if (!apiKey) {
     return (
       <section className="card stack">
-        <p>Sohbet partneri için AI gerekiyor: seçtiğin bir senaryoda seninle {LANGUAGE_NAME[language]} konuşur ve zayıf kelimelerini sohbete yerleştirir.</p>
+        <p>Sohbet partneri için YZ gerekiyor: seçtiğin bir senaryoda seninle {LANGUAGE_NAME[language]} konuşur ve zayıf kelimelerini sohbete yerleştirir.</p>
         <div>
           <button className="btn btn-quiet" onClick={onOpenSettings}>
-            AI'ı Ayarlar'dan aç
+            YZ'yi Ayarlar'dan aç
           </button>
         </div>
       </section>
@@ -393,7 +393,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
     return (
       <div className="stack">
         <p className="small muted">
-          Gerçek bir durumda, karşı tarafı AI oynar ve sana kolayca boyun eğmez. Hedefleri kendi cümlelerinle tamamla; şu kelimeleri de kullanman
+          Gerçek bir durumda, karşı tarafı YZ oynar ve sana kolayca boyun eğmez. Hedefleri kendi cümlelerinle tamamla; şu kelimeleri de kullanman
           gerekiyor: <strong lang={language}>{words.map((w) => displayForm(w)).join(', ') || '(önce birkaç kelime öğren)'}</strong>.
         </p>
         <div className="mission-grid">

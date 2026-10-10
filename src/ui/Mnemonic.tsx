@@ -128,7 +128,7 @@ export function MnemonicDialog({
           <>
             <p className="muted small">
               Kelimeyi Türkçe bir sese ya da komik bir sahneye bağla. Ne kadar tuhafsa o kadar akılda kalır.
-              (AI açıksa bunu senin yerine önerir.)
+              (YZ açıksa bunu senin yerine önerir.)
             </p>
             <textarea
               className="textarea mnemonic-textarea"

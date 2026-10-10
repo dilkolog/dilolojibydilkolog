@@ -48,7 +48,7 @@ describe('interestsOf', () => {
 })
 
 describe('PersonalSentences', () => {
-  it('shows nothing without an AI key', async () => {
+  it('shows nothing without an YZ key', async () => {
     const db = new KelimeDB('t-ps-nokey')
     expect((await mount(null, db, createEntry({ word: 'regarder', meaning: 'bakmak' }, 'fr', new Date()))).host.innerHTML).toBe('')
   })

@@ -5,7 +5,7 @@ import { db } from '../data/instance'
 import { Avatar } from './Avatar'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, PenIcon, SproutIcon, StarIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
 import { Medal } from './Medal'
@@ -75,7 +75,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               <Avatar profile={profile} size={88} />
               {game && <span className="avatar-level">{game.level.level}</span>}
             </span>
-            <span className="avatar-edit-badge"><PenIcon size={14} /></span>
+            <span className="avatar-edit-badge"><SmileIcon size={16} /></span>
           </button>
           <div className="profile-fields">
             <input

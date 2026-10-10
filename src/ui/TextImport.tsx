@@ -84,7 +84,7 @@ export function TextImport({
     try {
       for (let b = 0; b < targets.length; b += AI_BATCH) {
         const batch = targets.slice(b, b + AI_BATCH)
-        setBusy(`AI dolduruyor… ${Math.min(b + AI_BATCH, targets.length)}/${targets.length}`)
+        setBusy(`YZ dolduruyor… ${Math.min(b + AI_BATCH, targets.length)}/${targets.length}`)
         const result = await enrichWords(
           apiKey,
           language,
@@ -101,7 +101,7 @@ export function TextImport({
         )
       }
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof AiError ? e.message : 'AI ile doldurulamadı.' })
+      setMessage({ ok: false, text: e instanceof AiError ? e.message : 'YZ ile doldurulamadı.' })
     } finally {
       setBusy('')
     }
@@ -242,14 +242,14 @@ export function TextImport({
               {apiKey && (
                 <button className="btn btn-quiet" onClick={fillWithAi} disabled={!!busy || selected.length === 0}>
                   <SparkleIcon size={18} className="icon-star" />
-                  {busy || `Seçilenleri AI ile doldur (${selected.filter((r) => !r.ai).length})`}
+                  {busy || `Seçilenleri YZ ile doldur (${selected.filter((r) => !r.ai).length})`}
                 </button>
               )}
               <button className="btn" onClick={add} disabled={!!busy || selected.length === 0}>
                 Seçilenleri ekle ({selected.length})
               </button>
             </div>
-            {!apiKey && <p className="small muted">Anlamları tek tek yazabilir ya da Ayarlar'dan AI'ı açıp toplu doldurabilirsin.</p>}
+            {!apiKey && <p className="small muted">Anlamları tek tek yazabilir ya da Ayarlar'dan YZ'yi açıp toplu doldurabilirsin.</p>}
           </>
         )}
         {message && (

@@ -119,10 +119,10 @@ describe('DictionaryExamples', () => {
 
     expect(rootEl.textContent).toContain('Bu kelime için kayıtlı örnek cümle bulunamadı.')
     // With no apiKey, AI button is not shown
-    expect(rootEl.textContent).not.toContain('AI ile örnek cümle üret')
+    expect(rootEl.textContent).not.toContain('YZ ile örnek cümle üret')
   })
 
-  it('shows AI button when apiKey is provided', async () => {
+  it('shows YZ button when apiKey is provided', async () => {
     await act(async () => {
       root.render(
         <AiContext.Provider value={{ apiKey: 'test-key', setApiKey: async () => {} }}>
@@ -131,6 +131,6 @@ describe('DictionaryExamples', () => {
       )
     })
 
-    expect(rootEl.textContent).toContain('AI ile örnek cümle üret')
+    expect(rootEl.textContent).toContain('YZ ile örnek cümle üret')
   })
 })

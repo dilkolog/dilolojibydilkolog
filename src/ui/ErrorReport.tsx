@@ -118,12 +118,12 @@ export function ErrorReportCard({ db, language, vocabulary }: { db: KelimeDB; la
       {apiKey ? (
         <div className="row">
           <button className="btn btn-quiet" onClick={generate} disabled={busy || digest.lines.length < 5}>
-            {busy ? 'Hazırlanıyor…' : saved ? (fresh ? 'Raporu yenile' : 'Yeni rapor hazırla') : 'AI ile hata raporu hazırla'}
+            {busy ? 'Hazırlanıyor…' : saved ? (fresh ? 'Raporu yenile' : 'Yeni rapor hazırla') : 'YZ ile hata raporu hazırla'}
           </button>
           <span className="small muted">Hatalarındaki kalıpları bulur, her biri için alıştırma verir.</span>
         </div>
       ) : (
-        <p className="small muted">AI anahtarını girersen bu hatalardaki kalıpları ("-age ile biten kelimelerin cinsiyeti" gibi) bulan aylık bir rapor hazırlanır.</p>
+        <p className="small muted">YZ anahtarını girersen bu hatalardaki kalıpları ("-age ile biten kelimelerin cinsiyeti" gibi) bulan aylık bir rapor hazırlanır.</p>
       )}
       {error && <p className="error small">{error}</p>}
     </section>

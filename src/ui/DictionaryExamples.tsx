@@ -169,7 +169,7 @@ export function DictionaryExamples({
         }
       }
     } catch (err) {
-      setAiError(err instanceof AiError ? err.message : 'AI cümle oluşturamadı.')
+      setAiError(err instanceof AiError ? err.message : 'YZ cümle oluşturamadı.')
     } finally {
       setAiLoading(false)
     }
@@ -210,7 +210,7 @@ export function DictionaryExamples({
           {apiKey && (
             <div className="row">
               <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={aiLoading}>
-                <WandIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile yeni örnek cümle üret'}
+                <WandIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'YZ ile yeni örnek cümle üret'}
               </button>
             </div>
           )}
@@ -224,7 +224,7 @@ export function DictionaryExamples({
             {apiKey && (
               <div className="row">
                 <button type="button" className="btn btn-sm" onClick={askAi} disabled={aiLoading}>
-                  <WandIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile örnek cümle üret'}
+                  <WandIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'YZ ile örnek cümle üret'}
                 </button>
               </div>
             )}

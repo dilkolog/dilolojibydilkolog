@@ -50,7 +50,7 @@ export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB
     try {
       for (let b = 0; b < targets.length; b += AI_BATCH) {
         const batch = targets.slice(b, b + AI_BATCH)
-        setBusy(`AI dolduruyor… ${Math.min(b + AI_BATCH, targets.length)}/${targets.length}`)
+        setBusy(`YZ dolduruyor… ${Math.min(b + AI_BATCH, targets.length)}/${targets.length}`)
         const result = await enrichWords(apiKey, language, batch.map(({ r }) => ({ word: r.word, context: r.context })))
         setRows((prev) =>
           prev!.map((row, j) => {
@@ -62,7 +62,7 @@ export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB
         )
       }
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof AiError ? e.message : 'AI ile doldurulamadı.' })
+      setMessage({ ok: false, text: e instanceof AiError ? e.message : 'YZ ile doldurulamadı.' })
     } finally {
       setBusy('')
     }
@@ -141,7 +141,7 @@ export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB
               {apiKey && (
                 <button className="btn btn-quiet" onClick={fill} disabled={!!busy || !selected.length}>
                   <SparkleIcon size={18} className="icon-star" />
-                  {busy || `Seçilenleri AI ile doldur (${selected.filter((r) => !r.ai).length})`}
+                  {busy || `Seçilenleri YZ ile doldur (${selected.filter((r) => !r.ai).length})`}
                 </button>
               )}
               <button className="btn" onClick={add} disabled={!!busy || !selected.length}>

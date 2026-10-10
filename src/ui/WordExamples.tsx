@@ -50,7 +50,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const suggest = async () => {
     setError('')
     if (!apiKey) {
-      setError('AI önerileri için Ayarlar → AI yardımcısı bölümünden API anahtarını gir.')
+      setError('YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.')
       return
     }
     setBusy(true)
@@ -68,7 +68,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
       setTranslation(out.exampleTranslation ?? '')
       setAdding(true)
     } catch (e) {
-      setError(e instanceof AiError ? e.message : 'AI önerisi alınamadı.')
+      setError(e instanceof AiError ? e.message : 'YZ önerisi alınamadı.')
     } finally {
       setBusy(false)
     }
@@ -84,7 +84,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
           <div className="row gap-2">
             <button type="button" className="ai-suggest" onClick={suggest} disabled={busy}>
               <SparkleIcon size={14} className="icon-star" />
-              {busy ? 'Yazılıyor…' : 'AI ile yeni cümle'}
+              {busy ? 'Yazılıyor…' : 'YZ ile yeni cümle'}
             </button>
             {!adding && (
               <button type="button" className="link small" onClick={() => setAdding(true)}>
