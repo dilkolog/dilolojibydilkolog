@@ -550,9 +550,10 @@ export const MountainIcon = (p: P) => (
  * its pointed end the bubble's tail. Words that grow.
  */
 export const BrandMark = ({ size = 22 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="104 104 304 304" aria-hidden>
-    <path d="M124 388L140 296C154 192 230 124 334 124H360A28 28 0 0 1 388 152V178C388 282 320 358 216 372Z" fill="#fff" />
-    <path d="M180 332C228 292 272 244 312 196" stroke="#34d399" strokeWidth="24" strokeLinecap="round" fill="none" />
+  <svg width={size} height={size} viewBox="85 102 360 360" aria-hidden>
+    <path d="M144 108H258C362 108 420 176 420 250C420 324 362 392 258 392H222L140 456C132 462 124 456 126 447L138 392H144A34 34 0 0 1 110 358V142A34 34 0 0 1 144 108Z" fill="#fff" />
+    <path d="M176 336C172 240 224 176 332 168C340 266 288 332 176 336Z" fill="#34d399" />
+    <path d="M194 322C232 276 272 232 312 192" stroke="#fff" strokeWidth="12" strokeLinecap="round" fill="none" opacity=".8" />
   </svg>
 )
 export const SlidersIcon = (p: P) => (
