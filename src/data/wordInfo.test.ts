@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { audioFileOf, commonFamily, commonsMp3, familyOf, firstDefinition, ipaOf, md5, turkishIn, wikiToText } from './wordInfo'
+import { audioFileOf, commonFamily, frAudioFilesOf, commonsMp3, familyOf, firstDefinition, ipaOf, md5, turkishIn, wikiToText } from './wordInfo'
 
 describe('Wiktionary word info', () => {
   it('turns wikitext into plain text', () => {
@@ -45,5 +45,13 @@ describe('Turkish meanings in translation tables', () => {
     expect(turkishIn('* {{T|tr}} : {{trad+|tr|ev}}, {{trad-|tr|[[mesken]]}}', 'fr')).toEqual(['ev', 'mesken'])
     expect(turkishIn('{{t|tr|i1=s|t1=ev|i2=s|t2=konut}}', 'es')).toEqual(['ev', 'konut'])
     expect(turkishIn('* German: {{t+|de|Haus}}', 'en')).toEqual([])
+  })
+})
+
+describe('French Wiktionary recordings', () => {
+  it('reads the audio files of the écouter template, each once', () => {
+    const section = "{{écouter|France (Paris)|lang=fr|audio=Fr-son.ogg}}\n{{écouter|lang=fr|France|audio=LL-Q150 (fra)-Guilhelma-son.wav}} {{écouter|France (Paris)|lang=fr|audio=Fr-son.ogg}}"
+    expect(frAudioFilesOf(section)).toEqual(['Fr-son.ogg', 'LL-Q150 (fra)-Guilhelma-son.wav'])
+    expect(frAudioFilesOf('{{pron|sɔ̃|fr}}')).toEqual([])
   })
 })

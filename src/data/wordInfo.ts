@@ -112,6 +112,11 @@ export function audioFilesOf(section: string, language: TargetLanguage): string[
   return [...new Set([...section.matchAll(new RegExp(`\\{\\{audio\\|${language}\\|([^|}]+)`, 'g'))].map((m) => m[1].trim()))]
 }
 
+/** Recordings on a French Wiktionary page: "{{écouter|France (Paris)|lang=fr|audio=Fr-son.ogg}}". */
+export function frAudioFilesOf(section: string): string[] {
+  return [...new Set([...section.matchAll(/\{\{écouter\|[^}]*?\baudio=([^|}]+)/g)].map((m) => m[1].trim()))]
+}
+
 /**
  * Native recordings for a set of words (one request per 40 words): word → MP3 addresses, one per
  * speaker. High-variability phonetic training needs exactly this: many voices for each word.
@@ -124,6 +129,17 @@ export async function nativeRecordings(words: readonly string[], language: Targe
     const section = text ? languageSection(text, language) : null
     const files = section ? audioFilesOf(section, language) : []
     if (files.length) out.set(w, files.map(commonsMp3))
+  }
+  // French words the English Wiktionary has no recording for (often an English homograph like "son"): the French one.
+  const missing = language === 'fr' ? words.filter((w) => !out.has(w)) : []
+  if (missing.length) {
+    const fr = await fetchPages(missing, 'fr').catch(() => new Map<string, string | null>())
+    for (const w of missing) {
+      const text = fr.get(w)
+      const section = text ? frSection(text) : null
+      const files = section ? frAudioFilesOf(section) : []
+      if (files.length) out.set(w, files.map(commonsMp3))
+    }
   }
   return out
 }
