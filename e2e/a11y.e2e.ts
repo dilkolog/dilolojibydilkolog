@@ -169,7 +169,7 @@ test('reading outside-study card and session "Unuttum" question state pass acces
   if (await forgotBtn.isVisible()) {
     problems.push(...(await scan(page, 'session-question-with-forgot-chip')))
     await forgotBtn.click()
-    await expect(page.getByText(/Hatırlayamadığını söyledin/)).toBeVisible()
+    await expect(page.getByText(/Bakarak öğrenmek de öğrenmektir/)).toBeVisible()
     problems.push(...(await scan(page, 'session-question-after-forgot-clicked')))
   }
 

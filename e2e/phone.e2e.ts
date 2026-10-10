@@ -369,7 +369,11 @@ test('"Unuttum" shows the answer at once, counts as a miss with no guess recorde
   await expect(chip).toHaveText('Unuttum')
   await chip.click()
   const sheet = page.locator('.sheet')
-  await expect(sheet).toContainText('Hatırlayamadığını söyledin')
+  // Its own sheet, not the red one of a mistake; one note, no "yanlış dokundum".
+  await expect(page.locator('.sheet.forgot')).toBeVisible()
+  await expect(sheet).toContainText('Unuttun, olur. İşte cevap:')
+  await expect(sheet).toContainText('Bakarak öğrenmek de öğrenmektir')
+  await expect(sheet).not.toContainText('Yanlış dokundum')
   // The answer is shown, and neither "you were sure" nor "you guessed" is said.
   await expect(sheet.locator('.expected')).not.toBeEmpty()
   await expect(sheet).not.toContainText('Emin değilim” demeden')
