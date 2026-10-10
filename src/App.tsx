@@ -20,7 +20,9 @@ import { fillFrequencyRanks } from './data/frequency'
 import { loadTenses } from './data/tenseData'
 import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
+import { AccessContext } from './ui/accessContext'
 import { AiContext } from './ui/aiContext'
+import { useAccessStatus } from './ui/useAccessStatus'
 
 import { Glyph } from './ui/Glyph'
 import { BadgeWatcher } from './ui/BadgeWatcher'
@@ -92,7 +94,10 @@ export default function App() {
       // Storage unavailable: the app simply opens on the home screen next time.
     }
   }, [screen])
-  const [apiKey, setApiKeyState] = useState<string | null>(null)
+  const [storedKey, setApiKeyState] = useState<string | null>(null)
+  // The AI screens, like sync and the quota features, open once the owner has approved the account.
+  const access = useAccessStatus()
+  const apiKey = access.approved ? storedKey : null
   const [palette, setPalette] = useState(false)
   // The tab last open in each menu place, so the menu returns to it.
   const lastTab = useRef<Partial<Record<NavScreen, ScreenName>>>({})
@@ -169,12 +174,13 @@ export default function App() {
   const ai = useMemo(
     () => ({
       apiKey,
+      needsApproval: !access.approved,
       setApiKey: async (key: string | null) => {
         await db.saveAiKey(key)
         setApiKeyState(key)
       },
     }),
-    [apiKey],
+    [apiKey, access.approved],
   )
 
   const reload = useCallback(async () => {
@@ -595,6 +601,7 @@ export default function App() {
   const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText }
 
   return (
+    <AccessContext.Provider value={access}>
     <AiContext.Provider value={ai}>
       <GameContext.Provider value={game}>
         <div className={inSession ? 'app' : `shell${rail ? ' is-rail' : ''}`} data-lang={settings.activeLanguage}>
@@ -672,5 +679,6 @@ export default function App() {
       <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} onLogged={reload} />
       </GameContext.Provider>
     </AiContext.Provider>
+    </AccessContext.Provider>
   )
 }

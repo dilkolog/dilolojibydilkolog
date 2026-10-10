@@ -1,3 +1,5 @@
+import { requireApproved } from './_account.js'
+import { fromApp } from './_origin.js'
 import { allowedArticle, extractArticle, FEEDS, parseFeed, type Article } from '../src/engine/news.js'
 
 /** Articles per request: enough to choose from, few enough to fetch quickly. */
@@ -15,6 +17,9 @@ async function fetchText(url: string, ms: number): Promise<string> {
  * so the app can measure how readable each one is for the learner.
  */
 export async function GET(request: Request): Promise<Response> {
+  if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
+  const denied = await requireApproved(request)
+  if (denied) return denied
   const id = new URL(request.url).searchParams.get('feed')
   const feed = FEEDS.find((f) => f.id === id)
   if (!feed) return Response.json({ error: 'unknown feed' }, { status: 400 })

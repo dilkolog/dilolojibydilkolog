@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { AI_MODELS, AiError, FEATURE_NAME, modelInfo, monthKey, testKey, type AiFeature, type MonthUsage } from '../ai'
 import type { Settings } from '../data/db'
 import { db } from '../data/instance'
+import { useAccess } from './accessContext'
 import { useAi } from './aiContext'
 import { WandIcon } from './icons'
 
@@ -18,7 +19,8 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
   }, [settings])
   const thisMonth = usage[monthKey(new Date())]
   const months = Object.keys(usage).sort().reverse()
-  const { apiKey, setApiKey } = useAi()
+  const { apiKey, setApiKey, needsApproval } = useAi()
+  const { status: access } = useAccess()
   const [draft, setDraft] = useState('')
   const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null)
   const [busy, setBusy] = useState(false)
@@ -47,7 +49,15 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
         <WandIcon size={20} className="icon-star" /> AI yardımcısı
       </h2>
       <Help text={'Kelime eklerken anlamı, örnek cümleyi ve kalıpları doldurur, cümlelerini değerlendirir. Açıkken ayrıca metinden çıkardığın kelimeler toplu doldurulur ve "kendi cümleni kur" alıştırması açılır. Kapalıyken uygulamanın geri kalanı aynen çalışır.'} />
-      {apiKey ? (
+      {needsApproval ? (
+        <p className="note" role="status">
+          {access === 'signedOut'
+            ? 'AI özellikleri, site sahibinin onayladığı hesaplara açık. Ayarlar → Hesap bölümünden hesap oluşturursan başvurun ona gider.'
+            : access === 'rejected'
+              ? 'Hesabın AI özellikleri için onaylanmadı.'
+              : 'AI özellikleri, site sahibinin onayladığı hesaplara açık. Hesabın onay bekliyor; onaylanınca burada anahtarını girebilirsin.'}
+        </p>
+      ) : apiKey ? (
         <div className="row">
           <span className="pill stage-5">Açık</span>
           <span className="small muted">Anahtar ••••{apiKey.slice(-4)}</span>

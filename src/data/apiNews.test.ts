@@ -2,6 +2,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { GET as NEWS } from '../../api/news'
 import { GET as LISTEN } from '../../api/listen'
 
+// The owner's approval is tested in access.test.ts; here the account check always passes.
+vi.mock('../../api/_account', async (original) => ({ ...(await original<typeof import('../../api/_account')>()), requireApproved: async () => null }))
+
+const FROM_APP = { 'sec-fetch-site': 'same-origin' }
 const item = (link: string, title = 'Titre') => `<item><title>${title}</title><link>${link}</link><description>Résumé du flux.</description></item>`
 const rss = (...items: string[]) => `<rss><channel>${items.join('')}</channel></rss>`
 
@@ -20,7 +24,7 @@ function stub(pages: Record<string, string | number>) {
 afterEach(() => vi.unstubAllGlobals())
 
 describe('/api/news', () => {
-  const call = (feed: string) => NEWS(new Request(`https://app.test/api/news?feed=${feed}`))
+  const call = (feed: string) => NEWS(new Request(`https://app.test/api/news?feed=${feed}`, { headers: FROM_APP }))
 
   it('serves only feeds on its list', async () => {
     const asked = stub({})
@@ -52,7 +56,7 @@ describe('/api/news', () => {
 })
 
 describe('/api/listen', () => {
-  const call = (source: string) => LISTEN(new Request(`https://app.test/api/listen?source=${source}`))
+  const call = (source: string) => LISTEN(new Request(`https://app.test/api/listen?source=${source}`, { headers: FROM_APP }))
 
   it('serves only programmes on its list, and 502s when the feed is down', async () => {
     const asked = stub({ 'https://learningenglish.voanews.com/api/zkm-ql-vomx-tpej-rqi': 500 })

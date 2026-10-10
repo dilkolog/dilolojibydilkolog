@@ -20,14 +20,19 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const api = await import('../../api/sync')
+const { clearAccessCache } = await import('../../api/_account')
 const { deriveAccount, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
 let corePuts = 0
 let beforeCorePut: (() => Promise<void>) | null = null
+/** The owner's approval of an account, as the admin endpoint leaves it. */
+const approve = (id: string) => void blobs.set(`access/approved/${id}.json`, { bytes: new TextEncoder().encode('{}'), etag: '"a"' })
+
 beforeEach(() => {
   blobs.clear()
+  clearAccessCache()
   corePuts = 0
   beforeCorePut = null
   vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => {
@@ -52,6 +57,7 @@ afterEach(() => {
 describe('two devices syncing at once', () => {
   it('the one that loses the race merges again instead of overwriting the other', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-race-phone')
     const laptop = new KelimeDB('t-race-laptop')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
@@ -75,6 +81,7 @@ describe('two devices syncing at once', () => {
 describe('size of the synced data', () => {
   it('is remembered after a sync, and shown as a share of the limit with a warning from 80%', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-size-phone')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
     await syncNow(phone, acc)
@@ -88,6 +95,7 @@ describe('size of the synced data', () => {
 
   it('a core file over the server limit is a SyncTooLargeError, not "no internet"', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-size-big')
     const entry = createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date())
     // Random bytes do not compress: the sealed file is about as big as this.
@@ -100,6 +108,7 @@ describe('size of the synced data', () => {
 describe('what the other devices brought', () => {
   it('counts new and deleted words, texts and settings on a later sync, and nothing on the first', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-news-phone')
     const laptop = new KelimeDB('t-news-laptop')
     const maison = createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date())

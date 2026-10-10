@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
+import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -478,6 +478,46 @@ test('bulk import: the words go to a new list named in the form', async ({ page 
       }),
   )
   expect(placed).toEqual({ names: ['Ev eşyaları'], inList: 2 })
+})
+
+test('the AI screens wait for the owner\'s approval: a visitor is told why, an approved account gets the key form', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
+  const card = page.locator('section', { has: page.getByRole('heading', { name: 'AI yardımcısı' }) })
+  await expect(card).toContainText('onayladığı hesaplara açık')
+  await expect(card.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
+  // Approved (as the app keeps it once the server says so): the key form is there.
+  await approveAccount(page)
+  await expect(card.getByLabel('Anthropic API anahtarı')).toBeVisible()
+  await expect(card).not.toContainText('onayladığı hesaplara açık')
+})
+
+test('a signed-in account waits for approval: the account card says so, and the owner\'s list asks for a key', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'syncAccount', value: { kind: 'account', username: 'ali', id: 'a'.repeat(64), enc: 'e'.repeat(64), auth: '1'.repeat(64) } })
+          tx.objectStore('meta').put({ key: 'accessStatus', value: { status: 'pending', at: new Date().toISOString() } })
+          tx.oncomplete = () => resolve()
+        }
+      }),
+  )
+  // The server is not reached here: it answers "waiting".
+  await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'pending', exists: true, match: true } }))
+  await page.reload()
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
+  await expect(page.locator('.account-card .status-pill')).toContainText('onay bekliyor')
+  await expect(page.locator('.account-card')).toContainText('site sahibinin onayını bekliyor')
+  await page.locator('summary:visible', { hasText: 'Yönetici: hesap onayları' }).click()
+  await expect(page.getByLabel('Yönetici anahtarı').first()).toBeVisible()
 })
 
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {

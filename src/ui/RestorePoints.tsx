@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { db } from '../data/instance'
-import { restoreFrom, restorePoints, SyncNotAllowedError } from '../data/sync'
+import { restoreFrom, restorePoints, SyncApprovalError, SyncNotAllowedError } from '../data/sync'
 import { ConfirmDialog } from './Dialog'
-import { getCredential, NOT_ALLOWED, runSync } from './syncRunner'
+import { getCredential, NOT_ALLOWED, PENDING_APPROVAL, runSync } from './syncRunner'
 import { showToast } from './toastFeed'
 
 const dayLabel = (day: string) => new Date(`${day}T12:00:00`).toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })
@@ -26,7 +26,7 @@ export function RestorePoints() {
       setDays(cred ? await restorePoints(cred) : [])
     } catch (e) {
       setDays(null)
-      setError(e instanceof SyncNotAllowedError ? NOT_ALLOWED : 'Geri dönüş noktaları alınamadı; internet bağlantını kontrol et.')
+      setError(e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : 'Geri dönüş noktaları alınamadı; internet bağlantını kontrol et.')
     }
   }
 

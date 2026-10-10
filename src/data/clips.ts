@@ -1,11 +1,12 @@
 import type { Clip } from '../engine/clips'
 import type { TargetLanguage } from '../engine/types'
+import { accessFetch } from './access'
 
 /**
  * Where a word is spoken in YouTube videos, from /api/clips (api/clips.ts). A search uses part of a daily
  * quota, so the answer is kept on the device for a week: asking again is free.
  */
-export type ClipsProblem = 'nokey' | 'quota' | 'unavailable'
+export type ClipsProblem = 'nokey' | 'quota' | 'unavailable' | 'approval'
 
 export class ClipsError extends Error {
   problem: ClipsProblem
@@ -33,10 +34,11 @@ export async function fetchClips(word: string, language: TargetLanguage, now = D
   if (saved) return saved
   let res: Response
   try {
-    res = await fetch(`/api/clips?q=${encodeURIComponent(word)}&lang=${language}`)
+    res = await accessFetch(`/api/clips?q=${encodeURIComponent(word)}&lang=${language}`)
   } catch {
     throw new ClipsError('unavailable')
   }
+  if (res.status === 403) throw new ClipsError('approval')
   if (res.status === 501) throw new ClipsError('nokey')
   if (res.status === 429) throw new ClipsError('quota')
   if (!res.ok) throw new ClipsError('unavailable')

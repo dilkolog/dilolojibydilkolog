@@ -20,6 +20,7 @@ vi.mock('@vercel/blob', () => ({
 
 const { GET, PUT } = await import('../../api/sync')
 const { allowedIds } = await import('../../api/_allow')
+const { clearAccessCache } = await import('../../api/_account')
 const { deriveAccount, syncIdOf } = await import('./sync')
 
 const ID = 'a'.repeat(64)
@@ -34,9 +35,16 @@ function req(opts: { id?: string; part?: string; token?: string; body?: string |
 }
 const read = async (r: Response) => ({ status: r.status, text: await r.text() })
 
+/** The owner's approval of an account, as the admin endpoint leaves it. */
+const approve = (id: string) => void blobs.set(`access/approved/${id}.json`, new TextEncoder().encode('{}'))
+
 beforeEach(() => {
   blobs.clear()
+  clearAccessCache()
   failing = false
+  // The accounts these tests use are approved; the approval itself is tested in access.test.ts.
+  approve(ID)
+  approve(OTHER)
 })
 afterEach(() => vi.unstubAllEnvs())
 
@@ -60,13 +68,13 @@ describe('/api/sync requests', () => {
     expect((await GET(req({ part: 'm-123' }))).status).toBe(400)
     expect((await GET(req({ token: 'short' }))).status).toBe(400)
     expect((await PUT(req({ id: 'abc', body: 'x' }))).status).toBe(400)
-    expect(blobs.size).toBe(0)
+    expect([...blobs.keys()].filter((k) => k.startsWith('sync/'))).toEqual([])
   })
 
   it('refuses an empty or oversized body', async () => {
     expect((await PUT(req({ body: '' }))).status).toBe(413)
     expect((await PUT(req({ body: new Uint8Array(4_400_001) }))).status).toBe(413)
-    expect(blobs.size).toBe(0)
+    expect([...blobs.keys()].filter((k) => k.startsWith('sync/'))).toEqual([])
   })
 
   it('stores and returns the bytes of a sync code (no token), and 404s what is missing', async () => {
@@ -130,7 +138,7 @@ describe('/api/sync allowlist (SYNC_ALLOWED)', () => {
     vi.stubEnv('SYNC_ALLOWED', `someone, ${ID}`)
     expect(await read(await PUT(req({ id: OTHER, body: 'x' })))).toEqual({ status: 403, text: 'not allowed' })
     expect(await read(await GET(req({ id: OTHER })))).toEqual({ status: 403, text: 'not allowed' })
-    expect(blobs.size).toBe(0)
+    expect([...blobs.keys()].filter((k) => k.startsWith('sync/'))).toEqual([])
     expect((await PUT(req({ body: 'x' }))).status).toBe(204)
     expect((await GET(req())).status).toBe(200)
   })

@@ -234,3 +234,24 @@ export function labFavorites(page: Page, language: string): Promise<string[]> {
     `lab:${language}`,
   )
 }
+
+/**
+ * Marks the device's account as approved by the site's owner, as the app keeps it after the server
+ * says so: the AI screens open (no server is asked: with no account there is nothing to ask).
+ */
+export async function approveAccount(page: Page) {
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'accessStatus', value: { status: 'approved', at: new Date().toISOString() } })
+          tx.oncomplete = () => {
+            window.dispatchEvent(new Event('diloloji:account'))
+            resolve()
+          }
+        }
+      }),
+  )
+}

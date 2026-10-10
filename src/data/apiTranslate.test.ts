@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { endpoint, fromApp, GET } from '../../api/translate'
 
+// The owner's approval is tested in access.test.ts; here the account check always passes.
+vi.mock('../../api/_account', async (original) => ({ ...(await original<typeof import('../../api/_account')>()), requireApproved: async () => null }))
+
 const app = (path: string, origin = 'https://kelime-koc.vercel.app') => new Request(`https://kelime-koc.vercel.app/api/translate${path}`, { headers: { origin } })
 
 describe('/api/translate', () => {

@@ -1,3 +1,4 @@
+import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
 import { useEffect, useMemo, useState } from 'react'
 import { FEEDS, type Article } from '../engine/news'
 import { analyzeText, coverageZone, topicKeys, topicOverlap } from '../engine/reading'
@@ -32,7 +33,11 @@ export function NewsPicker({
     setBusy(true)
     setError('')
     try {
-      const res = await fetch(`/api/news?feed=${encodeURIComponent(feed)}`)
+      const res = await accessFetch(`/api/news?feed=${encodeURIComponent(feed)}`)
+      if (res.status === 403) {
+        setError(APPROVAL_MESSAGE)
+        return
+      }
       if (!res.ok) throw new Error(String(res.status))
       setArticles(((await res.json()) as { articles: Article[] }).articles)
     } catch {
@@ -120,7 +125,7 @@ export function SameTopic({
     if (keys.length < 5 || !navigator.onLine) return setItems([])
     void Promise.all(
       FEEDS.filter((f) => f.language === language).map((f) =>
-        fetch(`/api/news?feed=${encodeURIComponent(f.id)}`)
+        accessFetch(`/api/news?feed=${encodeURIComponent(f.id)}`)
           .then((r) => (r.ok ? (r.json() as Promise<{ articles: Article[] }>) : { articles: [] }))
           .then((j) => j.articles)
           .catch(() => [] as Article[]),

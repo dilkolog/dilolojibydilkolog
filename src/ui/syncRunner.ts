@@ -1,9 +1,13 @@
 import { db } from '../data/instance'
+import { ACCOUNT_EVENT, forgetAccess } from '../data/access'
 import { showToast } from './toastFeed'
 import { syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
 
 /** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
 export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
+
+/** Shown when the account waits for (or was refused) the owner's approval. */
+export const PENDING_APPROVAL = 'Hesabın, site sahibinin onayını bekliyor; onaylanınca eşitleme açılır. Kelime ekleme ve çalışma bu cihazda şimdiden çalışır.'
 
 /** Shown when another device saved its data with a newer version of the app. */
 export const NEWER_VERSION = 'Başka bir cihazın uygulaması daha yeni; eşitlemek için bu cihazda uygulamayı güncelle (sayfayı yenile).'
@@ -38,7 +42,12 @@ export async function getAccount(): Promise<Account | null> {
 
 export async function setAccount(account: Account | null) {
   if (account) await db.meta.put({ key: 'syncAccount', value: account })
-  else await db.meta.bulkDelete(['syncAccount', 'syncAt'])
+  else {
+    await db.meta.bulkDelete(['syncAccount', 'syncAt'])
+    await forgetAccess()
+  }
+  // The approval status belongs to the account: the app reads it again.
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event(ACCOUNT_EVENT))
 }
 
 /** The account if signed in, otherwise the sync code, if any. */
