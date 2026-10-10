@@ -164,12 +164,12 @@ Sorun: `docs/kaynaklar/audiobooks-{fr,es}.json`'daki her ses tek bir kitaba (ör
 ### 6.2 Görsel referansları yenileme (hâlâ açık)
 Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turlarda değişenler: logo (sol üst), yan menü adı, Çeviri ekranı, Oyunlar listesi ve ikonları, okuma araç satırı (Çekimler/Dikte/Gölgele ikonları), ses paneli, fiil turu kartı, oturum özeti kademeli girişi. Beklenmeyen fark çıkarsa nedenini bul ve yaz.
 
-### 6.3 Yeni özelliklere birim testleri (davranışı değiştirme)
+### 6.3 Yeni özelliklere birim testleri (TAMAMLANDI — `useSwipeAway.test.tsx`, `LabTourCard.test.tsx`, `TranslateScreen.test.tsx`, `SessionForgot.test.tsx`, `listenFollow.test.ts`)
 - `src/ui/useSwipeAway.ts` (sola kaydırma eşiği, kısa kaydırmada geri yaylanma, fare yok sayılır, dikey hareket kaydırma sayılmaz).
 - `src/ui/verbs/LabTour.tsx` `TourCard` (gizle düğmesi, aynı gün hatırlama, ertesi gün yeniden görünme, "Geri al").
 - `src/ui/TranslateScreen.tsx` (yön değiştirme çeviriyi yeni metin yapar, "Örnek:" etiketi gönderilmez, aynı cümle bir kez istenir, son çeviriler tekrarsız ve dokununca yeniden açılır).
 - `Session.tsx` "Unuttum" (cevap gösterilir, yanlış sayılır, "emin değilim" notları çıkmaz; Alt+U).
-- `src/engine/listenFollow.ts` zaten testli; kenar durumlar bulursan (çok kısa metin, tek cümle, süre bilinmiyor) ekle ve davranış hatası bulursan düzeltmeden PR açıklamasına yaz.
+- `src/engine/listenFollow.ts` (kenar durumlar: boş liste, tek cümle, süre bilinmiyor [0/undefined], negatif pin sınırları).
 
 ### 6.4 Erişilebilirlik kapsamı
 `e2e/a11y.e2e.ts` desenine uyarak `axe` taramaları: **Çeviri ekranı** (sonuç varken ve boşken, açık/koyu/sakin tema), okuma ekranında **ses paneli ve "Dışarıda çalış" kartı**, **Unuttum** düğmeli soru ekranı, çevrimdışı rozeti. 14 px'e çıkarılan ikon boyutlarının küçük kutularda (onay rozetleri, avatar kalem rozeti) taşmadığını/kesilmediğini `clippedContent` ile doğrula; sorun çıkarsa küçük ve kendi dosyanda olanı düzelt, diğerlerini PR açıklamasına yaz.

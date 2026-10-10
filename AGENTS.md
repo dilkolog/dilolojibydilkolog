@@ -64,8 +64,9 @@ Birleşti: #37–#183.
   - #181: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Onboarding adımları, Çekimler kartı, mobil kelime alt çekmecesi ve oturum özeti axe taramaları).
   - #183: Dokümantasyon ve durum güncellemeleri (`AGENTS.md`, `KULLANILABILIRLIK.md`, `YAPILACAKLAR.md`, `ANTIGRAVITY-GOREVLER.md`).
   - #185: TV5Monde & DELE Ahora telif ve kullanım şartları araştırma raporu (`docs/kaynaklar/tv5monde-dele-ahora.md`).
-- Antigravity 6. tur (#187):
+- Antigravity 6. tur (#187, #190):
   - 6.1: LibriVox ses kitapları bölüm bazlı metin-ses eşleştirme (`scripts/build-audiobook-chapters.ts`, `src/data/audiobooks/{fr,es}.json`, `src/data/audiobooks.ts`, `docs/kaynaklar/audiobooks-chapters.md`). 23 doğrulanmış bölüm (13 FR + 10 ES).
+  - 6.3: Yeni özelliklere kapsamlı birim testleri (`src/ui/useSwipeAway.test.tsx`, `src/ui/verbs/LabTourCard.test.tsx`, `src/ui/TranslateScreen.test.tsx`, `src/ui/SessionForgot.test.tsx`, `src/engine/__tests__/listenFollow.test.ts`).
 
 - Claude Code (#168 ve sonrası):
   - Çekim listesi (`textForms.ts`, bileşik zamanlar, fiil tekrarına ekleme köprüsü),
