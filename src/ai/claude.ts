@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type PersonalSentence, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -394,6 +394,27 @@ export async function personalSentences(apiKey: string, req: PersonalSentencesRe
     .filter(Boolean)
     .join('\n')
   return (await structured(apiKey, PersonalSentencesSchema, system, user, 'low', 'personal_sentences')).sentences.slice(0, 3)
+}
+
+/** New words for the learner's list, as full cards (the same data `enrichWords` gives for words they type). */
+export async function suggestNewWords(apiKey: string, req: WordSuggestRequest): Promise<WordInfo[]> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You suggest new ${lang} vocabulary for a Turkish native speaker who already speaks ${lang} well and is widening their active vocabulary.`,
+    `Propose exactly ${req.count} words (or fixed expressions) that a learner of their level will meet often and can use: not basic words, not rare ones. Judge the level from the sample words they already have.`,
+    'Spread them over different topics and parts of speech; prefer the learner\'s interests where they fit. Single dictionary-form words (nouns, verbs, adjectives, adverbs) or short common expressions; no proper nouns.',
+    'Never propose a word already in their list. Set `input` to the lemma you propose. Meanings must be real Turkish equivalents, the example natural and idiomatic.',
+  ].join('\n')
+  const user = [
+    `Interests: ${req.interests.length ? req.interests.join(', ') : '(none given: everyday life and work)'}`,
+    req.sample.length > 0 && `Words they already know (level): ${req.sample.slice(0, 30).join(', ')}`,
+    req.have.length > 0 && `Words already in their list (do not repeat): ${req.have.slice(0, 400).join(', ')}`,
+  ]
+    .filter(Boolean)
+    .join('\n')
+  const out = await structured(apiKey, WordBatch, system, user, 'low', 'word_suggest')
+  const seen = new Set(req.have.map((w) => w.toLocaleLowerCase(req.language)))
+  return out.words.filter((w) => !seen.has(w.lemma.toLocaleLowerCase(req.language))).slice(0, req.count)
 }
 
 const SessionNoteSchema = z.object({

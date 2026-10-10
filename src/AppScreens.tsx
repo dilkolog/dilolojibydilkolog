@@ -20,6 +20,7 @@ import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
 import { WhatsNew } from './ui/WhatsNew'
 import { MindSeed } from './ui/MindSeed'
+import { SuggestWords } from './ui/SuggestWords'
 import { WeeklyNudge } from './ui/WeeklyNudge'
 import { GainsNudge } from './ui/GainsNudge'
 import { studyGains } from './engine/gains'
@@ -384,6 +385,7 @@ export function AppScreens(props: AppScreensProps) {
             {lookupNudge}
             <GainsNudge gains={studyGains(data.states, data.recentEvents, data.language, new Date())} target={settings.retention} onOpen={go({ name: 'progress' })} />
             <WeeklyNudge line={weekText} now={new Date()} onOpen={go({ name: 'progress' })} />
+            <SuggestWords db={db} language={data.language} vocabulary={data.vocabulary} settings={settings} onAdded={reload} onlyWhenDue />
             <WhatsNew words={data.vocabulary.filter((v) => v.source !== 'sample').length} onReading={go({ name: 'reading' })} onPractice={go({ name: 'games', game: 'pron' })} onGrammar={go({ name: 'games', game: 'grammar' })} />
             <BackupNudge
               onOpenSync={() => {
