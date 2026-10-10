@@ -49,6 +49,18 @@ describe('/api/news', () => {
     expect(res.headers.get('cache-control')).toContain('s-maxage')
   })
 
+  it('passes the recording of a bulletin along with its text', async () => {
+    stub({
+      'https://learningenglish.voanews.com/api/zkm-ql-vomx-tpej-rqi': rss(
+        '<item><title>As It Is</title><link>https://learningenglish.voanews.com/a/1.html</link><description>Summary.</description><enclosure url="https://voa-audio.voanews.eu/a1.mp3" type="audio/mpeg"/></item>',
+      ),
+      'https://learningenglish.voanews.com/a/1.html': '<html><article><p>The full bulletin text of the day, long enough to be kept as the article text here.</p></article></html>',
+    })
+    const { articles } = (await (await call('voa-learning')).json()) as { articles: { audio?: string; text: string }[] }
+    expect(articles[0].audio).toBe('https://voa-audio.voanews.eu/a1.mp3')
+    expect(articles[0].text).toContain('full bulletin text')
+  })
+
   it('says 502 when the feed itself is down', async () => {
     stub({ 'https://www.lemonde.fr/rss/une.xml': 503 })
     expect((await call('lemonde')).status).toBe(502)

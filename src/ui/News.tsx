@@ -21,7 +21,7 @@ export function NewsPicker({
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
   known: ReadonlySet<string>
-  onRead: (title: string, text: string) => void
+  onRead: (title: string, text: string, extra?: { audio?: string; source?: string }) => void
 }) {
   const feeds = FEEDS.filter((f) => f.language === language)
   const [feed, setFeed] = useState(feeds[0]?.id)
@@ -82,10 +82,10 @@ export function NewsPicker({
         <ul className="library">
           {ranked.map(({ a, coverage, words }) => (
             <li key={a.link}>
-              <button className="word-link library-open" onClick={() => onRead(a.title, `${a.title}\n\n${a.text}`)}>
+              <button className="word-link library-open" onClick={() => onRead(a.title, `${a.title}\n\n${a.text}`, { audio: a.audio, source: a.link })}>
                 <strong>{a.title}</strong>
                 <span className="small muted">
-                  {a.source} · {words} kelime · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
+                  {a.source} {a.audio && <>· sesli </>}· {words} kelime · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
                 </span>
               </button>
               <a className="link small" href={a.link} target="_blank" rel="noreferrer">

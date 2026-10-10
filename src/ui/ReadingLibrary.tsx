@@ -219,8 +219,17 @@ export function SourcePickers({
       vocabulary={vocabulary}
       states={states}
       known={known}
-      onRead={async (newsTitle, newsText) => {
-        const item: ReadingText = { id: crypto.randomUUID(), language, title: newsTitle, text: newsText, addedAt: new Date().toISOString(), history: [] }
+      onRead={async (newsTitle, newsText, extra) => {
+        const item: ReadingText = {
+          id: crypto.randomUUID(),
+          language,
+          title: newsTitle,
+          text: newsText,
+          ...(extra?.audio ? { audio: extra.audio } : {}),
+          ...(extra?.source ? { source: extra.source } : {}),
+          addedAt: new Date().toISOString(),
+          history: [],
+        }
         await db.saveText(item)
         setLibrary((lib) => [item, ...(lib ?? [])])
         await open(item)
