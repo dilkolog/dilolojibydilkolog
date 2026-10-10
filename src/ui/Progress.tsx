@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { progressStats, type ProgressStats } from '../engine/progress'
 import type { Scheduler } from '../engine/scheduler'
@@ -11,6 +11,8 @@ import type { ExamResult } from '../engine/exam'
 import { KnownWordsCard } from './KnownWords'
 import { ErrorReportCard } from './ErrorReport'
 import { EarMissesCard } from './EarMisses'
+import { BlindSpotsCard } from './BlindSpots'
+import type { RepairTarget } from '../engine/blindSpots'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
@@ -48,6 +50,7 @@ export function ProgressScreen({
   onVocabTest,
   onExam,
   onEarPractice,
+  onRepair,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -60,6 +63,8 @@ export function ProgressScreen({
   onExam: () => void
   /** Opens the practice of the words missed in dictation. */
   onEarPractice?: () => void
+  /** Opens the practice for a blind spot (a game, or the verb lab). */
+  onRepair?: (target: RepairTarget) => void
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [tests, setTests] = useState<VocabTestRecord[]>([])
@@ -70,6 +75,7 @@ export function ProgressScreen({
   }, [db, language])
   const [events, setEvents] = useState<ReviewEvent[]>([])
   const game = useGame()
+  const errorsByType = useMemo(() => errorBreakdown(events), [events])
   // The page is long, so on a phone only the overview starts open; a wide screen shows everything. User choices are remembered.
   const { isOpen, open, toggle } = useGroups(PROGRESS_GROUPS.map(([id]) => id), ['p-overview'], 'progress-groups')
 
@@ -87,7 +93,7 @@ export function ProgressScreen({
   const report = weekReport(events, states.map((s) => s.introducedAt), game?.xp.byDay ?? new Map(), now)
   const forecast = reviewForecast(states, now, DAYS)
   const hard = hardWords(events, 8)
-  const errors = Object.entries(errorBreakdown(events)) as [ErrorType, number][]
+  const errors = Object.entries(errorsByType) as [ErrorType, number][]
   const recallBins = recallCalibration(events)
   const calib = calibration(events.filter((e) => now.getTime() - e.timestamp.getTime() < 30 * 86_400_000))
   const byId = new Map(vocabulary.map((v) => [v.id, v]))
@@ -117,6 +123,7 @@ export function ProgressScreen({
       <GroupToggle id="p-overview" icon={<StarIcon size={18} />} open={isOpen('p-overview')} onToggle={() => toggle('p-overview')}>Genel bakış</GroupToggle>
       {isOpen('p-overview') && (
         <section className="section stack span-2 overview-grid">
+          {onRepair && <BlindSpotsCard language={language} errors={errorsByType} onRepair={onRepair} />}
           <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
           <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
           <div className="hero-stat card">
