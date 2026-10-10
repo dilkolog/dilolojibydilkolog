@@ -5117,3 +5117,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .text-forms-item { display: flex; align-items: center; gap: 0.25rem; }
 .text-forms-item > .word-row { flex: 1; min-width: 0; }
 
+/* A key hint inside a filled button takes the button's colours (it was white on white in the high-contrast theme). */
+.btn .lab-kbd { background: transparent; color: inherit; border-color: color-mix(in srgb, currentColor 55%, transparent); }
+

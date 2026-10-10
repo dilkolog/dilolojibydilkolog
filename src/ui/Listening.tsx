@@ -125,6 +125,8 @@ export function AudioPanel({
   const audio = useRef<HTMLAudioElement>(null)
   const panel = useRef<HTMLElement>(null)
   const [tipsOpen, setTipsOpen] = useState(false)
+  // The audio could not be loaded (a dead link, no connection): said, instead of a player that does nothing.
+  const [failed, setFailed] = useState(false)
   // The panel's height, for what else is pinned under it (the word card beside the text) and for
   // keeping a sentence scrolled into view clear of it.
   useEffect(() => {
@@ -236,8 +238,17 @@ export function AudioPanel({
         preload="metadata"
         className="audio-player"
         onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime)}
-        onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
+        onLoadedMetadata={(e) => {
+          setFailed(false)
+          onDuration?.(e.currentTarget.duration)
+        }}
+        onError={() => setFailed(true)}
       />
+      {failed && (
+        <p className="note" role="status">
+          Ses yüklenemedi: bağlantı bozuk olabilir ya da internet yok. Metni yine de okuyabilirsin; bağlantı gelince sayfayı yenile.
+        </p>
+      )}
       <div className="row">
         <div className="choice-row" role="group" aria-label="Hız">
           {RATES.map((r) => (

@@ -1,11 +1,13 @@
 import { parseTimedText, youtubeId } from '../src/engine/subtitles.js'
 import { CaptionError, fetchCaptions } from './_captions.js'
+import { fromApp } from './_origin.js'
 
 /**
  * GET /api/youtube?v=<link or id>&lang=fr: a video's subtitles as reading text (hand-made subtitles in
  * the language first, automatic ones otherwise; see _captions.ts).
  */
 export async function GET(request: Request): Promise<Response> {
+  if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
   const q = new URL(request.url).searchParams
   const id = youtubeId(q.get('v') ?? '')
   const lang = (q.get('lang') ?? '').slice(0, 2)

@@ -10,6 +10,10 @@
  * (500,000 characters a month) stops when used up and never charges.
  */
 
+import { fromApp } from './_origin.js'
+
+export { fromApp }
+
 /** Longest text translated in one request: a sentence or two, not a book. */
 export const MAX_CHARS = 600
 
@@ -20,19 +24,6 @@ const TARGET: Record<Lang, string> = { en: 'EN-GB', fr: 'FR', es: 'ES', tr: 'TR'
 
 /** Free-plan keys end in ":fx" and go to the free endpoint. */
 export const endpoint = (key: string) => (key.endsWith(':fx') ? 'https://api-free.deepl.com' : 'https://api.deepl.com')
-
-/** The app's own pages: production, its Vercel previews, and development on this machine. */
-export function fromApp(request: Request): boolean {
-  if (request.headers.get('sec-fetch-site') === 'same-origin') return true
-  const from = request.headers.get('origin') ?? request.headers.get('referer')
-  if (!from) return false
-  try {
-    const host = new URL(from).hostname
-    return host === 'nigalingo.online' || host === 'www.nigalingo.online' || host === 'kelime-koc.vercel.app' || /^kelime-koc-[a-z0-9-]+\.vercel\.app$/.test(host) || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.localhost')
-  } catch {
-    return false
-  }
-}
 
 const json = (body: unknown, status = 200, cache = 'no-store') => Response.json(body, { status, headers: { 'cache-control': cache } })
 

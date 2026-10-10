@@ -29,8 +29,20 @@ async function sha256(s: string): Promise<string> {
   return [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+/** The storage itself failed (not "nothing there"): a later try may work, and nothing may be decided from it. */
+class StorageError extends Error {}
+
+/** A blob, or null when it does not exist. A failing store throws StorageError, never reads as "missing". */
+async function read(path: string) {
+  try {
+    return await get(path, { access: 'private', useCache: false })
+  } catch {
+    throw new StorageError('storage unavailable')
+  }
+}
+
 async function storedAuth(id: string): Promise<string | null> {
-  const blob = await get(`sync/${id}/auth.txt`, { access: 'private', useCache: false }).catch(() => null)
+  const blob = await read(`sync/${id}/auth.txt`)
   if (!blob || blob.statusCode !== 200 || !blob.stream) return null
   return (await new Response(blob.stream).text()).trim()
 }
@@ -80,6 +92,16 @@ async function keepPoint(id: string, today: string) {
 }
 
 export async function GET(request: Request): Promise<Response> {
+  try {
+    return await handleGet(request)
+  } catch (e) {
+    // A failing store is "try later" (502), never "no data": the device would take empty for the truth and write it over the real thing.
+    if (e instanceof StorageError) return new Response('storage unavailable', { status: 502 })
+    throw e
+  }
+}
+
+async function handleGet(request: Request): Promise<Response> {
   const q = new URL(request.url).searchParams
   if (q.get('history') === '1') {
     const id = q.get('id') ?? ''
@@ -94,12 +116,21 @@ export async function GET(request: Request): Promise<Response> {
   if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
   const refused = await checkAuth(request, false)
   if (refused) return refused
-  const blob = await get(path, { access: 'private', useCache: false }).catch(() => null)
+  const blob = await read(path)
   if (!blob || blob.statusCode !== 200 || !blob.stream) return new Response('not found', { status: 404 })
   return new Response(blob.stream, { headers: { 'content-type': 'application/octet-stream', 'cache-control': 'no-store' } })
 }
 
 export async function PUT(request: Request): Promise<Response> {
+  try {
+    return await handlePut(request)
+  } catch (e) {
+    if (e instanceof StorageError) return new Response('storage unavailable', { status: 502 })
+    throw e
+  }
+}
+
+async function handlePut(request: Request): Promise<Response> {
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
   // Restore points are made here, never sent.

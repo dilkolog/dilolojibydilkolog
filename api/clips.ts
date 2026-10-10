@@ -1,5 +1,6 @@
 import { findClips, parseTimedCues, type Clip } from '../src/engine/clips.js'
 import { CaptionError, fetchCaptions } from './_captions.js'
+import { fromApp } from './_origin.js'
 
 /** Videos looked into per search, and clips handed back. */
 const VIDEOS = 10
@@ -21,6 +22,7 @@ interface SearchItem {
  * 10 000 units a day), see docs/YOUTUBE.md. Answers are cached for a week: the same word is free the next time.
  */
 export async function GET(request: Request): Promise<Response> {
+  if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
   const q = new URL(request.url).searchParams
   const word = (q.get('q') ?? '').trim()
   const lang = (q.get('lang') ?? '').slice(0, 2)

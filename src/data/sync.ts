@@ -306,10 +306,12 @@ export async function accountStatus(account: Account): Promise<'new' | 'ok' | 'w
 
 export async function syncNow(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const id = await credentialId(code)
+  const remoteBytes = await download(id, 'core', code)
+  // The device's own data is read only now, after the download: what was answered while the network
+  // was being waited for must be in it, or writing the merge back (it replaces the tables) would erase it.
   const local = parseBackup(await exportBackup(db, new Date(), { media: false }))
   // A device joining an existing sync takes the others' settings and edits rather than its own defaults.
   if (!(await db.meta.get('syncAt'))) local.exportedAt = new Date(0).toISOString()
-  const remoteBytes = await download(id, 'core', code)
   const remote = remoteBytes ? parseBackup(new TextDecoder().decode(remoteBytes)) : null
   const merged = remote ? mergeBackups(local, remote) : local
   if (remote) await restoreBackup(db, merged, { keepMedia: true })
