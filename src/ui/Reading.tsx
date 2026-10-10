@@ -190,10 +190,17 @@ export function ReadingScreen({
   const rangeRef = useRef<((from: number, to: number, slow?: boolean) => Promise<void>) | null>(null)
   const sentencesFlat = useMemo(() => (analysis ? analysis.paragraphs.flatMap((p) => p.map((s) => s.text)) : []), [analysis])
   const paragraphStart = useMemo(() => (analysis ? analysis.paragraphs.map((_, i) => analysis.paragraphs.slice(0, i).reduce((n, p) => n + p.length, 0)) : []), [analysis])
-  const times = useMemo(() => (current?.audio ? sentenceTimes(sentencesFlat, current.cues, audioDuration) : null), [current, sentencesFlat, audioDuration])
+  // Which sentences open a paragraph (a story's page turn is a pause in the reading).
+  const paragraphStarts = useMemo(() => sentencesFlat.map((_, i) => paragraphStart.includes(i)), [sentencesFlat, paragraphStart])
+  const times = useMemo(
+    () => (current?.audio ? sentenceTimes(sentencesFlat, current.cues, audioDuration, { paragraphStarts, anchors: current.syncAnchors }) : null),
+    [current, sentencesFlat, audioDuration, paragraphStarts],
+  )
+  const heardAt = useRef(0)
   const timesRef = useRef(times)
   timesRef.current = times
   const followTime = useCallback((t: number) => {
+    heardAt.current = t
     const i = timesRef.current && t > 0 ? sentenceAt(timesRef.current, t) : -1
     setHeard((h) => (h === i ? h : i))
   }, [])
@@ -492,6 +499,23 @@ export function ReadingScreen({
     showToast(added ? `${added} çekim fiil tekrarına eklendi.` : 'Bunlar zaten fiil tekrarında.')
   }
 
+  /** Saves a text with new follow pins (the audio's follow is fitted to them), in the library too. */
+  const setAnchors = async (anchors: { sentence: number; time: number }[]) => {
+    if (!current) return
+    const updated: ReadingText = { ...current, syncAnchors: anchors.length ? anchors : undefined }
+    await db.saveText(updated)
+    setCurrent(updated)
+    setLibrary((lib) => (lib ?? []).map((t) => (t.id === updated.id ? updated : t)))
+  }
+  /** The sentence of the open word card is the one being heard now: the follow shifts to fit. */
+  const pinHeard = (at: string) => {
+    const [pi, si] = at.split('.').map(Number)
+    const sentence = paragraphStart[pi] + si
+    if (!(heardAt.current > 0) || !Number.isFinite(sentence)) return showToast('Önce sesi çal; sonra duyduğun cümleye dokun.', undefined, 3500, 'info')
+    void setAnchors([...(current?.syncAnchors ?? []).filter((a) => a.sentence !== sentence), { sentence, time: heardAt.current }])
+    showToast('Takip ayarlandı: bu cümle şimdi okunan cümle.')
+  }
+
   const readKey = current?.id ?? text
   /** The list words met in this text, and the verb forms in it, saved once per opened text. */
   const saveMet = async () => {
@@ -653,6 +677,14 @@ export function ReadingScreen({
           follow={current.cues?.length ? 'exact' : 'approx'}
         />
       )}
+      {current?.audio && !current.cues?.length && !!current.syncAnchors?.length && (
+        <p className="small muted">
+          Takip {current.syncAnchors.length} noktayla ayarlandı.{' '}
+          <button type="button" className="link small" onClick={() => void setAnchors([])}>
+            Ayarı sıfırla
+          </button>
+        </p>
+      )}
       <PrequestionsCard key={`pq-${current?.id}`} text={text} language={language} finished={!!message} />
       {!message && !listenFirst && dictating === null && (
         <KeyWordsCard
@@ -806,6 +838,8 @@ export function ReadingScreen({
           ignored={ignored}
           skipped={skipped}
           canListenFrom={!!times}
+          canPinHeard={!!times && !current?.cues?.length}
+          onPinHeard={pinHeard}
           onClose={() => setSelected(null)}
           onLookUp={onLookUp}
           onOpen={onOpen}

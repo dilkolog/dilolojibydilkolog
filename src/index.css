@@ -5092,3 +5092,13 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .translate-recent .translate-source { font-family: var(--serif); font-size: var(--t-md); }
 .translate-recent .translate-target { color: var(--ink-soft); }
 @media (hover: none) { .translate-hint { display: none; } }
+
+/* ---------- Listening: the pinned player stays slim and nothing hides under it ---------- */
+.audio-panel .listen-rounds { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+/* The word card beside the text sticks below the player, not under it. */
+@container main (min-width: 50rem) {
+  .reader-aside { top: calc(var(--audio-h, 0px) + 1.5rem); max-height: calc(100vh - var(--audio-h, 0px) - 3rem); }
+}
+/* A sentence scrolled into view clears the player. */
+.reader [data-s], .reader .rw { scroll-margin-top: calc(var(--audio-h, 0px) + 5rem); }
+

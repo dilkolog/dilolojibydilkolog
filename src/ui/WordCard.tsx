@@ -39,12 +39,14 @@ export function WordCard({
   ignored,
   skipped,
   canListenFrom,
+  canPinHeard,
   onClose,
   onLookUp,
   onOpen,
   onOpenLab,
   onKeepSentence,
   onListenFrom,
+  onPinHeard,
   onAdd,
   onIgnore,
   onUnknown,
@@ -61,12 +63,15 @@ export function WordCard({
   ignored: Set<string>
   skipped: Set<string>
   canListenFrom: boolean
+  /** The audio has no timed subtitles: the learner can pin this sentence to the moment it is heard. */
+  canPinHeard: boolean
   onClose: () => void
   onLookUp?: (word: string) => void
   onOpen: (entryId: string) => void
   onOpenLab?: (verb: string, tense: string) => void
   onKeepSentence: (sentence: string, word: string) => void
   onListenFrom: (at: string) => void
+  onPinHeard: (at: string) => void
   onAdd: (word: string, sentence: string) => void
   onIgnore: (key: string, on: boolean) => void
   onUnknown: (key: string) => void
@@ -140,6 +145,11 @@ export function WordCard({
           onClick={() => onListenFrom(selected.at!)}
         >
           <PlayIcon size={14} className="inline-icon" /> Bu cümleden dinle
+        </button>
+      )}
+      {canPinHeard && selected.at && (
+        <button type="button" className="link small" onClick={() => onPinHeard(selected.at!)} title="Takip öne ya da arkaya kaçıyorsa: şu an duyduğun cümleye dokunup bunu seç">
+          Şu an bu cümle okunuyor
         </button>
       )}
       <p className="small muted kbd">

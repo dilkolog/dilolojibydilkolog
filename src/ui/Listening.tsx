@@ -123,6 +123,23 @@ export function AudioPanel({
   still?: boolean
 }) {
   const audio = useRef<HTMLAudioElement>(null)
+  const panel = useRef<HTMLElement>(null)
+  const [tipsOpen, setTipsOpen] = useState(false)
+  // The panel's height, for what else is pinned under it (the word card beside the text) and for
+  // keeping a sentence scrolled into view clear of it.
+  useEffect(() => {
+    const el = panel.current
+    if (!el || still || typeof ResizeObserver === 'undefined') return
+    const root = document.documentElement
+    const set = () => root.style.setProperty('--audio-h', `${Math.ceil(el.getBoundingClientRect().height)}px`)
+    set()
+    const ro = new ResizeObserver(set)
+    ro.observe(el)
+    return () => {
+      ro.disconnect()
+      root.style.removeProperty('--audio-h')
+    }
+  }, [still])
   useEffect(() => {
     if (!seekRef) return
     seekRef.current = (seconds: number) => {
@@ -194,25 +211,22 @@ export function AudioPanel({
   }
 
   return (
-    <section className={`card stack audio-panel${still ? ' is-still' : ''}`}>
+    <section ref={panel} className={`card stack audio-panel${still ? ' is-still' : ''}`}>
       {round !== null && (
         <div className="listen-rounds">
           <strong>{ROUNDS[round].title}</strong>
-          <span className="small muted">{ROUNDS[round].hint}</span>
-          <div className="row">
-            {round < ROUNDS.length - 1 ? (
-              <button className="btn btn-sm" onClick={() => goTo(round + 1)}>
-                {ROUNDS[round + 1].title.replace(/^\d\. tur: /, 'Sonraki tur: ')}
-              </button>
-            ) : (
-              <button className="btn btn-sm" onClick={() => goTo(null)}>
-                Bitti: metni aç, kelimeleri çalış
-              </button>
-            )}
-            <span className="small muted">
-              {round + 1}/{ROUNDS.length}
-            </span>
-          </div>
+          <span className="small muted">
+            {round + 1}/{ROUNDS.length}
+          </span>
+          {round < ROUNDS.length - 1 ? (
+            <button className="btn btn-sm" onClick={() => goTo(round + 1)}>
+              {ROUNDS[round + 1].title.replace(/^\d\. tur: /, 'Sonraki tur: ')}
+            </button>
+          ) : (
+            <button className="btn btn-sm" onClick={() => goTo(null)}>
+              Bitti: metni aç, kelimeleri çalış
+            </button>
+          )}
         </div>
       )}
       <audio
@@ -224,12 +238,6 @@ export function AudioPanel({
         onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
       />
-      {follow && (
-        <p className="small muted">
-          {follow === 'exact' ? 'Dinlerken duyduğun cümle metinde aydınlanır.' : 'Dinlerken duyduğun cümle metinde aydınlanır (yaklaşık: bu kaynağın zaman bilgisi yok).'} Bir
-          kelimeye dokunup “Bu cümleden dinle” ile oraya atlayabilirsin.
-        </p>
-      )}
       <div className="row">
         <div className="choice-row" role="group" aria-label="Hız">
           {RATES.map((r) => (
@@ -247,7 +255,24 @@ export function AudioPanel({
             Turları bırak
           </button>
         )}
+        {(follow || round !== null) && (
+          <button type="button" className="link small" aria-expanded={tipsOpen} onClick={() => setTipsOpen((o) => !o)}>
+            İpuçları
+          </button>
+        )}
       </div>
+      {tipsOpen && (follow || round !== null) && (
+        <div className="stack gap-2 audio-tips">
+          {round !== null && <p className="small muted">{ROUNDS[round].hint}</p>}
+          {follow && (
+            <p className="small muted">
+              {follow === 'exact' ? 'Dinlerken duyduğun cümle metinde aydınlanır.' : 'Dinlerken duyduğun cümle metinde aydınlanır (yaklaşık: bu kaynağın zaman bilgisi yok).'} Bir
+              kelimeye dokunup “Bu cümleden dinle” ile oraya atlayabilirsin.
+              {follow === 'approx' && ' Takip öne ya da arkaya kaçarsa: duyduğun cümlenin bir kelimesine dokunup “Şu an bu cümle okunuyor” de.'}
+            </p>
+          )}
+        </div>
+      )}
     </section>
   )
 }
