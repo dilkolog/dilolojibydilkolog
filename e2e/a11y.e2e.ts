@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { openScreen, playSession, SCREENS, startWithSamples } from './helpers'
+import { clippedContent, openScreen, playSession, SCREENS, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -103,5 +103,97 @@ test('session summary passes the automated accessibility check', async ({ page }
   }
   await expect(page.locator('.summary-grid')).toBeVisible()
   const problems = await scan(page, 'session-summary')
+  expect(problems).toEqual([])
+})
+
+test('translation screen passes accessibility checks with empty input and with results across light, dark, and calm themes', async ({ page }) => {
+  await startWithSamples(page)
+  // Mock translation endpoint and reload so translationReady picks up the mock
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => r.fulfill({ json: { translation: 'Merhaba dünya.' } }))
+  await page.reload()
+  await openScreen(page, 'Çeviri')
+
+  const setTheme = (t: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      root.dataset.theme = theme === 'calm' ? 'dark' : theme
+      if (theme === 'calm') root.dataset.calm = ''
+      else delete root.dataset.calm
+    }, t)
+
+  const problems: string[] = []
+
+  // 1. Empty state across themes
+  for (const theme of ['light', 'dark', 'calm'] as const) {
+    await setTheme(theme)
+    problems.push(...(await scan(page, `translate-empty-${theme}`)))
+  }
+
+  // 2. With translation result across themes
+  await page.getByPlaceholder(/metni yaz ya da yapıştır/).fill('Bonjour le monde.')
+  await page.getByRole('button', { name: 'Çevir', exact: true }).click()
+  await expect(page.locator('.translate-result')).toBeVisible()
+
+  for (const theme of ['light', 'dark', 'calm'] as const) {
+    await setTheme(theme)
+    problems.push(...(await scan(page, `translate-result-${theme}`)))
+  }
+
+  // Reset theme
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
+test('reading outside-study card and session "Unuttum" question state pass accessibility checks', async ({ page }) => {
+  await startWithSamples(page)
+  const problems: string[] = []
+
+  // 1. Outside study card on reading screen
+  await openScreen(page, 'Okuma')
+  const outsideCard = page.getByRole('region', { name: 'Dışarıda çalış' })
+  await expect(outsideCard).toBeVisible()
+  problems.push(...(await scan(page, 'reading-outside-study-card')))
+
+  // 2. Open a text with verb forms card
+  await page.getByLabel('Metin', { exact: true }).fill('Nous parlons souvent.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Çekimler' }).click()
+  await expect(page.getByRole('region', { name: 'Metindeki çekimler' })).toBeVisible()
+
+  // 3. Question screen with "Unuttum" button and after "Unuttum" is clicked
+  await openScreen(page, 'Bugün')
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  await expect(page.locator('.session')).toBeVisible()
+  const forgotBtn = page.locator('button.forgot-chip')
+  if (await forgotBtn.isVisible()) {
+    problems.push(...(await scan(page, 'session-question-with-forgot-chip')))
+    await forgotBtn.click()
+    await expect(page.getByText(/Hatırlayamadığını söyledin/)).toBeVisible()
+    problems.push(...(await scan(page, 'session-question-after-forgot-clicked')))
+  }
+
+  expect(problems).toEqual([])
+})
+
+test('offline badge passes accessibility check and small icon containers have no clipped content', async ({ page, context }) => {
+  await startWithSamples(page)
+  const problems: string[] = []
+
+  // Offline badge scan
+  await context.setOffline(true)
+  await page.evaluate(() => window.dispatchEvent(new Event('offline')))
+  const offlineBadge = page.getByRole('status', { name: 'İnternet bağlantısı yok' })
+  await expect(offlineBadge).toBeVisible()
+  problems.push(...(await scan(page, 'offline-badge')))
+  await context.setOffline(false)
+  await page.evaluate(() => window.dispatchEvent(new Event('online')))
+  await expect(offlineBadge).toBeHidden()
+
+  // Clipped content check on badges and small icon containers
+  await openScreen(page, 'Profil')
+  const clipped = await clippedContent(page)
+  expect(clipped).toEqual([])
+
   expect(problems).toEqual([])
 })
