@@ -1,4 +1,5 @@
 import { TENSE_GUIDE } from '../engine/tenseGuide'
+import { SearchIcon } from './icons'
 import type { Tense } from '../engine/tenses'
 import type { TenseGroup } from '../engine/textForms'
 
@@ -8,7 +9,7 @@ const SHOWN = 6
  * The verb forms in the open text, a tense at a time (the most used tense first): the form as
  * written, its verb, how often it occurs. A form opens its verb in the lab at that tense.
  */
-export function TextForms({ groups, language, onOpenLab, onReview, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; /** Puts verb-and-tense pairs in the verb lab's review queue. */ onReview?: (pairs: { lemma: string; tense: Tense }[]) => void; onClose: () => void }) {
+export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; /** Scrolls the text to a sentence and lights it. */ onShow?: (sentence: number) => void; /** Puts verb-and-tense pairs in the verb lab's review queue. */ onReview?: (pairs: { lemma: string; tense: Tense }[]) => void; onClose: () => void }) {
   const total = groups.reduce((n, g) => n + g.total, 0)
   const pairsOf = (list: readonly TenseGroup[]) => list.flatMap((g) => [...new Set(g.forms.map((f) => f.lemma))].map((lemma) => ({ lemma, tense: g.tense })))
   return (
@@ -40,7 +41,7 @@ export function TextForms({ groups, language, onOpenLab, onReview, onClose }: { 
               </summary>
               <ul className="word-list">
                 {g.forms.slice(0, SHOWN * 2).map((f) => (
-                  <li key={`${f.lemma}|${f.form}`}>
+                  <li key={`${f.lemma}|${f.form}`} className="text-forms-item">
                     {onOpenLab ? (
                       <button type="button" className="word-row" onClick={() => onOpenLab(f.lemma, g.tense)} aria-label={`${f.form}, ${f.lemma} fiili, ${TENSE_GUIDE[g.tense].tr}: fiil laboratuvarında aç`}>
                         <Row form={f.form} lemma={f.lemma} count={f.count} language={language} />
@@ -49,6 +50,11 @@ export function TextForms({ groups, language, onOpenLab, onReview, onClose }: { 
                       <div className="word-row">
                         <Row form={f.form} lemma={f.lemma} count={f.count} language={language} />
                       </div>
+                    )}
+                    {onShow && f.sentence !== undefined && (
+                      <button type="button" className="icon-btn icon-btn-sm" onClick={() => onShow(f.sentence!)} aria-label={`${f.form}: metinde göster`} title="Metinde göster">
+                        <SearchIcon size={16} />
+                      </button>
                     )}
                   </li>
                 ))}

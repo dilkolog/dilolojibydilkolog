@@ -152,6 +152,8 @@ export function ReadingScreen({
   const tensesReady = useTenses(language)
   // The verb forms of this text, listed on request.
   const [showForms, setShowForms] = useState(false)
+  // A sentence the learner asked to be shown (from the forms list), lit for a moment.
+  const [flash, setFlash] = useState<number | null>(null)
   const [freq, setFreq] = useState<ReadonlyMap<string, number>>(new Map())
   useEffect(() => {
     let live = true
@@ -205,6 +207,11 @@ export function ReadingScreen({
     const i = timesRef.current && t > 0 ? sentenceAt(timesRef.current, t) : -1
     setHeard((h) => (h === i ? h : i))
   }, [])
+  // New times (the audio's length arrived, a pin was set or reset): the lit sentence follows at once,
+  // even when the audio is paused and no time update is coming.
+  useEffect(() => {
+    if (times && heardAt.current > 0) followTime(heardAt.current)
+  }, [times, followTime])
   // Dictation plays a sentence from the text's own recording when its subtitles time it exactly,
   // else the device reads it (approximate times would cut sentences in the middle).
   const recorded = !!(current?.audio && current.cues?.length && times)
@@ -517,6 +524,12 @@ export function ReadingScreen({
     showToast('Takip ayarlandı: bu cümle şimdi okunan cümle.')
   }
 
+  /** Scrolls the text to a sentence and lights it for a moment. */
+  const showSentence = (index: number) => {
+    document.querySelector<HTMLElement>(`.reader [data-s="${index}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    setFlash(index)
+    setTimeout(() => setFlash((f) => (f === index ? null : f)), 2200)
+  }
   const readKey = current?.id ?? text
   /** The list words met in this text, and the verb forms in it, saved once per opened text. */
   const saveMet = async () => {
@@ -734,7 +747,7 @@ export function ReadingScreen({
           Çoklu seç
         </button>
       </div>
-      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onReview={reviewForms} onClose={() => setShowForms(false)} />}
+      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
       )}
@@ -768,6 +781,7 @@ export function ReadingScreen({
                   [
                     selected && (selected.at ? selected.at === `${i}.${j}` : selected.sentence === s.text) ? 'rs is-lit' : '',
                     heard === paragraphStart[i] + j ? 'rs is-heard' : '',
+                    flash === paragraphStart[i] + j ? 'rs is-flash' : '',
                   ]
                     .filter(Boolean)
                     .join(' ') || undefined

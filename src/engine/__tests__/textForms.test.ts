@@ -11,12 +11,13 @@ beforeAll(() => {
 })
 
 const analyze = (text: string, lang: 'fr' | 'es') => analyzeText(text, lang, [], [], new Set())
+const tenses = (text: string, lang: 'fr' | 'es') => textForms(lang, analyze(text, lang)).map((f) => `${f.form}|${f.lemma}|${f.tense}`)
 
 describe('verb forms in a text', () => {
   it('finds the forms in reading order, with their verb and tense', () => {
     const found = textForms('fr', analyze('Je parle. Nous parlions hier.', 'fr'))
-    expect(found).toContainEqual({ form: 'parle', lemma: 'parler', tense: 'present' })
-    expect(found).toContainEqual({ form: 'parlions', lemma: 'parler', tense: 'imparfait' })
+    expect(found).toContainEqual({ form: 'parle', lemma: 'parler', tense: 'present', sentence: 0 })
+    expect(found).toContainEqual({ form: 'parlions', lemma: 'parler', tense: 'imparfait', sentence: 1 })
     expect(found.findIndex((f) => f.form === 'parle')).toBeLessThan(found.findIndex((f) => f.form === 'parlions'))
   })
 
@@ -25,15 +26,26 @@ describe('verb forms in a text', () => {
     expect(found.some((f) => f.lemma === 'venir' && f.form === 'viens')).toBe(true)
   })
 
+  it('reads a reflexive verb in a compound tense with its pronoun, which takes être whatever the verb is', () => {
+    expect(tenses("Il s'est lavé.", 'fr')).toContain("s'est lavé|laver|passe-compose")
+    expect(tenses('Je me suis levé tôt.', 'fr')).toContain('me suis levé|lever|passe-compose')
+    expect(tenses('Nous nous sommes lavés.', 'fr')).toContain('nous nous sommes lavés|laver|passe-compose')
+    expect(tenses("Elle ne s'était pas lavée.", 'fr')).toContain("s'était lavée|laver|plus-que-parfait")
+  })
+
+  it('does not take a lone être plus a participle of an avoir verb for a compound tense', () => {
+    // "nous sommes lavés" without the second "nous" is the passive, not a reflexive passé composé.
+    expect(tenses('Nous sommes lavés.', 'fr').some((f) => f.includes('passe-compose'))).toBe(false)
+    expect(tenses('Il est lavé.', 'fr').some((f) => f.includes('passe-compose'))).toBe(false)
+  })
+
   it('works in Spanish and finds nothing in a text without verbs', () => {
-    expect(textForms('es', analyze('Ella habla mucho.', 'es'))).toContainEqual({ form: 'habla', lemma: 'hablar', tense: 'presente' })
+    expect(textForms('es', analyze('Ella habla mucho.', 'es'))).toContainEqual({ form: 'habla', lemma: 'hablar', tense: 'presente', sentence: 0 })
     expect(textForms('fr', analyze('Le chat noir.', 'fr'))).toEqual([])
   })
 })
 
 describe('compound tenses in a text', () => {
-  const tenses = (text: string, lang: 'fr' | 'es') => textForms(lang, analyze(text, lang)).map((f) => `${f.form}|${f.lemma}|${f.tense}`)
-
   it('reads the auxiliary and the participle as one form, not as avoir plus a stray word', () => {
     const found = tenses("J'ai mangé une pomme.", 'fr')
     expect(found).toContain('ai mangé|manger|passe-compose')
@@ -64,23 +76,38 @@ describe('compound tenses in a text', () => {
 })
 
 describe('forms grouped by tense', () => {
+  const f = (form: string, lemma: string, tense: 'present' | 'imparfait', sentence = 0) => ({ form, lemma, tense, sentence })
+
   it('puts the busiest tense first and counts a repeated form once with its count', () => {
     const groups = groupByTense([
-      { form: 'parle', lemma: 'parler', tense: 'present' },
-      { form: 'parlait', lemma: 'parler', tense: 'imparfait' },
-      { form: 'parlait', lemma: 'parler', tense: 'imparfait' },
-      { form: 'allait', lemma: 'aller', tense: 'imparfait' },
-      { form: 'allait', lemma: 'aller', tense: 'imparfait' },
-      { form: 'allait', lemma: 'aller', tense: 'imparfait' },
+      f('parle', 'parler', 'present'),
+      f('parlait', 'parler', 'imparfait'),
+      f('parlait', 'parler', 'imparfait'),
+      f('allait', 'aller', 'imparfait'),
+      f('allait', 'aller', 'imparfait'),
+      f('allait', 'aller', 'imparfait'),
     ])
     expect(groups.map((g) => [g.tense, g.total])).toEqual([['imparfait', 5], ['present', 1]])
     expect(groups[0].forms).toEqual([
-      { form: 'allait', lemma: 'aller', count: 3 },
-      { form: 'parlait', lemma: 'parler', count: 2 },
+      { form: 'allait', lemma: 'aller', count: 3, sentence: 0 },
+      { form: 'parlait', lemma: 'parler', count: 2, sentence: 0 },
     ])
+  })
+
+  it('remembers the sentence each form is first met in', () => {
+    const groups = groupByTense([f('parlait', 'parler', 'imparfait', 4), f('parlait', 'parler', 'imparfait', 9)])
+    expect(groups[0].forms[0]).toMatchObject({ count: 2, sentence: 4 })
   })
 
   it('is empty for no forms', () => {
     expect(groupByTense([])).toEqual([])
+  })
+})
+
+describe('where a form stands', () => {
+  it('counts sentences through the whole text, across paragraphs', () => {
+    const found = textForms('fr', analyze('Je parle. Il fait beau.\n\nNous parlions hier.', 'fr'))
+    expect(found.find((x) => x.form === 'parle')?.sentence).toBe(0)
+    expect(found.find((x) => x.form === 'parlions')?.sentence).toBe(2)
   })
 })
