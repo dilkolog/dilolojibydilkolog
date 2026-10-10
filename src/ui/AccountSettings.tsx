@@ -3,12 +3,14 @@ import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, GlobeIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { SyncAuthError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
+import { SyncAuthError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, TOO_LARGE, runSync, setAccount } from './syncRunner'
+import { getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { SyncSettings } from './SyncSettings'
+import { AdminAccess } from './AdminAccess'
+import { useAccess } from './accessContext'
 import { undoable } from './toastFeed'
 
 /**
@@ -22,6 +24,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
+  const { status: access } = useAccess()
 
   const refresh = async () => {
     setAcc(await getAccount())
@@ -40,7 +43,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       await runSync(true)
       showToast('Eşitlendi.')
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
+      setMessage({ ok: false, text: e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
@@ -57,8 +60,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         <div className="account-title">
           <h2 className="section-title">Giriş ve eşitleme</h2>
           {account ? (
-            <span className="status-pill is-on" role="status">
-              <i aria-hidden /> Giriş yapıldı
+            <span className={`status-pill ${access === 'approved' ? 'is-on' : 'is-off'}`} role="status">
+              <i aria-hidden /> {access === 'approved' ? 'Giriş yapıldı, onaylı' : access === 'rejected' ? 'Giriş yapıldı, onaylanmadı' : 'Giriş yapıldı, onay bekliyor'}
             </span>
           ) : (
             <span className="status-pill is-off">
@@ -69,6 +72,13 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       </header>
       {account ? (
         <>
+          {access !== 'approved' && access !== 'unknown' && (
+            <p className="note" role="status">
+              {access === 'rejected'
+                ? 'Hesabın onaylanmadı. Kelime ekleme ve çalışma bu cihazda çalışmaya devam eder; eşitleme, çeviri, videolar, haber ve dinleme kaynakları, yapay zekâ kapalı kalır.'
+                : 'Hesabın site sahibinin onayını bekliyor. O zamana kadar kelime ekleme ve çalışma çalışır; eşitleme, çeviri, videolar, haber ve dinleme kaynakları, yapay zekâ onaydan sonra açılır.'}
+            </p>
+          )}
           <dl className="account-facts">
             <div>
               <dt className="small muted">Hesap</dt>
@@ -133,7 +143,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               </span>
               <div>
                 <strong>Hesap şart değil</strong>
-                <p className="small muted">Hesapsız da kullanabilirsin; her şey bu cihazda durur.</p>
+                <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; veriler bu cihazda durur. Eşitleme, çeviri ve yapay zekâ gibi özellikler site sahibinin onayladığı hesaplara açık.</p>
               </div>
             </li>
           </ul>
@@ -155,6 +165,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           {message.text}
         </p>
       )}
+      <AdminAccess />
       {!account && (
         <details className="account-advanced">
           <summary className="small">Hesapsız: eşitleme koduyla eşitle (gelişmiş)</summary>

@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { clippedContent, openScreen, playSession, SCREENS, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, openScreen, playSession, SCREENS, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -103,6 +103,7 @@ test('session summary passes the automated accessibility check', async ({ page }
       tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test' })
     }
   })
+  await approveAccount(page)
   await playSession(page)
   // Close any celebration modal or badge moment overlay if present
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
@@ -304,11 +305,11 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
   await openScreen(page, 'Oyunlar')
   const pronBtn = page.locator('button:has-text("Telaffuz çalışması"), a:has-text("Telaffuz çalışması")').first()
   if (await pronBtn.count()) {
-    await pronBtn.click()
-    // Empty state scan
+    // Empty state: no word is weak yet, so the card is there but closed (a disabled card cannot be opened).
+    await expect(pronBtn).toBeDisabled()
     for (const theme of ['dark', 'calm'] as const) {
       await setTheme(theme)
-      problems.push(...(await scan(page, `pron-practice-empty-${theme}`)))
+      problems.push(...(await scan(page, `pron-practice-card-closed-${theme}`)))
     }
     // Seed pronScores to test populated state
     await page.evaluate(() => {
@@ -316,9 +317,14 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
         const req = indexedDB.open('kelime-koc')
         req.onsuccess = () => {
           const db = req.result
-          const tx = db.transaction('meta', 'readwrite')
-          tx.objectStore('meta').put({ key: 'pronScores', value: { 'fr:bonjour': [{ at: new Date().toISOString(), score: 40 }] } })
-          tx.oncomplete = () => resolve()
+          // A word the list really has: the weak list only holds words of the learner's list.
+          const words = db.transaction('vocabulary').objectStore('vocabulary').getAll()
+          words.onsuccess = () => {
+            const id = (words.result as { id: string; language: string }[]).find((w) => w.language === 'fr')!.id
+            const tx = db.transaction('meta', 'readwrite')
+            tx.objectStore('meta').put({ key: 'pronScores', value: { [id]: [{ at: new Date().toISOString(), score: 40 }] } })
+            tx.oncomplete = () => resolve()
+          }
         }
       })
     })
@@ -343,6 +349,7 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
       }
     })
   })
+  await approveAccount(page)
   await page.route('https://api.anthropic.com/**', (route) => {
     route.fulfill({
       status: 200,

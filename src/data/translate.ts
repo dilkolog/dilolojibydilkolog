@@ -1,5 +1,6 @@
 import { recall, remember, type TranslationEntry } from '../engine/translationMemory'
 import type { TargetLanguage } from '../engine/types'
+import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from './access'
 import { db } from './instance'
 
 /**
@@ -38,7 +39,7 @@ export function translationReady(): Promise<boolean> {
 /** This month's characters translated and the limit; null when unavailable. */
 export async function translationUsage(): Promise<{ count: number; limit: number } | null> {
   try {
-    const r = await fetch('/api/translate?usage=1')
+    const r = await accessFetch('/api/translate?usage=1')
     if (!r.ok) return null
     const u = (await r.json()) as { count?: unknown; limit?: unknown }
     return typeof u.count === 'number' && typeof u.limit === 'number' ? { count: u.count, limit: u.limit } : null
@@ -73,13 +74,13 @@ export function translate(text: string, from: TranslateLang | undefined, to: Tra
       .then(
         (known) =>
           known ??
-          fetch(`/api/translate?${q}`)
+          accessFetch(`/api/translate?${q}`)
             .catch(() => {
               throw new TranslateError('Çeviri için internet gerekiyor.')
             })
             .then(async (r) => {
               const body = (await r.json().catch(() => ({}))) as { translation?: string; error?: string }
-              if (!r.ok || !body.translation) throw new TranslateError(MESSAGES[body.error ?? ''] ?? 'Çeviri şu an alınamadı.')
+              if (!r.ok || !body.translation) throw new TranslateError(isApprovalRefusal(body.error) ? APPROVAL_MESSAGE : (MESSAGES[body.error ?? ''] ?? 'Çeviri şu an alınamadı.'))
               void keep({ text: clean, translation: body.translation, ...(from ? { from } : {}), to, at: new Date().toISOString() })
               return body.translation
             }),

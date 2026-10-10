@@ -1,5 +1,6 @@
 import { findClips, parseTimedCues, type Clip } from '../src/engine/clips.js'
 import { CaptionError, fetchCaptions } from './_captions.js'
+import { requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 
 /** Videos looked into per search, and clips handed back. */
@@ -23,6 +24,8 @@ interface SearchItem {
  */
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
+  const denied = await requireApproved(request)
+  if (denied) return denied
   const q = new URL(request.url).searchParams
   const word = (q.get('q') ?? '').trim()
   const lang = (q.get('lang') ?? '').slice(0, 2)

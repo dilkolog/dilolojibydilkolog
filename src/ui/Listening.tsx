@@ -1,3 +1,4 @@
+import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PODCASTS, type Episode } from '../engine/podcasts'
 import { analyzeText, coverageZone } from '../engine/reading'
@@ -32,7 +33,11 @@ export function ListeningPicker({
     setBusy(true)
     setError('')
     try {
-      const res = await fetch(`/api/listen?source=${encodeURIComponent(source)}`)
+      const res = await accessFetch(`/api/listen?source=${encodeURIComponent(source)}`)
+      if (res.status === 403) {
+        setError(APPROVAL_MESSAGE)
+        return
+      }
       if (!res.ok) throw new Error(String(res.status))
       setEpisodes(((await res.json()) as { episodes: Episode[] }).episodes)
     } catch {

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { BackupVersionError } from '../data/db'
-import { accountStatus, deriveAccount, SyncAuthError, SyncNotAllowedError } from '../data/sync'
+import { probeAccount, requestAccess } from '../data/access'
+import { deriveAccount, SyncAuthError, SyncApprovalError, SyncNotAllowedError } from '../data/sync'
 import { BrandMark, ChevronLeftIcon, LockIcon } from './icons'
-import { getSyncCode, NEWER_VERSION, NOT_ALLOWED, runSync, setAccount, setSyncCode } from './syncRunner'
+import { getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode } from './syncRunner'
 import { showToast } from './toastFeed'
 
 export type AuthMode = 'login' | 'create'
@@ -17,6 +18,7 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
+  const [note, setNote] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const creating = mode === 'create'
@@ -36,18 +38,28 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
     setBusy(true)
     try {
       const acc = await deriveAccount(name, password)
-      const status = await accountStatus(acc)
+      // Whether the name is taken and the password fits: the access check says so without needing approval.
+      const probe = await probeAccount(acc)
+      const status = !probe.exists ? 'new' : probe.match ? 'ok' : 'wrong'
       if (!creating && status === 'new') return setError('Bu kullanıcı adıyla hesap yok. Yeni hesap açmak için "Hesap oluştur"a geç.')
       if (status === 'wrong') return setError(creating ? 'Bu kullanıcı adı alınmış; başka bir ad seç.' : 'Şifre yanlış.')
-      // Signed in (or created): merge this device's progress with the account's and upload.
       await setAccount(acc)
       if (await getSyncCode()) await setSyncCode(null)
-      await runSync(true)
-      showToast(status === 'new' ? 'Hesabın oluşturuldu; ilerlemen kaydedildi.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
+      // A new account goes to the site owner for approval, with its username and the note.
+      if (status === 'new') await requestAccess(acc, name, note)
+      // Signed in (or created): merge this device's progress with the account's and upload, once approved.
+      let waiting = false
+      try {
+        await runSync(true)
+      } catch (e) {
+        if (!(e instanceof SyncApprovalError)) throw e
+        waiting = true
+      }
+      showToast(waiting ? 'Hesabın site sahibinin onayını bekliyor; onaylanınca eşitleme ve diğer özellikler açılır.' : status === 'new' ? 'Hesabın oluşturuldu; ilerlemen kaydedildi.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
       onDone()
     } catch (e) {
       await setAccount(null)
-      setError(e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncAuthError ? 'Şifre yanlış.' : 'Bağlanılamadı; internet bağlantını kontrol et.')
+      setError(e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncAuthError ? 'Şifre yanlış.' : 'Bağlanılamadı; internet bağlantını kontrol et.')
     } finally {
       setBusy(false)
     }
@@ -96,6 +108,13 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
             <label className="field">
               <span className="field-label">Şifre (tekrar)</span>
               <input className="input" type="password" value={repeat} onChange={(e) => setRepeat(e.target.value)} autoComplete="new-password" />
+            </label>
+          )}
+          {creating && (
+            <label className="field">
+              <span className="field-label">Kendini kısaca tanıt (isteğe bağlı)</span>
+              <input className="input" value={note} maxLength={200} onChange={(e) => setNote(e.target.value)} placeholder="Kimsin, uygulamayı ne için kullanacaksın?" />
+              <span className="help">Hesaplar site sahibinin onayından geçer. Kullanıcı adın ve bu not ona gönderilir; şifren ve verilerin gönderilmez.</span>
             </label>
           )}
           {error && (

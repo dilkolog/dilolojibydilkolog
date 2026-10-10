@@ -1,5 +1,6 @@
 import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
+import { isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 
 /**
  * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
@@ -8,7 +9,8 @@ import { isAllowed } from './_allow.js'
  * GET  /api/sync?id=<64 hex>&part=<core | m-<40 hex>>  → the bytes, or 404
  * PUT  same query, body = bytes                         → stored (with `If-Match: <etag of the GET>`: 412 if the file changed since)
  *
- * Accounts (username + password) send an access token in `x-sync-auth`. The first write keeps
+ * Accounts (username + password) send an access token in `x-sync-auth` and need the owner's
+ * approval first (_account.ts); a refusal for want of it is 403 "approval required". The first write keeps
  * its hash; from then on reads and writes without the matching token get 403, so a guessable
  * username can't be read or overwritten by others. Sync codes (random ids) send no token.
  * When SYNC_ALLOWED is set (see _allow.ts), ids not on it get 403 "not allowed".
@@ -63,6 +65,17 @@ async function checkAuth(request: Request, write: boolean): Promise<Response | n
   return null
 }
 
+/**
+ * Who may use the store: an account (it sends a token) once the owner has approved it; a sync code
+ * (random id, no token) as before, by the SYNC_ALLOWED list when there is one. null = allowed.
+ */
+async function permitted(request: Request, id: string): Promise<Response | null> {
+  const token = request.headers.get('x-sync-auth')
+  if (token !== null && !ACCOUNT_TOKEN.test(token)) return new Response('bad token', { status: 400 })
+  if (token !== null) return (await isApproved(id)) ? null : new Response('approval required', { status: 403 })
+  return (await isAllowed(id)) ? null : new Response('not allowed', { status: 403 })
+}
+
 function target(request: Request): string | null {
   const q = new URL(request.url).searchParams
   const id = q.get('id') ?? ''
@@ -106,14 +119,16 @@ async function handleGet(request: Request): Promise<Response> {
   if (q.get('history') === '1') {
     const id = q.get('id') ?? ''
     if (!ID.test(id)) return new Response('bad request', { status: 400 })
-    if (!(await isAllowed(id))) return new Response('not allowed', { status: 403 })
+    const notPermitted = await permitted(request, id)
+    if (notPermitted) return notPermitted
     const refused = await checkAuth(request, false)
     if (refused) return refused
     return Response.json({ days: (await points(id)).map((p) => p.day) }, { headers: { 'cache-control': 'no-store' } })
   }
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
-  if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
+  const notPermitted = await permitted(request, new URL(request.url).searchParams.get('id') ?? '')
+  if (notPermitted) return notPermitted
   const refused = await checkAuth(request, false)
   if (refused) return refused
   const blob = await read(path)
@@ -136,7 +151,8 @@ async function handlePut(request: Request): Promise<Response> {
   if (!path) return new Response('bad request', { status: 400 })
   // Restore points are made here, never sent.
   if (new URL(request.url).searchParams.get('part')?.startsWith('h-')) return new Response('read only', { status: 405 })
-  if (!(await isAllowed(new URL(request.url).searchParams.get('id') ?? ''))) return new Response('not allowed', { status: 403 })
+  const notPermitted = await permitted(request, new URL(request.url).searchParams.get('id') ?? '')
+  if (notPermitted) return notPermitted
   const body = await request.arrayBuffer()
   if (!body.byteLength || body.byteLength > MAX_BYTES) return new Response('too large', { status: 413 })
   const refused = await checkAuth(request, true)

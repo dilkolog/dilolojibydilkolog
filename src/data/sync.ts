@@ -68,9 +68,15 @@ export class SyncNotAllowedError extends Error {
   override name = 'SyncNotAllowedError'
 }
 
-/** A 403 is either a wrong password or an id the server doesn't serve. */
+/** The account has not been approved by the site's owner (yet): it may not use the sync store. */
+export class SyncApprovalError extends SyncNotAllowedError {
+  override name = 'SyncApprovalError'
+}
+
+/** A 403 is a wrong password, an id the server doesn't serve, or an account the owner has not approved. */
 async function refusal(res: Response): Promise<Error> {
-  return (await res.text().catch(() => '')) === 'not allowed' ? new SyncNotAllowedError('not allowed') : new SyncAuthError('wrong password')
+  const why = await res.text().catch(() => '')
+  return why === 'approval required' ? new SyncApprovalError('approval required') : why === 'not allowed' ? new SyncNotAllowedError('not allowed') : new SyncAuthError('wrong password')
 }
 
 /** Case doesn't matter, and the Turkish I's all count as one (ALI, Ali, alı, ALİ → ali). */

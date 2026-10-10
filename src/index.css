@@ -5141,3 +5141,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 @media (prefers-reduced-motion: reduce) {
   .switch, .switch span { transition-duration: 1ms; }
 }
+
+/* Owner's account approval list (Settings → Hesap → Yönetici). */
+.admin-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.admin-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); }
+.admin-who { display: grid; gap: 0.125rem; min-width: 0; overflow-wrap: anywhere; }

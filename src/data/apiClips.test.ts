@@ -2,6 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { GET } from '../../api/clips'
 import { GET as GET_YOUTUBE } from '../../api/youtube'
 
+// The owner's approval is tested in access.test.ts; here the account check always passes.
+vi.mock('../../api/_account', async (original) => ({ ...(await original<typeof import('../../api/_account')>()), requireApproved: async () => null }))
+
 const TIMED = '<timedtext><body><p t="1000" d="2000">Il faut décider maintenant.</p><p t="3000" d="2000">Autre chose.</p></body></timedtext>'
 const player = (tracks: unknown[]) => ({ playabilityStatus: { status: 'OK' }, videoDetails: { title: 'Un jour', author: 'Chaîne' }, captions: { playerCaptionsTracklistRenderer: { captionTracks: tracks } } })
 

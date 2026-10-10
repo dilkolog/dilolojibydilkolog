@@ -14,13 +14,18 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const api = await import('../../api/sync')
+const { clearAccessCache } = await import('../../api/_account')
 const { deriveAccount, MAX_MEDIA_BYTES, restoreFrom, syncNow } = await import('./sync')
 const { KelimeDB, parseBackup, exportBackup } = await import('./db')
 const { getSafetySnapshot, restoreSafetySnapshot, saveSafetySnapshot } = await import('./safetyBackup')
 const { createEntry } = await import('./wordInput')
 
+/** The owner's approval of an account, as the admin endpoint leaves it. */
+const approve = (id: string) => void blobs.set(`access/approved/${id}.json`, new TextEncoder().encode('{}'))
+
 beforeEach(() => {
   blobs.clear()
+  clearAccessCache()
   vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => {
     const req = new Request(`https://app.test${url}`, init)
     return req.method === 'PUT' ? api.PUT(req) : api.GET(req)
@@ -36,6 +41,7 @@ afterEach(() => {
 describe('media that cannot be synced', () => {
   it('leaves a too-big picture behind without stopping the words or the small picture', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-media-phone')
     const laptop = new KelimeDB('t-media-laptop')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
@@ -52,6 +58,7 @@ describe('media that cannot be synced', () => {
 
   it('keeps going when one picture fails to upload', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-media-fail')
     await phone.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
     await phone.addMedia('image', new Blob([new Uint8Array(500)], { type: 'image/jpeg' }))
@@ -84,6 +91,7 @@ describe('safety copy', () => {
 
   it('is not part of exports, and restoring a restore point leaves one', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-safety-point')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
     await syncNow(phone, acc)

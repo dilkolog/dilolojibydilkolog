@@ -15,12 +15,17 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const api = await import('../../api/sync')
+const { clearAccessCache } = await import('../../api/_account')
 const { deriveAccount, restoreFrom, restorePoints, syncNow } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
+/** The owner's approval of an account, as the admin endpoint leaves it. */
+const approve = (id: string) => void blobs.set(`access/approved/${id}.json`, new TextEncoder().encode('{}'))
+
 beforeEach(() => {
   blobs.clear()
+  clearAccessCache()
   vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => {
     const req = new Request(`https://app.test${url}`, init)
     return req.method === 'PUT' ? api.PUT(req) : api.GET(req)
@@ -35,6 +40,7 @@ afterEach(() => {
 describe('restore points', () => {
   it('bring back a word deleted since, keep one added later, and the other device keeps it too', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
     const phone = new KelimeDB('t-restore-phone')
     const laptop = new KelimeDB('t-restore-laptop')
     vi.setSystemTime(new Date('2026-10-05T09:00:00Z'))

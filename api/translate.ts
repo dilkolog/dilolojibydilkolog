@@ -10,6 +10,7 @@
  * (500,000 characters a month) stops when used up and never charges.
  */
 
+import { requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 
 export { fromApp }
@@ -31,6 +32,8 @@ export async function GET(request: Request): Promise<Response> {
   const key = process.env.DEEPL_AUTH_KEY?.trim()
   if (!key) return json({ error: 'not configured' }, 503)
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
+  const denied = await requireApproved(request)
+  if (denied) return denied
   const params = new URL(request.url).searchParams
   const auth = { authorization: `DeepL-Auth-Key ${key}` }
 

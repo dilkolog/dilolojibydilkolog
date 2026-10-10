@@ -15,12 +15,17 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const api = await import('../../api/sync')
+const { clearAccessCache } = await import('../../api/_account')
 const { accountStatus, deriveAccount, syncNow, SyncAuthError, SyncNotAllowedError } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
+/** The owner's approval of an account, as the admin endpoint leaves it. */
+const approve = (id: string) => void blobs.set(`access/approved/${id}.json`, new TextEncoder().encode('{}'))
+
 beforeEach(() => {
   blobs.clear()
+  clearAccessCache()
   vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => {
     const req = new Request(`https://app.test${url}`, init)
     return req.method === 'PUT' ? api.PUT(req) : api.GET(req)
@@ -43,6 +48,7 @@ describe('accounts', () => {
 
   it('creates an account on first sync, signs in with the password, refuses a wrong one', async () => {
     const owner = await deriveAccount('ali', 'correct horse')
+    approve(owner.id)
     expect(await accountStatus(owner)).toBe('new')
     const db = new KelimeDB('t-account-1')
     await db.vocabulary.put(createEntry({ word: 'decision', meaning: 'karar' }, 'en', new Date()))

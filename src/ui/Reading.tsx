@@ -1,3 +1,4 @@
+import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from '../data/access'
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 
@@ -356,7 +357,7 @@ export function ReadingScreen({
     setBookError(null)
     setYtBusy(true)
     try {
-      const res = await fetch(`/api/youtube?v=${encodeURIComponent(youtube.trim())}&lang=${language}`)
+      const res = await accessFetch(`/api/youtube?v=${encodeURIComponent(youtube.trim())}&lang=${language}`)
       const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; error?: string; available?: string[] }
       if (!res.ok || !j.text) {
         setBookError({
@@ -364,7 +365,9 @@ export function ReadingScreen({
           text:
             j.error === 'no captions'
             ? `Bu videoda ${LANGUAGE_NAME[language]} altyazı yok${j.available?.length ? ` (olanlar: ${j.available.join(', ')})` : ''}.`
-            : j.error === 'bad request'
+            : isApprovalRefusal(j.error)
+              ? APPROVAL_MESSAGE
+              : j.error === 'bad request'
               ? 'Bağlantı bir YouTube videosu gibi görünmüyor.'
               : 'Altyazı alınamadı; YouTube şu an izin vermiyor olabilir. Altyazıyı .srt olarak indirip yükleyebilirsin.',
         })

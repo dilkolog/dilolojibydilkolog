@@ -1,3 +1,5 @@
+import { requireApproved } from './_account.js'
+import { fromApp } from './_origin.js'
 import { allowedArticle } from '../src/engine/news.js'
 import { inlineTranscript, parsePodcastFeed, PODCASTS, rfiTranscript, voaEpisode, type Episode } from '../src/engine/podcasts.js'
 import { parseSubtitles, parseTimedCues } from '../src/engine/subtitles.js'
@@ -17,6 +19,9 @@ async function fetchText(url: string, ms: number): Promise<string> {
  * their audio and full text (the browser can't read these pages itself).
  */
 export async function GET(request: Request): Promise<Response> {
+  if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
+  const denied = await requireApproved(request)
+  if (denied) return denied
   const id = new URL(request.url).searchParams.get('source')
   const source = PODCASTS.find((p) => p.id === id)
   if (!source) return Response.json({ error: 'unknown source' }, { status: 400 })

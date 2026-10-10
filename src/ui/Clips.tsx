@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { APPROVAL_MESSAGE } from '../data/access'
 import { ClipsError, fetchClips, type ClipsProblem } from '../data/clips'
 import type { KelimeDB } from '../data/db'
 import { addExample, markWord, WordInputError } from '../data/wordInput'
@@ -12,6 +13,7 @@ const PROBLEM: Record<ClipsProblem, string> = {
   nokey: 'Bu özellik için bir YouTube API anahtarı gerekiyor: Vercel’de YOUTUBE_API_KEY olarak ekle (docs/YOUTUBE.md).',
   quota: 'Bugünlük arama hakkı doldu; yarın tekrar dene.',
   unavailable: 'Videolar alınamadı; internet bağlantını kontrol et.',
+  approval: APPROVAL_MESSAGE,
 }
 
 /** The word as it is searched: without its article ("la maison" → "maison"). */
