@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { generateSyncCode, normalizeCode, SyncNotAllowedError } from '../data/sync'
-import { getSyncCode, NEWER_VERSION, NOT_ALLOWED, runSync, setSyncCode } from './syncRunner'
+import { generateSyncCode, normalizeCode, syncUsage, SyncNotAllowedError, SyncTooLargeError } from '../data/sync'
+import { describeIncoming, getSyncCode, NEWER_VERSION, NOT_ALLOWED, TOO_LARGE, runSync, setSyncCode } from './syncRunner'
 import { relativeTime } from './format'
 import { RestorePoints } from './RestorePoints'
 
@@ -15,11 +15,14 @@ export function SyncSettings() {
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
+  const [size, setSize] = useState<number | null>(null)
 
   const refresh = async () => {
     setCode(await getSyncCode())
     const v = (await db.meta.get('syncAt'))?.value as string | undefined
     setAt(v ? new Date(v) : null)
+    const bytes = (await db.meta.get('syncSize'))?.value
+    setSize(typeof bytes === 'number' ? bytes : null)
   }
   useEffect(() => {
     void refresh()
@@ -31,11 +34,11 @@ export function SyncSettings() {
     try {
       if (fresh) await setSyncCode(fresh)
       const r = await runSync(true)
-      showToast(`Eşitlendi.${r && (r.received || r.sent) ? ` ${r.received} görsel/kayıt alındı, ${r.sent} gönderildi.` : ''}`)
+      showToast(`Eşitlendi.${r && (r.received || r.sent) ? ` ${r.received} görsel/kayıt alındı, ${r.sent} gönderildi.` : ''} ${describeIncoming(r)}`.trim())
       if (r?.skipped) setMessage({ ok: false, text: `${r.skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.` })
     } catch (e) {
       if (fresh) await setSyncCode(null)
-      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
+      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
@@ -59,6 +62,14 @@ export function SyncSettings() {
               {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
             </button>
           </div>
+          {size !== null && (() => {
+            const u = syncUsage(size)
+            return (
+              <p className={u.warn ? 'note' : 'small muted'}>
+                Eşitlenen veri: {u.label} (%{u.percent}).{u.warn && ' Sınıra yaklaşıyor: kullanmadığın okuma metinlerini silmek yer açar.'}
+              </p>
+            )
+          })()}
           <div className="row">
             <span className="small">
               Eşitleme kodun: <code className="sync-code">{shown ? code : '•••••-•••••-•••••-•••••'}</code>

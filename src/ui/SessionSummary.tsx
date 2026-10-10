@@ -28,6 +28,7 @@ import { Medal } from './Medal'
 import { closestStep, crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
 import { StreakFlame } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
+import { SessionNote } from './SessionNote'
 
 function hardHeadline(accuracy: number): string {
   if (accuracy >= 0.9) return 'Zor kelimelerin yola geliyor!'
@@ -230,6 +231,7 @@ export function Summary({
           </div>
         </section>
       )}
+      <SessionNote summary={summary} byId={byId} />
       {errors.length > 0 && (
         <div className="error-chips" aria-label="Hata türleri">
           <span className="small muted">Hata türleri</span>

@@ -91,6 +91,14 @@ export interface PrequestionSet {
   questions: { question: string; answer: string }[]
 }
 
+export interface SessionNoteRequest {
+  language: import('../engine/types').TargetLanguage
+  answers: number
+  wrong: number
+  /** "gender ×3" error totals, then "chat (kedi): 2 wrong" for the words missed. */
+  lines: string[]
+}
+
 export interface ErrorReportRequest {
   language: import('../engine/types').TargetLanguage
   /** "decision [spelling]: wrote "decission", expected "decision" ×3", most frequent first. */
