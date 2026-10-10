@@ -155,6 +155,7 @@ export function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?:
         <>
           <span>{k('1')}–<kbd>4</kbd> seç</span>
           {prefs.confidence && <span>{k('Shift', '1')} emin değilim</span>}
+          <span>{k('Alt', 'U')} unuttum</span>
         </>
       )}
       {mode === 'typed' && (
@@ -162,6 +163,7 @@ export function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?:
           <span>{k('Enter')} kontrol et</span>
           {prefs.confidence && <span>{k('Shift', 'Enter')} emin değilim</span>}
           {hints && <span>{k('Alt', 'H')} ipucu</span>}
+          <span>{k('Alt', 'U')} unuttum</span>
         </>
       )}
       {mode === 'answered' && (

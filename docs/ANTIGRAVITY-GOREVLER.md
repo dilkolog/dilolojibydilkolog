@@ -104,6 +104,13 @@ Claude Code'un çalıştığı ortamın ağı kısıtlı: LibriVox, Gutenberg, a
 ### 4.5 Kullanılmayan dışa aktarımlar
 - Hiçbir yerde içe aktarılmayan `export`ları (ve onlara bağlı ölü dosyaları) tespit et (`ts-prune`/`knip` ya da betik). Önce rapor (`docs/`), sonra yalnızca **emin olduklarını** sil. `src/engine/` ve `src/ui/verbs/` Claude Code'da: oralar için listeyi PR açıklamasına yaz, silme.
 
+### 4.6 TV5Monde ve DELE Ahora: bu içerik kullanılabilir mi? (rapor)
+Kullanıcı sordu: *TV5Monde'daki içerikler telifsiz mi? DELE Ahora'daki (Español) içerikler çevrimiçi ücretsiz yapılabiliyor; onları alamaz mıyız?* Claude Code'un ortamı bu sitelere erişemiyor; **sen** kullanım şartlarını oku.
+- Her site için: içeriğin sahibi, **lisans** (CC var mı, "tüm hakları saklıdır" mı), **kullanım/telif şartları** sayfasının bağlantısı ve ilgili cümle (alıntıyla), kopyalama/yeniden yayın/API/RSS/gömme (embed) izni, ücretsiz erişim ile yeniden kullanım izni arasındaki fark.
+- Üç düzey ver: (a) **bağlantı vermek** (kaynak listesinde, uygulama içinde "TV5Monde'da aç"), (b) **gömmek** (iframe/oynatıcı, izin veriliyorsa), (c) **kopyalayıp uygulamaya almak** (metin/ses/alıştırma). Her biri için "yapılabilir / izin gerekir / yapılamaz" ve nedeni.
+- Yalnızca açık lisanslı (CC BY, CC BY-SA, kamu malı) olanları (c)'ye öner; diğerleri için (a) ya da yazılı izin e-postası taslağı öner (iletişim adresiyle).
+- Çıktı: `docs/kaynaklar/tv5monde-dele-ahora.md`. Sonuç ne olursa olsun **uygulama koduna dokunma**; karar kullanıcıda.
+
 **Tur sonu ölçütü:** 4.1 ve 4.2'de her bağlantı elle doğrulanmış, 4.3'te dış davranış aynı, hiçbir test silinmemiş.
 
 ---

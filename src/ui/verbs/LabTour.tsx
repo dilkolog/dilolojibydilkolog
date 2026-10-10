@@ -3,7 +3,9 @@ import { loadPack, packRecord } from '../../data/wordpack'
 import { tourVerbs, type TourItem } from '../../engine/labTour'
 import { createRng, shuffle } from '../../engine/rng'
 import { conjugateTense, subjectLabel } from '../../engine/tenses'
-import { PlayIcon, CheckIcon } from '../icons'
+import { PlayIcon, CheckIcon, CloseIcon } from '../icons'
+import { undoable } from '../toastFeed'
+import { useSwipeAway } from '../useSwipeAway'
 import { LinesSkeleton } from '../Skeleton'
 import { FormQuestion } from '../session/FormQuestion'
 import { sfx } from '../sounds'
@@ -16,6 +18,16 @@ import { formOptions } from './labTourItems'
 const SECONDS_PER_QUESTION = 15
 const DONE_KEY = (language: LabLanguage) => `kelime-koc:lab-tour:${language}`
 
+const HIDDEN_KEY = (language: LabLanguage) => `kelime-koc:lab-tour-hidden:${language}`
+
+const hiddenToday = (language: LabLanguage, day: number) => {
+  try {
+    return localStorage.getItem(HIDDEN_KEY(language)) === String(day)
+  } catch {
+    return false
+  }
+}
+
 const doneToday = (language: LabLanguage, day: number) => {
   try {
     return localStorage.getItem(DONE_KEY(language)) === String(day)
@@ -26,11 +38,27 @@ const doneToday = (language: LabLanguage, day: number) => {
 
 /**
  * The start of the lab: one card with the day's round (how many questions, about how long, which
- * verbs) and one button. Done for today, it says so and offers another round.
+ * verbs) and one button. Done for today, it says so and offers another round. When only the
+ * tables are wanted, the card can be put away for the day: a swipe to the left, or its close button.
  */
 export function TourCard({ language, items, onStart }: { language: LabLanguage; items: readonly TourItem[]; onStart: () => void }) {
   const day = dayNumber(new Date())
-  if (!items.length) return null
+  const [hidden, setHidden] = useState(() => hiddenToday(language, day))
+  const hide = (on: boolean) => {
+    try {
+      if (on) localStorage.setItem(HIDDEN_KEY(language), String(day))
+      else localStorage.removeItem(HIDDEN_KEY(language))
+    } catch {
+      // Storage off: the card is only put away until the screen is left.
+    }
+    setHidden(on)
+  }
+  const away = () => {
+    hide(true)
+    undoable('Bugünün fiil turu gizlendi; yarın yine çıkar.', () => hide(false))
+  }
+  const swipe = useSwipeAway(away)
+  if (!items.length || hidden) return null
   const done = doneToday(language, day)
   const minutes = Math.max(1, Math.round((items.length * SECONDS_PER_QUESTION) / 60))
   const due = items.filter((i) => i.reason === 'due').length
@@ -38,7 +66,12 @@ export function TourCard({ language, items, onStart }: { language: LabLanguage; 
   const fresh = items.find((i) => i.reason === 'new')?.verb
   const parts = [due && `${due} tekrar`, weak && `${weak} zayıf nokta`, fresh && `günün fiili`].filter(Boolean)
   return (
-    <section className={`card lab-tour-card${done ? ' is-done' : ''}`} aria-label="Bugünün fiil turu">
+    <section
+      className={`card lab-tour-card${done ? ' is-done' : ''}${swipe.dx ? ' is-swiping' : ''}`}
+      aria-label="Bugünün fiil turu"
+      style={swipe.dx ? { transform: `translateX(${swipe.dx}px)`, opacity: Math.max(0.35, 1 + swipe.dx / 280) } : undefined}
+      {...swipe.handlers}
+    >
       <div className="lab-tour-text">
         <h2 className="section-title">{done ? 'Bugünkü fiil turun bitti' : 'Bugünün fiil turu'}</h2>
         <p className="small muted">
@@ -47,17 +80,22 @@ export function TourCard({ language, items, onStart }: { language: LabLanguage; 
           {parts.length > 0 && ` (${parts.join(', ')})`}
         </p>
       </div>
-      <button type="button" className={done ? 'btn btn-quiet' : 'btn'} onClick={onStart}>
-        {done ? (
-          <>
-            <CheckIcon size={18} /> Bir tur daha
-          </>
-        ) : (
-          <>
-            <PlayIcon size={18} /> Başla
-          </>
-        )}
-      </button>
+      <div className="lab-tour-actions">
+        <button type="button" className={done ? 'btn btn-quiet' : 'btn'} onClick={onStart}>
+          {done ? (
+            <>
+              <CheckIcon size={18} /> Bir tur daha
+            </>
+          ) : (
+            <>
+              <PlayIcon size={18} /> Başla
+            </>
+          )}
+        </button>
+        <button type="button" className="icon-btn" onClick={away} aria-label="Bugünlük gizle" title="Bugünlük gizle (sola kaydırarak da kapanır)">
+          <CloseIcon size={16} />
+        </button>
+      </div>
     </section>
   )
 }

@@ -5102,3 +5102,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* A sentence scrolled into view clears the player. */
 .reader [data-s], .reader .rw { scroll-margin-top: calc(var(--audio-h, 0px) + 5rem); }
 
+/* ---------- Verb lab: today's round can be put away ---------- */
+.lab-tour-card { touch-action: pan-y; }
+.lab-tour-card.is-swiping { transition: none; }
+.lab-tour-card:not(.is-swiping) { transition: transform var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out); }
+.lab-tour-actions { display: flex; align-items: center; gap: 0.5rem; }
+

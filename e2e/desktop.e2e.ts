@@ -484,6 +484,19 @@ test('reading: the verb forms of the text listed by tense, each opening the lab'
   await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('verb lab: today\'s round can be put away for the day with its close button, and stays away after a reload', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page)
+  const card = page.getByRole('region', { name: 'Bugünün fiil turu' })
+  await expect(card).toBeVisible()
+  await card.getByRole('button', { name: 'Bugünlük gizle' }).click()
+  await expect(card).toHaveCount(0)
+  await page.reload()
+  await openVerbLab(page)
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'Bugünün fiil turu' })).toHaveCount(0)
+})
+
 test('verb lab: the Turkish of each form beside it, in the core tenses, never when unsure', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
