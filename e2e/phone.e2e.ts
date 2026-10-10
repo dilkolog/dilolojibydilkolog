@@ -622,6 +622,39 @@ test('the word list can be a gallery: pictures where there are any, letters wher
   await expect(page.locator('.word-hero')).toBeVisible()
 })
 
+test('the word list filters by multiple CEFR levels simultaneously and clears on reset', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  const totalCount = await page.locator('.word-row').count()
+  expect(totalCount).toBeGreaterThan(0)
+
+  // Open filter popover
+  await page.getByRole('button', { name: /^Filtrele ve görünüm/ }).click()
+  const a1Chip = page.locator('.panel-choices[aria-label="Seviye (CEFR)"] button', { hasText: 'A1' })
+  const a2Chip = page.locator('.panel-choices[aria-label="Seviye (CEFR)"] button', { hasText: 'A2' })
+  await expect(a1Chip).toBeVisible()
+  await expect(a2Chip).toBeVisible()
+
+  // Select A1
+  await a1Chip.click()
+  await expect(a1Chip).toHaveAttribute('aria-pressed', 'true')
+  const a1Count = await page.locator('.word-row').count()
+  expect(a1Count).toBeGreaterThan(0)
+  expect(a1Count).toBeLessThan(totalCount)
+
+  // Multi-select: also select A2
+  await a2Chip.click()
+  await expect(a2Chip).toHaveAttribute('aria-pressed', 'true')
+  const multiCount = await page.locator('.word-row').count()
+  expect(multiCount).toBeGreaterThanOrEqual(a1Count)
+
+  // Reset filters
+  await page.getByRole('button', { name: 'Hepsini sıfırla' }).click()
+  await expect(a1Chip).toHaveAttribute('aria-pressed', 'false')
+  await expect(a2Chip).toHaveAttribute('aria-pressed', 'false')
+  expect(await page.locator('.word-row').count()).toBe(totalCount)
+})
+
 test('a session ends in a small garden: a plant for each word, under the sky of the hour', async ({ page }) => {
   test.setTimeout(120_000)
   await startWithSamples(page)

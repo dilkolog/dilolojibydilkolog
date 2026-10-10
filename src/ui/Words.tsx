@@ -4,7 +4,7 @@ import { analyzeForm } from '../engine/tenses'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
-import { addedTime, type Gender, type Mistake, type PartOfSpeech, type TargetLanguage, type UserWordState, type VocabularyEntry, type WordList as WordListRow } from '../engine/types'
+import { addedTime, type CefrLevel, type Gender, type Mistake, type PartOfSpeech, type TargetLanguage, type UserWordState, type VocabularyEntry, type WordList as WordListRow } from '../engine/types'
 import { showToast } from './toastFeed'
 import type { KelimeDB } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -50,6 +50,9 @@ import { imageCandidates, skippedImages } from '../data/imageQueue'
 import { MenuItem, Popover } from './Popover'
 import { TranslateButton } from './TranslateButton'
 import { ImageQueue } from './ImageQueue'
+import { useCefr } from './useCefr'
+import { cefrOf } from '../engine/cefrLevels'
+import { levelFromRank } from '../engine/wordLevel'
 
 interface Props {
   db: KelimeDB
@@ -324,6 +327,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           </section>
       {view === 'list' ? (
         <WordList
+          language={language}
           vocabulary={vocabulary}
           stateById={stateById}
           mistakes={mistakes}
@@ -1008,6 +1012,8 @@ const STAGE_FILTERS: [StageFilter, string][] = [
   ['review', 'İşaretlenenler'],
 ]
 
+const CEFR_LEVELS_LIST: readonly CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+
 function WordThumb({ id }: { id?: string }) {
   const url = useMediaUrl(id)
   return url ? <img className="thumb" src={url} alt="" /> : null
@@ -1026,6 +1032,7 @@ function GalleryArt({ entry }: { entry: VocabularyEntry }) {
 
 /** Searchable, filterable word list. */
 function WordList({
+  language,
   vocabulary,
   stateById,
   mistakes,
@@ -1040,6 +1047,7 @@ function WordList({
   pictureTick = 0,
   onRemoveSamples,
 }: {
+  language?: TargetLanguage
   vocabulary: VocabularyEntry[]
   stateById: Map<string, UserWordState>
   mistakes: Mistake[]
@@ -1071,9 +1079,18 @@ function WordList({
   const [stage, setStage] = useState<StageFilter>('all')
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
-  // '' all, '__none' words in no list, otherwise a list id.
   // '' all, '__none' words in no list, a list id, or "list|level".
   const [inList, setInList] = useState('')
+  const [levels, setLevels] = useState<Set<CefrLevel>>(new Set())
+  const cefr = useCefr(language ?? 'en')
+
+  const toggleLevel = (lvl: CefrLevel) =>
+    setLevels((prev) => {
+      const next = new Set(prev)
+      if (next.has(lvl)) next.delete(lvl)
+      else next.add(lvl)
+      return next
+    })
   const [sort, setSort] = useState<Sort>('newest')
   const [dense, setDense] = useState(() => getDensity() === 'compact')
   // Table view (wide screens): every word on one line with its numbers, sortable by column.
@@ -1131,6 +1148,10 @@ function WordList({
       if (flags.audio && !v.audioId) return false
       if (flags.noExample && v.senses[0].examples.length > 0) return false
       if (flags.idiom && v.partOfSpeech !== 'phrase') return false
+      if (levels.size > 0) {
+        const lvl = (cefr && language ? cefrOf({ language, lemma: v.lemma }, cefr) : undefined) ?? levelFromRank(v.frequencyRank)
+        if (!lvl || !levels.has(lvl)) return false
+      }
       if (tag && !v.tags.includes(tag)) return false
       if (inList === '__none') {
         if (v.listId && lists.some((l) => l.id === v.listId)) return false
@@ -1153,7 +1174,7 @@ function WordList({
       due: (a, b) => dueKey(a) - dueKey(b) || a.lemma.localeCompare(b.lemma, 'tr'),
     }
     return vocabulary.filter(match).sort(by[sort])
-  }, [vocabulary, query, stage, flags, tag, inList, lists, sort, stateById, withMistakes])
+  }, [vocabulary, query, stage, flags, levels, cefr, language, tag, inList, lists, sort, stateById, withMistakes])
   // The word page steps through the list in the order it was last shown here (filters and sort).
   useEffect(() => saveWordOrder(list.map((v) => v.id)), [list])
   // A long list is drawn in pages as it scrolls into view: thousands of rows at once make the
@@ -1165,9 +1186,10 @@ function WordList({
   const toggle = (k: keyof typeof flags) => setFlags((f) => ({ ...f, [k]: !f[k] }))
   // What the filter panel has set apart from its defaults, for the badge on its button.
   const flagCount = Object.values(flags).filter(Boolean).length
-  const activeCount = flagCount + (sort !== 'newest' ? 1 : 0) + (layout !== 'list' ? 1 : 0) + (dense ? 1 : 0) + (tag ? 1 : 0) + (inList ? 1 : 0)
+  const activeCount = flagCount + (levels.size > 0 ? 1 : 0) + (sort !== 'newest' ? 1 : 0) + (layout !== 'list' ? 1 : 0) + (dense ? 1 : 0) + (tag ? 1 : 0) + (inList ? 1 : 0)
   const clearView = () => {
     setFlags({})
+    setLevels(new Set())
     setSort('newest')
     setLayout('list')
     setTag('')
@@ -1299,6 +1321,22 @@ function WordList({
                         { value: 'due', label: 'Tekrarı en yakın' },
                       ]}
                     />
+                  </div>
+                  <div className="panel-group">
+                    <span className="panel-label">Seviye (CEFR)</span>
+                    <div className="panel-choices" role="group" aria-label="Seviye (CEFR)">
+                      {CEFR_LEVELS_LIST.map((lvl) => (
+                        <button
+                          key={lvl}
+                          type="button"
+                          className="chip chip-sm"
+                          aria-pressed={levels.has(lvl)}
+                          onClick={() => toggleLevel(lvl)}
+                        >
+                          {lvl}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                   {(lists.length > 0 || tags.length > 0) && (
                     <div className="panel-group">
