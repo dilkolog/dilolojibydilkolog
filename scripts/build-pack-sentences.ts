@@ -12,6 +12,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { pickSentences, sentenceTokens, type Candidate } from '../src/data/packSentences'
+import { packColumnarSentences } from '../src/data/wordpack'
 import type { Pack } from '../src/data/wordpackBuild'
 
 const [dir] = process.argv.slice(2)
@@ -68,7 +69,7 @@ for (const language of ['en', 'fr', 'es'] as const) {
   for (const w of wanted) {
     const picked = pickSentences(candidates.get(w) ?? [], language, (t) => frequent.has(t) || t === w)
     if (picked.length) {
-      pack.w[w].c = picked
+      pack.w[w].c = packColumnarSentences(picked)
       given++
     } else delete pack.w[w].c
   }

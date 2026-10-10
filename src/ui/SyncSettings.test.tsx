@@ -11,10 +11,10 @@ vi.mock('./syncRunner', () => ({
   getSyncCode: vi.fn(),
   setSyncCode: vi.fn(),
   runSync: vi.fn(),
+  describeIncoming: vi.fn(() => ''),
   NOT_ALLOWED: 'Bu hesapta eşitleme izni yok.',
-  NEWER_VERSION: 'newer',
-  TOO_LARGE: 'large',
-  describeIncoming: () => '',
+  NEWER_VERSION: 'Uygulamayı güncelle.',
+  TOO_LARGE: 'Veri sınırı aşıldı.',
 }))
 
 vi.mock('./RestorePoints', () => ({
