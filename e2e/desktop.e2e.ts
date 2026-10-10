@@ -709,7 +709,7 @@ test('badges: earned with a date, shown newest first on the profile, one card pe
 
 test('translation: "Çevir" fills the Turkish of a sentence when the server can translate, and is absent when not', async ({ page }) => {
   // Initially simulate server unavailable so button is absent regardless of live backend proxy.
-  await page.route('**/api/translate?usage=1', (r) => r.fulfill({ status: 503, json: { error: 'unavailable' } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.get('usage') === '1', (r) => r.fulfill({ status: 503, json: { error: 'unavailable' } }))
   await startWithSamples(page)
   await openScreen(page, 'Kelimeler')
   await page.getByRole('button', { name: 'Ekle', exact: true }).click()
@@ -975,7 +975,7 @@ test('CEFR levels: progress by textbook level, the missing words of a level, a w
 test('grammar check: the journal text flagged by LanguageTool, a suggestion applied in one tap', async ({ page }) => {
   await startWithSamples(page)
   const text = 'Je suis allé a la plage et il fesait beau.'
-  await page.route('https://api.languagetool.org/v2/check', (r) => {
+  await page.route((u) => u.hostname === 'api.languagetool.org' && u.pathname === '/v2/check', (r) => {
     const body = new URLSearchParams(r.request().postData() ?? '')
     expect(body.get('language')).toBe('fr')
     return r.fulfill({
