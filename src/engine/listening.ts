@@ -96,6 +96,10 @@ export const MINIMAL_PAIRS: Record<TargetLanguage, MinimalPair[]> = {
     p('esta', 'bu', 'está', 'bulunuyor', 'vurgu'),
     p('termino', 'bitiriyorum', 'terminó', 'bitirdi', 'vurgu'),
     p('hablo', 'konuşuyorum', 'habló', 'konuştu', 'vurgu'),
+    p('peso', 'ağırlık', 'beso', 'öpücük', 'p / b'),
+    p('pata', 'ayak (hayvan)', 'bata', 'önlük', 'p / b'),
+    p('vino', 'şarap', 'pino', 'çam', 'b / p'),
+    p('mar', 'deniz', 'bar', 'bar', 'm / b'),
   ],
 }
 
