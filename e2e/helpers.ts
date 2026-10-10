@@ -4,7 +4,7 @@ import { expect, type Page } from '@playwright/test'
 export async function startWithSamples(page: Page) {
   // The preview passes /api on to the live site: translation would call the real DeepL (and use
   // the month's characters). Off by default; a test about translation stubs it after this.
-  await page.route('**/api/translate**', (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
+  await page.route((u) => u.pathname === '/api/translate', (r) => r.fulfill({ status: 503, json: { error: 'not configured' } }))
   await page.goto('/')
   await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
   await page.locator('.lang-card', { hasText: 'Fransızca' }).click()

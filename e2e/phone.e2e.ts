@@ -439,7 +439,7 @@ test('a badge earned in a session gets its moment once, and so does one earned o
   // Not again on the home screen.
   await page.getByRole('button', { name: /^(Devam|Kapat|Tamam|Bitir|Ana sayfa)/ }).first().click({ timeout: 3000 }).catch(() => {})
   await openScreen(page, 'Bugün')
-  await page.waitForTimeout(500)
+  await expect(page.locator('.home-main, .today-summary, .session-launcher').first()).toBeVisible()
   await expect(moment).toHaveCount(0)
   // Outside a session: marking hard words earns "Zorluk avcısı", and the moment says so.
   await openScreen(page, 'Kelimeler')
@@ -788,7 +788,7 @@ test('badge cards line up: in a row the medals, titles and progress bars sit on 
   await startWithSamples(page)
   await openScreen(page, 'Profil')
   await page.getByRole('tab', { name: 'Rozetler' }).click()
-  await page.waitForTimeout(300)
+  await expect(page.locator('.badge-card').first()).toBeVisible()
   const rows = await page.locator('.badge-card').evaluateAll((cards) => {
     const byRow = new Map<number, { medal: number; title: number; titleH: number; bar: number | null; h: number }[]>()
     for (const c of cards) {
