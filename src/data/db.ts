@@ -968,6 +968,14 @@ export function parseBackup(json: string): Backup {
   if (data.version > BACKUP_VERSION) {
     throw new Error('Yedek, uygulamanın daha yeni bir sürümüyle alınmış. Önce uygulamayı güncelle.')
   }
+  // A damaged or hand-edited file must fail here, before a restore clears anything.
+  for (const key of ['wordStates', 'events', 'mistakes'] as const) {
+    if (data[key] === undefined) data[key] = []
+    else if (!Array.isArray(data[key])) throw new Error('Yedek dosyası bozuk görünüyor.')
+  }
+  if (data.vocabulary.some((v: unknown) => !v || typeof (v as { id?: unknown }).id !== 'string')) {
+    throw new Error('Yedek dosyası bozuk görünüyor.')
+  }
   return data as Backup
 }
 

@@ -31,6 +31,7 @@ export function SyncSettings() {
       if (fresh) await setSyncCode(fresh)
       const r = await runSync(true)
       showToast(`Eşitlendi.${r && (r.received || r.sent) ? ` ${r.received} görsel/kayıt alındı, ${r.sent} gönderildi.` : ''}`)
+      if (r?.skipped) setMessage({ ok: false, text: `${r.skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.` })
     } catch (e) {
       if (fresh) await setSyncCode(null)
       setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
