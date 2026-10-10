@@ -3,6 +3,7 @@ import type { Cue } from '../engine/subtitles'
 import type { TranslationEntry } from '../engine/translationMemory'
 import type { EarLog, EarMiss } from '../engine/earMisses'
 import type { GrammarLog } from '../engine/grammar'
+import type { DeductionLog } from '../engine/deduction'
 import type { BadgeLog } from '../engine/gamification'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
 import type { JournalReview } from '../ai/types'
@@ -666,6 +667,15 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'pairs', value: log })
   }
 
+  /** How the guesses of deduction mode in Reading went, per language (see engine/deduction). */
+  async getDeductionLog(): Promise<DeductionLog> {
+    return ((await this.meta.get('deduction'))?.value as DeductionLog) ?? {}
+  }
+
+  saveDeductionLog(log: DeductionLog) {
+    return this.meta.put({ key: 'deduction', value: log })
+  }
+
   /** Badges earned and when (see engine/gamification BadgeLog). */
   async getBadgeLog(): Promise<BadgeLog> {
     return ((await this.meta.get('badges'))?.value as BadgeLog) ?? {}
@@ -986,6 +996,8 @@ export interface Backup {
   traps?: GrammarLog
   /** How the sound pairs went. */
   pairs?: GrammarLog
+  /** How the deduction-mode guesses went. */
+  deduction?: DeductionLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
@@ -1041,6 +1053,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     reflex: await db.getReflexLog(),
     traps: await db.getTrapLog(),
     pairs: await db.getPairLog(),
+    deduction: await db.getDeductionLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -1128,5 +1141,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.reflex) await db.meta.put({ key: 'reflex', value: backup.reflex })
     if (backup.traps) await db.meta.put({ key: 'traps', value: backup.traps })
     if (backup.pairs) await db.meta.put({ key: 'pairs', value: backup.pairs })
+    if (backup.deduction) await db.meta.put({ key: 'deduction', value: backup.deduction })
   })
 }

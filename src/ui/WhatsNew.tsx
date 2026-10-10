@@ -35,6 +35,12 @@ export function WhatsNew({ words, onReading, onPractice, onGrammar }: { words: n
           <span className="small muted"> Pratik → Oyunlar'da: boşluk doldur, seç, hatalı kelimeyi bul; kuralı Türkçe gör.</span>
         </li>
         <li>
+          <button type="button" className="link" onClick={go(onReading)}>
+            Çıkarım modu
+          </button>
+          <span className="small muted"> Okuma'da "Çıkarım": bilinmeyen kelimelerin bir kısmı gizlenir; anlamını cümleden tahmin et, sonra dokun.</span>
+        </li>
+        <li>
           <strong>Kör nokta röntgeni</strong>
           <span className="small muted"> İlerleme → Genel bakış'ta: en çok takıldığın yerler, yanında çalışacağın oyunla. Bugün'de de her gün bir "zihin tohumu".</span>
         </li>

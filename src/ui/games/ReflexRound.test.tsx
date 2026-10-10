@@ -34,7 +34,7 @@ async function mount() {
   return host
 }
 const question = (host: HTMLElement) => reflexPhrases.find((p) => p.tr === host.querySelector('.word')?.textContent)!
-const option = (host: HTMLElement, text: string) => [...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.textContent?.includes(text))
+const option = (host: HTMLElement, text: string) => [...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.querySelector('.option-serif')?.textContent === text)
 
 describe('ReflexRound', () => {
   it('shows the Turkish with four choices; a quick right answer moves on by itself and is logged', async () => {
@@ -55,7 +55,7 @@ describe('ReflexRound', () => {
     await click(byText(host, 'Süre yok'))
     await click(byText(host, 'tura başla'))
     const first = question(host)
-    await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => !o.textContent?.includes(first.fr)))
+    await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.querySelector('.option-serif')?.textContent !== first.fr))
     expect(host.textContent).toContain('Olmadı.')
     expect(host.querySelector('.cross-warn strong')?.textContent).toBe(first.fr)
     await wait(800)
