@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-10 (5. tur eklendi).
+Son güncelleme: 2026-10-10 (6. tur eklendi).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -146,6 +146,40 @@ Son turlarda bölünen dosyalar yeni; davranışı sabitleyen bileşen testi yaz
 - `docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md` güncel duruma getir (yapılanları işaretle).
 
 **Tur sonu ölçütü:** 5.1'deki her bulguda `dosya:satır` ve ekran görüntüsü; 5.2–5.3'te hiçbir mevcut test silinmemiş; PR'lar tek konulu.
+
+---
+
+## 6. tur: ses kitabı eşleştirme, testler, erişilebilirlik, metin ve performans (5. tur bitti; kullanıcı istedi)
+
+**Çakışma uyarısı:** Claude Code `src/ui/Reading*.tsx`, `Listening.tsx`, `Session.tsx`, `src/engine/` ve `index.css`'in hareket/ikon bölümlerinde çalışıyor. Aşağıdaki işler bunlara **dokunmaz** (yeni dosya, `docs/`, `scripts/`, `e2e/`, `src/data/audiobooks/`); dokunman gerekirse PR açıklamasına yaz.
+
+### 6.1 LibriVox ses kitapları: bölüm bazlı metin-ses eşleştirme (veri)
+Sorun: `docs/kaynaklar/audiobooks-{fr,es}.json`'daki her ses tek bir kitaba (ör. La Fontaine "Livre 01", 44 dk) ait, ama Gutenberg metni tüm eserin tek dosyası. Uygulamada metnin sesi sentence-by-sentence takip edebilmesi için **ses parçası ile metin bölümü birebir** örtüşmeli (aynı kısım, aynı baskı).
+- En iyi 6–8 eseri seç (kısa, B1–B2, FR ve ES dengeli). Her biri için **bölüm bölüm**: LibriVox bölüm MP3'ü (doğrudan dosya, `HEAD` ile doğrula), Gutenberg metninde o bölümün **başlangıç ve bitiş işaretleri**, bölüm süresi, ve eşleşmenin doğrulandığı (ses 1–2 dakikasını metinle karşılaştırdığın) not.
+- Çıktı: `scripts/build-audiobook-chapters.ts` (Gutenberg düz metnini indirip bölümlere böler, başlık/dipnot/Gutenberg lisans başlığını ayıklar) ve `src/data/audiobooks/{fr,es}.json` (`id`, `title`, `author`, `chapter`, `audioUrl`, `text`, `credit`, `license`). Metin kamu malı; künyede LibriVox okuyucusu ve Gutenberg kimliği yer alsın.
+- Uygulamaya bağlama (arayüz) **Claude Code'da**: sen yalnızca veri ve betik; `ReadingText` biçimiyle (`title`, `text`, `audio`, `credit`, `source`) uyumlu alanlar ver.
+- Eşleşmesi doğrulanamayan bölümü veriye koyma, raporda "elendi (neden)" listele.
+
+### 6.2 Görsel referansları yenileme (hâlâ açık)
+Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turlarda değişenler: logo (sol üst), yan menü adı, Çeviri ekranı, Oyunlar listesi ve ikonları, okuma araç satırı (Çekimler/Dikte/Gölgele ikonları), ses paneli, fiil turu kartı, oturum özeti kademeli girişi. Beklenmeyen fark çıkarsa nedenini bul ve yaz.
+
+### 6.3 Yeni özelliklere birim testleri (davranışı değiştirme)
+- `src/ui/useSwipeAway.ts` (sola kaydırma eşiği, kısa kaydırmada geri yaylanma, fare yok sayılır, dikey hareket kaydırma sayılmaz).
+- `src/ui/verbs/LabTour.tsx` `TourCard` (gizle düğmesi, aynı gün hatırlama, ertesi gün yeniden görünme, "Geri al").
+- `src/ui/TranslateScreen.tsx` (yön değiştirme çeviriyi yeni metin yapar, "Örnek:" etiketi gönderilmez, aynı cümle bir kez istenir, son çeviriler tekrarsız ve dokununca yeniden açılır).
+- `Session.tsx` "Unuttum" (cevap gösterilir, yanlış sayılır, "emin değilim" notları çıkmaz; Alt+U).
+- `src/engine/listenFollow.ts` zaten testli; kenar durumlar bulursan (çok kısa metin, tek cümle, süre bilinmiyor) ekle ve davranış hatası bulursan düzeltmeden PR açıklamasına yaz.
+
+### 6.4 Erişilebilirlik kapsamı
+`e2e/a11y.e2e.ts` desenine uyarak `axe` taramaları: **Çeviri ekranı** (sonuç varken ve boşken, açık/koyu/sakin tema), okuma ekranında **ses paneli ve "Dışarıda çalış" kartı**, **Unuttum** düğmeli soru ekranı, çevrimdışı rozeti. 14 px'e çıkarılan ikon boyutlarının küçük kutularda (onay rozetleri, avatar kalem rozeti) taşmadığını/kesilmediğini `clippedContent` ile doğrula; sorun çıkarsa küçük ve kendi dosyanda olanı düzelt, diğerlerini PR açıklamasına yaz.
+
+### 6.5 Metin denetimi
+`docs/METIN-DENETIMI.md` ölçütleriyle: yeni metinler (Unuttum, Çekimler kartı, Çeviri ekranı, "Dışarıda çalış", takip ayarı "Şu an bu cümle okunuyor", fiil turu gizleme) tutarlı ve sade mi; **Diloloji** adının geçtiği her yerde (belgeler, `README.md`, `docs/`, e2e açıklamaları, `public/`, `package.json` açıklaması) isim güncel mi (kod yorumları ve iç tanımlayıcılar bilerek kalır). Düzeltmeleri kendi dosyalarında yap; `src/ui/*` içindekileri liste olarak PR açıklamasına yaz.
+
+### 6.6 Performans raporu
+`npx vite build` çıktısındaki parçaları (chunk) ve ilk açılış yükünü ölç (telefon, 4G benzeri kısıtlama ile Lighthouse ya da Playwright izleme). `docs/PERFORMANS.md`: en büyük 10 parça, ilk açılışta yüklenen kod/veri, kullanılmayan büyük bağımlılıklar, sözlük paketi ve sesli içerik önbelleği, öneriler (etkisi büyük, riski düşük sırayla, `dosya` ile). Kod değiştirme; yalnızca rapor.
+
+**Tur sonu ölçütü:** 6.1'de her bölüm bağlantısı doğrulanmış ve metin-ses eşleşmesi notlu; 6.3–6.4'te hiçbir mevcut test silinmemiş; PR'lar tek konulu.
 
 ---
 
