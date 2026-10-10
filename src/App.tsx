@@ -39,7 +39,7 @@ import { weekLine, weekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
 
 import { natural } from './ui/naturalVoice'
-import { onSynced, runSync } from './ui/syncRunner'
+import { announceIncoming, onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
 
 import { gardenSummary } from './engine/growth'
@@ -235,7 +235,7 @@ export default function App() {
 
   // Pull what other devices did on start, then keep in step after every session.
   useEffect(() => {
-    void runSync()
+    void runSync().then(announceIncoming)
     return onSynced(async () => {
       setSettings((await db.getSettings()) ?? null)
       reload()

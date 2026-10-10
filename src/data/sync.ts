@@ -306,16 +306,35 @@ async function download(id: string, part: string, code: Credential): Promise<Byt
   return (await fetchPart(id, part, code))?.bytes ?? null
 }
 
+/** What the server takes in one request (MAX_BYTES in api/sync.ts): the core file must fit. */
+export const CORE_LIMIT_BYTES = 4_400_000
+
+/** How full the core file is: its share of the limit, shown in Settings; from 80% a warning. */
+export function syncUsage(bytes: number): { percent: number; label: string; warn: boolean } {
+  const mb = (n: number) => (n / 1_000_000).toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  const percent = Math.min(100, Math.round((bytes / CORE_LIMIT_BYTES) * 100))
+  return { percent, label: `${mb(bytes)} MB / ${mb(CORE_LIMIT_BYTES)} MB`, warn: percent >= 80 }
+}
+
+/** The synced data no longer fits the server's limit (HTTP 413). */
+export class SyncTooLargeError extends Error {
+  override name = 'SyncTooLargeError'
+}
+
 /** Another device wrote the file after this one read it (HTTP 412). */
 export class SyncConflictError extends Error {
   override name = 'SyncConflictError'
 }
 
-async function upload(id: string, part: string, data: Bytes, code: Credential, ifMatch?: string) {
-  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: await seal(data, code), headers: { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}) } })
+/** Sends one sealed part; returns its size in bytes. */
+async function upload(id: string, part: string, data: Bytes, code: Credential, ifMatch?: string): Promise<number> {
+  const sealed = await seal(data, code)
+  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: sealed, headers: { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}) } })
   if (res.status === 403) throw await refusal(res)
   if (res.status === 412) throw new SyncConflictError('changed meanwhile')
+  if (res.status === 413 && part === 'core') throw new SyncTooLargeError('core too large')
   if (!res.ok) throw new Error(`sync ${res.status}`)
+  return sealed.length
 }
 
 /** Media ids become file names on the server; hashing keeps them to a safe alphabet. */
@@ -335,6 +354,23 @@ export interface SyncResult {
   sent: number
   /** Media items left out (too big, or failing to travel): the rest of the sync went through anyway. */
   skipped: number
+  /** What the other devices changed on this one: new words, words they deleted, texts, settings fields. */
+  incoming: { words: number; removed: number; texts: number; settings: number }
+}
+
+/** What merging brought in from the other devices, counted against what this device had. */
+export function incomingChanges(local: Backup, merged: Backup): SyncResult['incoming'] {
+  const had = new Set(local.vocabulary.map((v) => v.id))
+  const has = new Set(merged.vocabulary.map((v) => v.id))
+  const texts = new Set((local.reading?.library ?? []).map((t) => t.id))
+  const was = (local.settings ?? {}) as unknown as Record<string, unknown>
+  const now = (merged.settings ?? {}) as unknown as Record<string, unknown>
+  return {
+    words: merged.vocabulary.filter((v) => !had.has(v.id)).length,
+    removed: local.vocabulary.filter((v) => !has.has(v.id)).length,
+    texts: (merged.reading?.library ?? []).filter((t) => !texts.has(t.id)).length,
+    settings: Object.keys(now).filter((k) => JSON.stringify(now[k]) !== JSON.stringify(was[k])).length,
+  }
 }
 
 /**
@@ -406,6 +442,8 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const remote = remoteBytes ? parseBackup(new TextDecoder().decode(remoteBytes)) : null
   const merged = remote ? mergeBackups(local, remote) : local
   if (remote) await restoreBackup(db, merged, { keepMedia: true })
+  // The very first sync of a device is joining, not news: only later ones report what came in.
+  const incoming = remote && (await db.meta.get('syncAt')) ? incomingChanges(local, merged) : { words: 0, removed: 0, texts: 0, settings: 0 }
 
   // Media: the remote list says which pictures/recordings exist elsewhere.
   const localMedia = new Set((await db.media.toCollection().primaryKeys()) as string[])
@@ -453,7 +491,8 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   }
   // Items that did not go up stay off the list, so other devices don't ask for what the server doesn't have.
   const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:') && !unsent.has(m))
-  await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code, fetched?.etag)
+  const coreBytes = await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code, fetched?.etag)
+  await db.meta.put({ key: 'syncSize', value: coreBytes })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
-  return { received, sent, skipped }
+  return { received, sent, skipped, incoming }
 }

@@ -20,7 +20,7 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const api = await import('../../api/sync')
-const { deriveAccount, syncNow } = await import('./sync')
+const { deriveAccount, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
@@ -69,5 +69,53 @@ describe('two devices syncing at once', () => {
 
     await syncNow(phone, acc)
     expect((await phone.vocabulary.toArray()).map((v) => v.lemma).sort()).toEqual(['chat', 'chien', 'maison'])
+  }, 60_000)
+})
+
+describe('size of the synced data', () => {
+  it('is remembered after a sync, and shown as a share of the limit with a warning from 80%', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    const phone = new KelimeDB('t-size-phone')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await syncNow(phone, acc)
+    const bytes = (await phone.meta.get('syncSize'))?.value as number
+    expect(bytes).toBeGreaterThan(100)
+    expect(syncUsage(bytes).warn).toBe(false)
+    expect(syncUsage(CORE_LIMIT_BYTES * 0.8)).toMatchObject({ percent: 80, warn: true })
+    expect(syncUsage(CORE_LIMIT_BYTES * 3)).toMatchObject({ percent: 100, warn: true })
+    expect(syncUsage(2_200_000).label).toBe('2,2 MB / 4,4 MB')
+  }, 60_000)
+
+  it('a core file over the server limit is a SyncTooLargeError, not "no internet"', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    const phone = new KelimeDB('t-size-big')
+    const entry = createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date())
+    // Random bytes do not compress: the sealed file is about as big as this.
+    const noise = Array.from({ length: 110 }, () => btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(49_152))))).join('')
+    await phone.vocabulary.put({ ...entry, note: noise } as never)
+    await expect(syncNow(phone, acc)).rejects.toBeInstanceOf(SyncTooLargeError)
+  }, 60_000)
+})
+
+describe('what the other devices brought', () => {
+  it('counts new and deleted words, texts and settings on a later sync, and nothing on the first', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    const phone = new KelimeDB('t-news-phone')
+    const laptop = new KelimeDB('t-news-laptop')
+    const maison = createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date())
+    await laptop.vocabulary.put(maison)
+    await syncNow(laptop, acc)
+    // The phone joining is not news.
+    expect((await syncNow(phone, acc)).incoming).toEqual({ words: 0, removed: 0, texts: 0, settings: 0 })
+
+    vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
+    await laptop.vocabulary.put(createEntry({ word: 'chat', meaning: 'kedi' }, 'fr', new Date()))
+    await laptop.deleteWord(maison.id)
+    await laptop.saveSettings({ ...(((await laptop.getSettings()) ?? {}) as object), theme: 'dark' } as never)
+    await syncNow(laptop, acc)
+    const r = await syncNow(phone, acc)
+    expect(r.incoming).toMatchObject({ words: 1, removed: 1 })
+    expect(r.incoming.settings).toBeGreaterThanOrEqual(1)
+    expect((await syncNow(phone, acc)).incoming).toEqual({ words: 0, removed: 0, texts: 0, settings: 0 })
   }, 60_000)
 })

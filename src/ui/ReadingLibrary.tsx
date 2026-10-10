@@ -1,4 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
+import { AudiobooksPicker } from './AudiobooksPicker'
 import { ClassicsPicker } from './ClassicsPicker'
 import { ListeningPicker } from './Listening'
 import { NewsPicker } from './News'
@@ -6,6 +7,7 @@ import { StorybooksPicker } from './StorybooksPicker'
 import { WikipediaPicker } from './WikipediaPicker'
 import { BookIcon, PlayIcon, CloseIcon } from './icons'
 import { showToast } from './toastFeed'
+import { chapterToReadingText } from '../data/audiobooks'
 import { storyCredit } from '../data/storybooks'
 import type { KelimeDB, ReadingText } from '../data/db'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
@@ -171,6 +173,21 @@ export function SourcePickers({
           addedAt: new Date().toISOString(),
           history: [],
         }
+        await db.saveText(item)
+        setLibrary((lib) => [item, ...(lib ?? [])])
+        await open(item)
+      }}
+    />
+    <AudiobooksPicker
+      language={language}
+      vocabulary={vocabulary}
+      states={states}
+      known={known}
+      onRead={async (chapter) => {
+        // Opened before: the same text, with its reading history.
+        const had = (library ?? []).find((t) => t.id === chapter.id)
+        if (had) return void (await open(had))
+        const item = chapterToReadingText(chapter)
         await db.saveText(item)
         setLibrary((lib) => [item, ...(lib ?? [])])
         await open(item)

@@ -3,10 +3,10 @@ import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, GlobeIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { SyncAuthError, SyncNotAllowedError, type Account } from '../data/sync'
+import { SyncAuthError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, runSync, setAccount } from './syncRunner'
+import { getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, TOO_LARGE, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { SyncSettings } from './SyncSettings'
 import { undoable } from './toastFeed'
@@ -40,7 +40,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       await runSync(true)
       showToast('Eşitlendi.')
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
+      setMessage({ ok: false, text: e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()

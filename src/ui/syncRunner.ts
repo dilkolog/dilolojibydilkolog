@@ -1,4 +1,5 @@
 import { db } from '../data/instance'
+import { showToast } from './toastFeed'
 import { syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
 
 /** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
@@ -6,6 +7,9 @@ export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; e�
 
 /** Shown when another device saved its data with a newer version of the app. */
 export const NEWER_VERSION = 'Başka bir cihazın uygulaması daha yeni; eşitlemek için bu cihazda uygulamayı güncelle (sayfayı yenile).'
+
+/** Shown when the synced data outgrew the server's limit for one file. */
+export const TOO_LARGE = 'Eşitlenecek veri sunucunun sınırını aştı. Kullanmadığın okuma metinlerini ya da eski çeviri belleğini azaltıp tekrar dene (Ayarlar → Cihazlar arası eşitleme boyutu gösterir).'
 
 /** One sync at a time; listeners hear when data may have changed. */
 let running: Promise<SyncResult | null> | null = null
@@ -60,4 +64,18 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
     }
   })()
   return running
+}
+
+/** "Diğer cihazlarından: 3 yeni kelime, 1 silinen kelime", or '' when nothing came in. */
+export function describeIncoming(r: SyncResult | null): string {
+  if (!r) return ''
+  const { words, removed, texts, settings } = r.incoming
+  const parts = [words && `${words} yeni kelime`, removed && `${removed} silinen kelime`, texts && `${texts} yeni metin`, settings && `${settings} ayar değişikliği`].filter(Boolean)
+  return parts.length ? `Diğer cihazlarından: ${parts.join(', ')}.` : ''
+}
+
+/** After a background sync: says what the other devices changed here, if anything. */
+export function announceIncoming(r: SyncResult | null): void {
+  const line = describeIncoming(r)
+  if (line) showToast(line)
 }

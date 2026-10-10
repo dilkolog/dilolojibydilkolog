@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -364,6 +364,22 @@ export async function monthlyReport(apiKey: string, req: ErrorReportRequest): Pr
   ].join('\n')
   const user = [`Last 30 days: ${req.answers} answers, ${req.wrong} not correct.`, 'Errors, most frequent first:', ...req.lines].join('\n')
   return structured(apiKey, Report, system, user, 'medium', 'report')
+}
+
+const SessionNoteSchema = z.object({
+  note: z.string().describe('One or two short sentences in Turkish: the pattern behind this session\'s mistakes and one concrete thing to do about it.'),
+})
+
+/** One concrete remark on the mistakes of a single session. */
+export async function sessionNote(apiKey: string, req: SessionNoteRequest): Promise<string> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are an experienced ${lang} teacher. A Turkish adult learner just finished a vocabulary practice session; you see only its mistakes.`,
+    'Say what pattern the mistakes share (gender of a suffix group, a confusable pair, accents, a false friend, a spelling rule) and give one concrete tip. If there is no real pattern, say so in one sentence and name the word worth another look.',
+    'Write in Turkish, at most two short sentences, warm and specific; target-language examples are allowed. No greetings, no lists.',
+  ].join('\n')
+  const user = [`${req.answers} answers, ${req.wrong} not correct.`, ...req.lines].join('\n')
+  return (await structured(apiKey, SessionNoteSchema, system, user, 'low', 'session_note')).note
 }
 
 // ---------------------------------------------------------------------------
