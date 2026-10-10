@@ -5111,3 +5111,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* ---------- Icons inside buttons and chips are centred by the box, not nudged down ---------- */
 .btn .inline-icon, .chip .inline-icon, .link .inline-icon, .icon-btn .inline-icon, .unsure-chip .inline-icon { vertical-align: middle; }
 
+/* ---------- Reading: a sentence shown from the forms list lights up, then fades ---------- */
+@keyframes sentence-flash { 0%, 55% { background-color: var(--lang-soft); } 100% { background-color: transparent; } }
+.rs.is-flash { border-radius: var(--r-sm); animation: sentence-flash 2.2s var(--ease-out); }
+.text-forms-item { display: flex; align-items: center; gap: 0.25rem; }
+.text-forms-item > .word-row { flex: 1; min-width: 0; }
+
