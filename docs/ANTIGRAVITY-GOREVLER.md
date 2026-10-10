@@ -80,7 +80,7 @@ Aynı yöntem: bölüm bölüm ayır (Görünüm, Sorular, Veriler, Hesap…). A
 
 ---
 
-## 4. tur: içerik araştırması ve bakım (1–3. tur birleşti; kullanıcı onayladı)
+## 4. tur: içerik araştırması ve bakım (TAMAMLANDI — #165, #166, #170, #172, #173)
 
 Claude Code'un çalıştığı ortamın ağı kısıtlı: LibriVox, Gutenberg, archive.org, Wikisource ve COERLL'e **erişemiyor**. Bu yüzden internet gerektiren araştırma işleri sende. Yöntem `docs/kaynaklar/` ile aynı: önce rapor ve doğrulanmış liste, uygulamaya bağlama ayrı PR.
 
