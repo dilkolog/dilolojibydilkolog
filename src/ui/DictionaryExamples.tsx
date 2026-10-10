@@ -4,7 +4,7 @@ import { fetchCorpus } from '../data/corpus'
 import { cleanToken } from '../engine/extract'
 import { TARGET_LANGUAGES, type Example, type TargetLanguage } from '../engine/types'
 import { useAi } from './aiContext'
-import { SparkleIcon, SpeakerIcon } from './icons'
+import { WandIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_SHORT } from './labels'
 import { usePatterns } from './usePatterns'
 import { LinesSkeleton } from './Skeleton'
@@ -207,7 +207,7 @@ export function DictionaryExamples({
           {apiKey && (
             <div className="row">
               <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={aiLoading}>
-                <SparkleIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile yeni örnek cümle üret'}
+                <WandIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile yeni örnek cümle üret'}
               </button>
             </div>
           )}
@@ -221,7 +221,7 @@ export function DictionaryExamples({
             {apiKey && (
               <div className="row">
                 <button type="button" className="btn btn-sm" onClick={askAi} disabled={aiLoading}>
-                  <SparkleIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile örnek cümle üret'}
+                  <WandIcon size={15} /> {aiLoading ? 'Cümle oluşturuluyor…' : 'AI ile örnek cümle üret'}
                 </button>
               </div>
             )}

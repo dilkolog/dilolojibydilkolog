@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import { addedTime, type CefrLevel, type Mistake, type TargetLanguage, type UserWordState, type VocabularyEntry, type WordList as WordListRow } from '../engine/types'
 import { bandOf } from '../data/wordInput'
-import { BoltIcon, CheckIcon, ImageIcon, MicIcon, PlusIcon, SlidersIcon } from './icons'
+import { BoltIcon, CheckIcon, ImageIcon, MicIcon, PlusIcon, SlidersIcon, SearchIcon } from './icons'
 import { Plant } from './Plant'
 import { growthStage, plantHealth } from '../engine/growth'
 import { scheduler } from '../data/instance'
@@ -288,10 +288,7 @@ export function WordList({
         <>
           <div className="words-bar">
             <div className="search">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
+              <SearchIcon size={18} />
               <input type="search" enterKeyHint="search" autoCapitalize="off" autoCorrect="off" className="input" placeholder="Kelime, anlam ya da not ara" aria-label="Kelime ara" value={query} onChange={(e) => setQuery(e.target.value)} />
             </div>
             <button className={`btn ${selecting ? '' : 'btn-quiet'}`} onClick={() => (selecting ? exitSelection() : setSelecting(true))}>
@@ -551,7 +548,7 @@ export function WordList({
                   <li key={v.id}>
                     <button className={`gallery-tile${isSel ? ' is-selected' : ''}`} onClick={(e) => clickRow(index, v.id, e.shiftKey)} aria-pressed={selecting ? isSel : undefined}>
                       <GalleryArt entry={v} />
-                      {selecting && <span className={`row-check gallery-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={13} />}</span>}
+                      {selecting && <span className={`row-check gallery-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={14} />}</span>}
                       <span className="w">
                         <WordLabel entry={v} />
                       </span>
@@ -586,7 +583,7 @@ export function WordList({
                           {selecting && (
                             <td>
                               <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>
-                                {isSel && <CheckIcon size={13} />}
+                                {isSel && <CheckIcon size={14} />}
                               </span>
                             </td>
                           )}
@@ -623,7 +620,7 @@ export function WordList({
                       onClick={(e) => clickRow(index, v.id, e.shiftKey)}
                       aria-pressed={selecting ? isSel : undefined}
                     >
-                      {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={13} />}</span>}
+                      {selecting && <span className={`row-check${isSel ? ' is-on' : ''}`} aria-hidden>{isSel && <CheckIcon size={14} />}</span>}
                       <span className="word-row-plant" title={st ? STAGE_NAME[masteryStage(st)] : 'Sırada'}>
                         <Plant stage={growthStage(st)} health={plantHealth(st, scheduler, now)} size={30} />
                       </span>
@@ -641,7 +638,7 @@ export function WordList({
                             </>
                           )}
                           {v.source !== 'sample' && bandOf(v.frequencyRank) && `, ${bandOf(v.frequencyRank)!.short}`}
-                          {v.audioId && <MicIcon size={12} className="inline-icon is-end" />}
+                          {v.audioId && <MicIcon size={14} className="inline-icon is-end" />}
                           {v.tags.length > 0 && ` · ${v.tags.map((t) => `#${t}`).join(' ')}`}
                         </span>
                       </span>

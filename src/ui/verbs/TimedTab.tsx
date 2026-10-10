@@ -9,7 +9,7 @@ import { db } from '../../data/instance'
 import { prefs } from '../prefs'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
-import { FlameIcon, HeartIcon, SproutIcon, BoltIcon } from '../icons'
+import { FlameIcon, HeartIcon, SproutIcon, TimerIcon } from '../icons'
 import { sfx } from '../sounds'
 import { Diagnosis } from './Diagnosis'
 import { CORE_TENSES, tenseName, verbEntry, type LabLanguage } from './labShared'
@@ -46,7 +46,7 @@ const SETUPS: Record<Difficulty, Setup> = {
   },
   medium: {
     name: 'Orta',
-    icon: BoltIcon,
+    icon: TimerIcon,
     times: 2,
     seconds: 10,
     levels: ['A1', 'A2', 'B1'],

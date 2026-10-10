@@ -335,7 +335,7 @@ export function Summary({
                       <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
                       <span className="small">
-                        {w.correct > 0 && <span className="garden-ok"><CheckIcon size={13} className="inline-icon" />{w.correct}</span>} {w.wrong > 0 && <span className="garden-bad"><CloseIcon size={13} className="inline-icon" />{w.wrong}</span>}
+                        {w.correct > 0 && <span className="garden-ok"><CheckIcon size={14} className="inline-icon" />{w.correct}</span>} {w.wrong > 0 && <span className="garden-bad"><CloseIcon size={14} className="inline-icon" />{w.wrong}</span>}
                         {w.wrong > 0 && !practice && <span className="muted"> · yakında tekrar</span>}
                       </span>
                     </span>

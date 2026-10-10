@@ -5,7 +5,7 @@ import { AI_MODELS, AiError, FEATURE_NAME, modelInfo, monthKey, testKey, type Ai
 import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { useAi } from './aiContext'
-import { SparkleIcon } from './icons'
+import { WandIcon } from './icons'
 
 const LIMITS = [0, 2, 5, 10, 20]
 const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`.replace('.', ',')
@@ -44,7 +44,7 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
   return (
     <section className="section card stack">
       <h2 className="section-title row gap-2">
-        <SparkleIcon size={20} className="icon-star" /> AI yardımcısı
+        <WandIcon size={20} className="icon-star" /> AI yardımcısı
       </h2>
       <Help text={'Kelime eklerken anlamı, örnek cümleyi ve kalıpları doldurur, cümlelerini değerlendirir. Açıkken ayrıca metinden çıkardığın kelimeler toplu doldurulur ve "kendi cümleni kur" alıştırması açılır. Kapalıyken uygulamanın geri kalanı aynen çalışır.'} />
       {apiKey ? (

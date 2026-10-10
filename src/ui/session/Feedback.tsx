@@ -172,7 +172,7 @@ export function Feedback({
             )}
             {onEdit && (
               <button className="link small" onClick={onEdit} title="Kelimeyi düzelt (E)">
-                <PenIcon size={13} className="inline-icon" />
+                <PenIcon size={14} className="inline-icon" />
                 Kelimeyi düzelt
               </button>
             )}

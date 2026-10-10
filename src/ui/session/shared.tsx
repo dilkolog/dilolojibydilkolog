@@ -114,7 +114,7 @@ export function Sentence({ text, translation, source, blankStart, lang }: { text
       {translation && <p className="sentence-tr">{translation}</p>}
       {source && (
         <p className="sentence-source">
-          {source.kind === 'reading' ? <BookIcon size={13} /> : source.kind === 'own' ? <PenIcon size={13} /> : <PinIcon size={13} />}
+          {source.kind === 'reading' ? <BookIcon size={14} /> : source.kind === 'own' ? <PenIcon size={14} /> : <PinIcon size={14} />}
           {source.text}
         </p>
       )}

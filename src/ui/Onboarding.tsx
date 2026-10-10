@@ -106,7 +106,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
           {STEP_TITLES.map((t, i) => (
             <li key={t} className={i === step ? 'is-now' : i < step ? 'is-done' : ''} aria-current={i === step ? 'step' : undefined}>
               <span className="ob-dot" aria-hidden>
-                {i < step ? <CheckIcon size={12} /> : i + 1}
+                {i < step ? <CheckIcon size={14} /> : i + 1}
               </span>
               <span className="ob-label">{t}</span>
             </li>

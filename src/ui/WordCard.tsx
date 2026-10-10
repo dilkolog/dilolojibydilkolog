@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
-import { PlayIcon } from './icons'
+import { PlayIcon, CloseIcon } from './icons'
 import { cleanToken } from '../engine/extract'
 import type { ReadToken } from '../engine/reading'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
@@ -88,7 +88,7 @@ export function WordCard({
             {selectedEntry ? `${selectedEntry.article ? `${selectedEntry.article} ` : ''}${selectedEntry.lemma}` : cleanToken(selected.token.text, language)}
           </strong>
           <button className="icon-btn" onClick={onClose} aria-label="Kapat">
-            ×
+            <CloseIcon size={16} />
           </button>
         </div>
       </div>

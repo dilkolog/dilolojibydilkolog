@@ -4,7 +4,7 @@ import type { KelimeDB } from '../data/db'
 import { addExample, markWord, MAX_EXAMPLES, removeExample, WordInputError } from '../data/wordInput'
 import { AiError, suggestFields } from '../ai'
 import { useAi } from './aiContext'
-import { SparkleIcon, SpeakerIcon } from './icons'
+import { SparkleIcon, SpeakerIcon, CloseIcon } from './icons'
 import { ShadowButton } from './Shadow'
 import { canSpeak, playWord, speak, speechPrefs } from './speech'
 import { easyFor, fetchCorpus } from '../data/corpus'
@@ -123,7 +123,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
                   }}
                   aria-label="Cümleyi sil"
                 >
-                  ×
+                  <CloseIcon size={16} />
                 </button>
               </div>
             </li>
@@ -266,7 +266,7 @@ export function CorpusExamples({ db, entry, onChanged }: { db: KelimeDB; entry: 
                   }}
                   aria-label="Bu cümleyi kaldır"
                 >
-                  ×
+                  <CloseIcon size={16} />
                 </button>
               </div>
             </li>

@@ -65,7 +65,7 @@ export function ConjugationTable({ entry, initial, productionReps }: { entry: Ve
                   tabIndex={on ? 0 : -1}
                   onClick={() => setPicked(g.tenses[0])}
                 >
-                  {g.tenses.every(locked) && <LockIcon size={12} className="inline-icon" />}
+                  {g.tenses.every(locked) && <LockIcon size={14} className="inline-icon" />}
                   {g.label}
                 </button>
               )
@@ -78,7 +78,7 @@ export function ConjugationTable({ entry, initial, productionReps }: { entry: Ve
                 <div className="tense-sub" role="group" aria-label="Zaman">
                   {group.map((t) => (
                     <button key={t} type="button" className={`chip chip-sm${locked(t) ? ' is-locked' : ''}`} aria-pressed={t === tense} onClick={() => setPicked(t)} lang={lang}>
-                      {locked(t) && <LockIcon size={12} className="inline-icon" />}
+                      {locked(t) && <LockIcon size={14} className="inline-icon" />}
                       {TENSE_GUIDE[t].name}
                     </button>
                   ))}

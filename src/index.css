@@ -5108,3 +5108,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-tour-card:not(.is-swiping) { transition: transform var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out); }
 .lab-tour-actions { display: flex; align-items: center; gap: 0.5rem; }
 
+/* ---------- Icons inside buttons and chips are centred by the box, not nudged down ---------- */
+.btn .inline-icon, .chip .inline-icon, .link .inline-icon, .icon-btn .inline-icon, .unsure-chip .inline-icon { vertical-align: middle; }
+

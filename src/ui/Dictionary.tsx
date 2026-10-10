@@ -13,7 +13,7 @@ import { labTensesOf } from '../engine/tenses'
 import { LevelChip } from './LevelChip'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
-import { BookIcon, CheckIcon, PenIcon, PlusIcon, SparkleIcon, SpeakerIcon, TenseIcon } from './icons'
+import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SearchIcon, SpeakerIcon, WandIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { DictionaryExamples } from './DictionaryExamples'
 import { PageHeader } from './PageHeader'
@@ -134,10 +134,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
             if (first) pick(first)
           }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
+          <SearchIcon size={18} />
           <input
             type="search"
             enterKeyHint="search"
@@ -395,7 +392,7 @@ function WordCard({
                     setEditing(true)
                   }}
                 >
-                  <PenIcon size={13} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
+                  <PenIcon size={14} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
                 </button>
               </p>
             </>
@@ -422,7 +419,7 @@ function WordCard({
           )}
           {isVerb && onOpenLab && (
             <button className="btn btn-sm btn-quiet" onClick={() => onOpenLab(word)}>
-              <TenseIcon size={15} /> Çekimleri
+              <ConjugationsIcon size={15} /> Çekimleri
             </button>
           )}
         </div>
@@ -597,7 +594,7 @@ function NotFound({
           <div className="row gap-xs">
             {apiKey && (
               <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={busy}>
-                <SparkleIcon size={15} /> {busy ? 'Soruluyor…' : 'AI ile anlamını bul'}
+                <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'AI ile anlamını bul'}
               </button>
             )}
             <a className="btn btn-sm btn-quiet" href={wiktionaryUrl(word, language)} target="_blank" rel="noreferrer">

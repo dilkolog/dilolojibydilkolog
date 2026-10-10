@@ -5,7 +5,7 @@ import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
-import { BoltIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { TimerIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { Diagnosis } from './Diagnosis'
@@ -33,7 +33,7 @@ const MODES: { id: Mode; label: string; hint: string; icon: typeof PenIcon; main
   { id: 'type', label: 'Yaz', hint: 'Altı biçimi yaz', icon: PenIcon, main: true },
   { id: 'choose', label: 'Seç', hint: 'Doğru biçimi seç', icon: TargetIcon, main: true },
   { id: 'sentence', label: 'Cümlede', hint: 'Gerçek cümlenin boşluğuna yaz', icon: ReadIcon, main: true },
-  { id: 'timed', label: 'Zamana karşı', hint: 'Birçok fiil, 60 saniye', icon: BoltIcon, main: true },
+  { id: 'timed', label: 'Zamana karşı', hint: 'Birçok fiil, 60 saniye', icon: TimerIcon, main: true },
   { id: 'listen', label: 'Dinle', hint: 'Duyduğun biçimi yaz', icon: HeadphonesIcon },
   { id: 'speak', label: 'Söyle', hint: 'Biçimi sesli söyle', icon: MicIcon },
   { id: 'match', label: 'Eşleştir', hint: 'Kişileri biçimleriyle eşleştir', icon: PuzzleIcon },
