@@ -288,6 +288,8 @@ Tek eğri ailesi, üç süre: basma 80 ms (`--dur-press`), üzerine gelme ve ren
 
 **Azaltılmış Hareket Kuralı.** Her animasyon `prefers-reduced-motion: reduce` altında kapanır ya da anlık olur.
 
+**Süs Sonludur Kuralı.** Sonsuz döngü yalnızca bir durum için kullanılır (kayıt, yükleme, ses, azalan süre). Süs (boş durum çizimleri, gökyüzü, alev, zor kelime nabzı) birkaç tur oynar ve durur; ekran yeniden açılınca tekrar oynar. Geri-ileri (`alternate`) giden süslerde tur sayısı çift olur, böylece ilk karede durur.
+
 ## Yerleşim
 
 Telefon önce gelir. Kırılma noktaları: **30rem** (telefon, en sık kullanılan), 40rem, 46rem (tablet), 64rem (masaüstü). Dikey ritim `.stack` (çocuklar arası 1rem) ve `.section + .section` (2.5rem) ile kurulur. Kutucuk ve kart ızgaraları `auto-fit` + `minmax(min(13–14rem, 100%), 1fr)` ile kendiliğinden sarar.
