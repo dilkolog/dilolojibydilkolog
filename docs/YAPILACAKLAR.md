@@ -250,7 +250,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [ ] ~~Metin seviyesi rozeti~~: denendi, kısa metinlerde güvenilir çıkmadı (konuya özgü kelimeler listelerde yok); yapılmadı.
 - [x] **Altyapı (Antigravity: #101, #102, #104, #106, #108, #117, #119, #121, #123):** erişilebilirlik etiketi, birim testleri, klasik metinler, belge güncellemeleri, Fast Refresh uyarıları, kararsız E2E düzeltmesi.
 
-## 2026-10-10 Geliştirmeleri (#153–#181)
+## 2026-10-10 Geliştirmeleri (#153–#201)
 - [x] **Kullanılabilirlik ve Tasarım İyileştirmeleri (#153, #155, #158, #159):**
   - #153: Çevrimdışı göstergesi (`OfflineBadge.tsx`, sakin üst rozet).
   - #155: Alt sekmelerin görünürlüğü (seçili sekme göstergesi ve kaydırma ipucu).
@@ -260,18 +260,34 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - #160: `Words.tsx` (1634 satır) modüler bileşenlere ayrıldı (`WordForm`, `WordListView`).
   - #161: `SettingsScreen.tsx` (844 satır) modüler bileşenlere ayrıldı (`StudySettings`, `AnswerSettings`, `SoundSettings` vb.).
   - #170: `Progress.tsx` (655 satır) modüler bileşenlere ayrıldı (`WeekHero`, `ProgressCharts`, `ProgressMemory`, `ProgressTests`).
-- [x] **İçerik ve Araştırma (#165, #166, #177):**
+- [x] **İçerik ve Araştırma (#165, #166, #177, #187, #190, #200):**
   - #165: LibriVox + Gutenberg B1+ sesli kitaplar envanteri (`audiobooks-fr.json`, `audiobooks-es.json`, `README.md`).
   - #166: COERLL dil bilgisi içerikleri araştırma raporu (`docs/kaynaklar/coerll.md`).
   - #177: İkon denetimi raporu (`docs/IKON-DENETIMI.md`) ve telefon koyu tema ekran görüntüleri.
   - TV5Monde ve DELE Ahora içerik kullanım şartları ve telif hakları raporu (`docs/kaynaklar/tv5monde-dele-ahora.md`).
-  - #187: LibriVox ses kitapları bölüm bazlı metin-ses eşleştirme (23 bölüm, `src/data/audiobooks/{fr,es}.json`, `docs/kaynaklar/audiobooks-chapters.md`).
-- [x] **Test Sağlamlığı ve Kapsam (#156, #172, #173, #179, #181):**
+  - #187, #190: LibriVox ses kitapları bölüm bazlı metin-ses eşleştirme (23 doğrulanmış bölüm, `src/data/audiobooks/{fr,es}.json`, `docs/kaynaklar/audiobooks-chapters.md`).
+  - #200: Okuma kütüphanesinde LibriVox sesli kitap bölüm seçici bileşeni (`AudiobooksPicker.tsx`).
+- [x] **Yeni Özellikler ve Öğrenme Akışı (#182, #188, #192, #195, #200):**
+  - #182: Çekim listesi ve fiil tekrarı köprüsü (`textForms.ts`, dönüşlü ve bileşik zamanlar `s'est lavé`, metinde cümlenin aydınlatılması, fiil laboratuvarı tekrar kuyruğuna ekleme).
+  - #188: Soru ekranında "Unuttum" butonu (Alt+U, cevabı gösterir, yanlış sayar, `SessionForgot`).
+  - #188: Fiil turu kartını sola kaydırarak veya kapat butonuyla gizleme (`useSwipeAway.ts`).
+  - #192: Yeni özelliklere kapsamlı birim testleri (`useSwipeAway`, `TourCard`, `TranslateScreen`, `SessionForgot`, `listenFollow`).
+  - #195: Marka ve isim güncellemesi: Uygulama adı "Diloloji" olarak güncellendi (`README.md`, `package.json`, browser extension).
+  - #200: Oturum sonu yapay zekâ değerlendirme notu (`SessionNote.tsx`, `sessionNote.ts`).
+- [x] **Güvenlik Kopyası, Eşitleme Medya Sınırı ve Çatışma Çözümü (#197, #198, #199):**
+  - #197: Eşitlemede 3 MB'tan büyük veya iletilemeyen medyayı atlayıp çekirdek veriyi eşitleme (`SyncResult.skipped`, `SyncSettings` uyarısı).
+  - #197: Geri yükleme öncesi cihaz durumunu otomatik saklama (`safetyBackup.ts`) ve Ayarlar → Veriler'de "Önceki hâle dön" ile kurtarma.
+  - #198: Cihazlar arası eşitleme çatışma ve birleştirme kuralları (`mergeRules.test.ts`, `syncConflict.test.ts`).
+  - #199: Güvenlik kopyası geri alma ve atlanan medya uyarısı için arayüz birim ve a11y testleri (`DataSettings.test.tsx`, `SyncSettings.test.tsx`, `e2e/a11y.e2e.ts`).
+- [x] **Performans ve Bundle Optimizasyonu (#196, #201):**
+  - #196: Kapsamlı performans, ilk açılış yükü ve chunk boyutu analiz raporu (`docs/PERFORMANS.md`).
+  - #201: Cümle parçaları için sütun bazlı `{ s, t }` ve kompakt TSV çözücü desteği (`wordpack.ts`, `wordpackSentences.test.ts`).
+- [x] **Test Sağlamlığı ve Kapsam (#156, #172, #173, #179, #181, #194):**
   - #156: Test edilmemiş 5 engine modülüne kapsamlı birim testleri (`hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
   - #172: E2E test sağlamlaştırma (dinamik görünürlük beklemeleri ve fonksiyonel rota eşlemeleri).
   - #173: Dahili kullanılan dışa aktarımlar raporu ve temizliği (`docs/KULLANILMAYAN-DISA-AKTARIMLAR.md`).
   - #179: Bölünen yeni UI bileşenlerine birim testleri (`TextForms`, `CoverageCard`, `WordCard`, `ReadingLibrary`, `AppSidebar`).
-  - #181: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Onboarding adımları, Çekimler kartı, mobil alt çekmece ve oturum özeti).
+  - #181, #194: Genişletilmiş erişilebilirlik (a11y) test kapsamı (Onboarding, Çekimler kartı, mobil çekmece, oturum özeti, Çeviri ekranı temaları, Unuttum durumu, çevrimdışı rozeti, güvenlik kopyası geri alma).
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
@@ -280,5 +296,6 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
+
 
 
