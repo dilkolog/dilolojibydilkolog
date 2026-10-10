@@ -45,8 +45,8 @@ Son güncelleme: 2026-10-09.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
 ## Durum (2026-10-10)
-Birleşti: #37–#181.
-- Antigravity 1–5. tur (#153, #155, #156, #158, #159, #160, #161, #165, #166, #170, #172, #173, #175, #177, #179, #181):
+Birleşti: #37–#183.
+- Antigravity 1–5. tur ve araştırmalar (#153, #155, #156, #158, #159, #160, #161, #165, #166, #170, #172, #173, #175, #177, #179, #181, #183):
   - #153: Çevrimdışı göstergesi (üst çubukta sessiz çevrimdışı rozeti, çevrimiçi olunca kaybolur).
   - #155: Alt sekmelerin görünürlüğü (seçili sekme göstergesi ve kaydırma ipucu).
   - #156: Test boşlukları (src/engine/ altında test edilmemiş 5 modüle kapsamlı birim testleri: `hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
@@ -62,6 +62,8 @@ Birleşti: #37–#181.
   - #177: İkon denetimi raporu (`docs/IKON-DENETIMI.md`) ve telefon koyu tema ekran görüntüleri.
   - #179: Yeni bölünen UI bileşenlerine kapsamlı birim testleri (`TextForms.test.tsx`, `CoverageCard.test.tsx`, `WordCard.test.tsx`, `ReadingLibrary.test.tsx`, `AppSidebar.test.tsx`).
   - #181: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Onboarding adımları, Çekimler kartı, mobil kelime alt çekmecesi ve oturum özeti axe taramaları).
+  - #183: Dokümantasyon ve durum güncellemeleri (`AGENTS.md`, `KULLANILABILIRLIK.md`, `YAPILACAKLAR.md`, `ANTIGRAVITY-GOREVLER.md`).
+  - TV5Monde & DELE Ahora telif ve kullanım şartları araştırma raporu (`docs/kaynaklar/tv5monde-dele-ahora.md`).
 - Claude Code (#168 ve sonrası):
   - Çekim listesi (`textForms.ts`, bileşik zamanlar, fiil tekrarına ekleme köprüsü),
   - Büyük ekran dosyalarının bölünmesi (`Onboarding`, `SessionSummary`, `AppScreens`, `appNav`, `lazyScreens`, `AppSidebar`, `ReadingLibrary`, `CoverageCard`, `WordCard`),
