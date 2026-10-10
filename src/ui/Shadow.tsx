@@ -92,7 +92,7 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
       {phase === 'hear' && <span className="small muted">Dinle…</span>}
       {phase === 'speak' && (
         <span className="small shadow-rec">
-          ● Şimdi sen söyle <span className="shadow-bar" style={{ width: `${(left / answer) * 3}rem` }} />
+          ● Şimdi sen söyle <span className="shadow-bar" style={{ transform: `scaleX(${Math.max(0, Math.min(1, left / answer))})` }} />
         </span>
       )}
       {phase === 'done' && (

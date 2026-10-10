@@ -327,7 +327,7 @@ function TimedRun({
         </span>
       </div>
       <div className={`lab-clock${share < 0.3 ? ' is-low' : ''}`} role="timer" aria-label={`${Math.ceil(left)} saniye kaldı`}>
-        <span style={{ width: `${share * 100}%` }} />
+        <span style={{ transform: `scaleX(${Math.max(0, Math.min(1, share))})` }} />
       </div>
       <div className="lab-timed-stats">
         <span>
