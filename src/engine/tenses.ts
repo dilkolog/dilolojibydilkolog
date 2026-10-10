@@ -612,6 +612,66 @@ export function analyzeForm(language: 'fr' | 'es' | 'en', word: string): FormAna
   return reverseIndex(language).get(normalize(word).toLocaleLowerCase(language)) ?? []
 }
 
+/** Auxiliary form (ai, había, hubiera…) → the compound tenses it opens, with the person it stands for. */
+const AUX_FORMS: { fr?: Map<string, { kind: 'avoir' | 'etre'; tense: Tense; person: number }[]>; es?: Map<string, { tense: Tense; person: number }[]> } = {}
+
+function auxForms(language: 'fr' | 'es') {
+  const cached = AUX_FORMS[language]
+  if (cached) return cached
+  const map = new Map<string, { kind?: 'avoir' | 'etre'; tense: Tense; person: number }[]>()
+  const add = (form: string, tense: Tense, person: number, kind?: 'avoir' | 'etre') => map.set(form, [...(map.get(form) ?? []), { kind, tense, person }])
+  for (const [tense, when] of Object.entries(COMPOUND_AUX) as [Tense, NonNullable<(typeof COMPOUND_AUX)[Tense]>][]) {
+    if (!(LAB_TENSES[language] as Tense[]).includes(tense)) continue
+    if (language === 'fr') for (const kind of ['avoir', 'etre'] as const) AUX[kind][when].forEach((f, i) => add(f, tense, i, kind))
+    else (tense === 'subjuntivo-pluscuamperfecto' ? AUX.hubiera : AUX.haber[when]).forEach((f, i) => add(f, tense, i))
+  }
+  AUX_FORMS[language] = map as never
+  return map
+}
+
+/** Past participle (with the agreeing French forms: allée, allés) → its verb and whether it takes être. */
+const PARTICIPLES: { fr?: { size: number; map: Map<string, { lemma: string; etre: boolean }[]> }; es?: { size: number; map: Map<string, { lemma: string; etre: boolean }[]> } } = {}
+
+function participleIndex(language: 'fr' | 'es') {
+  const cached = PARTICIPLES[language]
+  if (cached && cached.size === DATA[language].size) return cached.map
+  const map = new Map<string, { lemma: string; etre: boolean }[]>()
+  const add = (form: string, lemma: string, etre: boolean) => {
+    const key = normalize(form).toLocaleLowerCase(language)
+    const list = map.get(key) ?? []
+    if (!list.some((x) => x.lemma === lemma)) map.set(key, [...list, { lemma, etre }])
+  }
+  if (language === 'fr')
+    for (const [lemma, row] of DATA.fr) {
+      const [sg, pl] = typeof row.pp === 'string' ? [row.pp, `${row.pp}s`] : row.pp
+      for (const f of [sg, pl, `${sg}e`, `${sg}es`]) add(f, lemma, row.aux === 'e')
+    }
+  else for (const [lemma, row] of DATA.es) add(row.pp, lemma, false)
+  PARTICIPLES[language] = { size: DATA[language].size, map }
+  return map
+}
+
+/**
+ * A compound tense from two neighbouring words: "ai" + "mangé" → manger, passé composé. The
+ * French auxiliary must fit the verb (est + allé, never est + mangé, which would be the passive).
+ * Empty when the tables aren't loaded or the pair is no compound tense.
+ */
+export function analyzeCompound(language: 'fr' | 'es' | 'en', aux: string, participle: string): FormAnalysis[] {
+  if (language === 'en' || !tensesLoaded(language)) return []
+  const verbs = participleIndex(language).get(normalize(participle).toLocaleLowerCase(language))
+  const opens = auxForms(language).get(normalize(aux).toLocaleLowerCase(language)) as { kind?: 'avoir' | 'etre'; tense: Tense; person: number }[] | undefined
+  if (!verbs || !opens) return []
+  const out: FormAnalysis[] = []
+  for (const v of verbs)
+    for (const o of opens) {
+      if (language === 'fr' && o.kind !== (v.etre ? 'etre' : 'avoir')) continue
+      const same = out.find((a) => a.lemma === v.lemma && a.tense === o.tense)
+      if (same) same.persons.push(o.person)
+      else out.push({ lemma: v.lemma, tense: o.tense, persons: [o.person] })
+    }
+  return out
+}
+
 /** Imperative forms (parle, venez, ven, hablad) → their verb; built once per language, apart from the reverse index above. */
 const IMPERATIVES: { fr?: { size: number; map: Map<string, FormAnalysis[]> }; es?: { size: number; map: Map<string, FormAnalysis[]> } } = {}
 

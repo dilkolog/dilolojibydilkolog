@@ -1,6 +1,6 @@
 import { cleanToken } from './extract'
 import type { ReadingAnalysis } from './reading'
-import { analyzeForm, sentenceImperative, type Tense } from './tenses'
+import { analyzeCompound, analyzeForm, sentenceImperative, type Tense } from './tenses'
 
 /** A verb form found in a text: the word as written (lowercased), its verb and its tense. */
 export interface TextForm {
@@ -8,6 +8,9 @@ export interface TextForm {
   lemma: string
   tense: Tense
 }
+
+/** Words that may stand between the auxiliary and the participle: "n'ai pas mangé", "había ya comido". */
+const BETWEEN = new Set(['pas', 'jamais', 'déjà', 'deja', 'bien', 'encore', 'toujours', 'plus', 'rien', 'enfin', 'ya', 'nunca', 'siempre', 'todavía', 'aún', 'también', 'no', 'casi', 'apenas'])
 
 /** Every verb form in a text, in reading order (an ambiguous form counts once per verb). */
 export function textForms(language: 'fr' | 'es', analysis: ReadingAnalysis): TextForm[] {
@@ -17,10 +20,29 @@ export function textForms(language: 'fr' | 'es', analysis: ReadingAnalysis): Tex
       // "Viens ici !": its first word is an imperative, which the forms alone can't tell from the present.
       const imperative = sentenceImperative(language, sentence.tokens.map((t) => t.text).join(''))
       if (imperative) found.push({ form: imperative.form, lemma: imperative.analysis.lemma, tense: imperative.analysis.tense })
-      for (const t of sentence.tokens) {
-        if (!t.key) continue
-        const form = cleanToken(t.text, language).toLocaleLowerCase(language)
+      const words = sentence.tokens.filter((t) => t.key).map((t) => cleanToken(t.text, language).toLocaleLowerCase(language))
+      for (let i = 0; i < words.length; i++) {
+        const form = words[i]
         if (imperative?.form === form) continue
+        // A compound tense: the auxiliary and its participle, up to two small words apart ("n'ai pas mangé").
+        let compound = false
+        for (let gap = 0; gap <= 2 && i + 1 + gap < words.length; gap++) {
+          if (gap > 0 && !BETWEEN.has(words[i + gap])) break
+          const next = words[i + 1 + gap]
+          const hits = analyzeCompound(language, form, next)
+          if (!hits.length) continue
+          const seenLemmas = new Set<string>()
+          for (const a of hits) {
+            if (seenLemmas.has(a.lemma)) continue
+            seenLemmas.add(a.lemma)
+            found.push({ form: `${form} ${next}`, lemma: a.lemma, tense: a.tense })
+          }
+          // The auxiliary and the participle are spoken for; the participle is no form of its own.
+          words[i + 1 + gap] = ''
+          compound = true
+          break
+        }
+        if (compound) continue
         // An ambiguous form (finis: présent or passé simple) counts once per verb, as its first reading.
         const seenLemmas = new Set<string>()
         for (const a of analyzeForm(language, form)) {

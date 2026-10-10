@@ -997,8 +997,10 @@ test('reading on a phone: a tapped word opens a bottom sheet above the tab bar, 
       imgs.map(
         (img) =>
           new Promise((resolve) => {
+            // A lazy image below the fold may never load (offline, blocked): don't wait for it for ever.
             if ((img as HTMLImageElement).complete) resolve(null)
             else {
+              setTimeout(() => resolve(null), 2000)
               img.addEventListener('load', () => resolve(null), { once: true })
               img.addEventListener('error', () => resolve(null), { once: true })
             }
