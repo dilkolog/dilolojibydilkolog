@@ -1,0 +1,510 @@
+[
+ {
+  "id": "en-inversion-01",
+  "language": "en",
+  "level": "C1",
+  "topic": "inversion",
+  "type": "cloze",
+  "prompt": "Never ___ I seen such a beautiful sunset.",
+  "answer": "have",
+  "hint": "Never + yardımcı fiil önce",
+  "explanation": "Olumsuz zarflar (never, rarely, hardly) cümle başına gelince özne-yardımcı fiil yer değiştirir: Never have I seen…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-inversion-02",
+  "language": "en",
+  "level": "C1",
+  "topic": "inversion",
+  "type": "choice",
+  "prompt": "Not only ___ late, but he also forgot the documents.",
+  "answer": "was he",
+  "options": [
+   "he was",
+   "was he",
+   "he is"
+  ],
+  "explanation": "« Not only » cümle başında devrik yapı ister: not only was he late…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-inversion-03",
+  "language": "en",
+  "level": "C1",
+  "topic": "inversion",
+  "type": "cloze",
+  "prompt": "Hardly had she arrived ___ the phone rang.",
+  "answer": "when",
+  "alternatives": [
+   "before"
+  ],
+  "hint": "hardly … when",
+  "explanation": "« Hardly … when » ve « No sooner … than » ikilileri: hardly had she arrived when…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-inversion-04",
+  "language": "en",
+  "level": "C1",
+  "topic": "inversion",
+  "type": "choice",
+  "prompt": "Rarely ___ such dedication.",
+  "answer": "do we see",
+  "options": [
+   "we see",
+   "do we see",
+   "we do see"
+  ],
+  "explanation": "« Rarely » başa gelince yardımcı fiil gerekir ve devrik olur: rarely do we see.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-inversion-05",
+  "language": "en",
+  "level": "C1",
+  "topic": "inversion",
+  "type": "error",
+  "prompt": "No sooner had he left when it started to rain.",
+  "answer": "when",
+  "fix": "than",
+  "explanation": "« No sooner » ile « than » kullanılır (« hardly » ile « when » kullanılır): no sooner had he left than…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-inversion-06",
+  "language": "en",
+  "level": "C1",
+  "topic": "inversion",
+  "type": "cloze",
+  "prompt": "Only after the meeting ___ I realise my mistake.",
+  "answer": "did",
+  "hint": "only after → devrik",
+  "explanation": "« Only after/when/then » ile başlayan cümlede yardımcı fiil öne geçer: only after the meeting did I realise.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cleft-01",
+  "language": "en",
+  "level": "B2",
+  "topic": "cleft",
+  "type": "cloze",
+  "prompt": "It was Maria ___ broke the window.",
+  "answer": "who",
+  "alternatives": [
+   "that"
+  ],
+  "hint": "kişi",
+  "explanation": "Vurgulu cümle: It was + vurgulanan öğe + who/that. Kişide who tercih edilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cleft-02",
+  "language": "en",
+  "level": "B2",
+  "topic": "cleft",
+  "type": "choice",
+  "prompt": "___ I need is a good night’s sleep.",
+  "answer": "What",
+  "options": [
+   "What",
+   "That",
+   "It"
+  ],
+  "explanation": "« What … is » yapısıyla “ihtiyacım olan şey” vurgulanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cleft-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "cleft",
+  "type": "cloze",
+  "prompt": "It is on Friday ___ the exam takes place.",
+  "answer": "that",
+  "hint": "zaman vurgusu",
+  "explanation": "Zaman ve yer vurgusunda « that » kullanılır: it is on Friday that…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cleft-04",
+  "language": "en",
+  "level": "B2",
+  "topic": "cleft",
+  "type": "choice",
+  "prompt": "What he did ___ to apologise.",
+  "answer": "was",
+  "options": [
+   "was",
+   "did",
+   "has"
+  ],
+  "explanation": "« What he did was (to) apologise »: wh-cleft’te be fiili gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cleft-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "cleft",
+  "type": "cloze",
+  "prompt": "The reason ___ I called is to invite you.",
+  "answer": "why",
+  "alternatives": [
+   "that"
+  ],
+  "hint": "neden",
+  "explanation": "« The reason why/that … is to… » nedeni vurgular.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cleft-06",
+  "language": "en",
+  "level": "B2",
+  "topic": "cleft",
+  "type": "error",
+  "prompt": "It was yesterday what I met her.",
+  "answer": "what",
+  "fix": "that",
+  "explanation": "Vurgulu cümlede « what » değil « that » gelir: it was yesterday that I met her.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mixed_conditionals-01",
+  "language": "en",
+  "level": "C1",
+  "topic": "mixed_conditionals",
+  "type": "choice",
+  "prompt": "If I had studied medicine, I ___ a doctor now.",
+  "answer": "would be",
+  "options": [
+   "would be",
+   "would have been",
+   "will be"
+  ],
+  "explanation": "Karma şart: geçmişteki koşul (past perfect) → şimdiki sonuç (would + mastar).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mixed_conditionals-02",
+  "language": "en",
+  "level": "C1",
+  "topic": "mixed_conditionals",
+  "type": "cloze",
+  "prompt": "If she weren’t so shy, she ___ (join) the team last year.",
+  "answer": "would have joined",
+  "hint": "şimdiki durum → geçmiş sonuç",
+  "explanation": "Karma şart: şimdiki özellik (past simple) → geçmişteki sonuç (would have + V3).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mixed_conditionals-03",
+  "language": "en",
+  "level": "C1",
+  "topic": "mixed_conditionals",
+  "type": "choice",
+  "prompt": "If he ___ the keys, he would be inside now.",
+  "answer": "had taken",
+  "options": [
+   "had taken",
+   "took",
+   "has taken"
+  ],
+  "explanation": "Geçmişteki koşul past perfect ile kurulur: if he had taken the keys.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mixed_conditionals-04",
+  "language": "en",
+  "level": "C1",
+  "topic": "mixed_conditionals",
+  "type": "cloze",
+  "prompt": "If I ___ (be) taller, I would have become a basketball player.",
+  "answer": "were",
+  "alternatives": [
+   "was"
+  ],
+  "hint": "kalıcı özellik",
+  "explanation": "Şimdiki / kalıcı durum past simple ile: if I were taller.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mixed_conditionals-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "mixed_conditionals",
+  "type": "error",
+  "prompt": "If I would have known, I would have told you.",
+  "answer": "would",
+  "fix": "had",
+  "explanation": "« If » cümlesinde would kullanılmaz: if I had known.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mixed_conditionals-06",
+  "language": "en",
+  "level": "C1",
+  "topic": "mixed_conditionals",
+  "type": "choice",
+  "prompt": "I wouldn’t be so tired now if I ___ to bed earlier last night.",
+  "answer": "had gone",
+  "options": [
+   "went",
+   "had gone",
+   "would go"
+  ],
+  "explanation": "Dün gece (geçmiş) → şimdiki sonuç: past perfect + would.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-subjunctive-01",
+  "language": "en",
+  "level": "C1",
+  "topic": "subjunctive",
+  "type": "choice",
+  "prompt": "I suggest that he ___ the doctor.",
+  "answer": "see",
+  "options": [
+   "sees",
+   "see",
+   "saw"
+  ],
+  "hint": "suggest that + yalın fiil",
+  "explanation": "Suggest, insist, demand, recommend + that sonrası yalın fiil (subjunctive) gelir: he see.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-subjunctive-02",
+  "language": "en",
+  "level": "C1",
+  "topic": "subjunctive",
+  "type": "cloze",
+  "prompt": "It is essential that every student ___ (be) on time.",
+  "answer": "be",
+  "hint": "essential that",
+  "explanation": "« It is essential/vital/important that » sonrası yalın fiil: be.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-subjunctive-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "subjunctive",
+  "type": "choice",
+  "prompt": "If I ___ you, I’d apologise.",
+  "answer": "were",
+  "options": [
+   "am",
+   "were",
+   "was being"
+  ],
+  "explanation": "« If I were you » kalıp sözdür; were (subjunctive) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-subjunctive-04",
+  "language": "en",
+  "level": "C1",
+  "topic": "subjunctive",
+  "type": "cloze",
+  "prompt": "She insisted that he ___ leave early.",
+  "answer": "not",
+  "hint": "olumsuz subjunctive",
+  "explanation": "Subjunctive olumsuzu « not + yalın fiil »: that he not leave.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-subjunctive-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "subjunctive",
+  "type": "cloze",
+  "prompt": "I wish I ___ (know) the answer.",
+  "answer": "knew",
+  "hint": "wish + şimdiki gerçek dışı",
+  "explanation": "Şimdiki zamandaki gerçek dışı dilek: wish + past simple → knew.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-subjunctive-06",
+  "language": "en",
+  "level": "C1",
+  "topic": "subjunctive",
+  "type": "error",
+  "prompt": "The manager demanded that she submits the report.",
+  "answer": "submits",
+  "fix": "submit",
+  "explanation": "Demand that sonrasında üçüncü tekil -s eklenmez: that she submit.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-participle_clauses-01",
+  "language": "en",
+  "level": "C1",
+  "topic": "participle_clauses",
+  "type": "choice",
+  "prompt": "___ the door, she heard a noise.",
+  "answer": "Opening",
+  "options": [
+   "Opened",
+   "Opening",
+   "To open"
+  ],
+  "explanation": "Aynı özneli eş zamanlı iki eylem: -ing ortaç yan cümlesi (Opening the door, she…).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-participle_clauses-02",
+  "language": "en",
+  "level": "C1",
+  "topic": "participle_clauses",
+  "type": "cloze",
+  "prompt": "___ (finish) his homework, Tom went out to play.",
+  "answer": "Having finished",
+  "hint": "önce biten eylem",
+  "explanation": "Önce biten eylem « having + V3 »: Having finished his homework…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-participle_clauses-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "participle_clauses",
+  "type": "choice",
+  "prompt": "The letters ___ yesterday haven’t arrived.",
+  "answer": "sent",
+  "options": [
+   "sending",
+   "sent",
+   "to send"
+  ],
+  "explanation": "Edilgen anlam: V3 ortaç: the letters sent yesterday (= which were sent).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-participle_clauses-04",
+  "language": "en",
+  "level": "C1",
+  "topic": "participle_clauses",
+  "type": "choice",
+  "prompt": "___ tired, she went to bed early.",
+  "answer": "Feeling",
+  "options": [
+   "Feeling",
+   "Felt",
+   "Being felt"
+  ],
+  "explanation": "Neden bildiren -ing ortaç: Feeling tired, she went to bed early.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-participle_clauses-05",
+  "language": "en",
+  "level": "C1",
+  "topic": "participle_clauses",
+  "type": "cloze",
+  "prompt": "Not ___ (know) what to say, he stayed silent.",
+  "answer": "knowing",
+  "hint": "olumsuz participle",
+  "explanation": "Olumsuz ortaç « not + -ing »: not knowing what to say…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-participle_clauses-06",
+  "language": "en",
+  "level": "C1",
+  "topic": "participle_clauses",
+  "type": "cloze",
+  "prompt": "___ by the noise, the baby woke up.",
+  "answer": "Woken",
+  "alternatives": [
+   "Awakened"
+  ],
+  "hint": "edilgen",
+  "explanation": "Edilgen anlamlı V3 ortaç: Woken by the noise, the baby…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-gerund_infinitive-01",
+  "language": "en",
+  "level": "B2",
+  "topic": "gerund_infinitive",
+  "type": "choice",
+  "prompt": "I enjoy ___ in the garden.",
+  "answer": "working",
+  "options": [
+   "to work",
+   "working",
+   "work"
+  ],
+  "explanation": "Enjoy, avoid, finish, mind… + -ing alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-gerund_infinitive-02",
+  "language": "en",
+  "level": "B2",
+  "topic": "gerund_infinitive",
+  "type": "choice",
+  "prompt": "She decided ___ abroad.",
+  "answer": "to study",
+  "options": [
+   "studying",
+   "to study",
+   "study"
+  ],
+  "explanation": "Decide, hope, plan, refuse… + to-infinitive alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-gerund_infinitive-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "gerund_infinitive",
+  "type": "cloze",
+  "prompt": "I remember ___ (lock) the door, so it must be somewhere inside.",
+  "answer": "locking",
+  "hint": "geçmişi hatırlama",
+  "explanation": "Remember + -ing: yapılmış olanı hatırlamak. Remember + to yapılması gerekeni hatırlamaktır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-gerund_infinitive-04",
+  "language": "en",
+  "level": "B2",
+  "topic": "gerund_infinitive",
+  "type": "choice",
+  "prompt": "Remember ___ the milk on your way home.",
+  "answer": "to buy",
+  "options": [
+   "buying",
+   "to buy",
+   "buy"
+  ],
+  "explanation": "Remember + to-infinitive: yapılması gereken şeyi unutmamak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-gerund_infinitive-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "gerund_infinitive",
+  "type": "cloze",
+  "prompt": "He stopped ___ (smoke) five years ago.",
+  "answer": "smoking",
+  "hint": "bıraktı",
+  "explanation": "Stop + -ing: bir eylemi bırakmak. Stop + to: bir eylemi yapmak için durmak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-gerund_infinitive-06",
+  "language": "en",
+  "level": "B2",
+  "topic": "gerund_infinitive",
+  "type": "error",
+  "prompt": "I look forward to see you soon.",
+  "answer": "see",
+  "fix": "seeing",
+  "explanation": "« Look forward to »’daki to bir edattır; ardından -ing gelir: look forward to seeing.",
+  "source": "Diloloji (özgün)"
+ }
+]

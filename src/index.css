@@ -5146,3 +5146,15 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .admin-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
 .admin-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); }
 .admin-who { display: grid; gap: 0.125rem; min-width: 0; overflow-wrap: anywhere; }
+
+/* "Yenilikler" card on Today. */
+.whats-new-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+/* Grammar questions: the sentence large, an error's words tappable. */
+.grammar-sentence { font-family: var(--serif); font-size: var(--t-xl); line-height: 1.5; margin: 0.25rem 0 0.5rem; }
+.grammar-sentence .blank { margin-inline: 0.125rem; }
+.grammar-word { font: inherit; color: inherit; background: none; border: none; border-bottom: 2px dotted var(--rule); padding: 0 0.125rem; margin: 0; border-radius: var(--r-sm); cursor: pointer; min-height: 2rem; }
+.grammar-word:hover:not(:disabled) { background: var(--lang-soft); border-bottom-color: var(--lang); }
+.grammar-word:disabled { cursor: default; }
+.grammar-word.is-correct { background: var(--ok-soft); border-bottom: 2px solid var(--ok); }
+.grammar-word.is-wrong { background: var(--bad-soft); border-bottom: 2px solid var(--bad); }

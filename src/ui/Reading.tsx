@@ -693,6 +693,7 @@ export function ReadingScreen({
           rangeRef={rangeRef}
           still={dictating !== null || shadowing !== null}
           follow={current.cues?.length ? 'exact' : 'approx'}
+          resumeKey={current.id}
         />
       )}
       {current?.audio && !current.cues?.length && !!current.syncAnchors?.length && (

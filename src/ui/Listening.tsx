@@ -1,3 +1,4 @@
+import { clock, forgetPosition, resumeAt, savedPosition, savePosition } from './audioResume'
 import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PODCASTS, type Episode } from '../engine/podcasts'
@@ -111,6 +112,7 @@ export function AudioPanel({
   rangeRef,
   follow,
   still = false,
+  resumeKey,
 }: {
   src: string
   hidden: boolean
@@ -126,12 +128,17 @@ export function AudioPanel({
   follow?: 'exact' | 'approx' | null
   /** Not pinned to the top while scrolling (dictation needs the space below it). */
   still?: boolean
+  /** Where this recording was left is kept under this key, and picked up again on the next visit. */
+  resumeKey?: string
 }) {
   const audio = useRef<HTMLAudioElement>(null)
   const panel = useRef<HTMLElement>(null)
   const [tipsOpen, setTipsOpen] = useState(false)
   // The audio could not be loaded (a dead link, no connection): said, instead of a player that does nothing.
   const [failed, setFailed] = useState(false)
+  // Picked up where it was left: said, with the way back to the start.
+  const [resumed, setResumed] = useState<number | null>(null)
+  const lastSaved = useRef(0)
   // The panel's height, for what else is pinned under it (the word card beside the text) and for
   // keeping a sentence scrolled into view clear of it.
   useEffect(() => {
@@ -242,13 +249,44 @@ export function AudioPanel({
         controls
         preload="metadata"
         className="audio-player"
-        onTimeUpdate={(e) => onTime?.(e.currentTarget.currentTime)}
+        onTimeUpdate={(e) => {
+          const a = e.currentTarget
+          onTime?.(a.currentTime)
+          // Kept every few seconds; near the end it is let go (heard).
+          if (resumeKey && Math.abs(a.currentTime - lastSaved.current) >= 3) {
+            lastSaved.current = a.currentTime
+            if (Number.isFinite(a.duration) && a.currentTime > a.duration - 12) forgetPosition(resumeKey)
+            else savePosition(resumeKey, a.currentTime)
+          }
+        }}
         onLoadedMetadata={(e) => {
           setFailed(false)
           onDuration?.(e.currentTarget.duration)
+          const at = resumeKey ? resumeAt(savedPosition(resumeKey), e.currentTarget.duration) : null
+          if (at !== null) {
+            e.currentTarget.currentTime = at
+            lastSaved.current = at
+            setResumed(at)
+          }
         }}
         onError={() => setFailed(true)}
       />
+      {resumed !== null && resumeKey && (
+        <p className="small muted" role="status">
+          Kaldığın yerden devam ediyor ({clock(resumed)}).{' '}
+          <button
+            type="button"
+            className="link small"
+            onClick={() => {
+              if (audio.current) audio.current.currentTime = 0
+              forgetPosition(resumeKey)
+              setResumed(null)
+            }}
+          >
+            Baştan başla
+          </button>
+        </p>
+      )}
       {failed && (
         <p className="note" role="status">
           Ses yüklenemedi: bağlantı bozuk olabilir ya da internet yok. Metni yine de okuyabilirsin; bağlantı gelince sayfayı yenile.

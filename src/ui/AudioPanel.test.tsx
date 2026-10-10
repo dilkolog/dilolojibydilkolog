@@ -31,4 +31,41 @@ describe('AudioPanel', () => {
     })
     expect(rootEl.textContent).not.toContain('Ses yüklenemedi')
   })
+
+  it('goes on from where the recording was left, says so, and "Baştan başla" goes back', () => {
+    localStorage.clear()
+    localStorage.setItem('diloloji:audio-pos:text-1', '300')
+    act(() => root.render(<AudioPanel src="https://example.invalid/a.mp3" hidden={false} onHidden={() => {}} resumeKey="text-1" />))
+    const audio = rootEl.querySelector('audio')!
+    Object.defineProperty(audio, 'duration', { value: 660, configurable: true })
+    act(() => {
+      audio.dispatchEvent(new Event('loadedmetadata'))
+    })
+    expect(audio.currentTime).toBe(298)
+    expect(rootEl.textContent).toContain('Kaldığın yerden devam ediyor (4:58)')
+    act(() => {
+      ;[...rootEl.querySelectorAll('button')].find((b) => b.textContent === 'Baştan başla')!.click()
+    })
+    expect(audio.currentTime).toBe(0)
+    expect(localStorage.getItem('diloloji:audio-pos:text-1')).toBeNull()
+    expect(rootEl.textContent).not.toContain('Kaldığın yerden')
+  })
+
+  it('keeps the place every few seconds, and lets it go near the end', () => {
+    localStorage.clear()
+    act(() => root.render(<AudioPanel src="https://example.invalid/a.mp3" hidden={false} onHidden={() => {}} resumeKey="text-2" />))
+    const audio = rootEl.querySelector('audio')!
+    Object.defineProperty(audio, 'duration', { value: 100, configurable: true })
+    const at = (t: number) =>
+      act(() => {
+        audio.currentTime = t
+        audio.dispatchEvent(new Event('timeupdate'))
+      })
+    at(40)
+    expect(localStorage.getItem('diloloji:audio-pos:text-2')).toBe('40')
+    at(41)
+    expect(localStorage.getItem('diloloji:audio-pos:text-2')).toBe('40') // less than three seconds on
+    at(95)
+    expect(localStorage.getItem('diloloji:audio-pos:text-2')).toBeNull()
+  })
 })
