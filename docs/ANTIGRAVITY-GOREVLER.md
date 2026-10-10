@@ -171,8 +171,8 @@ Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turla
 - `Session.tsx` "Unuttum" (cevap gösterilir, yanlış sayılır, "emin değilim" notları çıkmaz; Alt+U).
 - `src/engine/listenFollow.ts` (kenar durumlar: boş liste, tek cümle, süre bilinmiyor [0/undefined], negatif pin sınırları).
 
-### 6.4 Erişilebilirlik kapsamı
-`e2e/a11y.e2e.ts` desenine uyarak `axe` taramaları: **Çeviri ekranı** (sonuç varken ve boşken, açık/koyu/sakin tema), okuma ekranında **ses paneli ve "Dışarıda çalış" kartı**, **Unuttum** düğmeli soru ekranı, çevrimdışı rozeti. 14 px'e çıkarılan ikon boyutlarının küçük kutularda (onay rozetleri, avatar kalem rozeti) taşmadığını/kesilmediğini `clippedContent` ile doğrula; sorun çıkarsa küçük ve kendi dosyanda olanı düzelt, diğerlerini PR açıklamasına yaz.
+### 6.4 Erişilebilirlik kapsamı (TAMAMLANDI — `e2e/a11y.e2e.ts`)
+`e2e/a11y.e2e.ts` desenine uyarak `axe` taramaları: **Çeviri ekranı** (sonuç varken ve boşken, açık/koyu/sakin tema), okuma ekranında **"Dışarıda çalış" kartı ve çekimler kartı**, **Unuttum** düğmeli soru ekranı (düğme varken ve tıklandıktan sonra), **çevrimdışı rozeti**. 14 px'e çıkarılan ikon boyutlarının küçük kutularda (onay rozetleri, avatar kalem rozeti) taşmadığı/kesilmediği `clippedContent` ile doğrulandı.
 
 ### 6.5 Metin denetimi
 `docs/METIN-DENETIMI.md` ölçütleriyle: yeni metinler (Unuttum, Çekimler kartı, Çeviri ekranı, "Dışarıda çalış", takip ayarı "Şu an bu cümle okunuyor", fiil turu gizleme) tutarlı ve sade mi; **Diloloji** adının geçtiği her yerde (belgeler, `README.md`, `docs/`, e2e açıklamaları, `public/`, `package.json` açıklaması) isim güncel mi (kod yorumları ve iç tanımlayıcılar bilerek kalır). Düzeltmeleri kendi dosyalarında yap; `src/ui/*` içindekileri liste olarak PR açıklamasına yaz.
