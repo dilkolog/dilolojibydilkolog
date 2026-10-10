@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Settings } from '../data/db'
 import { getDensity, setDensity, type Density } from './density'
 import { HIDEABLE_TABS, partsSummary, readUsage, SCREEN_LABEL, trackedSince, usageLabel, usageSummary, type ScreenUse } from './screenUsage'
+import { GAME_LIST } from './gameList'
 import { Chips, Row, Toggle } from './settingsWidgets'
 
 export function LookSettings({
@@ -52,6 +53,7 @@ function UsageCard({ hidden, english, onChange }: { hidden: string[]; english: b
   const now = new Date()
   const uses = usageSummary(log, now)
   const lab = english ? [] : partsSummary(log, 'verbs', now)
+  const games = partsSummary(log, 'games', now)
   const since = trackedSince(log)
   const tabs = HIDEABLE_TABS.filter((t) => t !== 'verbs' || !english)
   const unused = (t: string) => !uses.some((u) => u.screen === t)
@@ -67,6 +69,18 @@ function UsageCard({ hidden, english, onChange }: { hidden: string[]; english: b
           <h3 className="subhead">Fiil laboratuvarı</h3>
           <p className="small muted">Hangi sekme ve alıştırmayı kullandığın; hiç açılmayanlar sadeleştirilebilir.</p>
           <UsageList uses={lab.slice(0, 10)} />
+        </>
+      )}
+      {games.length > 0 && (
+        <>
+          <h3 className="subhead">Oyunlar</h3>
+          <p className="small muted">Hangi oyunu kaç kez başlattığın.</p>
+          <UsageList uses={games.slice(0, 12)} />
+          {longEnough && games.length < GAME_LIST.length && (
+            <p className="small muted">
+              30 gündür açılmayan: {GAME_LIST.filter((g) => !games.some((u) => u.screen === `games:${g.id}`)).map((g) => g.name).join(', ')}.
+            </p>
+          )}
         </>
       )}
       <h3 className="subhead">Menüdeki sekmeler</h3>

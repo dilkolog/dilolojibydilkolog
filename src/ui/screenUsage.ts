@@ -2,6 +2,8 @@
  * How often each screen (and game) is opened, counted per day on this device only: never synced,
  * never sent. Settings shows it so tabs that are never used can leave the menu.
  */
+import { GAME_LIST } from './gameList'
+
 const KEY = 'kelime-koc:screen-usage'
 /** Days kept; older counts are dropped on the next visit. */
 const KEEP_DAYS = 60
@@ -120,9 +122,10 @@ const LAB_PART: Record<string, string> = {
   mastery: 'İlerleme',
 }
 
-/** A counted name as the learner knows it: a screen, or a part of the verb lab. */
+/** A counted name as the learner knows it: a screen, a part of the verb lab, or a game. */
 export function usageLabel(screen: string): string {
   if (screen.startsWith('verbs:')) return LAB_PART[screen.slice(6)] ?? screen.slice(6)
+  if (screen.startsWith('games:')) return GAME_LIST.find((g) => g.id === screen.slice(6))?.name ?? screen.slice(6)
   return SCREEN_LABEL[screen] ?? screen
 }
 

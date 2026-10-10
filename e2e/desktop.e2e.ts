@@ -679,6 +679,18 @@ test('verb lab: the tabs and modes used are counted in Settings → Kullanım', 
   await expect(card.locator('.hour-list').first()).not.toContainText('Alıştırma')
 })
 
+test('games started are counted in Settings → Kullanım, by name', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Refleks turu' }).click()
+  await expect(page.getByRole('heading', { name: 'Refleks turu' })).toBeVisible()
+  await openScreen(page, 'Ayarlar')
+  await page.getByRole('searchbox', { name: 'Ayar ara' }).fill('Kullanım')
+  const card = page.locator('section.card', { has: page.getByRole('heading', { name: 'Kullanım', exact: true }) })
+  await expect(card.getByRole('heading', { name: 'Oyunlar', exact: true })).toBeVisible()
+  await expect(card).toContainText('Refleks turu')
+})
+
 test('verb lab: Ustalık shows the share of right answers week by week', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
