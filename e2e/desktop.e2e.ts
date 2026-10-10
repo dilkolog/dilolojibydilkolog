@@ -1119,9 +1119,9 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
   await openScreen(page, 'Oyunlar')
   await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
   await page.getByRole('button', { name: 'Participe passé uyumu' }).click()
-  await page.getByRole('button', { name: /6 soruluk tura başla/ }).click()
-  for (let i = 1; i <= 6; i++) {
-    await expect(page.locator('.game-timer')).toHaveText(`${i} / 6`)
+  await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
+  for (let i = 1; i <= 8; i++) {
+    await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
     // Whatever the kind, answer it (wrongly is fine): the rule must show.
     if (await page.locator('input.answer-input').count()) {
       await page.locator('input.answer-input').fill('zzz')
@@ -1134,7 +1134,7 @@ test('grammar questions: a topic round of the three kinds, the rule after each a
     await expect(page.locator('.grammar-feedback')).toBeVisible()
     await page.getByRole('button', { name: 'Devam' }).click()
   }
-  await expect(page.locator('.game-result')).toContainText('/ 6 doğru')
+  await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
   await page.getByRole('button', { name: 'Oyunlara dön' }).click()
   await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
   await expect(page.getByRole('button', { name: /Participe passé uyumu · %\d+/ })).toBeVisible()
