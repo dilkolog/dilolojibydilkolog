@@ -148,6 +148,22 @@ export function addToReview(lab: LabData, scheduler: Scheduler, verb: string, te
   return { ...lab, records }
 }
 
+/**
+ * The verb-and-tense pairs of a text put in the review queue: each once, the ones already in the
+ * lab left as they are. Says how many were new.
+ */
+export function addFormsToReview(lab: LabData, scheduler: Scheduler, pairs: readonly { lemma: string; tense: Tense }[], now: Date): { lab: LabData; added: number } {
+  const records = { ...lab.records }
+  let added = 0
+  for (const { lemma, tense } of pairs) {
+    const key = labKey(lemma, tense)
+    if (records[key]) continue
+    records[key] = { ok: 0, wrong: 0, points: 0, card: scheduler.newCard(now) }
+    added++
+  }
+  return { lab: added ? { ...lab, records } : lab, added }
+}
+
 /** Records saved before cards existed get one, due now (they were practised, so they are worth a look). */
 export function adoptCards(lab: LabData, scheduler: Scheduler, now: Date): LabData {
   if (Object.values(lab.records).every((r) => r.card)) return lab

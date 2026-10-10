@@ -22,7 +22,7 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
 
-import { analyzeForm } from '../engine/tenses'
+import { analyzeForm, type Tense } from '../engine/tenses'
 import { groupByTense, textForms } from '../engine/textForms'
 import { TextForms } from './TextForms'
 import { WordCard, type Selected } from './WordCard'
@@ -32,7 +32,8 @@ import { CoverageCard } from './CoverageCard'
 import { SingleUnknownSentences } from './SingleUnknownSentences'
 import { MIN_READ_MS, groupBooks, useSeen } from './readingHelpers'
 import { useSheetSwipe } from './useSheetSwipe'
-import { addSeenForms } from '../engine/labProgress'
+import { addFormsToReview, addSeenForms } from '../engine/labProgress'
+import { scheduler } from '../data/instance'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
@@ -483,6 +484,14 @@ export function ReadingScreen({
     if (found.length) await db.saveLab(lang, addSeenForms(await db.getLab(lang), found, current?.title, new Date().toISOString()))
   }
 
+  /** The verb forms of the text put in the verb lab's review queue (FSRS), the ones already there left alone. */
+  const reviewForms = async (pairs: { lemma: string; tense: Tense }[]) => {
+    if (language === 'en') return
+    const { lab, added } = addFormsToReview(await db.getLab(language), scheduler, pairs, new Date())
+    if (added) await db.saveLab(language, lab)
+    showToast(added ? `${added} çekim fiil tekrarına eklendi.` : 'Bunlar zaten fiil tekrarında.')
+  }
+
   const readKey = current?.id ?? text
   /** The list words met in this text, and the verb forms in it, saved once per opened text. */
   const saveMet = async () => {
@@ -691,7 +700,7 @@ export function ReadingScreen({
           Çoklu seç
         </button>
       </div>
-      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onClose={() => setShowForms(false)} />}
+      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onReview={reviewForms} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
       )}
