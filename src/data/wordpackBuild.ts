@@ -30,8 +30,8 @@ export interface PackRecord {
   p?: string
   /** A French or Spanish noun's gender: m, f, or e (either, by sense). */
   g?: 'm' | 'f' | 'e'
-  /** Example sentences with their Turkish (Tatoeba), for the most frequent words: [sentence, Turkish][]. */
-  c?: [string, string][]
+  /** Example sentences with their Turkish (Tatoeba), for the most frequent words: tuple array, columnar { s, t }, or tsv string. */
+  c?: [string, string][] | { s: string[]; t: string[] } | string
 }
 
 /** Wiktextract's parts of speech, as one letter (the same letters as the Lexique file). */
@@ -357,6 +357,12 @@ export interface PackStats {
 export function packStats(pack: Pack): PackStats {
   const records = Object.values(pack.w)
   const keys = ['t', 'i', 'a', 'e', 's', 'n', 'x', 'p', 'g', 'c'] as const
-  const coverage = Object.fromEntries(keys.map((k) => [k, records.length ? records.filter((r) => (k === 'x' ? Object.keys(r.x ?? {}).length : r[k]?.length)).length / records.length : 0])) as PackStats['coverage']
+  const countOf = (r: PackRecord, k: (typeof keys)[number]) => {
+    if (k === 'x') return Object.keys(r.x ?? {}).length
+    if (k === 'c') return r.c ? 1 : 0
+    const v = r[k]
+    return typeof v === 'string' || Array.isArray(v) ? v.length : v ? 1 : 0
+  }
+  const coverage = Object.fromEntries(keys.map((k) => [k, records.length ? records.filter((r) => countOf(r, k)).length / records.length : 0])) as PackStats['coverage']
   return { words: records.length, bytes: JSON.stringify(pack).length, coverage }
 }

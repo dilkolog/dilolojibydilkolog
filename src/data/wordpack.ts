@@ -1,5 +1,5 @@
 import { normalize, splitArticle } from '../engine/answerCheck'
-import type { TargetLanguage, VocabularyEntry } from '../engine/types'
+import type { Example, TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from './db'
 import { canFill, patchWithSources, type FieldName, type SourceKind } from './provenance'
 import type { Equivalents } from './wiktionary'
@@ -138,3 +138,56 @@ export function equivalentsFromPack(entry: VocabularyEntry): Equivalents | null 
     shared: null,
   }
 }
+
+/**
+ * Unpacks example sentences from any pack representation (row tuples, columnar object, or TSV string)
+ * into a list of [sentence, Turkish] pairs.
+ */
+export function unpackSentences(bundled: PackRecord['c'] | undefined): [string, string][] | undefined {
+  if (!bundled) return undefined
+  if (typeof bundled === 'string') {
+    const trimmed = bundled.trim()
+    if (!trimmed) return undefined
+    const lines = trimmed.split('\n').filter(Boolean)
+    if (!lines.length) return undefined
+    return lines.map((line) => {
+      const idx = line.indexOf('\t')
+      return idx >= 0 ? [line.slice(0, idx), line.slice(idx + 1)] : [line, '']
+    })
+  }
+  if (!Array.isArray(bundled)) {
+    if (bundled && typeof bundled === 'object' && 's' in bundled && Array.isArray((bundled as { s: string[]; t: string[] }).s)) {
+      const col = bundled as { s: string[]; t: string[] }
+      return col.s.map((text, i) => [text, col.t?.[i] ?? ''])
+    }
+    return undefined
+  }
+  if (!bundled.length) return undefined
+  return (bundled as [string, string][]).map(([text, translation]) => [text, translation ?? ''])
+}
+
+/**
+ * Produces Example objects ({ text, translation, form: '' }) from the pack's example sentences.
+ */
+export function examplesFromPack(bundled: PackRecord['c'] | undefined): Example[] | undefined {
+  const unpacked = unpackSentences(bundled)
+  return unpacked?.length ? unpacked.map(([text, translation]) => ({ text, translation, form: '' })) : undefined
+}
+
+/**
+ * Packs sentence pairs into compact columnar format { s: texts, t: translations }.
+ */
+export function packColumnarSentences(sentences: readonly (readonly [string, string])[]): { s: string[]; t: string[] } {
+  return {
+    s: sentences.map(([text]) => text),
+    t: sentences.map(([, tr]) => tr),
+  }
+}
+
+/**
+ * Packs sentence pairs into compact TSV string.
+ */
+export function packTsvSentences(sentences: readonly (readonly [string, string])[]): string {
+  return sentences.map(([text, tr]) => `${text}\t${tr}`).join('\n')
+}
+

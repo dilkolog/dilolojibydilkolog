@@ -15,11 +15,14 @@ const KEY = (language: TargetLanguage, word: string) => `kelime-koc:dict-sentenc
 const MAX_AGE = 30 * 86_400_000
 const SHOWN = 4
 
-/** Sentences in the word pack (the most frequent words): shown at once and offline. */
-const fromPack = (bundled: readonly [string, string][] | undefined): Example[] | undefined =>
-  bundled?.length ? bundled.map(([text, translation]) => ({ text, translation, form: '' })) : undefined
+import { examplesFromPack } from '../data/wordpack'
+import type { PackRecord } from '../data/wordpackBuild'
 
-function useSentences(language: TargetLanguage, word: string, bundled?: readonly [string, string][]): Example[] | null | 'loading' {
+/** Sentences in the word pack (the most frequent words): shown at once and offline. */
+const fromPack = (bundled: PackRecord['c'] | undefined): Example[] | undefined =>
+  examplesFromPack(bundled)
+
+function useSentences(language: TargetLanguage, word: string, bundled?: PackRecord['c']): Example[] | null | 'loading' {
   const [value, setValue] = useState<Example[] | null | 'loading'>(() => fromPack(bundled) ?? 'loading')
   useEffect(() => {
     let live = true
@@ -112,7 +115,7 @@ export function DictionaryExamples({
 }: {
   language: TargetLanguage
   word: string
-  bundled?: readonly [string, string][]
+  bundled?: PackRecord['c']
   meaning?: string
   onPick?: (w: string) => void
 }) {
