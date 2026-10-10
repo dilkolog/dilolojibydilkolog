@@ -69,7 +69,9 @@ export function DataSettings({
 
   const resetLanguage = async () => {
     const ids = (await db.vocabulary.where('language').equals(lang).primaryKeys()) as string[]
-    await db.transaction('rw', [db.wordStates, db.events, db.mistakes], async () => {
+    await db.transaction('rw', [db.wordStates, db.events, db.mistakes, db.meta], async () => {
+      // The mark travels with sync: without it the other devices' copies of the answers bring the progress back.
+      await db.addDeleted([`reset:${lang}`])
       await db.wordStates.where('language').equals(lang).delete()
       await db.events.where('language').equals(lang).delete()
       await db.mistakes.where('entryId').anyOf(ids).delete()

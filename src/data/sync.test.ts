@@ -140,4 +140,33 @@ describe('the verb lab across devices', () => {
     expect(m.lab?.es?.favorites).toEqual(['hablar', 'comer'])
     expect(m.records).toEqual({ 'verbtimed:es:easy': 80, 'match:es': 10, 'blitz:es': 7 })
   })
+
+  it('a language reset on one device takes the old answers off the other, and keeps what is learned after it', () => {
+    const w = (id: string) => ({ ...word(id), language: 'fr' }) as unknown as Backup['vocabulary'][number]
+    const st = (entryId: string, last: string) => ({ entryId, language: 'fr', lastReviewAt: new Date(last), introducedAt: new Date(last), stats: { reviews: 2 } }) as unknown as Backup['wordStates'][number]
+    const ev = (id: string, entryId: string, at: string) => ({ id, entryId, language: 'fr', timestamp: new Date(at) }) as unknown as Backup['events'][number]
+    const mistake = (id: string, entryId: string, at: string) => ({ id, entryId, lastAt: new Date(at), count: 1 }) as unknown as Backup['mistakes'][number]
+    // The phone reset French on the 5th; the laptop (not yet synced) still has the old progress and one answer from after the reset.
+    const phone = base('2026-10-06T10:00:00Z', {
+      vocabulary: [w('fr:chat')],
+      deleted: [{ id: 'reset:fr', at: '2026-10-05T10:00:00Z' }],
+    })
+    const laptop = base('2026-10-04T10:00:00Z', {
+      vocabulary: [w('fr:chat')],
+      wordStates: [st('fr:chat', '2026-10-04T09:00:00Z')],
+      events: [ev('old', 'fr:chat', '2026-10-04T09:00:00Z')],
+      mistakes: [mistake('m1', 'fr:chat', '2026-10-03T09:00:00Z')],
+    })
+    const merged = mergeBackups(phone, laptop)
+    expect(merged.wordStates).toHaveLength(0)
+    expect(merged.events).toHaveLength(0)
+    expect(merged.mistakes).toHaveLength(0)
+    expect(merged.vocabulary.map((v) => v.id)).toEqual(['fr:chat'])
+    // What was answered after the reset stays, on whichever device it was.
+    const later = base('2026-10-07T10:00:00Z', { vocabulary: [w('fr:chat')], wordStates: [st('fr:chat', '2026-10-06T12:00:00Z')], events: [ev('new', 'fr:chat', '2026-10-06T12:00:00Z')] })
+    const both = mergeBackups(mergeBackups(phone, laptop), later)
+    expect(both.wordStates.map((s) => s.entryId)).toEqual(['fr:chat'])
+    expect(both.events.map((e) => e.id)).toEqual(['new'])
+  })
 })
+

@@ -185,6 +185,11 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   const [older, newer] = time(local.exportedAt) >= time(remote.exportedAt) ? [remote, local] : [local, remote]
   const tombs = mergeTombs(tombMap(local.deleted, time(local.exportedAt)), tombMap(remote.deleted, time(remote.exportedAt)))
   const dead = (id: string, createdAt?: Date | string) => isDead(tombs, id, createdAt)
+  // "Reset this language's progress" leaves a mark ("reset:fr"): answers and states at least as old as
+  // it are gone on every device, while what was learned after it stays.
+  const resetOf = (language: string | undefined, at?: Date | string) => !!language && dead(`reset:${language}`, at)
+  const languageOf = new Map([...older.vocabulary, ...newer.vocabulary].map((v) => [v.id, v.language]))
+  const latest = (...ats: (Date | string | undefined)[]) => new Date(Math.max(0, ...ats.map((a) => time(a)))).toISOString()
   const known: NonNullable<Backup['reading']>['known'] = {}
   for (const r of [older.reading, newer.reading]) for (const [l, keys] of Object.entries(r?.known ?? {})) known[l as keyof typeof known] = [...new Set([...(known[l as keyof typeof known] ?? []), ...(keys ?? [])])]
   const ignored: NonNullable<NonNullable<Backup['reading']>['ignored']> = {}
@@ -199,11 +204,11 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     settings: newer.settings ?? older.settings,
     vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (_, y) => y).filter((v) => !dead(v.id, v.addedAt)),
     wordStates: unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, (x, y) => (time(y.lastReviewAt) > time(x.lastReviewAt) || (time(y.lastReviewAt) === time(x.lastReviewAt) && y.stats.reviews >= x.stats.reviews) ? y : x)).filter(
-      (s) => !dead(s.entryId, s.introducedAt),
+      (s) => !dead(s.entryId, s.introducedAt) && !resetOf(s.language, latest(s.lastReviewAt, s.introducedAt)),
     ),
-    events: unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp)),
+    events: unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp)),
     mistakes: unionBy(older.mistakes, newer.mistakes, (m) => m.id, (x, y) => (y.count > x.count || (y.count === x.count && time(y.lastAt) >= time(x.lastAt)) ? y : x)).filter(
-      (m) => !dead(m.entryId, m.lastAt),
+      (m) => !dead(m.entryId, m.lastAt) && !resetOf(languageOf.get(m.entryId), m.lastAt),
     ),
     stories: unionBy(older.stories, newer.stories, (s) => s.id, (x, y) => (y.completedAt || !x.completedAt ? y : x)),
     reading: {
