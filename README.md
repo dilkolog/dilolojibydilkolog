@@ -1,6 +1,6 @@
-# Kelime Koçu
+# Diloloji
 
-Kişisel, adaptif kelime öğrenme uygulaması (İngilizce, Fransızca, İspanyolca; ana dil Türkçe).
+Kişisel, adaptif dil öğrenme uygulaması (İngilizce, Fransızca, İspanyolca; ana dil Türkçe; önceki adıyla Kelime Koçu).
 Tek kullanıcılı, offline çalışan bir PWA. Plan ve kararlar: [docs/PLAN.md](docs/PLAN.md).
 
 ## Komutlar
