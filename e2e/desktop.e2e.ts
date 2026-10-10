@@ -447,6 +447,20 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })
 
+test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill("Il fait beau. Elle s'est lavée ce matin. Nous parlons.")
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Çekimler' }).click()
+  const card = page.getByRole('region', { name: 'Metindeki çekimler' })
+  await card.locator('summary', { hasText: 'passé composé' }).click()
+  const row = card.locator('.text-forms-item', { hasText: "s'est lavée" })
+  await expect(row).toBeVisible()
+  await row.getByRole('button', { name: /metinde göster/ }).click()
+  await expect(page.locator('.reader .rs.is-flash')).toContainText("Elle s'est lavée ce matin.")
+})
+
 test('reading: outside learning sites are only links, opening in a new tab', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')
@@ -732,6 +746,8 @@ test('badges: earned with a date, shown newest first on the profile, one card pe
   // In a short window the dialog stays inside it and scrolls, so the last steps can be reached.
   await page.setViewportSize({ width: 1280, height: 420 })
   const dialog = page.locator('.badge-dialog')
+  // Measured once the opening animation (a short scale pop) is over.
+  await expect.poll(() => dialog.evaluate((el) => el.getAnimations().length)).toBe(0)
   const box = await dialog.evaluate((el) => {
     const r = el.getBoundingClientRect()
     return { bottom: r.bottom, fits: r.bottom <= window.innerHeight, scrolls: el.scrollHeight > el.clientHeight }
@@ -897,11 +913,10 @@ test('listening without timed subtitles: a sentence can be pinned to the moment 
   await page.getByRole('button', { name: 'Turları bırak' }).click()
   await page.locator('.rw', { hasText: /^demain$/ }).click()
   await page.getByRole('button', { name: 'Şu an bu cümle okunuyor' }).click()
-  await at(2.1)
+  // The lit sentence follows the new pin at once, with the audio paused and no time update coming.
   await expect(heard).toHaveText('Nous partons demain.')
   await expect(page.getByText(/1 noktayla ayarlandı/)).toBeVisible()
   await page.getByRole('button', { name: 'Ayarı sıfırla' }).click()
-  await at(2)
   await expect(heard).toHaveText('Il fait beau.')
 })
 

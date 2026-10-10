@@ -653,10 +653,10 @@ function participleIndex(language: 'fr' | 'es') {
 
 /**
  * A compound tense from two neighbouring words: "ai" + "mangé" → manger, passé composé. The
- * French auxiliary must fit the verb (est + allé, never est + mangé, which would be the passive).
- * Empty when the tables aren't loaded or the pair is no compound tense.
+ * French auxiliary must fit the verb (est + allé, never est + mangé, which would be the passive),
+ * unless the verb is reflexive (s'est lavé), which `reflexive` says. Empty when the tables aren't loaded or the pair is no compound tense.
  */
-export function analyzeCompound(language: 'fr' | 'es' | 'en', aux: string, participle: string): FormAnalysis[] {
+export function analyzeCompound(language: 'fr' | 'es' | 'en', aux: string, participle: string, reflexive = false): FormAnalysis[] {
   if (language === 'en' || !tensesLoaded(language)) return []
   const verbs = participleIndex(language).get(normalize(participle).toLocaleLowerCase(language))
   const opens = auxForms(language).get(normalize(aux).toLocaleLowerCase(language)) as { kind?: 'avoir' | 'etre'; tense: Tense; person: number }[] | undefined
@@ -664,7 +664,8 @@ export function analyzeCompound(language: 'fr' | 'es' | 'en', aux: string, parti
   const out: FormAnalysis[] = []
   for (const v of verbs)
     for (const o of opens) {
-      if (language === 'fr' && o.kind !== (v.etre ? 'etre' : 'avoir')) continue
+      // A reflexive verb ("il s'est lavé") takes être whatever its own auxiliary is.
+      if (language === 'fr' && !(reflexive && o.kind === 'etre') && o.kind !== (v.etre ? 'etre' : 'avoir')) continue
       const same = out.find((a) => a.lemma === v.lemma && a.tense === o.tense)
       if (same) same.persons.push(o.person)
       else out.push({ lemma: v.lemma, tense: o.tense, persons: [o.person] })
