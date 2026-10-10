@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-10.
+Son güncelleme: 2026-10-10 (5. tur eklendi).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -105,6 +105,39 @@ Claude Code'un çalıştığı ortamın ağı kısıtlı: LibriVox, Gutenberg, a
 - Hiçbir yerde içe aktarılmayan `export`ları (ve onlara bağlı ölü dosyaları) tespit et (`ts-prune`/`knip` ya da betik). Önce rapor (`docs/`), sonra yalnızca **emin olduklarını** sil. `src/engine/` ve `src/ui/verbs/` Claude Code'da: oralar için listeyi PR açıklamasına yaz, silme.
 
 **Tur sonu ölçütü:** 4.1 ve 4.2'de her bağlantı elle doğrulanmış, 4.3'te dış davranış aynı, hiçbir test silinmemiş.
+
+---
+
+## 5. tur: ikon denetimi, bileşen testleri ve belgeler (4. tur sürerken ya da bitince)
+
+**Çakışma uyarısı:** Claude Code şu sıra `src/index.css`'te **animasyon ve hareket** kurallarını (cevap anı, ilerleme çubukları `scaleX`, oturum özeti, bitki sıçraması, süs animasyonları) değiştiriyor. Bu turdaki işler `index.css`'in hareket bölümlerine **dokunmaz**; dokunman gerekirse önce haber ver. Aşağıdaki işlerin çoğu yeni dosya ve `docs/`.
+
+### 5.1 İkon denetimi (rapor; kod yok)
+- Çıktı: `docs/IKON-DENETIMI.md`. `src/ui/icons.tsx` (82 ikon, 24 px ızgara, 1.8 px çizgi, yumuşak dolgu) için:
+  1. **Tutarlılık tablosu:** her ikon için çizgi kalınlığı, uç/birleşim biçimi, dolgu katmanının opaklığı, görsel ağırlık; `DESIGN.md` kuralından (24 px ızgara, 1.8 px, yuvarlak uç, `currentColor`) sapanlar.
+  2. **Kullanım taraması:** kodda ikon yerine emoji, `✓`/`×`/`←` gibi metin karakteri ya da satır içi SVG kullanılan yerler (örn. kapat düğmeleri `×`); hangi ikonun hiçbir yerde kullanılmadığı (ölü ikon).
+  3. **Anlam çakışmaları:** aynı ikonun birbirinden farklı işler için kullanıldığı yerler (ör. `SparkleIcon`).
+  4. **Eksik ikonlar:** yeni özelliklerin hangileri jenerik bir ikonla duruyor (Çekimler, Dikte, Gölgele, Geri çeviri, Kaçırdıkların, Fiil tekrarı, Çevrimdışı) ve her biri için ayırt edici bir ikon önerisi (kısa tarif; çizimi Claude Code yapacak).
+  5. **Boyut ve hizalama:** 14–22 px dışında kullanılan boyutlar, metinle dikey hizası bozuk görünen yerler (`.inline-icon`).
+- Her bulgu için `dosya:satır` ver. Telefon ve koyu temada bakıp ekran görüntüsü ekle.
+
+### 5.2 Yeni bölünen bileşenlere test
+Son turlarda bölünen dosyalar yeni; davranışı sabitleyen bileşen testi yaz (`@testing-library/react`, mevcut `*.test.tsx` desenine uy). **Davranışı değiştirme.**
+- `src/ui/TextForms.tsx` (grup başlıkları, "kez" sayısı, düğmeler, boş durum, `onReview`/`onOpenLab` çağrıları)
+- `src/ui/CoverageCard.tsx` (bölge başlığı, açılınca açıklama, önceki okuma satırı, bilinen kelime azsa not)
+- `src/ui/WordCard.tsx` (bilinen/bilinmeyen kelime düğmeleri, fiil çekimi satırı, "Bu cümleden dinle" yalnızca zamanlı seste)
+- `src/ui/ReadingLibrary.tsx` (`LibraryItem` durum rozeti: Yeni / Okundu / Tekrar oku; `AddTextCard` düğmesi boş taslakta kapalı)
+- `src/ui/AppSidebar.tsx` (seçili yer `aria-current`, rozet etiketi, dil düğmesi ve bekleyen tekrar noktası)
+- `src/engine/textForms.ts` zaten testli; bileşik zaman için kenar durumlar bulursan (ör. "il n'a jamais mangé", dönüşlü fiiller) hatayı düzeltme, PR açıklamasına yaz.
+
+### 5.3 Erişilebilirlik testi kapsamı
+`e2e/a11y.e2e.ts` mevcut desenine uyarak şu ekran/durumlara `axe` taraması ekle: okuma ekranında **Çekimler** kartı açıkken, telefonda kelime **alt çekmecesi** açıkken, **Onboarding** her adımda, oturum **özeti**. Çıkan ihlalleri düzeltmeden önce listele; küçük ve kendi dosyanda olanı düzelt, `Reading.tsx`/`Screens.tsx` gibi Claude Code dosyalarındakileri PR açıklamasına yaz.
+
+### 5.4 Belge güncellemesi
+- `AGENTS.md` Durum bölümüne #153–#168 ve sonrası: çekim listesi (`textForms.ts`, bileşik zamanlar, fiil tekrarına ekleme), bölünen dosyalar (`Onboarding`, `SessionSummary`, `AppScreens`, `appNav`, `lazyScreens`, `AppSidebar`, `ReadingLibrary`, `CoverageCard`, `WordCard`), dosya adı tuzağı (`lazyScreens.ts` ile `AppScreens.tsx` büyük/küçük harf), LibriVox/Gutenberg/COERLL'e bu ortamdan erişilemediği.
+- `docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md` güncel duruma getir (yapılanları işaretle).
+
+**Tur sonu ölçütü:** 5.1'deki her bulguda `dosya:satır` ve ekran görüntüsü; 5.2–5.3'te hiçbir mevcut test silinmemiş; PR'lar tek konulu.
 
 ---
 
