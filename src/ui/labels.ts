@@ -1,6 +1,8 @@
 import type { MasteryStage } from '../engine/mastery'
 import type { ErrorType, PartOfSpeech, Skill, TargetLanguage } from '../engine/types'
 
+/** A greeting in each language, for the welcome and the Today header. */
+export const HELLO: Record<TargetLanguage, string> = { en: 'Hello!', fr: 'Bonjour !', es: '¡Hola!' }
 export const LANGUAGE_NAME: Record<TargetLanguage, string> = { en: 'İngilizce', fr: 'Fransızca', es: 'İspanyolca' }
 export const LANGUAGE_SHORT: Record<TargetLanguage, string> = { en: 'EN', fr: 'FR', es: 'ES' }
 export const SPEECH_LANG: Record<TargetLanguage, string> = { en: 'en-US', fr: 'fr-FR', es: 'es-ES' }
