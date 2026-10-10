@@ -69,6 +69,7 @@ Birleşti: #37–#183.
   - 6.3: Yeni özelliklere kapsamlı birim testleri (`src/ui/useSwipeAway.test.tsx`, `src/ui/verbs/LabTourCard.test.tsx`, `src/ui/TranslateScreen.test.tsx`, `src/ui/SessionForgot.test.tsx`, `src/engine/__tests__/listenFollow.test.ts`).
   - 6.4: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Çeviri ekranı açık/koyu/sakin tema ve sonuç durumları, okuma dışarıda çalış ve çekimler kartları, oturum unuttum soru ve cevap durumları, çevrimdışı rozeti axe taramaları, `clippedContent` ikon denetimi).
   - 6.5: Metin denetimi raporu (`docs/METIN-DENETIMI.md`), Diloloji isim güncellemesi (`README.md`, `package.json`, `extension/`).
+  - 6.6: Performans ve bundle boyutu analiz raporu (`docs/PERFORMANS.md`).
 
 - Claude Code (#168 ve sonrası):
   - Çekim listesi (`textForms.ts`, bileşik zamanlar, fiil tekrarına ekleme köprüsü),
