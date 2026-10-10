@@ -461,6 +461,26 @@ test('reading: the forms list finds a reflexive compound tense and lights the fo
   await expect(page.locator('.reader .rs.is-flash')).toContainText("Elle s'est lavée ce matin.")
 })
 
+test('the dark, calm and high-contrast themes keep the main screens readable', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  for (const theme of ['dark', 'calm', 'contrast']) {
+    await page.evaluate((t) => {
+      const root = document.documentElement
+      delete root.dataset.calm
+      delete root.dataset.contrast
+      root.dataset.theme = t === 'calm' ? 'dark' : t === 'contrast' ? 'light' : t
+      if (t === 'calm') root.dataset.calm = ''
+      if (t === 'contrast') root.dataset.contrast = ''
+    }, theme)
+    for (const name of ['Bugün', 'Çeviri', 'Fiiller', 'İlerleme']) {
+      await openScreen(page, name)
+      await page.waitForTimeout(450)
+      expect(await contrastProblems(page), `${theme} / ${name}`).toEqual([])
+    }
+  }
+})
+
 test('reading: outside learning sites are only links, opening in a new tab', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

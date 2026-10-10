@@ -2,13 +2,18 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // An in-memory Blob store behind the real /api/sync handlers.
 const blobs = new Map<string, Uint8Array>()
+// Set to make the store itself fail (not "missing").
+let failing = false
 vi.mock('@vercel/blob', () => ({
   put: async (path: string, body: ArrayBuffer | string, opts: { allowOverwrite?: boolean }) => {
     if (opts.allowOverwrite === false && blobs.has(path)) throw new Error('exists')
     blobs.set(path, typeof body === 'string' ? new TextEncoder().encode(body) : new Uint8Array(body))
     return {}
   },
-  get: async (path: string) => (blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)!.slice()).body } : null),
+  get: async (path: string) => {
+    if (failing) throw new Error('blob store unavailable')
+    return blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)!.slice()).body } : null
+  },
   list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
   del: async (path: string) => void blobs.delete(path),
 }))
@@ -29,8 +34,23 @@ function req(opts: { id?: string; part?: string; token?: string; body?: string |
 }
 const read = async (r: Response) => ({ status: r.status, text: await r.text() })
 
-beforeEach(() => blobs.clear())
+beforeEach(() => {
+  blobs.clear()
+  failing = false
+})
 afterEach(() => vi.unstubAllEnvs())
+
+describe('/api/sync when the store itself fails', () => {
+  it('says "try later" (502), never "no data" (404): a device must not take empty for the truth and write over the real data', async () => {
+    expect((await PUT(req({ body: 'sealed' }))).status).toBe(204)
+    failing = true
+    expect((await GET(req())).status).toBe(502)
+    // Nothing is written while the store cannot be read (the owner's claim cannot be checked either).
+    expect((await PUT(req({ body: 'overwrite' }))).status).toBe(502)
+    failing = false
+    expect(await read(await GET(req()))).toEqual({ status: 200, text: 'sealed' })
+  })
+})
 
 describe('/api/sync requests', () => {
   it('refuses malformed ids, parts and tokens before touching storage', async () => {

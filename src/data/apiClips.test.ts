@@ -17,12 +17,19 @@ function stubYouTube(opts: { search?: unknown; searchStatus?: number; tracks?: u
   })
 }
 
-const call = (q: string) => GET(new Request(`https://x/api/clips?${q}`))
+const FROM_APP = { 'sec-fetch-site': 'same-origin' }
+const call = (q: string) => GET(new Request(`https://x/api/clips?${q}`, { headers: FROM_APP }))
 
 describe('/api/clips', () => {
   afterEach(() => {
     vi.unstubAllGlobals()
     vi.unstubAllEnvs()
+  })
+
+  it('answers only the app\'s own pages, so a stranger cannot use up the YouTube quota', async () => {
+    expect((await GET(new Request('https://x/api/clips?q=décider&lang=fr'))).status).toBe(403)
+    expect((await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr'))).status).toBe(403)
+    expect((await GET(new Request('https://x/api/clips?q=décider&lang=fr', { headers: { origin: 'https://evil.example' } }))).status).toBe(403)
   })
 
   it('refuses bad requests and says when no YouTube key is set', async () => {
@@ -68,11 +75,11 @@ describe('/api/youtube still gives subtitles as reading text', () => {
 
   it('answers with the text, and says when there are no captions', async () => {
     stubYouTube()
-    const ok = await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr'))
+    const ok = await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr', { headers: FROM_APP }))
     expect(ok.status).toBe(200)
     expect(await ok.json()).toMatchObject({ id: 'abc12345678', title: 'Un jour', channel: 'Chaîne', auto: false, text: expect.stringContaining('décider') })
     stubYouTube({ tracks: [{ baseUrl: 'https://yt/timedtext', languageCode: 'en' }] })
-    const none = await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr'))
+    const none = await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr', { headers: FROM_APP }))
     expect(none.status).toBe(404)
     expect(await none.json()).toMatchObject({ error: 'no captions', available: ['en'] })
   })
