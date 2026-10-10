@@ -705,6 +705,17 @@ test('badges: earned with a date, shown newest first on the profile, one card pe
   await expect(page.locator('.badge-summary-count')).toContainText(/\/ \d+ rozet · \d+\/\d+ kademe/)
   await page.locator('.badge-case .badge-card', { hasText: 'İlk adım' }).click()
   await expect(page.locator('.badge-steps li.is-done').first()).toContainText(today)
+  // In a short window the dialog stays inside it and scrolls, so the last steps can be reached.
+  await page.setViewportSize({ width: 1280, height: 420 })
+  const dialog = page.locator('.badge-dialog')
+  const box = await dialog.evaluate((el) => {
+    const r = el.getBoundingClientRect()
+    return { bottom: r.bottom, fits: r.bottom <= window.innerHeight, scrolls: el.scrollHeight > el.clientHeight }
+  })
+  expect(box.fits).toBe(true)
+  expect(box.scrolls).toBe(true)
+  await dialog.evaluate((el) => el.scrollTo(0, el.scrollHeight))
+  expect(await dialog.evaluate((el) => el.scrollTop)).toBeGreaterThan(0)
 })
 
 test('translation: "Çevir" fills the Turkish of a sentence when the server can translate, and is absent when not', async ({ page }) => {

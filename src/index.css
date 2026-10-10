@@ -5021,3 +5021,42 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .summary-main > :nth-child(3), .summary-side > :nth-child(2) { animation-delay: 120ms; }
 .summary-main > :nth-child(4), .summary-side > :nth-child(3) { animation-delay: 180ms; }
 .summary-main > :nth-child(n + 5), .summary-side > :nth-child(n + 4) { animation-delay: 240ms; }
+
+/* ---------- Motion pass 2: decoration plays a few rounds and rests ---------- */
+/* An endless loop is for a state (recording, loading, sound, time running out). Scenery and
+   empty-state drawings move for a while after they appear, then settle where they began (even
+   counts for the back-and-forth ones, so they end on their first frame). Opening the screen again
+   replays them. */
+.art-sway { animation-iteration-count: 2; }
+.art-drop { animation-iteration-count: 1; }
+.art-fly { animation-iteration-count: 1; }
+.art-wing { animation-iteration-count: 18; }
+.art-write { animation-iteration-count: 1; }
+.art-pen { animation-iteration-count: 2; }
+.art-pop { animation-iteration-count: 1; }
+.art-breathe { animation-iteration-count: 2; }
+.art-scan { animation-iteration-count: 1; }
+.art-twinkle { animation-iteration-count: 2; }
+
+/* The hard-word glow signals once, for a few beats. */
+.plant-tile.is-hard.is-pulse::before { animation-iteration-count: 4; }
+.plant-tile.is-thirsty::after, .plant-tile.is-wilting::after { animation-iteration-count: 4; }
+
+/* Garden sky: about twenty to forty seconds of life, not forever. */
+.sky-star { animation-iteration-count: 6; }
+.sky-butterfly { animation-iteration-count: 4; }
+.sky-butterfly svg { animation-iteration-count: 60; }
+.sky-bee { animation-iteration-count: 8; }
+.sky-bee::after { animation-iteration-count: 120; }
+.sky-firefly { animation-iteration-count: 6; }
+
+/* The streak flame flickers for a few beats when it comes into view. */
+.streak-flame:not(.is-out) svg { animation-iteration-count: 4; }
+.streak-flame.is-igniting svg { animation-iteration-count: 1, 4; }
+.streak-flame:is(.tier-2, .tier-3, .tier-4)::before, .streak-flame:is(.tier-2, .tier-3, .tier-4):not(.is-frozen)::after { animation-iteration-count: 5; }
+
+/* ---------- Dialogs scroll when they are taller than the window ---------- */
+/* A short window (a laptop with a wide browser chrome, a phone turned sideways) used to cut a long
+   dialog off with no way to the rest of it. */
+.dialog { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
+
