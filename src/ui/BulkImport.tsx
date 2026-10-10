@@ -68,7 +68,7 @@ export function BulkImport({
       const missing = entries.filter((e) => e.senses[0].examples.length === 0)
       try {
         for (let i = 0; i < missing.length; i += 15) {
-          setBusy(`AI dolduruyor… ${Math.min(i + 15, missing.length)}/${missing.length}`)
+          setBusy(`YZ dolduruyor… ${Math.min(i + 15, missing.length)}/${missing.length}`)
           const batch = missing.slice(i, i + 15)
           const info = await enrichWords(apiKey, language, batch.map((e) => ({ word: displayForm(e) })))
           entries = entries.map((e) => {
@@ -85,7 +85,7 @@ export function BulkImport({
           })
         }
       } catch (err) {
-        setMessage({ ok: false, text: `${err instanceof AiError ? err.message : 'AI ile doldurulamadı.'} Kelimeler AI olmadan eklendi.` })
+        setMessage({ ok: false, text: `${err instanceof AiError ? err.message : 'YZ ile doldurulamadı.'} Kelimeler YZ olmadan eklendi.` })
       }
     }
     setBusy('')
@@ -189,7 +189,7 @@ export function BulkImport({
           {apiKey && (
             <label className="row small gap-2 self-end pointer">
               <input type="checkbox" checked={aiFill} onChange={(e) => setAiFill(e.target.checked)} />
-              <SparkleIcon size={16} className="icon-star" /> Örnek cümle, kalıp ve türü AI ile tamamla
+              <SparkleIcon size={16} className="icon-star" /> Örnek cümle, kalıp ve türü YZ ile tamamla
             </label>
           )}
         </div>

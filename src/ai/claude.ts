@@ -20,8 +20,8 @@ const AI_MESSAGES: Record<AiErrorKind, string> = {
   rate: 'Çok sık istek gönderildi. Biraz bekleyip tekrar dene.',
   refusal: 'Model bu isteği yanıtlamadı.',
   network: 'İnternet bağlantısı yok ya da Anthropic API\'ye ulaşılamadı.',
-  budget: 'Bu ayki AI bütçen doldu. Ayarlar → AI yardımcısı bölümünden sınırı değiştirebilirsin.',
-  other: 'AI isteği başarısız oldu.',
+  budget: 'Bu ayki YZ bütçen doldu. Ayarlar → YZ yardımcısı bölümünden sınırı değiştirebilirsin.',
+  other: 'YZ isteği başarısız oldu.',
 }
 
 function client(apiKey: string) {
@@ -61,7 +61,7 @@ async function structured<S extends z.ZodType>(
       at: new Date(),
     })
     if (res.stop_reason === 'refusal') throw new AiError('refusal', AI_MESSAGES.refusal)
-    if (!res.parsed_output) throw new AiError('other', 'AI cevabı okunamadı.')
+    if (!res.parsed_output) throw new AiError('other', 'YZ cevabı okunamadı.')
     return res.parsed_output as z.infer<S>
   } catch (e) {
     if (e instanceof AiError) throw e

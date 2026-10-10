@@ -2,7 +2,7 @@ import type { Profile } from '../data/db'
 import { levelTitle } from '../engine/gamification'
 import { availableTitles, BADGE_TITLES, type Unlockables } from '../engine/profileStyle'
 import type { GameState } from './game'
-import { LockIcon } from './icons'
+import { LockIcon, TrophyIcon } from './icons'
 
 const LEVELS = [1, 3, 5, 8, 11, 15, 20, 25, 30, 40, 50]
 
@@ -26,28 +26,33 @@ export function ProfileTitles({ profile, game, unlockables, save }: { profile: P
         <h2 className="section-title">Seviye unvanları</h2>
         <p className="small muted">Seviye atladıkça yeni bir unvan açılır; açılanlardan istediğini adının yanında gösterebilirsin.</p>
       </div>
-      <ol className="ladder titles-ladder">
+      <ol className="titles-ladder">
         {LEVELS.map((l) => {
           const reached = game.level.level >= l
           const id = idOf(l)
           const on = reached && chosen === id
           return (
             <li key={l} className={`${reached ? 'is-reached' : ''}${l === current ? ' is-current' : ''}`}>
-              <span className="level-badge">{l}</span>
-              <span className="title-name">{levelTitle(l)}</span>
-              {l === current && <span className="title-tag">şu an</span>}
-              {l === next && <span className="small muted">{xpToNext.toLocaleString('tr-TR')} XP kaldı</span>}
-              {!reached && l !== next && (
-                <span className="small muted title-lock">
-                  <LockIcon size={14} className="inline-icon" />
-                  {l}. seviye
+              <span className="level-badge title-mark">{l}</span>
+              <span className="title-text">
+                <span className="title-name">
+                  {levelTitle(l)} {l === current && <span className="title-tag">şu an</span>}
                 </span>
-              )}
-              {reached && (
-                <button type="button" className={`btn btn-sm ${on ? '' : 'btn-quiet'}`} aria-pressed={on} onClick={() => pick(id)}>
-                  {on ? 'Gösteriliyor' : 'Göster'}
-                </button>
-              )}
+                {l === next ? (
+                  <span className="small muted">{xpToNext.toLocaleString('tr-TR')} XP kaldı</span>
+                ) : (
+                  !reached && <span className="small muted">{l}. seviyede açılır</span>
+                )}
+              </span>
+              <span className="title-action">
+                {reached ? (
+                  <button type="button" className={`btn btn-sm ${on ? '' : 'btn-quiet'}`} aria-pressed={on} onClick={() => pick(id)}>
+                    {on ? 'Gösteriliyor' : 'Göster'}
+                  </button>
+                ) : (
+                  <LockIcon size={16} className="title-lock" />
+                )}
+              </span>
             </li>
           )
         })}
@@ -56,23 +61,29 @@ export function ProfileTitles({ profile, game, unlockables, save }: { profile: P
         <h2 className="section-title">Rozet unvanları</h2>
         <p className="small muted">Bu unvanlar belirli rozetlerle açılır.</p>
       </div>
-      <ul className="ladder titles-ladder">
+      <ul className="titles-ladder">
         {BADGE_TITLES.map((t) => {
           const badge = game.achievements.find((a) => a.id === t.badge)
           const reached = unlockables.badges.has(t.badge)
           const on = reached && chosen === t.id
           return (
             <li key={t.id} className={reached ? 'is-reached' : ''}>
-              <span className="title-name">{t.name}</span>
-              {reached ? (
-                <button type="button" className={`btn btn-sm ${on ? '' : 'btn-quiet'}`} aria-pressed={on} onClick={() => pick(t.id)}>
-                  {on ? 'Gösteriliyor' : 'Göster'}
-                </button>
-              ) : (
-                <span className="small muted title-lock">
-                  <LockIcon size={14} className="inline-icon" />“{badge?.title}” rozetiyle açılır
-                </span>
-              )}
+              <span className="level-badge title-mark">
+                <TrophyIcon size={16} />
+              </span>
+              <span className="title-text">
+                <span className="title-name">{t.name}</span>
+                {!reached && <span className="small muted">“{badge?.title}” rozetiyle açılır</span>}
+              </span>
+              <span className="title-action">
+                {reached ? (
+                  <button type="button" className={`btn btn-sm ${on ? '' : 'btn-quiet'}`} aria-pressed={on} onClick={() => pick(t.id)}>
+                    {on ? 'Gösteriliyor' : 'Göster'}
+                  </button>
+                ) : (
+                  <LockIcon size={16} className="title-lock" />
+                )}
+              </span>
             </li>
           )
         })}

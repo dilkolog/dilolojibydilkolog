@@ -96,7 +96,9 @@ test('Settings has no second way to the profile: the side menu already has it', 
   await expect(page.locator('.settings-profile')).toHaveCount(0)
   await expect(page.locator('.sidebar-foot:visible')).toHaveCount(1)
   await page.locator('.sidebar-foot:visible').click()
-  await expect(page.locator('.profile-settings')).toBeVisible()
+  // The profile opens, and on a wide screen it has no settings button of its own (the side menu has it).
+  await expect(page.getByLabel('Adın')).toBeVisible()
+  await expect(page.locator('.profile-settings')).toBeHidden()
 })
 
 test('the key legend stays at the bottom of the screen while a question eases in', async ({ page }) => {
@@ -480,12 +482,12 @@ test('bulk import: the words go to a new list named in the form', async ({ page 
   expect(placed).toEqual({ names: ['Ev eşyaları'], inList: 2 })
 })
 
-test('the AI screens wait for the owner\'s approval: a visitor is told why, an approved account gets the key form', async ({ page }) => {
+test('the YZ screens wait for the owner\'s approval: a visitor is told why, an approved account gets the key form', async ({ page }) => {
   test.setTimeout(60_000)
   await startWithSamples(page)
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()
-  const card = page.locator('section', { has: page.getByRole('heading', { name: 'AI yardımcısı' }) })
+  const card = page.locator('section', { has: page.getByRole('heading', { name: 'YZ yardımcısı' }) })
   await expect(card).toContainText('onayladığı hesaplara açık')
   await expect(card.getByLabel('Anthropic API anahtarı')).toHaveCount(0)
   // Approved (as the app keeps it once the server says so): the key form is there.

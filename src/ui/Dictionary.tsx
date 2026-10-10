@@ -544,9 +544,9 @@ function NotFound({
       const found = await enrichWords(apiKey, language, [{ word }])
       const info = found.get(word.toLocaleLowerCase()) ?? [...found.values()][0]
       if (info) setAi({ lemma: info.lemma, meanings: info.meanings })
-      else setError('AI bu kelimeyi tanımadı.')
+      else setError('YZ bu kelimeyi tanımadı.')
     } catch (e) {
-      setError(e instanceof AiError ? e.message : 'AI şu an cevap vermedi.')
+      setError(e instanceof AiError ? e.message : 'YZ şu an cevap vermedi.')
     } finally {
       setBusy(false)
     }
@@ -557,7 +557,7 @@ function NotFound({
       {ai ? (
         <>
           <p>
-            <strong lang={language}>{ai.lemma}</strong>: {ai.meanings.join(', ')} <span className="small muted">(AI)</span>
+            <strong lang={language}>{ai.lemma}</strong>: {ai.meanings.join(', ')} <span className="small muted">(YZ)</span>
           </p>
           <div>
             <button className="btn btn-sm" onClick={() => onAdd(ai.lemma, ai.meanings.slice(0, 2).join(', '))}>
@@ -596,7 +596,7 @@ function NotFound({
           <div className="row gap-xs">
             {apiKey && (
               <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={busy}>
-                <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'AI ile anlamını bul'}
+                <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'YZ ile anlamını bul'}
               </button>
             )}
             <a className="btn btn-sm btn-quiet" href={wiktionaryUrl(word, language)} target="_blank" rel="noreferrer">

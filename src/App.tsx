@@ -154,7 +154,7 @@ export default function App() {
     aiConfig.beforeRequest = async () => {
       if (!limit) return
       const spent = (await db.getAiUsage())[monthKey(new Date())]?.cost ?? 0
-      if (spent >= limit) throw new AiError('budget', 'Bu ayki AI bütçen doldu. Ayarlar → AI yardımcısı bölümünden sınırı değiştirebilirsin.')
+      if (spent >= limit) throw new AiError('budget', 'Bu ayki YZ bütçen doldu. Ayarlar → YZ yardımcısı bölümünden sınırı değiştirebilirsin.')
     }
   }, [settings])
 
@@ -651,7 +651,7 @@ export default function App() {
             )}
             {!online && !inSession && (
               <p className="offline-banner" role="status">
-                İnternet yok. Tekrarların ve kelimelerin normal çalışır; haberler, gerçek cümleler, görseller ve AI özellikleri bağlantı gelince açılır.
+                İnternet yok. Tekrarların ve kelimelerin normal çalışır; haberler, gerçek cümleler, görseller ve YZ özellikleri bağlantı gelince açılır.
               </p>
             )}
             <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>

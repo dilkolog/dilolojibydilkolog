@@ -195,7 +195,7 @@ export function WordForm({
   const suggest = async (at: SuggestField | 'more', fields: SuggestField[]) => {
     setAiError(null)
     if (!apiKey) {
-      setAiError({ at, message: 'AI önerileri için Ayarlar → AI yardımcısı bölümünden API anahtarını gir.' })
+      setAiError({ at, message: 'YZ önerileri için Ayarlar → YZ yardımcısı bölümünden API anahtarını gir.' })
       return
     }
     if (!form.word.trim()) {
@@ -233,7 +233,7 @@ export function WordForm({
         return next
       })
     } catch (err) {
-      setAiError({ at, message: err instanceof AiError ? err.message : 'AI önerisi alınamadı.' })
+      setAiError({ at, message: err instanceof AiError ? err.message : 'YZ önerisi alınamadı.' })
     } finally {
       setSuggesting(null)
     }
@@ -265,7 +265,7 @@ export function WordForm({
     try {
       const result = await enrichWords(apiKey, language, [{ word: form.word.trim() }])
       const info = result.values().next().value
-      if (!info) throw new WordInputError('AI bu kelime için sonuç döndürmedi.')
+      if (!info) throw new WordInputError('YZ bu kelime için sonuç döndürmedi.')
       const ai = wordInfoToInput(info)
       setForm((f) => ({
         ...f,
@@ -283,7 +283,7 @@ export function WordForm({
       }))
       setAiPos({ word: ai.word.trim(), pos: ai.partOfSpeech })
     } catch (err) {
-      setError(err instanceof AiError || err instanceof WordInputError ? err.message : 'AI ile doldurulamadı.')
+      setError(err instanceof AiError || err instanceof WordInputError ? err.message : 'YZ ile doldurulamadı.')
     } finally {
       setFilling(false)
     }
@@ -396,7 +396,7 @@ export function WordForm({
             ) : (
               <div className="pos-auto" id="w-pos" role="status" aria-live="polite">
                 {autoPos ? <strong>{POS_NAME[autoPos]}</strong> : <span className="muted">{form.word.trim() ? 'Tahmin edilemedi' : 'Kelimeyi yazınca belirlenir'}</span>}
-                <span className="pos-auto-tag">{fromAi ? 'AI' : fromLexicon ? 'Sözlük' : 'Otomatik'}</span>
+                <span className="pos-auto-tag">{fromAi ? 'YZ' : fromLexicon ? 'Sözlük' : 'Otomatik'}</span>
               </div>
             )}
           </div>
@@ -491,7 +491,7 @@ export function WordForm({
           <summary className="small">Daha fazla: not, etiketler, kalıplar ve karıştırılan kelimeler</summary>
           <div className="stack">
             <div className="ai-fill-all">
-              {aiButton('more', ['notes', 'tags', 'collocations'], 'Not, etiket ve kalıpları AI ile doldur', 'Dolduruluyor…')}
+              {aiButton('more', ['notes', 'tags', 'collocations'], 'Not, etiket ve kalıpları YZ ile doldur', 'Dolduruluyor…')}
               {aiErrorFor('more')}
             </div>
             <div className="field">
@@ -576,7 +576,7 @@ export function WordForm({
           {apiKey && (
             <button className="btn btn-quiet" type="button" onClick={fillWithAi} disabled={filling || !form.word.trim()}>
               <SparkleIcon size={18} className="icon-star" />
-              {filling ? 'Dolduruluyor…' : 'AI ile doldur'}
+              {filling ? 'Dolduruluyor…' : 'YZ ile doldur'}
             </button>
           )}
           {onCancel && (

@@ -42,7 +42,7 @@ const render = (apiKey: string | null, s: SessionSummary) => {
 }
 
 describe('SessionNote', () => {
-  it('shows nothing without an AI key or with too few mistakes', () => {
+  it('shows nothing without an YZ key or with too few mistakes', () => {
     expect(render(null, summary(3)).innerHTML).toBe('')
     act(() => root?.unmount())
     expect(render('key', summary(0)).innerHTML).toBe('')

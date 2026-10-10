@@ -200,9 +200,9 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
       {apiKey && (
         <div className="family-ai">
           <div className="row justify-between items-center">
-            <h3 className="subhead">AI önerileri</h3>
+            <h3 className="subhead">YZ önerileri</h3>
             <button className="btn btn-sm btn-quiet" onClick={() => void askAi()} disabled={ai.busy}>
-              <WandIcon size={15} /> {ai.busy ? 'Düşünüyor…' : ai.items ? 'Yeniden öner' : 'AI ile öner'}
+              <WandIcon size={15} /> {ai.busy ? 'Düşünüyor…' : ai.items ? 'Yeniden öner' : 'YZ ile öner'}
             </button>
           </div>
           {!ai.items && !ai.busy && !ai.error && (

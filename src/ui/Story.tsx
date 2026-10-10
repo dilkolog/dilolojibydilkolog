@@ -128,12 +128,12 @@ export function StoryScreen(p: Props) {
           title="Kelimelerinle yazılan bir dizi"
           action={
             <button className="btn" onClick={p.onOpenSettings}>
-              <SparkleIcon size={18} /> AI'ı Ayarlar'dan aç
+              <SparkleIcon size={18} /> YZ'yi Ayarlar'dan aç
             </button>
           }
         >
-          AI, zorlandığın kelimeleri kullanarak ilgi alanlarına göre her gün devam eden bir hikaye yazar. Boşlukları sen doldurursun; her boşluk bir
-          tekrar sayılır. Bunun için AI yardımcısını açman gerekiyor.
+          YZ, zorlandığın kelimeleri kullanarak ilgi alanlarına göre her gün devam eden bir hikaye yazar. Boşlukları sen doldurursun; her boşluk bir
+          tekrar sayılır. Bunun için YZ yardımcısını açman gerekiyor.
         </EmptyState>
       </div>
     )
@@ -174,7 +174,7 @@ export function StoryScreen(p: Props) {
 
       {!apiKey ? (
         <p className="small muted">
-          Yeni bölüm yazmak için AI yardımcısı gerekiyor.{' '}
+          Yeni bölüm yazmak için YZ yardımcısı gerekiyor.{' '}
           <button className="link" onClick={p.onOpenSettings}>
             Ayarlar'dan aç
           </button>

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { addToMonth, costOf, monthKey } from './usage'
 
-describe('AI usage', () => {
+describe('YZ usage', () => {
   it('prices tokens per model', () => {
     expect(costOf('claude-opus-5-5', 1_000_000, 0)).toBe(4)
     expect(costOf('claude-opus-5-5', 1000, 500)).toBeCloseTo(0.014)
