@@ -34,7 +34,10 @@ export function Feedback({
   mnemonic,
   onMnemonic,
   onEdit,
+  forgot,
 }: {
+  /** "Unuttum": the answer is shown as a lesson, not as a mistake (no red, no scolding). */
+  forgot?: boolean
   xp?: number
   mnemonic?: 'offer' | 'open' | 'saved' | null
   onMnemonic?: () => void
@@ -53,12 +56,12 @@ export function Feedback({
 }) {
   const [praise] = useState(() => PRAISE[Math.floor(Math.random() * PRAISE.length)])
   const [soft] = useState(() => SOFT[Math.floor(Math.random() * SOFT.length)])
-  const cls = ev.verdict === 'correct' ? 'ok' : ev.verdict
-  const confidentError = ev.verdict === 'wrong' && confidence === 'sure'
-  const title = ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
+  const cls = forgot ? 'forgot' : ev.verdict === 'correct' ? 'ok' : ev.verdict
+  const confidentError = ev.verdict === 'wrong' && confidence === 'sure' && !forgot
+  const title = forgot ? 'Unuttun, olur. İşte cevap:' : ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
   // An intrusion gets its own, more specific note below.
-  const hint = ev.errorType && ev.verdict !== 'correct' && !ev.intrusion ? ERROR_HINT[ev.errorType] : ''
-  const btnClass = ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
+  const hint = ev.errorType && ev.verdict !== 'correct' && !ev.intrusion && !forgot ? ERROR_HINT[ev.errorType] : ''
+  const btnClass = forgot ? '' : ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
   const [ready, setReady] = useState(!confidentError)
   useEffect(() => {
     if (ready) return
@@ -93,7 +96,7 @@ export function Feedback({
         <div className="sheet-text">
           <p className="sheet-title">
             <span className="verdict-badge" aria-hidden>
-              {ev.verdict === 'correct' ? <CheckIcon size={20} /> : ev.verdict === 'near' ? <NearIcon size={20} /> : <CloseIcon size={20} />}
+              {forgot ? <BulbIcon size={20} /> : ev.verdict === 'correct' ? <CheckIcon size={20} /> : ev.verdict === 'near' ? <NearIcon size={20} /> : <CloseIcon size={20} />}
             </span>
             {title}
             {xp !== undefined && xp > 0 && <span className="xp-pop">+{xp} XP</span>}
@@ -126,7 +129,7 @@ export function Feedback({
           {confidence === 'unsure' && (
             <p className="small">
               {ev.verdict === 'wrong'
-                ? 'Emin olmadığını işaretlemiştin: tahmin olarak kaydedildi, kelime yakında tekrar gelecek.'
+                ? 'Emin olmadığını işaretlemiştin: tahmin olarak kaydedildi.'
                 : 'Emin değildin; doğru bilsen de tahmin sayıldı, kelime biraz daha erken tekrar gelecek.'}
             </p>
           )}
@@ -144,7 +147,7 @@ export function Feedback({
                 “{f.gloss}” {LANGUAGE_NAME[f.lang]} <em>{f.word}</em> demek. {displayForm(entry)} ise “{entry.senses[0].gloss}”.
               </p>
             ))}
-          {ev.verdict === 'wrong' && !confidentError && (
+          {ev.verdict === 'wrong' && !confidentError && !forgot && (
             <p className="small return-note">
               <Plant stage={1} size={26} live /> {soft} Bu kelimeyi birazdan bir kez daha soracağım.
             </p>

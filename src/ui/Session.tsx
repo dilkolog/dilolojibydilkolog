@@ -471,7 +471,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
     return item.firstLetter && ex.kind === 'typed' && ex.context ? { ...ex, blankStart: ex.accepted[0]?.charAt(0) } : ex
   })
   const startedAt = useRef(performance.now())
-  const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string; confidence?: Confidence } | null>(null)
+  const [result, setResult] = useState<{ ev: Graded; log: Omit<SessionLogEntry, 'item'>; chosen?: string; confidence?: Confidence; forgot?: boolean } | null>(null)
   // Confidence is asked before the answer (not after: hindsight inflates it). Free sentences are
   // graded by the AI and spoken answers are hands-free, so those two skip it.
   const asksConfidence = prefs.confidence && exercise.type !== 'free_sentence' && exercise.type !== 'speak_word'
@@ -515,7 +515,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
     // Forgotten outright is no guess either way: no "you were sure" scolding, no "you guessed" note.
     const confidence: Confidence | undefined = asksConfidence && !forgot ? (unsure || shift ? 'unsure' : 'sure') : undefined
     const log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence)
-    setResult({ ev, log, chosen, confidence })
+    setResult({ ev, log, chosen, confidence, ...(forgot ? { forgot: true } : {}) })
     if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return
     playWord(entry, undefined, true, listenRate)
@@ -555,7 +555,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
   const canForget = !result && !pending && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation'
   const forget = () => {
     if (!canForget) return
-    const note = 'Hatırlayamadığını söyledin: sorun değil, cevaba bak; kelime yakında tekrar gelecek.'
+    const note = 'Bakarak öğrenmek de öğrenmektir: bu kelime birazdan bir kez daha gelecek.'
     if (exercise.kind === 'choice') {
       const expected = exercise.options.find((o) => o.id === exercise.correctOptionId)!.label
       void submit({ verdict: 'wrong', errorType: 'meaning', given: '', expected, feedback: note }, 0, 0, { forgot: true })
@@ -717,6 +717,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
                 : undefined
             }
             xp={result.log.xp}
+            forgot={result.forgot}
             entry={entry}
             mnemonic={mnemonic}
             onMnemonic={() => setMnemonic('open')}
@@ -732,7 +733,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
                 : undefined
             }
             onDiscard={
-              exercise.kind === 'choice' && result.ev.verdict === 'wrong'
+              exercise.kind === 'choice' && result.ev.verdict === 'wrong' && !result.forgot
                 ? async () => {
                     // Not counted: no verdict in the log, so no retry and no follow-up either.
                     if (await onDiscard()) onContinue({ entryId: entry.id })

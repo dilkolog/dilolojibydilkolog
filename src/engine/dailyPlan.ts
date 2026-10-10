@@ -3,6 +3,7 @@ import { openMistakes } from './mistakes'
 import { createRng, shuffle, type Rng } from './rng'
 import { isRetired, SURPRISE_PER_DAY } from './retire'
 import type { Scheduler } from './scheduler'
+import type { Trouble } from './trouble'
 import { dueSkills, ERROR_SKILL, pickExerciseType, startOfDay, unlockedSkills } from './selection'
 import {
   type EngineOptions,
@@ -81,6 +82,8 @@ export interface PlanInput {
   seed: number
   /** Runtime capabilities (e.g. AI grading available). */
   options?: EngineOptions
+  /** Words the ear or the voice struggles with (see trouble.ts): each gets a listening question. */
+  trouble?: ReadonlyMap<string, Trouble>
 }
 
 /** Why the plan has no (more) new words, so the UI can say it instead of looking stuck. */
@@ -113,6 +116,12 @@ export const FORGOTTEN_R = 0.7
 export const WEAK_R = 0.85
 /** Words with open mistakes are added even when not due, but capped so they don't crowd the day. */
 export const MAX_EXTRA_MISTAKE_ITEMS = 3
+/**
+ * Words the ear or the voice struggles with get a listening question each day, up to this many,
+ * even when their listening is not due: hearing the word and writing it is the cure for what
+ * dictation or the voice check showed.
+ */
+export const MAX_TROUBLE_ITEMS = 3
 /**
  * Interference control: a new word is not introduced while a synonym/antonym/confusable of it
  * was introduced within this many days, so similar words are not encoded side by side.
@@ -150,6 +159,7 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   const yesterday = new Date(today.getTime() - DAY_MS)
   const scored: { item: PlanItem; r: number; fresh: boolean }[] = []
   const extras: { item: PlanItem; lastAt: number; sure: boolean }[] = []
+  const troubled: { item: PlanItem; trouble: Trouble }[] = []
 
   const states = input.states.filter((s) => s.language === settings.language)
   const auto = settings.autoRetire ?? false
@@ -169,6 +179,16 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
     const opts = input.options ?? {}
     const due = dueSkills(state, entry, scheduler, now, opts)
     const open = openMistakes(input.mistakes, state.entryId)
+    // Trouble by ear or voice: a listening question, unless listening is already coming up for the word
+    // or it was practised today.
+    const trouble = input.trouble?.get(state.entryId)
+    if (trouble && unlockedSkills(state, entry, opts).includes('listening') && !due.some((d) => d.skill === 'listening')) {
+      const heardToday = !!state.lastReviewAt && state.lastReviewAt >= today && state.lastExerciseType !== undefined && EXERCISES[state.lastExerciseType].skill === 'listening'
+      const types = exerciseTypesFor('listening', entry, opts)
+      const wanted = trouble.kind === 'ear' ? 'listen_type' : 'listen_choose'
+      if (!heardToday && types.length)
+        troubled.push({ item: { kind: 'exercise', entryId: entry.id, reason: 'weak', skill: 'listening', exerciseType: types.includes(wanted) ? wanted : pickExerciseType('listening', entry, state, rng, opts) }, trouble })
+    }
 
     if (due.length) {
       // Only practised skills say anything about forgetting; a freshly unlocked skill scores 0
@@ -205,7 +225,9 @@ function reviewItems(input: PlanInput, byId: Map<string, VocabularyEntry>, rng: 
   scored.sort((a, b) => order(a) - order(b))
   // Mistakes made while sure come first: correcting a confident error sticks best.
   extras.sort((a, b) => Number(b.sure) - Number(a.sure) || b.lastAt - a.lastAt)
-  return [...scored.map((x) => x.item), ...extras.slice(0, MAX_EXTRA_MISTAKE_ITEMS).map((x) => x.item)]
+  // The ear's troubles first, the most missed first.
+  troubled.sort((a, b) => Number(b.trouble.kind === 'ear') - Number(a.trouble.kind === 'ear') || b.trouble.weight - a.trouble.weight)
+  return [...scored.map((x) => x.item), ...extras.slice(0, MAX_EXTRA_MISTAKE_ITEMS).map((x) => x.item), ...troubled.slice(0, MAX_TROUBLE_ITEMS).map((x) => x.item)]
 }
 
 function unintroduced(input: PlanInput): VocabularyEntry[] {

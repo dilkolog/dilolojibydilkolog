@@ -91,7 +91,6 @@ export function SessionSettings({ settings, onChange, onClose }: { settings: Set
         </div>
 
         <footer className="ss-foot">
-          <span className="small muted">Hepsi Ayarlar’da da var</span>
           <button className="btn" onClick={onClose} autoFocus>
             Çalışmaya dön
           </button>

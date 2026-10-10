@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
-import { dictionaryHtml, toCsv } from '../data/exportList'
+import { dictionaryHtml, toCsv, toXlsx } from '../data/exportList'
 import { db } from '../data/instance'
 import { getSafetySnapshot, restoreSafetySnapshot, saveSafetySnapshot, type SafetySnapshot } from '../data/safetyBackup'
 import { TARGET_LANGUAGES } from '../engine/types'
@@ -69,16 +69,20 @@ export function DataSettings({
     onDataChanged()
   }
 
-  const exportCsv = async (all: boolean) => {
+  const exportList = async (all: boolean, format: 'xlsx' | 'csv') => {
     const [vocabulary, states] = await Promise.all([db.vocabulary.toArray(), db.wordStates.toArray()])
     const words = vocabulary.filter((e) => e.source !== 'sample' && (all || e.language === lang))
-    const url = URL.createObjectURL(new Blob([toCsv(words, states)], { type: 'text/csv;charset=utf-8' }))
+    const blob =
+      format === 'xlsx'
+        ? new Blob([toXlsx(words, states) as BlobPart], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
+        : new Blob([toCsv(words, states)], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `kelime-kocu-${all ? 'kelimeler' : lang}-${new Date().toISOString().slice(0, 10)}.csv`
+    a.download = `diloloji-${all ? 'kelimeler' : lang}-${new Date().toISOString().slice(0, 10)}.${format}`
     a.click()
     URL.revokeObjectURL(url)
-    showToast(`${words.length} kelime CSV olarak indirildi.`)
+    showToast(`${words.length} kelime ${format === 'xlsx' ? 'Excel' : 'CSV'} olarak indirildi.`)
   }
 
   const printDictionary = async () => {
@@ -138,18 +142,28 @@ export function DataSettings({
           </div>
         )}
         <h3 className="subhead">Kelime listesini dışa aktar</h3>
-        <p className="small muted">CSV, Excel ya da Google E-Tablolar'da açılır. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
+        <p className="small muted">Excel dosyası Excel, Numbers ve Google E-Tablolar'da düzgün açılır. CSV'yi başka bir programa vereceksen kullan. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
         <div className="row">
-          <button className="btn btn-quiet" onClick={() => exportCsv(false)}>
-            {LANGUAGE_NAME[lang]} listesi (CSV)
+          <button className="btn btn-quiet" onClick={() => exportList(false, 'xlsx')}>
+            {LANGUAGE_NAME[lang]} listesi (Excel)
           </button>
-          <button className="btn btn-quiet" onClick={() => exportCsv(true)}>
-            Üç dil (CSV)
+          <button className="btn btn-quiet" onClick={() => exportList(true, 'xlsx')}>
+            Üç dil (Excel)
           </button>
           <button className="btn btn-quiet" onClick={printDictionary}>
             Yazdırılabilir sözlük
           </button>
         </div>
+        <p className="small muted">
+          CSV olarak:{' '}
+          <button className="link small" onClick={() => exportList(false, 'csv')}>
+            {LANGUAGE_NAME[lang]}
+          </button>{' '}
+          ·{' '}
+          <button className="link small" onClick={() => exportList(true, 'csv')}>
+            üç dil
+          </button>
+        </p>
       </section>
       <section className="card stack danger-zone">
         <h2 className="section-title">Sıfırlama</h2>

@@ -13,6 +13,7 @@ import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
 import type { SentenceCard } from '../engine/sentences'
+import { troubleWords } from '../engine/trouble'
 import { deadIds, mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tombstones'
 import type { TypingShare } from '../engine/session'
 import {
@@ -738,14 +739,16 @@ export class KelimeDB extends Dexie {
   }
 
   async loadLanguage(language: TargetLanguage) {
-    const [vocabulary, states, mistakes, lists] = await Promise.all([
+    const [vocabulary, states, mistakes, lists, earLog, pronScores] = await Promise.all([
       this.vocabulary.where('language').equals(language).toArray(),
       this.wordStates.where('language').equals(language).toArray(),
       this.mistakes.toArray(),
       this.getLists(language),
+      this.getEarLog(),
+      this.getAllPronScores(),
     ])
     const ids = new Set(vocabulary.map((v) => v.id))
-    return { vocabulary, states, mistakes: mistakes.filter((m) => ids.has(m.entryId)), lists }
+    return { vocabulary, states, mistakes: mistakes.filter((m) => ids.has(m.entryId)), lists, trouble: troubleWords(vocabulary, language, earLog, pronScores) }
   }
 
   /** Persists one answered exercise atomically: new word state, the event, and touched mistakes. */

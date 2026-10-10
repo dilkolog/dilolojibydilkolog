@@ -335,6 +335,7 @@ export default function App() {
       catalog: data.vocabulary,
       states: data.states,
       mistakes: data.mistakes,
+      trouble: data.trouble,
       scheduler,
       seed: daySeed(now),
       options,
@@ -473,7 +474,7 @@ export default function App() {
     const others = TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage)
     const loaded = await Promise.all(others.map((l) => db.loadLanguage(l)))
     const perLanguage = [
-      { language: settings.activeLanguage, vocabulary: data!.vocabulary, states: data!.states, mistakes: data!.mistakes },
+      { language: settings.activeLanguage, vocabulary: data!.vocabulary, states: data!.states, mistakes: data!.mistakes, trouble: data!.trouble },
       ...loaded.map((x, i) => ({ language: others[i], ...x })),
     ].map((x) =>
       buildDailyPlan({
@@ -482,6 +483,7 @@ export default function App() {
         catalog: x.vocabulary,
         states: x.states,
         mistakes: x.mistakes,
+        trouble: x.trouble,
         scheduler,
         seed: daySeed(now) + x.language.charCodeAt(0),
         options,
