@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CloseIcon, SparkleIcon } from './icons'
-import { markWhatsNewSeen, whatsNewDue, whatsNewSeen } from './whatsNew'
+import { markWhatsNewSeen, whatsNewDue, whatsNewSeen } from './whatsNewLogic'
 
 /**
  * A short, closable card on Today about what is new: where to find it, one tap away. It shows once

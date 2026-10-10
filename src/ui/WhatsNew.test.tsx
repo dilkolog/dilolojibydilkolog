@@ -4,7 +4,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { WhatsNew } from './WhatsNew'
-import { markWhatsNewSeen, WHATS_NEW_MIN_WORDS, WHATS_NEW_VERSION, whatsNewDue, whatsNewSeen } from './whatsNew'
+import { markWhatsNewSeen, WHATS_NEW_MIN_WORDS, WHATS_NEW_VERSION, whatsNewDue, whatsNewSeen } from './whatsNewLogic'
 
 let root: ReturnType<typeof createRoot> | undefined
 beforeEach(() => localStorage.clear())

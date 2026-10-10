@@ -155,4 +155,13 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 - **Entegrasyon Yolları:** Pressbooks `.h5p` arşivlerinden `content.json` çıkarma, açık AnkiWeb desteleri (`.apkg`), Tatoeba regex tabanlı otomatik cloze motoru.
 - **Karar Seçenekleri:** Claude Code için 3 mimari alternatif ve standart `GrammarExercise` JSON şeması.
 
+---
+
+## 10. Tuzak Kelimeler (Yalancı Eşdeğerler) Envanteri (`tuzak-kelimeler.md`)
+
+- **Genişletme:** `src/data/traps/fr-2.json` (+40), `es-2.json` (+40), `en-2.json` (+41) ile toplam 121 yeni doğrulanmış tuzak kelime.
+- **Kapsam:** İngilizceye benzeyenler (*cave, actual, contestar, sensible*) ve Fransızca/İngilizce kökenli Türkçe kelimelerin hedef dilde farklı anlam taşıdığı durumlar (*baston, chef, patron, servant, pasta, cola, cabinet, season, condition*).
+- **Veri Kalitesi:** Tüm lemmalar benzersiz kimliklerle (`<dil>-<lemma>`) ve özgün doğal örnek cümlelerle `src/data/traps.test.ts` testlerinden geçmektedir.
+
+
 
