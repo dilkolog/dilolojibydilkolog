@@ -555,6 +555,26 @@ test('new games and insight cards pass accessibility check across dark and calm 
     await page.locator('button.link', { hasText: '← Oyunlar' }).click()
   }
 
+  // 4b. Oyunlar → Kayıt farkı (intro, soru ve cevap sonrası üç söyleyiş)
+  const registerCard = page.locator('.game-card', { hasText: 'Kayıt farkı' })
+  if (await registerCard.count()) {
+    await registerCard.click()
+    await expect(page.locator('.greeting', { hasText: 'Kayıt farkı' })).toBeVisible()
+    await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+    await expect(page.locator('.option')).toHaveCount(3)
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-register-play-${theme}`)))
+    }
+    await page.locator('.option').first().click()
+    await expect(page.locator('.register-ladder')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-register-answer-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
   // 5. Oyunlar → Ses ayırt etme (oyun ekranı)
   const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
   if (await pairsCard.count()) {

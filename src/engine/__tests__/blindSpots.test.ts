@@ -70,6 +70,14 @@ describe('blindSpots', () => {
     expect(blindSpots(base({ reflex: { p1: rec(0, 1), p2: rec(0, 2) }, earMissed: 4 }))).toEqual([])
   })
 
+  it('notices the wrong register when enough answers say so', () => {
+    const spots = blindSpots(base({ register: { 'a|informal': rec(1, 2), 'b|formal': rec(0, 3), 'c|standard': rec(2, 0) } }))
+    expect(spots).toHaveLength(1)
+    expect(spots[0]).toMatchObject({ id: 'register', target: 'register', action: 'Kayıt farkı' })
+    expect(blindSpots(base({ register: { 'a|informal': rec(4, 1), 'b|formal': rec(3, 0) } }))).toEqual([])
+    expect(blindSpots(base({ register: { 'a|informal': rec(0, 3) } }))).toEqual([])
+  })
+
   it('shows at most three, the strongest first', () => {
     const spots = blindSpots(
       base({

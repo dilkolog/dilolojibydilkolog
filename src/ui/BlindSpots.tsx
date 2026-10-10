@@ -17,16 +17,17 @@ export function BlindSpotsCard({ language, errors, onRepair }: { language: Targe
   useEffect(() => {
     let live = true
     void (async () => {
-      const [lab, grammar, pairs, traps, reflex, ear] = await Promise.all([
+      const [lab, grammar, pairs, traps, reflex, register, ear] = await Promise.all([
         language === 'en' ? Promise.resolve(undefined) : db.getLab(language),
         db.getGrammarLog(),
         db.getPairLog(),
         db.getTrapLog(),
         db.getReflexLog(),
+        db.getRegisterLog(),
         db.getEarLog(),
       ])
       const earMissed = Object.values(ear[language] ?? {}).filter(stillMissed).length
-      return blindSpots({ language, errors, lab, grammar, grammarExercises: grammarExercises(language), pairs, traps, trapWords, reflex, earMissed })
+      return blindSpots({ language, errors, lab, grammar, grammarExercises: grammarExercises(language), pairs, traps, trapWords, reflex, register, earMissed })
     })()
       .then((s) => live && setSpots(s))
       .catch(() => live && setSpots([]))
