@@ -463,12 +463,16 @@ test('reading: a conjugated form opens the verb lab at its verb and tense', asyn
 test('reading: the verb forms of the text listed by tense, each opening the lab', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')
-  await page.getByLabel('Metin', { exact: true }).fill('Nous parlions souvent. Nous parlions de la mer. Je parle bien.')
+  await page.getByLabel('Metin', { exact: true }).fill("Nous parlions souvent. Nous parlions de la mer. Je parle bien. J'ai mangé.")
   await page.getByRole('button', { name: 'Okumaya başla' }).click()
   await page.getByRole('button', { name: 'Çekimler' }).click()
   const card = page.getByRole('region', { name: 'Metindeki çekimler' })
   await expect(card).toContainText('parlions')
   await expect(card.locator('.word-row', { hasText: 'parlions' })).toContainText('2 kez')
+  // A compound tense is one form: the auxiliary and the participle together, in its own group.
+  await card.locator('summary', { hasText: 'passé composé' }).click()
+  await expect(card.locator('.word-row', { hasText: 'ai mangé' })).toBeVisible()
+  await expect(card.locator('.word-row .w', { hasText: /^ai$/ })).toHaveCount(0)
   await card.locator('.word-row', { hasText: 'parlions' }).click()
   const main = page.locator('.lab-main')
   await expect(main.locator('.lab-forms')).toContainText('parlions')

@@ -31,6 +31,38 @@ describe('verb forms in a text', () => {
   })
 })
 
+describe('compound tenses in a text', () => {
+  const tenses = (text: string, lang: 'fr' | 'es') => textForms(lang, analyze(text, lang)).map((f) => `${f.form}|${f.lemma}|${f.tense}`)
+
+  it('reads the auxiliary and the participle as one form, not as avoir plus a stray word', () => {
+    const found = tenses("J'ai mangé une pomme.", 'fr')
+    expect(found).toContain('ai mangé|manger|passe-compose')
+    expect(found.some((f) => f.startsWith('ai|'))).toBe(false)
+  })
+
+  it('takes être with the verbs that use it, agreeing participles included, and never with the others', () => {
+    expect(tenses('Elle est allée à Paris.', 'fr')).toContain('est allée|aller|passe-compose')
+    expect(tenses('Ils sont arrivés hier.', 'fr')).toContain('sont arrivés|arriver|passe-compose')
+    expect(tenses('Le gâteau est mangé.', 'fr').some((f) => f.includes('passe-compose'))).toBe(false)
+  })
+
+  it('finds the other compound tenses and reaches over small words', () => {
+    expect(tenses("Nous avions déjà fini quand il est venu.", 'fr')).toEqual(expect.arrayContaining(['avions fini|finir|plus-que-parfait', 'est venu|venir|passe-compose']))
+    expect(tenses("Je n'ai pas mangé.", 'fr')).toContain('ai mangé|manger|passe-compose')
+    expect(tenses('Elle aura fini demain.', 'fr')).toContain('aura fini|finir|futur-anterieur')
+  })
+
+  it('works in Spanish', () => {
+    expect(tenses('Hemos comido mucho.', 'es')).toContain('hemos comido|comer|perfecto')
+    expect(tenses('Ya había comido.', 'es')).toContain('había comido|comer|pluscuamperfecto')
+    expect(tenses('No ha hablado nunca.', 'es')).toContain('ha hablado|hablar|perfecto')
+  })
+
+  it('leaves a lone participle or auxiliary alone', () => {
+    expect(tenses('Un enfant mangé par le loup, ai-je dit.', 'fr').some((f) => f.includes('passe-compose'))).toBe(false)
+  })
+})
+
 describe('forms grouped by tense', () => {
   it('puts the busiest tense first and counts a repeated form once with its count', () => {
     const groups = groupByTense([

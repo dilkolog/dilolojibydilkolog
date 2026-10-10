@@ -27,7 +27,7 @@ export function TextForms({ groups, language, onOpenLab, onClose }: { groups: Te
           {groups.map((g) => (
             <details key={g.tense} className="text-forms-group" open={g === groups[0]}>
               <summary>
-                <strong>{TENSE_GUIDE[g.tense].tr}</strong> <span className="muted small">{g.total} kez · {g.forms.length} farklı biçim</span>
+                <strong lang={language}>{TENSE_GUIDE[g.tense].name}</strong> <span className="muted small">{TENSE_GUIDE[g.tense].tr} ·</span> <span className="muted small">{g.total} kez · {g.forms.length} farklı biçim</span>
               </summary>
               <ul className="word-list">
                 {g.forms.slice(0, SHOWN * 2).map((f) => (
