@@ -1,0 +1,128 @@
+[
+ {
+  "id": "en-eat",
+  "language": "en",
+  "tr": "yemek yemek",
+  "informal": "scoff",
+  "standard": "eat",
+  "formal": "dine",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-car",
+  "language": "en",
+  "tr": "araba",
+  "informal": "wheels",
+  "standard": "car",
+  "formal": "vehicle",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-money",
+  "language": "en",
+  "tr": "para",
+  "informal": "dough",
+  "standard": "money",
+  "formal": "funds",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-tired",
+  "language": "en",
+  "tr": "yorgun",
+  "informal": "knackered",
+  "standard": "tired",
+  "formal": "fatigued",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-great",
+  "language": "en",
+  "tr": "harika",
+  "informal": "awesome",
+  "standard": "very good",
+  "formal": "excellent",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-job",
+  "language": "en",
+  "tr": "iş (çalışma)",
+  "informal": "gig",
+  "standard": "job",
+  "formal": "position",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-leave",
+  "language": "en",
+  "tr": "gitmek, ayrılmak",
+  "informal": "head out",
+  "standard": "leave",
+  "formal": "depart",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-howareyou",
+  "language": "en",
+  "tr": "nasılsın?",
+  "informal": "What's up?",
+  "standard": "How are you?",
+  "formal": "How do you do?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-goodbye",
+  "language": "en",
+  "tr": "hoşça kal",
+  "informal": "See ya!",
+  "standard": "Goodbye",
+  "formal": "I wish you a good day",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-misunderstood",
+  "language": "en",
+  "tr": "anlamadım",
+  "informal": "Huh? I'm lost",
+  "standard": "I didn't understand",
+  "formal": "I'm afraid I did not follow",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-alot",
+  "language": "en",
+  "tr": "çok (sayıda)",
+  "informal": "loads of",
+  "standard": "a lot of",
+  "formal": "numerous",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-dontknow",
+  "language": "en",
+  "tr": "bilmiyorum",
+  "informal": "No idea",
+  "standard": "I don't know",
+  "formal": "I am not aware of that",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-okay",
+  "language": "en",
+  "tr": "tamam",
+  "informal": "Cool",
+  "standard": "Okay",
+  "formal": "Very well",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-kid",
+  "language": "en",
+  "tr": "çocuk",
+  "informal": "kid",
+  "standard": "child",
+  "formal": "minor",
+  "source": "Diloloji (özgün)"
+ }
+]

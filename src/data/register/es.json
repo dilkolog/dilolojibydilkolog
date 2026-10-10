@@ -1,0 +1,128 @@
+[
+ {
+  "id": "es-eat",
+  "language": "es",
+  "tr": "yemek yemek",
+  "informal": "papear",
+  "standard": "comer",
+  "formal": "alimentarse",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-car",
+  "language": "es",
+  "tr": "araba",
+  "informal": "el cacharro",
+  "standard": "el coche",
+  "formal": "el vehículo",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-money",
+  "language": "es",
+  "tr": "para",
+  "informal": "la pasta",
+  "standard": "el dinero",
+  "formal": "los fondos",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-tired",
+  "language": "es",
+  "tr": "yorgun",
+  "informal": "hecho polvo",
+  "standard": "cansado",
+  "formal": "exhausto",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-great",
+  "language": "es",
+  "tr": "harika",
+  "informal": "guay",
+  "standard": "muy bien",
+  "formal": "excelente",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-job",
+  "language": "es",
+  "tr": "iş (çalışma)",
+  "informal": "el curro",
+  "standard": "el trabajo",
+  "formal": "el empleo",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-leave",
+  "language": "es",
+  "tr": "gitmek, ayrılmak",
+  "informal": "pirarse",
+  "standard": "irse",
+  "formal": "retirarse",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-howareyou",
+  "language": "es",
+  "tr": "nasılsın?",
+  "informal": "¿Qué pasa, tío?",
+  "standard": "¿Cómo estás?",
+  "formal": "¿Cómo se encuentra usted?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-goodbye",
+  "language": "es",
+  "tr": "hoşça kal",
+  "informal": "¡Chao!",
+  "standard": "Adiós",
+  "formal": "Que tenga un buen día",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-misunderstood",
+  "language": "es",
+  "tr": "anlamadım",
+  "informal": "Me he perdido, tío",
+  "standard": "No he entendido",
+  "formal": "Disculpe, no he comprendido",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-alot",
+  "language": "es",
+  "tr": "çok (sayıda)",
+  "informal": "un montón de",
+  "standard": "mucho",
+  "formal": "numerosos",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-dontknow",
+  "language": "es",
+  "tr": "bilmiyorum",
+  "informal": "Ni idea",
+  "standard": "No lo sé",
+  "formal": "Lo desconozco",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-okay",
+  "language": "es",
+  "tr": "tamam",
+  "informal": "Vale",
+  "standard": "De acuerdo",
+  "formal": "Conforme",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-kid",
+  "language": "es",
+  "tr": "çocuk",
+  "informal": "el crío",
+  "standard": "el niño",
+  "formal": "el menor",
+  "source": "Diloloji (özgün)"
+ }
+]
