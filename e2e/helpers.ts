@@ -75,7 +75,11 @@ export async function openScreen(page: Page, name: string) {
     if (await side.count()) await side.click()
     else {
       await page.locator('.top-profile:visible').click()
-      if (name === 'Ayarlar') await page.getByRole('button', { name: 'Ayarlar' }).first().click()
+      if (name === 'Ayarlar') {
+        const btn = page.locator(':is(.profile-settings, button[aria-label="Ayarlar"]):visible').first()
+        await btn.waitFor({ state: 'visible', timeout: 5000 })
+        await btn.click()
+      }
     }
   } else {
     const [place, tab] = ROUTE[name]

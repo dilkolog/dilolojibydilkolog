@@ -197,3 +197,36 @@ test('offline badge passes accessibility check and small icon containers have no
 
   expect(problems).toEqual([])
 })
+
+test('settings data screen passes accessibility check with safety snapshot undo row and confirmation dialog', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Veriler' }).click()
+
+  const problems: string[] = []
+
+  // Perform a restore with a valid empty backup to produce the safety snapshot undo row
+  const file = page.locator('input[type=file]')
+  const empty = { app: 'kelime-koc', version: 3, exportedAt: '2026-10-01T10:00:00.000Z', vocabulary: [], wordStates: [], events: [], mistakes: [] }
+  await file.setInputFiles({ name: 'bos.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(empty)) })
+  await page.getByRole('alertdialog').getByRole('button', { name: 'Geri yükle' }).click()
+  await expect(page.getByText('Yedek geri yüklendi: 0 kelime.')).toBeVisible()
+
+  // 1. "Önceki hâle dön" row is now visible on the DataSettings section
+  const undoBtn = page.getByRole('button', { name: 'Önceki hâle dön' })
+  await expect(undoBtn).toBeVisible()
+  problems.push(...(await scan(page, 'settings-data-undo-row')))
+
+  // 2. Open confirmation dialog
+  await undoBtn.click()
+  const undoDialog = page.getByRole('alertdialog')
+  await expect(undoDialog).toBeVisible()
+  problems.push(...(await scan(page, 'settings-data-undo-dialog')))
+
+  // Dismiss dialog safely
+  await undoDialog.getByRole('button', { name: 'Vazgeç' }).click()
+  await expect(undoDialog).toBeHidden()
+
+  expect(problems).toEqual([])
+})
+
