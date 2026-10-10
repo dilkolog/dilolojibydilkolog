@@ -1112,6 +1112,32 @@ test('back-translation: sentences translated before come back as their Turkish, 
   await expect(page.getByRole('region', { name: /Cümlelerin/ }).or(page.locator('.sentence-list'))).toContainText('Nous partons tôt demain.')
 })
 
+test('grammar questions: a topic round of the three kinds, the rule after each answer, and the topic remembers how it went', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await page.getByRole('button', { name: 'Participe passé uyumu' }).click()
+  await page.getByRole('button', { name: /6 soruluk tura başla/ }).click()
+  for (let i = 1; i <= 6; i++) {
+    await expect(page.locator('.game-timer')).toHaveText(`${i} / 6`)
+    // Whatever the kind, answer it (wrongly is fine): the rule must show.
+    if (await page.locator('input.answer-input').count()) {
+      await page.locator('input.answer-input').fill('zzz')
+      await page.getByRole('button', { name: 'Kontrol et' }).click()
+    } else if (await page.locator('.option').count()) {
+      await page.locator('.option').first().click()
+    } else {
+      await page.locator('.grammar-word').first().click()
+    }
+    await expect(page.locator('.grammar-feedback')).toBeVisible()
+    await page.getByRole('button', { name: 'Devam' }).click()
+  }
+  await expect(page.locator('.game-result')).toContainText('/ 6 doğru')
+  await page.getByRole('button', { name: 'Oyunlara dön' }).click()
+  await page.locator('.game-card', { hasText: 'Dilbilgisi soruları' }).click()
+  await expect(page.getByRole('button', { name: /Participe passé uyumu · %\d+/ })).toBeVisible()
+})
+
 test('shadowing a text: a sentence played from its recording, then said back, then both compared', async ({ page }) => {
   // No microphone in a test: a silent stream stands in for it.
   await page.addInitScript(() => {
