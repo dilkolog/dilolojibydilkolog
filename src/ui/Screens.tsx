@@ -13,7 +13,7 @@ import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { AlertIcon, BoltIcon, MoonIcon, SunIcon, BookIcon, CheckCircleIcon, CheckIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon } from './icons'
+import { AlertIcon, MoonIcon, SunIcon, BookIcon, CheckCircleIcon, CheckIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon, SunriseIcon, VerbReviewIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
 
 import { RaceCard } from './Race'
@@ -81,9 +81,7 @@ function DayMark({ now }: { now: Date }) {
       ) : part === 'night' ? (
         <MoonIcon size={22} />
       ) : (
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-          <path d="M6.5 16a5.5 5.5 0 0 1 11 0M3 19h18M12 6v2.2M4.6 9.6l1.6 1.4M19.4 9.6l-1.6 1.4" />
-        </svg>
+        <SunriseIcon size={22} />
       )}
     </span>
   )
@@ -406,7 +404,7 @@ export function Home({
               {difficultCount > 0 && onPracticeDifficult && (
                 <button className="tile" onClick={onPracticeDifficult}>
                   <span className="tile-icon warm">
-                    <BoltIcon size={22} />
+                    <VerbReviewIcon size={22} />
                   </span>
                   <span>
                     <strong>Zor kelimelerin</strong>

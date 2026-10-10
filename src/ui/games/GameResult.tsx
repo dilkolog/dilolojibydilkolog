@@ -46,7 +46,7 @@ export function GameResult({
           </span>
         )}
         <h1 className="game-result-title">
-          {record && accuracy !== undefined && <TrophyIcon size={24} className="inline-icon record-icon" />}
+          {record && accuracy !== undefined && <TrophyIcon size={22} className="inline-icon record-icon" />}
           {title}
         </h1>
         <p className="game-result-headline">{headline}</p>

@@ -2,7 +2,7 @@ import { createElement, type ComponentType, type ReactNode } from 'react'
 import {
   BookIcon, BoltIcon, EarIcon, GaugeIcon, HandIcon, MessageIcon, PuzzleIcon, ScaleIcon, TagIcon, BoxIcon, BrainIcon, BriefcaseIcon, CalendarIcon, CheckCircleIcon, FilmIcon, FlameIcon, FlowerIcon, GlobeIcon, HeadphonesIcon, HomeIcon,
   ImageIcon, KeyboardIcon, MicIcon, MountainIcon, PenIcon, SparkleIcon, SpeakerIcon, SproutIcon, StarIcon, StethoscopeIcon, SuitcaseIcon, SwordsIcon,
-  TargetIcon, TenseIcon, HourglassIcon, TrophyIcon, UtensilsIcon, MoonIcon, SunIcon,
+  TargetIcon, TenseIcon, HourglassIcon, TrophyIcon, UtensilsIcon, MoonIcon, SunIcon, BackTranslateIcon, DictationIcon, EarMissIcon, TimerIcon,
 } from './icons'
 
 export type IconC = ComponentType<{ size?: number; className?: string; solid?: boolean }>
@@ -17,6 +17,7 @@ const BY_EMOJI: Record<string, IconC> = {
   '⭐': StarIcon, '🌟': StarIcon, '🌍': GlobeIcon, '🌸': FlowerIcon, '🎙': MicIcon, '🏆': TrophyIcon, '🥇': TrophyIcon, '🥈': TrophyIcon, '🥉': TrophyIcon,
   '🖼': ImageIcon, '💯': CheckCircleIcon, '💎': SparkleIcon, '🌌': SparkleIcon, '🏔': MountainIcon, '🔊': SpeakerIcon,
   '👆': HandIcon, '💬': MessageIcon, '👂': EarIcon, '🧩': PuzzleIcon, '🏎': GaugeIcon, '🏷': TagIcon, '⚖': ScaleIcon, '🕰': TenseIcon, '⏳': HourglassIcon,
+  '🔁': BackTranslateIcon, '📝': DictationIcon, '🦻': EarMissIcon, '⏱': TimerIcon,
   '🦉': MoonIcon, '🌅': SunIcon, '🍽': UtensilsIcon, '🎬': FilmIcon, '🏠': HomeIcon, '💼': BriefcaseIcon, '📦': BoxIcon, '🧳': SuitcaseIcon, '🩺': StethoscopeIcon,
 }
 

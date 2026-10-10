@@ -110,8 +110,8 @@ export function GamesScreen(
       title: 'Dinleme ve telaffuz',
       tone: 'listen',
       cards: [
-        { id: 'dictation', emoji: '🎙️', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
-        { id: 'ear', emoji: '🎯', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
+        { id: 'dictation', emoji: '📝', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
+        { id: 'ear', emoji: '🦻', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
         { id: 'pairs', emoji: '👂', name: 'Ses ayırt etme', text: 'Tek sesi farklı iki kelimeden hangisini duydun?', status: canSpeak() ? record(`pairs:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
       ],
     },
@@ -120,7 +120,7 @@ export function GamesScreen(
       tone: 'speed',
       cards: [
         { id: 'match', emoji: '🧩', name: 'Eşleştirme', text: '6 kelimeyi anlamlarıyla en kısa sürede eşleştir.', status: enough ? record(matchKey, fmt) : 'En az 4 kelime gerekiyor', disabled: !enough },
-        { id: 'blitz', emoji: '⚡', name: 'Zamana karşı', text: '60 saniyede olabildiğince çok doğru: anlamı seç ya da kelimeyi yaz.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
+        { id: 'blitz', emoji: '⏱️', name: 'Zamana karşı', text: '60 saniyede olabildiğince çok doğru: anlamı seç ya da kelimeyi yaz.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
         {
           id: 'fluency',
           emoji: '🏎️',

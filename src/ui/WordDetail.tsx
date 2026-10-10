@@ -41,7 +41,7 @@ import { GroupToggle, JumpNav } from './JumpNav'
 import { useGroups } from './useGroups'
 import { prefs } from './prefs'
 import { useMediaUrl } from './useMedia'
-import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TenseIcon, TrashIcon, UmbrellaIcon } from './icons'
+import { BookIcon, CalendarIcon, ChartIcon, ChevronLeftIcon, ChevronRightIcon, LeafIcon, PenIcon, PlayIcon, SlowIcon, SpeakerIcon, TenseIcon, TrashIcon, UmbrellaIcon, CloseIcon } from './icons'
 import { verbKey } from './verbs/labShared'
 import { deleteWordsWithUndo } from './undo'
 import { neighbours } from './wordOrder'
@@ -360,7 +360,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
                         onChanged()
                       }}
                     >
-                      ×
+                      <CloseIcon size={16} />
                     </button>
                   </span>
                 ))}

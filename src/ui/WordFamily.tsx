@@ -7,7 +7,7 @@ import type { VocabularyEntry } from '../engine/types'
 import { POS_NAME } from './labels'
 import { AiError, suggestFamily, type FamilySuggestion } from '../ai'
 import { useAi } from './aiContext'
-import { SparkleIcon } from './icons'
+import { WandIcon } from './icons'
 
 /**
  * The word's other forms and relatives (decide → decision → prendre une décision; lent →
@@ -202,7 +202,7 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
           <div className="row justify-between items-center">
             <h3 className="subhead">AI önerileri</h3>
             <button className="btn btn-sm btn-quiet" onClick={() => void askAi()} disabled={ai.busy}>
-              <SparkleIcon size={15} /> {ai.busy ? 'Düşünüyor…' : ai.items ? 'Yeniden öner' : 'AI ile öner'}
+              <WandIcon size={15} /> {ai.busy ? 'Düşünüyor…' : ai.items ? 'Yeniden öner' : 'AI ile öner'}
             </button>
           </div>
           {!ai.items && !ai.busy && !ai.error && (

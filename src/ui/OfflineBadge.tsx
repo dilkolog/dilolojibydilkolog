@@ -1,3 +1,4 @@
+import { CloudOffIcon } from './icons'
 import { useEffect, useState } from 'react'
 
 /**
@@ -22,7 +23,7 @@ export function OfflineBadge() {
 
   return (
     <span className="offline-badge" role="status" aria-live="polite" title="İnternet bağlantısı yok">
-      <span className="offline-dot" aria-hidden />
+      <CloudOffIcon size={14} />
       Çevrimdışı
     </span>
   )

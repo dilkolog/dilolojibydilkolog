@@ -4,7 +4,7 @@ import { ListeningPicker } from './Listening'
 import { NewsPicker } from './News'
 import { StorybooksPicker } from './StorybooksPicker'
 import { WikipediaPicker } from './WikipediaPicker'
-import { BookIcon, PlayIcon } from './icons'
+import { BookIcon, PlayIcon, CloseIcon } from './icons'
 import { showToast } from './toastFeed'
 import { storyCredit } from '../data/storybooks'
 import type { KelimeDB, ReadingText } from '../data/db'
@@ -44,7 +44,7 @@ export function LibraryItem({ item, now, onOpen, onRemove }: { item: ReadingText
                 )}
               </button>
               <button className="icon-btn lib-remove" onClick={() => onRemove(item)} aria-label={`${item.title} sil`}>
-                ×
+                <CloseIcon size={16} />
               </button>
             </li>
   )

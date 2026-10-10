@@ -193,6 +193,71 @@ export const ClipboardIcon = (p: P) => (
     <path d="M9.5 5.5V4.2a.7.7 0 0 1 .7-.7h3.6a.7.7 0 0 1 .7.7v1.3M9 11h6M9 15h4" />
   </Icon>
 )
+/** Offline: a cloud struck through. */
+export const CloudOffIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M7.5 18.5h9.8a3.8 3.8 0 0 0 1-7.4A5.8 5.8 0 0 0 6.9 9.8 4.4 4.4 0 0 0 7.5 18.5z" />
+    <path d="M4 4l16 16" />
+  </Icon>
+)
+/** A verb's forms: the table of persons and endings. */
+export const ConjugationsIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M5 4.5h14a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18V6A1.5 1.5 0 0 1 5 4.5z" />
+    <path d="M3.5 9.5h17M3.5 14.5h17M10 9.5v10" />
+  </Icon>
+)
+/** Dictation: sound on the left, the pen that writes it on the right. */
+export const DictationIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M3.5 10v4M6.5 7.5v9M9.5 9.5v5" />
+    <S d="M13.5 19.5l.9-3.6 5.6-5.6a1.7 1.7 0 0 1 2.4 2.4l-5.6 5.6z" />
+  </Icon>
+)
+/** Shadowing: a voice and its echo a beat behind. */
+export const ShadowingIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M2.5 9.5h2l1.7-4 2.6 8 2-5 1.4 1H17" />
+    <path d="M7.5 18.5h2l1.5-3.5 2.2 6.5 1.8-4.5 1.2.9h3.3" opacity="0.55" />
+  </Icon>
+)
+/** Back-translation: Turkish to the language and round again. */
+export const BackTranslateIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M4.5 11.5a7.5 7.5 0 0 1 13-4.7M19.5 3.5v4h-4M19.5 12.5a7.5 7.5 0 0 1-13 4.7M4.5 20.5v-4h4" />
+  </Icon>
+)
+/** What the ear missed: an ear in a dashed ring. */
+export const EarMissIcon = (p: P) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="10" strokeDasharray="2.4 3" opacity="0.7" />
+    <g transform="translate(5.4 5.4) scale(0.55)">
+      <D d="M6.5 9.5a5.5 5.5 0 0 1 11 0c0 3.2-2.6 4.3-3.1 7-.4 2.2-1.8 3.8-3.9 3.8a3 3 0 0 1-3-3z" />
+      <path d="M6.5 9.5a5.5 5.5 0 0 1 11 0c0 3.2-2.6 4.3-3.1 7-.4 2.2-1.8 3.8-3.9 3.8a3 3 0 0 1-3-3M9.5 10a2.5 2.5 0 0 1 5 0c0 1.4-1.2 2-1.7 3" strokeWidth="3.2" />
+    </g>
+  </Icon>
+)
+/** Verb review: the review loop with a V in it. */
+export const VerbReviewIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M4.5 11.5a7.5 7.5 0 0 1 13-4.7M19.5 3.5v4h-4M19.5 12.5a7.5 7.5 0 0 1-13 4.7M4.5 20.5v-4h4" />
+    <path d="M9.3 9.5 12 14.5l2.7-5" />
+  </Icon>
+)
+/** Against the clock: a stopwatch. */
+export const TimerIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M12 6.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" />
+    <path d="M12 14V10M9.5 3h5M12 3v3.5M18.2 7.8l1.3-1.3" />
+  </Icon>
+)
+/** Dawn and dusk: the sun on the horizon. */
+export const SunriseIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M6.5 16a5.5 5.5 0 0 1 11 0z" />
+    <path d="M3 19h18M12 6v2.2M4.6 9.6l1.6 1.4M19.4 9.6l-1.6 1.4" />
+  </Icon>
+)
 export const TrashIcon = (p: P) => (
   <Icon {...p}>
     <S d="M6 7h12l-.9 12.1a2 2 0 0 1-2 1.9H8.9a2 2 0 0 1-2-1.9z" />

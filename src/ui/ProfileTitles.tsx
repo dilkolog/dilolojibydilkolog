@@ -39,7 +39,7 @@ export function ProfileTitles({ profile, game, unlockables, save }: { profile: P
               {l === next && <span className="small muted">{xpToNext.toLocaleString('tr-TR')} XP kaldı</span>}
               {!reached && l !== next && (
                 <span className="small muted title-lock">
-                  <LockIcon size={12} className="inline-icon" />
+                  <LockIcon size={14} className="inline-icon" />
                   {l}. seviye
                 </span>
               )}
@@ -70,7 +70,7 @@ export function ProfileTitles({ profile, game, unlockables, save }: { profile: P
                 </button>
               ) : (
                 <span className="small muted title-lock">
-                  <LockIcon size={12} className="inline-icon" />“{badge?.title}” rozetiyle açılır
+                  <LockIcon size={14} className="inline-icon" />“{badge?.title}” rozetiyle açılır
                 </span>
               )}
             </li>

@@ -479,7 +479,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
               Kullan:{' '}
               {words.map((w) => (
                 <span key={w.id} className={`mission-word${used.has(displayForm(w)) ? ' is-done' : ''}`} lang={language} title={w.senses[0].gloss}>
-                  {used.has(displayForm(w)) && <CheckIcon size={13} className="inline-icon" />}
+                  {used.has(displayForm(w)) && <CheckIcon size={14} className="inline-icon" />}
                   {displayForm(w)}
                 </span>
               ))}

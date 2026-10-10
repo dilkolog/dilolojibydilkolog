@@ -75,7 +75,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               <Avatar profile={profile} size={88} />
               {game && <span className="avatar-level">{game.level.level}</span>}
             </span>
-            <span className="avatar-edit-badge"><PenIcon size={13} /></span>
+            <span className="avatar-edit-badge"><PenIcon size={14} /></span>
           </button>
           <div className="profile-fields">
             <input

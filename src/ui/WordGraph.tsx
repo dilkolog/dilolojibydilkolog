@@ -4,6 +4,7 @@ import { displayForm } from '../engine/exercises'
 import { buildWordGraph, type LinkKind } from '../engine/graph'
 import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
+import { CloseIcon } from './icons'
 import { STAGE_NAME } from './labels'
 
 interface Node extends SimulationNodeDatum {
@@ -189,7 +190,7 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
                 Kelimeyi aç
               </button>
               <button className="icon-btn" onClick={() => setSelected(null)} aria-label="Seçimi kaldır">
-                ×
+                <CloseIcon size={16} />
               </button>
             </div>
           </div>

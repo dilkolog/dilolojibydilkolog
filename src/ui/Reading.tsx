@@ -37,7 +37,7 @@ import { scheduler } from '../data/instance'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { GlobeIcon, EarIcon, MicIcon, PlusIcon } from './icons'
+import { GlobeIcon, PlusIcon, ConjugationsIcon, DictationIcon, ShadowingIcon } from './icons'
 import { translate, translationReady } from '../data/translate'
 
 import { ParagraphTranslation } from './ReaderTranslation'
@@ -712,17 +712,17 @@ export function ReadingScreen({
         )}
         {(recorded || canSpeak()) && (
           <button className="chip chip-sm" aria-pressed={dictating !== null} onClick={() => (setShadowing(null), setDictating((d) => (d === null ? Math.max(0, heard) : null)))} title="Metni cümle cümle dinleyip yaz">
-            <EarIcon size={14} /> Dikte
+            <DictationIcon size={14} /> Dikte
           </button>
         )}
         {(recorded || canSpeak()) && canRecord() && (
           <button className="chip chip-sm" aria-pressed={shadowing !== null} onClick={() => (setDictating(null), setShadowing((d) => (d === null ? Math.max(0, heard) : null)))} title="Cümleyi dinle, hemen ardından söyle, sonra karşılaştır">
-            <MicIcon size={14} /> Gölgele
+            <ShadowingIcon size={14} /> Gölgele
           </button>
         )}
         {language !== 'en' && !listenFirst && (
           <button type="button" className="chip chip-sm" aria-pressed={showForms} onClick={() => setShowForms((v) => !v)} title="Metindeki fiil çekimleri, zamana göre">
-            Çekimler
+            <ConjugationsIcon size={14} /> Çekimler
           </button>
         )}
         <button type="button" className="chip chip-sm" onClick={() => setConfirmFinish(true)}>

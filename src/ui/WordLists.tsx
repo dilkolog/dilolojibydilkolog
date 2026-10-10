@@ -156,7 +156,7 @@ export function WordListsView({
                   {list.name}
                   {focused && (
                     <span className="badge wl-focus-badge">
-                      <TargetIcon size={13} className="inline-icon" />
+                      <TargetIcon size={14} className="inline-icon" />
                       Odakta
                     </span>
                   )}

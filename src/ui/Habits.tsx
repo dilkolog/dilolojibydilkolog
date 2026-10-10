@@ -36,7 +36,7 @@ export function HabitCards({
       {evening && (
         <section className="habit card">
           <span className="habit-icon" aria-hidden>
-            <MoonIcon size={24} />
+            <MoonIcon size={22} />
           </span>
           <div className="stack gap-xs">
             <strong>Yatmadan önce 2 dakika</strong>
@@ -69,7 +69,7 @@ export function HabitCards({
       {!settings.studyPlan && !settings.studyPlanAsked && planOpen && (
         <section className="habit card">
           <span className="habit-icon" aria-hidden>
-            <PinIcon size={24} />
+            <PinIcon size={22} />
           </span>
           <form
             className="stack gap-2 grow"
