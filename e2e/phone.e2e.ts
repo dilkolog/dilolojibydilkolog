@@ -151,6 +151,13 @@ test('Progress starts with the overview and opens a group from the shortcut row'
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(closedHeight + 400)
   await toggles.nth(2).click()
   await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
+  // Group choices are remembered when navigating away and back.
+  await page.locator('.settings-nav .chip', { hasText: 'Testler' }).click()
+  await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'true')
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^Bugün\d*$/ }).first().click()
+  await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()
+  await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'true')
+  await expect(toggles.nth(2)).toHaveAttribute('aria-expanded', 'false')
 })
 
 test('an empty reading library has one way in: the open form, not three buttons', async ({ page }) => {

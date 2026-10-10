@@ -65,8 +65,8 @@ export function ProgressScreen({
   }, [db, language])
   const [events, setEvents] = useState<ReviewEvent[]>([])
   const game = useGame()
-  // The page is long, so on a phone only the overview starts open; a wide screen shows everything.
-  const { isOpen, open, toggle } = useGroups(PROGRESS_GROUPS.map(([id]) => id), ['p-overview'])
+  // The page is long, so on a phone only the overview starts open; a wide screen shows everything. User choices are remembered.
+  const { isOpen, open, toggle } = useGroups(PROGRESS_GROUPS.map(([id]) => id), ['p-overview'], 'progress-groups')
 
   useEffect(() => {
     const now = new Date()
