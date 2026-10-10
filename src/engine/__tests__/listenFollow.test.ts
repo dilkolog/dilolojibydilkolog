@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { sentenceAt, sentenceTimes } from '../listenFollow'
+import { sentenceAt, sentenceTimes, withAnchors } from '../listenFollow'
 import { parseTimedCues } from '../subtitles'
 
 const srt = `1
@@ -37,7 +37,37 @@ describe('following the audio sentence by sentence', () => {
 
   it('without cues, by position in the text and the audio length; nothing until the length is known', () => {
     expect(sentenceTimes(['aaaa', 'bbbb'], undefined, undefined)).toBeNull()
-    expect(sentenceTimes(['aaaa', 'bbbb'], undefined, 100)).toEqual([0, 50])
+    const t = sentenceTimes(['aaaa', 'bbbb'], undefined, 100)!
+    // The reader's lead-in comes first, then the sentences in proportion.
+    expect(t[0]).toBeGreaterThan(0)
+    expect(t[1]).toBeGreaterThan(t[0])
+    expect(t[1]).toBeLessThan(100)
+  })
+
+  it('pauses count: after a sentence, at commas and between paragraphs, so later sentences start later than by letters alone', () => {
+    const plain = sentenceTimes(['aaaa bbbb', 'cccc dddd', 'eeee ffff'], undefined, 60)!
+    const paused = sentenceTimes(['aaaa bbbb.', 'cccc, dddd.', 'eeee ffff.'], undefined, 60, { paragraphStarts: [true, false, true] })!
+    // A gap before the third sentence (a new paragraph) pushes it out relative to the letters.
+    expect(paused[2] - paused[1]).toBeGreaterThan(plain[2] - plain[1])
+    expect(paused.every((x, i) => i === 0 || x > paused[i - 1])).toBe(true)
+  })
+
+  it('a pin moves the estimate so the sentence starts when it was heard; in between the shift slides', () => {
+    const base = [0, 10, 20, 30, 40]
+    // Sentence 1 was heard 4 s later than the estimate.
+    expect(withAnchors(base, [{ sentence: 1, time: 14 }])).toEqual([4, 14, 24, 34, 44])
+    // Two pins: sentence 1 four seconds late, sentence 3 four early: the shift fades between them.
+    expect(withAnchors(base, [{ sentence: 1, time: 14 }, { sentence: 3, time: 26 }])).toEqual([4, 14, 20, 26, 36])
+    // Nothing goes backwards or before 0.
+    expect(withAnchors([0, 5, 10], [{ sentence: 2, time: 1 }])).toEqual([0, 0, 1])
+  })
+
+  it('pins apply to timed cues too, and without pins nothing changes', () => {
+    const sentences = ['Hola a todos.', 'Hoy hablamos del tiempo.', 'Hace mucho calor.', 'Hasta pronto.']
+    const cues = parseTimedCues(srt)
+    const exact = sentenceTimes(sentences, cues, undefined)!
+    expect(sentenceTimes(sentences, cues, undefined, { anchors: [] })).toEqual(exact)
+    expect(sentenceTimes(sentences, cues, undefined, { anchors: [{ sentence: 0, time: 3 }] })![0]).toBe(3)
   })
 
   it('the sentence heard is the last one started', () => {

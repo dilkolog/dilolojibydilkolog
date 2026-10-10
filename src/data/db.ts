@@ -44,6 +44,8 @@ export interface ReadingText {
   audio?: string
   /** The transcript's timed cues, when it had them: the audio is followed sentence by sentence. */
   cues?: Cue[]
+  /** Sentences the learner pinned to the moment they were heard: the follow of an untimed audio is fitted to them. */
+  syncAnchors?: { sentence: number; time: number }[]
   /** Where the text came from (a YouTube video, a page), shown as a link. */
   source?: string
   /** Each paragraph's Turkish, when the text came with one (a story's Turkish edition). */

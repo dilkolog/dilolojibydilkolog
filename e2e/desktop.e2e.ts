@@ -804,8 +804,8 @@ test('translation memory: a reading sentence translated on request, the recent o
 })
 
 /** A short listening text with timed cues and a few seconds of silence as its audio. */
-async function addTimedListening(page: Page) {
-  await page.evaluate(async () => {
+async function addTimedListening(page: Page, withCues = true) {
+  await page.evaluate(async (withCues) => {
     const rate = 8000
     const seconds = 6
     const samples = rate * seconds
@@ -817,7 +817,7 @@ async function addTimedListening(page: Page) {
     str(36, 'data'); v.setUint32(40, samples, true)
     for (let i = 0; i < samples; i++) v.setUint8(44 + i, 128)
     const audio = await new Promise<string>((done) => { const r = new FileReader(); r.onload = () => done(r.result as string); r.readAsDataURL(new Blob([buf], { type: 'audio/wav' })) })
-    const text = { id: 'listen-test', language: 'fr', title: 'Écoute', text: 'Le chat dort. Il fait beau. Nous partons demain.', audio, addedAt: new Date().toISOString(), history: [], cues: [{ start: 0, text: 'Le chat dort.' }, { start: 2, text: 'Il fait beau.' }, { start: 4, text: 'Nous partons demain.' }] }
+    const text = { id: 'listen-test', language: 'fr', title: 'Écoute', text: 'Le chat dort. Il fait beau. Nous partons demain.', audio, addedAt: new Date().toISOString(), history: [], ...(withCues ? { cues: [{ start: 0, text: 'Le chat dort.' }, { start: 2, text: 'Il fait beau.' }, { start: 4, text: 'Nous partons demain.' }] } : {}) }
     await new Promise<void>((done) => {
       const req = indexedDB.open('kelime-koc')
       req.onsuccess = () => {
@@ -826,7 +826,7 @@ async function addTimedListening(page: Page) {
         tx.oncomplete = () => done()
       }
     })
-  })
+  }, withCues)
 }
 
 test('listening: the sentence heard is lit, and a sentence can be played from its start', async ({ page }) => {
@@ -835,6 +835,7 @@ test('listening: the sentence heard is lit, and a sentence can be played from it
   await openScreen(page, 'Okuma')
   await page.getByText('Écoute').first().click()
   await expect(page.locator('audio.audio-player')).toHaveCount(1)
+  await page.getByText('İpuçları', { exact: true }).click()
   await expect(page.getByText('Dinlerken duyduğun cümle metinde aydınlanır.')).toBeVisible()
   const heard = page.locator('.reader .rs.is-heard')
   await page.locator('audio.audio-player').evaluate((a: HTMLAudioElement) => {
@@ -848,6 +849,36 @@ test('listening: the sentence heard is lit, and a sentence can be played from it
   await page.locator('.rw', { hasText: /^demain$/ }).click()
   await page.getByRole('button', { name: /Bu cümleden dinle/ }).click()
   await expect.poll(() => page.locator('audio.audio-player').evaluate((a: HTMLAudioElement) => a.currentTime)).toBeGreaterThan(3.7)
+})
+
+test('listening without timed subtitles: a sentence can be pinned to the moment it is heard, and the pin reset', async ({ page }) => {
+  await startWithSamples(page)
+  await addTimedListening(page, false)
+  await openScreen(page, 'Okuma')
+  await page.getByText('Écoute').first().click()
+  await page.getByText('İpuçları', { exact: true }).click()
+  await expect(page.getByText(/yaklaşık/).first()).toBeVisible()
+  const audio = page.locator('audio.audio-player')
+  const at = (t: number) =>
+    audio.evaluate((a: HTMLAudioElement, t) => {
+      a.currentTime = t
+      a.dispatchEvent(new Event('timeupdate'))
+    }, t)
+  // The audio's length is known before the follow starts.
+  await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => a.duration)).toBeGreaterThan(5)
+  const heard = page.locator('.reader .rs.is-heard')
+  await at(2)
+  await expect(heard).toHaveText('Il fait beau.')
+  // The learner hears the third sentence now: pinned from its word card.
+  await page.getByRole('button', { name: 'Turları bırak' }).click()
+  await page.locator('.rw', { hasText: /^demain$/ }).click()
+  await page.getByRole('button', { name: 'Şu an bu cümle okunuyor' }).click()
+  await at(2.1)
+  await expect(heard).toHaveText('Nous partons demain.')
+  await expect(page.getByText(/1 noktayla ayarlandı/)).toBeVisible()
+  await page.getByRole('button', { name: 'Ayarı sıfırla' }).click()
+  await at(2)
+  await expect(heard).toHaveText('Il fait beau.')
 })
 
 test('reading: the whole text in Turkish under each paragraph, each sentence translated once', async ({ page }) => {
