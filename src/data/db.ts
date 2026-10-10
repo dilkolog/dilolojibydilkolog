@@ -13,7 +13,7 @@ import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
 import type { SentenceCard } from '../engine/sentences'
-import { mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tombstones'
+import { deadIds, mergeTombs, tombList, tombMap, type Mark, type Tombstone } from './tombstones'
 import type { TypingShare } from '../engine/session'
 import {
   TARGET_LANGUAGES,
@@ -331,8 +331,25 @@ export class KelimeDB extends Dexie {
     }
   }
 
-  saveSettings(settings: Settings) {
+  /**
+   * Keeps the settings and notes which of them changed now, field by field (meta 'settingsAt'):
+   * sync then takes each field from the device that changed it last instead of one device's whole object.
+   * `stamp: false` for a restore, which brings the stamps with it.
+   */
+  async saveSettings(settings: Settings, { stamp = true }: { stamp?: boolean } = {}) {
+    if (stamp) {
+      const before = (await this.getSettings()) ?? DEFAULT_SETTINGS
+      const at = await this.getSettingsAt()
+      const now = new Date().toISOString()
+      for (const k of Object.keys(settings) as (keyof Settings)[]) if (JSON.stringify(settings[k]) !== JSON.stringify(before[k])) at[k] = now
+      await this.meta.put({ key: 'settingsAt', value: at })
+    }
     return this.meta.put({ key: 'settings', value: settings })
+  }
+
+  async getSettingsAt(): Promise<Record<string, string>> {
+    const v = (await this.meta.get('settingsAt'))?.value
+    return v && typeof v === 'object' ? { ...(v as Record<string, string>) } : {}
   }
 
   /** Word keys (stems) the learner knows from reading, per language. */
@@ -344,6 +361,7 @@ export class KelimeDB extends Dexie {
     const all = await this.getKnownWords(language)
     for (const k of keys) all.add(k)
     await this.meta.put({ key: `known:${language}`, value: [...all] })
+    await this.reviveRemoved(keys.map((k) => `known:${language}:${k}`))
   }
 
   /** Words the reader chose to ignore (names, foreign words, noise): neither known nor new. */
@@ -356,12 +374,16 @@ export class KelimeDB extends Dexie {
     if (on) all.add(key)
     else all.delete(key)
     await this.meta.put({ key: `ignored:${language}`, value: [...all] })
+    if (on) await this.reviveRemoved([`ignored:${language}:${key}`])
+    else await this.addDeleted([`ignored:${language}:${key}`])
   }
 
   async removeKnownWord(language: TargetLanguage, key: string) {
     const all = await this.getKnownWords(language)
     all.delete(key)
     await this.meta.put({ key: `known:${language}`, value: [...all] })
+    // The mark travels with sync: without it the other devices' copies of the list bring the word back.
+    await this.addDeleted([`known:${language}:${key}`])
   }
 
   /** Times each list word was met while reading. */
@@ -633,8 +655,14 @@ export class KelimeDB extends Dexie {
     return { ...emptyLab(), ...v }
   }
 
-  saveLab(language: TargetLanguage, lab: LabData) {
-    return this.meta.put({ key: `lab:${language}`, value: lab })
+  async saveLab(language: TargetLanguage, lab: LabData) {
+    // A favourite taken out leaves a mark (and one put back clears it), so sync doesn't bring it back from another device.
+    const was = new Set((await this.getLab(language)).favorites)
+    const now = new Set(lab.favorites)
+    await this.meta.put({ key: `lab:${language}`, value: lab })
+    const removed = [...was].filter((v) => !now.has(v))
+    if (removed.length) await this.addDeleted(removed.map((v) => `fav:${language}:${v}`))
+    await this.reviveRemoved([...now].filter((v) => !was.has(v)).map((v) => `fav:${language}:${v}`))
   }
 
   /** The learner's dictionary corrections and look-ups, per language (see engine/dictionaryNotes). */
@@ -643,8 +671,12 @@ export class KelimeDB extends Dexie {
     return { ...emptyNotes(), ...v }
   }
 
-  saveDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
-    return this.meta.put({ key: `dict:${language}`, value: notes })
+  async saveDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
+    // A correction taken back leaves a mark; a newer correction of the same word is alive regardless (see tombstones.ts).
+    const was = (await this.getDictionaryNotes(language)).fixes
+    await this.meta.put({ key: `dict:${language}`, value: notes })
+    const removed = Object.keys(was).filter((w) => !notes.fixes[w])
+    if (removed.length) await this.addDeleted(removed.map((w) => `fix:${language}:${w}`))
   }
 
   /** Kept apart from settings so it is never written into a backup file. */
@@ -779,6 +811,14 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'deleted', value: tombList(mergeTombs(map, new Map(ids.map((id) => [id, mark])))) })
   }
 
+  /** Puts back the "removed" marks of set members (known/ignored words, favourites) that were added again. */
+  private async reviveRemoved(ids: readonly string[]) {
+    if (!ids.length) return
+    const dead = deadIds(await this.getDeleted())
+    const back = ids.filter((id) => dead.has(id))
+    if (back.length) await this.reviveDeleted(back)
+  }
+
   /** Deletes many words in one transaction: either all of them go, or none. */
   deleteWords(ids: readonly string[]) {
     return this.transaction('rw', [this.vocabulary, this.wordStates, this.events, this.mistakes, this.media, this.meta], async () => {
@@ -865,6 +905,8 @@ export interface Backup {
   version: number
   exportedAt: string
   settings?: Settings
+  /** When each settings field was last changed on its device (ISO), so sync can merge field by field. */
+  settingsAt?: Record<string, string>
   vocabulary: VocabularyEntry[]
   wordStates: UserWordState[]
   events: ReviewEvent[]
@@ -917,6 +959,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     version: BACKUP_VERSION,
     exportedAt: now.toISOString(),
     settings: await db.getSettings(),
+    settingsAt: await db.getSettingsAt(),
     vocabulary: await db.vocabulary.toArray(),
     wordStates: await db.wordStates.toArray(),
     events: await db.events.toArray(),
@@ -958,6 +1001,11 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
 const DATE_KEYS = new Set(['due', 'last_review', 'introducedAt', 'lastReviewAt', 'timestamp', 'firstAt', 'lastAt', 'addedAt', 'createdAt', 'completedAt'])
 const ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/
 
+/** The backup comes from a newer version of the app than this one. */
+export class BackupVersionError extends Error {
+  override name = 'BackupVersionError'
+}
+
 export function parseBackup(json: string): Backup {
   const data = JSON.parse(json, (key, value) =>
     DATE_KEYS.has(key) && typeof value === 'string' && ISO.test(value) ? new Date(value) : value,
@@ -966,7 +1014,7 @@ export function parseBackup(json: string): Backup {
     throw new Error('Bu dosya bir Diloloji yedeği değil.')
   }
   if (data.version > BACKUP_VERSION) {
-    throw new Error('Yedek, uygulamanın daha yeni bir sürümüyle alınmış. Önce uygulamayı güncelle.')
+    throw new BackupVersionError('Yedek, uygulamanın daha yeni bir sürümüyle alınmış. Önce uygulamayı güncelle.')
   }
   // A damaged or hand-edited file must fail here, before a restore clears anything.
   for (const key of ['wordStates', 'events', 'mistakes'] as const) {
@@ -997,7 +1045,8 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     await db.wordStates.bulkPut(backup.wordStates)
     await db.events.bulkPut(backup.events)
     await db.mistakes.bulkPut(backup.mistakes)
-    if (backup.settings) await db.saveSettings(backup.settings)
+    if (backup.settings) await db.saveSettings(backup.settings, { stamp: false })
+    if (backup.settingsAt) await db.meta.put({ key: 'settingsAt', value: backup.settingsAt })
     if (backup.reading) {
       for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
       await db.meta.put({ key: 'encounters', value: backup.reading.encounters })

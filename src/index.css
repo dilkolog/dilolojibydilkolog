@@ -5120,3 +5120,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* A key hint inside a filled button takes the button's colours (it was white on white in the high-contrast theme). */
 .btn .lab-kbd { background: transparent; color: inherit; border-color: color-mix(in srgb, currentColor 55%, transparent); }
 
+
+/* Side menu: the logo's centre sits over the menu icons and the name starts where the labels do. */
+@media (min-width: 64rem) {
+  .shell:not(.is-rail) .sidebar .brand { padding-left: 0.625rem; gap: 0.5rem; }
+  .shell:not(.is-rail) .sidebar .brand-mark { width: 1.75rem; height: 1.75rem; }
+}

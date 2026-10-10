@@ -6,7 +6,7 @@ import { isAllowed } from './_allow.js'
  * the learner's sync code; this function only stores and returns them (private Blob store).
  *
  * GET  /api/sync?id=<64 hex>&part=<core | m-<40 hex>>  → the bytes, or 404
- * PUT  same query, body = bytes                         → stored
+ * PUT  same query, body = bytes                         → stored (with `If-Match: <etag of the GET>`: 412 if the file changed since)
  *
  * Accounts (username + password) send an access token in `x-sync-auth`. The first write keeps
  * its hash; from then on reads and writes without the matching token get 403, so a guessable
@@ -118,7 +118,8 @@ async function handleGet(request: Request): Promise<Response> {
   if (refused) return refused
   const blob = await read(path)
   if (!blob || blob.statusCode !== 200 || !blob.stream) return new Response('not found', { status: 404 })
-  return new Response(blob.stream, { headers: { 'content-type': 'application/octet-stream', 'cache-control': 'no-store' } })
+  const etag = blob.blob?.etag
+  return new Response(blob.stream, { headers: { 'content-type': 'application/octet-stream', 'cache-control': 'no-store', ...(etag ? { etag } : {}) } })
 }
 
 export async function PUT(request: Request): Promise<Response> {
@@ -142,6 +143,14 @@ async function handlePut(request: Request): Promise<Response> {
   if (refused) return refused
   const q = new URL(request.url).searchParams
   if (q.get('part') === 'core') await keepPoint(q.get('id')!, new Date().toISOString().slice(0, 10))
-  await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/octet-stream' })
+  // The core carries the ETag it was read with: if another device wrote it since, nothing is overwritten (412)
+  // and the device merges again with what is there now.
+  const ifMatch = request.headers.get('if-match') ?? undefined
+  try {
+    await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/octet-stream', ...(ifMatch ? { ifMatch } : {}) })
+  } catch (e) {
+    if (ifMatch && (e as { name?: string })?.name === 'BlobPreconditionFailedError') return new Response('changed', { status: 412 })
+    throw e
+  }
   return new Response(null, { status: 204 })
 }

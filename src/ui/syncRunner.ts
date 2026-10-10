@@ -4,6 +4,9 @@ import { syncNow, type Account, type Credential, type SyncResult } from '../data
 /** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
 export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
 
+/** Shown when another device saved its data with a newer version of the app. */
+export const NEWER_VERSION = 'Başka bir cihazın uygulaması daha yeni; eşitlemek için bu cihazda uygulamayı güncelle (sayfayı yenile).'
+
 /** One sync at a time; listeners hear when data may have changed. */
 let running: Promise<SyncResult | null> | null = null
 const listeners = new Set<() => void>()
