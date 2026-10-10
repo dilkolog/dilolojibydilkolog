@@ -458,4 +458,145 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
   expect(problems).toEqual([])
 })
 
+test('new games and insight cards pass accessibility check across dark and calm themes (grammar, reflex, traps, pairs, mind seed, blind spots)', async ({ page }) => {
+  test.setTimeout(180_000)
+  await startWithSamples(page)
+
+  const setTheme = (t: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      root.dataset.theme = theme === 'calm' ? 'dark' : theme
+      if (theme === 'calm') root.dataset.calm = ''
+      else delete root.dataset.calm
+    }, t)
+
+  const problems: string[] = []
+
+  // 1. Bugün → MindSeed (Zihin tohumu kartı ve tamamlandı durumu)
+  await openScreen(page, 'Bugün')
+  // Make MindSeed the first child of .home-nudges so it is visible (.home-nudges > :nth-child(n+2) is hidden by design)
+  await page.evaluate(() => {
+    const seed = document.querySelector('.mind-seed') as HTMLElement | null
+    if (seed?.parentElement) seed.parentElement.prepend(seed)
+  })
+  const mindSeedCard = page.locator('.mind-seed')
+  await expect(mindSeedCard).toBeVisible()
+  for (const theme of ['dark', 'calm'] as const) {
+    await setTheme(theme)
+    problems.push(...(await scan(page, `mind-seed-${theme}`)))
+  }
+  const doneBtn = page.getByRole('button', { name: 'Düşündüm' })
+  if (await doneBtn.count()) {
+    await doneBtn.click()
+    await page.evaluate(() => {
+      const done = document.querySelector('.mind-seed-done') as HTMLElement | null
+      if (done?.parentElement) done.parentElement.prepend(done)
+    })
+    await expect(page.locator('.mind-seed-done')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `mind-seed-done-${theme}`)))
+    }
+  }
+
+  // 2. Oyunlar → Dilbilgisi soruları (intro ve soru ekranı)
+  await openScreen(page, 'Oyunlar')
+  const grammarCard = page.locator('.game-card', { hasText: 'Dilbilgisi soruları' })
+  if (await grammarCard.count()) {
+    await grammarCard.click()
+    await expect(page.locator('.greeting', { hasText: 'Dilbilgisi soruları' })).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-grammar-intro-${theme}`)))
+    }
+    // Start round
+    await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+    await expect(page.locator('.prompt-label')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-grammar-play-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
+  // 3. Oyunlar → Refleks turu (intro ve soru ekranı)
+  const reflexCard = page.locator('.game-card', { hasText: 'Refleks turu' })
+  if (await reflexCard.count()) {
+    await reflexCard.click()
+    await expect(page.locator('.greeting', { hasText: 'Refleks turu' })).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-reflex-intro-${theme}`)))
+    }
+    await page.getByRole('button', { name: /başla/ }).first().click()
+    await expect(page.locator('.game-stage')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-reflex-play-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
+  // 4. Oyunlar → Tuzak kelimeler (intro ve soru ekranı)
+  const trapsCard = page.locator('.game-card', { hasText: 'Tuzak kelimeler' })
+  if (await trapsCard.count()) {
+    await trapsCard.click()
+    await expect(page.locator('.greeting', { hasText: 'Tuzak kelimeler' })).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-traps-intro-${theme}`)))
+    }
+    await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+    await expect(page.locator('.game-stage')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-traps-play-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
+  // 5. Oyunlar → Ses ayırt etme (oyun ekranı)
+  const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
+  if (await pairsCard.count()) {
+    await pairsCard.click()
+    await expect(page.locator('.game-stage')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-pairs-play-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
+  // 6. İlerleme → Kör noktalar kartı (BlindSpotsCard)
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const req = indexedDB.open('kelime-koc')
+      req.onsuccess = () => {
+        const db = req.result
+        const tx = db.transaction('meta', 'readwrite')
+        tx.objectStore('meta').put({
+          key: 'traps',
+          value: {
+            'fr-actuellement': { ok: 0, wrong: 2, last: new Date().toISOString() },
+            'fr-attendre': { ok: 0, wrong: 2, last: new Date().toISOString() },
+          },
+        })
+        tx.oncomplete = () => resolve()
+      }
+    })
+  })
+  await page.reload()
+  await openScreen(page, 'İlerleme')
+  const blindSpotsSection = page.locator('.blind-spots')
+  await expect(blindSpotsSection).toBeVisible()
+  for (const theme of ['dark', 'calm'] as const) {
+    await setTheme(theme)
+    problems.push(...(await scan(page, `blind-spots-${theme}`)))
+  }
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
+
 
