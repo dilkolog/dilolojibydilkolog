@@ -250,12 +250,31 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [ ] ~~Metin seviyesi rozeti~~: denendi, kısa metinlerde güvenilir çıkmadı (konuya özgü kelimeler listelerde yok); yapılmadı.
 - [x] **Altyapı (Antigravity: #101, #102, #104, #106, #108, #117, #119, #121, #123):** erişilebilirlik etiketi, birim testleri, klasik metinler, belge güncellemeleri, Fast Refresh uyarıları, kararsız E2E düzeltmesi.
 
+## 2026-10-10 Geliştirmeleri (#153–#181)
+- [x] **Kullanılabilirlik ve Tasarım İyileştirmeleri (#153, #155, #158, #159):**
+  - #153: Çevrimdışı göstergesi (`OfflineBadge.tsx`, sakin üst rozet).
+  - #155: Alt sekmelerin görünürlüğü (seçili sekme göstergesi ve kaydırma ipucu).
+  - #158: İlerleme ekranında katlanan kartların seçimini hatırlama (`GroupToggle`, `useGroups.ts`).
+  - #159: Çoklu CEFR filtresi ve sözlük düzeltme notunun keşfedilebilirliği (dokunsal kalem daveti).
+- [x] **Kod Tabanı Modülerleştirme (#160, #161, #170):**
+  - #160: `Words.tsx` (1634 satır) modüler bileşenlere ayrıldı (`WordForm`, `WordListView`).
+  - #161: `SettingsScreen.tsx` (844 satır) modüler bileşenlere ayrıldı (`StudySettings`, `AnswerSettings`, `SoundSettings` vb.).
+  - #170: `Progress.tsx` (655 satır) modüler bileşenlere ayrıldı (`WeekHero`, `ProgressCharts`, `ProgressMemory`, `ProgressTests`).
+- [x] **İçerik ve Araştırma (#165, #166, #177):**
+  - #165: LibriVox + Gutenberg B1+ sesli kitaplar envanteri (`audiobooks-fr.json`, `audiobooks-es.json`, `README.md`).
+  - #166: COERLL dil bilgisi içerikleri araştırma raporu (`docs/kaynaklar/coerll.md`).
+  - #177: İkon denetimi raporu (`docs/IKON-DENETIMI.md`) ve telefon koyu tema ekran görüntüleri.
+- [x] **Test Sağlamlığı ve Kapsam (#156, #172, #173, #179, #181):**
+  - #156: Test edilmemiş 5 engine modülüne kapsamlı birim testleri (`hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
+  - #172: E2E test sağlamlaştırma (dinamik görünürlük beklemeleri ve fonksiyonel rota eşlemeleri).
+  - #173: Dahili kullanılan dışa aktarımlar raporu ve temizliği (`docs/KULLANILMAYAN-DISA-AKTARIMLAR.md`).
+  - #179: Bölünen yeni UI bileşenlerine birim testleri (`TextForms`, `CoverageCard`, `WordCard`, `ReadingLibrary`, `AppSidebar`).
+  - #181: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Onboarding adımları, Çekimler kartı, mobil alt çekmece ve oturum özeti).
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **Hikâyelerin devamı:** yalnızca metin olan 32 hikâye ve Global Storybooks'un diğer CC BY hikâyeleri (Antigravity listeleri çıkarıyor).
-- **LibriVox + Gutenberg** (B1+ sesli kitaplar), **COERLL** dil bilgisi içeriği: sırada.
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
-- **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi (#86 sekme göstergesi, #81 Oyunlar notu, #85 Zamana karşı, #116 Bugün, #120/#122 okuma araç satırı ve Oyunlar değişti).
+- **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.

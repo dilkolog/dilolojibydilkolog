@@ -28,7 +28,9 @@ Son güncelleme: 2026-10-09.
 ## Bilinen tuzaklar
 - **Telefonda yapışık öğeler:** üst çubuk da yapışık; altına girmemeleri için `top: calc(var(--topbar-h) + 0.5rem)` (`.shell` telefonda `--topbar-h` tanımlar, #125).
 - E2E'de mikrofon yok: gölgeleme testi `getUserMedia`'yı sessiz bir `AudioContext` akışıyla taklit eder (#127). LanguageTool testi `page.route('https://api.languagetool.org/v2/check', …)` ile taklit edilir.
-- **macOS dosya sistemi büyük/küçük harf duyarsız:** `twinTense.ts` ile `TwinTense.tsx` aynı klasörde olamaz (tsc hata verir). Mantık dosyasına farklı ad ver (ör. `tenseTwin.ts`, `moodRound.ts`).
+- **macOS dosya sistemi büyük/küçük harf duyarsız:** `twinTense.ts` ile `TwinTense.tsx` ya da `lazyScreens.ts` ile `AppScreens.tsx` gibi benzer adlar aynı klasörde çakışmaya yol açabilir (tsc hata verir). Mantık dosyasına farklı ad ver (ör. `tenseTwin.ts`, `moodRound.ts`).
+- **Claude Code ortamında ağ kısıtı:** LibriVox, Gutenberg, archive.org, Wikisource ve COERLL'e doğrudan erişemiyor; dış kaynak araştırmaları ve internet gerektiren bağlantı doğrulamaları Antigravity tarafından yürütülür.
+- **Bileşik zaman ve dönüşlü fiiller:** `src/engine/textForms.ts` içindeki `analyzeCompound`, `être` yardımcı fiilini yalnızca 14 hareket fiilinde (`ETRE_COMPOUND`) arar. Fransızca dönüşlü fiiller (örn. "il s'est lavé") henüz bileşik zaman olarak birleşmez, `est` tek kalır.
 - Playwright'ın `page.clock` sabit saati, sahte `Date`'i IndexedDB'ye düz nesne olarak yazdırır. Kalıcı veride (IndexedDB/meta, yedek) tarih alanlarını asla string varsayma; `addedTime()` ve `timeOf()` savunmacı yardımcılarını kullan (`src/engine/types.ts`, #136, #148).
 - İstemci hataları Vercel günlüklerinde `[client-error]` ile aranır (istemcide yakalanan hatalar `api/log.ts`'ye düşer).
 - Vercel Hobby planının günlük dağıtım (deployment) sınırı var (100 dağıtım/gün). Her PR bir önizleme yayını açar, bu yüzden gereksiz PR açmaktan kaçın.
@@ -43,8 +45,8 @@ Son güncelleme: 2026-10-09.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
 ## Durum (2026-10-10)
-Birleşti: #37–#173.
-- Antigravity (#153, #155, #156, #158, #159, #160, #161, #165, #166, #170, #172, #173):
+Birleşti: #37–#181.
+- Antigravity 1–5. tur (#153, #155, #156, #158, #159, #160, #161, #165, #166, #170, #172, #173, #175, #177, #179, #181):
   - #153: Çevrimdışı göstergesi (üst çubukta sessiz çevrimdışı rozeti, çevrimiçi olunca kaybolur).
   - #155: Alt sekmelerin görünürlüğü (seçili sekme göstergesi ve kaydırma ipucu).
   - #156: Test boşlukları (src/engine/ altında test edilmemiş 5 modüle kapsamlı birim testleri: `hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
@@ -57,6 +59,13 @@ Birleşti: #37–#173.
   - #170: `Progress.tsx` (655 satır) modüler bileşenlere ayrıldı (`WeekHero.tsx`, `ProgressCharts.tsx`, `ProgressMemory.tsx`, `ProgressTests.tsx`, `progressShared.ts`; ana ekran 187 satıra indi).
   - #172: E2E sağlamlığı (fonksiyonel rota eşlemeleri ve dinamik görünürlük beklemeleri).
   - #173: Dahili kullanılan dışa aktarımların temizlenmesi ve raporu (`docs/KULLANILMAYAN-DISA-AKTARIMLAR.md`).
+  - #177: İkon denetimi raporu (`docs/IKON-DENETIMI.md`) ve telefon koyu tema ekran görüntüleri.
+  - #179: Yeni bölünen UI bileşenlerine kapsamlı birim testleri (`TextForms.test.tsx`, `CoverageCard.test.tsx`, `WordCard.test.tsx`, `ReadingLibrary.test.tsx`, `AppSidebar.test.tsx`).
+  - #181: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Onboarding adımları, Çekimler kartı, mobil kelime alt çekmecesi ve oturum özeti axe taramaları).
+- Claude Code (#168 ve sonrası):
+  - Çekim listesi (`textForms.ts`, bileşik zamanlar, fiil tekrarına ekleme köprüsü),
+  - Büyük ekran dosyalarının bölünmesi (`Onboarding`, `SessionSummary`, `AppScreens`, `appNav`, `lazyScreens`, `AppSidebar`, `ReadingLibrary`, `CoverageCard`, `WordCard`),
+  - Dinlerken takip geliştirmeleri (`listenFollow.ts`, `Listening.tsx`),
 - Çeviri (#111, #113, #114, #120): DeepL ile cümle çevirisi (her cihazda hazır), Çeviri ekranı, çeviri belleği, okumada "Cümlenin Türkçesi" ve paragraf altında "Türkçesi".
 - Dinleme ve üretim (#118, #122):
   - dinlerken duyulan cümle aydınlanır, "Bu cümleden dinle" (`src/engine/listenFollow.ts`; zamanlı altyazılı beslemelerde kesin, diğerlerinde yaklaşık);
