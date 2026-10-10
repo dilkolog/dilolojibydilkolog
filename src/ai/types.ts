@@ -91,6 +91,22 @@ export interface PrequestionSet {
   questions: { question: string; answer: string }[]
 }
 
+export interface PersonalSentencesRequest {
+  language: import('../engine/types').TargetLanguage
+  word: string
+  meaning: string
+  /** The learner's interests (profile chips); none means everyday situations. */
+  interests: string[]
+  /** Sentences the word already has, so the new ones differ. */
+  existing: string[]
+}
+
+export interface PersonalSentence {
+  /** The sentence with the word's form between asterisks: "She *abandoned* the plan." */
+  text: string
+  translation: string
+}
+
 export interface SessionNoteRequest {
   language: import('../engine/types').TargetLanguage
   answers: number

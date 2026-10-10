@@ -6,6 +6,8 @@ import type { KelimeDB } from '../data/db'
 import { createEntry, DEFAULT_FORMAT, importWords, parseWordList, type ListFormat, type RowSeparator, type TermSeparator } from '../data/wordInput'
 import { useAi } from './aiContext'
 import { SparkleIcon } from './icons'
+import { ImportPlacement } from './ImportPlacement'
+import { useImportList } from './useImportList'
 
 const TERM_OPTIONS: [TermSeparator, string][] = [
   ['auto', 'Otomatik'],
@@ -42,6 +44,7 @@ export function BulkImport({
   onImported: () => void
 }) {
   const { apiKey } = useAi()
+  const importList = useImportList(db, language)
   const [text, setText] = useState('')
   const [fmt, setFmt] = useState<ListFormat>(DEFAULT_FORMAT)
   const [aiFill, setAiFill] = useState(true)
@@ -86,7 +89,7 @@ export function BulkImport({
       }
     }
     setBusy('')
-    await db.vocabulary.bulkPut(entries)
+    await db.vocabulary.bulkPut(await importList.place(entries))
     setText('')
     setMessage((m) => m ?? { ok: true, text: `${entries.length} kelime eklendi.` })
     onImported()
@@ -190,6 +193,8 @@ export function BulkImport({
             </label>
           )}
         </div>
+
+        <ImportPlacement list={importList} id="bulk-list" />
 
         {rows.length > 0 && (
           <div className="preview">

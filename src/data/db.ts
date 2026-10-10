@@ -715,6 +715,11 @@ export class KelimeDB extends Dexie {
     return all[entryId] ?? []
   }
 
+  /** Every word's pronunciation scores, by word id. */
+  async getAllPronScores(): Promise<Record<string, { at: string; score: number }[]>> {
+    return ((await this.meta.get('pronScores'))?.value as Record<string, { at: string; score: number }[]>) ?? {}
+  }
+
   async addPronScore(entryId: string, score: number, at = new Date()) {
     const all = ((await this.meta.get('pronScores'))?.value as Record<string, { at: string; score: number }[]>) ?? {}
     all[entryId] = [...(all[entryId] ?? []), { at: at.toISOString(), score }].slice(-20)

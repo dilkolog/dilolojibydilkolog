@@ -20,7 +20,7 @@ const verdict = (score: number) =>
  * coloured by how close it was. Hearing the model and one's own attempt side by side is where
  * the feedback becomes usable, so both are a tap away.
  */
-function PronunciationCheck({ text, language, onModel, onScore }: { text: string; language: TargetLanguage; onModel: () => void; onScore?: (score: number) => void }) {
+export function PronunciationCheck({ text, language, onModel, onScore }: { text: string; language: TargetLanguage; onModel: () => void; onScore?: (score: number) => void }) {
   const [state, setState] = useState<'idle' | 'recording' | 'checking' | 'done'>('idle')
   const [result, setResult] = useState<PronResult | null>(null)
   const [error, setError] = useState('')

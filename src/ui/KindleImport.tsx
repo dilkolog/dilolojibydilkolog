@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { ImportPlacement } from './ImportPlacement'
+import { useImportList } from './useImportList'
 import { AiError, enrichWords, wordInfoToInput } from '../ai'
 import { parseClippings, vocabRowsToWords, type KindleWord } from '../engine/kindle'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
@@ -19,6 +21,7 @@ const AI_BATCH = 15
 /** Words looked up or highlighted on a Kindle, brought in with the sentence they came from. */
 export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB; language: TargetLanguage; existing: Set<string>; onAdded: () => void }) {
   const { apiKey } = useAi()
+  const importList = useImportList(db, language)
   const [rows, setRows] = useState<Row[] | null>(null)
   const [busy, setBusy] = useState('')
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
@@ -89,7 +92,9 @@ export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB
         problems.push(`${r.word}: ${e instanceof Error ? e.message : 'eklenemedi'}`)
       }
     })
-    if (entries.length) await db.vocabulary.bulkPut(entries)
+    // A new list is named after the book when all the words come from one.
+    const books = [...new Set(selected.map((r) => r.book).filter(Boolean))]
+    if (entries.length) await db.vocabulary.bulkPut(await importList.place(entries, books.length === 1 ? String(books[0]) : ''))
     const added = new Set(entries.map((e) => e.lemma.toLocaleLowerCase()))
     setRows((prev) => prev!.filter((r) => !(r.selected && added.has(r.word.toLocaleLowerCase()))))
     setMessage({ ok: !problems.length, text: `${entries.length} kelime eklendi.${problems.length ? ` Eklenemeyenler: ${problems.join('; ')}.` : ''}` })
@@ -131,6 +136,7 @@ export function KindleImport({ db, language, existing, onAdded }: { db: KelimeDB
                 </li>
               ))}
             </ul>
+            <ImportPlacement list={importList} id="kindle-list" suggested={rows.find((r) => r.book)?.book ?? undefined} />
             <div className="row">
               {apiKey && (
                 <button className="btn btn-quiet" onClick={fill} disabled={!!busy || !selected.length}>

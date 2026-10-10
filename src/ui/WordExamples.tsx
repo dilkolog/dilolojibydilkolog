@@ -12,6 +12,7 @@ import { patchWithSources } from '../data/provenance'
 import { undoable } from './toastFeed'
 import { TranslateButton } from './TranslateButton'
 import { LANGUAGE_SHORT } from './labels'
+import { PersonalSentences } from './PersonalSentences'
 
 /**
  * A word's example sentences. Several varied contexts make the word usable beyond one sentence
@@ -97,6 +98,7 @@ export function WordExamples({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
         Kelimeyi farklı cümlelerde görmek onu tek bir kalıba bağlı kalmadan öğrenmeni sağlar. Alıştırmalarda her seferinde bunlardan biri seçilir.
         {examples.length < 3 && ' En az 3 farklı cümle iyi bir hedef.'}
       </p>
+      <PersonalSentences db={db} entry={entry} onChanged={onChanged} />
       {examples.length > 0 && (
         <ul className="example-list">
           {examples.map((ex, i) => (
