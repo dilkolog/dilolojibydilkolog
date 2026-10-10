@@ -74,3 +74,41 @@ Aşağıdaki podcast beslemeleri, RSS akışlarında senkronize zamanlı altyaz�
 
 ### Telif ve Erişim Notları:
 - Podcast sesleri ve transkript metinleri genel olarak telif hakkına tabidir (All Rights Reserved). Uygulama içinde yerel veritabanında depolamak yerine kullanıcının web sayfası bağlantısına yönlendirilmesi veya meşru açık transkript akışlarından (VTT/SRT) dinamik olarak okunması tavsiye edilir.
+
+---
+
+## 4. B1+ Klasik Sesli Kitaplar (`audiobooks-fr.json`, `audiobooks-es.json`)
+
+**Toplam Öğe Sayısı:** 35 doğrulanmış eser (17 Fransızca, 18 İspanyolca)
+
+LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki dil öğrenenler için uygun uzunlukta (kısa öykü, fabl, bölümlü anlatı) kamu malı klasik eserler.
+
+### Fransızca Sesli Kitaplar (`audiobooks-fr.json`, 17 adet):
+- **Jean de La Fontaine:** *Fables de La Fontaine* (Livre 01, 02, 03, 04, 05 — hayvanlar üzerinden ahlak ve insan doğası dersleri; B1)
+- **Charles Perrault:** *Histoires ou Contes du temps passé avec des moralités* (Cendrillon, Le Petit Chaperon rouge, Le Chat botté; B1) ve *Contes en vers* (Peau d'Âne, Grisélidis; B1)
+- **Guy de Maupassant:** *Le Horla* (psikolojik gerilim başyapıtı; B2), *Les contes de la bécasse* (Normandiya kırsalı öyküleri; B1)
+- **Alphonse Daudet:** *Lettres de mon moulin* (La chèvre de M. Seguin, Le secret de Maître Cornille; B1), *Tartarin de Tarascon* (Güney Fransa mizahı; B1)
+- **Victor Hugo:** *Claude Gueux* (toplumsal adalet ve vicdan romanı; B2)
+- **Émile Zola:** *J'accuse...!* (Dreyfus Olayı açık mektubu; B2)
+- **Jules Verne:** *Les forceurs de blocus* (Amerikan İç Savaşı deniz serüveni; B2)
+- **Prosper Mérimée:** *Carmen et la Vénus d'Ille* (tutkulu Çingene Carmen ve esrarengiz heykel; B2)
+- **Jules Lemaître:** *ABC: Petits Contes* (harflerle başlayan kısa ve eğitici masallar; B1)
+- **Voltaire:** *Candide ou L'optimisme* (felsefi yergi ve hayat dersi; B2)
+
+### İspanyolca Sesli Kitaplar (`audiobooks-es.json`, 18 adet):
+- **Esopo (çev. Townsend):** *Las Fábulas de Esopo* (Cilt 1, 3, 4 — kısa ve akıcı antik fabllar; B1)
+- **Horacio Quiroga:** *Cuentos de la selva para los niños* (yağmur ormanı hayvan masalları; B1), *Cuentos de Amor de Locura y de Muerte* (sarsıcı Latin Amerika öyküleri; B2)
+- **Gustavo Adolfo Bécquer:** *Rimas* (lirik romantik dörtlükler; B1), *Leyendas* (Orta Çağ gotik efsaneleri; B2)
+- **Pedro Antonio de Alarcón:** *El Capitán Veneno* (huysuz askerin aşkla yumuşaması; B1), *Novelas Cortas* (gerçekçi kısa anlatılar; B2)
+- **Rubén Darío:** *Abrojos* (erken dönem modernizm şiirleri; B1), *Simplemente Darío* (seçme lirik şiirler; B1)
+- **Guy de Maupassant (çev. İspanyolca):** *Bola de sebo* (Fransa-Prusya savaşı taşra taşlaması; B1)
+- **Charles Perrault (çev. İspanyolca):** *Cuentos de Hadas* (klasik masalların edebi İspanyolcası; B1)
+- **Jacob & Wilhelm Grimm (çev. José S. Viedma):** *Cuentos de Hadas* (Cilt 1 ve Cilt 2 — Pamuk Prenses, Külkedisi; B1)
+- **Abraham Valdelomar:** *El Caballero Carmelo* (Peru edebiyatının onur ve sevgi temalı horoz öyküsü; B1)
+- **Esteban Echeverría:** *La Cautiva* (Arjantin pampalarında cesur kurtuluş destanı; B2)
+- **Anonim Tarihi Metin:** *Historia de la célebre Reina de España Doña Juana* ('Deli Juana'nın trajik hikâyesi; B1)
+
+### Doğrulama ve Teknik Standartlar:
+- **Doğrudan MP3 Erişimi:** Tüm ses dosyaları `archive.org/download/...` üzerinden doğrudan ve CORS dostu MP3 URL'si olarak sağlanır. `HEAD` isteği ile HTTP 200 ve `audio/mpeg` durumu doğrulanmıştır.
+- **Doğrulanmış Metinler:** Project Gutenberg (`gutenberg.org/ebooks/...`) veya Wikisource üzerinden eşleşen tam metin bağlantıları mevcuttur; tüm bağlantılar HTTP 200 döndürmektedir.
+- **Kamu Malı Güvencesi:** Tüm eserlerin yazarları 70+ yıl önce vefat etmiş olup metinleri kamu malıdır (Public Domain). LibriVox gönüllü seslendirmeleri ise CC0 / Public Domain olarak lisanslanmıştır.
