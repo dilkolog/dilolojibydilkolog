@@ -16,6 +16,8 @@ import { weakPronWords } from '../engine/pronWeak'
 import { stillMissed } from '../engine/earMisses'
 import { loadBackItems } from '../data/backItems'
 import { ArticleDrill } from './ArticleDrill'
+import { GrammarPractice } from './games/GrammarPractice'
+import { grammarExercises } from '../data/grammar'
 import { dueSentences } from '../engine/sentences'
 import { useOnline } from './useOnline'
 import { canSpeak } from './speech'
@@ -91,6 +93,7 @@ export function GamesScreen(
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
+    if (game === 'grammar') return <GrammarPractice language={p.language} onExit={() => setGame(null)} />
     if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
     if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
     if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
@@ -145,11 +148,14 @@ export function GamesScreen(
       ],
     },
   ]
-  if (p.language !== 'en')
+  const grammarCard: GameCard = { id: 'grammar', emoji: '📐', name: 'Dilbilgisi soruları', text: 'Boşluk doldur, seçeneği seç, hatalı kelimeyi bul; her cevapta kuralı Türkçe gör.', status: `${grammarExercises(p.language).length} soru · B1–C1` }
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard] })
+  else
     groups.push({
       title: 'Dilbilgisi',
       tone: 'grammar',
       cards: [
+        grammarCard,
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
         {
           id: 'verbs',

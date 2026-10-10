@@ -1,0 +1,505 @@
+[
+ {
+  "id": "es-subjuntivo-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "subjuntivo",
+  "type": "cloze",
+  "prompt": "Quiero que tú ___ (venir) conmigo.",
+  "answer": "vengas",
+  "hint": "querer que → subjuntivo",
+  "explanation": "İki özneli istek cümlelerinde « querer que » subjuntivo ister: quiero que vengas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-subjuntivo-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "subjuntivo",
+  "type": "choice",
+  "prompt": "Dudo que ___ tiempo para terminarlo.",
+  "answer": "tenga",
+  "options": [
+   "tiene",
+   "tenga",
+   "tendrá"
+  ],
+  "explanation": "Şüphe ifadeleri (« dudar que ») subjuntivo ister: dudo que tenga.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-subjuntivo-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "subjuntivo",
+  "type": "cloze",
+  "prompt": "Cuando ___ (llegar, tú) a casa, llámame.",
+  "answer": "llegues",
+  "hint": "cuando + gelecek",
+  "explanation": "Gelecekle ilgili « cuando » cümlesi subjuntivo alır: cuando llegues.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-subjuntivo-04",
+  "language": "es",
+  "level": "B2",
+  "topic": "subjuntivo",
+  "type": "choice",
+  "prompt": "Es verdad que Marta ___ muy simpática.",
+  "answer": "es",
+  "options": [
+   "sea",
+   "es",
+   "fuera"
+  ],
+  "explanation": "Kesinlik bildiren « es verdad que » indicativo ister. Olumsuzu (« no es verdad que ») subjuntivo ister.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-subjuntivo-05",
+  "language": "es",
+  "level": "B2",
+  "topic": "subjuntivo",
+  "type": "cloze",
+  "prompt": "Busco una secretaria que ___ (hablar) inglés.",
+  "answer": "hable",
+  "hint": "henüz bilinmeyen kişi",
+  "explanation": "Var olduğu bilinmeyen / aranan şey için sıfat cümlesi subjuntivo alır: busco una secretaria que hable inglés.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-subjuntivo-06",
+  "language": "es",
+  "level": "B1",
+  "topic": "subjuntivo",
+  "type": "error",
+  "prompt": "Espero que tienes un buen viaje.",
+  "answer": "tienes",
+  "fix": "tengas",
+  "explanation": "« Esperar que » dilek bildirir ve subjuntivo ister: espero que tengas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ser_estar-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "ser_estar",
+  "type": "choice",
+  "prompt": "La fiesta ___ en mi casa.",
+  "answer": "es",
+  "options": [
+   "es",
+   "está",
+   "son"
+  ],
+  "hint": "olayın yeri",
+  "explanation": "Bir olayın (fiesta, concierto, reunión) yeri için « ser » kullanılır: la fiesta es en mi casa.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ser_estar-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "ser_estar",
+  "type": "choice",
+  "prompt": "Mi hermano ___ cansado hoy.",
+  "answer": "está",
+  "options": [
+   "es",
+   "está"
+  ],
+  "hint": "geçici durum",
+  "explanation": "Geçici durum / ruh hâli için « estar »: está cansado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ser_estar-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "ser_estar",
+  "type": "cloze",
+  "prompt": "Mi madre ___ médica.",
+  "answer": "es",
+  "hint": "meslek",
+  "explanation": "Meslek ve kimlik için « ser »: mi madre es médica.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ser_estar-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "ser_estar",
+  "type": "choice",
+  "prompt": "La sopa ya ___ fría, caliéntala.",
+  "answer": "está",
+  "options": [
+   "es",
+   "está"
+  ],
+  "explanation": "O anki durumu anlatıyor (çorba soğumuş) → estar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ser_estar-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "ser_estar",
+  "type": "choice",
+  "prompt": "El concierto ___ a las ocho.",
+  "answer": "es",
+  "options": [
+   "es",
+   "está"
+  ],
+  "explanation": "Olayın saati için de « ser » kullanılır: el concierto es a las ocho.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-ser_estar-06",
+  "language": "es",
+  "level": "B1",
+  "topic": "ser_estar",
+  "type": "cloze",
+  "prompt": "Los libros ___ sobre la mesa.",
+  "answer": "están",
+  "hint": "yer",
+  "explanation": "Bir şeyin bulunduğu yer için « estar »: los libros están sobre la mesa.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-por_para-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "por_para",
+  "type": "choice",
+  "prompt": "Este regalo es ___ ti.",
+  "answer": "para",
+  "options": [
+   "por",
+   "para"
+  ],
+  "explanation": "Alıcı → para: es para ti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-por_para-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "por_para",
+  "type": "choice",
+  "prompt": "Gracias ___ tu ayuda.",
+  "answer": "por",
+  "options": [
+   "por",
+   "para"
+  ],
+  "explanation": "Teşekkürün nedeni → por: gracias por tu ayuda.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-por_para-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "por_para",
+  "type": "cloze",
+  "prompt": "Trabajo ___ una empresa española.",
+  "answer": "para",
+  "hint": "işveren",
+  "explanation": "Çalışılan şirket / kişi için para: trabajo para una empresa.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-por_para-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "por_para",
+  "type": "cloze",
+  "prompt": "Te llamo ___ teléfono.",
+  "answer": "por",
+  "hint": "araç / yol",
+  "explanation": "Araç ve yol (teléfono, correo, la ventana) için por: te llamo por teléfono.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-por_para-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "por_para",
+  "type": "choice",
+  "prompt": "Estudio ___ ser ingeniero.",
+  "answer": "para",
+  "options": [
+   "por",
+   "para"
+  ],
+  "hint": "amaç",
+  "explanation": "Amaç → para + mastar: estudio para ser ingeniero.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-por_para-06",
+  "language": "es",
+  "level": "B2",
+  "topic": "por_para",
+  "type": "error",
+  "prompt": "Cambié mi coche viejo para uno nuevo.",
+  "answer": "para",
+  "fix": "por",
+  "explanation": "Değiş tokuş / karşılık için por kullanılır: cambié mi coche por uno nuevo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-se_pasivo-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "se_pasivo",
+  "type": "choice",
+  "prompt": "En esta tienda ___ zapatos.",
+  "answer": "se venden",
+  "options": [
+   "se vende",
+   "se venden"
+  ],
+  "explanation": "Pasif « se »’de fiil, gerçek özneyle uyar: zapatos çoğul → se venden.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-se_pasivo-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "se_pasivo",
+  "type": "cloze",
+  "prompt": "Se ___ (buscar) empleados para el verano.",
+  "answer": "buscan",
+  "hint": "özne: empleados",
+  "explanation": "Özne çoğul (empleados) olduğundan fiil çoğul: se buscan empleados.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-se_pasivo-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "se_pasivo",
+  "type": "choice",
+  "prompt": "___ dice que va a nevar.",
+  "answer": "Se",
+  "options": [
+   "Se",
+   "Les",
+   "Lo"
+  ],
+  "explanation": "Kişisiz anlatım: « se dice que… » (“söyleniyor ki…”).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-se_pasivo-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "se_pasivo",
+  "type": "cloze",
+  "prompt": "Aquí no se ___ (poder) fumar.",
+  "answer": "puede",
+  "hint": "tekil: fiil mastar alıyor",
+  "explanation": "Mastarlı yapıda özne yok sayılır, fiil tekil kalır: aquí no se puede fumar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-se_pasivo-05",
+  "language": "es",
+  "level": "B2",
+  "topic": "se_pasivo",
+  "type": "error",
+  "prompt": "Se alquila habitaciones en el centro.",
+  "answer": "alquila",
+  "fix": "alquilan",
+  "explanation": "Özne « habitaciones » çoğul: se alquilan habitaciones.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-se_pasivo-06",
+  "language": "es",
+  "level": "C1",
+  "topic": "se_pasivo",
+  "type": "choice",
+  "prompt": "Se ___ a los invitados con una sonrisa.",
+  "answer": "recibió",
+  "options": [
+   "recibió",
+   "recibieron"
+  ],
+  "hint": "a + kişi: kişisiz",
+  "explanation": "Kişi nesnesi « a » ile gelince « se » kişisiz yapıdadır ve fiil tekil kalır: se recibió a los invitados.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-condicionales-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "condicionales",
+  "type": "cloze",
+  "prompt": "Si tuviera dinero, ___ (viajar) por el mundo.",
+  "answer": "viajaría",
+  "hint": "imperfecto de subjuntivo → condicional",
+  "explanation": "Gerçek dışı şart: si + imperfecto de subjuntivo, condicional simple → viajaría.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-condicionales-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "condicionales",
+  "type": "choice",
+  "prompt": "Si ___ tiempo, iría contigo.",
+  "answer": "tuviera",
+  "options": [
+   "tengo",
+   "tuviera",
+   "tendría"
+  ],
+  "explanation": "Gerçek dışı şart cümlesinde imperfecto de subjuntivo: si tuviera tiempo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-condicionales-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "condicionales",
+  "type": "cloze",
+  "prompt": "Si llueve mañana, nos ___ (quedar) en casa.",
+  "answer": "quedaremos",
+  "alternatives": [
+   "quedamos"
+  ],
+  "hint": "gerçekleşmesi olası şart",
+  "explanation": "Olası şart: si + presente, futuro (ya da presente): si llueve, nos quedaremos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-condicionales-04",
+  "language": "es",
+  "level": "B2",
+  "topic": "condicionales",
+  "type": "choice",
+  "prompt": "Si lo hubieras dicho antes, te ___ ayudado.",
+  "answer": "habría",
+  "options": [
+   "habría",
+   "había",
+   "he"
+  ],
+  "hint": "geçmişteki gerçekleşmemiş şart",
+  "explanation": "Geçmişte gerçekleşmemiş şart: si + pluscuamperfecto de subjuntivo, condicional compuesto → habría ayudado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-condicionales-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "condicionales",
+  "type": "error",
+  "prompt": "Si tendría tiempo, te ayudaría.",
+  "answer": "tendría",
+  "fix": "tuviera",
+  "explanation": "« Si »’den sonra condicional kullanılmaz; subjuntivo gerekir: si tuviera tiempo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-condicionales-06",
+  "language": "es",
+  "level": "B2",
+  "topic": "condicionales",
+  "type": "cloze",
+  "prompt": "Si me ___ (tocar) la lotería, dejaría mi trabajo.",
+  "answer": "tocara",
+  "alternatives": [
+   "tocase"
+  ],
+  "hint": "imperfecto de subjuntivo",
+  "explanation": "Si + imperfecto de subjuntivo: si me tocara la lotería… (tocase de aynı).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-perifrasis-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "perifrasis",
+  "type": "choice",
+  "prompt": "Mañana ___ a llamarte.",
+  "answer": "voy",
+  "options": [
+   "voy",
+   "tengo",
+   "debo"
+  ],
+  "explanation": "İr a + mastar yakın gelecek: voy a llamarte.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-perifrasis-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "perifrasis",
+  "type": "choice",
+  "prompt": "Tengo ___ estudiar más.",
+  "answer": "que",
+  "options": [
+   "que",
+   "de",
+   "a"
+  ],
+  "explanation": "Tener que + mastar zorunluluk bildirir: tengo que estudiar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-perifrasis-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "perifrasis",
+  "type": "cloze",
+  "prompt": "Ella acaba ___ llegar.",
+  "answer": "de",
+  "hint": "az önce",
+  "explanation": "Acabar de + mastar “az önce … yaptı”: acaba de llegar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-perifrasis-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "perifrasis",
+  "type": "cloze",
+  "prompt": "Vuelve ___ llover.",
+  "answer": "a",
+  "hint": "yeniden",
+  "explanation": "Volver a + mastar “yeniden” anlamı verir: vuelve a llover.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-perifrasis-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "perifrasis",
+  "type": "choice",
+  "prompt": "Llevo tres años ___ español.",
+  "answer": "estudiando",
+  "options": [
+   "estudiar",
+   "estudiando",
+   "estudiado"
+  ],
+  "explanation": "Llevar + zaman + gerundio süregelen eylemi anlatır: llevo tres años estudiando.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-perifrasis-06",
+  "language": "es",
+  "level": "B1",
+  "topic": "perifrasis",
+  "type": "error",
+  "prompt": "Acabo de llegué del trabajo.",
+  "answer": "llegué",
+  "fix": "llegar",
+  "explanation": "Acabar de’den sonra mastar gelir: acabo de llegar.",
+  "source": "Diloloji (özgün)"
+ }
+]

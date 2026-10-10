@@ -1,6 +1,7 @@
 import { mergeSeen, type LabData } from '../engine/labProgress'
 import { mergeMemories } from '../engine/translationMemory'
 import { mergeEarLogs } from '../engine/earMisses'
+import { mergeGrammarLogs } from '../engine/grammar'
 import { mergeBadgeLogs } from '../engine/gamification'
 import { mergeNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
@@ -291,6 +292,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     badges: mergeBadgeLogs(older.badges, newer.badges),
     translations: mergeMemories(older.translations, newer.translations),
     earMisses: mergeEarLogs(older.earMisses, newer.earMisses),
+    grammar: mergeGrammarLogs(older.grammar, newer.grammar),
     media: [],
   }
 }

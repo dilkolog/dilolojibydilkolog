@@ -1,0 +1,338 @@
+[
+ {
+  "id": "fr-subjonctif-01",
+  "language": "fr",
+  "level": "B2",
+  "topic": "subjonctif",
+  "type": "cloze",
+  "prompt": "Il faut que tu ___ (faire) tes devoirs avant de sortir.",
+  "answer": "fasses",
+  "hint": "faire → subjonctif présent",
+  "explanation": "« Il faut que »’den sonra subjonctif gelir. Faire’in subjonctif présent’ı: que je fasse, que tu fasses, qu’il fasse.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-subjonctif-02",
+  "language": "fr",
+  "level": "B2",
+  "topic": "subjonctif",
+  "type": "choice",
+  "prompt": "Bien qu’il ___ fatigué, il a continué à travailler.",
+  "answer": "soit",
+  "options": [
+   "est",
+   "soit",
+   "sera"
+  ],
+  "explanation": "« Bien que » (-e rağmen) her zaman subjonctif ister: bien qu’il soit.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-subjonctif-03",
+  "language": "fr",
+  "level": "B2",
+  "topic": "subjonctif",
+  "type": "cloze",
+  "prompt": "Je doute qu’elle ___ (venir) demain.",
+  "answer": "vienne",
+  "hint": "douter que → subjonctif",
+  "explanation": "Şüphe bildiren « douter que » subjonctif ister: qu’elle vienne.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-subjonctif-04",
+  "language": "fr",
+  "level": "B2",
+  "topic": "subjonctif",
+  "type": "choice",
+  "prompt": "Je pense qu’il ___ raison.",
+  "answer": "a",
+  "options": [
+   "a",
+   "ait",
+   "aie"
+  ],
+  "hint": "penser, olumlu cümlede",
+  "explanation": "Olumlu « penser que » indicatif ister (il a raison). Olumsuz ya da soru hâlinde (« je ne pense pas qu’il ait raison ») subjonctif gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-subjonctif-05",
+  "language": "fr",
+  "level": "B2",
+  "topic": "subjonctif",
+  "type": "cloze",
+  "prompt": "Pour que nous ___ (pouvoir) partir à l’heure, il faut se lever tôt.",
+  "answer": "puissions",
+  "hint": "pour que → subjonctif",
+  "explanation": "« Pour que » (-sın diye) subjonctif ister. Pouvoir: que nous puissions.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-subjonctif-06",
+  "language": "fr",
+  "level": "B1",
+  "topic": "subjonctif",
+  "type": "error",
+  "prompt": "Je veux que tu viens avec moi.",
+  "answer": "viens",
+  "fix": "viennes",
+  "explanation": "« Vouloir que » istek bildirir ve subjonctif ister: je veux que tu viennes.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-participe_passe-01",
+  "language": "fr",
+  "level": "B2",
+  "topic": "participe_passe",
+  "type": "cloze",
+  "prompt": "Les lettres que j’ai ___ (écrire) hier sont parties.",
+  "answer": "écrites",
+  "hint": "COD (que = les lettres) fiilden önce",
+  "explanation": "« Avoir » ile kurulan zamanlarda, nesne (COD) fiilden ÖNCE gelirse ortaç nesneyle uyar: les lettres que j’ai écrites.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-participe_passe-02",
+  "language": "fr",
+  "level": "B2",
+  "topic": "participe_passe",
+  "type": "choice",
+  "prompt": "Elle s’est ___ les mains.",
+  "answer": "lavé",
+  "options": [
+   "lavé",
+   "lavée",
+   "lavés",
+   "lavées"
+  ],
+  "hint": "COD nerede?",
+  "explanation": "Dönüşlü fiilde ortaç, COD kendinden ÖNCE gelirse uyar. Burada COD « les mains » fiilden sonra, o yüzden uyum yok: elle s’est lavé les mains.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-participe_passe-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "participe_passe",
+  "type": "cloze",
+  "prompt": "Marie est ___ (partir) tôt ce matin.",
+  "answer": "partie",
+  "hint": "être ile",
+  "explanation": "« Être » ile kurulan zamanlarda ortak özneyle uyar: Marie est partie.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-participe_passe-04",
+  "language": "fr",
+  "level": "B2",
+  "topic": "participe_passe",
+  "type": "choice",
+  "prompt": "Les fleurs qu’il a ___ sont magnifiques.",
+  "answer": "achetées",
+  "options": [
+   "acheté",
+   "achetée",
+   "achetés",
+   "achetées"
+  ],
+  "explanation": "COD « que » (= les fleurs) fiilden önce geliyor, dişil çoğul: les fleurs qu’il a achetées.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-participe_passe-05",
+  "language": "fr",
+  "level": "C1",
+  "topic": "participe_passe",
+  "type": "cloze",
+  "prompt": "Ils se sont ___ (téléphoner) hier soir.",
+  "answer": "téléphoné",
+  "hint": "téléphoner à quelqu’un: dolaylı nesne",
+  "explanation": "« Téléphoner à qqn » dolaylı nesneyle (COI) kurulur, o yüzden « se » COD değildir ve uyum yapılmaz: ils se sont téléphoné.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-participe_passe-06",
+  "language": "fr",
+  "level": "B2",
+  "topic": "participe_passe",
+  "type": "error",
+  "prompt": "Les pommes que j’ai mangé étaient bonnes.",
+  "answer": "mangé",
+  "fix": "mangées",
+  "explanation": "COD « que » (= les pommes) fiilden önce: avoir ile bile ortak nesneyle uyar → mangées.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_relatifs-01",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_relatifs",
+  "type": "cloze",
+  "prompt": "Voici le livre ___ je t’ai parlé.",
+  "answer": "dont",
+  "hint": "parler de",
+  "explanation": "« Parler de qqch » olduğu için « de » içeren zamir gerekir: dont.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_relatifs-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_relatifs",
+  "type": "cloze",
+  "prompt": "La ville ___ je suis né est très petite.",
+  "answer": "où",
+  "alternatives": [
+   "dans laquelle"
+  ],
+  "hint": "yer",
+  "explanation": "Yer (ve zaman) için « où » kullanılır: la ville où je suis né.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_relatifs-03",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_relatifs",
+  "type": "choice",
+  "prompt": "Le professeur avec ___ j’ai travaillé est parti.",
+  "answer": "qui",
+  "options": [
+   "qui",
+   "que",
+   "dont",
+   "où"
+  ],
+  "hint": "edat + kişi",
+  "explanation": "Edattan sonra kişiler için « qui » gelir: avec qui, pour qui, chez qui.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_relatifs-04",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_relatifs",
+  "type": "choice",
+  "prompt": "Ce ___ je veux, c’est un peu de calme.",
+  "answer": "que",
+  "options": [
+   "que",
+   "qui",
+   "dont",
+   "quoi"
+  ],
+  "hint": "vouloir + nesne",
+  "explanation": "« Ce que » nesne görevinde: je veux quelque chose → ce que je veux. Özne olsaydı « ce qui » olurdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_relatifs-05",
+  "language": "fr",
+  "level": "C1",
+  "topic": "pronoms_relatifs",
+  "type": "cloze",
+  "prompt": "C’est le projet ___ je pense depuis des mois.",
+  "answer": "auquel",
+  "hint": "penser à + projet",
+  "explanation": "« Penser à qqch » kalıbı « à » ister; zamir « auquel » (= à + lequel) olur. Cümlede somut bir ad yoksa (« ce à quoi je pense ») « quoi » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_relatifs-06",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_relatifs",
+  "type": "cloze",
+  "prompt": "Les amis chez ___ nous dormons habitent à Lyon.",
+  "answer": "qui",
+  "hint": "chez + kişi",
+  "explanation": "« Chez » kişilerle « qui » alır: les amis chez qui nous dormons.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conditionnel_passe-01",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conditionnel_passe",
+  "type": "cloze",
+  "prompt": "Si j’avais su, je ne ___ (venir) pas.",
+  "answer": "serais venu",
+  "alternatives": [
+   "serais venue",
+   "serais venus",
+   "serais venues"
+  ],
+  "hint": "venir, être ile",
+  "explanation": "Gerçekleşmemiş geçmiş şart: si + plus-que-parfait, conditionnel passé. Venir « être » ile: je ne serais pas venu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conditionnel_passe-02",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conditionnel_passe",
+  "type": "choice",
+  "prompt": "Si tu m’___ prévenu, je t’aurais aidé.",
+  "answer": "avais",
+  "options": [
+   "avais",
+   "aurais",
+   "as"
+  ],
+  "explanation": "« Si » cümlesi plus-que-parfait alır (si tu m’avais prévenu), « si »’den sonra conditionnel gelmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conditionnel_passe-03",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conditionnel_passe",
+  "type": "cloze",
+  "prompt": "À ta place, j’___ (accepter) cette offre.",
+  "answer": "aurais accepté",
+  "hint": "tavsiye: conditionnel passé",
+  "explanation": "Geçmişe ya da gerçek dışı bir duruma dair tavsiye / pişmanlık conditionnel passé ile söylenir: j’aurais accepté.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conditionnel_passe-04",
+  "language": "fr",
+  "level": "B2",
+  "topic": "conditionnel_passe",
+  "type": "choice",
+  "prompt": "S’il ___ plus tôt, il aurait trouvé une place.",
+  "answer": "était arrivé",
+  "options": [
+   "serait arrivé",
+   "était arrivé",
+   "arrivait"
+  ],
+  "explanation": "Şart tarafı plus-que-parfait: s’il était arrivé (arriver « être » ile).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conditionnel_passe-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "conditionnel_passe",
+  "type": "error",
+  "prompt": "Si j’aurais su, je serais resté.",
+  "answer": "aurais",
+  "fix": "avais",
+  "explanation": "« Si »’den sonra conditionnel kullanılmaz: si j’avais su (plus-que-parfait).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-conditionnel_passe-06",
+  "language": "fr",
+  "level": "C1",
+  "topic": "conditionnel_passe",
+  "type": "cloze",
+  "prompt": "Selon la presse, le ministre ___ (démissionner) hier.",
+  "answer": "aurait démissionné",
+  "hint": "doğrulanmamış haber",
+  "explanation": "Haberin doğrulanmadığını belirtmek için conditionnel passé kullanılır: le ministre aurait démissionné (“istifa etmiş olduğu söyleniyor”).",
+  "source": "Diloloji (özgün)"
+ }
+]

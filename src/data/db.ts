@@ -2,6 +2,7 @@ import Dexie, { type Table } from 'dexie'
 import type { Cue } from '../engine/subtitles'
 import type { TranslationEntry } from '../engine/translationMemory'
 import type { EarLog, EarMiss } from '../engine/earMisses'
+import type { GrammarLog } from '../engine/grammar'
 import type { BadgeLog } from '../engine/gamification'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
 import type { JournalReview } from '../ai/types'
@@ -629,6 +630,15 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'earMisses', value: log })
   }
 
+  /** How the grammar questions went, per question (see engine/grammar). */
+  async getGrammarLog(): Promise<GrammarLog> {
+    return ((await this.meta.get('grammar'))?.value as GrammarLog) ?? {}
+  }
+
+  saveGrammarLog(log: GrammarLog) {
+    return this.meta.put({ key: 'grammar', value: log })
+  }
+
   /** Badges earned and when (see engine/gamification BadgeLog). */
   async getBadgeLog(): Promise<BadgeLog> {
     return ((await this.meta.get('badges'))?.value as BadgeLog) ?? {}
@@ -941,6 +951,8 @@ export interface Backup {
   /** Translations kept on the device. */
   translations?: TranslationEntry[]
   earMisses?: EarLog
+  /** How the grammar questions went. */
+  grammar?: GrammarLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
@@ -992,6 +1004,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     badges: await db.getBadgeLog(),
     translations: await db.getTranslations(),
     earMisses: await db.getEarLog(),
+    grammar: await db.getGrammarLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -1075,5 +1088,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.badges) await db.meta.put({ key: 'badges', value: backup.badges })
     if (backup.translations) await db.meta.put({ key: 'translations', value: backup.translations })
     if (backup.earMisses) await db.meta.put({ key: 'earMisses', value: backup.earMisses })
+    if (backup.grammar) await db.meta.put({ key: 'grammar', value: backup.grammar })
   })
 }
