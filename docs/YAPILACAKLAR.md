@@ -310,6 +310,22 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Günün Mikro Haberi Araştırması (#225):**
   - RFI Journal en français facile, VOA Learning English ve VOA Noticias için RSS, doğrudan MP3 akışı, tam transkript ve lisans fizibilite raporu (`docs/kaynaklar/gunun-haberi.md`).
 
+## 2026-10-10 Geliştirmeleri — 10. Tur (#227–#238)
+- [x] **Günün Mikro Haberi Canlı Doğrulaması (#233):**
+  - `scripts/check-news-feeds.ts` betiği ile RFI, VOA Learning English ve VOA Noticias canlı RSS/MP3/transkript akışları test edildi.
+  - Canlı doğrulama sonuçları, çalışan doğrudan ses ve metin URL'leri ve mimari öneriler `docs/kaynaklar/gunun-haberi.md` Bölüm 7'ye eklendi.
+- [x] **İspanyolca Fonetik Ses Çifti Yedeği (#234):**
+  - `MINIMAL_PAIRS.es` içindeki 38 kelime Wikimedia Commons ve Lingua Libre üzerinde tarandı; 35 kelimenin (%92,1) açık lisanslı MP3/WAV kayıtları, konuşmacıları ve lisansları `docs/veri/es-ses-kayitlari.json` dosyasına işlendi.
+  - Eksik 3 kelime için alternatif çift önerileri (`docs/veri/minimal-cift-kayitlari.md` Bölüm 6) ve yerel ses eşleme altyapısı (`src/data/audio/es-pairs.json`) hazırlandı.
+- [x] **Çıkarım Modu Maskeleme Kuralı Denetimi (#237):**
+  - `src/engine/deduction.ts` `maskPositions` kuralı Fransızca ve İspanyolca dillerinde 10 gerçek metin üzerinde (storybook, audiobook, news) sıfır ve 1.000 kelime bilinen senaryolarda analiz edildi (`scripts/audit-deduction.ts`, `docs/veri/cikarim-modu-denetimi.md`).
+  - Çift tireli birleşmeler (`abril--vivieron`), kişi adları (`Francet`) ve soru/zamir tireleri (`Est-ce`, `Imaginez-vous`) gibi pedagojik pürüzler belgelendi; 5 somut regex/algoritma çözümü sunuldu.
+- [x] **Kayıt Farkı (Register) Üçlüleri Denetimi (#238):**
+  - `src/data/register/{fr,es,en}.json` içerisindeki 42 adet günlük / standart / resmî karşılık üçlüsü (`bouffer / manger / se restaurer` vb.) Wiktionary, DRAE ve Oxford etiketleriyle denetlendi (`docs/veri/kayit-farki-denetimi.md`).
+  - İspanyolca'daki İspanya odaklı argo (`curro`, `tío`, `pasta`, `guay`, `vale`), Arjantin'deki tehlikeli sahte dost (`curro` = dolandırıcılık) ve İngilizce nüanslar (`scoff`, `knackered`) belgelenip düzeltme önerileri sunuldu.
+- [x] **Eksik Doldurma ve Seviyeli Kelime Önerisi:**
+  - Cümle içi boşluk tamamlama alıştırması (`FillMissing.tsx`) ve seviyeye uygun kelime önerme motoru (`SuggestWords.tsx`, `wordSuggest.ts`).
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince dilbilgisi, refleks ve tuzak kelimeler oyunlarının kullanım oranları incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).

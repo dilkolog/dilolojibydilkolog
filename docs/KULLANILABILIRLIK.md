@@ -249,11 +249,23 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 19. **Hesap Onayı ve Erişim Güvenliği:** ✅ Yapıldı (#210):  
     Onaysız/onaylı hesap ayrımı, şeffaf durum bildirimi ve kota yönetimi (`api/_account.ts`, `data/access.ts`).
 
+### 🟤 Öncelik 5: Bağlamsal Çıkarım, Canlı İçerik ve Dil Kaydı (10. Tur)
+20. **Çıkarım Modu (Deduction Mode):** ✅ Yapıldı (#227, #237):  
+    Okuma metinlerinde bilinmeyen kelimelerin bağlamdan tahmin edilmesi (`deduction.ts`, `maskPositions`), 10 gerçek metin üzerinde denetim ve 5 somut algoritma iyileştirmesi (`docs/veri/cikarim-modu-denetimi.md`).
+21. **Günün Mikro Haberi Canlı Doğrulaması:** ✅ Yapıldı (#233):  
+    RFI ve VOA bültenlerinin canlı RSS, MP3 ve transkript bağlantılarının script ile test edilmesi ve raporlanması (`docs/kaynaklar/gunun-haberi.md` Bölüm 7).
+22. **Doğrulanmış İspanyolca Fonetik Kayıtları:** ✅ Yapıldı (#234):  
+    İspanyolca ses ayırt etme çiftleri için Wikimedia Commons / Lingua Libre üzerinden 35 açık lisanslı ses kaydı (`docs/veri/es-ses-kayitlari.json`, `src/data/audio/es-pairs.json`).
+23. **Kayıt Farkı (Register) Farkındalığı:** ✅ Yapıldı (#238):  
+    Günlük / standart / resmî dil düzeyleri arasındaki farkları gösteren üçlü veri seti (`src/data/register/{fr,es,en}.json`) ve bölgesel argo / sahte dost riskleri denetim raporu (`docs/veri/kayit-farki-denetimi.md`).
+24. **Eksik Doldurma ve Seviyeli Kelime Önerisi:** ✅ Yapıldı:  
+    Cümle içi boşluk doldurma alıştırması (`FillMissing.tsx`) ve seviyeye uygun kelime önerme motoru (`SuggestWords.tsx`, `wordSuggest.ts`).
+
 ---
 
 ## 8. Sonuç
 
 Kelime Koçu; temiz tipografisi (Lexend + Literata uyumu), tek dil vurgusu prensibi, dokunsal düğme basma hissi ve yargılamayan bahçe metaforuyla piyasadaki aşırı oyunlaştırılmış (gamified) ve dikkat dağıtıcı dil uygulamalarına kıyasla son derece dingin, ergonomik ve amaca odaklı bir kullanıcı deneyimi sunmaktadır.
 
-9. turla birlikte gelen ileri seviye B1–C1 dilbilgisi pratikleri, refleks kalıpları, tuzak kelime farkındalığı ve kör nokta röntgeni; uygulamayı salt bir kelime ezberleme aracından tam teşekküllü bir dil edinim ve akıcılık platformuna dönüştürmüştür.
+9. ve 10. turlarla birlikte gelen ileri seviye B1–C1 dilbilgisi pratikleri, refleks kalıpları, tuzak kelime farkındalığı, çıkarım modu, canlı mikro haberler, kayıt farkı üçlüleri ve fonetik doğrulama; uygulamayı salt bir kelime ezberleme aracından çok boyutlu bir dil edinim, okuduğunu anlama ve akıcılık ekosistemine dönüştürmüştür.
 
