@@ -1,4 +1,5 @@
-import { pick, shuffle, type Rng } from './rng'
+import { pickWeighted, type GrammarLog } from './grammar'
+import { pick, type Rng } from './rng'
 import type { TargetLanguage } from './types'
 
 /**
@@ -41,6 +42,20 @@ export const MINIMAL_PAIRS: Record<TargetLanguage, MinimalPair[]> = {
     p('walk', 'yürümek', 'work', 'çalışmak', 'ɔː / ɜː'),
     p('fan', 'vantilatör', 'van', 'minibüs', 'f / v'),
     p('berry', 'dut', 'very', 'çok', 'b / v'),
+    p('cheap', 'ucuz', 'chip', 'cips', 'uzun i / kısa i'),
+    p('heat', 'sıcaklık', 'hit', 'vurmak', 'uzun i / kısa i'),
+    p('bat', 'yarasa', 'bet', 'bahis', 'æ / e'),
+    p('pen', 'kalem', 'pan', 'tava', 'e / æ'),
+    p('luck', 'şans', 'lock', 'kilit', 'ʌ / ɒ'),
+    p('sip', 'yudum', 'ship', 'gemi', 's / ʃ'),
+    p('chair', 'sandalye', 'share', 'paylaşmak', 'tʃ / ʃ'),
+    p('rice', 'pirinç', 'lice', 'bitler', 'r / l'),
+    p('right', 'doğru', 'light', 'ışık', 'r / l'),
+    p('west', 'batı', 'vest', 'yelek', 'w / v'),
+    p('wine', 'şarap', 'vine', 'asma', 'w / v'),
+    p('bus', 'otobüs', 'buzz', 'vızıltı', 's / z'),
+    p('pack', 'paket', 'back', 'arka', 'p / b'),
+    p('coat', 'ceket', 'caught', 'yakaladı', 'əʊ / ɔː'),
   ],
   fr: [
     p('dessus', 'üstünde', 'dessous', 'altında', 'u / ou'),
@@ -57,6 +72,13 @@ export const MINIMAL_PAIRS: Record<TargetLanguage, MinimalPair[]> = {
     p('dessert', 'tatlı', 'désert', 'çöl', 'ss / s'),
     p('beau', 'güzel', 'bout', 'uç', 'o / ou'),
     p('le', 'eril artikel', 'les', 'çoğul artikel', 'e / é'),
+    p('bu', 'içilmiş', 'boue', 'çamur', 'u / ou'),
+    p('sous', 'altında', 'su', 'bilinen', 'u / ou'),
+    p('jeu', 'oyun', 'joue', 'yanak', 'eu / ou'),
+    p('bon', 'iyi', 'banc', 'bank', 'on / an'),
+    p('vin', 'şarap', 'vont', 'gidiyorlar', 'in / on'),
+    p('sans', 'olmadan', 'son', 'onun', 'an / on'),
+    p('cousin', 'kuzen', 'coussin', 'yastık', 'z / s'),
   ],
   es: [
     p('pero', 'ama', 'perro', 'köpek', 'r / rr'),
@@ -69,6 +91,11 @@ export const MINIMAL_PAIRS: Record<TargetLanguage, MinimalPair[]> = {
     p('cana', 'ak saç', 'caña', 'kamış', 'n / ñ'),
     p('polo', 'kutup', 'pollo', 'tavuk', 'l / ll'),
     p('casa', 'ev', 'caza', 'av', 's / z (İspanya)'),
+    p('vez', 'kez', 'ves', 'görürsün', 's / z (İspanya)'),
+    p('papa', 'patates', 'papá', 'baba', 'vurgu'),
+    p('esta', 'bu', 'está', 'bulunuyor', 'vurgu'),
+    p('termino', 'bitiriyorum', 'terminó', 'bitirdi', 'vurgu'),
+    p('hablo', 'konuşuyorum', 'habló', 'konuştu', 'vurgu'),
   ],
 }
 
@@ -80,9 +107,13 @@ export interface PairQuestion {
   order: ('a' | 'b')[]
 }
 
-export function pairRound(language: TargetLanguage, count: number, rng: Rng): PairQuestion[] {
-  // Each pair once before any repeats.
-  const order = shuffle(MINIMAL_PAIRS[language], rng)
+/** The key of a pair in the learner's log. */
+export const pairKey = (language: TargetLanguage, pair: MinimalPair) => `${language}:${pair.a.word}|${pair.b.word}`
+
+/** A round of questions: pairs never tried or often missed come first (see pickWeighted), each pair once before any repeats. */
+export function pairRound(language: TargetLanguage, count: number, rng: Rng, log: GrammarLog = {}): PairQuestion[] {
+  const pool = MINIMAL_PAIRS[language].map((pair) => ({ id: pairKey(language, pair), pair }))
+  const order = pickWeighted(pool, log, rng, pool.length).map((x) => x.pair)
   return Array.from({ length: count }, (_, i) => {
     const pair = i < order.length ? order[i] : pick(order, rng)
     return { pair, answer: rng() < 0.5 ? 'a' : 'b', order: rng() < 0.5 ? ['a', 'b'] : ['b', 'a'] }

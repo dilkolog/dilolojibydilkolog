@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
-import { MINIMAL_PAIRS, pairRound, type PairQuestion } from '../../engine/listening'
+import { MINIMAL_PAIRS, pairKey, pairRound, type PairQuestion } from '../../engine/listening'
+import { recordGrammar, type GrammarLog } from '../../engine/grammar'
 import { nativeRecordings } from '../../data/wordInfo'
 import { createRng } from '../../engine/rng'
+import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SpeakerIcon } from '../icons'
 import { sfx } from '../sounds'
@@ -11,18 +13,41 @@ import { isPctRecord, type Props } from './shared'
 
 const PAIR_ROUND = 12
 
+/** One at a time: answers in quick succession must not overwrite each other's log. */
+let writing: Promise<unknown> = Promise.resolve()
+const notePair = (language: TargetLanguage, q: PairQuestion, ok: boolean) => {
+  writing = writing.then(async () => db.savePairLog(recordGrammar(await db.getPairLog(), pairKey(language, q.pair), ok, new Date()))).catch(() => undefined)
+  return writing
+}
+
 /**
  * Hear one word of a minimal pair and pick it. Every answer gets immediate feedback and the
  * chance to hear both words back to back; voices vary between questions.
  */
 export function PairsGame({ language, best, recordKey, onExit }: Props & { best?: number; recordKey: string; onExit: () => void }) {
-  const [round, setRound] = useState<PairQuestion[]>(() => pairRound(language, PAIR_ROUND, createRng(Date.now())))
+  // The pairs missed before come first, so the round waits for the log.
+  const [log, setLog] = useState<GrammarLog | null>(null)
+  const [round, setRound] = useState<PairQuestion[]>([])
+  useEffect(() => {
+    let live = true
+    void db
+      .getPairLog()
+      .catch(() => ({}) as GrammarLog)
+      .then((l) => {
+        if (!live) return
+        setLog(l)
+        setRound(pairRound(language, PAIR_ROUND, createRng(Date.now()), l))
+      })
+    return () => {
+      live = false
+    }
+  }, [language])
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<{ q: PairQuestion; ok: boolean }[]>([])
   const [chosen, setChosen] = useState<'a' | 'b' | null>(null)
   const [record, setRecord] = useState(false)
   const q = round[index] as PairQuestion | undefined
-  const done = index >= round.length
+  const done = log !== null && index >= round.length
   // Real recordings by many speakers (high-variability training); the device voice fills gaps.
   const [voices, setVoices] = useState<Map<string, string[]> | null>(null)
   const lastVoice = useRef('')
@@ -58,6 +83,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
     else sfx.wrong()
     setChosen(side)
     setAnswers((a) => [...a, { q, ok }])
+    void notePair(language, q, ok)
   }
 
   const next = async () => {
@@ -166,10 +192,12 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
           accuracy={round.length ? right / round.length : 0}
           note={worst ? `En çok karıştırdığın ses farkı: ${worst[0]}. Bu çiftleri tekrar dinlemek kulağını alıştırır.` : 'Hiç karıştırmadın; kulağın bu farklara alışmış.'}
           onAgain={() => {
-            setRound(pairRound(language, PAIR_ROUND, createRng(Date.now())))
-            setIndex(0)
-            setAnswers([])
-            setRecord(false)
+            void writing.then(() => db.getPairLog()).then((l) => {
+              setRound(pairRound(language, PAIR_ROUND, createRng(Date.now()), l))
+              setIndex(0)
+              setAnswers([])
+              setRecord(false)
+            })
           }}
           onExit={onExit}
         />

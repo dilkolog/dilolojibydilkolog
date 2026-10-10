@@ -1,5 +1,5 @@
 /** Bumped when something worth telling the learner about arrives; the card shows once per version. */
-export const WHATS_NEW_VERSION = '2026-10-10'
+export const WHATS_NEW_VERSION = '2026-10-11'
 
 const KEY = 'diloloji:whats-new'
 
