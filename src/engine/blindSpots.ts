@@ -6,7 +6,7 @@ import type { TrapWord } from './traps'
 import type { ErrorType, TargetLanguage } from './types'
 
 /** Where a blind spot is worked on: a game of Games ('verbs' is the verb lab). */
-export type RepairTarget = 'verbs' | 'gender' | 'article' | 'accent' | 'traps' | 'boss' | 'grammar' | 'pairs' | 'reflex' | 'ear'
+export type RepairTarget = 'verbs' | 'gender' | 'article' | 'accent' | 'traps' | 'boss' | 'grammar' | 'pairs' | 'reflex' | 'ear' | 'register'
 
 export interface BlindSpot {
   id: string
@@ -32,6 +32,8 @@ export interface BlindSpotInput {
   traps: GrammarLog
   trapWords: readonly TrapWord[]
   reflex: GrammarLog
+  /** The register questions (per thought and situation). */
+  register?: GrammarLog
   /** Words the ear still misses in dictation. */
   earMissed: number
 }
@@ -125,6 +127,13 @@ export function blindSpots(input: BlindSpotInput): BlindSpot[] {
   const slow = Object.values(input.reflex).filter((r) => r.wrong > r.ok)
   if (slow.length >= 3) {
     out.push({ id: 'reflex', title: 'Bazı kalıplar 3 saniyeye sığmıyor', detail: `${slow.length} kalıpta doğrulardan çok yanlış ya da geç kalma var.`, target: 'reflex', action: 'Refleks turu', score: Math.min(1, slow.length / 8) * 0.8 })
+  }
+
+  // Saying it in the wrong register.
+  const reg = Object.values(input.register ?? {}).reduce((t, r) => ({ ok: t.ok + r.ok, wrong: t.wrong + r.wrong }), { ok: 0, wrong: 0 })
+  const regN = reg.ok + reg.wrong
+  if (regN >= 6 && reg.wrong / regN >= 0.4) {
+    out.push({ id: 'register', title: 'Ortama uygun söyleyişi seçmekte zorlanıyorsun', detail: `${regN} cevabın ${pct(reg.wrong / regN)} kadarında sokak, standart ya da resmî söyleyişi karıştırdın.`, target: 'register', action: 'Kayıt farkı', score: (reg.wrong / regN) * weight(regN) })
   }
 
   // Words the ear misses in dictation.
