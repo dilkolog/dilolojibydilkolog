@@ -19,6 +19,7 @@ import { type GameState } from './ui/game'
 import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
 import { WhatsNew } from './ui/WhatsNew'
+import { MindSeed } from './ui/MindSeed'
 import { WeeklyNudge } from './ui/WeeklyNudge'
 import { GainsNudge } from './ui/GainsNudge'
 import { studyGains } from './engine/gains'
@@ -208,6 +209,7 @@ export function AppScreens(props: AppScreensProps) {
           onVocabTest={go({ name: 'vocabtest' })}
           onExam={go({ name: 'exam' })}
           onEarPractice={go({ name: 'games', game: 'ear' })}
+          onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
         />
       ) : screen.name === 'produce' ? (
         <ProduceScreen
@@ -393,6 +395,8 @@ export function AppScreens(props: AppScreensProps) {
                 setScreen({ name: 'settings' })
               }}
             />
+            {/* Last: only when no other nudge has something to say (one at a time). */}
+            <MindSeed language={data.language} />
             </>
           }
         />

@@ -35,6 +35,10 @@ export function WhatsNew({ words, onReading, onPractice, onGrammar }: { words: n
           <span className="small muted"> Pratik → Oyunlar'da: boşluk doldur, seç, hatalı kelimeyi bul; kuralı Türkçe gör.</span>
         </li>
         <li>
+          <strong>Kör nokta röntgeni</strong>
+          <span className="small muted"> İlerleme → Genel bakış'ta: en çok takıldığın yerler, yanında çalışacağın oyunla. Bugün'de de her gün bir "zihin tohumu".</span>
+        </li>
+        <li>
           <strong>Refleks turu ve Tuzak kelimeler</strong>
           <span className="small muted"> Pratik → Oyunlar'da: günlük kalıpları 3 saniyede seç; benzeyip başka şey diyen kelimelere (kelime sayfasında ⚠ çipi) düşme.</span>
         </li>
