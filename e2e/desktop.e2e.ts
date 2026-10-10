@@ -1152,6 +1152,29 @@ test('easy stories: an illustrated story read aloud, with its credits, pictures 
   await expect(page.locator('.library li', { hasText: 'Qu’est-ce que tu fais ?' })).toHaveCount(2)
 })
 
+test('audiobooks: a chapter opens with its recording and a clean text, and opens again as the same copy', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  // The recording stays on archive.org: answered here.
+  await page.route(/archive\.org/, (r) => r.fulfill({ status: 200, body: '' }))
+  await openScreen(page, 'Okuma')
+  const picker = page.locator('section', { has: page.getByRole('heading', { name: 'Sesli kitaplar', exact: true }) })
+  await expect(picker.locator('.library li')).toHaveCount(13)
+  await picker.getByRole('button', { name: 'B2', exact: true }).click()
+  await expect(picker.locator('.library li')).toHaveCount(4)
+  await picker.getByRole('button', { name: 'Tümü (13)' }).click()
+  await picker.getByText('Le secret de maître Cornille').click()
+  await page.getByRole('button', { name: 'Turları bırak' }).click()
+  await expect(page.getByText(/LibriVox/).first()).toBeVisible()
+  await expect(page.locator('.reader')).not.toContainText('_mas_')
+  // Sentences are whole: the hard-wrapped lines of the file are joined.
+  await expect(page.locator('.reader')).toContainText('un petit drame de village dont mon moulin a été témoin')
+  await page.getByRole('button', { name: /Kütüphane/ }).click()
+  await picker.getByText('Le secret de maître Cornille').click()
+  await page.getByRole('button', { name: /Kütüphane/ }).click()
+  await expect(page.locator('.library li', { hasText: 'Le secret de maître Cornille' })).toHaveCount(2)
+})
+
 test('restoring a backup keeps a copy of what was there: a bad file changes nothing, "Önceki hâle dön" brings the data back', async ({ page }) => {
   test.setTimeout(60_000)
   await startWithSamples(page)

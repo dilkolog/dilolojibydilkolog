@@ -32,13 +32,31 @@ export async function loadAudiobookChapters(language: TargetLanguage): Promise<A
   return load ? ((await load()).default as AudiobookChapter[]) : []
 }
 
+/**
+ * The Gutenberg text as it should be read: no footnotes (the recording doesn't read them), no `*   *   *`
+ * breaks, no `_italic_` marks, and prose lines joined into sentences (the file is hard-wrapped; the
+ * reader treats every line break as a paragraph). Verse (fables: no paragraphs to speak of) keeps its lines.
+ */
+export function cleanChapterText(text: string): string {
+  const paragraphs = text
+    .replace(/\r/g, '')
+    .replace(/\[Note \d+:[^\]]*\]/g, '')
+    .replace(/^[ \t]*\*(?:[ \t]+\*)+[ \t]*$/gm, '')
+    .replace(/_/g, '')
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+  const prose = paragraphs.length >= 5
+  return paragraphs.map((p) => (prose ? p.replace(/\s*\n\s*/g, ' ') : p)).join('\n\n')
+}
+
 /** Converts an audiobook chapter into a standard ReadingText object for the reading library. */
 export function chapterToReadingText(chapter: AudiobookChapter): ReadingText {
   return {
     id: chapter.id,
     language: chapter.language,
     title: `${chapter.bookTitle}: ${chapter.title}`,
-    text: chapter.text,
+    text: cleanChapterText(chapter.text),
     addedAt: new Date().toISOString(),
     history: [],
     audio: chapter.audioUrl,
