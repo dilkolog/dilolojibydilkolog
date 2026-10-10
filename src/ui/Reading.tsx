@@ -29,6 +29,7 @@ import { WordCard, type Selected } from './WordCard'
 import { BookItem } from './ReadingBooks'
 import { AddTextCard, LibraryItem, SourcePickers } from './ReadingLibrary'
 import { CoverageCard } from './CoverageCard'
+import { ExternalResources } from './ExternalResources'
 import { SingleUnknownSentences } from './SingleUnknownSentences'
 import { MIN_READ_MS, groupBooks, useSeen } from './readingHelpers'
 import { useSheetSwipe } from './useSheetSwipe'
@@ -637,6 +638,7 @@ export function ReadingScreen({
           bookError={bookError}
         />
         <SourcePickers db={db} language={language} vocabulary={vocabulary} states={states} known={known} library={library} setLibrary={setLibrary} open={open} />
+        <ExternalResources language={language} />
       </div>
     )
   }

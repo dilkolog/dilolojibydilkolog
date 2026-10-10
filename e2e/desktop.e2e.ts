@@ -447,6 +447,17 @@ test('bulk import: each row says why it cannot be added, a sentence without the 
   await expect(page.getByText('1 satır eklenemiyor')).toBeVisible()
 })
 
+test('reading: outside learning sites are only links, opening in a new tab', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  const card = page.getByRole('region', { name: 'Dışarıda çalış' })
+  await expect(card).toBeVisible()
+  const link = card.getByRole('link', { name: /TV5Monde/ })
+  await expect(link).toHaveAttribute('href', 'https://apprendre.tv5monde.com/')
+  await expect(link).toHaveAttribute('target', '_blank')
+  expect(await overflow(page)).toEqual([])
+})
+
 test('reading: a conjugated form opens the verb lab at its verb and tense', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')
