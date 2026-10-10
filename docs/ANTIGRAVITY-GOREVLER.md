@@ -209,6 +209,33 @@ GitHub Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Ko
 
 ---
 
+## 8. tur: yeni özelliklerin erişilebilirliği, iki cihazlı eşitleme testi, İngilizce içerik (7. tur bitti; kullanıcı istedi)
+
+**Çakışma uyarısı:** Claude Code sıradaki işlerde `src/engine/` (zayıf kelimeleri tekrara katma), `src/ui/Session*.tsx`, `src/ui/Reading*.tsx`, `src/ui/AudiobooksPicker.tsx` ve `src/data/sync.ts` üzerinde çalışabilir. Aşağıdaki işler yeni dosya, `e2e/`, `docs/` ve `scripts/` ile sınırlı; başka dosyaya dokunman gerekirse PR açıklamasına yaz.
+
+### 8.1 Yeni özellikler için erişilebilirlik taraması (`e2e/a11y.e2e.ts` desenine uyarak `axe`)
+Son turlarda gelenler: **Okuma → Sesli kitaplar** (liste, seviye çipleri, açık bölüm), **Oyunlar → Telaffuz çalışması** (kartın görünmesi için `meta 'azureSpeech'` anahtarını IndexedDB'ye `{key:'azureSpeech', value:{key:'x',region:'francecentral'}}` yazıp sayfayı yenile; boş durum ve kelimeli durum için `meta 'pronScores'`a `{ '<kelimeId>': [{at, score:40}] }` yaz), **kelime sayfasında "Bana özel cümleler"** (`meta 'aiKey'` yaz, `https://api.anthropic.com/**` isteğini `page.route` ile taklit et; öneri listesi açıkken), **içe aktarmada "Hangi listeye eklensin?"** (Toplu ekle açıkken, "Yeni liste" seçilince ad alanı görünürken), **oturum özetinde "Hataların için kısa yorum"** (anahtar varken), **Ayarlar → Eşitleme'de "Eşitlenen veri" satırı** (`meta 'syncCode'` + `meta 'syncSize'` yaz; %50 ve %85 için). Her taramada koyu ve sakin tema; ihlalleri önce listele, kendi dosyanda olanı düzelt.
+
+### 8.2 İki cihazlı eşitleme E2E (`e2e/desktop.e2e.ts` içine ya da yeni bir `e2e/sync.e2e.ts`; yenisi için `playwright.config.ts`'e ekle)
+Şu an yarış birim testle sahte depoyla deneniyor (`src/data/syncConflict.test.ts`). İki ayrı tarayıcı bağlamıyla (iki `browser.newContext()`) `/api/sync`'i Node tarafında tek bir bellek deposuna yönlendir (`page.route`, `?id=&part=` sorgusu, GET/PUT, `etag` başlığı ve `If-Match` ile 412; baytlar şifreli ve opak, olduğu gibi sakla). Senaryolar: (1) A'da kelime ekle, eşitle; B aynı kodla gelsin, kelimeyi görsün; (2) ikisi aynı anda farklı kelime eklesin, ikisinde de iki kelime de olsun; (3) A'da bir kelimeyi sil, B eşitleyince silinsin; (4) B'de ayar değişikliği ("Günlük yeni kelime") A'ya gelsin. Eşitleme kodu için Ayarlar → Cihazlar arası eşitleme → "Eşitlemeyi başlat" ve "Kodumu gir" akışını kullan. Gerçek `/api/sync`'e istek gitmesin.
+
+### 8.3 İngilizce için sesli içerik envanteri (rapor; kod yok): `docs/kaynaklar/english-audio.md`
+Fransızca ve İspanyolcada resimli hikâyeler, sesli kitaplar ve transkriptli podcast'ler var; İngilizce tarafı çok daha ince. Aşağıdakilerin **kullanım şartlarını** (yeniden dağıtım, uygulamaya gömme, ticari olmayan kullanım) ve doğrudan ses/metin bağlantılarını (`HEAD` ile doğrula) araştır: Global Storybooks (İngilizce hikâyeler, CC BY), LibriVox (kısa B1–B2 İngilizce eserler; Gutenberg metniyle aynı baskı), VOA Learning English, BBC Learning English (6 Minute English, transkriptleri), Simple English Wikipedia. Her kaynak için: lisans, doğrudan MP3 bağlantısı örneği, transkript var mı, seviye, uygulamaya eklenebilir mi (evet/hayır/şartlı) ve neden. Önerilen sıra ve her birinin tahmini iş yükü. Kod yazma; yalnızca rapor (4.6 gibi).
+
+### 8.4 Performans raporunun kalan maddeleri (`docs/PERFORMANS.md` bölüm 6; her biri ayrı PR)
+- **Öneri 1 (`tenseGuide` tembel yükleme):** `src/engine/tenses*.ts` ve `src/engine/tenseGuide.ts` Claude Code'un alanı. Başlamadan `git log -5 -- src/engine` ile bak; son 3 günde değişiklik varsa atla ve nedenini yaz. Önce/sonra gzip boyutu tablosu.
+- **Öneri 4 (ikon budama):** ölçümde kazanç ~3 kB altındaysa yapma, raporda yaz.
+
+### 8.5 Belge güncellemesi
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #204'e kadar yapılanları işaretle (Sesli kitaplar, oturum yorumu, eşitleme boyutu ve "diğer cihazlardan" özeti, kişisel cümleler, telaffuz çalışması, içe aktarmada liste seçimi). `AGENTS.md`'ye **dokunma**.
+
+### 8.6 Görsel referansları yenileme (hâlâ açık)
+Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`; farkların nedenini PR'a yaz. Kota hâlâ doluysa bu maddeyi atla.
+
+**Tur sonu ölçütü:** 8.1'de hiçbir mevcut test silinmemiş ve her yeni tarama koyu + sakin temada; 8.2'de dört senaryo da geçiyor ve gerçek sunucuya istek yok; 8.3'te her kaynakta lisans ve bağlantı doğrulaması notlu; PR'lar tek konulu.
+
+---
+
 ## Her PR için kontrol listesi
 - [ ] Tek konu, Türkçe açıklama (neyi, neden)
 - [ ] `typecheck`, `oxlint` (0 uyarı), `vitest`, E2E yerelde yeşil
