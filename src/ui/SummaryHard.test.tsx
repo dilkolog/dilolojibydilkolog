@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { createEntry } from '../data/wordInput'
 import type { SessionSummary } from '../engine/session'
-import { Summary } from './Screens'
+import { Summary } from './SessionSummary'
 
 const a = createEntry({ word: 'attendre', meaning: 'beklemek', partOfSpeech: 'verb' }, 'fr', new Date())
 const b = createEntry({ word: 'viser', meaning: 'hedeflemek', partOfSpeech: 'verb' }, 'fr', new Date())
