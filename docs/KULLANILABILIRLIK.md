@@ -180,26 +180,24 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 ## 7. Önceliklendirilmiş İyileştirme Önerileri (Yol Haritası)
 
 ### 🟢 Öncelik 1: Düşük Efor / Yüksek Etki (Hızlı Kazanımlar)
-1. **İkincil Sekmelerde (Hub Tabs) Vurgu:**  
-   `src/index.css` içindeki `.hub-tab` elemanlarının seçili durumuna hafif bir alt çizgi göstergesi (`useTabIndicator` deseni) veya daha belirgin bir arka plan kontrastı eklenerek hangi alt bölümde olunduğu netleştirilmeli.
-2. **Çevrimdışı Durum Göstergesi:**  
-   Tarayıcı çevrimdışı olduğunda (`navigator.onLine === false`), Çeviri ve LanguageTool düğmelerinde küçük bir "Çevrimdışı" rozeti gösterilerek gereksiz tıklama ve hata hissi önlenmeli.
+1. **İkincil Sekmelerde (Hub Tabs) Vurgu:** ✅ Yapıldı (#155):  
+   `src/index.css` içindeki `.hub-tab` elemanlarının seçili durumuna alt çizgi göstergesi ve kaydırma ipucu eklendi.
+2. **Çevrimdışı Durum Göstergesi:** ✅ Yapıldı (#153):  
+   İnternet bağlantısı kesildiğinde üst çubukta sakin, sessiz bir `Çevrimdışı` rozeti (`OfflineBadge.tsx`) gösterilir; çevrimiçi olunca kaybolur.
 3. **Geri Bildirim Süresi İpucu:**  
    Çalışma oturumunda cevaptan vazgeçme / geri alma (`revertReview`) butonunun görünürlük süresi ve dokunma alanı belirginleştirilmeli.
 
 ### 🟡 Öncelik 2: Orta Vadeli Tasarım Rafinasyonları
-4. **Okuma Kelime Seçiminde Bottom-Sheet:** ✅ Yapıldı (2026-10-09): dar ekranda kelime kartı alttan yükselen çekmece (`word-pop`, `useSheetSwipe`).  
-   Mobilde okunan metinde kelimeye dokunulduğunda, kelimenin üstünü kapatan popover yerine ekranın altından yükselen kompakt bir anlam/telaffuz kartı kullanılmalı.
-5. **İlerleme Ekranında Katlanabilir Kartlar:**  
-   `Progress.tsx` ekranındaki ikincil analizler (ör. "En İyi Saatler", "Hata Geçmişi") varsayılan olarak katlı veya segmentli bir yapıya kavuşturularak sayfa boyu kısaltılmalı.
-6. **Birikmiş Tekrar Kolaylaştırıcı:** ✅ Yapıldı (2026-10-09): 50+ tekrar birikince Bugün'de "Kısa tur (15 soru)" (`shortRound`, `BACKLOG_AT`).  
-   50'den fazla tekrar biriktiğinde Bugün ekranında çıkan *"Yeni kelimeleri duraklat / tekrarı böl"* uyarısı doğrudan tek tıkla oturum boyutunu 15'e bölen bir hızlı filtre sunmalı.
+4. **Okuma Kelime Seçiminde Bottom-Sheet:** ✅ Yapıldı (#125, 2026-10-09): dar ekranda kelime kartı alttan yükselen çekmece (`word-pop`, `useSheetSwipe`).
+5. **İlerleme Ekranında Katlanabilir Kartlar:** ✅ Yapıldı (#158):  
+   `Progress.tsx` ekranındaki kartlar (`GroupToggle`) ile katlanabilir hâle getirildi, açık/kapalı tercihleri yerel hafızada (`useGroups.ts`) saklanıyor.
+6. **Birikmiş Tekrar Kolaylaştırıcı:** ✅ Yapıldı (2026-10-09): 50+ tekrar birikince Bugün'de "Kısa tur (15 soru)" (`shortRound`, `BACKLOG_AT`).
 
 ### 🔵 Öncelik 3: Deneyim Zenginleştirme
-7. **Çoklu CEFR Filtreleme:**  
-   Kelime listesinde aynı anda `A1` ve `A2` seviyelerini seçebilme imkânı (`chip` çoklu seçim modu).
-8. **Sözlük Düzeltme Notunun Keşfedilebilirliği:**  
-   Kelime detayında "Kendi anlamını ekle" alanı için küçük bir kalem ikonuyla doğrudan düzenleme hissi verilmesi.
+7. **Çoklu CEFR Filtreleme:** ✅ Yapıldı (#159):  
+   Kelime listesinde aynı anda birden fazla CEFR seviyesini seçebilme imkânı (`WordsCefrFilter.tsx`, çoklu seçim chip'leri).
+8. **Sözlük Düzeltme Notunun Keşfedilebilirliği:** ✅ Yapıldı (#159):  
+   Sözlük detayında "Kendi anlamını ekle / düzelt" alanı için dokunsal kalem daveti ve belirginleştirilmiş buton.
 
 ---
 

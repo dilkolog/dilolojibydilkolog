@@ -115,7 +115,7 @@ Kullanıcı sordu: *TV5Monde'daki içerikler telifsiz mi? DELE Ahora'daki (Espa�
 
 ---
 
-## 5. tur: ikon denetimi, bileşen testleri ve belgeler (4. tur sürerken ya da bitince)
+## 5. tur: ikon denetimi, bileşen testleri ve belgeler (TAMAMLANDI — #177, #179, #181)
 
 **Çakışma uyarısı:** Claude Code şu sıra `src/index.css`'te **animasyon ve hareket** kurallarını (cevap anı, ilerleme çubukları `scaleX`, oturum özeti, bitki sıçraması, süs animasyonları) değiştiriyor. Bu turdaki işler `index.css`'in hareket bölümlerine **dokunmaz**; dokunman gerekirse önce haber ver. Aşağıdaki işlerin çoğu yeni dosya ve `docs/`.
 
