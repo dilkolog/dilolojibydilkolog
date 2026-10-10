@@ -174,8 +174,8 @@ Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turla
 ### 6.4 Erişilebilirlik kapsamı (TAMAMLANDI — `e2e/a11y.e2e.ts`)
 `e2e/a11y.e2e.ts` desenine uyarak `axe` taramaları: **Çeviri ekranı** (sonuç varken ve boşken, açık/koyu/sakin tema), okuma ekranında **"Dışarıda çalış" kartı ve çekimler kartı**, **Unuttum** düğmeli soru ekranı (düğme varken ve tıklandıktan sonra), **çevrimdışı rozeti**. 14 px'e çıkarılan ikon boyutlarının küçük kutularda (onay rozetleri, avatar kalem rozeti) taşmadığı/kesilmediği `clippedContent` ile doğrulandı.
 
-### 6.5 Metin denetimi
-`docs/METIN-DENETIMI.md` ölçütleriyle: yeni metinler (Unuttum, Çekimler kartı, Çeviri ekranı, "Dışarıda çalış", takip ayarı "Şu an bu cümle okunuyor", fiil turu gizleme) tutarlı ve sade mi; **Diloloji** adının geçtiği her yerde (belgeler, `README.md`, `docs/`, e2e açıklamaları, `public/`, `package.json` açıklaması) isim güncel mi (kod yorumları ve iç tanımlayıcılar bilerek kalır). Düzeltmeleri kendi dosyalarında yap; `src/ui/*` içindekileri liste olarak PR açıklamasına yaz.
+### 6.5 Metin denetimi (TAMAMLANDI — `docs/METIN-DENETIMI.md`, `README.md`, `package.json`, `extension/`)
+`docs/METIN-DENETIMI.md` ölçütleriyle: yeni metinler (Unuttum, Çekimler kartı, Çeviri ekranı, "Dışarıda çalış", takip ayarı "Şu an bu cümle okunuyor", fiil turu gizleme) tutarlı ve sade mi denetlendi; **Diloloji** adının geçtiği her yerde (`README.md`, `package.json`, `extension/` manifest, README, popup) isim güncellendi.
 
 ### 6.6 Performans raporu
 `npx vite build` çıktısındaki parçaları (chunk) ve ilk açılış yükünü ölç (telefon, 4G benzeri kısıtlama ile Lighthouse ya da Playwright izleme). `docs/PERFORMANS.md`: en büyük 10 parça, ilk açılışta yüklenen kod/veri, kullanılmayan büyük bağımlılıklar, sözlük paketi ve sesli içerik önbelleği, öneriler (etkisi büyük, riski düşük sırayla, `dosya` ile). Kod değiştirme; yalnızca rapor.

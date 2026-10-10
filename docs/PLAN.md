@@ -1,4 +1,4 @@
-# Kelime Koçu — Plan (Faz 0)
+# Diloloji (önceki adıyla Kelime Koçu) — Plan (Faz 0)
 
 Kaynak: "Kişisel ve Adaptif Kelime Öğrenme Uygulaması" şartnamesi (2 PDF). Bu dosya o şartnameden
 alınan kararları ve sapmaları kaydeder.

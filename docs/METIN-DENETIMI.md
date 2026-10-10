@@ -1,8 +1,8 @@
 # Arayüz Metni Denetim Raporu
 
-Bu belge, Kelime Koçu uygulamasındaki kullanıcı arayüzü (UI) metinlerinde aynı veya benzer kavramlara farklı ekranlarda verilen adları, terminolojik tutarsızlıkları ve olası karışıklık noktalarını listeler. Kod değişikliği içermez; gelecekteki arayüz sadeleştirmeleri ve dil birliği için bir durum tespiti ve referans rehberidir.
+Bu belge, Diloloji (önceki adıyla Kelime Koçu) uygulamasındaki kullanıcı arayüzü (UI) metinlerinde aynı veya benzer kavramlara farklı ekranlarda verilen adları, terminolojik tutarsızlıkları ve olası karışıklık noktalarını listeler. Kod değişikliği içermez; gelecekteki arayüz sadeleştirmeleri ve dil birliği için bir durum tespiti ve referans rehberidir.
 
-Son denetim tarihi: 2026-10-09.
+Son denetim tarihi: 2026-10-10.
 
 ---
 
@@ -121,3 +121,19 @@ Oturum, tur ve görev bitişlerinde kullanılan kutlama ve durum bildirimleri:
 | Algoritmik Zayıf Kelimeler | Zayıf kelimeler / En zayıflar / Zorlananlar | **Zayıf kelimeler** |
 | Manuel Zor İşareti | Zor diye işaretle / Zor kelimeler | **Zor işaretle** / **Zor kelimeler** |
 | Süreç Bitişi | Bitti / Tamamlandı / Görev bitti | **Tamamlandı** (Başarı) / **Bitti** (Sona erme) |
+
+---
+
+## 7. Son Turlarda Eklenen Yeni Özelliklerin Metin Denetimi (6. Tur)
+
+Son turlarda uygulamaya dahil edilen yeni arayüz metinleri, `DESIGN.md` ve dil birliği ilkelerine göre denetlenmiştir:
+
+| Yeni Özellik | Arayüz Metni & Konumu | Değerlendirme & Dil Uyumu |
+| :--- | :--- | :--- |
+| **"Unuttum" Düğmesi** | `Session.tsx:612` ("Unuttum" çipi), `Session.tsx:558` ("Hatırlayamadığını söyledin: sorun değil, cevaba bak; kelime yakında tekrar gelecek.") | **Çok Başarılı:** Yargılamayan, suçluluk hissettirmeyen ve öğrenciyi sakinleştiren üslup. "Emin değilim" ile karıştırılmaması için ayrı çip olarak konumlandırılmış. Kısayol (Alt+U) ipucu açık. |
+| **Çekimler Kartı** | `TextForms.tsx` ("Metindeki çekimler", "N kez", "Metinde göster", "Laboratuvarda aç") | **Tutarlı:** Kısa ve eylem odaklı. "Metinde göster" tıklandığında ilgili cümlenin aydınlanması ile birebir örtüşüyor. |
+| **Çeviri Ekranı** | `TranslateScreen.tsx` ("Çeviri", "cümle cümle, yan yana", "Kelimelerime ekle", "Çeviriyi kopyala", "Cümle kartı olarak kaydedildi") | **Standartlara Tam Uyumlu:** Kelime havuzuna ekleme butonu Bölüm 1'de belirlenen **"Kelimelerime ekle"** standardına harfiyen uyuyor. Son çevirilerdeki yön etiketleri ("FR → TR") yalın. |
+| **"Dışarıda Çalış" Kartı** | `ReadingLibrary.tsx` ("Dışarıda çalış", "Açık kaynaklar ve harici siteler") | **Sade:** Uygulama sınırları dışındaki üçüncü taraf eğitim kaynaklarını (TV5Monde, DELE Ahora) kullanıcıya dürüstçe ve beklenti yaratmadan sunuyor. |
+| **Cümle Takip Ayarı** | `Reading.tsx` ("Şu an bu cümle okunuyor", "1 noktayla ayarlandı", "Ayarı sıfırla") | **Kullanıcı Odaklı:** "Zaman damgası senkronizasyonu" gibi teknik terimler yerine kullanıcının doğrudan yaşadığı deneyimi ("Şu an bu cümle okunuyor") tarif ediyor. |
+| **Fiil Turu Gizleme** | `LabTour.tsx` ("Bugünlük gizle", "Bugünün fiil turu gizlendi; yarın yine çıkar.", "Geri al") | **Net ve Geçici:** Kullanıcıya işlemin kalıcı bir silme olmadığını, ertesi gün otomatik geri geleceğini ve dilerse anında "Geri al"abileceğini net bildiriyor. |
+

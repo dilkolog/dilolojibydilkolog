@@ -128,7 +128,7 @@ function swapTurkish(root: Node) {
       span.className = 'kk-w kk-tr'
       span.dataset.g = g
       span.dataset.tr = m[0]
-      span.title = `${m[0]} · Kelime Koçu`
+      span.title = `${m[0]} · Diloloji`
       span.lang = settings.turkishLang
       span.textContent = w.w
       const after = node.splitText(m.index!)
@@ -326,7 +326,7 @@ function openWord(span: HTMLElement) {
     }
     if (sentence) {
       const keep = el('a', '', '💬 Cümle')
-      keep.title = 'Cümleyi Kelime Koçu\'na kaydet'
+      keep.title = 'Cümleyi Diloloji\'ye kaydet'
       keep.setAttribute('href', sentenceUrl(sentence, cleanToken(word, lang), lang, location.href))
       keep.setAttribute('target', '_blank')
       keep.onclick = () => closeBubble()
@@ -353,7 +353,7 @@ function offerSelection() {
   showBubble(rect, (box) => {
     const row = el('div', 'r', '')
     row.style.marginTop = '0'
-    const add = el('a', 'p', '+ Kelime Koçu')
+    const add = el('a', 'p', '+ Diloloji')
     add.setAttribute('href', addUrl(text, sentence, lang, location.href))
     add.setAttribute('target', '_blank')
     add.onclick = () => closeBubble()

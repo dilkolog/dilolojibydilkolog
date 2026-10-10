@@ -25,7 +25,7 @@ async function init() {
   const d = stored.data
   $<HTMLParagraphElement>('status').textContent = d
     ? `Kelimelerin: İngilizce ${new Set(d.en.list.map((w) => w.id)).size}, Fransızca ${new Set(d.fr.list.map((w) => w.id)).size}, İspanyolca ${new Set(d.es.list.map((w) => w.id)).size}. Son güncelleme ${new Date(stored.syncedAt!).toLocaleString('tr-TR')}. Uygulamayı her açtığında güncellenir.`
-    : 'Kelimelerini almak için Kelime Koçu\'nu bir kez aç.'
+    : 'Kelimelerini almak için Diloloji\'yi bir kez aç.'
   $<HTMLAnchorElement>('open').href = APP_URL
 }
 

@@ -1,8 +1,8 @@
 import { addUrl } from './shared'
 
-/** Right-click on selected text: "Kelime Koçu'na ekle". */
+/** Right-click on selected text: "Diloloji'ye ekle". */
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({ id: 'kk-add', title: 'Kelime Koçu\'na ekle: “%s”', contexts: ['selection'] })
+  chrome.contextMenus.create({ id: 'kk-add', title: 'Diloloji\'ye ekle: “%s”', contexts: ['selection'] })
 })
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
