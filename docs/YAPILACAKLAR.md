@@ -291,6 +291,8 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
 - **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
+- **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) (Hata Avcısı, Cümle Dönüşümü, Minimum Çiftler kulak eğitimi, Eşdizimlilik/Collocations, Tuzak Kelimeler / Faux Amis, RFI/VOA Günün Mikro Haberi).
+- **Açık Lisanslı Gramer Alıştırmaları:** [`docs/kaynaklar/gramer-alistirmalari.md`](kaynaklar/gramer-alistirmalari.md) (COERLL, Entrada Libre, H5P paketleri ve B2/C1 soru motoru kararı).
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
