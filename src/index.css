@@ -5163,3 +5163,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .reflex-bar > div { width: 100%; transition: none; transform-origin: left; animation: reflex-drain var(--reflex-s, 3s) linear forwards; }
 .reflex-bar > div.is-stopped { animation-play-state: paused; }
 @keyframes reflex-drain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* False friends: a quiet warning chip in the word's info list. */
+.chip-list li.trap-chip { background: var(--near-soft); color: var(--near-text); }

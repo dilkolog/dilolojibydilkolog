@@ -1,0 +1,101 @@
+[
+ {
+  "id": "en-fabric",
+  "language": "en",
+  "lemma": "fabric",
+  "looks": "fabrika",
+  "trap": "fabrika",
+  "meaning": "kumaş",
+  "text": "This fabric is very soft.",
+  "tr": "Bu kumaş çok yumuşak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-sympathetic",
+  "language": "en",
+  "lemma": "sympathetic",
+  "looks": "sempatik",
+  "trap": "sempatik",
+  "meaning": "anlayışlı, empati duyan",
+  "text": "She was very sympathetic when I lost my job.",
+  "tr": "İşimi kaybedince çok anlayışlı davrandı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-sensible",
+  "language": "en",
+  "lemma": "sensible",
+  "looks": "sensitive",
+  "trap": "duyarlı, hassas",
+  "meaning": "mantıklı, akıllıca",
+  "text": "That is a sensible decision.",
+  "tr": "Bu mantıklı bir karar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-eventually",
+  "language": "en",
+  "lemma": "eventually",
+  "looks": "eventüel",
+  "trap": "belki, gerekirse",
+  "meaning": "sonunda",
+  "text": "Eventually, he found the keys.",
+  "tr": "Sonunda anahtarları buldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-actually",
+  "language": "en",
+  "lemma": "actually",
+  "looks": "aktüel",
+  "trap": "şu anda",
+  "meaning": "aslında",
+  "text": "Actually, I disagree with you.",
+  "tr": "Aslında sana katılmıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-college",
+  "language": "en",
+  "lemma": "college",
+  "looks": "kolej",
+  "trap": "lise",
+  "meaning": "üniversite, yüksekokul",
+  "text": "She goes to college in Boston.",
+  "tr": "Boston'da üniversiteye gidiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-pension",
+  "language": "en",
+  "lemma": "pension",
+  "looks": "pansiyon",
+  "trap": "pansiyon",
+  "meaning": "emekli maaşı",
+  "text": "He lives on his pension.",
+  "tr": "Emekli maaşıyla geçiniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-pasta",
+  "language": "en",
+  "lemma": "pasta",
+  "looks": "pasta",
+  "trap": "pasta (kek)",
+  "meaning": "makarna",
+  "text": "I cooked pasta for dinner.",
+  "tr": "Akşam yemeğine makarna pişirdim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-nervous",
+  "language": "en",
+  "lemma": "nervous",
+  "looks": "sinirli",
+  "trap": "sinirli, öfkeli",
+  "meaning": "gergin, heyecanlı",
+  "text": "I'm nervous about the exam.",
+  "tr": "Sınav yüzünden gerginim.",
+  "source": "Diloloji (özgün)"
+ }
+]
