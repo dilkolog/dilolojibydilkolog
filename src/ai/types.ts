@@ -91,6 +91,18 @@ export interface PrequestionSet {
   questions: { question: string; answer: string }[]
 }
 
+export interface WordSuggestRequest {
+  language: import('../engine/types').TargetLanguage
+  /** How many words to propose. */
+  count: number
+  /** The learner's interests (profile chips); none means everyday life. */
+  interests: string[]
+  /** Words already in the list (never proposed again). */
+  have: string[]
+  /** A few of the words the learner has: they show the level. */
+  sample: string[]
+}
+
 export interface PersonalSentencesRequest {
   language: import('../engine/types').TargetLanguage
   word: string

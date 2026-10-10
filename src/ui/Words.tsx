@@ -8,6 +8,8 @@ import { ChevronLeftIcon, GlobeIcon, PlusIcon } from './icons'
 import { BulkImport } from './BulkImport'
 import { ConceptsView } from './CrossLanguage'
 import { ListHealthCard } from './ListHealth'
+import { FillMissingBar } from './FillMissing'
+import { SuggestWords } from './SuggestWords'
 import { TranslateImport } from './TranslateImport'
 import { MissingWords } from './MissingWords'
 import { KindleImport } from './KindleImport'
@@ -249,6 +251,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
+          <SuggestWords db={db} language={language} vocabulary={vocabulary} settings={undefined} onAdded={onChanged} />
         </section>
         </section>
       )}
@@ -256,6 +259,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       {section === 'words' && (
         <>
           <section className="section stack">
+            <FillMissingBar db={db} vocabulary={vocabulary} onChanged={onChanged} />
             <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
         <div className="segmented" role="tablist" aria-label="Görünüm">
           <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
