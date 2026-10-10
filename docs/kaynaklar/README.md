@@ -163,5 +163,14 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 - **Kapsam:** İngilizceye benzeyenler (*cave, actual, contestar, sensible*) ve Fransızca/İngilizce kökenli Türkçe kelimelerin hedef dilde farklı anlam taşıdığı durumlar (*baston, chef, patron, servant, pasta, cola, cabinet, season, condition*).
 - **Veri Kalitesi:** Tüm lemmalar benzersiz kimliklerle (`<dil>-<lemma>`) ve özgün doğal örnek cümlelerle `src/data/traps.test.ts` testlerinden geçmektedir.
 
+---
+
+## 11. Günün Mikro Haberi Kaynak Araştırması (`gunun-haberi.md`)
+
+- **Kapsam:** RFI (Journal en français facile), VOA Learning English (As It Is), VOA Noticias en español, RTVE ve DW beslemeleri.
+- **Doğrulanmış Bağlantılar:** RFI güncel podcast RSS (`rfi.fr/fr/podcasts/journal-français-facile/podcast`), Audiomeans CDN doğrudan MP3 ve CORS `*` akışı; VOA Public Domain ses ve tam transkript altyapısı.
+- **Karar:** Fransızca için RFI (1. tercih), İngilizce ve İspanyolca için VOA (kamu malı lisansı ile 1. tercih). RTVE indirme engeli nedeniyle elenmiştir.
+
+
 
 
