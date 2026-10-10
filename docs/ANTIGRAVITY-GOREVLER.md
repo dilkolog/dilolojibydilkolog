@@ -23,7 +23,7 @@ Son güncelleme: 2026-10-10.
 |---|---|
 | Antigravity | `src/ui/Words.tsx`, `src/ui/Progress.tsx`, `src/ui/SettingsScreen.tsx`, `docs/`, `scripts/`, `e2e/` |
 | Claude Code | `src/ui/Reading.tsx` (+ `ReadingBooks.tsx`, `readingHelpers.tsx`, `TextForms.tsx`), `src/ui/Screens.tsx` (Bugün), `Onboarding.tsx`, `SessionSummary.tsx`, `src/ui/verbs/`, `src/engine/` |
-| Ortak (önce haber ver) | `src/App.tsx`, `src/index.css`, `src/data/db.ts` |
+| Ortak (önce haber ver) | `src/App.tsx` (+ `AppScreens.tsx`, `appNav.ts`, `lazyScreens.ts`, `ui/AppSidebar.tsx`), `src/index.css`, `src/data/db.ts` |
 
 `src/index.css`'e yeni kuralı dosyanın **sonuna**, kendi başlığıyla ekle (çakışma çıkmasın). Sahip olmadığın bir dosyaya dokunman gerekirse PR açıklamasında belirt.
 

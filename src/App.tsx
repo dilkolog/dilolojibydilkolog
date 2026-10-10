@@ -1,25 +1,15 @@
-import { Suspense, lazy, type ReactElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem } from './engine/dailyPlan'
-import type { Tense as LabTense } from './engine/tenses'
-import { skillProfile } from './engine/mastery'
+import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { buildDailyPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem } from './engine/dailyPlan'
+
 import { openMistakes } from './engine/mistakes'
-import { answeredToday, progressStats } from './engine/progress'
+import { answeredToday } from './engine/progress'
 import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/practice'
-import { nextReviewAt } from './engine/review'
+
 import { createRng } from './engine/rng'
 import { firstSittingEnd, SPLIT_ABOVE_MINUTES, type SessionSummary } from './engine/session'
-import {
-  TARGET_LANGUAGES,
-  type Mistake,
-  type ReviewEvent,
-  type WordList,
-  type ReviewMode,
-  type TargetLanguage,
-  type UserWordState,
-  type VocabularyEntry,
-} from './engine/types'
+import { TARGET_LANGUAGES, type ReviewMode, type TargetLanguage, type VocabularyEntry } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
-import { difficultWords, withDifficult } from './engine/difficult'
+import { difficultWords } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import type { Settings } from './data/db'
 import { fillCorpus, fillParallel, scoreCorpus } from './data/corpus'
@@ -31,11 +21,11 @@ import { loadTenses } from './data/tenseData'
 import { aiConfig, monthKey } from './ai/usage'
 import { AiError } from './ai/types'
 import { AiContext } from './ui/aiContext'
-import { Avatar } from './ui/Avatar'
+
 import { Glyph } from './ui/Glyph'
 import { BadgeWatcher } from './ui/BadgeWatcher'
 import { GameContext, loadGame, type GameState } from './ui/game'
-import { GlobeIcon, AlertIcon, BookIcon, BrandMark, ChartIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon, GameIcon, GearIcon, HomeIcon, PenIcon, PlayIcon, PlusIcon, ReadIcon, SearchIcon, SparkleIcon, StoryIcon, TargetIcon, TenseIcon, UserIcon } from './ui/icons'
+import { AlertIcon, CheckIcon, PlayIcon, PlusIcon, SparkleIcon, TargetIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
 import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
@@ -44,39 +34,36 @@ import { useReminder } from './ui/reminders'
 import { reminderTime, usualStudyHour } from './engine/hours'
 import { updateAppBadge } from './ui/appBadge'
 import { reportPushState } from './ui/pushReminders'
-import { HabitCards } from './ui/Habits'
-import { BackupNudge } from './ui/BackupNudge'
-import { WeeklyNudge } from './ui/WeeklyNudge'
-import { GainsNudge } from './ui/GainsNudge'
-import { studyGains } from './engine/gains'
+
 import { weekLine, weekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
-import { PANE_KEY } from './ui/settingsPane'
+
 import { natural } from './ui/naturalVoice'
 import { onSynced, runSync } from './ui/syncRunner'
 import { connectExtension, pushToExtension } from './ui/extensionBridge'
-import { GARDEN_HARD_KEY, GardenCard, WORDS_VIEW_KEY } from './ui/Garden'
+
 import { gardenSummary } from './engine/growth'
-import { Home } from './ui/Screens'
+
+import { Sidebar, TabBar } from './ui/AppSidebar'
+import { AppScreens, type AppScreensProps } from './AppScreens'
+import { CommandPalette, prefetchScreens } from './lazyScreens'
+import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RECENT_DAYS, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type LanguageData, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
-import { Summary } from './ui/SessionSummary'
-import { OfflineBadge } from './ui/OfflineBadge'
-import type { LabTab } from './ui/verbs/VerbLab'
-import { recordLabAnswer, useDayForms, useFormsDue, useWarmup, useVerbOfDay } from './ui/verbs/labShared'
+
+import { useDayForms, useFormsDue, useWarmup, useVerbOfDay } from './ui/verbs/labShared'
 import type { Command } from './ui/CommandPalette'
 import { recordVisit } from './ui/screenUsage'
 import { clipboardSuggestion } from './ui/clipboardSuggest'
 import { readIncoming, type IncomingWord } from './ui/incoming'
-import { GAME_LIST, type GameId } from './ui/gameList'
+import { GAME_LIST } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
-import type { AuthMode } from './ui/AuthScreen'
+
 import { Toaster } from './ui/toast'
 import { showToast } from './ui/toastFeed'
 import { ScreenSkeleton } from './ui/Skeleton'
 import { skeletonFor } from './ui/skeletonFor'
 import { useOnline } from './ui/useOnline'
-import { StreakFlame } from './ui/StreakFlame'
-import { currentLevel, levelGroups } from './engine/lists'
+
 import { useTabIndicator } from './ui/useTabIndicator'
 import { azure } from './ui/pronunciation'
 
@@ -87,190 +74,8 @@ import { azure } from './ui/pronunciation'
  */
 /** A stable empty list while the words load (a fresh [] each render would re-run the hooks). */
 const NO_WORDS: readonly VocabularyEntry[] = []
-const screenModules = {
-  // The daily loop's session too: Today comes first, and the idle prefetch has it long before a tap.
-  Session: () => import('./ui/Session'),
-  Games: () => import('./ui/Games'),
-  Mistakes: () => import('./ui/Mistakes'),
-  Profile: () => import('./ui/Profile'),
-  Progress: () => import('./ui/Progress'),
-  Reading: () => import('./ui/Reading'),
-  Produce: () => import('./ui/Produce'),
-  VocabTest: () => import('./ui/VocabTest'),
-  Exam: () => import('./ui/Exam'),
-  Settings: () => import('./ui/SettingsScreen'),
-  Story: () => import('./ui/Story'),
-  WordDetail: () => import('./ui/WordDetail'),
-  Words: () => import('./ui/Words'),
-  VerbLab: () => import('./ui/verbs/VerbLab'),
-  Dictionary: () => import('./ui/Dictionary'),
-  Translate: () => import('./ui/TranslateScreen'),
-  // Rarely opened, so not in the startup code either.
-  Auth: () => import('./ui/AuthScreen'),
-  Palette: () => import('./ui/CommandPalette'),
-}
-const SessionScreen = lazy(() => screenModules.Session().then((m) => ({ default: m.SessionScreen })))
-const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
-const MistakesScreen = lazy(() => screenModules.Mistakes().then((m) => ({ default: m.MistakesScreen })))
-const TranslateScreen = lazy(() => screenModules.Translate().then((m) => ({ default: m.TranslateScreen })))
-const ProfileScreen = lazy(() => screenModules.Profile().then((m) => ({ default: m.ProfileScreen })))
-const ProgressScreen = lazy(() => screenModules.Progress().then((m) => ({ default: m.ProgressScreen })))
-const ReadingScreen = lazy(() => screenModules.Reading().then((m) => ({ default: m.ReadingScreen })))
-const ProduceScreen = lazy(() => screenModules.Produce().then((m) => ({ default: m.ProduceScreen })))
-const VocabTestScreen = lazy(() => screenModules.VocabTest().then((m) => ({ default: m.VocabTestScreen })))
-const ExamScreen = lazy(() => screenModules.Exam().then((m) => ({ default: m.ExamScreen })))
-const SettingsScreen = lazy(() => screenModules.Settings().then((m) => ({ default: m.SettingsScreen })))
-const StoryScreen = lazy(() => screenModules.Story().then((m) => ({ default: m.StoryScreen })))
-const WordDetail = lazy(() => screenModules.WordDetail().then((m) => ({ default: m.WordDetail })))
-const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ default: m.WordsScreen })))
-const VerbLab = lazy(() => screenModules.VerbLab().then((m) => ({ default: m.VerbLab })))
-const DictionaryScreen = lazy(() => screenModules.Dictionary().then((m) => ({ default: m.DictionaryScreen })))
-const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
-const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
-
-function prefetchScreens() {
-  for (const load of Object.values(screenModules)) void load().catch(() => {})
-}
-
-type Screen =
-  | { name: 'home' }
-  | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[]; firstSitting?: boolean }
-  | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; firstSitting?: boolean }
-  | { name: 'words' }
-  | { name: 'dictionary'; query?: string }
-  | { name: 'translate' }
-  | { name: 'word'; entryId: string }
-  | { name: 'mistakes' }
-  | { name: 'progress' }
-  | { name: 'story' }
-  | { name: 'reading' }
-  | { name: 'vocabtest' }
-  | { name: 'produce' }
-  | { name: 'exam' }
-  | { name: 'games'; game?: GameId }
-  | { name: 'verbs'; verb?: string; tense?: string; tab?: LabTab }
-  | { name: 'profile' }
-  | { name: 'settings' }
-  | { name: 'account'; mode?: AuthMode }
-
-const SCREEN_KEY = 'kelime-koc:screen'
-/** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
-const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
-
-function restoreScreen(): Screen {
-  // Home-screen shortcuts (manifest) and push links: ?go=home | add | reading | quick | progress
-  const shortcut = new URLSearchParams(location.search).get('go')
-  if (shortcut) {
-    history.replaceState(null, '', location.pathname)
-    if (shortcut === 'reading') return { name: 'reading' }
-    // The Sunday push about the week opens Progress.
-    if (shortcut === 'progress') return { name: 'progress' }
-    if (shortcut === 'quick') quickStart = true
-    if (shortcut === 'add') {
-      setTimeout(() => document.getElementById('w-word')?.focus(), 400)
-      return { name: 'words' }
-    }
-    return { name: 'home' }
-  }
-  try {
-    const saved = JSON.parse(localStorage.getItem(SCREEN_KEY) ?? 'null') as { name?: Screen['name']; entryId?: unknown } | null
-    if (saved?.name && RESTORABLE.has(saved.name)) {
-      if (saved.name === 'word') return typeof saved.entryId === 'string' ? { name: 'word', entryId: saved.entryId } : { name: 'words' }
-      return { name: saved.name } as Screen
-    }
-  } catch {
-    // Unreadable or blocked storage: start at home.
-  }
-  return { name: 'home' }
-}
-
-/** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
-const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings'])
-
-/**
- * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
- * and switch with tabs at the top (GROUPS); Profile and Settings open from the profile card
- * (desktop) or the avatar (phones and tablets).
- */
-type NavScreen = 'home' | 'words' | 'reading' | 'practice' | 'progress'
-type ScreenName = Screen['name']
-
-const NAV: { screen: NavScreen; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
-  { screen: 'home', label: 'Bugün', icon: HomeIcon },
-  { screen: 'words', label: 'Kelimeler', icon: BookIcon },
-  { screen: 'reading', label: 'Okuma', icon: ReadIcon },
-  { screen: 'practice', label: 'Pratik', icon: GameIcon },
-  { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
-]
-
-const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: string }[]>> = {
-  words: [
-    { screen: 'words', label: 'Kelimeler' },
-    { screen: 'dictionary', label: 'Sözlük' },
-    { screen: 'translate', label: 'Çeviri' },
-    { screen: 'mistakes', label: 'Hatalar' },
-  ],
-  reading: [
-    { screen: 'reading', label: 'Metinler' },
-    { screen: 'story', label: 'Hikaye' },
-  ],
-  practice: [
-    { screen: 'games', label: 'Oyunlar' },
-    { screen: 'verbs', label: 'Fiiller' },
-    { screen: 'produce', label: 'Yaz & konuş' },
-  ],
-}
-
-/** Which menu place a screen belongs to. */
-function placeOf(name: ScreenName): NavScreen | undefined {
-  if (name === 'word') return 'words'
-  if (name === 'summary') return 'home'
-  if (name === 'home' || name === 'progress') return name
-  return (Object.keys(GROUPS) as NavScreen[]).find((k) => GROUPS[k]!.some((g) => g.screen === name))
-}
-
-/** Every screen by name, for the command palette. */
-const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?: number }) => ReactElement }[] = [
-  { screen: 'home', label: 'Bugün', icon: HomeIcon },
-  { screen: 'words', label: 'Kelimeler', icon: BookIcon },
-  { screen: 'dictionary', label: 'Sözlük', icon: SearchIcon },
-  { screen: 'translate', label: 'Çeviri', icon: GlobeIcon },
-  { screen: 'mistakes', label: 'Hatalar', icon: AlertIcon },
-  { screen: 'reading', label: 'Okuma', icon: ReadIcon },
-  { screen: 'story', label: 'Hikaye', icon: StoryIcon },
-  { screen: 'games', label: 'Oyunlar', icon: GameIcon },
-  { screen: 'verbs', label: 'Fiil laboratuvarı', icon: TenseIcon },
-  { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
-  { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
-  { screen: 'profile', label: 'Profil', icon: UserIcon },
-  { screen: 'settings', label: 'Ayarlar', icon: GearIcon },
-]
-
 let corpusRun: Promise<number> | null = null
 let wiktRun: Promise<number> | null = null
-/** Set when opened from a reminder: start a short review as soon as the plan is ready. */
-let quickStart = false
-/** About three minutes. */
-const QUICK_REVIEW = 10
-/** A mixed session's length. */
-const MIXED_SIZE = 30
-
-
-interface LanguageData {
-  language: TargetLanguage
-  vocabulary: VocabularyEntry[]
-  states: UserWordState[]
-  mistakes: Mistake[]
-  /** Last ~2 months of answers in ALL languages. */
-  recentEvents: ReviewEvent[]
-  /** Word lists of this language. */
-  lists: WordList[]
-}
-
-const RECENT_DAYS = 60
-
-/** One plan per calendar day: reopening the app the same day gives the same order. */
-const daySeed = (d: Date) => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()
 
 export default function App() {
   // undefined = loading, null = first run
@@ -472,7 +277,6 @@ export default function App() {
     // Once, when both the incoming word and the settings are there.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incoming, !settings])
-
 
   // Which screens are used, counted on this device only (Settings → Görünüm → Kullanım).
   useEffect(() => {
@@ -701,8 +505,8 @@ export default function App() {
 
   // Opened from a reminder ("?go=quick"): straight into a short review of what's due.
   useEffect(() => {
-    if (!quickStart || !plan || !data) return
-    quickStart = false
+    if (!launch.quick || !plan || !data) return
+    launch.quick = false
     const items = plan.items.filter((i) => i.kind === 'exercise').slice(0, QUICK_REVIEW)
     if (items.length) startSession(items, 'normal')
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -786,6 +590,8 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText }
+
   return (
     <AiContext.Provider value={ai}>
       <GameContext.Provider value={game}>
@@ -797,104 +603,27 @@ export default function App() {
             </a>
           )}
           {!inSession && (
-            <aside className="sidebar">
-              <div className="brand-row">
-                <button className="brand" onClick={go({ name: 'home' })} title="Kelime Koçu">
-                  <span className="brand-mark" aria-hidden>
-                    <BrandMark />
-                  </span>
-                  <span className="brand-name">Kelime Koçu</span>
-                </button>
-                <OfflineBadge />
-                <button className="icon-btn rail-toggle" onClick={toggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>
-                  {rail ? <ChevronRightIcon size={18} /> : <ChevronLeftIcon size={18} />}
-                </button>
-              </div>
-              <div className="langs" role="group" aria-label="Dil" style={{ ['--i' as string]: TARGET_LANGUAGES.indexOf(settings.activeLanguage) }}>
-                <span className="langs-thumb" aria-hidden />
-                {TARGET_LANGUAGES.map((l) => (
-                  <button
-                    key={l}
-                    className="lang-btn"
-                    aria-pressed={l === settings.activeLanguage}
-                    aria-label={`${LANGUAGE_NAME[l]}${l !== settings.activeLanguage && dueByLanguage[l] ? `, ${dueByLanguage[l]} tekrar bekliyor` : ''}`}
-                    title={l !== settings.activeLanguage && dueByLanguage[l] ? `${dueByLanguage[l]} tekrar bekliyor` : undefined}
-                    onClick={() => updateSettings({ ...settings, activeLanguage: l })}
-                  >
-                    {LANGUAGE_SHORT[l]}
-                    {l !== settings.activeLanguage && !!dueByLanguage[l] && <span className="lang-dot" aria-hidden />}
-                  </button>
-                ))}
-              </div>
-              <button className="top-profile" onClick={go({ name: 'profile' })} aria-label="Profil ve ayarlar" title="Profil ve ayarlar">
-                <Avatar profile={settings.profile} size={32} />
-              </button>
-              <button className="palette-trigger" onClick={() => setPalette(true)} title="Ara ya da git (⌘K)">
-                <SearchIcon size={16} />
-                <span>Ara ya da git…</span>
-                <kbd>⌘K</kbd>
-              </button>
-              <nav className={`nav${navMark ? ' has-indicator' : ''}`} ref={navRef}>
-                {navMark && (
-                  <span
-                    className={`nav-indicator${navMark.ready ? ' is-ready' : ''}`}
-                    aria-hidden
-                    style={{ transform: `translate(${navMark.left}px, ${navMark.top}px)`, width: navMark.width, height: navMark.height }}
-                  />
-                )}
-                {NAV.map((n) => (
-                  <button
-                    key={n.screen}
-                    className={`nav-btn${n.screen === 'home' ? ' nav-home' : ''}`}
-                    aria-current={current(n.screen) ? 'page' : undefined}
-                    onClick={goPlace(n.screen)}
-                    title={rail ? n.label : undefined}
-                  >
-                    <n.icon size={20} />
-                    <span className="nav-label">{n.label}</span>
-                    {!!navBadge[n.screen] && (
-                      <span className={`nav-badge nav-badge-${n.screen}`} aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`}>
-                        {navBadge[n.screen]! > 99 ? '99+' : navBadge[n.screen]}
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </nav>
-              <button className="nav-btn sidebar-settings" aria-current={inSettings ? 'page' : undefined} onClick={go({ name: 'settings' })} title={rail ? 'Ayarlar' : undefined}>
-                <GearIcon size={20} />
-                <span className="nav-label">Ayarlar</span>
-              </button>
-              <button className="sidebar-foot" aria-current={screen.name === 'profile' ? 'page' : undefined} onClick={go({ name: 'profile' })}>
-                <Avatar profile={settings.profile} size={40} />
-                <span className="sidebar-who">
-                  <strong>{settings.profile.name || 'Profilin'}</strong>
-                  {game && (
-                    <span className="small muted">
-                      Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
-                    </span>
-                  )}
-                  {game && (
-                    <span className="sidebar-level" aria-hidden>
-                      <span style={{ width: `${game.level.progress * 100}%` }} />
-                    </span>
-                  )}
-                </span>
-              </button>
-            </aside>
-          )}
-
-          {!inSession && (
-            <nav className="tabbar" aria-label="Ana menü">
-              {NAV.map((n) => (
-                <button key={n.screen} className="tab" aria-current={current(n.screen) ? 'page' : undefined} onClick={goPlace(n.screen)}>
-                  <span className="tab-icon">
-                    <n.icon size={22} />
-                    {!!navBadge[n.screen] && <span className="tab-dot" aria-label={`${navBadge[n.screen]} ${badgeLabel[n.screen]}`} />}
-                  </span>
-                  <span>{n.label}</span>
-                </button>
-              ))}
-            </nav>
+            <>
+              <Sidebar
+                settings={settings}
+                game={game}
+                rail={rail}
+                onToggleRail={toggleRail}
+                dueByLanguage={dueByLanguage}
+                onLanguage={(l) => updateSettings({ ...settings, activeLanguage: l })}
+                onOpenPalette={() => setPalette(true)}
+                navRef={navRef}
+                navMark={navMark}
+                navBadge={navBadge}
+                badgeLabel={badgeLabel}
+                current={current}
+                goPlace={goPlace}
+                go={go}
+                inSettings={inSettings}
+                onProfilePage={screen.name === 'profile'}
+              />
+              <TabBar navBadge={navBadge} badgeLabel={badgeLabel} current={current} goPlace={goPlace} />
+            </>
           )}
 
           <main id="main" tabIndex={-1} className={`main${WIDE_SCREENS.has(screen.name) ? ' main-wide' : ''}`}>
@@ -919,310 +648,7 @@ export default function App() {
             <ScreenBoundary resetKey={screen.name} onHome={() => setScreen({ name: 'home' })}>
             <div key={screenKey} className="screen-enter" data-transition={transition.current.value}>
             <Suspense fallback={<ScreenSkeleton kind={skeletonFor(screen.name)} />}>
-            {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
-              <SessionScreen
-                items={screen.items}
-                mode={screen.mode}
-                vocabulary={sessionVocabulary ?? data.vocabulary}
-                states={screen.extraStates ? [...data.states, ...screen.extraStates] : data.states}
-                mistakes={screen.extraMistakes ? [...data.mistakes, ...screen.extraMistakes] : data.mistakes}
-                db={db}
-                scheduler={scheduler}
-                seed={screen.seed}
-                options={options}
-                settings={settings}
-                onSettings={updateSettings}
-                onFormAnswer={(f, ok, given) => void recordLabAnswer(scheduler, f.language, f.verb, f.tense as LabTense, f.person, ok, given)}
-                onFinish={finishSession}
-                onQuit={() => {
-                  reload()
-                  setScreen({ name: 'home' })
-                }}
-              />
-            ) : screen.name === 'summary' ? (
-              <Summary
-                summary={screen.summary}
-                byId={screen.extra ? new Map([...byId, ...screen.extra.map((e) => [e.id, e] as const)]) : byId}
-                practice={screen.mode === 'practice'}
-                topic={screen.topic}
-                onUnmarkDifficult={async (entryId) => {
-                  const e = byId.get(entryId)
-                  if (e) await db.vocabulary.put(withDifficult(e, false))
-                  reload()
-                }}
-                before={screen.gameBefore}
-                after={game}
-                firstSitting={screen.firstSitting}
-                onDone={go({ name: 'home' })}
-              />
-            ) : screen.name === 'words' ? (
-              <WordsScreen
-                db={db}
-                language={data.language}
-                vocabulary={data.vocabulary}
-                states={data.states}
-                mistakes={data.mistakes}
-                onChanged={reload}
-                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
-                incoming={incoming && (!incoming.lang || incoming.lang === data.language) ? incoming : null}
-                onIncomingDone={() => setIncoming(null)}
-                onStudy={(deck) =>
-                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
-                }
-                lists={data.lists}
-                focusListId={planInput?.settings.focusListId}
-                onFocus={(listId) => void updateSettings({ ...settings, focusList: { ...settings.focusList, [data.language]: listId ?? undefined } })}
-              />
-            ) : screen.name === 'word' && byId.has(screen.entryId) ? (
-              <WordDetail
-                key={screen.entryId}
-                db={db}
-                entry={byId.get(screen.entryId)!}
-                vocabulary={data.vocabulary}
-                state={data.states.find((s) => s.entryId === screen.entryId)}
-                mistakes={data.mistakes}
-                scheduler={scheduler}
-                onChanged={reload}
-                onBack={go({ name: 'words' })}
-                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
-                onOpenLab={(verb) => setScreen({ name: 'verbs', verb })}
-                onStudy={(deck) =>
-                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
-                }
-              />
-            ) : screen.name === 'dictionary' ? (
-              <DictionaryScreen
-                key={`${data.language}:${screen.query ?? ''}`}
-                language={data.language}
-                vocabulary={data.vocabulary}
-                initialQuery={screen.query}
-                onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
-                // The add form, with the dictionary's meaning filled in (the incoming-word effect opens Words).
-                onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
-                onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
-                onSwitchLanguage={(targetLang, query) => {
-                  if (settings) void updateSettings({ ...settings, activeLanguage: targetLang })
-                  setScreen({ name: 'dictionary', query })
-                }}
-              />
-            ) : screen.name === 'translate' ? (
-              <TranslateScreen key={data.language} language={data.language} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
-            ) : screen.name === 'mistakes' ? (
-              <MistakesScreen
-                mistakes={data.mistakes}
-                vocabulary={data.vocabulary}
-                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
-                onConjugation={data.language !== 'en' ? go({ name: 'verbs', tab: 'practice' }) : undefined}
-                onPractice={() =>
-                  startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
-                }
-                onPracticeType={(type) =>
-                  startSession(
-                    buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes.filter((m) => m.errorType === type), rng: createRng(Date.now()), options }),
-                    'normal',
-                  )
-                }
-              />
-            ) : screen.name === 'progress' ? (
-              <ProgressScreen
-                db={db}
-                language={data.language}
-                vocabularyCount={data.vocabulary.length}
-                states={data.states}
-                scheduler={scheduler}
-                vocabulary={data.vocabulary}
-                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
-                onVocabTest={go({ name: 'vocabtest' })}
-                onExam={go({ name: 'exam' })}
-                onEarPractice={go({ name: 'games', game: 'ear' })}
-              />
-            ) : screen.name === 'produce' ? (
-              <ProduceScreen
-                key={data.language}
-                db={db}
-                language={data.language}
-                vocabulary={data.vocabulary}
-                states={data.states}
-                onChanged={reload}
-                onOpenSettings={go({ name: 'settings' })}
-              />
-            ) : screen.name === 'exam' ? (
-              <ExamScreen key={data.language} db={db} language={data.language} vocabulary={data.vocabulary} states={data.states} onDone={go({ name: 'progress' })} />
-            ) : screen.name === 'vocabtest' ? (
-              <VocabTestScreen key={data.language} db={db} language={data.language} onDone={go({ name: 'progress' })} />
-            ) : screen.name === 'story' ? (
-              <StoryScreen
-                language={data.language}
-                settings={settings}
-                vocabulary={data.vocabulary}
-                states={data.states}
-                mistakes={data.mistakes}
-                onSettings={updateSettings}
-                onChanged={reload}
-                onOpenSettings={go({ name: 'settings' })}
-              />
-            ) : screen.name === 'reading' ? (
-              <ReadingScreen
-                key={data.language}
-                db={db}
-                language={data.language}
-                vocabulary={data.vocabulary}
-                states={data.states}
-                onChanged={reload}
-                onOpen={(entryId) => setScreen({ name: 'word', entryId })}
-                onOpenLab={data.language !== 'en' ? (verb, tense) => setScreen({ name: 'verbs', verb, tense }) : undefined}
-                onLookUp={(query) => setScreen({ name: 'dictionary', query })}
-                onStudy={(deck) =>
-                  startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)
-                }
-              />
-            ) : screen.name === 'games' ? (
-              <GamesScreen key={screen.game} initialGame={screen.game} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} dayDue={plan ? { reviews: reviewsWaiting, minutes: plan.estimatedMinutes } : undefined} onStartDay={startDay} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
-            ) : screen.name === 'verbs' ? (
-              <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
-            ) : screen.name === 'profile' ? (
-              <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
-            ) : screen.name === 'account' ? (
-              <AuthScreen key={screen.mode} initialMode={screen.mode} onDone={() => setScreen({ name: 'settings' })} onBack={() => setScreen({ name: 'settings' })} />
-            ) : screen.name === 'settings' ? (
-              <SettingsScreen
-                settings={settings}
-                onChange={updateSettings}
-                pushState={pushState}
-                onOpenAuth={(mode) => setScreen({ name: 'account', mode })}
-                onDataChanged={async () => {
-                  const s = await db.getSettings()
-                  setSettings(s ?? null)
-                  reload()
-                }}
-              />
-            ) : (
-              <Home
-                language={data.language}
-                plan={plan}
-                profile={skillProfile(data.states, scheduler, new Date())}
-                vocabularyCount={data.vocabulary.length}
-                learningCount={data.states.length}
-                activeVocabulary={progressStats({ vocabularyCount: data.vocabulary.length, states: data.states, events: [], scheduler, now: new Date() }).activeVocabulary}
-                name={settings.profile.name}
-                dailyXpGoal={settings.dailyXpGoal}
-                answeredToday={answeredToday(data.recentEvents.filter((e) => e.language === data.language), new Date())}
-                nextReview={earliest(data.states)}
-                openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
-                canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
-                onStart={startDay}
-                onAddWords={go({ name: 'words' })}
-                focus={(() => {
-                  const list = data.lists.find((l) => l.id === planInput?.settings.focusListId)
-                  if (!list) return undefined
-                  const met = new Map(data.states.map((st) => [st.entryId, st]))
-                  const groups = levelGroups(list, data.vocabulary)
-                  const now = currentLevel(groups, met)
-                  const words = now ? groups[now.index].words : []
-                  return { name: list.name, level: now ? (now.level?.name ?? null) : undefined, met: words.filter((w) => met.has(w.id)).length, total: words.length }
-                })()}
-                pinned={settings.profile.pinned}
-                onOpenLists={() => {
-                  try {
-                    localStorage.setItem(WORDS_VIEW_KEY, 'lists')
-                  } catch {
-                    // The words screen just opens on its last view.
-                  }
-                  setScreen({ name: 'words' })
-                }}
-                onTrySamples={async () => {
-                  // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
-                  const at = new Date()
-                  const { SAMPLE_WORDS } = await import('./data/seed')
-                  await db.vocabulary.bulkPut(SAMPLE_WORDS[data.language].map((w) => ({ ...w, addedAt: at })))
-                  await reload()
-                }}
-                onProfile={go({ name: 'profile' })}
-                onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
-                onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
-                onShortRound={startShortRound}
-                onSentenceGame={(game) => setScreen({ name: 'games', game })}
-                // The forms mixed into the day's session are counted there, not on a tile of their own.
-                formsDue={Math.max(0, formsDue - dayForms.length)}
-                onForms={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'review' }) : undefined}
-                warmup={warmup}
-                onWarmup={settings.activeLanguage !== 'en' ? go({ name: 'verbs', tab: 'warmup' }) : undefined}
-                verbOfDay={verbOfDay}
-                onVerbOfDay={(verb) => setScreen({ name: 'verbs', verb })}
-                onMixed={mixedDue.languages >= 2 ? startMixed : undefined}
-                mixedDue={mixedDue.count}
-                onExtraNew={() => planInput && startSession(buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, 5), 'normal')}
-                onPracticeMistakes={() =>
-                  startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
-                }
-                difficultCount={difficultWords(data.vocabulary).length}
-                onPracticeDifficult={practiceDifficult}
-                onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
-                newWordsPerDay={settings.newWordsPerDay}
-                onLowerNew={() => {
-                  void updateSettings({ ...settings, newWordsPerDay: 8 })
-                  showToast('Günlük yeni kelime 8 oldu; Ayarlar’dan istediğin zaman değiştirebilirsin.')
-                }}
-                garden={garden && {
-                  urgent: garden.wilting + garden.thirsty > 0,
-                  node: (
-                      <GardenCard
-                        summary={garden}
-                        hardCount={difficultWords(data.vocabulary).length}
-                        onPracticeHard={practiceDifficult}
-                        onOpenHard={() => {
-                          try {
-                            localStorage.setItem(WORDS_VIEW_KEY, 'garden')
-                            sessionStorage.setItem(GARDEN_HARD_KEY, '1')
-                          } catch {
-                            // The garden just opens unfiltered.
-                          }
-                          setScreen({ name: 'words' })
-                        }}
-                        onWater={() => {
-                          const ids = garden.toWater.slice(0, 20)
-                          const deck = data.vocabulary.filter((v) => ids.includes(v.id))
-                          startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal')
-                        }}
-                        onOpen={() => {
-                          try {
-                            localStorage.setItem(WORDS_VIEW_KEY, 'garden')
-                          } catch {
-                            // The words screen just opens on its last view.
-                          }
-                          setScreen({ name: 'words' })
-                        }}
-                      />
-                  ),
-                }}
-                firstWords={lookupNudge}
-                extra={
-                  <>
-                  <HabitCards
-                    settings={settings}
-                    onSettings={updateSettings}
-                    newToday={newToday.length}
-                    onEveningReview={() =>
-                      startSession(buildDeckPlan({ catalog: newToday, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'practice')
-                    }
-                  />
-                  {lookupNudge}
-                  <GainsNudge gains={studyGains(data.states, data.recentEvents, data.language, new Date())} target={settings.retention} onOpen={go({ name: 'progress' })} />
-                  <WeeklyNudge line={weekText} now={new Date()} onOpen={go({ name: 'progress' })} />
-                  <BackupNudge
-                    onOpenSync={() => {
-                      try {
-                        localStorage.setItem(PANE_KEY, 's-account')
-                      } catch {
-                        // Settings just opens on its last pane.
-                      }
-                      setScreen({ name: 'settings' })
-                    }}
-                  />
-                  </>
-                }
-              />
-            )}
+            <AppScreens {...screens} />
             </Suspense>
             </div>
             </ScreenBoundary>
@@ -1245,9 +671,4 @@ export default function App() {
       </GameContext.Provider>
     </AiContext.Provider>
   )
-}
-
-function earliest(states: UserWordState[]): Date | undefined {
-  const dates = states.map(nextReviewAt).filter((d): d is Date => !!d)
-  return dates.length ? new Date(Math.min(...dates.map((d) => d.getTime()))) : undefined
 }
