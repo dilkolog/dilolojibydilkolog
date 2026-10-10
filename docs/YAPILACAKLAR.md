@@ -120,17 +120,11 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 
 ## Açık kalanlar
 - EN için fiil çekimi yok; kullanıcı istemiyor (2026-10-05), eklenmeyecek.
-- **Azure telaffuz değerlendirmesi:** yapıldı (2026-10-06): Ayarlar > Ses'te anahtar ve bölge,
-  kelime sayfasında "Söyle ve puanla". Sonraya bırakılanlar: oturumdaki konuşma sorularına
-  Azure puanı, telaffuzu zayıf kelimelerin ayrı alıştırma listesi.
-- **İçe aktarmada liste/seviye seçimi** (CSV, Kindle, metin; kitaptan aktarınca listeyi kitap
-  adıyla oluşturmak): kullanıcı şimdilik istemedi (2026-10-06).
-- **AI ile kişisel cümle bankası** (sonraya, 2026-10-06): her yeni kelime için kullanıcının
-  ilgi alanlarına (profildeki hedeflere) göre 2–3 örnek cümle üretip karta eklemek. Kendine
-  dair cümleler daha iyi hatırlanır (öz-referans etkisi). AI anahtarı var; maliyeti düşük.
-- **Oturum sonunda AI'dan tek cümlelik yorum** (sonraya, 2026-10-06): o oturumun hatalarından
-  ("le/la ayrımında 3 hata; dişil -ette sonlarına dikkat") kısa, somut bir öneri. Hata verisi
-  zaten tutuluyor; yalnızca özetlemek gerekiyor.
+- **Azure telaffuz değerlendirmesi:** yapıldı (2026-10-06; #204): Ayarlar > Ses'te anahtar ve bölge,
+  kelime sayfasında "Söyle ve puanla", Oyunlar'da "Telaffuz çalışması" listesi (`PronPractice.tsx`, `pronWeak.ts`; puanı <75 olanlar). Oturumdaki konuşma sorularına puanlama opsiyonel bırakıldı.
+- **İçe aktarmada liste/seviye seçimi:** yapıldı (#204): Toplu ekle, metinden, Kindle ve Google Çeviri içe aktarmalarında liste ve seviye seçimi veya yeni liste oluşturma (`useImportList.ts`, `ImportPlacement.tsx`).
+- **AI ile kişisel cümle bankası:** yapıldı (#204): her kelime için kullanıcının ilgi alanlarına ve hedeflerine göre 3 örnek cümle üretip tek tıkla karta ekleme (`PersonalSentences.tsx`, öz-referans etkisi).
+- **Oturum sonunda AI'dan tek cümlelik yorum:** yapıldı (#200): oturumun hatalarından örüntü analizi ve tek tıkla AI koç yorumu (`SessionNote.tsx`, `sessionNote.ts`).
 - **Eşitleme izin listesini açmak** (sonraya, 2026-10-07; kullanıcı "daha sonra yaparız" dedi): kod hazır
   (`api/_allow.ts`, PR #11; bildirim kayıtları da aynı listeye bağlı). Açmak için Vercel'de `SYNC_ALLOWED` ortam
   değişkenine kullanıcı adı (ve varsa eşitleme kodunun kimliği) yazılır; boşken her şey açık. Yanlış ad yazılırsa
@@ -267,32 +261,38 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - TV5Monde ve DELE Ahora içerik kullanım şartları ve telif hakları raporu (`docs/kaynaklar/tv5monde-dele-ahora.md`).
   - #187, #190: LibriVox ses kitapları bölüm bazlı metin-ses eşleştirme (23 doğrulanmış bölüm, `src/data/audiobooks/{fr,es}.json`, `docs/kaynaklar/audiobooks-chapters.md`).
   - #200: Okuma kütüphanesinde LibriVox sesli kitap bölüm seçici bileşeni (`AudiobooksPicker.tsx`).
-- [x] **Yeni Özellikler ve Öğrenme Akışı (#182, #188, #192, #195, #200):**
+- [x] **Yeni Özellikler ve Öğrenme Akışı (#182, #188, #192, #195, #200, #204):**
   - #182: Çekim listesi ve fiil tekrarı köprüsü (`textForms.ts`, dönüşlü ve bileşik zamanlar `s'est lavé`, metinde cümlenin aydınlatılması, fiil laboratuvarı tekrar kuyruğuna ekleme).
   - #188: Soru ekranında "Unuttum" butonu (Alt+U, cevabı gösterir, yanlış sayar, `SessionForgot`).
   - #188: Fiil turu kartını sola kaydırarak veya kapat butonuyla gizleme (`useSwipeAway.ts`).
   - #192: Yeni özelliklere kapsamlı birim testleri (`useSwipeAway`, `TourCard`, `TranslateScreen`, `SessionForgot`, `listenFollow`).
   - #195: Marka ve isim güncellemesi: Uygulama adı "Diloloji" olarak güncellendi (`README.md`, `package.json`, browser extension).
-  - #200: Oturum sonu yapay zekâ değerlendirme notu (`SessionNote.tsx`, `sessionNote.ts`).
-- [x] **Güvenlik Kopyası, Eşitleme Medya Sınırı ve Çatışma Çözümü (#197, #198, #199):**
+  - #200: Oturum sonu yapay zekâ değerlendirme notu (`SessionNote.tsx`, `sessionNote.ts`) ve eşitleme boyutu göstergesi.
+  - #204: AI ile kişisel cümle bankası (`PersonalSentences.tsx`), zayıf kelimeler için telaffuz çalışması listesi (`PronPractice.tsx`, `pronWeak.ts`), içe aktarmada liste ve seviye seçimi (`useImportList.ts`, `ImportPlacement.tsx`).
+- [x] **Güvenlik Kopyası, Eşitleme Medya Sınırı ve Uçtan Uca Eşitleme Testi (#197, #198, #199, #207):**
   - #197: Eşitlemede 3 MB'tan büyük veya iletilemeyen medyayı atlayıp çekirdek veriyi eşitleme (`SyncResult.skipped`, `SyncSettings` uyarısı).
   - #197: Geri yükleme öncesi cihaz durumunu otomatik saklama (`safetyBackup.ts`) ve Ayarlar → Veriler'de "Önceki hâle dön" ile kurtarma.
   - #198: Cihazlar arası eşitleme çatışma ve birleştirme kuralları (`mergeRules.test.ts`, `syncConflict.test.ts`).
   - #199: Güvenlik kopyası geri alma ve atlanan medya uyarısı için arayüz birim ve a11y testleri (`DataSettings.test.tsx`, `SyncSettings.test.tsx`, `e2e/a11y.e2e.ts`).
+  - #207: İki ayrı tarayıcı bağlamı ile uçtan uca şifreli eşitleme E2E testi (`e2e/sync.e2e.ts`: kelime ekleme, yarış/çatışma çözümü, kelime silme tombstone ve ayar senkronizasyonu).
 - [x] **Performans ve Bundle Optimizasyonu (#196, #201):**
   - #196: Kapsamlı performans, ilk açılış yükü ve chunk boyutu analiz raporu (`docs/PERFORMANS.md`).
   - #201: Cümle parçaları için sütun bazlı `{ s, t }` ve kompakt TSV çözücü desteği (`wordpack.ts`, `wordpackSentences.test.ts`).
-- [x] **Test Sağlamlığı ve Kapsam (#156, #172, #173, #179, #181, #194):**
+- [x] **İçerik ve Araştırma Envanteri (#165, #166, #177, #187, #190, #200, #206):**
+  - #206: İngilizce sesli içerik envanteri ve lisans değerlendirme raporu (`docs/kaynaklar/english-audio.md`: Global Storybooks, VOA Learning English, LibriVox, Simple English Wikipedia, BBC).
+- [x] **Test Sağlamlığı ve Erişilebilirlik (#156, #172, #173, #179, #181, #194, #208):**
   - #156: Test edilmemiş 5 engine modülüne kapsamlı birim testleri (`hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
   - #172: E2E test sağlamlaştırma (dinamik görünürlük beklemeleri ve fonksiyonel rota eşlemeleri).
   - #173: Dahili kullanılan dışa aktarımlar raporu ve temizliği (`docs/KULLANILMAYAN-DISA-AKTARIMLAR.md`).
   - #179: Bölünen yeni UI bileşenlerine birim testleri (`TextForms`, `CoverageCard`, `WordCard`, `ReadingLibrary`, `AppSidebar`).
-  - #181, #194: Genişletilmiş erişilebilirlik (a11y) test kapsamı (Onboarding, Çekimler kartı, mobil çekmece, oturum özeti, Çeviri ekranı temaları, Unuttum durumu, çevrimdışı rozeti, güvenlik kopyası geri alma).
+  - #181, #194, #208: Genişletilmiş erişilebilirlik (a11y) test kapsamı (Onboarding, Çekimler kartı, mobil çekmece, oturum özeti, Çeviri temaları, Unuttum durumu, çevrimdışı rozeti, sesli kitaplar, telaffuz çalışması, kişisel cümleler, liste seçimi ve kota satırı açık/koyu/sakin temalarda axe doğrulaması).
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince geri çeviri ve diktenin kullanımı, dikte hataları ve cümle kartlarının tutma oranı incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
 - **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
+- **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) (Hata Avcısı, Cümle Dönüşümü, Minimum Çiftler kulak eğitimi, Eşdizimlilik/Collocations, Tuzak Kelimeler / Faux Amis, RFI/VOA Günün Mikro Haberi).
+- **Açık Lisanslı Gramer Alıştırmaları:** [`docs/kaynaklar/gramer-alistirmalari.md`](kaynaklar/gramer-alistirmalari.md) (COERLL, Entrada Libre, H5P paketleri ve B2/C1 soru motoru kararı).
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.

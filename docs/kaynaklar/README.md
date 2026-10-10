@@ -136,3 +136,23 @@ LibriVox ve Project Gutenberg işbirliğiyle hazırlanan, B1–B2 seviyesindeki 
 - **Veri Dosyaları:** `src/data/audiobooks/fr.json` (13 bölüm; Daudet, Maupassant, La Fontaine) ve `src/data/audiobooks/es.json` (10 bölüm; Quiroga, Bécquer).
 - **Entegrasyon Modülü:** `src/data/audiobooks.ts` (`loadAudiobookChapters`, `chapterToReadingText`).
 
+---
+
+## 8. İngilizce Sesli İçerik Envanteri (`english-audio.md`)
+
+- **Global Storybooks English:** CC BY 4.0 açık lisanslı ~30 resimli hikâye ve tam ses kaydı (A1–B1). Hemen eklenebilir.
+- **VOA Learning English:** US Kamu Malı (Public Domain); CORS açık doğrudan MP3'ler ve basitleştirilmiş seviyeli haberler (B1–B2). Hemen eklenebilir.
+- **LibriVox + Project Gutenberg (İngilizce):** Kamu Malı (Public Domain); B1–B2 klasik kısa öyküler bölüm bazlı eşleştirilebilir.
+- **Simple English Wikipedia (Spoken Articles):** CC BY-SA 4.0; sesli ansiklopedi makaleleri.
+- **BBC Learning English (6 Minute English):** Tüm hakları saklıdır (All Rights Reserved); üçüncü taraf uygulamalara içerik gömmek YASAKTIR. Yalnızca harici bağlantı verilebilir.
+
+---
+
+## 9. Açık Lisanslı Gramer Alıştırmaları Envanteri (`gramer-alistirmalari.md`)
+
+- **Açık Kaynaklar (CC BY / OER):** UT Austin COERLL (*Tex's French Grammar*, *Spanish Grammar in Context*), Boise State University (*Français inclusif*), ASCCC OERI (*Entrada Libre*), OER Commons (*Advanced Academic Grammar for ESL*).
+- **Zor Seviye (B2/C1) Konu Dağılımı:** Fransızca subjonctif istisnaları, participe passé uyumları, pronoms relatifs composés; İspanyolca subjuntivo vs indicativo derin ayrımları, ser/estar, por/para; İngilizce inversion, cleft sentences, mixed conditionals.
+- **Entegrasyon Yolları:** Pressbooks `.h5p` arşivlerinden `content.json` çıkarma, açık AnkiWeb desteleri (`.apkg`), Tatoeba regex tabanlı otomatik cloze motoru.
+- **Karar Seçenekleri:** Claude Code için 3 mimari alternatif ve standart `GrammarExercise` JSON şeması.
+
+
