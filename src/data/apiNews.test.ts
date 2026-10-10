@@ -51,7 +51,7 @@ describe('/api/news', () => {
 
   it('passes the recording of a bulletin along with its text', async () => {
     stub({
-      'https://learningenglish.voanews.com/api/zkm-ql-vomx-tpej-rqi': rss(
+      'https://learningenglish.voanews.com/podcast/?zoneId=3521': rss(
         '<item><title>As It Is</title><link>https://learningenglish.voanews.com/a/1.html</link><description>Summary.</description><enclosure url="https://voa-audio.voanews.eu/a1.mp3" type="audio/mpeg"/></item>',
       ),
       'https://learningenglish.voanews.com/a/1.html': '<html><article><p>The full bulletin text of the day, long enough to be kept as the article text here.</p></article></html>',
