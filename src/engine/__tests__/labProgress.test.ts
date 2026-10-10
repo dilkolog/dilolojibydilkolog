@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, weeklyProgress, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, weeklyProgress, addFormsToReview, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -67,6 +67,22 @@ describe('practice records on the FSRS scheduler', () => {
     lab = addToReview(lab, scheduler, 'comer', ['presente', 'preterito'], t0)
     expect(dueItems(lab, t0).map((i) => i.tense)).toEqual(['preterito'])
     expect(lab.records[labKey('comer', 'presente')].ok).toBe(1)
+  })
+
+  it('the forms of a text join the queue once each, and what is already there stays as it is', () => {
+    const lab = recordCheck(emptyLab(), scheduler, 'parler', 'present', true, t0)
+    const pairs = [
+      { lemma: 'parler', tense: 'present' as const },
+      { lemma: 'parler', tense: 'imparfait' as const },
+      { lemma: 'parler', tense: 'imparfait' as const },
+      { lemma: 'aller', tense: 'passe-compose' as const },
+    ]
+    const { lab: next, added } = addFormsToReview(lab, scheduler, pairs, t0)
+    expect(added).toBe(2)
+    expect(next.records[labKey('parler', 'present')].ok).toBe(1)
+    expect(dueItems(next, t0).map((i) => labKey(i.verb, i.tense)).sort()).toEqual(['aller|passe-compose', 'parler|imparfait'])
+    // Nothing new: the same lab comes back.
+    expect(addFormsToReview(next, scheduler, pairs, t0)).toEqual({ lab: next, added: 0 })
   })
 
   it('what is due comes the most overdue first; JSON-saved dates still work', () => {

@@ -1,4 +1,5 @@
 import { TENSE_GUIDE } from '../engine/tenseGuide'
+import type { Tense } from '../engine/tenses'
 import type { TenseGroup } from '../engine/textForms'
 
 const SHOWN = 6
@@ -7,8 +8,9 @@ const SHOWN = 6
  * The verb forms in the open text, a tense at a time (the most used tense first): the form as
  * written, its verb, how often it occurs. A form opens its verb in the lab at that tense.
  */
-export function TextForms({ groups, language, onOpenLab, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; onClose: () => void }) {
+export function TextForms({ groups, language, onOpenLab, onReview, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; /** Puts verb-and-tense pairs in the verb lab's review queue. */ onReview?: (pairs: { lemma: string; tense: Tense }[]) => void; onClose: () => void }) {
   const total = groups.reduce((n, g) => n + g.total, 0)
+  const pairsOf = (list: readonly TenseGroup[]) => list.flatMap((g) => [...new Set(g.forms.map((f) => f.lemma))].map((lemma) => ({ lemma, tense: g.tense })))
   return (
     <section className="card stack text-forms" aria-label="Metindeki çekimler">
       <div className="row justify-between">
@@ -24,6 +26,13 @@ export function TextForms({ groups, language, onOpenLab, onClose }: { groups: Te
           <p className="small muted">
             {total} çekim, {groups.length} zaman. Birine dokununca fiil laboratuvarında o zamanı açarsın.
           </p>
+          {onReview && (
+            <div className="row">
+              <button type="button" className="btn btn-sm" onClick={() => onReview(pairsOf(groups))}>
+                Hepsini fiil tekrarına ekle ({pairsOf(groups).length})
+              </button>
+            </div>
+          )}
           {groups.map((g) => (
             <details key={g.tense} className="text-forms-group" open={g === groups[0]}>
               <summary>
@@ -45,6 +54,11 @@ export function TextForms({ groups, language, onOpenLab, onClose }: { groups: Te
                 ))}
               </ul>
               {g.forms.length > SHOWN * 2 && <p className="small muted">+{g.forms.length - SHOWN * 2} biçim daha</p>}
+              {onReview && (
+                <button type="button" className="link small" onClick={() => onReview(pairsOf([g]))}>
+                  Bu zamanın fiillerini tekrara ekle ({pairsOf([g]).length})
+                </button>
+              )}
             </details>
           ))}
         </>

@@ -473,6 +473,11 @@ test('reading: the verb forms of the text listed by tense, each opening the lab'
   await card.locator('summary', { hasText: 'passé composé' }).click()
   await expect(card.locator('.word-row', { hasText: 'ai mangé' })).toBeVisible()
   await expect(card.locator('.word-row .w', { hasText: /^ai$/ })).toHaveCount(0)
+  // The forms of the text join the verb lab's review queue, once.
+  await card.getByRole('button', { name: /Hepsini fiil tekrarına ekle/ }).click()
+  await expect(page.getByText(/çekim fiil tekrarına eklendi/)).toBeVisible()
+  await card.getByRole('button', { name: /Hepsini fiil tekrarına ekle/ }).click()
+  await expect(page.getByText('Bunlar zaten fiil tekrarında.')).toBeVisible()
   await card.locator('.word-row', { hasText: 'parlions' }).click()
   const main = page.locator('.lab-main')
   await expect(main.locator('.lab-forms')).toContainText('parlions')
