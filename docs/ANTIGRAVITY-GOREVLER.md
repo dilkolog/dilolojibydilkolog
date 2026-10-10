@@ -177,8 +177,8 @@ Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turla
 ### 6.5 Metin denetimi (TAMAMLANDI — `docs/METIN-DENETIMI.md`, `README.md`, `package.json`, `extension/`)
 `docs/METIN-DENETIMI.md` ölçütleriyle: yeni metinler (Unuttum, Çekimler kartı, Çeviri ekranı, "Dışarıda çalış", takip ayarı "Şu an bu cümle okunuyor", fiil turu gizleme) tutarlı ve sade mi denetlendi; **Diloloji** adının geçtiği her yerde (`README.md`, `package.json`, `extension/` manifest, README, popup) isim güncellendi.
 
-### 6.6 Performans raporu
-`npx vite build` çıktısındaki parçaları (chunk) ve ilk açılış yükünü ölç (telefon, 4G benzeri kısıtlama ile Lighthouse ya da Playwright izleme). `docs/PERFORMANS.md`: en büyük 10 parça, ilk açılışta yüklenen kod/veri, kullanılmayan büyük bağımlılıklar, sözlük paketi ve sesli içerik önbelleği, öneriler (etkisi büyük, riski düşük sırayla, `dosya` ile). Kod değiştirme; yalnızca rapor.
+### 6.6 Performans raporu (TAMAMLANDI — `docs/PERFORMANS.md`)
+`npx vite build` çıktısındaki parçalar (chunk) ve ilk açılış yükü ölçüldü. `docs/PERFORMANS.md`: en büyük 10 parça, ilk açılışta yüklenen kod/veri (~288 kB gzip), bağımlılıklar (@anthropic-ai/sdk, sql.js, dexie), sözlük paketi ve sesli içerik önbellek stratejisi, somut iyileştirme önerileri listelendi.
 
 **Tur sonu ölçütü:** 6.1'de her bölüm bağlantısı doğrulanmış ve metin-ses eşleşmesi notlu; 6.3–6.4'te hiçbir mevcut test silinmemiş; PR'lar tek konulu.
 
