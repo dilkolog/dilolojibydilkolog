@@ -1,0 +1,577 @@
+[
+  {
+    "id": "en-inversion-07",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Rarely ___ such extraordinary dedication to scientific research.",
+    "answer": "have I seen",
+    "options": [
+      "have I seen",
+      "I have seen",
+      "did I seen"
+    ],
+    "hint": "cümle başında olumsuz zarf (rarely) → devrik yapı",
+    "explanation": "« Rarely » gibi olumsuz veya kısıtlayıcı zarflar cümle başına geldiğinde özne ve yardımcı fiil yer değiştirerek devrik yapı (inversion) oluşur: rarely have I seen.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-08",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "cloze",
+    "prompt": "Under no circumstances ___ (should / modal) passengers open this emergency exit.",
+    "answer": "should",
+    "alternatives": ["must"],
+    "hint": "under no circumstances + modal devriklik",
+    "explanation": "« Under no circumstances » (hiçbir koşulda) kısıtlaması cümle başında devrik yapı kurar; yolcuların uyması gereken kural için 'should' veya 'must' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-09",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Hardly had the meeting started ___ the alarm suddenly rang.",
+    "answer": "when",
+    "options": [
+      "when",
+      "than",
+      "that"
+    ],
+    "hint": "hardly had ... when kalıbı",
+    "explanation": "« Hardly had + özne + V3 » kalıbı ikinci cümleye 'when' veya 'before' bağlacı ile bağlanır (no sooner ise 'than' alır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-10",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "error",
+    "prompt": "Scarcely had the plane landed than the passengers stood up.",
+    "answer": "than",
+    "fix": "when",
+    "explanation": "« Scarcely had ... » yapısı 'than' ile değil, kural gereği 'when' bağlacı ile kullanılır (no sooner ... than ile karıştırılmamalıdır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-11",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "cloze",
+    "prompt": "Little ___ (did / do) he realize that his discovery would reshape the world.",
+    "answer": "did",
+    "hint": "little + geçmiş zaman devriklik",
+    "explanation": "« Little » zarfı cümle başında devrik yapı oluşturur; geçmiş zaman anlatımında yardımcı fiil 'did' başa gelir: little did he realize.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-12",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Not until the final whistle blew ___ the nervous fans begin to celebrate.",
+    "answer": "did",
+    "options": [
+      "did",
+      "had",
+      "were"
+    ],
+    "hint": "not until ... ana cümlede devrik yapı",
+    "explanation": "« Not until ... » zaman cümlesi başa geldiğinde, devriklik yan cümlede değil ana cümlede gerçekleşir: did the nervous fans begin.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-13",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "cloze",
+    "prompt": "Only by working together ___ (can / modal) we overcome this global challenge.",
+    "answer": "can",
+    "alternatives": ["can", "could"],
+    "hint": "only by + modal devrik yapı",
+    "explanation": "« Only by ... » ile başlayan cümlelerde ana cümle devrik kurulur: only by working together can we overcome.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-07",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "It was my high school teacher ___ inspired me to pursue science.",
+    "answer": "who",
+    "options": [
+      "who",
+      "which",
+      "whom"
+    ],
+    "hint": "insan özneyi vurgulayan it-cleft",
+    "explanation": "Bir insanı vurgulayan it-cleft yapılarında (« It is/was X who/that ») özne konumunda 'who' veya 'that' kullanılır: it was my teacher who inspired me.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-08",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "cloze",
+    "prompt": "What I really need right now ___ (be) a cup of hot coffee.",
+    "answer": "is",
+    "hint": "wh-cleft tekil nesne vurgusu (be)",
+    "explanation": "« What I need » biçimindeki wh-cleft yapılarında vurgulanan unsur tekil bir nesne ise 'be' fiili tekil (is) çekimlenir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-09",
+    "language": "en",
+    "level": "C1",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "All ___ wanted was an honest answer to her simple question.",
+    "answer": "she",
+    "options": [
+      "she",
+      "that",
+      "what"
+    ],
+    "hint": "all [özne] wanted yapısı",
+    "explanation": "« All (that) + özne + yüklem » yapısında doğrudan özne gelir: all she wanted was an honest answer (tek istediği dürüst bir cevaptı).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "error",
+    "prompt": "What surprised me most were the rude attitude of the store manager.",
+    "answer": "were",
+    "fix": "was",
+    "explanation": "Wh-cleft yapılarında özne tümceciği tekil kabul edilir ve ardından gelen isim tekil olduğunda fiil 'was' olmalıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-11",
+    "language": "en",
+    "level": "C1",
+    "topic": "cleft",
+    "type": "cloze",
+    "prompt": "The reason ___ he resigned so abruptly remains completely unknown.",
+    "answer": "why",
+    "alternatives": ["that"],
+    "hint": "the reason why / that yapısı",
+    "explanation": "Sebep vurgulayan cleft yapılarında « the reason why » veya « the reason that » kullanılır: the reason why he resigned.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-12",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "It was during my trip to Rome ___ I discovered authentic espresso.",
+    "answer": "that",
+    "options": [
+      "that",
+      "when",
+      "where"
+    ],
+    "hint": "zaman öbeğini vurgulayan it-cleft",
+    "explanation": "Zaman veya yer zarfını vurgulayan standart it-cleft yapılarında bağlaç olarak 'that' tercih edilir: it was during my trip that I discovered.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-13",
+    "language": "en",
+    "level": "C1",
+    "topic": "cleft",
+    "type": "cloze",
+    "prompt": "The person ___ made the ultimate decision was the department head.",
+    "answer": "who",
+    "alternatives": ["that"],
+    "hint": "kişi odaklı cleft (the person who)",
+    "explanation": "« The person who/that ... » yapısı eylemi yapan kişiyi odak noktasına getiren cleft varyantıdır: the person who made the decision.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-07",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If I had taken your sound advice yesterday, I ___ in this terrible mess now.",
+    "answer": "wouldn't be",
+    "options": [
+      "wouldn't be",
+      "hadn't been",
+      "won't be"
+    ],
+    "hint": "geçmişteki şart (had taken) → şimdiki sonuç (now)",
+    "explanation": "Geçmişte gerçekleşen bir olayın şu ana yansıyan sonucunu anlatan karma şart cümlesinde ana cümle 'would + yalın fiil' alır: I wouldn't be in this mess now.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-08",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "cloze",
+    "prompt": "If she were more organized, she wouldn't have ___ (miss) the project deadline.",
+    "answer": "missed",
+    "hint": "genel karakter özelliği → geçmişteki sonuç (missed)",
+    "explanation": "Kişinin genel karakter özelliği (if she were) geçmişteki bir hataya yol açtığında ana cümle 'wouldn't have + V3' olur: wouldn't have missed.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-09",
+    "language": "en",
+    "level": "C1",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If we hadn't missed the morning train, we ___ relaxing on the beach right now.",
+    "answer": "would be",
+    "options": [
+      "would be",
+      "would have been",
+      "will be"
+    ],
+    "hint": "geçmiş şart (hadn't missed) → şu anki durum (right now)",
+    "explanation": "Geçmişte kaçırılan trenin şu anki etkisi 'would be relaxing right now' şeklinde ifade edilir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "error",
+    "prompt": "If you listened to my warning earlier, you wouldn't be lost today.",
+    "answer": "listened",
+    "fix": "had listened",
+    "explanation": "« Earlier » ifadesi geçmişe işaret ettiğinden şart cümlesi Simple Past değil, Past Perfect (had listened) olmalıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-11",
+    "language": "en",
+    "level": "C1",
+    "topic": "mixed_conditionals",
+    "type": "cloze",
+    "prompt": "If he spoke fluent French, he would ___ (get) the diplomat position last year.",
+    "answer": "have got",
+    "alternatives": ["have gotten"],
+    "hint": "genel dil yeteneği → geçmişteki kaçan fırsat",
+    "explanation": "Genel bir durumun geçmişteki sonucunu anlatırken ana cümlede 'would have + V3' (have got/gotten) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-12",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "I would be living abroad today if I ___ that scholarship in Canada.",
+    "answer": "had accepted",
+    "options": [
+      "had accepted",
+      "accepted",
+      "would accept"
+    ],
+    "hint": "geçmişteki karar (bursu kabul etmek) → bugünkü yaşam",
+    "explanation": "Bugünkü durumu etkileyen geçmişteki varsayım için 'if + had + V3' kullanılır: if I had accepted that scholarship.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-13",
+    "language": "en",
+    "level": "C1",
+    "topic": "mixed_conditionals",
+    "type": "cloze",
+    "prompt": "If they had invested in technology twenty years ago, they ___ (be) wealthy today.",
+    "answer": "would be",
+    "hint": "geçmiş yatırım → şimdiki varlık durumu",
+    "explanation": "Geçmişteki yatırım kararının (had invested) bugünkü durum üzerindeki etkisi 'would be' ile anlatılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-07",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "The doctor strongly recommended that he ___ smoking without delay.",
+    "answer": "quit",
+    "options": [
+      "quit",
+      "quits",
+      "quitted"
+    ],
+    "hint": "recommend that + base form of the verb",
+    "explanation": "İngilizcede tavsiye bildiren « recommend that » yapısından sonra subjunctive (fiilin yalın taban hali) gelir: that he quit smoking.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-08",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "cloze",
+    "prompt": "It is essential that every new employee ___ (be) informed about safety rules.",
+    "answer": "be",
+    "hint": "it is essential that + base form (be)",
+    "explanation": "Önem bildiren « it is essential that » kalıbında fiil şahsa bakılmaksızın yalın 'be' formunda kalır: that every employee be informed.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-09",
+    "language": "en",
+    "level": "C1",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "The board demanded that the chief executive ___ from office immediately.",
+    "answer": "resign",
+    "options": [
+      "resign",
+      "resigns",
+      "resigned"
+    ],
+    "hint": "demand that + subjunctive (base form)",
+    "explanation": "Talep bildiren « demand that » yapısından sonra 3. tekil şahıs takısı (-s) almadan yalın fiil kullanılır: that he resign.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-10",
+    "language": "en",
+    "level": "C1",
+    "topic": "subjunctive",
+    "type": "error",
+    "prompt": "The judge ordered that the suspect remains in custody pending trial.",
+    "answer": "remains",
+    "fix": "remain",
+    "explanation": "Mahkeme emri bildiren « order that » yapısında subjunctive kuralı geçerlidir; fiil 'remains' değil yalın 'remain' olmalıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-11",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "cloze",
+    "prompt": "The lawyer advised that she ___ (not / olumsuz) answer any further questions.",
+    "answer": "not",
+    "hint": "olumsuz subjunctive: not + base form",
+    "explanation": "Subjunctive yapısının olumsuz biçimi doğrudan 'not + yalın fiil' şeklinde kurulur (doesn't kullanılmaz): that she not answer.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-12",
+    "language": "en",
+    "level": "C1",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "It is imperative that strict confidentiality ___ maintained throughout the audit.",
+    "answer": "be",
+    "options": [
+      "be",
+      "is",
+      "was"
+    ],
+    "hint": "it is imperative that + passive subjunctive (be + V3)",
+    "explanation": "Zorunluluk bildiren « it is imperative that » sonrasında edilgen yapıda 'be + V3' kullanılır: that confidentiality be maintained.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-07",
+    "language": "en",
+    "level": "B1",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ by the unexpected loud noise, the frightened kitten ran away.",
+    "answer": "Startled",
+    "options": [
+      "Startled",
+      "Startling",
+      "Having startled"
+    ],
+    "hint": "edilgen geçmiş zaman sıfat-fiili (V3)",
+    "explanation": "Edilgen anlam taşıyan ve bir eylemin etkisinde kalmayı anlatan yan cümleciklerde past participle (V3) kullanılır: startled by the noise.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-08",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "cloze",
+    "prompt": "___ (finish / having + V3) all the urgent tasks, she left the office early.",
+    "answer": "Having finished",
+    "hint": "önceden tamamlanmış eylem (perfect participle)",
+    "explanation": "Ana eylemden daha önce tamamlanmış bir eylemi vurgulamak için perfect participle 'having + V3' kullanılır: having finished all tasks.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-09",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "Not ___ which path to take at the crossroads, they stopped to consult a map.",
+    "answer": "knowing",
+    "options": [
+      "knowing",
+      "known",
+      "having known"
+    ],
+    "hint": "sebep bildiren etken sıfat-fiil (-ing)",
+    "explanation": "Sebep bildiren ('bilmedikleri için') etken cümle kısaltmalarında present participle (-ing) ve olumsuzluk 'not knowing' şeklinde gelir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "error",
+    "prompt": "Walked through the tranquil forest, I listened to the singing birds.",
+    "answer": "Walked",
+    "fix": "Walking",
+    "explanation": "Aynı anda gerçekleşen etken eylemleri kısaltırken present participle (-ing) kullanılır: walking through the forest.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-11",
+    "language": "en",
+    "level": "C1",
+    "topic": "participle_clauses",
+    "type": "cloze",
+    "prompt": "___ (write / passive) in plain language, the guide is accessible to everyone.",
+    "answer": "Written",
+    "hint": "edilgen durum bildiren past participle",
+    "explanation": "Kılavuz yazıldığı için ('yazılmış olan') edilgen anlamda doğrudan past participle kullanılır: written in plain language.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-12",
+    "language": "en",
+    "level": "C1",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "Having ___ the contract thoroughly, the corporate lawyer gave her final approval.",
+    "answer": "reviewed",
+    "options": [
+      "reviewed",
+      "reviewing",
+      "review"
+    ],
+    "hint": "having + past participle (V3)",
+    "explanation": "« Having » yardımcı fiilinden sonra daima fiilin 3. hali (past participle) gelir: having reviewed the contract.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-13",
+    "language": "en",
+    "level": "B1",
+    "topic": "participle_clauses",
+    "type": "cloze",
+    "prompt": "___ (hear / -ing) the wonderful announcement, the whole crowd cheered loudly.",
+    "answer": "Hearing",
+    "hint": "anlık başlangıç eylemi (present participle)",
+    "explanation": "Duyar duymaz sevinçle bağırmayı anlatan anlık eylem kısaltmasında present participle (-ing) kullanılır: hearing the announcement.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-07",
+    "language": "en",
+    "level": "B1",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "She carefully avoided ___ to him about the delicate financial situation.",
+    "answer": "talking",
+    "options": [
+      "talking",
+      "to talk",
+      "talk"
+    ],
+    "hint": "avoid + gerund (-ing)",
+    "explanation": "« Avoid » (kaçınmak) fiili kendisinden sonra daima gerund (-ing) alır: avoided talking to him.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-08",
+    "language": "en",
+    "level": "B1",
+    "topic": "gerund_infinitive",
+    "type": "cloze",
+    "prompt": "They decided ___ (postpone) the outdoor concert due to severe weather warnings.",
+    "answer": "to postpone",
+    "hint": "decide + to-infinitive",
+    "explanation": "« Decide » (karar vermek) fiili ardından to-infinitive gerektirir: decided to postpone.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-09",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "I clearly remember ___ off all the studio lights before leaving last night.",
+    "answer": "turning",
+    "options": [
+      "turning",
+      "to turn",
+      "turn"
+    ],
+    "hint": "geçmişte yapılmış eylemi hatırlamak (remember + gerund)",
+    "explanation": "« Remember + -ing » geçmişte yapılmış bir eylemi zihinde anımsamayı; « remember + to V » ise yapılması gereken bir görevi unutmamayı anlatır. Burada anı söz konusu olduğu için 'turning' doğrudur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "error",
+    "prompt": "He admitted to steal the confidential documents from the company archive.",
+    "answer": "steal",
+    "fix": "stealing",
+    "explanation": "« Admit to » edat öbeğinden sonra fiil mastar değil gerund (-ing) biçiminde gelmelidir: admitted to stealing.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-11",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "cloze",
+    "prompt": "Please don't forget ___ (lock) the front entrance when you depart tonight.",
+    "answer": "to lock",
+    "hint": "gelecekteki görevi unutmamak (forget + to-infinitive)",
+    "explanation": "Yapılması gereken bir eylemi hatırlatırken « forget + to-infinitive » kullanılır: don't forget to lock.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-12",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "This classic novel is definitely worth ___ more than once.",
+    "answer": "reading",
+    "options": [
+      "reading",
+      "to read",
+      "read"
+    ],
+    "hint": "be worth + gerund (-ing)",
+    "explanation": "« Be worth » sıfat yapısı ardından daima gerund (-ing) alır: is worth reading.",
+    "source": "Diloloji (özgün)"
+  }
+]
