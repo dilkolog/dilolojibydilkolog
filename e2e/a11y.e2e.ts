@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { openScreen, SCREENS, startWithSamples } from './helpers'
+import { openScreen, playSession, SCREENS, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -43,4 +43,65 @@ test('a column chart is one keyboard stop: arrows read the days out', async ({ p
   expect(first).not.toBe(last)
   await chart.press('ArrowRight')
   await expect(readout).not.toHaveText(first!)
+})
+
+test('onboarding passes the automated accessibility check at every step', async ({ page }) => {
+  await page.goto('/')
+  const problems = await scan(page, 'onboarding-step-1-welcome')
+
+  // Step 2: Language
+  await page.getByRole('button', { name: 'Başlayalım', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Hangi dille başlayalım?' })).toBeVisible()
+  problems.push(...(await scan(page, 'onboarding-step-2-language')))
+
+  // Step 3: Goal
+  await page.locator('.lang-card', { hasText: 'İspanyolca' }).click()
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(page.getByPlaceholder('Adın')).toBeVisible()
+  problems.push(...(await scan(page, 'onboarding-step-3-goal')))
+
+  // Step 4: Ready recap
+  await page.getByPlaceholder('Adın').fill('Ayşe')
+  await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Hazırsın, Ayşe!' })).toBeVisible()
+  problems.push(...(await scan(page, 'onboarding-step-4-ready')))
+
+  expect(problems).toEqual([])
+})
+
+test('reading passes accessibility checks with verb forms card and mobile bottom sheet open', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill("Nous parlions souvent. Je parle bien. J'ai mangé.")
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+
+  // 1. Verb forms card open
+  await page.getByRole('button', { name: 'Çekimler' }).click()
+  await expect(page.getByRole('region', { name: 'Metindeki çekimler' })).toBeVisible()
+  const problems = await scan(page, 'reading-verb-forms-card')
+
+  // 2. Mobile word bottom sheet open
+  await page.setViewportSize({ width: 375, height: 667 })
+  const targetWord = page.locator('.rw', { hasText: 'parle' }).first()
+  await targetWord.click()
+  await expect(page.locator('.word-pop')).toBeVisible()
+  problems.push(...(await scan(page, 'phone-word-bottom-sheet')))
+
+  expect(problems).toEqual([])
+})
+
+test('session summary passes the automated accessibility check', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await playSession(page)
+  // Close any celebration modal or badge moment overlay if present
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
+    await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click()
+  }
+  for (let i = 0; i < 6 && (await page.locator('.badge-moment').count()); i++) {
+    await page.locator('.badge-moment button').first().click()
+  }
+  await expect(page.locator('.summary-grid')).toBeVisible()
+  const problems = await scan(page, 'session-summary')
+  expect(problems).toEqual([])
 })
