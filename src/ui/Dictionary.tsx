@@ -13,7 +13,7 @@ import { labTensesOf } from '../engine/tenses'
 import { LevelChip } from './LevelChip'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
-import { BookIcon, CheckIcon, PlusIcon, SparkleIcon, SpeakerIcon, TenseIcon } from './icons'
+import { BookIcon, CheckIcon, PenIcon, PlusIcon, SparkleIcon, SpeakerIcon, TenseIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { DictionaryExamples } from './DictionaryExamples'
 import { PageHeader } from './PageHeader'
@@ -395,7 +395,7 @@ function WordCard({
                     setEditing(true)
                   }}
                 >
-                  {meanings.length ? 'Anlamı düzelt' : 'Anlamını ekle'}
+                  <PenIcon size={13} className="inline-icon" /> {meanings.length ? 'Anlamı düzelt' : 'Kendi anlamını ekle'}
                 </button>
               </p>
             </>

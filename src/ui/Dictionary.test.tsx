@@ -80,4 +80,37 @@ describe('DictionaryScreen cross-language links', () => {
 
     expect(onSwitchLanguage).toHaveBeenCalledWith('en', 'cat')
   })
+
+  it('renders pen icon on meaning correction button and toggles editing form', async () => {
+    await act(async () => {
+      root.render(
+        <DictionaryScreen
+          language="fr"
+          vocabulary={[]}
+          initialQuery="chat"
+          onOpenWord={() => {}}
+          onAdd={() => {}}
+        />,
+      )
+    })
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50))
+    })
+
+    const buttons = rootEl.querySelectorAll('button')
+    const fixBtn = Array.from(buttons).find((b) => b.textContent?.includes('Anlamı düzelt'))
+    expect(fixBtn).toBeDefined()
+    // Verify pen icon is present inside button
+    expect(fixBtn?.querySelector('svg')).not.toBeNull()
+
+    // Clicking opens the edit form with an input
+    act(() => {
+      fixBtn?.click()
+    })
+
+    const input = rootEl.querySelector<HTMLInputElement>('#dict-fix')
+    expect(input).not.toBeNull()
+    expect(input?.value).toBe('kedi')
+  })
 })
