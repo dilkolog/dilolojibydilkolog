@@ -29,12 +29,14 @@ import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { analyzeForm, subjectLabel } from '../engine/tenses'
 import { groupByTense, textForms } from '../engine/textForms'
 import { TextForms } from './TextForms'
+import { BookItem, Cover } from './ReadingBooks'
+import { MIN_READ_MS, groupBooks, highlight, useSeen } from './readingHelpers'
 import { useSheetSwipe } from './useSheetSwipe'
 import { addSeenForms } from '../engine/labProgress'
 import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
-import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, GlobeIcon, MessageIcon, EarIcon, MicIcon, PlayIcon, PlusIcon } from './icons'
+import { BookIcon, ChevronDownIcon, GlobeIcon, MessageIcon, EarIcon, MicIcon, PlayIcon, PlusIcon } from './icons'
 import { translate, translationReady } from '../data/translate'
 import { SentenceTranslation } from './TranslateButton'
 import { ParagraphTranslation } from './ReaderTranslation'
@@ -1252,152 +1254,4 @@ export function ReadingScreen({
       )}
     </div>
   )
-}
-
-function highlight(sentence: string, word: string) {
-  const i = sentence.toLowerCase().indexOf(word.toLowerCase())
-  if (i < 0) return sentence
-  return (
-    <>
-      {sentence.slice(0, i)}
-      <mark>{sentence.slice(i, i + word.length)}</mark>
-      {sentence.slice(i + word.length)}
-    </>
-  )
-}
-
-type LibraryGroup = ReadingText | { id: string; title: string; chapters: ReadingText[] }
-
-/** Books (chapters sharing a book id) become one entry, placed where their first chapter was. */
-function groupBooks(library: readonly ReadingText[]): LibraryGroup[] {
-  const out: LibraryGroup[] = []
-  const books = new Map<string, { id: string; title: string; chapters: ReadingText[] }>()
-  for (const t of library) {
-    if (!t.book) {
-      out.push(t)
-      continue
-    }
-    let b = books.get(t.book.id)
-    if (!b) {
-      b = { id: t.book.id, title: t.book.title, chapters: [] }
-      books.set(t.book.id, b)
-      out.push(b)
-    }
-    b.chapters.push(t)
-  }
-  for (const b of books.values()) b.chapters.sort((x, y) => x.book!.index - y.book!.index)
-  return out
-}
-
-/**
- * An imported book: progress, the next chapter to read, and (opened) every chapter with how
- * much of it you already know, so you can see the book getting easier as you go.
- */
-function BookItem({
-  title,
-  chapters,
-  language,
-  vocabulary,
-  states,
-  known,
-  onOpen,
-  onRemove,
-}: {
-  title: string
-  chapters: ReadingText[]
-  language: TargetLanguage
-  vocabulary: VocabularyEntry[]
-  states: UserWordState[]
-  known: Set<string>
-  onOpen: (t: ReadingText) => void
-  onRemove: () => void
-}) {
-  const [expanded, setExpanded] = useState(false)
-  const read = chapters.filter((c) => c.readAt).length
-  const next = chapters.find((c) => !c.readAt)
-  const coverage = useMemo(
-    () => (expanded ? new Map(chapters.map((c) => [c.id, analyzeText(c.text, language, vocabulary, states, known)])) : null),
-    [expanded, chapters, language, vocabulary, states, known],
-  )
-  return (
-    <li className="book-item">
-      <div className="book-head">
-        <Cover title={title} book />
-        <span className="book-meta">
-          <strong>{title}</strong>
-          <span className="small muted">
-            {chapters.length} bölüm · {read} okundu
-          </span>
-          <span className="book-progress" aria-hidden>
-            <span style={{ width: `${(read / chapters.length) * 100}%` }} />
-          </span>
-        </span>
-      </div>
-      <div className="row">
-        {next ? (
-          <button className="btn btn-sm" onClick={() => onOpen(next)}>
-            {read ? 'Sıradaki' : 'Başla'}: {next.title}
-          </button>
-        ) : (
-          <span className="small notice"><CheckCircleIcon size={15} className="inline-icon" />Kitabı bitirdin</span>
-        )}
-        <button className="link small" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
-          {expanded ? 'Bölümleri gizle' : 'Bölümler'}
-        </button>
-        <button className="link small" onClick={onRemove}>
-          Kitabı sil
-        </button>
-      </div>
-      {expanded && coverage && (
-        <ol className="book-chapters">
-          {chapters.map((c) => {
-            const a = coverage.get(c.id)!
-            return (
-              <li key={c.id}>
-                <button className="word-link" onClick={() => onOpen(c)}>
-                  {c.title}
-                </button>
-                <span className={`small chapter-cov zone-${coverageZone(a.coverage)}`}>%{Math.round(a.coverage * 100)}</span>
-                <span className="small muted">{a.counts.unseen} yeni</span>
-                {c.readAt && <CheckIcon size={14} className="muted" />}
-              </li>
-            )
-          })}
-        </ol>
-      )}
-    </li>
-  )
-}
-
-const COVER_HUES = [12, 32, 150, 190, 215, 262, 290, 340]
-
-/** A cover for a text or book: a colour picked from its title and its first letter. */
-function Cover({ title, book = false }: { title: string; book?: boolean }) {
-  const hue = COVER_HUES[[...title].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % COVER_HUES.length]
-  return (
-    <span className={`cover${book ? ' is-book' : ''}`} style={{ ['--hue' as string]: hue }} aria-hidden>
-      {title.trim().charAt(0).toLocaleUpperCase() || '·'}
-    </span>
-  )
-}
-
-/** A text open for less than this has been glanced at, not read: its meetings aren't saved on their own. */
-const MIN_READ_MS = 20_000
-
-/** A callback ref that runs `onSeen` the first time its element comes into view (again for a new `key`). */
-function useSeen(key: unknown, onSeen: () => void) {
-  const latest = useRef(onSeen)
-  latest.current = onSeen
-  const observer = useRef<IntersectionObserver | null>(null)
-  return useCallback((node: HTMLElement | null) => {
-    observer.current?.disconnect()
-    observer.current = null
-    if (!node || typeof IntersectionObserver === 'undefined') return
-    observer.current = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      observer.current?.disconnect()
-      latest.current()
-    })
-    observer.current.observe(node)
-  }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
 }

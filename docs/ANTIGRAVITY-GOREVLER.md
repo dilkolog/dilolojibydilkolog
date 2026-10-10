@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-09.
+Son güncelleme: 2026-10-10.
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -22,7 +22,7 @@ Son güncelleme: 2026-10-09.
 | Kimde | Dosyalar |
 |---|---|
 | Antigravity | `src/ui/Words.tsx`, `src/ui/Progress.tsx`, `src/ui/SettingsScreen.tsx`, `docs/`, `scripts/`, `e2e/` |
-| Claude Code | `src/ui/Reading.tsx`, `src/ui/Screens.tsx` (Bugün), `src/ui/verbs/`, `src/engine/` |
+| Claude Code | `src/ui/Reading.tsx` (+ `ReadingBooks.tsx`, `readingHelpers.tsx`, `TextForms.tsx`), `src/ui/Screens.tsx` (Bugün), `src/ui/verbs/`, `src/engine/` |
 | Ortak (önce haber ver) | `src/App.tsx`, `src/index.css`, `src/data/db.ts` |
 
 `src/index.css`'e yeni kuralı dosyanın **sonuna**, kendi başlığıyla ekle (çakışma çıkmasın). Sahip olmadığın bir dosyaya dokunman gerekirse PR açıklamasında belirt.
@@ -77,6 +77,34 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`; oluşan fa
 
 ### 3.2 `SettingsScreen.tsx` bölme (844 satır)
 Aynı yöntem: bölüm bölüm ayır (Görünüm, Sorular, Veriler, Hesap…). Ayar anahtarları ve kayıt biçimi **değişmez**.
+
+---
+
+## 4. tur: içerik araştırması ve bakım (1–3. tur birleşti; kullanıcı onayladı)
+
+Claude Code'un çalıştığı ortamın ağı kısıtlı: LibriVox, Gutenberg, archive.org, Wikisource ve COERLL'e **erişemiyor**. Bu yüzden internet gerektiren araştırma işleri sende. Yöntem `docs/kaynaklar/` ile aynı: önce rapor ve doğrulanmış liste, uygulamaya bağlama ayrı PR.
+
+### 4.1 LibriVox + Gutenberg: B1+ sesli kitaplar (rapor + liste)
+- Fransızca ve İspanyolca, **kamu malı** ve LibriVox kaydı CC0/kamu malı olan kitaplar. Hedef: kısa (≲ 2 saat) veya bölümlü, B1–B2 okunabilirlikte 15–20 eser (masallar, kısa öyküler, Maupassant, Daudet, Clarín, Bécquer gibi).
+- Her eser için: başlık, yazar, dil, süre, **LibriVox MP3 bağlantısı (doğrudan dosya, archive.org üzerinden)**, Gutenberg metin kimliği ve metin bağlantısı, ses ile metnin örtüştüğü doğrulandı mı (aynı baskı/çeviri mi), lisans notu.
+- Çıktı: `docs/kaynaklar/audiobooks-fr.json`, `audiobooks-es.json` ve `README.md`'ye bölüm. Bağlantıları **tek tek aç/doğrula** (`HEAD` isteğiyle), bozuk olanı listeye alma. `docs/veri/` altındaki bozuk ses bağlantısı denetimi yöntemini örnek al.
+- Bu PR'da uygulama koduna dokunma; bağlama ayrı iş.
+
+### 4.2 COERLL (Français interactif ve İspanyolca eşdeğerleri) dil bilgisi içeriği
+- Lisans (CC BY/BY-NC?), biçim (HTML/H5P/PDF), dil bilgisi konuları ve seviyeleri. Uygulamada nasıl kullanılabileceğine dair kısa öneri: konu → Türkçe özet + bağlantı mı, alıştırma verisi mi?
+- Çıktı: `docs/kaynaklar/coerll.md` (rapor). Lisansı net değilse **önerme**, nedenini yaz.
+
+### 4.3 `Progress.tsx` bölme (654 satır)
+Üçüncü turdaki `Words.tsx` ve `SettingsScreen.tsx` gibi: davranış ve CSS sınıfları aynı, ~500 satırı geçen dosya kalmasın, `JumpNav` ve katlanan kart tercihi aynı çalışsın. Tek PR, adım adım commit.
+
+### 4.4 E2E sağlamlığı
+- `e2e/` içinde ekran dışı tembel resimleri, sabit `waitForTimeout`'ları ve ağa bağlı beklemeleri tara (ör. telefondaki alt çekmece testi tembel resmi sonsuza dek bekliyordu, 2 sn zaman aşımıyla düzeltildi).
+- Kararsız olabilecek testleri bul, `AGENTS.md`'deki desenlerle (`packApplied`, `page.clock`, ağ taklidi) sağlamlaştır. Test **silme veya atlama yok**.
+
+### 4.5 Kullanılmayan dışa aktarımlar
+- Hiçbir yerde içe aktarılmayan `export`ları (ve onlara bağlı ölü dosyaları) tespit et (`ts-prune`/`knip` ya da betik). Önce rapor (`docs/`), sonra yalnızca **emin olduklarını** sil. `src/engine/` ve `src/ui/verbs/` Claude Code'da: oralar için listeyi PR açıklamasına yaz, silme.
+
+**Tur sonu ölçütü:** 4.1 ve 4.2'de her bağlantı elle doğrulanmış, 4.3'te dış davranış aynı, hiçbir test silinmemiş.
 
 ---
 
