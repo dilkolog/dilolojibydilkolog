@@ -110,3 +110,49 @@ Diloloji'nin mevcut altyapısı bu kaynakları entegre etmek için neredeyse haz
 | **Fransızca** | **RFI Journal en français facile** | Dünyadaki en popüler ve pedagojik B1–B2 haber bülteni; doğrulanmış aktif RSS; CDN ses akışı açık; tam transkript. |
 | **İngilizce** | **VOA Learning English (As It Is)** | Sıfır telif riski (Public Domain); sadeleştirilmiş gramer ve kelime hazinesi; kusursuz transkript ve ses. |
 | **İspanyolca** | **VOA Noticias en español** | Kamu malı lisansı; kısa bültenler; açık ses akışı ve tam metin. |
+
+---
+
+## 7. Canlı Doğrulama Raporu (2026-10-10)
+
+`scripts/check-news-feeds.ts` komutu çalıştırılarak `src/engine/news.ts` içerisindeki `FEEDS` allowlist'e eklenen üç öğrenici haber beslemesi gerçek ağ üzerinde test edilmiş, durum kodları, makale ayrıştırma kelime sayıları ve ses akışları doğrulanmıştır.
+
+### 7.1. Özet Tablo
+
+| Besleme ID | Kaynak Adı | Mevcut Tanımlı URL | Toplam Madde | Sesli Madde | `extractArticle` Kelime (İlk 3 Madde) | Ses Akışı Durumu (HEAD / CDN) | Canlı Durum |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| `rfi-facile` | RFI · Journal en français facile | `...rfi.fr/fr/podcasts/journal-fran%C3%A7ais-facile/podcast` | 30 | 30 | 12 / 12 / 12 kelime (BAŞARISIZ) | **HTTP 200** (Audiomeans CDN, `audio/mpeg`) | **Kısmi** (Ses çalışıyor, metin slug'ı hatalı) |
+| `voa-learning` | VOA Learning English · As It Is | `...voanews.com/api/zkm-ql-vomx-tpej-rqi` | 20 | **0** | 0 / 0 / 503 kelime (BAŞARISIZ) | Seste enclosure yok (Görsel jpeg var) | **Kısmi** (Yalnızca metin var, ses yok) |
+| `voa-es` | Voz de América · Noticias | `...vozdeamerica.com/api/zp_opey_ip` | **0** | **0** | – (BAŞARISIZ) | Besleme yanıtı `"Invalid url"` | **ÇALIŞMIYOR** (Kırık uç nokta) |
+
+---
+
+### 7.2. Kaynak Bazlı Detaylı İnceleme ve Düzeltme Önerileri (Claude Code İçin)
+
+#### 1. RFI · Journal en français facile (`rfi-facile`)
+- **Ses Akışı:** Audiomeans CDN üzerinden `302 Found` yönlendirmesiyle `files.audiomeans.fr` adresine gitmekte, `200 OK` ve `content-type: audio/mpeg` ile eksiksiz inmektedir. Ses akışında hiçbir problem yoktur.
+- **Metin Sorunu:** Mevcut beslemedeki `<link>` etiketleri `https://www.rfi.fr/fr/podcasts/journal-en-français-facile/...` rotasını vermektedir. Bu sayfalar sunucudan statik HTML olarak dönmemekte; bir SPA istemci hatası (`"Le contenu auquel vous tentez d'accéder n'existe pas ou n'est plus disponible"`) döndürmektedir (12 kelime).
+- **Önerilen Düzeltme:**
+  - RSS besleme URL'si RFI'ın eğitim portalı olan **francaisfacile** rotasına çevrilmelidir:
+    `url: 'https://francaisfacile.rfi.fr/fr/podcasts/journal-en-fran%C3%A7ais-facile/podcast'`
+  - `hosts` dizisine `'francaisfacile.rfi.fr'` eklenmelidir:
+    `hosts: ['rfi.fr', 'francaisfacile.rfi.fr']`
+  - *Doğrulama Sonucu:* Bu RSS rotasındaki bağlantılar doğrudan güncel transkript slug'larına (`francaisfacile.rfi.fr/fr/podcasts/journal-en-français-facile/20261009-prix-nobel-de-la-paix...`) gitmekte ve `extractArticle()` ile **1.476 kelimelik tam transkript** kusursuz olarak çıkarılabilmektedir.
+
+#### 2. VOA Learning English · As It Is (`voa-learning`)
+- **Ses Sorunu:** Mevcut `api/zkm-ql-vomx-tpej-rqi` adresi bir metin haber API beslemesidir. XML içerisindeki `<enclosure>` etiketleri ses dosyası (`audio/mpeg`) değil, kapak görseli (`image/jpeg`) taşımaktadır (`itemsWithAudio = 0`).
+- **Metin Durumu:** Maddelerden bazıları salt ses/video klip sayfası olduğundan gövde metni içermemektedir (0 kelime); tam haber sayfalarında ise 503 kelime başarıyla ayrıştırılmaktadır.
+- **Önerilen Düzeltme:**
+  - Sesli bültenlerin bulunduğu resmi podcast beslemesine geçilmelidir:
+    `url: 'https://learningenglish.voanews.com/podcast/?zoneId=3521'`
+  - *Doğrulama Sonucu:* `zoneId=3521` beslemesinde 250 bölümün tamamında `https://voa-audio.voanews.eu/..._hq.mp3` formatında doğrulanmış `audio/mpeg` enclosure ses bağlantıları bulunmaktadır.
+
+#### 3. Voz de América · Noticias (`voa-es`)
+- **Besleme Sorunu:** Tanımlı olan `https://www.vozdeamerica.com/api/zp_opey_ip` adresi sunucu tarafında kaldırılmıştır; HTTP 200 kodu ile `"Invalid url"` metni dönmektedir (`totalItems = 0`).
+- **Önerilen Düzeltme:**
+  - **Seçenek A (Önerilen - Sesli Haber Podcasti):** Voz de América'nın günlük resmi haber podcasti "Buenos días América":
+    `url: 'https://www.vozdeamerica.com/podcast/?zoneId=537'`
+    *Doğrulama Sonucu:* 250 bölüm aktif, tüm bölümlerde `voa-audio.voanews.eu/...original.mp3` ses dosyası mevcuttur.
+  - **Seçenek B (Metin Haber Beslemesi):** Güncel ana haber metin akışı için:
+    `url: 'https://www.vozdeamerica.com/api/zgkmqrl-vomx-tpe-pvqo'`
+

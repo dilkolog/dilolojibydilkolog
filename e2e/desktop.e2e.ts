@@ -484,6 +484,7 @@ test('bulk import: the words go to a new list named in the form', async ({ page 
 
 test('the YZ screens wait for the owner\'s approval: a visitor is told why, an approved account gets the key form', async ({ page }) => {
   test.setTimeout(60_000)
+  await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { enabled: true } }))
   await startWithSamples(page)
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Araçlar' }).click()

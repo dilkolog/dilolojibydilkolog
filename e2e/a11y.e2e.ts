@@ -432,6 +432,7 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
         req.onsuccess = () => {
           const db = req.result
           const tx = db.transaction('meta', 'readwrite')
+          tx.objectStore('meta').delete('syncAccount')
           tx.objectStore('meta').put({ key: 'syncCode', value: 'ABCDE-FGHIJ-KLMNO-PQRST' })
           tx.objectStore('meta').put({ key: 'syncSize', value: s })
           tx.oncomplete = () => resolve()
@@ -440,7 +441,7 @@ test('new features pass accessibility check in dark and calm themes (audiobooks,
     }, size)
     await page.reload()
     await openScreen(page, 'Ayarlar')
-    await page.locator('nav[aria-label="Ayar grupları"] button', { hasText: 'Hesap' }).click()
+    await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
     const summary = page.locator('summary', { hasText: /Hesapsız: eşitleme koduyla eşitle/ })
     if (await summary.count()) {
       const isOpen = await summary.evaluate((el) => (el.parentElement as HTMLDetailsElement)?.open)

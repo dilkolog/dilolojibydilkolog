@@ -79,7 +79,7 @@ describe('Session: "Unuttum" (I forgot) feature', () => {
 
     await act(async () => {
       forgotBtn.click()
-      await new Promise((r) => setTimeout(r, 50))
+      await new Promise((r) => setTimeout(r, 150))
     })
 
     // Results feedback shows the reassuring forgot message
