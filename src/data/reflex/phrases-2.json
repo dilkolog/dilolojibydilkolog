@@ -1,0 +1,498 @@
+[
+ {
+  "id": "tanistigima-memnun-oldum",
+  "group": "sosyal",
+  "tr": "Tanıştığıma çok memnun oldum",
+  "fr": "Enchanté de faire votre connaissance",
+  "es": "Mucho gusto en conocerte",
+  "en": "Nice to meet you"
+ },
+ {
+  "id": "kendine-iyi-bak",
+  "group": "sosyal",
+  "tr": "Kendine iyi bak",
+  "fr": "Prends bien soin de toi",
+  "es": "Cuídate mucho",
+  "en": "Take good care of yourself"
+ },
+ {
+  "id": "yakinda-gorusuruz",
+  "group": "sosyal",
+  "tr": "Yakında görüşmek üzere",
+  "fr": "À très bientôt",
+  "es": "Nos vemos muy pronto",
+  "en": "See you very soon"
+ },
+ {
+  "id": "haftasonu",
+  "group": "sosyal",
+  "tr": "İyi hafta sonları dilerim",
+  "fr": "Passe un bon week-end",
+  "es": "Que tengas buen fin de semana",
+  "en": "Have a great weekend"
+ },
+ {
+  "id": "iyi-yolculuklar",
+  "group": "sosyal",
+  "tr": "İyi yolculuklar dilerim",
+  "fr": "Fais bon voyage",
+  "es": "Que tengas un buen viaje",
+  "en": "Have a safe trip"
+ },
+ {
+  "id": "selam-soyle",
+  "group": "sosyal",
+  "tr": "Ona selam söyle lütfen",
+  "fr": "Passe-lui mon bonjour",
+  "es": "Dale recuerdos de mi parte",
+  "en": "Say hello to them for me"
+ },
+ {
+  "id": "ozur-dilerim",
+  "group": "sosyal",
+  "tr": "Böldüğüm için özür dilerim",
+  "fr": "Pardon de vous interrompre",
+  "es": "Siento mucho interrumpir",
+  "en": "Sorry for interrupting"
+ },
+ {
+  "id": "kusura-bakma",
+  "group": "sosyal",
+  "tr": "Gerçekten kusura bakma",
+  "fr": "Je suis sincèrement désolé",
+  "es": "Lo siento de verdad",
+  "en": "I am truly sorry"
+ },
+ {
+  "id": "isteyerek-yapmadim",
+  "group": "sosyal",
+  "tr": "İsteyerek yapmadım",
+  "fr": "Je ne l'ai pas fait exprès",
+  "es": "No lo hice a propósito",
+  "en": "I didn't do it on purpose"
+ },
+ {
+  "id": "tebrikler",
+  "group": "sosyal",
+  "tr": "Yürekten tebrik ederim",
+  "fr": "Toutes mes félicitations",
+  "es": "Muchas felicidades por todo",
+  "en": "Warm congratulations to you"
+ },
+ {
+  "id": "toplanti",
+  "group": "iş/ofis",
+  "tr": "Toplantı saat kaçta başlıyor?",
+  "fr": "À quelle heure commence la réunion ?",
+  "es": "¿A qué hora empieza la reunión?",
+  "en": "What time does the meeting start?"
+ },
+ {
+  "id": "eposta-gonderdim",
+  "group": "iş/ofis",
+  "tr": "Sana az önce e-posta gönderdim",
+  "fr": "Je viens de t'envoyer un courriel",
+  "es": "Te acabo de enviar un correo",
+  "en": "I just sent you an email"
+ },
+ {
+  "id": "inceleyip-donerim",
+  "group": "iş/ofis",
+  "tr": "Bunu inceleyip sana dönerim",
+  "fr": "Je regarde et je te réponds",
+  "es": "Lo miro y te aviso",
+  "en": "I will check and get back"
+ },
+ {
+  "id": "rapor-hazir",
+  "group": "iş/ofis",
+  "tr": "Rapor yarın sabaha hazır olur",
+  "fr": "Le rapport sera prêt demain matin",
+  "es": "El informe estará listo mañana",
+  "en": "The report will be ready tomorrow"
+ },
+ {
+  "id": "son-teslim",
+  "group": "iş/ofis",
+  "tr": "Son teslim tarihi ne zaman?",
+  "fr": "Quelle est la date limite ?",
+  "es": "¿Cuál es la fecha límite?",
+  "en": "When is the final deadline?"
+ },
+ {
+  "id": "birlikte-calisalim",
+  "group": "iş/ofis",
+  "tr": "Bu projede birlikte çalışalım",
+  "fr": "Travaillons ensemble sur ce projet",
+  "es": "Trabajemos juntos en este proyecto",
+  "en": "Let's work together on this"
+ },
+ {
+  "id": "molaya-cikalim",
+  "group": "iş/ofis",
+  "tr": "Kısa bir kahve molası verelim",
+  "fr": "Prenons une courte pause café",
+  "es": "Hagamos una pequeña pausa",
+  "en": "Let's take a coffee break"
+ },
+ {
+  "id": "katilamayacagim",
+  "group": "iş/ofis",
+  "tr": "Bugünkü toplantıya katılamayacağım",
+  "fr": "Je ne pourrai pas venir aujourd'hui",
+  "es": "No podré asistir a la reunión",
+  "en": "I cannot make it today"
+ },
+ {
+  "id": "nerede-bulabilirim",
+  "group": "seyahat",
+  "tr": "Buraya en yakın eczane nerede?",
+  "fr": "Où est la pharmacie la plus proche ?",
+  "es": "¿Dónde está la farmacia más cercana?",
+  "en": "Where is the nearest pharmacy?"
+ },
+ {
+  "id": "nasil-giderim",
+  "group": "seyahat",
+  "tr": "Trene binmek için nereye gitmeliyim?",
+  "fr": "Comment aller à la gare ?",
+  "es": "¿Cómo se va a la estación?",
+  "en": "How do I get to station?"
+ },
+ {
+  "id": "kayboldum-galiba",
+  "group": "seyahat",
+  "tr": "Galiba tamamen kayboldum",
+  "fr": "Je crois que je suis perdu",
+  "es": "Creo que me he perdido",
+  "en": "I think I am completely lost"
+ },
+ {
+  "id": "haritada-goster",
+  "group": "seyahat",
+  "tr": "Bunu haritada gösterebilir misin?",
+  "fr": "Peux-tu me montrer sur le plan ?",
+  "es": "¿Puedes mostrármelo en el mapa?",
+  "en": "Can you show me on map?"
+ },
+ {
+  "id": "bilet-almak-istiyorum",
+  "group": "seyahat",
+  "tr": "Tek yön bir bilet istiyorum",
+  "fr": "Je voudrais un aller simple",
+  "es": "Quisiera un billete de ida",
+  "en": "I would like a one-way ticket"
+ },
+ {
+  "id": "ucretsiz-wifi",
+  "group": "seyahat",
+  "tr": "Ücretsiz kablosuz internet var mı?",
+  "fr": "Avez-vous le Wi-Fi gratuit ?",
+  "es": "¿Tienen conexión wifi gratis?",
+  "en": "Do you have free Wi-Fi here?"
+ },
+ {
+  "id": "taksi-cagir",
+  "group": "seyahat",
+  "tr": "Bana bir taksi çağırabilir misiniz?",
+  "fr": "Pouvez-vous m'appeler un taxi ?",
+  "es": "¿Puede pedirme un taxi por favor?",
+  "en": "Could you call me a taxi?"
+ },
+ {
+  "id": "deneyebilir-miyim",
+  "group": "alışveriş",
+  "tr": "Bunu üzerimde deneyebilir miyim?",
+  "fr": "Est-ce que je peux l'essayer ?",
+  "es": "¿Puedo probarme esto?",
+  "en": "Can I try this on please?"
+ },
+ {
+  "id": "baska-beden",
+  "group": "alışveriş",
+  "tr": "Bunun daha küçük bedeni var mı?",
+  "fr": "Avez-vous une taille plus petite ?",
+  "es": "¿Tiene una talla más pequeña?",
+  "en": "Do you have a smaller size?"
+ },
+ {
+  "id": "fiyat-ne-kadar",
+  "group": "alışveriş",
+  "tr": "Bunun fiyatı tam olarak ne kadar?",
+  "fr": "Combien cela coûte-t-il exactement ?",
+  "es": "¿Cuánto cuesta esto exactamente?",
+  "en": "How much does this cost exactly?"
+ },
+ {
+  "id": "kartla-odeme",
+  "group": "alışveriş",
+  "tr": "Kredi kartıyla ödeyebilir miyim?",
+  "fr": "Puis-je payer par carte bancaire ?",
+  "es": "¿Puedo pagar con tarjeta bancaria?",
+  "en": "Can I pay by credit card?"
+ },
+ {
+  "id": "nakit-odeyecegim",
+  "group": "alışveriş",
+  "tr": "Nakit olarak ödemek istiyorum",
+  "fr": "Je préfère payer en liquide",
+  "es": "Prefiero pagar en efectivo",
+  "en": "I prefer to pay in cash"
+ },
+ {
+  "id": "menu-alabilir-miyiz",
+  "group": "alışveriş",
+  "tr": "Menüyü rica edebilir miyiz?",
+  "fr": "Puis-je avoir la carte ?",
+  "es": "¿Nos trae la carta por favor?",
+  "en": "Could we have the menu please?"
+ },
+ {
+  "id": "su-alabilir-miyiz",
+  "group": "alışveriş",
+  "tr": "Bir şişe soğuk su rica edebilir miyim?",
+  "fr": "Une carafe d'eau s'il vous plaît",
+  "es": "Una botella de agua por favor",
+  "en": "A bottle of water please"
+ },
+ {
+  "id": "vejetaryen",
+  "group": "alışveriş",
+  "tr": "Vejetaryen yemek seçeneği var mı?",
+  "fr": "Avez-vous des plats végétariens ?",
+  "es": "¿Tienen opciones vegetarianas?",
+  "en": "Do you have vegetarian options?"
+ },
+ {
+  "id": "paket-yapar-misiniz",
+  "group": "alışveriş",
+  "tr": "Kalanı paket yapabilir misiniz?",
+  "fr": "Pourriez-vous emballer le reste ?",
+  "es": "¿Me lo pone para llevar?",
+  "en": "Could you pack the leftovers?"
+ },
+ {
+  "id": "iyi-hissetmiyorum",
+  "group": "sağlık",
+  "tr": "Kendimi hiç iyi hissetmiyorum",
+  "fr": "Je ne me sens pas bien",
+  "es": "No me encuentro nada bien",
+  "en": "I don't feel well at all"
+ },
+ {
+  "id": "basim-agriyor",
+  "group": "sağlık",
+  "tr": "Korkunç bir baş ağrım var",
+  "fr": "J'ai un affreux mal de tête",
+  "es": "Tengo un fuerte dolor de cabeza",
+  "en": "I have a terrible headache"
+ },
+ {
+  "id": "midem-bulaniyor",
+  "group": "sağlık",
+  "tr": "Midem çok kötü bulanıyor",
+  "fr": "J'ai la nausée depuis ce matin",
+  "es": "Tengo muchas náuseas",
+  "en": "I feel very nauseous right now"
+ },
+ {
+  "id": "alerjim-var",
+  "group": "sağlık",
+  "tr": "Fıstığa karşı alerjim var",
+  "fr": "Je suis allergique aux arachides",
+  "es": "Tengo alergia a los cacahuetes",
+  "en": "I am allergic to peanuts"
+ },
+ {
+  "id": "doktora-ihtiyacim-var",
+  "group": "sağlık",
+  "tr": "Acilen bir doktora görünmeliyim",
+  "fr": "Je dois voir un médecin d'urgence",
+  "es": "Necesito ver a un médico urgente",
+  "en": "I need to see a doctor"
+ },
+ {
+  "id": "ambulans-cagirin",
+  "group": "sağlık",
+  "tr": "Lütfen hemen ambulans çağırın!",
+  "fr": "Appelez une ambulance tout de suite !",
+  "es": "¡Llamen a una ambulancia ya!",
+  "en": "Please call an ambulance immediately!"
+ },
+ {
+  "id": "recetesiz-ilac",
+  "group": "sağlık",
+  "tr": "Ağrı kesici bir hap alabilir miyim?",
+  "fr": "Avez-vous un antidouleur léger ?",
+  "es": "¿Tiene algún analgésico suave?",
+  "en": "Can I have a mild painkiller?"
+ },
+ {
+  "id": "sesin-gelmiyor",
+  "group": "telefon",
+  "tr": "Sesin kesik kesik geliyor",
+  "fr": "Ta voix se coupe tout le temps",
+  "es": "Tu voz se corta constantemente",
+  "en": "Your voice is breaking up"
+ },
+ {
+  "id": "tekrar-arar-misin",
+  "group": "telefon",
+  "tr": "Beni beş dakika sonra arar mısın?",
+  "fr": "Rappelle-moi dans cinq minutes",
+  "es": "Llámame en cinco minutos",
+  "en": "Call me back in five minutes"
+ },
+ {
+  "id": "mesaj-birak",
+  "group": "telefon",
+  "tr": "İstersen ona bir mesaj bırak",
+  "fr": "Laisse-lui un message si tu veux",
+  "es": "Déjale un mensaje si quieres",
+  "en": "Leave a message if you want"
+ },
+ {
+  "id": "sarjim-bitiyor",
+  "group": "telefon",
+  "tr": "Telefonumun şarjı bitmek üzere",
+  "fr": "Je n'ai presque plus de batterie",
+  "es": "Me estoy quedando sin batería",
+  "en": "My phone battery is dying"
+ },
+ {
+  "id": "numarani-yaz",
+  "group": "telefon",
+  "tr": "Numaranı buraya yazar mısın?",
+  "fr": "Peux-tu noter ton numéro ici ?",
+  "es": "¿Puedes anotar tu número aquí?",
+  "en": "Could you write your number here?"
+ },
+ {
+  "id": "baglanti-koptu",
+  "group": "telefon",
+  "tr": "İnternet bağlantım aniden koptu",
+  "fr": "Ma connexion Internet a lâché",
+  "es": "Se me cayó la conexión",
+  "en": "My internet connection dropped"
+ },
+ {
+  "id": "hava-cok-guzel",
+  "group": "günlük",
+  "tr": "Bugün dışarıda hava çok güzel",
+  "fr": "Il fait magnifique dehors aujourd'hui",
+  "es": "Hace un tiempo maravilloso fuera",
+  "en": "The weather is lovely outside today"
+ },
+ {
+  "id": "yagmur-yagacak",
+  "group": "günlük",
+  "tr": "Görünüşe göre yağmur yağacak",
+  "fr": "On dirait qu'il va pleuvoir",
+  "es": "Parece que va a llover pronto",
+  "en": "It looks like it will rain"
+ },
+ {
+  "id": "uyuyamadim",
+  "group": "günlük",
+  "tr": "Dün gece neredeyse hiç uyuyamadım",
+  "fr": "J'ai à peine dormi cette nuit",
+  "es": "Apenas he dormido anoche",
+  "en": "I hardly slept at all last night"
+ },
+ {
+  "id": "temizlik-yapmaliyim",
+  "group": "günlük",
+  "tr": "Bugün evi temizlemem gerekiyor",
+  "fr": "Je dois faire le ménage aujourd'hui",
+  "es": "Tengo que limpiar la casa hoy",
+  "en": "I have to clean the house"
+ },
+ {
+  "id": "ne-pisirsem",
+  "group": "günlük",
+  "tr": "Akşama ne pişirsem acaba?",
+  "fr": "Qu'est-ce que je pourrais cuisiner ?",
+  "es": "¿Qué podría cocinar para cenar?",
+  "en": "What should I cook for dinner?"
+ },
+ {
+  "id": "anahtari-unuttum",
+  "group": "günlük",
+  "tr": "Ev anahtarımı içeride unuttum",
+  "fr": "J'ai oublié mes clés à l'intérieur",
+  "es": "Olvidé las llaves adentro",
+  "en": "I forgot my keys inside"
+ },
+ {
+  "id": "alisverise-gidiyorum",
+  "group": "günlük",
+  "tr": "Markete biraz alışverişe gidiyorum",
+  "fr": "Je vais faire quelques courses",
+  "es": "Voy al supermercado a comprar algo",
+  "en": "I am going grocery shopping now"
+ },
+ {
+  "id": "kapiyi-ac",
+  "group": "rica",
+  "tr": "Kapıyı benim için açabilir misin?",
+  "fr": "Peux-tu m'ouvrir la porte ?",
+  "es": "¿Puedes abrirme la puerta?",
+  "en": "Could you open the door for me?"
+ },
+ {
+  "id": "bunu-tutar-misin",
+  "group": "rica",
+  "tr": "Bunu bir saniye tutabilir misin?",
+  "fr": "Peux-tu tenir ça une seconde ?",
+  "es": "¿Puedes sujetar esto un momento?",
+  "en": "Could you hold this a second?"
+ },
+ {
+  "id": "bir-sey-sorabilir-miyim",
+  "group": "rica",
+  "tr": "Sana küçük bir şey sorabilir miyim?",
+  "fr": "Puis-je te poser une question ?",
+  "es": "¿Puedo hacerte una pregunta breve?",
+  "en": "May I ask you a question?"
+ },
+ {
+  "id": "emin-misin",
+  "group": "tepki",
+  "tr": "Bundan gerçekten tamamen emin misin?",
+  "fr": "Es-tu absolument certain de cela ?",
+  "es": "¿Estás totalmente seguro de eso?",
+  "en": "Are you totally sure about that?"
+ },
+ {
+  "id": "hic-fena-degil",
+  "group": "tepki",
+  "tr": "Bence hiç fena görünmüyor",
+  "fr": "Ce n'est pas mal du tout",
+  "es": "La verdad es que no está mal",
+  "en": "That is not bad at all"
+ },
+ {
+  "id": "inanamiyorum",
+  "group": "tepki",
+  "tr": "Buna gerçekten inanamıyorum!",
+  "fr": "Je n'arrive pas à y croire !",
+  "es": "¡De verdad que no me lo creo!",
+  "en": "I honestly cannot believe this!"
+ },
+ {
+  "id": "tam-zamaninda",
+  "group": "tepki",
+  "tr": "Tam zamanında buraya geldin",
+  "fr": "Tu arrives pile à l'heure",
+  "es": "Llegas justo a tiempo",
+  "en": "You arrived right on time"
+ },
+ {
+  "id": "benimle-dalga-gecme",
+  "group": "tepki",
+  "tr": "Lütfen benimle dalga geçme",
+  "fr": "Ne te moque pas de moi",
+  "es": "No te burles de mí por favor",
+  "en": "Please do not mock me"
+ }
+]
