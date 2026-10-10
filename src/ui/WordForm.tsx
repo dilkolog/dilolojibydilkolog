@@ -1,0 +1,630 @@
+import { useEffect, useState, type FormEvent } from 'react'
+import { useTenses } from './tenseGroups'
+import { analyzeForm } from '../engine/tenses'
+import { TENSE_GUIDE } from '../engine/tenseGuide'
+import { normalize, splitArticle } from '../engine/answerCheck'
+import type { Gender, PartOfSpeech, TargetLanguage, VocabularyEntry, WordList as WordListRow } from '../engine/types'
+import type { KelimeDB } from '../data/db'
+import { loadFrequency, rankOf, UNRANKED } from '../data/frequency'
+import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
+import { turkishMeanings, type TurkishMeanings } from '../data/wordInfo'
+import { bandOf, createEntry, entryToInput, FREQUENCY_BANDS, guessPartOfSpeech, updateEntry, wordId, WordInputError, type WordInput } from '../data/wordInput'
+import { AiError, collocationLines, enrichWords, suggestFields, wordInfoToInput, type SuggestField } from '../ai'
+import { useAi } from './aiContext'
+import { ImageIcon, SparkleIcon } from './icons'
+import { ImagePicker, type PickedImage } from './ImagePicker'
+import { accentChange } from './accentCaret'
+import { Select } from './Select'
+import { Plant } from './Plant'
+import { POS_NAME } from './labels'
+import { placementOptions, parsePlacement } from './listOptions'
+import { TranslateButton } from './TranslateButton'
+import { TriLanguageCard } from './CrossLanguage'
+
+/** Placeholders in the language being edited, so the expected format is obvious. */
+const EXAMPLES: Record<TargetLanguage, { collocation: string; confusable: string; row: string; marked: string }> = {
+  en: {
+    collocation: 'make a decision = karar vermek (do a decision, give a decision)',
+    confusable: 'effect',
+    row: 'decision\tkarar\tIt was a hard decision.\tZor bir karardı.',
+    marked: 'She *abandoned* it.',
+  },
+  fr: {
+    collocation: 'prendre une décision = karar vermek (faire une décision)',
+    confusable: 'journée',
+    row: 'la décision\tkarar\tC’est une décision difficile.\tBu zor bir karar.',
+    marked: 'Je *sais* nager.',
+  },
+  es: {
+    collocation: 'tomar una decisión = karar vermek (hacer una decisión)',
+    confusable: 'conocer',
+    row: 'la decisión\tkarar\tFue una decisión difícil.\tZor bir karardı.',
+    marked: 'No *sé* nadar.',
+  },
+}
+
+const splitTags = (s?: string) => (s ?? '').split(',').map((t) => t.trim()).filter(Boolean)
+
+const LAST_LIST_KEY = 'kelime-koc:last-list'
+const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslation: '', collocations: '', confusables: '' }
+
+const POS_OPTIONS: PartOfSpeech[] = ['other', 'noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'phrase']
+
+/**
+ * Adds a new word, or edits `entry` when given. `existing` holds the keys of the other words
+ * (see `wordKeys`) for the duplicate check.
+ */
+export function WordForm({
+  db,
+  language,
+  existing,
+  entry,
+  initial,
+  onSaved,
+  onCancel,
+  onLearn,
+  preview = false,
+}: {
+  db: KelimeDB
+  language: TargetLanguage
+  existing: Set<string>
+  entry?: VocabularyEntry
+  /** Prefilled values for a new word. */
+  initial?: WordInput
+  onSaved: (entry: VocabularyEntry) => void
+  onCancel?: () => void
+  /** Study the words just added, right away. */
+  onLearn?: (entries: VocabularyEntry[]) => void
+  /** Show a live preview of the word card beside the form (on wide screens). */
+  preview?: boolean
+}) {
+  const [form, setForm] = useState<WordInput>(() => (entry ? entryToInput(entry) : (initial ?? EMPTY)))
+  const [error, setError] = useState('')
+  // A new word typed in a conjugated form (tuve, allions) → offer its infinitive. Present forms are
+  // left out: too many are also nouns (porte, livre, marche).
+  useTenses(language)
+  const typed = form.word.trim()
+  const conjugated =
+    !entry && language !== 'en' && typed && !typed.includes(' ')
+      ? analyzeForm(language, typed).find((a) => a.tense !== 'present' && a.tense !== 'presente')
+      : undefined
+  // Words added with this form since the last "learn now", to study them in one go.
+  const [justAdded, setJustAdded] = useState<VocabularyEntry[]>([])
+  // A new word goes into a list: the last one chosen here, else the one in focus.
+  const [lists, setLists] = useState<WordListRow[]>([])
+  const [listId, setListIdState] = useState('')
+  useEffect(() => {
+    if (entry) return
+    let live = true
+    void Promise.all([db.getLists(language), db.getSettings()]).then(([all, s]) => {
+      if (!live) return
+      setLists(all)
+      let last = ''
+      try {
+        last = localStorage.getItem(`${LAST_LIST_KEY}:${language}`) ?? ''
+      } catch {
+        // Falls back to the focus.
+      }
+      const valid = new Set(placementOptions(all).map((o) => o.value))
+      const pick = [last, s?.focusList?.[language] ?? ''].find((v) => valid.has(v))
+      setListIdState(pick === '__none' ? '' : (pick ?? ''))
+    })
+    return () => {
+      live = false
+    }
+  }, [db, language, entry])
+  const setListId = (id: string) => {
+    setListIdState(id)
+    try {
+      localStorage.setItem(`${LAST_LIST_KEY}:${language}`, id || '__none')
+    } catch {
+      // Not remembered; harmless.
+    }
+  }
+  const [added, setAdded] = useState('')
+  const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))
+  const needsGender = language === 'fr' && /^l['’]/i.test(form.word.trim())
+  const { apiKey } = useAi()
+  const [filling, setFilling] = useState(false)
+  // A picture chosen before the word is saved (new words only; existing words edit it in detail).
+  const [image, setImage] = useState<(PickedImage & { url: string }) | null>(null)
+  const [picking, setPicking] = useState(false)
+  // Part of speech is guessed from the word (or taken from the AI) unless the user picks it.
+  const [posManual, setPosManual] = useState(() => !!entry || !!initial?.partOfSpeech)
+  const [aiPos, setAiPos] = useState<{ word: string; pos: PartOfSpeech } | null>(null)
+  // French: part of speech and gender from Lexique, offline (see data/lexicon.ts).
+  const [lexicon, setLexicon] = useState<ReadonlyMap<string, LexiconEntry>>()
+  useEffect(() => {
+    let live = true
+    void loadLexicon(language).then((l) => live && setLexicon(l))
+    return () => {
+      live = false
+    }
+  }, [language])
+  const lex = lookUpLexicon(lexicon, form.word, language)
+  const typedArticle = splitArticle(normalize(form.word.trim()).toLocaleLowerCase(language), language).article
+  const fromAi = !!aiPos && aiPos.word === form.word.trim()
+  const fromLexicon = !fromAi && !typedArticle && !!lex?.pos.length
+  const autoPos = fromAi ? aiPos!.pos : fromLexicon ? lex!.pos[0] : guessPartOfSpeech(form.word, language)
+  // A gender the article doesn't show (l'asile, les gens, or no article) comes from the lexicon.
+  const lexGender = (!typedArticle || /^(l['’]|les)$/.test(typedArticle)) && lex?.gender ? lex.gender : undefined
+  // Turkish meanings from Wiktionary as the word is typed, offered as one-tap suggestions.
+  const [trMeanings, setTrMeanings] = useState<{ word: string } & TurkishMeanings>()
+  useEffect(() => {
+    const word = form.word.trim()
+    if (entry || word.length < 2 || (typeof navigator !== 'undefined' && !navigator.onLine)) return
+    let live = true
+    const t = window.setTimeout(() => {
+      turkishMeanings(word, language)
+        .then((r) => live && setTrMeanings({ word, ...r }))
+        .catch(() => undefined)
+    }, 700)
+    return () => {
+      live = false
+      window.clearTimeout(t)
+    }
+  }, [form.word, language, entry])
+  const meaningList = form.meaning.split(/[,/]/).map((m) => m.trim().toLocaleLowerCase('tr'))
+  const meaningSuggestions = trMeanings && trMeanings.word === form.word.trim() ? trMeanings.words.filter((w) => !meaningList.includes(w.toLocaleLowerCase('tr'))) : []
+  const [moreOpen, setMoreOpen] = useState(false)
+  // Frequency band looked up from the bundled list as the word is typed.
+  const [autoRank, setAutoRank] = useState(0)
+  useEffect(() => {
+    const word = form.word.trim()
+    if (!word) return
+    let live = true
+    loadFrequency(language).then((list) => {
+      if (!live) return
+      const { article, rest } = splitArticle(normalize(word).toLocaleLowerCase(language), language)
+      setAutoRank(rankOf({ language, lemma: article && rest ? rest : word, partOfSpeech: posManual ? (form.partOfSpeech ?? 'other') : (autoPos ?? 'other') }, list))
+    })
+    return () => {
+      live = false
+    }
+  }, [form.word, form.partOfSpeech, posManual, autoPos, language])
+  const autoBand = form.word.trim() ? bandOf(autoRank) : undefined
+  // Which single-field AI request is running ('more' = notes + tags + collocations together).
+  const [suggesting, setSuggesting] = useState<SuggestField | 'more' | null>(null)
+  const [aiError, setAiError] = useState<{ at: SuggestField | 'more'; message: string } | null>(null)
+
+  /**
+   * Asks the AI for some fields. Clicking a field's button is an explicit request, so the example
+   * is replaced (a second click gives a new sentence), while notes, tags and collocations are
+   * added to what is already there.
+   */
+  const suggest = async (at: SuggestField | 'more', fields: SuggestField[]) => {
+    setAiError(null)
+    if (!apiKey) {
+      setAiError({ at, message: 'AI önerileri için Ayarlar → AI yardımcısı bölümünden API anahtarını gir.' })
+      return
+    }
+    if (!form.word.trim()) {
+      setAiError({ at, message: 'Önce kelimeyi yaz.' })
+      return
+    }
+    setSuggesting(at)
+    try {
+      const existingTags = [...new Set((await db.vocabulary.where('language').equals(language).toArray()).flatMap((v) => v.tags))]
+      const out = await suggestFields(apiKey, {
+        language,
+        word: form.word.trim(),
+        meaning: form.meaning,
+        fields,
+        existingTags,
+        currentExample: form.example,
+      })
+      setForm((f) => {
+        const next = { ...f }
+        if (out.example) {
+          next.example = out.example
+          next.exampleTranslation = out.exampleTranslation ?? ''
+        }
+        if (out.note) next.notes = f.notes?.trim() ? `${f.notes.trim()}\n${out.note}` : out.note
+        if (out.tags?.length) {
+          const tags = new Set([...splitTags(f.tags), ...out.tags.map((t) => t.trim().toLocaleLowerCase('tr'))])
+          next.tags = [...tags].filter(Boolean).join(', ')
+        }
+        if (out.collocations?.length) {
+          const have = (f.collocations ?? '').split('\n').map((l) => l.trim()).filter(Boolean)
+          const known = new Set(have.map((l) => l.split('=')[0].trim().toLocaleLowerCase()))
+          const fresh = out.collocations.filter((c) => !known.has(c.phrase.trim().toLocaleLowerCase()))
+          next.collocations = [...have, collocationLines(fresh)].filter(Boolean).join('\n')
+        }
+        return next
+      })
+    } catch (err) {
+      setAiError({ at, message: err instanceof AiError ? err.message : 'AI önerisi alınamadı.' })
+    } finally {
+      setSuggesting(null)
+    }
+  }
+
+  const aiButton = (at: SuggestField | 'more', fields: SuggestField[], label: string, busyLabel = 'Hazırlanıyor…') => (
+    <button
+      type="button"
+      className="ai-suggest"
+      onClick={() => suggest(at, fields)}
+      disabled={suggesting !== null}
+    >
+      <SparkleIcon size={14} className="icon-star" />
+      {suggesting === at ? busyLabel : label}
+    </button>
+  )
+  const aiErrorFor = (at: SuggestField | 'more') =>
+    aiError?.at === at && (
+      <p className="error small" role="alert">
+        {aiError.message}
+      </p>
+    )
+
+  /** Asks the AI for the word's data and fills only the fields the user left empty. */
+  const fillWithAi = async () => {
+    if (!apiKey || !form.word.trim()) return
+    setFilling(true)
+    setError('')
+    try {
+      const result = await enrichWords(apiKey, language, [{ word: form.word.trim() }])
+      const info = result.values().next().value
+      if (!info) throw new WordInputError('AI bu kelime için sonuç döndürmedi.')
+      const ai = wordInfoToInput(info)
+      setForm((f) => ({
+        ...f,
+        word: ai.word || f.word,
+        meaning: f.meaning?.trim() ? f.meaning : ai.meaning,
+        partOfSpeech: f.partOfSpeech ?? ai.partOfSpeech,
+        gender: f.gender ?? ai.gender,
+        example: f.example?.trim() ? f.example : ai.example,
+        exampleTranslation: f.exampleTranslation?.trim() ? f.exampleTranslation : ai.exampleTranslation,
+        collocations: f.collocations?.trim() ? f.collocations : ai.collocations,
+        confusables: f.confusables?.trim() ? f.confusables : ai.confusables,
+        literal: f.literal?.trim() ? f.literal : ai.literal,
+        // The frequency list is measured data; the AI's band is only a fallback for words it lacks.
+        frequencyRank: f.frequencyRank || (autoRank === 0 || autoRank === UNRANKED ? ai.frequencyRank : 0),
+      }))
+      setAiPos({ word: ai.word.trim(), pos: ai.partOfSpeech })
+    } catch (err) {
+      setError(err instanceof AiError || err instanceof WordInputError ? err.message : 'AI ile doldurulamadı.')
+    } finally {
+      setFilling(false)
+    }
+  }
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault()
+    setError('')
+    try {
+      const withGender = form.gender || !lexGender ? form : { ...form, gender: lexGender }
+      const input = posManual ? withGender : { ...withGender, partOfSpeech: autoPos }
+      const saved = entry ? updateEntry(entry, input) : createEntry(input, language, new Date())
+      if (!entry && listId) {
+        const at = parsePlacement(listId)
+        if (at.listId) saved.listId = at.listId
+        if (at.levelId) saved.levelId = at.levelId
+      }
+      if (existing.has(wordId(language, saved.lemma)) || (!entry && existing.has(saved.id))) {
+        throw new WordInputError(`"${saved.lemma}" zaten listende.`)
+      }
+      if (image) {
+        saved.imageId = await db.addMedia('image', image.blob)
+        saved.imageCredit = image.credit
+      }
+      await db.vocabulary.put(saved)
+      if (!entry) {
+        setAdded(saved.lemma)
+        setJustAdded((list) => [...list, saved])
+        setForm(EMPTY)
+        setImage(null)
+        setPosManual(false)
+        setAiPos(null)
+        setAiError(null)
+        document.getElementById('w-word')?.focus()
+      }
+      onSaved(saved)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    }
+  }
+
+  const articleHelp =
+    language === 'en' ? 'Örn. decision' : language === 'fr' ? 'İsimleri artikeliyle yaz: la décision' : 'İsimleri artikeliyle yaz: el año'
+
+  return (
+    <div className={preview ? 'word-form-layout' : undefined}>
+    <form className="stack" onSubmit={submit}>
+        <div className="grid-2">
+          <div className="field">
+            <label htmlFor="w-word">Kelime</label>
+            <input id="w-word" className="input" value={form.word} onChange={accentChange(language, (word) => setForm((f) => ({ ...f, word })))} lang={language} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} />
+            {conjugated ? (
+              // A conjugated form typed (tuve, allions): offer the infinitive, which is what the list keeps.
+              <span className="help form-suggest">
+                “{form.word.trim()}”, <strong lang={language}>{conjugated.lemma}</strong> fiilinin {TENSE_GUIDE[conjugated.tense].name} biçimi.{' '}
+                <button type="button" className="link small" onClick={() => setForm((f) => ({ ...f, word: conjugated.lemma }))}>
+                  {conjugated.lemma} ekle
+                </button>
+              </span>
+            ) : (
+              <span className="help">{articleHelp}</span>
+            )}
+          </div>
+          <div className="field">
+            <label htmlFor="w-meaning">Türkçe anlamı</label>
+            <input id="w-meaning" className="input" value={form.meaning} onChange={set('meaning')} autoComplete="off" autoCapitalize="off" />
+            {meaningSuggestions.length > 0 ? (
+              <div className="meaning-suggest" aria-label="Wiktionary önerileri">
+                <span className="help">{trMeanings?.via ? `Wiktionary (“${trMeanings.via}” üzerinden):` : 'Wiktionary:'}</span>
+                {meaningSuggestions.map((w) => (
+                  <button
+                    key={w}
+                    type="button"
+                    className="chip chip-sm"
+                    onClick={() => setForm((f) => ({ ...f, meaning: f.meaning.trim() ? `${f.meaning.trim().replace(/,$/, '')}, ${w}` : w }))}
+                  >
+                    + {w}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <span className="help">Birden fazlaysa virgülle ayır</span>
+            )}
+          </div>
+        </div>
+        <div className="grid-2">
+          <div className="field">
+            <div className="field-head">
+              <label htmlFor="w-pos">Tür</label>
+              <button
+                type="button"
+                className="link small"
+                onClick={() => {
+                  // Switching to manual starts from the current guess, so nothing jumps.
+                  if (!posManual) setForm((f) => ({ ...f, partOfSpeech: autoPos }))
+                  setPosManual(!posManual)
+                }}
+              >
+                {posManual ? 'Otomatiğe dön' : 'Elle seç'}
+              </button>
+            </div>
+            {posManual ? (
+              <Select
+                id="w-pos"
+                label="Tür"
+                value={form.partOfSpeech ?? 'other'}
+                options={POS_OPTIONS.map((p) => ({ value: p, label: p === 'other' ? 'Belirtme' : POS_NAME[p] }))}
+                onChange={(v) => setForm((f) => ({ ...f, partOfSpeech: v === 'other' ? undefined : v }))}
+              />
+            ) : (
+              <div className="pos-auto" id="w-pos" role="status" aria-live="polite">
+                {autoPos ? <strong>{POS_NAME[autoPos]}</strong> : <span className="muted">{form.word.trim() ? 'Tahmin edilemedi' : 'Kelimeyi yazınca belirlenir'}</span>}
+                <span className="pos-auto-tag">{fromAi ? 'AI' : fromLexicon ? 'Sözlük' : 'Otomatik'}</span>
+              </div>
+            )}
+          </div>
+          {(posManual ? form.partOfSpeech : autoPos) === 'phrase' && (
+            <div className="field">
+              <label htmlFor="w-literal">Kelimesi kelimesine (isteğe bağlı)</label>
+              <input id="w-literal" className="input" value={form.literal ?? ''} onChange={set('literal')} placeholder="avoir le cafard → hamamböceğine sahip olmak" />
+              <span className="help">Deyimin harfi harfine anlamı: tuhaf imgesi onu akılda tutmayı kolaylaştırır.</span>
+            </div>
+          )}
+          {needsGender && (
+            <div className="field">
+              <label htmlFor="w-gender">Cinsiyet</label>
+              <Select
+                id="w-gender"
+                label="Cinsiyet"
+                value={form.gender ?? (lexGender === 'm' || lexGender === 'f' ? lexGender : undefined)}
+                options={[
+                  { value: 'm', label: 'Eril (le)' },
+                  { value: 'f', label: 'Dişil (la)' },
+                ]}
+                onChange={(v) => setForm((f) => ({ ...f, gender: v as Gender }))}
+              />
+              <span className="help">{!form.gender && (lexGender === 'm' || lexGender === 'f') ? 'Sözlükten (Lexique) dolduruldu' : "l' cinsiyeti göstermediği için gerekli"}</span>
+            </div>
+          )}
+        </div>
+        <div className="form-group">
+        <span className="form-group-title">Örnek cümle · isteğe bağlı</span>
+        <div className="field">
+          <div className="field-head">
+            <label htmlFor="w-ex">Cümle</label>
+            {aiButton('example', ['example'], form.example?.trim() ? 'Başka cümle getir' : 'Cümle getir', 'Cümle yazılıyor…')}
+          </div>
+          <input id="w-ex" className="input" value={form.example ?? ''} onChange={accentChange(language, (example) => setForm((f) => ({ ...f, example })))} lang={language} />
+          <span className="help">
+            Bağlam ve boşluk doldurma alıştırmalarını açar. Kelime cümlede farklı biçimdeyse yıldızla işaretle: {EXAMPLES[language].marked}
+          </span>
+          {aiErrorFor('example')}
+        </div>
+        <div className="field">
+          <span className="row justify-between">
+            <label htmlFor="w-ext">Türkçesi</label>
+            {!form.exampleTranslation?.trim() && <TranslateButton text={form.example ?? ''} from={language} onTranslated={(t) => setForm((f) => ({ ...f, exampleTranslation: t }))} />}
+          </span>
+          <input id="w-ext" className="input" value={form.exampleTranslation ?? ''} onChange={set('exampleTranslation')} />
+        </div>
+        </div>
+        {!entry && lists.length > 0 && (
+          <div className="field word-form-list">
+            <label htmlFor="w-list">Liste</label>
+            <Select
+              id="w-list"
+              label="Liste"
+              value={listId || '__none'}
+              onChange={(v) => setListId(v === '__none' ? '' : v)}
+              options={placementOptions(lists)}
+            />
+          </div>
+        )}
+        {!entry && (
+          <div className="row">
+            {image ? (
+              <>
+                <img className="thumb" src={image.url} alt="Seçilen görsel" />
+                <button type="button" className="link small" onClick={() => setPicking(true)}>
+                  Görseli değiştir
+                </button>
+                <button type="button" className="link small" onClick={() => setImage(null)}>
+                  Kaldır
+                </button>
+              </>
+            ) : (
+              <button type="button" className="btn btn-quiet" onClick={() => setPicking(true)} disabled={!form.word.trim()}>
+                <ImageIcon size={16} className="inline-icon" />Görsel ekle
+              </button>
+            )}
+          </div>
+        )}
+        {picking && (
+          <ImagePicker
+            initialQuery={splitArticle(normalize(form.word), language).rest}
+            suggestions={form.meaning.split(/,|\//).map((m) => m.trim()).filter(Boolean)}
+            onClose={() => setPicking(false)}
+            onPick={(img) => {
+              setImage({ ...img, url: URL.createObjectURL(img.blob) })
+              setPicking(false)
+            }}
+          />
+        )}
+        <details open={moreOpen} onToggle={(e) => setMoreOpen(e.currentTarget.open)}>
+          <summary className="small">Daha fazla: not, etiketler, kalıplar ve karıştırılan kelimeler</summary>
+          <div className="stack">
+            <div className="ai-fill-all">
+              {aiButton('more', ['notes', 'tags', 'collocations'], 'Not, etiket ve kalıpları AI ile doldur', 'Dolduruluyor…')}
+              {aiErrorFor('more')}
+            </div>
+            <div className="field">
+              <div className="field-head">
+                <label htmlFor="w-note">Not / hafıza ipucu</label>
+                {aiButton('notes', ['notes'], 'İpucu öner')}
+              </div>
+              <textarea id="w-note" className="textarea textarea-sm" value={form.notes ?? ''} onChange={set('notes')} placeholder="Nerede gördün, neye benziyor…" />
+              {aiErrorFor('notes')}
+            </div>
+            <div className="field">
+              <label htmlFor="w-freq">Sıklık</label>
+              <Select
+                id="w-freq"
+                label="Sıklık"
+                value={bandOf(form.frequencyRank)?.id ?? 'unknown'}
+                options={[{ value: 'unknown', label: autoBand ? `Otomatik: ${autoBand.label}` : 'Otomatik' }, ...FREQUENCY_BANDS.map((b) => ({ value: b.id, label: b.label }))]}
+                onChange={(v) => setForm((f) => ({ ...f, frequencyRank: FREQUENCY_BANDS.find((b) => b.id === v)?.rank ?? 0 }))}
+              />
+              <span className="help">
+                Otomatik değer, alt yazılardan derlenmiş sıklık listesinden gelir (OpenSubtitles, 20.000 kelime). Sık kelimeler daha çok işe yarar; Ayarlar'dan yeni
+                kelimeleri sık olanlardan başlatabilirsin.
+              </span>
+            </div>
+            <div className="field">
+              <div className="field-head">
+                <label htmlFor="w-tags">Etiketler</label>
+                {aiButton('tags', ['tags'], 'Etiket öner')}
+              </div>
+              <input id="w-tags" className="input" value={form.tags ?? ''} onChange={set('tags')} placeholder="iş, seyahat, dizi" />
+              <span className="help">Virgülle ayır; kelime listesinde etikete göre filtreleyebilirsin.</span>
+              {aiErrorFor('tags')}
+            </div>
+            <div className="field">
+              <div className="field-head">
+                <label htmlFor="w-col">Kalıplar (collocation)</label>
+                {aiButton('collocations', ['collocations'], 'Kalıp öner')}
+              </div>
+              <textarea
+                id="w-col"
+                className="textarea"
+                value={form.collocations ?? ''}
+                onChange={set('collocations')}
+                lang={language}
+                placeholder={EXAMPLES[language].collocation}
+              />
+              <span className="help">Her satıra bir kalıp. Parantez içine sık yapılan yanlışları yazarsan kalıp alıştırması açılır.</span>
+              {aiErrorFor('collocations')}
+            </div>
+            <div className="field">
+              <label htmlFor="w-conf">Karıştırılan kelimeler</label>
+              <input id="w-conf" className="input" value={form.confusables ?? ''} onChange={set('confusables')} lang={language} autoCapitalize="off" autoCorrect="off" placeholder={EXAMPLES[language].confusable} />
+              <span className="help">Kelimelerinde varsa ayırt etme alıştırması açılır ve ikisi aynı günlerde tanıtılmaz.</span>
+            </div>
+          </div>
+        </details>
+        {error && <p className="error" role="alert">{error}</p>}
+        {added && !error && (
+          <div className="row added-row">
+            <p className="notice" role="status">
+              "{added}" eklendi.{justAdded.length > 1 && ` Bu oturumda ${justAdded.length} kelime ekledin.`}
+            </p>
+            {onLearn && justAdded.length > 0 && (
+              <button
+                type="button"
+                className="btn btn-sm"
+                onClick={() => {
+                  onLearn(justAdded)
+                  setJustAdded([])
+                }}
+              >
+                Şimdi öğren{justAdded.length > 1 ? ` (${justAdded.length})` : ''}
+              </button>
+            )}
+          </div>
+        )}
+        {added && !error && justAdded.length > 0 && <TriLanguageCard key={justAdded.at(-1)!.id} entry={justAdded.at(-1)!} compact onAdded={() => onSaved(justAdded.at(-1)!)} />}
+        <div className="row">
+          <button className="btn" type="submit">
+            {entry ? 'Değişiklikleri kaydet' : 'Kelimeyi ekle'}
+          </button>
+          {apiKey && (
+            <button className="btn btn-quiet" type="button" onClick={fillWithAi} disabled={filling || !form.word.trim()}>
+              <SparkleIcon size={18} className="icon-star" />
+              {filling ? 'Dolduruluyor…' : 'AI ile doldur'}
+            </button>
+          )}
+          {onCancel && (
+            <button className="btn btn-quiet" type="button" onClick={onCancel}>
+              Vazgeç
+            </button>
+          )}
+        </div>
+    </form>
+    {preview && <WordPreview language={language} word={form.word} meaning={form.meaning} pos={posManual ? form.partOfSpeech : autoPos} example={form.example ?? ''} translation={form.exampleTranslation ?? ''} image={image?.url} />}
+    </div>
+  )
+}
+
+/**
+ * The word as it will look, filled in as you type: the seed it starts as, its kind, how it reads
+ * with its article, the meaning and the example with the word marked.
+ */
+function WordPreview({ language, word, meaning, pos, example, translation, image }: { language: TargetLanguage; word: string; meaning: string; pos?: PartOfSpeech; example: string; translation: string; image?: string }) {
+  const w = word.trim()
+  const marked = example.includes('*') ? example.split(/\*([^*]+)\*/) : (() => {
+    const i = w ? example.toLowerCase().indexOf(splitArticle(normalize(w).toLocaleLowerCase(language), language).rest || w.toLowerCase()) : -1
+    const len = (splitArticle(normalize(w).toLocaleLowerCase(language), language).rest || w).length
+    return i >= 0 ? [example.slice(0, i), example.slice(i, i + len), example.slice(i + len)] : [example]
+  })()
+  return (
+    <aside className="word-preview" aria-label="Önizleme">
+      <span className="word-preview-kicker small">Önizleme</span>
+      <div className="word-preview-card">
+        {image && <img className="word-preview-image" src={image} alt={`${w || 'Kelime'} görseli`} />}
+        <div className="word-preview-head">
+          <Plant stage={-1} size={34} />
+          {pos && pos !== 'other' && <span className="chip-tag">{POS_NAME[pos]}</span>}
+        </div>
+        <p className={`word-preview-word${w ? '' : ' is-empty'}`} lang={language}>
+          {w || (language === 'fr' ? 'la décision' : language === 'es' ? 'la decisión' : 'decision')}
+        </p>
+        <p className={`word-preview-meaning${meaning.trim() ? '' : ' is-empty'}`}>{meaning.trim() || 'Türkçe anlamı'}</p>
+        {example.trim() && (
+          <div className="word-preview-example">
+            <p lang={language}>
+              {marked.map((part, i) => (i % 2 === 1 ? <mark key={i}>{part}</mark> : <span key={i}>{part.replace(/\*/g, '')}</span>))}
+            </p>
+            {translation.trim() && <p className="small muted">{translation}</p>}
+          </div>
+        )}
+      </div>
+      <p className="small muted">Eklenince tohum olarak başlar; çalıştıkça büyür.</p>
+    </aside>
+  )
+}
