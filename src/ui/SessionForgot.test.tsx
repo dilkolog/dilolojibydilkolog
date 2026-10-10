@@ -83,7 +83,15 @@ describe('Session: "Unuttum" (I forgot) feature', () => {
     })
 
     // Results feedback shows the reassuring forgot message
-    expect(container.textContent).toContain('Hatırlayamadığını söyledin: sorun değil, cevaba bak; kelime yakında tekrar gelecek.')
+    expect(container.textContent).toContain('Bakarak öğrenmek de öğrenmektir: bu kelime birazdan bir kez daha gelecek.')
+
+    // It is a lesson, not a mistake: its own sheet (not the red one), its own title, and one note, not two that repeat each other.
+    expect(container.querySelector('.sheet.forgot')).not.toBeNull()
+    expect(container.querySelector('.sheet.wrong')).toBeNull()
+    expect(container.textContent).toContain('Unuttun, olur. İşte cevap:')
+    expect(container.textContent).not.toContain('Olsun, doğrusu')
+    expect(container.querySelector('.return-note')).toBeNull()
+    expect(container.textContent).not.toContain('Yanlış dokundum')
 
     // Expected answer is revealed
     expect(container.textContent).toContain('ev')
@@ -111,7 +119,7 @@ describe('Session: "Unuttum" (I forgot) feature', () => {
     })
 
     // Same feedback as clicking
-    expect(container.textContent).toContain('Hatırlayamadığını söyledin: sorun değil, cevaba bak; kelime yakında tekrar gelecek.')
+    expect(container.textContent).toContain('Bakarak öğrenmek de öğrenmektir: bu kelime birazdan bir kez daha gelecek.')
     expect(container.querySelector('button.forgot-chip')).toBeNull()
   })
 })

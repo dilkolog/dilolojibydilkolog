@@ -1,3 +1,4 @@
+import type { Trouble } from './engine/trouble'
 import type { ReactElement } from 'react'
 import type { PlanItem } from './engine/dailyPlan'
 import type { SessionSummary } from './engine/session'
@@ -26,6 +27,8 @@ export interface LanguageData {
   recentEvents: ReviewEvent[]
   /** Word lists of this language. */
   lists: WordList[]
+  /** Words the ear or voice struggles with (dictation misses, low pronunciation scores). */
+  trouble: ReadonlyMap<string, Trouble>
 }
 
 /** One plan per calendar day: reopening the app the same day gives the same order. */

@@ -5126,3 +5126,18 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .shell:not(.is-rail) .sidebar .brand { padding-left: 0.625rem; gap: 0.5rem; }
   .shell:not(.is-rail) .sidebar .brand-mark { width: 1.75rem; height: 1.75rem; }
 }
+
+/* "Unuttum": the answer is a lesson, in the language's own colour instead of the red of a mistake. */
+.sheet.forgot { --verdict: var(--lang); --verdict-text: var(--lang-text); background: color-mix(in srgb, var(--verdict) 9%, var(--surface)); border-color: color-mix(in srgb, var(--verdict) 38%, transparent); }
+
+/* Study settings: the one button sits in the middle of the footer. */
+.ss-foot { justify-content: center; }
+
+/* On/off switches: the knob glides with a little spring and stretches under the finger, the track fades to the colour. */
+.switch { transition: background-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out); }
+.switch span { transition: transform 320ms var(--ease-spring), width 160ms var(--ease-out); }
+.switch:active span { width: 1.75rem; }
+.switch[aria-checked='true']:active span { transform: translateX(0.875rem); }
+@media (prefers-reduced-motion: reduce) {
+  .switch, .switch span { transition-duration: 1ms; }
+}
