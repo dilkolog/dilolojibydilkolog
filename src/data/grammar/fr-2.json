@@ -1,0 +1,567 @@
+[
+  {
+    "id": "fr-subjonctif-07",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "Bien que nous ___ fatigués, nous irons à cette fête.",
+    "answer": "soyons",
+    "options": [
+      "soyons",
+      "sommes",
+      "serons"
+    ],
+    "hint": "bien que → subjonctif",
+    "explanation": "« Bien que » (-e rağmen) bağlacı her zaman subjonctif gerektirir. Être fiilinin « nous » için subjonctif çekimi « soyons » biçimindedir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-08",
+    "language": "fr",
+    "level": "B2",
+    "topic": "subjonctif",
+    "type": "cloze",
+    "prompt": "Il est nécessaire que vous ___ (savoir) toute la vérité avant de décider.",
+    "answer": "sachiez",
+    "hint": "savoir → subjonctif présent (vous)",
+    "explanation": "Gereklilik bildiren « il est nécessaire que » kalıbından sonra subjonctif kullanılır. Savoir fiilinin 'vous' çekimi düzensizdir: que vous sachiez.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-09",
+    "language": "fr",
+    "level": "B2",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "Je regrette que tu ne ___ pas pu assister au concert hier.",
+    "answer": "aies",
+    "options": [
+      "aies",
+      "as",
+      "avais"
+    ],
+    "hint": "regretter que + geçmiş zaman",
+    "explanation": "Duygu bildiren « regretter que » subjonctif ister; geçmişteki olay için subjonctif passé kurulur: que tu aies pu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-10",
+    "language": "fr",
+    "level": "C1",
+    "topic": "subjonctif",
+    "type": "cloze",
+    "prompt": "Quoiqu’il ___ (faire) froid dehors, il sort sans manteau.",
+    "answer": "fasse",
+    "alternatives": ["fasse"],
+    "hint": "quoique → subjonctif",
+    "explanation": "« Quoique » (-e rağmen) bağlacı subjonctif gerektirir. Faire fiili için: quoiqu’il fasse froid.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-11",
+    "language": "fr",
+    "level": "B2",
+    "topic": "subjonctif",
+    "type": "error",
+    "prompt": "Je doute fort qu’elle réussit cet examen sans réviser.",
+    "answer": "réussit",
+    "fix": "réussisse",
+    "explanation": "Şüphe bildiren « douter que » subjonctif ister: 2. grup réussit indicatif'tir, doğrusu « réussisse » olmalıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-12",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "cloze",
+    "prompt": "Mes parents veulent que je ___ (choisir) moi-même ma carrière.",
+    "answer": "choisisse",
+    "hint": "choisir → subjonctif présent (je)",
+    "explanation": "İstek bildiren « vouloir que » subjonctif gerektirir. Choisir (2. grup) için: que je choisisse.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-13",
+    "language": "fr",
+    "level": "B2",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "À moins qu’il ne ___ ce week-end, nous irons camper.",
+    "answer": "pleuve",
+    "options": [
+      "pleuve",
+      "pleut",
+      "pleuvra"
+    ],
+    "hint": "à moins que → subjonctif",
+    "explanation": "« À moins que » (-medikçe / olmadıkça) bağlacı subjonctif gerektirir: à moins qu'il ne pleuve.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-14",
+    "language": "fr",
+    "level": "C1",
+    "topic": "subjonctif",
+    "type": "cloze",
+    "prompt": "C’est la plus belle ville que j’aie jamais ___ (visiter).",
+    "answer": "visitée",
+    "hint": "en üstünlük derecesi + COD uyumu",
+    "explanation": "Üstünlük derecelerinden (le plus / la plus) sonra bağıl cümlede subjonctif passé kullanılır ve fiil öncesi gelen nesneyle (la ville) ortaç uyar: visitée.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-15",
+    "language": "fr",
+    "level": "B2",
+    "topic": "subjonctif",
+    "type": "error",
+    "prompt": "Bien qu’il a beaucoup d'argent, cet homme n'aide personne.",
+    "answer": "a",
+    "fix": "ait",
+    "explanation": "« Bien que » bağlacından sonra indicatif (a) gelemez; subjonctif kullanımı zorunludur (bien qu'il ait).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-16",
+    "language": "fr",
+    "level": "C1",
+    "topic": "subjonctif",
+    "type": "cloze",
+    "prompt": "Il semble qu'aucun témoin n'___ (avoir) remarqué son départ.",
+    "answer": "ait",
+    "hint": "il semble que → subjonctif",
+    "explanation": "Kişisiz « il semble que » belirsizlik içerdiğinde subjonctif ister: avoir için 'ait' biçimi kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-07",
+    "language": "fr",
+    "level": "B1",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Mes sœurs sont ___ très tôt ce matin.",
+    "answer": "parties",
+    "options": [
+      "parties",
+      "parti",
+      "partie"
+    ],
+    "hint": "être ile özne uyumu (dişil çoğul)",
+    "explanation": "« Être » yardımcı fiili ile kurulan geçmiş zamanlarda ortaç (participe passé) özneyle cinsiyet ve sayıda uyar: mes sœurs (dişil çoğul) → parties.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-08",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "cloze",
+    "prompt": "Voici les chansons que nous avons ___ (écouter) ensemble.",
+    "answer": "écoutées",
+    "hint": "COD (les chansons) fiilden önce",
+    "explanation": "Avoir ile kurulan zamanlarda nesne zamiri veya ilgi zamiri (que = les chansons, dişil çoğul) fiilden önce gelirse ortaç nesneyle uyar: écoutées.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-09",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Marie s’est ___ les mains avant de passer à table.",
+    "answer": "lavé",
+    "options": [
+      "lavé",
+      "lavée",
+      "lavées"
+    ],
+    "hint": "doğrudan nesne (les mains) fiilden sonra",
+    "explanation": "Dönüşlü fiillerde doğrudan nesne (les mains) fiilden SONRA gelirse ortaç özneyle uymaz, yalın eril tekil kalır: elle s'est lavé les mains.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-10",
+    "language": "fr",
+    "level": "C1",
+    "topic": "participe_passe",
+    "type": "cloze",
+    "prompt": "Les fleurs qu'il a ___ (faire) livrer sont magnifiques.",
+    "answer": "fait",
+    "hint": "faire + mastar fiil kuralı",
+    "explanation": "« Faire + mastar » yapısında 'fait' ortacı asla uyuma girmez, nesne fiilden önce gelse bile her zaman değişmez kalır: fait livrer.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-11",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "error",
+    "prompt": "Combien de villes as-tu visité pendant tes vacances ?",
+    "answer": "visité",
+    "fix": "visitées",
+    "explanation": "« Combien de villes » (çoğul dişil nesne) fiilden önce geldiği için avoir ile de olsa ortaç nesneyle uyar: visitées.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-12",
+    "language": "fr",
+    "level": "B1",
+    "topic": "participe_passe",
+    "type": "cloze",
+    "prompt": "La décision finale a été ___ (prendre) à l'unanimité.",
+    "answer": "prise",
+    "hint": "edilgen yapı (la décision, dişil tekil)",
+    "explanation": "Edilgen çatıda (être + participe passé) ortaç her zaman özneyle cinsiyet ve sayı bakımından uyar: la décision a été prise.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-13",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Ces deux amies se sont ___ chaleureusement à la gare.",
+    "answer": "embrassées",
+    "options": [
+      "embrassées",
+      "embrassé",
+      "embrasser"
+    ],
+    "hint": "karşılıklı eylem (se = birbirini, doğrudan nesne)",
+    "explanation": "İşteş fiillerde 'se' zamiri doğrudan nesne (birbirini öptüler) konumundadır ve fiilden önce geldiği için ortaç özneyle (dişil çoğul) uyar: embrassées.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-14",
+    "language": "fr",
+    "level": "C1",
+    "topic": "participe_passe",
+    "type": "cloze",
+    "prompt": "La chanteuse que j'ai ___ (entendre) chanter avait une voix divine.",
+    "answer": "entendue",
+    "hint": "eylemi yapan nesne fiilden önce",
+    "explanation": "Algı fiillerinde (entendre, voir) mastarın eylemini yapan nesne (la chanteuse) fiilden önce geliyorsa ortaç uyar: j'ai entendue chanter.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-15",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "error",
+    "prompt": "Les robes bleues qu'elle a acheté sont splendides.",
+    "answer": "acheté",
+    "fix": "achetées",
+    "explanation": "« Que » (= les robes bleues, çoğul dişil nesne) fiilden önce yer aldığından avoir ile ortaç nesneye uyar: achetées.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-16",
+    "language": "fr",
+    "level": "C1",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Ils se sont ___ des messages secrets pendant un an.",
+    "answer": "écrit",
+    "options": [
+      "écrit",
+      "écrits",
+      "écrites"
+    ],
+    "hint": "se dolaylı tümleç (écrire à quelqu'un)",
+    "explanation": "« Écrire à quelqu'un » dolaylı tümleç aldığından 'se' dolaylı nesnedir (COI); doğrudan nesne (des messages) fiilden sonra geldiği için uyum yapılmaz: écrit.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-07",
+    "language": "fr",
+    "level": "B1",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "L'homme ___ parle là-bas est notre professeur d'histoire.",
+    "answer": "qui",
+    "options": [
+      "qui",
+      "que",
+      "dont"
+    ],
+    "hint": "yan cümlenin öznesi",
+    "explanation": "Bağıl yan cümlenin öznesi konumundaki ilgi zamiri 'qui'dir (fiilden önce gelir): l'homme qui parle.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-08",
+    "language": "fr",
+    "level": "B1",
+    "topic": "pronoms_relatifs",
+    "type": "cloze",
+    "prompt": "Le nouveau projet ___ nous parlons exige beaucoup d'énergie.",
+    "answer": "dont",
+    "hint": "parler de → dont",
+    "explanation": "« Parler de » yapısı 'de' edatı aldığından, onun yerini tutan ilgi zamiri 'dont' olur: le projet dont nous parlons.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-09",
+    "language": "fr",
+    "level": "B2",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "L'entreprise pour ___ elle travaille est située au centre de Paris.",
+    "answer": "laquelle",
+    "options": [
+      "laquelle",
+      "lequel",
+      "lesquels"
+    ],
+    "hint": "pour + dişil tekil isim",
+    "explanation": "Edatlardan (pour, avec, sans vb.) sonra cansız isimler için bileşik ilgi zamiri uyar: une entreprise (dişil tekil) → pour laquelle.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-10",
+    "language": "fr",
+    "level": "B2",
+    "topic": "pronoms_relatifs",
+    "type": "cloze",
+    "prompt": "C'est une situation délicate à ___ je n'avais pas pensé.",
+    "answer": "laquelle",
+    "alternatives": ["laquelle"],
+    "hint": "penser à + dişil tekil",
+    "explanation": "« Penser à » yapısı 'à' edatı gerektirir; dişil tekil isim (une situation) için 'à laquelle' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-11",
+    "language": "fr",
+    "level": "C1",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "Les tiroirs au fond ___ j'ai rangé ces clés sont verrouillés.",
+    "answer": "desquels",
+    "options": [
+      "desquels",
+      "duquel",
+      "auxquels"
+    ],
+    "hint": "au fond de + eril çoğul isim",
+    "explanation": "« Au fond de » edat öbeği 'de' gerektirir. 'Les tiroirs' eril çoğul olduğundan 'de + lesquels' birleşerek 'desquels' olur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-12",
+    "language": "fr",
+    "level": "B2",
+    "topic": "pronoms_relatifs",
+    "type": "error",
+    "prompt": "Le problème que j'ai peur ne s'est pas produit.",
+    "answer": "que",
+    "fix": "dont",
+    "explanation": "« Avoir peur de » 'de' edatı aldığından nesne 'que' değil, 'dont' olmalıdır: le problème dont j'ai peur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-13",
+    "language": "fr",
+    "level": "B1",
+    "topic": "pronoms_relatifs",
+    "type": "cloze",
+    "prompt": "Le village ___ nous passons nos étés est très calme.",
+    "answer": "où",
+    "alternatives": ["dans lequel"],
+    "hint": "yer bildiren bağıl zamir",
+    "explanation": "Yer veya zaman belirten durumlarda ilgi zamiri 'où' kullanılır: le village où nous passons nos étés.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-14",
+    "language": "fr",
+    "level": "B2",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "Ce sont des arguments grâce ___ nous avons convaincu le jury.",
+    "answer": "auxquels",
+    "options": [
+      "auxquels",
+      "desquels",
+      "lesquels"
+    ],
+    "hint": "grâce à + eril çoğul isim",
+    "explanation": "« Grâce à » edatı 'à' ister. Des arguments (eril çoğul) ile birleşince 'à + lesquels' → 'auxquels' olur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-15",
+    "language": "fr",
+    "level": "C1",
+    "topic": "pronoms_relatifs",
+    "type": "cloze",
+    "prompt": "Ce ___ m'inquiète le plus, c'est son manque total de sommeil.",
+    "answer": "qui",
+    "hint": "özne durumundaki nötr ilgi zamiri",
+    "explanation": "Belirli bir öncülü olmayan genel fikirlerde, yan cümlenin öznesi ise 'ce qui', nesnesi ise 'ce que' kullanılır: ce qui m'inquiète.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-16",
+    "language": "fr",
+    "level": "C1",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "La raison principale pour ___ j'ai démissionné reste confidentielle.",
+    "answer": "laquelle",
+    "options": [
+      "laquelle",
+      "lequel",
+      "lesquelles"
+    ],
+    "hint": "pour + la raison (dişil tekil)",
+    "explanation": "« Pour » edatı ardından gelen ilgi zamiri dişil tekil olan 'la raison' ile uyar: pour laquelle.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-07",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "Si tu avais révisé tes cours, tu ___ facilement cet examen.",
+    "answer": "aurais réussi",
+    "options": [
+      "aurais réussi",
+      "avais réussi",
+      "réussirais"
+    ],
+    "hint": "si + plus-que-parfait → conditionnel passé",
+    "explanation": "Geçmişte gerçekleşmemiş şart kalıbında 'si + plus-que-parfait' ana cümlede 'conditionnel passé' ister: tu aurais réussi.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-08",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "cloze",
+    "prompt": "Si elle avait su la vérité, elle ne nous ___ (mentir / conditionnel passé) pas.",
+    "answer": "aurait menti",
+    "alternatives": ["aurait menti"],
+    "hint": "mentir → conditionnel passé (elle)",
+    "explanation": "Si + plus-que-parfait kurgusunda ana cümle conditionnel passé alır: elle ne nous aurait pas menti.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-09",
+    "language": "fr",
+    "level": "B1",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "Si nous avions eu le temps, nous ___ venus te rendre visite.",
+    "answer": "serions",
+    "options": [
+      "serions",
+      "serons",
+      "étions"
+    ],
+    "hint": "venir ile conditionnel passé (être)",
+    "explanation": "Venir fiili geçmiş zamanlarda 'être' alır; conditionnel passé hali 'nous serions venus' biçimindedir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-10",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "error",
+    "prompt": "Si j'aurais su l'heure exacte, je ne serais pas arrivé en retard.",
+    "answer": "aurais",
+    "fix": "avais",
+    "explanation": "Fransızcada 'si' şart yan cümlesinde conditionnel kullanılmaz; geçmiş şart için plus-que-parfait (si j'avais su) zorunludur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-11",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "cloze",
+    "prompt": "Sans ton aide précieuse, je n'___ (pouvoir) jamais finir ce rapport.",
+    "answer": "aurais pu",
+    "hint": "pouvoir → conditionnel passé (je)",
+    "explanation": "Gizli şart bildiren « sans ton aide » ifadesi geçmişte imkansızlığı anlatır ve conditionnel passé gerektirir: je n'aurais pu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-12",
+    "language": "fr",
+    "level": "C1",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "Au cas où il y ___ un imprévu, appelez ce numéro d'urgence.",
+    "answer": "aurait",
+    "options": [
+      "aurait",
+      "ait",
+      "avait"
+    ],
+    "hint": "au cas où + conditionnel",
+    "explanation": "« Au cas où » (-mesi ihtimaline karşı) bağlacı her zaman conditionnel kipiyle kullanılır: au cas où il y aurait.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-13",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "cloze",
+    "prompt": "Vous ___ (devoir) me prévenir plus tôt de cette annulation !",
+    "answer": "auriez dû",
+    "hint": "devoir → conditionnel passé (sitem)",
+    "explanation": "Geçmişe yönelik sitem veya yapılmamış ödev bildirirken « devoir » fiilinin conditionnel passé biçimi kullanılır: vous auriez dû me prévenir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-14",
+    "language": "fr",
+    "level": "C1",
+    "topic": "conditionnel_passe",
+    "type": "error",
+    "prompt": "Si vous m'auriez prévenu hier, j'aurais préparé tous les dossiers.",
+    "answer": "auriez",
+    "fix": "aviez",
+    "explanation": "« Si » bağlacından sonra conditionnel passé gelemez; kural gereği plus-que-parfait (si vous m'aviez prévenu) kullanılmalıdır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-15",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "J'___ bien voulu venir avec toi, mais j'avais un empêchement majeur.",
+    "answer": "aurais",
+    "options": [
+      "aurais",
+      "avais",
+      "aurai"
+    ],
+    "hint": "vouloir ile geçmişte kalan istek",
+    "explanation": "Geçmişte gerçekleşemeyen arzu ve nezaket bildirmek için conditionnel passé kullanılır: j'aurais bien voulu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-16",
+    "language": "fr",
+    "level": "C1",
+    "topic": "conditionnel_passe",
+    "type": "cloze",
+    "prompt": "Même si elle avait insisté, nous n'___ (accepter) jamais une telle offre.",
+    "answer": "aurions accepté",
+    "alternatives": ["aurions accepté"],
+    "hint": "accepter → conditionnel passé (nous)",
+    "explanation": "« Même si + plus-que-parfait » yapısında ana cümle geçmişteki varsayımı ifade eden conditionnel passé alır: nous n'aurions accepté.",
+    "source": "Diloloji (özgün)"
+  }
+]
