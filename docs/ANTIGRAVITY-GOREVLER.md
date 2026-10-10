@@ -153,12 +153,13 @@ Son turlarda bölünen dosyalar yeni; davranışı sabitleyen bileşen testi yaz
 
 **Çakışma uyarısı:** Claude Code `src/ui/Reading*.tsx`, `Listening.tsx`, `Session.tsx`, `src/engine/` ve `index.css`'in hareket/ikon bölümlerinde çalışıyor. Aşağıdaki işler bunlara **dokunmaz** (yeni dosya, `docs/`, `scripts/`, `e2e/`, `src/data/audiobooks/`); dokunman gerekirse PR açıklamasına yaz.
 
-### 6.1 LibriVox ses kitapları: bölüm bazlı metin-ses eşleştirme (veri)
+### 6.1 LibriVox ses kitapları: bölüm bazlı metin-ses eşleştirme (veri; TAMAMLANDI — `scripts/build-audiobook-chapters.ts`, `src/data/audiobooks/{fr,es}.json`, `docs/kaynaklar/audiobooks-chapters.md`)
 Sorun: `docs/kaynaklar/audiobooks-{fr,es}.json`'daki her ses tek bir kitaba (ör. La Fontaine "Livre 01", 44 dk) ait, ama Gutenberg metni tüm eserin tek dosyası. Uygulamada metnin sesi sentence-by-sentence takip edebilmesi için **ses parçası ile metin bölümü birebir** örtüşmeli (aynı kısım, aynı baskı).
 - En iyi 6–8 eseri seç (kısa, B1–B2, FR ve ES dengeli). Her biri için **bölüm bölüm**: LibriVox bölüm MP3'ü (doğrudan dosya, `HEAD` ile doğrula), Gutenberg metninde o bölümün **başlangıç ve bitiş işaretleri**, bölüm süresi, ve eşleşmenin doğrulandığı (ses 1–2 dakikasını metinle karşılaştırdığın) not.
 - Çıktı: `scripts/build-audiobook-chapters.ts` (Gutenberg düz metnini indirip bölümlere böler, başlık/dipnot/Gutenberg lisans başlığını ayıklar) ve `src/data/audiobooks/{fr,es}.json` (`id`, `title`, `author`, `chapter`, `audioUrl`, `text`, `credit`, `license`). Metin kamu malı; künyede LibriVox okuyucusu ve Gutenberg kimliği yer alsın.
 - Uygulamaya bağlama (arayüz) **Claude Code'da**: sen yalnızca veri ve betik; `ReadingText` biçimiyle (`title`, `text`, `audio`, `credit`, `source`) uyumlu alanlar ver.
 - Eşleşmesi doğrulanamayan bölümü veriye koyma, raporda "elendi (neden)" listele.
+
 
 ### 6.2 Görsel referansları yenileme (hâlâ açık)
 Actions kotası döndüyse `gh workflow run snapshots.yml --ref main`. Son turlarda değişenler: logo (sol üst), yan menü adı, Çeviri ekranı, Oyunlar listesi ve ikonları, okuma araç satırı (Çekimler/Dikte/Gölgele ikonları), ses paneli, fiil turu kartı, oturum özeti kademeli girişi. Beklenmeyen fark çıkarsa nedenini bul ve yaz.

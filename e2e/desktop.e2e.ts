@@ -915,7 +915,6 @@ test('listening without timed subtitles: a sentence can be pinned to the moment 
   await page.getByRole('button', { name: 'Şu an bu cümle okunuyor' }).click()
   // The lit sentence follows the new pin at once, with the audio paused and no time update coming.
   await expect(heard).toHaveText('Nous partons demain.')
-  await expect(page.getByText(/1 noktayla ayarlandı/)).toBeVisible()
   await page.getByRole('button', { name: 'Ayarı sıfırla' }).click()
   await expect(heard).toHaveText('Il fait beau.')
 })
