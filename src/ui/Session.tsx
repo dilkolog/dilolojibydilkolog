@@ -19,7 +19,7 @@ import { LANGUAGE_NAME, PROMPT_TEXT } from './labels'
 import { AiError, evaluateSentence, evaluateTranslation } from '../ai'
 import { useAi } from './aiContext'
 import { ConfirmDialog } from './Dialog'
-import { BoltIcon, CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, SlowIcon, StarIcon } from './icons'
+import { BoltIcon, CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, HourglassIcon, SlowIcon, StarIcon } from './icons'
 import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
 import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './speech'
@@ -507,12 +507,13 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
     ev: Graded,
     hintsUsed: number,
     maxHints: number,
-    { chosen, ms = Math.round(performance.now() - startedAt.current), shift = false }: { chosen?: string; ms?: number; shift?: boolean } = {},
+    { chosen, ms = Math.round(performance.now() - startedAt.current), shift = false, forgot = false }: { chosen?: string; ms?: number; shift?: boolean; forgot?: boolean } = {},
   ) => {
     // Guards against a double click/keypress recording the same answer twice.
     if (busy.current) return
     busy.current = true
-    const confidence: Confidence | undefined = asksConfidence ? (unsure || shift ? 'unsure' : 'sure') : undefined
+    // Forgotten outright is no guess either way: no "you were sure" scolding, no "you guessed" note.
+    const confidence: Confidence | undefined = asksConfidence && !forgot ? (unsure || shift ? 'unsure' : 'sure') : undefined
     const log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence)
     setResult({ ev, log, chosen, confidence })
     if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
@@ -550,6 +551,30 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
     }
   }
 
+  /** "Unuttum": nothing comes to mind. The answer is shown, it counts as a miss (back soon), and no wrong guess is recorded. */
+  const canForget = !result && !pending && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation'
+  const forget = () => {
+    if (!canForget) return
+    const note = 'Hatırlayamadığını söyledin: sorun değil, cevaba bak; kelime yakında tekrar gelecek.'
+    if (exercise.kind === 'choice') {
+      const expected = exercise.options.find((o) => o.id === exercise.correctOptionId)!.label
+      void submit({ verdict: 'wrong', errorType: 'meaning', given: '', expected, feedback: note }, 0, 0, { forgot: true })
+    } else {
+      void submit({ verdict: 'wrong', errorType: 'meaning', given: '', expected: exercise.accepted[0], feedback: note }, 0, exercise.kind === 'typed' ? exercise.hints.length : 0, { forgot: true })
+    }
+  }
+  useEffect(() => {
+    if (!canForget) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.altKey && e.code === 'KeyU') {
+        e.preventDefault()
+        forget()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div>
       <div className="prompt-head">
@@ -579,6 +604,12 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
           {unsure ? <CheckIcon size={15} className="inline-icon" /> : <HelpIcon size={15} className="inline-icon" />}
           Emin değilim
           {unsure && <span className="small muted"> · şimdi cevabını seç</span>}
+        </button>
+      )}
+      {canForget && (
+        <button type="button" className="unsure-chip forgot-chip" title="Hiçbir şey aklıma gelmiyor: cevabı göster (Alt + U)" onClick={forget}>
+          <HourglassIcon size={15} className="inline-icon" />
+          Unuttum
         </button>
       )}
       {!result && (

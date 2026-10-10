@@ -328,6 +328,56 @@ test('a new word can be asked as a guess or shown as a card first, and one tap m
   await expect(page.locator('.session-stage .badge', { hasText: 'Yeni kelime' })).toBeVisible()
 })
 
+test('the verb round card goes away with a swipe to the left, stays away for the day, and can be taken back', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page)
+  const card = page.getByRole('region', { name: 'Bugünün fiil turu' })
+  await expect(card).toBeVisible()
+  const drag = (dx: number) =>
+    card.evaluate((el, dx) => {
+      const r = el.getBoundingClientRect()
+      const init = { pointerId: 7, pointerType: 'touch', bubbles: true, clientY: r.top + r.height / 2 }
+      const x = r.left + r.width - 20
+      el.dispatchEvent(new PointerEvent('pointerdown', { ...init, clientX: x }))
+      el.dispatchEvent(new PointerEvent('pointermove', { ...init, clientX: x + dx / 2 }))
+      el.dispatchEvent(new PointerEvent('pointermove', { ...init, clientX: x + dx }))
+      el.dispatchEvent(new PointerEvent('pointerup', { ...init, clientX: x + dx }))
+    }, dx)
+  // A short drag springs back.
+  await drag(-40)
+  await expect(card).toBeVisible()
+  // A long one puts it away, with a way back.
+  await drag(-160)
+  await expect(card).toHaveCount(0)
+  await expect(page.getByText('Bugünün fiil turu gizlendi')).toBeVisible()
+  await page.getByRole('button', { name: 'Geri al' }).click()
+  await expect(card).toBeVisible()
+})
+
+test('"Unuttum" shows the answer at once, counts as a miss with no guess recorded, and the session goes on', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  const chip = page.locator('.prompt-tools .forgot-chip')
+  for (let i = 0; i < 40 && !(await chip.count()); i++) {
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const guess = page.locator('.session-stage .option:not([disabled])')
+    if (await next.count()) await next.first().click()
+    else if (await guess.count()) await guess.first().click()
+    await page.waitForTimeout(200)
+  }
+  await expect(chip).toHaveText('Unuttum')
+  await chip.click()
+  const sheet = page.locator('.sheet')
+  await expect(sheet).toContainText('Hatırlayamadığını söyledin')
+  // The answer is shown, and neither "you were sure" nor "you guessed" is said.
+  await expect(sheet.locator('.expected')).not.toBeEmpty()
+  await expect(sheet).not.toContainText('Emin değilim” demeden')
+  await expect(sheet).not.toContainText('tahmin olarak kaydedildi')
+  await expect(page.locator('.prompt-tools .forgot-chip')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
 test('a question has a labelled "Zor" chip beside "Emin değilim", and it marks the word like the bolt does', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)
