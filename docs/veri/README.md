@@ -117,3 +117,24 @@ Sözlük paketlerindeki (`src/data/wordpack/{en,fr,es}.json`) ses URL'lerine (`a
   - **İspanyolca (ES):** Paketteki 6 transcoded adresin tamamı 200 dönmektedir; kalan 7.873 ses doğrudan Lingua Libre WAV dosyası olup Commons ana depolamasında yer almaktadır.
 - **Teknik Not (Rate Limiting):** Wikimedia Commons CDN'i (upload.wikimedia.org), aynı IP adresinden 300 ms aralıkla dahi gelse birkaç yüz istekten sonra geçici olarak `429 Too Many Requests` döndürmektedir. Bu nedenle tüm paketlerin periyodik kontrolü için istek aralıklarının 500–1000 ms tutulması önerilir.
 - *Çıktı:* [`dead-audio.json`](./dead-audio.json) dosyasında dile göre listelenmiştir.
+
+---
+
+## 7. Dilbilgisi Soruları Gözden Geçirme (`gramer-gozden-gecirme.md`)
+
+Mevcut 96 dilbilgisi sorusu (24 FR, 36 ES, 36 EN) pedagojik, tipolojik ve dilbilgisel açılardan incelenmiş; tespit edilen yazım ve şablon tutarsızlıkları belgelenmiştir. 120 yeni soru (`*-2.json`) için benzersiz token ve açıklama standartları belirlenmiştir.
+
+- *Ayrıntılı rapor:* [`gramer-gozden-gecirme.md`](./gramer-gozden-gecirme.md) dosyasındadır.
+
+---
+
+## 8. Minimal Çift Ses Kayıtları Denetimi (`minimal-cift-kayitlari.md`)
+
+`src/engine/listening.ts` dosyasındaki `MINIMAL_PAIRS` listesine son eklenen 26 minimal çift (52 kelime: 14 EN, 7 FR, 5 ES) taranmış; yüksek değişkenlikli fonetik eğitim (HVPT) için gerekli olan kelime başına ≥2 konuşmacı durumu incelenmiştir.
+
+- **İngilizce:** Kelimelerin %54'ünde ≥2 konuşmacı mevcut; tüm kelimeler en az 1 gerçek ana dil kaydına sahip.
+- **Fransızca:** `son` istisnası hariç kelimelerin %93'ünde 4–11 farklı konuşmacı mevcut.
+- **İspanyolca:** İngilizce Wiktionary'nin `{{es-pr}}` modülü ve çekimli fiil formları nedeniyle oyun yerel Web Speech API sesine geçmektedir.
+- **Açık Kaynaklar:** Commons, Shtooka (CC BY 3.0 US) ve lisans ihlali yaratan Forvo kısıtlaması değerlendirilmiştir.
+- *Ayrıntılı rapor:* [`minimal-cift-kayitlari.md`](./minimal-cift-kayitlari.md) dosyasındadır.
+
