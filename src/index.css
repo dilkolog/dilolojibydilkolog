@@ -5060,3 +5060,35 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
    dialog off with no way to the rest of it. */
 .dialog { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
 
+/* ---------- Translate screen ---------- */
+/* Wide: the text to translate on the left (it stays in view), the result beside it. */
+.translate-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; align-items: start; }
+@container main (width >= 46rem) {
+  .translate-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .translate-input { position: sticky; top: 1rem; }
+}
+.translate-dir { display: flex; align-items: center; gap: 0.5rem; }
+.translate-lang { flex: 1; min-width: 0; padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2); border: 1px solid var(--rule); font-weight: 700; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.translate-swap { flex: none; border: 1px solid var(--rule); background: var(--surface); }
+.translate-field { position: relative; }
+.translate-field .textarea { box-sizing: border-box; width: 100%; padding-right: 2.5rem; min-height: 9rem; resize: vertical; }
+.translate-clear { position: absolute; top: 0.5rem; right: 0.5rem; }
+.translate-paste { position: absolute; right: 0.5rem; bottom: 0.5rem; }
+.translate-hint kbd { font-size: var(--t-xs); }
+.translate-foot { align-items: center; }
+.translate-actions { align-items: center; }
+.translate-all { flex-wrap: wrap; padding-top: 0.25rem; }
+.translate-wait { display: grid; gap: 0.5rem; }
+.translate-wait .sk-line { height: 0.875rem; max-width: 100%; }
+.translate-wait .sk-line:last-child { width: 60%; }
+.translate-placeholder { display: grid; place-items: center; gap: 0.5rem; min-height: 9rem; text-align: center; color: var(--ink-soft); border-style: dashed; box-shadow: none; }
+.translate-placeholder p { margin: 0; max-width: 24rem; }
+@container main (width < 46rem) { .translate-placeholder { display: none; } }
+.translate-recent li { padding-bottom: 0; border-bottom: 0; }
+.translate-recent-btn { display: grid; gap: 0.25rem; width: 100%; text-align: left; padding: 0.625rem 0.75rem; border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); font: inherit; color: inherit; cursor: pointer; transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out); }
+.translate-recent-btn:hover { border-color: var(--lang); background: var(--lang-soft); }
+.translate-recent-btn:focus-visible { outline-offset: 2px; }
+.translate-dirtag { justify-self: start; font-size: var(--t-xs); }
+.translate-recent .translate-source { font-family: var(--serif); font-size: var(--t-md); }
+.translate-recent .translate-target { color: var(--ink-soft); }
+@media (hover: none) { .translate-hint { display: none; } }

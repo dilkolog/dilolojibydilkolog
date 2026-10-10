@@ -176,6 +176,23 @@ export const ShuffleIcon = (p: P) => (
     <path d="M3 6.5h3.2c4 0 5.8 11 9.8 11H21M3 17.5h3.2c1.5 0 2.7-1.6 3.7-3.7M13.6 10.2c1-2.1 2.2-3.7 3.7-3.7H21M18 3.5l3 3-3 3M18 14.5l3 3-3 3" />
   </Icon>
 )
+export const SwapIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5M20 16H6M9.5 12.5 6 16l3.5 3.5" />
+  </Icon>
+)
+export const CopyIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M9 9h10a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 21H9a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 9 9z" />
+    <path d="M15.5 9V5.5A1.5 1.5 0 0 0 14 4H5a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 5 16h2.5" />
+  </Icon>
+)
+export const ClipboardIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M7 5.5h10a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V7A1.5 1.5 0 0 1 7 5.5z" />
+    <path d="M9.5 5.5V4.2a.7.7 0 0 1 .7-.7h3.6a.7.7 0 0 1 .7.7v1.3M9 11h6M9 15h4" />
+  </Icon>
+)
 export const TrashIcon = (p: P) => (
   <Icon {...p}>
     <S d="M6 7h12l-.9 12.1a2 2 0 0 1-2 1.9H8.9a2 2 0 0 1-2-1.9z" />
