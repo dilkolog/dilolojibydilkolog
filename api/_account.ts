@@ -14,6 +14,12 @@ import { allowedIds } from './_allow.js'
 export const ID = /^[0-9a-f]{64}$/
 export const TOKEN = /^[0-9a-f]{64}$/
 
+/**
+ * The approval is on once the owner has set ADMIN_TOKEN (the way to approve). Until then nothing
+ * is withheld, so deploying this changes nothing for anyone before the owner is ready.
+ */
+export const approvalOn = () => !!process.env.ADMIN_TOKEN?.trim()
+
 export type AccessStatus = 'none' | 'pending' | 'approved' | 'rejected'
 
 export async function sha256(s: string): Promise<string> {
@@ -76,6 +82,7 @@ export async function tokenMatches(id: string, token: string): Promise<boolean> 
 
 /** The account's place in the owner's approval: listed in SYNC_ALLOWED counts as approved. */
 export async function accessStatus(id: string): Promise<AccessStatus> {
+  if (!approvalOn()) return 'approved'
   const listed = await allowedIds()
   if (listed?.has(id)) return 'approved'
   return remember(`status:${id}`, 30_000, async (): Promise<AccessStatus> => {

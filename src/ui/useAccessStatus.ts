@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ACCOUNT_EVENT, cachedAccess, getStoredAccount, probeAccount, requestAccess, saveAccess, type AccessStatus } from '../data/access'
+import { ACCOUNT_EVENT, approvalEnabled, cachedAccess, forgetAccess, getStoredAccount, probeAccount, requestAccess, saveAccess, type AccessStatus } from '../data/access'
 import type { AccessState } from './accessContext'
 
 /** How often a waiting account asks whether it has been approved. */
@@ -18,7 +18,19 @@ export function useAccessStatus(): AccessState {
     const account = await getStoredAccount().catch(() => null)
     const cached = await cachedAccess().catch(() => null)
     setStatus(cached ?? (account ? 'none' : 'signedOut'))
-    if (!account || (typeof navigator !== 'undefined' && !navigator.onLine)) return
+    if (typeof navigator !== 'undefined' && !navigator.onLine) return
+    if (!account) {
+      // A visitor: everything is open until the owner has set approval up; then these screens wait for an account.
+      const enabled = await approvalEnabled()
+      if (enabled === false) {
+        await saveAccess('approved')
+        setStatus('approved')
+      } else if (enabled === true) {
+        await forgetAccess()
+        setStatus('signedOut')
+      }
+      return
+    }
     try {
       const probe = await probeAccount(account)
       let next: AccessStatus = probe.match ? probe.status : 'none'

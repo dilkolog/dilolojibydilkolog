@@ -50,12 +50,26 @@ async function mount() {
 }
 
 describe('useAccessStatus', () => {
-  it('signed out without an account; nothing is asked of the server', async () => {
-    const ask = vi.fn()
-    vi.stubGlobal('fetch', ask)
+  it('a visitor is signed out while the server asks for approval, and approved while it does not (before the owner has set it up)', async () => {
+    vi.stubGlobal('fetch', async () => Response.json({ enabled: true }))
     await mount()
     expect(state).toMatchObject({ status: 'signedOut', approved: false })
-    expect(ask).not.toHaveBeenCalled()
+    act(() => root?.unmount())
+    vi.stubGlobal('fetch', async () => Response.json({ enabled: false }))
+    await mount()
+    expect(state).toMatchObject({ status: 'approved', approved: true })
+    // Approval switched on later: the kept "approved" is let go.
+    act(() => root?.unmount())
+    vi.stubGlobal('fetch', async () => Response.json({ enabled: true }))
+    await mount()
+    expect(state).toMatchObject({ status: 'signedOut', approved: false })
+  })
+
+  it('a visitor offline, or a server that cannot say, keeps what the device last heard', async () => {
+    await saveAccess('approved')
+    vi.stubGlobal('fetch', async () => new Response('<html>', { status: 200 }))
+    await mount()
+    expect(state.approved).toBe(true)
   })
 
   it('takes the server\'s word and keeps it for next time', async () => {

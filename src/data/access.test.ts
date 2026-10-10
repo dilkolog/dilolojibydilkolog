@@ -58,7 +58,10 @@ describe('/api/access: signing up for the owner\'s approval', () => {
 
   it('refuses strangers, malformed requests and bad names', async () => {
     expect((await get({ 'x-sync-id': ALI, 'x-sync-auth': ALI_TOKEN })).status).toBe(403) // not from the app
-    expect((await get(APP)).status).toBe(400)
+    const visitor = await get(APP)
+    expect(visitor.status).toBe(200)
+    expect(await visitor.json()).toMatchObject({ enabled: true })
+    expect((await get({ ...APP, 'x-sync-id': ALI })).status).toBe(400)
     expect((await get({ ...APP, 'x-sync-id': 'zz', 'x-sync-auth': ALI_TOKEN })).status).toBe(400)
     expect((await post(as(ALI, ALI_TOKEN), { username: 'a' })).status).toBe(400)
     expect((await post(as(ALI, ALI_TOKEN), { username: 'ali baba' })).status).toBe(400)
@@ -179,5 +182,28 @@ describe('/api/sync and the approval', () => {
   it('a sync code (no token) works as before', async () => {
     expect((await put('c'.repeat(64), {})).status).toBe(204)
     expect((await read('c'.repeat(64), {})).status).toBe(200)
+  })
+})
+
+describe('before the owner has set ADMIN_TOKEN', () => {
+  it('nothing is withheld: every account counts as approved, sync and the quota endpoints work as before', async () => {
+    vi.stubEnv('ADMIN_TOKEN', '')
+    // A visitor is told approval is not asked for.
+    expect(await json(await get(APP))).toMatchObject({ enabled: false })
+    expect((await post(as(ALI, ALI_TOKEN), { username: 'ali' })).status).toBe(200)
+    expect(await json(await get(as(ALI, ALI_TOKEN)))).toMatchObject({ status: 'approved', exists: true, match: true })
+    // No request is filed: there is nobody to approve it.
+    expect([...blobs.keys()].filter((k) => k.startsWith('access/'))).toEqual([])
+    expect(await requireApproved(new Request('https://app.test/api/x', { headers: as(ALI, ALI_TOKEN) }))).toBeNull()
+    const put = await sync.PUT(new Request(`https://app.test/api/sync?id=${VELI}&part=core`, { method: 'PUT', headers: { 'x-sync-auth': VELI_TOKEN }, body: 'sealed' }))
+    expect(put.status).toBe(204)
+  })
+
+  it('the old SYNC_ALLOWED list still decides which accounts may sync', async () => {
+    vi.stubEnv('ADMIN_TOKEN', '')
+    vi.stubEnv('SYNC_ALLOWED', ALI)
+    const ask = (id: string, token: string) => sync.GET(new Request(`https://app.test/api/sync?id=${id}&part=core`, { headers: { 'x-sync-auth': token } }))
+    expect(await (await ask(VELI, VELI_TOKEN)).text()).toBe('not allowed')
+    expect((await ask(ALI, ALI_TOKEN)).status).toBe(404)
   })
 })

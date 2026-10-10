@@ -42,6 +42,18 @@ export async function cachedAccess(): Promise<AccessStatus | null> {
 export const saveAccess = (status: AccessStatus) => db.meta.put({ key: META, value: { status, at: new Date().toISOString() } })
 export const forgetAccess = () => db.meta.delete(META)
 
+/** Whether the server asks for approval at all (the owner has set it up); null when it cannot be told. */
+export async function approvalEnabled(): Promise<boolean | null> {
+  try {
+    const res = await fetch('/api/access')
+    if (!res.ok) return null
+    const { enabled } = (await res.json()) as { enabled?: unknown }
+    return typeof enabled === 'boolean' ? enabled : null
+  } catch {
+    return null
+  }
+}
+
 /** Whether the id is claimed, whether this account's token is its, and the approval status. */
 export async function probeAccount(account: Account): Promise<{ status: AccessStatus; exists: boolean; match: boolean }> {
   const res = await fetch('/api/access', { headers: accessHeaders(account) })

@@ -1,6 +1,6 @@
 import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
-import { isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
+import { approvalOn, isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 
 /**
  * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
@@ -10,7 +10,7 @@ import { isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
  * PUT  same query, body = bytes                         → stored (with `If-Match: <etag of the GET>`: 412 if the file changed since)
  *
  * Accounts (username + password) send an access token in `x-sync-auth` and need the owner's
- * approval first (_account.ts); a refusal for want of it is 403 "approval required". The first write keeps
+ * approval first once ADMIN_TOKEN is set (_account.ts); a refusal for want of it is 403 "approval required". The first write keeps
  * its hash; from then on reads and writes without the matching token get 403, so a guessable
  * username can't be read or overwritten by others. Sync codes (random ids) send no token.
  * When SYNC_ALLOWED is set (see _allow.ts), ids not on it get 403 "not allowed".
@@ -72,7 +72,7 @@ async function checkAuth(request: Request, write: boolean): Promise<Response | n
 async function permitted(request: Request, id: string): Promise<Response | null> {
   const token = request.headers.get('x-sync-auth')
   if (token !== null && !ACCOUNT_TOKEN.test(token)) return new Response('bad token', { status: 400 })
-  if (token !== null) return (await isApproved(id)) ? null : new Response('approval required', { status: 403 })
+  if (token !== null && approvalOn()) return (await isApproved(id)) ? null : new Response('approval required', { status: 403 })
   return (await isAllowed(id)) ? null : new Response('not allowed', { status: 403 })
 }
 

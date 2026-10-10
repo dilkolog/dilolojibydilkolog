@@ -248,6 +248,8 @@ test('settings data screen passes accessibility check with safety snapshot undo 
 })
 
 test('new features pass accessibility check in dark and calm themes (audiobooks, pron practice, personal sentences, import placement, sync size)', async ({ page }) => {
+  // Many scans in two themes: about half a minute alone, longer when workers share the machine.
+  test.setTimeout(150_000)
   await startWithSamples(page)
 
   const setTheme = (t: 'light' | 'dark' | 'calm') =>
