@@ -42,8 +42,16 @@ Son güncelleme: 2026-10-09.
 - Çeviri: sunucu `api/translate.ts` (DeepL, anahtar Vercel ortam değişkeni `DEEPL_AUTH_KEY`; anahtarı asla koda ya da sohbete yazma). Her çeviri cihazdaki **çeviri belleğinde** (`meta 'translations'`, `src/engine/translationMemory.ts`) saklanır, yedeğe ve eşitlemeye girer; aynı cümle bir daha sunucuya gitmez. Kotayı koruyan kod (sırayla çeviri, yalnızca ekrana gelen paragraf) bu deseni bozmasın.
 - Kullanıcının makinesindeki `design-drift` eklentisinin kancası, yoldaki boşluk yüzünden her dosya yazımında hata basıyor; projeyle ilgisi yok.
 
-## Durum (2026-10-09)
-Birleşti: #37–#148.
+## Durum (2026-10-10)
+Birleşti: #37–#161.
+- Antigravity (#153, #155, #156, #158, #159, #160, #161):
+  - #153: Çevrimdışı göstergesi (üst çubukta sessiz çevrimdışı rozeti, çevrimiçi olunca kaybolur).
+  - #155: Alt sekmelerin görünürlüğü (seçili sekme göstergesi ve kaydırma ipucu).
+  - #156: Test boşlukları (src/engine/ altında test edilmemiş 5 modüle kapsamlı birim testleri: `hours`, `workloadForecast`, `incoming`, `accents`, `milestones`).
+  - #158: İlerleme ekranında katlanan kartların seçimini hatırlama (`Progress.tsx`, `useGroups.ts`, `GroupToggle`).
+  - #159: Çoklu CEFR filtresi ve sözlük düzeltme notunun keşfedilebilirliği (Kelimeler filtresinde çoklu seviye seçimi, Sözlük'te dokunsal kalem daveti).
+  - #160: `Words.tsx` (1634 satır) modüler bileşenlere ayrıldı (`WordForm.tsx`, `WordListView.tsx`, `Words.tsx` 377 satıra indi).
+  - #161: `SettingsScreen.tsx` (844 satır) modüler bileşenlere ayrıldı (`StudySettings`, `AnswerSettings`, `SoundSettings`, `LookSettings`, `ReminderSettings`, `ToolsSettings`, `DataSettings`, `settingsWidgets`; ana ekran 194 satıra indi).
 - Çeviri (#111, #113, #114, #120): DeepL ile cümle çevirisi (her cihazda hazır), Çeviri ekranı, çeviri belleği, okumada "Cümlenin Türkçesi" ve paragraf altında "Türkçesi".
 - Dinleme ve üretim (#118, #122):
   - dinlerken duyulan cümle aydınlanır, "Bu cümleden dinle" (`src/engine/listenFollow.ts`; zamanlı altyazılı beslemelerde kesin, diğerlerinde yaklaşık);
