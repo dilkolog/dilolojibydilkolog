@@ -49,6 +49,7 @@ import { gardenSummary } from './engine/growth'
 import { Sidebar, TabBar } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
 import { CommandPalette, prefetchScreens } from './lazyScreens'
+import { useScreenHistory } from './ui/useScreenHistory'
 import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RECENT_DAYS, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type LanguageData, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
 
@@ -85,6 +86,7 @@ export default function App() {
   const [data, setData] = useState<LanguageData | null>(null)
   const [game, setGame] = useState<GameState | null>(null)
   const [screen, setScreen] = useState<Screen>(restoreScreen)
+  useScreenHistory(screen, setScreen)
   // Remember where the learner was, so reopening the app continues there.
   useEffect(() => {
     if (!RESTORABLE.has(screen.name)) return

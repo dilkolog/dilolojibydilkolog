@@ -42,6 +42,7 @@ export const FLUENCY_MIN_ACCURACY = 0.85
 
 /** A percentage only counts as a record from half right up: a first round at 10% is no record. */
 export const RECORD_MIN_PCT = 50
+/** A score worth keeping as the best so far (the first play sets one, but is not called a "new record": see the games' `setRecord(best !== undefined)`). */
 export const isPctRecord = (pct: number, best?: number) => pct >= RECORD_MIN_PCT && pct > (best ?? 0)
 
 export const fmt = (ms: number) => `${(ms / 1000).toFixed(1).replace('.', ',')} sn`

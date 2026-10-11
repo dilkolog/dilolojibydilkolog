@@ -106,7 +106,7 @@ export function KeyWordsCard({
       {lessonItems.length >= 3 && (
         <div>
           <button type="button" className="btn btn-sm" onClick={() => setLesson(true)}>
-            2 dakikalık ön ders ({lessonItems.length} kelime)
+            2 dakikalık ön ders (en önemli {lessonItems.length} kelime)
           </button>
         </div>
       )}

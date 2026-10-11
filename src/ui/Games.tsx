@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { openMistakes } from '../engine/mistakes'
-import { BOSS_XP } from '../engine/bosses'
+import { BOSS_XP, findBosses, type BossWin } from '../engine/bosses'
 import { Glyph } from './Glyph'
 import { PlayIcon, TrophyIcon } from './icons'
 import { FLUENCY_MIN_WORDS, pickFluencyWords } from '../engine/practice'
@@ -47,6 +47,8 @@ type Game = GameId | null
 export function GamesScreen(
   p: Props & {
     initialGame?: Game
+    /** Told when a game opens or closes, so the app's screen (and the Back button) follows. */
+    onGameChange?: (game: Game) => void
     /** Opens the verb lab (the conjugation practice lives there). */
     onOpenVerbs?: () => void
     /** The day's reviews still waiting, and the way to start the day's session. */
@@ -54,7 +56,25 @@ export function GamesScreen(
     onStartDay?: () => void
   },
 ) {
-  const [game, setGame] = useState<Game>(p.initialGame ?? null)
+  const [game, show] = useState<Game>(p.initialGame ?? null)
+  const setGame = (g: Game) => {
+    show(g)
+    p.onGameChange?.(g)
+  }
+  // The screen can change the game too: Back from a game, or a link into one.
+  useEffect(() => {
+    show(p.initialGame ?? null)
+  }, [p.initialGame])
+  // Whether a word has become a boss yet: until then the card says so instead of opening an empty page.
+  const [bossWins, setBossWins] = useState<BossWin[] | null>(null)
+  useEffect(() => {
+    let live = true
+    void db.getBossWins().then((w) => live && setBossWins(w))
+    return () => {
+      live = false
+    }
+  }, [])
+  const bossCount = bossWins ? findBosses(p.vocabulary, p.states, p.mistakes ?? [], bossWins).length : -1
   // Which games are played, counted on this device (Ayarlar → Kullanım).
   useEffect(() => {
     if (game) recordVisit(`games:${game}`)
@@ -130,7 +150,7 @@ export function GamesScreen(
         { id: 'swipe', emoji: '👆', name: 'Kaydırmalı kartlar', text: 'Anlamı düşün, dokunup bak; bildiysen sağa, bilmediysen sola.', status: p.states.length ? 'Zayıf kelimelerden başlar' : learnFirst, disabled: p.states.length === 0 },
         { id: 'sentences', emoji: '💬', name: 'Cümle kartları', text: 'Okurken kaydettiğin cümleler: boşluk, dikte ve çeviri.', status: dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet', scheduled: true, due: dueSentenceCount > 0 },
         { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz (en iyisi ertesi gün); farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır${backRested ? ` · ${backRested} tanesi önceki günlerden` : ''}` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
-        { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss' },
+        { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: bossCount === 0 ? 'Henüz boss yok: bir kelime sık yanlış olunca belirir' : `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss', disabled: bossCount === 0 },
         { id: 'audio', emoji: '🎧', name: 'Sesli tekrar', text: 'Ekrana bakmadan dinle: kelime, düşünme payı, anlamı.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : p.states.length ? 'Yürürken, yemek yaparken' : learnFirst, disabled: !canSpeak() || p.states.length === 0 },
       ],
     },

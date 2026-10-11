@@ -92,7 +92,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
       const pct = Math.round(((answers.filter((a) => a.ok).length) / round.length) * 100)
       if (isPctRecord(pct, best)) {
         await db.saveRecord(recordKey, pct)
-        setRecord(true)
+        setRecord(best !== undefined)
       }
       sfx.levelUp()
     }
