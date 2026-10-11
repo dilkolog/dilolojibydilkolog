@@ -45,7 +45,7 @@ export function huntQuestionsOf(root: string, language: TargetLanguage, lookup: 
     const base = lookup(d.parent)
     if (!base) continue
     // Wrong choices: same side of the word, and no word of the dictionary comes out of them (so none is a second right answer).
-    const wrong = all.filter((a) => a.kind === d.affix.kind && a.form !== d.affix.form && !joined(d.parent, a, language).some((w) => lookup(w)))
+    const wrong = all.filter((a) => a.kind === d.affix.kind && a.form !== d.affix.form && !joined(d.parent, a, language, base.pos).some((w) => lookup(w)))
     if (wrong.length < WRONG) continue
     out.push({
       id: `${d.parent}|${d.word}`,
@@ -77,10 +77,10 @@ export function huntRound(pool: readonly HuntQuestion[], log: GrammarLog, rng: (
 }
 
 /** Questions from the learner's own words first, then from the most frequent ones, until there are enough for a few rounds. */
-export function huntPool(own: readonly string[], frequent: readonly string[], language: TargetLanguage, lookup: WordLookup, rng: () => number, want = HUNT_ROUND * 4, maxRoots = 600): HuntQuestion[] {
+export function huntPool(own: readonly string[], frequent: readonly string[], language: TargetLanguage, lookup: WordLookup, rng: () => number, { priority = [], want = HUNT_ROUND * 4, maxRoots = 600 }: { /** Roots whose pairs were missed before: asked about first, so a miss comes back. */ priority?: readonly string[]; want?: number; maxRoots?: number } = {}): HuntQuestion[] {
   const pool: HuntQuestion[] = []
   const seen = new Set<string>()
-  const roots = [...shuffle(own, rng), ...shuffle(frequent.slice(0, 4000), rng)]
+  const roots = [...priority, ...shuffle(own, rng), ...shuffle(frequent.slice(0, 4000), rng)]
   let tried = 0
   for (const w of roots) {
     const word = w.toLocaleLowerCase(language)

@@ -1,6 +1,6 @@
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { SearchIcon } from './icons'
-import type { Tense } from '../engine/tenses'
+import { isPersonless, type Tense } from '../engine/tenses'
 import type { TenseGroup } from '../engine/textForms'
 
 const SHOWN = 6
@@ -11,7 +11,8 @@ const SHOWN = 6
  */
 export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; /** Scrolls the text to a sentence and lights it. */ onShow?: (sentence: number) => void; /** Puts verb-and-tense pairs in the verb lab's review queue. */ onReview?: (pairs: { lemma: string; tense: Tense }[]) => void; onClose: () => void }) {
   const total = groups.reduce((n, g) => n + g.total, 0)
-  const pairsOf = (list: readonly TenseGroup[]) => list.flatMap((g) => [...new Set(g.forms.map((f) => f.lemma))].map((lemma) => ({ lemma, tense: g.tense })))
+  // Forms with no person (après avoir mangé) cannot be asked in the lab, so they are not offered for review.
+  const pairsOf = (list: readonly TenseGroup[]) => list.filter((g) => !isPersonless(g.tense)).flatMap((g) => [...new Set(g.forms.map((f) => f.lemma))].map((lemma) => ({ lemma, tense: g.tense })))
   return (
     <section className="card stack text-forms" aria-label="Metindeki çekimler">
       <div className="row justify-between">
@@ -27,7 +28,7 @@ export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClo
           <p className="small muted">
             {total} çekim, {groups.length} zaman. Birine dokununca fiil laboratuvarında o zamanı açarsın.
           </p>
-          {onReview && (
+          {onReview && pairsOf(groups).length > 0 && (
             <div className="row">
               <button type="button" className="btn btn-sm" onClick={() => onReview(pairsOf(groups))}>
                 Hepsini fiil tekrarına ekle ({pairsOf(groups).length})
@@ -42,7 +43,7 @@ export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClo
               <ul className="word-list">
                 {g.forms.slice(0, SHOWN * 2).map((f) => (
                   <li key={`${f.lemma}|${f.form}`} className="text-forms-item">
-                    {onOpenLab ? (
+                    {onOpenLab && !isPersonless(g.tense) ? (
                       <button type="button" className="word-row" onClick={() => onOpenLab(f.lemma, g.tense)} aria-label={`${f.form}, ${f.lemma} fiili, ${TENSE_GUIDE[g.tense].tr}: fiil laboratuvarında aç`}>
                         <Row form={f.form} lemma={f.lemma} count={f.count} language={language} />
                       </button>
@@ -60,7 +61,7 @@ export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClo
                 ))}
               </ul>
               {g.forms.length > SHOWN * 2 && <p className="small muted">+{g.forms.length - SHOWN * 2} biçim daha</p>}
-              {onReview && (
+              {onReview && !isPersonless(g.tense) && (
                 <button type="button" className="link small" onClick={() => onReview(pairsOf([g]))}>
                   Bu zamanın fiillerini tekrara ekle ({pairsOf([g]).length})
                 </button>

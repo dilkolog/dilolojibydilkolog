@@ -63,8 +63,10 @@ export function AffixHunt({ language, onExit }: { language: TargetLanguage; onEx
     const vocabulary = await db.vocabulary.where('language').equals(language).toArray()
     const lookup = makeLookup(data.pack, data.rank, vocabulary, language)
     const rng = createRng(Date.now())
+    // The words of pairs that went wrong more than right come first, so a miss gets another chance.
+    const missedBases = Object.entries(log ?? {}).filter(([, r]) => r.wrong > r.ok).map(([id]) => id.split('|')[0])
     const own = vocabulary.filter((v) => !v.lemma.includes(' ')).map((v) => v.lemma)
-    const next = huntRound(huntPool(own, data.frequent, language, lookup, rng), log ?? {}, rng)
+    const next = huntRound(huntPool(own, data.frequent, language, lookup, rng, { priority: missedBases }), log ?? {}, rng)
     if (!next.length) {
       setEmpty(true)
       return

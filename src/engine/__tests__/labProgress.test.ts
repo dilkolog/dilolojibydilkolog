@@ -85,6 +85,14 @@ describe('practice records on the FSRS scheduler', () => {
     expect(addFormsToReview(next, scheduler, pairs, t0)).toEqual({ lab: next, added: 0 })
   })
 
+  it('forms with no person (après avoir mangé) never join the queue, and one already saved is not due', () => {
+    const { lab, added } = addFormsToReview(emptyLab(), scheduler, [{ lemma: 'manger', tense: 'infinitif-passe' }, { lemma: 'manger', tense: 'participe-compose' }], t0)
+    expect(added).toBe(0)
+    expect(Object.keys(lab.records)).toEqual([])
+    const saved = { ...emptyLab(), records: { 'manger|infinitif-passe': { ok: 0, wrong: 0, points: 0, card: scheduler.newCard(t0) } } }
+    expect(dueItems(saved, t0)).toEqual([])
+  })
+
   it('what is due comes the most overdue first; JSON-saved dates still work', () => {
     let lab = recordCheck(emptyLab(), scheduler, 'comer', 'presente', false, t0)
     lab = recordCheck(lab, scheduler, 'ir', 'presente', false, later(-3))

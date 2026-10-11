@@ -131,7 +131,7 @@ const VOWEL = /[aeiouyáéíóúàèùâêîôûäëïöü]/
 const isVowel = (c: string | undefined) => !!c && VOWEL.test(c)
 
 /** The stems a word may be built on, for its suffix to attach to (loose: the dictionary decides). */
-function stems(base: string, language: TargetLanguage): string[] {
+function stems(base: string, language: TargetLanguage, pos?: PartOfSpeech): string[] {
   const out = new Set<string>([base])
   const last = base.at(-1) ?? ''
   if (isVowel(last)) out.add(base.slice(0, -1))
@@ -139,7 +139,8 @@ function stems(base: string, language: TargetLanguage): string[] {
   if (language === 'en' && !isVowel(last) && isVowel(base.at(-2))) out.add(base + last)
   if (language === 'es' && last === 'z') out.add(`${base.slice(0, -1)}c`)
   // The verb's stem: parler → parl-, decidir → decid-.
-  const verb = language === 'en' ? undefined : /^(.{2,}?)(er|ir|re|ar)$/.exec(base)
+  // Only for a verb: on a noun or adjective it makes coincidences (autre → auteur, entre → entité).
+  const verb = language === 'en' || (pos && pos !== 'verb') ? undefined : /^(.{2,}?)(er|ir|re|ar)$/.exec(base)
   if (verb) out.add(verb[1])
   // possible → possibil-, posible → posibil- (before -ité, -idad).
   if (/b(le)$/.test(base)) out.add(`${base.slice(0, -2)}il`)
@@ -160,14 +161,14 @@ function feminine(adj: string, language: TargetLanguage): string[] {
 }
 
 /** Every spelling `base + affix` might take. */
-export function joined(base: string, a: Affix, language: TargetLanguage): string[] {
+export function joined(base: string, a: Affix, language: TargetLanguage, pos?: PartOfSpeech): string[] {
   if (a.kind === 'prefix') return [a.form + base]
   const out = new Set<string>()
   if (a.form === 'ly' && /le$/.test(base)) out.add(`${base.slice(0, -1)}y`)
   if (a.form === 'ly' && language === 'en' && /ic$/.test(base)) out.add(`${base}ally`)
   const feminised = (a.form === 'ment' && language === 'fr') || (a.form === 'mente' && language === 'es')
   if (feminised) for (const f of feminine(base, language)) out.add(f + a.form)
-  for (const s of stems(base, language)) out.add(s + a.form)
+  for (const s of stems(base, language, pos)) out.add(s + a.form)
   out.delete(base)
   return [...out]
 }
@@ -228,12 +229,17 @@ export interface DerivedWord {
  * heure + -eux from a real suffix, so the ones found by reading its families are listed here.
  */
 const FALSE_COUSINS: Record<TargetLanguage, Set<string>> = {
-  en: new Set(['creation|recreation', 'show|shower', 'come|comment', 'turn|return', 'miss|mission', 'take|mistake', 'busy|business', 'idea|ideal', 'due|dual', 'course|discourse']),
+  en: new Set([
+    'creation|recreation', 'show|shower', 'come|comment', 'turn|return', 'miss|mission', 'take|mistake', 'busy|business', 'idea|ideal', 'due|dual', 'course|discourse',
+    'cape|capable', 'should|shoulder', 'pass|passion', 'face|faction', 'state|station', 'stay|station', 'city|citation', 'party|partition', 'party|partial', 'call|callous',
+    'strange|stranger', 'veal|reveal', 'ward|reward', 'porter|reporter',
+  ]),
   fr: new Set([
     'heure|heureux', 'léger|légiste', 'pêche|dépêche', 'astre|désastre', 'vie|vieux', 'but|début', 'garder|regarder', 'péter|répéter', 'coup|coupable', 'mine|minable',
-    'star|stable', 'cap|capable', 'cap|incapable', 'couler|couleur', 'courir|courage', 'courir|courageux', 'partir|partage', 'viser|invisible', 'série|sérieusement',
+    'star|stable', 'cap|capable', 'cap|incapable', 'couler|couleur', 'courir|courage', 'courir|courageux', 'partir|partage', 'viser|invisible', 'série|sérieux',
+    'coupe|coupable', 'part|départ', 'vérité|véritable', 'autre|auteur', 'terre|terrible', 'contre|conteur', 'pire|pieux',
   ]),
-  es: new Set(['tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado']),
+  es: new Set(['tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado', 'probar|probable', 'esto|estación', 'entre|entidad', 'madre|madero', 'nave|navidad']),
 }
 const cousins = (language: TargetLanguage, base: string, word: string) => FALSE_COUSINS[language].has(`${base}|${word}`)
 
@@ -256,13 +262,15 @@ export function derivedWords(root: string, language: TargetLanguage, lookup: Wor
   for (let depth = 1; depth <= MAX_DEPTH && level.length && out.length < max; depth++) {
     const next: Node[] = []
     for (const node of level) {
+      // A very short root (do, me, on, hey) mostly makes coincidences (door, mer, onion).
+      if (node.word.length < 4) continue
       // Suffixes first, so a word reached both ways shows its natural path (comfort → comfortable → uncomfortable).
       const order = [...AFFIXES[language]].sort((x, y) => (x.kind === y.kind ? 0 : x.kind === 'suffix' ? -1 : 1))
       for (const a of order) {
         if (a.kind === 'prefix' && (node.prefixed || !usable(node.pos, a.from))) continue
         // "-ing" makes a describing adjective only from a noun (comfort → comforting), not the verb's own form (walking).
         if (a.form === 'ing' && !usable(node.pos, a.from)) continue
-        for (const w of joined(node.word, a, language)) {
+        for (const w of joined(node.word, a, language, node.pos)) {
           if (seen.has(w)) continue
           const info = lookup(w)
           if (!info || cousins(language, node.word, w) || emptyGerund(a, info)) continue
@@ -304,9 +312,10 @@ export function rootOf(word: string, language: TargetLanguage, lookup: WordLooku
         if (!bi || cousins(language, b, current) || emptyGerund(a, info)) continue
         if (a.kind === 'prefix' ? bi.pos !== info.pos : false) continue
         if (!usable(bi.pos, a.from)) continue
-        if (info.rank && bi.rank && bi.rank > info.rank * RARER) continue
+        // A root the frequency list does not even have, of a word it has, is a coincidence of spelling too.
+        if (info.rank && (!bi.rank || bi.rank > info.rank * RARER)) continue
         // The base must give the word back (a loose reading would let "sing" + "er" stand for any "-ing").
-        if (!joined(b, a, language).includes(current)) continue
+        if (!joined(b, a, language, bi.pos).includes(current)) continue
         found = { base: b, a }
         break search
       }

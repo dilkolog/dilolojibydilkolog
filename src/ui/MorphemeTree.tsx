@@ -7,14 +7,14 @@ import { createEntry, WordInputError } from '../data/wordInput'
 import { loadPack, packKeys } from '../data/wordpack'
 import type { Pack } from '../data/wordpackBuild'
 import { familyOf, type FamilyNode, type Morph } from '../engine/derive'
-import type { VocabularyEntry } from '../engine/types'
+import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { POS_NAME } from './labels'
 import { PlusIcon } from './icons'
 
 /** The pieces of a word: un- · comfort · -able · -ly. */
 function Morphs({ morphs }: { morphs: Morph[] }) {
   return (
-    <span className="morphs" aria-label={morphs.map((m) => m.text).join(' + ')}>
+    <span className="morphs" role="img" aria-label={morphs.map((m) => m.text).join(' + ')}>
       {morphs.map((m, i) => (
         <span key={i} className={`morph morph-${m.kind}`} aria-hidden="true">
           {m.kind === 'suffix' ? `-${m.text}` : m.kind === 'prefix' ? `${m.text}-` : m.text}
@@ -30,14 +30,16 @@ function Morphs({ morphs }: { morphs: Morph[] }) {
  * what each ending does and its Turkish counterpart. One root and a few endings open a whole family.
  */
 export function MorphemeTree({ db, entry, vocabulary, onOpen, onChanged }: { db: KelimeDB; entry: VocabularyEntry; vocabulary: VocabularyEntry[]; onOpen?: (entryId: string) => void; onChanged: () => void }) {
-  const [data, setData] = useState<{ pack: Pack; rank: Map<string, number> } | null>(null)
+  const [data, setData] = useState<{ language: TargetLanguage; pack: Pack; rank: Map<string, number> } | null>(null)
   const [error, setError] = useState('')
   const language = entry.language
+
+  useEffect(() => setError(''), [entry.id])
 
   useEffect(() => {
     let live = true
     void Promise.all([loadPack(language), loadFrequency(language).catch(() => new Map<string, number>())]).then(([pack, rank]) => {
-      if (live && pack) setData({ pack, rank })
+      if (live && pack) setData({ language, pack, rank })
     })
     return () => {
       live = false
@@ -45,7 +47,8 @@ export function MorphemeTree({ db, entry, vocabulary, onOpen, onChanged }: { db:
   }, [language])
 
   const family = useMemo(() => {
-    if (!data) return undefined
+    // The pack of the language the word is in (a language switch leaves the old one here for a moment).
+    if (!data || data.language !== language) return undefined
     const lookup = makeLookup(data.pack, data.rank, vocabulary, language)
     const key = packKeys(entry.lemma, language).find((k) => lookup(k))
     return key ? familyOf(key, language, lookup) : undefined

@@ -1,7 +1,7 @@
 import { Rating, type Card } from 'ts-fsrs'
 import type { ErrorKind } from './formDiagnosis'
 import type { Scheduler } from './scheduler'
-import type { Tense } from './tenses'
+import { isPersonless, type Tense } from './tenses'
 import { timeOf } from './types'
 
 /**
@@ -156,6 +156,8 @@ export function addFormsToReview(lab: LabData, scheduler: Scheduler, pairs: read
   const records = { ...lab.records }
   let added = 0
   for (const { lemma, tense } of pairs) {
+    // A form with no person cannot be asked in the lab.
+    if (isPersonless(tense)) continue
     const key = labKey(lemma, tense)
     if (records[key]) continue
     records[key] = { ok: 0, wrong: 0, points: 0, card: scheduler.newCard(now) }
@@ -179,7 +181,7 @@ export interface LabItem {
 
 const items = (lab: LabData): LabItem[] =>
   Object.entries(lab.records)
-    .filter(([, record]) => record.card)
+    .filter(([key, record]) => record.card && !isPersonless(key.split('|')[1] as Tense))
     .map(([key, record]) => {
       const [verb, tense] = key.split('|')
       return { verb, tense: tense as Tense, record }

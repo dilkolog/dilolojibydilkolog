@@ -48,6 +48,13 @@ describe('huntRound', () => {
   })
 })
 
+describe('huntPool', () => {
+  it('asks about the roots of missed pairs first', () => {
+    const pool = huntPool([], [], 'en', EN, createRng(1), { priority: ['comfortable'], want: 1 })
+    expect(pool.map((q) => q.id)).toEqual(['comfortable|comfortably', 'comfortable|uncomfortable'])
+  })
+})
+
 describe('with the word pack', () => {
   it('builds a round of real questions from frequent words, in each language, quickly', () => {
     for (const language of ['en', 'fr', 'es'] as const) {
