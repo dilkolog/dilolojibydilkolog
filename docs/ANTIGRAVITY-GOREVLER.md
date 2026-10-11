@@ -348,6 +348,50 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 
 ---
 
+## 12. tur: sözlük ve eşdizim testleri, içerik genişletme, yeni besleme alan adları (11. tur bitti; kullanıcı istedi)
+
+**Bağlam:** 11. turdaki raporlar uygulandı (#253: bileşik zaman motoru ve tuzak kelime verisi; #254: üç yeni haber beslemesi). Ayrıca Claude Code şunları ekledi: **Sözlük → "Sözlüğe kaydet"** (paketi olmayan kelime için DeepL sonucu ya da elle yazılan anlam sözlüğe kalıcı yazılır: `DictionaryNotes.added`, `src/engine/dictionaryNotes.ts`, `src/ui/Dictionary.tsx` `NotFound`/`SavedCard`/`SavedList`; yedek ve eşitlemeye girer), **Birlikte kullanılanlar çipi** (`src/engine/collocations.ts`, `src/data/collocations/{fr,es,en}.json`, kelime sayfası ve Sözlük), **edat/eşdizim dilbilgisi soruları** (`src/data/grammar/{fr,es,en}-4.json`, konular `prep_*`, `colloc_*`), **fiil laboratuvarında "Tek tek" varsayılan** (Liste bir dokunuş uzakta, Tab alandan alana geçer, tek "İpucu: ilk harfler" düğmesi), **Bugün'de canlı tohum** (`Plant` `live`, `.plant-waiting`, `.ring.is-start`).
+
+**Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/`, `api/`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Bu turdaki işler `e2e/`, `docs/`, `scripts/` ve **yeni** veri dosyaları ile sınırlı; mevcut veri dosyalarını düzenleme. Başka dosyaya dokunman gerekirse PR açıklamasına yaz. Veri kuralları 9. turdakiyle aynı (kaynak + lisans satırı, uydurma yok, doğrulanamayanlar raporda ayrı). Her PR tek konu.
+
+### 12.1 Yeni üç beslemenin gerçek alan adları (script + rapor; ağ gerekir)
+`src/engine/news.ts` `FEEDS` içindeki `salut-linfo`, `hoyhablamos`, `bbc-6min` için `hosts` alanını Claude Code ağsız ortamda **tahminle** yazdı. `scripts/check-news-feeds.ts`i bu üç besleme için çalıştır (`FEEDS`teki tanımlarını kullan: `--feeds salut-linfo,hoyhablamos,bbc-6min` gibi bir seçenek ekleyebilirsin) ve rapora ekle (`docs/kaynaklar/gunun-haberi.md` §9): her beslemenin ilk 5 maddesinin `link` alan adı (`allowedArticle` bunu `hosts` ile karşılaştırır), maddenin `extractArticle` ile çıkan kelime sayısı, `audio` adresi (https mi, `Content-Type`, `Access-Control-Allow-Origin`). `hosts` yanlışsa doğru alan adlarını yaz; `src/engine/news.ts`i **sen düzeltme**, Claude Code düzeltir.
+
+### 12.2 Sözlük ve eşdizim için uçtan uca testler (`e2e/`)
+Sözlük ekranının hiç E2E testi yoktu; Claude Code yalnızca bir akış yazdı (`e2e/desktop.e2e.ts` "dictionary: a word the pack lacks…"). Ekle (mevcut testleri silme; `e2e/helpers.ts` `openScreen(page, 'Sözlük')` var):
+- **Telefon (375 px):** aynı akış: bulunamayan kelime → "DeepL ile çevir" (`/api/translate` taklidi: `startWithSamples` çeviriyi 503 ile kapatır, taklidi **sonra** kurup yenile; bkz. AGENTS.md) → anlamı düzelt → "Sözlüğe kaydet" → yenile → kayıtlı kelime kartı → "Sözlükten kaldır". Düğme satırı taşıyor mu (`overflow`)?
+- **Elle anlam:** DeepL kapalıyken (503) Türkçe anlam yazıp "Sözlüğe kaydet"; "Kelimelerime ekle" ayrı bir yol (kelime ekleme formu açılır, kayıtlı sözlük kaydına dokunmaz).
+- **Aranabilirlik:** kaydedilmiş kelimeyi başıyla, aksansız yazılışıyla (`école` ↔ `ecole`) ve Türkçe anlamıyla (`Işık` büyük harf noktasız I) bul.
+- **Kelime sayfasında çipler:** Fransızcada `décider` sayfasında "décider de + infinitif" çipi, `question` sayfasında "poser une question"; İspanyolca ve İngilizce için birer örnek; çip örneği ekran okuyucu metni olarak (`.sr-only`) da var.
+- **Fiil laboratuvarı:** Alıştırma → "Yaz" varsayılan olarak "Tek tek"; "Liste"de `Tab` ile 6 kişi alanı sırayla; satırlarda "?" düğmesi yok; "İpucu: ilk harfler" tek düğme ve basınca odak kaybolmuyor (`document.activeElement`).
+- **Bugün tohumu:** yeni cihazda (henüz cevap yok) `.plant-waiting` var; `prefers-reduced-motion: reduce` emülasyonunda (`page.emulateMedia`) animasyonlar durur (`getComputedStyle(...).animationName === 'none'`).
+Telefon ve masaüstü projelerinde ya da gerekçesiyle yalnızca birinde.
+
+### 12.3 İki cihazlı eşitlemede sözlük kayıtları (`e2e/sync.e2e.ts`)
+Mevcut iki cihazlı eşitleme testlerinin yanına: cihaz A'da sözlüğe kaydedilen kelime cihaz B'de de bulunur; A'da "Sözlükten kaldır" → eşitlemeden sonra B'de de yok (tombstone `dictadd:<dil>:<kelime>`); B'de daha yeni bir kayıt (anlamı değişmiş) A'daki eskiyi ezer; kaldırıldıktan sonra yeniden kaydedilen kelime canlıdır. `src/data/mergeRules.test.ts`teki "words saved to the dictionary" birim testini örnek al.
+
+### 12.4 Sözlük ekranı için erişilebilirlik taraması (`e2e/a11y.e2e.ts`)
+`axe` taraması (telefon, açık + koyu tema): Sözlük boş hâl ("Kaydettiklerin" listesi dolu), bulunamayan kelime kartı (DeepL düğmesi görünürken), DeepL sonucu açıkken (giriş + iki düğme), kayıtlı kelime kartı (`aria-label="Kaydettiğin kelime"`), kelime sayfasında eşdizim çipi. İhlalleri **düzeltme**, dosya + seçici + kural olarak PR açıklamasında listele.
+
+### 12.5 Eşdizim listesini genişlet (veri)
+Yeni dosyalar: `src/data/collocations/fr-2.json`, `es-2.json`, `en-2.json` (şema `Collocation` in `src/engine/collocations.ts`: `{ id, language, lemmas, pattern, example, tr, source }`; `lemmas` kalıptaki bütün anahtar kelimeler, kelime sayfaları bunlarla eşleşir; `id` mevcutlarla çakışmasın: `fr-colloc-23`… yerine `fr2-colloc-01` gibi başla). Her dil için **en az 40 yeni kalıp**: sık fiil+edat (*s'occuper de*, *depender de*, *look forward to*), fiil+isim (*prendre une décision*, *echar de menos*, *run a risk*), sıfat+edat (*être capable de*, *ser capaz de*, *be aware of*). Hem İspanya hem Latin Amerika'da geçerli olanları seç (bölgeye özgü olanı alma). Her kalıbı Wiktionary ya da bir ana dil sözlüğüyle doğrula; `example` gerçekçi kısa bir cümle, `tr` doğal Türkçe. Rapor: `docs/veri/eşdizim-genisleme.md` (kaynaklar, elenenler). `npx vitest run src/data` yeşil olmalı.
+
+### 12.6 Edat/eşdizim sorularını genişlet ve denetle (veri + rapor)
+(a) Yeni dosyalar: `src/data/grammar/fr-5.json`, `es-5.json`, `en-5.json` (şema `GrammarExercise`; konular `prep_<dil>` ve `colloc_<dil>`, `TOPIC_NAME`de var; `id` formatı `<dil>-<konu>-NN`, mevcut `*-4.json` ile çakışmasın: 24'ten başla). Her dil için **en az 20 yeni `choice` sorusu**, tek doğru seçenek; seçeneklerde bölgeye ya da lehçeye göre ikinci bir doğru cevap çıkabiliyorsa o soruyu **sorma** (ör. İspanyolca `poner/prestar atención`, İngilizce `take/make a decision`). Kural açıklaması Türkçe. (b) Mevcut `*-4.json` (69 soru) için 10.4/11.5'teki gibi bir denetim raporu: her sorunun tek doğru cevabı gerçekten tek mi, açıklama doğru mu, kaynak? `docs/veri/edat-esdizim-sorulari-denetimi.md`. Mevcut JSON'u düzeltme, rapor yaz.
+
+### 12.7 Bileşik mastarlar: gerçek metinde ne kadar var? (rapor)
+11.3 raporu bileşik mastarları (*pour avoir mangé*, *après être parti*, *después de haber comido*) "kaçırılan" saymıştı; Claude Code bunu henüz uygulamadı (yeni zaman türü ve adlandırma gerektirir). Karar için veri: `scripts/audit-compounds.ts`i genişlet ya da yeni bir script yaz; aynı 10 metinde ve 10 yeni metinde (`src/data/storybooks`, `src/data/audiobooks`, haber beslemeleri) (a) kaç bileşik mastar var (FR: `avoir/être + ortaç` mastar bağlamında: `pour|après|sans|de|d'|en|avant de` sonrası; ES: `haber + ortaç` mastar bağlamında), (b) kaçı mevcut yöntemle yanlış okunuyor (örn. *avoir mangé* → *avoir* tek başına), (c) tüm bileşik çekimlerin yüzde kaçı. Rapor: `docs/veri/bilesik-mastar-analizi.md` + "yapmaya değer mi" önerisi (adlandırma önerisi: Türkçe zaman adı, `Tense` anahtarı). Kod değişikliği yok.
+
+### 12.8 Belge güncellemesi
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #240–#255 sonrası yapılanlar (kalıcı sözlük kaydı, DeepL araması, eşdizim çipi, edat soruları, Tek tek varsayılanı, canlı tohum, bileşik zaman ve tuzak denetimi, yeni beslemeler). `AGENTS.md`'ye dokunma.
+
+### 12.9 Görsel referansları yenileme (KOTA)
+Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`). Beklenen farklar: Bugün (canlı tohum, halka), Sözlük, Fiil laboratuvarı yazma alıştırması (Tek tek varsayılan), kelime sayfası (eşdizim çipi).
+
+**Tur sonu ölçütü:** E2E'ler telefon ve masaüstünde yeşil, mevcut testler silinmemiş; raporlar tarih ve komut çıktısıyla, doğrulanamayanlar ayrı listede; yeni veri dosyaları `npx vitest run src/data` ile yeşil; PR'lar tek konulu.
+
+---
+
 ## Her PR için kontrol listesi
 - [ ] Tek konu, Türkçe açıklama (neyi, neden)
 - [ ] `typecheck`, `oxlint` (0 uyarı), `vitest`, E2E yerelde yeşil
