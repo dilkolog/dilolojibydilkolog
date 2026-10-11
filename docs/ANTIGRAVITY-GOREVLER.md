@@ -382,8 +382,12 @@ Telefon (375 px) açık ve koyu tema axe WCAG 2.2 A/AA taramaları eklendi (`e2e
 5. Kelime sayfasında eşdizim çipi (`décider de + infinitif` + `.sr-only` örnek metin)
 Tüm durumlarda yapısal WCAG A/AA kuralları 0 ihlalle geçti. Tespit edilen tek kontrast uyarısı: koyu temada `.pos-tag[data-pos="verb"]` (WCAG `color-contrast`, kural gereği düzeltilmedi, PR açıklamasına not düşüldü).
 
-### 12.5 Eşdizim listesini genişlet (veri)
-Yeni dosyalar: `src/data/collocations/fr-2.json`, `es-2.json`, `en-2.json` (şema `Collocation` in `src/engine/collocations.ts`: `{ id, language, lemmas, pattern, example, tr, source }`; `lemmas` kalıptaki bütün anahtar kelimeler, kelime sayfaları bunlarla eşleşir; `id` mevcutlarla çakışmasın: `fr-colloc-23`… yerine `fr2-colloc-01` gibi başla). Her dil için **en az 40 yeni kalıp**: sık fiil+edat (*s'occuper de*, *depender de*, *look forward to*), fiil+isim (*prendre une décision*, *echar de menos*, *run a risk*), sıfat+edat (*être capable de*, *ser capaz de*, *be aware of*). Hem İspanya hem Latin Amerika'da geçerli olanları seç (bölgeye özgü olanı alma). Her kalıbı Wiktionary ya da bir ana dil sözlüğüyle doğrula; `example` gerçekçi kısa bir cümle, `tr` doğal Türkçe. Rapor: `docs/veri/esdizim-genisleme.md` (kaynaklar, elenenler). `npx vitest run src/data` yeşil olmalı.
+### 12.5 Eşdizim listesini genişlet (veri; TAMAMLANDI — #273)
+Fransızca, İspanyolca ve İngilizce için 40'ar yeni eşdizim eklendi (`src/data/collocations/fr-2.json`, `es-2.json`, `en-2.json`):
+- Fiil+edat (*s'occuper de*, *tener ganas de*, *focus on*, *cope with*...),
+- Sıfat+edat (*être capable de*, *ser capaz de*, *aware of*, *keen on*...),
+- Fiil+isim (*passer du temps*, *prestar atención*, *run a risk*, *make progress*...).
+Toplam kalıp sayısı 68'den 188'e çıktı (FR: 62, ES: 63, EN: 63). Tüm kalıplar ana dil sözlükleriyle (Le Robert, RAE/DPD, Oxford/Cambridge) doğrulandı; bölgesel/lehçesel sapmalar elendi. Detaylı rapor `docs/veri/esdizim-genisleme.md` altında yayımlandı. `npx vitest run src/data` ve `collocations.test.ts` 0 hatayla geçti.
 
 ### 12.6 Edat/eşdizim sorularını genişlet ve denetle (veri + rapor)
 (a) Yeni dosyalar: `src/data/grammar/fr-5.json`, `es-5.json`, `en-5.json` (şema `GrammarExercise`; konular `prep_<dil>` ve `colloc_<dil>`, `TOPIC_NAME`de var; `id` formatı `<dil>-<konu>-NN`, mevcut `*-4.json` ile çakışmasın: 24'ten başla). Her dil için **en az 20 yeni `choice` sorusu**, tek doğru seçenek; seçeneklerde bölgeye ya da lehçeye göre ikinci bir doğru cevap çıkabiliyorsa o soruyu **sorma** (ör. İspanyolca `poner/prestar atención`, İngilizce `take/make a decision`). Kural açıklaması Türkçe. (b) Mevcut `*-4.json` (69 soru) için 10.4/11.5'teki gibi bir denetim raporu: her sorunun tek doğru cevabı gerçekten tek mi, açıklama doğru mu, kaynak? `docs/veri/edat-esdizim-sorulari-denetimi.md`. Mevcut JSON'u düzeltme, rapor yaz.

@@ -1,0 +1,458 @@
+[
+ {
+  "id": "es-colloc2-01",
+  "language": "es",
+  "lemmas": [
+   "gana",
+   "ganas"
+  ],
+  "pattern": "tener ganas de + infinitivo",
+  "example": "Tengo muchas ganas de comer una pizza casera.",
+  "tr": "Canım ev yapımı pizza yemek istiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-02",
+  "language": "es",
+  "lemmas": [
+   "miedo"
+  ],
+  "pattern": "tener miedo de",
+  "example": "Mi hermano pequeño tiene miedo de la oscuridad.",
+  "tr": "Küçük kardeşim karanlıktan korkuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-03",
+  "language": "es",
+  "lemmas": [
+   "tener"
+  ],
+  "pattern": "tener que + infinitivo",
+  "example": "Tengo que levantarme temprano mañana por la mañana.",
+  "tr": "Yarın sabah erken kalkmam gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-04",
+  "language": "es",
+  "lemmas": [
+   "alegrar",
+   "alegrarse"
+  ],
+  "pattern": "alegrarse de",
+  "example": "Me alegro mucho de verte tan feliz aquí.",
+  "tr": "Seni burada bu kadar mutlu gördüğüme çok sevindim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-05",
+  "language": "es",
+  "lemmas": [
+   "quejar",
+   "quejarse"
+  ],
+  "pattern": "quejarse de",
+  "example": "El cliente se quejó amargamente del mal servicio.",
+  "tr": "Müşteri kötü hizmetten acı bir şekilde şikayet etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-06",
+  "language": "es",
+  "lemmas": [
+   "enamorar",
+   "enamorarse"
+  ],
+  "pattern": "enamorarse de",
+  "example": "Se enamoró de ella desde la primera cita.",
+  "tr": "İlk buluşmadan itibaren ona aşık oldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-07",
+  "language": "es",
+  "lemmas": [
+   "confiar"
+  ],
+  "pattern": "confiar en",
+  "example": "Puedes confiar plenamente en su criterio profesional.",
+  "tr": "Onun mesleki görüşüne tamamen güvenebilirsin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-08",
+  "language": "es",
+  "lemmas": [
+   "fijar",
+   "fijarse"
+  ],
+  "pattern": "fijarse en",
+  "example": "No me fijé en la hora exacta al salir de casa.",
+  "tr": "Evden çıkarken tam saate dikkat etmedim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-09",
+  "language": "es",
+  "lemmas": [
+   "creer"
+  ],
+  "pattern": "creer en",
+  "example": "Ella cree firmemente en sus propias capacidades.",
+  "tr": "Kendi yeteneklerine sıkı sıkıya inanıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-10",
+  "language": "es",
+  "lemmas": [
+   "consistir"
+  ],
+  "pattern": "consistir en",
+  "example": "El examen consiste en tres partes escritas.",
+  "tr": "Sınav üç yazılı bölümden oluşuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-11",
+  "language": "es",
+  "lemmas": [
+   "tardar"
+  ],
+  "pattern": "tardar en + infinitivo",
+  "example": "El autobús tardó casi una hora en llegar.",
+  "tr": "Otobüsün gelmesi neredeyse bir saat sürdü.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-12",
+  "language": "es",
+  "lemmas": [
+   "dudar"
+  ],
+  "pattern": "dudar en + infinitivo",
+  "example": "No dudes en llamarme si surge algún problema.",
+  "tr": "Bir sorun çıkarsa beni aramaktan çekinme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-13",
+  "language": "es",
+  "lemmas": [
+   "acostumbrar",
+   "acostumbrarse"
+  ],
+  "pattern": "acostumbrarse a",
+  "example": "Pronto te acostumbrarás al clima cálido del sur.",
+  "tr": "Yakında güneyin sıcak iklimine alışacaksın.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-14",
+  "language": "es",
+  "lemmas": [
+   "atrever",
+   "atreverse"
+  ],
+  "pattern": "atreverse a + infinitivo",
+  "example": "No se atrevió a decir toda la verdad delante del grupo.",
+  "tr": "Grubun önünde bütün gerçeği söylemeye cesaret edemedi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-15",
+  "language": "es",
+  "lemmas": [
+   "animar"
+  ],
+  "pattern": "animar a + infinitivo",
+  "example": "Mi profesora me animó a estudiar literatura.",
+  "tr": "Öğretmenim beni edebiyat okumaya teşvik etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-16",
+  "language": "es",
+  "lemmas": [
+   "felicitar"
+  ],
+  "pattern": "felicitar por",
+  "example": "Te felicito de corazón por tu nuevo puesto de trabajo.",
+  "tr": "Yeni iş pozisyonun için seni yürekten tebrik ederim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-17",
+  "language": "es",
+  "lemmas": [
+   "preocupar",
+   "preocuparse"
+  ],
+  "pattern": "preocuparse por",
+  "example": "No te preocupes por los gastos adicionales.",
+  "tr": "Ek masraflar için endişelenme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-18",
+  "language": "es",
+  "lemmas": [
+   "interesar",
+   "interesarse"
+  ],
+  "pattern": "interesarse por",
+  "example": "Se interesa mucho por la historia del arte.",
+  "tr": "Sanat tarihiyle yakından ilgileniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-19",
+  "language": "es",
+  "lemmas": [
+   "optar"
+  ],
+  "pattern": "optar por",
+  "example": "Decidieron optar por una solución práctica y económica.",
+  "tr": "Pratik ve ekonomik bir çözümü tercih etmeye karar verdiler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-20",
+  "language": "es",
+  "lemmas": [
+   "oler"
+  ],
+  "pattern": "oler a",
+  "example": "Toda la cocina huele a café recién preparado.",
+  "tr": "Bütün mutfak taze yapılmış kahve gibi kokuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-21",
+  "language": "es",
+  "lemmas": [
+   "saber"
+  ],
+  "pattern": "saber a",
+  "example": "Este helado artesanal sabe a frutas tropicales.",
+  "tr": "Bu el yapımı dondurma tropik meyve tadında.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-22",
+  "language": "es",
+  "lemmas": [
+   "echar",
+   "menos"
+  ],
+  "pattern": "echar de menos",
+  "example": "Echo mucho de menos a mis antiguos compañeros de clase.",
+  "tr": "Eski sınıf arkadaşlarımı çok özlüyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-23",
+  "language": "es",
+  "lemmas": [
+   "capaz"
+  ],
+  "pattern": "ser capaz de + infinitivo",
+  "example": "Eres capaz de superar cualquier reto difícil.",
+  "tr": "Her zorlu engeli aşmaya muktedirsin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-24",
+  "language": "es",
+  "lemmas": [
+   "seguro"
+  ],
+  "pattern": "estar seguro de",
+  "example": "Estoy completamente seguro de mi elección.",
+  "tr": "Seçimimden tamamen eminim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-25",
+  "language": "es",
+  "lemmas": [
+   "orgulloso"
+  ],
+  "pattern": "estar orgulloso de",
+  "example": "Mis padres están muy orgullosos de mi esfuerzo.",
+  "tr": "Ailem emeğimden ötürü çok gururlu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-26",
+  "language": "es",
+  "lemmas": [
+   "cansado"
+  ],
+  "pattern": "estar cansado de",
+  "example": "Ya estoy cansado de escuchar las mismas quejas.",
+  "tr": "Aynı şikayetleri dinlemekten artık yoruldum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-27",
+  "language": "es",
+  "lemmas": [
+   "harto"
+  ],
+  "pattern": "estar harto de",
+  "example": "Está harto de las promesas incumplidas.",
+  "tr": "Tutulmayan vaatlerden bıktı usandı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-28",
+  "language": "es",
+  "lemmas": [
+   "lleno"
+  ],
+  "pattern": "estar lleno de",
+  "example": "El teatro estaba completamente lleno de espectadores.",
+  "tr": "Tiyatro tamamen seyircilerle doluydu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-29",
+  "language": "es",
+  "lemmas": [
+   "fácil"
+  ],
+  "pattern": "ser fácil de + infinitivo",
+  "example": "Esta receta tradicional es muy fácil de preparar.",
+  "tr": "Bu geleneksel tarifi hazırlamak çok kolay.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-30",
+  "language": "es",
+  "lemmas": [
+   "difícil"
+  ],
+  "pattern": "ser difícil de + infinitivo",
+  "example": "Es un concepto bastante difícil de explicar sin ejemplos.",
+  "tr": "Örneksiz açıklaması oldukça zor bir kavram.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-31",
+  "language": "es",
+  "lemmas": [
+   "tiempo",
+   "pasar"
+  ],
+  "pattern": "pasar tiempo",
+  "example": "Nos encanta pasar tiempo juntos al aire libre.",
+  "tr": "Açık havada birlikte vakit geçirmeyi çok seviyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-32",
+  "language": "es",
+  "lemmas": [
+   "perder"
+  ],
+  "pattern": "perder el tiempo",
+  "example": "No pierdas el tiempo navegando por internet sin rumbo.",
+  "tr": "İnternette amaçsızca gezinerek vakit kaybetme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-33",
+  "language": "es",
+  "lemmas": [
+   "ahorrar"
+  ],
+  "pattern": "ahorrar tiempo",
+  "example": "Comprar en línea te permite ahorrar mucho tiempo.",
+  "tr": "İnternetten alışveriş yapmak çok vakit kazandırır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-34",
+  "language": "es",
+  "lemmas": [
+   "atención",
+   "prestar"
+  ],
+  "pattern": "prestar atención",
+  "example": "Debes prestar atención a los detalles importantes.",
+  "tr": "Önemli ayrıntılara dikkat etmelisin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-35",
+  "language": "es",
+  "lemmas": [
+   "paseo",
+   "dar"
+  ],
+  "pattern": "dar un paseo",
+  "example": "Siempre salimos a dar un paseo después de almorzar.",
+  "tr": "Öğle yemeğinden sonra her zaman yürüyüşe çıkarız.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-36",
+  "language": "es",
+  "lemmas": [
+   "reserva",
+   "hacer"
+  ],
+  "pattern": "hacer una reserva",
+  "example": "Conviene hacer una reserva con varios días de antelación.",
+  "tr": "Birkaç gün önceden rezervasyon yaptırmakta fayda var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-37",
+  "language": "es",
+  "lemmas": [
+   "cola"
+  ],
+  "pattern": "hacer cola",
+  "example": "Tuvimos que hacer cola durante cuarenta minutos.",
+  "tr": "Kırk dakika sırada beklemek zorunda kaldık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-38",
+  "language": "es",
+  "lemmas": [
+   "secreto",
+   "guardar"
+  ],
+  "pattern": "guardar un secreto",
+  "example": "Ella es una amiga leal y sabe guardar un secreto.",
+  "tr": "O sadık bir arkadaştır ve sır tutmayı bilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-39",
+  "language": "es",
+  "lemmas": [
+   "riesgo",
+   "correr"
+  ],
+  "pattern": "correr un riesgo",
+  "example": "Viajar sin seguro médico es correr un riesgo innecesario.",
+  "tr": "Sağlık sigortası olmadan seyahat etmek gereksiz bir risk almaktır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc2-40",
+  "language": "es",
+  "lemmas": [
+   "éxito"
+  ],
+  "pattern": "tener éxito",
+  "example": "Su nueva novela tuvo un gran éxito en las librerías.",
+  "tr": "Yeni romanı kitapçılarda büyük bir başarı elde etti.",
+  "source": "Diloloji (özgün)"
+ }
+]

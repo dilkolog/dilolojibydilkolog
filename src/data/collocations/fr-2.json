@@ -1,0 +1,445 @@
+[
+ {
+  "id": "fr-colloc2-01",
+  "language": "fr",
+  "lemmas": [
+   "occuper",
+   "s'occuper"
+  ],
+  "pattern": "s'occuper de",
+  "example": "Je m'occupe des réservations pour le voyage.",
+  "tr": "Seyahat rezervasyonlarıyla ben ilgileniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-02",
+  "language": "fr",
+  "lemmas": [
+   "envie"
+  ],
+  "pattern": "avoir envie de",
+  "example": "J'ai envie d'une glace à la vanille.",
+  "tr": "Canım vanilyalı bir dondurma istiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-03",
+  "language": "fr",
+  "lemmas": [
+   "peur"
+  ],
+  "pattern": "avoir peur de",
+  "example": "Mon petit frère a peur des chiens.",
+  "tr": "Küçük kardeşim köpeklerden korkuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-04",
+  "language": "fr",
+  "lemmas": [
+   "intention"
+  ],
+  "pattern": "avoir l'intention de",
+  "example": "Nous avons l'intention de déménager bientôt.",
+  "tr": "Yakında taşınmaya niyetimiz var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-05",
+  "language": "fr",
+  "lemmas": [
+   "train"
+  ],
+  "pattern": "être en train de + infinitif",
+  "example": "Je suis en train de préparer le dîner.",
+  "tr": "Akşam yemeğini hazırlamaktayım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-06",
+  "language": "fr",
+  "lemmas": [
+   "accord"
+  ],
+  "pattern": "être d'accord avec",
+  "example": "Je suis tout à fait d'accord avec toi.",
+  "tr": "Seninle tamamen aynı fikirdeyim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-07",
+  "language": "fr",
+  "lemmas": [
+   "continuer"
+  ],
+  "pattern": "continuer à + infinitif",
+  "example": "Elle continue à travailler tard le soir.",
+  "tr": "Akşamları geç saatlere kadar çalışmaya devam ediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-08",
+  "language": "fr",
+  "lemmas": [
+   "refuser"
+  ],
+  "pattern": "refuser de + infinitif",
+  "example": "Il refuse de signer ce contrat injuste.",
+  "tr": "Bu adaletsiz sözleşmeyi imzalamayı reddediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-09",
+  "language": "fr",
+  "lemmas": [
+   "accepter"
+  ],
+  "pattern": "accepter de + infinitif",
+  "example": "Elle a accepté de nous aider pour le projet.",
+  "tr": "Projede bize yardım etmeyi kabul etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-10",
+  "language": "fr",
+  "lemmas": [
+   "risquer"
+  ],
+  "pattern": "risquer de + infinitif",
+  "example": "Tu risques de rater le dernier train.",
+  "tr": "Son treni kaçırma riskin var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-11",
+  "language": "fr",
+  "lemmas": [
+   "cesser"
+  ],
+  "pattern": "cesser de + infinitif",
+  "example": "La pluie a enfin cessé de tomber ce matin.",
+  "tr": "Yağmur bu sabah nihayet durdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-12",
+  "language": "fr",
+  "lemmas": [
+   "choisir"
+  ],
+  "pattern": "choisir de + infinitif",
+  "example": "Il a choisi de vivre à la campagne avec sa famille.",
+  "tr": "Ailesiyle birlikte kırsalda yaşamayı seçti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-13",
+  "language": "fr",
+  "lemmas": [
+   "apprendre"
+  ],
+  "pattern": "apprendre à + infinitif",
+  "example": "J'apprends à conduire une voiture cette année.",
+  "tr": "Bu yıl araba kullanmayı öğreniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-14",
+  "language": "fr",
+  "lemmas": [
+   "commencer"
+  ],
+  "pattern": "commencer à + infinitif",
+  "example": "Le bébé commence à marcher tout seul.",
+  "tr": "Bebek kendi başına yürümeye başlıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-15",
+  "language": "fr",
+  "lemmas": [
+   "aider"
+  ],
+  "pattern": "aider qqn à + infinitif",
+  "example": "Tu peux m'aider à ranger la cuisine ?",
+  "tr": "Mutfağı toplamama yardım edebilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-16",
+  "language": "fr",
+  "lemmas": [
+   "inviter"
+  ],
+  "pattern": "inviter qqn à + infinitif",
+  "example": "Il nous a invités à dîner chez lui samedi.",
+  "tr": "Cumartesi günü bizi evinde akşam yemeğine davet etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-17",
+  "language": "fr",
+  "lemmas": [
+   "encourager"
+  ],
+  "pattern": "encourager qqn à + infinitif",
+  "example": "Mon père m'encourage à faire du sport régulièrement.",
+  "tr": "Babam beni düzenli spor yapmaya teşvik ediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-18",
+  "language": "fr",
+  "lemmas": [
+   "féliciter"
+  ],
+  "pattern": "féliciter qqn pour",
+  "example": "Je te félicite pour ta grande réussite.",
+  "tr": "Büyük başarın için seni tebrik ederim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-19",
+  "language": "fr",
+  "lemmas": [
+   "remercier"
+  ],
+  "pattern": "remercier qqn pour",
+  "example": "Je te remercie pour ton aide précieuse.",
+  "tr": "Değerli yardımın için teşekkür ederim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-20",
+  "language": "fr",
+  "lemmas": [
+   "participer"
+  ],
+  "pattern": "participer à",
+  "example": "Nous participons à la conférence demain matin.",
+  "tr": "Yarın sabahki konferansa katılıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-21",
+  "language": "fr",
+  "lemmas": [
+   "confiance"
+  ],
+  "pattern": "faire confiance à",
+  "example": "Je fais entièrement confiance à mon médecin.",
+  "tr": "Doktoruma tamamen güveniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-22",
+  "language": "fr",
+  "lemmas": [
+   "rendre",
+   "se rendre"
+  ],
+  "pattern": "se rendre compte de",
+  "example": "Elle s'est rendu compte de son erreur un peu tard.",
+  "tr": "Hatasının biraz geç farkına vardı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-23",
+  "language": "fr",
+  "lemmas": [
+   "capable"
+  ],
+  "pattern": "être capable de + infinitif",
+  "example": "Il est tout à fait capable de réussir cet examen.",
+  "tr": "Bu sınavı başarmaya tamamen muktedir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-24",
+  "language": "fr",
+  "lemmas": [
+   "responsable"
+  ],
+  "pattern": "être responsable de",
+  "example": "Elle est responsable de toute l'équipe technique.",
+  "tr": "Tüm teknik ekipten o sorumlu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-25",
+  "language": "fr",
+  "lemmas": [
+   "content"
+  ],
+  "pattern": "être content de",
+  "example": "Nous sommes très contents de ton travail soigné.",
+  "tr": "Özenli çalışmandan çok memnunuz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-26",
+  "language": "fr",
+  "lemmas": [
+   "déçu"
+  ],
+  "pattern": "être déçu de",
+  "example": "Il est très déçu de ses résultats scolaires.",
+  "tr": "Okul sonuçlarından ötürü çok hayal kırıklığına uğradı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-27",
+  "language": "fr",
+  "lemmas": [
+   "prêt"
+  ],
+  "pattern": "être prêt à + infinitif",
+  "example": "Tout le monde est prêt à partir en voyage.",
+  "tr": "Herkes seyahate çıkmaya hazır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-28",
+  "language": "fr",
+  "lemmas": [
+   "plein"
+  ],
+  "pattern": "être plein de",
+  "example": "Ce grand parc est plein d'arbres centenaires.",
+  "tr": "Bu büyük park asırlık ağaçlarla dolu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-29",
+  "language": "fr",
+  "lemmas": [
+   "difficile"
+  ],
+  "pattern": "être difficile de + infinitif",
+  "example": "Il est difficile de trouver un bon logement dans cette ville.",
+  "tr": "Bu şehirde iyi bir ev bulmak zor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-30",
+  "language": "fr",
+  "lemmas": [
+   "facile"
+  ],
+  "pattern": "être facile de + infinitif",
+  "example": "Il est facile d'apprendre avec cette nouvelle méthode.",
+  "tr": "Bu yeni yöntemle öğrenmek kolay.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-31",
+  "language": "fr",
+  "lemmas": [
+   "connaissance"
+  ],
+  "pattern": "faire la connaissance de",
+  "example": "J'ai fait la connaissance de sa sœur hier soir.",
+  "tr": "Dün akşam kız kardeşiyle tanıştım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-32",
+  "language": "fr",
+  "lemmas": [
+   "temps"
+  ],
+  "pattern": "passer du temps",
+  "example": "J'adore passer du temps en famille le week-end.",
+  "tr": "Hafta sonu ailemle vakit geçirmeyi çok severim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-33",
+  "language": "fr",
+  "lemmas": [
+   "perdre"
+  ],
+  "pattern": "perdre du temps",
+  "example": "Ne perds pas de temps avec des détails inutiles.",
+  "tr": "Gereksiz ayrıntılarla vakit kaybetme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-34",
+  "language": "fr",
+  "lemmas": [
+   "gagner"
+  ],
+  "pattern": "gagner du temps",
+  "example": "Prendre le métro permet de gagner du temps précieux.",
+  "tr": "Metroya binmek değerli bir vakit kazandırır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-35",
+  "language": "fr",
+  "lemmas": [
+   "raison"
+  ],
+  "pattern": "avoir raison",
+  "example": "Tu as tout à fait raison sur ce point précis.",
+  "tr": "Bu konuda tamamen haklısın.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-36",
+  "language": "fr",
+  "lemmas": [
+   "tort"
+  ],
+  "pattern": "avoir tort",
+  "example": "Il a vite reconnu qu'il avait tort.",
+  "tr": "Haksız olduğunu çabucak kabul etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-37",
+  "language": "fr",
+  "lemmas": [
+   "contact"
+  ],
+  "pattern": "prendre contact avec",
+  "example": "Je vais prendre contact avec le directeur demain.",
+  "tr": "Yarın müdürle iletişime geçeceğim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-38",
+  "language": "fr",
+  "lemmas": [
+   "visite"
+  ],
+  "pattern": "rendre visite à",
+  "example": "Nous rendons visite à nos grands-parents le dimanche.",
+  "tr": "Pazar günleri büyükanne ve büyükbabamızı ziyaret ederiz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-39",
+  "language": "fr",
+  "lemmas": [
+   "jeter",
+   "œil"
+  ],
+  "pattern": "jeter un coup d'œil",
+  "example": "Peux-tu jeter un coup d'œil rapide à mon rapport ?",
+  "tr": "Raporuma hızlıca bir göz atabilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc2-40",
+  "language": "fr",
+  "lemmas": [
+   "profit"
+  ],
+  "pattern": "tirer profit de",
+  "example": "Il faut tirer profit de cette belle opportunité.",
+  "tr": "Bu güzel fırsattan yararlanmak gerek.",
+  "source": "Diloloji (özgün)"
+ }
+]

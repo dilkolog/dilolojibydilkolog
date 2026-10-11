@@ -1,0 +1,448 @@
+[
+ {
+  "id": "en-colloc2-01",
+  "language": "en",
+  "lemmas": [
+   "focus"
+  ],
+  "pattern": "focus on",
+  "example": "We need to focus on our most important priorities.",
+  "tr": "En önemli önceliklerimize odaklanmamız gerekiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-02",
+  "language": "en",
+  "lemmas": [
+   "rely"
+  ],
+  "pattern": "rely on",
+  "example": "You can always rely on your teammates for support.",
+  "tr": "Destek için ekip arkadaşlarına her zaman güvenebilirsin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-03",
+  "language": "en",
+  "lemmas": [
+   "concentrate"
+  ],
+  "pattern": "concentrate on",
+  "example": "It is hard to concentrate on reading in a noisy room.",
+  "tr": "Gürültülü bir odada okumaya konsantre olmak zor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-04",
+  "language": "en",
+  "lemmas": [
+   "base"
+  ],
+  "pattern": "base on",
+  "example": "The thrilling film is based on a true historical event.",
+  "tr": "Heyecan verici film gerçek bir tarihi olaya dayanıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-05",
+  "language": "en",
+  "lemmas": [
+   "complain"
+  ],
+  "pattern": "complain about",
+  "example": "Several customers complained about the delayed delivery.",
+  "tr": "Birkaç müşteri geciken teslimattan şikayet etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-06",
+  "language": "en",
+  "lemmas": [
+   "worry"
+  ],
+  "pattern": "worry about",
+  "example": "Do not worry about things that are beyond your control.",
+  "tr": "Kontrolünün dışındaki şeyler için endişelenme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-07",
+  "language": "en",
+  "lemmas": [
+   "care"
+  ],
+  "pattern": "care about",
+  "example": "She genuinely cares about wildlife conservation.",
+  "tr": "Yaban hayatı korumayı içtenlikle önemsiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-08",
+  "language": "en",
+  "lemmas": [
+   "remind"
+  ],
+  "pattern": "remind of",
+  "example": "This melody reminds me of my cheerful childhood days.",
+  "tr": "Bu melodi bana neşeli çocukluk günlerimi hatırlatıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-09",
+  "language": "en",
+  "lemmas": [
+   "approve"
+  ],
+  "pattern": "approve of",
+  "example": "My parents fully approved of my decision to study abroad.",
+  "tr": "Ailem yurtdışında okuma kararımı tamamen onayladı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-10",
+  "language": "en",
+  "lemmas": [
+   "deal"
+  ],
+  "pattern": "deal with",
+  "example": "Our customer service team deals with difficult issues daily.",
+  "tr": "Müşteri hizmetleri ekibimiz her gün zorlu konularla ilgileniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-11",
+  "language": "en",
+  "lemmas": [
+   "cope"
+  ],
+  "pattern": "cope with",
+  "example": "She learned effective techniques to cope with heavy stress.",
+  "tr": "Ağır stresle başa çıkmak için etkili teknikler öğrendi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-12",
+  "language": "en",
+  "lemmas": [
+   "specialize"
+  ],
+  "pattern": "specialize in",
+  "example": "The private clinic specializes in modern sports medicine.",
+  "tr": "Özel klinik modern spor hekimliği alanında uzmanlaşmıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-13",
+  "language": "en",
+  "lemmas": [
+   "participate"
+  ],
+  "pattern": "participate in",
+  "example": "Hundreds of students participated in the science exhibition.",
+  "tr": "Yüzlerce öğrenci bilim sergisine katıldı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-14",
+  "language": "en",
+  "lemmas": [
+   "invest"
+  ],
+  "pattern": "invest in",
+  "example": "It is wise to invest in renewable energy technologies.",
+  "tr": "Yenilenebilir enerji teknolojilerine yatırım yapmak akıllıcadır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-15",
+  "language": "en",
+  "lemmas": [
+   "belong"
+  ],
+  "pattern": "belong to",
+  "example": "Does this antique pocket watch belong to your family?",
+  "tr": "Bu antika cep saati senin ailene mi ait?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-16",
+  "language": "en",
+  "lemmas": [
+   "respond"
+  ],
+  "pattern": "respond to",
+  "example": "The specialist responded promptly to our urgent inquiry.",
+  "tr": "Uzman, acil talebimize derhal yanıt verdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-17",
+  "language": "en",
+  "lemmas": [
+   "adapt"
+  ],
+  "pattern": "adapt to",
+  "example": "Living organisms adapt remarkably to harsh climate changes.",
+  "tr": "Canlı organizmalar sert iklim değişikliklerine olağanüstü biçimde uyum sağlar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-18",
+  "language": "en",
+  "lemmas": [
+   "contribute"
+  ],
+  "pattern": "contribute to",
+  "example": "Regular physical activity contributes greatly to heart health.",
+  "tr": "Düzenli fiziksel aktivite kalp sağlığına büyük katkıda bulunur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-19",
+  "language": "en",
+  "lemmas": [
+   "blame"
+  ],
+  "pattern": "blame for",
+  "example": "No one blamed the driver for the unfortunate accident.",
+  "tr": "Talihsiz kaza için hiç kimse sürücüyü suçlamadı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-20",
+  "language": "en",
+  "lemmas": [
+   "thank"
+  ],
+  "pattern": "thank for",
+  "example": "I want to thank everyone for their generous contribution.",
+  "tr": "Cömert katkılarından dolayı herkese teşekkür etmek istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-21",
+  "language": "en",
+  "lemmas": [
+   "suffer"
+  ],
+  "pattern": "suffer from",
+  "example": "Many residents suffer from seasonal allergies in springtime.",
+  "tr": "İlkbaharda pek çok mahalleli mevsimsel alerjilerden muzdariptir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-22",
+  "language": "en",
+  "lemmas": [
+   "protect"
+  ],
+  "pattern": "protect from",
+  "example": "Warm wool gloves protect your hands from biting cold.",
+  "tr": "Sıcak yün eldivenler ellerinizi keskin soğuktan korur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-23",
+  "language": "en",
+  "lemmas": [
+   "aware"
+  ],
+  "pattern": "aware of",
+  "example": "The managers are fully aware of the financial situation.",
+  "tr": "Yöneticiler mali durumun tamamen farkındadır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-24",
+  "language": "en",
+  "lemmas": [
+   "capable"
+  ],
+  "pattern": "capable of",
+  "example": "She is thoroughly capable of leading this demanding task.",
+  "tr": "Bu zorlu görevi yönetmeye tamamen muktedirdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-25",
+  "language": "en",
+  "lemmas": [
+   "fond"
+  ],
+  "pattern": "fond of",
+  "example": "My grandfather is particularly fond of classical chamber music.",
+  "tr": "Büyükbabam özellikle klasik oda müziğine çok düşkündür.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-26",
+  "language": "en",
+  "lemmas": [
+   "tired"
+  ],
+  "pattern": "tired of",
+  "example": "We are tired of waiting in long queues at the airport.",
+  "tr": "Havalimanında uzun kuyruklarda beklemekten bıktık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-27",
+  "language": "en",
+  "lemmas": [
+   "keen"
+  ],
+  "pattern": "keen on",
+  "example": "He is extremely keen on developing mobile software.",
+  "tr": "Mobil yazılım geliştirmeye son derece heveslidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-28",
+  "language": "en",
+  "lemmas": [
+   "famous"
+  ],
+  "pattern": "famous for",
+  "example": "The coastal town is famous for its delicious seafood dishes.",
+  "tr": "Kıyı kasabası lezzetli deniz ürünleri yemekleriyle ünlüdür.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-29",
+  "language": "en",
+  "lemmas": [
+   "responsible"
+  ],
+  "pattern": "responsible for",
+  "example": "Who is responsible for locking the office doors in the evening?",
+  "tr": "Akşamları ofis kapılarını kilitlemekten kim sorumlu?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-30",
+  "language": "en",
+  "lemmas": [
+   "suitable"
+  ],
+  "pattern": "suitable for",
+  "example": "This quiet library is very suitable for focused study sessions.",
+  "tr": "Bu sessiz kütüphane odaklanmış çalışma seansları için çok uygundur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-31",
+  "language": "en",
+  "lemmas": [
+   "break"
+  ],
+  "pattern": "take a break",
+  "example": "Let us take a short break before starting the next session.",
+  "tr": "Sonraki seansa başlamadan önce kısa bir mola verelim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-32",
+  "language": "en",
+  "lemmas": [
+   "effort"
+  ],
+  "pattern": "make an effort",
+  "example": "Everyone made a sincere effort to help the newcomers.",
+  "tr": "Yeni gelenlere yardım etmek için herkes samimi bir çaba gösterdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-33",
+  "language": "en",
+  "lemmas": [
+   "risk",
+   "run"
+  ],
+  "pattern": "run a risk",
+  "example": "You run a major risk by driving during this heavy blizzard.",
+  "tr": "Bu yoğun tipide araba sürerek büyük bir risk alıyorsunuz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-34",
+  "language": "en",
+  "lemmas": [
+   "advantage"
+  ],
+  "pattern": "take advantage of",
+  "example": "We should take full advantage of this unique opportunity.",
+  "tr": "Bu eşsiz fırsattan sonuna kadar yararlanmalıyız.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-35",
+  "language": "en",
+  "lemmas": [
+   "cold",
+   "catch"
+  ],
+  "pattern": "catch a cold",
+  "example": "Wear a thick scarf so you do not catch a nasty cold.",
+  "tr": "Kalın bir atkı tak ki fena bir soğuk algınlığına yakalanmayasın.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-36",
+  "language": "en",
+  "lemmas": [
+   "promise",
+   "keep"
+  ],
+  "pattern": "keep a promise",
+  "example": "It is honorable to always keep a promise you made.",
+  "tr": "Verdiğin sözü her zaman tutmak erdemli bir davranıştır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-37",
+  "language": "en",
+  "lemmas": [
+   "patience",
+   "lose"
+  ],
+  "pattern": "lose patience",
+  "example": "The teacher almost lost patience after the repeated interruptions.",
+  "tr": "Öğretmen tekrarlanan bölünmelerin ardından neredeyse sabrını kaybediyordu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-38",
+  "language": "en",
+  "lemmas": [
+   "time",
+   "save"
+  ],
+  "pattern": "save time",
+  "example": "Organizing your desk properly saves plenty of working time.",
+  "tr": "Masanızı düzgünce düzenlemek bolca çalışma vakti kazandırır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-39",
+  "language": "en",
+  "lemmas": [
+   "time",
+   "waste"
+  ],
+  "pattern": "waste time",
+  "example": "Do not waste time arguing over trivial points.",
+  "tr": "Önemsiz konular üzerine tartışarak vakit kaybetmeyin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc2-40",
+  "language": "en",
+  "lemmas": [
+   "progress"
+  ],
+  "pattern": "make progress",
+  "example": "The student has made noticeable progress in reading skills.",
+  "tr": "Öğrenci okuma becerilerinde gözle görülür bir ilerleme kaydetti.",
+  "source": "Diloloji (özgün)"
+ }
+]
