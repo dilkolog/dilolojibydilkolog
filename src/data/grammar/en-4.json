@@ -1,0 +1,393 @@
+[
+ {
+  "id": "en-prep_en-01",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "It all depends ___ the weather.",
+  "answer": "on",
+  "options": [
+   "on",
+   "of",
+   "from",
+   "at"
+  ],
+  "explanation": "« depend on »: -e bağlı olmak. Edat « on ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-02",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "She is interested ___ photography.",
+  "answer": "in",
+  "options": [
+   "in",
+   "on",
+   "at",
+   "for"
+  ],
+  "explanation": "« be interested in »: -e ilgi duymak. Edat « in ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "He was accused ___ stealing.",
+  "answer": "of",
+  "options": [
+   "of",
+   "for",
+   "with",
+   "about"
+  ],
+  "explanation": "« accuse someone of »: birini bir şeyle suçlamak. Edat « of ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-04",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "I'm looking forward ___ seeing you.",
+  "answer": "to",
+  "options": [
+   "to",
+   "for",
+   "at",
+   "of"
+  ],
+  "explanation": "« look forward to + -ing »: dört gözle beklemek. Buradaki « to » bir edattır, bu yüzden fiil -ing alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-05",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "She apologised ___ being late.",
+  "answer": "for",
+  "options": [
+   "for",
+   "of",
+   "with",
+   "to"
+  ],
+  "explanation": "« apologise for »: bir şey için özür dilemek. Edat « for ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-06",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "They insisted ___ paying for dinner.",
+  "answer": "on",
+  "options": [
+   "on",
+   "in",
+   "to",
+   "for"
+  ],
+  "explanation": "« insist on + -ing »: ısrar etmek. Edat « on ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-07",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "He is very good ___ mathematics.",
+  "answer": "at",
+  "options": [
+   "at",
+   "with",
+   "on",
+   "for"
+  ],
+  "explanation": "« be good at »: bir konuda iyi olmak. Edat « at ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-08",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "I'm afraid ___ spiders.",
+  "answer": "of",
+  "options": [
+   "of",
+   "from",
+   "with",
+   "at"
+  ],
+  "explanation": "« be afraid of »: -den korkmak. Edat « of ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-09",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "She is responsible ___ the budget.",
+  "answer": "for",
+  "options": [
+   "for",
+   "of",
+   "on",
+   "to"
+  ],
+  "explanation": "« be responsible for »: -in sorumlusu olmak. Edat « for ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-10",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "He succeeded ___ passing the test.",
+  "answer": "in",
+  "options": [
+   "in",
+   "at",
+   "on",
+   "for"
+  ],
+  "explanation": "« succeed in + -ing »: başarmak. Edat « in ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-11",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "We are fed up ___ waiting.",
+  "answer": "with",
+  "options": [
+   "with",
+   "of",
+   "from",
+   "on"
+  ],
+  "explanation": "« be fed up with »: -den bıkmak. Edat « with ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-12",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "He is used ___ getting up early.",
+  "answer": "to",
+  "options": [
+   "to",
+   "at",
+   "for",
+   "with"
+  ],
+  "explanation": "« be used to + -ing »: -e alışık olmak. Buradaki « to » edattır; « used to + fiil » (eskiden) ile karıştırma.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-13",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "She suffers ___ headaches.",
+  "answer": "from",
+  "options": [
+   "from",
+   "of",
+   "with",
+   "by"
+  ],
+  "explanation": "« suffer from »: -den muzdarip olmak. Edat « from ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-14",
+  "language": "en",
+  "level": "B2",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "I congratulated him ___ his promotion.",
+  "answer": "on",
+  "options": [
+   "on",
+   "with",
+   "at",
+   "about"
+  ],
+  "explanation": "« congratulate someone on »: birini bir şey için tebrik etmek. Edat « on ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-01",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "I think I've ___ a mistake.",
+  "answer": "made",
+  "options": [
+   "made",
+   "done",
+   "had",
+   "taken"
+  ],
+  "explanation": "« make a mistake »: hata yapmak. « do a mistake » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-02",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Could you ___ me a favour?",
+  "answer": "do",
+  "options": [
+   "do",
+   "make",
+   "take",
+   "give"
+  ],
+  "explanation": "« do someone a favour »: birine iyilik yapmak. « make a favour » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-03",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "We had ___ rain all night.",
+  "answer": "heavy",
+  "options": [
+   "heavy",
+   "strong",
+   "big",
+   "thick"
+  ],
+  "explanation": "« heavy rain »: sağanak. « strong rain » denmez; « strong » rüzgâr, çay, kahve gibi şeylerle gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-04",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Please ___ attention to the instructions.",
+  "answer": "pay",
+  "options": [
+   "pay",
+   "make",
+   "do",
+   "take"
+  ],
+  "explanation": "« pay attention »: dikkat etmek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "We need to ___ a decision today.",
+  "answer": "make",
+  "options": [
+   "make",
+   "do",
+   "give",
+   "have"
+  ],
+  "explanation": "« make a decision »: karar vermek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-06",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Can I ___ a photo of you?",
+  "answer": "take",
+  "options": [
+   "take",
+   "make",
+   "do",
+   "draw"
+  ],
+  "explanation": "« take a photo »: fotoğraf çekmek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-07",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "He ___ his best, but he lost.",
+  "answer": "did",
+  "options": [
+   "did",
+   "made",
+   "had",
+   "took"
+  ],
+  "explanation": "« do your best »: elinden geleni yapmak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-08",
+  "language": "en",
+  "level": "B2",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "I'd like a ___ cup of coffee, please.",
+  "answer": "strong",
+  "options": [
+   "strong",
+   "heavy",
+   "powerful",
+   "big"
+  ],
+  "explanation": "« strong coffee/tea »: sert, koyu kahve ya da çay. « heavy coffee » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-09",
+  "language": "en",
+  "level": "B2",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "The company ___ a profit last year.",
+  "answer": "made",
+  "options": [
+   "made",
+   "did",
+   "won",
+   "took"
+  ],
+  "explanation": "« make a profit »: kâr etmek.",
+  "source": "Diloloji (özgün)"
+ }
+]
