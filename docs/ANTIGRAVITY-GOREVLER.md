@@ -357,15 +357,14 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 ### 12.1 Yeni üç beslemenin gerçek alan adları (script + rapor; TAMAMLANDI — `docs/kaynaklar/gunun-haberi.md` §9)
 `scripts/check-news-feeds.ts --feeds salut-linfo,hoyhablamos,bbc-6min` ile her beslemenin ilk 5 maddesi canlı sınandı. Tüm maddelerin `linkHost` değerleri (`www.franceinfo.fr`, `www.hoyhablamos.com`, `www.bbc.co.uk`) tanımlı `hosts` değerleriyle (`radiofrance.fr/franceinfo.fr`, `hoyhablamos.com`, `bbc.co.uk/bbc.com`) tam uyumlu çıktı (`allowedArticle` 15/15 geçerli). Metin kelime sayıları 125–900 kelime ve ses akışları HTTP 200 doğrulanıp `docs/kaynaklar/gunun-haberi.md` Bölüm 9'a işlendi.
 
-### 12.2 Sözlük ve eşdizim için uçtan uca testler (`e2e/`)
-Sözlük ekranının hiç E2E testi yoktu; Claude Code yalnızca bir akış yazdı (`e2e/desktop.e2e.ts` "dictionary: a word the pack lacks…"). Ekle (mevcut testleri silme; `e2e/helpers.ts` `openScreen(page, 'Sözlük')` var):
-- **Telefon (375 px):** aynı akış: bulunamayan kelime → "DeepL ile çevir" (`/api/translate` taklidi: `startWithSamples` çeviriyi 503 ile kapatır, taklidi **sonra** kurup yenile; bkz. AGENTS.md) → anlamı düzelt → "Sözlüğe kaydet" → yenile → kayıtlı kelime kartı → "Sözlükten kaldır". Düğme satırı taşıyor mu (`overflow`)?
-- **Elle anlam:** DeepL kapalıyken (503) Türkçe anlam yazıp "Sözlüğe kaydet"; "Kelimelerime ekle" ayrı bir yol (kelime ekleme formu açılır, kayıtlı sözlük kaydına dokunmaz).
-- **Aranabilirlik:** kaydedilmiş kelimeyi başıyla, aksansız yazılışıyla (`école` ↔ `ecole`) ve Türkçe anlamıyla (`Işık` büyük harf noktasız I) bul.
-- **Kelime sayfasında çipler:** Fransızcada `décider` sayfasında "décider de + infinitif" çipi, `question` sayfasında "poser une question"; İspanyolca ve İngilizce için birer örnek; çip örneği ekran okuyucu metni olarak (`.sr-only`) da var.
-- **Fiil laboratuvarı:** Alıştırma → "Yaz" varsayılan olarak "Tek tek"; "Liste"de `Tab` ile 6 kişi alanı sırayla; satırlarda "?" düğmesi yok; "İpucu: ilk harfler" tek düğme ve basınca odak kaybolmuyor (`document.activeElement`).
-- **Bugün tohumu:** yeni cihazda (henüz cevap yok) `.plant-waiting` var; `prefers-reduced-motion: reduce` emülasyonunda (`page.emulateMedia`) animasyonlar durur (`getComputedStyle(...).animationName === 'none'`).
-Telefon ve masaüstü projelerinde ya da gerekçesiyle yalnızca birinde.
+### 12.2 Sözlük ve eşdizim için uçtan uca testler (`e2e/`; TAMAMLANDI — #257)
+Sözlük ekranı, eşdizim çipleri, fiil laboratuvarı odak koruma ve Bugün canlı tohumu için kapsamlı uçtan uca testler eklendi:
+- **Telefon (375 px; `e2e/phone.e2e.ts`):** `gribouiller` kelimesi aranır → DeepL çeviri taklidi → anlamı düzenleme → "Sözlüğe kaydet" → reload sonrası "Kaydettiklerin" listesinde görünme → "Sözlükten kaldır" akışı ve `overflow(page) === []` doğrulaması.
+- **Elle anlam (`e2e/desktop.e2e.ts`):** DeepL kapalıyken `farfadet` için "Türkçe anlamını yaz…" ile "Sözlüğe kaydet"; ikinci kelime `zigoto` için "Kelimelerime ekle" ile ekleme formuna geçiş ve sözlük kayıtlarının etkilenmediğinin doğrulanması.
+- **Aranabilirlik (`e2e/desktop.e2e.ts`):** Kayıtlı `téléguidé` kelimesinin önek (`télé`), aksansız (`teleguide`) ve Türkçe anlamla (`Işık` büyük noktasız I) bulunması.
+- **Kelime sayfasında çipler (`e2e/desktop.e2e.ts`):** Fransızca `décider` (`décider de + infinitif`) ve `question` (`poser une question`), İspanyolca `soñar` (`soñar con`), İngilizce `depend` (`depend on`) çiplerinin ve `.sr-only` örnek metinlerinin doğrulanması.
+- **Fiil laboratuvarı (`e2e/desktop.e2e.ts`):** Alıştırma → "Yaz" varsayılan "Tek tek"; "Liste"de Tab ile `#lab-in-0`'dan `#lab-in-5`'e geçiş; satırlarda `?` olmaması; "İpucu: ilk harfler" tek butonuna basınca odağın (`document.activeElement`) korunması.
+- **Bugün tohumu (`e2e/desktop.e2e.ts`):** Henüz cevap verilmemişken `.plant-waiting` ve `.plant-seed-hop` varlığı; `prefers-reduced-motion: reduce` altında animasyonun `none` olması.
 
 ### 12.3 İki cihazlı eşitlemede sözlük kayıtları (`e2e/sync.e2e.ts`)
 Mevcut iki cihazlı eşitleme testlerinin yanına: cihaz A'da sözlüğe kaydedilen kelime cihaz B'de de bulunur; A'da "Sözlükten kaldır" → eşitlemeden sonra B'de de yok (tombstone `dictadd:<dil>:<kelime>`); B'de daha yeni bir kayıt (anlamı değişmiş) A'daki eskiyi ezer; kaldırıldıktan sonra yeniden kaydedilen kelime canlıdır. `src/data/mergeRules.test.ts`teki "words saved to the dictionary" birim testini örnek al.
