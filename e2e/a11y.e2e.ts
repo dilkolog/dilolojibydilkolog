@@ -619,5 +619,213 @@ test('new games and insight cards pass accessibility check across dark and calm 
   expect(problems).toEqual([])
 })
 
+test('round 11 interactive states and new cards pass accessibility checks on phone in light and dark themes', async ({ page }) => {
+  test.setTimeout(240_000)
+  await page.setViewportSize({ width: 375, height: 667 })
+  await startWithSamples(page)
+  await approveAccount(page)
+
+  // Seed translations for back-translation loop chips, traps for blind spots card, aiKey, and 5 own words for suggest words
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const open = indexedDB.open('kelime-koc')
+      open.onsuccess = () => {
+        const tx = open.result.transaction(['meta', 'vocabulary'], 'readwrite')
+        const meta = tx.objectStore('meta')
+        meta.put({ key: 'aiKey', value: 'sk-ant-test-key' })
+        meta.put({
+          key: 'traps',
+          value: {
+            'fr-actuellement': { ok: 0, wrong: 2, last: new Date().toISOString() },
+            'fr-attendre': { ok: 0, wrong: 2, last: new Date().toISOString() },
+          },
+        })
+        meta.put({
+          key: 'translations',
+          value: [
+            {
+              from: 'fr',
+              to: 'tr',
+              text: 'Je parle français très bien.',
+              translation: 'Çok iyi Fransızca konuşuyorum.',
+              at: '2026-10-09T10:00:00.000Z',
+            },
+          ],
+        })
+
+        // Make at least 5 words "own" words added yesterday so suggestionDue is true
+        const vocabStore = tx.objectStore('vocabulary')
+        const cursorReq = vocabStore.openCursor()
+        let count = 0
+        cursorReq.onsuccess = () => {
+          const cursor = cursorReq.result
+          if (cursor && count < 6) {
+            cursor.update({ ...cursor.value, source: 'user', addedAt: new Date(Date.now() - 86_400_000) })
+            count++
+            cursor.continue()
+          }
+        }
+
+        tx.oncomplete = () => {
+          window.dispatchEvent(new Event('diloloji:account'))
+          resolve()
+        }
+      }
+    })
+  })
+  await page.reload()
+
+  const setTheme = (t: 'light' | 'dark') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      root.dataset.theme = theme
+      delete root.dataset.calm
+    }, t)
+
+  const problems: string[] = []
+
+  const scanBoth = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+
+  // 1. Bugün → MindSeed ve SuggestWords (Kelime öner)
+  await openScreen(page, 'Bugün')
+  await page.evaluate(() => {
+    const seed = document.querySelector('.mind-seed') as HTMLElement | null
+    if (seed?.parentElement) seed.parentElement.prepend(seed)
+  })
+  await expect(page.locator('.mind-seed')).toBeVisible()
+  await scanBoth('phone-mind-seed')
+
+  await page.evaluate(() => {
+    const suggest = document.querySelector('.suggest-words') as HTMLElement | null
+    if (suggest?.parentElement) suggest.parentElement.prepend(suggest)
+  })
+  await expect(page.locator('.suggest-words')).toBeVisible()
+  await scanBoth('phone-suggest-words')
+
+  // 2. İlerleme → Kör nokta röntgeni (BlindSpotsCard)
+  await openScreen(page, 'İlerleme')
+  await expect(page.locator('.blind-spots')).toBeVisible()
+  await scanBoth('phone-blind-spots')
+
+  // 3. Okuma → Bileşik zaman kartı
+  await openScreen(page, 'Okuma')
+  const details = page.locator('details.add-text')
+  await details.evaluate((el: HTMLDetailsElement) => {
+    el.open = true
+  })
+  await page.getByLabel('Metin', { exact: true }).fill("J'ai mangé une pomme.")
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  const aiWord = page.locator('.rw').filter({ hasText: /ai/ }).first()
+  await aiWord.click()
+  await expect(page.locator('.word-pop')).toBeVisible()
+  await expect(page.locator('.form-analysis')).toBeVisible()
+  await scanBoth('phone-reading-compound-card')
+  await page.getByRole('button', { name: 'Kapat' }).click()
+
+  // 4. Oyunlar → Dilbilgisi soruları (soru ve cevap sonrası)
+  await openScreen(page, 'Oyunlar')
+  const grammarCard = page.locator('.game-card', { hasText: 'Dilbilgisi soruları' })
+  await grammarCard.click()
+  await expect(page.locator('.greeting', { hasText: 'Dilbilgisi soruları' })).toBeVisible()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.prompt-label')).toBeVisible()
+  await scanBoth('phone-grammar-question')
+  // Answer question
+  const opt = page.locator('.option').first()
+  const cloze = page.locator('input.answer-input')
+  const grammarWord = page.locator('.grammar-word').first()
+  if (await opt.isVisible()) {
+    await opt.click()
+  } else if (await cloze.isVisible()) {
+    await cloze.fill('test')
+    await page.getByRole('button', { name: 'Kontrol et' }).click()
+  } else if (await grammarWord.isVisible()) {
+    await grammarWord.click()
+  }
+  await expect(page.locator('.grammar-feedback')).toBeVisible()
+  await scanBoth('phone-grammar-answer')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 5. Oyunlar → Refleks turu (süreli ve süresiz)
+  const reflexCard = page.locator('.game-card', { hasText: 'Refleks turu' })
+  await reflexCard.click()
+  await expect(page.locator('.greeting', { hasText: 'Refleks turu' })).toBeVisible()
+  // 5a. Süreli (timed - with progress bar animation)
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.options')).toBeVisible()
+  await expect(page.locator('.reflex-bar')).toHaveCount(1)
+  await scanBoth('phone-reflex-timed-play')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 5b. Süresiz (untimed)
+  await reflexCard.click()
+  await page.getByRole('button', { name: 'Süre yok (ilk deneme)' }).click()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.options')).toBeVisible()
+  await expect(page.locator('.reflex-bar')).toHaveCount(0)
+  await scanBoth('phone-reflex-untimed-play')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 6. Oyunlar → Tuzak kelimeler (soru ve cevap)
+  const trapsCard = page.locator('.game-card', { hasText: 'Tuzak kelimeler' })
+  await trapsCard.click()
+  await expect(page.locator('.greeting', { hasText: 'Tuzak kelimeler' })).toBeVisible()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  await expect(page.locator('.options')).toBeVisible()
+  await scanBoth('phone-traps-question')
+  await page.locator('.option').first().click()
+  await expect(page.getByRole('button', { name: 'Devam' })).toBeVisible()
+  await scanBoth('phone-traps-answer')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 7. Oyunlar → Ses ayırt etme (oyun ekranı)
+  const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
+  await pairsCard.click()
+  await expect(page.locator('.game-stage')).toBeVisible()
+  await scanBoth('phone-pairs-play')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 8. Oyunlar → Geri çeviri (döngü çipleri görünürken)
+  const backCard = page.locator('.game-card', { hasText: 'Geri çeviri' })
+  await backCard.click()
+  await expect(page.locator('.choice-row[aria-label="Hangi cümleler"]')).toBeVisible()
+  await scanBoth('phone-back-translation-loop-chips')
+  await page.locator('button.link', { hasText: '← Bitir' }).click()
+
+  // 9. Oyunlar → Kayıt farkı (İspanyolca, bölgesel not görünürken)
+  await page.setViewportSize({ width: 900, height: 700 })
+  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.setViewportSize({ width: 375, height: 667 })
+  await openScreen(page, 'Oyunlar')
+  const registerCard = page.locator('.game-card', { hasText: 'Kayıt farkı' })
+  await registerCard.click()
+  await expect(page.locator('.greeting', { hasText: 'Kayıt farkı' })).toBeVisible()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+  let scannedNote = false
+  for (let i = 0; i < 8; i++) {
+    await page.locator('.option').first().click()
+    await expect(page.locator('.register-ladder')).toBeVisible()
+    const noteLoc = page.locator('.stack[role="status"] p.small.muted')
+    if (await noteLoc.count()) {
+      await expect(noteLoc).toBeVisible()
+      await scanBoth('phone-register-answer-with-note')
+      scannedNote = true
+      break
+    }
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  }
+  expect(scannedNote).toBe(true)
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
+
 
 
