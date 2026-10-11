@@ -1,0 +1,195 @@
+[
+  {
+    "id": "es-greeting-hi",
+    "language": "es",
+    "tr": "merhaba, selam",
+    "informal": "¡Buenas!",
+    "standard": "Hola",
+    "formal": "Buenos días",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-req-pass",
+    "language": "es",
+    "tr": "bunu uzatır mısın?",
+    "informal": "Pásame eso",
+    "standard": "¿Me pasas eso, por favor?",
+    "formal": "¿Sería tan amable de alcanzarme eso?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-req-help",
+    "language": "es",
+    "tr": "yardım eder misin?",
+    "informal": "Échame una mano",
+    "standard": "¿Me puedes ayudar?",
+    "formal": "¿Podría brindarme su asistencia?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-accept-agree",
+    "language": "es",
+    "tr": "kabul, anlaştık",
+    "informal": "Trato hecho",
+    "standard": "De acuerdo",
+    "formal": "Acepto los términos",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-refuse-no",
+    "language": "es",
+    "tr": "olmaz, kesinlikle hayır",
+    "informal": "Ni de coña",
+    "standard": "No es posible",
+    "formal": "Lamento no poder acceder a su petición",
+    "source": "Diloloji (özgün)",
+    "note": "“Ni de coña” İspanya argosudur; Latin Amerika'da “Ni de chiste” ya da “Para nada” denir."
+  },
+  {
+    "id": "es-apology-sorry",
+    "language": "es",
+    "tr": "özür dilerim",
+    "informal": "Disculpa",
+    "standard": "Lo siento",
+    "formal": "Le ruego acepte mis disculpas",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-object-disagree",
+    "language": "es",
+    "tr": "katılmıyorum, itiraz ediyorum",
+    "informal": "¡Qué va!",
+    "standard": "No estoy de acuerdo",
+    "formal": "Discrepo respetuosamente",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-phone-answer",
+    "language": "es",
+    "tr": "alo, buyrun",
+    "informal": "¿Sí, dime?",
+    "standard": "¿Hola, con quién hablo?",
+    "formal": "Buenos días, departamento de atención, ¿en qué puedo servirle?",
+    "source": "Diloloji (özgün)",
+    "note": "Telefonda “Dime” İspanya’da yaygındır; Meksika’da “¿Bueno?”, Kolombiya’da “¿Aló?”, Arjantin’de “¿Hola?” ile açılır."
+  },
+  {
+    "id": "es-phone-hangup",
+    "language": "es",
+    "tr": "kapatmam lazım",
+    "informal": "Te cuelgo que tengo prisa",
+    "standard": "Tengo que colgar ahora",
+    "formal": "Debo finalizar la llamada, muchas gracias por su tiempo",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-email-greeting",
+    "language": "es",
+    "tr": "e-posta selamlama",
+    "informal": "Hola chicos,",
+    "standard": "Estimados todos,",
+    "formal": "Distinguido señor / Estimada señora:",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-email-attach",
+    "language": "es",
+    "tr": "ekteki dosya",
+    "informal": "Ahí te paso el archivo",
+    "standard": "Adjunto el documento solicitado",
+    "formal": "Tenga a bien encontrar adjunto el documento en referencia",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-food-order",
+    "language": "es",
+    "tr": "yemek siparişi verme",
+    "informal": "Ponme el pollo",
+    "standard": "Para mí el pollo, por favor",
+    "formal": "Deseo ordenar el pollo, si es tan amable",
+    "source": "Diloloji (özgün)",
+    "note": "“Ponme...” İspanya barlarında yaygın doğrudan sipariş tarzıdır; Latin Amerika'da kaba bulunabilir, “Me regala...” ya da “Me da...” denir."
+  },
+  {
+    "id": "es-food-bill",
+    "language": "es",
+    "tr": "hesap lütfen",
+    "informal": "¿Cuánto es?",
+    "standard": "La cuenta, por favor",
+    "formal": "¿Nos trae la cuenta cuando le sea posible, por favor?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-dir-station",
+    "language": "es",
+    "tr": "istasyon nerede?",
+    "informal": "¿Por dónde cae la estación?",
+    "standard": "¿Dónde está la estación, por favor?",
+    "formal": "¿Sería tan amable de indicarme el camino hacia la estación?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-time-meet",
+    "language": "es",
+    "tr": "saat kaçta buluşuyoruz?",
+    "informal": "¿A qué hora quedamos?",
+    "standard": "¿A qué hora nos vemos?",
+    "formal": "¿A qué hora estima oportuno coordinar nuestra reunión?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-time-late",
+    "language": "es",
+    "tr": "gecikiyorum, geç kalıyorum",
+    "informal": "Voy pillado de tiempo",
+    "standard": "Voy a llegar tarde",
+    "formal": "Ruego disculpen mi retraso debido a un imprevisto",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-thank-much",
+    "language": "es",
+    "tr": "çok teşekkür ederim",
+    "informal": "¡Mil gracias!",
+    "standard": "Muchas gracias",
+    "formal": "Le quedo sumamente agradecido",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-confirm-gotit",
+    "language": "es",
+    "tr": "anlaşıldı, kavradım",
+    "informal": "¡Pillado!",
+    "standard": "Entendido perfectamente",
+    "formal": "He tomado debida nota de las instrucciones",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-wait-moment",
+    "language": "es",
+    "tr": "bir saniye bekleyin",
+    "informal": "Aguanta un toque",
+    "standard": "Espera un momento, por favor",
+    "formal": "Tenga la bondad de aguardar un instante",
+    "source": "Diloloji (özgün)",
+    "note": "“Un toque” Latin Amerika’da (Kolombiya/Peru/Arjantin) çok yaygın bir zamansal argodur; İspanya’da “un segundo” daha yaygındır."
+  },
+  {
+    "id": "es-part-later",
+    "language": "es",
+    "tr": "sonra görüşürüz",
+    "informal": "Luego nos vemos",
+    "standard": "Hasta luego",
+    "formal": "Ha sido un placer, hasta nuestra próxima reunión",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-money-cost",
+    "language": "es",
+    "tr": "fiyatı ne kadar?",
+    "informal": "¿A cuánto sale esto?",
+    "standard": "¿Cuál es el precio de esto?",
+    "formal": "¿Cuál es el costo fijado para este artículo?",
+    "source": "Diloloji (özgün)"
+  }
+]
