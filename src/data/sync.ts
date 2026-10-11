@@ -307,6 +307,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     deduction: mergeDeductionLogs(older.deduction, newer.deduction),
     register: mergeGrammarLogs(older.register, newer.register),
     flow: mergeGrammarLogs(older.flow, newer.flow),
+    affixes: mergeGrammarLogs(older.affixes, newer.affixes),
     media: [],
   }
 }

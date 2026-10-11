@@ -595,6 +595,25 @@ test('new games and insight cards pass accessibility check across dark and calm 
     await page.locator('button.link', { hasText: '← Oyunlar' }).click()
   }
 
+  // 4d. Oyunlar → Ek avı (soru ve cevap sonrası ek açıklaması)
+  const affixCard = page.locator('.game-card', { hasText: 'Ek avı' })
+  if (await affixCard.count()) {
+    await affixCard.click()
+    await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+    await expect(page.locator('.option')).toHaveCount(3)
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-affix-play-${theme}`)))
+    }
+    await page.locator('.option').first().click()
+    await expect(page.locator('[role=status]')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-affix-answer-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
   // 5. Oyunlar → Ses ayırt etme (oyun ekranı)
   const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
   if (await pairsCard.count()) {

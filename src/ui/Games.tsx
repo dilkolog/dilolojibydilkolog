@@ -23,6 +23,7 @@ import { TrapRound } from './games/TrapRound'
 import { RegisterRound } from './games/RegisterRound'
 import { registerItems } from '../data/register'
 import { FlowRound } from './games/FlowRound'
+import { AffixHunt } from './games/AffixHunt'
 import { flowItems } from '../data/flow'
 import { trapWords } from '../data/traps'
 import { grammarExercises } from '../data/grammar'
@@ -128,6 +129,7 @@ export function GamesScreen(
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
     if (game === 'register') return <RegisterRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'affix') return <AffixHunt language={p.language} onExit={() => setGame(null)} />
     if (game === 'flow') return <FlowRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
@@ -191,7 +193,8 @@ export function GamesScreen(
   const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
   const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Kayıt farkı', text: 'Sokakta, standart ve resmî: durumu oku, ortama uyan söyleyişi seç.', status: `${registerItems.filter((r) => r.language === p.language).length} düşünce` }
   const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: `${flowItems.filter((r) => r.language === p.language).length} paragraf` }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, trapCard, registerCard, flowCard] })
+  const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, trapCard, registerCard, flowCard, affixCard] })
   else
     groups.push({
       title: 'Dilbilgisi',
@@ -201,6 +204,7 @@ export function GamesScreen(
         trapCard,
         registerCard,
         flowCard,
+        affixCard,
         { id: 'article', emoji: '🏷️', name: 'Artikel antrenmanı', text: `Kendi isimlerinle ${p.language === 'fr' ? 'le/la' : 'el/la'}, en çok karıştırdıkların önce.`, status: 'Hızlı, sırayla', scheduled: true },
         {
           id: 'verbs',
