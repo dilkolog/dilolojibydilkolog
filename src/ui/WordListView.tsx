@@ -24,6 +24,7 @@ import { Popover } from './Popover'
 import { useCefr } from './useCefr'
 import { cefrOf } from '../engine/cefrLevels'
 import { levelFromRank } from '../engine/wordLevel'
+import { CULL_GROUPS, cullIds } from '../engine/cullGroups'
 
 type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes' | 'difficult' | 'review'
 type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent' | 'due'
@@ -242,6 +243,16 @@ export function WordList({
 
   // Words that disappeared (deleted elsewhere) drop out of the selection.
   const selectedVisible = list.filter((v) => selected.has(v.id))
+  // Quick groups for sorting a long list out (among the words shown, so a filter narrows them).
+  const quick = useMemo(() => (selecting ? cullIds(list, stateById, new Date()) : null), [selecting, list, stateById])
+  const pickGroup = (ids: string[]) =>
+    setSelected((cur) => {
+      // All of the group already selected: a second tap takes them out again.
+      const all = ids.every((id) => cur.has(id))
+      const next = new Set(cur)
+      for (const id of ids) all ? next.delete(id) : next.add(id)
+      return next
+    })
   const allVisibleSelected = list.length > 0 && selectedVisible.length === list.length
 
   const exitSelection = () => {
@@ -523,6 +534,23 @@ export function WordList({
                 }}
               >
                 Sil ({selectedVisible.length})
+              </button>
+            </div>
+          )}
+          {selecting && quick && (
+            <div className="select-quick" role="group" aria-label="Hızlı seç">
+              <span className="small muted">Hızlı seç:</span>
+              {CULL_GROUPS.map((g) => {
+                const ids = quick[g.id]
+                const on = ids.length > 0 && ids.every((id) => selected.has(id))
+                return (
+                  <button key={g.id} type="button" className="chip chip-sm" aria-pressed={on} disabled={ids.length === 0} title={g.hint} onClick={() => pickGroup(ids)}>
+                    {g.label} ({ids.length})
+                  </button>
+                )
+              })}
+              <button type="button" className="link small" disabled={list.length === 0} onClick={() => setSelected(new Set(list.filter((v) => !selected.has(v.id)).map((v) => v.id)))}>
+                Seçimi ters çevir
               </button>
             </div>
           )}

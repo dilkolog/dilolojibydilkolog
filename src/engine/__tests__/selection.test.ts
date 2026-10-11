@@ -9,6 +9,8 @@ import {
   startOfDay,
   unlockedSkills,
 } from '../selection'
+import { exerciseTypesFor } from '../exercises'
+import { PREF_TYPES } from '../exercisePrefs'
 import { decision } from './fixtures'
 import { newWordState } from '../review'
 import type { VocabularyEntry } from '../types'
@@ -74,6 +76,40 @@ describe('selection engine', () => {
       expect(skills).toContain('listening')
       expect(skills).toContain('collocation')
       expect(skills).toContain('production')
+    })
+  })
+
+  describe('question types the learner tuned (Settings → Sorular)', () => {
+    const strong = () => {
+      const state = newWordState(decision, now)
+      state.skills.recognition = { ...scheduler.newCard(now), reps: 2 }
+      state.skills.recall = { ...scheduler.newCard(now), reps: 3, stability: 4, state: State.Review }
+      return state
+    }
+    const everything = PREF_TYPES.map((p) => p.type)
+
+    it('with every tunable type off, a skill is unlocked only if something can still be asked in it (no empty pick)', () => {
+      for (const skill of unlockedSkills(strong(), decision, { off: everything })) {
+        expect(exerciseTypesFor(skill, decision, { off: everything }).length, skill).toBeGreaterThan(0)
+        expect(() => pickExerciseType(skill, decision, undefined, createRng(1), { off: everything })).not.toThrow()
+      }
+      // The meaning choice and typing from the meaning are always left.
+      expect(unlockedSkills(strong(), decision, { off: everything })).toEqual(expect.arrayContaining(['recognition', 'recall']))
+    })
+
+    it('a type set to "less" is picked about a third as often as the others', () => {
+      const opts = { less: ['mc_context' as const] }
+      const count = (o: typeof opts | undefined) => {
+        const rng = createRng(5)
+        let n = 0
+        for (let i = 0; i < 3000; i++) if (pickExerciseType('recognition', decision, undefined, rng, o) === 'mc_context') n++
+        return n
+      }
+      const normal = count(undefined)
+      const less = count(opts)
+      expect(normal).toBeGreaterThan(500)
+      expect(less).toBeLessThan(normal * 0.55)
+      expect(less).toBeGreaterThan(normal * 0.15)
     })
   })
 

@@ -19,16 +19,31 @@ async function mount(settings: Settings, onChange: (s: Settings) => void) {
   await act(async () => root!.render(<AnswerSettings settings={settings} onChange={onChange} />))
   return host
 }
-const toggle = (host: HTMLElement) => [...host.querySelectorAll<HTMLInputElement>('input[type=checkbox], [role=switch]')].find((el) => el.closest('label, div')?.textContent?.includes('Cümlede boşluğu yazarak'))!
+const level = (host: HTMLElement, type: string, name: string) =>
+  [...host.querySelectorAll<HTMLElement>(`[role=radiogroup][aria-label="${type}"] [role=radio]`)].find((b) => b.textContent === name)!
 
-describe('AnswerSettings: the typed blank', () => {
-  it('is on by default and a tap turns the question type off', async () => {
+describe('AnswerSettings: question types', () => {
+  it('lists the tunable question types, all normal at first', async () => {
+    const host = await mount({ ...DEFAULT_SETTINGS }, vi.fn())
+    expect(host.textContent).toContain('Soru türleri')
+    expect(host.querySelector('[aria-label="Cümlede boşluğu yaz"] [aria-checked=true]')?.textContent).toBe('Normal')
+    expect(host.textContent).not.toContain('Hepsini normale döndür')
+  })
+
+  it('turning a type off or down is saved, and the old typedBlanks switch is folded in', async () => {
     const onChange = vi.fn()
     const host = await mount({ ...DEFAULT_SETTINGS }, onChange)
-    expect(host.textContent).toContain('Cümlede boşluğu yazarak doldurma soruları')
-    const el = toggle(host)
-    expect(el).toBeTruthy()
-    await act(async () => el.click())
-    expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ typedBlanks: false }))
+    await act(async () => level(host, 'Cümlede boşluğu yaz', 'Hiç').click())
+    expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ exercisePrefs: { cloze_typed: 'off' }, typedBlanks: true }))
+    await act(async () => level(host, 'Duyduğun cümleyi yaz', 'Az').click())
+    expect(onChange).toHaveBeenLastCalledWith(expect.objectContaining({ exercisePrefs: { dictation: 'less' } }))
+  })
+
+  it('shows the old setting (typedBlanks false) as "Hiç" and can put everything back to normal', async () => {
+    const onChange = vi.fn()
+    const host = await mount({ ...DEFAULT_SETTINGS, typedBlanks: false }, onChange)
+    expect(host.querySelector('[aria-label="Cümlede boşluğu yaz"] [aria-checked=true]')?.textContent).toBe('Hiç')
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Hepsini normale döndür')!.click())
+    expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ exercisePrefs: {}, typedBlanks: true }))
   })
 })

@@ -134,7 +134,7 @@ export function SessionScreen(p: Props) {
   // blank is typed instead of chosen; practice sessions keep their plan.
   const shape = (it: PlanItem, st: UserWordState | undefined) => {
     const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng)
-    return prefs.typedBlanks ? typeStrongCloze(mixed, st) : mixed
+    return prefs.exerciseOff.includes('cloze_typed') ? mixed : typeStrongCloze(mixed, st)
   }
   const [session, setSession] = useState(() =>
     startSession(p.mode === 'practice' || !p.items.length ? p.items : [shape(p.items[0], states.current.get(p.items[0].entryId)), ...p.items.slice(1)]),

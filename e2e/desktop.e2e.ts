@@ -1252,18 +1252,40 @@ test('word list: with no list yet, a selection can be added to a brand-new one',
   await expect(page.locator('.wl-name', { hasText: 'Ayıklanan' })).toBeVisible()
 })
 
-test('settings: the typed blank question can be switched off, and stays off after a reload', async ({ page }) => {
+test('word list: quick groups select the sample words, a second tap clears them, and invert flips the selection', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  const group = page.getByRole('group', { name: 'Hızlı seç' })
+  const samples = group.getByRole('button', { name: /^Örnek kelimeler \(\d+\)$/ })
+  const total = Number((await samples.textContent())!.match(/\((\d+)\)/)![1])
+  expect(total).toBeGreaterThan(0)
+  await samples.click()
+  await expect(page.locator('.select-bar')).toContainText(`${total} seçili`)
+  await expect(samples).toHaveAttribute('aria-pressed', 'true')
+  await samples.click()
+  await expect(page.locator('.select-bar')).toContainText('0 seçili')
+  await group.getByRole('button', { name: 'Seçimi ters çevir' }).click()
+  await expect(page.locator('.select-bar')).toContainText(`${total} seçili`)
+})
+
+test('settings: a question type can be set to less or off, and stays so after a reload', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Sorular' }).click()
-  const toggle = page.getByRole('switch', { name: /Cümlede boşluğu yazarak doldurma/ })
-  await expect(toggle).toHaveAttribute('aria-checked', 'true')
-  await toggle.click()
-  await expect(toggle).toHaveAttribute('aria-checked', 'false')
+  const blank = page.getByRole('radiogroup', { name: 'Cümlede boşluğu yaz' })
+  await expect(blank.getByRole('radio', { name: 'Normal' })).toHaveAttribute('aria-checked', 'true')
+  await blank.getByRole('radio', { name: 'Hiç' }).click()
+  await expect(blank.getByRole('radio', { name: 'Hiç' })).toHaveAttribute('aria-checked', 'true')
+  await page.getByRole('radiogroup', { name: 'Duyduğun cümleyi yaz' }).getByRole('radio', { name: 'Az' }).click()
   await page.reload()
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Sorular' }).click()
-  await expect(page.getByRole('switch', { name: /Cümlede boşluğu yazarak doldurma/ })).toHaveAttribute('aria-checked', 'false')
+  await expect(page.getByRole('radiogroup', { name: 'Cümlede boşluğu yaz' }).getByRole('radio', { name: 'Hiç' })).toHaveAttribute('aria-checked', 'true')
+  await expect(page.getByRole('radiogroup', { name: 'Duyduğun cümleyi yaz' }).getByRole('radio', { name: 'Az' })).toHaveAttribute('aria-checked', 'true')
+  // The way back to the usual.
+  await page.getByRole('button', { name: 'Hepsini normale döndür' }).click()
+  await expect(page.getByRole('radiogroup', { name: 'Cümlede boşluğu yaz' }).getByRole('radio', { name: 'Normal' })).toHaveAttribute('aria-checked', 'true')
 })
 
 test('affix hunt: a word and its relative in Turkish, the ending that makes it is picked and shown put on the word', async ({ page }) => {

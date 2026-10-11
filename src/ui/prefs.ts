@@ -1,5 +1,7 @@
 import type { Settings } from '../data/db'
+import { engineFlags } from '../engine/exercisePrefs'
 import type { TypingShare } from '../engine/session'
+import type { ExerciseType } from '../engine/types'
 import { configureScheduler } from '../data/instance'
 import { aiConfig } from '../ai/usage'
 import { speechPrefs } from './speech'
@@ -19,7 +21,8 @@ export const prefs = {
   typingShare: 'balanced' as TypingShare,
   haptics: true,
   hideVosotros: false,
-  typedBlanks: true,
+  /** Question types switched off (Settings → Sorular), for the places that build questions outside the plan. */
+  exerciseOff: [] as ExerciseType[],
 }
 
 export function applySettings(s: Settings) {
@@ -44,7 +47,7 @@ export function applySettings(s: Settings) {
   root.style.fontSize = { normal: '', large: '112.5%', xlarge: '125%' }[s.textScale ?? 'normal']
   prefs.haptics = s.haptics ?? true
   prefs.hideVosotros = s.hideVosotros ?? false
-  prefs.typedBlanks = s.typedBlanks ?? true
+  prefs.exerciseOff = engineFlags(s.exercisePrefs, s.typedBlanks).off ?? []
   // Calm is the dark theme plus a flag that turns its colours down (see index.css).
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme === 'calm' ? 'dark' : s.theme === 'contrast' ? 'light' : s.theme
