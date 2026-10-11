@@ -101,7 +101,7 @@ export function PracticeTab({
     recordVisit(`verbs:practice:${m}`)
   }
   const moodVerbs = useMemo(() => [verb, ...byFrequency.slice(0, 80)], [verb, byFrequency])
-  const [list, setList] = useState(true)
+  const [list, setList] = useState(false)
   const [round, setRound] = useState(0)
   const [hearts, setHearts] = useState(HEARTS)
   const [outcome, setOutcome] = useState<Record<number, boolean>>({})

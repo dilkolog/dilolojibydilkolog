@@ -153,6 +153,7 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   // Practice, all six at once: a wrong form is marked and costs a life.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await main.getByRole('button', { name: 'Liste', exact: true }).click()
   const answers = ['parle', 'parles', 'parle', 'parlons', 'parlez', 'parlent']
   for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(i === 1 ? 'parlais' : a)
   await main.getByRole('button', { name: 'Kontrol et' }).click()
@@ -192,6 +193,7 @@ test('verb lab: a person often missed in a tense is marked in its table', async 
   // Two rounds with "tu" wrong.
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await main.getByRole('button', { name: 'Liste', exact: true }).click()
   const answers = ['parle', 'parlais', 'parle', 'parlons', 'parlez', 'parlent']
   for (let round = 0; round < 2; round++) {
     if (round) await main.getByRole('button', { name: 'Tekrar' }).click()
@@ -698,6 +700,7 @@ test('verb lab: Ustalık shows the share of right answers week by week', async (
   const main = page.locator('.lab-main')
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await main.getByRole('button', { name: 'Liste', exact: true }).click()
   const answers = ['parle', 'parlais', 'parle', 'parlons', 'parlez', 'parlent']
   for (const [i, a] of answers.entries()) await page.locator(`#lab-in-${i}`).fill(a)
   await main.getByRole('button', { name: 'Kontrol et' }).click()
@@ -1398,6 +1401,9 @@ test('verb lab, practice list: Tab moves straight from one person\'s field to th
   const main = page.locator('.lab-main')
   await main.getByRole('tab', { name: 'Alıştırma' }).click()
   await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  // "Tek tek" is the default; the list is one tap away.
+  await expect(main.getByRole('button', { name: 'Tek tek' })).toHaveAttribute('aria-pressed', 'true')
+  await main.getByRole('button', { name: 'Liste', exact: true }).click()
   await page.locator('#lab-in-0').focus()
   for (let i = 1; i < 6; i++) {
     await page.keyboard.press('Tab')
