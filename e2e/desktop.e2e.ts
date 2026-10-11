@@ -1413,6 +1413,7 @@ test('verb lab, practice list: Tab moves straight from one person\'s field to th
   await expect(main.locator('.lab-answer-row .icon-btn')).toHaveCount(0)
   await main.getByRole('button', { name: 'İpucu: ilk harfler' }).click()
   await expect(page.locator('#lab-in-3')).toHaveAttribute('placeholder', 'pa…')
+})
 
 test('compound tenses: adding typed compound offers infinitive without false positives', async ({ page }) => {
   await startWithSamples(page)
