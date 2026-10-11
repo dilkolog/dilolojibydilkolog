@@ -19,7 +19,7 @@ export function Ring({
   const r = (size - stroke) / 2
   const c = 2 * Math.PI * r
   return (
-    <div className="ring" style={{ width: size, height: size }} role="img" aria-label={`%${Math.round(v * 100)} tamamlandı`}>
+    <div className={`ring${v === 0 ? ' is-start' : ''}`} style={{ width: size, height: size }} role="img" aria-label={`%${Math.round(v * 100)} tamamlandı`}>
       <svg width={size} height={size}>
         <circle className="ring-track" cx={size / 2} cy={size / 2} r={r} strokeWidth={stroke} fill="none" />
         <circle
