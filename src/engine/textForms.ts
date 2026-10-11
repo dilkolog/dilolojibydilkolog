@@ -87,6 +87,8 @@ const SUBJECTS: Record<'fr' | 'es', Set<string>> = {
   fr: new Set(['je', 'j', 'tu', 'il', 'elle', 'on', 'nous', 'vous', 'ils', 'elles', 'qui', 'que', 'qu', 'ne', 'n']),
   es: new Set(['yo', 'tú', 'tu', 'él', 'ella', 'usted', 'nosotros', 'nosotras', 'vosotros', 'vosotras', 'ellos', 'ellas', 'ustedes', 'no']),
 }
+/** Object pronouns before the auxiliary ("je l'ai vu", "lo he visto", "il lui a dit"): lead-in words that are no reflexive sign. */
+const OBJECT_WORDS: Record<'fr' | 'es', Set<string>> = { fr: new Set(['l', 'le', 'la', 'les', 'lui', 'leur', 'en', 'y']), es: new Set(['lo', 'la', 'los', 'las', 'le', 'les']) }
 const REFLEXIVE_WORDS: Record<'fr' | 'es', Set<string>> = { fr: new Set(['me', 'm', 'te', 't', 'se', 's', 'nous', 'vous']), es: new Set(['me', 'te', 'se', 'nos', 'os']) }
 
 /**
@@ -102,13 +104,13 @@ export function typedCompound(language: 'fr' | 'es', typed: string): { lemma: st
     .replace(/[’‘´`]/g, "'")
     .split(/[\s']+/)
     .filter(Boolean)
-  // Lead-in words: subjects, the negation, the reflexive pronouns and en / y ("s'en est allé").
-  const isLead = (w: string) => SUBJECTS[language].has(w) || REFLEXIVE_WORDS[language].has(w) || (language === 'fr' && (w === 'en' || w === 'y'))
+  // Lead-in words: subjects, the negation, the reflexive pronouns and the object pronouns ("s'en est allé", "je l'ai vu", "me lo he comido").
+  const isLead = (w: string) => SUBJECTS[language].has(w) || REFLEXIVE_WORDS[language].has(w) || OBJECT_WORDS[language].has(w)
   let start = 0
   while (start < words.length - 1 && isLead(words[start])) start++
   // The word before the auxiliary is a reflexive pronoun ("nous nous sommes": twice, a lone "nous sommes" is just the subject).
   const lead = words.slice(0, start)
-  while (['en', 'y'].includes(lead[lead.length - 1])) lead.pop()
+  while (lead.length && OBJECT_WORDS[language].has(lead[lead.length - 1])) lead.pop()
   const before = lead[lead.length - 1]
   const reflexive = !!before && REFLEXIVE_WORDS[language].has(before) && (!['nous', 'vous'].includes(before) || lead[lead.length - 2] === before)
   const rest = words.slice(start)

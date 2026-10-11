@@ -25,8 +25,8 @@ export function troubleWords(
   if (missed.size)
     for (const entry of vocabulary) {
       if (entry.language !== language) continue
-      // The word itself, or a form it was met in (a conjugated or plural form of it).
-      const keys = [entry.lemma, ...entry.senses[0].examples.map((e) => e.form)].map((w) => earKey(w, language)).filter(Boolean)
+      // The word itself, or a form it was met in, in any of its senses (a conjugated or plural form of it).
+      const keys = [entry.lemma, ...entry.senses.flatMap((s) => s.examples ?? []).map((e) => e.form)].map((w) => earKey(w, language)).filter(Boolean)
       const weight = Math.max(0, ...keys.map((k) => missed.get(k) ?? 0))
       if (weight > 0) out.set(entry.id, { kind: 'ear', weight })
     }

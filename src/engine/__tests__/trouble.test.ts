@@ -43,6 +43,13 @@ describe('troubleWords', () => {
     expect(t.get('en:effect')).toMatchObject({ kind: 'voice' })
   })
 
+  it('also finds a form met in a later sense of the word', () => {
+    const base = en('en:improve')
+    const second = { ...base, senses: [base.senses[0], { ...base.senses[0], gloss: 'second', examples: [{ text: 'It *improves* things.', translation: '', form: 'improves' }] }] }
+    const log = { en: { improves: { n: 3, ok: 0, last: '2026-10-09T00:00:00Z', sentence: 'It improves.' } } }
+    expect(troubleWords([second], 'en', log, {}).get('en:improve')).toMatchObject({ kind: 'ear', weight: 3 })
+  })
+
   it('is empty without trouble and ignores other languages', () => {
     expect(troubleWords(CATALOG, 'en', {}, {}).size).toBe(0)
     expect(troubleWords(CATALOG, 'fr', { en: { decide: { n: 5, ok: 0, last: '2026-10-09T00:00:00Z', sentence: 'x' } } }, {}).size).toBe(0)

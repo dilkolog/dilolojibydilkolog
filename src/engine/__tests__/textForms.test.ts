@@ -108,6 +108,16 @@ describe('compound tenses the audit found missing or wrong', () => {
     expect(tenses('Nous nous en sommes aperçus trop tard. Je m\'en suis voulu.', 'fr')).toEqual(expect.arrayContaining(['nous nous en sommes aperçus|apercevoir|passe-compose', "m'en suis voulu|vouloir|passe-compose"]))
   })
 
+  it('suggests the infinitive when an object pronoun stands before the auxiliary ("je l\'ai vu", "lo he visto")', () => {
+    expect(typedCompound('fr', "je l'ai vu")?.lemma).toBe('voir')
+    expect(typedCompound('fr', "nous l'avons fait")?.lemma).toBe('faire')
+    expect(typedCompound('fr', 'il lui a dit')?.lemma).toBe('dire')
+    expect(typedCompound('es', 'lo he visto')?.lemma).toBe('ver')
+    expect(typedCompound('es', 'me lo había dicho')?.lemma).toBe('decir')
+    // A noun before the auxiliary is still no lead-in.
+    expect(typedCompound('fr', 'le chat a mangé')).toBeUndefined()
+  })
+
   it('suggests the infinitive for a typed inverted, passive or en/y compound', () => {
     expect(typedCompound('fr', 'a-t-il compris')?.lemma).toBe('comprendre')
     expect(typedCompound('fr', 'ont été retrouvés')?.lemma).toBe('retrouver')
