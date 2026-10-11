@@ -373,8 +373,14 @@ Mevcut iki cihazlı eşitleme testlerine senaryo 5 eklendi (`e2e/sync.e2e.ts`):
 - Kaldırıldıktan sonra Cihaz A'da güncel zaman damgasıyla yeniden kaydedilen kelime (`orman perisi`) eşitlemeyle Cihaz B'de yeniden canlanır.
 - Cihaz B'de güncellenen daha yeni kayıt (`şakacı peri`) eşitlemeyle Cihaz A'daki eski kaydı ezer.
 
-### 12.4 Sözlük ekranı için erişilebilirlik taraması (`e2e/a11y.e2e.ts`)
-`axe` taraması (telefon, açık + koyu tema): Sözlük boş hâl ("Kaydettiklerin" listesi dolu), bulunamayan kelime kartı (DeepL düğmesi görünürken), DeepL sonucu açıkken (giriş + iki düğme), kayıtlı kelime kartı (`aria-label="Kaydettiğin kelime"`), kelime sayfasında eşdizim çipi. İhlalleri **düzeltme**, dosya + seçici + kural olarak PR açıklamasında listele.
+### 12.4 Sözlük ekranı için erişilebilirlik taraması (`e2e/a11y.e2e.ts`; TAMAMLANDI — #271)
+Telefon (375 px) açık ve koyu tema axe WCAG 2.2 A/AA taramaları eklendi (`e2e/a11y.e2e.ts`):
+1. Sözlük boş hâl ("Kaydettiklerin" listesi `farfadet` ile dolu)
+2. Bulunamayan kelime kartı (`gribouiller`, "DeepL ile çevir" düğmesi görünürken)
+3. DeepL sonucu açıkken (`karalamak` anlam girişi + "Sözlüğe kaydet" + "Kelimelerime ekle" düğmeleri)
+4. Kayıtlı kelime kartı (`aria-label="Kaydettiğin kelime"`)
+5. Kelime sayfasında eşdizim çipi (`décider de + infinitif` + `.sr-only` örnek metin)
+Tüm durumlarda yapısal WCAG A/AA kuralları 0 ihlalle geçti. Tespit edilen tek kontrast uyarısı: koyu temada `.pos-tag[data-pos="verb"]` (WCAG `color-contrast`, kural gereği düzeltilmedi, PR açıklamasına not düşüldü).
 
 ### 12.5 Eşdizim listesini genişlet (veri)
 Yeni dosyalar: `src/data/collocations/fr-2.json`, `es-2.json`, `en-2.json` (şema `Collocation` in `src/engine/collocations.ts`: `{ id, language, lemmas, pattern, example, tr, source }`; `lemmas` kalıptaki bütün anahtar kelimeler, kelime sayfaları bunlarla eşleşir; `id` mevcutlarla çakışmasın: `fr-colloc-23`… yerine `fr2-colloc-01` gibi başla). Her dil için **en az 40 yeni kalıp**: sık fiil+edat (*s'occuper de*, *depender de*, *look forward to*), fiil+isim (*prendre une décision*, *echar de menos*, *run a risk*), sıfat+edat (*être capable de*, *ser capaz de*, *be aware of*). Hem İspanya hem Latin Amerika'da geçerli olanları seç (bölgeye özgü olanı alma). Her kalıbı Wiktionary ya da bir ana dil sözlüğüyle doğrula; `example` gerçekçi kısa bir cümle, `tr` doğal Türkçe. Rapor: `docs/veri/esdizim-genisleme.md` (kaynaklar, elenenler). `npx vitest run src/data` yeşil olmalı.
