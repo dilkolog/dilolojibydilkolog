@@ -1,0 +1,342 @@
+[
+ {
+  "id": "es-prep_es-24",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Tengo muchas ganas ___ ir al cine esta tarde.",
+  "answer": "de",
+  "options": [
+   "de",
+   "a",
+   "por",
+   "en"
+  ],
+  "explanation": "« tener ganas de + infinitivo »: canı bir şey yapmak istemek. Her zaman « de » edatını alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-25",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Mi hermano pequeño tiene mucho miedo ___ la oscuridad.",
+  "answer": "de",
+  "options": [
+   "de",
+   "en",
+   "por",
+   "con"
+  ],
+  "explanation": "« tener miedo de »: bir şeyden korkmak. Nesne « de » edatıyla bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-26",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Me alegro mucho ___ verte tan bien de salud.",
+  "answer": "de",
+  "options": [
+   "de",
+   "a",
+   "en",
+   "por"
+  ],
+  "explanation": "« alegrarse de + infinitivo »: sevinmek. Bir durumdan sevinç duyulduğunda « de » kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-27",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "El cliente se quejó formalmente ___ mal servicio recibido.",
+  "answer": "del",
+  "options": [
+   "del",
+   "al",
+   "en el",
+   "con el"
+  ],
+  "explanation": "« quejarse de »: şikayet etmek. « de + el servicio » kaynaşarak « del » biçimini alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-28",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Puedes confiar ciegamente ___ mi palabra.",
+  "answer": "en",
+  "options": [
+   "en",
+   "de",
+   "a",
+   "con"
+  ],
+  "explanation": "« confiar en »: güvenmek. İspanyolcada güven bildirirken « en » edatı kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-29",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Ella cree firmemente ___ la justicia social.",
+  "answer": "en",
+  "options": [
+   "en",
+   "a",
+   "de",
+   "por"
+  ],
+  "explanation": "« creer en »: bir şeye inanmak, güvenmek. Nesne her zaman « en » edatıyla bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-30",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "El curso intensivo consiste ___ cuatro módulos prácticos.",
+  "answer": "en",
+  "options": [
+   "en",
+   "de",
+   "con",
+   "por"
+  ],
+  "explanation": "« consistir en »: oluşmak, -den ibaret olmak. Fransızcadaki gibi « de » değil « en » edatı alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-31",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Pronto te acostumbrarás ___ nuevo horario de trabajo.",
+  "answer": "al",
+  "options": [
+   "al",
+   "del",
+   "en el",
+   "con el"
+  ],
+  "explanation": "« acostumbrarse a »: alışmak. « a + el horario » birleşerek « al » biçimini alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-32",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Toda la cocina huele ___ café recién tostado.",
+  "answer": "a",
+  "options": [
+   "a",
+   "de",
+   "en",
+   "con"
+  ],
+  "explanation": "« oler a »: kokmak. İspanyolcada bir şey gibi kokmak her zaman « a » edatıyla ifade edilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-33",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Mis padres están muy orgullosos ___ mis calificaciones.",
+  "answer": "de",
+  "options": [
+   "de",
+   "a",
+   "con",
+   "por"
+  ],
+  "explanation": "« estar orgulloso de »: gurur duymak. Bu sıfat her zaman « de » edatını alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-24",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Nos encanta pasar ___ juntos con toda la familia.",
+  "answer": "tiempo",
+  "options": [
+   "tiempo",
+   "hora",
+   "rato",
+   "momento"
+  ],
+  "explanation": "« pasar tiempo »: vakit geçirmek. İspanyolcada zaman geçirmek « tiempo » ismiyle kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-25",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "No pierdas el ___ discutiendo por cosas sin importancia.",
+  "answer": "tiempo",
+  "options": [
+   "tiempo",
+   "plazo",
+   "día",
+   "espacio"
+  ],
+  "explanation": "« perder el tiempo »: vakit kaybetmek anlamına gelen çok yaygın bir eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-26",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Usar atajos de teclado te ayuda a ___ tiempo.",
+  "answer": "ahorrar",
+  "options": [
+   "ahorrar",
+   "guardar",
+   "cuidar",
+   "mantener"
+  ],
+  "explanation": "« ahorrar tiempo »: vakit kazanmak / zamandan tasarruf etmek kalıbıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-27",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Siempre salimos a dar un ___ después de cenar.",
+  "answer": "paseo",
+  "options": [
+   "paseo",
+   "viaje",
+   "camino",
+   "rumbo"
+  ],
+  "explanation": "« dar un paseo »: yürüyüşe çıkmak, hava almak anlamına gelen sabit fiil-isim eşdizimidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-28",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Conviene hacer una ___ en el hotel con antelación.",
+  "answer": "reserva",
+  "options": [
+   "reserva",
+   "cita",
+   "invitación",
+   "cuenta"
+  ],
+  "explanation": "« hacer una reserva »: otel veya restoranda rezervasyon yaptırmak kalıbıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-29",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Tuvimos que hacer ___ durante casi una hora en la taquilla.",
+  "answer": "cola",
+  "options": [
+   "cola",
+   "línea",
+   "espera",
+   "parada"
+  ],
+  "explanation": "« hacer cola »: sırada beklemek, kuyruğa girmek anlamına gelen standart eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-30",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Ella es muy discreta y sabe guardar un ___.",
+  "answer": "secreto",
+  "options": [
+   "secreto",
+   "misterio",
+   "silencio",
+   "aviso"
+  ],
+  "explanation": "« guardar un secreto »: sır tutmak anlamına gelen kalıplaşmış fiil-isim birlikteliğidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-31",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Invertir sin investigar es correr un gran ___.",
+  "answer": "riesgo",
+  "options": [
+   "riesgo",
+   "peligro",
+   "daño",
+   "azar"
+  ],
+  "explanation": "« correr un riesgo »: risk almak anlamına gelen doğal İspanyolca eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-32",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "El nuevo producto tuvo un gran ___ en el mercado internacional.",
+  "answer": "éxito",
+  "options": [
+   "éxito",
+   "logro",
+   "triunfo",
+   "premio"
+  ],
+  "explanation": "« tener éxito »: başarılı olmak anlamında İspanyolcada en yaygın kullanılan kalıptır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-33",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Cuando viajo al extranjero, echo mucho de ___ a mi familia.",
+  "answer": "menos",
+  "options": [
+   "menos",
+   "falta",
+   "pena",
+   "olvido"
+  ],
+  "explanation": "« echar de menos »: özlemek anlamına gelen deyimsel kalıptır. « menos » ile tamamlanır.",
+  "source": "Diloloji (özgün)"
+ }
+]
