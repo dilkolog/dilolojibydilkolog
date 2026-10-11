@@ -864,6 +864,99 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   expect(problems).toEqual([])
 })
 
+test('dictionary states and collocation chip accessibility check (phone, light and dark themes)', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 })
+  await startWithSamples(page)
+  await approveAccount(page)
+
+  const setTheme = (t: 'light' | 'dark') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      root.dataset.theme = theme
+      delete root.dataset.calm
+    }, t)
+
+  const problems: string[] = []
+  const allViolations: { state: string; theme: string; id: string; impact: string | null | undefined; help: string; target: string; html: string }[] = []
+
+  const scanBoth = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await setTheme(theme)
+      await page.waitForTimeout(400)
+      const res = await new AxeBuilder({ page }).analyze()
+      for (const v of res.violations) {
+        for (const node of v.nodes) {
+          allViolations.push({
+            state: where,
+            theme,
+            id: v.id,
+            impact: v.impact,
+            help: v.help,
+            target: node.target.join(' '),
+            html: node.html,
+          })
+        }
+      }
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+
+  // Set up translation mock for DeepL (usage check + translation)
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => r.fulfill({ json: { translation: 'karalamak' } }))
+  await page.reload()
+
+  // 1. Sözlük boş hâl ("Kaydettiklerin" listesi dolu)
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill('farfadet')
+  await page.getByPlaceholder('Türkçe anlamını yaz…').fill('küçük peri, cin')
+  await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toBeVisible()
+  await search.fill('')
+  await expect(page.locator('.word-list .word-row', { hasText: 'farfadet' })).toBeVisible()
+  await scanBoth('phone-dictionary-saved-list-state')
+
+  // 2. Bulunamayan kelime kartı (DeepL düğmesi görünürken)
+  await search.fill('gribouiller')
+  const deeplBtn = page.getByRole('button', { name: 'DeepL ile çevir' })
+  await expect(deeplBtn).toBeVisible()
+  await scanBoth('phone-dictionary-not-found-deepl-visible')
+
+  // 3. DeepL sonucu açıkken (giriş + iki düğme)
+  await deeplBtn.click()
+  const customInput = page.getByLabel('Türkçe anlamı')
+  await expect(customInput).toBeVisible()
+  const saveDictBtn = page.getByRole('button', { name: 'Sözlüğe kaydet' })
+  const addWordBtn = page.getByRole('button', { name: 'Kelimelerime ekle' })
+  await expect(saveDictBtn).toBeVisible()
+  await expect(addWordBtn).toBeVisible()
+  await scanBoth('phone-dictionary-deepl-result-open')
+
+  // 4. Kayıtlı kelime kartı (aria-label="Kaydettiğin kelime")
+  await saveDictBtn.click()
+  const savedCard = page.getByRole('region', { name: 'Kaydettiğin kelime' })
+  await expect(savedCard).toBeVisible()
+  await scanBoth('phone-dictionary-saved-word-card')
+
+  // 5. Kelime sayfasında eşdizim çipi
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row', { hasText: 'décider' }).click()
+  const chip = page.locator('.colloc-chip', { hasText: 'décider de + infinitif' })
+  await expect(chip).toBeVisible()
+  await expect(chip.locator('.sr-only')).toBeVisible()
+  await scanBoth('phone-word-detail-collocation-chip')
+
+  await setTheme('light')
+
+  if (allViolations.length > 0) {
+    console.log('[A11Y AUDIT VIOLATIONS]', JSON.stringify(allViolations, null, 2))
+  }
+
+  expect(problems).toEqual([])
+})
+
+
 
 
 
