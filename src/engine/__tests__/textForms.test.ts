@@ -3,7 +3,7 @@ import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import { analyzeText } from '../reading'
 import { addTenses } from '../tenses'
-import { groupByTense, textForms } from '../textForms'
+import { groupByTense, textForms, typedCompound } from '../textForms'
 
 beforeAll(() => {
   addTenses('fr', fr as Record<string, unknown>)
@@ -109,5 +109,40 @@ describe('where a form stands', () => {
     const found = textForms('fr', analyze('Je parle. Il fait beau.\n\nNous parlions hier.', 'fr'))
     expect(found.find((x) => x.form === 'parle')?.sentence).toBe(0)
     expect(found.find((x) => x.form === 'parlions')?.sentence).toBe(2)
+  })
+})
+
+describe('a compound tense typed into the add-word form', () => {
+  const read = (language: 'fr' | 'es', typed: string) => {
+    const r = typedCompound(language, typed)
+    return r && `${r.lemma}|${r.tense}`
+  }
+
+  it('finds the verb and tense of a full compound form, with or without the subject', () => {
+    expect(read('fr', "j'ai mangé")).toBe('manger|passe-compose')
+    expect(read('fr', 'ai mangé')).toBe('manger|passe-compose')
+    expect(read('fr', 'Elle est allée')).toBe('aller|passe-compose')
+    expect(read('fr', 'nous avions fini')).toBe('finir|plus-que-parfait')
+    expect(read('es', 'he comido')).toBe('comer|perfecto')
+    expect(read('es', 'yo había hablado')).toBe('hablar|pluscuamperfecto')
+  })
+
+  it('reads a negation and a small word between, reflexive verbs and the other compound tenses', () => {
+    expect(read('fr', "je n'ai pas mangé")).toBe('manger|passe-compose')
+    expect(read('fr', 'ils ont déjà fini')).toBe('finir|passe-compose')
+    expect(read('fr', "il s'est lavé")).toBe('laver|passe-compose')
+    expect(read('fr', 'nous nous sommes levés')).toBe('lever|passe-compose')
+    expect(read('fr', "j'aurai mangé")).toBe('manger|futur-anterieur')
+    expect(read('fr', "j'aurais mangé")).toBe('manger|conditionnel-passe')
+    expect(read('es', 'me he lavado')).toBe('lavar|perfecto')
+    expect(read('es', 'no habrá terminado')).toBe('terminar|futuro-perfecto')
+  })
+
+  it('says nothing for what is no compound tense', () => {
+    expect(read('fr', 'le gâteau est mangé')).toBeUndefined()
+    expect(read('fr', 'la maison rouge')).toBeUndefined()
+    expect(read('fr', 'avoir mangé')).toBeUndefined()
+    expect(read('es', 'casa grande')).toBeUndefined()
+    expect(read('fr', 'ai')).toBeUndefined()
   })
 })

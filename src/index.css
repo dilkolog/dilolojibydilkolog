@@ -1480,6 +1480,7 @@ main:focus { outline: none; }
 .rw-skipped { text-decoration: underline wavy var(--lang); text-underline-offset: 4px; }
 .rw.is-selected { box-shadow: 0 0 0 2px var(--lang); }
 .word-pop { position: sticky; bottom: 1rem; z-index: 5; box-shadow: var(--shadow-lg); }
+.guess-rating { padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--surface-2, var(--surface)); border: 1px solid var(--rule); }
 .word-pop-word { font-family: var(--serif); font-size: var(--t-xl); color: var(--lang-text); font-weight: 400; }
 .reader mark, .sentence-sm mark { background: var(--lang-soft); color: var(--lang-text); border-radius: var(--r-xs); padding: 0 2px; }
 
@@ -4997,6 +4998,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .word-pop-head { order: -3; }
   .word-pop-gloss { order: -2; }
   .word-pop-actions { order: -1; }
+  /* Asked above the actions: the sheet shows its top first, so the question is not scrolled out of sight. */
+  .word-pop-rating { order: -1; }
   .word-pop .kbd { display: none; }
   /* Room under the text so its last lines can be scrolled above the sheet. */
   .reader-layout.has-sheet { padding-bottom: min(52vh, 28rem); }

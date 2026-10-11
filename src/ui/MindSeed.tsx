@@ -36,10 +36,10 @@ function save(language: TargetLanguage, v: Saved) {
  */
 export function MindSeed({ language }: { language: TargetLanguage }) {
   const day = localDate(new Date())
-  const [state, setState] = useState(() => load(language, day))
+  const [state, setState] = useState(() => ({ language, saved: load(language, day) }))
   // A new day or another language starts afresh.
-  const current = state.day === day ? state : load(language, day)
-  const set = (v: Saved) => (save(language, v), setState(v))
+  const current = state.language === language && state.saved.day === day ? state.saved : load(language, day)
+  const set = (v: Saved) => (save(language, v), setState({ language, saved: v }))
   const text = seedText(seedIndex(day, language, current.skip), language)
 
   if (current.done)

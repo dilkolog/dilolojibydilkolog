@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useTenses } from './tenseGroups'
 import { analyzeForm } from '../engine/tenses'
+import { typedCompound } from '../engine/textForms'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import type { Gender, PartOfSpeech, TargetLanguage, VocabularyEntry, WordList as WordListRow } from '../engine/types'
@@ -84,9 +85,12 @@ export function WordForm({
   // left out: too many are also nouns (porte, livre, marche).
   useTenses(language)
   const typed = form.word.trim()
+  // A compound tense typed in full ("j'ai mangé", "n'ont pas fini", "habían comido") gives its verb too.
   const conjugated =
-    !entry && language !== 'en' && typed && !typed.includes(' ')
-      ? analyzeForm(language, typed).find((a) => a.tense !== 'present' && a.tense !== 'presente')
+    !entry && language !== 'en' && typed
+      ? typed.includes(' ')
+        ? typedCompound(language, typed)
+        : analyzeForm(language, typed).find((a) => a.tense !== 'present' && a.tense !== 'presente')
       : undefined
   // Words added with this form since the last "learn now", to study them in one go.
   const [justAdded, setJustAdded] = useState<VocabularyEntry[]>([])

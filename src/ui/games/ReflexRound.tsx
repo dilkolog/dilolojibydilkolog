@@ -79,30 +79,38 @@ export function ReflexRound({ language, onExit }: { language: TargetLanguage; on
     setPhase('over')
   }
 
-  // The time is up: a miss, and the answer shows.
+  // The latest handlers, so the timers and the key listener below depend only on what they watch.
+  const actions = useRef({ grade, next })
   useEffect(() => {
-    if (phase !== 'play' || !timed || answer) return
-    const t = window.setTimeout(() => grade(null), REFLEX_SECONDS * 1000)
-    return () => window.clearTimeout(t)
+    actions.current = { grade, next }
   })
 
-  // A right answer moves on by itself; a miss waits to be read.
+  // The time is up: a miss, and the answer shows. A new question restarts the clock.
+  const answered = answer !== null
   useEffect(() => {
-    if (!answer || answer.given !== q?.answer || (timed && answer.ms > REFLEX_SECONDS * 1000)) return
-    const t = window.setTimeout(next, 700)
+    if (phase !== 'play' || !timed || answered) return
+    const t = window.setTimeout(() => actions.current.grade(null), REFLEX_SECONDS * 1000)
     return () => window.clearTimeout(t)
-  })
+  }, [phase, timed, answered, index])
+
+  // A right answer moves on by itself; a miss waits to be read.
+  const advances = !!answer && answer.given === q?.answer && !(timed && answer.ms > REFLEX_SECONDS * 1000)
+  useEffect(() => {
+    if (!advances) return
+    const t = window.setTimeout(() => actions.current.next(), 700)
+    return () => window.clearTimeout(t)
+  }, [advances, index])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (phase !== 'play' || !q) return
       const n = Number(e.key)
-      if (!answer && n >= 1 && n <= q.options.length) grade(q.options[n - 1])
-      else if (answer && e.key === 'Enter') next()
+      if (!answered && n >= 1 && n <= q.options.length) actions.current.grade(q.options[n - 1])
+      else if (answered && e.key === 'Enter') actions.current.next()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  })
+  }, [phase, q, answered])
 
   const missed = results.filter((r) => !r.ok)
   const rightMs = results.filter((r) => r.ok).map((r) => r.ms)

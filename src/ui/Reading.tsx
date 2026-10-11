@@ -23,8 +23,8 @@ import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
 
-import { analyzeForm, type Tense } from '../engine/tenses'
-import { groupByTense, textForms } from '../engine/textForms'
+import { analyzeForm, type FormAnalysis, type Tense } from '../engine/tenses'
+import { compoundsAround, groupByTense, textForms } from '../engine/textForms'
 import { TextForms } from './TextForms'
 import { WordCard, type Selected } from './WordCard'
 import { BookItem } from './ReadingBooks'
@@ -686,10 +686,14 @@ export function ReadingScreen({
   // that verb if there is one.
   const verbEntry = (lemma: string) => vocabulary.find((v) => v.language === language && v.partOfSpeech === 'verb' && normalize(v.lemma).toLocaleLowerCase(language) === lemma)
   const verbRank = (lemma: string) => (verbEntry(lemma) ? -1 : (freq.get(lemma) ?? Infinity))
-  const selectedForms = (selected?.token.key && !selectedEntry ? analyzeForm(language, cleanToken(selected.token.text, language)) : [])
+  // A word inside a compound tense ("ai" or "mangé" in "j'ai mangé") shows the whole form first.
+  const selectedToken = selected?.token.key && !selectedEntry ? selected : undefined
+  const selectedCompounds: FormAnalysis[] = selectedToken && language !== 'en' ? compoundsAround(language, selectedToken.sentence, selectedToken.token.text) : []
+  const selectedSingles = (selectedToken ? analyzeForm(language, cleanToken(selectedToken.token.text, language)) : [])
     .map((a, i) => ({ a, i }))
     .sort((x, y) => verbRank(x.a.lemma) - verbRank(y.a.lemma) || x.i - y.i)
     .map((x) => x.a)
+  const selectedForms = [...selectedCompounds, ...selectedSingles]
 
   return (
     <div className="stack">
@@ -894,7 +898,6 @@ export function ReadingScreen({
         </section>
       )}
 
-      {deduce && guess && selected?.token.key === guess && <GuessRating word={cleanToken(selected.token.text, language)} language={language} onDone={() => setGuess(null)} />}
       {selected && selected.token.key && (
         <WordCard
           selected={selected as Selected & { token: ReadToken & { key: string } }}
@@ -904,6 +907,7 @@ export function ReadingScreen({
           language={language}
           sheetBox={sheetBox}
           sheet={sheet}
+          rating={deduce && guess && selected.token.key === guess ? <GuessRating word={cleanToken(selected.token.text, language)} language={language} onDone={() => setGuess(null)} /> : undefined}
           ignored={ignored}
           skipped={skipped}
           canListenFrom={!!times}

@@ -1151,3 +1151,17 @@ test('shows an offline badge when internet is disconnected and hides when online
   await context.setOffline(false)
   await expect(badge).not.toBeVisible()
 })
+
+test('reading, deduction mode: the guess question sits in the word sheet, on screen', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Hier soir, nous avons mangé des champignons délicieux avec nos voisins.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Çıkarım' }).click()
+  await page.locator('.rw-masked').click()
+  const rating = page.getByRole('region', { name: 'Tahmin' })
+  await expect(rating).toBeVisible()
+  await expect(rating.getByRole('button', { name: 'Yaklaştım' })).toBeInViewport()
+  await rating.getByRole('button', { name: 'Yaklaştım' }).click()
+  await expect(rating).toHaveCount(0)
+})
