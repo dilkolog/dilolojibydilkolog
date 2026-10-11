@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AiError, suggestFields } from '../ai'
 import { fetchCorpus } from '../data/corpus'
-import { cleanToken } from '../engine/extract'
+import { cleanToken, WORD_SOURCE } from '../engine/extract'
 import { TARGET_LANGUAGES, type Example, type TargetLanguage } from '../engine/types'
 import { useAi } from './aiContext'
 import { WandIcon, SpeakerIcon } from './icons'
@@ -75,7 +75,7 @@ export function ClickableSentence({
   onPick?: (w: string) => void
 }) {
   if (!onPick) return <>{text}</>
-  const tokens = text.split(/([\p{L}][\p{L}'’-]*)/gu)
+  const tokens = text.split(new RegExp(`(${WORD_SOURCE})`, 'gu'))
   const normActive = activeWord ? cleanToken(activeWord, language).toLocaleLowerCase(language) : ''
 
   return (

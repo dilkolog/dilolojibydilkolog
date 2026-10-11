@@ -1581,3 +1581,36 @@ test('AI fill missing and suggest words: approval gates button, Anthropic route 
     await expect(suggestSection.getByRole('button', { name: /kelime öner/ })).toBeEnabled()
   }
 })
+
+test('dictionary: a word the pack lacks is translated by DeepL, saved for good, and found again after a reload', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  // startWithSamples closes translation; this test opens it again (the later route wins) and reloads.
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => r.fulfill({ json: { translation: 'karalamak' } }))
+  await page.reload()
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill('gribouiller')
+  await page.getByRole('button', { name: 'DeepL ile çevir' }).click()
+  await expect(page.getByText('(DeepL)')).toBeVisible()
+  await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
+  const card = page.getByRole('region', { name: 'Kaydettiğin kelime' })
+  await expect(card).toContainText('karalamak')
+  // After a reload the word is in the dictionary without asking DeepL again, and listed under "Kaydettiklerin".
+  let asked = 0
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => (asked++, r.fulfill({ json: { translation: 'x' } })))
+  await page.reload()
+  await openScreen(page, 'Sözlük')
+  await expect(page.getByRole('heading', { name: 'Kaydettiklerin' })).toBeVisible()
+  await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('gribouiller')
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('karalamak')
+  // Typing the Turkish finds it too.
+  await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('karala')
+  await expect(page.getByRole('button', { name: /gribouiller/ })).toBeVisible()
+  expect(asked).toBe(0)
+  // Taken out, it is gone.
+  await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('gribouiller')
+  await page.getByRole('button', { name: 'Sözlükten kaldır' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
+})

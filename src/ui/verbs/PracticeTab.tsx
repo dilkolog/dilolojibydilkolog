@@ -363,10 +363,10 @@ function TypeList({ language, verb, tense, forms, people, settleMany }: RoundPro
         <button type="submit" className="btn" disabled={!filled || !!checked}>
           Kontrol et
         </button>
-        <button type="button" className="btn btn-quiet" disabled={!!checked} onClick={() => setTyped({})}>
+        <button type="button" className="btn btn-quiet" disabled={!!checked} onClick={() => (setTyped({}), setHinted(false))}>
           Sıfırla
         </button>
-        <button type="button" className="btn btn-quiet" disabled={!!checked || hinted} onClick={() => setHinted(true)}>
+        <button type="button" className="btn btn-quiet" disabled={!!checked} aria-pressed={hinted} onClick={() => setHinted(true)}>
           İpucu: ilk harfler
         </button>
       </div>

@@ -1,4 +1,4 @@
-import { cleanToken } from './extract'
+import { cleanToken, WORD_SOURCE } from './extract'
 import type { ReadingAnalysis } from './reading'
 import { analyzeCompound, analyzeForm, sentenceImperative, type FormAnalysis, type Tense } from './tenses'
 
@@ -58,6 +58,8 @@ export function typedCompound(language: 'fr' | 'es', typed: string): { lemma: st
   const rest = words.slice(start)
   for (let gap = 0; gap <= 2 && 1 + gap < rest.length; gap++) {
     if (gap > 0 && !BETWEEN.has(rest[gap])) break
+    // Nothing after the participle: "il a mangé une pomme" is a sentence, not a verb form.
+    if (rest.length !== 2 + gap) continue
     const hit = analyzeCompound(language, rest[0], rest[1 + gap], reflexive)[0]
     if (hit) return { lemma: hit.lemma, tense: hit.tense, form: typed.trim() }
   }
@@ -145,7 +147,7 @@ export function groupByTense(found: readonly TextForm[]): TenseGroup[] {
  * Same reading as in a text (a reflexive pronoun, small words between).
  */
 export function compoundsAround(language: 'fr' | 'es', sentence: string, word: string): FormAnalysis[] {
-  const tokens = [...sentence.matchAll(/[\p{L}][\p{L}'’-]*/gu)].map((m) => m[0])
+  const tokens = [...sentence.matchAll(new RegExp(WORD_SOURCE, 'gu'))].map((m) => m[0])
   const raws = tokens.map((t) => t.toLocaleLowerCase(language).replace(/’/g, "'"))
   const words = tokens.map((t) => cleanToken(t, language).toLocaleLowerCase(language))
   const target = cleanToken(word, language).toLocaleLowerCase(language)

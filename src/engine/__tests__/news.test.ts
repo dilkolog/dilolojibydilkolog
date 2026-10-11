@@ -42,6 +42,8 @@ describe('news parsing', () => {
     expect(new Set(FEEDS.map((f) => f.id)).size).toBe(FEEDS.length)
     for (const f of FEEDS) expect(f.url.startsWith('https://')).toBe(true)
     expect(decodeEntities('&laquo;a&raquo;')).toBe('«a»')
+    // Names that exist on every object are not entities.
+    expect(decodeEntities('a &toString; b &constructor; c')).toBe('a &toString; b &constructor; c')
     expect(decodeEntities('&Eacute;t&eacute; &ndash; &iquest;qu&eacute;? &ntilde; &Ntilde; &uuml; &mdash; &unknown;')).toBe('Été – ¿qué? ñ Ñ ü — &unknown;')
   })
 })

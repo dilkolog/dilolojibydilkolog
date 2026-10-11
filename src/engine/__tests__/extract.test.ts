@@ -71,3 +71,13 @@ describe('findExampleSentences', () => {
     expect(findExampleSentences(`${existing} Decision made.`, 'en', [decision])).toEqual([])
   })
 })
+
+describe('words around a double hyphen', () => {
+  it('are two words, as in the reader, while a hyphen between letters keeps one', () => {
+    const forms = extractCandidates('Durante tres meses--vivieron una dicha profunda, un arc-en-ciel apareció.', 'es', []).map((c) => c.surface)
+    expect(forms).toContain('meses')
+    expect(forms).toContain('vivieron')
+    expect(forms.some((f) => f.includes('--'))).toBe(false)
+    expect(forms).toContain('arc-en-ciel')
+  })
+})

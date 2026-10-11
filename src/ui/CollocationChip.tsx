@@ -9,6 +9,9 @@ export function CollocationChip({ language, lemma }: { language: TargetLanguage;
       {collocationsOf(collocations, language, lemma).map((c) => (
         <li key={c.id} className="colloc-chip" lang={language} title={`${c.example} (${c.tr})`}>
           {c.pattern}
+          <span className="sr-only">
+            . Örnek: {c.example} ({c.tr})
+          </span>
         </li>
       ))}
     </>

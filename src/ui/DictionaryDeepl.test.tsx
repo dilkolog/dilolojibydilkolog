@@ -3,6 +3,7 @@ import 'fake-indexeddb/auto'
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { db } from '../data/instance'
 import { DictionaryScreen } from './Dictionary'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
@@ -19,9 +20,10 @@ vi.mock('../data/wordpack', async (importOriginal) => {
 describe('Dictionary: a word that is not in the pack', () => {
   let el: HTMLDivElement
   let root: ReturnType<typeof createRoot>
-  beforeEach(() => {
+  beforeEach(async () => {
     ready.value = true
     translateMock.mockReset()
+    await db.meta.clear()
     el = document.createElement('div')
     document.body.append(el)
     root = createRoot(el)
@@ -46,8 +48,52 @@ describe('Dictionary: a word that is not in the pack', () => {
     expect(translateMock).toHaveBeenCalledWith('gribouiller', 'fr', 'tr')
     expect(el.textContent).toContain('karalamak')
     expect(el.textContent).toContain('(DeepL)')
-    await act(async () => button('Sözlüğe ekle')!.click())
+    await act(async () => button('Kelimelerime ekle')!.click())
     expect(onAdd).toHaveBeenCalledWith('gribouiller', 'karalamak')
+  })
+
+  it('saves the answer to the dictionary for good: found again at once, after a reload, without DeepL', async () => {
+    translateMock.mockResolvedValue('karalamak')
+    await mount()
+    await act(async () => button('DeepL ile çevir')!.click())
+    await act(async () => button('Sözlüğe kaydet')!.click())
+    await act(async () => new Promise((r) => setTimeout(r, 30)))
+    expect(el.querySelector('[aria-label="Kaydettiğin kelime"]')?.textContent).toContain('karalamak')
+    expect(el.textContent).toContain('DeepL, sen kaydettin')
+    expect((await db.getDictionaryNotes('fr')).added?.gribouiller?.t).toEqual(['karalamak'])
+    // A new visit: the word is there, and DeepL is not asked.
+    act(() => root.unmount())
+    translateMock.mockClear()
+    root = createRoot(el)
+    await mount()
+    await act(async () => new Promise((r) => setTimeout(r, 30)))
+    expect(el.querySelector('[aria-label="Kaydettiğin kelime"]')?.textContent).toContain('karalamak')
+    expect(translateMock).not.toHaveBeenCalled()
+    // Taken out again, it is gone for good.
+    await act(async () => button('Sözlükten kaldır')!.click())
+    await act(async () => new Promise((r) => setTimeout(r, 30)))
+    expect(el.querySelector('[aria-label="Kaydettiğin kelime"]')).toBeNull()
+    expect((await db.getDictionaryNotes('fr')).added).toEqual({})
+  })
+
+  it('saves a meaning typed by hand too, and lists the saved words when nothing is typed', async () => {
+    ready.value = false
+    await act(async () => root.render(<DictionaryScreen language="fr" vocabulary={[]} initialQuery="truc-machin" onOpenWord={() => {}} onAdd={() => {}} />))
+    await act(async () => new Promise((r) => setTimeout(r, 80)))
+    const input = el.querySelector<HTMLInputElement>('input[aria-label="Türkçe anlamı"]')!
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, 'şey, zımbırtı')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    await act(async () => button('Sözlüğe kaydet')!.click())
+    await act(async () => new Promise((r) => setTimeout(r, 30)))
+    expect((await db.getDictionaryNotes('fr')).added?.['truc-machin']).toMatchObject({ t: ['şey', 'zımbırtı'], from: 'own' })
+    act(() => root.unmount())
+    root = createRoot(el)
+    await act(async () => root.render(<DictionaryScreen language="fr" vocabulary={[]} onOpenWord={() => {}} onAdd={() => {}} />))
+    await act(async () => new Promise((r) => setTimeout(r, 80)))
+    expect(el.textContent).toContain('Kaydettiklerin')
+    expect(el.textContent).toContain('truc-machin')
   })
 
   it('lets the learner correct the answer before adding it', async () => {
@@ -59,8 +105,10 @@ describe('Dictionary: a word that is not in the pack', () => {
       Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, 'çiziktirmek')
       input.dispatchEvent(new Event('input', { bubbles: true }))
     })
-    await act(async () => button('Sözlüğe ekle')!.click())
-    expect(onAdd).toHaveBeenCalledWith('gribouiller', 'çiziktirmek')
+    await act(async () => button('Sözlüğe kaydet')!.click())
+    await act(async () => new Promise((r) => setTimeout(r, 30)))
+    expect((await db.getDictionaryNotes('fr')).added?.gribouiller).toMatchObject({ t: ['çiziktirmek'], from: 'own' })
+    expect(onAdd).not.toHaveBeenCalled()
   })
 
   it('says so when DeepL only gives the word back, and adds nothing', async () => {
