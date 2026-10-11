@@ -299,7 +299,7 @@ interface RoundProps {
 /** All six forms at once, each in its own row; "Kontrol et" marks them together. */
 function TypeList({ language, verb, tense, forms, people, settleMany }: RoundProps) {
   const [typed, setTyped] = useState<Record<number, string>>({})
-  const [hints, setHints] = useState<ReadonlySet<number>>(new Set())
+  const [hinted, setHinted] = useState(false)
   const [checked, setChecked] = useState<Record<number, boolean> | null>(null)
   const inputs = useRef<Record<number, HTMLInputElement | null>>({})
   const [focused, setFocused] = useState(people[0])
@@ -330,7 +330,7 @@ function TypeList({ language, verb, tense, forms, people, settleMany }: RoundPro
             className="input"
             lang={language}
             value={typed[p] ?? ''}
-            placeholder={hints.has(p) ? `${forms[p].slice(0, 2)}…` : '…'}
+            placeholder={hinted ? `${forms[p].slice(0, 2)}…` : '…'}
             disabled={!!checked}
             autoComplete="off"
             autoCapitalize="off"
@@ -346,9 +346,6 @@ function TypeList({ language, verb, tense, forms, people, settleMany }: RoundPro
               }
             }}
           />
-          <button type="button" className="icon-btn icon-btn-sm" aria-label="İpucu: ilk harfler" disabled={!!checked} onClick={() => setHints((h) => new Set(h).add(p))}>
-            ?
-          </button>
           {canSpeak() && checked && (
             <button type="button" className="icon-btn icon-btn-sm" aria-label={`Dinle: ${withSubject(language, tense, p, forms[p])}`} onClick={() => speak(withSubject(language, tense, p, forms[p]), language)}>
               <SpeakerIcon size={15} />
@@ -368,6 +365,9 @@ function TypeList({ language, verb, tense, forms, people, settleMany }: RoundPro
         </button>
         <button type="button" className="btn btn-quiet" disabled={!!checked} onClick={() => setTyped({})}>
           Sıfırla
+        </button>
+        <button type="button" className="btn btn-quiet" disabled={!!checked || hinted} onClick={() => setHinted(true)}>
+          İpucu: ilk harfler
         </button>
       </div>
     </form>

@@ -1391,3 +1391,20 @@ test('restoring a backup keeps a copy of what was there: a bad file changes noth
   await expect(page.getByText('Geri yüklemeden önceki hâle dönüldü.')).toBeVisible()
   await expect.poll(count).toBe(before)
 })
+
+test('verb lab, practice list: Tab moves straight from one person\'s field to the next, and the hint is one button', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const main = page.locator('.lab-main')
+  await main.getByRole('tab', { name: 'Alıştırma' }).click()
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Présent' }).click()
+  await page.locator('#lab-in-0').focus()
+  for (let i = 1; i < 6; i++) {
+    await page.keyboard.press('Tab')
+    await expect(page.locator(`#lab-in-${i}`)).toBeFocused()
+  }
+  // No "?" button per row: one hint button for the whole list shows the first letters.
+  await expect(main.locator('.lab-answer-row .icon-btn')).toHaveCount(0)
+  await main.getByRole('button', { name: 'İpucu: ilk harfler' }).click()
+  await expect(page.locator('#lab-in-3')).toHaveAttribute('placeholder', 'pa…')
+})
