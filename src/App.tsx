@@ -7,7 +7,7 @@ import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/pra
 
 import { createRng } from './engine/rng'
 import { firstSittingEnd, SPLIT_ABOVE_MINUTES, type SessionSummary } from './engine/session'
-import { TARGET_LANGUAGES, type ReviewMode, type TargetLanguage, type VocabularyEntry } from './engine/types'
+import { TARGET_LANGUAGES, type ExerciseType, type ReviewMode, type TargetLanguage, type VocabularyEntry } from './engine/types'
 import { db, scheduler, setLoad } from './data/instance'
 import { difficultWords } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
@@ -129,7 +129,8 @@ export default function App() {
     languageRef.current = language
   }, [language])
   const speechOn = settings ? settings.speechExercises && canListen() : false
-  const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn }), [apiKey, speechOn])
+  const typedBlanks = settings ? (settings.typedBlanks ?? true) : true
+  const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn, off: typedBlanks ? undefined : (['cloze_typed'] as ExerciseType[]) }), [apiKey, speechOn, typedBlanks])
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))

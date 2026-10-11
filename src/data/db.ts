@@ -137,6 +137,8 @@ export interface Settings {
   clipboardSuggest?: boolean
   /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */
   hideVosotros?: boolean
+  /** The "fill the blank in a sentence by typing" question (cloze_typed); default on. Off: such questions are not asked. */
+  typedBlanks?: boolean
   /** The word list in focus per language: new words come only from it (see dailyPlan). */
   focusList?: Partial<Record<TargetLanguage, string>>
   autoPlayAudio: boolean

@@ -206,6 +206,8 @@ export interface EngineOptions {
   ai?: boolean
   /** The browser can recognise speech, so spoken-answer exercises may be scheduled. */
   speech?: boolean
+  /** Exercise types the learner has switched off (Settings → Sorular), never scheduled. */
+  off?: ExerciseType[]
 }
 
 export type Direction =

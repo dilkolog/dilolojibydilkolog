@@ -10,6 +10,7 @@ import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
 import { HeartIcon, SpeakerIcon, SwordsIcon, TrophyIcon } from '../icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from '../labels'
+import { prefs } from '../prefs'
 import { sfx } from '../sounds'
 import { speak } from '../speech'
 import { type Props, recordPractice } from './shared'
@@ -113,7 +114,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
   }, [vocabulary, language])
   const types = useMemo(() => {
     const t = unlockedSkills(state, entry)
-      .flatMap((sk) => exerciseTypesFor(sk, entry))
+      .flatMap((sk) => exerciseTypesFor(sk, entry, { off: prefs.typedBlanks ? undefined : ['cloze_typed'] }))
       .filter((x) => BATTLE_TYPES.has(x))
     return t.length ? t : (['mc_meaning', 'typed_translation'] as ExerciseType[])
   }, [state, entry])
