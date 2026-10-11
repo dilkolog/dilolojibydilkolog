@@ -17,6 +17,8 @@ export interface RegisterItem {
   informal: string
   standard: string
   formal: string
+  /** Where a form is used when it is not everywhere (Spain only, British only), in Turkish. */
+  note?: string
   source: string
 }
 

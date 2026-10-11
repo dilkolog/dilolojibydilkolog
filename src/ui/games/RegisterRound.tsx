@@ -159,6 +159,7 @@ export function RegisterRound({ language, onExit }: { language: TargetLanguage; 
                   </li>
                 ))}
               </ul>
+              {q.item.note && <p className="small muted">{q.item.note}</p>}
               <div className="row">
                 <button type="button" className="btn" onClick={next} autoFocus>
                   Devam

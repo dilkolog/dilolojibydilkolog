@@ -6,7 +6,8 @@
   "informal": "papear",
   "standard": "comer",
   "formal": "alimentarse",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“papear” İspanya’da yaygın bir argo; Latin Amerika’da tragar ya da bajonear denir."
  },
  {
   "id": "es-car",
@@ -15,7 +16,8 @@
   "informal": "el cacharro",
   "standard": "el coche",
   "formal": "el vehículo",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“el cacharro” aslında külüstür araba demektir. Latin Amerika’da standart söyleyiş “el auto” ya da “el carro”dır; “coche” orada bebek arabasıdır."
  },
  {
   "id": "es-money",
@@ -24,7 +26,8 @@
   "informal": "la pasta",
   "standard": "el dinero",
   "formal": "los fondos",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“la pasta” İspanya’da; Meksika’da “la lana”, Kolombiya ve Arjantin’de “la plata”."
  },
  {
   "id": "es-tired",
@@ -42,7 +45,8 @@
   "informal": "guay",
   "standard": "muy bien",
   "formal": "excelente",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“guay” yalnızca İspanya’da; Meksika’da “chido”, Kolombiya’da “chévere”, Arjantin’de “copado”."
  },
  {
   "id": "es-job",
@@ -51,7 +55,8 @@
   "informal": "el curro",
   "standard": "el trabajo",
   "formal": "el empleo",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“el curro” İspanya’da iş demektir; Arjantin ve Uruguay’da dolandırıcılık anlamına gelir. Meksika’da “la chamba”, Arjantin’de “el laburo”."
  },
  {
   "id": "es-leave",
@@ -60,7 +65,8 @@
   "informal": "pirarse",
   "standard": "irse",
   "formal": "retirarse",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“pirarse” İspanya argosu; Latin Amerika’da “abrirse” ya da “tomárselas”."
  },
  {
   "id": "es-howareyou",
@@ -69,7 +75,8 @@
   "informal": "¿Qué pasa, tío?",
   "standard": "¿Cómo estás?",
   "formal": "¿Cómo se encuentra usted?",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“tío” hitabı İspanya’ya özgü; Meksika’da “¿Qué onda, güey?”, Arjantin’de “¿Qué hacés, che?”."
  },
  {
   "id": "es-goodbye",
@@ -87,7 +94,8 @@
   "informal": "Me he perdido, tío",
   "standard": "No he entendido",
   "formal": "Disculpe, no he comprendido",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“tío” ve “he entendido” İspanya’da olağan; Latin Amerika’da “Me perdí” ya da “No entendí” denir."
  },
  {
   "id": "es-alot",
@@ -114,7 +122,8 @@
   "informal": "Vale",
   "standard": "De acuerdo",
   "formal": "Conforme",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“Vale” İspanya’da çok sık; Latin Amerika’da “Listo”, “Dale” ya da “Órale”."
  },
  {
   "id": "es-kid",
@@ -123,6 +132,7 @@
   "informal": "el crío",
   "standard": "el niño",
   "formal": "el menor",
-  "source": "Diloloji (özgün)"
+  "source": "Diloloji (özgün)",
+  "note": "“el crío” İspanya’da; Latin Amerika’da “el pibe”, “el chavo” ya da “el chamaco”."
  }
 ]

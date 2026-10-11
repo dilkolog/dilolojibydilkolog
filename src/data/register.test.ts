@@ -8,6 +8,7 @@ describe('the register lists', () => {
     for (const i of registerItems) {
       expect(i.id.startsWith(`${i.language}-`), i.id).toBe(true)
       for (const k of ['tr', 'informal', 'standard', 'formal', 'source'] as const) expect(i[k].trim(), `${i.id}.${k}`).not.toBe('')
+      if (i.note !== undefined) expect(i.note.trim(), `${i.id}.note`).not.toBe('')
       expect(new Set([i.informal, i.standard, i.formal]).size, i.id).toBe(3)
     }
   })
