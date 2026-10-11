@@ -36,6 +36,12 @@ export function AnswerSettings({
           onChange={(v) => set('accentShortcuts', v)}
         />
         <Toggle
+          label="Cümlede boşluğu yazarak doldurma soruları"
+          help="Bir cümlede eksik kelimeyi Türkçe anlamından hatırlayıp yazdığın sorular (ör. “No juego bien al ajedrez, con un ___ o no.”). Zor gelip öğrenmeyi bozuyorsa kapat; kelime yine seçenekli cümle sorularıyla ve diğer sorularla çalışılır."
+          checked={settings.typedBlanks ?? true}
+          onChange={(v) => set('typedBlanks', v)}
+        />
+        <Toggle
           label="Emin değilim seçeneği"
           help="Cevaplamadan önce emin olmadığını işaretleyebilirsin (Shift + cevap). Emin değilken doğru bilinen kelime daha erken tekrar gelir; emin olduğun bir yanlış ise ayrıca vurgulanır ve hatalarda öne alınır."
           checked={settings.confidence}

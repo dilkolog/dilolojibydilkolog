@@ -110,6 +110,9 @@ describe('AI-graded exercises', () => {
   it('free_sentence is only offered when AI is available', () => {
     expect(exerciseTypesFor('production', decide)).not.toContain('free_sentence')
     expect(exerciseTypesFor('production', decide, { ai: true })).toContain('free_sentence')
+    // A type the learner switched off (Settings → Sorular) is never offered.
+    expect(exerciseTypesFor('production', decision)).toContain('cloze_typed')
+    expect(exerciseTypesFor('production', decision, { off: ['cloze_typed'] })).not.toContain('cloze_typed')
   })
 
   it('builds a personal prompt with progressive hints and no fixed answer', () => {

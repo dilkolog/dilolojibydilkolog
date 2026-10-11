@@ -1237,6 +1237,20 @@ test('root and endings: a word opens its family as a tree with what each ending 
   await expect(card.locator('.morph-row', { hasText: 'légèrement' }).locator('button.link')).toBeVisible()
 })
 
+test('settings: the typed blank question can be switched off, and stays off after a reload', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Sorular' }).click()
+  const toggle = page.getByRole('switch', { name: /Cümlede boşluğu yazarak doldurma/ })
+  await expect(toggle).toHaveAttribute('aria-checked', 'true')
+  await toggle.click()
+  await expect(toggle).toHaveAttribute('aria-checked', 'false')
+  await page.reload()
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Sorular' }).click()
+  await expect(page.getByRole('switch', { name: /Cümlede boşluğu yazarak doldurma/ })).toHaveAttribute('aria-checked', 'false')
+})
+
 test('affix hunt: a word and its relative in Turkish, the ending that makes it is picked and shown put on the word', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')

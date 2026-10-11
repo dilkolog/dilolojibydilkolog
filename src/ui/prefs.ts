@@ -19,6 +19,7 @@ export const prefs = {
   typingShare: 'balanced' as TypingShare,
   haptics: true,
   hideVosotros: false,
+  typedBlanks: true,
 }
 
 export function applySettings(s: Settings) {
@@ -43,6 +44,7 @@ export function applySettings(s: Settings) {
   root.style.fontSize = { normal: '', large: '112.5%', xlarge: '125%' }[s.textScale ?? 'normal']
   prefs.haptics = s.haptics ?? true
   prefs.hideVosotros = s.hideVosotros ?? false
+  prefs.typedBlanks = s.typedBlanks ?? true
   // Calm is the dark theme plus a flag that turns its colours down (see index.css).
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme === 'calm' ? 'dark' : s.theme === 'contrast' ? 'light' : s.theme

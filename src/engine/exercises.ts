@@ -157,7 +157,8 @@ export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry, opts: Eng
       EXERCISES[t].skill === skill &&
       EXERCISES[t].applicable(entry) &&
       (!EXERCISES[t].requiresAI || opts.ai) &&
-      (!EXERCISES[t].requiresSpeech || opts.speech),
+      (!EXERCISES[t].requiresSpeech || opts.speech) &&
+      !opts.off?.includes(t),
   )
 }
 

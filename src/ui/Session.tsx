@@ -132,7 +132,10 @@ export function SessionScreen(p: Props) {
   }, [p.items, p.vocabulary])
   // Some recognition questions become typing (Settings → Yazma oranı), and a well-known word's
   // blank is typed instead of chosen; practice sessions keep their plan.
-  const shape = (it: PlanItem, st: UserWordState | undefined) => typeStrongCloze(mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng), st)
+  const shape = (it: PlanItem, st: UserWordState | undefined) => {
+    const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng)
+    return prefs.typedBlanks ? typeStrongCloze(mixed, st) : mixed
+  }
   const [session, setSession] = useState(() =>
     startSession(p.mode === 'practice' || !p.items.length ? p.items : [shape(p.items[0], states.current.get(p.items[0].entryId)), ...p.items.slice(1)]),
   )
