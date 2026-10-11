@@ -24,7 +24,7 @@ export async function GET(request: Request): Promise<Response> {
   const feed = FEEDS.find((f) => f.id === id)
   if (!feed) return Response.json({ error: 'unknown feed' }, { status: 400 })
   try {
-    const items = parseFeed(await fetchText(feed.url, 8000))
+    const items = parseFeed(await fetchText(feed.url, 8000), { upgradeHttp: feed.upgradeHttp })
       .filter((i) => allowedArticle(i.link, feed.hosts))
       .slice(0, LIMIT)
     const articles = await Promise.all(
