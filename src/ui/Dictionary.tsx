@@ -12,6 +12,7 @@ import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
 import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
+import { CollocationChip } from './CollocationChip'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
 import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SearchIcon, SpeakerIcon, WandIcon } from './icons'
@@ -337,6 +338,7 @@ function WordCard({
             {gender && <li>{gender === 'f' ? 'dişil' : gender === 'm' ? 'eril' : 'eril ya da dişil'}</li>}
             <LevelChip language={language} lemma={word} rank={rank} />
             <TrapChip language={language} lemma={word} />
+            <CollocationChip language={language} lemma={word} />
           </ul>
           <div className="word-hero-title">
             <h2 className="word" style={{ '--len': written.length } as CSSProperties} lang={language}>

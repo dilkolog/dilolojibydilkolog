@@ -13,6 +13,7 @@ import { unlockedSkills } from '../engine/selection'
 import { SKILLS, type Mistake, type UserWordState, type VocabularyEntry, type WordList } from '../engine/types'
 import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
+import { CollocationChip } from './CollocationChip'
 import { trapOf } from '../engine/traps'
 import { trapWords } from '../data/traps'
 import { levelFromRank } from '../engine/wordLevel'
@@ -222,6 +223,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
               ))}
               <LevelChip language={entry.language} lemma={entry.lemma} rank={entry.frequencyRank} />
               <TrapChip language={entry.language} lemma={entry.lemma} />
+              <CollocationChip language={entry.language} lemma={entry.lemma} />
             </ul>
           )}
           <div className="word-hero-title">

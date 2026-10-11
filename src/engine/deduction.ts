@@ -18,6 +18,12 @@ export const MASK_MAX = 15
 /** Where a token sits: "paragraph.sentence.token". */
 export const posKey = (i: number, j: number, k: number) => `${i}.${j}.${k}`
 
+/**
+ * Spanish verbs with the pronoun glued on ("dislocándole", "diciéndoselo", "dándome"): the stress
+ * mark on a gerund shows it, and a verb plus pronoun is not a word to work out from the sentence.
+ */
+const ES_GERUND_CLITIC = /(?:ándo|iéndo|yéndo)(?:me|te|se|lo|la|le|nos|os|los|las|les)+$/i
+
 const isCapital = (text: string) => /^\p{Lu}/u.test(text)
 
 /** The words to hide: per sentence the longest unseen word (the first of equals), in text order, at most MASK_MAX. */
@@ -35,6 +41,7 @@ export function maskPositions(paragraphs: readonly (readonly ReadSentence[])[], 
         if (!t.key || t.status !== 'unseen') return
         // "Est-ce", "imaginez-vous", "par-dessus": grammar glued together, not a word to work out.
         if (t.text.includes('-')) return
+        if (language === 'es' && ES_GERUND_CLITIC.test(t.text)) return
         // A capital in the middle of a sentence, or two in a row at its start ("Francet Mamaï"), is a name.
         if (isCapital(t.text)) {
           if (k > 0 && tokens.slice(0, k).some((p) => p.key)) return
