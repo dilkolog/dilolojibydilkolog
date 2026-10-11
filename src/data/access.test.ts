@@ -195,6 +195,8 @@ describe('before the owner has set ADMIN_TOKEN', () => {
     // No request is filed: there is nobody to approve it.
     expect([...blobs.keys()].filter((k) => k.startsWith('access/'))).toEqual([])
     expect(await requireApproved(new Request('https://app.test/api/x', { headers: as(ALI, ALI_TOKEN) }))).toBeNull()
+    // Anonymous visitors (no account headers) are not turned away either.
+    expect(await requireApproved(new Request('https://app.test/api/x'))).toBeNull()
     const put = await sync.PUT(new Request(`https://app.test/api/sync?id=${VELI}&part=core`, { method: 'PUT', headers: { 'x-sync-auth': VELI_TOKEN }, body: 'sealed' }))
     expect(put.status).toBe(204)
   })

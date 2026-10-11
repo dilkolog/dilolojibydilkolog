@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
 import { PlayIcon, CloseIcon } from './icons'
@@ -40,6 +40,7 @@ export function WordCard({
   skipped,
   canListenFrom,
   canPinHeard,
+  rating,
   onClose,
   onLookUp,
   onOpen,
@@ -65,6 +66,8 @@ export function WordCard({
   canListenFrom: boolean
   /** The audio has no timed subtitles: the learner can pin this sentence to the moment it is heard. */
   canPinHeard?: boolean
+  /** Deduction mode: asks how close the guess was; sits in the card so the bottom sheet does not cover it. */
+  rating?: ReactNode
   onClose: () => void
   onLookUp?: (word: string) => void
   onOpen: (entryId: string) => void
@@ -107,6 +110,11 @@ export function WordCard({
             const own = verbEntry(a.lemma)
             return (
               <p key={`${a.lemma}-${a.tense}`} className="small">
+                {a.phrase && (
+                  <>
+                    <span lang={language}>“{a.phrase}”</span> ={' '}
+                  </>
+                )}
                 <strong lang={language}>{a.lemma}</strong> · <span lang={language}>{TENSE_GUIDE[a.tense].name}</span> ·{' '}
                 {[...new Set(a.persons.map((p) => subjectLabel(language, a.tense, p).split(' / ')[0]))].join(', ')}
                 {own && (
@@ -155,6 +163,7 @@ export function WordCard({
       <p className="small muted kbd">
         <kbd>←</kbd> <kbd>→</kbd> önceki / sonraki yeni kelime · <kbd>Esc</kbd> kapat
       </p>
+      {rating && <div className="word-pop-rating">{rating}</div>}
       <div className="row word-pop-actions">
         {selectedEntry ? (
           <button className="btn btn-quiet" onClick={() => onOpen(selectedEntry.id)}>

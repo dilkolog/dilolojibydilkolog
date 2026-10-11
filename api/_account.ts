@@ -110,6 +110,8 @@ const refusal = (error: string, status: AccessStatus) => Response.json({ error, 
  * approved account, otherwise the 403 to send back.
  */
 export async function requireApproved(request: Request): Promise<Response | null> {
+  // Before the owner sets ADMIN_TOKEN nothing is withheld, anonymous visitors included (the old behavior).
+  if (!approvalOn()) return null
   try {
     const id = await accountOf(request)
     if (!id) return refusal('account_required', 'none')

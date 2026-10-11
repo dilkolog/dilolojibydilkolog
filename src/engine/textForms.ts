@@ -1,6 +1,6 @@
 import { cleanToken } from './extract'
 import type { ReadingAnalysis } from './reading'
-import { analyzeCompound, analyzeForm, sentenceImperative, type Tense } from './tenses'
+import { analyzeCompound, analyzeForm, sentenceImperative, type FormAnalysis, type Tense } from './tenses'
 
 /** A verb form found in a text: the word as written (lowercased), its verb and its tense. */
 export interface TextForm {
@@ -27,6 +27,40 @@ function reflexivePronoun(raws: readonly string[], words: readonly string[], i: 
   const before = words[i - 1]
   if (before && REFLEXIVE.has(before)) return before
   if (before && (before === 'nous' || before === 'vous') && words[i - 2] === before) return `${before} ${before}`
+  return undefined
+}
+
+const SUBJECTS: Record<'fr' | 'es', Set<string>> = {
+  fr: new Set(['je', 'j', 'tu', 'il', 'elle', 'on', 'nous', 'vous', 'ils', 'elles', 'qui', 'que', 'qu', 'ne', 'n']),
+  es: new Set(['yo', 'tú', 'tu', 'él', 'ella', 'usted', 'nosotros', 'nosotras', 'vosotros', 'vosotras', 'ellos', 'ellas', 'ustedes', 'no']),
+}
+const REFLEXIVE_WORDS: Record<'fr' | 'es', Set<string>> = { fr: new Set(['me', 'm', 'te', 't', 'se', 's', 'nous', 'vous']), es: new Set(['me', 'te', 'se', 'nos', 'os']) }
+
+/**
+ * The compound tense in what was typed ("j'ai mangé", "n'ont pas fini", "il s'était lavé",
+ * "habían comido"): its verb and tense, or undefined. Leading subject pronouns and the negation are
+ * left out, a reflexive pronoun before the auxiliary marks a reflexive verb, and a small word may
+ * stand between the auxiliary and the participle, as in a text. Used when a word is typed into the
+ * add-word form: the list keeps the infinitive.
+ */
+export function typedCompound(language: 'fr' | 'es', typed: string): { lemma: string; tense: Tense; form: string } | undefined {
+  const words = typed
+    .toLocaleLowerCase(language)
+    .replace(/[’‘´`]/g, "'")
+    .split(/[\s']+/)
+    .filter(Boolean)
+  // Lead-in words: subjects, the negation and the reflexive pronouns.
+  let start = 0
+  while (start < words.length - 1 && (SUBJECTS[language].has(words[start]) || REFLEXIVE_WORDS[language].has(words[start]))) start++
+  // The word before the auxiliary is a reflexive pronoun ("nous nous sommes": twice, a lone "nous sommes" is just the subject).
+  const before = words[start - 1]
+  const reflexive = !!before && REFLEXIVE_WORDS[language].has(before) && (!['nous', 'vous'].includes(before) || words[start - 2] === before)
+  const rest = words.slice(start)
+  for (let gap = 0; gap <= 2 && 1 + gap < rest.length; gap++) {
+    if (gap > 0 && !BETWEEN.has(rest[gap])) break
+    const hit = analyzeCompound(language, rest[0], rest[1 + gap], reflexive)[0]
+    if (hit) return { lemma: hit.lemma, tense: hit.tense, form: typed.trim() }
+  }
   return undefined
 }
 
@@ -103,4 +137,31 @@ export function groupByTense(found: readonly TextForm[]): TenseGroup[] {
       return { tense, total: list.reduce((n, f) => n + f.count, 0), forms: list }
     })
     .sort((a, b) => b.total - a.total)
+}
+
+/**
+ * The compound tenses of a sentence that a word takes part in, as its analyses: tap "ai" or "mangé"
+ * in "J'ai mangé une pomme" and get manger, passé composé ("ai mangé"), not just avoir or a participle.
+ * Same reading as in a text (a reflexive pronoun, small words between).
+ */
+export function compoundsAround(language: 'fr' | 'es', sentence: string, word: string): FormAnalysis[] {
+  const tokens = [...sentence.matchAll(/[\p{L}][\p{L}'’-]*/gu)].map((m) => m[0])
+  const raws = tokens.map((t) => t.toLocaleLowerCase(language).replace(/’/g, "'"))
+  const words = tokens.map((t) => cleanToken(t, language).toLocaleLowerCase(language))
+  const target = cleanToken(word, language).toLocaleLowerCase(language)
+  const out: FormAnalysis[] = []
+  for (let i = 0; i < words.length; i++) {
+    const pronoun = language === 'fr' ? reflexivePronoun(raws, words, i) : undefined
+    for (let gap = 0; gap <= 2 && i + 1 + gap < words.length; gap++) {
+      if (gap > 0 && !BETWEEN.has(words[i + gap])) break
+      const hits = analyzeCompound(language, words[i], words[i + 1 + gap], !!pronoun)
+      if (!hits.length) continue
+      if (words[i] === target || words[i + 1 + gap] === target) {
+        const phrase = `${pronoun ? `${pronoun}${pronoun.endsWith("'") ? '' : ' '}` : ''}${words[i]} ${words[i + 1 + gap]}`
+        for (const h of hits) if (!out.some((o) => o.lemma === h.lemma && o.tense === h.tense)) out.push({ ...h, phrase })
+      }
+      break
+    }
+  }
+  return out
 }

@@ -499,6 +499,8 @@ test('the YZ screens wait for the owner\'s approval: a visitor is told why, an a
 
 test('a signed-in account waits for approval: the account card says so, and the owner\'s list asks for a key', async ({ page }) => {
   test.setTimeout(60_000)
+  // The server is not reached here (preview would forward /api to the live site): it answers "waiting".
+  await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'pending', exists: true, match: true } }))
   await startWithSamples(page)
   await page.evaluate(
     () =>
@@ -512,8 +514,6 @@ test('a signed-in account waits for approval: the account card says so, and the 
         }
       }),
   )
-  // The server is not reached here: it answers "waiting".
-  await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'pending', exists: true, match: true } }))
   await page.reload()
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()

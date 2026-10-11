@@ -573,6 +573,8 @@ export interface FormAnalysis {
   lemma: string
   tense: Tense
   persons: number[]
+  /** A compound tense found around a word: the words it is made of ("ai mangé"). */
+  phrase?: string
 }
 
 /** Reverse index (form → verb, tense, persons), built once per language when first needed. */

@@ -42,5 +42,6 @@ describe('news parsing', () => {
     expect(new Set(FEEDS.map((f) => f.id)).size).toBe(FEEDS.length)
     for (const f of FEEDS) expect(f.url.startsWith('https://')).toBe(true)
     expect(decodeEntities('&laquo;a&raquo;')).toBe('«a»')
+    expect(decodeEntities('&Eacute;t&eacute; &ndash; &iquest;qu&eacute;? &ntilde; &Ntilde; &uuml; &mdash; &unknown;')).toBe('Été – ¿qué? ñ Ñ ü — &unknown;')
   })
 })

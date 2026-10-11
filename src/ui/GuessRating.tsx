@@ -21,7 +21,7 @@ const OPTIONS: { rating: Rating; hint: string }[] = [
  */
 export function GuessRating({ word, language, onDone }: { word: string; language: TargetLanguage; onDone: () => void }) {
   return (
-    <section className="card stack guess-rating" aria-label="Tahmin">
+    <section className="stack guess-rating" aria-label="Tahmin">
       <p>
         <strong lang={language}>{word}</strong>: tahminin ne kadar yakındı?
       </p>

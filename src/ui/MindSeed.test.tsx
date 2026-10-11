@@ -23,6 +23,15 @@ const button = (host: HTMLElement, text: string) => [...host.querySelectorAll('b
 const prompt = (host: HTMLElement) => host.querySelector('.mind-seed p')!.textContent
 
 describe('MindSeed', () => {
+  it('switching the language starts that language\'s own day, not the other\'s state', async () => {
+    const host = await mount('fr')
+    await act(async () => button(host, 'Düşündüm').click())
+    expect(host.textContent).toContain('Bugünün zihin tohumunu ektin')
+    await act(async () => root!.render(<MindSeed language="es" />))
+    expect(host.querySelector('.mind-seed')).not.toBeNull()
+    expect(prompt(host)).toContain('İspanyolca')
+  })
+
   it('shows a prompt in the language learned, and another on request', async () => {
     const host = await mount('es')
     const first = prompt(host)
