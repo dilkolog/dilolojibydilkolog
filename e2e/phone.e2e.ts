@@ -1222,3 +1222,55 @@ test('the Back button walks back through the screens, a game is left to its hub,
   await expect(page.getByRole('button', { name: /Kayıt farkı/ }).first()).toBeVisible()
   expect(page.url()).toContain('localhost')
 })
+
+test('dictionary on a phone: untracked word is translated via DeepL, meaning edited, saved, found under saved list after reload, and removed without overflow', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  // DeepL mock routes (opened after startWithSamples closes them with 503)
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('usage'), (r) => r.fulfill({ json: { count: 10, limit: 500000 } }))
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => r.fulfill({ json: { translation: 'gevezelik etmek' } }))
+  await page.reload()
+  await openScreen(page, 'Sözlük')
+
+  // Search a word the pack lacks
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill('gribouiller')
+  await page.getByRole('button', { name: 'DeepL ile çevir' }).click()
+  await expect(page.getByText('(DeepL)')).toBeVisible()
+
+  // Edit custom meaning
+  const meaningInput = page.getByLabel('Türkçe anlamı')
+  await meaningInput.fill('boş konuşmak, çene çalmak')
+
+  // Save to dictionary
+  await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
+  const card = page.getByRole('region', { name: 'Kaydettiğin kelime' })
+  await expect(card).toBeVisible()
+  await expect(card).toContainText('boş konuşmak, çene çalmak')
+
+  // Verify no horizontal overflow on 375px phone screen
+  expect(await overflow(page)).toEqual([])
+
+  // Wait for background IndexedDB write to settle before reload
+  await page.waitForTimeout(500)
+
+  // Reload and check it persists without calling DeepL again
+  let asked = 0
+  await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => (asked++, r.fulfill({ json: { translation: 'x' } })))
+  await page.reload()
+  await openScreen(page, 'Sözlük')
+
+  // Empty search: listed under "Kaydettiklerin"
+  await expect(page.getByRole('heading', { name: 'Kaydettiklerin' })).toBeVisible()
+  await expect(page.locator('.word-row', { hasText: 'gribouiller' })).toBeVisible()
+  expect(asked).toBe(0)
+
+  // Search it again: opens card
+  await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('gribouiller')
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('boş konuşmak, çene çalmak')
+
+  // Remove from dictionary
+  await page.getByRole('button', { name: 'Sözlükten kaldır' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})

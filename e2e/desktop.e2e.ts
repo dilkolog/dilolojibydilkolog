@@ -1478,6 +1478,8 @@ test('verb lab, practice list: Tab moves straight from one person\'s field to th
   await expect(main.locator('.lab-answer-row .icon-btn')).toHaveCount(0)
   await main.getByRole('button', { name: 'İpucu: ilk harfler' }).click()
   await expect(page.locator('#lab-in-3')).toHaveAttribute('placeholder', 'pa…')
+  const activeTag = await page.evaluate(() => document.activeElement?.tagName)
+  expect(activeTag).not.toBe('BODY')
 })
 
 test('compound tenses: adding typed compound offers infinitive without false positives', async ({ page }) => {
@@ -1678,4 +1680,142 @@ test('dictionary: a word the pack lacks is translated by DeepL, saved for good, 
   await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('gribouiller')
   await page.getByRole('button', { name: 'Sözlükten kaldır' }).click()
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
+})
+
+test('dictionary: typing manual meaning allows saving for good vs adding to vocabulary without touching saved dictionary state', async ({ page }) => {
+  await startWithSamples(page)
+  // DeepL is 503 by default from startWithSamples
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill('farfadet')
+
+  // Manual meaning input when word is missing
+  const meaningInput = page.getByPlaceholder('Türkçe anlamını yaz…')
+  await expect(meaningInput).toBeVisible()
+  await meaningInput.fill('küçük peri, cin')
+
+  // Save to dictionary for good
+  await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
+  const card = page.getByRole('region', { name: 'Kaydettiğin kelime' })
+  await expect(card).toBeVisible()
+  await expect(card).toContainText('küçük peri, cin')
+
+  // Second word: "zigoto", use "Kelimelerime ekle" instead
+  await search.fill('zigoto')
+  await expect(page.getByPlaceholder('Türkçe anlamını yaz…')).toBeVisible()
+  await page.getByPlaceholder('Türkçe anlamını yaz…').fill('tuhaf tip')
+  await page.getByRole('button', { name: 'Kelimelerime ekle' }).click()
+
+  // This opens single word add form with word & meaning prefilled
+  await expect(page.getByLabel('Kelime', { exact: true })).toHaveValue('zigoto')
+  await expect(page.getByLabel('Türkçe anlamı', { exact: true })).toHaveValue('tuhaf tip')
+
+  // Return to dictionary: zigoto should NOT be saved in dictionary notes
+  await openScreen(page, 'Sözlük')
+  await search.fill('zigoto')
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
+  // But farfadet is still saved
+  await search.fill('farfadet')
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('küçük peri, cin')
+})
+
+test('dictionary searchability: saved word is found by prefix, without accents, and by Turkish meaning with case sensitivity (capital dotless I)', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+
+  // Save an accented word not in sample words with a Turkish meaning containing dotless capital I: "téléguidé" -> "Işık saçan rehberlik"
+  await search.fill('téléguidé')
+  await page.getByPlaceholder('Türkçe anlamını yaz…').fill('Işık saçan rehberlik')
+  await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('Işık saçan rehberlik')
+
+  // 1. Prefix match: typing "télé" matches in SavedList
+  await search.fill('télé')
+  await expect(page.locator('.word-row', { hasText: 'téléguidé' })).toBeVisible()
+
+  // 2. Accent-free exact match: "teleguide" finds the saved exact card
+  await search.fill('teleguide')
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('téléguidé')
+
+  // 3. Turkish meaning match with capital dotless I: "Işık" finds it
+  await search.fill('Işık')
+  await expect(page.locator('.word-row', { hasText: 'téléguidé' })).toBeVisible()
+
+  // Clean up
+  await search.fill('téléguidé')
+  await page.getByRole('button', { name: 'Sözlükten kaldır' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
+})
+
+test('collocation chips: chips on word page with sr-only example text across French, Spanish, and English', async ({ page }) => {
+  await startWithSamples(page)
+
+  // 1. French: "décider" has chip "décider de + infinitif" and sr-only example
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row', { hasText: 'décider' }).click()
+  const frChip = page.locator('.colloc-chip', { hasText: 'décider de + infinitif' })
+  await expect(frChip).toBeVisible()
+  await expect(frChip.locator('.sr-only')).toContainText('Örnek: Il a décidé de partir plus tôt.')
+
+  // Back to word list
+  await page.getByRole('button', { name: '← Kelimelere dön' }).click()
+
+  // French: "question" on word page (add it via Ekle button)
+  await page.getByRole('button', { name: 'Ekle', exact: true }).click()
+  await page.getByText('Tek kelime ekle').click()
+  await page.getByLabel('Kelime', { exact: true }).fill('la question')
+  await page.getByLabel('Türkçe anlamı', { exact: true }).fill('soru')
+  await page.getByRole('button', { name: 'Kelimeyi ekle' }).click()
+  await page.locator('.back-link').click()
+  await page.locator('.word-row', { hasText: 'question' }).click()
+  const qChip = page.locator('.colloc-chip', { hasText: 'poser une question' })
+  await expect(qChip).toBeVisible()
+  await expect(qChip.locator('.sr-only')).toContainText('Örnek: Je voudrais poser une question.')
+  await page.getByRole('button', { name: '← Kelimelere dön' }).click()
+
+  // 2. Spanish: switch language to Spanish (empty -> add form opens by default)
+  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await openScreen(page, 'Kelimeler')
+  await expect(page.getByLabel('Kelime', { exact: true })).toBeVisible()
+  await page.getByLabel('Kelime', { exact: true }).fill('soñar')
+  await page.getByLabel('Türkçe anlamı', { exact: true }).fill('rüya görmek')
+  await page.getByRole('button', { name: 'Kelimeyi ekle' }).click()
+  await page.locator('.back-link').click()
+  await page.locator('.word-row', { hasText: 'soñar' }).click()
+  const esChip = page.locator('.colloc-chip', { hasText: 'soñar con' })
+  await expect(esChip).toBeVisible()
+  await expect(esChip.locator('.sr-only')).toContainText('Örnek: Sueño con viajar por todo el mundo.')
+  await page.getByRole('button', { name: '← Kelimelere dön' }).click()
+
+  // 3. English: switch language to English (empty -> add form opens by default)
+  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await openScreen(page, 'Kelimeler')
+  await expect(page.getByLabel('Kelime', { exact: true })).toBeVisible()
+  await page.getByLabel('Kelime', { exact: true }).fill('depend')
+  await page.getByLabel('Türkçe anlamı', { exact: true }).fill('bağlı olmak')
+  await page.getByRole('button', { name: 'Kelimeyi ekle' }).click()
+  await page.locator('.back-link').click()
+  await page.locator('.word-row', { hasText: 'depend' }).click()
+  const enChip = page.locator('.colloc-chip', { hasText: 'depend on' })
+  await expect(enChip).toBeVisible()
+  await expect(enChip.locator('.sr-only')).toContainText('Örnek: It all depends on the weather.')
+})
+
+test('today screen: live seed waits before any answer is given and stops hopping under reduced motion', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Bugün')
+  const waitingSeed = page.locator('.hero-today .plant-waiting')
+  await expect(waitingSeed).toBeVisible()
+  const hop = waitingSeed.locator('.plant-seed-hop')
+  await expect(hop).toBeVisible()
+
+  // In live plant, seed-hop animation is running
+  const animName = await hop.evaluate((el) => getComputedStyle(el).animationName)
+  expect(animName).toBe('seed-hop')
+
+  // Under prefers-reduced-motion: reduce, animations stop (animationName === 'none')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  const reducedAnim = await hop.evaluate((el) => getComputedStyle(el).animationName)
+  expect(reducedAnim).toBe('none')
 })
