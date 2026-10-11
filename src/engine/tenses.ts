@@ -37,6 +37,9 @@ export const LAB_TENSES: { fr: (FrTense | FrMoreTense)[]; es: (EsTense | EsMoreT
   es: ['presente', 'imperfecto', 'preterito', 'perfecto', 'pluscuamperfecto', 'futuro', 'futuro-perfecto', 'condicional', 'condicional-perfecto', 'subjuntivo', 'subjuntivo-imperfecto', 'subjuntivo-perfecto', 'subjuntivo-pluscuamperfecto', 'imperativo'],
 }
 
+/** The forms with no person (après avoir mangé, habiendo comido): found when reading, not practised in the verb lab. */
+export const isPersonless = (tense: Tense) => tense === 'infinitif-passe' || tense === 'participe-compose' || tense === 'infinitivo-compuesto' || tense === 'gerundio-compuesto'
+
 /** The imperative: addressed to someone, so it has no "I" (nor "he" in French). */
 export const isImperative = (tense: Tense) => tense === 'imperatif' || tense === 'imperativo'
 

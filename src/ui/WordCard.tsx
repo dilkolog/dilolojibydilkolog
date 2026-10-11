@@ -115,8 +115,8 @@ export function WordCard({
                     <span lang={language}>“{a.phrase}”</span> ={' '}
                   </>
                 )}
-                <strong lang={language}>{a.lemma}</strong> · <span lang={language}>{TENSE_GUIDE[a.tense].name}</span> ·{' '}
-                {[...new Set(a.persons.map((p) => subjectLabel(language, a.tense, p).split(' / ')[0]))].join(', ')}
+                <strong lang={language}>{a.lemma}</strong> · <span lang={language}>{TENSE_GUIDE[a.tense].name}</span>
+                {a.persons.length > 0 && <> · {[...new Set(a.persons.map((p) => subjectLabel(language, a.tense, p).split(' / ')[0]))].join(', ')}</>}
                 {own && (
                   <>
                     {' '}

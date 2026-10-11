@@ -29,7 +29,7 @@
     "answer": "Bien que",
     "options": [
      "Bien que",
-     "Parce que",
+     "À moins que",
      "Afin que"
     ],
     "kind": "Taviz",
@@ -155,7 +155,7 @@
     "answer": "Même si",
     "options": [
      "Même si",
-     "Parce que",
+     "Afin que",
      "À moins que"
     ],
     "kind": "Taviz",

@@ -103,6 +103,15 @@ describe('with the word pack', () => {
     expect(rootOf('imposible', 'es', lookup('es')).root).toBe('posible')
   })
 
+  it('keeps the verb-stem rule to verbs and roots of four letters or more (the coincidences found by review)', () => {
+    const fr = (w: string) => words([familyOf(w, 'fr', lookup('fr'))?.root ?? { word: w, children: [] } as unknown as FamilyNode])
+    expect(fr('autre')).not.toContain('auteur')
+    expect(words([familyOf('entre', 'es', lookup('es'))?.root ?? ({ word: 'entre', children: [] } as unknown as FamilyNode)])).not.toContain('entidad')
+    expect(familyOf('do', 'en', lookup('en'))).toBeUndefined()
+    for (const w of ['shoulder', 'passion', 'reward', 'capable']) expect(rootOf(w, 'en', lookup('en')).root, w).toBe(w)
+    for (const w of ['sérieux', 'véritable', 'départ']) expect(rootOf(w, 'fr', lookup('fr')).root, w).toBe(w)
+  })
+
   it('does not make families out of coincidences', () => {
     expect(rootOf('mission', 'en', lookup('en')).root).toBe('mission')
     expect(rootOf('business', 'en', lookup('en')).root).toBe('business')

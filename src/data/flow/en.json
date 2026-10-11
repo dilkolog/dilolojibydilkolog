@@ -29,7 +29,7 @@
     "answer": "Although",
     "options": [
      "Although",
-     "Because",
+     "Unless",
      "So that"
     ],
     "kind": "Taviz",
@@ -49,7 +49,7 @@
     "options": [
      "Nevertheless",
      "In other words",
-     "Meanwhile"
+     "Because"
     ],
     "kind": "Zıtlık",
     "why": "Plan ile ona gelen itiraz karşı karşıya: “ancak”."
@@ -155,7 +155,7 @@
     "answer": "Although",
     "options": [
      "Although",
-     "Because",
+     "Unless",
      "So that"
     ],
     "kind": "Taviz",
