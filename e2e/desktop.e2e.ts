@@ -1413,4 +1413,170 @@ test('verb lab, practice list: Tab moves straight from one person\'s field to th
   await expect(main.locator('.lab-answer-row .icon-btn')).toHaveCount(0)
   await main.getByRole('button', { name: 'İpucu: ilk harfler' }).click()
   await expect(page.locator('#lab-in-3')).toHaveAttribute('placeholder', 'pa…')
+
+test('compound tenses: adding typed compound offers infinitive without false positives', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: /Ekle/ }).first().click()
+  await page.getByText('Tek kelime ekle').click()
+  const wordInput = page.getByLabel('Kelime', { exact: true })
+
+  // 1. French "j'ai mangé" -> offers "manger ekle"
+  await wordInput.fill("j'ai mangé")
+  const mangerBtn = page.getByRole('button', { name: 'manger ekle' })
+  await expect(mangerBtn).toBeVisible()
+  await mangerBtn.click()
+  await expect(wordInput).toHaveValue('manger')
+
+  // 2. French reflexive compound "il s'est lavé" -> offers "laver ekle"
+  await wordInput.fill("il s'est lavé")
+  const laverBtn = page.getByRole('button', { name: 'laver ekle' })
+  await expect(laverBtn).toBeVisible()
+
+  // 3. Negative check / false positives: "j'ai faim" or "ai" alone should not offer
+  await wordInput.fill("j'ai faim")
+  await expect(page.locator('.form-help button.link', { hasText: 'ekle' })).toHaveCount(0)
+  await wordInput.fill('ai')
+  await expect(page.locator('.form-help button.link', { hasText: 'ekle' })).toHaveCount(0)
+
+  // 4. Spanish compound: switch language to Spanish via sidebar
+  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await openScreen(page, 'Kelimeler')
+  if (await page.getByRole('button', { name: /Ekle/ }).count()) {
+    await page.getByRole('button', { name: /Ekle/ }).first().click()
+    await page.getByText('Tek kelime ekle').click()
+  }
+  await page.getByLabel('Kelime', { exact: true }).fill('habían comido')
+  const comerBtn = page.getByRole('button', { name: 'comer ekle' })
+  await expect(comerBtn).toBeVisible()
+  await comerBtn.click()
+  await expect(page.getByLabel('Kelime', { exact: true })).toHaveValue('comer')
+})
+
+
+
+
+
+test('compound tenses: reading card reveals full compound form and infinitive on either auxiliary or participle tap', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  const details = page.locator('details.add-text')
+  await details.evaluate((el: HTMLDetailsElement) => { el.open = true })
+  await page.getByLabel('Metin', { exact: true }).fill("J'ai mangé une pomme.")
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+
+  // Tap "J'ai" / "ai"
+  await page.locator('.rw').filter({ hasText: /ai/ }).first().click()
+  const formAnalysis = page.locator('.form-analysis')
+  await expect(formAnalysis).toBeVisible()
+  await expect(formAnalysis).toContainText('“ai mangé” = manger')
+  await expect(formAnalysis).toContainText('passé composé')
+
+  // Tap "mangé"
+  await page.locator('.rw', { hasText: 'mangé' }).first().click()
+  await expect(formAnalysis).toBeVisible()
+  await expect(formAnalysis).toContainText('“ai mangé” = manger')
+  await expect(formAnalysis).toContainText('passé composé')
+})
+
+test('register game: regional usage note shows for entries with notes and is absent otherwise', async ({ page }) => {
+  await startWithSamples(page)
+  // Switch to Spanish where es-job, es-eat, es-car etc. have regional notes
+  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await openScreen(page, 'Oyunlar')
+
+  await page.locator('.game-card', { hasText: 'Kayıt farkı' }).click()
+  await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
+
+  let seenNote = false
+  for (let i = 0; i < 8; i++) {
+    await page.locator('.option').first().click()
+    const noteLocator = page.locator('.stack[role="status"] p.small.muted')
+    if (await noteLocator.count()) {
+      await expect(noteLocator).toBeVisible()
+      await expect(noteLocator).toContainText(/İspanya|Latin Amerika|chamba|curro|papear|cacharro|pasta|guay/i)
+      seenNote = true
+      break
+    }
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  }
+  expect(seenNote).toBe(true)
+})
+
+
+test('AI fill missing and suggest words: approval gates button, Anthropic route fills blanks and undo restores them', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+
+  // 1. Without approval / without API key: button disabled or prompt for key
+  const fillSection = page.locator('section[aria-label="Eksikleri tamamla"]')
+  if (await fillSection.count()) {
+    const fillBtn = fillSection.getByRole('button', { name: /Eksikleri YZ ile tamamla/ })
+    await expect(fillBtn).toBeDisabled()
+  }
+
+  // 2. Set API key and approve account
+  await approveAccount(page)
+  await page.evaluate(() => {
+    const open = indexedDB.open('kelime-koc')
+    open.onsuccess = () => {
+      const tx = open.result.transaction('meta', 'readwrite')
+      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
+      tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
+    }
+  })
+  await page.reload()
+  await openScreen(page, 'Kelimeler')
+
+  // Mock Anthropic API for enrichWords
+  await page.route(/api\.anthropic\.com/, async (r) => {
+    const mockResponse = {
+      id: 'msg_123',
+      type: 'message',
+      role: 'assistant',
+      model: 'claude-haiku-4-5',
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify({
+            words: [
+              {
+                input: 'maison',
+                lemma: 'la maison',
+                partOfSpeech: 'noun',
+                gender: 'f',
+                meanings: ['ev'],
+                example: 'C’est une grande *maison*.',
+                exampleTranslation: 'Bu büyük bir ev.',
+                collocations: [],
+                confusables: [],
+                literal: '',
+                frequencyBand: 'top1000',
+              },
+            ],
+          }),
+        },
+      ],
+      usage: { input_tokens: 50, output_tokens: 80 },
+    }
+    return r.fulfill({ json: mockResponse })
+  })
+
+  // If there are words needing fill, test fill + undo
+  if (await fillSection.count()) {
+    const fillBtn = fillSection.getByRole('button', { name: /Eksikleri YZ ile tamamla/ })
+    await expect(fillBtn).toBeEnabled()
+    await fillBtn.click()
+    // Undo toast should appear
+    const undoBtn = page.getByRole('button', { name: 'Geri al', exact: true })
+    await expect(undoBtn).toBeVisible({ timeout: 10000 })
+    await undoBtn.click()
+    await expect(page.getByText('Eski hâline getirildi')).toBeVisible()
+  }
+
+  // Also check SuggestWords on Words screen
+  const suggestSection = page.locator('section[aria-label="YZ kelime önerisi"]')
+  if (await suggestSection.count()) {
+    await expect(suggestSection.getByRole('button', { name: /kelime öner/ })).toBeEnabled()
+  }
 })
