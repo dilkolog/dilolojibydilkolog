@@ -25,6 +25,31 @@ describe('maskPositions', () => {
     expect(maskPositions(analyze(sentence.repeat(40)), 'fr').size).toBe(MASK_MAX)
   })
 
+  const hidden = (text: string, language: 'fr' | 'es' = 'fr') => {
+    const paragraphs = analyzeText(text, language, [], [], new Set()).paragraphs
+    return [...maskPositions(paragraphs, language)].map((p) => {
+      const [i, j, k] = p.split('.').map(Number)
+      return paragraphs[i][j].tokens[k].text
+    })
+  }
+
+  it('does not glue two words together over a double hyphen, and skips hyphenated grammar', () => {
+    expect(hidden('Durante tres meses--se habían casado en abril--vivieron una dicha profunda', 'es')).toEqual(['vivieron'])
+    expect(hidden("Est-ce que tu n'as pas honte, à la fin de cette histoire ?")).toEqual(['histoire'])
+    expect(hidden('Imaginez-vous pour un moment, chers lecteurs, ce vieux village')).toEqual(['lecteurs'])
+  })
+
+  it('does not hide names: a capital in mid-sentence, or two at the start', () => {
+    expect(hidden('Francet Mamaï, un vieux joueur de fifre, habitait ce village')).toEqual(['habitait'])
+    expect(hidden('Nous avons vu Gringoire hier près de la rivière')).toEqual(['rivière'])
+  })
+
+  it('asks in a text of short sentences too, from four words', () => {
+    expect(hidden('Le garçon cherche ses chaussures. Il court dehors. Elle chante bien.')).toEqual(['chaussures'])
+    // Not short on average: the six-word rule stays.
+    expect(hidden('Le garçon cherche ses chaussures. Hier soir, nous avons mangé des champignons délicieux avec nos voisins.')).toEqual(['champignons'])
+  })
+
   it('gives each position as paragraph.sentence.token', () => {
     expect(posKey(1, 2, 3)).toBe('1.2.3')
   })

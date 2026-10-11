@@ -41,7 +41,8 @@ export interface ReadingAnalysis {
   iPlusOne: { sentence: string; word: string; key: string }[]
 }
 
-const WORD = /([\p{L}][\p{L}'’-]*)/u
+// A hyphen joins only when a letter follows it: "peut-être" is one word, "abril--vivieron" is two.
+const WORD = /([\p{L}](?:[\p{L}'’]|-(?=\p{L}))*)/u
 
 export function readingKey(word: string, language: TargetLanguage): string {
   return stem(cleanToken(word, language).toLocaleLowerCase(language), language)
