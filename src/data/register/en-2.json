@@ -1,0 +1,191 @@
+[
+  {
+    "id": "en-greeting-hi",
+    "language": "en",
+    "tr": "merhaba, selam",
+    "informal": "Hey!",
+    "standard": "Hello",
+    "formal": "Good day",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-req-pass",
+    "language": "en",
+    "tr": "bunu uzatır mısınız?",
+    "informal": "Pass me that",
+    "standard": "Could you pass me that?",
+    "formal": "Would you be so kind as to hand me that?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-req-help",
+    "language": "en",
+    "tr": "yardım eder misiniz?",
+    "informal": "Give me a hand",
+    "standard": "Can you help me?",
+    "formal": "Could you please assist me?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-accept-agree",
+    "language": "en",
+    "tr": "anlaştık, kabul",
+    "informal": "Deal!",
+    "standard": "Agreed",
+    "formal": "I accept your proposal",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-refuse-no",
+    "language": "en",
+    "tr": "olmaz, kesinlikle hayır",
+    "informal": "No way",
+    "standard": "I'm afraid I can't",
+    "formal": "I must respectfully decline",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-apology-sorry",
+    "language": "en",
+    "tr": "özür dilerim",
+    "informal": "My bad!",
+    "standard": "I'm sorry",
+    "formal": "Please accept my sincere apologies",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-object-disagree",
+    "language": "en",
+    "tr": "katılmıyorum, itiraz ediyorum",
+    "informal": "No chance!",
+    "standard": "I disagree",
+    "formal": "I must respectfully disagree",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-phone-answer",
+    "language": "en",
+    "tr": "alo, buyrun",
+    "informal": "Yeah? Who's this?",
+    "standard": "Hello, who is calling?",
+    "formal": "Good morning, thank you for calling, how may I direct your call?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-phone-hangup",
+    "language": "en",
+    "tr": "kapatmam gerek",
+    "informal": "Gotta run, bye",
+    "standard": "I have to hang up now",
+    "formal": "I must conclude our call now, thank you for your time",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-email-greeting",
+    "language": "en",
+    "tr": "e-posta selamlama",
+    "informal": "Hey team,",
+    "standard": "Hello everyone,",
+    "formal": "Dear Sir or Madam,",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-email-attach",
+    "language": "en",
+    "tr": "ekteki dosya",
+    "informal": "Here's the doc",
+    "standard": "I have attached the file",
+    "formal": "Please find attached the requested document",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-food-order",
+    "language": "en",
+    "tr": "yemek siparişi verme",
+    "informal": "I'll go with the chicken",
+    "standard": "I'd like the chicken, please",
+    "formal": "I would care for the roasted chicken, please",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-food-bill",
+    "language": "en",
+    "tr": "hesap lütfen",
+    "informal": "Check, please!",
+    "standard": "Could we have the bill, please?",
+    "formal": "May we request the check at your earliest convenience?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-dir-station",
+    "language": "en",
+    "tr": "istasyon nerede?",
+    "informal": "Where's the station at?",
+    "standard": "Where is the station, please?",
+    "formal": "Could you kindly direct me to the railway station?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-time-meet",
+    "language": "en",
+    "tr": "saat kaçta buluşuyoruz?",
+    "informal": "What time we meeting up?",
+    "standard": "What time are we meeting?",
+    "formal": "At what time would it be convenient to schedule our meeting?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-time-late",
+    "language": "en",
+    "tr": "gecikiyorum, geç kalıyorum",
+    "informal": "Running super late",
+    "standard": "I'm running late",
+    "formal": "Please pardon my delay due to an unforeseen matter",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-thank-much",
+    "language": "en",
+    "tr": "çok teşekkür ederim",
+    "informal": "Thanks a bunch!",
+    "standard": "Thank you very much",
+    "formal": "Please accept my profound gratitude",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-confirm-gotit",
+    "language": "en",
+    "tr": "anlaşıldı, kavradım",
+    "informal": "Gotcha!",
+    "standard": "Understood",
+    "formal": "The instructions have been duly noted",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-wait-moment",
+    "language": "en",
+    "tr": "bir saniye bekleyin",
+    "informal": "Hold on a sec",
+    "standard": "Please wait a moment",
+    "formal": "Kindly bear with me for a moment",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-part-later",
+    "language": "en",
+    "tr": "sonra görüşürüz",
+    "informal": "Catch you later",
+    "standard": "See you later",
+    "formal": "I look forward to our next acquaintance",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-money-cost",
+    "language": "en",
+    "tr": "fiyatı ne kadar?",
+    "informal": "How much for this?",
+    "standard": "How much does this cost?",
+    "formal": "What is the fee for this service?",
+    "source": "Diloloji (özgün)"
+  }
+]
