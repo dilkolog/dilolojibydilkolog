@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { GameResult } from './GameResult'
 import { huntPool, huntRound, HUNT_ROUND, type HuntQuestion } from '../../engine/affixHunt'
 import type { Affix } from '../../engine/derive'
@@ -21,8 +21,20 @@ const note = (id: string, correct: boolean) => {
 }
 
 const label = (a: Affix) => (a.kind === 'prefix' ? `${a.form}-` : `-${a.form}`)
-/** The word with the affix put on, the way it is said: un- + comfortable. */
-const formula = (q: HuntQuestion) => (q.answer.kind === 'prefix' ? `${label(q.answer)} + ${q.base}` : `${q.base} + ${label(q.answer)}`)
+/** The word with the affix put on, the way it is said: un- + comfortable = uncomfortable; its pieces come in one after another. */
+function Formula({ q, language }: { q: HuntQuestion; language: TargetLanguage }) {
+  const affix = <span className="morph morph-suffix formula-piece" style={{ '--i': q.answer.kind === 'prefix' ? 0 : 1 } as CSSProperties}>{label(q.answer)}</span>
+  const base = <span className="formula-piece" style={{ '--i': q.answer.kind === 'prefix' ? 1 : 0 } as CSSProperties}>{q.base}</span>
+  return (
+    <span className="formula" lang={language}>
+      {q.answer.kind === 'prefix' ? affix : base}
+      <span className="formula-piece muted" style={{ '--i': 2 } as CSSProperties}>+</span>
+      {q.answer.kind === 'prefix' ? base : affix}
+      <span className="formula-piece muted" style={{ '--i': 3 } as CSSProperties}>=</span>
+      <strong className="formula-piece formula-result" style={{ '--i': 4 } as CSSProperties}>{q.word}</strong>
+    </span>
+  )
+}
 
 /**
  * Affix hunt: a word and its relative in Turkish; the prefix or suffix that makes it is picked
@@ -173,9 +185,7 @@ export function AffixHunt({ language, onExit }: { language: TargetLanguage; onEx
             <div className="stack" role="status">
               <p className={given.form === q.answer.form ? 'small' : 'cross-warn'}>
                 {given.form === q.answer.form ? 'Doğru: ' : 'Bu ek tutmuyor. '}
-                <span lang={language}>
-                  {formula(q)} = <strong>{q.word}</strong>
-                </span>
+                <Formula q={q} language={language} />
               </p>
               <p className="small">
                 <span className="morph morph-suffix">{label(q.answer)}</span> {q.answer.role}
