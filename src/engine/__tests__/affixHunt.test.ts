@@ -72,6 +72,8 @@ describe('with the word pack', () => {
       for (const q of pool) {
         expect(q.options.map((o) => o.form), q.id).toContain(q.answer.form)
         expect(q.word, q.id).not.toBe(q.base)
+        // The ending fits the base's part of speech (no fact → faction, universe → university).
+        if (q.answer.from?.length) expect(q.answer.from, q.id).toContain(q.basePos)
       }
     }
   })
