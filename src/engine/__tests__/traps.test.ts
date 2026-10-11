@@ -22,6 +22,12 @@ describe('trapOf', () => {
     expect(trapOf(ALL, 'fr', 'sensible')).toBeUndefined()
     expect(trapOf(ALL, 'es', 'sensible')?.meaning).toBe('duyarlı')
   })
+
+  it('does not mind accents either way: the page of "collège" finds the entry written "college"', () => {
+    const list = [word('college', 'ortaokul', 'üniversite'), word('déception', 'hayal kırıklığı', 'aldatma')]
+    expect(trapOf(list, 'fr', 'collège')?.meaning).toBe('ortaokul')
+    expect(trapOf(list, 'fr', 'deception')?.meaning).toBe('hayal kırıklığı')
+  })
 })
 
 describe('trapQuestion', () => {

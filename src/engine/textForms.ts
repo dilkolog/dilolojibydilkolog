@@ -12,7 +12,22 @@ export interface TextForm {
 }
 
 /** Words that may stand between the auxiliary and the participle: "n'ai pas mangé", "había ya comido". */
-const BETWEEN = new Set(['pas', 'jamais', 'déjà', 'deja', 'bien', 'encore', 'toujours', 'plus', 'rien', 'enfin', 'ya', 'nunca', 'siempre', 'todavía', 'aún', 'también', 'no', 'casi', 'apenas'])
+const BETWEEN = new Set(['pas', 'jamais', 'déjà', 'deja', 'bien', 'encore', 'toujours', 'plus', 'rien', 'enfin', 'souvent', 'presque', 'vite', 'longtemps', 'ya', 'nunca', 'siempre', 'todavía', 'aún', 'también', 'no', 'casi', 'apenas'])
+
+/** A small word that may stand between the auxiliary and the participle: the listed ones, or an adverb in -ment / -mente ("a vraiment aimé"). */
+function isBetween(language: 'fr' | 'es', word: string): boolean {
+  if (BETWEEN.has(word)) return true
+  return language === 'fr' ? /^[a-zàâäéèêëîïôöùûüç]{4,}ment$/.test(word) : /^[a-zñáéíóúü]{4,}mente$/.test(word)
+}
+
+/** An inverted question's auxiliary with its subject ("a-t-il", "avez-vous", "étaient-elles") → the auxiliary alone. */
+const deInvert = (word: string) => word.replace(/(?:-t)?-(?:je|tu|il|elle|on|nous|vous|ils|elles)$/, '') || word
+
+/** The participle of "to be" after avoir/haber: the sign of a passive ("ont été retrouvés"), whose verb is the next participle. */
+const PASSIVE_PP: Record<'fr' | 'es', string> = { fr: 'été', es: 'sido' }
+
+/** A Spanish participle as written agreeing (tirados, rotas, dicha) → its masculine singular. */
+const esMasculine = (word: string) => word.replace(/(?:os|as|a)$/, 'o')
 
 const REFLEXIVE = new Set(['me', 'te', 'se'])
 
@@ -24,9 +39,47 @@ const REFLEXIVE = new Set(['me', 'te', 'se'])
 function reflexivePronoun(raws: readonly string[], words: readonly string[], i: number): string | undefined {
   const elided = /^([mts])'/.exec(raws[i])
   if (elided) return `${elided[1]}'`
+  // "s'en est allé", "elle s'y est rendue": the pronoun joined with en / y, or a word apart ("nous nous en sommes").
+  const joined = /^([mts]'(?:en|y))$/.exec(raws[i - 1] ?? '')
+  if (joined) return joined[1]
+  if (['en', 'y'].includes(words[i - 1])) {
+    const pp = words[i - 2]
+    if (pp && REFLEXIVE.has(pp)) return `${pp} ${words[i - 1]}`
+    if ((pp === 'nous' || pp === 'vous') && words[i - 3] === pp) return `${pp} ${pp} ${words[i - 1]}`
+  }
   const before = words[i - 1]
   if (before && REFLEXIVE.has(before)) return before
   if (before && (before === 'nous' || before === 'vous') && words[i - 2] === before) return `${before} ${before}`
+  return undefined
+}
+
+interface CompoundMatch {
+  hits: FormAnalysis[]
+  /** The index of the participle (the last word of the form). */
+  last: number
+  phrase: string
+}
+
+/**
+ * The compound tense that opens at word `i`: the auxiliary and its participle, up to two small words
+ * apart ("n'ai pas mangé", "a vraiment aimé"), an inverted question ("a-t-il compris"), a passive
+ * with the participle of "to be" in between ("ont été retrouvés": the verb is retrouver).
+ */
+function compoundAt(language: 'fr' | 'es', raws: readonly string[], words: readonly string[], i: number): CompoundMatch | undefined {
+  const pronoun = language === 'fr' ? reflexivePronoun(raws, words, i) : undefined
+  const prefix = pronoun ? `${pronoun}${pronoun.endsWith("'") ? '' : ' '}` : ''
+  const aux = language === 'fr' ? deInvert(words[i]) : words[i]
+  for (let gap = 0; gap <= 2 && i + 1 + gap < words.length; gap++) {
+    if (gap > 0 && !isBetween(language, words[i + gap])) break
+    const next = words[i + 1 + gap]
+    if (next === PASSIVE_PP[language] && !pronoun) {
+      const after = words[i + 2 + gap]
+      const hits = after ? analyzeCompound(language, aux, language === 'es' ? esMasculine(after) : after) : []
+      if (hits.length) return { hits, last: i + 2 + gap, phrase: `${words[i]} ${next} ${after}` }
+    }
+    const hits = analyzeCompound(language, aux, next, !!pronoun)
+    if (hits.length) return { hits, last: i + 1 + gap, phrase: `${prefix}${words[i]} ${next}` }
+  }
   return undefined
 }
 
@@ -49,18 +102,28 @@ export function typedCompound(language: 'fr' | 'es', typed: string): { lemma: st
     .replace(/[’‘´`]/g, "'")
     .split(/[\s']+/)
     .filter(Boolean)
-  // Lead-in words: subjects, the negation and the reflexive pronouns.
+  // Lead-in words: subjects, the negation, the reflexive pronouns and en / y ("s'en est allé").
+  const isLead = (w: string) => SUBJECTS[language].has(w) || REFLEXIVE_WORDS[language].has(w) || (language === 'fr' && (w === 'en' || w === 'y'))
   let start = 0
-  while (start < words.length - 1 && (SUBJECTS[language].has(words[start]) || REFLEXIVE_WORDS[language].has(words[start]))) start++
+  while (start < words.length - 1 && isLead(words[start])) start++
   // The word before the auxiliary is a reflexive pronoun ("nous nous sommes": twice, a lone "nous sommes" is just the subject).
-  const before = words[start - 1]
-  const reflexive = !!before && REFLEXIVE_WORDS[language].has(before) && (!['nous', 'vous'].includes(before) || words[start - 2] === before)
+  const lead = words.slice(0, start)
+  while (['en', 'y'].includes(lead[lead.length - 1])) lead.pop()
+  const before = lead[lead.length - 1]
+  const reflexive = !!before && REFLEXIVE_WORDS[language].has(before) && (!['nous', 'vous'].includes(before) || lead[lead.length - 2] === before)
   const rest = words.slice(start)
+  const aux = language === 'fr' && rest[0] ? deInvert(rest[0]) : rest[0]
   for (let gap = 0; gap <= 2 && 1 + gap < rest.length; gap++) {
-    if (gap > 0 && !BETWEEN.has(rest[gap])) break
+    if (gap > 0 && !isBetween(language, rest[gap])) break
+    // A passive ("ont été retrouvés"): the verb is the participle after "été".
+    if (rest[1 + gap] === PASSIVE_PP[language] && rest.length === 3 + gap && !reflexive) {
+      const after = language === 'es' ? esMasculine(rest[2 + gap]) : rest[2 + gap]
+      const hit = analyzeCompound(language, aux, after)[0]
+      if (hit) return { lemma: hit.lemma, tense: hit.tense, form: typed.trim() }
+    }
     // Nothing after the participle: "il a mangé une pomme" is a sentence, not a verb form.
     if (rest.length !== 2 + gap) continue
-    const hit = analyzeCompound(language, rest[0], rest[1 + gap], reflexive)[0]
+    const hit = analyzeCompound(language, aux, rest[1 + gap], reflexive)[0]
     if (hit) return { lemma: hit.lemma, tense: hit.tense, form: typed.trim() }
   }
   return undefined
@@ -83,24 +146,21 @@ export function textForms(language: 'fr' | 'es', analysis: ReadingAnalysis): Tex
         if (imperative?.form === form) continue
         // A compound tense: the auxiliary and its participle, up to two small words apart ("n'ai pas mangé").
         let compound = false
-        const pronoun = language === 'fr' ? reflexivePronoun(raws, words, i) : undefined
-        for (let gap = 0; gap <= 2 && i + 1 + gap < words.length; gap++) {
-          if (gap > 0 && !BETWEEN.has(words[i + gap])) break
-          const next = words[i + 1 + gap]
-          const hits = analyzeCompound(language, form, next, !!pronoun)
-          if (!hits.length) continue
+        const match = compoundAt(language, raws, words, i)
+        if (match) {
           const seenLemmas = new Set<string>()
-          for (const a of hits) {
+          for (const a of match.hits) {
             if (seenLemmas.has(a.lemma)) continue
             seenLemmas.add(a.lemma)
-            found.push({ form: `${pronoun ? `${pronoun}${pronoun.endsWith("'") ? '' : ' '}` : ''}${form} ${next}`, lemma: a.lemma, tense: a.tense, sentence: at })
+            found.push({ form: match.phrase, lemma: a.lemma, tense: a.tense, sentence: at })
           }
           // The auxiliary and the participle are spoken for; the participle is no form of its own.
-          words[i + 1 + gap] = ''
+          for (let k = i + 1; k <= match.last; k++) words[k] = ''
           compound = true
-          break
         }
         if (compound) continue
+        // "plus" (more, no longer) is the adverb; plaire's passé simple is far too rare to list.
+        if (language === 'fr' && form === 'plus') continue
         // An ambiguous form (finis: présent or passé simple) counts once per verb, as its first reading.
         const seenLemmas = new Set<string>()
         for (const a of analyzeForm(language, form)) {
@@ -153,17 +213,9 @@ export function compoundsAround(language: 'fr' | 'es', sentence: string, word: s
   const target = cleanToken(word, language).toLocaleLowerCase(language)
   const out: FormAnalysis[] = []
   for (let i = 0; i < words.length; i++) {
-    const pronoun = language === 'fr' ? reflexivePronoun(raws, words, i) : undefined
-    for (let gap = 0; gap <= 2 && i + 1 + gap < words.length; gap++) {
-      if (gap > 0 && !BETWEEN.has(words[i + gap])) break
-      const hits = analyzeCompound(language, words[i], words[i + 1 + gap], !!pronoun)
-      if (!hits.length) continue
-      if (words[i] === target || words[i + 1 + gap] === target) {
-        const phrase = `${pronoun ? `${pronoun}${pronoun.endsWith("'") ? '' : ' '}` : ''}${words[i]} ${words[i + 1 + gap]}`
-        for (const h of hits) if (!out.some((o) => o.lemma === h.lemma && o.tense === h.tense)) out.push({ ...h, phrase })
-      }
-      break
-    }
+    const match = compoundAt(language, raws, words, i)
+    if (!match) continue
+    if (words.slice(i, match.last + 1).includes(target)) for (const h of match.hits) if (!out.some((o) => o.lemma === h.lemma && o.tense === h.tense)) out.push({ ...h, phrase: match.phrase })
   }
   return out
 }
