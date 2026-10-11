@@ -100,6 +100,40 @@ async function addWord(page: Page, word: string, meaning: string) {
   await expect(page.locator('.added-row .notice, .notice[role="status"]')).toContainText(`"${word}" eklendi`, { timeout: 8_000 })
 }
 
+async function saveDictionaryWord(page: Page, word: string, meaning: string) {
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill(word)
+  const input = page.getByPlaceholder('Türkçe anlamını yaz…')
+  await expect(input).toBeVisible()
+  await input.fill(meaning)
+  await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toBeVisible()
+}
+
+async function removeDictionaryWord(page: Page, word: string) {
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill(word)
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toBeVisible()
+  await page.getByRole('button', { name: 'Sözlükten kaldır' }).click()
+  await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
+}
+
+async function expectDictionaryWord(page: Page, word: string, expectedMeaning?: string) {
+  await openScreen(page, 'Sözlük')
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill(word)
+  const card = page.getByRole('region', { name: 'Kaydettiğin kelime' })
+  if (expectedMeaning) {
+    await expect(card).toBeVisible({ timeout: 8_000 })
+    await expect(card).toContainText(expectedMeaning)
+  } else {
+    await expect(card).toHaveCount(0)
+  }
+}
+
+
 async function setupTwoSyncedDevices(browser: Browser) {
   const contextA = await browser.newContext()
   const contextB = await browser.newContext()
@@ -221,6 +255,50 @@ test.describe.serial('Two devices encrypted sync', () => {
       await openSettingsGroup(pageA, 'Çalışma')
       const radio12A = pageA.getByRole('radio', { name: '12' })
       await expect(radio12A).toBeChecked({ timeout: 8_000 })
+    } finally {
+      await contextA.close()
+      await contextB.close()
+    }
+  })
+
+  test('scenario 5: words saved to the dictionary sync across devices, deletions propagate, and updates/re-adds take effect', async ({ browser }) => {
+    test.setTimeout(90_000)
+    const { contextA, contextB, pageA, pageB } = await setupTwoSyncedDevices(browser)
+    try {
+      // 1. Device A saves a word not in the pack to the dictionary
+      await saveDictionaryWord(pageA, 'farfadet', 'küçük peri, cin')
+      await clickSyncNow(pageA)
+      await clickSyncNow(pageB)
+
+      // Device B sees it under dictionary search
+      await expectDictionaryWord(pageB, 'farfadet', 'küçük peri, cin')
+
+      // 2. Device A removes the word from dictionary -> tombstone propagates upon sync
+      await removeDictionaryWord(pageA, 'farfadet')
+      await clickSyncNow(pageA)
+      await clickSyncNow(pageB)
+
+      // Device B no longer sees it in the saved list or exact card
+      await expectDictionaryWord(pageB, 'farfadet')
+
+      // 3. Re-adding the word later resurrects it with fresh timestamp
+      await pageA.waitForTimeout(200)
+      await saveDictionaryWord(pageA, 'farfadet', 'orman perisi')
+      await clickSyncNow(pageA)
+      await clickSyncNow(pageB)
+
+      // Device B sees resurrected word with updated meaning
+      await expectDictionaryWord(pageB, 'farfadet', 'orman perisi')
+
+      // 4. Updating meaning on Device B overrides older meaning on Device A
+      await removeDictionaryWord(pageB, 'farfadet')
+      await pageB.waitForTimeout(200)
+      await saveDictionaryWord(pageB, 'farfadet', 'şakacı peri')
+      await clickSyncNow(pageB)
+      await clickSyncNow(pageA)
+
+      // Device A has updated newer meaning
+      await expectDictionaryWord(pageA, 'farfadet', 'şakacı peri')
     } finally {
       await contextA.close()
       await contextB.close()
