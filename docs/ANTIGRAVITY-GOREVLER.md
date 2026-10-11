@@ -366,8 +366,12 @@ Sözlük ekranı, eşdizim çipleri, fiil laboratuvarı odak koruma ve Bugün ca
 - **Fiil laboratuvarı (`e2e/desktop.e2e.ts`):** Alıştırma → "Yaz" varsayılan "Tek tek"; "Liste"de Tab ile `#lab-in-0`'dan `#lab-in-5`'e geçiş; satırlarda `?` olmaması; "İpucu: ilk harfler" tek butonuna basınca odağın (`document.activeElement`) korunması.
 - **Bugün tohumu (`e2e/desktop.e2e.ts`):** Henüz cevap verilmemişken `.plant-waiting` ve `.plant-seed-hop` varlığı; `prefers-reduced-motion: reduce` altında animasyonun `none` olması.
 
-### 12.3 İki cihazlı eşitlemede sözlük kayıtları (`e2e/sync.e2e.ts`)
-Mevcut iki cihazlı eşitleme testlerinin yanına: cihaz A'da sözlüğe kaydedilen kelime cihaz B'de de bulunur; A'da "Sözlükten kaldır" → eşitlemeden sonra B'de de yok (tombstone `dictadd:<dil>:<kelime>`); B'de daha yeni bir kayıt (anlamı değişmiş) A'daki eskiyi ezer; kaldırıldıktan sonra yeniden kaydedilen kelime canlıdır. `src/data/mergeRules.test.ts`teki "words saved to the dictionary" birim testini örnek al.
+### 12.3 İki cihazlı eşitlemede sözlük kayıtları (`e2e/sync.e2e.ts`; TAMAMLANDI — #270)
+Mevcut iki cihazlı eşitleme testlerine senaryo 5 eklendi (`e2e/sync.e2e.ts`):
+- Cihaz A'da sözlüğe kaydedilen kelime (`farfadet` -> `küçük peri, cin`) eşitleme sonrasında Cihaz B'de bulunur.
+- Cihaz A'da "Sözlükten kaldır" tıklandığında tombstone (`dictadd:fr:farfadet`) eşitlemeyle Cihaz B'ye aktarılır ve B'de de kaybolur.
+- Kaldırıldıktan sonra Cihaz A'da güncel zaman damgasıyla yeniden kaydedilen kelime (`orman perisi`) eşitlemeyle Cihaz B'de yeniden canlanır.
+- Cihaz B'de güncellenen daha yeni kayıt (`şakacı peri`) eşitlemeyle Cihaz A'daki eski kaydı ezer.
 
 ### 12.4 Sözlük ekranı için erişilebilirlik taraması (`e2e/a11y.e2e.ts`)
 `axe` taraması (telefon, açık + koyu tema): Sözlük boş hâl ("Kaydettiklerin" listesi dolu), bulunamayan kelime kartı (DeepL düğmesi görünürken), DeepL sonucu açıkken (giriş + iki düğme), kayıtlı kelime kartı (`aria-label="Kaydettiğin kelime"`), kelime sayfasında eşdizim çipi. İhlalleri **düzeltme**, dosya + seçici + kural olarak PR açıklamasında listele.
