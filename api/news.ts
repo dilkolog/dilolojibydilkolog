@@ -6,9 +6,11 @@ import { allowedArticle, extractArticle, FEEDS, parseFeed, type Article } from '
 const LIMIT = 8
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15'
 
-async function fetchText(url: string, ms: number): Promise<string> {
+async function fetchText(url: string, ms: number, hosts?: readonly string[]): Promise<string> {
   const res = await fetch(url, { headers: { 'user-agent': UA, accept: 'text/html,application/xml;q=0.9,*/*;q=0.8' }, signal: AbortSignal.timeout(ms) })
   if (!res.ok) throw new Error(String(res.status))
+  // An article may redirect inside its own site, never out of it.
+  if (hosts && res.url && !allowedArticle(res.url, hosts)) throw new Error('redirected away')
   return res.text()
 }
 
@@ -31,7 +33,7 @@ export async function GET(request: Request): Promise<Response> {
       items.map(async (item): Promise<Article> => {
         let text = ''
         try {
-          text = extractArticle(await fetchText(item.link, 7000))
+          text = extractArticle(await fetchText(item.link, 7000, feed.hosts))
         } catch {
           // Unreachable or blocked article: fall back to the feed summary below.
         }

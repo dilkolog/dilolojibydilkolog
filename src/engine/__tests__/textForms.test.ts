@@ -3,7 +3,7 @@ import fr from '../../data/tenses/fr.json'
 import es from '../../data/tenses/es.json'
 import { analyzeText } from '../reading'
 import { addTenses } from '../tenses'
-import { groupByTense, textForms, typedCompound } from '../textForms'
+import { compoundsAround, groupByTense, textForms, typedCompound } from '../textForms'
 
 beforeAll(() => {
   addTenses('fr', fr as Record<string, unknown>)
@@ -78,6 +78,21 @@ describe('compound tenses in a text', () => {
   })
 })
 
+describe('compoundsAround: which words open the card of a compound tense', () => {
+  it('the auxiliary and the participle do, a small word between does not', () => {
+    const lemmas = (sentence: string, word: string) => compoundsAround('fr', sentence, word).map((a) => a.lemma)
+    expect(lemmas("Il n'a pas mangé.", 'a')).toEqual(['manger'])
+    expect(lemmas("Il n'a pas mangé.", 'mangé')).toEqual(['manger'])
+    expect(lemmas("Il n'a pas mangé.", 'pas')).toEqual([])
+    expect(lemmas('Elle a toujours aimé ça.', 'toujours')).toEqual([])
+  })
+
+  it('a passive card opens on "été" and shows both the verb and être', () => {
+    const found = compoundsAround('fr', 'Les tableaux ont été retrouvés.', 'été')
+    expect(found.map((a) => `${a.lemma}|${a.phrase}`)).toEqual(['retrouver|ont été retrouvés', 'être|ont été'])
+  })
+})
+
 describe('compound tenses the audit found missing or wrong', () => {
   it('"ne … plus" is the adverb, not the participle of plaire', () => {
     const found = tenses("Les Mauritaniens n'ont plus de gouvernement. Je n'ai plus qu'à partir.", 'fr')
@@ -99,13 +114,24 @@ describe('compound tenses the audit found missing or wrong', () => {
   it('names the verb of a passive, not "to be" ("ont été retrouvés", "habían sido tirados")', () => {
     const fr = tenses('Les tableaux volés ont été retrouvés. Une personne a été arrêtée.', 'fr')
     expect(fr).toEqual(expect.arrayContaining(['ont été retrouvés|retrouver|passe-compose', 'a été arrêtée|arrêter|passe-compose']))
-    expect(fr.some((f) => f.includes('|être|'))).toBe(false)
+    // "ont été" is also the compound tense of être: counted beside the verb's.
+    expect(fr).toEqual(expect.arrayContaining(['ont été|être|passe-compose', 'a été|être|passe-compose']))
     expect(tenses('Los vidrios que habían sido tirados descuidadamente.', 'es')).toContain('habían sido tirados|tirar|pluscuamperfecto')
   })
 
   it('reads a reflexive verb with en / y ("s\'en est allé", "nous nous en sommes aperçus")', () => {
     expect(tenses("Il s'en est allé sans un mot. Elle s'y est rendue.", 'fr')).toEqual(expect.arrayContaining(["s'en est allé|aller|passe-compose", "s'y est rendue|rendre|passe-compose"]))
     expect(tenses('Nous nous en sommes aperçus trop tard. Je m\'en suis voulu.', 'fr')).toEqual(expect.arrayContaining(['nous nous en sommes aperçus|apercevoir|passe-compose', "m'en suis voulu|vouloir|passe-compose"]))
+  })
+
+  it('suggests the infinitive when an object pronoun stands before the auxiliary ("je l\'ai vu", "lo he visto")', () => {
+    expect(typedCompound('fr', "je l'ai vu")?.lemma).toBe('voir')
+    expect(typedCompound('fr', "nous l'avons fait")?.lemma).toBe('faire')
+    expect(typedCompound('fr', 'il lui a dit')?.lemma).toBe('dire')
+    expect(typedCompound('es', 'lo he visto')?.lemma).toBe('ver')
+    expect(typedCompound('es', 'me lo había dicho')?.lemma).toBe('decir')
+    // A noun before the auxiliary is still no lead-in.
+    expect(typedCompound('fr', 'le chat a mangé')).toBeUndefined()
   })
 
   it('suggests the infinitive for a typed inverted, passive or en/y compound', () => {

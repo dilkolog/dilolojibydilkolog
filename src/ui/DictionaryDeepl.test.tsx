@@ -126,6 +126,20 @@ describe('Dictionary: a word that is not in the pack', () => {
     expect(el.textContent).toContain('kotası doldu')
   })
 
+  it('keeps the save/DeepL card when a saved word merely starts like the query, and lets a saved word be removed from the list', async () => {
+    await db.saveDictionaryNotes('fr', { fixes: {}, looked: {}, added: { chaton: { t: ['yavru kedi'], at: '2026-10-01T00:00:00.000Z', from: 'own' } } })
+    await act(async () => root.render(<DictionaryScreen language="fr" vocabulary={[]} initialQuery="chato" onOpenWord={() => {}} onAdd={() => {}} />))
+    await act(async () => new Promise((r) => setTimeout(r, 80)))
+    expect(button('DeepL ile çevir')).toBeDefined()
+    expect(button('Sözlüğe kaydet')).toBeDefined()
+    // The saved word is listed below, with its own remove button.
+    const remove = el.querySelector<HTMLButtonElement>('button[aria-label="chaton sözlükten kaldır"]')!
+    expect(remove).not.toBeNull()
+    await act(async () => remove.click())
+    await act(async () => new Promise((r) => setTimeout(r, 30)))
+    expect((await db.getDictionaryNotes('fr')).added).toEqual({})
+  })
+
   it('has no DeepL button where translation is not available', async () => {
     ready.value = false
     await mount()

@@ -314,7 +314,7 @@ export function Home({
             const done = remaining === 0 && answeredToday > 0
             const value = done ? 1 : progress
             const plant = <DayPlant language={language} progress={value} done={done} />
-            return <Ring value={value} doneLabel={plant} label={plant} />
+            return <Ring value={value} doneLabel={plant} label={plant} start={remaining > 0 && answeredToday === 0} />
           })()}
           <div className="hero-body">
             {remaining > 0 ? (

@@ -244,6 +244,7 @@ const SUFFIXES = [
 ]
 
 /** A root's final consonant before a vowel suffix is softened (git → gid-iyor, kitap → kitab-ı): back to the hard one. */
+// The words are folded (ç → c), so a softened ç (ağaç → ağac-ı) shows as c and goes back to c.
 const HARDEN: Record<string, string> = { d: 't', b: 'p', g: 'k', c: 'c' }
 
 /**

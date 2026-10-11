@@ -132,6 +132,25 @@ describe('words saved to the dictionary', () => {
   })
 })
 
+describe('a screen that changes the dictionary notes', () => {
+  it('changes what is stored now, not the copy it loaded: words a sync merged in meanwhile are not lost or marked taken out', async () => {
+    const d = new KelimeDB('t-rm4')
+    const at = '2026-10-01T09:00:00.000Z'
+    await d.saveDictionaryNotes('fr', { fixes: {}, looked: {}, added: { un: { t: ['bir'], at, from: 'own' } } })
+    // The screen loaded the notes (only "un") ...
+    const loaded = await d.getDictionaryNotes('fr')
+    // ... a sync merges "deux" in ...
+    await d.saveDictionaryNotes('fr', { ...loaded, added: { ...loaded.added, deux: { t: ['iki'], at, from: 'own' } } })
+    // ... and then the learner saves "trois" through the screen.
+    const next = await d.updateDictionaryNotes('fr', (n) => ({ ...n, added: { ...n.added, trois: { t: ['üç'], at, from: 'own' } } }))
+    expect(Object.keys(next.added ?? {}).sort()).toEqual(['deux', 'trois', 'un'])
+    expect(Object.keys((await d.getDictionaryNotes('fr')).added ?? {}).sort()).toEqual(['deux', 'trois', 'un'])
+    // No word got a "taken out" mark.
+    const snap = await snapshot(d, '2026-10-02T09:00:00Z')
+    expect((snap.deleted ?? []).filter((t: { id?: string } | string) => String(typeof t === 'string' ? t : t.id).startsWith('dictadd:'))).toEqual([])
+  })
+})
+
 describe('backup version', () => {
   it('a newer backup is a BackupVersionError, which the screens turn into "update the app"', () => {
     expect(() => parseBackup('{"app":"kelime-koc","version":99,"vocabulary":[]}')).toThrow(BackupVersionError)
