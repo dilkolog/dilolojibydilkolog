@@ -29,6 +29,16 @@ export function WhatsNew({ words, onReading, onPractice, onGrammar }: { words: n
       </div>
       <ul className="whats-new-list">
         <li>
+          <strong>Kök ve ekler</strong>
+          <span className="small muted"> Kelime sayfası → Aile ve diğer diller'de: kelime parçalarına ayrılır (un- · comfort · -able), aynı kökten türeyenler ağaç olarak çıkar, her ekin Türkçe karşılığıyla.</span>
+        </li>
+        <li>
+          <button type="button" className="link" onClick={go(onGrammar)}>
+            Ek avı ve Metin akışı
+          </button>
+          <span className="small muted"> Pratik → Oyunlar'da: bir kelimeyi türevine çeviren eki seç; paragraftaki eksik bağlaçları (ama, bu yüzden, -se de) yerine koy.</span>
+        </li>
+        <li>
           <button type="button" className="link" onClick={go(onGrammar)}>
             Dilbilgisi soruları
           </button>
@@ -59,14 +69,6 @@ export function WhatsNew({ words, onReading, onPractice, onGrammar }: { words: n
             Telaffuz çalışması
           </button>
           <span className="small muted"> Pratik'te: puanı düşük kalan kelimeleri tek tek söyle (Azure anahtarıyla).</span>
-        </li>
-        <li>
-          <strong>Bana özel cümleler</strong>
-          <span className="small muted"> Kelime sayfasında: ilgi alanlarına göre 3 örnek cümle öneri (yapay zekâ, onaylı hesapla).</span>
-        </li>
-        <li>
-          <strong>Excel dışa aktarma ve "Önceki hâle dön"</strong>
-          <span className="small muted"> Ayarlar → Veriler'de.</span>
         </li>
       </ul>
     </section>
