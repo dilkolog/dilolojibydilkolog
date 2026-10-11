@@ -1607,7 +1607,7 @@ test('dictionary: a word the pack lacks is translated by DeepL, saved for good, 
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('karalamak')
   // Typing the Turkish finds it too.
   await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('karala')
-  await expect(page.getByRole('button', { name: /gribouiller/ })).toBeVisible()
+  await expect(page.locator('.word-row', { hasText: 'gribouiller' })).toBeVisible()
   expect(asked).toBe(0)
   // Taken out, it is gone.
   await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('gribouiller')
