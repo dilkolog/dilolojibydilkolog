@@ -1,0 +1,342 @@
+[
+ {
+  "id": "en-prep_en-24",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "We need to focus ___ our most important priorities.",
+  "answer": "on",
+  "options": [
+   "on",
+   "in",
+   "at",
+   "to"
+  ],
+  "explanation": "« focus on »: odaklanmak. İngilizcede 'focus' fiili nesnesini her zaman 'on' edatıyla alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-25",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "You can always rely ___ your teammates for support.",
+  "answer": "on",
+  "options": [
+   "on",
+   "in",
+   "to",
+   "at"
+  ],
+  "explanation": "« rely on »: güvenmek, bel bağlamak. 'Depend on' gibi her zaman 'on' edatıyla kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-26",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "It is hard to concentrate ___ studying in a loud room.",
+  "answer": "on",
+  "options": [
+   "on",
+   "in",
+   "for",
+   "with"
+  ],
+  "explanation": "« concentrate on »: bir şeye konsantre olmak. İngilizcede her zaman 'on' edatı gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-27",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "The film is based ___ a true historical event.",
+  "answer": "on",
+  "options": [
+   "on",
+   "in",
+   "from",
+   "at"
+  ],
+  "explanation": "« base on »: bir şeye dayanmak, temel almak. 'Based on' kalıbı 'on' edatıyla kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-28",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "Several passengers complained ___ the long flight delay.",
+  "answer": "about",
+  "options": [
+   "about",
+   "for",
+   "with",
+   "from"
+  ],
+  "explanation": "« complain about »: bir şeyden şikayet etmek. Şikayet konusu 'about' edatıyla bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-29",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "Do not worry ___ things that you cannot change.",
+  "answer": "about",
+  "options": [
+   "about",
+   "for",
+   "to",
+   "with"
+  ],
+  "explanation": "« worry about »: endişelenmek. İngilizcede endişe konusu 'about' edatıyla verilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-30",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "This melody reminds me ___ my childhood summer days.",
+  "answer": "of",
+  "options": [
+   "of",
+   "to",
+   "about",
+   "for"
+  ],
+  "explanation": "« remind someone of something »: birine bir şeyi hatırlatmak. 'Of' edatıyla bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-31",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "Our team deals ___ technical issues on a daily basis.",
+  "answer": "with",
+  "options": [
+   "with",
+   "to",
+   "for",
+   "at"
+  ],
+  "explanation": "« deal with »: bir konu veya sorunla ilgilenmek, başa çıkmak anlamında 'with' alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-32",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "Does this leather wallet belong ___ you?",
+  "answer": "to",
+  "options": [
+   "to",
+   "for",
+   "with",
+   "in"
+  ],
+  "explanation": "« belong to »: ait olmak. Aidiyet bildiren bu fiil her zaman 'to' edatıyla kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-prep_en-33",
+  "language": "en",
+  "level": "B1",
+  "topic": "prep_en",
+  "type": "choice",
+  "prompt": "Regular exercise contributes greatly ___ cardiovascular health.",
+  "answer": "to",
+  "options": [
+   "to",
+   "for",
+   "in",
+   "with"
+  ],
+  "explanation": "« contribute to »: katkıda bulunmak. Katkı ve yönelme her zaman 'to' edatıyla ifade edilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-24",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Let us take a short ___ before beginning the next section.",
+  "answer": "break",
+  "options": [
+   "break",
+   "stop",
+   "halt",
+   "gap"
+  ],
+  "explanation": "« take a break »: mola vermek anlamına gelen en doğal ve yaygın İngilizce eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-25",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Everyone made a real ___ to finish the assignment on time.",
+  "answer": "effort",
+  "options": [
+   "effort",
+   "try",
+   "work",
+   "action"
+  ],
+  "explanation": "« make an effort »: çaba göstermek, gayret etmek anlamına gelen sabit fiil-isim eşdizimidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-26",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "You run a serious ___ by driving in this icy blizzard.",
+  "answer": "risk",
+  "options": [
+   "risk",
+   "danger",
+   "threat",
+   "harm"
+  ],
+  "explanation": "« run a risk »: risk almak / tehlikeyi göze almak kalıbıdır ('take a risk' ile eşanlamlıdır).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-27",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "We should take full ___ of this rare learning opportunity.",
+  "answer": "advantage",
+  "options": [
+   "advantage",
+   "benefit",
+   "profit",
+   "gain"
+  ],
+  "explanation": "« take advantage of »: bir fırsattan veya durumdan yararlanmak anlamına gelen kalıptır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-28",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Wear a warm coat so you do not catch a ___.",
+  "answer": "cold",
+  "options": [
+   "cold",
+   "flu",
+   "cough",
+   "fever"
+  ],
+  "explanation": "« catch a cold »: soğuk algınlığına yakalanmak anlamına gelen çok yaygın bir eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-29",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "A trustworthy person will always keep a ___.",
+  "answer": "promise",
+  "options": [
+   "promise",
+   "word",
+   "speech",
+   "talk"
+  ],
+  "explanation": "« keep a promise »: verilen sözü tutmak kalıbıdır. 'Keep a promise' en doğal biçimidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-30",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "The teacher almost lost ___ after being interrupted repeatedly.",
+  "answer": "patience",
+  "options": [
+   "patience",
+   "calm",
+   "temper",
+   "mind"
+  ],
+  "explanation": "« lose patience »: sabrı tükenmek, sabrını kaybetmek anlamına gelen doğal eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-31",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Organizing your notes in advance will save a lot of ___.",
+  "answer": "time",
+  "options": [
+   "time",
+   "hour",
+   "day",
+   "speed"
+  ],
+  "explanation": "« save time »: vakit kazanmak, zamandan tasarruf etmek anlamına gelen standart kalıptır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-32",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "Do not waste your ___ arguing over meaningless details.",
+  "answer": "time",
+  "options": [
+   "time",
+   "clock",
+   "period",
+   "season"
+  ],
+  "explanation": "« waste time »: vakit kaybetmek / vaktini boşa harcamak anlamına gelen kalıptır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc_en-33",
+  "language": "en",
+  "level": "B1",
+  "topic": "colloc_en",
+  "type": "choice",
+  "prompt": "She has made steady ___ in her language studies this semester.",
+  "answer": "progress",
+  "options": [
+   "progress",
+   "advance",
+   "growth",
+   "boost"
+  ],
+  "explanation": "« make progress »: ilerleme kaydetmek anlamına gelen sabit fiil-isim eşdizimidir.",
+  "source": "Diloloji (özgün)"
+ }
+]

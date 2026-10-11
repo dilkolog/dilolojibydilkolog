@@ -1,0 +1,342 @@
+[
+ {
+  "id": "fr-prep_fr-24",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il a refusé ___ signer le document injuste.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "par"
+  ],
+  "explanation": "« refuser de + infinitif »: reddetmek. Fransızcada bu fiil her zaman « de » edatını alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-25",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Elle a accepté ___ nous accompagner à la gare.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "en"
+  ],
+  "explanation": "« accepter de + infinitif »: kabul etmek. Fiilden sonra mastara bağlanırken « de » edatı kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-26",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Mon petit frère a très peur ___ chiens du voisin.",
+  "answer": "des",
+  "options": [
+   "des",
+   "aux",
+   "pour les",
+   "par les"
+  ],
+  "explanation": "« avoir peur de » kalıbında « de + les chiens » birleşerek her zaman « des chiens » olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-27",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "J'ai vraiment envie ___ une bonne soupe chaude ce soir.",
+  "answer": "d'",
+  "options": [
+   "d'",
+   "à",
+   "pour",
+   "sur"
+  ],
+  "explanation": "« avoir envie de »: canı istemek. Sesli harfle başlayan bir kelimeden önce « d' » biçimini alır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-28",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Tu peux m'aider ___ porter cette valise très lourde ?",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "avec"
+  ],
+  "explanation": "« aider qqn à + infinitif »: birine bir şey yapmasında yardım etmek. « de » değil, « à » edatı gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-29",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il continue ___ pleuvoir sans arrêt depuis ce matin.",
+  "answer": "à",
+  "options": [
+   "à",
+   "pour",
+   "en",
+   "vers"
+  ],
+  "explanation": "« continuer à + infinitif »: devam etmek. Eylem bildiren mastardan önce « à » edatı kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-30",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Je te remercie chaleureusement ___ ton aide précieuse.",
+  "answer": "pour",
+  "options": [
+   "pour",
+   "à",
+   "vers",
+   "chez"
+  ],
+  "explanation": "« remercier qqn pour qqch »: birine bir şey için teşekkür etmek. Bu kalıpta « pour » edatı kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-31",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Nous participons tous ___ ce grand projet solidaire.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "dans"
+  ],
+  "explanation": "« participer à »: bir etkinliğe veya projeye katılmak, iştirak etmek. Her zaman « à » edatıyla bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-32",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Elle est tout à fait capable ___ réussir ce grand défi.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "en"
+  ],
+  "explanation": "« être capable de + infinitif »: yapabilmek, muktedir olmak. Sıfattan sonra mastar « de » edatıyla gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-33",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Tout le monde est enfin prêt ___ partir en voyage.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "avec"
+  ],
+  "explanation": "« être prêt à + infinitif »: hazır olmak. Eylem bildiren bir fiil mastarından önce « à » kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-24",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Hier soir, j'ai fait la ___ de son frère aîné.",
+  "answer": "connaissance",
+  "options": [
+   "connaissance",
+   "rencontre",
+   "amitié",
+   "vue"
+  ],
+  "explanation": "« faire la connaissance de qqn »: biriyle tanışmak anlamına gelen sabit bir fiil-isim eşdizimidir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-25",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Prendre le métro nous a permis de ___ du temps.",
+  "answer": "gagner",
+  "options": [
+   "gagner",
+   "prendre",
+   "trouver",
+   "mettre"
+  ],
+  "explanation": "« gagner du temps »: vakit kazanmak. Karşıtı « perdre du temps » (vakit kaybetmek) kalıbıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-26",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Ne perds pas ton ___ avec des bêtises pareilles.",
+  "answer": "temps",
+  "options": [
+   "temps",
+   "moment",
+   "heure",
+   "délai"
+  ],
+  "explanation": "« perdre son temps »: vaktini boşa harcamak. Fransızcada zaman kaybı « temps » sözcüğüyle anlatılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-27",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Après avoir vérifié les faits, il a admis qu'il avait ___.",
+  "answer": "tort",
+  "options": [
+   "tort",
+   "faute",
+   "erreur",
+   "mal"
+  ],
+  "explanation": "« avoir tort »: haksız olmak, yanılmak. Karşıtı « avoir raison » (haklı olmak) kalıbıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-28",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Le dimanche, nous rendons toujours ___ à nos grands-parents.",
+  "answer": "visite",
+  "options": [
+   "visite",
+   "invitation",
+   "rencontre",
+   "voyage"
+  ],
+  "explanation": "« rendre visite à qqn »: birini ziyaret etmek. İnsanlar için « visiter » değil « rendre visite à » denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-29",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Peux-tu jeter un coup ___ à ma lettre de motivation ?",
+  "answer": "d'œil",
+  "options": [
+   "d'œil",
+   "de main",
+   "de vue",
+   "de tête"
+  ],
+  "explanation": "« jeter un coup d'œil »: hızlıca göz atmak, bakıvermek anlamına gelen deyimsel bir eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-30",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Il faut tirer ___ de chaque expérience vécue.",
+  "answer": "profit",
+  "options": [
+   "profit",
+   "bénéfice",
+   "intérêt",
+   "gain"
+  ],
+  "explanation": "« tirer profit de »: bir durumdan istifade etmek, yararlanmak anlamına gelen kalıptır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-31",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Je fais entièrement ___ à mon associé pour les finances.",
+  "answer": "confiance",
+  "options": [
+   "confiance",
+   "foi",
+   "assurance",
+   "croyance"
+  ],
+  "explanation": "« faire confiance à qqn »: birine güvenmek. Fransızcada bu anlam « confiance » ismiyle kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-32",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Elle s'est rendu ___ de son erreur dès le lendemain.",
+  "answer": "compte",
+  "options": [
+   "compte",
+   "raison",
+   "esprit",
+   "sens"
+  ],
+  "explanation": "« se rendre compte de qqch »: bir şeyin farkına varmak, idrak etmek anlamına gelen sabit yapıdır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-33",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Il est très difficile de trouver un bon ___ dans le centre.",
+  "answer": "logement",
+  "options": [
+   "logement",
+   "séjour",
+   "adresse",
+   "habitat"
+  ],
+  "explanation": "« trouver un logement »: kalacak ev, yer bulmak anlamında kullanılan doğal Fransızca eşdizimdir.",
+  "source": "Diloloji (özgün)"
+ }
+]
