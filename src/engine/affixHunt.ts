@@ -44,6 +44,8 @@ export function huntQuestionsOf(root: string, language: TargetLanguage, lookup: 
     if (!d.gloss || d.parent.length < 4) continue
     const base = lookup(d.parent)
     if (!base) continue
+    // Stricter than the family card: a question must not be a coincidence (fact → faction, universe → university), so the ending has to fit the base's part of speech.
+    if (d.affix.from?.length && !d.affix.from.includes(base.pos)) continue
     // Wrong choices: same side of the word, and no word of the dictionary comes out of them (so none is a second right answer).
     const wrong = all.filter((a) => a.kind === d.affix.kind && a.form !== d.affix.form && !joined(d.parent, a, language, base.pos).some((w) => lookup(w)))
     if (wrong.length < WRONG) continue

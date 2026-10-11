@@ -232,14 +232,16 @@ const FALSE_COUSINS: Record<TargetLanguage, Set<string>> = {
   en: new Set([
     'creation|recreation', 'show|shower', 'come|comment', 'turn|return', 'miss|mission', 'take|mistake', 'busy|business', 'idea|ideal', 'due|dual', 'course|discourse',
     'cape|capable', 'should|shoulder', 'pass|passion', 'face|faction', 'state|station', 'stay|station', 'city|citation', 'party|partition', 'party|partial', 'call|callous',
-    'strange|stranger', 'veal|reveal', 'ward|reward', 'porter|reporter',
+    'strange|stranger', 'veal|reveal', 'ward|reward', 'porter|reporter', 'move|remove', 'search|research', 'ease|disease', 'live|liver', 'view|review',
+    'intern|internal', 'count|counter', 'temp|temper', 'trail|trailer', 'turn|turner', 'comply|compliment', 'gloria|glorious', 'pressed|impressed', 'formed|informed',
+    'appointed|disappointed', 'visa|visible', 'fact|faction', 'poke|poker', 'fuck|fucker', 'mark|remarkable',
   ]),
   fr: new Set([
     'heure|heureux', 'léger|légiste', 'pêche|dépêche', 'astre|désastre', 'vie|vieux', 'but|début', 'garder|regarder', 'péter|répéter', 'coup|coupable', 'mine|minable',
     'star|stable', 'cap|capable', 'cap|incapable', 'couler|couleur', 'courir|courage', 'courir|courageux', 'partir|partage', 'viser|invisible', 'série|sérieux',
-    'coupe|coupable', 'part|départ', 'vérité|véritable', 'autre|auteur', 'terre|terrible', 'contre|conteur', 'pire|pieux',
+    'coupe|coupable', 'viser|visible', 'stylo|styliste', 'finition|définition', 'libéré|délibéré', 'parlé|parlement', 'port|portable', 'foncer|fonction', 'part|départ', 'vérité|véritable', 'autre|auteur', 'terre|terrible', 'contre|conteur', 'pire|pieux',
   ]),
-  es: new Set(['tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado', 'probar|probable', 'esto|estación', 'entre|entidad', 'madre|madero', 'nave|navidad']),
+  es: new Set(['tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado', 'probar|probable', 'esto|estación', 'entre|entidad', 'madre|madero', 'nave|navidad', 'ace|acero', 'prima|primero', 'modo|modista', 'estar|estable', 'esperado|desesperado']),
 }
 const cousins = (language: TargetLanguage, base: string, word: string) => FALSE_COUSINS[language].has(`${base}|${word}`)
 
