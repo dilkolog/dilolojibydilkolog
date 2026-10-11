@@ -1,0 +1,167 @@
+[
+ {
+  "id": "en-remote",
+  "language": "en",
+  "text": "Remote work has become widespread in recent years. {1}, it does not suit every profession. Employees save time on commuting; {2}, they risk feeling isolated. {3} more companies now offer it, it remains a matter of debate.",
+  "tr": "Uzaktan çalışma son yıllarda yaygınlaştı. Ancak her meslek için uygun değil. Çalışanlar yolda zaman kazanıyor; öte yandan kendilerini yalnız hissetme riskleri var. Artık daha çok şirket sunsa da hâlâ tartışma konusu.",
+  "gaps": [
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Therefore",
+     "Because"
+    ],
+    "kind": "Zıtlık",
+    "why": "Önceki cümleyi sınırlıyor: “yaygınlaştı, ancak her işe uymuyor”."
+   },
+   {
+    "answer": "on the other hand",
+    "options": [
+     "on the other hand",
+     "in other words",
+     "since"
+    ],
+    "kind": "Zıtlık",
+    "why": "Avantaj (zaman kazanma) ile dezavantaj (yalnızlık) karşılaştırılıyor: “öte yandan”."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“Sunsa da, yine de tartışma konusu”: karşıtlık taşıyan taviz bağlacı."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-city",
+  "language": "en",
+  "text": "Many cities want to reduce car traffic. {1}, some shopkeepers fear losing customers. Local politicians, {2}, argue that pedestrian zones attract more visitors. {3}, a compromise between the two positions is needed.",
+  "tr": "Birçok şehir araç trafiğini azaltmak istiyor. Ancak bazı esnaf müşteri kaybetmekten korkuyor. Yerel siyasetçiler ise tam tersine yaya bölgelerinin daha fazla ziyaretçi çektiğini söylüyor. Bu nedenle iki görüş arasında bir uzlaşma gerekiyor.",
+  "gaps": [
+   {
+    "answer": "Nevertheless",
+    "options": [
+     "Nevertheless",
+     "In other words",
+     "Meanwhile"
+    ],
+    "kind": "Zıtlık",
+    "why": "Plan ile ona gelen itiraz karşı karşıya: “ancak”."
+   },
+   {
+    "answer": "on the contrary",
+    "options": [
+     "on the contrary",
+     "for example",
+     "consequently"
+    ],
+    "kind": "Zıtlık",
+    "why": "Siyasetçiler esnafın korkusunun tersini söylüyor: “tam tersine”."
+   },
+   {
+    "answer": "Therefore",
+    "options": [
+     "Therefore",
+     "Whereas",
+     "Unless"
+    ],
+    "kind": "Sonuç",
+    "why": "İki karşıt görüşün sonucu uzlaşma ihtiyacı: “bu nedenle”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reading",
+  "language": "en",
+  "text": "Young people buy fewer and fewer printed books. {1}, they read a great deal on screen. {2} libraries are expanding their digital collections to attract this new audience.",
+  "tr": "Gençler gitgide daha az basılı kitap alıyor. Buna karşılık ekranda çok okuyorlar. Bu yüzden kütüphaneler bu yeni kitleyi çekmek için dijital koleksiyonlarını genişletiyor.",
+  "gaps": [
+   {
+    "answer": "By contrast",
+    "options": [
+     "By contrast",
+     "In other words",
+     "Because"
+    ],
+    "kind": "Zıtlık",
+    "why": "Az basılı kitap ile çok ekran okuması karşılaştırılıyor: “buna karşılık”."
+   },
+   {
+    "answer": "That is why",
+    "options": [
+     "That is why",
+     "Even though",
+     "Unless"
+    ],
+    "kind": "Sonuç",
+    "why": "Gençlerin ekranda okuması kütüphanelerin değişmesinin nedeni: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-sleep",
+  "language": "en",
+  "text": "Sleeping less than six hours a night tires the body. {1}, concentration drops sharply the next day. {2} doctors advise going to bed at a regular time.",
+  "tr": "Gecede altı saatten az uyumak vücudu yorar. Gerçekten de ertesi gün dikkat belirgin biçimde düşer. Bu nedenle doktorlar düzenli saatte yatmayı öneriyor.",
+  "gaps": [
+   {
+    "answer": "Indeed",
+    "options": [
+     "Indeed",
+     "However",
+     "Instead"
+    ],
+    "kind": "Açıklama",
+    "why": "İlk cümleyi destekliyor, bir kanıt veriyor: “gerçekten de”."
+   },
+   {
+    "answer": "For this reason",
+    "options": [
+     "For this reason",
+     "Whereas",
+     "Unless"
+    ],
+    "kind": "Sonuç",
+    "why": "Önceki zararların sonucu doktor önerisi: “bu nedenle”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-rules",
+  "language": "en",
+  "text": "Parents can allow screens {1} children keep to clear time limits. {2} this rule may seem strict, it prevents many arguments.",
+  "tr": "Çocuklar net zaman sınırlarına uydukları sürece ebeveynler ekrana izin verebilir. Bu kural sıkı görünse de pek çok tartışmayı önler.",
+  "gaps": [
+   {
+    "answer": "as long as",
+    "options": [
+     "as long as",
+     "even though",
+     "before"
+    ],
+    "kind": "Koşul",
+    "why": "“Şu şartla ki”: koşul bildirir."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "So that"
+    ],
+    "kind": "Taviz",
+    "why": "“Sıkı görünse de, yine de işe yarıyor”: taviz bağlacı."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -576,6 +576,25 @@ test('new games and insight cards pass accessibility check across dark and calm 
     await page.locator('button.link', { hasText: '← Oyunlar' }).click()
   }
 
+  // 4c. Oyunlar → Metin akışı (açık boşluk, cevaplanmış boşluk ve Türkçesi)
+  const flowCard = page.locator('.game-card', { hasText: 'Metin akışı' })
+  if (await flowCard.count()) {
+    await flowCard.click()
+    await page.getByRole('button', { name: /paragraflık tura başla/ }).click()
+    await expect(page.locator('.flow-gap.is-open')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-flow-play-${theme}`)))
+    }
+    await page.locator('.option').first().click()
+    await expect(page.locator('[role=status]')).toBeVisible()
+    for (const theme of ['dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `game-flow-answer-${theme}`)))
+    }
+    await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+  }
+
   // 5. Oyunlar → Ses ayırt etme (oyun ekranı)
   const pairsCard = page.locator('.game-card', { hasText: 'Ses ayırt etme' })
   if (await pairsCard.count()) {
