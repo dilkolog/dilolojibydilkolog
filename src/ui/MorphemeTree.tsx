@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import type { KelimeDB } from '../data/db'
 import { linkEntries } from '../data/familyLinks'
 import { makeLookup } from '../data/deriveLookup'
@@ -76,11 +76,14 @@ export function MorphemeTree({ db, entry, vocabulary, onOpen, onChanged }: { db:
     }
   }
 
+  // Each branch comes in a moment after the one before it, so the tree is seen growing from its root.
+  let order = 0
   const render = (node: FamilyNode) => {
     const own = byLemma.get(node.word)
     const isCurrent = node.word === family.current
+    const n = order++
     return (
-      <li key={node.word}>
+      <li key={node.word} className="morph-branch" style={{ '--n': n } as CSSProperties}>
         <div className={`morph-row${isCurrent ? ' is-current' : ''}`} aria-current={isCurrent ? 'true' : undefined}>
           {own && !isCurrent && onOpen ? (
             <button type="button" className="link morph-word" lang={language} onClick={() => onOpen(own.id)}>

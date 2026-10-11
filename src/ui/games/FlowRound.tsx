@@ -178,7 +178,7 @@ export function FlowRound({ language, onExit }: { language: TargetLanguage; onEx
           )}
 
           {lastOfParagraph && (
-            <div className="note" lang="tr">
+            <div className="note flow-translation" lang="tr">
               <strong>Türkçesi:</strong> {item.tr}
             </div>
           )}
