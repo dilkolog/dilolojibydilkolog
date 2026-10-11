@@ -93,6 +93,47 @@ describe('compoundsAround: which words open the card of a compound tense', () =>
   })
 })
 
+describe('the compound forms without a person: past infinitive, compound participle and gerund', () => {
+  it('reads "après avoir mangé", "sans avoir payé", "d\'avoir marché" (avoir + participle in a mood-less form)', () => {
+    const found = tenses("Après avoir mangé, il est sorti. Il a été condamné pour ne pas avoir payé. Elle était fatiguée d'avoir marché.", 'fr')
+    expect(found).toEqual(expect.arrayContaining(['avoir mangé|manger|infinitif-passe', 'avoir payé|payer|infinitif-passe', 'avoir marché|marcher|infinitif-passe']))
+    // The finite ones beside them are still read as before; "avoir mangé" is not a passé composé.
+    expect(found).not.toContain('avoir mangé|manger|passe-compose')
+    expect(tenses('Après avoir mangé, il est parti.', 'fr')).toContain('est parti|partir|passe-compose')
+  })
+
+  it('reads "après s\'être lavé" and "pour être parti" (être only after a preposition or a modal), not a passive or an adjective', () => {
+    const found = tenses("Après s'être lavé les mains, il s'est mis à table. Il doit être parti. Elle est contente d'être arrivée. Il est fatigué.", 'fr')
+    expect(found).toEqual(expect.arrayContaining(["s'être lavé|laver|infinitif-passe", 'être parti|partir|infinitif-passe', 'être arrivée|arriver|infinitif-passe']))
+    expect(found.some((f) => f.includes('fatigué'))).toBe(false)
+    expect(tenses('Le pain doit être mangé par tous.', 'fr').some((f) => f.includes('infinitif-passe'))).toBe(false)
+  })
+
+  it('reads the compound participle ("ayant fini", "étant arrivée", "en ayant fini")', () => {
+    const found = tenses("Ayant fini ses devoirs, il est sorti. Étant arrivée en retard, elle s'est excusée. Il a répondu en ayant compris.", 'fr')
+    expect(found).toEqual(expect.arrayContaining(['ayant fini|finir|participe-compose', 'étant arrivée|arriver|participe-compose', 'ayant compris|comprendre|participe-compose']))
+  })
+
+  it('reads the Spanish compound infinitive and gerund, with pronouns glued on ("haberme ido", "habiéndose levantado")', () => {
+    const found = tenses('Después de haber comido, salimos. Niega haber visto nada. Pidió disculpas por haberme ido. Habiendo terminado el trabajo, volvió. Habiéndose levantado tarde, perdió el tren.', 'es')
+    expect(found).toEqual(
+      expect.arrayContaining(['haber comido|comer|infinitivo-compuesto', 'haber visto|ver|infinitivo-compuesto', 'haberme ido|ir|infinitivo-compuesto', 'habiendo terminado|terminar|gerundio-compuesto', 'habiéndose levantado|levantar|gerundio-compuesto']),
+    )
+  })
+
+  it('shows such a form as a card with no person, and suggests its infinitive when typed ("après avoir mangé", "sin haberlo visto")', () => {
+    const card = compoundsAround('fr', 'Après avoir mangé, il est sorti.', 'avoir')
+    expect(card.map((a) => `${a.lemma}|${a.tense}|${a.persons.length}|${a.phrase}`)).toEqual(['manger|infinitif-passe|0|avoir mangé'])
+    expect(typedCompound('fr', 'après avoir mangé')).toMatchObject({ lemma: 'manger', tense: 'infinitif-passe' })
+    expect(typedCompound('fr', 'avoir fini')).toMatchObject({ lemma: 'finir', tense: 'infinitif-passe' })
+    expect(typedCompound('fr', "après s'être lavé")).toMatchObject({ lemma: 'laver', tense: 'infinitif-passe' })
+    expect(typedCompound('es', 'sin haberlo visto')).toMatchObject({ lemma: 'ver', tense: 'infinitivo-compuesto' })
+    expect(typedCompound('es', 'haber comido')).toMatchObject({ lemma: 'comer', tense: 'infinitivo-compuesto' })
+    // "être parti" alone could be a passive or an adjective: no suggestion.
+    expect(typedCompound('fr', 'être parti')).toBeUndefined()
+  })
+})
+
 describe('compound tenses the audit found missing or wrong', () => {
   it('"ne … plus" is the adverb, not the participle of plaire', () => {
     const found = tenses("Les Mauritaniens n'ont plus de gouvernement. Je n'ai plus qu'à partir.", 'fr')
@@ -208,7 +249,7 @@ describe('a compound tense typed into the add-word form', () => {
   it('says nothing for what is no compound tense', () => {
     expect(read('fr', 'le gâteau est mangé')).toBeUndefined()
     expect(read('fr', 'la maison rouge')).toBeUndefined()
-    expect(read('fr', 'avoir mangé')).toBeUndefined()
+    expect(read('fr', 'être mangé')).toBeUndefined()
     expect(read('es', 'casa grande')).toBeUndefined()
     expect(read('fr', 'ai')).toBeUndefined()
   })

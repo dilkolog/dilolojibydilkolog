@@ -229,6 +229,50 @@ export const TENSE_GUIDE: Record<Tense, TenseGuide> = {
     ],
     markers: ['je suis content que', 'bien que', 'il faut que', 'dommage que', 'je doute que', 'il est possible que'],
   },
+  'infinitif-passe': {
+    name: 'infinitif passé',
+    tr: 'Tamamlanmış mastar (-dikten sonra, -miş olmak)',
+    short: 'Başka bir eylemden önce bitmiş olanı söyleyen mastar: "yemek yedikten sonra", "zamanında gelmiş olmaktan memnun".',
+    formation: "avoir ya da être (mastar) + participe passé: avoir mangé, être parti, s'être lavé. après, sans, pour, de ile çok gelir; être alan fiiller ve dönüşlüler être kullanır.",
+    examples: [
+      ['Après avoir mangé, nous sommes sortis.', 'Yemek yedikten sonra dışarı çıktık.'],
+      ["Il est content d'être arrivé à l'heure.", 'Zamanında varmış olmaktan memnun.'],
+    ],
+    markers: ['après', 'sans', 'pour', 'de', "d'", 'avant de (şimdiki mastar)'],
+  },
+  'participe-compose': {
+    name: 'participe composé',
+    tr: 'Tamamlanmış ortaç (-ince, -ip)',
+    short: 'Bir eylem bitmişken öbürünü anlatır, çoğunlukla yazıda: "ödevini bitirince çıktı".',
+    formation: "ayant ya da étant + participe passé: ayant fini, étant arrivé(e). Başına en gelirse gérondif passé olur: en ayant fini. Özne aynı kişidir.",
+    examples: [
+      ['Ayant fini ses devoirs, il est sorti.', 'Ödevini bitirince dışarı çıktı.'],
+      ["Étant arrivée en retard, elle s'est excusée.", 'Geç geldiği için özür diledi.'],
+    ],
+    markers: ['ayant', 'étant', 'en ayant', 'une fois'],
+  },
+  'infinitivo-compuesto': {
+    name: 'infinitivo compuesto',
+    tr: 'Tamamlanmış mastar (-dikten sonra, -miş olmak)',
+    short: 'Başka bir eylemden önce bitmiş olanı söyleyen mastar: "yemek yedikten sonra", "hiçbir şey görmediğini söylüyor".',
+    formation: 'haber (mastar) + participio: haber comido, haber ido, haberse ido (haberme ido, haberlo visto: zamir mastara yapışır). después de, sin, por, de, al ile çok gelir.',
+    examples: [
+      ['Después de haber comido, salimos a pasear.', 'Yemek yedikten sonra yürüyüşe çıktık.'],
+      ['Niega haber visto nada.', 'Hiçbir şey görmediğini söylüyor.'],
+    ],
+    markers: ['después de', 'sin', 'por', 'de', 'al', 'negar', 'recordar'],
+  },
+  'gerundio-compuesto': {
+    name: 'gerundio compuesto',
+    tr: 'Tamamlanmış ulaç (-ince, -ip)',
+    short: 'Bir eylem bitmişken öbürünü anlatır, çoğunlukla yazıda: "işi bitirince eve gitti".',
+    formation: 'habiendo + participio: habiendo terminado; zamir yapışır (habiéndose levantado). Özne aynı kişidir.',
+    examples: [
+      ['Habiendo terminado el trabajo, se fue a casa.', 'İşi bitirince eve gitti.'],
+      ['Habiéndose levantado tarde, perdió el tren.', 'Geç kalktığı için treni kaçırdı.'],
+    ],
+    markers: ['habiendo', 'habiéndose'],
+  },
   imperativo: {
     name: 'imperativo',
     tr: 'Emir (-sana, -in)',
@@ -403,6 +447,26 @@ export const TENSE_BRIDGE: Record<Tense, TenseBridge> = {
   'subjonctif-passe': {
     suffix: '-miş olması',
     note: '“Başarmış olmana sevindim”: istek/duygu ifadesinden sonra tamamlanmış eylem.',
+  },
+  'infinitif-passe': {
+    suffix: '-dikten sonra / -miş olmak',
+    note: '“Yemek yedikten sonra”: Türkçe -dikten sonra, Fransızcada après + avoir/être + ortaç.',
+    trap: 'après + yalın mastar (après manger) denmez; bitmiş olmayı söylemek için avoir mangé gerekir.',
+  },
+  'participe-compose': {
+    suffix: '-ince / -ip',
+    note: '“Ödevini bitirince çıktı”: iki eylemin sırası ayantlı ortaçla tek cümlede kurulur.',
+    trap: 'Her iki eylemin öznesi aynı olmalı; farklıysa bağlaç (quand, après que) kullan.',
+  },
+  'infinitivo-compuesto': {
+    suffix: '-dikten sonra / -miş olmak',
+    note: '“Yemek yedikten sonra”: después de + haber + participio.',
+    trap: 'después de + yalın mastar (después de comer) da denir; haber comido, bitmiş olmayı özellikle vurgular.',
+  },
+  'gerundio-compuesto': {
+    suffix: '-ince / -ip',
+    note: '“İşi bitirince gitti”: habiendo + participio, iki eylemin sırası tek cümlede.',
+    trap: 'Konuşmada az geçer, yazıda sık: yerine cümleyi iki parçaya böl ya da cuando kullan.',
   },
   preterito: {
     suffix: '-di (görülen geçmiş)',
