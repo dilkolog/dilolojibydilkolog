@@ -1,0 +1,393 @@
+[
+ {
+  "id": "es-prep_es-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Sueño ___ viajar por todo el mundo.",
+  "answer": "con",
+  "options": [
+   "con",
+   "de",
+   "en",
+   "a"
+  ],
+  "explanation": "« soñar con »: hayal etmek. Fiilden sonra « con » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Me di cuenta ___ mi error.",
+  "answer": "de",
+  "options": [
+   "de",
+   "en",
+   "con",
+   "por"
+  ],
+  "explanation": "« darse cuenta de »: fark etmek. « de » gelir; « de + el » birleşince « del » olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Pienso ___ ti todos los días.",
+  "answer": "en",
+  "options": [
+   "en",
+   "de",
+   "a",
+   "por"
+  ],
+  "explanation": "« pensar en »: aklında tutmak, düşünmek. (« pensar de » görüş sormak içindir.)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Se acordó ___ llamarme.",
+  "answer": "de",
+  "options": [
+   "de",
+   "a",
+   "en",
+   "por"
+  ],
+  "explanation": "« acordarse de »: hatırlamak. « de » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Depende ___ ti.",
+  "answer": "de",
+  "options": [
+   "de",
+   "en",
+   "con",
+   "a"
+  ],
+  "explanation": "« depender de »: -e bağlı olmak. « de » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-06",
+  "language": "es",
+  "level": "B2",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Insiste ___ pagar la cuenta.",
+  "answer": "en",
+  "options": [
+   "en",
+   "a",
+   "de",
+   "con"
+  ],
+  "explanation": "« insistir en »: ısrar etmek. « en + infinitivo ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-07",
+  "language": "es",
+  "level": "B2",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Puedes contar ___ mi ayuda.",
+  "answer": "con",
+  "options": [
+   "con",
+   "en",
+   "de",
+   "a"
+  ],
+  "explanation": "« contar con »: güvenmek, hesaba katabilmek. « con » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-08",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Se casó ___ una médica.",
+  "answer": "con",
+  "options": [
+   "con",
+   "a",
+   "de",
+   "en"
+  ],
+  "explanation": "« casarse con »: biriyle evlenmek. « con » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-09",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Aprendí ___ nadar a los cinco años.",
+  "answer": "a",
+  "options": [
+   "a",
+   "de",
+   "en",
+   "para"
+  ],
+  "explanation": "« aprender a + infinitivo »: bir şeyi yapmayı öğrenmek. Hareket ya da öğrenme fiillerinden sonra « a » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-10",
+  "language": "es",
+  "level": "B1",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Acabo ___ llegar.",
+  "answer": "de",
+  "options": [
+   "de",
+   "a",
+   "en",
+   "por"
+  ],
+  "explanation": "« acabar de + infinitivo »: yeni yapmış olmak (“az önce”). « a » değil « de ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-11",
+  "language": "es",
+  "level": "B2",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Tardó mucho ___ responder.",
+  "answer": "en",
+  "options": [
+   "en",
+   "a",
+   "de",
+   "por"
+  ],
+  "explanation": "« tardar en + infinitivo »: yapmakta gecikmek. « en » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-12",
+  "language": "es",
+  "level": "B2",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Se enamoró ___ ella al verla.",
+  "answer": "de",
+  "options": [
+   "de",
+   "con",
+   "a",
+   "en"
+  ],
+  "explanation": "« enamorarse de »: birine âşık olmak. « de » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-13",
+  "language": "es",
+  "level": "B2",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Se fija ___ todos los detalles.",
+  "answer": "en",
+  "options": [
+   "en",
+   "de",
+   "a",
+   "con"
+  ],
+  "explanation": "« fijarse en »: dikkat etmek, fark etmek. « en » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-prep_es-14",
+  "language": "es",
+  "level": "B2",
+  "topic": "prep_es",
+  "type": "choice",
+  "prompt": "Me parezco mucho ___ mi madre.",
+  "answer": "a",
+  "options": [
+   "a",
+   "con",
+   "de",
+   "en"
+  ],
+  "explanation": "« parecerse a »: birine benzemek. « a » gelir (Türkçe “-e benzemek” gibi).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Tengo que ___ una decisión.",
+  "answer": "tomar",
+  "options": [
+   "tomar",
+   "hacer",
+   "dar",
+   "poner"
+  ],
+  "explanation": "« tomar una decisión »: karar vermek. « hacer una decisión » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Voy a ___ una pregunta.",
+  "answer": "hacer",
+  "options": [
+   "hacer",
+   "poner",
+   "dar",
+   "decir"
+  ],
+  "explanation": "« hacer una pregunta »: soru sormak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-03",
+  "language": "es",
+  "level": "B2",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Es importante ___ atención a los detalles.",
+  "answer": "prestar",
+  "options": [
+   "prestar",
+   "hacer",
+   "tener",
+   "tomar"
+  ],
+  "explanation": "« prestar atención »: dikkat etmek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-04",
+  "language": "es",
+  "level": "B2",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Hay que ___ en cuenta los riesgos.",
+  "answer": "tener",
+  "options": [
+   "tener",
+   "poner",
+   "hacer",
+   "dar"
+  ],
+  "explanation": "« tener en cuenta »: hesaba katmak, dikkate almak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Quiero ___ las gracias por tu ayuda.",
+  "answer": "dar",
+  "options": [
+   "dar",
+   "hacer",
+   "tener",
+   "poner"
+  ],
+  "explanation": "« dar las gracias »: teşekkür etmek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-06",
+  "language": "es",
+  "level": "B2",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Es mejor no ___ ese riesgo.",
+  "answer": "correr",
+  "options": [
+   "correr",
+   "tener",
+   "hacer",
+   "tomar"
+  ],
+  "explanation": "« correr un riesgo »: risk almak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-07",
+  "language": "es",
+  "level": "B2",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Su respuesta me ha ___ mucha gracia.",
+  "answer": "hecho",
+  "options": [
+   "hecho",
+   "dado",
+   "puesto",
+   "tenido"
+  ],
+  "explanation": "« hacer gracia »: komik/hoş gelmek. « Me hace gracia »: bana komik geliyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-08",
+  "language": "es",
+  "level": "B2",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Hace un frío ___.",
+  "answer": "de perros",
+  "options": [
+   "de perros",
+   "de gatos",
+   "de lobos",
+   "de osos"
+  ],
+  "explanation": "« hacer un frío de perros »: çok soğuk olmak. Deyimde « perros » geçer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc_es-09",
+  "language": "es",
+  "level": "B2",
+  "topic": "colloc_es",
+  "type": "choice",
+  "prompt": "Cuando lo vi, me quedé ___.",
+  "answer": "de piedra",
+  "options": [
+   "de piedra",
+   "de madera",
+   "de hierro",
+   "de cristal"
+  ],
+  "explanation": "« quedarse de piedra »: şaşkınlıktan donup kalmak.",
+  "source": "Diloloji (özgün)"
+ }
+]

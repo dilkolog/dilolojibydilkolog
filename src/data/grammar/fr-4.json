@@ -1,0 +1,393 @@
+[
+ {
+  "id": "fr-prep_fr-01",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il a décidé ___ partir plus tôt.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "par"
+  ],
+  "explanation": "« décider de + infinitif »: karar vermek. Fiilden sonra « de » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Elle a réussi ___ comprendre le problème.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "en"
+  ],
+  "explanation": "« réussir à + infinitif »: başarmak. « réussir de » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Je m'intéresse ___ l'histoire de l'art.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "sur"
+  ],
+  "explanation": "« s'intéresser à qqch »: bir şeyle ilgilenmek. Türkçedeki “-e ilgi duymak” gibi « à ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-04",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Nous avons oublié ___ fermer la porte.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "en"
+  ],
+  "explanation": "« oublier de + infinitif »: yapmayı unutmak. « de » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il s'habitue ___ vivre en ville.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "avec"
+  ],
+  "explanation": "« s'habituer à »: alışmak (-e alışmak). Arkasından isim ya da fiil gelse de « à ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-06",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Elle a besoin ___ repos.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "en"
+  ],
+  "explanation": "« avoir besoin de »: -e ihtiyacı olmak. Türkçe “-e ihtiyaç” olsa da Fransızcada « de ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-07",
+  "language": "fr",
+  "level": "B2",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il hésite ___ accepter l'offre.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "en"
+  ],
+  "explanation": "« hésiter à + infinitif »: yapmakta tereddüt etmek. « à » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-08",
+  "language": "fr",
+  "level": "B2",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Elle a renoncé ___ son voyage.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "pour",
+   "sur"
+  ],
+  "explanation": "« renoncer à qqch »: bir şeyden vazgeçmek. « à » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-09",
+  "language": "fr",
+  "level": "B2",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il se souvient encore ___ son enfance.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "sur"
+  ],
+  "explanation": "« se souvenir de »: hatırlamak. Kişi ya da şeyden önce « de » gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-10",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Nous avons parlé ___ notre projet.",
+  "answer": "de",
+  "options": [
+   "de",
+   "sur",
+   "à",
+   "pour"
+  ],
+  "explanation": "« parler de qqch »: bir şeyden söz etmek. « sur » değil, « de » kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-11",
+  "language": "fr",
+  "level": "B2",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Elle pense souvent ___ ses vacances.",
+  "answer": "à",
+  "options": [
+   "à",
+   "de",
+   "sur",
+   "en"
+  ],
+  "explanation": "« penser à »: aklında olmak, düşünmek. « penser de » ise görüş sormak için kullanılır (« Que penses-tu de ce film ? »).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-12",
+  "language": "fr",
+  "level": "B2",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il s'est marié ___ une collègue.",
+  "answer": "avec",
+  "options": [
+   "avec",
+   "à",
+   "de",
+   "par"
+  ],
+  "explanation": "« se marier avec qqn »: biriyle evlenmek. (« épouser qqn » ise edatsızdır.)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-13",
+  "language": "fr",
+  "level": "B1",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Je suis fier ___ toi.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "pour",
+   "en"
+  ],
+  "explanation": "« être fier de »: gurur duymak. Sıfatlarda da « de » sık gelir: « capable de », « content de ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-prep_fr-14",
+  "language": "fr",
+  "level": "B2",
+  "topic": "prep_fr",
+  "type": "choice",
+  "prompt": "Il dépend entièrement ___ ses parents.",
+  "answer": "de",
+  "options": [
+   "de",
+   "à",
+   "sur",
+   "par"
+  ],
+  "explanation": "« dépendre de »: -e bağlı olmak. Türkçe “-e bağlı” olsa da Fransızcada « de ».",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-01",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Je voudrais ___ une question.",
+  "answer": "poser",
+  "options": [
+   "poser",
+   "faire",
+   "mettre",
+   "dire"
+  ],
+  "explanation": "« poser une question »: soru sormak. « faire une question » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Il faut ___ attention en traversant la rue.",
+  "answer": "faire",
+  "options": [
+   "faire",
+   "prendre",
+   "mettre",
+   "donner"
+  ],
+  "explanation": "« faire attention »: dikkat etmek. « prendre attention » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Il faut ___ une décision aujourd'hui.",
+  "answer": "prendre",
+  "options": [
+   "prendre",
+   "faire",
+   "donner",
+   "mettre"
+  ],
+  "explanation": "« prendre une décision »: karar vermek. « faire une décision » denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-04",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Nous allons ___ rendez-vous demain.",
+  "answer": "prendre",
+  "options": [
+   "prendre",
+   "faire",
+   "avoir",
+   "donner"
+  ],
+  "explanation": "« prendre rendez-vous »: randevu almak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Elle a ___ un voyage à Rome.",
+  "answer": "fait",
+  "options": [
+   "fait",
+   "pris",
+   "eu",
+   "donné"
+  ],
+  "explanation": "« faire un voyage »: yolculuk yapmak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-06",
+  "language": "fr",
+  "level": "B2",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Il pleut ___ depuis ce matin.",
+  "answer": "à verse",
+  "options": [
+   "à verse",
+   "lourd",
+   "grand",
+   "élevé"
+  ],
+  "explanation": "« pleuvoir à verse »: bardaktan boşanırcasına yağmak. Türkçeden çevirip “ağır yağmak” denmez.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-07",
+  "language": "fr",
+  "level": "B2",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Elle a ___ un bon souvenir de ce voyage.",
+  "answer": "gardé",
+  "options": [
+   "gardé",
+   "tenu",
+   "mis",
+   "pris"
+  ],
+  "explanation": "« garder un bon souvenir (de) »: güzel bir anı olarak kalmak.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-08",
+  "language": "fr",
+  "level": "B2",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Il faut ___ compte de la situation.",
+  "answer": "tenir",
+  "options": [
+   "tenir",
+   "prendre",
+   "faire",
+   "avoir"
+  ],
+  "explanation": "« tenir compte de »: dikkate almak. (« prendre en compte » de denir, ama « prendre compte » denmez.)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc_fr-09",
+  "language": "fr",
+  "level": "B2",
+  "topic": "colloc_fr",
+  "type": "choice",
+  "prompt": "Elle ___ un rôle important dans l'équipe.",
+  "answer": "joue",
+  "options": [
+   "joue",
+   "fait",
+   "prend",
+   "met"
+  ],
+  "explanation": "« jouer un rôle »: rol oynamak.",
+  "source": "Diloloji (özgün)"
+ }
+]
