@@ -210,13 +210,48 @@ Diloloji'nin mevcut altyapısı bu kaynakları entegre etmek için neredeyse haz
 
 ---
 
-### 8.3. Claude Code İçin Tavsiye Özeti
+---
 
-1. **Öncelikli Eklemeler:**
-   - **Fransızca:** `salut-linfo` (`https://radiofrance-podcast.net/podcast09/podcast_9f5486b0-38b5-4544-bf49-e24b18bd022c.xml`)
-   - **İspanyolca:** `hoyhablamos` (`https://www.hoyhablamos.com/feed/podcast/`)
-   - **İngilizce:** `bbc-6min` (`https://podcasts.files.bbci.co.uk/p02pc9tn.rss`)
-2. **Gereken Küçük Motor Düzeltmesi (`src/engine/news.ts`):**
-   `parseFeed` içindeki `.filter((i) => i.title && /^https:\/\//.test(i.link))` kuralı `^https?:\/\/` olarak genişletilmelidir (böylece `http://www.bbc.co.uk` linkleri kabul edilir).
+## 9. Yeni Öğrenici Beslemelerinin Gerçek Alan Adları ve Canlı Ağ Denetimi (2026-10-11 — 12.1 Görevi)
+
+`src/engine/news.ts` içindeki `FEEDS` listesine eklenen 3 yeni öğrenici beslemesi (`salut-linfo`, `hoyhablamos`, `bbc-6min`), `scripts/check-news-feeds.ts --feeds salut-linfo,hoyhablamos,bbc-6min` betiği ile gerçek ağ üzerinden canlı olarak sınandı.
+
+### 9.1. Özet Sonuç Tablosu
+
+| Besleme ID | Dil / Seviye | Tanımlı `hosts` | İlk 5 Maddenin Link Hostu | `allowedArticle` Uyumu | Metin Kelime Sayısı (Ort.) | Ses Akışı (Enclosure) | Sonuç |
+| :--- | :---: | :--- | :--- | :---: | :---: | :--- | :---: |
+| **`salut-linfo`** | FR (A2–B1) | `radiofrance.fr`<br>`franceinfo.fr` | `www.franceinfo.fr` (5/5) | **GEÇERLİ (5/5)** | 606 kelime (492–900) | HTTP 200, audio/mpeg, CORS `*`<br>(Proxycast ➔ Media Radio France) | **KUSURSUZ** |
+| **`hoyhablamos`** | ES (B1–B2) | `hoyhablamos.com` | `www.hoyhablamos.com` (5/5) | **GEÇERLİ (5/5)** | 205 kelime (146–304) | HTTP 200, audio/mpeg<br>(Blubrry CDN doğrudan MP3) | **KUSURSUZ** |
+| **`bbc-6min`** | EN (B1–B2) | `bbc.co.uk`<br>`bbc.com` | `www.bbc.co.uk` (5/5) | **GEÇERLİ (5/5)** | 158 kelime (125–178) | HTTP 200, audio/mpeg<br>(BBC Mediaset ➔ Triton Digital) | **KUSURSUZ** |
+
+---
+
+### 9.2. Besleme Bazında Ayrıntılı Bulgular
+
+#### 1. franceinfo · Salut l'info ! (`salut-linfo` — Fransızca)
+* **RSS Beslemesi:** `https://radiofrance-podcast.net/podcast09/podcast_9f5486b0-38b5-4544-bf49-e24b18bd022c.xml` (7/7 aktif bölüm, tamamı sesli).
+* **Maddelerin Alan Adı:** Tüm maddeler `https://www.franceinfo.fr/replay-radio/salut-l-info/...` biçimindedir. `u.hostname` (`www.franceinfo.fr`), tanımlı `franceinfo.fr` son ekiyle tam eşleşir (`allowedArticle` = **EVET**).
+* **Makale Metni Çıkarımı:** `extractArticle` her bölümde 492 ile 900 kelime arasında (ortalama 606 kelime) temiz metin çıkarmaktadır (80 kelime eşiğini katbekat aşar).
+* **Ses Akışı:** Radio France Proxycast üzerinden `https://media.radiofrance-podcast.net/...` CDN adresine 302 yönlenir; HTTP 200 döner ve `access-control-allow-origin: *` başlığı mevcuttur.
+
+#### 2. Hoy Hablamos · Noticias en español (`hoyhablamos` — İspanyolca)
+* **RSS Beslemesi:** `https://www.hoyhablamos.com/feed/podcast/` (300/300 aktif bölüm, tamamı sesli).
+* **Maddelerin Alan Adı:** Maddeler `https://www.hoyhablamos.com/<sayı>-<slug>/` biçimindedir. `u.hostname` (`www.hoyhablamos.com`), tanımlı `hoyhablamos.com` son ekiyle tam eşleşir (`allowedArticle` = **EVET**).
+* **Makale Metni Çıkarımı:** `extractArticle` bültenlerin kısa haber özetini (146–304 kelime) başarıyla ayıklar.
+* **Ses Akışı:** `https://media.blubrry.com/...` linki doğrudan `content.blubrry.com/...` adresine yönlenir; HTTP 200 ile tam audio/mpeg akışı sağlar.
+
+#### 3. BBC Learning English · 6 Minute English (`bbc-6min` — İngilizce)
+* **RSS Beslemesi:** `https://podcasts.files.bbci.co.uk/p02pc9tn.rss` (344/344 aktif bölüm, tamamı sesli).
+* **Maddelerin Alan Adı:** Maddeler `https://www.bbc.co.uk/programmes/<id>` biçimindedir (`upgradeHttp: true` bayrağı sayesinde `http://` linkleri `https://` protokolüne yükseltilmektedir). `u.hostname` (`www.bbc.co.uk`), tanımlı `bbc.co.uk` son ekiyle tam eşleşir (`allowedArticle` = **EVET**).
+* **Makale Metni Çıkarımı:** `extractArticle` web sayfasından 125–178 kelimelik bölüm transkript özetini başarıyla çıkarır (80 eşiğinin üzerindedir).
+* **Ses Akışı:** BBC Open Live Mediaset üzerinden Triton Digital podcast dağıtım ağına yönlenir; HTTP 200 ile doğrudan MP3 olarak dinlenebilir.
+
+---
+
+### 9.3. Claude Code İçin Sonuç ve Tavsiye
+
+1. **Hosts Ayarları Doğrudur:** `src/engine/news.ts` içindeki `hosts` tanımları (`['radiofrance.fr', 'franceinfo.fr']`, `['hoyhablamos.com']`, `['bbc.co.uk', 'bbc.com']`), `allowedArticle` algoritmasının alt alan adı (`.hostname.endsWith('.' + host)`) kuralı sayesinde `www.*` adreslerini sorunsuz kabul etmektedir. Hiçbir host engeli bulunmamaktadır.
+2. **Ek Düzenleme Gerekmez:** Üç besleme de metin zenginliği ve ses akışı bakımından üretime hazırdır.
+
 
 
