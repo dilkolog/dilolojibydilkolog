@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { KelimeDB } from '../data/db'
 import { linkEntries } from '../data/familyLinks'
+import { makeLookup } from '../data/deriveLookup'
 import { loadFrequency } from '../data/frequency'
 import { createEntry, WordInputError } from '../data/wordInput'
 import { loadPack, packKeys } from '../data/wordpack'
-import { POS_CODE, type Pack } from '../data/wordpackBuild'
-import { familyOf, type FamilyNode, type Morph, type WordLookup } from '../engine/derive'
-import type { TargetLanguage, VocabularyEntry } from '../engine/types'
+import type { Pack } from '../data/wordpackBuild'
+import { familyOf, type FamilyNode, type Morph } from '../engine/derive'
+import type { VocabularyEntry } from '../engine/types'
 import { POS_NAME } from './labels'
 import { PlusIcon } from './icons'
 
@@ -21,18 +22,6 @@ function Morphs({ morphs }: { morphs: Morph[] }) {
       ))}
     </span>
   )
-}
-
-/** The dictionary's words, plus the learner's own that it lacks, as the engine's lookup. */
-function makeLookup(pack: Pack, rank: ReadonlyMap<string, number>, vocabulary: readonly VocabularyEntry[], language: TargetLanguage): WordLookup {
-  const own = new Map(vocabulary.filter((v) => v.language === language && v.partOfSpeech !== 'other' && !v.lemma.includes(' ')).map((v) => [v.lemma.toLocaleLowerCase(language), v]))
-  return (word) => {
-    const r = pack.w[word]
-    const pos = r?.p ? POS_CODE[r.p] : undefined
-    if (r && pos) return { pos, gloss: r.t?.[0], rank: rank.get(word) }
-    const v = own.get(word)
-    return v ? { pos: v.partOfSpeech, gloss: v.senses[0]?.gloss, rank: rank.get(word) } : undefined
-  }
 }
 
 /**

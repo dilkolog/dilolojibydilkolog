@@ -228,12 +228,12 @@ export interface DerivedWord {
  * heure + -eux from a real suffix, so the ones found by reading its families are listed here.
  */
 const FALSE_COUSINS: Record<TargetLanguage, Set<string>> = {
-  en: new Set(['creation|recreation', 'show|shower', 'come|comment', 'turn|return', 'miss|mission', 'take|mistake', 'busy|business', 'idea|ideal']),
+  en: new Set(['creation|recreation', 'show|shower', 'come|comment', 'turn|return', 'miss|mission', 'take|mistake', 'busy|business', 'idea|ideal', 'due|dual', 'course|discourse']),
   fr: new Set([
     'heure|heureux', 'léger|légiste', 'pêche|dépêche', 'astre|désastre', 'vie|vieux', 'but|début', 'garder|regarder', 'péter|répéter', 'coup|coupable', 'mine|minable',
     'star|stable', 'cap|capable', 'cap|incapable', 'couler|couleur', 'courir|courage', 'courir|courageux', 'partir|partage', 'viser|invisible', 'série|sérieusement',
   ]),
-  es: new Set(['sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado']),
+  es: new Set(['tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado']),
 }
 const cousins = (language: TargetLanguage, base: string, word: string) => FALSE_COUSINS[language].has(`${base}|${word}`)
 

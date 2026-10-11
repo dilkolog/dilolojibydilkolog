@@ -1237,6 +1237,21 @@ test('root and endings: a word opens its family as a tree with what each ending 
   await expect(card.locator('.morph-row', { hasText: 'légèrement' }).locator('button.link')).toBeVisible()
 })
 
+test('affix hunt: a word and its relative in Turkish, the ending that makes it is picked and shown put on the word', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Ek avı' }).click()
+  await page.getByRole('button', { name: /8 soruluk tura başla/ }).click()
+  for (let i = 1; i <= 8; i++) {
+    await expect(page.locator('.game-timer')).toHaveText(`${i} / 8`)
+    await expect(page.locator('.option')).toHaveCount(3)
+    await page.locator('.option').first().click()
+    await expect(page.locator('[role=status]')).toContainText('Türkçesi')
+    await page.getByRole('button', { name: 'Devam', exact: true }).click()
+  }
+  await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
+})
+
 test('text flow game: the connectors of a paragraph are filled one by one, each answer explained, the Turkish shown at the end', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')
