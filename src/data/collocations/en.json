@@ -1,0 +1,258 @@
+[
+ {
+  "id": "en-colloc-01",
+  "language": "en",
+  "lemmas": [
+   "depend"
+  ],
+  "pattern": "depend on",
+  "example": "It all depends on the weather.",
+  "tr": "Hepsi havaya bağlı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-02",
+  "language": "en",
+  "lemmas": [
+   "interested"
+  ],
+  "pattern": "be interested in",
+  "example": "She is interested in photography.",
+  "tr": "Fotoğrafçılıkla ilgileniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-03",
+  "language": "en",
+  "lemmas": [
+   "accuse",
+   "accused"
+  ],
+  "pattern": "accuse someone of",
+  "example": "He was accused of stealing.",
+  "tr": "Hırsızlıkla suçlandı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-04",
+  "language": "en",
+  "lemmas": [
+   "look forward"
+  ],
+  "pattern": "look forward to + -ing",
+  "example": "I'm looking forward to seeing you.",
+  "tr": "Seni görmeyi dört gözle bekliyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-05",
+  "language": "en",
+  "lemmas": [
+   "apologise",
+   "apologize"
+  ],
+  "pattern": "apologise for",
+  "example": "She apologised for being late.",
+  "tr": "Geç kaldığı için özür diledi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-06",
+  "language": "en",
+  "lemmas": [
+   "insist"
+  ],
+  "pattern": "insist on + -ing",
+  "example": "They insisted on paying for dinner.",
+  "tr": "Yemeği ödemekte ısrar ettiler.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-07",
+  "language": "en",
+  "lemmas": [
+   "good"
+  ],
+  "pattern": "be good at",
+  "example": "He is very good at mathematics.",
+  "tr": "Matematikte çok iyi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-08",
+  "language": "en",
+  "lemmas": [
+   "afraid"
+  ],
+  "pattern": "be afraid of",
+  "example": "I'm afraid of spiders.",
+  "tr": "Örümceklerden korkuyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-09",
+  "language": "en",
+  "lemmas": [
+   "responsible"
+  ],
+  "pattern": "be responsible for",
+  "example": "She is responsible for the budget.",
+  "tr": "Bütçeden o sorumlu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-10",
+  "language": "en",
+  "lemmas": [
+   "succeed"
+  ],
+  "pattern": "succeed in + -ing",
+  "example": "He succeeded in passing the test.",
+  "tr": "Sınavı geçmeyi başardı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-11",
+  "language": "en",
+  "lemmas": [
+   "fed up"
+  ],
+  "pattern": "be fed up with",
+  "example": "We are fed up with waiting.",
+  "tr": "Beklemekten bıktık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-12",
+  "language": "en",
+  "lemmas": [
+   "used"
+  ],
+  "pattern": "be used to + -ing",
+  "example": "He is used to getting up early.",
+  "tr": "Erken kalkmaya alışık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-13",
+  "language": "en",
+  "lemmas": [
+   "suffer"
+  ],
+  "pattern": "suffer from",
+  "example": "She suffers from headaches.",
+  "tr": "Baş ağrılarından muzdarip.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-14",
+  "language": "en",
+  "lemmas": [
+   "congratulate"
+  ],
+  "pattern": "congratulate someone on",
+  "example": "I congratulated him on his promotion.",
+  "tr": "Terfi ettiği için onu tebrik ettim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-15",
+  "language": "en",
+  "lemmas": [
+   "mistake"
+  ],
+  "pattern": "make a mistake",
+  "example": "I think I've made a mistake.",
+  "tr": "Sanırım bir hata yaptım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-16",
+  "language": "en",
+  "lemmas": [
+   "favour",
+   "favor"
+  ],
+  "pattern": "do someone a favour",
+  "example": "Could you do me a favour?",
+  "tr": "Bana bir iyilik yapar mısın?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-17",
+  "language": "en",
+  "lemmas": [
+   "rain"
+  ],
+  "pattern": "heavy rain",
+  "example": "We had heavy rain all night.",
+  "tr": "Bütün gece sağanak yağdı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-18",
+  "language": "en",
+  "lemmas": [
+   "attention"
+  ],
+  "pattern": "pay attention",
+  "example": "Please pay attention to the instructions.",
+  "tr": "Lütfen talimatlara dikkat edin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-19",
+  "language": "en",
+  "lemmas": [
+   "decision"
+  ],
+  "pattern": "make a decision",
+  "example": "We need to make a decision today.",
+  "tr": "Bugün bir karar vermemiz gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-20",
+  "language": "en",
+  "lemmas": [
+   "photo"
+  ],
+  "pattern": "take a photo",
+  "example": "Can I take a photo of you?",
+  "tr": "Senin fotoğrafını çekebilir miyim?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-21",
+  "language": "en",
+  "lemmas": [
+   "best"
+  ],
+  "pattern": "do your best",
+  "example": "He did his best, but he lost.",
+  "tr": "Elinden geleni yaptı ama kaybetti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-22",
+  "language": "en",
+  "lemmas": [
+   "coffee"
+  ],
+  "pattern": "strong coffee",
+  "example": "I'd like a strong cup of coffee, please.",
+  "tr": "Sert bir kahve alabilir miyim?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc-23",
+  "language": "en",
+  "lemmas": [
+   "profit"
+  ],
+  "pattern": "make a profit",
+  "example": "The company made a profit last year.",
+  "tr": "Şirket geçen yıl kâr etti.",
+  "source": "Diloloji (özgün)"
+ }
+]

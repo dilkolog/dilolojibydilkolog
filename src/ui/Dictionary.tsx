@@ -4,6 +4,7 @@ import { buildIndex, fold, search, wiktionaryUrl } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
 import { loadTenses } from '../data/tenseData'
 import { loadPack } from '../data/wordpack'
+import { translate, translationReady } from '../data/translate'
 import type { Pack } from '../data/wordpackBuild'
 import { db } from '../data/instance'
 import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
@@ -12,6 +13,7 @@ import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
 import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
+import { CollocationChip } from './CollocationChip'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
 import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SearchIcon, SpeakerIcon, WandIcon } from './icons'
@@ -337,6 +339,7 @@ function WordCard({
             {gender && <li>{gender === 'f' ? 'dişil' : gender === 'm' ? 'eril' : 'eril ya da dişil'}</li>}
             <LevelChip language={language} lemma={word} rank={rank} />
             <TrapChip language={language} lemma={word} />
+            <CollocationChip language={language} lemma={word} />
           </ul>
           <div className="word-hero-title">
             <h2 className="word" style={{ '--len': written.length } as CSSProperties} lang={language}>
@@ -517,6 +520,16 @@ function NotFound({
   const [customMeaning, setCustomMeaning] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  // DeepL (through the app's server): offered when it is there; its answer is a guess for one word, so it is shown as such.
+  const [deeplOn, setDeeplOn] = useState(false)
+  const [deepl, setDeepl] = useState<string | null>(null)
+  useEffect(() => {
+    let live = true
+    void translationReady().then((yes) => live && setDeeplOn(yes))
+    return () => {
+      live = false
+    }
+  }, [])
 
   if (own) {
     return (
@@ -534,7 +547,21 @@ function NotFound({
   }
 
   // A Turkish word with matches below needs no "not found" card above them.
-  if (hasOthers && !ai) return null
+  if (hasOthers && !ai && deepl === null) return null
+
+  const askDeepl = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      const out = (await translate(word, language, 'tr')).trim()
+      if (!out || normalize(out) === normalize(word)) setError('DeepL bu kelime için bir karşılık bulamadı.')
+      else setDeepl(out)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Çeviri şu an alınamadı.')
+    } finally {
+      setBusy(false)
+    }
+  }
 
   const askAi = async () => {
     if (!apiKey) return
@@ -554,7 +581,27 @@ function NotFound({
 
   return (
     <section className="section card stack">
-      {ai ? (
+      {deepl !== null && !ai ? (
+        <>
+          <p>
+            <strong lang={language}>{word}</strong>: {deepl} <span className="small muted">(DeepL)</span>
+          </p>
+          <p className="small muted">Tek kelimede çeviri yanılabilir; anlamı doğru buluyorsan sözlüğüne ekle, yanlışsa düzeltip ekleyebilirsin.</p>
+          <form
+            className="row gap-xs"
+            onSubmit={(e) => {
+              e.preventDefault()
+              const m = (customMeaning.trim() || deepl).trim()
+              if (m) onAdd(word, m)
+            }}
+          >
+            <input type="text" className="input" placeholder={deepl} value={customMeaning} onChange={(e) => setCustomMeaning(e.target.value)} aria-label="Türkçe anlamı" />
+            <button type="submit" className="btn btn-sm">
+              <PlusIcon size={15} /> Sözlüğe ekle
+            </button>
+          </form>
+        </>
+      ) : ai ? (
         <>
           <p>
             <strong lang={language}>{ai.lemma}</strong>: {ai.meanings.join(', ')} <span className="small muted">(YZ)</span>
@@ -594,6 +641,11 @@ function NotFound({
             </button>
           </form>
           <div className="row gap-xs">
+            {deeplOn && (
+              <button type="button" className="btn btn-sm btn-quiet" onClick={askDeepl} disabled={busy}>
+                <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'DeepL ile çevir'}
+              </button>
+            )}
             {apiKey && (
               <button type="button" className="btn btn-sm btn-quiet" onClick={askAi} disabled={busy}>
                 <WandIcon size={15} /> {busy ? 'Soruluyor…' : 'YZ ile anlamını bul'}

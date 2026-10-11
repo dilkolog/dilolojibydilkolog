@@ -1,0 +1,249 @@
+[
+ {
+  "id": "fr-colloc-01",
+  "language": "fr",
+  "lemmas": [
+   "décider"
+  ],
+  "pattern": "décider de + infinitif",
+  "example": "Il a décidé de partir plus tôt.",
+  "tr": "Daha erken gitmeye karar verdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-02",
+  "language": "fr",
+  "lemmas": [
+   "réussir"
+  ],
+  "pattern": "réussir à + infinitif",
+  "example": "Elle a réussi à comprendre le problème.",
+  "tr": "Sorunu anlamayı başardı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-03",
+  "language": "fr",
+  "lemmas": [
+   "intéresser",
+   "s'intéresser"
+  ],
+  "pattern": "s'intéresser à qqch",
+  "example": "Je m'intéresse à l'histoire de l'art.",
+  "tr": "Sanat tarihiyle ilgileniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-04",
+  "language": "fr",
+  "lemmas": [
+   "oublier"
+  ],
+  "pattern": "oublier de + infinitif",
+  "example": "Nous avons oublié de fermer la porte.",
+  "tr": "Kapıyı kapatmayı unuttuk.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-05",
+  "language": "fr",
+  "lemmas": [
+   "habituer",
+   "s'habituer"
+  ],
+  "pattern": "s'habituer à",
+  "example": "Il s'habitue à vivre en ville.",
+  "tr": "Şehirde yaşamaya alışıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-06",
+  "language": "fr",
+  "lemmas": [
+   "besoin"
+  ],
+  "pattern": "avoir besoin de",
+  "example": "Elle a besoin de repos.",
+  "tr": "Dinlenmeye ihtiyacı var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-07",
+  "language": "fr",
+  "lemmas": [
+   "hésiter"
+  ],
+  "pattern": "hésiter à + infinitif",
+  "example": "Il hésite à accepter l'offre.",
+  "tr": "Teklifi kabul etmekte tereddüt ediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-08",
+  "language": "fr",
+  "lemmas": [
+   "renoncer"
+  ],
+  "pattern": "renoncer à qqch",
+  "example": "Elle a renoncé à son voyage.",
+  "tr": "Yolculuğundan vazgeçti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-09",
+  "language": "fr",
+  "lemmas": [
+   "souvenir",
+   "se souvenir"
+  ],
+  "pattern": "se souvenir de",
+  "example": "Il se souvient encore de son enfance.",
+  "tr": "Çocukluğunu hâlâ hatırlıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-10",
+  "language": "fr",
+  "lemmas": [
+   "parler"
+  ],
+  "pattern": "parler de qqch",
+  "example": "Nous avons parlé de notre projet.",
+  "tr": "Projemizden söz ettik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-11",
+  "language": "fr",
+  "lemmas": [
+   "penser"
+  ],
+  "pattern": "penser à (aklında olmak)",
+  "example": "Elle pense souvent à ses vacances.",
+  "tr": "Sık sık tatilini düşünüyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-12",
+  "language": "fr",
+  "lemmas": [
+   "marier",
+   "se marier"
+  ],
+  "pattern": "se marier avec qqn",
+  "example": "Il s'est marié avec une collègue.",
+  "tr": "Bir iş arkadaşıyla evlendi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-13",
+  "language": "fr",
+  "lemmas": [
+   "fier"
+  ],
+  "pattern": "être fier de",
+  "example": "Je suis fier de toi.",
+  "tr": "Seninle gurur duyuyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-14",
+  "language": "fr",
+  "lemmas": [
+   "dépendre"
+  ],
+  "pattern": "dépendre de",
+  "example": "Il dépend entièrement de ses parents.",
+  "tr": "Tamamen ailesine bağlı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-15",
+  "language": "fr",
+  "lemmas": [
+   "poser",
+   "question"
+  ],
+  "pattern": "poser une question",
+  "example": "Je voudrais poser une question.",
+  "tr": "Bir soru sormak istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-16",
+  "language": "fr",
+  "lemmas": [
+   "attention"
+  ],
+  "pattern": "faire attention",
+  "example": "Il faut faire attention en traversant la rue.",
+  "tr": "Karşıdan karşıya geçerken dikkat etmek gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-17",
+  "language": "fr",
+  "lemmas": [
+   "décision"
+  ],
+  "pattern": "prendre une décision",
+  "example": "Il faut prendre une décision aujourd'hui.",
+  "tr": "Bugün bir karar vermek gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-18",
+  "language": "fr",
+  "lemmas": [
+   "rendez-vous"
+  ],
+  "pattern": "prendre rendez-vous",
+  "example": "Nous allons prendre rendez-vous demain.",
+  "tr": "Yarın randevu alacağız.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-19",
+  "language": "fr",
+  "lemmas": [
+   "voyage"
+  ],
+  "pattern": "faire un voyage",
+  "example": "Elle a fait un voyage à Rome.",
+  "tr": "Roma'ya bir yolculuk yaptı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-20",
+  "language": "fr",
+  "lemmas": [
+   "pleuvoir"
+  ],
+  "pattern": "pleuvoir à verse",
+  "example": "Il pleut à verse depuis ce matin.",
+  "tr": "Sabahtan beri bardaktan boşanırcasına yağıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-21",
+  "language": "fr",
+  "lemmas": [
+   "compte"
+  ],
+  "pattern": "tenir compte de",
+  "example": "Il faut tenir compte de la situation.",
+  "tr": "Durumu hesaba katmak gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc-22",
+  "language": "fr",
+  "lemmas": [
+   "rôle"
+  ],
+  "pattern": "jouer un rôle",
+  "example": "Elle joue un rôle important dans l'équipe.",
+  "tr": "Takımda önemli bir rol oynuyor.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,260 @@
+[
+ {
+  "id": "es-colloc-01",
+  "language": "es",
+  "lemmas": [
+   "soñar"
+  ],
+  "pattern": "soñar con",
+  "example": "Sueño con viajar por todo el mundo.",
+  "tr": "Bütün dünyayı gezmeyi hayal ediyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-02",
+  "language": "es",
+  "lemmas": [
+   "cuenta"
+  ],
+  "pattern": "darse cuenta de",
+  "example": "Me di cuenta de mi error.",
+  "tr": "Hatamı fark ettim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-03",
+  "language": "es",
+  "lemmas": [
+   "pensar"
+  ],
+  "pattern": "pensar en",
+  "example": "Pienso en ti todos los días.",
+  "tr": "Seni her gün düşünüyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-04",
+  "language": "es",
+  "lemmas": [
+   "acordar",
+   "acordarse"
+  ],
+  "pattern": "acordarse de",
+  "example": "Se acordó de llamarme.",
+  "tr": "Beni aramayı hatırladı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-05",
+  "language": "es",
+  "lemmas": [
+   "depender"
+  ],
+  "pattern": "depender de",
+  "example": "Depende de ti.",
+  "tr": "Sana bağlı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-06",
+  "language": "es",
+  "lemmas": [
+   "insistir"
+  ],
+  "pattern": "insistir en",
+  "example": "Insiste en pagar la cuenta.",
+  "tr": "Hesabı ödemekte ısrar ediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-07",
+  "language": "es",
+  "lemmas": [
+   "contar"
+  ],
+  "pattern": "contar con",
+  "example": "Puedes contar con mi ayuda.",
+  "tr": "Yardımıma güvenebilirsin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-08",
+  "language": "es",
+  "lemmas": [
+   "casar",
+   "casarse"
+  ],
+  "pattern": "casarse con",
+  "example": "Se casó con una médica.",
+  "tr": "Bir doktorla evlendi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-09",
+  "language": "es",
+  "lemmas": [
+   "aprender"
+  ],
+  "pattern": "aprender a + infinitivo",
+  "example": "Aprendí a nadar a los cinco años.",
+  "tr": "Beş yaşında yüzmeyi öğrendim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-10",
+  "language": "es",
+  "lemmas": [
+   "acabar"
+  ],
+  "pattern": "acabar de + infinitivo",
+  "example": "Acabo de llegar.",
+  "tr": "Yeni geldim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-11",
+  "language": "es",
+  "lemmas": [
+   "tardar"
+  ],
+  "pattern": "tardar en + infinitivo",
+  "example": "Tardó mucho en responder.",
+  "tr": "Cevap vermekte çok gecikti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-12",
+  "language": "es",
+  "lemmas": [
+   "enamorar",
+   "enamorarse"
+  ],
+  "pattern": "enamorarse de",
+  "example": "Se enamoró de ella al verla.",
+  "tr": "Onu görünce ona âşık oldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-13",
+  "language": "es",
+  "lemmas": [
+   "fijar",
+   "fijarse"
+  ],
+  "pattern": "fijarse en",
+  "example": "Se fija en todos los detalles.",
+  "tr": "Bütün ayrıntılara dikkat eder.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-14",
+  "language": "es",
+  "lemmas": [
+   "parecer",
+   "parecerse"
+  ],
+  "pattern": "parecerse a",
+  "example": "Me parezco mucho a mi madre.",
+  "tr": "Annem'e çok benziyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-15",
+  "language": "es",
+  "lemmas": [
+   "decisión"
+  ],
+  "pattern": "tomar una decisión",
+  "example": "Tengo que tomar una decisión.",
+  "tr": "Bir karar vermem gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-16",
+  "language": "es",
+  "lemmas": [
+   "pregunta"
+  ],
+  "pattern": "hacer una pregunta",
+  "example": "Voy a hacer una pregunta.",
+  "tr": "Bir soru soracağım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-17",
+  "language": "es",
+  "lemmas": [
+   "atención"
+  ],
+  "pattern": "prestar atención",
+  "example": "Es importante prestar atención a los detalles.",
+  "tr": "Ayrıntılara dikkat etmek önemli.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-18",
+  "language": "es",
+  "lemmas": [
+   "cuenta"
+  ],
+  "pattern": "tener en cuenta",
+  "example": "Hay que tener en cuenta los riesgos.",
+  "tr": "Riskleri hesaba katmak gerek.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-19",
+  "language": "es",
+  "lemmas": [
+   "gracias"
+  ],
+  "pattern": "dar las gracias",
+  "example": "Quiero dar las gracias por tu ayuda.",
+  "tr": "Yardımın için teşekkür etmek istiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-20",
+  "language": "es",
+  "lemmas": [
+   "riesgo"
+  ],
+  "pattern": "correr un riesgo",
+  "example": "Es mejor no correr ese riesgo.",
+  "tr": "O riski almamak daha iyi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-21",
+  "language": "es",
+  "lemmas": [
+   "gracia"
+  ],
+  "pattern": "hacer gracia",
+  "example": "Su respuesta me ha hecho mucha gracia.",
+  "tr": "Cevabı bana çok komik geldi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-22",
+  "language": "es",
+  "lemmas": [
+   "frío"
+  ],
+  "pattern": "hacer un frío de perros",
+  "example": "Hace un frío de perros.",
+  "tr": "Hava dondurucu soğuk.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc-23",
+  "language": "es",
+  "lemmas": [
+   "piedra"
+  ],
+  "pattern": "quedarse de piedra",
+  "example": "Cuando lo vi, me quedé de piedra.",
+  "tr": "Onu görünce şaşkınlıktan donup kaldım.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -5191,3 +5191,23 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 
 /* Register game: the three ways of saying it, listed after the answer. */
 .register-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+
+/* The day's plant before anything is answered: the seed waits, glowing, hops now and then, and sparkles; the ring beside it breathes as an invitation. */
+.plant-seed-hop { transform-box: fill-box; transform-origin: 50% 100%; }
+.plant.is-live .plant-seed-hop { animation: seed-hop 3.6s var(--ease-out) infinite; }
+.plant-seed-glow { fill: var(--lang); opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; animation: seed-glow 3.6s ease-in-out infinite; }
+.plant-twinkle { fill: var(--gold); opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; animation: seed-twinkle 3.6s ease-in-out infinite; animation-delay: calc(0.5s + var(--i, 0) * 0.45s); }
+@keyframes seed-hop {
+  0%, 62% { transform: none; }
+  70% { transform: scale(1.12, 0.82); }
+  80% { transform: translateY(-2.6px) scale(0.94, 1.1); }
+  90% { transform: scale(1.1, 0.86); }
+  96%, 100% { transform: none; }
+}
+@keyframes seed-glow { 0%, 100% { opacity: 0.08; transform: scale(0.85); } 50% { opacity: 0.3; transform: scale(1.15); } }
+@keyframes seed-twinkle { 0%, 55%, 100% { opacity: 0; transform: scale(0.3); } 70% { opacity: 0.95; transform: scale(1.4); } 85% { opacity: 0; transform: scale(0.5) translateY(-1px); } }
+.hero-today .ring.is-start::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid currentColor; opacity: 0; animation: ring-invite 2.8s var(--ease-out) infinite; pointer-events: none; }
+@keyframes ring-invite { 0% { transform: scale(0.9); opacity: 0.55; } 100% { transform: scale(1.22); opacity: 0; } }
+.day-plant { animation: day-plant-in 700ms var(--ease-spring) backwards; }
+@keyframes day-plant-in { from { transform: scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .plant.is-live .plant-seed-hop, .plant-seed-glow, .plant-twinkle, .hero-today .ring.is-start::after, .day-plant { animation: none; } .plant-seed-glow { opacity: 0.18; } }

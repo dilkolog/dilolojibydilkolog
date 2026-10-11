@@ -39,6 +39,13 @@ describe('maskPositions', () => {
     expect(hidden('Imaginez-vous pour un moment, chers lecteurs, ce vieux village')).toEqual(['lecteurs'])
   })
 
+  it('does not hide a Spanish verb with a pronoun glued on, but hides the same verb without it', () => {
+    expect(hidden('El machete cayó de plano, dislocándole las vértebras del animal', 'es')).toEqual(['vértebras'])
+    expect(hidden('El hombre estaba allí, mirándose las manos con tristeza', 'es')).toEqual(['tristeza'])
+    expect(hidden('El hombre estaba allí, mirando las manos con tristeza', 'es')).toEqual(['tristeza'])
+    expect(hidden('Él lo hizo ya, observándose sus pies', 'es')).toEqual([])
+  })
+
   it('does not hide names: a capital in mid-sentence, or two at the start', () => {
     expect(hidden('Francet Mamaï, un vieux joueur de fifre, habitait ce village')).toEqual(['habitait'])
     expect(hidden('Nous avons vu Gringoire hier près de la rivière')).toEqual(['rivière'])

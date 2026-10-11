@@ -312,6 +312,8 @@ describe('screens render', () => {
     expect(el.querySelector('.lab-verb')!.textContent).toBe('Hablar')
     expect(el.querySelector('.lab-forms')!.textContent).toContain('hablamos')
     await act(async () => btn(/^Alıştırma$/)!.click())
+    // One person at a time is the default; the list of all six is one tap away.
+    await act(async () => btn(/^Liste$/)!.click())
     const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!
     const answers = ['hablo', 'hablas', 'habla', 'hablamos', 'habláis', 'hablan']
     for (const [i, a] of answers.entries()) {

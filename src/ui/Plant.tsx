@@ -46,7 +46,19 @@ export function Plant({ stage, health = 'fresh', size = 24, live = false, phase 
       <title>{label}</title>
       <Soil fine={fine} />
       {stage < 0 ? (
-        <Seed fine={fine} />
+        // Not planted yet: a seed that waits to be noticed (live only): it glows, hops now and then, and sparkles.
+        <g className="plant-waiting" transform={live ? 'translate(20 33.4) scale(1.5) translate(-20 -33.4)' : undefined}>
+          {live && <ellipse className="plant-seed-glow" cx="20" cy="33" rx="7.5" ry="5" />}
+          <g className="plant-seed-hop">
+            <Seed fine={fine} />
+          </g>
+          {live &&
+            [
+              [14.2, 27.4],
+              [26.2, 25.2],
+              [20.6, 21.4],
+            ].map(([x, y], i) => <circle key={i} className="plant-twinkle" style={{ '--i': i } as CSSProperties} cx={x} cy={y} r="0.7" />)}
+        </g>
       ) : (
         <g transform={`rotate(${tilt} 20 34)`}>
           <g className="plant-body">
