@@ -1221,6 +1221,22 @@ test('register game: a situation and a thought, the way of saying it that suits 
   await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
 })
 
+test('root and endings: a word opens its family as a tree with what each ending does, and a relative can be added', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.locator('.word-row', { hasText: 'léger' }).first().click()
+  const group = page.getByRole('button', { name: 'Aile ve diğer diller' })
+  if ((await group.getAttribute('aria-expanded')) !== 'true') await group.click()
+  const card = page.locator('.morpheme-card')
+  await expect(card).toContainText('Kök ve ekler')
+  await expect(card.locator('.morph-word', { hasText: /^légèrement$/ })).toBeVisible()
+  await expect(card.locator('.morph-legend')).toContainText('-CA')
+  await card.getByRole('button', { name: /légèrement kelimesini ekle/ }).click()
+  await expect(card.getByRole('button', { name: /légèrement kelimesini ekle/ })).toHaveCount(0)
+  // Now in the list: it opens the word.
+  await expect(card.locator('.morph-row', { hasText: 'légèrement' }).locator('button.link')).toBeVisible()
+})
+
 test('text flow game: the connectors of a paragraph are filled one by one, each answer explained, the Turkish shown at the end', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Oyunlar')

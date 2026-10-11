@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { KelimeDB } from '../data/db'
 import { fillEntries } from '../data/wordInfo'
+import { linkEntries } from '../data/familyLinks'
 import { createEntry, WordInputError } from '../data/wordInput'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
@@ -50,14 +51,7 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
   const linkedLemmas = new Set(entry.wordFamily.map((m) => m.lemma.toLocaleLowerCase()))
   const candidates = (entry.familyCandidates ?? []).filter((w) => !linkedLemmas.has(w.toLocaleLowerCase()))
 
-  /** Links two words both ways (keeps each side's other links). */
-  const link = async (other: VocabularyEntry) => {
-    const a = (await db.vocabulary.get(entry.id)) ?? entry
-    const b = (await db.vocabulary.get(other.id)) ?? other
-    const member = (x: VocabularyEntry) => ({ lemma: x.lemma, partOfSpeech: x.partOfSpeech, gloss: x.senses[0].gloss, entryId: x.id })
-    if (!a.wordFamily.some((m) => m.entryId === b.id)) await db.vocabulary.update(a.id, { wordFamily: [...a.wordFamily, member(b)] })
-    if (!b.wordFamily.some((m) => m.entryId === a.id)) await db.vocabulary.update(b.id, { wordFamily: [...b.wordFamily, member(a)] })
-  }
+  const link = (other: VocabularyEntry) => linkEntries(db, entry, other)
 
   /** A new word (or phrase) in the list, linked to this one. */
   const add = async (word: string, gloss: string) => {
