@@ -1237,6 +1237,21 @@ test('root and endings: a word opens its family as a tree with what each ending 
   await expect(card.locator('.morph-row', { hasText: 'légèrement' }).locator('button.link')).toBeVisible()
 })
 
+test('word list: with no list yet, a selection can be added to a brand-new one', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.locator('.select-bar input[type=checkbox]').check()
+  // The button is there even though there is no list yet.
+  await page.locator('.select-bar-move button').click()
+  await page.getByRole('option', { name: '+ Yeni liste…' }).click()
+  await page.getByLabel('Yeni listenin adı').fill('Ayıklanan')
+  await page.getByRole('button', { name: 'Oluştur ve ekle' }).click()
+  await expect(page.getByText(/yeni "Ayıklanan" listesine eklendi/)).toBeVisible()
+  await page.getByRole('tab', { name: 'Listeler' }).click()
+  await expect(page.locator('.wl-name', { hasText: 'Ayıklanan' })).toBeVisible()
+})
+
 test('settings: the typed blank question can be switched off, and stays off after a reload', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Ayarlar')

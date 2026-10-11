@@ -27,6 +27,7 @@ import { MenuItem, Popover } from './Popover'
 import { ImageQueue } from './ImageQueue'
 import { WordForm } from './WordForm'
 import { WordList } from './WordListView'
+import { newListId } from './wordListId'
 
 export { WordForm }
 
@@ -327,7 +328,15 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
             await db.assignList(ids, listId, levelId)
             onChanged()
             const name = placementOptions(lists).find((o) => o.value === placement && listId)?.label
-            showToast(name ? `${ids.length} kelime "${name}" listesine taşındı.` : `${ids.length} kelime listeden çıkarıldı.`)
+            showToast(name ? `${ids.length} kelime "${name}" listesine eklendi.` : `${ids.length} kelime listeden çıkarıldı.`)
+          }}
+          onNewList={async (ids, name) => {
+            const now = new Date().toISOString()
+            const list: WordListRow = { id: newListId(), language, name, levels: [], createdAt: now, updatedAt: now }
+            await db.saveList(list)
+            await db.assignList(ids, list.id, null)
+            onChanged()
+            showToast(`${ids.length} kelime yeni "${name}" listesine eklendi.`)
           }}
         />
       ) : view === 'lists' ? (

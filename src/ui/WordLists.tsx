@@ -167,7 +167,7 @@ export function WordListsView({
             <Bar p={p} />
             {words.length === 0 && (
               <p className="small muted">
-                Boş liste. Kelime eklerken bu listeyi seç ya da "Tümü" görünümünde kelimeleri seçip <strong>Listeye taşı</strong> ile ekle.
+                Boş liste. Kelime eklerken bu listeyi seç ya da "Tümü" görünümünde kelimeleri seçip <strong>Listeye ekle</strong> ile ekle.
               </p>
             )}
             {focused && words.length > 0 && (
@@ -286,7 +286,7 @@ export function WordListsView({
             <span className="small muted">{unlisted.length} kelime</span>
           </header>
           <p className="small muted">
-            "Tümü" görünümünde <strong>Seç</strong> ile işaretleyip <strong>Listeye taşı</strong> ile bir listeye ya da seviyesine yerleştirebilirsin. Odak açıkken yeni kelimeler
+            "Tümü" görünümünde <strong>Seç</strong> ile işaretleyip <strong>Listeye ekle</strong> ile bir listeye ya da seviyesine yerleştirebilirsin. Odak açıkken yeni kelimeler
             bunlardan gelmez.
           </p>
         </article>
