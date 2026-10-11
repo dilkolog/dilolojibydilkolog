@@ -354,8 +354,8 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 
 **Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/`, `api/`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Bu turdaki işler `e2e/`, `docs/`, `scripts/` ve **yeni** veri dosyaları ile sınırlı; mevcut veri dosyalarını düzenleme. Başka dosyaya dokunman gerekirse PR açıklamasına yaz. Veri kuralları 9. turdakiyle aynı (kaynak + lisans satırı, uydurma yok, doğrulanamayanlar raporda ayrı). Her PR tek konu.
 
-### 12.1 Yeni üç beslemenin gerçek alan adları (script + rapor; ağ gerekir)
-`src/engine/news.ts` `FEEDS` içindeki `salut-linfo`, `hoyhablamos`, `bbc-6min` için `hosts` alanını Claude Code ağsız ortamda **tahminle** yazdı. `scripts/check-news-feeds.ts`i bu üç besleme için çalıştır (`FEEDS`teki tanımlarını kullan: `--feeds salut-linfo,hoyhablamos,bbc-6min` gibi bir seçenek ekleyebilirsin) ve rapora ekle (`docs/kaynaklar/gunun-haberi.md` §9): her beslemenin ilk 5 maddesinin `link` alan adı (`allowedArticle` bunu `hosts` ile karşılaştırır), maddenin `extractArticle` ile çıkan kelime sayısı, `audio` adresi (https mi, `Content-Type`, `Access-Control-Allow-Origin`). `hosts` yanlışsa doğru alan adlarını yaz; `src/engine/news.ts`i **sen düzeltme**, Claude Code düzeltir.
+### 12.1 Yeni üç beslemenin gerçek alan adları (script + rapor; TAMAMLANDI — `docs/kaynaklar/gunun-haberi.md` §9)
+`scripts/check-news-feeds.ts --feeds salut-linfo,hoyhablamos,bbc-6min` ile her beslemenin ilk 5 maddesi canlı sınandı. Tüm maddelerin `linkHost` değerleri (`www.franceinfo.fr`, `www.hoyhablamos.com`, `www.bbc.co.uk`) tanımlı `hosts` değerleriyle (`radiofrance.fr/franceinfo.fr`, `hoyhablamos.com`, `bbc.co.uk/bbc.com`) tam uyumlu çıktı (`allowedArticle` 15/15 geçerli). Metin kelime sayıları 125–900 kelime ve ses akışları HTTP 200 doğrulanıp `docs/kaynaklar/gunun-haberi.md` Bölüm 9'a işlendi.
 
 ### 12.2 Sözlük ve eşdizim için uçtan uca testler (`e2e/`)
 Sözlük ekranının hiç E2E testi yoktu; Claude Code yalnızca bir akış yazdı (`e2e/desktop.e2e.ts` "dictionary: a word the pack lacks…"). Ekle (mevcut testleri silme; `e2e/helpers.ts` `openScreen(page, 'Sözlük')` var):

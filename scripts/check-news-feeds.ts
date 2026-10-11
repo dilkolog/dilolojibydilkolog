@@ -1,4 +1,4 @@
-import { FEEDS, parseFeed, extractArticle, type FeedItem } from '../src/engine/news'
+import { FEEDS, parseFeed, extractArticle, allowedArticle, type FeedItem } from '../src/engine/news'
 
 const TARGET_FEEDS = ['rfi-facile', 'voa-learning', 'voa-es']
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15'
@@ -117,6 +117,8 @@ interface AudioCheck {
 interface ArticleCheck {
   title: string
   link: string
+  linkHost?: string
+  allowedHost?: boolean
   hasAudio: boolean
   audioUrl?: string
   wordCount: number
@@ -129,6 +131,7 @@ interface FeedCheckResult {
   id: string
   name: string
   feedUrl: string
+  configuredHosts?: string[]
   totalItems: number
   itemsWithAudio: number
   articles: ArticleCheck[]
@@ -191,16 +194,20 @@ async function fetchWithRedirectTrace(url: string, method: 'HEAD' | 'GET' = 'HEA
   }
 }
 
-export async function runNewsFeedsLiveCheck(): Promise<FeedCheckResult[]> {
+export async function runNewsFeedsLiveCheck(targetFeedIds: string[] = TARGET_FEEDS, maxItems = 5): Promise<FeedCheckResult[]> {
   const results: FeedCheckResult[] = []
 
-  for (const feedId of TARGET_FEEDS) {
+  for (const feedId of targetFeedIds) {
     const feed = FEEDS.find((f) => f.id === feedId)
-    if (!feed) continue
+    if (!feed) {
+      console.warn(`[UYARI] Besleme bulunamadı: ${feedId}`)
+      continue
+    }
 
     console.log(`\n======================================================`)
     console.log(`[TEST] Besleme: ${feed.name} (${feed.id})`)
     console.log(`URL: ${feed.url}`)
+    console.log(`Tanımlı hosts: [${feed.hosts.join(', ')}]`)
     console.log(`======================================================`)
 
     let xml = ''
@@ -225,18 +232,26 @@ export async function runNewsFeedsLiveCheck(): Promise<FeedCheckResult[]> {
       continue
     }
 
-    const items: FeedItem[] = parseFeed(xml)
+    const items: FeedItem[] = parseFeed(xml, { upgradeHttp: feed.upgradeHttp })
     const itemsWithAudio = items.filter((i) => !!i.audio).length
     console.log(`-> Toplam Ayrıştırılan Madde: ${items.length}`)
     console.log(`-> Ses (enclosure) İçeren Madde: ${itemsWithAudio}`)
 
-    const topItems = items.slice(0, 3)
+    const topItems = items.slice(0, maxItems)
     const articles: ArticleCheck[] = []
     const diagnosis: string[] = []
+    const linkHostsFound = new Set<string>()
 
     for (const [idx, item] of topItems.entries()) {
+      let linkHost = ''
+      try {
+        linkHost = new URL(item.link).hostname
+        linkHostsFound.add(linkHost)
+      } catch {}
+      const isAllowed = allowedArticle(item.link, feed.hosts)
+
       console.log(`\n  [${idx + 1}/${topItems.length}] "${item.title}"`)
-      console.log(`  Link: ${item.link}`)
+      console.log(`  Link: ${item.link} (Host: ${linkHost || 'belirsiz'} -> allowed: ${isAllowed ? 'EVET' : 'HAYIR'})`)
       console.log(`  Ses: ${item.audio ?? 'YOK'}`)
 
       let html = ''
@@ -270,6 +285,8 @@ export async function runNewsFeedsLiveCheck(): Promise<FeedCheckResult[]> {
       articles.push({
         title: item.title,
         link: item.link,
+        linkHost,
+        allowedHost: isAllowed,
         hasAudio: !!item.audio,
         audioUrl: item.audio,
         wordCount,
@@ -280,6 +297,17 @@ export async function runNewsFeedsLiveCheck(): Promise<FeedCheckResult[]> {
     }
 
     let suggestedFix: FeedCheckResult['suggestedFix']
+
+    const unallowedHosts = Array.from(linkHostsFound).filter((h) => !feed.hosts.some((fh) => h === fh || h.endsWith(`.${fh}`)))
+    if (unallowedHosts.length > 0) {
+      diagnosis.push(`Madde linklerinde tanımlı olmayan host(lar) saptandı: ${unallowedHosts.join(', ')}. Bu maddeler allowedArticle tarafından reddedilecektir!`)
+      const combinedHosts = Array.from(new Set([...feed.hosts, ...unallowedHosts]))
+      suggestedFix = {
+        suggestedUrl: feed.url,
+        reason: `Maddelerin link hostu (${unallowedHosts.join(', ')}) ile FEEDS.hosts eşleşmiyor.`,
+        hosts: combinedHosts,
+      }
+    }
 
     if (feed.id === 'rfi-facile') {
       if (articles.some((a) => a.wordCount < 80)) {
@@ -324,6 +352,7 @@ export async function runNewsFeedsLiveCheck(): Promise<FeedCheckResult[]> {
       id: feed.id,
       name: feed.name,
       feedUrl: feed.url,
+      configuredHosts: feed.hosts,
       totalItems: items.length,
       itemsWithAudio,
       articles,
@@ -491,6 +520,9 @@ export async function runCandidateFeedsCheck(): Promise<CandidateCheckResult[]> 
 
 if (process.argv[1]?.endsWith('check-news-feeds.ts')) {
   const runCandidates = process.argv.includes('--candidates') || process.argv.includes('-c')
+  const feedsArgIdx = process.argv.findIndex((a) => a === '--feeds' || a === '-f')
+  const feedsArg = feedsArgIdx !== -1 ? process.argv[feedsArgIdx + 1] : undefined
+
   if (runCandidates) {
     runCandidateFeedsCheck()
       .then((res) => {
@@ -499,7 +531,8 @@ if (process.argv[1]?.endsWith('check-news-feeds.ts')) {
       })
       .catch(console.error)
   } else {
-    runNewsFeedsLiveCheck()
+    const selectedFeeds = feedsArg ? feedsArg.split(',').map((s) => s.trim()).filter(Boolean) : TARGET_FEEDS
+    runNewsFeedsLiveCheck(selectedFeeds, 5)
       .then((res) => {
         console.log('\n================ SONUÇ ÖZETİ ================\n')
         console.log(JSON.stringify(res, null, 2))
