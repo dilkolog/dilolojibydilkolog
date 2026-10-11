@@ -63,6 +63,9 @@ function GalleryArt({ entry }: { entry: VocabularyEntry }) {
 }
 
 /** Searchable, filterable word list. */
+/** The "new list" choice among the lists a selection can be added to. */
+const NEW_LIST_CHOICE = '__new'
+
 export function WordList({
   language,
   vocabulary,
@@ -74,6 +77,7 @@ export function WordList({
   onAdd,
   lists = [],
   onMove,
+  onNewList,
   onMark,
   onSuggestImages,
   pictureTick = 0,
@@ -90,6 +94,8 @@ export function WordList({
   lists?: WordListRow[]
   /** Moves words to a list or one of its levels ("list|level"), or out of any ('__none'). */
   onMove?: (ids: string[], placement: string) => Promise<void>
+  /** Makes a new list with this name and puts the words in it. */
+  onNewList?: (ids: string[], name: string) => Promise<void>
   /** Marks words as hard (or clears the mark). */
   onMark?: (ids: string[], difficult: boolean) => Promise<void>
   /** Opens the picture suggestions for words without one. */
@@ -108,6 +114,8 @@ export function WordList({
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [anchor, setAnchor] = useState<number | null>(null)
   const [deleting, setDeleting] = useState(false)
+  /** The name being typed for a new list made from the selection (null: not asking). */
+  const [naming, setNaming] = useState<string | null>(null)
   const [stage, setStage] = useState<StageFilter>('all')
   const [flags, setFlags] = useState<{ picture?: boolean; audio?: boolean; noExample?: boolean; idiom?: boolean }>({})
   const [tag, setTag] = useState('')
@@ -240,6 +248,7 @@ export function WordList({
     setSelecting(false)
     setSelected(new Set())
     setAnchor(null)
+    setNaming(null)
   }
 
   const clickRow = (index: number, id: string, shift: boolean) => {
@@ -481,18 +490,25 @@ export function WordList({
                   {selectedVisible.length && selectedVisible.every((v) => v.difficult) ? 'Zor işaretini kaldır' : 'Zor işaretle'}
                 </button>
               )}
-              {onMove && lists.length > 0 && (
+              {onMove && (
                 <div className="select-bar-move">
                   <Select
-                    label="Listeye taşı"
+                    label="Listeye ekle"
                     value={undefined}
-                    placeholder="Listeye taşı"
+                    placeholder="Listeye ekle"
                     onChange={async (v) => {
                       if (!selectedVisible.length) return
+                      if (v === NEW_LIST_CHOICE) {
+                        setNaming('')
+                        return
+                      }
                       await onMove(selectedVisible.map((x) => x.id), v)
                       exitSelection()
                     }}
-                    options={placementOptions(lists, 'Listeden çıkar')}
+                    options={[
+                      ...(onNewList ? [{ value: NEW_LIST_CHOICE, label: '+ Yeni liste…' }] : []),
+                      ...placementOptions(lists, 'Listeden çıkar').filter((o) => lists.length > 0 || o.value !== '__none'),
+                    ]}
                   />
                 </div>
               )}
@@ -509,6 +525,27 @@ export function WordList({
                 Sil ({selectedVisible.length})
               </button>
             </div>
+          )}
+          {selecting && naming !== null && onNewList && (
+            <form
+              className="row gap-2 select-bar-new"
+              onSubmit={async (e) => {
+                e.preventDefault()
+                const name = naming.trim().slice(0, 60)
+                if (!name || !selectedVisible.length) return
+                await onNewList(selectedVisible.map((x) => x.id), name)
+                setNaming(null)
+                exitSelection()
+              }}
+            >
+              <input className="input grow" autoFocus aria-label="Yeni listenin adı" placeholder={`Yeni liste adı (${selectedVisible.length} kelime eklenecek)`} value={naming} maxLength={60} onChange={(e) => setNaming(e.target.value)} />
+              <button type="submit" className="btn" disabled={!naming.trim() || !selectedVisible.length}>
+                Oluştur ve ekle
+              </button>
+              <button type="button" className="btn btn-quiet" onClick={() => setNaming(null)}>
+                Vazgeç
+              </button>
+            </form>
           )}
           {!selecting && list.length > 0 && list.length < vocabulary.length && (
             <div className="deck-bar">
