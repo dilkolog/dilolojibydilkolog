@@ -261,11 +261,24 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 24. **Eksik Doldurma ve Seviyeli Kelime Önerisi:** ✅ Yapıldı:  
     Cümle içi boşluk doldurma alıştırması (`FillMissing.tsx`) ve seviyeye uygun kelime önerme motoru (`SuggestWords.tsx`, `wordSuggest.ts`).
 
+### 🟠 Öncelik 6: Bileşik Zamanlar, Sağlamlaştırma ve İçerik Genişletmesi (11. Tur)
+25. **Bileşik Zaman Tanıma ve Ekran Denetimi:** ✅ Yapıldı (#244, #246, #247):  
+    Kelime eklemede bileşik zaman önerisi ("j'ai mangé" -> "manger ekle"), Okuma ekranında bileşik zaman kartı, 10 gerçek metin üzerinde denetim betiği (`scripts/audit-compounds.ts`), `ne ... plus` / `plaire` false positive analizi ve 30 kaçırılan cümle dökümü (`docs/veri/bilesik-zaman-denetimi.md`).
+26. **Kayıt Farkı (Register) 63 Yeni Üçlü:** ✅ Yapıldı (#248):  
+    Her dilde 21 yeni durum üçlüsü (`src/data/register/{fr-2,es-2,en-2}.json`), selamlaşmadan iş e-postasına ve siparişe kadar geniş bağlam, İspanyolca bölgesel notlar (`docs/veri/kayit-farki-genisleme.md`).
+27. **Tuzak Kelime (False Friends) 178 Kayıt Denetimi:** ✅ Yapıldı (#249):  
+    Tüm tuzak kelimelerde aksan uyuşmazlığı, tooltip anlatım bozuklukları ve şık taşmaları denetlendi; 41 maddelik düzeltme tablosu ve mimari iyileştirme önerisi (`docs/veri/tuzak-kelimeler-denetimi.md`).
+28. **Haber Kaynağı Adaylarının Canlı Ağ Taraması:** ✅ Yapıldı (#251):  
+    `scripts/check-news-feeds.ts` ile FR, ES ve EN için 9 yeni aday kaynak canlı test edildi; doğrudan MP3 akışı, tam metin ve CORS durumları belgelendi (`docs/kaynaklar/gunun-haberi.md` Bölüm 8).
+29. **Uçtan Uca ve Erişilebilirlik Taramaları:** ✅ Yapıldı (#244, #246):  
+    Bileşik zamanlar, çıkarım mobil alt çekmecesi, YZ servisleri taklitleri ve yeni tüm mini oyunlar için telefon görünümünde, açık/koyu temalarda sıfır axe ihlaliyle 26 test yeşile ulaştırıldı.
+
 ---
 
 ## 8. Sonuç
 
 Kelime Koçu; temiz tipografisi (Lexend + Literata uyumu), tek dil vurgusu prensibi, dokunsal düğme basma hissi ve yargılamayan bahçe metaforuyla piyasadaki aşırı oyunlaştırılmış (gamified) ve dikkat dağıtıcı dil uygulamalarına kıyasla son derece dingin, ergonomik ve amaca odaklı bir kullanıcı deneyimi sunmaktadır.
 
-9. ve 10. turlarla birlikte gelen ileri seviye B1–C1 dilbilgisi pratikleri, refleks kalıpları, tuzak kelime farkındalığı, çıkarım modu, canlı mikro haberler, kayıt farkı üçlüleri ve fonetik doğrulama; uygulamayı salt bir kelime ezberleme aracından çok boyutlu bir dil edinim, okuduğunu anlama ve akıcılık ekosistemine dönüştürmüştür.
+9., 10. ve 11. turlarla birlikte gelen ileri seviye B1–C1 dilbilgisi pratikleri, refleks kalıpları, tuzak kelime farkındalığı, çıkarım modu, canlı mikro haberler, kayıt farkı üçlüleri, bileşik zaman çözümlemesi ve fonetik doğrulama; uygulamayı salt bir kelime ezberleme aracından çok boyutlu bir dil edinim, okuduğunu anlama ve akıcılık ekosistemine dönüştürmüştür.
+
 
