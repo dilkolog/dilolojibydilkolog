@@ -1,12 +1,15 @@
 import type { TargetLanguage } from './types'
 
 /** News feeds the server may fetch: an allowlist, so the endpoint can't be used as an open proxy. */
-export const FEEDS: { id: string; language: TargetLanguage; name: string; url: string; hosts: string[] }[] = [
+export const FEEDS: { id: string; language: TargetLanguage; name: string; url: string; hosts: string[]; /** The feed still writes http:// for sites that answer on https: its links and recordings are upgraded. */ upgradeHttp?: boolean }[] = [
   // Bulletins made for learners, with their recording: read and listen (VOA is public domain; RFI streams its podcast).
   { id: 'rfi-facile', language: 'fr', name: 'RFI · Journal en français facile', url: 'https://francaisfacile.rfi.fr/fr/podcasts/journal-en-fran%C3%A7ais-facile/podcast', hosts: ['rfi.fr'] },
   { id: 'voa-learning', language: 'en', name: 'VOA Learning English · As It Is', url: 'https://learningenglish.voanews.com/podcast/?zoneId=3521', hosts: ['learningenglish.voanews.com'] },
   { id: 'voa-es-news', language: 'es', name: 'Voz de América · Noticias', url: 'https://www.vozdeamerica.com/api/zgkmqrl-vomx-tpe-pvqo', hosts: ['vozdeamerica.com'] },
   { id: 'voa-es', language: 'es', name: 'Voz de América · Buenos días América (sesli)', url: 'https://www.vozdeamerica.com/podcast/?zoneId=537', hosts: ['vozdeamerica.com'] },
+  { id: 'salut-linfo', language: 'fr', name: "franceinfo · Salut l'info ! (enfants, A2–B1)", url: 'https://radiofrance-podcast.net/podcast09/podcast_9f5486b0-38b5-4544-bf49-e24b18bd022c.xml', hosts: ['radiofrance.fr', 'franceinfo.fr'] },
+  { id: 'hoyhablamos', language: 'es', name: 'Hoy Hablamos · Noticias en español (B1–B2)', url: 'https://www.hoyhablamos.com/feed/podcast/', hosts: ['hoyhablamos.com'] },
+  { id: 'bbc-6min', language: 'en', name: 'BBC Learning English · 6 Minute English', url: 'https://podcasts.files.bbci.co.uk/p02pc9tn.rss', hosts: ['bbc.co.uk', 'bbc.com'], upgradeHttp: true },
   { id: 'lemonde', language: 'fr', name: 'Le Monde', url: 'https://www.lemonde.fr/rss/une.xml', hosts: ['lemonde.fr'] },
   { id: 'france24', language: 'fr', name: 'France 24', url: 'https://www.france24.com/fr/rss', hosts: ['france24.com'] },
   { id: 'rfi', language: 'fr', name: 'RFI', url: 'https://www.rfi.fr/fr/rss', hosts: ['rfi.fr'] },
@@ -59,19 +62,21 @@ const tag = (block: string, name: string) => {
   return m ? stripTags(m[1]) : ''
 }
 
-/** Items of an RSS 2.0 or Atom feed. */
-export function parseFeed(xml: string): FeedItem[] {
+/** Items of an RSS 2.0 or Atom feed (`upgradeHttp`: for a feed that writes http:// where https works). */
+export function parseFeed(xml: string, options: { upgradeHttp?: boolean } = {}): FeedItem[] {
+  const up = (url: string) => (options.upgradeHttp ? url.replace(/^http:\/\//i, 'https://') : url)
   const blocks = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) ?? xml.match(/<entry[\s>][\s\S]*?<\/entry>/gi) ?? []
   return blocks
     .map((b) => {
       const atomLink = /<link[^>]*href="([^"]+)"/i.exec(b)?.[1]
-      const audio = /<enclosure\b[^>]*\burl=["'](https:\/\/[^"']+)["'][^>]*>/i.exec(b)?.[1]
-      const enclosureIsAudio = audio ? !/\btype=["'](?!audio\/)/i.test(/<enclosure\b[^>]*>/i.exec(b)![0]) : false
+      const audio = up(/<enclosure\b[^>]*\burl=["']([^"']+)["'][^>]*>/i.exec(b)?.[1] ?? '')
+      const audioHttps = /^https:\/\//.test(audio) ? audio : undefined
+      const enclosureIsAudio = audioHttps ? !/\btype=["'](?!audio\/)/i.test(/<enclosure\b[^>]*>/i.exec(b)![0]) : false
       return {
         title: tag(b, 'title'),
-        link: (tag(b, 'link') || atomLink || '').trim(),
+        link: up((tag(b, 'link') || atomLink || '').trim()),
         description: tag(b, 'description') || tag(b, 'summary'),
-        ...(audio && enclosureIsAudio ? { audio: decodeEntities(audio) } : {}),
+        ...(audioHttps && enclosureIsAudio ? { audio: decodeEntities(audioHttps) } : {}),
       }
     })
     .filter((i) => i.title && /^https:\/\//.test(i.link))

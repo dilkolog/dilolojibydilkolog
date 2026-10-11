@@ -1,6 +1,22 @@
 import { describe, expect, it } from 'vitest'
 import { decodeEntities, extractArticle, FEEDS, parseFeed } from '../news'
 
+describe('a feed that still writes http://', () => {
+  const xml = '<rss><channel><item><title>6 Minute English</title><link>http://www.bbc.co.uk/programmes/p01</link><description>d</description><enclosure url="http://open.live.bbc.co.uk/x.mp3" type="audio/mpeg"/></item></channel></rss>'
+  it('is read over https when the feed says so: the link and the recording are upgraded', () => {
+    expect(parseFeed(xml, { upgradeHttp: true })).toEqual([{ title: '6 Minute English', link: 'https://www.bbc.co.uk/programmes/p01', description: 'd', audio: 'https://open.live.bbc.co.uk/x.mp3' }])
+  })
+
+  it('is dropped otherwise: nothing is ever fetched in the clear', () => {
+    expect(parseFeed(xml)).toEqual([])
+  })
+
+  it('has its feed marked in the list', () => {
+    expect(FEEDS.find((f) => f.id === 'bbc-6min')?.upgradeHttp).toBe(true)
+    expect(FEEDS.filter((f) => f.upgradeHttp).map((f) => f.id)).toEqual(['bbc-6min'])
+  })
+})
+
 describe('news parsing', () => {
   it('reads RSS items, CDATA and entities included', () => {
     const xml = `<rss><channel><title>X</title>
