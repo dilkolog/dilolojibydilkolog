@@ -26,6 +26,20 @@ const deInvert = (word: string) => word.replace(/(?:-t)?-(?:je|tu|il|elle|on|nou
 /** The participle of "to be" after avoir/haber: the sign of a passive ("ont été retrouvés"), whose verb is the next participle. */
 const PASSIVE_PP: Record<'fr' | 'es', string> = { fr: 'été', es: 'sido' }
 
+/**
+ * What may stand in front of the past infinitive of "être" ("après être parti", "il doit être parti"):
+ * a preposition or a modal. Without one, "être + participle" is the passive or an adjective ("il est fatigué").
+ */
+/** What may stand in front of a typed past infinitive (also "avant de", "después de"). */
+const INFINITIVE_LEADS: Record<'fr' | 'es', Set<string>> = { fr: new Set(['après', 'pour', 'sans', 'de', 'd', 'à', 'avant', 'par', 'en']), es: new Set(['después', 'sin', 'por', 'al', 'de', 'antes']) }
+const BE_INFINITIVE_LEADS = new Set(['après', 'pour', 'sans', 'de', 'd', 'à', 'avant', 'par', 'en', 'doit', 'dois', 'doivent', 'peut', 'peuvent', 'pourrait', 'devrait', 'semble', 'semblent', 'paraît'])
+
+/** The auxiliary of a Spanish compound infinitive or gerund with its pronouns glued on ("haberme", "habiéndose") → the auxiliary alone. */
+const esAuxOf = (word: string) => {
+  const m = /^(haber|habiendo|habiéndo)(?:me|te|se|nos|os|lo|la|le|los|las|les)+$/.exec(word)
+  return m ? (m[1] === 'habiéndo' ? 'habiendo' : m[1]) : word
+}
+
 /** A Spanish participle as written agreeing (tirados, rotas, dicha) → its masculine singular. */
 const esMasculine = (word: string) => word.replace(/(?:os|as|a)$/, 'o')
 
@@ -74,7 +88,9 @@ interface CompoundMatch {
 function compoundAt(language: 'fr' | 'es', raws: readonly string[], words: readonly string[], i: number): CompoundMatch | undefined {
   const pronoun = language === 'fr' ? reflexivePronoun(raws, words, i) : undefined
   const prefix = pronoun ? `${pronoun}${pronoun.endsWith("'") ? '' : ' '}` : ''
-  const aux = language === 'fr' ? deInvert(words[i]) : words[i]
+  const aux = language === 'fr' ? deInvert(words[i]) : esAuxOf(words[i])
+  // "être" + participle is a past infinitive only after a preposition or a modal; otherwise a passive or an adjective.
+  if (language === 'fr' && aux === 'être' && !BE_INFINITIVE_LEADS.has(words[i - 1] ?? '') && !/^d'/.test(raws[i])) return undefined
   for (let gap = 0; gap <= 2 && i + 1 + gap < words.length; gap++) {
     if (gap > 0 && !isBetween(language, words[i + gap])) break
     const next = words[i + 1 + gap]
@@ -105,11 +121,24 @@ const REFLEXIVE_WORDS: Record<'fr' | 'es', Set<string>> = { fr: new Set(['me', '
  * add-word form: the list keeps the infinitive.
  */
 export function typedCompound(language: 'fr' | 'es', typed: string): { lemma: string; tense: Tense; form: string } | undefined {
-  const words = typed
+  let words = typed
     .toLocaleLowerCase(language)
     .replace(/[’‘´`]/g, "'")
     .split(/[\s']+/)
     .filter(Boolean)
+  // "après avoir mangé", "sin haberlo visto", "d'avoir marché", "après s'être lavé": what stands in front of a past
+  // infinitive is no part of the form, but it is what makes "être" + participle one (and not a passive).
+  const opensInfinitive = (w?: string) => !!w && (language === 'fr' ? ['avoir', 'être', 'ayant', 'étant'].includes(w) : /^(haber|habiendo|habiéndo)/.test(w))
+  let led = false
+  if (words[0] && (INFINITIVE_LEADS[language].has(words[0]) || BE_INFINITIVE_LEADS.has(words[0]))) {
+    const k = words[1] === 'de' && ['avant', 'después'].includes(words[0]) ? 2 : 1
+    let j = k
+    while (j < words.length && REFLEXIVE_WORDS[language].has(words[j])) j++
+    if (opensInfinitive(words[j])) {
+      words = words.slice(k)
+      led = true
+    }
+  }
   // Lead-in words: subjects, the negation, the reflexive pronouns and the object pronouns ("s'en est allé", "je l'ai vu", "me lo he comido").
   const isLead = (w: string) => SUBJECTS[language].has(w) || REFLEXIVE_WORDS[language].has(w) || OBJECT_WORDS[language].has(w)
   let start = 0
@@ -120,7 +149,9 @@ export function typedCompound(language: 'fr' | 'es', typed: string): { lemma: st
   const before = lead[lead.length - 1]
   const reflexive = !!before && REFLEXIVE_WORDS[language].has(before) && (!['nous', 'vous'].includes(before) || lead[lead.length - 2] === before)
   const rest = words.slice(start)
-  const aux = language === 'fr' && rest[0] ? deInvert(rest[0]) : rest[0]
+  const aux = language === 'fr' && rest[0] ? deInvert(rest[0]) : language === 'es' && rest[0] ? esAuxOf(rest[0]) : rest[0]
+  // "être parti" alone is a passive or an adjective: only with a lead.
+  if (language === 'fr' && aux === 'être' && !led) return undefined
   for (let gap = 0; gap <= 2 && 1 + gap < rest.length; gap++) {
     if (gap > 0 && !isBetween(language, rest[gap])) break
     // A passive ("ont été retrouvés"): the verb is the participle after "été".

@@ -16,10 +16,13 @@ export type EsTense = 'presente' | 'preterito' | 'imperfecto' | 'perfecto' | 'fu
 /**
  * Further tenses, mostly put together from the auxiliary and the participle (or the preterite stem),
  * plus the passé simple of written French: the verb lab and the reader know them; the daily
- * questions do not ask them.
+ * questions do not ask them. The last two of each language are the compound forms of the verb
+ * without a person: the past infinitive ("après avoir mangé", "después de haber comido") and the
+ * compound participle or gerund ("ayant mangé", "habiendo comido"); the reader finds them, the
+ * verb lab does not list them (they have no person to conjugate).
  */
-export type FrMoreTense = 'imperatif' | 'passe-simple' | 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe'
-export type EsMoreTense = 'imperativo' | 'pluscuamperfecto' | 'futuro-perfecto' | 'condicional-perfecto' | 'subjuntivo-imperfecto' | 'subjuntivo-perfecto' | 'subjuntivo-pluscuamperfecto'
+export type FrMoreTense = 'imperatif' | 'passe-simple' | 'plus-que-parfait' | 'futur-anterieur' | 'conditionnel-passe' | 'subjonctif-passe' | 'infinitif-passe' | 'participe-compose'
+export type EsMoreTense = 'imperativo' | 'pluscuamperfecto' | 'futuro-perfecto' | 'condicional-perfecto' | 'subjuntivo-imperfecto' | 'subjuntivo-perfecto' | 'subjuntivo-pluscuamperfecto' | 'infinitivo-compuesto' | 'gerundio-compuesto'
 export type Tense = FrTense | EsTense | FrMoreTense | EsMoreTense
 
 /** In teaching order: the present, the past, the past background, the future, then the moods. These are the tenses the questions and the word page use. */
@@ -460,6 +463,10 @@ const UNLOCK: Record<Tense, number> = {
   'subjuntivo-imperfecto': 99,
   'subjuntivo-perfecto': 99,
   'subjuntivo-pluscuamperfecto': 99,
+  'infinitif-passe': 99,
+  'participe-compose': 99,
+  'infinitivo-compuesto': 99,
+  'gerundio-compuesto': 99,
 }
 
 /**
@@ -627,6 +634,16 @@ function auxForms(language: 'fr' | 'es') {
     if (language === 'fr') for (const kind of ['avoir', 'etre'] as const) AUX[kind][when].forEach((f, i) => add(f, tense, i, kind))
     else (tense === 'subjuntivo-pluscuamperfecto' ? AUX.hubiera : AUX.haber[when]).forEach((f, i) => add(f, tense, i))
   }
+  // The forms without a person (person -1): the past infinitive and the compound participle or gerund.
+  if (language === 'fr') {
+    add('avoir', 'infinitif-passe', -1, 'avoir')
+    add('être', 'infinitif-passe', -1, 'etre')
+    add('ayant', 'participe-compose', -1, 'avoir')
+    add('étant', 'participe-compose', -1, 'etre')
+  } else {
+    add('haber', 'infinitivo-compuesto', -1)
+    add('habiendo', 'gerundio-compuesto', -1)
+  }
   AUX_FORMS[language] = map as never
   return map
 }
@@ -673,8 +690,9 @@ export function analyzeCompound(language: 'fr' | 'es' | 'en', aux: string, parti
       // A reflexive verb ("il s'est lavé") takes être whatever its own auxiliary is.
       if (language === 'fr' && !(reflexive && o.kind === 'etre') && o.kind !== (v.etre ? 'etre' : 'avoir')) continue
       const same = out.find((a) => a.lemma === v.lemma && a.tense === o.tense)
-      if (same) same.persons.push(o.person)
-      else out.push({ lemma: v.lemma, tense: o.tense, persons: [o.person] })
+      const persons = o.person < 0 ? [] : [o.person]
+      if (same) same.persons.push(...persons)
+      else out.push({ lemma: v.lemma, tense: o.tense, persons })
     }
   return out
 }
