@@ -728,7 +728,16 @@ export class KelimeDB extends Dexie {
     return { ...emptyNotes(), ...v }
   }
 
-  async saveDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
+  /** Saves queue behind each other: the marks of what was taken out come from comparing with the save before. */
+  private notesQueue: Promise<unknown> = Promise.resolve()
+
+  saveDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes): Promise<void> {
+    const run = this.notesQueue.then(() => this.writeDictionaryNotes(language, notes))
+    this.notesQueue = run.catch(() => undefined)
+    return run
+  }
+
+  private async writeDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
     // A correction taken back leaves a mark; a newer correction of the same word is alive regardless (see tombstones.ts).
     const before = await this.getDictionaryNotes(language)
     await this.meta.put({ key: `dict:${language}`, value: notes })

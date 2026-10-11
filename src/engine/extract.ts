@@ -102,8 +102,11 @@ export function cleanToken(t: string, language: TargetLanguage): string {
   return word.replace(/^[-'’]+|[-'’]+$/g, '')
 }
 
+/** One word in a text: a hyphen joins only when a letter follows it ("peut-être" is one word, "abril--vivieron" is two). */
+export const WORD_SOURCE = "[\\p{L}](?:[\\p{L}'’]|-(?=\\p{L}))*"
+
 function tokenize(sentence: string, language: TargetLanguage): Token[] {
-  const raw = sentence.match(/[\p{L}][\p{L}'’-]*/gu) ?? []
+  const raw = sentence.match(new RegExp(WORD_SOURCE, 'gu')) ?? []
   return raw.map((t, i) => {
     const word = cleanToken(t, language)
     const capital = /^\p{Lu}/u.test(word)

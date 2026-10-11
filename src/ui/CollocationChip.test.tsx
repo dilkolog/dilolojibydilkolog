@@ -23,7 +23,9 @@ describe('CollocationChip', () => {
   it('names what the word goes with, with an example in the title', async () => {
     const host = await mount('fr', 'décider')
     const chip = host.querySelector('li')!
-    expect(chip.textContent).toBe('décider de + infinitif')
+    expect(chip.firstChild?.textContent).toBe('décider de + infinitif')
+    // The example is for screen readers and touch users too, not only the title.
+    expect(chip.querySelector('.sr-only')?.textContent).toContain('Il a décidé de partir plus tôt.')
     expect(chip.getAttribute('title')).toContain('Il a décidé de partir plus tôt.')
   })
 

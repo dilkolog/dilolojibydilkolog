@@ -108,6 +108,19 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
   const saved = useMemo(() => findAdded(notes, typed, language), [notes, typed, language])
   const savedExact = result.exact ? undefined : saved.find((e) => e.exact)
   const savedOthers = saved.filter((e) => e !== savedExact)
+  const savedCard = savedExact ? (
+    <SavedCard
+      key={savedExact.word}
+      language={language}
+      word={savedExact.word}
+      meanings={savedExact.t}
+      from={notes.added?.[savedExact.word]?.from}
+      own={own}
+      onOpenWord={onOpenWord}
+      onAdd={onAdd}
+      onRemove={() => updateNotes((n) => removeEntry(n, savedExact.word))}
+    />
+  ) : null
   const save = (word: string, meanings: string[], from: 'deepl' | 'own') => updateNotes((n) => addEntry(n, word, meanings, new Date().toISOString(), from, language))
 
   // A word whose card stays up a moment was really looked up (not just passed while typing): once a visit.
@@ -184,6 +197,13 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
         </section>
       )}
 
+      {typed && !index && (savedCard || savedOthers.length > 0) && (
+        <>
+          {savedCard}
+          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} />}
+        </>
+      )}
+
       {typed && index && (
         <>
           {result.exact ? (
@@ -207,19 +227,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               onPick={pick}
               onSwitchLanguage={onSwitchLanguage}
             />
-          ) : savedExact ? (
-            <SavedCard
-              key={savedExact.word}
-              language={language}
-              word={savedExact.word}
-              meanings={savedExact.t}
-              from={notes.added?.[savedExact.word]?.from}
-              own={own}
-              onOpenWord={onOpenWord}
-              onAdd={onAdd}
-              onRemove={() => updateNotes((n) => removeEntry(n, savedExact.word))}
-            />
-          ) : (
+          ) : savedCard ?? (
             <NotFound
               key={typed}
               language={language}
@@ -228,7 +236,8 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               onOpenWord={onOpenWord}
               onAdd={onAdd}
               onSave={save}
-              hasOthers={result.similar.length + result.fromTurkish.length + savedOthers.length > 0}
+              hasOthers={result.fromTurkish.length + savedOthers.length > 0}
+              hasSimilar={result.similar.length > 0}
             />
           )}
 
@@ -543,6 +552,7 @@ function NotFound({
   onAdd,
   onSave,
   hasOthers,
+  hasSimilar,
 }: {
   language: TargetLanguage
   word: string
@@ -551,7 +561,10 @@ function NotFound({
   onAdd: (word: string, meaning: string) => void
   /** Keeps the word in the dictionary for good (not in the study list). */
   onSave: (word: string, meanings: string[], from: 'deepl' | 'own') => void
+  /** Matches of the Turkish typed, or saved words: they are listed below and make the card unnecessary. */
   hasOthers: boolean
+  /** Pack words that start like the query: listed below, but the word itself is still missing (it can be saved). */
+  hasSimilar?: boolean
 }) {
   const { apiKey } = useAi()
   const [ai, setAi] = useState<{ lemma: string; meanings: string[] } | null>(null)
@@ -624,10 +637,10 @@ function NotFound({
           <p>
             <strong lang={language}>{word}</strong>: {deepl} <span className="small muted">(DeepL)</span>
           </p>
-          <p className="small muted">Tek kelimede çeviri yanılabilir. “Sözlüğe kaydet” kelimeyi bu sözlükte kalıcı bulunur yapar (çalışma listene girmez); “Kelimelerime ekle” çalışma kartı yapar. Yanlışsa anlamı düzeltip kaydet.</p>
+          <p className="small muted">Tek kelimede çeviri yanılabilir. “Sözlüğe kaydet” kelimeyi sözlükte hep bulunsun diye saklar (çalışma listene girmez); “Kelimelerime ekle” onu çalışma kartı yapar. Yanlışsa anlamı düzeltip kaydet.</p>
           <input type="text" className="input" placeholder={deepl} value={customMeaning} onChange={(e) => setCustomMeaning(e.target.value)} aria-label="Türkçe anlamı" />
           <div className="row gap-xs">
-            <button type="button" className="btn btn-sm" onClick={() => onSave(word, parseMeanings(customMeaning.trim() || deepl), 'deepl')}>
+            <button type="button" className="btn btn-sm" onClick={() => onSave(word, parseMeanings(customMeaning.trim() || deepl), customMeaning.trim() ? 'own' : 'deepl')}>
               <BookIcon size={15} /> Sözlüğe kaydet
             </button>
             <button type="button" className="btn btn-sm btn-quiet" onClick={() => onAdd(word, (customMeaning.trim() || deepl).trim())}>
@@ -649,7 +662,7 @@ function NotFound({
       ) : (
         <>
           <p>
-            “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok. Anlamını biliyorsan doğrudan sözlüğüne ekleyebilirsin:
+            “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok{hasSimilar ? ' (benzerleri aşağıda)' : ''}. Anlamını biliyorsan yazıp kaydedebilirsin:
           </p>
           <form
             className="row gap-xs"
@@ -665,7 +678,7 @@ function NotFound({
             <input
               type="text"
               className="input"
-              placeholder="Türkçe anlamını yaz ve kelimelerine ekle…"
+              placeholder="Türkçe anlamını yaz…"
               value={customMeaning}
               onChange={(e) => setCustomMeaning(e.target.value)}
               aria-label="Türkçe anlamı"

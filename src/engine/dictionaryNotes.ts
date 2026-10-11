@@ -1,3 +1,4 @@
+import { stripDiacritics } from './answerCheck'
 import { timeOf } from './types'
 
 /**
@@ -47,12 +48,17 @@ export function removeEntry(notes: DictionaryNotes, key: string): DictionaryNote
   return { ...notes, added }
 }
 
-/** Saved words matching what was typed: the word itself, or a meaning (Turkish) that contains it. Exact word first. */
+/** Saved words matching what was typed: the word itself (accents aside), its start, or a Turkish meaning that contains it. Exact word first. */
 export function findAdded(notes: DictionaryNotes, query: string, language: string): { word: string; t: string[]; exact: boolean }[] {
-  const q = addedKey(query, language)
+  const fold = (s: string, lang: string) => stripDiacritics(s.trim().replace(/\s+/g, ' ').toLocaleLowerCase(lang))
+  const q = fold(query, language)
   if (!q) return []
+  const qTr = fold(query, 'tr')
   return Object.entries(notes.added ?? {})
-    .map(([word, e]) => ({ word, t: e.t, exact: word === q, hit: word === q || word.startsWith(q) || e.t.some((m) => m.toLocaleLowerCase('tr').includes(q)) }))
+    .map(([word, e]) => {
+      const w = fold(word, language)
+      return { word, t: e.t, exact: w === q, hit: w === q || w.startsWith(q) || e.t.some((m) => fold(m, 'tr').includes(qTr)) }
+    })
     .filter((e) => e.hit)
     .sort((a, b) => Number(b.exact) - Number(a.exact) || a.word.localeCompare(b.word))
     .map(({ word, t, exact }) => ({ word, t, exact }))

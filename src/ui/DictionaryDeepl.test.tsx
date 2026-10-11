@@ -107,7 +107,7 @@ describe('Dictionary: a word that is not in the pack', () => {
     })
     await act(async () => button('Sözlüğe kaydet')!.click())
     await act(async () => new Promise((r) => setTimeout(r, 30)))
-    expect((await db.getDictionaryNotes('fr')).added?.gribouiller?.t).toEqual(['çiziktirmek'])
+    expect((await db.getDictionaryNotes('fr')).added?.gribouiller).toMatchObject({ t: ['çiziktirmek'], from: 'own' })
     expect(onAdd).not.toHaveBeenCalled()
   })
 

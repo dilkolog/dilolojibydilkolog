@@ -95,6 +95,13 @@ describe('saved words (what the pack lacks)', () => {
     expect(findAdded(n, '', 'fr')).toEqual([])
   })
 
+  it('finds a saved word without its accents, and a Turkish meaning typed with a capital dotless I', () => {
+    const n = addEntry(addEntry(emptyNotes(), 'école', ['okul'], T1, 'own', 'fr'), 'lumière', ['ışık'], T1, 'own', 'fr')
+    expect(findAdded(n, 'ecole', 'fr').map((e) => [e.word, e.exact])).toEqual([['école', true]])
+    expect(findAdded(n, 'Işık', 'fr').map((e) => e.word)).toEqual(['lumière'])
+    expect(findAdded(n, 'isik', 'fr').map((e) => e.word)).toEqual([])
+  })
+
   it('merges two devices: both words kept, the later save of one word wins', () => {
     const a = addEntry(addEntry(emptyNotes(), 'un', ['bir'], T1, 'own', 'fr'), 'deux', ['iki'], T1, 'own', 'fr')
     const b = addEntry(emptyNotes(), 'deux', ['ikili'], T2, 'deepl', 'fr')

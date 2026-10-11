@@ -16,6 +16,9 @@ export class TranslateError extends Error {}
 const MAX_CHARS = 600
 const cache = new Map<string, Promise<string>>()
 let ready: Promise<boolean> | null = null
+/** When the server last said no: asked again only after a minute, not on every screen that wants to know. */
+let refusedAt = 0
+const REFUSAL_MS = 60_000
 
 const MESSAGES: Record<string, string> = {
   quota: 'Bu ayın ücretsiz çeviri kotası doldu; gelecek ay yeniden açılır.',
@@ -28,9 +31,13 @@ export function translationReady(): Promise<boolean> {
   if (typeof navigator !== 'undefined' && !navigator.onLine) return Promise.resolve(false)
   // A real answer carries the month's limit; a page served in its place (no server function) does not.
   // A yes is kept for the session; a no is asked again next time (offline at first, online later).
+  if (!ready && Date.now() - refusedAt < REFUSAL_MS) return Promise.resolve(false)
   ready ??= translationUsage().then((u) => {
     const yes = !!u && u.limit > 0
-    if (!yes) ready = null
+    if (!yes) {
+      ready = null
+      refusedAt = Date.now()
+    }
     return yes
   })
   return ready

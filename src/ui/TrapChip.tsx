@@ -10,6 +10,9 @@ export function TrapChip({ language, lemma }: { language: TargetLanguage; lemma:
   return (
     <li className="trap-chip" title={`“${trap.looks}” gibi göründüğü için yanlış anlaşılır. Örnek: ${trap.text} (${trap.tr})`}>
       <AlertIcon size={14} className="inline-icon" /> Tuzak kelime: “{trap.trap}” değil, “{trap.meaning}”
+      <span className="sr-only">
+        . “{trap.looks}” gibi göründüğü için yanlış anlaşılır. Örnek: {trap.text} ({trap.tr})
+      </span>
     </li>
   )
 }
