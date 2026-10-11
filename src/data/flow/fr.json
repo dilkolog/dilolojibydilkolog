@@ -1,0 +1,167 @@
+[
+ {
+  "id": "fr-telework",
+  "language": "fr",
+  "text": "Le télétravail s'est largement répandu ces dernières années. {1}, il ne convient pas à tous les métiers. Les employés gagnent du temps sur les trajets ; {2}, ils risquent de se sentir isolés. {3} les entreprises le proposent désormais plus souvent, il reste un sujet de débat.",
+  "tr": "Uzaktan çalışma son yıllarda çok yaygınlaştı. Ancak her meslek için uygun değil. Çalışanlar yolda zaman kazanıyor; buna karşılık kendilerini yalnız hissetme riskleri var. Şirketler artık daha sık sunsa da hâlâ tartışma konusu.",
+  "gaps": [
+   {
+    "answer": "Toutefois",
+    "options": [
+     "Toutefois",
+     "Donc",
+     "Car"
+    ],
+    "kind": "Zıtlık",
+    "why": "Önceki cümleyi sınırlıyor: “yaygınlaştı, ancak her işe uymuyor”. Karşıtlık bağlacı gerekir."
+   },
+   {
+    "answer": "en revanche",
+    "options": [
+     "en revanche",
+     "par conséquent",
+     "puisque"
+    ],
+    "kind": "Zıtlık",
+    "why": "Avantaj (zaman kazanma) ile dezavantaj (yalnızlık) karşılaştırılıyor: “buna karşılık”."
+   },
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Afin que"
+    ],
+    "kind": "Taviz",
+    "why": "“Sunsa da, yine de tartışma konusu”: karşıtlık taşıyan taviz bağlacı, ardından subjonctif."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-city",
+  "language": "fr",
+  "text": "Beaucoup de villes veulent réduire la circulation automobile. {1}, certains commerçants craignent de perdre des clients. Les élus, {2}, affirment que les centres piétons attirent davantage de visiteurs. {3}, il faut trouver un compromis entre ces deux positions.",
+  "tr": "Birçok şehir araç trafiğini azaltmak istiyor. Ancak bazı esnaf müşteri kaybetmekten korkuyor. Seçilmiş yöneticiler ise yaya merkezlerinin daha fazla ziyaretçi çektiğini söylüyor. Bu yüzden bu iki görüş arasında bir uzlaşma bulmak gerekiyor.",
+  "gaps": [
+   {
+    "answer": "Cependant",
+    "options": [
+     "Cependant",
+     "Autrement dit",
+     "Du moins"
+    ],
+    "kind": "Zıtlık",
+    "why": "Plan ile ona gelen itiraz karşı karşıya: “ancak”."
+   },
+   {
+    "answer": "au contraire",
+    "options": [
+     "au contraire",
+     "donc",
+     "de plus"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yöneticiler esnafın korkusunun tersini söylüyor: “tam tersine”."
+   },
+   {
+    "answer": "C'est pourquoi",
+    "options": [
+     "C'est pourquoi",
+     "Quoique",
+     "En revanche"
+    ],
+    "kind": "Sonuç",
+    "why": "İki karşıt görüş sonucu uzlaşma gerekiyor: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-reading",
+  "language": "fr",
+  "text": "Les jeunes achètent de moins en moins de livres imprimés. {1}, ils lisent beaucoup sur écran. {2} les bibliothèques développent leur offre numérique afin d'attirer ce nouveau public.",
+  "tr": "Gençler gitgide daha az basılı kitap alıyor. Buna karşılık ekranda çok okuyorlar. Bu yüzden kütüphaneler bu yeni kitleyi çekmek için dijital koleksiyonlarını geliştiriyor.",
+  "gaps": [
+   {
+    "answer": "En revanche",
+    "options": [
+     "En revanche",
+     "Autrement dit",
+     "Puisque"
+    ],
+    "kind": "Zıtlık",
+    "why": "Az basılı kitap ile çok ekran okuması karşılaştırılıyor: “buna karşılık”."
+   },
+   {
+    "answer": "C'est pourquoi",
+    "options": [
+     "C'est pourquoi",
+     "Pourtant",
+     "Sauf si"
+    ],
+    "kind": "Sonuç",
+    "why": "Gençlerin ekranda okuması kütüphanelerin değişmesinin nedeni: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-sleep",
+  "language": "fr",
+  "text": "Dormir moins de six heures par nuit fatigue l'organisme. {1}, la concentration baisse nettement le lendemain. {2}, les médecins conseillent de se coucher à heure régulière.",
+  "tr": "Gecede altı saatten az uyumak vücudu yorar. Gerçekten de ertesi gün dikkat belirgin biçimde düşer. Bu yüzden doktorlar düzenli saatte yatmayı öneriyor.",
+  "gaps": [
+   {
+    "answer": "En effet",
+    "options": [
+     "En effet",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Açıklama",
+    "why": "İlk cümleyi destekliyor, bir kanıt veriyor: “gerçekten de”."
+   },
+   {
+    "answer": "C'est pourquoi",
+    "options": [
+     "C'est pourquoi",
+     "Bien que",
+     "Alors que"
+    ],
+    "kind": "Sonuç",
+    "why": "Önceki zararların sonucu doktor önerisi: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-rules",
+  "language": "fr",
+  "text": "Les parents peuvent autoriser les écrans, {1} les enfants respectent des horaires précis. {2} cette règle paraît stricte, elle évite bien des conflits.",
+  "tr": "Çocuklar belirli saatlere uydukları sürece ebeveynler ekrana izin verebilir. Bu kural sıkı görünse de pek çok tartışmayı önler.",
+  "gaps": [
+   {
+    "answer": "pourvu que",
+    "options": [
+     "pourvu que",
+     "bien que",
+     "avant que"
+    ],
+    "kind": "Koşul",
+    "why": "“Şu şartla ki”: koşul bildirir ve subjonctif ister."
+   },
+   {
+    "answer": "Même si",
+    "options": [
+     "Même si",
+     "Parce que",
+     "À moins que"
+    ],
+    "kind": "Taviz",
+    "why": "“Sıkı görünse de, yine de işe yarıyor”: karşıtlık taşıyan taviz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

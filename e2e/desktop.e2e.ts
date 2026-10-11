@@ -1221,6 +1221,26 @@ test('register game: a situation and a thought, the way of saying it that suits 
   await expect(page.locator('.game-result')).toContainText('/ 8 doğru')
 })
 
+test('text flow game: the connectors of a paragraph are filled one by one, each answer explained, the Turkish shown at the end', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Metin akışı' }).click()
+  await page.getByRole('button', { name: /3 paragraflık tura başla/ }).click()
+  for (let i = 1; i <= 3; i++) {
+    await expect(page.locator('.game-timer')).toHaveText(`${i} / 3`)
+    // Gaps are answered one after another (the first option is as good as any) until the Turkish shows.
+    while (!(await page.getByText('Türkçesi:').count())) {
+      await page.locator('.option').first().click()
+      await expect(page.locator('[role=status]')).toBeVisible()
+      const more = page.getByRole('button', { name: 'Devam', exact: true })
+      if (await more.count()) await more.click()
+    }
+    await expect(page.getByText('Türkçesi:')).toBeVisible()
+    await page.getByRole('button', { name: i < 3 ? 'Sonraki paragraf' : 'Bitir', exact: true }).click()
+  }
+  await expect(page.locator('.game-result')).toContainText('boşluk doğru')
+})
+
 test('shadowing a text: a sentence played from its recording, then said back, then both compared', async ({ page }) => {
   // No microphone in a test: a silent stream stands in for it.
   await page.addInitScript(() => {

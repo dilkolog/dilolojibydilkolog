@@ -5192,6 +5192,13 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* Register game: the three ways of saying it, listed after the answer. */
 .register-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
 
+/* Text flow game: the paragraph with its connectors, the open gap marked, answered gaps green or red. */
+.flow-text { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.8; margin: 0; }
+.flow-gap { background: var(--surface-2); color: var(--ink-soft); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; white-space: nowrap; }
+.flow-gap.is-open { background: var(--lang-soft); color: var(--lang-text); }
+.flow-gap.is-correct { background: var(--ok-soft); color: var(--ok-text); }
+.flow-gap.is-wrong { background: var(--bad-soft); color: var(--bad-text); }
+
 /* The day's plant before anything is answered: the seed waits, glowing, hops now and then, and sparkles; the ring beside it breathes as an invitation. */
 .plant-seed-hop { transform-box: fill-box; transform-origin: 50% 100%; }
 .plant.is-live .plant-seed-hop { animation: seed-hop 3.6s var(--ease-out) infinite; }

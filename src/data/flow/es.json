@@ -1,0 +1,167 @@
+[
+ {
+  "id": "es-telework",
+  "language": "es",
+  "text": "El teletrabajo se ha extendido mucho en los últimos años. {1}, no es adecuado para todos los empleos. Los trabajadores ahorran tiempo en los desplazamientos; {2}, corren el riesgo de sentirse aislados. {3} las empresas lo ofrecen cada vez más, sigue siendo un tema de debate.",
+  "tr": "Uzaktan çalışma son yıllarda çok yaygınlaştı. Ancak her meslek için uygun değil. Çalışanlar yolda zaman kazanıyor; buna karşılık kendilerini yalnız hissetme riskleri var. Şirketler giderek daha çok sunsa da hâlâ tartışma konusu.",
+  "gaps": [
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "Por lo tanto",
+     "Porque"
+    ],
+    "kind": "Zıtlık",
+    "why": "Önceki cümleyi sınırlıyor: “yaygınlaştı, ancak her işe uymuyor”."
+   },
+   {
+    "answer": "en cambio",
+    "options": [
+     "en cambio",
+     "por eso",
+     "es decir"
+    ],
+    "kind": "Zıtlık",
+    "why": "Avantaj (zaman kazanma) ile dezavantaj (yalnızlık) karşılaştırılıyor: “buna karşılık”."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Taviz",
+    "why": "“Sunsa da, yine de tartışma konusu”: taviz bağlacı. Gerçek bir olguyu anlattığı için göstergeli kip (ofrecen)."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-city",
+  "language": "es",
+  "text": "Muchas ciudades quieren reducir el tráfico de coches. {1}, algunos comerciantes temen perder clientes. Los políticos, {2}, afirman que las zonas peatonales atraen a más visitantes. {3}, hay que buscar un equilibrio entre ambas posturas.",
+  "tr": "Birçok şehir araba trafiğini azaltmak istiyor. Ancak bazı esnaf müşteri kaybetmekten korkuyor. Siyasetçiler ise tam tersine yaya bölgelerinin daha fazla ziyaretçi çektiğini söylüyor. Bu yüzden iki görüş arasında bir denge aramak gerekiyor.",
+  "gaps": [
+   {
+    "answer": "Sin embargo",
+    "options": [
+     "Sin embargo",
+     "Es decir",
+     "Asimismo"
+    ],
+    "kind": "Zıtlık",
+    "why": "Plan ile ona gelen itiraz karşı karşıya: “ancak”."
+   },
+   {
+    "answer": "por el contrario",
+    "options": [
+     "por el contrario",
+     "por ejemplo",
+     "por lo tanto"
+    ],
+    "kind": "Zıtlık",
+    "why": "Siyasetçiler esnafın korkusunun tersini söylüyor: “tam tersine”."
+   },
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "Aunque",
+     "Porque"
+    ],
+    "kind": "Sonuç",
+    "why": "İki karşıt görüşün sonucu denge arayışı: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-reading",
+  "language": "es",
+  "text": "Los jóvenes compran cada vez menos libros impresos. {1}, leen mucho en pantalla. {2} las bibliotecas amplían su oferta digital para atraer a este nuevo público.",
+  "tr": "Gençler gitgide daha az basılı kitap alıyor. Buna karşılık ekranda çok okuyorlar. Bu yüzden kütüphaneler bu yeni kitleyi çekmek için dijital koleksiyonlarını genişletiyor.",
+  "gaps": [
+   {
+    "answer": "En cambio",
+    "options": [
+     "En cambio",
+     "Es decir",
+     "Puesto que"
+    ],
+    "kind": "Zıtlık",
+    "why": "Az basılı kitap ile çok ekran okuması karşılaştırılıyor: “buna karşılık”."
+   },
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "Aunque",
+     "A menos que"
+    ],
+    "kind": "Sonuç",
+    "why": "Gençlerin ekranda okuması kütüphanelerin değişmesinin nedeni: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sleep",
+  "language": "es",
+  "text": "Dormir menos de seis horas fatiga el organismo. {1}, la concentración baja claramente al día siguiente. {2}, los médicos aconsejan acostarse a una hora regular.",
+  "tr": "Gecede altı saatten az uyumak vücudu yorar. Gerçekten de ertesi gün dikkat belirgin biçimde düşer. Bu yüzden doktorlar düzenli saatte yatmayı öneriyor.",
+  "gaps": [
+   {
+    "answer": "En efecto",
+    "options": [
+     "En efecto",
+     "Sin embargo",
+     "Por el contrario"
+    ],
+    "kind": "Açıklama",
+    "why": "İlk cümleyi destekliyor, bir kanıt veriyor: “gerçekten de”."
+   },
+   {
+    "answer": "Por eso",
+    "options": [
+     "Por eso",
+     "Sin embargo",
+     "Aun así"
+    ],
+    "kind": "Sonuç",
+    "why": "Önceki zararların sonucu doktor önerisi: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-rules",
+  "language": "es",
+  "text": "Los padres pueden permitir las pantallas, {1} los niños respeten unos horarios claros. {2} esta norma parezca estricta, evita muchos conflictos.",
+  "tr": "Çocuklar net saatlere uydukları sürece ebeveynler ekrana izin verebilir. Bu kural sıkı görünse de pek çok tartışmayı önler.",
+  "gaps": [
+   {
+    "answer": "siempre que",
+    "options": [
+     "siempre que",
+     "aunque",
+     "antes de que"
+    ],
+    "kind": "Koşul",
+    "why": "“Şu şartla ki”: koşul bildirir ve subjuntivo ister."
+   },
+   {
+    "answer": "Aunque",
+    "options": [
+     "Aunque",
+     "Porque",
+     "Para que"
+    ],
+    "kind": "Taviz",
+    "why": "“Sıkı görünse de, yine de işe yarıyor”: taviz bağlacı (burada subjuntivo: parezca)."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]

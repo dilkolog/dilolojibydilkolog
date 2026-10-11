@@ -685,6 +685,15 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'register', value: log })
   }
 
+  /** How the text-flow gaps went, per paragraph and gap (same shape as the grammar log). */
+  async getFlowLog(): Promise<GrammarLog> {
+    return ((await this.meta.get('flow'))?.value as GrammarLog) ?? {}
+  }
+
+  saveFlowLog(log: GrammarLog) {
+    return this.meta.put({ key: 'flow', value: log })
+  }
+
   /** Badges earned and when (see engine/gamification BadgeLog). */
   async getBadgeLog(): Promise<BadgeLog> {
     return ((await this.meta.get('badges'))?.value as BadgeLog) ?? {}
@@ -1037,6 +1046,8 @@ export interface Backup {
   deduction?: DeductionLog
   /** How the register questions went. */
   register?: GrammarLog
+  /** How the text-flow gaps went. */
+  flow?: GrammarLog
   /** Dictionary corrections and look-ups, per language. */
   dictionary?: Partial<Record<TargetLanguage, DictionaryNotes>>
 }
@@ -1094,6 +1105,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     pairs: await db.getPairLog(),
     deduction: await db.getDeductionLog(),
     register: await db.getRegisterLog(),
+    flow: await db.getFlowLog(),
     dictionary: { en: await db.getDictionaryNotes('en'), fr: await db.getDictionaryNotes('fr'), es: await db.getDictionaryNotes('es') },
     media: await Promise.all(
       // Cached audio (natural voices "tts:", native recordings "aud:") can be fetched again, so it stays out of backups.
@@ -1183,5 +1195,6 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.pairs) await db.meta.put({ key: 'pairs', value: backup.pairs })
     if (backup.deduction) await db.meta.put({ key: 'deduction', value: backup.deduction })
     if (backup.register) await db.meta.put({ key: 'register', value: backup.register })
+    if (backup.flow) await db.meta.put({ key: 'flow', value: backup.flow })
   })
 }
