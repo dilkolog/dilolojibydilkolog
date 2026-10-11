@@ -1,3 +1,4 @@
+import { stripDiacritics } from './answerCheck'
 import { pickWeighted, type GrammarLog } from './grammar'
 import type { TargetLanguage } from './types'
 
@@ -24,7 +25,8 @@ export interface TrapWord {
 
 export const TRAP_ROUND = 8
 
-const norm = (s: string) => s.trim().toLowerCase()
+/** Lower case without accents: "collège" and "college" are the same word here. */
+const norm = (s: string) => stripDiacritics(s.trim().toLowerCase())
 
 /** The trap a word falls under, if any. */
 export const trapOf = (list: readonly TrapWord[], language: TargetLanguage, lemma: string) => list.find((t) => t.language === language && norm(t.lemma) === norm(lemma))

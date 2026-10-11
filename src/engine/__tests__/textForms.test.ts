@@ -71,7 +71,48 @@ describe('compound tenses in a text', () => {
   })
 
   it('leaves a lone participle or auxiliary alone', () => {
-    expect(tenses('Un enfant mangé par le loup, ai-je dit.', 'fr').some((f) => f.includes('passe-compose'))).toBe(false)
+    const found = tenses('Un enfant mangé par le loup, ai-je dit.', 'fr')
+    // "mangé" alone is no compound; "ai-je dit" is an inverted passé composé of dire.
+    expect(found.some((f) => f.includes('manger') && f.includes('passe-compose'))).toBe(false)
+    expect(found).toContain('ai-je dit|dire|passe-compose')
+  })
+})
+
+describe('compound tenses the audit found missing or wrong', () => {
+  it('"ne … plus" is the adverb, not the participle of plaire', () => {
+    const found = tenses("Les Mauritaniens n'ont plus de gouvernement. Je n'ai plus qu'à partir.", 'fr')
+    expect(found.some((f) => f.includes('plaire'))).toBe(false)
+    // The real participle still works: "a plu" (it pleased / it rained).
+    expect(tenses("Ce film m'a plu.", 'fr')).toContain("m'a plu|plaire|passe-compose")
+  })
+
+  it('reads an adverb in -ment between the auxiliary and the participle', () => {
+    expect(tenses('Elle a vraiment aimé cette pièce. Nous avons enfin trouvé une solution.', 'fr')).toEqual(expect.arrayContaining(['a aimé|aimer|passe-compose', 'avons trouvé|trouver|passe-compose']))
+    expect(tenses('Ella había completamente olvidado la cita.', 'es')).toContain('había olvidado|olvidar|pluscuamperfecto')
+  })
+
+  it('reads an inverted question ("a-t-il compris", "avez-vous répondu", "sont-ils allés")', () => {
+    const found = tenses("A-t-il compris la gravité ? Pourquoi n'avez-vous pas répondu ? Où sont-ils allés ?", 'fr')
+    expect(found).toEqual(expect.arrayContaining(['a-t-il compris|comprendre|passe-compose', 'avez-vous répondu|répondre|passe-compose', 'sont-ils allés|aller|passe-compose']))
+  })
+
+  it('names the verb of a passive, not "to be" ("ont été retrouvés", "habían sido tirados")', () => {
+    const fr = tenses('Les tableaux volés ont été retrouvés. Une personne a été arrêtée.', 'fr')
+    expect(fr).toEqual(expect.arrayContaining(['ont été retrouvés|retrouver|passe-compose', 'a été arrêtée|arrêter|passe-compose']))
+    expect(fr.some((f) => f.includes('|être|'))).toBe(false)
+    expect(tenses('Los vidrios que habían sido tirados descuidadamente.', 'es')).toContain('habían sido tirados|tirar|pluscuamperfecto')
+  })
+
+  it('reads a reflexive verb with en / y ("s\'en est allé", "nous nous en sommes aperçus")', () => {
+    expect(tenses("Il s'en est allé sans un mot. Elle s'y est rendue.", 'fr')).toEqual(expect.arrayContaining(["s'en est allé|aller|passe-compose", "s'y est rendue|rendre|passe-compose"]))
+    expect(tenses('Nous nous en sommes aperçus trop tard. Je m\'en suis voulu.', 'fr')).toEqual(expect.arrayContaining(['nous nous en sommes aperçus|apercevoir|passe-compose', "m'en suis voulu|vouloir|passe-compose"]))
+  })
+
+  it('suggests the infinitive for a typed inverted, passive or en/y compound', () => {
+    expect(typedCompound('fr', 'a-t-il compris')?.lemma).toBe('comprendre')
+    expect(typedCompound('fr', 'ont été retrouvés')?.lemma).toBe('retrouver')
+    expect(typedCompound('fr', "il s'en est allé")?.lemma).toBe('aller')
+    expect(typedCompound('es', 'habían sido tirados')?.lemma).toBe('tirar')
   })
 })
 

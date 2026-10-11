@@ -631,6 +631,9 @@ function auxForms(language: 'fr' | 'es') {
   return map
 }
 
+/** French verbs whose past participle takes no agreement (an indirect object, or no object at all). */
+const INVARIANT_PP = new Set(['plaire', 'déplaire', 'complaire', 'pleuvoir', 'nuire', 'rire', 'sourire', 'suffire'])
+
 /** Past participle (with the agreeing French forms: allée, allés) → its verb and whether it takes être. */
 const PARTICIPLES: { fr?: { size: number; map: Map<string, { lemma: string; etre: boolean }[]> }; es?: { size: number; map: Map<string, { lemma: string; etre: boolean }[]> } } = {}
 
@@ -646,7 +649,8 @@ function participleIndex(language: 'fr' | 'es') {
   if (language === 'fr')
     for (const [lemma, row] of DATA.fr) {
       const [sg, pl] = typeof row.pp === 'string' ? [row.pp, `${row.pp}s`] : row.pp
-      for (const f of [sg, pl, `${sg}e`, `${sg}es`]) add(f, lemma, row.aux === 'e')
+      // These participles never agree: "n'ont plus" is the adverb, not plaire's "plus".
+      for (const f of INVARIANT_PP.has(lemma) ? [sg] : [sg, pl, `${sg}e`, `${sg}es`]) add(f, lemma, row.aux === 'e')
     }
   else for (const [lemma, row] of DATA.es) add(row.pp, lemma, false)
   PARTICIPLES[language] = { size: DATA[language].size, map }
