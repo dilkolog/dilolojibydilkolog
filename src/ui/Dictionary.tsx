@@ -16,7 +16,7 @@ import { TrapChip } from './TrapChip'
 import { CollocationChip } from './CollocationChip'
 import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
-import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SearchIcon, SpeakerIcon, WandIcon } from './icons'
+import { BookIcon, CheckIcon, CloseIcon, ConjugationsIcon, PenIcon, PlusIcon, SearchIcon, SpeakerIcon, WandIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { DictionaryExamples } from './DictionaryExamples'
 import { PageHeader } from './PageHeader'
@@ -102,11 +102,17 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
     return buildIndex(pack, language, vocabulary)
   }, [pack, language, vocabulary])
 
-  /** Changes the learner's notes and saves them (corrections, look-ups). */
+  /**
+   * Changes the learner's notes: shown at once, saved as a change to what is stored (a sync may
+   * have merged words in while the screen was open), then the stored result is shown.
+   */
   const updateNotes = (change: (n: DictionaryNotes) => DictionaryNotes) => {
     notesRef.current = change(notesRef.current)
     setNotes(notesRef.current)
-    void db.saveDictionaryNotes(language, notesRef.current)
+    void db.updateDictionaryNotes(language, change).then((stored) => {
+      notesRef.current = stored
+      setNotes(stored)
+    })
   }
 
   const result = useMemo(() => (index ? search(index, query) : { similar: [], fromTurkish: [] }), [index, query])
@@ -189,6 +195,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
           language={language}
           list={Object.entries(notes.added ?? {}).map(([word, e]) => ({ word, t: e.t, exact: false }))}
           onPick={pick}
+          onRemove={(w) => updateNotes((n) => removeEntry(n, w))}
         />
       )}
 
@@ -208,7 +215,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
       {typed && !index && (savedCard || savedOthers.length > 0) && (
         <>
           {savedCard}
-          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} />}
+          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
         </>
       )}
 
@@ -245,12 +252,12 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               onAdd={onAdd}
               onSave={save}
               deeplOn={deeplOn}
-              hasOthers={result.fromTurkish.length + savedOthers.length > 0}
+              hasOthers={result.fromTurkish.length > 0}
               hasSimilar={result.similar.length > 0}
             />
           )}
 
-          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} />}
+          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} onRemove={(w) => updateNotes((n) => removeEntry(n, w))} />}
 
           {result.fromTurkish.length > 0 && (
             <section className="section stack">
@@ -768,21 +775,26 @@ function SavedCard({
 }
 
 /** The saved words (all of them, or those matching the query), each one tap from its card. */
-function SavedList({ language, list, onPick }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void }) {
+function SavedList({ language, list, onPick, onRemove }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void; onRemove: (word: string) => void }) {
   return (
     <section className="section stack">
       <h2 className="section-title">Kaydettiklerin</h2>
       <ul className="word-list">
         {list.map((e) => (
           <li key={e.word}>
-            <button type="button" className="word-row" onClick={() => onPick(e.word)}>
-              <span className="word-row-text">
-                <span className="w" lang={language}>
-                  {e.word}
+            <div className="row gap-xs">
+              <button type="button" className="word-row" onClick={() => onPick(e.word)}>
+                <span className="word-row-text">
+                  <span className="w" lang={language}>
+                    {e.word}
+                  </span>
+                  <span className="meta">{e.t.join(', ')}</span>
                 </span>
-                <span className="meta">{e.t.join(', ')}</span>
-              </span>
-            </button>
+              </button>
+              <button type="button" className="icon-btn icon-btn-sm" aria-label={`${e.word} sözlükten kaldır`} onClick={() => onRemove(e.word)}>
+                <CloseIcon size={14} />
+              </button>
+            </div>
           </li>
         ))}
       </ul>

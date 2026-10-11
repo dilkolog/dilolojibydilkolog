@@ -57,7 +57,7 @@ export function findAdded(notes: DictionaryNotes, query: string, language: strin
   return Object.entries(notes.added ?? {})
     .map(([word, e]) => {
       const w = fold(word, language)
-      return { word, t: e.t, exact: w === q, hit: w === q || w.startsWith(q) || e.t.some((m) => fold(m, 'tr').includes(qTr)) }
+      return { word, t: e.t, exact: w === q, hit: w === q || w.startsWith(q) || (qTr.length >= 3 && e.t.some((m) => fold(m, 'tr').includes(qTr))) }
     })
     .filter((e) => e.hit)
     .sort((a, b) => Number(b.exact) - Number(a.exact) || a.word.localeCompare(b.word))

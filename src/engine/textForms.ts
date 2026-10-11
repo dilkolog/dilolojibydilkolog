@@ -58,6 +58,12 @@ interface CompoundMatch {
   /** The index of the participle (the last word of the form). */
   last: number
   phrase: string
+  /** The words that are the form itself: the auxiliary, the participle and, in a passive, "été" (small words between are not). */
+  indices: number[]
+  /** A passive also is the compound tense of "to be" ("a été"): that reading, listed beside the verb's. */
+  beHits?: FormAnalysis[]
+  /** The auxiliary and "été" as written, for the "to be" reading. */
+  bePhrase?: string
 }
 
 /**
@@ -75,10 +81,10 @@ function compoundAt(language: 'fr' | 'es', raws: readonly string[], words: reado
     if (next === PASSIVE_PP[language] && !pronoun) {
       const after = words[i + 2 + gap]
       const hits = after ? analyzeCompound(language, aux, language === 'es' ? esMasculine(after) : after) : []
-      if (hits.length) return { hits, last: i + 2 + gap, phrase: `${words[i]} ${next} ${after}` }
+      if (hits.length) return { hits, last: i + 2 + gap, phrase: `${words[i]} ${next} ${after}`, indices: [i, i + 1 + gap, i + 2 + gap], beHits: analyzeCompound(language, aux, next), bePhrase: `${words[i]} ${next}` }
     }
     const hits = analyzeCompound(language, aux, next, !!pronoun)
-    if (hits.length) return { hits, last: i + 1 + gap, phrase: `${prefix}${words[i]} ${next}` }
+    if (hits.length) return { hits, last: i + 1 + gap, phrase: `${prefix}${words[i]} ${next}`, indices: [i, i + 1 + gap] }
   }
   return undefined
 }
@@ -156,13 +162,15 @@ export function textForms(language: 'fr' | 'es', analysis: ReadingAnalysis): Tex
             seenLemmas.add(a.lemma)
             found.push({ form: match.phrase, lemma: a.lemma, tense: a.tense, sentence: at })
           }
+          // "ont été retrouvés" is also "ont été": the compound tense of être, counted beside the verb's.
+          for (const a of match.beHits ?? []) found.push({ form: match.bePhrase ?? match.phrase, lemma: a.lemma, tense: a.tense, sentence: at })
           // The auxiliary and the participle are spoken for; the participle is no form of its own.
           for (let k = i + 1; k <= match.last; k++) words[k] = ''
           compound = true
         }
         if (compound) continue
-        // "plus" (more, no longer) is the adverb; plaire's passé simple is far too rare to list.
-        if (language === 'fr' && form === 'plus') continue
+        // "plus" (more, no longer) is the adverb and "cela" is the pronoun; plaire's and celer's passé simple are far too rare to list.
+        if (language === 'fr' && (form === 'plus' || form === 'cela')) continue
         // An ambiguous form (finis: présent or passé simple) counts once per verb, as its first reading.
         const seenLemmas = new Set<string>()
         for (const a of analyzeForm(language, form)) {
@@ -217,7 +225,10 @@ export function compoundsAround(language: 'fr' | 'es', sentence: string, word: s
   for (let i = 0; i < words.length; i++) {
     const match = compoundAt(language, raws, words, i)
     if (!match) continue
-    if (words.slice(i, match.last + 1).includes(target)) for (const h of match.hits) if (!out.some((o) => o.lemma === h.lemma && o.tense === h.tense)) out.push({ ...h, phrase: match.phrase })
+    // Only the words of the form itself open its card: a small word between ("pas", "vraiment") is looked up on its own.
+    if (!match.indices.some((k) => words[k] === target)) continue
+    for (const h of match.hits) if (!out.some((o) => o.lemma === h.lemma && o.tense === h.tense)) out.push({ ...h, phrase: match.phrase })
+    for (const h of match.beHits ?? []) if (!out.some((o) => o.lemma === h.lemma && o.tense === h.tense)) out.push({ ...h, phrase: match.bePhrase ?? match.phrase })
   }
   return out
 }

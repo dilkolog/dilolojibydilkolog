@@ -48,7 +48,7 @@ export function Plant({ stage, health = 'fresh', size = 24, live = false, phase 
       {stage < 0 ? (
         // Not planted yet: a seed that waits to be noticed (live only): it glows, hops now and then, and sparkles.
         <g className="plant-waiting" transform={live ? 'translate(20 33.4) scale(1.5) translate(-20 -33.4)' : undefined}>
-          {live && <ellipse className="plant-seed-glow" cx="20" cy="33" rx="7.5" ry="5" />}
+          {live && <ellipse className="plant-seed-glow" cx="20" cy="32.5" rx="7.5" ry="4.5" />}
           <g className="plant-seed-hop">
             <Seed fine={fine} />
           </g>

@@ -737,9 +737,25 @@ export class KelimeDB extends Dexie {
     return run
   }
 
-  private async writeDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
+  /**
+   * One change to the notes, applied to what is stored when its turn comes (not to a copy a screen
+   * loaded earlier: a sync may have merged words in since, and writing the old copy back would drop
+   * them and mark them taken out). Gives the notes as written.
+   */
+  updateDictionaryNotes(language: TargetLanguage, change: (notes: DictionaryNotes) => DictionaryNotes): Promise<DictionaryNotes> {
+    const run = this.notesQueue.then(async () => {
+      const before = await this.getDictionaryNotes(language)
+      const next = change(before)
+      await this.writeDictionaryNotes(language, next, before)
+      return next
+    })
+    this.notesQueue = run.catch(() => undefined)
+    return run
+  }
+
+  private async writeDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes, was?: DictionaryNotes) {
     // A correction taken back leaves a mark; a newer correction of the same word is alive regardless (see tombstones.ts).
-    const before = await this.getDictionaryNotes(language)
+    const before = was ?? (await this.getDictionaryNotes(language))
     await this.meta.put({ key: `dict:${language}`, value: notes })
     const removed = Object.keys(before.fixes).filter((w) => !notes.fixes[w])
     if (removed.length) await this.addDeleted(removed.map((w) => `fix:${language}:${w}`))

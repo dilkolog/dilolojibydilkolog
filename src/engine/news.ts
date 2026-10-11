@@ -49,10 +49,12 @@ for (const [name, ch] of Object.entries(LETTERS)) {
 ENTITIES.yuml = 'ÿ'
 
 export function decodeEntities(s: string): string {
-  return s
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
-    .replace(/&([a-z]+);/gi, (m, n: string) => (Object.hasOwn(ENTITIES, n) ? ENTITIES[n] : Object.hasOwn(ENTITIES, n.toLowerCase()) ? ENTITIES[n.toLowerCase()] : m))
+  // One pass, so "&#38;lt;" stays "&lt;"; a number that is no character (NUL, a surrogate, past U+10FFFF) is left as written.
+  return s.replace(/&(?:#x([0-9a-f]+)|#(\d+)|([a-z]+));/gi, (m, hex?: string, dec?: string, name?: string) => {
+    if (name) return Object.hasOwn(ENTITIES, name) ? ENTITIES[name] : Object.hasOwn(ENTITIES, name.toLowerCase()) ? ENTITIES[name.toLowerCase()] : m
+    const cp = hex ? parseInt(hex, 16) : Number(dec)
+    return cp > 0 && cp <= 0x10ffff && !(cp >= 0xd800 && cp <= 0xdfff) ? String.fromCodePoint(cp) : m
+  })
 }
 
 const stripTags = (s: string) => decodeEntities(s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()

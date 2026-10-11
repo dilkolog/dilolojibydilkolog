@@ -95,6 +95,13 @@ describe('saved words (what the pack lacks)', () => {
     expect(findAdded(n, '', 'fr')).toEqual([])
   })
 
+  it('matches a Turkish meaning only from three letters, so one or two typed letters do not list everything', () => {
+    const n = addEntry(emptyNotes(), 'lumière', ['ışık'], T1, 'own', 'fr')
+    expect(findAdded(n, 'ı', 'fr')).toEqual([])
+    expect(findAdded(n, 'ış', 'fr')).toEqual([])
+    expect(findAdded(n, 'ışı', 'fr').map((e) => e.word)).toEqual(['lumière'])
+  })
+
   it('finds a saved word without its accents, and a Turkish meaning typed with a capital dotless I', () => {
     const n = addEntry(addEntry(emptyNotes(), 'école', ['okul'], T1, 'own', 'fr'), 'lumière', ['ışık'], T1, 'own', 'fr')
     expect(findAdded(n, 'ecole', 'fr').map((e) => [e.word, e.exact])).toEqual([['école', true]])
