@@ -208,6 +208,8 @@ export interface EngineOptions {
   speech?: boolean
   /** Exercise types the learner has switched off (Settings → Sorular), never scheduled. */
   off?: ExerciseType[]
+  /** Types the learner wants less of: still asked, but about a third as often as the others. */
+  less?: ExerciseType[]
 }
 
 export type Direction =

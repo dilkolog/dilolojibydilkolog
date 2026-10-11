@@ -1,5 +1,6 @@
 import { State } from 'ts-fsrs'
 import { EXERCISES, exerciseTypesFor } from './exercises'
+import { LESS_WEIGHT } from './exercisePrefs'
 import { pick, type Rng } from './rng'
 import type { Scheduler } from './scheduler'
 import type { EngineOptions, ErrorType, ExerciseType, Skill, UserWordState, VocabularyEntry } from './types'
@@ -14,14 +15,14 @@ export function unlockedSkills(state: UserWordState | undefined, entry: Vocabula
   const { recognition, recall } = state.skills
   // Recall (typing the word from its meaning) right after the first recognition: what is only
   // recognised feels known but doesn't come to mind when needed.
-  if (recognition && recognition.reps > 0) out.push('recall')
+  if (recognition && recognition.reps > 0 && exerciseTypesFor('recall', entry, opts).length) out.push('recall')
   // The other skills wait until the word can be recalled, so a new word's first days go to
   // getting it into memory rather than to six separate schedules (fewer, deeper cards).
   const recalledOnce = !!recall && recall.reps > 0 && recall.stability >= 1
   const recallHeld = recall?.state === State.Review
-  if (recalledOnce && exerciseTypesFor('gender', entry).length) out.push('gender')
-  if (recallHeld) out.push('listening')
-  if (recallHeld && exerciseTypesFor('collocation', entry).length) out.push('collocation')
+  if (recalledOnce && exerciseTypesFor('gender', entry, opts).length) out.push('gender')
+  if (recallHeld && exerciseTypesFor('listening', entry, opts).length) out.push('listening')
+  if (recallHeld && exerciseTypesFor('collocation', entry, opts).length) out.push('collocation')
   if (recallHeld && exerciseTypesFor('production', entry, opts).length) out.push('production')
   return out
 }
@@ -96,6 +97,13 @@ export function pickExerciseType(
   const inContext = skill === 'recognition' && multiword ? types.filter((t) => EXERCISES[t].direction === 'context') : []
   const pool = inContext.length ? inContext : types
   const fresh = pool.filter((t) => t !== state?.lastExerciseType)
-  return pick(fresh.length ? fresh : pool, rng)
+  const from = fresh.length ? fresh : pool
+  // A type the learner wants less of stays in the pool with a smaller share.
+  if (opts.less?.length && from.some((t) => opts.less!.includes(t))) {
+    const weight = (t: ExerciseType) => (opts.less!.includes(t) ? LESS_WEIGHT : 1)
+    let at = rng() * from.reduce((n, t) => n + weight(t), 0)
+    for (const t of from) if ((at -= weight(t)) < 0) return t
+  }
+  return pick(from, rng)
 }
 

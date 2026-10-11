@@ -23,6 +23,7 @@ import {
   addedTime,
   timeOf,
   type CefrLevel,
+  type ExerciseType,
   type Mistake,
   type ReviewEvent,
   type TargetLanguage,
@@ -137,7 +138,9 @@ export interface Settings {
   clipboardSuggest?: boolean
   /** Spanish without the vosotros forms (Latin American usage): not asked, shown faded. */
   hideVosotros?: boolean
-  /** The "fill the blank in a sentence by typing" question (cloze_typed); default on. Off: such questions are not asked. */
+  /** Question types asked less or not at all (Settings → Sorular; see engine/exercisePrefs). */
+  exercisePrefs?: Partial<Record<ExerciseType, 'less' | 'off'>>
+  /** The first form of that setting (just the typed blank); false means cloze_typed off, until exercisePrefs speaks. */
   typedBlanks?: boolean
   /** The word list in focus per language: new words come only from it (see dailyPlan). */
   focusList?: Partial<Record<TargetLanguage, string>>
