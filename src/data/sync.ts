@@ -222,7 +222,14 @@ function withoutRemoved(lab: LabData | undefined, language: string, dead: (id: s
 
 /** A dictionary correction taken back (mark "fix:fr:word") stays gone, unless it was written again later. */
 function withoutTakenBack(notes: DictionaryNotes | undefined, language: string, dead: (id: string, createdAt?: Date | string) => boolean): DictionaryNotes | undefined {
-  return notes && { ...notes, fixes: Object.fromEntries(Object.entries(notes.fixes).filter(([w, f]) => !dead(`fix:${language}:${w}`, f.at))) }
+  return (
+    notes && {
+      ...notes,
+      fixes: Object.fromEntries(Object.entries(notes.fixes).filter(([w, f]) => !dead(`fix:${language}:${w}`, f.at))),
+      // A saved word taken out (mark "dictadd:fr:word") stays out too.
+      added: Object.fromEntries(Object.entries(notes.added ?? {}).filter(([w, e]) => !dead(`dictadd:${language}:${w}`, e.at))),
+    }
+  )
 }
 
 /** Settings field by field: each takes the value from the side that changed it last (no stamp on either: the newer snapshot's). */

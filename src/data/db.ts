@@ -730,10 +730,13 @@ export class KelimeDB extends Dexie {
 
   async saveDictionaryNotes(language: TargetLanguage, notes: DictionaryNotes) {
     // A correction taken back leaves a mark; a newer correction of the same word is alive regardless (see tombstones.ts).
-    const was = (await this.getDictionaryNotes(language)).fixes
+    const before = await this.getDictionaryNotes(language)
     await this.meta.put({ key: `dict:${language}`, value: notes })
-    const removed = Object.keys(was).filter((w) => !notes.fixes[w])
+    const removed = Object.keys(before.fixes).filter((w) => !notes.fixes[w])
     if (removed.length) await this.addDeleted(removed.map((w) => `fix:${language}:${w}`))
+    // A saved word taken out leaves a mark too ("dictadd:fr:word"), so the other devices drop it as well.
+    const gone = Object.keys(before.added ?? {}).filter((w) => !notes.added?.[w])
+    if (gone.length) await this.addDeleted(gone.map((w) => `dictadd:${language}:${w}`))
   }
 
   /** Kept apart from settings so it is never written into a backup file. */

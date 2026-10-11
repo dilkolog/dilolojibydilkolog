@@ -58,6 +58,7 @@ export async function openVerbLab(page: Page, verb?: string) {
 const ROUTE: Record<string, [string, string?]> = {
   Bugün: ['Bugün'],
   Kelimeler: ['Kelimeler', 'Kelimeler'],
+  Sözlük: ['Kelimeler', 'Sözlük'],
   Hatalar: ['Kelimeler', 'Hatalar'],
   Çeviri: ['Kelimeler', 'Çeviri'],
   Okuma: ['Okuma', 'Metinler'],

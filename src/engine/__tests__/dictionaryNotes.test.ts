@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { dismissLookup, emptyNotes, lookupSuggestions, mergeNotes, noteLookup, parseMeanings, setFix } from '../dictionaryNotes'
+import { addEntry, dismissLookup, emptyNotes, findAdded, removeEntry, lookupSuggestions, mergeNotes, noteLookup, parseMeanings, setFix } from '../dictionaryNotes'
 
 const T1 = '2026-10-01T10:00:00Z'
 const T2 = '2026-10-07T10:00:00Z'
@@ -70,5 +70,34 @@ describe('two devices', () => {
     const suggestions = lookupSuggestions(notes, () => false)
     expect(suggestions.map((s) => s.word)).toEqual(['chat', 'chien'])
     expect(() => mergeNotes(notes, notes)).not.toThrow()
+  })
+})
+
+describe('saved words (what the pack lacks)', () => {
+  it('saves a word under its lower-case key, replaces it on a second save, and takes it out', () => {
+    let n = addEntry(emptyNotes(), '  Gribouiller ', ['karalamak'], T1, 'deepl', 'fr')
+    expect(n.added).toEqual({ gribouiller: { t: ['karalamak'], at: T1, from: 'deepl' } })
+    n = addEntry(n, 'gribouiller', ['çiziktirmek'], T2, 'own', 'fr')
+    expect(n.added!.gribouiller.t).toEqual(['çiziktirmek'])
+    expect(removeEntry(n, 'gribouiller').added).toEqual({})
+    // Nothing to save without a word or a meaning.
+    expect(addEntry(emptyNotes(), 'mot', [], T1, 'own', 'fr')).toEqual(emptyNotes())
+    expect(addEntry(emptyNotes(), '  ', ['x'], T1, 'own', 'fr')).toEqual(emptyNotes())
+  })
+
+  it('finds a saved word by the word, its start or a Turkish meaning, the exact word first', () => {
+    let n = addEntry(emptyNotes(), 'gribouiller', ['karalamak'], T1, 'deepl', 'fr')
+    n = addEntry(n, 'gribouillis', ['karalama'], T1, 'deepl', 'fr')
+    expect(findAdded(n, 'gribouiller', 'fr').map((e) => [e.word, e.exact])).toEqual([['gribouiller', true]])
+    expect(findAdded(n, 'gribouill', 'fr').map((e) => e.word)).toEqual(['gribouiller', 'gribouillis'])
+    expect(findAdded(n, 'karala', 'fr').map((e) => e.word)).toEqual(['gribouiller', 'gribouillis'])
+    expect(findAdded(n, 'maison', 'fr')).toEqual([])
+    expect(findAdded(n, '', 'fr')).toEqual([])
+  })
+
+  it('merges two devices: both words kept, the later save of one word wins', () => {
+    const a = addEntry(addEntry(emptyNotes(), 'un', ['bir'], T1, 'own', 'fr'), 'deux', ['iki'], T1, 'own', 'fr')
+    const b = addEntry(emptyNotes(), 'deux', ['ikili'], T2, 'deepl', 'fr')
+    expect(mergeNotes(a, b)!.added).toEqual({ un: { t: ['bir'], at: T1, from: 'own' }, deux: { t: ['ikili'], at: T2, from: 'deepl' } })
   })
 })

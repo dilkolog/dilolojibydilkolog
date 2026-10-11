@@ -10,9 +10,11 @@ export interface DictionaryNotes {
   fixes: Record<string, { t: string[]; at: string }>
   /** Look-ups by word; `dismissed` once the learner said no to adding it. */
   looked: Record<string, { n: number; at: string; dismissed?: boolean }>
+  /** Words the pack lacks that the learner saved with a meaning (from DeepL or typed): found in the dictionary from then on. */
+  added?: Record<string, { t: string[]; at: string; from?: 'deepl' | 'own' }>
 }
 
-export const emptyNotes = (): DictionaryNotes => ({ fixes: {}, looked: {} })
+export const emptyNotes = (): DictionaryNotes => ({ fixes: {}, looked: {}, added: {} })
 
 /** "ev, konut ;  yuva" → ev, konut, yuva: what the learner typed as the word's meanings. */
 export function parseMeanings(text: string): string[] {
@@ -25,6 +27,35 @@ export function setFix(notes: DictionaryNotes, word: string, meanings: readonly 
   if (meanings.length) fixes[word] = { t: [...meanings], at }
   else delete fixes[word]
   return { ...notes, fixes }
+}
+
+/** The key a saved word is kept under: lower case, one space between words. */
+export const addedKey = (word: string, language: string) => word.trim().replace(/\s+/g, ' ').toLocaleLowerCase(language)
+
+/** Saves a word the pack lacks with its meanings, for good (a second save of the same word replaces the first). */
+export function addEntry(notes: DictionaryNotes, word: string, meanings: readonly string[], at: string, from: 'deepl' | 'own', language: string): DictionaryNotes {
+  const key = addedKey(word, language)
+  if (!key || !meanings.length) return notes
+  return { ...notes, added: { ...notes.added, [key]: { t: [...meanings], at, from } } }
+}
+
+/** Takes a saved word out of the dictionary again. */
+export function removeEntry(notes: DictionaryNotes, key: string): DictionaryNotes {
+  if (!notes.added?.[key]) return notes
+  const added = { ...notes.added }
+  delete added[key]
+  return { ...notes, added }
+}
+
+/** Saved words matching what was typed: the word itself, or a meaning (Turkish) that contains it. Exact word first. */
+export function findAdded(notes: DictionaryNotes, query: string, language: string): { word: string; t: string[]; exact: boolean }[] {
+  const q = addedKey(query, language)
+  if (!q) return []
+  return Object.entries(notes.added ?? {})
+    .map(([word, e]) => ({ word, t: e.t, exact: word === q, hit: word === q || word.startsWith(q) || e.t.some((m) => m.toLocaleLowerCase('tr').includes(q)) }))
+    .filter((e) => e.hit)
+    .sort((a, b) => Number(b.exact) - Number(a.exact) || a.word.localeCompare(b.word))
+    .map(({ word, t, exact }) => ({ word, t, exact }))
 }
 
 /** One more look at a word. */
@@ -61,5 +92,7 @@ export function mergeNotes(a: DictionaryNotes | undefined, b: DictionaryNotes | 
     const o = looked[w]
     looked[w] = o ? { n: Math.max(o.n, l.n), at: timeOf(o.at) >= timeOf(l.at) ? o.at : l.at, ...(o.dismissed || l.dismissed ? { dismissed: true } : {}) } : l
   }
-  return { fixes, looked }
+  const added = { ...a.added }
+  for (const [w, e] of Object.entries(b.added ?? {})) if (!added[w] || timeOf(e.at) >= timeOf(added[w].at)) added[w] = e
+  return Object.keys(added).length ? { fixes, looked, added } : { fixes, looked }
 }

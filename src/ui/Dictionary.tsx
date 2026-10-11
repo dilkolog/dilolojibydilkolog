@@ -8,7 +8,7 @@ import { translate, translationReady } from '../data/translate'
 import type { Pack } from '../data/wordpackBuild'
 import { db } from '../data/instance'
 import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
-import { emptyNotes, noteLookup, parseMeanings, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
+import { addEntry, emptyNotes, findAdded, noteLookup, parseMeanings, removeEntry, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
 import { LevelChip } from './LevelChip'
@@ -105,6 +105,10 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
   const typed = query.trim()
   const exactWord = result.exact?.word
   const own = typed ? ownEntry(vocabulary, exactWord ?? typed, language) : undefined
+  const saved = useMemo(() => findAdded(notes, typed, language), [notes, typed, language])
+  const savedExact = result.exact ? undefined : saved.find((e) => e.exact)
+  const savedOthers = saved.filter((e) => e !== savedExact)
+  const save = (word: string, meanings: string[], from: 'deepl' | 'own') => updateNotes((n) => addEntry(n, word, meanings, new Date().toISOString(), from, language))
 
   // A word whose card stays up a moment was really looked up (not just passed while typing): once a visit.
   const counted = useRef(new Set<string>())
@@ -159,6 +163,14 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
         </div>
       </section>
 
+      {!typed && Object.keys(notes.added ?? {}).length > 0 && (
+        <SavedList
+          language={language}
+          list={Object.entries(notes.added ?? {}).map(([word, e]) => ({ word, t: e.t, exact: false }))}
+          onPick={pick}
+        />
+      )}
+
       {!typed && recent.length > 0 && (
         <section className="section stack">
           <h2 className="section-title">Son baktıkların</h2>
@@ -195,9 +207,32 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               onPick={pick}
               onSwitchLanguage={onSwitchLanguage}
             />
+          ) : savedExact ? (
+            <SavedCard
+              key={savedExact.word}
+              language={language}
+              word={savedExact.word}
+              meanings={savedExact.t}
+              from={notes.added?.[savedExact.word]?.from}
+              own={own}
+              onOpenWord={onOpenWord}
+              onAdd={onAdd}
+              onRemove={() => updateNotes((n) => removeEntry(n, savedExact.word))}
+            />
           ) : (
-            <NotFound key={typed} language={language} word={typed} own={own} onOpenWord={onOpenWord} onAdd={onAdd} hasOthers={result.similar.length + result.fromTurkish.length > 0} />
+            <NotFound
+              key={typed}
+              language={language}
+              word={typed}
+              own={own}
+              onOpenWord={onOpenWord}
+              onAdd={onAdd}
+              onSave={save}
+              hasOthers={result.similar.length + result.fromTurkish.length + savedOthers.length > 0}
+            />
           )}
+
+          {savedOthers.length > 0 && <SavedList language={language} list={savedOthers} onPick={pick} />}
 
           {result.fromTurkish.length > 0 && (
             <section className="section stack">
@@ -506,6 +541,7 @@ function NotFound({
   own,
   onOpenWord,
   onAdd,
+  onSave,
   hasOthers,
 }: {
   language: TargetLanguage
@@ -513,6 +549,8 @@ function NotFound({
   own?: VocabularyEntry
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
+  /** Keeps the word in the dictionary for good (not in the study list). */
+  onSave: (word: string, meanings: string[], from: 'deepl' | 'own') => void
   hasOthers: boolean
 }) {
   const { apiKey } = useAi()
@@ -586,20 +624,16 @@ function NotFound({
           <p>
             <strong lang={language}>{word}</strong>: {deepl} <span className="small muted">(DeepL)</span>
           </p>
-          <p className="small muted">Tek kelimede çeviri yanılabilir; anlamı doğru buluyorsan sözlüğüne ekle, yanlışsa düzeltip ekleyebilirsin.</p>
-          <form
-            className="row gap-xs"
-            onSubmit={(e) => {
-              e.preventDefault()
-              const m = (customMeaning.trim() || deepl).trim()
-              if (m) onAdd(word, m)
-            }}
-          >
-            <input type="text" className="input" placeholder={deepl} value={customMeaning} onChange={(e) => setCustomMeaning(e.target.value)} aria-label="Türkçe anlamı" />
-            <button type="submit" className="btn btn-sm">
-              <PlusIcon size={15} /> Sözlüğe ekle
+          <p className="small muted">Tek kelimede çeviri yanılabilir. “Sözlüğe kaydet” kelimeyi bu sözlükte kalıcı bulunur yapar (çalışma listene girmez); “Kelimelerime ekle” çalışma kartı yapar. Yanlışsa anlamı düzeltip kaydet.</p>
+          <input type="text" className="input" placeholder={deepl} value={customMeaning} onChange={(e) => setCustomMeaning(e.target.value)} aria-label="Türkçe anlamı" />
+          <div className="row gap-xs">
+            <button type="button" className="btn btn-sm" onClick={() => onSave(word, parseMeanings(customMeaning.trim() || deepl), 'deepl')}>
+              <BookIcon size={15} /> Sözlüğe kaydet
             </button>
-          </form>
+            <button type="button" className="btn btn-sm btn-quiet" onClick={() => onAdd(word, (customMeaning.trim() || deepl).trim())}>
+              <PlusIcon size={15} /> Kelimelerime ekle
+            </button>
+          </div>
         </>
       ) : ai ? (
         <>
@@ -631,13 +665,24 @@ function NotFound({
             <input
               type="text"
               className="input"
-              placeholder="Türkçe anlamını yaz ve sözlüğe ekle…"
+              placeholder="Türkçe anlamını yaz ve kelimelerine ekle…"
               value={customMeaning}
               onChange={(e) => setCustomMeaning(e.target.value)}
               aria-label="Türkçe anlamı"
             />
             <button type="submit" className="btn btn-sm" disabled={!customMeaning.trim()}>
-              <PlusIcon size={15} /> Sözlüğe ekle
+              <PlusIcon size={15} /> Kelimelerime ekle
+            </button>
+            <button
+              type="button"
+              className="btn btn-sm btn-quiet"
+              disabled={!customMeaning.trim()}
+              onClick={() => {
+                onSave(word, parseMeanings(customMeaning), 'own')
+                setCustomMeaning('')
+              }}
+            >
+              <BookIcon size={15} /> Sözlüğe kaydet
             </button>
           </form>
           <div className="row gap-xs">
@@ -658,6 +703,72 @@ function NotFound({
         </>
       )}
       {error && <p className="error small">{error}</p>}
+    </section>
+  )
+}
+
+/** A word the learner saved to the dictionary (the pack lacks it): its meanings, and what can be done with it. */
+function SavedCard({
+  language,
+  word,
+  meanings,
+  from,
+  own,
+  onOpenWord,
+  onAdd,
+  onRemove,
+}: {
+  language: TargetLanguage
+  word: string
+  meanings: string[]
+  from?: 'deepl' | 'own'
+  own?: VocabularyEntry
+  onOpenWord: (id: string) => void
+  onAdd: (word: string, meaning: string) => void
+  onRemove: () => void
+}) {
+  return (
+    <section className="section card stack" aria-label="Kaydettiğin kelime">
+      <p>
+        <strong lang={language}>{word}</strong>: {meanings.join(', ')} <span className="small muted">({from === 'deepl' ? 'DeepL, sen kaydettin' : 'sen kaydettin'})</span>
+      </p>
+      <div className="row gap-xs">
+        {own ? (
+          <button className="btn btn-sm btn-quiet" onClick={() => onOpenWord(own.id)}>
+            <CheckIcon size={15} /> Kelime sayfasını aç
+          </button>
+        ) : (
+          <button className="btn btn-sm" onClick={() => onAdd(word, meanings.slice(0, 2).join(', '))}>
+            <PlusIcon size={15} /> Kelimelerime ekle
+          </button>
+        )}
+        <button className="btn btn-sm btn-quiet" onClick={onRemove}>
+          Sözlükten kaldır
+        </button>
+      </div>
+    </section>
+  )
+}
+
+/** The saved words (all of them, or those matching the query), each one tap from its card. */
+function SavedList({ language, list, onPick }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void }) {
+  return (
+    <section className="section stack">
+      <h2 className="section-title">Kaydettiklerin</h2>
+      <ul className="word-list">
+        {list.map((e) => (
+          <li key={e.word}>
+            <button type="button" className="word-row" onClick={() => onPick(e.word)}>
+              <span className="word-row-text">
+                <span className="w" lang={language}>
+                  {e.word}
+                </span>
+                <span className="meta">{e.t.join(', ')}</span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

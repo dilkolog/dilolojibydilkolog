@@ -110,6 +110,28 @@ describe('removals travel', () => {
   })
 })
 
+describe('words saved to the dictionary', () => {
+  it('travel to the other device, and one taken out stays gone unless saved again later', async () => {
+    const phone = new KelimeDB('t-rm3-phone')
+    const laptop = new KelimeDB('t-rm3-laptop')
+    const entry = (at: string, t = ['karalamak']) => ({ fixes: {}, looked: {}, added: { gribouiller: { t, at, from: 'deepl' as const } } })
+    vi.setSystemTime(new Date('2026-10-01T09:00:00Z'))
+    await phone.saveDictionaryNotes('fr', entry('2026-10-01T09:00:00.000Z'))
+    const onLaptop = mergeBackups(await snapshot(laptop, '2026-10-01T10:00:00Z'), await snapshot(phone, '2026-10-01T10:00:01Z'))
+    expect(onLaptop.dictionary?.fr?.added?.gribouiller.t).toEqual(['karalamak'])
+    // Taken out on the phone: gone from the merged result too.
+    for (const d of [phone, laptop]) await d.saveDictionaryNotes('fr', entry('2026-10-01T09:00:00.000Z'))
+    vi.setSystemTime(new Date('2026-10-02T09:00:00Z'))
+    await phone.saveDictionaryNotes('fr', { fixes: {}, looked: {}, added: {} })
+    const merged = mergeBackups(await snapshot(laptop, '2026-10-03T09:00:00Z'), await snapshot(phone, '2026-10-03T09:00:01Z'))
+    expect(merged.dictionary?.fr?.added).toEqual({})
+    // Saved again later, it lives.
+    vi.setSystemTime(new Date('2026-10-04T09:00:00Z'))
+    await phone.saveDictionaryNotes('fr', entry('2026-10-04T09:00:00.000Z', ['çiziktirmek']))
+    expect(mergeBackups(merged, await snapshot(phone, '2026-10-04T09:00:01Z')).dictionary?.fr?.added?.gribouiller.t).toEqual(['çiziktirmek'])
+  })
+})
+
 describe('backup version', () => {
   it('a newer backup is a BackupVersionError, which the screens turn into "update the app"', () => {
     expect(() => parseBackup('{"app":"kelime-koc","version":99,"vocabulary":[]}')).toThrow(BackupVersionError)
