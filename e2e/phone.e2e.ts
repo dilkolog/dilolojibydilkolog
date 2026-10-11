@@ -1165,3 +1165,39 @@ test('reading, deduction mode: the guess question sits in the word sheet, on scr
   await rating.getByRole('button', { name: 'Yaklaştım' }).click()
   await expect(rating).toHaveCount(0)
 })
+
+test('reading, deduction mode on phone: edge cases with long sentence, dark theme, and skip / rating behavior', async ({ page }) => {
+  await startWithSamples(page)
+  // Set dark theme
+  await page.evaluate(() => {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  })
+  await openScreen(page, 'Okuma')
+  // Long sentence with multiple clauses
+  const longText = 'Pendant les longues soirées d’hiver particulièrement froides, toute la famille se réunissait silencieusement autour de la grande cheminée crépitante dans le vieux salon.'
+  await page.getByLabel('Metin', { exact: true }).fill(longText)
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await page.getByRole('button', { name: 'Çıkarım' }).click()
+
+  const masked = page.locator('.rw-masked').first()
+  await expect(masked).toBeVisible()
+  await masked.click()
+
+  const sheet = page.locator('.word-pop')
+  await expect(sheet).toBeVisible()
+  const rating = page.getByRole('region', { name: 'Tahmin' })
+  await expect(rating).toBeVisible()
+  await expect(rating.getByRole('button', { name: 'Geç' })).toBeInViewport()
+
+  // 1. Tapping "Geç" closes rating prompt, but keeps sheet open with word details
+  await rating.getByRole('button', { name: 'Geç' }).click()
+  await expect(rating).toHaveCount(0)
+  await expect(sheet).toBeVisible()
+  await expect(sheet.getByRole('button', { name: 'Kelimelerime ekle' })).toBeVisible()
+
+  // Close sheet
+  await sheet.getByRole('button', { name: 'Kapat' }).click()
+  await expect(sheet).toHaveCount(0)
+})
+
+
