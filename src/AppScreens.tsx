@@ -253,7 +253,7 @@ export function AppScreens(props: AppScreensProps) {
           }
         />
       ) : screen.name === 'games' ? (
-        <GamesScreen key={`${data.language}:${screen.game ?? ''}`} initialGame={screen.game} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} dayDue={plan ? { reviews: reviewsWaiting, minutes: plan.estimatedMinutes } : undefined} onStartDay={startDay} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
+        <GamesScreen key={data.language} initialGame={screen.game} onGameChange={(g) => setScreen({ name: 'games', game: g ?? undefined })} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} dayDue={plan ? { reviews: reviewsWaiting, minutes: plan.estimatedMinutes } : undefined} onStartDay={startDay} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
       ) : screen.name === 'verbs' ? (
         <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
       ) : screen.name === 'profile' ? (

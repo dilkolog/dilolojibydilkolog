@@ -1201,3 +1201,24 @@ test('reading, deduction mode on phone: edge cases with long sentence, dark them
 })
 
 
+
+test('the Back button walks back through the screens, a game is left to its hub, and a session is not left by it', async ({ page }) => {
+  test.setTimeout(60_000)
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await expect(page.getByRole('button', { name: 'Ekle', exact: true })).toBeVisible()
+  await openScreen(page, 'Okuma')
+  await expect(page.getByLabel('Metin', { exact: true })).toBeVisible()
+  await page.goBack()
+  await expect(page.getByRole('button', { name: 'Ekle', exact: true })).toBeVisible()
+  await page.goBack()
+  await expect(page.getByRole('button', { name: /soru bekliyor|Başla/ }).first()).toBeVisible()
+  // A game opened from the hub: Back returns to the hub, not out of the app.
+  await openScreen(page, 'Oyunlar')
+  await page.getByRole('button', { name: /Kayıt farkı/ }).first().click()
+  await expect(page.getByRole('heading', { name: 'Kayıt farkı' })).toBeVisible()
+  await page.goBack()
+  await expect(page.getByRole('heading', { name: 'Kayıt farkı' })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Kayıt farkı/ }).first()).toBeVisible()
+  expect(page.url()).toContain('localhost')
+})

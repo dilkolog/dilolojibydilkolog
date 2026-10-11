@@ -68,7 +68,7 @@ export function AccentGame({ language, vocabulary, states, mistakes = [], best, 
     setPhase('over')
     sfx.levelUp()
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
-    if (isPctRecord(pct, best)) void db.saveRecord(recordKey, pct).then(() => setRecord(true))
+    if (isPctRecord(pct, best)) void db.saveRecord(recordKey, pct).then(() => setRecord(best !== undefined))
   }
 
   useEffect(() => {

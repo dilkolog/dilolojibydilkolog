@@ -33,7 +33,7 @@ export class ScreenBoundary extends Component<{ resetKey: string; onHome: () => 
         <p className="small muted">
           {chunk
             ? navigator.onLine
-              ? 'Uygulamanın yeni bir sürümü yüklenmiş; sayfayı yenileyince bu ekran da açılır.'
+              ? 'Bağlantı bir an koptu ya da uygulamanın yeni bir sürümü yüklendi; sayfayı yenileyince bu ekran açılır.'
               : 'İnternet yok ve bu ekran henüz cihaza indirilmemiş. Bağlantı gelince yeniden dene; tekrarların ve kelimelerin internetsiz de çalışır.'
             : 'Beklenmedik bir hata oldu. Verilerin güvende; yeniden denemek ya da sayfayı yenilemek genelde yeter.'}
         </p>

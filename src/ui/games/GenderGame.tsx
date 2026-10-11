@@ -58,7 +58,7 @@ export function GenderGame({
     const pct = Math.round((results.filter((r) => r.ok).length / round.length) * 100)
     if (isPctRecord(pct, best)) {
       await db.saveRecord(recordKey, pct)
-      setRecord(true)
+      setRecord(best !== undefined)
     }
     sfx.levelUp()
     setPhase('over')
