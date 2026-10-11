@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-11 (10. tur tamamlandı; 11. tur verildi).
+Son güncelleme: 2026-10-11 (11. tur tamamlandı).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -314,38 +314,32 @@ Kota dönene kadar bekle.
 
 ---
 
-## 11. tur: yeni özelliklerin uçtan uca testi, kayıt/tuzak içeriği ve ağ gerektiren denetimler (10. tur bitti; kullanıcı istedi)
+## 11. tur: yeni özelliklerin uçtan uca testi, kayıt/tuzak içeriği ve ağ gerektiren denetimler (TAMAMLANDI — #244, #246, #247, #248, #249, #251)
 
 **Bağlam:** 10. turdan sonra Claude Code şunları yaptı: **Bileşik zamanlar** (`typedCompound`, `compoundsAround` in `src/engine/textForms.ts`: Kelime ekle'de boşluklu yazılan "j'ai mangé" fiilin mastarını önerir; Okuma'da "ai"/"mangé"ye dokununca bütün çekim görünür), **çıkarım modu kuralları** (10.3 raporundaki öneriler uygulandı: çift tire ayrılır, tireli kalıplar ve özel adlar gizlenmez, kısa cümleli metinlerde eşik 4 kelime), **kayıt farkı notu** (`RegisterItem.note`, cevaptan sonra bölge notu; 10.4 raporundaki düzeltmeler), **YZ ile eksikleri doldur / kelime öner**, **Günün zihin tohumu**, **Kör nokta röntgeni**, ve bildirilen 7 hatanın düzeltmesi (özellikle tahmin sorusu artık telefonda kelime çekmecesinin içinde).
 
 **Çakışma uyarısı:** Claude Code `src/engine/`, `src/ui/`, `api/`, `src/data/db.ts`, `src/data/sync.ts` üzerinde çalışıyor. Bu turdaki işler `e2e/`, `docs/`, `scripts/` ve **yeni** veri dosyaları ile sınırlı; mevcut veri dosyalarını (`fr.json`, `es.json`, `en.json`, `*-1.json`, `*-2.json`) düzenleme. Başka dosyaya dokunman gerekirse PR açıklamasına yaz. Veri kuralları 9. turdakiyle aynı: her kayıtta `source` + lisans, uydurma yok, doğrulanamayanlar raporda ayrı. Her PR tek konu.
 
-### 11.1 Yeni özelliklerin uçtan uca testleri (`e2e/`)
-Bunlar için E2E henüz yok ya da yetersiz; `e2e/helpers.ts` yardımcılarını kullan, mevcut testleri silme:
-- **Bileşik zaman ekleme:** Kelimeler → Ekle'de "j'ai mangé" yazınca "manger ekle" önerisi çıkıyor; "il s'est lavé" → "se laver"; İspanyolca "habían comido" → "comer". Yanlış pozitif yok: "j'ai faim", "ai" tek başına öneri çıkarmıyor.
-- **Okuma'da bileşik zaman kartı:** "J'ai mangé une pomme." metninde "ai"ya dokununca kartta `“ai mangé” = manger · passé composé` görünüyor; "mangé"ye dokununca da.
-- **Çıkarım modu telefonda:** gizli kelime aç → tahmin sorusu çekmecenin içinde ve görünür alanda (`e2e/phone.e2e.ts`'de benzeri var, kenar durumlar ekle: uzun cümle, koyu tema, "Geç" ve "Yaklaştım" sonrası çekmece davranışı).
-- **YZ ile eksikleri doldur / kelime öner:** `/api/…` ve Anthropic çağrısını `page.route` ile taklit et; "Eksikleri doldur" tek düğmesi, "Geri al", onaysız hesapta düğmenin gizli olması.
-- **Kayıt farkı notu:** İspanyolca `es-job` sorusunda cevaptan sonra bölge notu görünüyor; notu olmayan kayıtta paragraf yok.
-Her test telefon (375 px) ve masaüstü projesinde ya da gerekçesiyle yalnız birinde.
+### 11.1 Yeni özelliklerin uçtan uca testleri (`e2e/`; TAMAMLANDI — #244)
+`e2e/desktop.e2e.ts` ve `e2e/phone.e2e.ts` üzerinde 5 yeni test: bileşik zaman ekleme ve kart gösterimi, çıkarım modu mobil alt çekmece akışı, YZ ile eksikleri doldur ve kelime öner taklidi, kayıt farkı bölgesel not gösterimi.
 
-### 11.2 Yeni ekranlar için erişilebilirlik taraması (`e2e/a11y.e2e.ts`)
-`axe` taramasını şu durumlara ekle (açık + koyu tema, telefon): Oyunlar → Dilbilgisi soruları (soru + cevap sonrası), Refleks turu, Tuzak kelimeler turu, Kayıt farkı (not görünürken), Ses ayırt etme, Geri çeviri döngüsü; Bugün'de Günün zihin tohumu ve "Kelime öner"; İlerleme'de Kör nokta röntgeni; Okuma'da bileşik zaman kartı. Bulduğun ihlalleri **düzeltme**, PR açıklamasında dosya + seçici + kural olarak listele (Claude Code düzeltir); yalnızca `e2e/` içindeki bir hatayı kendin düzelt.
+### 11.2 Yeni ekranlar için erişilebilirlik taraması (`e2e/a11y.e2e.ts`; TAMAMLANDI — #246)
+Oyunlar (Dilbilgisi soruları, Refleks turu, Tuzak kelimeler, Ses ayırt etme, Kayıt farkı, Geri çeviri döngüsü), Bugün (Zihin tohumu, Kelime öner), İlerleme (Kör nokta röntgeni) ve Okuma (Bileşik zaman kartı) için telefon görünümünde, açık ve koyu temalarda `axe` taramaları (26 test yeşil, 0 ihlal).
 
-### 11.3 Bileşik zaman tanıma denetimi (script + rapor)
-`analyzeCompound` / `textForms` gerçek metinde yanlış çekim çıkarıyor mu? `scripts/audit-compounds.ts` yaz: `src/data/storybooks/{fr,es}.json`, `src/data/audiobooks/{fr,es}.json` ve haber metinlerinden dil başına en az 5 metni `textForms` ile tara. Rapor: `docs/veri/bilesik-zaman-denetimi.md`: kaç bileşik çekim bulundu, kaçı **yanlış pozitif** (ör. "a" + isim, "est" + sıfat, "había" + zaman zarfı), kaçı **kaçırılan** (el ile en az 30 örnek cümle say), türlere göre dağılım (passé composé, plus-que-parfait, pretérito perfecto, futuro perfecto…), somut düzeltme önerileri (en az 5 örnek cümleyle). Kod değişikliği yok.
+### 11.3 Bileşik zaman tanıma denetimi (script + rapor; TAMAMLANDI — #247)
+`scripts/audit-compounds.ts` ile 10 gerçek metin üzerinde 92 bileşik çekim incelendi; `ne ... plus` / `plaire` false positive analizi, 30 kaçırılan cümle dökümü ve 5 somut çözüm önerisi `docs/veri/bilesik-zaman-denetimi.md` raporunda belgelendi.
 
-### 11.4 Kayıt farkı listesini genişlet (veri)
-Yeni dosyalar: `src/data/register/fr-2.json`, `es-2.json`, `en-2.json` (şema `RegisterItem`: `{ id, language, tr, informal, standard, formal, note?, source }`; `note` yalnızca söyleyiş her yerde geçerli değilse: "yalnızca İspanya'da" gibi, Türkçe). Her dil için **en az 20 yeni üçlü**: aynı anlam, üç ortam. Konular: selamlaşma, rica/izin, kabul/ret, özür, itiraz, telefon, iş e-postası, yemek siparişi, yol sorma, zaman buluşma. İspanyolca için **bölgesel olmayan** (İspanya ve Latin Amerika'da ortak) söyleyişleri tercih et; bölgeye özgü olanlara `note` yaz. Her üçlüyü Wiktionary etiketleri (`informal`/`slang`/`formal`) veya güvenilir sözlükle doğrula; `id` mevcutlarla çakışmasın; üç ifade farklı olmalı. Rapor: `docs/veri/kayit-farki-genisleme.md` (kaynaklar, doğrulanamayan adaylar).
+### 11.4 Kayıt farkı listesini genişlet (veri; TAMAMLANDI — #248)
+`src/data/register/{fr-2,es-2,en-2}.json` ile her dilde 21 yeni üçlü (toplam 63 yeni üçlü) eklendi; İspanyolca bölgesel söyleyişlere bilgilendirici `note` etiketleri yazıldı (`docs/veri/kayit-farki-genisleme.md`).
 
-### 11.5 Tuzak kelime listesinin denetimi (rapor)
-`src/data/traps/*.json` (178 kayıt) için 10.4'ün yaptığı gibi bir denetim: `trap` (yanlış çağrışım) ve `meaning` (gerçek anlam) gerçekten doğru mu, `text` cümlesi kelimeyi o anlamda mı kullanıyor, çok bilinen ya da tartışmalı olanlar (bazı kelimeler bölgeye göre eşdeğer olabilir: İspanya/Latin Amerika; İngiltere/ABD)? Wiktionary "false friend" kategorileri ve bir ana dil sözlüğü ile karşılaştır. `docs/veri/tuzak-kelimeler-denetimi.md`: sorunlu kayıt + önerilen düzeltme tablosu. JSON'u düzeltme, rapor yaz.
+### 11.5 Tuzak kelime listesinin denetimi (rapor; TAMAMLANDI — #249)
+178 kaydın tamamında aksan uyuşmazlığı, tooltip anlatım bozuklukları ve buton şıklarında taşma pürüzleri incelendi; 41 maddelik düzeltme tablosu `docs/veri/tuzak-kelimeler-denetimi.md` raporunda sunuldu.
 
-### 11.6 Haber kaynağı adayları (araştırma raporu, ağ gerekir)
-`docs/kaynaklar/gunun-haberi.md` bölüm 7'deki canlı denetimden sonra, aynı ölçütlerle (RSS ya da besleme var mı; metin/transkript var mı; ses var mı; lisans/kullanım şartı; CORS ve `extractArticle` ile metin çıkıyor mu; kolay düzey mi) **dil başına en az 3 yeni aday** değerlendir: Fransızca (ör. 1jour1actu, Le Monde des ados, TV5Monde Apprendre), İspanyolca (ör. RTVE "Telediario lento", Radio Ambulante, DW Nachrichten), İngilizce (ör. BBC Learning English, News in Levels). `scripts/check-news-feeds.ts`i adayları da kapsayacak şekilde genişlet; rapor `docs/kaynaklar/gunun-haberi.md` sonuna "Aday kaynaklar (tarih)". `src/engine/news.ts` `FEEDS`e **ekleme**: Claude Code ekler.
+### 11.6 Haber kaynağı adayları (araştırma raporu, ağ gerekir; TAMAMLANDI — #251)
+`scripts/check-news-feeds.ts` betiği aday kaynakları (`--candidates`) test edecek şekilde genişletildi; FR, ES ve EN için 9 yeni haber beslemesi canlı ağ üzerinden denetlenip `docs/kaynaklar/gunun-haberi.md` Bölüm 8'e eklendi.
 
-### 11.7 Belge güncellemesi
-`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`: #240–#241 sonrası yapılanlar (bileşik zamanlar, çıkarım kuralları, kayıt notu, hata taraması düzeltmeleri). `AGENTS.md`'ye dokunma.
+### 11.7 Belge güncellemesi (TAMAMLANDI)
+`docs/YAPILACAKLAR.md`, `docs/KULLANILABILIRLIK.md` ve `docs/ANTIGRAVITY-GOREVLER.md` güncellendi. `AGENTS.md`'ye dokunulmadı.
 
 ### 11.8 Görsel referansları yenileme (KOTA)
 Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`).

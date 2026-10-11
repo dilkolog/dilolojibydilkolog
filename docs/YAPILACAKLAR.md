@@ -326,14 +326,33 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Eksik Doldurma ve Seviyeli Kelime Önerisi:**
   - Cümle içi boşluk tamamlama alıştırması (`FillMissing.tsx`) ve seviyeye uygun kelime önerme motoru (`SuggestWords.tsx`, `wordSuggest.ts`).
 
+## 2026-10-11 Geliştirmeleri — 11. Tur (#244–#251)
+- [x] **Yeni Özelliklerin Uçtan Uca Testleri (#244):**
+  - `e2e/desktop.e2e.ts` ve `e2e/phone.e2e.ts` üzerinde 5 yeni uçtan uca test: Bileşik zaman kelime ekleme ("j'ai mangé" -> "manger ekle"), Okuma ekranında bileşik zaman kartı ("ai" veya "mangé" dokunulduğunda tüm çekim ve zaman), Çıkarım modunda mobil alt çekmece akışı, YZ ile eksikleri doldur / kelime öner taklidi ve Kayıt farkı bölge notu gösterimi.
+- [x] **Genişletilmiş Erişilebilirlik (a11y) Taramaları (#246):**
+  - `e2e/a11y.e2e.ts` dosyasına tüm yeni ekran ve durumlar için telefon görünümünde, açık ve koyu temalarda `axe` taramaları eklendi: Dilbilgisi soruları (soru + cevap), Refleks turu (süreli/süresiz), Tuzak kelimeler (soru + cevap), Ses ayırt etme, Kayıt farkı (bölgesel not görünürken), Geri çeviri döngü çipleri, Zihin tohumu, Kelime öner, Kör nokta röntgeni ve Bileşik zaman kartı (26 test, 0 ihlal).
+- [x] **Bileşik Zaman Tanıma Denetimi (#247):**
+  - `scripts/audit-compounds.ts` betiği ile 10 gerçek edebi ve haber metni (5 FR, 5 ES) taranarak 92 bileşik çekim incelendi.
+  - Fransızca `ne ... plus` yapısının hatalı olarak `plaire` fiili sayılması (`ont plus`, `avait plus`, `ai plus`) tespit edildi; 30 kaçırılan cümle örneği (bileşik mastarlar, devrik sorular, BETWEEN zarfları) ve 5 çözüm önerisi `docs/veri/bilesik-zaman-denetimi.md` raporunda belgelendi.
+- [x] **Kayıt Farkı (Register) Listesi Genişletmesi (#248):**
+  - `src/data/register/{fr-2,es-2,en-2}.json` ile her dilde 21 yeni üçlü (toplam 63 yeni üçlü, diller genelinde 105 kayıt) eklendi.
+  - Selamlaşma, rica, izin, özür, telefon, e-posta, sipariş, yol, buluşma ve fiyat senaryoları kapsandı; İspanyolca bölgesel kullanımlara bilgilendirici `note` etiketleri yazıldı (`docs/veri/kayit-farki-genisleme.md`).
+- [x] **Tuzak Kelime (False Friends) Listesi Denetimi (#249):**
+  - 178 kaydın tamamı taranarak Fransızca 7 kayıtta `lemma` aksansız yazıldığı için `trapOf` eşleşmesinin bozulduğu kritik hata saptandı.
+  - `looks`, `trap` ve `meaning` alanlarındaki anlatım bozuklukları ve buton taşma riskleri incelenerek 41 maddelik düzeltme tablosu ve savunmacı normalize önerisi `docs/veri/tuzak-kelimeler-denetimi.md` raporunda sunuldu.
+- [x] **Haber Kaynağı Adaylarının Canlı Ağ Denetimi (#251):**
+  - `scripts/check-news-feeds.ts` betiği aday kaynakları (`--candidates`) test edecek şekilde genişletildi.
+  - Fransızca (*Salut l'info!*, *1jour1actu*, *TV5Monde*), İspanyolca (*Hoy Hablamos*, *Radio Ambulante*, *DW*) ve İngilizce (*BBC 6 Minute English*, *News in Levels*, *NPR*) canlı ağ üzerinden denetlendi; çalışan doğrudan ses akışları ve transkript durumları `docs/kaynaklar/gunun-haberi.md` Bölüm 8'e eklendi.
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince dilbilgisi, refleks ve tuzak kelimeler oyunlarının kullanım oranları incelenecek.
+- **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince dilbilgisi, refleks, kayıt farkı ve tuzak kelimeler oyunlarının kullanım oranları incelenecek.
 - **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
 - **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
 - **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) 14 fikir yol haritası.
 - **Kullanıcıya önerilen ama onun yapacağı:**
   - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
   - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
+
 
 
 
