@@ -73,6 +73,14 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
   const [recent, setRecent] = useState(() => loadRecent(language))
   const [notes, setNotes] = useState<DictionaryNotes>(emptyNotes)
   const notesRef = useRef(notes)
+  const [deeplOn, setDeeplOn] = useState(false)
+  useEffect(() => {
+    let live = true
+    void translationReady().then((yes) => live && setDeeplOn(yes))
+    return () => {
+      live = false
+    }
+  }, [])
 
   useEffect(() => {
     let live = true
@@ -236,6 +244,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               onOpenWord={onOpenWord}
               onAdd={onAdd}
               onSave={save}
+              deeplOn={deeplOn}
               hasOthers={result.fromTurkish.length + savedOthers.length > 0}
               hasSimilar={result.similar.length > 0}
             />
@@ -551,6 +560,7 @@ function NotFound({
   onOpenWord,
   onAdd,
   onSave,
+  deeplOn,
   hasOthers,
   hasSimilar,
 }: {
@@ -561,6 +571,8 @@ function NotFound({
   onAdd: (word: string, meaning: string) => void
   /** Keeps the word in the dictionary for good (not in the study list). */
   onSave: (word: string, meanings: string[], from: 'deepl' | 'own') => void
+  /** Whether the server can translate (asked once by the screen, not on every letter typed). */
+  deeplOn: boolean
   /** Matches of the Turkish typed, or saved words: they are listed below and make the card unnecessary. */
   hasOthers: boolean
   /** Pack words that start like the query: listed below, but the word itself is still missing (it can be saved). */
@@ -572,15 +584,7 @@ function NotFound({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   // DeepL (through the app's server): offered when it is there; its answer is a guess for one word, so it is shown as such.
-  const [deeplOn, setDeeplOn] = useState(false)
   const [deepl, setDeepl] = useState<string | null>(null)
-  useEffect(() => {
-    let live = true
-    void translationReady().then((yes) => live && setDeeplOn(yes))
-    return () => {
-      live = false
-    }
-  }, [])
 
   if (own) {
     return (
