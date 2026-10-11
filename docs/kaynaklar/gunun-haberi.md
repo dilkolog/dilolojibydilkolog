@@ -156,3 +156,67 @@ Diloloji'nin mevcut altyapısı bu kaynakları entegre etmek için neredeyse haz
   - **Seçenek B (Metin Haber Beslemesi):** Güncel ana haber metin akışı için:
     `url: 'https://www.vozdeamerica.com/api/zgkmqrl-vomx-tpe-pvqo'`
 
+---
+
+## 8. Aday Kaynaklar ve Canlı Değerlendirme (2026-10-11)
+
+11. tur 11.6 maddesi kapsamında, `scripts/check-news-feeds.ts` genişletilerek (`--candidates` bayrağı ile) Fransızca, İspanyolca ve İngilizce dillerinin her biri için en az 3 yeni aday kaynak gerçek ağ üzerinden canlı olarak test edilmiştir.
+
+### 8.1. Aday Kaynaklar Karşılaştırma Tablosu
+
+| Dil | Aday Kaynak | Besleme URL | HTTP | Toplam Madde | Ses Enclosure | Makale Kelime | CDN Ses Durumu / CORS | Seviye | Lisans / Telif | Karar |
+|---|---|---|:---:|:---:|:---:|:---:|:---:|:---:|---|:---:|
+| **FR** | **franceinfo · Salut l'info !** | `https://radiofrance-podcast.net/podcast09/podcast_9f5486b0-38b5-4544-bf49-e24b18bd022c.xml` | **200** | 7 | **Var (7/7)** | **574 kelime** | **HTTP 200** (Proxycast, `audio/mpeg`, CORS `*`) | A2–B1 | Radio France telifli; açık podcast MP3 akışı | **ÖNERİLEN (1. Tercih)** |
+| **FR** | 1jour1actu (Milan Presse) | `https://www.1jour1actu.com/feed` | **200** | 10 | Yok | 373 kelime | – | A2–B1 | Milan Presse telifli | Yedek (Salt metin) |
+| **FR** | TV5Monde Informations | `https://information.tv5monde.com/rss.xml` | **200** | 100 | Yok | 214 kelime | – | B1–B2 | TV5Monde telifli | Yedek (Salt metin) |
+| **ES** | **Hoy Hablamos · Noticias en español** | `https://www.hoyhablamos.com/feed/podcast/` | **200** | 300 | **Var (300/300)** | 146 kelime | **HTTP 200** (Blubrry CDN, `audio/mpeg`) | B1–B2 | Telifli (Hoy Hablamos); açık podcast MP3 akışı | **ÖNERİLEN (1. Tercih)** |
+| **ES** | Radio Ambulante (NPR) | `https://feeds.npr.org/510315/podcast.xml` | **200** | 369 | **Var (369/369)** | 223 kelime | **HTTP 200** (Omny CDN, CORS `*`) | B2–C1 | NPR telifli | Yedek (İleri düzey B2+) |
+| **ES** | DW Español · Noticias | `https://rss.dw.com/rdf/rss-sp-all` | **200** | 19 | Yok | 405 kelime | – (CORS `*` açık) | B2–C1 | Deutsche Welle | Yedek (Salt metin) |
+| **EN** | **BBC Learning English (6 Minute)** | `https://podcasts.files.bbci.co.uk/p02pc9tn.rss` | **200** | 344 | **Var (344/344)** | 480 kelime | **HTTP 200** (BBC Media, `audio/mpeg`) | A2–B1 | BBC telifli; eğitim amaçlı podcast yayını | **ÖNERİLEN (1. Tercih)** |
+| **EN** | News in Levels | `https://www.newsinlevels.com/feed/` | **200** | 10 | Yok (iframe) | 119 kelime | – | A1–B2 | News in Levels telifli | Yedek (Salt metin) |
+| **EN** | NPR News Now | `https://feeds.npr.org/500005/podcast.xml` | **200** | 4 | **Var (4/4)** | 0 (yalnızca ses) | **HTTP 200** (Spotify CDN, `audio/mpeg`) | B2–C1 | NPR telifli | Yedek (Transkriptsiz dinleme) |
+
+---
+
+### 8.2. Dil Bazında Aday Değerlendirmeleri
+
+#### Fransızca Adayları:
+1. **franceinfo & Astrapi · Salut l'info ! (Önerilen 1. Tercih):**
+   - **Pedagojik Değer:** 7–11 yaş grubu ve Fransızca öğrenenler için haftalık/günlük güncel olaylar bülteni. Konuşma temposu berrak, kelime seçimi canlı ve öğretici.
+   - **Teknik Durum:** Radio France'ın resmi Proxycast altyapısı üzerinden `audio/mpeg` doğrudan stream edilebilmekte, `access-control-allow-origin: *` başlığı bulunmaktadır. Web makalesi `extractArticle()` ile 574 kelimelik zengin metin üretmektedir.
+2. **1jour1actu (Yedek - Salt Metin):**
+   - Çocuklar için hazırlanan günlük haberler A2 seviyesi için kusursuzdur. Ancak RSS beslemesinde ses enclosure bulunmamaktadır. Gelecekte salt metin haber modu eklenirse 1. tercih olmalıdır.
+3. **TV5Monde Informations (Yedek):**
+   - 100 maddelik geniş haber akışı sağlamaktadır. Ses dosyası içermemektedir ve standart haber dili B1–B2 seviyesindedir.
+
+#### İspanyolca Adayları:
+1. **Hoy Hablamos · Noticias en español (Önerilen 1. Tercih):**
+   - **Pedagojik Değer:** İspanyolca öğrenenler için özel olarak hazırlanmış günlük haber ve dil bilgisi bülteni. Temiz İspanya İspanyolcası, orta tempo, pedagojik kelime açıklamaları.
+   - **Teknik Durum:** 300 bölümün tamamında Blubrry CDN üzerinden doğrudan inen MP3 ses dosyası mevcuttur.
+2. **Radio Ambulante - NPR (Yedek - İleri Düzey):**
+   - Latin Amerika'nın en prestijli gazetecilik podcastidir. Omny CDN üzerinden HTTP 200 ve CORS `*` ile kusursuz ses sunar. Ancak bölümler 25–45 dakika uzunluğunda olup dili B2–C1 düzeyindedir (mikro haber için fazla uzundur).
+3. **DW Español (Yedek):**
+   - Doğrudan CORS `*` başlığı veren ender haber sitelerindendir, ancak ses dosyası podcast ayrımında kaldığından salt metin kalmaktadır.
+
+#### İngilizce Adayları:
+1. **BBC Learning English · 6 Minute English (Önerilen 1. Tercih):**
+   - **Pedagojik Değer:** 6 dakikalık bültenler, her bölümde 6 yeni kelime, kontrollü konuşma hızı ve güncel dünya konuları.
+   - **Teknik Durum:** 344 bölüm aktif; doğrudan MP3 enclosure barındırmaktadır.
+   - **Kritik Mimari Not:** BBC RSS'indeki linkler `http://` protokolü taşımaktadır. `src/engine/news.ts` içindeki `parseFeed` fonksiyonu `^https:\/\/` filtresi uyguladığı için `parseFeed` bu maddeleri elemektedir. Claude Code'un `link` filtresini `^https?:\/\/` olarak güncellemesi durumunda BBC beslemesi kusursuz çalışacaktır.
+2. **News in Levels (Yedek):**
+   - Seviyeli (Level 1, 2, 3) haber konsepti mükemmeldir, ancak RSS içinde doğrudan MP3 enclosure sunulmamakta, ses web sayfasına gömülü iframe oynatıcıda kalmaktadır.
+3. **NPR News Now (Yedek):**
+   - Her saat başı 5 dakikalık en güncel dünya bülteni sunar. MP3 açık ve çalışmaktadır ancak bültenin yazılı metin/transkripti bulunmamaktadır (yalnızca kulak çalışması için uygundur).
+
+---
+
+### 8.3. Claude Code İçin Tavsiye Özeti
+
+1. **Öncelikli Eklemeler:**
+   - **Fransızca:** `salut-linfo` (`https://radiofrance-podcast.net/podcast09/podcast_9f5486b0-38b5-4544-bf49-e24b18bd022c.xml`)
+   - **İspanyolca:** `hoyhablamos` (`https://www.hoyhablamos.com/feed/podcast/`)
+   - **İngilizce:** `bbc-6min` (`https://podcasts.files.bbci.co.uk/p02pc9tn.rss`)
+2. **Gereken Küçük Motor Düzeltmesi (`src/engine/news.ts`):**
+   `parseFeed` içindeki `.filter((i) => i.title && /^https:\/\//.test(i.link))` kuralı `^https?:\/\/` olarak genişletilmelidir (böylece `http://www.bbc.co.uk` linkleri kabul edilir).
+
+

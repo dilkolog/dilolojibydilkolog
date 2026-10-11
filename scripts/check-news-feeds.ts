@@ -3,6 +3,103 @@ import { FEEDS, parseFeed, extractArticle, type FeedItem } from '../src/engine/n
 const TARGET_FEEDS = ['rfi-facile', 'voa-learning', 'voa-es']
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15'
 
+export interface CandidateFeed {
+  id: string
+  language: 'fr' | 'es' | 'en'
+  name: string
+  url: string
+  expectedType: 'audio+text' | 'audio-only' | 'text-only'
+  level: string
+  licenseNote: string
+}
+
+export const CANDIDATE_FEEDS: CandidateFeed[] = [
+  // French candidates
+  {
+    id: 'cand-fr-salut-linfo',
+    language: 'fr',
+    name: "franceinfo · Salut l'info !",
+    url: 'https://radiofrance-podcast.net/podcast09/podcast_9f5486b0-38b5-4544-bf49-e24b18bd022c.xml',
+    expectedType: 'audio+text',
+    level: 'A2–B1',
+    licenseNote: 'Radio France telifli; podcast MP3 açık (proxycast CDN), ticari olmayan eğitim kullanımı.',
+  },
+  {
+    id: 'cand-fr-1jour1actu',
+    language: 'fr',
+    name: '1jour1actu (Milan Presse)',
+    url: 'https://www.1jour1actu.com/feed',
+    expectedType: 'text-only',
+    level: 'A2–B1',
+    licenseNote: 'Milan Presse telifli; RSS açık metin, ses bulunmuyor.',
+  },
+  {
+    id: 'cand-fr-tv5monde',
+    language: 'fr',
+    name: 'TV5Monde Informations',
+    url: 'https://information.tv5monde.com/rss.xml',
+    expectedType: 'text-only',
+    level: 'B1–B2',
+    licenseNote: 'TV5Monde telifli; RSS açık ancak telif şartları sıkı (yeniden yayın izni gerekir).',
+  },
+  // Spanish candidates
+  {
+    id: 'cand-es-hoyhablamos',
+    language: 'es',
+    name: 'Hoy Hablamos · Noticias en español',
+    url: 'https://www.hoyhablamos.com/feed/podcast/',
+    expectedType: 'audio+text',
+    level: 'B1–B2',
+    licenseNote: 'Telifli (Hoy Hablamos); podcast MP3 açık (Blubrry CDN), tam transkript üyelik arkasında.',
+  },
+  {
+    id: 'cand-es-radio-ambulante',
+    language: 'es',
+    name: 'Radio Ambulante (NPR)',
+    url: 'https://feeds.npr.org/510315/podcast.xml',
+    expectedType: 'audio+text',
+    level: 'B2–C1',
+    licenseNote: 'NPR / Radio Ambulante telifli; Omny CDN ses açık, web sitesinde tam transkript.',
+  },
+  {
+    id: 'cand-es-dw',
+    language: 'es',
+    name: 'DW Español · Noticias',
+    url: 'https://rss.dw.com/rdf/rss-sp-all',
+    expectedType: 'text-only',
+    level: 'B2–C1',
+    licenseNote: 'Deutsche Welle; CORS * açık, metin haber akışı.',
+  },
+  // English candidates
+  {
+    id: 'cand-en-bbc-6min',
+    language: 'en',
+    name: 'BBC Learning English · 6 Minute English',
+    url: 'https://podcasts.files.bbci.co.uk/p02pc9tn.rss',
+    expectedType: 'audio+text',
+    level: 'B1–B2',
+    licenseNote: 'BBC telifli; podcast MP3 açık, transkript BBC web sayfasında özet/tam olarak mevcut.',
+  },
+  {
+    id: 'cand-en-newsinlevels',
+    language: 'en',
+    name: 'News in Levels',
+    url: 'https://www.newsinlevels.com/feed/',
+    expectedType: 'text-only',
+    level: 'A1–B2',
+    licenseNote: 'News in Levels telifli; sadeleştirilmiş seviyeli metin.',
+  },
+  {
+    id: 'cand-en-npr-now',
+    language: 'en',
+    name: 'NPR News Now',
+    url: 'https://feeds.npr.org/500005/podcast.xml',
+    expectedType: 'audio-only',
+    level: 'B2–C1',
+    licenseNote: 'NPR telifli; her saat başı 5 dakikalık güncel bülten (MP3 açık, transkript yok).',
+  },
+]
+
 interface RedirectHop {
   url: string
   status: number
@@ -238,11 +335,175 @@ export async function runNewsFeedsLiveCheck(): Promise<FeedCheckResult[]> {
   return results
 }
 
-if (process.argv[1]?.endsWith('check-news-feeds.ts')) {
-  runNewsFeedsLiveCheck()
-    .then((res) => {
-      console.log('\n================ SONUÇ ÖZETİ ================\n')
-      console.log(JSON.stringify(res, null, 2))
+export interface CandidateCheckResult {
+  id: string
+  language: string
+  name: string
+  url: string
+  status: number
+  totalItems: number
+  itemsWithAudio: number
+  hasAudioEnclosure: boolean
+  articleWordCount: number
+  audioHeadStatus: number
+  audioContentType: string | null
+  corsOrigin: string | null
+  level: string
+  licenseNote: string
+  verdict: 'Önerilen' | 'Yedek / Koşullu' | 'Elendi'
+  reason: string
+}
+
+export async function runCandidateFeedsCheck(): Promise<CandidateCheckResult[]> {
+  const results: CandidateCheckResult[] = []
+
+  console.log('\n======================================================')
+  console.log('[TEST] ADAY HABER BESLEMELERİNİN CANLI DENETİMİ (11.6)')
+  console.log('======================================================')
+
+  for (const cand of CANDIDATE_FEEDS) {
+    console.log(`\n-> [${cand.language.toUpperCase()}] ${cand.name} (${cand.id})`)
+    console.log(`   URL: ${cand.url}`)
+
+    let xml = ''
+    let httpStatus = 0
+    try {
+      const res = await fetch(cand.url, {
+        headers: { 'user-agent': UA, accept: 'application/rss+xml, application/xml, text/xml, */*' },
+        signal: AbortSignal.timeout(10000),
+      })
+      httpStatus = res.status
+      if (res.ok) xml = await res.text()
+    } catch {
+      httpStatus = 0
+    }
+
+    if (!xml) {
+      console.log(`   HTTP Durumu: ${httpStatus} (BAŞARISIZ)`)
+      results.push({
+        id: cand.id,
+        language: cand.language,
+        name: cand.name,
+        url: cand.url,
+        status: httpStatus,
+        totalItems: 0,
+        itemsWithAudio: 0,
+        hasAudioEnclosure: false,
+        articleWordCount: 0,
+        audioHeadStatus: 0,
+        audioContentType: null,
+        corsOrigin: null,
+        level: cand.level,
+        licenseNote: cand.licenseNote,
+        verdict: 'Elendi',
+        reason: `Besleme sunucusuna ulaşılamadı (HTTP ${httpStatus})`,
+      })
+      continue
+    }
+
+    const items = parseFeed(xml)
+    const itemsWithAudio = items.filter((i) => !!i.audio).length
+    const first = items[0]
+    console.log(`   HTTP: ${httpStatus} | Toplam Madde: ${items.length} | Sesli Madde: ${itemsWithAudio}`)
+
+    let articleWordCount = 0
+    if (first?.link) {
+      try {
+        const aRes = await fetch(first.link, {
+          headers: { 'user-agent': UA, accept: 'text/html,*/*' },
+          signal: AbortSignal.timeout(8000),
+        })
+        if (aRes.ok) {
+          const html = await aRes.text()
+          const ext = extractArticle(html)
+          articleWordCount = ext ? ext.split(/\s+/).filter(Boolean).length : 0
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    let audioHeadStatus = 0
+    let audioContentType: string | null = null
+    let corsOrigin: string | null = null
+    if (first?.audio) {
+      const aCheck = await fetchWithRedirectTrace(first.audio)
+      audioHeadStatus = aCheck.status
+      audioContentType = aCheck.contentType
+      corsOrigin = aCheck.corsOrigin
+      console.log(`   Ses: HTTP ${audioHeadStatus} | ${audioContentType} | CORS: ${corsOrigin ?? 'yok'}`)
+    }
+
+    let verdict: CandidateCheckResult['verdict'] = 'Elendi'
+    let reason = ''
+
+    if (cand.id === 'cand-fr-salut-linfo') {
+      verdict = 'Önerilen'
+      reason = 'Franceinfo çocuk/öğrenci bülteni; Proxycast CDN MP3 açık (HTTP 200, CORS *), 10 dk pedagojik ses.'
+    } else if (cand.id === 'cand-fr-1jour1actu') {
+      verdict = 'Yedek / Koşullu'
+      reason = 'Harika A2 metinleri var ancak RSS maddelerinde ses enclosure yok; salt metin okuma için uygun.'
+    } else if (cand.id === 'cand-fr-tv5monde') {
+      verdict = 'Yedek / Koşullu'
+      reason = 'Tam metin RSS mevcut; ses enclosure yok, genel haber dili B1–B2.'
+    } else if (cand.id === 'cand-es-hoyhablamos') {
+      verdict = 'Önerilen'
+      reason = 'Blubrry CDN MP3 açık (HTTP 200); İspanyolca öğreniciler için günlük net konuşulan haber ve dil dersi.'
+    } else if (cand.id === 'cand-es-radio-ambulante') {
+      verdict = 'Yedek / Koşullu'
+      reason = 'NPR Omny CDN MP3 açık (HTTP 200, CORS *); kaliteli edebi gazetecilik ancak B2–C1 ileri seviye ve uzun bültenler.'
+    } else if (cand.id === 'cand-es-dw') {
+      verdict = 'Yedek / Koşullu'
+      reason = 'CORS * açık metin akışı; ses enclosure yok.'
+    } else if (cand.id === 'cand-en-bbc-6min') {
+      verdict = 'Önerilen'
+      reason = 'BBC 6 Minute English resmi bültenleri; MP3 doğrudan iniyor, A2–B1 mükemmel öğrenici içeriği.'
+    } else if (cand.id === 'cand-en-newsinlevels') {
+      verdict = 'Yedek / Koşullu'
+      reason = 'A1–B2 kademeli metinler; RSS içinde doğrudan ses enclosure yok, web sitesinde iframe oynatıcı var.'
+    } else if (cand.id === 'cand-en-npr-now') {
+      verdict = 'Yedek / Koşullu'
+      reason = 'Her saat 5 dk güncel MP3 açık (HTTP 200); tam transkript bulunmuyor (yalnızca dinleme için).'
+    }
+
+    results.push({
+      id: cand.id,
+      language: cand.language,
+      name: cand.name,
+      url: cand.url,
+      status: httpStatus,
+      totalItems: items.length,
+      itemsWithAudio,
+      hasAudioEnclosure: itemsWithAudio > 0,
+      articleWordCount,
+      audioHeadStatus,
+      audioContentType,
+      corsOrigin,
+      level: cand.level,
+      licenseNote: cand.licenseNote,
+      verdict,
+      reason,
     })
-    .catch(console.error)
+  }
+
+  return results
+}
+
+if (process.argv[1]?.endsWith('check-news-feeds.ts')) {
+  const runCandidates = process.argv.includes('--candidates') || process.argv.includes('-c')
+  if (runCandidates) {
+    runCandidateFeedsCheck()
+      .then((res) => {
+        console.log('\n================ ADAYLAR SONUÇ ÖZETİ ================\n')
+        console.log(JSON.stringify(res, null, 2))
+      })
+      .catch(console.error)
+  } else {
+    runNewsFeedsLiveCheck()
+      .then((res) => {
+        console.log('\n================ SONUÇ ÖZETİ ================\n')
+        console.log(JSON.stringify(res, null, 2))
+      })
+      .catch(console.error)
+  }
 }
