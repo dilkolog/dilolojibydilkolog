@@ -202,7 +202,8 @@ export function ReadingScreen({
   const previews = useMemo(() => {
     const out = new Map<string, string>()
     if (text) return out
-    for (const t of library ?? []) out.set(t.id, coverageLine(analyzeText(t.text, language, vocabulary, states, known, ignored)))
+    // Chapters of a book are rated when the book is opened (BookItem), not all at once here.
+    for (const t of library ?? []) if (!t.book) out.set(t.id, coverageLine(analyzeText(t.text, language, vocabulary, states, known, ignored)))
     return out
   }, [text, library, language, vocabulary, states, known, ignored])
   const masks = useMemo(() => (deduce && !listenFirst && analysis ? maskPositions(analysis.paragraphs, language) : new Set<string>()), [deduce, listenFirst, analysis, language])
