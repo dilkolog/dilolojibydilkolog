@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { displayForm } from '../../engine/exercises'
-import { pickAudioWords, type AudioSet } from '../../engine/practice'
 import { createRng } from '../../engine/rng'
-import type { VocabularyEntry } from '../../engine/types'
+import { dealCards, selectStudyWords, type Card } from '../../engine/studySet'
 import { scheduler } from '../../data/instance'
 import { CheckIcon, CloseIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
+import { StudyOptionsPanel } from '../StudyOptions'
+import { useStudyOptions } from '../studyOptionsStore'
 import { sfx } from '../sounds'
 import { playWord } from '../speech'
 import { type Props, recordPractice } from './shared'
@@ -18,10 +19,12 @@ const SWIPE_COMMIT = 90
  * for "knew it", left for "didn't". Missed cards come back once at the end of the round.
  */
 export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: Props & { onExit: () => void }) {
-  const [set, setSet] = useState<AudioSet>('weak')
-  const words = useMemo(() => pickAudioWords(vocabulary, states, scheduler, new Date(), set, createRng(Date.now())), [vocabulary, states, set])
+  const [options, setOptions] = useStudyOptions('flashcards')
+  // How many words the choice has, to say on the start button (the round itself is dealt when it starts).
+  const available = useMemo(() => selectStudyWords(vocabulary, states, scheduler, new Date(), { ...options, size: 0 }, createRng(1)).length, [vocabulary, states, options])
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
-  const [deck, setDeck] = useState<VocabularyEntry[]>([])
+  const [deck, setDeck] = useState<Card[]>([])
+  const [roundSize, setRoundSize] = useState(0)
   const [started, setStarted] = useState(false)
   const [flipped, setFlipped] = useState(false)
   const [dx, setDx] = useState(0)
@@ -31,10 +34,14 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
   const drag = useRef<{ x: number; moved: boolean } | null>(null)
   const shownAt = useRef(0)
   const retried = useRef(new Set<string>())
-  const card = deck[0]
+  const current = deck[0]
+  const card = current?.entry
 
   const start = () => {
-    setDeck(words)
+    const rng = createRng(Date.now())
+    const cards = dealCards(selectStudyWords(vocabulary, states, scheduler, new Date(), options, rng), options.direction, rng)
+    setDeck(cards)
+    setRoundSize(cards.length)
     setKnew([])
     setMissed([])
     retried.current = new Set()
@@ -45,8 +52,9 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
     setFlipped(false)
     setDx(0)
     shownAt.current = performance.now()
-    if (card && prefs.autoPlay) playWord(card)
-  }, [card])
+    // Meaning first hides the word: saying it now would give it away.
+    if (current && !current.reverse && prefs.autoPlay) playWord(current.entry)
+  }, [current])
 
   const decide = useCallback(
     (ok: boolean) => {
@@ -54,7 +62,8 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
       setLeaving(ok ? 'right' : 'left')
       if (ok) sfx.correct()
       else sfx.wrong()
-      void recordPractice(card, stateById.get(card.id), 'mc_meaning', ok, performance.now() - shownAt.current)
+      // Meaning first is recalling the word, word first is recognising the meaning.
+      void recordPractice(card, stateById.get(card.id), current.reverse ? 'typed_translation' : 'mc_meaning', ok, performance.now() - shownAt.current)
       setTimeout(() => {
         setLeaving(null)
         if (ok) setKnew((k) => (k.includes(card.id) ? k : [...k, card.id]))
@@ -64,13 +73,13 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
           // A missed card comes back once, after the others.
           if (!ok && !retried.current.has(card.id)) {
             retried.current.add(card.id)
-            return [...rest, card]
+            return [...rest, current]
           }
           return rest
         })
       }, 220)
     },
-    [card, leaving, stateById],
+    [card, current, leaving, stateById],
   )
 
   useEffect(() => {
@@ -97,15 +106,9 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
         <button className="link" onClick={onExit}>← Oyunlar</button>
         <h1 className="greeting">Kaydırmalı kartlar</h1>
         <p className="greeting-sub">Kelimeyi gör, anlamını aklından geçir, karta dokunup kontrol et. Bildiysen sağa, bilmediysen sola kaydır. Bilmediklerin turun sonunda bir kez daha gelir.</p>
-        <div className="choice-row" role="group" aria-label="Hangi kelimeler">
-          {(['weak', 'today', 'all'] as const).map((s) => (
-            <button key={s} className="chip" aria-pressed={set === s} onClick={() => setSet(s)}>
-              {s === 'weak' ? 'En zayıflar' : s === 'today' ? 'Bugün öğrendiklerim' : 'Karışık'}
-            </button>
-          ))}
-        </div>
-        <button className="btn btn-lg" disabled={!words.length} onClick={start}>
-          {words.length ? `${words.length} kartla başla` : 'Bu grupta kelime yok'}
+        <StudyOptionsPanel value={options} onChange={setOptions} language={language} vocabulary={vocabulary} states={states} />
+        <button className="btn btn-lg" disabled={!available} onClick={start}>
+          {available ? `${options.size > 0 ? Math.min(options.size, available) : available} kartla başla` : 'Bu grupta kelime yok'}
         </button>
         <p className="small muted kbd"><kbd>Boşluk</kbd> çevir · <kbd>→</kbd> biliyorum · <kbd>←</kbd> bilmiyorum</p>
       </div>
@@ -142,7 +145,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
   }
 
   const ex = card.senses[0].examples[0] ?? card.corpus?.find((x) => x.translation)
-  const total = words.length + retried.current.size
+  const total = roundSize + retried.current.size
   const offset = leaving === 'right' ? 600 : leaving === 'left' ? -600 : dx
   return (
     <div className="stack swipe">
@@ -157,7 +160,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
           style={{ transform: `translateX(${offset}px) rotate(${offset / 18}deg)` }}
           role="button"
           tabIndex={0}
-          aria-label={flipped ? 'Kartı çevir' : 'Anlamı göster'}
+          aria-label={flipped ? 'Kartı çevir' : current.reverse ? 'Kelimeyi göster' : 'Anlamı göster'}
           onPointerDown={(e) => {
             drag.current = { x: e.clientX, moved: false }
             e.currentTarget.setPointerCapture(e.pointerId)
@@ -184,10 +187,10 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
         >
           <span className="swipe-stamp swipe-yes" style={{ opacity: Math.max(0, offset) / SWIPE_COMMIT }}>Biliyorum</span>
           <span className="swipe-stamp swipe-no" style={{ opacity: Math.max(0, -offset) / SWIPE_COMMIT }}>Bilmiyorum</span>
-          <strong className="swipe-word" lang={language}>{displayForm(card)}</strong>
+          {current.reverse ? <strong className="swipe-word">{card.senses[0].gloss}</strong> : <strong className="swipe-word" lang={language}>{displayForm(card)}</strong>}
           {flipped ? (
             <div className="swipe-back">
-              <p className="swipe-gloss">{card.senses[0].gloss}</p>
+              {current.reverse ? <p className="swipe-gloss" lang={language}>{displayForm(card)}</p> : <p className="swipe-gloss">{card.senses[0].gloss}</p>}
               {ex && (
                 <>
                   <p className="sentence-sm" lang={language}>{ex.text}</p>
@@ -196,7 +199,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
               )}
             </div>
           ) : (
-            <p className="small muted">Anlamı için dokun</p>
+            <p className="small muted">{current.reverse ? 'Kelimesi için dokun' : 'Anlamı için dokun'}</p>
           )}
         </div>
       </div>

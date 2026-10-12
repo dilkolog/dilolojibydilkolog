@@ -1,0 +1,27 @@
+import { useState } from 'react'
+import { DEFAULT_STUDY, type StudyOptions } from '../engine/studySet'
+
+const KEY = 'diloloji:study-options'
+/** The last choices of this device, kept per use ("flashcards", "test") so each remembers its own. */
+function load(use: string): StudyOptions {
+  try {
+    const raw = JSON.parse(localStorage.getItem(`${KEY}:${use}`) ?? 'null') as Partial<StudyOptions> | null
+    return { ...DEFAULT_STUDY, ...raw }
+  } catch {
+    return DEFAULT_STUDY
+  }
+}
+
+/** The study choices of one use, kept on this device. */
+export function useStudyOptions(use: string, defaults: Partial<StudyOptions> = {}): [StudyOptions, (o: StudyOptions) => void] {
+  const [options, set] = useState<StudyOptions>(() => ({ ...DEFAULT_STUDY, ...defaults, ...load(use) }))
+  const save = (o: StudyOptions) => {
+    set(o)
+    try {
+      localStorage.setItem(`${KEY}:${use}`, JSON.stringify(o))
+    } catch {
+      /* kept for this visit only */
+    }
+  }
+  return [options, save]
+}
