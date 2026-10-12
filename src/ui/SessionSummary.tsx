@@ -108,6 +108,9 @@ export function Summary({
     ? []
     : summary.words.filter((w) => (w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : -1) > (w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1))
   const rest = summary.words.filter((w) => !grown.includes(w))
+  // A word that reached the last stage has bloomed: its row is marked, and the session gets its burst.
+  const bloomed = (w: (typeof grown)[number]) => !!w.stageAfter && MASTERY_STAGES.indexOf(w.stageAfter) === MASTERY_STAGES.length - 1
+  const blooms = grown.filter(bloomed).length
   // Free recall: the words studied, and while the learner writes them the lists stay hidden.
   const studied = summary.words.map((w) => byId.get(w.entryId)).filter((e): e is VocabularyEntry => !!e)
   const [recalling, setRecalling] = useState(false)
@@ -129,7 +132,7 @@ export function Summary({
       <div className="summary-main stack">
       <div className="celebrate celebrate-card">
         {/* Words that grew are the celebration (below); confetti only when none did. */}
-        {(leveledUp || (accuracy >= 0.7 && !grown.length)) && <Burst />}
+        {(leveledUp || blooms > 0 || (accuracy >= 0.7 && !grown.length)) && <Burst />}
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         {topic === 'difficult' && (
           <span className="topic-chip">
@@ -264,7 +267,7 @@ export function Summary({
                 const to = MASTERY_STAGES.indexOf(w.stageAfter!)
                 const e = byId.get(w.entryId)
                 return (
-                  <li key={w.entryId} style={{ ['--i' as string]: Math.min(i, 6) }}>
+                  <li key={w.entryId} className={bloomed(w) ? 'is-bloom' : undefined} style={{ ['--i' as string]: Math.min(i, 6) }}>
                     <span className="grown-plants" aria-hidden>
                       <span className="grown-from">
                         <Plant stage={from} size={30} />
@@ -277,7 +280,7 @@ export function Summary({
                     <span className="garden-text">
                       <span className="target">{name(w.entryId)}</span>
                       {e && <span className="small muted">{e.senses[0].gloss}</span>}
-                      <span className="small garden-grew">{STAGE_NAME[w.stageAfter!]} oldu</span>
+                      <span className="small garden-grew">{bloomed(w) ? `Çiçek açtı: ${STAGE_NAME[w.stageAfter!]}` : `${STAGE_NAME[w.stageAfter!]} oldu`}</span>
                     </span>
                   </li>
                 )

@@ -7,6 +7,7 @@ import type { GameState } from './ui/game'
 import type { GameId } from './ui/gameList'
 import type { LabTab } from './ui/verbs/VerbLab'
 import type { AuthMode } from './ui/AuthScreen'
+import type { SharedRead } from './ui/incoming'
 import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon } from './ui/icons'
 
 /** Set when opened from a reminder ("?go=quick"): start a short review as soon as the plan is ready. */
@@ -45,7 +46,7 @@ export type Screen =
   | { name: 'mistakes' }
   | { name: 'progress' }
   | { name: 'story' }
-  | { name: 'reading' }
+  | { name: 'reading'; shared?: SharedRead }
   | { name: 'vocabtest' }
   | { name: 'produce' }
   | { name: 'exam' }

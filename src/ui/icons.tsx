@@ -151,6 +151,11 @@ export const CloseIcon = (p: P) => (
     <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
   </Icon>
 )
+export const DownloadIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M12 4v10m0 0-4-4m4 4 4-4M5 19h14" />
+  </Icon>
+)
 export const PlusIcon = (p: P) => (
   <Icon {...p}>
     <path d="M12 5v14M5 12h14" />

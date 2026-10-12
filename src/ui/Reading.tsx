@@ -33,6 +33,7 @@ import { CoverageCard } from './CoverageCard'
 import { ExternalResources } from './ExternalResources'
 import { SingleUnknownSentences } from './SingleUnknownSentences'
 import { MIN_READ_MS, groupBooks, useSeen } from './readingHelpers'
+import type { SharedRead } from './incoming'
 import { useSheetSwipe } from './useSheetSwipe'
 import { addFormsToReview, addSeenForms } from '../engine/labProgress'
 import { scheduler } from '../data/instance'
@@ -68,6 +69,7 @@ export function ReadingScreen({
   onStudy,
   onOpenLab,
   onLookUp,
+  shared,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -80,12 +82,14 @@ export function ReadingScreen({
   onOpenLab?: (verb: string, tense: string) => void
   /** The word in the dictionary: every meaning, its sound, the other languages. */
   onLookUp?: (word: string) => void
+  /** Something shared to the app (Share → Diloloji): put in the add card, ready to start. */
+  shared?: SharedRead
 }) {
   const [library, setLibrary] = useState<ReadingText[] | null>(null)
   const [current, setCurrent] = useState<ReadingText | null>(null)
   const text = current?.text ?? ''
-  const [draft, setDraft] = useState('')
-  const [title, setTitle] = useState('')
+  const [draft, setDraft] = useState(shared?.text ?? '')
+  const [title, setTitle] = useState(shared?.title ?? '')
   // Coverage when this reading started: saved with the text on finishing, to show progress.
   const [startCoverage, setStartCoverage] = useState<number | null>(null)
   const [known, setKnown] = useState<Set<string>>(new Set())
@@ -136,7 +140,7 @@ export function ReadingScreen({
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [multi.size])
-  const [youtube, setYoutube] = useState('')
+  const [youtube, setYoutube] = useState(shared?.url && !shared.text ? shared.url : '')
   const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
   const [listenFirst, setListenFirst] = useState(false)
@@ -668,7 +672,7 @@ export function ReadingScreen({
         )}
         <AddTextCard
           language={language}
-          startOpen={!library.length}
+          startOpen={!library.length || !!shared}
           title={title}
           onTitle={setTitle}
           draft={draft}

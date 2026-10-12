@@ -21,7 +21,7 @@ vi.mock('@vercel/blob', () => ({
 
 const api = await import('../../api/sync')
 const { clearAccessCache } = await import('../../api/_account')
-const { deriveAccount, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
+const { deriveAccount, restoreReplaced, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
@@ -128,3 +128,47 @@ describe('what the other devices brought', () => {
     expect((await syncNow(phone, acc)).incoming).toEqual({ words: 0, removed: 0, texts: 0, settings: 0 })
   }, 60_000)
 })
+
+describe('a word edited on another device', () => {
+  it('names the words whose copy another device replaced, and can put the old copies back', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
+    const phone = new KelimeDB('t-edit-phone')
+    const laptop = new KelimeDB('t-edit-laptop')
+    const maison = createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date())
+    await laptop.vocabulary.put(maison)
+    await syncNow(laptop, acc)
+    await syncNow(phone, acc)
+
+    // The laptop corrects the meaning and syncs; the phone still has the old copy.
+    vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
+    await laptop.vocabulary.update(maison.id, { senses: [{ ...maison.senses[0], gloss: 'ev, konut' }] })
+    await syncNow(laptop, acc)
+    vi.setSystemTime(new Date('2026-10-06T12:00:00Z'))
+    const r = await syncNow(phone, acc)
+    expect(r.replaced).toEqual(['maison'])
+    expect((await phone.vocabulary.get(maison.id))!.senses[0].gloss).toBe('ev, konut')
+
+    // Taking it back puts the phone's old copy in and makes it the latest edit, so it wins the next sync too.
+    vi.setSystemTime(new Date('2026-10-06T12:05:00Z'))
+    expect(await restoreReplaced(phone)).toBe(1)
+    expect((await phone.vocabulary.get(maison.id))!.senses[0].gloss).toBe('ev')
+    expect(await restoreReplaced(phone)).toBe(0)
+    await syncNow(phone, acc)
+    await syncNow(laptop, acc)
+    expect((await laptop.vocabulary.get(maison.id))!.senses[0].gloss).toBe('ev')
+  }, 60_000)
+
+  it('says nothing when nobody edited a shared word', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
+    const phone = new KelimeDB('t-edit2-phone')
+    const laptop = new KelimeDB('t-edit2-laptop')
+    await laptop.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await syncNow(laptop, acc)
+    await syncNow(phone, acc)
+    vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
+    expect((await syncNow(phone, acc)).replaced).toBeUndefined()
+  }, 60_000)
+})
+

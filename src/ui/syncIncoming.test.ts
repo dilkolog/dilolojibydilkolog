@@ -13,4 +13,7 @@ describe('describeIncoming', () => {
     expect(describeIncoming(result({ words: 3, settings: 2 }))).toBe('Diğer cihazlarından: 3 yeni kelime, 2 ayar değişikliği.')
     expect(describeIncoming(result({ removed: 1, texts: 1 }))).toBe('Diğer cihazlarından: 1 silinen kelime, 1 yeni metin.')
   })
+  it('says how many words another device edited later', () => {
+    expect(describeIncoming({ ...result({ words: 1 }), replaced: ['maison', 'chat'] })).toBe('Diğer cihazlarından: 1 yeni kelime, 2 kelime güncellendi.')
+  })
 })

@@ -245,6 +245,7 @@ export function AppScreens(props: AppScreensProps) {
       ) : screen.name === 'reading' ? (
         <ReadingScreen
           key={data.language}
+          shared={screen.shared}
           db={db}
           language={data.language}
           vocabulary={data.vocabulary}
