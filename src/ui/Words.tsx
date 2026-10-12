@@ -17,6 +17,7 @@ import { KindleImport } from './KindleImport'
 import { GardenView, WORDS_VIEW_KEY } from './Garden'
 import { deleteWordsWithUndo } from './undo'
 import { TextImport } from './TextImport'
+import { CommunitySets } from './CommunitySets'
 import type { IncomingWord } from './incoming'
 import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME } from './labels'
@@ -252,6 +253,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <BulkImport db={db} language={language} existing={keys} onImported={onChanged} />
           <KindleImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
+          <CommunitySets language={language} onAdded={onChanged} />
           <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
           <SuggestWords db={db} language={language} vocabulary={vocabulary} settings={undefined} onAdded={onChanged} />
         </section>

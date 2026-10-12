@@ -51,7 +51,7 @@ import { gardenSummary } from './engine/growth'
 
 import { Sidebar, TabBar } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
-import { CommandPalette, prefetchScreens } from './lazyScreens'
+import { CommandPalette, IncomingSet, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
 import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RECENT_DAYS, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type LanguageData, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
@@ -65,6 +65,8 @@ import { GAME_LIST } from './ui/gameList'
 import { ScreenBoundary } from './ui/ScreenBoundary'
 
 import { Toaster } from './ui/toast'
+import { shareIdOf } from './engine/sharedSet'
+import { useCollabSync } from './ui/useCollabSync'
 import { showToast } from './ui/toastFeed'
 import { reportError } from './data/errorReport'
 import { ScreenSkeleton } from './ui/Skeleton'
@@ -289,6 +291,17 @@ export default function App() {
     }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready])
+
+  // A list somebody shared (?set=…): shown, and added only when confirmed.
+  const [incomingSet, setIncomingSet] = useState<string | null>(null)
+  useEffect(() => {
+    const id = shareIdOf(location.href)
+    if (!id) return
+    history.replaceState(null, '', location.pathname)
+    setIncomingSet(id)
+  }, [])
+  // The collaborative lists this device has joined, kept in step with the others.
+  useCollabSync(reload, ready)
 
   // Bookmarklet: switch to the page's language and open the add-word form prefilled.
   useEffect(() => {
@@ -708,6 +721,11 @@ export default function App() {
             </ScreenBoundary>
           </main>
           <Toaster />
+          {incomingSet && ready && (
+            <Suspense fallback={null}>
+              <IncomingSet id={incomingSet} onClose={() => setIncomingSet(null)} onDone={reload} />
+            </Suspense>
+          )}
           {palette && data && (
             <Suspense fallback={null}>
               <CommandPalette

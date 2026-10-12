@@ -1516,3 +1516,4 @@ button.badge-card:active { transform: none; }
 .diagram-label { position: absolute; top: 1.4rem; padding: 0.125rem 0.5rem; border-radius: 999px; background: var(--surface); color: var(--ink); font: 600 0.75rem/1.2 var(--sans); white-space: nowrap; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
 .diagram-meta { min-width: 8rem; }
 .diagram-meta p { margin: 0.125rem 0 0; }
+.qr { width: 11rem; height: 11rem; border-radius: var(--r-md); background: #fff; box-shadow: 0 0 0 1px var(--rule); }
