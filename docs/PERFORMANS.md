@@ -2,7 +2,7 @@
 
 Bu belge, **Diloloji** (önceki adıyla Kelime Koçu) uygulamasının üretim derlemesi (`vite build`) çıktı parçalarını, ilk açılış yükünü, bağımlılık kullanımını ve önbellek stratejilerini analiz eder. Kod değişikliği içermez; gelecekteki optimizasyonlar için somut bir durum tespiti ve yol haritasıdır.
 
-Son analiz tarihi: 2026-10-10.
+Son analiz tarihi: 2026-10-10. **Güncelleme 2026-10-12:** giriş betiği `index-*.js` 553,8 kB (178,1 kB gzip), tek stil dosyası `index-*.css` 309,7 kB (67,6 kB gzip), PWA önbelleği 134 dosya / 7,03 MB; veritabanı örneği artık ayrı büyük parça değil (`instance-*.js` 3,4 kB). Aşağıdaki tablolar 10 Ekim ölçümüdür; CSS çok büyüdü (141 → 310 kB) ve ilk yüklemede engelleyicidir: ekran başına bölmek sıradaki iş.
 
 ---
 

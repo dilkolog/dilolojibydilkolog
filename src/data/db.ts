@@ -684,40 +684,49 @@ export class KelimeDB extends Dexie {
     return this.meta.put({ key: 'earMisses', value: log })
   }
 
+  /** The per-item right/wrong logs share one shape and one `meta` row each. */
+  private async getLog(key: string): Promise<GrammarLog> {
+    return ((await this.meta.get(key))?.value as GrammarLog) ?? {}
+  }
+
+  private saveLog(key: string, log: GrammarLog) {
+    return this.meta.put({ key, value: log })
+  }
+
   /** How the grammar questions went, per question (see engine/grammar). */
-  async getGrammarLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('grammar'))?.value as GrammarLog) ?? {}
+  getGrammarLog(): Promise<GrammarLog> {
+    return this.getLog('grammar')
   }
 
   saveGrammarLog(log: GrammarLog) {
-    return this.meta.put({ key: 'grammar', value: log })
+    return this.saveLog('grammar', log)
   }
 
   /** How the phrases of the 3-second round went, per phrase (same shape as the grammar log). */
-  async getReflexLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('reflex'))?.value as GrammarLog) ?? {}
+  getReflexLog(): Promise<GrammarLog> {
+    return this.getLog('reflex')
   }
 
   saveReflexLog(log: GrammarLog) {
-    return this.meta.put({ key: 'reflex', value: log })
+    return this.saveLog('reflex', log)
   }
 
   /** How the false-friend questions went, per word (same shape as the grammar log). */
-  async getTrapLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('traps'))?.value as GrammarLog) ?? {}
+  getTrapLog(): Promise<GrammarLog> {
+    return this.getLog('traps')
   }
 
   saveTrapLog(log: GrammarLog) {
-    return this.meta.put({ key: 'traps', value: log })
+    return this.saveLog('traps', log)
   }
 
   /** How the sound pairs of "Ses ayırt etme" went, per pair (same shape as the grammar log). */
-  async getPairLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('pairs'))?.value as GrammarLog) ?? {}
+  getPairLog(): Promise<GrammarLog> {
+    return this.getLog('pairs')
   }
 
   savePairLog(log: GrammarLog) {
-    return this.meta.put({ key: 'pairs', value: log })
+    return this.saveLog('pairs', log)
   }
 
   /** How the guesses of deduction mode in Reading went, per language (see engine/deduction). */
@@ -730,30 +739,30 @@ export class KelimeDB extends Dexie {
   }
 
   /** How the register questions went, per thought and situation (same shape as the grammar log). */
-  async getRegisterLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('register'))?.value as GrammarLog) ?? {}
+  getRegisterLog(): Promise<GrammarLog> {
+    return this.getLog('register')
   }
 
   saveRegisterLog(log: GrammarLog) {
-    return this.meta.put({ key: 'register', value: log })
+    return this.saveLog('register', log)
   }
 
   /** How the text-flow gaps went, per paragraph and gap (same shape as the grammar log). */
-  async getFlowLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('flow'))?.value as GrammarLog) ?? {}
+  getFlowLog(): Promise<GrammarLog> {
+    return this.getLog('flow')
   }
 
   saveFlowLog(log: GrammarLog) {
-    return this.meta.put({ key: 'flow', value: log })
+    return this.saveLog('flow', log)
   }
 
   /** How the affix-hunt questions went, per base word and derived word (same shape as the grammar log). */
-  async getAffixLog(): Promise<GrammarLog> {
-    return ((await this.meta.get('affixes'))?.value as GrammarLog) ?? {}
+  getAffixLog(): Promise<GrammarLog> {
+    return this.getLog('affixes')
   }
 
   saveAffixLog(log: GrammarLog) {
-    return this.meta.put({ key: 'affixes', value: log })
+    return this.saveLog('affixes', log)
   }
 
   /** Badges earned and when (see engine/gamification BadgeLog). */
