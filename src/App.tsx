@@ -1,10 +1,12 @@
 import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem } from './engine/dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem } from './engine/dailyPlan'
 
 import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
 import { answeredToday } from './engine/progress'
 import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/practice'
+import { buildQuestPlan } from './engine/questPlan'
+import type { QuestMetric } from './engine/quests'
 
 import { createRng } from './engine/rng'
 import { firstSittingEnd, SPLIT_ABOVE_MINUTES, type SessionSummary } from './engine/session'
@@ -463,6 +465,26 @@ export default function App() {
   }
   /** A short round of the day's most urgent questions, when the pile of reviews is deep. */
   const startShortRound = () => plan && startSession(shortRound(plan.items), 'normal', daySeed(new Date()))
+  /**
+   * A quest of the day was tapped: the round that fills it. New words → extra new words; typing and
+   * listening → questions of that kind over the words being learned; the rest count any answer, so the
+   * day's session (or, once it is done, a round over the words being learned).
+   */
+  const startQuest = (id: QuestMetric, remaining: number) => {
+    if (!data || !settings) return
+    const rng = createRng(Date.now())
+    const now = new Date()
+    let items: PlanItem[] = []
+    if (id === 'newWords') items = planInput ? buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, Math.min(10, Math.max(1, remaining))) : []
+    else if (id === 'typedCorrect' || id === 'listenCorrect') items = buildQuestPlan(id, remaining, { catalog: data.vocabulary, states: data.states, rng, now, options })
+    else {
+      if (plan?.items.length) return startDay()
+      const learning = new Set(data.states.map((s) => s.entryId))
+      items = buildDeckPlan({ catalog: data.vocabulary.filter((v) => learning.has(v.id)), states: data.states, rng, scheduler, now, limit: Math.min(30, Math.max(10, remaining)), options })
+    }
+    if (items.length) startSession(items, 'normal')
+    else showToast(id === 'newWords' ? 'Tanışılacak yeni kelime kalmadı. Kelimeler sekmesinden ekleyebilirsin.' : 'Bu görev için uygun kelime bulunamadı. Biraz daha kelimeyle çalışınca açılır.')
+  }
   /** A practice of just the words marked hard, apart from the day's plan. */
   const practiceDifficult = () =>
     data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, undefined, 'difficult')
@@ -605,7 +627,7 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
-  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData }
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
 
   return (
     <AccessContext.Provider value={access}>

@@ -23,6 +23,7 @@ import { MindSeed } from './ui/MindSeed'
 import { SuggestWords } from './ui/SuggestWords'
 import { WeeklyNudge } from './ui/WeeklyNudge'
 import type { WeekSummary } from './engine/weekly'
+import type { QuestMetric } from './engine/quests'
 import { GainsNudge } from './ui/GainsNudge'
 import { studyGains } from './engine/gains'
 
@@ -89,11 +90,13 @@ export interface AppScreensProps {
   newToday: VocabularyEntry[]
   weekText: string
   weekData: WeekSummary | null
+  /** Starts the round that fills one of the day's quests. */
+  startQuest: (id: QuestMetric, remaining: number) => void
 }
 
 /** The screen the app is on: the chain of screens, each given what it needs from the shell. */
 export function AppScreens(props: AppScreensProps) {
-  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData } = props
+  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
   return (
     <>
       {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
@@ -319,6 +322,7 @@ export function AppScreens(props: AppScreensProps) {
           onStory={apiKey && data.states.length >= 3 ? go({ name: 'story' }) : undefined}
           onGames={data.vocabulary.length >= 4 ? go({ name: 'games' }) : undefined}
           onShortRound={startShortRound}
+          onQuest={startQuest}
           onSentenceGame={(game) => setScreen({ name: 'games', game })}
           // The forms mixed into the day's session are counted there, not on a tile of their own.
           formsDue={Math.max(0, formsDue - dayForms.length)}

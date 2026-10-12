@@ -5270,3 +5270,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .refresh-card { position: relative; inset: auto; min-height: 14rem; }
 .refresh-actions .btn { width: auto; height: auto; border-radius: var(--r-md); padding: 0.625rem 1.25rem; font-size: var(--t-base); }
 .refresh-actions .grow { flex: 1; }
+
+/* A quest still open is a button: it starts the round that fills it. */
+.quest-list li.is-go { padding: 0; }
+.quest-row { flex: 1; display: flex; align-items: center; gap: 0.875rem; width: 100%; padding: 0.75rem 1rem; border: 0; border-radius: var(--r-md); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.quest-row:hover { background: var(--lang-soft); }
