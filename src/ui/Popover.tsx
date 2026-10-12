@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react'
 
 /**
  * A button that opens a small panel under it: for the few things a screen keeps one tap away rather than on
@@ -24,6 +24,8 @@ export function Popover({
   children: (close: () => void) => ReactNode
 }) {
   const [open, setOpen] = useState(false)
+  // Where a long panel fits: under the button when there is room, else above it; never taller than that room.
+  const [fit, setFit] = useState<{ above: boolean; maxHeight: number } | null>(null)
   const root = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
   const id = useId()
@@ -48,6 +50,16 @@ export function Popover({
     }
   }, [open])
 
+  useLayoutEffect(() => {
+    if (!open || !trigger.current) return void setFit(null)
+    const r = trigger.current.getBoundingClientRect()
+    const below = window.innerHeight - r.bottom - 16
+    const above = r.top - 16
+    // A phone's panel is a sheet at the bottom of the screen (see CSS): it brings its own height.
+    if (window.matchMedia('(max-width: 30rem)').matches) return void setFit(null)
+    setFit(below >= 260 || below >= above ? { above: false, maxHeight: below } : { above: true, maxHeight: above })
+  }, [open])
+
   // A menu starts on its first item so the keyboard can go straight down it.
   useEffect(() => {
     if (open && kind === 'menu') root.current?.querySelector<HTMLElement>('[role=menuitem]')?.focus()
@@ -67,7 +79,7 @@ export function Popover({
         {button}
       </button>
       {open && (
-        <div id={id} className={`popover-panel is-${align}${kind === 'menu' ? ' is-menu' : ''}`} role={kind === 'menu' ? 'menu' : 'dialog'} aria-label={label}>
+        <div id={id} className={`popover-panel is-${align}${kind === 'menu' ? ' is-menu' : ''}${fit?.above ? ' is-above' : ''}`} style={fit ? { maxHeight: fit.maxHeight } : undefined} role={kind === 'menu' ? 'menu' : 'dialog'} aria-label={label}>
           {children(close)}
         </div>
       )}

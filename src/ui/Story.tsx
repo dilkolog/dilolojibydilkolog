@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AiError, evaluateRetelling, writeEpisode, type RetellEvaluation } from '../ai'
 import { displayForm } from '../engine/exercises'

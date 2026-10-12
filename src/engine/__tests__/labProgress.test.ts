@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, weeklyProgress, addFormsToReview, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
+import { awardLabXp, LAB_XP, addSeenForms, mergeSeen, seenVerbs, errorBreakdown, recordForm, tallyCells, weakestCell, weakPersons, weeklyProgress, addFormsToReview, addToReview, adoptCards, difficultItems, dueItems, emptyLab, gardenVerbs, labKey, masteredForms, masteryLevel, MASTERY_MAX, plantStage, pushRecent, recordCheck, recordRound, toggleFavorite, verbMastery } from '../labProgress'
 import { createScheduler } from '../scheduler'
 
 const DAY = 86_400_000
@@ -257,5 +257,17 @@ describe('progress over time', () => {
     lab = recordForm(lab, 'present', 0, true, undefined, new Date(2026, 9, 7))
     expect(Object.keys(lab.days ?? {})).toEqual(['2026-10-07'])
     expect(weeklyProgress(emptyLab(), new Date(2026, 9, 7), 2).every((w) => w.ok + w.wrong === 0)).toBe(true)
+  })
+})
+
+describe('lab XP', () => {
+  it('a right answer earns the lab rate, a wrong one a point, added up per day', () => {
+    const morning = new Date(2026, 9, 12, 9)
+    const evening = new Date(2026, 9, 12, 21)
+    const next = new Date(2026, 9, 13, 9)
+    let lab = awardLabXp(emptyLab(), true, morning)
+    lab = awardLabXp(lab, false, evening)
+    lab = awardLabXp(lab, true, next)
+    expect(lab.xp).toEqual({ '2026-10-12': LAB_XP + 1, '2026-10-13': LAB_XP })
   })
 })

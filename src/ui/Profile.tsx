@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useState } from 'react'
 import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, type BadgeSeries } from '../engine/gamification'
 import type { Profile, Settings } from '../data/db'

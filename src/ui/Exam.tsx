@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { loadCefr } from '../data/cefr'
 import { cefrOf } from '../engine/cefrLevels'

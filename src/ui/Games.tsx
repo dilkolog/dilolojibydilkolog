@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useState } from 'react'
 import { openMistakes } from '../engine/mistakes'
 import { BOSS_XP, findBosses, type BossWin } from '../engine/bosses'

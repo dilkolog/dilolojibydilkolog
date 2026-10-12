@@ -188,6 +188,7 @@ export function mergeLab(older: LabData | undefined, newer: LabData | undefined)
     seen: Object.fromEntries([...new Set([...Object.keys(older.seen ?? {}), ...Object.keys(newer.seen ?? {})])].map((v) => [v, mergeSeen(older.seen?.[v], newer.seen?.[v])])),
     days,
     tourDays: [...new Set([...(older.tourDays ?? []), ...(newer.tourDays ?? [])])].sort(),
+    xp: most(older.xp, newer.xp),
   }
 }
 

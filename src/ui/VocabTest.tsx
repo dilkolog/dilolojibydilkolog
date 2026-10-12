@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useState } from 'react'
 import { readingKey } from '../engine/reading'
 import { createRng } from '../engine/rng'

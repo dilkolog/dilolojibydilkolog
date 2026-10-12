@@ -1,3 +1,4 @@
+import '../../lazy.css'
 import { useEffect, useState } from 'react'
 import { db } from '../../data/instance'
 import { entryToInput, updateEntry, WordInputError } from '../../data/wordInput'

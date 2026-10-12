@@ -1075,7 +1075,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 4
+export const BACKUP_VERSION = 5
 
 export interface Backup {
   app: 'kelime-koc'

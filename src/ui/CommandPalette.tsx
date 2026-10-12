@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { stripDiacritics } from '../engine/answerCheck'
 import { displayForm } from '../engine/exercises'

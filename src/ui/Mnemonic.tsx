@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AiError, createMnemonic, mnemonicNote, type Mnemonic } from '../ai'
 import { displayForm } from '../engine/exercises'

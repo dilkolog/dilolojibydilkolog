@@ -120,6 +120,11 @@ describe('the verb lab across devices', () => {
   const rec = (ok: number, wrong: number, last: string) => ({ ok, wrong, points: ok * 10, card: { last_review: new Date(last) } }) as unknown as LabData['records'][string]
   const lab = (over: Partial<LabData>): LabData => ({ favorites: [], recent: [], records: {}, ...over })
 
+  it('XP per day keeps the larger count, days from either device stay', () => {
+    const m = mergeLab(lab({ xp: { '2026-10-12': 20, '2026-10-11': 5 } }), lab({ xp: { '2026-10-12': 28, '2026-10-13': 8 } }))!
+    expect(m.xp).toEqual({ '2026-10-12': 28, '2026-10-11': 5, '2026-10-13': 8 })
+  })
+
   it('joins favourites and recent verbs, newest device first', () => {
     const m = mergeLab(lab({ favorites: ['comer'], recent: ['comer', 'ir'] }), lab({ favorites: ['hablar'], recent: ['hablar', 'comer'] }))!
     expect(m.favorites).toEqual(['hablar', 'comer'])

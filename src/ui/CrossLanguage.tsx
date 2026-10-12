@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useState } from 'react'
 import { LinesSkeleton } from './Skeleton'
 import { useCrossLinks, useEquivalents } from './useCrossLanguage'

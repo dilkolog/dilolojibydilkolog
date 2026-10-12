@@ -31,6 +31,8 @@ export interface LabData {
   days?: Record<string, { ok: number; wrong: number }>
   /** Local days ("2026-10-08") the daily verb round was finished. */
   tourDays?: string[]
+  /** XP earned by answering in the lab, per local day (never pruned: XP is a lifetime total). */
+  xp?: Record<string, number>
 }
 
 /** A conjugated form met in a text: which tense it is, how often, and where it was last met. */
@@ -240,6 +242,15 @@ export const masteredForms = (lab: LabData): number => items(lab).filter((i) => 
 const DAYS_KEPT = 120
 const dayKey = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 const addDays = (d: Date, n: number) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n)
+
+/** XP for a right answer in the lab (a wrong one earns 1, like anywhere else: trying is never punished). */
+export const LAB_XP = 8
+
+/** The answer's XP added to its day. Only answers given in the lab count: a form met in a session is already an answer of the session. */
+export function awardLabXp(lab: LabData, ok: boolean, at = new Date()): LabData {
+  const day = dayKey(at)
+  return { ...lab, xp: { ...lab.xp, [day]: (lab.xp?.[day] ?? 0) + (ok ? LAB_XP : 1) } }
+}
 
 /** One answer counted per tense and person, per day, and a wrong one by its kind of slip. */
 export function recordForm(lab: LabData, tense: Tense, person: number, ok: boolean, kind?: ErrorKind, at = new Date()): LabData {

@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useState } from 'react'
 import { BackupVersionError } from '../data/db'
 import { probeAccount, requestAccess } from '../data/access'
