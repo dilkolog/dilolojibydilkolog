@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { displayForm } from '../engine/exercises'
 import { currentLevel, levelGroups, listWords, newLevelId, progressOf, type GroupProgress } from '../engine/lists'
 import type { ListLevel, TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
@@ -7,6 +7,8 @@ import { ConfirmDialog } from './Dialog'
 import { EmptyState } from './EmptyState'
 import { ChevronDownIcon, PlusIcon, TargetIcon } from './icons'
 import { showToast } from './toastFeed'
+import { ShareList } from './ShareList'
+import { getCollabs, syncCollab, ShareError } from '../data/share'
 import { newListId } from './wordListId'
 
 /** Met and learned as one bar: the learned part solid, the met part lighter. */
@@ -75,6 +77,13 @@ export function WordListsView({
   const [renaming, setRenaming] = useState<string | null>(null)
   const [levelName, setLevelName] = useState<Record<string, string>>({})
   const [deleting, setDeleting] = useState<WordList | null>(null)
+  // The list whose sharing is open, and the lists this device has joined as collaborative ones.
+  const [sharing, setSharing] = useState<string | null>(null)
+  const [collabIds, setCollabIds] = useState<Record<string, string>>({})
+  const [syncing, setSyncing] = useState<string | null>(null)
+  useEffect(() => {
+    void getCollabs(db).then((links) => setCollabIds(Object.fromEntries(links.map((l) => [l.listId, l.id]))))
+  }, [db, lists, sharing])
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const listIds = useMemo(() => new Set(lists.map((l) => l.id)), [lists])
   const unlisted = useMemo(() => vocabulary.filter((v) => v.source !== 'sample' && (!v.listId || !listIds.has(v.listId))), [vocabulary, listIds])
@@ -154,6 +163,7 @@ export function WordListsView({
               ) : (
                 <h3 className="wl-name">
                   {list.name}
+                  {collabIds[list.id] && <span className="badge wl-focus-badge">Ortak</span>}
                   {focused && (
                     <span className="badge wl-focus-badge">
                       <TargetIcon size={14} className="inline-icon" />
@@ -268,6 +278,33 @@ export function WordListsView({
                   Listeyi çalış
                 </button>
               )}
+              <button type="button" className="btn btn-quiet btn-sm" aria-expanded={sharing === list.id} onClick={() => setSharing(sharing === list.id ? null : list.id)}>
+                Paylaş
+              </button>
+              {collabIds[list.id] && (
+                <button
+                  type="button"
+                  className="btn btn-quiet btn-sm"
+                  disabled={syncing === list.id}
+                  onClick={async () => {
+                    setSyncing(list.id)
+                    try {
+                      const link = (await getCollabs(db)).find((l) => l.listId === list.id)
+                      if (link) {
+                        const r = await syncCollab(db, link)
+                        onListsChanged()
+                        showToast(r.added + r.updated + r.removed || r.pushed ? `Ortak liste eşitlendi: ${r.added} yeni, ${r.updated} değişen, ${r.removed} silinen kelime.` : 'Ortak liste güncel.')
+                      }
+                    } catch (e) {
+                      showToast(e instanceof ShareError ? e.message : 'Eşitlenemedi.', undefined, 5000, 'info')
+                    } finally {
+                      setSyncing(null)
+                    }
+                  }}
+                >
+                  {syncing === list.id ? 'Eşitleniyor…' : 'Ortak listeyi eşitle'}
+                </button>
+              )}
               <span className="grow" />
               <button type="button" className="link small" onClick={() => setRenaming(list.id)}>
                 Yeniden adlandır
@@ -276,6 +313,7 @@ export function WordListsView({
                 Sil
               </button>
             </div>
+            {sharing === list.id && <ShareList db={db} list={list} vocabulary={vocabulary} onChanged={onListsChanged} />}
           </article>
         )
       })}

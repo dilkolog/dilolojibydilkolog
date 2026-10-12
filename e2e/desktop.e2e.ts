@@ -1981,3 +1981,32 @@ test('today screen: live seed waits before any answer is given and stops hopping
   const reducedAnim = await hop.evaluate((el) => getComputedStyle(el).animationName)
   expect(reducedAnim).toBe('none')
 })
+
+test('a shared list link shows what is in it, adds nothing until confirmed, then makes a list of its own', async ({ page }) => {
+  const id = 'ab'.repeat(16)
+  const doc = {
+    v: 1,
+    kind: 'set',
+    name: 'Evcil hayvanlar',
+    language: 'fr',
+    words: [
+      { key: 'fr:chien', word: 'le chien', meaning: 'köpek', at: '2026-10-12T10:00:00Z' },
+      { key: 'fr:oiseau', word: "l'oiseau", meaning: 'kuş', at: '2026-10-12T10:00:00Z' },
+    ],
+    createdAt: '2026-10-12T10:00:00Z',
+    updatedAt: '2026-10-12T10:00:00Z',
+  }
+  await page.route((u) => u.pathname === '/api/share', (route) => route.fulfill({ json: doc }))
+  await startWithSamples(page)
+  await page.goto(`/?set=${id}`)
+  const dialog = page.getByRole('alertdialog')
+  await expect(dialog).toContainText('Evcil hayvanlar')
+  await expect(dialog).toContainText('le chien')
+  // The link is spent (a reload does not ask again) and nothing is added until the button is pressed.
+  await expect(page).not.toHaveURL(/set=/)
+  await dialog.getByRole('button', { name: 'Listeme ekle' }).click()
+  await expect(dialog).toHaveCount(0)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('tab', { name: 'Listeler' }).click()
+  await expect(page.locator('.wl-card', { hasText: 'Evcil hayvanlar' })).toContainText('2 kelime')
+})

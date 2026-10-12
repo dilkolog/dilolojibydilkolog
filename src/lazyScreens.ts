@@ -41,6 +41,9 @@ export const DictionaryScreen = lazy(() => screenModules.Dictionary().then((m) =
 export const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
 export const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 
+/** A list somebody shared, opened from a link: rarely, so not in the startup code and not prefetched. */
+export const IncomingSet = lazy(() => import('./ui/IncomingSet'))
+
 export function prefetchScreens() {
   for (const load of Object.values(screenModules)) void load().catch(() => {})
 }
