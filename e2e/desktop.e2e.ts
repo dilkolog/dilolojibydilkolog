@@ -798,6 +798,29 @@ test("a quest of the day starts the round that fills it: new words → introduct
   await expect(page.locator('.session-stage')).toHaveCount(0)
 })
 
+test('study settings inside a session: shorten it, turn the kind of question down, and the choices stay', async ({ page }) => {
+  test.setTimeout(120_000)
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  // Past the introduction cards, to a first question.
+  for (let i = 0; i < 12 && !(await page.locator('.session-stage .option, .session-stage input.answer-input').count()); i++) {
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim|Hatırlıyorum)/ })
+    if (await next.count()) await next.first().click()
+    await page.waitForTimeout(150)
+  }
+  await page.getByRole('button', { name: 'Çalışma ayarları' }).click()
+  const dialog = page.getByRole('dialog', { name: 'Çalışma ayarları' })
+  await expect(dialog).toContainText('Bu oturum')
+  await dialog.getByRole('button', { name: '5 soru daha' }).click()
+  await expect(page.getByText('Bu oturum 5 soru daha sürecek.')).toBeVisible()
+  // The dialog closed; opened again, the speaking rate and auto-advance choices are there and keep what was chosen.
+  await page.getByRole('button', { name: 'Çalışma ayarları' }).click()
+  await dialog.getByRole('button', { name: '2 sn' }).click()
+  await expect(dialog.getByRole('button', { name: '2 sn' })).toHaveAttribute('aria-pressed', 'true')
+  await dialog.getByRole('button', { name: '1.1×' }).click()
+  await expect(dialog.getByRole('button', { name: '1.1×' })).toHaveAttribute('aria-pressed', 'true')
+})
+
 test('reading: reaching the end saves the meetings with list words on its own; finishing is up top too', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)

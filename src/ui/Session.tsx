@@ -74,9 +74,9 @@ const startOfYesterday = () => {
 }
 
 /** Keeps the phone screen on during a session (where supported); re-taken after switching apps. */
-function useWakeLock() {
+function useWakeLock(enabled: boolean) {
   useEffect(() => {
-    if (!('wakeLock' in navigator)) return
+    if (!enabled || !('wakeLock' in navigator)) return
     let lock: WakeLockSentinel | null = null
     let alive = true
     const take = () => {
@@ -93,11 +93,11 @@ function useWakeLock() {
       document.removeEventListener('visibilitychange', take)
       void lock?.release()
     }
-  }, [])
+  }, [enabled])
 }
 
 export function SessionScreen(p: Props) {
-  useWakeLock()
+  useWakeLock(p.settings?.keepAwake !== false)
   // State, not memo: an override can add an accepted spelling to a word mid-session.
   const [byId, setById] = useState(() => new Map(p.vocabulary.map((e) => [e.id, e])))
   /** The last answer, kept so "my answer was right too" can recompute it from the prior state. */
@@ -373,6 +373,14 @@ export function SessionScreen(p: Props) {
               p.onSettings!(s)
             }}
             onClose={() => setShowSettings(false)}
+            questionType={!form && item.kind === 'exercise' ? item.exerciseType : undefined}
+            remaining={Math.max(0, session.items.length - session.index - 1)}
+            onShorten={(n) => {
+              // Keeps the current question and the next n; the rest of the day's plan is still there afterwards.
+              setSession((s) => ({ ...s, items: s.items.slice(0, s.index + 1 + n) }))
+              setShowSettings(false)
+              showToast(`Bu oturum ${n} soru daha sürecek.`)
+            }}
           />
         </Suspense>
       )}
@@ -525,6 +533,15 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
   useEffect(() => {
     if (result) continueBtn.current?.focus()
   }, [result])
+  // The latest handler, so a re-render doesn't restart the wait below.
+  const goOn = useRef(onContinue)
+  goOn.current = onContinue
+  // "Doğruda otomatik devam": a plain right answer (nothing to read below it) goes on by itself.
+  useEffect(() => {
+    if (!result || result.ev.verdict !== 'correct' || result.ev.feedback || editing || mnemonic || !prefs.autoAdvance) return
+    const t = setTimeout(() => goOn.current(result.log), prefs.autoAdvance * 1000)
+    return () => clearTimeout(t)
+  }, [result, editing, mnemonic])
 
   const busy = useRef(false)
 
