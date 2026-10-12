@@ -295,6 +295,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     missions: unionBy(older.missions, newer.missions, (m) => `${m.mission}|${m.at}`),
     sentences: unionBy(older.sentences, newer.sentences, (s) => s.id, (x, y) => (time(y.card.last_review) >= time(x.card.last_review) ? y : x)).filter((s) => !dead(s.id, s.addedAt)),
     exams: unionBy(older.exams, newer.exams, (e) => `${e.language}|${e.at}`),
+    diagrams: unionBy(older.diagrams, newer.diagrams, (d) => d.id, (x, y) => (time(y.updatedAt) >= time(x.updatedAt) ? y : x)).filter((d) => !dead(d.id, d.createdAt)),
     lists: unionBy(older.lists, newer.lists, (l) => l.id, (x, y) => (time(y.updatedAt) >= time(x.updatedAt) ? y : x)).filter((l) => !dead(l.id, l.createdAt)),
     deleted: tombList(tombs),
     lab: { fr: withoutRemoved(mergeLab(older.lab?.fr, newer.lab?.fr), 'fr', dead), es: withoutRemoved(mergeLab(older.lab?.es, newer.lab?.es), 'es', dead) },
