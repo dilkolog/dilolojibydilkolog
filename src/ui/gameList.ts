@@ -1,8 +1,10 @@
 /** Every game by id, for the command palette (kept apart so the palette doesn't load the games). */
-export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register' | 'flow' | 'affix'
+export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register' | 'flow' | 'affix' | 'truefalse' | 'test'
 
 export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French and Spanish only. */ grammar?: boolean }[] = [
   { id: 'swipe', name: 'Kaydırmalı kartlar', emoji: '👆' },
+  { id: 'truefalse', name: 'Doğru mu, yanlış mı?', emoji: '✅' },
+  { id: 'test', name: 'Deneme sınavı', emoji: '📋' },
   { id: 'sentences', name: 'Cümle kartları', emoji: '💬' },
   { id: 'back', name: 'Geri çeviri', emoji: '🔁' },
   { id: 'boss', name: 'Boss savaşları', emoji: '⚔️' },
