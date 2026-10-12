@@ -197,7 +197,7 @@ export const clippedContent = (page: Page) =>
 export async function playSession(page: Page, start = true) {
   if (start) await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
   for (let i = 0; i < 150 && !(await page.locator('.celebrate-card, .summary-grid').count()); i++) {
-    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim)/ })
+    const next = page.locator('.session-stage button:visible', { hasText: /^(Devam|Anladım|Öğrendim|Hatırlıyorum)/ })
     const guess = page.locator('.session-stage .option:not([disabled])')
     const typed = page.locator('.session-stage input.answer-input:visible')
     // A question to say aloud: a test has no microphone, so it is answered by typing.

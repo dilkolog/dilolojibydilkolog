@@ -65,6 +65,12 @@ export function AnswerSettings({
           onChange={(v) => set('pretest', v)}
         />
         <Toggle
+          label="Dünkü yeni kelimeleri önce kartla hatırlat"
+          help="Dün (ya da bugün, başka bir oturumda) tanıştığın bir kelime ilk sorusundan önce kart olarak gelir: sağa kaydır ya da → ile hatırlıyorum, sola kaydır ya da ← ile zorlanıyorum. Zorlandığın kelime oturumun ilerisinde bir kez daha kolay bir soruyla sorulur."
+          checked={settings.refreshCard !== false}
+          onChange={(v) => set('refreshCard', v)}
+        />
+        <Toggle
           label="Anlamı hedef dilde göster"
           help="Türkçe anlam yerine kelimenin kendi dilindeki tanımı sorulur (Wiktionary'den; tanımı olan kelimelerde). Çeviri yapmadan o dilde düşünmeye alıştırır; Türkçesi bir dokunuşla görünür."
           checked={settings.targetDefinitions}

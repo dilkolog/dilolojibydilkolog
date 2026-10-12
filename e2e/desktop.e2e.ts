@@ -763,6 +763,27 @@ test("Games: the day's reviews come first, with a start button", async ({ page }
   await expect(page.locator('.session-stage')).toBeVisible()
 })
 
+test('a word met yesterday comes back as a card before its first question: the arrow keys decide, a hard one is asked once more', async ({ page }) => {
+  test.setTimeout(120_000)
+  await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
+  await startWithSamples(page)
+  await openScreen(page, 'Bugün')
+  await finishSession(page)
+  // The next day: the words met yesterday are due.
+  await page.clock.setFixedTime(new Date('2026-03-05T12:00:00'))
+  await page.reload()
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').click()
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  const card = page.locator('.refresh')
+  await expect(card).toContainText('Önce bir bak')
+  await expect(card.locator('.swipe-gloss')).not.toBeEmpty()
+  // Left: "Zorlanıyorum"; the question comes, and the same word returns later as a quick question.
+  await page.keyboard.press('ArrowLeft')
+  await expect(card).toHaveCount(0)
+  await expect(page.locator('.session-stage .prompt-label')).toBeVisible()
+  await expect(page.locator('.session-stage')).not.toContainText('Önce bir bak')
+})
+
 test('reading: reaching the end saves the meetings with list words on its own; finishing is up top too', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)

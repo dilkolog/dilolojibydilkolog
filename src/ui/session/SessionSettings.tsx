@@ -52,6 +52,7 @@ export function SessionSettings({ settings, onChange, onClose }: { settings: Set
             value={settings.typingShare ?? 'balanced'}
             onChange={(v) => set('typingShare', v)}
           />
+          <Switch label="Dünkü yeni kelimeyi önce kartla hatırlat" help="İlk sorudan önce kelimenin kartı gelir; sola kaydırınca bir kez daha sorulur." checked={settings.refreshCard !== false} onChange={(v) => set('refreshCard', v)} />
           <Switch label="Yeni kelimede önce tahmin" help="Anlamı görmeden önce bir tahmin yaparsın; doğrusu daha iyi aklında kalır." checked={settings.pretest} onChange={(v) => set('pretest', v)} />
           <Switch label="Anlamı hedef dilde göster" help="Türkçe yerine kelimenin kendi dilindeki tanımı; Türkçesi bir dokunuşta." checked={settings.targetDefinitions} onChange={(v) => set('targetDefinitions', v)} />
           <Switch label="“Emin değilim” seçeneği" help="Tahminle bildiklerin daha erken tekrar gelir." checked={settings.confidence} onChange={(v) => set('confidence', v)} />

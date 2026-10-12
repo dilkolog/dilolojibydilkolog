@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, firstSittingEnd, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
+import { completeItem, currentItem, firstSittingEnd, insertLater, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -161,3 +161,17 @@ describe('two sittings for a long day', () => {
     expect(firstSittingEnd([])).toBe(0)
   })
 })
+
+describe('insertLater', () => {
+  const ex = (id: string): PlanItem => ({ kind: 'exercise', entryId: id, reason: 'due', skill: 'recognition', exerciseType: 'mc_meaning' })
+  it('puts an item a few places after the current one, or at the end of a short session', () => {
+    const s = startSession([ex('a'), ex('b'), ex('c'), ex('d')])
+    const extra = { ...ex('a'), reason: 'practice' as const }
+    expect(insertLater(s, extra, 2).items.map((i) => i.entryId + (i === extra ? '*' : ''))).toEqual(['a', 'b', 'c', 'a*', 'd'])
+    expect(insertLater(s, extra, 9).items.at(-1)).toBe(extra)
+    // The session's position and the original list are untouched.
+    expect(insertLater(s, extra).index).toBe(0)
+    expect(s.items).toHaveLength(4)
+  })
+})
+

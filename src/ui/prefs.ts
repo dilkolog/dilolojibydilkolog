@@ -14,6 +14,7 @@ export const prefs = {
   soundEffects: true,
   showKeyLegend: true,
   pretest: true,
+  refreshCard: true,
   confidence: true,
   accentShortcuts: true,
   autoRetire: true,
@@ -35,6 +36,7 @@ export function applySettings(s: Settings) {
   prefs.soundEffects = s.soundEffects
   prefs.showKeyLegend = s.showKeyLegend
   prefs.pretest = s.pretest
+  prefs.refreshCard = s.refreshCard !== false
   prefs.confidence = s.confidence
   prefs.accentShortcuts = s.accentShortcuts
   aiConfig.model = s.aiModel
