@@ -3,6 +3,7 @@ import type { Cue } from '../engine/subtitles'
 import type { TranslationEntry } from '../engine/translationMemory'
 import type { EarLog, EarMiss } from '../engine/earMisses'
 import type { GrammarLog } from '../engine/grammar'
+import type { Diagram } from '../engine/diagram'
 import type { DeductionLog } from '../engine/deduction'
 import type { BadgeLog } from '../engine/gamification'
 import { addToMonth, monthKey, type AiModel, type MonthUsage, type UsageRecord } from '../ai/usage'
@@ -765,6 +766,27 @@ export class KelimeDB extends Dexie {
     return this.saveLog('affixes', log)
   }
 
+  /** Labelled pictures (see engine/diagram); the pictures themselves are in the media store. */
+  async getDiagrams(language?: TargetLanguage): Promise<Diagram[]> {
+    const all = ((await this.meta.get('diagrams'))?.value as Diagram[]) ?? []
+    return language ? all.filter((d) => d.language === language) : all
+  }
+
+  async saveDiagram(diagram: Diagram) {
+    const all = await this.getDiagrams()
+    const at = all.findIndex((d) => d.id === diagram.id)
+    await this.meta.put({ key: 'diagrams', value: at < 0 ? [...all, diagram] : all.map((d, i) => (i === at ? diagram : d)) })
+  }
+
+  /** Removes a diagram and its picture; remembered so another device's copy does not bring it back. */
+  async deleteDiagram(id: string) {
+    const all = await this.getDiagrams()
+    const gone = all.find((d) => d.id === id)
+    await this.meta.put({ key: 'diagrams', value: all.filter((d) => d.id !== id) })
+    if (gone) await this.media.delete(gone.imageId)
+    await this.addDeleted([id])
+  }
+
   /** Badges earned and when (see engine/gamification BadgeLog). */
   async getBadgeLog(): Promise<BadgeLog> {
     return ((await this.meta.get('badges'))?.value as BadgeLog) ?? {}
@@ -1075,7 +1097,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 5
+export const BACKUP_VERSION = 6
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1100,6 +1122,8 @@ export interface Backup {
   exams?: ExamResult[]
   /** Word lists (backup version 3+, optional). */
   lists?: WordList[]
+  /** Labelled pictures (backup version 6+). */
+  diagrams?: Diagram[]
   /** What was deleted, and when (sync tombstones, see tombstones.ts). */
   deleted?: Tombstone[]
   /** The verb lab's favourites, recent verbs and practice (per language), and the personal bests of the games. */
@@ -1171,6 +1195,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     sentences: await db.getSentences(),
     exams: await db.getExams(),
     lists: await db.getLists(),
+    diagrams: await db.getDiagrams(),
     deleted: await db.getDeleted(),
     lab: { fr: await db.getLab('fr'), es: await db.getLab('es') },
     records: await db.getRecords(),
@@ -1226,7 +1251,7 @@ export function parseBackup(json: string): Backup {
     throw new Error('Yedek dosyası bozuk görünüyor.')
   }
   // The lists the app keeps under one key each: a wrong shape would be written as it is and break the screen that reads it.
-  for (const list of [data.sentences, data.lists, data.journal, data.exams, data.reading?.library]) {
+  for (const list of [data.sentences, data.lists, data.diagrams, data.journal, data.exams, data.reading?.library]) {
     if (list !== undefined && !Array.isArray(list)) throw new Error('Yedek dosyası bozuk görünüyor.')
   }
   // These dates are ISO strings in their own rows (the reviver above made Dates of them by their key name): back to strings,
@@ -1235,6 +1260,11 @@ export function parseBackup(json: string): Backup {
   for (const t of data.reading?.library ?? []) if (t) t.addedAt = iso(t.addedAt)
   for (const s of data.sentences ?? []) if (s) s.addedAt = iso(s.addedAt)
   for (const l of data.lists ?? []) if (l) l.createdAt = iso(l.createdAt)
+  for (const d of data.diagrams ?? []) {
+    if (!d) continue
+    d.createdAt = iso(d.createdAt)
+    d.updatedAt = iso(d.updatedAt)
+  }
   return data as Backup
 }
 
@@ -1271,6 +1301,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.sentences) await db.meta.put({ key: 'sentences', value: backup.sentences })
     if (backup.exams) await db.meta.put({ key: 'exams', value: backup.exams })
     if (backup.lists) await db.meta.put({ key: 'wordLists', value: backup.lists })
+    if (backup.diagrams) await db.meta.put({ key: 'diagrams', value: backup.diagrams })
     if (backup.deleted) await db.meta.put({ key: 'deleted', value: backup.deleted })
     for (const [l, lab] of Object.entries(backup.lab ?? {})) if (lab) await db.meta.put({ key: `lab:${l}`, value: lab })
     for (const [l, notes] of Object.entries(backup.dictionary ?? {})) if (notes) await db.meta.put({ key: `dict:${l}`, value: notes })

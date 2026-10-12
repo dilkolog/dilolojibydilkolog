@@ -420,3 +420,23 @@ describe('the write counter a sync watches', () => {
   })
 })
 
+
+describe('labelled pictures in the database', () => {
+  it('are saved, listed per language, deleted with their picture and remembered as deleted, and travel in a backup', async () => {
+    const { db } = await import('./instance')
+    await db.meta.delete('diagrams')
+    const image = await db.addMedia('image', new Blob(['x'], { type: 'image/png' }))
+    const dg = { id: 'dg-1', language: 'fr' as const, title: 'Le corps', imageId: image, points: [{ id: 'p1', x: 0.2, y: 0.3, word: 'la tête' }], createdAt: '2026-10-12T10:00:00Z', updatedAt: '2026-10-12T10:00:00Z' }
+    await db.saveDiagram(dg)
+    await db.saveDiagram({ ...dg, id: 'dg-2', language: 'es', title: 'El cuerpo' })
+    await db.saveDiagram({ ...dg, title: 'Le corps humain' })
+    expect((await db.getDiagrams('fr')).map((d) => d.title)).toEqual(['Le corps humain'])
+    expect(await db.getDiagrams()).toHaveLength(2)
+    const { exportBackup, parseBackup } = await import('./db')
+    expect(parseBackup(await exportBackup(db, new Date(), { media: false })).diagrams).toHaveLength(2)
+    await db.deleteDiagram('dg-1')
+    expect((await db.getDiagrams()).map((d) => d.id)).toEqual(['dg-2'])
+    expect(await db.media.get(image)).toBeUndefined()
+    expect(deadIds(await db.getDeleted()).has('dg-1')).toBe(true)
+  })
+})

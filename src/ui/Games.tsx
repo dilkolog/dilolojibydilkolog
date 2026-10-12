@@ -44,6 +44,7 @@ import { TrueFalseGame } from './games/TrueFalseGame'
 import { PracticeTest } from './games/PracticeTest'
 import { GravityGame } from './games/GravityGame'
 import { NotesQuiz } from './games/NotesQuiz'
+import { DiagramGame } from './games/DiagramGame'
 import { useAi } from './aiContext'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
@@ -136,6 +137,7 @@ export function GamesScreen(
     if (game === 'truefalse') return <TrueFalseGame {...p} onExit={() => setGame(null)} />
     if (game === 'test') return <PracticeTest {...p} onExit={() => setGame(null)} />
     if (game === 'gravity') return <GravityGame {...p} onExit={() => setGame(null)} />
+    if (game === 'diagram') return <DiagramGame language={p.language} vocabulary={p.vocabulary} onChanged={p.onChanged} onExit={() => setGame(null)} />
     if (game === 'notes') return <NotesQuiz language={p.language} onExit={() => setGame(null)} />
     if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
@@ -171,6 +173,7 @@ export function GamesScreen(
         ...(aiKey
           ? [{ id: 'notes' as const, emoji: '🗒️', name: 'Notlarından sınav', text: 'Ders notunu yapıştır; YZ içinden çoktan seçmeli sorular hazırlasın, her cevapta nedeni gör.', status: online ? 'YZ ile, notun kaydedilmez' : 'İnternet gerekir', disabled: !online }]
           : []),
+        { id: 'diagram', emoji: '🖼️', name: 'Resim etiketleme', text: 'Bir çizim, fotoğraf ya da haritaya kelimeleri yerleştir; nokta nokta çalış.', status: 'Kendi resimlerinle' },
         { id: 'sentences', emoji: '💬', name: 'Cümle kartları', text: 'Okurken kaydettiğin cümleler: boşluk, dikte ve çeviri.', status: dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet', scheduled: true, due: dueSentenceCount > 0 },
         { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz (en iyisi ertesi gün); farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır${backRested ? ` · ${backRested} tanesi önceki günlerden` : ''}` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
         { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: bossCount === 0 ? 'Henüz boss yok: bir kelime sık yanlış olunca belirir' : `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss', disabled: bossCount === 0 },

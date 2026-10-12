@@ -189,5 +189,11 @@ describe('the verb lab across devices', () => {
     expect(both.wordStates.map((s) => s.entryId)).toEqual(['fr:chat'])
     expect(both.events.map((e) => e.id)).toEqual(['new'])
   })
-})
 
+  it('merges labelled pictures: the later edit wins, a deleted one stays deleted, a new one from either side is kept', () => {
+    const dg = (id: string, title: string, updatedAt: string) => ({ id, language: 'fr' as const, title, imageId: 'm1', points: [], createdAt: '2026-10-01T10:00:00Z', updatedAt })
+    const a = base('2026-10-02T10:00:00Z', { diagrams: [dg('d1', 'Le corps', '2026-10-02T09:00:00Z'), dg('d2', 'La maison', '2026-10-01T10:00:00Z'), dg('d3', 'Seule', '2026-10-01T10:00:00Z')] })
+    const b = base('2026-10-02T11:00:00Z', { diagrams: [dg('d1', 'Le corps humain', '2026-10-01T12:00:00Z'), dg('d4', 'La ville', '2026-10-02T10:50:00Z')], deleted: [{ id: 'd2', at: '2026-10-02T10:30:00Z', alive: false }] })
+    expect(mergeBackups(a, b).diagrams?.map((d) => [d.id, d.title]).sort()).toEqual([['d1', 'Le corps'], ['d3', 'Seule'], ['d4', 'La ville']])
+  })
+})
