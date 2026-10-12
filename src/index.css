@@ -5275,3 +5275,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .quest-list li.is-go { padding: 0; }
 .quest-row { flex: 1; display: flex; align-items: center; gap: 0.875rem; width: 100%; padding: 0.75rem 1rem; border: 0; border-radius: var(--r-md); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .quest-row:hover { background: var(--lang-soft); }
+
+/* The day's goal is met: a green seal by the day's XP instead of a tick and the word "Tamam". */
+.daily-check { display: inline-grid; place-items: center; width: 1.125rem; height: 1.125rem; border-radius: var(--r-full); background: var(--ok-deep); color: #fff; animation: check-pop var(--dur) var(--ease-spring) both; }
+.daily-goal.is-done strong { font-variant-numeric: tabular-nums; }
