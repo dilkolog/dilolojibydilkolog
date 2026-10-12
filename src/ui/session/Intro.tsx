@@ -1,3 +1,4 @@
+import { RichText } from '../RichText'
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { buildPretest, displayForm } from '../../engine/exercises'
 import type { Rng } from '../../engine/rng'
@@ -144,7 +145,12 @@ export function Intro({
           <CrossLanguageNotes entry={entry} compact />
         </Suspense>
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
-        {entry.notes && <p className="note"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
+        {entry.notes && <p className="note"><BulbIcon size={16} className="inline-icon" /><RichText text={entry.notes} /></p>}
+        {entry.extras?.map((x, i) => (
+          <p key={i} className="note extra-note">
+            <strong>{x.label}:</strong> <RichText text={x.text} />
+          </p>
+        ))}
         {example && (
           <div className="row items-start nowrap">
             <Sentence text={example.text} translation={example.translation} lang={entry.language} />

@@ -12,6 +12,15 @@ export interface ListLevel {
 }
 
 /** A named list of words in one language (a Memrise-style course); its words carry its id. */
+/** One extra field of a word: what it is called and what it says. */
+export interface WordExtra {
+  label: string
+  text: string
+}
+
+/** Most extra fields on a word: a card with a dozen faces is a page, not a card. */
+export const MAX_EXTRAS = 4
+
 export interface WordList {
   id: string
   language: TargetLanguage
@@ -135,8 +144,10 @@ export interface VocabularyEntry {
   imageId?: string
   /** Where the picture came from, e.g. "Wikimedia Commons: …". */
   imageCredit?: string
-  /** Personal note: a mnemonic, a usage tip, where you met the word. */
+  /** Personal note: a mnemonic, a usage tip, where you met the word. May carry **bold**, _italic_ and ==highlight== (see richText). */
   notes?: string
+  /** More faces for the card, the learner's own: a label and a text each ("Zıt anlam", "Dikkat"). At most MAX_EXTRAS. */
+  extras?: WordExtra[]
   /** Idioms: the word-for-word meaning in Turkish ("hamamböceğine sahip olmak"). */
   literal?: string
   register: Register

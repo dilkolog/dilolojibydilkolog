@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -415,6 +415,32 @@ export async function suggestNewWords(apiKey: string, req: WordSuggestRequest): 
   const out = await structured(apiKey, WordBatch, system, user, 'low', 'word_suggest')
   const seen = new Set(req.have.map((w) => w.toLocaleLowerCase(req.language)))
   return out.words.filter((w) => !seen.has(w.lemma.toLocaleLowerCase(req.language))).slice(0, req.count)
+}
+
+const NotesQuiz = z.object({
+  questions: z.array(
+    z.object({
+      question: z.string().describe('The question, in the language it is about (Turkish for a rule, the target language for a phrase), self-contained.'),
+      options: z.array(z.string()).describe('Exactly four short options; one right, three plausible but wrong.'),
+      answer: z.number().describe('Index (0-3) of the right option.'),
+      explanation: z.string().describe('One or two Turkish sentences saying why that option is right, based on the notes.'),
+    }),
+  ),
+})
+
+/** A multiple-choice quiz about the learner's own notes. */
+export async function notesQuiz(apiKey: string, req: NotesQuizRequest): Promise<QuizQuestion[]> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You write practice questions for a Turkish adult learning ${lang}, from the notes they took (a lesson, grammar rules, a list of expressions).`,
+    `Write exactly ${req.count} multiple-choice questions that test what the notes actually say: rules, meanings, forms, usage. Do not use facts that are not in the notes.`,
+    'Each has four options, only one right; the wrong ones are the mistakes a learner really makes. Vary the kinds: meaning, form, which sentence is correct, which rule applies.',
+    'Questions about a rule are in Turkish; questions about a phrase or sentence use the target language. Keep everything short.',
+  ].join('\n')
+  const out = await structured(apiKey, NotesQuiz, system, req.notes.slice(0, 8000), 'low', 'notes_quiz')
+  return out.questions
+    .filter((q) => q.options.length === 4 && Number.isInteger(q.answer) && q.answer >= 0 && q.answer < 4 && new Set(q.options.map((o) => o.trim().toLowerCase())).size === 4)
+    .slice(0, req.count)
 }
 
 const SessionNoteSchema = z.object({

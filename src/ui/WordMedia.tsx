@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import type { VocabularyEntry } from '../engine/types'
+import { useEffect, useRef, useState } from 'react'
+import { MAX_EXTRAS, type VocabularyEntry, type WordExtra } from '../engine/types'
+import { FormatBar } from './RichText'
 import { db } from '../data/instance'
 import { useAi } from './aiContext'
 import { AudioRecorder } from './AudioRecorder'
@@ -22,6 +23,8 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
   const [recording, setRecording] = useState(false)
   const [notes, setNotes] = useState(entry.notes ?? '')
   const [saved, setSaved] = useState(false)
+  const notesBox = useRef<HTMLTextAreaElement>(null)
+  const [extras, setExtras] = useState<WordExtra[]>(entry.extras ?? [])
   const [mnemonicOpen, setMnemonicOpen] = useState(false)
   const { apiKey } = useAi()
 
@@ -45,6 +48,14 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
     setSaved(true)
     setTimeout(() => setSaved(false), 1500)
   }
+
+  // Rows with neither a label nor a text are dropped when saving; a row with only one of them is kept.
+  const saveExtras = async (rows: WordExtra[]) => {
+    const clean = rows.map((x) => ({ label: x.label.trim(), text: x.text.trim() })).filter((x) => x.label || x.text)
+    if (JSON.stringify(clean) === JSON.stringify(entry.extras ?? [])) return
+    await update({ extras: clean.length ? clean : undefined })
+  }
+  const setExtra = (i: number, patch: Partial<WordExtra>) => setExtras((rows) => rows.map((x, k) => (k === i ? { ...x, ...patch } : x)))
 
   return (
     <section className="section stack" id="word-media">
@@ -117,8 +128,12 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
       </div>
 
       <div className="field">
-        <label htmlFor="w-notes">Not / hafıza ipucu</label>
+        <div className="row justify-between">
+          <label htmlFor="w-notes">Not / hafıza ipucu</label>
+          <FormatBar target={notesBox} value={notes} onChange={setNotes} />
+        </div>
         <textarea
+          ref={notesBox}
           id="w-notes"
           className="textarea word-notes-textarea"
           placeholder="Örn. 'abandon' → 'a band on' (bir grup sahneyi terk ediyor)"
@@ -126,7 +141,33 @@ export function WordMedia({ entry, onChanged }: { entry: VocabularyEntry; onChan
           onChange={(e) => setNotes(e.target.value)}
           onBlur={saveNotes}
         />
-        <span className="help">{saved ? 'Kaydedildi.' : 'Kelime tanıtılırken ve yanlış cevaptan sonra gösterilir. Alandan çıkınca kaydedilir.'}</span>
+        <span className="help">{saved ? 'Kaydedildi.' : 'Kelime tanıtılırken ve yanlış cevaptan sonra gösterilir. Alandan çıkınca kaydedilir. **kalın**, _eğik_, ==vurgu== yazabilirsin.'}</span>
+        {extras.map((x, i) => (
+          <div key={i} className="extra-row">
+            <input className="input" aria-label={`Ek alan ${i + 1} adı`} placeholder="Ad (örn. Zıt anlam, Dikkat)" maxLength={30} value={x.label} onChange={(e) => setExtra(i, { label: e.target.value })} onBlur={() => saveExtras(extras)} />
+            <input className="input" aria-label={`Ek alan ${i + 1} metni`} placeholder="Metin" value={x.text} onChange={(e) => setExtra(i, { text: e.target.value })} onBlur={() => saveExtras(extras)} />
+            <div>
+              <button
+                type="button"
+                className="link small"
+                onClick={() => {
+                  const rest = extras.filter((_, k) => k !== i)
+                  setExtras(rest)
+                  void saveExtras(rest)
+                }}
+              >
+                Alanı kaldır
+              </button>
+            </div>
+          </div>
+        ))}
+        {extras.length < MAX_EXTRAS && (
+          <div>
+            <button type="button" className="btn btn-quiet" onClick={() => setExtras((rows) => [...rows, { label: '', text: '' }])}>
+              Ek alan ekle
+            </button>
+          </div>
+        )}
         <div>
           <button className="btn btn-quiet" onClick={() => setMnemonicOpen(true)}>
             <BulbIcon size={18} /> Hafıza ipucu {apiKey ? 'üret' : 'yaz'}
