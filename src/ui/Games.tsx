@@ -42,6 +42,7 @@ import { ACCENT_MIN_WORDS, accentedWords } from './games/accentedWords'
 import { SwipeCards } from './games/SwipeCards'
 import { TrueFalseGame } from './games/TrueFalseGame'
 import { PracticeTest } from './games/PracticeTest'
+import { GravityGame } from './games/GravityGame'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
@@ -131,6 +132,7 @@ export function GamesScreen(
     if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
     if (game === 'truefalse') return <TrueFalseGame {...p} onExit={() => setGame(null)} />
     if (game === 'test') return <PracticeTest {...p} onExit={() => setGame(null)} />
+    if (game === 'gravity') return <GravityGame {...p} onExit={() => setGame(null)} />
     if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
@@ -186,6 +188,7 @@ export function GamesScreen(
       cards: [
         { id: 'match', emoji: '🧩', name: 'Eşleştirme', text: '6 kelimeyi anlamlarıyla en kısa sürede eşleştir.', status: enough ? record(matchKey, fmt) : 'En az 4 kelime gerekiyor', disabled: !enough },
         { id: 'reflex', emoji: '⚡', name: 'Refleks turu', text: 'Günlük kalıpların Türkçesi çıkar; karşılığını 3 saniyede seç.', status: 'Konuşurken çabuk gelmesi için' },
+        { id: 'gravity', emoji: '☄️', name: 'Yerçekimi', text: 'Anlamlar yukarıdan düşer; yere değmeden kelimeyi yaz. Üç canın var.', status: enough ? 'Düştükçe hızlanır' : 'En az 4 kelime gerekiyor', disabled: !enough },
         { id: 'blitz', emoji: '⏱️', name: 'Zamana karşı', text: '60 saniyede olabildiğince çok doğru: anlamı seç ya da kelimeyi yaz.', status: enough ? record(blitzKey, (v) => `${v} puan`) : 'En az 4 kelime gerekiyor', disabled: !enough },
         {
           id: 'fluency',
