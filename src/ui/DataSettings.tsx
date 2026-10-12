@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { parseBackup, restoreBackup, type Backup, type Settings } from '../data/db'
-import { dictionaryHtml, toCsv, toXlsx } from '../data/exportList'
+import { dictionaryHtml, flashcardsHtml, toCsv, toXlsx } from '../data/exportList'
+import { openPrint } from './printWindow'
 import { db } from '../data/instance'
 import { getSafetySnapshot, restoreSafetySnapshot, saveSafetySnapshot, type SafetySnapshot } from '../data/safetyBackup'
 import { TARGET_LANGUAGES } from '../engine/types'
@@ -86,17 +87,10 @@ export function DataSettings({
     showToast(`${words.length} kelime ${format === 'xlsx' ? 'Excel' : 'CSV'} olarak indirildi.`)
   }
 
-  const printDictionary = async () => {
+  const printWords = async (what: 'dictionary' | 'cards') => {
     const words = (await db.vocabulary.where('language').equals(lang).toArray()).filter((e) => e.source !== 'sample')
-    const w = window.open('', '_blank')
-    if (!w) {
-      setMessage({ ok: false, text: 'Yeni pencere açılamadı; tarayıcı açılır pencereleri engelliyor olabilir.' })
-      return
-    }
-    w.document.write(dictionaryHtml(words, lang, `${LANGUAGE_NAME[lang]} sözlüğüm`))
-    w.document.close()
-    w.focus()
-    setTimeout(() => w.print(), 300)
+    const html = what === 'cards' ? flashcardsHtml(words, lang, `${LANGUAGE_NAME[lang]} kartlarım`) : dictionaryHtml(words, lang, `${LANGUAGE_NAME[lang]} sözlüğüm`)
+    if (!openPrint(html)) setMessage({ ok: false, text: 'Yeni pencere açılamadı; tarayıcı açılır pencereleri engelliyor olabilir.' })
   }
 
   const resetLanguage = async () => {
@@ -143,7 +137,7 @@ export function DataSettings({
           </div>
         )}
         <h3 className="subhead">Kelime listesini dışa aktar</h3>
-        <p className="small muted">Excel dosyası Excel, Numbers ve Google E-Tablolar'da düzgün açılır. CSV'yi başka bir programa vereceksen kullan. Sözlük, yazdırma penceresinden PDF olarak da kaydedilebilir.</p>
+        <p className="small muted">Excel dosyası Excel, Numbers ve Google E-Tablolar'da düzgün açılır. CSV'yi başka bir programa vereceksen kullan. Sözlük ve kartlar, yazdırma penceresinden PDF olarak da kaydedilebilir (kartlar kesilip çift taraflı basılacak şekilde dizilir).</p>
         <div className="row">
           <button className="btn btn-quiet" onClick={() => exportList(false, 'xlsx')}>
             {LANGUAGE_NAME[lang]} listesi (Excel)
@@ -151,8 +145,11 @@ export function DataSettings({
           <button className="btn btn-quiet" onClick={() => exportList(true, 'xlsx')}>
             Üç dil (Excel)
           </button>
-          <button className="btn btn-quiet" onClick={printDictionary}>
+          <button className="btn btn-quiet" onClick={() => printWords('dictionary')}>
             Yazdırılabilir sözlük
+          </button>
+          <button className="btn btn-quiet" onClick={() => printWords('cards')}>
+            Yazdırılabilir kartlar
           </button>
         </div>
         <p className="small muted">

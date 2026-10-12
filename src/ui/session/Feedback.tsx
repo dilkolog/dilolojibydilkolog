@@ -1,3 +1,4 @@
+import { RichText } from '../RichText'
 import { useEffect, useState } from 'react'
 import { falseFriendsOf } from '../../engine/crossLanguage'
 import { ruleFor } from '../../engine/genderRules'
@@ -152,7 +153,7 @@ export function Feedback({
               <Plant stage={1} size={26} live /> {soft} Bu kelimeyi birazdan bir kez daha soracağım.
             </p>
           )}
-          {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" />{entry.notes}</p>}
+          {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" /><RichText text={entry.notes} /></p>}
           </div>
         </div>
         <p className="sheet-gloss">

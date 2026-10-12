@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { strFromU8, unzipSync } from 'fflate'
-import { dictionaryHtml, toCsv, toXlsx } from './exportList'
+import { CARDS_PER_SHEET, dictionaryHtml, flashcardsHtml, toCsv, toXlsx } from './exportList'
 import { createEntry } from './wordInput'
 import { newWordState } from '../engine/review'
 
@@ -70,3 +70,38 @@ describe('exporting the list', () => {
   })
 })
 
+
+describe('printable flashcards', () => {
+  const words = Array.from({ length: CARDS_PER_SHEET + 2 }, (_, i) => createEntry({ word: `mot${i}`, meaning: `anlam${i}`, example: `Un *mot${i}* <ici>.` }, 'fr', NOW))
+  const html = flashcardsHtml(words, 'fr', 'Kartlarım')
+  const sheets = html.split('<section class="sheet">').slice(1)
+
+  it('a sheet of fronts then a sheet of backs, for every eight words', () => {
+    expect(sheets).toHaveLength(4)
+    expect(sheets[0]).toContain('mot0')
+    expect(sheets[0]).not.toContain('anlam0')
+    expect(sheets[1]).toContain('anlam0')
+    // The back carries the word's sentence, not the word on its own as the card's heading.
+    expect(sheets[1]).not.toContain('<b lang="fr">mot0</b>')
+    expect(sheets[2]).toContain(`mot${CARDS_PER_SHEET}`)
+  })
+
+  it('backs are mirrored within each row so they land behind their own fronts when flipped on the long edge', () => {
+    const order = (sheet: string, prefix: string) => [...sheet.matchAll(new RegExp(`${prefix}(\\d+)`, 'g'))].map((m) => Number(m[1]))
+    expect(order(sheets[0], 'mot').slice(0, 4)).toEqual([0, 1, 2, 3])
+    expect(order(sheets[1], 'anlam').slice(0, 4)).toEqual([1, 0, 3, 2])
+  })
+
+  it('the back also carries the note (with its formatting) and the extra fields', () => {
+    const w = { ...words[0], notes: 'a **band** on', extras: [{ label: 'Zıt', text: '==ayrılmak==' }] }
+    const back = flashcardsHtml([w], 'fr', 'K').split('<section class="sheet">')[2]
+    expect(back).toContain('a <b>band</b> on')
+    expect(back).toContain('<b>Zıt:</b> <mark>ayrılmak</mark>')
+  })
+
+  it('escapes what is in the sentence and leaves the unused cells empty', () => {
+    expect(html).toContain('&lt;ici&gt;')
+    expect(html).not.toContain('<ici>')
+    expect(sheets[2].match(/class="c blank"/g)).toHaveLength(CARDS_PER_SHEET - 2)
+  })
+})

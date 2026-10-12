@@ -21,6 +21,9 @@ import { displayForm } from '../engine/exercises'
 import { isDifficult } from '../engine/difficult'
 import { imageCandidates, skippedImages } from '../data/imageQueue'
 import { Popover } from './Popover'
+import { flashcardsHtml } from '../data/exportList'
+import { openPrint } from './printWindow'
+import { showToast } from './toastFeed'
 import { useCefr } from './useCefr'
 import { cefrOf } from '../engine/cefrLevels'
 import { levelFromRank } from '../engine/wordLevel'
@@ -489,6 +492,15 @@ export function WordList({
               <span className="grow" />
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
+              </button>
+              <button
+                className="btn btn-quiet"
+                disabled={!selectedVisible.length}
+                onClick={() => {
+                  if (!openPrint(flashcardsHtml(selectedVisible, selectedVisible[0].language, 'Seçtiğim kartlar'))) showToast('Yeni pencere açılamadı; tarayıcı açılır pencereleri engelliyor olabilir.', undefined, 6000, 'info')
+                }}
+              >
+                Kartları yazdır
               </button>
               {onMark && (
                 <button

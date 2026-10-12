@@ -14,6 +14,8 @@ import type {
   FamilySuggestion,
   FieldSuggestions,
   JournalRequest,
+  NotesQuizRequest,
+  QuizQuestion,
   JournalReview,
   Mnemonic,
   RetellEvaluation,
@@ -42,6 +44,8 @@ export const enrichWords = async (
 ): Promise<Map<string, WordInfo>> => (await sdk()).enrichWords(apiKey, language, words)
 
 export const suggestNewWords = async (apiKey: string, req: WordSuggestRequest): Promise<WordInfo[]> => (await sdk()).suggestNewWords(apiKey, req)
+
+export const notesQuiz = async (apiKey: string, req: NotesQuizRequest): Promise<QuizQuestion[]> => (await sdk()).notesQuiz(apiKey, req)
 
 export const suggestFields = async (apiKey: string, req: SuggestRequest): Promise<FieldSuggestions> => (await sdk()).suggestFields(apiKey, req)
 

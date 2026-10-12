@@ -103,6 +103,24 @@ export interface WordSuggestRequest {
   sample: string[]
 }
 
+export interface NotesQuizRequest {
+  language: import('../engine/types').TargetLanguage
+  /** The learner's own notes: grammar rules, a lesson, a list of expressions. */
+  notes: string
+  /** How many questions. */
+  count: number
+}
+
+/** A multiple-choice question about the notes. */
+export interface QuizQuestion {
+  question: string
+  options: string[]
+  /** Index of the right option. */
+  answer: number
+  /** Why it is right, in Turkish, from the notes. */
+  explanation: string
+}
+
 export interface PersonalSentencesRequest {
   language: import('../engine/types').TargetLanguage
   word: string

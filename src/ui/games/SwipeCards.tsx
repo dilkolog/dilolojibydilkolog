@@ -5,6 +5,7 @@ import { dealCards, selectStudyWords, type Card } from '../../engine/studySet'
 import { scheduler } from '../../data/instance'
 import { CheckIcon, CloseIcon, SpeakerIcon } from '../icons'
 import { prefs } from '../prefs'
+import { RichText } from '../RichText'
 import { StudyOptionsPanel } from '../StudyOptions'
 import { useStudyOptions } from '../studyOptionsStore'
 import { sfx } from '../sounds'
@@ -197,6 +198,12 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
                   {ex.translation && <p className="small muted">{ex.translation}</p>}
                 </>
               )}
+              {card.notes && <p className="small"><RichText text={card.notes} /></p>}
+              {card.extras?.map((x, i) => (
+                <p key={i} className="small">
+                  <strong>{x.label}:</strong> <RichText text={x.text} />
+                </p>
+              ))}
             </div>
           ) : (
             <p className="small muted">{current.reverse ? 'Kelimesi için dokun' : 'Anlamı için dokun'}</p>

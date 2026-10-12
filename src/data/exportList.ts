@@ -1,4 +1,5 @@
 import { strToU8, zipSync } from 'fflate'
+import { richHtml } from '../engine/richText'
 import { displayForm } from '../engine/exercises'
 import { masteryStage } from '../engine/mastery'
 import { nextReviewAt } from '../engine/review'
@@ -173,4 +174,46 @@ export function dictionaryHtml(entries: readonly VocabularyEntry[], language: Ta
     .d { font-style: italic; color: #333; } .x { color: #333; font-size: 9.5pt; } .x span { color: #666; }
     @media screen { body { max-width: 190mm; margin: 10mm auto; padding: 0 6mm; } }
   </style></head><body><header><h1>${esc(title)}</h1><p>${sorted.length} kelime · Diloloji · ${new Date().toLocaleDateString('tr-TR')}</p></header><main>${body}</main></body></html>`
+}
+
+/** Cards per sheet: 2 across, 4 down. */
+export const CARDS_PER_SHEET = 8
+
+/**
+ * Flashcards to print and cut: a sheet of fronts (the word) and behind it a sheet of backs (the meaning,
+ * its sentence). The backs are in mirrored order within each row, so printed on both sides of one
+ * sheet (flip on the long edge) every back lands behind its own front.
+ */
+export function flashcardsHtml(entries: readonly VocabularyEntry[], language: TargetLanguage, title: string): string {
+  const front = (e: VocabularyEntry) =>
+    `<div class="c"><b lang="${language}">${esc(displayForm(e))}</b>${e.ipa ? `<span class="ipa">${esc(e.ipa)}</span>` : ''}</div>`
+  const back = (e: VocabularyEntry) => {
+    const sense = senseOf(e)
+    const ex = sense.examples[0] ?? e.corpus?.find((x) => x.translation)
+    return `<div class="c"><b>${esc([sense.gloss, ...(sense.altGlosses ?? [])].join(', '))}</b>${
+      ex ? `<span class="x" lang="${language}">${esc(ex.text.replace(/\*/g, ''))}</span>${ex.translation ? `<span class="t">${esc(ex.translation)}</span>` : ''}` : ''
+    }${e.notes ? `<span class="t">${richHtml(e.notes)}</span>` : ''}${(e.extras ?? []).map((x) => `<span class="t"><b>${esc(x.label)}:</b> ${richHtml(x.text)}</span>`).join('')}</div>`
+  }
+  const empty = '<div class="c blank"></div>'
+  let sheets = ''
+  for (let i = 0; i < entries.length; i += CARDS_PER_SHEET) {
+    const group = entries.slice(i, i + CARDS_PER_SHEET)
+    const cells = Array.from({ length: CARDS_PER_SHEET }, (_, k) => group[k])
+    const mirrored = cells.flatMap((_, k) => (k % 2 === 0 ? [cells[k + 1], cells[k]] : []))
+    sheets += `<section class="sheet">${cells.map((e) => (e ? front(e) : empty)).join('')}</section>`
+    sheets += `<section class="sheet">${mirrored.map((e) => (e ? back(e) : empty)).join('')}</section>`
+  }
+  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(title)}</title><style>
+    @page { size: A4; margin: 0; }
+    body { margin: 0; font: 14pt/1.35 Georgia, 'Times New Roman', serif; color: #111; }
+    .sheet { box-sizing: border-box; width: 210mm; height: 297mm; padding: 8mm; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); break-after: page; }
+    .c { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3mm; padding: 6mm; border: 0.3mm dashed #999; text-align: center; overflow: hidden; }
+    .c.blank { border-style: dotted; border-color: #ddd; }
+    .c b { font-size: 20pt; font-weight: 600; }
+    .ipa { color: #555; font-size: 11pt; font-family: 'Charis SIL', 'Lucida Sans Unicode', serif; }
+    .x { font-size: 11pt; } .t { font-size: 10pt; color: #555; }
+    .note { font: 9pt system-ui, sans-serif; color: #666; padding: 4mm 8mm 0; }
+    @media screen { body { background: #eee; } .sheet { margin: 6mm auto; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.2); } }
+    @media print { .note { display: none; } }
+  </style></head><body><p class="note">${esc(title)} · ${entries.length} kart · çift taraflı yazdırırken “uzun kenardan çevir” seç; her arka yüz kendi ön yüzünün arkasına düşer.</p>${sheets}</body></html>`
 }
