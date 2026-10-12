@@ -8,7 +8,7 @@
  *
  * Usage: npx rolldown scripts/build-tense-sentences.ts -o /tmp/s.mjs -p node && node /tmp/s.mjs <diloloji dir>
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import es from '../src/data/tenses/es.json'
 import { addTenses, conjugateTense, TENSES, type Tense } from '../src/engine/tenses'

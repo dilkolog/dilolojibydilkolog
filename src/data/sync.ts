@@ -486,11 +486,19 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const remoteBytes = fetched?.bytes ?? null
   // The device's own data is read only now, after the download: what was answered while the network
   // was being waited for must be in it, or writing the merge back (it replaces the tables) would erase it.
-  const local = parseBackup(await exportBackup(db, new Date(), { media: false }))
-  // A device joining an existing sync takes the others' settings and edits rather than its own defaults.
-  if (!(await db.meta.get('syncAt'))) local.exportedAt = new Date(0).toISOString()
   const remote = remoteBytes ? parseBackup(new TextDecoder().decode(remoteBytes)) : null
-  const merged = remote ? mergeBackups(local, remote) : local
+  let local: Backup
+  let merged: Backup
+  // Reading, merging and writing back take a moment, and writing back replaces the tables: an answer saved in
+  // that moment would be erased. A write seen in between sends it round again, with that write in the snapshot.
+  for (let attempt = 1; ; attempt++) {
+    const mark = db.writes
+    local = parseBackup(await exportBackup(db, new Date(), { media: false }))
+    // A device joining an existing sync takes the others' settings and edits rather than its own defaults.
+    if (!(await db.meta.get('syncAt'))) local.exportedAt = new Date(0).toISOString()
+    merged = remote ? mergeBackups(local, remote) : local
+    if (db.writes === mark || attempt >= 3 || !remote) break
+  }
   if (remote) await restoreBackup(db, merged, { keepMedia: true })
   // The very first sync of a device is joining, not news: only later ones report what came in.
   const joined = !(await db.meta.get('syncAt'))

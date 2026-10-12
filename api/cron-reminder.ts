@@ -46,9 +46,15 @@ export const localHour = (tz: number, utcHour: number) => Math.floor((((utcHour 
 /** This run's reminders are for the devices whose reminder hour it is now where they are. */
 export const dueNow = (r: PushRecord, utcHour: number) => localHour(r.tz, utcHour) === (r.hour ?? 20)
 
+/** Records read and notifications sent at a time, and how long one send may take. */
+const BATCH = 10
+const SEND_TIMEOUT_MS = 5000
+
 export async function GET(request: Request): Promise<Response> {
   if (!process.env.CRON_SECRET || request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) return new Response('unauthorized', { status: 401 })
-  webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY ?? '')
+  // Without the private key every send would fail the same way: said once, not a 500 after the first call.
+  if (!process.env.VAPID_PRIVATE_KEY) return new Response('VAPID_PRIVATE_KEY is not set', { status: 503 })
+  webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY)
   const now = Date.now()
   const h = new URL(request.url).searchParams.get('h')
   const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()
@@ -57,14 +63,20 @@ export async function GET(request: Request): Promise<Response> {
   let cursor: string | undefined
   do {
     const page = await list({ prefix: 'push/', cursor })
-    for (const b of page.blobs) {
-      const res = await get(b.pathname, { access: 'private', useCache: false }).catch(() => null)
-      if (!res || res.statusCode !== 200 || !res.stream) continue
-      try {
-        records.push({ path: b.pathname, record: JSON.parse(await new Response(res.stream).text()) as PushRecord })
-      } catch {
-        // A broken record is skipped.
-      }
+    // Read in small parallel batches: a record at a time takes too long with a few hundred devices.
+    for (let i = 0; i < page.blobs.length; i += BATCH) {
+      const read = await Promise.all(
+        page.blobs.slice(i, i + BATCH).map(async (b) => {
+          const res = await get(b.pathname, { access: 'private', useCache: false }).catch(() => null)
+          if (!res || res.statusCode !== 200 || !res.stream) return null
+          try {
+            return { path: b.pathname, record: JSON.parse(await new Response(res.stream).text()) as PushRecord }
+          } catch {
+            return null // A broken record is skipped.
+          }
+        }),
+      )
+      for (const r of read) if (r) records.push(r)
     }
     cursor = page.hasMore ? page.cursor : undefined
   } while (cursor)
@@ -72,22 +84,28 @@ export async function GET(request: Request): Promise<Response> {
   const studiedGroups = new Set(records.filter(({ record: r }) => r.group && r.studiedDay === localDay(r.tz, now)).map(({ record: r }) => r.group))
   let sent = 0
   let removed = 0
-  for (const { path, record: r } of records) {
-    if (!dueNow(r, utcHour)) continue
+  const due = records.filter(({ record: r }) => dueNow(r, utcHour)).flatMap(({ path, record: r }) => {
     // Sunday evening: the week in one line, studied today or not (not on a holiday).
     const week = weeklyText(r, now)
-    if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) continue
-    try {
-      const message = week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' }
-      await webpush.sendNotification(r.subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal' })
-      sent++
-    } catch (e) {
-      const status = (e as { statusCode?: number }).statusCode
-      if (status === 404 || status === 410) {
-        await del(path).catch(() => {})
-        removed++
-      }
-    }
+    if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) return []
+    return [{ path, r, message: week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' } }]
+  })
+  // In parallel batches, each send with a time limit: one address that never answers must not stall the rest.
+  for (let i = 0; i < due.length; i += BATCH) {
+    await Promise.all(
+      due.slice(i, i + BATCH).map(async ({ path, r, message }) => {
+        try {
+          await webpush.sendNotification(r.subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal', timeout: SEND_TIMEOUT_MS })
+          sent++
+        } catch (e) {
+          const status = (e as { statusCode?: number }).statusCode
+          if (status === 404 || status === 410) {
+            await del(path).catch(() => {})
+            removed++
+          }
+        }
+      }),
+    )
   }
   return Response.json({ devices: records.length, sent, removed })
 }

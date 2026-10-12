@@ -251,9 +251,16 @@ export function SessionScreen(p: Props) {
     }
     const bank = mistakes.current
     const result = processAttempt(before, input, bank, p.scheduler)
+    // The in-memory copies change only once the answer is saved: a refused write (storage full, database closed)
+    // leaves them as they were, in step with what is on the device.
+    try {
+      await p.db.saveReview(result)
+    } catch (e) {
+      setAnsweredAt((a) => (a === session.index ? null : a))
+      throw e
+    }
     states.current.set(entry.id, result.state)
     mistakes.current = result.mistakes
-    await p.db.saveReview(result)
     lastAnswer.current = { before, hadState, bank, input, eventId: result.event.id }
     const runBefore = comboOf(session.log)
     const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: ev.verdict, hintsUsed, responseMs, mode: input.mode ?? p.mode, combo: runBefore })
@@ -570,7 +577,15 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
     busy.current = true
     // Forgotten outright is no guess either way: no "you were sure" scolding, no "you guessed" note.
     const confidence: Confidence | undefined = asksConfidence && !forgot ? (unsure || shift ? 'unsure' : 'sure') : undefined
-    const log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence)
+    let log: Omit<SessionLogEntry, 'item'>
+    try {
+      log = await onAnswer(ev, ms, hintsUsed, maxHints, confidence)
+    } catch {
+      // Not saved (storage full, database closed): said, and the same question can be answered again.
+      busy.current = false
+      showToast('Cevabın kaydedilemedi: cihazın depolaması dolu olabilir. Biraz yer açıp tekrar dene.', undefined, 7000, 'info')
+      return
+    }
     setResult({ ev, log, chosen, confidence, ...(forgot ? { forgot: true } : {}) })
     if (ev.verdict === 'wrong' && struggling()) setMnemonic('offer')
     if (exercise.type !== 'listen_type' && exercise.type !== 'listen_choose') return

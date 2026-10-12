@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Help } from './SettingHelp'
 import { historiesFrom, MIN_REVIEWS, scoredReviews, type FitResult } from '../engine/optimizer'
 import type { Settings } from '../data/db'
@@ -17,15 +17,22 @@ export function MemoryModel({ settings, onChange, id }: { settings: Settings; on
     db.events.toArray().then((events) => setReviews(scoredReviews(historiesFrom(events))))
   }, [settings.fsrsFit])
 
+  // The calculation in progress: leaving the screen ends it (it kept running, and answered into a screen that was gone).
+  const running = useRef<Worker | null>(null)
+  useEffect(() => () => running.current?.terminate(), [])
+
   const fit = async () => {
+    if (running.current) return
     setMessage(null)
     setProgress(0)
     const histories = historiesFrom(await db.events.toArray())
     const worker = new Worker(new URL('../engine/optimizer.worker.ts', import.meta.url), { type: 'module' })
+    running.current = worker
     worker.onmessage = (e: MessageEvent<{ type: 'progress'; done: number } | { type: 'done'; result: FitResult }>) => {
       if (e.data.type === 'progress') return setProgress(e.data.done)
       const r = e.data.result
       worker.terminate()
+      running.current = null
       setProgress(null)
       const pct = Math.round(r.improvement * 1000) / 10
       if (r.improvement > 0) {
@@ -37,6 +44,7 @@ export function MemoryModel({ settings, onChange, id }: { settings: Settings; on
     }
     worker.onerror = () => {
       worker.terminate()
+      running.current = null
       setProgress(null)
       setMessage({ ok: false, text: 'Model hesaplanamadı.' })
     }

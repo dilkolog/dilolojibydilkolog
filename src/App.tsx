@@ -66,6 +66,7 @@ import { ScreenBoundary } from './ui/ScreenBoundary'
 
 import { Toaster } from './ui/toast'
 import { showToast } from './ui/toastFeed'
+import { reportError } from './data/errorReport'
 import { ScreenSkeleton } from './ui/Skeleton'
 import { skeletonFor } from './ui/skeletonFor'
 import { useOnline } from './ui/useOnline'
@@ -198,6 +199,9 @@ export default function App() {
     const since = new Date(Date.now() - RECENT_DAYS * 86_400_000)
     const [loaded, recentEvents, g] = await Promise.all([db.loadLanguage(language), db.eventsSince(since), loadGame(db)])
     apply({ language, ...loaded, recentEvents })
+    // After a background step the words and states are read again, and the recent answers with them: a session
+    // finished while the step ran must not be rolled back to the answers this run started with.
+    const refresh = async () => apply({ language, ...(await db.loadLanguage(language)), recentEvents: await db.eventsSince(since) })
     if (!current()) return
     setLoad(loaded.states)
     pushToExtension(db)
@@ -205,35 +209,41 @@ export default function App() {
     // New words without a frequency band get one from the bundled list, in the background.
     if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
       const filled = await fillFrequencyRanks(db, language)
-      if (filled) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (filled) await refresh()
     }
     // French words saved without a part of speech or a noun gender get them from Lexique (offline).
     if (language === 'fr' && loaded.vocabulary.some((v) => v.source !== 'sample' && (v.partOfSpeech === 'other' || (v.partOfSpeech === 'noun' && !v.gender)))) {
-      if (await fillFromLexicon(db, language)) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await fillFromLexicon(db, language)) await refresh()
     }
     // The word pack (other languages, origins, synonyms, recordings), offline, for languages that ship one.
-    if (await fillFromPack(db, language)) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+    if (await fillFromPack(db, language)) await refresh()
     // Sentences get rated (offline), and re-rated once the word list has grown: the ones with at most one unknown word come first.
-    if (await scoreCorpus(db, language)) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+    if (await scoreCorpus(db, language)) await refresh()
     // Real sentences for words that don't have them yet (a few per run, one run at a time).
     if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
       corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
-      if (await corpusRun) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await corpusRun) await refresh()
     }
     // Sentences saved before they came with their French/Spanish/English versions get them, a few per run.
     if (!corpusRun && loaded.vocabulary.some((v) => v.corpus?.some((x) => x.source?.kind === 'tatoeba' && x.parallel === undefined))) {
       corpusRun = fillParallel(db, language).finally(() => (corpusRun = null))
-      if (await corpusRun) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await corpusRun) await refresh()
     }
     // Pronunciation, definition and word family from Wiktionary, also in the background.
     if (!wiktRun && loaded.vocabulary.some((v) => v.source !== 'sample' && (!v.wiktAt || (v.partOfSpeech === 'noun' && v.language !== 'en' && !v.gender && v.wiktAt < '2026-10-03T12')))) {
       wiktRun = fillWordInfo(db, language).finally(() => (wiktRun = null))
-      if (await wiktRun) apply({ language, ...(await db.loadLanguage(language)), recentEvents })
+      if (await wiktRun) await refresh()
     }
   }, [language])
 
   useEffect(() => {
-    reload()
+    // A failed load (a closed or damaged database) is said, with a way to try again, not left as a blank wait.
+    const load = () =>
+      reload().catch((e) => {
+        reportError(e, 'reload')
+        showToast('Veriler yüklenemedi. Verilerin silinmedi; yeniden denemek genelde yeter.', { label: 'Yeniden dene', run: load }, 10_000, 'info')
+      })
+    void load()
   }, [reload])
 
   // The other screens' code, once the first screen is up.

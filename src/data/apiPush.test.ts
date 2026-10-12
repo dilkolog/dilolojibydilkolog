@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PushRecord } from '../../api/push'
+import { isPushService, type PushRecord } from '../../api/push'
 
 // An in-memory Blob store and a recording web-push behind the real handlers.
 const blobs = new Map<string, string>()
@@ -27,7 +27,7 @@ vi.mock('web-push', () => ({
 const { POST, recordPath } = await import('../../api/push')
 const { GET: CRON, dueNow, localHour, reminderText, resting, weeklyText } = await import('../../api/cron-reminder')
 
-const sub = (endpoint = 'https://push.example/1') => ({ endpoint, keys: { p256dh: 'p', auth: 'a' } })
+const sub = (endpoint = 'https://fcm.googleapis.com/fcm/send/1') => ({ endpoint, keys: { p256dh: 'p', auth: 'a' } })
 const post = (body: unknown) => POST(new Request('https://app.test/api/push', { method: 'POST', body: typeof body === 'string' ? body : JSON.stringify(body) }))
 const stored = async (endpoint: string) => JSON.parse(blobs.get(await recordPath(endpoint))!) as PushRecord
 
@@ -164,6 +164,7 @@ describe('reminder hour', () => {
 })
 
 describe('/api/cron-reminder', () => {
+  beforeEach(() => vi.stubEnv('VAPID_PRIVATE_KEY', 'test-private-key'))
   const cron = (auth?: string, h?: number) =>
     CRON(new Request(`https://app.test/api/cron-reminder${h === undefined ? '' : `?h=${h}`}`, { headers: auth ? { authorization: auth } : {} }))
   const save = async (r: PushRecord) => blobs.set(await recordPath(r.subscription.endpoint), JSON.stringify(r))
@@ -176,23 +177,30 @@ describe('/api/cron-reminder', () => {
     expect(sent).toEqual([])
   })
 
+  it('says so (503) when the VAPID private key is not set, instead of failing on the first send', async () => {
+    vi.stubEnv('CRON_SECRET', 's3cret')
+    vi.stubEnv('VAPID_PRIVATE_KEY', '')
+    expect((await cron('Bearer s3cret')).status).toBe(503)
+    expect(sent).toEqual([])
+  })
+
   it('reminds only those who have not studied on any of their devices, and drops expired ones', async () => {
     vi.stubEnv('CRON_SECRET', 's3cret')
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(NOW)
     const group = 'e'.repeat(64)
-    await save(record({ subscription: sub('https://push.example/idle') }))
-    await save(record({ subscription: sub('https://push.example/studied'), studiedDay: '2026-10-07' }))
-    await save(record({ subscription: sub('https://push.example/phone'), group }))
-    await save(record({ subscription: sub('https://push.example/laptop'), group, studiedDay: '2026-10-07' }))
-    await save(record({ subscription: sub('https://push.example/resting'), restWeekdays: [3] }))
-    await save(record({ subscription: sub('https://push.example/gone') }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/idle') }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/studied'), studiedDay: '2026-10-07' }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/phone'), group }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/laptop'), group, studiedDay: '2026-10-07' }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/resting'), restWeekdays: [3] }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/gone') }))
     blobs.set('push/broken.json', '{not json')
-    gone.add('https://push.example/gone')
+    gone.add('https://fcm.googleapis.com/fcm/send/gone')
 
     const res = await cron('Bearer s3cret')
     expect(await res.json()).toEqual({ devices: 6, sent: 1, removed: 1 })
-    expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/idle'])
+    expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/idle'])
     expect(JSON.parse(sent[0].body)).toMatchObject({ title: 'Diloloji', url: '/?go=quick' })
   })
 
@@ -200,23 +208,34 @@ describe('/api/cron-reminder', () => {
     vi.stubEnv('CRON_SECRET', 's3cret')
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(Date.UTC(2026, 9, 7, 6, 40))
-    await save(record({ subscription: sub('https://push.example/morning'), hour: 9 }))
-    await save(record({ subscription: sub('https://push.example/evening') }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/morning'), hour: 9 }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/evening') }))
     // Scheduled for 06:00 UTC, run late: the hour named in the path counts.
     vi.setSystemTime(Date.UTC(2026, 9, 7, 7, 2))
     expect(await (await cron('Bearer s3cret', 6)).json()).toMatchObject({ sent: 1 })
-    expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/morning'])
+    expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/morning'])
     await cron('Bearer s3cret', 17)
-    expect(sent.map((s) => s.endpoint)).toEqual(['https://push.example/morning', 'https://push.example/evening'])
+    expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/morning', 'https://fcm.googleapis.com/fcm/send/evening'])
   })
 
   it('on Sunday sends the week instead, also to someone who studied', async () => {
     vi.stubEnv('CRON_SECRET', 's3cret')
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(Date.UTC(2026, 9, 11, 17))
-    await save(record({ subscription: sub('https://push.example/week'), studiedDay: '2026-10-11', week: '5 gün · 40 cevap', reportedDay: '2026-10-11' }))
+    await save(record({ subscription: sub('https://fcm.googleapis.com/fcm/send/week'), studiedDay: '2026-10-11', week: '5 gün · 40 cevap', reportedDay: '2026-10-11' }))
     await cron('Bearer s3cret')
     expect(sent.map((s) => JSON.parse(s.body))).toEqual([{ title: 'Haftan', body: '5 gün · 40 cevap', url: '/?go=progress' }])
-    expect(blobs.has(await recordPath('https://push.example/gone'))).toBe(false)
+    expect(blobs.has(await recordPath('https://fcm.googleapis.com/fcm/send/gone'))).toBe(false)
   })
 })
+
+describe('which push addresses are accepted', () => {
+  it('only the browsers\' own push services, over https, without a port', () => {
+    for (const ok of ['https://fcm.googleapis.com/fcm/send/abc', 'https://updates.push.services.mozilla.com/wpush/v2/x', 'https://web.push.apple.com/Q', 'https://wns2-par02p.notify.windows.com/w/?token=1']) expect(isPushService(ok)).toBe(true)
+    for (const bad of ['http://fcm.googleapis.com/x', 'https://fcm.googleapis.com:8443/x', 'https://evil.example/x', 'https://fcm.googleapis.com.evil.example/x', 'https://127.0.0.1/x', 'https://localhost/x', 'not a url', 'https://notify.windows.com.evil.io/x']) expect(isPushService(bad)).toBe(false)
+  })
+  it('a save with another address is refused', async () => {
+    expect((await post({ action: 'save', subscription: { endpoint: 'https://evil.example/hook', keys: { p256dh: 'p', auth: 'a' } } })).status).toBe(400)
+  })
+})
+

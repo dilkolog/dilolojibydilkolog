@@ -109,7 +109,7 @@ for (const s of listed) {
     continue
   }
   const trHtml = await get(s.url.replace(/\/stories\/(fr|es)\//, '/stories/tr/'))
-  const tr = trHtml ? pages(trHtml) : new Map<string, string>()
+  const tr = trHtml ? pages(trHtml) : new Map<string, { text: string; image?: string }>()
   const turkish = body.every((k) => tr.has(k)) ? body.map((k) => tr.get(k)!.text) : undefined
   out[s.language].push({
     id: `gsb-${s.language}-${id}`,

@@ -73,7 +73,6 @@ function unimorph(file: string, wanted: Record<string, string>) {
   return out
 }
 const PERS = ['1;SG', '2;SG', '3;SG', '1;PL', '2;PL', '3;PL']
-const cell = (prefix: string, suffix = '') => Object.fromEntries(PERS.map((p, i) => [`${prefix};${p}${suffix}`, `${i}`]))
 
 let differences = 0
 function compare(lang: string, verb: string, tense: string, ours: string[], ref: Record<string, string> | undefined, prefix: string) {

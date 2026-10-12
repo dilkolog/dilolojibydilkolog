@@ -2,7 +2,7 @@ import { strToU8, zipSync } from 'fflate'
 import { displayForm } from '../engine/exercises'
 import { masteryStage } from '../engine/mastery'
 import { nextReviewAt } from '../engine/review'
-import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import { timeOf, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 
 /**
  * The word list outside the app: a CSV for spreadsheets and a printable dictionary (the
@@ -19,17 +19,33 @@ const STAGE: Record<string, string> = {
 }
 const LANG: Record<TargetLanguage, string> = { en: 'İngilizce', fr: 'Fransızca', es: 'İspanyolca' }
 
-const day = (d?: Date | string) => (d ? new Date(d).toISOString().slice(0, 10) : '')
+/** A date read defensively (data from a backup or another device may hold a string, a Date or something else). */
+const day = (d?: unknown) => {
+  const t = timeOf(d)
+  return t ? new Date(t).toISOString().slice(0, 10) : ''
+}
+
+/** A word without a meaning (an edit or an import gone wrong) must not stop the whole export. */
+const senseOf = (e: VocabularyEntry) => e.senses[0] ?? { id: '', gloss: '', examples: [] }
 
 /** The sheet's columns, in order. */
 const HEAD = ['Dil', 'Kelime', 'Artikel', 'Tür', 'Anlam', 'Diğer anlamlar', 'Tanım', 'IPA', 'Örnek', 'Örnek çevirisi', 'Kalıplar', 'Etiketler', 'Not', 'Aşama', 'Sıradaki tekrar', 'Eklenme']
+
+/** The next review, or nothing when the card's date is unreadable. */
+const safeNextReview = (s: UserWordState) => {
+  try {
+    return nextReviewAt(s)
+  } catch {
+    return undefined
+  }
+}
 
 /** Header and one row per word: what both the CSV and the Excel file hold. */
 function listRows(entries: readonly VocabularyEntry[], states: readonly UserWordState[]): string[][] {
   const byId = new Map(states.map((s) => [s.entryId, s]))
   const rows = entries.map((e) => {
     const s = byId.get(e.id)
-    const sense = e.senses[0]
+    const sense = senseOf(e)
     const ex = sense.examples[0]
     return [
       LANG[e.language],
@@ -46,7 +62,7 @@ function listRows(entries: readonly VocabularyEntry[], states: readonly UserWord
       e.tags.join(', '),
       e.notes ?? '',
       s ? STAGE[masteryStage(s)] : 'Başlanmadı',
-      s ? day(nextReviewAt(s)) : '',
+      s ? day(safeNextReview(s)) : '',
       day(e.addedAt),
     ]
   })
@@ -59,7 +75,13 @@ function listRows(entries: readonly VocabularyEntry[], states: readonly UserWord
  * why the Excel file below is the safer choice there).
  */
 export function toCsv(entries: readonly VocabularyEntry[], states: readonly UserWordState[], separator = ','): string {
-  const cell = (v: string) => (v.includes(separator) || /["\n\r]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v)
+  // A cell that begins with = + - @ (or a tab) is read as a formula by spreadsheets: a word or meaning that came from an
+  // import, the web or the AI must not run as one, so it gets a leading apostrophe (shown as text).
+  const safe = (v: string) => (/^[=+\-@\t\r]/.test(v) ? `'${v}` : v)
+  const cell = (raw: string) => {
+    const v = safe(raw)
+    return v.includes(separator) || /["\n\r]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v
+  }
   return '\uFEFF' + listRows(entries, states).map((r) => r.map(cell).join(separator)).join('\r\n')
 }
 
@@ -133,7 +155,7 @@ export function dictionaryHtml(entries: readonly VocabularyEntry[], language: Ta
     .map((e) => {
       const first = e.lemma.charAt(0).toLocaleUpperCase(language).normalize('NFD').charAt(0)
       const head = first !== letter ? `<h2>${esc((letter = first))}</h2>` : ''
-      const sense = e.senses[0]
+      const sense = senseOf(e)
       const ex = sense.examples[0] ?? e.corpus?.find((x) => x.translation)
       return `${head}<div class="e"><b lang="${language}">${esc(displayForm(e))}</b>${e.ipa ? ` <span class="ipa">${esc(e.ipa)}</span>` : ''} — ${esc([sense.gloss, ...(sense.altGlosses ?? [])].join(', '))}${
         sense.definition ? `<div class="d" lang="${language}">${esc(sense.definition)}</div>` : ''

@@ -50,7 +50,7 @@ describe('/api/clips', () => {
     stubYouTube()
     const res = await call('q=d%C3%A9cider&lang=fr')
     expect(res.status).toBe(200)
-    expect(res.headers.get('cache-control')).toContain('s-maxage=604800')
+    expect(res.headers.get('cache-control')).toContain('private, max-age=604800')
     const { clips } = (await res.json()) as { clips: { id: string; start: number; text: string; form: string; auto: boolean }[] }
     expect(clips).toHaveLength(1)
     expect(clips[0]).toMatchObject({ id: 'abc12345678', start: 1, text: 'Il faut décider maintenant.', form: 'décider', auto: false })

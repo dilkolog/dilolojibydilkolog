@@ -64,6 +64,6 @@ export async function GET(request: Request): Promise<Response> {
   const out = (await res.json()) as { translations?: { text: string }[] }
   const translation = out.translations?.[0]?.text?.trim()
   if (!translation) return json({ error: 'unavailable' }, 502)
-  // The same sentence translates the same way: the CDN answers it from now on.
-  return json({ translation }, 200, 'public, s-maxage=31536000, stale-while-revalidate=86400')
+  // The same sentence translates the same way: the browser keeps it (private: a shared cache would hand it to callers who were never approved).
+  return json({ translation }, 200, 'private, max-age=31536000')
 }

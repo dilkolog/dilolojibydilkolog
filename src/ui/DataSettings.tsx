@@ -36,7 +36,8 @@ export function DataSettings({
     try {
       setPendingRestore(parseBackup(await file.text()))
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof Error ? e.message : 'Dosya okunamadı.' })
+      // JSON.parse's own message is English and says nothing to the learner.
+      setMessage({ ok: false, text: e instanceof SyntaxError ? 'Bu dosya geçerli bir yedek değil (içeriği okunamadı).' : e instanceof Error ? e.message : 'Dosya okunamadı.' })
     }
   }
 

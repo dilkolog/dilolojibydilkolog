@@ -97,7 +97,7 @@ for (const theme of ['light', 'dark'] as const) {
     const snap = async (name: string) => {
       const hide = await page.addStyleTag({ content: '.tabbar { display: none !important }' })
       await expect(page).toHaveScreenshot(name, shot)
-      await hide.evaluate((e) => e.remove())
+      await hide.evaluate((e) => (e as Element).remove())
     }
 
     await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: /^İlerleme\d*$/ }).first().click()

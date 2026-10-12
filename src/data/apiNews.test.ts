@@ -46,7 +46,8 @@ describe('/api/news', () => {
     expect(articles[1].text).toBe('Résumé du flux.')
     expect(articles.every((a) => a.source === 'Le Monde')).toBe(true)
     expect(asked.some((u) => u.includes('evil.example') || u.startsWith('http:'))).toBe(false)
-    expect(res.headers.get('cache-control')).toContain('s-maxage')
+    // Gated content: only the approved reader's own browser may keep it, never a shared cache.
+    expect(res.headers.get('cache-control')).toContain('private')
   })
 
   it('passes the recording of a bulletin along with its text', async () => {

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { analyzeText } from '../src/engine/reading'
 import { maskPositions, posKey } from '../src/engine/deduction'
-import type { TargetLanguage, UserWordState, VocabularyEntry } from '../src/engine/types'
+import type { TargetLanguage } from '../src/engine/types'
 
 interface TextSample {
   id: string

@@ -377,3 +377,46 @@ describe('word edit stamps', () => {
     expect((await db.vocabulary.get(a.id))?.editedAt).toBeTruthy()
   })
 })
+
+describe('what parseBackup lets in', () => {
+  const base = { app: 'kelime-koc', version: 3, exportedAt: '2026-10-01T10:00:00.000Z', vocabulary: [], wordStates: [], events: [], mistakes: [] }
+  const parse = (over: object) => parseBackup(JSON.stringify({ ...base, ...over }))
+
+  it('refuses a hollow word and lists of the wrong shape, before anything is cleared', () => {
+    expect(() => parse({ vocabulary: [{ id: 'x' }] })).toThrow('bozuk')
+    expect(() => parse({ reading: { known: {}, library: {} } })).toThrow('bozuk')
+    expect(() => parse({ sentences: 'x' })).toThrow('bozuk')
+    expect(() => parse({ lists: {} })).toThrow('bozuk')
+  })
+
+  it('keeps the dates of a text, a sentence and a list as the strings they are (not Dates made by their key name)', () => {
+    const b = parse({
+      reading: { known: {}, library: [{ id: 't', addedAt: '2026-10-01T10:00:00.000Z', history: [] }] },
+      sentences: [{ id: 's', addedAt: '2026-10-01T10:00:00.000Z' }],
+      lists: [{ id: 'l', createdAt: '2026-10-01T10:00:00.000Z', updatedAt: '2026-10-02T10:00:00.000Z' }],
+    })
+    expect(b.reading?.library?.[0]?.addedAt).toBe('2026-10-01T10:00:00.000Z')
+    expect((b.sentences as unknown as { addedAt: unknown }[])[0].addedAt).toBe('2026-10-01T10:00:00.000Z')
+    expect((b.lists as unknown as { createdAt: unknown }[])[0].createdAt).toBe('2026-10-01T10:00:00.000Z')
+  })
+
+  it('is told by a newer file to update', () => {
+    expect(() => parse({ version: 99 })).toThrow('daha yeni')
+  })
+})
+
+describe('the write counter a sync watches', () => {
+  it('counts writes to words, answers and notes, but not the sync\'s own bookkeeping', async () => {
+    const db = new KelimeDB('writes')
+    const w0 = db.writes
+    await db.vocabulary.put(SAMPLE_WORDS.fr[0])
+    expect(db.writes).toBeGreaterThan(w0)
+    const w1 = db.writes
+    await db.meta.put({ key: 'syncAt', value: 'x' })
+    await db.meta.put({ key: 'syncSize', value: 1 })
+    expect(db.writes).toBe(w1)
+    await db.meta.put({ key: 'grammar', value: {} })
+    expect(db.writes).toBeGreaterThan(w1)
+  })
+})
+

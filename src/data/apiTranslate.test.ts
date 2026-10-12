@@ -47,7 +47,7 @@ describe('/api/translate', () => {
     answer(200, { translations: [{ text: 'Kedi uyuyor.' }] })
     const res = await GET(app('?text=Le%20chat%20dort.&from=fr&to=tr'))
     expect(await res.json()).toEqual({ translation: 'Kedi uyuyor.' })
-    expect(res.headers.get('cache-control')).toContain('s-maxage')
+    expect(res.headers.get('cache-control')).toContain('private')
     expect(calls[0].url).toBe('https://api-free.deepl.com/v2/translate')
     expect(new Headers(calls[0].init!.headers).get('authorization')).toBe('DeepL-Auth-Key abc123:fx')
     expect(JSON.parse(String(calls[0].init!.body))).toEqual({ text: ['Le chat dort.'], target_lang: 'TR', source_lang: 'FR' })

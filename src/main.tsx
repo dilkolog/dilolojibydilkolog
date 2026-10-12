@@ -10,6 +10,7 @@ import '@fontsource/lexend/700.css'
 import './index.css'
 import './engine/conjugationData'
 import App from './App.tsx'
+import { RootBoundary } from './ui/RootBoundary'
 import { applyDensity } from './ui/density'
 import { watchForUpdates } from './ui/update'
 import { installFocusTrap } from './ui/focusTrap'
@@ -22,6 +23,8 @@ installErrorReporting()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <RootBoundary>
+      <App />
+    </RootBoundary>
   </StrictMode>,
 )

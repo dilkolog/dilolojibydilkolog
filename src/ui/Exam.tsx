@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { buildExam, scoreExam, type ExamItem, type ExamResult } from '../engine/exam'
+import { loadCefr } from '../data/cefr'
+import { cefrOf } from '../engine/cefrLevels'
+import { buildExam, estimateLevel, scoreExam, weakestLevel, type ExamItem, type ExamResult } from '../engine/exam'
 import { buildExercise, displayForm, evaluateTyped, type Exercise } from '../engine/exercises'
 import { newWordState, processAttempt } from '../engine/review'
 import { createRng } from '../engine/rng'
@@ -49,7 +51,9 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
     setText('')
     startedAt.current = performance.now()
     if (index + 1 < items.length) return setIndex(index + 1)
-    const score = scoreExam(language, items, answers, new Date())
+    const list = await loadCefr(language).catch(() => null)
+    const levelOf = list ? (id: string) => (byId.get(id) ? cefrOf(byId.get(id)!, list) : undefined) : undefined
+    const score = scoreExam(language, items, answers, new Date(), levelOf)
     const history = (await db.getExams()).filter((e) => e.language === language)
     await db.addExam(score)
     setResult({ score, history })
@@ -105,6 +109,13 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
               ? 'Tahminden az: Ayarlar → Hafıza modeli bölümünden modeli kendine göre ayarlamak ya da hedef hatırlama oranını yükseltmek iyi olabilir.'
               : 'Tahminden fazla: kelimelerin sandığından sağlam; istersen hedef hatırlama oranını biraz düşürüp daha az tekrarla aynı sonucu alabilirsin.'}
         </p>
+        <LevelBreakdown score={score} />
+        {score.missed && score.missed.length > 0 && (
+          <p className="small">
+            <strong>Unuttukların:</strong>{' '}
+            {score.missed.map((id) => byId.get(id)).filter((e): e is VocabularyEntry => !!e).map((e) => displayForm(e)).join(', ')}
+          </p>
+        )}
         {prev && (
           <p className="small muted">
             Önceki sınav ({new Date(prev.at).toLocaleDateString('tr-TR')}): {pct(prev.actual)}.
@@ -187,5 +198,33 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
         </div>
       )}
     </div>
+  )
+}
+
+/** Which CEFR bands of the learner's own words held up in the exam, with a rough level estimate. */
+function LevelBreakdown({ score }: { score: ExamResult }) {
+  if (!score.levels || score.levels.length === 0) return null
+  const level = estimateLevel(score.levels)
+  const weak = weakestLevel(score.levels)
+  return (
+    <section className="card stack gap-2">
+      <h2 className="section-title">Seviyelere göre</h2>
+      <ul className="word-list">
+        {score.levels.map((l) => (
+          <li key={l.level} className="row justify-between">
+            <strong>{l.level}</strong>
+            <span>
+              {l.right}/{l.n} · {pct(l.right / l.n)}
+            </span>
+          </li>
+        ))}
+      </ul>
+      {level && (
+        <p>
+          Kelime hatırlamana göre kaba tahmin: <strong>{level}</strong>.{weak ? ` ${weak} kelimelerinde en çok zorlandın.` : ''}
+        </p>
+      )}
+      <p className="small muted">Resmî bir seviye sınavı değil; yalnızca çalıştığın kelimelerin hangi seviyede kaldığını gösterir. Az soruyla oynak olabilir.</p>
+    </section>
   )
 }

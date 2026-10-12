@@ -58,7 +58,7 @@ export async function GET(request: Request): Promise<Response> {
         }
       }),
     )
-    return Response.json({ clips: found.flat().slice(0, CLIPS) }, { headers: { 'cache-control': 'public, s-maxage=604800' } })
+    return Response.json({ clips: found.flat().slice(0, CLIPS) }, { headers: { 'cache-control': 'private, max-age=604800' } })
   } catch {
     return Response.json({ error: 'youtube unavailable' }, { status: 502 })
   }

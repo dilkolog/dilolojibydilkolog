@@ -49,6 +49,20 @@ export function readingKey(word: string, language: TargetLanguage): string {
   return stem(cleanToken(word, language).toLocaleLowerCase(language), language)
 }
 
+/** The word list and states as lookups: built once for the same arrays (a library of texts is rated against one list). */
+let lastLookups: { language: TargetLanguage; vocabulary: readonly VocabularyEntry[]; states: readonly UserWordState[]; stateById: Map<string, UserWordState>; byKey: Map<string, VocabularyEntry> } | null = null
+function lookups(language: TargetLanguage, vocabulary: readonly VocabularyEntry[], states: readonly UserWordState[]) {
+  if (lastLookups && lastLookups.language === language && lastLookups.vocabulary === vocabulary && lastLookups.states === states) return lastLookups
+  const stateById = new Map(states.map((s) => [s.entryId, s]))
+  const byKey = new Map<string, VocabularyEntry>()
+  for (const e of vocabulary) {
+    if (e.language !== language) continue
+    for (const w of [e.lemma, ...(e.alternativeForms ?? [])]) if (!w.includes(' ')) byKey.set(readingKey(w, language), e)
+  }
+  lastLookups = { language, vocabulary, states, stateById, byKey }
+  return lastLookups
+}
+
 export function analyzeText(
   text: string,
   language: TargetLanguage,
@@ -58,12 +72,7 @@ export function analyzeText(
   /** Words the reader chose to ignore: counted like names, outside the coverage. */
   ignored: ReadonlySet<string> = new Set(),
 ): ReadingAnalysis {
-  const stateById = new Map(states.map((s) => [s.entryId, s]))
-  const byKey = new Map<string, VocabularyEntry>()
-  for (const e of vocabulary) {
-    if (e.language !== language) continue
-    for (const w of [e.lemma, ...(e.alternativeForms ?? [])]) if (!w.includes(' ')) byKey.set(readingKey(w, language), e)
-  }
+  const { stateById, byKey } = lookups(language, vocabulary, states)
 
   // A capitalised word never seen in lowercase anywhere in the text is taken as a name.
   const lowerSeen = new Set<string>()

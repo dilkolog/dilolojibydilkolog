@@ -21,7 +21,7 @@ export async function GET(request: Request): Promise<Response> {
     if (!text) return Response.json({ error: 'empty captions' }, { status: 502 })
     return Response.json(
       { id, title: captions.title, channel: captions.channel, auto: captions.auto, text },
-      { headers: { 'cache-control': 'public, s-maxage=86400' } },
+      { headers: { 'cache-control': 'private, max-age=86400' } },
     )
   } catch (e) {
     if (e instanceof CaptionError && e.message === 'no captions') return Response.json({ error: 'no captions', ...e.detail }, { status: 404 })
