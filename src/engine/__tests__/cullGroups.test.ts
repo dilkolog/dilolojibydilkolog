@@ -18,7 +18,8 @@ describe('cullIds', () => {
   const fine = entry(decide, 'b')
   const untouched = entry(effect, 'c')
   const fresh = entry(effect, 'd', { addedAt: new Date('2026-10-19T12:00:00Z') })
-  const rare = entry(decision, 'e', { frequencyRank: RARE_RANK + 1 })
+  // The "Nadir" band of the word form and of the AI is stored as exactly the end of the list.
+  const rare = entry(decision, 'e', { frequencyRank: RARE_RANK })
   const unlisted = entry(decision, 'f', { frequencyRank: -1 })
   const unknownRank = entry(decision, 'g', { frequencyRank: 0 })
   const sample = entry(decision, 'h', { source: 'sample' })
@@ -41,7 +42,7 @@ describe('cullIds', () => {
     expect(ids.untouched).toEqual(['c'])
   })
 
-  it('finds the very rare words (past the 20 000 most frequent, or not listed), not ones whose rank is simply not filled in', () => {
+  it('finds the very rare words (the end of the 20 000 most frequent or past it, or not listed), not ones whose rank is simply not filled in', () => {
     expect(ids.rare).toEqual(['e', 'f'])
   })
 

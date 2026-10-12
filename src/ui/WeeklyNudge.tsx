@@ -4,11 +4,11 @@ import { ChartIcon, CloseIcon } from './icons'
 
 const KEY = 'kelime-koc:week-seen'
 
-/** The Monday that starts the week of `d` (local), as a key: the card is dismissed for one week. */
+/** The Sunday of the weekend the card shows on (Sunday and the Monday after it share a key): dismissed on one, hidden on both. */
 const weekKey = (d: Date) => {
-  const monday = new Date(d)
-  monday.setDate(d.getDate() - ((d.getDay() + 6) % 7))
-  return monday.toDateString()
+  const sunday = new Date(d)
+  if (d.getDay() === 1) sunday.setDate(d.getDate() - 1)
+  return sunday.toDateString()
 }
 
 /**
@@ -84,11 +84,6 @@ export function WeeklyNudge({
         ))}
       </dl>
       {change && <p className="small muted">{change}</p>}
-      {summary.topVerb && (
-        <p className="small muted">
-          Okumalarında en çok <strong lang="und">{summary.topVerb.verb}</strong> fiilini gördün.
-        </p>
-      )}
       {missed.length > 0 && (
         <div className="stack">
           <p className="small muted">Bu hafta takıldığın kelimeler:</p>

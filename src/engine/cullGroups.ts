@@ -36,7 +36,7 @@ export const CULL_GROUPS: CullGroup[] = [
     id: 'rare',
     label: 'Çok nadir kelimeler',
     hint: 'Sık kullanılan 20.000 kelimenin dışındakiler: günlük dilde nadiren karşına çıkar.',
-    matches: (e) => e.frequencyRank > RARE_RANK || e.frequencyRank === -1,
+    matches: (e) => e.frequencyRank >= RARE_RANK || e.frequencyRank === -1,
   },
   {
     id: 'samples',

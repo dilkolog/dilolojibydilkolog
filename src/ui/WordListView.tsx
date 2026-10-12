@@ -269,7 +269,8 @@ export function WordList({
     if (!selecting) return onOpen(id)
     setSelected((prev) => {
       const next = new Set(prev)
-      if (shift && anchor !== null) {
+      // The anchor is an index into a list that shrinks with a search or a filter: a stale one is dropped.
+      if (shift && anchor !== null && list[anchor]) {
         // Range follows the state of the anchor row: select or deselect the whole span.
         const on = prev.has(list[anchor].id)
         const [a, b] = anchor < index ? [anchor, index] : [index, anchor]

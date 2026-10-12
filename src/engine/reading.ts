@@ -139,11 +139,15 @@ const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıc
 
 export type CoverageZone = 'easy' | 'ideal' | 'hard' | 'too_hard'
 
-/** The line a text carries in a picker: "%92 biliyorsun (rahat) · 14 yeni kelime". */
-export function coverageLine(a: Pick<ReadingAnalysis, 'coverage' | 'unknownWords'>): string {
-  const zone = ZONE_LABEL[coverageZone(a.coverage)]
-  const news = a.unknownWords === 0 ? 'yeni kelime yok' : `${a.unknownWords} yeni kelime`
-  return `%${Math.round(a.coverage * 1000) / 10} biliyorsun (${zone}) · ${news}`
+/** The line a text carries in a picker: "%92 biliyorsun (rahat) · 14 yeni kelime". Empty for a text without words. */
+export function coverageLine(a: Pick<ReadingAnalysis, 'coverage' | 'unknownWords'> & { total?: number }): string {
+  if (a.total === 0) return ''
+  // The zone is the one of the figure shown: 97.96% reads %98 and is "rahat", not "öğrenmeye ideal".
+  const pct = Math.round(a.coverage * 1000) / 10
+  const zone = ZONE_LABEL[coverageZone(pct / 100)]
+  // Words that are on the list but not yet known still count against the share: say so instead of "no new words".
+  const news = a.unknownWords > 0 ? `${a.unknownWords} yeni kelime` : a.coverage < 1 ? 'kalanlar listende' : 'yeni kelime yok'
+  return `%${pct.toLocaleString('tr-TR')} biliyorsun (${zone}) · ${news}`
 }
 
 export function coverageZone(coverage: number): CoverageZone {

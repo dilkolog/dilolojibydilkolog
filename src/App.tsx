@@ -381,8 +381,8 @@ export default function App() {
     if (!data) return
     let live = true
     void (async () => {
-      const [texts, lab] = await Promise.all([db.getLibrary(data.language), data.language === 'en' ? undefined : db.getLab(data.language)])
-      const summary = weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts, seen: lab?.seen })
+      const texts = await db.getLibrary(data.language)
+      const summary = weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts })
       if (!live) return
       setWeekText(weekLine(summary))
       setWeekData(summary)

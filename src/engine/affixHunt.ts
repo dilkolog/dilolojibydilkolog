@@ -65,13 +65,16 @@ export function huntQuestionsOf(root: string, language: TargetLanguage, lookup: 
   return out
 }
 
-/** A round: each base word once, the pairs missed before first (see pickWeighted). */
+/** A round: each base word and each derived word once, the pairs missed before first (see pickWeighted). */
 export function huntRound(pool: readonly HuntQuestion[], log: GrammarLog, rng: () => number, size = HUNT_ROUND): HuntQuestion[] {
   const out: HuntQuestion[] = []
   const bases = new Set<string>()
+  const words = new Set<string>()
   for (const q of pickWeighted(pool, log, rng, pool.length)) {
-    if (bases.has(q.base)) continue
+    // A base once, and a derived word once (jury → juriste and juré → juriste are the same answer twice).
+    if (bases.has(q.base) || words.has(q.word)) continue
     bases.add(q.base)
+    words.add(q.word)
     out.push(q)
     if (out.length >= size) break
   }

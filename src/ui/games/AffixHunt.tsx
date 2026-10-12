@@ -52,7 +52,8 @@ export function AffixHunt({ language, onExit }: { language: TargetLanguage; onEx
 
   useEffect(() => {
     let live = true
-    void db.getAffixLog().then((l) => live && setLog(l))
+    // A failed read leaves an empty log (the round still starts), not a button that never wakes up.
+    void db.getAffixLog().then((l) => live && setLog(l)).catch(() => live && setLog({}))
     return () => {
       live = false
     }
@@ -218,6 +219,7 @@ export function AffixHunt({ language, onExit }: { language: TargetLanguage; onEx
           onExit={onExit}
         />
       )}
+      {phase === 'over' && empty && <p className="cross-warn">Bu dilde yeni bir tur çıkaracak kadar türev bulunamadı.</p>}
     </div>
   )
 }

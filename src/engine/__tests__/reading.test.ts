@@ -95,7 +95,11 @@ describe('what a text would bring new', () => {
   })
 
   it('writes the line a picker shows', () => {
-    expect(coverageLine({ coverage: 0.962, unknownWords: 14 })).toBe('%96.2 biliyorsun (öğrenmeye ideal) · 14 yeni kelime')
+    expect(coverageLine({ coverage: 0.962, unknownWords: 14 })).toBe('%96,2 biliyorsun (öğrenmeye ideal) · 14 yeni kelime')
     expect(coverageLine({ coverage: 1, unknownWords: 0 })).toBe('%100 biliyorsun (rahat) · yeni kelime yok')
+    // The zone follows the rounded figure; words only on the list are not "no new words"; an empty text has no line.
+    expect(coverageLine({ coverage: 0.9796, unknownWords: 3 })).toBe('%98 biliyorsun (rahat) · 3 yeni kelime')
+    expect(coverageLine({ coverage: 0.8, unknownWords: 0 })).toBe('%80 biliyorsun (çok zor) · kalanlar listende')
+    expect(coverageLine({ coverage: 0, unknownWords: 0, total: 0 })).toBe('')
   })
 })

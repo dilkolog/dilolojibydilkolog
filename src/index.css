@@ -5256,3 +5256,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .week-card-figures dd { margin: 0; font-size: var(--t-lg); font-weight: 700; font-variant-numeric: tabular-nums; }
 .week-card-figures dt { font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); }
 @container main (max-width: 30rem) { .week-card-figures { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Touch: small controls keep their look but get a 2.75rem hit area (an invisible layer around them).
+   Last in the file so it follows the rules that set their size (.icon-btn-sm is smaller than the .icon-btn touch size). */
+@media (hover: none) and (pointer: coarse) {
+  .icon-btn-sm, .help-more, .lang-btn, .switch, .group-toggle { position: relative; }
+  .icon-btn-sm::after, .help-more::after, .lang-btn::after, .switch::after { content: ''; position: absolute; top: 50%; left: 50%; width: max(100%, 2.75rem); height: max(100%, 2.75rem); transform: translate(-50%, -50%); }
+  .group-toggle::after { content: ''; position: absolute; inset: -0.5rem 0; }
+}
