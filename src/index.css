@@ -5264,3 +5264,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .icon-btn-sm::after, .help-more::after, .lang-btn::after, .switch::after { content: ''; position: absolute; top: 50%; left: 50%; width: max(100%, 2.75rem); height: max(100%, 2.75rem); transform: translate(-50%, -50%); }
   .group-toggle::after { content: ''; position: absolute; inset: -0.5rem 0; }
 }
+
+/* Refresh card: a word met before comes back as a card ahead of its first question. */
+.refresh-stage { height: auto; min-height: 14rem; }
+.refresh-card { position: relative; inset: auto; min-height: 14rem; }
+.refresh-actions .btn { width: auto; height: auto; border-radius: var(--r-md); padding: 0.625rem 1.25rem; font-size: var(--t-base); }
+.refresh-actions .grow { flex: 1; }

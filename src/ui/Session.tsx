@@ -9,8 +9,8 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
-import { adaptExercise, completeItem, currentItem, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
-import { TARGET_LANGUAGES, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
+import { adaptExercise, completeItem, currentItem, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample } from '../data/wordInput'
@@ -27,6 +27,7 @@ import { prefetchNatural } from './naturalVoice'
 import { warmAudio } from '../data/audioCache'
 import { KeyLegend, type Graded } from './session/shared'
 import { Intro } from './session/Intro'
+import { RefreshCard } from './session/RefreshCard'
 import { FormQuestion } from './session/FormQuestion'
 import { Prompt } from './session/Prompt'
 import { showToast } from './toastFeed'
@@ -60,6 +61,16 @@ interface Props {
   onSettings?: (s: Settings) => void
   /** A verb lab form mixed into the day was answered (it goes to the lab's own review). */
   onFormAnswer?: (form: NonNullable<PlanItem['form']>, ok: boolean, given: string) => void
+}
+
+/** A word that felt hard on its refresher card is asked once more this many items later. */
+const STRUGGLE_GAP = 6
+
+const startOfYesterday = () => {
+  const d = new Date()
+  d.setHours(0, 0, 0, 0)
+  d.setDate(d.getDate() - 1)
+  return d.getTime()
 }
 
 /** Keeps the phone screen on during a session (where supported); re-taken after switching apps. */
@@ -141,6 +152,8 @@ export function SessionScreen(p: Props) {
   )
   const item = currentItem(session)
   const { onFinish } = p
+  // Words whose refresher card was shown (or put away) in this session.
+  const [refreshed, setRefreshed] = useState<ReadonlySet<string>>(() => new Set())
   // The verdict of a lab form on screen, logged when the learner moves on.
   const formVerdict = useRef<Verdict | undefined>(undefined)
 
@@ -205,6 +218,18 @@ export function SessionScreen(p: Props) {
     if (known) setSession((s) => skipRemaining(completeItem(s, { entryId: entry.id }), entry.id))
     else next({ entryId: entry.id })
   }
+
+  // A word met yesterday or earlier today comes back as a card before its first question here (not one just introduced in this session).
+  const refreshDue = (it: PlanItem, e: VocabularyEntry) =>
+    prefs.refreshCard &&
+    p.mode === 'normal' &&
+    it.kind === 'exercise' &&
+    it.reason !== 'practice' &&
+    !refreshed.has(e.id) &&
+    // Never over an answer already given (answering gives a new word its state).
+    answeredAt !== session.index &&
+    !session.log.some((l) => l.entryId === e.id) &&
+    timeOf(states.current.get(e.id)?.introducedAt) >= startOfYesterday()
 
   const answer = async (ev: Evaluation, responseMs: number, hintsUsed: number, maxHints: number, confidence?: Confidence) => {
     setAnsweredAt(session.index)
@@ -396,6 +421,17 @@ export function SessionScreen(p: Props) {
             p.onFormAnswer?.(form, ok, given)
           }}
           onContinue={() => next({ entryId: item.entryId, verdict: formVerdict.current })}
+        />
+      ) : refreshDue(item, entry) ? (
+        <RefreshCard
+          key={`refresh-${session.index}`}
+          entry={entry}
+          onRemember={() => setRefreshed((r) => new Set(r).add(entry.id))}
+          onStruggle={() => {
+            setRefreshed((r) => new Set(r).add(entry.id))
+            // A word that feels hard comes once more later, as an easy question that doesn't touch the schedule.
+            setSession((s) => insertLater(s, { kind: 'exercise', entryId: entry.id, reason: 'practice', skill: 'recognition', exerciseType: 'mc_meaning' }, STRUGGLE_GAP))
+          }}
         />
       ) : item.kind === 'introduce' ? (
         <Intro

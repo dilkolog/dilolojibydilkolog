@@ -166,6 +166,13 @@ export function completeItem(s: Session, log: Omit<SessionLogEntry, 'item'>, ret
   return { items, index: s.index + 1, retries, relearn, followUps, log: [...s.log, { ...log, item }] }
 }
 
+/** Puts an extra item `gap` places after the current one (at the end when the session is shorter). */
+export function insertLater(s: Session, item: PlanItem, gap = RETRY_GAP): Session {
+  const items = [...s.items]
+  items.splice(Math.min(s.index + 1 + gap, items.length), 0, item)
+  return { ...s, items }
+}
+
 /** Drops the remaining items for a word (e.g. after "I already know this"). */
 export function skipRemaining(s: Session, entryId: string): Session {
   const items = s.items.filter((it, i) => i < s.index || it.entryId !== entryId)
