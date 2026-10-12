@@ -1,6 +1,6 @@
 import { normalize, splitArticle } from '../engine/answerCheck'
 import type { Example, TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { KelimeDB } from './db'
+import { quietly, type KelimeDB } from './db'
 import { canFill, patchWithSources, type FieldName, type SourceKind } from './provenance'
 import type { Equivalents } from './wiktionary'
 import { genderOfCode, POS_CODE, type Pack, type PackRecord } from './wordpackBuild'
@@ -111,14 +111,16 @@ export async function applyPack(db: KelimeDB, language: TargetLanguage, pack: Pa
   const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.packV !== pack.v)
   if (!todo.length) return 0
   let changed = 0
-  await db.transaction('rw', db.vocabulary, async () => {
-    for (const e of todo) {
-      const rec = packRecord(pack, e.lemma, language)
-      const update = rec && packUpdate(e, rec)
-      if (update) changed++
-      await db.vocabulary.update(e.id, update ? { ...patchWithSources(e, update.patch, update.wrote), packV: pack.v } : { packV: pack.v })
-    }
-  })
+  await quietly(() =>
+    db.transaction('rw', db.vocabulary, async () => {
+      for (const e of todo) {
+        const rec = packRecord(pack, e.lemma, language)
+        const update = rec && packUpdate(e, rec)
+        if (update) changed++
+        await db.vocabulary.update(e.id, update ? { ...patchWithSources(e, update.patch, update.wrote), packV: pack.v } : { packV: pack.v })
+      }
+    }),
+  )
   return changed
 }
 

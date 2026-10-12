@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { newWordState, processAttempt } from '../engine/review'
 import { createScheduler } from '../engine/scheduler'
 import { emptyLab, dueItems, recordCheck, toggleFavorite } from '../engine/labProgress'
-import { DEFAULT_SETTINGS, exportBackup, KelimeDB, mediaBlob, parseBackup, restoreBackup } from './db'
+import { DEFAULT_SETTINGS, exportBackup, KelimeDB, mediaBlob, parseBackup, quietly, restoreBackup } from './db'
 import { SAMPLE_WORDS } from './seed'
 import { deadIds } from './tombstones'
 
@@ -351,3 +351,29 @@ describe('defensive date normalization in meta records', () => {
   })
 })
 
+describe('word edit stamps', () => {
+  it('stamps a word when the learner changes it, whichever way it is written, but not on creation', async () => {
+    const db = new KelimeDB('stamps')
+    const [a, b, c] = SAMPLE_WORDS.fr
+    await db.vocabulary.bulkPut([a, b, c])
+    expect((await db.vocabulary.get(a.id))?.editedAt).toBeUndefined()
+    await db.vocabulary.put({ ...a, notes: 'x' } as typeof a)
+    await db.vocabulary.update(b.id, { difficult: true })
+    await db.assignList([c.id], 'list-1')
+    for (const e of [a, b, c]) expect((await db.vocabulary.get(e.id))?.editedAt).toBeTruthy()
+  })
+
+  it('does not stamp what a background filler writes, and keeps a stamp that comes with the entry', async () => {
+    const db = new KelimeDB('stamps-quiet')
+    const [a, b] = SAMPLE_WORDS.fr
+    await db.vocabulary.bulkPut([a, b])
+    await quietly(() => db.vocabulary.update(a.id, { packV: '7' }))
+    expect((await db.vocabulary.get(a.id))?.editedAt).toBeUndefined()
+    await db.vocabulary.put({ ...b, editedAt: '2026-01-01T00:00:00.000Z', notes: 'merged' } as typeof b)
+    expect((await db.vocabulary.get(b.id))?.editedAt).toBe('2026-01-01T00:00:00.000Z')
+    // A quiet write that fails still lets the next ones be stamped.
+    await expect(quietly(() => Promise.reject(new Error('x')))).rejects.toThrow()
+    await db.vocabulary.update(a.id, { difficult: true })
+    expect((await db.vocabulary.get(a.id))?.editedAt).toBeTruthy()
+  })
+})

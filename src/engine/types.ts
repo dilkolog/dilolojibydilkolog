@@ -111,6 +111,8 @@ export interface FieldSource {
 export interface VocabularyEntry {
   /** Stable id, e.g. "en:decision". */
   id: string
+  /** When the learner last changed this word (any edit, a list move, a note). Stamped by the database on every write except the background fillers (`quietly`); settles a word edited on two devices when syncing. */
+  editedAt?: string
   language: TargetLanguage
   lemma: string
   partOfSpeech: PartOfSpeech

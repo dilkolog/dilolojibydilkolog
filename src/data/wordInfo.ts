@@ -1,6 +1,6 @@
 import { normalize, splitArticle, stripDiacritics } from '../engine/answerCheck'
 import type { Gender, TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { KelimeDB } from './db'
+import { quietly, type KelimeDB } from './db'
 import { loadFrequency } from './frequency'
 import { patchWithSources, type FieldName, type SourceKind } from './provenance'
 import { englishGloss, fetchPages, languageSection } from './wiktionary'
@@ -295,7 +295,8 @@ export async function fillEntries(db: KelimeDB, entries: VocabularyEntry[], lang
     if (!fresh.audioUrl && patch.audioUrl) wrote.audio = 'wiktionary'
     if (!fresh.senses[0]?.definition && senses[0]?.definition) wrote.definition = 'wiktionary'
     if (!fresh.gender && 'gender' in patch) wrote.gender = 'wiktionary'
-    await db.vocabulary.update(e.id, patchWithSources(fresh, patch, wrote))
+    const update = patchWithSources(fresh, patch, wrote)
+    await quietly(() => db.vocabulary.update(e.id, update))
   }
 }
 
