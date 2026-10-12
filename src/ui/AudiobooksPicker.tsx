@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { cleanChapterText, loadAudiobookChapters, type AudiobookChapter } from '../data/audiobooks'
-import { analyzeText, coverageZone } from '../engine/reading'
+import { analyzeText, coverageLine, type ReadingAnalysis } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { HeadphonesIcon } from './icons'
 
-const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
 
 /**
  * Chapters of public domain books with the LibriVox recording of the same text (French and
@@ -33,11 +32,11 @@ export function AudiobooksPicker({
     }
   }, [language])
   const books = useMemo(() => {
-    const byBook = new Map<string, { title: string; author: string; chapters: { c: AudiobookChapter; coverage: number }[] }>()
+    const byBook = new Map<string, { title: string; author: string; chapters: { c: AudiobookChapter; cov: ReadingAnalysis }[] }>()
     for (const c of chapters) {
       if (level !== 'all' && c.cefr !== level) continue
       const book = byBook.get(c.bookId) ?? { title: c.bookTitle, author: c.author, chapters: [] }
-      book.chapters.push({ c, coverage: analyzeText(cleanChapterText(c.text), language, vocabulary, states, known).coverage })
+      book.chapters.push({ c, cov: analyzeText(cleanChapterText(c.text), language, vocabulary, states, known) })
       byBook.set(c.bookId, book)
     }
     for (const b of byBook.values()) b.chapters.sort((x, y) => x.c.chapterIndex - y.c.chapterIndex)
@@ -62,7 +61,7 @@ export function AudiobooksPicker({
             <span lang={language}>{book.title}</span> <span className="small muted">· {book.author}</span>
           </h3>
           <ul className="library">
-            {book.chapters.map(({ c, coverage }) => (
+            {book.chapters.map(({ c, cov }) => (
               <li key={c.id}>
                 <button type="button" className="word-link library-open" onClick={() => onRead(c)}>
                   <div className="row justify-between items-baseline gap-2">
@@ -70,7 +69,7 @@ export function AudiobooksPicker({
                     <span className="badge badge-sm">{c.cefr}</span>
                   </div>
                   <span className="small muted">
-                    <HeadphonesIcon size={14} className="inline-icon" /> {c.durationMinutes} dk · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
+                    <HeadphonesIcon size={14} className="inline-icon" /> {c.durationMinutes} dk · {coverageLine(cov)}
                   </span>
                 </button>
               </li>

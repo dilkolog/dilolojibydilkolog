@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { analyzeText, coverageZone } from '../engine/reading'
+import { analyzeText, coverageLine, type ReadingAnalysis } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { defaultWikiSite, fetchArticle, searchWikipedia, wikiPageUrl, type WikiResult, type WikiSite } from '../data/wikipedia'
 import { GlobeIcon, SearchIcon, ShuffleIcon } from './icons'
 
-const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
 
 /**
  * Reading about any topic from Wikipedia and Vikidia, in search order, each with how much of it the learner
@@ -26,7 +25,7 @@ export function WikipediaPicker({
   const [easy, setEasy] = useState(true)
   const site: WikiSite = defaultWikiSite(language, easy)
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<(WikiResult & { coverage: number })[] | null>(null)
+  const [results, setResults] = useState<(WikiResult & { cov: ReadingAnalysis })[] | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
   const [error, setError] = useState('')
 
@@ -35,7 +34,7 @@ export function WikipediaPicker({
     setError('')
     try {
       const found = await searchWikipedia(q, site)
-      setResults(found.map((r) => ({ ...r, coverage: analyzeText(r.intro, language, vocabulary, states, known).coverage })))
+      setResults(found.map((r) => ({ ...r, cov: analyzeText(r.intro, language, vocabulary, states, known) })))
     } catch {
       setError('Ansiklopediye ulaşılamadı; internet bağlantını kontrol et.')
     } finally {
@@ -119,7 +118,7 @@ export function WikipediaPicker({
                 <button className="word-link library-open" onClick={() => void read(r.title)} disabled={!!busy}>
                   <strong lang={language}>{busy === r.title ? `${r.title} · getiriliyor…` : r.title}</strong>
                   <span className="small muted">
-                    %{Math.round(r.coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(r.coverage)]})
+                    {coverageLine(r.cov)}
                   </span>
                 </button>
                 <a className="link small" href={wikiPageUrl(site, r.title)} target="_blank" rel="noreferrer" title="Orijinal sayfayı aç">

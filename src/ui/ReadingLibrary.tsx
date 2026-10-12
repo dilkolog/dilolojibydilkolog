@@ -17,7 +17,7 @@ import { Cover } from './ReadingBooks'
 const REREAD_DAYS = 7
 
 /** One text of the library: cover, title, length, when it was last read, and the share known then. */
-export function LibraryItem({ item, now, onOpen, onRemove }: { item: ReadingText; now: number; onOpen: (t: ReadingText) => void; onRemove: (t: ReadingText) => void }) {
+export function LibraryItem({ item, now, preview, onOpen, onRemove }: { item: ReadingText; now: number; /** Where the text stands for the reader now (see `coverageLine`); the last reading's share shows without it. */ preview?: string; onOpen: (t: ReadingText) => void; onRemove: (t: ReadingText) => void }) {
   const last = item.history.at(-1)
   const since = item.readAt ? Math.floor((now - new Date(item.readAt).getTime()) / 86_400_000) : null
   const reread = since !== null && since >= REREAD_DAYS
@@ -37,6 +37,7 @@ export function LibraryItem({ item, now, onOpen, onRemove }: { item: ReadingText
                     {words} kelime · ~{Math.max(1, Math.round(words / 150))} dk
                     {since !== null && ` · ${since === 0 ? 'bugün' : `${since} gün önce`}`}
                   </span>
+                  {preview && <span className="small muted">{preview}</span>}
                   <span className={`pill lib-status is-${status === 'Tekrar oku' ? 'reread' : status === 'Yeni' ? 'new' : 'done'}`}>{status}</span>
                 </span>
                 {last && (

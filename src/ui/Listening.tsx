@@ -2,10 +2,9 @@ import { clock, forgetPosition, resumeAt, savedPosition, savePosition } from './
 import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PODCASTS, type Episode } from '../engine/podcasts'
-import { analyzeText, coverageZone } from '../engine/reading'
+import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 
-const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
 
 /**
  * Programmes for learners with audio and full text. Listen first, then read what you heard:
@@ -49,7 +48,7 @@ export function ListeningPicker({
   }
 
   const rated = useMemo(
-    () => (episodes ?? []).map((e) => ({ e, coverage: analyzeText(e.text, language, vocabulary, states, known).coverage, words: e.text.split(/\s+/).length })),
+    () => (episodes ?? []).map((e) => ({ e, cov: analyzeText(e.text, language, vocabulary, states, known), words: e.text.split(/\s+/).length })),
     [episodes, language, vocabulary, states, known],
   )
 
@@ -73,12 +72,12 @@ export function ListeningPicker({
       {episodes && !rated.length && !busy && <p className="small muted">Bu kaynaktan bölüm alınamadı; başka bir kaynak dene.</p>}
       {rated.length > 0 && (
         <ul className="library">
-          {rated.map(({ e, coverage, words }) => (
+          {rated.map(({ e, cov, words }) => (
             <li key={e.link || e.title}>
               <button className="word-link library-open" onClick={() => onOpen(e, name)}>
                 <strong>{e.title}</strong>
                 <span className="small muted">
-                  {e.date ? `${new Date(e.date).toLocaleDateString('tr-TR')} · ` : ''}~{Math.max(1, Math.round(words / 150))} dk · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
+                  {e.date ? `${new Date(e.date).toLocaleDateString('tr-TR')} · ` : ''}~{Math.max(1, Math.round(words / 150))} dk · {coverageLine(cov)}
                 </span>
               </button>
             </li>

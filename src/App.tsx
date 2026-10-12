@@ -38,7 +38,7 @@ import { reminderTime, usualStudyHour } from './engine/hours'
 import { updateAppBadge } from './ui/appBadge'
 import { reportPushState } from './ui/pushReminders'
 
-import { weekLine, weekSummary } from './engine/weekly'
+import { weekLine, weekSummary, type WeekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
 
 import { natural } from './ui/naturalVoice'
@@ -376,13 +376,16 @@ export default function App() {
   }, [plan, dueReviews, settings?.appBadge])
   // The week in one line: on Today on Sunday and Monday, and in Sunday evening's push.
   const [weekText, setWeekText] = useState('')
+  const [weekData, setWeekData] = useState<WeekSummary | null>(null)
   useEffect(() => {
     if (!data) return
     let live = true
     void (async () => {
       const [texts, lab] = await Promise.all([db.getLibrary(data.language), data.language === 'en' ? undefined : db.getLab(data.language)])
-      const line = weekLine(weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts, seen: lab?.seen }))
-      if (live) setWeekText(line)
+      const summary = weekSummary({ language: data.language, now: new Date(), events: data.recentEvents, vocabulary: data.vocabulary, texts, seen: lab?.seen })
+      if (!live) return
+      setWeekText(weekLine(summary))
+      setWeekData(summary)
     })()
     return () => {
       live = false
@@ -602,7 +605,7 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
-  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText }
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData }
 
   return (
     <AccessContext.Provider value={access}>

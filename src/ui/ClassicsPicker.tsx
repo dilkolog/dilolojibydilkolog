@@ -1,10 +1,9 @@
 import { useMemo, useState } from 'react'
-import { analyzeText, coverageZone } from '../engine/reading'
+import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { CATEGORY_LABELS, classicsFor, type ClassicCategory, type ClassicReading } from '../data/classicReadings'
 import { BookIcon } from './icons'
 
-const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
 
 /**
  * Offline reading collection: timeless fables, fairy tales, and short stories with coverage
@@ -38,7 +37,7 @@ export function ClassicsPicker({
       return {
         c,
         words,
-        coverage: analysis.coverage,
+        cov: analysis,
       }
     })
   }, [items, language, vocabulary, states, known])
@@ -93,7 +92,7 @@ export function ClassicsPicker({
       </div>
 
       <ul className="library">
-        {rated.map(({ c, words, coverage }) => (
+        {rated.map(({ c, words, cov }) => (
           <li key={c.id}>
             <button
               type="button"
@@ -106,7 +105,7 @@ export function ClassicsPicker({
               </div>
               <span className="small muted">{c.summary}</span>
               <span className="small muted">
-                {c.author} · {words} kelime · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
+                {c.author} · {words} kelime · {coverageLine(cov)}
               </span>
             </button>
           </li>

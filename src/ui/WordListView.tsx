@@ -250,7 +250,10 @@ export function WordList({
       // All of the group already selected: a second tap takes them out again.
       const all = ids.every((id) => cur.has(id))
       const next = new Set(cur)
-      for (const id of ids) all ? next.delete(id) : next.add(id)
+      for (const id of ids) {
+        if (all) next.delete(id)
+        else next.add(id)
+      }
       return next
     })
   const allVisibleSelected = list.length > 0 && selectedVisible.length === list.length
