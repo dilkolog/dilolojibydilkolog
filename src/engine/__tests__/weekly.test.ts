@@ -5,7 +5,7 @@ const NOW = new Date('2026-10-11T18:00:00')
 const day = (d: number, h = 10) => new Date(`2026-10-${String(d).padStart(2, '0')}T${String(h).padStart(2, '0')}:00:00`)
 
 describe('the week in one line', () => {
-  it('counts the last seven days of one language: days, answers, right ones, new words, readings, the verb met most', () => {
+  it('counts the last seven days of one language: days, answers, right ones, new words, readings', () => {
     const s = weekSummary({
       language: 'fr',
       now: NOW,
@@ -24,13 +24,15 @@ describe('the week in one line', () => {
         { addedAt: day(2), source: 'user', language: 'fr' },
       ],
       texts: [{ history: [{ at: day(9).toISOString() }] }, { history: [{ at: day(1).toISOString() }] }],
-      seen: {
-        être: [{ form: 'était', tense: 'imparfait', count: 3, at: day(9).toISOString() }],
-        avoir: [{ form: 'avait', tense: 'imparfait', count: 9, at: day(1).toISOString() }],
-      },
     })
-    expect(s).toEqual({ days: 3, answers: 4, right: 0.75, newWords: 1, texts: 1, topVerb: { verb: 'être', count: 3 }, lastAnswers: 1 })
-    expect(weekLine(s)).toBe('3 gün · 4 cevap (%75 doğru) · 1 yeni kelime · 1 metin · en çok gördüğün fiil: être')
+    expect(s).toEqual({ days: 3, answers: 4, right: 0.75, newWords: 1, texts: 1, lastAnswers: 1 })
+    expect(weekLine(s)).toBe('3 gün · 4 cevap (%75 doğru) · 1 yeni kelime · 1 metin')
+  })
+
+  it('never counts more than seven days, although 168 hours can touch eight calendar days', () => {
+    const events = Array.from({ length: 8 }, (_, i) => ({ timestamp: new Date(2026, 9, 4 + i, 11 - (i === 7 ? 2 : 0)), correct: true, language: 'fr' as const }))
+    const s = weekSummary({ language: 'fr', now: new Date(2026, 9, 11, 10), events, vocabulary: [], texts: [] })
+    expect(s.days).toBeLessThanOrEqual(7)
   })
 
   it('says nothing for an empty week', () => {

@@ -9,6 +9,7 @@ import { WeeklyNudge } from './WeeklyNudge'
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
 const SUNDAY = new Date('2026-10-11T18:00:00')
+const MONDAY = new Date('2026-10-12T09:00:00')
 const WEDNESDAY = new Date('2026-10-14T18:00:00')
 const summary: WeekSummary = { days: 5, answers: 120, right: 0.86, newWords: 9, texts: 2, lastAnswers: 100, missed: [{ entryId: 'e1', wrong: 3 }, { entryId: 'gone', wrong: 2 }] }
 
@@ -45,6 +46,13 @@ describe('WeeklyNudge', () => {
     expect(el.querySelector('.week-card')).toBeNull()
     show(SUNDAY)
     act(() => el.querySelector<HTMLButtonElement>('[aria-label="Bu hafta gösterme"]')!.click())
+    expect(el.querySelector('.week-card')).toBeNull()
+  })
+
+  it('stays hidden on the Monday after it was dismissed on the Sunday', () => {
+    show(SUNDAY)
+    act(() => el.querySelector<HTMLButtonElement>('[aria-label="Bu hafta gösterme"]')!.click())
+    show(MONDAY)
     expect(el.querySelector('.week-card')).toBeNull()
   })
 

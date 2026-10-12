@@ -333,7 +333,7 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   let budgetHit = false
   if (!backlog) {
     for (const entry of newWordCandidates(input, limit)) {
-      const pair = introductionPair(entry, rng)
+      const pair = introductionPair(entry, rng, input.options)
       const cost = pair.reduce((s, p) => s + itemCost(p), 0) + NEW_FOLLOW_UPS_MS
       if (used + cost > budget) {
         budgetHit = true
@@ -364,7 +364,8 @@ export function buildDailyPlan(input: PlanInput): DailyPlan {
   return { items, newEntryIds, counts, bySkill, estimatedMinutes: Math.ceil(used / 60_000), waitingNew, newBlockedBy, dueTotal: allReviews.length, ...(focusDone ? { focusDone } : {}) }
 }
 
-function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {
+/** Only the learner's question-type choices count here: a new word's first question is never an AI or speech one. */
+function introductionPair(entry: VocabularyEntry, rng: Rng, options?: EngineOptions): PlanItem[] {
   return [
     { kind: 'introduce', entryId: entry.id, reason: 'new', skill: 'recognition' },
     {
@@ -372,7 +373,7 @@ function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {
       entryId: entry.id,
       reason: 'new',
       skill: 'recognition',
-      exerciseType: pickExerciseType('recognition', entry, undefined, rng),
+      exerciseType: pickExerciseType('recognition', entry, undefined, rng, { off: options?.off, less: options?.less }),
     },
   ]
 }
@@ -380,7 +381,7 @@ function introductionPair(entry: VocabularyEntry, rng: Rng): PlanItem[] {
 /** "Learn N more now": extra new words beyond today's limit, on the user's explicit request. */
 export function buildExtraNewPlan(input: PlanInput, count: number): PlanItem[] {
   const rng = createRng(input.seed)
-  return interleave(newWordCandidates(input, count).flatMap((e) => introductionPair(e, rng)), rng)
+  return interleave(newWordCandidates(input, count).flatMap((e) => introductionPair(e, rng, input.options)), rng)
 }
 
 /**

@@ -1,4 +1,3 @@
-import type { SeenForm } from './labProgress'
 import type { TargetLanguage } from './types'
 
 /** The last seven days of one language, from what is already recorded. */
@@ -12,8 +11,6 @@ export interface WeekSummary {
   newWords: number
   /** Readings finished. */
   texts: number
-  /** The verb met most in the week's readings. */
-  topVerb?: { verb: string; count: number }
   /** Answers of the week before, to show the change. */
   lastAnswers: number
   /** Words answered wrong at least twice this week, the most missed first (at most three). */
@@ -33,7 +30,6 @@ export function weekSummary(input: {
   events: readonly { timestamp: Date; correct: boolean; language: TargetLanguage; entryId?: string; mode?: string }[]
   vocabulary: readonly { addedAt?: Date; source: string; language: TargetLanguage }[]
   texts: readonly { history: { at: string }[] }[]
-  seen?: Record<string, SeenForm[]>
 }): WeekSummary {
   const since = input.now.getTime() - WEEK
   const inWeek = (t: Date | string | undefined) => !!t && new Date(t).getTime() > since && new Date(t).getTime() <= input.now.getTime()
@@ -47,17 +43,13 @@ export function weekSummary(input: {
     .map(([entryId, n]) => ({ entryId, wrong: n }))
     .sort((a, b) => b.wrong - a.wrong || a.entryId.localeCompare(b.entryId))
     .slice(0, MISSED_SHOWN)
-  const verbs = Object.entries(input.seen ?? {})
-    .map(([verb, forms]) => ({ verb, count: forms.filter((f) => inWeek(f.at)).reduce((n, f) => n + f.count, 0) }))
-    .filter((v) => v.count > 0)
-    .sort((a, b) => b.count - a.count || a.verb.localeCompare(b.verb))
   return {
-    days: new Set(answers.map((e) => localDay(new Date(e.timestamp)))).size,
+    // 168 hours can touch eight calendar days; the card says "of 7".
+    days: Math.min(7, new Set(answers.map((e) => localDay(new Date(e.timestamp)))).size),
     answers: answers.length,
     right: answers.length ? answers.filter((e) => e.correct).length / answers.length : 0,
     newWords: input.vocabulary.filter((v) => v.language === input.language && v.source !== 'sample' && inWeek(v.addedAt)).length,
     texts: input.texts.filter((t) => t.history.some((h) => inWeek(h.at))).length,
-    ...(verbs[0] ? { topVerb: verbs[0] } : {}),
     lastAnswers,
     ...(missed.length ? { missed } : {}),
   }
@@ -70,7 +62,6 @@ export function weekLine(s: WeekSummary): string {
     s.answers ? `${s.days} gün · ${s.answers} cevap (%${Math.round(s.right * 100)} doğru)` : '',
     s.newWords ? `${s.newWords} yeni kelime` : '',
     s.texts ? `${s.texts} metin` : '',
-    s.topVerb ? `en çok gördüğün fiil: ${s.topVerb.verb}` : '',
   ]
     .filter(Boolean)
     .join(' · ')

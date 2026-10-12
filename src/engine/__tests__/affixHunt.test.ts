@@ -48,6 +48,19 @@ describe('huntRound', () => {
   })
 })
 
+describe('huntRound, the same answer twice', () => {
+  it('asks for a derived word once, even when two bases lead to it', () => {
+    const qs = huntQuestionsOf('comfort', 'en', EN, createRng(1))
+    const q = qs.find((x) => x.word === 'comfortable')!
+    // A second pair with another base and the same target word.
+    const twin = { ...q, id: 'comforts|comfortable', base: 'comforts' }
+    for (let s = 1; s <= 20; s++) {
+      const round = huntRound([q, twin, ...qs.filter((x) => x !== q)], {}, createRng(s), 8)
+      expect(round.filter((x) => x.word === 'comfortable')).toHaveLength(1)
+    }
+  })
+})
+
 describe('huntPool', () => {
   it('asks about the roots of missed pairs first', () => {
     const pool = huntPool([], [], 'en', EN, createRng(1), { priority: ['comfortable'], want: 1 })
