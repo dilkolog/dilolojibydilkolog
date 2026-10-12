@@ -1,5 +1,6 @@
 import { clock, forgetPosition, resumeAt, savedPosition, savePosition } from './audioResume'
 import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
+import { cachedAudio } from '../data/audioCache'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PODCASTS, type Episode } from '../engine/podcasts'
 import { analyzeText, coverageLine } from '../engine/reading'
@@ -131,6 +132,18 @@ export function AudioPanel({
   resumeKey?: string
 }) {
   const audio = useRef<HTMLAudioElement>(null)
+  // A copy kept on the device (Çevrimdışı dinle) plays instead of the link, unless playing has begun already.
+  const [local, setLocal] = useState<string>()
+  useEffect(() => {
+    let live = true
+    void cachedAudio(src).then((url) => {
+      const a = audio.current
+      if (live && url && a && a.paused && a.currentTime === 0) setLocal(url)
+    })
+    return () => {
+      live = false
+    }
+  }, [src])
   const panel = useRef<HTMLElement>(null)
   const [tipsOpen, setTipsOpen] = useState(false)
   // The audio could not be loaded (a dead link, no connection): said, instead of a player that does nothing.
@@ -244,7 +257,7 @@ export function AudioPanel({
       )}
       <audio
         ref={audio}
-        src={src}
+        src={local ?? src}
         controls
         preload="metadata"
         className="audio-player"

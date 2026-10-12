@@ -42,6 +42,7 @@ describe('Session: right answers go on by themselves when asked to', () => {
       )
     })
   }
+  const answered = () => container.querySelector('.sheet') !== null
   const choose = async (right: boolean) => {
     const options = [...container.querySelectorAll<HTMLButtonElement>('.option')]
     // The label starts with the option's number.
@@ -49,10 +50,10 @@ describe('Session: right answers go on by themselves when asked to', () => {
     const other = options.find((o) => o !== pick)!
     await act(async () => {
       ;(right ? pick : other).click()
-      await new Promise((r) => setTimeout(r, 60))
     })
+    // The answer is saved before its sheet shows: polled, not a fixed wait (a busy machine is slower).
+    for (let i = 0; i < 50 && !answered(); i++) await act(async () => void (await new Promise((r) => setTimeout(r, 40))))
   }
-  const answered = () => container.querySelector('.sheet') !== null
 
   it('a right answer is followed by the next question after the wait', async () => {
     prefs.autoAdvance = 1

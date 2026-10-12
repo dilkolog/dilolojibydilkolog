@@ -821,6 +821,63 @@ test('study settings inside a session: shorten it, turn the kind of question dow
   await expect(dialog.getByRole('button', { name: '1.1×' })).toHaveAttribute('aria-pressed', 'true')
 })
 
+test('the action words of the nudge cards on Today end at the same edge, with or without a dismiss button', async ({ page }) => {
+  await startWithSamples(page)
+  const edges = await page.evaluate(() => {
+    const host = document.querySelector('.home-main, .main, main') ?? document.body
+    const card = (label: string, dismiss: boolean) => {
+      const d = document.createElement('div')
+      d.className = 'habit-nudge'
+      d.innerHTML = `<button class="habit-nudge-main"><span>x</span><span>metin</span><span class="habit-nudge-cta">${label}</span></button>${dismiss ? '<button class="icon-btn icon-btn-sm" aria-label="x"><svg width="16" height="16"></svg></button>' : ''}`
+      host.append(d)
+      return d.querySelector('.habit-nudge-cta')!.getBoundingClientRect().right
+    }
+    return [card('İlerleme', false), card('Kelimelerime ekle', true), card('Plan yap', true)]
+  })
+  expect(Math.abs(edges[0] - edges[1])).toBeLessThan(1)
+  expect(Math.abs(edges[1] - edges[2])).toBeLessThan(1)
+})
+
+test('a library text with a recording can be kept for offline listening, and taken away again', async ({ page }) => {
+  test.setTimeout(90_000)
+  await page.route('https://audio.example.test/ep.mp3', (r) => r.fulfill({ status: 200, contentType: 'audio/mpeg', headers: { 'access-control-allow-origin': '*' }, body: Buffer.alloc(20_000, 1) }))
+  await startWithSamples(page)
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction('meta', 'readwrite')
+          const text = { id: 't1', language: 'fr', title: 'Un épisode', text: 'Bonjour tout le monde. Il fait beau aujourd\'hui.', audio: 'https://audio.example.test/ep.mp3', addedAt: new Date().toISOString(), history: [] }
+          tx.objectStore('meta').put({ key: 'library', value: [text] })
+          tx.oncomplete = () => resolve()
+        }
+      }),
+  )
+  await page.reload()
+  await openScreen(page, 'Okuma')
+  const chip = page.locator('.lib-card .offline-chip').first()
+  await expect(chip).toContainText('Çevrimdışı dinle')
+  await chip.click()
+  await expect(chip).toContainText('Çevrimdışı hazır')
+  // Kept on the device: it is still there after a reload.
+  await page.reload()
+  await openScreen(page, 'Okuma')
+  await expect(page.locator('.lib-card .offline-chip').first()).toContainText('Çevrimdışı hazır')
+  await page.locator('.lib-card .offline-chip').first().click()
+  await expect(page.locator('.lib-card .offline-chip').first()).toContainText('Çevrimdışı dinle')
+})
+
+test('Share → Diloloji: a shared article opens Reading with the text ready, a shared sentence still opens the word form', async ({ page }) => {
+  await startWithSamples(page)
+  const article = Array.from({ length: 40 }, (_, i) => `mot${i}`).join(' ')
+  await page.goto(`/?share_text=${encodeURIComponent(article)}&share_title=${encodeURIComponent('Un titre')}`)
+  await expect(page.getByLabel('Başlık')).toHaveValue('Un titre')
+  await expect(page.getByLabel('Metin', { exact: true })).toHaveValue(article)
+  await page.goto(`/?share_text=${encodeURIComponent('Il a décidé de tout quitter pour vivre à la campagne.')}`)
+  await expect(page.locator('.incoming')).toBeVisible()
+})
+
 test('reading: reaching the end saves the meetings with list words on its own; finishing is up top too', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)

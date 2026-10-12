@@ -1,7 +1,7 @@
 import { db } from '../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../data/access'
 import { showToast } from './toastFeed'
-import { syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
+import { restoreReplaced, syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
 
 /** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
 export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
@@ -79,12 +79,18 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
 export function describeIncoming(r: SyncResult | null): string {
   if (!r) return ''
   const { words, removed, texts, settings } = r.incoming
-  const parts = [words && `${words} yeni kelime`, removed && `${removed} silinen kelime`, texts && `${texts} yeni metin`, settings && `${settings} ayar değişikliği`].filter(Boolean)
+  const edited = r.replaced?.length ?? 0
+  const parts = [words && `${words} yeni kelime`, edited && `${edited} kelime güncellendi`, removed && `${removed} silinen kelime`, texts && `${texts} yeni metin`, settings && `${settings} ayar değişikliği`].filter(Boolean)
   return parts.length ? `Diğer cihazlarından: ${parts.join(', ')}.` : ''
 }
 
 /** After a background sync: says what the other devices changed here, if anything. */
 export function announceIncoming(r: SyncResult | null): void {
   const line = describeIncoming(r)
-  if (line) showToast(line)
+  if (!line) return
+  const replaced = r?.replaced ?? []
+  if (!replaced.length) return showToast(line)
+  // Another device's later edit replaced this device's copy of a word: it says which, and can be taken back.
+  const names = replaced.slice(0, 3).join(', ') + (replaced.length > 3 ? '…' : '')
+  showToast(`${line} Güncellenenler: ${names}.`, { label: 'Geri al', run: () => void restoreReplaced(db).then((n) => n && showToast(`${n} kelime eski hâline döndü.`)) }, 10_000, 'undo')
 }

@@ -8,7 +8,20 @@ export interface IncomingWord {
   src?: string
   /** A meaning already known (the dictionary's), filled into the form. */
   meaning?: string
+  /** A shared article or video link: it goes to Reading instead of the word form. */
+  read?: SharedRead
 }
+
+/** What Reading takes from a share: the text and/or a YouTube link, with a title when the app sent one. */
+export interface SharedRead {
+  text?: string
+  title?: string
+  url?: string
+}
+
+/** A selection this long is something to read, not a word or a sentence to pick one from. */
+export const READ_WORDS = 30
+const YOUTUBE = /^https?:\/\/((www|m)\.)?(youtube\.com|youtu\.be)\//i
 
 export function readIncoming(): IncomingWord | null {
   const p = new URLSearchParams(location.search)
@@ -28,7 +41,7 @@ export function readIncoming(): IncomingWord | null {
 }
 
 /**
- * Android "Share → Kelime Koçu" (manifest share_target): a short selection is the word itself;
+ * Android "Share → Diloloji" (manifest share_target): a short selection is the word itself;
  * a longer one is the sentence it came from, and the learner picks the word in the form.
  */
 export function readShared(p: URLSearchParams): IncomingWord | null {
@@ -36,8 +49,13 @@ export function readShared(p: URLSearchParams): IncomingWord | null {
   // Some apps put the link in the text field.
   const link = p.get('share_url') ?? text.match(/https?:\/\/\S+/)?.[0]
   const clean = text.replace(/https?:\/\/\S+/g, '').replace(/^["“«]|["”»]$/g, '').trim()
+  // A video link alone (nothing else was selected) goes to Reading, where the subtitles can be fetched.
+  if (!clean && link && YOUTUBE.test(link)) return { word: '', context: '', src: link, read: { url: link, title: p.get('share_title')?.trim() || undefined } }
   if (!clean) return null
-  const short = clean.split(/\s+/).length <= 4
+  const words = clean.split(/\s+/).length
+  // An article is read, not turned into one example sentence.
+  if (words >= READ_WORDS) return { word: '', context: '', src: link || undefined, read: { text: clean, title: p.get('share_title')?.trim() || undefined, url: link || undefined } }
+  const short = words <= 4
   return { word: short ? clean : '', context: short ? '' : clean.slice(0, 400), src: link || undefined }
 }
 

@@ -40,3 +40,4 @@ kelime-kocu-yedek-*.json
 # Build cache
 .cache
 
+pw.tmp.config.ts

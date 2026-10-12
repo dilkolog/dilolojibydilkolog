@@ -42,7 +42,7 @@ export default defineConfig({
           { name: 'Kelime ekle', short_name: 'Ekle', url: '/?go=add' },
           { name: 'Okuma', short_name: 'Okuma', url: '/?go=reading' },
         ],
-        // Android: "Share → Kelime Koçu" from any app sends the selected text here.
+        // Android: "Share → Diloloji" from any app sends the selected text here.
         share_target: { action: '/', method: 'GET', params: { title: 'share_title', text: 'share_text', url: 'share_url' } },
         icons: [
           { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },

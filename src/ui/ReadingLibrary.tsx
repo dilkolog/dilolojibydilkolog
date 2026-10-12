@@ -12,6 +12,7 @@ import { storyCredit } from '../data/storybooks'
 import type { KelimeDB, ReadingText } from '../data/db'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { Cover } from './ReadingBooks'
+import { OfflineAudioChip } from './OfflineAudioChip'
 
 /** Days after finishing a text when re-reading it is suggested. */
 const REREAD_DAYS = 7
@@ -46,6 +47,7 @@ export function LibraryItem({ item, now, preview, onOpen, onRemove }: { item: Re
                   </span>
                 )}
               </button>
+              {item.audio && <OfflineAudioChip url={item.audio} />}
               <button className="icon-btn lib-remove" onClick={() => onRemove(item)} aria-label={`${item.title} sil`}>
                 <CloseIcon size={16} />
               </button>

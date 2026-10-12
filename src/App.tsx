@@ -285,6 +285,12 @@ export default function App() {
     if (!incoming || !settings) return
     history.replaceState(null, '', location.pathname)
     if (incoming.lang && incoming.lang !== settings.activeLanguage) void updateSettings({ ...settings, activeLanguage: incoming.lang })
+    // A shared article or video goes to Reading, filled in; anything else to the add-word form.
+    if (incoming.read) {
+      setScreen({ name: 'reading', shared: incoming.read })
+      setIncoming(null)
+      return
+    }
     setScreen({ name: 'words' })
     // Once, when both the incoming word and the settings are there.
     // eslint-disable-next-line react-hooks/exhaustive-deps

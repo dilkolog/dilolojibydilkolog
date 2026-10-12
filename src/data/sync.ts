@@ -1,4 +1,5 @@
 import { mergeSeen, type LabData } from '../engine/labProgress'
+import type { VocabularyEntry } from '../engine/types'
 import { mergeMemories } from '../engine/translationMemory'
 import { mergeEarLogs } from '../engine/earMisses'
 import { mergeGrammarLogs } from '../engine/grammar'
@@ -380,6 +381,31 @@ export interface SyncResult {
   skipped: number
   /** What the other devices changed on this one: new words, words they deleted, texts, settings fields. */
   incoming: { words: number; removed: number; texts: number; settings: number }
+  /** Names of words another device had edited later than this one: its copy replaced this device's (kept apart, see `restoreReplaced`). */
+  replaced?: string[]
+}
+
+/** The copies this device had of words another device edited later: what a sync replaced. */
+export function replacedByRemote(local: Backup, merged: Backup): VocabularyEntry[] {
+  const now = new Map(merged.vocabulary.map((v) => [v.id, v]))
+  return local.vocabulary.filter((v) => {
+    const m = now.get(v.id)
+    return !!m && time(m.editedAt) > time(v.editedAt)
+  })
+}
+
+const REPLACED_KEY = 'syncReplaced'
+const REPLACED_KEPT = 30
+
+/** Puts back the copies the last sync replaced (an edit made on another device that was not wanted); they count as edited now, so they win the next sync too. */
+export async function restoreReplaced(db: KelimeDB): Promise<number> {
+  const kept = (await db.meta.get(REPLACED_KEY))?.value as { entries?: VocabularyEntry[] } | undefined
+  const entries = kept?.entries ?? []
+  if (!entries.length) return 0
+  const at = new Date().toISOString()
+  await db.vocabulary.bulkPut(entries.map((e) => ({ ...e, editedAt: at })))
+  await db.meta.delete(REPLACED_KEY)
+  return entries.length
 }
 
 /** What merging brought in from the other devices, counted against what this device had. */
@@ -467,7 +493,11 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const merged = remote ? mergeBackups(local, remote) : local
   if (remote) await restoreBackup(db, merged, { keepMedia: true })
   // The very first sync of a device is joining, not news: only later ones report what came in.
-  const incoming = remote && (await db.meta.get('syncAt')) ? incomingChanges(local, merged) : { words: 0, removed: 0, texts: 0, settings: 0 }
+  const joined = !(await db.meta.get('syncAt'))
+  const incoming = remote && !joined ? incomingChanges(local, merged) : { words: 0, removed: 0, texts: 0, settings: 0 }
+  // What another device's later edits replaced here is kept (a few copies) so it can be taken back.
+  const replaced = remote && !joined ? replacedByRemote(local, merged) : []
+  if (replaced.length) await db.meta.put({ key: REPLACED_KEY, value: { at: new Date().toISOString(), entries: replaced.slice(0, REPLACED_KEPT) } })
 
   // Media: the remote list says which pictures/recordings exist elsewhere.
   const localMedia = new Set((await db.media.toCollection().primaryKeys()) as string[])
@@ -518,5 +548,5 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const coreBytes = await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code, fetched?.etag)
   await db.meta.put({ key: 'syncSize', value: coreBytes })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
-  return { received, sent, skipped, incoming }
+  return { received, sent, skipped, incoming, ...(replaced.length ? { replaced: replaced.map((v) => v.lemma) } : {}) }
 }
