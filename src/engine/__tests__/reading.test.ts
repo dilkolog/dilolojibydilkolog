@@ -103,3 +103,18 @@ describe('what a text would bring new', () => {
     expect(coverageLine({ coverage: 0, unknownWords: 0, total: 0 })).toBe('')
   })
 })
+
+describe('rating several texts against one word list', () => {
+  const list = [decision]
+  const states = [graduated]
+  it('gives the same answer as rating each alone, and follows a changed list (a new array)', () => {
+    const a = analyzeText('The decision was made.', 'en', list, states, new Set())
+    const b = analyzeText('The decision was made.', 'en', list, states, new Set())
+    expect(b.counts).toEqual(a.counts)
+    // The same arrays are reused; a new list is a new lookup, not the cached one.
+    const none = analyzeText('The decision was made.', 'en', [], states, new Set())
+    expect(none.counts).not.toEqual(a.counts)
+    expect(analyzeText('The decision was made.', 'en', list, states, new Set()).counts).toEqual(a.counts)
+  })
+})
+

@@ -2,10 +2,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { displayForm } from '../../engine/exercises'
 import { pickAudioWords, type AudioSet } from '../../engine/practice'
 import { createRng } from '../../engine/rng'
-import { scheduler } from '../../data/instance'
+import { db, scheduler } from '../../data/instance'
+import { isDifficult, withDifficult } from '../../engine/difficult'
+import { DifficultButton } from '../DifficultButton'
 import { playWordAsync, preloadRecording, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from '../speech'
 import type { Props } from './shared'
-import { ChevronRightIcon, HeadphonesIcon, PauseIcon, PlayIcon } from '../icons'
+import { ChevronLeftIcon, ChevronRightIcon, HeadphonesIcon, PauseIcon, PlayIcon } from '../icons'
 
 const AUDIO_SETS: [AudioSet, string][] = [
   ['weak', 'Zayıf kelimeler'],
@@ -16,14 +18,21 @@ const GAPS = [2, 4, 6]
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 /**
- * Hands-free listening. Word → pause → meaning, or meaning → pause → word (recall: say it in
- * your head before you hear it). Passive, so it never touches the schedule.
+ * Hands-free listening ("walk mode"). Word → pause → meaning, or meaning → pause → word (recall: say it in
+ * your head before you hear it). Passive, so it never touches the schedule. Earphone and lock-screen buttons
+ * (play, pause, next, previous) work through the Media Session; the round can loop; a word that is hard can be
+ * marked with one tap, to be gathered in the practice of hard words.
  */
 export function AudioReview({ language, vocabulary, states, onExit }: Props & { onExit: () => void }) {
   const [set, setSet] = useState<AudioSet>('weak')
   const [direction, setDirection] = useState<'target' | 'turkish'>('target')
   const [gap, setGap] = useState(4)
   const [withExample, setWithExample] = useState(false)
+  // At the end the round starts again (a walk is longer than the list).
+  const [loop, setLoop] = useState(false)
+  const loopRef = useRef(loop)
+  loopRef.current = loop
+  const [marked, setMarked] = useState<Set<string>>(new Set())
   const words = useMemo(() => pickAudioWords(vocabulary, states, scheduler, new Date(), set, createRng(Date.now())), [vocabulary, states, set])
   const [index, setIndex] = useState(0)
   const [reveal, setReveal] = useState(false)
@@ -50,7 +59,10 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
     // Keep the screen on while listening, where the browser allows it.
     try {
       const nav = navigator as Navigator & { wakeLock?: { request: (t: 'screen') => Promise<{ release: () => Promise<void> }> } }
-      lock.current = (await nav.wakeLock?.request('screen')) ?? null
+      const taken = (await nav.wakeLock?.request('screen')) ?? null
+      // Stopped, or started again, while the browser was deciding: this one is let go at once, not kept until the tab hides.
+      if (run.current !== me) void taken?.release().catch(() => {})
+      else lock.current = taken
     } catch {
       // Not available: the screen may dim, audio continues while the page is open.
     }
@@ -83,9 +95,57 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
       if (live()) await pause(1200)
     }
     if (live()) {
+      if (loopRef.current && words.length) return void play(0)
       setPlaying(false)
       setIndex(words.length)
     }
+  }
+
+  /** Earphone and lock-screen buttons, and what the lock screen shows, while a round is on. */
+  const playRef = useRef(play)
+  playRef.current = play
+  const indexRef = useRef(index)
+  indexRef.current = index
+  const step = (by: number) => {
+    const was = playing
+    stop()
+    const next = Math.max(0, Math.min(words.length - 1, index + by))
+    setIndex(next)
+    if (was) void play(next)
+  }
+  const stepRef = useRef(step)
+  stepRef.current = step
+  const current = words[index]
+  useEffect(() => {
+    const ms = typeof navigator !== 'undefined' ? navigator.mediaSession : undefined
+    if (!ms || !playing || !current) return
+    try {
+      ms.metadata = new MediaMetadata({ title: displayForm(current), artist: 'Diloloji · Sesli tekrar' })
+      ms.setActionHandler('pause', () => stop())
+      ms.setActionHandler('play', () => void playRef.current(indexRef.current))
+      ms.setActionHandler('nexttrack', () => stepRef.current(1))
+      ms.setActionHandler('previoustrack', () => stepRef.current(-1))
+    } catch {
+      // No Media Session here: the buttons on the screen do the same.
+    }
+    return () => {
+      try {
+        for (const a of ['pause', 'play', 'nexttrack', 'previoustrack'] as const) ms.setActionHandler(a, null)
+      } catch {
+        // Nothing to take away.
+      }
+    }
+  }, [playing, current, stop])
+  const markHard = async (word: typeof current) => {
+    if (!word) return
+    const on = !(marked.has(word.id) || isDifficult(word))
+    await db.vocabulary.put(withDifficult(word, on))
+    setMarked((m) => {
+      const next = new Set(m)
+      if (on) next.add(word.id)
+      else next.delete(word.id)
+      return next
+    })
   }
 
   const w = words[index]
@@ -131,6 +191,9 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
             <button className="chip chip-sm" aria-pressed={withExample} onClick={() => setWithExample(!withExample)}>
               Örnek cümle de
             </button>
+            <button className="chip chip-sm" aria-pressed={loop} onClick={() => setLoop(!loop)} title="Liste bitince baştan başlar: uzun bir yürüyüş için">
+              Bitince baştan
+            </button>
           </div>
         </div>
       )}
@@ -169,18 +232,13 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
                   <PlayIcon size={16} /> {index === 0 ? 'Başlat' : 'Devam et'}
                 </button>
               )}
-              <button
-                className="btn btn-lg btn-quiet"
-                onClick={() => {
-                  const was = playing
-                  stop()
-                  const next = Math.min(words.length - 1, index + 1)
-                  setIndex(next)
-                  if (was) void play(next)
-                }}
-              >
+              <button className="btn btn-lg btn-quiet" onClick={() => step(-1)} disabled={index === 0} aria-label="Önceki kelime">
+                <ChevronLeftIcon size={16} className="inline-icon" />Önceki
+              </button>
+              <button className="btn btn-lg btn-quiet" onClick={() => step(1)}>
                 Sonraki<ChevronRightIcon size={16} className="inline-icon is-end" />
               </button>
+              <DifficultButton marked={marked.has(w.id) || isDifficult(w)} onToggle={() => void markHard(w)} />
             </div>
           </div>
         )

@@ -55,7 +55,7 @@ export async function GET(request: Request): Promise<Response> {
     )
     return Response.json(
       { episodes: episodes.filter((e) => e.audio && e.text.split(/\s+/).length >= 60) },
-      { headers: { 'cache-control': 'public, s-maxage=3600, stale-while-revalidate=86400' } },
+      { headers: { 'cache-control': 'private, max-age=3600, stale-while-revalidate=86400' } },
     )
   } catch {
     return Response.json({ error: 'feed unavailable' }, { status: 502 })

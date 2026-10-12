@@ -40,7 +40,7 @@ export async function GET(request: Request): Promise<Response> {
         return { ...item, source: feed.name, text: text || item.description }
       }),
     )
-    return Response.json({ articles }, { headers: { 'cache-control': 'public, s-maxage=1800, stale-while-revalidate=3600' } })
+    return Response.json({ articles }, { headers: { 'cache-control': 'private, max-age=1800, stale-while-revalidate=3600' } })
   } catch {
     return Response.json({ error: 'feed unavailable' }, { status: 502 })
   }

@@ -5289,3 +5289,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* A library text's "Çevrimdışı dinle" chip sits under the open button. */
 .offline-chip-row { display: flex; padding: 0 0.875rem 0.625rem; }
 .offline-chip.is-ready { color: var(--ok-text); }
+
+/* The last net (RootBoundary): plain, centred, no dependence on the rest of the app. */
+.root-error { max-width: 28rem; margin: 18vh auto 0; padding: 0 1.25rem; display: grid; gap: 1rem; text-align: center; color: var(--ink); }
+.root-error h1 { margin: 0; font-size: var(--t-xl); }
+.root-error p { margin: 0; color: var(--ink-soft); }
+.root-error-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }

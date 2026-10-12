@@ -1,6 +1,7 @@
 import type { Scheduler } from './scheduler'
 import { shuffle, type Rng } from './rng'
-import type { ExerciseType, UserWordState, VocabularyEntry } from './types'
+import type { CefrLevel, ExerciseType, UserWordState, VocabularyEntry } from './types'
+import { CEFR_LEVELS } from './cefrLevels'
 
 /**
  * Monthly retention exam: a surprise test on random learned words, no hints, regardless of what
@@ -46,14 +47,43 @@ export interface ExamResult {
   predicted: number
   /** Share answered right. */
   actual: number
+  /** Right answers by CEFR band of the word (only bands with questions; absent where no list exists). */
+  levels?: { level: CefrLevel; n: number; right: number }[]
+  /** Words answered wrong, for a "work on these" list. */
+  missed?: string[]
 }
 
-export function scoreExam(language: VocabularyEntry['language'], items: readonly ExamItem[], right: readonly boolean[], now: Date): ExamResult {
+/** A rough level from which band the learner still remembers: the highest with ≥2 questions and ≥70% right. */
+export function estimateLevel(levels: readonly { level: CefrLevel; n: number; right: number }[] | undefined): CefrLevel | undefined {
+  if (!levels || levels.reduce((s, l) => s + l.n, 0) < 6) return undefined
+  const ok = levels.filter((l) => l.n >= 2 && l.right / l.n >= 0.7).map((l) => CEFR_LEVELS.indexOf(l.level))
+  return ok.length ? CEFR_LEVELS[Math.max(...ok)] : undefined
+}
+
+/** The band with the weakest recall (≥2 questions, below 60% right), if any. */
+export function weakestLevel(levels: readonly { level: CefrLevel; n: number; right: number }[] | undefined): CefrLevel | undefined {
+  const weak = (levels ?? []).filter((l) => l.n >= 2 && l.right / l.n < 0.6).sort((a, b) => a.right / a.n - b.right / b.n)
+  return weak[0]?.level
+}
+
+export function scoreExam(language: VocabularyEntry['language'], items: readonly ExamItem[], right: readonly boolean[], now: Date, levelOf?: (entryId: string) => CefrLevel | undefined): ExamResult {
   const part = (type: ExamItem['type']) => {
     const idx = items.map((it, i) => (it.type === type ? i : -1)).filter((i) => i >= 0)
     return { n: idx.length, right: idx.filter((i) => right[i]).length }
   }
   const n = items.length
+  const bands = new Map<CefrLevel, { n: number; right: number }>()
+  if (levelOf) {
+    items.forEach((it, i) => {
+      const level = levelOf(it.entryId)
+      if (!level) return
+      const b = bands.get(level) ?? { n: 0, right: 0 }
+      b.n++
+      if (right[i]) b.right++
+      bands.set(level, b)
+    })
+  }
+  const missed = items.filter((_, i) => !right[i]).map((it) => it.entryId)
   return {
     language,
     at: now.toISOString(),
@@ -62,5 +92,7 @@ export function scoreExam(language: VocabularyEntry['language'], items: readonly
     recognition: part('mc_meaning'),
     predicted: n ? items.reduce((s, it) => s + it.predicted, 0) / n : 0,
     actual: n ? right.filter(Boolean).length / n : 0,
+    ...(bands.size ? { levels: CEFR_LEVELS.filter((l) => bands.has(l)).map((level) => ({ level, ...bands.get(level)! })) } : {}),
+    ...(missed.length ? { missed } : {}),
   }
 }

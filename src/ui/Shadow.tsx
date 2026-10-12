@@ -29,13 +29,14 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
   const [, tick] = useState(0)
   const live = useRef(true)
 
-  useEffect(
-    () => () => {
+  // Leaving the screen ends a recording in progress; the recording's address is let go when it changes or at the end.
+  useEffect(() => {
+    live.current = true
+    return () => {
       live.current = false
-      if (url) URL.revokeObjectURL(url)
-    },
-    [url],
-  )
+    }
+  }, [])
+  useEffect(() => () => (url ? URL.revokeObjectURL(url) : undefined), [url])
 
   useEffect(() => {
     if (phase !== 'speak') return

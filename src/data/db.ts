@@ -341,7 +341,26 @@ export class KelimeDB extends Dexie {
       if (quietWrites > 0 || !Object.keys(mods).length || 'editedAt' in mods) return
       return { editedAt: new Date().toISOString() }
     })
+    // Counts the writes to what a backup carries (a sync reads, merges and writes back, and must notice an answer saved in between).
+    const bump = () => {
+      this.writes++
+    }
+    for (const table of [this.vocabulary, this.wordStates, this.events, this.mistakes]) {
+      table.hook('creating', bump)
+      table.hook('updating', bump)
+      table.hook('deleting', bump)
+    }
+    const bumpMeta = (key: unknown) => {
+      // The sync's own bookkeeping does not count.
+      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup'))) this.writes++
+    }
+    this.meta.hook('creating', bumpMeta)
+    this.meta.hook('updating', (_mods, key) => bumpMeta(key))
+    this.meta.hook('deleting', bumpMeta)
   }
+
+  /** How many writes this database has taken since it was opened (see `bump`). */
+  writes = 0
 
   async addMedia(kind: MediaRow['kind'], blob: Blob): Promise<string> {
     const id = crypto.randomUUID()
@@ -1042,7 +1061,12 @@ export class KelimeDB extends Dexie {
 // ---------------------------------------------------------------------------
 
 /** v2 adds media (pictures/recordings) as data URLs. v1 backups still restore. */
-export const BACKUP_VERSION = 3
+/**
+ * Raise this whenever a field is added that `mergeBackups` carries: a device running older code would otherwise
+ * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
+ * a newer backup and is told to update (BackupVersionError) instead.
+ */
+export const BACKUP_VERSION = 4
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1189,9 +1213,19 @@ export function parseBackup(json: string): Backup {
     if (data[key] === undefined) data[key] = []
     else if (!Array.isArray(data[key])) throw new Error('Yedek dosyası bozuk görünüyor.')
   }
-  if (data.vocabulary.some((v: unknown) => !v || typeof (v as { id?: unknown }).id !== 'string')) {
+  if (data.vocabulary.some((v: unknown) => !v || typeof (v as { id?: unknown }).id !== 'string' || !Array.isArray((v as { senses?: unknown }).senses))) {
     throw new Error('Yedek dosyası bozuk görünüyor.')
   }
+  // The lists the app keeps under one key each: a wrong shape would be written as it is and break the screen that reads it.
+  for (const list of [data.sentences, data.lists, data.journal, data.exams, data.reading?.library]) {
+    if (list !== undefined && !Array.isArray(list)) throw new Error('Yedek dosyası bozuk görünüyor.')
+  }
+  // These dates are ISO strings in their own rows (the reviver above made Dates of them by their key name): back to strings,
+  // so reading them later does not find them "repairable" and rewrite the whole row.
+  const iso = (v: unknown) => (v instanceof Date ? v.toISOString() : v)
+  for (const t of data.reading?.library ?? []) if (t) t.addedAt = iso(t.addedAt)
+  for (const s of data.sentences ?? []) if (s) s.addedAt = iso(s.addedAt)
+  for (const l of data.lists ?? []) if (l) l.createdAt = iso(l.createdAt)
   return data as Backup
 }
 

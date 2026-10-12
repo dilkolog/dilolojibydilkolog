@@ -51,7 +51,7 @@ async function fetchNewsSample(feedId: string): Promise<{ title: string; text: s
       // try next item
     }
   }
-  return { title: items[0]?.title ?? 'News sample', text: items[0]?.summary ?? '' }
+  return { title: items[0]?.title ?? 'News sample', text: items[0]?.description ?? '' }
 }
 
 async function run() {

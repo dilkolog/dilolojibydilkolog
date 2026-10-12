@@ -172,3 +172,30 @@ describe('a word edited on another device', () => {
   }, 60_000)
 })
 
+describe('an answer saved while a sync is reading', () => {
+  it('is not erased by writing the merge back: the sync goes round again with it', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
+    const phone = new KelimeDB('t-midway-phone')
+    const laptop = new KelimeDB('t-midway-laptop')
+    await laptop.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await syncNow(laptop, acc)
+    await syncNow(phone, acc)
+    vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
+    // The answer lands just after the phone's events were read for the sync, once.
+    const original = phone.events.toArray.bind(phone.events)
+    let injected = false
+    vi.spyOn(phone.events, 'toArray').mockImplementation((async () => {
+      const rows = await original()
+      if (!injected) {
+        injected = true
+        await phone.events.put({ id: 'late', entryId: 'fr:maison', language: 'fr', skill: 'recognition', exerciseType: 'mc_meaning', direction: 'target_to_native', verdict: 'correct', correct: true, rating: 3, responseMs: 1, hintsUsed: 0, retrievabilityBefore: 1, stabilityAfter: 1, scheduledDays: 1, mode: 'normal', timestamp: new Date() } as never)
+      }
+      return rows
+    }) as never)
+    await syncNow(phone, acc)
+    expect(injected).toBe(true)
+    expect((await phone.events.toArray()).map((e) => e.id)).toContain('late')
+  }, 60_000)
+})
+

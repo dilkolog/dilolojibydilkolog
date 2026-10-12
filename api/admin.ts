@@ -24,10 +24,24 @@ async function authorised(request: Request): Promise<Response | null> {
 
 type Entry = { id: string; username: string; note?: string; at: string }
 
+/** How many of the newest entries of one kind are shown (the rest of a long queue waits behind them). */
+const SHOWN = 200
+/** Listing stops here: a flooded queue must not make the page unreadable. */
+const LIST_CAP = 5000
+
 async function entries(prefix: string): Promise<Entry[]> {
-  const { blobs } = await list({ prefix })
+  // The whole list is paged through and the newest taken: the first page is in no useful order, so a flood of
+  // requests could otherwise hide a real applicant.
+  const all: { pathname: string; uploadedAt?: Date | string }[] = []
+  let cursor: string | undefined
+  do {
+    const page = await list({ prefix, cursor })
+    all.push(...page.blobs)
+    cursor = page.hasMore && all.length < LIST_CAP ? page.cursor : undefined
+  } while (cursor)
+  const newest = all.sort((a, b) => new Date(b.uploadedAt ?? 0).getTime() - new Date(a.uploadedAt ?? 0).getTime()).slice(0, SHOWN)
   const out = await Promise.all(
-    blobs.slice(0, 200).map(async (b) => {
+    newest.map(async (b) => {
       const id = b.pathname.match(/([0-9a-f]{64})\.json$/)?.[1]
       const raw = id ? await readText(b.pathname) : null
       if (!id || !raw) return null

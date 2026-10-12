@@ -39,6 +39,20 @@ export async function recordPath(endpoint: string): Promise<string> {
   return `push/${[...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 40)}.json`
 }
 
+/**
+ * The browsers' own push services: the server later POSTs to the saved address, so an address anyone could
+ * make up (an internal host, a server that never answers) is not accepted.
+ */
+const PUSH_HOSTS = [/^fcm\.googleapis\.com$/, /^android\.googleapis\.com$/, /(^|\.)push\.services\.mozilla\.com$/, /(^|\.)push\.apple\.com$/, /(^|\.)notify\.windows\.com$/]
+export function isPushService(endpoint: string): boolean {
+  try {
+    const url = new URL(endpoint)
+    return url.protocol === 'https:' && !url.port && PUSH_HOSTS.some((re) => re.test(url.hostname))
+  } catch {
+    return false
+  }
+}
+
 const DAY = /^\d{4}-\d{2}-\d{2}$/
 const isRange = (v: unknown): v is { from: string; to: string } =>
   !!v && typeof v === 'object' && DAY.test(String((v as { from?: unknown }).from)) && DAY.test(String((v as { to?: unknown }).to))
@@ -58,7 +72,7 @@ export async function POST(request: Request): Promise<Response> {
     return new Response(null, { status: 204 })
   }
   const sub = body.subscription as PushRecord['subscription'] | undefined
-  if (body.action !== 'save' || !sub || typeof sub.endpoint !== 'string' || !sub.endpoint.startsWith('https://') || !sub.keys?.p256dh || !sub.keys?.auth) {
+  if (body.action !== 'save' || !sub || typeof sub.endpoint !== 'string' || !isPushService(sub.endpoint) || !sub.keys?.p256dh || !sub.keys?.auth) {
     return new Response('bad request', { status: 400 })
   }
   const allowed = await allowedIds()

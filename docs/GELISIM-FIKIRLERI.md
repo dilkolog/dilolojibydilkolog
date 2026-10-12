@@ -226,3 +226,12 @@ Geliştirici ekibin iş yükünü dengelemek adına önerilen 3 aşamalı uygula
 ---
 
 *Bu belge, gelecekteki turların planlanması ve mimari kararlar için canlı bir referans kılavuz olarak saklanmaktadır.*
+
+---
+
+## 6. Sonradan eklenen fikirler (Claude Code, 2026-10-12)
+
+* **Kelimeye kendi bağlamını bağla** (*önemli değil, sonra*): Kelime sayfasında "ilk karşılaştığın yer" olarak kelimeyi gördüğün metin, haber ya da videoyu göster; bağlamla hatırlama güçlenir. Okumada kaydedilen karşılaşmalar (`encounters`) zaten var; eksik olan, hangi metinde olduğunun saklanması.
+* **Yapılacak değil, yapılmayacak:** Cümle düzeyinde telaffuz karşılaştırması (fikir 14'ün gölgeleme tarafı) kullanıcı tarafından istenmedi; yeniden önerme.
+* **Yapıldı (2026-10-12):** Çevrimdışı dinleme, Paylaş → Okuma, eşitlemede "başka cihaz düzenledi" özeti ve Geri al, Hatırlama sınavında seviye kırılımı (CEFR bandına göre doğru oranı, kaba seviye tahmini, unutulan kelimeler; yalnızca FR/ES), sesli tekrarda yürüyüş modu eklemeleri (kilit ekranı düğmeleri, Önceki, baştan döngü, zor işareti).
+
