@@ -6,8 +6,13 @@ import { approvalOn, isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
  * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
  * the learner's sync code; this function only stores and returns them (private Blob store).
  *
- * GET  /api/sync?id=<64 hex>&part=<core | m-<40 hex>>  → the bytes, or 404
- * PUT  same query, body = bytes                         → stored (with `If-Match: <etag of the GET>`: 412 if the file changed since)
+ * GET  /api/sync?id=<64 hex>&part=<core | m-<40 hex> | ev-YYYY-MM | tx-<40 hex>>  → the bytes, or 404
+ * PUT  same query, body = bytes                         → stored (with `If-Match: <etag of the GET>`: 412 if the file changed since;
+ *                                                          with `If-None-Match: *`: only if nothing is there yet, else 412)
+ *
+ * Parts: "core" (everything small, plus the list of the others), "m-…" (a picture or recording), "ev-YYYY-MM"
+ * (the answers of one month) and "tx-…" (one reading text). Splitting keeps every file far below the request limit
+ * and lets a sync send only what changed.
  *
  * Accounts (username + password) send an access token in `x-sync-auth` and need the owner's
  * approval first once ADMIN_TOKEN is set (_account.ts); a refusal for want of it is 403 "approval required". The first write keeps
@@ -20,7 +25,7 @@ import { approvalOn, isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
  * GET ?id=…&history=1 lists the days.
  */
 const ID = /^[0-9a-f]{64}$/
-const PART = /^(core|m-[0-9a-f]{40}|h-\d{4}-\d{2}-\d{2})$/
+const PART = /^(core|m-[0-9a-f]{40}|tx-[0-9a-f]{40}|ev-\d{4}-\d{2}|h-\d{4}-\d{2}-\d{2})$/
 const POINTS_KEPT = 7
 /** Vercel's request body limit is 4.5 MB; stay under it. */
 const MAX_BYTES = 4_400_000
@@ -162,10 +167,13 @@ async function handlePut(request: Request): Promise<Response> {
   // The core carries the ETag it was read with: if another device wrote it since, nothing is overwritten (412)
   // and the device merges again with what is there now.
   const ifMatch = request.headers.get('if-match') ?? undefined
+  // A part that is new: created only if nobody else made it in the meantime.
+  const createOnly = request.headers.get('if-none-match') === '*'
   try {
-    await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/octet-stream', ...(ifMatch ? { ifMatch } : {}) })
+    await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: !createOnly, contentType: 'application/octet-stream', ...(ifMatch ? { ifMatch } : {}) })
   } catch (e) {
     if (ifMatch && (e as { name?: string })?.name === 'BlobPreconditionFailedError') return new Response('changed', { status: 412 })
+    if (createOnly && /exist/i.test((e as Error)?.message ?? '')) return new Response('changed', { status: 412 })
     throw e
   }
   return new Response(null, { status: 204 })

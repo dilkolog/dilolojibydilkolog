@@ -35,7 +35,7 @@ function setupSyncMock(context: BrowserContext) {
     if (req.method() === 'PUT') {
       const ifMatch = req.headers()['if-match']
       const existing = blobs.get(key)
-      if (ifMatch && existing && existing.etag !== ifMatch) {
+      if ((ifMatch && existing && existing.etag !== ifMatch) || (req.headers()['if-none-match'] === '*' && existing)) {
         return route.fulfill({ status: 412, body: 'changed' })
       }
       version++
@@ -223,7 +223,7 @@ test.describe.serial('Two devices encrypted sync', () => {
 
       // Device A deletes the word
       await openScreen(pageA, 'Kelimeler')
-      await pageA.locator('.word-row, .card', { hasText: 'livre' }).first().click()
+      await pageA.locator('.word-row', { hasText: 'livre' }).first().click()
       await pageA.getByRole('button', { name: 'Kelimeyi sil' }).click()
       await expect(pageA.locator('.word-row, .card', { hasText: 'livre' })).toHaveCount(0)
 

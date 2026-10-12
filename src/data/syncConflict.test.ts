@@ -21,7 +21,7 @@ vi.mock('@vercel/blob', () => ({
 
 const api = await import('../../api/sync')
 const { clearAccessCache } = await import('../../api/_account')
-const { deriveAccount, restoreReplaced, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
+const { deriveAccount, open, restoreReplaced, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
@@ -199,3 +199,147 @@ describe('an answer saved while a sync is reading', () => {
   }, 60_000)
 })
 
+
+describe('answers and texts travel in parts of their own', () => {
+  const answer = (id: string, at: string) =>
+    ({ id, entryId: 'fr:maison', language: 'fr', skill: 'recognition', exerciseType: 'mc_meaning', direction: 'target_to_native', verdict: 'correct', correct: true, rating: 3, responseMs: 1, hintsUsed: 0, retrievabilityBefore: 1, stabilityAfter: 1, scheduledDays: 1, mode: 'normal', timestamp: new Date(at) }) as never
+  const text = (id: string, history = 0) => ({ id, language: 'fr', title: id, text: `Bonjour ${id}`, addedAt: '2026-10-01T09:00:00.000Z', history: Array.from({ length: history }, (_, i) => ({ at: `2026-10-0${i + 1}T09:00:00.000Z`, coverage: 0.5 })) })
+  const parts = () => [...blobs.keys()].filter((k) => /\/(ev|tx)-/.test(k)).map((k) => k.split('/')[2].replace('.bin', '')).sort()
+  /** Counts what the PUTs of a sync wrote, by part name. */
+  let puts: string[] = []
+  beforeEach(() => {
+    puts = []
+    const stub = globalThis.fetch
+    vi.stubGlobal('fetch', async (url: string, init: RequestInit = {}) => {
+      if (init.method === 'PUT') puts.push(new URL(`https://app.test${url}`).searchParams.get('part')!)
+      return stub(url, init)
+    })
+  })
+
+  async function joined() {
+    const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
+    return acc
+  }
+
+  it('each month of answers and each text is a file; the core holds neither, and the other device gets them', async () => {
+    const acc = await joined()
+    const phone = new KelimeDB('t-parts-phone')
+    const laptop = new KelimeDB('t-parts-laptop')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await phone.events.bulkPut([answer('a1', '2026-08-03T09:00:00Z'), answer('a2', '2026-09-03T09:00:00Z'), answer('a3', '2026-09-04T09:00:00Z')])
+    await phone.meta.put({ key: 'library', value: [text('t1')] })
+    await syncNow(phone, acc)
+    expect(parts().filter((p) => p.startsWith('ev-'))).toEqual(['ev-2026-08', 'ev-2026-09'])
+    expect(parts().filter((p) => p.startsWith('tx-'))).toHaveLength(1)
+
+    const core = JSON.parse(new TextDecoder().decode(await open(new Uint8Array(blobs.get(`sync/${acc.id}/core.bin`)!.bytes) as Uint8Array<ArrayBuffer>, acc)))
+    expect(core.events).toEqual([])
+    expect(core.reading.library).toEqual([])
+    expect(Object.keys(core.shards).sort()).toEqual(parts().sort())
+    expect(core.version).toBe(7)
+
+    await syncNow(laptop, acc)
+    expect((await laptop.events.toArray()).map((e) => e.id).sort()).toEqual(['a1', 'a2', 'a3'])
+    expect((((await laptop.meta.get('library'))?.value ?? []) as { id: string }[]).map((t) => t.id)).toEqual(['t1'])
+  }, 60_000)
+
+  it('a sync with nothing new sends no part, and one new answer sends only its month', async () => {
+    const acc = await joined()
+    const phone = new KelimeDB('t-parts-quiet')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await phone.events.bulkPut([answer('a1', '2026-08-03T09:00:00Z'), answer('a2', '2026-09-03T09:00:00Z')])
+    await phone.meta.put({ key: 'library', value: [text('t1'), text('t2')] })
+    await syncNow(phone, acc)
+
+    puts = []
+    await syncNow(phone, acc)
+    expect(puts).toEqual(['core'])
+
+    vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
+    await phone.events.put(answer('a3', '2026-10-06T09:00:00Z'))
+    puts = []
+    await syncNow(phone, acc)
+    expect(puts.sort()).toEqual(['core', 'ev-2026-10'])
+  }, 60_000)
+
+  it('answers both devices gave in the same month are both kept', async () => {
+    const acc = await joined()
+    const phone = new KelimeDB('t-parts-same-phone')
+    const laptop = new KelimeDB('t-parts-same-laptop')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await phone.events.put(answer('p0', '2026-10-01T09:00:00Z'))
+    await syncNow(phone, acc)
+    await syncNow(laptop, acc)
+    await phone.events.put(answer('p1', '2026-10-02T09:00:00Z'))
+    await laptop.events.put(answer('l1', '2026-10-03T09:00:00Z'))
+    await syncNow(phone, acc)
+    await syncNow(laptop, acc)
+    await syncNow(phone, acc)
+    for (const db of [phone, laptop]) expect((await db.events.toArray()).map((e) => e.id).sort()).toEqual(['l1', 'p0', 'p1'])
+  }, 60_000)
+
+  it('two devices syncing at once do not lose each other\'s answers in the shared month', async () => {
+    const acc = await joined()
+    const phone = new KelimeDB('t-parts-race-phone')
+    const laptop = new KelimeDB('t-parts-race-laptop')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await phone.events.put(answer('p0', '2026-10-01T09:00:00Z'))
+    await syncNow(phone, acc)
+    await syncNow(laptop, acc)
+    await phone.events.put(answer('p1', '2026-10-02T09:00:00Z'))
+    await laptop.events.put(answer('l1', '2026-10-03T09:00:00Z'))
+    beforeCorePut = async () => void (await syncNow(phone, acc))
+    await syncNow(laptop, acc)
+    await syncNow(phone, acc)
+    for (const db of [phone, laptop]) expect((await db.events.toArray()).map((e) => e.id).sort()).toEqual(['l1', 'p0', 'p1'])
+  }, 60_000)
+
+  it('a text read further on one device replaces the shorter history on the other; a deleted text is gone', async () => {
+    const acc = await joined()
+    const phone = new KelimeDB('t-parts-text-phone')
+    const laptop = new KelimeDB('t-parts-text-laptop')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await phone.meta.put({ key: 'library', value: [text('t1'), text('t2')] })
+    await syncNow(phone, acc)
+    await syncNow(laptop, acc)
+    vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
+    await laptop.meta.put({ key: 'library', value: [text('t1', 2), text('t2')] })
+    await laptop.addDeleted(['t2'])
+    await laptop.meta.put({ key: 'library', value: [text('t1', 2)] })
+    await syncNow(laptop, acc)
+    await syncNow(phone, acc)
+    const library = (await phone.meta.get('library'))?.value as { id: string; history: unknown[] }[]
+    expect(library.map((t) => [t.id, t.history.length])).toEqual([['t1', 2]])
+  }, 60_000)
+
+  it('still reads a core file from before the split, answers and all, and the next sync splits it', async () => {
+    const acc = await joined()
+    const laptop = new KelimeDB('t-parts-old-laptop')
+    const old = new KelimeDB('t-parts-old-src')
+    await old.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await old.events.put(answer('o1', '2026-09-10T09:00:00Z'))
+    const { exportBackup } = await import('./db')
+    const { seal } = await import('./sync')
+    const backup = JSON.parse(await exportBackup(old, new Date(), { media: false }))
+    backup.version = 6
+    const sealed = await seal(new TextEncoder().encode(JSON.stringify(backup)), acc)
+    blobs.set(`sync/${acc.id}/core.bin`, { bytes: sealed, etag: '"old"' })
+    await syncNow(laptop, acc)
+    expect((await laptop.events.toArray()).map((e) => e.id)).toEqual(['o1'])
+    expect(parts()).toEqual(['ev-2026-09'])
+  }, 60_000)
+
+  it('a part left behind by a sync that never finished does not block the next one', async () => {
+    const acc = await joined()
+    const phone = new KelimeDB('t-parts-orphan')
+    await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
+    await phone.events.put(answer('p0', '2026-10-01T09:00:00Z'))
+    await syncNow(phone, acc)
+    // Wipe the core only: the part stays, unlisted.
+    blobs.delete(`sync/${acc.id}/core.bin`)
+    await expect(syncNow(phone, acc)).resolves.toBeDefined()
+    expect(blobs.has(`sync/${acc.id}/core.bin`)).toBe(true)
+    expect((await phone.events.toArray()).map((e) => e.id)).toEqual(['p0'])
+  }, 60_000)
+})
