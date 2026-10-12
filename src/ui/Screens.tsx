@@ -8,6 +8,7 @@ import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import { type DailyPlan, type NewWordsBlock, type PlanReason } from '../engine/dailyPlan'
 
+import type { QuestMetric } from '../engine/quests'
 import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 
 import { relativeTime } from './format'
@@ -111,6 +112,7 @@ export function Home({
   onStory,
   onGames,
   onShortRound,
+  onQuest,
   onSentenceGame,
   formsDue = 0,
   onForms,
@@ -155,6 +157,8 @@ export function Home({
   onGames?: () => void
   /** A short round of the most urgent questions, for a pile of reviews too big to face at once. */
   onShortRound?: () => void
+  /** Starts the round that fills one of the day's quests (`remaining` answers of its kind to go). */
+  onQuest?: (id: QuestMetric, remaining: number) => void
   /** Sentence practice: due sentence cards, else back-translation of the sentences translated. */
   onSentenceGame?: (game: 'sentences' | 'back') => void
   /** Verb forms due for review, and the way to review them. */
@@ -603,23 +607,37 @@ export function Home({
           <section className="quests">
             <h2 className="section-title">Günün görevleri</h2>
             <ul className="quest-list">
-              {game.quests.map((q) => (
-                <li key={q.id} className={q.done ? 'is-done' : ''}>
-                  <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
-                  <span className="quest-body">
-                    <span className="quest-top">
-                      <strong>{q.title}</strong>
-                      <span className="small muted">
-                        {q.value}/{q.target}
+              {game.quests.map((q) => {
+                const row = (
+                  <>
+                    <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
+                    <span className="quest-body">
+                      <span className="quest-top">
+                        <strong>{q.title}</strong>
+                        <span className="small muted">
+                          {q.value}/{q.target}
+                        </span>
+                      </span>
+                      <span className="quest-bar">
+                        <span style={{ width: `${(q.value / q.target) * 100}%` }} />
                       </span>
                     </span>
-                    <span className="quest-bar">
-                      <span style={{ width: `${(q.value / q.target) * 100}%` }} />
-                    </span>
-                  </span>
-                  <span className="quest-xp">+{q.xp} XP</span>
-                </li>
-              ))}
+                    <span className="quest-xp">+{q.xp} XP</span>
+                  </>
+                )
+                // A quest still open starts the round that fills it.
+                return onQuest && !q.done ? (
+                  <li key={q.id} className="is-go">
+                    <button type="button" className="quest-row" onClick={() => onQuest(q.id, q.target - q.value)} title="Bu görevi tamamlayacak çalışmayı başlat">
+                      {row}
+                    </button>
+                  </li>
+                ) : (
+                  <li key={q.id} className={q.done ? 'is-done' : ''}>
+                    {row}
+                  </li>
+                )
+              })}
             </ul>
           </section>
         )}

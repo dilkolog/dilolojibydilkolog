@@ -784,6 +784,20 @@ test('a word met yesterday comes back as a card before its first question: the a
   await expect(page.locator('.session-stage')).not.toContainText('Önce bir bak')
 })
 
+test("a quest of the day starts the round that fills it: new words → introductions; typing with no words learned says so", async ({ page }) => {
+  test.setTimeout(90_000)
+  // 2026-03-09: answers, new words, no hints. 2026-03-04: answers, listening, typing.
+  await page.clock.setFixedTime(new Date('2026-03-09T10:00:00'))
+  await startWithSamples(page)
+  await page.locator('.quest-row', { hasText: 'yeni kelimeyle tanış' }).click()
+  await expect(page.locator('.session-stage')).toContainText('Yeni kelime')
+  await page.clock.setFixedTime(new Date('2026-03-04T10:00:00'))
+  await page.reload()
+  await page.locator('.quest-row', { hasText: 'Yazarak' }).click()
+  await expect(page.getByText('Bu görev için uygun kelime bulunamadı')).toBeVisible()
+  await expect(page.locator('.session-stage')).toHaveCount(0)
+})
+
 test('reading: reaching the end saves the meetings with list words on its own; finishing is up top too', async ({ page }) => {
   test.setTimeout(90_000)
   await startWithSamples(page)
