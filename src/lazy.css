@@ -1485,4 +1485,9 @@ button.badge-card:active { transform: none; }
 }
 .refresh-stage { height: auto; min-height: 14rem; }
 .refresh-card { position: relative; inset: auto; min-height: 14rem; }
-.offline-chip-row { display: flex; padding: 0 0.875rem 0.625rem; }
+.offline-chip-row { display: flex; padding: 0 0.875rem 0.625rem; }.tf-card { align-items: center; text-align: center; padding-block: 2rem; }
+.tf-equals { margin: 0; font-size: var(--t-xl); color: var(--ink-soft); }
+.test-match { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
+.test-match-col { display: grid; gap: 0.5rem; align-content: start; }
+.test-match .option.is-picked { box-shadow: 0 0 0 3px var(--lang); }
+.test-match .option.is-done { opacity: 0.45; }

@@ -40,6 +40,8 @@ import { GenderGame } from './games/GenderGame'
 import { AccentGame } from './games/AccentGame'
 import { ACCENT_MIN_WORDS, accentedWords } from './games/accentedWords'
 import { SwipeCards } from './games/SwipeCards'
+import { TrueFalseGame } from './games/TrueFalseGame'
+import { PracticeTest } from './games/PracticeTest'
 import { AudioReview } from './games/AudioReview'
 import { BossArena } from './games/BossArena'
 import { PageHeader } from './PageHeader'
@@ -82,6 +84,8 @@ export function GamesScreen(
   // Which games are played, counted on this device (Ayarlar → Kullanım).
   useEffect(() => {
     if (game) recordVisit(`games:${game}`)
+    // A game opens at its top, not where the list was scrolled to.
+    window.scrollTo(0, 0)
   }, [game])
   const [dueSentenceCount, setDueSentenceCount] = useState(0)
   useEffect(() => {
@@ -125,6 +129,8 @@ export function GamesScreen(
     if (game === 'boss') return <BossArena {...p} onExit={() => setGame(null)} />
     if (game === 'audio') return <AudioReview {...p} onExit={() => setGame(null)} />
     if (game === 'swipe') return <SwipeCards {...p} onExit={() => setGame(null)} />
+    if (game === 'truefalse') return <TrueFalseGame {...p} onExit={() => setGame(null)} />
+    if (game === 'test') return <PracticeTest {...p} onExit={() => setGame(null)} />
     if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
@@ -154,6 +160,8 @@ export function GamesScreen(
       tone: 'review',
       cards: [
         { id: 'swipe', emoji: '👆', name: 'Kaydırmalı kartlar', text: 'Anlamı düşün, dokunup bak; bildiysen sağa, bilmediysen sola.', status: p.states.length ? 'Zayıf kelimelerden başlar' : learnFirst, disabled: p.states.length === 0 },
+        { id: 'truefalse', emoji: '✅', name: 'Doğru mu, yanlış mı?', text: 'Kelimenin yanındaki anlam doğru mu, başka bir kelimenin mi? Hızlı, tek elle.', status: p.vocabulary.length >= 3 ? 'Yarısı doğru, yarısı tuzak' : learnFirst, disabled: p.vocabulary.length < 3 },
+        { id: 'test', emoji: '📋', name: 'Deneme sınavı', text: 'Kendi kelimelerinden karışık sınav: seçmeli, yazma, doğru/yanlış, eşleştirme.', status: p.vocabulary.length >= 3 ? 'Yanlışlarınla yeni sınav kurulur' : learnFirst, disabled: p.vocabulary.length < 3 },
         { id: 'sentences', emoji: '💬', name: 'Cümle kartları', text: 'Okurken kaydettiğin cümleler: boşluk, dikte ve çeviri.', status: dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet', scheduled: true, due: dueSentenceCount > 0 },
         { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz (en iyisi ertesi gün); farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır${backRested ? ` · ${backRested} tanesi önceki günlerden` : ''}` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
         { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: bossCount === 0 ? 'Henüz boss yok: bir kelime sık yanlış olunca belirir' : `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss', disabled: bossCount === 0 },
