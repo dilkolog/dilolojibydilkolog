@@ -21,6 +21,8 @@ export const prefs = {
   targetDefinitions: false,
   typingShare: 'balanced' as TypingShare,
   haptics: true,
+  autoAdvance: 0,
+  keepAwake: true,
   hideVosotros: false,
   /** Question types switched off (Settings → Sorular), for the places that build questions outside the plan. */
   exerciseOff: [] as ExerciseType[],
@@ -48,6 +50,8 @@ export function applySettings(s: Settings) {
   // Text size: the root font size scales every rem in the app.
   root.style.fontSize = { normal: '', large: '112.5%', xlarge: '125%' }[s.textScale ?? 'normal']
   prefs.haptics = s.haptics ?? true
+  prefs.autoAdvance = s.autoAdvance ?? 0
+  prefs.keepAwake = s.keepAwake ?? true
   prefs.hideVosotros = s.hideVosotros ?? false
   prefs.exerciseOff = engineFlags(s.exercisePrefs, s.typedBlanks).off ?? []
   // Calm is the dark theme plus a flag that turns its colours down (see index.css).

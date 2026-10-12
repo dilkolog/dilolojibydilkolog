@@ -35,6 +35,7 @@ export function LookSettings({
           />
         </Row>
         <Toggle label="Titreşim" help="Telefonda doğru cevapta kısa, yanlışta çift titreşim (Android; iPhone tarayıcıları desteklemiyor)." checked={settings.haptics ?? true} onChange={(v) => set('haptics', v)} />
+        <Toggle label="Ekranı açık tut" help="Oturum sürerken ekran kararmaz (desteklenen tarayıcılarda)." checked={settings.keepAwake !== false} onChange={(v) => set('keepAwake', v)} />
         <div className="desktop-only">
           <Toggle label="Klavye kısayollarını göster" help="Oturum ekranının altındaki kısayol listesi." checked={settings.showKeyLegend} onChange={(v) => set('showKeyLegend', v)} />
         </div>

@@ -27,6 +27,9 @@ export function AnswerSettings({
             format={(v) => ({ low: 'Az', balanced: 'Dengeli', high: 'Çok' })[v]}
           />
         </Row>
+        <Row label="Doğruda otomatik devam" help="Düz bir doğru cevaptan sonra sonraki soru kendiliğinden gelir. Yanlış cevapta ve açıklaması olan cevapta beklenir.">
+          <Chips<number> options={[0, 1, 2]} value={settings.autoAdvance ?? 0} onChange={(v) => set('autoAdvance', v)} format={(v) => (v === 0 ? 'Kapalı' : `${v} sn`)} />
+        </Row>
         <Row label="İpucu gecikmesi" help="İpuçları ancak bu süre sonra açılır; önce hatırlamaya çalışırsın.">
           <Chips options={HINT_DELAYS} value={settings.hintDelaySec} onChange={(v) => set('hintDelaySec', v)} format={(s) => (s ? `${s} sn` : 'Hemen')} />
         </Row>
