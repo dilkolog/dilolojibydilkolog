@@ -8,7 +8,7 @@ import { KnownWordsCard } from './KnownWords'
 import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
 import { saveSentence } from './saveSentence'
-import { analyzeText, finishReading, type ReadToken } from '../engine/reading'
+import { analyzeText, coverageLine, finishReading, type ReadToken } from '../engine/reading'
 import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
@@ -198,6 +198,13 @@ export function ReadingScreen({
   }, [db, language])
 
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
+  // Where each text of the library stands for the reader now: only while the library itself is on screen.
+  const previews = useMemo(() => {
+    const out = new Map<string, string>()
+    if (text) return out
+    for (const t of library ?? []) out.set(t.id, coverageLine(analyzeText(t.text, language, vocabulary, states, known, ignored)))
+    return out
+  }, [text, library, language, vocabulary, states, known, ignored])
   const masks = useMemo(() => (deduce && !listenFirst && analysis ? maskPositions(analysis.paragraphs, language) : new Set<string>()), [deduce, listenFirst, analysis, language])
   const formGroups = useMemo(() => (showForms && tensesReady && analysis && language !== 'en' ? groupByTense(textForms(language, analysis)) : []), [showForms, tensesReady, analysis, language])
   // Listening: the sentence being heard, lit in the text; a sentence's start, to jump to.
@@ -652,7 +659,7 @@ export function ReadingScreen({
                     onRemove={() => removeBook(group.id)}
                   />
                 ) : (
-                  <LibraryItem key={group.id} item={group} now={now} onOpen={open} onRemove={remove} />
+                  <LibraryItem key={group.id} item={group} now={now} preview={previews.get(group.id)} onOpen={open} onRemove={remove} />
                 ),
               )}
             </ul>

@@ -73,7 +73,7 @@ export function BookItem({
                   {c.title}
                 </button>
                 <span className={`small chapter-cov zone-${coverageZone(a.coverage)}`}>%{Math.round(a.coverage * 100)}</span>
-                <span className="small muted">{a.counts.unseen} yeni</span>
+                <span className="small muted">{a.unknownWords} yeni kelime</span>
                 {c.readAt && <CheckIcon size={14} className="muted" />}
               </li>
             )

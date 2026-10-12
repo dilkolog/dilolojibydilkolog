@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { loadStorybooks, type Storybook } from '../data/storybooks'
-import { analyzeText, coverageZone } from '../engine/reading'
+import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { HeadphonesIcon } from './icons'
 
-const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
 
 /**
  * Easy illustrated stories read aloud (Global Storybooks, CC BY), French and Spanish: a picture and
@@ -38,7 +37,7 @@ export function StorybooksPicker({
     () =>
       stories
         .filter((s) => level === 'all' || s.level === level)
-        .map((s) => ({ s, coverage: analyzeText(s.pages.join('\n'), language, vocabulary, states, known).coverage })),
+        .map((s) => ({ s, cov: analyzeText(s.pages.join('\n'), language, vocabulary, states, known) })),
     [stories, level, language, vocabulary, states, known],
   )
   if (!stories.length) return null
@@ -58,7 +57,7 @@ export function StorybooksPicker({
         ))}
       </div>
       <ul className="library">
-        {rated.map(({ s, coverage }) => (
+        {rated.map(({ s, cov }) => (
           <li key={s.id}>
             <button type="button" className="word-link library-open" onClick={() => onRead(s)}>
               <div className="row justify-between items-baseline gap-2">
@@ -66,7 +65,7 @@ export function StorybooksPicker({
                 <span className="badge badge-sm">Seviye {s.level}</span>
               </div>
               <span className="small muted">
-                <HeadphonesIcon size={14} className="inline-icon" /> {s.pages.length} sayfa · {s.words} kelime · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
+                <HeadphonesIcon size={14} className="inline-icon" /> {s.pages.length} sayfa · {s.words} kelime · {coverageLine(cov)}
               </span>
             </button>
           </li>

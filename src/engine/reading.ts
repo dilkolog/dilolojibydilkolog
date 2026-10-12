@@ -37,6 +37,8 @@ export interface ReadingAnalysis {
   coverage: number
   /** Share known or already in the word list. */
   coverageWithList: number
+  /** Different words of the text that are neither known nor in the word list: what reading it would bring new. */
+  unknownWords: number
   /** Sentences with exactly one unknown word: the ideal place to meet it (i+1). */
   iPlusOne: { sentence: string; word: string; key: string }[]
 }
@@ -110,8 +112,11 @@ export function analyzeText(
     )
 
   const total = counts.known + counts.learning + counts.new + counts.unseen
+  const unseenKeys = new Set<string>()
+  for (const para of paragraphs) for (const sent of para) for (const t of sent.tokens) if (t.status === 'unseen' && t.key) unseenKeys.add(t.key)
   return {
     paragraphs,
+    unknownWords: unseenKeys.size,
     counts,
     total,
     coverage: total ? counts.known / total : 0,
@@ -130,7 +135,16 @@ export function contextEncounters(events: readonly Pick<ReviewEvent, 'exerciseTy
   return events.filter((e) => CONTEXT_EXERCISES.has(e.exerciseType)).length + fromReading
 }
 
+const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
+
 export type CoverageZone = 'easy' | 'ideal' | 'hard' | 'too_hard'
+
+/** The line a text carries in a picker: "%92 biliyorsun (rahat) · 14 yeni kelime". */
+export function coverageLine(a: Pick<ReadingAnalysis, 'coverage' | 'unknownWords'>): string {
+  const zone = ZONE_LABEL[coverageZone(a.coverage)]
+  const news = a.unknownWords === 0 ? 'yeni kelime yok' : `${a.unknownWords} yeni kelime`
+  return `%${Math.round(a.coverage * 1000) / 10} biliyorsun (${zone}) · ${news}`
+}
 
 export function coverageZone(coverage: number): CoverageZone {
   if (coverage >= 0.98) return 'easy'

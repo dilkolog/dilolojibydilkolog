@@ -9,6 +9,7 @@ import { CoverageCard } from './CoverageCard'
 
 const createMockAnalysis = (coverage: number, counts = { known: 95, learning: 2, new: 1, unseen: 2 }): ReadingAnalysis => ({
   coverage,
+  unknownWords: counts.unseen,
   coverageWithList: coverage + 0.03,
   total: 100,
   counts: {

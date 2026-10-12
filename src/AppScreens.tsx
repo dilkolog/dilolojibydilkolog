@@ -22,6 +22,7 @@ import { WhatsNew } from './ui/WhatsNew'
 import { MindSeed } from './ui/MindSeed'
 import { SuggestWords } from './ui/SuggestWords'
 import { WeeklyNudge } from './ui/WeeklyNudge'
+import type { WeekSummary } from './engine/weekly'
 import { GainsNudge } from './ui/GainsNudge'
 import { studyGains } from './engine/gains'
 
@@ -87,11 +88,12 @@ export interface AppScreensProps {
   lookupNudge: ReactNode
   newToday: VocabularyEntry[]
   weekText: string
+  weekData: WeekSummary | null
 }
 
 /** The screen the app is on: the chain of screens, each given what it needs from the shell. */
 export function AppScreens(props: AppScreensProps) {
-  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText } = props
+  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData } = props
   return (
     <>
       {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
@@ -384,7 +386,7 @@ export function AppScreens(props: AppScreensProps) {
             />
             {lookupNudge}
             <GainsNudge gains={studyGains(data.states, data.recentEvents, data.language, new Date())} target={settings.retention} onOpen={go({ name: 'progress' })} />
-            <WeeklyNudge line={weekText} now={new Date()} onOpen={go({ name: 'progress' })} />
+            <WeeklyNudge line={weekText} summary={weekData} lemmaOf={(id) => byId.get(id)?.lemma} now={new Date()} onOpen={go({ name: 'progress' })} onWord={(entryId) => setScreen({ name: 'word', entryId })} />
             <SuggestWords db={db} language={data.language} vocabulary={data.vocabulary} settings={settings} onAdded={reload} onlyWhenDue />
             <WhatsNew words={data.vocabulary.filter((v) => v.source !== 'sample').length} onReading={go({ name: 'reading' })} onPractice={go({ name: 'games', game: 'pron' })} onGrammar={go({ name: 'games', game: 'grammar' })} />
             <BackupNudge

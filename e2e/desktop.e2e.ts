@@ -539,6 +539,16 @@ test('reading: the forms list finds a reflexive compound tense and lights the fo
   await expect(page.locator('.reader .rs.is-flash')).toContainText("Elle s'est lavée ce matin.")
 })
 
+test('reading: a text in the library says how much of it is new for the reader now', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+  await page.getByLabel('Metin', { exact: true }).fill('Hier soir, nous avons mangé des champignons délicieux avec nos voisins.')
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  await expect(page.locator('.reader')).toContainText('champignons')
+  await page.getByRole('button', { name: /Kütüphane/ }).click()
+  await expect(page.locator('.lib-card').first()).toContainText(/biliyorsun .* · \d+ yeni kelime/)
+})
+
 test('reading, deduction mode: an unknown word is hidden, tapping shows it and asks how close the guess was', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Okuma')

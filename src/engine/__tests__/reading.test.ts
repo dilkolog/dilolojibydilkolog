@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { analyzeText, contextEncounters, coverageZone, finishReading, readingKey } from '../reading'
+import { analyzeText, contextEncounters, coverageLine, coverageZone, finishReading, readingKey } from '../reading'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
 import { decide, decision } from './fixtures'
@@ -83,5 +83,19 @@ describe('missingFrequent', () => {
       ['house', 2],
       ['garden', 7],
     ])
+  })
+})
+
+describe('what a text would bring new', () => {
+  it('counts the different words that are neither known nor in the list', () => {
+    const a = analyzeText('The village village forest. The forest was quiet.', 'en', [], [], new Set(['quiet']))
+    // village (twice) and forest (twice) are two different new words; "quiet" is known.
+    expect(a.unknownWords).toBe(2)
+    expect(a.counts.unseen).toBe(4)
+  })
+
+  it('writes the line a picker shows', () => {
+    expect(coverageLine({ coverage: 0.962, unknownWords: 14 })).toBe('%96.2 biliyorsun (öğrenmeye ideal) · 14 yeni kelime')
+    expect(coverageLine({ coverage: 1, unknownWords: 0 })).toBe('%100 biliyorsun (rahat) · yeni kelime yok')
   })
 })

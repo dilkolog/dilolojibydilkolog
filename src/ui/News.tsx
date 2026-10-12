@@ -1,10 +1,9 @@
 import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
 import { useEffect, useMemo, useState } from 'react'
 import { FEEDS, type Article } from '../engine/news'
-import { analyzeText, coverageZone, topicKeys, topicOverlap } from '../engine/reading'
+import { analyzeText, coverageLine, topicKeys, topicOverlap } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 
-const ZONE_LABEL = { easy: 'rahat', ideal: 'öğrenmeye ideal', hard: 'zorlayıcı', too_hard: 'çok zor' } as const
 
 /**
  * Today's news in the target language, ranked by how readable each article is for the learner:
@@ -52,7 +51,7 @@ export function NewsPicker({
     return articles
       .map((a) => {
         const r = analyzeText(`${a.title}\n\n${a.text}`, language, vocabulary, states, known)
-        return { a, coverage: r.coverage, words: r.total }
+        return { a, coverage: r.coverage, cov: r, words: r.total }
       })
       .filter((x) => x.words >= 40)
       .sort((x, y) => {
@@ -80,12 +79,12 @@ export function NewsPicker({
       {articles && ranked.length === 0 && !busy && <p className="small muted">Bu kaynaktan okunabilir metin alınamadı; başka bir kaynak dene.</p>}
       {ranked.length > 0 && (
         <ul className="library">
-          {ranked.map(({ a, coverage, words }) => (
+          {ranked.map(({ a, cov, words }) => (
             <li key={a.link}>
               <button className="word-link library-open" onClick={() => onRead(a.title, `${a.title}\n\n${a.text}`, { audio: a.audio, source: a.link })}>
                 <strong>{a.title}</strong>
                 <span className="small muted">
-                  {a.source} {a.audio && <>· sesli </>}· {words} kelime · %{Math.round(coverage * 1000) / 10} biliyorsun ({ZONE_LABEL[coverageZone(coverage)]})
+                  {a.source} {a.audio && <>· sesli </>}· {words} kelime · {coverageLine(cov)}
                 </span>
               </button>
               <a className="link small" href={a.link} target="_blank" rel="noreferrer">
