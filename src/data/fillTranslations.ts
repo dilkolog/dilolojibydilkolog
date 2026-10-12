@@ -1,5 +1,6 @@
 import type { SentenceCard } from '../engine/sentences'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
+import { quietly } from './db'
 import { db } from './instance'
 import { translate, TranslateError } from './translate'
 
@@ -48,7 +49,7 @@ export async function fillTranslations(onProgress: (done: number, total: number)
       const ex = entry?.senses[sense]?.examples[example]
       if (entry && ex && ex.text === m.text && !ex.translation?.trim()) {
         const senses = entry.senses.map((s, si) => (si !== sense ? s : { ...s, examples: s.examples.map((x, xi) => (xi === example ? { ...x, translation } : x)) }))
-        await db.vocabulary.put({ ...entry, senses })
+        await quietly(() => db.vocabulary.put({ ...entry, senses }))
         filled++
       }
     } else {

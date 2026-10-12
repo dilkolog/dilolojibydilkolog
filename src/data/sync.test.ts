@@ -19,6 +19,22 @@ const state = (entryId: string, last: string, reviews: number) => ({ entryId, la
 const event = (id: string, entryId: string) => ({ id, entryId }) as unknown as Backup['events'][number]
 
 describe('sync', () => {
+  it('keeps the later edit of a word, even when the other device synced last (its snapshot is the newer one)', () => {
+    const stamped = (id: string, gloss: string, editedAt?: string) => ({ ...word(id, gloss), ...(editedAt ? { editedAt } : {}) }) as Backup['vocabulary'][number]
+    // Phone edited the word at 09:00 and synced; the laptop still has the old copy and syncs at 12:00.
+    const phone = base('2026-10-02T09:30:00Z', { vocabulary: [stamped('fr:chat', 'kedi (düzeltildi)', '2026-10-02T09:00:00Z')] })
+    const laptop = base('2026-10-02T12:00:00Z', { vocabulary: [stamped('fr:chat', 'kedi')] })
+    expect(mergeBackups(laptop, phone).vocabulary[0].senses[0].gloss).toBe('kedi (düzeltildi)')
+    expect(mergeBackups(phone, laptop).vocabulary[0].senses[0].gloss).toBe('kedi (düzeltildi)')
+    // Both edited: the later edit wins, whichever snapshot is newer.
+    const both = base('2026-10-02T12:00:00Z', { vocabulary: [stamped('fr:chat', 'kedi!', '2026-10-02T08:00:00Z')] })
+    expect(mergeBackups(both, phone).vocabulary[0].senses[0].gloss).toBe('kedi (düzeltildi)')
+    // No stamps at all (data from before this existed): the newer snapshot's copy, as before.
+    const old1 = base('2026-10-02T09:00:00Z', { vocabulary: [stamped('fr:chat', 'a')] })
+    const old2 = base('2026-10-02T10:00:00Z', { vocabulary: [stamped('fr:chat', 'b')] })
+    expect(mergeBackups(old1, old2).vocabulary[0].senses[0].gloss).toBe('b')
+  })
+
   it('makes readable codes and a stable, code-independent-looking id', async () => {
     const code = generateSyncCode()
     expect(code).toMatch(/^[A-Z2-9]{5}(-[A-Z2-9]{5}){3}$/)

@@ -1,5 +1,5 @@
 import { TARGET_LANGUAGES, type Example, type TargetLanguage, type VocabularyEntry } from '../engine/types'
-import type { KelimeDB } from './db'
+import { quietly, type KelimeDB } from './db'
 import { loadFrequency } from './frequency'
 import { isUntouched, patchWithSources } from './provenance'
 import { easyWords, rankByFit, type Easy } from '../engine/sentenceFit'
@@ -140,7 +140,8 @@ export async function fillCorpus(db: KelimeDB, language: TargetLanguage): Promis
   const easy = todo.length ? await easyFor(db, language) : undefined
   for (const e of todo) {
     try {
-      await db.vocabulary.update(e.id, patchWithSources(e, { corpus: await fetchCorpus(e, easy) }, { corpus: 'tatoeba' }))
+      const patch = patchWithSources(e, { corpus: await fetchCorpus(e, easy) }, { corpus: 'tatoeba' })
+      await quietly(() => db.vocabulary.update(e.id, patch))
       done++
     } catch {
       break // offline or the service is down: try again next time
@@ -186,7 +187,8 @@ export async function fillParallel(db: KelimeDB, language: TargetLanguage, budge
       const fresh = (await db.vocabulary.get(e.id)) ?? e
       const corpus = (fresh.corpus ?? []).map((x) => (x.source && x.parallel === undefined && found.has(x.source.id) ? { ...x, parallel: found.get(x.source.id) } : x))
       const kind = fresh.sources?.corpus?.kind
-      await db.vocabulary.update(e.id, kind && isUntouched(fresh, 'corpus') ? patchWithSources(fresh, { corpus }, { corpus: kind }) : { corpus })
+      const patch = kind && isUntouched(fresh, 'corpus') ? patchWithSources(fresh, { corpus }, { corpus: kind }) : { corpus }
+      await quietly(() => db.vocabulary.update(e.id, patch))
       changed++
     }
     if (stop) break
@@ -224,7 +226,8 @@ export async function scoreCorpus(db: KelimeDB, language: TargetLanguage): Promi
       const corpus = rankByFit(e.corpus!, e.lemma, easy)
       if (sameOrder(corpus, e.corpus!)) continue
       const kind = e.sources?.corpus?.kind
-      await db.vocabulary.update(e.id, kind && isUntouched(e, 'corpus') ? patchWithSources(e, { corpus }, { corpus: kind }) : { corpus })
+      const patch = kind && isUntouched(e, 'corpus') ? patchWithSources(e, { corpus }, { corpus: kind }) : { corpus }
+      await quietly(() => db.vocabulary.update(e.id, patch))
       changed++
     }
   }

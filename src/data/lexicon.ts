@@ -1,6 +1,6 @@
 import { normalize, splitArticle } from '../engine/answerCheck'
 import type { Gender, PartOfSpeech, TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { KelimeDB } from './db'
+import { quietly, type KelimeDB } from './db'
 import { patchWithSources } from './provenance'
 
 /**
@@ -58,7 +58,8 @@ export async function fillFromLexicon(db: KelimeDB, language: TargetLanguage): P
   for (const e of await db.vocabulary.where('language').equals(language).toArray()) {
     const update = lexiconUpdate(e, lexicon)
     if (!update) continue
-    await db.vocabulary.update(e.id, patchWithSources(e, update, { ...(update.partOfSpeech ? { partOfSpeech: 'lexique' as const } : {}), ...(update.gender ? { gender: 'lexique' as const } : {}) }))
+    const patch = patchWithSources(e, update, { ...(update.partOfSpeech ? { partOfSpeech: 'lexique' as const } : {}), ...(update.gender ? { gender: 'lexique' as const } : {}) })
+    await quietly(() => db.vocabulary.update(e.id, patch))
     changed++
   }
   return changed

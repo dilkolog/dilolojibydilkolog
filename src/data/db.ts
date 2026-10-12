@@ -292,6 +292,23 @@ export function mediaBlob(row: MediaRow): Blob {
  * Everything lives on this device (IndexedDB) so practice works offline. JSON export/import
  * is the backup and the way to move data between computer and phone.
  */
+/** While above 0, changes to words aren't stamped as edits (see `quietly`). */
+let quietWrites = 0
+
+/**
+ * Runs a write that is not the learner's edit: the word pack, corpus sentences, frequency ranks and the
+ * other background fillers change words the same way on every device. Stamped as edits they would win a
+ * sync over a real edit made elsewhere.
+ */
+export async function quietly<T>(write: () => Promise<T>): Promise<T> {
+  quietWrites++
+  try {
+    return await write()
+  } finally {
+    quietWrites--
+  }
+}
+
 export class KelimeDB extends Dexie {
   vocabulary!: Table<VocabularyEntry, string>
   wordStates!: Table<UserWordState, string>
@@ -312,6 +329,12 @@ export class KelimeDB extends Dexie {
     })
     this.version(2).stores({ media: 'id, kind' })
     this.version(3).stores({ stories: 'id, language, createdAt' })
+    // Every change to a word is stamped, so a sync can tell which device edited it last. A write that carries
+    // its own stamp (a restore of a merged copy) keeps it.
+    this.vocabulary.hook('updating', (mods) => {
+      if (quietWrites > 0 || !Object.keys(mods).length || 'editedAt' in mods) return
+      return { editedAt: new Date().toISOString() }
+    })
   }
 
   async addMedia(kind: MediaRow['kind'], blob: Blob): Promise<string> {

@@ -271,7 +271,8 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     version: Math.max(local.version, remote.version),
     exportedAt: new Date().toISOString(),
     ...mergeSettings(older, newer),
-    vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (_, y) => y).filter((v) => !dead(v.id, v.addedAt)),
+    // A word edited on both devices: the later edit wins (`editedAt`); without stamps, the newer snapshot's copy.
+    vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (x, y) => (time(x.editedAt) > time(y.editedAt) ? x : y)).filter((v) => !dead(v.id, v.addedAt)),
     wordStates: unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, mergeWordState).filter(
       (s) => !dead(s.entryId, s.introducedAt) && !resetOf(s.language, latest(s.lastReviewAt, s.introducedAt)),
     ),

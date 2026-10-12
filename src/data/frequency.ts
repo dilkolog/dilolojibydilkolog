@@ -1,6 +1,6 @@
 import { conjugate } from '../engine/conjugation'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import type { KelimeDB } from './db'
+import { quietly, type KelimeDB } from './db'
 
 /**
  * Word frequency from subtitles (see frequency/SOURCE.md): spoken, everyday language, which is
@@ -65,6 +65,6 @@ export async function fillFrequencyRanks(db: KelimeDB, language: TargetLanguage)
   const todo = (await db.vocabulary.where('language').equals(language).toArray()).filter((e) => e.source !== 'sample' && !e.frequencyRank)
   if (!todo.length) return 0
   const list = await loadFrequency(language)
-  await db.vocabulary.bulkPut(todo.map((e) => ({ ...e, frequencyRank: rankOf(e, list) })))
+  await quietly(() => db.vocabulary.bulkPut(todo.map((e) => ({ ...e, frequencyRank: rankOf(e, list) }))))
   return todo.length
 }

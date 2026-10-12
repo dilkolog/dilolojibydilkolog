@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Help } from './SettingHelp'
 import { cacheAudio } from '../data/audioCache'
 import { fetchCorpus } from '../data/corpus'
-import type { Settings } from '../data/db'
+import { quietly, type Settings } from '../data/db'
 import { db } from '../data/instance'
 import { fillEntries } from '../data/wordInfo'
 import { displayForm } from '../engine/exercises'
@@ -38,7 +38,7 @@ export function OfflinePack({ settings }: { settings: Settings }) {
     for (let i = 0; i < missing.length; i += 20) await fillEntries(db, missing.slice(i, i + 20), lang)
     for (const e of words.filter((w) => w.corpus === undefined).slice(0, 40)) {
       await fetchCorpus(e)
-        .then((corpus) => db.vocabulary.update(e.id, { corpus }))
+        .then((corpus) => quietly(() => db.vocabulary.update(e.id, { corpus })))
         .catch(() => {})
     }
     const fresh = (await db.vocabulary.bulkGet(words.map((w) => w.id))).filter((e): e is VocabularyEntry => !!e)
