@@ -223,7 +223,7 @@ test.describe.serial('Two devices encrypted sync', () => {
 
       // Device A deletes the word
       await openScreen(pageA, 'Kelimeler')
-      await pageA.locator('.word-row, .card', { hasText: 'livre' }).first().click()
+      await pageA.locator('.word-row', { hasText: 'livre' }).first().click()
       await pageA.getByRole('button', { name: 'Kelimeyi sil' }).click()
       await expect(pageA.locator('.word-row, .card', { hasText: 'livre' })).toHaveCount(0)
 
