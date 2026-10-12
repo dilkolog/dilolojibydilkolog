@@ -1,10 +1,11 @@
+import '../../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PageHeader } from '../PageHeader'
 import { EmptyState } from '../EmptyState'
 import { useTenses } from '../tenseGroups'
 import { recordPractice } from '../games/shared'
 import { conjugateTense, labTensesOf, tensesOf, tenseVerbs, type Tense } from '../../engine/tenses'
-import { addToReview, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, recordTourDay, toggleFavorite } from '../../engine/labProgress'
+import { addToReview, awardLabXp, dueItems, labKey, pushRecent, recordCheck, recordForm, recordRound, recordTourDay, toggleFavorite } from '../../engine/labProgress'
 import { localDate } from '../../engine/progress'
 import { diagnose } from '../../engine/formDiagnosis'
 import type { Scheduler } from '../../engine/scheduler'
@@ -160,6 +161,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     showLesson()
   }
   const onAnswer = (v: string, t: Tense, ok: boolean, given: string, expected: string, person?: number) => {
+    // Every answer in the lab earns XP (a right one 8, a wrong one 1).
+    update((l) => awardLabXp(l, ok))
     // Where the slips are: counted per tense and person, and a wrong one by what kind it was.
     if (person !== undefined) {
       const kind = ok ? undefined : diagnose(verbEntry(language, v), t, person, given)

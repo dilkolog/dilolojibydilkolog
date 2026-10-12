@@ -40,8 +40,26 @@ export interface GameState {
   achievements: AchievementState[]
 }
 
-/** Everything gamified is derived from the stored history, across all languages. */
-export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
+const cache = new WeakMap<KelimeDB, { writes: number; day: string; result: Promise<GameState> }>()
+
+/**
+ * Everything gamified is derived from the stored history, across all languages. Reading all of it is
+ * the heavy part of a reload, so the result is kept until something is written or the day turns over
+ * (a language switch or a sync that changed nothing asks again for the same thing).
+ */
+export function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
+  const writes = db.writes
+  const day = localDate(now)
+  const hit = cache.get(db)
+  if (hit && hit.writes === writes && hit.day === day) return hit.result
+  // A write that lands while it is being computed makes the stored entry stale (its key is the count at the start).
+  const result = computeGame(db, now)
+  cache.set(db, { writes, day, result })
+  result.catch(() => cache.get(db)?.result === result && cache.delete(db))
+  return result
+}
+
+async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
   const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog] = await Promise.all([
     db.events.toArray(),
     db.wordStates.toArray(),
@@ -62,6 +80,14 @@ export async function loadGame(db: KelimeDB, now = new Date()): Promise<GameStat
     xp.total += BOSS_XP
     xp.byDay.set(day, (xp.byDay.get(day) ?? 0) + BOSS_XP)
     if (day === localDate(now)) xp.today += BOSS_XP
+  }
+  // Answers given in the verb lab earn XP too (its own ledger: they are not review events).
+  for (const lab of [labFr, labEs]) {
+    for (const [day, n] of Object.entries(lab.xp ?? {})) {
+      xp.total += n
+      xp.byDay.set(day, (xp.byDay.get(day) ?? 0) + n)
+      if (day === localDate(now)) xp.today += n
+    }
   }
   const activity = {
     events,

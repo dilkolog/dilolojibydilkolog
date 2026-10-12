@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AiError, chatTurn, reviewJournal, type ChatReply, type ChatTurn } from '../ai'
 import { GrammarCheck } from './GrammarCheck'

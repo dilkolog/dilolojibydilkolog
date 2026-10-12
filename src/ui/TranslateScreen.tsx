@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useState } from 'react'
 import { recentTranslations, translate, TranslateError } from '../data/translate'
 import type { TranslationEntry } from '../engine/translationMemory'

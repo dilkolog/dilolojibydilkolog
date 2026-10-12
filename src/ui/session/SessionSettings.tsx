@@ -1,3 +1,4 @@
+import '../../lazy.css'
 import { useEffect, type ReactNode } from 'react'
 import type { Settings } from '../../data/db'
 import { effectivePrefs, PREF_TYPES, type ExercisePref } from '../../engine/exercisePrefs'

@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from '../data/access'
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'

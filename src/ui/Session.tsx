@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { formFeedback, TENSE_GUIDE } from '../engine/tenseGuide'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'

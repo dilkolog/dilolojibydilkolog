@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { Settings } from '../data/db'
 import { AccountSettings } from './AccountSettings'

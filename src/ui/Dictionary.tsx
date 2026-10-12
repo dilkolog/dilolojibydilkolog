@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { AiError, enrichWords } from '../ai'
 import { buildIndex, fold, search, wiktionaryUrl } from '../data/dictionary'

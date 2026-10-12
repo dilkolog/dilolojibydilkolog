@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { tensesOf } from '../engine/tenses'
 import { ConjugationTable } from './ConjugationTable'

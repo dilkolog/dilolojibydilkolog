@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useMemo } from 'react'
 import { WordLabel } from './WordLabel'
 import type { ErrorType, Mistake, VocabularyEntry } from '../engine/types'

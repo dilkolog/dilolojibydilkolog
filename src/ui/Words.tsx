@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useState } from 'react'
 import type { Mistake, TargetLanguage, UserWordState, VocabularyEntry, WordList as WordListRow } from '../engine/types'
 import { showToast } from './toastFeed'

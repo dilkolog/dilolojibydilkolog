@@ -1,3 +1,4 @@
+import '../lazy.css'
 import { useEffect, useMemo, useState } from 'react'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { progressStats, type ProgressStats } from '../engine/progress'
