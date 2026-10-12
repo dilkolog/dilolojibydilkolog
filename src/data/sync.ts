@@ -1,12 +1,12 @@
 import { mergeSeen, type LabData } from '../engine/labProgress'
-import type { VocabularyEntry } from '../engine/types'
+import type { ReviewEvent, VocabularyEntry } from '../engine/types'
 import { mergeMemories } from '../engine/translationMemory'
 import { mergeEarLogs } from '../engine/earMisses'
 import { mergeGrammarLogs } from '../engine/grammar'
 import { mergeDeductionLogs } from '../engine/deduction'
 import { mergeBadgeLogs } from '../engine/gamification'
 import { mergeNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
-import { exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB } from './db'
+import { BACKUP_VERSION, exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB, type ReadingText } from './db'
 import { saveSafetySnapshot } from './safetyBackup'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 
@@ -34,6 +34,8 @@ export function generateSyncCode(): string {
 export const normalizeCode = (code: string) => code.toUpperCase().replace(/[^A-Z0-9]/g, '')
 
 const hex = (buf: ArrayBuffer) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
+
+const sha = async (text: string, length = 64) => hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))).slice(0, length)
 
 /** The storage id: a hash of the code, so the server can't recover the code from it. */
 export async function syncIdOf(code: string): Promise<string> {
@@ -333,7 +335,85 @@ async function download(id: string, part: string, code: Credential): Promise<Byt
   return (await fetchPart(id, part, code))?.bytes ?? null
 }
 
-/** What the server takes in one request (MAX_BYTES in api/sync.ts): the core file must fit. */
+
+// ---------------------------------------------------------------------------
+// Shards: the parts of the data that grow without end travel in files of their own
+// ---------------------------------------------------------------------------
+
+/**
+ * The answers (one file a month, "ev-YYYY-MM") and the reading texts (one file each, "tx-…") are
+ * not in the core file: it would outgrow the server's request limit, and every sync would send
+ * all of it. The core lists them with a fingerprint each; a sync fetches and sends only the ones
+ * whose fingerprint differs between this device and the server.
+ */
+interface Shard {
+  events: ReviewEvent[]
+  texts: ReadingText[]
+  /** Identifies the content: equal fingerprints mean the same answers / the same text. */
+  fp: string
+}
+
+/** JSON with the keys in order, so the same content gives the same text on every device. */
+function canonical(value: unknown): string {
+  return JSON.stringify(value, (_k, v: unknown) => (v && typeof v === 'object' && !Array.isArray(v) ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) : v))
+}
+
+/** "ev-2026-10" for an answer's month (UTC); "ev-0000-00" when the time cannot be read. */
+function eventPart(e: ReviewEvent): string {
+  const t = new Date(e.timestamp as Date | string).getTime()
+  return `ev-${Number.isFinite(t) ? new Date(t).toISOString().slice(0, 7) : '0000-00'}`
+}
+
+/** The data cut into its parts, by part name. */
+async function splitShards(b: Backup): Promise<Map<string, Shard>> {
+  const shards = new Map<string, Shard>()
+  for (const e of b.events) {
+    const name = eventPart(e)
+    const shard = shards.get(name) ?? { events: [], texts: [], fp: '' }
+    shard.events.push(e)
+    shards.set(name, shard)
+  }
+  for (const t of b.reading?.library ?? []) shards.set(await hashedPart('tx', t.id), { events: [], texts: [t], fp: '' })
+  for (const shard of shards.values()) {
+    shard.fp = shard.texts.length ? await sha(canonical(shard.texts[0]), 24) : await sha(shard.events.map((e) => e.id).sort().join('\n'), 24)
+  }
+  return shards
+}
+
+/** The core file's own content: everything but what travels in parts. */
+function withoutShards(b: Backup): Backup {
+  return { ...b, events: [], reading: b.reading && { ...b.reading, library: [] } }
+}
+
+/** A part's file is a backup holding only that part: the same reader (dates, shape checks) serves it. */
+function shardFile(shard: Shard): Uint8Array<ArrayBuffer> {
+  const file: Backup = { app: 'kelime-koc', version: BACKUP_VERSION, exportedAt: new Date().toISOString(), vocabulary: [], wordStates: [], events: shard.events, mistakes: [], reading: { known: {}, encounters: {}, library: shard.texts } }
+  return new TextEncoder().encode(JSON.stringify(file))
+}
+
+/** What a part held on the server, with the ETag it was read with (`null`: nothing there yet). */
+interface Pulled {
+  events: ReviewEvent[]
+  texts: ReadingText[]
+  etag?: string
+  exists: boolean
+}
+
+async function pullShard(id: string, name: string, code: Credential): Promise<Pulled> {
+  const fetched = await fetchPart(id, name, code)
+  if (!fetched) return { events: [], texts: [], exists: false }
+  const file = parseBackup(new TextDecoder().decode(fetched.bytes))
+  return { events: file.events, texts: file.reading?.library ?? [], etag: fetched.etag, exists: true }
+}
+
+/** Fetches parts a few at a time. */
+async function pullShards(id: string, names: string[], code: Credential, into: Map<string, Pulled>) {
+  for (let i = 0; i < names.length; i += 6) {
+    await Promise.all(names.slice(i, i + 6).map(async (name) => void into.set(name, await pullShard(id, name, code))))
+  }
+}
+
+/** What the server takes in one request (MAX_BYTES in api/sync.ts): every file must fit. */
 export const CORE_LIMIT_BYTES = 4_400_000
 
 /** How full the core file is: its share of the limit, shown in Settings; from 80% a warning. */
@@ -353,21 +433,23 @@ export class SyncConflictError extends Error {
   override name = 'SyncConflictError'
 }
 
-/** Sends one sealed part; returns its size in bytes. */
-async function upload(id: string, part: string, data: Bytes, code: Credential, ifMatch?: string): Promise<number> {
+/** Sends one sealed part; returns its size in bytes. `ifMatch`: only if the part is still as read; `createOnly`: only if nobody made it yet. */
+async function upload(id: string, part: string, data: Bytes, code: Credential, { ifMatch, createOnly }: { ifMatch?: string; createOnly?: boolean } = {}): Promise<number> {
   const sealed = await seal(data, code)
-  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: sealed, headers: { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}) } })
+  const headers = { 'content-type': 'application/octet-stream', ...authHeaders(code), ...(ifMatch ? { 'if-match': ifMatch } : {}), ...(createOnly ? { 'if-none-match': '*' } : {}) }
+  const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { method: 'PUT', body: sealed, headers })
   if (res.status === 403) throw await refusal(res)
   if (res.status === 412) throw new SyncConflictError('changed meanwhile')
-  if (res.status === 413 && part === 'core') throw new SyncTooLargeError('core too large')
+  if (res.status === 413 && !part.startsWith('m-')) throw new SyncTooLargeError(`${part} too large`)
   if (!res.ok) throw new Error(`sync ${res.status}`)
   return sealed.length
 }
 
 /** Media ids become file names on the server; hashing keeps them to a safe alphabet. */
-async function mediaPart(mediaId: string): Promise<string> {
-  return `m-${hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(mediaId))).slice(0, 40)}`
+async function hashedPart(prefix: 'm' | 'tx', key: string): Promise<string> {
+  return `${prefix}-${await sha(key, 40)}`
 }
+const mediaPart = (mediaId: string) => hashedPart('m', mediaId)
 
 /**
  * The most a single picture or recording may weigh to be synced: it travels as base64 inside one
@@ -486,22 +568,50 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   const id = await credentialId(code)
   const fetched = await fetchPart(id, 'core', code)
   const remoteBytes = fetched?.bytes ?? null
-  // The device's own data is read only now, after the download: what was answered while the network
-  // was being waited for must be in it, or writing the merge back (it replaces the tables) would erase it.
   const remote = remoteBytes ? parseBackup(new TextDecoder().decode(remoteBytes)) : null
-  let local: Backup
-  let merged: Backup
-  // Reading, merging and writing back take a moment, and writing back replaces the tables: an answer saved in
-  // that moment would be erased. A write seen in between sends it round again, with that write in the snapshot.
-  for (let attempt = 1; ; attempt++) {
-    const mark = db.writes
-    local = parseBackup(await exportBackup(db, new Date(), { media: false }))
-    // A device joining an existing sync takes the others' settings and edits rather than its own defaults.
-    if (!(await db.meta.get('syncAt'))) local.exportedAt = new Date(0).toISOString()
-    merged = remote ? mergeBackups(local, remote) : local
-    if (db.writes === mark || attempt >= 3 || !remote) break
+  // The parts the core lists, each with the fingerprint of what the server holds.
+  const manifest = remote?.shards ?? {}
+  const pulled = new Map<string, Pulled>()
+  const empty: Backup = { app: 'kelime-koc', version: BACKUP_VERSION, exportedAt: new Date(0).toISOString(), vocabulary: [], wordStates: [], events: [], mistakes: [] }
+  /** The server's side as one snapshot: the core, with the answers and texts of the parts fetched so far. */
+  const remoteSnapshot = (): Backup | null => {
+    if (!remote && !pulled.size) return null
+    const base = remote ?? empty
+    const parts = [...pulled.values()]
+    return { ...base, events: [...base.events, ...parts.flatMap((p) => p.events)], reading: { known: {}, encounters: {}, ...base.reading, library: [...(base.reading?.library ?? []), ...parts.flatMap((p) => p.texts)] } }
   }
-  if (remote) await restoreBackup(db, merged, { keepMedia: true })
+  let local!: Backup
+  let merged!: Backup
+  let shards!: Map<string, Shard>
+  let mark = -1
+  let localShards = new Map<string, Shard>()
+  // The device's own data is read only after the download: what was answered while the network was being
+  // waited for must be in it, or writing the merge back (it replaces the tables) would erase it. Reading,
+  // merging and writing back take a moment too: a write seen in between sends it round again.
+  for (let round = 1; ; round++) {
+    if (db.writes !== mark) {
+      mark = db.writes
+      local = parseBackup(await exportBackup(db, new Date(), { media: false }))
+      // A device joining an existing sync takes the others' settings and edits rather than its own defaults.
+      if (!(await db.meta.get('syncAt'))) local.exportedAt = new Date(0).toISOString()
+      localShards = await splitShards(local)
+    }
+    // The parts that differ between here and the server, or that the server's list does not know: fetch them to merge.
+    const differing = [...new Set([...Object.keys(manifest), ...localShards.keys()])].filter((n) => manifest[n] !== localShards.get(n)?.fp && !pulled.has(n))
+    await pullShards(id, differing, code, pulled)
+    const snapshot = remoteSnapshot()
+    merged = snapshot ? mergeBackups(local, snapshot) : local
+    shards = await splitShards(merged)
+    // A part the merge changed (an answer of a deleted word dropped, say) that was not fetched has no ETag to write against.
+    const unread = [...shards].filter(([n, s]) => s.fp !== manifest[n] && !pulled.has(n)).map(([n]) => n)
+    if (db.writes === mark && !unread.length) break
+    if (round >= 4) {
+      if (unread.length) throw new SyncConflictError('parts changed meanwhile')
+      break
+    }
+    await pullShards(id, unread, code, pulled)
+  }
+  if (remote || pulled.size) await restoreBackup(db, merged, { keepMedia: true })
   // The very first sync of a device is joining, not news: only later ones report what came in.
   const joined = !(await db.meta.get('syncAt'))
   const incoming = remote && !joined ? incomingChanges(local, merged) : { words: 0, removed: 0, texts: 0, settings: 0 }
@@ -555,8 +665,16 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   }
   // Items that did not go up stay off the list, so other devices don't ask for what the server doesn't have.
   const mediaIds = [...localMedia].filter((m) => !m.startsWith('tts:') && !m.startsWith('aud:') && !unsent.has(m))
-  const coreBytes = await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...merged, mediaIds })), code, fetched?.etag)
-  await db.meta.put({ key: 'syncSize', value: coreBytes })
+  // The parts that changed go up first; the core, which lists them, goes last and is the one that must still be as read.
+  let biggest = 0
+  for (const [name, shard] of shards) {
+    if (shard.fp === manifest[name]) continue
+    const was = pulled.get(name)
+    biggest = Math.max(biggest, await upload(id, name, shardFile(shard), code, was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
+  }
+  const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
+  const coreBytes = await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), code, { ifMatch: fetched?.etag })
+  await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
   return { received, sent, skipped, incoming, ...(replaced.length ? { replaced: replaced.map((v) => v.lemma) } : {}) }
 }

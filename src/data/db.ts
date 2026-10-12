@@ -1097,7 +1097,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 6
+export const BACKUP_VERSION = 7
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1126,6 +1126,8 @@ export interface Backup {
   diagrams?: Diagram[]
   /** What was deleted, and when (sync tombstones, see tombstones.ts). */
   deleted?: Tombstone[]
+  /** Sync core file only (backup version 7+): the answers and reading texts travel in their own parts; this lists them by name with a fingerprint of each. */
+  shards?: Record<string, string>
   /** The verb lab's favourites, recent verbs and practice (per language), and the personal bests of the games. */
   lab?: Partial<Record<'fr' | 'es', LabData>>
   records?: Record<string, number>

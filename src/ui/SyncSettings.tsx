@@ -66,7 +66,7 @@ export function SyncSettings() {
             const u = syncUsage(size)
             return (
               <p className={u.warn ? 'note' : 'small muted'}>
-                Eşitlenen veri: {u.label} (%{u.percent}).{u.warn && ' Sınıra yaklaşıyor: kullanmadığın okuma metinlerini silmek yer açar.'}
+                Eşitlenen veri: {u.label} (%{u.percent}).{u.warn && ' En büyük eşitleme dosyası sunucunun sınırına yaklaşıyor.'}
               </p>
             )
           })()}

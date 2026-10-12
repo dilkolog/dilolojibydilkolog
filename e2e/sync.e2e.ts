@@ -35,7 +35,7 @@ function setupSyncMock(context: BrowserContext) {
     if (req.method() === 'PUT') {
       const ifMatch = req.headers()['if-match']
       const existing = blobs.get(key)
-      if (ifMatch && existing && existing.etag !== ifMatch) {
+      if ((ifMatch && existing && existing.etag !== ifMatch) || (req.headers()['if-none-match'] === '*' && existing)) {
         return route.fulfill({ status: 412, body: 'changed' })
       }
       version++
