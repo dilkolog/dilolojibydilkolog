@@ -1520,6 +1520,11 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .hero-today .ring-fill, .hero-today .ring-fill.done { stroke: var(--on-lang); }
 .hero-today .ring-label, .hero-today .ring-label.done { color: var(--on-lang); }
 .hero-today .mission li { background: color-mix(in srgb, var(--on-lang) 16%, transparent); color: var(--on-lang); }
+/* A chip that starts a round of just its kind: it fills its pill, so the whole pill is the target. */
+.mission li:has(> .mission-chip) { padding: 0; }
+.mission-chip { all: unset; box-sizing: border-box; display: block; padding: 0.25rem 0.75rem; border-radius: var(--r-full); cursor: pointer; font: inherit; }
+.mission-chip:hover { background: color-mix(in srgb, currentColor 14%, transparent); }
+.mission-chip:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .hero-today .btn { background: #ffffff; color: var(--lang-deep); box-shadow: 0 4px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
 .hero-today .btn:active:not(:disabled) { box-shadow: 0 1px 0 color-mix(in srgb, var(--lang-deep) 70%, black); }
 .hero-today .btn-quiet { background: transparent; color: var(--on-lang); border-color: color-mix(in srgb, var(--on-lang) 40%, transparent); box-shadow: none; }
@@ -1564,7 +1569,8 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 /* ---------- Session on large screens: the question on its own card, with room around it ---------- */
 /* A run of misses late in a session: a quiet suggestion to stop, never a modal. */
 @media (min-width: 64rem) {
-  .app:has(> .session), .app:has(.session) { max-width: 56rem; padding-top: 2rem; }
+  /* 54rem less the 1rem padding each side is exactly `.main`'s 52rem and the feedback card's width: wider, the column sat 1rem left of the centred card. */
+  .app:has(> .session), .app:has(.session) { max-width: 54rem; padding-top: 2rem; }
   .session .progress { height: 0.875rem; }
   .session-stage .option { background: var(--surface-2); }
   .session-stage .option:hover:not(:disabled) { background: var(--lang-soft); }

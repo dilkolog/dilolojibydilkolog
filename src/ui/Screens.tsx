@@ -106,6 +106,7 @@ export function Home({
   openMistakeWords,
   canPractice,
   onStart,
+  onFocusReason,
   onAddWords,
   onTrySamples,
   onProfile,
@@ -149,6 +150,8 @@ export function Home({
   openMistakeWords: number
   canPractice: boolean
   onStart: () => void
+  /** A round of only one kind of the day's questions (the wrong, the weak, the reviews, the new words). */
+  onFocusReason?: (reason: PlanReason) => void
   onAddWords: () => void
   /** First run: load the sample words to try the app before adding one's own. */
   onTrySamples?: () => void
@@ -329,7 +332,15 @@ export function Home({
                 </p>
                 <ul className="mission">
                   {REASONS.filter((r) => plan.counts[r] > 0).map((r) => (
-                    <li key={r}>{REASON_CHIP[r](plan.counts[r])}</li>
+                    <li key={r}>
+                      {onFocusReason ? (
+                        <button type="button" className="mission-chip" title="Yalnızca bunlarla çalış" onClick={() => onFocusReason(r)}>
+                          {REASON_CHIP[r](plan.counts[r])}
+                        </button>
+                      ) : (
+                        REASON_CHIP[r](plan.counts[r])
+                      )}
+                    </li>
                   ))}
                 </ul>
                 <button className="btn btn-lg" onClick={onStart} autoFocus>

@@ -3,6 +3,7 @@ import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { reminderTime } from '../engine/hours'
 import { badgeSupported } from './appBadge'
+import { disableMail, enableMail, getMail, mailAvailable, refreshMail, type MailReminder } from './emailReminders'
 import { ReminderSuggestion } from './BestHours'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
@@ -51,6 +52,93 @@ function PushToggle({ state }: { state: PushState }) {
       />
       {error && <p className="error small">{error}</p>}
     </>
+  )
+}
+
+/** Reminders by mail: the address is registered, a confirmation mail goes out, and the reminders start once its link is opened. */
+function MailReminder({ state }: { state: PushState }) {
+  const [available, setAvailable] = useState(false)
+  const [mail, setMail] = useState<MailReminder | null>(null)
+  const [address, setAddress] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [note, setNote] = useState<string | null>(null)
+  useEffect(() => {
+    let live = true
+    void mailAvailable().then((a) => live && setAvailable(a))
+    void getMail().then((m) => live && setMail(m))
+    // The link may have been opened (or the unsubscribe link used) since this was last open.
+    void refreshMail().then((m) => live && setMail(m))
+    return () => {
+      live = false
+    }
+  }, [])
+  if (!available && !mail) return null
+  const run = async (work: () => Promise<void>) => {
+    if (busy) return
+    setBusy(true)
+    setError(null)
+    setNote(null)
+    try {
+      await work()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Açılamadı.')
+    } finally {
+      setBusy(false)
+    }
+  }
+  return (
+    <div className="stack">
+      <h3 className="subhead">E-posta ile hatırlat</h3>
+      <p className="small muted">
+        O gün çalışmadıysan hatırlatma saatinde bir mail gelir. Adresin yalnızca bunun için sunucuda saklanır; ilk mailde onay bağlantısı, her mailde kapatma bağlantısı var. Hesabının onaylı olması gerekir.
+      </p>
+      {mail ? (
+        <>
+          <p className="small">
+            <strong>{mail.email}</strong> — {mail.state === 'on' ? 'açık' : 'onay bekliyor (mailindeki bağlantıya dokun)'}
+          </p>
+          <div className="row">
+            {mail.state === 'pending' && (
+              <button
+                className="btn btn-sm btn-quiet"
+                disabled={busy}
+                onClick={() =>
+                  run(async () => {
+                    await enableMail(mail.email, state, true)
+                    setNote('Onay maili tekrar gönderildi (saatte bir kez).')
+                  })
+                }
+              >
+                Onay mailini tekrar gönder
+              </button>
+            )}
+            <button className="btn btn-sm btn-quiet" disabled={busy} onClick={() => run(async () => void (await disableMail(), setMail(null)))}>
+              {mail.state === 'on' ? 'Kapat' : 'Vazgeç'}
+            </button>
+          </div>
+        </>
+      ) : (
+        <form
+          className="row"
+          onSubmit={(e) => {
+            e.preventDefault()
+            void run(async () => {
+              await enableMail(address, state)
+              setMail(await getMail())
+              setAddress('')
+            })
+          }}
+        >
+          <input className="input" type="email" inputMode="email" autoComplete="email" placeholder="ornek@mail.com" aria-label="E-posta adresi" value={address} onChange={(e) => setAddress(e.target.value)} required />
+          <button className="btn btn-quiet" type="submit" disabled={busy || !address.includes('@')}>
+            Onay maili gönder
+          </button>
+        </form>
+      )}
+      {note && <p className="small muted">{note}</p>}
+      {error && <p className="error small">{error}</p>}
+    </div>
   )
 }
 
@@ -120,6 +208,7 @@ export function ReminderSettings({
         </p>
       )}
       <PushToggle state={pushState} />
+      <MailReminder state={pushState} />
       {badgeSupported() && (
         <Toggle
           label="Simgede tekrar sayısı"

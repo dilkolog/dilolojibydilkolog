@@ -13,11 +13,13 @@ export interface PrefType {
 }
 
 /**
- * The question types the learner can tune (Settings → Sorular). Left out: the meaning choice
- * (what every new word starts with) and typing the word from its meaning (the recall that unlocks
- * the other skills; its share is "Yazma oranı"), so a word can always be asked and can always progress.
+ * The question types the learner can tune (Settings → Sorular). Left out: the meaning choice, what every
+ * new word starts with, so a word can always be asked. Typing the word from its meaning can be switched
+ * off too (its share otherwise is "Yazma oranı"): the recognition card then stands in for recall in
+ * `unlockedSkills`, so the other skills still open; a word just stops growing past "Tanıdık".
  */
 export const PREF_TYPES: PrefType[] = [
+  { type: 'typed_translation', name: 'Anlamdan kelimeyi yaz', hint: 'Anlamı ya da tanımı görür, kelimeyi yazarsın. Kapatırsan kelimeler “Tanıdık” aşamasından öteye büyümez (yazarak hatırlama sayılmaz).', group: 'typed' },
   { type: 'cloze_typed', name: 'Cümlede boşluğu yaz', hint: 'Cümledeki eksik kelimeyi anlamından hatırlayıp yazarsın.', group: 'typed' },
   { type: 'word_form', name: 'Kelime biçimini yaz', hint: 'decide → decision gibi, kelimenin başka hâlini yazarsın.', group: 'typed' },
   { type: 'conjugation', name: 'Fiili çek', hint: 'Fiili özneye göre çekip yazarsın.', group: 'typed' },

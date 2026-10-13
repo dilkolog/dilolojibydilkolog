@@ -42,26 +42,26 @@ export interface PushState {
   hour: number
 }
 
+/** What the server is told about the day (shared by the push and the mail reminders). */
+export function dayFields(state: PushState) {
+  return {
+    tz: new Date().getTimezoneOffset(),
+    studiedDay: state.studiedToday ? localDay() : null,
+    streak: state.streak,
+    restWeekdays: state.restWeekdays,
+    vacation: state.vacation,
+    due: state.due,
+    reportedDay: localDay(),
+    hour: state.hour,
+  }
+}
+
 async function save(sub: PushSubscription, state: PushState) {
   const cred = await getCredential()
   await fetch('/api/push', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      action: 'save',
-      subscription: sub.toJSON(),
-      tz: new Date().getTimezoneOffset(),
-      studiedDay: state.studiedToday ? localDay() : null,
-      streak: state.streak,
-      plan: state.plan,
-      group: cred ? await credentialId(cred) : null,
-      restWeekdays: state.restWeekdays,
-      vacation: state.vacation,
-      due: state.due,
-      reportedDay: localDay(),
-      week: state.week,
-      hour: state.hour,
-    }),
+    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, group: cred ? await credentialId(cred) : null }),
   })
 }
 

@@ -2,11 +2,11 @@ import { describe, expect, it } from 'vitest'
 import { effectivePrefs, engineFlags, PREF_TYPES } from '../exercisePrefs'
 
 describe('exercisePrefs', () => {
-  it('lists each tunable type once, never the meaning choice or typing from the meaning', () => {
+  it('lists each tunable type once, never the meaning choice (what every new word starts with), but typing from the meaning can be tuned', () => {
     const types = PREF_TYPES.map((p) => p.type)
     expect(new Set(types).size).toBe(types.length)
     expect(types).not.toContain('mc_meaning')
-    expect(types).not.toContain('typed_translation')
+    expect(types).toContain('typed_translation')
   })
 
   it('turns the saved preferences into engine options', () => {

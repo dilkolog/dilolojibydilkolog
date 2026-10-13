@@ -44,7 +44,9 @@ Hepsi isteğe bağlıdır; eksik olan yalnızca ilgili özelliği kapatır. Anah
 | `ADMIN_TOKEN` | Hesap onayı sistemini açar, yönetici anahtarı | Onay kapalı: herkes her şeyi kullanır |
 | `SYNC_ALLOWED` | Baştan onaylı kullanıcı adları (virgüllü) | Liste yok: kısıt yok |
 | `CRON_SECRET` | Günlük bildirim cron'unun yetkisi | Cron 401 verir |
-| `VAPID_PRIVATE_KEY` | Web push gönderimi (genel anahtar kodda) | Cron 503 verir |
+| `VAPID_PRIVATE_KEY` | Web push gönderimi (genel anahtar kodda) | Cron yalnızca mail gönderir (o da yoksa 503) |
+| `RESEND_API_KEY` | Hatırlatma mailleri (Resend) | Ayarlar'da e-posta hatırlatması görünmez |
+| `RESEND_FROM` | Mailin göndereni, doğrulanmış alan adıyla: `Diloloji <hatirlatma@alanadin>` | Resend'in deneme göndereni (yalnızca Resend hesabının kendi adresine teslim eder) |
 
 Node sürümü: `>=22.12` (`.nvmrc` 24; CI de 24).
 

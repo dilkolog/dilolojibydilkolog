@@ -1,10 +1,12 @@
 import { del, get, list } from '@vercel/blob'
 import webpush from 'web-push'
 import type { PushRecord } from './push.js'
+import { APP_URL, mailConfigured, reminderMail, sendMail, type Mail } from './_mail.js'
 
 /**
  * Every hour (vercel.json: one daily cron per UTC hour, `?h=` its hour, as the Hobby plan runs each
- * cron once a day and anywhere within its hour): a push reminder to the devices whose local hour is
+ * cron once a day and anywhere within its hour): a push reminder (and a mail, to the confirmed addresses
+ * of push/mail-*.json records) to the devices whose local hour is
  * their reminder hour (default 20:00) and whose learner hasn't studied today, on any of their synced
  * devices. Expired subscriptions are removed.
  */
@@ -52,9 +54,11 @@ const SEND_TIMEOUT_MS = 5000
 
 export async function GET(request: Request): Promise<Response> {
   if (!process.env.CRON_SECRET || request.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) return new Response('unauthorized', { status: 401 })
-  // Without the private key every send would fail the same way: said once, not a 500 after the first call.
-  if (!process.env.VAPID_PRIVATE_KEY) return new Response('VAPID_PRIVATE_KEY is not set', { status: 503 })
-  webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY)
+  const pushOn = !!process.env.VAPID_PRIVATE_KEY
+  const mailOn = mailConfigured()
+  // Without either key every send would fail the same way: said once, not a 500 after the first call.
+  if (!pushOn && !mailOn) return new Response('VAPID_PRIVATE_KEY and RESEND_API_KEY are not set', { status: 503 })
+  if (pushOn) webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY!)
   const now = Date.now()
   const h = new URL(request.url).searchParams.get('h')
   const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()
@@ -84,18 +88,27 @@ export async function GET(request: Request): Promise<Response> {
   const studiedGroups = new Set(records.filter(({ record: r }) => r.group && r.studiedDay === localDay(r.tz, now)).map(({ record: r }) => r.group))
   let sent = 0
   let removed = 0
+  let mailed = 0
+  const mails: Mail[] = []
   const due = records.filter(({ record: r }) => dueNow(r, utcHour)).flatMap(({ path, record: r }) => {
-    // Sunday evening: the week in one line, studied today or not (not on a holiday).
-    const week = weeklyText(r, now)
+    // Sunday evening: the week in one line, studied today or not (not on a holiday). Mail has no week line:
+    // it carries only what the server can build from numbers.
+    const week = r.email ? undefined : weeklyText(r, now)
     if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) return []
-    return [{ path, r, message: week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' } }]
+    if (r.email) {
+      // An address nobody has confirmed gets nothing.
+      if (mailOn && r.confirmed && r.token) mails.push(reminderMail(r.email, reminderText({ ...r, plan: '' }, now), `${APP_URL}/api/push?u=${path.replace(/^push\/mail-|\.json$/g, '')}.${r.token}`))
+      return []
+    }
+    if (!pushOn || !r.subscription) return []
+    return [{ path, r, subscription: r.subscription, message: week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' } }]
   })
   // In parallel batches, each send with a time limit: one address that never answers must not stall the rest.
   for (let i = 0; i < due.length; i += BATCH) {
     await Promise.all(
-      due.slice(i, i + BATCH).map(async ({ path, r, message }) => {
+      due.slice(i, i + BATCH).map(async ({ path, subscription, message }) => {
         try {
-          await webpush.sendNotification(r.subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal', timeout: SEND_TIMEOUT_MS })
+          await webpush.sendNotification(subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal', timeout: SEND_TIMEOUT_MS })
           sent++
         } catch (e) {
           const status = (e as { statusCode?: number }).statusCode
@@ -107,5 +120,6 @@ export async function GET(request: Request): Promise<Response> {
       }),
     )
   }
-  return Response.json({ devices: records.length, sent, removed })
+  if (mails.length) mailed = (await sendMail(mails)).sent
+  return Response.json({ devices: records.length, sent, removed, mailed })
 }

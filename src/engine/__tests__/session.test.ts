@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
-import { completeItem, currentItem, firstSittingEnd, insertLater, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
+import { completeItem, currentItem, firstSittingEnd, honorOff, insertLater, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -175,3 +175,38 @@ describe('insertLater', () => {
   })
 })
 
+
+describe('a type switched off in the middle of a session', () => {
+  const recall = (exerciseType: PlanItem['exerciseType']): PlanItem => ({ kind: 'exercise', entryId: decision.id, reason: 'due', skill: 'recall', exerciseType })
+  const state = newWordState(decision, new Date('2026-10-10T12:00:00Z'))
+
+  it('an item already planned with it gets another type of its skill', () => {
+    const item = honorOff(recall('speak_word'), decision, state, createRng(3), { off: ['speak_word'], speech: true })
+    expect(item.exerciseType).not.toBe('speak_word')
+    expect(item.skill).toBe('recall')
+  })
+
+  it('leaves other items, and every item when nothing is off', () => {
+    const planned = recall('typed_translation')
+    expect(honorOff(planned, decision, state, createRng(3), { off: ['speak_word'] })).toBe(planned)
+    expect(honorOff(planned, decision, state, createRng(3))).toBe(planned)
+  })
+
+  it('a skill left with nothing to ask becomes a plain meaning choice', () => {
+    const listening: PlanItem = { kind: 'exercise', entryId: decision.id, reason: 'due', skill: 'listening', exerciseType: 'listen_type' }
+    const off = ['listen_type', 'listen_choose', 'dictation'] as const
+    expect(honorOff(listening, decision, state, createRng(3), { off: [...off] })).toMatchObject({ skill: 'recognition', exerciseType: 'mc_meaning' })
+  })
+
+  it('typing from the meaning off: no recognition question is turned into typing, and the follow-up is a choice', () => {
+    const answered = { ...state, skills: { recognition: { ...createSchedulerCard(), reps: 3 } } } as unknown as typeof state
+    expect(mixInTyping(item('a'), answered, 1, () => 0, ['typed_translation'])).toMatchObject({ exerciseType: 'mc_meaning' })
+    expect(mixInTyping(item('a'), answered, 1, () => 0)).toMatchObject({ exerciseType: 'typed_translation' })
+    expect(typedFollowUp(item('a'), ['typed_translation'])).toMatchObject({ skill: 'recognition', exerciseType: 'mc_meaning' })
+    expect(typedFollowUp(item('a'))).toMatchObject({ skill: 'recall', exerciseType: 'typed_translation' })
+  })
+})
+
+function createSchedulerCard() {
+  return { due: new Date(), stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 1, reps: 0, lapses: 0, state: 2 }
+}

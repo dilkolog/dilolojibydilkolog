@@ -95,8 +95,8 @@ export const TYPING_SHARE: Record<TypingShare, number> = { low: 0, balanced: 0.2
  * it out of four (generation effect; Slamecka & Graf 1978), so for a word that has been answered at
  * least once, some recognition questions become "type the word for this meaning".
  */
-export function mixInTyping(item: PlanItem, state: UserWordState | undefined, share: number, rng: Rng): PlanItem {
-  if (item.kind !== 'exercise' || item.skill !== 'recognition' || share <= 0) return item
+export function mixInTyping(item: PlanItem, state: UserWordState | undefined, share: number, rng: Rng, off: readonly ExerciseType[] = []): PlanItem {
+  if (item.kind !== 'exercise' || item.skill !== 'recognition' || share <= 0 || off.includes('typed_translation')) return item
   if (!state?.skills.recognition || state.skills.recognition.reps < 1) return item
   if (state.lastExerciseType === 'typed_translation' || rng() >= share) return item
   return { ...item, skill: 'recall', exerciseType: 'typed_translation' }
@@ -118,8 +118,24 @@ export function typeStrongCloze(item: PlanItem, state: UserWordState | undefined
 }
 
 /** The second in-session comeback of a word is typed: recognised twice, now produced. */
-export function typedFollowUp(item: PlanItem): PlanItem {
+export function typedFollowUp(item: PlanItem, off: readonly ExerciseType[] = []): PlanItem {
+  // Typing from the meaning switched off: the follow-up is a plain meaning choice instead.
+  if (off.includes('typed_translation')) return { ...item, kind: 'exercise', skill: 'recognition', exerciseType: 'mc_meaning' }
   return { ...item, kind: 'exercise', skill: 'recall', exerciseType: 'typed_translation' }
+}
+
+/**
+ * A question planned before its type was switched off (the session's own settings, "Bu tür soru: Hiç"):
+ * the plan holds its type from when it was built, so the change must be applied as each one comes up.
+ * Another type of the same skill, or a plain meaning choice when that skill has none left.
+ */
+export function honorOff(item: PlanItem, entry: VocabularyEntry, state: UserWordState | undefined, rng: Rng, opts: EngineOptions = {}): PlanItem {
+  if (item.kind !== 'exercise' || !item.exerciseType || !opts.off?.includes(item.exerciseType)) return item
+  try {
+    return { ...item, exerciseType: pickExerciseType(item.skill, entry, state, rng, opts) }
+  } catch {
+    return { ...item, skill: 'recognition', exerciseType: 'mc_meaning', firstLetter: undefined }
+  }
 }
 
 export function startSession(items: readonly PlanItem[]): Session {
