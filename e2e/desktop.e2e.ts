@@ -847,9 +847,9 @@ test('a library text with a recording can be kept for offline listening, and tak
       new Promise<void>((resolve) => {
         const open = indexedDB.open('kelime-koc')
         open.onsuccess = () => {
-          const tx = open.result.transaction('meta', 'readwrite')
+          const tx = open.result.transaction('texts', 'readwrite')
           const text = { id: 't1', language: 'fr', title: 'Un épisode', text: 'Bonjour tout le monde. Il fait beau aujourd\'hui.', audio: 'https://audio.example.test/ep.mp3', addedAt: new Date().toISOString(), history: [] }
-          tx.objectStore('meta').put({ key: 'library', value: [text] })
+          tx.objectStore('texts').put(text)
           tx.oncomplete = () => resolve()
         }
       }),
@@ -1119,8 +1119,8 @@ async function addTimedListening(page: Page, withCues = true) {
     await new Promise<void>((done) => {
       const req = indexedDB.open('kelime-koc')
       req.onsuccess = () => {
-        const tx = req.result.transaction('meta', 'readwrite')
-        tx.objectStore('meta').put({ key: 'library', value: [text] })
+        const tx = req.result.transaction('texts', 'readwrite')
+        tx.objectStore('texts').put(text)
         tx.oncomplete = () => done()
       }
     })

@@ -316,6 +316,11 @@ export async function quietly<T>(write: () => Promise<T>): Promise<T> {
   }
 }
 
+/** A text with its date as ISO text: a Date (or anything else a stored date turned into) would fail the sorting by it. */
+function withIsoDate(t: ReadingText): ReadingText {
+  return typeof t.addedAt === 'string' ? t : { ...t, addedAt: new Date(addedTime(t)).toISOString() }
+}
+
 export class KelimeDB extends Dexie {
   vocabulary!: Table<VocabularyEntry, string>
   wordStates!: Table<UserWordState, string>
@@ -324,6 +329,8 @@ export class KelimeDB extends Dexie {
   meta!: Table<MetaRow, string>
   media!: Table<MediaRow, string>
   stories!: Table<StoryEpisode, string>
+  /** The reading library: one row a text, so reading or saving one does not rewrite them all. */
+  texts!: Table<ReadingText, string>
 
   constructor(name = 'kelime-koc') {
     super(name)
@@ -336,6 +343,15 @@ export class KelimeDB extends Dexie {
     })
     this.version(2).stores({ media: 'id, kind' })
     this.version(3).stores({ stories: 'id, language, createdAt' })
+    // The library used to be one `meta` row holding every text: each save rewrote them all. Now a row each.
+    this.version(4)
+      .stores({ texts: 'id, language, book.id' })
+      .upgrade(async (tx) => {
+        const row = await tx.table('meta').get('library')
+        const old = Array.isArray(row?.value) ? (row.value as ReadingText[]) : []
+        await tx.table('texts').bulkPut(old.filter((t) => t && typeof t.id === 'string').map(withIsoDate))
+        await tx.table('meta').delete('library')
+      })
     // Every change to a word is stamped, so a sync can tell which device edited it last. A write that carries
     // its own stamp (a restore of a merged copy) keeps it.
     this.vocabulary.hook('updating', (mods) => {
@@ -346,7 +362,7 @@ export class KelimeDB extends Dexie {
     const bump = () => {
       this.writes++
     }
-    for (const table of [this.vocabulary, this.wordStates, this.events, this.mistakes]) {
+    for (const table of [this.vocabulary, this.wordStates, this.events, this.mistakes, this.texts]) {
       table.hook('creating', bump)
       table.hook('updating', bump)
       table.hook('deleting', bump)
@@ -592,45 +608,41 @@ export class KelimeDB extends Dexie {
 
   /** The reading library of one language, newest first. Moves an old single saved text in. */
   async getLibrary(language: TargetLanguage): Promise<ReadingText[]> {
-    let all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
+    let mine = await this.texts.where('language').equals(language).toArray()
     // A date stored as a Date (or anything but text) is put right once, here: sorting by it would
     // otherwise fail and leave the reading screen empty.
-    if (all.some((t) => typeof t.addedAt !== 'string')) {
-      all = all.map((t) => (typeof t.addedAt === 'string' ? t : { ...t, addedAt: new Date(addedTime(t)).toISOString() }))
-      await this.meta.put({ key: 'library', value: all })
+    if (mine.some((t) => typeof t.addedAt !== 'string')) {
+      mine = mine.map(withIsoDate)
+      await this.texts.bulkPut(mine)
     }
     const legacy = (await this.meta.get(`reading:${language}`))?.value as string | undefined
     if (legacy?.trim()) {
       const item: ReadingText = { id: crypto.randomUUID(), language, title: titleOf(legacy), text: legacy, addedAt: new Date().toISOString(), history: [] }
-      all = [item, ...all]
-      await this.meta.put({ key: 'library', value: all })
+      mine = [item, ...mine]
+      await this.texts.put(item)
       await this.meta.delete(`reading:${language}`)
       await this.meta.put({ key: `readingCurrent:${language}`, value: item.id })
     }
-    return all.filter((t) => t.language === language).sort((a, b) => addedTime(b) - addedTime(a) || (a.book?.index ?? 0) - (b.book?.index ?? 0))
+    return mine.sort((a, b) => addedTime(b) - addedTime(a) || (a.book?.index ?? 0) - (b.book?.index ?? 0))
   }
 
   async saveText(text: ReadingText) {
-    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
-    await this.meta.put({ key: 'library', value: [text, ...all.filter((t) => t.id !== text.id)] })
+    await this.texts.put(withIsoDate(text))
   }
 
   /** Several texts at once (a book's chapters). */
   async saveTexts(texts: ReadingText[]) {
-    const ids = new Set(texts.map((t) => t.id))
-    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
-    await this.meta.put({ key: 'library', value: [...texts, ...all.filter((t) => !ids.has(t.id))] })
+    await this.texts.bulkPut(texts.map(withIsoDate))
   }
 
   async deleteBook(bookId: string) {
-    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
-    await this.meta.put({ key: 'library', value: all.filter((t) => t.book?.id !== bookId) })
-    await this.addDeleted(all.filter((t) => t.book?.id === bookId).map((t) => t.id))
+    const ids = (await this.texts.where('book.id').equals(bookId).primaryKeys()) as string[]
+    await this.texts.bulkDelete(ids)
+    await this.addDeleted(ids)
   }
 
   async deleteText(id: string) {
-    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
-    await this.meta.put({ key: 'library', value: all.filter((t) => t.id !== id) })
+    await this.texts.delete(id)
     await this.addDeleted([id])
   }
 
@@ -1059,9 +1071,8 @@ export class KelimeDB extends Dexie {
 
   /** Puts deleted reading texts back (undo). */
   async restoreTexts(items: readonly ReadingText[]) {
-    const all = ((await this.meta.get('library'))?.value as ReadingText[]) ?? []
-    const have = new Set(all.map((t) => t.id))
-    await this.meta.put({ key: 'library', value: [...all, ...items.filter((t) => !have.has(t.id))] })
+    const have = new Set((await this.texts.bulkGet(items.map((t) => t.id))).filter(Boolean).map((t) => t!.id))
+    await this.texts.bulkPut(items.filter((t) => !have.has(t.id)).map(withIsoDate))
     await this.reviveDeleted(items.map((t) => t.id))
   }
 
@@ -1187,7 +1198,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     reading: {
       known: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getKnownWords(l))]]))),
       encounters: await db.getEncounters(),
-      library: ((await db.meta.get('library'))?.value as ReadingText[]) ?? [],
+      library: await db.texts.toArray(),
       ignored: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getIgnored(l))]]))),
     },
     vocabTests: await db.getVocabTests(),
@@ -1280,7 +1291,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
       return { id: m.id, kind: m.kind, data: await blob.arrayBuffer(), type: blob.type, createdAt: new Date(m.createdAt) }
     }),
   )
-  await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media, db.stories], async () => {
+  await db.transaction('rw', [db.vocabulary, db.wordStates, db.events, db.mistakes, db.meta, db.media, db.stories, db.texts], async () => {
     await Promise.all([db.vocabulary.clear(), db.wordStates.clear(), db.events.clear(), db.mistakes.clear(), db.stories.clear(), keepMedia ? undefined : db.media.clear()])
     if (!keepMedia) await db.media.bulkPut(media)
     await db.stories.bulkPut(backup.stories ?? [])
@@ -1293,7 +1304,10 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.reading) {
       for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
       await db.meta.put({ key: 'encounters', value: backup.reading.encounters })
-      if (backup.reading.library) await db.meta.put({ key: 'library', value: backup.reading.library })
+      if (backup.reading.library) {
+        await db.texts.clear()
+        await db.texts.bulkPut(backup.reading.library.filter((t) => t && typeof t.id === 'string').map(withIsoDate))
+      }
       for (const [l, keys] of Object.entries(backup.reading.ignored ?? {})) await db.meta.put({ key: `ignored:${l}`, value: keys })
     }
     if (backup.vocabTests) await db.meta.put({ key: 'vocabTests', value: backup.vocabTests })
