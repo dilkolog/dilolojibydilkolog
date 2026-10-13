@@ -1,20 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { GameResult } from './GameResult'
 import { flowParts, flowRound, shuffledOptions, flowGapId, FLOW_ROUND, type FlowItem } from '../../engine/flow'
-import { recordGrammar, type GrammarLog } from '../../engine/grammar'
+import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
+import { noteIn } from './logNote'
 import { flowItems } from '../../data/flow'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const note = (id: string, correct: boolean) => {
-  writing = writing.then(async () => db.saveFlowLog(recordGrammar(await db.getFlowLog(), id, correct, new Date()))).catch(() => undefined)
-  return writing
-}
+const note = noteIn(() => db.getFlowLog(), (log) => db.saveFlowLog(log))
 
 /**
  * Text flow: a short paragraph with its connectors missing. The gaps are filled one after another by

@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
-import { checkGrammar, filled, GRAMMAR_ROUND, pickGrammarRound, recordGrammar, sentenceTokens, topicName, topicStats, type GrammarExercise, type GrammarLog, type GrammarVerdict } from '../../engine/grammar'
+import { checkGrammar, filled, GRAMMAR_ROUND, pickGrammarRound, sentenceTokens, topicName, topicStats, type GrammarExercise, type GrammarLog, type GrammarVerdict } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
+import { noteIn } from './logNote'
 import { grammarExercises } from '../../data/grammar'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
@@ -12,12 +13,7 @@ import { sfx } from '../sounds'
 
 const TYPE_LABEL = { cloze: 'Boşluğu doldur', choice: 'Doğru seçeneği seç', error: 'Hatalı kelimeye dokun' } as const
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const note = (id: string, correct: boolean) => {
-  writing = writing.then(async () => db.saveGrammarLog(recordGrammar(await db.getGrammarLog(), id, correct, new Date()))).catch(() => undefined)
-  return writing
-}
+const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
 
 /**
  * Grammar questions on the hard points of B1–C1: fill a gap, pick the right option, or find the

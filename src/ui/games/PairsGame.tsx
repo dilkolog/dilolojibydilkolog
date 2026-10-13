@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
 import { MINIMAL_PAIRS, pairKey, pairRound, type PairQuestion } from '../../engine/listening'
-import { recordGrammar, type GrammarLog } from '../../engine/grammar'
+import type { GrammarLog } from '../../engine/grammar'
 import { nativeRecordings } from '../../data/wordInfo'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
+import { logsSaved, noteIn } from './logNote'
 import { SpeakerIcon } from '../icons'
 import { sfx } from '../sounds'
 import { speakAsync } from '../speech'
@@ -13,12 +14,8 @@ import { isPctRecord, type Props } from './shared'
 
 const PAIR_ROUND = 12
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const notePair = (language: TargetLanguage, q: PairQuestion, ok: boolean) => {
-  writing = writing.then(async () => db.savePairLog(recordGrammar(await db.getPairLog(), pairKey(language, q.pair), ok, new Date()))).catch(() => undefined)
-  return writing
-}
+const noteLog = noteIn(() => db.getPairLog(), (log) => db.savePairLog(log))
+const notePair = (language: TargetLanguage, q: PairQuestion, ok: boolean) => noteLog(pairKey(language, q.pair), ok)
 
 /**
  * Hear one word of a minimal pair and pick it. Every answer gets immediate feedback and the
@@ -192,7 +189,7 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
           accuracy={round.length ? right / round.length : 0}
           note={worst ? `En çok karıştırdığın ses farkı: ${worst[0]}. Bu çiftleri tekrar dinlemek kulağını alıştırır.` : 'Hiç karıştırmadın; kulağın bu farklara alışmış.'}
           onAgain={() => {
-            void writing.then(() => db.getPairLog()).then((l) => {
+            void logsSaved().then(() => db.getPairLog()).then((l) => {
               setRound(pairRound(language, PAIR_ROUND, createRng(Date.now()), l))
               setIndex(0)
               setAnswers([])

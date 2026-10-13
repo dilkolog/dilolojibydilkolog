@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react'
 import { GameResult } from './GameResult'
-import { recordGrammar, type GrammarLog } from '../../engine/grammar'
+import type { GrammarLog } from '../../engine/grammar'
 import { REGISTER_NAME, REGISTER_ROUND, registerRound, type RegisterQuestion } from '../../engine/register'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
+import { noteIn } from './logNote'
 import { registerItems } from '../../data/register'
 import { SpeakerIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const note = (id: string, correct: boolean) => {
-  writing = writing.then(async () => db.saveRegisterLog(recordGrammar(await db.getRegisterLog(), id, correct, new Date()))).catch(() => undefined)
-  return writing
-}
+const note = noteIn(() => db.getRegisterLog(), (log) => db.saveRegisterLog(log))
 
 /**
  * Register: a situation (a friend, a stranger, a job interview) and a thought; the way of saying it

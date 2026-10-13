@@ -1,22 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
-import { recordGrammar, type GrammarLog } from '../../engine/grammar'
+import type { GrammarLog } from '../../engine/grammar'
 import { REFLEX_ROUND, REFLEX_SECONDS, reflexRound, type ReflexQuestion } from '../../engine/reflex'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
+import { noteIn } from './logNote'
 import { reflexPhrases } from '../../data/reflex'
 import { SpeakerIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const note = (id: string, correct: boolean) => {
-  writing = writing.then(async () => db.saveReflexLog(recordGrammar(await db.getReflexLog(), id, correct, new Date()))).catch(() => undefined)
-  return writing
-}
+const note = noteIn(() => db.getReflexLog(), (log) => db.saveReflexLog(log))
 
 type Answer = { given: string | null; ms: number }
 
