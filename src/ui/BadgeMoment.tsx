@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { medalTier, type AchievementState } from '../engine/gamification'
 import { Burst } from './Burst'
+import { shareCard } from './shareCard'
 import { Medal } from './Medal'
 import { byTier, TIER_NAME } from './badgeTier'
 
@@ -29,11 +30,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
   }, [onClose])
 
   const share = async () => {
-    try {
-      await navigator.share({ title: 'Diloloji', text: `Yeni rozet: ${a.title}. ${a.description}` })
-    } catch {
-      // Share sheet closed; nothing to do.
-    }
+    await shareCard({ kicker: 'Yeni rozet', title: a.title, text: a.description }, `Yeni rozet: ${a.title}. ${a.description}`)
   }
 
   if (ordered.length > 1)
