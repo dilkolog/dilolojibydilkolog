@@ -176,6 +176,9 @@ export interface ChatRequest {
   goals?: string[]
 }
 
+/** What Monki is doing: free talk, a quiz one question at a time, a role-play scene, or going through the learner's recent mistakes. */
+export type MonkiMode = 'chat' | 'quiz' | 'roleplay' | 'mistakes'
+
 /** One turn with Monki, the assistant: free talk about the language being learned. */
 export interface MonkiRequest {
   language: import('../engine/types').TargetLanguage
@@ -184,11 +187,16 @@ export interface MonkiRequest {
   name?: string
   /** Words they struggle with (lemmas), to build examples and small quizzes from. */
   weakWords?: string[]
+  mode?: MonkiMode
+  /** Role-play: the scene, in Turkish ("Kafede sipariş vermek"). */
+  scenario?: string
+  /** Mistakes mode: what went wrong lately, most repeated first. */
+  mistakes?: { word: string; given: string; expected: string }[]
 }
 
 export interface MonkiReply {
   reply: string
-  /** Two or three short follow-ups the learner may tap, in Turkish. */
+  /** Two or three short follow-ups the learner may tap (Turkish; in a role-play, things to say back in the target language). */
   suggestions: string[]
 }
 

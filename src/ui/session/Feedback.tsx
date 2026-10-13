@@ -12,6 +12,9 @@ import { PosTag } from '../PosTag'
 import { WrittenForm } from '../WrittenForm'
 import type { Graded } from './shared'
 import { modalOpen, ownsKey } from './keys'
+import { AskMonki } from '../monki/AskMonki'
+import { missAsk } from '../monki/asks'
+import { useAi } from '../aiContext'
 
 /** After a miss: kind, short, and true (the word is asked once more in a moment). */
 const SOFT = ['Olur böyle.', 'Hata, öğrenmenin yarısı.', 'Beynin bunu şimdi kaydetti.', 'Bir sonrakinde sende.']
@@ -96,6 +99,8 @@ export function Feedback({
     return () => window.removeEventListener('keydown', onKey)
   }, [ready, onContinue, onOverride, onEdit])
   const example = entry.senses[0].examples[0]
+  const { apiKey } = useAi()
+  const askable = !!apiKey && ev.verdict !== 'correct'
   return (
     <div className={`sheet ${cls}`} role="status">
       <div className="sheet-inner">
@@ -197,7 +202,7 @@ export function Feedback({
           {entry.ipa && <span className="ipa">{entry.ipa}</span>}
           {entry.senses[0].gloss}
         </p>
-        {(onOverride || onDiscard || onEdit) && (
+        {(onOverride || onDiscard || onEdit || askable) && (
           <span className="sheet-links">
             {onOverride && (
               <button className="link small" onClick={onOverride}>
@@ -209,6 +214,7 @@ export function Feedback({
                 Yanlış dokundum, sayma
               </button>
             )}
+            {askable && <AskMonki variant="link" label={forgot ? 'Monki hatırlatsın' : 'Monki açıklasın'} ask={() => missAsk(entry, ev.given, ev.expected, forgot)} />}
             {onEdit && (
               <button className="link small" onClick={onEdit} title="Kelimeyi düzelt (E)">
                 <PenIcon size={14} className="inline-icon" />

@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { decision } from '../../engine/__tests__/fixtures'
 import type { Graded } from './shared'
 import { Feedback } from './Feedback'
+import { AiContext } from '../aiContext'
 
 const show = (verdict: 'correct' | 'near' | 'wrong', confidence?: 'sure' | 'unsure') =>
   renderToStaticMarkup(
@@ -22,5 +23,17 @@ describe('feedback after an answer', () => {
     expect(show('correct')).not.toContain('return-note')
     expect(show('near')).not.toContain('return-note')
     expect(show('wrong', 'sure')).not.toContain('return-note')
+  })
+
+  it('offers Monki after a miss, with a YZ key only', () => {
+    const withKey = (verdict: 'correct' | 'wrong') =>
+      renderToStaticMarkup(
+        <AiContext.Provider value={{ apiKey: 'sk', setApiKey: async () => {} }}>
+          <Feedback ev={{ verdict, correct: verdict === 'correct', expected: 'decision' } as unknown as Graded} entry={decision} continueRef={createRef()} onContinue={() => {}} />
+        </AiContext.Provider>,
+      )
+    expect(withKey('wrong')).toContain('Monki açıklasın')
+    expect(withKey('correct')).not.toContain('Monki açıklasın')
+    expect(show('wrong')).not.toContain('Monki')
   })
 })

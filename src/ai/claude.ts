@@ -510,8 +510,25 @@ export async function chatTurn(apiKey: string, req: ChatRequest): Promise<ChatRe
 
 const Monki = z.object({
   reply: z.string().describe('Your answer, in Turkish with target-language examples. Short: a few lines unless asked for more. Only **bold**, _italic_ and plain lines or "- " lists; no headings, no tables.'),
-  suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, in Turkish, each under 40 characters, each a request or question to you.'),
+  suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, each under 40 characters. Normally Turkish requests or questions to you; in a role-play scene, replies the learner could say next in the target language; in a quiz, the answer options of a multiple-choice question or Turkish taps like "İpucu ver".'),
 })
+
+/** The extra rules of the mode Monki is in (nothing for plain chat). */
+function monkiModeRules(req: MonkiRequest, lang: string): string[] {
+  if (req.mode === 'quiz')
+    return [
+      `QUIZ MODE: ask exactly one question at a time, then wait. Mix: Turkish meaning to ${lang} word, ${lang} word to Turkish meaning, fill-in-the-blank sentences, short translations. Fit the level to how the learner answers, and start from the weak words. After an answer say in one short line whether it was right, give the correct form and a brief reason, then ask the next question. Taps: the options of a multiple-choice question, or Turkish ones like "İpucu ver" and "Sonraki soru".`,
+    ]
+  if (req.mode === 'roleplay')
+    return [
+      `ROLE-PLAY MODE: scene: ${req.scenario || 'an everyday conversation'}. You play the other person in the scene and stay in character. Speak only in simple, natural ${lang} (A2-B1), one or two short sentences, then wait for the learner. No translation unless asked. If the learner makes a real mistake, finish your in-character reply and add one new line in Turkish starting with "✏️ Düzeltme:" with the corrected sentence and a few words of reason. After about eight exchanges close the scene and sum up in two Turkish lines what went well and what to watch. Override the "answer in Turkish" rule for the scene itself. Taps: two or three things the learner could say next, in ${lang}, of different difficulty.`,
+    ]
+  if (req.mode === 'mistakes')
+    return [
+      `MISTAKES MODE: the learner's recent mistakes, most repeated first: ${req.mistakes?.length ? req.mistakes.map((m) => `${m.word} (wrote "${m.given || '-'}", right: "${m.expected}")`).join('; ') : 'none recorded'}. Go through them one at a time: say in Turkish why it goes wrong, give a short memory trick and one new example, then ask the learner to write a sentence with it and correct it. Move on only when they have it.`,
+    ]
+  return []
+}
 
 /** One turn of free talk with Monki: explains, corrects, makes examples and small quizzes. */
 export async function monkiTurn(apiKey: string, req: MonkiRequest): Promise<MonkiReply> {
@@ -523,7 +540,8 @@ export async function monkiTurn(apiKey: string, req: MonkiRequest): Promise<Monk
     'You help with vocabulary, grammar, pronunciation tips, differences between similar words or tenses, checking and gently correcting sentences the learner wrote (show the corrected sentence, then one short reason), mnemonics, and small quizzes (one question at a time, wait for the answer).',
     'If the learner writes a sentence in the target language with a real mistake, point it out kindly even when they did not ask. Never invent features of the app. Politely steer off-topic requests back to language learning in one friendly sentence.',
     `Words they currently struggle with (use them for examples and quizzes when it fits): ${req.weakWords?.join(', ') || 'none known'}.`,
-    'Also return two or three short follow-up taps in Turkish that would naturally come next.',
+    'Also return two or three short follow-up taps that would naturally come next.',
+    ...monkiModeRules(req, lang),
   ].join('\n')
   const messages: Anthropic.Beta.BetaMessageParam[] = req.history.map((t) => ({ role: t.role, content: t.text }))
   return structured(apiKey, Monki, system, messages, 'low', 'monki')

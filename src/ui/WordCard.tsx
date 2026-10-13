@@ -3,6 +3,8 @@ import type { CSSProperties, ReactNode } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
 import { PlayIcon, CloseIcon } from './icons'
+import { AskMonki } from './monki/AskMonki'
+import { sentenceAsk } from './monki/asks'
 import { cleanToken } from '../engine/extract'
 import type { ReadToken } from '../engine/reading'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
@@ -144,7 +146,8 @@ export function WordCard({
         {selected.sentence}{' '}
         <button className="link small" onClick={() => onKeepSentence(selected.sentence, cleanToken(selected.token.text, language))}>
           Cümleyi kaydet
-        </button>
+        </button>{' '}
+        <AskMonki variant="link" label="Monki açıklasın" ask={() => sentenceAsk(selected.sentence, cleanToken(selected.token.text, language))} />
       </p>
       <PhraseBuilder key={`${selected.sentence}|${selected.token.text}`} sentence={selected.sentence} word={cleanToken(selected.token.text, language)} language={language} onAdd={onAdd} />
       <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />

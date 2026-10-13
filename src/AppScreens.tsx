@@ -20,6 +20,8 @@ import { HabitCards } from './ui/Habits'
 import { BackupNudge } from './ui/BackupNudge'
 import { WhatsNew } from './ui/WhatsNew'
 import { MindSeed } from './ui/MindSeed'
+import { MonkiNudge } from './ui/monki/MonkiNudge'
+import { TodayTime } from './ui/TodayTime'
 import { SuggestWords } from './ui/SuggestWords'
 import { WeeklyNudge } from './ui/WeeklyNudge'
 import type { WeekSummary } from './engine/weekly'
@@ -385,6 +387,7 @@ export function AppScreens(props: AppScreensProps) {
             ),
           }}
           firstWords={lookupNudge}
+          timeCard={<TodayTime db={db} language={data.language} goal={settings.weeklyTimeGoal} onOpen={go({ name: 'progress' })} />}
           extra={
             <>
             <HabitCards
@@ -410,6 +413,7 @@ export function AppScreens(props: AppScreensProps) {
                 setScreen({ name: 'settings' })
               }}
             />
+            <MonkiNudge openMistakes={openMistakes(data.mistakes).length} />
             {/* Last: only when no other nudge has something to say (one at a time). */}
             <MindSeed language={data.language} />
             </>

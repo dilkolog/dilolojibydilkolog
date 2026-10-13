@@ -1,0 +1,489 @@
+[
+  {
+    "id": "es-relativos_es-01",
+    "language": "es",
+    "level": "B1",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "El libro ___ compré ayer es muy interesante.",
+    "answer": "que",
+    "options": [
+      "que",
+      "quien",
+      "cual",
+      "donde"
+    ],
+    "hint": "nesne → que",
+    "explanation": "« que » en yaygın ilgi zamiridir; kişi ya da nesne için kullanılır: el libro que compré (dün aldığım kitap).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-02",
+    "language": "es",
+    "level": "B1",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "La ciudad ___ nací es muy pequeña.",
+    "answer": "donde",
+    "options": [
+      "donde",
+      "que",
+      "quien",
+      "cuyo"
+    ],
+    "hint": "yer → donde",
+    "explanation": "Yeri belirten ilgi cümlelerinde donde (ya da en la que) gelir: la ciudad donde nací.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-03",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "Esa es la mujer con ___ trabajo.",
+    "answer": "quien",
+    "options": [
+      "quien",
+      "que",
+      "donde",
+      "cuyo"
+    ],
+    "hint": "edat + kişi → quien",
+    "explanation": "Edattan sonra kişi için quien / quienes (ya da el que, la que) kullanılır: con quien trabajo. Edatlı yapıda yalın « que » gelmez.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-04",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "Conozco a un escritor ___ novelas son muy famosas.",
+    "answer": "cuyas",
+    "options": [
+      "cuyas",
+      "cuyos",
+      "que",
+      "cuya"
+    ],
+    "hint": "cuyo: sahip olunana uyar",
+    "explanation": "« cuyo » sahiplik bildirir ve sahibinin değil, sahip olunan şeyin cinsiyet ve sayısına uyar: novelas dişil çoğul → cuyas.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-05",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "Lo ___ me dijiste ayer me preocupa.",
+    "answer": "que",
+    "options": [
+      "que",
+      "cual",
+      "quien",
+      "cuyo"
+    ],
+    "hint": "lo que: …dığı şey",
+    "explanation": "« lo que » “şey(ler)” demektir; belli bir isme değil, bir olguya ya da genel bir şeye gönderme yapar: lo que me dijiste.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-06",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "Llegó tarde, ___ me enfadó mucho.",
+    "answer": "lo cual",
+    "options": [
+      "lo cual",
+      "el cual",
+      "la cual",
+      "cuya"
+    ],
+    "hint": "tüm cümleye gönderme → lo cual",
+    "explanation": "Önceki cümlenin tamamına gönderme yapan açıklayıcı ilgi zamiri « lo cual »dır (« lo que » de olur): llegó tarde, lo cual me enfadó.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-07",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "Los chicos de ___ te hablé son mis primos.",
+    "answer": "quienes",
+    "options": [
+      "quienes",
+      "que",
+      "cual",
+      "donde"
+    ],
+    "hint": "edat + çoğul kişi → quienes",
+    "explanation": "Edattan sonra çoğul kişi için quienes (ya da de los que) kullanılır: los chicos de quienes te hablé. « de que » doğru değildir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-08",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "El año en ___ nos conocimos fue 2010.",
+    "answer": "que",
+    "options": [
+      "que",
+      "cual",
+      "cuyo",
+      "donde"
+    ],
+    "hint": "zaman → en que",
+    "explanation": "Zaman belirten isimlerden sonra en que kullanılır: el año en que nos conocimos. « donde » yer içindir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-09",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "No hay nada ___ me guste más que el mar.",
+    "answer": "que",
+    "options": [
+      "que",
+      "quien",
+      "cuyo",
+      "donde"
+    ],
+    "hint": "nada + que + subjuntivo",
+    "explanation": "« nada, algo, todo » gibi belirsiz sözcüklerden sonra ilgi zamiri « que »dir; gustar öznesi nada’dır, aynı zamanda subjuntivo (guste) ister.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-10",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "choice",
+    "prompt": "La casa ___ techo es rojo es de mi tío.",
+    "answer": "cuyo",
+    "options": [
+      "cuyo",
+      "cuya",
+      "que",
+      "donde"
+    ],
+    "hint": "cuyo: techo → eril",
+    "explanation": "Cuyo, sahip olunan şeye (techo, eril tekil) uyar: la casa cuyo techo es rojo (çatısı kırmızı olan ev).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-11",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "cloze",
+    "prompt": "Esa es la señora ___ hijo trabaja aquí.",
+    "answer": "cuyo",
+    "hint": "cuyo / cuya",
+    "explanation": "Cuyo, sahibine değil sahip olunan isme uyar: hijo eril tekil olduğu için cuyo (oğlu burada çalışan hanım).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-12",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "cloze",
+    "prompt": "Esto es ___ que necesitaba.",
+    "answer": "lo",
+    "hint": "lo que",
+    "explanation": "« lo que » somut bir isme değil, işaret edilen şeye gönderme yapar: esto es lo que necesitaba (işte ihtiyacım olan şey).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-13",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "cloze",
+    "prompt": "Los alumnos, ___ la mayoría es de Italia, hablan español.",
+    "answer": "de los cuales",
+    "alternatives": [
+      "de quienes"
+    ],
+    "hint": "edat + el cual",
+    "explanation": "Açıklayıcı cümlede edat + el cual yapısı kullanılır ve isme uyar: de los cuales (kişiler için de quienes).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-14",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "error",
+    "prompt": "Esta es la casa que yo vivo.",
+    "answer": "que",
+    "fix": "donde",
+    "hint": "yer → donde",
+    "explanation": "« vivir » yer bildirir; yer için que değil donde (ya da en la que) gelir: la casa donde vivo.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-relativos_es-15",
+    "language": "es",
+    "level": "B2",
+    "topic": "relativos_es",
+    "type": "error",
+    "prompt": "Lo cual me dijiste ayer no es verdad.",
+    "answer": "cual",
+    "fix": "que",
+    "hint": "lo que ≠ lo cual",
+    "explanation": "« lo cual » yalnızca bir cümleye gönderme yaparken kullanılır; “söylediğin şey” için lo que gerekir: lo que me dijiste.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-01",
+    "language": "es",
+    "level": "B1",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Mi hermano es ___ alto que yo.",
+    "answer": "más",
+    "options": [
+      "más",
+      "muy",
+      "tan",
+      "mucho"
+    ],
+    "hint": "más … que",
+    "explanation": "Üstünlük karşılaştırması « más + sıfat + que » ile kurulur: más alto que yo.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-02",
+    "language": "es",
+    "level": "B1",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Ella es tan inteligente ___ su madre.",
+    "answer": "como",
+    "options": [
+      "como",
+      "que",
+      "de",
+      "a"
+    ],
+    "hint": "tan … como",
+    "explanation": "Eşitlik « tan + sıfat + como » ile kurulur: tan inteligente como su madre.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-03",
+    "language": "es",
+    "level": "B1",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Este restaurante es el ___ de la ciudad.",
+    "answer": "mejor",
+    "options": [
+      "mejor",
+      "más bueno",
+      "buenísimo",
+      "más mejor"
+    ],
+    "hint": "bueno → mejor",
+    "explanation": "« bueno »nun üstünlük biçimi düzensizdir: el mejor. « más bueno » ya da « más mejor » kullanılmaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-04",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Tengo más libros ___ tú.",
+    "answer": "que",
+    "options": [
+      "que",
+      "de",
+      "como",
+      "a"
+    ],
+    "hint": "más + isim + que",
+    "explanation": "İki öğe karşılaştırılırken más … que kullanılır: tengo más libros que tú.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-05",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Gasté más ___ cien euros.",
+    "answer": "de",
+    "options": [
+      "de",
+      "que",
+      "como",
+      "a"
+    ],
+    "hint": "más de + sayı",
+    "explanation": "Sayı ve miktar önünde olumlu cümlede « más de » gelir: gasté más de cien euros (yüz avrodan fazla).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-06",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Hoy hace ___ tiempo que ayer.",
+    "answer": "peor",
+    "options": [
+      "peor",
+      "más malo",
+      "malísimo",
+      "más peor"
+    ],
+    "hint": "malo → peor",
+    "explanation": "« malo »nun üstünlük biçimi peor’dur; tiempo (hava) için peor tiempo denir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-07",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Es la película ___ interesante que he visto.",
+    "answer": "más",
+    "options": [
+      "más",
+      "muy",
+      "tan",
+      "mucho"
+    ],
+    "hint": "el / la más + sıfat",
+    "explanation": "Üstünlük derecesi « la película más interesante que he visto » yapısıyla kurulur; que’den sonra subjuntivo değil indicativo gelir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-08",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Tengo tantos amigos ___ tú.",
+    "answer": "como",
+    "options": [
+      "como",
+      "que",
+      "tan",
+      "cuantos"
+    ],
+    "hint": "tanto … como",
+    "explanation": "Eşitlik isimlerle « tanto/a/os/as + isim + como » ile kurulur ve isme uyar: tantos amigos como tú.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-09",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Ella tiene ___ años que yo; nació en 1990 y yo en 1985.",
+    "answer": "menos",
+    "options": [
+      "menos",
+      "más",
+      "tantos",
+      "tan"
+    ],
+    "hint": "menos … que",
+    "explanation": "Daha az olduğunda menos … que kullanılır: o benden küçük, dolayısıyla menos años que yo.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-10",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "choice",
+    "prompt": "Es ___ simpático que no puedo creerlo.",
+    "answer": "tan",
+    "options": [
+      "tan",
+      "tanto",
+      "muy",
+      "más"
+    ],
+    "hint": "tan … que: o kadar … ki",
+    "explanation": "Sonuç bildiren « tan + sıfat + que » yapısı “o kadar … ki” demektir: es tan simpático que no puedo creerlo.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-11",
+    "language": "es",
+    "level": "B1",
+    "topic": "comparativos_es",
+    "type": "cloze",
+    "prompt": "Mi coche es ___ (bueno) que el tuyo.",
+    "answer": "mejor",
+    "hint": "bueno → mejor",
+    "explanation": "Karşılaştırmada bueno düzensizdir: mejor que. « más bueno que » denmez.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-12",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "cloze",
+    "prompt": "Este examen es ___ de todos.",
+    "answer": "el más difícil",
+    "hint": "el más + sıfat + de",
+    "explanation": "Üstünlük derecesi artikel + más + sıfat ile kurulur: el más difícil de todos (hepsinin en zoru). de + grup birlikte gelir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-13",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "cloze",
+    "prompt": "Hay ___ de veinte personas en la sala.",
+    "answer": "más",
+    "hint": "yirmiden fazla",
+    "explanation": "Sayıdan önce « más de » ile “…den fazla” denir: hay más de veinte personas (yirmiden fazla kişi var).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-14",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "error",
+    "prompt": "Ella es tan alta que yo.",
+    "answer": "que",
+    "fix": "como",
+    "hint": "tan … como",
+    "explanation": "Eşitlik tan … como ile kurulur; que yalnızca más / menos ile gelir: tan alta como yo.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-comparativos_es-15",
+    "language": "es",
+    "level": "B2",
+    "topic": "comparativos_es",
+    "type": "error",
+    "prompt": "Gasté más que cien euros.",
+    "answer": "que",
+    "fix": "de",
+    "hint": "más de + sayı",
+    "explanation": "Sayısal miktar önünde más que değil « más de » kullanılır: más de cien euros.",
+    "source": "Diloloji (özgün)"
+  }
+]

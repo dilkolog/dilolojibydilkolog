@@ -1,0 +1,58 @@
+# FR batch 1: frequent verbs with no example sentence yet. No present sentences for French (the stored sentences are never the present: tenses.test.ts); -er verbs: the subjonctif has the same forms as the present and imparfait, so it can't tell the tense.
+rassurer	passe-compose	Sa lettre m'a rassuré.	Mektubu beni rahatlattı.
+rassurer	imparfait	Il me rassurait toujours avant un examen.	Bir sınavdan önce beni hep yatıştırırdı.
+rassurer	futur	Cette nouvelle vous rassurera.	Bu haber sizi rahatlatacak.
+rassurer	conditionnel	Un appel de sa part me rassurerait.	Ondan bir telefon beni rahatlatırdı.
+revivre	passe-compose	Elle a revécu ce moment dans ses rêves.	O anı rüyalarında yeniden yaşadı.
+revivre	imparfait	Nous revivions nos vacances en regardant les photos.	Fotoğraflara bakarak tatilimizi yeniden yaşıyorduk.
+revivre	futur	Tu revivras ces souvenirs un jour.	Bir gün bu anıları yeniden yaşayacaksın.
+revivre	conditionnel	Je ne revivrais pas cette année pour rien au monde.	Dünyada hiçbir şey için o yılı yeniden yaşamak istemezdim.
+revivre	subjonctif	Il faut que tu revives ce moment pour le comprendre.	Onu anlamak için o anı yeniden yaşaman gerekiyor.
+réconcilier	passe-compose	Ce voyage a réconcilié les deux frères.	Bu yolculuk iki kardeşi barıştırdı.
+réconcilier	imparfait	Elle réconciliait toujours les voisins en colère.	Öfkeli komşuları hep barıştırırdı.
+réconcilier	futur	Le temps réconciliera peut-être nos familles.	Belki zaman ailelerimizi barıştıracak.
+réconcilier	conditionnel	Un dîner les réconcilierait sûrement.	Bir akşam yemeği onları kesinlikle barıştırırdı.
+interférer	passe-compose	Le bruit a interféré avec notre travail.	Gürültü işimizi engelledi.
+interférer	imparfait	Mes parents interféraient toujours dans mes choix.	Ailem seçimlerime hep karışırdı.
+interférer	futur	Cela n'interférera pas avec mon planning.	Bu benim programımı etkilemeyecek.
+interférer	conditionnel	Il interférerait si on le laissait faire.	Bırakılsa karışırdı.
+sécuriser	passe-compose	L'équipe a sécurisé le site avant l'arrivée du public.	Ekip, halk gelmeden önce alanı güvenlik altına aldı.
+sécuriser	imparfait	On sécurisait chaque porte la nuit.	Geceleri her kapıyı güvenceye alırdık.
+sécuriser	futur	Ce nouveau système sécurisera tous les paiements.	Bu yeni sistem tüm ödemeleri güvenli hale getirecek.
+sécuriser	conditionnel	Un meilleur verrou sécuriserait la maison.	Daha iyi bir kilit evi güvenli kılardı.
+repenser	passe-compose	Elle a repensé à son enfance toute la soirée.	Bütün akşam çocukluğunu düşündü.
+repenser	imparfait	Je repensais souvent à ce voyage.	O yolculuğu sık sık düşünürdüm.
+repenser	futur	Tu repenseras à cette soirée avec le sourire.	O geceyi gülümseyerek hatırlayacaksın.
+repenser	conditionnel	Je repenserais mon choix à ta place.	Senin yerinde olsam seçimimi yeniden düşünürdüm.
+stabiliser	passe-compose	Les médecins ont stabilisé l'état du patient.	Doktorlar hastanın durumunu dengeledi.
+stabiliser	imparfait	Le pays stabilisait peu à peu son économie.	Ülke ekonomisini yavaş yavaş dengeliyordu.
+stabiliser	futur	Ce traité stabilisera la région.	Bu antlaşma bölgeyi istikrara kavuşturacak.
+stabiliser	conditionnel	Une aide extérieure stabiliserait la situation.	Dışarıdan bir yardım durumu dengelerdi.
+rivaliser	passe-compose	Ces deux équipes ont rivalisé toute la saison.	Bu iki takım bütün sezon rekabet etti.
+rivaliser	imparfait	Les deux frères rivalisaient en tout.	İki kardeş her konuda yarışırdı.
+rivaliser	futur	Notre produit rivalisera bientôt avec les grandes marques.	Ürünümüz yakında büyük markalarla rekabet edecek.
+rivaliser	conditionnel	Personne ne rivaliserait avec elle sur ce sujet.	Bu konuda kimse onunla yarışamazdı.
+renaître	imparfait	La ville renaissait de ses cendres.	Şehir küllerinden yeniden doğuyordu.
+renaître	futur	Ce quartier renaîtra dans dix ans.	Bu mahalle on yıl içinde yeniden canlanacak.
+renaître	conditionnel	Sans cet espoir, il ne renaîtrait pas.	Bu umut olmasaydı yeniden canlanmazdı.
+renaître	subjonctif	Il faut que la confiance renaisse.	Güvenin yeniden doğması gerekiyor.
+contrer	passe-compose	Le gardien a contré le tir au dernier moment.	Kaleci şutu son anda önledi.
+contrer	imparfait	Elle contrait toujours mes arguments.	Argümanlarıma hep karşı çıkardı.
+contrer	futur	Nous contrerons cette proposition.	Bu öneriye karşı çıkacağız.
+contrer	conditionnel	Un bon avocat contrerait leurs arguments.	İyi bir avukat onların argümanlarını çürütürdü.
+râler	passe-compose	Il a râlé pendant tout le trajet.	Bütün yol boyunca söylendi.
+râler	imparfait	Mon père râlait contre les embouteillages.	Babam trafikten şikâyet ederdi.
+râler	futur	Elle râlera quand elle verra la facture.	Faturayı görünce söylenecek.
+râler	conditionnel	Il râlerait s'il savait la vérité.	Gerçeği bilseydi söylenirdi.
+héberger	passe-compose	Mes grands-parents ont hébergé toute la famille.	Büyükanne ve büyükbabam bütün aileyi evinde ağırladı.
+héberger	imparfait	Cette auberge hébergeait les pèlerins.	Bu han hacıları ağırlıyordu.
+héberger	futur	L'hôtel hébergera les invités du mariage.	Otel düğün konuklarını ağırlayacak.
+héberger	conditionnel	Je vous hébergerais volontiers.	Sizi seve seve ağırlardım.
+trinquer	passe-compose	Ils ont trinqué à leur réussite.	Başarılarına kadeh kaldırdılar.
+trinquer	imparfait	On trinquait toujours à minuit.	Hep gece yarısı kadeh kaldırırdık.
+trinquer	futur	Nous trinquerons ensemble ce soir.	Bu akşam birlikte kadeh kaldıracağız.
+trinquer	conditionnel	Je trinquerais bien avec vous.	Sizinle seve seve kadeh tokuştururdum.
+décoder	passe-compose	L'ordinateur a décodé le signal en quelques secondes.	Bilgisayar sinyali birkaç saniyede çözdü.
+décoder	imparfait	Les espions décodaient les messages à la main.	Casuslar mesajları elle çözüyordu.
+décoder	futur	Ce logiciel décodera ton fichier audio.	Bu yazılım ses dosyanı çözecek.
+décoder	conditionnel	Je décoderais cette énigme si j'avais plus de temps.	Daha çok zamanım olsa bu bilmeceyi çözerdim.

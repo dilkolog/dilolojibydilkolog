@@ -42,6 +42,8 @@ import { Plant } from './Plant'
 import { growthStage, plantHealth, projectStage, type Health } from '../engine/growth'
 import { MASTERY_STAGES } from '../engine/mastery'
 import { WordMedia } from './WordMedia'
+import { AskMonki } from './monki/AskMonki'
+import { wordAsk } from './monki/asks'
 import { isRetired } from '../engine/retire'
 import { GroupToggle, JumpNav } from './JumpNav'
 import { useGroups } from './useGroups'
@@ -261,6 +263,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
           <button className="btn btn-sm btn-quiet" onClick={() => setEditing(true)}>
             <PenIcon size={15} /> Düzenle
           </button>
+          <AskMonki ask={() => wordAsk(entry)} />
           <button className="icon-btn word-hero-delete" onClick={remove} aria-label="Kelimeyi sil" title="Sil">
             <TrashIcon size={18} />
           </button>
