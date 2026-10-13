@@ -10,6 +10,7 @@ import { LookSettings } from './LookSettings'
 import { PageHeader } from './PageHeader'
 import type { PushState } from './pushReminders'
 import { ReminderSettings } from './ReminderSettings'
+import { SETTINGS_ART } from './drawnArt'
 import { PANE_KEY } from './settingsPane'
 import { SoundSettings } from './SoundSettings'
 import { StudySettings } from './StudySettings'
@@ -41,7 +42,7 @@ function Pane({ group, active, children }: { group: Group; active: boolean; chil
   return (
     <div className="settings-pane" id={group.id} data-active={active || undefined}>
       <header className="settings-pane-head">
-        <span className="settings-pane-icon">{group.icon}</span>
+        {SETTINGS_ART[group.id] ? <img className="settings-pane-art" src={SETTINGS_ART[group.id]} alt="" height={48} /> : <span className="settings-pane-icon">{group.icon}</span>}
         <div>
           <h2 className="settings-pane-title">{group.name}</h2>
           <p className="small muted">{group.sub}</p>
@@ -147,7 +148,7 @@ export function SettingsScreen({
                   choose(g.id)
                 }}
               >
-                <span className="settings-menu-icon">{g.icon}</span>
+                {SETTINGS_ART[g.id] ? <img className="settings-menu-art" src={SETTINGS_ART[g.id]} alt="" height={32} /> : <span className="settings-menu-icon">{g.icon}</span>}
                 <span>{g.name}</span>
               </button>
             ))}

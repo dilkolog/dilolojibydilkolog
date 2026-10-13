@@ -1677,3 +1677,9 @@ button.badge-card:active { transform: none; }
 
 /* Small drawn icons inside chips and buttons (Monki's modes, adding one's own text). */
 .chip-art { display: inline-block; width: 1.25rem; height: 1.25rem; margin-right: 0.375rem; vertical-align: -0.3rem; object-fit: contain; }
+
+/* Drawn art in the settings pane headings, the account card and the list titles. */
+.settings-pane-art { height: 3rem; width: auto; flex: none; }
+.account-art { height: 3.5rem; width: auto; flex: none; }
+.wl-cover { width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); flex: none; object-fit: contain; }
+.settings-menu-art { height: 2rem; width: auto; max-width: 2.75rem; object-fit: contain; flex: none; }

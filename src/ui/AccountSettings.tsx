@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
-import { ChartIcon, CheckIcon, GlobeIcon, LockIcon, UserIcon } from './icons'
+import { ChartIcon, CheckIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
 import { SyncAuthError, SyncConflictError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
@@ -8,6 +8,7 @@ import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
 import { CONFLICT, getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
+import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
 import { SyncSettings } from './SyncSettings'
 import { AdminAccess } from './AdminAccess'
@@ -55,9 +56,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   return (
     <section className={`card account-card ${account ? 'is-in' : 'is-out'}`}>
       <header className="account-head">
-        <span className="account-mark" aria-hidden>
-          <GlobeIcon size={22} />
-        </span>
+        <img className="account-art" src={account ? (access === 'approved' ? ACCOUNT_ART.approved : access === 'rejected' ? ACCOUNT_ART.rejected : ACCOUNT_ART.pending) : ACCOUNT_ART.out} alt="" height={56} />
         <div className="account-title">
           <h2 className="section-title">Giriş ve eşitleme</h2>
           {account ? (

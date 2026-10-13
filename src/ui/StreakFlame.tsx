@@ -1,4 +1,5 @@
 import { FlameIcon } from './icons'
+import { streakPicture } from './drawnArt'
 import { flameTier } from './flameTier'
 
 const TIER_NAME = ['', '3 gün', '1 hafta', '1 ay', '100 gün']
@@ -20,4 +21,10 @@ export function StreakFlame({ streak, frozen = false, size = 22, ignite = false 
       <FlameIcon size={Math.round(size * scale)} />
     </span>
   )
+}
+
+/** The streak as a drawn flame with a face (asleep at zero), for places with room; `ignite` pops it when the streak just grew. */
+export function StreakPicture({ streak, size = 34, ignite = false }: { streak: number; size?: number; ignite?: boolean }) {
+  const tier = flameTier(streak)
+  return <img className={`streak-picture${ignite ? ' is-igniting' : ''}`} src={streakPicture(streak, tier)} alt="" height={size} style={{ height: size }} title={tier ? `${TIER_NAME[tier]} serisi` : undefined} />
 }

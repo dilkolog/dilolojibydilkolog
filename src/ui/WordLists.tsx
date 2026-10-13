@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { listCover } from './drawnArt'
 import { displayForm } from '../engine/exercises'
 import { currentLevel, levelGroups, listWords, newLevelId, progressOf, type GroupProgress } from '../engine/lists'
 import type { ListLevel, TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
@@ -162,6 +163,7 @@ export function WordListsView({
                 />
               ) : (
                 <h3 className="wl-name">
+                  {listCover(list.name) && <img className="wl-cover" src={listCover(list.name)} alt="" width={40} height={40} />}
                   {list.name}
                   {collabIds[list.id] && <span className="badge wl-focus-badge">Ortak</span>}
                   {focused && (

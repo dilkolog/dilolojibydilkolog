@@ -4,7 +4,7 @@ import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, ty
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
-import { MONKI_AVATAR, monkiAvatarUrl } from './avatarArt'
+import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, drawnAvatarName } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
 import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
@@ -20,7 +20,8 @@ import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
 import { CATEGORY_EMBLEM, EMBLEM, drawnMedal, levelMonki } from './drawnArt'
 
-const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
+/** The glyph avatars; the animals Monki's set draws (fox, panda, owl, octopus, penguin, koala) are not repeated as emoji. */
+const EMOJIS = ['🦁', '🐢', '🐬', '🦄', '🐝', '🦋', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
 const LADDER: [number, string][] = [1, 3, 5, 8, 11, 15, 20, 25, 30, 40, 50].map((l) => [l, levelTitle(l)])
 
@@ -123,9 +124,9 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         {editing && (
           <div className="stack avatar-editor">
             <div className="emoji-grid">
-              {[MONKI_AVATAR, ...EMOJIS].map((e) => (
+              {[...DRAWN_AVATAR_IDS, ...EMOJIS].map((e) => (
                 <button key={e} className="emoji-btn" aria-pressed={!profile.photoId && profile.emoji === e} onClick={() => (profile.photoId ? setPhoto(null).then(() => save({ emoji: e })) : save({ emoji: e }))}>
-                  {e === MONKI_AVATAR ? <img className="emoji-monki" src={monkiAvatarUrl} alt="Monki" /> : e}
+                  {DRAWN_AVATARS[e] ? <img className="emoji-monki" src={DRAWN_AVATARS[e]} alt={drawnAvatarName(e)} /> : e}
                 </button>
               ))}
             </div>

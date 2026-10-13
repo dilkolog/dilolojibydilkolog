@@ -29,9 +29,9 @@ import { useGame, type GameState } from './game'
 
 import { Medal } from './Medal'
 import { medalTier } from '../engine/gamification'
-import { StreakFlame } from './StreakFlame'
+import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
-import { TIME_SCENE } from './drawnArt'
+import { QUEST_ART, STICKER, TIME_SCENE } from './drawnArt'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -339,7 +339,7 @@ export function Home({
           <li>
             {answeredToday > 0 ? (
               <>
-                <CheckCircleIcon size={16} /> Bugünkü görev tamam
+                <img className="today-sticker" src={STICKER.party} alt="" width={26} height={26} /> Bugünkü görev tamam
               </>
             ) : (
               <>
@@ -349,7 +349,7 @@ export function Home({
           </li>
         )}
         <li>
-          <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
+          <StreakPicture streak={streak} size={28} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
         </li>
         {/* The streak counts any language, so today's XP (all languages) says whether it is safe. */}
         {streak > 0 && (game?.xp.today ?? 0) === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
@@ -604,7 +604,7 @@ export function Home({
                 <ul className="quest-list">
                   {game.weekly.map((q) => (
                     <li key={q.id} className={q.done ? 'is-done' : ''}>
-                      <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
+                      <QuestIcon quest={q} />
                       <span className="quest-body">
                         <span className="quest-top">
                           <strong>{q.title}</strong>
@@ -683,7 +683,7 @@ export function Home({
               {game.quests.map((q) => {
                 const row = (
                   <>
-                    <span className="quest-icon">{q.done ? <CheckCircleIcon size={22} /> : <Glyph emoji={q.icon} size={22} />}</span>
+                    <QuestIcon quest={q} />
                     <span className="quest-body">
                       <span className="quest-top">
                         <strong>{q.title}</strong>
@@ -719,6 +719,15 @@ export function Home({
       </div>
       </div>
     </div>
+  )
+}
+
+/** A quest's picture: the drawn icon for what it counts, a check once it is done. */
+function QuestIcon({ quest }: { quest: { id: string; icon: string; done: boolean } }) {
+  return (
+    <span className="quest-icon">
+      {quest.done ? <CheckCircleIcon size={22} /> : QUEST_ART[quest.id] ? <img className="quest-art" src={QUEST_ART[quest.id]} alt="" width={28} height={28} /> : <Glyph emoji={quest.icon} size={22} />}
+    </span>
   )
 }
 

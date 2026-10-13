@@ -3965,3 +3965,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .result-art { display: block; height: 8rem; width: auto; margin: 0 auto 0.5rem; }
 .og-pot { display: block; width: auto; }
 .drawn-medal { display: block; width: 6.5rem; height: 6.5rem; object-fit: contain; }
+
+/* Drawn streak flame, quest icons and the "day done" sticker (Today and the session summary). */
+.streak-picture { width: auto; flex: none; vertical-align: middle; transform-origin: 50% 90%; animation: flicker 3.2s ease-in-out infinite; }
+.streak-picture.is-igniting { animation: pop 700ms var(--ease-spring) both, flicker 3.2s 700ms ease-in-out infinite; }
+.quest-art { display: block; width: 1.75rem; height: 1.75rem; object-fit: contain; }
+.today-sticker { display: inline-block; width: auto; height: 1.625rem; vertical-align: middle; }
