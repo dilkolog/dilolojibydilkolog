@@ -172,7 +172,8 @@ async function handlePut(request: Request): Promise<Response> {
   try {
     await put(path, body, { access: 'private', addRandomSuffix: false, allowOverwrite: !createOnly, contentType: 'application/octet-stream', ...(ifMatch ? { ifMatch } : {}) })
   } catch (e) {
-    if (ifMatch && (e as { name?: string })?.name === 'BlobPreconditionFailedError') return new Response('changed', { status: 412 })
+    // The SDK reports both a stale ETag and an already existing file as a failed precondition.
+    if ((ifMatch || createOnly) && (e as { name?: string })?.name === 'BlobPreconditionFailedError') return new Response('changed', { status: 412 })
     if (createOnly && /exist/i.test((e as Error)?.message ?? '')) return new Response('changed', { status: 412 })
     throw e
   }
