@@ -26,7 +26,7 @@ import { type GameState } from './game'
 import { sfx } from './sounds'
 import { Medal } from './Medal'
 import { closestStep, crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
-import { StreakFlame } from './StreakFlame'
+import { StreakPicture } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
 import { shareCard } from './shareCard'
@@ -156,7 +156,7 @@ export function Summary({
           <dl className="celebrate-stats">
             <div>
               <dd>
-                <StreakFlame streak={after.streak} frozen={after.frozenYesterday} ignite={!!before && after.streak > before.streak} /> {after.streak}
+                <StreakPicture streak={after.streak} size={40} ignite={!!before && after.streak > before.streak} /> {after.streak}
               </dd>
               <dt>günlük seri</dt>
             </div>

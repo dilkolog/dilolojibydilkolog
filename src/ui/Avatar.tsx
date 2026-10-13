@@ -1,16 +1,17 @@
 import type { Profile } from '../data/db'
 import { useMediaUrl } from './useMedia'
-import { MONKI_AVATAR, monkiAvatarUrl } from './avatarArt'
+import { DRAWN_AVATARS } from './avatarArt'
 
 export function Avatar({ profile, size = 48 }: { profile: Profile; size?: number }) {
   const photo = useMediaUrl(profile.photoId)
+  const drawn = DRAWN_AVATARS[profile.emoji]
   return (
     <span
       className="avatar"
-      style={{ width: size, height: size, fontSize: size * 0.52, background: photo || profile.emoji === MONKI_AVATAR ? undefined : profile.color }}
+      style={{ width: size, height: size, fontSize: size * 0.52, background: photo || drawn ? undefined : profile.color }}
       aria-hidden
     >
-      {photo ? <img src={photo} alt="" /> : profile.emoji === MONKI_AVATAR ? <img src={monkiAvatarUrl} alt="" /> : profile.emoji}
+      {photo ? <img src={photo} alt="" /> : drawn ? <img src={drawn} alt="" /> : profile.emoji}
     </span>
   )
 }

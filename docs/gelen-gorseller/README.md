@@ -12,10 +12,8 @@ Nano Banana Pro (ya da başka bir araçla) ürettiğin görselleri **buraya yük
 - JPG ya da PNG; beyaz ya da düz zemin olsun. "Şeffaf" diye damalı zemin çizdiren görseller de gelebilir: ajan o zemini söker.
 - İşlenen görseller `src/assets/art/` altına WebP olarak girer; buradaki kaynak dosyalar yedek olarak kalır (silmene gerek yok).
 
-## Bekleyenler (2026-10-13)
-Aşağıdaki setler sohbette gösterildi ama dosya olarak ulaşmadı; buraya yüklenirse bağlanır:
-- B: seri alevi / seviye kıyafetli Monki'ler
-- D: 6 aşamalı saksı/bitki büyümesi
-- E: hesap durumları (kapı/bekleme, onay, ret, anahtar)
-- H: 8 hayvan avatarı
-- Rozet amblemleri (10 dairesel madalya), görev simgeleri (3×3), hata/durum sahneleri (6), gün zamanı karşılamaları (4), sonuç tepkileri (6), 12'li Monki çıkartma seti, liste kapakları (12 kategori), ayarlar rozetleri (8)
+## İşlenenler (2026-10-13)
+Kıyafetli Monki (B), seri alevi, hesap durumları, hayvan avatarları, ayarlar simgeleri, liste kapakları, Monki çıkartmaları ve görev simgeleri işlendi ve bağlandı (`AGENTS.md` "Çizimler, dördüncü parti"). Rozet amblemleri (10) zaten `emblem-*`/`medal-*` olarak kullanılıyor; yeniden bağlanmadı.
+
+## Bekleyenler
+Yok. Yeni set gelirse buraya yükle; adını ve kaç parça olduğunu yaz.

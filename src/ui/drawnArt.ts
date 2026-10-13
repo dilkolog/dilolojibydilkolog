@@ -41,6 +41,56 @@ import lvl2 from '../assets/art/monki-lvl-2.webp'
 import lvl3 from '../assets/art/monki-lvl-3.webp'
 import lvl4 from '../assets/art/monki-lvl-4.webp'
 import lvl5 from '../assets/art/monki-lvl-5.webp'
+import streak0 from '../assets/art/streak-0.webp'
+import streak1 from '../assets/art/streak-1.webp'
+import streak2 from '../assets/art/streak-2.webp'
+import streak3 from '../assets/art/streak-3.webp'
+import streak4 from '../assets/art/streak-4.webp'
+import acctDoor from '../assets/art/acct-door.webp'
+import acctWait from '../assets/art/acct-wait.webp'
+import acctOk from '../assets/art/acct-ok.webp'
+import acctNo from '../assets/art/acct-no.webp'
+import setAccount from '../assets/art/set-account.webp'
+import setStudy from '../assets/art/set-study.webp'
+import setQuestions from '../assets/art/set-questions.webp'
+import setSound from '../assets/art/set-sound.webp'
+import setLook from '../assets/art/set-look.webp'
+import setBell from '../assets/art/set-bell.webp'
+import setTools from '../assets/art/set-tools.webp'
+import setData from '../assets/art/set-data.webp'
+import coverFood from '../assets/art/cover-food.webp'
+import coverTravel from '../assets/art/cover-travel.webp'
+import coverFamily from '../assets/art/cover-family.webp'
+import coverWork from '../assets/art/cover-work.webp'
+import coverHealth from '../assets/art/cover-health.webp'
+import coverHome from '../assets/art/cover-home.webp'
+import coverNature from '../assets/art/cover-nature.webp'
+import coverSchool from '../assets/art/cover-school.webp'
+import coverShopping from '../assets/art/cover-shopping.webp'
+import coverWeather from '../assets/art/cover-weather.webp'
+import coverFeelings from '../assets/art/cover-feelings.webp'
+import coverCity from '../assets/art/cover-city.webp'
+import questNewword from '../assets/art/quest-newword.webp'
+import questAnswers from '../assets/art/quest-answers.webp'
+import questCorrect from '../assets/art/quest-correct.webp'
+import questStreak from '../assets/art/quest-streak.webp'
+import questTyped from '../assets/art/quest-typed.webp'
+import questListen from '../assets/art/quest-listen.webp'
+import questNohint from '../assets/art/quest-nohint.webp'
+import questRead from '../assets/art/quest-read.webp'
+import questSpeak from '../assets/art/quest-speak.webp'
+import stickerHello from '../assets/art/sticker-hello.webp'
+import stickerThumbs from '../assets/art/sticker-thumbs.webp'
+import stickerThink from '../assets/art/sticker-think.webp'
+import stickerLaugh from '../assets/art/sticker-laugh.webp'
+import stickerCry from '../assets/art/sticker-cry.webp'
+import stickerSleep from '../assets/art/sticker-sleep.webp'
+import stickerParty from '../assets/art/sticker-party.webp'
+import stickerRead from '../assets/art/sticker-read.webp'
+import stickerMusic from '../assets/art/sticker-music.webp'
+import stickerCoffee from '../assets/art/sticker-coffee.webp'
+import stickerFacepalm from '../assets/art/sticker-facepalm.webp'
+import stickerHeart from '../assets/art/sticker-heart.webp'
 import posNoun from '../assets/art/pos-noun.webp'
 import posVerb from '../assets/art/pos-verb.webp'
 import posAdjective from '../assets/art/pos-adjective.webp'
@@ -103,4 +153,69 @@ export const ADD_ART = { notes: srcNotes, ebook: srcEbook, video: srcVideo }
 /** Monki acting out a part of speech (nothing drawn for 'other'). */
 export const POS_ART: Partial<Record<PartOfSpeech, string>> = {
   noun: posNoun, verb: posVerb, adjective: posAdjective, adverb: posAdverb, preposition: posPreposition, pronoun: posPronoun, phrase: posPhrase, conjunction: posConjunction,
+}
+
+/** The streak as a flame with a face: asleep at none, then growing with the run (flameTier: 3 days, a week, a month, a hundred days). */
+const STREAKS = [streak0, streak1, streak2, streak3, streak4]
+export const streakPicture = (streak: number, tier: number): string => STREAKS[streak <= 0 ? 0 : Math.min(tier + 1, 4)]
+
+/** Where an account stands, as Monki: at the door with a key, waiting on the bench, approved, not approved. */
+export const ACCOUNT_ART = { out: acctDoor, pending: acctWait, approved: acctOk, rejected: acctNo }
+
+/** One drawing per settings group (by the group's id). */
+export const SETTINGS_ART: Record<string, string> = {
+  's-account': setAccount,
+  's-study': setStudy,
+  's-answers': setQuestions,
+  's-sound': setSound,
+  's-look': setLook,
+  's-remind': setBell,
+  's-tools': setTools,
+  's-data': setData,
+}
+
+/** Daily quests by what they count. */
+export const QUEST_ART: Record<string, string> = {
+  newWords: questNewword,
+  answers: questAnswers,
+  correct: questCorrect,
+  combo: questStreak,
+  typedCorrect: questTyped,
+  listenCorrect: questListen,
+  noHintCorrect: questNohint,
+  reading: questRead,
+  speaking: questSpeak,
+}
+
+/** Covers for word lists; a list gets the one its name suggests (Turkish, English, French or Spanish). */
+const COVERS: [RegExp, string][] = [
+  [/yemek|yiyecek|içecek|mutfak|food|drink|nourriture|boisson|cuisine|comida|bebida|restaurant|restoran/i, coverFood],
+  [/seyahat|gezi|tatil|havaalan|travel|trip|airport|voyage|aéroport|viaje|aeropuerto|vacances|vacaciones/i, coverTravel],
+  [/aile|akraba|family|famille|familia|arkadaş|friend/i, coverFamily],
+  [/iş|işyeri|ofis|meslek|work|office|job|travail|bureau|trabajo|oficina|business/i, coverWork],
+  [/sağlık|hastane|vücut|beden|health|body|doctor|santé|corps|salud|cuerpo|médic/i, coverHealth],
+  [/ev|eşya|mobilya|home|house|furniture|maison|meuble|casa|mueble/i, coverHome],
+  [/doğa|hayvan|bitki|nature|animal|plant|animaux|naturaleza|animales/i, coverNature],
+  [/okul|ders|eğitim|kitap|school|study|class|école|escuela|colegio|clase|libro/i, coverSchool],
+  [/alışveriş|giyim|kıyafet|shopping|clothes|clothing|vêtement|ropa|compras|magasin|tienda/i, coverShopping],
+  [/hava|mevsim|weather|season|météo|temps|tiempo|clima/i, coverWeather],
+  [/duygu|his|hisler|feeling|emotion|sentiment|émotion|sentimiento|emoción/i, coverFeelings],
+  [/şehir|kent|ulaşım|trafik|city|town|transport|ville|ciudad|transporte/i, coverCity],
+]
+export const listCover = (name: string): string | undefined => COVERS.find(([re]) => re.test(name))?.[1]
+
+/** Monki stickers: small poses for moments that deserve a face (a day done, a pause, a thank you). */
+export const STICKER = {
+  hello: stickerHello,
+  thumbs: stickerThumbs,
+  think: stickerThink,
+  laugh: stickerLaugh,
+  cry: stickerCry,
+  sleep: stickerSleep,
+  party: stickerParty,
+  read: stickerRead,
+  music: stickerMusic,
+  coffee: stickerCoffee,
+  facepalm: stickerFacepalm,
+  heart: stickerHeart,
 }
