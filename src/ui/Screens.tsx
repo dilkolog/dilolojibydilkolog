@@ -14,7 +14,7 @@ import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { AlertIcon, MoonIcon, SunIcon, BookIcon, CheckCircleIcon, CheckIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon, SunriseIcon, VerbReviewIcon } from './icons'
+import { AlertIcon, BookIcon, CheckCircleIcon, CheckIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon, VerbReviewIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
 
 import { RaceCard } from './Race'
@@ -31,6 +31,7 @@ import { Medal } from './Medal'
 import { medalTier } from '../engine/gamification'
 import { StreakFlame } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
+import { TIME_SCENE } from './drawnArt'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -79,13 +80,7 @@ function DayMark({ now }: { now: Date }) {
   const part = dayPart(now)
   return (
     <span className={`day-mark is-${part}`} aria-hidden>
-      {part === 'day' ? (
-        <SunIcon size={22} />
-      ) : part === 'night' ? (
-        <MoonIcon size={22} />
-      ) : (
-        <SunriseIcon size={22} />
-      )}
+      <img className="day-scene" src={TIME_SCENE[part]} alt="" width={52} height={40} draggable={false} />
     </span>
   )
 }

@@ -4,6 +4,7 @@ import { Burst } from './Burst'
 import { shareCard } from './shareCard'
 import { Medal } from './Medal'
 import { byTier, TIER_NAME } from './badgeTier'
+import { drawnMedal } from './drawnArt'
 
 /**
  * A new badge, full screen, once: the medal is struck (it springs in, a ring leaves it in its
@@ -72,7 +73,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
         <div className={`milestone-art badge-moment-art tier-${tier}`} key={a.id}>
           <Burst />
           <span className="badge-moment-ring" aria-hidden />
-          <Medal icon={a.icon} tier={tier} unlocked size={104} />
+          {drawnMedal(a.stat) ? <img className="drawn-medal" src={drawnMedal(a.stat)} alt="" width={104} height={104} draggable={false} /> : <Medal icon={a.icon} tier={tier} unlocked size={104} />}
         </div>
         <span className={`badge-tier tier-${tier}`}>{TIER_NAME[tier]} rozet</span>
         <h2 id="badge-moment-title" className="milestone-title">
