@@ -160,7 +160,8 @@ describe('the links in the mails', () => {
   it('confirm turns the address on, with a page; a wrong token does nothing', async () => {
     await post({ action: 'email', email: EMAIL, ...state })
     const token = linkOf(mails[0].text, 'c')
-    expect((await get(`c=${token.slice(0, -1)}0`)).status).toBe(404)
+    // A different last character (the random token may itself end in 0).
+    expect((await get(`c=${token.slice(0, -1)}${token.endsWith('0') ? '1' : '0'}`)).status).toBe(404)
     expect((await stored()).confirmed).toBe(false)
     const res = await get(`c=${token}`)
     expect(res.status).toBe(200)
