@@ -228,7 +228,7 @@ describe('answers and texts travel in parts of their own', () => {
     const laptop = new KelimeDB('t-parts-laptop')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
     await phone.events.bulkPut([answer('a1', '2026-08-03T09:00:00Z'), answer('a2', '2026-09-03T09:00:00Z'), answer('a3', '2026-09-04T09:00:00Z')])
-    await phone.meta.put({ key: 'library', value: [text('t1')] })
+    await phone.texts.put(text('t1') as never)
     await syncNow(phone, acc)
     expect(parts().filter((p) => p.startsWith('ev-'))).toEqual(['ev-2026-08', 'ev-2026-09'])
     expect(parts().filter((p) => p.startsWith('tx-'))).toHaveLength(1)
@@ -241,7 +241,7 @@ describe('answers and texts travel in parts of their own', () => {
 
     await syncNow(laptop, acc)
     expect((await laptop.events.toArray()).map((e) => e.id).sort()).toEqual(['a1', 'a2', 'a3'])
-    expect((((await laptop.meta.get('library'))?.value ?? []) as { id: string }[]).map((t) => t.id)).toEqual(['t1'])
+    expect((await laptop.texts.toArray()).map((t) => t.id)).toEqual(['t1'])
   }, 60_000)
 
   it('a sync with nothing new sends no part, and one new answer sends only its month', async () => {
@@ -249,7 +249,7 @@ describe('answers and texts travel in parts of their own', () => {
     const phone = new KelimeDB('t-parts-quiet')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
     await phone.events.bulkPut([answer('a1', '2026-08-03T09:00:00Z'), answer('a2', '2026-09-03T09:00:00Z')])
-    await phone.meta.put({ key: 'library', value: [text('t1'), text('t2')] })
+    await phone.texts.bulkPut([text('t1'), text('t2')] as never)
     await syncNow(phone, acc)
 
     puts = []
@@ -300,16 +300,15 @@ describe('answers and texts travel in parts of their own', () => {
     const phone = new KelimeDB('t-parts-text-phone')
     const laptop = new KelimeDB('t-parts-text-laptop')
     await phone.vocabulary.put(createEntry({ word: 'maison', meaning: 'ev' }, 'fr', new Date()))
-    await phone.meta.put({ key: 'library', value: [text('t1'), text('t2')] })
+    await phone.texts.bulkPut([text('t1'), text('t2')] as never)
     await syncNow(phone, acc)
     await syncNow(laptop, acc)
     vi.setSystemTime(new Date('2026-10-06T09:00:00Z'))
-    await laptop.meta.put({ key: 'library', value: [text('t1', 2), text('t2')] })
-    await laptop.addDeleted(['t2'])
-    await laptop.meta.put({ key: 'library', value: [text('t1', 2)] })
+    await laptop.texts.put(text('t1', 2) as never)
+    await laptop.deleteText('t2')
     await syncNow(laptop, acc)
     await syncNow(phone, acc)
-    const library = (await phone.meta.get('library'))?.value as { id: string; history: unknown[] }[]
+    const library = await phone.texts.toArray()
     expect(library.map((t) => [t.id, t.history.length])).toEqual([['t1', 2]])
   }, 60_000)
 

@@ -14,7 +14,7 @@ import { streakWithFreezes } from '../engine/insights'
 import { isRestDay } from '../engine/workload'
 import { BOSS_XP } from '../engine/bosses'
 import { CHALLENGE_XP, challengeStatus, completedByWeek, type ChallengeStatus } from '../engine/challenges'
-import type { JournalEntry, ReadingText } from '../data/db'
+import type { JournalEntry } from '../data/db'
 import { activityStats } from '../engine/badgeStats'
 import { masteredForms, wholeVerbs } from '../engine/labProgress'
 import { difficultWords } from '../engine/difficult'
@@ -65,7 +65,7 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
     db.getBossWins(),
-    db.meta.get('library').then((r) => (r?.value as ReadingText[] | undefined) ?? []),
+    db.texts.toArray(),
     db.meta.get('journal').then((r) => (r?.value as JournalEntry[] | undefined) ?? []),
     db.getSettings(),
     db.mistakes.toArray(),
