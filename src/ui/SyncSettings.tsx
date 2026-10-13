@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { showToast } from './toastFeed'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
@@ -18,15 +18,25 @@ export function SyncSettings() {
   const [at, setAt] = useState<Date | null>(null)
   const [size, setSize] = useState<number | null>(null)
 
+  // A refresh still reading when the card closes (after a sync) sets nothing.
+  const alive = useRef(true)
   const refresh = async () => {
-    setCode(await getSyncCode())
+    const stored = await getSyncCode()
+    if (!alive.current) return
+    setCode(stored)
     const v = (await db.meta.get('syncAt'))?.value as string | undefined
+    if (!alive.current) return
     setAt(v ? new Date(v) : null)
     const bytes = (await db.meta.get('syncSize'))?.value
+    if (!alive.current) return
     setSize(typeof bytes === 'number' ? bytes : null)
   }
   useEffect(() => {
+    alive.current = true
     void refresh()
+    return () => {
+      alive.current = false
+    }
   }, [])
 
   const sync = async (fresh?: string) => {
