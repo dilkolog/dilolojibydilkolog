@@ -3,6 +3,7 @@ import type { TargetLanguage } from '../engine/types'
 import { canRecord, recordingType } from './audioRecord'
 import { canSpeak, speakAsync, unlockedAudio } from './speech'
 import { MicIcon, PlayIcon } from './icons'
+import { StatusPicture } from './StatusArt'
 
 /** Time to say a sentence back: about as long as hearing it, plus a breath. */
 const answerMs = (text: string) => Math.min(15_000, Math.max(2500, text.length * 85 + 1200))
@@ -24,6 +25,7 @@ export function ShadowButton({ text, language }: { text: string; language: Targe
 export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { hear: () => Promise<void>; ms: number; startLabel?: string }) {
   const [phase, setPhase] = useState<'idle' | 'hear' | 'speak' | 'done'>('idle')
   const [error, setError] = useState('')
+  const [micBlocked, setMicBlocked] = useState(false)
   const [url, setUrl] = useState<string>()
   const [until, setUntil] = useState(0)
   const [, tick] = useState(0)
@@ -48,10 +50,12 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
 
   const start = async () => {
     setError('')
+    setMicBlocked(false)
     let stream: MediaStream
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true })
     } catch {
+      setMicBlocked(true)
       setError('Mikrofona erişilemedi.')
       return
     }
@@ -106,6 +110,7 @@ export function ShadowControls({ hear, ms: answer, startLabel = 'Gölgele' }: { 
           </button>
         </>
       )}
+      {micBlocked && <StatusPicture kind="nomic" small />}
       {error && <span className="small error">{error}</span>}
     </span>
   )

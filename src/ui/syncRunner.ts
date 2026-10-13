@@ -12,6 +12,9 @@ export const PENDING_APPROVAL = 'Hesabın, site sahibinin onayını bekliyor; on
 /** Shown when another device saved its data with a newer version of the app. */
 export const NEWER_VERSION = 'Başka bir cihazın uygulaması daha yeni; eşitlemek için bu cihazda uygulamayı güncelle (sayfayı yenile).'
 
+/** Shown when two devices keep saving at the same moment and the sync lost the race three times in a row. */
+export const CONFLICT = 'İki cihaz aynı anda kaydetti ve eşitleme üst üste üç kez çakıştı. Verilerin güvende; biraz bekleyip tekrar dene (diğer cihazda eşitleme bitince düzelir).'
+
 /** Shown when the synced data outgrew the server's limit for one file. */
 export const TOO_LARGE = 'Eşitlenecek veri sunucunun sınırını aştı. Kullanmadığın okuma metinlerini ya da eski çeviri belleğini azaltıp tekrar dene (Ayarlar → Cihazlar arası eşitleme boyutu gösterir).'
 

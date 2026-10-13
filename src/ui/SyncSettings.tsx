@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { generateSyncCode, normalizeCode, syncUsage, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError } from '../data/sync'
-import { describeIncoming, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setSyncCode } from './syncRunner'
+import { generateSyncCode, normalizeCode, syncUsage, SyncConflictError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError } from '../data/sync'
+import { CONFLICT, describeIncoming, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setSyncCode } from './syncRunner'
 import { relativeTime } from './format'
 import { RestorePoints } from './RestorePoints'
 import { StatusPicture } from './StatusArt'
@@ -14,7 +14,7 @@ export function SyncSettings() {
   const [draft, setDraft] = useState('')
   const [shown, setShown] = useState(false)
   const [busy, setBusy] = useState(false)
-  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
+  const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
   const [size, setSize] = useState<number | null>(null)
 
@@ -39,7 +39,7 @@ export function SyncSettings() {
       if (r?.skipped) setMessage({ ok: false, text: `${r.skipped} görsel/ses kaydı eşitlenemedi (çok büyük ya da yüklenemedi). Kelimelerin ve ilerlemen eşitlendi; o dosyalar bu cihazda duruyor.` })
     } catch (e) {
       if (fresh) await setSyncCode(null)
-      setMessage({ ok: false, text: e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
+      setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : fresh ? 'Eşitlenemedi: kod yanlış olabilir ya da internet yok.' : 'Eşitlenemedi: internet bağlantısını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
@@ -118,6 +118,7 @@ export function SyncSettings() {
           </div>
         </>
       )}
+      {message?.conflict && <StatusPicture kind="conflict" />}
       {message && (
         <p className={message.ok ? 'notice' : 'error'} role="status">
           {message.text}

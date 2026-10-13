@@ -12,28 +12,18 @@ import type { QuestMetric } from './engine/quests'
 import { createRng } from './engine/rng'
 import { firstSittingEnd, SPLIT_ABOVE_MINUTES, type SessionSummary } from './engine/session'
 import { TARGET_LANGUAGES, type ReviewMode, type TargetLanguage, type VocabularyEntry } from './engine/types'
-import { db, scheduler, setLoad } from './data/instance'
+import { db, scheduler } from './data/instance'
 import { difficultWords } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
-import type { Settings } from './data/db'
-import { fillCorpus, fillParallel, scoreCorpus } from './data/corpus'
-import { fillWordInfo } from './data/wordInfo'
-import { fillFromLexicon } from './data/lexicon'
-import { fillFromPack } from './data/wordpack'
-import { fillFrequencyRanks } from './data/frequency'
 import { loadTenses } from './data/tenseData'
-import { aiConfig, monthKey } from './ai/usage'
-import { AiError } from './ai/types'
 import { AccessContext } from './ui/accessContext'
 import { AiContext } from './ui/aiContext'
-import { useAccessStatus } from './ui/useAccessStatus'
 
 import { Glyph } from './ui/Glyph'
 import { BadgeWatcher } from './ui/BadgeWatcher'
-import { GameContext, loadGame, type GameState } from './ui/game'
+import { GameContext } from './ui/game'
 import { AlertIcon, CheckIcon, PlayIcon, PlusIcon, SparkleIcon, TargetIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
-import { applySettings } from './ui/prefs'
 import { useDayPart } from './ui/dayPart'
 import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
@@ -45,9 +35,8 @@ import { reportPushState } from './ui/pushReminders'
 import { weekLine, weekSummary, type WeekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
 
-import { natural } from './ui/naturalVoice'
 import { announceIncoming, onSynced, runSync } from './ui/syncRunner'
-import { connectExtension, pushToExtension } from './ui/extensionBridge'
+import { connectExtension } from './ui/extensionBridge'
 
 import { gardenSummary } from './engine/growth'
 
@@ -55,7 +44,9 @@ import { Sidebar, TabBar } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
 import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
-import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RECENT_DAYS, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type LanguageData, type NavScreen, type Screen, type ScreenName } from './appNav'
+import { useLanguageData } from './ui/useLanguageData'
+import { useAppSettings } from './ui/useAppSettings'
+import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
 
 import { useDayForms, useFormsDue, useWarmup, useVerbOfDay } from './ui/verbs/labShared'
@@ -70,13 +61,11 @@ import { Toaster } from './ui/toast'
 import { shareIdOf } from './engine/sharedSet'
 import { useCollabSync } from './ui/useCollabSync'
 import { showToast } from './ui/toastFeed'
-import { reportError } from './data/errorReport'
 import { ScreenSkeleton } from './ui/Skeleton'
 import { skeletonFor } from './ui/skeletonFor'
 import { useOnline } from './ui/useOnline'
 
 import { useTabIndicator } from './ui/useTabIndicator'
-import { azure } from './ui/pronunciation'
 
 /*
  * Screens other than Today and the session summary load when first opened, so the app
@@ -85,14 +74,9 @@ import { azure } from './ui/pronunciation'
  */
 /** A stable empty list while the words load (a fresh [] each render would re-run the hooks). */
 const NO_WORDS: readonly VocabularyEntry[] = []
-let corpusRun: Promise<number> | null = null
-let wiktRun: Promise<number> | null = null
 
 export default function App() {
   // undefined = loading, null = first run
-  const [settings, setSettings] = useState<Settings | null | undefined>(undefined)
-  const [data, setData] = useState<LanguageData | null>(null)
-  const [game, setGame] = useState<GameState | null>(null)
   const [screen, setScreen] = useState<Screen>(restoreScreen)
   useScreenHistory(screen, setScreen)
   // Remember where the learner was, so reopening the app continues there.
@@ -104,10 +88,6 @@ export default function App() {
       // Storage unavailable: the app simply opens on the home screen next time.
     }
   }, [screen])
-  const [storedKey, setApiKeyState] = useState<string | null>(null)
-  // The AI screens, like sync and the quota features, open once the owner has approved the account.
-  const access = useAccessStatus()
-  const apiKey = access.approved ? storedKey : null
   const [palette, setPalette] = useState(false)
   // The tab last open in each menu place, so the menu returns to it.
   const lastTab = useRef<Partial<Record<NavScreen, ScreenName>>>({})
@@ -131,24 +111,11 @@ export default function App() {
   const online = useOnline()
   // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
+  const { settings, setSettings, updateSettings, access, apiKey, ai } = useAppSettings()
   const language = settings?.activeLanguage
-  const languageRef = useRef(language)
-  useLayoutEffect(() => {
-    languageRef.current = language
-  }, [language])
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const flags = useMemo(() => engineFlags(settings?.exercisePrefs, settings?.typedBlanks), [settings?.exercisePrefs, settings?.typedBlanks])
   const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn, skipLong: !!settings?.skipLongGloss, ...flags }), [apiKey, speechOn, settings?.skipLongGloss, flags])
-
-  useEffect(() => {
-    db.getSettings().then((s) => setSettings(s ?? null))
-    db.getAiKey().then(setApiKeyState)
-    db.getTtsKey().then((k) => (natural.key = k))
-    db.getSpeechKey().then((c) => {
-      azure.key = c?.key ?? null
-      azure.region = c?.region ?? null
-    })
-  }, [])
 
   useDayPart()
 
@@ -156,18 +123,6 @@ export default function App() {
   useEffect(() => {
     if (language) void loadTenses(language)
   }, [language])
-
-  useEffect(() => {
-    if (settings) applySettings(settings)
-    // AI usage is recorded per month, and the monthly limit is checked before each request.
-    const limit = settings?.aiMonthlyLimit ?? 0
-    aiConfig.onUsage = (r) => void db.addAiUsage(r)
-    aiConfig.beforeRequest = async () => {
-      if (!limit) return
-      const spent = (await db.getAiUsage())[monthKey(new Date())]?.cost ?? 0
-      if (spent >= limit) throw new AiError('budget', 'Bu ayki YZ bütçen doldu. Ayarlar → YZ yardımcısı bölümünden sınırı değiştirebilirsin.')
-    }
-  }, [settings])
 
   // ⌘K / Ctrl+K opens the command palette (not during a session, to avoid leaving it by accident).
   const inSessionNow = screen.name === 'session'
@@ -182,73 +137,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [inSessionNow])
 
-  const ai = useMemo(
-    () => ({
-      apiKey,
-      needsApproval: !access.approved,
-      setApiKey: async (key: string | null) => {
-        await db.saveAiKey(key)
-        setApiKeyState(key)
-      },
-    }),
-    [apiKey, access.approved],
-  )
-
-  const reload = useCallback(async () => {
-    if (!language) return
-    // The background steps below can outlast a switch to another language: their results are
-    // dropped then, or the old language's data would come back and the new one never show.
-    const current = () => languageRef.current === language
-    const apply = (next: LanguageData) => current() && setData(next)
-    const since = new Date(Date.now() - RECENT_DAYS * 86_400_000)
-    const [loaded, recentEvents, g] = await Promise.all([db.loadLanguage(language), db.eventsSince(since), loadGame(db)])
-    apply({ language, ...loaded, recentEvents })
-    // After a background step the words and states are read again, and the recent answers with them: a session
-    // finished while the step ran must not be rolled back to the answers this run started with.
-    const refresh = async () => apply({ language, ...(await db.loadLanguage(language)), recentEvents: await db.eventsSince(since) })
-    if (!current()) return
-    setLoad(loaded.states)
-    pushToExtension(db)
-    setGame(g)
-    // New words without a frequency band get one from the bundled list, in the background.
-    if (loaded.vocabulary.some((v) => v.source !== 'sample' && !v.frequencyRank)) {
-      const filled = await fillFrequencyRanks(db, language)
-      if (filled) await refresh()
-    }
-    // French words saved without a part of speech or a noun gender get them from Lexique (offline).
-    if (language === 'fr' && loaded.vocabulary.some((v) => v.source !== 'sample' && (v.partOfSpeech === 'other' || (v.partOfSpeech === 'noun' && !v.gender)))) {
-      if (await fillFromLexicon(db, language)) await refresh()
-    }
-    // The word pack (other languages, origins, synonyms, recordings), offline, for languages that ship one.
-    if (await fillFromPack(db, language)) await refresh()
-    // Sentences get rated (offline), and re-rated once the word list has grown: the ones with at most one unknown word come first.
-    if (await scoreCorpus(db, language)) await refresh()
-    // Real sentences for words that don't have them yet (a few per run, one run at a time).
-    if (!corpusRun && loaded.vocabulary.some((v) => v.source !== 'sample' && v.corpus === undefined)) {
-      corpusRun = fillCorpus(db, language).finally(() => (corpusRun = null))
-      if (await corpusRun) await refresh()
-    }
-    // Sentences saved before they came with their French/Spanish/English versions get them, a few per run.
-    if (!corpusRun && loaded.vocabulary.some((v) => v.corpus?.some((x) => x.source?.kind === 'tatoeba' && x.parallel === undefined))) {
-      corpusRun = fillParallel(db, language).finally(() => (corpusRun = null))
-      if (await corpusRun) await refresh()
-    }
-    // Pronunciation, definition and word family from Wiktionary, also in the background.
-    if (!wiktRun && loaded.vocabulary.some((v) => v.source !== 'sample' && (!v.wiktAt || (v.partOfSpeech === 'noun' && v.language !== 'en' && !v.gender && v.wiktAt < '2026-10-03T12')))) {
-      wiktRun = fillWordInfo(db, language).finally(() => (wiktRun = null))
-      if (await wiktRun) await refresh()
-    }
-  }, [language])
-
-  useEffect(() => {
-    // A failed load (a closed or damaged database) is said, with a way to try again, not left as a blank wait.
-    const load = () =>
-      reload().catch((e) => {
-        reportError(e, 'reload')
-        showToast('Veriler yüklenemedi. Verilerin silinmedi; yeniden denemek genelde yeter.', { label: 'Yeniden dene', run: load }, 10_000, 'info')
-      })
-    void load()
-  }, [reload])
+  const { data, game, reload } = useLanguageData(language)
 
   // The other screens' code, once the first screen is up.
   useEffect(() => {
@@ -266,7 +155,7 @@ export default function App() {
       setSettings((await db.getSettings()) ?? null)
       reload()
     })
-  }, [reload])
+  }, [reload, setSettings])
 
   // Each screen starts at the top, like a page navigation.
   useEffect(() => {
@@ -274,11 +163,6 @@ export default function App() {
   }, [screen.name])
 
   const answeredTodayAll = data ? answeredToday(data.recentEvents, new Date()) : 0
-  const updateSettings = async (s: Settings) => {
-    await db.saveSettings(s)
-    setSettings(s)
-  }
-
   // A sentence sent from the browser extension (?sentence=…): kept as a sentence card.
   const ready = settings !== undefined && settings !== null
   useEffect(() => {

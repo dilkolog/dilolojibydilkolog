@@ -8,6 +8,7 @@ import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
+import { EMBLEM } from '../drawnArt'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -43,6 +44,9 @@ function saveChat(language: TargetLanguage, msgs: Msg[]) {
     // Storage full or blocked: the chat just does not survive a reload.
   }
 }
+
+/** A small drawn emblem on three of the four mode chips. */
+const MODE_EMBLEM: Partial<Record<MonkiMode, string>> = { chat: EMBLEM.chat, quiz: EMBLEM.trophy, roleplay: EMBLEM.mic }
 
 const MODES: { id: MonkiMode; label: string; hint: string }[] = [
   { id: 'chat', label: 'Sohbet', hint: 'Her şeyi sor' },
@@ -268,6 +272,7 @@ export default function Monki({
               <div className="monki-modes" role="group" aria-label="Sohbet türü">
                 {MODES.map((m) => (
                   <button key={m.id} type="button" className="chip chip-sm" aria-pressed={mode === m.id} title={m.hint} onClick={() => pickMode(m.id)}>
+                    {MODE_EMBLEM[m.id] && <img className="chip-art" src={MODE_EMBLEM[m.id]} alt="" width={18} height={18} draggable={false} />}
                     {m.label}
                   </button>
                 ))}

@@ -13,6 +13,15 @@ import emFlame from '../assets/art/emblem-flame.webp'
 import emBolt from '../assets/art/emblem-bolt.webp'
 import emBook from '../assets/art/emblem-book.webp'
 import emStar from '../assets/art/emblem-star.webp'
+import emChat from '../assets/art/emblem-chat.webp'
+import emMic from '../assets/art/emblem-mic.webp'
+import emTrophy from '../assets/art/emblem-trophy.webp'
+import srcVideo from '../assets/art/src-video.webp'
+import srcEbook from '../assets/art/src-ebook.webp'
+import srcNotes from '../assets/art/src-notes.webp'
+import pot0 from '../assets/art/pot-0.webp'
+import pot2 from '../assets/art/pot-2.webp'
+import pot4 from '../assets/art/pot-4.webp'
 import morning from '../assets/art/time-morning.webp'
 import noon from '../assets/art/time-noon.webp'
 import evening from '../assets/art/time-evening.webp'
@@ -72,8 +81,14 @@ export function resultKind(accuracy: number, answered: number, opts: { leveledUp
   return 'hard'
 }
 
-/** A word's life in three pots (sprout, flowers, gold) for the first-run garden. */
-export const POTS = [pot1, pot3, pot5]
+/** A word's whole life in six pots (seed, sprout, young plant, flowers, tree, gold) for the first-run garden. */
+export const POTS = [pot0, pot1, pot2, pot3, pot4, pot5]
+
+/** The other three badge emblems: a trophy for what was won, a chat bubble and a microphone for Monki's modes. */
+export const EMBLEM = { chat: emChat, mic: emMic, trophy: emTrophy }
+
+/** Small drawn icons for adding one's own text: a file of notes, a book, a video. */
+export const ADD_ART = { notes: srcNotes, ebook: srcEbook, video: srcVideo }
 
 /** Monki acting out a part of speech (nothing drawn for 'other'). */
 export const POS_ART: Partial<Record<PartOfSpeech, string>> = {
