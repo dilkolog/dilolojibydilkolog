@@ -30,6 +30,7 @@ import { useGame, type GameState } from './game'
 import { Medal } from './Medal'
 import { medalTier } from '../engine/gamification'
 import { StreakFlame } from './StreakFlame'
+import welcomeBanner from '../assets/art/welcome-banner.webp'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -255,6 +256,13 @@ export function Home({
     return (
       <div className="stack welcome">
         <h1 className="greeting"><DayMark now={now} />{hello}</h1>
+        <div className="welcome-banner">
+          <img src={welcomeBanner} alt="" width={900} height={466} draggable={false} />
+          <p className="welcome-banner-text">
+            <strong>Merhaba, ben Monki!</strong>
+            <span>Kelimelerini birlikte büyütelim.</span>
+          </p>
+        </div>
         <div className="hero welcome-hero">
           <span className="day-plant welcome-seed">
             <Plant stage={-1} size={56} live />

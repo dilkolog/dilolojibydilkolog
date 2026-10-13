@@ -4,6 +4,7 @@ import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, ty
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
+import { MONKI_AVATAR, monkiAvatarUrl } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
 import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
@@ -120,9 +121,9 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         {editing && (
           <div className="stack avatar-editor">
             <div className="emoji-grid">
-              {EMOJIS.map((e) => (
+              {[MONKI_AVATAR, ...EMOJIS].map((e) => (
                 <button key={e} className="emoji-btn" aria-pressed={!profile.photoId && profile.emoji === e} onClick={() => (profile.photoId ? setPhoto(null).then(() => save({ emoji: e })) : save({ emoji: e }))}>
-                  {e}
+                  {e === MONKI_AVATAR ? <img className="emoji-monki" src={monkiAvatarUrl} alt="Monki" /> : e}
                 </button>
               ))}
             </div>

@@ -1662,3 +1662,6 @@ button.badge-card:active { transform: none; }
 /* Reading sources: a small drawn cover beside each source's heading. */
 .source-title { display: flex; align-items: center; gap: 0.625rem; }
 .source-art { width: 2.25rem; height: 2.25rem; flex: none; object-fit: contain; }
+
+/* Profile → avatar picker: the drawn Monki sits among the emoji. */
+.emoji-btn .emoji-monki { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
