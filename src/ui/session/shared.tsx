@@ -1,3 +1,5 @@
+import { TapNote, TapWords } from '../TapWords'
+import { useTapGloss } from '../useTapGloss'
 import { useEffect, useRef, useState } from 'react'
 import { BLANK, type ContextSource, type Evaluation } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
@@ -96,13 +98,14 @@ export function Word({ entry }: { entry: VocabularyEntry }) {
 /** A sentence with its blank drawn as a line, and its translation. */
 export function Sentence({ text, translation, source, blankStart, lang }: { text: string; translation?: string; source?: ContextSource; blankStart?: string; lang?: string }) {
   const parts = text.split(BLANK)
+  const tap = useTapGloss(lang)
   return (
     <div>
       {/* lang: a screen reader reads the sentence in its own language, not Turkish. */}
       <p className="sentence" lang={lang}>
         {parts.map((part, i) => (
           <span key={i}>
-            {part}
+            <TapWords text={part} tap={tap} />
             {i < parts.length - 1 && (
               <span className="blank" aria-label={blankStart ? `${blankStart} ile başlayan boşluk` : 'boşluk'}>
                 {blankStart ? <strong className="blank-start">{blankStart}</strong> : null}____
@@ -111,6 +114,7 @@ export function Sentence({ text, translation, source, blankStart, lang }: { text
           </span>
         ))}
       </p>
+      <TapNote tap={tap} />
       {translation && <p className="sentence-tr">{translation}</p>}
       {source && (
         <p className="sentence-source">

@@ -1,3 +1,4 @@
+import { PhraseBuilder } from './PhraseBuilder'
 import type { CSSProperties, ReactNode } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
@@ -145,6 +146,7 @@ export function WordCard({
           Cümleyi kaydet
         </button>
       </p>
+      <PhraseBuilder key={`${selected.sentence}|${selected.token.text}`} sentence={selected.sentence} word={cleanToken(selected.token.text, language)} language={language} onAdd={onAdd} />
       <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />
       {canListenFrom && selected.at && (
         <button
