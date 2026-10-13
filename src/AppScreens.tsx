@@ -218,6 +218,8 @@ export function AppScreens(props: AppScreensProps) {
           onExam={go({ name: 'exam' })}
           onEarPractice={go({ name: 'games', game: 'ear' })}
           onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
+          weeklyGoal={settings.weeklyTimeGoal}
+          onWeeklyGoal={(minutes) => void updateSettings({ ...settings, weeklyTimeGoal: minutes })}
         />
       ) : screen.name === 'produce' ? (
         <ProduceScreen

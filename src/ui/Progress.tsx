@@ -16,6 +16,7 @@ import { BlindSpotsCard } from './BlindSpots'
 import type { RepairTarget } from '../engine/blindSpots'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
+import { StudyTimeCard } from './StudyTimeCard'
 import { FrequencyCoverageCard } from './FrequencyCoverage'
 import { GroupToggle, JumpNav } from './JumpNav'
 import { useGroups } from './useGroups'
@@ -52,6 +53,8 @@ export function ProgressScreen({
   onExam,
   onEarPractice,
   onRepair,
+  weeklyGoal,
+  onWeeklyGoal,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -66,6 +69,9 @@ export function ProgressScreen({
   onEarPractice?: () => void
   /** Opens the practice for a blind spot (a game, or the verb lab). */
   onRepair?: (target: RepairTarget) => void
+  /** Weekly reading and listening goal in minutes, and how it is changed. */
+  weeklyGoal?: number
+  onWeeklyGoal?: (minutes: number | undefined) => void
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [tests, setTests] = useState<VocabTestRecord[]>([])
@@ -172,6 +178,7 @@ export function ProgressScreen({
             <p className="small muted">Günlük cevap sayısı; serbest pratik sayılmaz.</p>
             <ActivityChart activity={stats.activity} />
           </section>
+          {onWeeklyGoal && <StudyTimeCard db={db} language={language} goal={weeklyGoal} onGoal={onWeeklyGoal} />}
           <YearCalendar db={db} />
           <BestHoursCard db={db} />
         </>

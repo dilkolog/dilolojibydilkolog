@@ -1,6 +1,7 @@
 import { clock, forgetPosition, resumeAt, savedPosition, savePosition } from './audioResume'
 import { accessFetch, APPROVAL_MESSAGE } from '../data/access'
 import { cachedAudio } from '../data/audioCache'
+import { useStudyClock } from './useStudyClock'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PODCASTS, type Episode } from '../engine/podcasts'
 import { analyzeText, coverageLine } from '../engine/reading'
@@ -113,6 +114,7 @@ export function AudioPanel({
   follow,
   still = false,
   resumeKey,
+  onListened,
 }: {
   src: string
   hidden: boolean
@@ -130,8 +132,12 @@ export function AudioPanel({
   still?: boolean
   /** Where this recording was left is kept under this key, and picked up again on the next visit. */
   resumeKey?: string
+  /** Seconds of the recording really played, handed over in small batches (the listening time). */
+  onListened?: (seconds: number) => void
 }) {
   const audio = useRef<HTMLAudioElement>(null)
+  const [playing, setPlaying] = useState(false)
+  useStudyClock({ active: playing && !!onListened, needsActivity: false, record: onListened })
   // A copy kept on the device (Çevrimdışı dinle) plays instead of the link, unless playing has begun already.
   const [local, setLocal] = useState<string>()
   useEffect(() => {
@@ -263,6 +269,9 @@ export function AudioPanel({
         controls
         preload="metadata"
         className="audio-player"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
         onTimeUpdate={(e) => {
           const a = e.currentTarget
           onTime?.(a.currentTime)

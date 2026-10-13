@@ -52,6 +52,7 @@ import { canRecord } from './audioRecord'
 import { TextShadow } from './TextShadow'
 import { reportError } from '../data/errorReport'
 import { useTranslationReady } from './useTranslationReady'
+import { useStudyClock } from './useStudyClock'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
 
@@ -202,6 +203,9 @@ export function ReadingScreen({
   }, [db, language])
 
   const analysis = useMemo(() => (text ? analyzeText(text, language, vocabulary, states, known, ignored) : null), [text, language, vocabulary, states, known, ignored])
+  // Reading and listening time (a weekly goal and the Progress card): counted only while a text is open and touched.
+  const addListened = useCallback((seconds: number) => void db.addStudyTime('listen', language, seconds).catch(() => {}), [db, language])
+  useStudyClock({ active: !!text, needsActivity: true, record: (seconds) => void db.addStudyTime('read', language, seconds).catch(() => {}) })
   // Where each text of the library stands for the reader now: only while the library itself is on screen.
   const previews = useMemo(() => {
     const out = new Map<string, string>()
@@ -686,6 +690,7 @@ export function ReadingScreen({
           still={dictating !== null || shadowing !== null}
           follow={current.cues?.length ? 'exact' : 'approx'}
           resumeKey={current.id}
+          onListened={addListened}
         />
       )}
       {current?.audio && !current.cues?.length && !!current.syncAnchors?.length && (
