@@ -59,11 +59,20 @@ afterEach(() => {
 
 describe('registering an address', () => {
   it('is off (503) while the mail key is not set, and says whether it is available', async () => {
-    expect(await (await get('mail=status')).json()).toEqual({ available: true })
+    expect(await (await get('mail=status')).json()).toEqual({ available: true, sandbox: false })
     vi.stubEnv('RESEND_API_KEY', '')
-    expect(await (await get('mail=status')).json()).toEqual({ available: false })
+    expect(await (await get('mail=status')).json()).toEqual({ available: false, sandbox: false })
     expect((await post({ action: 'email', email: EMAIL, ...state })).status).toBe(503)
     expect(blobs.size).toBe(0)
+  })
+
+  it('says so while mails still go out from Resend\'s test sender (they land in spam)', async () => {
+    vi.stubEnv('RESEND_FROM', '')
+    expect(await (await get('mail=status')).json()).toEqual({ available: true, sandbox: true })
+    vi.stubEnv('RESEND_FROM', 'Diloloji <onboarding@resend.dev>')
+    expect((await (await get('mail=status')).json()).sandbox).toBe(true)
+    vi.stubEnv('RESEND_FROM', 'Diloloji <hatirlatma@example.org>')
+    expect((await (await get('mail=status')).json()).sandbox).toBe(false)
   })
 
   it('refuses a bad address', async () => {
@@ -202,5 +211,23 @@ describe('the daily mail', () => {
     expect((await run()).status).toBe(503)
     vi.stubEnv('VAPID_PRIVATE_KEY', 'k')
     expect((await run()).status).toBe(200)
+  })
+})
+
+describe('how the mails are built', () => {
+  it('has a plain-text twin, a visible fallback address, an inbox preview line and escaped content', async () => {
+    const { confirmMail, reminderMail } = await import('../../api/_mail')
+    const confirm = confirmMail('a&b@example.org', 'https://app.test/api/push?c=k.t', 'https://app.test/api/push?u=k.t')
+    expect(confirm.html).toContain('a&amp;b@example.org')
+    expect(confirm.html).not.toContain('a&b@example.org')
+    // The address is printed under the button, for clients that block or strip the button.
+    expect(confirm.html.split('https://app.test/api/push?c=k.t').length).toBeGreaterThanOrEqual(3)
+    expect(confirm.html).toContain('display:none')
+    expect(confirm.html).toContain('<title>')
+    expect(confirm.text).toContain('https://app.test/api/push?c=k.t')
+    expect(confirm.unsubscribe).toBe('https://app.test/api/push?u=k.t')
+    const reminder = reminderMail('a@example.org', '🔥 3 günlük serin var.', 'https://app.test/api/push?u=k.t')
+    expect(reminder.html).toContain('3 günlük serin var.')
+    expect(reminder.html).not.toContain('<script')
   })
 })

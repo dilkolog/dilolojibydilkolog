@@ -3,11 +3,18 @@
  * "Diloloji <hatirlatma@your-domain>" once a domain is verified there; until then Resend's sandbox
  * sender only delivers to the account's own address). Without the key the mail reminders are off.
  */
-export const APP_URL = 'https://kelime-koc.vercel.app'
+export const APP_URL = (process.env.APP_URL?.trim() || 'https://kelime-koc.vercel.app').replace(/\/$/, '')
 
 export const mailConfigured = () => !!process.env.RESEND_API_KEY?.trim()
 
-const sender = () => process.env.RESEND_FROM?.trim() || 'Diloloji <onboarding@resend.dev>'
+const SANDBOX_SENDER = 'Diloloji <onboarding@resend.dev>'
+const sender = () => process.env.RESEND_FROM?.trim() || SANDBOX_SENDER
+
+/**
+ * True while mails go out from Resend's shared test address: those are delivered only to the Resend
+ * account's own address and land in spam. Reminders need RESEND_FROM on a domain verified at Resend.
+ */
+export const usingSandboxSender = () => sender() === SANDBOX_SENDER || /@resend\.dev>?$/i.test(sender())
 
 export const EMAIL = /^[^\s@<>"',;]{1,64}@[^\s@<>"',;]{1,255}\.[A-Za-z]{2,}$/
 
@@ -22,12 +29,24 @@ export interface Mail {
 
 const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!)
 
-function layout(body: string, footer: string): string {
-  return `<!doctype html><html lang="tr"><body style="margin:0;padding:24px;background:#f6f4ef;font-family:-apple-system,Segoe UI,Roboto,sans-serif;color:#1f2933"><div style="max-width:480px;margin:0 auto;background:#fff;border-radius:14px;padding:24px">${body}</div><p style="max-width:480px;margin:12px auto 0;font-size:12px;color:#6b7280">${footer}</p></body></html>`
+const BRAND = '#2f6f5e'
+const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+
+/**
+ * One calm card on a warm background: a wordmark (text, no images: pictures are blocked by default and
+ * count against a sender), a short preview line for the inbox list, the content, then a footer that says
+ * why the mail came. Tables and inline styles, because mail clients ignore most of the rest.
+ */
+function layout(preheader: string, body: string, footer: string): string {
+  const hidden = `<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;font-size:1px;line-height:1px">${escapeHtml(preheader)}${'&nbsp;&zwnj;'.repeat(40)}</div>`
+  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark"><title>Diloloji</title></head><body style="margin:0;padding:0;background:#f4f1ea">${hidden}<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f1ea"><tr><td align="center" style="padding:28px 14px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px"><tr><td style="padding:0 4px 14px;font-family:${FONT};font-size:18px;font-weight:700;color:${BRAND};letter-spacing:.2px"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${BRAND};margin-right:8px"></span>Diloloji</td></tr><tr><td style="background:#ffffff;border-radius:16px;padding:28px 26px;font-family:${FONT};color:#1f2933;font-size:16px;line-height:1.55;border:1px solid #e6e1d6">${body}</td></tr><tr><td style="padding:16px 8px 0;font-family:${FONT};font-size:12px;line-height:1.5;color:#6b7280">${footer}</td></tr></table></td></tr></table></body></html>`
 }
 
+const heading = (text: string) => `<h1 style="margin:0 0 10px;font-size:22px;line-height:1.25;color:#14201c">${escapeHtml(text)}</h1>`
+
+/** A button that survives mail clients (a table cell carries the colour), with the plain address under it. */
 const button = (href: string, label: string) =>
-  `<p style="margin:20px 0 4px"><a href="${escapeHtml(href)}" style="display:inline-block;background:#2f6f5e;color:#fff;text-decoration:none;padding:12px 20px;border-radius:10px;font-weight:600">${escapeHtml(label)}</a></p>`
+  `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:22px 0 6px"><tr><td bgcolor="${BRAND}" style="border-radius:12px"><a href="${escapeHtml(href)}" style="display:inline-block;padding:13px 24px;font-family:${FONT};font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:12px">${escapeHtml(label)}</a></td></tr></table><p style="margin:10px 0 0;font-size:12px;line-height:1.5;color:#6b7280">Düğme çalışmazsa bu adresi tarayıcına yapıştır:<br><a href="${escapeHtml(href)}" style="color:#6b7280;word-break:break-all">${escapeHtml(href)}</a></p>`
 
 /** The first mail to an address: nothing more is sent until its link is opened. */
 export function confirmMail(to: string, confirmUrl: string, cancelUrl: string): Mail {
@@ -35,10 +54,12 @@ export function confirmMail(to: string, confirmUrl: string, cancelUrl: string): 
     to,
     subject: 'Diloloji hatırlatmalarını onayla',
     html: layout(
-      `<h1 style="font-size:20px;margin:0 0 8px">Hatırlatma maillerini onayla</h1><p style="margin:0">Diloloji'de bu adrese günlük çalışma hatırlatması gönderilmesini istedin. Onaylarsan, o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir.</p>${button(confirmUrl, 'Onayla')}`,
-      `Bunu sen istemediysen hiçbir şey yapma, onaylamadıkça mail gelmez. <a href="${escapeHtml(cancelUrl)}">Adresimi sil</a>`,
+      'Tek dokunuşla onayla; onaylamazsan mail gelmez.',
+      `${heading('Hatırlatma maillerini onayla')}<p style="margin:0">Diloloji'de <strong>${escapeHtml(to)}</strong> adresine günlük çalışma hatırlatması gönderilmesini istedin. Onaylarsan, o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir.</p>${button(confirmUrl, 'Onayla')}`,
+      `Bunu sen istemediysen hiçbir şey yapma: onaylamadıkça mail gelmez. İstersen <a href="${escapeHtml(cancelUrl)}" style="color:#6b7280">adresini şimdi sil</a>.<br>Diloloji · kelime öğrenme uygulaması`,
     ),
-    text: `Diloloji'de bu adrese günlük çalışma hatırlatması gönderilmesini istedin.\n\nOnaylamak için: ${confirmUrl}\n\nBunu sen istemediysen hiçbir şey yapma, onaylamadıkça mail gelmez. Adresini silmek için: ${cancelUrl}`,
+    text: `Hatırlatma maillerini onayla\n\nDiloloji'de ${to} adresine günlük çalışma hatırlatması gönderilmesini istedin. Onaylarsan, o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir.\n\nOnaylamak için: ${confirmUrl}\n\nBunu sen istemediysen hiçbir şey yapma: onaylamadıkça mail gelmez. Adresini silmek için: ${cancelUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
+    unsubscribe: cancelUrl,
   }
 }
 
@@ -47,8 +68,12 @@ export function reminderMail(to: string, line: string, unsubscribeUrl: string): 
   return {
     to,
     subject: 'Diloloji: bugünkü çalışman seni bekliyor',
-    html: layout(`<p style="margin:0;font-size:16px;line-height:1.5">${escapeHtml(line)}</p>${button(`${APP_URL}/?go=quick`, 'Hızlı tekrara başla')}`, `Bu mailleri istemiyorsan <a href="${escapeHtml(unsubscribeUrl)}">hatırlatmaları kapat</a>.`),
-    text: `${line}\n\nBaşla: ${APP_URL}/?go=quick\n\nHatırlatmaları kapatmak için: ${unsubscribeUrl}`,
+    html: layout(
+      line,
+      `${heading('Bugünkü çalışman seni bekliyor')}<p style="margin:0">${escapeHtml(line)}</p>${button(`${APP_URL}/?go=quick`, 'Hızlı tekrara başla')}`,
+      `Bu mailleri sen istedin (Ayarlar → Hatırlatıcı). <a href="${escapeHtml(unsubscribeUrl)}" style="color:#6b7280">Hatırlatmaları kapat</a>.<br>Diloloji · kelime öğrenme uygulaması`,
+    ),
+    text: `Bugünkü çalışman seni bekliyor\n\n${line}\n\nBaşla: ${APP_URL}/?go=quick\n\nBu mailleri sen istedin (Ayarlar → Hatırlatıcı). Kapatmak için: ${unsubscribeUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
     unsubscribe: unsubscribeUrl,
   }
 }
@@ -66,6 +91,7 @@ export async function sendMail(mails: Mail[]): Promise<{ sent: number; failed: n
     const body = chunk.map((m) => ({
       from: sender(),
       to: [m.to],
+      ...(process.env.RESEND_REPLY_TO?.trim() ? { reply_to: process.env.RESEND_REPLY_TO.trim() } : {}),
       subject: m.subject,
       html: m.html,
       text: m.text,
