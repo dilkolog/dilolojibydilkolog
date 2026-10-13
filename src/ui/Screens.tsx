@@ -22,6 +22,7 @@ import { CHALLENGE_XP } from '../engine/challenges'
 import { InstallHint } from './InstallHint'
 
 import { DayPlant } from './DayPlant'
+import { Plant } from './Plant'
 import { Ring } from './Ring'
 
 import { useGame, type GameState } from './game'
@@ -249,13 +250,16 @@ export function Home({
 
   if (vocabularyCount === 0) {
     return (
-      <div className="stack">
+      <div className="stack welcome">
         <h1 className="greeting"><DayMark now={now} />{hello}</h1>
-        <div className="hero">
+        <div className="hero welcome-hero">
+          <span className="day-plant welcome-seed">
+            <Plant stage={-1} size={56} live />
+          </span>
           <div className="hero-body">
             <h2 className="hero-title">{LANGUAGE_NAME[language]} için ilk kelimelerini ekle</h2>
-            <p className="hero-sub">Öğrenmek istediğin kelimeleri yaz ya da bir listeyi yapıştır. Önce denemek istersen hazır örnek kelimelerle başlayabilirsin.</p>
-            <div className="row hero-actions">
+            <p className="hero-sub">Yaz ya da bir listeyi yapıştır. Önce denemek istersen hazır örnek kelimelerle başlayabilirsin.</p>
+            <div className="row hero-actions welcome-actions">
               <button className="btn btn-lg" onClick={onAddWords}>
                 Kelime ekle
               </button>
@@ -267,6 +271,40 @@ export function Home({
             </div>
           </div>
         </div>
+        <section aria-labelledby="welcome-steps-title">
+          <h2 id="welcome-steps-title" className="section-title">
+            Nasıl çalışır?
+          </h2>
+          <ol className="welcome-steps">
+            <li>
+              <span className="welcome-step-no" aria-hidden>
+                1
+              </span>
+              <span>
+                <strong>Kelimeni ekle</strong>
+                <span className="small muted">Yaz, yapıştır ya da bir dosyadan al.</span>
+              </span>
+            </li>
+            <li>
+              <span className="welcome-step-no" aria-hidden>
+                2
+              </span>
+              <span>
+                <strong>Günde birkaç dakika çalış</strong>
+                <span className="small muted">Kısa turlar; hangi kelime ne zaman gelir, uygulama ayarlar.</span>
+              </span>
+            </li>
+            <li>
+              <span className="welcome-step-no" aria-hidden>
+                3
+              </span>
+              <span>
+                <strong>Kelimen büyüsün</strong>
+                <span className="small muted">Her kelime bir bitki: tohumdan çiçeğe, sen çalıştıkça.</span>
+              </span>
+            </li>
+          </ol>
+        </section>
         {firstWords}
       </div>
     )
