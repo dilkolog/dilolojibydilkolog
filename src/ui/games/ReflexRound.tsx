@@ -102,7 +102,10 @@ export function ReflexRound({ language, onExit }: { language: TargetLanguage; on
       if (phase !== 'play' || !q) return
       const n = Number(e.key)
       if (!answered && n >= 1 && n <= q.options.length) actions.current.grade(q.options[n - 1])
-      else if (answered && e.key === 'Enter') actions.current.next()
+      else if (answered && e.key === 'Enter') {
+        e.preventDefault()
+        actions.current.next()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

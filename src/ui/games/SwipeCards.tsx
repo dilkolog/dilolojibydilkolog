@@ -154,6 +154,9 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
         <button className="link" onClick={onExit}>← Bitir</button>
         <span className="small muted">{total - deck.length + 1} / {total}</span>
       </div>
+      <div className="bar-track swipe-progress" role="progressbar" aria-label="Tur ilerlemesi" aria-valuemin={0} aria-valuemax={total} aria-valuenow={total - deck.length}>
+        <div className="bar-fill" style={{ width: `${((total - deck.length) / total) * 100}%` }} />
+      </div>
       <div className="swipe-stage">
         {deck[1] && <div className="swipe-card swipe-next" aria-hidden />}
         <div
@@ -206,14 +209,23 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
               ))}
             </div>
           ) : (
-            <p className="small muted">{current.reverse ? 'Kelimesi için dokun' : 'Anlamı için dokun'}</p>
+            <p className="swipe-hint">{current.reverse ? 'Kelimesi için dokun' : 'Anlamı için dokun'}</p>
           )}
         </div>
       </div>
       <div className="swipe-actions">
-        <button className="btn btn-bad" onClick={() => decide(false)} aria-label="Bilmiyorum"><CloseIcon size={22} /></button>
-        <button className="speak" onClick={() => playWord(card)} aria-label="Dinle"><SpeakerIcon size={22} /></button>
-        <button className="btn btn-ok" onClick={() => decide(true)} aria-label="Biliyorum"><CheckIcon size={22} /></button>
+        <div className="swipe-act">
+          <button className="btn btn-bad" onClick={() => decide(false)} aria-label="Bilmiyorum"><CloseIcon size={22} /></button>
+          <span className="swipe-cap" aria-hidden>Bilmiyorum</span>
+        </div>
+        <div className="swipe-act">
+          <button className="speak" onClick={() => playWord(card)} aria-label="Dinle"><SpeakerIcon size={22} /></button>
+          <span className="swipe-cap" aria-hidden>Dinle</span>
+        </div>
+        <div className="swipe-act">
+          <button className="btn btn-ok" onClick={() => decide(true)} aria-label="Biliyorum"><CheckIcon size={22} /></button>
+          <span className="swipe-cap" aria-hidden>Biliyorum</span>
+        </div>
       </div>
     </div>
   )

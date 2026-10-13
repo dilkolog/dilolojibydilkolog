@@ -62,7 +62,10 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (shown && e.key === 'Enter') return void next()
+      if (shown && e.key === 'Enter') {
+        e.preventDefault()
+        return void next()
+      }
       if (!shown && ex?.kind === 'choice') {
         const i = Number(e.key) - 1
         if (i >= 0 && i < ex.options.length) answer(ex.options[i].id === ex.correctOptionId, ex.options.find((o) => o.id === ex.correctOptionId)!.label)

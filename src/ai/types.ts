@@ -176,6 +176,22 @@ export interface ChatRequest {
   goals?: string[]
 }
 
+/** One turn with Monki, the assistant: free talk about the language being learned. */
+export interface MonkiRequest {
+  language: import('../engine/types').TargetLanguage
+  history: ChatTurn[]
+  /** The learner's name, for a friendlier tone, when they have set one. */
+  name?: string
+  /** Words they struggle with (lemmas), to build examples and small quizzes from. */
+  weakWords?: string[]
+}
+
+export interface MonkiReply {
+  reply: string
+  /** Two or three short follow-ups the learner may tap, in Turkish. */
+  suggestions: string[]
+}
+
 export interface ChatReply {
   reply: string
   /** Correction of the learner's last message, if it had a real mistake. */

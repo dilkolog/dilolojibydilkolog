@@ -1,0 +1,488 @@
+[
+ {
+  "id": "es-preterito_imperfecto-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Cuando era niño, ___ al fútbol todos los días.",
+  "answer": "jugaba",
+  "options": [
+   "jugaba",
+   "jugué",
+   "he jugado",
+   "jugaría"
+  ],
+  "hint": "alışkanlık → imperfecto",
+  "explanation": "Geçmişte tekrarlanan alışkanlık imperfecto ister: jugaba (oynardım).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Ayer ___ a mi abuela.",
+  "answer": "visité",
+  "options": [
+   "visité",
+   "visitaba",
+   "visitara",
+   "he visitado"
+  ],
+  "hint": "ayer → pretérito",
+  "explanation": "Belirli bir zamanda (ayer) bitmiş tek bir olay pretérito indefinido ister: visité.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Mientras yo ___ la cena, Ana ponía la mesa.",
+  "answer": "preparaba",
+  "options": [
+   "preparaba",
+   "preparé",
+   "he preparado",
+   "prepararé"
+  ],
+  "hint": "mientras → imperfecto",
+  "explanation": "Aynı anda süren iki eylemin arka planı imperfecto ile anlatılır: mientras preparaba… ponía.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Eran las ocho cuando ___ el teléfono.",
+  "answer": "sonó",
+  "options": [
+   "sonó",
+   "sonaba",
+   "ha sonado",
+   "sonara"
+  ],
+  "hint": "fon + olay",
+  "explanation": "Süregelen durumun içine giren kısa olay pretérito ile söylenir: eran las ocho (fon, imperfecto) cuando sonó (olay).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "De pequeña, mi madre me ___ cuentos cada noche.",
+  "answer": "leía",
+  "options": [
+   "leía",
+   "leyó",
+   "ha leído",
+   "leyera"
+  ],
+  "hint": "cada noche → imperfecto",
+  "explanation": "Geçmişte düzenli tekrar eden eylem imperfecto: leía (okurdu).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-06",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "El año pasado ___ a Madrid por primera vez.",
+  "answer": "viajé",
+  "options": [
+   "viajé",
+   "viajaba",
+   "viajo",
+   "he viajado"
+  ],
+  "hint": "el año pasado → pretérito",
+  "explanation": "Belirli geçmiş zaman (el año pasado) ve tek seferlik olay: pretérito viajé.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-07",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "cloze",
+  "prompt": "Hacía frío y ___ sin parar. (llover)",
+  "answer": "llovía",
+  "hint": "llover → imperfecto",
+  "explanation": "Havayı betimleme ve süregelen durum imperfecto ile söylenir: hacía frío y llovía.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-08",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "cloze",
+  "prompt": "Ayer ___ tres horas en la biblioteca. (estudiar, yo)",
+  "answer": "estudié",
+  "hint": "ayer, tres horas → pretérito",
+  "explanation": "Süresi belli, bitmiş olay: pretérito indefinido, yo biçimi estudié.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-09",
+  "language": "es",
+  "level": "B2",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Ayer ___ la verdad y me enfadé muchísimo.",
+  "answer": "supe",
+  "options": [
+   "supe",
+   "sabía",
+   "sepa",
+   "he sabido"
+  ],
+  "hint": "saber: pretérito = enterarse",
+  "explanation": "saber pretéritoda “öğrenmek, haberdar olmak” anlamına gelir: ayer supe la verdad = dün gerçeği öğrendim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-10",
+  "language": "es",
+  "level": "B2",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "No ___ qué hacer, así que llamé a mi hermano.",
+  "answer": "sabía",
+  "options": [
+   "sabía",
+   "supe",
+   "sé",
+   "supiera"
+  ],
+  "hint": "saber: imperfecto = durum",
+  "explanation": "Durum bildiren saber imperfecto ile bilgi eksikliğini söyler: no sabía (bilmiyordum).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-11",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Yo ___ en Sevilla cuando conocí a mi marido.",
+  "answer": "vivía",
+  "options": [
+   "vivía",
+   "viví",
+   "he vivido",
+   "viviré"
+  ],
+  "hint": "fon + olay",
+  "explanation": "Süregelen durum (vivía) + araya giren olay (conocí): fon imperfecto, olay pretérito.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-12",
+  "language": "es",
+  "level": "B1",
+  "topic": "preterito_imperfecto",
+  "type": "error",
+  "prompt": "Cuando era joven, fui muy tímido.",
+  "answer": "fui",
+  "fix": "era",
+  "hint": "özellik → imperfecto",
+  "explanation": "Geçmişte süregelen özellik imperfecto ile söylenir: cuando era joven, era muy tímido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-13",
+  "language": "es",
+  "level": "B2",
+  "topic": "preterito_imperfecto",
+  "type": "error",
+  "prompt": "El lunes pasado íbamos al médico y nos dijeron que no era grave.",
+  "answer": "íbamos",
+  "fix": "fuimos",
+  "hint": "tek seferlik → pretérito",
+  "explanation": "El lunes pasado ile tek ve bitmiş olay anlatılıyor: fuimos al médico (pretérito de ir).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-14",
+  "language": "es",
+  "level": "B2",
+  "topic": "preterito_imperfecto",
+  "type": "error",
+  "prompt": "Todos los veranos nadamos en el río cuando éramos pequeños.",
+  "answer": "nadamos",
+  "fix": "nadábamos",
+  "hint": "todos los veranos → imperfecto",
+  "explanation": "Todos los veranos tekrar eden alışkanlıktır: imperfecto nadábamos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preterito_imperfecto-15",
+  "language": "es",
+  "level": "B2",
+  "topic": "preterito_imperfecto",
+  "type": "choice",
+  "prompt": "Mientras ___, sonó el teléfono.",
+  "answer": "me duchaba",
+  "options": [
+   "me duchaba",
+   "me duché",
+   "me he duchado",
+   "me duche"
+  ],
+  "hint": "mientras + olay",
+  "explanation": "Süren eylem imperfecto (me duchaba), araya giren olay pretérito (sonó).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "—¿Has leído el libro? —Sí, ___ leí ayer.",
+  "answer": "lo",
+  "options": [
+   "lo",
+   "le",
+   "la",
+   "les"
+  ],
+  "hint": "COD eril → lo",
+  "explanation": "Eril tekil cansız nesne (el libro) doğrudan nesne zamiri lo ile yerine geçer: lo leí.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-02",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "A María le doy las llaves: ___ las doy.",
+  "answer": "se",
+  "options": [
+   "se",
+   "le",
+   "les",
+   "la"
+  ],
+  "hint": "le + lo/la → se lo/la",
+  "explanation": "İki zamir yan yana: le/les + lo/la/los/las olduğunda le/les → se olur: se las doy. (le las doy denmez.)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "—¿Compraste la camisa? —Sí, ___ compré.",
+  "answer": "la",
+  "options": [
+   "la",
+   "lo",
+   "le",
+   "las"
+  ],
+  "hint": "COD dişil → la",
+  "explanation": "Dişil tekil nesne için doğrudan nesne zamiri la: la compré.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "Mis padres viven lejos: ___ escribo cada semana.",
+  "answer": "les",
+  "options": [
+   "les",
+   "los",
+   "se",
+   "le"
+  ],
+  "hint": "a + kişi → le / les",
+  "explanation": "escribir a alguien: dolaylı nesne (a mis padres). Çoğul için les: les escribo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-05",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "cloze",
+  "prompt": "Quiero comprar___ un regalo a mi hermana.",
+  "answer": "le",
+  "hint": "enklitik: mastar + le",
+  "explanation": "Dolaylı nesne zamiri mastarın sonuna eklenebilir: quiero comprarle un regalo (ona hediye almak istiyorum).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-06",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "—¿Me das el libro? —Sí, ___ doy ahora.",
+  "answer": "te lo",
+  "options": [
+   "te lo",
+   "lo te",
+   "te le",
+   "se lo"
+  ],
+  "hint": "sıra: CI + CD",
+  "explanation": "Sıra: dolaylı (te) önce, doğrudan (lo) sonra: te lo doy. Ters sıra hiçbir zaman kullanılmaz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-07",
+  "language": "es",
+  "level": "B1",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "A mis hermanos ___ regalé una bicicleta.",
+  "answer": "les",
+  "options": [
+   "les",
+   "los",
+   "se",
+   "las"
+  ],
+  "hint": "a + kişi → les",
+  "explanation": "regalar a alguien: dolaylı nesne; çoğul → les (a mis hermanos les regalé…).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-08",
+  "language": "es",
+  "level": "B1",
+  "topic": "pronombres_atonos",
+  "type": "cloze",
+  "prompt": "—¿Dónde pusiste las gafas? —___ puse en la mesa.",
+  "answer": "las",
+  "hint": "COD dişil çoğul → las",
+  "explanation": "las gafas dişil çoğul doğrudan nesnedir: las puse. Soruda geçen nesne cevapta zamirle tekrarlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-09",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "El informe ya ___ lo entregué a la jefa.",
+  "answer": "se",
+  "options": [
+   "se",
+   "le",
+   "les",
+   "te"
+  ],
+  "hint": "se lo",
+  "explanation": "Dolaylı + doğrudan zamir yan yana olduğunda le → se: se lo entregué (ona verdim).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-10",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "Es una sorpresa: no ___ lo cuentes a Pablo.",
+  "answer": "se",
+  "options": [
+   "se",
+   "le",
+   "les",
+   "te"
+  ],
+  "hint": "olumsuz emir: zamir önde",
+  "explanation": "A Pablo (dolaylı) + lo (doğrudan): le lo → se lo. Olumsuz emirde zamirler fiilden önce: no se lo cuentes.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-11",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "Quiero darte el regalo. → Quiero ___.",
+  "answer": "dártelo",
+  "options": [
+   "dártelo",
+   "darlote",
+   "dárselo",
+   "darte lo"
+  ],
+  "hint": "mastar + zamirler",
+  "explanation": "Mastara iki zamir eklenirse tek kelime olur: dar + te + lo = dártelo (vurgu işareti uyumu korunur).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-12",
+  "language": "es",
+  "level": "B1",
+  "topic": "pronombres_atonos",
+  "type": "choice",
+  "prompt": "Ayer vi a tus primas y ___ saludé.",
+  "answer": "las",
+  "options": [
+   "las",
+   "les",
+   "se",
+   "la"
+  ],
+  "hint": "dişil çoğul COD → las",
+  "explanation": "tus primas dişil çoğul doğrudan nesne: las saludé. (saludar a alguien → doğrudan nesne.)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-13",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "error",
+  "prompt": "Los dije que viniera a las seis.",
+  "answer": "Los",
+  "fix": "Les",
+  "hint": "decir a → le / les",
+  "explanation": "decir a alguien: dolaylı nesne; çoğul → Les dije. “Los” doğrudan nesne içindir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-14",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "error",
+  "prompt": "Lo di las flores a mi madre.",
+  "answer": "Lo",
+  "fix": "Le",
+  "hint": "CI → le",
+  "explanation": "a mi madre dolaylı nesne: Le di las flores (ya da Se las di). “Lo” doğrudan nesne zamiridir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-pronombres_atonos-15",
+  "language": "es",
+  "level": "B2",
+  "topic": "pronombres_atonos",
+  "type": "error",
+  "prompt": "Le lo dije ayer.",
+  "answer": "Le",
+  "fix": "Se",
+  "hint": "le + lo → se lo",
+  "explanation": "İki zamir arka arkaya geldiğinde le + lo olmaz: se lo dije (ona söyledim).",
+  "source": "Diloloji (özgün)"
+ }
+]

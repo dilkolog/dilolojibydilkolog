@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest'
  * The styles are in two files: `index.css` loads with the first screen, `lazy.css` with the other
  * screens (every lazily loaded screen imports it). A class used by code that is in the first
  * bundle must therefore be in `index.css`, or it renders unstyled until a screen loads.
+ * (A type-only import is erased by the build, so it does not pull a file into the first bundle.)
  */
 const SRC = resolve(__dirname)
 const read = (f: string) => readFileSync(f, 'utf8')
@@ -17,7 +18,7 @@ function mainBundleFiles(): string[] {
     const f = stack.pop()!
     if (seen.has(f)) continue
     seen.add(f)
-    for (const m of read(f).matchAll(/^\s*(?:import|export)\s[^'"]*?from\s*['"](\.[^'"]+)['"]|^\s*import\s*['"](\.[^'"]+)['"]/gm)) {
+    for (const m of read(f).matchAll(/^\s*(?:import|export)\s(?!type\s)[^'"]*?from\s*['"](\.[^'"]+)['"]|^\s*import\s*['"](\.[^'"]+)['"]/gm)) {
       const base = resolve(dirname(f), m[1] ?? m[2])
       const hit = [base, `${base}.ts`, `${base}.tsx`, join(base, 'index.ts'), join(base, 'index.tsx')].find((c) => existsSync(c) && /\.tsx?$/.test(c))
       if (hit) stack.push(hit)

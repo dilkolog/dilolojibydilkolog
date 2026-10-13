@@ -315,7 +315,7 @@ function openWord(span: HTMLElement) {
     row.append(say)
     if (!listed) {
       const add = el('a', 'p', '+ Ekle')
-      add.setAttribute('href', addUrl(cleanToken(word, lang).toLocaleLowerCase(lang), sentence, lang, location.href))
+      add.setAttribute('href', addUrl(cleanToken(word, lang).toLocaleLowerCase(lang), sentence, lang, location.href, stored.appOrigin))
       add.setAttribute('target', '_blank')
       add.onclick = () => closeBubble()
       const knew = el('button', '', 'Biliyorum')
@@ -327,7 +327,7 @@ function openWord(span: HTMLElement) {
     if (sentence) {
       const keep = el('a', '', '💬 Cümle')
       keep.title = 'Cümleyi Diloloji\'ye kaydet'
-      keep.setAttribute('href', sentenceUrl(sentence, cleanToken(word, lang), lang, location.href))
+      keep.setAttribute('href', sentenceUrl(sentence, cleanToken(word, lang), lang, location.href, stored.appOrigin))
       keep.setAttribute('target', '_blank')
       keep.onclick = () => closeBubble()
       row.append(keep)
@@ -354,7 +354,7 @@ function offerSelection() {
     const row = el('div', 'r', '')
     row.style.marginTop = '0'
     const add = el('a', 'p', '+ Diloloji')
-    add.setAttribute('href', addUrl(text, sentence, lang, location.href))
+    add.setAttribute('href', addUrl(text, sentence, lang, location.href, stored.appOrigin))
     add.setAttribute('target', '_blank')
     add.onclick = () => closeBubble()
     row.append(add)

@@ -51,7 +51,10 @@ describe('TrueFalseGame', () => {
       const entry = words.find((w) => w.lemma === word)!
       const isTrue = entry.senses[0].gloss === shown
       await click(byText(host, isTrue ? 'Doğru' : 'Yanlış'))
-      expect(host.querySelector('[role=status]')!.textContent).toBe('Doğru')
+      // The verdict sits in the card with the real meaning (the right pair), right or wrong.
+      const status = host.querySelector('.tf-card [role=status]')!.textContent!
+      expect(status).toContain('Doğru')
+      expect(status).toContain(`${word} = ${entry.senses[0].gloss}`)
       answered++
       await click(byText(host, 'Sonraki') ?? byText(host, 'Sonucu gör'))
     }
@@ -59,6 +62,19 @@ describe('TrueFalseGame', () => {
     await wait()
     expect(host.textContent).toContain('6 / 6')
     expect((await db.events.toArray()).length).toBeGreaterThanOrEqual(6)
+  })
+})
+
+describe('TrueFalseGame keyboard', () => {
+  it('Enter after an answer goes to the next statement once, and cancels the button\'s own click', async () => {
+    const host = await mount(<TrueFalseGame language="fr" vocabulary={words} states={states} onExit={() => {}} onChanged={() => {}} />)
+    await click(byText(host, 'ifadeyle başla'))
+    expect(host.textContent).toContain('1 / 6')
+    await click(byText(host, 'Doğru'))
+    const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true })
+    await act(async () => void window.dispatchEvent(event))
+    expect(event.defaultPrevented).toBe(true)
+    expect(host.textContent).toContain('2 / 6')
   })
 })
 

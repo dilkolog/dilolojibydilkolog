@@ -68,7 +68,10 @@ export function GenderGame({
     const onKey = (e: KeyboardEvent) => {
       if (phase !== 'play') return
       if (!chosen && (e.key === '1' || e.key === '2')) choose(e.key === '1' ? 'm' : 'f')
-      else if (chosen && e.key === 'Enter') void next()
+      else if (chosen && e.key === 'Enter') {
+        e.preventDefault()
+        void next()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

@@ -19,6 +19,8 @@ export interface Stored {
   settings?: ExtSettings
   data?: ExtData
   syncedAt?: string
+  /** The address of the app page that last handed over the words (the same app can live on more than one address; each keeps its own words). */
+  appOrigin?: string
   /** Marked on other sites, waiting for the app to pick them up. */
   pendingKnown?: Partial<Record<TargetLanguage, string[]>>
   pendingIgnored?: Partial<Record<TargetLanguage, string[]>>
@@ -29,12 +31,12 @@ export interface Stored {
 export const getStored = () => chrome.storage.local.get(null) as Promise<Stored>
 
 /** Opens the app, which keeps the sentence as a sentence card. */
-export function sentenceUrl(sentence: string, focus: string, lang: string, src: string): string {
-  return `${APP_URL}/?${new URLSearchParams({ sentence: sentence.slice(0, 500), focus, lang, src })}`
+export function sentenceUrl(sentence: string, focus: string, lang: string, src: string, base = APP_URL): string {
+  return `${base}/?${new URLSearchParams({ sentence: sentence.slice(0, 500), focus, lang, src })}`
 }
 
-export function addUrl(word: string, context: string, lang: string | null, src: string): string {
+export function addUrl(word: string, context: string, lang: string | null, src: string, base = APP_URL): string {
   const q = new URLSearchParams({ add: word, context: context.slice(0, 400), src })
   if (lang) q.set('lang', lang)
-  return `${APP_URL}/?${q}`
+  return `${base}/?${q}`
 }

@@ -5,7 +5,7 @@ import { TENSE_GUIDE } from '../../engine/tenseGuide'
 import { conjugateTense, personsOf, subjectLabel, withSubject, labTensesOf, type Tense } from '../../engine/tenses'
 import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
-import { TimerIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
+import { CheckIcon, CloseIcon, TimerIcon, MoreIcon, MicIcon, ReadIcon, ScaleIcon, HeadphonesIcon, HeartIcon, MessageIcon, SearchIcon, PenIcon, PuzzleIcon, SpeakerIcon, TargetIcon } from '../icons'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 import { Diagnosis } from './Diagnosis'
@@ -422,7 +422,7 @@ function OneByOne({ kind, language, verb, tense, forms, people, hearts, settle, 
         </div>
       ) : (
         <p className="prompt-text" lang={language}>
-          {subjectLabel(language, tense, person)} · {verb}
+          {subjectLabel(language, tense, person)} · {verb} <span className="prompt-tense">{tenseName(tense)}</span>
         </p>
       )}
       {kind === 'choose' ? (
@@ -474,17 +474,26 @@ function OneByOne({ kind, language, verb, tense, forms, people, hearts, settle, 
         </form>
       )}
       {shown && (
-        <div className={`accent-result is-${shown.ok ? 'correct' : 'wrong'}`}>
-          <p className="small" role="status">
-            {shown.ok ? 'Doğru!' : 'Doğrusu: '}
-            {!shown.ok && <strong lang={language}>{withSubject(language, tense, person, forms[person])}</strong>}
-          </p>
-          {!shown.ok && kind !== 'choose' && <Diagnosis language={language} verb={verb} tense={tense} person={person} typed={shown.picked ?? ''} />}
-          <div className="row">
-            <button type="button" className="btn" onClick={next} autoFocus>
-              Devam
-            </button>
+        <div className={`accent-result lab-feedback is-${shown.ok ? 'correct' : 'wrong'}`}>
+          <div className="lab-feedback-main" role="status">
+            <span className="lab-verdict">
+              {shown.ok ? <CheckIcon size={20} /> : <CloseIcon size={20} />}
+              {shown.ok ? 'Doğru!' : 'Yanlış'}
+            </span>
+            {!shown.ok && (
+              <span className="lab-truth">
+                Doğrusu: <strong lang={language}>{withSubject(language, tense, person, forms[person])}</strong>
+              </span>
+            )}
           </div>
+          <button type="button" className="btn lab-next" onClick={next} autoFocus>
+            Devam <kbd className="kbd-key">↵</kbd>
+          </button>
+          {!shown.ok && kind !== 'choose' && (
+            <div className="lab-feedback-more">
+              <Diagnosis language={language} verb={verb} tense={tense} person={person} typed={shown.picked ?? ''} />
+            </div>
+          )}
         </div>
       )}
     </div>

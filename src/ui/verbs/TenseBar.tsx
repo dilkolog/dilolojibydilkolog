@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Tense } from '../../engine/tenses'
 import { TensePicker } from './LearnTab'
+import { TenseInfoButton } from './TenseLessonSheet'
 import { CORE_TENSES, stepTense, tenseName, type LabLanguage } from './labShared'
 
 /**
@@ -55,6 +56,7 @@ export function TenseBar({ language, verb, tense, available, onTense }: { langua
           </button>
         )}
         <TensePicker language={language} tense={tense} onPick={onTense} available={available} label="Diğer" buttonClassName="chip chip-sm lab-tense-more" />
+        <TenseInfoButton language={language} tense={tense} />
       </div>
     </>
   )

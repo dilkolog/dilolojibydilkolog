@@ -1,0 +1,488 @@
+[
+ {
+  "id": "en-articles_en-01",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "She is ___ engineer.",
+  "answer": "an",
+  "options": [
+   "an",
+   "a",
+   "the",
+   "(no article)"
+  ],
+  "hint": "meslek → a / an",
+  "explanation": "Meslek bildirirken a/an kullanılır; engineer sesli harfle başladığı için an.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-02",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "I'd like ___ glass of water.",
+  "answer": "a",
+  "options": [
+   "a",
+   "an",
+   "the",
+   "(no article)"
+  ],
+  "hint": "ilk söz → a / an",
+  "explanation": "Sayılabilir tekil isim ilk kez anılıyor: a glass of water. glass sessiz harfle başlar → a.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-03",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "___ sun rises in the east.",
+  "answer": "The",
+  "options": [
+   "The",
+   "A",
+   "An",
+   "(no article)"
+  ],
+  "hint": "tek varlık → the",
+  "explanation": "Tek olan şeyler (the sun, the moon, the sky, the world) the ile kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-04",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "He plays ___ guitar very well.",
+  "answer": "the",
+  "options": [
+   "the",
+   "a",
+   "an",
+   "(no article)"
+  ],
+  "hint": "çalgı → the",
+  "explanation": "Çalgı aletleriyle the kullanılır: play the guitar / the piano. Sporlarla ise artikel yoktur: play football.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "My sister lives in ___ United Kingdom.",
+  "answer": "the",
+  "options": [
+   "the",
+   "a",
+   "an",
+   "(no article)"
+  ],
+  "hint": "birleşik ülke → the",
+  "explanation": "Birleşik/çoğul adlı ülkeler the ile kullanılır: the United Kingdom, the USA, the Netherlands.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-06",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "___ life is full of surprises. (genel olarak hayat)",
+  "answer": "(no article)",
+  "options": [
+   "(no article)",
+   "The",
+   "A",
+   "An"
+  ],
+  "hint": "genel anlam → artikel yok",
+  "explanation": "Genel anlamda sayılamayan ve çoğul isimler artikelsiz kullanılır: life, love, music, people.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-07",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "She goes to ___ school by bus every morning. (öğrenci olarak)",
+  "answer": "(no article)",
+  "options": [
+   "(no article)",
+   "the",
+   "a",
+   "an"
+  ],
+  "hint": "asıl amaç → artikel yok",
+  "explanation": "school, church, hospital, bed, prison gibi yerlerin asıl amacıyla kullanıldığı durumda artikel yoktur: go to school (okula gitmek).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-08",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "I bought a car and a bike. ___ car is red.",
+  "answer": "The",
+  "options": [
+   "The",
+   "A",
+   "An",
+   "(no article)"
+  ],
+  "hint": "ikinci anılış → the",
+  "explanation": "Daha önce söz edilen ve belirli hale gelen isim the alır: a car → the car.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-09",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "What ___ beautiful day!",
+  "answer": "a",
+  "options": [
+   "a",
+   "an",
+   "the",
+   "(no article)"
+  ],
+  "hint": "What a / an",
+  "explanation": "What + sayılabilir tekil isim ünlemlerinde a / an gerekir: What a beautiful day! (beautiful sessiz harfle başlar → a)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-10",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "choice",
+  "prompt": "He is ___ most intelligent student in the class.",
+  "answer": "the",
+  "options": [
+   "the",
+   "a",
+   "an",
+   "(no article)"
+  ],
+  "hint": "superlative → the",
+  "explanation": "Üstünlük derecesi (the most, the best) hep the ile kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-11",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "cloze",
+  "prompt": "She has ___ MA in linguistics. (MA: /em ey/)",
+  "answer": "an",
+  "hint": "ses → a / an",
+  "explanation": "Artikel yazıya değil söyleniş sesine bakar: MA “em-ey” diye sesli harfle başlar → an MA.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-12",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "cloze",
+  "prompt": "___ Nile is the longest river in Africa.",
+  "answer": "The",
+  "hint": "nehir → the",
+  "explanation": "Nehir, deniz, okyanus ve dağ silsileleri the ile kullanılır: the Nile, the Alps, the Atlantic.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-13",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "error",
+  "prompt": "She works at an hospital near here.",
+  "answer": "an",
+  "fix": "a",
+  "hint": "ses → a / an",
+  "explanation": "hospital /h/ sesiyle başlar (sessiz) olduğu için a kullanılır: a hospital. an yalnızca sesli harf sesinden önce gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-14",
+  "language": "en",
+  "level": "B2",
+  "topic": "articles_en",
+  "type": "error",
+  "prompt": "I need an advice about my career.",
+  "answer": "an",
+  "fix": "some",
+  "hint": "sayılamayan → a / an yok",
+  "explanation": "advice sayılamayan bir isimdir: a / an almaz. some advice ya da a piece of advice denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-articles_en-15",
+  "language": "en",
+  "level": "B1",
+  "topic": "articles_en",
+  "type": "error",
+  "prompt": "She plays the football with her friends every weekend.",
+  "answer": "the",
+  "fix": "(no article)",
+  "hint": "spor → artikel yok",
+  "explanation": "Spor adlarında artikel kullanılmaz: play football, play tennis. (the yalnızca çalgılarla: play the piano.)",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-01",
+  "language": "en",
+  "level": "B1",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "She said, “I am tired.” → She said that she ___ tired.",
+  "answer": "was",
+  "options": [
+   "was",
+   "is",
+   "had been",
+   "will be"
+  ],
+  "hint": "backshift: am/is → was",
+  "explanation": "Dolaylı anlatımda ana fiil geçmişse, am/is → was olur (bir adım geriye gidilir).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-02",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "He said, “I have finished.” → He said he ___ finished.",
+  "answer": "had",
+  "options": [
+   "had",
+   "has",
+   "have",
+   "would have"
+  ],
+  "hint": "have + V3 → had + V3",
+  "explanation": "present perfect → past perfect: have finished → had finished.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-03",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“I will call you.” → She said she ___ call me.",
+  "answer": "would",
+  "options": [
+   "would",
+   "will",
+   "shall",
+   "did"
+  ],
+  "hint": "will → would",
+  "explanation": "will → would: dolaylı anlatımda gelecek zaman “future in the past” olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-04",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“Where do you live?” → He asked me where I ___.",
+  "answer": "lived",
+  "options": [
+   "lived",
+   "live",
+   "do live",
+   "was living"
+  ],
+  "hint": "soru → düz cümle sırası",
+  "explanation": "Dolaylı sorularda düz cümle sırası kullanılır (yardımcı fiil did yok) ve zaman bir adım geri gider: where I lived.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-05",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“Do you like coffee?” → She asked ___ I liked coffee.",
+  "answer": "if",
+  "options": [
+   "if",
+   "that",
+   "what",
+   "do"
+  ],
+  "hint": "yes/no → if / whether",
+  "explanation": "Evet/hayır sorularının dolaylı anlatımı if ya da whether ile kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-06",
+  "language": "en",
+  "level": "B1",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“Close the door.” → He told me ___ the door.",
+  "answer": "to close",
+  "options": [
+   "to close",
+   "close",
+   "closing",
+   "that I close"
+  ],
+  "hint": "emir → tell + to V",
+  "explanation": "Emirler tell + kişi + to + fiil ile aktarılır: he told me to close the door.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-07",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“Don't be late.” → She told us ___ late.",
+  "answer": "not to be",
+  "options": [
+   "not to be",
+   "to not be",
+   "don't be",
+   "not being"
+  ],
+  "hint": "olumsuz emir → not to V",
+  "explanation": "Olumsuz emir: tell + kişi + not to + fiil: she told us not to be late.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-08",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“We are leaving tomorrow.” → They said they were leaving ___ day.",
+  "answer": "the next",
+  "options": [
+   "the next",
+   "tomorrow",
+   "yesterday",
+   "today"
+  ],
+  "hint": "tomorrow → the next day",
+  "explanation": "Zaman ifadeleri kayar: tomorrow → the next day / the following day.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-09",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“I saw him yesterday.” → She said she had seen him ___.",
+  "answer": "the day before",
+  "options": [
+   "the day before",
+   "yesterday",
+   "tomorrow",
+   "the next day"
+  ],
+  "hint": "yesterday → the day before",
+  "explanation": "yesterday → the day before (ya da the previous day) olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-10",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "choice",
+  "prompt": "“I can swim.” → She said she ___ swim.",
+  "answer": "could",
+  "options": [
+   "could",
+   "can",
+   "would",
+   "was able"
+  ],
+  "hint": "can → could",
+  "explanation": "can → could: dolaylı anlatımda modal fiiller de bir adım geri gider.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-11",
+  "language": "en",
+  "level": "B1",
+  "topic": "reported_speech",
+  "type": "cloze",
+  "prompt": "“I'm working here.” → He said he ___ working there.",
+  "answer": "was",
+  "hint": "am → was; here → there",
+  "explanation": "am / is / are + -ing → was / were + -ing; here → there olur: he said he was working there.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-12",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "cloze",
+  "prompt": "“Why did you leave?” → She asked me why I ___ left.",
+  "answer": "had",
+  "hint": "simple past → past perfect",
+  "explanation": "Simple past → past perfect: did leave → had left. Dolaylı soruda düz cümle sırası kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-13",
+  "language": "en",
+  "level": "B1",
+  "topic": "reported_speech",
+  "type": "error",
+  "prompt": "She said me that she was tired.",
+  "answer": "said",
+  "fix": "told",
+  "hint": "tell + kişi, say (kişi yok)",
+  "explanation": "said’den sonra kişi nesnesi gelmez: she said that… ya da she told me that… Kişi varsa tell kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-14",
+  "language": "en",
+  "level": "B2",
+  "topic": "reported_speech",
+  "type": "error",
+  "prompt": "He asked me where did I live.",
+  "answer": "did",
+  "fix": "(kaldır): where I lived",
+  "hint": "dolaylı soru → düz sıra",
+  "explanation": "Dolaylı soruda did gibi yardımcı fiil ve devrik sıra kullanılmaz: he asked me where I lived.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-reported_speech-15",
+  "language": "en",
+  "level": "B1",
+  "topic": "reported_speech",
+  "type": "error",
+  "prompt": "She told that she would come late.",
+  "answer": "told",
+  "fix": "said",
+  "hint": "say that / tell somebody",
+  "explanation": "tell yanında kişi ister (told me / told him). Kişi söylenmeyecekse said that kullanılır.",
+  "source": "Diloloji (özgün)"
+ }
+]

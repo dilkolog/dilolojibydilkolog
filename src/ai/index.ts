@@ -3,6 +3,8 @@ import type {
   ChatReply,
   ChatRequest,
   ErrorReport,
+  MonkiReply,
+  MonkiRequest,
   ErrorReportRequest,
   SessionNoteRequest,
   PersonalSentence,
@@ -63,6 +65,7 @@ export const prequestions = async (apiKey: string, language: TargetLanguage, tex
 export const monthlyReport = async (apiKey: string, req: ErrorReportRequest): Promise<ErrorReport> => (await sdk()).monthlyReport(apiKey, req)
 export const personalSentences = async (apiKey: string, req: PersonalSentencesRequest): Promise<PersonalSentence[]> => (await sdk()).personalSentences(apiKey, req)
 export const sessionNote = async (apiKey: string, req: SessionNoteRequest): Promise<string> => (await sdk()).sessionNote(apiKey, req)
+export const monkiTurn = async (apiKey: string, req: MonkiRequest): Promise<MonkiReply> => (await sdk()).monkiTurn(apiKey, req)
 export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatReply> => (await sdk()).chatTurn(apiKey, req)
 
 export const writeEpisode = async (apiKey: string, req: EpisodeRequest): Promise<EpisodeDraft> => (await sdk()).writeEpisode(apiKey, req)

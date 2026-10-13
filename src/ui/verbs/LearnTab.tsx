@@ -12,6 +12,8 @@ import { createEntry } from '../../data/wordInput'
 import { loadPack, packRecord } from '../../data/wordpack'
 import { showToast } from '../toastFeed'
 import { Popover, MenuItem } from '../Popover'
+import { openPrint } from '../printWindow'
+import { verbSheetHtml } from './printVerb'
 import { CompareTab } from './CompareTab'
 import { FormTable } from './FormTable'
 import { TwinTense } from './TwinTense'
@@ -211,7 +213,10 @@ export function LearnTab({
   const addToList = async () => {
     if (!meaning) return
     try {
-      await db.vocabulary.put(createEntry({ word: verb, meaning, partOfSpeech: 'verb' }, language, new Date()))
+      // The sentence on the page goes with the verb (any tense's, when this one has none): the form marked, with its Turkish.
+      const shown = sentence ?? available.map((t) => tenseSentence(entry, t)).find((x) => !!x)
+      const example = shown ? shown.text.replace('___', `*${shown.form}*`) : undefined
+      await db.vocabulary.put(createEntry({ word: verb, meaning, partOfSpeech: 'verb', example, exampleTranslation: shown?.translation }, language, new Date()))
       setAdded(true)
       showToast(`${verb} kelimelerine eklendi.`)
       onAdded?.()
@@ -301,10 +306,11 @@ export function LearnTab({
               <MenuItem
                 icon={<span className="lab-tick-gap" />}
                 title="Yazdır"
-                hint="Tabloyu kâğıda ya da PDF'e"
+                hint="Tüm çekimi kâğıda ya da PDF'e"
                 onSelect={() => {
                   close()
-                  window.print()
+                  // A page of its own (the whole conjugation, not the screen as it is): printed or saved as a PDF.
+                  if (!openPrint(verbSheetHtml({ language, verb, entry, meaning, available, reflexive, negative }))) showToast('Yazdırma penceresi engellendi: tarayıcıda açılır pencereye izin ver.', undefined, 5000, 'info')
                 }}
               />
             </>

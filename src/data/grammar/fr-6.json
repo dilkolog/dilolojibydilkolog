@@ -1,0 +1,493 @@
+[
+ {
+  "id": "fr-pronoms_y_en-01",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "— Tu as vu Marie ? — Oui, je ___ ai vue hier.",
+  "answer": "l'",
+  "options": [
+   "l'",
+   "lui",
+   "la",
+   "en"
+  ],
+  "hint": "COD: le, la, l', les",
+  "explanation": "« voir qqn » doğrudan nesne (COD) alır: le / la / l'. « ai » sesli harfle başladığı için la → l' olur: je l'ai vue. Ortaç da COD dişil olduğu için uyar (vue).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "J'ai téléphoné à ma sœur ce matin : je ___ ai téléphoné ce matin.",
+  "answer": "lui",
+  "options": [
+   "lui",
+   "la",
+   "l'",
+   "en"
+  ],
+  "hint": "à + kişi → lui / leur",
+  "explanation": "« téléphoner à qqn » dolaylı nesne (COI) alır: lui (ona) ya da leur (onlara). Önünde à olan kişiler için lui / leur kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "— Tu as des frères ? — Oui, j'___ ai deux.",
+  "answer": "en",
+  "options": [
+   "en",
+   "y",
+   "les",
+   "lui"
+  ],
+  "hint": "des frères → en",
+  "explanation": "« en » miktar içeren “des / du / de la” + isim yerine geçer; sayı fiilden sonra kalır: j'en ai deux (iki tane var).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-04",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "— Tu vas à Paris ? — Oui, j'___ vais demain.",
+  "answer": "y",
+  "options": [
+   "y",
+   "en",
+   "lui",
+   "la"
+  ],
+  "hint": "à Paris → y",
+  "explanation": "« y » yer bildiren à + yer ya da dans / chez + yer yerine geçer: j'y vais (oraya gidiyorum).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Elle parle à ses parents tous les jours : elle ___ parle tous les jours.",
+  "answer": "leur",
+  "options": [
+   "leur",
+   "les",
+   "lui",
+   "eux"
+  ],
+  "hint": "à + kişi (çoğul) → leur",
+  "explanation": "« parler à qqn » dolaylı nesnedir; çoğul kişi için leur (onlara) kullanılır, les (onları) değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-06",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Je pense souvent à mes vacances : j'___ pense souvent.",
+  "answer": "y",
+  "options": [
+   "y",
+   "en",
+   "lui",
+   "les"
+  ],
+  "hint": "penser à + şey → y",
+  "explanation": "« penser à qqch » eşya/soyut şey için y alır (penser à qqn ise kişilerde « penser à lui / à elle » denir). J'y pense.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-07",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Il a besoin de conseils : il ___ a besoin.",
+  "answer": "en",
+  "options": [
+   "en",
+   "y",
+   "lui",
+   "les"
+  ],
+  "hint": "de + şey → en",
+  "explanation": "« avoir besoin de qqch » de ile kurulur; de + şey yerine en gelir: il en a besoin.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-08",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "cloze",
+  "prompt": "— Tu veux ce livre ? — Oui, donne-___-moi !",
+  "answer": "le",
+  "hint": "emir: fiil-COD-COI",
+  "explanation": "Olumlu emirde zamirler fiilin arkasına tire ile gelir ve sıra COD + COI’dir: donne-le-moi (onu bana ver).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-09",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Il donne le cadeau à sa mère : il ___ donne.",
+  "answer": "le lui",
+  "options": [
+   "le lui",
+   "lui le",
+   "la lui",
+   "le leur"
+  ],
+  "hint": "sıra: me/te/nous/vous – le/la/les – lui/leur",
+  "explanation": "İki zamir arka arkaya: önce COD (le), sonra COI (lui): il le lui donne. cadeau eril, anne tekil olduğu için le lui.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-10",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "cloze",
+  "prompt": "J'ai acheté des pommes et j'___ ai mangé trois.",
+  "answer": "en",
+  "hint": "des pommes → en",
+  "explanation": "Önceden anılan bir ürünün bir kısmından söz ederken en kullanılır; sayı fiilden sonra tekrarlanır: j'en ai mangé trois.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-11",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Les clés ? Je les ai ___ sur la table.",
+  "answer": "mises",
+  "options": [
+   "mises",
+   "mis",
+   "mise",
+   "mit"
+  ],
+  "hint": "COD önde → uyum",
+  "explanation": "COD (les) fiilden önce geldiğinde participe passé ona uyar: les clés (dişil çoğul) → mises.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-12",
+  "language": "fr",
+  "level": "B1",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Ta sœur est malade, téléphone-___ !",
+  "answer": "lui",
+  "options": [
+   "lui",
+   "la",
+   "leur",
+   "elle"
+  ],
+  "hint": "téléphoner à → lui",
+  "explanation": "Olumlu emirde COI fiilin arkasına gelir: téléphone-lui (ona telefon et). « téléphoner à qqn » olduğu için lui.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-13",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "choice",
+  "prompt": "Paul est fâché : ne ___ parle pas maintenant !",
+  "answer": "lui",
+  "options": [
+   "lui",
+   "le",
+   "y",
+   "en"
+  ],
+  "hint": "olumsuz emir: zamir önde",
+  "explanation": "Olumsuz emirde zamir fiilin önüne gelir: ne lui parle pas. parler à qqn → lui.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-14",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "error",
+  "prompt": "Mes parents sont en vacances ; je les ai téléphoné hier.",
+  "answer": "les",
+  "fix": "leur",
+  "hint": "à + kişi → lui / leur",
+  "explanation": "« téléphoner à qqn » dolaylı nesnelidir: je leur ai téléphoné. les (onları) COD için kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pronoms_y_en-15",
+  "language": "fr",
+  "level": "B2",
+  "topic": "pronoms_y_en",
+  "type": "error",
+  "prompt": "Elle a des enfants, mais elle y parle rarement.",
+  "answer": "y",
+  "fix": "en",
+  "hint": "de → en, à → y",
+  "explanation": "« parler de qqn / qqch » de ile kurulduğu için y değil en gelir: elle en parle rarement.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-01",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Je voudrais ___ eau, s'il vous plaît.",
+  "answer": "de l'",
+  "options": [
+   "de l'",
+   "du",
+   "de la",
+   "des"
+  ],
+  "hint": "sesli harf → de l'",
+  "explanation": "Sesli harfle başlayan eril/dişil sayılamayan isimlerde partitif de l' olur: de l'eau.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Il n'y a plus ___ pain.",
+  "answer": "de",
+  "options": [
+   "de",
+   "du",
+   "le",
+   "un"
+  ],
+  "hint": "olumsuz → de",
+  "explanation": "Olumsuz cümlede belirsiz miktar bildiren partitif (du, de la, des, un) de’ye döner: il n'y a plus de pain.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "J'ai beaucoup ___ amis.",
+  "answer": "d'",
+  "options": [
+   "d'",
+   "des",
+   "de",
+   "les"
+  ],
+  "hint": "miktar + de / d'",
+  "explanation": "Miktar ifadelerinden sonra (beaucoup, trop, peu, assez) des yerine de gelir; sesli harften önce d' olur: beaucoup d'amis.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-04",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Elle a acheté un kilo ___ pommes.",
+  "answer": "de",
+  "options": [
+   "de",
+   "des",
+   "du",
+   "les"
+  ],
+  "hint": "ölçü + de",
+  "explanation": "Ölçü ve kap ifadelerinden sonra (un kilo de, une bouteille de, un verre de) de gelir, artikel düşer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "cloze",
+  "prompt": "Il y a trop ___ monde ici.",
+  "answer": "de",
+  "hint": "miktar + de",
+  "explanation": "« trop de », « beaucoup de », « peu de », « assez de » kalıplarında de’den sonra artikel kullanılmaz: trop de monde.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-06",
+  "language": "fr",
+  "level": "B2",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Il faut ___ courage pour dire la vérité.",
+  "answer": "du",
+  "options": [
+   "du",
+   "le",
+   "un",
+   "de"
+  ],
+  "hint": "sayılamayan soyut → du / de la",
+  "explanation": "Soyut sayılamayan isimlerde belirsiz miktar için partitif kullanılır: du courage (biraz cesaret).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-07",
+  "language": "fr",
+  "level": "B2",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Nous n'avons pas ___ argent. (hiç yok, belirsiz miktar)",
+  "answer": "d'",
+  "options": [
+   "d'",
+   "de l'",
+   "l'",
+   "un"
+  ],
+  "hint": "olumsuz + sesli → d'",
+  "explanation": "Olumsuzda partitif de’ye döner; argent sesli harfle başlamadığı için değil, argent’ın başındaki a ile başlayan sesli sebebiyle d' olur: pas d'argent.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-08",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Je parle ___ directeur.",
+  "answer": "au",
+  "options": [
+   "au",
+   "à le",
+   "du",
+   "aux"
+  ],
+  "hint": "à + le → au",
+  "explanation": "à + le birleşir: au. Dişil için à la, çoğul için aux. J'ai parlé au directeur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-09",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "Elle revient ___ États-Unis.",
+  "answer": "des",
+  "options": [
+   "des",
+   "de les",
+   "du",
+   "d'"
+  ],
+  "hint": "de + les → des",
+  "explanation": "de + les birleşir: des. Elle revient des États-Unis (ABD’den dönüyor).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-10",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "C'est le livre ___ professeur.",
+  "answer": "du",
+  "options": [
+   "du",
+   "de le",
+   "de la",
+   "des"
+  ],
+  "hint": "de + le → du",
+  "explanation": "de + le birleşir: du. Le livre du professeur (öğretmenin kitabı).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-11",
+  "language": "fr",
+  "level": "B2",
+  "topic": "articles_quantite",
+  "type": "choice",
+  "prompt": "J'ai besoin ___ conseils.",
+  "answer": "de",
+  "options": [
+   "de",
+   "des",
+   "de des",
+   "d'"
+  ],
+  "hint": "de + des → de",
+  "explanation": "« avoir besoin de » + belirsiz çoğul isim: de + des birleşmez, des düşer: j'ai besoin de conseils.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-12",
+  "language": "fr",
+  "level": "B2",
+  "topic": "articles_quantite",
+  "type": "error",
+  "prompt": "Il y a beaucoup des gens dans la rue.",
+  "answer": "des",
+  "fix": "de",
+  "hint": "miktar + de",
+  "explanation": "« beaucoup » + de + isim: miktar ifadesinden sonra des değil de gelir: beaucoup de gens.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-13",
+  "language": "fr",
+  "level": "B2",
+  "topic": "articles_quantite",
+  "type": "error",
+  "prompt": "Je n'ai pas des amis ici.",
+  "answer": "des",
+  "fix": "d'",
+  "hint": "olumsuz → de / d'",
+  "explanation": "Olumsuz cümlede des, de / d' olur: je n'ai pas d'amis ici.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-14",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "error",
+  "prompt": "Nous avons mangé de la pain.",
+  "answer": "la",
+  "fix": "du",
+  "hint": "eril → du, dişil → de la",
+  "explanation": "pain eril olduğu için partitif du’dur: du pain. de la yalnızca dişil sayılamayan isimlerle kullanılır (de la soupe).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-articles_quantite-15",
+  "language": "fr",
+  "level": "B1",
+  "topic": "articles_quantite",
+  "type": "cloze",
+  "prompt": "Combien ___ frères as-tu ?",
+  "answer": "de",
+  "hint": "combien de",
+  "explanation": "Combien + de + isim: soru kalıbında da artikel düşer: combien de frères ?",
+  "source": "Diloloji (özgün)"
+ }
+]
