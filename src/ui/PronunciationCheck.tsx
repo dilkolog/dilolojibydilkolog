@@ -8,6 +8,7 @@ import { MicIcon, PlayIcon, SpeakerIcon } from './icons'
 import { assessPronunciation, type PronResult } from './pronunciation'
 import { Ring } from './Ring'
 import { StatusPicture } from './StatusArt'
+import { EMBLEM } from './drawnArt'
 
 /** Long enough for a sentence, within the API's 30 seconds. */
 const MAX_MS = 12000
@@ -169,7 +170,10 @@ export function WordPronunciation({ db, entry }: { db: KelimeDB; entry: Vocabula
   const best = scores.length ? Math.max(...scores.map((s) => s.score)) : null
   return (
     <section className="section stack">
-      <h2 className="section-title">Söyle ve puanla</h2>
+      <h2 className="section-title">
+        <img className="cat-emblem" src={EMBLEM.mic} alt="" width={26} height={26} draggable={false} />
+        Söyle ve puanla
+      </h2>
       <p className="small muted">
         Söylediğin, ana dili konuşanların telaffuzuyla karşılaştırılır; her kelime ne kadar yakın olduğuna göre renklenir.
         {scores.length > 0 && ` Son puanın ${scores[scores.length - 1].score}, en iyisi ${best} (${scores.length} deneme).`}

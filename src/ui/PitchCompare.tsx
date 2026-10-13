@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { contour, melodySimilarity, pitchTrack, resample } from '../engine/pitch'
 import { canRecord, recordingType } from './audioRecord'
 import { MicIcon, PlayIcon, StopIcon } from './icons'
+import { StatusPicture } from './StatusArt'
 
 const W = 560
 const H = 140
@@ -29,6 +30,7 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
   const [mineUrl, setMineUrl] = useState<string>()
   const [phase, setPhase] = useState<'idle' | 'recording' | 'working'>('idle')
   const [error, setError] = useState('')
+  const [micBlocked, setMicBlocked] = useState(false)
   const recorder = useRef<MediaRecorder | null>(null)
 
   useEffect(
@@ -62,10 +64,12 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
   const record = async () => {
     setError('')
     if (phase === 'recording') return recorder.current?.stop()
+    setMicBlocked(false)
     let stream: MediaStream
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true })
     } catch {
+      setMicBlocked(true)
       setError('Mikrofona erişilemedi.')
       return
     }
@@ -147,6 +151,7 @@ export function PitchCompare({ reference, label, maxSeconds = 4 }: { reference: 
           )}
         </p>
       )}
+      {micBlocked && <StatusPicture kind="nomic" small />}
       {error && <p className="error small">{error}</p>}
     </div>
   )

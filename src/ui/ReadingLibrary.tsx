@@ -13,6 +13,7 @@ import type { KelimeDB, ReadingText } from '../data/db'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { Cover } from './ReadingBooks'
 import { OfflineAudioChip } from './OfflineAudioChip'
+import { ADD_ART } from './drawnArt'
 
 /** Days after finishing a text when re-reading it is suggested. */
 const REREAD_DAYS = 7
@@ -101,11 +102,12 @@ export function AddTextCard({
       <p className="small muted">ya da başka bir kaynaktan:</p>
       <div className="add-sources">
         <label className="btn btn-quiet file-btn">
+          <img className="chip-art" src={ADD_ART.notes} alt="" width={20} height={20} draggable={false} />
           Alt yazı ya da metin dosyası
           <input type="file" accept=".srt,.vtt,.txt,text/plain" onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])} />
         </label>
         <label className="btn btn-quiet file-btn">
-          <BookIcon size={16} className="inline-icon" />Kitap (EPUB)
+          <img className="chip-art" src={ADD_ART.ebook} alt="" width={20} height={20} draggable={false} />Kitap (EPUB)
           <input type="file" accept=".epub,application/epub+zip" onChange={(e) => e.target.files?.[0] && onBook(e.target.files[0])} />
         </label>
       </div>
@@ -118,7 +120,7 @@ export function AddTextCard({
       >
         <input className="input" value={youtube} onChange={(e) => onYoutube(e.target.value)} placeholder="YouTube bağlantısı" aria-label="YouTube bağlantısı" inputMode="url" />
         <button className="btn btn-quiet" type="submit" disabled={!youtube.trim() || ytBusy}>
-          {ytBusy ? 'Getiriliyor…' : <><PlayIcon size={14} className="inline-icon" />Altyazıyı getir</>}
+          {ytBusy ? 'Getiriliyor…' : <><img className="chip-art" src={ADD_ART.video} alt="" width={20} height={20} draggable={false} />Altyazıyı getir</>}
         </button>
       </form>
       {bookError && (

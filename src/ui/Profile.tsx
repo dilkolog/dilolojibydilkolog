@@ -18,7 +18,7 @@ import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
-import { CATEGORY_EMBLEM, drawnMedal } from './drawnArt'
+import { CATEGORY_EMBLEM, EMBLEM, drawnMedal } from './drawnArt'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -238,7 +238,10 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               )}
               {earnedSeries.length > 0 && (
                 <div className="badge-block">
-                  <h2 className="subhead">Kazandıkların</h2>
+                  <h2 className="subhead">
+                    <img className="cat-emblem" src={EMBLEM.trophy} alt="" width={26} height={26} draggable={false} />
+                    Kazandıkların
+                  </h2>
                   <div className="badge-case">
                     {earnedSeries.map((s) => (
                       <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />

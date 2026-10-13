@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { canRecord, recordingType } from './audioRecord'
+import { StatusPicture } from './StatusArt'
 
 /** Max length of a word recording; long enough for a phrase, short enough to stay small. */
 const MAX_MS = 8000
@@ -11,6 +12,7 @@ const MAX_MS = 8000
 export function AudioRecorder({ onSave }: { onSave: (blob: Blob) => void }) {
   const [state, setState] = useState<'idle' | 'recording' | 'review'>('idle')
   const [error, setError] = useState('')
+  const [micBlocked, setMicBlocked] = useState(false)
   const [blob, setBlob] = useState<Blob | null>(null)
   const [url, setUrl] = useState<string>()
   const recorder = useRef<MediaRecorder | null>(null)
@@ -22,6 +24,7 @@ export function AudioRecorder({ onSave }: { onSave: (blob: Blob) => void }) {
 
   const start = async () => {
     setError('')
+    setMicBlocked(false)
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       const rec = new MediaRecorder(stream, { mimeType: recordingType() })
@@ -44,6 +47,7 @@ export function AudioRecorder({ onSave }: { onSave: (blob: Blob) => void }) {
       setState('recording')
       timer.current = window.setTimeout(stop, MAX_MS)
     } catch {
+      setMicBlocked(true)
       setError('Mikrofona erişilemedi. Tarayıcının mikrofon iznini kontrol et.')
     }
   }
@@ -77,6 +81,7 @@ export function AudioRecorder({ onSave }: { onSave: (blob: Blob) => void }) {
         )}
       </div>
       {state === 'recording' && <p className="small muted">Kelimeyi söyle… (en fazla {MAX_MS / 1000} saniye)</p>}
+      {micBlocked && <StatusPicture kind="nomic" />}
       {error && (
         <p className="error" role="alert">
           {error}

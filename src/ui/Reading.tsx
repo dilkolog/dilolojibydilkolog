@@ -1,12 +1,12 @@
 import '../lazy.css'
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { cleanToken } from '../engine/extract'
 import { KnownWordsCard } from './KnownWords'
 import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
 import { saveSentence } from './saveSentence'
-import { analyzeText, coverageLine, finishReading, type ReadToken } from '../engine/reading'
+import { analyzeText, coverageLine, type ReadToken } from '../engine/reading'
 import { type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
 import { importEpub, textOfFile, youtubeText } from './readingImport'
@@ -30,15 +30,16 @@ import { AddTextCard, LibraryItem, SourcePickers } from './ReadingLibrary'
 import { CoverageCard } from './CoverageCard'
 import { ExternalResources } from './ExternalResources'
 import { SingleUnknownSentences } from './SingleUnknownSentences'
-import { MIN_READ_MS, groupBooks, openTokensOf, shadeFor, useSeen } from './readingHelpers'
+import { groupBooks, openTokensOf, shadeFor } from './readingHelpers'
 import type { SharedRead } from './incoming'
 import { useSheetSwipe } from './useSheetSwipe'
 import { useListenFollow } from './useListenFollow'
 import { useMultiSelect } from './useMultiSelect'
+import { useReaderMarks } from './useReaderMarks'
+import { useFinishReading } from './useFinishReading'
 import { useWordSheetLayout } from './useWordSheetLayout'
-import { addFormsToReview, addSeenForms } from '../engine/labProgress'
+import { addFormsToReview } from '../engine/labProgress'
 import { scheduler } from '../data/instance'
-import { loadTenses } from '../data/tenseData'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
 import { BrainIcon, GlobeIcon, PlusIcon, ConjugationsIcon, DictationIcon, ShadowingIcon } from './icons'
@@ -102,15 +103,6 @@ export function ReadingScreen({
   const [adding, setAdding] = useState<{ word: string; sentence: string } | null>(null)
   const [confirmFinish, setConfirmFinish] = useState(false)
   const [message, setMessage] = useState('')
-  /**
-   * The text (by id) whose meetings with list words are saved already: reaching the end of a text
-   * saves them on its own, since "Okumayı bitir" (which also marks the rest as known) was often
-   * never pressed and the reading then counted for nothing. Finishing doesn't count them twice.
-   */
-  const metSaved = useRef<string | null>(null)
-  const [metNote, setMetNote] = useState('')
-  /** When the text on screen was opened, and which it is: a glance at a short text is not a reading. */
-  const opened = useRef<{ key: string | null; at: number }>({ key: null, at: 0 })
   const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [reader, setReader] = useReaderPrefs()
   const { multi, setMulti, multiMode, setMultiMode, toggleMulti, markMulti } = useMultiSelect({ db, language, setKnown, setSkipped, setIgnored })
@@ -308,85 +300,7 @@ export function ReadingScreen({
     undoable(`“${item.title}” silindi`, () => restore([item]))
   }
 
-  /** After deciding about a word, move on to the next open one, as in LingQ. */
-  const advance = (fromKey: string, step = 1) => {
-    const keys = openTokens.map((x) => x.token.key)
-    const i = keys.indexOf(fromKey)
-    const pool = openTokens.filter((x) => x.token.key !== fromKey && !skipped.has(x.token.key!))
-    if (!pool.length) return setSelected(null)
-    const next = step > 0 ? (openTokens.slice(i + 1).find((x) => pool.includes(x)) ?? pool[0]) : ([...openTokens.slice(0, Math.max(0, i))].reverse().find((x) => pool.includes(x)) ?? pool.at(-1)!)
-    setSelected(next)
-    document.querySelector(`[data-key="${CSS.escape(next.token.key!)}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' })
-  }
-
-  const markKnown = async (key: string) => {
-    await db.addKnownWords(language, [key])
-    setKnown((k) => new Set(k).add(key))
-    advance(key)
-  }
-
-  const toggleIgnored = async (key: string, on: boolean) => {
-    await db.setIgnored(language, key, on)
-    setIgnored((s) => {
-      const next = new Set(s)
-      if (on) next.add(key)
-      else next.delete(key)
-      return next
-    })
-    if (on) advance(key)
-    else setSelected(null)
-  }
-
-  const skip = (key: string) => {
-    setSkipped((s) => new Set(s).add(key))
-    advance(key)
-  }
-
-  // Keys while a word is open: B biliyorum, E ekle, Y yok say, G geç, ←/→ previous/next word.
-  useEffect(() => {
-    if (!selected?.token.key || adding) return
-    const key = selected.token.key
-    const onKey = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.metaKey || e.ctrlKey || e.altKey) return
-      const listed = !!selected.token.entryId
-      const k = e.key.toLocaleLowerCase('tr')
-      if (k === 'escape') setSelected(null)
-      else if (k === 'arrowright') advance(key)
-      else if (k === 'arrowleft') advance(key, -1)
-      else if (listed) return
-      else if (k === 'b' && selected.token.status !== 'known') void markKnown(key)
-      else if (k === 'e') {
-        // A conjugated verb goes on the list as its infinitive.
-        const w = cleanToken(selected.token.text, language)
-        setAdding({ word: analyzeForm(language, w)[0]?.lemma ?? w.toLocaleLowerCase(language), sentence: selected.sentence })
-      }
-      else if (k === 'y') void toggleIgnored(key, !ignored.has(key))
-      else if (k === 'g' && selected.token.status === 'unseen') skip(key)
-      else return
-      e.preventDefault()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  })
-
-  const markUnknown = async (key: string) => {
-    await db.removeKnownWord(language, key)
-    setKnown((k) => {
-      const next = new Set(k)
-      next.delete(key)
-      return next
-    })
-    setSkipped((s) => new Set(s).add(key))
-    setSelected(null)
-  }
-
-  /** The verb forms of the text, for the verb lab's "seen in texts" (the reading's real usage). */
-  const keepSeenForms = async (lang: 'fr' | 'es') => {
-    if (!analysis) return
-    await loadTenses(lang)
-    const found = textForms(lang, analysis)
-    if (found.length) await db.saveLab(lang, addSeenForms(await db.getLab(lang), found, current?.title, new Date().toISOString()))
-  }
+  const { markKnown, toggleIgnored, skip, markUnknown } = useReaderMarks({ db, language, openTokens, skipped, ignored, selected, adding, setKnown, setIgnored, setSkipped, setSelected, setAdding })
 
   /** The verb forms of the text put in the verb lab's review queue (FSRS), the ones already there left alone. */
   const reviewForms = async (pairs: { lemma: string; tense: Tense }[]) => {
@@ -420,50 +334,7 @@ export function ReadingScreen({
     setTimeout(() => setFlash((f) => (f === index ? null : f)), 2200)
   }
   const readKey = current?.id ?? text
-  /** The list words met in this text, and the verb forms in it, saved once per opened text. */
-  const saveMet = async () => {
-    if (!analysis || !readKey || metSaved.current === readKey) return 0
-    metSaved.current = readKey
-    const { encounters } = finishReading(analysis, skipped)
-    await db.addEncounters(encounters)
-    if (language !== 'en') await keepSeenForms(language)
-    return Object.keys(encounters).length
-  }
-  if (readKey && opened.current.key !== readKey) opened.current = { key: readKey, at: Date.now() }
-  const endSeen = useSeen(readKey, () => {
-    const key = readKey
-    // At the end, after at least MIN_READ_MS with the text open (and still the same text then).
-    setTimeout(async () => {
-      if (opened.current.key !== key) return
-      const met = await saveMet()
-      if (met) {
-        setMetNote(`Kelimelerindeki ${met} kelimeyle karşılaşman kaydedildi.`)
-        onChanged()
-      }
-    }, Math.max(0, opened.current.at + MIN_READ_MS - Date.now()))
-  })
-
-  const finish = async () => {
-    if (!analysis) return
-    const { knownKeys, encounters } = finishReading(analysis, skipped)
-    await db.addKnownWords(language, knownKeys)
-    await saveMet()
-    setKnown(await db.getKnownWords(language))
-    if (current) {
-      const updated: ReadingText = {
-        ...current,
-        readAt: new Date().toISOString(),
-        history: [...current.history, { at: new Date().toISOString(), coverage: startCoverage ?? analysis.coverage }],
-      }
-      await db.saveText(updated)
-      setCurrent(updated)
-      setLibrary((lib) => (lib ?? []).map((t) => (t.id === updated.id ? updated : t)))
-    }
-    setConfirmFinish(false)
-    const met = Object.keys(encounters).length
-    setMessage(`${knownKeys.length} kelime bilinen kelimelerine eklendi${met ? `, kelimelerindeki ${met} kelimeyle bir kez daha karşılaştın` : ''}.`)
-    onChanged()
-  }
+  const { endSeen, metNote, finish } = useFinishReading({ db, language, analysis, current, readKey, skipped, startCoverage, setKnown, setCurrent, setLibrary, setConfirmFinish, setMessage, onChanged })
 
   if (library === null) return null
 

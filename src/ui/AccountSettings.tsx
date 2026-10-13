@@ -3,11 +3,12 @@ import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, GlobeIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { SyncAuthError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
+import { SyncAuthError, SyncConflictError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
+import { CONFLICT, getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
+import { StatusPicture } from './StatusArt'
 import { SyncSettings } from './SyncSettings'
 import { AdminAccess } from './AdminAccess'
 import { useAccess } from './accessContext'
@@ -22,7 +23,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [account, setAcc] = useState<Account | null | undefined>(undefined)
   const [hasCode, setHasCode] = useState(false)
   const [busy, setBusy] = useState(false)
-  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
+  const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
   const { status: access } = useAccess()
 
@@ -43,7 +44,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       await runSync(true)
       showToast('Eşitlendi.')
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
+      setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
@@ -160,6 +161,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           {hasCode && <p className="small muted">Şu an eşitleme koduyla eşitliyorsun; hesaba geçince bu cihazdaki ilerleme hesaba taşınır.</p>}
         </>
       )}
+      {message?.conflict && <StatusPicture kind="conflict" />}
       {message && (
         <p className={message.ok ? 'notice' : 'error'} role="status">
           {message.text}

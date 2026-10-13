@@ -98,7 +98,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
             <div className="onboarding-garden" aria-hidden>
               {POTS.map((src, i) => (
                 <span className="og-plant" key={i}>
-                  <img className="og-pot" src={src} alt="" draggable={false} style={{ height: `${4.25 + i * 1.1}rem` }} />
+                  <img className="og-pot" src={src} alt="" draggable={false} style={{ height: `${3 + i * 0.7}rem` }} />
                 </span>
               ))}
             </div>
