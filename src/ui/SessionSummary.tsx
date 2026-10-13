@@ -29,6 +29,7 @@ import { closestStep, crossedMilestone, medalTier, type Milestone } from '../eng
 import { StreakFlame } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
+import { shareCard } from './shareCard'
 
 function hardHeadline(accuracy: number): string {
   if (accuracy >= 0.9) return 'Zor kelimelerin yola geliyor!'
@@ -358,11 +359,7 @@ export function Summary({
 /** A crossed milestone, once, full screen: big sign, a line on what it means, confetti, share. */
 function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose: () => void }) {
   const share = async () => {
-    try {
-      await navigator.share({ title: 'Diloloji', text: `${milestone.emoji} ${milestone.title} ${milestone.text}` })
-    } catch {
-      // Share sheet closed; nothing to do.
-    }
+    await shareCard({ kicker: 'Yeni kilometre taşı', title: milestone.title, text: milestone.text }, `${milestone.emoji} ${milestone.title} ${milestone.text}`)
   }
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
