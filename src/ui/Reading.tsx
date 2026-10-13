@@ -1,5 +1,5 @@
 import '../lazy.css'
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { cleanToken } from '../engine/extract'
 import { KnownWordsCard } from './KnownWords'
@@ -43,11 +43,11 @@ import { scheduler } from '../data/instance'
 import { normalize } from '../engine/answerCheck'
 import { loadFrequency } from '../data/frequency'
 import { BrainIcon, GlobeIcon, PlusIcon, ConjugationsIcon, DictationIcon, ShadowingIcon } from './icons'
-import { maskPositions, posKey } from '../engine/deduction'
+import { maskPositions } from '../engine/deduction'
 import { GuessRating } from './GuessRating'
 import { translate, translationReady } from '../data/translate'
 
-import { ParagraphTranslation } from './ReaderTranslation'
+import { ReaderParagraph } from './ReaderParagraph'
 import { TextDictation } from './TextDictation'
 import { canSpeak, speakAsync } from './speech'
 import { canRecord } from './audioRecord'
@@ -57,6 +57,9 @@ import { useTranslationReady } from './useTranslationReady'
 import { useStudyClock } from './useStudyClock'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
+
+/** No word of the paragraph is in the multi-selection: one stable empty set, so its paragraph keeps equal props. */
+const NO_KEYS: ReadonlySet<string> = new Set()
 
 /**
  * Reading mode: paste a text, see how much of it you know, mark or add the words you don't,
@@ -194,6 +197,18 @@ export function ReadingScreen({
   const sheet = useSheetSwipe(() => setSelected(null))
   const sheetBox = useWordSheetLayout(selected?.token.key, selected?.at)
   const shade = useMemo(() => shadeFor(states), [states])
+  // The paragraphs are memoised (ReaderParagraph): each gets only what concerns it, so picking a word
+  // or the next heard sentence renders a paragraph or two again, not the whole text.
+  const paragraphKeys = useMemo(() => analysis?.paragraphs.map((p) => new Set(p.flatMap((x) => x.tokens.flatMap((t) => (t.key ? [t.key] : []))))) ?? [], [analysis])
+  const pickToken = useCallback((token: ReadToken, sentence: string, at: string, hidden: boolean) => {
+    if (hidden) setGuess(token.key!)
+    setSelected({ token, sentence, at })
+  }, [])
+  const toggleMultiRef = useRef(toggleMulti)
+  useLayoutEffect(() => {
+    toggleMultiRef.current = toggleMulti
+  })
+  const onToggleMulti = useCallback((key: string) => toggleMultiRef.current(key), [])
   const openTokens = useMemo(() => openTokensOf(analysis), [analysis])
   const existing = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
@@ -557,61 +572,37 @@ export function ReadingScreen({
         style={readerStyle(reader).style}
         lang={language}
       >
-        {analysis.paragraphs.map((p, i) => (
-          <Fragment key={i}>
-          {current?.images?.[i] && <img className="reader-img" src={current.images[i]} alt="" loading="lazy" />}
-          <p>
-            {p.map((s, j) => (
-              <span
-                key={j}
-                data-s={paragraphStart[i] + j}
-                className={
-                  [
-                    selected && (selected.at ? selected.at === `${i}.${j}` : selected.sentence === s.text) ? 'rs is-lit' : '',
-                    heard === paragraphStart[i] + j ? 'rs is-heard' : '',
-                    flash === paragraphStart[i] + j ? 'rs is-flash' : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ') || undefined
-                }
-              >
-                {s.tokens.map((t, k) => {
-                  const hidden = !!t.key && masks.has(posKey(i, j, k)) && !revealed.has(t.key)
-                  const pick = () => {
-                    if (hidden) setGuess(t.key!)
-                    setSelected({ token: t, sentence: s.text, at: `${i}.${j}` })
-                  }
-                  return t.key ? (
-                    <span
-                      key={k}
-                      role="button"
-                      tabIndex={t.status === 'known' || t.status === 'name' ? -1 : 0}
-                      data-key={t.key}
-                      aria-label={hidden ? 'Gizli kelime: anlamını cümleden tahmin et, sonra aç' : undefined}
-                      className={`rw rw-${t.status}${hidden ? ' rw-masked' : ''}${t.status === 'learning' || t.status === 'new' ? ` ${shade(t.entryId)}` : ''}${t.status === 'unseen' && skipped.has(t.key) ? ' rw-skipped' : ''}${selected?.token.key === t.key ? ' is-selected' : ''}${multi.has(t.key) ? ' is-multi' : ''}`}
-                      onClick={(e) => {
-                        // ⌘/Ctrl+click (or multi-select mode) collects words to mark together.
-                        if ((e.metaKey || e.ctrlKey || multiMode) && !t.entryId) {
-                          e.preventDefault()
-                          toggleMulti(t.key!)
-                          return
-                        }
-                        pick()
-                      }}
-                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), pick())}
-                    >
-                      {hidden ? '[ ? ]' : t.text}
-                    </span>
-                  ) : (
-                    <span key={k}>{t.text}</span>
-                  )
-                })}{' '}
-              </span>
-            ))}
-          </p>
-          {showTurkish && !listenFirst && dictating === null && <ParagraphTranslation sentences={p.map((x) => x.text)} from={language} given={current?.turkish?.[i]} />}
-          </Fragment>
-        ))}
+        {analysis.paragraphs.map((p, i) => {
+          const start = paragraphStart[i]
+          const inside = (n: number | null) => (n !== null && n >= start && n < start + p.length ? n : null)
+          const keys = paragraphKeys[i]
+          const selectedKey = selected?.token.key && keys?.has(selected.token.key) ? selected.token.key : undefined
+          return (
+            <ReaderParagraph
+              key={i}
+              index={i}
+              sentences={p}
+              start={start}
+              image={current?.images?.[i]}
+              litAt={selected?.at?.startsWith(`${i}.`) ? selected.at : undefined}
+              litText={selected && !selected.at ? selected.sentence : undefined}
+              heard={inside(heard)}
+              flash={inside(flash)}
+              selectedKey={selectedKey}
+              multi={multi.size && keys && [...multi].some((k) => keys.has(k)) ? multi : NO_KEYS}
+              multiMode={multiMode}
+              skipped={skipped}
+              masks={masks}
+              revealed={revealed}
+              shade={shade}
+              turkish={showTurkish && !listenFirst && dictating === null}
+              given={current?.turkish?.[i]}
+              language={language}
+              onPick={pickToken}
+              onToggleMulti={onToggleMulti}
+            />
+          )
+        })}
       </article>
 
       <aside className="reader-aside">

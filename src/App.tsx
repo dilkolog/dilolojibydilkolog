@@ -1,19 +1,14 @@
 import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, roundForMinutes, shortRound, type PlanItem, type PlanReason } from './engine/dailyPlan'
+import { buildDailyPlan, MAX_DAY_FORMS } from './engine/dailyPlan'
 
 import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
 import { mistakesForMonki, weakWordsOf } from './engine/monkiContext'
 import { answeredToday } from './engine/progress'
-import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/practice'
-import { buildQuestPlan } from './engine/questPlan'
-import type { QuestMetric } from './engine/quests'
 
-import { createRng } from './engine/rng'
-import { firstSittingEnd, SPLIT_ABOVE_MINUTES, type SessionSummary } from './engine/session'
-import { TARGET_LANGUAGES, type ReviewMode, type TargetLanguage, type VocabularyEntry } from './engine/types'
+import type { SessionSummary } from './engine/session'
+import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from './engine/types'
 import { db, scheduler } from './data/instance'
-import { difficultWords } from './engine/difficult'
 import { dayWeight, isRestDay } from './engine/workload'
 import { loadTenses } from './data/tenseData'
 import { AccessContext } from './ui/accessContext'
@@ -46,7 +41,7 @@ import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScree
 import { useScreenHistory } from './ui/useScreenHistory'
 import { useLanguageData } from './ui/useLanguageData'
 import { useAppSettings } from './ui/useAppSettings'
-import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type NavScreen, type Screen, type ScreenName } from './appNav'
+import { ALL_SCREENS, GROUPS, NAV, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, placeOf, restoreScreen, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
 
 import { useDayForms, useFormsDue, useWarmup, useVerbOfDay } from './ui/verbs/labShared'
@@ -66,6 +61,7 @@ import { skeletonFor } from './ui/skeletonFor'
 import { useOnline } from './ui/useOnline'
 
 import { useTabIndicator } from './ui/useTabIndicator'
+import { useSessionStarters } from './ui/useSessionStarters'
 
 /*
  * Screens other than Today and the session summary load when first opened, so the app
@@ -368,119 +364,6 @@ export default function App() {
     [reload],
   )
 
-  /** `extra`: words that may not be in the loaded list yet (just added), so the session has them. */
-  const startSession = (items: PlanItem[], mode: ReviewMode, seed = Date.now() % 2 ** 31, extra?: VocabularyEntry[], topic?: 'difficult', firstSitting?: boolean) => {
-    // A session cap takes a prefix: introductions always come before their first test.
-    const capped = settings?.sessionMax ? items.slice(0, settings.sessionMax) : items
-    if (capped.length) setScreen({ name: 'session', items: capped, mode, seed, gameBefore: game, extra, topic, firstSitting })
-  }
-  /** The day's plan; a long day (and no session cap set) in two sittings, the first ending about halfway. */
-  const startDay = () => {
-    if (!plan) return
-    // A few of the verb lab's due forms join the words (interleaving), spread through the session.
-    const items = mixForms(plan.items, dayForms)
-    const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
-    const end = split ? firstSittingEnd(items) : items.length
-    startSession(items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
-  }
-  /** Only one kind of the day's questions (the wrong, the weak, the reviews, the new words), in the plan's order; "Devam et" stays the whole mix. */
-  const startFocus = (reason: PlanReason) => {
-    if (!plan) return
-    const items = plan.items.filter((it) => it.reason === reason)
-    if (items.length) startSession(items, 'normal', daySeed(new Date()))
-  }
-  /** The day's most urgent questions that fit N minutes: for a short moment. */
-  const startMinutes = (minutes: number) => {
-    if (!plan) return
-    const items = roundForMinutes(plan.items, minutes)
-    if (items.length) startSession(items, 'normal', daySeed(new Date()))
-  }
-  /** A short round of the day's most urgent questions, when the pile of reviews is deep. */
-  const startShortRound = () => plan && startSession(shortRound(plan.items), 'normal', daySeed(new Date()))
-  /**
-   * A quest of the day was tapped: the round that fills it. New words → extra new words; typing and
-   * listening → questions of that kind over the words being learned; the rest count any answer, so the
-   * day's session (or, once it is done, a round over the words being learned).
-   */
-  const startQuest = (id: QuestMetric, remaining: number) => {
-    if (!data || !settings) return
-    const rng = createRng(Date.now())
-    const now = new Date()
-    let items: PlanItem[] = []
-    if (id === 'newWords') items = planInput ? buildExtraNewPlan({ ...planInput, seed: Date.now() % 2 ** 31 }, Math.min(10, Math.max(1, remaining))) : []
-    else if (id === 'typedCorrect' || id === 'listenCorrect') items = buildQuestPlan(id, remaining, { catalog: data.vocabulary, states: data.states, rng, now, options })
-    else {
-      if (plan?.items.length) return startDay()
-      const learning = new Set(data.states.map((s) => s.entryId))
-      items = buildDeckPlan({ catalog: data.vocabulary.filter((v) => learning.has(v.id)), states: data.states, rng, scheduler, now, limit: Math.min(30, Math.max(10, remaining)), options })
-    }
-    if (items.length) startSession(items, 'normal')
-    else showToast(id === 'newWords' ? 'Tanışılacak yeni kelime kalmadı. Kelimeler sekmesinden ekleyebilirsin.' : 'Bu görev için uygun kelime bulunamadı. Biraz daha kelimeyle çalışınca açılır.')
-  }
-  /** A practice of just the words marked hard, apart from the day's plan. */
-  const practiceDifficult = () =>
-    data && startSession(buildDeckPlan({ catalog: difficultWords(data.vocabulary), states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, undefined, 'difficult')
-
-  // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
-  const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
-  // Reviews waiting in each language: a dot on the language buttons, and the mixed session.
-  const [dueByLanguage, setDueByLanguage] = useState<Partial<Record<TargetLanguage, number>>>({})
-  useEffect(() => {
-    const now = new Date()
-    void db.wordStates.toArray().then((all) => {
-      const due = all.filter((st) => Object.values(st.skills).some((c) => c.due <= now))
-      setMixedDue({ count: due.length, languages: new Set(due.map((st) => st.language)).size })
-      const by: Partial<Record<TargetLanguage, number>> = {}
-      for (const st of due) by[st.language] = (by[st.language] ?? 0) + 1
-      setDueByLanguage(by)
-    })
-  }, [data])
-  const startMixed = async () => {
-    if (!settings) return
-    const now = new Date()
-    const others = TARGET_LANGUAGES.filter((l) => l !== settings.activeLanguage)
-    const loaded = await Promise.all(others.map((l) => db.loadLanguage(l)))
-    const perLanguage = [
-      { language: settings.activeLanguage, vocabulary: data!.vocabulary, states: data!.states, mistakes: data!.mistakes, trouble: data!.trouble },
-      ...loaded.map((x, i) => ({ language: others[i], ...x })),
-    ].map((x) =>
-      buildDailyPlan({
-        now,
-        settings: { language: x.language, dailyMinutes: settings.dailyMinutes, newWordsPerDay: 0, autoRetire: settings.autoRetire },
-        catalog: x.vocabulary,
-        states: x.states,
-        mistakes: x.mistakes,
-        trouble: x.trouble,
-        scheduler,
-        seed: daySeed(now) + x.language.charCodeAt(0),
-        options,
-      }).items.filter((i) => i.kind === 'exercise'),
-    )
-    // Round-robin, so the language changes from one item to the next.
-    const items: PlanItem[] = []
-    for (let i = 0; items.length < MIXED_SIZE && perLanguage.some((l) => i < l.length); i++) for (const l of perLanguage) if (l[i] && items.length < MIXED_SIZE) items.push(l[i])
-    if (!items.length) return
-    setScreen({
-      name: 'session',
-      items,
-      mode: 'normal',
-      seed: Date.now() % 2 ** 31,
-      gameBefore: game,
-      extra: loaded.flatMap((x) => x.vocabulary),
-      extraStates: loaded.flatMap((x) => x.states),
-      extraMistakes: loaded.flatMap((x) => x.mistakes),
-    })
-  }
-
-  // Opened from a reminder ("?go=quick"): straight into a short review of what's due.
-  useEffect(() => {
-    if (!launch.quick || !plan || !data) return
-    launch.quick = false
-    const items = plan.items.filter((i) => i.kind === 'exercise').slice(0, QUICK_REVIEW)
-    if (items.length) startSession(items, 'normal')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan, data])
-
   const navRef = useRef<HTMLElement>(null)
   const [navMark, setNavMark] = useState<{ top: number; left: number; width: number; height: number; ready: boolean } | null>(null)
   // The highlight of the current page slides from the previous one (vertical sidebar only).
@@ -502,6 +385,16 @@ export default function App() {
   })
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
   const dayForms = useDayForms(settings?.activeLanguage ?? 'en', screen.name, MAX_DAY_FORMS)
+  const { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startMixed, mixedDue, dueByLanguage } = useSessionStarters({
+    settings,
+    data,
+    game,
+    plan,
+    planInput,
+    options,
+    dayForms,
+    setScreen,
+  })
   const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
   const hubTabsRef = useTabIndicator(screen.name)
   const verbOfDay = useVerbOfDay(settings?.activeLanguage ?? 'en', data?.vocabulary ?? NO_WORDS, screen.name)
@@ -529,12 +422,8 @@ export default function App() {
   const commands: Command[] = [
     ...(plan && plan.items.length ? [{ id: 'start', label: 'Bugünkü görevi başlat', icon: <PlayIcon size={18} />, group: 'İşlemler', run: startDay }] : []),
     { id: 'add', label: 'Kelime ekle', icon: <PlusIcon size={18} />, group: 'İşlemler', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
-    ...(data && data.states.some((s) => Object.keys(s.skills).length)
-      ? [{ id: 'practice', label: 'Serbest pratik', icon: <SparkleIcon size={18} />, group: 'İşlemler', run: () => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice') }]
-      : []),
-    ...(data && openMistakes(data.mistakes).length
-      ? [{ id: 'mistakes-practice', label: 'Hatalarını düzelt', icon: <AlertIcon size={18} />, group: 'İşlemler', run: () => startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal') }]
-      : []),
+    ...(startPractice ? [{ id: 'practice', label: 'Serbest pratik', icon: <SparkleIcon size={18} />, group: 'İşlemler', run: startPractice }] : []),
+    ...(startMistakes ? [{ id: 'mistakes-practice', label: 'Hatalarını düzelt', icon: <AlertIcon size={18} />, group: 'İşlemler', run: startMistakes }] : []),
     { id: 'vocabtest', label: 'Kelime dağarcığı testi', icon: <TargetIcon size={18} />, group: 'İşlemler', run: go({ name: 'vocabtest' }) },
     { id: 'exam', label: 'Hatırlama sınavı', icon: <CheckIcon size={18} />, group: 'İşlemler', run: go({ name: 'exam' }) },
     ...GAME_LIST.filter((g) => !g.grammar || settings.activeLanguage !== 'en').map((g) => ({

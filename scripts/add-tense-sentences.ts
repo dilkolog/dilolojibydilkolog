@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import es from '../src/data/tenses/es.json'
 import fr from '../src/data/tenses/fr.json'
+import { addConjugations } from '../src/engine/conjugation'
 import { addTenses, conjugateTense, TENSES, type Tense } from '../src/engine/tenses'
 
 const [lang, file, ...flags] = process.argv.slice(2)
@@ -21,6 +22,9 @@ const replace = flags.includes('--replace')
 const dry = flags.includes('--dry')
 addTenses('es', es as Record<string, unknown>)
 addTenses('fr', fr as Record<string, unknown>)
+// The present of verbs outside the hand tables and rules comes from UniMorph, as in the app (conjugationData.ts).
+addConjugations('es', readFileSync('src/data/conjugation/es.txt', 'utf8'))
+addConjugations('fr', readFileSync('src/data/conjugation/fr.txt', 'utf8'))
 
 const path = `src/data/tenses/${lang}-sentences.json`
 const store = JSON.parse(readFileSync(path, 'utf8')) as Record<string, Record<string, string>>
