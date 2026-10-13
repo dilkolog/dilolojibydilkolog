@@ -2,6 +2,7 @@ import { Component, type ReactNode } from 'react'
 import { reportError } from '../data/errorReport'
 import { db } from '../data/instance'
 import { downloadBackup } from './backup'
+import { StatusPicture } from './StatusArt'
 
 /**
  * The last net: a render error outside any screen (the side bar, the top bar, the toasts) used to blank the
@@ -24,6 +25,7 @@ export class RootBoundary extends Component<{ children: ReactNode }, { error: un
     if (!this.state.error) return this.props.children
     return (
       <main className="root-error" role="alert">
+        <StatusPicture kind="maint" />
         <h1>Uygulama açılamadı</h1>
         <p>Beklenmedik bir hata oldu. Verilerin bu cihazda duruyor, bir şey silinmedi. Sayfayı yenilemek genelde yeter; yine de emin olmak istersen önce bir yedek indir.</p>
         <div className="root-error-actions">

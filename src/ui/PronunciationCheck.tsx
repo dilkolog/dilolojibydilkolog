@@ -7,6 +7,7 @@ import { canRecord, recordingType } from './audioRecord'
 import { MicIcon, PlayIcon, SpeakerIcon } from './icons'
 import { assessPronunciation, type PronResult } from './pronunciation'
 import { Ring } from './Ring'
+import { StatusPicture } from './StatusArt'
 
 /** Long enough for a sentence, within the API's 30 seconds. */
 const MAX_MS = 12000
@@ -24,6 +25,7 @@ export function PronunciationCheck({ text, language, onModel, onScore }: { text:
   const [state, setState] = useState<'idle' | 'recording' | 'checking' | 'done'>('idle')
   const [result, setResult] = useState<PronResult | null>(null)
   const [error, setError] = useState('')
+  const [micBlocked, setMicBlocked] = useState(false)
   const [url, setUrl] = useState<string>()
   const recorder = useRef<MediaRecorder | null>(null)
   const timer = useRef<number>(undefined)
@@ -39,6 +41,7 @@ export function PronunciationCheck({ text, language, onModel, onScore }: { text:
 
   const start = async () => {
     setError('')
+    setMicBlocked(false)
     setResult(null)
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -70,6 +73,7 @@ export function PronunciationCheck({ text, language, onModel, onScore }: { text:
       setState('recording')
       timer.current = window.setTimeout(stop, MAX_MS)
     } catch {
+      setMicBlocked(true)
       setError('Mikrofona erişilemedi; tarayıcının mikrofon iznini kontrol et.')
     }
   }
@@ -105,6 +109,7 @@ export function PronunciationCheck({ text, language, onModel, onScore }: { text:
         )}
       </div>
       {state === 'recording' && <p className="small muted">Dinliyorum… “{text}” de, sonra Bitir'e bas.</p>}
+      {micBlocked && <StatusPicture kind="nomic" />}
       {error && (
         <p className="error" role="alert">
           {error}

@@ -6,6 +6,7 @@ import { generateSyncCode, normalizeCode, syncUsage, SyncApprovalError, SyncNotA
 import { describeIncoming, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setSyncCode } from './syncRunner'
 import { relativeTime } from './format'
 import { RestorePoints } from './RestorePoints'
+import { StatusPicture } from './StatusArt'
 
 /** Sync between devices: start with a new code here, or enter the code from another device. */
 export function SyncSettings() {
@@ -65,9 +66,12 @@ export function SyncSettings() {
           {size !== null && (() => {
             const u = syncUsage(size)
             return (
-              <p className={u.warn ? 'note' : 'small muted'}>
-                Eşitlenen veri: {u.label} (%{u.percent}).{u.warn && ' En büyük eşitleme dosyası sunucunun sınırına yaklaşıyor.'}
-              </p>
+              <div className={u.warn ? 'status-note' : undefined}>
+                {u.warn && <StatusPicture kind="full" small />}
+                <p className={u.warn ? 'note' : 'small muted'}>
+                  Eşitlenen veri: {u.label} (%{u.percent}).{u.warn && ' En büyük eşitleme dosyası sunucunun sınırına yaklaşıyor.'}
+                </p>
+              </div>
             )
           })()}
           <div className="row">
