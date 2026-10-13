@@ -15,15 +15,19 @@ export interface MailReminder {
   state: MailState
 }
 
-/** Whether the server can send mail at all (the owner has set the Resend key). */
-export async function mailAvailable(): Promise<boolean> {
+/** Whether the server can send mail at all (the owner has set the Resend key), and whether it still uses Resend's test sender. */
+export async function mailStatus(): Promise<{ available: boolean; sandbox: boolean }> {
   try {
     const res = await fetch('/api/push?mail=status')
-    return res.ok && ((await res.json()) as { available?: boolean }).available === true
+    if (!res.ok) return { available: false, sandbox: false }
+    const body = (await res.json()) as { available?: boolean; sandbox?: boolean }
+    return { available: body.available === true, sandbox: body.sandbox === true }
   } catch {
-    return false
+    return { available: false, sandbox: false }
   }
 }
+
+export const mailAvailable = async () => (await mailStatus()).available
 
 export async function getMail(): Promise<MailReminder | null> {
   return ((await db.meta.get(META))?.value as MailReminder | undefined) ?? null

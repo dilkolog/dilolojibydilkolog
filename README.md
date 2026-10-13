@@ -47,6 +47,8 @@ Hepsi isteğe bağlıdır; eksik olan yalnızca ilgili özelliği kapatır. Anah
 | `VAPID_PRIVATE_KEY` | Web push gönderimi (genel anahtar kodda) | Cron yalnızca mail gönderir (o da yoksa 503) |
 | `RESEND_API_KEY` | Hatırlatma mailleri (Resend) | Ayarlar'da e-posta hatırlatması görünmez |
 | `RESEND_FROM` | Mailin göndereni, doğrulanmış alan adıyla: `Diloloji <hatirlatma@alanadin>` | Resend'in deneme göndereni (yalnızca Resend hesabının kendi adresine teslim eder) |
+| `RESEND_REPLY_TO` | İsteğe bağlı: yanıtların gideceği adres (yoksa yanıt gönderene gider) | Yok |
+| `APP_URL` | İsteğe bağlı: maillerdeki bağlantıların kökü (kendi alan adın varsa; `vercel.app` adresleri spam puanında daha zayıf) | `https://kelime-koc.vercel.app` |
 
 Node sürümü: `>=22.12` (`.nvmrc` 24; CI de 24).
 

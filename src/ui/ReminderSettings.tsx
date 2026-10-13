@@ -3,7 +3,7 @@ import type { Settings } from '../data/db'
 import { db } from '../data/instance'
 import { reminderTime } from '../engine/hours'
 import { badgeSupported } from './appBadge'
-import { disableMail, enableMail, getMail, mailAvailable, refreshMail, type MailReminder } from './emailReminders'
+import { disableMail, enableMail, getMail, mailStatus, refreshMail, type MailReminder } from './emailReminders'
 import { ReminderSuggestion } from './BestHours'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
@@ -58,6 +58,7 @@ function PushToggle({ state }: { state: PushState }) {
 /** Reminders by mail: the address is registered, a confirmation mail goes out, and the reminders start once its link is opened. */
 function MailReminder({ state }: { state: PushState }) {
   const [available, setAvailable] = useState(false)
+  const [sandbox, setSandbox] = useState(false)
   const [mail, setMail] = useState<MailReminder | null>(null)
   const [address, setAddress] = useState('')
   const [busy, setBusy] = useState(false)
@@ -65,7 +66,11 @@ function MailReminder({ state }: { state: PushState }) {
   const [note, setNote] = useState<string | null>(null)
   useEffect(() => {
     let live = true
-    void mailAvailable().then((a) => live && setAvailable(a))
+    void mailStatus().then((s) => {
+      if (!live) return
+      setAvailable(s.available)
+      setSandbox(s.sandbox)
+    })
     void getMail().then((m) => live && setMail(m))
     // The link may have been opened (or the unsubscribe link used) since this was last open.
     void refreshMail().then((m) => live && setMail(m))
@@ -135,6 +140,11 @@ function MailReminder({ state }: { state: PushState }) {
             Onay maili gönder
           </button>
         </form>
+      )}
+      {sandbox && (
+        <p className="note small">
+          Sunucu hâlâ Resend’in deneme göndereniyle yolluyor: mailler spama düşer ve yalnızca Resend hesabının kendi adresine gider. Vercel’de RESEND_FROM’u doğrulanmış bir alan adıyla ayarla.
+        </p>
       )}
       {note && <p className="small muted">{note}</p>}
       {error && <p className="error small">{error}</p>}

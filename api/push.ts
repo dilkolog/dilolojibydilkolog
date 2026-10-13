@@ -1,7 +1,7 @@
 import { del, get, put } from '@vercel/blob'
 import { allowedIds } from './_allow.js'
 import { accountOf, requireApproved, sha256 } from './_account.js'
-import { confirmMail, EMAIL, mailConfigured, sendMail, APP_URL } from './_mail.js'
+import { confirmMail, EMAIL, mailConfigured, sendMail, usingSandboxSender, APP_URL } from './_mail.js'
 import { overLimit, tooMany } from './_rate.js'
 
 /**
@@ -15,7 +15,7 @@ import { overLimit, tooMany } from './_rate.js'
  * opened the link in the first mail):
  * POST /api/push  { action: 'email', email, tz, studiedDay?, streak, due, hour, …, update?, resend? }
  * POST /api/push  { action: 'email-status' | 'email-remove', email }
- * GET  /api/push?mail=status   → { available }
+ * GET  /api/push?mail=status   → { available, sandbox }  (sandbox: still Resend's test sender; mails go to spam)
  * GET  /api/push?c=<token>     → confirms the address (a page)       GET/POST ?u=<token> → turns the mails off
  *
  * When SYNC_ALLOWED is set (see _allow.ts), only devices of a listed account or sync code (`group`)
@@ -122,7 +122,7 @@ const tokenParts = (raw: string | null) => {
 export async function GET(request: Request): Promise<Response> {
   if (overLimit(request, 'push', 60)) return tooMany()
   const q = new URL(request.url).searchParams
-  if (q.get('mail') === 'status') return Response.json({ available: mailConfigured() }, { headers: { 'cache-control': 'no-store' } })
+  if (q.get('mail') === 'status') return Response.json({ available: mailConfigured(), sandbox: mailConfigured() && usingSandboxSender() }, { headers: { 'cache-control': 'no-store' } })
   const confirm = tokenParts(q.get('c'))
   const stop = tokenParts(q.get('u'))
   const link = confirm ?? stop
