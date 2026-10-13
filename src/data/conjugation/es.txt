@@ -32,7 +32,6 @@ carecer	carezco careces carece carecemos carecéis carecen
 ceder	cedo cedes cede cedemos cedéis ceden
 ceñir	ciño ciñes ciñe ceñimos ceñís ciñen
 cernir	cierno ciernes cierne cernimos cernís ciernen
-cimentar	cimiento cimientas cimienta cimentamos cimentáis cimientan
 coexistir	coexisto coexistes coexiste coexistimos coexistís coexisten
 coger	cojo coges coge cogemos cogéis cogen
 coincidir	coincido coincides coincide coincidimos coincidís coinciden

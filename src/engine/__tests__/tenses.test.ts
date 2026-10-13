@@ -10,6 +10,7 @@ import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exer
 import { createRng } from '../rng'
 import type { TargetLanguage, VocabularyEntry } from '../types'
 import { elAno } from './fixtures'
+import '../conjugationData'
 
 const verb = (language: TargetLanguage, lemma: string, tense: Tense) => conjugateTense({ language, lemma, partOfSpeech: 'verb' }, tense)
 
@@ -95,6 +96,30 @@ describe('Spanish tenses', () => {
     expect(tensesOf({ language: 'es', lemma: 'hablar', partOfSpeech: 'verb' })).toEqual(['presente', 'preterito', 'perfecto', 'imperfecto', 'futuro', 'condicional', 'subjuntivo'])
     expect(verb('es', 'mesa', 'preterito')).toBeUndefined()
     expect(conjugateTense({ language: 'es', lemma: 'hablar', partOfSpeech: 'noun' }, 'futuro')).toBeUndefined()
+  })
+})
+
+describe('stored tables', () => {
+  // Impersonal verbs once came with gerunds and English glosses in their rows (llover: "lloviendo", "raining").
+  it('every person list has six forms, none of them English', () => {
+    for (const [table, keys] of [[es, ['pre', 'imp', 'fut', 'sub']], [fr, ['i', 'f', 's', 'ps']]] as const) {
+      for (const [lemma, row] of Object.entries(table as Record<string, Record<string, unknown>>)) {
+        for (const key of keys) {
+          const v = row[key]
+          if (!Array.isArray(v)) continue
+          expect(v, `${lemma} ${key}`).toHaveLength(6)
+          expect(v.filter((f: string) => /ing$/.test(f)), `${lemma} ${key}`).toEqual([])
+        }
+      }
+    }
+  })
+
+  it('impersonal verbs conjugate in every person', () => {
+    expect(verb('es', 'llover', 'preterito')).toEqual(['lloví', 'lloviste', 'llovió', 'llovimos', 'llovisteis', 'llovieron'])
+    expect(verb('es', 'nevar', 'presente')?.[2]).toBe('nieva')
+    expect(verb('es', 'llover', 'presente')?.[2]).toBe('llueve')
+    expect(verb('es', 'doler', 'subjuntivo')).toEqual(['duela', 'duelas', 'duela', 'dolamos', 'doláis', 'duelan'])
+    expect(verb('es', 'ocurrir', 'imperfecto')?.[5]).toBe('ocurrían')
   })
 })
 

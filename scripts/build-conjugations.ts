@@ -20,8 +20,11 @@ const FEATURES: Record<'fr' | 'es', string[]> = {
   es: ['V;IND;PRS;1;SG', 'V;IND;PRS;2;SG;INFM', 'V;IND;PRS;3;SG', 'V;IND;PRS;1;PL', 'V;IND;PRS;2;PL', 'V;IND;PRS;3;PL'],
 }
 const LEMMA_RANK = 40000
-/** UniMorph errors found by comparison (dècrypte for décrypte). */
-const WRONG = new Set(['décrypter'])
+/**
+ * UniMorph errors found by comparison (dècrypte for décrypte), and cimentar, which UniMorph gives only
+ * as cimiento: the regular cimento is the usual one today (and what the safe rule gives).
+ */
+const WRONG = new Set(['décrypter', 'cimentar'])
 /**
  * UniMorph's French also lists Old French verbs (touchier, saignier) whose forms look modern, so
  * French verbs must be verbs in Lexique (src/data/lexicon/fr.txt, built first).

@@ -122,10 +122,10 @@ const ES_TABLE: Record<string, string[]> = {
 
 /** Spanish stem-changing verbs: the last stem vowel changes in the singular and 3rd plural. */
 const ES_STEM: Record<string, 'ie' | 'ue' | 'i'> = Object.fromEntries([
-  ...'pensar empezar comenzar cerrar despertar sentar recomendar calentar atravesar confesar gobernar negar entender perder encender defender atender extender preferir sentir mentir divertir convertir advertir consentir'
+  ...'pensar empezar comenzar cerrar despertar sentar recomendar calentar atravesar confesar gobernar negar nevar entender perder encender defender atender extender preferir sentir mentir divertir convertir advertir consentir'
     .split(' ')
     .map((v) => [v, 'ie' as const]),
-  ...'volver devolver dormir morir encontrar contar recordar mostrar probar costar soñar volar acostar almorzar mover resolver colgar aprobar'
+  ...'volver devolver dormir morir encontrar contar recordar mostrar probar costar soñar volar acostar almorzar mover resolver colgar aprobar llover doler'
     .split(' ')
     .map((v) => [v, 'ue' as const]),
   ...'pedir servir repetir vestir medir competir impedir despedir'.split(' ').map((v) => [v, 'i' as const]),
