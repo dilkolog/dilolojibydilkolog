@@ -154,6 +154,12 @@ function keyOf(entry: Pick<VocabularyEntry, 'language' | 'lemma'>): { key: strin
   return { key: v, reflexive: false }
 }
 
+/** The reflexive lemma of a dictionary key, as example sentences of reflexive verbs are stored: lever → se lever, évader → s'évader, levantar → levantarse. */
+export function reflexiveLemma(language: 'fr' | 'es', key: string): string {
+  if (language === 'es') return `${key}se`
+  return /^[aeiouéèêhâîôûy]/i.test(key) ? `s'${key}` : `se ${key}`
+}
+
 /** French reflexive pronoun before a form: me lève, m'appelle, nous levons. */
 function frReflexive(person: number, form: string): string {
   const p = REFL.fr[person]
