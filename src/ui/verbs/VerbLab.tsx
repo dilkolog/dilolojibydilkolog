@@ -77,7 +77,7 @@ export function VerbLab({
   if (language === 'en')
     return (
       <div className="stack">
-        <PageHeader title="Fiil laboratuvarı" />
+        <PageHeader art="write" title="Fiil laboratuvarı" />
         <EmptyState art="library" title="Fiil laboratuvarı Fransızca ve İspanyolca için">
           İngilizce fiillerin çekimi basit olduğu için burada tablo yok. Üstteki dil düğmesinden Fransızca ya da İspanyolca’ya geçebilirsin.
         </EmptyState>
@@ -182,7 +182,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   if (touring)
     return (
       <div className="stack verb-lab">
-        <PageHeader title="Fiil laboratuvarı" />
+        <PageHeader art="write" title="Fiil laboratuvarı" />
         <TourRun
           language={language}
           items={tour}
@@ -202,7 +202,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
 
   return (
     <div className="stack verb-lab">
-      <PageHeader title="Fiil laboratuvarı" />
+      <PageHeader art="write" title="Fiil laboratuvarı" />
       <TourCard language={language} items={tour} onStart={() => setTouring(true)} />
       <div className="lab-grid">
         {/* One strip on top: find a verb, or open the lists (favourites, levels, own verbs) when wanted. */}

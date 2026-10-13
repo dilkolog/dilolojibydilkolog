@@ -25,7 +25,7 @@ export function PronPractice({ language, vocabulary, onExit }: { language: Targe
     }
   }, [language, vocabulary])
 
-  const header = <PageHeader title="Telaffuz çalışması" sub="Puanı düşük kalan kelimeleri tek tek söyle; iyileşenler listeden çıkar." />
+  const header = <PageHeader art="speak" title="Telaffuz çalışması" sub="Puanı düşük kalan kelimeleri tek tek söyle; iyileşenler listeden çıkar." />
   if (!azureEnabled())
     return (
       <div className="stack">

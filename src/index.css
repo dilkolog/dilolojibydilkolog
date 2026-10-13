@@ -3920,3 +3920,22 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .today-time-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
 .today-time-head .section-title { margin: 0; }
 .today-time-line { margin: 0; }
+
+/* Drawings: the games' signs, Monki beside a screen's title, in the first-run steps and on the language cards */
+.game-art { display: block; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.game-emoji .game-art { width: 1.75rem; height: 1.75rem; }
+.game-watermark .game-art { width: 6rem; height: 6rem; filter: grayscale(0.2); }
+.game-suggest-icon .game-art { width: 2.25rem; height: 2.25rem; }
+.page-header.has-art { align-items: center; }
+.page-header-art { flex: none; height: 5.25rem; width: auto; margin-right: -0.25rem; user-select: none; -webkit-user-drag: none; }
+@media (max-width: 40rem) { .page-header-art { display: none; } }
+.ob-art { display: block; height: 8.5rem; width: auto; max-width: 100%; margin: 0 auto 0.5rem; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.lang-card-art { display: block; height: 4.75rem; width: auto; margin: 0 0 0.5rem; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+@media (max-width: 40rem) {
+  /* On a phone a language card is a row: Monki on the left, the greeting and the name beside it. */
+  .lang-card { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-items: center; padding-block: 0.75rem; }
+  .lang-card-art { grid-row: 1 / span 2; height: 4.25rem; margin: 0; }
+  .lang-card .hello { align-self: end; }
+  .lang-card > .muted { align-self: start; }
+}
+@media (max-width: 40rem) { .ob-art { height: min(8.5rem, 12vh); } }
