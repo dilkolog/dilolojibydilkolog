@@ -5,7 +5,7 @@ import sentences from '../../data/tenses/es-sentences.json'
 import frSentences from '../../data/tenses/fr-sentences.json'
 import frAspect from '../../data/tenses/fr-aspect.json'
 import esAspect from '../../data/tenses/es-aspect.json'
-import { addAspect, aspectItems, tenseOfForm, tenseStats, addTenseSentences, addTenses, answersFor, conjugateTense, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
+import { addAspect, aspectItems, tenseOfForm, tenseStats, addTenseSentences, addTenses, answersFor, conjugateTense, reflexiveLemma, subjectLabel, tenseSentence, withSubject, irregularForms, tenseAnswers, tensesOf, tenseVariants, type Tense } from '../tenses'
 import { BLANK, buildExercise, evaluateTyped, type TypedExercise } from '../exercises'
 import { createRng } from '../rng'
 import type { TargetLanguage, VocabularyEntry } from '../types'
@@ -182,6 +182,14 @@ describe('French example sentences (Tatoeba)', () => {
       }
     }
     expect(n).toBeGreaterThan(4000)
+  })
+
+  it('reflexive verbs have their own sentences, under the reflexive lemma', () => {
+    expect(reflexiveLemma('fr', 'évader')).toBe("s'évader")
+    expect(reflexiveLemma('fr', 'lever')).toBe('se lever')
+    expect(reflexiveLemma('es', 'levantar')).toBe('levantarse')
+    expect(tenseSentence({ language: 'fr', lemma: 's’évader' }, 'passe-compose')?.form).toBe("s'est évadé")
+    expect(tenseSentence({ language: 'fr', lemma: 'évader' }, 'passe-compose')).toBeUndefined()
   })
 
   it('keeps a translation only when its tense fits', () => {

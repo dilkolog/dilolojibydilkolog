@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react'
 import { TENSE_BRIDGE, TENSE_GUIDE } from '../../engine/tenseGuide'
 import { FAMILIES, type FamilyId } from '../../engine/verbFamilies'
-import { irregularForms, personsOf, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
+import { irregularForms, personsOf, reflexiveLemma, tenseSentence, verbParts, withSubject, type Tense } from '../../engine/tenses'
 import { labForms } from '../../engine/verbLab'
 import { turkishForms, turkishTenseOf } from '../../engine/turkishVerb'
 import { masteryLevel, labKey, verbMastery, weakPersons, type LabData } from '../../engine/labProgress'
@@ -214,7 +214,8 @@ export function LearnTab({
     if (!meaning) return
     try {
       // The sentence on the page goes with the verb (any tense's, when this one has none): the form marked, with its Turkish.
-      const shown = sentence ?? available.map((t) => tenseSentence(entry, t)).find((x) => !!x)
+      // The plain verb's sentence: the reflexive one would not fit the word added.
+      const shown = tenseSentence(entry, tense) ?? available.map((t) => tenseSentence(entry, t)).find((x) => !!x)
       const example = shown ? shown.text.replace('___', `*${shown.form}*`) : undefined
       await db.vocabulary.put(createEntry({ word: verb, meaning, partOfSpeech: 'verb', example, exampleTranslation: shown?.translation }, language, new Date()))
       setAdded(true)
@@ -231,7 +232,8 @@ export function LearnTab({
   const trTense = turkishTenseOf(tense)
   const turkish = meaning && trTense && !reflexive && !negative ? turkishForms(meaning, trTense) : undefined
   const odd = !reflexive && !negative ? irregularForms(entry, tense) : []
-  const sentence = tenseSentence(entry, tense)
+  // Reflexive forms on: the reflexive verb's own sentence (stored as "se lever", "s'évader").
+  const sentence = tenseSentence(reflexive ? { language, lemma: reflexiveLemma(language, verb) } : entry, tense)
   // Mastery counts the four tenses learned first; a percentage over all fourteen would stay near zero for months.
   const core = CORE_TENSES[language].filter((t) => available.includes(t))
   const advanced = available.filter((t) => !core.includes(t))

@@ -185,6 +185,18 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   expect(await contrastProblems(page)).toEqual([])
 })
 
+test('verb lab: with reflexive forms on, the example is the reflexive verb\'s own sentence', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'lever')
+  const main = page.locator('.lab-main')
+  await main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Passé composé' }).click()
+  await expect(main.locator('.lab-forms')).toContainText('avons levé')
+  await main.getByRole('button', { name: 'Diğer seçenekler' }).click()
+  await page.getByRole('menuitem', { name: /Dönüşlü/ }).click()
+  await expect(main.locator('.lab-forms')).toContainText('me suis levé')
+  await expect(main.locator('.lab-example')).toContainText('je me suis levé très tôt')
+})
+
 test('verb lab: a person often missed in a tense is marked in its table', async ({ page }) => {
   await startWithSamples(page)
   await openVerbLab(page, 'parler')
