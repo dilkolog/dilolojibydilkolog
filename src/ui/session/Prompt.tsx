@@ -1,3 +1,5 @@
+import { TapNote, TapWords } from '../TapWords'
+import { useTapGloss } from '../useTapGloss'
 import { useState } from 'react'
 import { BLANK, displayForm, type Exercise } from '../../engine/exercises'
 import type { VocabularyEntry } from '../../engine/types'
@@ -146,13 +148,15 @@ export function Prompt({ exercise, entry, listenRate }: { exercise: Exercise; en
  */
 function MeaningPrompt({ exercise, entry }: { exercise: Exercise; entry: VocabularyEntry }) {
   const [showTurkish, setShowTurkish] = useState(false)
+  const tap = useTapGloss(entry.language)
   const definition = entry.senses[0].definition
   if (!prefs.targetDefinitions || !definition || exercise.prompt !== entry.senses[0].gloss) return <p className="prompt-text">{exercise.prompt}</p>
   return (
     <div className="stack gap-xs">
       <p className="prompt-text definition-prompt" lang={entry.language}>
-        {definition}
+        <TapWords text={definition} tap={tap} />
       </p>
+      <TapNote tap={tap} />
       {showTurkish ? (
         <p className="muted">Türkçesi: {exercise.prompt}</p>
       ) : (

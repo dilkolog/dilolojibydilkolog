@@ -1488,8 +1488,24 @@ button.badge-card:active { transform: none; }
 }
 .refresh-stage { height: auto; min-height: 14rem; }
 .refresh-card { position: relative; inset: auto; min-height: 14rem; }
-.offline-chip-row { display: flex; padding: 0 0.875rem 0.625rem; }.tf-card { align-items: center; text-align: center; padding-block: 2rem; }
+.offline-chip-row { display: flex; padding: 0 0.875rem 0.625rem; }.tf-card { align-items: center; text-align: center; padding-block: 2rem; transition: background-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
 .tf-equals { margin: 0; font-size: var(--t-xl); color: var(--ink-soft); }
+.tf-progress { height: 0.5rem; }
+/* The verdict lives in the card itself: tinted, with the real meaning, so the answer and its lesson stay together. */
+.tf-card.is-right { background: var(--ok-soft); box-shadow: inset 0 0 0 2px var(--ok); }
+.tf-card.is-wrong { background: var(--bad-soft); box-shadow: inset 0 0 0 2px var(--bad); }
+.tf-wrong-claim { text-decoration: line-through; text-decoration-thickness: 2px; opacity: 0.7; }
+.tf-verdict { display: grid; gap: 0.5rem; justify-items: center; padding-top: 0.5rem; animation: tf-rise var(--dur) var(--ease-out); }
+.tf-badge { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.875rem; border-radius: var(--r-full); font-weight: 700; background: var(--surface); }
+.tf-card.is-right .tf-badge { color: var(--ok-text); }
+.tf-card.is-wrong .tf-badge { color: var(--bad-text); }
+.tf-truth { margin: 0; font-size: var(--t-md); }
+@keyframes tf-rise { from { opacity: 0; transform: translateY(0.375rem); } }
+/* Two wide buttons side by side (not the round swipe buttons), and one full-width "next" in the same place. */
+.swipe-actions.tf-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.swipe-actions.tf-actions .btn { width: auto; height: auto; border-radius: var(--r-lg); padding: 0.875rem 1rem; font-size: var(--t-lg); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.swipe-actions.tf-actions .tf-next { grid-column: 1 / -1; }
+@media (prefers-reduced-motion: reduce) { .tf-verdict { animation: none; } }
 .test-match { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
 .test-match-col { display: grid; gap: 0.5rem; align-content: start; }
 .test-match .option.is-picked { box-shadow: 0 0 0 3px var(--lang); }
@@ -1534,3 +1550,11 @@ button.badge-card:active { transform: none; }
 .time-bar { display: flex; flex-direction: column-reverse; width: 100%; max-width: 2.25rem; height: 5rem; background: var(--track); border-radius: var(--r-sm); overflow: hidden; }
 .time-listen { background: var(--lang); }
 .time-read { background: color-mix(in srgb, var(--lang) 45%, var(--surface)); }
+
+/* Reading: widening a tapped word into a phrase. */
+.phrase-text { margin: 0; padding: 0.5rem 0.75rem; border-radius: var(--r-md); background: var(--lang-soft); color: var(--lang-text); font-weight: 600; font-size: var(--t-md); }
+
+/* Questions: a word of a sentence tapped for its dictionary meaning (one small line under the sentence). */
+.tap-word { cursor: help; border-radius: var(--r-sm); text-decoration: underline dotted color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 0.2em; transition: background-color var(--dur-fast) var(--ease-out); }
+.tap-word:hover, .tap-word.is-open { background: var(--lang-soft); text-decoration-color: transparent; }
+.tap-note { margin: 0.25rem 0 0; padding: 0.25rem 0.625rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
