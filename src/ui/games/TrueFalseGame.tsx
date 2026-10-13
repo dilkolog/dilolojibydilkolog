@@ -5,6 +5,7 @@ import { selectStudyWords } from '../../engine/studySet'
 import { buildStatements, type Statement } from '../../engine/trueFalse'
 import { scheduler } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
+import { CheckIcon, CloseIcon } from '../icons'
 import { sfx } from '../sounds'
 import { StudyOptionsPanel } from '../StudyOptions'
 import { useStudyOptions } from '../studyOptionsStore'
@@ -111,30 +112,49 @@ export function TrueFalseGame({ language, vocabulary, states, onExit, onChanged 
     )
   }
 
+  const verdict = shown ? (shown.ok ? 'right' : 'wrong') : null
   return (
-    <div className="stack true-false">
+    <div className="stack true-false game-stage">
       <div className="row justify-between">
         <button className="link" onClick={onExit}>← Bitir</button>
         <span className="small muted">{index + 1} / {round.length}</span>
       </div>
-      <div className="card stack tf-card">
+      <div className="bar-track tf-progress" role="progressbar" aria-label="Tur ilerlemesi" aria-valuemin={0} aria-valuemax={round.length} aria-valuenow={index}>
+        <div className="bar-fill" style={{ width: `${(index / round.length) * 100}%` }} />
+      </div>
+      <div className={`card stack tf-card${verdict ? ` is-${verdict}` : ''}`}>
         <strong className="swipe-word" lang={language}>{displayForm(st!.entry)}</strong>
         <p className="tf-equals" aria-hidden>=</p>
-        <p className="swipe-gloss">{st!.shown}</p>
+        <p className={`swipe-gloss${shown && !st!.isTrue ? ' tf-wrong-claim' : ''}`}>{st!.shown}</p>
+        {shown && (
+          <div className="tf-verdict" role="status">
+            <span className="tf-badge">
+              {shown.ok ? <CheckIcon size={18} /> : <CloseIcon size={18} />}
+              {shown.ok ? 'Doğru' : 'Yanlış'}
+            </span>
+            <p className="tf-truth">
+              {st!.isTrue ? 'Bu anlam doğru: ' : 'Doğrusu: '}
+              <strong lang={language}>{displayForm(st!.entry)}</strong> = <strong>{st!.truth}</strong>
+            </p>
+          </div>
+        )}
       </div>
-      {shown ? (
-        <div className="stack gap-2">
-          <p className={shown.ok ? 'notice' : 'error'} role="status">
-            {shown.ok ? 'Doğru' : st!.isTrue ? 'Bu anlam doğruydu.' : `Yanlış ifadeydi: ${displayForm(st!.entry)} = ${st!.truth}`}
-          </p>
-          <button className="btn btn-lg" onClick={next} autoFocus>{index + 1 < round.length ? 'Sonraki' : 'Sonucu gör'}</button>
-        </div>
-      ) : (
-        <div className="swipe-actions">
-          <button className="btn btn-bad btn-lg" onClick={() => answer(false)}>Yanlış</button>
-          <button className="btn btn-ok btn-lg" onClick={() => answer(true)}>Doğru</button>
-        </div>
-      )}
+      <div className="swipe-actions tf-actions">
+        {shown ? (
+          <button className="btn btn-lg tf-next" onClick={next} autoFocus>
+            {index + 1 < round.length ? 'Sonraki' : 'Sonucu gör'} <kbd className="kbd-key">↵</kbd>
+          </button>
+        ) : (
+          <>
+            <button className="btn btn-bad btn-lg" onClick={() => answer(false)}>
+              <CloseIcon size={20} /> Yanlış <kbd className="kbd-key">←</kbd>
+            </button>
+            <button className="btn btn-ok btn-lg" onClick={() => answer(true)}>
+              <CheckIcon size={20} /> Doğru <kbd className="kbd-key">→</kbd>
+            </button>
+          </>
+        )}
+      </div>
     </div>
   )
 }

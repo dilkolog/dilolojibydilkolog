@@ -74,7 +74,10 @@ export function NotesQuiz({ language, onExit }: { language: TargetLanguage; onEx
     const onKey = (e: KeyboardEvent) => {
       const n = Number(e.key)
       if (picked === null && n >= 1 && n <= q.options.length) answer(n - 1)
-      else if (picked !== null && e.key === 'Enter') next()
+      else if (picked !== null && e.key === 'Enter') {
+        e.preventDefault()
+        next()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

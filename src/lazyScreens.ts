@@ -44,6 +44,9 @@ export const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ 
 /** A list somebody shared, opened from a link: rarely, so not in the startup code and not prefetched. */
 export const IncomingSet = lazy(() => import('./ui/IncomingSet'))
 
+/** Monki, the assistant: a floating button, loaded once the app is ready. */
+export const Monki = lazy(() => import('./ui/monki/Monki'))
+
 export function prefetchScreens() {
   for (const load of Object.values(screenModules)) void load().catch(() => {})
 }

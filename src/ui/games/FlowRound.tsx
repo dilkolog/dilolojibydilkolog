@@ -86,7 +86,10 @@ export function FlowRound({ language, onExit }: { language: TargetLanguage; onEx
       if (phase !== 'play' || !item) return
       const n = Number(e.key)
       if (gap && shown === null && n >= 1 && n <= options.length) choose(options[n - 1])
-      else if ((shown !== null || done) && e.key === 'Enter') next()
+      else if ((shown !== null || done) && e.key === 'Enter') {
+        e.preventDefault()
+        next()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

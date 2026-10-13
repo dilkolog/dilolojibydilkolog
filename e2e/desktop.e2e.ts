@@ -415,6 +415,19 @@ test('verb lab: add a verb to the list, hear all six, the E and A keys', async (
   await main.getByRole('button', { name: /Kelimelerime ekle/ }).click()
   await expect(main.getByRole('button', { name: /Kelimelerime ekle/ })).toHaveCount(0)
   await expect.poll(own).toBe(before + 1)
+  // The sentence the lab has for the verb goes onto the card with it (the form marked).
+  const examples = () =>
+    page.evaluate(
+      () =>
+        new Promise<number>((resolve) => {
+          const open = indexedDB.open('kelime-koc')
+          open.onsuccess = () => {
+            const all = open.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+            all.onsuccess = () => resolve(((all.result as { lemma: string; senses: { examples: unknown[] }[] }[]).find((v) => v.lemma === 'finir')?.senses[0]?.examples.length) ?? 0)
+          }
+        }),
+    )
+  await expect.poll(examples).toBeGreaterThan(0)
   // E covers the forms (memorise), E again shows them; A goes on to practice.
   await main.getByRole('button', { name: 'Diğer seçenekler' }).click()
   await expect(page.getByRole('menuitem', { name: /^Altısını dinle/ })).toBeVisible()

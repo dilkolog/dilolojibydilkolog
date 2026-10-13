@@ -71,7 +71,10 @@ export function TrapRound({ language, onExit }: { language: TargetLanguage; onEx
       if (phase !== 'play' || !q) return
       const n = Number(e.key)
       if (!given && n >= 1 && n <= q.options.length) choose(q.options[n - 1])
-      else if (given && e.key === 'Enter') next()
+      else if (given && e.key === 'Enter') {
+        e.preventDefault()
+        next()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

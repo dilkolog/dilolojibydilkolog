@@ -51,42 +51,50 @@ export function StudyOptionsPanel({
   const set = (patch: Partial<StudyOptions>) => onChange({ ...value, ...patch })
   const listCount = (id?: string) => (id ? vocabulary.filter((e) => e.listId === id).length : 0)
   return (
-    <div className="stack gap-2 study-options">
-      <div className="choice-row" role="group" aria-label="Hangi kelimeler">
-        {SCOPES.filter((s) => s !== 'list' || lists.length > 0).map((s) => (
-          <button key={s} type="button" className="chip" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
-            {SCOPE_NAME[s]} <span className="muted small">{counts[s]}</span>
-          </button>
-        ))}
-      </div>
-      {value.scope === 'list' && lists.length > 0 && (
-        <div className="choice-row" role="group" aria-label="Hangi liste">
-          {lists.map((l) => (
-            <button key={l.id} type="button" className="chip chip-sm" aria-pressed={listId === l.id} onClick={() => set({ listId: l.id })}>
-              {l.name} <span className="muted small">{listCount(l.id)}</span>
+    <div className="study-options" role="group" aria-label="Çalışma seçenekleri">
+      <section className="study-group">
+        <h2 className="study-label">Hangi kelimeler?</h2>
+        <div className="choice-row" role="group" aria-label="Hangi kelimeler">
+          {SCOPES.filter((s) => s !== 'list' || lists.length > 0).map((s) => (
+            <button key={s} type="button" className="chip" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
+              {SCOPE_NAME[s]} <span className="study-count">{counts[s]}</span>
             </button>
           ))}
         </div>
-      )}
-      <div className="choice-row" role="group" aria-label="Sıra ve kart sayısı">
-        <button type="button" className="chip" aria-pressed={value.shuffle} onClick={() => set({ shuffle: !value.shuffle })}>
-          Karıştır
-        </button>
-        {STUDY_SIZES.map((n) => (
-          <button key={n} type="button" className="chip" aria-pressed={value.size === n} onClick={() => set({ size: n })}>
-            {n === 0 ? 'Hepsi' : `${n} kart`}
-          </button>
-        ))}
-      </div>
-      {directions && (
-        <div className="choice-row" role="group" aria-label="Önce hangi yüz">
-          {(['forward', 'reverse', 'mixed'] as const).map((d) => (
-            <button key={d} type="button" className="chip" aria-pressed={value.direction === d} onClick={() => set({ direction: d })}>
-              {DIRECTION_NAME[d]}
+        {value.scope === 'list' && lists.length > 0 && (
+          <div className="choice-row study-lists" role="group" aria-label="Hangi liste">
+            {lists.map((l) => (
+              <button key={l.id} type="button" className="chip chip-sm" aria-pressed={listId === l.id} onClick={() => set({ listId: l.id })}>
+                {l.name} <span className="study-count">{listCount(l.id)}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </section>
+      <section className="study-group">
+        <h2 className="study-label">Kaç kart?</h2>
+        <div className="choice-row" role="group" aria-label="Kart sayısı">
+          {STUDY_SIZES.map((n) => (
+            <button key={n} type="button" className="chip" aria-pressed={value.size === n} onClick={() => set({ size: n })}>
+              {n === 0 ? 'Hepsi' : `${n} kart`}
             </button>
           ))}
         </div>
-      )}
+      </section>
+      <section className="study-group">
+        <h2 className="study-label">Düzen</h2>
+        <div className="choice-row" role="group" aria-label="Sıra ve yön">
+          <button type="button" className="chip" aria-pressed={value.shuffle} onClick={() => set({ shuffle: !value.shuffle })}>
+            Karıştır
+          </button>
+          {directions &&
+            (['forward', 'reverse', 'mixed'] as const).map((d) => (
+              <button key={d} type="button" className="chip" aria-pressed={value.direction === d} onClick={() => set({ direction: d })}>
+                {DIRECTION_NAME[d]}
+              </button>
+            ))}
+        </div>
+      </section>
     </div>
   )
 }

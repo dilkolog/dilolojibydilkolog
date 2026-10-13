@@ -5,6 +5,23 @@
  */
 export const APP_URL = (process.env.APP_URL?.trim() || 'https://kelime-koc.vercel.app').replace(/\/$/, '')
 
+/**
+ * The sites the app is served from. Each keeps its own data in the browser, so a link in a mail must
+ * open the site the learner registered from: the other one would show an empty app.
+ */
+const SITE_HOSTS = ['nigalingo.online', 'www.nigalingo.online', 'kelime-koc.vercel.app']
+
+/** The origin of a page address (or an Origin/Referer header) when it is one of the app's sites, else undefined. */
+export function siteFrom(address: string | null | undefined): string | undefined {
+  if (!address) return undefined
+  try {
+    const url = new URL(address)
+    return url.protocol === 'https:' && SITE_HOSTS.includes(url.hostname) ? url.origin : undefined
+  } catch {
+    return undefined
+  }
+}
+
 export const mailConfigured = () => !!process.env.RESEND_API_KEY?.trim()
 
 const SANDBOX_SENDER = 'Diloloji <onboarding@resend.dev>'
@@ -64,16 +81,16 @@ export function confirmMail(to: string, confirmUrl: string, cancelUrl: string): 
 }
 
 /** The daily reminder: numbers and a link only, nothing a stranger could have typed into it. */
-export function reminderMail(to: string, line: string, unsubscribeUrl: string): Mail {
+export function reminderMail(to: string, line: string, unsubscribeUrl: string, site = APP_URL): Mail {
   return {
     to,
     subject: 'Diloloji: bugünkü çalışman seni bekliyor',
     html: layout(
       line,
-      `${heading('Bugünkü çalışman seni bekliyor')}<p style="margin:0">${escapeHtml(line)}</p>${button(`${APP_URL}/?go=quick`, 'Hızlı tekrara başla')}`,
+      `${heading('Bugünkü çalışman seni bekliyor')}<p style="margin:0">${escapeHtml(line)}</p>${button(`${site}/?go=quick`, 'Hızlı tekrara başla')}`,
       `Bu mailleri sen istedin (Ayarlar → Hatırlatıcı). <a href="${escapeHtml(unsubscribeUrl)}" style="color:#6b7280">Hatırlatmaları kapat</a>.<br>Diloloji · kelime öğrenme uygulaması`,
     ),
-    text: `Bugünkü çalışman seni bekliyor\n\n${line}\n\nBaşla: ${APP_URL}/?go=quick\n\nBu mailleri sen istedin (Ayarlar → Hatırlatıcı). Kapatmak için: ${unsubscribeUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
+    text: `Bugünkü çalışman seni bekliyor\n\n${line}\n\nBaşla: ${site}/?go=quick\n\nBu mailleri sen istedin (Ayarlar → Hatırlatıcı). Kapatmak için: ${unsubscribeUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
     unsubscribe: unsubscribeUrl,
   }
 }

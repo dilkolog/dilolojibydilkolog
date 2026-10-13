@@ -52,7 +52,7 @@ import { gardenSummary } from './engine/growth'
 
 import { Sidebar, TabBar } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
-import { CommandPalette, IncomingSet, prefetchScreens } from './lazyScreens'
+import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
 import { ALL_SCREENS, GROUPS, MIXED_SIZE, NAV, QUICK_REVIEW, RECENT_DAYS, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, launch, placeOf, restoreScreen, type LanguageData, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
@@ -301,6 +301,16 @@ export default function App() {
     history.replaceState(null, '', location.pathname)
     setIncomingSet(id)
   }, [])
+  // The words that went wrong most lately: Monki builds its examples and small quizzes from them.
+  const weakWords = useMemo(() => {
+    if (!data) return undefined
+    const byEntry = new Map(data.vocabulary.map((v) => [v.id, v.lemma]))
+    const words = openMistakes(data.mistakes)
+      .sort((a, b) => b.count - a.count)
+      .map((m) => byEntry.get(m.entryId))
+      .filter((w): w is string => !!w)
+    return [...new Set(words)].slice(0, 6)
+  }, [data])
   // The collaborative lists this device has joined, kept in step with the others.
   useCollabSync(reload, ready)
 
@@ -736,6 +746,11 @@ export default function App() {
             </ScreenBoundary>
           </main>
           <Toaster />
+          {ready && data && !inSession && screen.name !== 'summary' && (
+            <Suspense fallback={null}>
+              <Monki language={data.language} name={settings.profile.name || undefined} weakWords={weakWords} onSettings={go({ name: 'settings' })} />
+            </Suspense>
+          )}
           {incomingSet && ready && (
             <Suspense fallback={null}>
               <IncomingSet id={incomingSet} onClose={() => setIncomingSet(null)} onDone={reload} />

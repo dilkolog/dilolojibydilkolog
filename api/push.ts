@@ -1,7 +1,7 @@
 import { del, get, put } from '@vercel/blob'
 import { allowedIds } from './_allow.js'
 import { accountOf, requireApproved, sha256 } from './_account.js'
-import { confirmMail, EMAIL, mailConfigured, sendMail, usingSandboxSender, APP_URL } from './_mail.js'
+import { confirmMail, EMAIL, mailConfigured, sendMail, siteFrom, usingSandboxSender, APP_URL } from './_mail.js'
 import { overLimit, tooMany } from './_rate.js'
 
 /**
@@ -30,6 +30,8 @@ export interface PushRecord {
   token?: string
   owner?: string | null
   confirmSentAt?: number
+  /** The site the address was registered from (its mails link there: each site has its own data in the browser). */
+  site?: string
   /** Minutes, as Date#getTimezoneOffset (TR: -180). */
   tz: number
   /** Local YYYY-MM-DD of the last day with answers. */
@@ -107,9 +109,9 @@ async function readRecord(path: string): Promise<PushRecord | null> {
 
 const writeRecord = (path: string, record: PushRecord) => put(path, JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
 
-const page = (title: string, text: string, status = 200) =>
+const page = (title: string, text: string, status = 200, site = APP_URL) =>
   new Response(
-    `<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:30rem;margin:15vh auto;padding:0 1.5rem;color:#1f2933"><h1 style="font-size:1.3rem">${title}</h1><p>${text}</p><p><a href="${APP_URL}">Diloloji'ye dön</a></p></body></html>`,
+    `<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:30rem;margin:15vh auto;padding:0 1.5rem;color:#1f2933"><h1 style="font-size:1.3rem">${title}</h1><p>${text}</p><p><a href="${site}">Diloloji'ye dön</a></p></body></html>`,
     { status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } },
   )
 
@@ -126,15 +128,17 @@ export async function GET(request: Request): Promise<Response> {
   const confirm = tokenParts(q.get('c'))
   const stop = tokenParts(q.get('u'))
   const link = confirm ?? stop
+  // The page offers the way back to the site the link was opened on.
+  const here = siteFrom(request.url) ?? APP_URL
   if (!link) return new Response('bad request', { status: 400 })
   const record = await readRecord(mailPath(link.key))
-  if (!record || record.token !== link.token) return page('Bağlantı geçersiz', 'Bu bağlantının süresi dolmuş ya da adres zaten silinmiş.', 404)
+  if (!record || record.token !== link.token) return page('Bağlantı geçersiz', 'Bu bağlantının süresi dolmuş ya da adres zaten silinmiş.', 404, here)
   if (confirm) {
     await writeRecord(mailPath(link.key), { ...record, confirmed: true })
-    return page('Onaylandı', 'Hatırlatma mailleri açıldı: o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir. Her mailde kapatma bağlantısı var.')
+    return page('Onaylandı', 'Hatırlatma mailleri açıldı: o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir. Her mailde kapatma bağlantısı var.', 200, here)
   }
   await del(mailPath(link.key)).catch(() => {})
-  return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.')
+  return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)
 }
 
 /** The mail reminders: registering an address, its status, taking it out. */
@@ -162,8 +166,11 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
   const now = Date.now()
   // A new address gets its confirmation at once; a pending one again only when asked, and not within the hour.
   const sendConfirm = created || (!existing.confirmed && body.resend === true && now - (existing.confirmSentAt ?? 0) > 3_600_000)
+  // Mails link to the site the learner is using now (it has their data); the record keeps it for the daily reminders.
+  const site = siteFrom(request.headers.get('origin') ?? request.headers.get('referer')) ?? existing?.site ?? APP_URL
   const record: PushRecord = {
     ...stateFields(body),
+    site,
     plan: '',
     email,
     owner,
@@ -173,7 +180,7 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
     group: owner,
   }
   if (sendConfirm) {
-    const sent = await sendMail([confirmMail(email, `${APP_URL}/api/push?c=${key}.${token}`, `${APP_URL}/api/push?u=${key}.${token}`)])
+    const sent = await sendMail([confirmMail(email, `${site}/api/push?c=${key}.${token}`, `${site}/api/push?u=${key}.${token}`)])
     if (!sent.sent) return Response.json({ error: 'send failed' }, { status: 502 })
   }
   await writeRecord(path, record)

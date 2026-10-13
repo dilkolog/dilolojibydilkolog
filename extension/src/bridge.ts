@@ -23,7 +23,7 @@ window.addEventListener('message', async (e) => {
   if (m?.source !== APP_SOURCE) return
   if (m.type === 'ping') post({ source: EXT_SOURCE, type: 'hello' })
   else if (m.type === 'data') {
-    await chrome.storage.local.set({ data: m.data, syncedAt: new Date().toISOString() })
+    await chrome.storage.local.set({ data: m.data, syncedAt: new Date().toISOString(), appOrigin: location.origin })
     await sendMarks()
   } else if (m.type === 'ack') await chrome.storage.local.set({ pendingKnown: {}, pendingIgnored: {}, pendingSightings: {} })
 })

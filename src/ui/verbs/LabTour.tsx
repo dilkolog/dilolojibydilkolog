@@ -235,7 +235,10 @@ function ChooseForm({ language, item, onAnswered, onContinue }: { language: LabL
       if (e.metaKey || e.ctrlKey || e.altKey) return
       const i = Number(e.key) - 1
       if (picked === null && i >= 0 && i < options.length) pick(options[i])
-      else if (picked !== null && e.key === 'Enter') onContinue()
+      else if (picked !== null && e.key === 'Enter') {
+        e.preventDefault()
+        onContinue()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

@@ -1,7 +1,7 @@
 import { del, get, list } from '@vercel/blob'
 import webpush from 'web-push'
 import type { PushRecord } from './push.js'
-import { APP_URL, mailConfigured, reminderMail, sendMail, type Mail } from './_mail.js'
+import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, type Mail } from './_mail.js'
 
 /**
  * Every hour (vercel.json: one daily cron per UTC hour, `?h=` its hour, as the Hobby plan runs each
@@ -97,7 +97,10 @@ export async function GET(request: Request): Promise<Response> {
     if (!week && (r.studiedDay === localDay(r.tz, now) || (r.group && studiedGroups.has(r.group)) || resting(r, now))) return []
     if (r.email) {
       // An address nobody has confirmed gets nothing.
-      if (mailOn && r.confirmed && r.token) mails.push(reminderMail(r.email, reminderText({ ...r, plan: '' }, now), `${APP_URL}/api/push?u=${path.replace(/^push\/mail-|\.json$/g, '')}.${r.token}`))
+      if (mailOn && r.confirmed && r.token) {
+        const site = siteFrom(r.site) ?? APP_URL
+        mails.push(reminderMail(r.email, reminderText({ ...r, plan: '' }, now), `${site}/api/push?u=${path.replace(/^push\/mail-|\.json$/g, '')}.${r.token}`, site))
+      }
       return []
     }
     if (!pushOn || !r.subscription) return []

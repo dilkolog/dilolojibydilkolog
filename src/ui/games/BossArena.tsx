@@ -167,7 +167,10 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (outcome) return
-      if (result && e.key === 'Enter') return advance()
+      if (result && e.key === 'Enter') {
+        e.preventDefault()
+        return advance()
+      }
       if (!result && ex.kind === 'choice') {
         const i = Number(e.key) - 1
         if (i >= 0 && i < ex.options.length) {

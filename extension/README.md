@@ -10,3 +10,7 @@
 4. Diloloji'yi bir kez aç: kelimelerin eklentiye geçer (her açışta güncellenir)
 
 Eklenti hiçbir veriyi bir yere göndermez; kelimelerin yalnızca tarayıcında durur. Başka sitelerde "Biliyorum" dediğin kelimeler, Diloloji'yi bir sonraki açışında listene işlenir.
+
+## Hangi adreste açılırsa
+
+Köprü betiği uygulamanın üç adresinde çalışır (`kelime-koc.vercel.app`, `nigalingo.online`, `www.nigalingo.online`). Kelimeleri hangi adres verdiyse (`appOrigin`), "Ekle" bağlantıları ve açılır penceredeki "Diloloji'yi aç" o adrese gider: her adresin tarayıcıda ayrı verisi olduğundan eklenen kelime başka bir adrese düşmesin. Yeni bir alan adı eklenirse `manifest.json`da iki yere (`matches` ve `exclude_matches`) yaz.

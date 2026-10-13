@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -502,6 +502,31 @@ export async function chatTurn(apiKey: string, req: ChatRequest): Promise<ChatRe
     ...req.history.map((t) => ({ role: t.role, content: t.text })),
   ]
   return structured(apiKey, Chat, system, messages, 'low', 'chat')
+}
+
+// ---------------------------------------------------------------------------
+// Monki, the assistant
+// ---------------------------------------------------------------------------
+
+const Monki = z.object({
+  reply: z.string().describe('Your answer, in Turkish with target-language examples. Short: a few lines unless asked for more. Only **bold**, _italic_ and plain lines or "- " lists; no headings, no tables.'),
+  suggestions: z.array(z.string()).describe('Two or three short things the learner might tap next, in Turkish, each under 40 characters, each a request or question to you.'),
+})
+
+/** One turn of free talk with Monki: explains, corrects, makes examples and small quizzes. */
+export async function monkiTurn(apiKey: string, req: MonkiRequest): Promise<MonkiReply> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are Monki, a cheerful, encouraging little monkey who is the study buddy inside a ${lang} learning app. The learner is a Turkish adult learning ${lang}${req.name ? ` (their name is ${req.name})` : ''}.`,
+    'Answer in Turkish. Give every example in the target language with its Turkish translation in parentheses or on the next line. Write in the target language only when the learner asks for practice in it, and then keep it natural.',
+    'Be brief and warm: a few lines, one idea at a time, a light touch of playfulness (at most one small exclamation per answer, no emoji walls). Longer only when asked for a full explanation.',
+    'You help with vocabulary, grammar, pronunciation tips, differences between similar words or tenses, checking and gently correcting sentences the learner wrote (show the corrected sentence, then one short reason), mnemonics, and small quizzes (one question at a time, wait for the answer).',
+    'If the learner writes a sentence in the target language with a real mistake, point it out kindly even when they did not ask. Never invent features of the app. Politely steer off-topic requests back to language learning in one friendly sentence.',
+    `Words they currently struggle with (use them for examples and quizzes when it fits): ${req.weakWords?.join(', ') || 'none known'}.`,
+    'Also return two or three short follow-up taps in Turkish that would naturally come next.',
+  ].join('\n')
+  const messages: Anthropic.Beta.BetaMessageParam[] = req.history.map((t) => ({ role: t.role, content: t.text }))
+  return structured(apiKey, Monki, system, messages, 'low', 'monki')
 }
 
 // ---------------------------------------------------------------------------

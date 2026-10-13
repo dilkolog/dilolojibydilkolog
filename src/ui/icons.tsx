@@ -151,6 +151,12 @@ export const CloseIcon = (p: P) => (
     <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
   </Icon>
 )
+/** Send: a paper plane. */
+export const SendIcon = (p: P) => (
+  <Icon {...p}>
+    <path d="M20 4 10.5 13.5M20 4l-6 16-3.5-6.5L4 10l16-6z" />
+  </Icon>
+)
 export const DownloadIcon = (p: P) => (
   <Icon {...p}>
     <path d="M12 4v10m0 0-4-4m4 4 4-4M5 19h14" />

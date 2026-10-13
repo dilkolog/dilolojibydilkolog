@@ -93,6 +93,23 @@ describe('registering an address', () => {
     expect(record.plan).toBe('')
   })
 
+  it('links to the site the learner registered from (each site has its own data)', async () => {
+    await post({ action: 'email', email: EMAIL, ...state }, { origin: 'https://nigalingo.online' })
+    expect(mails[0].text).toContain('https://nigalingo.online/api/push?c=')
+    expect(mails[0].text).toContain('https://nigalingo.online/api/push?u=')
+    expect((await stored()).site).toBe('https://nigalingo.online')
+    // Opened on that site, the page leads back to it.
+    const page = await GET(new Request(`https://nigalingo.online/api/push?c=${linkOf(mails[0].text, 'c')}`))
+    expect(await page.text()).toContain('href="https://nigalingo.online"')
+  })
+
+  it('an unknown origin falls back to the default site, never to what the caller sent', async () => {
+    await post({ action: 'email', email: EMAIL, ...state }, { origin: 'https://evil.example' })
+    expect(mails[0].text).toContain('https://kelime-koc.vercel.app/api/push?c=')
+    expect(mails[0].text).not.toContain('evil.example')
+    expect((await stored()).site).toBe('https://kelime-koc.vercel.app')
+  })
+
   it('a second call neither mails again nor changes the status, but updates the day', async () => {
     await post({ action: 'email', email: EMAIL, ...state })
     const again = await post({ action: 'email', email: EMAIL, ...state, streak: 9, update: true })
@@ -195,6 +212,17 @@ describe('the daily mail', () => {
     expect(mail.text + mail.html).not.toContain('<script>')
     const token = linkOf(mail.text, 'u')
     expect(mail.headers).toEqual({ 'List-Unsubscribe': expect.stringContaining(token), 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' })
+  })
+
+  it('keeps to the site the address was registered from: the button and the unsubscribe link', async () => {
+    mails.length = 0
+    await post({ action: 'email', email: EMAIL, ...state, studiedDay: '2026-10-06' }, { origin: 'https://nigalingo.online' })
+    await get(`c=${linkOf(mails[0].text, 'c')}`)
+    mails.length = 0
+    await run()
+    expect(mails[0].text).toContain('Başla: https://nigalingo.online/?go=quick')
+    expect(mails[0].text).toContain('https://nigalingo.online/api/push?u=')
+    expect(mails[0].html).toContain('href="https://nigalingo.online/?go=quick"')
   })
 
   it('not to an address nobody confirmed, nor to one that studied or rests today', async () => {

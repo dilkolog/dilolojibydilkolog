@@ -111,7 +111,10 @@ export function PairsGame({ language, best, recordKey, onExit }: Props & { best?
         void say(q.pair[q.answer].word)
       }
       if (!chosen && (e.key === '1' || e.key === '2')) choose(q.order[Number(e.key) - 1])
-      if (chosen && e.key === 'Enter') void next()
+      if (chosen && e.key === 'Enter') {
+        e.preventDefault()
+        void next()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

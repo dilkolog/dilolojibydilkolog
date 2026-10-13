@@ -3446,7 +3446,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-gloss { margin-inline: auto; font-style: italic; font-size: var(--t-lg); color: var(--ink-soft); }
 .lab-detail-toggle { margin-left: auto; }
 .lab-gloss + .lab-detail-toggle { margin-left: 0; }
-.lab-parts { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0; padding-block: 0.5rem; border-block: 1px solid var(--rule); }
+.lab-parts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1rem; margin: 0; padding-block: 0.5rem; border-block: 1px solid var(--rule); }
 .lab-kind { color: var(--ok-text); font-weight: 600; }
 .lab-kind.is-odd { color: var(--near-text); }
 .lab-tense-bar { position: sticky; top: 0; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin: -0.25rem 0 0.75rem; padding-block: 0.5rem; background: var(--surface); }
