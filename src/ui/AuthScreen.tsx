@@ -2,12 +2,23 @@ import '../lazy.css'
 import { useState } from 'react'
 import { BackupVersionError } from '../data/db'
 import { probeAccount, requestAccess } from '../data/access'
-import { deriveAccount, SyncAuthError, SyncApprovalError, SyncNotAllowedError } from '../data/sync'
+import { deriveAccount, SyncAuthError, SyncApprovalError, SyncConflictError, SyncNotAllowedError, SyncTooLargeError } from '../data/sync'
+import { reportError } from '../data/errorReport'
 import { BrandMark, ChevronLeftIcon, LockIcon } from './icons'
-import { getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode } from './syncRunner'
+import { CONFLICT, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode, TOO_LARGE } from './syncRunner'
 import { showToast } from './toastFeed'
 
 export type AuthMode = 'login' | 'create'
+
+/**
+ * A failed sign-in said "check your connection" for every cause. Only a failed fetch (TypeError) is a
+ * connection problem; anything else shows what the server or the merge answered, so it can be told apart.
+ */
+function failureText(e: unknown): string {
+  if (e instanceof TypeError) return 'Sunucuya bağlanılamadı; internet bağlantını kontrol et.'
+  const detail = e instanceof Error ? e.message : String(e)
+  return `Giriş tamamlanamadı (${detail}). Biraz sonra tekrar dene; sürerse bu kodu site sahibine ilet.`
+}
 
 /**
  * Signing in and creating an account on a page of their own: one form, one decision. Everything is
@@ -60,7 +71,8 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
       onDone()
     } catch (e) {
       await setAccount(null)
-      setError(e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncAuthError ? 'Şifre yanlış.' : 'Bağlanılamadı; internet bağlantını kontrol et.')
+      setError(e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncAuthError ? 'Şifre yanlış.' : e instanceof SyncConflictError ? CONFLICT : e instanceof SyncTooLargeError ? TOO_LARGE : failureText(e))
+      if (!(e instanceof SyncApprovalError || e instanceof SyncAuthError)) reportError(e, 'sign-in')
     } finally {
       setBusy(false)
     }
