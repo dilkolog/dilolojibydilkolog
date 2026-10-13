@@ -1,6 +1,6 @@
 import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
-import { approvalOn, isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
+import { approvalOn, isApproved, StorageError as AccountStorageError, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 import { overLimit, tooMany } from './_rate.js'
 
 /**
@@ -39,6 +39,15 @@ async function sha256(s: string): Promise<string> {
 
 /** The storage itself failed (not "nothing there"): a later try may work, and nothing may be decided from it. */
 class StorageError extends Error {}
+
+/** What a failure looks like to the device: "try later" for a failing store, otherwise the error's name and message (no secrets in them), also logged. */
+function failed(e: unknown): Response {
+  if (e instanceof StorageError || e instanceof AccountStorageError) return new Response('storage unavailable', { status: 502 })
+  console.error('[sync-error]', e)
+  const name = (e as { name?: string })?.name ?? 'Error'
+  const message = String((e as { message?: string })?.message ?? e).replace(/\s+/g, ' ').slice(0, 160)
+  return new Response(`server error: ${name}: ${message}`, { status: 500 })
+}
 
 /** A blob, or null when it does not exist. A failing store throws StorageError, never reads as "missing". */
 async function read(path: string) {
@@ -115,8 +124,7 @@ export async function GET(request: Request): Promise<Response> {
     return await handleGet(request)
   } catch (e) {
     // A failing store is "try later" (502), never "no data": the device would take empty for the truth and write it over the real thing.
-    if (e instanceof StorageError) return new Response('storage unavailable', { status: 502 })
-    throw e
+    return failed(e)
   }
 }
 
@@ -147,8 +155,7 @@ export async function PUT(request: Request): Promise<Response> {
   try {
     return await handlePut(request)
   } catch (e) {
-    if (e instanceof StorageError) return new Response('storage unavailable', { status: 502 })
-    throw e
+    return failed(e)
   }
 }
 
