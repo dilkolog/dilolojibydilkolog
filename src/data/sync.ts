@@ -324,12 +324,18 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
 // Talking to the server
 // ---------------------------------------------------------------------------
 
+/** The error for a refused request, with the server's short reason when it gave one (shown to the learner and the owner). */
+async function failure(res: Response): Promise<Error> {
+  const reason = (await res.text().catch(() => '')).replace(/\s+/g, ' ').trim().slice(0, 160)
+  return new Error(reason ? `sync ${res.status}: ${reason}` : `sync ${res.status}`)
+}
+
 /** The part's bytes and the ETag the server read them with (none for a 404, or a store that gives none). */
 async function fetchPart(id: string, part: string, code: Credential): Promise<{ bytes: Bytes; etag?: string } | null> {
   const res = await fetch(`/api/sync?id=${id}&part=${encodeURIComponent(part)}`, { headers: authHeaders(code) })
   if (res.status === 404) return null
   if (res.status === 403) throw await refusal(res)
-  if (!res.ok) throw new Error(`sync ${res.status}`)
+  if (!res.ok) throw await failure(res)
   return { bytes: await open(new Uint8Array(await res.arrayBuffer()), code), etag: res.headers.get('etag') ?? undefined }
 }
 
@@ -443,7 +449,7 @@ async function upload(id: string, part: string, data: Bytes, code: Credential, {
   if (res.status === 403) throw await refusal(res)
   if (res.status === 412) throw new SyncConflictError('changed meanwhile')
   if (res.status === 413 && !part.startsWith('m-')) throw new SyncTooLargeError(`${part} too large`)
-  if (!res.ok) throw new Error(`sync ${res.status}`)
+  if (!res.ok) throw await failure(res)
   return sealed.length
 }
 
@@ -517,7 +523,7 @@ export function incomingChanges(local: Backup, merged: Backup): SyncResult['inco
 export async function restorePoints(code: Credential): Promise<string[]> {
   const res = await fetch(`/api/sync?id=${await credentialId(code)}&history=1`, { headers: authHeaders(code) })
   if (res.status === 403) throw await refusal(res)
-  if (!res.ok) throw new Error(`sync ${res.status}`)
+  if (!res.ok) throw await failure(res)
   return ((await res.json()) as { days?: string[] }).days ?? []
 }
 

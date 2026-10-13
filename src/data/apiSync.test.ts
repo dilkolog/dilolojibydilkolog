@@ -4,8 +4,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 const blobs = new Map<string, Uint8Array>()
 // Set to make the store itself fail (not "missing").
 let failing = false
+// Set to make a write fail for a reason other than a stale ETag.
+let putFails = false
 vi.mock('@vercel/blob', () => ({
   put: async (path: string, body: ArrayBuffer | string, opts: { allowOverwrite?: boolean }) => {
+    if (putFails) throw Object.assign(new Error('Vercel Blob: store is suspended'), { name: 'BlobError' })
     if (opts.allowOverwrite === false && blobs.has(path)) throw new Error('exists')
     blobs.set(path, typeof body === 'string' ? new TextEncoder().encode(body) : new Uint8Array(body))
     return {}
@@ -42,6 +45,7 @@ beforeEach(() => {
   blobs.clear()
   clearAccessCache()
   failing = false
+  putFails = false
   // The accounts these tests use are approved; the approval itself is tested in access.test.ts.
   approve(ID)
   approve(OTHER)
@@ -196,3 +200,12 @@ describe('/api/sync restore points', () => {
   })
 })
 
+
+describe('/api/sync unexpected failures', () => {
+  it('answers 500 with the error\'s name and reason, not an empty page', async () => {
+    putFails = true
+    const res = await read(await PUT(req({ part: 'core', body: new Uint8Array([1, 2, 3]) })))
+    expect(res.status).toBe(500)
+    expect(res.text).toBe('server error: BlobError: Vercel Blob: store is suspended')
+  })
+})
