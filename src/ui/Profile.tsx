@@ -18,7 +18,7 @@ import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
-import { CATEGORY_EMBLEM, EMBLEM, drawnMedal } from './drawnArt'
+import { CATEGORY_EMBLEM, EMBLEM, drawnMedal, levelMonki } from './drawnArt'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -104,7 +104,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         {game && (
           <div className="profile-level">
             <div className="row justify-between">
-              <span>
+              <span className="grown-line">
+                <img className="grown-monki" src={levelMonki(game.level.level)} alt="" width={40} height={48} />
                 <span className="level-badge">Seviye {game.level.level}</span> <strong>{unlockables ? titleName(profile.title, unlockables) : game.level.title}</strong>
               </span>
               <span className="muted small">{game.xp.total.toLocaleString('tr-TR')} XP</span>
