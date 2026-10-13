@@ -30,6 +30,8 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run typecheck:ext
+      # Key-shaped strings in tracked files, and known-vulnerable dependencies the app ships (a minute).
+      - run: npm run security
       - run: npm run lint
       - run: npm test
       - run: npx vite build

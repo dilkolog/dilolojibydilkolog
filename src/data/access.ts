@@ -96,3 +96,10 @@ export async function adminAct(token: string, action: 'approve' | 'reject' | 're
   const res = await fetch('/api/admin', { method: 'POST', headers: adminHeaders(token), body: JSON.stringify({ action, id }) })
   if (!res.ok) throw new Error(`admin ${res.status}`)
 }
+
+/** Frees a username's sync account (the server deletes its claim and data); resolves to the number of files removed. */
+export async function adminRelease(token: string, username: string): Promise<number> {
+  const res = await fetch('/api/admin', { method: 'POST', headers: adminHeaders(token), body: JSON.stringify({ action: 'release', username }) })
+  if (!res.ok) throw new Error(`admin ${res.status}`)
+  return ((await res.json()) as { removed?: number }).removed ?? 0
+}

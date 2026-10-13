@@ -2,6 +2,7 @@ import { del, get, put } from '@vercel/blob'
 import { allowedIds } from './_allow.js'
 import { accountOf, requireApproved, sha256 } from './_account.js'
 import { confirmMail, EMAIL, mailConfigured, sendMail, APP_URL } from './_mail.js'
+import { overLimit, tooMany } from './_rate.js'
 
 /**
  * Push reminder subscriptions. The app registers its browser push subscription here and reports
@@ -119,6 +120,7 @@ const tokenParts = (raw: string | null) => {
 }
 
 export async function GET(request: Request): Promise<Response> {
+  if (overLimit(request, 'push', 60)) return tooMany()
   const q = new URL(request.url).searchParams
   if (q.get('mail') === 'status') return Response.json({ available: mailConfigured() }, { headers: { 'cache-control': 'no-store' } })
   const confirm = tokenParts(q.get('c'))
@@ -179,6 +181,7 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
 }
 
 export async function POST(request: Request): Promise<Response> {
+  if (overLimit(request, 'push', 60)) return tooMany()
   // A mail client's one-click unsubscribe (RFC 8058): the link of the mail, called with POST.
   const stop = tokenParts(new URL(request.url).searchParams.get('u'))
   if (stop) {

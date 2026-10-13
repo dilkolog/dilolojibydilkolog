@@ -1,6 +1,7 @@
 import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
 import { approvalOn, isApproved, TOKEN as ACCOUNT_TOKEN } from './_account.js'
+import { overLimit, tooMany } from './_rate.js'
 
 /**
  * Encrypted sync storage. The app sends opaque, client-encrypted bytes under an id derived from
@@ -152,6 +153,8 @@ export async function PUT(request: Request): Promise<Response> {
 }
 
 async function handlePut(request: Request): Promise<Response> {
+  // A sync writes a handful of files; this stops a script that fills the store with new accounts.
+  if (overLimit(request, 'sync-write', 240)) return tooMany()
   const path = target(request)
   if (!path) return new Response('bad request', { status: 400 })
   // Restore points are made here, never sent.
