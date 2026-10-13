@@ -1,6 +1,7 @@
 import { Component, type ReactNode } from 'react'
 import { reportError } from '../data/errorReport'
 import { isChunkError } from './chunkError'
+import { EmptyPicture } from './EmptyArt'
 
 /**
  * Keeps one broken screen from blanking the whole app: says what happened and offers a way out.
@@ -29,6 +30,11 @@ export class ScreenBoundary extends Component<{ resetKey: string; onHome: () => 
     const chunk = isChunkError(error)
     return (
       <section className="card stack screen-error" role="alert">
+        {chunk && !navigator.onLine && (
+          <span className="screen-error-art" aria-hidden>
+            <EmptyPicture kind="offline" />
+          </span>
+        )}
         <h2 className="section-title">Bu ekran açılamadı</h2>
         <p className="small muted">
           {chunk

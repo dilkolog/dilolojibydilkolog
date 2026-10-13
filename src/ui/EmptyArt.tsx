@@ -2,7 +2,20 @@
  * Small illustrations for empty screens, drawn in the icon set's hand: 1.8px rounded lines over a
  * soft fill, in the language's colour, on a soft round ground. One picture per kind of emptiness.
  */
+import emptyOffline from '../assets/art/empty-offline.webp'
+import emptyRest from '../assets/art/empty-rest.webp'
+import emptySearch from '../assets/art/empty-search.webp'
+import emptyShelf from '../assets/art/empty-shelf.webp'
+
 export type ArtKind = 'garden' | 'library' | 'journal' | 'sentences' | 'clear' | 'search'
+
+/** The drawn pictures (a bookshelf waiting for its first word, a magnifier that found nothing, a cloud that lost its plug, a calendar asleep). */
+export type PictureKind = 'shelf' | 'nothing-found' | 'offline' | 'rest'
+const PICTURE: Record<PictureKind, string> = { shelf: emptyShelf, 'nothing-found': emptySearch, offline: emptyOffline, rest: emptyRest }
+
+export function EmptyPicture({ kind }: { kind: PictureKind }) {
+  return <img className="empty-picture" src={PICTURE[kind]} alt="" draggable={false} />
+}
 
 const Soft = ({ d }: { d: string }) => <path d={d} fill="var(--lang-soft)" stroke="none" />
 

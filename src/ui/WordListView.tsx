@@ -301,7 +301,7 @@ export function WordList({
     <section className="section stack">
       {vocabulary.length === 0 ? (
         <EmptyState
-          art="garden"
+          art="shelf"
           title="Bahçen ekilmeyi bekliyor"
           action={
             <button className="btn" onClick={onAdd}>
@@ -603,7 +603,7 @@ export function WordList({
           )}
           {list.length === 0 ? (
             <EmptyState
-              art="search"
+              art="nothing-found"
               title="Bu aramaya uyan kelime yok"
               action={
                 <button

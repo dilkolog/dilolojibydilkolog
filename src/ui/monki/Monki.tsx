@@ -6,7 +6,7 @@ import { useAi } from '../aiContext'
 import { CloseIcon, SendIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
-import { MonkiMascot } from './MonkiMascot'
+import { MonkiFace, MonkiPose } from './MonkiMascot'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -147,14 +147,14 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
     <>
       {!open && (
         <button ref={fabRef} type="button" className="monki-fab" onClick={() => setOpen(true)} aria-label="Monki ile konuş" title="Monki ile konuş">
-          <MonkiMascot size={46} />
+          <MonkiFace face="happy" size={50} />
         </button>
       )}
       {open && (
         <section className="monki-panel" role="dialog" aria-label="Monki" aria-modal="false">
           <header className="monki-head">
             <span className="monki-avatar" aria-hidden>
-              <MonkiMascot size={40} mood={busy ? 'think' : 'idle'} />
+              <MonkiFace face={busy ? 'think' : error ? 'surprised' : 'happy'} size={42} />
             </span>
             <div className="monki-title">
               <strong>Monki</strong>
@@ -172,7 +172,7 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
 
           {!apiKey ? (
             <div className="monki-body monki-setup">
-              <MonkiMascot size={96} mood="cheer" />
+              <MonkiPose pose="wave" height={132} />
               <p>
                 <strong>{hello}</strong>
               </p>
@@ -189,6 +189,11 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
             <>
               <div className="monki-body monki-log" ref={logRef} role="log" aria-live="polite" aria-label="Sohbet">
                 {msgs.length === 0 && (
+                  <div className="monki-hello">
+                    <MonkiPose pose="hang" height={104} />
+                  </div>
+                )}
+                {msgs.length === 0 && (
                   <div className="monki-msg from-monki">
                     <RichText text={`**${hello}** ${LANGUAGE_NAME[language]} çalışırken takıldığın her şeyi bana sorabilirsin: bir kelime, bir kural, bir cümle. Nereden başlayalım?`} />
                   </div>
@@ -204,9 +209,12 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
                   </div>
                 )}
                 {error && (
-                  <p className="note monki-error" role="alert">
-                    {error}
-                  </p>
+                  <div className="monki-fail">
+                    <MonkiPose pose="sad" height={84} still />
+                    <p className="note monki-error" role="alert">
+                      {error}
+                    </p>
+                  </div>
                 )}
               </div>
               <div className="monki-chips">
