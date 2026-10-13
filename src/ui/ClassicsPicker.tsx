@@ -3,6 +3,7 @@ import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { CATEGORY_LABELS, classicsFor, type ClassicCategory, type ClassicReading } from '../data/classicReadings'
 import { BookIcon } from './icons'
+import { SourceTitle } from './SourceTitle'
 
 
 /**
@@ -47,7 +48,7 @@ export function ClassicsPicker({
   return (
     <section className="section stack">
       <div className="row justify-between items-center wrap gap-2">
-        <h2 className="section-title">Klasik masallar ve öyküler</h2>
+        <SourceTitle kind="classic">Klasik masallar ve öyküler</SourceTitle>
         {onAddAll && (
           <button
             type="button"

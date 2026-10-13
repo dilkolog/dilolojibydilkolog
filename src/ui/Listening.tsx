@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { PODCASTS, type Episode } from '../engine/podcasts'
 import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import { SourceTitle } from './SourceTitle'
 
 
 /**
@@ -58,7 +59,7 @@ export function ListeningPicker({
   const name = sources.find((s) => s.id === source)?.name ?? ''
   return (
     <section className="section stack">
-      <h2 className="section-title">Dinle</h2>
+      <SourceTitle kind="podcast">Dinle</SourceTitle>
       <p className="small muted">Öğrenenler için programlar, tam metniyle: önce dinle, sonra oku.</p>
       <div className="choice-row">
         {sources.map((s) => (

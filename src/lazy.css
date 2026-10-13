@@ -1658,3 +1658,7 @@ button.badge-card:active { transform: none; }
   .monki-typing span { animation: none !important; }
   .monki-fab .monki-face { transition: none; }
 }
+
+/* Reading sources: a small drawn cover beside each source's heading. */
+.source-title { display: flex; align-items: center; gap: 0.625rem; }
+.source-art { width: 2.25rem; height: 2.25rem; flex: none; object-fit: contain; }

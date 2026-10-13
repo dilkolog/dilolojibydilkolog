@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { FEEDS, type Article } from '../engine/news'
 import { analyzeText, coverageLine, topicKeys, topicOverlap } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
+import { SourceTitle } from './SourceTitle'
 
 
 /**
@@ -63,7 +64,7 @@ export function NewsPicker({
   if (!feeds.length) return null
   return (
     <section className="section stack">
-      <h2 className="section-title">Sana göre haberler</h2>
+      <SourceTitle kind="news">Sana göre haberler</SourceTitle>
       <p className="small muted">Günün haberleri, en rahat okuyacakların önce.</p>
       <div className="choice-row">
         {feeds.map((f) => (
