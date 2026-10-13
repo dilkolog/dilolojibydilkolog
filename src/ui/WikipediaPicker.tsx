@@ -3,6 +3,7 @@ import { analyzeText, coverageLine, type ReadingAnalysis } from '../engine/readi
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { defaultWikiSite, fetchArticle, searchWikipedia, wikiPageUrl, type WikiResult, type WikiSite } from '../data/wikipedia'
 import { GlobeIcon, SearchIcon, ShuffleIcon } from './icons'
+import { SourceTitle } from './SourceTitle'
 
 
 /**
@@ -56,7 +57,7 @@ export function WikipediaPicker({
 
   return (
     <section className="section stack">
-      <h2 className="section-title">Ansiklopediden oku</h2>
+      <SourceTitle kind="wiki">Ansiklopediden oku</SourceTitle>
       <p className="small muted">
         {easy
           ? language === 'en'

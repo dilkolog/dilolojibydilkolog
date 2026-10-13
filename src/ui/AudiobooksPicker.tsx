@@ -3,6 +3,7 @@ import { cleanChapterText, loadAudiobookChapters, type AudiobookChapter } from '
 import { analyzeText, coverageLine, type ReadingAnalysis } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { HeadphonesIcon } from './icons'
+import { SourceTitle } from './SourceTitle'
 
 
 /**
@@ -46,7 +47,7 @@ export function AudiobooksPicker({
 
   return (
     <section className="section stack">
-      <h2 className="section-title">Sesli kitaplar</h2>
+      <SourceTitle kind="audiobook">Sesli kitaplar</SourceTitle>
       <p className="small muted">Kamu malı kitaplardan bölümler ve aynı metnin LibriVox okuması (B1–B2). Dinlerken okunan cümle aydınlanır.</p>
       <div className="choice-row" role="group" aria-label="Sesli kitap seviyesi">
         {(['all', 'B1', 'B2'] as const).map((l) => (
