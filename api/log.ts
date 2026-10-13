@@ -1,3 +1,4 @@
+import { overLimit, tooMany } from './_rate.js'
 /**
  * Client error reports (src/data/errorReport.ts): one line each in the Vercel logs, searchable as
  * `[client-error]`. The device already scrubbed them; here they are only checked for shape and size.
@@ -13,6 +14,7 @@ const MAX_BODY = 4096
 const str = (v: unknown, max: number) => (typeof v === 'string' ? v.slice(0, max) : '')
 
 export async function POST(request: Request): Promise<Response> {
+  if (overLimit(request, 'log', 60)) return tooMany()
   const text = await request.text().catch(() => '')
   if (!text || text.length > MAX_BODY) return new Response(null, { status: 413 })
   let body: Record<string, unknown>

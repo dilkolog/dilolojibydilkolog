@@ -15,11 +15,14 @@ async function sha256(s: string): Promise<string> {
   return [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+/** The storage id a username has (the same as the app's), for the owner to find an account by name. */
+export const idOfUsername = (username: string) => sha256(`kelime-koc-account:${normalizeUsername(username)}`)
+
 /** The storage id of each SYNC_ALLOWED entry, or null when the list is not set. */
 export async function allowedIds(raw = process.env.SYNC_ALLOWED): Promise<Set<string> | null> {
   const entries = (raw ?? '').split(/[\s,]+/).filter(Boolean)
   if (!entries.length) return null
-  const ids = await Promise.all(entries.map((e) => (HEX_ID.test(e.toLowerCase()) ? e.toLowerCase() : sha256(`kelime-koc-account:${normalizeUsername(e)}`))))
+  const ids = await Promise.all(entries.map((e) => (HEX_ID.test(e.toLowerCase()) ? e.toLowerCase() : idOfUsername(e))))
   return new Set(ids)
 }
 

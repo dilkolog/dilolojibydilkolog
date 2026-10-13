@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { adminAct, adminLists, type AdminEntry, type AdminLists } from '../data/access'
+import { adminAct, adminLists, adminRelease, type AdminEntry, type AdminLists } from '../data/access'
 import { db } from '../data/instance'
+import { ConfirmDialog } from './Dialog'
 import { relativeTime } from './format'
 
 const META = 'adminToken'
@@ -15,6 +16,9 @@ export function AdminAccess() {
   const [lists, setLists] = useState<AdminLists | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [freeName, setFreeName] = useState('')
+  const [confirmFree, setConfirmFree] = useState(false)
+  const [freed, setFreed] = useState('')
 
   const load = useCallback(async (key: string) => {
     setBusy(true)
@@ -38,6 +42,22 @@ export function AdminAccess() {
       setLists(await adminLists(token))
     } catch {
       setError('İşlem yapılamadı; yeniden dene.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const release = async () => {
+    setConfirmFree(false)
+    setBusy(true)
+    setError('')
+    setFreed('')
+    try {
+      const removed = await adminRelease(token, freeName.trim())
+      setFreed(removed ? `“${freeName.trim()}” serbest bırakıldı (${removed} dosya silindi).` : `“${freeName.trim()}” için kayıt yoktu; ad zaten boş.`)
+      setFreeName('')
+    } catch {
+      setError('Serbest bırakılamadı; kullanıcı adını ve anahtarı kontrol et.')
     } finally {
       setBusy(false)
     }
@@ -107,9 +127,33 @@ export function AdminAccess() {
                 <ul className="admin-list">{lists.rejected.map((e) => row(e, [['Onayla', 'approve']]))}</ul>
               </>
             )}
+            <h3 className="subhead">Bir adı serbest bırak</h3>
+            <p className="small muted">SYNC_ALLOWED’a eklediğin bir adı sen almadan başkası aldıysa: ad ve altındaki bütün eşitleme dosyaları silinir, sonra sen alırsın. Kendi hesabında kullanma.</p>
+            <form
+              className="row"
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (freeName.trim()) setConfirmFree(true)
+              }}
+            >
+              <input className="input" aria-label="Serbest bırakılacak kullanıcı adı" placeholder="kullanıcı adı" value={freeName} onChange={(e) => setFreeName(e.target.value)} />
+              <button className="btn btn-sm btn-quiet" type="submit" disabled={busy || !freeName.trim()}>
+                Serbest bırak
+              </button>
+            </form>
+            {freed && (
+              <p className="small" role="status">
+                {freed}
+              </p>
+            )}
           </>
         )}
       </div>
+      {confirmFree && (
+        <ConfirmDialog title="Adı serbest bırak?" confirmLabel="Sil ve serbest bırak" danger onConfirm={() => void release()} onCancel={() => setConfirmFree(false)}>
+          “{freeName.trim()}” adlı eşitleme hesabının bütün dosyaları sunucudan silinir. Bu geri alınamaz.
+        </ConfirmDialog>
+      )}
     </details>
   )
 }

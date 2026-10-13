@@ -10,7 +10,7 @@ vi.mock('@vercel/blob', () => ({
   },
   get: async (path: string) => (blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)!.slice()).body } : null),
   list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
-  del: async (path: string) => void blobs.delete(path),
+  del: async (path: string | string[]) => void [path].flat().forEach((p) => blobs.delete(p)),
 }))
 
 const access = await import('../../api/access')
@@ -20,6 +20,8 @@ const translate = await import('../../api/translate')
 const clips = await import('../../api/clips')
 const news = await import('../../api/news')
 const { clearAccessCache, requireApproved } = await import('../../api/_account')
+const { resetRate } = await import('../../api/_rate')
+const { idOfUsername } = await import('../../api/_allow')
 
 const ALI = 'a'.repeat(64)
 const ALI_TOKEN = '1'.repeat(64)
@@ -38,6 +40,7 @@ const json = async (r: Response) => ({ status: r.status, ...(await r.json()) })
 beforeEach(() => {
   blobs.clear()
   clearAccessCache()
+  resetRate()
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
   vi.stubEnv('DEEPL_AUTH_KEY', 'abc123:fx')
 })
@@ -124,6 +127,38 @@ describe('/api/admin: the owner decides', () => {
     await post(as(ALI, ALI_TOKEN), { username: 'ali' })
     expect(await json(await get(as(ALI, ALI_TOKEN)))).toMatchObject({ status: 'approved' })
     expect(await json(await get(as(VELI, VELI_TOKEN)))).toMatchObject({ status: 'none' })
+  })
+})
+
+describe('/api/admin: rotating the key and freeing a name', () => {
+  const release = (username: string, headers: Record<string, string> = ADMIN) =>
+    admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers, body: JSON.stringify({ action: 'release', username }) }))
+
+  it('takes several keys at once, so an old and a new one can both work during a rotation', async () => {
+    vi.stubEnv('ADMIN_TOKEN', 'old-key new-key')
+    expect((await adminGet({ authorization: 'Bearer old-key' })).status).toBe(200)
+    expect((await adminGet({ authorization: 'Bearer new-key' })).status).toBe(200)
+    expect((await adminGet({ authorization: 'Bearer third' })).status).toBe(403)
+    vi.stubEnv('ADMIN_TOKEN', 'new-key')
+    expect((await adminGet({ authorization: 'Bearer old-key' })).status).toBe(403)
+  })
+
+  it('frees a username that someone else claimed: its claim and files go, so the owner can claim it', async () => {
+    const id = await idOfUsername('Ali')
+    vi.stubEnv('SYNC_ALLOWED', 'ali')
+    // A stranger got there first.
+    await post(as(id, VELI_TOKEN), { username: 'ali' })
+    blobs.set(`sync/${id}/core.bin`, new Uint8Array([1]))
+    expect(await json(await get(as(id, ALI_TOKEN)))).toMatchObject({ exists: true, match: false })
+
+    expect((await release('ali', { authorization: 'Bearer nope' })).status).toBe(403)
+    expect((await release('a')).status).toBe(400)
+    expect(await json(await release('Ali'))).toMatchObject({ ok: true, removed: 2 })
+    expect([...blobs.keys()].some((k) => k.startsWith(`sync/${id}/`))).toBe(false)
+
+    // Now the owner's own token claims it.
+    await post(as(id, ALI_TOKEN), { username: 'ali' })
+    expect(await json(await get(as(id, ALI_TOKEN)))).toMatchObject({ exists: true, match: true })
   })
 })
 

@@ -1,6 +1,7 @@
 import { del, get, put } from '@vercel/blob'
 import { accountOf, requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
+import { overLimit, tooMany } from './_rate.js'
 
 /**
  * Word lists shared by link. A set is a snapshot of a list's words (no progress): anyone with the link
@@ -128,6 +129,7 @@ export async function GET(request: Request): Promise<Response> {
 }
 
 async function handleGet(request: Request): Promise<Response> {
+  if (overLimit(request, 'share-read', 120)) return tooMany()
   const q = new URL(request.url).searchParams
   if (q.get('library')) {
     if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
@@ -151,6 +153,7 @@ export async function POST(request: Request): Promise<Response> {
 }
 
 async function handlePost(request: Request): Promise<Response> {
+  if (overLimit(request, 'share-write', 30)) return tooMany()
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const denied = await requireApproved(request)
   if (denied) return denied
@@ -181,6 +184,7 @@ export async function PUT(request: Request): Promise<Response> {
 }
 
 async function handlePut(request: Request): Promise<Response> {
+  if (overLimit(request, 'share-write', 30)) return tooMany()
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   const denied = await requireApproved(request)
   if (denied) return denied

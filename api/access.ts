@@ -1,5 +1,6 @@
 import { accessStatus, approvalOn, claimAccount, clearAccessCache, ID, requestPath, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
 import { fromApp } from './_origin.js'
+import { overLimit, tooMany } from './_rate.js'
 
 /**
  * An account's way to the owner's approval.
@@ -18,6 +19,7 @@ const json = (body: unknown, status = 200) => Response.json(body, { status, head
 
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
+  if (overLimit(request, 'access-read', 120)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''
   const token = request.headers.get('x-sync-auth') ?? ''
   // No account named: whether approval is asked for at all (a visitor's screens depend on it).
@@ -36,6 +38,8 @@ export async function GET(request: Request): Promise<Response> {
 
 export async function POST(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
+  // Filing a request writes to the store: a person asks once or twice, a script thousands of times.
+  if (overLimit(request, 'access-write', 10)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''
   const token = request.headers.get('x-sync-auth') ?? ''
   if (!ID.test(id) || !TOKEN.test(token)) return json({ error: 'bad request' }, 400)
