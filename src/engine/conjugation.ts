@@ -118,6 +118,8 @@ const ES_TABLE: Record<string, string[]> = {
   mantener: t('mantengo mantienes mantiene mantenemos mantenéis mantienen'),
   proponer: t('propongo propones propone proponemos proponéis proponen'),
   elegir: t('elijo eliges elige elegimos elegís eligen'),
+  reír: t('río ríes ríe reímos reís ríen'),
+  sonreír: t('sonrío sonríes sonríe sonreímos sonreís sonríen'),
 }
 
 /** Spanish stem-changing verbs: the last stem vowel changes in the singular and 3rd plural. */
@@ -133,7 +135,7 @@ const ES_STEM: Record<string, 'ie' | 'ue' | 'i'> = Object.fromEntries([
 
 /** Common Spanish -er/-ir verbs known to be regular in the present. */
 const ES_REGULAR_ER_IR = new Set(
-  'comer beber vivir escribir abrir aprender leer creer correr vender deber comprender subir decidir recibir partir permitir existir ocurrir responder romper meter prometer temer coser barrer cubrir describir descubrir discutir sufrir unir asistir insistir depender sorprender cumplir compartir aburrir añadir'.split(' '),
+  'comer beber vivir escribir abrir aprender leer creer correr vender deber comprender subir decidir recibir partir permitir existir ocurrir responder romper meter prometer temer coser barrer cubrir describir descubrir discutir sufrir unir asistir insistir depender sorprender cumplir compartir aburrir añadir atrever'.split(' '),
 )
 
 const FR_ENDINGS_ER = t('e es e ons ez ent')
@@ -210,7 +212,7 @@ export function conjugate(entry: Pick<VocabularyEntry, 'language' | 'lemma' | 'p
     reflexive = true
     v = v.replace(/^(se |s['’])/, '')
   }
-  if (lang === 'es' && /(ar|er|ir)se$/.test(v)) {
+  if (lang === 'es' && /(ar|er|ir|ír)se$/.test(v)) {
     reflexive = true
     v = v.slice(0, -2)
   }
