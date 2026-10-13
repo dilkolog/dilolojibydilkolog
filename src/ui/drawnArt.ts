@@ -26,6 +26,15 @@ import record from '../assets/art/result-record.webp'
 import pot1 from '../assets/art/pot-1.webp'
 import pot3 from '../assets/art/pot-3.webp'
 import pot5 from '../assets/art/pot-5.webp'
+import posNoun from '../assets/art/pos-noun.webp'
+import posVerb from '../assets/art/pos-verb.webp'
+import posAdjective from '../assets/art/pos-adjective.webp'
+import posAdverb from '../assets/art/pos-adverb.webp'
+import posPreposition from '../assets/art/pos-preposition.webp'
+import posPronoun from '../assets/art/pos-pronoun.webp'
+import posPhrase from '../assets/art/pos-phrase.webp'
+import posConjunction from '../assets/art/pos-conjunction.webp'
+import type { PartOfSpeech } from '../engine/types'
 import type { BadgeCategory } from '../engine/gamification'
 
 /** A badge's own drawn medal, by what it counts (the badges without one keep the metal medal). */
@@ -65,3 +74,8 @@ export function resultKind(accuracy: number, answered: number, opts: { leveledUp
 
 /** A word's life in three pots (sprout, flowers, gold) for the first-run garden. */
 export const POTS = [pot1, pot3, pot5]
+
+/** Monki acting out a part of speech (nothing drawn for 'other'). */
+export const POS_ART: Partial<Record<PartOfSpeech, string>> = {
+  noun: posNoun, verb: posVerb, adjective: posAdjective, adverb: posAdverb, preposition: posPreposition, pronoun: posPronoun, phrase: posPhrase, conjunction: posConjunction,
+}

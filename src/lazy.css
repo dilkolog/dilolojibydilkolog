@@ -1668,3 +1668,7 @@ button.badge-card:active { transform: none; }
 
 /* Profile badges: the drawn medal of a badge, a small emblem on each shelf. */
 .cat-emblem { display: inline-block; vertical-align: -0.45rem; margin-right: 0.5rem; width: 1.625rem; height: 1.625rem; object-fit: contain; }
+
+/* A new word's part of speech, acted out by Monki beside the label. */
+.pos-art { float: right; height: 4.5rem; width: auto; max-width: 45%; margin: -0.75rem 0 0 0.75rem; object-fit: contain; }
+.prompt-label:has(.pos-art) { overflow: hidden; }
