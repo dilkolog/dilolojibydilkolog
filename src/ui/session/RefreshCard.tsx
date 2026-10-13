@@ -6,6 +6,7 @@ import { CheckIcon, CloseIcon } from '../icons'
 import { sfx } from '../sounds'
 import { modalOpen } from './keys'
 import { SpeakButton, Word, Sentence } from './shared'
+import { POS_ART } from '../drawnArt'
 
 /** How far the card must travel (px) to count as a decision. */
 const SWIPE_COMMIT = 90
@@ -52,6 +53,7 @@ export function RefreshCard({ entry, onRemember, onStruggle }: { entry: Vocabula
       <p className="prompt-label">
         <span className="badge">Yeni kelime</span> <span className="small muted">Önce bir bak, sonra soru gelecek</span>
         {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} label className="is-chip" />}
+        {POS_ART[entry.partOfSpeech] && <img className="pos-art" src={POS_ART[entry.partOfSpeech]} alt="" draggable={false} />}
       </p>
       <div className="swipe-stage refresh-stage">
         <div
