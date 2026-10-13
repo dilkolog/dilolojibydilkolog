@@ -192,6 +192,12 @@ describe('French example sentences (Tatoeba)', () => {
     expect(tenseSentence({ language: 'fr', lemma: 'évader' }, 'passe-compose')).toBeUndefined()
   })
 
+  it('Spanish reflexive verbs too, -írse included', () => {
+    expect(verb('es', 'reírse', 'presente')).toEqual(['me río', 'te ríes', 'se ríe', 'nos reímos', 'os reís', 'se ríen'])
+    expect(tenseSentence({ language: 'es', lemma: 'levantarse' }, 'preterito')?.form).toBe('me levanté')
+    expect(tenseSentence({ language: 'es', lemma: 'relajarse' }, 'futuro')?.form).toBe('te relajarás')
+  })
+
   it('keeps a translation only when its tense fits', () => {
     expect(tenseSentence({ language: 'fr', lemma: 'savoir' }, 'futur')).toMatchObject({ form: 'sauras', translation: 'Gelecek yıl kayakta iyi olacaksın.' })
     expect(tenseSentence({ language: 'fr', lemma: 'savoir' }, 'passe-compose')?.translation).toBeUndefined()
