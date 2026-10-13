@@ -30,6 +30,7 @@ import { StreakFlame } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
 import { shareCard } from './shareCard'
+import { RESULT_ART, resultKind } from './drawnArt'
 
 function hardHeadline(accuracy: number): string {
   if (accuracy >= 0.9) return 'Zor kelimelerin yola geliyor!'
@@ -134,6 +135,7 @@ export function Summary({
       <div className="celebrate celebrate-card">
         {/* Words that grew are the celebration (below); confetti only when none did. */}
         {(leveledUp || blooms > 0 || (accuracy >= 0.7 && !grown.length)) && <Burst />}
+        <img className="result-art" src={RESULT_ART[resultKind(accuracy, summary.answered, { leveledUp, streakSaved: !!after?.frozenYesterday })]} alt="" draggable={false} />
         <Ring value={accuracy} size={140} stroke={14} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
         {topic === 'difficult' && (
           <span className="topic-chip">

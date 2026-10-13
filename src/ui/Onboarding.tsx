@@ -12,7 +12,7 @@ import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 
 import { BrandMark, CalendarIcon, CheckIcon, FlowerIcon, PlusIcon } from './icons'
 import { HELLO, LANGUAGE_NAME } from './labels'
-import { Plant } from './Plant'
+import { POTS } from './drawnArt'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
@@ -96,15 +96,11 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
             <p className="onboarding-sub">Her gün sana özel kısa bir çalışma hazırlar, unutmak üzere olduğun kelimeleri tam zamanında geri getirir.</p>
             {/* A word's life in three plants: a seed, a sprout, a flower, growing in turn. */}
             <div className="onboarding-garden" aria-hidden>
-              <span className="og-plant">
-                <Plant stage={0} size={56} />
-              </span>
-              <span className="og-plant">
-                <Plant stage={2} size={72} />
-              </span>
-              <span className="og-plant">
-                <Plant stage={5} size={92} />
-              </span>
+              {POTS.map((src, i) => (
+                <span className="og-plant" key={i}>
+                  <img className="og-pot" src={src} alt="" draggable={false} style={{ height: `${4.25 + i * 1.1}rem` }} />
+                </span>
+              ))}
             </div>
           </>
         )}

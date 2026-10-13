@@ -18,6 +18,7 @@ import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
+import { CATEGORY_EMBLEM, drawnMedal } from './drawnArt'
 
 const EMOJIS = ['🦊', '🐼', '🦉', '🐙', '🦁', '🐢', '🐬', '🦄', '🐝', '🐧', '🦋', '🐨', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -255,6 +256,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                       shelf.length > 0 && (
                         <div key={c.id} className="badge-shelf-group">
                           <h3 className="subhead">
+                            <img className="cat-emblem" src={CATEGORY_EMBLEM[c.id]} alt="" width={26} height={26} draggable={false} />
                             {c.name} <span className="muted small">({shelf.length})</span>
                           </h3>
                           <div className="badge-case is-locked">
@@ -365,7 +367,7 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
           <CloseIcon size={18} />
         </button>
         <div className={`badge-dialog-medal tier-${tier}`}>
-          <Medal icon={a.icon} tier={tier} unlocked={a.unlocked} progress={a.value / a.goal} size={104} />
+          {a.unlocked && drawnMedal(a.stat) ? <img className="drawn-medal" src={drawnMedal(a.stat)} alt="" width={104} height={104} draggable={false} /> : <Medal icon={a.icon} tier={tier} unlocked={a.unlocked} progress={a.value / a.goal} size={104} />}
         </div>
         <span className={`badge-tier tier-${tier}`}>{TIER_NAME[tier]} rozet</span>
         <h2 id="badge-title" className="badge-dialog-title">
