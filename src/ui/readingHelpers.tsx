@@ -1,5 +1,9 @@
 import { useCallback, useRef } from 'react'
 import type { ReadingText } from '../data/db'
+import { growthStage } from '../engine/growth'
+import type { analyzeText } from '../engine/reading'
+import type { UserWordState } from '../engine/types'
+import type { Selected } from './WordCard'
 
 export function highlight(sentence: string, word: string) {
   const i = sentence.toLowerCase().indexOf(word.toLowerCase())
@@ -55,4 +59,28 @@ export function useSeen(key: unknown, onSeen: () => void) {
     })
     observer.current.observe(node)
   }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
+}
+
+/** List words shaded by how far along they are (LingQ's 1–4): new words strongest, nearly learned faint. */
+export function shadeFor(states: readonly UserWordState[]): (entryId: string | undefined) => 'lv-a' | 'lv-b' | 'lv-c' {
+  const byEntry = new Map(states.map((s) => [s.entryId, growthStage(s)]))
+  return (entryId) => {
+    const stage = entryId ? (byEntry.get(entryId) ?? -1) : -1
+    return stage <= 1 ? 'lv-a' : stage <= 3 ? 'lv-b' : 'lv-c'
+  }
+}
+
+/** Words still open in the text, in reading order, for "next word" (one per key). */
+export function openTokensOf(analysis: ReturnType<typeof analyzeText> | null): Selected[] {
+  const out: Selected[] = []
+  const seen = new Set<string>()
+  for (const p of analysis?.paragraphs ?? [])
+    for (const s of p)
+      for (const t of s.tokens) {
+        if (t.key && t.status === 'unseen' && !seen.has(t.key)) {
+          seen.add(t.key)
+          out.push({ token: t, sentence: s.text })
+        }
+      }
+  return out
 }

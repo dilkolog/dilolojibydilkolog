@@ -1,0 +1,489 @@
+[
+  {
+    "id": "en-present_perfect-01",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "I ___ never been to Japan, but I'd love to go.",
+    "answer": "have",
+    "options": [
+      "have",
+      "had",
+      "did",
+      "was"
+    ],
+    "hint": "yaşam deneyimi → present perfect",
+    "explanation": "Hayatı boyunca henüz yapmadığı bir deneyim present perfect ile söylenir: I have never been to… (Şimdiki zamanla bağlantılı.)",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-02",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "She ___ in London since 2019.",
+    "answer": "has lived",
+    "options": [
+      "has lived",
+      "lived",
+      "is living",
+      "lives"
+    ],
+    "hint": "since → present perfect",
+    "explanation": "Geçmişte başlayıp şimdi de süren durum « since + başlangıç noktası » ile present perfect kullanır: she has lived in London since 2019.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-03",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "We ___ dinner two hours ago.",
+    "answer": "had",
+    "options": [
+      "had",
+      "have had",
+      "has had",
+      "having"
+    ],
+    "hint": "ago → past simple",
+    "explanation": "« ago » bitmiş, belirli bir zamanı gösterir; present perfect değil past simple kullanılır: we had dinner two hours ago.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-04",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "___ you ever eaten sushi?",
+    "answer": "Have",
+    "options": [
+      "Have",
+      "Did",
+      "Do",
+      "Were"
+    ],
+    "hint": "ever → present perfect",
+    "explanation": "Yaşam deneyimini soran « ever » ile present perfect kullanılır: Have you ever eaten sushi?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-05",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "I ___ my wallet yesterday.",
+    "answer": "lost",
+    "options": [
+      "lost",
+      "have lost",
+      "has lost",
+      "had lost"
+    ],
+    "hint": "yesterday → past simple",
+    "explanation": "« yesterday » gibi belirli bir geçmiş zaman ifadesi varsa past simple kullanılır: I lost my wallet yesterday.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-06",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "How long ___ you known each other?",
+    "answer": "have",
+    "options": [
+      "have",
+      "did",
+      "had",
+      "are"
+    ],
+    "hint": "how long → present perfect",
+    "explanation": "Süren bir durumun süresini sorarken « How long » ile present perfect kullanılır: How long have you known each other?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-07",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "This is the first time I ___ a horse.",
+    "answer": "have ridden",
+    "options": [
+      "have ridden",
+      "rode",
+      "ride",
+      "am riding"
+    ],
+    "hint": "the first time → present perfect",
+    "explanation": "« This is the first time … » yapısında present perfect gelir: this is the first time I have ridden a horse.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-08",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "He ___ just left; you can still catch him.",
+    "answer": "has",
+    "options": [
+      "has",
+      "had",
+      "did",
+      "is"
+    ],
+    "hint": "just → present perfect",
+    "explanation": "« just » yeni olmuş ve şimdiyle ilgili bir olayı belirtir; present perfect kullanılır: he has just left.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-09",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "When ___ you move to Spain?",
+    "answer": "did",
+    "options": [
+      "did",
+      "have",
+      "do",
+      "had"
+    ],
+    "hint": "when → past simple",
+    "explanation": "« When » belirli bir zamanı sorar; present perfect ile birlikte kullanılmaz, past simple gelir: when did you move to Spain?",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "choice",
+    "prompt": "They've been married ___ ten years.",
+    "answer": "for",
+    "options": [
+      "for",
+      "since",
+      "during",
+      "from"
+    ],
+    "hint": "for + süre",
+    "explanation": "« for » süre (ten years), « since » başlangıç noktası (2015) ile kullanılır: they've been married for ten years.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-11",
+    "language": "en",
+    "level": "B1",
+    "topic": "present_perfect",
+    "type": "cloze",
+    "prompt": "She has worked here ___ 2015.",
+    "answer": "since",
+    "hint": "since + başlangıç",
+    "explanation": "Başlangıç noktası (2015) ile present perfect’te since kullanılır; süre (ten years) için for.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-12",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "cloze",
+    "prompt": "I ___ (not / see) him this week.",
+    "answer": "haven't seen",
+    "alternatives": [
+      "have not seen"
+    ],
+    "hint": "bitmemiş zaman → present perfect",
+    "explanation": "« This week » henüz bitmemiş bir zaman dilimidir; present perfect kullanılır: I haven't seen him this week.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-13",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "cloze",
+    "prompt": "I ___ (read) that book three times so far.",
+    "answer": "have read",
+    "hint": "so far → present perfect",
+    "explanation": "« so far » şimdiye kadar anlamıdır; present perfect gerekir: I have read that book three times so far.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "error",
+    "prompt": "She lives here since 2010.",
+    "answer": "lives",
+    "fix": "has lived",
+    "hint": "since → present perfect",
+    "explanation": "« since » ile geçmişte başlayıp şimdi de süren durum present perfect (has lived) ile söylenir; yalın present kullanılmaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-present_perfect-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "present_perfect",
+    "type": "error",
+    "prompt": "Did you ever been to Italy?",
+    "answer": "Did",
+    "fix": "Have",
+    "hint": "ever + been → have",
+    "explanation": "Yaşam deneyimi sorusu « Have you ever been … ? » ile kurulur; Did + ever + been birlikte kullanılmaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-01",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "You ___ wear a seat belt; it's the law.",
+    "answer": "must",
+    "options": [
+      "must",
+      "might",
+      "could",
+      "may"
+    ],
+    "hint": "zorunluluk → must",
+    "explanation": "Zorunluluk (kural, kanun) için must kullanılır: you must wear a seat belt.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-02",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "If I were you, I ___ apologise.",
+    "answer": "would",
+    "options": [
+      "would",
+      "must",
+      "can",
+      "may"
+    ],
+    "hint": "If I were you → would",
+    "explanation": "Tavsiye verirken « If I were you, I would … » kalıbı kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-03",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "She has been working since dawn, so she ___ be exhausted.",
+    "answer": "must",
+    "options": [
+      "must",
+      "can't",
+      "might",
+      "needn't"
+    ],
+    "hint": "güçlü çıkarım → must",
+    "explanation": "Güçlü kanıt varsa olasılık dolaylı olarak “kesin” hale gelir: must be (olmalı).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-04",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "That ___ be true! He is 12 years old and says he's a doctor.",
+    "answer": "can't",
+    "options": [
+      "can't",
+      "mustn't",
+      "shouldn't",
+      "needn't"
+    ],
+    "hint": "imkânsız çıkarım → can't",
+    "explanation": "Bir şeyin imkânsız olduğunu düşündüğünde can't be kullanılır: can't be true (doğru olamaz). mustn't yasak anlamındadır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-05",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "I'm not sure where she is; she ___ be in the garden.",
+    "answer": "might",
+    "options": [
+      "might",
+      "must",
+      "can't",
+      "needn't"
+    ],
+    "hint": "belki → might",
+    "explanation": "Belirsiz, zayıf bir olasılık için might (ya da may, could) kullanılır: she might be in the garden (bahçede olabilir).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-06",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "You ___ come if you don't want to; it's optional.",
+    "answer": "needn't",
+    "options": [
+      "needn't",
+      "mustn't",
+      "can't",
+      "shouldn't"
+    ],
+    "hint": "gerek yok → needn't",
+    "explanation": "Gerek olmadığını söylemek için needn't (ya da don't have to) kullanılır; mustn't ise yasak anlamındadır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-07",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "You ___ smoke here; it's forbidden.",
+    "answer": "mustn't",
+    "options": [
+      "mustn't",
+      "needn't",
+      "don't have to",
+      "might not"
+    ],
+    "hint": "yasak → mustn't",
+    "explanation": "Yasak için mustn't kullanılır. Needn't ve don't have to “gerek yok” demektir, yasak değil.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-08",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "She ___ have left already; her coat has gone.",
+    "answer": "must",
+    "options": [
+      "must",
+      "should",
+      "would",
+      "might"
+    ],
+    "hint": "geçmiş çıkarım → must have",
+    "explanation": "Geçmiş hakkında güçlü bir çıkarım « must have + past participle » ile yapılır: she must have left already.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-09",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "He ___ have taken the bus; he was with me the whole time.",
+    "answer": "can't",
+    "options": [
+      "can't",
+      "mustn't",
+      "shouldn't",
+      "needn't"
+    ],
+    "hint": "geçmiş imkânsız → can't have",
+    "explanation": "Geçmişte imkânsız olan bir şey için « can't have + past participle » kullanılır: he can't have taken the bus.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-10",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "choice",
+    "prompt": "When I was a child, I ___ swim across the lake.",
+    "answer": "could",
+    "options": [
+      "could",
+      "can",
+      "must",
+      "might"
+    ],
+    "hint": "geçmiş yetenek → could",
+    "explanation": "Geçmişteki genel yetenek could ile söylenir: I could swim across the lake.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-11",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "cloze",
+    "prompt": "You ___ to wear a uniform at this school.",
+    "answer": "have",
+    "hint": "zorunluluk: have to",
+    "explanation": "Kuraldan gelen zorunluluk « have to » ile de söylenir: you have to wear a uniform.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-12",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "cloze",
+    "prompt": "She ___ have been very happy; she was smiling all day.",
+    "answer": "must",
+    "hint": "kesin çıkarım → must",
+    "explanation": "Kanıta dayalı geçmiş çıkarımı « must have + past participle » ile yapılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-13",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "cloze",
+    "prompt": "He doesn't ___ to come tomorrow.",
+    "answer": "have",
+    "hint": "gerek yok: don't have to",
+    "explanation": "« don't / doesn't have to » zorunluluk olmadığını söyler: he doesn't have to come (gelmek zorunda değil).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-14",
+    "language": "en",
+    "level": "B1",
+    "topic": "modals_en",
+    "type": "error",
+    "prompt": "She cans swim very well.",
+    "answer": "cans",
+    "fix": "can",
+    "hint": "modal + -s yok",
+    "explanation": "Modal fiiller üçüncü tekil kişide -s almaz: she can swim.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-modals_en-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "modals_en",
+    "type": "error",
+    "prompt": "He must had left early.",
+    "answer": "had",
+    "fix": "have",
+    "hint": "must + have + V3",
+    "explanation": "Geçmiş çıkarımı « must have + past participle » ile kurulur; had değil have gelir: he must have left early.",
+    "source": "Diloloji (özgün)"
+  }
+]

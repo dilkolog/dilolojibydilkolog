@@ -1,9 +1,7 @@
 import '../lazy.css'
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 
 import { cleanToken } from '../engine/extract'
-import { growthStage } from '../engine/growth'
 import { KnownWordsCard } from './KnownWords'
 import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
@@ -32,9 +30,12 @@ import { AddTextCard, LibraryItem, SourcePickers } from './ReadingLibrary'
 import { CoverageCard } from './CoverageCard'
 import { ExternalResources } from './ExternalResources'
 import { SingleUnknownSentences } from './SingleUnknownSentences'
-import { MIN_READ_MS, groupBooks, useSeen } from './readingHelpers'
+import { MIN_READ_MS, groupBooks, openTokensOf, shadeFor, useSeen } from './readingHelpers'
 import type { SharedRead } from './incoming'
 import { useSheetSwipe } from './useSheetSwipe'
+import { useListenFollow } from './useListenFollow'
+import { useMultiSelect } from './useMultiSelect'
+import { useWordSheetLayout } from './useWordSheetLayout'
 import { addFormsToReview, addSeenForms } from '../engine/labProgress'
 import { scheduler } from '../data/instance'
 import { loadTenses } from '../data/tenseData'
@@ -112,35 +113,7 @@ export function ReadingScreen({
   const opened = useRef<{ key: string | null; at: number }>({ key: null, at: 0 })
   const [bookError, setBookError] = useState<{ ok: boolean; text: string } | null>(null)
   const [reader, setReader] = useReaderPrefs()
-  // Several words picked at once (⌘/Ctrl+click or multi-select mode), marked in one go.
-  const [multi, setMulti] = useState<Set<string>>(new Set())
-  const [multiMode, setMultiMode] = useState(false)
-  const toggleMulti = (key: string) =>
-    setMulti((m) => {
-      const next = new Set(m)
-      if (next.has(key)) next.delete(key)
-      else next.add(key)
-      return next
-    })
-  const markMulti = async (how: 'known' | 'skip' | 'ignore') => {
-    const keys = [...multi]
-    if (how === 'known') {
-      await db.addKnownWords(language, keys)
-      setKnown((k) => new Set([...k, ...keys]))
-    } else if (how === 'skip') setSkipped((s) => new Set([...s, ...keys]))
-    else {
-      for (const k of keys) await db.setIgnored(language, k, true)
-      setIgnored((s) => new Set([...s, ...keys]))
-    }
-    showToast(`${keys.length} kelime işaretlendi`)
-    setMulti(new Set())
-  }
-  useEffect(() => {
-    if (!multi.size) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMulti(new Set())
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [multi.size])
+  const { multi, setMulti, multiMode, setMultiMode, toggleMulti, markMulti } = useMultiSelect({ db, language, setKnown, setSkipped, setIgnored })
   const [youtube, setYoutube] = useState(shared?.url && !shared.text ? shared.url : '')
   const [ytBusy, setYtBusy] = useState(false)
   // Listening episodes start with the text hidden: listen first, then read.
@@ -217,31 +190,7 @@ export function ReadingScreen({
   const masks = useMemo(() => (deduce && !listenFirst && analysis ? maskPositions(analysis.paragraphs, language) : new Set<string>()), [deduce, listenFirst, analysis, language])
   const formGroups = useMemo(() => (showForms && tensesReady && analysis && language !== 'en' ? groupByTense(textForms(language, analysis)) : []), [showForms, tensesReady, analysis, language])
   // Listening: the sentence being heard, lit in the text; a sentence's start, to jump to.
-  const [audioDuration, setAudioDuration] = useState<number>()
-  const [heard, setHeard] = useState(-1)
-  const seekRef = useRef<((seconds: number) => void) | null>(null)
-  const rangeRef = useRef<((from: number, to: number, slow?: boolean) => Promise<void>) | null>(null)
-  const sentencesFlat = useMemo(() => (analysis ? analysis.paragraphs.flatMap((p) => p.map((s) => s.text)) : []), [analysis])
-  const paragraphStart = useMemo(() => (analysis ? analysis.paragraphs.map((_, i) => analysis.paragraphs.slice(0, i).reduce((n, p) => n + p.length, 0)) : []), [analysis])
-  // Which sentences open a paragraph (a story's page turn is a pause in the reading).
-  const paragraphStarts = useMemo(() => sentencesFlat.map((_, i) => paragraphStart.includes(i)), [sentencesFlat, paragraphStart])
-  const times = useMemo(
-    () => (current?.audio ? sentenceTimes(sentencesFlat, current.cues, audioDuration, { paragraphStarts, anchors: current.syncAnchors }) : null),
-    [current, sentencesFlat, audioDuration, paragraphStarts],
-  )
-  const heardAt = useRef(0)
-  const timesRef = useRef(times)
-  timesRef.current = times
-  const followTime = useCallback((t: number) => {
-    heardAt.current = t
-    const i = timesRef.current && t > 0 ? sentenceAt(timesRef.current, t) : -1
-    setHeard((h) => (h === i ? h : i))
-  }, [])
-  // New times (the audio's length arrived, a pin was set or reset): the lit sentence follows at once,
-  // even when the audio is paused and no time update is coming.
-  useEffect(() => {
-    if (times && heardAt.current > 0) followTime(heardAt.current)
-  }, [times, followTime])
+  const { audioDuration, setAudioDuration, heard, seekRef, rangeRef, sentencesFlat, paragraphStart, times, heardAt, followTime } = useListenFollow(current, analysis)
   // Dictation plays a sentence from the text's own recording when its subtitles time it exactly,
   // else the device reads it (approximate times would cut sentences in the middle).
   const recorded = !!(current?.audio && current.cues?.length && times)
@@ -251,64 +200,9 @@ export function ReadingScreen({
     return speakAsync(sentencesFlat[i], language, slow ? 0.7 : undefined)
   }
   const sheet = useSheetSwipe(() => setSelected(null))
-  // A tapped word must not end up behind the sheet that opens for it (on a narrow screen the card covers the lower part of the page).
-  // Where the sheet stands: as wide as the text column (a sidebar may take the left of the screen).
-  const [sheetBox, setSheetBox] = useState<{ left: number; width: number } | null>(null)
-  const openKey = selected?.token.key
-  const openAt = selected?.at
-  useEffect(() => {
-    if (!openKey) return
-    const measure = () => {
-      const layout = document.querySelector<HTMLElement>('.reader-layout')
-      if (layout) setSheetBox({ left: Math.round(layout.getBoundingClientRect().left), width: Math.round(layout.getBoundingClientRect().width) })
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [openKey])
-  useEffect(() => {
-    if (!openKey) return
-    const frame = requestAnimationFrame(() => {
-      const card = document.querySelector<HTMLElement>('.word-pop')
-      // The word in the lit sentence (the same word may stand earlier in the text).
-      const key = CSS.escape(openKey)
-      const word = document.querySelector<HTMLElement>(`.rs.is-lit [data-key="${key}"]`) ?? document.querySelector<HTMLElement>(`[data-key="${key}"]`)
-      if (!card || !word || getComputedStyle(card).position !== 'fixed') return
-      // Where the sheet will stand (it is still rising into place, so its rectangle is not the answer yet).
-      const top = innerHeight - parseFloat(getComputedStyle(card).bottom) - card.offsetHeight
-      const covered = word.getBoundingClientRect().bottom - (top - 12)
-      if (covered > 0) window.scrollBy({ top: covered + 8, behavior: 'smooth' })
-    })
-    return () => cancelAnimationFrame(frame)
-  }, [openKey, openAt])
-  // The heard sentence kept in view while listening (only when it has left the screen).
-  useEffect(() => {
-    if (heard < 0) return
-    const el = document.querySelector<HTMLElement>(`[data-s="${heard}"]`)
-    if (!el) return
-    const r = el.getBoundingClientRect()
-    if (r.top < 80 || r.bottom > innerHeight - 40) el.scrollIntoView({ block: 'center', behavior: 'smooth' })
-  }, [heard])
-  /** List words shaded by how far along they are (LingQ's 1–4): new words strongest, nearly learned faint. */
-  const shade = useMemo(() => {
-    const byEntry = new Map(states.map((s) => [s.entryId, growthStage(s)]))
-    return (entryId: string | undefined) => {
-      const stage = entryId ? (byEntry.get(entryId) ?? -1) : -1
-      return stage <= 1 ? 'lv-a' : stage <= 3 ? 'lv-b' : 'lv-c'
-    }
-  }, [states])
-  /** Words still open in the text, in reading order, for "next word" (one per key). */
-  const openTokens = useMemo(() => {
-    const out: Selected[] = []
-    const seen = new Set<string>()
-    for (const p of analysis?.paragraphs ?? []) for (const s of p) for (const t of s.tokens) {
-      if (t.key && t.status === 'unseen' && !seen.has(t.key)) {
-        seen.add(t.key)
-        out.push({ token: t, sentence: s.text })
-      }
-    }
-    return out
-  }, [analysis])
+  const sheetBox = useWordSheetLayout(selected?.token.key, selected?.at)
+  const shade = useMemo(() => shadeFor(states), [states])
+  const openTokens = useMemo(() => openTokensOf(analysis), [analysis])
   const existing = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
 

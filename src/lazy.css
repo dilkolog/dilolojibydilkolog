@@ -1623,6 +1623,8 @@ button.badge-card:active { transform: none; }
 .monki-avatar { width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--surface); display: grid; place-items: center; overflow: hidden; flex: none; }
 .monki-avatar .monki-face { margin-top: 0.3rem; }
 .monki-title { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+.monki-modes { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
+.monki-modes .chip { flex: none; }
 .monki-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0.875rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .monki-setup { align-items: center; text-align: center; justify-content: center; gap: 0.75rem; }
 .monki-setup p { margin: 0; }
@@ -1646,17 +1648,13 @@ button.badge-card:active { transform: none; }
 }
 @keyframes monki-dot { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 
-/* the monkey itself: drawings, moved a little with CSS */
-.monki-face { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
-.monki-pose { display: block; width: auto; max-width: 100%; user-select: none; -webkit-user-drag: none; transform-origin: 50% 0; animation: monki-bob 4.5s ease-in-out infinite; }
-.monki-pose.is-still { animation: none; }
-.monki-fab .monki-face { margin-top: 0.35rem; transition: transform var(--dur-fast) var(--ease-out); }
-.monki-fab:hover .monki-face { transform: rotate(-5deg) scale(1.06); }
+/* the chat's own pictures */
 .monki-hello, .monki-fail { display: flex; align-items: flex-end; gap: 0.5rem; }
 .monki-hello { justify-content: center; }
 .monki-fail .note { flex: 1; }
-@keyframes monki-bob { 0%, 100% { transform: rotate(-2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-3px); } }
+.monki-fab .monki-face { margin-top: 0.35rem; transition: transform var(--dur-fast) var(--ease-out); }
+.monki-fab:hover .monki-face { transform: rotate(-5deg) scale(1.06); }
 @media (prefers-reduced-motion: reduce) {
-  .monki-pose, .monki-typing span { animation: none !important; }
+  .monki-typing span { animation: none !important; }
   .monki-fab .monki-face { transition: none; }
 }

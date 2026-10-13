@@ -1,0 +1,92 @@
+# ES batch 1: frequent verbs with no example sentence yet (haber and coger left out: see AGENTS.md)
+matar	presente	El cazador mata solo lo que necesita para comer.	Avcı yalnızca yemek için gereken kadarını öldürür.
+matar	preterito	El gato mató al ratón anoche.	Kedi dün gece fareyi öldürdü.
+matar	imperfecto	Antes mataban las moscas con un periódico enrollado.	Eskiden sinekleri rulo yapılmış bir gazeteyle öldürürlerdi.
+matar	perfecto	Nadie ha matado nunca una mosca en esta casa.	Bu evde hiç kimse şimdiye kadar bir sinek bile öldürmedi.
+matar	futuro	Si sigues así, me matarás de risa.	Böyle devam edersen beni güldürüp öldüreceksin.
+matar	condicional	Yo nunca mataría a un animal sin motivo.	Ben sebepsiz yere asla bir hayvanı öldürmezdim.
+matar	subjuntivo	Es importante que no mates las plantas por falta de agua.	Bitkileri susuz bırakıp öldürmemen önemli.
+oír	presente	Los niños oyen la música desde el jardín.	Çocuklar müziği bahçeden duyuyor.
+oír	preterito	Ayer oí un ruido extraño en la cocina.	Dün mutfakta tuhaf bir ses duydum.
+oír	imperfecto	Cuando era niña, oía el mar desde mi cuarto.	Çocukken odamdan denizi duyardım.
+oír	perfecto	¿Has oído la última noticia?	Son haberi duydun mu?
+oír	futuro	Mañana oirás el concierto desde la terraza.	Yarın konseri terastan duyacaksın.
+oír	condicional	Si abrieras la ventana, oirías mejor a los pájaros.	Pencereyi açsan kuşları daha iyi duyardın.
+oír	subjuntivo	Habla más alto para que todos te oigan.	Herkes seni duysun diye daha yüksek sesle konuş.
+salvar	presente	El médico salva muchas vidas cada año.	Doktor her yıl birçok hayat kurtarır.
+salvar	preterito	El bombero salvó al niño del incendio.	İtfaiyeci çocuğu yangından kurtardı.
+salvar	imperfecto	Mi abuelo siempre salvaba las fotos viejas de la humedad.	Dedem eski fotoğrafları her zaman nemden kurtarırdı.
+salvar	perfecto	Esa decisión ha salvado la empresa.	O karar şirketi kurtardı.
+salvar	futuro	Este proyecto salvará el barrio.	Bu proje mahalleyi kurtaracak.
+salvar	condicional	Un poco de ayuda nos salvaría.	Biraz yardım bizi kurtarırdı.
+salvar	subjuntivo	Espero que el equipo salve el partido.	Takımın maçı kurtarmasını umuyorum.
+traer	presente	Mi hermana trae pan fresco todas las mañanas.	Kız kardeşim her sabah taze ekmek getirir.
+traer	preterito	Ayer te traje los libros que me pediste.	Dün senin istediğin kitapları sana getirdim.
+traer	imperfecto	Mi tía siempre traía caramelos en el bolso.	Teyzem çantasında her zaman şeker getirirdi.
+traer	perfecto	Los vecinos han traído una tarta para la fiesta.	Komşular parti için bir pasta getirdi.
+traer	futuro	Mañana traeré las fotos de mi viaje.	Yarın gezimin fotoğraflarını getireceğim.
+traer	condicional	Yo traería más sillas si hubiera más invitados.	Daha fazla davetli olsaydı daha çok sandalye getirirdim.
+traer	subjuntivo	Quiero que traigas tu guitarra a la reunión.	Toplantıya gitarını getirmeni istiyorum.
+luchar	presente	Mi madre lucha cada día por sus hijos.	Annem her gün çocukları için mücadele eder.
+luchar	preterito	Los obreros lucharon durante años por sus derechos.	İşçiler yıllarca haklarının mücadelesini verdi.
+luchar	imperfecto	De joven, luchaba por un mundo más justo.	Gençken daha adil bir dünya için mücadele ederdim.
+luchar	perfecto	Ella ha luchado mucho para llegar hasta aquí.	Buraya gelmek için çok mücadele etti.
+luchar	futuro	Lucharemos hasta el final.	Sonuna kadar mücadele edeceğiz.
+luchar	condicional	Yo lucharía por ti si fuera necesario.	Gerekirse senin için mücadele ederdim.
+luchar	subjuntivo	Es necesario que luchemos por nuestros sueños.	Hayallerimiz için mücadele etmemiz gerekiyor.
+detener	presente	La policía detiene al sospechoso en la frontera.	Polis şüpheliyi sınırda tutuklar.
+detener	preterito	Los agentes detuvieron al ladrón en la estación.	Polisler hırsızı istasyonda yakaladı.
+detener	imperfecto	El guardia detenía a todos los coches en el control.	Muhafız kontrol noktasında bütün arabaları durduruyordu.
+detener	perfecto	Han detenido a dos personas por el robo.	Hırsızlık nedeniyle iki kişi gözaltına alındı.
+detener	futuro	Nada detendrá nuestro avance.	Hiçbir şey ilerleyişimizi durduramayacak.
+detener	condicional	Yo detendría el tren si pudiera.	Elimden gelse treni durdururdum.
+detener	subjuntivo	Es necesario que detengan el coche aquí.	Arabayı burada durdurmaları gerekiyor.
+olvidar	presente	Siempre olvido dónde dejo las llaves.	Anahtarları nereye koyduğumu hep unuturum.
+olvidar	preterito	Ayer olvidé mi paraguas en el tren.	Dün şemsiyemi trende unuttum.
+olvidar	imperfecto	Mi abuela olvidaba los nombres, pero nunca las canciones.	Büyükannem isimleri unuturdu ama şarkıları asla.
+olvidar	perfecto	He olvidado la contraseña otra vez.	Şifreyi yine unuttum.
+olvidar	futuro	Con el tiempo olvidarás este mal día.	Zamanla bu kötü günü unutacaksın.
+olvidar	condicional	Yo olvidaría todo si pudiera empezar de nuevo.	Yeniden başlayabilseydim her şeyi unuturdum.
+olvidar	subjuntivo	No quiero que olvides la cita.	Randevuyu unutmanı istemiyorum.
+sobrevivir	presente	Este cactus sobrevive con muy poca agua.	Bu kaktüs çok az suyla hayatta kalır.
+sobrevivir	preterito	Solo dos personas sobrevivieron al accidente.	Kazadan yalnızca iki kişi sağ kurtuldu.
+sobrevivir	imperfecto	En aquella época sobrevivíamos con lo mínimo.	O dönemde asgari şeylerle ayakta kalıyorduk.
+sobrevivir	perfecto	La empresa ha sobrevivido a la crisis.	Şirket krizden sağ çıktı.
+sobrevivir	futuro	Sobreviviremos a este invierno.	Bu kışı atlatacağız.
+sobrevivir	condicional	Sin comida, no sobreviviríamos mucho tiempo.	Yiyecek olmadan uzun süre hayatta kalamazdık.
+sobrevivir	subjuntivo	Dudo que sobreviva sin ayuda.	Yardımsız hayatta kalabileceğinden şüpheliyim.
+respirar	presente	Respiro hondo antes de hablar en público.	Topluluk önünde konuşmadan önce derin nefes alırım.
+respirar	preterito	El nadador respiró profundamente y se sumergió.	Yüzücü derin bir nefes alıp suya daldı.
+respirar	imperfecto	El enfermo respiraba con dificultad.	Hasta zor nefes alıyordu.
+respirar	perfecto	Hemos respirado aire puro en la montaña.	Dağda temiz hava soluduk.
+respirar	futuro	Mañana respirarás mejor con este aire.	Yarın bu havayla daha rahat nefes alacaksın.
+respirar	condicional	Respiraríamos mejor sin tanto humo.	Bu kadar duman olmasa daha rahat nefes alırdık.
+respirar	subjuntivo	El médico quiere que respires despacio.	Doktor yavaş nefes almanı istiyor.
+soportar	presente	No soporto el ruido de las obras.	İnşaat gürültüsüne katlanamıyorum.
+soportar	preterito	Soportó el dolor sin quejarse.	Acıya şikâyet etmeden katlandı.
+soportar	imperfecto	La viga soportaba todo el peso del techo.	Kiriş çatının bütün ağırlığını taşıyordu.
+soportar	perfecto	Hemos soportado demasiado.	Çok fazla katlandık.
+soportar	futuro	No soportarás tanto calor sin agua.	Susuz bu kadar sıcağa dayanamazsın.
+soportar	condicional	No soportaría vivir lejos de mi familia.	Ailemden uzakta yaşamaya dayanamazdım.
+soportar	subjuntivo	Dudo que soporten esa presión.	Bu baskıya dayanabileceklerinden şüpheliyim.
+meter	presente	Meto la ropa en la lavadora cada noche.	Çamaşırları her gece makineye atarım.
+meter	preterito	Metió la llave en la cerradura y abrió la puerta.	Anahtarı kilide sokup kapıyı açtı.
+meter	imperfecto	Mi padre metía las manos en los bolsillos cuando tenía frío.	Babam üşüdüğünde ellerini ceplerine sokardı.
+meter	perfecto	¿Has metido el pasaporte en la maleta?	Pasaportu valize koydun mu?
+meter	futuro	Meteré los libros en la caja.	Kitapları kutuya koyacağım.
+meter	condicional	Yo no me metería en sus asuntos.	Ben onların işine karışmazdım.
+meter	subjuntivo	Es mejor que metas el dinero en el banco.	Parayı bankaya koyman daha iyi.
+fumar	presente	Mi tío fuma una pipa después de cenar.	Amcam akşam yemeğinden sonra pipo içer.
+fumar	preterito	Fumó su último cigarrillo en 2010.	Son sigarasını 2010'da içti.
+fumar	imperfecto	Antes se fumaba en los restaurantes.	Eskiden restoranlarda sigara içilirdi.
+fumar	perfecto	He fumado muy poco este año.	Bu yıl çok az sigara içtim.
+fumar	futuro	Si sigues así, fumarás más cada año.	Böyle devam edersen her yıl daha fazla sigara içeceksin.
+fumar	condicional	Yo no fumaría ni aunque me pagaran.	Bana para verseler bile sigara içmezdim.
+fumar	subjuntivo	Prefiero que no fumes en casa.	Evde sigara içmemeni tercih ederim.
+suceder	presente	¿Qué sucede aquí?	Burada ne oluyor?
+suceder	preterito	El accidente sucedió a las ocho de la mañana.	Kaza sabah saat sekizde meydana geldi.
+suceder	imperfecto	Eso sucedía a menudo cuando vivíamos en la ciudad.	Şehirde yaşarken bu sık sık olurdu.
+suceder	perfecto	Ha sucedido algo muy extraño.	Çok tuhaf bir şey oldu.
+suceder	futuro	Todo sucederá muy rápido.	Her şey çok hızlı gerçekleşecek.
+suceder	condicional	Si no te preparas, sucedería lo peor.	Hazırlanmazsan en kötüsü olurdu.
+suceder	subjuntivo	Aunque suceda lo contrario, seguiré aquí.	Tersi olsa bile burada olacağım.

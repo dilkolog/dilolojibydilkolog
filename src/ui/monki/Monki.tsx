@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import '../../lazy.css'
-import { AiError, monkiTurn } from '../../ai'
+import { AiError, monkiTurn, type MonkiMode } from '../../ai'
 import type { TargetLanguage } from '../../engine/types'
 import { useAi } from '../aiContext'
 import { CloseIcon, SendIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose } from './MonkiMascot'
+import { setMonkiListener, type MonkiAsk } from './monkiBus'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -43,15 +44,49 @@ function saveChat(language: TargetLanguage, msgs: Msg[]) {
   }
 }
 
-const STARTERS = (language: TargetLanguage, hasWeak: boolean): string[] => [
-  `Beni ${LANGUAGE_NAME[language]} küçük bir soruyla sına`,
-  'Bugün işime yarayacak 5 kalıp öğret',
-  'Yazdığım cümleyi düzeltir misin?',
-  hasWeak ? 'Zorlandığım kelimelerle kısa bir hikâye yaz' : 'Bana kısa, kolay bir hikâye yaz',
+const MODES: { id: MonkiMode; label: string; hint: string }[] = [
+  { id: 'chat', label: 'Sohbet', hint: 'Her şeyi sor' },
+  { id: 'quiz', label: 'Sınav', hint: 'Her seferinde tek soru' },
+  { id: 'roleplay', label: 'Rol yap', hint: 'Bir sahneyi konuşarak çalış' },
+  { id: 'mistakes', label: 'Hatalarım', hint: 'Son hatalarını konuş' },
 ]
 
+const SCENARIOS = ['Kafede sipariş vermek', 'Otelde check-in', 'Yol sormak', 'Doktora gitmek', 'İş mülakatı', 'Alışveriş yapmak']
+
+const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean): string[] => {
+  if (mode === 'quiz') return ['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor']
+  if (mode === 'roleplay') return SCENARIOS
+  if (mode === 'mistakes') return hasMistakes ? ['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla'] : []
+  return ['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', hasWeak ? 'Zorlandığım kelimelerle kısa bir hikâye yaz' : 'Bana kısa, kolay bir hikâye yaz']
+}
+
+const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolean) => string> = {
+  chat: (hello, lang) => `**${hello}** ${lang} çalışırken takıldığın her şeyi bana sorabilirsin: bir kelime, bir kural, bir cümle. Nereden başlayalım?`,
+  quiz: (_h, lang) => `**Sınav zamanı!** Sana ${lang} tek tek soru soracağım; cevabını yaz ya da seçeneklerden birine dokun. Hangisiyle başlayalım?`,
+  roleplay: (_h, lang) => `**Bir sahne seç**, ben karşındaki kişi olurum ve ${lang} konuşuruz. Hata yaparsan konuşmayı bölmeden altına küçük bir düzeltme yazarım.`,
+  mistakes: (_h, _l, has) => (has ? '**Son hatalarına bakalım.** Tek tek, nedenini ve bir hafıza ipucunu konuşalım, sonra yeni bir cümle kuralım.' : '**Açık hatan yok**, harika! Birkaç soru çözüp hata biriktirdikçe burada onlarla çalışabiliriz.'),
+}
+
 /** Monki: the assistant. A floating monkey that opens a small chat about the language being learned. */
-export default function Monki({ language, name, weakWords, onSettings }: { language: TargetLanguage; name?: string; weakWords?: string[]; onSettings: () => void }) {
+export default function Monki({
+  language,
+  name,
+  weakWords,
+  mistakes,
+  showButton = true,
+  inSession = false,
+  onSettings,
+}: {
+  language: TargetLanguage
+  name?: string
+  weakWords?: string[]
+  mistakes?: { word: string; given: string; expected: string }[]
+  /** The floating button is hidden in a session and on the summary; the chat can still be opened by a question from the screen. */
+  showButton?: boolean
+  /** In a session the chat pauses the keyboard shortcuts (a number key would answer the question). */
+  inSession?: boolean
+  onSettings: () => void
+}) {
   const { apiKey, needsApproval } = useAi()
   const [open, setOpen] = useState(false)
   const [msgs, setMsgs] = useState<Msg[]>(() => loadChat(language))
@@ -59,15 +94,24 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
   const [text, setText] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [mode, setMode] = useState<MonkiMode>('chat')
+  const [scenario, setScenario] = useState('')
   const logRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const fabRef = useRef<HTMLButtonElement>(null)
   const languageRef = useRef(language)
   const wasOpen = useRef(false)
+  /** Where the focus was when the chat was opened from the screen (a session's answer sheet): it goes back there. */
+  const returnTo = useRef<HTMLElement | null>(null)
 
-  // Closing hands the focus back to the button (it is drawn again then, so this runs after the render).
+  // Closing hands the focus back (the button is drawn again then, so this runs after the render).
   useEffect(() => {
-    if (wasOpen.current && !open) fabRef.current?.focus()
+    if (wasOpen.current && !open) {
+      const back = returnTo.current
+      returnTo.current = null
+      if (back?.isConnected) back.focus()
+      else fabRef.current?.focus()
+    }
     wasOpen.current = open
   }, [open])
 
@@ -101,7 +145,7 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
   }, [msgs, busy, open, suggestions])
 
   const send = useCallback(
-    async (raw: string) => {
+    async (raw: string, over?: { mode?: MonkiMode; scenario?: string }) => {
       const message = raw.trim()
       if (!message || busy || !apiKey) return
       const asked = language
@@ -118,6 +162,9 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
           history: recent(next).map((m) => ({ role: m.role, text: m.text })),
           name: name || undefined,
           weakWords,
+          mode: over?.mode ?? mode,
+          scenario: (over?.scenario ?? scenario) || undefined,
+          mistakes,
         })
         if (languageRef.current !== asked) return
         const done = [...next, { role: 'assistant' as const, text: reply.reply }]
@@ -131,8 +178,39 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
         if (languageRef.current === asked) setBusy(false)
       }
     },
-    [apiKey, busy, language, msgs, name, weakWords],
+    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes],
   )
+
+  // A question from elsewhere in the app (a word page, a wrong answer, a sentence being read).
+  const sendRef = useRef(send)
+  sendRef.current = send
+  useEffect(() => {
+    setMonkiListener((ask: MonkiAsk) => {
+      returnTo.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+      if (ask.mode) {
+        setMode(ask.mode)
+        setScenario(ask.scenario ?? '')
+      }
+      setOpen(true)
+      if (ask.send) void sendRef.current(ask.text, { mode: ask.mode, scenario: ask.scenario })
+      else setText(ask.text)
+    })
+    return () => setMonkiListener(null)
+  }, [])
+
+  const pickMode = (m: MonkiMode) => {
+    setMode(m)
+    setScenario('')
+    setSuggestions([])
+    setError('')
+  }
+  /** A starter chip: in the role-play it picks the scene, elsewhere it is simply the first question. */
+  const startWith = (label: string) => {
+    if (mode === 'roleplay') {
+      setScenario(label)
+      void send(`Rol yapalım: ${label}. Sahneyi sen başlat.`, { mode, scenario: label })
+    } else void send(label)
+  }
 
   const clear = () => {
     setMsgs([])
@@ -145,13 +223,13 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
 
   return (
     <>
-      {!open && (
+      {!open && showButton && (
         <button ref={fabRef} type="button" className="monki-fab" onClick={() => setOpen(true)} aria-label="Monki ile konuş" title="Monki ile konuş">
           <MonkiFace face="happy" size={50} />
         </button>
       )}
       {open && (
-        <section className="monki-panel" role="dialog" aria-label="Monki" aria-modal="false">
+        <section className="monki-panel" role="dialog" aria-label="Monki" aria-modal={inSession ? 'true' : 'false'}>
           <header className="monki-head">
             <span className="monki-avatar" aria-hidden>
               <MonkiFace face={busy ? 'think' : error ? 'surprised' : 'happy'} size={42} />
@@ -187,15 +265,22 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
             </div>
           ) : (
             <>
+              <div className="monki-modes" role="group" aria-label="Sohbet türü">
+                {MODES.map((m) => (
+                  <button key={m.id} type="button" className="chip chip-sm" aria-pressed={mode === m.id} title={m.hint} onClick={() => pickMode(m.id)}>
+                    {m.label}
+                  </button>
+                ))}
+              </div>
               <div className="monki-body monki-log" ref={logRef} role="log" aria-live="polite" aria-label="Sohbet">
-                {msgs.length === 0 && (
+                {msgs.length === 0 && mode === 'chat' && (
                   <div className="monki-hello">
                     <MonkiPose pose="hang" height={104} />
                   </div>
                 )}
                 {msgs.length === 0 && (
                   <div className="monki-msg from-monki">
-                    <RichText text={`**${hello}** ${LANGUAGE_NAME[language]} çalışırken takıldığın her şeyi bana sorabilirsin: bir kelime, bir kural, bir cümle. Nereden başlayalım?`} />
+                    <RichText text={INTRO[mode](hello, LANGUAGE_NAME[language], !!mistakes?.length)} />
                   </div>
                 )}
                 {msgs.map((m, i) => (
@@ -218,8 +303,8 @@ export default function Monki({ language, name, weakWords, onSettings }: { langu
                 )}
               </div>
               <div className="monki-chips">
-                {(msgs.length === 0 ? STARTERS(language, !!weakWords?.length) : suggestions).map((s) => (
-                  <button key={s} type="button" className="chip" disabled={busy} onClick={() => void send(s)}>
+                {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
+                  <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
                     {s}
                   </button>
                 ))}

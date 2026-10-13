@@ -1,0 +1,499 @@
+[
+  {
+    "id": "fr-passe_imparfait-01",
+    "language": "fr",
+    "level": "B1",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Hier, quand je suis arrivé, il ___ déjà.",
+    "answer": "dormait",
+    "options": [
+      "dormait",
+      "a dormi",
+      "dort",
+      "dormira"
+    ],
+    "hint": "süren durum → imparfait",
+    "explanation": "Başka bir olay gerçekleşirken süren bir durum imparfait ile söylenir: il dormait déjà (ben geldiğimde çoktan uyuyordu). Ani olay (je suis arrivé) passé composé’dir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-02",
+    "language": "fr",
+    "level": "B1",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Je ___ ma douche quand le téléphone a sonné.",
+    "answer": "prenais",
+    "options": [
+      "prenais",
+      "ai pris",
+      "prends",
+      "prendrai"
+    ],
+    "hint": "devam eden eylem + kesen olay",
+    "explanation": "Kesilen, devam etmekte olan eylem imparfait olur (je prenais), onu kesen olay passé composé’dir (a sonné).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-03",
+    "language": "fr",
+    "level": "B1",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Soudain, la porte ___.",
+    "answer": "s'est ouverte",
+    "options": [
+      "s'est ouverte",
+      "s'ouvrait",
+      "s'ouvre",
+      "s'ouvrirait"
+    ],
+    "hint": "soudain → passé composé",
+    "explanation": "« Soudain » ani bir olayı bildirir; bitmiş tek bir olay passé composé ile anlatılır. Dönüşlü fiil être alır ve özneye uyar: la porte s'est ouverte.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-04",
+    "language": "fr",
+    "level": "B1",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Quand j'étais petit, nous ___ chaque été chez ma grand-mère.",
+    "answer": "allions",
+    "options": [
+      "allions",
+      "sommes allés",
+      "irons",
+      "allons"
+    ],
+    "hint": "alışkanlık → imparfait",
+    "explanation": "Geçmişte tekrarlanan alışkanlık imparfait ile anlatılır: nous allions chaque été.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-05",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Il ___ très froid ce matin-là, alors j'ai mis mon manteau.",
+    "answer": "faisait",
+    "options": [
+      "faisait",
+      "a fait",
+      "fera",
+      "fait"
+    ],
+    "hint": "betimleme / arka plan → imparfait",
+    "explanation": "Hava durumu ve ortam betimlemesi imparfait ile yapılır (il faisait froid); bunun üzerine yapılan eylem passé composé’dir (j'ai mis).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-06",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Hier soir, j'___ un film pendant deux heures.",
+    "answer": "ai regardé",
+    "options": [
+      "ai regardé",
+      "regardais",
+      "regarde",
+      "regarderais"
+    ],
+    "hint": "pendant + süre → passé composé",
+    "explanation": "Süresi belirtilmiş ve bitmiş bir eylem passé composé’dir: j'ai regardé un film pendant deux heures. « pendant + süre » genellikle passé composé ister.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-07",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Elle ___ fatiguée, donc elle est rentrée tôt.",
+    "answer": "était",
+    "options": [
+      "était",
+      "a été",
+      "serait",
+      "est"
+    ],
+    "hint": "durum → imparfait",
+    "explanation": "Sebep olan durum (yorgunluk) imparfait ile söylenir; sonuç olan eylem passé composé’dir (est rentrée).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-08",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Pendant que je ___ le dîner, les enfants ont commencé à crier.",
+    "answer": "préparais",
+    "options": [
+      "préparais",
+      "ai préparé",
+      "prépare",
+      "préparerai"
+    ],
+    "hint": "pendant que → imparfait",
+    "explanation": "« Pendant que » ile anlatılan eş zamanlı, süren eylem imparfait olur; araya giren olay passé composé’dir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-09",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Elle ___ Paul pour la première fois en 2015.",
+    "answer": "a rencontré",
+    "options": [
+      "a rencontré",
+      "rencontrait",
+      "rencontre",
+      "rencontrera"
+    ],
+    "hint": "belirli an → passé composé",
+    "explanation": "Belirli bir tarihte gerçekleşen tek seferlik olay passé composé’dir: elle a rencontré Paul en 2015.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-10",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Autrefois, on ___ tout à la main.",
+    "answer": "faisait",
+    "options": [
+      "faisait",
+      "a fait",
+      "fera",
+      "fait"
+    ],
+    "hint": "autrefois → imparfait",
+    "explanation": "« Autrefois » geçmişteki alışkanlıkları ve genel durumları anlatır; imparfait kullanılır: on faisait tout à la main.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-11",
+    "language": "fr",
+    "level": "B1",
+    "topic": "passe_imparfait",
+    "type": "cloze",
+    "prompt": "Il ___ (avoir) dix ans quand sa famille a déménagé.",
+    "answer": "avait",
+    "hint": "yaş → imparfait",
+    "explanation": "Yaş ve durum bildirimi geçmişte imparfait ile yapılır: il avait dix ans. Taşınma (a déménagé) ise bitmiş bir olaydır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-12",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "cloze",
+    "prompt": "Hier, je ___ (se lever) à sept heures.",
+    "answer": "me suis levé",
+    "alternatives": [
+      "me suis levée"
+    ],
+    "hint": "dönüşlü fiil + être",
+    "explanation": "Belirli bir gün (hier) için bitmiş eylem passé composé’dir; dönüşlü fiil être ile kurulur: je me suis levé(e).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-13",
+    "language": "fr",
+    "level": "B1",
+    "topic": "passe_imparfait",
+    "type": "cloze",
+    "prompt": "Quand nous étions enfants, nous ___ (jouer) toujours dehors.",
+    "answer": "jouions",
+    "hint": "alışkanlık → imparfait",
+    "explanation": "« Toujours » ve « quand nous étions enfants » geçmişteki alışkanlığı gösterir: imparfait → nous jouions.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-14",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "choice",
+    "prompt": "Il était minuit quand le train ___.",
+    "answer": "est arrivé",
+    "options": [
+      "est arrivé",
+      "arrivait",
+      "arrive",
+      "arrivera"
+    ],
+    "hint": "olay → passé composé",
+    "explanation": "Saat bilgisi arka planı kurar (il était minuit, imparfait); trenin gelişi o anda gerçekleşen olaydır (passé composé).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-passe_imparfait-15",
+    "language": "fr",
+    "level": "B2",
+    "topic": "passe_imparfait",
+    "type": "error",
+    "prompt": "Soudain, il ouvrait la porte et il est entré.",
+    "answer": "ouvrait",
+    "fix": "a ouvert",
+    "hint": "soudain → passé composé",
+    "explanation": "« Soudain » ani bir olayı gösterir; birbirini izleyen bitmiş olaylar passé composé ile anlatılır: il a ouvert la porte et il est entré.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-01",
+    "language": "fr",
+    "level": "B1",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Je n'ai ___ mangé depuis hier matin.",
+    "answer": "rien",
+    "options": [
+      "rien",
+      "personne",
+      "plus",
+      "aucun"
+    ],
+    "hint": "ne … rien: hiçbir şey",
+    "explanation": "« ne … rien » hiçbir şey demektir. Birleşik zamanlarda rien, yardımcı fiil ile ortaç arasına girer: je n'ai rien mangé.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-02",
+    "language": "fr",
+    "level": "B1",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Je n'ai croisé ___ dans l'escalier.",
+    "answer": "personne",
+    "options": [
+      "personne",
+      "rien",
+      "jamais",
+      "plus"
+    ],
+    "hint": "ne … personne: hiç kimse",
+    "explanation": "« ne … personne » hiç kimse demektir; birleşik zamanda personne ortaçtan sonra gelir: je n'ai croisé personne.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-03",
+    "language": "fr",
+    "level": "B1",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Il ne fume ___ : il a arrêté il y a deux ans.",
+    "answer": "plus",
+    "options": [
+      "plus",
+      "jamais",
+      "rien",
+      "personne"
+    ],
+    "hint": "ne … plus: artık",
+    "explanation": "« ne … plus » “artık … değil” anlamındadır: önceden vardı, şimdi yok. Bıraktığı için il ne fume plus.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-04",
+    "language": "fr",
+    "level": "B1",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Je n'ai ___ voyagé en avion de ma vie.",
+    "answer": "jamais",
+    "options": [
+      "jamais",
+      "plus",
+      "rien",
+      "personne"
+    ],
+    "hint": "ne … jamais: hiçbir zaman",
+    "explanation": "« ne … jamais » hiçbir zaman demektir: je n'ai jamais voyagé (hayatımda hiç uçakla yolculuk etmedim).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-05",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Il ne boit ___ de l'eau, jamais de café.",
+    "answer": "que",
+    "options": [
+      "que",
+      "pas",
+      "jamais",
+      "rien"
+    ],
+    "hint": "ne … que: yalnızca",
+    "explanation": "« ne … que » olumsuz değil, kısıtlama bildirir: “yalnızca”. Il ne boit que de l'eau = sadece su içer. (« pas de l'eau » doğru bir biçim değildir.)",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-06",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Elle n'a ___ frère ni sœur.",
+    "answer": "ni",
+    "options": [
+      "ni",
+      "pas",
+      "aucun",
+      "plus"
+    ],
+    "hint": "ne … ni … ni",
+    "explanation": "« ne … ni … ni … » “ne … ne de …” anlamındadır; ni’lerden sonra artikel kullanılmaz: elle n'a ni frère ni sœur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-07",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Nous n'avons vu ___ élève dans la classe.",
+    "answer": "aucun",
+    "options": [
+      "aucun",
+      "personne",
+      "rien",
+      "jamais"
+    ],
+    "hint": "aucun + isim",
+    "explanation": "« aucun(e) » bir isimle birlikte “hiçbir” anlamındadır ve isme uyar: nous n'avons vu aucun élève. personne tek başına kullanılır, isim almaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-08",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Je n'ai parlé à ___ hier.",
+    "answer": "personne",
+    "options": [
+      "personne",
+      "rien",
+      "jamais",
+      "plus"
+    ],
+    "hint": "à + personne",
+    "explanation": "« parler à » kişi ister; « ne … personne » ortaçtan sonra gelir ve edat önünde kalır: je n'ai parlé à personne.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-09",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Personne ___ est venu à la réunion.",
+    "answer": "n'",
+    "options": [
+      "n'",
+      "ne",
+      "pas",
+      "ne pas"
+    ],
+    "hint": "özne personne → ne",
+    "explanation": "Personne özne olarak kullanıldığında cümle başında gelir, pas gerekmez; ne yalnızca fiilin önüne girer: personne n'est venu.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-10",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "Rien ___ me fait peur.",
+    "answer": "ne",
+    "options": [
+      "ne",
+      "n'",
+      "pas",
+      "plus"
+    ],
+    "hint": "özne rien → ne",
+    "explanation": "Rien özne olduğunda da yalnızca ne gelir, pas eklenmez: rien ne me fait peur (hiçbir şey beni korkutmaz).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-11",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "cloze",
+    "prompt": "Je n'ai ___ envie de sortir ce soir.",
+    "answer": "aucune",
+    "hint": "aucun / aucune",
+    "explanation": "Aucun, ismin cinsiyetine uyar: envie dişil olduğu için aucune envie (hiç canım istemiyor).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-12",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "cloze",
+    "prompt": "Il n'a plus ___ argent.",
+    "answer": "d'",
+    "hint": "olumsuz → de / d'",
+    "explanation": "Olumsuz yapıda (ne … plus / pas / jamais) belirsiz miktar bildiren artikel de olur; sesli harften önce d': il n'a plus d'argent.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-13",
+    "language": "fr",
+    "level": "B2",
+    "topic": "negation_fr",
+    "type": "cloze",
+    "prompt": "Je ne veux ___ voir.",
+    "answer": "rien",
+    "hint": "hiçbir şey → rien",
+    "explanation": "Mastarlı yapıda rien fiilden önce gelir ve ne … rien + mastar kurulur: je ne veux rien voir (hiçbir şey görmek istemiyorum).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-14",
+    "language": "fr",
+    "level": "B1",
+    "topic": "negation_fr",
+    "type": "error",
+    "prompt": "Il ne a pas compris la question.",
+    "answer": "ne",
+    "fix": "n'",
+    "hint": "ne + sesli → n'",
+    "explanation": "Sesli harfle başlayan fiilin önünde ne kısalır: il n'a pas compris.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-negation_fr-15",
+    "language": "fr",
+    "level": "B1",
+    "topic": "negation_fr",
+    "type": "choice",
+    "prompt": "— Je n'aime pas le café. — Moi ___.",
+    "answer": "non plus",
+    "options": [
+      "non plus",
+      "aussi",
+      "si",
+      "pas plus"
+    ],
+    "hint": "olumsuza katılma → non plus",
+    "explanation": "Olumsuz bir cümleye katılırken “aussi” değil « non plus » kullanılır: moi non plus (ben de sevmem).",
+    "source": "Diloloji (özgün)"
+  }
+]

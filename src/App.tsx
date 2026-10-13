@@ -3,6 +3,7 @@ import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, roundForMin
 
 import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
+import { mistakesForMonki, weakWordsOf } from './engine/monkiContext'
 import { answeredToday } from './engine/progress'
 import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from './engine/practice'
 import { buildQuestPlan } from './engine/questPlan'
@@ -301,16 +302,9 @@ export default function App() {
     history.replaceState(null, '', location.pathname)
     setIncomingSet(id)
   }, [])
-  // The words that went wrong most lately: Monki builds its examples and small quizzes from them.
-  const weakWords = useMemo(() => {
-    if (!data) return undefined
-    const byEntry = new Map(data.vocabulary.map((v) => [v.id, v.lemma]))
-    const words = openMistakes(data.mistakes)
-      .sort((a, b) => b.count - a.count)
-      .map((m) => byEntry.get(m.entryId))
-      .filter((w): w is string => !!w)
-    return [...new Set(words)].slice(0, 6)
-  }, [data])
+  // What went wrong most lately: Monki builds its examples, small quizzes and mistake talks from it.
+  const weakWords = useMemo(() => (data ? weakWordsOf(data.vocabulary, data.mistakes) : undefined), [data])
+  const monkiMistakes = useMemo(() => (data ? mistakesForMonki(data.vocabulary, data.mistakes) : undefined), [data])
   // The collaborative lists this device has joined, kept in step with the others.
   useCollabSync(reload, ready)
 
@@ -746,9 +740,17 @@ export default function App() {
             </ScreenBoundary>
           </main>
           <Toaster />
-          {ready && data && !inSession && screen.name !== 'summary' && (
+          {ready && data && (
             <Suspense fallback={null}>
-              <Monki language={data.language} name={settings.profile.name || undefined} weakWords={weakWords} onSettings={go({ name: 'settings' })} />
+              <Monki
+                language={data.language}
+                name={settings.profile.name || undefined}
+                weakWords={weakWords}
+                mistakes={monkiMistakes}
+                showButton={!inSession && screen.name !== 'summary'}
+                inSession={inSession}
+                onSettings={go({ name: 'settings' })}
+              />
             </Suspense>
           )}
           {incomingSet && ready && (

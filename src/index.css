@@ -3894,3 +3894,29 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .root-error h1 { margin: 0; font-size: var(--t-xl); }
 .root-error p { margin: 0; color: var(--ink-soft); }
 .root-error-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+/* "Ask Monki" buttons: the monkey's face as a small round mark before the label */
+.ask-monki { display: inline-flex; align-items: center; gap: 0.375rem; }
+.ask-monki .monki-face { display: inline-block; width: 1.25rem; height: 1.25rem; border-radius: 50%; object-fit: cover; object-position: 50% 15%; background: var(--surface); flex: none; }
+.ask-monki.link .monki-face { width: 1rem; height: 1rem; }
+
+/* Today: Monki's one offer a day */
+.monki-nudge { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.875rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.monki-nudge-face { flex: none; width: 2.75rem; height: 2.75rem; border-radius: 50%; overflow: hidden; background: var(--lang-soft); display: grid; place-items: center; }
+.monki-nudge-face img { display: block; margin-top: 0.3rem; max-width: none; }
+.monki-nudge-text { flex: 1; min-width: 0; margin: 0; font-size: var(--t-sm); color: var(--ink-soft); }
+.monki-nudge-text strong { color: var(--ink); }
+@media (max-width: 30rem) { .monki-nudge { flex-wrap: wrap; } .monki-nudge-text { flex-basis: calc(100% - 3.5rem); } }
+.monki-nudge .icon-btn { margin-left: auto; }
+
+/* the monkey itself: drawings (the chat is lazy, but Monki's face and poses also sit on Today and in the "ask" buttons), moved a little with CSS */
+.monki-face { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
+.monki-pose { display: block; width: auto; max-width: 100%; user-select: none; -webkit-user-drag: none; transform-origin: 50% 0; animation: monki-bob 4.5s ease-in-out infinite; }
+.monki-pose.is-still { animation: none; }
+@keyframes monki-bob { 0%, 100% { transform: rotate(-2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .monki-pose { animation: none !important; } }
+
+/* Today: reading and listening time, a small card under the day's quests */
+.today-time { display: grid; gap: 0.5rem; padding: 0.875rem 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); }
+.today-time-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+.today-time-head .section-title { margin: 0; }
+.today-time-line { margin: 0; }
