@@ -3,6 +3,7 @@ import type { PlanItem } from '../dailyPlan'
 import { newWordState } from '../review'
 import { createRng } from '../rng'
 import { completeItem, currentItem, firstSittingEnd, honorOff, insertLater, isFinished, MAX_RETRIES, mixInTyping, RELEARN_TARGET, retryItem, RETRY_GAP, skipRemaining, startSession, STRONG_RECOGNITION_DAYS, suggestBreak, summarize, typedFollowUp, typeStrongCloze } from '../session'
+import { exerciseTypesFor, hasLongGloss } from '../exercises'
 import { decision } from './fixtures'
 
 const item = (entryId: string, exerciseType: PlanItem['exerciseType'] = 'mc_meaning'): PlanItem => ({
@@ -200,9 +201,9 @@ describe('a type switched off in the middle of a session', () => {
 
   it('typing from the meaning off: no recognition question is turned into typing, and the follow-up is a choice', () => {
     const answered = { ...state, skills: { recognition: { ...createSchedulerCard(), reps: 3 } } } as unknown as typeof state
-    expect(mixInTyping(item('a'), answered, 1, () => 0, ['typed_translation'])).toMatchObject({ exerciseType: 'mc_meaning' })
+    expect(mixInTyping(item('a'), answered, 1, () => 0, false)).toMatchObject({ exerciseType: 'mc_meaning' })
     expect(mixInTyping(item('a'), answered, 1, () => 0)).toMatchObject({ exerciseType: 'typed_translation' })
-    expect(typedFollowUp(item('a'), ['typed_translation'])).toMatchObject({ skill: 'recognition', exerciseType: 'mc_meaning' })
+    expect(typedFollowUp(item('a'), false)).toMatchObject({ skill: 'recognition', exerciseType: 'mc_meaning' })
     expect(typedFollowUp(item('a'))).toMatchObject({ skill: 'recall', exerciseType: 'typed_translation' })
   })
 })
@@ -210,3 +211,31 @@ describe('a type switched off in the middle of a session', () => {
 function createSchedulerCard() {
   return { due: new Date(), stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 1, reps: 0, lapses: 0, state: 2 }
 }
+
+describe('words whose meaning is a long definition', () => {
+  const longDefinition = { ...decision, senses: [{ ...decision.senses[0], gloss: 'Persona gramatical que hace referencia a quien habla o emite el mensaje y a su grupo' }] }
+
+  it('a meaning of more than seven words or 60 characters is a definition, a short one is a translation', () => {
+    expect(hasLongGloss(longDefinition)).toBe(true)
+    expect(hasLongGloss(decision)).toBe(false)
+    expect(hasLongGloss({ ...decision, senses: [{ ...decision.senses[0], gloss: 'karar, hüküm, yargı, tespit, belirleme, sonuç' }] })).toBe(false)
+  })
+
+  it('with the setting on, the questions asked from the meaning are not asked for them, and everything else is', () => {
+    const asked = (entry: typeof decision, skipLong: boolean) => ['recall', 'recognition', 'listening'].flatMap((s) => exerciseTypesFor(s as 'recall', entry, { skipLong, speech: true }))
+    expect(asked(longDefinition, false)).toContain('typed_translation')
+    expect(asked(longDefinition, true)).not.toContain('typed_translation')
+    expect(asked(longDefinition, true)).not.toContain('speak_word')
+    expect(asked(longDefinition, true)).toContain('mc_meaning')
+    // A short meaning is unaffected.
+    expect(asked(decision, true)).toContain('typed_translation')
+  })
+
+  it('a question planned before the setting was turned on is swapped as it comes up; typing is not mixed in', () => {
+    const state = newWordState(longDefinition, new Date('2026-10-10T12:00:00Z'))
+    const planned: PlanItem = { kind: 'exercise', entryId: longDefinition.id, reason: 'due', skill: 'recall', exerciseType: 'typed_translation' }
+    const swapped = honorOff(planned, longDefinition, state, createRng(4), { skipLong: true })
+    expect(swapped.exerciseType).not.toBe('typed_translation')
+    expect(honorOff(planned, decision, state, createRng(4), { skipLong: true })).toBe(planned)
+  })
+})

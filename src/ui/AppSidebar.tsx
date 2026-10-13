@@ -6,6 +6,7 @@ import { Avatar } from './Avatar'
 import type { GameState } from './game'
 import { BrandMark, ChevronLeftIcon, ChevronRightIcon, GearIcon, SearchIcon } from './icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './labels'
+import { AccessBadge } from './AccessBadge'
 import { OfflineBadge } from './OfflineBadge'
 import { StreakFlame } from './StreakFlame'
 
@@ -60,6 +61,7 @@ export function Sidebar({
           <span className="brand-name">Diloloji</span>
         </button>
         <OfflineBadge />
+        <AccessBadge onOpen={go({ name: 'settings' })} />
         <button className="icon-btn rail-toggle" onClick={onToggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>
           {rail ? <ChevronRightIcon size={18} /> : <ChevronLeftIcon size={18} />}
         </button>

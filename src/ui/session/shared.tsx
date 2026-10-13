@@ -125,12 +125,30 @@ export function Sentence({ text, translation, source, blankStart, lang }: { text
 
 type LegendMode = 'guess' | 'intro' | 'choice' | 'typed' | 'answered'
 
+const LEGEND_SEEN = 'diloloji:legend-seen'
+/** How many questions the legend has been shown for: bright while the shortcuts are new, dim once they are known, gone after that (per device). */
+const LEGEND_BRIGHT = 15
+const LEGEND_GONE = 60
+function useLegendAge(): 'new' | 'known' | 'gone' {
+  const [seen] = useState(() => {
+    try {
+      const n = Number(localStorage.getItem(LEGEND_SEEN)) || 0
+      localStorage.setItem(LEGEND_SEEN, String(n + 1))
+      return n
+    } catch {
+      return 0
+    }
+  })
+  return seen < LEGEND_BRIGHT ? 'new' : seen < LEGEND_GONE ? 'known' : 'gone'
+}
+
 /**
  * Shortcut reminder for what is on screen right now, only on devices with a hover-capable pointer
  * (i.e. a real keyboard is likely).
  */
 export function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?: boolean; override?: boolean }) {
-  if (!prefs.showKeyLegend) return null
+  const age = useLegendAge()
+  if (!prefs.showKeyLegend || age === 'gone') return null
   const k = (...keys: string[]) => keys.map((key, i) => (
     <span key={key}>
       {i > 0 && '+'}
@@ -138,7 +156,7 @@ export function KeyLegend({ mode, hints, override }: { mode: LegendMode; hints?:
     </span>
   ))
   return (
-    <p className="kbd-legend" aria-hidden>
+    <p className={`kbd-legend${age === 'known' ? ' is-faded' : ''}`} aria-hidden>
       {mode === 'guess' && (
         <>
           <span>{k('1')}–<kbd>4</kbd> tahmin et</span>

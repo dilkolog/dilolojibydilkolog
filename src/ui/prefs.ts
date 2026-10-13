@@ -26,6 +26,8 @@ export const prefs = {
   hideVosotros: false,
   /** Question types switched off (Settings → Sorular), for the places that build questions outside the plan. */
   exerciseOff: [] as ExerciseType[],
+  /** Questions asked from the meaning are skipped for a word whose meaning is a long definition (Settings → Sorular). */
+  skipLongGloss: false,
 }
 
 export function applySettings(s: Settings) {
@@ -54,6 +56,7 @@ export function applySettings(s: Settings) {
   prefs.keepAwake = s.keepAwake ?? true
   prefs.hideVosotros = s.hideVosotros ?? false
   prefs.exerciseOff = engineFlags(s.exercisePrefs, s.typedBlanks).off ?? []
+  prefs.skipLongGloss = s.skipLongGloss ?? false
   // Calm is the dark theme plus a flag that turns its colours down (see index.css).
   if (s.theme === 'system') delete root.dataset.theme
   else root.dataset.theme = s.theme === 'calm' ? 'dark' : s.theme === 'contrast' ? 'light' : s.theme

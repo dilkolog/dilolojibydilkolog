@@ -136,10 +136,12 @@ export function AudioPanel({
   const [local, setLocal] = useState<string>()
   useEffect(() => {
     let live = true
-    void cachedAudio(src).then((url) => {
-      const a = audio.current
-      if (live && url && a && a.paused && a.currentTime === 0) setLocal(url)
-    })
+    void cachedAudio(src)
+      .catch(() => undefined)
+      .then((url) => {
+        const a = audio.current
+        if (live && url && a && a.paused && a.currentTime === 0) setLocal(url)
+      })
     return () => {
       live = false
     }

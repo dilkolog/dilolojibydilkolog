@@ -223,6 +223,8 @@ export interface EngineOptions {
   off?: ExerciseType[]
   /** Types the learner wants less of: still asked, but about a third as often as the others. */
   less?: ExerciseType[]
+  /** Questions whose text is the word's meaning are not asked for a word whose meaning is a long definition (Settings → Sorular). */
+  skipLong?: boolean
 }
 
 export type Direction =

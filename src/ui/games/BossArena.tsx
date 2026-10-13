@@ -114,7 +114,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
   }, [vocabulary, language])
   const types = useMemo(() => {
     const t = unlockedSkills(state, entry)
-      .flatMap((sk) => exerciseTypesFor(sk, entry, { off: prefs.exerciseOff }))
+      .flatMap((sk) => exerciseTypesFor(sk, entry, { off: prefs.exerciseOff, skipLong: prefs.skipLongGloss }))
       .filter((x) => BATTLE_TYPES.has(x))
     return t.length ? t : (['mc_meaning', 'typed_translation'] as ExerciseType[])
   }, [state, entry])

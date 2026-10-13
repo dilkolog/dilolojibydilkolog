@@ -11,7 +11,7 @@ import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
 import { adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
-import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
+import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type ExerciseType, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
 import { addExample } from '../data/wordInput'
@@ -23,6 +23,7 @@ import { ConfirmDialog } from './Dialog'
 import { BoltIcon, CheckIcon, CloseIcon, FlameIcon, GearIcon, HelpIcon, HourglassIcon, SlowIcon, StarIcon } from './icons'
 import { applySettings, prefs } from './prefs'
 import { sfx } from './sounds'
+import { useGame } from './game'
 import { canSpeak, playWord, preloadRecording, speak, speechPrefs } from './speech'
 import { prefetchNatural } from './naturalVoice'
 import { warmAudio } from '../data/audioCache'
@@ -31,7 +32,9 @@ import { Intro } from './session/Intro'
 import { RefreshCard } from './session/RefreshCard'
 import { FormQuestion } from './session/FormQuestion'
 import { Prompt } from './session/Prompt'
-import { showToast } from './toastFeed'
+import { showToast, undoable } from './toastFeed'
+import { effectivePrefs, PREF_TYPES } from '../engine/exercisePrefs'
+import { blockedByPrefs } from '../engine/exercises'
 import { DifficultButton } from './DifficultButton'
 import { isDifficult, withDifficult } from '../engine/difficult'
 import { WordPlant } from './session/WordPlant'
@@ -144,14 +147,32 @@ export function SessionScreen(p: Props) {
   }, [p.items, p.vocabulary])
   // Some recognition questions become typing (Settings → Yazma oranı), and a well-known word's
   // blank is typed instead of chosen; practice sessions keep their plan.
+  /** Typing from the meaning is open to this word: not switched off, and its meaning is not a long definition when those are skipped. */
+  const typedAllowed = (entryId: string) => {
+    const word = byId.get(entryId)
+    return !blockedByPrefs('typed_translation', word ?? ({ senses: [{ gloss: '' }] } as VocabularyEntry), { off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
+  }
   const shape = (it: PlanItem, st: UserWordState | undefined) => {
-    const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng, prefs.exerciseOff)
+    const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng, typedAllowed(it.entryId))
     return prefs.exerciseOff.includes('cloze_typed') ? mixed : typeStrongCloze(mixed, st)
   }
   const [session, setSession] = useState(() =>
     startSession(p.mode === 'practice' || !p.items.length ? p.items : [shape(p.items[0], states.current.get(p.items[0].entryId)), ...p.items.slice(1)]),
   )
   const item = currentItem(session)
+  // The day's XP goal is reached in the middle of a round: said once, with the same little chime as a run of five.
+  const dayGame = useGame()
+  const earnedXp = session.log.reduce((sum, l) => sum + (l.xp ?? 0), 0)
+  const dayGoal = p.settings?.dailyXpGoal ?? 0
+  const goalSaid = useRef(false)
+  useEffect(() => {
+    if (goalSaid.current || !dayGoal || !dayGame || p.mode !== 'normal') return
+    if (dayGame.xp.today < dayGoal && dayGame.xp.today + earnedXp >= dayGoal) {
+      goalSaid.current = true
+      sfx.combo()
+      showToast('Günlük XP hedefin tamam!')
+    }
+  }, [earnedXp, dayGoal, dayGame, p.mode])
   const { onFinish } = p
   // Words whose refresher card was shown (or put away) in this session.
   const [refreshed, setRefreshed] = useState<ReadonlySet<string>>(() => new Set())
@@ -197,7 +218,7 @@ export function SessionScreen(p: Props) {
       const mixed = p.mode === 'practice' || up.reason === 'practice' ? up : shape(up, states.current.get(up.entryId))
       const adapted = adaptExercise(mixed, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
       // A type switched off in this session's settings applies to what is still to come, not only to the next plan.
-      const final = p.mode === 'practice' || up.reason === 'practice' ? adapted : honorOff(adapted, upEntry, states.current.get(up.entryId), rng, { ...p.options, off: prefs.exerciseOff })
+      const final = p.mode === 'practice' || up.reason === 'practice' ? adapted : honorOff(adapted, upEntry, states.current.get(up.entryId), rng, { ...p.options, off: prefs.exerciseOff, skipLong: prefs.skipLongGloss })
       if (final === up) return after
       const items = [...after.items]
       items[after.index] = final
@@ -320,6 +341,19 @@ export function SessionScreen(p: Props) {
     return true
   }
 
+  /** A kind of question turned down or off from the feedback after a miss (Settings → Sorular), undoable. */
+  const setTypePref = (type: ExerciseType, name: string, level: 'less' | 'off') => {
+    const settings = p.settings
+    if (!settings || !p.onSettings) return
+    const prefs = { ...effectivePrefs(settings.exercisePrefs, settings.typedBlanks), [type]: level }
+    const apply = (next: Settings) => {
+      applySettings(next)
+      p.onSettings!(next)
+    }
+    apply({ ...settings, exercisePrefs: prefs, typedBlanks: true })
+    undoable(level === 'off' ? `“${name}” soruları artık sorulmayacak.` : `“${name}” soruları daha az sorulacak.`, () => apply(settings))
+  }
+
   const proceed = (log: Omit<SessionLogEntry, 'item'>) => {
     const state = states.current.get(entry.id)
     const retry = log.verdict === 'wrong' && state ? retryItem(item, entry, state, rng, p.options) : undefined
@@ -327,7 +361,7 @@ export function SessionScreen(p: Props) {
     // The second comeback is typed: picked out twice, now produced from its meaning.
     const comebacks = session.followUps?.[entry.id] ?? 0
     const followUp =
-      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item, prefs.exerciseOff) : retryItem(item, entry, state, rng, p.options)) : undefined
+      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item, typedAllowed(entry.id)) : retryItem(item, entry, state, rng, p.options)) : undefined
     next(log, retry, followUp)
   }
 
@@ -483,6 +517,7 @@ export function SessionScreen(p: Props) {
           intrusionSources={intrusionSources}
           onEntryUpdated={(updated) => setById((m) => new Map(m).set(updated.id, updated))}
           onToggleDifficult={() => void markDifficult(!isDifficult(entry))}
+          onTypePref={p.settings && p.onSettings ? setTypePref : undefined}
         />
       )}
       </div>
@@ -492,6 +527,8 @@ export function SessionScreen(p: Props) {
 
 
 interface RunnerProps {
+  /** Turns the share of a kind of question down or off (from the feedback after a miss). */
+  onTypePref?: (type: ExerciseType, name: string, level: 'less' | 'off') => void
   entry: VocabularyEntry
   item: PlanItem
   catalog: VocabularyEntry[]
@@ -519,7 +556,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
@@ -625,6 +662,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
     }
   }
 
+  /** The kind of question on screen, when the learner can tune its share (Settings → Sorular). */
+  const tunableType = PREF_TYPES.find((t) => t.type === exercise.type)
   /** "Unuttum": nothing comes to mind. The answer is shown, it counts as a miss (back soon), and no wrong guess is recorded. */
   const canForget = !result && !pending && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation'
   const forget = () => {
@@ -792,6 +831,8 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
             }
             xp={result.log.xp}
             forgot={result.forgot}
+            typeName={tunableType?.name}
+            onTypePref={tunableType && onTypePref ? (level) => onTypePref(tunableType.type, tunableType.name, level) : undefined}
             entry={entry}
             mnemonic={mnemonic}
             onMnemonic={() => setMnemonic('open')}

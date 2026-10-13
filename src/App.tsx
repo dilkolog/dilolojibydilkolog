@@ -1,5 +1,5 @@
 import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem, type PlanReason } from './engine/dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, roundForMinutes, shortRound, type PlanItem, type PlanReason } from './engine/dailyPlan'
 
 import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
@@ -137,7 +137,7 @@ export default function App() {
   }, [language])
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const flags = useMemo(() => engineFlags(settings?.exercisePrefs, settings?.typedBlanks), [settings?.exercisePrefs, settings?.typedBlanks])
-  const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn, ...flags }), [apiKey, speechOn, flags])
+  const options = useMemo(() => ({ ai: !!apiKey, speech: speechOn, skipLong: !!settings?.skipLongGloss, ...flags }), [apiKey, speechOn, settings?.skipLongGloss, flags])
 
   useEffect(() => {
     db.getSettings().then((s) => setSettings(s ?? null))
@@ -501,6 +501,12 @@ export default function App() {
     const items = plan.items.filter((it) => it.reason === reason)
     if (items.length) startSession(items, 'normal', daySeed(new Date()))
   }
+  /** The day's most urgent questions that fit N minutes: for a short moment. */
+  const startMinutes = (minutes: number) => {
+    if (!plan) return
+    const items = roundForMinutes(plan.items, minutes)
+    if (items.length) startSession(items, 'normal', daySeed(new Date()))
+  }
   /** A short round of the day's most urgent questions, when the pile of reviews is deep. */
   const startShortRound = () => plan && startSession(shortRound(plan.items), 'normal', daySeed(new Date()))
   /**
@@ -665,7 +671,7 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
-  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
 
   return (
     <AccessContext.Provider value={access}>

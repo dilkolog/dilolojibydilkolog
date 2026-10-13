@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { loadFrequency } from '../../data/frequency'
 import { createRng } from '../rng'
-import { BANDS, buildVocabTest, PSEUDO_WORDS, scoreVocabTest, WORDS_PER_BAND } from '../vocabTest'
+import { adviceFor, BANDS, buildVocabTest, PSEUDO_WORDS, scoreVocabTest, WORDS_PER_BAND } from '../vocabTest'
 
 describe('vocabulary size test', () => {
   it('samples every band and adds invented words that are not in the list', async () => {
@@ -35,5 +35,21 @@ describe('vocabulary size test', () => {
     // Skipped words (names) count neither way.
     const skipped = scoreVocabTest(items, new Set(Array.from({ length: BANDS }, (_, b) => `k${b}`)), new Set(['u0']))
     expect(skipped.bands[0]).toBe(1)
+  })
+})
+
+describe('a level from the vocabulary size', () => {
+  it('reads a size as a CEFR stage, with advice and a suitable number of new words a day', () => {
+    expect(adviceFor(300)).toMatchObject({ level: 'A1', newPerDay: 10 })
+    expect(adviceFor(1500).level).toBe('A2')
+    expect(adviceFor(2500).level).toBe('B1')
+    expect(adviceFor(5000).level).toBe('B2')
+    expect(adviceFor(8000).level).toBe('C1')
+    expect(adviceFor(15000).level).toBe('C2')
+    // The bigger the vocabulary, the fewer new words a day make sense, and every stage says what to do.
+    const sizes = [300, 1500, 2500, 5000, 8000, 15000]
+    const perDay = sizes.map((n) => adviceFor(n).newPerDay)
+    expect([...perDay].sort((a, b) => b - a)).toEqual(perDay)
+    expect(sizes.every((n) => adviceFor(n).advice.length > 20)).toBe(true)
   })
 })

@@ -36,9 +36,14 @@ export function Feedback({
   onMnemonic,
   onEdit,
   forgot,
+  typeName,
+  onTypePref,
 }: {
   /** "Unuttum": the answer is shown as a lesson, not as a mistake (no red, no scolding). */
   forgot?: boolean
+  /** The kind of question just answered (when it can be tuned) and what turns its share down or off: offered after a miss, when a kind is a struggle. */
+  typeName?: string
+  onTypePref?: (level: 'less' | 'off') => void
   xp?: number
   mnemonic?: 'offer' | 'open' | 'saved' | null
   onMnemonic?: () => void
@@ -154,6 +159,36 @@ export function Feedback({
             </p>
           )}
           {ev.verdict !== 'correct' && entry.notes && <p className="small"><BulbIcon size={16} className="inline-icon" /><RichText text={entry.notes} /></p>}
+          {ev.verdict !== 'correct' && !forgot && (example || entry.collocations.length > 0) && (
+            // The word in use, a tap away: a miss is the moment its sentence and its usual company help most.
+            <details className="why-more small">
+              <summary>Örnek ve kalıplar</summary>
+              {example && (
+                <p lang={entry.language} className="why-example">
+                  {example.text}
+                  {example.translation && <span className="muted"> — {example.translation}</span>}
+                </p>
+              )}
+              {entry.collocations.slice(0, 2).map((c) => (
+                <p key={c.phrase} className="why-colloc">
+                  <em lang={entry.language}>{c.phrase}</em>
+                  {c.translation && <span className="muted"> — {c.translation}</span>}
+                </p>
+              ))}
+            </details>
+          )}
+          {ev.verdict !== 'correct' && typeName && onTypePref && (
+            <p className="small muted type-pref">
+              “{typeName}” soruları zor geliyorsa:{' '}
+              <button type="button" className="link small" onClick={() => onTypePref('less')}>
+                daha az sor
+              </button>{' '}
+              ·{' '}
+              <button type="button" className="link small" onClick={() => onTypePref('off')}>
+                bir daha sorma
+              </button>
+            </p>
+          )}
           </div>
         </div>
         <p className="sheet-gloss">
