@@ -3939,3 +3939,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .lang-card > .muted { align-self: start; }
 }
 @media (max-width: 40rem) { .ob-art { height: min(8.5rem, 12vh); } }
+
+/* First run: Monki's drawn welcome card, its words in the empty cream half (fixed browns: the picture is light in every theme). */
+.welcome-banner { position: relative; width: 100%; max-width: 36rem; margin-inline: auto; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); line-height: 0; }
+.welcome-banner img { display: block; width: 100%; height: auto; }
+.welcome-banner-text { position: absolute; left: 47%; right: 5%; top: 50%; transform: translateY(-50%); margin: 0; display: grid; gap: 0.25rem; line-height: 1.3; color: #5b3220; }
+.welcome-banner-text strong { font-size: var(--t-lg); font-weight: 700; }
+.welcome-banner-text span { font-size: var(--t-sm); color: #7a4a30; }
+@media (max-width: 30rem) {
+  .welcome-banner-text strong { font-size: var(--t-md); }
+  .welcome-banner-text span { font-size: var(--t-xs, 0.75rem); }
+}

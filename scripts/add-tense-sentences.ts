@@ -47,7 +47,7 @@ for (const [n, line] of readFileSync(file, 'utf8').split('\n').entries()) {
     kept++
     continue
   }
-  const entry = { language: lang, lemma: verb, partOfSpeech: 'verb' as const }
+  const entry = { language: lang as 'fr' | 'es', lemma: verb, partOfSpeech: 'verb' as const }
   const all = new Map<Tense, string[]>()
   for (const t of TENSES[lang] as Tense[]) {
     const f = conjugateTense(entry, t)
