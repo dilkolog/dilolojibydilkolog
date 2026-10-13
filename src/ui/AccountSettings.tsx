@@ -113,7 +113,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               Bu cihazda çıkış yap
             </button>
           </div>
-          <p className="small muted account-foot">Çıkış yapınca verilerin bu cihazda kalır; istediğinde yeniden girersin.</p>
+          <p className="small muted account-foot">Çıkış yapınca yalnızca eşitleme kapanır: profilin, ilerlemen ve kelimelerin bu cihazda kalır; istediğinde yeniden girersin.</p>
           <RestorePoints />
         </>
       ) : (
@@ -144,7 +144,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               </span>
               <div>
                 <strong>Hesap şart değil</strong>
-                <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; veriler bu cihazda durur. Eşitleme, çeviri ve yapay zekâ gibi özellikler site sahibinin onayladığı hesaplara açık.</p>
+                <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; profilin, ilerlemen ve kelimelerin bu cihazda durur (çıkış yapsan da silinmez). Eşitleme, çeviri ve yapay zekâ gibi özellikler site sahibinin onayladığı hesaplara açık.</p>
               </div>
             </li>
           </ul>
