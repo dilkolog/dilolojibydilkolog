@@ -35,6 +35,12 @@ import record from '../assets/art/result-record.webp'
 import pot1 from '../assets/art/pot-1.webp'
 import pot3 from '../assets/art/pot-3.webp'
 import pot5 from '../assets/art/pot-5.webp'
+import lvl0 from '../assets/art/monki-lvl-0.webp'
+import lvl1 from '../assets/art/monki-lvl-1.webp'
+import lvl2 from '../assets/art/monki-lvl-2.webp'
+import lvl3 from '../assets/art/monki-lvl-3.webp'
+import lvl4 from '../assets/art/monki-lvl-4.webp'
+import lvl5 from '../assets/art/monki-lvl-5.webp'
 import posNoun from '../assets/art/pos-noun.webp'
 import posVerb from '../assets/art/pos-verb.webp'
 import posAdjective from '../assets/art/pos-adjective.webp'
@@ -83,6 +89,10 @@ export function resultKind(accuracy: number, answered: number, opts: { leveledUp
 
 /** A word's whole life in six pots (seed, sprout, young plant, flowers, tree, gold) for the first-run garden. */
 export const POTS = [pot0, pot1, pot2, pot3, pot4, pot5]
+
+/** Monki grows with the learner: none, scarf, student cap, explorer hat, graduation cap, crown (the titles' ladder 1·3·5·8·15·25). */
+const LEVEL_MONKI = [lvl0, lvl1, lvl2, lvl3, lvl4, lvl5]
+export const levelMonki = (level: number): string => LEVEL_MONKI[level >= 25 ? 5 : level >= 15 ? 4 : level >= 8 ? 3 : level >= 5 ? 2 : level >= 3 ? 1 : 0]
 
 /** The other three badge emblems: a trophy for what was won, a chat bubble and a microphone for Monki's modes. */
 export const EMBLEM = { chat: emChat, mic: emMic, trophy: emTrophy }
