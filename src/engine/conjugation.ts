@@ -162,11 +162,19 @@ const ES_TABLE: Record<string, string[]> = {
   elegir: t('elijo eliges elige elegimos elegís eligen'),
   reír: t('río ríes ríe reímos reís ríen'),
   sonreír: t('sonrío sonríes sonríe sonreímos sonreís sonríen'),
+  fluir: t('fluyo fluyes fluye fluimos fluís fluyen'),
+  reproducir: t('reproduzco reproduces reproduce reproducimos reproducís reproducen'),
+  relucir: t('reluzco reluces reluce relucimos relucís relucen'),
+  restablecer: t('restablezco restableces restablece restablecemos restablecéis restablecen'),
+  proveer: t('proveo provees provee proveemos proveéis proveen'),
+  maldecir: t('maldigo maldices maldice maldecimos maldecís maldicen'),
+  avergonzar: t('avergüenzo avergüenzas avergüenza avergonzamos avergonzáis avergüenzan'),
+  interactuar: t('interactúo interactúas interactúa interactuamos interactuáis interactúan'),
 }
 
 /** Spanish stem-changing verbs: the last stem vowel changes in the singular and 3rd plural. */
 const ES_STEM: Record<string, 'ie' | 'ue' | 'i'> = Object.fromEntries([
-  ...'pensar empezar comenzar cerrar despertar sentar recomendar calentar atravesar confesar gobernar negar nevar entender perder encender defender atender extender preferir sentir mentir divertir convertir advertir consentir'
+  ...'pensar empezar comenzar cerrar despertar sentar recomendar calentar atravesar confesar gobernar negar nevar enterrar desenterrar sembrar acertar enmendar digerir revertir entender perder encender defender atender extender preferir sentir mentir divertir convertir advertir consentir'
     .split(' ')
     .map((v) => [v, 'ie' as const]),
   ...'volver devolver dormir morir encontrar contar recordar mostrar probar costar soñar volar acostar almorzar mover resolver colgar aprobar llover doler'
@@ -177,7 +185,7 @@ const ES_STEM: Record<string, 'ie' | 'ue' | 'i'> = Object.fromEntries([
 
 /** Common Spanish -er/-ir verbs known to be regular in the present. */
 const ES_REGULAR_ER_IR = new Set(
-  'comer beber vivir escribir abrir aprender leer creer correr vender deber comprender subir decidir recibir partir permitir existir ocurrir responder romper meter prometer temer coser barrer cubrir describir descubrir discutir sufrir unir asistir insistir depender sorprender cumplir compartir aburrir añadir atrever'.split(' '),
+  'comer beber vivir escribir abrir aprender leer creer correr vender deber comprender subir decidir recibir partir permitir existir ocurrir responder romper meter prometer temer coser barrer cubrir describir descubrir discutir sufrir unir asistir insistir depender sorprender cumplir compartir aburrir añadir atrever lamer tejer someter emprender irrumpir persuadir percibir dimitir evadir eludir pulir suprimir resumir desistir parir reabrir'.split(' '),
 )
 
 const FR_ENDINGS_ER = t('e es e ons ez ent')

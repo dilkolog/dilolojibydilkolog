@@ -114,6 +114,15 @@ describe('stored tables', () => {
     }
   })
 
+  it('verbs the source tables lacked, added by hand (spelling and stem changes kept)', () => {
+    expect(verb('es', 'actualizar', 'preterito')?.[0]).toBe('actualicé')
+    expect(verb('es', 'encargar', 'subjuntivo')?.[0]).toBe('encargue')
+    expect(verb('es', 'enterrar', 'presente')?.[0]).toBe('entierro')
+    expect(verb('es', 'digerir', 'preterito')?.[2]).toBe('digirió')
+    expect(verb('es', 'maldecir', 'preterito')?.[0]).toBe('maldije')
+    expect(verb('es', 'reabrir', 'perfecto')?.[2]).toBe('ha reabierto')
+  })
+
   it('impersonal verbs conjugate in every person', () => {
     expect(verb('es', 'llover', 'preterito')).toEqual(['lloví', 'lloviste', 'llovió', 'llovimos', 'llovisteis', 'llovieron'])
     expect(verb('es', 'nevar', 'presente')?.[2]).toBe('nieva')
