@@ -76,6 +76,7 @@ export interface AppScreensProps {
   startSession: (items: PlanItem[], mode: ReviewMode, seed?: number, extra?: VocabularyEntry[], topic?: 'difficult', firstSitting?: boolean) => void
   startDay: () => void
   startFocus: (reason: PlanReason) => void
+  startMinutes: (minutes: number) => void
   startShortRound: () => void
   startMixed: () => Promise<void>
   mixedDue: { count: number; languages: number }
@@ -97,7 +98,7 @@ export interface AppScreensProps {
 
 /** The screen the app is on: the chain of screens, each given what it needs from the shell. */
 export function AppScreens(props: AppScreensProps) {
-  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
+  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
   return (
     <>
       {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
@@ -295,6 +296,7 @@ export function AppScreens(props: AppScreensProps) {
           canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
           onStart={startDay}
           onFocusReason={startFocus}
+          onMinutes={startMinutes}
           onAddWords={go({ name: 'words' })}
           focus={(() => {
             const list = data.lists.find((l) => l.id === planInput?.settings.focusListId)

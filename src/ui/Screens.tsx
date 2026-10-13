@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { Fragment, useEffect, useState, type ReactNode } from 'react'
 import { SPLIT_ABOVE_MINUTES } from '../engine/session'
 import { BACKLOG_AT, SHORT_ROUND } from '../engine/dailyPlan'
 import { db } from '../data/instance'
@@ -107,6 +107,7 @@ export function Home({
   canPractice,
   onStart,
   onFocusReason,
+  onMinutes,
   onAddWords,
   onTrySamples,
   onProfile,
@@ -152,6 +153,8 @@ export function Home({
   onStart: () => void
   /** A round of only one kind of the day's questions (the wrong, the weak, the reviews, the new words). */
   onFocusReason?: (reason: PlanReason) => void
+  /** A round that fits N minutes, for a short moment (the most urgent questions). */
+  onMinutes?: (minutes: number) => void
   onAddWords: () => void
   /** First run: load the sample words to try the app before adding one's own. */
   onTrySamples?: () => void
@@ -287,21 +290,20 @@ export function Home({
       </div>
       {/* The day at a glance: what's waiting, the streak, and whether today still counts for it. */}
       <ul className="today-status">
-        <li>
-          {remaining > 0 ? (
-            <>
-              <BookIcon size={16} /> <strong>{remaining}</strong> soru seni bekliyor
-            </>
-          ) : answeredToday > 0 ? (
-            <>
-              <CheckCircleIcon size={16} /> Bugünkü görev tamam
-            </>
-          ) : (
-            <>
-              <CheckCircleIcon size={16} /> Bugün tekrar yok
-            </>
-          )}
-        </li>
+        {/* While the card below says how many questions wait, this line does not say it a second time. */}
+        {remaining === 0 && (
+          <li>
+            {answeredToday > 0 ? (
+              <>
+                <CheckCircleIcon size={16} /> Bugünkü görev tamam
+              </>
+            ) : (
+              <>
+                <CheckCircleIcon size={16} /> Bugün tekrar yok
+              </>
+            )}
+          </li>
+        )}
         <li>
           <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak > 0 ? <><strong>{streak}</strong> günlük seri</> : 'Seri bugün başlar'}
         </li>
@@ -346,6 +348,22 @@ export function Home({
                 <button className="btn btn-lg" onClick={onStart} autoFocus>
                   {answeredToday > 0 ? 'Devam et' : 'Başla'}
                 </button>
+                {/* A long day looks like a wall: the same day in 5 or 10 minutes is one tap away (a deep pile has its own short round below). */}
+                {onMinutes && !piled && plan.estimatedMinutes > 7 && (
+                  <p className="small mt-3 hero-minutes">
+                    Vaktin kısaysa:{' '}
+                    {[5, 10]
+                      .filter((m) => m + 2 < plan.estimatedMinutes)
+                      .map((m, i) => (
+                        <Fragment key={m}>
+                          {i > 0 && ' · '}
+                          <button type="button" className="link" onClick={() => onMinutes(m)}>
+                            {m} dakika
+                          </button>
+                        </Fragment>
+                      ))}
+                  </p>
+                )}
                 {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
                 {piled ? (
                   <p className="small mt-3 hero-long">

@@ -147,6 +147,8 @@ export interface Settings {
   exercisePrefs?: Partial<Record<ExerciseType, 'less' | 'off'>>
   /** The first form of that setting (just the typed blank); false means cloze_typed off, until exercisePrefs speaks. */
   typedBlanks?: boolean
+  /** Do not ask from a meaning that is a long definition (a wall of text to answer from): see engine/exercises hasLongGloss. */
+  skipLongGloss?: boolean
   /** The word list in focus per language: new words come only from it (see dailyPlan). */
   focusList?: Partial<Record<TargetLanguage, string>>
   autoPlayAudio: boolean

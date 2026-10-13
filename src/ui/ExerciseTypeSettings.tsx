@@ -1,7 +1,7 @@
 import type { Settings } from '../data/db'
 import { effectivePrefs, PREF_TYPES, type ExercisePref } from '../engine/exercisePrefs'
 import type { ExerciseType } from '../engine/types'
-import { Chips } from './settingsWidgets'
+import { Chips, Toggle } from './settingsWidgets'
 
 type Level = 'normal' | ExercisePref
 
@@ -40,6 +40,12 @@ export function ExerciseTypeSettings({ settings, onChange }: { settings: Setting
         )}
       </div>
       <p className="small muted">Zor gelen ya da sevmediğin bir soru türünü azalt ya da kapat; o kelimeler diğer türlerle çalışılmaya devam eder. “Az”, o türün diğerlerinin yaklaşık üçte biri kadar çıkması demek.</p>
+      <Toggle
+        label="Uzun tanımlı kelimelerde anlamdan sorma"
+        help="Anlamı bir tanım kadar uzun (yedi sözcükten ya da 60 harften fazla) olan kelimelerde, anlamı sorunun kendisi olan sorular (anlamdan yazma, söyleme, doğru eki seçme) sorulmaz; o kelimeler diğer türlerle çalışılır."
+        checked={settings.skipLongGloss ?? false}
+        onChange={(v) => onChange({ ...settings, skipLongGloss: v })}
+      />
       {GROUPS.map((g) => (
         <div key={g.id} className="stack" role="group" aria-label={g.title}>
           <h3 className="subhead">{g.title}</h3>

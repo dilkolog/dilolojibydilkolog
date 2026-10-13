@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { readingKey } from '../engine/reading'
 import { createRng } from '../engine/rng'
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
-import { BAND_SIZE, buildVocabTest, scoreVocabTest, type TestItem, type VocabResult } from '../engine/vocabTest'
+import { adviceFor, BAND_SIZE, buildVocabTest, scoreVocabTest, type TestItem, type VocabResult } from '../engine/vocabTest'
 import type { KelimeDB, VocabTestRecord } from '../data/db'
 import { frequencyWords } from '../data/frequency'
 import { LANGUAGE_NAME } from './labels'
@@ -78,6 +78,18 @@ export function VocabTestScreen({ db, language, onDone }: { db: KelimeDB; langua
             </span>
           </span>
         </div>
+        {(() => {
+          const stage = adviceFor(score.estimate)
+          return (
+            <section className="card stack" aria-label="Bu sonuca göre">
+              <h2 className="section-title">
+                Yaklaşık düzeyin: {stage.level}
+              </h2>
+              <p>{stage.advice}</p>
+              <p className="small muted">Günlük yeni kelime için {stage.newPerDay} uygun bir başlangıç (Ayarlar → Çalışma). Bu resmî bir sınav değil, kelime sayından yapılmış kaba bir okuma.</p>
+            </section>
+          )
+        })()}
         <section className="section stack">
           <h2 className="section-title">Sıklık bandına göre</h2>
           <div className="band-bars" role="img" aria-label="Her 2000 kelimelik bantta bildiğin oran">

@@ -151,6 +151,20 @@ export const EXERCISES: Record<ExerciseType, ExerciseMeta> = {
   },
 }
 
+/** A meaning of this many words (or characters) is a definition rather than a translation. */
+export const LONG_GLOSS_WORDS = 7
+export const LONG_GLOSS_CHARS = 60
+export const hasLongGloss = (entry: VocabularyEntry) => {
+  const gloss = entry.senses[0]?.gloss.trim() ?? ''
+  return gloss.split(/\s+/).filter(Boolean).length > LONG_GLOSS_WORDS || gloss.length > LONG_GLOSS_CHARS
+}
+/** The questions that put the meaning itself on screen as what is asked (a long one is a wall of text to read and then to answer from). */
+const GLOSS_QUESTIONS: readonly ExerciseType[] = ['typed_translation', 'speak_word', 'family_choice']
+
+/** Whether the learner's settings keep this kind of question from this word: switched off, or a meaning too long to be asked from. */
+export const blockedByPrefs = (type: ExerciseType, entry: VocabularyEntry, opts: EngineOptions = {}) =>
+  !!opts.off?.includes(type) || (!!opts.skipLong && GLOSS_QUESTIONS.includes(type) && hasLongGloss(entry))
+
 export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry, opts: EngineOptions = {}): ExerciseType[] {
   return (Object.keys(EXERCISES) as ExerciseType[]).filter(
     (t) =>
@@ -158,7 +172,7 @@ export function exerciseTypesFor(skill: Skill, entry: VocabularyEntry, opts: Eng
       EXERCISES[t].applicable(entry) &&
       (!EXERCISES[t].requiresAI || opts.ai) &&
       (!EXERCISES[t].requiresSpeech || opts.speech) &&
-      !opts.off?.includes(t),
+      !blockedByPrefs(t, entry, opts),
   )
 }
 

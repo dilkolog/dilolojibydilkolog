@@ -397,3 +397,31 @@ export function shortRound(items: readonly PlanItem[], n = SHORT_ROUND): PlanIte
     .slice(0, n)
   return urgent.sort((a, b) => a.at - b.at).map((x) => x.item)
 }
+
+/**
+ * "I have N minutes": the most urgent questions that fit that time (same order of urgency as `shortRound`), kept in the
+ * plan's order. New words' introductions are left out (they come in pairs with later questions; a short round is for
+ * what is due), unless nothing is due: then the plan's own start, introductions and all, as far as the time goes.
+ */
+export function roundForMinutes(items: readonly PlanItem[], minutes: number): PlanItem[] {
+  const budget = minutes * 60_000
+  const reviews = items
+    .map((item, at) => ({ item, at }))
+    .filter((x) => x.item.kind === 'exercise' && x.item.reason !== 'new')
+    .sort((a, b) => REASON_ORDER.indexOf(a.item.reason) - REASON_ORDER.indexOf(b.item.reason) || a.at - b.at)
+  let used = 0
+  const take = (list: readonly { item: PlanItem; at: number }[]) => {
+    const picked: { item: PlanItem; at: number }[] = []
+    for (const x of list) {
+      const cost = itemCost(x.item)
+      // Always at least one question, even when one alone is over the time.
+      if (picked.length && used + cost > budget) break
+      used += cost
+      picked.push(x)
+    }
+    return picked
+  }
+  const urgent = take(reviews)
+  if (urgent.length) return urgent.sort((a, b) => a.at - b.at).map((x) => x.item)
+  return take(items.map((item, at) => ({ item, at }))).map((x) => x.item)
+}

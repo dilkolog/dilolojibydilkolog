@@ -114,6 +114,7 @@ export function SessionSettings({
             value={settings.typingShare ?? 'balanced'}
             onChange={(v) => set('typingShare', v)}
           />
+          <Switch label="Uzun tanımlı kelimelerde anlamdan sorma" help="Anlamı bir tanım kadar uzun olan kelimelerde anlamdan yazma, söyleme ve ek seçme sorulmaz." checked={settings.skipLongGloss ?? false} onChange={(v) => set('skipLongGloss', v)} />
           <Switch label="Dünkü yeni kelimeyi önce kartla hatırlat" help="İlk sorudan önce kelimenin kartı gelir; sola kaydırınca bir kez daha sorulur." checked={settings.refreshCard !== false} onChange={(v) => set('refreshCard', v)} />
           <Switch label="Yeni kelimede önce tahmin" help="Anlamı görmeden önce bir tahmin yaparsın; doğrusu daha iyi aklında kalır." checked={settings.pretest} onChange={(v) => set('pretest', v)} />
           <Switch label="Anlamı hedef dilde göster" help="Türkçe yerine kelimenin kendi dilindeki tanımı; Türkçesi bir dokunuşta." checked={settings.targetDefinitions} onChange={(v) => set('targetDefinitions', v)} />

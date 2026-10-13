@@ -89,3 +89,25 @@ export function scoreVocabTest(items: readonly TestItem[], known: ReadonlySet<st
   })
   return { estimate: Math.round(bands.reduce((s, x) => s + x * BAND_SIZE, 0)), falseAlarms, bands }
 }
+
+/** A rough CEFR reading of a vocabulary size (words known among the 20 000 most frequent): not an exam, a place to start from. */
+export interface LevelAdvice {
+  level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
+  /** What to do next, in a sentence. */
+  advice: string
+  /** New words a day that suit this stage (what Settings suggests as "daily new words"). */
+  newPerDay: number
+}
+
+const STAGES: { below: number; advice: LevelAdvice }[] = [
+  { below: 800, advice: { level: 'A1', newPerDay: 10, advice: 'En sık kullanılan kelimelerle başla: günlük 10 yeni kelime ve kolay resimli hikâyeler iyi gider.' } },
+  { below: 1800, advice: { level: 'A2', newPerDay: 10, advice: 'Temel kelimeler oturuyor. Kısa metin ve dinlemelerle kelimeleri cümle içinde gör.' } },
+  { below: 3500, advice: { level: 'B1', newPerDay: 8, advice: 'Orta düzeydesin: okuma ve dinlemede bilmediğin kelimeleri listene ekleyerek ilerle, yeni kelimeyi 8 civarında tut.' } },
+  { below: 6000, advice: { level: 'B2', newPerDay: 6, advice: 'Haber ve sesli kitaplar artık erişilebilir. Yeni kelimeyi azaltıp tekrarlara ve dilbilgisi sorularına ağırlık ver.' } },
+  { below: 9000, advice: { level: 'C1', newPerDay: 5, advice: 'İleri düzeydesin: deyimler, eşdizimler ve kayıt farkı (günlük/resmî) en çok kazandıran alanlar.' } },
+  { below: Infinity, advice: { level: 'C2', newPerDay: 4, advice: 'Çok geniş bir dağarcığın var: nadir kelimeler, deyimler ve kendi yazdığın metinler kalıyor.' } },
+]
+
+export function adviceFor(estimate: number): LevelAdvice {
+  return STAGES.find((s) => estimate < s.below)!.advice
+}

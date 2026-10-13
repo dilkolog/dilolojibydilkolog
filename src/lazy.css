@@ -49,6 +49,9 @@
     color: var(--ink-soft);
     z-index: 1;
   }
+  /* The shortcuts are known by now: still there, but quiet. */
+  .kbd-legend.is-faded { opacity: 0.5; transition: opacity var(--dur) var(--ease-out); }
+  .kbd-legend.is-faded:hover { opacity: 1; }
 }
 .sheet-spacer { height: 14rem; }
 .sheet-inner {
@@ -1517,3 +1520,9 @@ button.badge-card:active { transform: none; }
 .diagram-meta { min-width: 8rem; }
 .diagram-meta p { margin: 0.125rem 0 0; }
 .qr { width: 11rem; height: 11rem; border-radius: var(--r-md); background: #fff; box-shadow: 0 0 0 1px var(--rule); }
+
+/* The word in use, offered after a miss: closed by default so the feedback stays short. */
+.why-more { margin-top: 0.25rem; }
+.why-more summary { cursor: pointer; color: var(--ink-soft); font-weight: 600; width: fit-content; }
+.why-more summary:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-xs); }
+.why-more p { margin: 0.375rem 0 0; line-height: 1.5; }

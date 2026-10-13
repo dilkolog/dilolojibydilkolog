@@ -2,23 +2,19 @@ import { useEffect, useState, type CSSProperties } from 'react'
 import { GameResult } from './GameResult'
 import { huntPool, huntRound, HUNT_ROUND, type HuntQuestion } from '../../engine/affixHunt'
 import type { Affix } from '../../engine/derive'
-import { recordGrammar, type GrammarLog } from '../../engine/grammar'
+import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { makeLookup } from '../../data/deriveLookup'
 import { loadFrequency } from '../../data/frequency'
 import { db } from '../../data/instance'
+import { noteIn } from './logNote'
 import { loadPack } from '../../data/wordpack'
 import type { Pack } from '../../data/wordpackBuild'
 import { LANGUAGE_NAME, POS_NAME } from '../labels'
 import { sfx } from '../sounds'
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const note = (id: string, correct: boolean) => {
-  writing = writing.then(async () => db.saveAffixLog(recordGrammar(await db.getAffixLog(), id, correct, new Date()))).catch(() => undefined)
-  return writing
-}
+const note = noteIn(() => db.getAffixLog(), (log) => db.saveAffixLog(log))
 
 const label = (a: Affix) => (a.kind === 'prefix' ? `${a.form}-` : `-${a.form}`)
 /** The word with the affix put on, the way it is said: un- + comfortable = uncomfortable; its pieces come in one after another. */

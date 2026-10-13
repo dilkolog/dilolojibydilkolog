@@ -1,5 +1,4 @@
 import '../lazy.css'
-import { accessFetch, APPROVAL_MESSAGE, isApprovalRefusal } from '../data/access'
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sentenceAt, sentenceTimes } from '../engine/listenFollow'
 
@@ -10,9 +9,9 @@ import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
 import { saveSentence } from './saveSentence'
 import { analyzeText, coverageLine, finishReading, type ReadToken } from '../engine/reading'
-import { TARGET_LANGUAGES, type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
+import { type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
 import { titleOf, type KelimeDB, type ReadingText } from '../data/db'
-import { looksLikeSubtitles, parseSubtitles } from '../engine/subtitles'
+import { importEpub, textOfFile, youtubeText } from './readingImport'
 import { SameTopic } from './News'
 import { AudioPanel } from './Listening'
 import { markWord, wordKeys } from '../data/wordInput'
@@ -347,43 +346,18 @@ export function ReadingScreen({
 
   /** A subtitle (.srt/.vtt) or plain-text file goes into the draft; subtitles are cleaned up first. */
   const loadFile = async (file: File) => {
-    const raw = await file.text()
-    setDraft(looksLikeSubtitles(raw) || /\.(srt|vtt)$/i.test(file.name) ? parseSubtitles(raw) : raw)
-    setTitle(file.name.replace(/\.[^.]+$/, '').replace(/[._]+/g, ' '))
+    const loaded = textOfFile(file.name, await file.text())
+    setDraft(loaded.text)
+    setTitle(loaded.title)
   }
 
   /** An EPUB becomes one library entry per chapter, read in order. */
   const importBook = async (file: File) => {
     setMessage('')
     setBookError(null)
-    try {
-      const { parseEpub } = await import('../data/epub')
-      const book = parseEpub(new Uint8Array(await file.arrayBuffer()))
-      const lang = (TARGET_LANGUAGES as readonly string[]).includes(book.language ?? '') ? (book.language as TargetLanguage) : language
-      const id = crypto.randomUUID()
-      const addedAt = new Date().toISOString()
-      const texts: ReadingText[] = book.chapters.map((c, index) => ({
-        id: crypto.randomUUID(),
-        language: lang,
-        title: c.title,
-        text: c.text,
-        addedAt,
-        history: [],
-        book: { id, title: book.title, index, total: book.chapters.length },
-      }))
-      await db.saveTexts(texts)
-      if (lang === language) setLibrary((lib) => [...texts, ...(lib ?? [])])
-      setBookError({
-        ok: true,
-        text:
-          lang === language
-            ? `${book.title}: ${texts.length} bölüm kütüphanene eklendi.`
-            : `${book.title} ${LANGUAGE_NAME[lang]} bir kitap; ${LANGUAGE_NAME[lang]} kütüphanene eklendi (${texts.length} bölüm).`,
-      })
-    } catch (e) {
-      // Our own errors explain the problem; anything else is a file we couldn't read.
-      setBookError({ ok: false, text: e instanceof Error && e.name === 'EpubError' ? e.message : 'Kitap okunamadı.' })
-    }
+    const { note, texts, forThisLanguage } = await importEpub(db, file, language)
+    if (forThisLanguage) setLibrary((lib) => [...texts, ...(lib ?? [])])
+    setBookError(note)
   }
 
   /** A YouTube video's subtitles in this language, as a reading text with a link back to the video. */
@@ -391,35 +365,15 @@ export function ReadingScreen({
     setBookError(null)
     setYtBusy(true)
     try {
-      const res = await accessFetch(`/api/youtube?v=${encodeURIComponent(youtube.trim())}&lang=${language}`)
-      const j = (await res.json()) as { id?: string; title?: string; channel?: string; auto?: boolean; text?: string; error?: string; available?: string[] }
-      if (!res.ok || !j.text) {
-        setBookError({
-          ok: false,
-          text:
-            j.error === 'no captions'
-            ? `Bu videoda ${LANGUAGE_NAME[language]} altyazı yok${j.available?.length ? ` (olanlar: ${j.available.join(', ')})` : ''}.`
-            : isApprovalRefusal(j.error)
-              ? APPROVAL_MESSAGE
-              : j.error === 'bad request'
-              ? 'Bağlantı bir YouTube videosu gibi görünmüyor.'
-              : 'Altyazı alınamadı; YouTube şu an izin vermiyor olabilir. Altyazıyı .srt olarak indirip yükleyebilirsin.',
-        })
+      const got = await youtubeText(youtube, language)
+      if ('note' in got) {
+        setBookError(got.note)
         return
       }
-      const item: ReadingText = {
-        id: crypto.randomUUID(),
-        language,
-        title: `${j.title}${j.auto ? ' (otomatik altyazı)' : ''}`,
-        text: j.text,
-        source: `https://www.youtube.com/watch?v=${j.id}`,
-        addedAt: new Date().toISOString(),
-        history: [],
-      }
-      await db.saveText(item)
-      setLibrary((lib) => [item, ...(lib ?? [])])
+      await db.saveText(got.item)
+      setLibrary((lib) => [got.item, ...(lib ?? [])])
       setYoutube('')
-      await open(item)
+      await open(got.item)
     } catch {
       setBookError({ ok: false, text: 'Altyazı alınamadı; internet bağlantını kontrol et.' })
     } finally {

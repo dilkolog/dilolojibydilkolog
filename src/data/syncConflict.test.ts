@@ -6,7 +6,7 @@ const blobs = new Map<string, { bytes: Uint8Array; etag: string }>()
 let version = 0
 vi.mock('@vercel/blob', () => ({
   put: async (path: string, body: ArrayBuffer | string, opts: { allowOverwrite?: boolean; ifMatch?: string }) => {
-    if (opts.allowOverwrite === false && blobs.has(path)) throw new Error('exists')
+    if (opts.allowOverwrite === false && blobs.has(path)) throw Object.assign(new Error('Precondition failed'), { name: 'BlobPreconditionFailedError' })
     if (opts.ifMatch && blobs.get(path)?.etag !== opts.ifMatch) throw Object.assign(new Error('precondition'), { name: 'BlobPreconditionFailedError' })
     blobs.set(path, { bytes: typeof body === 'string' ? new TextEncoder().encode(body) : new Uint8Array(body), etag: `"v${++version}"` })
     return {}
@@ -55,6 +55,15 @@ afterEach(() => {
 })
 
 describe('two devices syncing at once', () => {
+  it('a create-only write onto a file that already exists is a 412, not a server error', async () => {
+    const acc = await deriveAccount('ali', 'correct horse')
+    approve(acc.id)
+    const put = () =>
+      api.PUT(new Request(`https://app.test/api/sync?id=${acc.id}&part=ev-2026-10`, { method: 'PUT', body: 'x', headers: { 'x-sync-id': acc.id, 'x-sync-auth': acc.auth, 'if-none-match': '*' } }))
+    expect((await put()).status).toBe(204)
+    expect((await put()).status).toBe(412)
+  })
+
   it('the one that loses the race merges again instead of overwriting the other', async () => {
     const acc = await deriveAccount('ali', 'correct horse')
     approve(acc.id)

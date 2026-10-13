@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react'
 import { GameResult } from './GameResult'
-import { recordGrammar, type GrammarLog } from '../../engine/grammar'
+import type { GrammarLog } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import { TRAP_ROUND, trapRound, type TrapQuestion } from '../../engine/traps'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
+import { noteIn } from './logNote'
 import { trapWords } from '../../data/traps'
 import { AlertIcon, SpeakerIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
 import { canSpeak, speak } from '../speech'
 
-/** One at a time: answers in quick succession must not overwrite each other's log. */
-let writing: Promise<unknown> = Promise.resolve()
-const note = (id: string, correct: boolean) => {
-  writing = writing.then(async () => db.saveTrapLog(recordGrammar(await db.getTrapLog(), id, correct, new Date()))).catch(() => undefined)
-  return writing
-}
+const note = noteIn(() => db.getTrapLog(), (log) => db.saveTrapLog(log))
 
 /**
  * False friends: a sentence with a word that looks like one the learner knows and means something

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { BACKLOG_AT, buildDailyPlan, buildExtraNewPlan, interleave, shortRound, SHORT_ROUND, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
+import { EXERCISES } from '../exercises'
+import { BACKLOG_AT, buildDailyPlan, buildExtraNewPlan, interleave, roundForMinutes, shortRound, SHORT_ROUND, isFormId, MAX_DAY_FORMS, mixForms, type PlanInput, type PlanItem } from '../dailyPlan'
 import { recordMistake } from '../mistakes'
 import { newWordState, processAttempt } from '../review'
 import { createScheduler } from '../scheduler'
@@ -277,6 +278,27 @@ describe('a pile of reviews', () => {
     expect(shortRound(items, 4).map((i) => i.entryId)).toEqual(['b', 'c', 'd', 'e'])
     expect(shortRound(items, 99)).toEqual(items)
     expect(shortRound([], 5)).toEqual([])
+  })
+
+  it('a round of N minutes holds the most urgent questions that fit, in the plan\'s order', () => {
+    // A multiple choice costs 5 s + 4 s of overhead here: 9 s a question.
+    const items = Array.from({ length: 120 }, (_, i) => item(`q${i}`, i % 3 === 0 ? 'forgotten' : 'due'))
+    const five = roundForMinutes(items, 5)
+    expect(five.length).toBe(Math.floor((5 * 60_000) / (EXERCISES.mc_meaning.expectedMs + 4000)))
+    expect(five.every((i) => i.reason === 'forgotten')).toBe(true)
+    expect(five.map((i) => i.entryId)).toEqual([...five.map((i) => i.entryId)].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1))))
+    expect(roundForMinutes(items, 999)).toEqual(items)
+    // One question at least, even when it alone takes longer than the time.
+    expect(roundForMinutes(items, 0.01)).toHaveLength(1)
+    expect(roundForMinutes([], 5)).toEqual([])
+  })
+
+  it('a timed round leaves new words out while anything is due, and is the plan\'s start when nothing is', () => {
+    const intro: PlanItem = { kind: 'introduce', entryId: 'n1', reason: 'new', skill: 'recognition' }
+    const first = item('n1', 'new')
+    const due = item('a', 'due')
+    expect(roundForMinutes([intro, first, due], 5).map((i) => i.entryId)).toEqual(['a'])
+    expect(roundForMinutes([intro, first], 5)).toEqual([intro, first])
   })
 
   it('introductions are not part of a short round', () => {
