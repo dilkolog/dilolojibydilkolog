@@ -28,6 +28,15 @@ describe('conjugate (présent / presente)', () => {
     expect(verb('fr', 'peindre')).toBeUndefined()
   })
 
+  it('French verbs no rule nor the dictionary covered, written out by hand', () => {
+    expect(verb('fr', 'mourir')).toEqual(['meurs', 'meurs', 'meurt', 'mourons', 'mourez', 'meurent'])
+    expect(verb('fr', 'régler')?.[5]).toBe('règlent')
+    expect(verb('fr', 'renouveler')?.[0]).toBe('renouvelle')
+    expect(verb('fr', 'naître')?.[2]).toBe('naît')
+    expect(verb('fr', 'unir')).toEqual(['unis', 'unis', 'unit', 'unissons', 'unissez', 'unissent'])
+    expect(verb('fr', 'se souvenir')?.[0]).toBe('me souviens')
+  })
+
   it('French reflexive verbs carry their pronoun, elided before a vowel', () => {
     expect(verb('fr', 'se laver')).toEqual(['me lave', 'te laves', 'se lave', 'nous lavons', 'vous lavez', 'se lavent'])
     expect(verb('fr', "s'habiller")?.[0]).toBe("m'habille")
