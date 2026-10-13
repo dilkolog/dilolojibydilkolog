@@ -1,5 +1,5 @@
 import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem } from './engine/dailyPlan'
+import { buildDailyPlan, buildExtraNewPlan, MAX_DAY_FORMS, mixForms, shortRound, type PlanItem, type PlanReason } from './engine/dailyPlan'
 
 import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
@@ -38,6 +38,7 @@ import { canListen } from './ui/speechInput'
 import { useReminder } from './ui/reminders'
 import { reminderTime, usualStudyHour } from './engine/hours'
 import { updateAppBadge } from './ui/appBadge'
+import { reportMailState } from './ui/emailReminders'
 import { reportPushState } from './ui/pushReminders'
 
 import { weekLine, weekSummary, type WeekSummary } from './engine/weekly'
@@ -438,7 +439,9 @@ export default function App() {
   // Keeps the server's evening reminder from firing on days already studied.
   const loaded = !!data && !!game
   useEffect(() => {
-    if (loaded) void reportPushState(pushState)
+    if (!loaded) return
+    void reportPushState(pushState)
+    void reportMailState(pushState)
   }, [loaded, pushState])
 
   // A session started on just-added words gets them even before the list has reloaded.
@@ -491,6 +494,12 @@ export default function App() {
     const split = !settings?.sessionMax && (settings?.splitLongDays ?? true) && plan.estimatedMinutes > SPLIT_ABOVE_MINUTES
     const end = split ? firstSittingEnd(items) : items.length
     startSession(items.slice(0, end), 'normal', daySeed(new Date()), undefined, undefined, split && end < items.length)
+  }
+  /** Only one kind of the day's questions (the wrong, the weak, the reviews, the new words), in the plan's order; "Devam et" stays the whole mix. */
+  const startFocus = (reason: PlanReason) => {
+    if (!plan) return
+    const items = plan.items.filter((it) => it.reason === reason)
+    if (items.length) startSession(items, 'normal', daySeed(new Date()))
   }
   /** A short round of the day's most urgent questions, when the pile of reviews is deep. */
   const startShortRound = () => plan && startSession(shortRound(plan.items), 'normal', daySeed(new Date()))
@@ -656,7 +665,7 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
-  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
 
   return (
     <AccessContext.Provider value={access}>

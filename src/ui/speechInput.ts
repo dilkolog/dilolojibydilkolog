@@ -14,6 +14,8 @@ interface Recognition {
   onresult: ((e: { results: RecognitionResultList; resultIndex: number }) => void) | null
   onerror: ((e: { error: string }) => void) | null
   onend: (() => void) | null
+  onspeechstart: (() => void) | null
+  onnomatch: (() => void) | null
   start(): void
   stop(): void
   abort(): void
@@ -42,30 +44,83 @@ const ERRORS: Record<string, string> = {
   'no-speech': 'Ses algılanmadı, tekrar dene.',
   network: 'Konuşma tanıma için internet bağlantısı gerekiyor.',
   'audio-capture': 'Mikrofon bulunamadı.',
+  'language-not-supported': 'Bu dil için konuşma tanıma kapalı. macOS’te Sistem Ayarları → Klavye → Dikte → Diller’den bu dili ekle.',
 }
 
-/** Starts listening once; returns a function that stops it. */
-export function listen(language: TargetLanguage, h: ListenHandlers): () => void {
+/** The browser listened but never heard anything come back (Safari does this when Dictation or the language is off). */
+const NOTHING_HEARD = 'Hiçbir şey duyulmadı. Mikrofonun çalıştığından emin ol; Safari’de Sistem Ayarları → Klavye → Dikte açık ve bu dil ekli olmalı. Olmazsa “Yazarak cevapla”.'
+/** How long listening may go without a sound or a result before it is given up. */
+const QUIET_MS = 12_000
+
+/** What `listen` returns: the function stops it for good (nothing is delivered); `finish` ends it and delivers what was heard so far. */
+export type Listening = (() => void) & { finish: () => void }
+
+/** Starts listening once; returns a function that stops it (and `.finish()` to end it and take what was heard). */
+export function listen(language: TargetLanguage, h: ListenHandlers): Listening {
   const C = ctor()
+  const noop = Object.assign(() => {}, { finish: () => {} })
   if (!C) {
     h.onError?.('Bu tarayıcı konuşma tanımayı desteklemiyor.')
-    return () => {}
+    return noop
   }
   const rec = new C()
   rec.lang = SPEECH_LANG[language]
   rec.interimResults = true
   rec.maxAlternatives = 5
   rec.continuous = false
+  let aborted = false
+  let delivered = false
+  let heardSomething = false
+  let lastInterim = ''
+  const quiet = setTimeout(() => {
+    if (heardSomething || aborted) return
+    aborted = true
+    rec.abort()
+    h.onError?.(NOTHING_HEARD)
+    h.onEnd?.()
+  }, QUIET_MS)
+  rec.onspeechstart = () => {
+    heardSomething = true
+  }
   rec.onresult = (e) => {
+    heardSomething = true
     const last = e.results[e.results.length - 1]
     const alts = Array.from({ length: last.length }, (_, i) => last[i].transcript.trim()).filter(Boolean)
-    if (last.isFinal) h.onFinal(alts)
-    else h.onInterim?.(alts[0] ?? '')
+    if (aborted) return
+    if (last.isFinal) {
+      delivered = true
+      h.onFinal(alts)
+    } else {
+      lastInterim = alts[0] ?? ''
+      h.onInterim?.(lastInterim)
+    }
   }
-  rec.onerror = (e) => h.onError?.(ERRORS[e.error] ?? 'Konuşma tanınamadı.')
-  rec.onend = () => h.onEnd?.()
+  rec.onnomatch = () => {
+    if (!aborted && !delivered) h.onError?.('Ne dediğini anlayamadım, tekrar dene.')
+  }
+  rec.onerror = (e) => {
+    // An abort is ours (the caller left, or the quiet timer ran out and said so itself).
+    if (aborted || e.error === 'aborted') return
+    h.onError?.(ERRORS[e.error] ?? 'Konuşma tanınamadı.')
+  }
+  rec.onend = () => {
+    clearTimeout(quiet)
+    // Safari can end without ever marking a result final: what it last heard is the answer.
+    if (!delivered && !aborted && lastInterim) {
+      delivered = true
+      h.onFinal([lastInterim])
+    }
+    h.onEnd?.()
+  }
   rec.start()
-  return () => rec.abort()
+  return Object.assign(
+    () => {
+      aborted = true
+      clearTimeout(quiet)
+      rec.abort()
+    },
+    { finish: () => rec.stop() },
+  )
 }
 
 /**

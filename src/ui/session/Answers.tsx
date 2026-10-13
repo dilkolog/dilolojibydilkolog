@@ -221,13 +221,14 @@ export function SpeakAnswer({
   const [heard, setHeard] = useState('')
   const [error, setError] = useState('')
   const stop = useRef<() => void>(() => {})
+  const finish = useRef<() => void>(() => {})
   useEffect(() => () => stop.current(), [])
 
   const start = () => {
     setError('')
     setHeard('')
     setState('listening')
-    stop.current = listen(language, {
+    const listening = listen(language, {
       onInterim: setHeard,
       onFinal: (alts) => {
         setHeard(alts[0] ?? '')
@@ -240,14 +241,17 @@ export function SpeakAnswer({
       },
       onEnd: () => setState((s) => (s === 'listening' ? 'idle' : s)),
     })
+    stop.current = listening
+    finish.current = listening.finish
   }
 
   return (
     <div className="speak-answer">
-      <button className={`mic-big${state === 'listening' ? ' is-on' : ''}`} onClick={start} disabled={answered || state === 'listening'} aria-label="Konuş">
+      {/* A second tap while listening ends it and takes what was heard: some browsers wait long for the pause that closes a sentence. */}
+      <button className={`mic-big${state === 'listening' ? ' is-on' : ''}`} onClick={state === 'listening' ? () => finish.current() : start} disabled={answered} aria-label={state === 'listening' ? 'Söylemeyi bitir' : 'Konuş'}>
         <MicIcon size={22} />
       </button>
-      <p className="heard">{heard ? `“${heard}”` : state === 'listening' ? 'Dinliyorum…' : 'Mikrofona dokun ve kelimeyi söyle'}</p>
+      <p className="heard">{heard ? `“${heard}”` : state === 'listening' ? 'Dinliyorum… (bitince mikrofona dokun)' : 'Mikrofona dokun ve kelimeyi söyle'}</p>
       {error && (
         <p className="error" role="alert">
           {error}

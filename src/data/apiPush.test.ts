@@ -167,7 +167,7 @@ describe('/api/cron-reminder', () => {
   beforeEach(() => vi.stubEnv('VAPID_PRIVATE_KEY', 'test-private-key'))
   const cron = (auth?: string, h?: number) =>
     CRON(new Request(`https://app.test/api/cron-reminder${h === undefined ? '' : `?h=${h}`}`, { headers: auth ? { authorization: auth } : {} }))
-  const save = async (r: PushRecord) => blobs.set(await recordPath(r.subscription.endpoint), JSON.stringify(r))
+  const save = async (r: PushRecord) => blobs.set(await recordPath(r.subscription!.endpoint), JSON.stringify(r))
 
   it('refuses callers without the secret, and everyone when no secret is set', async () => {
     expect((await cron('Bearer anything')).status).toBe(401)
@@ -199,7 +199,7 @@ describe('/api/cron-reminder', () => {
     gone.add('https://fcm.googleapis.com/fcm/send/gone')
 
     const res = await cron('Bearer s3cret')
-    expect(await res.json()).toEqual({ devices: 6, sent: 1, removed: 1 })
+    expect(await res.json()).toEqual({ devices: 6, sent: 1, removed: 1, mailed: 0 })
     expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/idle'])
     expect(JSON.parse(sent[0].body)).toMatchObject({ title: 'Diloloji', url: '/?go=quick' })
   })

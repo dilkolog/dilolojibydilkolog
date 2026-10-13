@@ -2010,3 +2010,11 @@ test('a shared list link shows what is in it, adds nothing until confirmed, then
   await page.getByRole('tab', { name: 'Listeler' }).click()
   await expect(page.locator('.wl-card', { hasText: 'Evcil hayvanlar' })).toContainText('2 kelime')
 })
+
+test('a chip of the day\'s mission starts a round of only that kind', async ({ page }) => {
+  await startWithSamples(page)
+  const chip = page.locator('.mission-chip', { hasText: /yeni/ })
+  await expect(chip).toBeVisible()
+  await chip.click()
+  await expect(page.locator('.session-stage')).toBeVisible()
+})

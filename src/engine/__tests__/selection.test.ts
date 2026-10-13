@@ -93,8 +93,21 @@ describe('selection engine', () => {
         expect(exerciseTypesFor(skill, decision, { off: everything }).length, skill).toBeGreaterThan(0)
         expect(() => pickExerciseType(skill, decision, undefined, createRng(1), { off: everything })).not.toThrow()
       }
-      // The meaning choice and typing from the meaning are always left.
-      expect(unlockedSkills(strong(), decision, { off: everything })).toEqual(expect.arrayContaining(['recognition', 'recall']))
+      // The meaning choice is always left.
+      expect(unlockedSkills(strong(), decision, { off: everything })).toContain('recognition')
+    })
+
+    it('with typing from the meaning off, recall is not asked but the other skills still open on the recognition card', () => {
+      // Typing from the meaning, and the other recall formats (a derived form, saying it), all off.
+      const off = ['typed_translation' as const, 'family_choice' as const, 'speak_word' as const]
+      const state = newWordState(decision, now)
+      state.skills.recognition = { ...scheduler.newCard(now), reps: 3, stability: 4, state: State.Review }
+      const skills = unlockedSkills(state, decision, { off, ai: true })
+      expect(skills).not.toContain('recall')
+      expect(skills).toEqual(expect.arrayContaining(['listening', 'collocation', 'production']))
+      expect(() => skills.forEach((s) => pickExerciseType(s, decision, undefined, createRng(2), { off, ai: true }))).not.toThrow()
+      // Left on, nothing changes: recall unlocks the others as before.
+      expect(unlockedSkills(state, decision, { ai: true })).toContain('recall')
     })
 
     it('a type set to "less" is picked about a third as often as the others', () => {

@@ -10,7 +10,7 @@ import { markKnown, needsIntervention, newWordState, processAttempt, type Attemp
 import { listeningRate } from '../engine/listening'
 import { createRng, type Rng } from '../engine/rng'
 import type { Scheduler } from '../engine/scheduler'
-import { adaptExercise, completeItem, currentItem, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
+import { adaptExercise, completeItem, currentItem, honorOff, insertLater, isFinished, mixInTyping, retryItem, skipRemaining, startSession, suggestBreak, summarize, typedFollowUp, typeStrongCloze, TYPING_SHARE, type SessionLogEntry, type SessionSummary } from '../engine/session'
 import { TARGET_LANGUAGES, timeOf, type Confidence, type EngineOptions, type Mistake, type ReviewMode, type UserWordState, type VocabularyEntry, type Verdict } from '../engine/types'
 import type { KelimeDB, Settings } from '../data/db'
 import { SAMPLE_WORDS } from '../data/seed'
@@ -145,7 +145,7 @@ export function SessionScreen(p: Props) {
   // Some recognition questions become typing (Settings → Yazma oranı), and a well-known word's
   // blank is typed instead of chosen; practice sessions keep their plan.
   const shape = (it: PlanItem, st: UserWordState | undefined) => {
-    const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng)
+    const mixed = mixInTyping(it, st, TYPING_SHARE[prefs.typingShare], rng, prefs.exerciseOff)
     return prefs.exerciseOff.includes('cloze_typed') ? mixed : typeStrongCloze(mixed, st)
   }
   const [session, setSession] = useState(() =>
@@ -196,9 +196,11 @@ export function SessionScreen(p: Props) {
       // Some recognition questions become typing (Settings → Yazma oranı), decided as each one comes up.
       const mixed = p.mode === 'practice' || up.reason === 'practice' ? up : shape(up, states.current.get(up.entryId))
       const adapted = adaptExercise(mixed, upEntry, states.current.get(up.entryId), after.log.map((l) => l.verdict), rng, p.options)
-      if (adapted === up) return after
+      // A type switched off in this session's settings applies to what is still to come, not only to the next plan.
+      const final = p.mode === 'practice' || up.reason === 'practice' ? adapted : honorOff(adapted, upEntry, states.current.get(up.entryId), rng, { ...p.options, off: prefs.exerciseOff })
+      if (final === up) return after
       const items = [...after.items]
-      items[after.index] = adapted
+      items[after.index] = final
       return { ...after, items }
     })
 
@@ -325,7 +327,7 @@ export function SessionScreen(p: Props) {
     // The second comeback is typed: picked out twice, now produced from its meaning.
     const comebacks = session.followUps?.[entry.id] ?? 0
     const followUp =
-      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item) : retryItem(item, entry, state, rng, p.options)) : undefined
+      log.verdict && log.verdict !== 'wrong' && state ? (comebacks >= 1 ? typedFollowUp(item, prefs.exerciseOff) : retryItem(item, entry, state, rng, p.options)) : undefined
     next(log, retry, followUp)
   }
 

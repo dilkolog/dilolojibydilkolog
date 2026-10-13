@@ -18,8 +18,11 @@ export function unlockedSkills(state: UserWordState | undefined, entry: Vocabula
   if (recognition && recognition.reps > 0 && exerciseTypesFor('recall', entry, opts).length) out.push('recall')
   // The other skills wait until the word can be recalled, so a new word's first days go to
   // getting it into memory rather than to six separate schedules (fewer, deeper cards).
-  const recalledOnce = !!recall && recall.reps > 0 && recall.stability >= 1
-  const recallHeld = recall?.state === State.Review
+  // With every way of asking recall switched off, the recognition card stands in for it: the other skills still open, and words still grow.
+  const recallAsked = exerciseTypesFor('recall', entry, opts).length > 0
+  const basis = recallAsked ? recall : recognition
+  const recalledOnce = !!basis && basis.reps > 0 && basis.stability >= 1
+  const recallHeld = basis?.state === State.Review
   if (recalledOnce && exerciseTypesFor('gender', entry, opts).length) out.push('gender')
   if (recallHeld && exerciseTypesFor('listening', entry, opts).length) out.push('listening')
   if (recallHeld && exerciseTypesFor('collocation', entry, opts).length) out.push('collocation')
