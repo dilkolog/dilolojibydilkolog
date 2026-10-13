@@ -12,6 +12,8 @@ import { recordMistake, type MistakeInput } from '../engine/mistakes'
 import type { BossWin } from '../engine/bosses'
 import type { ExamResult } from '../engine/exam'
 import { emptyLab, type LabData } from '../engine/labProgress'
+import { localDate } from '../engine/progress'
+import { addTime, cleanTimeLog, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
@@ -135,6 +137,8 @@ export interface Settings {
   autoAdvance?: number
   /** Keeps the screen on during a session (where supported); default on. */
   keepAwake?: boolean
+  /** Weekly goal of reading and listening, in minutes (absent: none). */
+  weeklyTimeGoal?: number
   /** Tabs taken out of the menu (still in ⌘K and links); see HIDEABLE_TABS. */
   hiddenTabs?: string[]
   /** Reviews waiting shown as a number on the app icon (installed app); default on. */
@@ -817,6 +821,25 @@ export class KelimeDB extends Dexie {
     return ((await this.meta.get('records'))?.value as Record<string, number>) ?? {}
   }
 
+  /** Seconds read and listened, per language and day (see engine/studyTime). */
+  async getTimeLog(): Promise<TimeLog> {
+    return cleanTimeLog((await this.meta.get('timeLog'))?.value)
+  }
+
+  /** Adds seconds to today's reading or listening of a language; reports are applied one after the other. */
+  addStudyTime(kind: TimeKind, language: TargetLanguage, seconds: number, now = new Date()): Promise<void> {
+    const next = this.timeQueue.then(async () => {
+      const log = await this.getTimeLog()
+      const added = addTime(log, kind, language, localDate(now), seconds)
+      if (added === log) return
+      await this.meta.put({ key: 'timeLog', value: pruneTimeLog(added, now) })
+    })
+    this.timeQueue = next.catch(() => {})
+    return next
+  }
+
+  private timeQueue: Promise<void> = Promise.resolve()
+
   async saveRecord(key: string, value: number) {
     const all = await this.getRecords()
     await this.meta.put({ key: 'records', value: { ...all, [key]: value } })
@@ -1110,7 +1133,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 7
+export const BACKUP_VERSION = 8
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1144,6 +1167,8 @@ export interface Backup {
   /** The verb lab's favourites, recent verbs and practice (per language), and the personal bests of the games. */
   lab?: Partial<Record<'fr' | 'es', LabData>>
   records?: Record<string, number>
+  /** Seconds read and listened per language and day (backup version 8+). */
+  timeLog?: Record<string, number>
   /** Badges earned and when. */
   badges?: BadgeLog
   /** Translations kept on the device. */
@@ -1214,6 +1239,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     deleted: await db.getDeleted(),
     lab: { fr: await db.getLab('fr'), es: await db.getLab('es') },
     records: await db.getRecords(),
+    timeLog: await db.getTimeLog(),
     badges: await db.getBadgeLog(),
     translations: await db.getTranslations(),
     earMisses: await db.getEarLog(),
@@ -1324,6 +1350,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     for (const [l, lab] of Object.entries(backup.lab ?? {})) if (lab) await db.meta.put({ key: `lab:${l}`, value: lab })
     for (const [l, notes] of Object.entries(backup.dictionary ?? {})) if (notes) await db.meta.put({ key: `dict:${l}`, value: notes })
     if (backup.records) await db.meta.put({ key: 'records', value: backup.records })
+    if (backup.timeLog) await db.meta.put({ key: 'timeLog', value: cleanTimeLog(backup.timeLog) })
     if (backup.badges) await db.meta.put({ key: 'badges', value: backup.badges })
     if (backup.translations) await db.meta.put({ key: 'translations', value: backup.translations })
     if (backup.earMisses) await db.meta.put({ key: 'earMisses', value: backup.earMisses })

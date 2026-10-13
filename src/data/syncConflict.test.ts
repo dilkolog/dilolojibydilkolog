@@ -22,7 +22,7 @@ vi.mock('@vercel/blob', () => ({
 const api = await import('../../api/sync')
 const { clearAccessCache } = await import('../../api/_account')
 const { deriveAccount, open, restoreReplaced, syncNow, syncUsage, SyncTooLargeError, CORE_LIMIT_BYTES } = await import('./sync')
-const { KelimeDB } = await import('./db')
+const { KelimeDB, BACKUP_VERSION } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
 let corePuts = 0
@@ -246,7 +246,7 @@ describe('answers and texts travel in parts of their own', () => {
     expect(core.events).toEqual([])
     expect(core.reading.library).toEqual([])
     expect(Object.keys(core.shards).sort()).toEqual(parts().sort())
-    expect(core.version).toBe(7)
+    expect(core.version).toBe(BACKUP_VERSION)
 
     await syncNow(laptop, acc)
     expect((await laptop.events.toArray()).map((e) => e.id).sort()).toEqual(['a1', 'a2', 'a3'])

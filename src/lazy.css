@@ -1526,3 +1526,11 @@ button.badge-card:active { transform: none; }
 .why-more summary { cursor: pointer; color: var(--ink-soft); font-weight: 600; width: fit-content; }
 .why-more summary:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-xs); }
 .why-more p { margin: 0.375rem 0 0; line-height: 1.5; }
+
+/* Progress: reading and listening time, seven days as small columns (listening below, reading above). */
+.time-total { margin: 0; font-size: var(--t-xl); line-height: 1.2; }
+.time-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; align-items: end; }
+.time-day { display: grid; gap: 0.25rem; justify-items: center; }
+.time-bar { display: flex; flex-direction: column-reverse; width: 100%; max-width: 2.25rem; height: 5rem; background: var(--track); border-radius: var(--r-sm); overflow: hidden; }
+.time-listen { background: var(--lang); }
+.time-read { background: color-mix(in srgb, var(--lang) 45%, var(--surface)); }

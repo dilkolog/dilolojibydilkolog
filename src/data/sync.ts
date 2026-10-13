@@ -1,4 +1,5 @@
 import { mergeSeen, type LabData } from '../engine/labProgress'
+import { mergeTimeLogs } from '../engine/studyTime'
 import type { ReviewEvent, VocabularyEntry } from '../engine/types'
 import { mergeMemories } from '../engine/translationMemory'
 import { mergeEarLogs } from '../engine/earMisses'
@@ -303,6 +304,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     lab: { fr: withoutRemoved(mergeLab(older.lab?.fr, newer.lab?.fr), 'fr', dead), es: withoutRemoved(mergeLab(older.lab?.es, newer.lab?.es), 'es', dead) },
     dictionary: Object.fromEntries((['en', 'fr', 'es'] as const).map((l) => [l, withoutTakenBack(mergeNotes(older.dictionary?.[l], newer.dictionary?.[l]), l, dead)])),
     records: Object.fromEntries([...new Set([...Object.keys(older.records ?? {}), ...Object.keys(newer.records ?? {})])].map((k) => [k, Math.max(older.records?.[k] ?? 0, newer.records?.[k] ?? 0)])),
+    timeLog: mergeTimeLogs(older.timeLog, newer.timeLog),
     badges: mergeBadgeLogs(older.badges, newer.badges),
     translations: mergeMemories(older.translations, newer.translations),
     earMisses: mergeEarLogs(older.earMisses, newer.earMisses),
