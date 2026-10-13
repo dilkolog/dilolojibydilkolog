@@ -1,4 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import onbGoal from '../assets/art/onb-goal.webp'
+import onbMap from '../assets/art/onb-map.webp'
+import onbPlant from '../assets/art/onb-plant.webp'
+import langEn from '../assets/art/lang-en.webp'
+import langEs from '../assets/art/lang-es.webp'
+import langFr from '../assets/art/lang-fr.webp'
 
 import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 
@@ -9,6 +15,9 @@ import { HELLO, LANGUAGE_NAME } from './labels'
 import { Plant } from './Plant'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
+
+/** Monki dressed for each language's welcome. */
+const LANG_ART: Record<TargetLanguage, string> = { en: langEn, es: langEs, fr: langFr }
 
 function Chips<T extends string | number>({
   options,
@@ -117,6 +126,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
       <section className="card stack onboarding-form ob-step" key={step}>
         {step === 0 && (
           <>
+            <img className="ob-art" src={onbMap} alt="" draggable={false} />
             <button type="button" className="btn btn-lg btn-block" onClick={next}>
               Başlayalım
             </button>
@@ -154,6 +164,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
             <div className="lang-cards" role="group" aria-label="Dil">
               {TARGET_LANGUAGES.map((l) => (
                 <button key={l} type="button" className="lang-card" aria-pressed={l === language} data-lang={l} onClick={() => setLanguage(l)}>
+                  <img className="lang-card-art" src={LANG_ART[l]} alt="" draggable={false} />
                   <span className="hello">{HELLO[l]}</span>
                   <span className="muted">{LANGUAGE_NAME[l]}</span>
                   {l === language && (
@@ -170,6 +181,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
 
         {step === 2 && (
           <div className="stack gap-4">
+            <img className="ob-art" src={onbGoal} alt="" draggable={false} />
             <h2 className="section-title ob-heading" ref={heading} tabIndex={-1}>
               Günlük hedefini seç
             </h2>
@@ -191,11 +203,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
 
         {step === 3 && (
           <div className="stack gap-3 ob-ready">
-            <div className="ob-ready-art" aria-hidden>
-              <Plant stage={1} size={64} />
-              <Plant stage={3} size={84} />
-              <Plant stage={5} size={104} />
-            </div>
+            <img className="ob-art" src={onbPlant} alt="" draggable={false} />
             <h2 className="section-title ob-heading" ref={heading} tabIndex={-1}>
               {who ? `Hazırsın, ${who}!` : 'Hazırsın!'}
             </h2>

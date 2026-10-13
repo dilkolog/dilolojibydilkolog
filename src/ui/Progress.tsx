@@ -115,7 +115,7 @@ export function ProgressScreen({
 
   return (
     <div className="progress-page">
-      <PageHeader title="İlerleme" sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın." />
+      <PageHeader art="time" title="İlerleme" sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın." />
       {/* The page in four numbers, each with its last six weeks. */}
       <WeekHero
         report={report}

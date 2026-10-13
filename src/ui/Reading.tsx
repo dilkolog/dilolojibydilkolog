@@ -472,6 +472,7 @@ export function ReadingScreen({
     return (
       <div className="stack">
         <PageHeader
+          art="read"
           title="Okuma"
           sub={`${LANGUAGE_NAME[language]} metinlerde ne kadarını bildiğini gör, bilmediklerini kelimelerine ekle.`}
           // With an empty library the form below is already open: one way in, not three.

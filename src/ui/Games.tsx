@@ -2,7 +2,7 @@ import '../lazy.css'
 import { useEffect, useState } from 'react'
 import { openMistakes } from '../engine/mistakes'
 import { BOSS_XP, findBosses, type BossWin } from '../engine/bosses'
-import { Glyph } from './Glyph'
+import { GameIcon } from './GameIcon'
 import { PlayIcon, TrophyIcon } from './icons'
 import { FLUENCY_MIN_WORDS, pickFluencyWords } from '../engine/practice'
 import { createRng } from '../engine/rng'
@@ -278,7 +278,7 @@ export function GamesScreen(
       {suggestion && (
         <section className={`game-suggest tone-${suggestion.card.tone}`}>
           <span className="game-suggest-icon" aria-hidden>
-            <Glyph emoji={suggestion.card.emoji} size={30} />
+            <GameIcon id={suggestion.card.id} emoji={suggestion.card.emoji} size={30} />
           </span>
           <div className="game-suggest-body">
             <span className="small game-suggest-kicker">Bugün için önerilen</span>
@@ -297,11 +297,11 @@ export function GamesScreen(
             {g.cards.map((c) => (
               <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => (c.open ? c.open() : setGame(c.id as Game))}>
                 <span className="game-emoji" aria-hidden>
-                  <Glyph emoji={c.emoji} size={26} />
+                  <GameIcon id={c.id} emoji={c.emoji} size={28} />
                 </span>
                 {/* The same sign, large and faint in the corner: each card its own face. */}
                 <span className="game-watermark" aria-hidden>
-                  <Glyph emoji={c.emoji} size={96} />
+                  <GameIcon id={c.id} emoji={c.emoji} size={96} />
                 </span>
                 <strong>{c.name}</strong>
                 <span className="small muted">{c.text}</span>
