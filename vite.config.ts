@@ -16,7 +16,7 @@ export default defineConfig({
     VitePWA({
       // A new version waits for the learner's "Yenile" (src/ui/update.ts) instead of replacing the app mid-session.
       registerType: 'prompt',
-      includeAssets: ['favicon-32.png', 'favicon-64.png', 'apple-touch-icon.png'],
+      includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.

@@ -86,7 +86,7 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
       </button>
       <div className="auth-card card">
         <div className="auth-head">
-          <BrandLogo className="auth-mark" />
+          <BrandLogo className="auth-mark" size={30} />
           <h1 className="auth-title">{creating ? 'Hesap oluştur' : 'Hesabına giriş yap'}</h1>
           <p className="muted">{creating ? 'İlerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle devam edersin.' : 'İlerlemen bu cihazdakiyle birleşir ve her cihazda aynı olur.'}</p>
         </div>
