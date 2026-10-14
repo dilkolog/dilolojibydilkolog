@@ -4,8 +4,10 @@ import { displayForm } from '../engine/exercises'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { playWord, speak } from './speech'
 import { canRecord, recordingType } from './audioRecord'
-import { MicIcon, PlayIcon, SpeakerIcon } from './icons'
-import { assessPronunciation, type PronResult } from './pronunciation'
+import { MicIcon, PlayIcon, SparkleIcon, SpeakerIcon } from './icons'
+import { AiError, pronTips, type PronTip } from '../ai'
+import { useAi } from './aiContext'
+import { assessPronunciation, tipWords, type PronResult } from './pronunciation'
 import { Ring } from './Ring'
 import { StatusPicture } from './StatusArt'
 import { EMBLEM } from './drawnArt'
@@ -16,6 +18,50 @@ const MAX_MS = 12000
 const tone = (accuracy: number) => (accuracy >= 80 ? 'is-good' : accuracy >= 60 ? 'is-near' : 'is-bad')
 const verdict = (score: number) =>
   score >= 85 ? 'Çok iyi; anadili konuşana çok yakın.' : score >= 60 ? 'İyi. Turuncu ve kırmızı kelimelere dikkat: doğrusunu dinleyip onları tekrar söyle.' : 'Doğrusunu dinle, sonra yavaşça ve kelime kelime tekrar dene.'
+
+/** With an AI key, after an attempt with weak words: how to say them, asked for with a tap. */
+export function PronTips({ text, language, result }: { text: string; language: TargetLanguage; result: PronResult }) {
+  const { apiKey } = useAi()
+  const words = tipWords(result)
+  const [tips, setTips] = useState<PronTip[] | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  if (!apiKey || !words.length) return null
+  if (tips)
+    return (
+      <ul className="pron-tips" aria-label="Telaffuz ipuçları">
+        {tips.map((t) => (
+          <li key={t.word}>
+            <strong lang={language}>{t.word}</strong> {t.tip}
+          </li>
+        ))}
+      </ul>
+    )
+  const ask = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      setTips(await pronTips(apiKey, { language, text, heard: result.heard, words }))
+    } catch (e) {
+      setError(e instanceof AiError ? e.message : 'İpuçları hazırlanamadı.')
+    } finally {
+      setBusy(false)
+    }
+  }
+  return (
+    <div className="pron-tips">
+      <button type="button" className="ai-suggest" onClick={() => void ask()} disabled={busy}>
+        <SparkleIcon size={14} className="icon-star" />
+        {busy ? 'Hazırlanıyor…' : `YZ: ${words.map((w) => w.word).join(', ')} nasıl söylenir?`}
+      </button>
+      {error && (
+        <p className="small muted" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  )
+}
 
 /**
  * Say the text, get it scored (Azure): overall, accuracy, fluency, completeness, and each word
@@ -151,6 +197,7 @@ export function PronunciationCheck({ text, language, onModel, onScore }: { text:
                 ))}
               </ul>
             )}
+            <PronTips key={result.heard + result.score} text={text} language={language} result={result} />
           </div>
         </div>
       )}

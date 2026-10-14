@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -457,6 +457,30 @@ export async function sessionNote(apiKey: string, req: SessionNoteRequest): Prom
   ].join('\n')
   const user = [`${req.answers} answers, ${req.wrong} not correct.`, ...req.lines].join('\n')
   return (await structured(apiKey, SessionNoteSchema, system, user, 'low', 'session_note')).note
+}
+
+const PronTipsSchema = z.object({
+  tips: z
+    .array(z.object({ word: z.string().describe('The word, exactly as given.'), tip: z.string().describe('One or two short Turkish sentences: which sound to watch and how to make it, compared with a Turkish sound where that helps.') }))
+    .describe('One tip per word given, in the same order.'),
+})
+
+/** How to say the words a pronunciation check scored low, from a Turkish speaker's point of view. */
+export async function pronTips(apiKey: string, req: PronTipsRequest): Promise<PronTip[]> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are a ${lang} pronunciation coach for Turkish speakers. A speech service scored a learner's attempt word by word; you get the words it scored low.`,
+    'For each word, name the sound most likely at fault for a Turkish speaker (a vowel Turkish lacks, a nasal vowel, a silent letter, a liaison, stress, a consonant cluster, r, th, the Spanish j or ll) and say concretely how to make it, comparing with a Turkish sound when it helps. Write the sound in plain letters, not IPA alone.',
+    'Write in Turkish, short; target-language words in quotes. Do not praise or greet.',
+  ].join('\n')
+  const user = [
+    `Text: ${req.text}`,
+    `Heard: ${req.heard || '(nothing)'}`,
+    ...req.words.map((w) => `${w.word}: ${w.omitted ? 'left out' : `${w.accuracy}/100`}`),
+  ].join('\n')
+  const out = await structured(apiKey, PronTipsSchema, system, user, 'low', 'pron_tips')
+  const wanted = new Set(req.words.map((w) => w.word))
+  return out.tips.filter((t) => wanted.has(t.word) && t.tip.trim())
 }
 
 const WeekNoteSchema = z.object({

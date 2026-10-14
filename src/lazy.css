@@ -17,6 +17,8 @@
 .ai-suggest:hover:not(:disabled) { background: var(--lang-soft); border-color: var(--lang); }
 .ai-suggest:disabled { opacity: 0.6; cursor: progress; }
 .explain-mistake { margin-top: 0.5rem; }
+.pron-tips { margin: 0.5rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.375rem; font-size: var(--t-sm); }
+.pron-tips strong { margin-right: 0.25rem; color: var(--lang-text); }
 .explain-mistake p { margin: 0 0 0.25rem; }
 .ai-fill-all { display: grid; gap: 0.375rem; justify-items: start; }
 .pos-auto {

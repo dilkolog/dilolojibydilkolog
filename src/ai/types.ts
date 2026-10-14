@@ -154,6 +154,21 @@ export interface ConjugationExplainRequest {
   table: string[]
 }
 
+export interface PronTipsRequest {
+  language: import('../engine/types').TargetLanguage
+  /** What was to be said. */
+  text: string
+  /** What the speech service heard. */
+  heard: string
+  /** The words worth a tip: score 0–100, or left out. */
+  words: { word: string; accuracy: number; omitted?: boolean }[]
+}
+
+export interface PronTip {
+  word: string
+  tip: string
+}
+
 export interface WeekNoteRequest {
   language: import('../engine/types').TargetLanguage
   /** The week's figures, kinds of error and most missed words, one fact a line. */
