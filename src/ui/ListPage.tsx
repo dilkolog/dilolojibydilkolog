@@ -98,7 +98,9 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
     // The list opened is where words added next go (the form can still pick another).
     rememberPlacement(language, list.id)
     let live = true
-    void getCollabs(db).then((links) => live && setCollab(links.some((l) => l.listId === list.id)))
+    void getCollabs(db)
+      .then((links) => live && setCollab(links.some((l) => l.listId === list.id)))
+      .catch(() => {})
     return () => {
       live = false
     }

@@ -122,7 +122,9 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
   const [collabIds, setCollabIds] = useState<ReadonlySet<string>>(new Set())
   useEffect(() => {
     let live = true
-    void getCollabs(db).then((links) => live && setCollabIds(new Set(links.map((l) => l.listId))))
+    void getCollabs(db)
+      .then((links) => live && setCollabIds(new Set(links.map((l) => l.listId))))
+      .catch(() => {})
     return () => {
       live = false
     }
