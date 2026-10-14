@@ -289,7 +289,7 @@ export default function Monki({
                   {targets.map((w) => {
                     const done = msgs.some((m) => m.role === 'user' && usesWord(m.text, w, language))
                     return (
-                      <span key={w} className={done ? 'chip chip-sm monki-target used' : 'chip chip-sm monki-target'} lang={language}>
+                      <span key={w} className={done ? 'chip chip-sm monki-target monki-target-used' : 'chip chip-sm monki-target'} lang={language}>
                         {done && '✓ '}
                         {w}
                       </span>

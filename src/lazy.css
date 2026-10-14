@@ -1655,7 +1655,7 @@ button.badge-card:active { transform: none; }
 /* Words mode: the words to use, ticked off as the learner uses them. */
 .monki-targets { display: flex; gap: 0.375rem; padding: 0.5rem 0.875rem 0; flex-wrap: wrap; }
 .monki-target { cursor: default; font-family: var(--serif); }
-.monki-target.used { background: var(--ok-soft); color: var(--ok-text); border-color: transparent; }
+.monki-target-used { background: var(--ok-soft); color: var(--ok-text); border-color: transparent; }
 .monki-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0.875rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .monki-setup { align-items: center; text-align: center; justify-content: center; gap: 0.75rem; }
 .monki-setup p { margin: 0; }
