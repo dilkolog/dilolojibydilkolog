@@ -45,6 +45,9 @@ const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
 const REASONS: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new']
 
 /** Why no (more) new words today, said plainly so the plan never looks stuck. */
+/** Fewer slips than this in a week are not worth a round of their own. */
+const WEEK_MISSES_MIN = 3
+
 const NEW_BLOCK_TEXT: Record<NewWordsBlock, (n: number) => string> = {
   limit: (n) => `Günlük yeni kelime sınırına ulaştın; ${n} kelime sırada bekliyor.`,
   backlog: (n) => `Önce biriken tekrarlar bitsin; ${n} yeni kelime sırada.`,
@@ -183,6 +186,8 @@ export function Home({
   onPracticeMistakes,
   difficultCount = 0,
   onPracticeDifficult,
+  weekMisses = 0,
+  onWeekMisses,
   onFreePractice,
   newWordsPerDay,
   onLowerNew,
@@ -244,6 +249,9 @@ export function Home({
   /** Words marked hard (the lightning mark) and a practice of just those. */
   difficultCount?: number
   onPracticeDifficult?: () => void
+  /** Words missed in the last seven days (a round of them once more). */
+  weekMisses?: number
+  onWeekMisses?: () => void
   onFreePractice: () => void
   /** The daily new words, and a one-tap way down to LIGHTER_NEW when the day runs long. */
   newWordsPerDay?: number
@@ -530,7 +538,7 @@ export function Home({
         <div className="home-nudges">{extra}</div>
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames)) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
+        {(openMistakeWords > 0 || weekMisses >= WEEK_MISSES_MIN || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames)) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -542,6 +550,17 @@ export function Home({
                   <span>
                     <strong>Hatalarını düzelt</strong>
                     <span className="small muted">{openMistakeWords} kelimede açık hata</span>
+                  </span>
+                </button>
+              )}
+              {weekMisses >= WEEK_MISSES_MIN && onWeekMisses && (
+                <button className="tile" onClick={onWeekMisses}>
+                  <span className="tile-icon warm">
+                    <ShuffleIcon size={22} />
+                  </span>
+                  <span>
+                    <strong>Bu haftanın hataları</strong>
+                    <span className="small muted">Son 7 günde yanıldığın {weekMisses} kelime, karışık sorularla bir kez daha · yaklaşık 5 dk</span>
                   </span>
                 </button>
               )}

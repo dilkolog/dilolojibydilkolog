@@ -527,6 +527,10 @@ function monkiModeRules(req: MonkiRequest, lang: string): string[] {
     return [
       `MISTAKES MODE: the learner's recent mistakes, most repeated first: ${req.mistakes?.length ? req.mistakes.map((m) => `${m.word} (wrote "${m.given || '-'}", right: "${m.expected}")`).join('; ') : 'none recorded'}. Go through them one at a time: say in Turkish why it goes wrong, give a short memory trick and one new example, then ask the learner to write a sentence with it and correct it. Move on only when they have it.`,
     ]
+  if (req.mode === 'words')
+    return [
+      `WORDS MODE: the learner wants to practise these words by using them: ${req.targets?.join(', ') || 'their recent words'}. Lead a short, friendly conversation in simple, natural ${lang} (A2-B1) on an everyday theme where these words come up naturally. Ask one question at a time that invites the learner to use one of the words they have not used yet (never write the word for them unless they ask for a hint). When they use one correctly, cheer in a few Turkish words and move on to the next; when they misuse it, add a line in Turkish starting with "✏️ Düzeltme:" with the corrected sentence. Keep each of your turns to one or two short ${lang} sentences plus at most one short Turkish line. When all the words have been used, congratulate them in Turkish and sum up in two lines. Taps: Turkish ones like "İpucu ver" and "Bir sonraki kelime".`,
+    ]
   return []
 }
 

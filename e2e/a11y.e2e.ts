@@ -914,7 +914,7 @@ test('dictionary states and collocation chip accessibility check (phone, light a
   await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toBeVisible()
   await search.fill('')
-  await expect(page.locator('.word-list .word-row', { hasText: 'farfadet' })).toBeVisible()
+  await expect(page.locator('.dict-saved-pick', { hasText: 'farfadet' })).toBeVisible()
   await scanBoth('phone-dictionary-saved-list-state')
 
   // 2. Bulunamayan kelime kartı (DeepL düğmesi görünürken)

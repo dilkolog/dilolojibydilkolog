@@ -54,6 +54,7 @@ import type { PushState } from './ui/pushReminders'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import type { DailyPlan } from './engine/dailyPlan'
 import type { buildDailyPlan as BuildPlan } from './engine/dailyPlan'
+import { WEEK_MISSES_ROUND, weekMisses } from './engine/weekly'
 
 export interface AppScreensProps {
   screen: Screen
@@ -100,6 +101,8 @@ export interface AppScreensProps {
 /** The screen the app is on: the chain of screens, each given what it needs from the shell. */
 export function AppScreens(props: AppScreensProps) {
   const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
+  // This week's slips, met once more: words missed in the last seven days, most missed first.
+  const weekMissed = data ? weekMisses(data.recentEvents, data.language, new Date()) : []
   return (
     <>
       {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
@@ -357,6 +360,11 @@ export function AppScreens(props: AppScreensProps) {
           }
           difficultCount={difficultWords(data.vocabulary).length}
           onPracticeDifficult={practiceDifficult}
+          weekMisses={weekMissed.length}
+          onWeekMisses={() => {
+            const deck = weekMissed.flatMap((id) => byId.get(id) ?? [])
+            startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), limit: WEEK_MISSES_ROUND, options }), 'normal', undefined, deck)
+          }}
           onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
           newWordsPerDay={settings.newWordsPerDay}
           onLowerNew={() => {

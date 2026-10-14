@@ -1861,7 +1861,7 @@ test('dictionary: a word the pack lacks is translated by DeepL, saved for good, 
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('karalamak')
   // Typing the Turkish finds it too.
   await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('karala')
-  await expect(page.locator('.word-row', { hasText: 'gribouiller' })).toBeVisible()
+  await expect(page.locator('.dict-saved-pick', { hasText: 'gribouiller' })).toBeVisible()
   expect(asked).toBe(0)
   // Taken out, it is gone.
   await page.getByRole('searchbox', { name: 'Sözlükte ara' }).fill('gribouiller')
@@ -1918,7 +1918,7 @@ test('dictionary searchability: saved word is found by prefix, without accents, 
 
   // 1. Prefix match: typing "télé" matches in SavedList
   await search.fill('télé')
-  await expect(page.locator('.word-row', { hasText: 'téléguidé' })).toBeVisible()
+  await expect(page.locator('.dict-saved-pick', { hasText: 'téléguidé' })).toBeVisible()
 
   // 2. Accent-free exact match: "teleguide" finds the saved exact card
   await search.fill('teleguide')
@@ -1926,7 +1926,7 @@ test('dictionary searchability: saved word is found by prefix, without accents, 
 
   // 3. Turkish meaning match with capital dotless I: "Işık" finds it
   await search.fill('Işık')
-  await expect(page.locator('.word-row', { hasText: 'téléguidé' })).toBeVisible()
+  await expect(page.locator('.dict-saved-pick', { hasText: 'téléguidé' })).toBeVisible()
 
   // Clean up
   await search.fill('téléguidé')

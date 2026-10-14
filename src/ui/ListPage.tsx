@@ -17,15 +17,25 @@ import { presetList } from './studyOptionsStore'
 import { rememberPlacement } from './listMemory'
 import { Bar } from './WordLists'
 import { progressLine as meta } from './listOptions'
+import { lastListTest } from './listTests'
+import { AskMonki } from './monki/AskMonki'
+import { talkWords } from './monki/monkiWords'
 
 /** The rounds that can take one list: the game, and the name its study choices are kept under. */
 const LIST_GAMES: { id: GameId; use: string; label: string }[] = [
   { id: 'swipe', use: 'flashcards', label: 'Kartlar' },
-  { id: 'test', use: 'test', label: 'Sınav' },
+  { id: 'test', use: 'test', label: 'Sınav ol' },
   { id: 'truefalse', use: 'truefalse', label: 'Doğru mu?' },
   { id: 'gravity', use: 'gravity', label: 'Yerçekimi' },
 ]
 const emojiOf = (id: GameId) => GAME_LIST.find((g) => g.id === id)?.emoji ?? ''
+
+/** How long ago, in days: "bugün", "dün", "3 gün önce". */
+function daysAgo(iso: string, now = new Date()): string {
+  const day = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
+  const n = Math.round((day(now) - day(new Date(iso))) / 86_400_000)
+  return n <= 0 ? 'bugün' : n === 1 ? 'dün' : `${n} gün önce`
+}
 
 /** A name typed in place: Enter saves, Esc or an empty name cancels. */
 function NameForm({ initial, label, onSave, onCancel }: { initial: string; label: string; onSave: (name: string) => void; onCancel: () => void }) {
@@ -155,6 +165,7 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
     onPlay(g.id)
   }
   const cover = list ? listCover(list.name) : undefined
+  const lastTest = list ? lastListTest(list.id) : undefined
 
   return (
     <section className="stack mt-4 list-page">
@@ -285,6 +296,20 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
                   </button>
                 ))}
               </div>
+            )}
+            {list && (
+              <AskMonki
+                label="Monki'yle bu kelimelerle konuş"
+                ask={() => {
+                  const targets = talkWords(words, stateById)
+                  return { text: `Şu kelimeleri kullanacağım kısa bir sohbet yapalım: ${targets.join(', ')}. Sen başlat.`, mode: 'words', targets, send: true }
+                }}
+              />
+            )}
+            {lastTest && (
+              <p className="small muted wl-last-test">
+                Son sınav: <strong>%{lastTest.percent}</strong> · {daysAgo(lastTest.at)}
+              </p>
             )}
           </>
         ) : (

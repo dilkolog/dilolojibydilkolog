@@ -9,6 +9,7 @@ import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
 import { EMBLEM } from '../drawnArt'
+import { usesWord } from './monkiWords'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -61,6 +62,7 @@ const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean): stri
   if (mode === 'quiz') return ['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor']
   if (mode === 'roleplay') return SCENARIOS
   if (mode === 'mistakes') return hasMistakes ? ['Hatalarımı sırayla inceleyelim', 'En çok yaptığım hatadan başla'] : []
+  if (mode === 'words') return ['Başlayalım']
   return ['Bugün işime yarayacak 5 kalıp öğret', 'Yazdığım cümleyi düzeltir misin?', hasWeak ? 'Zorlandığım kelimelerle kısa bir hikâye yaz' : 'Bana kısa, kolay bir hikâye yaz']
 }
 
@@ -69,6 +71,7 @@ const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolea
   quiz: (_h, lang) => `**Sınav zamanı!** Sana ${lang} tek tek soru soracağım; cevabını yaz ya da seçeneklerden birine dokun. Hangisiyle başlayalım?`,
   roleplay: (_h, lang) => `**Bir sahne seç**, ben karşındaki kişi olurum ve ${lang} konuşuruz. Hata yaparsan konuşmayı bölmeden altına küçük bir düzeltme yazarım.`,
   mistakes: (_h, _l, has) => (has ? '**Son hatalarına bakalım.** Tek tek, nedenini ve bir hafıza ipucunu konuşalım, sonra yeni bir cümle kuralım.' : '**Açık hatan yok**, harika! Birkaç soru çözüp hata biriktirdikçe burada onlarla çalışabiliriz.'),
+  words: () => '**Kelimelerle konuşalım.** Sana sorular soracağım; cevaplarken yukarıdaki kelimeleri kullanmaya çalış, kullandıkça işaretlenir.',
 }
 
 /** Monki: the assistant. A floating monkey that opens a small chat about the language being learned. */
@@ -100,6 +103,8 @@ export default function Monki({
   const [error, setError] = useState('')
   const [mode, setMode] = useState<MonkiMode>('chat')
   const [scenario, setScenario] = useState('')
+  // Words mode: the words to use, and which of them the learner has used so far.
+  const [targets, setTargets] = useState<string[]>([])
   const logRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const fabRef = useRef<HTMLButtonElement>(null)
@@ -149,7 +154,7 @@ export default function Monki({
   }, [msgs, busy, open, suggestions])
 
   const send = useCallback(
-    async (raw: string, over?: { mode?: MonkiMode; scenario?: string }) => {
+    async (raw: string, over?: { mode?: MonkiMode; scenario?: string; targets?: string[] }) => {
       const message = raw.trim()
       if (!message || busy || !apiKey) return
       const asked = language
@@ -169,6 +174,7 @@ export default function Monki({
           mode: over?.mode ?? mode,
           scenario: (over?.scenario ?? scenario) || undefined,
           mistakes,
+          targets: (over?.mode ?? mode) === 'words' ? (over?.targets ?? targets) : undefined,
         })
         if (languageRef.current !== asked) return
         const done = [...next, { role: 'assistant' as const, text: reply.reply }]
@@ -182,7 +188,7 @@ export default function Monki({
         if (languageRef.current === asked) setBusy(false)
       }
     },
-    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes],
+    [apiKey, busy, language, msgs, name, weakWords, mode, scenario, mistakes, targets],
   )
 
   // A question from elsewhere in the app (a word page, a wrong answer, a sentence being read).
@@ -194,9 +200,10 @@ export default function Monki({
       if (ask.mode) {
         setMode(ask.mode)
         setScenario(ask.scenario ?? '')
+        setTargets(ask.targets ?? [])
       }
       setOpen(true)
-      if (ask.send) void sendRef.current(ask.text, { mode: ask.mode, scenario: ask.scenario })
+      if (ask.send) void sendRef.current(ask.text, { mode: ask.mode, scenario: ask.scenario, targets: ask.targets })
       else setText(ask.text)
     })
     return () => setMonkiListener(null)
@@ -277,6 +284,19 @@ export default function Monki({
                   </button>
                 ))}
               </div>
+              {mode === 'words' && targets.length > 0 && (
+                <div className="monki-targets" role="group" aria-label="Kullanılacak kelimeler">
+                  {targets.map((w) => {
+                    const done = msgs.some((m) => m.role === 'user' && usesWord(m.text, w, language))
+                    return (
+                      <span key={w} className={done ? 'chip chip-sm monki-target used' : 'chip chip-sm monki-target'} lang={language}>
+                        {done && '✓ '}
+                        {w}
+                      </span>
+                    )
+                  })}
+                </div>
+              )}
               <div className="monki-body monki-log" ref={logRef} role="log" aria-live="polite" aria-label="Sohbet">
                 {msgs.length === 0 && mode === 'chat' && (
                   <div className="monki-hello">
