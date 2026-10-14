@@ -12,6 +12,7 @@ import { cleanEtymology, genderOfCode, POS_CODE } from '../data/wordpackBuild'
 import { addEntry, emptyNotes, findAdded, noteLookup, parseMeanings, removeEntry, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
+import { verbFormsOf } from '../engine/verbLookup'
 import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
 import { CollocationChip } from './CollocationChip'
@@ -151,7 +152,17 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
     }
   }
 
-  const result = useMemo(() => (index ? search(index, query) : { similar: [], fromTurkish: [] }), [index, query])
+  // The verb tables find the infinitive of a conjugated form the pack doesn't list (renuncio → renunciar).
+  const [tables, setTables] = useState(false)
+  useEffect(() => {
+    let live = true
+    setTables(false)
+    if (language !== 'en') void loadTenses(language).then(() => live && setTables(true))
+    return () => {
+      live = false
+    }
+  }, [language])
+  const result = useMemo(() => (index ? search(index, query, tables ? (w) => verbFormsOf(language, w) : undefined) : { similar: [], fromTurkish: [] }), [index, query, tables, language])
   // The day's word stays the same all day; once added it gives way to the next one.
   const today = useMemo(() => (index ? wordOfTheDay(index, daySeed(new Date())) : undefined), [index])
   const typed = query.trim()
@@ -265,6 +276,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
             <WordCard
               key={result.exact.word}
               form={result.form}
+              formNote={result.formNote}
               alsoFormOf={result.alsoFormOf}
               language={language}
               word={result.exact.word}
@@ -360,6 +372,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
 function WordCard({
   language,
   form,
+  formNote,
   alsoFormOf,
   word,
   rec,
@@ -385,6 +398,8 @@ function WordCard({
   onOpenWord: (id: string) => void
   /** What was typed, when it is an inflected form of the word. */
   form?: string
+  /** Which form it is (presente, yo), when the verb tables said. */
+  formNote?: string
   /** The word this one is also a form of (allons: aller). */
   alsoFormOf?: string
   /** `written`: the word as the add form wants it (a French noun with its article when the gender is known); with what the card knows of it. */
@@ -429,7 +444,7 @@ function WordCard({
           <ul className="chip-list" aria-label="Kelime bilgisi">
             {form && (
               <li>
-                “<span lang={language}>{form}</span>” biçiminden
+                “<span lang={language}>{form}</span>” biçiminden{formNote && <span className="muted"> · {formNote}</span>}
               </li>
             )}
             {pos && (
@@ -604,6 +619,35 @@ function Related({ title, words, language, onPick }: { title: string; words: str
 }
 
 /** Not in the pack: the learner's own word if it is one, the AI if there is a key, Wiktionary otherwise. */
+/**
+ * A word missing here that is a conjugated form in the other language learned ("renuncio" typed on
+ * the French dictionary): says so, with the verb, so the search is one language switch away.
+ */
+function OtherLanguageVerb({ language, word }: { language: TargetLanguage; word: string }) {
+  const [found, setFound] = useState<{ language: 'fr' | 'es'; lemma: string; note: string } | null>(null)
+  useEffect(() => {
+    let live = true
+    setFound(null)
+    const others = (['fr', 'es'] as const).filter((l) => l !== language)
+    void Promise.all(others.map((l) => loadTenses(l))).then(() => {
+      if (!live) return
+      for (const l of others) {
+        const [v] = verbFormsOf(l, word)
+        if (v) return setFound({ language: l, ...v })
+      }
+    })
+    return () => {
+      live = false
+    }
+  }, [language, word])
+  if (!found) return null
+  return (
+    <p className="note">
+      “<span lang={found.language}>{word}</span>” {LANGUAGE_NAME[found.language]} <strong lang={found.language}>{found.lemma}</strong> fiilinin çekimine benziyor ({found.note}). Üstten {LANGUAGE_NAME[found.language]}’yı seçip arayabilirsin.
+    </p>
+  )
+}
+
 function NotFound({
   language,
   word,
@@ -687,6 +731,7 @@ function NotFound({
 
   return (
     <section className="section card stack">
+      <OtherLanguageVerb language={language} word={word} />
       {deepl !== null && !ai ? (
         <>
           <p>

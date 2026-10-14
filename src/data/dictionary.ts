@@ -36,6 +36,8 @@ export interface DictResult {
   exact?: DictHit
   /** What was typed, when it is an inflected form of `exact` (allons for aller). */
   form?: string
+  /** Which form it is, when the verb tables said (presente, yo). */
+  formNote?: string
   /** The word `exact` is also a form of, when it is a word of its own too ("Allons !", and a form of aller). */
   alsoFormOf?: string
   /** Other words starting the same way, most frequent first. */
@@ -155,7 +157,10 @@ const hit = (index: DictIndex, i: number): DictHit => ({
   isOwn: index.ownKeys.has(index.keys[i]),
 })
 
-export function search(index: DictIndex, query: string): DictResult {
+/** A conjugated form's verbs, from the verb tables: the dictionary looks the word up by the first it has. */
+export type VerbFormLookup = (typed: string) => { lemma: string; note: string }[]
+
+export function search(index: DictIndex, query: string, verbForm?: VerbFormLookup): DictResult {
   const q = fold(query)
   if (!q) return { similar: [], fromTurkish: [] }
   const { language } = index
@@ -166,11 +171,23 @@ export function search(index: DictIndex, query: string): DictResult {
   if (exactAt < 0) exactAt = index.folded.findIndex((f) => f === bare || f === q)
   // An inflected form: the word it belongs to (allons → aller, went → go).
   let form: string | undefined
+  let formNote: string | undefined
   if (exactAt < 0) {
     const base = baseForm(index.pack, query, language)
     if (base) {
       exactAt = index.keys.indexOf(base)
       form = query.trim()
+    }
+  }
+  // A form the pack's table lacks (renuncio, nous mangeâmes, j'ai mangé): the verb tables know its verb.
+  if (exactAt < 0 && verbForm) {
+    for (const v of verbForm(query.trim())) {
+      const at = index.keys.indexOf(v.lemma)
+      if (at < 0) continue
+      exactAt = at
+      form = query.trim()
+      formNote = v.note
+      break
     }
   }
   const exact = exactAt >= 0 ? hit(index, exactAt) : undefined
@@ -224,7 +241,7 @@ export function search(index: DictIndex, query: string): DictResult {
   }
 
   const also = exact && !form ? index.pack.f?.[exact.word] : undefined
-  return { exact, ...(form ? { form } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}) }
+  return { exact, ...(form ? { form } : {}), ...(formNote ? { formNote } : {}), ...(also && also !== exact?.word && (index.pack.w[also] || index.extra?.has(also)) ? { alsoFormOf: also } : {}), similar, fromTurkish, ...(turkishAs ? { turkishAs } : {}) }
 }
 
 /**
