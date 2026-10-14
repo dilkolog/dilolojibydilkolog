@@ -97,38 +97,31 @@ function FocusLine({
         <ChevronDownIcon size={14} className="hero-list-chev" />
       </span>
     ) : (
-      <>“{focus?.name}”</>
+      <span className="hero-list-pick">“{focus?.name}”</span>
     )
+  const meta = [focus?.level ? `“${focus.level}” seviyesi` : '', focus?.total ? `${focus.met}/${focus.total} tanıştın` : ''].filter(Boolean).join(' · ')
   return (
     <div className="small hero-focus">
-      <TargetIcon size={14} className="inline-icon" />
       {focus && done ? (
-        <>
-          “{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir liste seç: {picker}
-        </>
+        <span className="hero-focus-note">“{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir liste seç:</span>
       ) : (
-        <>
-          Yeni kelimeler: {picker}
-          {focus?.level ? `, “${focus.level}” seviyesi` : ''}
-          {focus?.total ? ` (${focus.met}/${focus.total} tanıştın)` : ''}
-        </>
+        <span className="hero-focus-label">
+          <TargetIcon size={14} className="inline-icon" />
+          Yeni kelimeler
+        </span>
       )}
+      {picker}
+      {meta && !done && <span className="hero-focus-meta">{meta}</span>}
       {focusListId && onOpenList ? (
-        <>
-          {' · '}
-          <button type="button" className="link" onClick={() => onOpenList(focusListId)}>
-            Listeyi aç
-          </button>
-        </>
+        <button type="button" className="link hero-focus-open" onClick={() => onOpenList(focusListId)}>
+          Listeyi aç ›
+        </button>
       ) : (
         !onFocusList &&
         onOpenLists && (
-          <>
-            {' · '}
-            <button type="button" className="link" onClick={onOpenLists}>
-              Listeler
-            </button>
-          </>
+          <button type="button" className="link hero-focus-open" onClick={onOpenLists}>
+            Listeler ›
+          </button>
         )
       )}
     </div>
