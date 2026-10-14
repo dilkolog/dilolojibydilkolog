@@ -8,6 +8,33 @@ import mic from '../assets/art/medal-mic.webp'
 import daynight from '../assets/art/medal-daynight.webp'
 import compass from '../assets/art/medal-compass.webp'
 import diamond from '../assets/art/medal-diamond.webp'
+import mSproutBook from '../assets/art/medal-sprout-book.webp'
+import mRoots from '../assets/art/medal-roots.webp'
+import mCardsPlus from '../assets/art/medal-cards-plus.webp'
+import mBulbNote from '../assets/art/medal-bulb-note.webp'
+import mFrame from '../assets/art/medal-frame.webp'
+import mVoice from '../assets/art/medal-voice.webp'
+import mStoneBolt from '../assets/art/medal-stone-bolt.webp'
+import mFlagRock from '../assets/art/medal-flag-rock.webp'
+import mLifering from '../assets/art/medal-lifering.webp'
+import mCalendarCheck from '../assets/art/medal-calendar-check.webp'
+import mGemCheck from '../assets/art/medal-gem-check.webp'
+import mThreeFlames from '../assets/art/medal-three-flames.webp'
+import mFinishShoe from '../assets/art/medal-finish-shoe.webp'
+import mPhoenix from '../assets/art/medal-phoenix.webp'
+import mBeach from '../assets/art/medal-beach.webp'
+import mWeekFlag from '../assets/art/medal-week-flag.webp'
+import mTrophyStars from '../assets/art/medal-trophy-stars.webp'
+import mClockLoop from '../assets/art/medal-clock-loop.webp'
+import mPeakPencil from '../assets/art/medal-peak-pencil.webp'
+import mBoltWatch from '../assets/art/medal-bolt-watch.webp'
+import mBandage from '../assets/art/medal-bandage.webp'
+import mTags from '../assets/art/medal-tags.webp'
+import mGearQuill from '../assets/art/medal-gear-quill.webp'
+import mVinePencil from '../assets/art/medal-vine-pencil.webp'
+import mSunflower from '../assets/art/medal-sunflower.webp'
+import mPeakGear from '../assets/art/medal-peak-gear.webp'
+import mNotebook from '../assets/art/medal-notebook.webp'
 import emSprout from '../assets/art/emblem-sprout.webp'
 import emFlame from '../assets/art/emblem-flame.webp'
 import emBolt from '../assets/art/emblem-bolt.webp'
@@ -108,7 +135,7 @@ import reactOops from '../assets/art/react-oops.webp'
 import type { PartOfSpeech } from '../engine/types'
 import type { BadgeCategory } from '../engine/gamification'
 
-/** A badge's own drawn medal, by what it counts (the badges without one keep the metal medal). */
+/** A badge's own drawn medal, by what it counts: every badge has one (the metal medal stays in lists, where tiers matter). */
 const MEDAL_OF: Record<string, string> = {
   textsRead: books,
   longestStreak: flame,
@@ -123,6 +150,33 @@ const MEDAL_OF: Record<string, string> = {
   languagesStudied: compass,
   level: diamond,
   totalXp: diamond,
+  wordsIntroduced: mSproutBook,
+  wordsStrong: mRoots,
+  wordsAdded: mCardsPlus,
+  wordsWithNotes: mBulbNote,
+  wordsWithPicture: mFrame,
+  wordsWithRecording: mVoice,
+  hardMarked: mStoneBolt,
+  hardConquered: mFlagRock,
+  rescued: mLifering,
+  daysStudied: mCalendarCheck,
+  perfectDays: mGemCheck,
+  maxCombo: mThreeFlames,
+  maxDayAnswers: mFinishShoe,
+  comebacks: mPhoenix,
+  weekendDays: mBeach,
+  challengesDone: mWeekFlag,
+  perfectWeeks: mTrophyStars,
+  tourDays: mClockLoop,
+  totalAnswers: mPeakPencil,
+  fastCorrect: mBoltWatch,
+  mistakesFixed: mBandage,
+  articleCorrect: mTags,
+  conjugationCorrect: mGearQuill,
+  formsPracticed: mVinePencil,
+  formsMastered: mSunflower,
+  verbsMastered: mPeakGear,
+  journalEntries: mNotebook,
 }
 export const drawnMedal = (stat: string): string | undefined => MEDAL_OF[stat]
 

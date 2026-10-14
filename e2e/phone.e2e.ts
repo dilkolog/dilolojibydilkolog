@@ -487,7 +487,7 @@ test('a badge earned in a session gets its moment once, and so does one earned o
   const moment = page.locator('.badge-moment')
   await expect(moment).toBeVisible()
   await expect(moment.locator('h2')).toHaveText('İlk adım')
-  await expect(moment.locator('.medal')).toBeVisible()
+  await expect(moment.locator('.drawn-medal')).toBeVisible()
   await moment.getByRole('button', { name: 'Devam', exact: true }).click()
   await expect(moment).toHaveCount(0)
   // Not again on the home screen.
