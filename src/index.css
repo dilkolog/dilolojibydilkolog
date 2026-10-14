@@ -2738,6 +2738,8 @@ p, .help, .small { text-wrap: pretty; }
 .today-status { list-style: none; margin: 0.375rem 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem 1.25rem; color: var(--ink-soft); font-size: var(--t-sm); }
 .today-status li { display: inline-flex; align-items: center; gap: 0.375rem; }
 .today-status strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+/* The flame's body sits low in its picture (the tip is thin): raised a little, the body lines up with the text. */
+.today-status .streak-picture { margin: -0.375rem 0 0.125rem; }
 .today-status .is-nudge { color: var(--near-text); font-weight: 600; }
 /* A heading with actions: the title keeps its line; the actions drop below when space runs out. */
 .field-head > .section-title { white-space: nowrap; }
