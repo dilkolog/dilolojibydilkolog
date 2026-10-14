@@ -382,19 +382,18 @@ export class KelimeDB extends Dexie {
     this.meta.hook('deleting', bumpMeta)
     // The answers, for `allEvents`: every write is counted; an answer added is kept once its transaction is
     // committed (never one that is rolled back). A write that is not such an addition makes the next read whole.
-    const db = this
     this.events.hook('creating', (_key, event, tx) => {
-      const seq = ++db.eventWrites
+      const seq = ++this.eventWrites
       const copy = structuredClone(event)
       tx.on('complete', () => {
-        db.addedEvents.push({ seq, event: copy })
+        this.addedEvents.push({ seq, event: copy })
       })
     })
     this.events.hook('updating', () => {
-      db.eventWrites++
+      this.eventWrites++
     })
     this.events.hook('deleting', () => {
-      db.eventWrites++
+      this.eventWrites++
     })
   }
 
