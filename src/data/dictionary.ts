@@ -280,3 +280,24 @@ export function wiktionaryUrl(word: string, language: TargetLanguage): string {
   const section = { en: 'English', fr: 'French', es: 'Spanish' }[language]
   return `https://en.wiktionary.org/wiki/${encodeURIComponent(word)}#${section}`
 }
+
+/**
+ * The day's word: one of the 300th–4000th most frequent words (common enough to meet, past the
+ * ones everybody knows) that has a Turkish meaning and a part of speech and is not in the learner's
+ * list yet. The same all day (from the day's seed), and another tomorrow.
+ */
+export function wordOfTheDay(index: DictIndex, seed: number): DictHit | undefined {
+  const from = 300
+  const to = Math.min(4000, Object.keys(index.pack.w).length)
+  const span = to - from
+  if (span <= 0) return undefined
+  const start = Math.abs(Math.imul(seed, 2654435761)) % span
+  for (let step = 0; step < span; step++) {
+    const i = from + ((start + step) % span)
+    const key = index.keys[i]
+    const rec = index.pack.w[key]
+    if (!rec?.t?.length || !rec.p || key.length < 3 || index.ownKeys.has(key)) continue
+    return hit(index, i)
+  }
+  return undefined
+}

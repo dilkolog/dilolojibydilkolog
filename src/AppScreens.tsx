@@ -54,6 +54,7 @@ import type { PushState } from './ui/pushReminders'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import type { DailyPlan } from './engine/dailyPlan'
 import type { buildDailyPlan as BuildPlan } from './engine/dailyPlan'
+import { WEEK_MISSES_ROUND, weekMisses } from './engine/weekly'
 
 export interface AppScreensProps {
   screen: Screen
@@ -100,6 +101,8 @@ export interface AppScreensProps {
 /** The screen the app is on: the chain of screens, each given what it needs from the shell. */
 export function AppScreens(props: AppScreensProps) {
   const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
+  // This week's slips, met once more: words missed in the last seven days, most missed first.
+  const weekMissed = data ? weekMisses(data.recentEvents, data.language, new Date()) : []
   return (
     <>
       {!data || !plan ? <ScreenSkeleton kind={skeletonFor(screen.name)} /> : screen.name === 'session' ? (
@@ -183,8 +186,9 @@ export function AppScreens(props: AppScreensProps) {
           vocabulary={data.vocabulary}
           initialQuery={screen.query}
           onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
-          // The add form, with the dictionary's meaning filled in (the incoming-word effect opens Words).
+          // Words are added in one tap there; the form (the incoming-word effect opens Words) only when a card can't be made.
           onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
+          onAdded={reload}
           onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
           onSwitchLanguage={(targetLang, query) => {
             if (settings) void updateSettings({ ...settings, activeLanguage: targetLang })
@@ -314,6 +318,10 @@ export function AppScreens(props: AppScreensProps) {
             return { name: list.name, level: now ? (now.level?.name ?? null) : undefined, met: words.filter((w) => met.has(w.id)).length, total: words.length }
           })()}
           pinned={settings.profile.pinned}
+          lists={data.lists.map((l) => ({ id: l.id, name: l.name, count: data.vocabulary.filter((v) => v.listId === l.id).length })).filter((l) => l.count > 0)}
+          focusListId={planInput?.settings.focusListId}
+          onFocusList={(listId) => void updateSettings({ ...settings, focusList: { ...settings.focusList, [data.language]: listId ?? undefined } })}
+          onOpenList={(list) => setScreen({ name: 'words', list })}
           onOpenLists={() => {
             // The list in focus opens on its own page; without one, the shelf of lists.
             const list = planInput?.settings.focusListId
@@ -352,6 +360,11 @@ export function AppScreens(props: AppScreensProps) {
           }
           difficultCount={difficultWords(data.vocabulary).length}
           onPracticeDifficult={practiceDifficult}
+          weekMisses={weekMissed.length}
+          onWeekMisses={() => {
+            const deck = weekMissed.flatMap((id) => byId.get(id) ?? [])
+            startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), limit: WEEK_MISSES_ROUND, options }), 'normal', undefined, deck)
+          }}
           onFreePractice={() => startSession(buildPracticePlan({ catalog: data.vocabulary, states: data.states, rng: createRng(Date.now()), options }), 'practice')}
           newWordsPerDay={settings.newWordsPerDay}
           onLowerNew={() => {

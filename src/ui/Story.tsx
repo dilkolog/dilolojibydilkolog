@@ -124,7 +124,7 @@ export function StoryScreen(p: Props) {
   if (!apiKey && episodes?.length === 0) {
     return (
       <div className="stack">
-        <PageHeader title="Hikayen" sub={`${LANGUAGE_NAME[p.language]} dizin, zorlandığın kelimelerle yazılır.`} />
+        <PageHeader art="story" title="Hikayen" sub={`${LANGUAGE_NAME[p.language]} dizin, zorlandığın kelimelerle yazılır.`} />
         <EmptyState
           art="journal"
           title="Kelimelerinle yazılan bir dizi"
@@ -146,6 +146,7 @@ export function StoryScreen(p: Props) {
   return (
     <div className="stack">
       <PageHeader
+        art="story"
         title="Hikayen"
         sub={`${LANGUAGE_NAME[p.language]} dizin${episodes.length ? `: ${episodes.length} bölüm` : ''}. Her bölüm zorlandığın ${WORDS_PER_EPISODE} kelimeyle yazılır.`}
       />

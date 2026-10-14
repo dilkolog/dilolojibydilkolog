@@ -14,6 +14,7 @@ import { StudyOptionsPanel } from '../StudyOptions'
 import { useStudyOptions } from '../studyOptionsStore'
 import { GameResult } from './GameResult'
 import { type Props, recordPractice } from './shared'
+import { saveListTest } from '../listTests'
 
 const KINDS: TestKind[] = ['choice', 'typed', 'truefalse', 'match']
 const KINDS_KEY = 'diloloji:test-kinds'
@@ -64,14 +65,25 @@ export function PracticeTest({ language, vocabulary, states, onExit, onChanged }
     setGot([])
     setMissedWords([])
   }
+  // The list a whole-list test was taken on (not a retake of its misses), to show its score on the list's page.
+  const testedList = useRef<string | null>(null)
   const start = () => {
     const rng = createRng(Date.now())
+    testedList.current = options.scope === 'list' && options.listId ? options.listId : null
     begin(selectStudyWords(vocabulary, states, scheduler, new Date(), options, rng), rng)
   }
   const q = questions?.[index]
   const finished = !!questions && index >= questions.length
   useEffect(() => {
-    if (finished) onChanged()
+    if (!finished) return
+    onChanged()
+    if (testedList.current && questions) {
+      const score = scoreTest(questions, got)
+      saveListTest(testedList.current, score.total ? Math.round((score.points / score.total) * 100) : 0)
+      testedList.current = null
+    }
+    // The score once, when the test ends.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finished, onChanged])
 
   /** A question is over: its points are kept and the words it got wrong are remembered for the next test. */
@@ -122,7 +134,13 @@ export function PracticeTest({ language, vocabulary, states, onExit, onChanged }
         onExit={onExit}
       >
         {missedWords.length > 0 && (
-          <button className="btn btn-quiet" onClick={() => begin(shuffle(missedWords, createRng(Date.now())))}>
+          <button
+            className="btn btn-quiet"
+            onClick={() => {
+              testedList.current = null
+              begin(shuffle(missedWords, createRng(Date.now())))
+            }}
+          >
             Yanlışlarla yeni sınav ({missedWords.length})
           </button>
         )}

@@ -21,7 +21,6 @@ import { ProfileTitles } from './ProfileTitles'
 import { CATEGORY_EMBLEM, EMBLEM, drawnMedal, levelMonki } from './drawnArt'
 
 /** The glyph avatars; the animals Monki's set draws (fox, panda, owl, octopus, penguin, koala) are not repeated as emoji. */
-const EMOJIS = ['🦁', '🐢', '🐬', '🦄', '🐝', '🦋', '🌵', '🚀', '📚', '🎧', '☕', '🌍', '🎨', '⚡']
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
 const LADDER: [number, string][] = [1, 3, 5, 8, 11, 15, 20, 25, 30, 40, 50].map((l) => [l, levelTitle(l)])
 
@@ -124,9 +123,10 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         {editing && (
           <div className="stack avatar-editor">
             <div className="emoji-grid">
-              {[...DRAWN_AVATAR_IDS, ...EMOJIS].map((e) => (
+              {/* Only the drawn ones: an emoji chosen before stays on the profile until another is picked. */}
+              {DRAWN_AVATAR_IDS.map((e) => (
                 <button key={e} className="emoji-btn" aria-pressed={!profile.photoId && profile.emoji === e} onClick={() => (profile.photoId ? setPhoto(null).then(() => save({ emoji: e })) : save({ emoji: e }))}>
-                  {DRAWN_AVATARS[e] ? <img className="emoji-monki" src={DRAWN_AVATARS[e]} alt={drawnAvatarName(e)} /> : e}
+                  <img className="emoji-monki" src={DRAWN_AVATARS[e]} alt={drawnAvatarName(e)} />
                 </button>
               ))}
             </div>

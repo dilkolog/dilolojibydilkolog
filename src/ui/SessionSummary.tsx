@@ -365,7 +365,7 @@ export function Summary({
 /** A crossed milestone, once, full screen: big sign, a line on what it means, confetti, share. */
 function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose: () => void }) {
   const share = async () => {
-    await shareCard({ kicker: 'Yeni kilometre taşı', title: milestone.title, text: milestone.text }, `${milestone.emoji} ${milestone.title} ${milestone.text}`)
+    await shareCard({ kicker: milestone.level ? 'Seviye atladım' : 'Yeni kilometre taşı', title: milestone.title, text: milestone.text, art: milestone.level ? 'level' : 'trophy' }, `${milestone.emoji} ${milestone.title} ${milestone.text}`)
   }
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>

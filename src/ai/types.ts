@@ -177,7 +177,7 @@ export interface ChatRequest {
 }
 
 /** What Monki is doing: free talk, a quiz one question at a time, a role-play scene, or going through the learner's recent mistakes. */
-export type MonkiMode = 'chat' | 'quiz' | 'roleplay' | 'mistakes'
+export type MonkiMode = 'chat' | 'quiz' | 'roleplay' | 'mistakes' | 'words'
 
 /** One turn with Monki, the assistant: free talk about the language being learned. */
 export interface MonkiRequest {
@@ -192,6 +192,8 @@ export interface MonkiRequest {
   scenario?: string
   /** Mistakes mode: what went wrong lately, most repeated first. */
   mistakes?: { word: string; given: string; expected: string }[]
+  /** Words mode: the words the learner should get to use in the talk. */
+  targets?: string[]
 }
 
 export interface MonkiReply {

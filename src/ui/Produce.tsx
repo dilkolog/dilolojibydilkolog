@@ -50,7 +50,7 @@ export function ProduceScreen(p: Props) {
   const fluencyWords = usePracticeWords(p.vocabulary, p.states, 3)
   return (
     <div className="stack">
-      <PageHeader title="Yaz & konuş" sub="Bildiğin kelimeleri kullanarak yaz ve konuş: asıl öğrenme burada pekişir." />
+      <PageHeader art="produce" title="Yaz & konuş" sub="Bildiğin kelimeleri kullanarak yaz ve konuş: asıl öğrenme burada pekişir." />
       <div className="page-tabs ind-line" role="tablist" aria-label="Bölüm" ref={tabsRef}>
         <button role="tab" className="page-tab" aria-selected={tab === 'journal'} onClick={() => setTab('journal')}>
           Günlük

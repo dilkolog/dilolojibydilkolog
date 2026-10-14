@@ -10,6 +10,7 @@ import { mergeNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { BACKUP_VERSION, exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB, type ReadingText } from './db'
 import { saveSafetySnapshot } from './safetyBackup'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
+import { raiseCounters } from '../engine/counters'
 
 /**
  * Sync between devices through a small server store. Everything is compressed and encrypted on
@@ -271,6 +272,10 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   const encounters: Record<string, number> = { ...(older.reading?.encounters ?? {}) }
   for (const [id, n] of Object.entries(newer.reading?.encounters ?? {})) encounters[id] = Math.max(encounters[id] ?? 0, n)
 
+  const events = unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp))
+  const wordStates = unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, mergeWordState).filter(
+    (s) => !dead(s.entryId, s.introducedAt) && !resetOf(s.language, latest(s.lastReviewAt, s.introducedAt)),
+  )
   return {
     app: 'kelime-koc',
     version: Math.max(local.version, remote.version),
@@ -278,10 +283,9 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
     ...mergeSettings(older, newer),
     // A word edited on both devices: the later edit wins (`editedAt`); without stamps, the newer snapshot's copy.
     vocabulary: unionBy(older.vocabulary, newer.vocabulary, (v) => v.id, (x, y) => (time(x.editedAt) > time(y.editedAt) ? x : y)).filter((v) => !dead(v.id, v.addedAt)),
-    wordStates: unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, mergeWordState).filter(
-      (s) => !dead(s.entryId, s.introducedAt) && !resetOf(s.language, latest(s.lastReviewAt, s.introducedAt)),
-    ),
-    events: unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp)),
+    // Counts from both devices' answers (the merge of the states alone keeps only the larger count).
+    wordStates: raiseCounters(wordStates, events),
+    events,
     mistakes: unionBy(older.mistakes, newer.mistakes, (m) => m.id, (x, y) => (y.count > x.count || (y.count === x.count && time(y.lastAt) >= time(x.lastAt)) ? y : x)).filter(
       (m) => !dead(m.entryId, m.lastAt) && !resetOf(languageOf.get(m.entryId), m.lastAt),
     ),

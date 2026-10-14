@@ -1,11 +1,18 @@
 import cardUrl from '../assets/art/share-card.webp'
+import levelUrl from '../assets/art/share-level.webp'
+import streakUrl from '../assets/art/share-streak.webp'
+import weekUrl from '../assets/art/share-week.webp'
 
 export interface CardText {
   /** A small line above the title ("Yeni rozet"). */
   kicker: string
   title: string
   text?: string
+  /** The picture: Monki with a trophy (badges, milestones), with a flame (a streak), on a podium (a level), with a ticked calendar (a week). */
+  art?: CardArt
 }
+
+export type CardArt = 'trophy' | 'streak' | 'level' | 'week'
 
 /** A text cut into lines that fit `maxWidth` (by `measure`), at most `maxLines`; a cut last line ends in "…". */
 export function wrapLines(measure: (s: string) => number, text: string, maxWidth: number, maxLines: number): string[] {
@@ -37,10 +44,23 @@ export function wrapLines(measure: (s: string) => number, text: string, maxWidth
   return lines
 }
 
-const SIZE = { width: 1200, height: 576 }
-/** Where the drawing ends and the text may start (the picture keeps the left of the card). */
-const TEXT_X = 715
-const TEXT_W = 430
+/** Each picture's size and where its text goes: the trophy card keeps its left part, the banners their left third. */
+interface Layout {
+  url: string
+  width: number
+  height: number
+  x: number
+  w: number
+  kickerY: number
+  titleY: number
+  titleSize: number
+  titleLines: number
+  textSize: number
+  textLines: number
+}
+const TROPHY: Layout = { url: cardUrl, width: 1200, height: 576, x: 715, w: 430, kickerY: 190, titleY: 262, titleSize: 54, titleLines: 3, textSize: 28, textLines: 4 }
+const banner = (url: string): Layout => ({ url, width: 1200, height: 300, x: 420, w: 700, kickerY: 92, titleY: 150, titleSize: 46, titleLines: 1, textSize: 25, textLines: 2 })
+const LAYOUT: Record<CardArt, Layout> = { trophy: TROPHY, streak: banner(streakUrl), level: banner(levelUrl), week: banner(weekUrl) }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -54,35 +74,40 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 /** The card as a PNG: Monki with a trophy on the left, the title and a line on the right. Null where there is no canvas. */
 export async function renderShareCard(card: CardText): Promise<Blob | null> {
   if (typeof document === 'undefined') return null
+  const L = LAYOUT[card.art ?? 'trophy']
   const canvas = document.createElement('canvas')
-  canvas.width = SIZE.width
-  canvas.height = SIZE.height
+  canvas.width = L.width
+  canvas.height = L.height
   const ctx = canvas.getContext('2d')
   if (!ctx) return null
   try {
-    await Promise.all([document.fonts?.load('700 52px Literata'), document.fonts?.load('500 26px Lexend')])
+    await Promise.all([document.fonts?.load(`700 ${L.titleSize}px Literata`), document.fonts?.load('500 26px Lexend')])
   } catch {
     // Fonts not there: the fallback faces draw instead.
   }
-  ctx.drawImage(await loadImage(cardUrl), 0, 0, SIZE.width, SIZE.height)
+  // The banners' rounded corners are see-through: a warm ground under them.
+  ctx.fillStyle = '#fdf6ea'
+  ctx.fillRect(0, 0, L.width, L.height)
+  ctx.drawImage(await loadImage(L.url), 0, 0, L.width, L.height)
   ctx.textBaseline = 'alphabetic'
   ctx.fillStyle = '#b45309'
-  ctx.font = '600 26px Lexend, system-ui, sans-serif'
-  ctx.fillText(card.kicker.toLocaleUpperCase('tr'), TEXT_X, 190)
+  ctx.font = '600 24px Lexend, system-ui, sans-serif'
+  ctx.fillText(card.kicker.toLocaleUpperCase('tr'), L.x, L.kickerY)
   ctx.fillStyle = '#3b2312'
-  ctx.font = '700 54px Literata, Georgia, serif'
-  const title = wrapLines((s) => ctx.measureText(s).width, card.title, TEXT_W, 3)
-  title.forEach((l, i) => ctx.fillText(l, TEXT_X, 262 + i * 66))
-  let y = 262 + title.length * 66 + 8
+  ctx.font = `700 ${L.titleSize}px Literata, Georgia, serif`
+  const lineH = Math.round(L.titleSize * 1.22)
+  const title = wrapLines((s) => ctx.measureText(s).width, card.title, L.w, L.titleLines)
+  title.forEach((l, i) => ctx.fillText(l, L.x, L.titleY + i * lineH))
+  const y = L.titleY + (title.length - 1) * lineH + Math.round(L.textSize * 1.7)
   if (card.text) {
     ctx.fillStyle = '#6b4f3a'
-    ctx.font = '400 28px Lexend, system-ui, sans-serif'
-    wrapLines((s) => ctx.measureText(s).width, card.text, TEXT_W, 4).forEach((l, i) => ctx.fillText(l, TEXT_X, y + i * 40))
-    y += 4 * 40
+    ctx.font = `400 ${L.textSize}px Lexend, system-ui, sans-serif`
+    wrapLines((s) => ctx.measureText(s).width, card.text, L.w, L.textLines).forEach((l, i) => ctx.fillText(l, L.x, y + i * Math.round(L.textSize * 1.45)))
   }
   ctx.fillStyle = '#b45309'
-  ctx.font = '600 26px Lexend, system-ui, sans-serif'
-  ctx.fillText('Diloloji', TEXT_X, SIZE.height - 56)
+  ctx.font = '600 24px Lexend, system-ui, sans-serif'
+  ctx.textAlign = 'right'
+  ctx.fillText('Diloloji', L.x + L.w, L.height - (L.height > 400 ? 56 : 26))
   return new Promise((resolve) => canvas.toBlob((b) => resolve(b), 'image/png'))
 }
 

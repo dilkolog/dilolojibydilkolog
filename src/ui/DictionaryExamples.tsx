@@ -10,9 +10,7 @@ import { usePatterns } from './usePatterns'
 import { LinesSkeleton } from './Skeleton'
 import { canSpeak, speak } from './speech'
 
-/** Fetched once per word and kept on the device for a month, so a word looked up before works offline. */
-const KEY = (language: TargetLanguage, word: string) => `kelime-koc:dict-sentences:${language}:${word}`
-const MAX_AGE = 30 * 86_400_000
+import { KEY, MAX_AGE } from './dictSentences'
 const SHOWN = 4
 
 import { examplesFromPack } from '../data/wordpack'

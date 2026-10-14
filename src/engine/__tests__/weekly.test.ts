@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { weekLine, weekSummary } from '../weekly'
+import { weekLine, weekMisses, weekSummary } from '../weekly'
+import type { ReviewEvent } from '../types'
 
 const NOW = new Date('2026-10-11T18:00:00')
 const day = (d: number, h = 10) => new Date(`2026-10-${String(d).padStart(2, '0')}T${String(h).padStart(2, '0')}:00:00`)
@@ -69,3 +70,20 @@ describe('the words missed in the week', () => {
   })
 })
 
+
+describe('the week\'s misses', () => {
+  const miss = (entryId: string, at: Date, over: Partial<ReviewEvent> = {}) => ({ entryId, language: 'fr', verdict: 'wrong', timestamp: at, ...over }) as ReviewEvent
+  it('takes the words missed in the last seven days, most missed first, then the latest', () => {
+    const events = [
+      miss('fr:a', day(9)),
+      miss('fr:b', day(8)),
+      miss('fr:b', day(10)),
+      miss('fr:c', day(10, 12)),
+      miss('fr:old', day(2)),
+      miss('es:x', day(10), { language: 'es' }),
+      { ...miss('fr:d', day(10)), verdict: 'correct' } as ReviewEvent,
+    ]
+    expect(weekMisses(events, 'fr', NOW)).toEqual(['fr:b', 'fr:c', 'fr:a'])
+    expect(weekMisses(events, 'fr', NOW, 2)).toEqual(['fr:b', 'fr:c'])
+  })
+})

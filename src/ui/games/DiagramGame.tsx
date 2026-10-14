@@ -65,7 +65,7 @@ export function DiagramGame({ language, vocabulary, onExit, onChanged }: { langu
         </label>
       </div>
       {diagrams.length === 0 ? (
-        <EmptyState sticker="hello" title="Henüz resim yok">
+        <EmptyState art="labels" title="Henüz resim yok">
           Bir resim seç, kelimeleri üstüne yerleştir. Örnek: insan vücudu, bir odanın fotoğrafı, şehir haritası.
         </EmptyState>
       ) : (

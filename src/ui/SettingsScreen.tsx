@@ -126,6 +126,7 @@ export function SettingsScreen({
   return (
     <div className={`settings-page${searching ? ' is-searching' : ''}`} ref={root}>
       <PageHeader
+        art="settings"
         title="Ayarlar"
         action={
           <label className="settings-search">

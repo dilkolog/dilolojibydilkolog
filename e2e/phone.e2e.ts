@@ -890,7 +890,8 @@ test('the calm theme is a choice in Settings and turns the dark theme down', asy
 
 test('an empty screen has a small living picture, and it holds still for reduced motion', async ({ page }) => {
   await startWithSamples(page)
-  await openScreen(page, 'Hatalar')
+  // The story screen without an AI key: its line picture (Mistakes now has a drawn scene).
+  await openScreen(page, 'Hikaye')
   const art = page.locator('.empty-art, .empty-state svg').first()
   await expect(art).toBeVisible()
   const names = () => page.locator('.empty-state svg [class^="art-"], .empty-state svg [class*=" art-"]').evaluateAll((els) => els.map((e) => getComputedStyle(e).animationName))
@@ -1262,7 +1263,7 @@ test('dictionary on a phone: untracked word is translated via DeepL, meaning edi
 
   // Empty search: listed under "Kaydettiklerin"
   await expect(page.getByRole('heading', { name: 'Kaydettiklerin' })).toBeVisible()
-  await expect(page.locator('.word-row', { hasText: 'gribouiller' })).toBeVisible()
+  await expect(page.locator('.dict-saved-pick', { hasText: 'gribouiller' })).toBeVisible()
   expect(asked).toBe(0)
 
   // Search it again: opens card
@@ -1294,7 +1295,7 @@ test('lists: a new list opens on its own page, takes the words added there, and 
   await expect(page.locator('.notice[role="status"]').first()).toContainText('eklendi', { timeout: 8_000 })
   await page.getByRole('button', { name: /^Kelimelerim/ }).click()
   await expect(page.locator('.list-page')).toContainText('valise')
-  await expect(page.locator('.list-page .wl-card')).toContainText('1 kelime')
+  await expect(page.locator('.list-page .wl-figures > div').first()).toHaveText(/1\s*kelime/)
   expect(await overflow(page), 'list page overflow').toEqual([])
   expect(await contrastProblems(page), 'list page contrast').toEqual([])
   // Cards for this list: the round opens set to it.

@@ -258,6 +258,7 @@ export function GamesScreen(
   return (
     <div className="stack">
       <PageHeader
+        art="games"
         title="Oyunlar"
         sub={
           <>

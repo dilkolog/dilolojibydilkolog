@@ -62,6 +62,7 @@ import { WordSources } from './WordSources'
 import { CardCompleteness } from './CardCompleteness'
 import { PosTag } from './PosTag'
 import { isDifficult, withDifficult } from '../engine/difficult'
+import { useSwipeNav } from './useSwipeNav'
 
 interface Props {
   db: KelimeDB
@@ -113,6 +114,8 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [nav, onOpen])
+  // On a phone a sideways swipe does the same: left for the next word, right for the one before.
+  useSwipeNav(onOpen && nav.prev ? () => onOpen(nav.prev!) : undefined, onOpen && nav.next ? () => onOpen(nav.next!) : undefined)
   const [editing, setEditing] = useState(false)
   const [lists, setLists] = useState<WordList[]>([])
   useEffect(() => {
@@ -268,7 +271,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             <TrashIcon size={18} />
           </button>
         </div>
-        <CardCompleteness entry={entry} />
+        <CardCompleteness entry={entry} db={db} onChanged={onChanged} />
         <dl className="word-hero-status">
           <div>
             <dt>Aşama</dt>

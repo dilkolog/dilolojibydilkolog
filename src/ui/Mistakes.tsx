@@ -78,7 +78,7 @@ export function MistakesScreen({
           }
         />
         {open.length === 0 ? (
-          <EmptyState art="clear" title="Açık hata yok">
+          <EmptyState art="clean" title="Açık hata yok">
             Hataların burada türüne göre toplanır ve tekrarlarına eklenir. Bir kelimeyi üst üste 3 kez doğru bilince hatası kapanır.
           </EmptyState>
         ) : (

@@ -3,7 +3,7 @@ import type { Example, TargetLanguage, VocabularyEntry } from '../engine/types'
 import { quietly, type KelimeDB } from './db'
 import { canFill, patchWithSources, type FieldName, type SourceKind } from './provenance'
 import type { Equivalents } from './wiktionary'
-import { genderOfCode, POS_CODE, type Pack, type PackRecord } from './wordpackBuild'
+import { cleanEtymology, genderOfCode, POS_CODE, type Pack, type PackRecord } from './wordpackBuild'
 
 /**
  * The word pack (see wordpackBuild.ts): Turkish meanings, pronunciation, recordings, origins,
@@ -82,7 +82,8 @@ export function packUpdate(entry: VocabularyEntry, rec: PackRecord): { patch: Pa
   }
   put('ipa', 'ipa', rec.i, rec.i === entry.ipa)
   put('audio', 'audioUrl', rec.a, rec.a === entry.audioUrl)
-  put('etymology', 'etymology', rec.e, rec.e === entry.etymology)
+  const etymology = cleanEtymology(rec.e)
+  put('etymology', 'etymology', etymology, etymology === entry.etymology)
   put('synonyms', 'synonyms', rec.s, JSON.stringify(rec.s) === JSON.stringify(entry.synonyms))
   const others = rec.x && Object.fromEntries(Object.entries(rec.x).filter(([l]) => l !== entry.language))
   put('translations', 'translations', others && Object.keys(others).length ? (others as VocabularyEntry['translations']) : undefined, JSON.stringify(others) === JSON.stringify(entry.translations))

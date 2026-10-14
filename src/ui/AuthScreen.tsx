@@ -4,9 +4,10 @@ import { BackupVersionError } from '../data/db'
 import { probeAccount, requestAccess } from '../data/access'
 import { deriveAccount, SyncAuthError, SyncApprovalError, SyncConflictError, SyncNotAllowedError, SyncTooLargeError } from '../data/sync'
 import { reportError } from '../data/errorReport'
-import { BrandMark, ChevronLeftIcon, LockIcon } from './icons'
+import { ChevronLeftIcon, LockIcon } from './icons'
 import { CONFLICT, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode, TOO_LARGE } from './syncRunner'
 import { showToast } from './toastFeed'
+import { BrandLogo } from './BrandLogo'
 
 export type AuthMode = 'login' | 'create'
 
@@ -85,9 +86,7 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
       </button>
       <div className="auth-card card">
         <div className="auth-head">
-          <span className="brand-mark auth-mark">
-            <BrandMark size={30} />
-          </span>
+          <BrandLogo className="auth-mark" />
           <h1 className="auth-title">{creating ? 'Hesap oluştur' : 'Hesabına giriş yap'}</h1>
           <p className="muted">{creating ? 'İlerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle devam edersin.' : 'İlerlemen bu cihazdakiyle birleşir ve her cihazda aynı olur.'}</p>
         </div>

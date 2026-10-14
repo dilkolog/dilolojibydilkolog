@@ -107,9 +107,27 @@ function add(list: string[] | undefined, words: readonly string[], max = MAX_LIS
   return out.length ? out : undefined
 }
 
+/** Where the prose of an etymology starts once Wiktionary's "Etymology tree" (a list of ancestor forms with no sentence of its own) is set aside. */
+const ETYMOLOGY_START =
+  /\b(?:From|Borrowed|Inherited|Learned|Semi-learned|Derived|Ultimately|Compound|Back-formation|Clipping|Calque|Possibly|Probably|Perhaps|Uncertain|Unknown|Diminutive|Augmentative|Coined|Named|Partly|Blend|Contraction|Univerbation|Deverbal|Abbreviation|Onomatopoeic|Equivalent|Short|Shortening|Variant|Alteration|Orthographic)\b/
+
+/**
+ * An etymology without the "Etymology tree" that Wiktionary prints in front of the prose
+ * ("Etymology tree Spanish botica Proto-Indo-European *-nós … Spanish botiquín From botica + -in.")
+ * → "From botica + -in."); a text that is only the tree gives nothing.
+ */
+export function cleanEtymology(text: string | undefined): string | undefined {
+  const t = text?.trim()
+  if (!t) return undefined
+  if (!/^Etymology tree\b/i.test(t)) return t
+  const rest = t.replace(/^Etymology tree\b/i, '')
+  const at = rest.search(ETYMOLOGY_START)
+  return at < 0 ? undefined : rest.slice(at).trim() || undefined
+}
+
 /** The first sentence or two of an etymology, short enough to carry for every word. */
 export function shortEtymology(text: string | undefined): string | undefined {
-  const t = clean(text)
+  const t = clean(cleanEtymology(text))
   if (!t) return undefined
   const sentences = t.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [t]
   let out = ''

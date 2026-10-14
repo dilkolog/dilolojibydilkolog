@@ -15,6 +15,7 @@ import { modalOpen, ownsKey } from './keys'
 import { AskMonki } from '../monki/AskMonki'
 import { missAsk } from '../monki/asks'
 import { useAi } from '../aiContext'
+import { REACT } from '../drawnArt'
 
 /** After a miss: kind, short, and true (the word is asked once more in a moment). */
 const SOFT = ['Olur böyle.', 'Hata, öğrenmenin yarısı.', 'Beynin bunu şimdi kaydetti.', 'Bir sonrakinde sende.']
@@ -103,6 +104,7 @@ export function Feedback({
   const askable = !!apiKey && ev.verdict !== 'correct'
   return (
     <div className={`sheet ${cls}`} role="status">
+      <img className="sheet-react" src={forgot ? REACT.forgot : ev.verdict === 'correct' ? REACT.correct : REACT.oops} alt="" draggable={false} />
       <div className="sheet-inner">
         <div className="sheet-text">
           <p className="sheet-title">

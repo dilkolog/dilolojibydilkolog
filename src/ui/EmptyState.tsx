@@ -3,7 +3,7 @@ import { EmptyArt, EmptyPicture, type ArtKind, type PictureKind } from './EmptyA
 import { STICKER } from './drawnArt'
 import type { StickerName } from './Sticker'
 
-const PICTURES = new Set<string>(['shelf', 'nothing-found', 'offline', 'rest'])
+const PICTURES = new Set<string>(['shelf', 'nothing-found', 'offline', 'rest', 'clean', 'cardbox', 'labels', 'together'])
 
 /**
  * An empty screen as an invitation: a small picture of what belongs here, what this place is

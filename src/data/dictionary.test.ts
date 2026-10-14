@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildIndex, fold, search, turkishBases, wiktionaryUrl } from './dictionary'
+import { buildIndex, fold, search, turkishBases, wiktionaryUrl, wordOfTheDay } from './dictionary'
 import type { Pack } from './wordpackBuild'
 import { createEntry } from './wordInput'
 
@@ -164,3 +164,26 @@ describe('dictionary search', () => {
   })
 })
 
+
+describe('the day\'s word', () => {
+  const words = Object.fromEntries(
+    Array.from({ length: 600 }, (_, i) => [`mot${i}`, i % 3 === 0 ? { t: ['kelime'] } : { t: [`anlam ${i}`], p: 'n' }]),
+  )
+  const pack: Pack = { v: 't', w: words }
+
+  it('is a common word past the first few hundred, with a meaning and a part of speech, the same all day', () => {
+    const index = buildIndex(pack, 'fr')
+    const day = wordOfTheDay(index, 20261014)!
+    expect(day.rank).toBeGreaterThan(300)
+    expect(day.rec.p).toBe('n')
+    expect(wordOfTheDay(index, 20261014)?.word).toBe(day.word)
+    const week = new Set([14, 15, 16, 17, 18, 19, 20].map((d) => wordOfTheDay(index, 20261000 + d)?.word))
+    expect(week.size).toBeGreaterThan(3)
+  })
+
+  it('passes over the words already in the learner\'s list', () => {
+    const plain = wordOfTheDay(buildIndex(pack, 'fr'), 7)!
+    const own = createEntry({ word: plain.word, meaning: 'x' }, 'fr', new Date())
+    expect(wordOfTheDay(buildIndex(pack, 'fr', [own]), 7)?.word).not.toBe(plain.word)
+  })
+})

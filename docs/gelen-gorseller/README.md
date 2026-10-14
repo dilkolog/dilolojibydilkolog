@@ -15,5 +15,12 @@ Nano Banana Pro (ya da başka bir araçla) ürettiğin görselleri **buraya yük
 ## İşlenenler (2026-10-13)
 Kıyafetli Monki (B), seri alevi, hesap durumları, hayvan avatarları, ayarlar simgeleri, liste kapakları, Monki çıkartmaları ve görev simgeleri işlendi ve bağlandı (`AGENTS.md` "Çizimler, dördüncü parti"). Rozet amblemleri (10) zaten `emblem-*`/`medal-*` olarak kullanılıyor; yeniden bağlanmadı.
 
+## İşlenenler (2026-10-14)
+- **A sayfa başlıkları** (`eğitim:oyun.jpg`) → `head-*.webp`: Kelimeler, Oyunlar, Ayarlar, Sözlük, Çeviri, Yaz & konuş, Hikâye, Cümle kartları başlıkları.
+- **B oturum tepkileri** (`Monki reactions.jpg`) → `react-*.webp`: cevap kutusunun üstünde (doğru / yanlış / unuttum); selam, yeni kelime ve seri tepkileri hazır bekliyor.
+- **C boş durumlar** (`Monki holding a broom.jpg`) → `scene-*.webp`: Hatalar (hepsi düzeldi), Cümle kartları, Resim etiketleme, boş ortak liste.
+- **D paylaşım afişleri** (`Three separate horizontal banners .jpg`) → `share-{streak,level,week}.webp`: seviye atlama, seri rozetleri ve haftanın özeti paylaşımı.
+- **E logo** (`monki head.jpg`) → `brand-monki.webp` (kenar çubuğu, ilk açılış, hesap ekranı) ve `public/favicon-{32,64}.png`.
+
 ## Bekleyenler
 Yok. Yeni set gelirse buraya yükle; adını ve kaç parça olduğunu yaz.

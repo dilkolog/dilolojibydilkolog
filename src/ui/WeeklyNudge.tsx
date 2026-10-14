@@ -100,6 +100,18 @@ export function WeeklyNudge({
         <button type="button" className="btn btn-quiet" onClick={onOpen}>
           İlerleme'ye bak
         </button>
+        <button
+          type="button"
+          className="btn btn-quiet"
+          onClick={async () => {
+            // The card's drawing code comes only when it is shared.
+            const { shareCard } = await import('./shareCard')
+            const text = `${summary.days} gün çalıştım, ${summary.answers} cevap verdim${summary.answers ? ` (%${Math.round(summary.right * 100)} doğru)` : ''}, ${summary.newWords} yeni kelime.`
+            await shareCard({ kicker: 'Haftam', title: `${summary.days}/7 gün`, text, art: 'week' }, `Haftam: ${text}`)
+          }}
+        >
+          Paylaş
+        </button>
       </div>
     </section>
   )

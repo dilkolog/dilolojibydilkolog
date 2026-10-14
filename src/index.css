@@ -2923,6 +2923,14 @@ p, .help, .small { text-wrap: pretty; }
 .hero-focus { margin: 0.75rem 0 0; text-align: center; color: color-mix(in srgb, var(--on-lang) 85%, transparent); }
 .hero-focus .inline-icon { margin-right: 0.3em; vertical-align: -0.15em; }
 .hero-focus .link { color: inherit; text-decoration: underline; }
+.hero-list-pick { position: relative; display: inline-flex; align-items: center; }
+.hero-list-select {
+  appearance: none; -webkit-appearance: none; max-width: 14rem; margin: 0; padding: 0 1.1em 0 0.1em; border: 0; border-bottom: 1.5px solid currentColor;
+  border-radius: 0; background: none; color: inherit; font: inherit; font-weight: 700; cursor: pointer; text-overflow: ellipsis;
+}
+.hero-list-select:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.hero-list-select option { color: var(--ink); background: var(--surface); }
+.hero-list-chev { position: absolute; right: 0; pointer-events: none; }
 /* Word page and add form. */
 .word-placement-row .field { min-width: 11rem; gap: 0.25rem; }
 .wl-add-level .input { flex: 1; min-width: 0; }
@@ -3210,7 +3218,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 
 /* Drawn pictures (src/assets/art) have dark brown outlines that melt into the dark and calm pages: --art-edge gives
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
-:is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art,
+:is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react, .brand-monki,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
   .pos-art, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img) {
   filter: var(--art-edge);
@@ -3991,3 +3999,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .game-result-ring { position: relative; display: inline-block; }
 .game-result-sticker { position: absolute; right: -1.6rem; bottom: 0.6rem; animation: sticker-in 520ms 300ms var(--ease-spring) both; }
 @keyframes sticker-in { from { transform: scale(0.3) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Monki's head is the mark (as on the home-screen icon): the picture brings its own orange square. */
+.brand-mark.brand-mark-monki { background: none; box-shadow: none; border-radius: 0; overflow: visible; }
+.brand-monki { display: block; width: 100%; height: 100%; object-fit: contain; }

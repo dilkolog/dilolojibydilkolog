@@ -4,11 +4,12 @@ import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 import { NAV, type NavScreen, type Screen } from '../appNav'
 import { Avatar } from './Avatar'
 import type { GameState } from './game'
-import { BrandMark, ChevronLeftIcon, ChevronRightIcon, GearIcon, SearchIcon } from './icons'
+import { ChevronLeftIcon, ChevronRightIcon, GearIcon, SearchIcon } from './icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './labels'
 import { AccessBadge } from './AccessBadge'
 import { OfflineBadge } from './OfflineBadge'
 import { StreakFlame } from './StreakFlame'
+import { BrandLogo } from './BrandLogo'
 
 export type NavMark = { top: number; left: number; width: number; height: number; ready: boolean }
 
@@ -55,9 +56,7 @@ export function Sidebar({
     <aside className="sidebar">
       <div className="brand-row">
         <button className="brand" onClick={go({ name: 'home' })} title="Diloloji">
-          <span className="brand-mark" aria-hidden>
-            <BrandMark />
-          </span>
+          <BrandLogo />
           <span className="brand-name">Diloloji</span>
         </button>
         <OfflineBadge />

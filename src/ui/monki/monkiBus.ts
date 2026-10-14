@@ -5,6 +5,8 @@ export interface MonkiAsk {
   text: string
   mode?: MonkiMode
   scenario?: string
+  /** Words mode: the words to get the learner to use. */
+  targets?: string[]
   send?: boolean
 }
 

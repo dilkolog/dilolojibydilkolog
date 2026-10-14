@@ -41,7 +41,7 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
       <button className="link" onClick={onExit}>
         ← Oyunlar
       </button>
-      <PageHeader title="Cümle kartları" sub="Kaydettiğin cümleleri bütün olarak tekrar et: boşluk doldurma, dikte ve çeviri." />
+      <PageHeader art="sentences" title="Cümle kartları" sub="Kaydettiğin cümleleri bütün olarak tekrar et: boşluk doldurma, dikte ve çeviri." />
       <div className="row">
         <button className="btn btn-lg" disabled={!due.length} onClick={() => setReviewing(true)}>
           {due.length ? `${due.length} cümle tekrar bekliyor` : 'Şu an tekrar bekleyen cümle yok'}
@@ -61,7 +61,7 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
       )}
       {!mine.length && (
         <EmptyState
-          art="sentences"
+          art="cardbox"
           title="Henüz cümle yok"
           action={
             <button className="btn btn-quiet" onClick={() => document.querySelector<HTMLTextAreaElement>('textarea[aria-label="Cümle"]')?.focus()}>

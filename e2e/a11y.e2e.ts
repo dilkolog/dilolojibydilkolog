@@ -865,6 +865,8 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
 })
 
 test('dictionary states and collocation chip accessibility check (phone, light and dark themes)', async ({ page }) => {
+  // Many axe scans in two themes: close to a minute on its own, more under a full parallel run.
+  test.setTimeout(150_000)
   await page.setViewportSize({ width: 375, height: 667 })
   await startWithSamples(page)
   await approveAccount(page)
@@ -914,7 +916,7 @@ test('dictionary states and collocation chip accessibility check (phone, light a
   await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toBeVisible()
   await search.fill('')
-  await expect(page.locator('.word-list .word-row', { hasText: 'farfadet' })).toBeVisible()
+  await expect(page.locator('.dict-saved-pick', { hasText: 'farfadet' })).toBeVisible()
   await scanBoth('phone-dictionary-saved-list-state')
 
   // 2. Bulunamayan kelime kartı (DeepL düğmesi görünürken)

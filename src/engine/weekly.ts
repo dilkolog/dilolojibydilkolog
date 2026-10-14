@@ -1,4 +1,4 @@
-import type { TargetLanguage } from './types'
+import { timeOf, type ReviewEvent, type TargetLanguage } from './types'
 
 /** The last seven days of one language, from what is already recorded. */
 export interface WeekSummary {
@@ -74,4 +74,30 @@ export function weekChange(answers: number, last: number): string {
   const pct = Math.round(((answers - last) / last) * 100)
   if (pct === 0) return 'Geçen haftayla aynı tempodasın.'
   return pct > 0 ? `Geçen haftadan %${pct} daha fazla cevap verdin.` : `Geçen haftanın %${Math.round((answers / last) * 100)}'i kadar cevap verdin.`
+}
+
+/** How many of the week's missed words one round takes back: about five minutes. */
+export const WEEK_MISSES_ROUND = 12
+
+/**
+ * The words answered wrong in the last seven days (in one language), most missed first, then the
+ * most recently missed: put right since or not, a slip from this week is the one most worth meeting
+ * again before it settles. Practice answers count too; an introduction does not (nothing to miss yet).
+ */
+export function weekMisses(events: readonly ReviewEvent[], language: string, now: Date, limit = WEEK_MISSES_ROUND): string[] {
+  const since = now.getTime() - 7 * 86_400_000
+  const by = new Map<string, { wrong: number; last: number }>()
+  for (const e of events) {
+    if (e.language !== language || e.verdict !== 'wrong') continue
+    const at = timeOf(e.timestamp)
+    if (at < since || at > now.getTime()) continue
+    const m = by.get(e.entryId) ?? { wrong: 0, last: 0 }
+    m.wrong++
+    m.last = Math.max(m.last, at)
+    by.set(e.entryId, m)
+  }
+  return [...by.entries()]
+    .sort((a, b) => b[1].wrong - a[1].wrong || b[1].last - a[1].last || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([id]) => id)
 }
