@@ -14,6 +14,7 @@ import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
 import { undoable } from './toastFeed'
 import { EmptyState } from './EmptyState'
+import { Sticker } from './Sticker'
 import { TranslateButton } from './TranslateButton'
 import { PageHeader } from './PageHeader'
 
@@ -45,6 +46,7 @@ export function SentencesGame({ language, onExit }: { language: TargetLanguage; 
         <button className="btn btn-lg" disabled={!due.length} onClick={() => setReviewing(true)}>
           {due.length ? `${due.length} cümle tekrar bekliyor` : 'Şu an tekrar bekleyen cümle yok'}
         </button>
+        {!due.length && mine.length > 0 && <Sticker name="sleep" size={40} />}
       </div>
       <AddSentence language={language} onAdded={reload} />
       {mine.length > 0 && (

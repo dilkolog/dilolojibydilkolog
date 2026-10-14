@@ -6,6 +6,7 @@ import { EarIcon } from './icons'
 import { PageHeader } from './PageHeader'
 import { canSpeak, speak } from './speech'
 import { TextDictation } from './TextDictation'
+import { EmptyState } from './EmptyState'
 
 /** Sentences asked in one round of the missed words. */
 const EAR_ROUND = 8
@@ -82,7 +83,9 @@ export function EarMissesGame({ language, onExit }: { language: TargetLanguage; 
           </div>
         </section>
       ) : (
-        <p className="note">Henüz kaçırdığın kelime yok. Okuma → Dikte ya da Gerçek seslerle dikte yaptıkça yazamadığın kelimeler burada toplanır.</p>
+        <EmptyState sticker="music" title="Henüz kaçırdığın kelime yok">
+          Okuma → Dikte ya da Gerçek seslerle dikte yaptıkça yazamadığın kelimeler burada toplanır.
+        </EmptyState>
       )}
     </div>
   )

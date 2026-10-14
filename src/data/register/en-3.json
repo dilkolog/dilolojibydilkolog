@@ -1,0 +1,137 @@
+[
+ {
+  "id": "en-repeat",
+  "language": "en",
+  "tr": "tekrar eder misin?",
+  "informal": "Sorry, what?",
+  "standard": "Could you say that again, please?",
+  "formal": "Would you mind repeating that?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-permission",
+  "language": "en",
+  "tr": "girebilir miyim?",
+  "informal": "Can I come in?",
+  "standard": "May I come in?",
+  "formal": "Would it be all right if I came in?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-invite",
+  "language": "en",
+  "tr": "bu akşam bize gel",
+  "informal": "Come over tonight!",
+  "standard": "Do you want to come over tonight?",
+  "formal": "We would be delighted if you could join us this evening.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-congrats",
+  "language": "en",
+  "tr": "tebrikler",
+  "informal": "Nice one!",
+  "standard": "Congratulations!",
+  "formal": "Please accept my warmest congratulations.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-opinion",
+  "language": "en",
+  "tr": "bence…",
+  "informal": "If you ask me…",
+  "standard": "In my opinion…",
+  "formal": "It seems to me that…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-suggest",
+  "language": "en",
+  "tr": "hadi sinemaya gidelim",
+  "informal": "Fancy a film?",
+  "standard": "How about going to the cinema?",
+  "formal": "I would suggest that we go to the cinema.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-busy",
+  "language": "en",
+  "tr": "şu an meşgulüm",
+  "informal": "I'm swamped right now.",
+  "standard": "I'm busy at the moment.",
+  "formal": "Unfortunately, I am not available at present.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cancel",
+  "language": "en",
+  "tr": "randevuyu iptal etmem gerek",
+  "informal": "Sorry, gotta cancel.",
+  "standard": "I need to cancel our appointment.",
+  "formal": "I regret that I must cancel our appointment.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-advice",
+  "language": "en",
+  "tr": "sence ne yapayım?",
+  "informal": "What would you do?",
+  "standard": "What do you suggest I do?",
+  "formal": "What would you advise?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-remind",
+  "language": "en",
+  "tr": "unutma",
+  "informal": "Don't forget, yeah?",
+  "standard": "Please don't forget.",
+  "formal": "May I remind you that…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-sure",
+  "language": "en",
+  "tr": "eminim",
+  "informal": "Definitely!",
+  "standard": "I'm sure.",
+  "formal": "I am fully convinced.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-complain",
+  "language": "en",
+  "tr": "bu kabul edilemez",
+  "informal": "This is a joke!",
+  "standard": "This isn't right.",
+  "formal": "This situation is unacceptable.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-interrupt",
+  "language": "en",
+  "tr": "sözünü kesiyorum ama…",
+  "informal": "Hang on, hang on…",
+  "standard": "Sorry to interrupt…",
+  "formal": "Forgive me for interrupting…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-offer",
+  "language": "en",
+  "tr": "yardım edeyim mi?",
+  "informal": "Need a hand?",
+  "standard": "Would you like some help?",
+  "formal": "How may I assist you?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-hurry",
+  "language": "en",
+  "tr": "acele et",
+  "informal": "Get a move on!",
+  "standard": "Hurry up.",
+  "formal": "I would ask you to be quick.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,167 @@
+[
+ {
+  "id": "fr-costume",
+  "language": "fr",
+  "lemma": "costume",
+  "looks": "kostüm",
+  "trap": "kılık, kostüm",
+  "meaning": "takım elbise",
+  "text": "Il porte un costume gris pour le mariage.",
+  "tr": "Düğün için gri bir takım elbise giyiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-toilette",
+  "language": "fr",
+  "lemma": "toilette",
+  "looks": "tuvalet",
+  "trap": "tuvalet, WC",
+  "meaning": "kişisel bakım, giyim",
+  "text": "Elle fait sa toilette avant de sortir.",
+  "tr": "Çıkmadan önce yıkanıp hazırlanıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-garcon",
+  "language": "fr",
+  "lemma": "garçon",
+  "looks": "garson",
+  "trap": "garson",
+  "meaning": "erkek çocuk",
+  "text": "Ils ont deux garçons et une fille.",
+  "tr": "İki oğulları ve bir kızları var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-cadre",
+  "language": "fr",
+  "lemma": "cadre",
+  "looks": "kadro",
+  "trap": "personel kadrosu",
+  "meaning": "çerçeve; ortam; yönetici",
+  "text": "La maison est dans un cadre magnifique.",
+  "tr": "Ev muhteşem bir ortamda.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-ordinaire",
+  "language": "fr",
+  "lemma": "ordinaire",
+  "looks": "ordinaryüs",
+  "trap": "ordinaryüs profesör",
+  "meaning": "sıradan, olağan",
+  "text": "C'était une journée tout à fait ordinaire.",
+  "tr": "Tamamen sıradan bir gündü.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-campagne",
+  "language": "fr",
+  "lemma": "campagne",
+  "looks": "kampanya",
+  "trap": "indirim kampanyası",
+  "meaning": "kırsal kesim, taşra",
+  "text": "Mes grands-parents vivent à la campagne.",
+  "tr": "Dedemlerle ninem kırsalda yaşıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-fermoir",
+  "language": "fr",
+  "lemma": "fermoir",
+  "looks": "fermuar",
+  "trap": "fermuar",
+  "meaning": "toka, kilit (çanta, kolye)",
+  "text": "Le fermoir de mon collier est cassé.",
+  "tr": "Kolyemin kilidi kırık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-visite",
+  "language": "fr",
+  "lemma": "visite",
+  "looks": "vizite",
+  "trap": "vizite ücreti",
+  "meaning": "ziyaret",
+  "text": "Merci pour ta visite, ça m'a fait plaisir.",
+  "tr": "Ziyaretin için teşekkürler, çok sevindim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-agent",
+  "language": "fr",
+  "lemma": "agent",
+  "looks": "ajan",
+  "trap": "ajan, casus",
+  "meaning": "görevli, memur",
+  "text": "Un agent de police nous a indiqué le chemin.",
+  "tr": "Bir polis memuru bize yolu gösterdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-combinaison",
+  "language": "fr",
+  "lemma": "combinaison",
+  "looks": "kombinezon",
+  "trap": "kombinezon",
+  "meaning": "tulum; birleşim",
+  "text": "Le mécanicien porte une combinaison bleue.",
+  "tr": "Tamirci mavi bir tulum giyiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-consommation",
+  "language": "fr",
+  "lemma": "consommation",
+  "looks": "konsomasyon",
+  "trap": "zorunlu içki ücreti",
+  "meaning": "tüketim; içecek",
+  "text": "La consommation d'eau augmente en été.",
+  "tr": "Su tüketimi yazın artıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-coupure",
+  "language": "fr",
+  "lemma": "coupure",
+  "looks": "kupür",
+  "trap": "gazete kupürü",
+  "meaning": "kesik; kesinti",
+  "text": "Il y a eu une coupure de courant hier soir.",
+  "tr": "Dün akşam elektrik kesintisi oldu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-complet",
+  "language": "fr",
+  "lemma": "complet",
+  "looks": "komple",
+  "trap": "tamamı, bütünü",
+  "meaning": "dolu; takım elbise",
+  "text": "Désolé, l'hôtel est complet ce week-end.",
+  "tr": "Üzgünüz, otel bu hafta sonu dolu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-pension",
+  "language": "fr",
+  "lemma": "pension",
+  "looks": "pansiyon",
+  "trap": "pansiyon",
+  "meaning": "emekli maaşı",
+  "text": "Ma grand-mère vit de sa pension.",
+  "tr": "Büyükannem emekli maaşıyla geçiniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-carte",
+  "language": "fr",
+  "lemma": "carte",
+  "looks": "kart",
+  "trap": "kart",
+  "meaning": "harita; menü",
+  "text": "Le serveur nous apporte la carte.",
+  "tr": "Garson bize menüyü getiriyor.",
+  "source": "Diloloji (özgün)"
+ }
+]

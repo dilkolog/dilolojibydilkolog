@@ -61,7 +61,7 @@ export function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
 
 async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
   const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog] = await Promise.all([
-    db.events.toArray(),
+    db.allEvents(),
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
     db.getBossWins(),

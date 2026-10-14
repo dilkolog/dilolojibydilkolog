@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import type { TargetLanguage } from '../engine/types'
 import { libraryList, ShareError, type LibraryItem } from '../data/share'
+import { Sticker } from './Sticker'
 
 const IncomingSet = lazy(() => import('./IncomingSet'))
 
@@ -28,7 +29,12 @@ export function CommunitySets({ language, onAdded }: { language: TargetLanguage;
         <p className="small muted">Onaylı hesapların kütüphanede yayınladığı listeler. Birini açıp içine bak, beğenirsen kendi kelimelerine ekle. Kendi listeni yayınlamak için Kelimeler → Listeler → Paylaş.</p>
         {busy && <p className="small muted">Yükleniyor…</p>}
         {error && <p className="error" role="alert">{error}</p>}
-        {items && items.length === 0 && <p className="small muted">Bu dilde yayınlanmış liste yok.</p>}
+        {items && items.length === 0 && (
+          <p className="small muted sticker-note">
+            <Sticker name="hello" size={32} />
+            <span>Bu dilde yayınlanmış liste yok. İlk sen yayınlayabilirsin: Kelimeler → Listeler → Paylaş.</span>
+          </p>
+        )}
         {items && items.length > 0 && (
           <ul className="stack gap-2">
             {items.map((i) => (

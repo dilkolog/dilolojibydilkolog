@@ -13,6 +13,7 @@ import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { sfx } from './sounds'
 import { canSpeak, speak } from './speech'
+import { EmptyState } from './EmptyState'
 
 const RATING: Record<SentenceVerdict, Rating.Again | Rating.Hard | Rating.Good> = { correct: Rating.Good, near: Rating.Hard, wrong: Rating.Again }
 
@@ -70,9 +71,9 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
       <div className="stack">
         {back}
         <PageHeader title="Geri çeviri" sub={`Çevirdiğin cümlelerin Türkçesini görür, ${name} kendin yazarsın.`} />
-        <p className="note">
-          Henüz çevrilmiş cümlen yok. Okurken bir kelimeye dokunup “Cümlenin Türkçesi”ne bas ya da Çeviri ekranını kullan: çevirdiğin cümleler burada seni bekler.
-        </p>
+        <EmptyState art="sentences" title="Henüz çevrilmiş cümlen yok">
+          Okurken bir kelimeye dokunup “Cümlenin Türkçesi”ne bas ya da Çeviri ekranını kullan: çevirdiğin cümleler burada seni bekler.
+        </EmptyState>
       </div>
     )
 

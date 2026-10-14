@@ -23,6 +23,7 @@ import { DictionaryExamples } from './DictionaryExamples'
 import { PageHeader } from './PageHeader'
 import { PosTag } from './PosTag'
 import { speak, unlockedAudio } from './speech'
+import { Sticker } from './Sticker'
 
 /**
  * Any word, in the list or not: what it means in Turkish, how it sounds, where it comes from and
@@ -779,7 +780,10 @@ function SavedCard({
 function SavedList({ language, list, onPick, onRemove }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void; onRemove: (word: string) => void }) {
   return (
     <section className="section stack">
-      <h2 className="section-title">Kaydettiklerin</h2>
+      <h2 className="section-title">
+        <Sticker name="heart" size={28} className="sticker-title" />
+        Kaydettiklerin
+      </h2>
       <ul className="word-list">
         {list.map((e) => (
           <li key={e.word}>

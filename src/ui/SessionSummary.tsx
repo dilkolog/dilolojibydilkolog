@@ -31,6 +31,7 @@ import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
 import { shareCard } from './shareCard'
 import { RESULT_ART, resultKind } from './drawnArt'
+import { Sticker } from './Sticker'
 
 function hardHeadline(accuracy: number): string {
   if (accuracy >= 0.9) return 'Zor kelimelerin yola geliyor!'
@@ -249,7 +250,10 @@ export function Summary({
         </div>
       )}
       {firstSitting && (
-        <p className="note">Günün ilk yarısı tamam. Kalanı Bugün'de hazır; birkaç saat sonra yaparsan araya giren zaman sayesinde daha kalıcı olur.</p>
+        <p className="note sticker-note">
+          <Sticker name="coffee" size={40} />
+          <span>Günün ilk yarısı tamam. Kalanı Bugün'de hazır; birkaç saat sonra yaparsan araya giren zaman sayesinde daha kalıcı olur.</span>
+        </p>
       )}
       <div className="summary-actions">
         <button className="btn btn-lg btn-block" onClick={onDone} autoFocus>

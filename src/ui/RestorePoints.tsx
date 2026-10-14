@@ -4,6 +4,7 @@ import { restoreFrom, restorePoints, SyncApprovalError, SyncNotAllowedError } fr
 import { ConfirmDialog } from './Dialog'
 import { getCredential, NOT_ALLOWED, PENDING_APPROVAL, runSync } from './syncRunner'
 import { showToast } from './toastFeed'
+import { Sticker } from './Sticker'
 
 const dayLabel = (day: string) => new Date(`${day}T12:00:00`).toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })
 
@@ -56,7 +57,12 @@ export function RestorePoints() {
           eklediklerin ve ilerlemen kalır.
         </p>
         {days === 'loading' && <p className="small muted">Yükleniyor…</p>}
-        {Array.isArray(days) && !days.length && <p className="small muted">Henüz geri dönüş noktası yok; ilk eşitlemeden bir gün sonra oluşur.</p>}
+        {Array.isArray(days) && !days.length && (
+          <p className="small muted sticker-note">
+            <Sticker name="sleep" size={32} />
+            <span>Henüz geri dönüş noktası yok; ilk eşitlemeden bir gün sonra oluşur.</span>
+          </p>
+        )}
         {Array.isArray(days) &&
           days.map((day) => (
             <div className="row" key={day}>

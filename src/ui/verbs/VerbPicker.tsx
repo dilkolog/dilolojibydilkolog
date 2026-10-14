@@ -6,6 +6,7 @@ import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
+import { Sticker } from '../Sticker'
 
 const MORE = 36
 
@@ -229,7 +230,12 @@ export function PickerLists({
           </button>
         ))}
       </div>
-      {verbs.length ? <VerbChips key={list} verbs={verbs} language={language} onVerb={onVerb} current={verb} /> : <p className="small muted">{empty[list] ?? 'Bu listede fiil yok.'}</p>}
+      {verbs.length ? <VerbChips key={list} verbs={verbs} language={language} onVerb={onVerb} current={verb} /> : (
+        <p className="small muted sticker-note">
+          <Sticker name={list === 'favorites' ? 'heart' : 'think'} size={32} />
+          <span>{empty[list] ?? 'Bu listede fiil yok.'}</span>
+        </p>
+      )}
       {(LEVELS as readonly string[]).includes(list) && <p className="small muted">Seviyeler sıklığa göre yaklaşıktır: en çok duyulan fiiller önce öğrenilir.</p>}
     </div>
   )

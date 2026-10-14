@@ -167,8 +167,9 @@ describe('DataSettings', () => {
     expect(revertedWords).toHaveLength(1)
     expect(revertedWords[0].lemma).toBe('bonjour')
 
-    await waitFor(() => !container.querySelector('[role="alertdialog"]'))
-    const undoBtnAfter = Array.from(container.querySelectorAll('button')).find((b) => b.textContent?.trim() === 'Önceki hâle dön')
-    expect(undoBtnAfter).toBeUndefined()
+    // The copy is dropped after the data is back: the button goes on a later render (slow under a full run).
+    const undoButton = () => Array.from(container.querySelectorAll('button')).find((b) => b.textContent?.trim() === 'Önceki hâle dön')
+    await waitFor(() => !container.querySelector('[role="alertdialog"]') && !undoButton(), 5000)
+    expect(undoButton()).toBeUndefined()
   })
 })

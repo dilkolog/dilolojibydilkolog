@@ -202,8 +202,12 @@ export async function playSession(page: Page, start = true) {
     const typed = page.locator('.session-stage input.answer-input:visible')
     // A question to say aloud: a test has no microphone, so it is answered by typing.
     const instead = page.getByRole('button', { name: 'Yazarak cevapla' })
-    if (await next.count()) await next.first().click()
-    else if (await guess.count()) await guess.first().click()
+    // An answer is saved before the screen moves on: the option counted a moment ago can be disabled (or the
+    // button gone) by the time it is clicked. A short try, and the loop looks again, instead of a click that
+    // waits out the whole test on an element that will never be enabled.
+    const tap = (l: typeof next) => l.first().click({ timeout: 3000 }).catch(() => {})
+    if (await next.count()) await tap(next)
+    else if (await guess.count()) await tap(guess)
     else if (await typed.count()) {
       await typed.first().fill('x')
       await page.keyboard.press('Enter')

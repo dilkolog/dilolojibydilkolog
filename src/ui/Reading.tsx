@@ -57,6 +57,7 @@ import { useTranslationReady } from './useTranslationReady'
 import { useStudyClock } from './useStudyClock'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
+import { Sticker } from './Sticker'
 
 /** No word of the paragraph is in the multi-selection: one stable empty set, so its paragraph keeps equal props. */
 const NO_KEYS: ReadonlySet<string> = new Set()
@@ -691,8 +692,9 @@ export function ReadingScreen({
           </p>
         )}
         {message && (
-          <p className="notice" role="status">
-            {message}
+          <p className="notice sticker-note" role="status">
+            <Sticker name="read" size={40} />
+            <span>{message}</span>
           </p>
         )}
         {message && !nextChapter && (

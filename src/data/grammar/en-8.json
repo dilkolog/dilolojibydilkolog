@@ -1,0 +1,486 @@
+[
+ {
+  "id": "en-passive_en-01",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "The bridge ___ in 1890.",
+  "answer": "was built",
+  "options": [
+   "was built",
+   "built",
+   "has built",
+   "is building"
+  ],
+  "hint": "geçmişte edilgen",
+  "explanation": "Köprü yapılan şeydir, yapan değil: was + past participle (was built).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-02",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "English ___ in many countries.",
+  "answer": "is spoken",
+  "options": [
+   "is spoken",
+   "speaks",
+   "is speaking",
+   "spoke"
+  ],
+  "hint": "genel gerçek → present passive",
+  "explanation": "İngilizce konuşulan şeydir: is spoken.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-03",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "The letters ___ yet.",
+  "answer": "haven't been sent",
+  "options": [
+   "haven't been sent",
+   "haven't sent",
+   "aren't sending",
+   "didn't send"
+  ],
+  "hint": "present perfect passive",
+  "explanation": "Yet ile present perfect; mektuplar gönderilen şey: haven't been sent.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-04",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "The winners ___ tomorrow.",
+  "answer": "will be announced",
+  "options": [
+   "will be announced",
+   "will announce",
+   "announce",
+   "are announcing"
+  ],
+  "hint": "gelecekte edilgen",
+  "explanation": "Kazananlar açıklanacak olandır: will be + past participle.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-05",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "My car ___ at the moment, so I'm taking the bus.",
+  "answer": "is being repaired",
+  "options": [
+   "is being repaired",
+   "is repairing",
+   "repairs",
+   "has repaired"
+  ],
+  "hint": "şu an süren edilgen",
+  "explanation": "Şu an süren edilgen eylem: is being + past participle.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-06",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "He ___ to hospital after the accident.",
+  "answer": "was taken",
+  "options": [
+   "was taken",
+   "took",
+   "has taken",
+   "was taking"
+  ],
+  "hint": "geçmişte edilgen",
+  "explanation": "Onu biri götürdü; o götürülen kişi: was taken.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-07",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "The room must ___ before the guests arrive.",
+  "answer": "be cleaned",
+  "options": [
+   "be cleaned",
+   "clean",
+   "cleaned",
+   "cleaning"
+  ],
+  "hint": "modal + be + V3",
+  "explanation": "Modal fiilden sonra edilgen: must be cleaned.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-08",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "I had my hair ___ yesterday.",
+  "answer": "cut",
+  "options": [
+   "cut",
+   "cutting",
+   "to cut",
+   "cuts"
+  ],
+  "hint": "have something done",
+  "explanation": "Bir işi başkasına yaptırmak: have + nesne + past participle (had my hair cut).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-09",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "She ___ by a dog when she was a child.",
+  "answer": "was bitten",
+  "options": [
+   "was bitten",
+   "bit",
+   "has bitten",
+   "was biting"
+  ],
+  "hint": "by + yapan",
+  "explanation": "By ile yapanı söylenen edilgen cümle: was bitten.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-10",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "choice",
+  "prompt": "It ___ that the painting is a fake.",
+  "answer": "is said",
+  "options": [
+   "is said",
+   "says",
+   "is saying",
+   "has said"
+  ],
+  "hint": "it is said that",
+  "explanation": "Genel söylenti edilgen kalıpla anlatılır: it is said that…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-11",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "cloze",
+  "prompt": "Breakfast ___ (serve) from 7 to 10 every day.",
+  "answer": "is served",
+  "hint": "her gün → present passive",
+  "explanation": "Düzenli olan edilgen eylem: is served.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-12",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "cloze",
+  "prompt": "The thief ___ (catch) last night.",
+  "answer": "was caught",
+  "hint": "geçmişte edilgen",
+  "explanation": "Last night geçmiş zaman: was caught (catch düzensiz).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-13",
+  "language": "en",
+  "level": "B1",
+  "topic": "passive_en",
+  "type": "cloze",
+  "prompt": "This song ___ (write) in 1965.",
+  "answer": "was written",
+  "hint": "geçmişte edilgen",
+  "explanation": "Write düzensiz: was written.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-14",
+  "language": "en",
+  "level": "B2",
+  "topic": "passive_en",
+  "type": "error",
+  "prompt": "The museum was build in the nineteenth century.",
+  "answer": "build",
+  "fix": "built",
+  "hint": "be + past participle",
+  "explanation": "Edilgen yapıda be'den sonra past participle gelir: was built.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-passive_en-15",
+  "language": "en",
+  "level": "B2",
+  "topic": "passive_en",
+  "type": "error",
+  "prompt": "These cars are make in Germany.",
+  "answer": "make",
+  "fix": "made",
+  "hint": "be + past participle",
+  "explanation": "Edilgen: are made (make → made).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-01",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "The woman ___ lives next door is a doctor.",
+  "answer": "who",
+  "options": [
+   "who",
+   "which",
+   "whose",
+   "where"
+  ],
+  "hint": "kişi → who",
+  "explanation": "Kişiyi anlatan ilgi zamiri who'dur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-02",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "This is the house ___ I was born.",
+  "answer": "where",
+  "options": [
+   "where",
+   "which",
+   "who",
+   "whose"
+  ],
+  "hint": "yer → where",
+  "explanation": "Yer bildiren ilgi cümlesi where ile kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-03",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "The man ___ car was stolen called the police.",
+  "answer": "whose",
+  "options": [
+   "whose",
+   "who",
+   "which",
+   "whom"
+  ],
+  "hint": "sahiplik → whose",
+  "explanation": "Sahiplik (adamın arabası) whose ile anlatılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-04",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "The book ___ you lent me is great.",
+  "answer": "which",
+  "options": [
+   "which",
+   "who",
+   "where",
+   "whose"
+  ],
+  "hint": "nesne → which",
+  "explanation": "Şeyleri anlatan ilgi zamiri which'tir (that de olur).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-05",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "My brother, ___ lives in Rome, is a chef.",
+  "answer": "who",
+  "options": [
+   "who",
+   "that",
+   "which",
+   "whose"
+  ],
+  "hint": "virgüllü ilgi cümlesi → that olmaz",
+  "explanation": "Virgüllü (ek bilgi veren) ilgi cümlesinde that kullanılmaz; kişi için who.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-06",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "That's the reason ___ I left.",
+  "answer": "why",
+  "options": [
+   "why",
+   "which",
+   "where",
+   "whose"
+  ],
+  "hint": "neden → why",
+  "explanation": "The reason why: nedenini anlatan ilgi cümlesi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-07",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "The person to ___ I spoke was very kind.",
+  "answer": "whom",
+  "options": [
+   "whom",
+   "who",
+   "which",
+   "whose"
+  ],
+  "hint": "edattan sonra → whom",
+  "explanation": "Edattan sonra kişi için whom kullanılır: to whom.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-08",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "She passed her exam, ___ surprised everyone.",
+  "answer": "which",
+  "options": [
+   "which",
+   "that",
+   "what",
+   "who"
+  ],
+  "hint": "bütün cümleye atıf → , which",
+  "explanation": "Önceki cümlenin tamamına atıf yapan virgüllü which.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-09",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "I remember the day ___ we met.",
+  "answer": "when",
+  "options": [
+   "when",
+   "which",
+   "where",
+   "whose"
+  ],
+  "hint": "zaman → when",
+  "explanation": "Zaman bildiren ilgi cümlesi when ile kurulur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-10",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "choice",
+  "prompt": "___ you need is a good rest.",
+  "answer": "What",
+  "options": [
+   "What",
+   "That",
+   "Which",
+   "Who"
+  ],
+  "hint": "the thing that → what",
+  "explanation": "“Senin ihtiyacın olan şey”: what = the thing that.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-11",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "cloze",
+  "prompt": "The girl ___ bike was stolen is crying.",
+  "answer": "whose",
+  "hint": "sahiplik",
+  "explanation": "Kızın bisikleti: whose.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-12",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "cloze",
+  "prompt": "Paris, ___ I lived for two years, is beautiful.",
+  "answer": "where",
+  "hint": "yer",
+  "explanation": "Yer bildiren virgüllü ilgi cümlesi: where.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-13",
+  "language": "en",
+  "level": "B1",
+  "topic": "relatives_en",
+  "type": "cloze",
+  "prompt": "Tell me ___ you want for your birthday.",
+  "answer": "what",
+  "hint": "the thing that",
+  "explanation": "“İstediğin şeyi söyle”: what.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-14",
+  "language": "en",
+  "level": "B2",
+  "topic": "relatives_en",
+  "type": "error",
+  "prompt": "The man which helped me was very kind.",
+  "answer": "which",
+  "fix": "who",
+  "hint": "kişi → who",
+  "explanation": "Kişiler için which değil who (ya da that) kullanılır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-relatives_en-15",
+  "language": "en",
+  "level": "B2",
+  "topic": "relatives_en",
+  "type": "error",
+  "prompt": "The hotel what we stayed at was cheap.",
+  "answer": "what",
+  "fix": "which",
+  "hint": "ilgi zamiri which/that",
+  "explanation": "What ilgi zamiri olarak bir isimden sonra gelmez; which ya da that kullanılır.",
+  "source": "Diloloji (özgün)"
+ }
+]

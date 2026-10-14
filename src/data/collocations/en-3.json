@@ -1,0 +1,277 @@
+[
+ {
+  "id": "en-colloc3-01",
+  "language": "en",
+  "lemmas": [
+   "shopping"
+  ],
+  "pattern": "do the shopping",
+  "example": "I do the shopping on Saturday mornings.",
+  "tr": "Alışverişi cumartesi sabahları yaparım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-02",
+  "language": "en",
+  "lemmas": [
+   "homework"
+  ],
+  "pattern": "do your homework",
+  "example": "She does her homework before dinner.",
+  "tr": "Ödevini akşam yemeğinden önce yapar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-03",
+  "language": "en",
+  "lemmas": [
+   "bed"
+  ],
+  "pattern": "make the bed",
+  "example": "Make your bed before you go out.",
+  "tr": "Çıkmadan önce yatağını topla.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-04",
+  "language": "en",
+  "lemmas": [
+   "law"
+  ],
+  "pattern": "break the law",
+  "example": "He has never broken the law.",
+  "tr": "Hiç yasayı çiğnemedi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-05",
+  "language": "en",
+  "lemmas": [
+   "noise"
+  ],
+  "pattern": "make a noise",
+  "example": "Try not to make a noise; the baby is asleep.",
+  "tr": "Ses çıkarmamaya çalış; bebek uyuyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-06",
+  "language": "en",
+  "lemmas": [
+   "sense"
+  ],
+  "pattern": "make sense",
+  "example": "Your idea makes sense.",
+  "tr": "Fikrin mantıklı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-07",
+  "language": "en",
+  "lemmas": [
+   "difference"
+  ],
+  "pattern": "make a difference",
+  "example": "Small changes can make a big difference.",
+  "tr": "Küçük değişiklikler büyük fark yaratabilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-08",
+  "language": "en",
+  "lemmas": [
+   "hurry"
+  ],
+  "pattern": "be in a hurry",
+  "example": "Sorry, I'm in a hurry.",
+  "tr": "Üzgünüm, acelem var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-09",
+  "language": "en",
+  "lemmas": [
+   "mind"
+  ],
+  "pattern": "change your mind",
+  "example": "I've changed my mind; let's stay.",
+  "tr": "Fikrimi değiştirdim; kalalım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-10",
+  "language": "en",
+  "lemmas": [
+   "touch"
+  ],
+  "pattern": "keep in touch",
+  "example": "Let's keep in touch after the course.",
+  "tr": "Kurstan sonra iletişimde kalalım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-11",
+  "language": "en",
+  "lemmas": [
+   "laugh"
+  ],
+  "pattern": "laugh at",
+  "example": "Don't laugh at your brother.",
+  "tr": "Kardeşinle alay etme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-12",
+  "language": "en",
+  "lemmas": [
+   "look"
+  ],
+  "pattern": "look after",
+  "example": "Can you look after my cat this weekend?",
+  "tr": "Bu hafta sonu kedime bakabilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-13",
+  "language": "en",
+  "lemmas": [
+   "give"
+  ],
+  "pattern": "give up + -ing",
+  "example": "I gave up smoking last year.",
+  "tr": "Geçen yıl sigarayı bıraktım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-14",
+  "language": "en",
+  "lemmas": [
+   "prevent"
+  ],
+  "pattern": "prevent someone from + -ing",
+  "example": "The noise prevents me from sleeping.",
+  "tr": "Gürültü uyumamı engelliyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-15",
+  "language": "en",
+  "lemmas": [
+   "allow"
+  ],
+  "pattern": "allow someone to + infinitive",
+  "example": "This job allows me to travel.",
+  "tr": "Bu iş seyahat etmeme imkân veriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-16",
+  "language": "en",
+  "lemmas": [
+   "advise"
+  ],
+  "pattern": "advise someone to + infinitive",
+  "example": "The doctor advised me to rest.",
+  "tr": "Doktor dinlenmemi tavsiye etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-17",
+  "language": "en",
+  "lemmas": [
+   "used"
+  ],
+  "pattern": "used to + infinitive",
+  "example": "I used to live in Paris.",
+  "tr": "Eskiden Paris'te yaşardım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-18",
+  "language": "en",
+  "lemmas": [
+   "worth"
+  ],
+  "pattern": "be worth + -ing",
+  "example": "This film is worth seeing.",
+  "tr": "Bu film görülmeye değer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-19",
+  "language": "en",
+  "lemmas": [
+   "fault"
+  ],
+  "pattern": "be someone's fault",
+  "example": "It's not my fault.",
+  "tr": "Benim suçum değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-20",
+  "language": "en",
+  "lemmas": [
+   "foot"
+  ],
+  "pattern": "on foot",
+  "example": "I go to work on foot.",
+  "tr": "İşe yürüyerek gidiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-21",
+  "language": "en",
+  "lemmas": [
+   "carry"
+  ],
+  "pattern": "carry out",
+  "example": "The team carried out a survey.",
+  "tr": "Ekip bir anket yürüttü.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-22",
+  "language": "en",
+  "lemmas": [
+   "find"
+  ],
+  "pattern": "find out",
+  "example": "I found out the truth yesterday.",
+  "tr": "Gerçeği dün öğrendim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-23",
+  "language": "en",
+  "lemmas": [
+   "run"
+  ],
+  "pattern": "run out of",
+  "example": "We've run out of milk.",
+  "tr": "Sütümüz bitti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-24",
+  "language": "en",
+  "lemmas": [
+   "put"
+  ],
+  "pattern": "put off",
+  "example": "Don't put off your homework.",
+  "tr": "Ödevini erteleme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-colloc3-25",
+  "language": "en",
+  "lemmas": [
+   "turn"
+  ],
+  "pattern": "turn down",
+  "example": "She turned down the job offer.",
+  "tr": "İş teklifini geri çevirdi.",
+  "source": "Diloloji (özgün)"
+ }
+]

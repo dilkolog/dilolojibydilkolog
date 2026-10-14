@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import type { TargetLanguage } from '../../engine/types'
 import { FlagIcon, TrophyIcon } from '../icons'
 import { Ring } from '../Ring'
+import { Sticker } from '../Sticker'
 
 /**
  * The end of every game in one layout: the result (a ring for accuracy, or a badge), the headline
@@ -39,7 +40,11 @@ export function GameResult({
     <div className="game-result">
       <div className="game-result-card">
         {accuracy !== undefined ? (
-          <Ring value={accuracy} size={116} stroke={11} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
+          <span className="game-result-ring">
+            <Ring value={accuracy} size={116} stroke={11} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
+            {/* Not a miss: Monki gives a thumbs up. */}
+            {accuracy >= 1 && <Sticker name="thumbs" size={48} className="game-result-sticker" />}
+          </span>
         ) : (
           <span className={`game-result-badge${record ? ' is-record' : ''}`} aria-hidden>
             {record ? <TrophyIcon size={34} /> : <FlagIcon size={32} />}

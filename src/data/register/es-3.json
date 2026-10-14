@@ -1,0 +1,142 @@
+[
+ {
+  "id": "es-repeat",
+  "language": "es",
+  "tr": "tekrar eder misin?",
+  "informal": "¿Qué? ¿Me lo repites?",
+  "standard": "¿Puede repetirlo, por favor?",
+  "formal": "¿Sería tan amable de repetirlo?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-permission",
+  "language": "es",
+  "tr": "girebilir miyim?",
+  "informal": "¿Paso?",
+  "standard": "¿Puedo entrar?",
+  "formal": "¿Me permite entrar?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-invite",
+  "language": "es",
+  "tr": "bu akşam bize gel",
+  "informal": "¡Vente a casa esta noche!",
+  "standard": "¿Quieres venir a casa esta noche?",
+  "formal": "Sería un placer recibirle esta noche.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-congrats",
+  "language": "es",
+  "tr": "tebrikler",
+  "informal": "¡Qué crack!",
+  "standard": "¡Enhorabuena!",
+  "formal": "Le transmito mi más sincera enhorabuena.",
+  "note": "“¡Qué crack!” İspanya ve Arjantin’de övgüdür; Meksika’da daha çok “¡Qué chido!”, Kolombiya’da “¡Qué berraco!” denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-opinion",
+  "language": "es",
+  "tr": "bence…",
+  "informal": "Pues yo creo que…",
+  "standard": "En mi opinión…",
+  "formal": "A mi juicio…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-suggest",
+  "language": "es",
+  "tr": "hadi sinemaya gidelim",
+  "informal": "¿Nos vamos al cine?",
+  "standard": "¿Y si vamos al cine?",
+  "formal": "Le propongo que vayamos al cine.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-busy",
+  "language": "es",
+  "tr": "şu an meşgulüm",
+  "informal": "Ahora estoy liadísimo.",
+  "standard": "Ahora estoy ocupado.",
+  "formal": "Lamentablemente, en este momento no estoy disponible.",
+  "note": "“Liado” (meşgul) İspanya’ya özgüdür; Latin Amerika’da “estoy a full” (Arjantin, Şili) ya da “estoy ocupadísimo” denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-cancel",
+  "language": "es",
+  "tr": "randevuyu iptal etmem gerek",
+  "informal": "Lo siento, tengo que cancelar.",
+  "standard": "Tengo que cancelar nuestra cita.",
+  "formal": "Me veo obligado a cancelar nuestra cita.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-advice",
+  "language": "es",
+  "tr": "sence ne yapayım?",
+  "informal": "¿Tú qué harías?",
+  "standard": "¿Qué me aconsejas?",
+  "formal": "¿Qué me aconsejaría usted?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-remind",
+  "language": "es",
+  "tr": "unutma",
+  "informal": "¡Que no se te olvide!",
+  "standard": "No te olvides.",
+  "formal": "Me permito recordarle que…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sure",
+  "language": "es",
+  "tr": "eminim",
+  "informal": "¡Fijo!",
+  "standard": "Estoy seguro.",
+  "formal": "Estoy plenamente convencido.",
+  "note": "“¡Fijo!” İspanya argosudur; Latin Amerika’da “¡Seguro!” ya da Arjantin’de “¡Obvio!” denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-complain",
+  "language": "es",
+  "tr": "bu kabul edilemez",
+  "informal": "¡Esto es un desastre!",
+  "standard": "Esto no es normal.",
+  "formal": "Esta situación es inaceptable.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-interrupt",
+  "language": "es",
+  "tr": "sözünü kesiyorum ama…",
+  "informal": "Espera, espera…",
+  "standard": "Perdona que te interrumpa…",
+  "formal": "Disculpe que le interrumpa…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-offer",
+  "language": "es",
+  "tr": "yardım edeyim mi?",
+  "informal": "¿Te echo una mano?",
+  "standard": "¿Quieres que te ayude?",
+  "formal": "¿En qué puedo ayudarle?",
+  "note": "“Echar una mano” her yerde anlaşılır; Meksika’da gündelik dilde “¿Te hago el paro?” de denir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-hurry",
+  "language": "es",
+  "tr": "acele et",
+  "informal": "¡Espabila!",
+  "standard": "Date prisa.",
+  "formal": "Le ruego que se dé prisa.",
+  "note": "“¡Espabila!” İspanya’da yaygındır; Latin Amerika’da acele ettirmek için “¡Apúrate!” denir (İspanya’da standart “date prisa”).",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -39,7 +39,6 @@
 -	accouder
 -	acoquiner
 -	acérer
--	adjuger
 -	affaisser
 -	affaler
 -	affectionner
@@ -204,7 +203,6 @@
 -	chevroter
 -	chiader
 -	chicaner
--	chiner
 -	chipoter
 -	chiquer
 -	chouchouter
@@ -213,7 +211,6 @@
 -	châtrer
 -	chômer
 -	ciller
--	cintrer
 -	circoncire
 -	circonscrire
 -	circonvenir
@@ -238,13 +235,10 @@
 -	colleter
 -	colorier
 -	coltiner
--	commanditer
--	commercer
 -	commotionner
 -	commuer
 -	communier
 -	complaire
--	compresser
 -	comptabiliser
 -	compulser
 -	compéter
@@ -275,7 +269,6 @@
 -	coudoyer
 -	couillonner
 -	couiner
--	coulisser
 -	courroucer
 -	courser
 -	court-circuiter
@@ -301,7 +294,6 @@
 -	culminer
 -	culotter
 -	cumuler
--	curer
 -	dactylographier
 -	daller
 -	damner
@@ -325,7 +317,6 @@
 -	discutailler
 -	disgracier
 -	disjoindre
--	disjoncter
 -	disloquer
 -	disproportionner
 -	disserter
@@ -371,7 +362,6 @@
 -	décommander
 -	déconcentrer
 -	déconsidérer
--	décontracter
 -	décortiquer
 -	découcher
 -	découler
@@ -418,13 +408,10 @@
 -	démembrer
 -	démettre
 -	démobiliser
--	démoder
--	démunir
 -	démâter
 -	démériter
 -	dénaturer
 -	dénier
--	dénommer
 -	dénoter
 -	dénuder
 -	dénuer
@@ -566,7 +553,6 @@
 -	escrimer
 -	essaimer
 -	estomaquer
--	estropier
 -	exacerber
 -	excepter
 -	exclamer
@@ -576,7 +562,6 @@
 -	expurger
 -	extrader
 -	extrapoler
--	exténuer
 -	extérioriser
 -	exécrer
 -	fabuler
@@ -654,7 +639,6 @@
 -	goder
 -	godiller
 -	gominer
--	gondoler
 -	gorger
 -	goudronner
 -	gourer
@@ -666,8 +650,6 @@
 -	graviter
 -	grever
 -	grillager
--	grimer
--	gripper
 -	gruger
 -	gréer
 -	guinder
@@ -675,7 +657,6 @@
 -	gîter
 -	hachurer
 -	haler
--	handicaper
 -	happer
 -	haranguer
 -	harasser
@@ -704,7 +685,6 @@
 -	immortaliser
 -	impartir
 -	imploser
--	inciser
 -	incurver
 -	indisposer
 -	infléchir
@@ -740,13 +720,11 @@
 -	laminer
 -	lamper
 -	lanciner
--	laquer
 -	larder
 -	larmoyer
 -	licher
 -	ligaturer
 -	liguer
--	limer
 -	liquéfier
 -	liter
 -	loquer
@@ -767,18 +745,15 @@
 -	manufacturer
 -	maquer
 -	marauder
--	marbrer
 -	marginaliser
 -	marner
 -	martyriser
 -	mastiquer
 -	matelasser
 -	materner
--	matraquer
 -	matérialiser
 -	maçonner
 -	meugler
--	meurtrir
 -	millésimer
 -	minauder
 -	mincir
@@ -816,7 +791,6 @@
 -	métrer
 -	nacrer
 -	nantir
--	napper
 -	nasiller
 -	nationaliser
 -	naturaliser
@@ -863,7 +837,6 @@
 -	perquisitionner
 -	persifler
 -	personnifier
--	pester
 -	phraser
 -	piailler
 -	pianoter
@@ -911,7 +884,6 @@
 -	prémunir
 -	préposer
 -	psalmodier
--	psychanalyser
 -	pulser
 -	putréfier
 -	pâtisser
@@ -927,7 +899,6 @@
 -	racoler
 -	racornir
 -	rader
--	radier
 -	radiner
 -	radiodiffuser
 -	radoter
@@ -1036,15 +1007,12 @@
 -	ripoliner
 -	rissoler
 -	roder
--	rogner
 -	ronchonner
 -	roser
 -	rosir
 -	roter
 -	roucouler
--	roussir
 -	rudoyer
--	ruser
 -	rutiler
 -	râper
 -	réaffirmer
@@ -1090,7 +1058,6 @@
 -	saurer
 -	savonner
 -	schlinguer
--	seconder
 -	secréter
 -	sensibiliser
 -	seriner
@@ -1112,7 +1079,6 @@
 -	spolier
 -	statufier
 -	stigmatiser
--	strier
 -	styler
 -	styliser
 -	stéréotyper
@@ -1124,17 +1090,14 @@
 -	supputer
 -	surclasser
 -	surenchérir
--	surexciter
 -	suriner
 -	surinformer
--	surmener
 -	surnager
 -	survolter
 -	surélever
 -	sustenter
 -	suçoter
 -	syndiquer
--	sécréter
 -	tabler
 -	tacheter
 -	taillader
@@ -1209,8 +1172,6 @@
 -	téléguider
 -	téléviser
 -	tétaniser
--	téter
--	ulcérer
 -	uniformiser
 -	urger
 -	usiner
@@ -1226,7 +1187,6 @@
 -	ventiler
 -	verbaliser
 -	verdoyer
--	vernir
 -	vernisser
 -	vicier
 -	vilipender
@@ -1240,7 +1200,6 @@
 -	volatiliser
 -	vouvoyer
 -	voûter
--	vriller
 -	végéter
 -	zoner
 -	zozoter
@@ -1259,9 +1218,7 @@
 -	écheveler
 -	échiner
 -	écoeurer
--	écosser
 -	écrouer
--	écrémer
 -	éculer
 -	écussonner
 -	édicter
@@ -1297,7 +1254,6 @@
 -	éroder
 -	éructer
 -	étager
--	étinceler
 -	étoiler
 -	étrenner
 -	étriquer

@@ -7,6 +7,7 @@ import { PODCASTS, type Episode } from '../engine/podcasts'
 import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { SourceTitle } from './SourceTitle'
+import { Sticker } from './Sticker'
 
 
 /**
@@ -71,7 +72,12 @@ export function ListeningPicker({
           {busy ? 'Yükleniyor…' : episodes ? 'Yenile' : 'Bölümleri getir'}
         </button>
       </div>
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error sticker-note">
+          <Sticker name="cry" size={32} />
+          <span>{error}</span>
+        </p>
+      )}
       {episodes && !rated.length && !busy && <p className="small muted">Bu kaynaktan bölüm alınamadı; başka bir kaynak dene.</p>}
       {rated.length > 0 && (
         <ul className="library">

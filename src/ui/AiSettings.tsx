@@ -7,6 +7,7 @@ import { db } from '../data/instance'
 import { useAccess } from './accessContext'
 import { useAi } from './aiContext'
 import { WandIcon } from './icons'
+import { Sticker } from './Sticker'
 
 const LIMITS = [0, 2, 5, 10, 20]
 const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`.replace('.', ',')
@@ -138,7 +139,10 @@ export function AiSettings({ settings, onChange }: { settings: Settings; onChang
             </ul>
           </>
         ) : (
-          <p className="small muted">Bu ay henüz YZ isteği yok.</p>
+          <p className="small muted sticker-note">
+            <Sticker name="think" size={32} />
+            <span>Bu ay henüz YZ isteği yok.</span>
+          </p>
         )}
         {months.length > 1 && (
           <p className="small muted">

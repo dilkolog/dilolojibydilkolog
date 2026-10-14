@@ -1,0 +1,392 @@
+[
+ {
+  "id": "en-phones",
+  "language": "en",
+  "text": "Smartphones make many tasks easier. {1}, they can also harm our concentration. Some pupils check their phones every five minutes; {2}, several schools have banned phones in class. {3} the rule may seem strict, many parents support it.",
+  "tr": "Akıllı telefonlar birçok işi kolaylaştırıyor. Ancak dikkatimize de zarar verebilirler. Bazı öğrenciler telefonlarına beş dakikada bir bakıyor; bunun sonucunda birçok okul sınıfta telefonu yasakladı. Kural katı görünse de birçok veli onu destekliyor.",
+  "gaps": [
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Therefore",
+     "Because"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yararın ardından bir sakınca: “ancak”."
+   },
+   {
+    "answer": "as a result",
+    "options": [
+     "as a result",
+     "nevertheless",
+     "although"
+    ],
+    "kind": "Sonuç",
+    "why": "Sürekli telefona bakmak yasağın nedeni."
+   },
+   {
+    "answer": "Although",
+    "options": [
+     "Although",
+     "Because",
+     "Unless"
+    ],
+    "kind": "Taviz",
+    "why": "“Katı görünse de destekliyorlar”: taviz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-recycling",
+  "language": "en",
+  "text": "Sorting your rubbish takes a little organisation. {1}, it greatly reduces pollution. {2} everyone makes a small effort, the amount sent to landfill drops quickly. {3}, the best waste is still the waste we never produce.",
+  "tr": "Çöpünü ayırmak biraz düzen ister. Yine de kirliliği büyük ölçüde azaltır. Herkes küçük bir çaba gösterirse çöplüğe giden miktar hızla düşer. Buna rağmen en iyi atık, hiç üretmediğimiz atıktır.",
+  "gaps": [
+   {
+    "answer": "Nevertheless",
+    "options": [
+     "Nevertheless",
+     "Consequently",
+     "Moreover"
+    ],
+    "kind": "Zıtlık",
+    "why": "Zahmet ile yarar karşı karşıya."
+   },
+   {
+    "answer": "If",
+    "options": [
+     "If",
+     "So that",
+     "Until"
+    ],
+    "kind": "Koşul",
+    "why": "“Herkes çaba gösterirse”: koşul."
+   },
+   {
+    "answer": "Even so",
+    "options": [
+     "Even so",
+     "That is why",
+     "Since"
+    ],
+    "kind": "Zıtlık",
+    "why": "Ayırmanın yararını sınırlayan son not."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-tourism",
+  "language": "en",
+  "text": "Tourism keeps many regions alive. {1}, it creates jobs and pays for public services. {2}, the flood of visitors pushes up rents for local people. {3} strike a balance, some cities now limit short-term rentals.",
+  "tr": "Turizm birçok bölgeyi ayakta tutuyor. Gerçekten de iş yaratıyor ve kamu hizmetlerini finanse ediyor. Öte yandan ziyaretçi akını yerel halk için kiraları yükseltiyor. Bir denge kurmak için bazı şehirler artık kısa süreli kiralamaları sınırlıyor.",
+  "gaps": [
+   {
+    "answer": "Indeed",
+    "options": [
+     "Indeed",
+     "Yet",
+     "Otherwise"
+    ],
+    "kind": "Açıklama",
+    "why": "İlk cümleyi açıklayıp destekliyor."
+   },
+   {
+    "answer": "On the other hand",
+    "options": [
+     "On the other hand",
+     "For example",
+     "So"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yararların karşısına bir zarar."
+   },
+   {
+    "answer": "To",
+    "options": [
+     "To",
+     "Despite",
+     "Since"
+    ],
+    "kind": "Amaç",
+    "why": "“Denge kurmak için”: amaç; ardından fiilin yalın hâli."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-sport",
+  "language": "en",
+  "text": "Regular exercise improves your health. {1}, you do not need to run a marathon: thirty minutes of walking a day is enough. {2} you are short of time, you can take the stairs instead of the lift. {3}, small habits count as much as big efforts.",
+  "tr": "Düzenli egzersiz sağlığını iyileştirir. Yine de maraton koşman gerekmez: günde otuz dakika yürümek yeter. Vaktin azsa asansör yerine merdiveni kullanabilirsin. Kısacası küçük alışkanlıklar büyük çabalar kadar önemlidir.",
+  "gaps": [
+   {
+    "answer": "That said",
+    "options": [
+     "That said",
+     "Thus",
+     "Because"
+    ],
+    "kind": "Zıtlık",
+    "why": "Beklentiyi düzeltiyor: egzersiz iyidir ama çok yapmak şart değil."
+   },
+   {
+    "answer": "If",
+    "options": [
+     "If",
+     "So that",
+     "Until"
+    ],
+    "kind": "Koşul",
+    "why": "“Vaktin azsa”: koşul."
+   },
+   {
+    "answer": "In short",
+    "options": [
+     "In short",
+     "However",
+     "Otherwise"
+    ],
+    "kind": "Özet",
+    "why": "Paragrafın sonucu tek cümlede."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-online",
+  "language": "en",
+  "text": "Online courses have multiplied in recent years. They are convenient, {1} you can follow them from home. {2}, many students give up before the end. That is why experts recommend studying in a group {3} stay motivated.",
+  "tr": "Çevrim içi kurslar son yıllarda çoğaldı. Pratikler, çünkü evden takip edebilirsin. Yine de birçok öğrenci sonuna gelmeden bırakıyor. Bu yüzden uzmanlar motive kalmak için grup hâlinde çalışmayı öneriyor.",
+  "gaps": [
+   {
+    "answer": "since",
+    "options": [
+     "since",
+     "unless",
+     "whereas"
+    ],
+    "kind": "Neden",
+    "why": "Neden pratik olduklarını söylüyor: “çünkü”."
+   },
+   {
+    "answer": "Yet",
+    "options": [
+     "Yet",
+     "Indeed",
+     "Thus"
+    ],
+    "kind": "Zıtlık",
+    "why": "Pratik olmalarına rağmen bırakılıyorlar."
+   },
+   {
+    "answer": "to",
+    "options": [
+     "to",
+     "without",
+     "before"
+    ],
+    "kind": "Amaç",
+    "why": "Grup çalışmasının amacı motive kalmak; ardından fiilin yalın hâli."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-fastfood",
+  "language": "en",
+  "text": "Fast food is especially popular with young people. It is cheap and quick; {1}, it often contains too much salt and sugar. {2} you eat it now and then, it does no harm. {3}, eating it every day can damage your health.",
+  "tr": "Hızlı yemek özellikle gençler arasında popüler. Ucuz ve hızlı; buna karşılık çoğu zaman fazla tuz ve şeker içeriyor. Ara sıra yersen zararı yok. Öte yandan her gün yemek sağlığına zarar verebilir.",
+  "gaps": [
+   {
+    "answer": "on the other hand",
+    "options": [
+     "on the other hand",
+     "in other words",
+     "therefore"
+    ],
+    "kind": "Zıtlık",
+    "why": "Artılar ile eksi karşı karşıya."
+   },
+   {
+    "answer": "If",
+    "options": [
+     "If",
+     "So that",
+     "Until"
+    ],
+    "kind": "Koşul",
+    "why": "“Ara sıra yersen”: koşul."
+   },
+   {
+    "answer": "By contrast",
+    "options": [
+     "By contrast",
+     "Thus",
+     "In other words"
+    ],
+    "kind": "Zıtlık",
+    "why": "Ara sıra ile her gün karşılaştırılıyor."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-fourdays",
+  "language": "en",
+  "text": "Several companies are trying out a four-day working week. Employees say they feel more rested; {1}, their productivity does not fall. {2}, the model does not suit every sector: a hospital, {3}, has to run seven days a week.",
+  "tr": "Birkaç şirket dört günlük çalışma haftasını deniyor. Çalışanlar daha dinlenmiş hissettiklerini söylüyor; üstelik verimlilikleri düşmüyor. Ancak bu model her sektöre uymuyor: örneğin bir hastane haftanın yedi günü çalışmak zorunda.",
+  "gaps": [
+   {
+    "answer": "what is more",
+    "options": [
+     "what is more",
+     "otherwise",
+     "that is"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir artı: “üstelik”."
+   },
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Indeed",
+     "So"
+    ],
+    "kind": "Zıtlık",
+    "why": "Artıların ardından bir sınır."
+   },
+   {
+    "answer": "for example",
+    "options": [
+     "for example",
+     "by contrast",
+     "nevertheless"
+    ],
+    "kind": "Örnek",
+    "why": "Hastane, uymayan sektöre bir örnek."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-social",
+  "language": "en",
+  "text": "Social networks help us stay in touch with the people we love. {1}, they also spread false news. {2} you check where an article comes from, you may share a rumour. So it is better to learn to use them {3} avoid them altogether.",
+  "tr": "Sosyal ağlar sevdiğimiz insanlarla iletişimde kalmamıza yardım ediyor. Yine de yalan haber de yayıyorlar. Bir makalenin nereden geldiğini kontrol etmedikçe bir söylenti paylaşabilirsin. Bu yüzden onlardan tamamen kaçınmak yerine kullanmayı öğrenmek daha iyi.",
+  "gaps": [
+   {
+    "answer": "Nevertheless",
+    "options": [
+     "Nevertheless",
+     "Thus",
+     "Indeed"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yararın ardından bir tehlike."
+   },
+   {
+    "answer": "Unless",
+    "options": [
+     "Unless",
+     "Because",
+     "So that"
+    ],
+    "kind": "Koşul",
+    "why": "“Kontrol etmedikçe”: olumsuz koşul (if … not)."
+   },
+   {
+    "answer": "rather than",
+    "options": [
+     "rather than",
+     "in order to",
+     "as well as"
+    ],
+    "kind": "Karşılaştırma",
+    "why": "İki yol karşılaştırılıyor: kaçınmak yerine öğrenmek."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-transport",
+  "language": "en",
+  "text": "Public transport pollutes less than cars. {1}, it is often cheaper. {2}, in rural areas buses are rare, {3} many people have no choice but to drive.",
+  "tr": "Toplu taşıma arabalardan daha az kirletir. Üstelik çoğu zaman daha ucuzdur. Ancak kırsal bölgelerde otobüsler seyrek, bu yüzden birçok kişinin araba kullanmaktan başka seçeneği yok.",
+  "gaps": [
+   {
+    "answer": "Moreover",
+    "options": [
+     "Moreover",
+     "However",
+     "Otherwise"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir artı: “üstelik”."
+   },
+   {
+    "answer": "However",
+    "options": [
+     "However",
+     "Thus",
+     "Likewise"
+    ],
+    "kind": "Zıtlık",
+    "why": "Artıların ardından bir sorun."
+   },
+   {
+    "answer": "so",
+    "options": [
+     "so",
+     "although",
+     "unless"
+    ],
+    "kind": "Sonuç",
+    "why": "Otobüslerin seyrekliğinin sonucu: “bu yüzden”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-volunteer",
+  "language": "en",
+  "text": "Volunteering takes time. {1}, volunteers often say they get more than they give. They meet different people and learn new skills; {2}, some even find a job thanks to the experience. {3} you have a few free hours a month, why not give it a try?",
+  "tr": "Gönüllülük zaman ister. Yine de gönüllüler çoğu zaman verdiklerinden fazlasını aldıklarını söyler. Farklı insanlarla tanışır, yeni beceriler öğrenirler; hatta bazıları bu deneyim sayesinde iş bulur. Ayda birkaç boş saatin varsa neden denemeyesin?",
+  "gaps": [
+   {
+    "answer": "Even so",
+    "options": [
+     "Even so",
+     "Therefore",
+     "Because"
+    ],
+    "kind": "Zıtlık",
+    "why": "Zaman ister, yine de karşılığı büyük."
+   },
+   {
+    "answer": "in fact",
+    "options": [
+     "in fact",
+     "however",
+     "otherwise"
+    ],
+    "kind": "Ekleme",
+    "why": "Daha güçlü bir kazanç ekleniyor: “hatta”."
+   },
+   {
+    "answer": "If",
+    "options": [
+     "If",
+     "So that",
+     "Until"
+    ],
+    "kind": "Koşul",
+    "why": "“Boş saatin varsa”: koşul."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]
