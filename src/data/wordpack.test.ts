@@ -5,7 +5,7 @@ import { KelimeDB } from './db'
 import { createEntry } from './wordInput'
 import { isUntouched, originOf, withSources } from './provenance'
 import { applyPack, packKeys, packRecord, packUpdate } from './wordpack'
-import { glossHeads, nounGender, turkishEquivalents, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
+import { cleanEtymology, glossHeads, nounGender, turkishEquivalents, PackBuilder, packStats, shortEtymology, type WtEntry } from './wordpackBuild'
 
 /** Lines shaped like Wiktextract's output, cut down to what the builder reads. */
 const DUMP: WtEntry[] = [
@@ -311,3 +311,14 @@ describe('Turkish Wiktionary', () => {
   })
 })
 
+
+describe('etymology tree', () => {
+  it('drops Wiktionary\'s etymology tree in front of the prose, and a text that is only the tree', () => {
+    const tree = 'Etymology tree Spanish botica Proto-Indo-European *-nós Proto-Indo-European *-iHnos Proto-Italic *-īnos Latin -īnus Spanish -in Spanish botiquín From botica + -in.'
+    expect(cleanEtymology(tree)).toBe('From botica + -in.')
+    expect(shortEtymology(tree)).toBe('From botica + -in.')
+    expect(cleanEtymology('Etymology tree Latin domus Spanish casa Inherited from Latin casa.')).toBe('Inherited from Latin casa.')
+    expect(cleanEtymology('Etymology tree Latin casa Spanish casa')).toBeUndefined()
+    expect(cleanEtymology('From Latin casa (“hut”).')).toBe('From Latin casa (“hut”).')
+  })
+})

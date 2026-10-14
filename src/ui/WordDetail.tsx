@@ -268,7 +268,7 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
             <TrashIcon size={18} />
           </button>
         </div>
-        <CardCompleteness entry={entry} />
+        <CardCompleteness entry={entry} db={db} onChanged={onChanged} />
         <dl className="word-hero-status">
           <div>
             <dt>Aşama</dt>

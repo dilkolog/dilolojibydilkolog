@@ -2923,6 +2923,14 @@ p, .help, .small { text-wrap: pretty; }
 .hero-focus { margin: 0.75rem 0 0; text-align: center; color: color-mix(in srgb, var(--on-lang) 85%, transparent); }
 .hero-focus .inline-icon { margin-right: 0.3em; vertical-align: -0.15em; }
 .hero-focus .link { color: inherit; text-decoration: underline; }
+.hero-list-pick { position: relative; display: inline-flex; align-items: center; }
+.hero-list-select {
+  appearance: none; -webkit-appearance: none; max-width: 14rem; margin: 0; padding: 0 1.1em 0 0.1em; border: 0; border-bottom: 1.5px solid currentColor;
+  border-radius: 0; background: none; color: inherit; font: inherit; font-weight: 700; cursor: pointer; text-overflow: ellipsis;
+}
+.hero-list-select:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.hero-list-select option { color: var(--ink); background: var(--surface); }
+.hero-list-chev { position: absolute; right: 0; pointer-events: none; }
 /* Word page and add form. */
 .word-placement-row .field { min-width: 11rem; gap: 0.25rem; }
 .wl-add-level .input { flex: 1; min-width: 0; }

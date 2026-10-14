@@ -14,7 +14,7 @@ import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { AlertIcon, BookIcon, CheckCircleIcon, CheckIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon, VerbReviewIcon } from './icons'
+import { AlertIcon, BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon, VerbReviewIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
 
 import { RaceCard } from './Race'
@@ -52,27 +52,84 @@ const NEW_BLOCK_TEXT: Record<NewWordsBlock, (n: number) => string> = {
   none_left: () => '',
 }
 
-/** Where today's new words come from when a list is in focus, and what to do once it's all met. */
-function FocusLine({ focus, done, onOpenLists }: { focus: NonNullable<Parameters<typeof Home>[0]['focus']>; done: boolean; onOpenLists?: () => void }) {
+/**
+ * Where today's new words come from, and the place to change it: "Yeni kelimeler: [Seyahat ▾]".
+ * The menu offers every list (and all the words); with a list in focus, its level and how far
+ * along it is, and a way to its page. Reviews come from every list whatever is chosen.
+ */
+function FocusLine({
+  focus,
+  done,
+  lists,
+  focusListId,
+  onFocusList,
+  onOpenList,
+  onOpenLists,
+}: {
+  focus?: NonNullable<Parameters<typeof Home>[0]['focus']>
+  done: boolean
+  lists: readonly { id: string; name: string; count: number }[]
+  focusListId?: string
+  onFocusList?: (listId: string | null) => void
+  onOpenList?: (listId: string) => void
+  onOpenLists?: () => void
+}) {
+  if (!focus && !lists.length) return null
+  // A native menu: the hero clips what spills out of it, and the system's list opens above everything.
+  const picker =
+    onFocusList && lists.length > 0 ? (
+      <span className="hero-list-pick">
+        <select
+          className="hero-list-select"
+          aria-label="Yeni kelimeler hangi listeden"
+          value={focusListId ?? ''}
+          onChange={(e) => onFocusList(e.target.value || null)}
+        >
+          <option value="">tüm kelimelerin</option>
+          {lists.map((l) => (
+            <option key={l.id} value={l.id}>
+              {l.name} ({l.count})
+            </option>
+          ))}
+        </select>
+        <ChevronDownIcon size={14} className="hero-list-chev" />
+      </span>
+    ) : (
+      <>“{focus?.name}”</>
+    )
   return (
-    <p className="small hero-focus">
+    <div className="small hero-focus">
       <TargetIcon size={14} className="inline-icon" />
-      {done ? (
+      {focus && done ? (
         <>
-          “{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir listeye odaklan.{' '}
-          {onOpenLists && (
-            <button type="button" className="link" onClick={onOpenLists}>
-              Listeler
-            </button>
-          )}
+          “{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir liste seç: {picker}
         </>
       ) : (
         <>
-          Yeni kelimeler “{focus.name}” listesinden{focus.level ? `, “${focus.level}” seviyesi` : ''}
-          {focus.total ? ` (${focus.met}/${focus.total} tanıştın)` : ''}.
+          Yeni kelimeler: {picker}
+          {focus?.level ? `, “${focus.level}” seviyesi` : ''}
+          {focus?.total ? ` (${focus.met}/${focus.total} tanıştın)` : ''}
         </>
       )}
-    </p>
+      {focusListId && onOpenList ? (
+        <>
+          {' · '}
+          <button type="button" className="link" onClick={() => onOpenList(focusListId)}>
+            Listeyi aç
+          </button>
+        </>
+      ) : (
+        !onFocusList &&
+        onOpenLists && (
+          <>
+            {' · '}
+            <button type="button" className="link" onClick={onOpenLists}>
+              Listeler
+            </button>
+          </>
+        )
+      )}
+    </div>
   )
 }
 
@@ -135,6 +192,10 @@ export function Home({
   garden,
   focus,
   onOpenLists,
+  lists = [],
+  focusListId,
+  onFocusList,
+  onOpenList,
   pinned,
 }: {
   language: TargetLanguage
@@ -198,6 +259,11 @@ export function Home({
   /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
   focus?: { name: string; level?: string | null; met?: number; total?: number }
   onOpenLists?: () => void
+  /** The learner's lists (with their sizes), the one in focus, and the ways to pick another or open it. */
+  lists?: readonly { id: string; name: string; count: number }[]
+  focusListId?: string
+  onFocusList?: (listId: string | null) => void
+  onOpenList?: (listId: string) => void
   /** The badges the learner put on show (ids); they sit beside the greeting and open the profile. */
   pinned?: readonly string[]
 }) {
@@ -409,7 +475,7 @@ export function Home({
                       ))}
                   </p>
                 )}
-                {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
+                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
                 {piled ? (
                   <p className="small mt-3 hero-long">
                     {plan.dueTotal} tekrar birikmiş. Hepsini bugün bitirmen gerekmiyor: en çok unutulmak üzere olan {SHORT_ROUND} soruyla başla, kalanı sırada bekler.{' '}
@@ -445,7 +511,7 @@ export function Home({
                   {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
                   {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
                 </p>
-                {focus && <FocusLine focus={focus} done={!!plan.focusDone} onOpenLists={onOpenLists} />}
+                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
                 {plan.waitingNew > 0 ? (
                   <button className="btn btn-lg" onClick={onExtraNew}>
                     +{Math.min(5, plan.waitingNew)} yeni kelime öğren

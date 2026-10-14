@@ -11,9 +11,31 @@ import { useTranslationReady } from './useTranslationReady'
 import { showToast } from './toastFeed'
 import { ClipboardIcon, CloseIcon, CopyIcon, GlobeIcon, PlusIcon, SpeakerIcon, SwapIcon } from './icons'
 import { MAX_TOTAL, sentencesOf, stripLabel, uniquePairs } from './translateSentences'
+import { timeOf } from '../engine/types'
 
 /** Entries of the memory shown before "more". */
 const RECENT_SHOWN = 5
+/**
+ * When this device's list of recent translations was last cleared. Clearing only hides them here:
+ * the translations stay in the memory (no sentence is sent to be translated again, and back
+ * translation still has them).
+ */
+const CLEARED_KEY = 'diloloji:translate-cleared'
+const clearedAt = () => {
+  try {
+    return localStorage.getItem(CLEARED_KEY) ?? ''
+  } catch {
+    return ''
+  }
+}
+const setClearedAt = (at: string) => {
+  try {
+    if (at) localStorage.setItem(CLEARED_KEY, at)
+    else localStorage.removeItem(CLEARED_KEY)
+  } catch {
+    // Not kept: the list shows again next time.
+  }
+}
 
 interface Pair {
   source: string
@@ -43,7 +65,7 @@ export function TranslateScreen({ language, onAdd }: { language: TargetLanguage;
   const [allRecent, setAllRecent] = useState(false)
   const loadRecent = () =>
     void recentTranslations()
-      .then((all) => setRecent(uniquePairs(all.filter((e) => e.from === language || e.to === language)).slice(0, 30)))
+      .then((all) => setRecent(uniquePairs(all.filter((e) => (e.from === language || e.to === language) && timeOf(e.at) > timeOf(clearedAt()))).slice(0, 30)))
       .catch(() => undefined)
   const shownRecent = useMemo(() => (allRecent ? recent : recent.slice(0, RECENT_SHOWN)), [recent, allRecent])
   /** What is still waiting for its translation while a text is being translated: grey lines in its place. */
@@ -242,7 +264,28 @@ export function TranslateScreen({ language, onAdd }: { language: TargetLanguage;
       )}
       {shownRecent.length > 0 && (
         <section className="card stack" aria-label="Son çevirilerin">
-          <h2 className="section-title">Son çevirilerin</h2>
+          <div className="row justify-between items-baseline gap-2">
+            <h2 className="section-title">Son çevirilerin</h2>
+            <button
+              type="button"
+              className="link small"
+              onClick={() => {
+                const before = clearedAt()
+                const hidden = recent
+                setClearedAt(new Date().toISOString())
+                setRecent([])
+                showToast('Geçmiş temizlendi.', {
+                  label: 'Geri al',
+                  run: () => {
+                    setClearedAt(before)
+                    setRecent(hidden)
+                  },
+                })
+              }}
+            >
+              Geçmişi temizle
+            </button>
+          </div>
           <p className="small muted">Bu cihazda saklanır, yedeğe ve eşitlemeye girer; aynı cümle bir daha çevrilmez. Birine dokununca yeniden açılır.</p>
           <ol className="translate-pairs translate-recent">
             {shownRecent.map((e) => (

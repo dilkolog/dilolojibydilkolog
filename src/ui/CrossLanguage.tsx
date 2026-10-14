@@ -12,6 +12,7 @@ import { createEntry } from '../data/wordInput'
 import { db } from '../data/instance'
 import { LANGUAGE_SHORT } from './labels'
 import { placeNew } from './listMemory'
+import { cleanEtymology } from '../data/wordpackBuild'
 
 /**
  * False-friend warning and links to the same word in the other languages. `compact` is the
@@ -213,12 +214,14 @@ export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: Vo
 
 /** Where the word comes from, its synonyms and antonyms (from the word pack), when there are any. */
 export function OriginNotes({ entry }: { entry: VocabularyEntry }) {
-  if (!entry.etymology && !entry.synonyms?.length && !entry.antonyms?.length) return null
+  // Words filled before the cleaning still carry Wiktionary's "Etymology tree" in front.
+  const etymology = cleanEtymology(entry.etymology)
+  if (!etymology && !entry.synonyms?.length && !entry.antonyms?.length) return null
   return (
     <div className="origin-notes">
-      {entry.etymology && (
+      {etymology && (
         <p className="small">
-          <strong>Köken:</strong> <span lang="en">{entry.etymology}</span>
+          <strong>Köken:</strong> <span lang="en">{etymology}</span>
         </p>
       )}
       {entry.synonyms && entry.synonyms.length > 0 && (

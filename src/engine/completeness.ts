@@ -31,3 +31,20 @@ export function cardCompleteness(entry: VocabularyEntry): Completeness {
   const missing = CARD_PARTS.filter(({ part }) => !has[part](entry)).map(({ part }) => part)
   return { percent: Math.round(((CARD_PARTS.length - missing.length) / CARD_PARTS.length) * 100), missing }
 }
+
+/** Words that carry meaning: the ones whose usual partners are worth learning with them. */
+const CONTENT = new Set(['noun', 'verb', 'adjective', 'adverb'])
+
+/**
+ * What the AI can put on a card in one go: an example sentence and a memory hook when they are
+ * missing, and the word's usual partners when it has none (only alongside one of those, so a full
+ * card is not sent off for partners alone). Pictures and the learner's own voice stay theirs to add.
+ */
+export function aiFillable(entry: VocabularyEntry): ('example' | 'notes' | 'collocations')[] {
+  const { missing } = cardCompleteness(entry)
+  const fields: ('example' | 'notes' | 'collocations')[] = []
+  if (missing.includes('example')) fields.push('example')
+  if (missing.includes('note')) fields.push('notes')
+  if (fields.length && !entry.collocations.length && CONTENT.has(entry.partOfSpeech)) fields.push('collocations')
+  return fields
+}

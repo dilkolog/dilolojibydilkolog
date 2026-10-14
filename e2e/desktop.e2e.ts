@@ -1893,12 +1893,11 @@ test('dictionary: typing manual meaning allows saving for good vs adding to voca
   await page.getByPlaceholder('Türkçe anlamını yaz…').fill('tuhaf tip')
   await page.getByRole('button', { name: 'Kelimelerime ekle' }).click()
 
-  // This opens single word add form with word & meaning prefilled
-  await expect(page.getByLabel('Kelime', { exact: true })).toHaveValue('zigoto')
-  await expect(page.getByLabel('Türkçe anlamı', { exact: true })).toHaveValue('tuhaf tip')
+  // One tap adds it to the words, with the meaning typed; no detour through the add form.
+  await expect(page.getByText(/zigoto.*eklendi/)).toBeVisible()
 
-  // Return to dictionary: zigoto should NOT be saved in dictionary notes
-  await openScreen(page, 'Sözlük')
+  // It went to the words, not to the dictionary notes.
+  await search.fill('')
   await search.fill('zigoto')
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
   // But farfadet is still saved

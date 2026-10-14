@@ -40,8 +40,9 @@ describe('Dictionary: a word that is not in the pack', () => {
   }
   const button = (text: string) => [...el.querySelectorAll('button')].find((b) => b.textContent?.includes(text))
 
-  it('offers DeepL, shows its answer as a guess, and adds it to the list on one tap', async () => {
+  it('offers DeepL, shows its answer as a guess, and adds it to the list on one tap (no detour through the form)', async () => {
     translateMock.mockResolvedValue('karalamak')
+    await db.vocabulary.clear()
     const onAdd = await mount()
     expect(button('DeepL ile çevir')).toBeDefined()
     await act(async () => button('DeepL ile çevir')!.click())
@@ -49,7 +50,10 @@ describe('Dictionary: a word that is not in the pack', () => {
     expect(el.textContent).toContain('karalamak')
     expect(el.textContent).toContain('(DeepL)')
     await act(async () => button('Kelimelerime ekle')!.click())
-    expect(onAdd).toHaveBeenCalledWith('gribouiller', 'karalamak')
+    await act(async () => new Promise((r) => setTimeout(r, 50)))
+    expect(onAdd).not.toHaveBeenCalled()
+    const saved = await db.vocabulary.get('fr:gribouiller')
+    expect(saved?.senses[0].gloss).toBe('karalamak')
   })
 
   it('saves the answer to the dictionary for good: found again at once, after a reload, without DeepL', async () => {

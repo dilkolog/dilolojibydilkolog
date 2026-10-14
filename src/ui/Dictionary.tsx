@@ -1,26 +1,32 @@
 import '../lazy.css'
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { AiError, enrichWords } from '../ai'
-import { buildIndex, fold, search, wiktionaryUrl } from '../data/dictionary'
+import { buildIndex, fold, search, wiktionaryUrl, wordOfTheDay } from '../data/dictionary'
 import { loadLexicon, lookUpLexicon, type LexiconEntry } from '../data/lexicon'
 import { loadTenses } from '../data/tenseData'
 import { loadPack } from '../data/wordpack'
 import { translate, translationReady } from '../data/translate'
 import type { Pack } from '../data/wordpackBuild'
 import { db } from '../data/instance'
-import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
+import { cleanEtymology, genderOfCode, POS_CODE } from '../data/wordpackBuild'
 import { addEntry, emptyNotes, findAdded, noteLookup, parseMeanings, removeEntry, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { labTensesOf } from '../engine/tenses'
 import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
 import { CollocationChip } from './CollocationChip'
-import { TARGET_LANGUAGES, type TargetLanguage, type VocabularyEntry } from '../engine/types'
+import { TARGET_LANGUAGES, type Example, type Gender, type PartOfSpeech, type TargetLanguage, type VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
 import { BookIcon, CheckIcon, CloseIcon, ConjugationsIcon, PenIcon, PlusIcon, SearchIcon, SpeakerIcon, WandIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { DictionaryExamples } from './DictionaryExamples'
+import { sentencesNow } from './dictSentences'
+import { createEntry } from '../data/wordInput'
+import { formIn } from '../engine/inflection'
+import { placeNew } from './listMemory'
+import { showToast } from './toastFeed'
 import { PageHeader } from './PageHeader'
+import { daySeed } from '../appNav'
 import { PosTag } from './PosTag'
 import { speak, unlockedAudio } from './speech'
 import { Sticker } from './Sticker'
@@ -37,6 +43,8 @@ interface Props {
   initialQuery?: string
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
+  /** After a word was added here in one tap (the screen's word list reloads). */
+  onAdded?: () => void
   onOpenLab?: (verb: string) => void
   onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
 }
@@ -69,7 +77,7 @@ const ownEntry = (vocabulary: readonly VocabularyEntry[], word: string, language
   return vocabulary.find((v) => fold(splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest) === key)
 }
 
-export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOpenWord, onAdd, onOpenLab, onSwitchLanguage }: Props) {
+export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOpenWord, onAdd: openForm, onAdded, onOpenLab, onSwitchLanguage }: Props) {
   const [query, setQuery] = useState(initialQuery)
   const [pack, setPack] = useState<Pack | null | undefined>(undefined)
   const [recent, setRecent] = useState(() => loadRecent(language))
@@ -117,7 +125,35 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
     })
   }
 
+  /**
+   * Adds a word in one tap, with its meaning and the sentences shown for it, where new words go
+   * (the list last used or opened); no detour through the word form. A word that would not make a
+   * card (no meaning) opens the form instead.
+   */
+  const onAdd = async (written: string, meaning: string, extra: { pos?: PartOfSpeech; gender?: Gender; examples?: Example[] } = {}) => {
+    try {
+      const entry = createEntry({ word: written, meaning, partOfSpeech: extra.pos, gender: extra.gender }, language, new Date())
+      const there = await db.vocabulary.get(entry.id)
+      if (there) return onOpenWord(there.id)
+      const examples = (extra.examples ?? []).flatMap((x) => {
+        const form = x.form || formIn(x.text, entry.lemma, language) || ''
+        return x.text ? [{ ...x, form }] : []
+      })
+      // The sentences that show the word first: those are the ones the questions can use.
+      entry.senses[0].examples = [...examples.filter((x) => x.form), ...examples.filter((x) => !x.form)].slice(0, 3)
+      const placed = await placeNew(db, language, [entry])
+      await db.vocabulary.put(placed.entries[0])
+      setRecent(saveRecent(language, entry.lemma))
+      onAdded?.()
+      showToast(placed.listName ? `“${written}” “${placed.listName}” listesine eklendi.` : `“${written}” kelimelerine eklendi.`, { label: 'Aç', run: () => onOpenWord(entry.id) }, 5000, 'success')
+    } catch {
+      openForm(written, meaning)
+    }
+  }
+
   const result = useMemo(() => (index ? search(index, query) : { similar: [], fromTurkish: [] }), [index, query])
+  // The day's word stays the same all day; once added it gives way to the next one.
+  const today = useMemo(() => (index ? wordOfTheDay(index, daySeed(new Date())) : undefined), [index])
   const typed = query.trim()
   const exactWord = result.exact?.word
   const own = typed ? ownEntry(vocabulary, exactWord ?? typed, language) : undefined
@@ -192,6 +228,8 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
         </div>
       </section>
 
+      {!typed && today && <DayWord language={language} hit={today} onOpen={() => pick(today.word)} onAdd={onAdd} />}
+
       {!typed && Object.keys(notes.added ?? {}).length > 0 && (
         <SavedList
           language={language}
@@ -236,9 +274,9 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               fix={notes.fixes[result.exact.word]?.t}
               onFix={(meanings) => updateNotes((n) => setFix(n, result.exact!.word, meanings, new Date().toISOString()))}
               onOpenWord={onOpenWord}
-              onAdd={(written, meaning) => {
+              onAdd={(written, meaning, extra) => {
                 setRecent(saveRecent(language, result.exact!.word))
-                onAdd(written, meaning)
+                void onAdd(written, meaning, extra)
               }}
               onOpenLab={onOpenLab}
               onPick={pick}
@@ -349,8 +387,8 @@ function WordCard({
   form?: string
   /** The word this one is also a form of (allons: aller). */
   alsoFormOf?: string
-  /** `written`: the word as the add form wants it (a French noun with its article when the gender is known). */
-  onAdd: (written: string, meaning: string) => void
+  /** `written`: the word as the add form wants it (a French noun with its article when the gender is known); with what the card knows of it. */
+  onAdd: (written: string, meaning: string, extra: { pos?: PartOfSpeech; gender?: Gender; examples?: Example[] }) => void
   onOpenLab?: (verb: string) => void
   onPick: (word: string) => void
   onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
@@ -376,6 +414,7 @@ function WordCard({
   // French only: Spanish feminine nouns starting with a stressed a- take "el" (el agua), which the pack can't tell.
   const written = language === 'fr' && (gender === 'm' || gender === 'f') ? (/^[aeiouyéèêàâîôûh]/i.test(word) ? `l'${word}` : `${gender === 'f' ? 'la' : 'le'} ${word}`) : word
   const others = TARGET_LANGUAGES.filter((l) => l !== language && rec.x?.[l]?.length)
+  const etymology = cleanEtymology(rec.e)
   const play = () => {
     if (!rec.a) return speak(word, language)
     void unlockedAudio(rec.a)
@@ -480,7 +519,10 @@ function WordCard({
               <CheckIcon size={15} /> Kelimelerinde: aç
             </button>
           ) : (
-            <button className="btn btn-sm" onClick={() => onAdd(written, meanings.slice(0, 2).join(', '))}>
+            <button
+              className="btn btn-sm"
+              onClick={() => onAdd(written, meanings.slice(0, 2).join(', '), { pos, gender: gender === 'm' || gender === 'f' ? gender : undefined, examples: sentencesNow(language, word, rec.c) })}
+            >
               <PlusIcon size={15} /> Kelimelerime ekle
             </button>
           )}
@@ -524,12 +566,12 @@ function WordCard({
         onPick={onPick}
       />
 
-      {(rec.e || rec.s?.length || rec.n?.length) && (
+      {(etymology || rec.s?.length || rec.n?.length) && (
         <section className="section stack">
-          {rec.e && (
+          {etymology && (
             <div className="stack gap-2">
               <h3 className="section-title">Kökeni</h3>
-              <p className="small">{rec.e}</p>
+              <p className="small">{etymology}</p>
             </div>
           )}
           {!!rec.s?.length && <Related title="Eş anlamlılar" words={rec.s} language={language} onPick={onPick} />}
@@ -776,33 +818,95 @@ function SavedCard({
   )
 }
 
-/** The saved words (all of them, or those matching the query), each one tap from its card. */
+/** A French noun with its article when the pack knows its gender (as the add form wants it). */
+const writtenOf = (word: string, language: TargetLanguage, gender?: Gender) =>
+  language === 'fr' && (gender === 'm' || gender === 'f') ? (/^[aeiouyéèêàâîôûh]/i.test(word) ? `l'${word}` : `${gender === 'f' ? 'la' : 'le'} ${word}`) : word
+
+/** The day's word, at the top of the dictionary: heard, read, opened or added in one tap. */
+function DayWord({
+  language,
+  hit,
+  onOpen,
+  onAdd,
+}: {
+  language: TargetLanguage
+  hit: NonNullable<ReturnType<typeof wordOfTheDay>>
+  onOpen: () => void
+  onAdd: (written: string, meaning: string, extra: { pos?: PartOfSpeech; gender?: Gender; examples?: Example[] }) => void
+}) {
+  const { word, rec } = hit
+  const pos = rec.p ? POS_CODE[rec.p] : undefined
+  const gender = pos === 'noun' ? genderOfCode(rec.g) : undefined
+  const g = gender === 'm' || gender === 'f' ? gender : undefined
+  const written = writtenOf(word, language, g)
+  const meaning = (rec.t ?? []).slice(0, 3).join(', ')
+  const play = () => {
+    if (!rec.a) return speak(word, language)
+    void unlockedAudio(rec.a)
+      .then((a) => a.play())
+      .catch(() => speak(word, language))
+  }
+  return (
+    <section className="section">
+      <div className="card dict-today">
+        <p className="dict-today-kicker">Günün kelimesi</p>
+        <div className="dict-today-head">
+          <button type="button" className="dict-today-word" lang={language} onClick={onOpen}>
+            {written}
+          </button>
+          <button type="button" className="icon-btn" onClick={play} aria-label={`${word} kelimesini dinle`} title="Dinle">
+            <SpeakerIcon size={18} />
+          </button>
+          {pos && <PosTag pos={pos} label />}
+        </div>
+        {rec.i && <span className="ipa">{rec.i}</span>}
+        <p className="dict-today-gloss">{meaning}</p>
+        <div className="row">
+          <button type="button" className="btn btn-sm" onClick={() => onAdd(written, (rec.t ?? []).slice(0, 2).join(', '), { pos, gender: g, examples: sentencesNow(language, word, rec.c) })}>
+            <PlusIcon size={15} /> Kelimelerime ekle
+          </button>
+          <button type="button" className="btn btn-sm btn-quiet" onClick={onOpen}>
+            Kartını aç
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** How many saved words show before "Tümünü göster". */
+const SAVED_SHOWN = 8
+
+/** The saved words (all of them, or those matching the query) as one compact list: a tap opens the card, × removes. */
 function SavedList({ language, list, onPick, onRemove }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void; onRemove: (word: string) => void }) {
+  const [all, setAll] = useState(false)
+  const shown = all ? list : list.slice(0, SAVED_SHOWN)
   return (
     <section className="section stack">
       <h2 className="section-title">
         <Sticker name="heart" size={28} className="sticker-title" />
-        Kaydettiklerin
+        Kaydettiklerin <span className="dict-saved-count">{list.length}</span>
       </h2>
-      <ul className="word-list">
-        {list.map((e) => (
-          <li key={e.word}>
-            <div className="row gap-xs">
-              <button type="button" className="word-row" onClick={() => onPick(e.word)}>
-                <span className="word-row-text">
-                  <span className="w" lang={language}>
-                    {e.word}
-                  </span>
-                  <span className="meta">{e.t.join(', ')}</span>
-                </span>
-              </button>
-              <button type="button" className="icon-btn icon-btn-sm" aria-label={`${e.word} sözlükten kaldır`} onClick={() => onRemove(e.word)}>
-                <CloseIcon size={14} />
-              </button>
-            </div>
+      <ul className="dict-saved">
+        {shown.map((e) => (
+          <li key={e.word} className="dict-saved-row">
+            <button type="button" className="dict-saved-pick" onClick={() => onPick(e.word)}>
+              <span className="dict-saved-word" lang={language}>
+                {e.word}
+              </span>
+              <span className="dict-saved-meaning">{e.t.join(', ')}</span>
+            </button>
+            <button type="button" className="icon-btn icon-btn-sm dict-saved-remove" aria-label={`${e.word} sözlükten kaldır`} title="Kaldır" onClick={() => onRemove(e.word)}>
+              <CloseIcon size={14} />
+            </button>
           </li>
         ))}
       </ul>
+      {list.length > SAVED_SHOWN && (
+        <button type="button" className="link small" onClick={() => setAll((x) => !x)}>
+          {all ? 'Daha az göster' : `Tümünü göster (${list.length})`}
+        </button>
+      )}
     </section>
   )
 }

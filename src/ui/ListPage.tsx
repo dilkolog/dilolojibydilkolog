@@ -156,96 +156,120 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
 
   return (
     <section className="stack mt-4 list-page">
-      <article className={`card stack gap-3 wl-card${focused ? ' is-focus' : ''}`}>
-        <header className="wl-card-head">
-          {list && renaming === 'list' ? (
-            <NameForm
-              initial={list.name}
-              label="Listenin yeni adı"
-              onCancel={() => setRenaming(null)}
-              onSave={(n) => {
-                setRenaming(null)
-                void save({ ...list, name: n })
-              }}
-            />
+      <article className={`card stack gap-3 wl-card wl-hero${focused ? ' is-focus' : ''}`}>
+        <header className="wl-hero-top">
+          {cover ? (
+            <img className="wl-cover wl-hero-cover" src={cover} alt="" width={72} height={72} />
           ) : (
-            <h2 className="wl-name wl-page-name">
-              {cover && <img className="wl-cover" src={cover} alt="" width={40} height={40} />}
-              {list ? list.name : 'Listesiz kelimeler'}
-              {collab && <span className="badge wl-focus-badge">Ortak</span>}
-              {focused && (
-                <span className="badge wl-focus-badge">
-                  <TargetIcon size={14} className="inline-icon" />
-                  Odakta
-                </span>
-              )}
-            </h2>
+            <span className="wl-hero-cover wl-hero-initial" aria-hidden>
+              {(list?.name ?? '?').charAt(0).toLocaleUpperCase('tr')}
+            </span>
           )}
+          <div className="wl-hero-title">
+            {list && renaming === 'list' ? (
+              <NameForm
+                initial={list.name}
+                label="Listenin yeni adı"
+                onCancel={() => setRenaming(null)}
+                onSave={(n) => {
+                  setRenaming(null)
+                  void save({ ...list, name: n })
+                }}
+              />
+            ) : (
+              <h2 className="wl-name wl-page-name">{list ? list.name : 'Listesiz kelimeler'}</h2>
+            )}
+            {(focused || collab || levels.length > 0) && (
+              <span className="row wl-badges">
+                {focused && (
+                  <span className="badge wl-focus-badge">
+                    <TargetIcon size={14} className="inline-icon" />
+                    Odakta
+                  </span>
+                )}
+                {collab && <span className="badge wl-focus-badge">Ortak</span>}
+                {levels.length > 0 && <span className="badge wl-focus-badge">{levels.length} seviye</span>}
+              </span>
+            )}
+          </div>
           {list && (
-            <Popover kind="menu" align="end" label="Liste işlemleri" buttonClassName="icon-btn" buttonProps={{ 'aria-label': 'Liste işlemleri', title: 'Liste işlemleri' }} button={<MoreIcon size={18} />}>
-              {(close) => (
-                <>
-                  <MenuItem
-                    title="Yeniden adlandır"
-                    onSelect={() => {
-                      close()
-                      setRenaming('list')
-                    }}
-                  />
-                  <MenuItem
-                    title="Paylaş"
-                    hint="Bağlantı, QR ya da ortak liste"
-                    onSelect={() => {
-                      close()
-                      setSharing(true)
-                    }}
-                  />
-                  {collab && (
+            <div className="wl-hero-tools">
+              <button type="button" className="icon-btn" onClick={onAdd} aria-label="Bu listeye kelime ekle" title="Bu listeye kelime ekle">
+                <PlusIcon size={18} />
+              </button>
+              <Popover kind="menu" align="end" label="Liste işlemleri" buttonClassName="icon-btn" buttonProps={{ 'aria-label': 'Liste işlemleri', title: 'Liste işlemleri' }} button={<MoreIcon size={18} />}>
+                {(close) => (
+                  <>
                     <MenuItem
-                      title={syncing ? 'Eşitleniyor…' : 'Ortak listeyi eşitle'}
+                      title="Yeniden adlandır"
                       onSelect={() => {
                         close()
-                        void syncNow()
+                        setRenaming('list')
                       }}
                     />
-                  )}
-                  <MenuItem
-                    title="Listeyi sil"
-                    hint="Kelimeler ve öğrendiklerin kalır"
-                    onSelect={() => {
-                      close()
-                      setDeleting(true)
-                    }}
-                  />
-                </>
-              )}
-            </Popover>
+                    <MenuItem
+                      title="Paylaş"
+                      hint="Bağlantı, QR ya da ortak liste"
+                      onSelect={() => {
+                        close()
+                        setSharing(true)
+                      }}
+                    />
+                    {collab && (
+                      <MenuItem
+                        title={syncing ? 'Eşitleniyor…' : 'Ortak listeyi eşitle'}
+                        onSelect={() => {
+                          close()
+                          void syncNow()
+                        }}
+                      />
+                    )}
+                    <MenuItem
+                      title="Listeyi sil"
+                      hint="Kelimeler ve öğrendiklerin kalır"
+                      onSelect={() => {
+                        close()
+                        setDeleting(true)
+                      }}
+                    />
+                  </>
+                )}
+              </Popover>
+            </div>
           )}
         </header>
         {words.length > 0 && (
           <>
-            <span className="small muted">{meta(p)}</span>
+            <dl className="wl-figures" aria-label={meta(p)}>
+              <div>
+                <dd>{p.total}</dd>
+                <dt>kelime</dt>
+              </div>
+              <div>
+                <dd>{p.met}</dd>
+                <dt>tanıştın</dt>
+              </div>
+              <div>
+                <dd>{p.learned}</dd>
+                <dt>öğrendin</dt>
+              </div>
+              <div className={due > 0 ? 'wl-figure-due' : undefined}>
+                <dd>{due}</dd>
+                <dt>tekrar bekliyor</dt>
+              </div>
+            </dl>
             <Bar p={p} />
           </>
         )}
-        {list ? (
-          focused && words.length > 0 ? (
-            <p className="small muted">
-              {at
-                ? `Yeni kelimeler bu listeden geliyor, şu an: ${at.level ? `“${at.level.name}” seviyesi` : 'seviyesiz kelimeler'}.`
-                : 'Bu listedeki bütün kelimelerle tanıştın; yeni kelimeler için başka bir listeye odaklan.'}
-            </p>
-          ) : null
-        ) : (
+        {!list && (
           <p className="small muted">
             Bunlar hiçbir listede değil. Aşağıda <strong>Seç</strong> ile işaretleyip <strong>Listeye ekle</strong> ile bir listeye ya da seviyesine taşı.
           </p>
         )}
-        {due > 0 && <p className="small wl-due">{due} kelime tekrar bekliyor.</p>}
         {words.length > 0 ? (
           <>
             <div className="row wl-study">
-              <button type="button" className="btn" onClick={() => onStudy(words)}>
+              <button type="button" className="btn btn-lg" onClick={() => onStudy(words)}>
                 {list ? 'Listeyi çalış' : 'Bunları çalış'}
               </button>
               <span className="small muted">Aralıklı tekrarla: unutmak üzere olanlar önce.</span>
@@ -278,20 +302,31 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
           )
         )}
         {list && (
-          <div className="row wl-actions">
-            <button type="button" className="btn btn-quiet btn-sm" onClick={() => onFocus(focused ? null : list.id)} disabled={!focused && words.length === 0}>
+          <div className="wl-focus-row">
+            <button type="button" className="chip" aria-pressed={focused} onClick={() => onFocus(focused ? null : list.id)} disabled={!focused && words.length === 0}>
               <TargetIcon size={16} className="inline-icon" />
-              {focused ? 'Odaktan çık' : 'Odaklan'}
+              {focused ? 'Odakta' : 'Odaklan'}
             </button>
-            <span className="small muted grow">{focused ? 'Bugün’ün yeni kelimeleri bu listeden geliyor.' : 'Bugün’ün yeni kelimeleri yalnızca bu listeden gelsin.'}</span>
+            <span className="small muted">
+              {focused
+                ? at
+                  ? `Bugün’ün yeni kelimeleri bu listeden geliyor${at.level ? `, şu an “${at.level.name}” seviyesi` : ''}.`
+                  : 'Bu listedeki bütün kelimelerle tanıştın; yeni kelimeler için başka bir listeye odaklan.'
+                : 'Odaklanınca Bugün’ün yeni kelimeleri yalnızca bu listeden gelir.'}
+            </span>
           </div>
         )}
         {list && sharing && <ShareList db={db} list={list} vocabulary={vocabulary} onChanged={onListsChanged} />}
       </article>
 
       {list && (
-        <section className="card stack gap-3 wl-levels">
-          <h3 className="section-title">Seviyeler</h3>
+        <details className="card wl-levels" open={levels.length > 0}>
+          <summary className="wl-levels-summary">
+            <span className="section-title">Seviyeler</span>
+            <span className="small muted">{levels.length ? `${levels.length} seviye` : 'isteğe bağlı'}</span>
+            <ChevronDownIcon size={18} className="wl-levels-chev" />
+          </summary>
+          <div className="stack gap-3 wl-levels-body">
           {levels.length === 0 && <p className="small muted">İstersen listeyi sıralı seviyelere böl (ör. 1. Havalimanı, 2. Otel): odaklanınca yeni kelimeler seviye seviye gelir.</p>}
           {levels.length > 0 && groups.length > 0 && (
             <ol className="wl-sections">
@@ -373,7 +408,8 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
               Seviye ekle
             </button>
           </form>
-        </section>
+          </div>
+        </details>
       )}
 
       {words.length > 0 && children}

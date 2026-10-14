@@ -183,8 +183,9 @@ export function AppScreens(props: AppScreensProps) {
           vocabulary={data.vocabulary}
           initialQuery={screen.query}
           onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
-          // The add form, with the dictionary's meaning filled in (the incoming-word effect opens Words).
+          // Words are added in one tap there; the form (the incoming-word effect opens Words) only when a card can't be made.
           onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
+          onAdded={reload}
           onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
           onSwitchLanguage={(targetLang, query) => {
             if (settings) void updateSettings({ ...settings, activeLanguage: targetLang })
@@ -314,6 +315,10 @@ export function AppScreens(props: AppScreensProps) {
             return { name: list.name, level: now ? (now.level?.name ?? null) : undefined, met: words.filter((w) => met.has(w.id)).length, total: words.length }
           })()}
           pinned={settings.profile.pinned}
+          lists={data.lists.map((l) => ({ id: l.id, name: l.name, count: data.vocabulary.filter((v) => v.listId === l.id).length })).filter((l) => l.count > 0)}
+          focusListId={planInput?.settings.focusListId}
+          onFocusList={(listId) => void updateSettings({ ...settings, focusList: { ...settings.focusList, [data.language]: listId ?? undefined } })}
+          onOpenList={(list) => setScreen({ name: 'words', list })}
           onOpenLists={() => {
             // The list in focus opens on its own page; without one, the shelf of lists.
             const list = planInput?.settings.focusListId
