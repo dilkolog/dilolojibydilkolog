@@ -119,7 +119,7 @@ export function TranslateScreen({ language, onAdd }: { language: TargetLanguage;
 
   return (
     <div className="stack translate-screen">
-      <PageHeader title="Çeviri" sub={`${name} bir cümle ya da kısa bir metin: cümle cümle, yan yana.`} />
+      <PageHeader art="translate" title="Çeviri" sub={`${name} bir cümle ya da kısa bir metin: cümle cümle, yan yana.`} />
       {!ready ? (
         <p className="note">Çeviri şu an kullanılamıyor (çevrimdışı ya da sunucuda kurulmamış).</p>
       ) : (

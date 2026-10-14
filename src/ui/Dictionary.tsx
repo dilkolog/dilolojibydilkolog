@@ -160,7 +160,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
   return (
     <div>
       <section className="section stack">
-        <PageHeader title="Sözlük" sub={`${LANGUAGE_NAME[language]} bir kelime ya da Türkçe karşılığını yaz; listende olmasa da bulur.`} />
+        <PageHeader art="dictionary" title="Sözlük" sub={`${LANGUAGE_NAME[language]} bir kelime ya da Türkçe karşılığını yaz; listende olmasa da bulur.`} />
         <form
           className="search"
           role="search"

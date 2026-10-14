@@ -10,9 +10,10 @@ import { TARGET_LANGUAGES, type TargetLanguage } from '../engine/types'
 
 import { DEFAULT_SETTINGS, type Settings } from '../data/db'
 
-import { BrandMark, CalendarIcon, CheckIcon, FlowerIcon, PlusIcon } from './icons'
+import { CalendarIcon, CheckIcon, FlowerIcon, PlusIcon } from './icons'
 import { HELLO, LANGUAGE_NAME } from './labels'
 import { POTS } from './drawnArt'
+import { BrandLogo } from './BrandLogo'
 
 const MINUTE_OPTIONS = [5, 10, 15, 20, 30]
 
@@ -83,9 +84,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
           {HELLO[language]}
         </span>
         <div className="brand onboarding-brand">
-          <span className="brand-mark" aria-hidden>
-            <BrandMark />
-          </span>{' '}
+          <BrandLogo />{' '}
           Diloloji
         </div>
         {step === 0 && (

@@ -246,7 +246,7 @@ export const DEFAULT_SETTINGS: Settings = {
   typingShare: 'balanced',
   targetDefinitions: false,
   vacation: null,
-  profile: { name: '', emoji: '🦊', color: '#2563eb', motto: '' },
+  profile: { name: '', emoji: 'monki', color: '#2563eb', motto: '' },
   story: { interests: [], custom: '' },
 }
 

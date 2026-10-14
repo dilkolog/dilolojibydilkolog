@@ -3210,7 +3210,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 
 /* Drawn pictures (src/assets/art) have dark brown outlines that melt into the dark and calm pages: --art-edge gives
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
-:is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art,
+:is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react, .brand-monki,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
   .pos-art, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img) {
   filter: var(--art-edge);
@@ -3991,3 +3991,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .game-result-ring { position: relative; display: inline-block; }
 .game-result-sticker { position: absolute; right: -1.6rem; bottom: 0.6rem; animation: sticker-in 520ms 300ms var(--ease-spring) both; }
 @keyframes sticker-in { from { transform: scale(0.3) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Monki's head is the mark (as on the home-screen icon): the picture brings its own orange square. */
+.brand-mark.brand-mark-monki { background: none; box-shadow: none; border-radius: 0; overflow: visible; }
+.brand-monki { display: block; width: 100%; height: 100%; object-fit: contain; }

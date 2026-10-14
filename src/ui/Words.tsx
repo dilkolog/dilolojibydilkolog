@@ -206,6 +206,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       <section className="section stack">
         <PageHeader
           inline
+          art="words"
           title={`${LANGUAGE_NAME[language]} kelimelerin`}
           sub={vocabulary.length ? `${vocabulary.length} kelime, ${states.length} tanesi öğreniliyor.` : 'Öğrenmek istediğin kelimeleri ekle; gerisini tekrar takvimi halleder.'}
           action={

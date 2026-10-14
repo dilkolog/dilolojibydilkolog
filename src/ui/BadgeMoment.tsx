@@ -31,7 +31,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
   }, [onClose])
 
   const share = async () => {
-    await shareCard({ kicker: 'Yeni rozet', title: a.title, text: a.description }, `Yeni rozet: ${a.title}. ${a.description}`)
+    await shareCard({ kicker: 'Yeni rozet', title: a.title, text: a.description, art: a.stat === 'longestStreak' || a.stat === 'daysStudied' ? 'streak' : 'trophy' }, `Yeni rozet: ${a.title}. ${a.description}`)
   }
 
   if (ordered.length > 1)

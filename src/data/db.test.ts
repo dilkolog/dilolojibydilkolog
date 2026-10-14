@@ -196,7 +196,7 @@ describe('settings migration', () => {
     await db.meta.put({ key: 'settings', value: { activeLanguage: 'fr', dailyMinutes: 20, newWordsPerDay: 3, profile: { name: 'Ali' } } })
     const s = (await db.getSettings())!
     expect(s).toMatchObject({ activeLanguage: 'fr', dailyMinutes: 20, theme: 'light', dailyXpGoal: 50 })
-    expect(s.profile).toMatchObject({ name: 'Ali', emoji: '🦊' })
+    expect(s.profile).toMatchObject({ name: 'Ali', emoji: 'monki' })
     expect(s.reminder).toEqual({ enabled: false, time: '20:00' })
   })
 

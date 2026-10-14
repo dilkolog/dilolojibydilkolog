@@ -99,6 +99,12 @@ import posPreposition from '../assets/art/pos-preposition.webp'
 import posPronoun from '../assets/art/pos-pronoun.webp'
 import posPhrase from '../assets/art/pos-phrase.webp'
 import posConjunction from '../assets/art/pos-conjunction.webp'
+import reactCombo from '../assets/art/react-combo.webp'
+import reactCorrect from '../assets/art/react-correct.webp'
+import reactForgot from '../assets/art/react-forgot.webp'
+import reactHello from '../assets/art/react-hello.webp'
+import reactNewword from '../assets/art/react-newword.webp'
+import reactOops from '../assets/art/react-oops.webp'
 import type { PartOfSpeech } from '../engine/types'
 import type { BadgeCategory } from '../engine/gamification'
 
@@ -219,3 +225,6 @@ export const STICKER = {
   facepalm: stickerFacepalm,
   heart: stickerHeart,
 }
+
+/** Monki answering an answer in a session: cheering, a kind "oops", thinking back; and a hello, a new card, a streak of right answers. */
+export const REACT = { correct: reactCorrect, oops: reactOops, forgot: reactForgot, combo: reactCombo, hello: reactHello, newWord: reactNewword }

@@ -5,9 +5,32 @@ import actRead from '../assets/art/act-read.webp'
 import actSpeak from '../assets/art/act-speak.webp'
 import actTime from '../assets/art/act-time.webp'
 import actWrite from '../assets/art/act-write.webp'
+import headDictionary from '../assets/art/head-dictionary.webp'
+import headGames from '../assets/art/head-games.webp'
+import headProduce from '../assets/art/head-produce.webp'
+import headSentences from '../assets/art/head-sentences.webp'
+import headSettings from '../assets/art/head-settings.webp'
+import headStory from '../assets/art/head-story.webp'
+import headTranslate from '../assets/art/head-translate.webp'
+import headWords from '../assets/art/head-words.webp'
 
 /** Monki doing what the screen is for, beside its title (wide screens only). */
-const ART = { listen: actListen, look: actLook, read: actRead, speak: actSpeak, time: actTime, write: actWrite }
+const ART = {
+  listen: actListen,
+  look: actLook,
+  read: actRead,
+  speak: actSpeak,
+  time: actTime,
+  write: actWrite,
+  words: headWords,
+  games: headGames,
+  settings: headSettings,
+  dictionary: headDictionary,
+  translate: headTranslate,
+  produce: headProduce,
+  story: headStory,
+  sentences: headSentences,
+}
 export type HeaderArt = keyof typeof ART
 
 /**

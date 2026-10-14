@@ -54,6 +54,11 @@
   .kbd-legend.is-faded:hover { opacity: 1; }
 }
 .sheet-spacer { height: 14rem; }
+.sheet-react {
+  position: absolute; right: 1.5rem; top: -4.25rem; height: 4.75rem; width: auto;
+  pointer-events: none; user-select: none; -webkit-user-drag: none; animation: sticker-in 0.35s var(--ease-out) both;
+}
+@media (max-width: 40rem) { .sheet-react { height: 3.75rem; top: -3.4rem; } }
 .sheet-inner {
   max-width: 46rem;
   max-height: min(62vh, 30rem);
