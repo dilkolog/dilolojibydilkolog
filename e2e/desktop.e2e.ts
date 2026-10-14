@@ -1473,6 +1473,42 @@ test('text flow game: the connectors of a paragraph are filled one by one, each 
   await expect(page.locator('.game-result')).toContainText('boşluk doğru')
 })
 
+test('review in context: a translated sentence with two of the learner\'s words, put back from chips and checked', async ({ page }) => {
+  await startWithSamples(page)
+  await finishSession(page)
+  // A sentence made of two words met in the session, as if translated while reading.
+  const words = await page.evaluate(
+    () =>
+      new Promise<string[]>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction(['vocabulary', 'wordStates', 'meta'], 'readwrite')
+          const states = tx.objectStore('wordStates').getAllKeys()
+          states.onsuccess = () => {
+            const vocab = tx.objectStore('vocabulary').getAll()
+            vocab.onsuccess = () => {
+              const met = new Set(states.result as string[])
+              const lemmas = (vocab.result as { id: string; lemma: string }[]).filter((v) => met.has(v.id) && /^\p{Ll}{4,}$/u.test(v.lemma)).map((v) => v.lemma).slice(0, 2)
+              tx.objectStore('meta').put({ key: 'translations', value: [{ text: `Hier soir, ${lemmas[0]} et ${lemmas[1]} étaient vraiment là.`, translation: 'Dün akşam ikisi de gerçekten oradaydı.', from: 'fr', to: 'tr', at: '2026-10-10T10:00:00Z' }] })
+              tx.oncomplete = () => resolve(lemmas)
+            }
+          }
+        }
+      }),
+  )
+  expect(words).toHaveLength(2)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Cümlede tekrar' }).click()
+  await page.getByRole('button', { name: /cümlelik tura başla/ }).click()
+  await expect(page.locator('.flow-gap')).toHaveCount(2)
+  for (const w of words) await page.locator('.context-bank button', { hasText: new RegExp(`^${w}$`) }).click()
+  await page.getByRole('button', { name: 'Kontrol et' }).click()
+  await expect(page.locator('.flow-gap.is-correct')).toHaveCount(2)
+  await expect(page.getByText('Dün akşam ikisi de gerçekten oradaydı.')).toBeVisible()
+  await page.getByRole('button', { name: 'Bitir' }).click()
+  await expect(page.locator('.game-result')).toContainText('2 / 2 kelime yerinde')
+})
+
 test('shadowing a text: a sentence played from its recording, then said back, then both compared', async ({ page }) => {
   // No microphone in a test: a silent stream stands in for it.
   await page.addInitScript(() => {
