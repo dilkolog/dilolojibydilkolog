@@ -59,6 +59,12 @@ export function progressOf(words: readonly VocabularyEntry[], stateById: Readonl
   return { total: words.length, met, learned }
 }
 
+/** A list too short to call finished: a list of two words is not a milestone. */
+export const LIST_DONE_MIN = 5
+
+/** Every word of the list in bloom (learned), for a list long enough to count. */
+export const listDone = (p: GroupProgress) => p.total >= LIST_DONE_MIN && p.learned === p.total
+
 /** The level the learner is in: the first group with a word not met yet, or null when all are met. */
 export function currentLevel(groups: readonly LevelGroup[], stateById: ReadonlyMap<string, UserWordState>): { index: number; level: ListLevel | null } | null {
   const index = groups.findIndex((g) => g.words.some((w) => !stateById.has(w.id)))

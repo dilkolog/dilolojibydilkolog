@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { listCover } from './drawnArt'
 import { displayForm } from '../engine/exercises'
-import { currentLevel, dueCount, levelGroups, listWords, newLevelId, progressOf, unlistedWords } from '../engine/lists'
+import { currentLevel, dueCount, levelGroups, listDone, listWords, newLevelId, progressOf, unlistedWords } from '../engine/lists'
 import type { ListLevel, TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { ConfirmDialog } from './Dialog'
@@ -15,7 +15,8 @@ import { GameIcon } from './GameIcon'
 import { GAME_LIST, type GameId } from './gameList'
 import { presetList } from './studyOptionsStore'
 import { rememberPlacement } from './listMemory'
-import { Bar } from './WordLists'
+import { Bar, DoneBadge } from './WordLists'
+import { Sticker } from './Sticker'
 import { progressLine as meta } from './listOptions'
 import { lastListTest } from './listTests'
 import { AskMonki } from './monki/AskMonki'
@@ -192,8 +193,9 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
             ) : (
               <h2 className="wl-name wl-page-name">{list ? list.name : 'Listesiz kelimeler'}</h2>
             )}
-            {(focused || collab || levels.length > 0) && (
+            {(focused || collab || levels.length > 0 || (list && listDone(p))) && (
               <span className="row wl-badges">
+                {list && listDone(p) && <DoneBadge />}
                 {focused && (
                   <span className="badge wl-focus-badge">
                     <TargetIcon size={14} className="inline-icon" />
@@ -272,6 +274,14 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
               </div>
             </dl>
             <Bar p={p} />
+            {list && listDone(p) && (
+              <p className="sticker-note wl-done-note">
+                <Sticker name="party" size={40} />
+                <span className="small">
+                  Bu listenin {p.total} kelimesinin hepsi çiçek açtı. Tekrarlar artık seyrek gelir; yeni bir liste başlatmanın tam zamanı.
+                </span>
+              </p>
+            )}
           </>
         )}
         {!list && (
