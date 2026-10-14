@@ -79,7 +79,7 @@ export default function App() {
   useEffect(() => {
     if (!RESTORABLE.has(screen.name)) return
     try {
-      localStorage.setItem(SCREEN_KEY, JSON.stringify(screen.name === 'word' ? { name: 'word', entryId: screen.entryId } : { name: screen.name }))
+      localStorage.setItem(SCREEN_KEY, JSON.stringify(screen.name === 'word' ? { name: 'word', entryId: screen.entryId } : screen.name === 'words' && screen.list ? { name: 'words', list: screen.list } : { name: screen.name }))
     } catch {
       // Storage unavailable: the app simply opens on the home screen next time.
     }

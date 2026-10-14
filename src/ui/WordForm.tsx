@@ -19,6 +19,7 @@ import { Select } from './Select'
 import { Plant } from './Plant'
 import { POS_NAME } from './labels'
 import { placementOptions, parsePlacement } from './listOptions'
+import { defaultPlacement, rememberPlacement } from './listMemory'
 import { TranslateButton } from './TranslateButton'
 import { TriLanguageCard } from './CrossLanguage'
 
@@ -46,7 +47,6 @@ const EXAMPLES: Record<TargetLanguage, { collocation: string; confusable: string
 
 const splitTags = (s?: string) => (s ?? '').split(',').map((t) => t.trim()).filter(Boolean)
 
-const LAST_LIST_KEY = 'kelime-koc:last-list'
 const EMPTY: WordInput = { word: '', meaning: '', example: '', exampleTranslation: '', collocations: '', confusables: '' }
 
 const POS_OPTIONS: PartOfSpeech[] = ['other', 'noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'phrase']
@@ -103,15 +103,8 @@ export function WordForm({
     void Promise.all([db.getLists(language), db.getSettings()]).then(([all, s]) => {
       if (!live) return
       setLists(all)
-      let last = ''
-      try {
-        last = localStorage.getItem(`${LAST_LIST_KEY}:${language}`) ?? ''
-      } catch {
-        // Falls back to the focus.
-      }
-      const valid = new Set(placementOptions(all).map((o) => o.value))
-      const pick = [last, s?.focusList?.[language] ?? ''].find((v) => valid.has(v))
-      setListIdState(pick === '__none' ? '' : (pick ?? ''))
+      const pick = defaultPlacement(language, all, s?.focusList?.[language])
+      setListIdState(pick === '__none' ? '' : pick)
     })
     return () => {
       live = false
@@ -119,11 +112,7 @@ export function WordForm({
   }, [db, language, entry])
   const setListId = (id: string) => {
     setListIdState(id)
-    try {
-      localStorage.setItem(`${LAST_LIST_KEY}:${language}`, id || '__none')
-    } catch {
-      // Not remembered; harmless.
-    }
+    rememberPlacement(language, id)
   }
   const [added, setAdded] = useState('')
   const set = (k: keyof WordInput) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }))

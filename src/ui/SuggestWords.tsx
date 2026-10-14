@@ -7,6 +7,7 @@ import { suggestCount, suggestionDue } from '../engine/wordSuggest'
 import { useAi } from './aiContext'
 import { interestsOf } from './personalInterests'
 import { SparkleIcon } from './icons'
+import { placeNew } from './listMemory'
 
 type Row = { info: WordInfo; selected: boolean }
 
@@ -41,6 +42,7 @@ export function SuggestWords({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [done, setDone] = useState(0)
+  const [doneList, setDoneList] = useState<string>()
   const count = suggestCount(settings?.newWordsPerDay)
   const mine = vocabulary.filter((v) => v.language === language && v.source !== 'sample')
   if (onlyWhenDue && (!apiKey || (!rows && !done && !suggestionDue(vocabulary.filter((v) => v.language === language), new Date())))) return null
@@ -78,8 +80,10 @@ export function SuggestWords({
           // A card the AI built badly (no meaning): left out.
         }
       })
-    if (entries.length) await db.vocabulary.bulkPut(entries)
+    const placed = await placeNew(db, language, entries)
+    if (entries.length) await db.vocabulary.bulkPut(placed.entries)
     setDone(entries.length)
+    setDoneList(placed.listName)
     setRows(null)
     onAdded()
   }
@@ -92,7 +96,7 @@ export function SuggestWords({
       </h2>
       {done > 0 && !rows && (
         <p className="small" role="status">
-          {done} kelime eklendi. Yarınki görevlerinde karşına çıkarlar.
+          {done} kelime eklendi{doneList ? ` (“${doneList}” listesine)` : ''}. Yarınki görevlerinde karşına çıkarlar.
         </p>
       )}
       {!rows && (

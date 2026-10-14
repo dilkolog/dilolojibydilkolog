@@ -1,5 +1,5 @@
 import { masteryStage, MASTERY_STAGES } from './mastery'
-import { addedTime, type ListLevel, type UserWordState, type VocabularyEntry, type WordList } from './types'
+import { addedTime, timeOf, type ListLevel, type UserWordState, type VocabularyEntry, type WordList } from './types'
 
 /**
  * Word lists, like courses on Memrise: a list holds the learner's own levels (named categories
@@ -63,6 +63,45 @@ export function progressOf(words: readonly VocabularyEntry[], stateById: Readonl
 export function currentLevel(groups: readonly LevelGroup[], stateById: ReadonlyMap<string, UserWordState>): { index: number; level: ListLevel | null } | null {
   const index = groups.findIndex((g) => g.words.some((w) => !stateById.has(w.id)))
   return index < 0 ? null : { index, level: groups[index].level }
+}
+
+/** How many of the words have a review due by `now` (any of their skills). */
+export function dueCount(words: readonly VocabularyEntry[], stateById: ReadonlyMap<string, UserWordState>, now: Date): number {
+  const at = now.getTime()
+  return words.filter((w) => {
+    const s = stateById.get(w.id)
+    return !!s && Object.values(s.skills).some((c) => timeOf(c.due) <= at)
+  }).length
+}
+
+/** When a word of the list was last answered (0: never), to show the lists in use first. */
+export function lastStudied(words: readonly VocabularyEntry[], stateById: ReadonlyMap<string, UserWordState>): number {
+  let last = 0
+  for (const w of words) last = Math.max(last, timeOf(stateById.get(w.id)?.lastReviewAt))
+  return last
+}
+
+/** The lists in the order to show them: the one in focus, then the ones studied lately, then the newest; empty ones last. */
+export function listOrder(lists: readonly WordList[], vocabulary: readonly VocabularyEntry[], stateById: ReadonlyMap<string, UserWordState>, focusListId?: string): WordList[] {
+  const words = new Map(lists.map((l) => [l.id, vocabulary.filter((v) => v.listId === l.id)]))
+  const last = new Map(lists.map((l) => [l.id, lastStudied(words.get(l.id)!, stateById)]))
+  return [...lists].sort(
+    (a, b) =>
+      Number(b.id === focusListId) - Number(a.id === focusListId) ||
+      Number(words.get(b.id)!.length > 0) - Number(words.get(a.id)!.length > 0) ||
+      last.get(b.id)! - last.get(a.id)! ||
+      timeOf(b.createdAt) - timeOf(a.createdAt) ||
+      a.name.localeCompare(b.name, 'tr'),
+  )
+}
+
+/** The page (and placement value) of the words in no list. */
+export const UNLISTED = '__none'
+
+/** The words in no list (sample words aside: they are only there to try the app). */
+export function unlistedWords(vocabulary: readonly VocabularyEntry[], lists: readonly Pick<WordList, 'id'>[]): VocabularyEntry[] {
+  const ids = new Set(lists.map((l) => l.id))
+  return vocabulary.filter((v) => v.source !== 'sample' && (!v.listId || !ids.has(v.listId)))
 }
 
 export const newLevelId = () => `lvl:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`

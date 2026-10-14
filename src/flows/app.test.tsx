@@ -159,12 +159,15 @@ describe('a learner’s day', () => {
     await click(tab('Listeler'))
     await type(el.querySelector<HTMLInputElement>('.wl-create input')!, 'Seyahat')
     await click(el.querySelector<HTMLButtonElement>('.wl-create button[type=submit]'))
-    await until(() => [...el.querySelectorAll('.wl-name')].some((n) => n.textContent?.startsWith('Seyahat')), 'the new list')
+    // A new list opens on its own page.
+    await until(() => el.querySelector('.wl-page-name')?.textContent?.startsWith('Seyahat'), 'the new list’s page')
     // A level of the learner's own, like on Memrise.
     await type(el.querySelector<HTMLInputElement>('.wl-add-level input')!, 'Havalimanı')
     await click(el.querySelector<HTMLButtonElement>('.wl-add-level button[type=submit]'))
     await until(() => el.querySelector('.wl-sections summary')?.textContent?.includes('1. Havalimanı'), 'the new level')
-    // Into it from "Tümü": select all, "Listeye taşı".
+    // Into it from "Tümü": back to the lists, select all, "Listeye taşı".
+    await click(button(/^Listeler$/))
+    await until(() => tab('Tümü'), 'Tümü tab')
     await click(tab('Tümü'))
     await click(button(/^Seç$/))
     await click(el.querySelector<HTMLInputElement>('.select-bar input[type=checkbox]'))
@@ -179,9 +182,13 @@ describe('a learner’s day', () => {
     const inList = async () => (await db.vocabulary.where('language').equals('fr').toArray()).filter((v) => v.listId === saved.id && v.levelId === saved.levels![0].id).length
     for (let i = 0; i < 40 && !(await inList()); i++) await sleep(50)
     expect(await inList()).toBe(await db.vocabulary.where('language').equals('fr').count())
+    // The shelf shows the list; it opens its page, where it is put in focus.
     await click(tab('Listeler'))
-    await until(() => button(/^Odaklan$/), 'odaklan button')
-    await click(button(/^Odaklan$/))
+    await until(() => el.querySelector('.wl-tile'), 'the list on the shelf')
+    expect(el.querySelector('.wl-tile')?.textContent).toMatch(/Seyahat.*\d+ kelime/)
+    await click(el.querySelector<HTMLButtonElement>('.wl-tile'))
+    await until(() => button(/Odaklan$/), 'odaklan button')
+    await click(button(/Odaklan$/))
     await until(() => el.querySelector('.wl-card.is-focus'), 'list in focus')
     await click(button(/^Bugün\d*$/))
     await until(() => el.querySelector('.hero-focus'), 'focus line on Today')

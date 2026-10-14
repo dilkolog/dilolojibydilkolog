@@ -11,6 +11,7 @@ import { turkishKin } from '../engine/turkishKin'
 import { createEntry } from '../data/wordInput'
 import { db } from '../data/instance'
 import { LANGUAGE_SHORT } from './labels'
+import { placeNew } from './listMemory'
 
 /**
  * False-friend warning and links to the same word in the other languages. `compact` is the
@@ -139,7 +140,9 @@ export function TriLanguageCard({ entry, compact = false, onAdded }: { entry: Vo
         setError(`${LANGUAGE_SHORT[f.language]} ${f.word} zaten listende.`)
         return
       }
-      await db.vocabulary.put(next)
+      // Lists are per language: it goes where that language's new words go.
+      const [placed] = (await placeNew(db, f.language, [next])).entries
+      await db.vocabulary.put(placed)
       setAdded((s) => new Set(s).add(f.language))
       onAdded?.()
     } catch {

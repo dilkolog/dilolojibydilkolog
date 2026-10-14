@@ -10,6 +10,7 @@ import { familyOf, type FamilyNode, type Morph } from '../engine/derive'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { POS_NAME } from './labels'
 import { PlusIcon } from './icons'
+import { sameList } from './listMemory'
 
 /** The pieces of a word: un- · comfort · -able · -ly. */
 function Morphs({ morphs }: { morphs: Morph[] }) {
@@ -67,8 +68,9 @@ export function MorphemeTree({ db, entry, vocabulary, onOpen, onChanged }: { db:
       const existing = await db.vocabulary.get(next.id)
       if (existing) await linkEntries(db, entry, existing)
       else {
-        await db.vocabulary.put(next)
-        await linkEntries(db, entry, next)
+        const [placed] = await sameList(db, entry, [next])
+        await db.vocabulary.put(placed)
+        await linkEntries(db, entry, placed)
       }
       onChanged()
     } catch (e) {

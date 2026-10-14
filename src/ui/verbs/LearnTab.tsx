@@ -19,6 +19,7 @@ import { FormTable } from './FormTable'
 import { TwinTense } from './TwinTense'
 import { recordVisit } from '../screenUsage'
 import { CORE_TENSES, MOODS, stepTense, tenseName, verbEntry, type LabLanguage } from './labShared'
+import { placeNew } from '../listMemory'
 
 /** A menu of tenses by mood (the tense picker of the lab, also used on the learn tab). */
 export function TensePicker({
@@ -217,9 +218,10 @@ export function LearnTab({
       // The plain verb's sentence: the reflexive one would not fit the word added.
       const shown = tenseSentence(entry, tense) ?? available.map((t) => tenseSentence(entry, t)).find((x) => !!x)
       const example = shown ? shown.text.replace('___', `*${shown.form}*`) : undefined
-      await db.vocabulary.put(createEntry({ word: verb, meaning, partOfSpeech: 'verb', example, exampleTranslation: shown?.translation }, language, new Date()))
+      const placed = await placeNew(db, language, [createEntry({ word: verb, meaning, partOfSpeech: 'verb', example, exampleTranslation: shown?.translation }, language, new Date())])
+      await db.vocabulary.bulkPut(placed.entries)
       setAdded(true)
-      showToast(`${verb} kelimelerine eklendi.`)
+      showToast(placed.listName ? `${verb} “${placed.listName}” listesine eklendi.` : `${verb} kelimelerine eklendi.`)
       onAdded?.()
     } catch {
       showToast('Eklenemedi.', undefined, 4000, 'info')
