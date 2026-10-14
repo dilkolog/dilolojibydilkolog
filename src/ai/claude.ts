@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -457,6 +457,21 @@ export async function sessionNote(apiKey: string, req: SessionNoteRequest): Prom
   ].join('\n')
   const user = [`${req.answers} answers, ${req.wrong} not correct.`, ...req.lines].join('\n')
   return (await structured(apiKey, SessionNoteSchema, system, user, 'low', 'session_note')).note
+}
+
+const WeekNoteSchema = z.object({
+  note: z.string().describe("Two or three short sentences in Turkish: what went well this week, the one pattern worth attention, and one concrete plan for next week."),
+})
+
+/** A coach's short remark on a week of study, asked for with a tap on the week card. */
+export async function weekNote(apiKey: string, req: WeekNoteRequest): Promise<string> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are a warm, practical ${lang} coach for a Turkish adult learner who studies vocabulary with spaced repetition. You see the figures of their past week.`,
+    'Name one thing that went well (with its number), the one pattern most worth attention (a kind of mistake, a missed word, irregular days), and one concrete, small plan for next week (how many days, which kind of practice, which words).',
+    'Write in Turkish, at most three short sentences, no greetings, no lists, no praise without a reason. Target-language words may appear in quotes.',
+  ].join('\n')
+  return (await structured(apiKey, WeekNoteSchema, system, req.lines.join('\n'), 'low', 'week_note')).note
 }
 
 const ConjugationExplainSchema = z.object({

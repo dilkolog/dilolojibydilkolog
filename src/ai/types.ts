@@ -154,6 +154,12 @@ export interface ConjugationExplainRequest {
   table: string[]
 }
 
+export interface WeekNoteRequest {
+  language: import('../engine/types').TargetLanguage
+  /** The week's figures, kinds of error and most missed words, one fact a line. */
+  lines: string[]
+}
+
 export interface SessionNoteRequest {
   language: import('../engine/types').TargetLanguage
   answers: number

@@ -3875,6 +3875,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* Today, Sunday and Monday: the week's figures in one card. */
 .week-card { display: grid; gap: 0.75rem; margin-top: 1rem; }
 .week-card .section-title { margin: 0; }
+.week-note { margin: 0; padding: 0.625rem 0.75rem; border-radius: var(--r-md); background: var(--lang-soft); color: var(--ink); }
 .week-card-figures { margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; }
 .week-card-figures > div { display: grid; gap: 0.125rem; justify-items: center; text-align: center; padding: 0.625rem 0.25rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--inset-ring); min-width: 0; }
 .week-card-figures dd { margin: 0; font-size: var(--t-lg); font-weight: 700; font-variant-numeric: tabular-nums; }
