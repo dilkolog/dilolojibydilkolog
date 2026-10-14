@@ -20,6 +20,7 @@ import { SentenceQuiz } from './SentenceQuiz'
 import { TenseBar } from './TenseBar'
 import { TimedTab } from './TimedTab'
 import { PickerLists, PickerTop } from './VerbPicker'
+import type { VerbFormHit } from '../../engine/verbLookup'
 import type { Level } from '../../engine/verbLab'
 import { recordVisit } from '../screenUsage'
 import { useTabIndicator } from '../useTabIndicator'
@@ -113,6 +114,8 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
   // The verb lists stay folded: once a verb is chosen they would only crowd the lesson.
   const [listsOpen, setListsOpen] = useState(false)
   const [family, setFamily] = useState<FamilyId | undefined>()
+  /** A conjugated form searched for: its person is marked while that verb and tense are in view. */
+  const [found, setFound] = useState<{ verb: string; tense: Tense; person: number } | null>(null)
   const main = useRef<HTMLElement>(null)
 
   const ownVerbs = useMemo(() => {
@@ -152,6 +155,15 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
     })
   const choose = (v: string) => {
     setPicked(v)
+    showLesson()
+  }
+  const openForm = (hit: VerbFormHit) => {
+    setPicked(hit.lemma)
+    if (isLabTense(language, hit.tense)) {
+      setTense(hit.tense)
+      setFound(hit.person !== undefined ? { verb: hit.lemma, tense: hit.tense, person: hit.person } : null)
+    }
+    if (tab !== 'learn' && tab !== 'practice') setTab('learn')
     showLesson()
   }
   const openItem = (v: string, t: Tense) => {
@@ -207,7 +219,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
       <div className="lab-grid">
         {/* One strip on top: find a verb, or open the lists (favourites, levels, own verbs) when wanted. */}
         <div className="card lab-top">
-          <PickerTop language={language} verb={verb} level={level} levels={levels} byFrequency={byFrequency} frequency={frequency} onVerb={choose} />
+          <PickerTop language={language} verb={verb} level={level} levels={levels} byFrequency={byFrequency} frequency={frequency} onVerb={choose} onForm={openForm} />
           <button type="button" className="chip lab-lists-toggle" aria-label="Fiil listeleri" aria-expanded={listsOpen} aria-controls="lab-lists" onClick={() => setListsOpen((o) => !o)}>
             <BookIcon size={18} /> <span className="lab-wide">Fiil listeleri</span>
             <ChevronDownIcon size={16} className={listsOpen ? 'is-flipped' : undefined} />
@@ -255,6 +267,7 @@ function Lab({ language, vocabulary, states, scheduler, initialVerb, initialTens
                 language={language}
                 verb={verb}
                 tense={current}
+                found={found && found.verb === verb && found.tense === current ? found.person : undefined}
                 onMemorised={(t, results) =>
                   update((l) => {
                     // Saying "I knew it" counts like a round: per person in the tally, and the tense's points.

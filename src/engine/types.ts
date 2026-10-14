@@ -27,6 +27,8 @@ export interface WordList {
   name: string
   /** In study order. Words with no level come after them. */
   levels?: ListLevel[]
+  /** The learner's own cover photo (a picture in the media table), in place of the drawn one. */
+  coverId?: string
   /** ISO dates; updatedAt settles a rename made on two devices. */
   createdAt: string
   updatedAt: string

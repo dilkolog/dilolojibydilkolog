@@ -27,8 +27,7 @@ import { Ring } from './Ring'
 
 import { useGame, type GameState } from './game'
 
-import { Medal } from './Medal'
-import { medalTier } from '../engine/gamification'
+import { BadgeMedal } from './Medal'
 import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
 import { QUEST_ART, TIME_SCENE } from './drawnArt'
@@ -98,38 +97,31 @@ function FocusLine({
         <ChevronDownIcon size={14} className="hero-list-chev" />
       </span>
     ) : (
-      <>“{focus?.name}”</>
+      <span className="hero-list-pick">“{focus?.name}”</span>
     )
+  const meta = [focus?.level ? `“${focus.level}” seviyesi` : '', focus?.total ? `${focus.met}/${focus.total} tanıştın` : ''].filter(Boolean).join(' · ')
   return (
     <div className="small hero-focus">
-      <TargetIcon size={14} className="inline-icon" />
       {focus && done ? (
-        <>
-          “{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir liste seç: {picker}
-        </>
+        <span className="hero-focus-note">“{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir liste seç:</span>
       ) : (
-        <>
-          Yeni kelimeler: {picker}
-          {focus?.level ? `, “${focus.level}” seviyesi` : ''}
-          {focus?.total ? ` (${focus.met}/${focus.total} tanıştın)` : ''}
-        </>
+        <span className="hero-focus-label">
+          <TargetIcon size={14} className="inline-icon" />
+          Yeni kelimeler
+        </span>
       )}
+      {picker}
+      {meta && !done && <span className="hero-focus-meta">{meta}</span>}
       {focusListId && onOpenList ? (
-        <>
-          {' · '}
-          <button type="button" className="link" onClick={() => onOpenList(focusListId)}>
-            Listeyi aç
-          </button>
-        </>
+        <button type="button" className="link hero-focus-open" onClick={() => onOpenList(focusListId)}>
+          Listeyi aç ›
+        </button>
       ) : (
         !onFocusList &&
         onOpenLists && (
-          <>
-            {' · '}
-            <button type="button" className="link" onClick={onOpenLists}>
-              Listeler
-            </button>
-          </>
+          <button type="button" className="link hero-focus-open" onClick={onOpenLists}>
+            Listeler ›
+          </button>
         )
       )}
     </div>
@@ -400,7 +392,7 @@ export function Home({
             {showcase.map((a) => (
               <li key={a.id}>
                 <button type="button" className="showcase-badge" onClick={onProfile} aria-label={`${a.title}: profilde gör`} title={a.title}>
-                  <Medal icon={a.icon} tier={medalTier(a)} unlocked size={38} />
+                  <BadgeMedal badge={a} unlocked size={38} />
                 </button>
               </li>
             ))}

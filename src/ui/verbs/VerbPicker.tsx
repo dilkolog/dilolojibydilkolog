@@ -5,6 +5,7 @@ import { ShuffleIcon, StarIcon } from '../icons'
 import type { LabData } from '../../engine/labProgress'
 import { irregularForms, tenseVerbs, type Tense } from '../../engine/tenses'
 import { LEVELS, suggestVerbs, type Level } from '../../engine/verbLab'
+import { verbFormsOf, type VerbFormHit } from '../../engine/verbLookup'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 import { Sticker } from '../Sticker'
 
@@ -50,7 +51,10 @@ export function PickerTop({
   byFrequency,
   frequency,
   onVerb,
+  onForm,
 }: Omit<PickerBase, 'tense'> & {
+  /** A conjugated form typed ("estés"): its verb opens at that tense, the person marked. */
+  onForm?: (hit: VerbFormHit) => void
   level: Level | null
   levels: ReadonlyMap<string, Level>
   byFrequency: readonly string[]
@@ -67,19 +71,33 @@ export function PickerTop({
     setMissing(false)
   }, [verb])
 
-  const suggestions = useMemo(() => (open && text !== verb ? suggestVerbs(language, text, frequency) : []), [open, text, verb, language, frequency])
   // byFrequency arrives once the tables have loaded: tenseVerbs() reads them, so it stands for "loaded".
   const known = useMemo(() => new Set(tenseVerbs(language)), [language, byFrequency]) // eslint-disable-line react-hooks/exhaustive-deps
+  const typed = text.trim().toLocaleLowerCase(language).replace(language === 'fr' ? /^(se |s['’])/ : /se$/, '')
+  // A conjugated form leads to its verb and tense: "estés" → estar, presente de subjuntivo (tú).
+  const forms = useMemo(
+    () => (onForm && open && text !== verb && !known.has(typed) ? verbFormsOf(language, text).slice(0, 4) : []),
+    [onForm, open, text, verb, known, typed, language],
+  )
+  const suggestions = useMemo(() => (open && text !== verb ? suggestVerbs(language, text, frequency).filter((s) => !forms.some((f) => f.lemma === s)) : []), [open, text, verb, language, frequency, forms])
+  const options = forms.length + suggestions.length
   const pick = (v: string) => {
     setOpen(false)
     setMissing(false)
     onVerb(v)
   }
+  const pickForm = (hit: VerbFormHit) => {
+    setOpen(false)
+    setMissing(false)
+    onForm?.(hit)
+  }
+  const choose = (i: number) => (i < forms.length ? pickForm(forms[i]) : pick(suggestions[i - forms.length]))
   const submit = () => {
-    const typed = text.trim().toLocaleLowerCase(language).replace(language === 'fr' ? /^(se |s['’])/ : /se$/, '')
     if (known.has(typed)) return pick(typed)
+    if (active < options) return choose(active)
+    const hit = onForm ? verbFormsOf(language, text)[0] : undefined
+    if (hit) return pickForm(hit)
     const first = suggestVerbs(language, text, frequency, 1)[0]
-    if (suggestions[active]) return pick(suggestions[active])
     if (first) return pick(first)
     setMissing(true)
   }
@@ -100,17 +118,17 @@ export function PickerTop({
             ref={input}
             className="input"
             role="combobox"
-            aria-expanded={suggestions.length > 0}
+            aria-expanded={options > 0}
             aria-controls={`${listId}-list`}
             aria-autocomplete="list"
-            aria-activedescendant={suggestions.length ? `${listId}-opt-${active}` : undefined}
+            aria-activedescendant={options ? `${listId}-opt-${active}` : undefined}
             value={text}
             lang={language}
             autoComplete="off"
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}
-            placeholder={language === 'fr' ? 'ör. parler' : 'ör. hablar'}
+            placeholder={language === 'fr' ? 'ör. parler ya da parlions' : 'ör. hablar ya da hablaste'}
             onFocus={() => setOpen(true)}
             onBlur={() => setTimeout(() => setOpen(false), 120)}
             onChange={(e) => {
@@ -120,12 +138,12 @@ export function PickerTop({
               setMissing(false)
             }}
             onKeyDown={(e) => {
-              if (e.key === 'ArrowDown' && suggestions.length) {
+              if (e.key === 'ArrowDown' && options) {
                 e.preventDefault()
-                setActive((a) => (a + 1) % suggestions.length)
-              } else if (e.key === 'ArrowUp' && suggestions.length) {
+                setActive((a) => (a + 1) % options)
+              } else if (e.key === 'ArrowUp' && options) {
                 e.preventDefault()
-                setActive((a) => (a - 1 + suggestions.length) % suggestions.length)
+                setActive((a) => (a - 1 + options) % options)
               } else if (e.key === 'Enter') {
                 e.preventDefault()
                 submit()
@@ -137,13 +155,24 @@ export function PickerTop({
           </button>
           {open && (
             <div className="lab-drop">
-              {suggestions.length > 0 && (
+              {options > 0 && (
                 <ul className="lab-suggest" id={`${listId}-list`} role="listbox" lang={language}>
-                  {suggestions.map((s, i) => (
-                    <li key={s} id={`${listId}-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? 'is-active' : undefined} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(s)}>
-                      {s}
+                  {forms.map((f, i) => (
+                    <li key={`${f.lemma}|${f.tense}`} id={`${listId}-opt-${i}`} role="option" aria-selected={i === active} className={`lab-form-hit${i === active ? ' is-active' : ''}`} onMouseDown={(e) => e.preventDefault()} onClick={() => pickForm(f)}>
+                      <span className="lab-form-verb">{f.lemma}</span>
+                      <span className="lab-form-note" lang="tr">
+                        “{text.trim()}” · {f.note}
+                      </span>
                     </li>
                   ))}
+                  {suggestions.map((s, n) => {
+                    const i = forms.length + n
+                    return (
+                      <li key={s} id={`${listId}-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? 'is-active' : undefined} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(s)}>
+                        {s}
+                      </li>
+                    )
+                  })}
                 </ul>
               )}
               <AccentBar language={language} onInsert={(ch) => input.current && setText(insertAt(input.current, ch))} />
@@ -152,7 +181,7 @@ export function PickerTop({
         </div>
         {missing && (
           <p className="small notice" role="status">
-            “{text}” tablolarda yok. Mastar biçimini yaz (örn. {language === 'fr' ? 'finir' : 'vivir'}).
+            “{text}” tablolarda yok. Mastarı (örn. {language === 'fr' ? 'finir' : 'vivir'}) ya da çekimli bir biçimi (örn. {language === 'fr' ? 'finissons' : 'vivimos'}) yaz.
           </p>
         )}
     </div>

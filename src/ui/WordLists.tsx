@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent } from 'react'
-import { listCover } from './drawnArt'
+import { ListCover } from './ListCover'
 import { UNLISTED, dueCount, listDone, listOrder, listWords, progressOf, unlistedWords, type GroupProgress } from '../engine/lists'
 import { progressLine as meta } from './listOptions'
 import type { TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
@@ -99,13 +99,12 @@ export function WordListsView({
             const words = listWords(list, vocabulary)
             const p = progressOf(words, stateById)
             const due = dueCount(words, stateById, now)
-            const cover = listCover(list.name)
             const done = listDone(p)
             return (
               <li key={list.id}>
                 <button type="button" className="wl-tile" aria-current={list.id === focusListId ? 'true' : undefined} onClick={() => onOpenList(list.id)}>
                   <span className="wl-tile-head">
-                    {cover && <img className="wl-cover" src={cover} alt="" width={40} height={40} />}
+                    <ListCover list={list} />
                     <span className="wl-name">{list.name}</span>
                   </span>
                   {(list.id === focusListId || collabIds.has(list.id) || done) && (

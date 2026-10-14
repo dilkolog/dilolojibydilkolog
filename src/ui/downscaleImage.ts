@@ -8,9 +8,9 @@ export function fitSize(width: number, height: number, max = MAX_SIDE): { width:
 }
 
 /** A picture file shrunk to at most MAX_SIDE and re-encoded as JPEG (a photo from a phone is several MB). */
-export async function downscaleImage(file: Blob): Promise<Blob> {
+export async function downscaleImage(file: Blob, max = MAX_SIDE): Promise<Blob> {
   const bitmap = await createImageBitmap(file)
-  const { width, height } = fitSize(bitmap.width, bitmap.height)
+  const { width, height } = fitSize(bitmap.width, bitmap.height, max)
   const canvas = document.createElement('canvas')
   canvas.width = width
   canvas.height = height

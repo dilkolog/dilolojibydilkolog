@@ -81,6 +81,17 @@ describe('dictionary search', () => {
     expect(search(buildIndex(pack, 'fr'), 'maison').form).toBeUndefined()
   })
 
+  it('takes a form the pack lacks to its verb through the verb tables, and says which form', () => {
+    const pack: Pack = { v: 't', w: { renunciar: { t: ['vazgeçmek'] }, comer: { t: ['yemek'] } } }
+    const tables = (w: string) => (w === 'renuncio' ? [{ lemma: 'renunciar', note: 'presente, yo' }] : w === 'comimos' ? [{ lemma: 'nadaquí', note: 'x' }, { lemma: 'comer', note: 'pretérito indefinido, nosotros' }] : [])
+    const r = search(buildIndex(pack, 'es'), 'renuncio', tables)
+    expect(r).toMatchObject({ exact: { word: 'renunciar' }, form: 'renuncio', formNote: 'presente, yo' })
+    // The first verb the dictionary has.
+    expect(search(buildIndex(pack, 'es'), 'comimos', tables).exact?.word).toBe('comer')
+    // Without the tables (not loaded yet), nothing is guessed.
+    expect(search(buildIndex(pack, 'es'), 'renuncio').exact).toBeUndefined()
+  })
+
   it('shows a word of its own that is also a form, and points to the word it is a form of', () => {
     const pack: Pack = { v: 't', w: { aller: { t: ['gitmek'] }, allons: { t: ['haydi'] } }, f: { allons: 'aller' } }
     const r = search(buildIndex(pack, 'fr'), 'allons')

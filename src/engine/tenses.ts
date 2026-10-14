@@ -630,6 +630,29 @@ export function analyzeForm(language: 'fr' | 'es' | 'en', word: string): FormAna
   return reverseIndex(language).get(normalize(word).toLocaleLowerCase(language)) ?? []
 }
 
+const bare = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '')
+const LOOSE: { fr?: { map: Map<string, FormAnalysis[]>; of: Map<string, FormAnalysis[]> }; es?: { map: Map<string, FormAnalysis[]>; of: Map<string, FormAnalysis[]> } } = {}
+
+/**
+ * analyzeForm, forgiving missing accents when nothing matches as typed: "estes" → estés (estar),
+ * "etais" → étais. For a search box, where accents are often left out; a text's word stays exact.
+ */
+export function analyzeFormLoose(language: 'fr' | 'es' | 'en', word: string): FormAnalysis[] {
+  const exact = analyzeForm(language, word)
+  if (exact.length || language === 'en' || !tensesLoaded(language)) return exact
+  const index = reverseIndex(language)
+  let loose = LOOSE[language]
+  if (!loose || loose.of !== index) {
+    const map = new Map<string, FormAnalysis[]>()
+    for (const [form, list] of index) {
+      const key = bare(form)
+      map.set(key, [...(map.get(key) ?? []), ...list])
+    }
+    loose = LOOSE[language] = { map, of: index }
+  }
+  return loose.map.get(bare(normalize(word).toLocaleLowerCase(language))) ?? []
+}
+
 /** Auxiliary form (ai, había, hubiera…) → the compound tenses it opens, with the person it stands for. */
 const AUX_FORMS: { fr?: Map<string, { kind: 'avoir' | 'etre'; tense: Tense; person: number }[]>; es?: Map<string, { tense: Tense; person: number }[]> } = {}
 

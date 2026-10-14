@@ -24,8 +24,8 @@ import { WordLabel } from './WordLabel'
 import { SummaryGarden } from './SummaryGarden'
 import { type GameState } from './game'
 import { sfx } from './sounds'
-import { Medal } from './Medal'
-import { closestStep, crossedMilestone, medalTier, type Milestone } from '../engine/gamification'
+import { BadgeMedal } from './Medal'
+import { closestStep, crossedMilestone, type Milestone } from '../engine/gamification'
 import { StreakPicture } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
@@ -195,7 +195,7 @@ export function Summary({
             )}
             {newBadges.map((a) => (
               <li key={a.id} className="reward">
-                <Medal icon={a.icon} tier={medalTier(a)} unlocked size={48} />
+                <BadgeMedal badge={a} unlocked size={48} />
                 <span className="reward-text">
                   <strong>{a.title}</strong>
                   <span className="small muted">{a.description}</span>
@@ -210,7 +210,7 @@ export function Summary({
         return (
           step && (
             <p className="note row summary-next">
-              <Medal icon={step.icon} tier={medalTier(step)} unlocked={false} progress={step.value / step.goal} size={32} />
+              <BadgeMedal badge={step} unlocked={false} progress={step.value / step.goal} size={32} />
               <span>
                 Sıradaki rozet: <strong>{step.title}</strong>, {(step.goal - step.value).toLocaleString('tr-TR')} kaldı <span className="muted">({step.description.toLocaleLowerCase('tr')})</span>
               </span>

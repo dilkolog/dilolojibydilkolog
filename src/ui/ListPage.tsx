@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { ListCover } from './ListCover'
 import { listCover } from './drawnArt'
+import { downscaleImage } from './downscaleImage'
 import { displayForm } from '../engine/exercises'
 import { currentLevel, dueCount, levelGroups, listDone, listWords, newLevelId, progressOf, unlistedWords } from '../engine/lists'
 import type { ListLevel, TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
@@ -121,6 +123,20 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
     await db.saveList({ ...next, updatedAt: new Date().toISOString() })
     onListsChanged()
   }
+  const photoInput = useRef<HTMLInputElement>(null)
+  /** The list's own cover photo: a picture chosen (made small: it is shown at 72 px), or none (the drawing comes back). */
+  const setCover = async (file: File | null) => {
+    if (!list) return
+    try {
+      const coverId = file ? await db.addMedia('image', await downscaleImage(file, 360)) : undefined
+      if (list.coverId) await db.media.delete(list.coverId)
+      const { coverId: _old, ...rest } = list
+      await save(coverId ? { ...rest, coverId } : rest)
+      showToast(file ? 'Kapak fotoğrafı eklendi.' : 'Kapak fotoğrafı kaldırıldı.')
+    } catch {
+      showToast('Bu resim açılamadı. Başka bir fotoğraf dene.', undefined, 5000, 'info')
+    }
+  }
   const addLevel = async () => {
     const n = levelName.trim()
     if (!list || !n) return
@@ -165,19 +181,39 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
     presetList(g.use, list.id)
     onPlay(g.id)
   }
-  const cover = list ? listCover(list.name) : undefined
   const lastTest = list ? lastListTest(list.id) : undefined
 
   return (
     <section className="stack mt-4 list-page">
       <article className={`card stack gap-3 wl-card wl-hero${focused ? ' is-focus' : ''}`}>
         <header className="wl-hero-top">
-          {cover ? (
-            <img className="wl-cover wl-hero-cover" src={cover} alt="" width={72} height={72} />
+          {list ? (
+            <button type="button" className="wl-cover-btn" onClick={() => photoInput.current?.click()} aria-label={list.coverId ? 'Kapak fotoğrafını değiştir' : 'Kapak fotoğrafı ekle'} title={list.coverId ? 'Kapak fotoğrafını değiştir' : 'Kapak fotoğrafı ekle'}>
+              {list.coverId || listCover(list.name) ? (
+                <ListCover list={list} hero />
+              ) : (
+                <span className="wl-hero-cover wl-hero-initial" aria-hidden>
+                  {list.name.charAt(0).toLocaleUpperCase('tr')}
+                </span>
+              )}
+            </button>
           ) : (
             <span className="wl-hero-cover wl-hero-initial" aria-hidden>
-              {(list?.name ?? '?').charAt(0).toLocaleUpperCase('tr')}
+              ?
             </span>
+          )}
+          {list && (
+            <input
+              ref={photoInput}
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={(e) => {
+                const file = e.target.files?.[0]
+                e.target.value = ''
+                if (file) void setCover(file)
+              }}
+            />
           )}
           <div className="wl-hero-title">
             {list && renaming === 'list' ? (
@@ -222,6 +258,23 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
                         setRenaming('list')
                       }}
                     />
+                    <MenuItem
+                      title={list.coverId ? 'Kapak fotoğrafını değiştir' : 'Kapak fotoğrafı ekle'}
+                      hint="Kendi resmin listenin başında durur"
+                      onSelect={() => {
+                        close()
+                        photoInput.current?.click()
+                      }}
+                    />
+                    {list.coverId && (
+                      <MenuItem
+                        title="Kapak fotoğrafını kaldır"
+                        onSelect={() => {
+                          close()
+                          void setCover(null)
+                        }}
+                      />
+                    )}
                     <MenuItem
                       title="Paylaş"
                       hint="Bağlantı, QR ya da ortak liste"
@@ -291,7 +344,7 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
         )}
         {words.length > 0 ? (
           <>
-            <div className="row wl-study">
+            <div className="wl-study">
               <button type="button" className="btn btn-lg" onClick={() => onStudy(words)}>
                 {list ? 'Listeyi çalış' : 'Bunları çalış'}
               </button>
@@ -301,20 +354,11 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
               <div className="wl-games" role="group" aria-label="Bu listeyle oyna">
                 {LIST_GAMES.map((g) => (
                   <button key={g.id} type="button" className="btn btn-quiet btn-sm wl-game" onClick={() => play(g)}>
-                    <GameIcon id={g.id} emoji={emojiOf(g.id)} size={20} />
+                    <GameIcon id={g.id} emoji={emojiOf(g.id)} size={30} />
                     {g.label}
                   </button>
                 ))}
               </div>
-            )}
-            {list && (
-              <AskMonki
-                label="Monki'yle bu kelimelerle konuş"
-                ask={() => {
-                  const targets = talkWords(words, stateById)
-                  return { text: `Şu kelimeleri kullanacağım kısa bir sohbet yapalım: ${targets.join(', ')}. Sen başlat.`, mode: 'words', targets, send: true }
-                }}
-              />
             )}
             {lastTest && (
               <p className="small muted wl-last-test">
@@ -339,11 +383,22 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
           )
         )}
         {list && (
-          <div className="wl-focus-row">
-            <button type="button" className="chip" aria-pressed={focused} onClick={() => onFocus(focused ? null : list.id)} disabled={!focused && words.length === 0}>
-              <TargetIcon size={16} className="inline-icon" />
-              {focused ? 'Odakta' : 'Odaklan'}
-            </button>
+          <div className="wl-extra">
+            <div className="wl-extra-row">
+              {words.length > 0 && (
+                <AskMonki
+                  label="Monki'yle konuş"
+                  ask={() => {
+                    const targets = talkWords(words, stateById)
+                    return { text: `Şu kelimeleri kullanacağım kısa bir sohbet yapalım: ${targets.join(', ')}. Sen başlat.`, mode: 'words', targets, send: true }
+                  }}
+                />
+              )}
+              <button type="button" className="btn btn-sm btn-quiet wl-focus-btn" aria-pressed={focused} onClick={() => onFocus(focused ? null : list.id)} disabled={!focused && words.length === 0}>
+                <TargetIcon size={16} className="inline-icon" />
+                {focused ? 'Odakta' : 'Odaklan'}
+              </button>
+            </div>
             <span className="small muted">
               {focused
                 ? at

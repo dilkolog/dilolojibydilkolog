@@ -565,8 +565,12 @@ export class KelimeDB extends Dexie {
 
   /** Deletes a list; its words stay, without a list. */
   async deleteList(id: string) {
-    await this.transaction('rw', [this.vocabulary, this.meta], async () => {
-      await this.meta.put({ key: 'wordLists', value: (await this.getLists()).filter((l) => l.id !== id) })
+    await this.transaction('rw', [this.vocabulary, this.meta, this.media], async () => {
+      const lists = await this.getLists()
+      // Its own cover photo goes with it.
+      const cover = lists.find((l) => l.id === id)?.coverId
+      if (cover) await this.media.delete(cover)
+      await this.meta.put({ key: 'wordLists', value: lists.filter((l) => l.id !== id) })
       await this.vocabulary.filter((v) => v.listId === id).modify((v) => {
         delete v.listId
         delete v.levelId

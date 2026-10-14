@@ -160,10 +160,13 @@ export function LearnTab({
   onAddReview,
   onPractice,
   onMemorised,
+  found,
 }: {
   language: LabLanguage
   verb: string
   tense: Tense
+  /** The person of a searched form in this tense, marked in the table. */
+  found?: number
   available: readonly Tense[]
   gloss?: string
   /** The verb is already in the learner's word list. */
@@ -342,6 +345,7 @@ export function LearnTab({
               hide={memorise}
               weak={weak}
               turkish={turkish}
+              found={reflexive || negative ? undefined : found}
               onMemorised={
                 onMemorised && !reflexive && !negative
                   ? (results) => {

@@ -10,7 +10,7 @@ import { useGame } from './game'
 import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
-import { Medal } from './Medal'
+import { BadgeMedal } from './Medal'
 import { StreakFlame } from './StreakFlame'
 import { localDate } from '../engine/progress'
 import { bannerOf, daysUntil, frameOf, pinnedBadges, titleName, type Unlockables } from '../engine/profileStyle'
@@ -18,7 +18,7 @@ import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
-import { CATEGORY_EMBLEM, EMBLEM, drawnMedal, levelMonki } from './drawnArt'
+import { CATEGORY_EMBLEM, EMBLEM, levelMonki } from './drawnArt'
 
 /** The glyph avatars; the animals Monki's set draws (fox, panda, owl, octopus, penguin, koala) are not repeated as emoji. */
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -221,7 +221,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                   <ol className="badge-timeline">
                     {dated.slice(0, timelineAll ? undefined : 5).map((a) => (
                       <li key={a.id}>
-                        <Medal icon={a.icon} tier={medalTier(a)} unlocked size={36} />
+                        <BadgeMedal badge={a} unlocked size={36} />
                         <span>
                           <strong>{a.title}</strong> <span className="small muted">· {a.description}</span>
                         </span>
@@ -326,7 +326,7 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
       onClick={() => onOpen(s)}
       aria-label={`${a.title}: ${s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
     >
-      <Medal icon={a.icon} tier={medalTier(a)} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
+      <BadgeMedal badge={a} unlocked={a.unlocked} progress={a.value / a.goal} size={compact ? 44 : 60} />
       <strong className="badge-title">{a.title}</strong>
       <Stars s={s} />
       {!compact && <span className="small muted badge-desc">{next ? next.description : a.description}</span>}
@@ -372,7 +372,7 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
           <CloseIcon size={18} />
         </button>
         <div className={`badge-dialog-medal tier-${tier}`}>
-          {a.unlocked && drawnMedal(a.stat) ? <img className="drawn-medal" src={drawnMedal(a.stat)} alt="" width={104} height={104} draggable={false} /> : <Medal icon={a.icon} tier={tier} unlocked={a.unlocked} progress={a.value / a.goal} size={104} />}
+          <BadgeMedal badge={a} unlocked={a.unlocked} progress={a.value / a.goal} size={104} />
         </div>
         <span className={`badge-tier tier-${tier}`}>{TIER_NAME[tier]} rozet</span>
         <h2 id="badge-title" className="badge-dialog-title">
@@ -495,7 +495,7 @@ function ProfileAbout({ profile, game, unlockables, onOpenBadge, onCustomize, cu
           {shown.map((a) => (
             <li key={a.id}>
               <button type="button" className="showcase-badge" onClick={() => onOpenBadge(a)} aria-label={`${a.title}: ayrıntı`} title={a.title}>
-                <Medal icon={a.icon} tier={medalTier(a)} unlocked size={46} />
+                <BadgeMedal badge={a} unlocked size={46} />
               </button>
             </li>
           ))}

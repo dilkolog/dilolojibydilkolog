@@ -169,6 +169,15 @@ describe('word lists', () => {
     expect(await db.getLists()).toEqual([])
     expect((await db.vocabulary.get(entry.id))!.listId).toBeUndefined()
   })
+
+  it('takes its own cover photo with it when deleted', async () => {
+    const { db, entry } = await seeded('t-list-cover')
+    const coverId = await db.addMedia('image', new Blob(['jpg'], { type: 'image/jpeg' }))
+    await db.saveList({ id: 'list:c', language: entry.language, name: 'Ev', coverId, createdAt: NOW.toISOString(), updatedAt: NOW.toISOString() })
+    expect(await db.media.get(coverId)).toBeDefined()
+    await db.deleteList('list:c')
+    expect(await db.media.get(coverId)).toBeUndefined()
+  })
 })
 
 describe('media', () => {

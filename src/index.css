@@ -1747,6 +1747,10 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 
 /* ---------- Medals ---------- */
 .medal { display: block; overflow: visible; }
+.drawn-badge { position: relative; display: inline-block; flex: none; }
+.drawn-badge .drawn-medal { display: block; width: 100%; height: 100%; }
+.drawn-badge:not(.is-unlocked) .drawn-medal { filter: grayscale(1); opacity: 0.45; }
+.drawn-badge-ring { position: absolute; inset: -6%; width: 112%; height: 112%; overflow: visible; }
 .medal .medal-art { filter: grayscale(1); opacity: 0.45; }
 .medal.is-unlocked .medal-art { filter: drop-shadow(0 2px 3px rgb(15 23 42 / 0.25)); opacity: 1; }
 .badge-card.is-unlocked { box-shadow: var(--shadow); }
@@ -2734,6 +2738,8 @@ p, .help, .small { text-wrap: pretty; }
 .today-status { list-style: none; margin: 0.375rem 0 1.25rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem 1.25rem; color: var(--ink-soft); font-size: var(--t-sm); }
 .today-status li { display: inline-flex; align-items: center; gap: 0.375rem; }
 .today-status strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+/* The flame's body sits low in its picture (the tip is thin): raised a little, the body lines up with the text. */
+.today-status .streak-picture { margin: -0.375rem 0 0.125rem; }
 .today-status .is-nudge { color: var(--near-text); font-weight: 600; }
 /* A heading with actions: the title keeps its line; the actions drop below when space runs out. */
 .field-head > .section-title { white-space: nowrap; }
@@ -2920,17 +2926,29 @@ p, .help, .small { text-wrap: pretty; }
 .wl-card.is-unlisted { background: var(--surface-2); box-shadow: var(--inset-ring); }
 /* One bar: met (lighter) under learned (solid). */
 /* Today: where the new words come from. */
-.hero-focus { margin: 0.75rem 0 0; text-align: center; color: color-mix(in srgb, var(--on-lang) 85%, transparent); }
+.hero-focus { margin: 0.875rem 0 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.375rem 0.625rem; color: color-mix(in srgb, var(--on-lang) 85%, transparent); }
 .hero-focus .inline-icon { margin-right: 0.3em; vertical-align: -0.15em; }
 .hero-focus .link { color: inherit; text-decoration: underline; }
-.hero-list-pick { position: relative; display: inline-flex; align-items: center; }
+.hero-focus-label { font-weight: 600; }
+.hero-focus-note { flex-basis: 100%; text-align: center; }
+.hero-focus-meta { opacity: 0.85; }
+.hero-focus .hero-focus-open { text-decoration: none; font-weight: 700; }
+.hero-focus .hero-focus-open:hover { text-decoration: underline; }
+/* The list as a pill: a native menu (the hero clips what spills out of it), dressed like a chip. */
+.hero-list-pick {
+  position: relative; display: inline-flex; align-items: center; max-width: 100%; min-height: 2rem; padding: 0 0.875rem; border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--on-lang) 16%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--on-lang) 35%, transparent);
+  color: var(--on-lang); font-weight: 700;
+}
+.hero-list-pick:hover { background: color-mix(in srgb, var(--on-lang) 24%, transparent); }
 .hero-list-select {
-  appearance: none; -webkit-appearance: none; max-width: 14rem; margin: 0; padding: 0 1.1em 0 0.1em; border: 0; border-bottom: 1.5px solid currentColor;
+  appearance: none; -webkit-appearance: none; max-width: 15rem; margin: 0; padding: 0.375rem 1.25em 0.375rem 0; border: 0;
   border-radius: 0; background: none; color: inherit; font: inherit; font-weight: 700; cursor: pointer; text-overflow: ellipsis;
 }
-.hero-list-select:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.hero-list-pick:focus-within { outline: 2px solid currentColor; outline-offset: 2px; }
+.hero-list-select:focus-visible { outline: none; }
 .hero-list-select option { color: var(--ink); background: var(--surface); }
-.hero-list-chev { position: absolute; right: 0; pointer-events: none; }
+.hero-list-chev { position: absolute; right: 0.75rem; pointer-events: none; }
 /* Word page and add form. */
 .word-placement-row .field { min-width: 11rem; gap: 0.25rem; }
 .wl-add-level .input { flex: 1; min-width: 0; }
@@ -3438,6 +3456,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-suggest { margin: 0; padding: 0; list-style: none; max-height: 16rem; overflow-y: auto; font-family: var(--serif); font-size: var(--t-lg); }
 .lab-suggest li { padding: 0.5rem 0.75rem; border-radius: var(--r-sm); cursor: pointer; }
 .lab-suggest li.is-active, .lab-suggest li:hover { background: var(--lang-soft); color: var(--lang-text); }
+.lab-suggest li.lab-form-hit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.125rem 0.5rem; }
+.lab-form-note { font-family: var(--sans); font-size: var(--t-sm); color: var(--ink-soft); }
 .lab-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
 .lab-chips .chip { font-family: var(--serif); }
 .lab-chips .chip.is-more { font-family: inherit; color: var(--ink-soft); }
@@ -3505,6 +3525,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* A person the learner often misses in this tense: an orange edge, the colour of a near miss. */
 .lab-row.is-weak { box-shadow: inset 3px 0 0 var(--near); padding-left: 0.625rem; }
 .lab-weak-note { margin: -0.25rem 0 0; }
+/* The person of a form the learner searched for ("estés"): the language's tint, held while they look. */
+.lab-row.is-found { background: var(--lang-soft); border-radius: var(--r-sm); padding-left: 0.625rem; }
 .lab-subject { flex: 0 1 7rem; min-width: 0; color: var(--ink-soft); font-size: var(--t-sm); }
 .lab-subject::first-letter { text-transform: uppercase; }
 .lab-picker .section-title { display: block; }
@@ -3890,8 +3912,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 }
 
 /* Refresh card: a word met before comes back as a card ahead of its first question. */
-.refresh-actions .btn { width: auto; height: auto; border-radius: var(--r-md); padding: 0.625rem 1.25rem; font-size: var(--t-base); }
-.refresh-actions .grow { flex: 1; }
+.swipe-actions.refresh-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.refresh-actions .btn { width: auto; height: auto; border-radius: var(--r-md); padding: 0.625rem 0.75rem; font-size: var(--t-base); display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem; min-width: 0; }
 
 /* A quest still open is a button: it starts the round that fills it. */
 .quest-list li.is-go { padding: 0; }

@@ -49,7 +49,7 @@ export function RefreshCard({ entry, onRemember, onStruggle }: { entry: Vocabula
 
   const offset = leaving === 'right' ? 600 : leaving === 'left' ? -600 : dx
   return (
-    <div className="stack swipe refresh">
+    <div className="stack swipe refresh refresh-swipe">
       <p className="prompt-label">
         <span className="badge">Yeni kelime</span> <span className="small muted">Önce bir bak, sonra soru gelecek</span>
         {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} label className="is-chip" />}

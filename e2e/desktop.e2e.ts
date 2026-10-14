@@ -691,6 +691,20 @@ test('verb lab: the Turkish of each form beside it, in the core tenses, never wh
   expect(await overflow(page)).toEqual([])
 })
 
+test('verb lab: a conjugated form typed in the search opens its verb at that tense', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const input = page.getByRole('combobox')
+  // Typed without its accent: "etions" is être, imparfait, nous.
+  await input.fill('etions')
+  await expect(page.getByRole('option').first()).toContainText('être')
+  await input.press('Enter')
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-verb').first()).toHaveText(/^être$/i)
+  await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(main.locator('.lab-row.is-found')).toContainText('étions')
+})
+
 test('Today: the verb of the day opens its table in the verb lab', async ({ page }) => {
   await startWithSamples(page)
   const tile = page.locator('.tile', { hasText: 'Günün fiili' })
@@ -1400,6 +1414,32 @@ test('word list: with no list yet, a selection can be added to a brand-new one',
   await expect(page.getByText(/yeni "Ayıklanan" listesine eklendi/)).toBeVisible()
   await page.getByRole('tab', { name: 'Listeler' }).click()
   await expect(page.locator('.wl-name', { hasText: 'Ayıklanan' })).toBeVisible()
+})
+
+test('word list: a list takes its own cover photo, shown on its page and on the shelf, and can drop it', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('button', { name: 'Seç', exact: true }).click()
+  await page.locator('.select-bar input[type=checkbox]').check()
+  await page.locator('.select-bar-move button').click()
+  await page.getByRole('option', { name: '+ Yeni liste…' }).click()
+  await page.getByLabel('Yeni listenin adı').fill('Kapaklı')
+  await page.getByRole('button', { name: 'Oluştur ve ekle' }).click()
+  await page.getByRole('tab', { name: 'Listeler' }).click()
+  await page.locator('.wl-tile', { hasText: 'Kapaklı' }).click()
+  // A 2×2 PNG: small, but a real picture the browser decodes.
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAEElEQVR4nGM4EaABRAwQCgAljgUBqTNxyAAAAABJRU5ErkJggg==', 'base64')
+  await page.locator('.wl-hero input[type=file]').setInputFiles({ name: 'kapak.png', mimeType: 'image/png', buffer: png })
+  await expect(page.getByText('Kapak fotoğrafı eklendi.')).toBeVisible()
+  await expect(page.locator('.wl-hero img.wl-photo')).toBeVisible()
+  await page.locator('.back-link', { hasText: 'Listeler' }).click()
+  const tile = page.locator('.wl-tile', { hasText: 'Kapaklı' })
+  await expect(tile.locator('img.wl-photo')).toBeVisible()
+  await tile.click()
+  await page.getByRole('button', { name: 'Liste işlemleri' }).click()
+  await page.getByRole('menuitem', { name: /Kapak fotoğrafını kaldır/ }).click()
+  await expect(page.locator('.wl-hero img.wl-photo')).toHaveCount(0)
+  await expect(page.locator('.wl-hero .wl-hero-initial')).toHaveText('K')
 })
 
 test('word list: quick groups select the sample words, a second tap clears them, and invert flips the selection', async ({ page }) => {
