@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { isPushService, type PushRecord } from '../../api/push'
+import { cleanWord, isPushService, type PushRecord } from '../../api/push'
 
 // An in-memory Blob store and a recording web-push behind the real handlers.
 const blobs = new Map<string, string>()
@@ -81,6 +81,7 @@ describe('/api/push', () => {
       due: 999,
       reportedDay: null,
       week: '',
+      word: '',
       hour: 20,
     })
   })
@@ -118,6 +119,14 @@ describe('reminder text and rest days', () => {
     expect(reminderText(record({ due: 12, reportedDay: '2026-10-06' }), NOW)).toContain('🌱 12 kelimen solmak üzere: 4 dakikalık')
     expect(reminderText(record({ due: 12, reportedDay: '2026-10-01' }), NOW)).not.toContain('🌱')
     expect(reminderText(record({ plan: 'DELF B2' }), NOW)).toMatch(/^DELF B2: /)
+  })
+
+  it('asks to recall a word missed lately, while the report is fresh, and keeps the word to plain letters', () => {
+    expect(reminderText(record({ word: 'la maison', reportedDay: '2026-10-07' }), NOW)).toContain('🧠 “la maison” ne demekti?')
+    expect(reminderText(record({ word: 'la maison', reportedDay: '2026-10-01' }), NOW)).not.toContain('🧠')
+    expect(cleanWord('  <b>x</b> "y"\n ')).toBe('bx/b y')
+    expect(cleanWord('a'.repeat(80))).toHaveLength(40)
+    expect(cleanWord(42)).toBe('')
   })
 
   it('uses the learner’s own day: just past midnight in Turkey is already tomorrow', () => {

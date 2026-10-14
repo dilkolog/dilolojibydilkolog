@@ -27,7 +27,7 @@ import { updateAppBadge } from './ui/appBadge'
 import { reportMailState } from './ui/emailReminders'
 import { reportPushState } from './ui/pushReminders'
 
-import { weekLine, weekSummary, type WeekSummary } from './engine/weekly'
+import { weekLine, weekMisses, weekSummary, type WeekSummary } from './engine/weekly'
 import { LookupNudge } from './ui/LookupNudge'
 
 import { announceIncoming, onSynced, runSync } from './ui/syncRunner'
@@ -307,6 +307,13 @@ export default function App() {
       live = false
     }
   }, [data])
+  // The word missed most this week: the push reminder asks the learner to recall it.
+  const recallWord = useMemo(() => {
+    if (!data) return ''
+    const id = weekMisses(data.recentEvents, data.language, new Date(), 1)[0]
+    const entry = id ? data.vocabulary.find((v) => v.id === id) : undefined
+    return entry ? (entry.article ? `${entry.article} ${entry.lemma}` : entry.lemma) : ''
+  }, [data])
   const pushState = useMemo(
     () => ({
       studiedToday: answeredTodayAll > 0,
@@ -317,8 +324,9 @@ export default function App() {
       due: dueReviews,
       week: weekText,
       hour: Number((reminder?.time ?? '20:00').slice(0, 2)),
+      word: recallWord,
     }),
-    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText, reminder?.time],
+    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText, reminder?.time, recallWord],
   )
   // Keeps the server's evening reminder from firing on days already studied.
   const loaded = !!data && !!game

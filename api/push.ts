@@ -51,6 +51,14 @@ export interface PushRecord {
   week?: string
   /** Local hour (0–23) to remind at: the chosen time or the usual study hour; 20 when missing. */
   hour?: number
+  /** A word the learner missed lately, for the push reminder to ask about ("“maison” ne demekti?"). Never in a mail. */
+  word?: string
+}
+
+/** A word to recall, as the device sent it: one short line of letters, nothing that could be markup. */
+export function cleanWord(v: unknown): string {
+  if (typeof v !== 'string') return ''
+  return v.replace(/[\p{Cc}<>"“”]/gu, '').trim().slice(0, 40)
 }
 
 export async function recordPath(endpoint: string): Promise<string> {
@@ -221,6 +229,7 @@ export async function POST(request: Request): Promise<Response> {
     ...stateFields(body),
     group: typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null,
     week: typeof body.week === 'string' ? body.week.slice(0, 200) : '',
+    word: cleanWord(body.word),
   }
   await put(await recordPath(sub.endpoint), JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
   return new Response(null, { status: 204 })

@@ -22,6 +22,8 @@ export function reminderText(r: PushRecord, now: number): string {
   const parts = [
     r.streak > 0 && r.studiedDay === yesterday ? `🔥 ${r.streak} günlük serin var.` : '',
     due > 0 ? `🌱 ${due} kelimen solmak üzere: ${Math.max(2, Math.min(5, Math.round(due / 3)))} dakikalık hızlı tekrar yeter.` : 'Bugünkü kelime çalışman seni bekliyor.',
+    // A word missed lately, to recall before opening the app (reported today or yesterday, like the count).
+    r.word && (r.reportedDay === today || r.reportedDay === yesterday) ? `🧠 “${r.word}” ne demekti?` : '',
   ].filter(Boolean)
   return r.plan ? `${r.plan}: ${parts.join(' ')}` : parts.join(' ')
 }
@@ -99,7 +101,7 @@ export async function GET(request: Request): Promise<Response> {
       // An address nobody has confirmed gets nothing.
       if (mailOn && r.confirmed && r.token) {
         const site = siteFrom(r.site) ?? APP_URL
-        mails.push(reminderMail(r.email, reminderText({ ...r, plan: '' }, now), `${site}/api/push?u=${path.replace(/^push\/mail-|\.json$/g, '')}.${r.token}`, site))
+        mails.push(reminderMail(r.email, reminderText({ ...r, plan: '', word: '' }, now), `${site}/api/push?u=${path.replace(/^push\/mail-|\.json$/g, '')}.${r.token}`, site))
       }
       return []
     }
