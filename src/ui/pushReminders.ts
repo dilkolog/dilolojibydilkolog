@@ -1,4 +1,3 @@
-import { credentialId } from '../data/sync'
 import { getCredential } from './syncRunner'
 
 /**
@@ -61,7 +60,7 @@ async function save(sub: PushSubscription, state: PushState) {
   await fetch('/api/push', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, group: cred ? await credentialId(cred) : null }),
+    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, group: cred ? await (await import('../data/sync')).credentialId(cred) : null }),
   })
 }
 

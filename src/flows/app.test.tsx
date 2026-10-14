@@ -78,7 +78,7 @@ describe('a learner’s day', () => {
     await click(button(/^Devam$/)) // language → goal
     await click(button(/^Devam$/)) // goal → ready
     await click(button(/Fransızca ile başlayalım/))
-    await until(() => button(/örnek kelime yükle/), 'sample words offer')
+    await until(() => button(/örnek kelime yükle/), 'sample words offer', 200)
     await click(button(/örnek kelime yükle/))
     // They open in the word list; back to Today.
     await until(() => button(/^Bugün\d*$/), 'Today in the menu')

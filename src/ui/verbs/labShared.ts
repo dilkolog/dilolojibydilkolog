@@ -3,7 +3,7 @@ import { db } from '../../data/instance'
 import { loadFrequency } from '../../data/frequency'
 import { adoptCards, dueItems, emptyLab, recordCheck, recordForm, verbMastery, weakestCell, type LabData, type LabItem } from '../../engine/labProgress'
 import type { Scheduler } from '../../engine/scheduler'
-import { TENSE_GUIDE } from '../../engine/tenseGuide'
+import { TENSE_BRIEF } from '../../engine/tenseBrief'
 import { answersFor, conjugateTense, LAB_TENSES, labTensesOf, personsOf, subjectLabel, tenseVerbs, type Tense } from '../../engine/tenses'
 import { loadTenses } from '../../data/tenseData'
 import { prefs } from '../prefs'
@@ -44,7 +44,7 @@ export const isLabTense = (language: LabLanguage, t: string): t is Tense => (LAB
 /** Tense names are French and Spanish words: no Turkish capital İ (Imparfait, not İmparfait). */
 const upper = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 /** "Pretérito indefinido": the name the language gives, first letter up. */
-export const tenseName = (t: Tense) => upper(TENSE_GUIDE[t].name)
+export const tenseName = (t: Tense) => upper(TENSE_BRIEF[t].name)
 
 /** The dictionary key of a verb as written in a word list: no reflexive pronoun, lower case. */
 export const verbKey = (language: LabLanguage, lemma: string) => lemma.trim().toLocaleLowerCase(language).replace(language === 'fr' ? /^(se |s['’])/ : /se$/, '')

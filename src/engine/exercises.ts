@@ -1,6 +1,6 @@
 import { checkSentence, checkTyped, levenshtein, normalize, stripDiacritics } from './answerCheck'
 import { PERSONS } from './conjugation'
-import { TENSE_GUIDE } from './tenseGuide'
+import { TENSE_BRIEF } from './tenseBrief'
 import { answersFor, aspectItemsFor, conjugateTense, subjectLabel, tenseSentence, tensesOf, tenseVariants, unlockedTenses, type Tense } from './tenses'
 import { detectIntrusion, trapGlosses, type Intrusion, type IntrusionSources } from './crossLanguage'
 import { pick, shuffle, type Rng } from './rng'
@@ -723,7 +723,7 @@ export function buildExercise(
       // The newest tense comes up more often while it is new; the others keep coming back.
       const tense: Tense = open.length > 1 && rng() < 0.4 ? open[open.length - 1] : pick(open, rng)
       const forms = conjugateTense(entry, tense)!
-      const guide = TENSE_GUIDE[tense]
+      const guide = TENSE_BRIEF[tense]
       // In a sentence when there is one: the time words around the blank call for the tense.
       const sentence = tenseSentence(entry, tense)
       if (sentence && rng() < 0.6)
