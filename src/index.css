@@ -3894,8 +3894,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 }
 
 /* Refresh card: a word met before comes back as a card ahead of its first question. */
-.refresh-actions .btn { width: auto; height: auto; border-radius: var(--r-md); padding: 0.625rem 1.25rem; font-size: var(--t-base); }
-.refresh-actions .grow { flex: 1; }
+.swipe-actions.refresh-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.refresh-actions .btn { width: auto; height: auto; border-radius: var(--r-md); padding: 0.625rem 0.75rem; font-size: var(--t-base); display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem; min-width: 0; }
 
 /* A quest still open is a button: it starts the round that fills it. */
 .quest-list li.is-go { padding: 0; }

@@ -1523,8 +1523,14 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 @media (hover: none) and (pointer: coarse) {
   .group-toggle::after { content: ''; position: absolute; inset: -0.5rem 0; }
 }
-.refresh-stage { height: auto; min-height: 14rem; }
-.refresh-card { position: relative; inset: auto; min-height: 14rem; }
+/* .swipe-stage's fixed height (and its wide-screen media rule) must not hold the card: it grows with its sentence. */
+.swipe-stage.refresh-stage { height: auto; min-height: 14rem; }
+/* A flex item of the session stage: without this its label row (with the picture) set a width wider than a phone. */
+.swipe.refresh-swipe { min-width: 0; width: 100%; }
+.swipe-card.refresh-card { position: relative; inset: auto; min-height: 14rem; min-width: 0; max-width: 100%; }
+/* The card is narrow: a long word gets a smaller size instead of breaking in the middle (Desgraciad|o). */
+.refresh-card .word { --word-size: min(2.75rem, 9vw); overflow-wrap: normal; min-width: 0; }
+.refresh-card > .row { justify-content: center; max-width: 100%; }
 .offline-chip-row { display: flex; padding: 0 0.875rem 0.625rem; }.tf-card { align-items: center; text-align: center; padding-block: 2rem; transition: background-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
 .tf-equals { margin: 0; font-size: var(--t-xl); color: var(--ink-soft); }
 .tf-progress { height: 0.5rem; }
