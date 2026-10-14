@@ -2,7 +2,7 @@
 
 Bu belge, **Diloloji** (önceki adıyla Kelime Koçu) uygulamasının üretim derlemesi (`vite build`) çıktı parçalarını, ilk açılış yükünü, bağımlılık kullanımını ve önbellek stratejilerini analiz eder. Kod değişikliği içermez; gelecekteki optimizasyonlar için somut bir durum tespiti ve yol haritasıdır.
 
-Son analiz tarihi: 2026-10-10. **Güncelleme 2026-10-12:** giriş betiği `index-*.js` 553,8 kB (178,1 kB gzip), tek stil dosyası `index-*.css` 309,7 kB (67,6 kB gzip), PWA önbelleği 134 dosya / 7,03 MB; veritabanı örneği artık ayrı büyük parça değil (`instance-*.js` 3,4 kB). Aşağıdaki tablolar 10 Ekim ölçümüdür; CSS çok büyüdü (141 → 310 kB) ve ilk yüklemede engelleyicidir: ekran başına bölmek sıradaki iş.
+Son analiz tarihi: 2026-10-10. **Güncelleme 2026-10-12:** giriş betiği `index-*.js` 553,8 kB (178,1 kB gzip), tek stil dosyası `index-*.css` 309,7 kB (67,6 kB gzip), PWA önbelleği 134 dosya / 7,03 MB; veritabanı örneği artık ayrı büyük parça değil (`instance-*.js` 3,4 kB). **Güncelleme 2026-10-14:** ilk açılışta yüklenen her şey (giriş + önceden yüklenen parçalar + `index.css`) 1.141 kB / 364 kB gzip → 1.055 kB / 327 kB gzip: eşitleme (`sync.ts`), paylaşım (`share.ts`) ve oturum özeti (`SessionSummary`) gerektiğinde yüklenir; zaman adları `tenseBrief.ts`e ayrıldı (tam `tenseGuide` artık ilk açılışta değil); çizimler (`.webp`) betiklere base64 gömülmez ve servis çalışanı onları görüldükçe saklar (`art` önbelleği; önceden hiç önbelleğe alınmıyordu, çevrimdışıyken kırık görünüyordu). Aşağıdaki tablolar 10 Ekim ölçümüdür; CSS çok büyüdü (141 → 310 kB) ve ilk yüklemede engelleyicidir: ekran başına bölmek sıradaki iş.
 
 ---
 

@@ -21,6 +21,8 @@ export const screenModules = {
   // Rarely opened, so not in the startup code either.
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
+  // Shown only after a session, prefetched long before one ends.
+  Summary: () => import('./ui/SessionSummary'),
 }
 export const SessionScreen = lazy(() => screenModules.Session().then((m) => ({ default: m.SessionScreen })))
 export const GamesScreen = lazy(() => screenModules.Games().then((m) => ({ default: m.GamesScreen })))
@@ -37,6 +39,7 @@ export const StoryScreen = lazy(() => screenModules.Story().then((m) => ({ defau
 export const WordDetail = lazy(() => screenModules.WordDetail().then((m) => ({ default: m.WordDetail })))
 export const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ default: m.WordsScreen })))
 export const VerbLab = lazy(() => screenModules.VerbLab().then((m) => ({ default: m.VerbLab })))
+export const Summary = lazy(() => screenModules.Summary().then((m) => ({ default: m.Summary })))
 export const DictionaryScreen = lazy(() => screenModules.Dictionary().then((m) => ({ default: m.DictionaryScreen })))
 export const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
 export const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))

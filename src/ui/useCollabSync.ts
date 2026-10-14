@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { db } from '../data/instance'
-import { syncAllCollabs } from '../data/share'
 
 /** How long between two syncs of the shared lists while the app is open. */
 const EVERY_MS = 10 * 60_000
@@ -15,7 +14,8 @@ export function useCollabSync(onChanged: () => void, enabled: boolean) {
       if (running || Date.now() - last < EVERY_MS) return
       running = true
       try {
-        const r = await syncAllCollabs(db)
+        // The sharing code comes only when a shared list is synced, not with the first screen.
+        const r = await (await import('../data/share')).syncAllCollabs(db)
         last = Date.now()
         if (r.changed) onChanged()
       } finally {

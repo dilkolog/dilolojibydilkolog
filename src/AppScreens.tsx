@@ -36,7 +36,6 @@ import { gardenSummary } from './engine/growth'
 import { Home } from './ui/Screens'
 import { type LanguageData, type Screen } from './appNav'
 
-import { Summary } from './ui/SessionSummary'
 
 import { recordLabAnswer } from './ui/verbs/labShared'
 
@@ -48,7 +47,7 @@ import { skeletonFor } from './ui/skeletonFor'
 
 import { currentLevel, levelGroups } from './engine/lists'
 
-import { SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen } from './lazyScreens'
+import { Summary, SessionScreen, GamesScreen, MistakesScreen, TranslateScreen, ProfileScreen, ProgressScreen, ReadingScreen, ProduceScreen, VocabTestScreen, ExamScreen, SettingsScreen, StoryScreen, WordDetail, WordsScreen, VerbLab, DictionaryScreen, AuthScreen } from './lazyScreens'
 import { nextReviewAt } from './engine/review'
 import type { UserWordState } from './engine/types'
 import type { PushState } from './ui/pushReminders'

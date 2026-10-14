@@ -1,7 +1,7 @@
 import { topicName, topicStats, type GrammarExercise, type GrammarLog } from './grammar'
 import { tallyCells, type LabData } from './labProgress'
 import { MINIMAL_PAIRS, pairKey } from './listening'
-import { TENSE_GUIDE } from './tenseGuide'
+import { TENSE_BRIEF } from './tenseBrief'
 import type { TrapWord } from './traps'
 import type { ErrorType, TargetLanguage } from './types'
 
@@ -83,10 +83,10 @@ export function blindSpots(input: BlindSpotInput): BlindSpot[] {
     }
     const worst = [...by.entries()]
       .map(([tense, t]) => ({ tense, ...t, n: t.ok + t.wrong, rate: t.wrong / Math.max(1, t.ok + t.wrong) }))
-      .filter((t) => t.n >= 6 && t.wrong >= 3 && t.rate >= 0.3 && t.tense in TENSE_GUIDE)
+      .filter((t) => t.n >= 6 && t.wrong >= 3 && t.rate >= 0.3 && t.tense in TENSE_BRIEF)
       .sort((a, b) => b.rate * weight(b.n) - a.rate * weight(a.n))[0]
     if (worst) {
-      const name = TENSE_GUIDE[worst.tense as keyof typeof TENSE_GUIDE].name
+      const name = TENSE_BRIEF[worst.tense as keyof typeof TENSE_BRIEF].name
       out.push({ id: `tense:${worst.tense}`, title: `${name} çekimlerinde yanılıyorsun`, detail: `${worst.n} cevabın ${pct(worst.rate)} kadarı yanlış.`, target: 'verbs', action: 'Fiil laboratuvarı', score: worst.rate * weight(worst.n) })
     }
   }

@@ -4,6 +4,9 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Drawings are never inlined into the scripts: a small one would otherwise ride in the start-up
+  // bundle as base64 (larger, not cacheable on its own) even when its screen is never opened.
+  build: { assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined) },
   // Server functions (api/) run on Vercel; in local development they are reached on the live site.
   server: { proxy: { '/api': { target: 'https://kelime-koc.vercel.app', changeOrigin: true } } },
   plugins: [
@@ -22,7 +25,12 @@ export default defineConfig({
         importScripts: ['push-sw.js'],
         // Word packs (src/data/wordpack.ts) are fetched when a language first needs one, then kept
         // for offline use; their names change with their content, so a kept one is never stale.
-        runtimeCaching: [{ urlPattern: /\/assets\/(en|fr|es)-[\w-]+\.json$/, handler: 'CacheFirst', options: { cacheName: 'word-packs', expiration: { maxEntries: 6 } } }],
+        runtimeCaching: [
+          { urlPattern: /\/assets\/(en|fr|es)-[\w-]+\.json$/, handler: 'CacheFirst', options: { cacheName: 'word-packs', expiration: { maxEntries: 6 } } },
+          // Drawings (src/assets/art, ~2.5 MB in all) are kept once seen rather than precached:
+          // their names change with their content too, and most screens show only a few.
+          { urlPattern: /\/assets\/[\w-]+\.webp$/, handler: 'CacheFirst', options: { cacheName: 'art', expiration: { maxEntries: 250 } } },
+        ],
       },
       manifest: {
         name: 'Diloloji',

@@ -1,7 +1,10 @@
 import { db } from '../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../data/access'
 import { showToast } from './toastFeed'
-import { restoreReplaced, syncNow, type Account, type Credential, type SyncResult } from '../data/sync'
+import type { Account, Credential, SyncResult } from '../data/sync'
+
+/** The sync code (encryption, merging) is loaded when a sync runs, not with the first screen. */
+const syncCode = () => import('../data/sync')
 
 /** Shown when the server's SYNC_ALLOWED list doesn't include this account or code. */
 export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; eşitleme kapalı.'
@@ -65,7 +68,7 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
     try {
       const cred = await getCredential()
       if (!cred) return null
-      const result = await syncNow(db, cred)
+      const result = await (await syncCode()).syncNow(db, cred)
       for (const fn of listeners) fn()
       return result
     } catch (e) {
@@ -95,5 +98,5 @@ export function announceIncoming(r: SyncResult | null): void {
   if (!replaced.length) return showToast(line)
   // Another device's later edit replaced this device's copy of a word: it says which, and can be taken back.
   const names = replaced.slice(0, 3).join(', ') + (replaced.length > 3 ? '…' : '')
-  showToast(`${line} Güncellenenler: ${names}.`, { label: 'Geri al', run: () => void restoreReplaced(db).then((n) => n && showToast(`${n} kelime eski hâline döndü.`)) }, 10_000, 'undo')
+  showToast(`${line} Güncellenenler: ${names}.`, { label: 'Geri al', run: () => void syncCode().then((m) => m.restoreReplaced(db)).then((n) => n && showToast(`${n} kelime eski hâline döndü.`)) }, 10_000, 'undo')
 }
