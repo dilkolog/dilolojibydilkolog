@@ -5,6 +5,7 @@ import type { calibration, hardWords, recallCalibration } from '../engine/insigh
 import { BrainIcon, LeafIcon, TargetIcon } from './icons'
 import { ERROR_NAME, STAGE_NAME } from './labels'
 import { StageBar } from './ProgressCharts'
+import { Sticker } from './Sticker'
 
 export function RecallCalibrationCard({ recallBins }: { recallBins: ReturnType<typeof recallCalibration> }) {
   const total = recallBins.reduce((n, b) => n + b.answers, 0)
@@ -97,7 +98,10 @@ export function HardWordsCard({
     <section className="section stack">
       <h2 className="section-title">Zorlandığın kelimeler</h2>
       {hard.length === 0 ? (
-        <p className="muted">Henüz belirgin bir zorluk yok. En az 3 kez cevapladığın kelimeler burada sıralanır.</p>
+        <p className="muted sticker-note">
+          <Sticker name="thumbs" size={40} />
+          <span>Henüz belirgin bir zorluk yok. En az 3 kez cevapladığın kelimeler burada sıralanır.</span>
+        </p>
       ) : (
         <ul className="word-list">
           {hard.map((h) => {

@@ -12,6 +12,7 @@ import { sfx } from '../sounds'
 import { showToast } from '../toastFeed'
 import { useMediaUrl } from '../useMedia'
 import { GameResult } from './GameResult'
+import { EmptyState } from '../EmptyState'
 
 type View = { name: 'list' } | { name: 'edit'; diagram: Diagram; isNew: boolean } | { name: 'study'; diagram: Diagram }
 
@@ -22,7 +23,13 @@ type View = { name: 'list' } | { name: 'edit'; diagram: Diagram; isNew: boolean 
 export function DiagramGame({ language, vocabulary, onExit, onChanged }: { language: TargetLanguage; vocabulary: VocabularyEntry[]; onExit: () => void; onChanged: () => void }) {
   const [view, setView] = useState<View>({ name: 'list' })
   const [diagrams, setDiagrams] = useState<Diagram[]>([])
-  const reload = () => void db.getDiagrams(language).then(setDiagrams)
+  // A read that lands after the game is closed is dropped (no state written into an unmounted screen).
+  const alive = useRef(true)
+  useEffect(() => {
+    alive.current = true
+    return () => void (alive.current = false)
+  }, [])
+  const reload = () => void db.getDiagrams(language).then((list) => alive.current && setDiagrams(list))
   useEffect(reload, [language])
   const back = () => {
     reload()
@@ -57,7 +64,9 @@ export function DiagramGame({ language, vocabulary, onExit, onChanged }: { langu
         </label>
       </div>
       {diagrams.length === 0 ? (
-        <p className="muted">Henüz resim yok. Örnek: insan vücudu, bir odanın fotoğrafı, şehir haritası.</p>
+        <EmptyState sticker="hello" title="Henüz resim yok">
+          Bir resim seç, kelimeleri üstüne yerleştir. Örnek: insan vücudu, bir odanın fotoğrafı, şehir haritası.
+        </EmptyState>
       ) : (
         <ul className="diagram-list">
           {diagrams.map((d) => (
