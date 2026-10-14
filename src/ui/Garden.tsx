@@ -14,7 +14,8 @@ const BED_PREVIEW = 120
 /** Only the first plants of a bed sway: a few hundred moving icons would cost more than they give. */
 const LIVE_PER_BED = 24
 
-export const WORDS_VIEW_KEY = 'kelime-koc:words-view'
+// A new key (2026-10-14): the words screen now opens on the lists; the old one remembered "Tümü" for nearly everyone.
+export const WORDS_VIEW_KEY = 'diloloji:words-view'
 /** Set (for one visit) to open the garden already filtered to the hard words. */
 export const GARDEN_HARD_KEY = 'kelime-koc:garden-hard'
 

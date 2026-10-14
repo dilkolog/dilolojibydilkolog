@@ -86,6 +86,7 @@ export function WordList({
   onSuggestImages,
   pictureTick = 0,
   onRemoveSamples,
+  listFilter = true,
 }: {
   language?: TargetLanguage
   vocabulary: VocabularyEntry[]
@@ -108,6 +109,8 @@ export function WordList({
   pictureTick?: number
   /** Removes the bundled sample words. */
   onRemoveSamples?: () => void
+  /** Offer the list filter (not on a list's own page, which shows one list already). */
+  listFilter?: boolean
 }) {
   // "Now" moves on whenever the words change (after a review), not on every render.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -394,10 +397,10 @@ export function WordList({
                       ))}
                     </div>
                   </div>
-                  {(lists.length > 0 || tags.length > 0) && (
+                  {((listFilter && lists.length > 0) || tags.length > 0) && (
                     <div className="panel-group">
-                      <span className="panel-label">Liste ve etiket</span>
-                      {lists.length > 0 && (
+                      <span className="panel-label">{listFilter && lists.length > 0 ? 'Liste ve etiket' : 'Etiket'}</span>
+                      {listFilter && lists.length > 0 && (
                         <Select
                           label="Liste"
                           value={inList || '__all'}

@@ -9,6 +9,7 @@ import { POS_NAME } from './labels'
 import { AiError, suggestFamily, type FamilySuggestion } from '../ai'
 import { useAi } from './aiContext'
 import { WandIcon } from './icons'
+import { sameList } from './listMemory'
 
 /**
  * The word's other forms and relatives (decide → decision → prendre une décision; lent →
@@ -61,8 +62,9 @@ export function WordFamilySection({ db, entry, vocabulary, onChanged }: { db: Ke
       const existing = await db.vocabulary.get(next.id)
       if (existing) await link(existing)
       else {
-        await db.vocabulary.put(next)
-        await link(next)
+        const [placed] = await sameList(db, entry, [next])
+        await db.vocabulary.put(placed)
+        await link(placed)
       }
       setOpen(null)
       setMeaning('')

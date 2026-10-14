@@ -1,3 +1,4 @@
+import type { GroupProgress } from '../engine/lists'
 import type { VocabularyEntry, WordList } from '../engine/types'
 
 /** One choice per list and per level in it ("Seyahat › Havalimanı"), then "no list". */
@@ -19,3 +20,6 @@ export const parsePlacement = (v: string): { listId: string | null; levelId: str
   const [listId, levelId] = v.split('|')
   return { listId, levelId: levelId ?? null }
 }
+
+/** A list's (or level's) numbers in a line. */
+export const progressLine = (p: GroupProgress) => `${p.total} kelime · ${p.met} tanıştı · ${p.learned} öğrenildi`

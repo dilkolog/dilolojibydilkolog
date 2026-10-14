@@ -28,9 +28,15 @@ export function StudyOptionsPanel({
   directions?: boolean
 }) {
   const [lists, setLists] = useState<WordList[]>([])
+  // Until the lists are read, a saved list choice would look empty and be moved off.
+  const [listsRead, setListsRead] = useState(false)
   useEffect(() => {
     let live = true
-    void db.getLists(language).then((l) => live && setLists(l))
+    void db.getLists(language).then((l) => {
+      if (!live) return
+      setLists(l)
+      setListsRead(true)
+    })
     return () => {
       live = false
     }
@@ -43,10 +49,10 @@ export function StudyOptionsPanel({
   }, [vocabulary, states, lists, value])
   // A saved choice whose set has no words now (nothing learned yet, the list emptied) moves to the first set that has some.
   useEffect(() => {
-    if (counts[value.scope] > 0) return
+    if (!listsRead || counts[value.scope] > 0) return
     const fallback = (['weak', 'all', 'today', 'unlearned', 'hard', 'list'] as const).find((s) => counts[s] > 0 && (s !== 'list' || lists.length > 0))
     if (fallback) onChange({ ...value, scope: fallback, listId: fallback === 'list' ? lists.find((l) => vocabulary.some((e) => e.listId === l.id))?.id : value.listId })
-  }, [counts, value, lists, vocabulary, onChange])
+  }, [counts, value, lists, listsRead, vocabulary, onChange])
   const listId = value.listId && lists.some((l) => l.id === value.listId) ? value.listId : lists[0]?.id
   const set = (patch: Partial<StudyOptions>) => onChange({ ...value, ...patch })
   const listCount = (id?: string) => (id ? vocabulary.filter((e) => e.listId === id).length : 0)

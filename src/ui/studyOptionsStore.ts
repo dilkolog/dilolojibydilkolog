@@ -25,3 +25,13 @@ export function useStudyOptions(use: string, defaults: Partial<StudyOptions> = {
   }
   return [options, save]
 }
+
+/** Sets a use's next round to one list (from that list's page), keeping its other choices. */
+export function presetList(use: string, listId: string) {
+  try {
+    const stored = JSON.parse(localStorage.getItem(`${KEY}:${use}`) ?? 'null') as Partial<StudyOptions> | null
+    localStorage.setItem(`${KEY}:${use}`, JSON.stringify({ ...stored, scope: 'list', listId }))
+  } catch {
+    /* the round opens on its last choices */
+  }
+}

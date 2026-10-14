@@ -2033,7 +2033,7 @@ test('a shared list link shows what is in it, adds nothing until confirmed, then
   await expect(dialog).toHaveCount(0)
   await openScreen(page, 'Kelimeler')
   await page.getByRole('tab', { name: 'Listeler' }).click()
-  await expect(page.locator('.wl-card', { hasText: 'Evcil hayvanlar' })).toContainText('2 kelime')
+  await expect(page.locator('.wl-tile', { hasText: 'Evcil hayvanlar' })).toContainText('2 kelime')
 })
 
 test('a chip of the day\'s mission starts a round of only that kind', async ({ page }) => {

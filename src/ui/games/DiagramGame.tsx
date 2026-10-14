@@ -13,6 +13,7 @@ import { showToast } from '../toastFeed'
 import { useMediaUrl } from '../useMedia'
 import { GameResult } from './GameResult'
 import { EmptyState } from '../EmptyState'
+import { placeNew } from '../listMemory'
 
 type View = { name: 'list' } | { name: 'edit'; diagram: Diagram; isNew: boolean } | { name: 'study'; diagram: Diagram }
 
@@ -156,8 +157,9 @@ function DiagramEditor({ diagram: initial, isNew, language, vocabulary, onDone, 
         return []
       }
     })
-    if (entries.length) await db.vocabulary.bulkPut(entries)
-    showToast(entries.length ? `${entries.length} kelime eklendi.` : 'Eklenecek yeni kelime yok (anlamı yazılmış ve listende olmayan etiket gerekir).', undefined, 5000, 'info')
+    const placed = await placeNew(db, language, entries)
+    if (entries.length) await db.vocabulary.bulkPut(placed.entries)
+    showToast(entries.length ? `${entries.length} kelime eklendi${placed.listName ? ` (“${placed.listName}” listesine)` : ''}.` : 'Eklenecek yeni kelime yok (anlamı yazılmış ve listende olmayan etiket gerekir).', undefined, 5000, 'info')
     onChanged()
   }
   const del = async () => {

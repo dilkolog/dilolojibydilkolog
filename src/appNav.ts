@@ -39,7 +39,7 @@ export type Screen =
   | { name: 'home' }
   | { name: 'session'; items: PlanItem[]; seed: number; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; extraStates?: UserWordState[]; extraMistakes?: Mistake[]; firstSitting?: boolean }
   | { name: 'summary'; summary: SessionSummary; mode: ReviewMode; topic?: 'difficult'; gameBefore: GameState | null; extra?: VocabularyEntry[]; firstSitting?: boolean }
-  | { name: 'words' }
+  | { name: 'words'; list?: string }
   | { name: 'dictionary'; query?: string }
   | { name: 'translate' }
   | { name: 'word'; entryId: string }
@@ -76,9 +76,10 @@ export function restoreScreen(): Screen {
     return { name: 'home' }
   }
   try {
-    const saved = JSON.parse(localStorage.getItem(SCREEN_KEY) ?? 'null') as { name?: Screen['name']; entryId?: unknown } | null
+    const saved = JSON.parse(localStorage.getItem(SCREEN_KEY) ?? 'null') as { name?: Screen['name']; entryId?: unknown; list?: unknown } | null
     if (saved?.name && RESTORABLE.has(saved.name)) {
       if (saved.name === 'word') return typeof saved.entryId === 'string' ? { name: 'word', entryId: saved.entryId } : { name: 'words' }
+      if (saved.name === 'words') return typeof saved.list === 'string' ? { name: 'words', list: saved.list } : { name: 'words' }
       return { name: saved.name } as Screen
     }
   } catch {

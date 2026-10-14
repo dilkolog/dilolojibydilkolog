@@ -23,6 +23,10 @@ import { WordGraph } from './WordGraph'
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { WordListsView } from './WordLists'
+import { ListPage } from './ListPage'
+import { UNLISTED, listWords, unlistedWords } from '../engine/lists'
+import { getCollabs } from '../data/share'
+import type { GameId } from './gameList'
 import { placementOptions, parsePlacement } from './listOptions'
 import { withDifficult } from '../engine/difficult'
 import { MenuItem, Popover } from './Popover'
@@ -50,6 +54,11 @@ interface Props {
   lists?: WordListRow[]
   focusListId?: string
   onFocus?: (listId: string | null) => void
+  /** The list whose own page is open (a list id, or UNLISTED for the words in none). */
+  openList?: string
+  onOpenList?: (listId: string | null) => void
+  /** Opens a game (already set to the open list). */
+  onPlay?: (game: GameId) => void
 }
 
 const hostOf = (url: string) => {
@@ -61,18 +70,21 @@ const hostOf = (url: string) => {
 }
 
 const SECTION_KEY = 'kelime-koc:words-section'
+/** The same empty list on every render, so effects that follow the lists don't run again each time. */
+const NO_LISTS: WordListRow[] = []
 
-export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone, lists = [], focusListId, onFocus = () => {} }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone, lists = NO_LISTS, focusListId, onFocus = () => {}, openList, onOpenList = () => {}, onPlay }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
   const [view, setViewState] = useState<'list' | 'lists' | 'garden' | 'graph' | 'concepts'>(() => {
     try {
       const v = localStorage.getItem(WORDS_VIEW_KEY)
-      return v === 'lists' || v === 'garden' || v === 'graph' || v === 'concepts' ? v : 'list'
+      if (v === 'list' || v === 'lists' || v === 'garden' || v === 'graph' || v === 'concepts') return v
     } catch {
-      return 'list'
+      // Not remembered: the lists first, as long as there are some.
     }
+    return lists.length > 0 ? 'lists' : 'list'
   })
   const setView = (v: typeof view) => {
     setViewState(v)
@@ -104,6 +116,17 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
     if (incoming) setSectionState('add')
   }, [incoming])
   const hasSamples = vocabulary.some((v) => v.source === 'sample')
+  // The open list's page: the list, null for the words in no list, undefined when none is open
+  // (or the list is gone: deleted here or on another device).
+  const shownList: WordListRow | null | undefined = openList === UNLISTED ? null : lists.find((l) => l.id === openList)
+  const [collabIds, setCollabIds] = useState<ReadonlySet<string>>(new Set())
+  useEffect(() => {
+    let live = true
+    void getCollabs(db).then((links) => live && setCollabIds(new Set(links.map((l) => l.listId))))
+    return () => {
+      live = false
+    }
+  }, [db, lists])
 
   const loadSamples = async () => {
     // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.
@@ -125,6 +148,47 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
     setSection('add')
     setTimeout(() => document.getElementById('w-word')?.focus(), 60)
   }
+
+  // The word list: all the words, or one list's on its own page.
+  const wordList = (scoped: VocabularyEntry[], scope: string) => (
+    <WordList
+      key={scope}
+      language={language}
+      vocabulary={scoped}
+      stateById={stateById}
+      mistakes={mistakes}
+      onOpen={onOpen}
+      onStudy={onStudy}
+      onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
+      onAdd={goAdd}
+      lists={lists}
+      onSuggestImages={() => setSuggestingImages(true)}
+      pictureTick={pictureTick}
+      onRemoveSamples={hasSamples && scope === 'all' ? removeSamples : undefined}
+      listFilter={scope === 'all'}
+      onMark={async (ids, difficult) => {
+        const set = new Set(ids)
+        await db.vocabulary.bulkPut(vocabulary.filter((v) => set.has(v.id)).map((v) => withDifficult(v, difficult)))
+        onChanged()
+        showToast(difficult ? `${ids.length} kelime zor diye işaretlendi.` : `${ids.length} kelimenin zor işareti kaldırıldı.`)
+      }}
+      onMove={async (ids, placement) => {
+        const { listId, levelId } = parsePlacement(placement)
+        await db.assignList(ids, listId, levelId)
+        onChanged()
+        const name = placementOptions(lists).find((o) => o.value === placement && listId)?.label
+        showToast(name ? `${ids.length} kelime "${name}" listesine eklendi.` : `${ids.length} kelime listeden çıkarıldı.`)
+      }}
+      onNewList={async (ids, name) => {
+        const now = new Date().toISOString()
+        const list: WordListRow = { id: newListId(), language, name, levels: [], createdAt: now, updatedAt: now }
+        await db.saveList(list)
+        await db.assignList(ids, list.id, null)
+        onChanged()
+        showToast(`${ids.length} kelime yeni "${name}" listesine eklendi.`)
+      }}
+    />
+  )
 
   return (
     <div>
@@ -260,17 +324,44 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </section>
       )}
 
-      {section === 'words' && (
+      {section === 'words' && shownList !== undefined && (
+        <>
+          <button type="button" className="link back-link" onClick={() => onOpenList(null)}>
+            <ChevronLeftIcon size={16} className="inline-icon" /> Listeler
+          </button>
+          <ListPage
+            key={openList}
+            db={db}
+            language={language}
+            list={shownList}
+            lists={lists}
+            vocabulary={vocabulary}
+            states={states}
+            focusListId={focusListId}
+            onFocus={onFocus}
+            onListsChanged={onChanged}
+            onOpen={onOpen}
+            onStudy={onStudy}
+            onPlay={onPlay}
+            onAdd={goAdd}
+            onBack={() => onOpenList(null)}
+          >
+            {wordList(shownList ? listWords(shownList, vocabulary) : unlistedWords(vocabulary, lists), openList!)}
+          </ListPage>
+        </>
+      )}
+
+      {section === 'words' && shownList === undefined && (
         <>
           <section className="section stack">
             <FillMissingBar db={db} vocabulary={vocabulary} onChanged={onChanged} />
             <ListHealthCard db={db} vocabulary={vocabulary} states={states} mistakes={mistakes} onChanged={onChanged} onOpen={onOpen} />
         <div className="segmented" role="tablist" aria-label="Görünüm">
-          <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
-            Tümü
-          </button>
           <button role="tab" className="segmented-btn" aria-selected={view === 'lists'} onClick={() => setView('lists')}>
             Listeler
+          </button>
+          <button role="tab" className="segmented-btn" aria-selected={view === 'list'} onClick={() => setView('list')}>
+            Tümü
           </button>
           <button role="tab" className="segmented-btn" aria-selected={view === 'garden'} onClick={() => setView('garden')}>
             Bahçe
@@ -307,41 +398,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
         </div>
           </section>
       {view === 'list' ? (
-        <WordList
-          language={language}
-          vocabulary={vocabulary}
-          stateById={stateById}
-          mistakes={mistakes}
-          onOpen={onOpen}
-          onStudy={onStudy}
-          onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
-          onAdd={goAdd}
-          lists={lists}
-          onSuggestImages={() => setSuggestingImages(true)}
-          pictureTick={pictureTick}
-          onRemoveSamples={hasSamples ? removeSamples : undefined}
-          onMark={async (ids, difficult) => {
-            const set = new Set(ids)
-            await db.vocabulary.bulkPut(vocabulary.filter((v) => set.has(v.id)).map((v) => withDifficult(v, difficult)))
-            onChanged()
-            showToast(difficult ? `${ids.length} kelime zor diye işaretlendi.` : `${ids.length} kelimenin zor işareti kaldırıldı.`)
-          }}
-          onMove={async (ids, placement) => {
-            const { listId, levelId } = parsePlacement(placement)
-            await db.assignList(ids, listId, levelId)
-            onChanged()
-            const name = placementOptions(lists).find((o) => o.value === placement && listId)?.label
-            showToast(name ? `${ids.length} kelime "${name}" listesine eklendi.` : `${ids.length} kelime listeden çıkarıldı.`)
-          }}
-          onNewList={async (ids, name) => {
-            const now = new Date().toISOString()
-            const list: WordListRow = { id: newListId(), language, name, levels: [], createdAt: now, updatedAt: now }
-            await db.saveList(list)
-            await db.assignList(ids, list.id, null)
-            onChanged()
-            showToast(`${ids.length} kelime yeni "${name}" listesine eklendi.`)
-          }}
-        />
+        wordList(vocabulary, 'all')
       ) : view === 'lists' ? (
         <WordListsView
           db={db}
@@ -350,10 +407,9 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           vocabulary={vocabulary}
           states={states}
           focusListId={focusListId}
-          onFocus={onFocus}
           onListsChanged={onChanged}
-          onOpen={onOpen}
-          onStudy={onStudy}
+          onOpenList={onOpenList}
+          collabIds={collabIds}
         />
       ) : view === 'garden' ? (
         <GardenView vocabulary={vocabulary} states={states} onOpen={onOpen} onWater={onStudy} />

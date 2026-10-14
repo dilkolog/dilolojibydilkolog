@@ -155,6 +155,9 @@ export function AppScreens(props: AppScreensProps) {
           lists={data.lists}
           focusListId={planInput?.settings.focusListId}
           onFocus={(listId) => void updateSettings({ ...settings, focusList: { ...settings.focusList, [data.language]: listId ?? undefined } })}
+          openList={screen.list}
+          onOpenList={(list) => setScreen(list ? { name: 'words', list } : { name: 'words' })}
+          onPlay={(game) => setScreen({ name: 'games', game })}
         />
       ) : screen.name === 'word' && byId.has(screen.entryId) ? (
         <WordDetail
@@ -312,12 +315,14 @@ export function AppScreens(props: AppScreensProps) {
           })()}
           pinned={settings.profile.pinned}
           onOpenLists={() => {
+            // The list in focus opens on its own page; without one, the shelf of lists.
+            const list = planInput?.settings.focusListId
             try {
               localStorage.setItem(WORDS_VIEW_KEY, 'lists')
             } catch {
               // The words screen just opens on its last view.
             }
-            setScreen({ name: 'words' })
+            setScreen(list ? { name: 'words', list } : { name: 'words' })
           }}
           onTrySamples={async () => {
             // Dated now, so samples removed earlier and loaded again aren't taken for deleted ones on sync.

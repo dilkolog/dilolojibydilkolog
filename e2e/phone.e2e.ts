@@ -1274,3 +1274,33 @@ test('dictionary on a phone: untracked word is translated via DeepL, meaning edi
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toHaveCount(0)
   expect(await overflow(page)).toEqual([])
 })
+
+test('lists: a new list opens on its own page, takes the words added there, and studies only them', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Kelimeler')
+  await page.getByRole('tab', { name: 'Listeler' }).click()
+  await page.getByLabel('Yeni listenin adı').fill('Seyahat')
+  await page.getByRole('button', { name: 'Oluştur' }).click()
+  // The new list opens, empty, ready for its words.
+  await expect(page.locator('.wl-page-name')).toContainText('Seyahat')
+  await expect(page.locator('.list-page .empty-state')).toContainText('Bu liste boş')
+  expect(await overflow(page), 'empty list page overflow').toEqual([])
+  // A word added from its page goes into it.
+  await page.locator('.list-page .empty-state').getByRole('button', { name: 'Kelime ekle' }).click()
+  await expect(page.locator('#w-list')).toContainText('Seyahat')
+  await page.locator('#w-word').fill('la valise')
+  await page.locator('#w-meaning').fill('bavul')
+  await page.getByRole('button', { name: 'Kelimeyi ekle' }).click()
+  await expect(page.locator('.notice[role="status"]').first()).toContainText('eklendi', { timeout: 8_000 })
+  await page.getByRole('button', { name: /^Kelimelerim/ }).click()
+  await expect(page.locator('.list-page')).toContainText('valise')
+  await expect(page.locator('.list-page .wl-card')).toContainText('1 kelime')
+  expect(await overflow(page), 'list page overflow').toEqual([])
+  expect(await contrastProblems(page), 'list page contrast').toEqual([])
+  // Cards for this list: the round opens set to it.
+  await page.locator('.wl-games').getByRole('button', { name: 'Kartlar' }).click()
+  await expect(page.locator('.study-lists').getByRole('button', { name: /Seyahat/ })).toHaveAttribute('aria-pressed', 'true')
+  // Back on the words screen, the shelf shows the list.
+  await openScreen(page, 'Kelimeler')
+  await expect(page.locator('.wl-tile', { hasText: 'Seyahat' })).toContainText('1 kelime')
+})
