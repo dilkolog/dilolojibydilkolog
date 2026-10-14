@@ -291,7 +291,7 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
         )}
         {words.length > 0 ? (
           <>
-            <div className="row wl-study">
+            <div className="wl-study">
               <button type="button" className="btn btn-lg" onClick={() => onStudy(words)}>
                 {list ? 'Listeyi çalış' : 'Bunları çalış'}
               </button>
@@ -301,20 +301,11 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
               <div className="wl-games" role="group" aria-label="Bu listeyle oyna">
                 {LIST_GAMES.map((g) => (
                   <button key={g.id} type="button" className="btn btn-quiet btn-sm wl-game" onClick={() => play(g)}>
-                    <GameIcon id={g.id} emoji={emojiOf(g.id)} size={20} />
+                    <GameIcon id={g.id} emoji={emojiOf(g.id)} size={30} />
                     {g.label}
                   </button>
                 ))}
               </div>
-            )}
-            {list && (
-              <AskMonki
-                label="Monki'yle bu kelimelerle konuş"
-                ask={() => {
-                  const targets = talkWords(words, stateById)
-                  return { text: `Şu kelimeleri kullanacağım kısa bir sohbet yapalım: ${targets.join(', ')}. Sen başlat.`, mode: 'words', targets, send: true }
-                }}
-              />
             )}
             {lastTest && (
               <p className="small muted wl-last-test">
@@ -339,11 +330,22 @@ export function ListPage({ db, language, list, lists, vocabulary, states, focusL
           )
         )}
         {list && (
-          <div className="wl-focus-row">
-            <button type="button" className="chip" aria-pressed={focused} onClick={() => onFocus(focused ? null : list.id)} disabled={!focused && words.length === 0}>
-              <TargetIcon size={16} className="inline-icon" />
-              {focused ? 'Odakta' : 'Odaklan'}
-            </button>
+          <div className="wl-extra">
+            <div className="wl-extra-row">
+              {words.length > 0 && (
+                <AskMonki
+                  label="Monki'yle konuş"
+                  ask={() => {
+                    const targets = talkWords(words, stateById)
+                    return { text: `Şu kelimeleri kullanacağım kısa bir sohbet yapalım: ${targets.join(', ')}. Sen başlat.`, mode: 'words', targets, send: true }
+                  }}
+                />
+              )}
+              <button type="button" className="btn btn-sm btn-quiet wl-focus-btn" aria-pressed={focused} onClick={() => onFocus(focused ? null : list.id)} disabled={!focused && words.length === 0}>
+                <TargetIcon size={16} className="inline-icon" />
+                {focused ? 'Odakta' : 'Odaklan'}
+              </button>
+            </div>
             <span className="small muted">
               {focused
                 ? at
