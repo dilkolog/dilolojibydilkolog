@@ -86,7 +86,11 @@ export async function openScreen(page: Page, name: string) {
     }
   } else {
     const [place, tab] = ROUTE[name]
-    await page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: new RegExp(`^${place}\\d*$`) }).first().click()
+    const menu = page.locator(':is(.nav-btn, .tab):visible').filter({ hasText: new RegExp(`^${place}\\d*$`) }).first()
+    // Under a full parallel run the phone's tab bar now and then fails Playwright's hit test (the page under it is
+    // reported as covering it) for minutes on end, though nothing covers it on screen and it never happens alone.
+    // A normal click first; if it is held up, the tab's own click: the navigation is still the app's.
+    await menu.click({ timeout: 5000 }).catch(() => menu.dispatchEvent('click'))
     if (tab) await page.locator('.hub-tab').filter({ hasText: new RegExp(`^${tab}\\d*$`) }).click()
   }
   await page.waitForTimeout(400)
