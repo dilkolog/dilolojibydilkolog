@@ -15,6 +15,18 @@ import book from '../assets/art/game-book.webp'
 import cards from '../assets/art/game-cards.webp'
 import chat from '../assets/art/game-chat.webp'
 import headphones from '../assets/art/game-headphones.webp'
+import gSwipe from '../assets/art/game-swipe.webp'
+import gTruefalse from '../assets/art/game-truefalse.webp'
+import gStrip from '../assets/art/game-strip.webp'
+import gMonster from '../assets/art/game-monster.webp'
+import gMusic from '../assets/art/game-music.webp'
+import gEar from '../assets/art/game-ear.webp'
+import gWaves from '../assets/art/game-waves.webp'
+import gBolt from '../assets/art/game-bolt.webp'
+import gShoe from '../assets/art/game-shoe.webp'
+import gTags from '../assets/art/game-tags.webp'
+import gGear from '../assets/art/game-gear.webp'
+import gGifts from '../assets/art/game-gifts.webp'
 
 /** The drawn sign of the games that have one; the others keep their emoji glyph. */
 export const GAME_ART: Partial<Record<GameId, string>> = {
@@ -34,4 +46,16 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   test: target,
   accent: tiles,
   notes: book,
+  swipe: gSwipe,
+  truefalse: gTruefalse,
+  sentences: gStrip,
+  boss: gMonster,
+  audio: gMusic,
+  ear: gEar,
+  pairs: gWaves,
+  blitz: gBolt,
+  fluency: gShoe,
+  article: gTags,
+  conjugation: gGear,
+  gender: gGifts,
 }
