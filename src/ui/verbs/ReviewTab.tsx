@@ -8,6 +8,7 @@ import { Diagnosis } from './Diagnosis'
 import { judge } from './labShared'
 import { tenseName, verbEntry, type LabLanguage } from './labShared'
 import { REVIEW_SIZE, type Asked, personFor } from './reviewSelection'
+import { Sticker } from '../Sticker'
 export type { Asked } from './reviewSelection'
 
 /**
@@ -21,6 +22,7 @@ export function ReviewTab({ language, lab, onCheck, onOpen }: { language: LabLan
   if (!queue.length)
     return (
       <div className="stack lab-review-empty center">
+        <Sticker name="sleep" size={96} className="sticker-lead" />
         <h2>Bugün tekrar yok</h2>
         <p className="muted">Çalıştığın ya da “Tekrar listeme ekle” dediğin fiil çekimleri, unutmak üzereyken buraya gelir.</p>
       </div>

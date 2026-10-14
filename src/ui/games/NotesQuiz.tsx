@@ -6,6 +6,7 @@ import { useAi } from '../aiContext'
 import { SparkleIcon } from '../icons'
 import { sfx } from '../sounds'
 import { GameResult } from './GameResult'
+import { Sticker } from '../Sticker'
 
 const COUNTS = [5, 10, 15] as const
 
@@ -102,6 +103,7 @@ export function NotesQuiz({ language, onExit }: { language: TargetLanguage; onEx
         <button className="btn btn-lg" disabled={!apiKey || busy || notes.trim().length < 40} onClick={make}>
           <SparkleIcon size={18} /> {busy ? 'Sorular hazırlanıyor…' : 'Sınavı hazırla'}
         </button>
+        {busy && <Sticker name="think" size={48} className="sticker-wait" />}
       </div>
     )
   }

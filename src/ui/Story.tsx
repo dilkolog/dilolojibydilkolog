@@ -18,6 +18,7 @@ import { EmptyState } from './EmptyState'
 import { GrammarCheck } from './GrammarCheck'
 import { ReaderControls } from './readerPrefs'
 import { readerStyle, useReaderPrefs } from './readerSettings'
+import { Sticker } from './Sticker'
 
 const GENRES = ['Bilim kurgu', 'Polisiye', 'Tarih', 'Macera', 'Romantik', 'Komedi', 'Fantastik', 'Gündelik hayat', 'İş dünyası', 'Seyahat', 'Gerilim', 'Spor']
 const WRITING = ['Kalem açılıyor…', 'Karakterler toplanıyor…', 'Olay örgüsü kuruluyor…', 'Son cümle cilalanıyor…']
@@ -189,6 +190,7 @@ export function StoryScreen(p: Props) {
               <SparkleIcon size={20} />
               {writing ? WRITING[tick % WRITING.length] : latest ? `${latest.number + 1}. bölümü yaz` : 'İlk bölümü yaz'}
             </button>
+            {writing && <Sticker name="think" size={48} className="sticker-wait" />}
           </div>
         )
       )}

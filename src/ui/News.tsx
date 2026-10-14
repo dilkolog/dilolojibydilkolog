@@ -4,6 +4,7 @@ import { FEEDS, type Article } from '../engine/news'
 import { analyzeText, coverageLine, topicKeys, topicOverlap } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { SourceTitle } from './SourceTitle'
+import { Sticker } from './Sticker'
 
 
 /**
@@ -76,7 +77,12 @@ export function NewsPicker({
           {busy ? 'Yükleniyor…' : articles ? 'Yenile' : 'Haberleri getir'}
         </button>
       </div>
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error sticker-note">
+          <Sticker name="cry" size={32} />
+          <span>{error}</span>
+        </p>
+      )}
       {articles && ranked.length === 0 && !busy && <p className="small muted">Bu kaynaktan okunabilir metin alınamadı; başka bir kaynak dene.</p>}
       {ranked.length > 0 && (
         <ul className="library">

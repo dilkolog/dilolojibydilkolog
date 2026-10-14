@@ -31,7 +31,8 @@ import { Medal } from './Medal'
 import { medalTier } from '../engine/gamification'
 import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
-import { QUEST_ART, STICKER, TIME_SCENE } from './drawnArt'
+import { QUEST_ART, TIME_SCENE } from './drawnArt'
+import { Sticker } from './Sticker'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -339,11 +340,11 @@ export function Home({
           <li>
             {answeredToday > 0 ? (
               <>
-                <img className="today-sticker" src={STICKER.party} alt="" width={26} height={26} /> Bugünkü görev tamam
+                <Sticker name="party" className="today-sticker" /> Bugünkü görev tamam
               </>
             ) : (
               <>
-                <CheckCircleIcon size={16} /> Bugün tekrar yok
+                <Sticker name="sleep" className="today-sticker" /> Bugün tekrar yok
               </>
             )}
           </li>

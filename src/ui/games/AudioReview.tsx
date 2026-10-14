@@ -7,7 +7,8 @@ import { isDifficult, withDifficult } from '../../engine/difficult'
 import { DifficultButton } from '../DifficultButton'
 import { playWordAsync, preloadRecording, speakAsync, speakTurkishAsync, speechPrefs, stopSpeaking } from '../speech'
 import type { Props } from './shared'
-import { ChevronLeftIcon, ChevronRightIcon, HeadphonesIcon, PauseIcon, PlayIcon } from '../icons'
+import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from '../icons'
+import { Sticker } from '../Sticker'
 
 const AUDIO_SETS: [AudioSet, string][] = [
   ['weak', 'Zayıf kelimeler'],
@@ -202,9 +203,7 @@ export function AudioReview({ language, vocabulary, states, onExit }: Props & { 
       ) : done ? (
         <div className="game-result">
           <div className="game-result-card">
-            <span className="game-result-badge" aria-hidden>
-              <HeadphonesIcon size={32} />
-            </span>
+            <Sticker name="music" size={88} className="sticker-lead" />
             <h2 className="game-result-title">Bitti</h2>
             <p className="game-result-headline">{words.length} kelime dinledin</p>
             <p className="muted game-result-note">Sesli tekrar takvimi etkilemez; asıl tekrarlar günlük görevde.</p>
