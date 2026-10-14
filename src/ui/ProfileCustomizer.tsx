@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import type { Profile } from '../data/db'
-import { medalTier } from '../engine/gamification'
 import {
   availableTitles,
   BANNERS,
@@ -18,7 +17,7 @@ import {
 } from '../engine/profileStyle'
 import type { GameState } from './game'
 import { LockIcon } from './icons'
-import { Medal } from './Medal'
+import { BadgeMedal } from './Medal'
 
 /**
  * Everything about how the profile looks and says: banner, avatar frame, title, the badges on the
@@ -82,7 +81,7 @@ export function ProfileCustomizer({ profile, game, unlockables, save }: { profil
               const full = !on && pinned.length >= PIN_LIMIT
               return (
                 <button key={a.id} type="button" className={`pin-tile${on ? ' is-on' : ''}`} aria-pressed={on} disabled={full} title={full ? `En çok ${PIN_LIMIT} rozet` : a.title} onClick={() => save({ pinned: toggleLimited(pinned, a.id, PIN_LIMIT) })}>
-                  <Medal icon={a.icon} tier={medalTier(a)} unlocked size={40} />
+                  <BadgeMedal badge={a} unlocked size={40} />
                   <span className="small">{a.title}</span>
                 </button>
               )

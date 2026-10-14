@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import { medalTier, type AchievementState } from '../engine/gamification'
 import { Burst } from './Burst'
 import { shareCard } from './shareCard'
-import { Medal } from './Medal'
+import { BadgeMedal } from './Medal'
 import { byTier, TIER_NAME } from './badgeTier'
-import { drawnMedal } from './drawnArt'
 
 /**
  * A new badge, full screen, once: the medal is struck (it springs in, a ring leaves it in its
@@ -45,7 +44,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
           <ul className="badge-moment-group">
             {ordered.map((b) => (
               <li key={b.id} className={`badge-moment-art tier-${medalTier(b)}`}>
-                <Medal icon={b.icon} tier={medalTier(b)} unlocked size={72} />
+                <BadgeMedal badge={b} unlocked size={72} />
                 <strong>{b.title}</strong>
                 <span className="small muted">{b.description}</span>
               </li>
@@ -73,7 +72,7 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
         <div className={`milestone-art badge-moment-art tier-${tier}`} key={a.id}>
           <Burst />
           <span className="badge-moment-ring" aria-hidden />
-          {drawnMedal(a.stat) ? <img className="drawn-medal" src={drawnMedal(a.stat)} alt="" width={104} height={104} draggable={false} /> : <Medal icon={a.icon} tier={tier} unlocked size={104} />}
+          <BadgeMedal badge={a} unlocked size={104} />
         </div>
         <span className={`badge-tier tier-${tier}`}>{TIER_NAME[tier]} rozet</span>
         <h2 id="badge-moment-title" className="milestone-title">

@@ -27,8 +27,7 @@ import { Ring } from './Ring'
 
 import { useGame, type GameState } from './game'
 
-import { Medal } from './Medal'
-import { medalTier } from '../engine/gamification'
+import { BadgeMedal } from './Medal'
 import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
 import { QUEST_ART, TIME_SCENE } from './drawnArt'
@@ -400,7 +399,7 @@ export function Home({
             {showcase.map((a) => (
               <li key={a.id}>
                 <button type="button" className="showcase-badge" onClick={onProfile} aria-label={`${a.title}: profilde gör`} title={a.title}>
-                  <Medal icon={a.icon} tier={medalTier(a)} unlocked size={38} />
+                  <BadgeMedal badge={a} unlocked size={38} />
                 </button>
               </li>
             ))}

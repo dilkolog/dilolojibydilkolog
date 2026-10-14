@@ -1,5 +1,6 @@
 import { useId } from 'react'
-import type { MedalTier } from '../engine/gamification'
+import { medalTier, type Achievement, type MedalTier } from '../engine/gamification'
+import { drawnMedal } from './drawnArt'
 import { renderGlyph } from './glyphIcon'
 
 const TIER: Record<MedalTier, { rim: [string, string]; face: [string, string]; ribbon: [string, string] }> = {
@@ -70,5 +71,27 @@ export function Medal({ icon, tier, unlocked, progress = 0, size = 64 }: { icon:
         />
       )}
     </svg>
+  )
+}
+
+/**
+ * A badge's own drawn medal (each badge has one, by what it counts), or the metal medal for one
+ * without. Locked, it is faded with the same arc of progress around it; the tier shows in the
+ * stars beside it, not in the picture.
+ */
+export function BadgeMedal({ badge, unlocked, progress = 0, size = 64 }: { badge: Pick<Achievement, 'icon' | 'stat' | 'id'>; unlocked: boolean; progress?: number; size?: number }) {
+  const art = drawnMedal(badge.stat)
+  if (!art) return <Medal icon={badge.icon} tier={medalTier(badge)} unlocked={unlocked} progress={progress} size={size} />
+  const r = 47
+  const arc = 2 * Math.PI * r
+  return (
+    <span className={`medal drawn-badge${unlocked ? ' is-unlocked' : ''}`} style={{ width: size, height: size }} aria-hidden>
+      <img className="drawn-medal" src={art} alt="" width={size} height={size} draggable={false} />
+      {!unlocked && progress > 0 && (
+        <svg viewBox="0 0 100 100" className="drawn-badge-ring">
+          <circle cx="50" cy="50" r={r} fill="none" stroke="var(--lang)" strokeWidth="4" strokeLinecap="round" strokeDasharray={`${arc * Math.min(1, progress)} ${arc}`} transform="rotate(-90 50 50)" />
+        </svg>
+      )}
+    </span>
   )
 }
