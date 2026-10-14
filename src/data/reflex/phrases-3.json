@@ -1,0 +1,322 @@
+[
+ {
+  "id": "cok-mutluyum",
+  "group": "duygu",
+  "tr": "Bugün çok mutluyum",
+  "fr": "Je suis très heureux aujourd'hui",
+  "es": "Hoy estoy muy feliz",
+  "en": "I'm really happy today"
+ },
+ {
+  "id": "endiseliyim",
+  "group": "duygu",
+  "tr": "Biraz endişeliyim",
+  "fr": "Je suis un peu inquiet",
+  "es": "Estoy un poco preocupado",
+  "en": "I'm a bit worried"
+ },
+ {
+  "id": "sikildim",
+  "group": "duygu",
+  "tr": "Çok sıkıldım",
+  "fr": "Je m'ennuie beaucoup",
+  "es": "Estoy muy aburrido",
+  "en": "I'm so bored"
+ },
+ {
+  "id": "heyecanliyim",
+  "group": "duygu",
+  "tr": "Çok heyecanlıyım!",
+  "fr": "Je suis tout excité !",
+  "es": "¡Estoy muy emocionado!",
+  "en": "I'm so excited!"
+ },
+ {
+  "id": "canim-sikkin",
+  "group": "duygu",
+  "tr": "Canım biraz sıkkın",
+  "fr": "J'ai un peu le moral à zéro",
+  "es": "Estoy un poco de bajón",
+  "en": "I'm feeling a bit down"
+ },
+ {
+  "id": "rahatladim",
+  "group": "duygu",
+  "tr": "Çok rahatladım",
+  "fr": "Quel soulagement",
+  "es": "¡Qué alivio!",
+  "en": "What a relief"
+ },
+ {
+  "id": "rezervasyon-var",
+  "group": "otel",
+  "tr": "Adıma bir rezervasyon var",
+  "fr": "J'ai une réservation à mon nom",
+  "es": "Tengo una reserva a mi nombre",
+  "en": "I have a booking under my name"
+ },
+ {
+  "id": "kahvalti-saat",
+  "group": "otel",
+  "tr": "Kahvaltı saat kaçta?",
+  "fr": "Le petit-déjeuner est à quelle heure ?",
+  "es": "¿A qué hora es el desayuno?",
+  "en": "What time is breakfast?"
+ },
+ {
+  "id": "oda-sicak",
+  "group": "otel",
+  "tr": "Oda çok sıcak",
+  "fr": "La chambre est trop chaude",
+  "es": "La habitación hace demasiado calor",
+  "en": "The room is too hot"
+ },
+ {
+  "id": "cikis-saat",
+  "group": "otel",
+  "tr": "Odadan saat kaçta çıkmalıyım?",
+  "fr": "À quelle heure dois-je libérer la chambre ?",
+  "es": "¿A qué hora tengo que dejar la habitación?",
+  "en": "What time is checkout?"
+ },
+ {
+  "id": "bavul-birak",
+  "group": "otel",
+  "tr": "Bavulumu burada bırakabilir miyim?",
+  "fr": "Je peux laisser ma valise ici ?",
+  "es": "¿Puedo dejar mi maleta aquí?",
+  "en": "Can I leave my suitcase here?"
+ },
+ {
+  "id": "bir-soru",
+  "group": "ders",
+  "tr": "Bir sorum var",
+  "fr": "J'ai une question",
+  "es": "Tengo una pregunta",
+  "en": "I have a question"
+ },
+ {
+  "id": "nasil-yazilir",
+  "group": "ders",
+  "tr": "Bu nasıl yazılır?",
+  "fr": "Ça s'écrit comment ?",
+  "es": "¿Cómo se escribe?",
+  "en": "How do you spell that?"
+ },
+ {
+  "id": "nasil-telaffuz",
+  "group": "ders",
+  "tr": "Bu nasıl telaffuz edilir?",
+  "fr": "Ça se prononce comment ?",
+  "es": "¿Cómo se pronuncia?",
+  "en": "How do you pronounce that?"
+ },
+ {
+  "id": "tahtaya-yaz",
+  "group": "ders",
+  "tr": "Tahtaya yazabilir misiniz?",
+  "fr": "Vous pouvez l'écrire au tableau ?",
+  "es": "¿Puede escribirlo en la pizarra?",
+  "en": "Could you write it on the board?"
+ },
+ {
+  "id": "odev-ne",
+  "group": "ders",
+  "tr": "Ödev ne?",
+  "fr": "Qu'est-ce qu'il y a comme devoirs ?",
+  "es": "¿Qué hay de deberes?",
+  "en": "What's the homework?"
+ },
+ {
+  "id": "kelimeyi-unuttum",
+  "group": "ders",
+  "tr": "Kelimeyi unuttum",
+  "fr": "J'ai oublié le mot",
+  "es": "Se me ha olvidado la palabra",
+  "en": "I've forgotten the word"
+ },
+ {
+  "id": "nerelisin",
+  "group": "sohbet",
+  "tr": "Aslen nerelisin?",
+  "fr": "Tu viens d'où, à l'origine ?",
+  "es": "¿De dónde eres?",
+  "en": "Where are you from?"
+ },
+ {
+  "id": "ne-is",
+  "group": "sohbet",
+  "tr": "Ne iş yapıyorsun?",
+  "fr": "Tu fais quoi dans la vie ?",
+  "es": "¿A qué te dedicas?",
+  "en": "What do you do for a living?"
+ },
+ {
+  "id": "bos-zaman",
+  "group": "sohbet",
+  "tr": "Boş zamanında ne yaparsın?",
+  "fr": "Tu fais quoi pendant ton temps libre ?",
+  "es": "¿Qué haces en tu tiempo libre?",
+  "en": "What do you do in your free time?"
+ },
+ {
+  "id": "ne-zamandir",
+  "group": "sohbet",
+  "tr": "Ne zamandır burada yaşıyorsun?",
+  "fr": "Tu habites ici depuis quand ?",
+  "es": "¿Desde cuándo vives aquí?",
+  "en": "How long have you lived here?"
+ },
+ {
+  "id": "turkiyeden",
+  "group": "sohbet",
+  "tr": "Türkiye'denim",
+  "fr": "Je viens de Turquie",
+  "es": "Soy de Turquía",
+  "en": "I'm from Turkey"
+ },
+ {
+  "id": "dil-ogreniyorum",
+  "group": "sohbet",
+  "tr": "Bu dili öğreniyorum",
+  "fr": "J'apprends cette langue",
+  "es": "Estoy aprendiendo este idioma",
+  "en": "I'm learning this language"
+ },
+ {
+  "id": "bu-aksam",
+  "group": "plan",
+  "tr": "Bu akşam boş musun?",
+  "fr": "Tu es libre ce soir ?",
+  "es": "¿Estás libre esta noche?",
+  "en": "Are you free tonight?"
+ },
+ {
+  "id": "bir-sey-icelim",
+  "group": "plan",
+  "tr": "Bir şeyler içelim mi?",
+  "fr": "On va boire un verre ?",
+  "es": "¿Tomamos algo?",
+  "en": "Shall we grab a drink?"
+ },
+ {
+  "id": "sonraya-erteleyelim",
+  "group": "plan",
+  "tr": "Bunu sonraya erteleyelim",
+  "fr": "Remettons ça à plus tard",
+  "es": "Dejémoslo para más tarde",
+  "en": "Let's put it off till later"
+ },
+ {
+  "id": "haber-ver",
+  "group": "plan",
+  "tr": "Bana haber ver",
+  "fr": "Tiens-moi au courant",
+  "es": "Avísame",
+  "en": "Keep me posted"
+ },
+ {
+  "id": "gelemiyorum",
+  "group": "plan",
+  "tr": "Maalesef gelemiyorum",
+  "fr": "Malheureusement, je ne peux pas venir",
+  "es": "Lo siento, no puedo ir",
+  "en": "Sorry, I can't make it"
+ },
+ {
+  "id": "masa-iki",
+  "group": "restoran",
+  "tr": "İki kişilik masa lütfen",
+  "fr": "Une table pour deux, s'il vous plaît",
+  "es": "Una mesa para dos, por favor",
+  "en": "A table for two, please"
+ },
+ {
+  "id": "ne-onerirsiniz",
+  "group": "restoran",
+  "tr": "Ne önerirsiniz?",
+  "fr": "Qu'est-ce que vous me conseillez ?",
+  "es": "¿Qué me recomienda?",
+  "en": "What do you recommend?"
+ },
+ {
+  "id": "az-pismis",
+  "group": "restoran",
+  "tr": "Az pişmiş olsun",
+  "fr": "Saignant, s'il vous plaît",
+  "es": "Poco hecho, por favor",
+  "en": "Rare, please"
+ },
+ {
+  "id": "cok-lezzetli",
+  "group": "restoran",
+  "tr": "Bu çok lezzetliydi",
+  "fr": "C'était délicieux",
+  "es": "Estaba buenísimo",
+  "en": "That was delicious"
+ },
+ {
+  "id": "hesabi-bolelim",
+  "group": "restoran",
+  "tr": "Hesabı bölelim mi?",
+  "fr": "On partage l'addition ?",
+  "es": "¿Pagamos a medias?",
+  "en": "Shall we split the bill?"
+ },
+ {
+  "id": "yardim-edin",
+  "group": "acil",
+  "tr": "Yardım edin!",
+  "fr": "Au secours !",
+  "es": "¡Socorro!",
+  "en": "Help!"
+ },
+ {
+  "id": "polis-cagirin",
+  "group": "acil",
+  "tr": "Polisi çağırın!",
+  "fr": "Appelez la police !",
+  "es": "¡Llamen a la policía!",
+  "en": "Call the police!"
+ },
+ {
+  "id": "cantam-calindi",
+  "group": "acil",
+  "tr": "Çantam çalındı",
+  "fr": "On m'a volé mon sac",
+  "es": "Me han robado el bolso",
+  "en": "My bag has been stolen"
+ },
+ {
+  "id": "pasaport-kaybettim",
+  "group": "acil",
+  "tr": "Pasaportumu kaybettim",
+  "fr": "J'ai perdu mon passeport",
+  "es": "He perdido el pasaporte",
+  "en": "I've lost my passport"
+ },
+ {
+  "id": "ne-guzel",
+  "group": "tepki",
+  "tr": "Ne güzel bir haber!",
+  "fr": "Quelle bonne nouvelle !",
+  "es": "¡Qué buena noticia!",
+  "en": "What great news!"
+ },
+ {
+  "id": "olamaz",
+  "group": "tepki",
+  "tr": "Olamaz!",
+  "fr": "C'est pas vrai !",
+  "es": "¡No puede ser!",
+  "en": "No way!"
+ },
+ {
+  "id": "merak-etme",
+  "group": "tepki",
+  "tr": "Merak etme, hallederim",
+  "fr": "T'inquiète, je m'en occupe",
+  "es": "Tranquilo, yo me encargo",
+  "en": "Don't worry, I'll handle it"
+ }
+]

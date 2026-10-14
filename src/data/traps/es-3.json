@@ -1,0 +1,167 @@
+[
+ {
+  "id": "es-casualidad",
+  "language": "es",
+  "lemma": "casualidad",
+  "looks": "casual",
+  "trap": "gündelik",
+  "meaning": "tesadüf",
+  "text": "Nos encontramos por casualidad en el tren.",
+  "tr": "Trende tesadüfen karşılaştık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-tormenta",
+  "language": "es",
+  "lemma": "tormenta",
+  "looks": "torment",
+  "trap": "eziyet",
+  "meaning": "fırtına",
+  "text": "Anoche hubo una tormenta muy fuerte.",
+  "tr": "Dün gece çok şiddetli bir fırtına vardı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-atender",
+  "language": "es",
+  "lemma": "atender",
+  "looks": "attend",
+  "trap": "katılmak",
+  "meaning": "ilgilenmek, hizmet etmek",
+  "text": "La dependienta atiende a los clientes con paciencia.",
+  "tr": "Satıcı müşterilerle sabırla ilgileniyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-advertir",
+  "language": "es",
+  "lemma": "advertir",
+  "looks": "advertise",
+  "trap": "reklam yapmak",
+  "meaning": "uyarmak",
+  "text": "Te advierto que el examen es difícil.",
+  "tr": "Seni uyarıyorum, sınav zor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-billon",
+  "language": "es",
+  "lemma": "billón",
+  "looks": "billion",
+  "trap": "milyar",
+  "meaning": "trilyon",
+  "text": "La deuda supera el billón de euros.",
+  "tr": "Borç bir trilyon avroyu aşıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colegio",
+  "language": "es",
+  "lemma": "colegio",
+  "looks": "kolej",
+  "trap": "üniversite",
+  "meaning": "okul",
+  "text": "Mis hijos van al colegio en autobús.",
+  "tr": "Çocuklarım okula otobüsle gidiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-lujuria",
+  "language": "es",
+  "lemma": "lujuria",
+  "looks": "luxury",
+  "trap": "lüks",
+  "meaning": "şehvet",
+  "text": "La lujuria es uno de los siete pecados capitales.",
+  "tr": "Şehvet yedi büyük günahtan biridir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-once",
+  "language": "es",
+  "lemma": "once",
+  "looks": "once",
+  "trap": "bir kez",
+  "meaning": "on bir",
+  "text": "El partido empieza a las once.",
+  "tr": "Maç saat on birde başlıyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-bizarro",
+  "language": "es",
+  "lemma": "bizarro",
+  "looks": "bizarre",
+  "trap": "tuhaf",
+  "meaning": "cesur, yiğit",
+  "text": "Era un soldado bizarro y leal.",
+  "tr": "Cesur ve sadık bir askerdi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-preservativo",
+  "language": "es",
+  "lemma": "preservativo",
+  "looks": "preservative",
+  "trap": "koruyucu katkı",
+  "meaning": "prezervatif",
+  "text": "Venden preservativos en la farmacia.",
+  "tr": "Eczanede prezervatif satıyorlar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-sano",
+  "language": "es",
+  "lemma": "sano",
+  "looks": "sane",
+  "trap": "aklı başında",
+  "meaning": "sağlıklı",
+  "text": "Come fruta y verdura para estar sano.",
+  "tr": "Sağlıklı olmak için meyve ve sebze ye.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-dormitorio",
+  "language": "es",
+  "lemma": "dormitorio",
+  "looks": "dormitory",
+  "trap": "yurt, yatakhane",
+  "meaning": "yatak odası",
+  "text": "El piso tiene dos dormitorios.",
+  "tr": "Dairenin iki yatak odası var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-mascota",
+  "language": "es",
+  "lemma": "mascota",
+  "looks": "maskot",
+  "trap": "maskot",
+  "meaning": "evcil hayvan",
+  "text": "¿Tienes alguna mascota en casa?",
+  "tr": "Evde evcil hayvanın var mı?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-nombre",
+  "language": "es",
+  "lemma": "nombre",
+  "looks": "number",
+  "trap": "numara",
+  "meaning": "ad, isim",
+  "text": "¿Cuál es tu nombre?",
+  "tr": "Adın ne?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-plato",
+  "language": "es",
+  "lemma": "plato",
+  "looks": "plato",
+  "trap": "film platosu, yayla",
+  "meaning": "tabak; yemek",
+  "text": "Este plato está riquísimo.",
+  "tr": "Bu yemek çok lezzetli.",
+  "source": "Diloloji (özgün)"
+ }
+]

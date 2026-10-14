@@ -1,0 +1,286 @@
+[
+ {
+  "id": "es-colloc3-01",
+  "language": "es",
+  "lemmas": [
+   "compra"
+  ],
+  "pattern": "hacer la compra",
+  "example": "Hago la compra los sábados por la mañana.",
+  "tr": "Alışverişi cumartesi sabahları yaparım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-02",
+  "language": "es",
+  "lemmas": [
+   "cama"
+  ],
+  "pattern": "hacer la cama",
+  "example": "Haz la cama antes de salir.",
+  "tr": "Çıkmadan önce yatağını topla.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-03",
+  "language": "es",
+  "lemmas": [
+   "promesa",
+   "cumplir"
+  ],
+  "pattern": "cumplir una promesa",
+  "example": "Cumplió su promesa y vino a verme.",
+  "tr": "Sözünü tuttu ve beni görmeye geldi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-04",
+  "language": "es",
+  "lemmas": [
+   "error",
+   "cometer"
+  ],
+  "pattern": "cometer un error",
+  "example": "Todos podemos cometer un error.",
+  "tr": "Hepimiz hata yapabiliriz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-05",
+  "language": "es",
+  "lemmas": [
+   "esfuerzo"
+  ],
+  "pattern": "hacer un esfuerzo",
+  "example": "Haz un esfuerzo, ya casi llegamos.",
+  "tr": "Bir çaba göster, neredeyse vardık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-06",
+  "language": "es",
+  "lemmas": [
+   "foto",
+   "sacar"
+  ],
+  "pattern": "sacar una foto",
+  "example": "¿Nos sacas una foto?",
+  "tr": "Bize bir fotoğraf çeker misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-07",
+  "language": "es",
+  "lemmas": [
+   "sueño"
+  ],
+  "pattern": "tener sueño",
+  "example": "Después de comer siempre tengo sueño.",
+  "tr": "Yemekten sonra hep uykum gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-08",
+  "language": "es",
+  "lemmas": [
+   "hambre"
+  ],
+  "pattern": "tener hambre",
+  "example": "¿Comemos? Tengo mucha hambre.",
+  "tr": "Yiyelim mi? Çok acıktım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-09",
+  "language": "es",
+  "lemmas": [
+   "razón"
+  ],
+  "pattern": "tener razón",
+  "example": "Tienes razón, me equivoqué.",
+  "tr": "Haklısın, yanıldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-10",
+  "language": "es",
+  "lemmas": [
+   "prisa"
+  ],
+  "pattern": "tener prisa",
+  "example": "Lo siento, tengo prisa.",
+  "tr": "Üzgünüm, acelem var.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-11",
+  "language": "es",
+  "lemmas": [
+   "burlar",
+   "burlarse"
+  ],
+  "pattern": "burlarse de",
+  "example": "No te burles de tu hermano.",
+  "tr": "Kardeşinle alay etme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-12",
+  "language": "es",
+  "lemmas": [
+   "fiar",
+   "fiarse"
+  ],
+  "pattern": "fiarse de",
+  "example": "No me fío de esas ofertas.",
+  "tr": "O tekliflere güvenmiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-13",
+  "language": "es",
+  "lemmas": [
+   "encargar",
+   "encargarse"
+  ],
+  "pattern": "encargarse de",
+  "example": "Yo me encargo de las bebidas.",
+  "tr": "İçecekleri ben üstleniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-14",
+  "language": "es",
+  "lemmas": [
+   "olvidar",
+   "olvidarse"
+  ],
+  "pattern": "olvidarse de",
+  "example": "Me olvidé de llamarte.",
+  "tr": "Seni aramayı unuttum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-15",
+  "language": "es",
+  "lemmas": [
+   "despedir",
+   "despedirse"
+  ],
+  "pattern": "despedirse de",
+  "example": "Se despidió de todos antes de irse.",
+  "tr": "Gitmeden önce herkesle vedalaştı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-16",
+  "language": "es",
+  "lemmas": [
+   "impedir"
+  ],
+  "pattern": "impedir + infinitivo",
+  "example": "El ruido me impide dormir.",
+  "tr": "Gürültü uyumamı engelliyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-17",
+  "language": "es",
+  "lemmas": [
+   "permitir"
+  ],
+  "pattern": "permitir + infinitivo",
+  "example": "Este trabajo me permite viajar.",
+  "tr": "Bu iş seyahat etmeme imkân veriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-18",
+  "language": "es",
+  "lemmas": [
+   "aconsejar"
+  ],
+  "pattern": "aconsejar que + subjuntivo",
+  "example": "El médico me aconseja que descanse.",
+  "tr": "Doktor dinlenmemi tavsiye ediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-19",
+  "language": "es",
+  "lemmas": [
+   "volver"
+  ],
+  "pattern": "volver a + infinitivo",
+  "example": "Mañana vuelvo a llamarte.",
+  "tr": "Yarın seni yeniden ararım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-20",
+  "language": "es",
+  "lemmas": [
+   "soler"
+  ],
+  "pattern": "soler + infinitivo",
+  "example": "Suelo leer antes de dormir.",
+  "tr": "Uyumadan önce genellikle okurum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-21",
+  "language": "es",
+  "lemmas": [
+   "pena",
+   "valer"
+  ],
+  "pattern": "valer la pena",
+  "example": "Esta película vale la pena.",
+  "tr": "Bu film görülmeye değer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-22",
+  "language": "es",
+  "lemmas": [
+   "caso"
+  ],
+  "pattern": "hacer caso a",
+  "example": "Nunca me haces caso.",
+  "tr": "Beni hiç dinlemiyorsun.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-23",
+  "language": "es",
+  "lemmas": [
+   "falta"
+  ],
+  "pattern": "hacer falta",
+  "example": "Hace falta más tiempo.",
+  "tr": "Daha fazla zaman gerekiyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-24",
+  "language": "es",
+  "lemmas": [
+   "culpa"
+  ],
+  "pattern": "tener la culpa",
+  "example": "Yo no tengo la culpa.",
+  "tr": "Suç bende değil.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-colloc3-25",
+  "language": "es",
+  "lemmas": [
+   "pie"
+  ],
+  "pattern": "ir a pie",
+  "example": "Voy al trabajo a pie.",
+  "tr": "İşe yürüyerek gidiyorum.",
+  "source": "Diloloji (özgün)"
+ }
+]

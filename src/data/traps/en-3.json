@@ -1,0 +1,167 @@
+[
+ {
+  "id": "en-cartoon",
+  "language": "en",
+  "lemma": "cartoon",
+  "looks": "karton",
+  "trap": "mukavva, karton",
+  "meaning": "çizgi film, karikatür",
+  "text": "We watched cartoons all Saturday morning.",
+  "tr": "Bütün cumartesi sabahı çizgi film izledik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-magazine",
+  "language": "en",
+  "lemma": "magazine",
+  "looks": "magazin",
+  "trap": "dedikodu haberleri",
+  "meaning": "dergi",
+  "text": "I bought a cooking magazine at the station.",
+  "tr": "İstasyonda bir yemek dergisi aldım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mark",
+  "language": "en",
+  "lemma": "mark",
+  "looks": "marka",
+  "trap": "marka",
+  "meaning": "iz, işaret; not",
+  "text": "The coffee left a mark on the table.",
+  "tr": "Kahve masada bir iz bıraktı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-basket",
+  "language": "en",
+  "lemma": "basket",
+  "looks": "basket",
+  "trap": "basketbol",
+  "meaning": "sepet",
+  "text": "Put the apples in the basket.",
+  "tr": "Elmaları sepete koy.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-complex",
+  "language": "en",
+  "lemma": "complex",
+  "looks": "kompleks",
+  "trap": "aşağılık duygusu",
+  "meaning": "karmaşık",
+  "text": "The rules of the game are quite complex.",
+  "tr": "Oyunun kuralları oldukça karmaşık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-agenda",
+  "language": "en",
+  "lemma": "agenda",
+  "looks": "ajanda",
+  "trap": "not defteri",
+  "meaning": "gündem",
+  "text": "The first item on the agenda is the budget.",
+  "tr": "Gündemin ilk maddesi bütçe.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-jest",
+  "language": "en",
+  "lemma": "jest",
+  "looks": "jest",
+  "trap": "el hareketi, nezaket",
+  "meaning": "şaka",
+  "text": "He said it in jest, don't worry.",
+  "tr": "Şaka olarak söyledi, merak etme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-local",
+  "language": "en",
+  "lemma": "local",
+  "looks": "lokal",
+  "trap": "kulüp, lokal",
+  "meaning": "yerel",
+  "text": "We buy vegetables from local farmers.",
+  "tr": "Sebzeleri yerel çiftçilerden alıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-spot",
+  "language": "en",
+  "lemma": "spot",
+  "looks": "spot",
+  "trap": "spot ışığı",
+  "meaning": "yer, nokta; leke",
+  "text": "This is a perfect spot for a picnic.",
+  "tr": "Burası piknik için mükemmel bir yer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-bank",
+  "language": "en",
+  "lemma": "bank",
+  "looks": "bank",
+  "trap": "oturak, bank",
+  "meaning": "banka; kıyı",
+  "text": "We had lunch on the river bank.",
+  "tr": "Öğle yemeğini nehir kıyısında yedik.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-mobile",
+  "language": "en",
+  "lemma": "mobile",
+  "looks": "mobilya",
+  "trap": "mobilya",
+  "meaning": "taşınabilir; cep telefonu",
+  "text": "Give me your mobile number.",
+  "tr": "Bana cep telefonu numaranı ver.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-ordinary",
+  "language": "en",
+  "lemma": "ordinary",
+  "looks": "ordinaryüs",
+  "trap": "ordinaryüs profesör",
+  "meaning": "sıradan, olağan",
+  "text": "It was just an ordinary day at work.",
+  "tr": "İşte sıradan bir gündü.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-cart",
+  "language": "en",
+  "lemma": "cart",
+  "looks": "kart",
+  "trap": "kart",
+  "meaning": "el arabası, araba",
+  "text": "The shopping cart has a broken wheel.",
+  "tr": "Alışveriş arabasının bir tekerleği kırık.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-spirit",
+  "language": "en",
+  "lemma": "spirit",
+  "looks": "ispirto",
+  "trap": "ispirto",
+  "meaning": "ruh, moral",
+  "text": "The team played with great spirit.",
+  "tr": "Takım büyük bir moralle oynadı.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "en-plague",
+  "language": "en",
+  "lemma": "plague",
+  "looks": "plak",
+  "trap": "plak",
+  "meaning": "veba; bela",
+  "text": "The plague killed millions in the Middle Ages.",
+  "tr": "Veba Orta Çağ'da milyonlarca kişiyi öldürdü.",
+  "source": "Diloloji (özgün)"
+ }
+]

@@ -1,0 +1,486 @@
+[
+ {
+  "id": "fr-discours_indirect_fr-01",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Je suis malade.» → Hier, Paul m'a dit qu'il ___ malade ce jour-là.",
+  "answer": "était",
+  "options": [
+   "était",
+   "est",
+   "sera",
+   "soit"
+  ],
+  "hint": "şimdiki zaman → imparfait",
+  "explanation": "Ana fiil geçmişteyse (a dit) aktarılan şimdiki zaman imparfait olur: il était malade.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«J'ai perdu mes clés.» → Elle m'a expliqué qu'elle ___ ses clés la veille.",
+  "answer": "avait perdu",
+  "options": [
+   "avait perdu",
+   "a perdu",
+   "perdait",
+   "perdra"
+  ],
+  "hint": "passé composé → plus-que-parfait",
+  "explanation": "Geçmişte aktarılan passé composé plus-que-parfait olur: elle avait perdu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Je viendrai demain.» → Il a promis qu'il ___ le lendemain.",
+  "answer": "viendrait",
+  "options": [
+   "viendrait",
+   "viendra",
+   "venait",
+   "vienne"
+  ],
+  "hint": "futur → conditionnel",
+  "explanation": "Geçmişte aktarılan gelecek zaman conditionnel présent olur: il viendrait. Demain de le lendemain olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-04",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Est-ce que tu as faim ?» → Elle m'a demandé ___ j'avais faim.",
+  "answer": "si",
+  "options": [
+   "si",
+   "que",
+   "ce que",
+   "qu'est-ce que"
+  ],
+  "hint": "evet/hayır sorusu → si",
+  "explanation": "Evet/hayır soruları dolaylı anlatımda si ile bağlanır; est-ce que düşer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Qu'est-ce que tu fais ?» → Il m'a demandé ___ je faisais.",
+  "answer": "ce que",
+  "options": [
+   "ce que",
+   "qu'est-ce que",
+   "que",
+   "ce qui"
+  ],
+  "hint": "qu'est-ce que → ce que",
+  "explanation": "Nesneyi soran qu'est-ce que dolaylı anlatımda ce que olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-06",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Qu'est-ce qui se passe ?» → Elle voulait savoir ___ se passait.",
+  "answer": "ce qui",
+  "options": [
+   "ce qui",
+   "ce que",
+   "qu'est-ce qui",
+   "qui"
+  ],
+  "hint": "qu'est-ce qui → ce qui",
+  "explanation": "Özneyi soran qu'est-ce qui dolaylı anlatımda ce qui olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-07",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Ferme la porte !» → Le professeur m'a demandé ___ la porte.",
+  "answer": "de fermer",
+  "options": [
+   "de fermer",
+   "fermer",
+   "à fermer",
+   "que je ferme"
+  ],
+  "hint": "emir → de + mastar",
+  "explanation": "Aktarılan emir demander à qqn de + mastar ile kurulur: il m'a demandé de fermer.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-08",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Où habites-tu ?» → Il m'a demandé où j'___.",
+  "answer": "habitais",
+  "options": [
+   "habitais",
+   "habites",
+   "habiterai",
+   "habiterais"
+  ],
+  "hint": "şimdiki zaman → imparfait",
+  "explanation": "Geçmişte aktarılan soru da zaman uyumuna uyar: où j'habitais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-09",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Je l'ai vu hier.» → Il a affirmé qu'il l'avait vu ___.",
+  "answer": "la veille",
+  "options": [
+   "la veille",
+   "demain",
+   "le lendemain",
+   "aujourd'hui"
+  ],
+  "hint": "hier → la veille",
+  "explanation": "Zaman uyumunda hier, la veille (bir önceki gün) olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-10",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "choice",
+  "prompt": "«Je pourrai t'aider.» → Elle a dit qu'elle ___ m'aider.",
+  "answer": "pourrait",
+  "options": [
+   "pourrait",
+   "pourra",
+   "puisse",
+   "pourrais"
+  ],
+  "hint": "futur → conditionnel",
+  "explanation": "Pourrai (futur) aktarılınca pourrait olur; özne elle olduğu için -ait.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-11",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "cloze",
+  "prompt": "«J'aime ce film.» → Il a dit qu'il ___ (aimer) ce film.",
+  "answer": "aimait",
+  "hint": "şimdiki zaman → imparfait",
+  "explanation": "Geçmişte aktarılan présent imparfait olur: il aimait.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-12",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "cloze",
+  "prompt": "«Nous avons fini.» → Elles ont dit qu'elles ___ (finir).",
+  "answer": "avaient fini",
+  "hint": "passé composé → plus-que-parfait",
+  "explanation": "Passé composé aktarılınca plus-que-parfait olur: elles avaient fini.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-13",
+  "language": "fr",
+  "level": "B1",
+  "topic": "discours_indirect_fr",
+  "type": "cloze",
+  "prompt": "«Tu viendras ?» → Il m'a demandé si je ___ (venir).",
+  "answer": "viendrais",
+  "hint": "futur → conditionnel",
+  "explanation": "Geçmişte aktarılan futur conditionnel olur: si je viendrais.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-14",
+  "language": "fr",
+  "level": "B2",
+  "topic": "discours_indirect_fr",
+  "type": "error",
+  "prompt": "Elle m'a demandé si je voudrai venir.",
+  "answer": "voudrai",
+  "fix": "voudrais",
+  "hint": "futur → conditionnel",
+  "explanation": "Ana fiil geçmişte olduğu için aktarılan gelecek conditionnel olur: si je voudrais venir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-discours_indirect_fr-15",
+  "language": "fr",
+  "level": "B2",
+  "topic": "discours_indirect_fr",
+  "type": "error",
+  "prompt": "Il a dit qu'il viendra le lendemain.",
+  "answer": "viendra",
+  "fix": "viendrait",
+  "hint": "zaman uyumu",
+  "explanation": "Geçmişte söylenen bir söz aktarılırken futur conditionnel olur: qu'il viendrait le lendemain.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-01",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Quand tu ___ à Paris, appelle-moi.",
+  "answer": "arriveras",
+  "options": [
+   "arriveras",
+   "arrives",
+   "arriverais",
+   "arrivais"
+  ],
+  "hint": "quand + futur",
+  "explanation": "Fransızcada quand ile gelecekteki bir an futur ile söylenir (Türkçedeki “geldiğinde”).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-02",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Dès que j'___ mes devoirs, je sortirai.",
+  "answer": "aurai fini",
+  "options": [
+   "aurai fini",
+   "ai fini",
+   "avais fini",
+   "finissais"
+  ],
+  "hint": "önce biten → futur antérieur",
+  "explanation": "Gelecekte bir eylemden önce bitecek olan futur antérieur ile söylenir: dès que j'aurai fini.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-03",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Attention, tu ___ tomber !",
+  "answer": "vas",
+  "options": [
+   "vas",
+   "iras",
+   "allais",
+   "irais"
+  ],
+  "hint": "hemen olacak → futur proche",
+  "explanation": "Az sonra olacak bir şey aller + mastar (futur proche) ile söylenir: tu vas tomber.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-04",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Demain, il ___ beau.",
+  "answer": "fera",
+  "options": [
+   "fera",
+   "faisait",
+   "ferait",
+   "fasse"
+  ],
+  "hint": "demain → futur",
+  "explanation": "Gelecek için futur simple: il fera beau.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-05",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Je te rendrai le livre quand je l'___ lu.",
+  "answer": "aurai",
+  "options": [
+   "aurai",
+   "ai",
+   "avais",
+   "aurais"
+  ],
+  "hint": "futur antérieur",
+  "explanation": "Okuma işi geri vermeden önce bitecek: futur antérieur (je l'aurai lu).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-06",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Si tu travailles, tu ___ ton examen.",
+  "answer": "réussiras",
+  "options": [
+   "réussiras",
+   "réussirais",
+   "réussisses",
+   "aurais réussi"
+  ],
+  "hint": "si + présent → futur",
+  "explanation": "Si + présent ardından futur gelir: tu réussiras.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-07",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Lorsque nous ___ en vacances, nous visiterons Rome.",
+  "answer": "serons",
+  "options": [
+   "serons",
+   "sommes",
+   "serions",
+   "étions"
+  ],
+  "hint": "lorsque + futur",
+  "explanation": "Lorsque da quand gibi gelecek için futur ister: nous serons.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-08",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "D'ici la fin de l'année, nous ___ notre maison.",
+  "answer": "aurons vendu",
+  "options": [
+   "aurons vendu",
+   "vendons",
+   "avions vendu",
+   "vendrions"
+  ],
+  "hint": "bir tarihe kadar bitmiş → futur antérieur",
+  "explanation": "“Yıl sonuna kadar satmış olacağız”: futur antérieur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-09",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Je ___ te voir ce soir, c'est promis.",
+  "answer": "viendrai",
+  "options": [
+   "viendrai",
+   "venais",
+   "viendrais",
+   "vienne"
+  ],
+  "hint": "söz → futur",
+  "explanation": "Gelecekle ilgili bir söz futur simple ile verilir: je viendrai.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-10",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "choice",
+  "prompt": "Une fois que tu ___ la recette, tu pourras cuisiner seul.",
+  "answer": "auras appris",
+  "options": [
+   "auras appris",
+   "apprenais",
+   "apprendrais",
+   "apprennes"
+  ],
+  "hint": "une fois que + futur antérieur",
+  "explanation": "Önce öğrenme bitecek, sonra yemek yapılacak: futur antérieur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-11",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "cloze",
+  "prompt": "Quand il ___ (pleuvoir), nous resterons à la maison.",
+  "answer": "pleuvra",
+  "hint": "quand + futur",
+  "explanation": "Gelecekteki koşul anı quand + futur: quand il pleuvra.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-12",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "cloze",
+  "prompt": "Elle ___ (avoir) trente ans l'année prochaine.",
+  "answer": "aura",
+  "hint": "futur simple",
+  "explanation": "Avoir fiilinin futur gövdesi aur-: elle aura.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-13",
+  "language": "fr",
+  "level": "B1",
+  "topic": "futur_fr",
+  "type": "cloze",
+  "prompt": "Nous ___ (faire) les courses demain matin.",
+  "answer": "ferons",
+  "hint": "futur simple",
+  "explanation": "Faire fiilinin futur gövdesi fer-: nous ferons.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-14",
+  "language": "fr",
+  "level": "B2",
+  "topic": "futur_fr",
+  "type": "error",
+  "prompt": "Quand tu seras grand, tu comprends.",
+  "answer": "comprends",
+  "fix": "comprendras",
+  "hint": "gelecek → futur",
+  "explanation": "Quand tu seras grand gelecekten söz ediyor; ana cümle de futur olmalı: tu comprendras.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-futur_fr-15",
+  "language": "fr",
+  "level": "B2",
+  "topic": "futur_fr",
+  "type": "error",
+  "prompt": "Je te téléphonerai quand j'arrive à la gare.",
+  "answer": "arrive",
+  "fix": "arriverai",
+  "hint": "quand + futur",
+  "explanation": "Fransızcada quand ile gelecekteki an présent değil futur ister: quand j'arriverai.",
+  "source": "Diloloji (özgün)"
+ }
+]

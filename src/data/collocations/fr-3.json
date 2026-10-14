@@ -1,0 +1,286 @@
+[
+ {
+  "id": "fr-colloc3-01",
+  "language": "fr",
+  "lemmas": [
+   "cuisine"
+  ],
+  "pattern": "faire la cuisine",
+  "example": "Le dimanche, c'est mon père qui fait la cuisine.",
+  "tr": "Pazar günleri yemeği babam yapar.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-02",
+  "language": "fr",
+  "lemmas": [
+   "courses"
+  ],
+  "pattern": "faire les courses",
+  "example": "Je fais les courses le samedi matin.",
+  "tr": "Alışverişi cumartesi sabahları yaparım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-03",
+  "language": "fr",
+  "lemmas": [
+   "ménage"
+  ],
+  "pattern": "faire le ménage",
+  "example": "On fait le ménage ensemble avant l'arrivée des invités.",
+  "tr": "Misafirler gelmeden önce birlikte temizlik yapıyoruz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-04",
+  "language": "fr",
+  "lemmas": [
+   "promesse",
+   "tenir"
+  ],
+  "pattern": "tenir une promesse",
+  "example": "Il a tenu sa promesse et il est venu.",
+  "tr": "Sözünü tuttu ve geldi.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-05",
+  "language": "fr",
+  "lemmas": [
+   "erreur",
+   "commettre"
+  ],
+  "pattern": "commettre une erreur",
+  "example": "Tout le monde peut commettre une erreur.",
+  "tr": "Herkes hata yapabilir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-06",
+  "language": "fr",
+  "lemmas": [
+   "effort"
+  ],
+  "pattern": "faire un effort",
+  "example": "Fais un effort, on y est presque !",
+  "tr": "Bir çaba göster, neredeyse vardık!",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-07",
+  "language": "fr",
+  "lemmas": [
+   "risque",
+   "courir"
+  ],
+  "pattern": "courir un risque",
+  "example": "Je ne veux pas courir ce risque.",
+  "tr": "Bu riske girmek istemiyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-08",
+  "language": "fr",
+  "lemmas": [
+   "photo"
+  ],
+  "pattern": "prendre une photo",
+  "example": "Tu peux prendre une photo de nous ?",
+  "tr": "Bizim bir fotoğrafımızı çekebilir misin?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-09",
+  "language": "fr",
+  "lemmas": [
+   "sommeil"
+  ],
+  "pattern": "avoir sommeil",
+  "example": "Après le déjeuner, j'ai toujours sommeil.",
+  "tr": "Öğle yemeğinden sonra hep uykum gelir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-10",
+  "language": "fr",
+  "lemmas": [
+   "faim"
+  ],
+  "pattern": "avoir faim",
+  "example": "On mange ? J'ai très faim.",
+  "tr": "Yemek yiyelim mi? Çok acıktım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-11",
+  "language": "fr",
+  "lemmas": [
+   "mal"
+  ],
+  "pattern": "avoir du mal à + infinitif",
+  "example": "J'ai du mal à me concentrer le soir.",
+  "tr": "Akşamları odaklanmakta zorlanıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-12",
+  "language": "fr",
+  "lemmas": [
+   "manquer"
+  ],
+  "pattern": "manquer à qqn",
+  "example": "Ma famille me manque beaucoup.",
+  "tr": "Ailemi çok özlüyorum (ailem bana çok eksik geliyor).",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-13",
+  "language": "fr",
+  "lemmas": [
+   "plaindre",
+   "se plaindre"
+  ],
+  "pattern": "se plaindre de",
+  "example": "Il se plaint toujours du bruit.",
+  "tr": "Hep gürültüden şikâyet eder.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-14",
+  "language": "fr",
+  "lemmas": [
+   "moquer",
+   "se moquer"
+  ],
+  "pattern": "se moquer de",
+  "example": "Ne te moque pas de ton frère.",
+  "tr": "Kardeşinle alay etme.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-15",
+  "language": "fr",
+  "lemmas": [
+   "méfier",
+   "se méfier"
+  ],
+  "pattern": "se méfier de",
+  "example": "Méfie-toi des offres trop belles.",
+  "tr": "Fazla güzel tekliflere karşı dikkatli ol.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-16",
+  "language": "fr",
+  "lemmas": [
+   "servir",
+   "se servir"
+  ],
+  "pattern": "se servir de",
+  "example": "Je me sers de cette application tous les jours.",
+  "tr": "Bu uygulamayı her gün kullanıyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-17",
+  "language": "fr",
+  "lemmas": [
+   "charger",
+   "se charger"
+  ],
+  "pattern": "se charger de",
+  "example": "Je me charge des boissons pour la fête.",
+  "tr": "Partinin içeceklerini ben üstleniyorum.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-18",
+  "language": "fr",
+  "lemmas": [
+   "obéir"
+  ],
+  "pattern": "obéir à",
+  "example": "Le chien n'obéit qu'à sa maîtresse.",
+  "tr": "Köpek yalnızca sahibine itaat ediyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-19",
+  "language": "fr",
+  "lemmas": [
+   "ressembler"
+  ],
+  "pattern": "ressembler à",
+  "example": "Tu ressembles beaucoup à ta mère.",
+  "tr": "Annene çok benziyorsun.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-20",
+  "language": "fr",
+  "lemmas": [
+   "empêcher"
+  ],
+  "pattern": "empêcher qqn de + infinitif",
+  "example": "Le bruit m'empêche de dormir.",
+  "tr": "Gürültü uyumamı engelliyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-21",
+  "language": "fr",
+  "lemmas": [
+   "permettre"
+  ],
+  "pattern": "permettre à qqn de + infinitif",
+  "example": "Ce travail me permet de voyager.",
+  "tr": "Bu iş seyahat etmeme imkân veriyor.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-22",
+  "language": "fr",
+  "lemmas": [
+   "conseiller"
+  ],
+  "pattern": "conseiller à qqn de + infinitif",
+  "example": "Le médecin m'a conseillé de me reposer.",
+  "tr": "Doktor dinlenmemi tavsiye etti.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-23",
+  "language": "fr",
+  "lemmas": [
+   "venir"
+  ],
+  "pattern": "venir de + infinitif",
+  "example": "Je viens d'arriver à la gare.",
+  "tr": "Gara yeni vardım.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-24",
+  "language": "fr",
+  "lemmas": [
+   "habitude"
+  ],
+  "pattern": "avoir l'habitude de + infinitif",
+  "example": "J'ai l'habitude de lire avant de dormir.",
+  "tr": "Uyumadan önce okumayı alışkanlık edindim.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-colloc3-25",
+  "language": "fr",
+  "lemmas": [
+   "peine",
+   "valoir"
+  ],
+  "pattern": "valoir la peine",
+  "example": "Ce film vaut vraiment la peine.",
+  "tr": "Bu film gerçekten görülmeye değer.",
+  "source": "Diloloji (özgün)"
+ }
+]

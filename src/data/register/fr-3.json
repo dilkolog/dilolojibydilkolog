@@ -1,0 +1,137 @@
+[
+ {
+  "id": "fr-repeat",
+  "language": "fr",
+  "tr": "tekrar eder misin?",
+  "informal": "Hein ? Tu peux répéter ?",
+  "standard": "Vous pouvez répéter, s'il vous plaît ?",
+  "formal": "Pourriez-vous répéter, je vous prie ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-permission",
+  "language": "fr",
+  "tr": "girebilir miyim?",
+  "informal": "Je peux entrer ?",
+  "standard": "Est-ce que je peux entrer ?",
+  "formal": "Puis-je entrer ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-invite",
+  "language": "fr",
+  "tr": "bu akşam bize gel",
+  "informal": "Viens chez nous ce soir !",
+  "standard": "Tu veux venir chez nous ce soir ?",
+  "formal": "Nous serions ravis de vous recevoir ce soir.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-congrats",
+  "language": "fr",
+  "tr": "tebrikler",
+  "informal": "Bravo, trop fort !",
+  "standard": "Félicitations !",
+  "formal": "Je vous adresse toutes mes félicitations.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-opinion",
+  "language": "fr",
+  "tr": "bence…",
+  "informal": "Moi, je trouve que…",
+  "standard": "À mon avis…",
+  "formal": "Il me semble que…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-suggest",
+  "language": "fr",
+  "tr": "hadi sinemaya gidelim",
+  "informal": "On se fait un ciné ?",
+  "standard": "Et si on allait au cinéma ?",
+  "formal": "Je vous propose d'aller au cinéma.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-busy",
+  "language": "fr",
+  "tr": "şu an meşgulüm",
+  "informal": "Là, je suis débordé.",
+  "standard": "Je suis occupé en ce moment.",
+  "formal": "Je ne suis malheureusement pas disponible pour le moment.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-cancel",
+  "language": "fr",
+  "tr": "randevuyu iptal etmem gerek",
+  "informal": "Désolé, je dois annuler.",
+  "standard": "Je dois annuler notre rendez-vous.",
+  "formal": "Je me vois contraint d'annuler notre rendez-vous.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-advice",
+  "language": "fr",
+  "tr": "sence ne yapayım?",
+  "informal": "Tu ferais quoi, toi ?",
+  "standard": "Qu'est-ce que tu me conseilles ?",
+  "formal": "Que me conseilleriez-vous ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-remind",
+  "language": "fr",
+  "tr": "unutma",
+  "informal": "Oublie pas, hein !",
+  "standard": "N'oublie pas.",
+  "formal": "Je me permets de vous rappeler que…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-sure",
+  "language": "fr",
+  "tr": "eminim",
+  "informal": "Sûr et certain !",
+  "standard": "J'en suis sûr.",
+  "formal": "J'en suis convaincu.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-complain",
+  "language": "fr",
+  "tr": "bu kabul edilemez",
+  "informal": "C'est n'importe quoi !",
+  "standard": "Ce n'est pas normal.",
+  "formal": "Cette situation est inacceptable.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-interrupt",
+  "language": "fr",
+  "tr": "sözünü kesiyorum ama…",
+  "informal": "Attends, attends…",
+  "standard": "Excuse-moi de t'interrompre…",
+  "formal": "Permettez-moi de vous interrompre…",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-offer",
+  "language": "fr",
+  "tr": "yardım edeyim mi?",
+  "informal": "Je te file un coup de main ?",
+  "standard": "Tu veux que je t'aide ?",
+  "formal": "Puis-je vous être utile ?",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-hurry",
+  "language": "fr",
+  "tr": "acele et",
+  "informal": "Grouille-toi !",
+  "standard": "Dépêche-toi.",
+  "formal": "Je vous prie de faire vite.",
+  "source": "Diloloji (özgün)"
+ }
+]

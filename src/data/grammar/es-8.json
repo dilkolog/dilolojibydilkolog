@@ -1,0 +1,486 @@
+[
+ {
+  "id": "es-estilo_indirecto-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Estoy cansado.» → Ayer Luis dijo que aquel día ___ cansado.",
+  "answer": "estaba",
+  "options": [
+   "estaba",
+   "está",
+   "estará",
+   "esté"
+  ],
+  "hint": "presente → imperfecto",
+  "explanation": "Geçmişte aktarılan şimdiki zaman imperfecto olur: estaba.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«He perdido las llaves.» → Me contó que ___ las llaves el día anterior.",
+  "answer": "había perdido",
+  "options": [
+   "había perdido",
+   "ha perdido",
+   "perdía",
+   "perderá"
+  ],
+  "hint": "perfecto → pluscuamperfecto",
+  "explanation": "Geçmişte aktarılan pretérito perfecto pluscuamperfecto olur: había perdido.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Vendré mañana.» → Prometió que ___ al día siguiente.",
+  "answer": "vendría",
+  "options": [
+   "vendría",
+   "vendrá",
+   "venía",
+   "venga"
+  ],
+  "hint": "futuro → condicional",
+  "explanation": "Geçmişte aktarılan gelecek condicional olur: vendría. Mañana da al día siguiente olur.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«¿Tienes hambre?» → Me preguntó ___ tenía hambre.",
+  "answer": "si",
+  "options": [
+   "si",
+   "que",
+   "qué",
+   "cuál"
+  ],
+  "hint": "evet/hayır sorusu → si",
+  "explanation": "Evet/hayır soruları dolaylı anlatımda si ile bağlanır.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«¿Qué haces?» → Me preguntó ___ hacía.",
+  "answer": "qué",
+  "options": [
+   "qué",
+   "si",
+   "cuál",
+   "quien"
+  ],
+  "hint": "soru sözcüğü kalır",
+  "explanation": "Soru sözcüğü (qué) dolaylı soruda vurgusuyla kalır: me preguntó qué hacía.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-06",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Cierra la puerta.» → El profesor me pidió que ___ la puerta.",
+  "answer": "cerrara",
+  "options": [
+   "cerrara",
+   "cierro",
+   "cerraré",
+   "cerraba"
+  ],
+  "hint": "pedir que + subjuntivo",
+  "explanation": "Geçmişte aktarılan emir pedir que + imperfecto de subjuntivo ile kurulur: que cerrara.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-07",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Puedo ayudarte.» → Dijo que aquella tarde ___ ayudarme.",
+  "answer": "podía",
+  "options": [
+   "podía",
+   "puede",
+   "pueda",
+   "podrá"
+  ],
+  "hint": "presente → imperfecto",
+  "explanation": "Şimdiki zaman geçmişte aktarılınca imperfecto olur: podía.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-08",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Vivo en Madrid.» → Me dijo que ___ en Madrid desde hacía años.",
+  "answer": "vivía",
+  "options": [
+   "vivía",
+   "vive",
+   "viviera",
+   "viviría"
+  ],
+  "hint": "presente → imperfecto",
+  "explanation": "Desde hacía años geçmişte süren durumu gösterir: vivía.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-09",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Llámame.» → Me dijo que lo ___.",
+  "answer": "llamara",
+  "options": [
+   "llamara",
+   "llamo",
+   "llamaré",
+   "llamaba"
+  ],
+  "hint": "emir → subjuntivo",
+  "explanation": "Decir que ile aktarılan emir subjuntivo ister: que lo llamara.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-10",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "choice",
+  "prompt": "«Iremos a la playa.» → Dijeron que ___ a la playa aquel verano.",
+  "answer": "irían",
+  "options": [
+   "irían",
+   "irán",
+   "vayan",
+   "vayamos"
+  ],
+  "hint": "futuro → condicional",
+  "explanation": "Geçmişte aktarılan gelecek condicional olur: irían.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-11",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "cloze",
+  "prompt": "«Me gusta la película.» → Dijo que le ___ (gustar) la película.",
+  "answer": "gustaba",
+  "hint": "presente → imperfecto",
+  "explanation": "Geçmişte aktarılan presente imperfecto olur: le gustaba.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-12",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "cloze",
+  "prompt": "«Hemos terminado.» → Dijeron que ___ (terminar).",
+  "answer": "habían terminado",
+  "hint": "perfecto → pluscuamperfecto",
+  "explanation": "Pretérito perfecto aktarılınca pluscuamperfecto olur: habían terminado.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-13",
+  "language": "es",
+  "level": "B1",
+  "topic": "estilo_indirecto",
+  "type": "cloze",
+  "prompt": "«¿Vendrás?» → Me preguntó si ___ (venir).",
+  "answer": "vendría",
+  "hint": "futuro → condicional",
+  "explanation": "Geçmişte aktarılan futuro condicional olur: si vendría.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-14",
+  "language": "es",
+  "level": "B2",
+  "topic": "estilo_indirecto",
+  "type": "error",
+  "prompt": "Me pidió que la llamo por la noche.",
+  "answer": "llamo",
+  "fix": "llamara",
+  "hint": "pedir que + subjuntivo",
+  "explanation": "Pedir que ardından subjuntivo gelir; ana fiil geçmişte olduğu için imperfecto de subjuntivo: que la llamara.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-estilo_indirecto-15",
+  "language": "es",
+  "level": "B2",
+  "topic": "estilo_indirecto",
+  "type": "error",
+  "prompt": "Dijo que vendrá al día siguiente.",
+  "answer": "vendrá",
+  "fix": "vendría",
+  "hint": "zaman uyumu",
+  "explanation": "Geçmişte söylenmiş bir gelecek condicional ile aktarılır: dijo que vendría.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-01",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "Niño, ___ las manos antes de comer.",
+  "answer": "lávate",
+  "options": [
+   "lávate",
+   "lávete",
+   "te lavas",
+   "lavarte"
+  ],
+  "hint": "tú + dönüşlü",
+  "explanation": "Tú için olumlu emirde zamir fiile bitişir: lávate.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-02",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(usted) Señor, ___ aquí, por favor.",
+  "answer": "siéntese",
+  "options": [
+   "siéntese",
+   "siéntate",
+   "se sienta",
+   "sentarse"
+  ],
+  "hint": "usted → subjuntivo + se",
+  "explanation": "Usted için emir subjuntivo biçimidir ve zamir bitişir: siéntese.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-03",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(tú) No ___ la puerta, hace calor.",
+  "answer": "cierres",
+  "options": [
+   "cierres",
+   "cierra",
+   "cierras",
+   "cerrar"
+  ],
+  "hint": "olumsuz emir → subjuntivo",
+  "explanation": "Olumsuz emirde subjuntivo kullanılır: no cierres.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-04",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "Si ves a Ana, ___ que la llamaré.",
+  "answer": "dile",
+  "options": [
+   "dile",
+   "dila",
+   "le dices",
+   "decirle"
+  ],
+  "hint": "decir → di + le",
+  "explanation": "Decir'in tú emri düzensizdir (di); dolaylı nesne zamiri bitişir: dile.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-05",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(ustedes) ___ la verdad, por favor.",
+  "answer": "Digan",
+  "options": [
+   "Digan",
+   "Dicen",
+   "Diga",
+   "Decir"
+  ],
+  "hint": "ustedes → subjuntivo",
+  "explanation": "Ustedes için emir subjuntivo biçimidir: digan.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-06",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(tú) No ___ nada a nadie.",
+  "answer": "digas",
+  "options": [
+   "digas",
+   "dices",
+   "di",
+   "diga"
+  ],
+  "hint": "olumsuz emir → subjuntivo",
+  "explanation": "Olumsuz tú emri subjuntivo: no digas.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-07",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "El libro es tuyo: ___.",
+  "answer": "llévatelo",
+  "options": [
+   "llévatelo",
+   "llévalote",
+   "te lo llevas",
+   "llevártelo"
+  ],
+  "hint": "zamir sırası: te + lo",
+  "explanation": "Olumlu emirde zamirler bitişir; önce dönüşlü (te), sonra nesne (lo): llévatelo.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-08",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(vosotros) Chicos, ___, por favor.",
+  "answer": "sentaos",
+  "options": [
+   "sentaos",
+   "sentados",
+   "sentaros",
+   "os sentáis"
+  ],
+  "hint": "vosotros + os → -d düşer",
+  "explanation": "Vosotros emrinde os eklenince son -d düşer: sentad + os → sentaos.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-09",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(usted) ___ la ventana, por favor.",
+  "answer": "Abra",
+  "options": [
+   "Abra",
+   "Abre",
+   "Abrid",
+   "Abrir"
+  ],
+  "hint": "usted → subjuntivo",
+  "explanation": "Usted emri subjuntivo: abra.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-10",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "choice",
+  "prompt": "(tú) No ___ tarde, ¿vale?",
+  "answer": "te acuestes",
+  "options": [
+   "te acuestes",
+   "acuéstate",
+   "te acuestas",
+   "acostarte"
+  ],
+  "hint": "olumsuz emir: zamir önde",
+  "explanation": "Olumsuz emirde zamir fiilden önce gelir ve fiil subjuntivo olur: no te acuestes.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-11",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "cloze",
+  "prompt": "(tú, hacer) ___ los deberes ahora.",
+  "answer": "Haz",
+  "hint": "düzensiz tú emri",
+  "explanation": "Hacer'in tú emri düzensizdir: haz.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-12",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "cloze",
+  "prompt": "(tú, poner) ___ la mesa, por favor.",
+  "answer": "Pon",
+  "hint": "düzensiz tú emri",
+  "explanation": "Poner'in tú emri düzensizdir: pon.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-13",
+  "language": "es",
+  "level": "B1",
+  "topic": "imperativo_es",
+  "type": "cloze",
+  "prompt": "(usted, venir) ___ mañana a las diez.",
+  "answer": "Venga",
+  "hint": "usted → subjuntivo",
+  "explanation": "Venir'in usted emri subjuntivo biçimidir: venga.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-14",
+  "language": "es",
+  "level": "B2",
+  "topic": "imperativo_es",
+  "type": "error",
+  "prompt": "No me dices mentiras, por favor.",
+  "answer": "dices",
+  "fix": "digas",
+  "hint": "olumsuz emir",
+  "explanation": "Olumsuz emirde subjuntivo gerekir: no me digas mentiras.",
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "es-imperativo_es-15",
+  "language": "es",
+  "level": "B2",
+  "topic": "imperativo_es",
+  "type": "error",
+  "prompt": "Siéntate y escúchame, no habla tanto.",
+  "answer": "habla",
+  "fix": "hables",
+  "hint": "olumsuz tú emri",
+  "explanation": "Tú'ya verilen olumsuz emir subjuntivo olur: no hables tanto.",
+  "source": "Diloloji (özgün)"
+ }
+]
