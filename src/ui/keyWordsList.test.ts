@@ -2,7 +2,8 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { KelimeDB } from '../data/db'
-import { addKeyList, keyEntries, type KeyItem } from './keyWordsList'
+import type { Pack } from '../data/wordpackBuild'
+import { addKeyList, keyEntries, packItem, type KeyItem } from './keyWordsList'
 import { lastPlacement } from './listMemory'
 
 const items: KeyItem[] = [
@@ -37,5 +38,24 @@ describe('the key words of a text as a list', () => {
     expect(again.list.id).toBe(first.list.id)
     expect(again.added).toEqual([])
     expect(await db.getLists('fr')).toHaveLength(1)
+  })
+
+  it('reads a word from the pack: its dictionary form, meaning, and a sentence that shows it', () => {
+    const pack: Pack = {
+      v: '1',
+      w: {
+        aller: { t: ['gitmek'], p: 'v', c: [['Il pleut.', 'Yağmur yağıyor.'], ['Nous allons à Paris.', "Paris'e gidiyoruz."]] },
+        maison: { t: ['ev'], p: 'n', g: 'f' },
+        brume: {},
+      },
+      f: { allons: 'aller' },
+    }
+    expect(packItem(pack, 'allons', 'fr')).toMatchObject({ lemma: 'aller', word: 'allons', turkish: ['gitmek'], pos: 'verb', sentence: 'Nous allons à Paris.', translation: "Paris'e gidiyoruz." })
+    expect(packItem(pack, 'maison', 'fr')).toMatchObject({ lemma: 'maison', sentence: '', pos: 'noun', gender: 'f' })
+    expect(packItem(pack, 'brume', 'fr')).toBeUndefined()
+    expect(packItem(undefined, 'maison', 'fr')).toBeUndefined()
+    const [entry] = keyEntries([packItem(pack, 'allons', 'fr')!], 'fr', new Date())
+    expect(entry.senses[0].examples[0]).toMatchObject({ text: 'Nous allons à Paris.', form: 'allons', translation: "Paris'e gidiyoruz." })
+    expect(entry.senses[0].examples[0].metIn).toBeUndefined()
   })
 })

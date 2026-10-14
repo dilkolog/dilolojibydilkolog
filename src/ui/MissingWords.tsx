@@ -4,6 +4,11 @@ import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { frequencyWords } from '../data/frequency'
 import { wordKeys } from '../data/wordInput'
+import { loadPack } from '../data/wordpack'
+import type { Pack } from '../data/wordpackBuild'
+import { addKeyList, keyEntries, packItem } from './keyWordsList'
+import { placeNew } from './listMemory'
+import { showToast } from './toastFeed'
 import { WordForm } from './Words'
 import { wordsAt } from '../engine/cefrLevels'
 import type { CefrLevel } from '../engine/types'
@@ -27,6 +32,8 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
   const cefr = useCefr(language)
   const [shown, setShown] = useState(PAGE)
   const [adding, setAdding] = useState<string | null>(null)
+  const [pack, setPack] = useState<Pack | undefined>()
+  const [busy, setBusy] = useState(false)
 
   useEffect(() => {
     if (!open) return
@@ -34,14 +41,46 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
       setList(l)
       setKnown(k)
     })
+    void loadPack(language).then(setPack)
   }, [open, language, db])
 
   const missing = useMemo(() => {
     if (typeof range === 'string') return cefr ? missingFrequent(wordsAt(cefr, range), language, vocabulary, known, Infinity) : []
     return list ? missingFrequent(list, language, vocabulary, known, range) : []
   }, [list, cefr, language, vocabulary, known, range])
-  const page = missing.slice(0, shown)
+  const page = useMemo(() => missing.slice(0, shown), [missing, shown])
   const existing = useMemo(() => wordKeys(vocabulary), [vocabulary])
+
+  // The pack's meaning (and a sentence) for each word shown: what lets a word be added in one tap.
+  const items = useMemo(() => new Map(page.map((m) => [m.key, packItem(pack, m.word, language)])), [page, pack, language])
+  const listable = page.flatMap((m) => items.get(m.key) ?? [])
+  const rangeName = typeof range === 'string' ? `${range} kelimeleri` : `Sık kelimeler: ilk ${range.toLocaleString('tr-TR')}`
+
+  /** One tap: the word with the pack's meaning and sentence, where new words go; without a meaning, the form. */
+  const add = async (word: string, key: string) => {
+    const item = items.get(key)
+    const [entry] = item ? keyEntries([item], language, new Date()) : []
+    if (!entry) return setAdding(word)
+    if (await db.vocabulary.get(entry.id)) return showToast(`“${entry.lemma}” zaten kelimelerinde.`, undefined, 3000, 'info')
+    const placed = await placeNew(db, language, [entry])
+    await db.vocabulary.put(placed.entries[0])
+    onAdded()
+    showToast(placed.listName ? `“${entry.lemma}” “${placed.listName}” listesine eklendi.` : `“${entry.lemma}” kelimelerine eklendi.`, undefined, 4000, 'success')
+  }
+
+  /** The words shown, as a list named after the range ("A2 kelimeleri"). */
+  const addAll = async () => {
+    setBusy(true)
+    try {
+      const { list: made, added } = await addKeyList(db, language, rangeName, listable, undefined)
+      onAdded()
+      showToast(added.length ? `${added.length} kelime “${made.name}” listesine eklendi.` : 'Bu kelimeler zaten kelimelerinde.', undefined, 4000, 'success')
+    } catch {
+      showToast('Liste kurulamadı.', undefined, 4000, 'info')
+    } finally {
+      setBusy(false)
+    }
+  }
 
   const markKnown = async (keys: string[]) => {
     await db.addKnownWords(language, keys)
@@ -82,11 +121,12 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
                       {m.word}
                     </span>
                     {typeof range === 'number' && <span className="small muted">#{m.rank}</span>}
+                    {items.get(m.key) && <span className="small muted missing-meaning">{items.get(m.key)!.turkish.slice(0, 2).join(', ')}</span>}
                     <span className="row missing-word-actions">
                       <button className="btn btn-quiet btn-sm" onClick={() => markKnown([m.key])}>
                         Biliyorum
                       </button>
-                      <button className="btn btn-sm" onClick={() => setAdding(m.word)}>
+                      <button className="btn btn-sm" onClick={() => void add(m.word, m.key)}>
                         Ekle
                       </button>
                     </span>
@@ -97,6 +137,11 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
                 <button className="link small" onClick={() => markKnown(page.map((m) => m.key))}>
                   Bu {page.length} kelimenin hepsini biliyorum
                 </button>
+                {listable.length >= 3 && (
+                  <button className="link small" onClick={() => void addAll()} disabled={busy} title="Anlamı bulunan kelimeler, örnek cümleleriyle">
+                    Bunları “{rangeName}” listesine ekle ({listable.length})
+                  </button>
+                )}
                 {missing.length > shown && (
                   <button className="link small" onClick={() => setShown((n) => n + PAGE)}>
                     Daha fazla göster

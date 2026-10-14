@@ -1525,6 +1525,10 @@ test('CEFR levels: progress by textbook level, the missing words of a level, a w
   await page.getByRole('button', { name: 'A2', exact: true }).click()
   await expect(page.locator('.missing-list li').first()).toBeVisible()
   await expect(page.locator('.missing-list li').first()).not.toContainText('#')
+  // The words shown, with the pack's meanings, become a list of their own in one tap.
+  await expect(page.locator('.missing-meaning').first()).toBeVisible()
+  await page.getByRole('button', { name: /listesine ekle \(\d+\)/ }).click()
+  await expect(page.getByText(/\d+ kelime “A2 kelimeleri” listesine eklendi/)).toBeVisible()
 })
 
 test('grammar check: the journal text flagged by LanguageTool, a suggestion applied in one tap', async ({ page }) => {
