@@ -1298,7 +1298,7 @@ test('lists: a new list opens on its own page, takes the words added there, and 
   expect(await overflow(page), 'list page overflow').toEqual([])
   expect(await contrastProblems(page), 'list page contrast').toEqual([])
   // Cards for this list: the round opens set to it.
-  await page.locator('.wl-study').getByRole('button', { name: 'Kartlar' }).click()
+  await page.locator('.wl-games').getByRole('button', { name: 'Kartlar' }).click()
   await expect(page.locator('.study-lists').getByRole('button', { name: /Seyahat/ })).toHaveAttribute('aria-pressed', 'true')
   // Back on the words screen, the shelf shows the list.
   await openScreen(page, 'Kelimeler')

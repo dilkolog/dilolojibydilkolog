@@ -70,8 +70,10 @@ const hostOf = (url: string) => {
 }
 
 const SECTION_KEY = 'kelime-koc:words-section'
+/** The same empty list on every render, so effects that follow the lists don't run again each time. */
+const NO_LISTS: WordListRow[] = []
 
-export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone, lists = [], focusListId, onFocus = () => {}, openList, onOpenList = () => {}, onPlay }: Props) {
+export function WordsScreen({ db, language, vocabulary, states, mistakes, onChanged, onOpen, onStudy, incoming, onIncomingDone, lists = NO_LISTS, focusListId, onFocus = () => {}, openList, onOpenList = () => {}, onPlay }: Props) {
   const stateById = useMemo(() => new Map(states.map((s) => [s.entryId, s])), [states])
   const ids = useMemo(() => new Set(vocabulary.map((v) => v.id)), [vocabulary])
   const keys = useMemo(() => wordKeys(vocabulary), [vocabulary])
