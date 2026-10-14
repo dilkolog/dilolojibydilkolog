@@ -21,6 +21,7 @@
   --shadow-lg: 0 12px 32px rgb(15 23 42 / 0.16);
   --shadow-xl: 0 24px 60px rgb(15 23 42 / 0.3);
   --scrim: rgb(15 23 42 / 0.45);
+  --art-edge: none;   /* drawn pictures (src/assets/art): an edge on dark pages, nothing on light */
 
   /* Depth, four layers, each with one look:
        page    --bg                       the canvas
@@ -121,6 +122,7 @@
     --shadow-lg: 0 0 0 1px rgb(148 163 184 / 0.12), 0 12px 32px rgb(0 0 0 / 0.45);
     --shadow-xl: 0 0 0 1px rgb(148 163 184 / 0.12), 0 24px 60px rgb(0 0 0 / 0.55);
     --scrim: rgb(2 6 23 / 0.65);
+    --art-edge: drop-shadow(0 0 1px rgb(255 255 255 / 0.5));   /* the drawings' dark outlines melt into a dark page: a thin light rim keeps their edge */
     --en: #2f6de6; --en-deep: #183d86; --en-soft: #22304a; --en-text: #a7cbff;
     --fr: #c6317c; --fr-deep: #731946; --fr-soft: #3d2433; --fr-text: #ffafce;
     --es: #e6a313; --es-deep: #663500; --es-soft: #3a2e17; --es-text: #efc37e;
@@ -159,6 +161,7 @@
   --shadow-lg: 0 0 0 1px rgb(148 163 184 / 0.12), 0 12px 32px rgb(0 0 0 / 0.45);
   --shadow-xl: 0 0 0 1px rgb(148 163 184 / 0.12), 0 24px 60px rgb(0 0 0 / 0.55);
   --scrim: rgb(2 6 23 / 0.65);
+  --art-edge: drop-shadow(0 0 1px rgb(255 255 255 / 0.5));
   --en: #2f6de6; --en-deep: #183d86; --en-soft: #22304a; --en-text: #a7cbff;
   --fr: #c6317c; --fr-deep: #731946; --fr-soft: #3d2433; --fr-text: #ffafce;
   --es: #e6a313; --es-deep: #663500; --es-soft: #3a2e17; --es-text: #efc37e;
@@ -3203,6 +3206,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   --cat-teal: #4ea39c;
   --cat-red: #c45b5b;
   --cat-indigo: #6f75b8;
+}
+
+/* Drawn pictures (src/assets/art) have dark brown outlines that melt into the dark and calm pages: --art-edge gives
+   them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
+:is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art,
+  .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
+  .pos-art, .result-art, .game-art, .wl-cover, .today-sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img) {
+  filter: var(--art-edge);
 }
 
 /* Empty screens, alive: each picture does one small thing (reduced motion stills them all). */

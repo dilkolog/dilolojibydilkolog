@@ -341,6 +341,12 @@ Ad, iz ve değer üç sütun; dolgu `--chart-data`. Grafiklerde tek veri rengi v
 
 **currentColor Kuralı.** İkona renk yazılmaz; rengi kapsayan metinden ya da ikon kutusundan gelir.
 
+### Çizimler (`src/assets/art`)
+
+Monki ve çizili simgeler WebP olarak gelir, `ui/drawnArt.ts` (ve `gameArt.ts`, `StatusArt.tsx`, `EmptyArt.tsx`) üzerinden bağlanır. Koyu kahve dış çizgileri koyu ve sakin temada zemine karışır.
+
+**Çizim Kenarı Kuralı.** Bir çizimi gösteren her `<img>` sınıfı `index.css`teki `--art-edge` kuralının listesine girer. Bu token açık temada `none`, koyu ve sakin temada ince açık bir `drop-shadow`. Çizime ayrıca `filter` yazılmaz. Konfeti kareleri, karşılama afişi ve oyun filigranı bu kuralın dışındadır.
+
 ## Yap / Yapma
 
 ### Yap
