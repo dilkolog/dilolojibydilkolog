@@ -417,7 +417,7 @@ export function AppScreens(props: AppScreensProps) {
             />
             {lookupNudge}
             <GainsNudge gains={studyGains(data.states, data.recentEvents, data.language, new Date())} target={settings.retention} onOpen={go({ name: 'progress' })} />
-            <WeeklyNudge line={weekText} summary={weekData} lemmaOf={(id) => byId.get(id)?.lemma} now={new Date()} onOpen={go({ name: 'progress' })} onWord={(entryId) => setScreen({ name: 'word', entryId })} />
+            <WeeklyNudge language={data.language} line={weekText} summary={weekData} lemmaOf={(id) => byId.get(id)?.lemma} now={new Date()} onOpen={go({ name: 'progress' })} onWord={(entryId) => setScreen({ name: 'word', entryId })} />
             <SuggestWords db={db} language={data.language} vocabulary={data.vocabulary} settings={settings} onAdded={reload} onlyWhenDue />
             <WhatsNew words={data.vocabulary.filter((v) => v.source !== 'sample').length} onReading={go({ name: 'reading' })} onPractice={go({ name: 'games', game: 'pron' })} onGrammar={go({ name: 'games', game: 'grammar' })} />
             <BackupNudge

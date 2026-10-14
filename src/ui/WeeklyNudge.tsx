@@ -1,8 +1,14 @@
 import { useState } from 'react'
-import { weekChange, type WeekSummary } from '../engine/weekly'
-import { ChartIcon, CloseIcon } from './icons'
+import { AiError, weekNote } from '../ai'
+import type { TargetLanguage } from '../engine/types'
+import { weekChange, weekDigest, type WeekSummary } from '../engine/weekly'
+import { useAi } from './aiContext'
+import { ChartIcon, CloseIcon, SparkleIcon } from './icons'
+import { ERROR_NAME } from './labels'
 
 const KEY = 'kelime-koc:week-seen'
+/** The coach's remark on this week, kept so the card shows it again without asking (and paying) twice. */
+const NOTE_KEY = 'kelime-koc:week-note'
 
 /** The Sunday of the weekend the card shows on (Sunday and the Monday after it share a key): dismissed on one, hidden on both. */
 const weekKey = (d: Date) => {
@@ -11,12 +17,69 @@ const weekKey = (d: Date) => {
   return sunday.toDateString()
 }
 
+function savedNote(key: string): string {
+  try {
+    const saved = JSON.parse(localStorage.getItem(NOTE_KEY) ?? 'null') as { key: string; note: string } | null
+    return saved?.key === key ? saved.note : ''
+  } catch {
+    return ''
+  }
+}
+
+/** With an AI key and a week with enough answers: a coach's short remark on it, asked for with a tap. */
+function WeekNote({ language, summary, lemmaOf, week }: { language: TargetLanguage; summary: WeekSummary; lemmaOf: (entryId: string) => string | undefined; week: string }) {
+  const { apiKey } = useAi()
+  const key = `${week}|${language}`
+  const [note, setNote] = useState(() => savedNote(key))
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const lines = weekDigest(summary, lemmaOf, (t) => ERROR_NAME[t as keyof typeof ERROR_NAME] ?? t)
+  if (!apiKey || !lines) return null
+  if (note)
+    return (
+      <p className="small week-note" role="status">
+        <SparkleIcon size={14} className="inline-icon icon-star" /> {note}
+      </p>
+    )
+  const ask = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      const out = await weekNote(apiKey, { language, lines })
+      try {
+        localStorage.setItem(NOTE_KEY, JSON.stringify({ key, note: out }))
+      } catch {
+        // Shown now only.
+      }
+      setNote(out)
+    } catch (e) {
+      setError(e instanceof AiError ? e.message : 'Yorum hazırlanamadı.')
+    } finally {
+      setBusy(false)
+    }
+  }
+  return (
+    <>
+      <button type="button" className="btn btn-quiet" onClick={() => void ask()} disabled={busy}>
+        <SparkleIcon size={16} className="inline-icon icon-star" />
+        {busy ? 'Hazırlanıyor…' : 'YZ koçundan yorum'}
+      </button>
+      {error && (
+        <p className="small muted" role="alert">
+          {error}
+        </p>
+      )}
+    </>
+  )
+}
+
 /**
  * The week on Today, on Sunday and Monday (the week's end and the next one's start): days
  * studied, answers and how many were right, new words, readings, how it compares with the week
  * before, and the words missed twice or more.
  */
 export function WeeklyNudge({
+  language,
   line,
   summary,
   lemmaOf,
@@ -24,6 +87,8 @@ export function WeeklyNudge({
   onOpen,
   onWord,
 }: {
+  /** For the AI coach's remark (none without it). */
+  language?: TargetLanguage
   line: string
   summary: WeekSummary | null
   lemmaOf: (entryId: string) => string | undefined
@@ -97,6 +162,7 @@ export function WeeklyNudge({
         </div>
       )}
       <div className="row">
+        {language && <WeekNote language={language} summary={summary} lemmaOf={lemmaOf} week={weekKey(now)} />}
         <button type="button" className="btn btn-quiet" onClick={onOpen}>
           İlerleme'ye bak
         </button>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { explainAzureError, parseAssessment, wav } from './pronunciation'
+import { explainAzureError, parseAssessment, tipWords, wav } from './pronunciation'
 
 describe('pronunciation assessment (Azure)', () => {
   it('reads the scores of the whole utterance and of each word', () => {
@@ -41,5 +41,34 @@ describe('pronunciation assessment (Azure)', () => {
     expect(v.getUint32(24, true)).toBe(16000)
     expect(v.getInt16(46, true)).toBe(0x7fff)
     expect(v.getInt16(48, true)).toBe(-0x8000)
+  })
+})
+
+describe('the words worth a pronunciation tip', () => {
+  it('takes the words left out first, then the lowest scores under 80, each once, at most four; never the extra ones said', () => {
+    const r = {
+      score: 60,
+      accuracy: 60,
+      fluency: 70,
+      completeness: 80,
+      heard: '',
+      words: [
+        { word: 'Le', accuracy: 95, error: 'None' },
+        { word: 'chien', accuracy: 52, error: 'Mispronunciation' },
+        { word: 'euh', accuracy: 0, error: 'Insertion' },
+        { word: 'mange', accuracy: 0, error: 'Omission' },
+        { word: 'Chien', accuracy: 70, error: 'None' },
+        { word: 'rue', accuracy: 64, error: 'Mispronunciation' },
+        { word: 'heureux', accuracy: 41, error: 'Mispronunciation' },
+        { word: 'grenouille', accuracy: 75, error: 'None' },
+      ],
+    }
+    expect(tipWords(r)).toEqual([
+      { word: 'mange', accuracy: 0, omitted: true },
+      { word: 'heureux', accuracy: 41 },
+      { word: 'chien', accuracy: 52 },
+      { word: 'rue', accuracy: 64 },
+    ])
+    expect(tipWords({ ...r, words: [{ word: 'bien', accuracy: 92, error: 'None' }] })).toEqual([])
   })
 })

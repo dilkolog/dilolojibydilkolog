@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { weekLine, weekMisses, weekSummary } from '../weekly'
+import { weekLine, weekMisses, weekSummary, weekDigest, WEEK_NOTE_MIN_ANSWERS } from '../weekly'
 import type { ReviewEvent } from '../types'
 
 const NOW = new Date('2026-10-11T18:00:00')
@@ -85,5 +85,38 @@ describe('the week\'s misses', () => {
     ]
     expect(weekMisses(events, 'fr', NOW)).toEqual(['fr:b', 'fr:c', 'fr:a'])
     expect(weekMisses(events, 'fr', NOW, 2)).toEqual(['fr:b', 'fr:c'])
+  })
+})
+
+describe('the week for the AI coach', () => {
+  const s = { days: 4, answers: 80, right: 0.81, newWords: 6, texts: 1, lastAnswers: 120, missed: [{ entryId: 'e1', wrong: 3 }, { entryId: 'gone', wrong: 2 }], errors: { gender: 5, accent: 2, typo: 1, meaning: 4, form: 1 } }
+
+  it('says the figures, the most common kinds of error and the words missed most, by name', () => {
+    const lines = weekDigest(s, (id) => (id === 'e1' ? 'manger' : undefined), (t) => t.toUpperCase())!
+    expect(lines[0]).toBe('Days studied: 4/7. Answers: 80 (81% right). Week before: 120 answers.')
+    expect(lines).toContain('Mistakes by kind: GENDER ×5, MEANING ×4, ACCENT ×2, TYPO ×1.')
+    expect(lines).toContain('Words missed most: manger (3 wrong).')
+  })
+
+  it('stays silent for a week too thin to read a pattern in', () => {
+    expect(weekDigest({ ...s, answers: WEEK_NOTE_MIN_ANSWERS - 1 }, () => 'x', (t) => t)).toBeUndefined()
+  })
+
+  it('counts the kinds of error of the week', () => {
+    const now = new Date('2026-10-11T12:00:00')
+    const at = (h: number) => new Date(now.getTime() - h * 3_600_000)
+    const out = weekSummary({
+      language: 'fr',
+      now,
+      events: [
+        { timestamp: at(1), correct: false, language: 'fr', errorType: 'gender' },
+        { timestamp: at(2), correct: false, language: 'fr', errorType: 'gender' },
+        { timestamp: at(3), correct: true, language: 'fr' },
+        { timestamp: at(200), correct: false, language: 'fr', errorType: 'accent' },
+      ],
+      vocabulary: [],
+      texts: [],
+    })
+    expect(out.errors).toEqual({ gender: 2 })
   })
 })

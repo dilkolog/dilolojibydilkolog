@@ -74,6 +74,26 @@ export interface PronResult {
   heard: string
 }
 
+/** A word scored below this is worth a tip. */
+const TIP_BELOW = 80
+const TIP_WORDS = 4
+
+/** The words of an attempt worth a tip: left out or scored low (not the extra ones said), the lowest first, each once. */
+export function tipWords(result: PronResult): { word: string; accuracy: number; omitted?: boolean }[] {
+  const seen = new Set<string>()
+  return result.words
+    .filter((w) => w.error === 'Omission' || (w.error !== 'Insertion' && w.accuracy < TIP_BELOW))
+    .map((w) => ({ word: w.word, accuracy: w.accuracy, ...(w.error === 'Omission' ? { omitted: true } : {}) }))
+    .sort((a, b) => Number(!!b.omitted) - Number(!!a.omitted) || a.accuracy - b.accuracy)
+    .filter((w) => {
+      const k = w.word.toLocaleLowerCase()
+      if (seen.has(k)) return false
+      seen.add(k)
+      return true
+    })
+    .slice(0, TIP_WORDS)
+}
+
 /** What Azure's answer means, in Turkish, with what to change. */
 export function explainAzureError(status: number, body: string): string {
   if (status === 401 || status === 403) return 'Azure anahtarı ya da bölgesi tutmuyor: Keys and Endpoint sayfasındaki KEY 1 ile Location/Region (ör. francecentral) birebir aynı olmalı.'

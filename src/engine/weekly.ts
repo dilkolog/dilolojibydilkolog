@@ -15,6 +15,8 @@ export interface WeekSummary {
   lastAnswers: number
   /** Words answered wrong at least twice this week, the most missed first (at most three). */
   missed?: { entryId: string; wrong: number }[]
+  /** The week's wrong answers by kind of error (meaning, gender, accent…). */
+  errors?: Record<string, number>
 }
 
 /** Wrong twice in a week is a pattern; once is a slip. */
@@ -27,7 +29,7 @@ const localDay = (d: Date) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}
 export function weekSummary(input: {
   language: TargetLanguage
   now: Date
-  events: readonly { timestamp: Date; correct: boolean; language: TargetLanguage; entryId?: string; mode?: string }[]
+  events: readonly { timestamp: Date; correct: boolean; language: TargetLanguage; entryId?: string; mode?: string; errorType?: string }[]
   vocabulary: readonly { addedAt?: Date; source: string; language: TargetLanguage }[]
   texts: readonly { history: { at: string }[] }[]
 }): WeekSummary {
@@ -43,6 +45,8 @@ export function weekSummary(input: {
     .map(([entryId, n]) => ({ entryId, wrong: n }))
     .sort((a, b) => b.wrong - a.wrong || a.entryId.localeCompare(b.entryId))
     .slice(0, MISSED_SHOWN)
+  const errors: Record<string, number> = {}
+  for (const e of answers) if (!e.correct && e.errorType) errors[e.errorType] = (errors[e.errorType] ?? 0) + 1
   return {
     // 168 hours can touch eight calendar days; the card says "of 7".
     days: Math.min(7, new Set(answers.map((e) => localDay(new Date(e.timestamp)))).size),
@@ -52,7 +56,33 @@ export function weekSummary(input: {
     texts: input.texts.filter((t) => t.history.some((h) => inWeek(h.at))).length,
     lastAnswers,
     ...(missed.length ? { missed } : {}),
+    ...(Object.keys(errors).length ? { errors } : {}),
   }
+}
+
+/** A week worth a coach's remark: enough answers to see a pattern in. */
+export const WEEK_NOTE_MIN_ANSWERS = 20
+
+/**
+ * The week as plain lines for the AI coach: the figures, the change from the week before, the kinds
+ * of error, and the words missed most. Undefined for a week too thin to say anything about.
+ */
+export function weekDigest(s: WeekSummary, lemmaOf: (entryId: string) => string | undefined, errorName: (type: string) => string): string[] | undefined {
+  if (s.answers < WEEK_NOTE_MIN_ANSWERS) return undefined
+  const errors = Object.entries(s.errors ?? {})
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 4)
+    .map(([type, n]) => `${errorName(type)} ×${n}`)
+  const missed = (s.missed ?? []).flatMap((m) => {
+    const lemma = lemmaOf(m.entryId)
+    return lemma ? [`${lemma} (${m.wrong} wrong)`] : []
+  })
+  return [
+    `Days studied: ${s.days}/7. Answers: ${s.answers} (${Math.round(s.right * 100)}% right). Week before: ${s.lastAnswers} answers.`,
+    `New words added: ${s.newWords}. Texts read: ${s.texts}.`,
+    ...(errors.length ? [`Mistakes by kind: ${errors.join(', ')}.`] : []),
+    ...(missed.length ? [`Words missed most: ${missed.join(', ')}.`] : []),
+  ]
 }
 
 /** One line for the week: "5 gün · 312 cevap (%86 doğru) · 18 yeni kelime · 2 metin · en çok: être". Empty for a week with nothing. */

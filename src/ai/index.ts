@@ -8,6 +8,9 @@ import type {
   ErrorReportRequest,
   SessionNoteRequest,
   ConjugationExplainRequest,
+  WeekNoteRequest,
+  PronTipsRequest,
+  PronTip,
   PersonalSentence,
   PersonalSentencesRequest,
   PrequestionSet,
@@ -66,6 +69,8 @@ export const prequestions = async (apiKey: string, language: TargetLanguage, tex
 export const monthlyReport = async (apiKey: string, req: ErrorReportRequest): Promise<ErrorReport> => (await sdk()).monthlyReport(apiKey, req)
 export const personalSentences = async (apiKey: string, req: PersonalSentencesRequest): Promise<PersonalSentence[]> => (await sdk()).personalSentences(apiKey, req)
 export const sessionNote = async (apiKey: string, req: SessionNoteRequest): Promise<string> => (await sdk()).sessionNote(apiKey, req)
+export const pronTips = async (apiKey: string, req: PronTipsRequest): Promise<PronTip[]> => (await sdk()).pronTips(apiKey, req)
+export const weekNote = async (apiKey: string, req: WeekNoteRequest): Promise<string> => (await sdk()).weekNote(apiKey, req)
 export const explainConjugation = async (apiKey: string, req: ConjugationExplainRequest): Promise<{ explanation: string; tip: string }> => (await sdk()).explainConjugation(apiKey, req)
 export const monkiTurn = async (apiKey: string, req: MonkiRequest): Promise<MonkiReply> => (await sdk()).monkiTurn(apiKey, req)
 export const chatTurn = async (apiKey: string, req: ChatRequest): Promise<ChatReply> => (await sdk()).chatTurn(apiKey, req)
