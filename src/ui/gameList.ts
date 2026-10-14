@@ -1,5 +1,5 @@
 /** Every game by id, for the command palette (kept apart so the palette doesn't load the games). */
-export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register' | 'flow' | 'affix' | 'truefalse' | 'test' | 'gravity' | 'notes' | 'diagram'
+export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register' | 'flow' | 'affix' | 'truefalse' | 'test' | 'gravity' | 'notes' | 'diagram' | 'context'
 
 export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French and Spanish only. */ grammar?: boolean }[] = [
   { id: 'swipe', name: 'Kaydırmalı kartlar', emoji: '👆' },
@@ -8,6 +8,7 @@ export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French an
   { id: 'notes', name: 'Notlarından sınav', emoji: '🗒️' },
   { id: 'diagram', name: 'Resim etiketleme', emoji: '🖼️' },
   { id: 'sentences', name: 'Cümle kartları', emoji: '💬' },
+  { id: 'context', name: 'Cümlede tekrar', emoji: '🧷' },
   { id: 'back', name: 'Geri çeviri', emoji: '🔁' },
   { id: 'boss', name: 'Boss savaşları', emoji: '⚔️' },
   { id: 'audio', name: 'Sesli tekrar', emoji: '🎧' },

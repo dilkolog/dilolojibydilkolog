@@ -1517,6 +1517,9 @@ button.badge-card:active { transform: none; }
 .flow-translation { animation: screen-in var(--dur) var(--ease-out) 120ms backwards; }
 .flow-text { font-family: var(--serif); font-size: var(--t-lg); line-height: 1.8; margin: 0; }
 .flow-gap { background: var(--surface-2); color: var(--ink-soft); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; white-space: nowrap; }
+button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(--lang-text); background: var(--lang-soft); cursor: pointer; }
+.context-bank .chip { font-family: var(--serif); font-size: var(--t-md); }
+.context-bank .chip:disabled { opacity: 0.35; cursor: default; }
 @media (hover: none) and (pointer: coarse) {
   .group-toggle::after { content: ''; position: absolute; inset: -0.5rem 0; }
 }

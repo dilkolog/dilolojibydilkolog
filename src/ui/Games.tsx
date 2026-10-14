@@ -24,6 +24,7 @@ import { TrapRound } from './games/TrapRound'
 import { RegisterRound } from './games/RegisterRound'
 import { registerItems } from '../data/register'
 import { FlowRound } from './games/FlowRound'
+import { ContextReview } from './games/ContextReview'
 import { AffixHunt } from './games/AffixHunt'
 import { flowItems } from '../data/flow'
 import { trapWords } from '../data/traps'
@@ -140,6 +141,7 @@ export function GamesScreen(
     if (game === 'diagram') return <DiagramGame language={p.language} vocabulary={p.vocabulary} onChanged={p.onChanged} onExit={() => setGame(null)} />
     if (game === 'notes') return <NotesQuiz language={p.language} onExit={() => setGame(null)} />
     if (game === 'sentences') return <SentencesGame language={p.language} onExit={() => setGame(null)} />
+    if (game === 'context') return <ContextReview {...p} onExit={() => setGame(null)} />
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
@@ -175,6 +177,7 @@ export function GamesScreen(
           : []),
         { id: 'diagram', emoji: '🖼️', name: 'Resim etiketleme', text: 'Bir çizim, fotoğraf ya da haritaya kelimeleri yerleştir; nokta nokta çalış.', status: 'Kendi resimlerinle' },
         { id: 'sentences', emoji: '💬', name: 'Cümle kartları', text: 'Okurken kaydettiğin cümleler: boşluk, dikte ve çeviri.', status: dueSentenceCount ? `${dueSentenceCount} cümle tekrar bekliyor` : 'Okumada bir kelimeye dokun → Cümleyi kaydet', scheduled: true, due: dueSentenceCount > 0 },
+        { id: 'context', emoji: '🧷', name: 'Cümlede tekrar', text: 'Okuduğun ve çevirdiğin cümlelerde kendi kelimelerin boş: yerlerine koy, kelimeyi yanındakilerle hatırla.', status: p.states.length >= 2 ? 'Kendi cümlelerinden' : learnFirst, disabled: p.states.length < 2 },
         { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz (en iyisi ertesi gün); farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır${backRested ? ` · ${backRested} tanesi önceki günlerden` : ''}` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
         { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: bossCount === 0 ? 'Henüz boss yok: bir kelime sık yanlış olunca belirir' : `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss', disabled: bossCount === 0 },
         { id: 'audio', emoji: '🎧', name: 'Sesli tekrar', text: 'Ekrana bakmadan dinle: kelime, düşünme payı, anlamı.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : p.states.length ? 'Yürürken, yemek yaparken' : learnFirst, disabled: !canSpeak() || p.states.length === 0 },
