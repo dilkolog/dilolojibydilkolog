@@ -39,6 +39,8 @@ export interface PushState {
   week: string
   /** Local hour (0–23) the server reminds at. */
   hour: number
+  /** A word missed lately, for the push reminder to ask about (never sent in a mail). */
+  word?: string
 }
 
 /** What the server is told about the day (shared by the push and the mail reminders). */
@@ -60,7 +62,7 @@ async function save(sub: PushSubscription, state: PushState) {
   await fetch('/api/push', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, group: cred ? await (await import('../data/sync')).credentialId(cred) : null }),
+    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, word: state.word ?? '', group: cred ? await (await import('../data/sync')).credentialId(cred) : null }),
   })
 }
 

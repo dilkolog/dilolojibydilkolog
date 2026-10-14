@@ -1199,6 +1199,8 @@ button.badge-card:active { transform: none; }
 .wl-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; }
 .wl-name { margin: 0; display: inline-flex; align-items: center; gap: 0.5rem; font-size: var(--t-md); font-weight: 700; }
 .wl-focus-badge { display: inline-flex; align-items: center; gap: 0.25rem; font-size: var(--t-xs); }
+.wl-done-badge { background: var(--ok-soft); color: var(--ok-text); }
+.wl-done-note { margin: 0; }
 .wl-bar { display: block; position: relative; height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
 .wl-bar > span { position: absolute; inset: 0 auto 0 0; border-radius: inherit; }
 .wl-bar-met { background: color-mix(in srgb, var(--lang) 35%, var(--track)); }

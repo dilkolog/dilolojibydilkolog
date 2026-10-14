@@ -20,7 +20,7 @@ Kıyafetli Monki (B), seri alevi, hesap durumları, hayvan avatarları, ayarlar 
 - **B oturum tepkileri** (`Monki reactions.jpg`) → `react-*.webp`: cevap kutusunun üstünde (doğru / yanlış / unuttum); selam, yeni kelime ve seri tepkileri hazır bekliyor.
 - **C boş durumlar** (`Monki holding a broom.jpg`) → `scene-*.webp`: Hatalar (hepsi düzeldi), Cümle kartları, Resim etiketleme, boş ortak liste.
 - **D paylaşım afişleri** (`Three separate horizontal banners .jpg`) → `share-{streak,level,week}.webp`: seviye atlama, seri rozetleri ve haftanın özeti paylaşımı.
-- **E logo** (`monki head.jpg`) → `brand-monki.webp` (kenar çubuğu, ilk açılış, hesap ekranı) ve `public/favicon-{32,64}.png`.
+- **E logo** (`monki head.jpg`): denendi, sahibi beğenmedi (2026-10-14); kenar çubuğu, ilk açılış, hesap ekranı ve sekme simgesi (`favicon.svg`) yine eski yaprak/konuşma balonu (`BrandMark`). Uygulama simgesi (`public/pwa-*`) Monki kaldı.
 
 ## Bekleyenler
 Yok. Yeni set gelirse buraya yükle; adını ve kaç parça olduğunu yaz.

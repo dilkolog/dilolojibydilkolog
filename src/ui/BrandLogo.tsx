@@ -1,10 +1,10 @@
-import brandMonki from '../assets/art/brand-monki.webp'
+import { BrandMark } from './icons'
 
-/** The app's mark: Monki's head on its orange square, as on the home-screen icon. */
-export function BrandLogo({ className = '' }: { className?: string }) {
+/** The app's mark: the leaf that is also a speech bubble, on its coloured square. */
+export function BrandLogo({ className = '', size }: { className?: string; size?: number }) {
   return (
-    <span className={`brand-mark brand-mark-monki ${className}`.trim()} aria-hidden>
-      <img className="brand-monki" src={brandMonki} alt="" draggable={false} />
+    <span className={`brand-mark ${className}`.trim()} aria-hidden>
+      <BrandMark size={size} />
     </span>
   )
 }

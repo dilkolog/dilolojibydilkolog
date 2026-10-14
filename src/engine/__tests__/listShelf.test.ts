@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { dueCount, lastStudied, listOrder } from '../lists'
+import { dueCount, lastStudied, LIST_DONE_MIN, listDone, listOrder } from '../lists'
 import type { UserWordState, VocabularyEntry, WordList } from '../types'
 
 const NOW = new Date('2026-10-14T09:00:00Z')
@@ -32,5 +32,14 @@ describe('word lists', () => {
     const states = new Map([['s', state('s', [], new Date('2026-10-13'))]])
     expect(listOrder(lists, vocabulary, states, 'focus').map((l) => l.id)).toEqual(['focus', 'studied', 'new', 'old', 'empty'])
     expect(listOrder(lists, vocabulary, states).map((l) => l.id)).toEqual(['studied', 'new', 'old', 'focus', 'empty'])
+  })
+})
+
+describe('a finished list', () => {
+  it('is one long enough whose every word is learned', () => {
+    expect(listDone({ total: 8, met: 8, learned: 8 })).toBe(true)
+    expect(listDone({ total: 8, met: 8, learned: 7 })).toBe(false)
+    expect(listDone({ total: LIST_DONE_MIN - 1, met: 4, learned: 4 })).toBe(false)
+    expect(listDone({ total: 0, met: 0, learned: 0 })).toBe(false)
   })
 })

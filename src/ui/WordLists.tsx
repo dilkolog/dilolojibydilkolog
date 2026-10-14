@@ -1,11 +1,11 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { listCover } from './drawnArt'
-import { UNLISTED, dueCount, listOrder, listWords, progressOf, unlistedWords, type GroupProgress } from '../engine/lists'
+import { UNLISTED, dueCount, listDone, listOrder, listWords, progressOf, unlistedWords, type GroupProgress } from '../engine/lists'
 import { progressLine as meta } from './listOptions'
 import type { TargetLanguage, UserWordState, VocabularyEntry, WordList } from '../engine/types'
 import type { KelimeDB } from '../data/db'
 import { EmptyState } from './EmptyState'
-import { PlusIcon, TargetIcon } from './icons'
+import { CheckIcon, PlusIcon, TargetIcon } from './icons'
 import { showToast } from './toastFeed'
 import { newListId } from './wordListId'
 
@@ -16,6 +16,16 @@ export function Bar({ p }: { p: GroupProgress }) {
     <span className="wl-bar" role="img" aria-label={`${p.total} kelimeden ${p.met} tanıştı, ${p.learned} öğrenildi`}>
       <span className="wl-bar-met" style={{ width: `${pct(p.met)}%` }} />
       <span className="wl-bar-learned" style={{ width: `${pct(p.learned)}%` }} />
+    </span>
+  )
+}
+
+/** A list whose every word is learned. */
+export function DoneBadge() {
+  return (
+    <span className="badge wl-focus-badge wl-done-badge">
+      <CheckIcon size={14} className="inline-icon" />
+      Tamamlandı
     </span>
   )
 }
@@ -90,6 +100,7 @@ export function WordListsView({
             const p = progressOf(words, stateById)
             const due = dueCount(words, stateById, now)
             const cover = listCover(list.name)
+            const done = listDone(p)
             return (
               <li key={list.id}>
                 <button type="button" className="wl-tile" aria-current={list.id === focusListId ? 'true' : undefined} onClick={() => onOpenList(list.id)}>
@@ -97,8 +108,9 @@ export function WordListsView({
                     {cover && <img className="wl-cover" src={cover} alt="" width={40} height={40} />}
                     <span className="wl-name">{list.name}</span>
                   </span>
-                  {(list.id === focusListId || collabIds.has(list.id)) && (
+                  {(list.id === focusListId || collabIds.has(list.id) || done) && (
                     <span className="row wl-badges">
+                      {done && <DoneBadge />}
                       {list.id === focusListId && (
                         <span className="badge wl-focus-badge">
                           <TargetIcon size={14} className="inline-icon" />
