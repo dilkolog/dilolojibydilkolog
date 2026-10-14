@@ -31,6 +31,7 @@ export function FormTable({
   speakable = true,
   weak = {},
   turkish,
+  found,
   onMemorised,
 }: {
   language: LabLanguage
@@ -46,6 +47,8 @@ export function FormTable({
   turkish?: readonly string[]
   /** Memorise mode marked through: knew it or not, for each person (vosotros left out when hidden). */
   onMemorised?: (results: { person: number; ok: boolean }[]) => void
+  /** The person of a form the learner searched for ("estés"): its row stands out. */
+  found?: number
 }) {
   const [shown, setShown] = useState<ReadonlySet<number>>(new Set())
   const [graded, setGraded] = useState<Readonly<Record<number, boolean>>>({})
@@ -97,10 +100,11 @@ export function FormTable({
           </>
         )
         return (
-          <div key={i} className={`lab-row${faded ? ' is-faded' : ''}${weak[i] ? ' is-weak' : ''}${turkish?.[i] ? ' has-tr' : ''}`} role="row" title={faded ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : weak[i] ? `Bu zamanda bu kişide ${weak[i]}` : undefined}>
+          <div key={i} className={`lab-row${faded ? ' is-faded' : ''}${weak[i] ? ' is-weak' : ''}${turkish?.[i] ? ' has-tr' : ''}${found === i ? ' is-found' : ''}`} role="row" title={faded ? 'İspanya’da kullanılır; sorularda çıkmaz (Ayarlar → Sorular)' : weak[i] ? `Bu zamanda bu kişide ${weak[i]}` : undefined}>
             <span className="lab-subject" role="rowheader">
               {subjectLabel(language, tense, i)}
               {weak[i] && <span className="sr-only">, sık yanlış yaptığın biçim ({weak[i]})</span>}
+              {found === i && <span className="sr-only">, aradığın biçim</span>}
             </span>
             {turkish?.[i] ? (
               <span className="lab-stack" role="cell">

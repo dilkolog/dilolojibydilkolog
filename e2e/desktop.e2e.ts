@@ -691,6 +691,20 @@ test('verb lab: the Turkish of each form beside it, in the core tenses, never wh
   expect(await overflow(page)).toEqual([])
 })
 
+test('verb lab: a conjugated form typed in the search opens its verb at that tense', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  const input = page.getByRole('combobox')
+  // Typed without its accent: "etions" is être, imparfait, nous.
+  await input.fill('etions')
+  await expect(page.getByRole('option').first()).toContainText('être')
+  await input.press('Enter')
+  const main = page.locator('.lab-main')
+  await expect(main.locator('.lab-verb').first()).toHaveText(/^être$/i)
+  await expect(main.getByRole('group', { name: 'Zaman' }).getByRole('button', { name: 'Imparfait' })).toHaveAttribute('aria-pressed', 'true')
+  await expect(main.locator('.lab-row.is-found')).toContainText('étions')
+})
+
 test('Today: the verb of the day opens its table in the verb lab', async ({ page }) => {
   await startWithSamples(page)
   const tile = page.locator('.tile', { hasText: 'Günün fiili' })

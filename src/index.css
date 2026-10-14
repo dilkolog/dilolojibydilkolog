@@ -3456,6 +3456,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .lab-suggest { margin: 0; padding: 0; list-style: none; max-height: 16rem; overflow-y: auto; font-family: var(--serif); font-size: var(--t-lg); }
 .lab-suggest li { padding: 0.5rem 0.75rem; border-radius: var(--r-sm); cursor: pointer; }
 .lab-suggest li.is-active, .lab-suggest li:hover { background: var(--lang-soft); color: var(--lang-text); }
+.lab-suggest li.lab-form-hit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.125rem 0.5rem; }
+.lab-form-note { font-family: var(--sans); font-size: var(--t-sm); color: var(--ink-soft); }
 .lab-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
 .lab-chips .chip { font-family: var(--serif); }
 .lab-chips .chip.is-more { font-family: inherit; color: var(--ink-soft); }
@@ -3523,6 +3525,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 /* A person the learner often misses in this tense: an orange edge, the colour of a near miss. */
 .lab-row.is-weak { box-shadow: inset 3px 0 0 var(--near); padding-left: 0.625rem; }
 .lab-weak-note { margin: -0.25rem 0 0; }
+/* The person of a form the learner searched for ("estés"): the language's tint, held while they look. */
+.lab-row.is-found { background: var(--lang-soft); border-radius: var(--r-sm); padding-left: 0.625rem; }
 .lab-subject { flex: 0 1 7rem; min-width: 0; color: var(--ink-soft); font-size: var(--t-sm); }
 .lab-subject::first-letter { text-transform: uppercase; }
 .lab-picker .section-title { display: block; }

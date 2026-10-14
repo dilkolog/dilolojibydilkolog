@@ -12,8 +12,15 @@ beforeAll(() => {
 
 describe('the verb a typed form belongs to', () => {
   it('finds the infinitive with the tense and person', () => {
-    expect(verbFormsOf('es', 'renuncié')[0]).toEqual({ lemma: 'renunciar', note: 'pretérito indefinido, yo' })
+    expect(verbFormsOf('es', 'renuncié')[0]).toEqual({ lemma: 'renunciar', note: 'pretérito indefinido, yo', tense: 'preterito', person: 0 })
     expect(verbFormsOf('fr', 'allions')[0]).toMatchObject({ lemma: 'aller', note: expect.stringMatching(/^imparfait, nous/) })
+  })
+
+  it('forgives missing accents when nothing matches as typed', () => {
+    expect(verbFormsOf('es', 'estes')[0]).toMatchObject({ lemma: 'estar', tense: 'subjuntivo', person: 1 })
+    expect(verbFormsOf('fr', 'etais')[0]).toMatchObject({ lemma: 'être', tense: 'imparfait' })
+    // A form that exists as typed keeps its own reading: "hablo" is not "habló".
+    expect(verbFormsOf('es', 'hablo').map((h) => h.tense)).toEqual(['presente'])
   })
 
   it('reads a compound tense typed with its auxiliary', () => {
