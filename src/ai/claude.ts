@@ -541,10 +541,20 @@ export async function monkiTurn(apiKey: string, req: MonkiRequest): Promise<Monk
     'If the learner writes a sentence in the target language with a real mistake, point it out kindly even when they did not ask. Never invent features of the app. Politely steer off-topic requests back to language learning in one friendly sentence.',
     `Words they currently struggle with (use them for examples and quizzes when it fits): ${req.weakWords?.join(', ') || 'none known'}.`,
     'Also return two or three short follow-up taps that would naturally come next.',
+    'Put the whole answer in "reply": never stop after an introduction such as "İşte örnekler:" or "Tabii, şunlar:"; the examples or list it announces must follow in the same reply.',
     ...monkiModeRules(req, lang),
   ].join('\n')
   const messages: Anthropic.Beta.BetaMessageParam[] = req.history.map((t) => ({ role: t.role, content: t.text }))
-  return structured(apiKey, Monki, system, messages, 'low', 'monki')
+  const first = await structured(apiKey, Monki, system, messages, 'low', 'monki')
+  if (!endsMidThought(first.reply)) return first
+  // A small model sometimes announces a list and stops there ("Tabii, daha resmi ifadeler işte:"): ask once more.
+  const again = await structured(apiKey, Monki, `${system}\nYour previous attempt ended right after its introduction, with nothing after it. Write the full answer this time.`, messages, 'low', 'monki')
+  return endsMidThought(again.reply) ? first : again
+}
+
+/** A reply that only announces what comes next ("…işte:") and stops there. */
+export function endsMidThought(reply: string): boolean {
+  return /[:：]\s*$/.test(reply.trim())
 }
 
 // ---------------------------------------------------------------------------

@@ -1,0 +1,392 @@
+[
+ {
+  "id": "fr-phones",
+  "language": "fr",
+  "text": "Les smartphones nous rendent de nombreux services. {1}, ils peuvent aussi nuire à notre concentration. Certains élèves consultent leur téléphone toutes les cinq minutes ; {2}, plusieurs écoles ont interdit les portables en classe. {3} cette mesure paraisse sévère, beaucoup de parents la soutiennent.",
+  "tr": "Akıllı telefonlar bize pek çok konuda yardımcı oluyor. Yine de dikkatimize zarar da verebilirler. Bazı öğrenciler telefonlarına beş dakikada bir bakıyor; bu yüzden birçok okul sınıfta cep telefonunu yasakladı. Bu önlem sert görünse de birçok veli onu destekliyor.",
+  "gaps": [
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "Ainsi",
+     "Puisque"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yararın ardından bir sakınca geliyor: “yine de”. Puisque bir yan cümle açar, virgülle tek başına duramaz."
+   },
+   {
+    "answer": "c'est pourquoi",
+    "options": [
+     "c'est pourquoi",
+     "pourtant",
+     "bien que"
+    ],
+    "kind": "Sonuç",
+    "why": "Öğrencilerin sürekli telefona bakması yasağın nedeni: “bu yüzden”."
+   },
+   {
+    "answer": "Bien que",
+    "options": [
+     "Bien que",
+     "Parce que",
+     "Pour que"
+    ],
+    "kind": "Taviz",
+    "why": "“Sert görünse de destekliyorlar”: taviz. Fiil subjonctif (paraisse); parce que subjonctif almaz."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-recycling",
+  "language": "fr",
+  "text": "Trier ses déchets demande un peu d'organisation. {1}, ce geste permet de réduire fortement la pollution. {2} chacun fait un petit effort, les quantités envoyées à la décharge diminuent rapidement. {3}, le meilleur déchet reste celui qu'on ne produit pas.",
+  "tr": "Atıklarını ayırmak biraz düzen ister. Ancak bu davranış kirliliği büyük ölçüde azaltır. Herkes küçük bir çaba gösterirse çöplüğe giden miktar hızla azalır. Yine de en iyi atık, hiç üretilmeyendir.",
+  "gaps": [
+   {
+    "answer": "Cependant",
+    "options": [
+     "Cependant",
+     "Par conséquent",
+     "De plus"
+    ],
+    "kind": "Zıtlık",
+    "why": "Zahmet (düzen ister) ile yarar (kirliliği azaltır) karşı karşıya: “ancak”."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Afin que",
+     "Avant que"
+    ],
+    "kind": "Koşul",
+    "why": "“Herkes çaba gösterirse”: koşul. Afin que ve avant que subjonctif ister, burada fiil fait (indicatif)."
+   },
+   {
+    "answer": "Toutefois",
+    "options": [
+     "Toutefois",
+     "C'est pourquoi",
+     "Puisque"
+    ],
+    "kind": "Zıtlık",
+    "why": "Ayırmanın yararını sınırlayan son bir not: “yine de en iyisi hiç üretmemek”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-tourism",
+  "language": "fr",
+  "text": "Le tourisme fait vivre de nombreuses régions. {1}, il crée des emplois et finance les services publics. {2}, l'afflux de visiteurs fait monter les loyers pour les habitants. {3} trouver un équilibre, certaines villes limitent désormais le nombre de locations de courte durée.",
+  "tr": "Turizm birçok bölgeyi geçindiriyor. Gerçekten de iş yaratıyor ve kamu hizmetlerini finanse ediyor. Buna karşılık ziyaretçi akını yerel halk için kiraları yükseltiyor. Bir denge bulmak için bazı şehirler artık kısa süreli kiralamaların sayısını sınırlıyor.",
+  "gaps": [
+   {
+    "answer": "En effet",
+    "options": [
+     "En effet",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Açıklama",
+    "why": "İlk cümleyi açıklıyor ve destekliyor: bölgeyi nasıl geçindirdiğini söylüyor."
+   },
+   {
+    "answer": "En revanche",
+    "options": [
+     "En revanche",
+     "Par exemple",
+     "Donc"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yararların karşısına bir zarar konuyor: “buna karşılık”."
+   },
+   {
+    "answer": "Pour",
+    "options": [
+     "Pour",
+     "Malgré",
+     "Depuis"
+    ],
+    "kind": "Amaç",
+    "why": "“Bir denge bulmak için”: amaç; ardından mastar gelir."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-sport",
+  "language": "fr",
+  "text": "Faire du sport régulièrement améliore la santé. {1}, il n'est pas nécessaire de courir un marathon : trente minutes de marche par jour suffisent. {2} on manque de temps, on peut prendre l'escalier plutôt que l'ascenseur. {3}, les petites habitudes comptent autant que les grands efforts.",
+  "tr": "Düzenli spor yapmak sağlığı iyileştirir. Yine de maraton koşmak gerekmez: günde otuz dakika yürüyüş yeter. Vaktin yoksa asansör yerine merdiveni kullanabilirsin. Kısacası küçük alışkanlıklar büyük çabalar kadar önemlidir.",
+  "gaps": [
+   {
+    "answer": "Toutefois",
+    "options": [
+     "Toutefois",
+     "Ainsi",
+     "Parce que"
+    ],
+    "kind": "Zıtlık",
+    "why": "Beklentiyi düzeltiyor: spor iyidir, ama çok yapmak şart değil."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Afin que",
+     "Après que"
+    ],
+    "kind": "Koşul",
+    "why": "“Vaktin yoksa”: koşul. Diğer ikisi anlamsız bir amaç ya da zaman kurar."
+   },
+   {
+    "answer": "Bref",
+    "options": [
+     "Bref",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Özet",
+    "why": "Paragrafın sonucu tek cümlede toplanıyor: “kısacası”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-online",
+  "language": "fr",
+  "text": "Les cours en ligne se sont multipliés depuis quelques années. Ils sont pratiques, {1} on peut les suivre de chez soi. {2}, beaucoup d'étudiants abandonnent avant la fin. Les spécialistes recommandent donc de travailler en groupe {3} garder la motivation.",
+  "tr": "Çevrim içi dersler birkaç yıldır çoğaldı. Pratikler, çünkü evden takip edilebiliyorlar. Yine de birçok öğrenci sonuna gelmeden bırakıyor. Uzmanlar bu yüzden motivasyonu korumak için grup hâlinde çalışmayı öneriyor.",
+  "gaps": [
+   {
+    "answer": "car",
+    "options": [
+     "car",
+     "sauf que",
+     "bien que"
+    ],
+    "kind": "Neden",
+    "why": "Neden pratik olduklarını söylüyor: “çünkü”."
+   },
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "En effet",
+     "Ainsi"
+    ],
+    "kind": "Zıtlık",
+    "why": "Pratik olmalarına rağmen bırakılıyorlar: beklenenin tersi."
+   },
+   {
+    "answer": "pour",
+    "options": [
+     "pour",
+     "sans",
+     "avant de"
+    ],
+    "kind": "Amaç",
+    "why": "Grup çalışmasının amacı motivasyonu korumak: “için”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-fastfood",
+  "language": "fr",
+  "text": "La restauration rapide attire surtout les jeunes. Les repas sont bon marché et vite servis ; {1}, ils contiennent souvent trop de sel et de sucre. {2} on en mange une fois de temps en temps, ce n'est pas grave. {3}, en manger tous les jours peut nuire à la santé.",
+  "tr": "Hızlı yemek en çok gençleri çekiyor. Yemekler ucuz ve çabuk servis ediliyor; buna karşılık çoğu zaman fazla tuz ve şeker içeriyor. Ara sıra yersen sorun değil. Öte yandan her gün yemek sağlığa zarar verebilir.",
+  "gaps": [
+   {
+    "answer": "en revanche",
+    "options": [
+     "en revanche",
+     "c'est-à-dire",
+     "par conséquent"
+    ],
+    "kind": "Zıtlık",
+    "why": "Artılar (ucuz, hızlı) ile eksi (tuz, şeker) karşı karşıya."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Pour que",
+     "Avant que"
+    ],
+    "kind": "Koşul",
+    "why": "“Ara sıra yersen”: koşul."
+   },
+   {
+    "answer": "Par contre",
+    "options": [
+     "Par contre",
+     "Ainsi",
+     "Autrement dit"
+    ],
+    "kind": "Zıtlık",
+    "why": "Ara sıra ile her gün karşılaştırılıyor: “öte yandan”."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-fourdays",
+  "language": "fr",
+  "text": "Plusieurs entreprises testent la semaine de quatre jours. Les salariés se disent plus reposés ; {1}, leur productivité ne baisse pas. {2}, ce modèle ne convient pas à tous les secteurs : un hôpital, {3}, doit fonctionner sept jours sur sept.",
+  "tr": "Birkaç şirket dört günlük çalışma haftasını deniyor. Çalışanlar daha dinlenmiş olduklarını söylüyor; üstelik verimlilikleri düşmüyor. Ancak bu model her sektöre uymuyor: örneğin bir hastane haftanın yedi günü çalışmak zorunda.",
+  "gaps": [
+   {
+    "answer": "de plus",
+    "options": [
+     "de plus",
+     "sinon",
+     "c'est-à-dire"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir artı ekleniyor: “üstelik”."
+   },
+   {
+    "answer": "Toutefois",
+    "options": [
+     "Toutefois",
+     "En effet",
+     "Donc"
+    ],
+    "kind": "Zıtlık",
+    "why": "Artıların ardından bir sınır: “ancak”."
+   },
+   {
+    "answer": "par exemple",
+    "options": [
+     "par exemple",
+     "en revanche",
+     "pourtant"
+    ],
+    "kind": "Örnek",
+    "why": "Hastane, uymayan sektöre bir örnek."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-social",
+  "language": "fr",
+  "text": "Les réseaux sociaux permettent de rester en contact avec ses proches. {1}, ils diffusent aussi de fausses informations. {2} on ne vérifie pas la source d'un article, on risque de partager une rumeur. Il faut donc apprendre à les utiliser, {3} les éviter complètement.",
+  "tr": "Sosyal ağlar yakınlarımızla iletişimde kalmamızı sağlıyor. Yine de yanlış bilgi de yayıyorlar. Bir makalenin kaynağını kontrol etmezsen bir söylenti paylaşma riskin var. Bu yüzden onlardan tamamen kaçınmak yerine kullanmayı öğrenmek gerekiyor.",
+  "gaps": [
+   {
+    "answer": "Néanmoins",
+    "options": [
+     "Néanmoins",
+     "Ainsi",
+     "En effet"
+    ],
+    "kind": "Zıtlık",
+    "why": "Yararın ardından bir tehlike: “yine de”."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Pour que",
+     "Avant que"
+    ],
+    "kind": "Koşul",
+    "why": "“Kontrol etmezsen”: koşul."
+   },
+   {
+    "answer": "plutôt que de",
+    "options": [
+     "plutôt que de",
+     "afin de",
+     "à force de"
+    ],
+    "kind": "Karşılaştırma",
+    "why": "İki yol karşılaştırılıyor: kaçınmak yerine öğrenmek."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-transport",
+  "language": "fr",
+  "text": "Les transports en commun sont moins polluants que la voiture. {1}, ils coûtent souvent moins cher. {2}, dans les zones rurales, les bus sont rares, {3} beaucoup d'habitants n'ont pas d'autre choix que de prendre leur voiture.",
+  "tr": "Toplu taşıma arabadan daha az kirletir. Üstelik çoğu zaman daha ucuzdur. Ancak kırsal bölgelerde otobüsler seyrek, öyle ki birçok kişinin arabasını kullanmaktan başka seçeneği yok.",
+  "gaps": [
+   {
+    "answer": "En outre",
+    "options": [
+     "En outre",
+     "Pourtant",
+     "Sinon"
+    ],
+    "kind": "Ekleme",
+    "why": "İkinci bir artı: “üstelik”."
+   },
+   {
+    "answer": "Cependant",
+    "options": [
+     "Cependant",
+     "Ainsi",
+     "De plus"
+    ],
+    "kind": "Zıtlık",
+    "why": "Artıların ardından bir sorun: “ancak”."
+   },
+   {
+    "answer": "si bien que",
+    "options": [
+     "si bien que",
+     "bien que",
+     "afin que"
+    ],
+    "kind": "Sonuç",
+    "why": "Otobüslerin seyrek olmasının sonucu: “öyle ki”. Fiil indicatif (n'ont), afin que ve bien que subjonctif ister."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ },
+ {
+  "id": "fr-volunteer",
+  "language": "fr",
+  "text": "Faire du bénévolat demande du temps. {1}, les bénévoles disent souvent qu'ils reçoivent plus qu'ils ne donnent. Ils rencontrent des gens différents et apprennent de nouvelles compétences ; {2}, certains trouvent même un emploi grâce à cette expérience. {3} tu as quelques heures libres par mois, pourquoi ne pas essayer ?",
+  "tr": "Gönüllülük zaman ister. Yine de gönüllüler çoğu zaman verdiklerinden fazlasını aldıklarını söyler. Farklı insanlarla tanışır, yeni beceriler öğrenirler; hatta bazıları bu deneyim sayesinde iş bulur. Ayda birkaç boş saatin varsa neden denemeyesin?",
+  "gaps": [
+   {
+    "answer": "Pourtant",
+    "options": [
+     "Pourtant",
+     "Par conséquent",
+     "Car"
+    ],
+    "kind": "Zıtlık",
+    "why": "Zaman ister, yine de karşılığı büyük: beklenenin tersi."
+   },
+   {
+    "answer": "d'ailleurs",
+    "options": [
+     "d'ailleurs",
+     "pourtant",
+     "sinon"
+    ],
+    "kind": "Ekleme",
+    "why": "Daha güçlü bir kazanç ekleniyor (hatta iş bulanlar var)."
+   },
+   {
+    "answer": "Si",
+    "options": [
+     "Si",
+     "Bien que",
+     "Pour que"
+    ],
+    "kind": "Koşul",
+    "why": "“Boş saatin varsa”: koşul. Bien que ve pour que subjonctif (aies) ister."
+   }
+  ],
+  "source": "Diloloji (özgün)"
+ }
+]
