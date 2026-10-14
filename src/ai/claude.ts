@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -457,6 +457,29 @@ export async function sessionNote(apiKey: string, req: SessionNoteRequest): Prom
   ].join('\n')
   const user = [`${req.answers} answers, ${req.wrong} not correct.`, ...req.lines].join('\n')
   return (await structured(apiKey, SessionNoteSchema, system, user, 'low', 'session_note')).note
+}
+
+const ConjugationExplainSchema = z.object({
+  explanation: z.string().describe('Two or three short sentences in Turkish: what the learner wrote, what was confused, the rule or pattern that gives the right form.'),
+  tip: z.string().describe('One short Turkish sentence: a concrete way to remember it next time (a pattern shared with other verbs, a contrast, a mnemonic).'),
+})
+
+/** Why a conjugation was wrong, explained like a teacher would: asked for with a tap after a wrong answer. */
+export async function explainConjugation(apiKey: string, req: ConjugationExplainRequest): Promise<{ explanation: string; tip: string }> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You are an experienced ${lang} teacher. A Turkish adult learner typed a wrong form of a verb in a conjugation drill.`,
+    'Explain the mistake: what the typed form actually is (another person, another tense, a regular ending on an irregular verb, a spelling or accent rule), and how the right form is built. Use the table given; never invent forms.',
+    'Write in Turkish, short and warm, no greetings and no lists; target-language forms may appear in quotes. If the typed form is not a real form, say what rule was misapplied.',
+  ].join('\n')
+  const user = [
+    `Verb: ${req.verb}. Tense: ${req.tense}. Subject: ${req.subject}.`,
+    `Right form: ${req.expected}. Learner typed: ${req.typed}.`,
+    `App's diagnosis: ${req.kind}${req.note ? ` (${req.note})` : ''}.`,
+    'The whole tense:',
+    ...req.table,
+  ].join('\n')
+  return structured(apiKey, ConjugationExplainSchema, system, user, 'low', 'verb_explain')
 }
 
 // ---------------------------------------------------------------------------

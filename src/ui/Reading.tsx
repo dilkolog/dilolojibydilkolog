@@ -494,6 +494,7 @@ export function ReadingScreen({
           onKnown={(key) => void markKnown(key)}
           onChanged={onChanged}
           onStudy={onStudy}
+          title={current?.title}
         />
       )}
 

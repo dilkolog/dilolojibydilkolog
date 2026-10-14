@@ -137,6 +137,23 @@ export interface PersonalSentence {
   translation: string
 }
 
+export interface ConjugationExplainRequest {
+  language: 'fr' | 'es'
+  verb: string
+  /** The tense asked, by name ("passé composé"). */
+  tense: string
+  /** The subject asked ("nous"). */
+  subject: string
+  /** The right form, with its subject. */
+  expected: string
+  typed: string
+  /** What kind of slip the app found ("Kişi karıştırma"), and what it can say of it. */
+  kind: string
+  note?: string
+  /** The whole tense, one subject and form a line. */
+  table: string[]
+}
+
 export interface SessionNoteRequest {
   language: import('../engine/types').TargetLanguage
   answers: number
