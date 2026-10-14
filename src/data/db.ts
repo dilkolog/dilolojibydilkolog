@@ -380,10 +380,58 @@ export class KelimeDB extends Dexie {
     this.meta.hook('creating', bumpMeta)
     this.meta.hook('updating', (_mods, key) => bumpMeta(key))
     this.meta.hook('deleting', bumpMeta)
+    // The answers, for `allEvents`: every write is counted; an answer added is kept once its transaction is
+    // committed (never one that is rolled back). A write that is not such an addition makes the next read whole.
+    const db = this
+    this.events.hook('creating', (_key, event, tx) => {
+      const seq = ++db.eventWrites
+      const copy = structuredClone(event)
+      tx.on('complete', () => {
+        db.addedEvents.push({ seq, event: copy })
+      })
+    })
+    this.events.hook('updating', () => {
+      db.eventWrites++
+    })
+    this.events.hook('deleting', () => {
+      db.eventWrites++
+    })
   }
 
   /** How many writes this database has taken since it was opened (see `bump`). */
   writes = 0
+
+  /** Writes to the answers since the database was opened, and the answers added (committed) since the last read. */
+  eventWrites = 0
+  private addedEvents: { seq: number; event: ReviewEvent }[] = []
+  private eventCache: { events: ReviewEvent[]; writes: number } | null = null
+
+  /**
+   * Every answer, read whole only when it has to be: reading all of them is the heavy part of a reload (≈17 ms a
+   * thousand), and between two reloads usually only new answers were added. Those are appended to the copy kept
+   * from the last read; anything else (a change, a deletion, a restore, an addition not yet committed or rolled
+   * back) leaves the counts apart and the whole table is read again. The objects are shared between callers:
+   * they must not be changed (the list itself is a fresh copy).
+   */
+  async allEvents(): Promise<ReviewEvent[]> {
+    const c = this.eventCache
+    // Only additions counted after the copy was read (one begun before it and committed later is already in it).
+    const added = c ? this.addedEvents.filter((a) => a.seq > c.writes) : []
+    if (c && this.eventWrites === c.writes + added.length) {
+      c.events = c.events.concat(added.map((a) => a.event))
+      c.writes = this.eventWrites
+      this.addedEvents = []
+      return [...c.events]
+    }
+    const start = this.eventWrites
+    this.eventCache = null
+    this.addedEvents = []
+    const events = await this.events.toArray()
+    // A write while it was being read: the copy might miss it or hold it twice; keep nothing and read whole next time.
+    if (this.eventWrites === start) this.eventCache = { events, writes: start }
+    else this.addedEvents = []
+    return [...events]
+  }
 
   async addMedia(kind: MediaRow['kind'], blob: Blob): Promise<string> {
     const id = crypto.randomUUID()
