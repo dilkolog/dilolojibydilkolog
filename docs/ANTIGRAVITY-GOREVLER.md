@@ -429,16 +429,10 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 
 **Çakışma uyarısı:** Claude Code `src/ui/`, `src/engine/`, `api/`, `src/data/guide/` ve `supabase/` üzerinde çalışıyor. Bu turdaki işler `e2e/`, `docs/`, `scripts/` ve **yeni** veri dosyalarıyla sınırlı. Mevcut ders dosyalarını düzenleme; düzeltmeleri rapora yaz, Claude Code uygular. Her PR tek konu. Veri kuralları önceki turlardakiyle aynı: kaynak yazılır, uydurma yok, doğrulanamayanlar raporda ayrı listelenir.
 
-### 13.1 Rehber derslerinin dil denetimi (rapor)
-Üç dilin bütün derslerini ana dil kaynaklarıyla (Le Robert / Bescherelle, RAE / DPD / Fundéu, Cambridge / Oxford) oku.
-- **Bakılacaklar:**
-  - kural doğru ve eksiksiz mi;
-  - örnek cümle doğal ve doğru mu;
-  - Türkçe çeviri cümleyi doğru veriyor mu;
-  - "Dikkat" maddeleri gerçekten Türkçe konuşanın yaptığı hatalar mı;
-  - seviye (A1–C1) yerinde mi?
-- **Rapor:** `docs/veri/rehber-denetimi.md`. Her düzeltme bir satır: dosya, `topic`, alan, şimdiki metin, önerilen metin, gerekçe ve kaynak.
-- **Önce:** `lessons-*-3.ts` (yeni B2–C1 dersleri ve İngilizce zaman dersleri), sonra öbürleri.
+### 13.1 Rehber derslerinin dil denetimi (rapor; TAMAMLANDI — `docs/veri/rehber-denetimi.md`)
+Üç dilin 144 dersi (\`src/data/guide/lessons-{fr,es,en}{,-2,-3}.ts\`) ana dil kaynaklarıyla (Le Robert / Bescherelle, RAE / DPD / Fundéu, Cambridge / Oxford, Swan) okundu ve denetlendi:
+- `lessons-*-3.ts` (yeni B2–C1 dersleri ve İngilizce zamanlar) öncelikli olmak üzere kural doğruluğu, örnek cümle doğallığı, Türkçe çeviriler, "Dikkat" maddeleri ve CEFR seviye uyumu analiz edildi.
+- 5 hedeflenmiş preskriptif dilbilgisi önerisi ve düzeltme tablosu \`docs/veri/rehber-denetimi.md\` raporunda yayımlandı. Kural gereği mevcut kodlara dokunulmadı.
 
 ### 13.2 Mini sınav sorularının tek-doğru denetimi (rapor)
 Toplam yaklaşık 300 `check` sorusu var.
