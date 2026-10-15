@@ -80,6 +80,15 @@ export interface AdminLists {
   pending: AdminEntry[]
   approved: AdminEntry[]
   rejected: AdminEntry[]
+  /** Friends, shares and reminders: Supabase not set up, 0003 not run, ready to move, or moved. Missing on an older server. */
+  tables?: 'off' | 'missing' | 'ready' | 'on'
+}
+
+export interface MoveCounts {
+  cards: number
+  follows: number
+  shares: number
+  reminders: number
 }
 
 const adminHeaders = (token: string) => ({ authorization: `Bearer ${token}`, 'content-type': 'application/json' })
@@ -102,4 +111,12 @@ export async function adminRelease(token: string, username: string): Promise<num
   const res = await fetch('/api/admin', { method: 'POST', headers: adminHeaders(token), body: JSON.stringify({ action: 'release', username }) })
   if (!res.ok) throw new Error(`admin ${res.status}`)
   return ((await res.json()) as { removed?: number }).removed ?? 0
+}
+
+/** Moves friends, shared lists and reminders from Blob to the Supabase tables; resolves to what was copied. */
+export async function adminMoveTables(token: string): Promise<MoveCounts> {
+  const res = await fetch('/api/admin', { method: 'POST', headers: adminHeaders(token), body: JSON.stringify({ action: 'move-tables' }) })
+  if (res.status === 409) throw new Error('missing')
+  if (!res.ok) throw new Error(`admin ${res.status}`)
+  return (await res.json()) as MoveCounts
 }

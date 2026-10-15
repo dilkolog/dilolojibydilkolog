@@ -1,4 +1,5 @@
 import { readText, removeBlob, StorageError, writeJson } from './_account.js'
+import { eq, rows, tablesOn, upsert, write } from './_tables.js'
 
 /**
  * Friends: an account shares a small card of how it is doing (a name it chose, its avatar, the XP of its
@@ -6,10 +7,7 @@ import { readText, removeBlob, StorageError, writeJson } from './_account.js'
  * given. Following is one-way, like giving someone your number: they see you once they add your code.
  * The card carries nothing else: no words, no answers, no account id (the code stands in for it).
  *
- * Kept in the Blob store:
- *   friends/card/<account id>.json   the account's own card, with its code
- *   friends/code/<CODE>.json         → { id } (the code's owner)
- *   friends/follow/<account id>.json → { codes } (whom it follows)
+ * Kept in Blob files or, once the owner moved them, Supabase tables (see FriendStore below).
  *
  * The app reaches this through /api/access (Vercel Hobby allows twelve functions, all taken).
  */
@@ -48,20 +46,6 @@ export interface FriendView {
   at: string
 }
 
-const cardPath = (id: string) => `friends/card/${id}.json`
-const codePath = (code: string) => `friends/code/${code}.json`
-const followPath = (id: string) => `friends/follow/${id}.json`
-
-async function readJson<T>(path: string): Promise<T | null> {
-  const text = await readText(path)
-  if (!text) return null
-  try {
-    return JSON.parse(text) as T
-  } catch {
-    return null
-  }
-}
-
 /** A code typed with a dash, spaces or in lower case is the same code. */
 export const normalizeCode = (raw: unknown): string => (typeof raw === 'string' ? raw.toUpperCase().replace(/[^0-9A-Z]/g, '') : '')
 
@@ -86,15 +70,18 @@ export function cleanCard(body: Record<string, unknown>, today: string): Omit<Fr
 
 /** The account's card, made (with a fresh code) the first time. */
 export async function ownCard(id: string): Promise<FriendCard> {
-  const card = await readJson<FriendCard>(cardPath(id))
+  const store = await friendStore()
+  const card = await store.card(id)
   if (card?.code) return card
   for (let i = 0; i < 5; i++) {
-    const code = newCode()
-    if (await readText(codePath(code))) continue
-    await writeJson(codePath(code), { id })
-    const fresh: FriendCard = { code, name: 'Arkadaş', avatar: '', color: '#6366f1', days: {}, streak: 0, level: 1, at: new Date().toISOString() }
-    await writeJson(cardPath(id), fresh)
-    return fresh
+    const fresh: FriendCard = { code: newCode(), name: 'Arkadaş', avatar: '', color: '#6366f1', days: {}, streak: 0, level: 1, at: new Date().toISOString() }
+    const made = await store.create(id, fresh)
+    if (made === 'ok') return fresh
+    // Made at the same moment by another request of this account: that one stands.
+    if (made === 'exists') {
+      const there = await store.card(id)
+      if (there?.code) return there
+    }
   }
   throw new StorageError('no free code')
 }
@@ -102,28 +89,28 @@ export async function ownCard(id: string): Promise<FriendCard> {
 export async function publishCard(id: string, body: Record<string, unknown>, today: string): Promise<FriendCard> {
   const card = await ownCard(id)
   const next: FriendCard = { ...card, ...cleanCard(body, today), code: card.code, at: new Date().toISOString() }
-  await writeJson(cardPath(id), next)
+  await (await friendStore()).save(id, next)
   return next
 }
-
-const following = async (id: string) => (await readJson<{ codes?: string[] }>(followPath(id)))?.codes?.filter((c) => CODE.test(c)) ?? []
 
 /** Follows the code's owner. Errors: unknown code, one's own code, too many friends. */
 export async function addFriend(id: string, code: string): Promise<'ok' | 'unknown' | 'self' | 'full'> {
   if (!CODE.test(code)) return 'unknown'
-  const owner = await readJson<{ id?: string }>(codePath(code))
-  if (!owner?.id) return 'unknown'
-  if (owner.id === id) return 'self'
-  const codes = await following(id)
+  const store = await friendStore()
+  const owner = await store.ownerOf(code)
+  if (!owner) return 'unknown'
+  if (owner === id) return 'self'
+  const codes = await store.follows(id)
   if (codes.includes(code)) return 'ok'
   if (codes.length >= MAX_FRIENDS) return 'full'
-  await writeJson(followPath(id), { codes: [...codes, code] })
+  await store.follow(id, code, codes)
   return 'ok'
 }
 
 export async function removeFriend(id: string, code: string): Promise<void> {
-  const codes = await following(id)
-  if (codes.includes(code)) await writeJson(followPath(id), { codes: codes.filter((c) => c !== code) })
+  const store = await friendStore()
+  const codes = await store.follows(id)
+  if (codes.includes(code)) await store.unfollow(id, code, codes)
 }
 
 /** A card as a friend sees it, "today" and "this week" by the reader's own date. */
@@ -135,18 +122,127 @@ export function viewOf(card: FriendCard, today: string): FriendView {
 
 /** The account's own card and those of whom it follows (a code whose card is gone is left out). */
 export async function friendsOf(id: string, today: string): Promise<{ me: FriendView; friends: FriendView[] }> {
-  const [me, codes] = await Promise.all([ownCard(id), following(id)])
-  const cards = await Promise.all(
-    codes.map(async (code) => {
-      const owner = await readJson<{ id?: string }>(codePath(code))
-      return owner?.id ? readJson<FriendCard>(cardPath(owner.id)) : null
-    }),
-  )
-  return { me: viewOf(me, today), friends: cards.filter((c): c is FriendCard => !!c?.code).map((c) => viewOf(c, today)) }
+  const store = await friendStore()
+  const [me, codes] = await Promise.all([ownCard(id), store.follows(id)])
+  const cards = await store.cardsOf(codes)
+  return { me: viewOf(me, today), friends: cards.filter((c) => !!c?.code).map((c) => viewOf(c, today)) }
 }
 
 /** Takes the account's card, its code and whom it follows off the store (the account is being deleted). */
 export async function forgetFriends(id: string): Promise<void> {
-  const card = await readJson<FriendCard>(cardPath(id))
-  await Promise.all([removeBlob(cardPath(id)), removeBlob(followPath(id)), card?.code ? removeBlob(codePath(card.code)) : Promise.resolve()])
+  // Both places: an account deleted soon after the move must leave nothing behind in either.
+  await Promise.all([blobFriends.forget(id), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
+}
+
+/** Where cards and follows are kept: Blob files, or (after the move) Supabase tables. */
+export interface FriendStore {
+  card(id: string): Promise<FriendCard | null>
+  /** 'exists': the account has a card already; 'taken': the code belongs to another. */
+  create(id: string, card: FriendCard): Promise<'ok' | 'exists' | 'taken'>
+  save(id: string, card: FriendCard): Promise<void>
+  ownerOf(code: string): Promise<string | null>
+  /** Cards for the codes, in their order (unknown codes left out). */
+  cardsOf(codes: string[]): Promise<FriendCard[]>
+  follows(id: string): Promise<string[]>
+  follow(id: string, code: string, current: string[]): Promise<void>
+  unfollow(id: string, code: string, current: string[]): Promise<void>
+  forget(id: string): Promise<void>
+}
+
+export const friendStore = async (): Promise<FriendStore> => ((await tablesOn()) ? tableFriends : blobFriends)
+
+const cardPath = (id: string) => `friends/card/${id}.json`
+const codePath = (code: string) => `friends/code/${code}.json`
+const followPath = (id: string) => `friends/follow/${id}.json`
+
+async function readJson<T>(path: string): Promise<T | null> {
+  const text = await readText(path)
+  if (!text) return null
+  try {
+    return JSON.parse(text) as T
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Kept in the Blob store:
+ *   friends/card/<account id>.json   the account's own card, with its code
+ *   friends/code/<CODE>.json         → { id } (the code's owner)
+ *   friends/follow/<account id>.json → { codes } (whom it follows)
+ */
+export const blobFriends: FriendStore = {
+  card: (id) => readJson<FriendCard>(cardPath(id)),
+  async create(id, card) {
+    if (await readText(codePath(card.code))) return 'taken'
+    await writeJson(codePath(card.code), { id })
+    await writeJson(cardPath(id), card)
+    return 'ok'
+  },
+  save: (id, card) => writeJson(cardPath(id), card),
+  ownerOf: async (code) => (await readJson<{ id?: string }>(codePath(code)))?.id ?? null,
+  async cardsOf(codes) {
+    const cards = await Promise.all(
+      codes.map(async (code) => {
+        const owner = await readJson<{ id?: string }>(codePath(code))
+        return owner?.id ? readJson<FriendCard>(cardPath(owner.id)) : null
+      }),
+    )
+    return cards.filter((c): c is FriendCard => !!c?.code)
+  },
+  follows: async (id) => (await readJson<{ codes?: string[] }>(followPath(id)))?.codes?.filter((c) => CODE.test(c)) ?? [],
+  follow: (id, code, current) => writeJson(followPath(id), { codes: [...current, code] }),
+  unfollow: (id, code, current) => writeJson(followPath(id), { codes: current.filter((c) => c !== code) }),
+  async forget(id) {
+    const card = await readJson<FriendCard>(cardPath(id)).catch(() => null)
+    await Promise.all([removeBlob(cardPath(id)), removeBlob(followPath(id)), card?.code ? removeBlob(codePath(card.code)) : Promise.resolve()])
+  },
+}
+
+interface CardRow {
+  sync_id: string
+  code: string
+  name: string
+  avatar: string
+  color: string
+  days: Record<string, number>
+  streak: number
+  level: number
+  updated_at: string
+}
+
+const CARD_COLUMNS = 'sync_id,code,name,avatar,color,days,streak,level,updated_at'
+const cardOfRow = (r: CardRow): FriendCard => ({ code: r.code, name: r.name, avatar: r.avatar, color: r.color, days: r.days ?? {}, streak: r.streak, level: r.level, at: new Date(r.updated_at).toISOString() })
+export const rowOfCard = (id: string, c: FriendCard): CardRow => ({ sync_id: id, code: c.code, name: c.name, avatar: c.avatar, color: c.color, days: c.days, streak: c.streak, level: c.level, updated_at: c.at })
+
+/** The same in Supabase: friend_cards (one row per account, its code unique) and friend_follows (account, code). */
+export const tableFriends: FriendStore = {
+  card: async (id) => {
+    const [row] = await rows<CardRow>(`friend_cards?sync_id=${eq(id)}&select=${CARD_COLUMNS}`)
+    return row ? cardOfRow(row) : null
+  },
+  async create(id, card) {
+    const res = await write('friend_cards', { method: 'POST', headers: { prefer: 'return=minimal' }, body: JSON.stringify(rowOfCard(id, card)) }, [409])
+    if (res.ok) return 'ok'
+    // A unique violation: the account's own row or the code. Which one, the account's row says.
+    return (await tableFriends.card(id)) ? 'exists' : 'taken'
+  },
+  async save(id, card) {
+    await write(`friend_cards?sync_id=${eq(id)}`, { method: 'PATCH', headers: { prefer: 'return=minimal' }, body: JSON.stringify(rowOfCard(id, card)) })
+  },
+  ownerOf: async (code) => (await rows<{ sync_id: string }>(`friend_cards?code=${eq(code)}&select=sync_id`))[0]?.sync_id ?? null,
+  async cardsOf(codes) {
+    if (!codes.length) return []
+    const found = await rows<CardRow>(`friend_cards?code=in.(${codes.join(',')})&select=${CARD_COLUMNS}`)
+    return codes.map((c) => found.find((r) => r.code === c)).filter((r): r is CardRow => !!r).map(cardOfRow)
+  },
+  follows: async (id) => (await rows<{ code: string }>(`friend_follows?sync_id=${eq(id)}&select=code&order=created_at.asc`)).map((r) => r.code).filter((c) => CODE.test(c)),
+  follow: async (id, code) => void (await upsert('friend_follows', 'sync_id,code', { sync_id: id, code }, true)),
+  unfollow: async (id, code) => void (await write(`friend_follows?sync_id=${eq(id)}&code=${eq(code)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })),
+  async forget(id) {
+    await Promise.all([
+      write(`friend_cards?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }),
+      write(`friend_follows?sync_id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } }),
+    ])
+  },
 }

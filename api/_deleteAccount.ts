@@ -1,9 +1,8 @@
-import { del, get, list } from '@vercel/blob'
+import { del, list } from '@vercel/blob'
 import { approvedPath, clearAccessCache, rejectedPath, removeBlob, requestPath } from './_account.js'
 import { forgetFriends } from './_friends.js'
-
-/** Mail-reminder records looked at for the account's own (a flood must not make a deletion run for ever). */
-const MAIL_SCAN_CAP = 3000
+import { blobReminders, tableReminders } from './_reminders.js'
+import { tablesOn } from './_tables.js'
 
 async function deletePrefix(prefix: string): Promise<number> {
   let removed = 0
@@ -19,23 +18,14 @@ async function deletePrefix(prefix: string): Promise<number> {
 
 /** The account's mail-reminder records (their `owner` is the account), so no reminder goes out after it is gone. */
 async function deleteOwnMail(id: string): Promise<number> {
+  // Both places: an account deleted soon after the move must leave nothing behind in either.
+  const stores = (await tablesOn()) ? [blobReminders, tableReminders] : [blobReminders]
   let removed = 0
-  let seen = 0
-  let cursor: string | undefined
-  do {
-    const page = await list({ prefix: 'push/mail-', cursor })
-    for (const b of page.blobs) {
-      seen++
-      const blob = await get(b.pathname, { access: 'private', useCache: false }).catch(() => null)
-      if (!blob || blob.statusCode !== 200 || !blob.stream) continue
-      const record = (await new Response(blob.stream).json().catch(() => null)) as { owner?: string } | null
-      if (record?.owner === id) {
-        await del(b.pathname)
-        removed++
-      }
-    }
-    cursor = page.hasMore && seen < MAIL_SCAN_CAP ? page.cursor : undefined
-  } while (cursor)
+  for (const store of stores) {
+    const keys = await store.mailsOf(id)
+    for (const key of keys) await store.remove(key)
+    removed += keys.length
+  }
   return removed
 }
 
