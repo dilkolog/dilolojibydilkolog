@@ -447,17 +447,18 @@ export const ES_LESSONS: TopicLesson[] = [
     ],
     examples: [
       { text: "Quiero que vengas a mi fiesta.", tr: "Partime gelmeni istiyorum." },
+      { text: "Me alegro de verte de nuevo.", tr: "Seni yeniden gördüğüme sevindim (özne aynı olduğu için mastar)." },
       { text: "Es necesario que estudiemos más.", tr: "Daha çok çalışmamız gerekiyor." },
       { text: "Ojalá haga buen tiempo el sábado.", tr: "Umarım cumartesi hava güzel olur." },
       { text: "No creo que tenga razón.", tr: "Haklı olduğunu sanmıyorum." },
       { text: "Cuando llegues a casa, mándame un mensaje.", tr: "Eve varınca bana mesaj at." },
-      { text: "Busco un piso que tenga terraza.", tr: "Terası olan bir daire arıyorum." },
+      { text: "Busco un piso que tenga terraza.", tr: "Terası olan bir daire arıyorum." }
     ],
     watch: [
       "Gelecekteki cuando ile futuro kullanmak: 'Cuando llegarás' değil, 'Cuando llegues'.",
       "Olumlu inançta subjuntivo: 'Creo que sea verdad' değil 'Creo que es verdad'; olumsuzda tersi: 'No creo que sea verdad'.",
       "querer que'den sonra indicativo: 'Quiero que vienes' değil, 'Quiero que vengas'.",
-      "Tek özneli istekte que kullanmak: 'Quiero que yo vaya' değil, 'Quiero ir'.",
+      "Aynı özneli istek ve duygularda que + subjuntivo kullanmak: 'Quiero que yo vaya' değil 'Quiero ir'; 'Espero que yo apruebe' değil 'Espero aprobar'."
     ],
     tip: "Yan cümle bir gerçeği bildiriyorsa indicativo; bir dilek, duygu ya da belirsizlik taşıyorsa subjuntivo.",
   },
@@ -475,6 +476,7 @@ export const ES_LESSONS: TopicLesson[] = [
       "Por: içinden ya da boyunca geçilen yer ve günün bölümü: Paseamos por el parque. Por la mañana.",
       "Por: araç ve yol (por teléfono, por correo), değiş tokuş ve fiyat: Lo compré por diez euros. Cambié mi coche por uno nuevo.",
       "Por: edilgen cümlede eylemi yapan ve oran: escrito por Cervantes; dos veces por semana.",
+      "Trabajar para vs trabajar por: 'trabajar para' kurum/patron için çalışmak; 'trabajar por' birinin yerine veya geçim uğruna çalışmaktır."
     ],
     examples: [
       { text: "Este regalo es para ti.", tr: "Bu hediye senin için." },
@@ -482,13 +484,15 @@ export const ES_LESSONS: TopicLesson[] = [
       { text: "Necesito el informe para el viernes.", tr: "Rapor cumaya kadar lazım." },
       { text: "Llegamos tarde por culpa del tráfico.", tr: "Trafik yüzünden geç kaldık." },
       { text: "Te llamo por teléfono esta noche.", tr: "Bu akşam seni telefonla ararım." },
-      { text: "Ahorro dinero para comprar una casa.", tr: "Ev almak için para biriktiriyorum." },
+      { text: "Hoy trabajo por Juan porque él está enfermo.", tr: "Juan hasta olduğu için bugün onun yerine çalışıyorum." },
+      { text: "Ahorro dinero para comprar una casa.", tr: "Ev almak için para biriktiriyorum." }
     ],
     watch: [
       "Teşekkürde para kullanmak: 'Gracias para tu ayuda' değil, 'Gracias por tu ayuda'.",
       "Amaçta por kullanmak: 'Estudio por aprobar' değil, 'Estudio para aprobar'.",
       "Değiş tokuşta para kullanmak: 'Lo vendí para cien euros' değil, 'Lo vendí por cien euros'.",
-      "Türkçe 'için'e güvenmek: 'yüzünden, sayesinde, uğruna' anlamı varsa por, 'amacıyla, -e' anlamı varsa para.",
+      "Birinin yerine çalışırken para kullanmak: 'trabajar para' kurum/işveren belirtir; bir meslektaşın yerine çalışırken 'trabajar por' denir.",
+      "Türkçe 'için'e güvenmek: 'yüzünden, sayesinde, uğruna' anlamı varsa por, 'amacıyla, -e' anlamı varsa para."
     ],
     tip: "Para bir ok gibi ileriye, hedefe bakar; por geriye, sebebe ya da içinden geçilen yola bakar.",
   },
@@ -503,6 +507,7 @@ export const ES_LESSONS: TopicLesson[] = [
       "Şimdiki varsayım: si + imperfecto de subjuntivo; ana cümlede condicional: Si tuviera dinero, viajaría.",
       "Geçmişte gerçekleşmemiş şart: si + pluscuamperfecto de subjuntivo (hubiera + ortaç); ana cümlede condicional compuesto (habría + ortaç): Si hubiera estudiado, habría aprobado.",
       "Si'den sonra asla futuro ya da condicional gelmez: 'si tendría' değil 'si tuviera', 'si lloverá' değil 'si llueve'.",
+      "Si'den sonra asla presente de subjuntivo gelmez: gerçek olasılık için daima presente de indicativo kullanılır ('Si tienes tiempo'; *'Si tengas' yanlıştır).",
       "İmperfecto de subjuntivo'nun iki biçimi de doğrudur: tuviera / tuviese, tocara / tocase.",
       "Kısaltma: de + haber + ortaç = 'si hubiera …': De haber sabido, habría venido.",
       "Condicional: mastar + -ía (viajaría, comería); düzensiz gövdeler: tendría, haría, diría, podría, saldría, vendría, querría, sabría.",
@@ -517,6 +522,7 @@ export const ES_LESSONS: TopicLesson[] = [
     ],
     watch: [
       "Si'den sonra condicional kullanmak: 'Si tendría dinero' değil, 'Si tuviera dinero'.",
+      "Si'den sonra presente de subjuntivo kullanmak: 'Si tengas tiempo' değil, 'Si tienes tiempo' (si'den sonra asla presente de subjuntivo gelmez).",
       "Olası şartta si + futuro: 'Si vendrás' değil, 'Si vienes'.",
       "Geçmiş şartta ortacı unutmak: 'habría ayudar' değil, 'habría ayudado'.",
       "Türkçedeki '-se' her kalıpta aynı olduğu için kalıpları karıştırmak: önce olasılığı belirle (olası, varsayım, geçmiş), sonra kalıbı seç.",

@@ -325,7 +325,8 @@ export const EN_LESSONS: TopicLesson[] = [
       "Tekil sayılabilir ismi artikelsiz bırakmak: 'I have car' değil 'I have a car'; 'He is doctor' değil 'He is a doctor'.",
       "Genel anlamda the eklemek: 'The life is beautiful' değil 'Life is beautiful'.",
       "Yazıya bakıp an/a seçmek: 'a hour' değil 'an hour'; 'an university' değil 'a university'.",
-      "Sayılamayan isme a/an vermek: 'an advice' değil 'some advice' ya da 'a piece of advice'."
+      "Sayılamayan isme a/an vermek: 'an advice' değil 'some advice' ya da 'a piece of advice'.",
+      "Asıl amacıyla kullanılan kurumlarda the eklememek: 'go to school' (öğrenci olarak gitmek), 'go to the school' (binayı ziyaret etmek); 'go to hospital' (hasta olarak yatmak), 'go to the hospital' (ziyaretçi olarak gitmek)."
     ],
     tip: "Türkçede 'bir' diyebiliyorsanız a/an, 'o bildiğimiz' diyebiliyorsanız the."
   },
@@ -338,6 +339,7 @@ export const EN_LESSONS: TopicLesson[] = [
     rules: [
       "Present perfect: have/has + V3: I have seen, she has left.",
       "Hayat deneyimi (zaman belirtmeden) present perfect: Have you ever been to Japan? I've never eaten sushi.",
+      "Been to ile gone to ayrımı: 'have been to' gidip dönmüş olmayı (ziyaret deneyimi), 'have gone to' ise bir yere gidip hâlâ orada olmayı belirtir: She has gone to Paris (hâlâ orada) vs. She has been to Paris twice (bulundu ve döndü).",
       "Geçmişte başlayıp süren durum: since + başlangıç noktası (since 2015), for + süre (for ten years).",
       "Just, already, yet, so far, this week (bitmemiş zaman) present perfect ile gelir.",
       "Belirli bitmiş zaman (yesterday, last year, ago, in 2010) varsa past simple: I saw him yesterday.",
@@ -347,6 +349,7 @@ export const EN_LESSONS: TopicLesson[] = [
     examples: [
       { text: "I have lived in Istanbul since 2018.", tr: "2018'den beri İstanbul'da yaşıyorum." },
       { text: "Have you ever tried Indian food?", tr: "Hiç Hint yemeği denedin mi?" },
+      { text: "— Have you seen the new movie? — Yes, I watched it on Sunday.", tr: "— Yeni filmi gördün mü? — Evet, pazar günü izledim." },
       { text: "He has just left the office.", tr: "Az önce ofisten çıktı." },
       { text: "We met in 2015 and got married two years later.", tr: "2015'te tanıştık ve iki yıl sonra evlendik." },
       { text: "I haven't finished my report yet.", tr: "Raporumu henüz bitirmedim." }
@@ -354,6 +357,7 @@ export const EN_LESSONS: TopicLesson[] = [
     watch: [
       "Türkçedeki şimdiki zamanı aktarmak: 'I live here since 2018' değil 'I have lived here since 2018'.",
       "Belirli zamanla present perfect: 'I have seen him yesterday' değil 'I saw him yesterday'.",
+      "Been to ile gone to'yu karıştırmak: 'She has gone to Italy' şu an İtalya'da olduğunu; 'She has been to Italy' ise daha önce gidip döndüğünü belirtir.",
       "For ile since'i karıştırmak: 'since five years' değil 'for five years'.",
       "Ever ile did kullanmak: 'Did you ever been' değil 'Have you ever been'."
     ],
@@ -373,7 +377,8 @@ export const EN_LESSONS: TopicLesson[] = [
       "Look forward to, be used to, object to'daki to bir edattır: look forward to seeing you.",
       "Be worth, can't help, it's no use + -ing: This book is worth reading.",
       "Remember / forget + -ing: yapılmış olanı anımsamak; + to: yapılacak işi unutmamak.",
-      "Stop + -ing: bir işi bırakmak; stop + to: bir şey yapmak için durmak."
+      "Stop + -ing: bir işi bırakmak; stop + to: bir şey yapmak için durmak.",
+      "Try + to: bir şeyi yapmak için çaba harcamak/zorlanmak; try + -ing: bir çözüm veya yöntem olarak denemek."
     ],
     examples: [
       { text: "He avoided talking about his new job.", tr: "Yeni işinden söz etmekten kaçındı." },
@@ -381,12 +386,14 @@ export const EN_LESSONS: TopicLesson[] = [
       { text: "Don't forget to lock the door when you leave.", tr: "Çıkarken kapıyı kilitlemeyi unutma." },
       { text: "I remember meeting her at a wedding.", tr: "Onunla bir düğünde tanıştığımı hatırlıyorum." },
       { text: "He stopped smoking two years ago.", tr: "İki yıl önce sigarayı bıraktı." },
+      { text: "If you can't sleep, try drinking warm milk.", tr: "Uyuyamıyorsan ılık süt içmeyi dene (yöntem olarak)." },
       { text: "I'm looking forward to hearing from you.", tr: "Sizden haber almayı dört gözle bekliyorum." }
     ],
     watch: [
       "Edattan sonra yalın fiil: 'interested in learn' değil 'interested in learning'.",
       "Look forward to'dan sonra yalın fiil: 'look forward to see you' değil 'look forward to seeing you'.",
       "Stop to ile stop -ing'i karıştırmak: 'He stopped to smoke' sigara içmek için durdu demektir.",
+      "Try to ile try -ing'i karıştırmak: 'Try to turn it off' (kapatmaya çabalamak) vs 'Try turning it off' (kapatmayı denemek).",
       "Suggest'ten sonra to: 'He suggested to go' değil 'He suggested going'."
     ],
     tip: "Edattan sonra -ing; 'to' edat mı diye bakmak için yerine bir isim koyun: 'look forward to the trip' oluyorsa to edattır."
@@ -494,12 +501,14 @@ export const EN_LESSONS: TopicLesson[] = [
       "Dolaylı soruda düz cümle sırası, do/did yok: He asked where I lived.",
       "Evet/hayır sorusu if ya da whether ile: She asked if I was ready.",
       "Emir: tell + kişi + to + fiil; olumsuzu not to: He told us not to be late.",
-      "Zaman ve yer ifadeleri kayar: tomorrow → the next day, yesterday → the day before, here → there, now → then."
+      "Zaman ve yer ifadeleri kayar: tomorrow → the next day, yesterday → the day before, here → there, now → then.",
+      "Genel gerçekler, doğa kanunları veya aktarım anında hâlâ geçerli olan durumlarda zaman geriye kaydırılmayabilir: 'The teacher said that water boils at 100 degrees.'"
     ],
     examples: [
       { text: "She said that she was tired.", tr: "Yorgun olduğunu söyledi." },
       { text: "He told me he had finished the project.", tr: "Bana projeyi bitirdiğini söyledi." },
       { text: "They asked me where I worked.", tr: "Bana nerede çalıştığımı sordular." },
+      { text: "The teacher explained that the Earth goes round the Sun.", tr: "Öğretmen, Dünya'nın Güneş etrafında döndüğünü açıkladı (evrensel gerçek)." },
       { text: "My boss asked whether I could stay late.", tr: "Patronum geç saate kadar kalıp kalamayacağımı sordu." },
       { text: "The doctor told him to stop smoking.", tr: "Doktor ona sigarayı bırakmasını söyledi." },
       { text: "She said she would call me the next day.", tr: "Ertesi gün beni arayacağını söyledi." }
@@ -507,7 +516,8 @@ export const EN_LESSONS: TopicLesson[] = [
     watch: [
       "Say'den sonra kişi: 'He said me' değil 'He told me' ya da 'He said to me'.",
       "Dolaylı soruda devrik sıra: 'He asked where did I live' değil 'He asked where I lived'.",
-      "Zamanı geri kaydırmayı unutmak: 'She said she is coming tomorrow' yerine 'She said she was coming the next day'."
+      "Zamanı geri kaydırmayı unutmak: 'She said she is coming tomorrow' yerine 'She said she was coming the next day'.",
+      "Değişmeyen evrensel gerçeklerde gereksiz zaman kaydırmak: genel doğruları aktarırken present simple korunabilir ('He explained that water boils at 100°C')."
     ],
     tip: "Say'den sonra 'that', tell'den sonra 'kişi': said that / told me that."
   },
