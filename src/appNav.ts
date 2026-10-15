@@ -49,7 +49,7 @@ export type Screen =
   | { name: 'reading'; shared?: SharedRead }
   | { name: 'vocabtest' }
   | { name: 'produce' }
-  | { name: 'exam' }
+  | { name: 'exam'; repair?: boolean }
   | { name: 'games'; game?: GameId }
   | { name: 'verbs'; verb?: string; tense?: string; tab?: LabTab }
   | { name: 'profile' }

@@ -139,6 +139,8 @@ export interface Settings {
   keepAwake?: boolean
   /** Weekly goal of reading and listening, in minutes (absent: none). */
   weeklyTimeGoal?: number
+  /** Missed days won back with the recall exam: they neither count nor break the streak (engine/streakRepair). */
+  repairedDays?: string[]
   /** Tabs taken out of the menu (still in ⌘K and links); see HIDEABLE_TABS. */
   hiddenTabs?: string[]
   /** Reviews waiting shown as a number on the app icon (installed app); default on. */

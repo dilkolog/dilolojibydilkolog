@@ -903,6 +903,8 @@ main:focus { outline: none; }
   box-shadow: 0 0 0 3px var(--surface);
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
+/* An earned avatar is a whole figure: kept whole, a little in from the circle's edge. */
+.avatar-figure img { object-fit: contain; padding: 8%; }
 .sidebar-foot { border: 0; cursor: pointer; text-align: left; color: inherit; }
 .sidebar-who { display: grid; line-height: 1.3; }
 .sidebar-who .small { display: inline-flex; align-items: center; gap: 0.25rem; }

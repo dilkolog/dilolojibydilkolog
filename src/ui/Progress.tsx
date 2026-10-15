@@ -23,6 +23,8 @@ import { useGroups } from './useGroups'
 import { TenseWeakness } from './TenseWeakness'
 import { SKILL_NAME } from './labels'
 import { PageHeader } from './PageHeader'
+import { ShareProgress } from './ShareProgress'
+import { buildProgressReport } from './progressReport'
 import { StreakFlame } from './StreakFlame'
 import { CalendarIcon, CheckIcon, PulseIcon, StarIcon, TargetIcon } from './icons'
 import { ActivityChart, ForecastChart } from './ProgressCharts'
@@ -55,6 +57,7 @@ export function ProgressScreen({
   onRepair,
   weeklyGoal,
   onWeeklyGoal,
+  learnerName,
 }: {
   db: KelimeDB
   language: TargetLanguage
@@ -72,6 +75,8 @@ export function ProgressScreen({
   /** Weekly reading and listening goal in minutes, and how it is changed. */
   weeklyGoal?: number
   onWeeklyGoal?: (minutes: number | undefined) => void
+  /** The learner's name, printed on the report. */
+  learnerName?: string
 }) {
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [tests, setTests] = useState<VocabTestRecord[]>([])
@@ -115,7 +120,19 @@ export function ProgressScreen({
 
   return (
     <div className="progress-page">
-      <PageHeader art="time" title="İlerleme" sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın." />
+      <PageHeader
+        art="time"
+        title="İlerleme"
+        sub="Ne kadar bildiğin, neyi unuttuğun ve nasıl çalıştığın."
+        action={
+          <ShareProgress
+            build={() =>
+              buildProgressReport({ language, name: learnerName ?? '', now, stats, events, states, vocabulary, profile, hard: hardWords(events, 15), errors: errorsByType, exams, game })
+            }
+            words={{ entries: vocabulary.filter((v) => v.language === language && v.source !== 'sample'), states }}
+          />
+        }
+      />
       {/* The page in four numbers, each with its last six weeks. */}
       <WeekHero
         report={report}

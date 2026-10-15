@@ -11,6 +11,7 @@ import {
   type XpSummary,
 } from '../engine/gamification'
 import { streakWithFreezes } from '../engine/insights'
+import { repairOffer, type RepairOffer } from '../engine/streakRepair'
 import { isRestDay } from '../engine/workload'
 import { BOSS_XP } from '../engine/bosses'
 import { CHALLENGE_XP, challengeStatus, completedByWeek, type ChallengeStatus } from '../engine/challenges'
@@ -36,6 +37,8 @@ export interface GameState {
   quests: QuestStatus[]
   /** This week's three challenges. */
   weekly: ChallengeStatus[]
+  /** A lost streak that the recall exam can still win back. */
+  repair?: RepairOffer | null
   stats: GameStats
   achievements: AchievementState[]
 }
@@ -139,7 +142,9 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     perfectWeeks: [...weeks.values()].filter((n) => n >= 3).length,
   }
   const studyDays = [...new Set(real.map((e) => localDate(e.timestamp)))]
-  const streak = streakWithFreezes(studyDays, now, (day) => !!settings && isRestDay(new Date(`${day}T12:00:00`), settings))
+  const isRest = (day: string) => !!settings && isRestDay(new Date(`${day}T12:00:00`), settings)
+  const repaired = new Set(settings?.repairedDays ?? [])
+  const streak = streakWithFreezes(studyDays, now, (day) => isRest(day) || repaired.has(day))
   const today = localDate(now)
   const quests = questStatus(
     today,
@@ -150,7 +155,7 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
   )
   // Longest streak counts freeze-covered days too, so a frozen day never lowers the record.
   stats.longestStreak = Math.max(stats.longestStreak, streak.streak)
-  return { xp, level, streak: streak.streak, freezes: streak.freezes, frozenYesterday: streak.frozenDays.includes(localDate(new Date(now.getTime() - 86_400_000))), quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats, badgeLog) }
+  return { xp, level, streak: streak.streak, freezes: streak.freezes, frozenYesterday: streak.frozenDays.includes(localDate(new Date(now.getTime() - 86_400_000))), quests, weekly: challengeStatus(activity, now), stats, achievements: achievements(stats, badgeLog), repair: repairOffer(studyDays, now, isRest, settings?.repairedDays) }
 }
 
 export const GameContext = createContext<GameState | null>(null)

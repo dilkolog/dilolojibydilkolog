@@ -228,6 +228,7 @@ export function AppScreens(props: AppScreensProps) {
           onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
           weeklyGoal={settings.weeklyTimeGoal}
           onWeeklyGoal={(minutes) => void updateSettings({ ...settings, weeklyTimeGoal: minutes })}
+          learnerName={settings.profile.name}
         />
       ) : screen.name === 'produce' ? (
         <ProduceScreen
@@ -240,7 +241,16 @@ export function AppScreens(props: AppScreensProps) {
           onOpenSettings={go({ name: 'settings' })}
         />
       ) : screen.name === 'exam' ? (
-        <ExamScreen key={data.language} db={db} language={data.language} vocabulary={data.vocabulary} states={data.states} onDone={go({ name: 'progress' })} />
+        <ExamScreen
+          key={data.language}
+          db={db}
+          language={data.language}
+          vocabulary={data.vocabulary}
+          states={data.states}
+          onDone={go(screen.repair ? { name: 'home' } : { name: 'progress' })}
+          repair={screen.repair ? game?.repair : undefined}
+          onRepair={(days) => void updateSettings({ ...settings, repairedDays: [...new Set([...(settings.repairedDays ?? []), ...days])] })}
+        />
       ) : screen.name === 'vocabtest' ? (
         <VocabTestScreen key={data.language} db={db} language={data.language} onDone={go({ name: 'progress' })} />
       ) : screen.name === 'story' ? (
@@ -305,6 +315,7 @@ export function AppScreens(props: AppScreensProps) {
           openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
           canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
           onStart={startDay}
+          onRepairStreak={() => setScreen({ name: 'exam', repair: true })}
           onFocusReason={startFocus}
           onMinutes={startMinutes}
           onAddWords={go({ name: 'words' })}
