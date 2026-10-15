@@ -1,15 +1,15 @@
 # Rehber Dış Kaynak Bağlantıları Canlı Doğrulama Raporu (13.3)
 
 **Tarih:** 2026-10-15  
-**Kapsam:** `src/data/guide/resources.ts` dosyasındaki 37 dış kaynak bağlantısının (`RESOURCES` + `SHARED_RESOURCES`) canlı ağ üzerinde HTTP durum kodu, son yönlendirme adresi, sayfa başlığı, seviye ve lisans etiketleri açısından denetimi.  
+**Kapsam:** `src/data/guide/resources.ts` dosyasındaki 40 dış kaynak bağlantısının (`RESOURCES` + `SHARED_RESOURCES`) canlı ağ üzerinde HTTP durum kodu, son yönlendirme adresi, sayfa başlığı, seviye ve lisans etiketleri açısından denetimi.  
 **Komut / Betik:** `npx tsx scripts/check-guide-links.ts`
 
 ---
 
 ## 1. Yönetici Özeti
 
-- **Taranan Toplam Bağlantı:** 37 adet.
-- **Canlı ve Başarılı (HTTP 200):** 28 adet (%75.7).
+- **Taranan Toplam Bağlantı:** 40 adet.
+- **Canlı ve Başarılı (HTTP 200):** 31 adet (%77.5).
 - **Yönlendirmeli Bağlantılar:** Yönlendirme alan adreslerin hepsi güvenli `https` hedef alanlarına başarıyla ulaşmaktadır.
 - **Lisans ve Etiket Doğruluğu:** `open: true` olarak işaretlenen kaynaklar (Tex's French Grammar, Français inclusif, Spanish Grammar in Context / COERLL, VOA Learning English, Global Storybooks, Tatoeba) açık telifli/kamu malı içerik sunmaktadır.
 
@@ -19,6 +19,7 @@
 
 | Dil | Kaynak Adı | Tür | Orijinal URL | Durum | Son URL / Yönlendirme | Sayfa Başlığı |
 |---|---|---|---|---|---|---|
+| FR | **Le Point du FLE** | `grammar` | `https://www.lepointdufle.net/` | **200** | Aynı (Yönlendirme yok) | Le Point du FLE - Apprendre et enseigner le frança |
 | FR | **Tex's French Grammar** | `grammar` | `https://www.laits.utexas.edu/tex/` | **200** | Aynı (Yönlendirme yok) | Tex's French Grammar |
 | FR | **Français inclusif** | `grammar` | `https://pressbooks.pub/francaisinclusif/` | **403** | Aynı (Yönlendirme yok) | Attention Required! \| Cloudflare |
 | FR | **Lawless French** | `grammar` | `https://www.lawlessfrench.com/` | **403** | Aynı (Yönlendirme yok) | Just a moment... |
@@ -32,7 +33,8 @@
 | FR | **Forvo** | `pronunciation` | `https://forvo.com/languages/fr/` | **403** | Aynı (Yönlendirme yok) | Just a moment... |
 | FR | **YouGlish** | `pronunciation` | `https://youglish.com/french` | **200** | Aynı (Yönlendirme yok) | How to Pronounce French Like a Native \| YouGlish |
 | FR | **DELF / DALF** | `exam` | `https://www.france-education-international.fr/diplome/delf-tout-public` | **200** | Aynı (Yönlendirme yok) | (Başlık bulunamadı) |
-| ES | **Spanish Grammar in Context** | `grammar` | `https://www.coerll.utexas.edu/spantex/` | **404** (Taşınmış) | ↳ `https://grammar.spanishintexas.org/` | 404 Not Found (Yeni adres: 200) |
+| ES | **FundéuRAE** | `dictionary` | `https://www.fundeu.es/` | **200** | Aynı (Yönlendirme yok) | Fundación del Español Urgente |
+| ES | **Spanish Grammar in Context** | `grammar` | `https://grammar.spanishintexas.org/` | **200** | Aynı (Yönlendirme yok) | Spanish Grammar in Context – A reference grammar w |
 | ES | **Lawless Spanish** | `grammar` | `https://www.lawlessspanish.com/` | **403** | Aynı (Yönlendirme yok) | Just a moment... |
 | ES | **Centro Virtual Cervantes** | `grammar` | `https://cvc.cervantes.es/` | **200** | Aynı (Yönlendirme yok) | CVC. Centro Virtual Cervantes. |
 | ES | **Hoy Hablamos** | `listening` | `https://www.hoyhablamos.com/` | **200** | Aynı (Yönlendirme yok) | Hoy Hablamos: podcast para aprender español |
@@ -45,6 +47,7 @@
 | ES | **Forvo** | `pronunciation` | `https://forvo.com/languages/es/` | **403** | Aynı (Yönlendirme yok) | Just a moment... |
 | ES | **YouGlish** | `pronunciation` | `https://youglish.com/spanish` | **200** | Aynı (Yönlendirme yok) | How to Pronounce Spanish Like a Native \| YouGlish |
 | ES | **DELE (Instituto Cervantes)** | `exam` | `https://examenes.cervantes.es/es/dele/que-es` | **200** | Aynı (Yönlendirme yok) | Qué son los DELE \| Exámenes - Instituto Cervantes |
+| EN | **engVid** | `grammar` | `https://www.engvid.com/` | **200** | Aynı (Yönlendirme yok) | engVid |
 | EN | **British Council LearnEnglish** | `grammar` | `https://learnenglish.britishcouncil.org/` | **200** | Aynı (Yönlendirme yok) | Learn English Online \| British Council |
 | EN | **English Page** | `grammar` | `https://www.englishpage.com/` | **200** | Aynı (Yönlendirme yok) | Advanced English Lessons |
 | EN | **BBC Learning English** | `listening` | `https://www.bbc.co.uk/learningenglish` | **200** | Aynı (Yönlendirme yok) | BBC Learning English - Learn English with BBC Lear |
