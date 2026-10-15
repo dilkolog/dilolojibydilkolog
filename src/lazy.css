@@ -1812,3 +1812,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .wl-levels-chev { margin-left: auto; color: var(--ink-soft); transition: transform var(--dur-fast) var(--ease-out); }
 .wl-levels[open] .wl-levels-chev { transform: rotate(180deg); }
 .wl-levels-body { padding: 0 1.5rem 1.25rem; }
+
+/* Winning a streak back: the goal under the exam's title, and the outcome first on its result. */
+.repair-goal { margin: 0; color: var(--gold-text); font-weight: 600; }
+.repair-note { display: flex; align-items: center; gap: 0.75rem; }
+.repair-note.is-won { background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }

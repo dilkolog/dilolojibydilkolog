@@ -13,12 +13,34 @@ import { SAMPLE_WORDS } from '../data/seed'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { LANGUAGE_NAME } from './labels'
+import { REPAIR_MIN_SCORE, repairKey, type RepairOffer } from '../engine/streakRepair'
+import { markRepairTried } from './repairTry'
+import { StreakPicture } from './StreakFlame'
 import { PageHeader } from './PageHeader'
 
 const pct = (x: number) => `%${Math.round(x * 100)}`
 
-/** The monthly retention exam: 20 surprise questions, no hints; results kept for comparison. */
-export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: KelimeDB; language: TargetLanguage; vocabulary: VocabularyEntry[]; states: UserWordState[]; onDone: () => void }) {
+/**
+ * The monthly retention exam: 20 surprise questions, no hints; results kept for comparison. Taken to win a
+ * lost streak back (`repair`), it mends the missed days when it goes well (REPAIR_MIN_SCORE); one try per break.
+ */
+export function ExamScreen({
+  db,
+  language,
+  vocabulary,
+  states,
+  onDone,
+  repair,
+  onRepair,
+}: {
+  db: KelimeDB
+  language: TargetLanguage
+  vocabulary: VocabularyEntry[]
+  states: UserWordState[]
+  onDone: () => void
+  repair?: RepairOffer | null
+  onRepair?: (days: string[]) => void
+}) {
   const [items] = useState<ExamItem[]>(() => buildExam(vocabulary, states, scheduler, new Date(), createRng(Date.now())))
   const byId = useMemo(() => new Map(vocabulary.map((v) => [v.id, v])), [vocabulary])
   const pool = useMemo(() => {
@@ -33,6 +55,11 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
   const [result, setResult] = useState<{ score: ExamResult; history: ExamResult[] } | null>(null)
   const input = useRef<HTMLInputElement>(null)
   const startedAt = useRef(performance.now())
+  // The try is spent once the exam starts (leaving half-way does not give another).
+  const repairing = !!repair && items.length >= 5
+  useEffect(() => {
+    if (repair && repairing) markRepairTried(repairKey(repair))
+  }, [repair, repairing])
 
   const item = items[index]
   const entry = item && byId.get(item.entryId)
@@ -58,6 +85,7 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
     const score = scoreExam(language, items, answers, new Date(), levelOf)
     const history = (await db.getExams()).filter((e) => e.language === language)
     await db.addExam(score)
+    if (repair && repairing && score.actual >= REPAIR_MIN_SCORE) onRepair?.(repair.days)
     setResult({ score, history })
   }
 
@@ -96,6 +124,18 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
     return (
       <div className="stack">
         <PageHeader art="exam" title="Sınav sonucu" />
+        {repair && repairing && (
+          // The streak first: it is what this exam was taken for.
+          score.actual >= REPAIR_MIN_SCORE ? (
+            <p className="note repair-note is-won">
+              <StreakPicture streak={repair.lost} size={40} /> <span>Serin geri geldi: <strong>{repair.lost} gün</strong>. Kaçırdığın gün artık seriyi bozmuyor.</span>
+            </p>
+          ) : (
+            <p className="note repair-note">
+              <StreakPicture streak={0} size={40} /> <span>Seriyi kurtarmak için {pct(REPAIR_MIN_SCORE)} gerekiyordu, sen {pct(score.actual)} yaptın. Seri bugün yeniden başlar; bu kopuş için tek hak vardı.</span>
+            </p>
+          )
+        )}
         <div className="hero-stat card">
           <span className="hero-number">{pct(score.actual)}</span>
           <span>
@@ -145,6 +185,11 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
         </span>
       </div>
       <p className="small muted">İpucu yok, tahmin yok: bildiğin gibi cevapla. Bu sınav takvimi değiştirmez, sadece ölçer.</p>
+      {repairing && repair && (
+        <p className="small repair-goal">
+          Seri kurtarma: {pct(REPAIR_MIN_SCORE)} ve üstü yaparsan {repair.lost} günlük serin geri gelir.
+        </p>
+      )}
       {ex.kind === 'choice' ? (
         <>
           <h2 className="word" lang={language}>

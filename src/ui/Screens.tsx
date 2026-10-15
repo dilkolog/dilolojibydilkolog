@@ -30,6 +30,8 @@ import { useGame, type GameState } from './game'
 import { BadgeMedal } from './Medal'
 import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
+import { REPAIR_MIN_SCORE, repairKey } from '../engine/streakRepair'
+import { repairTried } from './repairTry'
 import { QUEST_ART, TILE_ART, TIME_SCENE } from './drawnArt'
 import { Sticker } from './Sticker'
 
@@ -156,6 +158,7 @@ export function Home({
   openMistakeWords,
   canPractice,
   onStart,
+  onRepairStreak,
   onFocusReason,
   onMinutes,
   onAddWords,
@@ -208,6 +211,8 @@ export function Home({
   openMistakeWords: number
   canPractice: boolean
   onStart: () => void
+  /** Opens the recall exam to win a lost streak back (shown while game.repair offers one). */
+  onRepairStreak?: () => void
   /** A round of only one kind of the day's questions (the wrong, the weak, the reviews, the new words). */
   onFocusReason?: (reason: PlanReason) => void
   /** A round that fits N minutes, for a short moment (the most urgent questions). */
@@ -420,6 +425,14 @@ export function Home({
         </li>
         {/* The streak counts any language, so today's XP (all languages) says whether it is safe. */}
         {streak > 0 && (game?.xp.today ?? 0) === 0 && remaining > 0 && <li className="is-nudge">Seriyi korumak için bugün bir tur yeter</li>}
+        {/* A streak lost a day or two ago can be won back with the recall exam: one try per break. */}
+        {game?.repair && onRepairStreak && !repairTried(repairKey(game.repair)) && (
+          <li className="is-nudge streak-repair">
+            <button type="button" className="link" onClick={onRepairStreak}>
+              {game.repair.lost} günlük serin koptu: hatırlama sınavında %{Math.round(REPAIR_MIN_SCORE * 100)} yap, geri gelsin ›
+            </button>
+          </li>
+        )}
       </ul>
 
       <div className="home-grid">
