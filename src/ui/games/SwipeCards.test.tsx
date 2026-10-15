@@ -75,4 +75,37 @@ describe('SwipeCards study options', () => {
     expect(byText(again, 'Karıştır')?.getAttribute('aria-pressed')).toBe('true')
     expect(byText(again, 'Karışık')?.getAttribute('aria-pressed')).toBe('true')
   })
+
+  it('a card not known stays in the round and counts as still learning; known ones leave', async () => {
+    const host = await mount()
+    await click(byText(host, 'kartla başla'))
+    const key = (k: string, code = '') => act(async () => window.dispatchEvent(new KeyboardEvent('keydown', { key: k, code })))
+    await key(' ', 'Space')
+    await key('1')
+    await act(() => new Promise((r) => setTimeout(r, 260)))
+    expect(host.querySelector('.flash-learning')!.textContent).toBe('Öğreniliyor 1')
+    expect(host.textContent).toContain('Kalan 4')
+    await key(' ', 'Space')
+    await key('3')
+    await act(() => new Promise((r) => setTimeout(r, 260)))
+    expect(host.querySelector('.flash-known')!.textContent).toBe('Biliniyor 1')
+    expect(host.textContent).toContain('Kalan 3')
+  })
+
+  it('written: the meaning shows, the typed word is checked', async () => {
+    const host = await mount()
+    await click(byText(host, 'Yazarak'))
+    await click(byText(host, 'kartla başla'))
+    const meaning = host.querySelector('.swipe-word')!.textContent!
+    const entry = words.find((w) => w.senses[0].gloss === meaning)!
+    const field = host.querySelector<HTMLInputElement>('input.answer-input')!
+    await act(async () => {
+      const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!
+      set.call(field, entry.lemma)
+      field.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    await act(async () => host.querySelector('form')!.requestSubmit())
+    expect(host.querySelector('.flash-verdict')!.textContent).toBe('Doğru')
+  })
 })
+

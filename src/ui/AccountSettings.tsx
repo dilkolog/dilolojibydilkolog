@@ -1,3 +1,4 @@
+import { signOutSupabase } from '../data/supabase'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, LockIcon, UserIcon } from './icons'
@@ -102,6 +103,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               onClick={async () => {
                 const previous = await getAccount()
                 await setAccount(null)
+                void signOutSupabase()
                 void refresh()
                 undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
                   await setAccount(previous)

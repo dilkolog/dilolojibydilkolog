@@ -20,10 +20,10 @@ const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
  * wrong word. Every answer shows the rule in Turkish. Questions never tried, or more often wrong
  * than right, come first; a topic can be picked.
  */
-export function GrammarPractice({ language, onExit }: { language: TargetLanguage; onExit: () => void }) {
+export function GrammarPractice({ language, onExit, initialTopic }: { language: TargetLanguage; onExit: () => void; initialTopic?: string }) {
   const all = useMemo(() => grammarExercises(language), [language])
   const [log, setLog] = useState<GrammarLog | null>(null)
-  const [topic, setTopic] = useState<string | undefined>()
+  const [topic, setTopic] = useState<string | undefined>(initialTopic)
   const [phase, setPhase] = useState<'intro' | 'play' | 'over'>('intro')
   const [round, setRound] = useState<GrammarExercise[]>([])
   const [index, setIndex] = useState(0)

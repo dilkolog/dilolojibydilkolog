@@ -1,5 +1,6 @@
 import { del, get, put } from '@vercel/blob'
 import { allowedIds } from './_allow.js'
+import { profileStatus } from './_supabase.js'
 
 /**
  * Accounts and their approval. An account is an id (from the username) plus an access token whose
@@ -87,8 +88,11 @@ export async function accessStatus(id: string): Promise<AccessStatus> {
   if (listed?.has(id)) return 'approved'
   return remember(`status:${id}`, 30_000, async (): Promise<AccessStatus> => {
     if (await readText(approvedPath(id))) return 'approved'
-    if (await readText(rejectedPath(id))) return 'rejected'
-    if (await readText(requestPath(id))) return 'pending'
+    // A person signed in with Supabase: the owner may also decide in their profile (Table Editor).
+    const profile = await profileStatus(id)
+    if (profile === 'approved') return 'approved'
+    if (profile === 'rejected' || (await readText(rejectedPath(id)))) return 'rejected'
+    if (profile === 'pending' || (await readText(requestPath(id)))) return 'pending'
     return 'none'
   })
 }

@@ -8,8 +8,10 @@ import { ChevronLeftIcon, LockIcon } from './icons'
 import { CONFLICT, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, runSync, setAccount, setSyncCode, TOO_LARGE } from './syncRunner'
 import { showToast } from './toastFeed'
 import { BrandLogo } from './BrandLogo'
+import { supabaseConfigured } from '../data/supabase'
+import { SupabaseAuth } from './SupabaseAuth'
 
-export type AuthMode = 'login' | 'create'
+export type AuthMode = 'login' | 'create' | 'return'
 
 /**
  * A failed sign-in said "check your connection" for every cause. Only a failed fetch (TypeError) is a
@@ -26,8 +28,14 @@ function failureText(e: unknown): string {
  * encrypted on the device with a key from the password, so the server can't read it and the
  * password never leaves the device.
  */
-export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialMode?: AuthMode; onDone: () => void; onBack: () => void }) {
-  const [mode, setMode] = useState<AuthMode>(initialMode)
+export function AuthScreen(props: { initialMode?: AuthMode; onDone: () => void; onBack: () => void }) {
+  // With Supabase set up, people sign in there (email, a link, Google); the username form is the old way.
+  if (supabaseConfigured()) return <SupabaseAuth {...props} />
+  return <UsernameAuth {...props} initialMode={props.initialMode === 'create' ? 'create' : 'login'} />
+}
+
+function UsernameAuth({ initialMode = 'login', onDone, onBack }: { initialMode?: 'login' | 'create'; onDone: () => void; onBack: () => void }) {
+  const [mode, setMode] = useState<'login' | 'create'>(initialMode)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
@@ -36,7 +44,7 @@ export function AuthScreen({ initialMode = 'login', onDone, onBack }: { initialM
   const [error, setError] = useState('')
   const creating = mode === 'create'
 
-  const switchTo = (m: AuthMode) => {
+  const switchTo = (m: 'login' | 'create') => {
     setMode(m)
     setError('')
     setRepeat('')
