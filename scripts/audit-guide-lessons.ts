@@ -1,7 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { TOPIC_LESSONS } from '../src/data/guide/lessons'
-import type { TopicLesson } from '../src/data/guide/lessonTypes'
 
 interface AuditFinding {
   file: string

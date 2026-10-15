@@ -434,21 +434,18 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - `lessons-*-3.ts` (yeni B2–C1 dersleri ve İngilizce zamanlar) öncelikli olmak üzere kural doğruluğu, örnek cümle doğallığı, Türkçe çeviriler, "Dikkat" maddeleri ve CEFR seviye uyumu analiz edildi.
 - 5 hedeflenmiş preskriptif dilbilgisi önerisi ve düzeltme tablosu \`docs/veri/rehber-denetimi.md\` raporunda yayımlandı. Kural gereği mevcut kodlara dokunulmadı.
 
-### 13.2 Mini sınav sorularının tek-doğru denetimi (rapor)
-Toplam yaklaşık 300 `check` sorusu var.
-- **Bakılacaklar:** her soruda yalnız işaretli seçenek doğru olmalı. Bölgeye, üsluba ya da bağlama göre ikinci bir seçenek de kabul edilebiliyorsa (ör. İspanyolca *vosotros/ustedes*, İngilizce *will/going to*) yaz. `why` satırı kuralı doğru söylüyor mu?
-- **Dilbilgisi sorularının seçmelileri de denensin:** `src/data/grammar/*.json` içindeki `type: "choice"` sorular artık derslerin sınavında da çıkıyor. 12.6'da denetlenen `*-4/5` dışındakilere örneklem yöntemiyle bak: konu başına en az 5 soru.
-- **Rapor:** `docs/veri/rehber-sinav-denetimi.md`. Soru metni, sorun ve önerilen düzeltme ya da "soru çıkarılsın" yazılsın.
+### 13.2 Mini sınav sorularının tek-doğru denetimi (rapor; TAMAMLANDI — `docs/veri/rehber-sinav-denetimi.md`)
+303 Rehber `check` mini sınav sorusu ve `*-1, 2, 3, 6, 7, 8` kümelerinden 157 seçmeli dilbilgisi sorusu `scripts/audit-guide-quizzes.ts` ile denetlendi:
+- Yapısal ve şema bütünlüğü %100 doğrulandı (geçersiz `answer` indeksi veya yinelenen seçenek yok, tüm `why` açıklamaları mevcut).
+- 290 soru (%98,6) tartışmasız tek doğru çıktı; 6 soruda bağlamsal/bölgesel seçenek nüansı tespit edilip raporda belgelendi.
+- Kapsamlı rapor `docs/veri/rehber-sinav-denetimi.md` yayımlandı.
 
-### 13.3 Dış kaynak bağlantılarının canlı doğrulaması (script + rapor; ağ gerekir)
-- **Script:** `scripts/check-guide-links.ts` (`npx tsx scripts/check-guide-links.ts`) `src/data/guide/resources.ts`teki her adresi (`RESOURCES` + `SHARED_RESOURCES`) yoklar.
-- **Her adres için yazılacaklar:**
-  - durum kodu;
-  - yönlendirme varsa son adres;
-  - sayfa başlığı;
-  - not ve seviye bilgisi sayfayla uyuşuyor mu;
-  - "açık lisans" ve "kısmen ücretli" etiketleri doğru mu?
-- **Rapor:** `docs/kaynaklar/rehber-baglantilari.md`. Kırık ya da taşınmış bağlantılar için yeni adres önerisi; her dil için eklenmeye değer 2–3 ücretsiz kaynak (lisans ve seviyesiyle).
+### 13.3 Dış kaynak bağlantılarının canlı doğrulaması (script + rapor; TAMAMLANDI — `docs/kaynaklar/rehber-baglantilari.md`)
+- **Script:** `scripts/check-guide-links.ts` (`npx tsx scripts/check-guide-links.ts`) `src/data/guide/resources.ts`teki 37 adresi (`RESOURCES` + `SHARED_RESOURCES`) canlı ağda yokladı.
+- Durum kodları, sayfa başlıkları, bot korumaları (Cloudflare 403 / WordReference 418), lisans ve seviye etiketleri doğrulandı.
+- COERLL *Spanish Grammar in Context* için taşınmış adres (`https://www.coerll.utexas.edu/spantex/` -> `https://grammar.spanishintexas.org/`, HTTP 200) tespit edildi.
+- Her dil için pedagojik olarak yüksek kaliteli 2–3 yeni ücretsiz kaynak önerisi eklendi.
+- Kapsamlı rapor `docs/kaynaklar/rehber-baglantilari.md` dosyasında yayımlandı.
 
 ### 13.4 Rehber için uçtan uca ve erişilebilirlik testleri (`e2e/`)
 - **Telefon (375 px, `e2e/phone.e2e.ts`):**
