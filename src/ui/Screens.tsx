@@ -189,6 +189,7 @@ export function Home({
   extra,
   firstWords,
   timeCard,
+  friendsCard,
   garden,
   focus,
   onOpenLists,
@@ -259,6 +260,8 @@ export function Home({
   firstWords?: ReactNode
   /** The reading and listening time card (a small section under the day's quests). */
   timeCard?: ReactNode
+  /** Friends and their XP today or this week (FriendsCard). */
+  friendsCard?: ReactNode
   /** The garden card: up top when plants need water, otherwise with the weekly things. */
   garden?: { node: ReactNode; urgent: boolean } | null
   /** The word list in focus, and the level its new words come from (null: words with no level; undefined: all met). */
@@ -791,6 +794,7 @@ export function Home({
           </section>
         )}
         {timeCard}
+        {friendsCard}
 
       </div>
       </div>

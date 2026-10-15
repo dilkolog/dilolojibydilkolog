@@ -14,6 +14,7 @@ import { difficultWords, withDifficult } from './engine/difficult'
 
 import type { Settings } from './data/db'
 
+import { FriendsCard } from './ui/FriendsCard'
 import { type GameState } from './ui/game'
 
 import { HabitCards } from './ui/Habits'
@@ -416,6 +417,7 @@ export function AppScreens(props: AppScreensProps) {
           }}
           firstWords={lookupNudge}
           timeCard={<TodayTime db={db} language={data.language} goal={settings.weeklyTimeGoal} onOpen={go({ name: 'progress' })} />}
+          friendsCard={<FriendsCard game={game} profile={settings.profile} />}
           extra={
             <>
             <HabitCards
