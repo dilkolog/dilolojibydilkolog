@@ -20,7 +20,7 @@ export interface SharedRead {
 }
 
 /** A selection this long is something to read, not a word or a sentence to pick one from. */
-export const READ_WORDS = 30
+const READ_WORDS = 30
 const YOUTUBE = /^https?:\/\/((www|m)\.)?(youtube\.com|youtu\.be)\//i
 
 export function readIncoming(): IncomingWord | null {

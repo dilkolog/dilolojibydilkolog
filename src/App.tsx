@@ -35,7 +35,7 @@ import { connectExtension } from './ui/extensionBridge'
 
 import { gardenSummary } from './engine/growth'
 
-import { Sidebar, TabBar } from './ui/AppSidebar'
+import { Sidebar, TabBar, type NavMark } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
 import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
@@ -384,7 +384,7 @@ export default function App() {
   )
 
   const navRef = useRef<HTMLElement>(null)
-  const [navMark, setNavMark] = useState<{ top: number; left: number; width: number; height: number; ready: boolean } | null>(null)
+  const [navMark, setNavMark] = useState<NavMark | null>(null)
   // The highlight of the current page slides from the previous one (vertical sidebar only).
   useLayoutEffect(() => {
     const place = () => {

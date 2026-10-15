@@ -5,6 +5,7 @@ import { weekChange, weekDigest, type WeekSummary } from '../engine/weekly'
 import { useAi } from './aiContext'
 import { ChartIcon, CloseIcon, SparkleIcon } from './icons'
 import { ERROR_NAME } from './labels'
+import { shareCard } from './shareCard'
 
 const KEY = 'kelime-koc:week-seen'
 /** The coach's remark on this week, kept so the card shows it again without asking (and paying) twice. */
@@ -170,8 +171,6 @@ export function WeeklyNudge({
           type="button"
           className="btn btn-quiet"
           onClick={async () => {
-            // The card's drawing code comes only when it is shared.
-            const { shareCard } = await import('./shareCard')
             const text = `${summary.days} gün çalıştım, ${summary.answers} cevap verdim${summary.answers ? ` (%${Math.round(summary.right * 100)} doğru)` : ''}, ${summary.newWords} yeni kelime.`
             await shareCard({ kicker: 'Haftam', title: `${summary.days}/7 gün`, text, art: 'week' }, `Haftam: ${text}`)
           }}

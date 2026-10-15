@@ -16,7 +16,7 @@ export function usesWord(text: string, word: string, language: string): boolean 
 
 
 /** How many words one talk with Monki aims at. */
-export const TALK_WORDS = 5
+const TALK_WORDS = 5
 
 /**
  * The words of a list worth a talk: the ones being learned (met, not yet settled) first, then new

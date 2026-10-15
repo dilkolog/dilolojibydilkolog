@@ -2,7 +2,7 @@ import { useEffect, useRef, type Dispatch, type SetStateAction } from 'react'
 import { RESTORABLE, type Screen } from '../appNav'
 
 /** Where a screen is: its name and, for those that have one, the thing it shows (a game, a verb, a word, a list). */
-export const routeKey = (s: Screen) => {
+const routeKey = (s: Screen) => {
   const extra = (s as { game?: string; verb?: string; entryId?: string; list?: string; lesson?: string }).game ?? (s as { verb?: string }).verb ?? (s as { entryId?: string }).entryId ?? (s as { list?: string }).list ?? (s as { lesson?: string }).lesson ?? ''
   return `${s.name}:${extra}`
 }

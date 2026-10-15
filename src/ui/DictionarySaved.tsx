@@ -107,7 +107,7 @@ export function DayWord({
 }
 
 /** How many saved words show before "Tümünü göster". */
-export const SAVED_SHOWN = 8
+const SAVED_SHOWN = 8
 
 /** The saved words (all of them, or those matching the query) as one compact list: a tap opens the card, × removes. */
 export function SavedList({ language, list, onPick, onRemove }: { language: TargetLanguage; list: { word: string; t: string[] }[]; onPick: (word: string) => void; onRemove: (word: string) => void }) {
