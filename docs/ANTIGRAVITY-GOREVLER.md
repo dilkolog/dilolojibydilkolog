@@ -452,17 +452,17 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - **Masaüstü (`e2e/desktop.e2e.ts`):** Dilbilgisi yanlış cevabında "Konunun dersi" bağlantısıyla derse geçiş ve tarayıcı geri tuşuyla soruya dönüş; İngilizce **Zamanlar** sekmesinin 13 zamanı Present simple ile başlayan doğru pedagojik sırada listelemesi; fiil laboratuvarında yanlış çekim sonrasında "Bu zamanın anlatımı" modalının açılıp Esc ile kapanması doğrulandı.
 - **Erişilebilirlik (`e2e/a11y.e2e.ts`):** Açık ve koyu temada ders sayfası, mini sınav (soru, cevap gösterilirken, sonuç ekranı) ve Bugün'deki tekrar kartı için axe WCAG 2.2 AA taramaları 0 ihlalle geçti.
 
-### 13.5 Supabase güvenlik duman testi (script + belge; sahibinin makinesinde çalışır)
-- **Script:** `scripts/smoke-supabase.mjs`, ortam değişkenleri `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SMOKE_EMAIL`, `SMOKE_PASSWORD` (ayrı bir deneme hesabı). Yalnızca açık (publishable) anahtarla çalışır; gizli anahtar asla istenmez ve dosyaya yazılmaz.
-- **Denetlenecekler:**
-  1. giriş yapılabiliyor;
-  2. `put_sync_part` onaysız hesapla `42501` döner;
-  3. hesap onaylıysa `core` yazılıp geri okunur;
-  4. başka bir kişinin `sync_parts` satırı okunamaz (boş liste);
-  5. `friend_cards`, `shared_lists`, `reminders`, `server_flags`, `sync_keys` tabloları açık anahtarla **hiç** okunamaz (boş ya da 401/403);
-  6. `media` kovasında başkasının klasörü listelenemez.
-- Çıktı her madde için GEÇTİ/KALDI yazar.
-- **Belge:** `docs/SUPABASE.md`'ye "Güvenlik duman testi" bölümü. Ben bu ortamda supabase.com'a ulaşamıyorum; script'i sen gerçek projeye karşı çalıştırma, yalnızca söz dizimini ve sahte sunucuyla mantığını dene. Gerçek koşuyu sahibi yapar.
+### 13.5 Supabase güvenlik duman testi (script + belge; TAMAMLANDI — `scripts/smoke-supabase.mjs`, `docs/SUPABASE.md`)
+- **Script:** `scripts/smoke-supabase.mjs` yazıldı. Yalnızca açık (publishable/anon) anahtarla çalışır; gizli anahtar istenmez ve algılansa dahi yoksayılır.
+- **Yerel Simülasyon:** `--mock` bayrağı ile sahte Auth, PostgREST ve Storage sunucusu üzerinde 6 güvenlik maddesinin tümü test edildi ve GEÇTİ verdi.
+- **6 Güvenlik Maddesi:**
+  1. Giriş yapılabilmesi (JWT ve UID doğrulaması);
+  2. `put_sync_part` onaysız hesapla `42501` (`approval required`) hatası dönmesi;
+  3. Hesap onaylıysa `core` yazılıp geri okunması;
+  4. Başka bir kişinin `sync_parts` satırının okunamaması (boş dizi);
+  5. `friend_cards`, `shared_lists`, `reminders`, `server_flags`, `sync_keys` tablolarının açık anahtarla hiç okunamaması (0 satır / 401/403);
+  6. `media` kovasında başkasının klasörünün listelenememesi / dosyasının indirilememesi.
+- **Belge:** `docs/SUPABASE.md` dosyasına "Güvenlik duman testi" başlığı, kullanım komutları ve güvenlik ilkeleri eklendi.
 
 ### 13.6 Yeni ekranların uçtan uca testleri (`e2e/`; eksik olanlar)
 Önce `e2e/` içinde ne olduğuna bak; yalnızca eksik olanları yaz.
