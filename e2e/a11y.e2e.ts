@@ -960,6 +960,73 @@ test('dictionary states and collocation chip accessibility check (phone, light a
   expect(problems).toEqual([])
 })
 
+test('guide lesson, mini quiz states (question, feedback, score) and Today review card pass accessibility checks in light and dark themes', async ({ page }) => {
+  test.setTimeout(120_000)
+  await page.setViewportSize({ width: 375, height: 667 })
+  await startWithSamples(page)
+
+  const setTheme = (t: 'light' | 'dark') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      root.dataset.theme = theme
+      delete root.dataset.calm
+    }, t)
+
+  const problems: string[] = []
+  const scanBoth = async (where: string) => {
+    for (const theme of ['light', 'dark'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+
+  // 1. Bugün'deki tekrar kartı (Today review card)
+  await page.evaluate(() => {
+    localStorage.setItem(
+      'diloloji:guide-progress',
+      JSON.stringify({ subjonctif: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } }),
+    )
+  })
+  await page.reload()
+  await openScreen(page, 'Bugün')
+  const nudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })
+  await expect(nudge).toBeVisible()
+  await scanBoth('today-guide-review-card')
+
+  // 2. Ders sayfası (Guide lesson page)
+  await openScreen(page, 'Rehber')
+  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
+  await scanBoth('guide-lesson-page')
+
+  // 3. Sınav: soru ekranı (Quiz question prompt)
+  const startQuiz = page.locator('.lesson-check-start')
+  await expect(startQuiz).toBeVisible()
+  await startQuiz.click()
+  const check = page.locator('.lesson-check')
+  await expect(check.getByRole('heading', { name: 'Kendini dene' })).toBeVisible()
+  await scanBoth('guide-quiz-question-screen')
+
+  // 4. Sınav: cevap gösterilirken (Answer feedback showing)
+  await check.locator('.option').first().click()
+  await expect(check.getByRole('status')).toBeVisible()
+  await scanBoth('guide-quiz-feedback-screen')
+
+  // 5. Sınav: sonuç ekranı (Quiz score result screen)
+  while ((await check.getByRole('button', { name: 'Sonraki' }).count()) > 0) {
+    await check.getByRole('button', { name: 'Sonraki' }).click()
+    await check.locator('.option').first().click()
+  }
+  if ((await check.getByRole('button', { name: 'Bitir' }).count()) > 0) {
+    await check.getByRole('button', { name: 'Bitir' }).click()
+  }
+  await expect(check.locator('.lesson-check-score')).toBeVisible()
+  await scanBoth('guide-quiz-result-score-screen')
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
 
 
 

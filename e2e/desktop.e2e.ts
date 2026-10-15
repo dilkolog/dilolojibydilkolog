@@ -2165,3 +2165,88 @@ test('the guide: a lesson read days ago comes back on Today for a short check', 
   await expect(check).toContainText(/3 sorunun \d tanesi doğru/)
   expect(await overflow(page)).toEqual([])
 })
+
+test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, and browser back returns to question', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
+  await page.getByRole('button', { name: /Bu konuda \d+ soru çöz/ }).click()
+
+  // In GrammarPractice intro for subjonctif: start round
+  await expect(page.locator('.game-stage')).toBeVisible()
+  await page.getByRole('button', { name: /soruluk tura başla/ }).click()
+
+  // Make a deliberate mistake
+  if (await page.locator('.game-stage input.answer-input').count() > 0) {
+    await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
+    await page.keyboard.press('Enter')
+  } else if (await page.locator('.game-stage .options .option').count() > 0) {
+    await page.locator('.game-stage .options .option').last().click()
+  }
+
+  // If first answer was somehow not wrong, advance and answer next wrong
+  if ((await page.locator('.lesson-link', { hasText: 'Konunun dersi' }).count()) === 0) {
+    await page.getByRole('button', { name: 'Devam' }).click()
+    if (await page.locator('.game-stage input.answer-input').count() > 0) {
+      await page.locator('.game-stage input.answer-input').fill('kesinlikle_yanlis')
+      await page.keyboard.press('Enter')
+    } else {
+      await page.locator('.game-stage .options .option').last().click()
+    }
+  }
+
+  // Look for "Konunun dersi" link and click it
+  const lessonLink = page.locator('.lesson-link', { hasText: 'Konunun dersi' })
+  await expect(lessonLink).toBeVisible()
+  await lessonLink.click()
+
+  // Lesson page opens
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
+
+  // Browser back returns to the game screen
+  await page.goBack()
+  await expect(page.locator('.game-stage')).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
+
+test('the guide: English tenses tab lists tenses in order with Present simple first', async ({ page }) => {
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^İngilizce/ }).click()
+  await openScreen(page, 'Rehber')
+  await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
+
+  await page.getByRole('tab', { name: 'Zamanlar' }).click()
+  const cards = page.locator('.guide-grid .guide-card')
+  await expect(cards.first()).toContainText('Present simple')
+  expect(await cards.count()).toBe(13)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('the guide: verb lab practice wrong conjugation offers "Bu zamanın anlatımı" sheet which closes on Esc', async ({ page }) => {
+  await startWithSamples(page)
+  await openVerbLab(page, 'parler')
+  await page.locator('.lab-main').getByRole('tab', { name: 'Alıştırma' }).click()
+
+  // Type a wrong conjugation
+  const input = page.locator('.lab-main input.answer-input')
+  await expect(input).toBeVisible()
+  await input.fill('parlo')
+  await page.keyboard.press('Enter')
+
+  // Feedback and Diagnosis button appear
+  await expect(page.locator('.lab-verdict')).toContainText('Yanlış')
+  const tenseBtn = page.getByRole('button', { name: /Bu zamanın anlatımı/ })
+  await expect(tenseBtn).toBeVisible()
+  await tenseBtn.click()
+
+  // Modal sheet opens
+  const sheet = page.locator('.tense-lesson')
+  await expect(sheet).toBeVisible()
+  await expect(sheet).toContainText('Présent')
+
+  // Esc closes the sheet
+  await page.keyboard.press('Escape')
+  await expect(sheet).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
