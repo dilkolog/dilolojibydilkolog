@@ -2,7 +2,7 @@ import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID
 import { addFriend, friendsOf, normalizeCode, publishCard, removeFriend } from './_friends.js'
 import { fromApp } from './_origin.js'
 import { deleteAccountData } from './_deleteAccount.js'
-import { deleteSupabaseUser, ensureProfile, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
+import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
 
 /**
@@ -82,7 +82,10 @@ async function vaultGet(request: Request): Promise<Response> {
   const user = await supabaseUser(request)
   if (!user) return json({ error: 'signed_out' }, 401)
   try {
-    return json({ account: await vaultOf(user.id) })
+    const account = await vaultOf(user.id)
+    // The owner may have approved the sync account the old way: the profile follows, so its data may be written.
+    if (account) await mirrorApproval(account.id, await accessStatus(account.id).catch(() => 'none' as const))
+    return json({ account })
   } catch {
     return json({ error: 'supabase unavailable' }, 502)
   }
@@ -104,9 +107,13 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
     if (!(await claimAccount(id, auth))) return json({ error: 'wrong' }, 403)
     await ensureProfile(user)
     if ((await saveVault(user.id, { id, enc, auth, username })) === 'taken') return json({ error: 'taken' }, 409)
-    if (!approvalOn()) return json({ status: 'approved' })
+    if (!approvalOn()) {
+      await mirrorApproval(id, 'approved')
+      return json({ status: 'approved' })
+    }
     clearAccessCache()
     const status = await accessStatus(id)
+    await mirrorApproval(id, status)
     // The owner sees the person on the Yönetici card too, as with the old sign-up.
     if (status !== 'approved' && status !== 'rejected') await writeJson(requestPath(id), { username: username || user.name, note: note || user.email, at: new Date().toISOString() })
     return json({ status: status === 'none' ? 'pending' : status })
@@ -124,7 +131,10 @@ async function accountDelete(request: Request): Promise<Response> {
     const id = user ? ((await vaultOf(user.id))?.id ?? null) : await accountOf(request)
     if (!user && !id) return json({ error: 'account_required' }, 403)
     const removed = id ? await deleteAccountData(id) : 0
-    if (user) await deleteSupabaseUser(user.id)
+    if (user) {
+      await deleteSupabaseMedia(user.id).catch(() => undefined)
+      await deleteSupabaseUser(user.id)
+    }
     return json({ ok: true, removed })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)

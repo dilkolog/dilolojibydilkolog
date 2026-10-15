@@ -76,8 +76,46 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
 - **Şifreleme:** Hesap anahtarlarını Supabase saklar. Supabase'e (ve proje sahibine) erişen biri eşitlenen veriyi çözebilir. Bu, "şifreni unutsan da verin kaybolmasın" isteğinin bedeli; 2. aşamada veriler zaten tablolarda açık olacak.
 - **Sunucu:** `api/_supabase.ts`. Yeni Vercel işlevi yok (Hobby'de 12 işlev sınırı dolu): uçlar `/api/access` içinde (`?vault=1`, `action: 'vault-link'`).
 
-## 2. aşama (sonra)
+## 2. aşama: veriler Supabase'te (2026-10-15)
 
-- Kelimeler, cevaplar, listeler ve ayarlar Supabase tablolarına taşınacak (satır güvenliğiyle yalnızca sahibine açık).
-- Arkadaşlar, paylaşılan listeler ve mail hatırlatmaları Blob JSON dosyalarından tablolara geçecek.
-- Eşitleme parçaları yerine satır satır eşitleme yapılacak.
+- **Ne değişti:** Supabase ile giren cihazlar verilerini Supabase'te tutuyor; eski Vercel Blob'a gitmiyorlar. Eşitlemenin birleştirme kuralları aynı kaldı, değişen yalnızca deponun yeri (`src/data/sync.ts` `PartStore`):
+  - `blobStore`: eski, şifreli.
+  - `supabaseStore` (`src/data/supabaseStore.ts`): açık JSON.
+- **Tablo `sync_parts`:** satır güvenliğiyle herkes yalnızca kendi satırlarını görür. Yazma `put_sync_part` işleviyle yapılır; işlev onayı ve sürümü denetler, çakışmada `40001` döner. Satırlar:
+  - `core`: kelimeler, durumlar, listeler, ayarlar, oyun günlükleri.
+  - `ev-YYYY-MM`: o ayın cevapları.
+  - `tx-…`: okuma metinleri.
+  - `h-YYYY-MM-DD`: günün geri dönüş noktası; bir hafta saklanır.
+- **Resim ve sesler:** Storage'da `media` kovası, `<kişi kimliği>/m-….json`.
+- **Panelde görmek için görünümler** (Table Editor → solda "Views" ya da SQL Editor):
+  - `people`: kişi, e-posta, onay, kelime ve cevap sayısı, son eşitleme.
+  - `words`: kim, hangi dil, kelime, anlam, liste.
+  - `answers`: her cevap; doğru/yanlış, tür, zaman.
+  - `word_lists`.
+
+  Görünümler salt okunurdur; düzenleme uygulamadan yapılır (bir sonraki eşitleme paneldeki elle düzenlemeyi ezer).
+- **Geçiş kendiliğinden:** Supabase ile girişli bir cihaz, `sync_parts` tablosu varsa ve kişinin henüz verisi yoksa ilk eşitlemede şunları yapar (`src/ui/syncTarget.ts`, `syncData.ts`):
+  1. Eski depodan son hâli çeker (diğer cihazların son değişiklikleri).
+  2. Hepsini Supabase'e yükler.
+  3. Eski depodaki çekirdeğe `movedTo: 'supabase'` yazar.
+
+  Hâlâ eski yolla girişli bir cihaz eşitlemeye kalkınca durur ve "çıkış yapıp e-posta ya da Google ile gir" der (`SyncMovedError`). Tablo yoksa (SQL çalıştırılmadıysa) her şey eskisi gibi Blob'la sürer.
+- **Onay:** veritabanı yalnızca `profiles.approved` olan kişiye yazdırır. Yönetici kartından verilen onay, `SYNC_ALLOWED` ve `ADMIN_TOKEN` yokken herkesin onaylı sayılması profile kendiliğinden yansır:
+  - girişte (`/api/access?vault=1`),
+  - bağlarken,
+  - Yönetici kartında onayla/reddet anında.
+- **Hesap silme:** kişiyi siler; `sync_parts` satırları zincirleme gider, `media` dosyaları da silinir.
+
+### Sahibinin yapacağı
+1. **Supabase → SQL Editor:** `supabase/migrations/0002_sync_data.sql` içeriğini yapıştır, Run. Tablo, işlev, kova ve görünümler kurulur.
+2. **Denemek için:** uygulamada Ayarlar → Hesap → **Şimdi eşitle**. Sonra Supabase → Table Editor → `sync_parts`'ta satırları, Views altında `people` ve `words`'ü gör.
+3. Diğer cihazlarda da Supabase ile (e-posta ya da Google) bir kez giriş yap. Eski yolla girişli kalan cihaz eşitlemeyi durdurur ve bunu söyler.
+
+## 2b. aşama (sonra)
+
+Arkadaşlar, paylaşılan listeler ve mail hatırlatmaları hâlâ Vercel Blob'da (JSON dosyaları). Bunlar da tablolara taşınabilir:
+- `friend_cards`, `friend_follows`;
+- `shared_lists`;
+- `mail_reminders`.
+
+Taşınınca panelden görülür ve sunucu uçları REST ile okuyup yazar.

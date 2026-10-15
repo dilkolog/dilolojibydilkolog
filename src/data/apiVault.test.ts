@@ -17,6 +17,7 @@ vi.mock('@vercel/blob', () => ({
 }))
 
 const access = await import('../../api/access')
+const admin = await import('../../api/admin')
 const { clearAccessCache, accessStatus } = await import('../../api/_account')
 const { resetRate } = await import('../../api/_rate')
 
@@ -46,6 +47,12 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     return user ? Response.json(user) : Response.json({ msg: 'bad jwt' }, { status: 401 })
   }
   const table = url.pathname.replace('/rest/v1/', '')
+  if (table === 'profiles' && init.method === 'PATCH') {
+    const id = url.searchParams.get('user_id')?.replace('eq.', '')
+    const patch = JSON.parse(String(init.body)) as { approved: boolean; rejected: boolean }
+    profiles = profiles.map((p) => (p.user_id === id ? { ...p, ...patch } : p))
+    return new Response(null, { status: 204 })
+  }
   if (table === 'profiles' && init.method === 'POST') {
     const row = JSON.parse(String(init.body)) as { user_id: string }
     if (!profiles.some((p) => p.user_id === row.user_id)) profiles.push({ user_id: row.user_id, approved: false, rejected: false })
@@ -61,6 +68,7 @@ function fakeSupabase(input: string, init: RequestInit = {}): Response {
     const byUser = url.searchParams.get('user_id')?.replace('eq.', '')
     const bySync = url.searchParams.get('sync_id')?.replace('eq.', '')
     const rows = keys.filter((k) => (byUser ? k.user_id === byUser : k.sync_id === bySync))
+    if (bySync && url.searchParams.get('select') === 'user_id') return Response.json(rows.map((k) => ({ user_id: k.user_id })))
     if (bySync) return Response.json(rows.map((k) => ({ profiles: profiles.find((p) => p.user_id === k.user_id) ?? null })))
     return Response.json(rows)
   }
@@ -170,5 +178,16 @@ describe('/api/access: the Supabase vault', () => {
     expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(false)
     expect(blobs.has(`access/approved/${OLD.id}.json`)).toBe(false)
     expect(deletedUsers).toEqual([])
+  })
+
+  it('carries the old approval to the profile, so the database lets the person write', async () => {
+    await link('tok-ali', OLD)
+    expect(profiles[0]).toMatchObject({ approved: true, rejected: false })
+    // Approved later on the Yönetici card: the profile follows.
+    await link('tok-veli', NEW)
+    expect(profiles.find((p) => p.user_id === USERS['tok-veli']!.id)).toMatchObject({ approved: false })
+    const res = await admin.POST(new Request('https://app.test/api/admin', { method: 'POST', headers: { authorization: 'Bearer owner-secret', 'content-type': 'application/json' }, body: JSON.stringify({ action: 'approve', id: NEW.id }) }))
+    expect(res.status).toBe(200)
+    expect(profiles.find((p) => p.user_id === USERS['tok-veli']!.id)).toMatchObject({ approved: true })
   })
 })

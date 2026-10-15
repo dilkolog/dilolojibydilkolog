@@ -5,10 +5,10 @@ import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, LockIcon, UserIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
-import { SyncAuthError, SyncConflictError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
+import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
 import { relativeTime } from './format'
 import type { AuthMode } from './AuthScreen'
-import { CONFLICT, getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
+import { CONFLICT, MOVED, getAccount, getSyncCode, NEWER_VERSION, NOT_ALLOWED, PENDING_APPROVAL, TOO_LARGE, runSync, setAccount } from './syncRunner'
 import { RestorePoints } from './RestorePoints'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
@@ -50,7 +50,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       await runSync(true)
       showToast('Eşitlendi.')
     } catch (e) {
-      setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
+      setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncMovedError ? MOVED : e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
