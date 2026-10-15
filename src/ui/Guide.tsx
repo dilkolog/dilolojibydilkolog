@@ -9,7 +9,7 @@ import { topicStats, topicName } from '../engine/grammar'
 import { LAB_TENSES, type Tense } from '../engine/tenses'
 import { TENSE_BRIEF } from '../engine/tenseBrief'
 import type { TargetLanguage } from '../engine/types'
-import { CheckCircleIcon, ChevronLeftIcon, LinkIcon, SpeakerIcon } from './icons'
+import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
@@ -83,6 +83,8 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
   const q = query.trim().toLocaleLowerCase('tr')
   const shown = lessons.filter((l) => (!level || l.level === level) && (!q || `${l.title} ${l.summary} ${l.rules.join(' ')}`.toLocaleLowerCase('tr').includes(q)))
   const doneCount = lessons.filter((l) => read.has(l.topic)).length
+  // The way through: the first lesson not read yet, the easier levels first.
+  const next = LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)).find((l) => !read.has(l.topic))
 
   if (open) return <LessonView lesson={open} language={language} read={read.has(open.topic)} questions={questions.get(open.topic) ?? 0} onBack={() => setOpen(null)} onRead={(on) => markRead(open.topic, on)} onPractice={() => onPractice(open.topic)} onVerbs={() => onVerbs()} />
 
@@ -116,6 +118,17 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
               <span style={{ width: `${lessons.length ? (doneCount / lessons.length) * 100 : 0}%` }} />
             </span>
           </div>
+          {next && !q && !level && (
+            <button type="button" className="card guide-next" onClick={() => setOpen(next)}>
+              <span className="guide-level-badge">{next.level}</span>
+              <span className="guide-next-text">
+                <span className="small muted">{doneCount ? 'Sıradaki dersin' : 'Buradan başla'}</span>
+                <strong>{titleOf(next)}</strong>
+                <span className="small muted">{next.summary}</span>
+              </span>
+              <ChevronRightIcon size={20} className="guide-next-arrow" />
+            </button>
+          )}
           <div className="guide-filters">
             <div className="choice-row" role="group" aria-label="Seviye">
               <button type="button" className="chip chip-sm" aria-pressed={!level} onClick={() => setLevel(null)}>

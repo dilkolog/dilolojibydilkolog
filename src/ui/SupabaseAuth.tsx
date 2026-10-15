@@ -5,11 +5,11 @@ import { VaultError } from '../data/vault'
 import { clearReturn, currentSession, isRecoveryReturn, returnError, sendMagicLink, sendPasswordReset, setNewPassword, signIn, signInWithGoogle, signUp, supabase, authErrorText } from '../data/supabase'
 import { ChevronLeftIcon, LockIcon } from './icons'
 import { BrandLogo } from './BrandLogo'
-import { completeSignIn, linkOldAccount, startFresh, vaultErrorText, type SignInOutcome } from './signInFlow'
+import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow'
 import { showToast } from './toastFeed'
 
 export type SupabaseMode = 'login' | 'create' | 'return'
-type Step = 'login' | 'create' | 'magic' | 'reset' | 'sent' | 'recovery' | 'choose' | 'working'
+type Step = 'login' | 'create' | 'magic' | 'reset' | 'sent' | 'recovery' | 'working'
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -43,10 +43,6 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
   const session = useRef<Session | null>(null)
 
   const finish = (outcome: SignInOutcome) => {
-    if (outcome.kind === 'choose') {
-      setStep('choose')
-      return
-    }
     showToast(outcome.waiting ? 'Giriş yapıldı. Hesabın site sahibinin onayını bekliyor; onaylanınca eşitleme ve diğer özellikler açılır.' : outcome.fresh ? 'Hesabın hazır; ilerlemen kaydedildi.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
     onDone()
   }
@@ -135,7 +131,6 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
     reset: 'Şifreni yenile',
     sent: 'E-postana bak',
     recovery: 'Yeni şifre',
-    choose: 'Neredeyse bitti',
     working: 'Giriş yapılıyor…',
   }
 
@@ -259,7 +254,6 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
 
         {step === 'recovery' && <Recovery onSaved={() => session.current && void attempt(async () => finish(await completeSignIn(session.current!)))} />}
 
-        {step === 'choose' && session.current && <Choose session={session.current} busy={busy} error={error} attempt={attempt} finish={finish} />}
 
         <div className="auth-note">
           <LockIcon size={16} />
@@ -310,43 +304,5 @@ function Recovery({ onSaved }: { onSaved: () => void }) {
         {busy ? 'Bekle…' : 'Şifreyi kaydet'}
       </button>
     </form>
-  )
-}
-
-/** The first sign-in on a device with no account: bring the old username account along, or start anew. */
-function Choose({ session, busy, error, attempt, finish }: { session: Session; busy: boolean; error: string; attempt: (w: () => Promise<void>) => Promise<void>; finish: (o: SignInOutcome) => void }) {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  return (
-    <div className="stack gap-3">
-      <p>Daha önce kullanıcı adı ve şifreyle hesap açtıysan onu bu e-postaya bağla; ilerlemen gelir. Açmadıysan yeni başla.</p>
-      <form
-        className="auth-form"
-        onSubmit={(e) => {
-          e.preventDefault()
-          void attempt(async () => finish(await linkOldAccount(session, username, password)))
-        }}
-      >
-        <label className="field">
-          <span className="field-label">Eski kullanıcı adın</span>
-          <input className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" autoCapitalize="off" spellCheck={false} />
-        </label>
-        <label className="field">
-          <span className="field-label">Eski şifren</span>
-          <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
-        </label>
-        {error && (
-          <p className="error" role="alert">
-            {error}
-          </p>
-        )}
-        <button className="btn" type="submit" disabled={busy || !username.trim() || !password}>
-          {busy ? 'Bekle…' : 'Eski hesabımı bağla'}
-        </button>
-      </form>
-      <button type="button" className="btn btn-quiet" disabled={busy} onClick={() => void attempt(async () => finish(await startFresh(session)))}>
-        Eski hesabım yok, yeni başla
-      </button>
-    </div>
   )
 }

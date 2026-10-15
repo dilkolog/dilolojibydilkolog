@@ -65,6 +65,18 @@ export async function getCredential(): Promise<Credential | null> {
   return (await getAccount()) ?? (await getSyncCode())
 }
 
+/**
+ * The old username-and-password accounts are gone once sign-in moved to Supabase: a device still signed in
+ * that way is signed out (its words and progress stay) and asked, once, to sign in again. True when it was.
+ */
+async function signOutOldAccount(): Promise<boolean> {
+  const { supabaseConfigured, hasStoredSession } = await import('../data/supabase')
+  if (!supabaseConfigured() || hasStoredSession()) return false
+  await setAccount(null)
+  showToast('Giriş sistemi yenilendi: Ayarlar → Hesap\'tan e-postanla ya da Google ile yeniden gir. Kelimelerin ve ilerlemen bu cihazda duruyor.', undefined, 12_000, 'info')
+  return true
+}
+
 /** Syncs if signed in (or a code is set); failures (offline etc.) are silent unless `throwErrors`. */
 export function runSync(throwErrors = false): Promise<SyncResult | null> {
   if (running) return running
@@ -72,6 +84,7 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
     try {
       const cred = await getCredential()
       if (!cred) return null
+      if (typeof cred !== 'string' && (await signOutOldAccount())) return null
       const target = await (await import('./syncTarget')).syncTarget(cred)
       const result = await (await syncCode()).syncNow(db, target)
       for (const fn of listeners) fn()
