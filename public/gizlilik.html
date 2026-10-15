@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gizlilik politikası · Diloloji</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f1ea;--card:#fff;--ink:#1f2933;--soft:#5b6470;--brand:#2f6f5e;--rule:#e6e1d6}
+@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#1e293b;--ink:#e5e7eb;--soft:#a3acb9;--brand:#6fc3a8;--rule:#334155}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+main{max-width:44rem;margin:0 auto;padding:2rem 1rem 3rem}
+.brand{font-weight:700;color:var(--brand);text-decoration:none;font-size:1.1rem}
+article{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:1.75rem 1.5rem;margin-top:1rem}
+h1{font-size:1.6rem;line-height:1.25;margin:0 0 .25rem}h2{font-size:1.1rem;margin:1.75rem 0 .5rem}
+p,li{margin:.4rem 0}ul{padding-left:1.25rem}.muted{color:var(--soft);font-size:.9rem}a{color:var(--brand)}
+</style>
+</head>
+<body>
+<main>
+<a class="brand" href="/">● Diloloji</a>
+<article>
+<h1>Gizlilik politikası</h1>
+<p class="muted">Son güncelleme: 15 Ekim 2026</p>
+
+<p>Diloloji, kelime ve dil öğrenmek için bir web uygulamasıdır. Bu sayfa hangi bilgilerin nerede tutulduğunu ve kimlerle paylaşıldığını anlatır. Kısaca: reklam yok, izleme yok, verilerin satılmaz.</p>
+
+<h2>Cihazında kalanlar</h2>
+<p>Kelimelerin, cevapların, listelerin, okuma metinlerin ve ayarların önce yalnızca kendi cihazında (tarayıcının IndexedDB deposunda) tutulur. Hesap açmadan kullanırsan hiçbiri sunucuya gitmez.</p>
+
+<h2>Hesap açarsan</h2>
+<ul>
+<li><strong>Giriş:</strong> e-posta adresin ve (şifreyle giriyorsan) şifrenin güvenli özeti, giriş hizmeti Supabase'te tutulur. Google ile girersen Google'dan yalnızca adın, e-postan ve profil resmin gelir.</li>
+<li><strong>Eşitleme:</strong> cihazlar arası eşitleme için verilerin sıkıştırılıp şifrelenerek Vercel'in depolama hizmetinde (Vercel Blob) saklanır. Şifre çözme anahtarı, şifreni unutsan da verine ulaşabilmen için hesabınla birlikte Supabase'te saklanır.</li>
+<li><strong>Onay:</strong> yeni hesaplar site sahibinin onayından geçer; bunun için site sahibi adını, e-postanı ve yazdığın kısa notu görür.</li>
+<li><strong>Arkadaşlar (isteğe bağlı):</strong> arkadaş kodunu paylaştığın kişiler adını, avatarını, serini, seviyeni ve son iki haftanın XP'sini görür. Kelimelerin ve cevapların görünmez.</li>
+<li><strong>Paylaşılan listeler (isteğe bağlı):</strong> bir listeyi bağlantıyla paylaşırsan, bağlantıyı bilen o listeyi görür; topluluk kütüphanesine koyarsan herkes görür.</li>
+</ul>
+
+<h2>Dış hizmetler</h2>
+<p>Bazı özellikler yalnızca sen kullandığında ilgili hizmete metin gönderir:</p>
+<ul>
+<li><strong>Çeviri:</strong> çevirmek istediğin cümleler DeepL'e gönderilir.</li>
+<li><strong>Yapay zekâ özellikleri:</strong> kendi Anthropic (Claude) anahtarını girersen, istekler cihazından doğrudan Anthropic'e gider; anahtarın yalnızca cihazında durur.</li>
+<li><strong>Telaffuz puanı:</strong> kendi Azure anahtarını girersen, kaydettiğin ses doğrudan Microsoft Azure'a gider.</li>
+<li><strong>Yazım denetimi:</strong> "denetle"ye dokunduğun metin LanguageTool'a gönderilir.</li>
+<li><strong>E-posta:</strong> giriş, onay ve (açtıysan) hatırlatma mailleri Resend üzerinden gönderilir. Hatırlatma maillerinde yalnızca sayılar (seri, bekleyen tekrar) bulunur.</li>
+<li><strong>Bildirimler:</strong> hatırlatmaları açarsan tarayıcının bildirim servisi kullanılır.</li>
+<li><strong>Hata kayıtları:</strong> uygulamada bir hata olursa, hatanın teknik açıklaması (kişisel içerik olmadan) sunucu günlüğüne yazılır.</li>
+</ul>
+
+<h2>Çerezler ve izleme</h2>
+<p>Reklam ya da analitik çerezi, izleme pikseli veya üçüncü taraf takip aracı kullanılmaz. Tarayıcının yerel deposu yalnızca uygulamanın çalışması (oturum, ayarlar) için kullanılır.</p>
+
+<h2>Verilerin üzerindeki hakların</h2>
+<ul>
+<li>Verilerinin tamamını istediğin an Ayarlar → Veriler → Yedeği indir ile dosya olarak alabilirsin.</li>
+<li>Bu cihazdan çıkış yapmak eşitlemeyi durdurur; cihazdaki veriler sende kalır.</li>
+<li>Hesabının ve sunucudaki verilerinin silinmesini istersen site sahibine yazman yeterli; silme işlemi kalıcıdır.</li>
+</ul>
+
+<h2>Değişiklikler</h2>
+<p>Bu sayfa değişirse üstteki tarih güncellenir.</p>
+
+</article>
+</main>
+</body>
+</html>
