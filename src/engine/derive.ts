@@ -237,13 +237,18 @@ const FALSE_COUSINS: Record<TargetLanguage, Set<string>> = {
     'appointed|disappointed', 'visa|visible', 'fact|faction', 'poke|poker', 'fuck|fucker', 'mark|remarkable',
     'must|muster', 'miss|dismiss', 'sort|resort', 'carry|carrion', 'county|countless', 'tina|retina', 'terry|terrible', 'victoria|victorious', 'actor|reactor', 'mission|remission',
     'traction|distraction', 'position|disposition', 'rape|rapist', 'smoke|smoking', 'face|facing', 'rule|ruling', 'mate|mating', 'link|linking', 'mount|mounting', 'bear|bearing',
+    'sting|resting', 'dent|dentist', 'tire|retire', 'shin|shining', 'turning|returning',
   ]),
   fr: new Set([
     'finir|définir', 'terminer|déterminer', 'penser|dépenser', 'manger|démanger', 'pendant|dépendant', 'tente|détente', 'partir|partition', 'heure|heureux', 'léger|légiste', 'pêche|dépêche', 'astre|désastre', 'vie|vieux', 'but|début', 'garder|regarder', 'péter|répéter', 'coup|coupable', 'mine|minable',
     'star|stable', 'cap|capable', 'cap|incapable', 'couler|couleur', 'courir|courage', 'courir|courageux', 'partir|partage', 'viser|invisible', 'série|sérieux',
-    'coupe|coupable', 'viser|visible', 'stylo|styliste', 'finition|définition', 'libéré|délibéré', 'parlé|parlement', 'port|portable', 'foncer|fonction', 'part|départ', 'vérité|véritable', 'autre|auteur', 'terre|terrible', 'contre|conteur', 'pire|pieux',
+    'coupe|coupable', 'couper|coupable', 'viser|visible', 'stylo|styliste', 'finition|définition', 'libéré|délibéré', 'parlé|parlement', 'port|portable', 'porte|portable', 'foncer|fonction', 'part|départ', 'vérité|véritable', 'autre|auteur', 'terre|terrible', 'contre|conteur', 'pire|pieux',
+    'chanter|chantage', 'marrer|démarrer', 'tester|détester', 'pêcher|dépêcher', 'verse|inverse',
   ]),
-  es: new Set(['primo|primero', 'pene|penoso', 'cuento|descuento', 'pecho|despecho', 'pedir|despedir', 'tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado', 'probar|probable', 'esto|estación', 'entre|entidad', 'madre|madero', 'nave|navidad', 'ace|acero', 'prima|primero', 'modo|modista', 'estar|estable', 'esperado|desesperado']),
+  es: new Set([
+    'primo|primero', 'pene|penoso', 'cuento|descuento', 'pecho|despecho', 'pedir|despedir', 'tema|temible', 'mayo|desmayo', 'carne|carnero', 'sentir|presentación', 'estar|estación', 'traer|traición', 'caro|caridad', 'sentar|presentar', 'parar|preparar', 'parado|preparado', 'probar|probable', 'esto|estación', 'entre|entidad', 'madre|madero', 'nave|navidad', 'ace|acero', 'prima|primero', 'modo|modista', 'estar|estable', 'esperado|desesperado',
+    'saludar|saludable', 'presentar|presentimiento', 'creer|creación',
+  ]),
 }
 const cousins = (language: TargetLanguage, base: string, word: string) => FALSE_COUSINS[language].has(`${base}|${word}`)
 
