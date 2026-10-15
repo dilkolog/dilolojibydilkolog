@@ -440,15 +440,12 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - 290 soru (%98,6) tartışmasız tek doğru çıktı; 6 soruda bağlamsal/bölgesel seçenek nüansı tespit edilip raporda belgelendi.
 - Kapsamlı rapor `docs/veri/rehber-sinav-denetimi.md` yayımlandı.
 
-### 13.3 Dış kaynak bağlantılarının canlı doğrulaması (script + rapor; ağ gerekir)
-- **Script:** `scripts/check-guide-links.ts` (`npx tsx scripts/check-guide-links.ts`) `src/data/guide/resources.ts`teki her adresi (`RESOURCES` + `SHARED_RESOURCES`) yoklar.
-- **Her adres için yazılacaklar:**
-  - durum kodu;
-  - yönlendirme varsa son adres;
-  - sayfa başlığı;
-  - not ve seviye bilgisi sayfayla uyuşuyor mu;
-  - "açık lisans" ve "kısmen ücretli" etiketleri doğru mu?
-- **Rapor:** `docs/kaynaklar/rehber-baglantilari.md`. Kırık ya da taşınmış bağlantılar için yeni adres önerisi; her dil için eklenmeye değer 2–3 ücretsiz kaynak (lisans ve seviyesiyle).
+### 13.3 Dış kaynak bağlantılarının canlı doğrulaması (script + rapor; TAMAMLANDI — `docs/kaynaklar/rehber-baglantilari.md`)
+- **Script:** `scripts/check-guide-links.ts` (`npx tsx scripts/check-guide-links.ts`) `src/data/guide/resources.ts`teki 37 adresi (`RESOURCES` + `SHARED_RESOURCES`) canlı ağda yokladı.
+- Durum kodları, sayfa başlıkları, bot korumaları (Cloudflare 403 / WordReference 418), lisans ve seviye etiketleri doğrulandı.
+- COERLL *Spanish Grammar in Context* için taşınmış adres (`https://www.coerll.utexas.edu/spantex/` -> `https://grammar.spanishintexas.org/`, HTTP 200) tespit edildi.
+- Her dil için pedagojik olarak yüksek kaliteli 2–3 yeni ücretsiz kaynak önerisi eklendi.
+- Kapsamlı rapor `docs/kaynaklar/rehber-baglantilari.md` dosyasında yayımlandı.
 
 ### 13.4 Rehber için uçtan uca ve erişilebilirlik testleri (`e2e/`)
 - **Telefon (375 px, `e2e/phone.e2e.ts`):**
