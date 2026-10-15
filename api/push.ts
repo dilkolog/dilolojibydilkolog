@@ -1,8 +1,8 @@
-import { del, get, put } from '@vercel/blob'
 import { allowedIds } from './_allow.js'
-import { accountOf, requireApproved, sha256 } from './_account.js'
+import { accountOf, requireApproved, sha256, StorageError } from './_account.js'
 import { confirmMail, EMAIL, mailConfigured, sendMail, siteFrom, usingSandboxSender, APP_URL } from './_mail.js'
 import { overLimit, tooMany } from './_rate.js'
+import { blobPath, reminderStore } from './_reminders.js'
 
 /**
  * Push reminder subscriptions. The app registers its browser push subscription here and reports
@@ -61,10 +61,13 @@ export function cleanWord(v: unknown): string {
   return v.replace(/[\p{Cc}<>"“”]/gu, '').trim().slice(0, 40)
 }
 
-export async function recordPath(endpoint: string): Promise<string> {
+/** A push subscription's record key: 40 hex of its address. */
+export async function pushKey(endpoint: string): Promise<string> {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(endpoint))
-  return `push/${[...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 40)}.json`
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 40)
 }
+/** Its Blob file (before the move to the tables). */
+export const recordPath = async (endpoint: string) => blobPath(await pushKey(endpoint))
 
 /**
  * The browsers' own push services: the server later POSTs to the saved address, so an address anyone could
@@ -103,19 +106,9 @@ function stateFields(body: Record<string, unknown>) {
 export async function mailKey(email: string): Promise<string> {
   return (await sha256(`mail:${email.trim().toLowerCase()}`)).slice(0, 40)
 }
-export const mailPath = (key: string) => `push/mail-${key}.json`
-
-async function readRecord(path: string): Promise<PushRecord | null> {
-  const blob = await get(path, { access: 'private', useCache: false }).catch(() => null)
-  if (!blob || blob.statusCode !== 200 || !blob.stream) return null
-  try {
-    return JSON.parse(await new Response(blob.stream).text()) as PushRecord
-  } catch {
-    return null
-  }
-}
-
-const writeRecord = (path: string, record: PushRecord) => put(path, JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
+/** Its record's key; `mailPath`, its Blob file (before the move to the tables). */
+export const mailRecordKey = (key: string) => `mail-${key}`
+export const mailPath = (key: string) => blobPath(mailRecordKey(key))
 
 const page = (title: string, text: string, status = 200, site = APP_URL) =>
   new Response(
@@ -129,7 +122,7 @@ const tokenParts = (raw: string | null) => {
   return m ? { key: m[1], token: m[2] } : null
 }
 
-export async function GET(request: Request): Promise<Response> {
+async function handleGet(request: Request): Promise<Response> {
   if (overLimit(request, 'push', 60)) return tooMany()
   const q = new URL(request.url).searchParams
   if (q.get('mail') === 'status') return Response.json({ available: mailConfigured(), sandbox: mailConfigured() && usingSandboxSender() }, { headers: { 'cache-control': 'no-store' } })
@@ -139,13 +132,14 @@ export async function GET(request: Request): Promise<Response> {
   // The page offers the way back to the site the link was opened on.
   const here = siteFrom(request.url) ?? APP_URL
   if (!link) return new Response('bad request', { status: 400 })
-  const record = await readRecord(mailPath(link.key))
+  const store = await reminderStore()
+  const record = await store.get(mailRecordKey(link.key))
   if (!record || record.token !== link.token) return page('Bağlantı geçersiz', 'Bu bağlantının süresi dolmuş ya da adres zaten silinmiş.', 404, here)
   if (confirm) {
-    await writeRecord(mailPath(link.key), { ...record, confirmed: true })
+    await store.put(mailRecordKey(link.key), { ...record, confirmed: true })
     return page('Onaylandı', 'Hatırlatma mailleri açıldı: o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir. Her mailde kapatma bağlantısı var.', 200, here)
   }
-  await del(mailPath(link.key)).catch(() => {})
+  await store.remove(mailRecordKey(link.key))
   return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)
 }
 
@@ -158,14 +152,14 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
   if (email.length > 254 || !EMAIL.test(email)) return Response.json({ error: 'bad email' }, { status: 400 })
   const owner = await accountOf(request)
   const key = await mailKey(email)
-  const path = mailPath(key)
-  const existing = await readRecord(path)
+  const store = await reminderStore()
+  const existing = await store.get(mailRecordKey(key))
   // An address belongs to the account that registered it; the unsubscribe link in its mails is for anyone else.
   if (existing && (existing.owner ?? null) !== owner) return Response.json({ error: 'taken' }, { status: 409 })
   const state = existing ? (existing.confirmed ? 'on' : 'pending') : 'none'
   if (body.action === 'email-status') return Response.json({ state })
   if (body.action === 'email-remove') {
-    if (existing) await del(path).catch(() => {})
+    if (existing) await store.remove(mailRecordKey(key))
     return new Response(null, { status: 204 })
   }
   if (!existing && body.update) return Response.json({ state: 'none' })
@@ -191,17 +185,18 @@ async function handleMail(request: Request, body: Record<string, unknown>): Prom
     const sent = await sendMail([confirmMail(email, `${site}/api/push?c=${key}.${token}`, `${site}/api/push?u=${key}.${token}`)])
     if (!sent.sent) return Response.json({ error: 'send failed' }, { status: 502 })
   }
-  await writeRecord(path, record)
+  await store.put(mailRecordKey(key), record)
   return Response.json({ state: record.confirmed ? 'on' : 'pending' })
 }
 
-export async function POST(request: Request): Promise<Response> {
+async function handlePost(request: Request): Promise<Response> {
   if (overLimit(request, 'push', 60)) return tooMany()
   // A mail client's one-click unsubscribe (RFC 8058): the link of the mail, called with POST.
   const stop = tokenParts(new URL(request.url).searchParams.get('u'))
   if (stop) {
-    const record = await readRecord(mailPath(stop.key))
-    if (record && record.token === stop.token) await del(mailPath(stop.key)).catch(() => {})
+    const store = await reminderStore()
+    const record = await store.get(mailRecordKey(stop.key))
+    if (record && record.token === stop.token) await store.remove(mailRecordKey(stop.key))
     return new Response(null, { status: 204 })
   }
   const text = await request.text()
@@ -215,7 +210,7 @@ export async function POST(request: Request): Promise<Response> {
   if (body.action === 'email' || body.action === 'email-status' || body.action === 'email-remove') return handleMail(request, body)
   if (body.action === 'remove') {
     if (typeof body.endpoint !== 'string') return new Response('bad request', { status: 400 })
-    await del(await recordPath(body.endpoint)).catch(() => {})
+    await (await reminderStore()).remove(await pushKey(body.endpoint))
     return new Response(null, { status: 204 })
   }
   const sub = body.subscription as PushRecord['subscription'] | undefined
@@ -231,6 +226,19 @@ export async function POST(request: Request): Promise<Response> {
     week: typeof body.week === 'string' ? body.week.slice(0, 200) : '',
     word: cleanWord(body.word),
   }
-  await put(await recordPath(sub.endpoint), JSON.stringify(record), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json' })
+  await (await reminderStore()).put(await pushKey(sub.endpoint), record)
   return new Response(null, { status: 204 })
 }
+
+/** A store that cannot be reached (Supabase or Blob): the app tries again on its next report. */
+async function guarded(run: () => Promise<Response>): Promise<Response> {
+  try {
+    return await run()
+  } catch (e) {
+    if (e instanceof StorageError) return Response.json({ error: 'storage unavailable' }, { status: 502 })
+    throw e
+  }
+}
+
+export const GET = (request: Request) => guarded(() => handleGet(request))
+export const POST = (request: Request) => guarded(() => handlePost(request))

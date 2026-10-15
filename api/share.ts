@@ -1,5 +1,6 @@
-import { del, get, put } from '@vercel/blob'
-import { accountOf, requireApproved } from './_account.js'
+import { del, get, list, put } from '@vercel/blob'
+import { accountOf, requireApproved, StorageError } from './_account.js'
+import { eq, rows, tablesOn, write } from './_tables.js'
 import { fromApp } from './_origin.js'
 import { overLimit, tooMany } from './_rate.js'
 
@@ -86,7 +87,20 @@ export function cleanWords(raw: unknown, now: string): SharedWord[] | null {
 }
 const opt = <K extends string>(key: K, value: string | undefined) => (value === undefined ? {} : ({ [key]: value } as Record<K, string>))
 
-class StorageError extends Error {}
+const newId = () => [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, '0')).join('')
+
+/** Where shared lists are kept: Blob files, or (after the owner's move) the Supabase table shared_lists. */
+export interface ShareStore {
+  /** The list and a tag of its version (sent as the ETag, given back as If-Match). */
+  get(id: string): Promise<{ doc: SharedDoc; etag?: string } | null>
+  create(id: string, doc: SharedDoc, publish?: { by?: string }): Promise<void>
+  /** 'changed': someone wrote since the version `ifMatch` names. */
+  update(id: string, doc: SharedDoc, ifMatch?: string): Promise<'ok' | 'changed'>
+  remove(id: string): Promise<void>
+  library(language: string | null): Promise<LibraryItem[]>
+}
+
+export const shareStore = async (): Promise<ShareStore> => ((await tablesOn()) ? tableShares : blobShares)
 
 async function readJson<T>(path: string): Promise<{ value: T; etag?: string } | null> {
   let blob
@@ -102,7 +116,6 @@ async function readJson<T>(path: string): Promise<{ value: T; etag?: string } | 
 const writeJson = (path: string, value: unknown, ifMatch?: string) =>
   put(path, JSON.stringify(value), { access: 'private', addRandomSuffix: false, allowOverwrite: true, contentType: 'application/json', ...(ifMatch ? { ifMatch } : {}) })
 
-const newId = () => [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, '0')).join('')
 const pathOf = (id: string) => `share/${id}.json`
 
 async function addToLibrary(item: LibraryItem) {
@@ -113,6 +126,121 @@ async function addToLibrary(item: LibraryItem) {
 async function removeFromLibrary(id: string) {
   const cur = (await readJson<LibraryItem[]>(LIBRARY))?.value
   if (cur?.some((x) => x.id === id)) await writeJson(LIBRARY, cur.filter((x) => x.id !== id))
+}
+
+/** share/<id>.json, one file a list; share/library.json, the published ones (newest first, LIBRARY_KEPT). */
+export const blobShares: ShareStore = {
+  async get(id) {
+    const found = await readJson<SharedDoc>(pathOf(id))
+    return found ? { doc: found.value, etag: found.etag } : null
+  },
+  async create(id, doc, publish) {
+    await writeJson(pathOf(id), doc)
+    if (publish) await addToLibrary({ id, name: doc.name, language: doc.language, count: doc.words.length, ...opt('by', publish.by), at: doc.createdAt })
+  },
+  async update(id, doc, ifMatch) {
+    try {
+      await writeJson(pathOf(id), doc, ifMatch)
+    } catch (e) {
+      if (ifMatch && (e as { name?: string })?.name === 'BlobPreconditionFailedError') return 'changed'
+      throw e
+    }
+    return 'ok'
+  },
+  async remove(id) {
+    await del(pathOf(id)).catch(() => {})
+    await removeFromLibrary(id)
+  },
+  async library(language) {
+    const all = (await readJson<LibraryItem[]>(LIBRARY))?.value ?? []
+    return language ? all.filter((x) => x.language === language) : all
+  },
+}
+
+/** Every shared list in Blob with its library entry, for the move to the tables. */
+export async function blobSharesForMove(): Promise<{ id: string; doc: SharedDoc; published?: LibraryItem }[]> {
+  const library = (await readJson<LibraryItem[]>(LIBRARY))?.value ?? []
+  const out: { id: string; doc: SharedDoc; published?: LibraryItem }[] = []
+  let cursor: string | undefined
+  do {
+    const page = await list({ prefix: 'share/', cursor })
+    for (const b of page.blobs) {
+      const id = /^share\/([0-9a-f]{32})\.json$/.exec(b.pathname)?.[1]
+      const found = id ? await readJson<SharedDoc>(b.pathname).catch(() => null) : null
+      if (id && found?.value?.words) out.push({ id, doc: found.value, published: library.find((x) => x.id === id) })
+    }
+    cursor = page.hasMore ? page.cursor : undefined
+  } while (cursor)
+  return out
+}
+
+interface ShareRow {
+  id: string
+  kind: 'set' | 'collab'
+  owner: string
+  name: string
+  language: string
+  words: SharedWord[]
+  word_count: number
+  version: number
+  published: boolean
+  published_by: string | null
+  created_at: string
+  updated_at: string
+}
+
+/** A row as written for a list (the move passes `published` and its library entry's `by`). */
+export const rowOfShare = (id: string, doc: SharedDoc, publish?: { by?: string }, version = 1) => ({
+  id,
+  kind: doc.kind,
+  owner: doc.owner,
+  name: doc.name,
+  language: doc.language,
+  words: doc.words,
+  word_count: doc.words.filter((w) => !w.deleted).length,
+  version,
+  published: !!publish && doc.kind === 'set',
+  published_by: publish?.by ?? null,
+  created_at: doc.createdAt,
+  updated_at: doc.updatedAt,
+})
+
+const docOfRow = (r: ShareRow): SharedDoc => ({ v: 1, kind: r.kind, owner: r.owner, name: r.name, language: r.language, words: r.words ?? [], createdAt: new Date(r.created_at).toISOString(), updatedAt: new Date(r.updated_at).toISOString() })
+const tagOf = (version: number) => `"v${version}"`
+const versionOf = (tag: string | undefined) => Number(/^(?:W\/)?"v(\d+)"$/.exec(tag ?? '')?.[1] ?? NaN)
+
+/** One row a list in shared_lists; `version` goes up with every write and is the ETag. */
+export const tableShares: ShareStore = {
+  async get(id) {
+    const [row] = await rows<ShareRow>(`shared_lists?id=${eq(id)}&select=*`)
+    return row ? { doc: docOfRow(row), etag: tagOf(row.version) } : null
+  },
+  async create(id, doc, publish) {
+    await write('shared_lists', { method: 'POST', headers: { prefer: 'return=minimal' }, body: JSON.stringify(rowOfShare(id, doc, publish)) })
+  },
+  async update(id, doc, ifMatch) {
+    const [row] = await rows<{ version: number }>(`shared_lists?id=${eq(id)}&select=version`)
+    if (!row) return 'changed'
+    // An If-Match from before the move (a Blob tag) names no version here: the app reads again and merges.
+    const expect = ifMatch === undefined ? row.version : versionOf(ifMatch)
+    if (!Number.isFinite(expect)) return 'changed'
+    const res = await write(`shared_lists?id=${eq(id)}&version=eq.${expect}`, {
+      method: 'PATCH',
+      headers: { prefer: 'return=representation' },
+      body: JSON.stringify({ name: doc.name, words: doc.words, word_count: doc.words.filter((w) => !w.deleted).length, version: expect + 1, updated_at: doc.updatedAt }),
+    })
+    return ((await res.json()) as unknown[]).length ? 'ok' : 'changed'
+  },
+  async remove(id) {
+    await write(`shared_lists?id=${eq(id)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })
+  },
+  async library(language) {
+    const filter = language ? `&language=${eq(language)}` : ''
+    const found = await rows<Pick<ShareRow, 'id' | 'name' | 'language' | 'word_count' | 'published_by' | 'created_at'>>(
+      `shared_lists?published=eq.true${filter}&select=id,name,language,word_count,published_by,created_at&order=created_at.desc&limit=${LIBRARY_KEPT}`,
+    )
+    return found.map((r) => ({ id: r.id, name: r.name, language: r.language, count: r.word_count, ...opt('by', r.published_by ?? undefined), at: new Date(r.created_at).toISOString() }))
+  },
 }
 
 async function guard<T>(run: () => Promise<T>): Promise<T | Response> {
@@ -135,15 +263,13 @@ async function handleGet(request: Request): Promise<Response> {
     if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
     const denied = await requireApproved(request)
     if (denied) return denied
-    const language = q.get('language')
-    const all = (await readJson<LibraryItem[]>(LIBRARY))?.value ?? []
-    return json({ items: language ? all.filter((x) => x.language === language) : all })
+    return json({ items: await (await shareStore()).library(q.get('language')) })
   }
   const id = q.get('id') ?? ''
   if (!ID.test(id)) return json({ error: 'bad id' }, 400)
-  const found = await readJson<SharedDoc>(pathOf(id))
+  const found = await (await shareStore()).get(id)
   if (!found) return json({ error: 'not found' }, 404)
-  const { owner: _owner, ...doc } = found.value
+  const { owner: _owner, ...doc } = found.doc
   // A snapshot never changes, so it may be cached; a collaborative list is read fresh every time.
   return json(doc, 200, doc.kind === 'set' ? { 'cache-control': 'public, max-age=300' } : found.etag ? { etag: found.etag } : {})
 }
@@ -173,9 +299,8 @@ async function handlePost(request: Request): Promise<Response> {
   const owner = (await accountOf(request)) ?? ''
   const id = newId()
   const doc: SharedDoc = { v: 1, kind, owner, name, language: body.language as string, words, createdAt: now, updatedAt: now }
-  await writeJson(pathOf(id), doc)
   // Only snapshots are published: a library entry that others can change would be a different thing on each look.
-  if (body.publish === true && kind === 'set') await addToLibrary({ id, name, language: doc.language, count: words.length, ...opt('by', text(body.by, 30)), at: now })
+  await (await shareStore()).create(id, doc, body.publish === true && kind === 'set' ? { by: text(body.by, 30) } : undefined)
   return json({ id }, 201)
 }
 
@@ -198,19 +323,15 @@ async function handlePut(request: Request): Promise<Response> {
   } catch {
     return json({ error: 'bad request' }, 400)
   }
-  const found = await readJson<SharedDoc>(pathOf(id))
+  const store = await shareStore()
+  const found = await store.get(id)
   if (!found) return json({ error: 'not found' }, 404)
-  if (found.value.kind !== 'collab') return json({ error: 'read only' }, 405)
+  if (found.doc.kind !== 'collab') return json({ error: 'read only' }, 405)
   const now = new Date().toISOString()
   const words = cleanWords(body.words, now)
   if (!words) return json({ error: 'bad request' }, 400)
   const ifMatch = request.headers.get('if-match') ?? undefined
-  try {
-    await writeJson(pathOf(id), { ...found.value, name: text(body.name, 60) ?? found.value.name, words, updatedAt: now }, ifMatch)
-  } catch (e) {
-    if (ifMatch && (e as { name?: string })?.name === 'BlobPreconditionFailedError') return json({ error: 'changed' }, 412)
-    throw e
-  }
+  if ((await store.update(id, { ...found.doc, name: text(body.name, 60) ?? found.doc.name, words, updatedAt: now }, ifMatch)) === 'changed') return json({ error: 'changed' }, 412)
   return new Response(null, { status: 204 })
 }
 
@@ -224,11 +345,11 @@ async function handleDelete(request: Request): Promise<Response> {
   if (denied) return denied
   const id = new URL(request.url).searchParams.get('id') ?? ''
   if (!ID.test(id)) return json({ error: 'bad id' }, 400)
-  const found = await readJson<SharedDoc>(pathOf(id))
+  const store = await shareStore()
+  const found = await store.get(id)
   if (!found) return json({ error: 'not found' }, 404)
   const me = await accountOf(request)
-  if (!found.value.owner || found.value.owner !== me) return json({ error: 'not yours' }, 403)
-  await del(pathOf(id)).catch(() => {})
-  await removeFromLibrary(id)
+  if (!found.doc.owner || found.doc.owner !== me) return json({ error: 'not yours' }, 403)
+  await store.remove(id)
   return new Response(null, { status: 204 })
 }

@@ -8,7 +8,7 @@ import { db } from '../data/instance'
 import { AdminAccess } from './AdminAccess'
 
 let root: ReturnType<typeof createRoot> | undefined
-let lists: { pending: unknown[]; approved: unknown[]; rejected: unknown[] }
+let lists: { pending: unknown[]; approved: unknown[]; rejected: unknown[]; tables?: string }
 const calls: { method: string; auth: string | null; body?: string }[] = []
 let answerStatus = 200
 
@@ -23,6 +23,10 @@ beforeEach(async () => {
   }
   vi.stubGlobal('fetch', async (_url: string, init: RequestInit = {}) => {
     calls.push({ method: init.method ?? 'GET', auth: new Headers(init.headers).get('authorization'), body: init.body as string | undefined })
+    if (init.method === 'POST' && String(init.body).includes('move-tables')) {
+      lists = { ...lists, tables: 'on' }
+      return Response.json({ ok: true, cards: 2, follows: 3, shares: 1, reminders: 4 })
+    }
     return answerStatus === 200 ? Response.json(lists) : new Response('{}', { status: answerStatus })
   })
 })
@@ -85,5 +89,29 @@ describe('AdminAccess', () => {
     answerStatus = 503
     await enterKey(host)
     expect(host.querySelector('[role=alert]')?.textContent).toContain('ADMIN_TOKEN')
+  })
+
+  it('moves the server data to Supabase with one tap once the tables are there', async () => {
+    lists.tables = 'ready'
+    const host = await mount()
+    await enterKey(host)
+    expect(host.textContent).toContain('hâlâ Vercel Blob’da')
+    calls.length = 0
+    await act(async () => button(host, 'Supabase’e taşı')!.click())
+    await wait()
+    expect(JSON.parse(calls[0].body!)).toEqual({ action: 'move-tables' })
+    expect(host.textContent).toContain('Tablolarda: 2 arkadaş kartı, 3 takip, 1 paylaşılan liste, 4 hatırlatma.')
+    expect(host.textContent).toContain('Supabase tablolarında')
+  })
+
+  it('asks for 0003 first, and says nothing about it when Supabase is not set up', async () => {
+    lists.tables = 'missing'
+    const host = await mount()
+    await enterKey(host)
+    expect(host.textContent).toContain('0003_server_tables.sql')
+    expect(button(host, 'Supabase’e taşı')).toBeUndefined()
+    lists.tables = 'off'
+    await enterKey(host)
+    expect(host.textContent).not.toContain('Sunucu verileri')
   })
 })

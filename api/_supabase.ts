@@ -60,7 +60,7 @@ export async function supabaseUser(request: Request): Promise<SupabaseUser | nul
   }
 }
 
-async function rest(path: string, init: RequestInit = {}): Promise<Response> {
+export async function rest(path: string, init: RequestInit = {}): Promise<Response> {
   return fetch(`${base()}/rest/v1/${path}`, {
     ...init,
     headers: { ...keyHeaders(), 'content-type': 'application/json', ...(init.headers as Record<string, string> | undefined) },

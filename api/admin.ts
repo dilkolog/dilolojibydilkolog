@@ -1,6 +1,8 @@
 import { del, list } from '@vercel/blob'
 import { idOfUsername } from './_allow.js'
 import { mirrorApproval } from './_supabase.js'
+import { moveToTables } from './_moveTables.js'
+import { tablesState } from './_tables.js'
 import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob, requestPath, sha256, StorageError, writeJson } from './_account.js'
 
 /**
@@ -14,6 +16,11 @@ import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob,
  *   frees a username's sync account: its claim and everything stored under it are deleted, so the
  *   name can be claimed again. For the case where someone else claimed a name the owner listed in
  *   SYNC_ALLOWED before the owner did (the first claim wins). It also deletes that account's data.
+ *
+ * POST /api/admin { action: 'move-tables' }
+ *   moves friends, shared lists and reminders from Blob to the Supabase tables (see _moveTables.ts);
+ *   GET's `tables` says whether that is possible ('ready'), done ('on'), waits for 0003 ('missing') or
+ *   Supabase is not set up ('off').
  *
  * ADMIN_TOKEN may hold several keys (separated by spaces or commas): during a rotation the old and
  * the new one both work until the old one is taken out.
@@ -70,8 +77,8 @@ export async function GET(request: Request): Promise<Response> {
   const refused = await authorised(request)
   if (refused) return refused
   try {
-    const [pending, approved, rejected] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/')])
-    return json({ pending, approved, rejected })
+    const [pending, approved, rejected, tables] = await Promise.all([entries('access/requests/'), entries('access/approved/'), entries('access/rejected/'), tablesState().catch(() => 'off' as const)])
+    return json({ pending, approved, rejected, tables })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e
@@ -83,6 +90,7 @@ export async function POST(request: Request): Promise<Response> {
   if (refused) return refused
   const body = (await request.json().catch(() => null)) as { action?: string; id?: string; username?: string } | null
   if (body?.action === 'release') return release(body.username)
+  if (body?.action === 'move-tables') return moveTables()
   const id = body?.id ?? ''
   if (!ID.test(id) || !['approve', 'reject', 'revoke'].includes(body?.action ?? '')) return json({ error: 'bad request' }, 400)
   try {
@@ -121,6 +129,19 @@ async function release(username: unknown): Promise<Response> {
     } while (cursor)
     clearAccessCache()
     return json({ ok: true, removed })
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    throw e
+  }
+}
+
+/** The one-time move to the Supabase tables (see the header). */
+async function moveTables(): Promise<Response> {
+  try {
+    const state = await tablesState()
+    if (state === 'off') return json({ error: 'supabase not configured' }, 503)
+    if (state === 'missing') return json({ error: 'run 0003_server_tables.sql first' }, 409)
+    return json({ ok: true, ...(await moveToTables()) })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
     throw e

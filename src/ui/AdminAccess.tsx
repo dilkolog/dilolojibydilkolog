@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { adminAct, adminLists, adminRelease, type AdminEntry, type AdminLists } from '../data/access'
+import { adminAct, adminLists, adminMoveTables, adminRelease, type AdminEntry, type AdminLists } from '../data/access'
 import { db } from '../data/instance'
 import { ConfirmDialog } from './Dialog'
 import { relativeTime } from './format'
@@ -19,6 +19,7 @@ export function AdminAccess() {
   const [freeName, setFreeName] = useState('')
   const [confirmFree, setConfirmFree] = useState(false)
   const [freed, setFreed] = useState('')
+  const [moved, setMoved] = useState('')
 
   const load = useCallback(async (key: string) => {
     setBusy(true)
@@ -58,6 +59,20 @@ export function AdminAccess() {
       setFreeName('')
     } catch {
       setError('Serbest bırakılamadı; kullanıcı adını ve anahtarı kontrol et.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const moveTables = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      const n = await adminMoveTables(token)
+      setMoved(`Tablolarda: ${n.cards} arkadaş kartı, ${n.follows} takip, ${n.shares} paylaşılan liste, ${n.reminders} hatırlatma.`)
+      setLists(await adminLists(token))
+    } catch (e) {
+      setError(e instanceof Error && e.message === 'missing' ? 'Önce Supabase’de 0003_server_tables.sql dosyasını çalıştır.' : 'Taşınamadı; yeniden dene (yarım kalan taşıma tekrar edilebilir).')
     } finally {
       setBusy(false)
     }
@@ -125,6 +140,28 @@ export function AdminAccess() {
               <>
                 <h3 className="subhead">Reddedilenler ({lists.rejected.length})</h3>
                 <ul className="admin-list">{lists.rejected.map((e) => row(e, [['Onayla', 'approve']]))}</ul>
+              </>
+            )}
+            {lists.tables && lists.tables !== 'off' && (
+              <>
+                <h3 className="subhead">Sunucu verileri</h3>
+                {lists.tables === 'on' ? (
+                  <p className="small muted">Arkadaşlar, paylaşılan listeler ve hatırlatmalar Supabase tablolarında. Taşımayı yeniden çalıştırmak eksik kalanı tamamlar.</p>
+                ) : lists.tables === 'missing' ? (
+                  <p className="small muted">Arkadaşlar, paylaşılan listeler ve hatırlatmalar hâlâ Vercel Blob’da. Taşımak için önce Supabase SQL Editor’de 0003_server_tables.sql dosyasını çalıştır.</p>
+                ) : (
+                  <p className="small muted">Arkadaşlar, paylaşılan listeler ve hatırlatmalar hâlâ Vercel Blob’da. Taşıyınca Supabase panelinde tablolar olarak görünür; taşıma bir kez yapılır.</p>
+                )}
+                {lists.tables !== 'missing' && (
+                  <button className="btn btn-sm btn-quiet" type="button" disabled={busy} onClick={() => void moveTables()}>
+                    {lists.tables === 'on' ? 'Taşımayı yeniden çalıştır' : 'Supabase’e taşı'}
+                  </button>
+                )}
+                {moved && (
+                  <p className="small" role="status">
+                    {moved}
+                  </p>
+                )}
               </>
             )}
             <h3 className="subhead">Bir adı serbest bırak</h3>

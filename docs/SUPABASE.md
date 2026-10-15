@@ -111,11 +111,25 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
 2. **Denemek için:** uygulamada Ayarlar → Hesap → **Şimdi eşitle**. Sonra Supabase → Table Editor → `sync_parts`'ta satırları, Views altında `people` ve `words`'ü gör.
 3. Diğer cihazlarda da Supabase ile (e-posta ya da Google) bir kez giriş yap. Eski yolla girişli kalan cihaz eşitlemeyi durdurur ve bunu söyler.
 
-## 2b. aşama (sonra)
+## 2b. aşama: arkadaşlar, paylaşılan listeler, hatırlatmalar
 
-Arkadaşlar, paylaşılan listeler ve mail hatırlatmaları hâlâ Vercel Blob'da (JSON dosyaları). Bunlar da tablolara taşınabilir:
-- `friend_cards`, `friend_follows`;
-- `shared_lists`;
-- `mail_reminders`.
+Sunucunun eşitleme dışında tuttuğu üç şey de tablolara geçebilir (`supabase/migrations/0003_server_tables.sql`):
+- `friend_cards` (hesap başına bir kart, arkadaş kodu benzersiz), `friend_follows` (kim kimi takip ediyor);
+- `shared_lists` (bağlantıyla paylaşılan listeler; `published` = topluluk kütüphanesinde, `version` = ortak listenin ETag'i);
+- `reminders` (tarayıcı bildirimi aboneliği `push`, mail adresi `mail`; cihazın bildirdiği her şey `record` jsonb'de);
+- `server_flags` (`tables` satırı = taşındı).
 
-Taşınınca panelden görülür ve sunucu uçları REST ile okuyup yazar.
+Hepsinde RLS açık ve hiç politika yok: uygulamanın açık anahtarı bu tabloları göremez, yalnızca sunucu (gizli anahtar) okur/yazar. Panel için görünümler: `friend_overview`, `shared_overview`, `reminder_overview`.
+
+**Nasıl geçer:** sunucu, `server_flags`ta `tables` satırı olana kadar her şeyi eskisi gibi Blob'da tutar (`api/_tables.ts` `tablesOn`, 15 sn önbellek). Yönetici kartındaki **Supabase'e taşı** düğmesi (`POST /api/admin {action:'move-tables'}`, `api/_moveTables.ts`):
+1. önce işareti yazar (bundan sonraki her yazma tablolara gider; diğer sunucu örnekleri en geç 15 sn içinde geçer),
+2. sonra Blob'daki kartları, takipleri, listeleri (kütüphane bilgisiyle) ve hatırlatmaları kopyalar; tabloda zaten olan satırın üzerine yazmaz.
+
+Yeniden çalıştırmak güvenlidir (yarım kalanı tamamlar). Blob dosyaları silinmez ama artık okunmaz. Taşımadan önce açık kalmış bir ortak listenin eski etiketi (`If-Match`) reddedilir (412); uygulama yeniden okuyup birleştirir. Hesap silme her iki yerdeki kaydı da siler. Sunucu kodu: `api/_friends.ts` `FriendStore`, `api/share.ts` `ShareStore`, `api/_reminders.ts` `ReminderStore` (her biri Blob ve tablo uygulamasıyla). Testler `src/data/apiTables.test.ts` (sahte PostgREST).
+
+### Sahibinin yapacağı
+1. **Supabase → SQL Editor:** `supabase/migrations/0003_server_tables.sql` içeriğini yapıştır, Run.
+2. **Uygulamada:** Ayarlar → Hesap → Yönetici → anahtarla Listele → "Sunucu verileri" altında **Supabase'e taşı**. Sonuç satırı kaç kart, takip, liste ve hatırlatmanın tablolarda olduğunu söyler.
+3. **Denetle:** Table Editor → `friend_cards`, `shared_lists`, `reminders`; Views → `friend_overview`, `reminder_overview`.
+
+Hâlâ Blob'da kalanlar: hesap onay işaretleri (`access/…`, Supabase'de `profiles.approved` ile yansıtılıyor) ve eski eşitleme dosyaları (`sync/…`, Supabase'e geçmiş hesaplar için yalnızca `movedTo` işareti).

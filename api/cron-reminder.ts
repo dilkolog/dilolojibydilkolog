@@ -1,12 +1,12 @@
-import { del, get, list } from '@vercel/blob'
 import webpush from 'web-push'
 import type { PushRecord } from './push.js'
 import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, type Mail } from './_mail.js'
+import { reminderStore } from './_reminders.js'
 
 /**
  * Every hour (vercel.json: one daily cron per UTC hour, `?h=` its hour, as the Hobby plan runs each
  * cron once a day and anywhere within its hour): a push reminder (and a mail, to the confirmed addresses
- * of push/mail-*.json records) to the devices whose local hour is
+ * of mail records; see _reminders.ts for where they are kept) to the devices whose local hour is
  * their reminder hour (default 20:00) and whose learner hasn't studied today, on any of their synced
  * devices. Expired subscriptions are removed.
  */
@@ -50,7 +50,7 @@ export const localHour = (tz: number, utcHour: number) => Math.floor((((utcHour 
 /** This run's reminders are for the devices whose reminder hour it is now where they are. */
 export const dueNow = (r: PushRecord, utcHour: number) => localHour(r.tz, utcHour) === (r.hour ?? 20)
 
-/** Records read and notifications sent at a time, and how long one send may take. */
+/** Notifications sent at a time, and how long one send may take. */
 const BATCH = 10
 const SEND_TIMEOUT_MS = 5000
 
@@ -65,34 +65,15 @@ export async function GET(request: Request): Promise<Response> {
   const h = new URL(request.url).searchParams.get('h')
   const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()
 
-  const records: { path: string; record: PushRecord }[] = []
-  let cursor: string | undefined
-  do {
-    const page = await list({ prefix: 'push/', cursor })
-    // Read in small parallel batches: a record at a time takes too long with a few hundred devices.
-    for (let i = 0; i < page.blobs.length; i += BATCH) {
-      const read = await Promise.all(
-        page.blobs.slice(i, i + BATCH).map(async (b) => {
-          const res = await get(b.pathname, { access: 'private', useCache: false }).catch(() => null)
-          if (!res || res.statusCode !== 200 || !res.stream) return null
-          try {
-            return { path: b.pathname, record: JSON.parse(await new Response(res.stream).text()) as PushRecord }
-          } catch {
-            return null // A broken record is skipped.
-          }
-        }),
-      )
-      for (const r of read) if (r) records.push(r)
-    }
-    cursor = page.hasMore ? page.cursor : undefined
-  } while (cursor)
+  const store = await reminderStore()
+  const records = await store.all()
 
   const studiedGroups = new Set(records.filter(({ record: r }) => r.group && r.studiedDay === localDay(r.tz, now)).map(({ record: r }) => r.group))
   let sent = 0
   let removed = 0
   let mailed = 0
   const mails: Mail[] = []
-  const due = records.filter(({ record: r }) => dueNow(r, utcHour)).flatMap(({ path, record: r }) => {
+  const due = records.filter(({ record: r }) => dueNow(r, utcHour)).flatMap(({ key, record: r }) => {
     // Sunday evening: the week in one line, studied today or not (not on a holiday). Mail has no week line:
     // it carries only what the server can build from numbers.
     const week = r.email ? undefined : weeklyText(r, now)
@@ -101,24 +82,24 @@ export async function GET(request: Request): Promise<Response> {
       // An address nobody has confirmed gets nothing.
       if (mailOn && r.confirmed && r.token) {
         const site = siteFrom(r.site) ?? APP_URL
-        mails.push(reminderMail(r.email, reminderText({ ...r, plan: '', word: '' }, now), `${site}/api/push?u=${path.replace(/^push\/mail-|\.json$/g, '')}.${r.token}`, site))
+        mails.push(reminderMail(r.email, reminderText({ ...r, plan: '', word: '' }, now), `${site}/api/push?u=${key.replace(/^mail-/, '')}.${r.token}`, site))
       }
       return []
     }
     if (!pushOn || !r.subscription) return []
-    return [{ path, r, subscription: r.subscription, message: week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' } }]
+    return [{ key, r, subscription: r.subscription, message: week ? { title: 'Haftan', body: week, url: '/?go=progress' } : { title: 'Diloloji', body: reminderText(r, now), url: '/?go=quick' } }]
   })
   // In parallel batches, each send with a time limit: one address that never answers must not stall the rest.
   for (let i = 0; i < due.length; i += BATCH) {
     await Promise.all(
-      due.slice(i, i + BATCH).map(async ({ path, subscription, message }) => {
+      due.slice(i, i + BATCH).map(async ({ key, subscription, message }) => {
         try {
           await webpush.sendNotification(subscription, JSON.stringify(message), { TTL: 4 * 3600, urgency: 'normal', timeout: SEND_TIMEOUT_MS })
           sent++
         } catch (e) {
           const status = (e as { statusCode?: number }).statusCode
           if (status === 404 || status === 410) {
-            await del(path).catch(() => {})
+            await store.remove(key).catch(() => {})
             removed++
           }
         }
