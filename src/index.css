@@ -2324,7 +2324,6 @@ button.access-badge:hover { border-color: var(--ink-soft); }
 .stack.gap-xs > :not(:first-child) { margin-top: 0.375rem; }
 .stack.gap-2 > :not(:first-child) { margin-top: 0.5rem; }
 .stack.gap-3 > :not(:first-child) { margin-top: 0.75rem; }
-.account-name { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.75rem; border-radius: var(--r-full); background: var(--lang-soft); color: var(--lang-text); font-weight: 700; font-size: var(--t-sm); }
 
 /* Small tools under the question: "Emin değilim" and, for sentences heard, a slow replay. */
 /* What a <details> reveals starts below its summary, not against it. */
@@ -3334,13 +3333,12 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .today-showcase .showcase-badge { padding: 0.125rem; }
 
 /* Settings > Account: who you are here and what a sign-in adds, in one card. */
-.account-card.is-in .account-mark { background: var(--lang); color: var(--on-lang, #fff); }
 .status-pill.is-on { background: var(--ok-soft); color: var(--ok-text); }
 .status-pill.is-on i { box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 28%, transparent); }
 .status-pill.is-off { background: var(--track); color: var(--ink-soft); }
 .account-cta .btn { min-width: 9rem; justify-content: center; }
 @media (max-width: 40rem) {
-  .account-cta .btn, .account-actions .btn { flex: 1 1 100%; }
+  .account-cta .btn { flex: 1 1 100%; }
 }
 /* On a phone the settings search takes the whole line under the title. */
 @container main (max-width: 39.99rem) {

@@ -1,9 +1,12 @@
 import { EN_LESSONS } from './lessons-en'
+import { EN_LESSONS_2 } from './lessons-en-2'
 import { ES_LESSONS } from './lessons-es'
+import { ES_LESSONS_2 } from './lessons-es-2'
 import { FR_LESSONS } from './lessons-fr'
+import { FR_LESSONS_2 } from './lessons-fr-2'
 import type { TopicLesson } from './lessonTypes'
 
 export type { GuideLevel, TopicLesson } from './lessonTypes'
 
 /** Every lesson of the guide, the basics first within each language's level. */
-export const TOPIC_LESSONS: TopicLesson[] = [...FR_LESSONS, ...ES_LESSONS, ...EN_LESSONS]
+export const TOPIC_LESSONS: TopicLesson[] = [...FR_LESSONS, ...FR_LESSONS_2, ...ES_LESSONS, ...ES_LESSONS_2, ...EN_LESSONS, ...EN_LESSONS_2]

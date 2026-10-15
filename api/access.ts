@@ -169,6 +169,8 @@ export async function POST(request: Request): Promise<Response> {
   if (typeof body?.action === 'string' && body.action.startsWith('friends-')) return friendsPost(request, body as Record<string, unknown>)
   if (body?.action === 'vault-link') return vaultLink(request, body as Record<string, unknown>)
   if (body?.action === 'account-delete') return accountDelete(request)
+  // The old username sign-up is closed once sign-in moved to Supabase (the app asks there instead).
+  if (supabaseOn()) return json({ error: 'sign in with supabase' }, 410)
   // Filing a request writes to the store: a person asks once or twice, a script thousands of times.
   if (overLimit(request, 'access-write', 10)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''

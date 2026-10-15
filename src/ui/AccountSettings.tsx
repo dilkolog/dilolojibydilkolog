@@ -1,8 +1,8 @@
-import { currentIdentity, providersText, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
+import { currentIdentity, providersText, signInWithGoogle, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
 import { AccountManage } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
-import { ChartIcon, CheckIcon, LockIcon, UserIcon } from './icons'
+import { ChartIcon, CheckIcon, LockIcon } from './icons'
 import { db } from '../data/instance'
 import { BackupVersionError } from '../data/db'
 import { SyncAuthError, SyncConflictError, SyncMovedError, SyncApprovalError, SyncNotAllowedError, SyncTooLargeError, type Account } from '../data/sync'
@@ -16,11 +16,14 @@ import { SyncSettings } from './SyncSettings'
 import { AdminAccess } from './AdminAccess'
 import { useAccess } from './accessContext'
 import { undoable } from './toastFeed'
+import { GoogleMark } from './GoogleMark'
+
+const STATUS_TEXT = { approved: 'Onaylı', rejected: 'Onaylanmadı', pending: 'Onay bekliyor' } as const
 
 /**
- * Account in Settings: who is signed in and syncing, or the way to the sign-in page (AuthScreen),
- * where signing in and creating an account have a page of their own. Everything is encrypted on
- * the device with a key from the password, so the server can't read it.
+ * Account in Settings. Signed in: who (name, email, how they sign in, the owner's approval), the sync
+ * (when it last ran, a button to run it now), then the account's own controls (password, sign out,
+ * delete). Signed out: the way in (Google in one tap, or the sign-in page) and what an account gives.
  */
 export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) => void }) {
   const [account, setAcc] = useState<Account | null | undefined>(undefined)
@@ -30,6 +33,7 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [at, setAt] = useState<Date | null>(null)
   const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
+  const modern = supabaseConfigured()
 
   const refresh = async () => {
     const acc = await getAccount()
@@ -50,136 +54,151 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
       await runSync(true)
       showToast('Eşitlendi.')
     } catch (e) {
-      setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncMovedError ? MOVED : e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Hesap şifresi bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
+      setMessage({ ok: false, conflict: e instanceof SyncConflictError, text: e instanceof SyncMovedError ? MOVED : e instanceof SyncConflictError ? CONFLICT : e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : e instanceof BackupVersionError ? NEWER_VERSION : e instanceof SyncTooLargeError ? TOO_LARGE : e instanceof SyncAuthError ? 'Oturumun bu cihazda geçersiz; çıkış yapıp yeniden gir.' : 'Eşitlenemedi; internet bağlantını kontrol et.' })
     } finally {
       setBusy(false)
       void refresh()
     }
   }
 
+  const signOut = async () => {
+    const previous = await getAccount()
+    await setAccount(null)
+    void refresh()
+    if (identity) {
+      await signOutSupabase()
+      showToast('Bu cihazda çıkış yapıldı; kelimelerin ve ilerlemen cihazda duruyor.')
+    } else
+      undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
+        await setAccount(previous)
+        void refresh()
+      })
+  }
+
+  const google = async () => {
+    try {
+      await signInWithGoogle()
+    } catch (e) {
+      showToast(e instanceof Error ? e.message : 'Google ile giriş açılamadı.', undefined, 5000, 'info')
+    }
+  }
+
   if (account === undefined) return null
-  return (
-    <section className={`card account-card ${account ? 'is-in' : 'is-out'}`}>
-      <header className="account-head">
-        <img className="account-art" src={account ? (access === 'approved' ? ACCOUNT_ART.approved : access === 'rejected' ? ACCOUNT_ART.rejected : ACCOUNT_ART.pending) : ACCOUNT_ART.out} alt="" height={56} />
-        <div className="account-title">
-          <h2 className="section-title">Giriş ve eşitleme</h2>
-          {account ? (
-            <span className={`status-pill ${access === 'approved' ? 'is-on' : 'is-off'}`} role="status">
-              <i aria-hidden /> {access === 'approved' ? 'Giriş yapıldı, onaylı' : access === 'rejected' ? 'Giriş yapıldı, onaylanmadı' : 'Giriş yapıldı, onay bekliyor'}
-            </span>
-          ) : (
-            <span className="status-pill is-off">
-              <i aria-hidden /> {hasCode ? 'Eşitleme koduyla' : 'Bu cihazda, hesapsız'}
-            </span>
-          )}
-        </div>
-      </header>
-      {account ? (
-        <>
-          {access !== 'approved' && access !== 'unknown' && (
-            <p className="note" role="status">
-              {access === 'rejected'
-                ? 'Hesabın onaylanmadı. Kelime ekleme ve çalışma bu cihazda çalışmaya devam eder; eşitleme, çeviri, videolar, haber ve dinleme kaynakları, yapay zekâ kapalı kalır.'
-                : 'Hesabın site sahibinin onayını bekliyor. O zamana kadar kelime ekleme ve çalışma çalışır; eşitleme, çeviri, videolar, haber ve dinleme kaynakları, yapay zekâ onaydan sonra açılır.'}
-            </p>
-          )}
-          <dl className="account-facts">
-            <div>
-              <dt className="small muted">Hesap</dt>
-              <dd>
-                <UserIcon size={16} /> {identity?.email || account.username}
-              </dd>
-              <p className="small muted">{identity ? `Giriş: ${providersText(identity.providers)}. Hangi cihazda girersen gir, ilerlemen aynı olur.` : 'Aynı kullanıcı adı ve şifreyle girdiğin her cihazda ilerlemen aynı olur.'}</p>
-            </div>
-            <div>
-              <dt className="small muted">Eşitleme</dt>
-              <dd>{at ? `Son kayıt ${relativeTime(at)}` : 'Henüz kaydedilmedi'}</dd>
-              <p className="small muted">Uygulamayı açtığında ve her oturumdan sonra kendiliğinden.</p>
-            </div>
-          </dl>
-          <div className="account-actions">
-            <button className="btn btn-sm" onClick={syncNowClick} disabled={busy}>
-              {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
+
+  if (!account)
+    return (
+      <section className="card account-card is-out">
+        <header className="account-intro">
+          <img className="account-art" src={ACCOUNT_ART.out} alt="" height={72} />
+          <div className="account-title">
+            <h2 className="section-title">Hesabınla her cihazda</h2>
+            <p className="small muted">{modern ? 'E-postanla ya da Google ile gir; kelimelerin, serin ve bahçen her cihazda seninle olsun.' : 'Bir hesapla ilerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle girersin.'}</p>
+          </div>
+        </header>
+        {onOpenAuth && (
+          <div className="account-cta">
+            {modern && (
+              <button className="btn account-google" onClick={() => void google()}>
+                <GoogleMark /> Google ile devam et
+              </button>
+            )}
+            <button className={modern ? 'btn btn-quiet' : 'btn'} onClick={() => onOpenAuth('login')}>
+              {modern ? 'E-postayla giriş yap' : 'Giriş yap'}
             </button>
-            <button
-              className="btn btn-sm btn-quiet btn-text-danger"
-              onClick={async () => {
-                const previous = await getAccount()
-                await setAccount(null)
-                void signOutSupabase()
-                void refresh()
-                undoable('Bu cihazda çıkış yapıldı; verilerin cihazda duruyor', async () => {
-                  await setAccount(previous)
-                  void refresh()
-                })
-              }}
-            >
-              Bu cihazda çıkış yap
+            <button className="btn btn-quiet" onClick={() => onOpenAuth('create')}>
+              Hesap oluştur
             </button>
           </div>
-          <AccountManage account={account} identity={identity} onGone={() => void refresh()} />
-          <p className="small muted account-foot">Çıkış yapınca yalnızca eşitleme kapanır: profilin, ilerlemen ve kelimelerin bu cihazda kalır; istediğinde yeniden girersin.</p>
-          <RestorePoints />
-        </>
-      ) : (
-        <>
-          <p className="muted account-lead">{supabaseConfigured() ? 'Bir hesapla ilerlemen sunucuda saklanır; her cihazda e-postanla ya da Google ile girersin.' : 'Bir hesapla ilerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle girersin.'}</p>
-          <ul className="account-perks">
-            <li>
-              <span className="perk-icon" aria-hidden>
-                <ChartIcon size={18} />
-              </span>
-              <div>
-                <strong>Her cihazda aynı ilerleme</strong>
-                <p className="small muted">Telefon, tablet, bilgisayar: kelimelerin, serin ve bahçen yanında.</p>
-              </div>
-            </li>
-            <li>
-              <span className="perk-icon" aria-hidden>
-                <LockIcon size={18} />
-              </span>
-              <div>
-                <strong>{supabaseConfigured() ? 'Şifreni unutsan da kaybolmaz' : 'Sunucu içeriği göremez'}</strong>
-                <p className="small muted">{supabaseConfigured() ? 'Veriler şifrelenerek saklanır; şifreni unutursan e-postanla yenilersin, ilerlemen yerinde kalır.' : 'Veriler cihazında şifrenle şifrelenir; şifren hiçbir yere gönderilmez.'}</p>
-              </div>
-            </li>
-            <li>
-              <span className="perk-icon" aria-hidden>
-                <CheckIcon size={18} />
-              </span>
-              <div>
-                <strong>Hesap şart değil</strong>
-                <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; profilin, ilerlemen ve kelimelerin bu cihazda durur (çıkış yapsan da silinmez). Eşitleme, çeviri ve yapay zekâ gibi özellikler site sahibinin onayladığı hesaplara açık.</p>
-              </div>
-            </li>
-          </ul>
-          {onOpenAuth && (
-            <div className="account-cta">
-              <button className="btn" onClick={() => onOpenAuth('login')}>
-                Giriş yap
-              </button>
-              <button className="btn btn-quiet" onClick={() => onOpenAuth('create')}>
-                Hesap oluştur
-              </button>
+        )}
+        <ul className="account-perks">
+          <li>
+            <span className="perk-icon" aria-hidden>
+              <ChartIcon size={18} />
+            </span>
+            <div>
+              <strong>Her cihazda aynı ilerleme</strong>
+              <p className="small muted">Telefon, tablet, bilgisayar: kelimelerin, serin ve bahçen yanında.</p>
             </div>
-          )}
-          {hasCode && <p className="small muted">Şu an eşitleme koduyla eşitliyorsun; hesaba geçince bu cihazdaki ilerleme hesaba taşınır.</p>}
-        </>
+          </li>
+          <li>
+            <span className="perk-icon" aria-hidden>
+              <LockIcon size={18} />
+            </span>
+            <div>
+              <strong>{modern ? 'Şifreni unutsan da kaybolmaz' : 'Sunucu içeriği göremez'}</strong>
+              <p className="small muted">{modern ? 'Verilerin hesabına bağlı saklanır; şifreni unutursan e-postanla yenilersin.' : 'Veriler cihazında şifrenle şifrelenir; şifren hiçbir yere gönderilmez.'}</p>
+            </div>
+          </li>
+          <li>
+            <span className="perk-icon" aria-hidden>
+              <CheckIcon size={18} />
+            </span>
+            <div>
+              <strong>Hesap şart değil</strong>
+              <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; her şey bu cihazda durur. Eşitleme, çeviri ve yapay zekâ onaylı hesaplara açık.</p>
+            </div>
+          </li>
+        </ul>
+        {hasCode && <p className="small muted">Şu an eşitleme koduyla eşitliyorsun; hesaba geçince bu cihazdaki ilerleme hesaba taşınır.</p>}
+        <AdminAccess />
+        {!modern && (
+          <details className="account-advanced">
+            <summary className="small">Hesapsız: eşitleme koduyla eşitle (gelişmiş)</summary>
+            <SyncSettings />
+          </details>
+        )}
+      </section>
+    )
+
+  const status = access === 'approved' ? 'approved' : access === 'rejected' ? 'rejected' : 'pending'
+  const name = identity?.name || identity?.email.split('@')[0] || account.username
+  return (
+    <section className="card account-card is-in">
+      <header className="account-profile">
+        {identity?.avatar ? (
+          <img className="account-avatar" src={identity.avatar} alt="" width={64} height={64} referrerPolicy="no-referrer" />
+        ) : (
+          <img className="account-art" src={status === 'approved' ? ACCOUNT_ART.approved : status === 'rejected' ? ACCOUNT_ART.rejected : ACCOUNT_ART.pending} alt="" height={64} />
+        )}
+        <div className="account-who">
+          <h2 className="account-name">{name}</h2>
+          {identity?.email && <p className="account-email">{identity.email}</p>}
+          <div className="account-badges">
+            <span className={`status-pill ${status === 'approved' ? 'is-on' : 'is-off'}`} role="status">
+              <i aria-hidden /> {STATUS_TEXT[status]}
+            </span>
+            {identity && <span className="small muted">{providersText(identity.providers)} ile giriş</span>}
+          </div>
+        </div>
+      </header>
+
+      {status !== 'approved' && access !== 'unknown' && (
+        <p className="note account-wait" role="status">
+          {status === 'rejected'
+            ? 'Hesabın onaylanmadı. Kelime ekleme ve çalışma bu cihazda sürer; eşitleme, çeviri, videolar, haberler ve yapay zekâ kapalı kalır.'
+            : 'Hesabın site sahibinin onayını bekliyor. O zamana kadar kelime ekleyip çalışabilirsin; onay gelince eşitleme, çeviri, videolar, haberler ve yapay zekâ kendiliğinden açılır.'}
+        </p>
       )}
+
+      <div className="account-sync">
+        <div className="account-row-text">
+          <strong>Eşitleme</strong>
+          <span className="small muted">{at ? `Son eşitleme ${relativeTime(at)}; açılışta ve her oturumdan sonra kendiliğinden.` : 'Henüz eşitlenmedi; açılışta ve her oturumdan sonra kendiliğinden eşitlenir.'}</span>
+        </div>
+        <button className="btn btn-sm" onClick={syncNowClick} disabled={busy}>
+          {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}
+        </button>
+      </div>
       {message?.conflict && <StatusPicture kind="conflict" />}
       {message && (
         <p className={message.ok ? 'notice' : 'error'} role="status">
           {message.text}
         </p>
       )}
+
+      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} onGone={() => void refresh()} />
+      <RestorePoints />
       <AdminAccess />
-      {!account && (
-        <details className="account-advanced">
-          <summary className="small">Hesapsız: eşitleme koduyla eşitle (gelişmiş)</summary>
-          <SyncSettings />
-        </details>
-      )}
     </section>
   )
 }

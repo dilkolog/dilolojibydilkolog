@@ -544,7 +544,7 @@ test('a signed-in account waits for approval: the account card says so, and the 
   await page.reload()
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
-  await expect(page.locator('.account-card .status-pill')).toContainText('onay bekliyor')
+  await expect(page.locator('.account-card .status-pill')).toContainText('Onay bekliyor')
   await expect(page.locator('.account-card')).toContainText('site sahibinin onayını bekliyor')
   await page.locator('summary:visible', { hasText: 'Yönetici: hesap onayları' }).click()
   await expect(page.getByLabel('Yönetici anahtarı').first()).toBeVisible()

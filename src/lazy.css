@@ -1350,14 +1350,24 @@ button.badge-card:active { transform: none; }
 .account-perks strong { font-size: var(--t-sm); }
 .perk-icon { display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border-radius: 0.625rem; background: var(--surface); color: var(--lang-text); box-shadow: var(--shadow-sm); }
 .account-cta { display: flex; flex-wrap: wrap; gap: 0.625rem; }
-.account-facts { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 0; }
-.account-facts dd { display: flex; align-items: center; gap: 0.375rem; margin: 0.125rem 0 0; font-weight: 700; overflow-wrap: anywhere; }
-.account-facts p { margin: 0.125rem 0 0; }
-.account-actions { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
-.account-foot { margin: 0; }
-.account-manage { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.5rem 0.75rem; }
-.account-password { display: grid; gap: 0.75rem; flex: 1 1 100%; max-width: 26rem; }
+.account-intro, .account-profile { display: flex; align-items: center; gap: 1rem; }
+.account-profile { padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+.account-avatar { width: 4rem; height: 4rem; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--lang-soft); }
+.account-who { display: grid; gap: 0.25rem; min-width: 0; }
+.account-name { margin: 0; font-size: var(--t-xl); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; overflow-wrap: anywhere; }
+.account-email { margin: 0; color: var(--ink-soft); font-size: var(--t-sm); overflow-wrap: anywhere; }
+.account-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.75rem; margin-top: 0.25rem; }
+.account-wait { margin: 0; }
+.account-sync { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem 1rem; padding: 0.875rem 1rem; border-radius: var(--r-md); background: var(--surface-2); }
+.account-group { display: grid; }
+.account-group-title { margin: 0 0 0.25rem; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.account-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); }
+.account-group .account-row:last-child { border-bottom: 0; }
+.account-row-text { display: grid; gap: 0.125rem; min-width: 0; }
+.account-row .btn, .account-sync .btn { flex: none; }
+.account-password { display: grid; gap: 0.75rem; max-width: 26rem; padding: 0.25rem 0 0.75rem; }
 .account-password .field { display: grid; gap: 0.375rem; }
+.account-google { gap: 0.625rem; }
 .account-advanced { padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 .account-advanced summary { cursor: pointer; font-weight: 600; color: var(--ink-soft); }
 @media (max-width: 40rem) {
@@ -1904,6 +1914,12 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .guide-progress .row { flex-wrap: wrap; gap: 0.25rem 1rem; }
 .guide-bar { display: block; height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
 .guide-bar > span { display: block; height: 100%; background: var(--lang); border-radius: inherit; transition: width var(--dur) var(--ease-out); }
+.guide-next { display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; border: 1px solid var(--lang-soft); background: linear-gradient(135deg, var(--lang-soft), var(--surface) 70%); }
+.guide-next:hover { border-color: var(--lang); }
+.guide-next:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; }
+.guide-next-text { display: grid; gap: 0.125rem; flex: 1; min-width: 0; }
+.guide-next-text strong { font-size: var(--t-lg); }
+.guide-next-arrow { flex: none; color: var(--lang-text); }
 .guide-filters { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; justify-content: space-between; }
 .guide-search { flex: 1 1 14rem; max-width: 22rem; }
 .guide-level { display: flex; align-items: center; gap: 0.5rem; }

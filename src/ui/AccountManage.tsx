@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { currentSession, setNewPassword, signOutSupabase, authErrorText, type Identity } from '../data/supabase'
+import { currentSession, setNewPassword, signOutSupabase, authErrorText, providersText, type Identity } from '../data/supabase'
 import type { Account } from '../data/sync'
 import { deleteAccount } from '../data/vault'
 import { ConfirmDialog } from './Dialog'
@@ -7,11 +7,12 @@ import { setAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 
 /**
- * The signed-in account's own controls: a new password (or a first one, for someone who signs in with
- * Google) and deleting the account. Deleting takes the account and what the server keeps for it; the
- * device keeps its copy, so nothing studied here is lost by accident.
+ * The signed-in account's own controls, as rows: how the person signs in and their password (a new
+ * one, or a first one for someone who signs in with Google), then signing out on this device and
+ * deleting the account. Deleting takes the account and what the server keeps for it; the device keeps
+ * its copy, so nothing studied here is lost by accident.
  */
-export function AccountManage({ account, identity, onGone }: { account: Account; identity: Identity | null; onGone: () => void }) {
+export function AccountManage({ account, identity, onSignOut, onGone }: { account: Account; identity: Identity | null; onSignOut: () => void; onGone: () => void }) {
   const [changing, setChanging] = useState(false)
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
@@ -56,14 +57,28 @@ export function AccountManage({ account, identity, onGone }: { account: Account;
   }
 
   return (
-    <div className="account-manage">
+    <>
       {identity && (
-        <>
-          {!changing ? (
-            <button type="button" className="btn btn-sm btn-quiet" onClick={() => setChanging(true)}>
-              {hasPassword ? 'Şifreni değiştir' : 'Şifre belirle'}
-            </button>
-          ) : (
+        <div className="account-group">
+          <h3 className="account-group-title">Güvenlik</h3>
+          <div className="account-row">
+            <div className="account-row-text">
+              <strong>Giriş yolu</strong>
+              <span className="small muted">{providersText(identity.providers)}</span>
+            </div>
+          </div>
+          <div className="account-row">
+            <div className="account-row-text">
+              <strong>Şifre</strong>
+              <span className="small muted">{hasPassword ? 'Unutursan giriş ekranından e-postanla yenilersin.' : 'Google ile giriyorsun; bir şifre belirlersen e-postanla da girebilirsin.'}</span>
+            </div>
+            {!changing && (
+              <button type="button" className="btn btn-sm btn-quiet" onClick={() => setChanging(true)}>
+                {hasPassword ? 'Değiştir' : 'Şifre belirle'}
+              </button>
+            )}
+          </div>
+          {changing && (
             <form
               className="account-password"
               onSubmit={(e) => {
@@ -71,7 +86,6 @@ export function AccountManage({ account, identity, onGone }: { account: Account;
                 void savePassword()
               }}
             >
-              {!hasPassword && <p className="small muted">Google'la giriyorsun. Bir şifre belirlersen e-postan ve bu şifreyle de girebilirsin.</p>}
               <label className="field">
                 <span className="field-label">Yeni şifre</span>
                 <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="new-password" autoFocus />
@@ -95,16 +109,35 @@ export function AccountManage({ account, identity, onGone }: { account: Account;
               </div>
             </form>
           )}
-        </>
+        </div>
       )}
-      <button type="button" className="btn btn-sm btn-quiet btn-text-danger" disabled={busy} onClick={() => setConfirming(true)}>
-        Hesabımı sil
-      </button>
+
+      <div className="account-group">
+        <h3 className="account-group-title">Oturum</h3>
+        <div className="account-row">
+          <div className="account-row-text">
+            <strong>Bu cihazda çıkış yap</strong>
+            <span className="small muted">Yalnızca eşitleme kapanır; kelimelerin ve ilerlemen bu cihazda kalır.</span>
+          </div>
+          <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={onSignOut}>
+            Çıkış yap
+          </button>
+        </div>
+        <div className="account-row">
+          <div className="account-row-text">
+            <strong>Hesabı sil</strong>
+            <span className="small muted">Hesabın ve sunucudaki verilerin kalıcı olarak silinir.</span>
+          </div>
+          <button type="button" className="btn btn-sm btn-quiet btn-text-danger" disabled={busy} onClick={() => setConfirming(true)}>
+            Hesabımı sil
+          </button>
+        </div>
+      </div>
       {confirming && (
         <ConfirmDialog title="Hesabın silinsin mi?" confirmLabel="Hesabımı sil" danger onConfirm={() => void remove()} onCancel={() => setConfirming(false)}>
           Hesabın, sunucuda eşitlenen verilerin, arkadaş kartın ve mail hatırlatmaların kalıcı olarak silinir; geri alınamaz. Bu cihazdaki kelimelerin ve ilerlemen silinmez, hesapsız kullanmaya devam edebilirsin. Paylaştığın listeler kalır: istersen önce liste sayfasından paylaşımı geri al.
         </ConfirmDialog>
       )}
-    </div>
+    </>
   )
 }

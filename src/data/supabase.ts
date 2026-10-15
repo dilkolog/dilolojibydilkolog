@@ -124,6 +124,10 @@ export function hasStoredSession(): boolean {
 
 export interface Identity {
   email: string
+  /** The name the person goes by (chosen at sign-up, or Google's); '' when none. */
+  name: string
+  /** Google's profile picture, when signed in with Google. */
+  avatar: string
   /** How the person signs in: 'email', 'google'… */
   providers: string[]
 }
@@ -135,7 +139,10 @@ export async function currentIdentity(): Promise<Identity | null> {
   if (!s) return null
   const meta = (s.user.app_metadata ?? {}) as { provider?: unknown; providers?: unknown }
   const providers = Array.isArray(meta.providers) ? meta.providers.filter((p): p is string => typeof p === 'string') : typeof meta.provider === 'string' ? [meta.provider] : []
-  return { email: s.user.email ?? '', providers }
+  const user = (s.user.user_metadata ?? {}) as Record<string, unknown>
+  const text = (...keys: string[]) => keys.map((k) => user[k]).find((v): v is string => typeof v === 'string' && !!v.trim())?.trim() ?? ''
+  const avatar = text('avatar_url', 'picture')
+  return { email: s.user.email ?? '', providers, name: text('full_name', 'name', 'username'), avatar: /^https:\/\//.test(avatar) ? avatar : '' }
 }
 
 const PROVIDER_NAME: Record<string, string> = { email: 'E-posta ve şifre', google: 'Google' }

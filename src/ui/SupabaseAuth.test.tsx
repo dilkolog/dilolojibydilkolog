@@ -80,34 +80,35 @@ const button = (host: HTMLElement, text: string) => [...host.querySelectorAll('b
 const settle = () => act(() => new Promise((r) => setTimeout(r, 20)))
 
 describe('SupabaseAuth', () => {
-  it('a first sign-in with nothing to bring along starts a new account, tied to the person', async () => {
+  it('a first sign-in makes a new account at once, tied to the person; the device\'s progress goes into it', async () => {
     sb.currentSession.mockResolvedValue(session)
-    const { host, onDone } = await mount()
-    await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
-    await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
-    await act(async () => host.querySelector('form')!.requestSubmit())
-    await settle()
-    expect(sb.signIn).toHaveBeenCalledWith('ali@example.com', 'gizli-sifre-1')
-    expect(host.querySelector('h1')?.textContent).toBe('Neredeyse bitti')
-    await act(async () => button(host, 'Eski hesabım yok, yeni başla').click())
-    await settle()
-    expect(posts).toHaveLength(1)
-    expect(posts[0]).toMatchObject({ action: 'vault-link', username: 'Ali Aydın' })
-    expect(posts[0]!.id).toMatch(/^[0-9a-f]{64}$/)
-    expect(runner.account).toMatchObject({ kind: 'account', id: posts[0]!.id })
-    expect(runner.runSync).toHaveBeenCalled()
-    expect(onDone).toHaveBeenCalled()
-  })
-
-  it('a device already signed in with the old way ties that account without asking', async () => {
-    sb.currentSession.mockResolvedValue(session)
+    // A device still signed in the old way: its account is not carried over, a new one is made.
     runner.account = { kind: 'account', username: 'ali', id: 'a'.repeat(64), enc: 'c'.repeat(64), auth: '1'.repeat(64) }
     const { host, onDone } = await mount()
     await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
     await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
     await act(async () => host.querySelector('form')!.requestSubmit())
     await settle()
-    expect(posts[0]).toMatchObject({ action: 'vault-link', id: 'a'.repeat(64), auth: '1'.repeat(64) })
+    expect(sb.signIn).toHaveBeenCalledWith('ali@example.com', 'gizli-sifre-1')
+    expect(posts).toHaveLength(1)
+    expect(posts[0]).toMatchObject({ action: 'vault-link', username: 'Ali Aydın' })
+    expect(posts[0]!.id).toMatch(/^[0-9a-f]{64}$/)
+    expect(posts[0]!.id).not.toBe('a'.repeat(64))
+    expect(runner.account).toMatchObject({ kind: 'account', id: posts[0]!.id })
+    expect(runner.runSync).toHaveBeenCalled()
+    expect(onDone).toHaveBeenCalled()
+  })
+
+  it('a second sign-in takes the account the server keeps', async () => {
+    sb.currentSession.mockResolvedValue(session)
+    stored = { id: 'd'.repeat(64), enc: 'e'.repeat(64), auth: 'f'.repeat(64), username: 'ali' }
+    const { host, onDone } = await mount()
+    await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
+    await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
+    await act(async () => host.querySelector('form')!.requestSubmit())
+    await settle()
+    expect(posts).toHaveLength(0)
+    expect(runner.account).toMatchObject({ id: 'd'.repeat(64) })
     expect(onDone).toHaveBeenCalled()
   })
 
