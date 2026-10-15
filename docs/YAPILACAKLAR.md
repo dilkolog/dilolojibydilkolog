@@ -371,7 +371,7 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Dilbilgisi Çoktan Seçmeli Soru Genişletmesi (#359):**
   - 10'dan az çoktan seçmeli soruya sahip tüm dilbilgisi konularına (`src/data/grammar/{fr,es,en}-9.json`) toplam 68 özgün soru eklendi (FR: 16, ES: 25, EN: 27). Mini sınav soru havuzu zenginleştirildi.
 
-## 2026-10-15 / 2026-10-16 Gece Bakım, Temizlik ve Test Kapsamı Turları (#361–#364)
+## 2026-10-15 / 2026-10-16 Gece Bakım, Temizlik ve Test Kapsamı Turları (#361–#367)
 - [x] **Gece Bakım Turu 1 — Derleme ve Kullanılmayan Dışa Aktarım Temizliği (#361):**
   - Vite/Rolldown derleme uyarıları giderildi: `WeeklyNudge.tsx`, `syncTarget.ts` ve `syncRunner.ts` içindeki etkisiz dinamik içe aktarımlar (`[INEFFECTIVE_DYNAMIC_IMPORT]`) statik içe aktarıma alındı.
   - Sadece kendi dosyasında kullanılan 8 dışa aktarım modül içine çekildi (`DictionarySaved.tsx` `SAVED_SHOWN`, `downscaleImage.ts` `MAX_SIDE`/`fitSize`, `games/shared.tsx` `RECORD_MIN_PCT`, `incoming.ts` `READ_WORDS`, `monkiWords.ts` `TALK_WORDS`, `useScreenHistory.ts` `routeKey`, `App.tsx` `NavMark`). `docs/KULLANILMAYAN-DISA-AKTARIMLAR.md` güncellendi.
@@ -392,7 +392,18 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/ui/dayPlantStage.test.ts`: Günlük çalışma çiçeği büyüme evreleri (-1 tohum, 0-4 beşte birlik ilerleme, 5 tamamlama).
     - `src/ui/articleQuestion.test.ts`: Fransızca sesli/sessiz harf ayrımı (sessiz harfte le/la; sesli harf ve sessiz h'de l' düşmesini önlemek için un/une) ve İspanyolca artikel (el/la) soru üretimi.
     - `src/ui/knownMilestones.test.ts`: Kapsamlı okuma bilinen kelime toplamı (`knownTotal`), hedef kilometre taşları (`milestone`), haftalık büyüme (`weeklyGrowth`) ve hedef tahminleme (`goalForecast`).
-- [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması:**
+- [x] **Gece Bakım Turu 5 — Rehber Pedagojik Zenginleştirmesi ve Açık Kaynaklar (#366):**
+  - Dilbilgisi kuralları ve dikkat notları zenginleştirildi: İngilizce'de kurumlarda artikel düşmesi (`go to school`), `been to` vs `gone to`, `try to` vs `try -ing`, doğa kanunlarında backshift yapılmaması; Fransızca'da zamanla anlamı değişen fiiller (`savoir`/`connaître`), `y` zamirinin insan yerine kullanılamayışı, `probable` (indicatif) vs `possible` (subjonctif); İspanyolca'da aynı öznede mastar kullanımı, `trabajar para` vs `trabajar por`, `si`'den sonra asla presente de subjuntivo gelmemesi.
+  - Açık öğrenme kaynakları: `SHARED_RESOURCES` içine `Wiktionary`, `Project Gutenberg` ve `LibriVox` eklendi.
+- [x] **Gece Bakım Turu 6 — Motor & Arayüz Test Kapsamı Genişletmesi (#367):**
+  - Doğrudan testi bulunmayan 6 çekirdek motor ve arayüz modülü için 26 yeni birim testi yazıldı:
+    - `src/engine/__tests__/bosses.test.ts`: Sülük (leech) tespiti, HP formülü (`4 + min(6, wrong)`), yenilen boss'un yeni hata yapılmadıkça gelmemesi ve rövanş (`rematch: true`) mantığı.
+    - `src/engine/__tests__/race.test.ts`: Haftalık yarış motoru, Pazartesi yerel hafta başlangıcı (`weekStart`), geçen haftanın aynı gününe kadar olan XP kıyası ve galibiyet serisi (`streak`).
+    - `src/engine/__tests__/tenseBrief.test.ts`: FR ve ES dillerindeki 30 zamanın kısa tanımları, Türkçe etiketleri ve pedagojik açıklamalarının tamlığı.
+    - `src/ui/guideProgress.test.ts`: Rehber derslerinin okundu (`markRead`), öğrenildi (`markChecked`) ve ertelendi (`markPutOff`) durumlarının yönetimi, yerel depolama ve eski dizi biçiminden göç.
+    - `src/ui/tenseStats.test.ts`: 90 günlük fiil çekim istatistiklerinden en zayıf zamanın (`weakestTense`) tespiti (asgari 3 cevap ve <%80 başarı eşiği).
+    - `src/ui/dictSentences.test.ts`: Sözlük örnek cümlelerinin 30 günlük yerel önbellek (`MAX_AGE`) ve paket yedeği (`examplesFromPack`) yönetimi.
+- [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
