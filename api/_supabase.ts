@@ -117,3 +117,10 @@ export async function profileStatus(syncId: string): Promise<'approved' | 'rejec
     return null
   }
 }
+
+/** Deletes the person from Supabase (their profile and sync_keys row go with them). */
+export async function deleteSupabaseUser(userId: string): Promise<void> {
+  if (!UUID.test(userId)) throw new Error('bad user id')
+  const res = await fetch(`${base()}/auth/v1/admin/users/${userId}`, { method: 'DELETE', headers: keyHeaders() })
+  if (!res.ok && res.status !== 404) throw new Error(`supabase ${res.status}`)
+}

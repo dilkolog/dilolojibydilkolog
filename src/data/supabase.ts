@@ -111,3 +111,34 @@ export async function signOutSupabase(): Promise<void> {
   }
   await (await supabase()).auth.signOut().catch(() => undefined)
 }
+
+/** Whether this device keeps a Supabase sign-in (without loading the library). */
+export function hasStoredSession(): boolean {
+  if (!supabaseConfigured()) return false
+  try {
+    return !!localStorage.getItem('diloloji-auth')
+  } catch {
+    return false
+  }
+}
+
+export interface Identity {
+  email: string
+  /** How the person signs in: 'email', 'google'… */
+  providers: string[]
+}
+
+/** The signed-in person, or null when this device keeps no Supabase sign-in. */
+export async function currentIdentity(): Promise<Identity | null> {
+  if (!hasStoredSession()) return null
+  const s = await currentSession().catch(() => null)
+  if (!s) return null
+  const meta = (s.user.app_metadata ?? {}) as { provider?: unknown; providers?: unknown }
+  const providers = Array.isArray(meta.providers) ? meta.providers.filter((p): p is string => typeof p === 'string') : typeof meta.provider === 'string' ? [meta.provider] : []
+  return { email: s.user.email ?? '', providers }
+}
+
+const PROVIDER_NAME: Record<string, string> = { email: 'E-posta ve şifre', google: 'Google' }
+
+/** How the person signs in, in words: "Google", "E-posta ve şifre · Google". */
+export const providersText = (providers: string[]) => providers.map((p) => PROVIDER_NAME[p] ?? p).join(' · ') || 'E-posta'

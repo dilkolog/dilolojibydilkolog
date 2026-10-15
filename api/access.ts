@@ -1,7 +1,8 @@
 import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
 import { addFriend, friendsOf, normalizeCode, publishCard, removeFriend } from './_friends.js'
 import { fromApp } from './_origin.js'
-import { ensureProfile, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
+import { deleteAccountData } from './_deleteAccount.js'
+import { deleteSupabaseUser, ensureProfile, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
 
 /**
@@ -27,6 +28,9 @@ import { overLimit, tooMany } from './_rate.js'
  * POST /api/access  { action: 'vault-link', id, enc, auth, username?, note? } → { status }
  *   ties a sync account to the person: a new one (claimed here) or the one they had (its token must
  *   match the claim). A person keeps one sync account; one sync account belongs to one person.
+ * POST /api/access  { action: 'account-delete' } → { ok, removed }
+ *   with the Supabase bearer (the person and their sync account) or the old x-sync-id/x-sync-auth
+ *   (the account its password proves): deletes what the server keeps for it (_deleteAccount.ts).
  */
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } })
 
@@ -112,6 +116,22 @@ async function vaultLink(request: Request, body: Record<string, unknown>): Promi
   }
 }
 
+async function accountDelete(request: Request): Promise<Response> {
+  if (overLimit(request, 'account-delete', 5)) return tooMany()
+  try {
+    const user = request.headers.has('authorization') ? await supabaseUser(request) : null
+    if (request.headers.has('authorization') && !user) return json({ error: 'signed_out' }, 401)
+    const id = user ? ((await vaultOf(user.id))?.id ?? null) : await accountOf(request)
+    if (!user && !id) return json({ error: 'account_required' }, 403)
+    const removed = id ? await deleteAccountData(id) : 0
+    if (user) await deleteSupabaseUser(user.id)
+    return json({ ok: true, removed })
+  } catch (e) {
+    if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
+    return json({ error: 'delete failed' }, 502)
+  }
+}
+
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
   if (new URL(request.url).searchParams.has('friends')) return friendsGet(request)
@@ -138,6 +158,7 @@ export async function POST(request: Request): Promise<Response> {
   const body = (await request.json().catch(() => null)) as { action?: unknown; username?: unknown; note?: unknown } | null
   if (typeof body?.action === 'string' && body.action.startsWith('friends-')) return friendsPost(request, body as Record<string, unknown>)
   if (body?.action === 'vault-link') return vaultLink(request, body as Record<string, unknown>)
+  if (body?.action === 'account-delete') return accountDelete(request)
   // Filing a request writes to the store: a person asks once or twice, a script thousands of times.
   if (overLimit(request, 'access-write', 10)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''

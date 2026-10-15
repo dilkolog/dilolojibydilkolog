@@ -1,4 +1,5 @@
 import '../lazy.css'
+import { REACT } from './drawnArt'
 import { formFeedback, TENSE_GUIDE } from '../engine/tenseGuide'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
@@ -463,6 +464,14 @@ export function SessionScreen(p: Props) {
         </ConfirmDialog>
       )}
       <div className="session-stage">
+      {session.index === 0 && session.log.length === 0 && answeredAt === null && session.items.length > 1 && (
+        <p className="session-hello">
+          <img src={REACT.hello} alt="" width={44} height={44} draggable={false} />
+          <span>
+            Merhaba! <strong>{session.items.length}</strong> soruluk bir tur, hadi başlayalım.
+          </span>
+        </p>
+      )}
       {form ? (
         <FormQuestion
           key={session.index}
@@ -511,6 +520,7 @@ export function SessionScreen(p: Props) {
           onOverride={override}
           onDiscard={discard}
           onContinue={proceed}
+          combo={combo}
           struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
           wordState={() => states.current.get(entry.id)}
           listenRate={listeningRate(speechPrefs.rate, states.current.get(entry.id)?.skills.listening?.stability)}
@@ -527,6 +537,8 @@ export function SessionScreen(p: Props) {
 
 
 interface RunnerProps {
+  /** Right answers in a row so far (the one just given included, once answered). */
+  combo: number
   /** Turns the share of a kind of question down or off (from the feedback after a miss). */
   onTypePref?: (type: ExerciseType, name: string, level: 'less' | 'off') => void
   entry: VocabularyEntry
@@ -556,7 +568,7 @@ const strictAccents = (ev: Evaluation): Evaluation => (prefs.accentStrict && ev.
 const canOverride = (exercise: Exercise, ev: Evaluation) =>
   exercise.kind === 'typed' && exercise.type !== 'free_sentence' && exercise.type !== 'back_translation' && ev.verdict !== 'correct'
 
-function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref }: RunnerProps) {
+function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDiscard, onContinue, struggling, wordState, onEntryUpdated, onToggleDifficult, listenRate, intrusionSources, onTypePref, combo }: RunnerProps) {
   const [mnemonic, setMnemonic] = useState<'offer' | 'open' | 'saved' | null>(null)
   const [editing, setEditing] = useState(false)
   const [typeInstead, setTypeInstead] = useState(false)
@@ -830,6 +842,7 @@ function ExerciseRunner({ entry, item, catalog, rng, onAnswer, onOverride, onDis
                 : undefined
             }
             xp={result.log.xp}
+            combo={combo}
             forgot={result.forgot}
             typeName={tunableType?.name}
             onTypePref={tunableType && onTypePref ? (level) => onTypePref(tunableType.type, tunableType.name, level) : undefined}

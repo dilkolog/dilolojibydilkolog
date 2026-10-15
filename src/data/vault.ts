@@ -46,3 +46,16 @@ export async function linkVault(token: string, account: Account, note = ''): Pro
   if (!res.ok) throw await failure(res)
   return ((await res.json()) as { status?: string }).status ?? 'pending'
 }
+
+/**
+ * Deletes the account on the server: with the Supabase sign-in (the person and their sync account) or,
+ * for an account from before, its own token. The device keeps its copy. Resolves to the files removed.
+ */
+export async function deleteAccount(token: string | null, account: Account | null): Promise<number> {
+  const headers: Record<string, string> = { 'content-type': 'application/json' }
+  if (token) headers.authorization = `Bearer ${token}`
+  else if (account) Object.assign(headers, { 'x-sync-id': account.id, 'x-sync-auth': account.auth })
+  const res = await fetch('/api/access', { method: 'POST', headers, body: JSON.stringify({ action: 'account-delete' }) })
+  if (!res.ok) throw await failure(res)
+  return ((await res.json()) as { removed?: number }).removed ?? 0
+}

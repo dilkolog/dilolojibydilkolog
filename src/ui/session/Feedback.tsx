@@ -36,6 +36,7 @@ export function Feedback({
   onOverride,
   onDiscard,
   xp,
+  combo,
   mnemonic,
   onMnemonic,
   onEdit,
@@ -49,6 +50,8 @@ export function Feedback({
   typeName?: string
   onTypePref?: (level: 'less' | 'off') => void
   xp?: number
+  /** Right answers in a row, this one included: 5, 10 and 20 get their own cheer. */
+  combo?: number
   mnemonic?: 'offer' | 'open' | 'saved' | null
   onMnemonic?: () => void
   /** Fix a typo in the word or its meaning without leaving the session. */
@@ -68,7 +71,8 @@ export function Feedback({
   const [soft] = useState(() => SOFT[Math.floor(Math.random() * SOFT.length)])
   const cls = forgot ? 'forgot' : ev.verdict === 'correct' ? 'ok' : ev.verdict
   const confidentError = ev.verdict === 'wrong' && confidence === 'sure' && !forgot
-  const title = forgot ? 'Unuttun, olur. İşte cevap:' : ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
+  const milestone = ev.verdict === 'correct' && !forgot && (combo === 5 || combo === 10 || combo === 20)
+  const title = forgot ? 'Unuttun, olur. İşte cevap:' : milestone ? `${combo} doğru üst üste!` : ev.verdict === 'correct' ? praise : ev.verdict === 'near' ? 'Çok yakın!' : 'Olsun, doğrusu:'
   // An intrusion gets its own, more specific note below.
   const hint = ev.errorType && ev.verdict !== 'correct' && !ev.intrusion && !forgot ? ERROR_HINT[ev.errorType] : ''
   const btnClass = forgot ? '' : ev.verdict === 'correct' ? 'btn-ok' : ev.verdict === 'near' ? 'btn-near' : 'btn-bad'
@@ -104,7 +108,7 @@ export function Feedback({
   const askable = !!apiKey && ev.verdict !== 'correct'
   return (
     <div className={`sheet ${cls}`} role="status">
-      <img className="sheet-react" src={forgot ? REACT.forgot : ev.verdict === 'correct' ? REACT.correct : REACT.oops} alt="" draggable={false} />
+      <img className="sheet-react" src={forgot ? REACT.forgot : milestone ? REACT.combo : ev.verdict === 'correct' ? REACT.correct : REACT.oops} alt="" draggable={false} />
       <div className="sheet-inner">
         <div className="sheet-text">
           <p className="sheet-title">

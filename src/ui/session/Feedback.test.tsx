@@ -36,4 +36,12 @@ describe('feedback after an answer', () => {
     expect(withKey('correct')).not.toContain('Monki açıklasın')
     expect(show('wrong')).not.toContain('Monki')
   })
+
+  it('cheers a fifth right answer in a row with its own title and picture', () => {
+    const at = (combo: number) =>
+      renderToStaticMarkup(<Feedback ev={{ verdict: 'correct', correct: true, expected: 'decision' } as unknown as Graded} combo={combo} entry={decision} continueRef={createRef()} onContinue={() => {}} />)
+    expect(at(5)).toContain('5 doğru üst üste!')
+    expect(at(5)).toContain('react-combo')
+    expect(at(4)).not.toContain('üst üste')
+  })
 })
