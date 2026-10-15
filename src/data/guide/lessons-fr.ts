@@ -361,19 +361,22 @@ export const FR_LESSONS: TopicLesson[] = [
       "passé composé tek seferlik, bitmiş olay için (hier, soudain, en 2015, un jour): Soudain, la porte s'est ouverte.",
       "Kesilen, süren eylem imparfait; araya giren olay passé composé: Je prenais ma douche quand le téléphone a sonné.",
       "pendant que + imparfait (süren eylem); süresi belli ve bitmiş eylem passé composé: J'ai travaillé pendant deux heures.",
+      "Savoir ve connaître gibi fiillerde zaman farkı anlamı değiştirir: je savais (biliyordum, durum) vs j'ai su (öğrendim, olay); je connaissais (tanıyordum) vs j'ai connu (tanıştım)."
     ],
     examples: [
       { text: "Quand j'étais petit, nous allions chaque été chez ma grand-mère.", tr: "Küçükken her yaz büyükanneme giderdik." },
       { text: "Je prenais ma douche quand le téléphone a sonné.", tr: "Telefon çaldığında duş alıyordum." },
       { text: "Il faisait très froid, alors j'ai mis mon manteau.", tr: "Hava çok soğuktu, bu yüzden montumu giydim." },
       { text: "Elle a rencontré Paul pour la première fois en 2015.", tr: "Paul'le ilk kez 2015'te tanıştı." },
+      { text: "Quand j'ai su la vérité, j'ai tout de suite compris.", tr: "Gerçeği öğrendiğim an (farkına varınca) hemen anladım." },
       { text: "Hier soir, j'ai regardé un film pendant deux heures.", tr: "Dün akşam iki saat film izledim." },
-      { text: "Il avait dix ans quand sa famille a déménagé.", tr: "Ailesi taşındığında on yaşındaydı." },
+      { text: "Il avait dix ans quand sa famille a déménagé.", tr: "Ailesi taşındığında on yaşındaydı." }
     ],
     watch: [
       "Türkçedeki « -yordu » / « -di » ayrımı yardımcı olur ama tam örtüşmez: alışkanlık bildiren « -erdi » de imparfait'tir (« nous allions »).",
       "Yaş, hava ve duygu geçmişte neredeyse hep imparfait: « j'avais dix ans »; « j'ai eu dix ans » yalnızca « on yaşına girdim » demektir.",
-      "« pendant deux heures » süresi belli, bitmiş bir eylemdir; Türkçede « izliyordum » desen bile passé composé kullanılır.",
+      "Savoir ve connaître'de zamanla değişen anlam: « je savais » (zaten biliyordum) ile « j'ai su » (o an öğrendim) farkına dikkat edilmelidir.",
+      "« pendant deux heures » süresi belli, bitmiş bir eylemdir; Türkçede « izliyordum » desen bile passé composé kullanılır."
     ],
     tip: "Bir film sahnesi düşün: dekor ve süren hareket imparfait, kameranın yakaladığı ani olay passé composé.",
   },
@@ -470,6 +473,7 @@ export const FR_LESSONS: TopicLesson[] = [
     watch: [
       "Türkçede « onu aramak » belirtme hâli ister ama « téléphoner à quelqu'un » à alır: « je lui téléphone », « je le téléphone » değil.",
       "lui ve leur hem eril hem dişildir; leur'e çoğul -s eklenmez: « je leur parle ».",
+      "« y » zamiri insanlar için kullanılmaz: « à + kişi » için duruma göre « lui / leur » ya da vurgulu zamir (« à lui / à elle ») kullanılır; « Je pense à Pierre » → « Je pense à lui » (« j'y pense » değil!).",
       "Sayı ve miktarla en'i unutma: « J'en ai deux »; « J'ai deux » tek başına eksik kalır.",
       "Zamir öne geçince avoir'lı ortaç ona uyar: « Les clés ? Je les ai mises sur la table. »",
     ],
@@ -587,6 +591,7 @@ export const FR_LESSONS: TopicLesson[] = [
       "Sık düzensizler: être (que je sois, que nous soyons), avoir (que j'aie, qu'il ait), faire (que je fasse), aller (que j'aille), pouvoir (que je puisse), savoir (que je sache), vouloir (que je veuille).",
       "Geçmişteki eylem için subjonctif passé: avoir / être'nin subjonctif'i + ortaç: Je regrette que tu n'aies pas pu venir.",
       "Üstünlük ve le seul, le premier, le dernier'den sonraki ilgi cümlesinde de sık görülür: C'est le meilleur film que j'aie vu.",
+      "İhtimal derecesi kip belirler: 'il est possible que' subjonctif ister (belirsizlik), fakat 'il est probable que' kuvvetli ihtimal bildirdiğinden indicatif alır."
     ],
     examples: [
       { text: "Il faut que tu fasses tes devoirs avant de sortir.", tr: "Dışarı çıkmadan önce ödevlerini yapman gerek." },
@@ -601,6 +606,7 @@ export const FR_LESSONS: TopicLesson[] = [
       "Özne aynıysa subjonctif değil mastar gelir: « Je veux partir », « Je veux que je parte » değil.",
       "« espérer que » ve « après que » subjonctif almaz: « J'espère qu'il viendra ».",
       "« penser, croire, trouver que » olumluyken indicatif ister: « Je pense qu'il a raison », ama « Je ne pense pas qu'il ait raison ».",
+      "Probable ve possible ayrımı: « Il est possible qu'il vienne » (subjonctif) ama « Il est probable qu'il viendra » (indicatif)."
     ],
     tip: "« que »dan önceki ifade bir gerçeği bildiriyorsa indicatif; bir isteği, duyguyu ya da şüpheyi bildiriyorsa subjonctif.",
   },

@@ -81,7 +81,9 @@ export const RESOURCES: Record<TargetLanguage, GuideResource[]> = {
   ],
 }
 
-/** Places for every language: sentences in use, and a tool for spaced review outside the app. */
 export const SHARED_RESOURCES: GuideResource[] = [
   { name: 'Tatoeba', url: 'https://tatoeba.org/', kind: 'reading', note: 'Çevirileriyle milyonlarca örnek cümle; Diloloji’nin örnek cümlelerinin bir kısmı buradan.', levels: 'Her seviye', open: true },
+  { name: 'Wiktionary', url: 'https://www.wiktionary.org/', kind: 'dictionary', note: 'Açık lisanslı çok dilli sözlük: kelime kökenleri, ayrıntılı çekim tabloları ve telaffuzlar.', levels: 'Her seviye', open: true },
+  { name: 'Project Gutenberg', url: 'https://www.gutenberg.org/', kind: 'reading', note: 'Kamu malı klasik e-kitap kütüphanesi: İngilizce, Fransızca ve İspanyolca binlerce orijinal eser.', levels: 'B1–C2', open: true },
+  { name: 'LibriVox', url: 'https://librivox.org/', kind: 'listening', note: 'Gönüllülerce seslendirilmiş kamu malı sesli kitaplar; dinleme ve okumayı eşleştirmek için ideal.', levels: 'B1–C2', open: true },
 ]
