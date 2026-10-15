@@ -33,6 +33,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« à le », « de le » yazma; birleşik biçim zorunlu: au cinéma, du marché.",
     ],
     tip: "Her yeni ismi artikeliyle yaz ve söyle: « table » değil « la table ». Cinsiyet kulağına artikelle birlikte yerleşir.",
+    check: [
+      {
+        prompt: "Je vais ___ cinéma ce soir.",
+        options: ["à le", "au", "à la", "aux"],
+        answer: 1,
+        why: "à ile le birleşir: à + le = au.",
+      },
+      {
+        prompt: "___ école est fermée aujourd'hui.",
+        options: ["La", "Le", "L'", "Les"],
+        answer: 2,
+        why: "Sesli harfle başlayan isimden önce la / le, l' olur.",
+      },
+      {
+        prompt: "J'aime ___ chocolat.",
+        options: ["un", "du", "de", "le"],
+        answer: 3,
+        why: "Genel beğeni bildiren aimer'den sonra belirli artikel gelir.",
+      },
+    ],
   },
   {
     topic: "basics_fr_etre_avoir",
@@ -65,6 +85,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« il y a » sabit kalıptır, çoğulda da değişmez: « Il y a trois livres ».",
     ],
     tip: "Bedeninde hissettiğin şeyler (açlık, susuzluk, uyku, korku, sıcak, soğuk) ve yaş: avoir. Ne olduğun (meslek, milliyet, nitelik): être.",
+    check: [
+      {
+        prompt: "Mon frère ___ vingt ans.",
+        options: ["est", "a", "ont", "es"],
+        answer: 1,
+        why: "Yaş être ile değil avoir ile söylenir.",
+      },
+      {
+        prompt: "Nous ___ étudiants à Lyon.",
+        options: ["avons", "êtes", "sommes", "sont"],
+        answer: 2,
+        why: "Kimlik ve meslek être ile söylenir; nous için biçim sommes.",
+      },
+      {
+        prompt: "Elle ___ médecin.",
+        options: ["est un", "a", "est une", "est"],
+        answer: 3,
+        why: "être'den sonra meslek artikelsiz gelir: Elle est médecin.",
+      },
+    ],
   },
   {
     topic: "basics_fr_present",
@@ -97,6 +137,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« depuis » ile hâlâ süren durumda présent kullanılır: « J'habite ici depuis deux ans » (iki yıldır burada oturuyorum).",
     ],
     tip: "-er fiillerinde je, tu, il ve ils biçimleri aynı okunur; ezberlenecek iki farklı ses kalır: nous -ons ve vous -ez.",
+    check: [
+      {
+        prompt: "Nous ___ le travail à six heures. (finir)",
+        options: ["finons", "finissons", "finissez", "finisons"],
+        answer: 1,
+        why: "Çoğu -ir fiili nous biçiminde -issons alır.",
+      },
+      {
+        prompt: "Vous ___ du sport le week-end ? (faire)",
+        options: ["faites", "faisez", "faisons", "font"],
+        answer: 0,
+        why: "faire düzensizdir: vous faites.",
+      },
+      {
+        prompt: "Ils ___ au marché le samedi. (aller)",
+        options: ["allent", "va", "vont", "allons"],
+        answer: 2,
+        why: "aller düzensizdir: ils vont.",
+      },
+    ],
   },
   {
     topic: "basics_fr_negation",
@@ -129,6 +189,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Olumsuz soruya olumlu cevap « oui » değil « si »dir: — Tu ne viens pas ? — Si, je viens !",
     ],
     tip: "ne ve pas fiili saran bir sandviç gibidir: ne + fiil + pas. Birleşik zamanda araya yalnızca yardımcı fiil girer.",
+    check: [
+      {
+        prompt: "J'ai une voiture. → Je n'ai pas ___ voiture.",
+        options: ["un", "de", "du", "des"],
+        answer: 1,
+        why: "Olumsuzda un, une, des artikeli de olur.",
+      },
+      {
+        prompt: "Je ___ ai pas compris.",
+        options: ["ne", "pas", "n'", "non"],
+        answer: 2,
+        why: "Sesli harften önce ne, n' olur ve yardımcı fiili pas ile sarar.",
+      },
+      {
+        prompt: "— Tu ne viens pas ? — ___, je viens !",
+        options: ["Si", "Oui", "Non"],
+        answer: 0,
+        why: "Olumsuz soruya olumlu cevap oui ile değil si ile verilir.",
+      },
+    ],
   },
 
   // ---------------------------------------------------------------- A2
@@ -162,6 +242,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Bazı sıfatların yeri anlamı değiştirir: « un ancien professeur » (önceki öğretmen), « un bâtiment ancien » (tarihî bina); « mon cher ami » (sevgili), « un livre cher » (pahalı).",
     ],
     tip: "Güzellik, yaş, iyilik ve boyut bildiren kısa sıfatlar isimden önce; renk, milliyet, şekil ve geri kalanlar arkasına.",
+    check: [
+      {
+        prompt: "Elle porte une robe ___.",
+        options: ["noir", "noires", "noire", "noirs"],
+        answer: 2,
+        why: "Sıfat isme uyar: robe dişil tekil olduğu için noire.",
+      },
+      {
+        prompt: "C'est un ___ ami.",
+        options: ["vieux", "vieil", "vieille", "vieilles"],
+        answer: 1,
+        why: "vieux, sesli harfle başlayan eril isimden önce vieil olur.",
+      },
+      {
+        prompt: "Hangisi doğru?",
+        options: ["une rouge voiture", "une voiture rouges", "un voiture rouge", "une voiture rouge"],
+        answer: 3,
+        why: "Renk sıfatı isimden sonra gelir ve isme cinsiyet ve sayıca uyar.",
+      },
+    ],
   },
   {
     topic: "basics_fr_passe_compose",
@@ -194,6 +294,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "-er fiillerinde ortaç ile mastar aynı okunur (mangé / manger): yardımcı fiilden sonra ortaç yazılır.",
     ],
     tip: "Ortaç mı mastar mı emin değilsen yerine bir -re fiili koy: « j'ai vendu » diyorsan ortaç (-é), « je vais vendre » diyorsan mastar (-er).",
+    check: [
+      {
+        prompt: "Hier, nous ___ allés au musée.",
+        options: ["avons", "sommes", "sont", "êtes"],
+        answer: 1,
+        why: "aller, être ile çekilir; nous için sommes.",
+      },
+      {
+        prompt: "Elle est ___ à huit heures. (partir)",
+        options: ["parti", "partis", "partir", "partie"],
+        answer: 3,
+        why: "être ile kurulan ortaç özneye uyar: elle → partie.",
+      },
+      {
+        prompt: "Tu as ___ ton passeport ? (prendre)",
+        options: ["pris", "prendu", "prit", "prendre"],
+        answer: 0,
+        why: "prendre'nin ortacı düzensizdir: pris.",
+      },
+    ],
   },
   {
     topic: "articles_quantite",

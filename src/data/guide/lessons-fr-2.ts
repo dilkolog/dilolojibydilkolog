@@ -33,6 +33,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Karışık bir grup için ils ve eux: « Ali et Marie ? Ils sont là, je pars avec eux ».",
     ],
     tip: "Zamir tek başına bir cevap olabiliyorsa (« Kim? — Ben. ») vurgulu biçimi kullan: moi, toi, lui, elle, nous, vous, eux, elles.",
+    check: [
+      {
+        prompt: "Mes cousins ? Je pars en vacances avec ___.",
+        options: ["ils", "leur", "les", "eux"],
+        answer: 3,
+        why: "Edattan sonra vurgulu zamir gelir: avec eux.",
+      },
+      {
+        prompt: "Ma sœur est plus grande que ___.",
+        options: ["je", "me", "moi", "mon"],
+        answer: 2,
+        why: "Karşılaştırmada que'den sonra vurgulu zamir gelir: que moi.",
+      },
+      {
+        prompt: "___ va au cinéma ce soir ?",
+        options: ["Nous", "On", "Vous", "Ils"],
+        answer: 1,
+        why: "Fiil 3. tekil (va) olduğu için özne on; konuşmada « biz » demektir.",
+      },
+    ],
   },
   {
     topic: "basics_fr_possessifs",
@@ -65,6 +85,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Dönüşlü fiille beden parçası anlatılırken iyelik değil artikel gelir: « Je me lave les mains », « Je me lave mes mains » değil.",
     ],
     tip: "son / sa / ses seçerken sahibine değil sahip olunan isme bak: isim dişilse sa, çoğulsa ses.",
+    check: [
+      {
+        prompt: "Paul habite avec ___ mère. (Paul'ün annesi)",
+        options: ["son", "sa", "ses", "leur"],
+        answer: 1,
+        why: "İyelik sıfatı sahibe değil isme uyar: mère dişil olduğu için sa.",
+      },
+      {
+        prompt: "C'est ___ amie Claire.",
+        options: ["ma", "me", "mes", "mon"],
+        answer: 3,
+        why: "Sesli harfle başlayan dişil isimden önce ma yerine mon gelir.",
+      },
+      {
+        prompt: "___ hôtel est très cher.",
+        options: ["Ce", "Cette", "Cet", "Ces"],
+        answer: 2,
+        why: "Sesli harf ya da sessiz h ile başlayan eril isimden önce ce, cet olur.",
+      },
+    ],
   },
   {
     topic: "basics_fr_nombres",
@@ -98,6 +138,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "80 « quatre-vingts »tır ama 81 « quatre-vingt-un »: s düşer, et girmez. Belçika ve İsviçre'de septante (70) ve nonante (90) da duyulur.",
     ],
     tip: "70'ten sonra hesap yap: 70 = 60 + 10, 80 = 4 × 20, 90 = 4 × 20 + 10. « quatre-vingt-dix-sept » = 4 × 20 + 17 = 97.",
+    check: [
+      {
+        prompt: "80 sayısının Fransızcası hangisi?",
+        options: ["quatre-vingts", "quatre-vingt-dix", "soixante-vingt", "quatre-vingt"],
+        answer: 0,
+        why: "80 = 4 × 20; arkasından sayı gelmediği için vingt -s alır.",
+      },
+      {
+        prompt: "Saat 9.45'i günlük dilde nasıl söylersin?",
+        options: ["Il est neuf heures moins le quart.", "Il est dix heures moins le quart.", "Il est neuf heures et quart.", "Il est dix heures et demie."],
+        answer: 1,
+        why: "Çeyrek kala, bir sonraki saatten moins le quart ile söylenir.",
+      },
+      {
+        prompt: "Mon anniversaire est le ___ mai. (1)",
+        options: ["un", "première", "unième", "premier"],
+        answer: 3,
+        why: "Ayın ilk günü için sıra sayısı le premier kullanılır.",
+      },
+    ],
   },
   {
     topic: "basics_fr_questions",
@@ -130,6 +190,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "« kaç » ismi doğrudan almaz, araya de girer: « combien de livres », « combien livres » değil.",
     ],
     tip: "Günlük konuşmada tonlama ya da est-ce que yeter. Devriği önce sık kalıplarda tanı: « Comment allez-vous ? », « Quelle heure est-il ? », « Avez-vous des questions ? »",
+    check: [
+      {
+        prompt: "Tu fais ___ ce soir ?",
+        options: ["que", "quel", "quoi", "qu'est-ce que"],
+        answer: 2,
+        why: "Cümlenin sonunda « ne » quoi olur.",
+      },
+      {
+        prompt: "___ est ton adresse ?",
+        options: ["Quoi", "Quelle", "Quel", "Qu'est-ce que"],
+        answer: 1,
+        why: "quel isme uyar; adresse dişil olduğu için quelle.",
+      },
+      {
+        prompt: "Combien ___ frères as-tu ?",
+        options: ["des", "du", "les", "de"],
+        answer: 3,
+        why: "combien'den sonra isim de ile gelir: combien de.",
+      },
+    ],
   },
 
   // ---------------------------------------------------------------- A2
@@ -165,6 +245,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "venir de ile dişil ülkede artikel düşer: « Je viens de France », « Je viens de la France » değil; eril ülkede birleşir: « du Japon ».",
     ],
     tip: "Ülke adını artikeliyle öğren: la France → en France, le Japon → au Japon, les États-Unis → aux États-Unis. Artikel edatı söyler.",
+    check: [
+      {
+        prompt: "J'habite ___ Japon.",
+        options: ["en", "à", "au", "aux"],
+        answer: 2,
+        why: "Eril ülke adıyla au kullanılır: le Japon → au Japon.",
+      },
+      {
+        prompt: "Elle vient ___ Italie.",
+        options: ["de la", "d'", "du", "des"],
+        answer: 1,
+        why: "Dişil ülkeden gelişte artikel düşer: de France, d'Italie.",
+      },
+      {
+        prompt: "Ce soir, on dîne ___ mes parents.",
+        options: ["chez", "à", "dans", "au"],
+        answer: 0,
+        why: "Birinin evi için chez + kişi kullanılır.",
+      },
+    ],
   },
   {
     topic: "basics_fr_pronominaux",
@@ -198,6 +298,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Zamirli ve zamirsiz biçim farklı şeydir: « je lave la voiture » (arabayı yıkıyorum), « je me lave » (yıkanıyorum).",
     ],
     tip: "Fiili zamiriyle ezberle: « se lever », « s'habiller ». Sözlükte yanında se varsa çekimde de hep bir zamir olacak.",
+    check: [
+      {
+        prompt: "Hier soir, nous ___ couchés tard.",
+        options: ["avons", "nous avons", "nous sommes", "sommes"],
+        answer: 2,
+        why: "Dönüşlü fiil passé composé'de être alır ve zamiri korur.",
+      },
+      {
+        prompt: "Je vais ___ coucher.",
+        options: ["se", "me", "te", "nous"],
+        answer: 1,
+        why: "Mastarda da dönüşlü zamir özneye uyar: je → me.",
+      },
+      {
+        prompt: "« Kalk! » (tu) nasıl söylenir?",
+        options: ["Lève-toi !", "Lève-te !", "Te lève !", "Lève !"],
+        answer: 0,
+        why: "Olumlu emirde zamir arkaya geçer ve te, toi olur.",
+      },
+    ],
   },
   {
     topic: "basics_fr_comparaison",
@@ -230,6 +350,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "« -in en … »deki ilgi de ile kurulur: « la plus haute montagne d'Europe », « en Europe » da olur ama de daha yaygındır.",
     ],
     tip: "meilleur ile mieux'yü ayırmak için cümleyi karşılaştırmasız söyle: « bon » diyebiliyorsan meilleur, « bien » diyebiliyorsan mieux.",
+    check: [
+      {
+        prompt: "Ce gâteau est ___ que l'autre.",
+        options: ["plus bon", "meilleur", "mieux", "plus bien"],
+        answer: 1,
+        why: "bon sıfatının karşılaştırması düzensizdir: meilleur.",
+      },
+      {
+        prompt: "Elle chante ___ que moi.",
+        options: ["meilleur", "plus bien", "bonne", "mieux"],
+        answer: 3,
+        why: "Fiili niteleyen bien zarfının karşılaştırması mieux'dür.",
+      },
+      {
+        prompt: "C'est la question ___ difficile de l'examen.",
+        options: ["plus", "le plus", "la plus", "la plus que"],
+        answer: 2,
+        why: "En üstünlükte artikel isme uyar ve sıfattan önce tekrar edilir: la plus.",
+      },
+    ],
   },
   {
     topic: "basics_fr_imperatif",
@@ -262,6 +402,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Dönüşlü fiilde zamiri unutma: « Assieds-toi », « Asseyez-vous », « Assieds ! » değil.",
     ],
     tip: "Emri kurmak için présent'taki tu / nous / vous biçimini al ve zamiri sil; -er fiillerinde tu'nun -s'sini de at.",
+    check: [
+      {
+        prompt: "___ la porte, s'il te plaît ! (fermer, tu)",
+        options: ["Fermes", "Ferme", "Fermons", "Fermez"],
+        answer: 1,
+        why: "-er fiilinin tu emrinde özne söylenmez ve -s düşer.",
+      },
+      {
+        prompt: "Ton numéro ? Donne-___, s'il te plaît.",
+        options: ["moi-le", "le-me", "le-moi", "me-le"],
+        answer: 2,
+        why: "Olumlu emirde önce le, sonra moi gelir: donne-le-moi.",
+      },
+      {
+        prompt: "___ prudents sur la route ! (être, vous)",
+        options: ["Êtes", "Soyons", "Étez", "Soyez"],
+        answer: 3,
+        why: "être'nin emri düzensizdir: vous için soyez.",
+      },
+    ],
   },
   {
     topic: "basics_fr_depuis",
@@ -295,6 +455,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Bitmiş bir sürede depuis kullanma: « J'ai travaillé pendant deux heures » (iki saat çalıştım ve bitti), « depuis deux heures » hâlâ çalışıyorum demektir.",
     ],
     tip: "Önce sor: eylem hâlâ sürüyor mu? Sürüyorsa depuis + présent. Bittiyse ne zaman bittiğini il y a, ne kadar sürdüğünü pendant söyler.",
+    check: [
+      {
+        prompt: "J'apprends le français ___ six mois.",
+        options: ["il y a", "depuis", "dans", "en"],
+        answer: 1,
+        why: "Hâlâ süren durum için depuis + présent kullanılır.",
+      },
+      {
+        prompt: "J'ai acheté cette voiture ___ trois ans.",
+        options: ["depuis", "dans", "il y a", "pendant"],
+        answer: 2,
+        why: "Geçmişte bir kez olup bitmiş olay için « … önce » il y a ile söylenir.",
+      },
+      {
+        prompt: "Le film commence ___ dix minutes.",
+        options: ["dans", "il y a", "depuis", "en"],
+        answer: 0,
+        why: "Şimdiden itibaren « … sonra » dans + süre ile söylenir.",
+      },
+    ],
   },
 
   // ---------------------------------------------------------------- B1
@@ -329,6 +509,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "si'den sonra conditionnel yazma: « si j'avais su », « si j'aurais su » değil.",
     ],
     tip: "Geçmişte bir anı referans noktası yap (« vardığımda »); o andan önce olup bitmiş her şey plus-que-parfait'e kayar.",
+    check: [
+      {
+        prompt: "Quand nous sommes arrivés, le film ___ déjà commencé.",
+        options: ["a", "aura", "avait", "ait"],
+        answer: 2,
+        why: "Geçmişteki bir andan önce bitmiş eylem plus-que-parfait ile anlatılır.",
+      },
+      {
+        prompt: "Elle ___ déjà partie quand j'ai téléphoné.",
+        options: ["avait", "était", "a", "aura"],
+        answer: 1,
+        why: "partir être alır; plus-que-parfait'te être'nin imparfait'i gelir.",
+      },
+      {
+        prompt: "Si j'___ su, je serais venu.",
+        options: ["avais", "aurais", "ai", "aurai"],
+        answer: 0,
+        why: "si'den sonra conditionnel gelmez: si + plus-que-parfait.",
+      },
+    ],
   },
   {
     topic: "basics_fr_gerondif",
@@ -361,6 +561,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Bazı sıfatların yazımı fiil biçiminden farklıdır: fatiguant / fatigant (yorucu), convainquant / convaincant (ikna edici), précédant / précédent (önceki).",
     ],
     tip: "Türkçede « -arken » ya da « -arak » diyebiliyorsan ve iki eylemi aynı kişi yapıyorsa: en + -ant.",
+    check: [
+      {
+        prompt: "Il est tombé ___ l'escalier.",
+        options: ["en descendu", "en descendant", "en descendre", "à descendant"],
+        answer: 1,
+        why: "« -arken » anlamındaki gérondif en + -ant ile kurulur.",
+      },
+      {
+        prompt: "savoir fiilinin -ant biçimi hangisi?",
+        options: ["savant", "sachent", "sachant", "savoyant"],
+        answer: 2,
+        why: "savoir düzensizdir: -ant biçimi sachant.",
+      },
+      {
+        prompt: "« Ben çıkarken Paul giriyordu » cümlesinin doğru çevirisi hangisi?",
+        options: ["Pendant que je sortais, Paul entrait.", "En sortant, Paul entrait.", "Paul entrait en sortant."],
+        answer: 0,
+        why: "Gérondif'in öznesi ana cümleninkiyle aynı olmalı; özneler farklıysa pendant que kullanılır.",
+      },
+    ],
   },
   {
     topic: "basics_fr_ordre_pronoms",
@@ -394,6 +614,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "lui hem « ona (erkeğe) » hem « ona (kadına) » demektir: « Je lui parle » Marie için de Paul için de doğru.",
     ],
     tip: "Emir dışında sırayı bir dizi gibi ezberle: me le lui y en. Önce kişi (me, te, nous, vous), sonra le / la / les, sonra lui / leur, en sonda y ve en.",
+    check: [
+      {
+        prompt: "Le cadeau ? Je ___ donne demain. (à Marie)",
+        options: ["lui le", "le lui", "la lui", "lui la"],
+        answer: 1,
+        why: "Sıra le / la / les, sonra lui / leur; cadeau eril olduğu için le lui.",
+      },
+      {
+        prompt: "Des bonbons ? Je ___ ai donné trois. (aux enfants)",
+        options: ["en leur", "leur les", "les leur", "leur en"],
+        answer: 3,
+        why: "Miktar en ile anılır ve en sona gelir: leur en.",
+      },
+      {
+        prompt: "Hangisi doğru?",
+        options: ["Ne me le donne pas !", "Ne le me donne pas !", "Ne donne-le-moi pas !", "Ne me donne-le pas !"],
+        answer: 0,
+        why: "Olumsuz emirde zamirler fiilin önünde, normal sırasıyla kalır: me le.",
+      },
+    ],
   },
   {
     topic: "basics_fr_adverbes",
@@ -427,6 +667,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Bazı sıfatlar zarf gibi değişmeden kullanılır: parler fort, coûter cher, travailler dur, sentir bon.",
     ],
     tip: "Zarfı bulmak için sıfatın dişilini söyle ve -ment ekle (heureuse → heureusement); sıfat -ant ya da -ent ile bitiyorsa -amment ya da -emment.",
+    check: [
+      {
+        prompt: "évident → ___",
+        options: ["évidentement", "évidament", "évidemment", "évidamment"],
+        answer: 2,
+        why: "-ent ile biten sıfattan zarf -emment ile yapılır.",
+      },
+      {
+        prompt: "Il parle ___ le français.",
+        options: ["bon", "bien", "bonne", "meilleur"],
+        answer: 1,
+        why: "Fiili niteleyen sözcük zarf olmalı: bon değil bien.",
+      },
+      {
+        prompt: "lent → ___",
+        options: ["lentement", "lentamment", "lentemment", "lenttement"],
+        answer: 0,
+        why: "lent kuralın istisnasıdır: dişil lente + -ment = lentement.",
+      },
+    ],
   },
 
   // ---------------------------------------------------------------- B2
@@ -461,6 +721,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Geçmiş mastarda être alan fiillerde uyumu unutma: « Elle est contente d'être arrivée à l'heure ».",
     ],
     tip: "« que »nun iki yanında farklı kişiler var mı? Yoksa mastara geç; varsa subjonctif. Eylem ana fiilden önce bittiyse passé: que tu sois venu, que j'aie fini.",
+    check: [
+      {
+        prompt: "Je suis content que tu ___ venu hier.",
+        options: ["es", "sois", "étais", "seras"],
+        answer: 1,
+        why: "Ana cümleden önce olmuş eylem için subjonctif passé: que tu sois venu.",
+      },
+      {
+        prompt: "« Geldiğim için memnunum » cümlesinin doğru çevirisi hangisi?",
+        options: ["Je suis content que je sois venu.", "Je suis content que je suis venu.", "Je suis content de venir.", "Je suis content d'être venu."],
+        answer: 3,
+        why: "Özne aynıysa que yerine geçmiş mastar gelir: d'être venu.",
+      },
+      {
+        prompt: "Je t'appelle ___ partir.",
+        options: ["avant que", "avant", "avant de", "après de"],
+        answer: 2,
+        why: "Özne aynıysa avant que yerine avant de + mastar kullanılır.",
+      },
+    ],
   },
   {
     topic: "basics_fr_passif",
@@ -493,6 +773,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "se faire + mastar'da fait uyum yapmaz: « Elle s'est fait couper les cheveux », « s'est faite couper » değil.",
     ],
     tip: "Türkçe « -ıldı » cümlesinde yapan önemli değilse ve konuşuyorsan önce on'u dene: « Le musée a été fermé » → « On a fermé le musée ».",
+    check: [
+      {
+        prompt: "La décision a été ___ hier.",
+        options: ["pris", "prise", "prises", "prendre"],
+        answer: 1,
+        why: "Edilgende ortaç özneye uyar: la décision → prise.",
+      },
+      {
+        prompt: "Hangisi doğru?",
+        options: ["On m'a demandé de partir.", "J'ai été demandé de partir.", "Je suis demandé de partir."],
+        answer: 0,
+        why: "demander à dolaylı nesne aldığı için edilgen olmaz; on kullanılır.",
+      },
+      {
+        prompt: "Elle s'est ___ couper les cheveux.",
+        options: ["faite", "faire", "fait", "faits"],
+        answer: 2,
+        why: "se faire + mastar yapısında fait uyum yapmaz.",
+      },
+    ],
   },
 
   // ---------------------------------------------------------------- C1
@@ -527,6 +827,26 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "« ils parlèrent » (konuştular) ile « ils parlent » (konuşuyorlar) farklıdır: -èrent sonu okunur.",
     ],
     tip: "Tanımadığın bir geçmiş biçim görürsen sonuna bak: -a / -èrent, -it / -irent, -ut / -urent. Gövdeden fiili bul ve kafanda passé composé'ye çevir.",
+    check: [
+      {
+        prompt: "« Ils eurent peur. » cümlesinde eurent hangi fiilin biçimi?",
+        options: ["être", "avoir", "aller", "voir"],
+        answer: 1,
+        why: "eurent, avoir'ın passé simple'ıdır (ils ont eu).",
+      },
+      {
+        prompt: "« Il vit la mer. » ne demek?",
+        options: ["Denizde yaşıyor.", "Denizi görüyor.", "Denizi gördü."],
+        answer: 2,
+        why: "Burada vit, voir'ın passé simple'ıdır: il a vu.",
+      },
+      {
+        prompt: "« Elle naquit en 1900. » cümlesinin passé composé karşılığı hangisi?",
+        options: ["Elle est née en 1900.", "Elle a né en 1900.", "Elle naît en 1900.", "Elle était née en 1900."],
+        answer: 0,
+        why: "naquit, naître'nin passé simple'ıdır; passé composé'de être alır: elle est née.",
+      },
+    ],
   },
   {
     topic: "basics_fr_concession",
@@ -560,5 +880,25 @@ export const FR_LESSONS_2: TopicLesson[] = [
       "Türkçe « -sa da » hem gerçek hem varsayımsal tavizi anlatır; Fransızcada gerçek taviz bien que / quoique (+ subjonctif), varsayımsal taviz même si (+ indicatif).",
     ],
     tip: "Bir paragrafta aynı bağlacı tekrarlama: bien que, certes … mais, pourtant ve avoir beau gibi farklı yollarla taviz ver; metin daha olgun okunur.",
+    check: [
+      {
+        prompt: "Même si tu ___ raison, je refuse.",
+        options: ["aies", "as", "auras", "aurais"],
+        answer: 1,
+        why: "même si subjonctif ya da conditionnel değil indicatif alır.",
+      },
+      {
+        prompt: "___ tu dises, je ne changerai pas d'avis.",
+        options: ["Quoique", "Bien que", "Même si", "Quoi que"],
+        answer: 3,
+        why: "« Ne söylersen söyle » ayrı yazılan quoi que + subjonctif ile kurulur.",
+      },
+      {
+        prompt: "J'ai beau ___, je n'y arrive pas.",
+        options: ["essayer", "essayé", "essaie", "essayant"],
+        answer: 0,
+        why: "avoir beau'dan sonra mastar gelir.",
+      },
+    ],
   },
 ]

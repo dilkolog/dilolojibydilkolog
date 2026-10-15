@@ -29,7 +29,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Its ile it's'i karıştırmak: its = onun (iyelik), it's = it is.",
       "İyelik zamirinden sonra isim kullanmak: 'mine car' değil 'my car'; 'This car is mine'."
     ],
-    tip: "Arkasından isim geliyorsa my/your/her; tek başına duruyorsa mine/yours/hers."
+    tip: "Arkasından isim geliyorsa my/your/her; tek başına duruyorsa mine/yours/hers.",
+    check: [
+      {
+        prompt: "This isn't your pen. It's ___.",
+        options: ["mine", "my", "me"],
+        answer: 0,
+        why: "Arkasından isim gelmeyen iyelik zamiri mine olur."
+      },
+      {
+        prompt: "My mother called, and I talked to ___ for an hour.",
+        options: ["she", "her", "hers"],
+        answer: 1,
+        why: "Edattan sonra nesne zamiri gelir: her."
+      },
+      {
+        prompt: "The cat is hungry. Give it ___ food.",
+        options: ["it's", "it", "its"],
+        answer: 2,
+        why: "Its iyelik sıfatıdır; it's ise it is demektir."
+      }
+    ]
   },
   {
     topic: "basics_en_there_is",
@@ -58,7 +78,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Çoğulla is kullanmak: 'There is many cars' değil 'There are many cars'.",
       "There'yi düşürmek: 'Is a problem' değil 'There is a problem'."
     ],
-    tip: "'Var' bir yerde bulunmaksa there is; birine aitse have."
+    tip: "'Var' bir yerde bulunmaksa there is; birine aitse have.",
+    check: [
+      {
+        prompt: "___ two banks on this street.",
+        options: ["There is", "There are", "It has"],
+        answer: 1,
+        why: "Çoğul isimle there are kullanılır."
+      },
+      {
+        prompt: "Is there ___ milk in the fridge?",
+        options: ["any", "many", "a"],
+        answer: 0,
+        why: "Soruda sayılamayan isimle any kullanılır."
+      },
+      {
+        prompt: "\"Bir arabam var\" nasıl söylenir?",
+        options: ["There is a car of me.", "There is my car.", "I have a car."],
+        answer: 2,
+        why: "Sahiplik have ile söylenir, there is ile değil."
+      }
+    ]
   },
   {
     topic: "basics_en_demonstratives",
@@ -86,7 +126,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "These'in sesini this ile karıştırmak: these uzun 'i' ile ve sonu 'z' sesiyle söylenir.",
       "Türkçedeki 'şu' ile 'o' arasında ayrım aramak: İngilizcede uzak olan için tek sözcük var, that."
     ],
-    tip: "Tekil ya da çoğul, yakın ya da uzak: iki soru, dört sözcük."
+    tip: "Tekil ya da çoğul, yakın ya da uzak: iki soru, dört sözcük.",
+    check: [
+      {
+        prompt: "___ shoes over there are too expensive.",
+        options: ["That", "Those", "These", "This"],
+        answer: 1,
+        why: "Uzaktaki (over there) çoğul şeyler için those kullanılır."
+      },
+      {
+        prompt: "(Telefonda) Hi, ___ is Ayşe. Can I speak to Ali?",
+        options: ["this", "these", "those"],
+        answer: 0,
+        why: "Telefonda kendini tanıtırken this kullanılır."
+      },
+      {
+        prompt: "Look at ___ flowers in my hand.",
+        options: ["those", "that", "these"],
+        answer: 2,
+        why: "Yakındaki (elimdeki) çoğul şeyler için these kullanılır."
+      }
+    ]
   },
   {
     topic: "basics_en_questions",
@@ -116,7 +176,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Özne sorusunda do kullanmak: 'Who did call you?' değil 'Who called you?'.",
       "Does/did'den sonra fiili çekimlemek: 'Where does she works?' değil 'Where does she work?'."
     ],
-    tip: "Soru sırası: soru sözcüğü + yardımcı + özne + fiil. Yardımcı yoksa do getirin."
+    tip: "Soru sırası: soru sözcüğü + yardımcı + özne + fiil. Yardımcı yoksa do getirin.",
+    check: [
+      {
+        prompt: "Where ___ your parents live?",
+        options: ["do", "are", "does"],
+        answer: 0,
+        why: "Asıl fiil live olduğu için çoğul özneyle do eklenir."
+      },
+      {
+        prompt: "Who ___ you about the party?",
+        options: ["did tell", "told", "does told"],
+        answer: 1,
+        why: "Who öznenin kendisini soruyorsa do/did kullanılmaz."
+      },
+      {
+        prompt: "What time ___ the film start?",
+        options: ["is", "do", "does"],
+        answer: 2,
+        why: "Tekil özneli (the film) soruda does gelir, fiil yalın kalır."
+      }
+    ]
   },
   {
     topic: "basics_en_time_prepositions",
@@ -145,7 +225,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "'In the night' ile 'at night'ı karıştırmak: genel olarak geceleri için 'at night'.",
       "'Sonra' anlamındaki in'i 'after' ile çevirmek: 'after ten minutes' değil 'in ten minutes' (şimdiden itibaren)."
     ],
-    tip: "Büyükten küçüğe: in (ay, yıl) → on (gün) → at (saat)."
+    tip: "Büyükten küçüğe: in (ay, yıl) → on (gün) → at (saat).",
+    check: [
+      {
+        prompt: "My birthday is ___ 12 March.",
+        options: ["in", "at", "on"],
+        answer: 2,
+        why: "Günler ve tarihler on alır."
+      },
+      {
+        prompt: "The shop opens ___ nine o'clock.",
+        options: ["at", "on", "in"],
+        answer: 0,
+        why: "Saatlerle at kullanılır."
+      },
+      {
+        prompt: "\"Gelecek hafta görüşürüz\" hangisiyle söylenir?",
+        options: ["See you in next week.", "See you next week.", "See you at next week."],
+        answer: 1,
+        why: "Next, last, this ve every önünde edat kullanılmaz."
+      }
+    ]
   },
   // A2
   {
@@ -175,7 +275,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Was ile were'ü karıştırmak: 'they was' değil 'they were'; 'you was' değil 'you were'.",
       "'When' sırayı değiştirir: 'When he arrived, we were eating' (yemek sürüyordu) ile 'When he arrived, we ate' (o gelince yemeğe başladık) aynı değil."
     ],
-    tip: "Uzun çizgi (was/were + -ing) üstüne kısa nokta (past simple): arka plan ve olay."
+    tip: "Uzun çizgi (was/were + -ing) üstüne kısa nokta (past simple): arka plan ve olay.",
+    check: [
+      {
+        prompt: "I was cooking when the phone ___.",
+        options: ["was ringing", "rang", "rings"],
+        answer: 1,
+        why: "Süren işi kesen kısa olay past simple olur."
+      },
+      {
+        prompt: "What ___ you doing at midnight?",
+        options: ["was", "did", "were"],
+        answer: 2,
+        why: "You ile past continuous were + -ing ile kurulur."
+      },
+      {
+        prompt: "Hangisi doğru?",
+        options: ["I knew the answer.", "I was knowing the answer.", "I was know the answer."],
+        answer: 0,
+        why: "Know bir durum fiilidir; continuous yapılmaz."
+      }
+    ]
   },
   {
     topic: "basics_en_ability",
@@ -205,7 +325,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Tek seferlik başarı için could: 'Yesterday I could pass the exam' değil 'I was able to / managed to pass the exam'.",
       "He/she ile -s eklemek: 'She cans' ya da 'She can speaks' değil 'She can speak'."
     ],
-    tip: "Can'in yetmediği her zamanda be able to'yu çekimleyin: was able to, will be able to."
+    tip: "Can'in yetmediği her zamanda be able to'yu çekimleyin: was able to, will be able to.",
+    check: [
+      {
+        prompt: "I ___ swim when I was six.",
+        options: ["could", "can", "will can"],
+        answer: 0,
+        why: "Geçmişteki genel yetenek could ile söylenir."
+      },
+      {
+        prompt: "You'll ___ speak English well in a year.",
+        options: ["can", "could", "be able to"],
+        answer: 2,
+        why: "Can'in gelecek biçimi yoktur; will be able to kullanılır."
+      },
+      {
+        prompt: "The fire spread quickly, but everyone ___ escape.",
+        options: ["could", "was able to", "can"],
+        answer: 1,
+        why: "Geçmişte tek seferlik bir başarı için was able to kullanılır, could değil."
+      }
+    ]
   },
   {
     topic: "basics_en_obligation",
@@ -235,7 +375,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Must'tan sonra to: 'You must to go' değil 'You must go'.",
       "Have to'yu he/she ile çekimlememek: 'She have to' değil 'She has to'."
     ],
-    tip: "Olumsuzda sorun: yasak mı (mustn't), yoksa gerek mi yok (don't have to)?"
+    tip: "Olumsuzda sorun: yasak mı (mustn't), yoksa gerek mi yok (don't have to)?",
+    check: [
+      {
+        prompt: "You ___ smoke here. It's forbidden.",
+        options: ["don't have to", "mustn't", "needn't"],
+        answer: 1,
+        why: "Yasak mustn't ile söylenir."
+      },
+      {
+        prompt: "Yesterday I ___ work late.",
+        options: ["had to", "must", "have to"],
+        answer: 0,
+        why: "Must'ın geçmişi yoktur; geçmişte had to kullanılır."
+      },
+      {
+        prompt: "It's Sunday, so I ___ get up early.",
+        options: ["must", "mustn't", "don't have to"],
+        answer: 2,
+        why: "Gerek yoksa don't have to kullanılır; mustn't yasak demektir."
+      }
+    ]
   },
   {
     topic: "basics_en_place_prepositions",
@@ -266,7 +426,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Ulaşımda in/on ayrımı: in a car / in a taxi, ama on a bus / on a train / on a plane.",
       "Arrive ile to: 'arrive to London' değil 'arrive in London', 'arrive at the airport'."
     ],
-    tip: "Duruyorsa in/on/at, gidiyorsa to/into/onto: önce hareket var mı diye bakın."
+    tip: "Duruyorsa in/on/at, gidiyorsa to/into/onto: önce hareket var mı diye bakın.",
+    check: [
+      {
+        prompt: "Let's go ___.",
+        options: ["to home", "home", "at home"],
+        answer: 1,
+        why: "Go home kalıbında edat kullanılmaz."
+      },
+      {
+        prompt: "She ran ___ the room and closed the door.",
+        options: ["into", "at", "on"],
+        answer: 0,
+        why: "İçeri doğru hareket into ile söylenir."
+      },
+      {
+        prompt: "I'll meet you ___ the bus stop.",
+        options: ["in", "on", "at"],
+        answer: 2,
+        why: "Durak gibi belli bir nokta at alır."
+      }
+    ]
   },
   // B1
   {
@@ -298,7 +478,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Olası durumu hayalî kurmak: yarın gerçekten olabilecekse birinci koşul ('If it rains tomorrow…').",
       "Unless ile ayrıca not kullanmak: 'Unless you don't study' değil 'Unless you study'."
     ],
-    tip: "Gerçekten olabilir mi? present + will. Hayal mi? past + would."
+    tip: "Gerçekten olabilir mi? present + will. Hayal mi? past + would.",
+    check: [
+      {
+        prompt: "If it ___ tomorrow, we'll stay at home.",
+        options: ["rains", "will rain", "rained"],
+        answer: 0,
+        why: "Birinci koşulda if'li bölüm present simple olur, will almaz."
+      },
+      {
+        prompt: "If I ___ more money, I would buy a house.",
+        options: ["have", "had", "would have"],
+        answer: 1,
+        why: "İkinci koşulda if'li bölüm past simple olur."
+      },
+      {
+        prompt: "We'll miss the bus ___ we hurry.",
+        options: ["if", "when", "unless"],
+        answer: 2,
+        why: "Unless \"if … not\" demektir: acele etmezsek."
+      }
+    ]
   },
   {
     topic: "basics_en_used_to",
@@ -329,7 +529,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Soru ve olumsuzda -d'yi korumak: 'Did you used to' değil 'Did you use to'.",
       "Durumla would: 'I would live in Ankara' değil 'I used to live in Ankara'."
     ],
-    tip: "To'dan sonra fiil yalınsa (used to go) geçmiş alışkanlık; -ing ise (be used to going) alışkınlık."
+    tip: "To'dan sonra fiil yalınsa (used to go) geçmiş alışkanlık; -ing ise (be used to going) alışkınlık.",
+    check: [
+      {
+        prompt: "I ___ live in Bursa, but now I live in Izmir.",
+        options: ["used to", "am used to", "use to"],
+        answer: 0,
+        why: "Artık olmayan geçmiş durum used to + yalın fiil ile söylenir."
+      },
+      {
+        prompt: "She's used to ___ up early.",
+        options: ["get", "getting", "got"],
+        answer: 1,
+        why: "Be used to'daki to edattır; arkasından -ing gelir."
+      },
+      {
+        prompt: "Did you ___ wear glasses?",
+        options: ["using to", "used to", "use to"],
+        answer: 2,
+        why: "Did'li soruda -d düşer: use to."
+      }
+    ]
   },
   {
     topic: "basics_en_past_perfect",
@@ -357,7 +577,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "When'in anlamını gözden kaçırmak: 'When I arrived, she left' (ben gelince çıktı) ile 'When I arrived, she had left' (ben geldiğimde çıkmıştı) farklı.",
       "Had'den sonra V2: 'had went' değil 'had gone'; 'had saw' değil 'had seen'."
     ],
-    tip: "Geçmişte bir an seçin: ondan önce olmuşsa had + V3."
+    tip: "Geçmişte bir an seçin: ondan önce olmuşsa had + V3.",
+    check: [
+      {
+        prompt: "When we got to the cinema, the film ___ already started.",
+        options: ["had", "has", "was"],
+        answer: 0,
+        why: "Geçmişteki bir andan önce olan iş had + V3 ile söylenir."
+      },
+      {
+        prompt: "She had never ___ the sea before.",
+        options: ["saw", "seen", "see"],
+        answer: 1,
+        why: "Had'den sonra V3 (past participle) gelir."
+      },
+      {
+        prompt: "\"Ben geldiğimde o çıkmıştı\" hangisidir?",
+        options: ["When I arrived, she left.", "When I had arrived, she left.", "When I arrived, she had left."],
+        answer: 2,
+        why: "Önce olan iş (çıkmak) past perfect olur."
+      }
+    ]
   },
   {
     topic: "basics_en_question_tags",
@@ -386,7 +626,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "İki tarafı da olumlu ya da olumsuz yapmak: 'He is busy, is he?' değil 'He is busy, isn't he?'.",
       "Tag'de ismi tekrar etmek: 'Ali is here, isn't Ali?' değil 'Ali is here, isn't he?'."
     ],
-    tip: "Cümlenin yardımcı fiilini bulun, tersine çevirin, zamirle bitirin."
+    tip: "Cümlenin yardımcı fiilini bulun, tersine çevirin, zamirle bitirin.",
+    check: [
+      {
+        prompt: "You don't smoke, ___?",
+        options: ["don't you", "do you", "aren't you"],
+        answer: 1,
+        why: "Olumsuz cümleye olumlu tag gelir ve aynı yardımcı fiil kullanılır."
+      },
+      {
+        prompt: "I'm late again, ___?",
+        options: ["isn't it", "amn't I", "aren't I"],
+        answer: 2,
+        why: "I am'in tag'i düzensizdir: aren't I."
+      },
+      {
+        prompt: "She likes tea, ___?",
+        options: ["doesn't she", "isn't she", "don't she"],
+        answer: 0,
+        why: "Yardımcı fiil yoksa do/does kullanılır; she ile doesn't."
+      }
+    ]
   },
   // B2
   {
@@ -418,7 +678,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Kendiniz için wish + would: 'I wish I would be taller' değil 'I wish I were taller'.",
       "Would have'i 'would of' diye yazmak: konuşmadaki 'would've' sesine aldanmayın."
     ],
-    tip: "Wish bir zaman geriye kayar: şimdi → past simple, geçmiş → past perfect."
+    tip: "Wish bir zaman geriye kayar: şimdi → past simple, geçmiş → past perfect.",
+    check: [
+      {
+        prompt: "If I ___ about the party, I would have come.",
+        options: ["knew", "had known", "would know"],
+        answer: 1,
+        why: "Üçüncü koşulda if'li bölüm past perfect olur."
+      },
+      {
+        prompt: "I wish I ___ more free time these days.",
+        options: ["had", "have", "will have"],
+        answer: 0,
+        why: "Şimdiki durumdan yakınırken wish + past simple kullanılır."
+      },
+      {
+        prompt: "I wish I ___ that to her yesterday.",
+        options: ["didn't say", "wouldn't say", "hadn't said"],
+        answer: 2,
+        why: "Geçmişteki pişmanlık wish + past perfect ile söylenir."
+      }
+    ]
   },
   {
     topic: "basics_en_future_perfect",
@@ -447,7 +727,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "By the time'dan sonra will: 'by the time you will arrive' değil 'by the time you arrive'.",
       "Will have'den sonra V2: 'will have went' değil 'will have gone'."
     ],
-    tip: "O anda sürüyor mu? will be + -ing. O ana kadar bitmiş mi? will have + V3."
+    tip: "O anda sürüyor mu? will be + -ing. O ana kadar bitmiş mi? will have + V3.",
+    check: [
+      {
+        prompt: "By the time you arrive, we ___ dinner.",
+        options: ["will have eaten", "eat", "are eating"],
+        answer: 0,
+        why: "Gelecekteki bir andan önce bitmiş olacak iş will have + V3 ile söylenir."
+      },
+      {
+        prompt: "I'll have finished the report ___ Friday.",
+        options: ["until", "since", "by"],
+        answer: 2,
+        why: "By \"en geç\" demektir ve future perfect ile gelir."
+      },
+      {
+        prompt: "\"O saatte uyuyor olacağım\" hangisidir?",
+        options: ["I'll have slept at that time.", "I'll be sleeping at that time.", "I'll sleep at that time."],
+        answer: 1,
+        why: "Gelecekte belli bir anda süren iş will be + -ing ile söylenir."
+      }
+    ]
   },
   {
     topic: "basics_en_causative",
@@ -475,7 +775,27 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Sözcük sırası: 'I had cut my hair' (past perfect) değil 'I had my hair cut'.",
       "Get someone ile to'yu unutmak: 'I got him fix it' değil 'I got him to fix it'; have ile to yok: 'I had him fix it'."
     ],
-    tip: "Türkçede -tir eki duyuyorsanız (kestirdim, yaptırdım) have/get + nesne + V3."
+    tip: "Türkçede -tir eki duyuyorsanız (kestirdim, yaptırdım) have/get + nesne + V3.",
+    check: [
+      {
+        prompt: "I had my hair ___ yesterday.",
+        options: ["cut", "to cut", "cutting"],
+        answer: 0,
+        why: "Ettirgen yapı have + nesne + V3 ile kurulur."
+      },
+      {
+        prompt: "I got my brother ___ me with the boxes.",
+        options: ["help", "to help", "helped"],
+        answer: 1,
+        why: "Get someone kalıbında fiil to ile gelir."
+      },
+      {
+        prompt: "\"Arabamı tamir ettirdim\" hangisidir?",
+        options: ["I had repaired my car.", "I repaired my car.", "I had my car repaired."],
+        answer: 2,
+        why: "İşi başkasına yaptırmak had + nesne + V3 ile söylenir."
+      }
+    ]
   },
   // C1
   {
@@ -507,6 +827,26 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Kesin dilde yazmak: 'This proves that…' yerine çoğu zaman 'This suggests that…' daha uygun.",
       "Fazla temkin: tek cümlede 'it might possibly be suggested that perhaps' gibi yığmak iddiayı boşaltır."
     ],
-    tip: "Bir iddia, bir temkin: her cümleye tek bir yumuşatıcı yeter."
+    tip: "Bir iddia, bir temkin: her cümleye tek bir yumuşatıcı yeter.",
+    check: [
+      {
+        prompt: "The economy recovered, ___ slowly.",
+        options: ["albeit", "despite", "whereas"],
+        answer: 0,
+        why: "Albeit tam cümle değil, bir sıfat ya da zarf öbeği alır."
+      },
+      {
+        prompt: "The plan was costly; ___, it was approved.",
+        options: ["moreover", "nonetheless", "consequently"],
+        answer: 1,
+        why: "Beklenene rağmen olan sonuç nonetheless ile bağlanır."
+      },
+      {
+        prompt: "Hangisi daha temkinli bir iddiadır?",
+        options: ["This proves that sleep improves memory.", "Sleep improves memory.", "The results suggest that sleep may improve memory."],
+        answer: 2,
+        why: "Suggest ve may gibi sözcükler iddiayı yumuşatır."
+      }
+    ]
   }
 ]

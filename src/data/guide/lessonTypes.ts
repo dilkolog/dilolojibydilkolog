@@ -21,4 +21,22 @@ export interface TopicLesson {
   /** Where a Turkish speaker typically goes wrong. */
   watch: string[]
   tip?: string
+  /**
+   * A short check after the lesson (three questions with one right option each). A lesson whose topic
+   * has grammar questions may leave it out: those are asked instead.
+   */
+  check?: LessonCheck[]
+  /** The grammar topic whose questions practise this lesson, when its own `topic` has none. */
+  practice?: string
+}
+
+/** One question of a lesson's check: the option at `answer` is the only right one. */
+export interface LessonCheck {
+  /** The question in Turkish, or a sentence in the target language with its gap as "___". */
+  prompt: string
+  /** Three or four options, each different. */
+  options: string[]
+  answer: number
+  /** Why, in Turkish, in one sentence. */
+  why: string
 }

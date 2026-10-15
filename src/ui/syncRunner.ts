@@ -1,6 +1,7 @@
 import { db } from '../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../data/access'
 import { showToast } from './toastFeed'
+import { reportError } from '../data/errorReport'
 import type { Account, Credential, SyncResult } from '../data/sync'
 
 /** The sync code (encryption, merging) is loaded when a sync runs, not with the first screen. */
@@ -77,6 +78,21 @@ async function signOutOldAccount(): Promise<boolean> {
   return true
 }
 
+/** Failures that are the way things are (offline, waiting for approval, moved, not on the list): not bugs. */
+const EXPECTED = new Set(['SyncMovedError', 'SyncApprovalError', 'SyncNotAllowedError', 'AbortError'])
+
+/**
+ * Whether a background sync's failure should reach the logs: a real error, not the network being away
+ * (a fetch that failed while offline, or that never got an answer) nor a state the app already explains.
+ */
+export function worthReporting(e: unknown, online: boolean): boolean {
+  if (!online || !(e instanceof Error)) return false
+  if (EXPECTED.has(e.name)) return false
+  // A request that never got an answer: a flaky network, not the app.
+  if (e.name === 'TypeError' && /fetch|network|load failed/i.test(e.message)) return false
+  return true
+}
+
 /** Syncs if signed in (or a code is set); failures (offline etc.) are silent unless `throwErrors`. */
 export function runSync(throwErrors = false): Promise<SyncResult | null> {
   if (running) return running
@@ -90,6 +106,8 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
       for (const fn of listeners) fn()
       return result
     } catch (e) {
+      // Silent in the background, so a real failure would otherwise never be seen: it goes to the logs ([client-error] … where=sync).
+      if (worthReporting(e, typeof navigator === 'undefined' || navigator.onLine !== false)) reportError(e, 'sync')
       if (throwErrors) throw e
       // Said once a visit: syncing here stopped because the data moved to the new sign-in.
       if (e instanceof Error && e.name === 'SyncMovedError' && !movedSaid) {

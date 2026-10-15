@@ -10,6 +10,7 @@ import { AccentBar } from '../AccentBar'
 import { accentChange, insertAt } from '../accentCaret'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
+import { LessonLink } from '../LessonLink'
 
 const TYPE_LABEL = { cloze: 'Boşluğu doldur', choice: 'Doğru seçeneği seç', error: 'Hatalı kelimeye dokun' } as const
 
@@ -20,7 +21,7 @@ const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
  * wrong word. Every answer shows the rule in Turkish. Questions never tried, or more often wrong
  * than right, come first; a topic can be picked.
  */
-export function GrammarPractice({ language, onExit, initialTopic }: { language: TargetLanguage; onExit: () => void; initialTopic?: string }) {
+export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { language: TargetLanguage; onExit: () => void; initialTopic?: string; onLesson?: (topic: string) => void }) {
   const all = useMemo(() => grammarExercises(language), [language])
   const [log, setLog] = useState<GrammarLog | null>(null)
   const [topic, setTopic] = useState<string | undefined>(initialTopic)
@@ -233,6 +234,7 @@ export function GrammarPractice({ language, onExit, initialTopic }: { language: 
                 )}
               </p>
               <p className="small">{q.explanation}</p>
+              {graded.verdict === 'wrong' && onLesson && <LessonLink language={language} topic={q.topic} onOpen={onLesson} />}
               <div className="row">
                 <button type="button" className="btn" onClick={next} autoFocus>
                   Devam

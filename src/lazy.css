@@ -1529,6 +1529,8 @@ button.badge-card:active { transform: none; }
 @media (min-width: 64rem) { .profile-settings { display: none; } }
 .blind-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
 .blind-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow-sm); }
+.blind-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.lesson-link { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.375rem; }
 .blind-text { display: grid; gap: 0.125rem; min-width: min(16rem, 100%); flex: 1 1 16rem; }
 .grammar-sentence { white-space: pre-line; }
 .rw-masked { background: var(--lang-soft); color: var(--lang-text); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
@@ -1956,3 +1958,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   .guide-search { max-width: none; }
   .guide-actions > .btn { flex: 1 1 100%; }
 }
+.guide-card.guide-learned { border-color: var(--ok); background: color-mix(in srgb, var(--ok-soft) 35%, var(--surface)); }
+.lesson-check-prompt { font-family: var(--serif); font-size: var(--t-lg); color: var(--ink); line-height: 1.45; margin: 0; }
+.lesson-check-score { display: flex; align-items: center; gap: 0.375rem; font-size: var(--t-lg); margin: 0; }
+.lesson-check-score .inline-icon { color: var(--ok); }

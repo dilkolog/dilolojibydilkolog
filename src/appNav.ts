@@ -52,7 +52,7 @@ export type Screen =
   | { name: 'produce' }
   | { name: 'exam'; repair?: boolean }
   | { name: 'games'; game?: GameId; topic?: string }
-  | { name: 'guide' }
+  | { name: 'guide'; lesson?: string; tense?: string; review?: boolean }
   | { name: 'verbs'; verb?: string; tense?: string; tab?: LabTab }
   | { name: 'profile' }
   | { name: 'settings' }

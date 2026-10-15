@@ -55,6 +55,7 @@ export function ProgressScreen({
   onExam,
   onEarPractice,
   onRepair,
+  onLesson,
   weeklyGoal,
   onWeeklyGoal,
   learnerName,
@@ -72,6 +73,8 @@ export function ProgressScreen({
   onEarPractice?: () => void
   /** Opens the practice for a blind spot (a game, or the verb lab). */
   onRepair?: (target: RepairTarget) => void
+  /** Opens the guide's lesson on a blind spot. */
+  onLesson?: (lesson: { topic?: string; tense?: string }) => void
   /** Weekly reading and listening goal in minutes, and how it is changed. */
   weeklyGoal?: number
   onWeeklyGoal?: (minutes: number | undefined) => void
@@ -147,7 +150,7 @@ export function ProgressScreen({
       <GroupToggle id="p-overview" icon={<StarIcon size={18} />} open={isOpen('p-overview')} onToggle={() => toggle('p-overview')}>Genel bakış</GroupToggle>
       {isOpen('p-overview') && (
         <section className="section stack span-2 overview-grid">
-          {onRepair && <BlindSpotsCard language={language} errors={errorsByType} onRepair={onRepair} />}
+          {onRepair && <BlindSpotsCard language={language} errors={errorsByType} onRepair={onRepair} onLesson={onLesson} />}
           <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
           <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
           <div className="hero-stat card">
