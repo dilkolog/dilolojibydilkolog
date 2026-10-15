@@ -1,7 +1,11 @@
 import '../lazy.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { grammarExercises } from '../data/grammar'
-import { KIND_NAME, KIND_ORDER, RESOURCES, SHARED_RESOURCES, type GuideResource } from '../data/guide/resources'
+import { KIND_NAME, KIND_ORDER, RESOURCES, SHARED_RESOURCES, type GuideResource, type ResourceKind } from '../data/guide/resources'
+import podcastArt from '../assets/art/src-podcast.webp'
+import storybookArt from '../assets/art/src-storybook.webp'
+import wikiArt from '../assets/art/src-wiki.webp'
+import { GAME_ART } from './gameArt'
 import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
 import { checkFor, englishTenseLessons, lessonFor, lessonsOf, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
@@ -110,7 +114,7 @@ export function GuideScreen({
 
   return (
     <div className="stack guide">
-      <PageHeader art="look" title="Rehber" sub={`${LANGUAGE_NAME[language]} okulun: konu anlatımları, zamanlar ve dışarıdaki en iyi kaynaklar.`} />
+      <PageHeader art="guide" title="Rehber" sub={`${LANGUAGE_NAME[language]} okulun: konu anlatımları, zamanlar ve dışarıdaki en iyi kaynaklar.`} />
       <div className="guide-tabs" role="tablist" aria-label="Rehber bölümleri">
         <button type="button" role="tab" aria-selected={tab === 'topics'} className="chip" onClick={() => setTab('topics')}>
           Konular <span className="muted small">{lessons.length}</span>
@@ -220,7 +224,10 @@ export function GuideScreen({
             if (!list.length) return null
             return (
               <section key={kind} className="stack gap-2">
-                <h2 className="section-title">{KIND_NAME[kind]}</h2>
+                <h2 className="section-title source-title">
+                  <img className="source-art" src={KIND_ART[kind]} alt="" width={36} height={36} draggable={false} />
+                  <span>{KIND_NAME[kind]}</span>
+                </h2>
                 <div className="guide-grid">
                   {list.map((r) => (
                     <ResourceCard key={r.url} r={r} />
@@ -233,6 +240,16 @@ export function GuideScreen({
       )}
     </div>
   )
+}
+
+/** A drawing for each kind of outside resource: the reading sources' covers and the games' signs. */
+const KIND_ART: Record<ResourceKind, string | undefined> = {
+  grammar: GAME_ART.grammar,
+  listening: podcastArt,
+  reading: storybookArt,
+  dictionary: wikiArt,
+  pronunciation: GAME_ART.pron,
+  exam: GAME_ART.test,
 }
 
 const LEVEL_NAME: Record<GuideLevel, string> = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İleri orta', C1: 'İleri' }

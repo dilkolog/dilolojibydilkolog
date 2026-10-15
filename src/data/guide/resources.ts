@@ -35,6 +35,7 @@ export const KIND_ORDER: ResourceKind[] = ['grammar', 'listening', 'reading', 'd
 
 export const RESOURCES: Record<TargetLanguage, GuideResource[]> = {
   fr: [
+    { name: 'Le Point du FLE', url: 'https://www.lepointdufle.net/', kind: 'grammar', note: 'Konu konu sıralanmış yüzlerce ücretsiz alıştırma: dilbilgisi, kelime, telaffuz ve dinleme.', levels: 'A1–C1' },
     { name: "Tex's French Grammar", url: 'https://www.laits.utexas.edu/tex/', kind: 'grammar', note: 'Teksas Üniversitesi’nin kural anlatımları; her konunun sonunda kendini puanlayan alıştırmalar.', levels: 'A1–C1', open: true },
     { name: 'Français inclusif', url: 'https://pressbooks.pub/francaisinclusif/', kind: 'grammar', note: 'Açık lisanslı ders kitabı: yüzlerce etkileşimli boşluk doldurma ve sürükle-bırak alıştırması.', levels: 'A1–B2', open: true },
     { name: 'Lawless French', url: 'https://www.lawlessfrench.com/', kind: 'grammar', note: 'Konu konu kısa anlatımlar ve testler; aradığın kuralı hızla bulmak için.', levels: 'A1–C1' },
@@ -50,7 +51,8 @@ export const RESOURCES: Record<TargetLanguage, GuideResource[]> = {
     { name: 'DELF / DALF', url: 'https://www.france-education-international.fr/diplome/delf-tout-public', kind: 'exam', note: 'Resmî Fransızca sınavları: seviyeler, örnek sınavlar ve sınav merkezleri.', levels: 'A1–C2' },
   ],
   es: [
-    { name: 'Spanish Grammar in Context', url: 'https://www.coerll.utexas.edu/spantex/', kind: 'grammar', note: 'Teksas Üniversitesi’nin konu anlatımları ve otomatik puanlanan alıştırmaları.', levels: 'A2–C1', open: true },
+    { name: 'FundéuRAE', url: 'https://www.fundeu.es/', kind: 'dictionary', note: 'Güncel kullanım ve yazım soruları için danışma: hangi edat, hangi biçim, nasıl yazılır.', levels: 'B2–C1' },
+    { name: 'Spanish Grammar in Context', url: 'https://grammar.spanishintexas.org/', kind: 'grammar', note: 'Teksas Üniversitesi’nin konu anlatımları ve otomatik puanlanan alıştırmaları.', levels: 'A2–C1', open: true },
     { name: 'Lawless Spanish', url: 'https://www.lawlessspanish.com/', kind: 'grammar', note: 'Kısa kural anlatımları ve testler; subjuntivo ve zamanlar için pratik.', levels: 'A1–C1' },
     { name: 'Centro Virtual Cervantes', url: 'https://cvc.cervantes.es/', kind: 'grammar', note: 'Cervantes Enstitüsü’nün dil ve kültür sayfaları; "Pasatiempos de Rayuela" alıştırmaları.', levels: 'A1–C1' },
     { name: 'Hoy Hablamos', url: 'https://www.hoyhablamos.com/', kind: 'listening', note: 'Günlük İspanyolca podcast ve metinleri; Diloloji haberlerinde de var.', levels: 'B1–B2' },
@@ -65,6 +67,7 @@ export const RESOURCES: Record<TargetLanguage, GuideResource[]> = {
     { name: 'DELE (Instituto Cervantes)', url: 'https://examenes.cervantes.es/es/dele/que-es', kind: 'exam', note: 'Resmî İspanyolca sınavı: seviyeler, örnek sınavlar ve tarihler.', levels: 'A1–C2' },
   ],
   en: [
+    { name: 'engVid', url: 'https://www.engvid.com/', kind: 'grammar', note: 'Konu konu binden fazla ücretsiz video ders; her birinin sonunda kısa bir test.', levels: 'A1–C1' },
     { name: 'British Council LearnEnglish', url: 'https://learnenglish.britishcouncil.org/', kind: 'grammar', note: 'Seviyeye göre dilbilgisi anlatımları, alıştırmalar, dinleme ve okuma.', levels: 'A1–C1' },
     { name: 'English Page', url: 'https://www.englishpage.com/', kind: 'grammar', note: 'Zamanlar, modal fiiller ve edatlar için yüzlerce alıştırma.', levels: 'A2–C1' },
     { name: 'BBC Learning English', url: 'https://www.bbc.co.uk/learningenglish', kind: 'listening', note: '6 Minute English ve kısa dersler; Diloloji haberlerinde de var.', levels: 'A2–C1' },

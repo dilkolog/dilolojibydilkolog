@@ -13,7 +13,7 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Özneyi vurgulamak için c'est + öğe + qui: C'est Marie qui a appelé. Fiil vurgulanan öğeye uyar: C'est moi qui ai raison. C'est nous qui sommes partis.",
       "Özne dışındaki öğeler (nesne, zaman, yer, neden) c'est + öğe + que ile vurgulanır: C'est ce livre que je cherche. C'est demain que nous partons. C'est à Lyon qu'il habite.",
       "Edatlı öğede edat c'est'in yanında kalır, düşmez: C'est à toi que je parle. C'est de ce problème que nous devons discuter.",
-      "Zamir vurgulanırken vurgulu biçim gelir: c'est moi, c'est toi, c'est lui, c'est eux. Çoğul isimde özenli dilde ce sont: Ce sont mes parents qui ont payé.",
+      "Zamir vurgulanırken vurgulu biçim gelir: c'est moi, c'est toi, c'est lui. 3. çoğulda özenli dilde ce sont eux / ce sont elles (konuşmada c'est eux da yaygın); çoğul isimde de ce sont: Ce sont mes parents qui ont payé.",
       "ce qui / ce que / ce dont … c'est önce merak uyandırır, asıl bilgiyi sona bırakır: Ce qui m'étonne, c'est son calme. Ce que je veux, c'est partir. Ce dont j'ai besoin, c'est de repos.",
       "Konuşmada öğe başa ya da sona alınıp bir zamirle tekrar edilir (dislocation): Ce film, je l'ai adoré. Il est fou, ton frère.",
       "Olumsuz ve soru biçimleri: Ce n'est pas moi qui l'ai cassé. Est-ce que c'est toi qui as fini le gâteau ?",
@@ -288,7 +288,7 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Eşitsizlik bildiren karşılaştırmada que'den sonra (plus … que, moins … que, autre que, meilleur que): Il est plus malin qu'il ne paraît.",
       "Çok edebî dilde şüphe ve inkârın olumsuzundan sonra da görülür: Je ne doute pas qu'il ne dise vrai.",
       "Anlamı değiştirmez: « Je crains qu'il ne vienne » = gelmesinden korkuyorum. Gerçek olumsuz için pas gerekir: « Je crains qu'il ne vienne pas » = gelmemesinden korkuyorum.",
-      "Hep isteğe bağlıdır ve konuşmada çoğunlukla düşer; bien que, sans que ve après que'den sonra özenli dilde kullanılmaz.",
+      "Hep isteğe bağlıdır ve konuşmada çoğunlukla düşer; bien que, sans que ve après que'den sonra kullanılmaz (après que zaten indicatif alır).",
     ],
     examples: [
       { text: "Je crains qu'il ne soit déjà trop tard.", tr: "Korkarım artık çok geç." },

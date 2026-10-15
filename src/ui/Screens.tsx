@@ -4,36 +4,29 @@ import { BACKLOG_AT, SHORT_ROUND } from '../engine/dailyPlan'
 import { db } from '../data/instance'
 import { loadBackItems } from '../data/backItems'
 import { dueSentences } from '../engine/sentences'
-import { useCountUp } from './useCountUp'
-import { Glyph } from './Glyph'
-import { type DailyPlan, type NewWordsBlock, type PlanReason } from '../engine/dailyPlan'
-
+import type { DailyPlan, NewWordsBlock, PlanReason } from '../engine/dailyPlan'
 import type { QuestMetric } from '../engine/quests'
 import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
-
 import { relativeTime } from './format'
-import { greetingFor, dayPart } from './dayPart'
+import { greetingFor } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, SnowflakeIcon, StarIcon, TargetIcon } from './icons'
+import { BookIcon, SnowflakeIcon, StarIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
-
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
 import { InstallHint } from './InstallHint'
-
 import { DayPlant } from './DayPlant'
 import { Plant } from './Plant'
 import { Ring } from './Ring'
-
-import { useGame, type GameState } from './game'
-
+import { useGame } from './game'
 import { BadgeMedal } from './Medal'
 import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
 import { REPAIR_MIN_SCORE, repairKey } from '../engine/streakRepair'
 import { repairTried } from './repairTry'
-import { QUEST_ART, TILE_ART, TIME_SCENE } from './drawnArt'
+import { NEW_ART, TILE_ART } from './drawnArt'
 import { Sticker } from './Sticker'
+import { DayMark, FocusLine, LevelStrip, QuestIcon } from './HomeParts'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -45,99 +38,15 @@ const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
 }
 const REASONS: PlanReason[] = ['forgotten', 'mistake', 'weak', 'due', 'new']
 
-/** Why no (more) new words today, said plainly so the plan never looks stuck. */
 /** Fewer slips than this in a week are not worth a round of their own. */
 const WEEK_MISSES_MIN = 3
 
+/** Why no (more) new words today, said plainly so the plan never looks stuck. */
 const NEW_BLOCK_TEXT: Record<NewWordsBlock, (n: number) => string> = {
   limit: (n) => `Günlük yeni kelime sınırına ulaştın; ${n} kelime sırada bekliyor.`,
   backlog: (n) => `Önce biriken tekrarlar bitsin; ${n} yeni kelime sırada.`,
   budget: (n) => `Günlük süren doldu; ${n} yeni kelime sırada.`,
   none_left: () => '',
-}
-
-/**
- * Where today's new words come from, and the place to change it: "Yeni kelimeler: [Seyahat ▾]".
- * The menu offers every list (and all the words); with a list in focus, its level and how far
- * along it is, and a way to its page. Reviews come from every list whatever is chosen.
- */
-function FocusLine({
-  focus,
-  done,
-  lists,
-  focusListId,
-  onFocusList,
-  onOpenList,
-  onOpenLists,
-}: {
-  focus?: NonNullable<Parameters<typeof Home>[0]['focus']>
-  done: boolean
-  lists: readonly { id: string; name: string; count: number }[]
-  focusListId?: string
-  onFocusList?: (listId: string | null) => void
-  onOpenList?: (listId: string) => void
-  onOpenLists?: () => void
-}) {
-  if (!focus && !lists.length) return null
-  // A native menu: the hero clips what spills out of it, and the system's list opens above everything.
-  const picker =
-    onFocusList && lists.length > 0 ? (
-      <span className="hero-list-pick">
-        <select
-          className="hero-list-select"
-          aria-label="Yeni kelimeler hangi listeden"
-          value={focusListId ?? ''}
-          onChange={(e) => onFocusList(e.target.value || null)}
-        >
-          <option value="">tüm kelimelerin</option>
-          {lists.map((l) => (
-            <option key={l.id} value={l.id}>
-              {l.name} ({l.count})
-            </option>
-          ))}
-        </select>
-        <ChevronDownIcon size={14} className="hero-list-chev" />
-      </span>
-    ) : (
-      <span className="hero-list-pick">“{focus?.name}”</span>
-    )
-  const meta = [focus?.level ? `“${focus.level}” seviyesi` : '', focus?.total ? `${focus.met}/${focus.total} tanıştın` : ''].filter(Boolean).join(' · ')
-  return (
-    <div className="small hero-focus">
-      {focus && done ? (
-        <span className="hero-focus-note">“{focus.name}” listesinin bütün kelimeleriyle tanıştın; yeni kelimeler için başka bir liste seç:</span>
-      ) : (
-        <span className="hero-focus-label">
-          <TargetIcon size={14} className="inline-icon" />
-          Yeni kelimeler
-        </span>
-      )}
-      {picker}
-      {meta && !done && <span className="hero-focus-meta">{meta}</span>}
-      {focusListId && onOpenList ? (
-        <button type="button" className="link hero-focus-open" onClick={() => onOpenList(focusListId)}>
-          Listeyi aç ›
-        </button>
-      ) : (
-        !onFocusList &&
-        onOpenLists && (
-          <button type="button" className="link hero-focus-open" onClick={onOpenLists}>
-            Listeler ›
-          </button>
-        )
-      )}
-    </div>
-  )
-}
-
-/** The light of the hour beside the greeting: the sun high, on the horizon (dawn and dusk), or the moon. */
-function DayMark({ now }: { now: Date }) {
-  const part = dayPart(now)
-  return (
-    <span className={`day-mark is-${part}`} aria-hidden>
-      <img className="day-scene" src={TIME_SCENE[part]} alt="" width={52} height={40} draggable={false} />
-    </span>
-  )
 }
 
 const HOME_MORE_KEY = 'kelime-koc:home-more'
@@ -432,6 +341,7 @@ export function Home({
         {game?.repair && onRepairStreak && !repairTried(repairKey(game.repair)) && (
           <li className="is-nudge streak-repair">
             <button type="button" className="link" onClick={onRepairStreak}>
+              <img className="nudge-art" src={NEW_ART.streakRepair} alt="" width={30} height={30} draggable={false} />
               {game.repair.lost} günlük serin koptu: hatırlama sınavında %{Math.round(REPAIR_MIN_SCORE * 100)} yap, geri gelsin ›
             </button>
           </li>
@@ -799,65 +709,5 @@ export function Home({
       </div>
       </div>
     </div>
-  )
-}
-
-/** A quest's picture: the drawn icon for what it counts, a check once it is done. */
-function QuestIcon({ quest }: { quest: { id: string; icon: string; done: boolean } }) {
-  return (
-    <span className="quest-icon">
-      {QUEST_ART[quest.id] ? <img className="quest-art" src={QUEST_ART[quest.id]} alt="" width={28} height={28} /> : <Glyph emoji={quest.icon} size={22} />}
-      {/* Done: the picture stays, a green check sits on its corner. */}
-      {quest.done && (
-        <span className="quest-check">
-          <CheckCircleIcon size={16} solid />
-        </span>
-      )}
-    </span>
-  )
-}
-
-/** Level and today's XP; both count up to their new values when you come back from a session. */
-function LevelStrip({ game, dailyXpGoal, onProfile }: { game: GameState; dailyXpGoal: number; onProfile: () => void }) {
-  const into = useCountUp(game.level.into, `into:${game.level.level}`)
-  const today = useCountUp(game.xp.today, 'today')
-  const progress = game.level.needed ? into / game.level.needed : 0
-  return (
-    <button className="level-strip" onClick={onProfile}>
-      <span className="level-badge">Sv. {game.level.level}</span>
-      <span className="level-strip-body">
-        <span className="level-strip-top">
-          <strong>{game.level.title}</strong>
-          <span className="small muted">
-            {Math.round(into).toLocaleString('tr-TR')} / {game.level.needed.toLocaleString('tr-TR')} XP
-          </span>
-        </span>
-        <span className="xp-bar xp-bar-sm">
-          <span style={{ width: `${Math.min(1, progress) * 100}%` }} />
-        </span>
-      </span>
-      {/* Once the day's goal is met a green seal stands by the day's XP (no "done" word beside a tick); the goal stays below it. */}
-      {today >= dailyXpGoal ? (
-        <span className="daily-goal is-done">
-          <span className="small muted">Bugün</span>
-          <strong>
-            <span className="daily-check" aria-hidden>
-              <CheckIcon size={12} />
-            </span>
-            {Math.round(today)} XP
-          </strong>
-          <span className="small muted">
-            <span className="sr-only">Günlük hedef tamam, </span>hedef {dailyXpGoal}
-          </span>
-        </span>
-      ) : (
-        <span className="daily-goal">
-          <span className="small muted">Bugün</span>
-          <strong>
-            {Math.round(today)}/{dailyXpGoal} XP
-          </strong>
-        </span>
-      )}
-    </button>
   )
 }

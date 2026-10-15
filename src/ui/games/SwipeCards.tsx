@@ -19,6 +19,7 @@ import { sfx } from '../sounds'
 import { playWord } from '../speech'
 import { useMediaUrl } from '../useMedia'
 import { type Props, recordPractice } from './shared'
+import { NEW_ART } from '../drawnArt'
 
 /** How far a card must travel (px) to count as a decision. */
 const SWIPE_COMMIT = 90
@@ -237,6 +238,7 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
     const percent = total ? Math.round((firstTry / total) * 100) : 0
     return (
       <div className="stack flash-done">
+        <img className="flash-done-art" src={NEW_ART.flashDone} alt="" height={128} draggable={false} />
         <h1 className="greeting">Tur bitti</h1>
         <div className="flash-result card">
           <span className="flash-ring" style={{ '--p': `${percent}%` } as CSSProperties} role="img" aria-label={`İlk seferde %${percent}`}>

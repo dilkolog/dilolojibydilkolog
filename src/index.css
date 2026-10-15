@@ -3279,7 +3279,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
 :is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
-  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art, .tile-art, .garden-pot) {
+  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art) {
   filter: var(--art-edge);
 }
 
@@ -4088,3 +4088,10 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .guide-progress { display: grid; gap: 0.5rem; }
 .guide-progress .row { flex-wrap: wrap; gap: 0.25rem 1rem; }
 .guide-card.guide-read { border-color: color-mix(in srgb, var(--ok) 45%, var(--rule)); }
+
+/* Set F drawings on Today: the guide's review, a streak to win back, friends. */
+.nudge-art { width: 30px; height: 30px; object-fit: contain; flex: none; }
+.streak-repair .link { display: inline-flex; align-items: center; gap: 0.5rem; text-align: left; }
+.friends-title { display: flex; align-items: center; gap: 0.5rem; }
+.friends-art { width: auto; flex: none; }
+.friends-empty { display: flex; align-items: center; gap: 0.75rem; }

@@ -3,7 +3,8 @@ import { dueLesson } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
 import type { TargetLanguage } from '../engine/types'
 import { loadMarks, markPutOff, saveMarks } from './guideProgress'
-import { CloseIcon, SchoolIcon } from './icons'
+import { CloseIcon } from './icons'
+import { NEW_ART } from './drawnArt'
 
 /**
  * Today: a lesson of the guide read or learned a while ago comes back for three short questions
@@ -31,7 +32,7 @@ export function GuideReviewNudge({ language, onOpen }: { language: TargetLanguag
   return (
     <div className="habit-nudge">
       <button type="button" className="habit-nudge-main" onClick={() => onOpen(due.topic)}>
-        <SchoolIcon size={18} />
+        <img className="nudge-art" src={NEW_ART.guideReview} alt="" width={30} height={30} draggable={false} />
         <span>
           <strong>Hatırlıyor musun?</strong> <span className="muted">“{due.title}” dersinden üç kısa soru.</span>
         </span>
