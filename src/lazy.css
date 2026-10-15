@@ -1816,4 +1816,4 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 /* Winning a streak back: the goal under the exam's title, and the outcome first on its result. */
 .repair-goal { margin: 0; color: var(--gold-text); font-weight: 600; }
 .repair-note { display: flex; align-items: center; gap: 0.75rem; }
-.repair-note.is-won { background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }
+.repair-note.repair-won { background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }

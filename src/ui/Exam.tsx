@@ -127,7 +127,7 @@ export function ExamScreen({
         {repair && repairing && (
           // The streak first: it is what this exam was taken for.
           score.actual >= REPAIR_MIN_SCORE ? (
-            <p className="note repair-note is-won">
+            <p className="note repair-note repair-won">
               <StreakPicture streak={repair.lost} size={40} /> <span>Serin geri geldi: <strong>{repair.lost} gün</strong>. Kaçırdığın gün artık seriyi bozmuyor.</span>
             </p>
           ) : (
