@@ -14,7 +14,7 @@ import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
 import { greetingFor, dayPart } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { AlertIcon, BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, GameIcon, MessageIcon, ShuffleIcon, SnowflakeIcon, SparkleIcon, StarIcon, StoryIcon, TargetIcon, TenseIcon, VerbReviewIcon } from './icons'
+import { BookIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, SnowflakeIcon, StarIcon, TargetIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
 
 import { RaceCard } from './Race'
@@ -30,7 +30,7 @@ import { useGame, type GameState } from './game'
 import { BadgeMedal } from './Medal'
 import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
-import { QUEST_ART, TIME_SCENE } from './drawnArt'
+import { QUEST_ART, TILE_ART, TIME_SCENE } from './drawnArt'
 import { Sticker } from './Sticker'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
@@ -441,7 +441,7 @@ export function Home({
               <>
                 <h2 className="hero-title">{answeredToday > 0 ? 'Güzel gidiyor, devam!' : 'Bugünün görevi'}</h2>
                 <p className="hero-sub">
-                  {remaining} soru, yaklaşık {plan.estimatedMinutes} dakika
+                  {remaining} soru · yaklaşık {plan.estimatedMinutes} dakika
                 </p>
                 <ul className="mission">
                   {REASONS.filter((r) => plan.counts[r] > 0).map((r) => (
@@ -456,36 +456,42 @@ export function Home({
                     </li>
                   ))}
                 </ul>
-                <button className="btn btn-lg" onClick={onStart} autoFocus>
-                  {answeredToday > 0 ? 'Devam et' : 'Başla'}
-                </button>
-                {/* A long day looks like a wall: the same day in 5 or 10 minutes is one tap away (a deep pile has its own short round below). */}
-                {onMinutes && !piled && plan.estimatedMinutes > 7 && (
-                  <p className="small mt-3 hero-minutes">
-                    Vaktin kısaysa:{' '}
-                    {[5, 10]
-                      .filter((m) => m + 2 < plan.estimatedMinutes)
-                      .map((m, i) => (
-                        <Fragment key={m}>
-                          {i > 0 && ' · '}
-                          <button type="button" className="link" onClick={() => onMinutes(m)}>
-                            {m} dakika
-                          </button>
-                        </Fragment>
-                      ))}
-                  </p>
-                )}
-                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
-                {piled ? (
-                  <p className="small mt-3 hero-long">
-                    {plan.dueTotal} tekrar birikmiş. Hepsini bugün bitirmen gerekmiyor: en çok unutulmak üzere olan {SHORT_ROUND} soruyla başla, kalanı sırada bekler.{' '}
-                    <button type="button" className="link" onClick={onShortRound}>
+                {/* One row of actions: the day, and the shorter way through it when there is one. */}
+                <div className="hero-actions">
+                  <button className="btn btn-lg" onClick={onStart} autoFocus>
+                    {answeredToday > 0 ? 'Devam et' : 'Başla'}
+                  </button>
+                  {piled ? (
+                    <button type="button" className="btn btn-quiet" onClick={onShortRound}>
                       Kısa tur ({SHORT_ROUND} soru)
                     </button>
+                  ) : (
+                    // A long day looks like a wall: the same day in 5 or 10 minutes is one tap away.
+                    onMinutes &&
+                    plan.estimatedMinutes > 7 && (
+                      <span className="hero-minutes small">
+                        Vaktin kısaysa:{' '}
+                        {[5, 10]
+                          .filter((m) => m + 2 < plan.estimatedMinutes)
+                          .map((m, i) => (
+                            <Fragment key={m}>
+                              {i > 0 && ' · '}
+                              <button type="button" className="link" onClick={() => onMinutes(m)}>
+                                {m} dakika
+                              </button>
+                            </Fragment>
+                          ))}
+                      </span>
+                    )
+                  )}
+                </div>
+                {piled ? (
+                  <p className="small hero-note">
+                    {plan.dueTotal} tekrar birikmiş. Hepsini bugün bitirmen gerekmiyor: kısa tur en çok unutulmak üzere olanlarla başlar, kalanı sırada bekler.
                   </p>
                 ) : long ? (
                   // A long day is the opposite of a time to add more: the lighter day, one tap away.
-                  <p className="small mt-3 hero-long">
+                  <p className="small hero-note">
                     Gün uzun. Günlük yeni kelime {newWordsPerDay}; {LIGHTER_NEW}'e indirirsen tekrarların birikmez ve günler kısalır.{' '}
                     <button type="button" className="link" onClick={onLowerNew}>
                       {LIGHTER_NEW}'e indir
@@ -494,7 +500,7 @@ export function Home({
                 ) : (
                   plan.newBlockedBy &&
                   plan.waitingNew > 0 && (
-                    <p className="small muted mt-3">
+                    <p className="small hero-note">
                       {plan.newEntryIds.length > 0 && plan.newBlockedBy === 'limit'
                         ? // Said, not urged: more new words a day is what makes days long.
                           `${plan.waitingNew} kelime daha sırada; her gün ${plan.newEntryIds.length} tanesiyle tanışıyorsun.`
@@ -502,6 +508,7 @@ export function Home({
                     </p>
                   )
                 )}
+                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
               </>
             ) : (
               <>
@@ -511,7 +518,6 @@ export function Home({
                   {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
                   {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
                 </p>
-                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
                 {plan.waitingNew > 0 ? (
                   <button className="btn btn-lg" onClick={onExtraNew}>
                     +{Math.min(5, plan.waitingNew)} yeni kelime öğren
@@ -521,6 +527,7 @@ export function Home({
                     Kelime ekle
                   </button>
                 )}
+                <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
               </>
             )}
           </div>
@@ -536,10 +543,8 @@ export function Home({
             <div className="tiles">
               {openMistakeWords > 0 && (
                 <button className="tile" onClick={onPracticeMistakes}>
-                  <span className="tile-icon bad">
-                    <AlertIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.mistakes} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Hatalarını düzelt</strong>
                     <span className="small muted">{openMistakeWords} kelimede açık hata</span>
                   </span>
@@ -547,21 +552,17 @@ export function Home({
               )}
               {weekMisses >= WEEK_MISSES_MIN && onWeekMisses && (
                 <button className="tile" onClick={onWeekMisses}>
-                  <span className="tile-icon warm">
-                    <ShuffleIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.weekMisses} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Bu haftanın hataları</strong>
-                    <span className="small muted">Son 7 günde yanıldığın {weekMisses} kelime, karışık sorularla bir kez daha · yaklaşık 5 dk</span>
+                    <span className="small muted">Son 7 günde yanıldığın {weekMisses} kelime · yaklaşık 5 dk</span>
                   </span>
                 </button>
               )}
               {difficultCount > 0 && onPracticeDifficult && (
                 <button className="tile" onClick={onPracticeDifficult}>
-                  <span className="tile-icon warm">
-                    <VerbReviewIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.difficult} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Zor kelimelerin</strong>
                     <span className="small muted">{difficultCount} kelime zor diye işaretli: ayrı bir çalışmada topla</span>
                   </span>
@@ -569,10 +570,8 @@ export function Home({
               )}
               {sentenceTile && onSentenceGame && (
                 <button className="tile" onClick={() => onSentenceGame(sentenceTile.due > 0 ? 'sentences' : 'back')}>
-                  <span className="tile-icon">
-                    <MessageIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={sentenceTile.due > 0 ? TILE_ART.sentences : TILE_ART.back} alt="" draggable={false} />
+                  <span className="tile-text">
                     {sentenceTile.due > 0 ? (
                       <>
                         <strong>Cümle kartları</strong>
@@ -589,10 +588,8 @@ export function Home({
               )}
               {onStory && (
                 <button className="tile" onClick={onStory}>
-                  <span className="tile-icon">
-                    <StoryIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.story} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Hikayenin yeni bölümü</strong>
                     <span className="small muted">Zorlandığın kelimelerle yazılır</span>
                   </span>
@@ -600,21 +597,17 @@ export function Home({
               )}
               {formsDue > 0 && onForms && (
                 <button className="tile" onClick={onForms}>
-                  <span className="tile-icon">
-                    <TenseIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.verbs} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Fiil çekimi tekrarı</strong>
-                    <span className="small muted">{formsDue} çekim unutulmak üzere: kısa bir tur (yaklaşık 2 dk)</span>
+                    <span className="small muted">{formsDue} çekim unutulmak üzere · yaklaşık 2 dk</span>
                   </span>
                 </button>
               )}
               {formsDue === 0 && warmup && onWarmup && (
                 <button className="tile" onClick={onWarmup}>
-                  <span className="tile-icon">
-                    <TenseIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.verbs} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Fiil ısınması</strong>
                     <span className="small muted">
                       En çok karıştırdığın: <span lang={language}>{warmup}</span>. Kısa bir hedefli tur (yaklaşık 2 dk)
@@ -624,34 +617,28 @@ export function Home({
               )}
               {formsDue === 0 && !(warmup && onWarmup) && verbOfDay && onVerbOfDay && (
                 <button className="tile" onClick={() => onVerbOfDay(verbOfDay.verb)}>
-                  <span className="tile-icon">
-                    <TenseIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.verbs} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>
                       Günün fiili: <span lang={language}>{verbOfDay.verb}</span>
                     </strong>
-                    <span className="small muted">{verbOfDay.gloss ? `${verbOfDay.gloss} · ` : ''}tablosuna bak, kısa bir alıştırma yap</span>
+                    <span className="small muted">{verbOfDay.gloss ? `${verbOfDay.gloss} · ` : ''}tablo ve kısa bir alıştırma</span>
                   </span>
                 </button>
               )}
               {onMixed && (
                 <button className="tile" onClick={onMixed}>
-                  <span className="tile-icon">
-                    <ShuffleIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.mixed} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Karışık tekrar</strong>
-                    <span className="small muted">Üç dilden {mixedDue} tekrar tek oturumda: dil değiştirmek ayırt etmeyi güçlendirir</span>
+                    <span className="small muted">Üç dilden {mixedDue} tekrar, tek oturumda karışık</span>
                   </span>
                 </button>
               )}
               {remaining === 0 && onGames && (
                 <button className="tile" onClick={onGames}>
-                  <span className="tile-icon">
-                    <GameIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.games} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Oyunlar</strong>
                     <span className="small muted">Tekrar, dinleme, hız ve dilbilgisi oyunları</span>
                   </span>
@@ -659,10 +646,8 @@ export function Home({
               )}
               {remaining === 0 && canPractice && (
                 <button className="tile" onClick={onFreePractice}>
-                  <span className="tile-icon">
-                    <SparkleIcon size={22} />
-                  </span>
-                  <span>
+                  <img className="tile-art" src={TILE_ART.free} alt="" draggable={false} />
+                  <span className="tile-text">
                     <strong>Serbest pratik</strong>
                     <span className="small muted">Stressiz, hiçbir şeyi etkilemez</span>
                   </span>
@@ -804,7 +789,13 @@ export function Home({
 function QuestIcon({ quest }: { quest: { id: string; icon: string; done: boolean } }) {
   return (
     <span className="quest-icon">
-      {quest.done ? <CheckCircleIcon size={22} /> : QUEST_ART[quest.id] ? <img className="quest-art" src={QUEST_ART[quest.id]} alt="" width={28} height={28} /> : <Glyph emoji={quest.icon} size={22} />}
+      {QUEST_ART[quest.id] ? <img className="quest-art" src={QUEST_ART[quest.id]} alt="" width={28} height={28} /> : <Glyph emoji={quest.icon} size={22} />}
+      {/* Done: the picture stays, a green check sits on its corner. */}
+      {quest.done && (
+        <span className="quest-check">
+          <CheckCircleIcon size={16} solid />
+        </span>
+      )}
     </span>
   )
 }

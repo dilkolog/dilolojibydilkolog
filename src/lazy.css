@@ -1506,6 +1506,13 @@ button.badge-card:active { transform: none; }
 .grammar-word:disabled { cursor: default; }
 .reflex-bar > div { width: 100%; transition: none; transform-origin: left; animation: reflex-drain var(--reflex-s, 3s) linear forwards; }
 .chip-list li.trap-chip { background: var(--near-soft); color: var(--near-text); }
+/* Above a word (dictionary and word page): its facts as plain text from the same left edge as the word,
+   kept apart by dots; a trap or a collocation is a line of its own. No pills: their padding pushed the text off the edge. */
+.word-hero-main .chip-list { gap: 0.25rem 0; align-items: baseline; }
+.word-hero-main .chip-list li { padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.word-hero-main .chip-list li:not(.trap-chip, .colloc-chip) + li:not(.trap-chip, .colloc-chip)::before { content: '·'; margin: 0 0.5rem; color: var(--ink-soft); opacity: 0.6; }
+.word-hero-main .chip-list li.trap-chip, .word-hero-main .chip-list li.colloc-chip { flex-basis: 100%; }
+.word-hero-main .chip-list li.trap-chip { background: none; color: var(--near-text); font-weight: 600; }
 @media (min-width: 64rem) { .profile-settings { display: none; } }
 .blind-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
 .blind-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow-sm); }

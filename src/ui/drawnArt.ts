@@ -133,6 +133,15 @@ import reactHello from '../assets/art/react-hello.webp'
 import reactNewword from '../assets/art/react-newword.webp'
 import reactOops from '../assets/art/react-oops.webp'
 import roleCafe from '../assets/art/role-cafe.webp'
+import headStoryArt from '../assets/art/head-story.webp'
+import headGamesArt from '../assets/art/head-games.webp'
+import headMistakesArt from '../assets/art/head-mistakes.webp'
+import tileCards from '../assets/art/game-cards.webp'
+import tileBolt from '../assets/art/game-bolt.webp'
+import tileStrip from '../assets/art/game-strip.webp'
+import tileSwap from '../assets/art/game-swap.webp'
+import tileGear from '../assets/art/game-gear.webp'
+import tileFlags from '../assets/art/onb-flags.webp'
 import bossBlob from '../assets/art/boss-blob.webp'
 import bossDragon from '../assets/art/boss-dragon.webp'
 import bossSlime from '../assets/art/boss-slime.webp'
@@ -283,6 +292,25 @@ export const QUEST_ART: Record<string, string> = {
   noHintCorrect: questNohint,
   reading: questRead,
   speaking: questSpeak,
+  // The week's challenges share the ids that count the same thing, and add their own.
+  studyDays: emFlame,
+  bossWins: bossBlob,
+  textsRead: questRead,
+  journalEntries: emBook,
+}
+
+/** The extra-study tiles on Today (Ek çalışma), by what each one opens. */
+export const TILE_ART = {
+  mistakes: headMistakesArt,
+  weekMisses: tileCards,
+  difficult: tileBolt,
+  sentences: tileStrip,
+  back: tileSwap,
+  story: headStoryArt,
+  verbs: tileGear,
+  mixed: tileFlags,
+  games: headGamesArt,
+  free: stickerThumbs,
 }
 
 /** Covers for word lists; a list gets the one its name suggests (Turkish, English, French or Spanish). */
