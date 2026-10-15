@@ -1,0 +1,461 @@
+[
+  {
+    "id": "en-inversion-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Seldom ___ such an impressive display of natural talent.",
+    "answer": "have we witnessed",
+    "options": [
+      "have we witnessed",
+      "we have witnessed",
+      "we witnessed"
+    ],
+    "hint": "seldom + yardımcı fiil + özne",
+    "explanation": "Cümle başında 'Seldom' gibi olumsuz/sınırlandırıcı bir zarf kullanıldığında devrik yapı uygulanır: Seldom + have + we + witnessed.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "No sooner had the keynote speech concluded ___ the audience gave a standing ovation.",
+    "answer": "than",
+    "options": [
+      "than",
+      "when",
+      "that"
+    ],
+    "hint": "no sooner ... than kalıbı",
+    "explanation": "'No sooner had ...' yapısı ikinci cümleye 'than' bağlacı ile bağlanır ('hardly/scarcely ... when' ile karıştırılmamalıdır).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-16",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Only after reading the confidential report ___ realize the gravity of the crisis.",
+    "answer": "did they",
+    "options": [
+      "did they",
+      "they did",
+      "they had"
+    ],
+    "hint": "only after + yan cümle → ana cümlede devrik yapı",
+    "explanation": "'Only after' ile başlayan zaman ifadesi ana cümleyi devrik yapar; geçmiş zaman için yardımcı fiil 'did' başa gelir: did they realize.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-17",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "At no time ___ informed about the changes made to the project itinerary.",
+    "answer": "was the team",
+    "options": [
+      "was the team",
+      "the team was",
+      "the team were"
+    ],
+    "hint": "at no time (asla/hiçbir zaman) + devrik yapı",
+    "explanation": "'At no time' olumsuz zaman zarfı cümle başında devrik yapı gerektirir: At no time + was + the team + informed.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-18",
+    "language": "en",
+    "level": "B2",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Not only ___ win the international award, but she also secured research funding.",
+    "answer": "did she",
+    "options": [
+      "did she",
+      "she did",
+      "she had"
+    ],
+    "hint": "not only ... but also devrik yapısı",
+    "explanation": "'Not only' cümle başında yer aldığında ilk cümle devrik kurulur (yardımcı fiil + özne): Not only did she win...",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "What struck me most about his speech ___ his complete lack of empathy.",
+    "answer": "was",
+    "options": [
+      "was",
+      "were",
+      "being"
+    ],
+    "hint": "wh- cleft cümlesinde fiil uyumu (tekil kavram)",
+    "explanation": "'What struck me most' cümlesi soyut ve tekil bir durumu nitelediği için tekil 'was' fiili ile tamamlanır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "It was because of heavy fog ___ all departing flights were canceled.",
+    "answer": "that",
+    "options": [
+      "that",
+      "which",
+      "what"
+    ],
+    "hint": "it was ... that neden vurgusu",
+    "explanation": "Cleft cümlelerinde neden zarfını vurgularken 'It is/was [neden] that ...' kalıbı kullanılır; 'which' veya 'what' bağlanamaz.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-16",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "All that we ask for ___ a fair opportunity to present our proposal.",
+    "answer": "is",
+    "options": [
+      "is",
+      "are",
+      "being"
+    ],
+    "hint": "all that ... yapısında tekil fiil",
+    "explanation": "'All that ...' (tüm istediğimiz/sorduğumuz şey) yapısı tekil bir kavramı ifade ettiğinden 'is' alır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-17",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "It is the marketing department ___ needs a complete structural reorganization.",
+    "answer": "that",
+    "options": [
+      "that",
+      "where",
+      "what"
+    ],
+    "hint": "it is ... that/who yarık cümle vurgusu",
+    "explanation": "İtibariyle özne konumundaki bir departmanı vurgularken 'that' kullanılır; yer anlamı olmadığından 'where' gelemez.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-18",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "What we really appreciated ___ the detailed feedback provided by the reviewer.",
+    "answer": "was",
+    "options": [
+      "was",
+      "were",
+      "are"
+    ],
+    "hint": "wh- cleft cümlesi geçmiş zaman tekil uyumu",
+    "explanation": "Geçmişte takdir edilen durum tek bir somut geri bildirim bütünü olduğu için geçmiş zaman tekil fiili 'was' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If Mark hadn't lost all his money in stocks, he ___ in a rented apartment today.",
+    "answer": "wouldn't be living",
+    "options": [
+      "wouldn't be living",
+      "wouldn't have lived",
+      "hadn't lived"
+    ],
+    "hint": "geçmişteki şart (type 3) → şu anki sonuç (type 2 continuous)",
+    "explanation": "Geçmişteki gerçekleşmeyen durumun (hadn't lost) şu ana uzanan devam eden sonucunu belirtmek için 'wouldn't be living' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If I were more fluent in Spanish, I ___ that job offer in Madrid last month.",
+    "answer": "would have accepted",
+    "options": [
+      "would have accepted",
+      "would accept",
+      "accepted"
+    ],
+    "hint": "genel/şu anki durum (type 2) → geçmişteki sonuç (type 3)",
+    "explanation": "Şu anki genel bir yetersizliğin (if I were fluent) geçmişteki bir karara etkisini ifade ederken sonuç cümlesinde 'would have + V3' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-16",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "They wouldn't be stranded on the mountain now if they ___ the weather forecast.",
+    "answer": "had checked",
+    "options": [
+      "had checked",
+      "checked",
+      "would check"
+    ],
+    "hint": "şu anki sonuç (wouldn't be) ← geçmişteki ihmal (had checked)",
+    "explanation": "Şu an dağda mahsur kalma durumu, geçmişte hava tahminini kontrol etmemenin bir sonucudur; bu yüzden şart cümlesi past perfect (had checked) olur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-17",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If she hadn't broken her ankle during practice, she ___ in the championship today.",
+    "answer": "would be competing",
+    "options": [
+      "would be competing",
+      "would have competed",
+      "had competed"
+    ],
+    "hint": "geçmişteki olay → bugünkü durum (today)",
+    "explanation": "Geçmişte meydana gelen sakatlık (hadn't broken), bugünkü şampiyonada yarışamama durumuna sebep olmuştur; bu karma şartta 'would be competing' doğrudur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-13",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "The committee insisted that each member ___ present at the emergency vote.",
+    "answer": "be",
+    "options": [
+      "be",
+      "is",
+      "was"
+    ],
+    "hint": "insist that + subjunctive (yalın fiil)",
+    "explanation": "'Insist that' yapısından sonra subjunctive (fiilin yalın hali / base form) gelir; tekil öznede bile 'be' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "It is crucial that the laboratory assistant ___ the samples without delay.",
+    "answer": "examine",
+    "options": [
+      "examine",
+      "examines",
+      "examined"
+    ],
+    "hint": "it is crucial that + base verb",
+    "explanation": "Önem/zorunluluk bildiren sıfatlardan ('crucial that') sonra gelen cümlecikte özne 3. tekil şahıs olsa dahi fiil -s takısı almaz: examine.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "The supervisor proposed that he ___ a formal written apology to the client.",
+    "answer": "send",
+    "options": [
+      "send",
+      "sends",
+      "sent"
+    ],
+    "hint": "propose that + subjunctive",
+    "explanation": "'Propose that' gibi öneri ve talep fiilleri arkasından gelen isim cümleciğinde subjunctive gerektirir: he send.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-16",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "We requested that the company accountant ___ all financial records for review.",
+    "answer": "provide",
+    "options": [
+      "provide",
+      "provides",
+      "provided"
+    ],
+    "hint": "request that + bare infinitive",
+    "explanation": "İngilizce mandative subjunctive kuralına göre 'request that' ardından fiil yalın halde (bare form) kalır: provide.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-17",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "It is mandatory that every international passenger ___ a valid visa upon arrival.",
+    "answer": "have",
+    "options": [
+      "have",
+      "has",
+      "had"
+    ],
+    "hint": "it is mandatory that + base form",
+    "explanation": "'It is mandatory that' yapısında özne tekil olsa dahi fiil çekimlenmez, yalın hali kullanılır: every passenger have.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ for over ten miles in the sweltering heat, the hikers were utterly exhausted.",
+    "answer": "Having walked",
+    "options": [
+      "Having walked",
+      "Walking",
+      "Walked"
+    ],
+    "hint": "daha önce tamamlanmış aktif eylem (perfect participle)",
+    "explanation": "Yürüyüşün ana eylemden (exhausted) önce tamamlandığını belirtmek için perfect participle ('Having walked') kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ by prestigious scholars, the research paper gained worldwide recognition.",
+    "answer": "Praised",
+    "options": [
+      "Praised",
+      "Praising",
+      "Having praised"
+    ],
+    "hint": "edilgen kısaltma (past participle / V3)",
+    "explanation": "Makale övgü alan (edilgen) taraf olduğu için cümle başında past participle (V3) 'Praised' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-16",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ to catch the early flight, David accidentally forgot his briefcase at home.",
+    "answer": "Rushing",
+    "options": [
+      "Rushing",
+      "Rushed",
+      "Having rushed"
+    ],
+    "hint": "eşzamanlı aktif eylem (present participle / -ing)",
+    "explanation": "Aynı anda gerçekleşen aktif eylemi kısaltırken present participle (-ing) kullanılır: 'Rushing to catch...'.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-17",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ by severe flooding, the main highway remained closed for three consecutive days.",
+    "answer": "Damaged",
+    "options": [
+      "Damaged",
+      "Damaging",
+      "Having damaged"
+    ],
+    "hint": "edilgen sebep kısaltması (V3)",
+    "explanation": "Otoyol sel sebebiyle zarar gördüğü (pasif konumda olduğu) için past participle 'Damaged' ile başlar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-13",
+    "language": "en",
+    "level": "B1",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "He stopped at the convenience store ___ some bottled water for the trip.",
+    "answer": "to buy",
+    "options": [
+      "to buy",
+      "buying",
+      "bought"
+    ],
+    "hint": "stop to do (amaç için durmak)",
+    "explanation": "'Stop to do', bir eylemi gerçekleştirmek için durmak (amaç) anlamına gelir. 'Stop doing' ise yapılan işi bırakmaktır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-14",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "We really appreciate you ___ the time to help us resolve the technical issue.",
+    "answer": "taking",
+    "options": [
+      "taking",
+      "to take",
+      "take"
+    ],
+    "hint": "appreciate + gerund (-ing)",
+    "explanation": "'Appreciate' fiilinden sonra nesne gelse dahi daima gerund (-ing) kullanılır: appreciate (you/your) taking.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-15",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "I regret ___ you that your application for the grant was not successful.",
+    "answer": "to inform",
+    "options": [
+      "to inform",
+      "informing",
+      "inform"
+    ],
+    "hint": "regret to inform (üzülerek bildirmek)",
+    "explanation": "'Regret to do', üzücü bir haberi verirken kullanılır ('üzülerek belirtirim ki'). 'Regret doing' ise geçmişteki bir eylemden pişmanlıktır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-16",
+    "language": "en",
+    "level": "B1",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "They refused ___ any questions without the presence of their legal counsel.",
+    "answer": "to answer",
+    "options": [
+      "to answer",
+      "answering",
+      "answer"
+    ],
+    "hint": "refuse + infinitive (to + verb)",
+    "explanation": "'Refuse' (reddetmek) fiili arkasından daima 'to + infinitive' yapısı alır: refuse to answer.",
+    "source": "Diloloji (özgün)"
+  }
+]

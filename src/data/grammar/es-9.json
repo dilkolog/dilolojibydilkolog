@@ -1,0 +1,427 @@
+[
+  {
+    "id": "es-subjuntivo-14",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Quiero que tú ___ la verdad sobre lo que ocurrió ayer.",
+    "answer": "sepas",
+    "options": [
+      "sepas",
+      "sabes",
+      "sabrás"
+    ],
+    "hint": "querer que + subjuntivo presente (saber)",
+    "explanation": "İstek bildiren « querer que » yapısından sonra subjuntivo kullanılır. Saber fiilinin tú için subjuntivo çekimi « sepas » olur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-subjuntivo-15",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "No creo que Juan ___ tiempo de terminar el informe hoy.",
+    "answer": "tenga",
+    "options": [
+      "tenga",
+      "tiene",
+      "tendrá"
+    ],
+    "hint": "no creer que → subjuntivo",
+    "explanation": "İnanç fiilleri olumsuz olduğunda (« no creer que ») şüphe içerdiği için subjuntivo gerektirir: tener → tenga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-subjuntivo-16",
+    "language": "es",
+    "level": "B2",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Te llamaré por teléfono en cuanto nosotros ___ al hotel.",
+    "answer": "lleguemos",
+    "options": [
+      "lleguemos",
+      "llegamos",
+      "llegaremos"
+    ],
+    "hint": "en cuanto + geleceğe yönelik eylem → subjuntivo",
+    "explanation": "« En cuanto » (yapar yapmaz) geleceğe dönük bir eyleme bağlandığında daima subjuntivo ile kullanılır: nosotros lleguemos.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-subjuntivo-17",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Ojalá mañana no ___ tanto calor durante la carrera.",
+    "answer": "haga",
+    "options": [
+      "haga",
+      "hace",
+      "hará"
+    ],
+    "hint": "ojalá + subjuntivo presente",
+    "explanation": "Dilek bildiren « ojalá » ünleminden sonra her zaman subjuntivo kipi gelir: hacer → haga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-subjuntivo-18",
+    "language": "es",
+    "level": "B2",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Dudo mucho que ellos ___ capaces de resolver este problema solos.",
+    "answer": "sean",
+    "options": [
+      "sean",
+      "son",
+      "serán"
+    ],
+    "hint": "dudar que → subjuntivo",
+    "explanation": "Şüphe bildiren « dudar que » fiili her zaman subjuntivo gerektirir: ser → sean.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-ser_estar-14",
+    "language": "es",
+    "level": "B1",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "Mi hermano ___ muy cansado después de trabajar diez horas seguidas.",
+    "answer": "está",
+    "options": [
+      "está",
+      "es",
+      "sea"
+    ],
+    "hint": "geçici fiziksel durum (estar)",
+    "explanation": "Geçici fiziksel veya ruhsal durumlarda 'estar' fiili kullanılır: estar cansado (yorgun olmak).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-ser_estar-15",
+    "language": "es",
+    "level": "B1",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "La conferencia internacional de medicina ___ en el auditorio principal.",
+    "answer": "es",
+    "options": [
+      "es",
+      "está",
+      "esté"
+    ],
+    "hint": "etkinlik ve organizasyon yeri (ser)",
+    "explanation": "Bir olayın, toplantının veya etkinliğin nerede gerçekleştiğini belirtirken 'estar' değil 'ser' kullanılır: la fiesta/conferencia es en...",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-ser_estar-16",
+    "language": "es",
+    "level": "B1",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "Estas manzanas verdes todavía ___ muy ácidas porque no han madurado.",
+    "answer": "están",
+    "options": [
+      "están",
+      "son",
+      "sean"
+    ],
+    "hint": "tat alma ve geçici olgunluk durumu",
+    "explanation": "Yiyeceklerin o anki tadı veya olgunlaşma aşamasındaki durumundan bahsederken 'estar' kullanılır: están ácidas.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-por_para-14",
+    "language": "es",
+    "level": "B1",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "He estudiado mucho esta semana ___ poder aprobar el examen final.",
+    "answer": "para",
+    "options": [
+      "para",
+      "por",
+      "de"
+    ],
+    "hint": "amaç ve hedef bildirme (para + infinitivo)",
+    "explanation": "Bir eylemin amacını ('-mek için') belirtirken 'para + mastar' kullanılır: para poder aprobar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-por_para-15",
+    "language": "es",
+    "level": "B1",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "Tuvimos que quedarnos en casa ___ culpa de la fuerte tormenta.",
+    "answer": "por",
+    "options": [
+      "por",
+      "para",
+      "a"
+    ],
+    "hint": "sebep ve gerekçe (por culpa de)",
+    "explanation": "Sebep, gerekçe ve neden bildiren durumlarda 'por' edatı kullanılır: por culpa de la tormenta.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-por_para-16",
+    "language": "es",
+    "level": "B1",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "El informe financiero debe estar terminado ___ el próximo viernes.",
+    "answer": "para",
+    "options": [
+      "para",
+      "por",
+      "en"
+    ],
+    "hint": "son teslim tarihi (deadline)",
+    "explanation": "Gelecekteki son teslim tarihini veya vadesini belirtirken 'para' edatı kullanılır: para el viernes.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-por_para-17",
+    "language": "es",
+    "level": "B1",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "Todos los días camino ___ el parque camino al trabajo.",
+    "answer": "por",
+    "options": [
+      "por",
+      "para",
+      "de"
+    ],
+    "hint": "içinden / boyunca geçme (yer)",
+    "explanation": "Bir yerin içinden, arasından veya boyunca geçmeyi ifade ederken 'por' kullanılır: caminar por el parque.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-se_pasivo-13",
+    "language": "es",
+    "level": "B1",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "En este restaurante típico ___ paella valenciana los domingos.",
+    "answer": "se sirve",
+    "options": [
+      "se sirve",
+      "se sirven",
+      "sirve"
+    ],
+    "hint": "tekil nesne ile pasiva refleja",
+    "explanation": "Sözde özne tekil olduğunda (la paella) 'se'li pasif fiil de 3. tekil şahıs olur: se sirve paella.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-se_pasivo-14",
+    "language": "es",
+    "level": "B1",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "En la biblioteca no ___ hablar en voz alta.",
+    "answer": "se permite",
+    "options": [
+      "se permite",
+      "se permiten",
+      "permiten"
+    ],
+    "hint": "kişisiz yasaklama (se + mastardan önce tekil)",
+    "explanation": "Fiil bir mastarı (hablar) nitelediğinde kişisiz pasif yapı 3. tekil şahısta kalır: no se permite hablar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-se_pasivo-15",
+    "language": "es",
+    "level": "B1",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "Aquí ___ coches usados en muy buen estado a precios razonables.",
+    "answer": "se venden",
+    "options": [
+      "se venden",
+      "se vende",
+      "venden"
+    ],
+    "hint": "çoğul sözde özne (los coches)",
+    "explanation": "Pasiva refleja yapısında sözde özne çoğulsa (coches usados) fiil de çoğul çekimlenir: se venden coches.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-se_pasivo-16",
+    "language": "es",
+    "level": "B2",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "Desde la cima de la montaña ___ las luces de toda la ciudad.",
+    "answer": "se veían",
+    "options": [
+      "se veían",
+      "se veía",
+      "veían"
+    ],
+    "hint": "geçmişte çoğul sözde özne (las luces)",
+    "explanation": "Çoğul özne (las luces) ile kullanılan pasiva refleja yapısında fiil çoğul olur: se veían las luces.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-14",
+    "language": "es",
+    "level": "B2",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si tuviera más dinero ahorrado, me ___ un coche nuevo este mes.",
+    "answer": "compraría",
+    "options": [
+      "compraría",
+      "compraré",
+      "compraba"
+    ],
+    "hint": "si + imperfecto de subjuntivo → condicional simple",
+    "explanation": "Gerçek dışı 2. tip şart kalıbında 'si + imperfecto de subjuntivo' yapısını ana cümlede condicional simple takip eder: me compraría.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-15",
+    "language": "es",
+    "level": "B2",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si hubieras llegado a tiempo, ___ conocido a nuestro nuevo vecino.",
+    "answer": "habrías",
+    "options": [
+      "habrías",
+      "habías",
+      "hayas"
+    ],
+    "hint": "si + pluscuamperfecto de subjuntivo → condicional compuesto",
+    "explanation": "Geçmişte gerçekleşmemiş 3. tip şart cümlesinde ana cümle condicional compuesto gerektirir: habrías conocido.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-16",
+    "language": "es",
+    "level": "B1",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si estudias con dedicación todos los días, ___ el examen con facilidad.",
+    "answer": "aprobarás",
+    "options": [
+      "aprobarás",
+      "aprobarías",
+      "aprobases"
+    ],
+    "hint": "si + presente de indicativo → futuro simple",
+    "explanation": "Gerçekleşmesi olası 1. tip şart cümlelerinde 'si + presente' ana cümlede futuro simple ister: aprobarás.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-17",
+    "language": "es",
+    "level": "B2",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Te acompañaría al médico esta tarde si no ___ que trabajar hasta tarde.",
+    "answer": "tuviera",
+    "options": [
+      "tuviera",
+      "tengo",
+      "tendré"
+    ],
+    "hint": "condicional simple + si → imperfecto de subjuntivo",
+    "explanation": "Ana cümlesi condicional simple olan varsayımsal şart cümlelerinde 'si'den sonra imperfecto de subjuntivo gelir: si no tuviera.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-18",
+    "language": "es",
+    "level": "B2",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si nosotros ___ el mapa en casa, no nos habríamos perdido en el bosque.",
+    "answer": "hubiéramos dejado",
+    "options": [
+      "hubiéramos dejado",
+      "habríamos dejado",
+      "dejáramos"
+    ],
+    "hint": "si + pluscuamperfecto de subjuntivo (geçmiş şart)",
+    "explanation": "Geçmişteki gerçekleşmemiş şartı anlatan 'si' cümlesinde pluscuamperfecto de subjuntivo kullanılır: si hubiéramos dejado.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-perifrasis-13",
+    "language": "es",
+    "level": "B1",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "El tren acaba ___ salir de la estación central hace apenas dos minutos.",
+    "answer": "de",
+    "options": [
+      "de",
+      "a",
+      "en"
+    ],
+    "hint": "acabar + de + infinitivo (az önce biten eylem)",
+    "explanation": "Henüz yeni tamamlanmış bir eylemi ifade ederken 'acabar + de + mastar' perifrasisi kullanılır: acaba de salir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-perifrasis-14",
+    "language": "es",
+    "level": "B1",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "Mi padre dejó ___ fumar hace más de cinco años y se siente genial.",
+    "answer": "de",
+    "options": [
+      "de",
+      "a",
+      "por"
+    ],
+    "hint": "dejar + de + infinitivo (eylemi bırakma)",
+    "explanation": "Bir alışkanlığı veya eylemi sonlandırmayı anlatan perifrasi 'dejar + de + mastar' şeklindedir: dejó de fumar.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-perifrasis-15",
+    "language": "es",
+    "level": "B1",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "Cuando escuchó la divertida noticia, ella se echó ___ reír sin parar.",
+    "answer": "a",
+    "options": [
+      "a",
+      "de",
+      "en"
+    ],
+    "hint": "echarse + a + infinitivo (aniden başlama)",
+    "explanation": "Bir eyleme aniden ve coşkuyla başlamayı ifade ederken 'echarse + a + mastar' kullanılır: se echó a reír.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-perifrasis-16",
+    "language": "es",
+    "level": "B1",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "Tengo ___ estudiar mucho más si quiero conseguir esa prestigiosa beca.",
+    "answer": "que",
+    "options": [
+      "que",
+      "de",
+      "a"
+    ],
+    "hint": "tener + que + infinitivo (kişisel zorunluluk)",
+    "explanation": "Kişisel gereklilik ve zorunluluk bildiren temel perifrasi 'tener + que + mastar' biçimindedir: tengo que estudiar.",
+    "source": "Diloloji (özgün)"
+  }
+]
