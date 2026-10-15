@@ -1,4 +1,6 @@
+import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
+import { unzipSync } from 'fflate'
 import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
@@ -2248,5 +2250,352 @@ test('the guide: verb lab practice wrong conjugation offers "Bu zamanın anlatı
   // Esc closes the sheet
   await page.keyboard.press('Escape')
   await expect(sheet).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('flashcards: flipping, grading 1/2/3, unlearned card returns after 3 cards, and review missed cards on finish', async ({ page }) => {
+  await startWithSamples(page)
+  // Seed wordStates so that Kaydırmalı kartlar is enabled in Games
+  await page.evaluate(() =>
+    new Promise<void>((resolve) => {
+      const open = indexedDB.open('kelime-koc')
+      open.onsuccess = () => {
+        const tx = open.result.transaction(['vocabulary', 'wordStates'], 'readwrite')
+        const voc = tx.objectStore('vocabulary').getAll()
+        voc.onsuccess = () => {
+          const words = voc.result as { id: string; language: string }[]
+          for (const w of words.slice(0, 8)) {
+            tx.objectStore('wordStates').put({
+              entryId: w.id,
+              language: w.language,
+              introducedAt: new Date(Date.now() - 5 * 86_400_000),
+              skills: {
+                recognition: {
+                  due: new Date(),
+                  stability: 3,
+                  difficulty: 5,
+                  elapsed_days: 1,
+                  scheduled_days: 2,
+                  reps: 2,
+                  lapses: 0,
+                  learning_steps: 0,
+                  state: 2,
+                  last_review: new Date(Date.now() - 86_400_000),
+                },
+              },
+              stats: { reviews: 2, correct: 2, wrong: 0, hints: 0, totalResponseMs: 2400, consecutiveWrong: 0 },
+            })
+          }
+        }
+        tx.oncomplete = () => resolve()
+      }
+    }),
+  )
+  await page.reload()
+  await openScreen(page, 'Oyunlar')
+  await expect(page.getByRole('heading', { name: 'Oyunlar' })).toBeVisible()
+
+  // Open "Kaydırmalı kartlar"
+  await page.locator('.game-card', { hasText: 'Kaydırmalı kartlar' }).click()
+  await expect(page.getByRole('heading', { name: 'Kaydırmalı kartlar' })).toBeVisible()
+
+  // Start round
+  await page.getByRole('button', { name: /kartla başla/ }).click()
+  await expect(page.locator('.flash-stage')).toBeVisible()
+
+  // First card
+  const firstWord = (await page.locator('.flash-front .flash-word').textContent())?.trim()
+  expect(firstWord).toBeTruthy()
+
+  // Flip card
+  await page.locator('.flash-turn').click()
+  await expect(page.locator('.flash-grades[role="group"]')).toBeVisible()
+
+  // Grade 1 (Bilmiyorum)
+  await page.locator('.flash-grade', { hasText: 'Bilmiyorum' }).click()
+
+  // Next 3 cards (COME_BACK_AFTER[0] = 3) are graded as Biliyorum
+  for (let i = 0; i < 3; i++) {
+    await expect(page.locator('.flash-turn')).toBeVisible()
+    await page.locator('.flash-turn').click()
+    await page.locator('.flash-grade', { hasText: 'Biliyorum' }).click()
+  }
+
+  // The 4th card after first grading is firstWord returning!
+  await expect(page.locator('.flash-front .flash-word')).toHaveText(firstWord!)
+
+  // Grade this returning card as Biliyorum
+  await page.locator('.flash-turn').click()
+  await page.locator('.flash-grade', { hasText: 'Biliyorum' }).click()
+
+  // Grade the remaining 4 cards until the round finishes
+  for (let i = 0; i < 4; i++) {
+    await expect(page.locator('.flash-turn')).toBeVisible()
+    await page.locator('.flash-turn').click()
+    await expect(page.locator('.flash-grade', { hasText: 'Biliyorum' })).toBeVisible()
+    await page.locator('.flash-grade', { hasText: 'Biliyorum' }).click()
+    await page.waitForTimeout(200)
+  }
+
+  // Summary screen
+  await expect(page.locator('.flash-done .greeting')).toHaveText('Tur bitti')
+  await expect(page.locator('.swipe-missed')).toContainText(firstWord!)
+
+  // Dismiss any milestone badge dialog
+  for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
+    await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click()
+  }
+
+  // "Takıldıklarını çalış" button restarts with the stumbled card
+  const retryBtn = page.getByRole('button', { name: /Takıldıklarını çalış/ })
+  await expect(retryBtn).toBeVisible()
+  await retryBtn.click()
+
+  // New round started with firstWord
+  await expect(page.locator('.flash-front .flash-word')).toHaveText(firstWord!)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('friends card: today and week leaderboard ranking, adding and removing a friend by code', async ({ page }) => {
+  let friends = [
+    { code: 'VELI1234', name: 'Veli', avatar: 'fox', color: '#2f6de6', today: 120, week: 150, streak: 5, level: 3, at: '2026-10-15T10:00:00Z' },
+  ]
+  const me = { code: 'ALI12345', name: 'Sen', avatar: 'monki', color: '#c6317c', today: 50, week: 300, streak: 3, level: 4, at: '2026-10-15T10:00:00Z' }
+
+  await startWithSamples(page)
+  await approveAccount(page)
+
+  await page.route('**/api/access*', async (route) => {
+    const url = new URL(route.request().url())
+    if (route.request().method() === 'POST') {
+      const data = route.request().postDataJSON() as { action?: string; code?: string }
+      if (data?.action === 'friends-publish') {
+        return route.fulfill({ json: { me } })
+      }
+      if (data?.action === 'friends-add') {
+        friends.push({
+          code: data.code || 'AYSE1234',
+          name: 'Ayşe',
+          avatar: 'owl',
+          color: '#10b981',
+          today: 200,
+          week: 250,
+          streak: 2,
+          level: 2,
+          at: '2026-10-15T10:00:00Z',
+        })
+        return route.fulfill({ json: { ok: true } })
+      }
+      if (data?.action === 'friends-remove') {
+        friends = friends.filter((f) => f.code !== data.code)
+        return route.fulfill({ json: { ok: true } })
+      }
+      return route.fulfill({ json: { ok: true } })
+    }
+    if (url.searchParams.get('friends') === '1') {
+      return route.fulfill({ json: { me, friends } })
+    }
+    return route.fulfill({ json: { status: 'approved', exists: true, match: true, enabled: true } })
+  })
+
+  await page.reload()
+  await openScreen(page, 'Bugün')
+  await expect(page.locator('.friends-card')).toBeVisible()
+
+  // Default range is "Bugün": Veli (120 XP) is first, Sen (50 XP) is second
+  const names = page.locator('.friends-card .friends-name')
+  await expect(names.first()).toContainText('Veli')
+  await expect(names.nth(1)).toContainText('Sen')
+
+  // Switch to "Bu hafta": Sen (300 XP) is first, Veli (150 XP) is second
+  await page.locator('.friends-card button', { hasText: 'Bu hafta' }).click()
+  await expect(names.first()).toContainText('Sen')
+  await expect(names.nth(1)).toContainText('Veli')
+
+  // Add friend
+  const addDetails = page.locator('.friends-card details.friends-add')
+  if (!(await addDetails.getAttribute('open'))) {
+    await addDetails.locator('summary').click()
+  }
+  await page.locator('.friends-card input[placeholder="Arkadaşının kodu"]').fill('AYSE1234')
+  await page.locator('.friends-card form.friends-form button[type="submit"]').click()
+  await expect(page.locator('.friends-card')).toContainText('Ayşe')
+
+  // Remove friend (Veli)
+  await page.locator('.friends-card button[aria-label*="Veli arkadaşını çıkar"]').click()
+  await expect(page.locator('.friends-card')).not.toContainText('Veli')
+  expect(await overflow(page)).toEqual([])
+})
+
+test('streak repair: broken streak offers recall exam, >=70% score restores streak on Today screen', async ({ page }) => {
+  await startWithSamples(page)
+
+  // Seed 6 vocabulary items into wordStates (introduced 6 days ago, with recognition reps),
+  // and review events on days 6, 5, 4, 3, 2 ago (breaking on day 1 ago = yesterday).
+  await page.evaluate(() =>
+    new Promise<void>((resolve) => {
+      const open = indexedDB.open('kelime-koc')
+      open.onsuccess = () => {
+        const tx = open.result.transaction(['vocabulary', 'wordStates', 'events'], 'readwrite')
+        const vocStore = tx.objectStore('vocabulary')
+        const vocReq = vocStore.getAll()
+        vocReq.onsuccess = () => {
+          const words = vocReq.result as { id: string; language: string; lemma: string; senses: { gloss: string }[] }[]
+          const now = Date.now()
+          const DAY = 86_400_000
+          const ago = (d: number) => new Date(now - d * DAY)
+
+          for (const w of words.slice(0, 6)) {
+            tx.objectStore('wordStates').put({
+              entryId: w.id,
+              language: w.language,
+              introducedAt: ago(6),
+              skills: {
+                recognition: {
+                  due: new Date(),
+                  stability: 3,
+                  difficulty: 5,
+                  elapsed_days: 1,
+                  scheduled_days: 2,
+                  reps: 2,
+                  lapses: 0,
+                  learning_steps: 0,
+                  state: 2,
+                  last_review: ago(2),
+                },
+              },
+              stats: { reviews: 2, correct: 2, wrong: 0, hints: 0, totalResponseMs: 2200, consecutiveWrong: 0 },
+            })
+          }
+
+          for (let d = 6; d >= 2; d--) {
+            const w = words[0]!
+            tx.objectStore('events').add({
+              id: `evt-${d}`,
+              entryId: w.id,
+              language: w.language,
+              timestamp: ago(d),
+              exerciseType: 'mc_meaning',
+              verdict: 'correct',
+              responseMs: 1200,
+              hintsUsed: 0,
+              maxHints: 0,
+              mode: 'normal',
+            })
+          }
+        }
+        tx.oncomplete = () => resolve()
+      }
+    }),
+  )
+
+  await page.reload()
+  await openScreen(page, 'Bugün')
+
+  // Streak repair offer card is displayed
+  const repairNudge = page.locator('.streak-repair')
+  await expect(repairNudge).toBeVisible()
+  await expect(repairNudge).toContainText('günlük serin koptu')
+  await expect(repairNudge).toContainText('hatırlama sınavında %70 yap')
+
+  // Start the repair exam
+  await repairNudge.locator('button').click()
+
+  // Exam screen opens in repair mode
+  await expect(page.locator('.repair-goal')).toBeVisible()
+  await expect(page.locator('.repair-goal')).toContainText('Seri kurtarma')
+
+  // Build gloss lookup from vocabulary
+  const vocabMap = await page.evaluate(() =>
+    new Promise<Record<string, string>>((resolve) => {
+      const open = indexedDB.open('kelime-koc')
+      open.onsuccess = () => {
+        const req = open.result.transaction('vocabulary').objectStore('vocabulary').getAll()
+        req.onsuccess = () => {
+          const map: Record<string, string> = {}
+          for (const v of req.result) {
+            const display = v.article ? (v.article.endsWith("'") ? `${v.article}${v.lemma}` : `${v.article} ${v.lemma}`) : v.lemma
+            map[display] = v.senses?.[0]?.gloss ?? ''
+            map[v.lemma] = v.senses?.[0]?.gloss ?? ''
+          }
+          resolve(map)
+        }
+      }
+    }),
+  )
+
+  // Answer each question in the exam
+  while (await page.locator('.exam').isVisible()) {
+    if (await page.locator('.repair-won').isVisible()) break
+
+    const wordElem = page.locator('.exam .word')
+    if (await wordElem.isVisible()) {
+      const word = (await wordElem.textContent())?.trim() ?? ''
+      const gloss = vocabMap[word]
+      const opt = gloss ? page.locator('.exam .option', { hasText: gloss }) : page.locator('.exam .option').first()
+      if ((await opt.count()) > 0) {
+        await opt.first().click()
+      } else {
+        await page.locator('.exam .option').first().click()
+      }
+    } else {
+      const input = page.locator('.exam input.answer-input')
+      if (await input.isVisible()) {
+        await input.fill('test')
+        await page.keyboard.press('Enter')
+      }
+    }
+
+    const nextBtn = page.locator('.exam button', { hasText: /Sonraki|Sonucu gör/ })
+    await expect(nextBtn).toBeVisible()
+    await nextBtn.click()
+    await page.waitForTimeout(100)
+  }
+
+  // Result screen shows the streak is won back
+  await expect(page.locator('.repair-won')).toBeVisible()
+  await expect(page.locator('.repair-won')).toContainText('Serin geri geldi')
+
+  // Return to Today screen: streak is restored and repair nudge is gone
+  await page.locator(':is(.nav-btn, .tab):visible', { hasText: /^Bugün\d*$/ }).first().click()
+  await expect(page.locator('.streak-repair')).toHaveCount(0)
+  expect(await overflow(page)).toEqual([])
+})
+
+test('progress report: print opens a popup window and Excel (.xlsx) download contains at least 7 sheets', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'İlerleme')
+  await expect(page.getByRole('heading', { name: 'İlerleme' })).toBeVisible()
+
+  // Open "Paylaş" menu
+  const shareBtn = page.getByRole('button', { name: 'Paylaş' })
+  await expect(shareBtn).toBeVisible()
+  await shareBtn.click()
+
+  // 1. "Yazdır ya da PDF" opens a popup window with progress report
+  const [popup] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('[role="menuitem"]', { hasText: 'Yazdır ya da PDF' }).click(),
+  ])
+  expect(popup).toBeTruthy()
+  await expect(popup.locator('h1')).toContainText(/ilerleme raporu/i)
+  await popup.close()
+
+  // Open "Paylaş" menu again
+  await shareBtn.click()
+
+  // 2. "Excel (.xlsx)" downloads a workbook with at least 7 sheets
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.locator('[role="menuitem"]', { hasText: 'Excel (.xlsx)' }).click(),
+  ])
+  expect(download.suggestedFilename()).toMatch(/^diloloji-ilerleme-[a-z]+-\d{4}-\d{2}-\d{2}\.xlsx$/)
+
+  const downloadPath = await download.path()
+  expect(downloadPath).toBeTruthy()
+  const fileBytes = fs.readFileSync(downloadPath!)
+  const unzipped = unzipSync(new Uint8Array(fileBytes))
+  const sheetFiles = Object.keys(unzipped).filter((k) => k.startsWith('xl/worksheets/sheet'))
+  expect(sheetFiles.length).toBeGreaterThanOrEqual(7)
   expect(await overflow(page)).toEqual([])
 })

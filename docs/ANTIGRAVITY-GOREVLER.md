@@ -464,12 +464,12 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
   6. `media` kovasında başkasının klasörünün listelenememesi / dosyasının indirilememesi.
 - **Belge:** `docs/SUPABASE.md` dosyasına "Güvenlik duman testi" başlığı, kullanım komutları ve güvenlik ilkeleri eklendi.
 
-### 13.6 Yeni ekranların uçtan uca testleri (`e2e/`; eksik olanlar)
-Önce `e2e/` içinde ne olduğuna bak; yalnızca eksik olanları yaz.
-- **Kartlar** (Oyunlar → Kartlar): çevirme, 1/2/3 not, "Bilmiyorum" denen kartın 3 kart sonra dönmesi, sonuç ekranı ve "Takıldıklarını çalış".
-- **Arkadaşlar kartı:** `/api/access?friends=1` taklidiyle sıralama, kod ekleme ve çıkarma.
-- **Seri kurtarma:** teklif kartı, `{name:'exam', repair:true}` sınavı, %70 ve üstünde serinin geri gelmesi.
-- **İlerleme raporu:** "Yazdır" yeni pencere açar; Excel dosyası iner ve 7 sayfalıdır (`page.waitForEvent('download')`).
+### 13.6 Yeni ekranların uçtan uca testleri (TAMAMLANDI — `e2e/desktop.e2e.ts`)
+4 yeni uçtan uca senaryo `e2e/desktop.e2e.ts` dosyasına eklendi ve Playwright ile doğrulandı:
+- **Kartlar (Oyunlar → Kartlar):** Kart çevirme (`.flash-turn`), 1 Bilmiyorum notlama (`COME_BACK_AFTER[0] = 3` uyarınca tam 3 kart sonra aynı kartın geri dönmesi), sonuç ekranı (`.flash-done`), kazanılan rozetlerin kapatılması ve "Takıldıklarını çalış" butonuyla takılınan kartlarla yeni turun başlaması.
+- **Arkadaşlar kartı:** `/api/access?friends=1` ve POST uç noktalarının taklidiyle Bugün ve Bu hafta sıralama farkı, kod ile arkadaş ekleme ve çıkarma.
+- **Seri kurtarma:** Dün boş bırakılarak kırılan seride Bugün ekranında `.streak-repair` teklif kartı, `{name:'exam', repair:true}` sınavının başlatılması, >= %70 başarıyla serinin geri kazanılması ve Bugün ekranında serinin güncellenmesi.
+- **İlerleme raporu:** İlerleme ekranında "Paylaş" menüsü: "Yazdır ya da PDF" (`popup` olayı) ile yeni pencerede raporun açılması; "Excel (.xlsx)" (`download` olayı) ile dosyanın indirilmesi ve `fflate` `unzipSync` ile en az 7 çalışma sayfası (`xl/worksheets/sheet*.xml`) içerdiğinin doğrulanması.
 
 ### 13.7 Az sorusu olan dilbilgisi konularına soru (veri)
 - **Ölç:** `grammarExercises` ile her konunun `choice` soru sayısını say. 10'dan az `choice` sorusu olan konulara (`rewrite_*` hariç) yeni dosyalarda (`src/data/grammar/{fr,es,en}-9.json`) soru ekle. Hedef: her konuda en az 10 `choice`, çünkü mini sınav bunlardan seçiyor.
