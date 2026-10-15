@@ -18,6 +18,9 @@ export interface Command {
 const RECENT_KEY = 'kelime-koc:palette-recent'
 const GROUP_ORDER = ['Son kullanılanlar', 'Kelimeler', 'Sözlük', 'İşlemler', 'Oyunlar', 'Ekranlar', 'Dil', 'Yeni kelime']
 
+/** The Option key on a Mac, Alt elsewhere. */
+const ALT = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform) ? '⌥' : 'Alt+'
+
 /** Matching ignores case and accents, so "cekim" finds "Çekim" and "decision" finds "décision". */
 const fold = (s: string) => stripDiacritics(s.toLocaleLowerCase('tr')).replace(/ı/g, 'i')
 
@@ -170,7 +173,7 @@ export function CommandPalette({
           ])}
         </ul>
         <p className="palette-foot small muted">
-          <kbd>↑</kbd> <kbd>↓</kbd> seç &nbsp; <kbd>Enter</kbd> aç &nbsp; <kbd>Esc</kbd> kapat
+          <kbd>↑</kbd> <kbd>↓</kbd> seç &nbsp; <kbd>Enter</kbd> aç &nbsp; <kbd>Esc</kbd> kapat &nbsp; <kbd>{ALT}S</kbd> sözlük &nbsp; <kbd>{ALT}V</kbd> fiil lab
         </p>
       </div>
     </div>

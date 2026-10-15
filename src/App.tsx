@@ -71,6 +71,9 @@ import { useSessionStarters } from './ui/useSessionStarters'
 /** A stable empty list while the words load (a fresh [] each render would re-run the hooks). */
 const NO_WORDS: readonly VocabularyEntry[] = []
 
+/** Alt/Option + a key opens a screen straight away: S the dictionary (Sözlük), V the verb lab. */
+const GO_KEYS: Record<string, Screen> = { KeyS: { name: 'dictionary' }, KeyV: { name: 'verbs' } }
+
 export default function App() {
   // undefined = loading, null = first run
   const [screen, setScreen] = useState<Screen>(restoreScreen)
@@ -120,14 +123,22 @@ export default function App() {
     if (language) void loadTenses(language)
   }, [language])
 
-  // ⌘K / Ctrl+K opens the command palette (not during a session, to avoid leaving it by accident).
+  // ⌘K / Ctrl+K opens the command palette; ⌥S / Alt+S the dictionary, ⌥V / Alt+V the verb lab (not during a
+  // session, to avoid leaving it by accident). By the key's place (e.code): on a Mac ⌥S types "ß".
   const inSessionNow = screen.name === 'session'
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k' && !inSessionNow) {
+      if (inSessionNow) return
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         setPalette((p) => !p)
+        return
       }
+      const to = e.altKey && !e.metaKey && !e.ctrlKey ? GO_KEYS[e.code] : undefined
+      if (!to) return
+      e.preventDefault()
+      setPalette(false)
+      setScreen(to)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

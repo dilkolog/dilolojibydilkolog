@@ -1740,6 +1740,12 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 
 /* Profile → avatar picker: the drawn Monki sits among the emoji. */
 .emoji-btn .emoji-monki { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+/* Earned avatars: whole figures, so contained, not cropped; a locked one is grey with a small lock. */
+.earned-avatar { position: relative; }
+.earned-avatar .emoji-monki { border-radius: 0; object-fit: contain; }
+.earned-avatar.is-locked { cursor: help; }
+.earned-avatar.is-locked .emoji-monki { filter: grayscale(1); opacity: 0.4; }
+.earned-lock { position: absolute; right: 0.125rem; bottom: 0.125rem; display: grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--surface); color: var(--ink-soft); box-shadow: var(--shadow-sm); }
 
 /* Profile badges: the drawn medal of a badge, a small emblem on each shelf. */
 .cat-emblem { display: inline-block; vertical-align: -0.45rem; margin-right: 0.5rem; width: 1.625rem; height: 1.625rem; object-fit: contain; }

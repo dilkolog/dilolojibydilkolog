@@ -4,10 +4,10 @@ import { BADGE_CATEGORIES, badgeCategory, badgeSeries, levelTitle, medalTier, ty
 import type { Profile, Settings } from '../data/db'
 import { db } from '../data/instance'
 import { Avatar } from './Avatar'
-import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, drawnAvatarName } from './avatarArt'
+import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, EARNED_AVATARS, avatarNeed, drawnAvatarName } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
 import { BadgeMedal } from './Medal'
@@ -19,6 +19,7 @@ import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
 import { CATEGORY_EMBLEM, EMBLEM, levelMonki } from './drawnArt'
+import { showToast } from './toastFeed'
 
 /** The glyph avatars; the animals Monki's set draws (fox, panda, owl, octopus, penguin, koala) are not repeated as emoji. */
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -130,6 +131,39 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
                 </button>
               ))}
             </div>
+            {/* The ones to earn: open by level, streak, bosses and settled words; a locked one says what it takes. */}
+            {game && (
+              <div className="stack gap-2">
+                <span className="section-title small">Kazanılan avatarlar</span>
+                <div className="emoji-grid earned-avatars">
+                  {EARNED_AVATARS.map((a) => {
+                    const have = game.stats[a.stat] ?? 0
+                    const open = have >= a.goal
+                    const need = avatarNeed(a)
+                    return (
+                      <button
+                        key={a.id}
+                        className={`emoji-btn earned-avatar${open ? '' : ' is-locked'}`}
+                        aria-pressed={!profile.photoId && profile.emoji === a.id}
+                        aria-disabled={!open}
+                        title={open ? a.name : `${a.name}: ${need} ile açılır (şu an ${have.toLocaleString('tr-TR')})`}
+                        onClick={() => {
+                          if (!open) return showToast(`${a.name}: ${need} ile açılır. Şu an ${have.toLocaleString('tr-TR')}.`)
+                          void (profile.photoId ? setPhoto(null).then(() => save({ emoji: a.id })) : save({ emoji: a.id }))
+                        }}
+                      >
+                        <img className="emoji-monki" src={a.art} alt={a.name} />
+                        {!open && (
+                          <span className="earned-lock" aria-hidden>
+                            <LockIcon size={12} />
+                          </span>
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
             <div className="choice-row">
               {COLORS.map((c) => (
                 <button key={c} className="swatch" style={{ background: c }} aria-label={`Renk ${c}`} aria-pressed={profile.color === c} onClick={() => save({ color: c })} />
