@@ -1,7 +1,7 @@
 import { EXERCISES } from '../../engine/exercises'
 import { isDueFor } from '../../engine/practice'
 import { newWordState, processAttempt } from '../../engine/review'
-import type { ExerciseType, Mistake, TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
+import type { Confidence, ExerciseType, Mistake, TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { db, scheduler } from '../../data/instance'
 
 export interface Props {
@@ -20,7 +20,7 @@ export interface Props {
  * round counts once. `schedule: false` keeps an answer practice regardless (matching pairs, where
  * elimination gives the last ones away). Returns whether it counted as a review.
  */
-export async function recordPractice(entry: VocabularyEntry, state: UserWordState | undefined, exerciseType: ExerciseType, correct: boolean, responseMs: number, answer?: { given?: string; expected?: string }, options: { schedule?: boolean } = {}): Promise<boolean> {
+export async function recordPractice(entry: VocabularyEntry, state: UserWordState | undefined, exerciseType: ExerciseType, correct: boolean, responseMs: number, answer?: { given?: string; expected?: string; confidence?: Confidence }, options: { schedule?: boolean } = {}): Promise<boolean> {
   const now = new Date()
   const fresh = (await db.wordStates.get(entry.id)) ?? state
   const due = options.schedule !== false && !!fresh && isDueFor(fresh, EXERCISES[exerciseType].skill, now)
