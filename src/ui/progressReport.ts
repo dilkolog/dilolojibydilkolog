@@ -8,6 +8,7 @@ import { SKILLS, type ErrorType, type ReviewEvent, type Skill, type TargetLangua
 import { listRows, LIST_WIDTHS } from '../data/exportList'
 import { workbook, type Cell } from '../data/xlsx'
 import { ERROR_NAME, LANGUAGE_NAME, SKILL_NAME, STAGE_NAME } from './labels'
+import { NEW_ART } from './drawnArt'
 
 /**
  * The progress page as a report to keep or share: printed (or saved as a PDF) for a teacher, or as an
@@ -115,6 +116,8 @@ export function progressHtml(r: ProgressReport): string {
     .map((d) => `<div class="bar" title="${d.date}: ${d.answers} cevap"><span style="height:${Math.round((d.answers / max) * 100)}%"></span><i>${Number(d.date.slice(8))}</i></div>`)
     .join('')
   const title = `${LANGUAGE_NAME[r.language]} ilerleme raporu`
+  // The print window is a new document: the drawing needs its full address there.
+  const artUrl = typeof location === 'undefined' ? '' : esc(new URL(NEW_ART.progressReport, location.href).href)
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(title)}${r.name ? ` · ${esc(r.name)}` : ''}</title><style>
 @page { size: A4; margin: 14mm; }
 * { box-sizing: border-box; }
@@ -122,6 +125,8 @@ body { font: 11pt/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif; color: 
 header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #1f2430; padding-bottom: 6pt; margin-bottom: 12pt; }
 h1 { font-size: 18pt; margin: 0; } h2 { font-size: 12pt; margin: 16pt 0 6pt; }
 .meta { color: #5b6170; }
+.art { height: 56pt; width: auto; margin-right: 10pt; }
+header .who { display: flex; align-items: center; }
 .figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; }
 .figures div { border: 1px solid #d9dce3; border-radius: 6pt; padding: 6pt 8pt; }
 .figures b { display: block; font-size: 15pt; }
@@ -137,7 +142,7 @@ th { color: #5b6170; font-weight: 600; }
 .none { color: #8a8f9c; }
 footer { margin-top: 16pt; color: #8a8f9c; font-size: 8.5pt; }
 </style></head><body>
-<header><h1>${esc(title)}</h1><span class="meta">${r.name ? `${esc(r.name)} · ` : ''}${r.date}</span></header>
+<header><span class="who">${artUrl ? `<img class="art" src="${artUrl}" alt="">` : ''}<h1>${esc(title)}</h1></span><span class="meta">${r.name ? `${esc(r.name)} · ` : ''}${r.date}</span></header>
 <div class="figures">${r.summary
     .filter(([k]) => k !== 'Dil' && k !== 'Tarih')
     .map(([k, v]) => `<div><b>${cell(v)}</b><span>${esc(k)}</span></div>`)

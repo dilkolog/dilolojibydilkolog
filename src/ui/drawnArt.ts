@@ -163,6 +163,14 @@ import roleInterview from '../assets/art/role-interview.webp'
 import roleShopping from '../assets/art/role-shopping.webp'
 import type { PartOfSpeech } from '../engine/types'
 import type { BadgeCategory } from '../engine/gamification'
+import guideTeach from '../assets/art/guide-teach.webp'
+import guideLearned from '../assets/art/guide-passed.webp'
+import guideReview from '../assets/art/guide-review.webp'
+import friendsTogether from '../assets/art/friends-together.webp'
+import friendsCode from '../assets/art/friends-code.webp'
+import streakRepair from '../assets/art/streak-repair.webp'
+import progressReport from '../assets/art/progress-report.webp'
+import flashDone from '../assets/art/flash-done.webp'
 
 /** A badge's own drawn medal, by what it counts: every badge has one (the metal medal stays in lists, where tiers matter). */
 const MEDAL_OF: Record<string, string> = {
@@ -267,6 +275,10 @@ const STREAKS = [streak0, streak1, streak2, streak3, streak4]
 export const streakPicture = (streak: number, tier: number): string => STREAKS[streak <= 0 ? 0 : Math.min(tier + 1, 4)]
 
 /** Where an account stands, as Monki: at the door with a key, waiting on the bench, approved, not approved. */
+
+/** The guide, friends, a streak won back, the progress report, a flashcard round done (set F, 2026-10-16). */
+export const NEW_ART = { guideTeach, guideLearned, guideReview, friendsTogether, friendsCode, streakRepair, progressReport, flashDone }
+
 export const ACCOUNT_ART = { out: acctDoor, pending: acctWait, approved: acctOk, rejected: acctNo }
 
 /** One drawing per settings group (by the group's id). */

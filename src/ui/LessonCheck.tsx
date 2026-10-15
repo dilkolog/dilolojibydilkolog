@@ -4,6 +4,7 @@ import { PASS_RIGHT } from '../engine/guideReview'
 import type { TargetLanguage } from '../engine/types'
 import { CheckCircleIcon } from './icons'
 import { sfx } from './sounds'
+import { NEW_ART } from './drawnArt'
 
 /**
  * A lesson's short check, one question at a time: the options, then why the right one is right. At
@@ -39,7 +40,8 @@ export function LessonCheck({ items, language, review, onDone }: { items: CheckI
   if (done) {
     const passed = right >= passNeeded
     return (
-      <section className="card stack gap-2 lesson-check" aria-label="Kendini dene">
+      <section className="card stack gap-2 lesson-check lesson-check-done" aria-label="Kendini dene">
+        <img className="lesson-check-art" src={passed ? NEW_ART.guideLearned : NEW_ART.guideReview} alt="" height={112} draggable={false} />
         <h2 className="section-title">{passed ? 'Ders oturdu' : 'Bir daha bakalım'}</h2>
         <p className={passed ? 'lesson-check-score' : 'lesson-check-score muted'}>
           {passed && <CheckCircleIcon size={18} className="inline-icon" />} {items.length} sorunun {right} tanesi doğru.

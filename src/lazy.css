@@ -1960,3 +1960,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .lesson-check-prompt { font-family: var(--serif); font-size: var(--t-lg); color: var(--ink); line-height: 1.45; margin: 0; }
 .lesson-check-score { display: flex; align-items: center; gap: 0.375rem; font-size: var(--t-lg); margin: 0; }
 .lesson-check-score .inline-icon { color: var(--ok); }
+.lesson-check-done { justify-items: center; text-align: center; }
+.lesson-check-done .lesson-check-score { justify-content: center; }
+.lesson-check-art { height: 7rem; width: auto; }
+.flash-done-art { height: 8rem; width: auto; align-self: center; }

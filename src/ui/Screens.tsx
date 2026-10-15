@@ -24,7 +24,7 @@ import { StreakFlame, StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
 import { REPAIR_MIN_SCORE, repairKey } from '../engine/streakRepair'
 import { repairTried } from './repairTry'
-import { TILE_ART } from './drawnArt'
+import { NEW_ART, TILE_ART } from './drawnArt'
 import { Sticker } from './Sticker'
 import { DayMark, FocusLine, LevelStrip, QuestIcon } from './HomeParts'
 
@@ -341,6 +341,7 @@ export function Home({
         {game?.repair && onRepairStreak && !repairTried(repairKey(game.repair)) && (
           <li className="is-nudge streak-repair">
             <button type="button" className="link" onClick={onRepairStreak}>
+              <img className="nudge-art" src={NEW_ART.streakRepair} alt="" width={30} height={30} draggable={false} />
               {game.repair.lost} günlük serin koptu: hatırlama sınavında %{Math.round(REPAIR_MIN_SCORE * 100)} yap, geri gelsin ›
             </button>
           </li>

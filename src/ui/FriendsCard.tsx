@@ -7,6 +7,7 @@ import { Avatar } from './Avatar'
 import { CloseIcon, CopyIcon, FlameIcon, PlusIcon } from './icons'
 import type { GameState } from './game'
 import { showToast } from './toastFeed'
+import { NEW_ART } from './drawnArt'
 
 /** The last card published from this device, so an unchanged one is not written again. */
 const SENT_KEY = 'diloloji:friend-card'
@@ -120,7 +121,10 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
   return (
     <section className="card stack gap-2 friends-card" aria-label="Arkadaşlar">
       <div className="friends-head">
-        <h2 className="section-title">Arkadaşlar</h2>
+        <h2 className="section-title friends-title">
+          <img className="friends-art" src={NEW_ART.friendsTogether} alt="" height={44} draggable={false} />
+          Arkadaşlar
+        </h2>
         <div className="friends-range" role="group" aria-label="Süre">
           <button type="button" className="chip chip-sm" aria-pressed={range === 'today'} onClick={() => setRange('today')}>
             Bugün
@@ -155,7 +159,12 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
           ))}
         </ol>
       )}
-      {data && data.friends.length === 0 && <p className="small muted">Arkadaşının kodunu ekle; birbirinizin günlük XP'sini görüp yarışın.</p>}
+      {data && data.friends.length === 0 && (
+        <p className="small muted friends-empty">
+          <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />
+          <span>Arkadaşının kodunu ekle; birbirinizin günlük XP'sini görüp yarışın.</span>
+        </p>
+      )}
       {data && (
         <details className="friends-add" open={data.friends.length === 0}>
           <summary className="small">

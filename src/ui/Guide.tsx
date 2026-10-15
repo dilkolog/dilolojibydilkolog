@@ -114,7 +114,7 @@ export function GuideScreen({
 
   return (
     <div className="stack guide">
-      <PageHeader art="look" title="Rehber" sub={`${LANGUAGE_NAME[language]} okulun: konu anlatımları, zamanlar ve dışarıdaki en iyi kaynaklar.`} />
+      <PageHeader art="guide" title="Rehber" sub={`${LANGUAGE_NAME[language]} okulun: konu anlatımları, zamanlar ve dışarıdaki en iyi kaynaklar.`} />
       <div className="guide-tabs" role="tablist" aria-label="Rehber bölümleri">
         <button type="button" role="tab" aria-selected={tab === 'topics'} className="chip" onClick={() => setTab('topics')}>
           Konular <span className="muted small">{lessons.length}</span>
