@@ -471,14 +471,13 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - **Seri kurtarma:** Dün boş bırakılarak kırılan seride Bugün ekranında `.streak-repair` teklif kartı, `{name:'exam', repair:true}` sınavının başlatılması, >= %70 başarıyla serinin geri kazanılması ve Bugün ekranında serinin güncellenmesi.
 - **İlerleme raporu:** İlerleme ekranında "Paylaş" menüsü: "Yazdır ya da PDF" (`popup` olayı) ile yeni pencerede raporun açılması; "Excel (.xlsx)" (`download` olayı) ile dosyanın indirilmesi ve `fflate` `unzipSync` ile en az 7 çalışma sayfası (`xl/worksheets/sheet*.xml`) içerdiğinin doğrulanması.
 
-### 13.7 Az sorusu olan dilbilgisi konularına soru (veri)
-- **Ölç:** `grammarExercises` ile her konunun `choice` soru sayısını say. 10'dan az `choice` sorusu olan konulara (`rewrite_*` hariç) yeni dosyalarda (`src/data/grammar/{fr,es,en}-9.json`) soru ekle. Hedef: her konuda en az 10 `choice`, çünkü mini sınav bunlardan seçiyor.
-- **Kurallar:**
-  - kimlikler `<dil>-<konu>-NN` biçiminde ve benzersiz;
-  - tek doğru seçenek;
-  - açıklama Türkçe;
-  - özgün cümleler, kaynak satırıyla.
-- `npx vitest run src/data` yeşil olmalı. Konu adı gerekirse (yeni konu açma) yapma; yalnızca var olan konulara soru ekle.
+### 13.7 Az sorusu olan dilbilgisi konularına soru (veri; TAMAMLANDI — `src/data/grammar/{fr,es,en}-9.json`)
+- **Ölçüm & Ekleme:** `grammarExercises` ile ölçülen ve 10'dan az `choice` sorusu olan tüm konulara yeni dosyalarda (`src/data/grammar/{fr,es,en}-9.json`) toplam 68 özgün çoktan seçmeli soru eklendi:
+  - **FR (16 soru):** `subjonctif` (+5), `participe_passe` (+4), `pronoms_relatifs` (+3), `conditionnel_passe` (+4).
+  - **ES (25 soru):** `subjuntivo` (+5), `ser_estar` (+3), `por_para` (+4), `se_pasivo` (+4), `condicionales` (+5), `perifrasis` (+4).
+  - **EN (27 soru):** `inversion` (+5), `cleft` (+5), `mixed_conditionals` (+4), `subjunctive` (+5), `participle_clauses` (+4), `gerund_infinitive` (+4).
+- **Sonuç:** `rewrite_*` (cümle dönüştürme) hariç her konuda en az 10 `choice` sorusu tamamlandı. Kimlikler benzersiz, tek doğru seçenekli, Türkçe kural açıklamalı ve `npx vitest run src/data` (453 test) ile tam uyumlu.
+
 
 ### 13.8 Belge güncellemesi
 `docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`'ye #300–#351 arasında yapılanları ekle:
