@@ -2122,3 +2122,12 @@ test('a chip of the day\'s mission starts a round of only that kind', async ({ p
   await chip.click()
   await expect(page.locator('.session-stage')).toBeVisible()
 })
+
+test('Alt+S opens the dictionary and Alt+V the verb lab from anywhere', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Bugün')
+  await page.keyboard.press('Alt+KeyS')
+  await expect(page.getByRole('heading', { name: 'Sözlük' })).toBeVisible()
+  await page.keyboard.press('Alt+KeyV')
+  await expect(page.getByRole('heading', { name: 'Fiil laboratuvarı' })).toBeVisible()
+})

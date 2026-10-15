@@ -1744,7 +1744,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .earned-avatar { position: relative; }
 .earned-avatar .emoji-monki { border-radius: 0; object-fit: contain; }
 .earned-avatar.is-locked { cursor: help; }
-.earned-avatar.is-locked .emoji-monki { filter: grayscale(1); opacity: 0.4; }
+.earned-avatar.is-locked .emoji-monki { filter: grayscale(0.85); opacity: 0.6; }
 .earned-lock { position: absolute; right: 0.125rem; bottom: 0.125rem; display: grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--surface); color: var(--ink-soft); box-shadow: var(--shadow-sm); }
 
 /* Profile badges: the drawn medal of a badge, a small emblem on each shelf. */
