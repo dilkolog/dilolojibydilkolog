@@ -36,11 +36,35 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
    - **Google**: Google Cloud Console → APIs & Services → Credentials → OAuth client ID (Web application).
      - Authorized redirect URI: `https://<proje-kimliği>.supabase.co/auth/v1/callback`.
      - Client ID ve Secret'ı Supabase'te Google sağlayıcısına yapıştır.
+4b. **Google ile giriş, adım adım**:
+   1. [console.cloud.google.com](https://console.cloud.google.com) → üstteki proje seçiciden **New Project** → ad `Diloloji` → Create (ve o projeyi seç).
+   2. Sol menü → **APIs & Services → OAuth consent screen** (yeni arayüzde "Google Auth Platform") → **Get started**:
+      - App name `Diloloji`, User support email = kendi adresin.
+      - Audience: **External**.
+      - Contact information: kendi adresin → Create.
+   3. **Branding**:
+      - App domain / Application home page: `https://nigalingo.online`.
+      - Authorized domains: `nigalingo.online` ve `supabase.co`.
+      - **Logo yükleme**: logo Google'ın uygulama incelemesini başlatır ve günler sürebilir. Şimdilik boş bırak.
+   4. **Audience → Publish app** ("In production"). Yalnızca e-posta/profil istendiği için Google incelemesi gerekmez; yayınlanmazsa yalnızca "test kullanıcıları" girebilir.
+   5. **Clients → Create client** → Application type **Web application**, ad `Diloloji web`:
+      - Authorized JavaScript origins: `https://nigalingo.online`, `https://kelime-koc.vercel.app`
+      - Authorized redirect URIs: `https://<proje-kimliği>.supabase.co/auth/v1/callback`
+      - Create.
+   6. Açılan pencereden **Client ID** ve **Client secret**'ı kopyala. **Client secret'ı sohbete yazma.**
+   7. Supabase → **Authentication → Sign In / Providers → Google** → Enable:
+      - Client IDs: Client ID'yi yapıştır.
+      - Client Secret: secret'ı yapıştır.
+      - Save.
+      - Bu sayfadaki "Callback URL" 5. adımdaki redirect URI ile birebir aynı olmalı.
+   8. Google girişte "…supabase.co'ya devam et" yazar. Kendi alan adını göstermek Supabase'in ücretli "custom domain" özelliği; şimdilik böyle kalabilir.
 5. **Authentication → Emails → SMTP Settings** (önerilir; Supabase'in kendi göndericisi saatte birkaç mail ile sınırlı):
    - Host `smtp.resend.com`, Port `465`
    - Username `resend`, Password = Resend API anahtarı
    - Sender: `hatirlatma@<doğrulanmış alan adın>`
-   - İstersen e-posta şablonlarını Türkçeleştir.
+   - Gönderici adresi doğrulanmış alan adından olmalı (`giris@nigalingo.online`); `onboarding@resend.dev` yalnızca Resend hesabının kendi adresine teslim eder.
+   - **Authentication → Rate Limits**: e-posta sınırını saatte ~30'a çıkar.
+   - **Templates**: Türkçe şablonlar `supabase/templates/` (README'de hangi sekmeye hangi konu ve dosya).
 6. Dene:
    - Ayarlar → Hesap → Giriş yap.
    - Kendi hesabın için ilk girişi, eski hesabınla girişli olduğun cihazda yap: hesabın kendiliğinden bağlanır.
