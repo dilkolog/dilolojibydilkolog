@@ -447,18 +447,10 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - Her dil için pedagojik olarak yüksek kaliteli 2–3 yeni ücretsiz kaynak önerisi eklendi.
 - Kapsamlı rapor `docs/kaynaklar/rehber-baglantilari.md` dosyasında yayımlandı.
 
-### 13.4 Rehber için uçtan uca ve erişilebilirlik testleri (`e2e/`)
-- **Telefon (375 px, `e2e/phone.e2e.ts`):**
-  - bir temel dersi aç (örn. İspanyolca `basics_es_hay_estar`) ve mini sınavı bitir;
-  - 2 ve üstü doğruda kartta "Öğrenildi" etiketi çıksın;
-  - Bugün'deki "Hatırlıyor musun?" kartı: `localStorage 'diloloji:guide-progress'` içine eski tarihli bir kayıt koy, karta bas, dersin sınavı doğrudan başlasın;
-  - "Şimdi değil" (X) kartı kapatır;
-  - `overflow(page) === []`.
-- **Masaüstü (`e2e/desktop.e2e.ts`):**
-  - dilbilgisi sorusunda yanlış cevap → "Konunun dersi" bağlantısı derse götürür; geri tuşu soruya döner;
-  - İngilizce **Zamanlar** sekmesi sırayla listeler (Present simple ilk);
-  - fiil laboratuvarı alıştırmasında yanlış çekim → "Bu zamanın anlatımı" pencereyi açar, Esc ile kapanır.
-- **Erişilebilirlik (`e2e/a11y.e2e.ts`):** açık ve koyu temada ders sayfası, sınav (soru, cevap gösterilirken ve sonuç ekranı) ve Bugün'deki tekrar kartı için axe taraması.
+### 13.4 Rehber için uçtan uca ve erişilebilirlik testleri (TAMAMLANDI — `e2e/phone.e2e.ts`, `e2e/desktop.e2e.ts`, `e2e/a11y.e2e.ts`)
+- **Telefon (375 px, `e2e/phone.e2e.ts`):** Temel ders (`basics_es_hay_estar`) açıldı, mini sınav 3/3 doğruyla tamamlandı, kartta "Öğrenildi" etiketi doğrulandı; Bugün'de eski tarihli kayıtla "Hatırlıyor musun?" kartı, "Şimdi değil" (X) kapatması ve doğrudan mini sınav başlatması test edildi; `overflow(page) === []` onaylandı.
+- **Masaüstü (`e2e/desktop.e2e.ts`):** Dilbilgisi yanlış cevabında "Konunun dersi" bağlantısıyla derse geçiş ve tarayıcı geri tuşuyla soruya dönüş; İngilizce **Zamanlar** sekmesinin 13 zamanı Present simple ile başlayan doğru pedagojik sırada listelemesi; fiil laboratuvarında yanlış çekim sonrasında "Bu zamanın anlatımı" modalının açılıp Esc ile kapanması doğrulandı.
+- **Erişilebilirlik (`e2e/a11y.e2e.ts`):** Açık ve koyu temada ders sayfası, mini sınav (soru, cevap gösterilirken, sonuç ekranı) ve Bugün'deki tekrar kartı için axe WCAG 2.2 AA taramaları 0 ihlalle geçti.
 
 ### 13.5 Supabase güvenlik duman testi (script + belge; sahibinin makinesinde çalışır)
 - **Script:** `scripts/smoke-supabase.mjs`, ortam değişkenleri `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SMOKE_EMAIL`, `SMOKE_PASSWORD` (ayrı bir deneme hesabı). Yalnızca açık (publishable) anahtarla çalışır; gizli anahtar asla istenmez ve dosyaya yazılmaz.

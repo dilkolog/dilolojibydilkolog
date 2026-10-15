@@ -1306,3 +1306,101 @@ test('lists: a new list opens on its own page, takes the words added there, and 
   await openScreen(page, 'Kelimeler')
   await expect(page.locator('.wl-tile', { hasText: 'Seyahat' })).toContainText('1 kelime')
 })
+
+test('guide on phone: open basic lesson, pass quiz for learned tag, Today review card starts quiz or dismisses', async ({ page }) => {
+  await startWithSamples(page)
+  // Switch to Spanish and load sample words so Today screen is fully active
+  await page.getByRole('button', { name: /^İspanyolca/ }).click()
+  await page.getByRole('button', { name: 'Örnek kelimelerle dene' }).click()
+  await expect(page.getByRole('button', { name: /^(Başla|Devam et)$/ })).toBeVisible()
+  await openScreen(page, 'Rehber')
+  await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
+
+  // Open basic lesson (basics_es_hay_estar: "Hay mı, está mı?")
+  const card = page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: 'Hay mı, está mı?' }) })
+  await expect(card).toBeVisible()
+  await card.click()
+
+  // Verify lesson page opened
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Hay mı, está mı?')
+  expect(await overflow(page), 'lesson page overflow').toEqual([])
+
+  // Start mini check
+  const startBtn = page.locator('.lesson-check-start')
+  await expect(startBtn).toBeVisible()
+  await startBtn.click()
+
+  // Answer mini quiz based on prompt (3 questions in shuffled order)
+  const check = page.locator('.lesson-check')
+  await expect(check.getByRole('heading', { name: 'Kendini dene' })).toBeVisible()
+
+  for (let i = 0; i < 3; i++) {
+    const prompt = await check.locator('.lesson-check-prompt').textContent()
+    if (prompt?.includes('dónde')) {
+      await check.getByRole('button', { name: /^\d*\s*está$/ }).click()
+    } else if (prompt?.includes('barrio')) {
+      await check.getByRole('button', { name: /^\d*\s*hay$/ }).click()
+    } else {
+      await check.getByRole('button', { name: /^\d*\s*había$/ }).click()
+    }
+    await expect(check.getByRole('status')).toContainText('Doğru!')
+    if (i < 2) {
+      await check.getByRole('button', { name: 'Sonraki' }).click()
+    } else {
+      await check.getByRole('button', { name: 'Bitir' }).click()
+    }
+  }
+
+  // Check results: "Ders oturdu" and score
+  await expect(check.getByRole('heading', { name: 'Ders oturdu' })).toBeVisible()
+  await expect(check.locator('.lesson-check-score')).toContainText('3 sorunun 3 tanesi doğru')
+  expect(await overflow(page), 'quiz result overflow').toEqual([])
+
+  // Return back to Guide
+  await page.locator('.guide-lesson button.link', { hasText: 'Rehber' }).click()
+  await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
+
+  // Card now has "Öğrenildi" tag
+  const learnedCard = page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: 'Hay mı, está mı?' }) })
+  await expect(learnedCard.locator('.guide-tag')).toHaveText('Öğrenildi')
+  expect(await overflow(page), 'guide list overflow').toEqual([])
+
+  // Seed localStorage with overdue lesson review
+  await page.evaluate(() => {
+    localStorage.setItem(
+      'diloloji:guide-progress',
+      JSON.stringify({ basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } }),
+    )
+  })
+  await page.reload()
+  await openScreen(page, 'Bugün')
+
+  // "Hatırlıyor musun?" nudge card appears on Today
+  const nudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })
+  await expect(nudge).toBeVisible()
+  await expect(nudge).toContainText('Hay mı, está mı?')
+  expect(await overflow(page), 'today with review card overflow').toEqual([])
+
+  // "Şimdi değil" (X) dismisses the card
+  await nudge.getByRole('button', { name: 'Şimdi değil' }).click()
+  await expect(nudge).toHaveCount(0)
+
+  // Put overdue mark back in localStorage to test starting the review
+  await page.evaluate(() => {
+    localStorage.setItem(
+      'diloloji:guide-progress',
+      JSON.stringify({ basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } }),
+    )
+  })
+  await page.reload()
+  await openScreen(page, 'Bugün')
+  const reviewNudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })
+  await expect(reviewNudge).toBeVisible()
+
+  // Clicking the card directly starts the lesson's check
+  await reviewNudge.locator('.habit-nudge-main').click()
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Hay mı, está mı?')
+  const directCheck = page.locator('.lesson-check')
+  await expect(directCheck.getByRole('heading', { name: 'Hatırlıyor musun?' })).toBeVisible()
+  expect(await overflow(page), 'direct check overflow').toEqual([])
+})
