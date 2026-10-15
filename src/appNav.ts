@@ -8,7 +8,7 @@ import type { GameId } from './ui/gameList'
 import type { LabTab } from './ui/verbs/VerbLab'
 import type { AuthMode } from './ui/AuthScreen'
 import type { SharedRead } from './ui/incoming'
-import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon } from './ui/icons'
+import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SchoolIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon } from './ui/icons'
 
 /** Set when opened from a reminder ("?go=quick"): start a short review as soon as the plan is ready. */
 export const launch = { quick: false }
@@ -50,7 +50,8 @@ export type Screen =
   | { name: 'vocabtest' }
   | { name: 'produce' }
   | { name: 'exam'; repair?: boolean }
-  | { name: 'games'; game?: GameId }
+  | { name: 'games'; game?: GameId; topic?: string }
+  | { name: 'guide' }
   | { name: 'verbs'; verb?: string; tense?: string; tab?: LabTab }
   | { name: 'profile' }
   | { name: 'settings' }
@@ -58,7 +59,7 @@ export type Screen =
 
 export const SCREEN_KEY = 'kelime-koc:screen'
 /** Screens worth returning to; sessions and summaries are not (answers are saved anyway). */
-export const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'mistakes', 'progress', 'profile', 'settings'])
+export const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'guide', 'mistakes', 'progress', 'profile', 'settings'])
 
 export function restoreScreen(): Screen {
   // Home-screen shortcuts (manifest) and push links: ?go=home | add | reading | quick | progress
@@ -89,7 +90,7 @@ export function restoreScreen(): Screen {
 }
 
 /** Overview screens that spread out on wide screens; reading, forms and the session keep a measure. */
-export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings'])
+export const WIDE_SCREENS = new Set(['home', 'progress', 'words', 'games', 'verbs', 'mistakes', 'profile', 'summary', 'word', 'reading', 'settings', 'guide'])
 
 /**
  * Five places in the menu (all of them fit the phone's tab bar). Related screens share one place
@@ -122,6 +123,7 @@ export const GROUPS: Partial<Record<NavScreen, { screen: ScreenName; label: stri
     { screen: 'games', label: 'Oyunlar' },
     { screen: 'verbs', label: 'Fiiller' },
     { screen: 'produce', label: 'Yaz & konuş' },
+    { screen: 'guide', label: 'Rehber' },
   ],
 }
 
@@ -145,6 +147,7 @@ export const ALL_SCREENS: { screen: ScreenName; label: string; icon: (p: { size?
   { screen: 'games', label: 'Oyunlar', icon: GameIcon },
   { screen: 'verbs', label: 'Fiil laboratuvarı', icon: TenseIcon },
   { screen: 'produce', label: 'Yaz & konuş', icon: PenIcon },
+  { screen: 'guide', label: 'Rehber', icon: SchoolIcon },
   { screen: 'progress', label: 'İlerleme', icon: ChartIcon },
   { screen: 'profile', label: 'Profil', icon: UserIcon },
   { screen: 'settings', label: 'Ayarlar', icon: GearIcon },

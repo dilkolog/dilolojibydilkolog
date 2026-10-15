@@ -94,6 +94,7 @@ export const SCREEN_LABEL: Record<string, string> = {
   games: 'Oyunlar',
   verbs: 'Fiiller',
   produce: 'Yaz & konuş',
+  guide: 'Rehber',
   progress: 'İlerleme',
   vocabtest: 'Kelime testi',
   exam: 'Hatırlama sınavı',
@@ -130,4 +131,4 @@ export function usageLabel(screen: string): string {
 }
 
 /** Tabs that may leave the menu: the second and later ones of a place (the first is the place itself). */
-export const HIDEABLE_TABS = ['dictionary', 'translate', 'mistakes', 'story', 'verbs', 'produce'] as const
+export const HIDEABLE_TABS = ['dictionary', 'translate', 'mistakes', 'story', 'verbs', 'produce', 'guide'] as const

@@ -18,6 +18,7 @@ export const screenModules = {
   VerbLab: () => import('./ui/verbs/VerbLab'),
   Dictionary: () => import('./ui/Dictionary'),
   Translate: () => import('./ui/TranslateScreen'),
+  Guide: () => import('./ui/Guide'),
   // Rarely opened, so not in the startup code either.
   Auth: () => import('./ui/AuthScreen'),
   Palette: () => import('./ui/CommandPalette'),
@@ -41,6 +42,7 @@ export const WordsScreen = lazy(() => screenModules.Words().then((m) => ({ defau
 export const VerbLab = lazy(() => screenModules.VerbLab().then((m) => ({ default: m.VerbLab })))
 export const Summary = lazy(() => screenModules.Summary().then((m) => ({ default: m.Summary })))
 export const DictionaryScreen = lazy(() => screenModules.Dictionary().then((m) => ({ default: m.DictionaryScreen })))
+export const GuideScreen = lazy(() => screenModules.Guide().then((m) => ({ default: m.GuideScreen })))
 export const AuthScreen = lazy(() => screenModules.Auth().then((m) => ({ default: m.AuthScreen })))
 export const CommandPalette = lazy(() => screenModules.Palette().then((m) => ({ default: m.CommandPalette })))
 

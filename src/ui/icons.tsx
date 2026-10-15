@@ -52,6 +52,13 @@ export const BookIcon = (p: P) => (
     <path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19M9.5 3v5.5l2-1.3 2 1.3V3" />
   </Icon>
 )
+/** A graduation cap: the guide, the app's school. */
+export const SchoolIcon = (p: P) => (
+  <Icon {...p}>
+    <S d="M2.5 9 12 4.5 21.5 9 12 13.5z" />
+    <path d="M6.5 11v4.5c0 1.4 2.5 3 5.5 3s5.5-1.6 5.5-3V11M21.5 9v5" />
+  </Icon>
+)
 export const ReadIcon = (p: P) => (
   <Icon {...p}>
     <S d="M6.5 3h8l4 4v12.5A1.5 1.5 0 0 1 17 21H6.5A1.5 1.5 0 0 1 5 19.5v-15A1.5 1.5 0 0 1 6.5 3z" />
