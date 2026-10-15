@@ -133,3 +133,42 @@ Yeniden çalıştırmak güvenlidir (yarım kalanı tamamlar). Blob dosyaları s
 3. **Denetle:** Table Editor → `friend_cards`, `shared_lists`, `reminders`; Views → `friend_overview`, `reminder_overview`.
 
 Hâlâ Blob'da kalanlar: hesap onay işaretleri (`access/…`, Supabase'de `profiles.approved` ile yansıtılıyor) ve eski eşitleme dosyaları (`sync/…`, Supabase'e geçmiş hesaplar için yalnızca `movedTo` işareti).
+
+---
+
+## Güvenlik duman testi (13.5)
+
+Supabase RLS (Satır Düzeyi Güvenlik) ve izin kurallarının doğru çalıştığını, gizli tabloların açık anahtarla sızmadığını ve kullanıcıların yalnızca kendi verilerini okuyup yazabildiğini sahibinin kendi makinesinde doğrulaması için `scripts/smoke-supabase.mjs` betiği hazırlanmıştır.
+
+> [!IMPORTANT]
+> **Güvenlik Kuralı:** Duman testi **YALNIZCA** açık (publishable/anon) anahtarla çalışır. Gizli anahtar (`service_role` / `secret key`) kesinlikle girilmemeli ve dosyalara yazılmamalıdır. Ortamda gizli anahtar algılansa dahi betik bunu otomatik olarak yoksayar.
+
+### Denetlenen 6 Madde
+
+1. **Giriş yapılabilmesi:** Deneme hesabıyla e-posta + şifre girişi yapılır, JWT ve kullanıcı kimliği doğrulanır.
+2. **`put_sync_part` onaysız hesap denetimi:** Hesap `profiles.approved = false` ise veritabanı fonksiyonu `42501` (`approval required`) hatası döner.
+3. **Onaylı hesapla yazma/okuma:** Hesap onaylıysa `core` senkronizasyon verisi başarıyla yazılır ve `sync_parts` tablosundan birebir geri okunur.
+4. **Başkalarının verilerini okuyamama (RLS):** Başka bir kullanıcı kimliğine ait `sync_parts` satırları sorgulandığında RLS devreye girer ve boş dizi (`[]`) döner (veri sızıntısı engellenir).
+5. **Sunucu tablolarının tam izolasyonu:** `friend_cards`, `shared_lists`, `reminders`, `server_flags`, `sync_keys` tablolarında RLS açık ve genel politika olmadığından açık anahtarla **hiçbir satır** okunamaz (hata veya 0 satır).
+6. **Depolama (Storage) kova güvenliği:** `media` kovasında başka bir kullanıcının klasörü listelenemez ve dosyası indirilemez.
+
+### Nasıl Çalıştırılır?
+
+Sahibinin terminalinde ayrı bir deneme hesabı e-postası ve şifresiyle çalıştırılır:
+
+```bash
+SUPABASE_URL="https://<proje-kimliği>.supabase.co" \
+SUPABASE_PUBLISHABLE_KEY="sb_publishable_..." \
+SMOKE_EMAIL="deneme@alanadi.com" \
+SMOKE_PASSWORD="denemesifresi" \
+node scripts/smoke-supabase.mjs
+```
+
+Her madde için konsolda `[✅ GEÇTİ]` veya `[❌ KALDI]` şeklinde detaylı sonuç raporlanır.
+
+**Yerel Sahte Sunucu ile Mantık Doğrulaması:**
+Geliştirme ortamında veya internet erişimi kısıtlıyken betiğin söz dizimini ve denetim mantığını sahte PostgREST/Storage sunucusuyla doğrulamak için:
+
+```bash
+node scripts/smoke-supabase.mjs --mock
+```
