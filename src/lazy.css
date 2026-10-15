@@ -1355,6 +1355,9 @@ button.badge-card:active { transform: none; }
 .account-facts p { margin: 0.125rem 0 0; }
 .account-actions { display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 .account-foot { margin: 0; }
+.account-manage { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.5rem 0.75rem; }
+.account-password { display: grid; gap: 0.75rem; flex: 1 1 100%; max-width: 26rem; }
+.account-password .field { display: grid; gap: 0.375rem; }
 .account-advanced { padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 .account-advanced summary { cursor: pointer; font-weight: 600; color: var(--ink-soft); }
 @media (max-width: 40rem) {
@@ -1753,6 +1756,10 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 /* A new word's part of speech, acted out by Monki beside the label. */
 .pos-art { float: right; height: 4.5rem; width: auto; max-width: 45%; margin: -0.75rem 0 0 0.75rem; object-fit: contain; }
 .prompt-label:has(.pos-art) { overflow: hidden; }
+/* The first question of a round: Monki waves once, then makes room. */
+.session-hello { display: flex; align-items: center; gap: 0.625rem; margin: 0 0 0.75rem; color: var(--ink-soft); font-size: var(--t-sm); animation: hello-in var(--dur) var(--ease-out) both; }
+.session-hello img { flex: none; object-fit: contain; }
+@keyframes hello-in { from { opacity: 0; transform: translateY(4px); } }
 
 /* Small drawn icons inside chips and buttons (Monki's modes, adding one's own text). */
 .chip-art { display: inline-block; width: 1.25rem; height: 1.25rem; margin-right: 0.375rem; vertical-align: -0.3rem; object-fit: contain; }

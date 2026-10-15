@@ -1,4 +1,4 @@
-import { readText, StorageError, writeJson } from './_account.js'
+import { readText, removeBlob, StorageError, writeJson } from './_account.js'
 
 /**
  * Friends: an account shares a small card of how it is doing (a name it chose, its avatar, the XP of its
@@ -143,4 +143,10 @@ export async function friendsOf(id: string, today: string): Promise<{ me: Friend
     }),
   )
   return { me: viewOf(me, today), friends: cards.filter((c): c is FriendCard => !!c?.code).map((c) => viewOf(c, today)) }
+}
+
+/** Takes the account's card, its code and whom it follows off the store (the account is being deleted). */
+export async function forgetFriends(id: string): Promise<void> {
+  const card = await readJson<FriendCard>(cardPath(id))
+  await Promise.all([removeBlob(cardPath(id)), removeBlob(followPath(id)), card?.code ? removeBlob(codePath(card.code)) : Promise.resolve()])
 }

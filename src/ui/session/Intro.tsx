@@ -13,7 +13,7 @@ import { useMediaUrl } from '../useMedia'
 import { SpeakButton, Word, Sentence, KeyLegend } from './shared'
 import { Choices } from './Answers'
 import { modalOpen } from './keys'
-import { POS_ART } from '../drawnArt'
+import { POS_ART, REACT } from '../drawnArt'
 
 // Notes on the word in the other languages: fetched after the card shows.
 const CrossLanguageNotes = lazy(() => import('../CrossLanguage').then((m) => ({ default: m.CrossLanguageNotes })))
@@ -115,7 +115,7 @@ export function Intro({
       <p className="prompt-label">
         <span className="badge">Yeni kelime</span>
         {entry.partOfSpeech !== 'other' && <PosTag pos={entry.partOfSpeech} label className="is-chip" />}
-        {POS_ART[entry.partOfSpeech] && <img className="pos-art" src={POS_ART[entry.partOfSpeech]} alt="" draggable={false} />}
+        <img className="pos-art" src={POS_ART[entry.partOfSpeech] ?? REACT.newWord} alt="" draggable={false} />
       </p>
       {guess && guess !== 'skipped' && (
         <p className={`guess-result ${guess.correct ? 'is-right' : 'is-wrong'}`} role="status">

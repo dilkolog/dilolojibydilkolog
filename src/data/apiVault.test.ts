@@ -13,7 +13,7 @@ vi.mock('@vercel/blob', () => ({
     return b ? { statusCode: 200, stream: new Response(b.slice()).body, blob: { etag: 'e' } } : null
   },
   list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
-  del: async (path: string) => void blobs.delete(path),
+  del: async (path: string | string[]) => void (Array.isArray(path) ? path : [path]).forEach((p) => blobs.delete(p)),
 }))
 
 const access = await import('../../api/access')
@@ -28,11 +28,19 @@ const USERS: Record<string, { id: string; email: string; user_metadata: Record<s
 let profiles: { user_id: string; approved: boolean; rejected: boolean }[] = []
 let keys: { user_id: string; sync_id: string; enc: string; auth: string; username: string | null }[] = []
 const seen: { url: string; headers: Record<string, string> }[] = []
+const deletedUsers: string[] = []
 
 function fakeSupabase(input: string, init: RequestInit = {}): Response {
   const url = new URL(input)
   const headers = Object.fromEntries(new Headers(init.headers).entries())
   seen.push({ url: input, headers })
+  if (url.pathname.startsWith('/auth/v1/admin/users/') && init.method === 'DELETE') {
+    const id = url.pathname.split('/').pop()
+    deletedUsers.push(id!)
+    profiles = profiles.filter((p) => p.user_id !== id)
+    keys = keys.filter((k) => k.user_id !== id)
+    return new Response(null, { status: 200 })
+  }
   if (url.pathname === '/auth/v1/user') {
     const user = USERS[(headers.authorization ?? '').replace('Bearer ', '')]
     return user ? Response.json(user) : Response.json({ msg: 'bad jwt' }, { status: 401 })
@@ -75,6 +83,7 @@ beforeEach(async () => {
   profiles = []
   keys = []
   seen.length = 0
+  deletedUsers.length = 0
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
   vi.stubEnv('SUPABASE_URL', SB)
   vi.stubEnv('SUPABASE_SECRET_KEY', 'sb_secret_test')
@@ -135,5 +144,31 @@ describe('/api/access: the Supabase vault', () => {
     // The old approval keeps working without Supabase.
     clearAccessCache()
     expect(await accessStatus(OLD.id)).toBe('approved')
+  })
+
+  it('deletes the account: the person in Supabase and what the server keeps, not someone else\'s', async () => {
+    await link('tok-ali', OLD)
+    const put = (path: string, v: unknown) => void blobs.set(path, new TextEncoder().encode(JSON.stringify(v)))
+    put(`sync/${OLD.id}/core`, {})
+    put(`sync/${OLD.id}/ev-2026-10`, {})
+    put('push/mail-aaa.json', { owner: OLD.id, email: 'ali@example.com' })
+    put('push/mail-bbb.json', { owner: NEW.id, email: 'veli@example.com' })
+    put(`sync/${NEW.id}/core`, {})
+    const res = await access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: bearer('tok-ali'), body: JSON.stringify({ action: 'account-delete' }) }))
+    expect(res.status).toBe(200)
+    expect([...blobs.keys()].filter((k) => k.includes(OLD.id) || k === 'push/mail-aaa.json')).toEqual([])
+    expect(blobs.has('push/mail-bbb.json') && blobs.has(`sync/${NEW.id}/core`)).toBe(true)
+    expect(deletedUsers).toEqual([USERS['tok-ali']!.id])
+    expect(keys).toEqual([])
+  })
+
+  it('an account from before deletes itself with its own token only', async () => {
+    const del = (headers: Record<string, string>) => access.POST(new Request('https://app.test/api/access', { method: 'POST', headers: { ...APP, ...headers }, body: JSON.stringify({ action: 'account-delete' }) }))
+    expect((await del({ 'x-sync-id': OLD.id, 'x-sync-auth': '9'.repeat(64) })).status).toBe(403)
+    expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(true)
+    expect((await del({ 'x-sync-id': OLD.id, 'x-sync-auth': OLD.auth })).status).toBe(200)
+    expect(blobs.has(`sync/${OLD.id}/auth.txt`)).toBe(false)
+    expect(blobs.has(`access/approved/${OLD.id}.json`)).toBe(false)
+    expect(deletedUsers).toEqual([])
   })
 })

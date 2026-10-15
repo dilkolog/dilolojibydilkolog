@@ -198,7 +198,7 @@ export function DataSettings({
         </ConfirmDialog>
       )}
       {danger === 'all' && (
-        <ConfirmDialog title="Tüm veriler silinsin mı?" confirmLabel="Hepsini sil" danger onConfirm={deleteAll} onCancel={() => setDanger(null)}>
+        <ConfirmDialog title="Tüm veriler silinsin mi?" confirmLabel="Hepsini sil" danger onConfirm={deleteAll} onCancel={() => setDanger(null)}>
           {TARGET_LANGUAGES.map((l) => LANGUAGE_NAME[l]).join(', ')} için tüm kelimeler, ilerleme, görseller, ses kayıtları, profil ve ayarlar bu cihazdan silinir.
         </ConfirmDialog>
       )}

@@ -1,4 +1,5 @@
-import { signOutSupabase } from '../data/supabase'
+import { currentIdentity, providersText, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
+import { AccountManage } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, LockIcon, UserIcon } from './icons'
@@ -27,10 +28,13 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState<{ ok: boolean; text: string; conflict?: boolean } | null>(null)
   const [at, setAt] = useState<Date | null>(null)
+  const [identity, setIdentity] = useState<Identity | null>(null)
   const { status: access } = useAccess()
 
   const refresh = async () => {
-    setAcc(await getAccount())
+    const acc = await getAccount()
+    setAcc(acc)
+    setIdentity(acc ? await currentIdentity().catch(() => null) : null)
     setHasCode(!!(await getSyncCode()))
     const v = (await db.meta.get('syncAt'))?.value as string | undefined
     setAt(v ? new Date(v) : null)
@@ -84,9 +88,9 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
             <div>
               <dt className="small muted">Hesap</dt>
               <dd>
-                <UserIcon size={16} /> {account.username}
+                <UserIcon size={16} /> {identity?.email || account.username}
               </dd>
-              <p className="small muted">Aynı kullanıcı adı ve şifreyle girdiğin her cihazda ilerlemen aynı olur.</p>
+              <p className="small muted">{identity ? `Giriş: ${providersText(identity.providers)}. Hangi cihazda girersen gir, ilerlemen aynı olur.` : 'Aynı kullanıcı adı ve şifreyle girdiğin her cihazda ilerlemen aynı olur.'}</p>
             </div>
             <div>
               <dt className="small muted">Eşitleme</dt>
@@ -114,12 +118,13 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               Bu cihazda çıkış yap
             </button>
           </div>
+          <AccountManage account={account} identity={identity} onGone={() => void refresh()} />
           <p className="small muted account-foot">Çıkış yapınca yalnızca eşitleme kapanır: profilin, ilerlemen ve kelimelerin bu cihazda kalır; istediğinde yeniden girersin.</p>
           <RestorePoints />
         </>
       ) : (
         <>
-          <p className="muted account-lead">Bir hesapla ilerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle girersin.</p>
+          <p className="muted account-lead">{supabaseConfigured() ? 'Bir hesapla ilerlemen sunucuda saklanır; her cihazda e-postanla ya da Google ile girersin.' : 'Bir hesapla ilerlemen sunucuda şifreli saklanır; her cihazda aynı kullanıcı adı ve şifreyle girersin.'}</p>
           <ul className="account-perks">
             <li>
               <span className="perk-icon" aria-hidden>
@@ -135,8 +140,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
                 <LockIcon size={18} />
               </span>
               <div>
-                <strong>Sunucu içeriği göremez</strong>
-                <p className="small muted">Veriler cihazında şifrenle şifrelenir; şifren hiçbir yere gönderilmez.</p>
+                <strong>{supabaseConfigured() ? 'Şifreni unutsan da kaybolmaz' : 'Sunucu içeriği göremez'}</strong>
+                <p className="small muted">{supabaseConfigured() ? 'Veriler şifrelenerek saklanır; şifreni unutursan e-postanla yenilersin, ilerlemen yerinde kalır.' : 'Veriler cihazında şifrenle şifrelenir; şifren hiçbir yere gönderilmez.'}</p>
               </div>
             </li>
             <li>
