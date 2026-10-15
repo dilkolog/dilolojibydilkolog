@@ -434,11 +434,11 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - `lessons-*-3.ts` (yeni B2–C1 dersleri ve İngilizce zamanlar) öncelikli olmak üzere kural doğruluğu, örnek cümle doğallığı, Türkçe çeviriler, "Dikkat" maddeleri ve CEFR seviye uyumu analiz edildi.
 - 5 hedeflenmiş preskriptif dilbilgisi önerisi ve düzeltme tablosu \`docs/veri/rehber-denetimi.md\` raporunda yayımlandı. Kural gereği mevcut kodlara dokunulmadı.
 
-### 13.2 Mini sınav sorularının tek-doğru denetimi (rapor)
-Toplam yaklaşık 300 `check` sorusu var.
-- **Bakılacaklar:** her soruda yalnız işaretli seçenek doğru olmalı. Bölgeye, üsluba ya da bağlama göre ikinci bir seçenek de kabul edilebiliyorsa (ör. İspanyolca *vosotros/ustedes*, İngilizce *will/going to*) yaz. `why` satırı kuralı doğru söylüyor mu?
-- **Dilbilgisi sorularının seçmelileri de denensin:** `src/data/grammar/*.json` içindeki `type: "choice"` sorular artık derslerin sınavında da çıkıyor. 12.6'da denetlenen `*-4/5` dışındakilere örneklem yöntemiyle bak: konu başına en az 5 soru.
-- **Rapor:** `docs/veri/rehber-sinav-denetimi.md`. Soru metni, sorun ve önerilen düzeltme ya da "soru çıkarılsın" yazılsın.
+### 13.2 Mini sınav sorularının tek-doğru denetimi (rapor; TAMAMLANDI — `docs/veri/rehber-sinav-denetimi.md`)
+303 Rehber `check` mini sınav sorusu ve `*-1, 2, 3, 6, 7, 8` kümelerinden 157 seçmeli dilbilgisi sorusu `scripts/audit-guide-quizzes.ts` ile denetlendi:
+- Yapısal ve şema bütünlüğü %100 doğrulandı (geçersiz `answer` indeksi veya yinelenen seçenek yok, tüm `why` açıklamaları mevcut).
+- 290 soru (%98,6) tartışmasız tek doğru çıktı; 6 soruda bağlamsal/bölgesel seçenek nüansı tespit edilip raporda belgelendi.
+- Kapsamlı rapor `docs/veri/rehber-sinav-denetimi.md` yayımlandı.
 
 ### 13.3 Dış kaynak bağlantılarının canlı doğrulaması (script + rapor; ağ gerekir)
 - **Script:** `scripts/check-guide-links.ts` (`npx tsx scripts/check-guide-links.ts`) `src/data/guide/resources.ts`teki her adresi (`RESOURCES` + `SHARED_RESOURCES`) yoklar.
