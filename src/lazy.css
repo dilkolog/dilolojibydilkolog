@@ -1779,6 +1779,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 /* Drawn art in the settings pane headings, the account card and the list titles. */
 .settings-pane-art { height: 3rem; width: auto; flex: none; }
 .account-art { height: 3.5rem; width: auto; flex: none; }
+.account-art.auth-art { height: 5.25rem; margin-bottom: 0.125rem; }
 .wl-cover { width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); flex: none; object-fit: contain; }
 /* The learner's own cover photo: filled to its square, unlike a drawing. */
 .wl-photo { width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); flex: none; object-fit: cover; }

@@ -321,7 +321,7 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "İsteği yumuşatmak: Le agradecería que + imperfecto de subjuntivo (Le agradecería que me enviara el formulario); ¿Podría + mastar?; Quisiera + mastar; daha resmî olarak Le ruego que + subjuntivo.",
       "Ek ve iletişim: Le adjunto el documento; No dude en ponerse en contacto conmigo si tiene alguna pregunta.",
       "Kapanış: Quedo a la espera de su respuesta; ardından Atentamente, ya da biraz daha sıcak Un cordial saludo, ve ad soyad.",
-      "Kısaltmalar büyük harfle yazılır: Ud. / Uds. (usted / ustedes), Sr. / Sra., D. / Dña. (don / doña); usted açık yazıldığında küçük harfle başlar.",
+      "Kısaltmalar büyük harfle yazılır: Ud. / Uds. (usted / ustedes), Sr. / Sra., D. / Dña. (don / doña); usted açık yazıldığında küçük harfle başlar (cümle başı hariç; RAE 2010).",
     ],
     examples: [
       { text: "Estimada señora Ruiz:", tr: "Sayın Ruiz Hanım," },

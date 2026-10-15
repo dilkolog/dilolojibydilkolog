@@ -1,3 +1,4 @@
+import { ACCOUNT_ART } from './drawnArt'
 import type { Session } from '@supabase/supabase-js'
 import { useEffect, useRef, useState } from 'react'
 import { reportError } from '../data/errorReport'
@@ -141,7 +142,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
       </button>
       <div className="auth-card card">
         <div className="auth-head">
-          <BrandLogo className="auth-mark" size={30} />
+          {step === 'login' || step === 'create' ? <img className="account-art auth-art" src={ACCOUNT_ART.out} alt="" height={84} draggable={false} /> : <BrandLogo className="auth-mark" size={30} />}
           <h1 className="auth-title">{title[step]}</h1>
           {step === 'login' && <p className="muted">İlerlemen bu cihazdakiyle birleşir ve her cihazda aynı olur.</p>}
           {step === 'create' && <p className="muted">E-postanla bir hesap aç; her cihazda aynı ilerlemeyle devam et.</p>}
