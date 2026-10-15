@@ -1,11 +1,13 @@
 import '../lazy.css'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { grammarExercises } from '../data/grammar'
 import { KIND_NAME, KIND_ORDER, RESOURCES, SHARED_RESOURCES, type GuideResource } from '../data/guide/resources'
-import { TOPIC_LESSONS, type GuideLevel, type TopicLesson } from '../data/guide/lessons'
+import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
+import { checkFor, englishTenseLessons, lessonFor, lessonsOf, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
+import { PASS_RIGHT, type GuideMarks } from '../engine/guideReview'
 import { TENSE_LESSON } from '../data/tenseLesson'
-import { topicStats, topicName } from '../engine/grammar'
+import { topicStats } from '../engine/grammar'
 import { LAB_TENSES, type Tense } from '../engine/tenses'
 import { TENSE_BRIEF } from '../engine/tenseBrief'
 import type { TargetLanguage } from '../engine/types'
@@ -13,20 +15,12 @@ import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SpeakerIc
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
+import { LessonCheck } from './LessonCheck'
+import { loadMarks, markChecked, markRead as withRead, saveMarks } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
-/** Lessons marked as read, on this device. */
-const READ_KEY = 'diloloji:guide-read'
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
 type Tab = 'topics' | 'tenses' | 'links'
-
-const readSet = (): Set<string> => {
-  try {
-    return new Set(JSON.parse(localStorage.getItem(READ_KEY) ?? '[]') as string[])
-  } catch {
-    return new Set()
-  }
-}
 
 /**
  * The guide, the app's own school for the language: a short lesson for every grammar topic and the
@@ -34,16 +28,35 @@ const readSet = (): Set<string> => {
  * places outside the app to practise, listen, read and prepare an exam. A lesson leads to its
  * questions; a tense to the verb lab.
  */
-export function GuideScreen({ language, onPractice, onVerbs }: { language: TargetLanguage; onPractice: (topic: string) => void; onVerbs: (tense?: string) => void }) {
-  const [tab, setTab] = useState<Tab>('topics')
+export function GuideScreen({
+  language,
+  initialLesson,
+  initialTense,
+  review,
+  onPractice,
+  onVerbs,
+}: {
+  language: TargetLanguage
+  /** A lesson to open at once (its topic, or a grammar topic it teaches): from a mistake, or Today's review. */
+  initialLesson?: string
+  /** A tense of the verb lab to explain at once. */
+  initialTense?: string
+  /** Opened for the lesson's review: its check starts at once. */
+  review?: boolean
+  onPractice: (topic: string) => void
+  onVerbs: (tense?: string) => void
+}) {
+  const [tab, setTab] = useState<Tab>(initialTense ? 'tenses' : 'topics')
   const [level, setLevel] = useState<GuideLevel | null>(null)
   const [query, setQuery] = useState('')
-  const [open, setOpen] = useState<TopicLesson | null>(null)
-  const [tense, setTense] = useState<Tense | null>(null)
-  const [read, setRead] = useState<Set<string>>(readSet)
+  const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
+  const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
+  const [marks, setMarks] = useState<GuideMarks>(loadMarks)
   const [stats, setStats] = useState<Map<string, { accuracy: number; answered: number }>>(new Map())
+  const read = useMemo(() => new Set(Object.keys(marks)), [marks])
 
-  const lessons = useMemo(() => TOPIC_LESSONS.filter((l) => l.language === language), [language])
+  const lessons = useMemo(() => lessonsOf(language), [language])
+  const enTenses = useMemo(() => (language === 'en' ? englishTenseLessons() : []), [language])
   const exercises = useMemo(() => grammarExercises(language), [language])
   const questions = useMemo(() => {
     const n = new Map<string, number>()
@@ -62,31 +75,38 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
       live = false
     }
   }, [exercises])
-  useEffect(() => {
-    setOpen(null)
-    setLevel(null)
-    if (language === 'en' && tab === 'tenses') setTab('topics')
-  }, [language]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  const markRead = (topic: string, on = true) => {
-    const next = new Set(read)
-    if (on) next.add(topic)
-    else next.delete(topic)
-    setRead(next)
-    try {
-      localStorage.setItem(READ_KEY, JSON.stringify([...next]))
-    } catch {
-      // Not remembered on this device.
-    }
+  const change = (next: GuideMarks) => {
+    setMarks(next)
+    saveMarks(next)
   }
+  const markRead = (topic: string, on = true) => change(withRead(marks, topic, on))
 
   const q = query.trim().toLocaleLowerCase('tr')
   const shown = lessons.filter((l) => (!level || l.level === level) && (!q || `${l.title} ${l.summary} ${l.rules.join(' ')}`.toLocaleLowerCase('tr').includes(q)))
   const doneCount = lessons.filter((l) => read.has(l.topic)).length
+  const learnedCount = lessons.filter((l) => marks[l.topic]?.learned).length
   // The way through: the first lesson not read yet, the easier levels first.
   const next = LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)).find((l) => !read.has(l.topic))
 
-  if (open) return <LessonView lesson={open} language={language} read={read.has(open.topic)} questions={questions.get(open.topic) ?? 0} onBack={() => setOpen(null)} onRead={(on) => markRead(open.topic, on)} onPractice={() => onPractice(open.topic)} onVerbs={() => onVerbs()} />
+  if (open) {
+    const practice = open.practice ?? open.topic
+    return (
+      <LessonView
+        key={open.topic}
+        lesson={open}
+        language={language}
+        read={read.has(open.topic)}
+        learned={!!marks[open.topic]?.learned}
+        review={review && open.topic === lessonFor(language, initialLesson ?? '')?.topic}
+        questions={questions.get(practice) ?? 0}
+        onBack={() => setOpen(null)}
+        onRead={(on) => markRead(open.topic, on)}
+        onChecked={(right, size) => change(markChecked(marks, open.topic, right >= Math.min(PASS_RIGHT, size)))}
+        onPractice={() => onPractice(practice)}
+        onVerbs={() => onVerbs()}
+      />
+    )
+  }
 
   return (
     <div className="stack guide">
@@ -95,9 +115,9 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
         <button type="button" role="tab" aria-selected={tab === 'topics'} className="chip" onClick={() => setTab('topics')}>
           Konular <span className="muted small">{lessons.length}</span>
         </button>
-        {tenses.length > 0 && (
+        {tenses.length + enTenses.length > 0 && (
           <button type="button" role="tab" aria-selected={tab === 'tenses'} className="chip" onClick={() => setTab('tenses')}>
-            Zamanlar <span className="muted small">{tenses.length}</span>
+            Zamanlar <span className="muted small">{tenses.length + enTenses.length}</span>
           </button>
         )}
         <button type="button" role="tab" aria-selected={tab === 'links'} className="chip" onClick={() => setTab('links')}>
@@ -110,9 +130,9 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
           <div className="card guide-progress">
             <div className="row justify-between small">
               <span>
-                <strong>{doneCount}</strong> / {lessons.length} konu okundu
+                <strong>{doneCount}</strong> / {lessons.length} konu okundu{learnedCount > 0 && <> · <strong>{learnedCount}</strong> öğrenildi</>}
               </span>
-              <span className="muted">Okuduğun konunun sorularını çöz, kural yerine otursun.</span>
+              <span className="muted">Dersin sonundaki üç soruyu geç, konu öğrenildi sayılsın.</span>
             </div>
             <span className="guide-bar">
               <span style={{ width: `${lessons.length ? (doneCount / lessons.length) * 100 : 0}%` }} />
@@ -154,18 +174,7 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
                   {list.map((l) => {
                     const s = stats.get(l.topic)
                     const n = questions.get(l.topic) ?? 0
-                    return (
-                      <button key={l.topic} type="button" className={`guide-card${read.has(l.topic) ? ' guide-read' : ''}`} onClick={() => setOpen(l)}>
-                        <span className="guide-card-head">
-                          <strong>{titleOf(l)}</strong>
-                          {read.has(l.topic) && <CheckCircleIcon size={18} className="guide-check" />}
-                        </span>
-                        <span className="small muted">{l.summary}</span>
-                        <span className="guide-card-foot small">
-                          {n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru` : `${n} soru`) : 'Temel konu'}
-                        </span>
-                      </button>
-                    )
+                    return <LessonCard key={l.topic} lesson={l} read={read.has(l.topic)} learned={!!marks[l.topic]?.learned} foot={n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru` : `${n} soru`) : 'Temel konu'} onOpen={() => setOpen(l)} />
                   })}
                 </div>
               </section>
@@ -175,7 +184,18 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
         </>
       )}
 
-      {tab === 'tenses' && (
+      {tab === 'tenses' && enTenses.length > 0 && (
+        <section className="stack gap-2">
+          <p className="small muted">İngilizcenin zamanları, öğrenme sırasıyla: ne zaman kullanılır, nasıl kurulur, nerede karışır.</p>
+          <div className="guide-grid">
+            {enTenses.map((l) => (
+              <LessonCard key={l.topic} lesson={l} read={read.has(l.topic)} learned={!!marks[l.topic]?.learned} foot={l.level} onOpen={() => setOpen(l)} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {tab === 'tenses' && tenses.length > 0 && (
         <section className="stack gap-2">
           <p className="small muted">Fiil laboratuvarındaki her zamanın anlatımı: ne zaman kullanılır, nasıl kurulur, nerede karışır.</p>
           <div className="guide-grid">
@@ -216,8 +236,23 @@ export function GuideScreen({ language, onPractice, onVerbs }: { language: Targe
 }
 
 const LEVEL_NAME: Record<GuideLevel, string> = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İleri orta', C1: 'İleri' }
-/** A grammar topic is named as its questions name it; a basic lesson by its own title. */
-const titleOf = (l: TopicLesson) => (l.topic.startsWith('basics_') ? l.title : topicName(l.topic) || l.title)
+const titleOf = lessonTitle
+
+function LessonCard({ lesson, read, learned, foot, onOpen }: { lesson: TopicLesson; read: boolean; learned: boolean; foot: string; onOpen: () => void }) {
+  return (
+    <button type="button" className={`guide-card${learned ? ' guide-learned' : read ? ' guide-read' : ''}`} onClick={onOpen}>
+      <span className="guide-card-head">
+        <strong>{titleOf(lesson)}</strong>
+        {(read || learned) && <CheckCircleIcon size={18} className="guide-check" />}
+      </span>
+      <span className="small muted">{lesson.summary}</span>
+      <span className="guide-card-foot small">
+        {foot}
+        {learned && <span className="guide-tag">Öğrenildi</span>}
+      </span>
+    </button>
+  )
+}
 
 function ResourceCard({ r }: { r: GuideResource }) {
   return (
@@ -240,24 +275,35 @@ function LessonView({
   lesson,
   language,
   read,
+  learned,
+  review,
   questions,
   onBack,
   onRead,
+  onChecked,
   onPractice,
   onVerbs,
 }: {
   lesson: TopicLesson
   language: TargetLanguage
   read: boolean
+  learned: boolean
+  review?: boolean
   questions: number
   onBack: () => void
   onRead: (on: boolean) => void
+  onChecked: (right: number, size: number) => void
   onPractice: () => void
   onVerbs: () => void
 }) {
+  // Picked once a visit: the questions do not change while the lesson is read.
+  const check = useMemo(() => checkFor(lesson), [lesson])
+  const [checking, setChecking] = useState(!!review && check.length > 0)
+  const checkRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    window.scrollTo({ top: 0 })
-  }, [lesson])
+    if (checking && review) checkRef.current?.scrollIntoView({ block: 'start' })
+    else window.scrollTo({ top: 0 })
+  }, [lesson]) // eslint-disable-line react-hooks/exhaustive-deps
   const verbTopic = /present|passe|imparfait|preterito|futur|subj|conditionnel|basics_(fr|es)_(present|presente|passe_compose|preterito)/.test(lesson.topic)
   return (
     <article className="stack guide-lesson">
@@ -309,6 +355,22 @@ function LessonView({
         <p className="note">
           <strong>İpucu:</strong> {lesson.tip}
         </p>
+      )}
+      {check.length > 0 && (
+        <div ref={checkRef}>
+          {checking ? (
+            <LessonCheck items={check} language={language} review={review} onDone={(right) => onChecked(right, check.length)} />
+          ) : (
+            <button type="button" className="card guide-next lesson-check-start" onClick={() => setChecking(true)}>
+              <span className="guide-next-text">
+                <span className="small muted">{learned ? 'Öğrenildi · tekrar et' : 'Kendini dene'}</span>
+                <strong>{check.length} soruluk kısa sınav</strong>
+                <span className="small muted">{learned ? 'Kural hâlâ yerinde mi, bir bak.' : `${Math.min(PASS_RIGHT, check.length)} doğru yeterli: ders öğrenildi sayılır ve birkaç gün sonra tekrarı gelir.`}</span>
+              </span>
+              <ChevronRightIcon size={20} className="guide-next-arrow" />
+            </button>
+          )}
+        </div>
       )}
       <div className="row guide-actions">
         {questions > 0 && (

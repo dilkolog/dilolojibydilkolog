@@ -2,7 +2,7 @@
 
 Bu dosya Antigravity'ye verilecek işleri, sırasını ve çalışma kurallarını toplar. Yük yavaş yavaş artırılır: önce küçük ve izole işler, sorunsuz giderse orta, en sonda büyük. Her tur bitince kullanıcı bir sonrakine geçilip geçilmeyeceğine karar verir.
 
-Son güncelleme: 2026-10-11 (11. tur tamamlandı).
+Son güncelleme: 2026-10-15 (13. tur eklendi).
 
 ## Önce oku
 - `AGENTS.md` (çalışma kuralları, tuzaklar, komutlar) ve `DESIGN.md` (renk/yazı/hareket tokenları, bileşenler, Yap/Yapma).
@@ -411,6 +411,110 @@ Claude Code "Kök ve ekler" kartını ekledi (`src/engine/derive.ts`: ek tablosu
 Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`). Beklenen farklar: Bugün (canlı tohum, halka), Sözlük, Fiil laboratuvarı yazma alıştırması (Tek tek varsayılan), kelime sayfası (eşdizim çipi).
 
 **Tur sonu ölçütü:** E2E'ler telefon ve masaüstünde yeşil, mevcut testler silinmemiş; raporlar tarih ve komut çıktısıyla, doğrulanamayanlar ayrı listede; yeni veri dosyaları `npx vitest run src/data` ile yeşil; PR'lar tek konulu.
+
+---
+
+## 13. tur: Rehber içeriğinin denetimi, Supabase güvenlik duman testi, yeni ekranların testleri (kullanıcı istedi)
+
+**Bağlam (12. turdan sonra Claude Code'un ekledikleri):**
+- **Rehber** (Pratik → Rehber, `src/ui/Guide.tsx`): dil başına yaklaşık 50 ders (`src/data/guide/lessons-{fr,es,en}{,-2,-3}.ts`, şema `lessonTypes.ts`).
+  - Her temel dersin sonunda 3 soruluk **mini sınav** var (`check`; 2 doğru = "öğrenildi").
+  - Dilbilgisi konularının dersleri sınav sorularını kendi konusunun `choice` sorularından alır (`src/data/guide/lessonOf.ts` `checkFor`).
+  - Okunan ders 3, 10 ve 30 gün sonra Bugün'de **"Hatırlıyor musun?"** kartıyla geri gelir (`engine/guideReview.ts`, `ui/GuideReviewNudge.tsx`).
+  - İlgili dersin bağlantısı üç yerde çıkar: yanlış dilbilgisi cevabının altında ("Konunun dersi"), kör nokta kartında ("Dersi oku") ve fiil laboratuvarı teşhisinde ("Bu zamanın anlatımı").
+  - İngilizcenin de artık **Zamanlar** sekmesi var.
+  - **Dış kaynaklar** sekmesinde 38 bağlantı var (`src/data/guide/resources.ts`).
+- **Supabase**: giriş, eşitleme tabloları (`sync_parts`), arkadaş/paylaşım/hatırlatma tabloları (`supabase/migrations/0001…0003`, `docs/SUPABASE.md`).
+- Ayrıca: Kartlar ekranı (3B çevirme, 1/2/3 not), Arkadaşlar kartı, seri kurtarma, İlerleme raporu (yazdır/Excel).
+
+**Çakışma uyarısı:** Claude Code `src/ui/`, `src/engine/`, `api/`, `src/data/guide/` ve `supabase/` üzerinde çalışıyor. Bu turdaki işler `e2e/`, `docs/`, `scripts/` ve **yeni** veri dosyalarıyla sınırlı. Mevcut ders dosyalarını düzenleme; düzeltmeleri rapora yaz, Claude Code uygular. Her PR tek konu. Veri kuralları önceki turlardakiyle aynı: kaynak yazılır, uydurma yok, doğrulanamayanlar raporda ayrı listelenir.
+
+### 13.1 Rehber derslerinin dil denetimi (rapor)
+Üç dilin bütün derslerini ana dil kaynaklarıyla (Le Robert / Bescherelle, RAE / DPD / Fundéu, Cambridge / Oxford) oku.
+- **Bakılacaklar:**
+  - kural doğru ve eksiksiz mi;
+  - örnek cümle doğal ve doğru mu;
+  - Türkçe çeviri cümleyi doğru veriyor mu;
+  - "Dikkat" maddeleri gerçekten Türkçe konuşanın yaptığı hatalar mı;
+  - seviye (A1–C1) yerinde mi?
+- **Rapor:** `docs/veri/rehber-denetimi.md`. Her düzeltme bir satır: dosya, `topic`, alan, şimdiki metin, önerilen metin, gerekçe ve kaynak.
+- **Önce:** `lessons-*-3.ts` (yeni B2–C1 dersleri ve İngilizce zaman dersleri), sonra öbürleri.
+
+### 13.2 Mini sınav sorularının tek-doğru denetimi (rapor)
+Toplam yaklaşık 300 `check` sorusu var.
+- **Bakılacaklar:** her soruda yalnız işaretli seçenek doğru olmalı. Bölgeye, üsluba ya da bağlama göre ikinci bir seçenek de kabul edilebiliyorsa (ör. İspanyolca *vosotros/ustedes*, İngilizce *will/going to*) yaz. `why` satırı kuralı doğru söylüyor mu?
+- **Dilbilgisi sorularının seçmelileri de denensin:** `src/data/grammar/*.json` içindeki `type: "choice"` sorular artık derslerin sınavında da çıkıyor. 12.6'da denetlenen `*-4/5` dışındakilere örneklem yöntemiyle bak: konu başına en az 5 soru.
+- **Rapor:** `docs/veri/rehber-sinav-denetimi.md`. Soru metni, sorun ve önerilen düzeltme ya da "soru çıkarılsın" yazılsın.
+
+### 13.3 Dış kaynak bağlantılarının canlı doğrulaması (script + rapor; ağ gerekir)
+- **Script:** `scripts/check-guide-links.ts` (`npx tsx scripts/check-guide-links.ts`) `src/data/guide/resources.ts`teki her adresi (`RESOURCES` + `SHARED_RESOURCES`) yoklar.
+- **Her adres için yazılacaklar:**
+  - durum kodu;
+  - yönlendirme varsa son adres;
+  - sayfa başlığı;
+  - not ve seviye bilgisi sayfayla uyuşuyor mu;
+  - "açık lisans" ve "kısmen ücretli" etiketleri doğru mu?
+- **Rapor:** `docs/kaynaklar/rehber-baglantilari.md`. Kırık ya da taşınmış bağlantılar için yeni adres önerisi; her dil için eklenmeye değer 2–3 ücretsiz kaynak (lisans ve seviyesiyle).
+
+### 13.4 Rehber için uçtan uca ve erişilebilirlik testleri (`e2e/`)
+- **Telefon (375 px, `e2e/phone.e2e.ts`):**
+  - bir temel dersi aç (örn. İspanyolca `basics_es_hay_estar`) ve mini sınavı bitir;
+  - 2 ve üstü doğruda kartta "Öğrenildi" etiketi çıksın;
+  - Bugün'deki "Hatırlıyor musun?" kartı: `localStorage 'diloloji:guide-progress'` içine eski tarihli bir kayıt koy, karta bas, dersin sınavı doğrudan başlasın;
+  - "Şimdi değil" (X) kartı kapatır;
+  - `overflow(page) === []`.
+- **Masaüstü (`e2e/desktop.e2e.ts`):**
+  - dilbilgisi sorusunda yanlış cevap → "Konunun dersi" bağlantısı derse götürür; geri tuşu soruya döner;
+  - İngilizce **Zamanlar** sekmesi sırayla listeler (Present simple ilk);
+  - fiil laboratuvarı alıştırmasında yanlış çekim → "Bu zamanın anlatımı" pencereyi açar, Esc ile kapanır.
+- **Erişilebilirlik (`e2e/a11y.e2e.ts`):** açık ve koyu temada ders sayfası, sınav (soru, cevap gösterilirken ve sonuç ekranı) ve Bugün'deki tekrar kartı için axe taraması.
+
+### 13.5 Supabase güvenlik duman testi (script + belge; sahibinin makinesinde çalışır)
+- **Script:** `scripts/smoke-supabase.mjs`, ortam değişkenleri `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SMOKE_EMAIL`, `SMOKE_PASSWORD` (ayrı bir deneme hesabı). Yalnızca açık (publishable) anahtarla çalışır; gizli anahtar asla istenmez ve dosyaya yazılmaz.
+- **Denetlenecekler:**
+  1. giriş yapılabiliyor;
+  2. `put_sync_part` onaysız hesapla `42501` döner;
+  3. hesap onaylıysa `core` yazılıp geri okunur;
+  4. başka bir kişinin `sync_parts` satırı okunamaz (boş liste);
+  5. `friend_cards`, `shared_lists`, `reminders`, `server_flags`, `sync_keys` tabloları açık anahtarla **hiç** okunamaz (boş ya da 401/403);
+  6. `media` kovasında başkasının klasörü listelenemez.
+- Çıktı her madde için GEÇTİ/KALDI yazar.
+- **Belge:** `docs/SUPABASE.md`'ye "Güvenlik duman testi" bölümü. Ben bu ortamda supabase.com'a ulaşamıyorum; script'i sen gerçek projeye karşı çalıştırma, yalnızca söz dizimini ve sahte sunucuyla mantığını dene. Gerçek koşuyu sahibi yapar.
+
+### 13.6 Yeni ekranların uçtan uca testleri (`e2e/`; eksik olanlar)
+Önce `e2e/` içinde ne olduğuna bak; yalnızca eksik olanları yaz.
+- **Kartlar** (Oyunlar → Kartlar): çevirme, 1/2/3 not, "Bilmiyorum" denen kartın 3 kart sonra dönmesi, sonuç ekranı ve "Takıldıklarını çalış".
+- **Arkadaşlar kartı:** `/api/access?friends=1` taklidiyle sıralama, kod ekleme ve çıkarma.
+- **Seri kurtarma:** teklif kartı, `{name:'exam', repair:true}` sınavı, %70 ve üstünde serinin geri gelmesi.
+- **İlerleme raporu:** "Yazdır" yeni pencere açar; Excel dosyası iner ve 7 sayfalıdır (`page.waitForEvent('download')`).
+
+### 13.7 Az sorusu olan dilbilgisi konularına soru (veri)
+- **Ölç:** `grammarExercises` ile her konunun `choice` soru sayısını say. 10'dan az `choice` sorusu olan konulara (`rewrite_*` hariç) yeni dosyalarda (`src/data/grammar/{fr,es,en}-9.json`) soru ekle. Hedef: her konuda en az 10 `choice`, çünkü mini sınav bunlardan seçiyor.
+- **Kurallar:**
+  - kimlikler `<dil>-<konu>-NN` biçiminde ve benzersiz;
+  - tek doğru seçenek;
+  - açıklama Türkçe;
+  - özgün cümleler, kaynak satırıyla.
+- `npx vitest run src/data` yeşil olmalı. Konu adı gerekirse (yeni konu açma) yapma; yalnızca var olan konulara soru ekle.
+
+### 13.8 Belge güncellemesi
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`'ye #300–#351 arasında yapılanları ekle:
+- Rehber, mini sınav ve tekrar kartı;
+- Supabase giriş ve eşitleme (2. ve 2b aşamaları);
+- Kartlar, Arkadaşlar, seri kurtarma, İlerleme raporu;
+- hesap ekranının yenilenmesi.
+
+`AGENTS.md`'ye dokunma.
+
+### 13.9 Görsel referansları yenileme (KOTA)
+Actions kotası dönünce `gh workflow run snapshots.yml --ref main`. Beklenen farklar: Bugün (tekrar kartı, liste seçici), Rehber, Ayarlar → Hesap, Kartlar.
+
+**Tur sonu ölçütü:**
+- raporlar tarih ve komut çıktısıyla yazılmış, doğrulanamayanlar ayrı listede;
+- E2E'ler telefon ve masaüstünde yeşil, mevcut testler silinmemiş;
+- yeni veri dosyaları `npx vitest run src/data` ile yeşil;
+- PR'lar tek konulu;
+- Supabase script'i gizli anahtar istemiyor.
 
 ---
 

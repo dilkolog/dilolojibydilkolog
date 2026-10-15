@@ -60,6 +60,8 @@ export function GamesScreen(
     initialGame?: Game
     /** A grammar topic to start the grammar questions on (from the guide). */
     initialTopic?: string
+    /** Opens the guide's lesson for a grammar topic (after a wrong answer). */
+    onOpenLesson?: (topic: string) => void
     /** Told when a game opens or closes, so the app's screen (and the Back button) follows. */
     onGameChange?: (game: Game) => void
     /** Opens the verb lab (the conjugation practice lives there). */
@@ -152,7 +154,7 @@ export function GamesScreen(
     if (game === 'flow') return <FlowRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
-    if (game === 'grammar') return <GrammarPractice language={p.language} initialTopic={p.initialTopic} onExit={() => setGame(null)} />
+    if (game === 'grammar') return <GrammarPractice language={p.language} initialTopic={p.initialTopic} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
     if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
     if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />

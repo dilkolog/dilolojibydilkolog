@@ -30,7 +30,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Yaş söylerken have kullanmak: 'I have 25 years' değil 'I am 25'.",
       "Soruda sırayı unutmak: 'You are ready?' yerine 'Are you ready?'."
     ],
-    tip: "Cümlede başka fiil yoksa bir am/is/are arayın; varsa be'ye gerek yok."
+    tip: "Cümlede başka fiil yoksa bir am/is/are arayın; varsa be'ye gerek yok.",
+    check: [
+      {
+        prompt: "My parents ___ teachers.",
+        options: ["is", "are", "am"],
+        answer: 1,
+        why: "Çoğul özneyle (they, my parents) be fiili are olur."
+      },
+      {
+        prompt: "She ___ at home yesterday.",
+        options: ["is", "were", "was"],
+        answer: 2,
+        why: "Geçmişte he/she/it ile was kullanılır."
+      },
+      {
+        prompt: "\"Yorgunum\" İngilizcede nasıl söylenir?",
+        options: ["I am tired.", "I tired.", "I have tired.", "Me tired."],
+        answer: 0,
+        why: "Cümlede başka fiil yoksa be zorunludur: I am tired."
+      }
+    ]
   },
   {
     topic: "basics_en_present_simple",
@@ -59,7 +79,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Türkçedeki -iyor her yerde kullanıldığı için alışkanlığa continuous demek: 'I am going to work every day' değil 'I go to work every day'.",
       "Durum fiillerini -ing ile kullanmak: 'I am wanting' değil 'I want'."
     ],
-    tip: "he, she, it: fiile bir -s; do/does geldiyse -s ondadır, fiilde değil."
+    tip: "he, she, it: fiile bir -s; do/does geldiyse -s ondadır, fiilde değil.",
+    check: [
+      {
+        prompt: "My sister ___ in a hospital.",
+        options: ["work", "works", "working"],
+        answer: 1,
+        why: "Geniş zamanda he/she/it ile fiil -s alır."
+      },
+      {
+        prompt: "___ your brother like football?",
+        options: ["Do", "Is", "Does"],
+        answer: 2,
+        why: "Üçüncü tekilde soru does ile kurulur, fiil yalın kalır."
+      },
+      {
+        prompt: "Be quiet! The baby ___.",
+        options: ["is sleeping", "sleeps", "sleep"],
+        answer: 0,
+        why: "Şu anda süren iş için present continuous kullanılır."
+      }
+    ]
   },
   {
     topic: "basics_en_past_simple",
@@ -87,7 +127,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Düzensiz fiile -ed eklemek: 'goed', 'buyed' değil 'went', 'bought'.",
       "Olumsuzda was kullanmak: 'I was not go' değil 'I didn't go'."
     ],
-    tip: "Did bir kez geçmişi taşır; arkasındaki fiil hep yalın kalır."
+    tip: "Did bir kez geçmişi taşır; arkasındaki fiil hep yalın kalır.",
+    check: [
+      {
+        prompt: "Did you ___ the film last night?",
+        options: ["saw", "see", "seen", "seeing"],
+        answer: 1,
+        why: "Did geçmişi taşır; arkasındaki fiil yalın kalır."
+      },
+      {
+        prompt: "We ___ to Antalya last summer.",
+        options: ["go", "goed", "went"],
+        answer: 2,
+        why: "Go düzensizdir; geçmiş biçimi went olur."
+      },
+      {
+        prompt: "\"Gitmedim\" hangisiyle söylenir?",
+        options: ["I didn't go.", "I didn't went.", "I wasn't go."],
+        answer: 0,
+        why: "Geçmişte olumsuz didn't + yalın fiil ile kurulur."
+      }
+    ]
   },
   // A2
   {
@@ -118,7 +178,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "People'ı tekil saymak: 'People is' değil 'People are'.",
       "Much ile sayılabilir isim: 'much friends' değil 'many friends'."
     ],
-    tip: "'How many?' sorusuna sayıyla cevap verebiliyorsanız isim sayılabilirdir."
+    tip: "'How many?' sorusuna sayıyla cevap verebiliyorsanız isim sayılabilirdir.",
+    check: [
+      {
+        prompt: "There are three ___ in the garden.",
+        options: ["child", "childs", "children"],
+        answer: 2,
+        why: "Child düzensizdir; çoğulu children olur."
+      },
+      {
+        prompt: "How ___ money do you need?",
+        options: ["many", "much", "few"],
+        answer: 1,
+        why: "Money sayılamaz; sayılamayan isimle much kullanılır."
+      },
+      {
+        prompt: "Can you give me some ___?",
+        options: ["advice", "advices", "an advice"],
+        answer: 0,
+        why: "Advice sayılamaz: çoğul olmaz ve a/an almaz."
+      }
+    ]
   },
   {
     topic: "basics_en_future",
@@ -146,7 +226,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Will'den sonra to eklemek: 'I will to go' değil 'I will go'.",
       "Önceden yapılmış plan için will: kararı önceden verdiyseniz 'I'm going to' daha doğaldır."
     ],
-    tip: "Karar şimdi mi verildi? will. Önceden mi? going to. Takvimde mi? -ing."
+    tip: "Karar şimdi mi verildi? will. Önceden mi? going to. Takvimde mi? -ing.",
+    check: [
+      {
+        prompt: "Look at those black clouds! It ___ rain.",
+        options: ["is going to", "will to", "goes to"],
+        answer: 0,
+        why: "Şimdiki kanıta dayalı tahmin be going to ile söylenir."
+      },
+      {
+        prompt: "Call me when you ___ home.",
+        options: ["will get", "get", "are going to get"],
+        answer: 1,
+        why: "When gibi zaman bağlaçlarından sonra gelecek için present simple gelir."
+      },
+      {
+        prompt: "Konuşurken o anda verilen bir karar hangisiyle söylenir?",
+        options: ["be going to + yalın fiil", "present continuous", "will + yalın fiil"],
+        answer: 2,
+        why: "Anlık karar, söz ve teklif will ile söylenir."
+      }
+    ]
   },
   {
     topic: "basics_en_comparatives",
@@ -176,7 +276,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Superlative'de the'yi unutmak: 'She is best student' değil 'She is the best student'.",
       "Düzensizleri düzenli yapmak: 'gooder', 'badder' değil 'better', 'worse'."
     ],
-    tip: "Kısa sıfata ek, uzun sıfata kelime: -er/-est ya da more/most, ikisi asla birlikte değil."
+    tip: "Kısa sıfata ek, uzun sıfata kelime: -er/-est ya da more/most, ikisi asla birlikte değil.",
+    check: [
+      {
+        prompt: "My car is ___ than yours.",
+        options: ["more fast", "faster", "fastest", "more faster"],
+        answer: 1,
+        why: "Tek heceli sıfat -er alır; more ile birlikte kullanılmaz."
+      },
+      {
+        prompt: "This is the ___ hotel in the city.",
+        options: ["most expensive", "more expensive", "expensivest"],
+        answer: 0,
+        why: "Uzun sıfatlarda superlative the most ile kurulur."
+      },
+      {
+        prompt: "Ankara is not as big ___ Istanbul.",
+        options: ["than", "from", "as"],
+        answer: 2,
+        why: "Eşitlik ve onun olumsuzu as … as kalıbıyla kurulur."
+      }
+    ]
   },
   {
     topic: "articles_en",

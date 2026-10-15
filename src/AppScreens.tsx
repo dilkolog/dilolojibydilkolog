@@ -22,6 +22,7 @@ import { BackupNudge } from './ui/BackupNudge'
 import { WhatsNew } from './ui/WhatsNew'
 import { MindSeed } from './ui/MindSeed'
 import { MonkiNudge } from './ui/monki/MonkiNudge'
+import { GuideReviewNudge } from './ui/GuideReviewNudge'
 import { TodayTime } from './ui/TodayTime'
 import { SuggestWords } from './ui/SuggestWords'
 import { WeeklyNudge } from './ui/WeeklyNudge'
@@ -227,6 +228,7 @@ export function AppScreens(props: AppScreensProps) {
           onExam={go({ name: 'exam' })}
           onEarPractice={go({ name: 'games', game: 'ear' })}
           onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
+          onLesson={(lesson) => setScreen({ name: 'guide', lesson: lesson.topic, tense: lesson.tense })}
           weeklyGoal={settings.weeklyTimeGoal}
           onWeeklyGoal={(minutes) => void updateSettings({ ...settings, weeklyTimeGoal: minutes })}
           learnerName={settings.profile.name}
@@ -282,11 +284,11 @@ export function AppScreens(props: AppScreensProps) {
           }
         />
       ) : screen.name === 'games' ? (
-        <GamesScreen key={data.language} initialGame={screen.game} initialTopic={screen.topic} onGameChange={(g) => setScreen({ name: 'games', game: g ?? undefined })} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} dayDue={plan ? { reviews: reviewsWaiting, minutes: plan.estimatedMinutes } : undefined} onStartDay={startDay} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
+        <GamesScreen key={data.language} initialGame={screen.game} initialTopic={screen.topic} onOpenLesson={(topic) => setScreen({ name: 'guide', lesson: topic })} onGameChange={(g) => setScreen({ name: 'games', game: g ?? undefined })} onOpenVerbs={data.language !== 'en' ? go({ name: 'verbs' }) : undefined} dayDue={plan ? { reviews: reviewsWaiting, minutes: plan.estimatedMinutes } : undefined} onStartDay={startDay} language={data.language} vocabulary={data.vocabulary} states={data.states} mistakes={data.mistakes} onChanged={reload} />
       ) : screen.name === 'verbs' ? (
         <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
       ) : screen.name === 'guide' ? (
-        <GuideScreen key={data.language} language={data.language} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} />
+        <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} />
       ) : screen.name === 'profile' ? (
         <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
       ) : screen.name === 'account' ? (
@@ -422,6 +424,8 @@ export function AppScreens(props: AppScreensProps) {
           friendsCard={<FriendsCard game={game} profile={settings.profile} />}
           extra={
             <>
+            {/* A lesson's review first: it shows only to someone using the guide, on the day it is due. */}
+            <GuideReviewNudge language={data.language} onOpen={(topic) => setScreen({ name: 'guide', lesson: topic, review: true })} />
             <HabitCards
               settings={settings}
               onSettings={updateSettings}

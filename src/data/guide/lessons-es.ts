@@ -32,6 +32,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "a el / de el yazmak: her zaman al / del.",
     ],
     tip: "Kelimeyi hep artikeliyle ezberle: 'mesa' değil 'la mesa', 'día' değil 'el día'.",
+    check: [
+      {
+        prompt: "___ agua de este río está muy fría.",
+        options: ["La", "El", "Los", "Lo"],
+        answer: 1,
+        why: "Vurgulu a- ile başlayan dişil tekil isim söyleyiş kolaylığı için el alır ama dişil kalır: el agua fría.",
+      },
+      {
+        prompt: "Mañana voy ___ cine con mis amigos.",
+        options: ["a el", "en el", "al", "a lo"],
+        answer: 2,
+        why: "a + el her zaman al olarak birleşir.",
+      },
+      {
+        prompt: "Hangisi eril bir isimdir?",
+        options: ["mano", "canción", "ciudad", "problema"],
+        answer: 3,
+        why: "-a ile bitmesine rağmen problema eril bir istisnadır: el problema.",
+      },
+    ],
   },
   {
     topic: "basics_es_presente",
@@ -62,6 +82,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "-er ve -ir sonlarını karıştırmak: comemos ama vivimos, coméis ama vivís.",
     ],
     tip: "Gövde değişen fiillerde 'bot kuralı': değişen dört biçim (yo, tú, él, ellos) tabloda bir bot çizer; nosotros ve vosotros botun dışında kalır.",
+    check: [
+      {
+        prompt: "Nosotros no ___ salir esta noche.",
+        options: ["puedemos", "podemos", "pueden", "puedo"],
+        answer: 1,
+        why: "Gövde değişimi (o → ue) nosotros ve vosotros biçimlerinde olmaz: podemos.",
+      },
+      {
+        prompt: "Yo siempre ___ la cama antes de desayunar.",
+        options: ["haco", "hace", "hago", "hacer"],
+        answer: 2,
+        why: "hacer fiilinin yalnızca yo biçimi düzensizdir: hago.",
+      },
+      {
+        prompt: "Mis hermanos ___ en Valencia.",
+        options: ["viven", "vivan", "vivís", "vive"],
+        answer: 0,
+        why: "Düzenli -ir fiillerinde ellos biçimi -en ile biter: viven.",
+      },
+    ],
   },
   {
     topic: "basics_es_gustar",
@@ -92,6 +132,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Olumsuz cümleye 'A mí también' ile katılmak: doğrusu 'A mí tampoco'.",
     ],
     tip: "Gustar'ı 'sevmek' diye değil 'hoşuna gitmek' diye çevir: Kitaplar hoşuma gider → Me gustan los libros.",
+    check: [
+      {
+        prompt: "A mis padres ___ los viajes largos.",
+        options: ["les gusta", "le gustan", "les gustan", "gustan"],
+        answer: 2,
+        why: "Seven kişiler çoğul olduğu için les, sevilen şey çoğul olduğu için gustan gelir.",
+      },
+      {
+        prompt: "Hangisi doğru?",
+        options: ["Yo gusto el chocolate.", "Me gusta el chocolate.", "Me gusto el chocolate.", "Me gustan el chocolate."],
+        answer: 1,
+        why: "Seven kişi zamirle (me) gösterilir, fiil sevilen tekil şeye uyar: gusta.",
+      },
+      {
+        prompt: "Arkadaşına katılıyorsun: —No me gusta el café. —A mí ___.",
+        options: ["nunca", "también", "tampoco"],
+        answer: 2,
+        why: "Olumsuz bir cümleye katılırken 'A mí tampoco' denir.",
+      },
+    ],
   },
   {
     topic: "basics_es_negacion",
@@ -123,6 +183,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "no'yu fiilden sonra koymak: 'Hablo no' değil, 'No hablo'.",
     ],
     tip: "no hep fiilin (ve önündeki zamirin) hemen önündedir; nada, nadie, nunca fiilden sonra geliyorsa önde yine no durur.",
+    check: [
+      {
+        prompt: "No hay ___ en la oficina.",
+        options: ["alguien", "algo", "nadie"],
+        answer: 2,
+        why: "no ile başlayan cümlede çifte olumsuzluk gerekir: no … nadie.",
+      },
+      {
+        prompt: "Hangisi doğru?",
+        options: ["Nunca bebo café.", "No nunca bebo café.", "Nunca no bebo café.", "Bebo nunca café."],
+        answer: 0,
+        why: "Olumsuz sözcük fiilden önce gelirse ayrıca no kullanılmaz.",
+      },
+      {
+        prompt: "No tengo ___ problema.",
+        options: ["ninguno", "ningún", "ninguna", "nada"],
+        answer: 1,
+        why: "ninguno eril tekil ismin önünde kısalır: ningún problema.",
+      },
+    ],
   },
   // A2
   {
@@ -155,6 +235,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Kısa biçimi ismin arkasında kullanmak: 'un día buen' değil, 'un buen día'.",
     ],
     tip: "Sıfat ismin gölgesidir: isim dişil ya da çoğul olursa o da olur ve arkasından yürür.",
+    check: [
+      {
+        prompt: "Hangisi doğru?",
+        options: ["una casa roja", "una roja casa", "una casa rojo", "un casa roja"],
+        answer: 0,
+        why: "Renk sıfatı ismin arkasına gelir ve cinsiyetine uyar: una casa roja.",
+      },
+      {
+        prompt: "Mi amiga es ___.",
+        options: ["español", "españolo", "española", "españoles"],
+        answer: 2,
+        why: "Milliyet sıfatları ünsüzle bitse de dişil biçim alır: española.",
+      },
+      {
+        prompt: "Hoy es un ___ día.",
+        options: ["bueno", "buen", "buena", "bien"],
+        answer: 1,
+        why: "bueno eril tekil ismin önünde buen olur.",
+      },
+    ],
   },
   {
     topic: "basics_es_preterito",
@@ -185,6 +285,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "İndefinido'da vurguyu atlamak: hablo (konuşurum) ile habló (konuştu) farklıdır.",
     ],
     tip: "Saat hâlâ işliyorsa (hoy, esta semana) he comido; takvim yaprağı koptuysa (ayer, el año pasado) comí.",
+    check: [
+      {
+        prompt: "Ayer ___ paella con mis amigos.",
+        options: ["he comido", "como", "comí"],
+        answer: 2,
+        why: "ayer kapanmış bir zamandır ve pretérito indefinido ister: comí.",
+      },
+      {
+        prompt: "Hangisi hacer fiilinin ortacıdır?",
+        options: ["hacido", "hecho", "haciendo", "hizo"],
+        answer: 1,
+        why: "hacer'in ortacı düzensizdir: hecho (he hecho).",
+      },
+      {
+        prompt: "El verano pasado nosotros ___ a Perú.",
+        options: ["fuimos", "hemos ido", "fueron"],
+        answer: 0,
+        why: "el verano pasado kapanmış bir zamandır; ir fiilinin nosotros indefinido biçimi fuimos'tur.",
+      },
+    ],
   },
   {
     topic: "ser_estar",

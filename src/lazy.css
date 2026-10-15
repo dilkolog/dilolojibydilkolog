@@ -1529,6 +1529,8 @@ button.badge-card:active { transform: none; }
 @media (min-width: 64rem) { .profile-settings { display: none; } }
 .blind-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
 .blind-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.75rem 1rem; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow-sm); }
+.blind-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.lesson-link { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.375rem; }
 .blind-text { display: grid; gap: 0.125rem; min-width: min(16rem, 100%); flex: 1 1 16rem; }
 .grammar-sentence { white-space: pre-line; }
 .rw-masked { background: var(--lang-soft); color: var(--lang-text); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
@@ -1910,8 +1912,6 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .guide-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .guide-tabs .chip[aria-selected='true'] { background: var(--lang); color: var(--on-lang); border-color: var(--lang); }
 .guide-tabs .chip[aria-selected='true'] .muted { color: inherit; }
-.guide-progress { display: grid; gap: 0.5rem; }
-.guide-progress .row { flex-wrap: wrap; gap: 0.25rem 1rem; }
 .guide-bar { display: block; height: 0.5rem; border-radius: var(--r-full); background: var(--track); overflow: hidden; }
 .guide-bar > span { display: block; height: 100%; background: var(--lang); border-radius: inherit; transition: width var(--dur) var(--ease-out); }
 .guide-next { display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; border: 1px solid var(--lang-soft); background: linear-gradient(135deg, var(--lang-soft), var(--surface) 70%); }
@@ -1938,7 +1938,6 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .guide-card:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; }
 .guide-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
 .guide-card-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; margin-top: auto; color: var(--ink-soft); }
-.guide-card.guide-read { border-color: color-mix(in srgb, var(--ok) 45%, var(--rule)); }
 .guide-check { color: var(--ok); flex: none; }
 .guide-link-icon { color: var(--ink-soft); flex: none; }
 .guide-tag { padding: 0 0.4rem; border-radius: var(--r-full); background: var(--ok-soft); color: var(--ok-text); font-size: var(--t-xs); }
@@ -1956,3 +1955,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   .guide-search { max-width: none; }
   .guide-actions > .btn { flex: 1 1 100%; }
 }
+.guide-card.guide-learned { border-color: var(--ok); background: color-mix(in srgb, var(--ok-soft) 35%, var(--surface)); }
+.lesson-check-prompt { font-family: var(--serif); font-size: var(--t-lg); color: var(--ink); line-height: 1.45; margin: 0; }
+.lesson-check-score { display: flex; align-items: center; gap: 0.375rem; font-size: var(--t-lg); margin: 0; }
+.lesson-check-score .inline-icon { color: var(--ok); }

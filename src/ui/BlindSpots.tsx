@@ -5,14 +5,30 @@ import type { ErrorType, TargetLanguage } from '../engine/types'
 import { db } from '../data/instance'
 import { grammarExercises } from '../data/grammar'
 import { trapWords } from '../data/traps'
+import { lessonFor } from '../data/guide/lessonOf'
+import { TENSE_LESSON } from '../data/tenseLesson'
+import type { Tense } from '../engine/tenses'
 import { PlayIcon, TargetIcon } from './icons'
+
+const hasLesson = (language: TargetLanguage, l: { topic?: string; tense?: string }) => (l.topic ? !!lessonFor(language, l.topic) : language !== 'en' && !!l.tense && !!TENSE_LESSON[l.tense as Tense])
 
 /**
  * The learner's weakest places in one card, from what their own answers say (kinds of mistake,
  * tenses, grammar topics, sound contrasts, false friends, slow phrases, missed words); each has a
  * button to the practice for it. Says nothing until the data supports a finding.
  */
-export function BlindSpotsCard({ language, errors, onRepair }: { language: TargetLanguage; errors: Partial<Record<ErrorType, number>>; onRepair: (target: RepairTarget) => void }) {
+export function BlindSpotsCard({
+  language,
+  errors,
+  onRepair,
+  onLesson,
+}: {
+  language: TargetLanguage
+  errors: Partial<Record<ErrorType, number>>
+  onRepair: (target: RepairTarget) => void
+  /** Opens the guide's lesson on a finding (a grammar topic or a tense). */
+  onLesson?: (lesson: { topic?: string; tense?: string }) => void
+}) {
   const [spots, setSpots] = useState<BlindSpot[] | null>(null)
   useEffect(() => {
     let live = true
@@ -51,9 +67,16 @@ export function BlindSpotsCard({ language, errors, onRepair }: { language: Targe
               <strong>{s.title}</strong>
               <span className="small muted">{s.detail}</span>
             </div>
-            <button type="button" className="btn btn-sm" onClick={() => onRepair(s.target)}>
-              <PlayIcon size={14} /> {s.action}
-            </button>
+            <span className="blind-actions">
+              {onLesson && s.lesson && hasLesson(language, s.lesson) && (
+                <button type="button" className="btn btn-sm btn-quiet" onClick={() => onLesson(s.lesson!)}>
+                  Dersi oku
+                </button>
+              )}
+              <button type="button" className="btn btn-sm" onClick={() => onRepair(s.target)}>
+                <PlayIcon size={14} /> {s.action}
+              </button>
+            </span>
           </li>
         ))}
       </ul>

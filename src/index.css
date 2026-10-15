@@ -4083,3 +4083,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friends-code code { padding: 0.125rem 0.5rem; border-radius: var(--r-sm); background: var(--surface-2); font-weight: 700; letter-spacing: 0.06em; }
 .friends-form { display: flex; gap: 0.5rem; }
 .friends-form .input { flex: 1; min-width: 0; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Guide: class names that also appear in its storage keys (cssSplit sees them as used in the first bundle). */
+.guide-progress { display: grid; gap: 0.5rem; }
+.guide-progress .row { flex-wrap: wrap; gap: 0.25rem 1rem; }
+.guide-card.guide-read { border-color: color-mix(in srgb, var(--ok) 45%, var(--rule)); }

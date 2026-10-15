@@ -2146,3 +2146,22 @@ test('the guide: a lesson leads to its own grammar questions, the links open out
   await expect(link).toHaveAttribute('target', '_blank')
   expect(await overflow(page)).toEqual([])
 })
+
+test('the guide: a lesson read days ago comes back on Today for a short check', async ({ page }) => {
+  await startWithSamples(page)
+  await page.evaluate(() => localStorage.setItem('diloloji:guide-progress', JSON.stringify({ subjonctif: { read: '2020-01-01' } })))
+  await page.reload()
+  await openScreen(page, 'Bugün')
+  const nudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })
+  await expect(nudge).toContainText('Subjonctif')
+  await nudge.getByRole('button', { name: /Tekrar et/ }).click()
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
+  const check = page.locator('.lesson-check')
+  await expect(check.getByRole('heading', { name: 'Hatırlıyor musun?' })).toBeVisible()
+  for (let i = 0; i < 3; i++) {
+    await check.locator('.option').first().click()
+    await check.getByRole('button', { name: i < 2 ? 'Sonraki' : 'Bitir' }).click()
+  }
+  await expect(check).toContainText(/3 sorunun \d tanesi doğru/)
+  expect(await overflow(page)).toEqual([])
+})

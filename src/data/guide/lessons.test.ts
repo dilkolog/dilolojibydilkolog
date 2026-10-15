@@ -3,6 +3,7 @@ import { grammarExercises } from '../grammar'
 import { TOPIC_NAME } from '../../engine/grammar'
 import type { TargetLanguage } from '../../engine/types'
 import { TOPIC_LESSONS } from './lessons'
+import { checkFor, englishTenseLessons, lessonFor } from './lessonOf'
 import { RESOURCES, SHARED_RESOURCES } from './resources'
 
 const LANGUAGES: TargetLanguage[] = ['fr', 'es', 'en']
@@ -35,6 +36,43 @@ describe('guide lessons', () => {
       for (const x of l.examples) expect(x.text.trim() && x.tr.trim(), l.topic).toBeTruthy()
       for (const s of [...l.rules, ...l.watch]) expect(s.trim(), l.topic).not.toBe('')
     }
+  })
+})
+
+describe('lesson checks', () => {
+  it('have three or four different options and exactly one right answer', () => {
+    for (const l of TOPIC_LESSONS) {
+      for (const c of l.check ?? []) {
+        expect(c.prompt.trim() && c.why.trim(), l.topic).toBeTruthy()
+        expect(c.options.length, `${l.topic}: ${c.prompt}`).toBeGreaterThanOrEqual(3)
+        expect(c.options.length, `${l.topic}: ${c.prompt}`).toBeLessThanOrEqual(4)
+        expect(new Set(c.options.map((o) => o.trim().toLocaleLowerCase())).size, `${l.topic}: ${c.prompt}`).toBe(c.options.length)
+        expect(Number.isInteger(c.answer) && c.answer >= 0 && c.answer < c.options.length, `${l.topic}: ${c.prompt}`).toBe(true)
+      }
+    }
+  })
+
+  it('every basic lesson can be checked, and a lesson practises only a known topic of its language', () => {
+    for (const l of TOPIC_LESSONS) {
+      if (l.topic.startsWith('basics_')) expect(checkFor(l).length, l.topic).toBeGreaterThanOrEqual(2)
+      if (l.practice) expect(grammarExercises(l.language).some((e) => e.topic === l.practice), `${l.topic} → ${l.practice}`).toBe(true)
+    }
+  })
+
+  it('a lesson without its own check asks the choice questions of its topic', () => {
+    const subj = TOPIC_LESSONS.find((l) => l.topic === 'subjonctif')!
+    const items = checkFor({ ...subj, check: undefined }, () => 0.3)
+    expect(items.length).toBe(3)
+    for (const c of items) expect(c.options[c.answer]).toBeTruthy()
+  })
+
+  it('English tense lessons come in the order they are learnt, and a mistake finds its lesson', () => {
+    const tenses = englishTenseLessons().map((l) => l.topic)
+    expect(tenses[0]).toBe('basics_en_present_simple')
+    expect(tenses).toContain('present_perfect')
+    expect(tenses.indexOf('basics_en_past_simple')).toBeLessThan(tenses.indexOf('basics_en_past_perfect'))
+    expect(lessonFor('fr', 'subjonctif')?.topic).toBe('subjonctif')
+    expect(lessonFor('fr', 'nothing_like_this')).toBeUndefined()
   })
 })
 

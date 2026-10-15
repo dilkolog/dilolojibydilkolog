@@ -19,6 +19,8 @@ export interface BlindSpot {
   action: string
   /** 0–1: how bad, weighted by how many answers say so. */
   score: number
+  /** The guide's lesson on it: a grammar topic, or a tense of the verb lab. */
+  lesson?: { topic?: string; tense?: string }
 }
 
 export interface BlindSpotInput {
@@ -87,7 +89,7 @@ export function blindSpots(input: BlindSpotInput): BlindSpot[] {
       .sort((a, b) => b.rate * weight(b.n) - a.rate * weight(a.n))[0]
     if (worst) {
       const name = TENSE_BRIEF[worst.tense as keyof typeof TENSE_BRIEF].name
-      out.push({ id: `tense:${worst.tense}`, title: `${name} çekimlerinde yanılıyorsun`, detail: `${worst.n} cevabın ${pct(worst.rate)} kadarı yanlış.`, target: 'verbs', action: 'Fiil laboratuvarı', score: worst.rate * weight(worst.n) })
+      out.push({ id: `tense:${worst.tense}`, title: `${name} çekimlerinde yanılıyorsun`, detail: `${worst.n} cevabın ${pct(worst.rate)} kadarı yanlış.`, target: 'verbs', action: 'Fiil laboratuvarı', score: worst.rate * weight(worst.n), lesson: { tense: worst.tense } })
     }
   }
 
@@ -96,7 +98,7 @@ export function blindSpots(input: BlindSpotInput): BlindSpot[] {
     .filter((t) => t.answered >= 5 && t.accuracy < 0.7)
     .sort((a, b) => (1 - b.accuracy) * weight(b.answered) - (1 - a.accuracy) * weight(a.answered))[0]
   if (topic) {
-    out.push({ id: `grammar:${topic.topic}`, title: `“${topicName(topic.topic)}” sorularında zorlanıyorsun`, detail: `${topic.answered} cevabın ${pct(topic.accuracy)} kadarı doğru.`, target: 'grammar', action: 'Dilbilgisi soruları', score: (1 - topic.accuracy) * weight(topic.answered) })
+    out.push({ id: `grammar:${topic.topic}`, title: `“${topicName(topic.topic)}” sorularında zorlanıyorsun`, detail: `${topic.answered} cevabın ${pct(topic.accuracy)} kadarı doğru.`, target: 'grammar', action: 'Dilbilgisi soruları', score: (1 - topic.accuracy) * weight(topic.answered), lesson: { topic: topic.topic } })
   }
 
   // The sound contrast that is mixed up most.
