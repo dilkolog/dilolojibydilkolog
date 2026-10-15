@@ -2,6 +2,7 @@ import { db } from '../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../data/access'
 import { showToast } from './toastFeed'
 import { reportError } from '../data/errorReport'
+import { hasStoredSession, supabaseConfigured } from '../data/supabase'
 import type { Account, Credential, SyncResult } from '../data/sync'
 
 /** The sync code (encryption, merging) is loaded when a sync runs, not with the first screen. */
@@ -71,7 +72,6 @@ export async function getCredential(): Promise<Credential | null> {
  * that way is signed out (its words and progress stay) and asked, once, to sign in again. True when it was.
  */
 async function signOutOldAccount(): Promise<boolean> {
-  const { supabaseConfigured, hasStoredSession } = await import('../data/supabase')
   if (!supabaseConfigured() || hasStoredSession()) return false
   await setAccount(null)
   showToast('Giriş sistemi yenilendi: Ayarlar → Hesap\'tan e-postanla ya da Google ile yeniden gir. Kelimelerin ve ilerlemen bu cihazda duruyor.', undefined, 12_000, 'info')

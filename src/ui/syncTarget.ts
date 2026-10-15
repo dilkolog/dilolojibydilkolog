@@ -1,5 +1,5 @@
 import { db } from '../data/instance'
-import { hasStoredSession } from '../data/supabase'
+import { currentSession, hasStoredSession, supabase } from '../data/supabase'
 import type { Credential, PartStore } from '../data/sync'
 
 /** The Supabase person whose store this device already syncs with (set once the data moved there). */
@@ -15,7 +15,6 @@ const STORE_KEY = 'syncStore'
  */
 export async function syncTarget(cred: Credential): Promise<Credential | PartStore> {
   if (typeof cred === 'string' || !hasStoredSession()) return cred
-  const { currentSession, supabase } = await import('../data/supabase')
   const session = await currentSession().catch(() => null)
   if (!session) return cred
   const { supabaseStore, probeStore } = await import('../data/supabaseStore')

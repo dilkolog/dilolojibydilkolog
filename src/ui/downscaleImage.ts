@@ -1,8 +1,8 @@
 /** The longest side a stored picture keeps: sharp enough to read a label on, small enough to sync. */
-export const MAX_SIDE = 1200
+const MAX_SIDE = 1200
 
 /** The size a picture of `width`×`height` is shrunk to (never enlarged). */
-export function fitSize(width: number, height: number, max = MAX_SIDE): { width: number; height: number } {
+function fitSize(width: number, height: number, max = MAX_SIDE): { width: number; height: number } {
   const scale = Math.min(1, max / Math.max(width, height))
   return { width: Math.max(1, Math.round(width * scale)), height: Math.max(1, Math.round(height * scale)) }
 }

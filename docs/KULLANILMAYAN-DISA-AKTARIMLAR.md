@@ -22,6 +22,12 @@ Aşağıdaki semboller yalnızca tanımlandıkları dosya içinde kullanılmakta
 | `src/ui/pushReminders.ts` | `localDay` | Dahili yapıldı | Yalnızca `pushReminders.ts` içinde tarih biçimlendirmede kullanılıyor. |
 | `src/ui/knownMilestones.ts` | `KNOWN_MILESTONES` | Dahili yapıldı | Yalnızca `knownMilestones.ts` içinde kilometre taşı sınırlarında kullanılıyor. |
 | `src/ui/BadgeWatcher.tsx` | `CELEBRATE_MAX` | Dahili yapıldı | Yalnızca `BadgeWatcher.tsx` içinde rozet anı sınırında kullanılıyor. |
+| `src/ui/DictionarySaved.tsx` | `SAVED_SHOWN` | Dahili yapıldı | Yalnızca `DictionarySaved.tsx` içinde gösterim sınırında kullanılıyor. |
+| `src/ui/downscaleImage.ts` | `MAX_SIDE`, `fitSize` | Dahili yapıldı | Yalnızca `downscaleImage.ts` içinde resim boyutlandırmada kullanılıyor. |
+| `src/ui/games/shared.tsx` | `RECORD_MIN_PCT` | Dahili yapıldı | Yalnızca `games/shared.tsx` içinde rekor yüzdesi kontrolünde kullanılıyor. |
+| `src/ui/incoming.ts` | `READ_WORDS` | Dahili yapıldı | Yalnızca `incoming.ts` içinde metin uzunluğu ayrımında kullanılıyor. |
+| `src/ui/monki/monkiWords.ts` | `TALK_WORDS` | Dahili yapıldı | Yalnızca `monkiWords.ts` içinde Monki sohbet kelime sınırında kullanılıyor. |
+| `src/ui/useScreenHistory.ts` | `routeKey` | Dahili yapıldı | Yalnızca `useScreenHistory.ts` içinde ekran kimliği eşlemesinde kullanılıyor. |
 
 ---
 
