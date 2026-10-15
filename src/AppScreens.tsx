@@ -424,6 +424,8 @@ export function AppScreens(props: AppScreensProps) {
           friendsCard={<FriendsCard game={game} profile={settings.profile} />}
           extra={
             <>
+            {/* A lesson's review first: it shows only to someone using the guide, on the day it is due. */}
+            <GuideReviewNudge language={data.language} onOpen={(topic) => setScreen({ name: 'guide', lesson: topic, review: true })} />
             <HabitCards
               settings={settings}
               onSettings={updateSettings}
@@ -433,7 +435,6 @@ export function AppScreens(props: AppScreensProps) {
               }
             />
             {lookupNudge}
-            <GuideReviewNudge language={data.language} onOpen={(topic) => setScreen({ name: 'guide', lesson: topic, review: true })} />
             <GainsNudge gains={studyGains(data.states, data.recentEvents, data.language, new Date())} target={settings.retention} onOpen={go({ name: 'progress' })} />
             <WeeklyNudge language={data.language} line={weekText} summary={weekData} lemmaOf={(id) => byId.get(id)?.lemma} now={new Date()} onOpen={go({ name: 'progress' })} onWord={(entryId) => setScreen({ name: 'word', entryId })} />
             <SuggestWords db={db} language={data.language} vocabulary={data.vocabulary} settings={settings} onAdded={reload} onlyWhenDue />
