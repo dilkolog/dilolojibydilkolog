@@ -13,6 +13,11 @@ import headSettings from '../assets/art/head-settings.webp'
 import headStory from '../assets/art/head-story.webp'
 import headTranslate from '../assets/art/head-translate.webp'
 import headWords from '../assets/art/head-words.webp'
+import headMistakes from '../assets/art/head-mistakes.webp'
+import headEarmiss from '../assets/art/head-earmiss.webp'
+import headBack from '../assets/art/head-back.webp'
+import headExam from '../assets/art/head-exam.webp'
+import headVocabtest from '../assets/art/head-vocabtest.webp'
 
 /** Monki doing what the screen is for, beside its title (wide screens only). */
 const ART = {
@@ -30,6 +35,11 @@ const ART = {
   produce: headProduce,
   story: headStory,
   sentences: headSentences,
+  mistakes: headMistakes,
+  earmiss: headEarmiss,
+  back: headBack,
+  exam: headExam,
+  vocabtest: headVocabtest,
 }
 export type HeaderArt = keyof typeof ART
 

@@ -132,6 +132,35 @@ import reactForgot from '../assets/art/react-forgot.webp'
 import reactHello from '../assets/art/react-hello.webp'
 import reactNewword from '../assets/art/react-newword.webp'
 import reactOops from '../assets/art/react-oops.webp'
+import roleCafe from '../assets/art/role-cafe.webp'
+import headStoryArt from '../assets/art/head-story.webp'
+import headGamesArt from '../assets/art/head-games.webp'
+import headMistakesArt from '../assets/art/head-mistakes.webp'
+import tileCards from '../assets/art/game-cards.webp'
+import tileBolt from '../assets/art/game-bolt.webp'
+import tileStrip from '../assets/art/game-strip.webp'
+import tileSwap from '../assets/art/game-swap.webp'
+import tileGear from '../assets/art/game-gear.webp'
+import tileFlags from '../assets/art/onb-flags.webp'
+import bossBlob from '../assets/art/boss-blob.webp'
+import bossDragon from '../assets/art/boss-dragon.webp'
+import bossSlime from '../assets/art/boss-slime.webp'
+import bossYeti from '../assets/art/boss-yeti.webp'
+import bossDino from '../assets/art/boss-dino.webp'
+import bossGhost from '../assets/art/boss-ghost.webp'
+import bossOctopus from '../assets/art/boss-octopus.webp'
+import bossGolem from '../assets/art/boss-golem.webp'
+import missionRent from '../assets/art/mission-rent.webp'
+import missionRestaurant from '../assets/art/mission-restaurant.webp'
+import missionLuggage from '../assets/art/mission-luggage.webp'
+import missionNeighbour from '../assets/art/mission-neighbour.webp'
+import missionReturn from '../assets/art/mission-return.webp'
+import missionPersuade from '../assets/art/mission-persuade.webp'
+import roleHotel from '../assets/art/role-hotel.webp'
+import roleDirections from '../assets/art/role-directions.webp'
+import roleDoctor from '../assets/art/role-doctor.webp'
+import roleInterview from '../assets/art/role-interview.webp'
+import roleShopping from '../assets/art/role-shopping.webp'
 import type { PartOfSpeech } from '../engine/types'
 import type { BadgeCategory } from '../engine/gamification'
 
@@ -207,6 +236,24 @@ export const levelMonki = (level: number): string => LEVEL_MONKI[level >= 25 ? 5
 /** The other three badge emblems: a trophy for what was won, a chat bubble and a microphone for Monki's modes. */
 export const EMBLEM = { chat: emChat, mic: emMic, trophy: emTrophy }
 
+/** Monki in each role-play scene (the scenes of Monki's "Rol yap" mode, in its order). */
+export const ROLE_ART = { cafe: roleCafe, hotel: roleHotel, directions: roleDirections, doctor: roleDoctor, interview: roleInterview, shopping: roleShopping }
+
+/** The bosses of the boss arena: a word is always the same one of them. */
+export const BOSS_ART = [bossBlob, bossDragon, bossSlime, bossYeti, bossDino, bossGhost, bossOctopus, bossGolem]
+
+/** The scene of each speaking mission (Yaz & konuş), by mission id; the doctor and the interview share Monki's role-play scenes. */
+export const MISSION_ART: Record<string, string> = {
+  rent: missionRent,
+  restaurant: missionRestaurant,
+  doctor: roleDoctor,
+  interview: roleInterview,
+  luggage: missionLuggage,
+  neighbour: missionNeighbour,
+  return: missionReturn,
+  persuade: missionPersuade,
+}
+
 /** Small drawn icons for adding one's own text: a file of notes, a book, a video. */
 export const ADD_ART = { notes: srcNotes, ebook: srcEbook, video: srcVideo }
 
@@ -245,6 +292,25 @@ export const QUEST_ART: Record<string, string> = {
   noHintCorrect: questNohint,
   reading: questRead,
   speaking: questSpeak,
+  // The week's challenges share the ids that count the same thing, and add their own.
+  studyDays: emFlame,
+  bossWins: bossBlob,
+  textsRead: questRead,
+  journalEntries: emBook,
+}
+
+/** The extra-study tiles on Today (Ek çalışma), by what each one opens. */
+export const TILE_ART = {
+  mistakes: headMistakesArt,
+  weekMisses: tileCards,
+  difficult: tileBolt,
+  sentences: tileStrip,
+  back: tileSwap,
+  story: headStoryArt,
+  verbs: tileGear,
+  mixed: tileFlags,
+  games: headGamesArt,
+  free: stickerThumbs,
 }
 
 /** Covers for word lists; a list gets the one its name suggests (Turkish, English, French or Spanish). */

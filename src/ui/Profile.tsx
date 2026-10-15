@@ -368,7 +368,8 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog badge-dialog" role="dialog" aria-modal="true" aria-labelledby="badge-title">
-        <button className="icon-btn badge-dialog-close" onClick={onClose} aria-label="Kapat">
+        {/* Focus starts at the top: focusing "Tamam" at the bottom scrolled a long badge's dialog past its medal. */}
+        <button className="icon-btn badge-dialog-close" onClick={onClose} aria-label="Kapat" autoFocus>
           <CloseIcon size={18} />
         </button>
         <div className={`badge-dialog-medal tier-${tier}`}>
@@ -412,7 +413,7 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
             <p className="small muted">{next.goal - next.value > 0 ? `Kazanmana ${(next.goal - next.value).toLocaleString('tr-TR')} kaldı.` : 'Neredeyse!'}</p>
           </div>
         )}
-        <button className="btn" onClick={onClose} autoFocus>
+        <button className="btn" onClick={onClose}>
           Tamam
         </button>
       </div>

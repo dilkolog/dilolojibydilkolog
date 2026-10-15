@@ -8,7 +8,7 @@ import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
-import { EMBLEM } from '../drawnArt'
+import { EMBLEM, ROLE_ART } from '../drawnArt'
 import { usesWord } from './monkiWords'
 
 interface Msg {
@@ -56,7 +56,15 @@ const MODES: { id: MonkiMode; label: string; hint: string }[] = [
   { id: 'mistakes', label: 'Hatalarım', hint: 'Son hatalarını konuş' },
 ]
 
-const SCENARIOS = ['Kafede sipariş vermek', 'Otelde check-in', 'Yol sormak', 'Doktora gitmek', 'İş mülakatı', 'Alışveriş yapmak']
+const SCENES: { label: string; art: string }[] = [
+  { label: 'Kafede sipariş vermek', art: ROLE_ART.cafe },
+  { label: 'Otelde check-in', art: ROLE_ART.hotel },
+  { label: 'Yol sormak', art: ROLE_ART.directions },
+  { label: 'Doktora gitmek', art: ROLE_ART.doctor },
+  { label: 'İş mülakatı', art: ROLE_ART.interview },
+  { label: 'Alışveriş yapmak', art: ROLE_ART.shopping },
+]
+const SCENARIOS = SCENES.map((s) => s.label)
 
 const STARTERS = (mode: MonkiMode, hasWeak: boolean, hasMistakes: boolean): string[] => {
   if (mode === 'quiz') return ['Kelimelerimden sor', 'Dilbilgisi sorusu sor', 'Boşluk doldurma sorusu sor', 'Çeviri sorusu sor']
@@ -327,13 +335,25 @@ export default function Monki({
                   </div>
                 )}
               </div>
-              <div className="monki-chips">
-                {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
-                  <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
-                    {s}
-                  </button>
-                ))}
-              </div>
+              {/* Choosing a scene: a picture for each, so the six read at a glance. */}
+              {mode === 'roleplay' && !scenario ? (
+                <div className="monki-scenes" role="group" aria-label="Sahne seç">
+                  {SCENES.map((s) => (
+                    <button key={s.label} type="button" className="monki-scene" disabled={busy} onClick={() => startWith(s.label)}>
+                      <img src={s.art} alt="" draggable={false} />
+                      <span>{s.label}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="monki-chips">
+                  {(msgs.length === 0 || (mode === 'roleplay' && !scenario) ? STARTERS(mode, !!weakWords?.length, !!mistakes?.length) : suggestions).map((s) => (
+                    <button key={s} type="button" className="chip" disabled={busy} onClick={() => (msgs.length === 0 || (mode === 'roleplay' && !scenario) ? startWith(s) : void send(s))}>
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              )}
               <form
                 className="monki-form"
                 onSubmit={(e) => {

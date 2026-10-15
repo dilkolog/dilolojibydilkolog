@@ -9,6 +9,7 @@ import { STAGE_NAME } from './labels'
 import { GardenSky } from './GardenSky'
 import { Plant } from './Plant'
 import { BoltIcon, DropIcon } from './icons'
+import { POTS } from './drawnArt'
 
 const BED_PREVIEW = 120
 /** Only the first plants of a bed sway: a few hundred moving icons would cost more than they give. */
@@ -232,17 +233,33 @@ export function GardenCard({
   const thirst = summary.wilting ? 'wilting' : summary.thirsty ? 'thirsty' : 'fresh'
   return (
     <section className="habit card garden-card">
-      <span className="garden-card-plants" aria-hidden>
-        {/* The garden as it is: up to four of the stages it has, young to old; the youngest shows the thirst. */}
+      <span className={`garden-card-pots is-${thirst}`} aria-hidden>
+        {/* The garden as it is: up to four of the stages it has, young to old, drawn pots on one shelf; a drop when some are thirsty. */}
         {cardStages.map((stage, i) => (
-          <Plant key={stage} stage={stage} health={i === 0 ? thirst : 'fresh'} size={36} live phase={i} />
+          <img key={stage} className="garden-pot" src={POTS[stage]} alt="" draggable={false} style={{ '--i': i } as CSSProperties} />
         ))}
+        {dry > 0 && (
+          <span className="garden-drop">
+            <DropIcon size={14} solid />
+          </span>
+        )}
       </span>
-      <div className="stack">
+      <div className="stack garden-card-text">
         <strong>Bahçen</strong>
-        <span className="small muted">
-          {summary.byStage[5]} çiçek, {growing - summary.byStage[5]} büyüyen bitki.
-          {dry > 0 ? ` ${dry} tanesi su istiyor.` : ' Hepsi canlı.'}
+        <span className="garden-stats small">
+          <span>
+            <b>{summary.byStage[5]}</b> çiçek
+          </span>
+          <span>
+            <b>{growing - summary.byStage[5]}</b> büyüyen
+          </span>
+          {dry > 0 ? (
+            <span className="is-dry">
+              <b>{dry}</b> su istiyor
+            </span>
+          ) : (
+            <span>Hepsi canlı</span>
+          )}
         </span>
         {hardCount > 0 && (
           <button type="button" className="garden-hard-line" onClick={onOpenHard} title="Bahçede zor kelimeleri göster">

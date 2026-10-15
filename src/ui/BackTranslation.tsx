@@ -70,7 +70,7 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
     return (
       <div className="stack">
         {back}
-        <PageHeader title="Geri çeviri" sub={`Çevirdiğin cümlelerin Türkçesini görür, ${name} kendin yazarsın.`} />
+        <PageHeader art="back" title="Geri çeviri" sub={`Çevirdiğin cümlelerin Türkçesini görür, ${name} kendin yazarsın.`} />
         <EmptyState art="sentences" title="Henüz çevrilmiş cümlen yok">
           Okurken bir kelimeye dokunup “Cümlenin Türkçesi”ne bas ya da Çeviri ekranını kullan: çevirdiğin cümleler burada seni bekler.
         </EmptyState>

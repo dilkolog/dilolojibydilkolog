@@ -49,6 +49,8 @@ export async function showReminder(streak: number, plan = '', due = 0) {
   const options = {
     body: question ? `Aklından geçir, sonra bak. ${body}` : body,
     icon: '/pwa-192.png',
+    // Android's status bar draws the badge from its alpha only: a plain silhouette, not the app icon.
+    badge: '/notification-badge.png',
     tag: 'daily-reminder',
     data: { url: '/?go=quick', question },
   }

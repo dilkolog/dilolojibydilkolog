@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Plant } from './Plant'
+import { POTS } from './drawnArt'
 import { dayStage } from './dayPlantStage'
 
 const key = (language: string) => `kelime-koc:day-plant:${language}`
@@ -38,8 +38,9 @@ export function DayPlant({ language, progress, done }: { language: string; progr
     }
   }, [language, shown])
   return (
-    <span className="day-plant">
-      <Plant stage={shown} size={68} live />
+    <span className={`day-plant${shown < 0 ? ' plant-waiting' : ''}`}>
+      {/* Keyed by stage: a new stage is a new picture, which grows in. The seed waits, hopping now and then. */}
+      <img key={shown} className={`day-pot${shown < 0 ? ' plant-seed-hop' : ' is-grow'}`} src={POTS[Math.min(POTS.length - 1, shown + 1)]} alt="" draggable={false} />
     </span>
   )
 }

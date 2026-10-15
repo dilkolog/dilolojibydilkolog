@@ -71,7 +71,7 @@ export function EarMissesGame({ language, onExit }: { language: TargetLanguage; 
       <button className="link" onClick={onExit}>
         ← Oyunlar
       </button>
-      <PageHeader title="Kaçırdıkların" sub="Dikte ederken duymadığın kelimeler, kaçırdığın cümlelerle yeniden: dinle ve yaz." />
+      <PageHeader art="earmiss" title="Kaçırdıkların" sub="Dikte ederken duymadığın kelimeler, kaçırdığın cümlelerle yeniden: dinle ve yaz." />
       {missed.length ? (
         <section className="card stack">
           <MissedWords missed={missed.slice(0, 20)} language={language} />
