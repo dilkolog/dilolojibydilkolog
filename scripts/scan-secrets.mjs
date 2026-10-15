@@ -16,6 +16,8 @@ const PATTERNS = [
   ['Private key block', /-----BEGIN (?:RSA |EC |OPENSSH |PGP )?PRIVATE KEY-----/],
   ['Slack token', /\bxox[baprs]-[A-Za-z0-9-]{10,}/],
   ['Azure speech key (32 hex after a key name)', /(?:speech|azure)[A-Za-z_]*key['"]?\s*[:=]\s*['"][0-9a-f]{32}['"]/i],
+  ['Supabase secret key', /\bsb_secret_[A-Za-z0-9_-]{16,}/],
+  ['Supabase service JWT', /SUPABASE_(?:SERVICE_ROLE|SECRET)_KEY\s*=\s*['"]?eyJ[A-Za-z0-9_-]{20,}/],
   ['VAPID private key', /VAPID_PRIVATE_KEY\s*=\s*['"]?[A-Za-z0-9_-]{40,}/],
 ]
 // Files that quote key shapes on purpose (this scanner, its tests, docs that show examples).

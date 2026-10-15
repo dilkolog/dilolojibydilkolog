@@ -8,6 +8,7 @@ import type { GameId } from './ui/gameList'
 import type { LabTab } from './ui/verbs/VerbLab'
 import type { AuthMode } from './ui/AuthScreen'
 import type { SharedRead } from './ui/incoming'
+import { authReturnPending } from './data/supabase'
 import { AlertIcon, BookIcon, ChartIcon, GameIcon, GearIcon, GlobeIcon, HomeIcon, PenIcon, ReadIcon, SchoolIcon, SearchIcon, StoryIcon, TenseIcon, UserIcon } from './ui/icons'
 
 /** Set when opened from a reminder ("?go=quick"): start a short review as soon as the plan is ready. */
@@ -62,6 +63,8 @@ export const SCREEN_KEY = 'kelime-koc:screen'
 export const RESTORABLE = new Set<Screen['name']>(['home', 'words', 'dictionary', 'translate', 'word', 'reading', 'produce', 'story', 'games', 'verbs', 'guide', 'mistakes', 'progress', 'profile', 'settings'])
 
 export function restoreScreen(): Screen {
+  // Back from a sign-in link (email confirmation, magic link, Google, password reset): finish signing in.
+  if (authReturnPending()) return { name: 'account', mode: 'return' }
   // Home-screen shortcuts (manifest) and push links: ?go=home | add | reading | quick | progress
   const shortcut = new URLSearchParams(location.search).get('go')
   if (shortcut) {
