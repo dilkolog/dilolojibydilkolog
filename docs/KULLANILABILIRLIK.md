@@ -49,23 +49,24 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 
 ```
 [Alt Çubuk / Kenar Çubuğu]
-├── Bugün (Today) ───────────────> Günlük seans başlatma, FSRS özeti, seri ve odak
+├── Bugün (Today) ───────────────> Günlük seans başlatma, FSRS özeti, seri ve odak, Rehber tekrar kartı, Seri kurtarma
 ├── Kelimeler (Words Hub)
 │   ├── Kelimeler ──────────────> Kelime listesi, filtreler, arama, kelime detay (Bana özel cümleler)
 │   ├── Hatalar ────────────────> Hata türleri, zor kelimeler, odaklı pratik
 │   └── Çeviri ─────────────────> Hızlı çeviri (DeepL), çeviri belleği, kelimeye ekleme
+├── Rehber (Guide Hub) ─────────> 121 dilbilgisi dersi, zamanlar, mini sınavlar, formül tabloları
 ├── Okuma (Reading Hub)
 │   ├── Metinler ───────────────> Kütüphane, seviyeli metinler, içe aktarma, podcast/dikte
 │   ├── Sesli kitaplar ─────────> B1+ LibriVox & Gutenberg bölümlü sesli kitaplar
 │   └── Hikaye ─────────────────> Kolay resimli hikâyeler (Global Storybooks)
 ├── Pratik (Practice Hub)
-│   ├── Oyunlar ────────────────> Zamana karşı, eşleştirme, geri çeviri, kaçırdıkların, telaffuz, dilbilgisi, refleks, tuzak kelimeler, ses ayırt etme
+│   ├── Oyunlar ────────────────> Kartlar (Flashcards), zamana karşı, eşleştirme, geri çeviri, kaçırdıkların, telaffuz, dilbilgisi, refleks, tuzak kelimeler, ses ayırt etme
 │   ├── Fiiller ────────────────> Fiil laboratuvarı (Öğren, Çalış, Ustalık)
 │   └── Yaz & konuş ────────────> Serbest günlük, sesli gölgeleme, LanguageTool denetimi
-└── İlerleme (Progress) ─────────> Bahçe görünümü, CEFR kapsamı, haftalık çalışma, kör noktalar kartı, rozetler
+└── İlerleme (Progress) ─────────> Bahçe görünümü, CEFR kapsamı, haftalık çalışma, kör noktalar kartı, Arkadaşlar liderlik sıralaması, Paylaş (Yazdır/PDF, Excel), rozetler
 [Üst Çubuk / Profil]
-├── Profil ─────────────────────> Seviye, unvan, afiş/çerçeve, rozet vitrini
-└── Ayarlar ────────────────────> Günlük süre/kelime, tema, yedekleme/eşitleme (hesap onayı/kota/güvenlik), AI anahtarı
+├── Profil ─────────────────────> Seviye, unvan, afiş/çerçeve, rozet vitrini, seviyeli Monki avatarları
+└── Ayarlar ────────────────────> Günlük süre/kelime, tema, Supabase hesap paneli (şifre/onay/silme), eşitleme (PostgreSQL/RLS/medya), AI anahtarı
 ```
 
 ### 3.1. Güçlü Yönler
@@ -160,6 +161,48 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 - **Kör Nokta Röntgeni (`BlindSpots.tsx`):**
   - İlerleme ekranında öğrencinin en çok hata yaptığı dilbilgisi konularını, fiil çekimlerini ve tuzak kelimeleri tek bakışta analiz eder; tek tıkla doğrudan ilgili tamir turunu başlatır.
 
+### 4.10. Rehber ve Mini Sınav (`Guide.tsx`, `GuideQuiz.tsx`, `GuideDueCard.tsx`)
+- **Rol:** Dilbilgisi ve yapısal kuralları dağınık pratik yerine pedagojik bir müfredatla sunma.
+- **İnceleme:**
+  - 121 rehber dersi (FR, ES, EN) seviyeli, örnekli ve formül tablolarıyla hazırlanmıştır (#344, #349, #351).
+  - Her ders sonunda yer alan 3 soruluk `GuideQuiz` bilişsel geri çağırmayı (testing effect) tetikler. Mini sınavı geçen derse yeşil "Öğrenildi" durumu verilir.
+  - Bugün ekranında zamanı gelen dersler `GuideDueCard` ("Hatırlıyor musun?") ile hatırlatılır; kullanıcı tek tıkla mini sınavı tekrarlayabilir.
+  - Dilbilgisi veya fiil laboratuvarında yanlış cevap verildiğinde beliren "Konunun dersi" köprüsü, hatayı anında bilgiye bağlar.
+
+### 4.11. Kartlar ve Hızlı Pekiştirme (`SwipeCards.tsx`)
+- **Rol:** Klasik Anki tarzı kart çevirme ve aralıklı geri çağırma pratiği.
+- **İnceleme:**
+  - Dokunsal kart çevirme animasyonu (`.flash-turn`) ve net "Biliyorum" / "Bilmiyorum" butonları.
+  - `COME_BACK_AFTER[0] = 3` kuralı: Bilinmeyen kart tam 3 kart sonra tekrar sorularak kısa süreli bellekten çalışma belleğine aktarım desteklenir.
+  - Tur bitiminde kazanılan rozetler ve "Takıldıklarını çalış" butonuyla takılınan kelimelerle derhal odaklı bir tur başlatılabilmesi bilişsel sürtünmeyi en aza indirir (#358).
+
+### 4.12. Arkadaşlar ve Sosyal Motivasyon (`FriendsCard.tsx`)
+- **Rol:** Birlikte öğrenme, karşılıklı hesap verebilirlik ve motivasyon.
+- **İnceleme:**
+  - İlerleme ekranında "Arkadaşlar" kartı; 6 haneli kod ile kolayca arkadaş ekleme/çıkarma.
+  - "Bugün" ve "Bu hafta" sekmeleriyle ayrılmış sıralama; yeni başlayan bir arkadaşın haftalık puan farkından dolayı ezilmesini önler (#358).
+
+### 4.13. Seri Kurtarma (`StreakRepair.tsx`)
+- **Rol:** Alışkanlık döngüsünün kırılmasını önleme ve affedici tasarım (forgiving design).
+- **İnceleme:**
+  - Kullanıcı bir gün çalışmayı kaçırdığında tüm emeğinin sıfırlanması motivasyonu yok eder ("what-the-hell effect").
+  - Seri kurtarma kartı Bugün ekranında nazik bir teklifle belirir; 10 soruluk telafi sınavında %70 başarı gösteren kullanıcı serisini ve dondurma hakkını geri kazanır (#343, #358).
+
+### 4.14. İlerleme Raporu (`ShareProgress.tsx`)
+- **Rol:** Veri sahipliği, resmi döküm ve dışa aktarım.
+- **İnceleme:**
+  - İlerleme ekranında "Paylaş" menüsü altında iki profesyonel çıktı seçeneği:
+    1. **Yazdır ya da PDF:** Tarayıcının yazdırma penceresini açar; `@media print` stilleriyle gereksiz arayüz butonlarını gizleyip temiz, resmi bir öğrenci karnesi basar.
+    2. **Excel (.xlsx):** `fflate` tabanlı hafif Excel derleyicisi ile en az 7 ayrı çalışma sayfası (Özet, Kelimeler, Fiiller, Okuma, Dinleme, Hatalar, Seviyeler) içeren detaylı çalışma verisini indirir (#343, #358).
+
+### 4.15. Yenilenen Hesap Ekranı ve Supabase Entegrasyonu (`AccountScreen.tsx`)
+- **Rol:** Güvenli kimlik doğrulama, oturum yönetimi ve veri sahipliği.
+- **İnceleme:**
+  - Eski salt yerel şifreli anahtar yapısından modern Supabase Auth paneline geçiş (#344, #348, #350).
+  - Kullanıcı e-posta ve şifresiyle güvenle giriş yapar; hesap onay durumu (`Onaylı` / `Beklemede`) şeffaf bir rozetle gösterilir.
+  - Şifre sıfırlama, şifre değiştirme, e-posta güncelleme ve hesabı kalıcı silme seçenekleri kullanıcı denetimini en üst seviyeye taşır.
+
+
 ---
 
 ## 5. Tespit Edilen Kullanılabilirlik Sürtünmeleri
@@ -184,6 +227,14 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 | **16** | **Konuşma Hızı ve Çeviri Refleksi** (`ReflexRound.tsx`) | Günlük kalıpların kafada önce Türkçeden çevrilmesi nedeniyle oluşan gecikme ve tutukluk | Hatırlama yerine Tanıma & Akıcılık | ✅ Çözüldü (#219) |
 | **17** | **Zayıf Alanları Teşhis Zorluğu** (`BlindSpots.tsx`) | Hangi dilbilgisi veya fiil çekiminde sürekli hata yapıldığının dağınık kalması | Hataları Teşhis & Telafi | ✅ Çözüldü (#224) |
 | **18** | **Çoklu Kullanıcı ve Hesap Ayrımı** (`useAccessStatus.ts`) | Cihazlar arası eşitlemede onaysız hesapların sunucu kaynaklarını tüketmesi ve belirsizlik | Sistem Durumu Görünürlüğü & Güvenlik | ✅ Çözüldü (#210) |
+| **19** | **Rehber ve Mini Sınav** (`Guide.tsx`, `GuideQuiz.tsx`) | Dilbilgisi kurallarının derli toplu müfredatla sunulması ve ders sonu mini sınavla bilginin pekiştirilmesi | Hatırlama yerine Tanıma & Bilişsel Geri Çağırma | ✅ Çözüldü (#344, #349, #351, #355) |
+| **20** | **Hatalı Sorudan Derse Geçiş** | Dilbilgisi ve fiil alıştırmasında yapılan hatanın kural dersine anında köprü kurulamaması | Hataları Teşhis & Telafi | ✅ Çözüldü (#351, #355) |
+| **21** | **Kartlar Çevirme ve Pekiştirme** (`SwipeCards.tsx`) | Dokunsal kart çevirme ve unutulan kartın tur içinde 3 kart sonra tekrar sorulması | Aralıklı Tekrar & Üstbiliş | ✅ Çözüldü (#344, #358) |
+| **22** | **Sosyal Motivasyon ve Arkadaşlar** (`FriendsCard.tsx`) | Birlikte çalışma motivasyonu, kodla arkadaş ekleme, Bugün ve Bu hafta liderlik sıralaması | Sosyal Motivasyon & Şeffaflık | ✅ Çözüldü (#344, #358) |
+| **23** | **Seri Kırılmasında Yıkım Hissi** (`StreakRepair.tsx`) | Bir gün çalışmayı kaçırınca tüm serinin sıfırlanmasının yarattığı motivasyon kaybı | Hataları Önleme & Kurtulma (Affedici Tasarım) | ✅ Çözüldü (#343, #358) |
+| **24** | **İlerleme Raporu ve Veri Çıktısı** (`ShareProgress.tsx`) | Öğrenme geçmişini temiz PDF/yazdır sayfası ve 7+ sekmeli detaylı Excel (.xlsx) olarak alabilme | Kullanım Esnekliği & Veri Sahipliği | ✅ Çözüldü (#343, #358) |
+| **25** | **Supabase Hesap ve Eşitleme Güvenliği** (`AccountScreen.tsx`) | Salt anahtarlı hesap yerine modern Supabase Auth, e-posta şablonları, RLS koruması ve güvenlik duman testi | Sistem Durumu Görünürlüğü & Güvenlik | ✅ Çözüldü (#344, #348, #350, #356) |
+
 
 ---
 
@@ -273,12 +324,27 @@ Uygulamanın ana bilgi mimarisi 5 birincil bölgeye ve bunların altındaki ikin
 29. **Uçtan Uca ve Erişilebilirlik Taramaları:** ✅ Yapıldı (#244, #246):  
     Bileşik zamanlar, çıkarım mobil alt çekmecesi, YZ servisleri taklitleri ve yeni tüm mini oyunlar için telefon görünümünde, açık/koyu temalarda sıfır axe ihlaliyle 26 test yeşile ulaştırıldı.
 
+### ⚪ Öncelik 7: Rehber, Sosyal Motivasyon, Seri Kurtarma ve Raporlama (12. ve 13. Turlar)
+30. **Rehber ve Mini Sınavlar:** ✅ Yapıldı (#344, #349, #351, #352–#355):  
+    121 yapısal rehber dersi (`src/data/guide/`), A1–B2 formül tabloları, ders sonu 3 soruluk `GuideQuiz`, Bugün ekranında `GuideDueCard` ("Hatırlıyor musun?") ve yanlış cevapta derse bağlanan "Konunun dersi" köprüsü.
+31. **Kartlar (SwipeCards) ve Tur İçi Pekiştirme:** ✅ Yapıldı (#344, #358):  
+    Dokunsal 3D kart çevirme (`.flash-turn`), "Biliyorum/Bilmiyorum" ayrımı, tur içi 3 kart sonra hatırlatma (`COME_BACK_AFTER[0] = 3`) ve tur sonunda takılınan kartlarla anında odaklı tur başlatma.
+32. **Arkadaşlar ve Sosyal Motivasyon:** ✅ Yapıldı (#344, #358):  
+    6 haneli kod ile arkadaş ekleme/çıkarma, "Bugün" ve "Bu hafta" sıralamalarıyla sağlıklı sosyal motivasyon döngüsü.
+33. **Seri Kurtarma Sınavı:** ✅ Yapıldı (#343, #358):  
+    Kaçırılan günlerde seriyi koruyan affedici tasarım: 10 soruluk telafi sınavında %70 başarıyla serinin geri kazanılması (`StreakRepair.tsx`).
+34. **İlerleme Raporu (Yazdır/PDF ve Excel):** ✅ Yapıldı (#343, #358):  
+    İlerleme ekranında "Paylaş" menüsü: Tek tıkla temiz baskı/PDF formatında karne ve en az 7 çalışma sayfası içeren zengin Excel (.xlsx) ihracı.
+35. **Supabase Hesap Paneli ve Güvenli Eşitleme:** ✅ Yapıldı (#344, #348, #350, #356):  
+    Supabase Auth e-posta/şifre girişi, onay rozeti, PostgreSQL `sync_parts` tablosu, RLS güvenlik kuralları ve güvenlik duman testi (`scripts/smoke-supabase.mjs`).
+
 ---
 
 ## 8. Sonuç
 
-Kelime Koçu; temiz tipografisi (Lexend + Literata uyumu), tek dil vurgusu prensibi, dokunsal düğme basma hissi ve yargılamayan bahçe metaforuyla piyasadaki aşırı oyunlaştırılmış (gamified) ve dikkat dağıtıcı dil uygulamalarına kıyasla son derece dingin, ergonomik ve amaca odaklı bir kullanıcı deneyimi sunmaktadır.
+Kelime Koçu (Diloloji); temiz tipografisi (Lexend + Literata uyumu), tek dil vurgusu prensibi, dokunsal düğme basma hissi ve yargılamayan bahçe metaforuyla piyasadaki aşırı oyunlaştırılmış (gamified) ve dikkat dağıtıcı dil uygulamalarına kıyasla son derece dingin, ergonomik ve amaca odaklı bir kullanıcı deneyimi sunmaktadır.
 
-9., 10. ve 11. turlarla birlikte gelen ileri seviye B1–C1 dilbilgisi pratikleri, refleks kalıpları, tuzak kelime farkındalığı, çıkarım modu, canlı mikro haberler, kayıt farkı üçlüleri, bileşik zaman çözümlemesi ve fonetik doğrulama; uygulamayı salt bir kelime ezberleme aracından çok boyutlu bir dil edinim, okuduğunu anlama ve akıcılık ekosistemine dönüştürmüştür.
+12. ve 13. turlarla birlikte sisteme kazandırılan 121 derslik Rehber müfredatı, mini sınavlar, aralıklı ders hatırlatma kartları, dokunsal Kartlar (Flashcards) akışı, arkadaşlarla liderlik sıralaması, seri kurtarma sınavı, çok sayfalı Excel/PDF ilerleme raporlaması ve kurumsal düzeyde Supabase güvenli eşitleme altyapısı; uygulamayı tam teşekküllü, bilimsel temelli ve güvenli bir yabancı dil öğrenme platformuna dönüştürmüştür.
+
 
 

@@ -344,14 +344,40 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - `scripts/check-news-feeds.ts` betiği aday kaynakları (`--candidates`) test edecek şekilde genişletildi.
   - Fransızca (*Salut l'info!*, *1jour1actu*, *TV5Monde*), İspanyolca (*Hoy Hablamos*, *Radio Ambulante*, *DW*) ve İngilizce (*BBC 6 Minute English*, *News in Levels*, *NPR*) canlı ağ üzerinden denetlendi; çalışan doğrudan ses akışları ve transkript durumları `docs/kaynaklar/gunun-haberi.md` Bölüm 8'e eklendi.
 
+## 2026-10-12 – 2026-10-15 Geliştirmeleri — 12. ve 13. Turlar (#300–#359)
+- [x] **Rehber, Mini Sınav ve Tekrar Kartı (#344, #349, #351, #352–#355):**
+  - **Rehber Merkezi (`Guide.tsx`):** 121 kapsamlı dilbilgisi ve kullanım rehberi dersi (`src/data/guide/`), A1–B2 seviye anlatımları, zengin örnekler, zaman ve formül tabloları.
+  - **Mini Sınav (`GuideQuiz.tsx`):** Her dersin sonunda 3 soruluk interaktif sınav, başarıyla bitirince "Öğrenildi" durumu ve yeşil tik.
+  - **Bugün Hatırlatma Kartı (`GuideDueCard.tsx`):** Öğrenilen derslerin aralıklı tekrarı için Bugün ekranında "Hatırlıyor musun?" kartı ve doğrudan mini sınav başlatma.
+  - **Hata Köprüsü:** Dilbilgisi alıştırması veya fiil laboratuvarında yanlış yapıldığında "Konunun dersi" / "Bu zamanın anlatımı" köprüsüyle derse geçiş.
+  - **Denetim & Testler:** Tüm dersler pedagojik olarak tarandı (#352), mini sınavlar denetlendi (#353), iç/dış bağlantılar doğrulandı (#354); telefon, masaüstü ve axe WCAG AA a11y testleri yazıldı (#355).
+- [x] **Supabase Auth ve Eşitleme (#344, #345, #348, #350, #356):**
+  - **1. Aşama (Auth, #344, #345):** Supabase Auth entegrasyonu, e-posta/şifre ile güvenli giriş ve kayıt, Türkçe şablonlar (onay/şifre sıfırlama) ve Google OAuth altyapısı.
+  - **2. Aşama (Tablolar, #348):** Vercel Blob yerine PostgreSQL `sync_parts` tablosu (`core` ve `media`), RLS güvenlik kuralları ve onaylı hesap ayrımı (`put_sync_part`).
+  - **2b Aşaması (İlişkisel Veriler, #350):** `friend_cards`, `shared_lists`, `reminders`, `server_flags`, `sync_keys` tabloları.
+  - **Güvenlik Duman Testi (#356):** `scripts/smoke-supabase.mjs` betiği ile RLS ve açık anahtar sınırlarının doğrulanması (`docs/SUPABASE.md`).
+- [x] **Kartlar, Arkadaşlar, Seri Kurtarma ve İlerleme Raporu (#343, #344, #358):**
+  - **Kartlar (`SwipeCards.tsx`):** Oyunlar → Kartlar ekranında dokunsal kart çevirme (`.flash-turn`), "Biliyorum / Bilmiyorum" ayrımı, tur içinde 3 kart sonra hatırlatma (`COME_BACK_AFTER[0] = 3`), sonuç ekranı ve "Takıldıklarını çalış" ile odaklı yeni tur.
+  - **Arkadaşlar (`FriendsCard.tsx`):** Arkadaşlık kodu ile ekleme/çıkarma, "Bugün" ve "Bu hafta" puanlama ve liderlik sıralaması.
+  - **Seri Kurtarma (`StreakRepair.tsx`):** Kaçırılan günlerde Bugün ekranında telafi kartı, %70 başarı gerektiren 10 soruluk telafi sınavı ve seriyi geri kazanma.
+  - **İlerleme Raporu (`ShareProgress.tsx`):** İlerleme ekranında "Paylaş" menüsü: Tek tıkla "Yazdır ya da PDF" çıktısı alma, "Excel (.xlsx)" indirme (en az 7 ayrı çalışma sayfası ile kelime, fiil, dinleme, okuma, hata ve seviye dökümü).
+  - **E2E Doğrulaması (#358):** Kartlar, Arkadaşlar, Seri kurtarma ve İlerleme raporu için `e2e/desktop.e2e.ts` uçtan uca testleri.
+- [x] **Hesap Ekranı ve Yasal Sayfalar (#344, #346, #347, #349):**
+  - Eski salt anahtarlı hesap yapısı kaldırılarak modern Supabase hesap paneli oluşturuldu (`AccountScreen.tsx`). Şifre güncelleme, onay rozeti, e-posta doğrulama ve hesabı silme imkânı.
+  - Gizlilik politikası (`PrivacyPolicy.tsx`) ve kullanım koşulları (`TermsOfUse.tsx`) sayfaları eklendi.
+- [x] **Görsel Zenginleşme ve Monki Tasarım Sistemi (#305–#343):**
+  - Sevimli karakterimiz Monki'nin el çizimi illüstrasyonları (karşılama, boş durumlar, etkinlik pozları, seviyeye göre kıyafetler, oturum tepkileri).
+  - Yeni rozet madalyaları, seri alevi animasyonları, hayvan avatarları, liste kapak fotoğrafları ve açılış adımı çizimleri.
+- [x] **Dilbilgisi Çoktan Seçmeli Soru Genişletmesi (#359):**
+  - 10'dan az çoktan seçmeli soruya sahip tüm dilbilgisi konularına (`src/data/grammar/{fr,es,en}-9.json`) toplam 68 özgün soru eklendi (FR: 16, ES: 25, EN: 27). Mini sınav soru havuzu zenginleştirildi.
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
-- **Yeni alıştırmaların etkisi:** Kullanıcı 1–2 hafta sonra yedek verince dilbilgisi, refleks, kayıt farkı ve tuzak kelimeler oyunlarının kullanım oranları incelenecek.
-- **Fiil laboratuvarı mod sadeleştirmesi:** Ayarlar → Kullanım ekranındaki sayımlara bakılarak hiç kullanılmayan modların sadeleştirilmesi (birkaç hafta veri birikince).
-- **Görsel test referansları:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin yenilenmesi.
+- **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
+- **Yeni Özelliklerin Etkisi:** Kullanıcı düzenli çalıştıkça Kartlar, Rehber mini sınavları ve seri kurtarma mekanizmasının tutundurma (retention) verileri izlenecek.
 - **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) 14 fikir yol haritası.
-- **Kullanıcıya önerilen ama onun yapacağı:**
-  - Ayarlar'da günlük yeni kelimeyi 20'den 5–8'e indirmesi (#52 birleşince Ayarlar "N yap" önerir).
-  - İsterse yedek dosyasını (Ayarlar → Veriler → Yedeği indir) proje klasörüne koyup kişisel öğrenme analizi istemesi.
+- **Kullanıcıya önerilen:**
+  - İsterse yedek dosyasını veya Supabase senkronizasyonunu kullanarak birden çok cihazda çalışmaya başlaması.
+
 
 
 

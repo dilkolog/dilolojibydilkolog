@@ -479,14 +479,16 @@ Actions kotası dönene kadar bekle (`gh workflow run snapshots.yml --ref main`)
 - **Sonuç:** `rewrite_*` (cümle dönüştürme) hariç her konuda en az 10 `choice` sorusu tamamlandı. Kimlikler benzersiz, tek doğru seçenekli, Türkçe kural açıklamalı ve `npx vitest run src/data` (453 test) ile tam uyumlu.
 
 
-### 13.8 Belge güncellemesi
-`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md`'ye #300–#351 arasında yapılanları ekle:
-- Rehber, mini sınav ve tekrar kartı;
-- Supabase giriş ve eşitleme (2. ve 2b aşamaları);
-- Kartlar, Arkadaşlar, seri kurtarma, İlerleme raporu;
-- hesap ekranının yenilenmesi.
+### 13.8 Belge güncellemesi (TAMAMLANDI — `docs/YAPILACAKLAR.md`, `docs/KULLANILABILIRLIK.md`)
+`docs/YAPILACAKLAR.md` ve `docs/KULLANILABILIRLIK.md` dosyalarına #300–#359 arasında tamamlanan tüm geliştirmeler eklendi:
+- Rehber, mini sınav ve tekrar kartı (`Guide`, `GuideQuiz`, `GuideDueCard`, derse köprü);
+- Supabase giriş ve eşitleme (1., 2. ve 2b aşamaları, RLS güvenlik politikaları ve `smoke-supabase.mjs` duman testi);
+- Kartlar (`SwipeCards`), Arkadaşlar (`FriendsCard`), seri kurtarma (`StreakRepair`), İlerleme raporu (yazdır/PDF ve Excel);
+- Hesap ekranının yenilenmesi (`AccountScreen`), gizlilik politikası ve kullanım şartları;
+- Monki illüstrasyonları ve tasarım sistemi;
+- Az sorulu dilbilgisi konularına 68 yeni çoktan seçmeli soru.
+`AGENTS.md`'ye dokunulmadı.
 
-`AGENTS.md`'ye dokunma.
 
 ### 13.9 Görsel referansları yenileme (KOTA)
 Actions kotası dönünce `gh workflow run snapshots.yml --ref main`. Beklenen farklar: Bugün (tekrar kartı, liste seçici), Rehber, Ayarlar → Hesap, Kartlar.
