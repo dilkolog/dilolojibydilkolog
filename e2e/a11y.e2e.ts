@@ -845,7 +845,9 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await expect(page.locator('.greeting', { hasText: 'Kayıt farkı' })).toBeVisible()
   await page.getByRole('button', { name: /soruluk tura başla/ }).click()
   let scannedNote = false
-  for (let i = 0; i < 8; i++) {
+  // The round's items are picked at random: a new round when one ends, until an item with a regional note comes up.
+  for (let i = 0; i < 24; i++) {
+    if (await page.locator('.game-result').count()) await page.locator('.game-result .btn-lg:not(.btn-quiet)').click()
     await page.locator('.option').first().click()
     await expect(page.locator('.register-ladder')).toBeVisible()
     const noteLoc = page.locator('.stack[role="status"] p.small.muted')
