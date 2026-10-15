@@ -124,7 +124,7 @@ describe('Monki', () => {
     render('sk-test')
     openPanel()
     act(() => modeChip('Rol yap').click())
-    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-chips .chip')].find((b) => b.textContent === 'Kafede sipariş vermek')!.click())
+    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-scene')].find((b) => b.textContent === 'Kafede sipariş vermek')!.click())
     await flush()
     const req = monkiTurn.mock.calls[0][1]
     expect(req.mode).toBe('roleplay')

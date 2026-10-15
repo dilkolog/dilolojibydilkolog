@@ -17,6 +17,7 @@ import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { useAi } from './aiContext'
 import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, PenIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon } from './icons'
+import { MISSION_ART } from './drawnArt'
 import { Glyph } from './Glyph'
 import { LANGUAGE_NAME } from './labels'
 import { canSpeak, speak } from './speech'
@@ -401,7 +402,7 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
           {MISSIONS.map((m) => (
             <button key={m.id} className="mission-card" onClick={() => begin(m)}>
               <span className="mission-head">
-                <span className="game-emoji" aria-hidden><Glyph emoji={m.emoji} size={22} /></span>
+                {MISSION_ART[m.id] ? <img className="mission-art" src={MISSION_ART[m.id]} alt="" draggable={false} /> : <span className="game-emoji" aria-hidden><Glyph emoji={m.emoji} size={22} /></span>}
                 <strong>{m.title}</strong>
                 <Stars n={best[m.id] ?? 0} />
               </span>
@@ -464,8 +465,9 @@ function Chat({ db, language, vocabulary, states, onOpenSettings, onChanged, mis
     <div className="stack">
       {active ? (
         <section className="card stack mission-brief">
-          <strong>
-            {active.emoji} {active.title}
+          <strong className="mission-brief-title">
+            {MISSION_ART[active.id] && <img className="mission-art" src={MISSION_ART[active.id]} alt="" draggable={false} />}
+            {active.title}
           </strong>
           <ul className="mission-check">
             {active.goals.map((g, i) => (

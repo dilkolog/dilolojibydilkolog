@@ -100,7 +100,7 @@ self.addEventListener('push', (event) => {
         return self.registration.showNotification(q ? `${q.word} = ?` : data.title || 'Diloloji', {
           body: q ? `Aklından geçir, sonra bak. ${body}` : body,
           icon: '/pwa-192.png',
-          badge: '/pwa-192.png',
+          badge: '/notification-badge.png',
           tag: 'daily-reminder',
           data: { url: data.url || '/', question: q },
           actions: q
@@ -125,7 +125,7 @@ self.addEventListener('notificationclick', (event) => {
       self.registration.showNotification(`${data.question.word} = ${data.question.gloss}`, {
         body: 'Bildin mi? Birkaç kelime daha için dokun: 3 dakikalık hızlı tekrar.',
         icon: '/pwa-192.png',
-        badge: '/pwa-192.png',
+        badge: '/notification-badge.png',
         tag: 'daily-reminder',
         data: { url },
       }),

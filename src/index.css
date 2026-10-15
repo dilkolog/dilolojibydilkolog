@@ -3238,7 +3238,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
 :is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
-  .pos-art, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img) {
+  .pos-art, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art) {
   filter: var(--art-edge);
 }
 

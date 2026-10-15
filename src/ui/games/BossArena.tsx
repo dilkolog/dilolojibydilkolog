@@ -8,6 +8,7 @@ import { createRng, pick } from '../../engine/rng'
 import type { ExerciseType, TargetLanguage, UserWordState, VocabularyEntry } from '../../engine/types'
 import { db } from '../../data/instance'
 import { SAMPLE_WORDS } from '../../data/seed'
+import { BOSS_ART } from '../drawnArt'
 import { HeartIcon, SpeakerIcon, SwordsIcon, TrophyIcon } from '../icons'
 import { LANGUAGE_NAME, PROMPT_TEXT } from '../labels'
 import { prefs } from '../prefs'
@@ -15,7 +16,6 @@ import { sfx } from '../sounds'
 import { speak } from '../speech'
 import { type Props, recordPractice } from './shared'
 
-const BOSS_FACES = ['👹', '👺', '🐉', '🦖', '👾', '🧟', '🦑', '🐙']
 const BATTLE_TYPES = new Set<ExerciseType>([
   'mc_meaning',
   'mc_context',
@@ -31,7 +31,8 @@ const BATTLE_TYPES = new Set<ExerciseType>([
   'word_form',
   'idiom_complete',
 ])
-const faceOf = (id: string) => BOSS_FACES[[...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % BOSS_FACES.length]
+/** A word's boss: always the same drawn monster for the same word. */
+const faceOf = (id: string) => BOSS_ART[[...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % BOSS_ART.length]
 
 /** Words that keep slipping become bosses, beaten with varied questions before losing three hearts. */
 export function BossArena({ language, vocabulary, states, mistakes = [], onChanged, onExit }: Props & { onExit: () => void }) {
@@ -74,9 +75,7 @@ export function BossArena({ language, vocabulary, states, mistakes = [], onChang
         <ul className="boss-list">
           {bosses.map((b) => (
             <li key={b.entry.id}>
-              <span className="boss-face" aria-hidden>
-                {faceOf(b.entry.id)}
-              </span>
+              <img className="boss-face" src={faceOf(b.entry.id)} alt="" draggable={false} />
               <span className="boss-info">
                 <strong lang={language}>{displayForm(b.entry)}</strong>
                 <span className="small muted">
@@ -187,9 +186,7 @@ function BossBattle({ boss, language, vocabulary, state, onDone }: { boss: Boss;
   return (
     <div className="stack battle">
       <div className="battle-top">
-        <span className="boss-face boss-face-big" aria-hidden>
-          {outcome === 'won' ? '💥' : face}
-        </span>
+        <img className={`boss-face boss-face-big${outcome === 'won' ? ' boss-beaten' : ''}`} src={face} alt="" draggable={false} />
         <div className="stack gap-xs grow">
           <div className="row justify-between">
             <strong>{outcome === 'won' ? displayForm(entry) : 'Gizemli kelime'}</strong>

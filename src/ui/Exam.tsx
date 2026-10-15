@@ -13,6 +13,7 @@ import { SAMPLE_WORDS } from '../data/seed'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { LANGUAGE_NAME } from './labels'
+import { PageHeader } from './PageHeader'
 
 const pct = (x: number) => `%${Math.round(x * 100)}`
 
@@ -94,7 +95,7 @@ export function ExamScreen({ db, language, vocabulary, states, onDone }: { db: K
     const prev = history.at(-1)
     return (
       <div className="stack">
-        <h1 className="greeting">Sınav sonucu</h1>
+        <PageHeader art="exam" title="Sınav sonucu" />
         <div className="hero-stat card">
           <span className="hero-number">{pct(score.actual)}</span>
           <span>

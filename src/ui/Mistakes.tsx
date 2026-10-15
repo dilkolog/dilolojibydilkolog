@@ -67,6 +67,7 @@ export function MistakesScreen({
     <div>
       <section className="section stack">
         <PageHeader
+          art="mistakes"
           title="Hatalar"
           sub={open.length ? `${words} kelimede ${open.length} açık hata; üst üste 3 doğru cevap bir hatayı kapatır.` : 'Hataların türüne göre burada toplanır.'}
           action={

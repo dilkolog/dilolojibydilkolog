@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import onbGoal from '../assets/art/onb-goal.webp'
 import onbMap from '../assets/art/onb-map.webp'
 import onbPlant from '../assets/art/onb-plant.webp'
+import onbFlags from '../assets/art/onb-flags.webp'
 import langEn from '../assets/art/lang-en.webp'
 import langEs from '../assets/art/lang-es.webp'
 import langFr from '../assets/art/lang-fr.webp'
@@ -153,6 +154,7 @@ export function Onboarding({ onDone }: { onDone: (s: Settings) => void }) {
 
         {step === 1 && (
           <div className="stack gap-2">
+            <img className="ob-art" src={onbFlags} alt="" draggable={false} />
             <h2 className="section-title ob-heading" ref={heading} tabIndex={-1}>
               Hangi dille başlayalım?
             </h2>

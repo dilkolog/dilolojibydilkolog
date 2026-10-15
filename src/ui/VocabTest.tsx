@@ -7,6 +7,7 @@ import { adviceFor, BAND_SIZE, buildVocabTest, scoreVocabTest, type TestItem, ty
 import type { KelimeDB, VocabTestRecord } from '../data/db'
 import { frequencyWords } from '../data/frequency'
 import { LANGUAGE_NAME } from './labels'
+import { PageHeader } from './PageHeader'
 
 type Answer = 'yes' | 'no' | 'skip'
 
@@ -66,7 +67,7 @@ export function VocabTestScreen({ db, language, onDone }: { db: KelimeDB; langua
     const diff = previous ? score.estimate - previous.estimate : 0
     return (
       <div className="stack">
-        <h1 className="greeting">Kelime dağarcığı</h1>
+        <PageHeader art="vocabtest" title="Kelime dağarcığı" />
         <div className="hero-stat card">
           <span className="hero-number">≈ {score.estimate.toLocaleString('tr-TR')}</span>
           <span>
