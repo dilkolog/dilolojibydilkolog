@@ -1882,3 +1882,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 }
 .flash-ring b { font-size: var(--t-lg); font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .flash-inner { transition: none; } }
+/* On a phone there is no keyboard to hint at, and three grades must fit side by side. */
+@media (max-width: 40rem) {
+  .flash-grade kbd, .flash-turn kbd { display: none; }
+  .flash-grades { gap: 0.375rem; }
+  .flash-grade { padding-inline: 0.375rem; font-size: var(--t-sm); }
+}
