@@ -228,6 +228,7 @@ export function AppScreens(props: AppScreensProps) {
           onRepair={(target) => (target === 'verbs' ? setScreen({ name: 'verbs' }) : setScreen({ name: 'games', game: target }))}
           weeklyGoal={settings.weeklyTimeGoal}
           onWeeklyGoal={(minutes) => void updateSettings({ ...settings, weeklyTimeGoal: minutes })}
+          learnerName={settings.profile.name}
         />
       ) : screen.name === 'produce' ? (
         <ProduceScreen

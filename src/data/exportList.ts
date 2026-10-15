@@ -1,4 +1,4 @@
-import { strToU8, zipSync } from 'fflate'
+import { workbook } from './xlsx'
 import { richHtml } from '../engine/richText'
 import { displayForm } from '../engine/exercises'
 import { masteryStage } from '../engine/mastery'
@@ -42,7 +42,7 @@ const safeNextReview = (s: UserWordState) => {
 }
 
 /** Header and one row per word: what both the CSV and the Excel file hold. */
-function listRows(entries: readonly VocabularyEntry[], states: readonly UserWordState[]): string[][] {
+export function listRows(entries: readonly VocabularyEntry[], states: readonly UserWordState[]): string[][] {
   const byId = new Map(states.map((s) => [s.entryId, s]))
   const rows = entries.map((e) => {
     const s = byId.get(e.id)
@@ -86,65 +86,17 @@ export function toCsv(entries: readonly VocabularyEntry[], states: readonly User
   return '\uFEFF' + listRows(entries, states).map((r) => r.map(cell).join(separator)).join('\r\n')
 }
 
-/** Characters XML cannot hold are left out. */
-const xmlText = (v: string) =>
-  v
-    // eslint-disable-next-line no-control-regex
-    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-
-const columnName = (i: number) => String.fromCharCode(65 + i)
-
 /**
  * The list as a real Excel workbook (.xlsx): opens in Excel, Numbers, Google Sheets and
  * LibreOffice with every accent in place and one word per row, whatever the computer's region
  * (a CSV depends on its separator). A bold, frozen header row and sensible column widths.
  */
 export function toXlsx(entries: readonly VocabularyEntry[], states: readonly UserWordState[]): Uint8Array {
-  const rows = listRows(entries, states)
-  const sheetRows = rows
-    .map((r, y) => `<row r="${y + 1}">${r.map((v, x) => (v === '' ? '' : `<c r="${columnName(x)}${y + 1}" t="inlineStr"${y === 0 ? ' s="1"' : ''}><is><t xml:space="preserve">${xmlText(v)}</t></is></c>`)).join('')}</row>`)
-    .join('')
-  const widths = [11, 18, 8, 10, 24, 22, 40, 16, 40, 32, 30, 18, 24, 12, 14, 12]
-  const sheet =
-    '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-    '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">' +
-    '<sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>' +
-    `<cols>${widths.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('')}</cols>` +
-    `<sheetData>${sheetRows}</sheetData></worksheet>`
-  const styles =
-    '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
-    '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">' +
-    '<fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts>' +
-    '<fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills>' +
-    '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>' +
-    '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>' +
-    '<cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs>' +
-    '</styleSheet>'
-  const files = {
-    '[Content_Types].xml':
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
-      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>' +
-      '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>' +
-      '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>' +
-      '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>',
-    '_rels/.rels':
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
-      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',
-    'xl/workbook.xml':
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">' +
-      '<sheets><sheet name="Kelimeler" sheetId="1" r:id="rId1"/></sheets></workbook>',
-    'xl/_rels/workbook.xml.rels':
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
-      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>' +
-      '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>',
-    'xl/styles.xml': styles,
-    'xl/worksheets/sheet1.xml': sheet,
-  }
-  return zipSync(Object.fromEntries(Object.entries(files).map(([name, xml]) => [name, strToU8(xml)])))
+  return workbook([{ name: 'Kelimeler', rows: listRows(entries, states), widths: LIST_WIDTHS }])
 }
+
+/** Column widths of the word list, in characters. */
+export const LIST_WIDTHS = [11, 18, 8, 10, 24, 22, 40, 16, 40, 32, 30, 18, 24, 12, 14, 12]
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
