@@ -371,6 +371,30 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Dilbilgisi Çoktan Seçmeli Soru Genişletmesi (#359):**
   - 10'dan az çoktan seçmeli soruya sahip tüm dilbilgisi konularına (`src/data/grammar/{fr,es,en}-9.json`) toplam 68 özgün soru eklendi (FR: 16, ES: 25, EN: 27). Mini sınav soru havuzu zenginleştirildi.
 
+## 2026-10-15 / 2026-10-16 Gece Bakım, Temizlik ve Test Kapsamı Turları (#361–#364)
+- [x] **Gece Bakım Turu 1 — Derleme ve Kullanılmayan Dışa Aktarım Temizliği (#361):**
+  - Vite/Rolldown derleme uyarıları giderildi: `WeeklyNudge.tsx`, `syncTarget.ts` ve `syncRunner.ts` içindeki etkisiz dinamik içe aktarımlar (`[INEFFECTIVE_DYNAMIC_IMPORT]`) statik içe aktarıma alındı.
+  - Sadece kendi dosyasında kullanılan 8 dışa aktarım modül içine çekildi (`DictionarySaved.tsx` `SAVED_SHOWN`, `downscaleImage.ts` `MAX_SIDE`/`fitSize`, `games/shared.tsx` `RECORD_MIN_PCT`, `incoming.ts` `READ_WORDS`, `monkiWords.ts` `TALK_WORDS`, `useScreenHistory.ts` `routeKey`, `App.tsx` `NavMark`). `docs/KULLANILMAYAN-DISA-AKTARIMLAR.md` güncellendi.
+- [x] **Gece Bakım Turu 2 — Kelime Türetme Motoru Akraba Denetimi (#362):**
+  - `scripts/audit-derive.ts` ile EN, FR, ES dillerindeki en sık 6.000 kelime üzerinde kelime türetme motoru denetlendi.
+  - Rastlantısal yazım benzerliğiyle yanlış köke bağlanan 15 kelime `src/engine/derive.ts` içindeki `FALSE_COUSINS` listesine eklendi (`sting|resting`, `tire|retire`, `coupable|couper`, `chanter|chantage`, `creación -> crear`). Birim testleri yazıldı.
+- [x] **Gece Bakım Turu 3 — Motor (Engine) Birim Test Kapsamının Tamamlanması (#363):**
+  - Doğrudan testi bulunmayan 5 çekirdek motor modülü için 27 yeni birim testi yazıldı:
+    - `src/engine/__tests__/rng.test.ts`: Mulberry32 deterministikliği, tohum bağımsızlığı, dizi karıştırma (`shuffle`) ve eleman seçme (`pick`).
+    - `src/engine/__tests__/collocations.test.ts`: Eşdizim filtreleme, dil kısıtlaması, harf duyarsızlığı ve azami adet sınırı.
+    - `src/engine/__tests__/trueFalse.test.ts`: Doğru/Yanlış alıştırma motoru, sözcük türü (partOfSpeech) uyumlu çeldirici seçimi ve kendi anlamını çeldirici yapmama güvencesi.
+    - `src/engine/__tests__/tenseGuide.test.ts`: Zaman rehberi, Türkçe pedagojik köprü (`TENSE_BRIDGE`) alanları ve üst-dilsel pedagojik geri bildirim (`formFeedback` — yanlış zaman veya yanlış şahıs ayrımı).
+    - `src/engine/__tests__/quests.test.ts`: Günlük görev üretimi (`dailyQuests`), metrik toplamı (`dayMetrics`), görev durumu (`questStatus`) ve bonus XP (`questBonus`).
+- [x] **Gece Bakım Turu 4 — Arayüz (UI) Yardımcı Modülleri Test Kapsamı (#364):**
+  - Arayüzde doğrudan testi bulunmayan 5 kritik yardımcı modül için 24 yeni birim testi yazıldı:
+    - `src/ui/flameTier.test.ts`: Seri (streak) alevi kademelerinin (0..4) gün eşiklerine (3, 7, 30, 100 gün) göre doğru hesaplanması.
+    - `src/ui/badgeTier.test.ts`: Başarı madalyası aşamaları (`TIER_NAME`) ve madalya kademelerine göre sıralama (`byTier`: bronz < gümüş < özel < altın).
+    - `src/ui/dayPlantStage.test.ts`: Günlük çalışma çiçeği büyüme evreleri (-1 tohum, 0-4 beşte birlik ilerleme, 5 tamamlama).
+    - `src/ui/articleQuestion.test.ts`: Fransızca sesli/sessiz harf ayrımı (sessiz harfte le/la; sesli harf ve sessiz h'de l' düşmesini önlemek için un/une) ve İspanyolca artikel (el/la) soru üretimi.
+    - `src/ui/knownMilestones.test.ts`: Kapsamlı okuma bilinen kelime toplamı (`knownTotal`), hedef kilometre taşları (`milestone`), haftalık büyüme (`weeklyGrowth`) ve hedef tahminleme (`goalForecast`).
+- [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması:**
+  - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
 - **Yeni Özelliklerin Etkisi:** Kullanıcı düzenli çalıştıkça Kartlar, Rehber mini sınavları ve seri kurtarma mekanizmasının tutundurma (retention) verileri izlenecek.
