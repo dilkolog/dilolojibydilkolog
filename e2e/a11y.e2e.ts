@@ -817,7 +817,7 @@ test('round 11 interactive states and new cards pass accessibility checks on pho
   await expect(page.locator('.options')).toBeVisible()
   await scanBoth('phone-traps-question')
   await page.locator('.option').first().click()
-  await expect(page.getByRole('button', { name: 'Devam' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Devam', exact: true })).toBeVisible()
   await scanBoth('phone-traps-answer')
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 

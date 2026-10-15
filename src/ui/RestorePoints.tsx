@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { db } from '../data/instance'
+import { syncTarget } from './syncTarget'
 import { restoreFrom, restorePoints, SyncApprovalError, SyncNotAllowedError } from '../data/sync'
 import { ConfirmDialog } from './Dialog'
 import { getCredential, NOT_ALLOWED, PENDING_APPROVAL, runSync } from './syncRunner'
@@ -24,7 +25,7 @@ export function RestorePoints() {
     setError(null)
     try {
       const cred = await getCredential()
-      setDays(cred ? await restorePoints(cred) : [])
+      setDays(cred ? await restorePoints(await syncTarget(cred)) : [])
     } catch (e) {
       setDays(null)
       setError(e instanceof SyncApprovalError ? PENDING_APPROVAL : e instanceof SyncNotAllowedError ? NOT_ALLOWED : 'Geri dönüş noktaları alınamadı; internet bağlantını kontrol et.')
@@ -38,7 +39,7 @@ export function RestorePoints() {
     try {
       const cred = await getCredential()
       if (!cred) return
-      const back = await restoreFrom(db, cred, day)
+      const back = await restoreFrom(db, await syncTarget(cred), day)
       await runSync()
       showToast(back ? `${dayLabel(day)} hâline dönüldü; ${back} kelime geri geldi.` : `${dayLabel(day)} hâline dönüldü.`)
     } catch {

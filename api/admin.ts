@@ -1,5 +1,6 @@
 import { del, list } from '@vercel/blob'
 import { idOfUsername } from './_allow.js'
+import { mirrorApproval } from './_supabase.js'
 import { approvedPath, clearAccessCache, ID, readText, rejectedPath, removeBlob, requestPath, sha256, StorageError, writeJson } from './_account.js'
 
 /**
@@ -96,6 +97,8 @@ export async function POST(request: Request): Promise<Response> {
     }
     await removeBlob(requestPath(id))
     clearAccessCache()
+    // A person signed in with Supabase: their profile follows, so the database lets them write (or not).
+    await mirrorApproval(id, body!.action === 'approve' ? 'approved' : 'rejected')
     return json({ ok: true })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)

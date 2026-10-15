@@ -347,6 +347,55 @@ async function download(id: string, part: string, code: Credential): Promise<Byt
   return (await fetchPart(id, part, code))?.bytes ?? null
 }
 
+/**
+ * Where the parts are kept. The merge does not care: it reads a part (with a version to write against),
+ * writes one (only if still as read, or only if new) and lists the restore points. `blobStore` is the
+ * app's own server (Vercel Blob, encrypted); `supabaseStore` (supabaseStore.ts) keeps them in Supabase.
+ */
+export interface PartStore {
+  kind: 'blob' | 'supabase'
+  fetch(part: string): Promise<{ bytes: Bytes; etag?: string } | null>
+  /** Returns the size written. `ifMatch`: only if still as read; `createOnly`: only if nobody made it yet. */
+  put(part: string, data: Bytes, opts?: { ifMatch?: string; createOnly?: boolean }): Promise<number>
+  /** Days with a restore point, newest first. */
+  history(): Promise<string[]>
+}
+
+export function blobStore(code: Credential): PartStore {
+  let id: Promise<string> | null = null
+  const idOf = () => (id ??= credentialId(code))
+  return {
+    kind: 'blob',
+    fetch: async (part) => fetchPart(await idOf(), part, code),
+    put: async (part, data, opts) => upload(await idOf(), part, data, code, opts),
+    history: async () => {
+      const res = await fetch(`/api/sync?id=${await idOf()}&history=1`, { headers: authHeaders(code) })
+      if (res.status === 403) throw await refusal(res)
+      if (!res.ok) throw await failure(res)
+      return ((await res.json()) as { days?: string[] }).days ?? []
+    },
+  }
+}
+
+const isStore = (x: Credential | PartStore): x is PartStore => typeof x === 'object' && 'fetch' in x
+
+/** The account's data moved to Supabase: a device still on the old sign-in stops syncing here and says why. */
+export class SyncMovedError extends Error {
+  override name = 'SyncMovedError'
+}
+const MOVED = /"movedTo"\s*:\s*"supabase"/
+
+/** Marks the old store's core as moved, so a device still signed in the old way stops writing there. */
+export async function markMoved(code: Credential): Promise<void> {
+  const store = blobStore(code)
+  const core = await store.fetch('core')
+  if (!core) return
+  const text = new TextDecoder().decode(core.bytes)
+  if (MOVED.test(text)) return
+  const value = JSON.parse(text) as Record<string, unknown>
+  await store.put('core', new TextEncoder().encode(JSON.stringify({ ...value, movedTo: 'supabase' })), { ifMatch: core.etag })
+}
+
 
 // ---------------------------------------------------------------------------
 // Shards: the parts of the data that grow without end travel in files of their own
@@ -411,17 +460,17 @@ interface Pulled {
   exists: boolean
 }
 
-async function pullShard(id: string, name: string, code: Credential): Promise<Pulled> {
-  const fetched = await fetchPart(id, name, code)
+async function pullShard(store: PartStore, name: string): Promise<Pulled> {
+  const fetched = await store.fetch(name)
   if (!fetched) return { events: [], texts: [], exists: false }
   const file = parseBackup(new TextDecoder().decode(fetched.bytes))
   return { events: file.events, texts: file.reading?.library ?? [], etag: fetched.etag, exists: true }
 }
 
 /** Fetches parts a few at a time. */
-async function pullShards(id: string, names: string[], code: Credential, into: Map<string, Pulled>) {
+async function pullShards(store: PartStore, names: string[], into: Map<string, Pulled>) {
   for (let i = 0; i < names.length; i += 6) {
-    await Promise.all(names.slice(i, i + 6).map(async (name) => void into.set(name, await pullShard(id, name, code))))
+    await Promise.all(names.slice(i, i + 6).map(async (name) => void into.set(name, await pullShard(store, name))))
   }
 }
 
@@ -524,11 +573,8 @@ export function incomingChanges(local: Backup, merged: Backup): SyncResult['inco
  * nothing the second time.
  */
 /** The days the server kept a restore point for (newest first; see api/sync.ts). */
-export async function restorePoints(code: Credential): Promise<string[]> {
-  const res = await fetch(`/api/sync?id=${await credentialId(code)}&history=1`, { headers: authHeaders(code) })
-  if (res.status === 403) throw await refusal(res)
-  if (!res.ok) throw await failure(res)
-  return ((await res.json()) as { days?: string[] }).days ?? []
+export async function restorePoints(code: Credential | PartStore): Promise<string[]> {
+  return (isStore(code) ? code : blobStore(code)).history()
 }
 
 /**
@@ -537,8 +583,8 @@ export async function restorePoints(code: Credential): Promise<string[]> {
  * than the deletion, so other devices keep them too); what was added or edited later stays.
  * The next sync sends the result to the other devices.
  */
-export async function restoreFrom(db: KelimeDB, code: Credential, day: string, now = new Date()): Promise<number> {
-  const bytes = await download(await credentialId(code), `h-${day}`, code)
+export async function restoreFrom(db: KelimeDB, code: Credential | PartStore, day: string, now = new Date()): Promise<number> {
+  const bytes = (await (isStore(code) ? code : blobStore(code)).fetch(`h-${day}`))?.bytes
   if (!bytes) throw new Error('no such restore point')
   const point = parseBackup(new TextDecoder().decode(bytes))
   const at = now.toISOString()
@@ -565,22 +611,23 @@ export async function accountStatus(account: Account): Promise<'new' | 'ok' | 'w
   }
 }
 
-export async function syncNow(db: KelimeDB, code: Credential): Promise<SyncResult> {
+export async function syncNow(db: KelimeDB, code: Credential | PartStore): Promise<SyncResult> {
+  const store = isStore(code) ? code : blobStore(code)
   // Two devices syncing at once: the one that loses the race on the core file merges again with what the other wrote.
   for (let attempt = 1; ; attempt++) {
     try {
-      return await syncOnce(db, code)
+      return await syncOnce(db, store)
     } catch (e) {
       if (!(e instanceof SyncConflictError) || attempt >= 3) throw e
     }
   }
 }
 
-async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
-  const id = await credentialId(code)
-  const fetched = await fetchPart(id, 'core', code)
-  const remoteBytes = fetched?.bytes ?? null
-  const remote = remoteBytes ? parseBackup(new TextDecoder().decode(remoteBytes)) : null
+async function syncOnce(db: KelimeDB, store: PartStore): Promise<SyncResult> {
+  const fetched = await store.fetch('core')
+  const remoteText = fetched ? new TextDecoder().decode(fetched.bytes) : null
+  if (remoteText && store.kind === 'blob' && MOVED.test(remoteText)) throw new SyncMovedError('moved to supabase')
+  const remote = remoteText ? parseBackup(remoteText) : null
   // The parts the core lists, each with the fingerprint of what the server holds.
   const manifest = remote?.shards ?? {}
   const pulled = new Map<string, Pulled>()
@@ -610,7 +657,7 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
     }
     // The parts that differ between here and the server, or that the server's list does not know: fetch them to merge.
     const differing = [...new Set([...Object.keys(manifest), ...localShards.keys()])].filter((n) => manifest[n] !== localShards.get(n)?.fp && !pulled.has(n))
-    await pullShards(id, differing, code, pulled)
+    await pullShards(store, differing, pulled)
     const snapshot = remoteSnapshot()
     merged = snapshot ? mergeBackups(local, snapshot) : local
     shards = await splitShards(merged)
@@ -621,7 +668,7 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
       if (unread.length) throw new SyncConflictError('parts changed meanwhile')
       break
     }
-    await pullShards(id, unread, code, pulled)
+    await pullShards(store, unread, pulled)
   }
   if (remote || pulled.size) await restoreBackup(db, merged, { keepMedia: true })
   // The very first sync of a device is joining, not news: only later ones report what came in.
@@ -648,7 +695,7 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   for (const mid of remoteMedia) {
     if (localMedia.has(mid)) continue
     await isolated(async () => {
-      const bytes = await download(id, await mediaPart(mid), code)
+      const bytes = (await store.fetch(await mediaPart(mid)))?.bytes
       if (!bytes) return
       const { kind, type, data } = JSON.parse(new TextDecoder().decode(bytes)) as { kind: 'image' | 'audio'; type: string; data: string }
       const raw = Uint8Array.from(atob(data), (c) => c.charCodeAt(0))
@@ -670,7 +717,7 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
       const bytes = new Uint8Array(await blob.arrayBuffer())
       let bin = ''
       for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
-      await upload(id, await mediaPart(mid), new TextEncoder().encode(JSON.stringify({ kind: row.kind, type: blob.type, data: btoa(bin) })), code)
+      await store.put(await mediaPart(mid), new TextEncoder().encode(JSON.stringify({ kind: row.kind, type: blob.type, data: btoa(bin) })))
       unsent.delete(mid)
       sent++
     })
@@ -682,10 +729,10 @@ async function syncOnce(db: KelimeDB, code: Credential): Promise<SyncResult> {
   for (const [name, shard] of shards) {
     if (shard.fp === manifest[name]) continue
     const was = pulled.get(name)
-    biggest = Math.max(biggest, await upload(id, name, shardFile(shard), code, was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
+    biggest = Math.max(biggest, await store.put(name, shardFile(shard), was?.exists ? { ifMatch: was.etag } : { createOnly: true }))
   }
   const listed = Object.fromEntries([...shards].map(([name, shard]) => [name, shard.fp]))
-  const coreBytes = await upload(id, 'core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), code, { ifMatch: fetched?.etag })
+  const coreBytes = await store.put('core', new TextEncoder().encode(JSON.stringify({ ...withoutShards(merged), shards: listed, mediaIds })), { ifMatch: fetched?.etag })
   await db.meta.put({ key: 'syncSize', value: Math.max(coreBytes, biggest) })
   await db.meta.put({ key: 'syncAt', value: new Date().toISOString() })
   return { received, sent, skipped, incoming, ...(replaced.length ? { replaced: replaced.map((v) => v.lemma) } : {}) }

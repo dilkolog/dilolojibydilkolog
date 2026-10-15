@@ -12,6 +12,9 @@ export const NOT_ALLOWED = 'Bu hesap ya da kod sunucunun izin listesinde yok; e�
 /** Shown when the account waits for (or was refused) the owner's approval. */
 export const PENDING_APPROVAL = 'Hesabın, site sahibinin onayını bekliyor; onaylanınca eşitleme açılır. Kelime ekleme ve çalışma bu cihazda şimdiden çalışır.'
 
+/** Shown on a device still signed in the old way after the account's data moved to the new sign-in. */
+export const MOVED = 'Hesabın yeni giriş sistemine taşındı. Bu cihazda bir kez çıkış yapıp e-postan ya da Google ile giriş yap; ilerlemen gelir.'
+
 /** Shown when another device saved its data with a newer version of the app. */
 export const NEWER_VERSION = 'Başka bir cihazın uygulaması daha yeni; eşitlemek için bu cihazda uygulamayı güncelle (sayfayı yenile).'
 
@@ -23,6 +26,7 @@ export const TOO_LARGE = 'Eşitlenecek veri sunucunun sınırını aştı. Kulla
 
 /** One sync at a time; listeners hear when data may have changed. */
 let running: Promise<SyncResult | null> | null = null
+let movedSaid = false
 const listeners = new Set<() => void>()
 
 export const onSynced = (fn: () => void) => {
@@ -49,7 +53,7 @@ export async function getAccount(): Promise<Account | null> {
 export async function setAccount(account: Account | null) {
   if (account) await db.meta.put({ key: 'syncAccount', value: account })
   else {
-    await db.meta.bulkDelete(['syncAccount', 'syncAt'])
+    await db.meta.bulkDelete(['syncAccount', 'syncAt', 'syncStore'])
     await forgetAccess()
   }
   // The approval status belongs to the account: the app reads it again.
@@ -68,11 +72,17 @@ export function runSync(throwErrors = false): Promise<SyncResult | null> {
     try {
       const cred = await getCredential()
       if (!cred) return null
-      const result = await (await syncCode()).syncNow(db, cred)
+      const target = await (await import('./syncTarget')).syncTarget(cred)
+      const result = await (await syncCode()).syncNow(db, target)
       for (const fn of listeners) fn()
       return result
     } catch (e) {
       if (throwErrors) throw e
+      // Said once a visit: syncing here stopped because the data moved to the new sign-in.
+      if (e instanceof Error && e.name === 'SyncMovedError' && !movedSaid) {
+        movedSaid = true
+        showToast(MOVED, undefined, 10_000, 'info')
+      }
       return null
     } finally {
       running = null

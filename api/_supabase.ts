@@ -124,3 +124,37 @@ export async function deleteSupabaseUser(userId: string): Promise<void> {
   const res = await fetch(`${base()}/auth/v1/admin/users/${userId}`, { method: 'DELETE', headers: keyHeaders() })
   if (!res.ok && res.status !== 404) throw new Error(`supabase ${res.status}`)
 }
+
+/**
+ * Carries the owner's word on a sync account (from the Yönetici card, SYNC_ALLOWED or before
+ * ADMIN_TOKEN) to its person's profile: the database lets only approved people write their data.
+ * Nothing happens when no person has this sync account. Never throws: the next sign-in tries again.
+ */
+export async function mirrorApproval(syncId: string, status: 'approved' | 'rejected' | 'pending' | 'none'): Promise<void> {
+  if (!supabaseOn() || !HEX64.test(syncId)) return
+  try {
+    const res = await rest(`sync_keys?sync_id=eq.${syncId}&select=user_id`)
+    if (!res.ok) return
+    const userId = ((await res.json()) as { user_id: string }[])[0]?.user_id
+    if (!userId || !UUID.test(userId)) return
+    await rest(`profiles?user_id=eq.${userId}`, {
+      method: 'PATCH',
+      headers: { prefer: 'return=minimal' },
+      body: JSON.stringify({ approved: status === 'approved', rejected: status === 'rejected' }),
+    })
+  } catch {
+    // Left as it was.
+  }
+}
+
+/** The person's pictures and recordings in the "media" bucket (the account is being deleted). */
+export async function deleteSupabaseMedia(userId: string): Promise<void> {
+  if (!UUID.test(userId)) return
+  for (let round = 0; round < 50; round++) {
+    const res = await fetch(`${base()}/storage/v1/object/list/media`, { method: 'POST', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefix: `${userId}/`, limit: 1000 }) })
+    if (!res.ok) return
+    const names = ((await res.json()) as { name: string }[]).map((o) => `${userId}/${o.name}`)
+    if (!names.length) return
+    await fetch(`${base()}/storage/v1/object/media`, { method: 'DELETE', headers: { ...keyHeaders(), 'content-type': 'application/json' }, body: JSON.stringify({ prefixes: names }) })
+  }
+}
