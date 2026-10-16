@@ -3992,9 +3992,14 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 
 /* the monkey itself: drawings (the chat is lazy, but Monki's face and poses also sit on Today and in the "ask" buttons), moved a little with CSS */
 .monki-face { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
-.monki-pose { display: block; width: auto; max-width: 100%; user-select: none; -webkit-user-drag: none; transform-origin: 50% 0; animation: monki-bob 4.5s ease-in-out infinite; }
+.monki-pose { display: block; width: auto; max-width: 100%; user-select: none; -webkit-user-drag: none; transform-origin: 50% 85%; animation: monki-bob 2.2s ease-in-out infinite; }
 .monki-pose.is-still { animation: none; }
-@keyframes monki-bob { 0%, 100% { transform: rotate(-2.5deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-3px); } }
+@keyframes monki-bob {
+  0%, 100% { transform: translateY(0) rotate(-5deg) scale(1.03, 0.97); }
+  25% { transform: translateY(-9px) rotate(4deg) scale(0.97, 1.04); }
+  50% { transform: translateY(0) rotate(5deg) scale(1.03, 0.97); }
+  75% { transform: translateY(-7px) rotate(-4deg) scale(0.98, 1.03); }
+}
 @media (prefers-reduced-motion: reduce) { .monki-pose { animation: none !important; } }
 
 /* Today: reading and listening time, a small card under the day's quests */

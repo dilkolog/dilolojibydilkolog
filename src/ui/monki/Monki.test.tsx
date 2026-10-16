@@ -177,4 +177,16 @@ describe('Monki', () => {
     expect(document.activeElement).toBe(keep)
     keep.remove()
   })
+
+  it('animates Monki on the opening screen and cycles poses when tapped', () => {
+    render(null)
+    openPanel()
+    const stage = container.querySelector<HTMLElement>('.monki-stage')!
+    const bubble = container.querySelector<HTMLElement>('.monki-bubble')!
+    expect(stage).toBeTruthy()
+    expect(bubble.getAttribute('data-bubble')).toBe('Salut !')
+    act(() => stage.click())
+    expect(bubble.getAttribute('data-bubble')).toBe('On y va !')
+  })
 })
+

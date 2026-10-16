@@ -6,7 +6,7 @@ import { useAi } from '../aiContext'
 import { CloseIcon, SendIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
-import { MonkiFace, MonkiPose } from './MonkiMascot'
+import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
 import { EMBLEM, ROLE_ART } from '../drawnArt'
 import { usesWord } from './monkiWords'
@@ -269,7 +269,7 @@ export default function Monki({
 
           {!apiKey ? (
             <div className="monki-body monki-setup">
-              <MonkiPose pose="wave" height={132} />
+              <MonkiStage language={language} height={132} />
               <p>
                 <strong>{hello}</strong>
               </p>
@@ -308,7 +308,7 @@ export default function Monki({
               <div className="monki-body monki-log" ref={logRef} role="log" aria-live="polite" aria-label="Sohbet">
                 {msgs.length === 0 && mode === 'chat' && (
                   <div className="monki-hello">
-                    <MonkiPose pose="hang" height={104} />
+                    <MonkiStage language={language} height={108} />
                   </div>
                 )}
                 {msgs.length === 0 && (
