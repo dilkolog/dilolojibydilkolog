@@ -1,5 +1,5 @@
 /** Every game by id, for the command palette (kept apart so the palette doesn't load the games). */
-export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register' | 'flow' | 'affix' | 'truefalse' | 'test' | 'gravity' | 'notes' | 'diagram' | 'context'
+export type GameId = 'match' | 'blitz' | 'fluency' | 'pairs' | 'gender' | 'audio' | 'boss' | 'swipe' | 'sentences' | 'back' | 'dictation' | 'ear' | 'pron' | 'article' | 'accent' | 'conjugation' | 'aspect' | 'grammar' | 'reflex' | 'traps' | 'register' | 'flow' | 'affix' | 'truefalse' | 'test' | 'gravity' | 'notes' | 'diagram' | 'context' | 'spot-error' | 'rewrite'
 
 export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French and Spanish only. */ grammar?: boolean }[] = [
   { id: 'swipe', name: 'Kaydırmalı kartlar', emoji: '👆' },
@@ -26,6 +26,8 @@ export const GAME_LIST: { id: GameId; name: string; emoji: string; /** French an
   { id: 'gender', name: 'Cinsiyet kuralları', emoji: '⚖️', grammar: true },
   { id: 'accent', name: 'Aksan antrenmanı', emoji: '✍️' },
   { id: 'grammar', name: 'Dilbilgisi soruları', emoji: '📐' },
+  { id: 'spot-error', name: 'Hata avcısı', emoji: '🎯' },
+  { id: 'rewrite', name: 'Cümle dönüşümü', emoji: '🔄' },
   { id: 'reflex', name: 'Refleks turu', emoji: '⚡' },
   { id: 'traps', name: 'Tuzak kelimeler', emoji: '⚠️' },
   { id: 'register', name: 'Kayıt farkı', emoji: '🎭' },

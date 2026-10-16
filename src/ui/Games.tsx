@@ -19,6 +19,10 @@ import { loadBackItems } from '../data/backItems'
 import { loopItems } from '../engine/backTranslation'
 import { ArticleDrill } from './ArticleDrill'
 import { GrammarPractice } from './games/GrammarPractice'
+import { SpotErrorGame } from './games/SpotErrorGame'
+import { SentenceRewriteGame } from './games/SentenceRewriteGame'
+import { SPOT_ERRORS } from '../data/spotErrors'
+import { SENTENCE_REWRITES } from '../data/sentenceRewrites'
 import { ReflexRound } from './games/ReflexRound'
 import { TrapRound } from './games/TrapRound'
 import { RegisterRound } from './games/RegisterRound'
@@ -155,6 +159,8 @@ export function GamesScreen(
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'grammar') return <GrammarPractice language={p.language} initialTopic={p.initialTopic} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
+    if (game === 'spot-error') return <SpotErrorGame language={p.language} best={records[`spot-error:${p.language}`]} recordKey={`spot-error:${p.language}`} onExit={() => setGame(null)} />
+    if (game === 'rewrite') return <SentenceRewriteGame language={p.language} best={records[`rewrite:${p.language}`]} recordKey={`rewrite:${p.language}`} onExit={() => setGame(null)} />
     if (game === 'article' && p.language !== 'en') return <ArticleDrill language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} onChanged={p.onChanged} />
     if (game === 'dictation') return <NativeDictation language={p.language} vocabulary={p.vocabulary} states={p.states} onExit={() => setGame(null)} />
     if (game === 'pairs') return <PairsGame {...p} best={records[`pairs:${p.language}`]} recordKey={`pairs:${p.language}`} onExit={() => setGame(null)} />
@@ -219,17 +225,21 @@ export function GamesScreen(
     },
   ]
   const grammarCard: GameCard = { id: 'grammar', emoji: '📐', name: 'Dilbilgisi soruları', text: 'Boşluk doldur, seçeneği seç, hatalı kelimeyi bul; her cevapta kuralı Türkçe gör.', status: `${grammarExercises(p.language).length} soru · B1–C1` }
+  const spotErrorCard: GameCard = { id: 'spot-error', emoji: '🎯', name: 'Hata avcısı', text: 'Cümledeki tek bir gramer/uyum tuzağını bul ve doğrusunu seç.', status: `${SPOT_ERRORS.filter((s) => s.language === p.language).length} soru · B1–C1` }
+  const rewriteCard: GameCard = { id: 'rewrite', emoji: '🔄', name: 'Cümle dönüşümü', text: 'Verilen anahtar kelimeyle cümleyi anlamını koruyarak yeniden kur (C1 seviye).', status: `${SENTENCE_REWRITES.filter((s) => s.language === p.language).length} kalıp · B2–C1` }
   const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
   const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Kayıt farkı', text: 'Sokakta, standart ve resmî: durumu oku, ortama uyan söyleyişi seç.', status: `${registerItems.filter((r) => r.language === p.language).length} düşünce` }
   const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: `${flowItems.filter((r) => r.language === p.language).length} paragraf` }
   const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, trapCard, registerCard, flowCard, affixCard] })
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, trapCard, registerCard, flowCard, affixCard] })
   else
     groups.push({
       title: 'Dilbilgisi',
       tone: 'grammar',
       cards: [
         grammarCard,
+        spotErrorCard,
+        rewriteCard,
         trapCard,
         registerCard,
         flowCard,

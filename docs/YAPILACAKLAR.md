@@ -539,6 +539,21 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - **Uyumlu Çizim Maskotlar (`src/assets/art/stat-sprout.webp`, `stat-star.webp`, `stat-book.webp`, `src/ui/drawnArt.ts`):** `StreakPicture` ateş karakteriyle tam uyumlu sıcak kawaii çizim tarzında, koyu kahve hatlı ve gülen yüzlü sevimli Filiz (`yeni kelime`), Yıldız (`güçlenen` / `aktif kelime`) ve Açık Kitap (`kelime öğreniliyor`) karakterleri şeffaf WebP olarak eklendi (`STAT_ART`).
   - **Arayüz Bütünlüğü (`src/ui/SessionSummary.tsx`, `src/ui/Screens.tsx`, `src/ui/Profile.tsx`, `src/index.css`):** Oturum sonu kutlama çubuğunda (`SessionSummary`), Bugün ekranı durum kartında (`Screens.tsx`) ve Profil istatistiklerinde (`Profile.tsx`) ince SVG hat ikonları yerine aynı sevimli çizim karakterleri kullanıldı; koyu temada `--art-edge` kenar aydınlatması uygulandı.
   - **Karşılıklı Arkadaşlık Desteği (`api/_friends.ts`):** Arkadaş ekleme tek taraflı takip modelinden iki yönlü (karşılıklı) arkadaşlık modeline taşındı. Biri sizin kodunuzu eklediğinde veya siz birini eklediğinizde iki taraf da birbirini anında liderlik panosunda görür; `friendsOf` hem takip edilenleri hem de takipçileri harmanlayarak listeye dahil eder.
+- [x] **Gece Bakım Turu 27 — Arkadaş Takipçileri PostgREST Sözdizimi Onarımı & Birim Testleri (#388):**
+  - `api/_friends.ts`: `tableFriends.followers` içerisindeki `in.()` filtre sözdizimi PostgREST standardına (`in.(id1,id2,...)`) uygun hâle getirildi.
+  - `src/data/friends.test.ts`: Takipçi listeleme, karşılıklı arkadaşlık ve boş takipçi kümesi birim testleriyle güvenceye alındı (3/3 geçti).
+- [x] **Gelişim Turu 28 — İleri Seviye Pedagojik Özellikler (Günün Mikro Haberi, Hata Avcısı, Cümle Dönüşümü) (#389):**
+  - **Günün 2 Dakikalık Mikro Haberi (`src/ui/DailyNewsHero.tsx`, `src/ui/Reading.tsx`, `src/ui/icons.tsx`, `src/index.css`):**
+    - Okuma ekranının en üstüne Fransızca için RFI Savoirs (*Le journal en français facile*), İngilizce ve İspanyolca için VOA açık bültenlerinden günün en anlaşılır haberini getiren canlı mikro haber vitrini eklendi.
+    - Metin kelime dağarcığı kapsamını otomatik hesaplama (`coverageLine`), tahmini okuma süresi, sesli dinleme rozeti ve tek tıkla senkronize cümle takibiyle okuma başlatma desteği sağlandı.
+  - **Hata Avcısı / Spot the Error (`src/data/spotErrors.ts`, `src/ui/games/SpotErrorGame.tsx`, `src/ui/Games.tsx`, `src/ui/gameList.ts`):**
+    - B2/C1 seviyesinde en kritik gramer ve sözdizimi tuzaklarını (Fransızca participe passé COD uyumu, subjonctif zorunlulukları; İspanyolca haber impersonal tekilliği, aunque ile subjuntivo; İngilizce negative inversion, mandative subjunctive, preposition gerund) içeren 45 uzmanlık sorusu hazırlandı.
+    - Cümledeki kelimeleri dokunulabilir etkileşimli çiplere bölen, hatalı kelime tıklandığında 3 seçenekli düzeltme ve derinlemesine Türkçe gramer kuralı açıklaması sunan yeni oyun modu geliştirildi.
+  - **Cümle Dönüşümü / Sentence Transformation (`src/data/sentenceRewrites.ts`, `src/ui/games/SentenceRewriteGame.tsx`):**
+    - Cambridge C1 Advanced, DALF C1 ve DELE C1 sınav standartlarında, zorunlu anahtar kelime verilerek cümlenin anlamı bozulmadan tamamlanmasını gerektiren 45 C1 dönüşüm alıştırması geliştirildi.
+    - Büyük ve küçük harf, kesme işareti ve boşluk toleranslı bulanık denetim motoru (`isRewriteAnswerCorrect`), adım adım harf ipucu butonu ve detaylı kural izahı eklendi.
+  - **Birim Testleri & Kapsamlı Doğrulama:**
+    - `src/data/spotErrors.test.ts` (4 test), `src/data/sentenceRewrites.test.ts` (5 test), `src/ui/games/SpotErrorGame.test.tsx` (1 test), `src/ui/games/SentenceRewriteGame.test.tsx` (1 test), `src/ui/DailyNewsHero.test.tsx` (1 test) eklendi; tüm testler (390 dosya, 2018 test) %100 başarıyla geçti.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
