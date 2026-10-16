@@ -436,6 +436,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/ui/whatsNewLogic.test.ts` (6 test): Yenilikler kartı gösterim mantığı (`whatsNewDue`: kelime eşiği denetimi [en az 10 kelime], sürüm kontrolü ve `markWhatsNewSeen` / `whatsNewSeen` kalıcılığı).
     - `src/ui/summaryGardenWords.test.ts` (3 test): Oturum sonu bahçe bitkisi sıralaması (`sceneWords`: ustalık aşaması ilerleyen kelimelerin önceliklendirilmesi ve en fazla 9 bitki ile sınırlandırma).
     - `src/data/__tests__/friends.test.ts` (5 test): Arkadaş kodu gösterimi (`showCode`: 8 karakterde tireli bölme), son 14 günlük XP filtresi (`recentDays`: 13 günden eski, gelecek ve sıfır/negatif puanların ayıklanması) ve `FriendsError` sınıfı.
+- [x] **Gece Bakım Turu 13 — Oyunlar & Arayüz Mantığı Test Kapsamı (#374):**
+  - Doğrudan testi bulunmayan 5 yardımcı ve oyun modülü için 20 yeni birim testi yazıldı:
+    - `src/ui/skeletonFor.test.ts` (6 test): Ekran yükleme iskeleti seçici (`skeletonFor`: home, list, detail, settings, session ve grid varsayılanı).
+    - `src/ui/chunkError.test.ts` (6 test): Kod parçası yükleme / ağ hatası tespiti (`isChunkError`: ChunkLoadError, dinamik içe aktarım ve modül betik hataları, ilgisiz hata ayrımı).
+    - `src/ui/repairTry.test.ts` (3 test): Seri tamir sınavı deneme kontrolü ve yerel kayıt (`repairTried`, `markRepairTried`).
+    - `src/ui/games/aspectPair.test.ts` (2 test): Geçmiş zaman görünüş ikilileri tanımı (`ASPECT_PAIR`: Fransızca passé composé vs imparfait, İspanyolca pretérito vs imperfecto).
+    - `src/ui/games/accentedWords.test.ts` (3 test): Aksanlı kelime oyunu filtreleme motoru (`accentedWords`: aksan/inceltme içeren kelimelerin ayıklanması, `ACCENT_MIN_WORDS` eşiği).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
