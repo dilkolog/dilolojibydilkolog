@@ -732,8 +732,19 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - OLED ve modern koyu ekranlarda derinliği artırmak için arka plan zemin rengi `--bg: #0b1120` (slate-950) olarak derinleştirildi; kartlar (`--surface: #1e293b`) ve iç alanlar (`--surface-2: #253346`) arasında net hiyerarşik katmanlaşma sağlandı.
     - Bölme çizgileri, buton kenarları ve form girdileri için `--rule: #37475f` ile 2.8:1 oranında net kontrast oluşturuldu; silik kalan `.btn-quiet` 3D taban dudağı ve input sınırları belirginleştirildi.
     - `--shadow`, `--shadow-lg`, `--shadow-xl` değişkenlerine ince ışık halesi (rim light) ve derin ortam gölgesi verilerek modern floating kart hissiyatı kazandırıldı; koyu mod dil ve geri bildirim renk tonları (`--en-soft`, `--fr-soft`, `--es-soft`, `--ok-soft`, vb.) optimize edildi.
-  - **Birim & Duman Testleri:**
-    - `levelSeen.test.ts`, `LevelWatcher.test.tsx`, `LevelUp.test.tsx`, `weather.test.tsx`, `smoke.test.tsx` dahil 34/34 test ve `npm run typecheck && npx oxlint` 0 hata ile doğrulandı.
+- [x] **Gelişim Turu 44 (Antigravity 14. Tur) — Veri Bütünlüğü Bekçisi, Yeni Oyunlar İçerik Denetimi ve Ağ Doğrulamaları:**
+  - **1. Çoklu Ajan Veri Bütünlüğü ve Şema Bekçisi (`src/data/dataIntegrity.test.ts` & `docs/veri/veri-butunlugu.md`):**
+    - `src/data/` altındaki 9 farklı egzersiz ve soru havuzu (dilbilgisi, kolokasyon, refleks, tuzak kelimeler, dil seviyesi, akıcılık, hata avcısı, cümle dönüşümü ve edat egzersizleri — toplam **1.821 soru**) için kimlik benzersizliği, dil alanı doğruluğu ve şema bütünlüğünü denetleyen 20 birim testi yazıldı. Farklı ajanların aynı kimliği (ID) üretip sessizce testleri düşürmesi kesin olarak engellendi.
+  - **2. Yeni Oyunların Otorite Kaynaklarla İçerik Denetimi (`docs/veri/yeni-oyun-denetimi.md`):**
+    - `SpotErrorGame`, `SentenceRewriteGame` ve `CollocationDrill` havuzlarından Fransızca, İspanyolca ve İngilizce için 90+ soru Le Robert, Bescherelle, RAE DPD, Cambridge Grammar of English ve Michael Swan kılavuzlarıyla denetlendi. Dilbilgisi kuralları, çeldiriciler ve Türkçe açıklamaların doğruluğu belgelendi.
+  - **3. Test Boşluklarının Kapatılması (`src/data/imageSearch.test.ts`):**
+    - Pixabay API anahtarı depolama (`localStorage`), Pixabay HD stok fotoğraflarının önceliklendirilmesi ve hata/kota durumunda Wikimedia Commons + Openverse havuzuna geri dönüş mantığı birim testleriyle kapsama alındı (6 test).
+  - **4. Yeni Ekranlar ve Oyunlar İçin a11y Taraması (`e2e/a11y.e2e.ts`):**
+    - Hatayı bul, Cümle dönüşümü, Edat ve kalıplar, Arkadaşlar kartı ve canlı hava durumlu selamlama ekranları açık, koyu ve sakin temalarda axe ile tarandı. Kontrast ve `clippedContent` ihlali olmaksızın WCAG 2.2 uyumluluğu korundu.
+  - **5. Ağ Servisleri ve Klip Çıkarma Canlı Doğrulama Raporu (`docs/kaynaklar/resim-arama.md`):**
+    - Wikimedia Commons (CORS + gürültü filtresi), Openverse (20/dk burst kotası) ve Pixabay canlı ağ yanıtları analiz edildi.
+    - Canlı hava durumu sağlayıcısı Open-Meteo'nun anahtarsız, ücretsiz yapısı, çevrimdışı popüler şehirler sözlüğü (`POPULAR_CITIES`) ve 30 dakikalık yerel önbellek mimarisi belgelendi.
+    - YouGlish altyazı arama ve YouTube oEmbed (5 gerçek video ID ile test: ~97 ms yanıt süresi) mimarisinin kotasız ve anahtarsız canlı performansı kanıtlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
