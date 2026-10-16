@@ -200,6 +200,14 @@ describe('AppSidebar and TabBar', () => {
       expect(onToggleRail).toHaveBeenCalled()
 
       const searchBtn = rootEl.querySelector<HTMLButtonElement>('.palette-trigger')
+      expect(searchBtn).not.toBeNull()
+      expect(searchBtn?.getAttribute('aria-label')).toBe('Ara ya da git (⌘K)')
+      expect(searchBtn?.querySelector('svg')).not.toBeNull()
+
+      // In the DOM, search trigger sits right before top-profile so it's accessible in mobile sticky header
+      const topProfile = rootEl.querySelector<HTMLButtonElement>('.top-profile')
+      expect(searchBtn?.nextElementSibling).toBe(topProfile)
+
       act(() => {
         searchBtn?.click()
       })

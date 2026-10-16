@@ -81,13 +81,13 @@ export function Sidebar({
           </button>
         ))}
       </div>
+      <button className="palette-trigger" onClick={onOpenPalette} aria-label="Ara ya da git (⌘K)" title="Ara ya da git (⌘K)">
+        <SearchIcon size={18} />
+        <span className="palette-trigger-label">Ara ya da git…</span>
+        <kbd className="palette-trigger-kbd">⌘K</kbd>
+      </button>
       <button className="top-profile" onClick={go({ name: 'profile' })} aria-label="Profil ve ayarlar" title="Profil ve ayarlar">
         <Avatar profile={settings.profile} size={32} />
-      </button>
-      <button className="palette-trigger" onClick={onOpenPalette} title="Ara ya da git (⌘K)">
-        <SearchIcon size={16} />
-        <span>Ara ya da git…</span>
-        <kbd>⌘K</kbd>
       </button>
       <nav className={`nav${navMark ? ' has-indicator' : ''}`} ref={navRef}>
         {navMark && (

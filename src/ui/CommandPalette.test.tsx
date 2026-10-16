@@ -35,4 +35,62 @@ describe('command palette', () => {
     expect(added).toBe('manger')
     await r.done()
   })
+
+  it('provides a close button that triggers onClose', async () => {
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    let closed = false
+    await act(async () =>
+      root.render(<CommandPalette commands={[]} vocabulary={[]} onOpenWord={() => {}} onClose={() => (closed = true)} />),
+    )
+    const closeBtn = el.querySelector<HTMLButtonElement>('.palette-close-btn')
+    expect(closeBtn).not.toBeNull()
+    expect(closeBtn?.getAttribute('aria-label')).toBe('Kapat')
+    await act(async () => closeBtn?.click())
+    expect(closed).toBe(true)
+    await act(async () => root.unmount())
+  })
+
+  it('shows clear button only when query is non-empty and clears input on click', async () => {
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    await act(async () =>
+      root.render(<CommandPalette commands={[]} vocabulary={[]} onOpenWord={() => {}} onClose={() => {}} />),
+    )
+    expect(el.querySelector('.palette-clear-btn')).toBeNull()
+
+    const input = el.querySelector('input')!
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, 'test')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+
+    const clearBtn = el.querySelector<HTMLButtonElement>('.palette-clear-btn')
+    expect(clearBtn).not.toBeNull()
+    expect(clearBtn?.getAttribute('aria-label')).toBe('Aramayı temizle')
+
+    await act(async () => clearBtn?.click())
+    expect(input.value).toBe('')
+    expect(el.querySelector('.palette-clear-btn')).toBeNull()
+
+    await act(async () => root.unmount())
+  })
+
+  it('executes item via click event on touch/mobile devices', async () => {
+    let executed = false
+    const commands = [{ id: 'test-cmd', label: 'Test Komutu', run: () => (executed = true) }]
+    const el = document.createElement('div')
+    document.body.append(el)
+    const root = createRoot(el)
+    await act(async () =>
+      root.render(<CommandPalette commands={commands} vocabulary={[]} onOpenWord={() => {}} onClose={() => {}} />),
+    )
+    const item = el.querySelector<HTMLElement>('.palette-item')
+    expect(item?.textContent).toContain('Test Komutu')
+    await act(async () => item?.click())
+    expect(executed).toBe(true)
+    await act(async () => root.unmount())
+  })
 })
