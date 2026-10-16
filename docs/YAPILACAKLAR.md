@@ -475,6 +475,18 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `relatives_en` (B1 - 3 soru): kişilerde özne `who`, iyelik `whose`, virgüllü ek bilgi cümlelerinde `that` yasağı.
     - `mixed_conditionals` (B2 - 3 soru): geçmiş koşul -> bugünkü sonuç (`if had done ..., would be ... now`), genel özellik -> geçmiş sonuç (`if weren't ..., would have done`), `if` yan cümlesine `would` gelmeme kuralı.
     - `participle_clauses` (B2 - 3 soru): öncelikli eylemde `having + V3`, edilgen anlamda geçmiş zaman ortacı (`startled`), ortaçlarda olumsuzluk (`not knowing`).
+- [x] **Gece Bakım Turu 18 — Rehber B1/B2 Fransızca İnteraktif Pekiştirme Sınavları (#379):**
+  - Rehberde daha önce mini sınavı bulunmayan 10 ileri düzey Fransızca dersi için 3'er soruluk (toplam 30 soru) pedagojik açıklamalı interaktif pekiştirme sınavları (`check`) eklendi:
+    - `futur_fr` (B1 - 3 soru): `dès que` ardından `futur simple` (`arriveras`), `si + présent -> futur` (`pourras`), öncelikli eylemde `futur antérieur` (`aurai lu`).
+    - `pronoms_y_en` (B1 - 3 soru): yer zamiri `y` (`j'y vais`), miktar/sayı zamiri `en` (`j'en ai pris quatre`), dolaylı nesne `leur` (`leur téléphone`).
+    - `prep_fr` (B1 - 3 soru): `décider de faire`, `réussir à faire`, görüş sorma `penser de` vs düşünme `penser à`.
+    - `colloc_fr` (B1 - 3 soru): `poser une question`, `prendre une décision`, `faire attention`.
+    - `conn_fr` (B1 - 3 soru): isim öbeğiyle `malgré la pluie`, olumsuz koşul `sinon`, olumlu lehte gerekçe `grâce à`.
+    - `subjonctif` (B2 - 3 soru): `il faut que tu fasses`, olumsuz düşünce `ne pas penser que` + `subjonctif` (`qu'il ait`), `avant que` + `subjonctif` (`fasse`) ve `ne explétif`.
+    - `conditionnel_passe` (B2 - 3 soru): gerçekleşmemiş şart `si + plus-que-parfait -> conditionnel passé` (`aurais pris`), `si` sonrasında `conditionnel` yasağı (`si j'avais eu`), geçmiş sitem `aurais dû`.
+    - `participe_passe` (B2 - 3 soru): öne geçen doğrudan nesne uyumu (`les lettres ... écrites`), `en` zamiriyle ASLA uyum yapılmama kuralı (`j'en ai cueilli`), dönüşlü fiilde nesne arkadaysa uyumsuzluk (`s'est lavé les mains`).
+    - `discours_indirect_fr` (B2 - 3 soru): geçmiş aktarımda `présent -> imparfait` (`était`), `futur -> conditionnel` (`viendrait`), `qu'est-ce que -> ce que`.
+    - `pronoms_relatifs` (B2 - 3 soru): edat + cansız nesne `pour laquelle`, `à` ile birleşim `auquel` (`faire face à`), bileşik edatla `duquel` (`près duquel`, `dont` yasağı).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
