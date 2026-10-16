@@ -16,6 +16,7 @@ import { AiContext } from './ui/aiContext'
 
 import { Glyph } from './ui/Glyph'
 import { BadgeWatcher } from './ui/BadgeWatcher'
+import { LevelWatcher } from './ui/LevelWatcher'
 import { GameContext } from './ui/game'
 import { AlertIcon, CheckIcon, PlayIcon, PlusIcon, SparkleIcon, TargetIcon } from './ui/icons'
 import { LANGUAGE_NAME, LANGUAGE_SHORT } from './ui/labels'
@@ -564,6 +565,7 @@ export default function App() {
           )}
         </div>
       <BadgeWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} onProfile={go({ name: 'profile' })} onLogged={reload} />
+      <LevelWatcher game={game} paused={screen.name === 'session' || screen.name === 'summary'} />
       </GameContext.Provider>
     </AiContext.Provider>
     </AccessContext.Provider>

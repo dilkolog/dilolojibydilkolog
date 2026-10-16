@@ -14,6 +14,8 @@ import {
 import { DayMark } from '../ui/HomeParts'
 import weatherRain from '../assets/art/weather-rain.webp'
 import weatherSnow from '../assets/art/weather-snow.webp'
+import weatherCloudy from '../assets/art/weather-cloudy.webp'
+import weatherThunder from '../assets/art/weather-thunder.webp'
 import noon from '../assets/art/time-noon.webp'
 
 describe('weather engine', () => {
@@ -66,6 +68,24 @@ describe('weather engine', () => {
       fetchedAt: Date.now(),
     }
     expect(weatherOrDayScene(snow, 'day')).toBe(weatherSnow)
+
+    const thunder: WeatherInfo = {
+      condition: 'thunder',
+      temperature: 18,
+      isDay: true,
+      city: 'Antalya',
+      fetchedAt: Date.now(),
+    }
+    expect(weatherOrDayScene(thunder, 'day')).toBe(weatherThunder)
+
+    const cloudy: WeatherInfo = {
+      condition: 'cloudy',
+      temperature: 14,
+      isDay: true,
+      city: 'Trabzon',
+      fetchedAt: Date.now(),
+    }
+    expect(weatherOrDayScene(cloudy, 'day')).toBe(weatherCloudy)
 
     const clear: WeatherInfo = {
       condition: 'clear',

@@ -88,7 +88,7 @@ export function WordListsView({
         </button>
       </form>
       {lists.length === 0 && (
-        <EmptyState art="library" title="Henüz liste yok">
+        <EmptyState art="shelf" title="Henüz liste yok">
           Kelimelerini konulara ayır (Seyahat, İş, bir kitap…): her listenin kendi sayfası, çalışma düğmeleri ve isteğe bağlı seviyeleri olur. Bir listeye odaklanınca yeni kelimeler yalnızca
           ondan gelir; konular birbirine karışmaz.
         </EmptyState>
