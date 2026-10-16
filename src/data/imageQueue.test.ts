@@ -75,4 +75,28 @@ describe('suggesting pictures', () => {
     })
     expect(await suggestImages({ language: 'fr', lemma: 'maison' })).toEqual([])
   })
+
+  it('skips pop bands, albums, and human entities when searching for nouns', async () => {
+    const popWikidata = {
+      search: {
+        search: [
+          { id: 'Q_BAND', description: 'Danish rock band' },
+          { id: 'Q_REAL', description: 'family relative' },
+        ],
+      },
+      entities: {
+        entities: {
+          Q_BAND: { claims: { P31: claim({ id: 'Q215380' }), P18: claim('RockBand.jpg') } },
+          Q_REAL: { claims: { P31: claim({ id: 'Q3947' }), P18: claim('FamilyKid.jpg') } },
+        },
+      },
+    }
+    vi.stubGlobal('fetch', async (url: string) => {
+      const u = new URL(url)
+      if (u.searchParams.get('action') === 'wbsearchentities') return new Response(JSON.stringify(popWikidata.search))
+      return new Response(JSON.stringify(popWikidata.entities))
+    })
+    expect(await wikidataFile('nephew', 'en')).toBe('FamilyKid.jpg')
+  })
 })
+

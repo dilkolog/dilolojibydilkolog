@@ -19,4 +19,20 @@ describe('image search', () => {
     vi.stubGlobal('fetch', async (url: string) => (url.includes('openverse') ? new Response('', { status: 429 }) : new Response(JSON.stringify(commons))))
     expect(await searchImages('house')).toHaveLength(1)
   })
+
+  it('filters out noisy band or census titles from Commons unless explicitly searched', async () => {
+    const noisyCommons = {
+      query: {
+        pages: {
+          a: { title: 'File:Nephew (Band) Live.jpg', index: 1, imageinfo: [{ thumburl: 'https://upload.wikimedia.org/band.jpg' }] },
+          b: { title: 'File:Cute nephew smiling.jpg', index: 2, imageinfo: [{ thumburl: 'https://upload.wikimedia.org/boy.jpg', extmetadata: { Artist: { value: 'John' }, LicenseShortName: { value: 'CC BY 2.0' } } }] },
+        },
+      },
+    }
+    vi.stubGlobal('fetch', async () => new Response(JSON.stringify(noisyCommons)))
+    const r = await searchImages('nephew')
+    expect(r).toHaveLength(1)
+    expect(r[0].title).toBe('Cute nephew smiling')
+  })
 })
+

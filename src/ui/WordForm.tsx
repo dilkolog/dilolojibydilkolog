@@ -472,6 +472,7 @@ export function WordForm({
         {picking && (
           <ImagePicker
             initialQuery={splitArticle(normalize(form.word), language).rest}
+            language={language}
             suggestions={form.meaning.split(/,|\//).map((m) => m.trim()).filter(Boolean)}
             onClose={() => setPicking(false)}
             onPick={(img) => {

@@ -689,8 +689,22 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Odaklanılan kalıplar: `rêver de`, `faire attention à`, `tenir compte de`, `mettre au point`, `avoir hâte de`, `soñar con`, `pensar en`, `enamorarse de`, `darse cuenta de`, `llevar a cabo`, `pay attention to`, `take into account`, `catch someone's eye`, `make a decision` vb.
   - **Dilbilgisi Alıştırma Havuzu (+36 Yeni B1/B2/C1 Çoktan Seçmeli Alıştırma):**
     - `src/data/grammar/en-10.json`, `src/data/grammar/fr-10.json`, `src/data/grammar/es-10.json`: Her dilde 12'şer adet yeni nesil gramer sorusu eklendi; Rehber'e eklenen B2/C1 konuları doğrudan oyun içi pratikle desteklendi.
+- [x] **Gelişim Turu 41 — Görsel Arama ve Kart Görseli Deneyiminin Baştan Aşağı Yenilenmesi (Google Görseller Köprüsü, Akıllı Gürültü Filtreleme ve Pixabay HD Entegrasyonu):**
+  - **Saçma / İlgisiz Görsel Krizinin Çözümü (Danimarkalı Rock Grubu & 1950 Boksör Portreleri Problemi):**
+    - `src/data/imageQueue.ts`: Wikidata üzerinden kavram görseli ararken somut anlamlar yerine isim benzerliği nedeniyle müzik grupları (`Q215380`), albümler (`Q482994`), filmler (`Q11424`), şarkılar (`Q134556`), beldeler (`Q486970`), şirketler (`Q43229`) veya 19. yüzyıl tarihi şahıs portrelerinin (`Q5`) öneri olarak çıkmasını engelleyen katı ontoloji filtreleme motoru kuruldu.
+    - `src/data/imageSearch.ts`: Wikimedia Commons tam metin aramasındaki gürültüyü (`Smith & Nephew`, mezar taşları, tarihi nüfus sayım belgeleri, albüm kapakları, posta pulları vb.) temizleyen negatif anahtar sözcük kümesi ve başlık doğrulama filtresi entegre edildi.
+  - **Google Görseller Tek Tık Köprüsü ve Pano (⌘V) Akışı (`src/ui/ImagePicker.tsx`, `src/ui/imageTools.ts`):**
+    - Arama çubuğuna doğrudan `Google'da Ara ↗` butonu eklendi; kelime için tek tıkla yeni sekmede filtrelenmiş Google Görseller açılıyor.
+    - Modal içerisine yönlendirici ve pratik kullanım kartı eklendi: *"Google'da beğendiğin görsele sağ tıkla → 'Resmi Kopyala' de ve burada doğrudan ⌘V / Ctrl+V yap!"*
+    - `imageUrlFromClipboard`: Panodan sadece ikili (binary) resim verisi değil, web görsel bağlantısı (URL) kopyalandığında dahi anında algılanıp indirilerek karta dönüştürülmesi sağlandı.
+  - **Akıllı Çeviri & Tarz Çipleri (Smart Semantic Chips):**
+    - Kullanıcı yabancı bir kelime ararken (örn. FR: *neveu*, ES: *sobrino*), tek tıkla Türkçe anlamı, İngilizce karşılığı veya `+ İllüstrasyon`, `+ Çizim`, `+ Sade Nesne` gibi görsel arama netliğini katlayan hazır tarz filtreleri sunuldu.
+  - **Pixabay HD Stok Görsel Motoru Desteği:**
+    - Ücretsiz Pixabay API anahtarı ekleme ve kaldırma seçeneği entegre edildi (`src/data/imageSearch.ts`, `PIXABAY_KEY_STORAGE`). Anahtar girildiğinde açık kaynak arşivlerin ötesinde doğrudan milyonlarca profesyonel, stüdyo aydınlatmalı HD fotoğraf ve vektörel çizim ilk sırada listelenir.
+  - **Kelime Giriş Formu Dil Eşitlemesi (`src/ui/WordForm.tsx`):**
+    - `WordForm` içindeki `ImagePicker` çağrısında eksik olan `language={language}` parametresi bağlanarak Wikidata kavram çözümlemesinin hedef dil ile %100 uyumlu çalışması sağlandı.
   - **Birim & Duman Testleri:**
-    - `spotErrors.test.ts` (4 test), `sentenceRewrites.test.ts` (5 test), `collocationDrill.test.ts` (6 test), `grammar.test.ts` (4 test), `SpotErrorGame.test.tsx` (1 test) ve `smoke.test.tsx` (20 test) olmak üzere toplam **40 test %100 yeşil** tamamlandı.
+    - `imageSearch.test.ts` (3 test), `imageQueue.test.ts` (6 test), `ImagePicker.test.tsx` (5 test) ve `smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
