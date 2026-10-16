@@ -301,7 +301,7 @@ export function GamesScreen(
       {suggestion && (
         <section className={`game-suggest tone-${suggestion.card.tone}`}>
           <span className="game-suggest-icon" aria-hidden>
-            <GameIcon id={suggestion.card.id} emoji={suggestion.card.emoji} size={30} />
+            <GameIcon id={suggestion.card.id === 'verbs' ? 'conjugation' : suggestion.card.id} emoji={suggestion.card.emoji} size={30} />
           </span>
           <div className="game-suggest-body">
             <span className="small game-suggest-kicker">Bugün için önerilen</span>
@@ -320,11 +320,11 @@ export function GamesScreen(
             {g.cards.map((c) => (
               <button key={c.id} className={`game-card${c.className ? ` ${c.className}` : ''}${c.due ? ' is-due' : ''}`} disabled={c.disabled} onClick={() => (c.open ? c.open() : setGame(c.id as Game))}>
                 <span className="game-emoji" aria-hidden>
-                  <GameIcon id={c.id} emoji={c.emoji} size={28} />
+                  <GameIcon id={c.id === 'verbs' ? 'conjugation' : c.id} emoji={c.emoji} size={28} />
                 </span>
                 {/* The same sign, large and faint in the corner: each card its own face. */}
                 <span className="game-watermark" aria-hidden>
-                  <GameIcon id={c.id} emoji={c.emoji} size={96} />
+                  <GameIcon id={c.id === 'verbs' ? 'conjugation' : c.id} emoji={c.emoji} size={96} />
                 </span>
                 <strong>{c.name}</strong>
                 <span className="small muted">{c.text}</span>

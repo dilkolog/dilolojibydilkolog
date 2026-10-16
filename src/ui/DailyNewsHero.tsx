@@ -5,6 +5,7 @@ import { FEEDS, type Article } from '../engine/news'
 import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
 import { PlayIcon, RadioIcon, SparkleIcon } from './icons'
+import heroMicroNews from '../assets/art/hero-micro-news.webp'
 
 const PRIMARY_FEED: Record<TargetLanguage, string> = {
   fr: 'rfi-facile',
@@ -105,33 +106,36 @@ export function DailyNewsHero({
       )}
 
       {top && (
-        <div className="daily-news-body">
-          <h3 className="daily-news-title">{top.a.title}</h3>
-          <p className="daily-news-teaser small muted">
-            {top.a.description?.slice(0, 160) || top.a.text.slice(0, 160)}…
-          </p>
-          <div className="daily-news-meta small">
-            {top.a.audio && (
-              <span className="pill pill-sm is-audio">
-                🎧 Sesli dinleme
+        <div className="daily-news-layout">
+          <div className="daily-news-body">
+            <h3 className="daily-news-title">{top.a.title}</h3>
+            <p className="daily-news-teaser small muted">
+              {top.a.description?.slice(0, 160) || top.a.text.slice(0, 160)}…
+            </p>
+            <div className="daily-news-meta small">
+              {top.a.audio && (
+                <span className="pill pill-sm is-audio">
+                  🎧 Sesli dinleme
+                </span>
+              )}
+              <span className="pill pill-sm">
+                ~{Math.max(1, Math.round(top.words / 140))} dk
               </span>
-            )}
-            <span className="pill pill-sm">
-              ~{Math.max(1, Math.round(top.words / 140))} dk
-            </span>
-            <span className="pill pill-sm is-coverage" title="Kelimelerin ne kadarını biliyorsun">
-              <SparkleIcon size={12} className="inline-icon" /> {coverageLine(top.cov)}
-            </span>
+              <span className="pill pill-sm is-coverage" title="Kelimelerin ne kadarını biliyorsun">
+                <SparkleIcon size={12} className="inline-icon" /> {coverageLine(top.cov)}
+              </span>
+            </div>
+            <div className="daily-news-action">
+              <button
+                type="button"
+                className="btn btn-primary daily-news-btn"
+                onClick={() => startArticle(top.a)}
+              >
+                <PlayIcon size={16} className="inline-icon" /> Dinle ve Oku
+              </button>
+            </div>
           </div>
-          <div className="daily-news-action">
-            <button
-              type="button"
-              className="btn btn-primary daily-news-btn"
-              onClick={() => startArticle(top.a)}
-            >
-              <PlayIcon size={16} className="inline-icon" /> Dinle ve Oku
-            </button>
-          </div>
+          <img className="daily-news-art" src={heroMicroNews} alt="" width={76} height={76} draggable={false} />
         </div>
       )}
     </section>
