@@ -265,7 +265,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               <Stat value={<><StreakPicture streak={game.streak} size={24} /> {game.streak}</>} label="günlük seri" />
               <Stat value={<><img className="stat-art-img" src={STAT_ART.star} alt="" height={22} width={22} draggable={false} /> {game.stats.mastered}</>} label="oturan kelime" />
               <Stat value={<><img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> {game.stats.wordsIntroduced}</>} label="öğrenilen kelime" />
-              <Stat value={<><CheckCircleIcon className="stat-icon is-answers" size={20} /> {game.stats.totalAnswers.toLocaleString('tr-TR')}</>} label="cevap" />
+              <Stat value={<><img className="stat-art-img" src={STAT_ART.check} alt="" height={22} width={22} draggable={false} /> {game.stats.totalAnswers.toLocaleString('tr-TR')}</>} label="cevap" />
             </section>
             <ActivityMini
               byDay={game.xp.byDay}

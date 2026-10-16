@@ -13,5 +13,6 @@ describe('drawn medals', () => {
     expect(STAT_ART.star).toBeTruthy()
     expect(STAT_ART.book).toBeTruthy()
     expect(STAT_ART.flame).toBeTruthy()
+    expect(STAT_ART.check).toBeTruthy()
   })
 })
