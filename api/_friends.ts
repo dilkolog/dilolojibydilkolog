@@ -282,7 +282,7 @@ export const tableFriends: FriendStore = {
     const followerRows = await rows<{ sync_id: string }>(`friend_follows?code=${eq(code)}&select=sync_id`)
     if (!followerRows.length) return []
     const ids = [...new Set(followerRows.map((r) => r.sync_id))]
-    const cards = await rows<{ code: string }>(`friend_cards?sync_id=in.(${ids.map(eq).join(',')})&select=code`)
+    const cards = await rows<{ code: string }>(`friend_cards?sync_id=in.(${ids.join(',')})&select=code`)
     return cards.map((c) => c.code).filter((c) => CODE.test(c))
   },
   follow: async (id, code) => void (await upsert('friend_follows', 'sync_id,code', { sync_id: id, code }, true)),
