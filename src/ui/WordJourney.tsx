@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { useEffect, useState } from 'react'
-import { AlertIcon, FlowerIcon, GlobeIcon, LeafIcon, PlusIcon, SproutIcon, TrendDownIcon } from './icons'
-import type { KelimeDB } from '../data/db'
+import { AlertIcon, BookIcon, FlowerIcon, GlobeIcon, LeafIcon, PlusIcon, SproutIcon, TrendDownIcon } from './icons'
+import type { KelimeDB, FirstEncounterContext } from '../data/db'
 import { wordJourney, type JourneyStep } from '../engine/journey'
 import type { Mistake, UserWordState, VocabularyEntry } from '../engine/types'
 import { STAGE_NAME } from './labels'
@@ -18,10 +18,13 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
     void Promise.all([
       db.events.where('entryId').equals(entry.id).toArray(),
       db.getEncounters(),
+      db.getFirstEncounters(),
       db.meta.get('webSightings').then((r) => ((r?.value as Record<string, { at: string; host: string }[]> | undefined) ?? {})[entry.id] ?? []),
-    ]).then(([events, enc, seen]) => {
+    ]).then(([events, enc, firstEnc, seen]) => {
       if (!live) return
-      setSteps(wordJourney(entry, state, events, mistakes, seen))
+      const metInEx = entry.senses?.flatMap((s) => s.examples ?? []).find((e) => e.metIn)
+      const firstEncounter: FirstEncounterContext | undefined = firstEnc[entry.id] || (metInEx?.metIn ? { title: metInEx.metIn, sentence: metInEx.text, at: entry.addedAt ? new Date(entry.addedAt).toISOString() : new Date().toISOString() } : undefined)
+      setSteps(wordJourney(entry, state, events, mistakes, seen, firstEncounter))
       setEncounters(enc[entry.id] ?? 0)
       const weekAgo = new Date(Date.now() - 7 * 86_400_000).toISOString()
       setWebWeek(seen.filter((x) => x.at >= weekAgo).length)
@@ -36,6 +39,13 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
     switch (s.kind) {
       case 'added':
         return s.source ? `Listene eklendi (${s.source})` : 'Listene eklendi'
+      case 'first_met':
+        return (
+          <>
+            İlk karşılaştığın yer: <strong>{s.where}</strong>
+            {s.sentence && <span className="journey-sub muted">“{s.sentence}”</span>}
+          </>
+        )
       case 'introduced':
         return 'İlk kez çalıştın'
       case 'stage':
@@ -50,7 +60,7 @@ export function WordJourney({ db, entry, state, mistakes }: { db: KelimeDB; entr
         return `Web'de karşına çıktı: ${s.where}`
     }
   }
-  const icon: Record<JourneyStep['kind'], ReactNode> = { added: <PlusIcon />, introduced: <SproutIcon />, stage: <LeafIcon />, mistake: <AlertIcon />, seen: <GlobeIcon /> }
+  const icon: Record<JourneyStep['kind'], ReactNode> = { added: <PlusIcon />, first_met: <BookIcon />, introduced: <SproutIcon />, stage: <LeafIcon />, mistake: <AlertIcon />, seen: <GlobeIcon /> }
   return (
     <section className="section stack">
       <h2 className="section-title">Kelimenin yolculuğu</h2>

@@ -554,15 +554,29 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Büyük ve küçük harf, kesme işareti ve boşluk toleranslı bulanık denetim motoru (`isRewriteAnswerCorrect`), adım adım harf ipucu butonu ve detaylı kural izahı eklendi.
   - **Birim Testleri & Kapsamlı Doğrulama:**
     - `src/data/spotErrors.test.ts` (4 test), `src/data/sentenceRewrites.test.ts` (5 test), `src/ui/games/SpotErrorGame.test.tsx` (1 test), `src/ui/games/SentenceRewriteGame.test.tsx` (1 test), `src/ui/DailyNewsHero.test.tsx` (1 test) eklendi; tüm testler (390 dosya, 2018 test) %100 başarıyla geçti.
+- [x] **Gelişim Turu 29 — Eşdizimlilik ve Edat Kalıpları Oyunu & Kelimeye Kendi Bağlamını Bağlama (#390):**
+  - **Edat ve Kalıplar Oyunu (`src/data/collocationDrill.ts`, `src/ui/games/CollocationsGame.tsx`, `src/ui/Games.tsx`, `src/ui/gameList.ts`):**
+    - B1/B2/C1 seviyesinde fiil-edat bağımlılıkları (*décider de, réussir à, s'intéresser à, soñar con, depender de, depend on, be interested in, accuse of* vb.) ve doğal eşdizimleri (*heavy rain, make a mistake, do someone a favour, poser une question, tomar una decisión, dar un paseo* vb.) test eden 54 soru hazırlandı (FR, ES ve EN için 18'er soru).
+    - Cümledeki kilit edat/kelime boşluğunu (`___`) 4 seçenekten seçtiren, klavye kısayolları (`1`–`4`, `Enter`), sesli telaffuz (`speakAsync`), Türkçe pedagojik kural açıklaması ve rekor/log kaydı sunan tam donanımlı yeni oyun modu geliştirildi.
+    - `GAME_LIST` ve `GamesScreen` içinde `Dilbilgisi` kategorisine kaydedildi.
+  - **Kelimeye Kendi Bağlamını Bağlama (*First Encounter Context*):**
+    - Okunan kitap, haber, masal ya da kaydedilen cümlenin bağlamı (`FirstEncounterContext`: `title`, `sentence`, `at`) IndexedDB `meta.firstEncounters` tablosuna kaydedilir.
+    - `finishReading` (`reading.ts`) ve `useFinishReading.ts` okunan metindeki tüm kelimelerin geçtiği cümleleri ve metin başlığını otomatik kaydeder (ilk karşılaşma bozulmadan korunur).
+    - `WordForm` ve `keepSentence` üzerinden eklenen kelimeler de kaynak metin ve cümleleriyle hafızaya bağlanır.
+    - `WordDetail.tsx` kelime sayfasında *"İlk karşılaştığın yer"* kutusu (kitap/haber başlığı, tarih ve alıntı cümle) gösterilir.
+    - `WordJourney.tsx` kelimenin yolculuk zaman tüneline `first_met` adımı eklenir.
+    - `exportBackup`, `restoreBackup` ve `mergeBackups` (cihazlar arası senkronizasyon) tam desteklenir.
+  - **Birim Testleri & Kapsamlı Doğrulama:**
+    - `src/data/collocationDrill.test.ts` (6 test), `src/ui/games/CollocationsGame.test.tsx` (1 test), `src/data/db.test.ts` (firstEncounters testleri), `src/engine/__tests__/reading.test.ts` (firstEncounters testleri), `src/engine/__tests__/journey.test.ts` (first_met testleri) eklendi; tüm testler (392 dosya, 2025 test) %100 başarıyla geçti.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
 - **Yeni Özelliklerin Etkisi:** Kullanıcı düzenli çalıştıkça Kartlar, Rehber mini sınavları ve seri kurtarma mekanizmasının tutundurma (retention) verileri izlenecek.
-- **İleri Seviye Pedagojik Gelişim Fikirleri:** [`docs/GELISIM-FIKIRLERI.md`](GELISIM-FIKIRLERI.md) 14 fikir yol haritası.
 - **Kullanıcıya önerilen:**
   - İsterse yedek dosyasını veya Supabase senkronizasyonunu kullanarak birden çok cihazda çalışmaya başlaması.
+
 
 
 

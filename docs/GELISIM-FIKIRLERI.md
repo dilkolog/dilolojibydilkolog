@@ -231,7 +231,7 @@ Geliştirici ekibin iş yükünü dengelemek adına önerilen 3 aşamalı uygula
 
 ## 6. Sonradan eklenen fikirler (Claude Code, 2026-10-12)
 
-* **Kelimeye kendi bağlamını bağla** (*önemli değil, sonra*): Kelime sayfasında "ilk karşılaştığın yer" olarak kelimeyi gördüğün metin, haber ya da videoyu göster; bağlamla hatırlama güçlenir. Okumada kaydedilen karşılaşmalar (`encounters`) zaten var; eksik olan, hangi metinde olduğunun saklanması.
+* **Kelimeye kendi bağlamını bağla:** ✅ **Yapıldı (Tur 29, 2026-10-16):** Kelime sayfasında (`WordDetail.tsx`) ve yolculuk zaman tünelinde (`WordJourney.tsx`) "İlk karşılaştığın yer" olarak metin başlığı (`firstEncounter.title`), tarih ve alıntı cümle (`firstEncounter.sentence`) bağlandı. Okuma bitiminde ve cümle/kelime ekleme akışlarında otomatik kaydediliyor.
 * **Yapılacak değil, yapılmayacak:** Cümle düzeyinde telaffuz karşılaştırması (fikir 14'ün gölgeleme tarafı) kullanıcı tarafından istenmedi; yeniden önerme.
 * **Yapıldı (2026-10-12):** Çevrimdışı dinleme, Paylaş → Okuma, eşitlemede "başka cihaz düzenledi" özeti ve Geri al, Hatırlama sınavında seviye kırılımı (CEFR bandına göre doğru oranı, kaba seviye tahmini, unutulan kelimeler; yalnızca FR/ES), sesli tekrarda yürüyüş modu eklemeleri (kilit ekranı düğmeleri, Önceki, baştan döngü, zor işareti).
 

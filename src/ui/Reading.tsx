@@ -308,6 +308,9 @@ export function ReadingScreen({
     // With translation on, the card comes with its Turkish (and so with the translation exercise).
     const translation = (await translationReady()) ? await translate(sentence, language).catch(() => '') : ''
     const ok = await saveSentence({ language, text: sentence, focus, source: current?.title, ...(translation ? { translation } : {}) })
+    if (ok && current?.title && focus) {
+      await db.addFirstEncounters({ [`${language}:${focus.trim().toLowerCase()}`]: { title: current.title, sentence, at: new Date().toISOString() } })
+    }
     showToast(ok ? 'Cümle kaydedildi: Oyunlar → Cümle kartları' : 'Bu cümle zaten kayıtlı', undefined, 3500, ok ? 'success' : 'info')
   }
 
@@ -671,7 +674,11 @@ export function ReadingScreen({
             language={language}
             existing={existing}
             initial={{ word: adding.word, meaning: '', example: markWord(adding.sentence, adding.word), exampleTranslation: '', exampleMetIn: current?.title }}
-            onSaved={() => {
+            onSaved={async () => {
+              if (current?.title && adding?.word) {
+                const entryId = `${language}:${adding.word.trim().toLowerCase()}`
+                await db.addFirstEncounters({ [entryId]: { title: current.title, sentence: adding.sentence, at: new Date().toISOString() } })
+              }
               setAdding(null)
               setSelected(null)
               onChanged()
