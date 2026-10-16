@@ -22,3 +22,20 @@ export function imageFromClipboard(e: ClipboardEvent): Blob | null {
   }
   return null
 }
+
+/** Determines if a string is a valid web image URL. */
+export function isLikelyImageUrl(url: string): boolean {
+  const trimmed = url.trim()
+  if (!/^https?:\/\//i.test(trimmed)) return false
+  if (/\.(jpe?g|png|webp|avif|gif)(\?.*)?$/i.test(trimmed)) return true
+  if (/\/(images\.|encrypted-tbn0\.gstatic\.com\/|cdn\.|media\.)/i.test(trimmed)) return true
+  return false
+}
+
+/** Extracts an image URL from text/plain or text/html in a clipboard event. */
+export function imageUrlFromClipboard(e: ClipboardEvent): string | null {
+  const text = e.clipboardData?.getData('text/plain')?.trim()
+  if (text && isLikelyImageUrl(text)) return text
+  return null
+}
+

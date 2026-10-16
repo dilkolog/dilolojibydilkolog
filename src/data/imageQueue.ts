@@ -40,7 +40,19 @@ export interface ImageSuggestion extends ImageResult {
 
 const WIKIDATA = 'https://www.wikidata.org/w/api.php'
 const COMMONS = 'https://commons.wikimedia.org/w/api.php'
-const DISAMBIGUATION = 'Q4167410'
+const IRRELEVANT_P31 = new Set([
+  'Q4167410', // disambiguation page
+  'Q215380',  // musical group / band
+  'Q482994',  // album
+  'Q134556',  // single
+  'Q11424',   // film
+  'Q5398426', // television series
+  'Q486970',  // human settlement / commune / village
+  'Q43229',   // organization / enterprise
+  'Q5',       // human individual
+])
+
+const IRRELEVANT_DESC = /\b(band|musical group|album|single|song|film|movie|television series|actor|actress|rapper|boxer|politician|commune|village|municipality|company|corporation)\b/i
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
 
@@ -56,17 +68,33 @@ export async function wikidataFile(word: string, language: TargetLanguage): Prom
   const search = new URLSearchParams({ action: 'wbsearchentities', search: word, language, uselang: language, type: 'item', limit: '5', format: 'json', origin: '*' })
   const found = await fetch(`${WIKIDATA}?${search}`)
   if (!found.ok) return undefined
-  const ids = ((await found.json()) as { search?: { id: string }[] }).search?.map((s) => s.id) ?? []
+  const searchData = ((await found.json()) as { search?: { id: string; description?: string }[] }).search ?? []
+  const ids = searchData.map((s) => s.id)
   if (!ids.length) return undefined
+
+  const descMap = new Map<string, string>()
+  for (const s of searchData) {
+    if (s.description) descMap.set(s.id, s.description.toLowerCase())
+  }
+
   const get = new URLSearchParams({ action: 'wbgetentities', ids: ids.join('|'), props: 'claims', format: 'json', origin: '*' })
   const res = await fetch(`${WIKIDATA}?${get}`)
   if (!res.ok) return undefined
   const entities = ((await res.json()) as { entities?: Record<string, Entity> }).entities ?? {}
+  const wordLower = word.toLowerCase()
+
   for (const id of ids) {
+    const desc = descMap.get(id) ?? ''
+    if (IRRELEVANT_DESC.test(desc) && !wordLower.includes('band') && !wordLower.includes('film')) {
+      continue
+    }
     const claims = entities[id]?.claims
-    const isDisambiguation = claims?.P31?.some((s) => (s.mainsnak?.datavalue?.value as { id?: string } | undefined)?.id === DISAMBIGUATION)
+    const isIrrelevant = claims?.P31?.some((s) => {
+      const p31Id = (s.mainsnak?.datavalue?.value as { id?: string } | undefined)?.id
+      return p31Id ? IRRELEVANT_P31.has(p31Id) : false
+    })
     const file = claims?.P18?.[0]?.mainsnak?.datavalue?.value
-    if (!isDisambiguation && typeof file === 'string') return file
+    if (!isIrrelevant && typeof file === 'string') return file
   }
   return undefined
 }
