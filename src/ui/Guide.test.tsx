@@ -113,4 +113,13 @@ describe('GuideScreen', () => {
     await act(async () => button(host, 'Fiil laboratuvarında çalış')!.click())
     expect(onVerbs).toHaveBeenCalledWith('imperativo')
   })
+
+  it('navigates directly to the next lesson in curriculum order from LessonView', async () => {
+    const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
+    expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Artikeller ve cinsiyet')
+    const nextBtn = button(host, 'Sıradaki ders')!
+    expect(nextBtn).toBeDefined()
+    await act(async () => nextBtn.click())
+    expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Être ve avoir')
+  })
 })

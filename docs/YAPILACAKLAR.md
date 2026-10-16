@@ -521,6 +521,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - `src/ui/LessonCheck.tsx`: Seçenek düğmelerinde görsel olarak gösterilen `1`–`4` tuş rozetleri için gerçek klavye kestirme dinleyicisi (`keydown`: `1`–`4` ile seçenek işaretleme, `Enter` ile sonraki soruya geçme) eklendi.
   - `src/data/guide/lessonOf.ts` & `src/ui/Guide.tsx`: Fransızca ve İspanyolca fiil/kip derslerini (`imperativo_es`, `basics_fr_imperatif`, `basics_es_pluscuamperfecto`, `condicionales` vb. dâhil 23 ders) doğrudan Fiil Laboratuvarındaki ilgili zamanla eşleştiren `lessonTense` yardımcısı eklendi; ders içindeki "Fiil laboratuvarında çalış" düğmesi artık ilgili zamanı doğrudan açıyor (`onVerbs(targetTense)`).
   - `src/ui/verbs/TenseLessonSheet.tsx` & `src/ui/Guide.tsx`: Zaman anlatım penceresindeki (`TenseLessonSheet`) örnek cümlelere sesli telaffuz (`Dinle`) düğmeleri ve Rehber → Zamanlar sekmesinden açıldığında doğrudan o zamanla Fiil Laboratuvarına geçiş sağlayan "Fiil laboratuvarında çalış" düğmesi eklendi.
+- [x] **Gece Bakım Turu 22 — Rehber Sıralı Ders Geçişi & Zaman/Hatırlatıcı Birim Testleri (#383):**
+  - `src/ui/Guide.tsx` (`LessonView`): Bir dersin sonunda müfredat sırasındaki bir sonraki derse (`Sıradaki ders`) ana listeye dönmeye gerek kalmadan tek tıkla geçiş sağlayan kart eklendi.
+  - `src/ui/GuideReviewNudge.test.tsx` (2 test): Bugün ekranındaki Rehber tekrar hatırlatıcısının (`GuideReviewNudge`) boş durumda gizlenmesi, günü gelen derste ("Hatırlıyor musun?") gösterilmesi, tıklanınca dersi açması ve "Şimdi değil" ile ertelenmesi doğrulandı.
+  - `src/data/tenseLesson.test.ts` (1 kapsamlı doğrulama testi): Fransızca (12 zaman) ve İspanyolca (14 zaman) Fiil Laboratuvarındaki tüm 26 zamanın `TENSE_LESSON` içinde eksiksiz pedagojik alanlara (`summary`, `uses`, `formation`, `examples`, `watch`, `tip`, `turkish`) sahip olduğu güvence altına alındı.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
