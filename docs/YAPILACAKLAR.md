@@ -457,6 +457,12 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/ui/dictoglossReconstruct.test.ts` (5 test): Metin dinleme ve yeniden yazma mantığı (`glossParagraphs`: 30-90 kelime aralığı filtresi, `recallCheck`: anlam kelimelerini tespit etme ve hatırlanma kontrolü, `sentenceWith`: kelimeyi içeren cümleyi ayıklama).
     - `src/ui/gameList.test.ts` (3 test): Oyun kataloğu doğrulaması (`GAME_LIST`: benzersiz oyun kimlikleri, isim ve emoji tamlığı, dilbilgisi oyunları işareti).
     - `src/ui/progressCardSvg.test.ts` (5 test): İlerleme kartı SVG üretimi (`cardSvg`: 1080x1350 boyutları, XML güvenli karakter kaçışı, dark/light/banner temaları, hedefler, rozetler ve ilgi alanları).
+- [x] **Gece Bakım Turu 16 — Veri Kuyruğu, Çeviri Hafızası, Liste Seçenekleri & Ses Mantığı Test Kapsamı (#377):**
+  - Doğrudan testi bulunmayan 4 kritik veri ve arayüz modülü için 21 yeni birim testi yazıldı:
+    - `src/data/__tests__/earLog.test.ts` (2 test): Dikte kaçırılan kelime kaydı (`noteDictation`: kelime ve durum eşleştirmesi, `db.saveEarLog` kaydı ve eşzamanlı yazımlarda sıra/kuyruk güvenliği).
+    - `src/data/__tests__/backItems.test.ts` (2 test): Geri çeviri pratik havuzu (`loadBackItems`: çeviri hafızası ve cümle kartlarının harmanlanması, kartı bulunanların elenmesi, veri tabanı hatasında güvenli boş liste dönüşü).
+    - `src/ui/listOptions.test.ts` (9 test): Kelime listesi ve alt seviye yerleşim seçenekleri (`placementOptions`: liste ve seviyeleri düz seçeneklere dönüştürme, özel "listesiz" etiketi; `placementValue`: eşleşen seviye veya liste değeri; `parsePlacement`: liste ve seviye ayrıştırma; `progressLine`: grup ilerleme metni formatı).
+    - `src/ui/speech.test.ts` (8 test): Web Speech API ve ses sentezi yönetimi (`canSpeak`: tarayıcı desteği tespiti; `voicesFor`: yabancı dil ön eki eşleşmesi, anlamsız/şaka seslerin filtrelenmesi, premium/enhanced kalite sıralaması; `speak`: önceki konuşmayı iptal etme ve ses hızı ayarı; `isAudioPlaying`: ses çalma durumu tespiti; `stopSpeaking`: ses ve doğal ses motorunu durdurma).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
