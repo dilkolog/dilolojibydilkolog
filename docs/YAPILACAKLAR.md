@@ -705,6 +705,18 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `WordForm` içindeki `ImagePicker` çağrısında eksik olan `language={language}` parametresi bağlanarak Wikidata kavram çözümlemesinin hedef dil ile %100 uyumlu çalışması sağlandı.
   - **Birim & Duman Testleri:**
     - `imageSearch.test.ts` (3 test), `imageQueue.test.ts` (6 test), `ImagePicker.test.tsx` (5 test) ve `smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+- [x] **Gelişim Turu 42 — Mobil Arama Kısmının Görünürlüğü ve Komut Paleti Mobil Deneyimi İyileştirmesi:**
+  - **Kritik Mobil Arama Hatasının Tespiti & Çözümü:**
+    - `.palette-trigger` ("Ara ya da git… ⌘K") butonu masaüstü (`@media (min-width: 64rem)`) haricinde `display: none` ile tamamen gizlenmişti. Mobil cihazlarda (`max-width: 45.99rem`) ve tabletlerde fiziksel `⌘K` klavye kısayolu bulunmadığından ve arayüzde hiçbir arama butonu gösterilmediğinden, kullanıcıların aramaya erişmesi imkansızdı.
+    - `AppSidebar.tsx` ve `src/index.css`: `.palette-trigger` mobil ve tablet görünümlerinde yapışkan (sticky) üst barda dil seçicinin yanında, profil avatarından hemen önce modern, dokunmatik dostu yuvarlak bir ikon butonu (`width: 2.25rem; height: 2.25rem; border-radius: var(--r-full);`) olarak konumlandırıldı. Masaüstünde ise geniş arama kutusu görünümüne otomatik olarak genişler.
+    - Tablet düzeninde (`46rem` - `63.99rem`) `order: 3` ile navigasyon sekmeleri ile profil arasına yerleştirildi.
+  - **Komut Paleti Mobil / Dokunmatik Kullanım İyileştirmeleri (`src/ui/CommandPalette.tsx`):**
+    - **Kapat Butonu:** Mobilde klavyede `Escape` tuşu bulunmadığı ve küçük ekranlarda modal %100 genişlik kaplayıp arka plana tıklanamadığı için kullanıcı arama ekranında kilitleniyordu. Palet başlığına dokunmatik dostu tek tıkla kapatma butonu (`.palette-close-btn` / `CloseIcon`) eklendi.
+    - **Arama Temizleme Butonu:** Arama kutusuna bir şeyler yazıldığında tek dokunuşla sorguyu sıfırlayan `.palette-clear-btn` eklendi; boşken gizlenerek temiz bir görünüm korundu.
+    - **Dokunmatik Tıklama Güvenilirliği:** Sonuç satırlarına `onMouseDown`'ın yanı sıra mobil dokunmatik ekranlar için doğrudan `onClick` bağlandı ve `executed` ref korumasıyla çift tetiklenme riski önlendi.
+    - **Sanal Klavye ve Taşma Koruması:** `.palette` yüksekliği `max-height: min(32rem, calc(100dvh - 2rem))` ile sınırlandı, dikey esnek flex yapısı verildi ve `.palette-list` içine akıcı dokunmatik kaydırma (`-webkit-overflow-scrolling: touch`) tanımlanarak mobil klavye açıldığında sonuçların kesilmesi engellendi.
+  - **Birim & Duman Testleri:**
+    - `AppSidebar.test.tsx` (5 test) ve `CommandPalette.test.tsx` (5 test) mobil erişilebilirlik etiketleri, kapatma butonu, temizleme butonu ve dokunmatik tıklama testleriyle genişletildi; `smoke.test.tsx` (20 test) ve `npm run typecheck && npx oxlint` ile tam doğrulandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { stripDiacritics } from '../engine/answerCheck'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
-import { SearchIcon } from './icons'
+import { CloseIcon, SearchIcon } from './icons'
 import { commandArtIcon } from './paletteArt'
 
 export interface Command {
@@ -114,8 +114,10 @@ export function CommandPalette({
     list.current?.querySelector<HTMLElement>(`[data-i="${active}"]`)?.scrollIntoView({ block: 'nearest' })
   }, [active])
 
+  const executed = useRef(false)
   const run = (c: Command | undefined) => {
-    if (!c) return
+    if (!c || executed.current) return
+    executed.current = true
     if (!c.id.startsWith('word:') && c.id !== 'add-typed') remember(c.id)
     onClose()
     c.run()
@@ -124,24 +126,50 @@ export function CommandPalette({
   return (
     <div className="dialog-backdrop palette-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="palette" role="dialog" aria-modal="true" aria-label="Komut paleti">
-        <input
-          ref={input}
-          className="palette-input"
-          placeholder="Kelime ara ya da bir komut yaz…"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'ArrowDown') setActive((i) => Math.min(items.length - 1, i + 1))
-            else if (e.key === 'ArrowUp') setActive((i) => Math.max(0, i - 1))
-            else if (e.key === 'Enter') run(items[active])
-            else if (e.key === 'Escape') {
-              e.stopPropagation()
-              onClose()
-            } else return
-            e.preventDefault()
-          }}
-          aria-label="Ara"
-        />
+        <div className="palette-head">
+          <SearchIcon size={18} className="palette-head-icon" />
+          <input
+            ref={input}
+            className="palette-input"
+            placeholder="Kelime ara ya da bir komut yaz…"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowDown') setActive((i) => Math.min(items.length - 1, i + 1))
+              else if (e.key === 'ArrowUp') setActive((i) => Math.max(0, i - 1))
+              else if (e.key === 'Enter') run(items[active])
+              else if (e.key === 'Escape') {
+                e.stopPropagation()
+                onClose()
+              } else return
+              e.preventDefault()
+            }}
+            aria-label="Ara"
+          />
+          {q && (
+            <button
+              type="button"
+              className="palette-clear-btn"
+              onClick={() => {
+                setQ('')
+                input.current?.focus()
+              }}
+              aria-label="Aramayı temizle"
+              title="Aramayı temizle"
+            >
+              <CloseIcon size={16} />
+            </button>
+          )}
+          <button
+            type="button"
+            className="palette-close-btn"
+            onClick={onClose}
+            aria-label="Kapat"
+            title="Kapat"
+          >
+            <CloseIcon size={18} />
+          </button>
+        </div>
         <ul className="palette-list" ref={list} role="listbox">
           {items.length === 0 && <li className="palette-empty">Sonuç yok</li>}
           {items.map((c, i) => [
@@ -161,6 +189,7 @@ export function CommandPalette({
                 e.preventDefault()
                 run(c)
               }}
+              onClick={() => run(c)}
             >
               {!c.id.startsWith('word:') && <span className="palette-icon">{commandArtIcon(c.id, c.icon) ?? '›'}</span>}
               <span className="palette-label">{c.label}</span>
