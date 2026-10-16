@@ -409,6 +409,11 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - İngilizce (`lessons-en.ts`):
     - `basics_en_plurals_quantifiers`: `few` (olumsuz, neredeyse hiç yok) vs `a few` (olumlu, az da olsa var) ve `little` vs `a little` ayrımı, örneği ve dikkat uyarısı.
     - `modals_en`: `must` modalının geçmiş zamanının olmaması, geçmiş zorunluluk için daima `had to` kullanılması kuralı ve uyarısı (`Yesterday I had to work`).
+- [x] **Gece Bakım Turu 8 — Veri & Rehber Modülleri Test Kapsamı ve Çıktı Temizliği (#369):**
+  - `src/data/__tests__/tombstones.test.ts` (6 test): Senkronizasyon silme kayıtları (`tombMap`), zaman damgası çakışmalarının çözümü, harita birleştirme (`mergeTombs`), silinme durumu (`isDead`) ve silinen kimlikler kümesi (`deadIds`).
+  - `src/data/guide/lessonOf.test.ts` (7 test): Rehber ders seçici motoru (`lessonsOf`, `lessonFor`, `lessonTitle`, `practiceTopic`, `englishTenseLessons`, `checkFor`, `checkableTopics`).
+  - `src/data/__tests__/deriveLookup.test.ts` (4 test): Kelime türetme sözlük arama motoru (`makeLookup`), paket kelimeleri ve kullanıcı kelimeleri önceliklendirmesi.
+  - `.gitignore`: Denetim betiği çıktıları (`*-output.json`) git takip dışına alındı.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 

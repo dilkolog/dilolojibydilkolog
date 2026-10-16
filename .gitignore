@@ -41,3 +41,6 @@ kelime-kocu-yedek-*.json
 .cache
 
 pw.tmp.config.ts
+
+# Script audit outputs
+*-output.json
