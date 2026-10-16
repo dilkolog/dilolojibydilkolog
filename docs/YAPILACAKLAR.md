@@ -596,8 +596,25 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - **Zihin Tohumu & Boş Ekran Görsel Zenginleştirmeleri (`src/ui/MindSeed.tsx`, `src/ui/WordGraph.tsx`):**
     - Zihin Tohumu kartında düz SVG ikonu yerine sevimli fidan maskot görseli (`STAT_ART.sprout`) entegre edildi.
     - Kelime Ağı henüz bağlantı içermediğinde düz gri metin yerine çizimli `EmptyState` (`art="sentences"`) entegre edildi.
+- [x] **Gelişim Turu 33 — Profil Avatar Koleksiyonunun Genişletilmesi (15 Serbest Hayvan & 26 Kazanılan Avatar):**
+  - **Yeni Serbest Hayvan Avatarları (`src/assets/art/avatar-*.webp`, `src/ui/avatarArt.ts`):**
+    - Storybook/kawaii dairesel rozet stilinde 6 yeni sevimli hayvan avatarı prompt ile üretildi ve 160x160 RGBA WebP olarak entegre edildi:
+      - `dog` (Köpek / Sevimli Corgi)
+      - `bear` (Ayı / Sevimli Bal Ayıcığı)
+      - `frog` (Kurbağa / Sevimli Yeşil Kurbağa)
+      - `lion` (Aslan / Sevimli Minik Aslan)
+      - `deer` (Geyik / Sevimli Benekli Karaca)
+      - `tiger` (Kaplan / Sevimli Minik Kaplan)
+    - Başlangıçta serbest seçilebilen açık avatar sayısı 9'dan 15'e çıkarıldı.
+  - **Zenginleştirilmiş Kazanılan Avatarlar (`EARNED_AVATARS` — 13'ten 26'ya):**
+    - Seviye, seri, çözülen boss ve hafızaya oturan kelime eşiklerine göre açılan kazanılan avatarlar koleksiyonu 13'ten 26'ya iki katına çıkarıldı:
+      - Erken başarılar: `monki-wave` (Seviye 2), `sticker-coffee` (3 günlük seri), `stat-sprout` (10 kelime "Oturdu").
+      - Orta başarılar: `stat-star` (10 günlük seri), `monki-think` (25 kelime "Oturdu"), `sticker-music` (5 boss), `sticker-thumbs` (Seviye 10), `monki-hang` (7 boss), `sticker-party` (21 günlük seri).
+      - İleri başarılar: `monki-sleep` (Seviye 20), `sticker-read` (100 kelime "Oturdu"), `monki-cheer` (50 günlük seri), `stat-book` (300 kelime "Oturdu").
+    - Toplam avatar sayısı 22'den 41'e yükseltildi.
   - **Birim Testleri & Kapsamlı Doğrulama:**
-    - `src/ui/WordGraph.test.tsx` (boş durum ve bağlantılı SVG ağı render testleri) eklendi; `src/ui/gameArt.test.ts` (32 oyun 1:1 eşleşmesi), `src/ui/DailyNewsHero.test.tsx` ve `src/ui/MindSeed.test.tsx` doğrulandı. 393 test dosyasının tümü yeşil.
+    - `src/ui/avatarArt.test.ts` ve `src/ui/Avatar.test.tsx` tüm yeni avatarlar için doğrulandı (5/5 geçti).
+    - `src/ui/smoke.test.tsx` tüm ekranlar ve profil sekmesi için %100 yeşil (20/20 geçti).
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
