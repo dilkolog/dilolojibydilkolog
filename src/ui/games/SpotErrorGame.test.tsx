@@ -54,7 +54,8 @@ describe('SpotErrorGame', () => {
     expect(tokenButtons.length).toBeGreaterThan(3)
 
     // Find which question is active
-    const q = SPOT_ERRORS.find((s) => s.language === 'fr' && s.sentence.startsWith(tokenButtons[0].textContent!))
+    const activeSentence = [...tokenButtons].map((b) => b.textContent?.trim()).join(' ')
+    const q = SPOT_ERRORS.find((s) => s.language === 'fr' && s.sentence === activeSentence)
     expect(q).toBeTruthy()
 
     // Clicking an innocent token triggers hint

@@ -47,7 +47,7 @@ afterEach(() => {
   document.body.innerHTML = ''
 })
 
-const wait = () => act(async () => void (await new Promise((r) => setTimeout(r, 80))))
+const wait = (ms = 120) => act(async () => void (await new Promise((r) => setTimeout(r, ms))))
 async function mount(vocabulary: VocabularyEntry[], apiKey: string | null = 'key') {
   const host = document.createElement('div')
   document.body.append(host)
@@ -77,7 +77,7 @@ describe('FillMissingBar', () => {
     const host = await mount(words)
     expect(host.textContent).toContain('17 kelimede eksik var')
     await act(async () => host.querySelector<HTMLButtonElement>('button.btn')!.click())
-    await wait()
+    await wait(200)
     expect(calls.map((c) => c.length)).toEqual([15, 2])
     const stored = (await db.vocabulary.get('fr:mot3')) as VocabularyEntry
     expect(stored.gender).toBe('f')

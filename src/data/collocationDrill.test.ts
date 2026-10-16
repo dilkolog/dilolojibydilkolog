@@ -3,11 +3,11 @@ import { COLLOCATION_DRILLS, collocationDrillRound } from './collocationDrill'
 import type { TargetLanguage } from '../engine/types'
 
 describe('COLLOCATION_DRILLS dataset integrity', () => {
-  it('has at least 15 curated items for each supported language (FR, ES, EN)', () => {
+  it('has at least 25 curated items for each supported language (FR, ES, EN)', () => {
     const langs: TargetLanguage[] = ['fr', 'es', 'en']
     for (const lang of langs) {
       const items = COLLOCATION_DRILLS.filter((c) => c.language === lang)
-      expect(items.length).toBeGreaterThanOrEqual(15)
+      expect(items.length).toBeGreaterThanOrEqual(25)
     }
   })
 
@@ -48,8 +48,9 @@ describe('collocationDrillRound', () => {
       'fr-colloc-01': { ok: 0, wrong: 3, last: '2026-10-16T12:00:00Z' },
       'fr-colloc-02': { ok: 10, wrong: 0, last: '2026-10-16T12:00:00Z' },
     }
+    const totalFr = COLLOCATION_DRILLS.filter((c) => c.language === 'fr').length
     // High-probability run
-    const round = collocationDrillRound('fr', log, 18, () => 0.99)
+    const round = collocationDrillRound('fr', log, totalFr, () => 0.99)
     const missedIndex = round.findIndex((r) => r.id === 'fr-colloc-01')
     const masteredIndex = round.findIndex((r) => r.id === 'fr-colloc-02')
     expect(missedIndex).toBeLessThan(masteredIndex)
