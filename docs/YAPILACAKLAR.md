@@ -443,6 +443,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/ui/repairTry.test.ts` (3 test): Seri tamir sınavı deneme kontrolü ve yerel kayıt (`repairTried`, `markRepairTried`).
     - `src/ui/games/aspectPair.test.ts` (2 test): Geçmiş zaman görünüş ikilileri tanımı (`ASPECT_PAIR`: Fransızca passé composé vs imparfait, İspanyolca pretérito vs imperfecto).
     - `src/ui/games/accentedWords.test.ts` (3 test): Aksanlı kelime oyunu filtreleme motoru (`accentedWords`: aksan/inceltme içeren kelimelerin ayıklanması, `ACCENT_MIN_WORDS` eşiği).
+- [x] **Gece Bakım Turu 14 — Veri Servisleri & Geri Alma Mantığı Test Kapsamı (#375):**
+  - Doğrudan testi bulunmayan 5 kritik veri ve yardımcı modül için 17 yeni birim testi yazıldı:
+    - `src/data/__tests__/grammarCheck.test.ts` (6 test): LanguageTool dilbilgisi denetim servisi (`checkGrammar`: azami karakter sınırı, çevrimdışı ağ hatası, 429 kota aşımı, sunucu hatası, imla/üslup/dilbilgisi tür ayrımı ve azami 4 düzeltme önerisi).
+    - `src/data/__tests__/cefr.test.ts` (4 test): CEFR kelime seviyesi yükleme (`loadCefr`: İngilizce null kontrolü, Fransızca ve İspanyolca seviye haritaları, önbellek tekliği güvencesi).
+    - `src/data/__tests__/familyLinks.test.ts` (2 test): Kelime ailesi karşılıklı bağlama (`linkEntries`: iki kelimeyi çift yönlü `wordFamily` listesine ekleme, mükerrer bağlantıyı önleme).
+    - `src/ui/saveSentence.test.ts` (3 test): Cümle kaydetme motoru (`saveSentence`: boş metin reddi, mükerrer cümle kontrolü, boşluk temizleme ve FSRS kartı üretimi).
+    - `src/ui/undo.test.ts` (2 test): Güvenli kelime silme ve geri alma (`changeWordsWithUndo`, `deleteWordsWithUndo`: kelime enstantanesi alma, değişiklik yürütme ve "Geri Al" bildirimi tetiklendiğinde geri yükleme).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
