@@ -4199,6 +4199,12 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friends-xp { flex: none; font-weight: 700; font-variant-numeric: tabular-nums; }
 .friends-remove { opacity: 0.4; }
 .friends-board li:hover .friends-remove, .friends-remove:focus-visible { opacity: 1; }
+.friends-rename-btn { font-size: var(--t-xs); color: var(--ink-soft); opacity: 0.6; text-decoration: none; padding: 0.125rem 0.25rem; border-radius: var(--r-sm); transition: opacity var(--t-fast); }
+.friends-board li:hover .friends-rename-btn, .friends-rename-btn:focus-visible { opacity: 1; }
+.friends-rename-highlight { opacity: 1; color: var(--lang-text); font-weight: 600; background: var(--lang-soft); }
+.friends-editing-row { background: var(--surface-2); }
+.friends-edit-inline { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.25rem; }
+.friends-edit-input { flex: 1; min-width: 0; height: 1.75rem; padding: 0.125rem 0.375rem; font-size: var(--t-sm); }
 .friends-add > summary { cursor: pointer; color: var(--lang-text); font-weight: 600; }
 .friends-code { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .friends-code code { padding: 0.125rem 0.5rem; border-radius: var(--r-sm); background: var(--surface-2); font-weight: 700; letter-spacing: 0.06em; }

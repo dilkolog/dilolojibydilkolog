@@ -68,13 +68,45 @@ export function cleanCard(body: Record<string, unknown>, today: string): Omit<Fr
   return { name: plain(body.name, 24) || 'Arkadaş', avatar, color, days, streak: int(body.streak, 100_000), level: int(body.level, 10_000) }
 }
 
+/** Finds the username on record for an account (from sync_keys in Supabase, or approval/request in Blob store). */
+export async function resolveAccountName(id: string): Promise<string | null> {
+  if (!id) return null
+  try {
+    if (await tablesOn()) {
+      const keyRows = await rows<{ username: string | null }>(`sync_keys?sync_id=${eq(id)}&select=username`)
+      if (keyRows[0]?.username?.trim()) return keyRows[0].username.trim()
+    }
+  } catch {
+    // Supabase tables might not be active or row missing
+  }
+  try {
+    const approved = await readJson<{ username?: string }>(`access/approved/${id}.json`)
+    if (approved?.username?.trim()) return approved.username.trim()
+    const req = await readJson<{ username?: string }>(`access/requests/${id}.json`)
+    if (req?.username?.trim()) return req.username.trim()
+  } catch {
+    // Blob read failed
+  }
+  return null
+}
+
 /** The account's card, made (with a fresh code) the first time. */
 export async function ownCard(id: string): Promise<FriendCard> {
   const store = await friendStore()
   const card = await store.card(id)
-  if (card?.code) return card
+  if (card?.code) {
+    if (!card.name || card.name === 'Arkadaş') {
+      const realName = await resolveAccountName(id)
+      if (realName) {
+        card.name = realName
+        void store.save(id, card).catch(() => undefined)
+      }
+    }
+    return card
+  }
+  const defaultName = (await resolveAccountName(id)) || 'Arkadaş'
   for (let i = 0; i < 5; i++) {
-    const fresh: FriendCard = { code: newCode(), name: 'Arkadaş', avatar: '', color: '#6366f1', days: {}, streak: 0, level: 1, at: new Date().toISOString() }
+    const fresh: FriendCard = { code: newCode(), name: defaultName, avatar: '', color: '#6366f1', days: {}, streak: 0, level: 1, at: new Date().toISOString() }
     const made = await store.create(id, fresh)
     if (made === 'ok') return fresh
     // Made at the same moment by another request of this account: that one stands.
@@ -88,7 +120,12 @@ export async function ownCard(id: string): Promise<FriendCard> {
 
 export async function publishCard(id: string, body: Record<string, unknown>, today: string): Promise<FriendCard> {
   const card = await ownCard(id)
-  const next: FriendCard = { ...card, ...cleanCard(body, today), code: card.code, at: new Date().toISOString() }
+  const cleaned = cleanCard(body, today)
+  if (!cleaned.name || cleaned.name === 'Arkadaş') {
+    const fallback = (await resolveAccountName(id)) || (card.name !== 'Arkadaş' ? card.name : '')
+    if (fallback) cleaned.name = fallback
+  }
+  const next: FriendCard = { ...card, ...cleaned, code: card.code, at: new Date().toISOString() }
   await (await friendStore()).save(id, next)
   return next
 }
@@ -211,7 +248,17 @@ export const blobFriends: FriendStore = {
     const cards = await Promise.all(
       codes.map(async (code) => {
         const owner = await readJson<{ id?: string }>(codePath(code))
-        return owner?.id ? readJson<FriendCard>(cardPath(owner.id)) : null
+        if (!owner?.id) return null
+        const c = await readJson<FriendCard>(cardPath(owner.id))
+        if (!c?.code) return null
+        if (!c.name || c.name === 'Arkadaş') {
+          const resolved = await resolveAccountName(owner.id)
+          if (resolved) {
+            c.name = resolved
+            void writeJson(cardPath(owner.id), c).catch(() => undefined)
+          }
+        }
+        return c
       }),
     )
     return cards.filter((c): c is FriendCard => !!c?.code)
@@ -275,7 +322,32 @@ export const tableFriends: FriendStore = {
   async cardsOf(codes) {
     if (!codes.length) return []
     const found = await rows<CardRow>(`friend_cards?code=in.(${codes.join(',')})&select=${CARD_COLUMNS}`)
-    return codes.map((c) => found.find((r) => r.code === c)).filter((r): r is CardRow => !!r).map(cardOfRow)
+    const cards = codes.map((c) => found.find((r) => r.code === c)).filter((r): r is CardRow => !!r).map(cardOfRow)
+    const nameless = cards.filter((c) => !c.name || c.name === 'Arkadaş')
+    if (nameless.length > 0) {
+      const syncIds = [...new Set(found.filter((r) => !r.name || r.name === 'Arkadaş').map((r) => r.sync_id))]
+      if (syncIds.length > 0) {
+        try {
+          const keyRows = await rows<{ sync_id: string; username: string | null }>(`sync_keys?sync_id=in.(${syncIds.join(',')})&select=sync_id,username`)
+          const nameMap = new Map<string, string>()
+          for (const k of keyRows) {
+            if (k.username?.trim()) nameMap.set(k.sync_id, k.username.trim())
+          }
+          for (const card of cards) {
+            if (!card.name || card.name === 'Arkadaş') {
+              const row = found.find((r) => r.code === card.code)
+              if (row && nameMap.has(row.sync_id)) {
+                card.name = nameMap.get(row.sync_id)!
+                void tableFriends.save(row.sync_id, card).catch(() => undefined)
+              }
+            }
+          }
+        } catch {
+          // ignore table resolution error
+        }
+      }
+    }
+    return cards
   },
   follows: async (id) => (await rows<{ code: string }>(`friend_follows?sync_id=${eq(id)}&select=code&order=created_at.asc`)).map((r) => r.code).filter((c) => CODE.test(c)),
   followers: async (code) => {

@@ -1,16 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
-import type { Profile } from '../data/db'
+import { DEFAULT_SETTINGS, type Profile } from '../data/db'
+import { db } from '../data/instance'
 import { addFriend, FriendsError, loadFriends, publishFriendCard, recentDays, removeFriend, showCode, type FriendView } from '../data/friends'
 import { localDate } from '../engine/progress'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
 import { CloseIcon, CopyIcon, FlameIcon, PlusIcon } from './icons'
 import type { GameState } from './game'
+import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
 
 /** The last card published from this device, so an unchanged one is not written again. */
 const SENT_KEY = 'diloloji:friend-card'
+const NICKNAMES_KEY = 'diloloji:friend-nicknames'
 
 const REASONS: Record<string, string> = {
   unknown: 'Bu kodla bir arkadaş bulunamadı. Kodu bir daha kontrol et.',
@@ -30,6 +33,16 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
   const [failed, setFailed] = useState(false)
   const [code, setCode] = useState('')
   const [adding, setAdding] = useState(false)
+  const [nicknames, setNicknames] = useState<Record<string, string>>(() => {
+    try {
+      const raw = localStorage.getItem(NICKNAMES_KEY)
+      return raw ? (JSON.parse(raw) as Record<string, string>) : {}
+    } catch {
+      return {}
+    }
+  })
+  const [editingCode, setEditingCode] = useState<string | null>(null)
+  const [editName, setEditName] = useState('')
   const today = localDate(new Date())
 
   const refresh = useCallback(async () => {
@@ -45,15 +58,31 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
   useEffect(() => {
     if (!access.approved || !game) return
     let live = true
-    const card = { name: profile.name.trim() || 'Arkadaş', avatar: profile.emoji, color: profile.color, days: recentDays(game.xp.byDay, today), streak: game.streak, level: game.level.level }
-    const key = JSON.stringify(card)
-    let sent: string | null = null
-    try {
-      sent = localStorage.getItem(SENT_KEY)
-    } catch {
-      // Sent again, which costs one write.
-    }
     void (async () => {
+      const account = await getAccount().catch(() => null)
+      const storedUsername = account?.username?.trim() || ''
+      const effectiveName = profile.name.trim() || storedUsername || 'Arkadaş'
+
+      // If profile name is empty but account has a username, persist it to profile
+      if (!profile.name.trim() && storedUsername) {
+        try {
+          const s = (await db.getSettings()) ?? DEFAULT_SETTINGS
+          if (!s.profile.name.trim()) {
+            await db.saveSettings({ ...s, profile: { ...s.profile, name: storedUsername } })
+          }
+        } catch {
+          // ignore
+        }
+      }
+
+      const card = { name: effectiveName, avatar: profile.emoji, color: profile.color, days: recentDays(game.xp.byDay, today), streak: game.streak, level: game.level.level }
+      const key = JSON.stringify(card)
+      let sent: string | null = null
+      try {
+        sent = localStorage.getItem(SENT_KEY)
+      } catch {
+        // Sent again, which costs one write.
+      }
       if (sent !== key) {
         await publishFriendCard(card, today).catch(() => undefined)
         try {
@@ -97,9 +126,28 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
       setAdding(false)
     }
   }
+  const saveNickname = (code: string) => {
+    const trimmed = editName.trim().slice(0, 24)
+    setNicknames((prev) => {
+      const next = { ...prev }
+      if (trimmed) next[code] = trimmed
+      else delete next[code]
+      try {
+        localStorage.setItem(NICKNAMES_KEY, JSON.stringify(next))
+      } catch {
+        // ignore
+      }
+      return next
+    })
+    setEditingCode(null)
+    setEditName('')
+    showToast(trimmed ? 'Arkadaşının ismi güncellendi.' : 'Arkadaşının ismi sıfırlandı.')
+  }
+
   const remove = async (f: FriendView) => {
+    const displayName = nicknames[f.code] || f.name
     await removeFriend(f.code).catch(() => undefined)
-    showToast(`${f.name} listenden çıkarıldı.`)
+    showToast(`${displayName} listenden çıkarıldı.`)
     await refresh()
   }
   const copy = async () => {
@@ -137,26 +185,73 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
       {failed && !data && <p className="small muted">Arkadaş listesi şu an alınamadı.</p>}
       {data && (
         <ol className="friends-board">
-          {board.map((f, i) => (
-            <li key={f.code} className={f.me ? 'friends-me' : undefined}>
-              <span className="friends-rank">{i + 1}</span>
-              <Avatar profile={{ name: f.name, emoji: f.avatar || '🙂', color: f.color, motto: '' } as Profile} size={32} />
-              <span className="friends-name">
-                {f.me ? 'Sen' : f.name}
-                {f.streak > 0 && (
-                  <span className="friends-streak" title={`${f.streak} günlük seri`}>
-                    <FlameIcon size={12} solid /> {f.streak}
-                  </span>
+          {board.map((f, i) => {
+            const nickname = nicknames[f.code]
+            const displayName = f.me ? 'Sen' : (nickname || f.name)
+            const isEditing = editingCode === f.code
+            return (
+              <li key={f.code} className={f.me ? 'friends-me' : isEditing ? 'friends-editing-row' : undefined}>
+                <span className="friends-rank">{i + 1}</span>
+                <Avatar profile={{ name: displayName, emoji: f.avatar || '🙂', color: f.color, motto: '' } as Profile} size={32} />
+                {isEditing ? (
+                  <form
+                    className="friends-edit-inline"
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      saveNickname(f.code)
+                    }}
+                  >
+                    <input
+                      className="input input-sm friends-edit-input"
+                      value={editName}
+                      onChange={(e) => setEditName(e.target.value)}
+                      placeholder="Arkadaşının adı"
+                      aria-label="Arkadaşının adı"
+                      maxLength={24}
+                      autoFocus
+                    />
+                    <button type="submit" className="btn btn-sm btn-subtle" title="Kaydet" aria-label="Kaydet">
+                      ✓
+                    </button>
+                    <button type="button" className="btn btn-sm btn-subtle" onClick={() => setEditingCode(null)} title="Vazgeç" aria-label="Vazgeç">
+                      ✕
+                    </button>
+                  </form>
+                ) : (
+                  <>
+                    <span className="friends-name">
+                      {displayName}
+                      {f.streak > 0 && (
+                        <span className="friends-streak" title={`${f.streak} günlük seri`}>
+                          <FlameIcon size={12} solid /> {f.streak}
+                        </span>
+                      )}
+                    </span>
+                    {!f.me && (
+                      <button
+                        type="button"
+                        className={`link small friends-rename-btn ${f.name === 'Arkadaş' && !nickname ? 'friends-rename-highlight' : ''}`}
+                        onClick={() => {
+                          setEditingCode(f.code)
+                          setEditName(nickname || (f.name === 'Arkadaş' ? '' : f.name))
+                        }}
+                        aria-label={`${displayName} arkadaşının ismini düzenle`}
+                        title={f.name === 'Arkadaş' && !nickname ? 'Arkadaşına isim ver' : 'İsmi düzenle'}
+                      >
+                        {f.name === 'Arkadaş' && !nickname ? '✎ İsim ver' : '✎'}
+                      </button>
+                    )}
+                    <span className="friends-xp">{xpOf(f).toLocaleString('tr-TR')} XP</span>
+                    {!f.me && (
+                      <button type="button" className="icon-btn icon-btn-sm friends-remove" onClick={() => void remove(f)} aria-label={`${displayName} arkadaşını çıkar`} title="Çıkar">
+                        <CloseIcon size={14} />
+                      </button>
+                    )}
+                  </>
                 )}
-              </span>
-              <span className="friends-xp">{xpOf(f).toLocaleString('tr-TR')} XP</span>
-              {!f.me && (
-                <button type="button" className="icon-btn icon-btn-sm friends-remove" onClick={() => void remove(f)} aria-label={`${f.name} arkadaşını çıkar`} title="Çıkar">
-                  <CloseIcon size={14} />
-                </button>
-              )}
-            </li>
-          ))}
+              </li>
+            )
+          })}
         </ol>
       )}
       {data && data.friends.length === 0 && (

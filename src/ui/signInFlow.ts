@@ -1,3 +1,5 @@
+import { DEFAULT_SETTINGS } from '../data/db'
+import { db } from '../data/instance'
 import type { Session } from '@supabase/supabase-js'
 import { SyncApprovalError, type Account } from '../data/sync'
 import { fetchVault, freshAccount, linkVault, VaultError } from '../data/vault'
@@ -33,10 +35,25 @@ async function takeAccount(account: Account, fresh: boolean): Promise<SignInOutc
  */
 export async function completeSignIn(session: Session): Promise<SignInOutcome> {
   const kept = await fetchVault(session.access_token, nameOf(session))
-  if (kept) return takeAccount(kept, false)
-  const account = freshAccount(nameOf(session))
-  await linkVault(session.access_token, account)
-  return takeAccount(account, true)
+  let outcome: SignInOutcome
+  if (kept) outcome = await takeAccount(kept, false)
+  else {
+    const account = freshAccount(nameOf(session))
+    await linkVault(session.access_token, account)
+    outcome = await takeAccount(account, true)
+  }
+  try {
+    const settings = (await db.getSettings()) ?? DEFAULT_SETTINGS
+    if (!settings.profile.name.trim()) {
+      const username = nameOf(session)
+      if (username) {
+        await db.saveSettings({ ...settings, profile: { ...settings.profile, name: username } })
+      }
+    }
+  } catch {
+    // Database busy or unavailable; ignore
+  }
+  return outcome
 }
 
 /** What a refused tie says to the person. */

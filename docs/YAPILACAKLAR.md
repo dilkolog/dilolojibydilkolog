@@ -575,7 +575,15 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - **Rehber Dersleri Mini-Sınav Zenginleştirmesi (`src/data/guide/lessons-{fr,es,en}.ts`):** Fransızca (*subjonctif, participe_passe*), İspanyolca (*subjuntivo, por_para*) ve İngilizce (*inversion, cleft, subjunctive*) kilit ileri düzey derslerine 4. kontrol soruları eklendi.
   - **Test Güvenliği ve Dayanıklılık:** `src/data/spotErrors.test.ts`, `src/data/sentenceRewrites.test.ts`, `src/data/collocationDrill.test.ts` eşikleri 25'e yükseltildi. `SpotErrorGame.test.tsx` aktif cümle eşleşmesi tam cümle düzeyine çıkarıldı, `FillMissing.test.tsx` asenkron yığın beklemesi CPU yüküne karşı güçlendirildi.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
-  - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
+- [x] **Gelişim Turu 31 — Arkadaş İsmi Çözümleme ve Takma Ad Düzenleme Desteği (#391):**
+  - **Sunucu Tarafı Yedek İsim Çözümleme (`api/_friends.ts`):** `ownCard`, `publishCard`, `blobFriends.cardsOf` ve `tableFriends.cardsOf` katmanlarında, kart adı boş ya da varsayılan `'Arkadaş'` olduğunda, hesabın `sync_keys` tablosundaki veya `access/approved` / `access/requests` blob dosyasındaki gerçek `username` bilgisi otomatik çözümlenerek karta işlenir.
+  - **İstemci Giriş & Kayıt Akışında Profil İsmi Entegrasyonu (`src/ui/signInFlow.ts`, `src/ui/AuthScreen.tsx`):** Supabase veya kullanıcı adı ile giriş yapıldığında ya da hesap açıldığında, `profile.name` boşsa hesap kullanıcı adı otomatik olarak `settings.profile.name` alanına atanır.
+  - **İstemcide Kart Yayınlama İyileştirmesi (`src/ui/FriendsCard.tsx`):** Profil ismi henüz girilmemişse oturum açmış hesabın `username`'i yedek olarak kullanılır ve profil arka planda kalıcı olarak güncellenir.
+  - **Liderlik Panosunda Arkadaşa İsim / Takma Ad Verme (`src/ui/FriendsCard.tsx`, `src/index.css`):**
+    - Arkadaşın adı `'Arkadaş'` ise veya kullanıcı arkadaşına özel bir isim vermek isterse, satır içindeki `✎` veya `✎ İsim ver` butonuna tıklayarak doğrudan takma ad belirleyebilir (`diloloji:friend-nicknames`).
+    - Takma ad anında liderlik tablosuna, avatarına ve çıkarma bildirimlerine yansır; istendiğinde güncellenebilir veya silinerek orijinal ada dönülebilir.
+  - **Birim Testleri & Kapsamlı Doğrulama:**
+    - `src/ui/FriendsCard.test.tsx` (takma ad verme, inline form açma/kaydetme ve '✎ İsim ver' belirteci testleri) ve `src/data/apiFriends.test.ts` (sunucu tarafı boş/Arkadaş isimlerini otomatik kullanıcı adına çözümleme testi) eklendi; tüm testler (392 dosya, 2027 test) %100 yeşil.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).

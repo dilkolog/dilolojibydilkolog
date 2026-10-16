@@ -61,4 +61,34 @@ describe('FriendsCard', () => {
     expect(host.textContent).toContain('bir hesap aç')
     expect(calls).toEqual([])
   })
+
+  it('allows renaming a friend with a nickname and shows "✎ İsim ver" when name is "Arkadaş"', async () => {
+    const { host } = await mount(true, [card('BBBBBBBB', 'Arkadaş', 90, 120)])
+    const renameBtn = host.querySelector('.friends-rename-btn') as HTMLButtonElement
+    expect(renameBtn).toBeTruthy()
+    expect(renameBtn.textContent).toBe('✎ İsim ver')
+    expect(renameBtn.classList.contains('friends-rename-highlight')).toBe(true)
+
+    // Click rename button to open inline edit form
+    await act(async () => {
+      renameBtn.click()
+    })
+    const input = host.querySelector('.friends-edit-input') as HTMLInputElement
+    expect(input).toBeTruthy()
+
+    // Type a custom nickname and submit
+    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set
+    await act(async () => {
+      nativeSetter?.call(input, 'Merve')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    const submitBtn = host.querySelector('.friends-edit-inline button[type="submit"]') as HTMLButtonElement
+    await act(async () => {
+      submitBtn.click()
+    })
+
+    const names = () => [...host.querySelectorAll('.friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
+    expect(names()).toEqual(['Merve', 'Sen'])
+    expect(JSON.parse(localStorage.getItem('diloloji:friend-nicknames') || '{}')).toEqual({ BBBBBBBB: 'Merve' })
+  })
 })
