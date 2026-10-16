@@ -7,7 +7,7 @@ import { mergeGrammarLogs } from '../engine/grammar'
 import { mergeDeductionLogs } from '../engine/deduction'
 import { mergeBadgeLogs } from '../engine/gamification'
 import { mergeNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
-import { BACKUP_VERSION, exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type KelimeDB, type ReadingText } from './db'
+import { BACKUP_VERSION, exportBackup, mediaBlob, parseBackup, restoreBackup, type Backup, type FirstEncounterContext, type KelimeDB, type ReadingText } from './db'
 import { saveSafetySnapshot } from './safetyBackup'
 import { isDead, mergeTombs, tombList, tombMap } from './tombstones'
 import { raiseCounters } from '../engine/counters'
@@ -271,6 +271,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
   for (const [l, keys] of Object.entries(ignored)) ignored[l as keyof typeof ignored] = keys.filter((k) => !dead(`ignored:${l}:${k}`))
   const encounters: Record<string, number> = { ...(older.reading?.encounters ?? {}) }
   for (const [id, n] of Object.entries(newer.reading?.encounters ?? {})) encounters[id] = Math.max(encounters[id] ?? 0, n)
+  const firstEncounters: Record<string, FirstEncounterContext> = { ...(newer.reading?.firstEncounters ?? {}), ...(older.reading?.firstEncounters ?? {}) }
 
   const events = unionBy(older.events, newer.events, (e) => e.id).filter((e) => !dead(e.entryId, e.timestamp) && !resetOf(e.language, e.timestamp))
   const wordStates = unionBy(older.wordStates, newer.wordStates, (s) => s.entryId, mergeWordState).filter(
@@ -294,6 +295,7 @@ export function mergeBackups(local: Backup, remote: Backup): Backup {
       known,
       ignored,
       encounters,
+      firstEncounters,
       library: unionBy(older.reading?.library, newer.reading?.library, (t) => t.id, (x, y) => (y.history.length >= x.history.length ? y : x)).filter((t) => !dead(t.id, t.addedAt)),
     },
     vocabTests: unionBy(older.vocabTests, newer.vocabTests, (t) => `${t.language}|${t.at}`),

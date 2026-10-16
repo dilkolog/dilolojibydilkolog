@@ -63,8 +63,16 @@ export function useFinishReading({
   const saveMet = async () => {
     if (!analysis || !readKey || metSaved.current === readKey) return 0
     metSaved.current = readKey
-    const { encounters } = finishReading(analysis, skipped)
+    const { encounters, firstEncounters } = finishReading(analysis, skipped)
     await db.addEncounters(encounters)
+    if (current?.title) {
+      const now = new Date().toISOString()
+      const add: Record<string, { title: string; sentence?: string; at: string }> = {}
+      for (const [id, ctx] of Object.entries(firstEncounters)) {
+        add[id] = { title: current.title, sentence: ctx.sentence, at: now }
+      }
+      await db.addFirstEncounters(add)
+    }
     if (language !== 'en') await keepSeenForms(language)
     return Object.keys(encounters).length
   }

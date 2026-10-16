@@ -9,6 +9,7 @@ import type { Mistake, ReviewEvent, UserWordState, VocabularyEntry } from './typ
  */
 export type JourneyStep =
   | { kind: 'added'; at: Date; source?: string }
+  | { kind: 'first_met'; at: Date; where: string; sentence?: string }
   | { kind: 'introduced'; at: Date }
   | { kind: 'stage'; at: Date; stage: MasteryStage; up: boolean }
   | { kind: 'mistake'; at: Date; given: string; expected: string }
@@ -33,9 +34,11 @@ export function wordJourney(
   events: readonly ReviewEvent[],
   mistakes: readonly Mistake[],
   sightings: readonly { at: string; host: string }[] = [],
+  firstEncounter?: { title: string; sentence?: string; at: string },
 ): JourneyStep[] {
   const steps: JourneyStep[] = []
   if (entry.addedAt) steps.push({ kind: 'added', at: new Date(entry.addedAt), source: sourceOf(entry) })
+  if (firstEncounter) steps.push({ kind: 'first_met', at: new Date(firstEncounter.at), where: firstEncounter.title, sentence: firstEncounter.sentence })
   if (state) {
     steps.push({ kind: 'introduced', at: new Date(state.introducedAt) })
     let s = newWordState(entry, new Date(state.introducedAt))

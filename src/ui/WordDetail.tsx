@@ -19,7 +19,7 @@ import { trapOf } from '../engine/traps'
 import { trapWords } from '../data/traps'
 import { levelFromRank } from '../engine/wordLevel'
 import { Select } from './Select'
-import type { KelimeDB } from '../data/db'
+import type { KelimeDB, FirstEncounterContext } from '../data/db'
 import { wordKeys } from '../data/wordInput'
 import { ERROR_NAME, genderRuleText, SKILL_NAME, STAGE_NAME } from './labels'
 import { ruleFor } from '../engine/genderRules'
@@ -141,14 +141,18 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
   const unlocked = new Set(unlockedSkills(state, entry))
   const next = state && nextReviewAt(state)
   const [encounters, setEncounters] = useState<number | null>(null)
+  const [firstEncounter, setFirstEncounter] = useState<FirstEncounterContext | null>(null)
   const [fragile, setFragile] = useState(false)
   useEffect(() => {
-    Promise.all([db.events.where('entryId').equals(entry.id).toArray(), db.getEncounters()]).then(([events, reading]) => {
+    Promise.all([db.events.where('entryId').equals(entry.id).toArray(), db.getEncounters(), db.getFirstEncounters()]).then(([events, reading, firstEnc]) => {
       setEncounters(contextEncounters(events, reading[entry.id] ?? 0))
+      const metInEx = entry.senses?.flatMap((s) => s.examples ?? []).find((e) => e.metIn)
+      const first: FirstEncounterContext | null = firstEnc[entry.id] ?? (metInEx?.metIn ? { title: metInEx.metIn, sentence: metInEx.text, at: entry.addedAt ? new Date(entry.addedAt).toISOString() : new Date().toISOString() } : null)
+      setFirstEncounter(first)
       const s = slowShare(events)
       setFragile(s.correct >= 3 && s.slow / s.correct >= 0.4)
     })
-  }, [db, entry.id, state])
+  }, [db, entry, state])
   useTenses(entry.language)
   const hasConjugation = tensesOf(entry).length > 0
   const heroImage = useMediaUrl(entry.imageId)
@@ -306,6 +310,19 @@ export function WordDetail({ db, entry, vocabulary, state, mistakes, scheduler, 
       </section>
 
       <section className="section stack span-2 word-notes">
+        {firstEncounter && (
+          <div className="first-encounter-note" title={firstEncounter.at ? new Date(firstEncounter.at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : undefined}>
+            <p className="small first-encounter-meta">
+              <BookIcon size={15} className="inline-icon" />
+              <span>İlk karşılaştığın yer: <strong>{firstEncounter.title}</strong></span>
+            </p>
+            {firstEncounter.sentence && (
+              <blockquote className="first-encounter-quote" lang={entry.language}>
+                “{firstEncounter.sentence}”
+              </blockquote>
+            )}
+          </div>
+        )}
         {entry.literal && <p className="small muted">Kelimesi kelimesine: {entry.literal}</p>}
         <CrossLanguageNotes entry={entry} />
         <OriginNotes entry={entry} />

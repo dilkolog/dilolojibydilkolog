@@ -71,6 +71,13 @@ export function titleOf(text: string): string {
   return first.length > 48 ? `${first.slice(0, 47)}…` : first
 }
 
+/** Context of the first time a word was met in a reading text, news, or sentence. */
+export interface FirstEncounterContext {
+  title: string
+  sentence?: string
+  at: string
+}
+
 /** A journal entry and, when the AI reviewed it, the review. */
 export interface JournalEntry {
   id: string
@@ -525,6 +532,25 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'encounters', value: all })
   }
 
+  /** The first reading text / news / clip context where each word was encountered. */
+  async getFirstEncounters(): Promise<Record<string, FirstEncounterContext>> {
+    return ((await this.meta.get('firstEncounters'))?.value as Record<string, FirstEncounterContext>) ?? {}
+  }
+
+  async addFirstEncounters(add: Record<string, FirstEncounterContext>) {
+    const all = await this.getFirstEncounters()
+    let changed = false
+    for (const [id, ctx] of Object.entries(add)) {
+      if (!all[id]) {
+        all[id] = ctx
+        changed = true
+      }
+    }
+    if (changed) {
+      await this.meta.put({ key: 'firstEncounters', value: all })
+    }
+  }
+
   /** AI usage per month ("2026-10"). Kept out of backups like the key itself. */
   async getAiUsage(): Promise<Record<string, MonthUsage>> {
     return ((await this.meta.get('aiUsage'))?.value as Record<string, MonthUsage>) ?? {}
@@ -835,6 +861,15 @@ export class KelimeDB extends Dexie {
 
   saveSentenceRewriteLog(log: GrammarLog) {
     return this.saveLog('sentence-rewrite', log)
+  }
+
+  /** How the collocation and verb preposition questions went, per question. */
+  getCollocationLog(): Promise<GrammarLog> {
+    return this.getLog('collocations')
+  }
+
+  saveCollocationLog(log: GrammarLog) {
+    return this.saveLog('collocations', log)
   }
 
   /** How the text-flow gaps went, per paragraph and gap (same shape as the grammar log). */
@@ -1219,8 +1254,8 @@ export interface Backup {
   mistakes: Mistake[]
   media?: { id: string; kind: MediaRow['kind']; dataUrl: string; createdAt: string }[]
   stories?: StoryEpisode[]
-  /** Known-word sets and reading encounters (backup version 3+). */
-  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; library?: ReadingText[]; ignored?: Partial<Record<TargetLanguage, string[]>> }
+  /** Known-word sets, reading encounters and first encounters context (backup version 3+). */
+  reading?: { known: Partial<Record<TargetLanguage, string[]>>; encounters: Record<string, number>; firstEncounters?: Record<string, FirstEncounterContext>; library?: ReadingText[]; ignored?: Partial<Record<TargetLanguage, string[]>> }
   vocabTests?: VocabTestRecord[]
   journal?: JournalEntry[]
   bossWins?: BossWin[]
@@ -1296,6 +1331,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     reading: {
       known: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getKnownWords(l))]]))),
       encounters: await db.getEncounters(),
+      firstEncounters: await db.getFirstEncounters(),
       library: await db.texts.toArray(),
       ignored: Object.fromEntries(await Promise.all(TARGET_LANGUAGES.map(async (l) => [l, [...(await db.getIgnored(l))]]))),
     },
@@ -1403,6 +1439,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.reading) {
       for (const [l, keys] of Object.entries(backup.reading.known)) await db.meta.put({ key: `known:${l}`, value: keys })
       await db.meta.put({ key: 'encounters', value: backup.reading.encounters })
+      if (backup.reading.firstEncounters) await db.meta.put({ key: 'firstEncounters', value: backup.reading.firstEncounters })
       if (backup.reading.library) {
         await db.texts.clear()
         await db.texts.bulkPut(backup.reading.library.filter((t) => t && typeof t.id === 'string').map(withIsoDate))

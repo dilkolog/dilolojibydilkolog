@@ -171,16 +171,24 @@ export function coverageZone(coverage: number): CoverageZone {
  * as an encounter (8–12 meetings in context are needed to really know a word; Webb 2007).
  * `skipped` = keys the reader chose to leave open (e.g. added to the list meanwhile).
  */
-export function finishReading(a: ReadingAnalysis, skipped: ReadonlySet<string> = new Set()): { knownKeys: string[]; encounters: Record<string, number> } {
+export function finishReading(a: ReadingAnalysis, skipped: ReadonlySet<string> = new Set()): { knownKeys: string[]; encounters: Record<string, number>; firstEncounters: Record<string, { sentence: string }> } {
   const knownKeys = new Set<string>()
   const encounters: Record<string, number> = {}
+  const firstEncounters: Record<string, { sentence: string }> = {}
   for (const p of a.paragraphs)
-    for (const s of p)
+    for (const s of p) {
+      const sentenceText = s.tokens.map((t) => t.text).join('')
       for (const t of s.tokens) {
         if (t.status === 'unseen' && t.key && !skipped.has(t.key)) knownKeys.add(t.key)
-        if (t.entryId) encounters[t.entryId] = (encounters[t.entryId] ?? 0) + 1
+        if (t.entryId) {
+          encounters[t.entryId] = (encounters[t.entryId] ?? 0) + 1
+          if (!firstEncounters[t.entryId]) {
+            firstEncounters[t.entryId] = { sentence: sentenceText }
+          }
+        }
       }
-  return { knownKeys: [...knownKeys], encounters }
+    }
+  return { knownKeys: [...knownKeys], encounters, firstEncounters }
 }
 
 export interface MissingWord {

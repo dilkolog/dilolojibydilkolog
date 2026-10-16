@@ -54,6 +54,8 @@ describe('finishReading', () => {
     const r = finishReading(a, new Set([readingKey('another', 'en')]))
     expect(r.knownKeys).toEqual([readingKey('brave', 'en')])
     expect(r.encounters).toEqual({ 'en:decision': 2 })
+    expect(r.firstEncounters['en:decision']).toBeDefined()
+    expect(r.firstEncounters['en:decision'].sentence).toContain('decision')
   })
 })
 

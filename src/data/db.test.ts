@@ -244,13 +244,18 @@ describe('reading data', () => {
     await db.addKnownWords('fr', ['chat', 'chien'])
     await db.addEncounters({ 'fr:chat': 2 })
     await db.addEncounters({ 'fr:chat': 1, 'fr:chien': 1 })
+    await db.addFirstEncounters({ 'fr:chat': { title: 'Le Petit Prince', sentence: 'Un petit chat noir.', at: '2026-10-16T12:00:00Z' } })
+    // Ensure second add does not overwrite first encounter
+    await db.addFirstEncounters({ 'fr:chat': { title: 'Autre Livre', at: '2026-10-17T12:00:00Z' } })
     expect([...(await db.getKnownWords('fr'))].sort()).toEqual(['chat', 'chien', 'maison'])
     expect(await db.getEncounters()).toEqual({ 'fr:chat': 3, 'fr:chien': 1 })
+    expect((await db.getFirstEncounters())['fr:chat'].title).toBe('Le Petit Prince')
     const json = await exportBackup(db)
     const other = new KelimeDB('t-reading-restore')
     await restoreBackup(other, parseBackup(json))
     expect((await other.getKnownWords('fr')).size).toBe(3)
     expect(await other.getEncounters()).toEqual({ 'fr:chat': 3, 'fr:chien': 1 })
+    expect((await other.getFirstEncounters())['fr:chat'].title).toBe('Le Petit Prince')
   })
 })
 

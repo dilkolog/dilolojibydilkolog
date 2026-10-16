@@ -21,10 +21,12 @@ describe('word journey', () => {
       }
     }
     const mistakes = [{ id: 'm', entryId: entry.id, errorType: 'typo', exerciseType: 'typed_translation', given: 'decission', expected: 'decision', count: 2, firstAt: T(3), lastAt: T(4), correctSince: 0, resolved: false }] as const
-    const steps = wordJourney(entry, state, events, [...mistakes], [{ at: T(20).toISOString(), host: 'lemonde.fr' }])
+    const firstEncounter = { title: 'Le Petit Prince', sentence: 'Une grave decision.', at: T(2).toISOString() }
+    const steps = wordJourney(entry, state, events, [...mistakes], [{ at: T(20).toISOString(), host: 'lemonde.fr' }], firstEncounter)
     expect(sourceOf(entry)).toBe('lemonde.fr')
     expect(steps[0]).toMatchObject({ kind: 'added', source: 'lemonde.fr' })
     expect(steps[1].kind).toBe('introduced')
+    expect(steps.find((x) => x.kind === 'first_met')).toMatchObject({ kind: 'first_met', where: 'Le Petit Prince' })
     expect(steps.some((x) => x.kind === 'stage' && x.up)).toBe(true)
     expect(steps.find((x) => x.kind === 'mistake')).toMatchObject({ given: 'decission' })
     expect(steps.find((x) => x.kind === 'seen')).toMatchObject({ where: 'lemonde.fr' })
