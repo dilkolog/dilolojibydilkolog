@@ -7,7 +7,7 @@ import storybookArt from '../assets/art/src-storybook.webp'
 import wikiArt from '../assets/art/src-wiki.webp'
 import { GAME_ART } from './gameArt'
 import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
-import { checkFor, englishTenseLessons, lessonFor, lessonsOf, lessonTitle } from '../data/guide/lessonOf'
+import { checkFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
 import { PASS_RIGHT, type GuideMarks } from '../engine/guideReview'
 import { TENSE_LESSON } from '../data/tenseLesson'
@@ -94,6 +94,7 @@ export function GuideScreen({
 
   if (open) {
     const practice = open.practice ?? open.topic
+    const targetTense = lessonTense(open)
     return (
       <LessonView
         key={open.topic}
@@ -107,7 +108,7 @@ export function GuideScreen({
         onRead={(on) => markRead(open.topic, on)}
         onChecked={(right, size) => change(markChecked(marks, open.topic, right >= Math.min(PASS_RIGHT, size)))}
         onPractice={() => onPractice(practice)}
-        onVerbs={() => onVerbs()}
+        onVerbs={() => onVerbs(targetTense)}
       />
     )
   }
@@ -212,7 +213,17 @@ export function GuideScreen({
               </button>
             ))}
           </div>
-          {tense && <TenseLessonSheet language={language as 'fr' | 'es'} tense={tense} onClose={() => setTense(null)} />}
+          {tense && (
+            <TenseLessonSheet
+              language={language as 'fr' | 'es'}
+              tense={tense}
+              onClose={() => setTense(null)}
+              onVerbs={() => {
+                setTense(null)
+                onVerbs(tense)
+              }}
+            />
+          )}
         </section>
       )}
 
@@ -321,7 +332,7 @@ function LessonView({
     if (checking && review) checkRef.current?.scrollIntoView({ block: 'start' })
     else window.scrollTo({ top: 0 })
   }, [lesson]) // eslint-disable-line react-hooks/exhaustive-deps
-  const verbTopic = /present|passe|imparfait|preterito|futur|subj|conditionnel|basics_(fr|es)_(present|presente|passe_compose|preterito)/.test(lesson.topic)
+  const verbTopic = !!lessonTense(lesson) || /present|passe|imparfait|preterito|futur|subj|conditionnel/.test(lesson.topic)
   return (
     <article className="stack guide-lesson">
       <button type="button" className="link" onClick={onBack}>

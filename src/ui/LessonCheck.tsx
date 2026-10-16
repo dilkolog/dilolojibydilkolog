@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { CheckItem } from '../data/guide/lessonOf'
 import { PASS_RIGHT } from '../engine/guideReview'
 import type { TargetLanguage } from '../engine/types'
@@ -36,6 +36,25 @@ export function LessonCheck({ items, language, review, onDone }: { items: CheckI
     setDone(true)
     onDone(right)
   }
+
+  useEffect(() => {
+    if (done || !item) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+      const target = e.target as HTMLElement | null
+      if (target?.closest?.('input, textarea, select')) return
+      const n = Number(e.key)
+      if (given === null && n >= 1 && n <= item.options.length) {
+        e.preventDefault()
+        choose(n - 1)
+      } else if (given !== null && e.key === 'Enter' && !target?.closest?.('button, a')) {
+        e.preventDefault()
+        next()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
   if (done) {
     const passed = right >= passNeeded

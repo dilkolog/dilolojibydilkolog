@@ -517,6 +517,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
       - `inversion` (C1 - 3 soru): `Never have I seen`, 3. tip koşulda `if`siz devriklik (`Had I known`), `No sooner ... than` kalıbı.
       - `cleft` (C1 - 3 soru): yer vurgusunda `It was ... that`, `Wh-cleft` tekil fiil uyumu (`What I need is`), kişi vurgusunda `It was ... who`.
       - `subjunctive` (C1 - 3 soru): `recommend that ... resign`, `It is essential that ... be`, yardımcı fiilsiz olumsuz `that ... not sign`.
+- [x] **Gece Bakım Turu 21 — Rehber Klavye Kestirmeleri, Sesli Zaman Örnekleri & Fiil Laboratuvarı Derin Bağlantıları (#382):**
+  - `src/ui/LessonCheck.tsx`: Seçenek düğmelerinde görsel olarak gösterilen `1`–`4` tuş rozetleri için gerçek klavye kestirme dinleyicisi (`keydown`: `1`–`4` ile seçenek işaretleme, `Enter` ile sonraki soruya geçme) eklendi.
+  - `src/data/guide/lessonOf.ts` & `src/ui/Guide.tsx`: Fransızca ve İspanyolca fiil/kip derslerini (`imperativo_es`, `basics_fr_imperatif`, `basics_es_pluscuamperfecto`, `condicionales` vb. dâhil 23 ders) doğrudan Fiil Laboratuvarındaki ilgili zamanla eşleştiren `lessonTense` yardımcısı eklendi; ders içindeki "Fiil laboratuvarında çalış" düğmesi artık ilgili zamanı doğrudan açıyor (`onVerbs(targetTense)`).
+  - `src/ui/verbs/TenseLessonSheet.tsx` & `src/ui/Guide.tsx`: Zaman anlatım penceresindeki (`TenseLessonSheet`) örnek cümlelere sesli telaffuz (`Dinle`) düğmeleri ve Rehber → Zamanlar sekmesinden açıldığında doğrudan o zamanla Fiil Laboratuvarına geçiş sağlayan "Fiil laboratuvarında çalış" düğmesi eklendi.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 

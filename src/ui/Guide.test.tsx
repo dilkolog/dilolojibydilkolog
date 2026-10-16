@@ -90,10 +90,27 @@ describe('GuideScreen', () => {
 
   it('opens a tense of the verb lab straight away, and keeps lessons read in the first version', async () => {
     localStorage.setItem('diloloji:guide-read', JSON.stringify(['subjonctif']))
-    const { host } = await mount('fr', { initialTense: 'subjonctif' })
+    const { host, onVerbs } = await mount('fr', { initialTense: 'subjonctif' })
     expect(host.querySelector('[role=dialog]')).not.toBeNull()
     expect(host.querySelector('.guide-progress strong')).toBeNull()
+    await act(async () => button(document.body, 'Fiil laboratuvarında çalış')!.click())
+    expect(onVerbs).toHaveBeenCalledWith('subjonctif')
     await act(async () => button(host, 'Konular')!.click())
     expect(host.querySelector('.guide-progress strong')?.textContent).toBe('1')
+  })
+
+  it('supports keyboard shortcuts (1-4 and Enter) in LessonCheck and passes target tense from a verb lesson to onVerbs', async () => {
+    const { host, onVerbs } = await mount('es', { initialLesson: 'imperativo_es', review: true })
+    expect(host.querySelector('.lesson-check h2')?.textContent).toBe('Hatırlıyor musun?')
+    await act(async () => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: '1', bubbles: true }))
+    })
+    expect(host.querySelector('[role="status"]')).not.toBeNull()
+    await act(async () => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+    })
+    expect(host.querySelector('.lesson-check')?.textContent).toContain('2 / 3')
+    await act(async () => button(host, 'Fiil laboratuvarında çalış')!.click())
+    expect(onVerbs).toHaveBeenCalledWith('imperativo')
   })
 })

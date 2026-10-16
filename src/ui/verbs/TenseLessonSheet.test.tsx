@@ -26,11 +26,12 @@ describe('TenseInfoButton', () => {
     return btn
   }
 
-  it('opens a lesson with its sections for a French tense', () => {
+  it('opens a lesson with its sections and audio pronunciation buttons for a French tense', () => {
     open('fr', 'passe-compose')
     const dialog = document.querySelector('[role="dialog"]')!
     expect(dialog).toBeTruthy()
     for (const h of ['Ne zaman', 'Nasıl kurulur', 'Örnekler', 'Dikkat']) expect(dialog.textContent).toContain(h)
+    expect(dialog.querySelectorAll('button[aria-label^="Dinle:"]').length).toBeGreaterThanOrEqual(2)
   })
 
   it('opens a lesson for a Spanish tense too', () => {
