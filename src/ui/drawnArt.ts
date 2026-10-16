@@ -174,6 +174,7 @@ import flashDone from '../assets/art/flash-done.webp'
 import statSprout from '../assets/art/stat-sprout.webp'
 import statStar from '../assets/art/stat-star.webp'
 import statBook from '../assets/art/stat-book.webp'
+import statCheck from '../assets/art/stat-check.webp'
 
 /** A badge's own drawn medal, by what it counts: every badge has one (the metal medal stays in lists, where tiers matter). */
 const MEDAL_OF: Record<string, string> = {
@@ -282,8 +283,8 @@ export const streakPicture = (streak: number, tier: number): string => STREAKS[s
 /** The guide, friends, a streak won back, the progress report, a flashcard round done (set F, 2026-10-16). */
 export const NEW_ART = { guideTeach, guideLearned, guideReview, friendsTogether, friendsCode, streakRepair, progressReport, flashDone }
 
-/** Illustrated kawaii mascots matching the streak flame character: sprout, star, book. */
-export const STAT_ART = { sprout: statSprout, star: statStar, book: statBook, flame: streak1 }
+/** Illustrated kawaii mascots matching the streak flame character: sprout, star, book, check. */
+export const STAT_ART = { sprout: statSprout, star: statStar, book: statBook, flame: streak1, check: statCheck }
 
 export const ACCOUNT_ART = { out: acctDoor, pending: acctWait, approved: acctOk, rejected: acctNo }
 

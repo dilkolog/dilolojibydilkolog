@@ -642,6 +642,14 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `.account-danger-details` ve `.account-danger-body` sınıfları için kesikli ayırıcı çizgi, zarif tipografi ve açıkken kırmızılaşan güvenli özet stili tanımlandı.
   - **Kapsamlı Doğrulama:**
     - `npm run typecheck`, `npx oxlint` ve `npx vitest run src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+- [x] **Gelişim Turu 36 — Profil İstatistik Kartı Uyumlandırması ("Cevap" İkonu Storybook Çizim Standardı):**
+  - **İkon Tasarım Eşitlemesi (`src/assets/art/stat-check.webp`, `src/ui/drawnArt.ts`, `src/ui/Profile.tsx`):**
+    - Profil genel bakışındaki 4 istatistik kartı incelendi: Alev (`StreakPicture`), Altın Yıldız (`stat-star`), Zihin Fidanı (`stat-sprout`) çizim kalitesinde storybook illüstrasyonlarıyken, "cevap" kartındaki ikonun düz bir SVG daire onay imi (`CheckCircleIcon`) kaldığı ve tasarımsal olarak uyumsuz olduğu tespit edildi.
+    - Orijinal storybook el çizimi 3D dairesel hedef/onay amblemi ve çevresindeki altın kutlama ışıltıları temel alınarak, aktif temanın canlı meyve/gül-ahududu tonuyla (`var(--lang-text)`) uyumlu 200x200 RGBA WebP formatında `stat-check.webp` üretildi.
+    - `STAT_ART.check` olarak `drawnArt.ts` içerisine eklendi.
+    - `Profile.tsx` içindeki "cevap" kartı, diğer iki kartla birebir aynı `.stat-art-img` standardına (`<img className="stat-art-img" src={STAT_ART.check} alt="" height={22} width={22} draggable={false} />`) kavuşturularak 4 kartın tamamında görsel eşitlik ve kusursuz bütünlük sağlandı.
+  - **Birim & Duman Testleri:**
+    - `src/ui/drawnArt.test.ts` (STAT_ART.check testi) ve `src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
