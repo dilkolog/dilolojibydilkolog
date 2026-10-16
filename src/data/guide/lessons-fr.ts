@@ -448,6 +448,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Önce bitecek eylem için futur antérieur gerekir: « Je te rendrai le livre quand je l'aurai lu ».",
     ],
     tip: "Futur simple'ın sonları avoir'ın présent'ına benzer (-ai, -as, -a, -ons, -ez, -ont): mastarın sonuna avoir'ı yapıştır.",
+    check: [
+      {
+        prompt: "Dès que tu ___ à la gare, appelle-moi.",
+        options: ["arriveras", "arrives", "arriverais"],
+        answer: 0,
+        why: "Fransızcada 'dès que', 'quand', 'aussitôt que' gibi bağlaçlardan sonra gelecek zaman anlamında futur simple kullanılır; Türkçedeki gibi şimdiki zaman kullanılmaz."
+      },
+      {
+        prompt: "Si tu as le temps demain, est-ce que tu ___ m'aider ?",
+        options: ["peux", "pourras", "pourrais"],
+        answer: 1,
+        why: "Si + présent yapısının ana cümlesinde gelecek eylem için futur simple kullanılır (pourras). Si yan cümlesinde futur kullanılmaz ama ana cümlede kullanılır."
+      },
+      {
+        prompt: "Je te rendrai ce roman dès que je l'___ lu.",
+        options: ["ai", "aurai", "aurais"],
+        answer: 1,
+        why: "Gelecekte başka bir eylemden önce tamamlanacak eylemler için futur antérieur (aurai + lu) kullanılır."
+      }
+    ]
   },
   {
     topic: "pronoms_y_en",
@@ -481,6 +501,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Zamir öne geçince avoir'lı ortaç ona uyar: « Les clés ? Je les ai mises sur la table. »",
     ],
     tip: "Fiilin yapısına bak: edat yoksa le / la / les; à + kişi → lui / leur; à + yer ya da şey → y; de ya da miktar → en.",
+    check: [
+      {
+        prompt: "— Tu vas à la bibliothèque ? — Oui, j'___ vais cet après-midi.",
+        options: ["y", "en", "le"],
+        answer: 0,
+        why: "Bir yere gitmek (à + yer) ifadesinin yerini 'y' zamiri tutar: aller à la bibliothèque -> y aller."
+      },
+      {
+        prompt: "— Tu as acheté des croissants ? — Oui, j'___ ai pris quatre.",
+        options: ["les", "y", "en"],
+        answer: 2,
+        why: "Belirsiz miktar (des croissants) ve sayı belirten nesnelerin yerini 'en' zamiri tutar; sayı fiilden sonra kalır: j'en ai pris quatre."
+      },
+      {
+        prompt: "Tu téléphones souvent à tes grands-parents ? — Oui, je ___ téléphone chaque dimanche.",
+        options: ["les", "leur", "y"],
+        answer: 1,
+        why: "Téléphoner à quelqu'un kalıbı 'à + kişi' (çoğul) olduğu için dolaylı nesne zamiri 'leur' alır (les doğrudan nesnedir)."
+      }
+    ]
   },
   {
     topic: "prep_fr",
@@ -513,6 +553,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« commencer à » (yapmaya başlamak) ile « commencer par » (ilk iş olarak yapmak) farklıdır.",
     ],
     tip: "Fiili defterine hep edatıyla yaz: « décider de », « réussir à ». Edat fiilin soyadıdır.",
+    check: [
+      {
+        prompt: "Après plusieurs heures de discussion, nous avons décidé ___ signer le contrat.",
+        options: ["à", "de", "pour"],
+        answer: 1,
+        why: "Décider fiili bir eylemi yapmaya karar vermek anlamında 'de + mastar' ile bağlanır: décider de faire quelque chose."
+      },
+      {
+        prompt: "Elle a enfin réussi ___ obtenir son permis de conduire.",
+        options: ["de", "à", "en"],
+        answer: 1,
+        why: "Réussir fiili bir şeyi başarmak anlamında 'à + mastar' edatıyla kullanılır: réussir à faire quelque chose."
+      },
+      {
+        prompt: "Que penses-tu ___ ce nouveau restaurant ? (Fikrini sorma)",
+        options: ["de", "à", "sur"],
+        answer: 0,
+        why: "Bir şey veya biri hakkındaki görüş sorulurken 'penser de' kullanılır ('Que penses-tu de...?'). Birini aklında tutmak, düşünmek ise 'penser à' ile söylenir."
+      }
+    ],
   },
   {
     topic: "colloc_fr",
@@ -544,6 +604,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« dikkate almak » → « tenir compte de » ya da « prendre en compte »; « prendre compte » yok.",
     ],
     tip: "Kalıbı tek parça öğren ve bir cümleyle birlikte yaz; fiili isimden ayırma.",
+    check: [
+      {
+        prompt: "Le témoin a levé la main pour ___ une question au juge.",
+        options: ["demander", "faire", "poser"],
+        answer: 2,
+        why: "Fransızcada 'soru sormak' için 'poser une question' kullanılır; 'demander une question' veya 'faire une question' yanlıştır."
+      },
+      {
+        prompt: "Nous devons ___ une décision avant la fin de la semaine.",
+        options: ["prendre", "donner", "faire"],
+        answer: 0,
+        why: "Karar vermek Fransızcada 'prendre une décision' eşdizimiyle ifade edilir; 'donner' veya 'faire' kullanılmaz."
+      },
+      {
+        prompt: "Avant de traverser la rue, il faut toujours ___ attention.",
+        options: ["faire", "prendre", "garder"],
+        answer: 0,
+        why: "Dikkat etmek kalıbı 'faire attention' şeklindedir; 'prendre attention' Fransızcada yoktur."
+      }
+    ]
   },
   {
     topic: "conn_fr",
@@ -576,6 +656,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« grâce à » yalnızca olumlu nedende: yağmur yüzünden → « à cause de la pluie ».",
     ],
     tip: "Önce iki fikrin ilişkisini Türkçe söyle (« ama », « bu yüzden », « -sa », « üstelik »); bağlacı sonra o gruptan seç.",
+    check: [
+      {
+        prompt: "Il est sorti sans manteau, ___ la pluie battante.",
+        options: ["malgré", "bien que", "quoique"],
+        answer: 0,
+        why: "Malgré doğrudan bir isim öbeği alır (malgré la pluie); bien que ve quoique ise tam cümle ve subjonctif ister."
+      },
+      {
+        prompt: "Prends tes clés, ___ tu seras bloqué dehors ce soir.",
+        options: ["pourtant", "donc", "sinon"],
+        answer: 2,
+        why: "Sinon 'aksi takdirde / yoksa' anlamına gelir ve olumsuz koşul sonucunu bağlar; pourtant zıtlık, donc ise sonuç bildirir."
+      },
+      {
+        prompt: "Il a réussi son examen ___ son travail acharné.",
+        options: ["grâce à", "à cause de", "parce que"],
+        answer: 0,
+        why: "Olumlu ve lehte nedenler için 'grâce à' kullanılır ('sayesinde'); 'à cause de' ise olumsuz nedenler içindir."
+      }
+    ],
   },
 
   // ---------------------------------------------------------------- B2
@@ -615,6 +715,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Ne explétif'i olumsuz sanmak: « avant qu'il ne vienne » ifadesi « o gelmeden önce » demektir; eylemin olumsuz olduğu anlamına gelmez ve pas almaz."
     ],
     tip: "« que »dan önceki ifade bir gerçeği bildiriyorsa indicatif; bir isteği, duyguyu ya da şüpheyi bildiriyorsa subjonctif.",
+    check: [
+      {
+        prompt: "Il faut absolument que tu ___ tes devoirs avant de sortir.",
+        options: ["fasses", "fais", "feras"],
+        answer: 0,
+        why: "Il faut que kalıbı zorunluluk bildirdiği için subjonctif gerektirir; faire fiilinin subjonctif biçimi 'que tu fasses'tir."
+      },
+      {
+        prompt: "Je ne pense pas qu'il ___ raison dans cette affaire.",
+        options: ["a", "ait", "aura"],
+        answer: 1,
+        why: "Penser fiili olumsuz veya şüphe hâlindeyken (ne pas penser que) yan cümlesinde subjonctif ister: qu'il ait."
+      },
+      {
+        prompt: "Dépêchons-nous, rentrons avant qu'il ne ___ nuit.",
+        options: ["fait", "fera", "fasse"],
+        answer: 2,
+        why: "Avant que bağlacı daima subjonctif ister (fasse). Cümledeki 'ne' ise olumsuzluk değil resmî üsluba ait 'ne explétif'tir."
+      }
+    ]
   },
   {
     topic: "conditionnel_passe",
@@ -646,6 +766,30 @@ export const FR_LESSONS: TopicLesson[] = [
       "« je devrais » (yapmalıyım) ile « j'aurais dû » (yapmalıydım) farklıdır: geçmişte yapılmamış iş için ikincisi.",
     ],
     tip: "« si » ile « -rait » aynı yarım cümlede buluşmaz: -rait hep öbür yarıda durur.",
+    check: [
+      {
+        prompt: "Si j'avais su pour la grève, je ___ le train de six heures.",
+        options: ["prenais", "prendrais", "aurais pris"],
+        answer: 2,
+        why: "Geçmişte gerçekleşmemiş şartlarda (si + plus-que-parfait), ana cümlede conditionnel passé kullanılır: j'aurais pris."
+      },
+      {
+        prompt: "Hangi şart cümlesi dilbilgisi açısından doğrudur?",
+        options: [
+          "Si j'aurais eu le temps, je serais venu.",
+          "Si j'avais eu le temps, je serais venu.",
+          "Si j'avais eu le temps, je venais."
+        ],
+        answer: 1,
+        why: "Fransızcada 'si' bağlacından hemen sonra asla conditionnel (-rais) gelmez! 'Si + plus-que-parfait' ardından 'conditionnel passé' gelir."
+      },
+      {
+        prompt: "Tu es en retard ! Tu ___ me prévenir plus tôt.",
+        options: ["aurais dû", "devrais", "as dû"],
+        answer: 0,
+        why: "Geçmişe yönelik sitem ve pişmanlık bildirirken 'avoir'nın conditionnel'i + dû (aurais dû = yapmalıydın) kullanılır."
+      }
+    ],
   },
   {
     topic: "participe_passe",
@@ -680,6 +824,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Uyum çoğu zaman duyulmaz, ama bazı ortaçlarda duyulur: mis / mise, pris / prise, écrit / écrite; bunlarda hata kulağa da batar."
     ],
     tip: "avoir'lı cümlede « neyi? » diye sor: cevap fiilden önce yazıldıysa ortaç ona uyar, sonra geliyorsa uymaz.",
+    check: [
+      {
+        prompt: "Les lettres que Sophie a ___ sont sur le bureau.",
+        options: ["écrit", "écrite", "écrites"],
+        answer: 2,
+        why: "Avoir yardımcı fiiliyle kurulan birleşik zamanlarda, doğrudan nesne (les lettres, dişil çoğul) fiilden önce geldiğinde ortaç nesneye uyar: écrites."
+      },
+      {
+        prompt: "— Tu as cueilli des pommes ? — Oui, j'en ai ___ deux kilos.",
+        options: ["cueilli", "cueillies", "cueillis"],
+        answer: 0,
+        why: "Doğrudan nesne 'en' zamiri ile temsil edildiğinde participe passé ASLA uyum yapmaz, yalın eril kalır: j'en ai cueilli."
+      },
+      {
+        prompt: "Elles se sont ___ les mains avant de passer à table.",
+        options: ["lavées", "lavé", "lavés"],
+        answer: 1,
+        why: "Dönüşlü fiillerde doğrudan nesne (les mains) fiilden SONRA geldiğinde ortaç uyum yapmaz: elle s'est lavé les mains."
+      }
+    ]
   },
   {
     topic: "discours_indirect_fr",
@@ -712,6 +876,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Gelecek zaman conditionnel'e döner: « il a dit qu'il viendrait », « viendra » değil.",
     ],
     tip: "Geçmiş bir çerçeve (il a dit, elle a demandé) zamanı bir basamak geri iter: şimdi → imparfait, geçmiş → plus-que-parfait, gelecek → conditionnel.",
+    check: [
+      {
+        prompt: "Direct: 'Je suis très fatigué.' -> Indirect: Paul a dit qu'il ___ très fatigué.",
+        options: ["est", "était", "serait"],
+        answer: 1,
+        why: "Ana fiil geçmiş zamanda olduğunda (a dit), doğrudan anlatımdaki présent, dolaylı anlatımda imparfait'ya dönüşür: était."
+      },
+      {
+        prompt: "Direct: 'Je viendrai demain.' -> Indirect: Il a promis qu'il ___ le lendemain.",
+        options: ["viendra", "viendrait", "est venu"],
+        answer: 1,
+        why: "Geçmişe bağlı dolaylı aktarımda futur simple, conditionnel présent'a kayar: viendra -> viendrait; demain ise le lendemain olur."
+      },
+      {
+        prompt: "Direct: 'Qu'est-ce que tu fais ?' -> Indirect: Elle m'a demandé ___ je faisais.",
+        options: ["ce que", "qu'est-ce que", "ce qui"],
+        answer: 0,
+        why: "Dolaylı aktarımda 'qu'est-ce que' kalıbı 'ce que' haline gelir ve düz cümle sırasına girer: ce que je faisais."
+      }
+    ]
   },
   {
     topic: "pronoms_relatifs",
@@ -744,5 +928,25 @@ export const FR_LESSONS: TopicLesson[] = [
       "Bileşik edatlardan sonra dont kullanılmaz: « la maison près de laquelle », « la maison près dont » değil.",
     ],
     tip: "Önce iki cümleyi ayrı kur: « Je pense à cette situation. » Edatı ve ismi gör (à + la situation), sonra zamire çevir: à laquelle.",
+    check: [
+      {
+        prompt: "C'est une cause pour ___ il a lutté toute sa vie.",
+        options: ["laquelle", "lequel", "lesquelles"],
+        answer: 0,
+        why: "Edattan sonra cansız bir isim geldiğinde cinsiyet ve sayıya göre lequel/laquelle seçilir; 'la cause' dişil tekil olduğu için 'laquelle' uygundur."
+      },
+      {
+        prompt: "Le problème ___ nous devons faire face est très complexe.",
+        options: ["auquel", "duquel", "dont"],
+        answer: 0,
+        why: "Faire face à kalıbı 'à' edatı aldığı için eril tekil 'le problème' ile birleşerek 'auquel' (à + lequel) biçimini alır."
+      },
+      {
+        prompt: "L'hôtel près ___ nous logions donnait sur la mer.",
+        options: ["duquel", "auquel", "dont"],
+        answer: 0,
+        why: "Près de gibi bileşik edatlardan sonra dont kullanılamaz; de + lequel birleşimi olan 'duquel' (lequel eril tekil için) kullanılır."
+      }
+    ],
   },
 ]
