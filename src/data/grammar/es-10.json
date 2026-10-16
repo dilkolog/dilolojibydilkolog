@@ -1,0 +1,206 @@
+[
+  {
+    "id": "es-subjuntivo-19",
+    "language": "es",
+    "level": "B2",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Ojalá mañana ___ buen tiempo para poder ir a la playa.",
+    "answer": "haga",
+    "options": [
+      "haga",
+      "hace",
+      "hará"
+    ],
+    "hint": "ojalá + subjuntivo presente",
+    "explanation": "Geleceğe dair güçlü dilek ve umut bildiren 'ojalá' ünleminden sonra daima subjuntivo kullanılır: hacer → haga.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-subjuntivo-20",
+    "language": "es",
+    "level": "B1",
+    "topic": "subjuntivo",
+    "type": "choice",
+    "prompt": "Te llamaré en cuanto ___ al aeropuerto de Madrid.",
+    "answer": "llegue",
+    "options": [
+      "llegue",
+      "llego",
+      "llegaré"
+    ],
+    "hint": "en cuanto + geleceğe yönelik zaman yan cümlesi → subjuntivo",
+    "explanation": "Geleceğe gönderme yapan zaman bağlaçları ('en cuanto', 'cuando') yan cümlede indicativo değil, subjuntivo (llegue) gerektirir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-ser_estar-17",
+    "language": "es",
+    "level": "B1",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "El concierto de música clásica ___ en el teatro municipal.",
+    "answer": "es",
+    "options": [
+      "es",
+      "está",
+      "tiene"
+    ],
+    "hint": "etkinlik veya kutlamanın gerçekleştiği yer → ser kullanılır",
+    "explanation": "Bir olayın, konserin veya etkinliğin nerede gerçekleştiğini bildirmek için 'estar' değil, 'ser' kullanılır: El concierto es en...",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-ser_estar-18",
+    "language": "es",
+    "level": "B2",
+    "topic": "ser_estar",
+    "type": "choice",
+    "prompt": "Ese chico ___ muy listo; siempre saca las mejores notas de la clase.",
+    "answer": "es",
+    "options": [
+      "es",
+      "está",
+      "sea"
+    ],
+    "hint": "ser listo = zeki olmak; estar listo = hazır olmak",
+    "explanation": "'Ser listo' doğuştan gelen zekayı ifade ederken, 'estar listo' bir şey için hazır olmayı belirtir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-por_para-18",
+    "language": "es",
+    "level": "B1",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "Este informe tiene que estar listo ___ el próximo lunes por la mañana.",
+    "answer": "para",
+    "options": [
+      "para",
+      "por",
+      "a"
+    ],
+    "hint": "son teslim tarihi veya hedef süre → para",
+    "explanation": "Gelecekteki kesin bir teslim tarihini veya vadesini (deadline) bildirmek için 'para' edatı kullanılır: para el lunes.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-por_para-19",
+    "language": "es",
+    "level": "B1",
+    "topic": "por_para",
+    "type": "choice",
+    "prompt": "Muchas gracias ___ tu ayuda con la mudanza.",
+    "answer": "por",
+    "options": [
+      "por",
+      "para",
+      "de"
+    ],
+    "hint": "teşekkür veya karşılık gerekçesi → por",
+    "explanation": "Teşekkür etme veya bir şeyin karşılığı olarak neden bildirmede 'gracias por...' yapısı kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-se_pasivo-17",
+    "language": "es",
+    "level": "B1",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "En esta tienda ___ instrumentos musicales antiguos y modernos.",
+    "answer": "se venden",
+    "options": [
+      "se venden",
+      "se vende",
+      "venden se"
+    ],
+    "hint": "se pasivo çoğul özne (instrumentos) ile çoğul çekilir",
+    "explanation": "Pasiva refleja yapısında sözde özne çoğul ('instrumentos') olduğunda yüklem de çoğul olur: se venden instrumentos.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-se_pasivo-18",
+    "language": "es",
+    "level": "B2",
+    "topic": "se_pasivo",
+    "type": "choice",
+    "prompt": "Aquí ___ muy bien durante la temporada turística.",
+    "answer": "se come",
+    "options": [
+      "se come",
+      "se comen",
+      "comen se"
+    ],
+    "hint": "belirli bir nesnesi olmayan kişiliksiz (impersonal) cümle",
+    "explanation": "Belirli bir nesne veya özne içermeyen genel durum bildiren kişiliksiz 'se' yapılarında fiil her zaman 3. tekil şahıstır: se come muy bien.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-19",
+    "language": "es",
+    "level": "B2",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si yo ___ más tiempo libre, estudiaría un nuevo idioma extranjero.",
+    "answer": "tuviera",
+    "options": [
+      "tuviera",
+      "tendría",
+      "tengo"
+    ],
+    "hint": "si + imperfecto de subjuntivo → condicional simple",
+    "explanation": "Şimdiki zamana dair hayali şartlarda 'si' bağlacından sonra asla condicional gelemez; imperfecto de subjuntivo (tuviera) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-condicionales-20",
+    "language": "es",
+    "level": "C1",
+    "topic": "condicionales",
+    "type": "choice",
+    "prompt": "Si hubieras llegado cinco minutos antes, ___ al conferenciante principal.",
+    "answer": "habrías conocido",
+    "options": [
+      "habrías conocido",
+      "hubieras conocido",
+      "conocías"
+    ],
+    "hint": "si + pluscuamperfecto de subjuntivo → condicional compuesto",
+    "explanation": "Geçmişte gerçekleşmemiş şartın (Type 3) ana cümlesinde condicional compuesto kullanılır: habrías conocido.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-perifrasis-17",
+    "language": "es",
+    "level": "B1",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "Al escuchar el emotivo discurso, el público se puso a ___ con entusiasmo.",
+    "answer": "aplaudir",
+    "options": [
+      "aplaudir",
+      "aplaudiendo",
+      "aplaudido"
+    ],
+    "hint": "ponerse a + infinitivo",
+    "explanation": "'Ponerse a' eyleme ani başlama perifrasis'i ardından ulaç değil, daima mastar fiil (infinitivo: aplaudir) alır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "es-perifrasis-18",
+    "language": "es",
+    "level": "B2",
+    "topic": "perifrasis",
+    "type": "choice",
+    "prompt": "A pesar de las dificultades económicas, ellos siguen ___ en su proyecto innovador.",
+    "answer": "trabajando",
+    "options": [
+      "trabajando",
+      "trabajar",
+      "trabajado"
+    ],
+    "hint": "seguir + gerundio",
+    "explanation": "'Seguir' eylemin kesintisiz sürdüğünü belirtirken mastar değil, daima gerundio (trabajando) ile birleşir.",
+    "source": "Diloloji (özgün)"
+  }
+]
