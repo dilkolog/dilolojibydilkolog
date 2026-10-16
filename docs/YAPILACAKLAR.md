@@ -650,6 +650,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `Profile.tsx` içindeki "cevap" kartı, diğer iki kartla birebir aynı `.stat-art-img` standardına (`<img className="stat-art-img" src={STAT_ART.check} alt="" height={22} width={22} draggable={false} />`) kavuşturularak 4 kartın tamamında görsel eşitlik ve kusursuz bütünlük sağlandı.
   - **Birim & Duman Testleri:**
     - `src/ui/drawnArt.test.ts` (STAT_ART.check testi) ve `src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+- [x] **Gelişim Turu 37 — Monki Boş / Kurulum Durumunda "Temizle" Butonunun Gizlenmesi:**
+  - **Başlık Çubuğu Mantık Düzeltmesi (`src/ui/monki/Monki.tsx`):**
+    - Monki sohbet paneli açıldığında henüz YZ API anahtarı eklenmemişken (kurulum ekranı: "Benimle konuşmak için Ayarlar → YZ yardımcısı...") veya geçmiş boşken başlıkta "Temizle" butonunun görünmesi hatası giderildi.
+    - Buton görünürlük koşulu `{msgs.length > 0}` yerine `{apiKey && msgs.length > 0}` olarak güncellendi.
+  - **Birim & Duman Testleri (`src/ui/monki/Monki.test.tsx`):**
+    - Depolamada eski kayıt kalsa dahi anahtar olmadığında veya konuşma başlatılmadığında "Temizle" butonunun görünmediğini doğrulayan birim testi eklendi.
+    - `Monki.test.tsx` (14 test) ve `smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
