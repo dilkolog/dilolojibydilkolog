@@ -525,6 +525,9 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - `src/ui/Guide.tsx` (`LessonView`): Bir dersin sonunda müfredat sırasındaki bir sonraki derse (`Sıradaki ders`) ana listeye dönmeye gerek kalmadan tek tıkla geçiş sağlayan kart eklendi.
   - `src/ui/GuideReviewNudge.test.tsx` (2 test): Bugün ekranındaki Rehber tekrar hatırlatıcısının (`GuideReviewNudge`) boş durumda gizlenmesi, günü gelen derste ("Hatırlıyor musun?") gösterilmesi, tıklanınca dersi açması ve "Şimdi değil" ile ertelenmesi doğrulandı.
   - `src/data/tenseLesson.test.ts` (1 kapsamlı doğrulama testi): Fransızca (12 zaman) ve İspanyolca (14 zaman) Fiil Laboratuvarındaki tüm 26 zamanın `TENSE_LESSON` içinde eksiksiz pedagojik alanlara (`summary`, `uses`, `formation`, `examples`, `watch`, `tip`, `turkish`) sahip olduğu güvence altına alındı.
+- [x] **Gece Bakım Turu 23 — Yeni Diloloji Logo ve Uygulama İkonu Tasarımı (#384):**
+  - Gemini ile tasarlanan ve seçilen yeni **Modern "D" Konuşma Balonu + Çift Yapraklı Filiz + Açık Kitap Sayfaları + Altın Kıvılcım** logosu vektörel olarak işlendi (`scripts/build-icons.mjs`).
+  - Uygulama içi marka amblemi (`src/ui/icons.tsx` — `BrandMark`), açılış ekranı (`index.html`), sekme simgesi (`public/favicon.svg`), bildirim rozeti (`public/notification-badge.png`) ve tüm PWA/iOS uygulama simgeleri (`public/pwa-512.png`, `public/pwa-192.png`, `public/pwa-maskable-512.png`, `public/apple-touch-icon.png`) yeni logoyla güncellendi.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
