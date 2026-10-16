@@ -40,9 +40,40 @@ describe('/api/clips', () => {
     expect((await call('q=décider&lang=de')).status).toBe(400)
     expect((await call(`q=${'x'.repeat(41)}&lang=fr`)).status).toBe(400)
     vi.stubEnv('YOUTUBE_API_KEY', '')
+    vi.stubGlobal('fetch', async () => new Response('offline', { status: 503 }))
     const res = await call('q=d%C3%A9cider&lang=fr')
     expect(res.status).toBe(501)
     expect(await res.json()).toEqual({ error: 'no key' })
+  })
+
+  it('serves clips directly from YouGlish + oEmbed even without a YouTube API key', async () => {
+    vi.stubEnv('YOUTUBE_API_KEY', '')
+    vi.stubGlobal('fetch', async (url: string) => {
+      if (url.includes('youglish.com/pronounce/')) {
+        return new Response(
+          `<script>params.jsonData = '{\\"results\\":[{\\"vid\\":\\"4Fx-0Wrw0co\\",\\"start\\":\\"182\\",\\"end\\":\\"185\\",\\"display\\":\\"Nous allons d\\u00E9cider ensemble.\\",\\"ban\\":\\"0\\",\\"src\\":\\"YT\\"}]}';</script>`,
+        )
+      }
+      if (url.includes('youtube.com/oembed')) {
+        return Response.json({ title: 'Débat du soir', author_name: 'Le Média' })
+      }
+      return new Response('', { status: 404 })
+    })
+    const res = await call('q=d%C3%A9cider&lang=fr')
+    expect(res.status).toBe(200)
+    const { clips } = (await res.json()) as { clips: { id: string; title: string; channel: string; start: number; text: string; form: string }[] }
+    expect(clips).toEqual([
+      {
+        id: '4Fx-0Wrw0co',
+        title: 'Débat du soir',
+        channel: 'Le Média',
+        start: 182,
+        end: 186,
+        text: 'Nous allons décider ensemble.',
+        form: 'décider',
+        auto: false,
+      },
+    ])
   })
 
   it('returns the lines of the videos found that hold the word, and caches the answer', async () => {

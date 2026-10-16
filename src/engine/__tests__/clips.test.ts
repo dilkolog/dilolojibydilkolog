@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { embedUrl, findClips, parseTimedCues, splitAround } from '../clips'
+import { embedUrl, findClips, parseInnertubeSearch, parseTimedCues, parseYouglishClips, splitAround } from '../clips'
 
 const XML = `<?xml version="1.0" encoding="utf-8" ?><timedtext format="3"><body>
 <p t="1000" d="2500">Il faut <s>décider</s> maintenant.</p>
@@ -57,3 +57,51 @@ describe('playing a clip', () => {
     expect(splitAround('Elle part', 'décidé')).toEqual(['Elle part', '', ''])
   })
 })
+
+describe('YouGlish and Innertube parsers', () => {
+  it('parses YouGlish params.jsonData with escaped quotes and prioritizes standalone inflections', () => {
+    const html = `<script>params.jsonData = '{\\"results\\":[{\\"vid\\":\\"v4J1hU7XR3w\\",\\"start\\":\\"10\\",\\"end\\":\\"12\\",\\"display\\":\\"Elle a peut-\\u00EAtre raison\\",\\"ban\\":\\"0\\",\\"src\\":\\"YT\\"},{\\"vid\\":\\"abc12345678\\",\\"start\\":\\"23\\",\\"end\\":\\"26\\",\\"display\\":\\"Il faut \\\\\\"\\u00EAtre\\\\\\" l\\\x27ami\\",\\"ban\\":\\"0\\",\\"src\\":\\"YT\\"}]}';</script>`
+    const hits = parseYouglishClips(html, 'être', 'fr')
+    expect(hits).toEqual([
+      {
+        id: 'abc12345678',
+        start: 23,
+        end: 27,
+        text: 'Il faut "être" l\'ami',
+        form: 'être',
+      },
+    ])
+  })
+
+  it('extracts video renderers from Innertube search payload', () => {
+    const tree = {
+      contents: {
+        twoColumnSearchResultsRenderer: {
+          primaryContents: {
+            sectionListRenderer: {
+              contents: [
+                {
+                  itemSectionRenderer: {
+                    contents: [
+                      {
+                        videoRenderer: {
+                          videoId: 'z4t9LLq1Nk0',
+                          title: { runs: [{ text: 'Notre maison' }] },
+                          ownerText: { runs: [{ text: 'Architecture FR' }] },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    }
+    expect(parseInnertubeSearch(tree)).toEqual([
+      { id: 'z4t9LLq1Nk0', title: 'Notre maison', channel: 'Architecture FR' },
+    ])
+  })
+})
+
