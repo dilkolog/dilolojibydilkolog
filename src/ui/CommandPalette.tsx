@@ -4,6 +4,7 @@ import { stripDiacritics } from '../engine/answerCheck'
 import { displayForm } from '../engine/exercises'
 import type { VocabularyEntry } from '../engine/types'
 import { SearchIcon } from './icons'
+import { commandArtIcon } from './paletteArt'
 
 export interface Command {
   id: string
@@ -161,7 +162,7 @@ export function CommandPalette({
                 run(c)
               }}
             >
-              {!c.id.startsWith('word:') && <span className="palette-icon">{c.icon ?? '›'}</span>}
+              {!c.id.startsWith('word:') && <span className="palette-icon">{commandArtIcon(c.id, c.icon) ?? '›'}</span>}
               <span className="palette-label">{c.label}</span>
               {c.hint && <span className="palette-hint">{c.hint}</span>}
               {i === active && (
