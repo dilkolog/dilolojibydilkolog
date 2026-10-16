@@ -338,6 +338,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Anlam farkını kaçırmak: 'Soy aburrido' 'sıkıcı biriyim', 'Estoy aburrido' 'sıkıldım' demektir.",
     ],
     tip: "Ser: ne, kim? (kimlik kartına yazılanlar). Estar: nasıl, nerede? (bugünkü hâl ve adres).",
+    check: [
+      {
+        prompt: "La reunión ___ en la sala tres, pero el director no ___ aquí todavía.",
+        options: ["es / está", "está / es", "es / es"],
+        answer: 0,
+        why: "Bir etkinliğin veya toplantının gerçekleştiği yer 'ser' ile (la reunión es en...), bir kişinin veya nesnenin fiziksel konumu ise 'estar' ile (no está aquí) söylenir.",
+      },
+      {
+        prompt: "¡Prueba esta paella! ___ riquísima.",
+        options: ["Es", "Está", "Sea"],
+        answer: 1,
+        why: "Yiyecek ve içeceklerin lezzetli olduğunu söylerken 'estar rico' kullanılır ('ser rico' zengin/varlıklı olmak demektir).",
+      },
+      {
+        prompt: "Mi hermano ___ muy tranquilo, pero hoy ___ nervioso por el examen.",
+        options: ["está / es", "es / es", "es / está"],
+        answer: 2,
+        why: "Kalıcı karakter özelliği 'ser' (es tranquilo), o anki geçici ruh hâli ise 'estar' (está nervioso) ile anlatılır.",
+      },
+    ],
   },
   {
     topic: "preterito_imperfecto",
@@ -369,6 +389,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Türkçedeki '-di'yi hep indefinido sanmak: 'Çocukken çekingendi' = 'De niño era tímido'.",
     ],
     tip: "Bir film sahnesi düşün: dekor ve fon müziği imperfecto, sahnede patlayan olay indefinido.",
+    check: [
+      {
+        prompt: "Me ___ cuando de repente ___ el teléfono.",
+        options: ["duché / sonaba", "duchaba / sonó", "duchaba / sonaba"],
+        answer: 1,
+        why: "Arka planda sürmekte olan eylem imperfecto (me duchaba), onu bölen ani olay ise indefinido (sonó) ile kurulur.",
+      },
+      {
+        prompt: "De niño, siempre ___ en casa de mis abuelos los domingos.",
+        options: ["comía", "comí", "he comido"],
+        answer: 0,
+        why: "Geçmişteki düzenli alışkanlıklar ('de niño', 'siempre') pretérito imperfecto (comía) ister.",
+      },
+      {
+        prompt: "___ las nueve de la noche cuando llegamos al hotel.",
+        options: ["Fueron", "Eran", "Son"],
+        answer: 1,
+        why: "Geçmişte saat, yaş ve hava durumu betimlemeleri daima imperfecto ile yapılır: Eran las nueve.",
+      },
+    ],
   },
   {
     topic: "comparativos_es",
@@ -400,6 +440,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "En üstün derecede Türkçedeki gibi en kullanmak: 'el más alto en la clase' değil, 'el más alto de la clase'.",
     ],
     tip: "más / menos'un eşi que, tan / tanto'nun eşi como: çiftleri karıştırma.",
+    check: [
+      {
+        prompt: "Este restaurante es tan caro ___ el otro.",
+        options: ["que", "como", "de"],
+        answer: 1,
+        why: "Sıfat ve zarflarla eşitlik karşılaştırması 'tan ... como' kalıbıyla kurulur; 'que' yalnızca más/menos ile kullanılır.",
+      },
+      {
+        prompt: "En la conferencia había más ___ cien personas.",
+        options: ["de", "que", "como"],
+        answer: 0,
+        why: "Olumlu cümlelerde sayılardan önce 'daha fazla / daha az' derken 'que' değil 'más de / menos de' kullanılır.",
+      },
+      {
+        prompt: "Para mí, el tren es ___ que el autobús.",
+        options: ["más bueno", "más mejor", "mejor"],
+        answer: 2,
+        why: "'Bueno' sıfatının karşılaştırma biçimi düzensizdir ve tek başına 'mejor' kullanılır ('más bueno' veya 'más mejor' denmez).",
+      },
+    ],
   },
   {
     topic: "imperativo_es",
@@ -431,6 +491,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Usted'e tú biçimiyle seslenmek: 'Abre, señor' değil, 'Abra, señor'.",
     ],
     tip: "Olumlu: zamir arkada ve bitişik (dímelo). Olumsuz: zamir önde, fiil subjuntivo (no me lo digas).",
+    check: [
+      {
+        prompt: "¡No ___ la ventana, que hace mucho frío!",
+        options: ["abre", "abres", "abras"],
+        answer: 2,
+        why: "Olumsuz emir kipi (tú) daima presente de subjuntivo ile kurulur: abrir → no abras.",
+      },
+      {
+        prompt: "Si te gusta esta camisa, ¡___!",
+        options: ["cómpratela", "te la compra", "cómprate la"],
+        answer: 0,
+        why: "Olumlu emirde nesne zamirleri fiilin sonuna bitişik yazılır ve vurgu işareti eklenir: cómpratela.",
+      },
+      {
+        prompt: "Es un secreto importante; por favor, no ___ a nadie.",
+        options: ["dímelo", "se lo digas", "dígaselo"],
+        answer: 1,
+        why: "Olumsuz emirde zamirler subjuntivo fiilin önüne ve ayrı yazılır; le + lo yan yana gelince 'se lo' olur: no se lo digas.",
+      },
+    ],
   },
   // B1
   {

@@ -331,7 +331,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Sayılamayan isme a/an vermek: 'an advice' değil 'some advice' ya da 'a piece of advice'.",
       "Asıl amacıyla kullanılan kurumlarda the eklememek: 'go to school' (öğrenci olarak gitmek), 'go to the school' (binayı ziyaret etmek); 'go to hospital' (hasta olarak yatmak), 'go to the hospital' (ziyaretçi olarak gitmek)."
     ],
-    tip: "Türkçede 'bir' diyebiliyorsanız a/an, 'o bildiğimiz' diyebiliyorsanız the."
+    tip: "Türkçede 'bir' diyebiliyorsanız a/an, 'o bildiğimiz' diyebiliyorsanız the.",
+    check: [
+      {
+        prompt: "She studies at ___ university in London and wants to become ___ engineer.",
+        options: ["an / an", "a / an", "the / a"],
+        answer: 1,
+        why: "University 'yu' ünsüz sesiyle okunduğu için 'a university', engineer ünlü sesle başladığı ve meslek bildirdiği için 'an engineer' alır."
+      },
+      {
+        prompt: "___ life is much quieter in the countryside.",
+        options: ["The", "A", "— (artikelsiz)"],
+        answer: 2,
+        why: "Sayılamayan soyut kavramlardan (life, music, time) genel anlamda bahsederken artikel kullanılmaz."
+      },
+      {
+        prompt: "My sister plays ___ piano very well.",
+        options: ["the", "a", "— (artikelsiz)"],
+        answer: 0,
+        why: "Müzik aletlerini çalmaktan söz ederken İngilizcede 'the' kullanılır (play the piano / the violin); sporlarda ise artikel gelmez."
+      }
+    ]
   },
   {
     topic: "present_perfect",
@@ -364,7 +384,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "For ile since'i karıştırmak: 'since five years' değil 'for five years'.",
       "Ever ile did kullanmak: 'Did you ever been' değil 'Have you ever been'."
     ],
-    tip: "Cümlede yesterday, ago, last, in 2010 varsa present perfect'i unutun."
+    tip: "Cümlede yesterday, ago, last, in 2010 varsa present perfect'i unutun.",
+    check: [
+      {
+        prompt: "I ___ in this company since 2021.",
+        options: ["work", "have worked", "worked"],
+        answer: 1,
+        why: "Geçmişte başlayıp şu anda hâlâ devam eden durumlar (since + başlangıç yılı) present perfect (have worked) ile anlatılır."
+      },
+      {
+        prompt: "We ___ that documentary last night.",
+        options: ["have watched", "watched", "watch"],
+        answer: 1,
+        why: "Cümlede 'last night' gibi bitmiş, belirli bir geçmiş zaman ifadesi varsa past simple (watched) kullanılır."
+      },
+      {
+        prompt: "Julia isn't at home right now; she ___ to the supermarket.",
+        options: ["has been", "has gone", "went"],
+        answer: 1,
+        why: "Bir yere gidip henüz dönmemiş (şu an hâlâ orada veya yolda) olan kişi için 'has gone to' kullanılır; 'has been to' gidip dönmüş olmayı anlatır."
+      }
+    ]
   },
   // B1
   {
@@ -916,7 +956,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Not until'de yan cümleyi devirmek: devrik olan ana cümledir: 'Not until I got home did I notice'.",
       "Did'den sonra geçmiş fiil: 'Little did he knew' değil 'Little did he know'."
     ],
-    tip: "Cümle başındaki olumsuz ifadeden sonra bir soru sorar gibi devam edin: Never + have I…?"
+    tip: "Cümle başındaki olumsuz ifadeden sonra bir soru sorar gibi devam edin: Never + have I…?",
+    check: [
+      {
+        prompt: "Never ___ such a breathtaking view in my life.",
+        options: ["I have seen", "have I seen", "did I saw"],
+        answer: 1,
+        why: "Olumsuz veya kısıtlayıcı zarf ('Never') cümle başına geldiğinde yardımcı fiil özneden önce gelir: Never have I seen."
+      },
+      {
+        prompt: "___ about the delay, I would have taken an earlier train.",
+        options: ["Had I known", "If had I known", "Did I know"],
+        answer: 0,
+        why: "3. tip koşul cümlesinde 'if' düşürülerek yapılan devrik yapıda 'Had + özne + V3' kullanılır ('If had I known' yanlıştır)."
+      },
+      {
+        prompt: "No sooner had we sat down ___ the fire alarm went off.",
+        options: ["when", "than", "that"],
+        answer: 1,
+        why: "'No sooner ... than' kalıbı karşılaştırma yapısından gelir ve 'than' ile tamamlanır; 'hardly / scarcely' ise 'when' alır."
+      }
+    ]
   },
   {
     topic: "cleft",
@@ -946,7 +1006,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Wh-cleft'te be'yi atlamak: 'What I need a holiday' değil 'What I need is a holiday'.",
       "Kişiyi which ile vurgulamak: 'It was my sister which…' değil 'It was my sister who…'."
     ],
-    tip: "Türkçede vurguyu fiilin hemen önüne koyarsınız; İngilizcede 'It was … that' çerçevesine koyun."
+    tip: "Türkçede vurguyu fiilin hemen önüne koyarsınız; İngilizcede 'It was … that' çerçevesine koyun.",
+    check: [
+      {
+        prompt: "It was in Madrid ___ they first met ten years ago.",
+        options: ["what", "that", "which"],
+        answer: 1,
+        why: "It-cleft ('It was ...') yapısında zaman veya yer vurgulanırken 'that' kullanılır ('what' veya 'which' gelmez)."
+      },
+      {
+        prompt: "What I really need right now ___ a cup of strong coffee.",
+        options: ["is", "are", "that is"],
+        answer: 0,
+        why: "Wh-cleft ('What + özne + fiil') yapısında vurgulanan tekil ögeden önce tekil 'be' fiili (is/was) gelir."
+      },
+      {
+        prompt: "It was my older sister ___ taught me how to swim.",
+        options: ["which", "who", "what"],
+        answer: 1,
+        why: "It-cleft yapısında bir kişi vurgulanırken 'who' (veya 'that') kullanılır; 'which' ve 'what' kişi için kullanılmaz."
+      }
+    ]
   },
   {
     topic: "subjunctive",
@@ -977,6 +1057,26 @@ export const EN_LESSONS: TopicLesson[] = [
       "Be'yi çekimlemek: 'that everyone is informed' resmî dilde 'that everyone be informed'.",
       "Suggest'ten sonra to: 'I suggest him to go' değil 'I suggest that he go'."
     ],
-    tip: "That'ten sonra fiili sözlükteki hâliyle bırakın: ne -s, ne -ed, ne do."
+    tip: "That'ten sonra fiili sözlükteki hâliyle bırakın: ne -s, ne -ed, ne do.",
+    check: [
+      {
+        prompt: "The committee recommended that the director ___ immediately.",
+        options: ["resigns", "resign", "to resign"],
+        answer: 1,
+        why: "Recommend, suggest, demand gibi fiillerden sonra gelen 'that' yan cümlesinde subjunctive (çekimsiz yalın fiil: resign) kullanılır."
+      },
+      {
+        prompt: "It is essential that every applicant ___ on time for the interview.",
+        options: ["be", "is", "will be"],
+        answer: 0,
+        why: "'It is essential / vital that...' yapısından sonra 'be' fiili çekimlenmeden yalın 'be' olarak kalır."
+      },
+      {
+        prompt: "The lawyer insisted that his client ___ anything without counsel.",
+        options: ["doesn't sign", "didn't sign", "not sign"],
+        answer: 2,
+        why: "Subjunctive yapısının olumsuzu yardımcı fiil (do/does/did) almadan doğrudan 'not + yalın fiil' (not sign) ile kurulur."
+      }
+    ]
   }
 ]

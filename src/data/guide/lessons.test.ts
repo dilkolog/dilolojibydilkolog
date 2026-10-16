@@ -42,6 +42,7 @@ describe('guide lessons', () => {
 describe('lesson checks', () => {
   it('have three or four different options and exactly one right answer', () => {
     for (const l of TOPIC_LESSONS) {
+      expect(l.check?.length, l.topic).toBeGreaterThanOrEqual(3)
       for (const c of l.check ?? []) {
         expect(c.prompt.trim() && c.why.trim(), l.topic).toBeTruthy()
         expect(c.options.length, `${l.topic}: ${c.prompt}`).toBeGreaterThanOrEqual(3)

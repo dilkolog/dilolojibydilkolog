@@ -500,6 +500,23 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `colloc_es` (B1 - 3 soru): `tener éxito` (başarılı olmak), `hacer una pregunta` (soru sormak), `dar un paseo` (yürüyüş yapmak).
     - `se_pasivo` (B2 - 3 soru): çoğul nesneyle `se pasiva refleja` uyumu (`se venden`), tekil nesne uyumu (`se habla`), insan nesnesiyle `se impersonal` (`se busca a los culpables`).
     - `estilo_indirecto` (B2 - 3 soru): geçmiş aktarımda `presente -> imperfecto` (`estaba`), `pretérito -> pluscuamperfecto` (`había perdido`), emir kipinden `imperfecto de subjuntivo`ya geçiş (`cerrara`).
+- [x] **Gece Bakım Turu 20 — Rehber A2/C1 İnteraktif Pekiştirme Sınavları & %100 Ders Kapsamı (#381):**
+  - Rehberde daha önce kendi özel mini sınavı bulunmayan son 12 ders (3 Fransızca A2, 4 İspanyolca A2, 2 İngilizce A2 ve 3 İngilizce C1) için de 3'er soruluk (toplam 36 soru) pedagojik açıklamalı interaktif pekiştirme sınavları (`check`) eklendi; böylece 144 rehber dersinin tamamı (%100) özel pekiştirme sınavına kavuştu ve `src/data/guide/lessons.test.ts` içinde her dersin en az 3 soruluk `check` dizisine sahip olması zorunlu kılındı:
+    - Fransızca A2 (`lessons-fr.ts`):
+      - `articles_quantite` (3 soru): sayılamayan isimlerle `du / de la`, olumsuzda `ne ... plus de`, miktar zarfıyla `beaucoup de`.
+      - `passe_imparfait` (3 soru): kesilen eylemde `imparfait` (`dormais`), geçmiş alışkanlıkta `imparfait` (`allions`), belirli süreli bitmiş eylemde `passé composé` (`ai étudié`).
+      - `negation_fr` (3 soru): birleşik zamanda `vu personne` dizilimi, `pas` koruyan `ne ... pas encore`, kısıtlama bildiren `ne ... que` ve partitif korunumu.
+    - İspanyolca A2 (`lessons-es.ts`):
+      - `ser_estar` (3 soru): etkinlik yeri `ser` vs kişi konumu `estar`, yiyecek lezzetinde `estar rico`, kalıcı karakter `ser` vs anlık ruh hâli `estar`.
+      - `preterito_imperfecto` (3 soru): süren eylem `duchaba` vs bölen olay `sonó`, çocukluk alışkanlığı `comía`, geçmiş saat betimlemesi `eran las nueve`.
+      - `comparativos_es` (3 soru): eşitlik `tan ... como`, sayıdan önce `más de`, düzensiz karşılaştırma `mejor`.
+      - `imperativo_es` (3 soru): olumsuz `tú` emrinde `subjuntivo` (`no abras`), olumlu emirde bitişik zamir ve vurgu (`cómpratela`), olumsuz emirde önde zamir (`no se lo digas`).
+    - İngilizce A2 & C1 (`lessons-en.ts`):
+      - `articles_en` (A2 - 3 soru): okunuşa göre `a university / an engineer`, soyut genel isimde artikelsiz kullanım (`Life`), müzik aletleriyle `play the piano`.
+      - `present_perfect` (A2 - 3 soru): `since` ile süregelen durum (`have worked`), belirli geçmiş zamanda `past simple` (`watched`), `has gone to` vs `has been to` ayrımı.
+      - `inversion` (C1 - 3 soru): `Never have I seen`, 3. tip koşulda `if`siz devriklik (`Had I known`), `No sooner ... than` kalıbı.
+      - `cleft` (C1 - 3 soru): yer vurgusunda `It was ... that`, `Wh-cleft` tekil fiil uyumu (`What I need is`), kişi vurgusunda `It was ... who`.
+      - `subjunctive` (C1 - 3 soru): `recommend that ... resign`, `It is essential that ... be`, yardımcı fiilsiz olumsuz `that ... not sign`.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
