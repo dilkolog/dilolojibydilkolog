@@ -512,6 +512,7 @@ details[open] > summary { margin-bottom: 1rem; }
 .icon-flame { color: var(--flame); }
 .icon-star { color: var(--gold-text); }
 .icon-book { color: var(--lang); }
+.stat-art-img { display: inline-block; width: auto; object-fit: contain; flex: none; vertical-align: middle; }
 @media (max-width: 26rem) { .stat-value { font-size: var(--t-lg); } .stat { padding: 0.75rem; } }
 
 .tiles { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr)); }
@@ -3279,7 +3280,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
 :is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
-  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art) {
+  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art, .stat-art-img) {
   filter: var(--art-edge);
 }
 

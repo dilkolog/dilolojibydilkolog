@@ -100,17 +100,28 @@ export async function addFriend(id: string, code: string): Promise<'ok' | 'unkno
   const owner = await store.ownerOf(code)
   if (!owner) return 'unknown'
   if (owner === id) return 'self'
-  const codes = await store.follows(id)
+  const [codes, myCard] = await Promise.all([store.follows(id), ownCard(id)])
   if (codes.includes(code)) return 'ok'
   if (codes.length >= MAX_FRIENDS) return 'full'
   await store.follow(id, code, codes)
+  // Mutual friendship: also follow back so the friend sees the learner immediately
+  if (myCard?.code) {
+    const ownerCodes = await store.follows(owner)
+    if (!ownerCodes.includes(myCard.code) && ownerCodes.length < MAX_FRIENDS) {
+      await store.follow(owner, myCard.code, ownerCodes)
+    }
+  }
   return 'ok'
 }
 
 export async function removeFriend(id: string, code: string): Promise<void> {
   const store = await friendStore()
-  const codes = await store.follows(id)
+  const [codes, owner, myCard] = await Promise.all([store.follows(id), store.ownerOf(code), ownCard(id)])
   if (codes.includes(code)) await store.unfollow(id, code, codes)
+  if (owner && myCard?.code) {
+    const ownerCodes = await store.follows(owner)
+    if (ownerCodes.includes(myCard.code)) await store.unfollow(owner, myCard.code, ownerCodes)
+  }
 }
 
 /** A card as a friend sees it, "today" and "this week" by the reader's own date. */
@@ -123,8 +134,22 @@ export function viewOf(card: FriendCard, today: string): FriendView {
 /** The account's own card and those of whom it follows (a code whose card is gone is left out). */
 export async function friendsOf(id: string, today: string): Promise<{ me: FriendView; friends: FriendView[] }> {
   const store = await friendStore()
-  const [me, codes] = await Promise.all([ownCard(id), store.follows(id)])
-  const cards = await store.cardsOf(codes)
+  const me = await ownCard(id)
+  const [following, followers] = await Promise.all([
+    store.follows(id),
+    store.followers ? store.followers(me.code).catch(() => [] as string[]) : Promise.resolve([] as string[]),
+  ])
+  // Merge both directions so if a friend added me, I see them even before explicitly adding them back
+  const merged = [...new Set([...following, ...followers])].filter((c) => c !== me.code).slice(0, MAX_FRIENDS)
+
+  // Asynchronously backfill follow relationship for any follower not yet in following list
+  for (const fCode of followers) {
+    if (!following.includes(fCode) && following.length < MAX_FRIENDS) {
+      void store.follow(id, fCode, following).catch(() => undefined)
+    }
+  }
+
+  const cards = await store.cardsOf(merged)
   return { me: viewOf(me, today), friends: cards.filter((c) => !!c?.code).map((c) => viewOf(c, today)) }
 }
 
@@ -144,6 +169,7 @@ export interface FriendStore {
   /** Cards for the codes, in their order (unknown codes left out). */
   cardsOf(codes: string[]): Promise<FriendCard[]>
   follows(id: string): Promise<string[]>
+  followers?(code: string): Promise<string[]>
   follow(id: string, code: string, current: string[]): Promise<void>
   unfollow(id: string, code: string, current: string[]): Promise<void>
   forget(id: string): Promise<void>
@@ -191,8 +217,23 @@ export const blobFriends: FriendStore = {
     return cards.filter((c): c is FriendCard => !!c?.code)
   },
   follows: async (id) => (await readJson<{ codes?: string[] }>(followPath(id)))?.codes?.filter((c) => CODE.test(c)) ?? [],
-  follow: (id, code, current) => writeJson(followPath(id), { codes: [...current, code] }),
-  unfollow: (id, code, current) => writeJson(followPath(id), { codes: current.filter((c) => c !== code) }),
+  followers: async (code) => (await readJson<{ codes?: string[] }>(`friends/follower/${code}.json`))?.codes?.filter((c) => CODE.test(c)) ?? [],
+  async follow(id, code, current) {
+    await writeJson(followPath(id), { codes: [...current, code] })
+    const followers = (await readJson<{ codes?: string[] }>(`friends/follower/${code}.json`))?.codes ?? []
+    const me = await readJson<FriendCard>(cardPath(id))
+    if (me?.code && !followers.includes(me.code)) {
+      await writeJson(`friends/follower/${code}.json`, { codes: [...followers, me.code] })
+    }
+  },
+  async unfollow(id, code, current) {
+    await writeJson(followPath(id), { codes: current.filter((c) => c !== code) })
+    const followers = (await readJson<{ codes?: string[] }>(`friends/follower/${code}.json`))?.codes ?? []
+    const me = await readJson<FriendCard>(cardPath(id))
+    if (me?.code && followers.includes(me.code)) {
+      await writeJson(`friends/follower/${code}.json`, { codes: followers.filter((c) => c !== me.code) })
+    }
+  },
   async forget(id) {
     const card = await readJson<FriendCard>(cardPath(id)).catch(() => null)
     await Promise.all([removeBlob(cardPath(id)), removeBlob(followPath(id)), card?.code ? removeBlob(codePath(card.code)) : Promise.resolve()])
@@ -237,6 +278,13 @@ export const tableFriends: FriendStore = {
     return codes.map((c) => found.find((r) => r.code === c)).filter((r): r is CardRow => !!r).map(cardOfRow)
   },
   follows: async (id) => (await rows<{ code: string }>(`friend_follows?sync_id=${eq(id)}&select=code&order=created_at.asc`)).map((r) => r.code).filter((c) => CODE.test(c)),
+  followers: async (code) => {
+    const followerRows = await rows<{ sync_id: string }>(`friend_follows?code=${eq(code)}&select=sync_id`)
+    if (!followerRows.length) return []
+    const ids = [...new Set(followerRows.map((r) => r.sync_id))]
+    const cards = await rows<{ code: string }>(`friend_cards?sync_id=in.(${ids.map(eq).join(',')})&select=code`)
+    return cards.map((c) => c.code).filter((c) => CODE.test(c))
+  },
   follow: async (id, code) => void (await upsert('friend_follows', 'sync_id,code', { sync_id: id, code }, true)),
   unfollow: async (id, code) => void (await write(`friend_follows?sync_id=${eq(id)}&code=${eq(code)}`, { method: 'DELETE', headers: { prefer: 'return=minimal' } })),
   async forget(id) {

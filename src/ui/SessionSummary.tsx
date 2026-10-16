@@ -11,7 +11,7 @@ import type { SessionSummary } from '../engine/session'
 import { type VocabularyEntry } from '../engine/types'
 import { MASTERY_STAGES } from '../engine/mastery'
 
-import { BoltIcon, BulbIcon, CheckIcon, CloseIcon, SproutIcon, StarIcon } from './icons'
+import { BoltIcon, BulbIcon, CheckIcon, CloseIcon } from './icons'
 import { ERROR_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 
@@ -30,7 +30,7 @@ import { StreakPicture } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
 import { shareCard } from './shareCard'
-import { RESULT_ART, resultKind } from './drawnArt'
+import { RESULT_ART, STAT_ART, resultKind } from './drawnArt'
 import { Sticker } from './Sticker'
 
 function hardHeadline(accuracy: number): string {
@@ -163,13 +163,13 @@ export function Summary({
             </div>
             <div>
               <dd>
-                <SproutIcon className="stat-icon is-sprout" size={20} /> {summary.introduced.length}
+                <img className="stat-art-img" src={STAT_ART.sprout} alt="" height={36} width={36} draggable={false} /> {summary.introduced.length}
               </dd>
               <dt>yeni kelime</dt>
             </div>
             <div>
               <dd>
-                <StarIcon className="icon-star" size={20} /> {practice ? 0 : summary.strengthened.length}
+                <img className="stat-art-img" src={STAT_ART.star} alt="" height={36} width={36} draggable={false} /> {practice ? 0 : summary.strengthened.length}
               </dd>
               <dt>güçlenen</dt>
             </div>

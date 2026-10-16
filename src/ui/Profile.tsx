@@ -7,18 +7,18 @@ import { Avatar } from './Avatar'
 import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, EARNED_AVATARS, avatarNeed, drawnAvatarName } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, SmileIcon, SproutIcon, StarIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, SmileIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
 import { BadgeMedal } from './Medal'
-import { StreakFlame } from './StreakFlame'
+import { StreakPicture } from './StreakFlame'
 import { localDate } from '../engine/progress'
 import { bannerOf, daysUntil, frameOf, pinnedBadges, titleName, type Unlockables } from '../engine/profileStyle'
 import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
-import { CATEGORY_EMBLEM, EMBLEM, levelMonki } from './drawnArt'
+import { CATEGORY_EMBLEM, EMBLEM, STAT_ART, levelMonki } from './drawnArt'
 import { showToast } from './toastFeed'
 
 /** The glyph avatars; the animals Monki's set draws (fox, panda, owl, octopus, penguin, koala) are not repeated as emoji. */
@@ -196,9 +196,9 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         <>
           <div className="profile-overview">
             <section className="stat-grid profile-stats">
-              <Stat value={<><StreakFlame streak={game.streak} frozen={game.frozenYesterday} /> {game.streak}</>} label="günlük seri" />
-              <Stat value={<><StarIcon className="icon-star" size={20} /> {game.stats.mastered}</>} label="oturan kelime" />
-              <Stat value={<><SproutIcon className="stat-icon is-sprout" size={20} /> {game.stats.wordsIntroduced}</>} label="öğrenilen kelime" />
+              <Stat value={<><StreakPicture streak={game.streak} size={24} /> {game.streak}</>} label="günlük seri" />
+              <Stat value={<><img className="stat-art-img" src={STAT_ART.star} alt="" height={22} width={22} draggable={false} /> {game.stats.mastered}</>} label="oturan kelime" />
+              <Stat value={<><img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> {game.stats.wordsIntroduced}</>} label="öğrenilen kelime" />
               <Stat value={<><CheckCircleIcon className="stat-icon is-answers" size={20} /> {game.stats.totalAnswers.toLocaleString('tr-TR')}</>} label="cevap" />
             </section>
             <ActivityMini
