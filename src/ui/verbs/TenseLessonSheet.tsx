@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { TENSE_LESSON } from '../../data/tenseLesson'
 import type { Tense } from '../../engine/tenses'
-import { CloseIcon, InfoIcon } from '../icons'
+import { CloseIcon, InfoIcon, SpeakerIcon } from '../icons'
+import { speak } from '../speech'
 import { tenseName, type LabLanguage } from './labShared'
 
 /**
@@ -22,7 +23,7 @@ export function TenseInfoButton({ language, tense }: { language: LabLanguage; te
   )
 }
 
-export function TenseLessonSheet({ language, tense, onClose }: { language: LabLanguage; tense: Tense; onClose: () => void }) {
+export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { language: LabLanguage; tense: Tense; onClose: () => void; onVerbs?: () => void }) {
   const guide = TENSE_LESSON[tense]
   const closeRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
@@ -74,6 +75,9 @@ export function TenseLessonSheet({ language, tense, onClose }: { language: LabLa
           <ul className="tg-examples">
             {guide.examples.map((x) => (
               <li key={x.text}>
+                <button type="button" className="icon-btn icon-btn-sm" onClick={() => speak(x.text, language)} aria-label={`Dinle: ${x.text}`}>
+                  <SpeakerIcon size={16} />
+                </button>
                 <span className="tg-ex" lang={language}>
                   {x.text}
                 </span>
@@ -97,6 +101,13 @@ export function TenseLessonSheet({ language, tense, onClose }: { language: LabLa
           <p className="small muted">
             <strong>Türkçede:</strong> {guide.turkish}
           </p>
+        )}
+        {onVerbs && (
+          <div className="row">
+            <button type="button" className="btn" onClick={onVerbs}>
+              Fiil laboratuvarında çalış
+            </button>
+          </div>
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ import {
   checkFor,
   englishTenseLessons,
   lessonFor,
+  lessonTense,
   lessonTitle,
   lessonsOf,
   practiceTopic,
@@ -47,6 +48,15 @@ describe('lessonOf utilities', () => {
     const lesson = lessonFor('es', 'subjuntivo')
     expect(lesson).toBeDefined()
     expect(practiceTopic(lesson!)).toBe(lesson!.practice ?? lesson!.topic)
+  })
+
+  it('maps French and Spanish verb lessons to their verb-lab tense', () => {
+    expect(lessonTense(lessonFor('fr', 'subjonctif')!)).toBe('subjonctif')
+    expect(lessonTense(lessonFor('fr', 'basics_fr_passe_compose')!)).toBe('passe-compose')
+    expect(lessonTense(lessonFor('es', 'imperativo_es')!)).toBe('imperativo')
+    expect(lessonTense(lessonFor('es', 'basics_es_pluscuamperfecto')!)).toBe('pluscuamperfecto')
+    expect(lessonTense(lessonFor('fr', 'basics_fr_articles')!)).toBeUndefined()
+    expect(lessonTense(lessonFor('en', 'present_perfect')!)).toBeUndefined()
   })
 
   it('returns english tense lessons in chronological order', () => {
