@@ -163,6 +163,7 @@ export const EN_LESSONS: TopicLesson[] = [
       "Some çoğunlukla olumlu cümlede, any olumsuz ve soru cümlesinde: I have some milk. Is there any milk?",
       "Many sayılabilir çoğulla, much sayılamayanla: many books, much time. Olumlu cümlede 'a lot of' daha doğaldır.",
       "A few (birkaç) sayılabilirle, a little (biraz) sayılamayanla kullanılır.",
+      "Few / little ile a few / a little farkı: 'a' eki olumlu bir tondur (a few / a little = az da olsa var, yeterli; few / little = neredeyse hiç yok, yetersiz).",
       "Sayıdan sonra isim çoğul olur: two apples, three years."
     ],
     examples: [
@@ -170,12 +171,14 @@ export const EN_LESSONS: TopicLesson[] = [
       { text: "Can you give me some advice?", tr: "Bana biraz tavsiye verebilir misin?" },
       { text: "We don't have any bread left.", tr: "Hiç ekmeğimiz kalmadı." },
       { text: "How much money did you spend?", tr: "Ne kadar para harcadın?" },
-      { text: "I have a few friends in London.", tr: "Londra'da birkaç arkadaşım var." }
+      { text: "I have a few friends in London.", tr: "Londra'da birkaç arkadaşım var." },
+      { text: "He has few friends and feels lonely.", tr: "Neredeyse hiç arkadaşı yok ve kendini yalnız hissediyor ('few' olumsuz yetersizlik bildirir)." }
     ],
     watch: [
       "Türkçede sayıdan sonra isim tekil kaldığı için: 'two year' değil 'two years'.",
       "Sayılamayanı çoğul yapmak: 'informations', 'advices', 'furnitures' yanlış.",
       "People'ı tekil saymak: 'People is' değil 'People are'.",
+      "Few ile a few arasındaki farkı kaçırmak: 'I have few friends' (neredeyse hiç yok, yalnızım) ile 'I have a few friends' (birkaç tane var, yeterli) farklı hissettirir.",
       "Much ile sayılabilir isim: 'much friends' değil 'many friends'."
     ],
     tip: "'How many?' sorusuna sayıyla cevap verebiliyorsanız isim sayılabilirdir.",
@@ -534,7 +537,8 @@ export const EN_LESSONS: TopicLesson[] = [
       "Should: tavsiye; 'If I were you, I would…' da tavsiye kalıbıdır.",
       "Olasılık: must be (kesin olmalı), might / may / could be (olabilir), can't be (olamaz).",
       "Geçmişe çıkarım: must have + V3 (-miş olmalı), can't have + V3 (-miş olamaz).",
-      "Geçmişteki genel yetenek could ile: I could swim when I was five."
+      "Geçmişteki genel yetenek could ile: I could swim when I was five.",
+      "Must'ın geçmiş biçimi yoktur; geçmişteki zorunluluk için daima had to kullanılır: I had to wake up early yesterday."
     ],
     examples: [
       { text: "You must wear a seat belt in the car.", tr: "Arabada emniyet kemeri takmak zorundasın." },
@@ -542,12 +546,14 @@ export const EN_LESSONS: TopicLesson[] = [
       { text: "You don't have to come if you're busy.", tr: "Meşgulsen gelmek zorunda değilsin." },
       { text: "She isn't answering; she might be in a meeting.", tr: "Cevap vermiyor; toplantıda olabilir." },
       { text: "That can't be true.", tr: "Bu doğru olamaz." },
+      { text: "I was late because I had to wait for the bus.", tr: "Geç kaldım çünkü otobüs beklemek zorundaydım." },
       { text: "The lights are off. They must have left already.", tr: "Işıklar kapalı. Çoktan çıkmış olmalılar." }
     ],
     watch: [
       "Modaldan sonra to: 'I must to go' değil 'I must go'.",
       "Üçüncü tekilde -s: 'She cans' ya da 'He musts' yanlış.",
       "Mustn't'ı 'gerek yok' sanmak: mustn't yasak; gerek yoksa 'don't have to'.",
+      "Geçmiş zorunlulukta must kullanmak: 'Yesterday I must work' değil 'Yesterday I had to work'.",
       "Geçmiş çıkarımda had: 'must had left' değil 'must have left'."
     ],
     tip: "Mustn't = yapma! Don't have to = istersen yapma."

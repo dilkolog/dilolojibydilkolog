@@ -665,20 +665,23 @@ export const ES_LESSONS: TopicLesson[] = [
       "a: aprender a, empezar a, ayudar a, parecerse a (benzemek), acostumbrarse a (alışmak), oler a (gibi kokmak).",
       "Edat + el birleşir: de + el = del, a + el = al: Me quejé del servicio. Me acostumbré al horario.",
       "Edattan sonra fiil hep mastardır: Trato de entenderlo. Tardó en contestar.",
+      "Kişisel 'a' (a personal): Doğrudan nesne belirli bir insan veya evcil hayvansa önüne mutlaka 'a' gelir: Busco a mi hermano, Veo a Ana; cansız nesnelerde edat kullanılmaz: Veo una película."
     ],
     examples: [
       { text: "Sueño con viajar por todo el mundo.", tr: "Bütün dünyayı gezmeyi hayal ediyorum." },
       { text: "Siempre pienso en ti.", tr: "Hep seni düşünüyorum." },
       { text: "No me acuerdo de su nombre.", tr: "Adını hatırlamıyorum." },
+      { text: "Ayer vi a tu hermano en el centro.", tr: "Dün merkezde kardeşini gördüm (belirli kişi nesnesi olduğu için 'a tu hermano')." },
       { text: "Todo depende del precio.", tr: "Her şey fiyata bağlı." },
       { text: "Me casé con ella en 2020.", tr: "Onunla 2020'de evlendim." },
-      { text: "Tu hijo se parece mucho a ti.", tr: "Oğlun sana çok benziyor." },
+      { text: "Tu hijo se parece mucho a ti.", tr: "Oğlun sana çok benziyor." }
     ],
     watch: [
       "Türkçedeki hâl ekini çevirmek: '-e âşık olmak' 'enamorarse a' değil 'enamorarse de'; '-e güvenmek' 'confiar a' değil 'confiar en'.",
+      "Kişisel 'a'yı unutmak: 'Veo mi madre' değil 'Veo a mi madre' (belirli bir insan doğrudan nesne olduğunda 'a' edatı gelir).",
       "pensar en ile pensar de'yi karıştırmak: pensar en 'aklından geçirmek', ¿Qué piensas de…? '… hakkında ne düşünüyorsun?'",
       "acordarse'de edatı atlamak: 'Me acuerdo tu cumpleaños' değil 'Me acuerdo de tu cumpleaños' (recordar ise edatsızdır: Recuerdo tu cumpleaños).",
-      "de + el'i ayrı yazmak: 'de el servicio' değil, 'del servicio'.",
+      "de + el'i ayrı yazmak: 'de el servicio' değil, 'del servicio'."
     ],
     tip: "Her yeni fiili edatıyla tek bir kelime gibi kaydet: soñar con, pensar en, acordarse de.",
   },

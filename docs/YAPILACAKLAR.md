@@ -403,6 +403,12 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/ui/guideProgress.test.ts`: Rehber derslerinin okundu (`markRead`), öğrenildi (`markChecked`) ve ertelendi (`markPutOff`) durumlarının yönetimi, yerel depolama ve eski dizi biçiminden göç.
     - `src/ui/tenseStats.test.ts`: 90 günlük fiil çekim istatistiklerinden en zayıf zamanın (`weakestTense`) tespiti (asgari 3 cevap ve <%80 başarı eşiği).
     - `src/ui/dictSentences.test.ts`: Sözlük örnek cümlelerinin 30 günlük yerel önbellek (`MAX_AGE`) ve paket yedeği (`examplesFromPack`) yönetimi.
+- [x] **Gece Bakım Turu 7 — Rehber Pedagojik Zenginleştirmesi (2. Dalga, #368):**
+  - İspanyolca (`lessons-es.ts` - `prep_es`): Kişisel 'a' (`a personal`) kuralı (belirli bir insan/evcil hayvan doğrudan nesne olduğunda 'a' edatı gelmesi: `Busco a mi hermano` vs `Busco mi teléfono`), yeni örnek ve dikkat uyarısı.
+  - Fransızca (`lessons-fr.ts` - `participe_passe`): « en » zamirinin doğrudan nesne gibi görünmesine rağmen geçmiş zaman ortacında asla uyum (`accord`) almaması kuralı (`J'en ai cueilli` - `cueillies` değil), yeni örnek ve sınav uyarısı.
+  - İngilizce (`lessons-en.ts`):
+    - `basics_en_plurals_quantifiers`: `few` (olumsuz, neredeyse hiç yok) vs `a few` (olumlu, az da olsa var) ve `little` vs `a little` ayrımı, örneği ve dikkat uyarısı.
+    - `modals_en`: `must` modalının geçmiş zamanının olmaması, geçmiş zorunluluk için daima `had to` kullanılması kuralı ve uyarısı (`Yesterday I had to work`).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 

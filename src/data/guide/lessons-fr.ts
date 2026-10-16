@@ -661,15 +661,17 @@ export const FR_LESSONS: TopicLesson[] = [
       { text: "Elles sont arrivées en retard.", tr: "Geç geldiler." },
       { text: "Les lettres que j'ai écrites hier sont parties ce matin.", tr: "Dün yazdığım mektuplar bu sabah gönderildi." },
       { text: "Ta valise ? Je l'ai mise dans la voiture.", tr: "Bavulun mu? Onu arabaya koydum." },
+      { text: "— Tu as cueilli des cerises ? — Oui, j'en ai cueilli deux kilos.", tr: "— Kiraz topladın mı? — Evet, iki kilo topladım ('en' ile ortaç uyum yapmaz)." },
       { text: "Marie s'est lavé les mains avant le dîner.", tr: "Marie akşam yemeğinden önce ellerini yıkadı." },
       { text: "Ces deux amies se sont embrassées à la gare.", tr: "Bu iki arkadaş garda öpüştü." },
-      { text: "La décision a été prise à l'unanimité.", tr: "Karar oybirliğiyle alındı." },
+      { text: "La décision a été prise à l'unanimité.", tr: "Karar oybirliğiyle alındı." }
     ],
     watch: [
       "Türkçede uyum yok; avoir'lı cümlede nesne öne geçince (que, le, la, les) uyumu unutma: « les robes qu'elle a achetées ».",
       "Tersine, avoir'da nesne arkadayken uyum yapma: « elle a acheté des robes », « achetées des robes » değil.",
+      "« en » zamirinde uyum tuzağı: « en » doğrudan nesne gibi görünse de ortaç onunla ASLA uyum yapmaz: « Des fraises ? J'en ai mangé » (« mangées » değil!).",
       "Dönüşlüde nesnenin yerine bak: « elle s'est lavée » ama « elle s'est lavé les cheveux ».",
-      "Uyum çoğu zaman duyulmaz, ama bazı ortaçlarda duyulur: mis / mise, pris / prise, écrit / écrite; bunlarda hata kulağa da batar.",
+      "Uyum çoğu zaman duyulmaz, ama bazı ortaçlarda duyulur: mis / mise, pris / prise, écrit / écrite; bunlarda hata kulağa da batar."
     ],
     tip: "avoir'lı cümlede « neyi? » diye sor: cevap fiilden önce yazıldıysa ortaç ona uyar, sonra geliyorsa uymaz.",
   },
