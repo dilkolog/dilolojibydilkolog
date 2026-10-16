@@ -346,6 +346,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "Olumsuzdaki de kuralı être'de geçerli değil: « Ce n'est pas du vin, c'est du jus ».",
     ],
     tip: "Türkçede başına « biraz » koyabiliyorsan (biraz su, biraz cesaret) Fransızcada partitif gelir.",
+    check: [
+      {
+        prompt: "Le matin, je prends ___ pain avec ___ confiture.",
+        options: ["du / de la", "de / de", "le / la"],
+        answer: 0,
+        why: "Belirsiz miktarda sayılamayan isimlerle partitif artikel kullanılır: eril pain için du, dişil confiture için de la.",
+      },
+      {
+        prompt: "Il n'y a plus ___ lait dans le frigo.",
+        options: ["du", "de", "le"],
+        answer: 1,
+        why: "Olumsuz cümlelerde (ne ... pas, ne ... plus, ne ... jamais) partitif artikeller (du, de la, des) 'de'ye dönüşür.",
+      },
+      {
+        prompt: "Elle a acheté beaucoup ___ livres pour ses vacances.",
+        options: ["des", "de", "les"],
+        answer: 1,
+        why: "Miktar zarflarından (beaucoup, peu, trop, assez) sonra çoğul isim gelse bile 'des' değil yalnızca 'de' kullanılır.",
+      },
+    ],
   },
   {
     topic: "passe_imparfait",
@@ -379,6 +399,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "« pendant deux heures » süresi belli, bitmiş bir eylemdir; Türkçede « izliyordum » desen bile passé composé kullanılır."
     ],
     tip: "Bir film sahnesi düşün: dekor ve süren hareket imparfait, kameranın yakaladığı ani olay passé composé.",
+    check: [
+      {
+        prompt: "Je ___ quand le téléphone a sonné.",
+        options: ["ai dormi", "dormais", "dors"],
+        answer: 1,
+        why: "Araya giren tekil olayda (a sonné) arka planda sürmekte olan eylem imparfait (dormais) ile anlatılır.",
+      },
+      {
+        prompt: "Quand j'étais enfant, nous ___ à la campagne tous les étés.",
+        options: ["allions", "sommes allés", "allons"],
+        answer: 0,
+        why: "Geçmişte tekrarlanan alışkanlıklar ('tous les étés') imparfait (allions) ile ifade edilir.",
+      },
+      {
+        prompt: "Hier soir, j'___ pendant trois heures d'affilée.",
+        options: ["étudiais", "ai étudié", "étudie"],
+        answer: 1,
+        why: "Başı ve sonu belirli, tamamlanmış süre bildiren ('pendant trois heures') geçmiş eylemler passé composé alır.",
+      },
+    ],
   },
   {
     topic: "negation_fr",
@@ -414,6 +454,26 @@ export const FR_LESSONS: TopicLesson[] = [
       "aucun isme uyar ve çoğul olmaz: « aucune idée », « aucunes idées » değil.",
     ],
     tip: "pas'ın yerine geçen her sözcük kendi anlamını getirir: plus = artık, jamais = asla, rien = hiçbir şey, personne = kimse. Onları pas ile birlikte kullanma.",
+    check: [
+      {
+        prompt: "Hier soir, je n'ai ___ dans la rue.",
+        options: ["personne vu", "vu personne", "pas vu personne"],
+        answer: 1,
+        why: "Birleşik zamanlarda 'personne' geçmiş zaman ortacından (vu) sonra gelir ve 'pas' ile birlikte kullanılmaz.",
+      },
+      {
+        prompt: "Le train n'est ___ arrivé à la gare.",
+        options: ["encore", "pas encore", "plus encore"],
+        answer: 1,
+        why: "'Henüz değil' anlamındaki 'ne ... pas encore' kalıbı, diğer olumsuzlukların aksine 'pas' sözcüğünü korur.",
+      },
+      {
+        prompt: "Il ne boit ___ de l'eau pendant le repas.",
+        options: ["que", "pas", "plus"],
+        answer: 0,
+        why: "'ne ... que' kısıtlama ('yalnızca') bildirir; tam olumsuzluk olmadığı için arkasındaki partitif artikel (de l'eau) değişmeden kalır.",
+      },
+    ],
   },
 
   // ---------------------------------------------------------------- B1
