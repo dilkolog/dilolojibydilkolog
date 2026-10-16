@@ -1,0 +1,206 @@
+[
+  {
+    "id": "fr-subjonctif-22",
+    "language": "fr",
+    "level": "B2",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "Bien que le chemin ___ long et escarpé, ils ont continué leur marche.",
+    "answer": "soit",
+    "options": [
+      "soit",
+      "est",
+      "sera"
+    ],
+    "hint": "bien que + subjonctif présent",
+    "explanation": "Zıtlık bildiren « bien que » bağlacı daima subjonctif ister: être fiilinin il için çekimi « soit » biçimindedir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-subjonctif-23",
+    "language": "fr",
+    "level": "B1",
+    "topic": "subjonctif",
+    "type": "choice",
+    "prompt": "Je doute fort qu’il ___ la vérité sur cet incident.",
+    "answer": "dise",
+    "options": [
+      "dise",
+      "dit",
+      "dira"
+    ],
+    "hint": "douter que + subjonctif",
+    "explanation": "Şüphe bildiren « douter que » fiili yan cümlede daima subjonctif gerektirir: dire fiilinin subjonctif hali « dise » olur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-21",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Les fleurs que tu m’as ___ sont magnifiques.",
+    "answer": "offertes",
+    "options": [
+      "offertes",
+      "offert",
+      "offerte"
+    ],
+    "hint": "avoir ile çekilen fiilde öne geçen COD (les fleurs = dişil çoğul)",
+    "explanation": "« Avoir » ile kurulan geçmiş zamanda, nesne (COD) fiilden önce geldiğinde participe passé nesneyle uyum sağlar: les fleurs (dişil çoğul) → offertes.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-participe_passe-22",
+    "language": "fr",
+    "level": "B2",
+    "topic": "participe_passe",
+    "type": "choice",
+    "prompt": "Elles se sont ___ les mains avant de passer à table.",
+    "answer": "lavé",
+    "options": [
+      "lavé",
+      "lavées",
+      "lavée"
+    ],
+    "hint": "dönüşlü fiilde doğrudan nesne (les mains) fiilden sonra gelirse uyum yapılmaz",
+    "explanation": "Dönüşlü fiillerde doğrudan nesne (COD: les mains) eylemden sonra geldiğinde « se » dolaylı nesne durumuna düşer ve participe passé uyum yapmaz (lavé).",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-20",
+    "language": "fr",
+    "level": "B2",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "La table sur ___ il a posé ses clés est en chêne massif.",
+    "answer": "laquelle",
+    "options": [
+      "laquelle",
+      "lequel",
+      "lesquels"
+    ],
+    "hint": "sur + birleşik ilgi zamiri (la table = dişil tekil)",
+    "explanation": "Edatla (« sur ») bağlanan cansız varlıklarda cinsiyet ve sayı uyumlu birleşik ilgi zamiri kullanılır: la table (dişil tekil) → laquelle.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-pronoms_relatifs-21",
+    "language": "fr",
+    "level": "C1",
+    "topic": "pronoms_relatifs",
+    "type": "choice",
+    "prompt": "Le problème au sujet ___ nous discutions a enfin trouvé une solution.",
+    "answer": "duquel",
+    "options": [
+      "duquel",
+      "auquel",
+      "dont"
+    ],
+    "hint": "au sujet de + lequel → duquel",
+    "explanation": "« Au sujet de » gibi karmaşık edat öbeklerinden sonra 'dont' değil, de + lequel birleşimi olan « duquel » kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-21",
+    "language": "fr",
+    "level": "B2",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "Si tu m’avais écouté, nous ne nous ___ pas perdus dans la forêt.",
+    "answer": "serions",
+    "options": [
+      "serions",
+      "avions",
+      "sommes"
+    ],
+    "hint": "si + plus-que-parfait → conditionnel passé (être)",
+    "explanation": "Geçmişe dair gerçekleşmemiş şartlarda ana cümlenin yüklemi conditionnel passé olur; se perdre fiili être ile çekildiği için « serions » kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-conditionnel_passe-22",
+    "language": "fr",
+    "level": "C1",
+    "topic": "conditionnel_passe",
+    "type": "choice",
+    "prompt": "Sans ton soutien financier, l'entreprise ___ faillite il y a six mois.",
+    "answer": "aurait fait",
+    "options": [
+      "aurait fait",
+      "faisait",
+      "ferait"
+    ],
+    "hint": "geçmişteki varsayımsal durum (il y a six mois) → conditionnel passé",
+    "explanation": "Geçmişte gerçekleşmemiş bir olasılığı veya pişmanlığı anlatırken conditionnel passé kullanılır: faire → aurait fait.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-discours_indirect_fr-01",
+    "language": "fr",
+    "level": "B2",
+    "topic": "discours_indirect_fr",
+    "type": "choice",
+    "prompt": "Paul m’a dit qu’il ___ fatigué la veille et qu’il préférait se reposer.",
+    "answer": "était",
+    "options": [
+      "était",
+      "est",
+      "sera"
+    ],
+    "hint": "giriş fiili passé (m'a dit) → présent imparfait'ye kayar",
+    "explanation": "Aktarma cümlesi geçmiş zamanda kurulduğunda (« a dit »), doğrudan cümlenin şimdiki zamanı dolaylı anlatımda imparfait'ye dönüşür: était.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-discours_indirect_fr-02",
+    "language": "fr",
+    "level": "B2",
+    "topic": "discours_indirect_fr",
+    "type": "choice",
+    "prompt": "Elle m’a promis qu’elle me ___ dès qu’elle arriverait à Lyon.",
+    "answer": "téléphonerait",
+    "options": [
+      "téléphonerait",
+      "téléphonera",
+      "téléphone"
+    ],
+    "hint": "aktarma geçmiş zamanda → futur simple yerini conditionnel présent'e bırakır",
+    "explanation": "Dolaylı anlatımda ana fiil geçmiş zamandaysa (« a promis »), gelecekte yapılacak eylem futur du passé (conditionnel présent: téléphonerait) ile ifade edilir.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-futur_fr-01",
+    "language": "fr",
+    "level": "B1",
+    "topic": "futur_fr",
+    "type": "choice",
+    "prompt": "Dès que nous ___ notre travail, nous irons fêter cela au restaurant.",
+    "answer": "aurons terminé",
+    "options": [
+      "aurons terminé",
+      "terminons",
+      "avions terminé"
+    ],
+    "hint": "dès que + gelecekte öncelik bildiren durum → futur antérieur",
+    "explanation": "Fransızcada gelecekteki iki eylemden önce gerçekleşecek olanı vurgulamak için « dès que » peşinden futur antérieur (aurons terminé) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "fr-futur_fr-02",
+    "language": "fr",
+    "level": "B2",
+    "topic": "futur_fr",
+    "type": "choice",
+    "prompt": "Quand vous ___ à Paris l'été prochain, n'hésitez pas à nous contacter.",
+    "answer": "serez",
+    "options": [
+      "serez",
+      "êtes",
+      "soyez"
+    ],
+    "hint": "quand + geleceğe gönderme → futur simple",
+    "explanation": "İngilizceden farklı olarak Fransızcada « quand » bağlacından sonra gelecek zamana gönderme yapılıyorsa fiil futur simple (serez) olmalıdır.",
+    "source": "Diloloji (özgün)"
+  }
+]

@@ -1,0 +1,206 @@
+[
+  {
+    "id": "en-inversion-19",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Little ___ that a surprise celebration had been prepared for him.",
+    "answer": "did he suspect",
+    "options": [
+      "did he suspect",
+      "he suspected",
+      "he did suspect"
+    ],
+    "hint": "little + yardımcı fiil + özne",
+    "explanation": "Cümle başında 'Little' olumsuzluk/yetersizlik bildirdiğinde devrik yapı kurulur: Little + did + he + suspect.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-inversion-20",
+    "language": "en",
+    "level": "C1",
+    "topic": "inversion",
+    "type": "choice",
+    "prompt": "Only by working together ___ resolve this international dispute.",
+    "answer": "can we",
+    "options": [
+      "can we",
+      "we can",
+      "we could"
+    ],
+    "hint": "only by + V-ing → devrik ana cümle",
+    "explanation": "'Only by' yapısıyla başlayan zarf öbeği ana cümleyi devrik yapar; modal yardımcı fiil öznenin önüne gelir: can we resolve.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-19",
+    "language": "en",
+    "level": "B2",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "It was during her stay in Rome ___ she wrote her best-selling historical novel.",
+    "answer": "that",
+    "options": [
+      "that",
+      "which",
+      "when"
+    ],
+    "hint": "it-cleft yapısında zaman veya mekan vurgusu: It was [X] that...",
+    "explanation": "İngilizcede it-cleft yapısında vurgulanan öge zaman veya yer bildirse dahi resmi standart dilde 'that' bağlacı kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-cleft-20",
+    "language": "en",
+    "level": "C1",
+    "topic": "cleft",
+    "type": "choice",
+    "prompt": "What surprised everyone at the meeting ___ the complete absence of the financial director.",
+    "answer": "was",
+    "options": [
+      "was",
+      "were",
+      "are"
+    ],
+    "hint": "wh-cleft tekil nesne vurgusu",
+    "explanation": "What ile başlayan wh-cleft tümcesinde vurgulanan tamamlayıcı tekil bir ad öbeği olduğunda yardımcı fiil tekil (was) olur.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-18",
+    "language": "en",
+    "level": "B2",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If you had set your alarm clock last night, you ___ running late right now.",
+    "answer": "would not be",
+    "options": [
+      "would not be",
+      "would not have been",
+      "will not be"
+    ],
+    "hint": "geçmiş şart (had set) → şimdiki sonuç (right now)",
+    "explanation": "Geçmişteki bir eylemin (Type 3) günümüzdeki etkisini (right now) gösteren karma şart cümlesinde 'would + bare infinitive' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-mixed_conditionals-19",
+    "language": "en",
+    "level": "C1",
+    "topic": "mixed_conditionals",
+    "type": "choice",
+    "prompt": "If he were more diplomatic, he ___ so many colleagues at yesterday's conference.",
+    "answer": "would not have offended",
+    "options": [
+      "would not have offended",
+      "would not offend",
+      "did not offend"
+    ],
+    "hint": "genel karakter özelliği (were) → geçmişteki sonuç (yesterday)",
+    "explanation": "Genel bir durumu (Type 2: If he were) geçmişte gerçekleşen bir sonuca (yesterday) bağlarken 'would have + V3' yapısı kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-18",
+    "language": "en",
+    "level": "B2",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "It is essential that every applicant ___ the code of conduct before signing.",
+    "answer": "read",
+    "options": [
+      "read",
+      "reads",
+      "is reading"
+    ],
+    "hint": "essential that + mandative subjunctive (yalın fiil)",
+    "explanation": "'It is essential that' gibi gereklilik bildiren kalıplardan sonra fiil özneye (every applicant) bakılmaksızın yalın halde (read) kalır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-subjunctive-19",
+    "language": "en",
+    "level": "C1",
+    "topic": "subjunctive",
+    "type": "choice",
+    "prompt": "The board proposed that a full independent audit ___ conducted immediately.",
+    "answer": "be",
+    "options": [
+      "be",
+      "is",
+      "was"
+    ],
+    "hint": "propose that + subjunctive be",
+    "explanation": "'Propose that' istem ve öneri fiillerinden sonra gelen nesne cümleciğinde mandative subjunctive kuralı uyarınca yalın 'be' kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-18",
+    "language": "en",
+    "level": "B2",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ from a great distance, the ancient mountain fortress appeared completely deserted.",
+    "answer": "Seen",
+    "options": [
+      "Seen",
+      "Seeing",
+      "Having seen"
+    ],
+    "hint": "edilgen kısaltma (kale uzaktan görüldüğünde)",
+    "explanation": "Ana cümlenin öznesi 'fortress' görülen taraf (edilgen) olduğu için kısaltmada past participle (Seen) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-participle_clauses-19",
+    "language": "en",
+    "level": "C1",
+    "topic": "participle_clauses",
+    "type": "choice",
+    "prompt": "___ all the technical documents, Dr. Watson felt ready to start the clinical trials.",
+    "answer": "Having reviewed",
+    "options": [
+      "Having reviewed",
+      "Reviewing",
+      "Reviewed"
+    ],
+    "hint": "öncelik bildiren etken sıfat-fiil: Having + V3",
+    "explanation": "Bir eylemin diğerinden önce tamamlandığını vurgulayan etken participle yapısında 'Having + past participle' (Having reviewed) kullanılır.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-17",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "I distinctly remember ___ the front door before leaving the house this morning.",
+    "answer": "locking",
+    "options": [
+      "locking",
+      "to lock",
+      "lock"
+    ],
+    "hint": "geçmişte yapılmış bir eylemi hatırlamak: remember + V-ing",
+    "explanation": "'Remember' fiili geçmişte yapılan bir eylemin anısını hatırlamayı bildirdiğinde peşinden gerund (-ing) alır: remember locking.",
+    "source": "Diloloji (özgün)"
+  },
+  {
+    "id": "en-gerund_infinitive-18",
+    "language": "en",
+    "level": "B2",
+    "topic": "gerund_infinitive",
+    "type": "choice",
+    "prompt": "She stopped at the bakery ___ some fresh sourdough bread for breakfast.",
+    "answer": "to buy",
+    "options": [
+      "to buy",
+      "buying",
+      "buy"
+    ],
+    "hint": "amaç bildirmek için durmak: stop + to-infinitive",
+    "explanation": "'Stop' fiili başka bir eylemi yapmak amacıyla duraklamak anlamında kullanıldığında 'to + infinitive' (to buy) alır.",
+    "source": "Diloloji (özgün)"
+  }
+]

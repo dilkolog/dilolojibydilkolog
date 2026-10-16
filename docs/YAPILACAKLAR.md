@@ -677,7 +677,20 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Rehberdeki toplam ders sayısı 144'ten **174'e** (EN: 62, ES: 57, FR: 55 ders) yükseltildi.
     - Tüm yeni derslere 3'er adet (toplam +90 soru) detaylı Türkçe pedagojik açıklamalı (`why`) mini sınav kontrol soruları entegre edildi.
   - **Birim & Duman Testleri:**
-    - `src/data/guide/lessons.test.ts` (8 test), `src/data/guide/lessonOf.test.ts` (8 test), `src/ui/Guide.test.tsx` (8 test) ve `src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+- [x] **Gelişim Turu 40 — Egzersiz, Oyun ve Soru Havuzunun Devasa Genişletilmesi (+102 Yeni Soru & 4 Farklı Modda Zenginleşme):**
+  - **Hata Avcısı (Spot the Error — +30 Yeni Zorlu Soru):**
+    - `src/data/spotErrors.ts`: Fransızca, İspanyolca ve İngilizce için 10'ar adet (`fr-spot-26..35`, `es-spot-26..35`, `en-spot-26..35`) B1/B2/C1 seviyesinde tuzak ve tipik öğrenen hatalarını içeren sorular eklendi. Toplam havuz 75'ten **105'e** yükseldi.
+    - Sınanan kurallar: Mandative subjunctive, inverted conditionals (`Had I known`, `Should he arrive`), parallel comparatives (`the more... the more`), stative verbs, phrasal verbs (`run out of`), Fransızcada subjonctif bağlaçları, ortaç uyumu, bileşik ilgi zamirleri; İspanyolcada gerundio perífrasis'leri, `cuyo` uyumu, `si` condicional yasağı.
+  - **Cümle Dönüşümü (Sentence Transformation — +30 Yeni Cambridge Tarzı Soru):**
+    - `src/data/sentenceRewrites.ts`: Anahtar kelimeyle hedef yapıyı koruyarak yeniden yazma (FCE/CAE formatı) egzersiz havuzuna her dilde 10'ar adet (`fr-rw-26..35`, `es-rw-26..35`, `en-rw-26..35`) yeni soru eklendi. Toplam havuz 75'ten **105'e** ulaştı.
+    - Sınanan yapılar: Devriklik (`No sooner had...`, `Under no circumstances`), nominative absolute (`having been explained`), causatif pasif (`had house broken into`), `would rather`, `in spite of`, `prendre par surprise`, `faire l'unanimité`, `faute de`, `de no ser por`, `llevar + gerundio`, `no debí haber dicho`.
+  - **Edat ve Eşdizim Egzersizi (Collocations & Prepositions — +36 Yeni Soru):**
+    - `src/data/collocationDrill.ts`: Her üç dilde 12'şer adet (`fr-colloc-29..40`, `es-colloc-29..40`, `en-colloc-29..40`) kilit edat ve eşdizim eklendi. Toplam havuz 84'ten **120'ye** ulaştı.
+    - Odaklanılan kalıplar: `rêver de`, `faire attention à`, `tenir compte de`, `mettre au point`, `avoir hâte de`, `soñar con`, `pensar en`, `enamorarse de`, `darse cuenta de`, `llevar a cabo`, `pay attention to`, `take into account`, `catch someone's eye`, `make a decision` vb.
+  - **Dilbilgisi Alıştırma Havuzu (+36 Yeni B1/B2/C1 Çoktan Seçmeli Alıştırma):**
+    - `src/data/grammar/en-10.json`, `src/data/grammar/fr-10.json`, `src/data/grammar/es-10.json`: Her dilde 12'şer adet yeni nesil gramer sorusu eklendi; Rehber'e eklenen B2/C1 konuları doğrudan oyun içi pratikle desteklendi.
+  - **Birim & Duman Testleri:**
+    - `spotErrors.test.ts` (4 test), `sentenceRewrites.test.ts` (5 test), `collocationDrill.test.ts` (6 test), `grammar.test.ts` (4 test), `SpotErrorGame.test.tsx` (1 test) ve `smoke.test.tsx` (20 test) olmak üzere toplam **40 test %100 yeşil** tamamlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
