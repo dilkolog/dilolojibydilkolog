@@ -450,6 +450,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/data/__tests__/familyLinks.test.ts` (2 test): Kelime ailesi karşılıklı bağlama (`linkEntries`: iki kelimeyi çift yönlü `wordFamily` listesine ekleme, mükerrer bağlantıyı önleme).
     - `src/ui/saveSentence.test.ts` (3 test): Cümle kaydetme motoru (`saveSentence`: boş metin reddi, mükerrer cümle kontrolü, boşluk temizleme ve FSRS kartı üretimi).
     - `src/ui/undo.test.ts` (2 test): Güvenli kelime silme ve geri alma (`changeWordsWithUndo`, `deleteWordsWithUndo`: kelime enstantanesi alma, değişiklik yürütme ve "Geri Al" bildirimi tetiklendiğinde geri yükleme).
+- [x] **Gece Bakım Turu 15 — Oturum, Kart & Metin Yeniden İnşa Mantığı Test Kapsamı (#376):**
+  - Doğrudan testi bulunmayan 5 kritik yardımcı modül için 19 yeni birim testi yazıldı:
+    - `src/ui/session/wordFit.test.ts` (2 test): Oturum büyük yazı tipi için kelime uzunluğu hesaplama (`wordFit`: CSS değişkeni `--len`).
+    - `src/ui/session/keys.test.ts` (4 test): Oturum klavye kestirmesi ve odak yönetimi (`modalOpen`, `ownsKey`: input, textarea, button, select ayrımı).
+    - `src/ui/dictoglossReconstruct.test.ts` (5 test): Metin dinleme ve yeniden yazma mantığı (`glossParagraphs`: 30-90 kelime aralığı filtresi, `recallCheck`: anlam kelimelerini tespit etme ve hatırlanma kontrolü, `sentenceWith`: kelimeyi içeren cümleyi ayıklama).
+    - `src/ui/gameList.test.ts` (3 test): Oyun kataloğu doğrulaması (`GAME_LIST`: benzersiz oyun kimlikleri, isim ve emoji tamlığı, dilbilgisi oyunları işareti).
+    - `src/ui/progressCardSvg.test.ts` (5 test): İlerleme kartı SVG üretimi (`cardSvg`: 1080x1350 boyutları, XML güvenli karakter kaçışı, dark/light/banner temaları, hedefler, rozetler ve ilgi alanları).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
