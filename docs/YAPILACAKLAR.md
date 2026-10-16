@@ -463,6 +463,18 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/data/__tests__/backItems.test.ts` (2 test): Geri çeviri pratik havuzu (`loadBackItems`: çeviri hafızası ve cümle kartlarının harmanlanması, kartı bulunanların elenmesi, veri tabanı hatasında güvenli boş liste dönüşü).
     - `src/ui/listOptions.test.ts` (9 test): Kelime listesi ve alt seviye yerleşim seçenekleri (`placementOptions`: liste ve seviyeleri düz seçeneklere dönüştürme, özel "listesiz" etiketi; `placementValue`: eşleşen seviye veya liste değeri; `parsePlacement`: liste ve seviye ayrıştırma; `progressLine`: grup ilerleme metni formatı).
     - `src/ui/speech.test.ts` (8 test): Web Speech API ve ses sentezi yönetimi (`canSpeak`: tarayıcı desteği tespiti; `voicesFor`: yabancı dil ön eki eşleşmesi, anlamsız/şaka seslerin filtrelenmesi, premium/enhanced kalite sıralaması; `speak`: önceki konuşmayı iptal etme ve ses hızı ayarı; `isAudioPlaying`: ses çalma durumu tespiti; `stopSpeaking`: ses ve doğal ses motorunu durdurma).
+- [x] **Gece Bakım Turu 17 — Rehber B1/B2 İngilizce İnteraktif Pekiştirme Sınavları (#378):**
+  - Rehberde daha önce mini sınavı bulunmayan 10 ileri düzey İngilizce dersi için 3'er soruluk (toplam 30 soru) pedagojik açıklamalı interaktif pekiştirme sınavları (`check`) eklendi:
+    - `gerund_infinitive` (B1 - 3 soru): `avoid doing`, `look forward to doing` (edat to), `stop to do` vs `stop doing` ayrımı.
+    - `conn_en` (B1 - 3 soru): `despite` (isim öbeği) vs `although` (cümle), `unless` (olumlu yapı), `therefore` (sonuç zarfı).
+    - `prep_en` (B1 - 3 soru): `depend on`, etken `married John` (edatsız) vs `is married to`, `apologise for doing`.
+    - `colloc_en` (B1 - 3 soru): `make a mistake`, `do me a favour`, `heavy rain` (sağanak yağmur eşdizimi).
+    - `reported_speech` (B1 - 3 soru): `told me that` (nesne alımı), dolaylı sorularda düz cümle sırası ve zaman kayması, olumsuz emirde `not to + fiil`.
+    - `modals_en` (B1 - 3 soru): `mustn't` (kesin yasak) vs `don't have to`, geçmişte zorunluluk olmaması (`didn't have to`), geçmişe güçlü çıkarım (`must have + V3`).
+    - `passive_en` (B1 - 3 soru): `was built in 1894`, present continuous passive (`is being painted`), ettirgen yapı (`had it repaired`).
+    - `relatives_en` (B1 - 3 soru): kişilerde özne `who`, iyelik `whose`, virgüllü ek bilgi cümlelerinde `that` yasağı.
+    - `mixed_conditionals` (B2 - 3 soru): geçmiş koşul -> bugünkü sonuç (`if had done ..., would be ... now`), genel özellik -> geçmiş sonuç (`if weren't ..., would have done`), `if` yan cümlesine `would` gelmeme kuralı.
+    - `participle_clauses` (B2 - 3 soru): öncelikli eylemde `having + V3`, edilgen anlamda geçmiş zaman ortacı (`startled`), ortaçlarda olumsuzluk (`not knowing`).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
