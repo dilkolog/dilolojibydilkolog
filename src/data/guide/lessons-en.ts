@@ -399,7 +399,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Try to ile try -ing'i karıştırmak: 'Try to turn it off' (kapatmaya çabalamak) vs 'Try turning it off' (kapatmayı denemek).",
       "Suggest'ten sonra to: 'He suggested to go' değil 'He suggested going'."
     ],
-    tip: "Edattan sonra -ing; 'to' edat mı diye bakmak için yerine bir isim koyun: 'look forward to the trip' oluyorsa to edattır."
+    tip: "Edattan sonra -ing; 'to' edat mı diye bakmak için yerine bir isim koyun: 'look forward to the trip' oluyorsa to edattır.",
+    check: [
+      {
+        prompt: "He avoided ___ about his past.",
+        options: ["to talk", "talking", "talk"],
+        answer: 1,
+        why: "Avoid fiilinden sonra daima gerund (-ing) gelir: avoid talking."
+      },
+      {
+        prompt: "I'm really looking forward to ___ you at the weekend.",
+        options: ["see", "to see", "seeing"],
+        answer: 2,
+        why: "Look forward to yapısındaki 'to' bir edattır; edatlardan sonra gelen fiil -ing takısı alır."
+      },
+      {
+        prompt: "We stopped ___ a coffee on the way home, then continued driving.",
+        options: ["to have", "having", "have"],
+        answer: 0,
+        why: "Stop + to fiili bir şey yapmak amacıyla durmayı anlatır; stop + -ing ise yapılan bir eylemi tamamen bırakmaktır."
+      }
+    ]
   },
   {
     topic: "conn_en",
@@ -430,7 +450,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Unless'i olumsuzla kullanmak: 'unless you don't hurry' değil 'unless you hurry'.",
       "Moreover'ı zıtlık için kullanmak: moreover aynı yönde bilgi ekler."
     ],
-    tip: "Önce sorun: ikinci fikir birinciyle aynı yönde mi, ters yönde mi, yoksa onun sonucu mu?"
+    tip: "Önce sorun: ikinci fikir birinciyle aynı yönde mi, ters yönde mi, yoksa onun sonucu mu?",
+    check: [
+      {
+        prompt: "___ the heavy rain, they decided to go for a hike.",
+        options: ["Although", "Despite", "Even though"],
+        answer: 1,
+        why: "Despite ardından bir isim öbeği (the heavy rain) veya -ing alır; although ve even though ise tam cümle ister."
+      },
+      {
+        prompt: "I will not sign the contract ___ you explain every clause clearly.",
+        options: ["if not", "without", "unless"],
+        answer: 2,
+        why: "Unless, 'if ... not' (olmadıkça / -medikçe) anlamına gelir ve arkasından olumlu cümle yapısı alır."
+      },
+      {
+        prompt: "He worked hard all year. ___, he was promoted to team leader.",
+        options: ["Therefore", "However", "Although"],
+        answer: 0,
+        why: "Therefore bir sonuç bildirir ('bu nedenle / dolayısıyla') ve cümle başında virgülle ayrılır; however zıtlık, although ise yan cümle bağlacıdır."
+      }
+    ]
   },
   {
     topic: "prep_en",
@@ -463,7 +503,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Edattan sonra yalın fiil: 'succeed in pass' değil 'succeed in passing'.",
       "Be used to ile used to'yu karıştırmak: 'I'm used to work' değil 'I'm used to working'."
     ],
-    tip: "Kelimeyi hep edatıyla birlikte not edin: 'depend' değil 'depend on'."
+    tip: "Kelimeyi hep edatıyla birlikte not edin: 'depend' değil 'depend on'.",
+    check: [
+      {
+        prompt: "The final decision depends ___ the manager's approval.",
+        options: ["to", "on", "from"],
+        answer: 1,
+        why: "Depend fiili Türkçedeki '-e bağlı olmak' anlamında 'to' değil, daima 'on' edatıyla kullanılır."
+      },
+      {
+        prompt: "She ___ a famous doctor last summer.",
+        options: ["married with", "married to", "married"],
+        answer: 2,
+        why: "Marry fiili etken kullanımda edat almaz ('married John'); 'with' ile kullanılmaz. 'To' ise yalnızca sıfat/durum hâlinde gelir ('is married to')."
+      },
+      {
+        prompt: "He apologised ___ being late for the interview.",
+        options: ["for", "about", "to"],
+        answer: 0,
+        why: "Apologise fiili bir neden için özür dilerken 'for' edatı ve -ing alır: apologise for doing something."
+      }
+    ]
   },
   {
     topic: "colloc_en",
@@ -493,7 +553,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "'Fotoğraf çekmek'i çevirmek: 'pull a photo' değil 'take a photo'.",
       "'Sert kahve, şiddetli yağmur': 'hard coffee', 'strong rain' değil 'strong coffee', 'heavy rain'."
     ],
-    tip: "Kelimeyi tek başına değil, fiiliyle öğrenin: 'decision' değil 'make a decision'."
+    tip: "Kelimeyi tek başına değil, fiiliyle öğrenin: 'decision' değil 'make a decision'.",
+    check: [
+      {
+        prompt: "Don't worry if you ___ a mistake; it's part of learning.",
+        options: ["do", "make", "take"],
+        answer: 1,
+        why: "Hata yapmak İngilizcede 'do a mistake' değil, her zaman 'make a mistake' eşdizimiyle söylenir."
+      },
+      {
+        prompt: "Could you please ___ me a favour and hold the door?",
+        options: ["make", "give", "do"],
+        answer: 2,
+        why: "İyilik yapmak kalıbı 'do someone a favour' biçiminde 'do' fiiliyle kurulur."
+      },
+      {
+        prompt: "We had to drive very slowly because of the ___ rain.",
+        options: ["heavy", "strong", "hard"],
+        answer: 0,
+        why: "Şiddetli / sağanak yağmur İngilizcede 'strong rain' değil, daima 'heavy rain' eşdizimiyle ifade edilir."
+      }
+    ]
   },
   {
     topic: "reported_speech",
@@ -525,7 +605,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Zamanı geri kaydırmayı unutmak: 'She said she is coming tomorrow' yerine 'She said she was coming the next day'.",
       "Değişmeyen evrensel gerçeklerde gereksiz zaman kaydırmak: genel doğruları aktarırken present simple korunabilir ('He explained that water boils at 100°C')."
     ],
-    tip: "Say'den sonra 'that', tell'den sonra 'kişi': said that / told me that."
+    tip: "Say'den sonra 'that', tell'den sonra 'kişi': said that / told me that.",
+    check: [
+      {
+        prompt: "He told ___ that he was moving to Canada.",
+        options: ["to me", "me", "that me"],
+        answer: 1,
+        why: "Tell fiili dolaylı anlatımda nesnesini doğrudan alır (told me); 'said to me' veya 'told me' kullanılır, 'told to me' denmez."
+      },
+      {
+        prompt: "Direct: 'Where do you live?' -> Indirect: He asked me where ___.",
+        options: ["did I live", "do I live", "I lived"],
+        answer: 2,
+        why: "Dolaylı sorularda soru sırası ve do/did yardımcı fiili kalkar, düz cümle sırası ve zaman kayması (past simple) gelir."
+      },
+      {
+        prompt: "The doctor told him ___ too much salt.",
+        options: ["not to eat", "to not eat", "don't eat"],
+        answer: 0,
+        why: "Dolaylı emir ve tavsiyelerde olumsuzluk 'not to + fiil' yapısıyla kurulur: told him not to eat."
+      }
+    ]
   },
   {
     topic: "modals_en",
@@ -559,7 +659,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Geçmiş zorunlulukta must kullanmak: 'Yesterday I must work' değil 'Yesterday I had to work'.",
       "Geçmiş çıkarımda had: 'must had left' değil 'must have left'."
     ],
-    tip: "Mustn't = yapma! Don't have to = istersen yapma."
+    tip: "Mustn't = yapma! Don't have to = istersen yapma.",
+    check: [
+      {
+        prompt: "You ___ smoke anywhere inside the building; it is strictly forbidden.",
+        options: ["don't have to", "mustn't", "shouldn't"],
+        answer: 1,
+        why: "Mustn't kesin yasak bildirir; don't have to ise 'zorunda değilsin / gerek yok' demektir ve yasak ifade etmez."
+      },
+      {
+        prompt: "Yesterday was a national holiday, so I ___ go to work.",
+        options: ["mustn't", "hadn't to", "didn't have to"],
+        answer: 2,
+        why: "Geçmişte zorunluluk olmaması 'didn't have to' ile söylenir; must geçmiş zamanda kullanılmaz."
+      },
+      {
+        prompt: "The streets are completely wet. It ___ rained during the night.",
+        options: ["must have", "can have", "should have"],
+        answer: 0,
+        why: "Geçmişe dair güçlü çıkarım ve kesinlik 'must have + V3' yapısıyla anlatılır: yağmış olmalı."
+      }
+    ]
   },
   {
     topic: "passive_en",
@@ -588,7 +708,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Düzensiz fiilin V3'ünü yanlış yazmak: 'was writed', 'was catched' değil 'was written', 'was caught'.",
       "Ettirgeni çevirmek: 'I cut my hair' saçımı kendim kestim demektir; berberde 'I had my hair cut'."
     ],
-    tip: "Önce zamanı be'ye, sonra fiili hep V3'e verin: be + V3."
+    tip: "Önce zamanı be'ye, sonra fiili hep V3'e verin: be + V3.",
+    check: [
+      {
+        prompt: "This famous bridge ___ in 1894.",
+        options: ["built", "was built", "has built"],
+        answer: 1,
+        why: "Geçmişte tamamlanmış edilgen eylemlerde 'was/were + V3' kullanılır; özne işi yapan değil etkilenendir."
+      },
+      {
+        prompt: "Be careful, the living room floor is ___ right now.",
+        options: ["been painted", "painting", "being painted"],
+        answer: 2,
+        why: "Şu anda devam eden edilgen eylemlerde present continuous passive: 'is/are being + V3' yapısı kullanılır."
+      },
+      {
+        prompt: "I didn't repair my phone myself; I ___ repaired at the service centre.",
+        options: ["had it", "made it", "did it"],
+        answer: 0,
+        why: "Bir işi başkasına yaptırmak (ettirgen yapı) 'have/get + nesne + V3' kalıbıyla ifade edilir: had it repaired."
+      }
+    ]
   },
   {
     topic: "relatives_en",
@@ -619,7 +759,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Zamiri tekrar etmek: 'the book which I read it' değil 'the book which I read'.",
       "Virgüllü cümlede that: 'My father, that is a teacher' değil 'My father, who is a teacher'."
     ],
-    tip: "Türkçedeki sırayı ters çevirin: 'dün tanıştığım adam' = 'the man (who) I met yesterday'."
+    tip: "Türkçedeki sırayı ters çevirin: 'dün tanıştığım adam' = 'the man (who) I met yesterday'.",
+    check: [
+      {
+        prompt: "The engineer ___ designed this software won an international award.",
+        options: ["which", "who", "whose"],
+        answer: 1,
+        why: "İnsanları niteleyen ilgi cümlelerinde özne konumunda 'who' kullanılır; which nesneler içindir."
+      },
+      {
+        prompt: "I met a writer ___ latest novel became an instant bestseller.",
+        options: ["who's", "whom", "whose"],
+        answer: 2,
+        why: "Whose iyelik/sahiplik bildirir ('romanı çok satan yazar'); who's ise 'who is' veya 'who has' kısaltmasıdır."
+      },
+      {
+        prompt: "My eldest brother, ___ lives in Melbourne, is coming to visit us.",
+        options: ["who", "that", "which"],
+        answer: 0,
+        why: "Virgülle ayrılan tanımlayıcı olmayan (non-defining) ilgi cümlelerinde 'that' kullanılamaz; kişiler için 'who' zorunludur."
+      }
+    ]
   },
   // B2
   {
@@ -647,7 +807,31 @@ export const EN_LESSONS: TopicLesson[] = [
       "Geçmiş koşulda past simple: 'If I listened earlier' değil 'If I had listened earlier'.",
       "Bugünkü sonuç için would have: 'I would have been rich now' değil 'I would be rich now'."
     ],
-    tip: "Her yarıya ayrı ayrı sorun: bu kısım ne zaman? Geçmişse had / would have, bugünse past simple / would."
+    tip: "Her yarıya ayrı ayrı sorun: bu kısım ne zaman? Geçmişse had / would have, bugünse past simple / would.",
+    check: [
+      {
+        prompt: "If I had taken your advice yesterday, I ___ in this difficult situation now.",
+        options: ["wouldn't have been", "wouldn't be", "won't be"],
+        answer: 1,
+        why: "Geçmişteki bir koşulun (had taken) şimdiki sonucunu (now) anlatırken 'would + yalın fiil' kullanılır."
+      },
+      {
+        prompt: "If she ___ so terrified of flying, she would have joined us on the trip to Rome.",
+        options: ["hadn't been", "wouldn't be", "weren't"],
+        answer: 2,
+        why: "Genel/süregelen bir özellik (uçmaktan korkması) geçmişteki bir sonuca (would have joined) yol açtığında if kısmında past simple (were/weren't) kullanılır."
+      },
+      {
+        prompt: "Hangi karma şart cümlesi dilbilgisi açısından doğrudur?",
+        options: [
+          "If he had studied medicine, he would be a doctor today.",
+          "If he would have studied medicine, he was a doctor today.",
+          "If he had studied medicine, he would have been a doctor today."
+        ],
+        answer: 0,
+        why: "Geçmiş şart (had studied) ve bugünkü sonuç (today -> would be). If yan cümlesine would konmaz; bugünkü sonuç için would have değil would kullanılır."
+      }
+    ]
   },
   {
     topic: "participle_clauses",
@@ -677,7 +861,27 @@ export const EN_LESSONS: TopicLesson[] = [
       "Having'den sonra V3'ü unutmak: 'Having finish' değil 'Having finished'.",
       "Olumsuzda not'u yanlış yere koymak: 'Knowing not' değil 'Not knowing'."
     ],
-    tip: "Türkçedeki -ken, -ince, -dığı için, -dıktan sonra kısaltmalarını düşünün: -ing, having + V3 ya da V3."
+    tip: "Türkçedeki -ken, -ince, -dığı için, -dıktan sonra kısaltmalarını düşünün: -ing, having + V3 ya da V3.",
+    check: [
+      {
+        prompt: "___ the contract carefully, she picked up her pen and signed it.",
+        options: ["Reading", "Having read", "Read"],
+        answer: 1,
+        why: "Bir eylemin diğerinden önce tamamlandığını vurgulamak için 'having + V3' (perfect participle) kullanılır."
+      },
+      {
+        prompt: "___ by the loud explosion outside, everyone rushed to the windows.",
+        options: ["Startling", "Having startled", "Startled"],
+        answer: 2,
+        why: "Edilgen anlam taşıyan kısaltmalarda geçmiş zaman ortacı (past participle / V3) kullanılır: irkilen / korkutulan insanlar."
+      },
+      {
+        prompt: "___ where to go, he asked a police officer for directions.",
+        options: ["Not knowing", "Knowing not", "Didn't know"],
+        answer: 0,
+        why: "Participle yapılarında olumsuzluk eki 'not' cümlenin başına gelir: 'Not + -ing' (Not knowing)."
+      }
+    ]
   },
   // C1
   {
