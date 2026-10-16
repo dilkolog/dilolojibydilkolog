@@ -314,6 +314,8 @@ export function AppScreens(props: AppScreensProps) {
           learningCount={data.states.length}
           activeVocabulary={progressStats({ vocabularyCount: data.vocabulary.length, states: data.states, events: [], scheduler, now: new Date() }).activeVocabulary}
           name={settings.profile.name}
+          location={settings.profile.location}
+          coordinates={settings.profile.coordinates}
           dailyXpGoal={settings.dailyXpGoal}
           answeredToday={answeredToday(data.recentEvents.filter((e) => e.language === data.language), new Date())}
           nextReview={earliest(data.states)}

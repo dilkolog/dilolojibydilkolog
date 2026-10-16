@@ -4048,7 +4048,25 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .screen-error-art { width: auto; }
 
 /* The hour's scene beside the greeting, Monki's reaction on the summary, a word's three pots on the first run. */
+.day-mark { position: relative; }
 .day-mark .day-scene { display: block; height: 2.5rem; width: auto; border-radius: var(--r-sm); }
+.weather-badge-pill {
+  position: absolute;
+  right: -0.25rem;
+  bottom: -0.2rem;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: var(--ink);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.05rem 0.3rem;
+  border-radius: var(--r-full);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  pointer-events: none;
+  line-height: 1.2;
+}
 .greeting:has(.day-scene) { gap: 0.75rem; }
 .result-art { display: block; height: 8rem; width: auto; margin: 0 auto 0.5rem; }
 .og-pot { display: block; width: auto; }

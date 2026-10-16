@@ -7,7 +7,7 @@ import { Avatar } from './Avatar'
 import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, EARNED_AVATARS, avatarNeed, drawnAvatarName } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, SmileIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, PinIcon, SmileIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
 import { BadgeMedal } from './Medal'
@@ -20,6 +20,7 @@ import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
 import { CATEGORY_EMBLEM, EMBLEM, STAT_ART, levelMonki } from './drawnArt'
 import { showToast } from './toastFeed'
+import { resolveCoordinates } from '../data/weather'
 
 /** The glyph avatars; the animals Monki's set draws (fox, panda, owl, octopus, penguin, koala) are not repeated as emoji. */
 const COLORS = ['#2563eb', '#db2777', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#0ea5e9', '#475569']
@@ -30,6 +31,8 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const profile = settings.profile
   const [name, setName] = useState(profile.name)
   const [motto, setMotto] = useState(profile.motto)
+  const [location, setLocation] = useState(profile.location ?? '')
+  const [locating, setLocating] = useState(false)
   const [editing, setEditing] = useState(false)
   const [customizing, setCustomizing] = useState(false)
   const [picking, setPicking] = useState(false)
@@ -39,6 +42,47 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const [timelineAll, setTimelineAll] = useState(false)
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
+
+  const saveLocation = async (raw: string) => {
+    const loc = raw.trim()
+    if (!loc) {
+      save({ location: undefined, coordinates: undefined })
+      return
+    }
+    const resolved = await resolveCoordinates(loc)
+    save({
+      location: resolved ? resolved.name : loc,
+      coordinates: resolved ? { lat: resolved.lat, lon: resolved.lon } : undefined,
+    })
+    if (resolved) {
+      setLocation(resolved.name)
+      showToast(`Konum ayarlandı: ${resolved.name}`)
+    }
+  }
+
+  const detectLocation = () => {
+    if (!navigator.geolocation) {
+      showToast('Tarayıcınız konum servisini desteklemiyor.')
+      return
+    }
+    setLocating(true)
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude
+        const lon = pos.coords.longitude
+        const name = `${lat.toFixed(1)}°, ${lon.toFixed(1)}°`
+        setLocation(name)
+        save({ location: name, coordinates: { lat, lon } })
+        setLocating(false)
+        showToast('Konumun belirlendi.')
+      },
+      () => {
+        setLocating(false)
+        showToast('Konum izni alınamadı, şehri elle yazabilirsin.')
+      },
+      { timeout: 8000 }
+    )
+  }
 
   const setPhoto = async (blob: Blob | null) => {
     if (profile.photoId) await db.media.delete(profile.photoId)
@@ -100,6 +144,28 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               onBlur={() => motto !== profile.motto && save({ motto: motto.trim() })}
               onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
             />
+            <div className="profile-loc-row">
+              <span className="profile-loc-pin" aria-hidden><PinIcon size={14} /></span>
+              <input
+                className="profile-location"
+                value={location}
+                placeholder="Konumun (ör. İstanbul, Paris, İzmir...)"
+                aria-label="Konumun"
+                onChange={(e) => setLocation(e.target.value)}
+                onBlur={() => location !== (profile.location ?? '') && saveLocation(location)}
+                onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+              />
+              <button
+                type="button"
+                className="profile-loc-btn"
+                title="Şu anki konumu otomatik bul"
+                aria-label="Şu anki konumu bul"
+                disabled={locating}
+                onClick={detectLocation}
+              >
+                {locating ? '…' : 'Bul'}
+              </button>
+            </div>
           </div>
         </div>
         {game && (
@@ -536,8 +602,13 @@ function ProfileAbout({ profile, game, unlockables, onOpenBadge, onCustomize, cu
           ))}
         </ul>
       )}
-      {(interests.length > 0 || profile.goalLevel) && (
+      {(interests.length > 0 || profile.goalLevel || profile.location) && (
         <div className="profile-tags">
+          {profile.location && (
+            <span className="interest-chip location-chip" title="Hava durumu konumu">
+              <PinIcon size={12} className="inline-icon" /> {profile.location}
+            </span>
+          )}
           {profile.goalLevel && (
             <span className="goal-chip">
               Hedef {profile.goalLevel}
