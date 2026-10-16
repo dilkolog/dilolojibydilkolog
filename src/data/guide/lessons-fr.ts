@@ -591,7 +591,8 @@ export const FR_LESSONS: TopicLesson[] = [
       "Sık düzensizler: être (que je sois, que nous soyons), avoir (que j'aie, qu'il ait), faire (que je fasse), aller (que j'aille), pouvoir (que je puisse), savoir (que je sache), vouloir (que je veuille).",
       "Geçmişteki eylem için subjonctif passé: avoir / être'nin subjonctif'i + ortaç: Je regrette que tu n'aies pas pu venir.",
       "Üstünlük ve le seul, le premier, le dernier'den sonraki ilgi cümlesinde de sık görülür: C'est le meilleur film que j'aie vu.",
-      "İhtimal derecesi kip belirler: 'il est possible que' subjonctif ister (belirsizlik), fakat 'il est probable que' kuvvetli ihtimal bildirdiğinden indicatif alır."
+      "İhtimal derecesi kip belirler: 'il est possible que' subjonctif ister (belirsizlik), fakat 'il est probable que' kuvvetli ihtimal bildirdiğinden indicatif alır.",
+      "Ne explétif: 'avant que', 'à moins que' veya 'avoir peur que' sonrasında gelen 'ne', olumsuzluk (pas) taşımaz; resmî dilde bir nüanstır: 'Rentrons avant qu'il ne fasse nuit' (Gece olmadan önce dönelim)."
     ],
     examples: [
       { text: "Il faut que tu fasses tes devoirs avant de sortir.", tr: "Dışarı çıkmadan önce ödevlerini yapman gerek." },
@@ -599,14 +600,16 @@ export const FR_LESSONS: TopicLesson[] = [
       { text: "Je doute qu'elle réussisse sans réviser.", tr: "Tekrar yapmadan başaracağından şüpheliyim." },
       { text: "Mes parents veulent que je choisisse moi-même.", tr: "Ailem kendim seçmemi istiyor." },
       { text: "Je regrette que tu n'aies pas pu venir.", tr: "Gelemediğine üzülüyorum." },
-      { text: "C'est la plus belle ville que j'aie jamais visitée.", tr: "Şimdiye kadar gezdiğim en güzel şehir bu." },
+      { text: "Rentrons avant qu'il ne fasse nuit.", tr: "Hava kararmadan önce eve dönelim ('ne' olumsuzluk yapmaz, ne explétif'tir)." },
+      { text: "C'est la plus belle ville que j'aie jamais visitée.", tr: "Şimdiye kadar gezdiğim en güzel şehir bu." }
     ],
     watch: [
       "Türkçede ayrı bir kip yok (« gelmeni istiyorum » ad-fiille kurulur); « que »dan sonra kendiliğinden indicatif yazma: « bien qu'il a » değil « bien qu'il ait ».",
       "Özne aynıysa subjonctif değil mastar gelir: « Je veux partir », « Je veux que je parte » değil.",
       "« espérer que » ve « après que » subjonctif almaz: « J'espère qu'il viendra ».",
       "« penser, croire, trouver que » olumluyken indicatif ister: « Je pense qu'il a raison », ama « Je ne pense pas qu'il ait raison ».",
-      "Probable ve possible ayrımı: « Il est possible qu'il vienne » (subjonctif) ama « Il est probable qu'il viendra » (indicatif)."
+      "Probable ve possible ayrımı: « Il est possible qu'il vienne » (subjonctif) ama « Il est probable qu'il viendra » (indicatif).",
+      "Ne explétif'i olumsuz sanmak: « avant qu'il ne vienne » ifadesi « o gelmeden önce » demektir; eylemin olumsuz olduğu anlamına gelmez ve pas almaz."
     ],
     tip: "« que »dan önceki ifade bir gerçeği bildiriyorsa indicatif; bir isteği, duyguyu ya da şüpheyi bildiriyorsa subjonctif.",
   },

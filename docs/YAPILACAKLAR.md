@@ -414,6 +414,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - `src/data/guide/lessonOf.test.ts` (7 test): Rehber ders seçici motoru (`lessonsOf`, `lessonFor`, `lessonTitle`, `practiceTopic`, `englishTenseLessons`, `checkFor`, `checkableTopics`).
   - `src/data/__tests__/deriveLookup.test.ts` (4 test): Kelime türetme sözlük arama motoru (`makeLookup`), paket kelimeleri ve kullanıcı kelimeleri önceliklendirmesi.
   - `.gitignore`: Denetim betiği çıktıları (`*-output.json`) git takip dışına alındı.
+- [x] **Gece Bakım Turu 9 — Rehber İleri Seviye (B2/C1) Dilbilgisi Zenginleştirmesi (#370):**
+  - Fransızca (`lessons-fr.ts` - `subjonctif`): Resmî Fransızca'daki *ne explétif* kuralı (`avant que`, `à moins que`, `avoir peur que` sonrasında 'ne'nin olumsuzluk/pas taşımaması: `Rentrons avant qu'il ne fasse nuit`), yeni örneği ve dikkat uyarısı.
+  - İspanyolca (`lessons-es.ts` - `condicionales`): *como si* (sanki ...-mış gibi) kalıbının ardından daima geçmiş subjuntivo (imperfecto veya pluscuamperfecto de subjuntivo) alması, asla presente/indicativo kullanılmaması kuralı (`Me mira como si no me conociera`), yeni örneği ve dikkat uyarısı.
+  - İngilizce (`lessons-en.ts` - `inversion`): Şart cümlelerinde devriklik (*conditional inversion* - `Had I known`, `Were I you`, `Should you need help`), yeni örneği (`Had I known about the traffic, I would have taken the train`) ve `If had I known` hatasına karşı dikkat uyarısı.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 

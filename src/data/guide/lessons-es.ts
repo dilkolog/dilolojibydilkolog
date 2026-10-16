@@ -511,18 +511,21 @@ export const ES_LESSONS: TopicLesson[] = [
       "İmperfecto de subjuntivo'nun iki biçimi de doğrudur: tuviera / tuviese, tocara / tocase.",
       "Kısaltma: de + haber + ortaç = 'si hubiera …': De haber sabido, habría venido.",
       "Condicional: mastar + -ía (viajaría, comería); düzensiz gövdeler: tendría, haría, diría, podría, saldría, vendría, querría, sabría.",
+      "'como si' (sanki ...-mış gibi): Ardından daima geçmiş subjuntivo (imperfecto veya pluscuamperfecto de subjuntivo) alır; asla presente veya indicativo kullanılmaz: Me mira como si no me conociera."
     ],
     examples: [
       { text: "Si llueve mañana, no iremos a la playa.", tr: "Yarın yağmur yağarsa plaja gitmeyeceğiz." },
       { text: "Si tuviera más tiempo, aprendería a tocar la guitarra.", tr: "Daha çok vaktim olsa gitar çalmayı öğrenirdim." },
       { text: "Si me tocara la lotería, me compraría una casa en la playa.", tr: "Piyango bana çıksa sahilde bir ev alırdım." },
       { text: "Si hubieras venido, te habrías divertido.", tr: "Gelseydin eğlenirdin." },
+      { text: "Me mira como si no me conociera.", tr: "Beni sanki hiç tanımıyormuş gibi süzüyor ('como si'den sonra daima imperfecto de subjuntivo gelir)." },
       { text: "Si tienes hambre, come algo.", tr: "Açsan bir şeyler ye." },
       { text: "De haberlo sabido, te habría ayudado.", tr: "Bilseydim sana yardım ederdim." },
     ],
     watch: [
       "Si'den sonra condicional kullanmak: 'Si tendría dinero' değil, 'Si tuviera dinero'.",
       "Si'den sonra presente de subjuntivo kullanmak: 'Si tengas tiempo' değil, 'Si tienes tiempo' (si'den sonra asla presente de subjuntivo gelmez).",
+      "'como si' sonrasında presente kullanmak: 'como si no me conoce' ya da 'como si no me conozca' kesinlikle yanlıştır; daima imperfecto/pluscuamperfecto de subjuntivo gelir ('como si no me conociera').",
       "Olası şartta si + futuro: 'Si vendrás' değil, 'Si vienes'.",
       "Geçmiş şartta ortacı unutmak: 'habría ayudar' değil, 'habría ayudado'.",
       "Türkçedeki '-se' her kalıpta aynı olduğu için kalıpları karıştırmak: önce olasılığı belirle (olası, varsayım, geçmiş), sonra kalıbı seç.",
