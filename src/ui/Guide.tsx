@@ -90,11 +90,14 @@ export function GuideScreen({
   const doneCount = lessons.filter((l) => read.has(l.topic)).length
   const learnedCount = lessons.filter((l) => marks[l.topic]?.learned).length
   // The way through: the first lesson not read yet, the easier levels first.
-  const next = LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)).find((l) => !read.has(l.topic))
+  const ordered = useMemo(() => LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)), [lessons])
+  const next = ordered.find((l) => !read.has(l.topic))
 
   if (open) {
     const practice = open.practice ?? open.topic
     const targetTense = lessonTense(open)
+    const idx = ordered.findIndex((l) => l.topic === open.topic)
+    const following = idx >= 0 ? ordered[idx + 1] : undefined
     return (
       <LessonView
         key={open.topic}
@@ -104,7 +107,9 @@ export function GuideScreen({
         learned={!!marks[open.topic]?.learned}
         review={review && open.topic === lessonFor(language, initialLesson ?? '')?.topic}
         questions={questions.get(practice) ?? 0}
+        nextLesson={following}
         onBack={() => setOpen(null)}
+        onNext={following ? () => setOpen(following) : undefined}
         onRead={(on) => markRead(open.topic, on)}
         onChecked={(right, size) => change(markChecked(marks, open.topic, right >= Math.min(PASS_RIGHT, size)))}
         onPractice={() => onPractice(practice)}
@@ -306,7 +311,9 @@ function LessonView({
   learned,
   review,
   questions,
+  nextLesson,
   onBack,
+  onNext,
   onRead,
   onChecked,
   onPractice,
@@ -318,7 +325,9 @@ function LessonView({
   learned: boolean
   review?: boolean
   questions: number
+  nextLesson?: TopicLesson
   onBack: () => void
+  onNext?: () => void
   onRead: (on: boolean) => void
   onChecked: (right: number, size: number) => void
   onPractice: () => void
@@ -421,6 +430,17 @@ function LessonView({
           )}
         </button>
       </div>
+      {nextLesson && onNext && (
+        <button type="button" className="card guide-next" onClick={onNext}>
+          <span className="guide-level-badge">{nextLesson.level}</span>
+          <span className="guide-next-text">
+            <span className="small muted">Sıradaki ders</span>
+            <strong>{titleOf(nextLesson)}</strong>
+            <span className="small muted">{nextLesson.summary}</span>
+          </span>
+          <ChevronRightIcon size={20} className="guide-next-arrow" />
+        </button>
+      )}
     </article>
   )
 }
