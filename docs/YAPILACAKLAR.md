@@ -657,6 +657,15 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - **Birim & Duman Testleri (`src/ui/monki/Monki.test.tsx`):**
     - Depolamada eski kayıt kalsa dahi anahtar olmadığında veya konuşma başlatılmadığında "Temizle" butonunun görünmediğini doğrulayan birim testi eklendi.
     - `Monki.test.tsx` (14 test) ve `smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
+- [x] **Gelişim Turu 38 — Komut Paleti & Arama İkonlarının Storybook Çizim Standardına Dönüştürülmesi:**
+  - **Merkezi Çizim Haritası (`src/ui/paletteArt.tsx`, `src/ui/paletteArt.test.tsx`):**
+    - Komut paletinde (⌘K / Omnibox arama modalı) yer alan 32 oyunun tamamı, tüm navigasyon ekranları (Sözlük, Rehber, Dinleme, Okuma, İlerleme, Kelimeler, Ayarlar vb.) ve aksiyonlar (Kelime ekle, Metin aktar, Gece modu vb.) için tel çerçeveli SVG veya sistem emojileri yerine Diloloji'nin el çizimi hikaye kitabı/kawaii WebP çizimlerine bağlanan `commandArtIcon(id, fallback)` harita motoru geliştirildi.
+    - Tüm 32 oyun `GAME_ART` haritasından, ekranlar `SCREEN_PALETTE_ART` (`head-dictionary`, `guide-teach`, `listen-radio`, `stat-sprout`, `badge-gold` vb.) ve aksiyonlar `ACTION_PALETTE_ART` üzerinden hikaye çizimlerine bağlandı.
+  - **Arama Paleti Entegrasyonu & Görsel İyileştirme (`src/ui/CommandPalette.tsx`, `src/index.css`):**
+    - Arama sonuçlarında hem varsayılan komut listesi hem de son kullanılanlar listesi (`Son kullanılanlar`) otomatik olarak yüksek çözünürlüklü çizim ikonlarını (`.palette-art-icon`) kullanacak şekilde entegre edildi.
+    - `.palette-icon` kapsayıcısına `overflow: hidden` ve 1.375rem pürüzsüz nesne yerleşimi eklendi.
+  - **Birim & Duman Testleri:**
+    - `src/ui/paletteArt.test.tsx` (4 test), `src/ui/CommandPalette.test.tsx` (2 test) ve `src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).

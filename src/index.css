@@ -1863,10 +1863,11 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 
 /* ---------- Command palette: grouped, recent first ---------- */
 .palette-group { padding: 0.625rem 0.875rem 0.25rem; font-size: var(--t-xs); font-weight: 700; color: var(--ink-soft); }
-.palette-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-soft); flex: none; }
+.palette-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-soft); flex: none; overflow: hidden; }
 .palette-item.is-active .palette-icon { background: var(--surface); color: var(--lang-text); }
 .palette-enter { margin-left: 0.5rem; font-size: var(--t-xs); }
 .palette-lang { font-size: var(--t-xs); font-weight: 700; }
+.palette-art-icon { width: 1.375rem; height: 1.375rem; object-fit: contain; flex: none; display: block; }
 
 /* ---------- Story as a book page ---------- */
 /* A drop cap opens the episode. */
