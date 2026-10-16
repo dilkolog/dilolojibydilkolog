@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { db } from '../data/instance'
 
 import { useCountUp } from './useCountUp'
-import { Glyph } from './Glyph'
 import { isFormId } from '../engine/dailyPlan'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import type { Tense } from '../engine/tenses'
@@ -25,11 +24,12 @@ import { SummaryGarden } from './SummaryGarden'
 import { type GameState } from './game'
 import { sfx } from './sounds'
 import { BadgeMedal } from './Medal'
-import { closestStep, crossedMilestone, type Milestone } from '../engine/gamification'
+import { closestStep, crossedMilestone } from '../engine/gamification'
+import { MilestoneMoment, LevelUpBadge } from './MilestoneMoment'
+import { markLevelSeen } from './levelSeen'
 import { StreakPicture } from './StreakFlame'
 import { FREE_RECALL_MIN, FreeRecall } from './FreeRecall'
 import { SessionNote } from './SessionNote'
-import { shareCard } from './shareCard'
 import { RESULT_ART, STAT_ART, resultKind } from './drawnArt'
 import { Sticker } from './Sticker'
 
@@ -103,6 +103,7 @@ export function Summary({
   }, [newBadges.map((a) => a.id).join()]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
+    if (after) markLevelSeen(after.level.level)
     // Play once when the summary opens.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -362,62 +363,9 @@ export function Summary({
   )
 }
 
-/** A crossed milestone, once, full screen: big sign, a line on what it means, confetti, share. */
-function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; onClose: () => void }) {
-  const share = async () => {
-    await shareCard({ kicker: milestone.level ? 'Seviye atladım' : 'Yeni kilometre taşı', title: milestone.title, text: milestone.text, art: milestone.level ? 'level' : 'trophy' }, `${milestone.emoji} ${milestone.title} ${milestone.text}`)
-  }
-  return (
-    <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="dialog milestone" role="dialog" aria-modal="true" aria-labelledby="ms-title">
-        <div className="milestone-art">
-          <Burst />
-          {milestone.level ? (
-            <span className="milestone-level" aria-hidden>
-              <LevelUpBadge from={milestone.level.from} to={milestone.level.to} />
-            </span>
-          ) : (
-            <span className="milestone-emoji" aria-hidden>
-              <Glyph emoji={milestone.emoji} size={64} />
-            </span>
-          )}
-        </div>
-        <h2 id="ms-title" className="milestone-title">
-          {milestone.title}
-        </h2>
-        <p className="muted">{milestone.text}</p>
-        <div className="dialog-actions milestone-actions">
-          {'share' in navigator && (
-            <button className="btn btn-quiet" onClick={share}>
-              Paylaş
-            </button>
-          )}
-          <button className="btn" onClick={onClose} autoFocus>
-            Devam
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 /** XP earned in the session, counting up from 0. */
 export function GainCount({ value }: { value: number }) {
   return <>{Math.round(useCountUp(value, 'session-gain', 1000, 0))}</>
 }
 
-/** The new level: the badge shows the old number, flips to the new one with a ring, as if it were struck. */
-export function LevelUpBadge({ from, to }: { from: number; to: number }) {
-  const [level, setLevel] = useState(from)
-  useEffect(() => {
-    const t = setTimeout(() => setLevel(to), 800)
-    return () => clearTimeout(t)
-  }, [to])
-  return (
-    <span className={`level-strike${level === to ? ' is-up' : ''}`}>
-      <span className="level-badge level-badge-lg" key={level}>
-        {level}
-      </span>
-    </span>
-  )
-}
+export { LevelUpBadge } from './MilestoneMoment'

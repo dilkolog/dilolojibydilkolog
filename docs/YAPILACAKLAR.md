@@ -718,6 +718,23 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - **Birim & Duman Testleri:**
     - `AppSidebar.test.tsx` (5 test) ve `CommandPalette.test.tsx` (5 test) mobil erişilebilirlik etiketleri, kapatma butonu, temizleme butonu ve dokunmatik tıklama testleriyle genişletildi; `smoke.test.tsx` (20 test) ve `npm run typecheck && npx oxlint` ile tam doğrulandı.
 
+- [x] **Gelişim Turu 43 — 5 Adımlı Tasarım & Mikro-Etkileşim Cilası (Design Polish Sprint):**
+  - **1. Oyun İçi Zafer & Tamamlama Ekranı Mikro-Animasyonları (`src/ui/games/GameResult.tsx`):**
+    - Mini oyunlar başarıyla tamamlandığında (doğruluk oranı ≥%80 veya yeni rekor kırıldığında) ekranda renkli konfeti patlaması (`<Burst />`) ve zafer ses efekti (`sfx.levelUp()`) tetiklenmesi sağlandı. Zafer hissi ve dopamin döngüsü güçlendirildi.
+  - **2. Eksik Kalan Canlı Hava Durumu Sahneleri (`src/assets/art/weather-*.webp`, `src/data/weather.ts`):**
+    - Diloloji'nin sevimli maskotu Monki'nin yer aldığı eksik iki hava durumu sahnesi (`weather-cloudy.webp` - bulutların arasından bakan Monki; `weather-thunder.webp` - sarı yağmurluğuyla şimşek kıvılcımına gülümseyen Monki) üretildi, şeffaf arka planla optimize edilip entegre edildi. `thunder`, `cloudy` ve `fog` durumları gerçek canlı illüstrasyonlarla buluşturuldu (`weather.test.tsx` 6/6 test yeşil).
+  - **3. Boş Durum (Empty / Zero State) Kartlarının Zenginleştirilmesi:**
+    - İçerik henüz eklenmemiş ya da boş olan ekranlarda (`WordLists.tsx` kelime listeleri, `Reading.tsx` okuma kütüphanesi, `BackTranslation.tsx` geri çeviri havuzu, `WordGraph.tsx` kelime ağı) kuru yazılar yerine sıcacık hikaye sanatı (`art="shelf"`, `art="cardbox"`, `art="together"`) ve teşvik edici açıklamalar yerleştirildi.
+  - **4. Seviye Atlama (Level Up) ve Kilometre Taşı Kutlama Modalı (`src/ui/LevelWatcher.tsx`, `src/ui/MilestoneMoment.tsx`, `src/ui/levelSeen.ts`):**
+    - Oturum özeti dışında (mini oyunlar, fiil laboratuvarı, okuma veya görevlerden kazanılan XP ile) seviye atlandığında da kullanıcının başarısını taçlandıran tam ekran kutlama modalı (`MilestoneMoment`) geliştirildi.
+    - Seviye atlama rozeti (`LevelUpBadge`) animasyonu, `sfx.levelUp()`, `Burst` konfeti ve `shareCard` ile hikaye tarzı sosyal paylaşım kartı desteği eklendi. Cihaz hafızası (`levelSeen.ts`) ile ilk açılışta sessiz başlangıç ve çift kutlama engellemesi sağlandı; `LevelWatcher.test.tsx` ve `levelSeen.test.ts` ile birim testleri yazıldı.
+  - **5. Koyu Tema (Dark Mode) Kontrast, Gölge ve Yüzey İnce Ayarları (`src/index.css`):**
+    - OLED ve modern koyu ekranlarda derinliği artırmak için arka plan zemin rengi `--bg: #0b1120` (slate-950) olarak derinleştirildi; kartlar (`--surface: #1e293b`) ve iç alanlar (`--surface-2: #253346`) arasında net hiyerarşik katmanlaşma sağlandı.
+    - Bölme çizgileri, buton kenarları ve form girdileri için `--rule: #37475f` ile 2.8:1 oranında net kontrast oluşturuldu; silik kalan `.btn-quiet` 3D taban dudağı ve input sınırları belirginleştirildi.
+    - `--shadow`, `--shadow-lg`, `--shadow-xl` değişkenlerine ince ışık halesi (rim light) ve derin ortam gölgesi verilerek modern floating kart hissiyatı kazandırıldı; koyu mod dil ve geri bildirim renk tonları (`--en-soft`, `--fr-soft`, `--es-soft`, `--ok-soft`, vb.) optimize edildi.
+  - **Birim & Duman Testleri:**
+    - `levelSeen.test.ts`, `LevelWatcher.test.tsx`, `LevelUp.test.tsx`, `weather.test.tsx`, `smoke.test.tsx` dahil 34/34 test ve `npm run typecheck && npx oxlint` 0 hata ile doğrulandı.
+
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
 - **Yeni Özelliklerin Etkisi:** Kullanıcı düzenli çalıştıkça Kartlar, Rehber mini sınavları ve seri kurtarma mekanizmasının tutundurma (retention) verileri izlenecek.

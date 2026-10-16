@@ -124,7 +124,7 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
 
   if (!nodes.length) {
     return (
-      <EmptyState art="sentences" title="Kelime ağın henüz boş">
+      <EmptyState art="together" title="Kelime ağın henüz boş">
         Ağ, kelimeler arasındaki bağlardan oluşur: aynı kökten kelimeler (kelime ailesi), eş ve zıt anlamlılar,
         karıştırılabilir kelimeler ve ortak etiketler. Bir kelimenin sayfasından aile üyesi ekle ya da kelimelerine etiket ver (iş, seyahat…); bağlar oluştukça ağ burada canlanır.
       </EmptyState>

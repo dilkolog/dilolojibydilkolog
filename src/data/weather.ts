@@ -1,5 +1,7 @@
 import weatherRain from '../assets/art/weather-rain.webp'
 import weatherSnow from '../assets/art/weather-snow.webp'
+import weatherCloudy from '../assets/art/weather-cloudy.webp'
+import weatherThunder from '../assets/art/weather-thunder.webp'
 import { TIME_SCENE } from '../ui/drawnArt'
 import type { SkyPhase } from '../ui/gardenSkyCalculations'
 import { useEffect, useState } from 'react'
@@ -168,11 +170,17 @@ export async function fetchWeatherForCoords(
 /** Chooses the greeting illustration art: weather scene if rainy/snowy, else time of day scene. */
 export function weatherOrDayScene(weather: WeatherInfo | null, part: SkyPhase): string {
   if (weather) {
-    if (weather.condition === 'rain' || weather.condition === 'thunder') {
+    if (weather.condition === 'thunder') {
+      return weatherThunder
+    }
+    if (weather.condition === 'rain') {
       return weatherRain
     }
     if (weather.condition === 'snow') {
       return weatherSnow
+    }
+    if (weather.condition === 'cloudy' || weather.condition === 'fog') {
+      return weatherCloudy
     }
   }
   return TIME_SCENE[part]

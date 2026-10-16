@@ -1,8 +1,10 @@
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import type { TargetLanguage } from '../../engine/types'
 import { FlagIcon, TrophyIcon } from '../icons'
 import { Ring } from '../Ring'
 import { Sticker } from '../Sticker'
+import { Burst } from '../Burst'
+import { sfx } from '../sounds'
 
 /**
  * The end of every game in one layout: the result (a ring for accuracy, or a badge), the headline
@@ -36,9 +38,18 @@ export function GameResult({
   onAgain: () => void
   onExit: () => void
 }) {
+  const isCelebration = (accuracy !== undefined && accuracy >= 0.8) || !!record
+
+  useEffect(() => {
+    if (isCelebration) {
+      sfx.levelUp()
+    }
+  }, [isCelebration])
+
   return (
     <div className="game-result">
       <div className="game-result-card">
+        {isCelebration && <Burst />}
         {accuracy !== undefined ? (
           <span className="game-result-ring">
             <Ring value={accuracy} size={116} stroke={11} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
