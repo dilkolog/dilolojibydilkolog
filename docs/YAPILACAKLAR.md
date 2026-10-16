@@ -487,6 +487,19 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `participe_passe` (B2 - 3 soru): öne geçen doğrudan nesne uyumu (`les lettres ... écrites`), `en` zamiriyle ASLA uyum yapılmama kuralı (`j'en ai cueilli`), dönüşlü fiilde nesne arkadaysa uyumsuzluk (`s'est lavé les mains`).
     - `discours_indirect_fr` (B2 - 3 soru): geçmiş aktarımda `présent -> imparfait` (`était`), `futur -> conditionnel` (`viendrait`), `qu'est-ce que -> ce que`.
     - `pronoms_relatifs` (B2 - 3 soru): edat + cansız nesne `pour laquelle`, `à` ile birleşim `auquel` (`faire face à`), bileşik edatla `duquel` (`près duquel`, `dont` yasağı).
+- [x] **Gece Bakım Turu 19 — Rehber B1/B2 İspanyolca İnteraktif Pekiştirme Sınavları (#380):**
+  - Rehberde daha önce mini sınavı bulunmayan 11 ileri düzey İspanyolca dersi için 3'er soruluk (toplam 33 soru) pedagojik açıklamalı interaktif pekiştirme sınavları (`check`) eklendi:
+    - `subjuntivo` (B1 - 3 soru): WEIRDO istek (`quiero que vengas`), olumsuz düşünce (`no creo que tenga`), geleceğe dönük `cuando` + `subjuntivo` (`cuando llegues`).
+    - `por_para` (B1 - 3 soru): amaç/hedef için `para` (`para aprender`), sebep/engel için `por` (`por la lluvia`), süre (`por dos horas`) ve son teslim tarihi (`para el lunes`).
+    - `condicionales` (B1 - 3 soru): gerçekçi koşul `si + presente` (`si tengo`), hayali koşul `si + imperfecto de subjuntivo -> condicional` (`tuviera / viajaría`), geçmiş hayali koşul (`hubieras dicho`).
+    - `perifrasis` (B1 - 3 soru): eylemi bırakmak `dejar de + mastar`, tekrar yapmak `volver a + mastar`, süreklilik `llevar + süre + gerundio` (`llevo tres años estudiando`).
+    - `pronombres_atonos` (B1 - 3 soru): `le/les + lo/la -> se lo` dönüşümü (`se lo di`), `gustar` çoğul özne uyumu (`me gustan`), mastara bitişik zamir (`explicármelo`).
+    - `relativos_es` (B1 - 3 soru): edat sonrası tanımlı ilgi zamiri (`en la que`), tüm cümleyi özetleyen nötr `lo que`, iyelik ilgi sıfatı `cuyo/cuya` (`cuya madre`).
+    - `conn_es` (B1 - 3 soru): karşıtlık `sin embargo`, isim/mastarla `a pesar de`, resmi neden bağlacı `ya que`.
+    - `prep_es` (B1 - 3 soru): `soñar con`, `depender de`, geçişli fiilde insan nesnesiyle kişisel `a` (`busco a mi hermana`).
+    - `colloc_es` (B1 - 3 soru): `tener éxito` (başarılı olmak), `hacer una pregunta` (soru sormak), `dar un paseo` (yürüyüş yapmak).
+    - `se_pasivo` (B2 - 3 soru): çoğul nesneyle `se pasiva refleja` uyumu (`se venden`), tekil nesne uyumu (`se habla`), insan nesnesiyle `se impersonal` (`se busca a los culpables`).
+    - `estilo_indirecto` (B2 - 3 soru): geçmiş aktarımda `presente -> imperfecto` (`estaba`), `pretérito -> pluscuamperfecto` (`había perdido`), emir kipinden `imperfecto de subjuntivo`ya geçiş (`cerrara`).
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
