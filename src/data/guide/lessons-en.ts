@@ -690,18 +690,21 @@ export const EN_LESSONS: TopicLesson[] = [
       "Not only + devrik, but (also) ile devam eder: Not only was he late, but he also…",
       "Only after / only when / only by / not until ile başlayınca devriklik ana cümlededir: Not until the end did I understand.",
       "Under no circumstances, at no time, on no account da devrik yapı kurar.",
+      "Şart cümlelerinde devriklik (conditional inversion): Resmî dilde 'if' atılarak yardımcı fiil başa alınır: Had I known (= If I had known), Were I you (= If I were you), Should you need help (= If you should need help).",
       "Bu yapılar resmî ve vurguludur; günlük konuşmada düz sıra daha yaygındır."
     ],
     examples: [
       { text: "Rarely have I met such a generous person.", tr: "Bu kadar cömert birine nadiren rastladım." },
       { text: "Little did she know that her life was about to change.", tr: "Hayatının değişmek üzere olduğundan hiç haberi yoktu." },
       { text: "No sooner had we sat down than the phone rang.", tr: "Oturur oturmaz telefon çaldı." },
+      { text: "Had I known about the traffic, I would have taken the train.", tr: "Trafiği bilseydim trene binerdim ('If I had known' yerine devrik yapı)." },
       { text: "Not only did he forget the meeting, but he also lost the documents.", tr: "Toplantıyı unutmakla kalmadı, belgeleri de kaybetti." },
       { text: "Only after the meeting did I realise my mistake.", tr: "Hatamı ancak toplantıdan sonra fark ettim." },
       { text: "Under no circumstances should passengers open the doors.", tr: "Yolcular hiçbir koşulda kapıları açmamalıdır." }
     ],
     watch: [
       "Yardımcı fiili eklemeyi unutmak: 'Rarely we see' değil 'Rarely do we see'.",
+      "'If' ile devrik yapıyı birleştirmek: 'If had I known' kesinlikle yanlıştır; ya 'If I had known' ya da devrik 'Had I known' denmelidir.",
       "Bağlaçları karıştırmak: 'hardly … than' ya da 'no sooner … when' değil 'hardly … when', 'no sooner … than'.",
       "Not until'de yan cümleyi devirmek: devrik olan ana cümledir: 'Not until I got home did I notice'.",
       "Did'den sonra geçmiş fiil: 'Little did he knew' değil 'Little did he know'."
