@@ -3280,7 +3280,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
    them a thin light rim there. Not the confetti frames, the welcome banner (its own light card) or a game's watermark. */
 :is(.streak-picture, .account-art, .monki-face, .monki-pose, .chip-art, .empty-picture, .cat-emblem, .page-header-art, .sheet-react,
   .settings-pane-art, .settings-menu-art, .grown-monki, .emoji-monki, .drawn-medal, .og-pot, .ob-art, .lang-card-art,
-  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art, .stat-art-img) {
+  .pos-art, .session-hello img, .result-art, .game-art, .wl-cover, .sticker, .quest-art, .status-picture, .source-art, .day-scene, .avatar img, .monki-scene img, .boss-face, .mission-art, .tile-art, .garden-pot, .nudge-art, .friends-art, .lesson-check-art, .flash-done-art, .auth-art, .stat-art-img, .daily-news-art) {
   filter: var(--art-edge);
 }
 
@@ -4259,7 +4259,12 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   50% { opacity: 0.45; transform: scale(0.92); }
 }
 .daily-news-source { font-weight: 600; }
-.daily-news-body { display: grid; gap: 0.625rem; }
+.daily-news-layout { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+.daily-news-art { flex: none; width: 76px; height: 76px; object-fit: contain; filter: var(--art-edge); }
+@media (max-width: 520px) {
+  .daily-news-art { display: none; }
+}
+.daily-news-body { display: grid; gap: 0.625rem; flex: 1; min-width: 0; }
 .daily-news-title {
   margin: 0;
   font-size: 1.15rem;

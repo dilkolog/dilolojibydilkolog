@@ -6,6 +6,7 @@ import { MASTERY_STAGES, masteryStage } from '../engine/mastery'
 import type { UserWordState, VocabularyEntry } from '../engine/types'
 import { CloseIcon } from './icons'
 import { STAGE_NAME } from './labels'
+import { EmptyState } from './EmptyState'
 
 interface Node extends SimulationNodeDatum {
   id: string
@@ -123,13 +124,10 @@ export function WordGraph({ vocabulary, states, onOpen }: { vocabulary: Vocabula
 
   if (!nodes.length) {
     return (
-      <section className="card stack graph-empty">
-        <p>
-          <strong>Kelime ağın henüz boş.</strong> Ağ, kelimeler arasındaki bağlardan oluşur: aynı kökten kelimeler (kelime ailesi), eş ve zıt anlamlılar,
-          karıştırılabilir kelimeler ve ortak etiketler.
-        </p>
-        <p className="small muted">Bir kelimenin sayfasından aile üyesi ekle ya da kelimelerine etiket ver (iş, seyahat…); bağlar oluştukça ağ burada görünür.</p>
-      </section>
+      <EmptyState art="sentences" title="Kelime ağın henüz boş">
+        Ağ, kelimeler arasındaki bağlardan oluşur: aynı kökten kelimeler (kelime ailesi), eş ve zıt anlamlılar,
+        karıştırılabilir kelimeler ve ortak etiketler. Bir kelimenin sayfasından aile üyesi ekle ya da kelimelerine etiket ver (iş, seyahat…); bağlar oluştukça ağ burada canlanır.
+      </EmptyState>
     )
   }
 

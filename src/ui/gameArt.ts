@@ -28,6 +28,9 @@ import gTags from '../assets/art/game-tags.webp'
 import gGear from '../assets/art/game-gear.webp'
 import gGifts from '../assets/art/game-gifts.webp'
 import gGaps from '../assets/art/game-gaps.webp'
+import gSpotError from '../assets/art/game-spot-error.webp'
+import gRewrite from '../assets/art/game-rewrite.webp'
+import gCollocations from '../assets/art/game-collocations.webp'
 
 /** The drawn sign of the games that have one; the others keep their emoji glyph. */
 export const GAME_ART: Partial<Record<GameId, string>> = {
@@ -60,4 +63,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   conjugation: gGear,
   gender: gGifts,
   context: gGaps,
+  'spot-error': gSpotError,
+  rewrite: gRewrite,
+  collocations: gCollocations,
 }

@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { seedIndex, seedText } from '../engine/mindSeed'
 import { localDate } from '../engine/progress'
 import type { TargetLanguage } from '../engine/types'
-import { CheckIcon, SproutIcon } from './icons'
+import { CheckIcon } from './icons'
+import { STAT_ART } from './drawnArt'
 
 interface Saved {
   day: string
@@ -54,7 +55,7 @@ export function MindSeed({ language }: { language: TargetLanguage }) {
   return (
     <section className="card stack mind-seed" aria-label="Günün zihin tohumu">
       <h2 className="section-title row gap-2">
-        <SproutIcon size={18} className="icon-star" /> Günün zihin tohumu
+        <img className="stat-art-img" src={STAT_ART.sprout} alt="" height={22} width={22} draggable={false} /> Günün zihin tohumu
       </h2>
       <p>{text}</p>
       <p className="small muted">Ekrandan uzakta, kafanda ya da yüksek sesle; yazman gerekmiyor.</p>

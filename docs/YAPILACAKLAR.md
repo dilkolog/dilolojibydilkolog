@@ -583,7 +583,21 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Arkadaşın adı `'Arkadaş'` ise veya kullanıcı arkadaşına özel bir isim vermek isterse, satır içindeki `✎` veya `✎ İsim ver` butonuna tıklayarak doğrudan takma ad belirleyebilir (`diloloji:friend-nicknames`).
     - Takma ad anında liderlik tablosuna, avatarına ve çıkarma bildirimlerine yansır; istendiğinde güncellenebilir veya silinerek orijinal ada dönülebilir.
   - **Birim Testleri & Kapsamlı Doğrulama:**
-    - `src/ui/FriendsCard.test.tsx` (takma ad verme, inline form açma/kaydetme ve '✎ İsim ver' belirteci testleri) ve `src/data/apiFriends.test.ts` (sunucu tarafı boş/Arkadaş isimlerini otomatik kullanıcı adına çözümleme testi) eklendi; tüm testler (392 dosya, 2027 test) %100 yeşil.
+- [x] **Gelişim Turu 32 — Eksik Çizim Varlıklarının Prompt ile Tasarımı, Entegrasyonu & Görsel Zenginleştirme:**
+  - **Oyun Kartı Çizimleri (`src/assets/art/`, `src/ui/gameArt.ts`, `src/ui/Games.tsx`):**
+    - Sitedeki tüm 32 oyun analiz edildi; çizimi bulunmayan son 3 oyun için storybook/kawaii çizim tarzında özel görseller üretildi ve optimize edilmiş şeffaf alfa maskeli WebP olarak entegre edildi:
+      - `game-spot-error.webp`: Büyüteç, altın hedef tahtası ve parıltılarla Hata Avcısı ikonu.
+      - `game-rewrite.webp`: İki döngüsel sihirli ok, altın anahtar ve parşömen ile Cümle Dönüşümü ikonu.
+      - `game-collocations.webp`: Birbirine kenetlenen kawaii yapboz parçaları ve altın bağlantılarla Edat ve Kalıplar ikonu.
+    - `verbs` oyun kartı için `conjugation` görseli fallback tanımlandı; 32 oyunun tamamı (%100) artık sistem emojisi yerine özel çizim illüstrasyonuna sahip.
+  - **Günün Mikro Haberi Vitrin Çizimi (`src/assets/art/hero-micro-news.webp`, `src/ui/DailyNewsHero.tsx`, `src/index.css`):**
+    - Okuma ekranının en üstündeki günün canlı mikro haberi için nostaljik kulaklıklı sevimli maskotun gazete okuduğu ve yanında kahvesinin tüttüğü storybook vitrin çizimi üretildi.
+    - `DailyNewsHero.tsx` içine responsive vitrin düzeni (`.daily-news-layout`, `.daily-news-art`) eklendi, koyu tema uyumu sağlandı.
+  - **Zihin Tohumu & Boş Ekran Görsel Zenginleştirmeleri (`src/ui/MindSeed.tsx`, `src/ui/WordGraph.tsx`):**
+    - Zihin Tohumu kartında düz SVG ikonu yerine sevimli fidan maskot görseli (`STAT_ART.sprout`) entegre edildi.
+    - Kelime Ağı henüz bağlantı içermediğinde düz gri metin yerine çizimli `EmptyState` (`art="sentences"`) entegre edildi.
+  - **Birim Testleri & Kapsamlı Doğrulama:**
+    - `src/ui/WordGraph.test.tsx` (boş durum ve bağlantılı SVG ağı render testleri) eklendi; `src/ui/gameArt.test.ts` (32 oyun 1:1 eşleşmesi), `src/ui/DailyNewsHero.test.tsx` ve `src/ui/MindSeed.test.tsx` doğrulandı. 393 test dosyasının tümü yeşil.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).
