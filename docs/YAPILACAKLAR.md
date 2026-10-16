@@ -629,6 +629,19 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Sahnenin köşesinde sıcaklık derecesi rozeti (`.weather-badge-pill`) ve zengin durum ipucu (ör. "İstanbul · 16°C, Yağmurlu") sağlandı.
   - **Birim Testleri & Kapsamlı Doğrulama:**
     - `src/data/weather.test.tsx` (6 test) eklendi; `smoke.test.tsx` (20 test) %100 yeşil.
+- [x] **Gelişim Turu 35 — Hesap Silme Alanının Güvenli Taşınması (Göz Önünden Kaldırma & Veriler Sekmesi):**
+  - **Göz Önünden Kaldırma & En Alta Taşıma (`src/ui/AccountManage.tsx`, `src/ui/AccountSettings.tsx`):**
+    - "Oturum" grubu içindeki doğrudan kırmızı butonlu "Hesabı sil" satırı kaldırıldı; Oturum alanında yalnızca "Bu cihazda çıkış yap" butonu bırakıldı.
+    - Bağımsız `AccountDelete` bileşeni oluşturuldu.
+    - Hesap ayarları sayfasının en altına (`RestorePoints` ve `AdminAccess` bileşenlerinin de altına) yerleştirildi.
+    - `<details className="account-advanced account-danger-details">` katlanabilir yapısıyla gizlendi; kullanıcı bilerek açmadığı sürece görünmez ve yanlışlıkla basılamaz hale getirildi.
+  - **Veriler Sekmesinde Tehlikeli Bölge Entegrasyonu (`src/ui/DataSettings.tsx`):**
+    - Ayarlar → Veriler sekmesindeki "Sıfırlama" (`danger-zone`) kartına da oturum açık olduğunda `AccountDelete` katlanabilir tehlike alanı eklendi.
+    - Böylece hesap silme işlemi hem en altta güvenli bir şekilde hem de veri sıfırlama işlemlerinin doğal yerinde konumlandırıldı.
+  - **Stil & Tasarım İyileştirmesi (`src/lazy.css`):**
+    - `.account-danger-details` ve `.account-danger-body` sınıfları için kesikli ayırıcı çizgi, zarif tipografi ve açıkken kırmızılaşan güvenli özet stili tanımlandı.
+  - **Kapsamlı Doğrulama:**
+    - `npm run typecheck`, `npx oxlint` ve `npx vitest run src/ui/smoke.test.tsx` (20 test) %100 yeşil tamamlandı.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).

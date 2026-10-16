@@ -1377,6 +1377,10 @@ button.badge-card:active { transform: none; }
 .account-google { gap: 0.625rem; }
 .account-advanced { padding-top: 0.75rem; border-top: 1px solid var(--rule); }
 .account-advanced summary { cursor: pointer; font-weight: 600; color: var(--ink-soft); }
+.account-danger-details { margin-top: 1rem; border-top: 1px dashed var(--rule); padding-top: 0.75rem; }
+.account-danger-details summary { color: var(--ink-muted, #71717a); font-weight: 500; font-size: var(--t-sm); }
+.account-danger-details[open] summary { color: var(--danger, #dc2626); font-weight: 600; }
+.account-danger-body { margin-top: 0.75rem; display: grid; gap: 0.625rem; justify-items: start; }
 @media (max-width: 40rem) {
   .account-perks { padding: 0.875rem; }
 }

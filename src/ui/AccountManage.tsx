@@ -7,18 +7,23 @@ import { setAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 
 /**
- * The signed-in account's own controls, as rows: how the person signs in and their password (a new
- * one, or a first one for someone who signs in with Google), then signing out on this device and
- * deleting the account. Deleting takes the account and what the server keeps for it; the device keeps
- * its copy, so nothing studied here is lost by accident.
+ * The signed-in account's main controls: sign-in provider and password (new or first),
+ * and signing out on this device.
  */
-export function AccountManage({ account, identity, onSignOut, onGone }: { account: Account; identity: Identity | null; onSignOut: () => void; onGone: () => void }) {
+export function AccountManage({
+  identity,
+  onSignOut,
+}: {
+  account?: Account
+  identity: Identity | null
+  onSignOut: () => void
+  onGone?: () => void
+}) {
   const [changing, setChanging] = useState(false)
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
-  const [confirming, setConfirming] = useState(false)
   const hasPassword = !identity || identity.providers.includes('email')
 
   const savePassword = async () => {
@@ -39,23 +44,6 @@ export function AccountManage({ account, identity, onSignOut, onGone }: { accoun
     }
   }
 
-  const remove = async () => {
-    setConfirming(false)
-    setBusy(true)
-    try {
-      const session = identity ? await currentSession() : null
-      await deleteAccount(session?.access_token ?? null, account)
-      await setAccount(null)
-      await signOutSupabase()
-      showToast('Hesabın ve sunucudaki verilerin silindi. Bu cihazdaki kelimelerin ve ilerlemen duruyor.', undefined, 6000)
-      onGone()
-    } catch {
-      showToast('Hesap silinemedi; biraz sonra tekrar dene.', undefined, 5000, 'info')
-    } finally {
-      setBusy(false)
-    }
-  }
-
   return (
     <>
       {identity && (
@@ -70,7 +58,11 @@ export function AccountManage({ account, identity, onSignOut, onGone }: { accoun
           <div className="account-row">
             <div className="account-row-text">
               <strong>Şifre</strong>
-              <span className="small muted">{hasPassword ? 'Unutursan giriş ekranından e-postanla yenilersin.' : 'Google ile giriyorsun; bir şifre belirlersen e-postanla da girebilirsin.'}</span>
+              <span className="small muted">
+                {hasPassword
+                  ? 'Unutursan giriş ekranından e-postanla yenilersin.'
+                  : 'Google ile giriyorsun; bir şifre belirlersen e-postanla da girebilirsin.'}
+              </span>
             </div>
             {!changing && (
               <button type="button" className="btn btn-sm btn-quiet" onClick={() => setChanging(true)}>
@@ -123,21 +115,66 @@ export function AccountManage({ account, identity, onSignOut, onGone }: { accoun
             Çıkış yap
           </button>
         </div>
-        <div className="account-row">
-          <div className="account-row-text">
-            <strong>Hesabı sil</strong>
-            <span className="small muted">Hesabın ve sunucudaki verilerin kalıcı olarak silinir.</span>
-          </div>
-          <button type="button" className="btn btn-sm btn-quiet btn-text-danger" disabled={busy} onClick={() => setConfirming(true)}>
-            Hesabımı sil
-          </button>
-        </div>
+      </div>
+    </>
+  )
+}
+
+/**
+ * Account deletion placed safely at the very bottom or in Data settings.
+ * Hidden inside a collapsible details section so it is never in the way or accidentally pressed.
+ */
+export function AccountDelete({
+  account,
+  identity,
+  onGone,
+}: {
+  account: Account
+  identity: Identity | null
+  onGone: () => void
+}) {
+  const [confirming, setConfirming] = useState(false)
+  const [busy, setBusy] = useState(false)
+
+  const remove = async () => {
+    setConfirming(false)
+    setBusy(true)
+    try {
+      const session = identity ? await currentSession() : null
+      await deleteAccount(session?.access_token ?? null, account)
+      await setAccount(null)
+      await signOutSupabase()
+      showToast('Hesabın ve sunucudaki verilerin silindi. Bu cihazdaki kelimelerin ve ilerlemen duruyor.', undefined, 6000)
+      onGone()
+    } catch {
+      showToast('Hesap silinemedi; biraz sonra tekrar dene.', undefined, 5000, 'info')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <details className="account-advanced account-danger-details">
+      <summary className="small muted">Hesabı sil (tehlikeli bölge)</summary>
+      <div className="account-danger-body">
+        <p className="small muted">
+          Hesabın ve sunucuda eşitlenen verilerin kalıcı olarak silinir. Bu cihazdaki kelimelerin ve ilerlemen silinmez, hesapsız kullanmaya devam edebilirsin.
+        </p>
+        <button type="button" className="btn btn-sm btn-danger" disabled={busy} onClick={() => setConfirming(true)}>
+          Hesabımı kalıcı olarak sil
+        </button>
       </div>
       {confirming && (
-        <ConfirmDialog title="Hesabın silinsin mi?" confirmLabel="Hesabımı sil" danger onConfirm={() => void remove()} onCancel={() => setConfirming(false)}>
+        <ConfirmDialog
+          title="Hesabın silinsin mi?"
+          confirmLabel="Hesabımı sil"
+          danger
+          onConfirm={() => void remove()}
+          onCancel={() => setConfirming(false)}
+        >
           Hesabın, sunucuda eşitlenen verilerin, arkadaş kartın ve mail hatırlatmaların kalıcı olarak silinir; geri alınamaz. Bu cihazdaki kelimelerin ve ilerlemen silinmez, hesapsız kullanmaya devam edebilirsin. Paylaştığın listeler kalır: istersen önce liste sayfasından paylaşımı geri al.
         </ConfirmDialog>
       )}
-    </>
+    </details>
   )
 }
