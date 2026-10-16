@@ -80,4 +80,17 @@ describe('/api/access: friends', () => {
     await post(as(VELI, VELI_TOKEN), { action: 'friends-remove', code: me.code })
     expect(((await (await view(as(VELI, VELI_TOKEN))).json()) as { friends: unknown[] }).friends).toEqual([])
   })
+
+  it('resolves account username when card name is empty or "Arkadaş"', async () => {
+    set(`access/approved/${ALI}.json`, JSON.stringify({ username: 'AliVeli' }))
+    const pub = await post(as(ALI, ALI_TOKEN), { action: 'friends-publish', ...card, name: '' })
+    expect(pub.status).toBe(200)
+    const { me } = (await pub.json()) as { me: { code: string; name: string } }
+    expect(me.name).toBe('AliVeli')
+
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: me.code })
+    const res = await view(as(VELI, VELI_TOKEN))
+    const body = (await res.json()) as { friends: { name: string }[] }
+    expect(body.friends[0].name).toBe('AliVeli')
+  })
 })

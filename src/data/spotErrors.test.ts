@@ -22,14 +22,14 @@ describe('spotErrors data integrity', () => {
     }
   })
 
-  it('covers French, Spanish, and English with at least 12 items each', () => {
+  it('covers French, Spanish, and English with at least 25 items each', () => {
     const fr = SPOT_ERRORS.filter((i) => i.language === 'fr')
     const es = SPOT_ERRORS.filter((i) => i.language === 'es')
     const en = SPOT_ERRORS.filter((i) => i.language === 'en')
 
-    expect(fr.length).toBeGreaterThanOrEqual(12)
-    expect(es.length).toBeGreaterThanOrEqual(12)
-    expect(en.length).toBeGreaterThanOrEqual(12)
+    expect(fr.length).toBeGreaterThanOrEqual(25)
+    expect(es.length).toBeGreaterThanOrEqual(25)
+    expect(en.length).toBeGreaterThanOrEqual(25)
   })
 
   it('spotErrorRound draws the requested count and prioritizes missed items', () => {

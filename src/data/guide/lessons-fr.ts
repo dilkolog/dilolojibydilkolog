@@ -793,6 +793,12 @@ export const FR_LESSONS: TopicLesson[] = [
         options: ["fait", "fera", "fasse"],
         answer: 2,
         why: "Avant que bağlacı daima subjonctif ister (fasse). Cümledeki 'ne' ise olumsuzluk değil resmî üsluba ait 'ne explétif'tir."
+      },
+      {
+        prompt: "Bien que nous ___ très fatigués par le trajet, nous sortons marcher.",
+        options: ["sommes", "soyons", "serons", "étions"],
+        answer: 1,
+        why: "'Bien que' zıtlık bağlacı her zaman subjonctif kipi gerektirir; être fiilinin 'nous' şahsı için subjonctif çekimi 'soyons'dur."
       }
     ]
   },
@@ -902,6 +908,12 @@ export const FR_LESSONS: TopicLesson[] = [
         options: ["lavées", "lavé", "lavés"],
         answer: 1,
         why: "Dönüşlü fiillerde doğrudan nesne (les mains) fiilden SONRA geldiğinde ortaç uyum yapmaz: elle s'est lavé les mains."
+      },
+      {
+        prompt: "La maison qu'ils ont ___ construire est magnifique.",
+        options: ["fait", "faite", "faites", "faisant"],
+        answer: 0,
+        why: "'Faire + infinitif' (ettirgen yapı) durumunda doğrudan nesne önde olsa dahi 'fait' ortacı asla uyum yapmaz ve değişmez kalır."
       }
     ]
   },

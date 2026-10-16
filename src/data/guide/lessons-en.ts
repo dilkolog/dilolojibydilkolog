@@ -975,6 +975,12 @@ export const EN_LESSONS: TopicLesson[] = [
         options: ["when", "than", "that"],
         answer: 1,
         why: "'No sooner ... than' kalıbı karşılaştırma yapısından gelir ve 'than' ile tamamlanır; 'hardly / scarcely' ise 'when' alır."
+      },
+      {
+        prompt: "Hardly had the meeting started ___ the power went out.",
+        options: ["than", "when", "that", "while"],
+        answer: 1,
+        why: "'Hardly' ve 'scarcely' devrik yapıları ikinci cümleye 'than' ile değil, daima 'when' ile bağlanır."
       }
     ]
   },
@@ -1025,6 +1031,12 @@ export const EN_LESSONS: TopicLesson[] = [
         options: ["which", "who", "what"],
         answer: 1,
         why: "It-cleft yapısında bir kişi vurgulanırken 'who' (veya 'that') kullanılır; 'which' ve 'what' kişi için kullanılmaz."
+      },
+      {
+        prompt: "All that we are asking for ___ a little more time to complete the task.",
+        options: ["is", "are", "be", "were"],
+        answer: 0,
+        why: "'All that ...' yarıklı vurgu yapısında yüklem tekil 'be' (is / was) fiilidir ('All that we are asking for is...')."
       }
     ]
   },
@@ -1076,6 +1088,12 @@ export const EN_LESSONS: TopicLesson[] = [
         options: ["doesn't sign", "didn't sign", "not sign"],
         answer: 2,
         why: "Subjunctive yapısının olumsuzu yardımcı fiil (do/does/did) almadan doğrudan 'not + yalın fiil' (not sign) ile kurulur."
+      },
+      {
+        prompt: "The doctor suggested that she ___ a specialist regarding her symptoms.",
+        options: ["sees", "see", "saw", "to see"],
+        answer: 1,
+        why: "'Suggest that' yapısından sonra 3. tekil şahıs için dahi fiil -s takısı almaz, yalın (base form) subjunctive kalır ('she see')."
       }
     ]
   }

@@ -19,14 +19,14 @@ describe('sentenceRewrites data integrity and matching', () => {
     }
   })
 
-  it('covers French, Spanish, and English with at least 15 items each', () => {
+  it('covers French, Spanish, and English with at least 25 items each', () => {
     const fr = SENTENCE_REWRITES.filter((i) => i.language === 'fr')
     const es = SENTENCE_REWRITES.filter((i) => i.language === 'es')
     const en = SENTENCE_REWRITES.filter((i) => i.language === 'en')
 
-    expect(fr.length).toBeGreaterThanOrEqual(15)
-    expect(es.length).toBeGreaterThanOrEqual(15)
-    expect(en.length).toBeGreaterThanOrEqual(15)
+    expect(fr.length).toBeGreaterThanOrEqual(25)
+    expect(es.length).toBeGreaterThanOrEqual(25)
+    expect(en.length).toBeGreaterThanOrEqual(25)
   })
 
   it('normalizes answers properly handling curly apostrophes and extra spaces', () => {

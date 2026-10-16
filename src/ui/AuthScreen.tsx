@@ -1,6 +1,7 @@
 import '../lazy.css'
 import { useState } from 'react'
-import { BackupVersionError } from '../data/db'
+import { BackupVersionError, DEFAULT_SETTINGS } from '../data/db'
+import { db } from '../data/instance'
 import { probeAccount, requestAccess } from '../data/access'
 import { deriveAccount, SyncAuthError, SyncApprovalError, SyncConflictError, SyncNotAllowedError, SyncTooLargeError } from '../data/sync'
 import { reportError } from '../data/errorReport'
@@ -75,6 +76,14 @@ function UsernameAuth({ initialMode = 'login', onDone, onBack }: { initialMode?:
       } catch (e) {
         if (!(e instanceof SyncApprovalError)) throw e
         waiting = true
+      }
+      try {
+        const settings = (await db.getSettings()) ?? DEFAULT_SETTINGS
+        if (!settings.profile.name.trim()) {
+          await db.saveSettings({ ...settings, profile: { ...settings.profile, name } })
+        }
+      } catch {
+        // ignore
       }
       showToast(waiting ? 'Hesabın site sahibinin onayını bekliyor; onaylanınca eşitleme ve diğer özellikler açılır.' : status === 'new' ? 'Hesabın oluşturuldu; ilerlemen kaydedildi.' : 'Giriş yapıldı; ilerlemen bu cihazla birleştirildi.')
       onDone()

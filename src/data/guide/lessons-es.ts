@@ -562,6 +562,12 @@ export const ES_LESSONS: TopicLesson[] = [
         options: ["tenga", "tiene", "tendrá"],
         answer: 0,
         why: "Olumlu 'creo que' indicativo alırken, olumsuz 'no creo que' şüphe ve inkâr bildirdiği için subjuntivo ister."
+      },
+      {
+        prompt: "Ojalá mañana no ___ tanto calor durante la caminata.",
+        options: ["hace", "haga", "hará", "hacía"],
+        answer: 1,
+        why: "'Ojalá' dilek ifadesi ardından gelen yan cümleyi daima subjuntivo kipine bağlar (haga)."
       }
     ],
   },
@@ -616,6 +622,12 @@ export const ES_LESSONS: TopicLesson[] = [
         options: ["por", "para", "con"],
         answer: 0,
         why: "Bir başkasının yerine (vekaleten) çalışmak 'trabajar por alguien' ile ifade edilir; 'trabajar para' ise işveren/şirket içindir."
+      },
+      {
+        prompt: "Compré este libro antiguo ___ quince euros en el mercado.",
+        options: ["para", "por", "de", "con"],
+        answer: 1,
+        why: "Alışveriş, fiyat ve değiş tokuş bildiren ifadelerde bedel 'por' edatıyla belirtilir (por quince euros)."
       }
     ],
   },
