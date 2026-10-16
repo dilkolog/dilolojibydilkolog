@@ -10,7 +10,7 @@ import { SKILLS, type Skill, type TargetLanguage } from '../engine/types'
 import { relativeTime } from './format'
 import { greetingFor } from './dayPart'
 import { pinnedBadges } from '../engine/profileStyle'
-import { BookIcon, SnowflakeIcon, StarIcon } from './icons'
+import { SnowflakeIcon } from './icons'
 import { HELLO, LANGUAGE_NAME, SKILL_NAME } from './labels'
 import { RaceCard } from './Race'
 import { CHALLENGE_XP } from '../engine/challenges'
@@ -20,11 +20,11 @@ import { Plant } from './Plant'
 import { Ring } from './Ring'
 import { useGame } from './game'
 import { BadgeMedal } from './Medal'
-import { StreakFlame, StreakPicture } from './StreakFlame'
+import { StreakPicture } from './StreakFlame'
 import welcomeBanner from '../assets/art/welcome-banner.webp'
 import { REPAIR_MIN_SCORE, repairKey } from '../engine/streakRepair'
 import { repairTried } from './repairTry'
-import { NEW_ART, TILE_ART } from './drawnArt'
+import { NEW_ART, STAT_ART, TILE_ART } from './drawnArt'
 import { Sticker } from './Sticker'
 import { DayMark, FocusLine, LevelStrip, QuestIcon } from './HomeParts'
 
@@ -639,7 +639,7 @@ export function Home({
         <div className="stats">
           <div className="stat">
             <span className="stat-value">
-              <StreakFlame streak={streak} frozen={game?.frozenYesterday} /> {streak}
+              <StreakPicture streak={streak} size={28} /> {streak}
               {(game?.freezes ?? 0) > 0 && (
                 <span className="freeze" title="Seri dondurma: çalışamadığın bir günde serini otomatik korur. 7 günlük her seride bir tane kazanırsın.">
                   <SnowflakeIcon size={15} className="inline-icon" />{game!.freezes}
@@ -650,13 +650,13 @@ export function Home({
           </div>
           <div className="stat">
             <span className="stat-value">
-              <StarIcon className="icon-star" size={22} /> {activeVocabulary}
+              <img className="stat-art-img" src={STAT_ART.star} alt="" height={26} width={26} draggable={false} /> {activeVocabulary}
             </span>
             <span className="stat-label">aktif kelime</span>
           </div>
           <div className="stat">
             <span className="stat-value">
-              <BookIcon className="icon-book" size={22} /> {learningCount}
+              <img className="stat-art-img" src={STAT_ART.book} alt="" height={26} width={26} draggable={false} /> {learningCount}
               <span className="small muted stat-total">/{vocabularyCount}</span>
             </span>
             <span className="stat-label">kelime öğreniliyor</span>

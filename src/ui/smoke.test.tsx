@@ -106,7 +106,7 @@ async function render(node: React.ReactNode): Promise<string> {
   })
   // Let effects with async loads settle.
   await act(async () => {
-    await new Promise((r) => setTimeout(r, 50))
+    await new Promise((r) => setTimeout(r, 150))
   })
   const text = el.textContent ?? ''
   await act(async () => root.unmount())
