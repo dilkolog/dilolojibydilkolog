@@ -429,6 +429,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - İngilizce (`lessons-en.ts` - `prep_en`): `marry` ve `divorce` fiillerinin etken kullanımda edatsız olması (`She married John`), durum/sıfat kullanımında `to` alması (`She is married to John`), `married with` hatasına karşı dikkat uyarısı ve yeni örnek.
   - Fransızca (`lessons-fr.ts` - `negation_fr`): `ne … pas encore` (henüz değil) yapısının diğer olumsuzlukların aksine `pas` sözcüğünü koruması kuralı (`Le train n'est pas encore arrivé`), dikkat uyarısı ve yeni örnek.
   - İspanyolca (`lessons-es.ts` - `ser_estar`): `ser rico` (varlıklı olmak) vs `estar rico` (yiyeceğin lezzetli olması) ayrımı (`Esta sopa está riquísima`), `es rico` hatasına karşı dikkat uyarısı ve yeni örnek.
+- [x] **Gece Bakım Turu 12 — Arayüz & Veri Modülleri Test Kapsamı (#373):**
+  - Doğrudan testi bulunmayan 5 kritik yardımcı ve veri modülü için 21 yeni birim testi yazıldı:
+    - `src/ui/density.test.ts` (4 test): Arayüz liste yoğunluk modu (`getDensity`, `setDensity`, `applyDensity` ve `localStorage` / `dataset.density` entegrasyonu).
+    - `src/ui/wordListId.test.ts` (3 test): Liste kimlik üretimi (`newListId`: `list:` ön eki, alfanümerik format ve benzersizlik güvencesi).
+    - `src/ui/whatsNewLogic.test.ts` (6 test): Yenilikler kartı gösterim mantığı (`whatsNewDue`: kelime eşiği denetimi [en az 10 kelime], sürüm kontrolü ve `markWhatsNewSeen` / `whatsNewSeen` kalıcılığı).
+    - `src/ui/summaryGardenWords.test.ts` (3 test): Oturum sonu bahçe bitkisi sıralaması (`sceneWords`: ustalık aşaması ilerleyen kelimelerin önceliklendirilmesi ve en fazla 9 bitki ile sınırlandırma).
+    - `src/data/__tests__/friends.test.ts` (5 test): Arkadaş kodu gösterimi (`showCode`: 8 karakterde tireli bölme), son 14 günlük XP filtresi (`recentDays`: 13 günden eski, gelecek ve sıfır/negatif puanların ayıklanması) ve `FriendsError` sınıfı.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
