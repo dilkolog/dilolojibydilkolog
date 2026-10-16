@@ -445,18 +445,21 @@ export const EN_LESSONS: TopicLesson[] = [
       "For: apologise for, be responsible for, wait for, pay for.",
       "About: worry about, complain about, think about; with: deal with, be fed up with.",
       "To: belong to, contribute to, look forward to; from: suffer from; at: be good at.",
+      "Evlilik ve boşanma: 'marry' ve 'divorce' fiilleri etken kullanımda edatsızdır: 'She married John' ('married with' değil). Sıfat / durum kullanımında ise 'to' gelir: 'She is married to John'.",
       "Edattan sonra fiil gelirse -ing olur: insist on paying, succeed in finding."
     ],
     examples: [
       { text: "It depends on the weather.", tr: "Havaya bağlı." },
       { text: "She is very good at solving problems.", tr: "Sorun çözmede çok iyidir." },
       { text: "He apologised for being late.", tr: "Geç kaldığı için özür diledi." },
+      { text: "She married an architect last year.", tr: "Geçen yıl bir mimarla evlendi ('marry with' değil, etken fiil edatsızdır)." },
       { text: "I'm fed up with waiting for the bus.", tr: "Otobüs beklemekten bıktım." },
       { text: "This song reminds me of my childhood.", tr: "Bu şarkı bana çocukluğumu hatırlatıyor." },
       { text: "Who does this bag belong to?", tr: "Bu çanta kimin?" }
     ],
     watch: [
       "Türkçedeki hâl ekini çevirmek: '-e bağlı' diye 'depend to' değil 'depend on'; '-den korkmak' diye 'afraid from' değil 'afraid of'.",
+      "'Biriyle evlenmek' için 'married with' demek: 'She married with John' yanlıştır; etken fiilde edatsız 'She married John', sıfatta ise 'She is married to John' denir.",
       "Edattan sonra yalın fiil: 'succeed in pass' değil 'succeed in passing'.",
       "Be used to ile used to'yu karıştırmak: 'I'm used to work' değil 'I'm used to working'."
     ],

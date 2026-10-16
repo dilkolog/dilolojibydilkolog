@@ -318,6 +318,7 @@ export const ES_LESSONS: TopicLesson[] = [
       "Bir şeyin ya da kişinin bulunduğu yer estar alır: Los libros están sobre la mesa. Ama bir olayın yapıldığı yer ve saat ser alır: La fiesta es en mi casa. El concierto es a las ocho.",
       "estar + gerundio şu an süren eylemi anlatır: Estoy leyendo.",
       "Anlamı değişen sıfatlar: ser listo (zeki) / estar listo (hazır); ser aburrido (sıkıcı) / estar aburrido (sıkılmış); ser verde (yeşil renkli) / estar verde (ham); ser malo (kötü) / estar malo (hasta).",
+      "'rico' (zengin / lezzetli): 'ser rico' varlıklı olmayı (Es muy rico), 'estar rico' ise bir yiyeceğin lezzetli olduğunu bildirir: Esta paella está muy rica.",
       "Aynı kişide ser karakteri, estar o anki hâli anlatır: Es muy tranquilo, pero hoy está nervioso.",
     ],
     examples: [
@@ -326,10 +327,12 @@ export const ES_LESSONS: TopicLesson[] = [
       { text: "La reunión es en la sala tres.", tr: "Toplantı üç numaralı salonda." },
       { text: "¿Dónde está la estación?", tr: "İstasyon nerede?" },
       { text: "Este plátano todavía está verde.", tr: "Bu muz henüz ham." },
+      { text: "Esta sopa está riquísima.", tr: "Bu çorba son derece lezzetli ('estar rico' yiyeceğin lezzeti için kullanılır)." },
       { text: "La sopa está fría.", tr: "Çorba soğumuş." },
     ],
     watch: [
       "Olayın yerinde estar kullanmak: 'La fiesta está en mi casa' değil, 'La fiesta es en mi casa'.",
+      "Yiyeceğin lezzetine 'es rico' demek: O an yenen yemeğin lezzeti için daima 'está rico' kullanılır ('Esta comida está muy rica').",
       "'Geçici = estar' kuralını fazla uygulamak: meslek kısa süreli de olsa ser alır (Este verano es camarero en un bar); ölüm ise estar alır (Está muerto).",
       "Hâl bildiren sıfatlarda ser kullanmak: 'Soy cansado' değil, 'Estoy cansado'.",
       "Anlam farkını kaçırmak: 'Soy aburrido' 'sıkıcı biriyim', 'Estoy aburrido' 'sıkıldım' demektir.",

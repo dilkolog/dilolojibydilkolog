@@ -394,6 +394,7 @@ export const FR_LESSONS: TopicLesson[] = [
       "ne … aucun(e) + isim: hiçbir; isme uyar: aucune envie, aucun élève.",
       "ne … ni … ni: ne … ne de; ni'den sonra belirsiz artikel düşer: Elle n'a ni frère ni sœur.",
       "ne … que: yalnızca; partitif olduğu gibi kalır: Il ne boit que de l'eau.",
+      "ne … pas encore: henüz değil; diğer olumsuzlukların aksine pas sözcüğünü korur: Je n'ai pas encore fini (Henüz bitirmedim).",
       "rien, personne, aucun özne olunca cümle başına gelir ve pas almaz: Personne n'est venu. Rien ne me fait peur.",
     ],
     examples: [
@@ -401,11 +402,13 @@ export const FR_LESSONS: TopicLesson[] = [
       { text: "Je n'ai vu personne dans l'escalier.", tr: "Merdivende kimseyi görmedim." },
       { text: "Il ne fume plus : il a arrêté il y a deux ans.", tr: "Artık sigara içmiyor: iki yıl önce bıraktı." },
       { text: "Je n'ai jamais voyagé en avion.", tr: "Hiç uçakla yolculuk etmedim." },
+      { text: "Le train n'est pas encore arrivé.", tr: "Tren henüz gelmedi ('pas encore' yapısında 'pas' korunur)." },
       { text: "Personne n'est venu à la réunion.", tr: "Toplantıya kimse gelmedi." },
       { text: "Il ne boit que de l'eau.", tr: "Yalnızca su içer." },
     ],
     watch: [
       "Bu sözcükler pas'ın yerine geçer, yanına pas eklenmez: « Je n'ai pas vu personne » değil « Je n'ai vu personne ».",
+      "« pas encore » yapısında pas'ı düşürmek: « ne ... plus » ya da « ne ... jamais » gibi pas atılmaz; « Je n'ai encore fini » değil, « Je n'ai pas encore fini » denir.",
       "« ne … que » olumsuz değildir: « Il ne mange que des légumes » (yalnızca sebze yer); ardından gelen artikel de'ye dönmez.",
       "Gerçek olumsuzda partitif de olur: « Il n'a plus d'argent », « plus de l'argent » değil.",
       "aucun isme uyar ve çoğul olmaz: « aucune idée », « aucunes idées » değil.",
