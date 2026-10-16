@@ -464,6 +464,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Aynı özneli istek ve duygularda que + subjuntivo kullanmak: 'Quiero que yo vaya' değil 'Quiero ir'; 'Espero que yo apruebe' değil 'Espero aprobar'."
     ],
     tip: "Yan cümle bir gerçeği bildiriyorsa indicativo; bir dilek, duygu ya da belirsizlik taşıyorsa subjuntivo.",
+    check: [
+      {
+        prompt: "Quiero que ___ a mi fiesta este sábado.",
+        options: ["vienes", "vengas", "vendrás"],
+        answer: 1,
+        why: "Querer que ile iki ayrı özne olduğunda (yo quiero / tú vengas) yan cümlede subjuntivo kullanılır."
+      },
+      {
+        prompt: "Cuando ___ a Madrid, llámame por teléfono.",
+        options: ["llegarás", "llegas", "llegues"],
+        answer: 2,
+        why: "Geleceğe bakan zaman bağlaçlarından (cuando, en cuanto) sonra İspanyolcada futuro değil, presente de subjuntivo gelir."
+      },
+      {
+        prompt: "No creo que ___ razón en este asunto.",
+        options: ["tenga", "tiene", "tendrá"],
+        answer: 0,
+        why: "Olumlu 'creo que' indicativo alırken, olumsuz 'no creo que' şüphe ve inkâr bildirdiği için subjuntivo ister."
+      }
+    ],
   },
   {
     topic: "por_para",
@@ -498,6 +518,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Türkçe 'için'e güvenmek: 'yüzünden, sayesinde, uğruna' anlamı varsa por, 'amacıyla, -e' anlamı varsa para."
     ],
     tip: "Para bir ok gibi ileriye, hedefe bakar; por geriye, sebebe ya da içinden geçilen yola bakar.",
+    check: [
+      {
+        prompt: "Necesito terminar este informe ___ el viernes sin falta.",
+        options: ["por", "para", "en"],
+        answer: 1,
+        why: "Son teslim tarihi veya belirli bir vade ('cumaya kadar') bildirirken 'para' kullanılır."
+      },
+      {
+        prompt: "No pudimos salir de casa ___ la tormenta.",
+        options: ["para", "a", "por"],
+        answer: 2,
+        why: "Bir olayın sebebi veya nedeni ('fırtına yüzünden') anlatılırken 'por' kullanılır."
+      },
+      {
+        prompt: "Hoy trabajo ___ mi compañero porque está enfermo.",
+        options: ["por", "para", "con"],
+        answer: 0,
+        why: "Bir başkasının yerine (vekaleten) çalışmak 'trabajar por alguien' ile ifade edilir; 'trabajar para' ise işveren/şirket içindir."
+      }
+    ],
   },
   {
     topic: "condicionales",
@@ -534,6 +574,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Türkçedeki '-se' her kalıpta aynı olduğu için kalıpları karıştırmak: önce olasılığı belirle (olası, varsayım, geçmiş), sonra kalıbı seç.",
     ],
     tip: "Si'nin yanında asla -ría olmaz: -ría yalnızca sonuç tarafında durur.",
+    check: [
+      {
+        prompt: "Si ___ más tiempo libre, aprendería a tocar el piano.",
+        options: ["tendría", "tuviera", "tenga"],
+        answer: 1,
+        why: "Şimdiki zamana dair varsayımsal şart cümlelerinde 'si'den sonra imperfecto de subjuntivo (tuviera) gelir; si'den sonra condicional (-ría) veya presente de subjuntivo asla gelmez."
+      },
+      {
+        prompt: "Si hubieras salido antes, no ___ el tren.",
+        options: ["perderías", "habrías perdido", "hubieras perdido"],
+        answer: 1,
+        why: "Geçmişte gerçekleşmemiş şartın (si + pluscuamperfecto de subjuntivo) geçmişteki sonucu condicional compuesto (habrías perdido) ile kurulur."
+      },
+      {
+        prompt: "Me habla como si no me ___.",
+        options: ["conociera", "conoce", "conozca"],
+        answer: 0,
+        why: "'Como si' (sanki ...-mış gibi) kalıbından sonra daima imperfecto veya pluscuamperfecto de subjuntivo gelir; presente asla kullanılmaz."
+      }
+    ],
   },
   {
     topic: "perifrasis",
@@ -565,6 +625,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "tener que'de que'yi unutmak: 'Tengo estudiar' değil, 'Tengo que estudiar'.",
     ],
     tip: "Edatlar sabittir: ir A, empezar A, volver A; acabar DE, dejar DE; tener QUE.",
+    check: [
+      {
+        prompt: "___ de llegar a casa; todavía tengo el abrigo puesto.",
+        options: ["Vuelvo", "Acabo", "Llevo"],
+        answer: 1,
+        why: "'Acabar de + mastar' az önce / henüz gerçekleşmiş bir eylemi ('eve yeni geldim') anlatır."
+      },
+      {
+        prompt: "___ tres años estudiando español en esta escuela.",
+        options: ["Estoy", "Sigo", "Llevo"],
+        answer: 2,
+        why: "Bir eylemin ne kadar süredir devam ettiğini ('üç yıldır ...-iyorum') anlatmak için 'llevar + süre + gerundio' kullanılır."
+      },
+      {
+        prompt: "Mi tío ___ de fumar el año pasado por motivos de salud.",
+        options: ["dejó", "acabó", "volvió"],
+        answer: 0,
+        why: "Bir alışkanlığı veya işi bırakmak 'dejar de + mastar' kalıbıyla söylenir."
+      }
+    ],
   },
   {
     topic: "pronombres_atonos",
@@ -596,6 +676,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Zamiri çekimli fiille mastarın arasına koymak: 'Quiero lo comprar' değil, 'Lo quiero comprar' ya da 'Quiero comprarlo'.",
     ],
     tip: "Sıra hep 'kime + ne': te lo, me la, se los. İki 'l' yan yana gelecekse ilki se olur.",
+    check: [
+      {
+        prompt: "Compré un libro para Marta y ___ di ayer por la tarde.",
+        options: ["le lo", "se lo", "la lo"],
+        answer: 1,
+        why: "Dolaylı nesne zamiri 'le/les' ile doğrudan nesne zamiri 'lo/la/los/las' yan yana geldiğinde ilki 'se' olur: se lo di ('le lo' denmez)."
+      },
+      {
+        prompt: "Es un secreto; por favor, no ___ cuentes a nadie.",
+        options: ["lo se", "le lo", "se lo"],
+        answer: 2,
+        why: "Zamir sırası daima 'önce kime (dolaylı), sonra neyi (doğrudan)' şeklindedir ve le + lo birleşimi 'se lo' olur."
+      },
+      {
+        prompt: "Las llaves están en la mesa; ¿puedes ___?",
+        options: ["dármelas", "darmelas", "me las dar"],
+        answer: 0,
+        why: "Mastara iki zamir bitişik yazıldığında sözcüğün vurgusunu korumak için yazılı vurgu işareti (tilde) eklenir: dármelas."
+      }
+    ],
   },
   {
     topic: "relativos_es",
@@ -626,6 +726,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Türkçe sırayla yan cümleyi öne koymak: 'dün aldığım kitap' = 'el libro que compré ayer'; isim önde, que hemen arkasında.",
     ],
     tip: "Türkçede '-dığı' gördüğünde ismi öne al, arkasına que koy: aldığım kitap → el libro que compré.",
+    check: [
+      {
+        prompt: "Conocí a un pintor ___ cuadros se exponen en el museo.",
+        options: ["que sus", "cuyos", "quien"],
+        answer: 1,
+        why: "Sahiplik bildiren ilgi zamiri 'cuyo/cuya/cuyos/cuyas', sahibine değil sahip olunan isme (cuadros - eril çoğul) uyar: cuyos cuadros."
+      },
+      {
+        prompt: "La compañera con ___ trabajo es de Buenos Aires.",
+        options: ["quien", "que", "cual"],
+        answer: 0,
+        why: "Edattan (con, de, para) sonra kişiler için yalın 'que' kullanılmaz; 'quien' (veya la que) gelir."
+      },
+      {
+        prompt: "No entiendo ___ quieres decir con eso.",
+        options: ["que", "el que", "lo que"],
+        answer: 2,
+        why: "Belli bir isme değil de bir duruma, söze veya soyut kavrama ('ne demek istediğini') atıf yaparken nötr 'lo que' kullanılır."
+      }
+    ],
   },
   {
     topic: "conn_es",
@@ -657,6 +777,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "sin embargo'yu iki sözcük arasında 'ama' gibi kullanmak: noktalı virgül ya da noktadan sonra yeni cümle başlatır.",
     ],
     tip: "Bağlacı önce yönüne göre sınıfla (ekleme, zıtlık, neden, sonuç, şart), sonra subjuntivo isteyip istemediğine bak.",
+    check: [
+      {
+        prompt: "Te presto mi coche siempre que me lo ___ con el depósito lleno.",
+        options: ["devuelves", "devuelvas", "devolverás"],
+        answer: 1,
+        why: "'Siempre que', 'a menos que', 'con tal de que' gibi şart bağlaçları daima subjuntivo (devuelvas) ister."
+      },
+      {
+        prompt: "___ había mucho tráfico, llegamos tarde a la reunión.",
+        options: ["Porque", "Como", "Por eso"],
+        answer: 1,
+        why: "Cümle başında neden açıklarken 'porque' yerine 'como' + indicativo ('-diği için') kullanılır."
+      },
+      {
+        prompt: "Salieron a caminar ___ la lluvia y el viento.",
+        options: ["a pesar de", "aunque", "sin embargo"],
+        answer: 0,
+        why: "Bir isim öbeğinden (la lluvia) önce '-e rağmen' anlamında 'a pesar de' kullanılır; 'aunque' ise çekimli fiille cümle alır."
+      }
+    ],
   },
   {
     topic: "prep_es",
@@ -690,6 +830,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "de + el'i ayrı yazmak: 'de el servicio' değil, 'del servicio'."
     ],
     tip: "Her yeni fiili edatıyla tek bir kelime gibi kaydet: soñar con, pensar en, acordarse de.",
+    check: [
+      {
+        prompt: "Desde pequeño siempre he soñado ___ viajar por Sudamérica.",
+        options: ["de", "en", "con"],
+        answer: 2,
+        why: "'Soñar' fiili bir şeyi hayal etmek veya rüyasında görmek anlamında daima 'con' edatıyla kullanılır: soñar con."
+      },
+      {
+        prompt: "Ayer por la tarde vi ___ tu hermana en la biblioteca.",
+        options: ["a", "en", "con"],
+        answer: 0,
+        why: "Doğrudan nesne belirli bir kişi olduğunda önüne kişisel 'a' (a personal) edatı gelir: vi a tu hermana."
+      },
+      {
+        prompt: "Perdona, no me acordé ___ comprar el pan.",
+        options: ["a", "de", "en"],
+        answer: 1,
+        why: "Dönüşlü 'acordarse' fiili 'de' edatı alır (acordarse de algo); dönüşsüz 'recordar' ise edatsızdır."
+      }
+    ],
   },
   {
     topic: "colloc_es",
@@ -719,6 +879,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "'Dikkat etmek' için 'dar atención' ya da 'hacer atención' demek: doğrusu 'prestar atención'.",
     ],
     tip: "İsmi tek başına değil, fiiliyle birlikte ezberle: 'una decisión' değil, 'tomar una decisión'.",
+    check: [
+      {
+        prompt: "Antes de firmar, tenemos que ___ una decisión definitiva.",
+        options: ["dar", "tomar", "hacer"],
+        answer: 1,
+        why: "Türkçede 'karar vermek' dense de İspanyolcada 'tomar una decisión' eşdizimi kullanılır."
+      },
+      {
+        prompt: "Disculpe, ¿puedo ___ una pregunta sobre el horario?",
+        options: ["hacerle", "darle", "tomarle"],
+        answer: 0,
+        why: "'Soru sormak' İspanyolcada 'hacer una pregunta' kalıbıyla kurulur."
+      },
+      {
+        prompt: "Cuando vivo lejos, ___ mucho de menos a mis amigos.",
+        options: ["hago", "doy", "echo"],
+        answer: 2,
+        why: "Birini veya bir şeyi özlemek 'echar de menos' deyimiyle ifade edilir."
+      }
+    ],
   },
   // B2
   {
@@ -750,6 +930,26 @@ export const ES_LESSONS: TopicLesson[] = [
       "Se'li cümleye por + kişi eklemek: 'Se construyó el puente por los romanos' yerine 'El puente fue construido por los romanos'.",
     ],
     tip: "Önce a'ya bak: a + kişi varsa fiil hep tekil; yoksa fiil arkasındaki isme uyar.",
+    check: [
+      {
+        prompt: "En esta tienda se ___ libros de segunda mano.",
+        options: ["vende", "venden", "vendieron a"],
+        answer: 1,
+        why: "Pasiva refleja yapısında (se + fiil + cansız isim), fiil arkasından gelen çoğul isme (libros) uyar: se venden."
+      },
+      {
+        prompt: "Se ___ a los candidatos ayer por la mañana.",
+        options: ["entrevistaron", "entrevistó", "entrevistan"],
+        answer: 1,
+        why: "Belirli kişiler 'a' edatıyla nesne olduğunda yapı kişisizdir (se impersonal) ve fiil daima 3. tekil şahısta kalır: se entrevistó a los candidatos."
+      },
+      {
+        prompt: "En este restaurante se ___ muy bien y a buen precio.",
+        options: ["come", "comen", "comido"],
+        answer: 0,
+        why: "Uyulacak bir isim olmadığında kişisiz 'se' (se impersonal) yapısı her zaman tekil fiil alır: se come bien."
+      }
+    ],
   },
   {
     topic: "estilo_indirecto",
@@ -780,5 +980,25 @@ export const ES_LESSONS: TopicLesson[] = [
       "mañana'yı olduğu gibi bırakmak: geçmişte söylenen bir sözde 'al día siguiente' olur.",
     ],
     tip: "Ana fiil geçmişteyse her şeyi bir basamak geriye it: está → estaba, vendrá → vendría, ha hecho → había hecho.",
+    check: [
+      {
+        prompt: "Directo: 'Te llamaré mañana.' -> Indirecto: Me prometió que me ___ al día siguiente.",
+        options: ["llamaría", "llamará", "llamaba"],
+        answer: 0,
+        why: "Ana fiil geçmişte olduğunda (prometió), doğrudan anlatımdaki futuro (llamaré) dolaylı anlatımda condicional'e (llamaría) dönüşür."
+      },
+      {
+        prompt: "Directo: '¡Cierra la ventana!' -> Indirecto: Me pidió que ___ la ventana.",
+        options: ["cerraba", "cerrara", "cerraría"],
+        answer: 1,
+        why: "Emir ve ricalar dolaylı anlatıma aktarılırken subjuntivo kullanılır; ana fiil geçmişteyse imperfecto de subjuntivo (cerrara) gelir."
+      },
+      {
+        prompt: "Directo: 'He perdido mi pasaporte.' -> Indirecto: Dijo que ___ su pasaporte.",
+        options: ["ha perdido", "perdió", "había perdido"],
+        answer: 2,
+        why: "Geçmişteki aktarma fiilinden (dijo) sonra pretérito perfecto (he perdido) bir basamak geriye kayarak pluscuamperfecto (había perdido) olur."
+      }
+    ],
   },
 ]
