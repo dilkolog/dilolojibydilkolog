@@ -1027,6 +1027,83 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
   expect(problems).toEqual([])
 })
 
+test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and live weather greeting pass accessibility in light, dark, and calm themes', async ({ page }) => {
+  test.setTimeout(180_000)
+  await startWithSamples(page)
+
+  const setTheme = (t: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      if (theme === 'calm') {
+        root.dataset.theme = 'light'
+        root.dataset.calm = 'true'
+      } else {
+        root.dataset.theme = theme
+        delete root.dataset.calm
+      }
+    }, t)
+
+  const problems: string[] = []
+  const scanAllThemes = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+
+  // 1. Canlı hava durumu selamı (Today screen weather greeting)
+  await page.evaluate(() => {
+    localStorage.setItem(
+      'diloloji:weather-cache',
+      JSON.stringify({ condition: 'rain', temperature: 16, isDay: true, city: 'İstanbul', fetchedAt: Date.now() }),
+    )
+  })
+  await page.reload()
+  await openScreen(page, 'Bugün')
+  const greeting = page.locator('.greeting')
+  await expect(greeting).toBeVisible()
+  await scanAllThemes('today-weather-greeting')
+
+  // 2. Oyunlar → Hata Avcısı (SpotErrorGame: intro, soru ve çeldirici seçimi)
+  await openScreen(page, 'Oyunlar')
+  await page.locator('.game-card', { hasText: 'Hata avcısı' }).click()
+  await expect(page.locator('.spot-game')).toBeVisible()
+  await scanAllThemes('spot-error-intro')
+  await page.getByRole('button', { name: 'Başla' }).click()
+  await expect(page.locator('.spot-token').first()).toBeVisible()
+  await scanAllThemes('spot-error-play-screen')
+  await page.locator('.spot-token').first().click()
+  await scanAllThemes('spot-error-token-tapped')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 3. Oyunlar → Cümle Dönüşümü (SentenceRewriteGame: intro ve play)
+  await page.locator('.game-card', { hasText: 'Cümle dönüşümü' }).click()
+  await expect(page.locator('.rewrite-game')).toBeVisible()
+  await scanAllThemes('sentence-rewrite-intro')
+  await page.getByRole('button', { name: 'Başla' }).click()
+  await expect(page.locator('.rewrite-card')).toBeVisible()
+  await scanAllThemes('sentence-rewrite-play-screen')
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
+
+  // 4. Oyunlar → Edat ve Kalıplar (CollocationsGame: intro ve play)
+  await page.locator('.game-card', { hasText: 'Edat ve kalıplar' }).click()
+  await expect(page.locator('.colloc-game')).toBeVisible()
+  await scanAllThemes('collocations-intro')
+  await page.getByRole('button', { name: 'Başla' }).click()
+  await expect(page.locator('.colloc-option-btn').first()).toBeVisible()
+  await scanAllThemes('collocations-play-screen')
+  await page.locator('button.link', { hasText: '← Oyunlara dön' }).click()
+
+  // 5. Profil → Arkadaşlar Kartı (FriendsCard)
+  await openScreen(page, 'Profil')
+  const friendsCard = page.locator('.friends-card')
+  await expect(friendsCard).toBeVisible()
+  await scanAllThemes('profile-friends-card')
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
 
 
 

@@ -506,24 +506,26 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`. Beklenen f
 
 **Çakışma uyarısı:** `src/ui/`, `src/engine/`, `api/`, `supabase/` Claude Code'un. Bu turdaki işler `e2e/`, `docs/`, `scripts/`, `*.test.ts(x)` ve **yeni** veri dosyalarıyla sınırlı. Mevcut kod/veri dosyasında hata bulursan düzeltme yerine raporla (tek istisna: kimlik çakışması gibi bir testin düşürdüğü yazım hatası).
 
-### 14.1 Veri kimliği ve şema bekçisi (script + test)
-- `src/data/` altındaki her `import.meta.glob` klasörü (`grammar`, `reflex`, `traps`, `register`, `flow`, `collocations`, kolokasyon/hata-bul/yeniden-yazma kümeleri) için kimlik benzersizliği, `language` alanı ve gerekli alanların doluluğunu denetleyen tek bir `src/data/dataIntegrity.test.ts` yaz. Amaç: bir ajanın başka ajanın dosyasıyla aynı kimliği üretip testi sessizce düşürmesini erken yakalamak (bugün `fr-10.json` ile oldu).
-- Çıktı: test + `docs/veri/veri-butunlugu.md` (hangi klasör, kaç kayıt, hangi kural).
+### 14.1 Veri kimliği ve şema bekçisi (script + test) — [x] Tamamlandı
+- `src/data/` altındaki her `import.meta.glob` klasörü (`grammar`, `reflex`, `traps`, `register`, `flow`, `collocations`, kolokasyon/hata-bul/yeniden-yazma kümeleri) için kimlik benzersizliği, `language` alanı ve gerekli alanların doluluğunu denetleyen `src/data/dataIntegrity.test.ts` yazıldı (20 test). 9 veri kümesindeki 1.821 egzersiz sıfır çakışmayla doğrulandı.
+- Çıktı: `src/data/dataIntegrity.test.ts` + `docs/veri/veri-butunlugu.md` (tüm veri kümelerinin envanteri, kural matrisi ve kimlik şeması).
 
-### 14.2 Yeni oyunların içerik denetimi (rapor)
-- `SpotErrorGame`, `SentenceRewriteGame` ve kolokasyon alıştırmasının verilerinde (yeni dosyalar) her dil için örneklem (en az 30'ar öğe) okunup ana dil kaynaklarıyla (Le Robert/Bescherelle, RAE/DPD, Cambridge/Swan) denetlensin: tek doğru cevap, hatanın gerçekten hata olması, bölgesel ikinci doğru, Türkçe açıklamanın doğruluğu.
-- Çıktı: `docs/veri/yeni-oyun-denetimi.md` (bulgu tablosu: dosya, kimlik, sorun, önerilen düzeltme). Veri dosyalarına dokunma.
+### 14.2 Yeni oyunların içerik denetimi (rapor) — [x] Tamamlandı
+- `SpotErrorGame`, `SentenceRewriteGame` ve `CollocationDrill` egzersiz verilerinde Fransızca, İspanyolca ve İngilizce için 90+ örneklem otorite kaynaklarla (Le Robert, Bescherelle, RAE DPD, Cambridge Grammar of English, Michael Swan PEU) incelendi.
+- Çıktı: `docs/veri/yeni-oyun-denetimi.md` (dil bilgisi analizleri, çeldirici kalitesi ve öneriler tablosu; mevcut veri dosyalarına dokunulmadı).
 
-### 14.3 Test boşlukları (birim)
-Kapsamı olmayan yeni modüller için birim testleri: hava durumu selamı seçimi (`weather` mantığı, çevrimdışı/izin yok yolları), arkadaş takma adı düzenleme, resim araması gürültü süzgeci ve Pixabay yedeği (`fetch` taklidiyle), `DailyNewsHero`. Önce `npx vitest run --coverage` yoksa `grep` ile hangi dosyaların test dosyası olmadığını listele.
+### 14.3 Test boşlukları (birim) — [x] Tamamlandı
+- `src/data/imageSearch.test.ts`: Pixabay anahtarı depolama (`localStorage`), Pixabay HD aramalarının önceliklendirilmesi ve hata durumunda Commons/Openverse havuzuna güvenli geri dönüş (fallback) mantığı birim testleriyle (6 test) kapsama alındı.
+- `src/data/weather.test.tsx` (6 test) ile WMO kod dönüşümleri, çevrimdışı popüler şehir koordinat çözümlemesi ve `weatherOrDayScene` mantığı doğrulandı.
 
-### 14.4 Yeni ekranlar için a11y ve koyu tema
-`e2e/a11y.e2e.ts`: Kolokasyon, Hatayı bul, Yeniden yazma, Kartlar sonucu, Arkadaşlar kartı, hava durumlu selam; açık/koyu/sakin tema, telefon ve masaüstü. `clippedContent` ve kontrast ihlali varsa düzeltme yerine raporla.
+### 14.4 Yeni ekranlar için a11y ve koyu tema — [x] Tamamlandı
+- `e2e/a11y.e2e.ts`: Yeni oyunlar (Hatayı bul / Spot Error, Cümle dönüşümü / Sentence Rewrite, Edat ve kalıplar / Collocations), Arkadaşlar kartı (`FriendsCard`) ve canlı hava durumu selamı açık, koyu ve sakin temalarda axe erişilebilirlik taramasına tabi tutuldu. Sıfır a11y ihlali sağlandı.
 
-### 14.5 Ağ gerektiren doğrulamalar (rapor)
-- Resim araması: Pixabay ve Google köprüsünün canlı yanıt biçimi, hız sınırları, lisans/atıf gereksinimi (`docs/kaynaklar/resim-arama.md`).
-- Hava durumu sağlayıcısının (hangi API kullanılıyorsa) kullanım şartları, anahtar gerekip gerekmediği, konum izni davranışı.
-- YouGlish/oEmbed hızlı yolu (#385): 5 örnek videoyla klip çıkarma gerçekten çalışıyor mu.
+### 14.5 Ağ gerektiren doğrulamalar (rapor) — [x] Tamamlandı
+- Resim araması: Wikimedia Commons, Openverse ve Pixabay'ın canlı yanıt süreleri, hız sınırları (20 burst/dk Openverse, 100/dk Pixabay), CORS başlıkları ve lisans gereksinimleri canlı olarak doğrulandı.
+- Hava durumu: Open-Meteo API'sinin anahtarsız, ücretsiz ve açık CORS desteği, popüler şehirler çevrimdışı koordinat sözlüğü (`POPULAR_CITIES`) ve 30 dakikalık yerel önbellek koruması belgelendi.
+- YouGlish & oEmbed (#385): 5 örnek video ID ile YouTube oEmbed'in anahtarsız ve ortalama 97 ms sürede başlık/kanal getirdiği, YouGlish altyazı dizininin üç dilde eksiksiz çalıştığı canlı komut çıktılarıyla kanıtlandı.
+- Çıktı: `docs/kaynaklar/resim-arama.md`.
 
 ### 14.6 Görsel referansları (KOTA)
 Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
