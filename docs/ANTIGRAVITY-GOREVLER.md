@@ -500,6 +500,36 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`. Beklenen f
 - PR'lar tek konulu;
 - Supabase script'i gizli anahtar istemiyor.
 
+## 14. tur: yeni oyunların içerik denetimi, test boşlukları ve veri tutarlılığı (2026-10-16, kullanıcı istedi)
+
+**Bağlam (13. turdan sonra eklenenler, #360–#401):** Kolokasyon alıştırması (`CollocationDrill`), Hatayı bul (`SpotErrorGame`), Cümle yeniden yazma (`SentenceRewriteGame`), Günün haberi kahramanı (`DailyNewsHero`), canlı hava durumu selamı ve konum (profil), arkadaş takma adları, resim araması (Google köprüsü + Pixabay), Rehber 174 derse çıktı, yeni avatarlar/çıkartmalar. Claude Code bu turda yalnızca bir kimlik çakışmasını düzeltti (`fr-10.json`: `fr-discours_indirect_fr-01/02` ve `fr-futur_fr-01/02` kimlikleri `fr-8.json` ile aynıydı → 16/17 yapıldı); test `grammar.test.ts` bunu yakalıyordu.
+
+**Çakışma uyarısı:** `src/ui/`, `src/engine/`, `api/`, `supabase/` Claude Code'un. Bu turdaki işler `e2e/`, `docs/`, `scripts/`, `*.test.ts(x)` ve **yeni** veri dosyalarıyla sınırlı. Mevcut kod/veri dosyasında hata bulursan düzeltme yerine raporla (tek istisna: kimlik çakışması gibi bir testin düşürdüğü yazım hatası).
+
+### 14.1 Veri kimliği ve şema bekçisi (script + test)
+- `src/data/` altındaki her `import.meta.glob` klasörü (`grammar`, `reflex`, `traps`, `register`, `flow`, `collocations`, kolokasyon/hata-bul/yeniden-yazma kümeleri) için kimlik benzersizliği, `language` alanı ve gerekli alanların doluluğunu denetleyen tek bir `src/data/dataIntegrity.test.ts` yaz. Amaç: bir ajanın başka ajanın dosyasıyla aynı kimliği üretip testi sessizce düşürmesini erken yakalamak (bugün `fr-10.json` ile oldu).
+- Çıktı: test + `docs/veri/veri-butunlugu.md` (hangi klasör, kaç kayıt, hangi kural).
+
+### 14.2 Yeni oyunların içerik denetimi (rapor)
+- `SpotErrorGame`, `SentenceRewriteGame` ve kolokasyon alıştırmasının verilerinde (yeni dosyalar) her dil için örneklem (en az 30'ar öğe) okunup ana dil kaynaklarıyla (Le Robert/Bescherelle, RAE/DPD, Cambridge/Swan) denetlensin: tek doğru cevap, hatanın gerçekten hata olması, bölgesel ikinci doğru, Türkçe açıklamanın doğruluğu.
+- Çıktı: `docs/veri/yeni-oyun-denetimi.md` (bulgu tablosu: dosya, kimlik, sorun, önerilen düzeltme). Veri dosyalarına dokunma.
+
+### 14.3 Test boşlukları (birim)
+Kapsamı olmayan yeni modüller için birim testleri: hava durumu selamı seçimi (`weather` mantığı, çevrimdışı/izin yok yolları), arkadaş takma adı düzenleme, resim araması gürültü süzgeci ve Pixabay yedeği (`fetch` taklidiyle), `DailyNewsHero`. Önce `npx vitest run --coverage` yoksa `grep` ile hangi dosyaların test dosyası olmadığını listele.
+
+### 14.4 Yeni ekranlar için a11y ve koyu tema
+`e2e/a11y.e2e.ts`: Kolokasyon, Hatayı bul, Yeniden yazma, Kartlar sonucu, Arkadaşlar kartı, hava durumlu selam; açık/koyu/sakin tema, telefon ve masaüstü. `clippedContent` ve kontrast ihlali varsa düzeltme yerine raporla.
+
+### 14.5 Ağ gerektiren doğrulamalar (rapor)
+- Resim araması: Pixabay ve Google köprüsünün canlı yanıt biçimi, hız sınırları, lisans/atıf gereksinimi (`docs/kaynaklar/resim-arama.md`).
+- Hava durumu sağlayıcısının (hangi API kullanılıyorsa) kullanım şartları, anahtar gerekip gerekmediği, konum izni davranışı.
+- YouGlish/oEmbed hızlı yolu (#385): 5 örnek videoyla klip çıkarma gerçekten çalışıyor mu.
+
+### 14.6 Görsel referansları (KOTA)
+Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
+
+**Tur sonu ölçütü:** raporlar tarih ve komut çıktısıyla; doğrulanamayanlar ayrı listede; E2E ve vitest yeşil, mevcut testler silinmemiş; PR'lar tek konulu.
+
 ---
 
 ## Her PR için kontrol listesi
