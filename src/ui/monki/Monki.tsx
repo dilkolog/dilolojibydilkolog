@@ -257,7 +257,7 @@ export default function Monki({
               <strong>Monki</strong>
               <span className="small muted">{LANGUAGE_NAME[language]} çalışma arkadaşın</span>
             </div>
-            {msgs.length > 0 && (
+            {apiKey && msgs.length > 0 && (
               <button type="button" className="btn btn-quiet btn-sm" onClick={clear}>
                 Temizle
               </button>

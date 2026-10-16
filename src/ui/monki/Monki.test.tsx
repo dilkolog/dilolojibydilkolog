@@ -86,6 +86,14 @@ describe('Monki', () => {
     expect(localStorage.getItem('diloloji:monki:fr')).toBeNull()
   })
 
+  it('does not show clear button when there is no key even if history exists in storage', () => {
+    localStorage.setItem('diloloji:monki:fr', JSON.stringify([{ role: 'user', text: 'salut' }]))
+    render(null)
+    openPanel()
+    const clear = [...container.querySelectorAll<HTMLButtonElement>('.monki-head .btn')].find((b) => b.textContent === 'Temizle')
+    expect(clear).toBeUndefined()
+  })
+
   it('shows an error without losing the question when the reply fails', async () => {
     monkiTurn.mockRejectedValue(new Error('boom'))
     render('sk-test')
