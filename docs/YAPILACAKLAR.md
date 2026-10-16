@@ -425,6 +425,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - `src/ui/personalInterests.test.ts` (4 test): Profil ilgi alanları ve hikaye konularının birleştirilmesi (`interestsOf`), boşluk budama, boş değer filtreleme, mükerrer temizliği ve azami 8 öge kısıtlaması.
     - `src/ui/splitHelp.test.ts` (5 test): Ayar yardım metinlerinin bölünmesi (`splitHelp`: 24 karakter altı bölünmeme, nokta/ünlem/soru işareti ayrımı, çok satırlı açıklamaların korunması).
     - `src/ui/verbs/tenseTwin.test.ts` (6 test): İki dilli fiil laboratuvarı eş zaman eşleştirmesi (`otherLab`: fr <-> es), zaman tablosu sorgusu (`twinOf`: Fransızca présent -> İspanyolca presente), passé composé -> pretérito pedagojik fark notu, Fransızca'da être ile kurulan bileşik zamanlarda pedagojik uyarı üretimi.
+- [x] **Gece Bakım Turu 11 — Rehber Pedagojik Zenginleştirmesi (3. Dalga, #372):**
+  - İngilizce (`lessons-en.ts` - `prep_en`): `marry` ve `divorce` fiillerinin etken kullanımda edatsız olması (`She married John`), durum/sıfat kullanımında `to` alması (`She is married to John`), `married with` hatasına karşı dikkat uyarısı ve yeni örnek.
+  - Fransızca (`lessons-fr.ts` - `negation_fr`): `ne … pas encore` (henüz değil) yapısının diğer olumsuzlukların aksine `pas` sözcüğünü koruması kuralı (`Le train n'est pas encore arrivé`), dikkat uyarısı ve yeni örnek.
+  - İspanyolca (`lessons-es.ts` - `ser_estar`): `ser rico` (varlıklı olmak) vs `estar rico` (yiyeceğin lezzetli olması) ayrımı (`Esta sopa está riquísima`), `es rico` hatasına karşı dikkat uyarısı ve yeni örnek.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
