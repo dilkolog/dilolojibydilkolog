@@ -3,7 +3,7 @@ import { Glyph } from './Glyph'
 import { dayPart } from './dayPart'
 import { CheckCircleIcon, CheckIcon, ChevronDownIcon, TargetIcon } from './icons'
 import type { GameState } from './game'
-import { QUEST_ART, TIME_SCENE } from './drawnArt'
+import { QUEST_ART } from './drawnArt'
 import type { Home } from './Screens'
 
 /**
@@ -80,12 +80,22 @@ export function FocusLine({
   )
 }
 
-/** The light of the hour beside the greeting: the sun high, on the horizon (dawn and dusk), or the moon. */
-export function DayMark({ now }: { now: Date }) {
+import { type WeatherInfo, weatherConditionName, weatherOrDayScene } from '../data/weather'
+
+/** The light of the hour or live weather beside the greeting. */
+export function DayMark({ now, weather }: { now: Date; weather?: WeatherInfo | null }) {
   const part = dayPart(now)
+  const scene = weatherOrDayScene(weather ?? null, part)
+  const label = weather ? `${weather.city ? `${weather.city} · ` : ''}${weather.temperature}°C, ${weatherConditionName(weather.condition, weather.isDay)}` : undefined
+
   return (
-    <span className={`day-mark is-${part}`} aria-hidden>
-      <img className="day-scene" src={TIME_SCENE[part]} alt="" width={52} height={40} draggable={false} />
+    <span className={`day-mark is-${part}${weather ? ` is-weather-${weather.condition}` : ''}`} title={label} aria-label={label}>
+      <img className="day-scene" src={scene} alt={label ?? ''} width={52} height={40} draggable={false} />
+      {weather && (
+        <span className="weather-badge-pill" aria-hidden>
+          {weather.temperature}°
+        </span>
+      )}
     </span>
   )
 }

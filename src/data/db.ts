@@ -118,6 +118,10 @@ export interface Profile {
   /** A goal: a CEFR level and, optionally, a date to reach it by (ISO). */
   goalLevel?: string
   goalDate?: string
+  /** City or region for live weather and greetings (e.g. 'İstanbul', 'Paris', 'İzmir'). */
+  location?: string
+  /** Approximate coordinates for weather forecast. */
+  coordinates?: { lat: number; lon: number }
 }
 
 export interface Settings {

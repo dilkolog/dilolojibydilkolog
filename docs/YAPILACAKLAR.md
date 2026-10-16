@@ -614,7 +614,21 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
     - Toplam avatar sayısı 22'den 41'e yükseltildi.
   - **Birim Testleri & Kapsamlı Doğrulama:**
     - `src/ui/avatarArt.test.ts` ve `src/ui/Avatar.test.tsx` tüm yeni avatarlar için doğrulandı (5/5 geçti).
-    - `src/ui/smoke.test.tsx` tüm ekranlar ve profil sekmesi için %100 yeşil (20/20 geçti).
+- [x] **Gelişim Turu 34 — Canlı Hava Durumu Sahnesi ve Profil Konum Yönetimi:**
+  - **Profilden Konum Ekleme (`src/data/db.ts`, `src/ui/Profile.tsx`, `src/lazy.css`):**
+    - `Profile` veri modeline `location` (şehir/bölge adı) ve `coordinates` ({lat, lon}) alanları eklendi.
+    - Profil ekranında ad ve mottonun hemen altına `📍 Konumun (ör. İstanbul, Paris, İzmir...)` giriş satırı ve `Bul` GPS butonu (`navigator.geolocation`) yerleştirildi.
+    - Profil etiketlerine (`profile-tags`) aktif konum rozeti eklendi.
+  - **Canlı Hava Durumu Motoru (`src/data/weather.ts`):**
+    - Open-Meteo API entegrasyonu ile popüler şehirler (İstanbul, Ankara, İzmir, Paris, Londra vb.) için çevrimdışı koordinat haritası ve dinamik geocoding desteği kuruldu.
+    - WMO kodları standart hava durumlarına (`clear`, `cloudy`, `rain`, `snow`, `thunder`, `fog`) dönüştürüldü; Türkçe açıklamalar (`Güneşli`, `Yağmurlu`, `Karlı` vb.) eklendi.
+    - 30 dakikalık yerel önbellek (`diloloji:weather-cache`) ile gereksiz ağ istekleri önlendi.
+  - **Hava Durumuna Duyarlı Karşılama Sahnesi (`src/assets/art/weather-*.webp`, `src/ui/HomeParts.tsx`, `src/ui/Screens.tsx`, `src/index.css`):**
+    - Yağmurlu (`weather-rain.webp`) ve karlı (`weather-snow.webp`) havalar için storybook Monki sahneleri üretildi ve WebP formatında entegre edildi.
+    - `DayMark` bileşeni hava durumuna göre sahneyi dinamik değiştirecek şekilde güncellendi: Yağmurlu/karlı havalarda özel sahne, açık havalarda günün saatine uygun sahne (`time-*.webp`) gösterilir.
+    - Sahnenin köşesinde sıcaklık derecesi rozeti (`.weather-badge-pill`) ve zengin durum ipucu (ör. "İstanbul · 16°C, Yağmurlu") sağlandı.
+  - **Birim Testleri & Kapsamlı Doğrulama:**
+    - `src/data/weather.test.tsx` (6 test) eklendi; `smoke.test.tsx` (20 test) %100 yeşil.
 
 ## Sıradaki Olası İşler ve Açık Kalanlar (Güncel Durum)
 - **13.9 Görsel Referansları Yenileme:** GitHub Actions kotası açıldığında `gh workflow run snapshots.yml --ref main` ile Linux referans ekran görüntülerinin güncellenmesi (Bugün, Rehber, Ayarlar → Hesap, Kartlar).

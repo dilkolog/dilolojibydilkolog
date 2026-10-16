@@ -27,6 +27,7 @@ import { repairTried } from './repairTry'
 import { NEW_ART, STAT_ART, TILE_ART } from './drawnArt'
 import { Sticker } from './Sticker'
 import { DayMark, FocusLine, LevelStrip, QuestIcon } from './HomeParts'
+import { useWeather } from '../data/weather'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -107,6 +108,8 @@ export function Home({
   onFocusList,
   onOpenList,
   pinned,
+  location,
+  coordinates,
 }: {
   language: TargetLanguage
   plan: DailyPlan
@@ -183,8 +186,13 @@ export function Home({
   onOpenList?: (listId: string) => void
   /** The badges the learner put on show (ids); they sit beside the greeting and open the profile. */
   pinned?: readonly string[]
+  /** Location (city name) for live weather and greetings. */
+  location?: string
+  /** Coordinates for live weather. */
+  coordinates?: { lat: number; lon: number }
 }) {
   const now = new Date()
+  const { weather } = useWeather(location, coordinates)
   const game = useGame()
   const streak = game?.streak ?? 0
   const earned = new Set(game?.achievements.filter((a) => a.unlocked).map((a) => a.id))
@@ -234,7 +242,7 @@ export function Home({
   if (vocabularyCount === 0) {
     return (
       <div className="stack welcome">
-        <h1 className="greeting"><DayMark now={now} />{hello}</h1>
+        <h1 className="greeting"><DayMark now={now} weather={weather} />{hello}</h1>
         <div className="welcome-banner">
           <img src={welcomeBanner} alt="" width={900} height={466} draggable={false} />
           <p className="welcome-banner-text">
@@ -303,7 +311,7 @@ export function Home({
   return (
     <div>
       <div className="greeting-row">
-        <h1 className="greeting"><DayMark now={now} />{hello}</h1>
+        <h1 className="greeting"><DayMark now={now} weather={weather} />{hello}</h1>
         {showcase.length > 0 && (
           <ul className="today-showcase" aria-label="Rozet vitrini">
             {showcase.map((a) => (
