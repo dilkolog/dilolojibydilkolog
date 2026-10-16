@@ -22,16 +22,18 @@ const keyOf = (word: string, language: TargetLanguage) => `kelime-koc:clips:${la
 function cached(key: string, now: number): Clip[] | undefined {
   try {
     const saved = JSON.parse(localStorage.getItem(key) ?? 'null') as { at: number; clips: Clip[] } | null
-    return saved && now - saved.at < WEEK ? saved.clips : undefined
+    return saved && Array.isArray(saved.clips) && saved.clips.length > 0 && now - saved.at < WEEK ? saved.clips : undefined
   } catch {
     return undefined
   }
 }
 
-export async function fetchClips(word: string, language: TargetLanguage, now = Date.now()): Promise<Clip[]> {
+export async function fetchClips(word: string, language: TargetLanguage, now = Date.now(), fresh = false): Promise<Clip[]> {
   const key = keyOf(word, language)
-  const saved = cached(key, now)
-  if (saved) return saved
+  if (!fresh) {
+    const saved = cached(key, now)
+    if (saved) return saved
+  }
   let res: Response
   try {
     res = await accessFetch(`/api/clips?q=${encodeURIComponent(word)}&lang=${language}`)
@@ -43,10 +45,12 @@ export async function fetchClips(word: string, language: TargetLanguage, now = D
   if (res.status === 429) throw new ClipsError('quota')
   if (!res.ok) throw new ClipsError('unavailable')
   const { clips } = (await res.json()) as { clips: Clip[] }
-  try {
-    localStorage.setItem(key, JSON.stringify({ at: now, clips }))
-  } catch {
-    // Not kept; the next look asks again.
+  if (clips.length > 0) {
+    try {
+      localStorage.setItem(key, JSON.stringify({ at: now, clips }))
+    } catch {
+      // Not kept; the next look asks again.
+    }
   }
   return clips
 }

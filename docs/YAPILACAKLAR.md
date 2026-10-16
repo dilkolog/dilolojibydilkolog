@@ -528,6 +528,10 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
 - [x] **Gece Bakım Turu 23 — Yeni Diloloji Logo ve Uygulama İkonu Tasarımı (#384):**
   - Gemini ile tasarlanan ve seçilen yeni **Modern "D" Konuşma Balonu + Çift Yapraklı Filiz + Açık Kitap Sayfaları + Altın Kıvılcım** logosu vektörel olarak işlendi (`scripts/build-icons.mjs`).
   - Uygulama içi marka amblemi (`src/ui/icons.tsx` — `BrandMark`), açılış ekranı (`index.html`), sekme simgesi (`public/favicon.svg`), bildirim rozeti (`public/notification-badge.png`) ve tüm PWA/iOS uygulama simgeleri (`public/pwa-512.png`, `public/pwa-192.png`, `public/pwa-maskable-512.png`, `public/apple-touch-icon.png`) yeni logoyla güncellendi.
+- [x] **Gece Bakım Turu 24 — "Videolarda Duy" (`/api/clips`) Özelliğinin Onarımı (#385):**
+  - `api/clips.ts` & `src/engine/clips.ts`: Vercel ortamındaki geçersiz `YOUTUBE_API_KEY` (`400 API_KEY_INVALID`) ve YouTube `/api/timedtext` hız sınırı (`429`) nedeniyle çalışmayan "Videolarda duy" özelliği için anahtar ve kota gerektirmeyen **YouGlish altyazı dizini + YouTube oEmbed** birincil hızlı kaynağı (`~300 ms`) ve **YouTube Innertube arama** yedek hattı eklendi.
+  - `api/_captions.ts`: Altyazı yanıtlarında HTTP durum kodu ve HTML hata sayfası (`429 Sorry...`) denetimi eklendi.
+  - `src/data/clips.ts`, `src/ui/Clips.tsx` & `api/_origin.ts`: Boş sonuçların `localStorage`'da 7 gün önbelleklenmesi engellendi, "Yeniden ara" düğmesine önbellek atlama (`fresh`) desteği ve `diloloji-*.vercel.app` kaynak izni eklendi.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 

@@ -43,6 +43,12 @@ export async function fetchCaptions(id: string, lang: string): Promise<Captions>
   const mine = tracks.filter((t) => t.languageCode.slice(0, 2) === lang)
   const track = mine.find((t) => t.kind !== 'asr') ?? mine[0]
   if (!track) throw new CaptionError('no captions', { status: player.playabilityStatus?.status, available: [...new Set(tracks.map((t) => t.languageCode))] })
-  const xml = await (await fetch(track.baseUrl, { signal: AbortSignal.timeout(8000) })).text()
+  const trackRes = await fetch(track.baseUrl, {
+    headers: { 'user-agent': `com.google.android.youtube/${CLIENT.clientVersion} (Linux; U; Android 14) gzip` },
+    signal: AbortSignal.timeout(8000),
+  })
+  if (!trackRes.ok) throw new CaptionError('youtube unavailable')
+  const xml = await trackRes.text()
+  if (/^\s*<(?:!doctype\s+html|html)\b/i.test(xml)) throw new CaptionError('youtube unavailable')
   return { xml, auto: track.kind === 'asr', title: player.videoDetails?.title ?? 'YouTube', channel: player.videoDetails?.author ?? '' }
 }

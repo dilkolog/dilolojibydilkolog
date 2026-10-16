@@ -45,7 +45,7 @@ export function ClipsSection({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
     setBusy(true)
     setProblem(null)
     try {
-      setClips(await fetchClips(searchWord(entry), entry.language))
+      setClips(await fetchClips(searchWord(entry), entry.language, Date.now(), clips !== null))
     } catch (e) {
       setProblem(e instanceof ClipsError ? e.problem : 'unavailable')
     } finally {
