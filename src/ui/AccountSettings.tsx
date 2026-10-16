@@ -1,5 +1,5 @@
 import { currentIdentity, providersText, signInWithGoogle, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
-import { AccountManage } from './AccountManage'
+import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
 import { ChartIcon, CheckIcon, LockIcon } from './icons'
@@ -196,9 +196,10 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
         </p>
       )}
 
-      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} onGone={() => void refresh()} />
+      <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
       <RestorePoints />
       <AdminAccess />
+      <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>
   )
 }

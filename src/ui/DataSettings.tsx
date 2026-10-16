@@ -9,6 +9,10 @@ import { downloadBackup } from './backup'
 import { ConfirmDialog } from './Dialog'
 import { LANGUAGE_NAME } from './labels'
 import { showToast } from './toastFeed'
+import { AccountDelete } from './AccountManage'
+import { getAccount } from './syncRunner'
+import { currentIdentity, type Identity } from '../data/supabase'
+import type { Account } from '../data/sync'
 
 export function DataSettings({
   language: lang,
@@ -22,9 +26,18 @@ export function DataSettings({
   const [pendingRestore, setPendingRestore] = useState<Backup | null>(null)
   const [safety, setSafety] = useState<SafetySnapshot | null>(null)
   const [pendingUndo, setPendingUndo] = useState(false)
+  const [account, setAccount] = useState<Account | null>(null)
+  const [identity, setIdentity] = useState<Identity | null>(null)
 
   useEffect(() => {
     void getSafetySnapshot(db).then(setSafety)
+    void getAccount().then(async (acc) => {
+      setAccount(acc)
+      if (acc) {
+        const id = await currentIdentity().catch(() => null)
+        setIdentity(id)
+      }
+    })
   }, [])
 
   const download = async () => {
@@ -174,6 +187,17 @@ export function DataSettings({
             Tüm verileri sil
           </button>
         </div>
+        {account && (
+          <AccountDelete
+            account={account}
+            identity={identity}
+            onGone={() => {
+              setAccount(null)
+              setIdentity(null)
+              onDataChanged()
+            }}
+          />
+        )}
       </section>
 
       {message && (
