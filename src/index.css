@@ -4070,6 +4070,121 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 @keyframes sticker-in { from { transform: scale(0.3) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
 
 /* Monki's head is the mark (as on the home-screen icon): the picture brings its own orange square. */
+.monki-stage {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.75rem 0.25rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.monki-actor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 90%;
+  animation: monki-dance 1.7s cubic-bezier(0.36, 0, 0.66, 1) infinite;
+  will-change: transform;
+}
+.monki-stage.is-jumping .monki-actor {
+  animation: monki-hop-burst 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.monki-stage .monki-pose.is-active {
+  animation: monki-pose-swap 0.34s var(--ease-out);
+}
+.monki-shadow {
+  width: 3.75rem;
+  height: 0.55rem;
+  margin-top: -0.15rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 16%, transparent);
+  animation: monki-shadow-pulse 1.7s cubic-bezier(0.36, 0, 0.66, 1) infinite;
+}
+.monki-bubble {
+  position: absolute;
+  top: 0.1rem;
+  right: -0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--r-full);
+  background: var(--lang-soft);
+  color: var(--lang-text);
+  border: 1.5px solid color-mix(in srgb, var(--lang) 35%, transparent);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(0, 0, 0, 0.08));
+  animation: monki-bubble-float 1.7s ease-in-out infinite;
+  pointer-events: none;
+}
+.monki-bubble::before { content: attr(data-bubble); }
+.monki-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -0.3rem;
+  left: 0.65rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--lang-soft);
+  border-right: 1.5px solid color-mix(in srgb, var(--lang) 35%, transparent);
+  border-bottom: 1.5px solid color-mix(in srgb, var(--lang) 35%, transparent);
+  transform: rotate(45deg);
+}
+.monki-spark {
+  position: absolute;
+  font-size: 0.95rem;
+  color: var(--gold-text, #d97706);
+  opacity: 0.85;
+  pointer-events: none;
+  animation: monki-spark-float 2.1s ease-in-out infinite;
+}
+.monki-spark-left { top: 1.35rem; left: 0.35rem; animation-delay: 0.2s; }
+.monki-spark-right { bottom: 1.6rem; right: 0.2rem; animation-delay: 0.95s; color: var(--lang-text); }
+
+@keyframes monki-dance {
+  0%, 100% { transform: translateY(0) rotate(-6deg) scale(1.06, 0.94); }
+  25% { transform: translateY(-14px) rotate(5deg) scale(0.95, 1.06); }
+  50% { transform: translateY(0) rotate(6deg) scale(1.06, 0.94); }
+  75% { transform: translateY(-11px) rotate(-5deg) scale(0.96, 1.05); }
+}
+@keyframes monki-hop-burst {
+  0% { transform: translateY(0) scale(1.12, 0.88); }
+  40% { transform: translateY(-24px) rotate(10deg) scale(0.94, 1.08); }
+  75% { transform: translateY(2px) rotate(-4deg) scale(1.05, 0.95); }
+  100% { transform: translateY(0) rotate(0deg) scale(1, 1); }
+}
+@keyframes monki-pose-swap {
+  0% { opacity: 0.72; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes monki-shadow-pulse {
+  0%, 50%, 100% { transform: scaleX(1.08); opacity: 0.9; }
+  25% { transform: scaleX(0.68); opacity: 0.45; }
+  75% { transform: scaleX(0.75); opacity: 0.55; }
+}
+@keyframes monki-bubble-float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-5px) rotate(3deg); }
+}
+@keyframes monki-spark-float {
+  0%, 100% { transform: translateY(0) scale(0.85); opacity: 0.45; }
+  50% { transform: translateY(-7px) scale(1.15); opacity: 1; }
+}
+@keyframes monki-head-nod {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(4deg) translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monki-actor,
+  .monki-pose.is-active,
+  .monki-shadow,
+  .monki-bubble,
+  .monki-spark { animation: none !important; }
+}
 
 /* ---------- Today: friends and their XP ---------- */
 .friends-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
@@ -4101,3 +4216,146 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .friends-title { display: flex; align-items: center; gap: 0.5rem; }
 .friends-art { width: auto; flex: none; }
 .friends-empty { display: flex; align-items: center; gap: 0.75rem; }
+
+/* ── Daily News Hero: RFI & VOA learner bulletins ───────────────────────── */
+.daily-news-hero {
+  position: relative;
+  padding: 1.25rem 1.375rem;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lang) 7%, var(--surface)) 0%, var(--surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--lang) 25%, var(--rule));
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 0.875rem;
+}
+.daily-news-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.daily-news-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lang-text);
+}
+.daily-news-pulse {
+  animation: live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.92); }
+}
+.daily-news-source { font-weight: 600; }
+.daily-news-body { display: grid; gap: 0.625rem; }
+.daily-news-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.daily-news-teaser { margin: 0; line-height: 1.5; color: var(--ink-soft); }
+.daily-news-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.daily-news-meta .is-audio { background: color-mix(in srgb, var(--flame) 15%, transparent); color: var(--flame); font-weight: 600; }
+.daily-news-meta .is-coverage { font-weight: 600; }
+.daily-news-action { margin-top: 0.25rem; }
+.daily-news-btn { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+/* ── Spot the Error (Hata Avcısı) ───────────────────────────────────────── */
+.spot-game .game-intro-card { text-align: center; padding: 2rem 1.5rem; display: grid; justify-items: center; gap: 0.75rem; }
+.spot-game .game-intro-icon { font-size: 3rem; }
+.spot-game .game-intro-title { margin: 0; font-size: var(--t-xl); }
+.spot-game .game-intro-desc { margin: 0; max-width: 44ch; color: var(--ink-soft); }
+.spot-game .game-intro-meta { display: flex; gap: 0.5rem; }
+.spot-sentence-box { padding: 1.5rem; display: grid; gap: 0.75rem; }
+.spot-tokens-flow { display: flex; flex-wrap: wrap; gap: 0.375rem 0.5rem; align-items: center; line-height: 2; font-size: var(--t-lg); }
+.spot-token {
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  padding: 0.125rem 0.5rem;
+  cursor: pointer;
+  transition: all 160ms var(--ease-out);
+  user-select: none;
+}
+.spot-token:hover:not(:disabled) {
+  border-color: var(--lang);
+  background: color-mix(in srgb, var(--lang) 12%, var(--surface-2));
+  transform: translateY(-1px);
+}
+.spot-token.is-selected {
+  border-color: var(--flame);
+  background: color-mix(in srgb, var(--flame) 18%, var(--surface));
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--flame) 35%, transparent);
+}
+.spot-token.is-corrected {
+  border-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 20%, var(--surface));
+  color: var(--ok-text);
+  font-weight: 700;
+}
+.spot-token.is-wrong {
+  border-color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 20%, var(--surface));
+  color: var(--warn-text);
+  text-decoration: line-through;
+}
+.spot-token.is-shaking {
+  animation: spot-shake 380ms ease-in-out;
+  border-color: var(--ink-soft);
+}
+@keyframes spot-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+.spot-hint-toast { margin: 0; color: var(--ink-soft); animation: toast-in 200ms ease; }
+.spot-options-pane { display: grid; gap: 0.5rem; margin-top: 0.5rem; }
+.spot-options-list { display: grid; gap: 0.5rem; }
+.spot-option-btn { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; width: 100%; text-align: left; }
+.spot-explanation-box { padding: 1.25rem; display: grid; gap: 0.625rem; border-radius: var(--r-md); }
+.spot-explanation-box.is-correct { border-left: 4px solid var(--ok); background: color-mix(in srgb, var(--ok) 6%, var(--surface)); }
+.spot-explanation-box.is-wrong { border-left: 4px solid var(--warn); background: color-mix(in srgb, var(--warn) 6%, var(--surface)); }
+.spot-status-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.spot-status-pill { display: inline-flex; align-items: center; gap: 0.375rem; font-weight: 700; }
+.spot-explanation-text { margin: 0; line-height: 1.55; color: var(--ink); }
+.spot-action-row { margin-top: 0.375rem; }
+
+/* ── Sentence Rewrite (Cümle Dönüşümü) ─────────────────────────────────── */
+.rewrite-game .game-intro-card { text-align: center; padding: 2rem 1.5rem; display: grid; justify-items: center; gap: 0.75rem; }
+.rewrite-game .game-intro-icon { font-size: 3rem; }
+.rewrite-game .game-intro-title { margin: 0; font-size: var(--t-xl); }
+.rewrite-game .game-intro-desc { margin: 0; max-width: 44ch; color: var(--ink-soft); }
+.rewrite-game .game-intro-meta { display: flex; gap: 0.5rem; }
+.rewrite-source-box { padding: 1.25rem 1.5rem; display: grid; gap: 0.375rem; }
+.rewrite-source-sentence { margin: 0; font-size: var(--t-lg); font-weight: 600; color: var(--ink); line-height: 1.45; }
+.rewrite-source-tr { margin: 0; font-style: italic; }
+.rewrite-keyword-box { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--surface-2); border-radius: var(--r-md); box-shadow: var(--inset-ring); }
+.rewrite-keyword-badge { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--lang-text); background: color-mix(in srgb, var(--lang) 15%, var(--surface)); padding: 0.25rem 0.75rem; border-radius: var(--r-sm); border: 1px solid color-mix(in srgb, var(--lang) 30%, transparent); }
+.rewrite-target-box { padding: 1.25rem 1.5rem; display: grid; gap: 1rem; }
+.rewrite-sentence-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: var(--t-md); line-height: 1.7; }
+.rewrite-prefix, .rewrite-suffix { font-weight: 600; color: var(--ink); }
+.rewrite-input { min-width: 18rem; flex: 1; font-size: inherit; font-family: inherit; }
+.rewrite-input.is-correct { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 8%, var(--surface)); }
+.rewrite-input.is-wrong { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 8%, var(--surface)); }
+.rewrite-controls { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.rewrite-explanation-box { padding: 1.25rem; display: grid; gap: 0.625rem; border-radius: var(--r-md); }
+.rewrite-explanation-box.is-correct { border-left: 4px solid var(--ok); background: color-mix(in srgb, var(--ok) 6%, var(--surface)); }
+.rewrite-explanation-box.is-wrong { border-left: 4px solid var(--warn); background: color-mix(in srgb, var(--warn) 6%, var(--surface)); }
+.rewrite-status-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.rewrite-status-pill { display: inline-flex; align-items: center; gap: 0.375rem; font-weight: 700; }
+.rewrite-alts { font-style: italic; }
+.rewrite-explanation-text { margin: 0; line-height: 1.55; color: var(--ink); }
+.rewrite-action-row { margin-top: 0.375rem; }
+

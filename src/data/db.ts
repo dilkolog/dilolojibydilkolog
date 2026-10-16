@@ -819,6 +819,24 @@ export class KelimeDB extends Dexie {
     return this.saveLog('register', log)
   }
 
+  /** How the spot-the-error questions went, per question. */
+  getSpotErrorLog(): Promise<GrammarLog> {
+    return this.getLog('spot-error')
+  }
+
+  saveSpotErrorLog(log: GrammarLog) {
+    return this.saveLog('spot-error', log)
+  }
+
+  /** How the sentence rewrite questions went, per question. */
+  getSentenceRewriteLog(): Promise<GrammarLog> {
+    return this.getLog('sentence-rewrite')
+  }
+
+  saveSentenceRewriteLog(log: GrammarLog) {
+    return this.saveLog('sentence-rewrite', log)
+  }
+
   /** How the text-flow gaps went, per paragraph and gap (same shape as the grammar log). */
   getFlowLog(): Promise<GrammarLog> {
     return this.getLog('flow')
