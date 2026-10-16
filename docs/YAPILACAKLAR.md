@@ -418,6 +418,13 @@ görsel + ses (ikili kodlama), dikte, konuşma, hikaye modu, metinden kelime ç�
   - Fransızca (`lessons-fr.ts` - `subjonctif`): Resmî Fransızca'daki *ne explétif* kuralı (`avant que`, `à moins que`, `avoir peur que` sonrasında 'ne'nin olumsuzluk/pas taşımaması: `Rentrons avant qu'il ne fasse nuit`), yeni örneği ve dikkat uyarısı.
   - İspanyolca (`lessons-es.ts` - `condicionales`): *como si* (sanki ...-mış gibi) kalıbının ardından daima geçmiş subjuntivo (imperfecto veya pluscuamperfecto de subjuntivo) alması, asla presente/indicativo kullanılmaması kuralı (`Me mira como si no me conociera`), yeni örneği ve dikkat uyarısı.
   - İngilizce (`lessons-en.ts` - `inversion`): Şart cümlelerinde devriklik (*conditional inversion* - `Had I known`, `Were I you`, `Should you need help`), yeni örneği (`Had I known about the traffic, I would have taken the train`) ve `If had I known` hatasına karşı dikkat uyarısı.
+- [x] **Gece Bakım Turu 10 — Arayüz & Fiil Mantığı Birim Test Kapsamı (#371):**
+  - Doğrudan testi bulunmayan 5 kritik arayüz ve fiil mantığı modülü için 32 yeni birim testi yazıldı:
+    - `src/ui/gardenSkyCalculations.test.ts` (10 test): Bahçe gökyüzü evreleri (`skyPhase`: sabah/gündüz/akşam/gece saat sınırları), Türkçe evre adları (`PHASE_NAME`), güneş ve ay eğrisi koordinatları (`bodyPosition`), kelebek ve arı ziyaretçi hesaplamaları (`visitors`).
+    - `src/ui/labels.test.ts` (7 test): Dil karşılama mesajları (`HELLO`), dil adları ve kodları (`LANGUAGE_NAME`, `LANGUAGE_SHORT`, `SPEECH_LANG`), beceri, seviye ve parça adları, hata ipuçları (`ERROR_HINT`), kural ve istisna metin üretimi (`genderRuleText` — Fransızca ve İspanyolca eril/dişil kural ve istisnaları).
+    - `src/ui/personalInterests.test.ts` (4 test): Profil ilgi alanları ve hikaye konularının birleştirilmesi (`interestsOf`), boşluk budama, boş değer filtreleme, mükerrer temizliği ve azami 8 öge kısıtlaması.
+    - `src/ui/splitHelp.test.ts` (5 test): Ayar yardım metinlerinin bölünmesi (`splitHelp`: 24 karakter altı bölünmeme, nokta/ünlem/soru işareti ayrımı, çok satırlı açıklamaların korunması).
+    - `src/ui/verbs/tenseTwin.test.ts` (6 test): İki dilli fiil laboratuvarı eş zaman eşleştirmesi (`otherLab`: fr <-> es), zaman tablosu sorgusu (`twinOf`: Fransızca présent -> İspanyolca presente), passé composé -> pretérito pedagojik fark notu, Fransızca'da être ile kurulan bileşik zamanlarda pedagojik uyarı üretimi.
 - [x] **Dış Kaynak Bağlantıları Canlı Doğrulaması (#365):**
   - `scripts/check-guide-links.ts` ile 40 dış kaynak canlı ağda tarandı, `Spanish Grammar in Context` yeni adresi (`https://grammar.spanishintexas.org/`) doğrulanarak 200 OK alındı (`docs/kaynaklar/rehber-baglantilari.md`).
 
