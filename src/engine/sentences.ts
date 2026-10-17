@@ -18,6 +18,8 @@ export interface SentenceCard {
   /** The word the sentence was saved for; blanked first in cloze. */
   focus?: string
   source?: string
+  /** A short Turkish note shown with the answer: why the sentence is the way it is (a correction's reason). */
+  note?: string
   addedAt: string
   card: Card
 }
@@ -83,7 +85,7 @@ export function gradeSentence(ex: SentenceExercise, given: string): SentenceVerd
   return score >= 0.95 ? 'correct' : score >= 0.8 ? 'near' : 'wrong'
 }
 
-export function newSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string }, scheduler: Scheduler, now: Date): SentenceCard {
+export function newSentence(input: { language: TargetLanguage; text: string; translation?: string; focus?: string; source?: string; note?: string }, scheduler: Scheduler, now: Date): SentenceCard {
   return {
     id: crypto.randomUUID(),
     language: input.language,
@@ -91,6 +93,7 @@ export function newSentence(input: { language: TargetLanguage; text: string; tra
     translation: input.translation?.trim() ?? '',
     focus: input.focus,
     source: input.source,
+    ...(input.note?.trim() ? { note: input.note.trim() } : {}),
     addedAt: now.toISOString(),
     card: scheduler.newCard(now),
   }
