@@ -3352,17 +3352,26 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .sky-body { position: absolute; width: 1.75rem; height: 1.75rem; margin: -0.875rem 0 0 -0.875rem; border-radius: 50%; }
 .sky-body.is-sun { background: radial-gradient(circle, #fffef0 0 32%, #ffd84d 33% 72%, #f59e0b 100%); box-shadow: 0 0 1.5rem 0.5rem rgb(255 216 77 / 0.6), 0 0 3rem 1rem rgb(251 191 36 / 0.22); }
 .garden-sky.is-dusk .sky-body.is-sun, .garden-sky.is-dawn .sky-body.is-sun { background: radial-gradient(circle, #fff1d6 0 40%, #ff9d5c 41% 100%); box-shadow: 0 0 1.25rem 0.375rem rgb(255 157 92 / 0.55); }
-.sky-body.is-moon { background: #f4f1de; box-shadow: 0 0 1rem 0.25rem rgb(244 241 222 / 0.35), inset -0.4rem -0.1rem 0 0 #d9d4b8; }
+.sky-body.is-moon {
+  width: 2.25rem; height: 2.25rem; margin: -1.125rem 0 0 -1.125rem; border-radius: 50%;
+  background: transparent;
+  filter: drop-shadow(0 0 0.875rem rgb(254 240 138 / 0.55)) drop-shadow(0 0 2rem rgb(186 230 253 / 0.28));
+}
+.sky-body.is-moon .moon-svg { display: block; width: 100%; height: 100%; }
 .sky-clouds { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .sky-cloud { position: absolute; width: 3.5rem; height: 1.15rem; background: rgb(255 255 255 / 0.72); border-radius: var(--r-full); filter: drop-shadow(0 2px 6px rgb(255 255 255 / 0.3)); animation: cloud-drift 22s ease-in-out infinite alternate; }
 .sky-cloud::before { content: ''; position: absolute; left: 0.625rem; bottom: 0.35rem; width: 1.35rem; height: 1.35rem; background: inherit; border-radius: 50%; }
 .sky-cloud::after { content: ''; position: absolute; right: 0.75rem; bottom: 0.25rem; width: 1.05rem; height: 1.05rem; background: inherit; border-radius: 50%; }
 .sky-cloud-2 { width: 2.75rem; height: 0.95rem; opacity: 0.62; animation-duration: 28s; animation-delay: -9s; }
 @keyframes cloud-drift { 0% { transform: translateX(0); } 100% { transform: translateX(2.25rem); } }
-.sky-star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; animation: twinkle 3s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.7s); }
-@keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
-.sky-hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 38%; fill: color-mix(in srgb, var(--plant-leaf) 70%, #0b3d2c); opacity: 0.85; }
-.garden-sky.is-night .sky-hills { fill: #0e3a30; }
+.sky-star { position: absolute; border-radius: 50%; background: #fff; opacity: 0.75; box-shadow: 0 0 4px rgb(255 255 255 / 0.85); animation: twinkle 3.2s ease-in-out infinite; }
+.sky-star.is-sparkle { box-shadow: 0 0 6px 1px rgb(254 240 138 / 0.9); background: #fef9c3; }
+.sky-star.is-sparkle::before { content: ''; position: absolute; left: 50%; top: 50%; width: 140%; height: 140%; transform: translate(-50%, -50%) rotate(45deg); background: inherit; border-radius: 1px; }
+@keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.15); } }
+.sky-hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 28%; fill: color-mix(in srgb, var(--plant-leaf) 70%, #0b3d2c); opacity: 0.85; }
+.garden-sky.is-night .sky-hills { fill: #0a1b2e; opacity: 0.65; }
+.garden-sky.is-dusk .sky-hills { fill: #2d1842; opacity: 0.75; }
+.garden-sky.is-dawn .sky-hills { fill: #4c1d47; opacity: 0.55; }
 
 /* Butterflies drift in loops with flapping wings; bees bob along a line; fireflies blink in place. */
 .sky-butterfly, .sky-bee, .sky-firefly { position: absolute; left: calc(14% + var(--i, 0) * 17%); top: var(--y, 40%); }
@@ -3675,16 +3684,94 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .sk-tile { aspect-ratio: 4 / 3; border-radius: var(--r-md); }
 
 /* The end of a session as a small garden under the sky of the hour: plants stand on lush rolling ground, in front of the hills. */
-.summary-scene { position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
+.summary-scene {
+  position: relative;
+  border-radius: var(--r-xl, 1.25rem);
+  overflow: hidden;
+  box-shadow: var(--shadow-md, var(--shadow));
+  border: 1px solid rgb(255 255 255 / 0.12);
+}
 .summary-scene .garden-sky { height: 11.25rem; margin: 0; border-radius: 0; }
-.scene-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 3.25rem; pointer-events: none; z-index: 1; }
+.summary-scene.is-night {
+  --ground-top: #0a3d2c;
+  --ground-mid: #05261b;
+  --ground-base: #02140e;
+  --ground-back: #062b1f;
+  --crest-shimmer: rgb(186 230 253 / 0.42);
+  --crest-glow: rgb(56 189 248 / 0.12);
+  border-color: rgb(56 189 248 / 0.22);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.35), 0 0 30px rgb(11 19 48 / 0.4);
+}
+.summary-scene.is-dusk {
+  --ground-top: #15653b;
+  --ground-mid: #14532d;
+  --ground-base: #052e16;
+  --ground-back: #0b3d22;
+  --crest-shimmer: rgb(254 215 170 / 0.45);
+  --crest-glow: rgb(251 146 60 / 0.15);
+}
+.summary-scene.is-dawn {
+  --ground-top: #15803d;
+  --ground-mid: #14532d;
+  --ground-base: #052e16;
+  --ground-back: #0f4c28;
+  --crest-shimmer: rgb(254 240 138 / 0.5);
+  --crest-glow: rgb(250 204 21 / 0.15);
+}
+.summary-scene.is-day {
+  --ground-top: #22c55e;
+  --ground-mid: #15803d;
+  --ground-base: #052e16;
+  --ground-back: #0d5a2b;
+  --crest-shimmer: rgb(255 255 255 / 0.45);
+  --crest-glow: rgb(255 255 255 / 0.15);
+}
+
+.scene-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 3.5rem; pointer-events: none; z-index: 1; }
 .scene-ground-svg { display: block; width: 100%; height: 100%; }
-.scene-plants { position: absolute; inset: auto 0.75rem 1.85rem; list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-evenly; gap: 0.25rem; z-index: 2; }
+
+.scene-plants {
+  position: absolute;
+  inset: auto 0.75rem 1.95rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  gap: 0.25rem;
+  z-index: 2;
+}
 .scene-plants li { display: block; transform-origin: 50% 100%; transform: translateY(var(--stagger-y, 0)); animation: scene-pop 520ms var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 80ms); }
 @keyframes scene-pop { 0% { transform: translateY(1.2rem) scale(0.4); opacity: 0; } 70% { transform: translateY(calc(var(--stagger-y, 0) - 0.2rem)) scale(1.08); opacity: 1; } 100% { transform: translateY(var(--stagger-y, 0)); opacity: 1; } }
-.scene-caption-wrap { position: absolute; left: 0; right: 0; bottom: 0.5rem; display: flex; justify-content: center; pointer-events: none; z-index: 3; }
-.scene-caption.scene-caption-pill { position: static; height: auto; display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.875rem; border-radius: var(--r-full); background: rgb(5 46 22 / 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgb(255 255 255 / 0.25); box-shadow: 0 2px 8px rgb(0 0 0 / 0.25); color: #fff; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.015em; text-shadow: 0 1px 2px rgb(0 0 0 / 0.4); animation: caption-pop 400ms 280ms var(--ease-spring) both; }
-.scene-caption.scene-caption-pill .caption-icon { font-size: 0.875rem; line-height: 1; filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.3)); }
+
+.scene-caption-wrap { position: absolute; left: 0; right: 0; bottom: 0.625rem; display: flex; justify-content: center; pointer-events: none; z-index: 3; }
+.scene-caption.scene-caption-pill {
+  position: static;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.425rem;
+  padding: 0.325rem 0.95rem;
+  border-radius: var(--r-full);
+  background: rgb(5 38 20 / 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.28);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.3), 0 0 12px rgb(16 185 129 / 0.15);
+  color: #fff;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
+  animation: caption-pop 400ms 280ms var(--ease-spring) both;
+}
+.summary-scene.is-night .scene-caption.scene-caption-pill {
+  background: rgb(10 24 45 / 0.82);
+  border-color: rgb(186 230 253 / 0.35);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.4), 0 0 16px rgb(56 189 248 / 0.2);
+}
+.scene-caption.scene-caption-pill .caption-icon { font-size: 0.95rem; line-height: 1; filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.4)); }
 @keyframes caption-pop { from { transform: translateY(0.5rem) scale(0.85); opacity: 0; } to { transform: none; opacity: 1; } }
 
 /* A word as written in a list: article, lemma, and its small marks on one line. */

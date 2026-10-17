@@ -24,6 +24,7 @@ export function Plant({
   live = false,
   phase = 0,
   watered = false,
+  garden = false,
 }: {
   stage: number
   health?: Health
@@ -31,6 +32,7 @@ export function Plant({
   live?: boolean
   phase?: number
   watered?: boolean
+  garden?: boolean
 }) {
   const [fx, setFx] = useState<'grow' | 'water' | null>(null)
   const last = useRef({ stage, health })
@@ -65,11 +67,11 @@ export function Plant({
   const faded = health === 'wilting' ? 0.6 : 1
   return (
     // A seed or a sprout is tiny on the full 40-unit ground; its own, closer frame keeps it legible.
-    <svg width={size} height={size} viewBox={stage <= 0 ? '6 12 28 28' : '0 0 40 40'} role="img" aria-label={label} className={`plant plant-${health}${live ? ' is-live' : ''}${fx ? ` is-${fx}` : ''}`}
+    <svg width={size} height={size} viewBox={garden ? '0 0 40 40' : stage <= 0 ? '6 12 28 28' : '0 0 40 40'} role="img" aria-label={label} className={`plant plant-${health}${live ? ' is-live' : ''}${fx ? ` is-${fx}` : ''}`}
       style={live ? ({ '--sway-d': `${-((phase * 1.7) % 4.5)}s` } as CSSProperties) : undefined}
     >
       <title>{label}</title>
-      <Soil fine={fine} stage={stage} />
+      <Soil fine={fine} stage={stage} garden={garden} />
       {stage < 0 ? (
         // Not planted yet: a seed that waits to be noticed (live only): it glows, hops now and then, and sparkles.
         <g className="plant-waiting" transform={live ? 'translate(20 33.4) scale(1.5) translate(-20 -33.4)' : undefined}>
@@ -159,7 +161,23 @@ export function Plant({
 }
 
 /** A natural mound of dark garden earth, softening into turf and subtle organic crest. */
-function Soil({ fine, stage = 1 }: { fine: boolean; stage?: number }) {
+function Soil({ fine, stage = 1, garden = false }: { fine: boolean; stage?: number; garden?: boolean }) {
+  if (garden) {
+    return (
+      <g className="plant-soil-garden">
+        {/* Soft ground shadow blending into lawn */}
+        <ellipse cx="20" cy="35.2" rx="7.5" ry="2.2" fill="rgba(2, 20, 12, 0.45)" />
+        {/* Rich dark fertile soil patch */}
+        <ellipse cx="20" cy="34.6" rx="5.5" ry="1.6" fill="color-mix(in srgb, var(--plant-soil) 60%, #052e16)" opacity="0.9" />
+        {/* Natural soil crumbs */}
+        <circle cx="16.5" cy="34.8" r="0.45" fill="rgba(0, 0, 0, 0.4)" />
+        <circle cx="23.2" cy="34.9" r="0.4" fill="rgba(0, 0, 0, 0.4)" />
+        {/* Tiny grass blades peeking over the soil base to root the plant organically */}
+        <path d="M14 35 Q13 32.5 12 31.5 Q13.5 33 15 34.8" stroke="var(--plant-leaf)" strokeWidth="0.7" fill="none" strokeLinecap="round" opacity="0.75" />
+        <path d="M25 35 Q26 32.5 27.2 31.8 Q25.8 33 24.5 34.8" stroke="var(--plant-leaf)" strokeWidth="0.7" fill="none" strokeLinecap="round" opacity="0.75" />
+      </g>
+    )
+  }
   const zoomed = stage <= 0
   const rx = zoomed ? 7.5 : 10.5
   const ry = zoomed ? 1.8 : 2.2
@@ -222,11 +240,11 @@ function Leaf({ x, y, side, size, fill, delay, fine }: { x: number; y: number; s
 }
 
 /** A plant shown at the stage it had, then growing into the stage it reached after `delay` ms (the session summary's moment). */
-export function GrowingPlant({ from, to, delay, size }: { from: number; to: number; delay: number; size: number }) {
+export function GrowingPlant({ from, to, delay, size, garden = false }: { from: number; to: number; delay: number; size: number; garden?: boolean }) {
   const [stage, setStage] = useState(from)
   useEffect(() => {
     const t = setTimeout(() => setStage(to), delay)
     return () => clearTimeout(t)
   }, [to, delay])
-  return <Plant stage={stage} size={size} />
+  return <Plant stage={stage} size={size} garden={garden} />
 }
