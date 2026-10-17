@@ -21,6 +21,16 @@ const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m
 const SENT_KEY = 'diloloji:friend-card'
 const NICKNAMES_KEY = 'diloloji:friend-nicknames'
 
+/** The nicknames the learner gave their friends (on this device). */
+function storedNicknames(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem(NICKNAMES_KEY)
+    return raw ? (JSON.parse(raw) as Record<string, string>) : {}
+  } catch {
+    return {}
+  }
+}
+
 const REASONS: Record<string, string> = {
   unknown: 'Bu kodla bir arkadaş bulunamadı. Kodu bir daha kontrol et.',
   self: 'Bu senin kendi kodun.',
@@ -39,14 +49,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
   const [failed, setFailed] = useState(false)
   const [code, setCode] = useState('')
   const [adding, setAdding] = useState(false)
-  const [nicknames, setNicknames] = useState<Record<string, string>>(() => {
-    try {
-      const raw = localStorage.getItem(NICKNAMES_KEY)
-      return raw ? (JSON.parse(raw) as Record<string, string>) : {}
-    } catch {
-      return {}
-    }
-  })
+  const [nicknames, setNicknames] = useState<Record<string, string>>(storedNicknames)
   const [inbox, setInbox] = useState<InboxItem[]>([])
   const [open, setOpen] = useState<string | null>(null)
   const [editingCode, setEditingCode] = useState<string | null>(null)
@@ -61,7 +64,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       setFailed(false)
       setInbox(waiting)
       // Each message is also a notice (the bell), once.
-      for (const m of waiting) void notify(friendNotice(m, m.from.name))
+      for (const m of waiting) void notify(friendNotice(m, storedNicknames()[m.from.code] || m.from.name))
     } catch {
       setFailed(true)
     }

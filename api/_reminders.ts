@@ -15,6 +15,8 @@ export interface ReminderStore {
   all(): Promise<{ key: string; record: PushRecord }[]>
   /** The mail records an account registered (it is being deleted). */
   mailsOf(owner: string): Promise<string[]>
+  /** The push records saved by an account's devices (a signed-in device records its account). */
+  byOwner(owner: string): Promise<{ key: string; record: PushRecord }[]>
 }
 
 export const KEY = /^(mail-)?[0-9a-f]{40}$/
@@ -80,6 +82,8 @@ export const blobReminders: ReminderStore = {
     } while (cursor)
     return keys
   },
+  // Blob has no index by owner: the records are read and the account's picked out (a friend's message is rare and rate limited).
+  byOwner: async (owner) => (await blobReminders.all()).filter(({ key, record }) => !key.startsWith('mail-') && record.owner === owner),
 }
 
 interface ReminderRow {
@@ -113,4 +117,8 @@ export const tableReminders: ReminderStore = {
     return out.filter((r) => r.record && KEY.test(r.key)).map((r) => ({ key: r.key, record: r.record }))
   },
   mailsOf: async (owner) => (await rows<{ key: string }>(`reminders?kind=eq.mail&owner=${eq(owner)}&select=key`)).map((r) => r.key),
+  async byOwner(owner) {
+    const found = await rows<ReminderRow>(`reminders?kind=eq.push&owner=${eq(owner)}&select=key,record`)
+    return found.filter((r) => r.record && KEY.test(r.key) && r.record.owner === owner).map((r) => ({ key: r.key, record: r.record }))
+  },
 }

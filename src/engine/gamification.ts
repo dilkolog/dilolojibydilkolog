@@ -99,6 +99,13 @@ export function xpForAnswer(a: XpInput): number {
   return Math.max(1, Math.round(xp)) + (rescued ? RESCUE_XP : 0)
 }
 
+/** Whether `today` picks the studying up again after `COMEBACK_GAP_DAYS` or more away from `previousDay` (the last day before it with real answers). */
+export function isComeback(previousDay: string | null | undefined, today: string): boolean {
+  if (!previousDay) return false
+  const gap = Math.round((new Date(`${today}T12:00:00`).getTime() - new Date(`${previousDay}T12:00:00`).getTime()) / 86_400_000)
+  return gap >= COMEBACK_GAP_DAYS
+}
+
 /** The days a study streak was picked up again after `COMEBACK_GAP_DAYS` or more away, with the bonus: real answers only, a few of them. */
 export function comebackBonus(events: readonly ReviewEvent[]): Map<string, number> {
   const perDay = new Map<string, number>()
@@ -106,8 +113,7 @@ export function comebackBonus(events: readonly ReviewEvent[]): Map<string, numbe
   const days = [...perDay.keys()].sort()
   const bonus = new Map<string, number>()
   for (let i = 1; i < days.length; i++) {
-    const gap = Math.round((new Date(`${days[i]}T12:00:00`).getTime() - new Date(`${days[i - 1]}T12:00:00`).getTime()) / 86_400_000)
-    if (gap >= COMEBACK_GAP_DAYS && perDay.get(days[i])! >= COMEBACK_MIN_ANSWERS) bonus.set(days[i], COMEBACK_XP)
+    if (isComeback(days[i - 1], days[i]) && perDay.get(days[i])! >= COMEBACK_MIN_ANSWERS) bonus.set(days[i], COMEBACK_XP)
   }
   return bonus
 }

@@ -3,6 +3,7 @@ import { buildDailyPlan, MAX_DAY_FORMS } from './engine/dailyPlan'
 
 import { engineFlags } from './engine/exercisePrefs'
 import { openMistakes } from './engine/mistakes'
+import { kindOff } from './engine/notices'
 import { mistakesForMonki, weakWordsOf } from './engine/monkiContext'
 import { answeredToday } from './engine/progress'
 
@@ -351,8 +352,9 @@ export default function App() {
       week: weekText,
       hour: Number((reminder?.time ?? '20:00').slice(0, 2)),
       word: recallWord,
+      friends: !kindOff(settings?.noticeOff, 'friend'),
     }),
-    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText, reminder?.time, recallWord],
+    [answeredTodayAll, game?.streak, settings?.studyPlan, settings?.dayWeights, settings?.vacation, dueReviews, weekText, reminder?.time, recallWord, settings?.noticeOff],
   )
   // Keeps the server's evening reminder from firing on days already studied.
   const loaded = !!data && !!game

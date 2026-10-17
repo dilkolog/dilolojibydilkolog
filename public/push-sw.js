@@ -91,6 +91,19 @@ self.addEventListener('push', (event) => {
   } catch {
     data = { body: event.data ? event.data.text() : '' }
   }
+  // A friend's message is shown as it is: no word question, no daily-reminder tag (it must not replace one).
+  if (data.kind === 'friend') {
+    event.waitUntil(
+      self.registration.showNotification(data.title || 'Diloloji', {
+        body: data.body || '',
+        icon: '/pwa-192.png',
+        badge: '/notification-badge.png',
+        tag: 'friend-message',
+        data: { url: data.url || '/' },
+      }),
+    )
+    return
+  }
   const body = data.body || 'Bugünkü kelime çalışman seni bekliyor.'
   event.waitUntil(
     dueQuestion()
