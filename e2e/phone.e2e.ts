@@ -713,6 +713,10 @@ test('a session ends in a small garden: a plant for each word, under the sky of 
   test.setTimeout(120_000)
   await startWithSamples(page)
   await playSession(page)
+  const badgeBtn = page.locator('.badge-moment button', { hasText: 'Devam' })
+  if (await badgeBtn.isVisible({ timeout: 2000 }).catch(() => false)) {
+    await badgeBtn.click()
+  }
   const scene = page.locator('.summary-scene')
   await expect(scene).toBeVisible()
   expect(await scene.locator('.scene-plants li').count()).toBeGreaterThan(0)

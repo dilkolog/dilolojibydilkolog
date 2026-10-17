@@ -1259,7 +1259,7 @@ main:focus { outline: none; }
 /* Vocabulary size test */
 
 /* Plant (word growth) colours */
-:root { --plant-leaf: #10b981; --plant-thirsty: #a3a635; --plant-dry: #b45309; --plant-soil: #d6d3d1; --plant-seed: #a16207; }
+:root { --plant-leaf: #10b981; --plant-thirsty: #a3a635; --plant-dry: #b45309; --plant-soil: #714725; --plant-seed: #a16207; }
 /* Dark: warm brown soil that shows against the night, and beds sunk into the page like planters; flowers carry a faint glow. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) { --plant-leaf: #34d399; --plant-thirsty: #bef264; --plant-dry: #d97706; --plant-soil: #6b5040; --plant-seed: #ca8a04; --bed-ground: color-mix(in srgb, var(--plant-leaf) 7%, var(--bg)); --bed-shade: 0.25; }
@@ -3194,9 +3194,15 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .garden-sky.is-dusk { --sky-top: #5b4b9a; --sky-bottom: #f6a56b; }
 .garden-sky.is-night { --sky-top: #0b1330; --sky-bottom: #26356b; }
 .sky-body { position: absolute; width: 1.75rem; height: 1.75rem; margin: -0.875rem 0 0 -0.875rem; border-radius: 50%; }
-.sky-body.is-sun { background: radial-gradient(circle, #fff7c2 0 40%, #ffd84d 41% 100%); box-shadow: 0 0 1.25rem 0.375rem rgb(255 216 77 / 0.55); }
+.sky-body.is-sun { background: radial-gradient(circle, #fffef0 0 32%, #ffd84d 33% 72%, #f59e0b 100%); box-shadow: 0 0 1.5rem 0.5rem rgb(255 216 77 / 0.6), 0 0 3rem 1rem rgb(251 191 36 / 0.22); }
 .garden-sky.is-dusk .sky-body.is-sun, .garden-sky.is-dawn .sky-body.is-sun { background: radial-gradient(circle, #fff1d6 0 40%, #ff9d5c 41% 100%); box-shadow: 0 0 1.25rem 0.375rem rgb(255 157 92 / 0.55); }
 .sky-body.is-moon { background: #f4f1de; box-shadow: 0 0 1rem 0.25rem rgb(244 241 222 / 0.35), inset -0.4rem -0.1rem 0 0 #d9d4b8; }
+.sky-clouds { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.sky-cloud { position: absolute; width: 3.5rem; height: 1.15rem; background: rgb(255 255 255 / 0.72); border-radius: var(--r-full); filter: drop-shadow(0 2px 6px rgb(255 255 255 / 0.3)); animation: cloud-drift 22s ease-in-out infinite alternate; }
+.sky-cloud::before { content: ''; position: absolute; left: 0.625rem; bottom: 0.35rem; width: 1.35rem; height: 1.35rem; background: inherit; border-radius: 50%; }
+.sky-cloud::after { content: ''; position: absolute; right: 0.75rem; bottom: 0.25rem; width: 1.05rem; height: 1.05rem; background: inherit; border-radius: 50%; }
+.sky-cloud-2 { width: 2.75rem; height: 0.95rem; opacity: 0.62; animation-duration: 28s; animation-delay: -9s; }
+@keyframes cloud-drift { 0% { transform: translateX(0); } 100% { transform: translateX(2.25rem); } }
 .sky-star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; animation: twinkle 3s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.7s); }
 @keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
 .sky-hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 38%; fill: color-mix(in srgb, var(--plant-leaf) 70%, #0b3d2c); opacity: 0.85; }
@@ -3512,14 +3518,18 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 .sk-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.5rem; }
 .sk-tile { aspect-ratio: 4 / 3; border-radius: var(--r-md); }
 
-/* The end of a session as a small garden under the sky of the hour: plants stand on a strip of ground, in front of the hills. */
+/* The end of a session as a small garden under the sky of the hour: plants stand on lush rolling ground, in front of the hills. */
 .summary-scene { position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
-.summary-scene .garden-sky { height: 10.5rem; margin: 0; border-radius: 0; }
-.scene-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 2.25rem; background: linear-gradient(to bottom, color-mix(in srgb, var(--plant-leaf) 78%, #14532d), color-mix(in srgb, var(--plant-leaf) 48%, #052e16)); box-shadow: inset 0 3px 0 rgb(255 255 255 / 0.2); }
-.scene-plants { position: absolute; inset: auto 0.75rem 1.6rem; list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-evenly; gap: 0.25rem; }
-.scene-plants li { display: block; transform-origin: 50% 100%; animation: scene-pop var(--dur) var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 80ms); }
-@keyframes scene-pop { from { transform: translateY(0.75rem) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
-.scene-caption { position: absolute; left: 0; right: 0; bottom: 0; height: 2.25rem; display: grid; place-items: center; margin: 0; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / 0.35); }
+.summary-scene .garden-sky { height: 11.25rem; margin: 0; border-radius: 0; }
+.scene-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 3.25rem; pointer-events: none; z-index: 1; }
+.scene-ground-svg { display: block; width: 100%; height: 100%; }
+.scene-plants { position: absolute; inset: auto 0.75rem 1.85rem; list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-evenly; gap: 0.25rem; z-index: 2; }
+.scene-plants li { display: block; transform-origin: 50% 100%; transform: translateY(var(--stagger-y, 0)); animation: scene-pop 520ms var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 80ms); }
+@keyframes scene-pop { 0% { transform: translateY(1.2rem) scale(0.4); opacity: 0; } 70% { transform: translateY(calc(var(--stagger-y, 0) - 0.2rem)) scale(1.08); opacity: 1; } 100% { transform: translateY(var(--stagger-y, 0)); opacity: 1; } }
+.scene-caption-wrap { position: absolute; left: 0; right: 0; bottom: 0.5rem; display: flex; justify-content: center; pointer-events: none; z-index: 3; }
+.scene-caption.scene-caption-pill { position: static; height: auto; display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.875rem; border-radius: var(--r-full); background: rgb(5 46 22 / 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgb(255 255 255 / 0.25); box-shadow: 0 2px 8px rgb(0 0 0 / 0.25); color: #fff; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.015em; text-shadow: 0 1px 2px rgb(0 0 0 / 0.4); animation: caption-pop 400ms 280ms var(--ease-spring) both; }
+.scene-caption.scene-caption-pill .caption-icon { font-size: 0.875rem; line-height: 1; filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.3)); }
+@keyframes caption-pop { from { transform: translateY(0.5rem) scale(0.85); opacity: 0; } to { transform: none; opacity: 1; } }
 
 /* A word as written in a list: article, lemma, and its small marks on one line. */
 .word-label { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.375rem; }

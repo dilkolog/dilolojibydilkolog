@@ -17,7 +17,21 @@ const HEALTH_RANK: Record<Health, number> = { fresh: 0, thirsty: 1, wilting: 2 }
  * ambient sway (and a breathing flower) for plants that are the point of the screen, not for
  * hundreds of list icons; `phase` keeps neighbours from swaying in step.
  */
-export function Plant({ stage, health = 'fresh', size = 24, live = false, phase = 0 }: { stage: number; health?: Health; size?: number; live?: boolean; phase?: number }) {
+export function Plant({
+  stage,
+  health = 'fresh',
+  size = 24,
+  live = false,
+  phase = 0,
+  watered = false,
+}: {
+  stage: number
+  health?: Health
+  size?: number
+  live?: boolean
+  phase?: number
+  watered?: boolean
+}) {
   const [fx, setFx] = useState<'grow' | 'water' | null>(null)
   const last = useRef({ stage, health })
   useEffect(() => {
@@ -29,6 +43,17 @@ export function Plant({ stage, health = 'fresh', size = 24, live = false, phase 
     const t = setTimeout(() => setFx(null), kind === 'grow' ? 1900 : 1500)
     return () => clearTimeout(t)
   }, [stage, health])
+
+  useEffect(() => {
+    if (!watered) return
+    const delay = 350 + (phase * 160) % 600
+    const t1 = setTimeout(() => setFx('water'), delay)
+    const t2 = setTimeout(() => setFx(null), delay + 1500)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
+  }, [watered, phase])
 
   const tilt = health === 'wilting' ? 22 : health === 'thirsty' ? 9 : 0
   const leaf = health === 'wilting' ? 'var(--plant-dry)' : health === 'thirsty' ? 'var(--plant-thirsty)' : 'var(--plant-leaf)'
@@ -44,7 +69,7 @@ export function Plant({ stage, health = 'fresh', size = 24, live = false, phase 
       style={live ? ({ '--sway-d': `${-((phase * 1.7) % 4.5)}s` } as CSSProperties) : undefined}
     >
       <title>{label}</title>
-      <Soil fine={fine} />
+      <Soil fine={fine} stage={stage} />
       {stage < 0 ? (
         // Not planted yet: a seed that waits to be noticed (live only): it glows, hops now and then, and sparkles.
         <g className="plant-waiting" transform={live ? 'translate(20 33.4) scale(1.5) translate(-20 -33.4)' : undefined}>
@@ -133,14 +158,40 @@ export function Plant({ stage, health = 'fresh', size = 24, live = false, phase 
   )
 }
 
-/** A low mound of soil, with a lighter crest when the plant is big enough to see it. */
-function Soil({ fine }: { fine: boolean }) {
+/** A natural mound of rich garden earth, with a soft shadow into turf and subtle organic crest. */
+function Soil({ fine, stage = 1 }: { fine: boolean; stage?: number }) {
+  const zoomed = stage <= 0
+  const rx = zoomed ? 7.5 : 10.5
+  const ry = zoomed ? 1.8 : 2.2
+  const left = 20 - rx
+  const right = 20 + rx
+  const topY = zoomed ? 32.4 : 31.8
   return (
-    <>
-      <ellipse cx="20" cy="36.4" rx="13" ry="2.6" fill="color-mix(in srgb, var(--plant-soil) 70%, black)" opacity="0.35" />
-      <path d="M7.5 36 Q9 31.6 20 31.4 Q31 31.6 32.5 36 Q32 38.4 20 38.6 Q8 38.4 7.5 36z" fill="var(--plant-soil)" />
-      {fine && <path d="M11 34.4 Q15 32.6 20 32.5 Q25 32.6 29 34.4 Q24.5 33.6 20 33.6 Q15.5 33.6 11 34.4z" fill="white" opacity="0.22" />}
-    </>
+    <g className="plant-soil">
+      {/* Soft ground shadow into turf */}
+      <ellipse cx="20" cy="36.4" rx={rx + 1.2} ry={ry} fill="#14361e" opacity="0.25" />
+      {/* Grounded natural earth mound */}
+      <path
+        d={`M${left} 36.4 C${left + 1.5} ${topY} 16.5 ${topY} 20 ${topY} C23.5 ${topY} ${right - 1.5} ${topY} ${right} 36.4 C${right - 1} 36.8 20 37.1 ${left} 36.4 Z`}
+        fill="var(--plant-soil)"
+      />
+      {fine && (
+        <>
+          {/* Subtle warm earth crest highlight */}
+          <path
+            d={`M${left + 2} 35.2 Q${20} ${topY + 0.6} ${right - 2} 35.2`}
+            stroke="color-mix(in srgb, var(--plant-soil) 80%, white)"
+            strokeWidth="0.8"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.35"
+          />
+          {/* Natural soil crumbs */}
+          <circle cx={zoomed ? 17.2 : 16} cy="35.6" r="0.6" fill="color-mix(in srgb, var(--plant-soil) 50%, black)" opacity="0.45" />
+          <circle cx={zoomed ? 22.6 : 23.8} cy="35.8" r="0.5" fill="color-mix(in srgb, var(--plant-soil) 50%, black)" opacity="0.45" />
+        </>
+      )}
+    </g>
   )
 }
 
