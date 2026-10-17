@@ -91,6 +91,24 @@ export interface PrequestionSet {
   questions: { question: string; answer: string }[]
 }
 
+export interface PodcastRequest {
+  language: import('../engine/types').TargetLanguage
+  /** Words the learner is shaky on: each should come up in the talk. */
+  words: { lemma: string; gloss: string }[]
+  interests: string[]
+}
+
+export interface PodcastLine {
+  speaker: 'A' | 'B'
+  text: string
+  translation: string
+}
+
+export interface PodcastScript {
+  title: string
+  lines: PodcastLine[]
+}
+
 export interface PhotoWordsRequest {
   language: import('../engine/types').TargetLanguage
   /** The photo, base64 without the data-URL prefix (shrunk before it gets here). */

@@ -58,7 +58,7 @@ export function speak(text: string, language: TargetLanguage, rate = speechPrefs
   systemSpeak(text, language, rate, vary)
 }
 
-function systemSpeak(text: string, language: TargetLanguage, rate: number, vary: boolean) {
+function systemSpeak(text: string, language: TargetLanguage, rate: number, vary: boolean, second = false) {
   if (!canSpeak()) return
   const synth = window.speechSynthesis
   synth.cancel()
@@ -67,11 +67,8 @@ function systemSpeak(text: string, language: TargetLanguage, rate: number, vary:
   u.rate = rate
   const voices = voicesFor(language)
   const chosen = speechPrefs.voices[language]
-  const voice =
-    (vary && speechPrefs.varyVoices ? variedVoice(text, voices) : undefined) ??
-    voices.find((v) => v.voiceURI === chosen) ??
-    voices.find((v) => v.localService) ??
-    voices[0]
+  const usual = voices.find((v) => v.voiceURI === chosen) ?? voices.find((v) => v.localService) ?? voices[0]
+  const voice = (second ? voices.find((v) => v !== usual) : undefined) ?? (vary && speechPrefs.varyVoices ? variedVoice(text, voices) : undefined) ?? usual
   if (voice) u.voice = voice
   synth.speak(u)
 }
@@ -166,15 +163,16 @@ export async function unlockedAudio(url: string): Promise<HTMLAudioElement> {
 }
 
 /** Speak and resolve when finished (for playing two clips back to back). */
-export function speakAsync(text: string, language: TargetLanguage, rate = speechPrefs.rate): Promise<void> {
-  if (naturalEnabled()) return playNatural(text, language, rate).catch(() => systemSpeakAsync(text, language, rate))
-  return systemSpeakAsync(text, language, rate)
+export function speakAsync(text: string, language: TargetLanguage, rate = speechPrefs.rate, second = false): Promise<void> {
+  if (naturalEnabled()) return playNatural(text, language, rate).catch(() => systemSpeakAsync(text, language, rate, second))
+  return systemSpeakAsync(text, language, rate, second)
 }
 
-function systemSpeakAsync(text: string, language: TargetLanguage, rate: number): Promise<void> {
+/** `second`: a conversation's other speaker gets another of the device's voices when there is one. */
+function systemSpeakAsync(text: string, language: TargetLanguage, rate: number, second = false): Promise<void> {
   return new Promise((resolve) => {
     if (!canSpeak()) return resolve()
-    systemSpeak(text, language, rate, false)
+    systemSpeak(text, language, rate, false, second)
     const synth = window.speechSynthesis
     const t = window.setInterval(() => {
       if (!synth.speaking) {

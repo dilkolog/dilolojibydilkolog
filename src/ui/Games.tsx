@@ -20,6 +20,7 @@ import { loopItems } from '../engine/backTranslation'
 import { ArticleDrill } from './ArticleDrill'
 import { GrammarPractice } from './games/GrammarPractice'
 import { DuelGame } from './games/DuelGame'
+import { MiniPodcast } from './games/MiniPodcast'
 import { SpotErrorGame } from './games/SpotErrorGame'
 import { SentenceRewriteGame } from './games/SentenceRewriteGame'
 import { CollocationsGame } from './games/CollocationsGame'
@@ -161,6 +162,7 @@ export function GamesScreen(
     if (game === 'flow') return <FlowRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'podcast') return <MiniPodcast {...p} onExit={() => setGame(null)} />
     if (game === 'duel') return <DuelGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'grammar') return <GrammarPractice language={p.language} initialTopic={p.initialTopic} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'spot-error') return <SpotErrorGame language={p.language} best={records[`spot-error:${p.language}`]} recordKey={`spot-error:${p.language}`} onExit={() => setGame(null)} />
@@ -195,6 +197,9 @@ export function GamesScreen(
         { id: 'context', emoji: '🧷', name: 'Cümlede tekrar', text: 'Okuduğun ve çevirdiğin cümlelerde kendi kelimelerin boş: yerlerine koy, kelimeyi yanındakilerle hatırla.', status: p.states.length >= 2 ? 'Kendi cümlelerinden' : learnFirst, disabled: p.states.length < 2 },
         { id: 'back', emoji: '🔁', name: 'Geri çeviri', text: 'Çevirdiğin cümlelerin Türkçesini gör, kendin yaz (en iyisi ertesi gün); farkı kelime kelime gör.', status: backCount ? `${backCount} cümle hazır${backRested ? ` · ${backRested} tanesi önceki günlerden` : ''}` : 'Okurken “Cümlenin Türkçesi”ne bas', disabled: backCount === 0 },
         { id: 'boss', emoji: '⚔️', name: 'Boss savaşları', text: 'Bir türlü oturmayan kelimeleri farklı sorularla yen.', status: bossCount === 0 ? 'Henüz boss yok: bir kelime sık yanlış olunca belirir' : `Her zafer +${BOSS_XP} XP`, className: 'game-card-boss', disabled: bossCount === 0 },
+        ...(aiKey
+          ? [{ id: 'podcast' as const, emoji: '🎙️', name: 'Mini podcast', text: 'YZ, zayıf kelimelerinle kısa bir konuşma yazar; ekrana bakmadan dinlersin.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : online ? 'YZ ile, son yazılan cihazda kalır' : 'İnternet gerekir', disabled: !canSpeak() || !online || p.states.length === 0 }]
+          : []),
         { id: 'audio', emoji: '🎧', name: 'Sesli tekrar', text: 'Ekrana bakmadan dinle: kelime, düşünme payı, anlamı.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : p.states.length ? 'Yürürken, yemek yaparken' : learnFirst, disabled: !canSpeak() || p.states.length === 0 },
       ],
     },

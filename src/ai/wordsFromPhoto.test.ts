@@ -34,3 +34,17 @@ describe('wordsFromPhoto', () => {
     expect(sent.system).toContain('photo')
   })
 })
+
+describe('miniPodcast', () => {
+  beforeEach(() => parse.mockReset())
+
+  it('asks for a talk with the practice words and brings back its lines', async () => {
+    const { miniPodcast } = await import('./claude')
+    parse.mockResolvedValue({ parsed_output: { title: 'T', lines: [{ speaker: 'A', text: 'Salut', translation: 'Selam' }, { speaker: 'B', text: '  ', translation: '' }] }, stop_reason: 'end_turn', usage: { input_tokens: 5, output_tokens: 5 } })
+    const out = await miniPodcast('key', { language: 'fr', words: [{ lemma: 'pomme', gloss: 'elma' }], interests: ['yemek'] })
+    expect(out.lines).toEqual([{ speaker: 'A', text: 'Salut', translation: 'Selam' }])
+    const sent = parse.mock.calls[0][0]
+    expect(sent.system).toContain('pomme (elma)')
+    expect(sent.messages[0].content).toContain('yemek')
+  })
+})
