@@ -14,6 +14,8 @@ export interface FriendView {
   week: number
   streak: number
   level: number
+  /** XP by local date, the last two weeks (a friend's page, the weekly league). */
+  days: Record<string, number>
   at: string
 }
 
@@ -49,6 +51,25 @@ export async function loadFriends(today: string): Promise<{ me: FriendView; frie
   if (!res.ok || !data.me) throw new FriendsError(data.error ?? `http ${res.status}`)
   return { me: data.me, friends: data.friends ?? [] }
 }
+
+/** What a friend can send: a cheer or a nudge. */
+export type InboxKind = 'cheer' | 'nudge'
+export interface InboxItem {
+  id: string
+  kind: InboxKind
+  from: { code: string; name: string }
+  at: string
+}
+
+export async function loadInbox(): Promise<InboxItem[]> {
+  const res = await accessFetch('/api/access?inbox=1')
+  const data = (await res.json().catch(() => ({}))) as { items?: InboxItem[]; error?: string }
+  if (!res.ok) throw new FriendsError(data.error ?? `http ${res.status}`)
+  return data.items ?? []
+}
+
+export const sendToFriend = async (code: string, kind: InboxKind) => void (await post({ action: 'friends-send', code, kind }))
+export const clearInbox = async (ids: string[]) => void (await post({ action: 'friends-inbox-clear', ids }))
 
 export const publishFriendCard = async (card: FriendCardInput, today: string): Promise<FriendView | undefined> => (await post({ action: 'friends-publish', ...card, today })).me
 export const addFriend = async (code: string) => void (await post({ action: 'friends-add', code }))

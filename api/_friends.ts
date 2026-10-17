@@ -42,6 +42,8 @@ export interface FriendView {
   week: number
   streak: number
   level: number
+  /** The card's XP by local date (the last two weeks), for a friend's page and the weekly league. */
+  days: Record<string, number>
   /** When the card was last updated (ISO). */
   at: string
 }
@@ -165,7 +167,8 @@ export async function removeFriend(id: string, code: string): Promise<void> {
 export function viewOf(card: FriendCard, today: string): FriendView {
   const weekStart = new Date(new Date(`${today}T12:00:00Z`).getTime() - 6 * 86_400_000).toISOString().slice(0, 10)
   const week = Object.entries(card.days).reduce((n, [d, xp]) => (d >= weekStart && d <= today ? n + xp : n), 0)
-  return { code: card.code, name: card.name, avatar: card.avatar, color: card.color, today: card.days[today] ?? 0, week, streak: card.streak, level: card.level, at: card.at }
+  const days = Object.fromEntries(Object.entries(card.days).filter(([d]) => d <= today))
+  return { code: card.code, name: card.name, avatar: card.avatar, color: card.color, today: card.days[today] ?? 0, week, streak: card.streak, level: card.level, days, at: card.at }
 }
 
 /** The account's own card and those of whom it follows (a code whose card is gone is left out). */
@@ -193,7 +196,70 @@ export async function friendsOf(id: string, today: string): Promise<{ me: Friend
 /** Takes the account's card, its code and whom it follows off the store (the account is being deleted). */
 export async function forgetFriends(id: string): Promise<void> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
-  await Promise.all([blobFriends.forget(id), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
+  await Promise.all([blobFriends.forget(id), removeBlob(inboxPath(id)), (await tablesOn()) ? tableFriends.forget(id) : Promise.resolve()])
+}
+
+// ---------------------------------------------------------------------------
+// The friends' inbox: a cheer, a nudge, (later) a gift word or a text, from one friend to another.
+// Kept in Blob files in both modes (a few hundred bytes per person, so no table needed).
+// ---------------------------------------------------------------------------
+
+export type InboxKind = 'cheer' | 'nudge'
+export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge']
+const MAX_INBOX = 30
+const KEEP_DAYS = 30
+
+export interface InboxItem {
+  id: string
+  kind: InboxKind
+  from: { code: string; name: string }
+  at: string
+}
+
+const inboxPath = (id: string) => `friends/inbox/${id}.json`
+
+async function readInbox(id: string): Promise<InboxItem[]> {
+  const items = (await readJson<{ items?: InboxItem[] }>(inboxPath(id)))?.items
+  if (!Array.isArray(items)) return []
+  const oldest = Date.now() - KEEP_DAYS * 86_400_000
+  return items.filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest)
+}
+
+/** What waits for the account, newest first. */
+export async function inboxOf(id: string): Promise<InboxItem[]> {
+  return (await readInbox(id)).sort((a, b) => b.at.localeCompare(a.at))
+}
+
+export type SendResult = 'ok' | 'unknown' | 'self' | 'not_friends' | 'bad_kind'
+
+/**
+ * A cheer or a nudge for a friend. Only between friends (one of them follows the other), and one of a kind
+ * per sender a day: a second replaces the first rather than piling up.
+ */
+export async function sendToFriend(id: string, toCode: string, kind: unknown): Promise<SendResult> {
+  if (typeof kind !== 'string' || !INBOX_KINDS.includes(kind as InboxKind)) return 'bad_kind'
+  if (!CODE.test(toCode)) return 'unknown'
+  const store = await friendStore()
+  const [recipient, me] = await Promise.all([store.ownerOf(toCode), ownCard(id)])
+  if (!recipient) return 'unknown'
+  if (recipient === id) return 'self'
+  const [mine, theirs] = await Promise.all([store.follows(id), store.follows(recipient)])
+  if (!mine.includes(toCode) && !theirs.includes(me.code)) return 'not_friends'
+  const now = new Date()
+  const today = now.toISOString().slice(0, 10)
+  const fresh = (await readInbox(recipient)).filter((i) => !(i.from.code === me.code && i.kind === kind && i.at.slice(0, 10) === today))
+  const item: InboxItem = { id: crypto.randomUUID(), kind: kind as InboxKind, from: { code: me.code, name: me.name }, at: now.toISOString() }
+  await writeJson(inboxPath(recipient), { items: [item, ...fresh].slice(0, MAX_INBOX) })
+  return 'ok'
+}
+
+/** Takes the listed messages out of the account's inbox (read, or turned away). */
+export async function clearInbox(id: string, ids: unknown): Promise<void> {
+  if (!Array.isArray(ids)) return
+  const drop = new Set(ids.filter((x): x is string => typeof x === 'string'))
+  const items = await readInbox(id)
+  const left = items.filter((i) => !drop.has(i.id))
+  if (left.length !== items.length) await writeJson(inboxPath(id), { items: left })
 }
 
 /** Where cards and follows are kept: Blob files, or (after the move) Supabase tables. */

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { DEFAULT_SETTINGS, type Profile } from '../data/db'
 import { db } from '../data/instance'
-import { addFriend, FriendsError, loadFriends, publishFriendCard, recentDays, removeFriend, showCode, type FriendView } from '../data/friends'
+import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFriendCard, recentDays, removeFriend, showCode, type FriendView, type InboxItem } from '../data/friends'
 import { localDate } from '../engine/progress'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
@@ -10,6 +10,7 @@ import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
+import { FriendSheet } from './FriendSheet'
 
 /** The last card published from this device, so an unchanged one is not written again. */
 const SENT_KEY = 'diloloji:friend-card'
@@ -41,6 +42,8 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
       return {}
     }
   })
+  const [inbox, setInbox] = useState<InboxItem[]>([])
+  const [open, setOpen] = useState<string | null>(null)
   const [editingCode, setEditingCode] = useState<string | null>(null)
   const [editName, setEditName] = useState('')
   const today = localDate(new Date())
@@ -49,6 +52,8 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
     try {
       setData(await loadFriends(today))
       setFailed(false)
+      // The inbox is a small extra: if it cannot be read the board still shows.
+      setInbox(await loadInbox().catch(() => []))
     } catch {
       setFailed(true)
     }
@@ -144,6 +149,10 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
     showToast(trimmed ? 'Arkadaşının ismi güncellendi.' : 'Arkadaşının ismi sıfırlandı.')
   }
 
+  const dismiss = async (ids: string[]) => {
+    setInbox((cur) => cur.filter((m) => !ids.includes(m.id)))
+    await clearInbox(ids).catch(() => undefined)
+  }
   const remove = async (f: FriendView) => {
     const displayName = nicknames[f.code] || f.name
     await removeFriend(f.code).catch(() => undefined)
@@ -219,14 +228,25 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
                   </form>
                 ) : (
                   <>
-                    <span className="friends-name">
-                      {displayName}
-                      {f.streak > 0 && (
-                        <span className="friends-streak" title={`${f.streak} günlük seri`}>
-                          <FlameIcon size={12} solid /> {f.streak}
-                        </span>
-                      )}
-                    </span>
+                    {f.me ? (
+                      <span className="friends-name">
+                        {displayName}
+                        {f.streak > 0 && (
+                          <span className="friends-streak" title={`${f.streak} günlük seri`}>
+                            <FlameIcon size={12} solid /> {f.streak}
+                          </span>
+                        )}
+                      </span>
+                    ) : (
+                      <button type="button" className="friends-name friends-name-btn" onClick={() => setOpen(f.code)} aria-label={`${displayName} sayfasını aç`}>
+                        {displayName}
+                        {f.streak > 0 && (
+                          <span className="friends-streak" title={`${f.streak} günlük seri`}>
+                            <FlameIcon size={12} solid /> {f.streak}
+                          </span>
+                        )}
+                      </button>
+                    )}
                     {!f.me && (
                       <button
                         type="button"
@@ -254,6 +274,33 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
           })}
         </ol>
       )}
+      {inbox.length > 0 && (
+        <ul className="friends-inbox" aria-label="Arkadaşlarından gelenler">
+          {inbox.slice(0, 3).map((m) => {
+            const who = nicknames[m.from.code] || m.from.name
+            return (
+              <li key={m.id}>
+                <span>{m.kind === 'cheer' ? `👏 ${who} seni tebrik etti` : `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}</span>
+                <button type="button" className="icon-btn icon-btn-sm" aria-label="Tamam" title="Tamam" onClick={() => void dismiss([m.id])}>
+                  <CloseIcon size={14} />
+                </button>
+              </li>
+            )
+          })}
+          {inbox.length > 3 && (
+            <li>
+              <span>+{inbox.length - 3} mesaj daha</span>
+              <button type="button" className="link small" onClick={() => void dismiss(inbox.map((m) => m.id))}>
+                Hepsini temizle
+              </button>
+            </li>
+          )}
+        </ul>
+      )}
+      {data && open && (() => {
+        const f = data.friends.find((x) => x.code === open)
+        return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} onClose={() => setOpen(null)} /> : null
+      })()}
       {data && data.friends.length === 0 && (
         <p className="small muted friends-empty">
           <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />

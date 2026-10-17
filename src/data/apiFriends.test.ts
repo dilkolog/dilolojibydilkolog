@@ -94,3 +94,46 @@ describe('/api/access: friends', () => {
     expect(body.friends[0].name).toBe('AliVeli')
   })
 })
+
+describe('/api/access: friends inbox and days', () => {
+  const inbox = (headers: Record<string, string>) => access.GET(new Request('https://app.test/api/access?inbox=1', { headers }))
+  const publish = async (id: string, token: string, extra = {}) => ((await (await post(as(id, token), { action: 'friends-publish', ...card, ...extra })).json()) as { me: { code: string } }).me.code
+
+  it('a friend\'s view carries the card\'s days (none newer than today)', async () => {
+    const code = await publish(ALI, ALI_TOKEN, { days: { '2026-10-15': 40, '2026-10-12': 60, '2026-10-20': 99 } })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code })
+    const body = (await (await view(as(VELI, VELI_TOKEN))).json()) as { friends: { days: Record<string, number> }[] }
+    expect(body.friends[0].days).toEqual({ '2026-10-15': 40, '2026-10-12': 60 })
+  })
+
+  it('a cheer reaches the friend with the sender\'s name and code, never an id; a second one a day replaces the first', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN, { name: 'Veli' })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'cheer' })).status).toBe(200)
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'cheer' })).status).toBe(200)
+    const body = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string; kind: string; from: { code: string; name: string } }[] }
+    expect(body.items).toHaveLength(1)
+    expect(body.items[0]).toMatchObject({ kind: 'cheer', from: { code: aliCode, name: 'Ali' } })
+    expect(JSON.stringify(body)).not.toContain(ALI)
+    // Another kind is another message; clearing takes them out.
+    await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'nudge' })
+    const two = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string }[] }
+    expect(two.items).toHaveLength(2)
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-inbox-clear', ids: [two.items[0].id] })
+    expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toHaveLength(1)
+  })
+
+  it('refuses a stranger, an unknown code, one\'s own code and an unknown kind', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN)
+    // Not friends yet.
+    expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'cheer' })).json()).toEqual({ error: 'not_friends' })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: 'ZZZZZZZZ', kind: 'cheer' })).json()).toEqual({ error: 'unknown' })
+    expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: aliCode, kind: 'cheer' })).json()).toEqual({ error: 'self' })
+    expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'spam' })).json()).toEqual({ error: 'bad_kind' })
+    expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toEqual([])
+  })
+})
+
