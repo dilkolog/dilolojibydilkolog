@@ -5,6 +5,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../data/instance'
+import * as lessonOfModule from '../data/guide/lessonOf'
 import { lessonFor, lessonsOf } from '../data/guide/lessonOf'
 import { GuideScreen } from './Guide'
 
@@ -183,8 +184,10 @@ describe('GuideScreen', () => {
     expect(host.querySelector('.lesson-try h2')?.textContent).toBe('Hemen dene')
     expect(host.querySelector('.guide-write summary')?.textContent).toContain('Kendi cümleni yaz')
     // A basic lesson with only its own three questions has nothing to try; one with more in its pool tries the spare ones.
+    const trySpy = vi.spyOn(lessonOfModule, 'tryFor').mockReturnValueOnce([])
     const basic = await mount('en', { initialLesson: 'basics_en_third_conditional' })
     expect(basic.host.querySelector('.lesson-try')).toBeNull()
+    trySpy.mockRestore()
     const grown = await mount('fr', { initialLesson: 'basics_fr_articles' })
     expect(grown.host.querySelector('.lesson-try h2')?.textContent).toBe('Hemen dene')
   })
