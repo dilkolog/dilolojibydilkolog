@@ -91,3 +91,16 @@ export function checkableTopics(language: TargetLanguage): string[] {
     .filter((l) => checkFor(l, () => 0.5, exercises).length > 0)
     .map((l) => l.topic)
 }
+
+/** How many questions the lesson offers to try on the spot, between its rules and its examples. */
+export const TRY_SIZE = 2
+
+/**
+ * Questions to try right after the rules: choice questions of the lesson's topic that its check does not ask (a
+ * lesson that only has its own check has none to spare, and offers nothing here).
+ */
+export function tryFor(lesson: TopicLesson, check: readonly CheckItem[], rng: () => number = Math.random, exercises?: GrammarExercise[]): CheckItem[] {
+  const asked = new Set(check.map((c) => c.prompt))
+  const pool = fromExercises(exercises ?? grammarExercises(lesson.language), practiceTopic(lesson), rng).filter((c) => !asked.has(c.prompt))
+  return shuffle(pool, rng).slice(0, TRY_SIZE)
+}

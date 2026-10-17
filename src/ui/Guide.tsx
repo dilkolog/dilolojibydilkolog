@@ -7,7 +7,7 @@ import storybookArt from '../assets/art/src-storybook.webp'
 import wikiArt from '../assets/art/src-wiki.webp'
 import { GAME_ART } from './gameArt'
 import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
-import { checkFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
+import { checkFor, tryFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
 import { isRead, PASS_RIGHT, type GuideMarks } from '../engine/guideReview'
 import { TENSE_LESSON } from '../data/tenseLesson'
@@ -20,6 +20,8 @@ import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
 import { canShowOwn, useOwnExamples } from './useOwnExamples'
+import { LessonTry } from './LessonTry'
+import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
 import { loadMarks, markChecked, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
@@ -404,6 +406,7 @@ function LessonView({
 }) {
   // Picked once a visit: the questions do not change while the lesson is read.
   const check = useMemo(() => checkFor(lesson), [lesson])
+  const trial = useMemo(() => tryFor(lesson, check), [lesson, check])
   const [checking, setChecking] = useState(!!review && check.length > 0)
   const checkRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -439,6 +442,7 @@ function LessonView({
           ))}
         </ol>
       </section>
+      {trial.length > 0 && <LessonTry key={lesson.topic} items={trial} language={language} />}
       <section className="card stack gap-2 guide-examples-card">
         <h2 className="section-title">Örnekler</h2>
         <ul className="guide-examples">
@@ -506,6 +510,7 @@ function LessonView({
           <strong>İpucu:</strong> {lesson.tip}
         </p>
       )}
+      <LessonWrite key={`write-${lesson.topic}`} title={titleOf(lesson)} language={language} />
       {check.length > 0 && (
         <div ref={checkRef}>
           {checking ? (

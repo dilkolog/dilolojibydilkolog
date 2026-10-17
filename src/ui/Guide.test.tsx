@@ -156,4 +156,13 @@ describe('GuideScreen', () => {
     expect(host.querySelector('.guide-lesson h1')).not.toBeNull()
     expect(host.querySelector('.guide-own')).toBeNull()
   })
+
+  it('a lesson with questions of its topic offers a try on the spot and a place to write a sentence of one\'s own', async () => {
+    const { host } = await mount('fr', { initialLesson: 'subjonctif' })
+    expect(host.querySelector('.lesson-try h2')?.textContent).toBe('Hemen dene')
+    expect(host.querySelector('.guide-write summary')?.textContent).toContain('Kendi cümleni yaz')
+    // A basic lesson has only its own check: nothing to try.
+    const basic = await mount('fr', { initialLesson: 'basics_fr_articles' })
+    expect(basic.host.querySelector('.lesson-try')).toBeNull()
+  })
 })

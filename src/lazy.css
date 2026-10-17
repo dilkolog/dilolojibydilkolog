@@ -2637,3 +2637,5 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .song-answer { color: var(--ok-deep); line-height: 1.2; text-align: center; }
 .duel-filter { max-width: 24rem; }
 .duel-history { max-width: 28rem; }
+.guide-write > summary { cursor: pointer; }
+.guide-write textarea { width: 100%; resize: vertical; }
