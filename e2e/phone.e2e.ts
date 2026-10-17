@@ -439,6 +439,8 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   const found: string[] = []
   for (const theme of ['light', 'dark']) {
     await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    // Colours ease from one theme to the other (a row's background fades): measure once they have settled.
+    await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running' || a.effect?.getComputedTiming().iterations === Infinity))
     for (const c of await contrastProblems(page)) found.push(`${theme}: ${c}`)
   }
   expect(found).toEqual([])
