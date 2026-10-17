@@ -18,6 +18,10 @@ export interface LessonMark {
   flag?: LessonFlag
   /** The day the flag was set or taken off (a mark without a flag but with this day means it was taken off). */
   flagAt?: string
+  /** A personal note or study reminder kept by the learner on this lesson. */
+  note?: string
+  /** The day the note was written or cleared (so sync carries note updates independently). */
+  noteAt?: string
 }
 
 export type LessonFlag = 'star' | 'hard'
@@ -80,14 +84,21 @@ export function mergeMarks(a: GuideMarks | undefined, b: GuideMarks | undefined,
       out[topic] = (x ?? y)!
       continue
     }
-    // The flag is its own thing: it goes by the day it was set, whichever mark the rest comes from.
+    // The flag and note are their own things: each goes by the day it was set, whichever mark the rest comes from.
     const flagFrom = (y.flagAt ?? '') >= (x.flagAt ?? '') ? y : x
+    const noteFrom = (y.noteAt ?? '') >= (x.noteAt ?? '') ? y : x
     const dx = lastTouched(x)
     const dy = lastTouched(y)
     // The same day: the further on wins, else the later argument (what was just done to the lesson).
     const winner = dx !== dy ? (dx > dy ? x : y) : !newest && (x.step ?? -1) > (y.step ?? -1) ? x : y
-    const { flag: _f, flagAt: _a, ...rest } = winner
-    out[topic] = { ...rest, ...(flagFrom.flagAt ? { flagAt: flagFrom.flagAt } : {}), ...(flagFrom.flag ? { flag: flagFrom.flag } : {}) }
+    const { flag: _f, flagAt: _a, note: _n, noteAt: _na, ...rest } = winner
+    out[topic] = {
+      ...rest,
+      ...(flagFrom.flagAt ? { flagAt: flagFrom.flagAt } : {}),
+      ...(flagFrom.flag ? { flag: flagFrom.flag } : {}),
+      ...(noteFrom.noteAt ? { noteAt: noteFrom.noteAt } : {}),
+      ...(noteFrom.note ? { note: noteFrom.note } : {}),
+    }
   }
   return out
 }
@@ -112,11 +123,19 @@ export function cleanMarks(raw: unknown): GuideMarks {
       mark.flagAt = flagAt
       if (m.flag === 'star' || m.flag === 'hard') mark.flag = m.flag
     }
+    const noteAt = day(m.noteAt)
+    if (noteAt) {
+      mark.noteAt = noteAt
+      if (typeof m.note === 'string' && m.note.trim()) mark.note = m.note.trim().slice(0, 1000)
+    }
     if (typeof m.step === 'number' && Number.isFinite(m.step) && m.step >= 0) mark.step = Math.min(Math.floor(m.step), REVIEW_DAYS.length)
     out[topic] = mark
   }
   return out
 }
 
-/** Only the flag of a mark: what stays when the rest of the mark starts over. */
-export const flagOf = (mark: LessonMark | undefined): Pick<LessonMark, 'flag' | 'flagAt'> => (mark?.flagAt ? { flagAt: mark.flagAt, ...(mark.flag ? { flag: mark.flag } : {}) } : {})
+/** Only the flag and personal note of a mark: what stays when the rest of the mark starts over. */
+export const flagOf = (mark: LessonMark | undefined): Pick<LessonMark, 'flag' | 'flagAt' | 'note' | 'noteAt'> => ({
+  ...(mark?.flagAt ? { flagAt: mark.flagAt, ...(mark.flag ? { flag: mark.flag } : {}) } : {}),
+  ...(mark?.noteAt ? { noteAt: mark.noteAt, ...(mark.note ? { note: mark.note } : {}) } : {}),
+})

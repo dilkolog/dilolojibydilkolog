@@ -18,6 +18,18 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Konuşmada öğe başa ya da sona alınıp bir zamirle tekrar edilir (dislocation): Ce film, je l'ai adoré. Il est fou, ton frère.",
       "Olumsuz ve soru biçimleri: Ce n'est pas moi qui l'ai cassé. Est-ce que c'est toi qui as fini le gâteau ?",
     ],
+    table: {
+      caption: "Fransızca Vurgu (Mise en Relief) Yapıları",
+      head: ["Vurgulanan Öğe", "Kalıp", "Örnek", "Türkçe Karşılığı"],
+      rows: [
+        ["Özne", "c'est / ce sont … qui", "C'est Paul qui a appelé.", "Arayan Paul'dü."],
+        ["Nesne / Tümleç", "c'est … que", "C'est demain que je pars.", "Yola çıkacağım gün yarın."],
+        ["Edatlı tümleç", "c'est + edat + öğe + que", "C'est à toi que je parle.", "Konuştuğum kişi sensin."],
+        ["Sona saklanan özne", "ce qui … c'est", "Ce qui me plaît, c'est le calme.", "Hoşuma giden şey sakinlik."],
+        ["Sona saklanan nesne", "ce que … c'est", "Ce que je veux, c'est partir.", "İstediğim şey gitmek."],
+        ["de alan fiille vurgu", "ce dont … c'est (de)", "Ce dont j'ai besoin, c'est de repos.", "İhtiyacım olan şey dinlenmek."],
+      ],
+    },
     examples: [
       { text: "C'est Paul qui a trouvé la solution.", tr: "Çözümü bulan Paul." },
       { text: "C'est à Marseille que je l'ai rencontrée.", tr: "Onunla Marseille'de tanıştım (başka bir yerde değil)." },
@@ -71,6 +83,18 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "de sorte que + indicatif sonucu, de sorte que + subjonctif amacı bildirir: Parle plus fort de sorte qu'on t'entende.",
       "trop … pour + mastar, gerçekleşmeyen sonucu anlatır: Il est trop jeune pour conduire.",
     ],
+    table: {
+      caption: "Neden ve Sonuç İfadeleri Karşılaştırması",
+      head: ["İlişki / Nüans", "Bağlaç / Edat", "Yapı", "Örnek"],
+      rows: [
+        ["Bilinen / nesnel neden", "puisque / étant donné que", "+ indicatif", "Puisque tu es là, aide-moi."],
+        ["Eksiklikten doğan neden", "faute de", "+ artikelsiz isim / mastar", "Faute de temps, j'ai renoncé."],
+        ["Tekrarlanan çaba sonucu", "à force de", "+ mastar / artikelsiz isim", "À force de travailler, il a réussi."],
+        ["Gerçekleşen sonuç", "si bien que / de sorte que", "+ indicatif", "Il a neigé, si bien que tout est fermé."],
+        ["Yoğunluk sonucu (sıfat/zarf)", "si / tellement … que", "+ sıfat/zarf + que", "Il est si fatigué qu'il dort."],
+        ["Yoğunluk sonucu (fiil/isim)", "tant / tant de … que", "fiil + tant / tant de + isim", "Il a tant travaillé qu'il a réussi."],
+      ],
+    },
     examples: [
       { text: "Puisque tu connais la route, conduis, toi.", tr: "Madem yolu biliyorsun, sen sür." },
       { text: "Comme il n'y avait plus de train, nous avons pris un taxi.", tr: "Tren kalmadığı için taksiye bindik." },
@@ -126,6 +150,17 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "ceci, cela, ça belirli bir ismin değil bir fikrin ya da durumun yerini tutar ve hiç değişmez; ça konuşmada, cela yazıda: Cela ne m'étonne pas. Ça coûte combien ?",
       "Özenli dilde ceci arkadan geleni, cela önce söyleneni gösterir: Retenez bien ceci : rien n'est gratuit.",
     ],
+    table: {
+      caption: "İşaret Zamirleri (celui, celle, ceux, celles ve ça/cela)",
+      head: ["Cinsiyet ve Sayı", "Temel Biçim", "-ci / -là ile", "de / qui / que ile"],
+      rows: [
+        ["Eril tekil", "celui", "celui-ci / celui-là", "celui de Paul / celui qui parle"],
+        ["Dişil tekil", "celle", "celle-ci / celle-là", "celle de ma sœur / celle que j'aime"],
+        ["Eril çoğul", "ceux", "ceux-ci / ceux-là", "ceux de mes amis / ceux qui partent"],
+        ["Dişil çoğul", "celles", "celles-ci / celles-là", "celles d'hier / celles dont je parle"],
+        ["Nötr (fikir/durum)", "ce / ceci / cela / ça", "ceci (sonraki) / cela (önceki)", "C'est vrai / Cela m'étonne / Ça va"],
+      ],
+    },
     examples: [
       { text: "Ce n'est pas ma valise, c'est celle de ma sœur.", tr: "Bu benim valizim değil, kız kardeşiminki." },
       { text: "Ceux qui veulent participer doivent s'inscrire avant lundi.", tr: "Katılmak isteyenler pazartesiden önce kaydolmalı." },
@@ -179,6 +214,18 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "se faire + mastar, kişinin kendine yaptırdığı ya da başına gelen şeyi anlatır: Je me suis fait couper les cheveux.",
       "laisser + mastar izin vermek ya da engel olmamaktır: Laisse-moi parler ! Ils ont laissé partir les enfants.",
     ],
+    table: {
+      caption: "Ettirgen Yapılar (faire + mastar ve laisser + mastar)",
+      head: ["Yapı", "Formül ve Zamir Yeri", "Örnek", "Önemli Kural"],
+      rows: [
+        ["Nesneyi yaptırmak", "faire + mastar + nesne", "Je fais réparer ma voiture.", "Je la fais réparer (zamir faire'in önünde)"],
+        ["Kişiyi çalıştırmak (1 nesne)", "faire + mastar + kişi (COD)", "Je fais travailler les élèves.", "Je les fais travailler (doğrudan nesne)"],
+        ["Kişiye bir şey yaptırmak (2 nesne)", "faire + mastar + nesne + à kişi", "Je fais lire le texte aux élèves.", "Je leur fais lire le texte (kişi = lui/leur)"],
+        ["Birleşik zamanda fait", "avoir + fait + mastar", "Les clés que j'ai fait copier.", "fait + mastarda fait ASLA uyum yapmaz"],
+        ["Kendine yaptırmak / maruz kalmak", "se faire + mastar", "Elle s'est fait couper les cheveux.", "fait yine uyum yapmaz"],
+        ["İzin vermek / bırakmak", "laisser + mastar", "Laisse-moi finir ma phrase.", "Engel olmamak anlamı taşır"],
+      ],
+    },
     examples: [
       { text: "Je fais nettoyer mon manteau au pressing.", tr: "Mantomu kuru temizlemecide temizletiyorum." },
       { text: "Ce professeur fait beaucoup travailler ses élèves.", tr: "Bu öğretmen öğrencilerini çok çalıştırıyor." },
@@ -237,6 +284,17 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Resmî mektup ve e-postada sabit kalıplar: başta Madame, Monsieur, ; sonda Cordialement ya da Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
       "tu / vous seçimi de bir düzeydir: tanımadığın yetişkine, iş ortamında ve yaşça büyüklere vous; karşı taraf önermeden tu'ya geçilmez.",
     ],
+    table: {
+      caption: "Üç Dil Düzeyi (Familier, Courant, Soutenu) Karşılaştırması",
+      head: ["Özellik / Kavram", "Gündelik (Familier)", "Standart (Courant)", "Resmî / Özenli (Soutenu)"],
+      rows: [
+        ["Olumsuzluk", "Je sais pas. / J'ai pas vu.", "Je ne sais pas.", "Je l'ignore. / Je ne saurais dire."],
+        ["Soru sorma", "Tu viens quand ?", "Quand est-ce que tu viens ?", "Quand venez-vous ?"],
+        ["Zamirler", "on (biz) / ça", "on veya nous / ça veya cela", "nous / cela"],
+        ["İş / Çalışmak", "le boulot / bosser", "le travail / travailler", "l'emploi / œuvrer, exercer"],
+        ["Kitap / Araba / Para", "bouquin / bagnole / fric", "livre / voiture / argent", "ouvrage / véhicule / fonds"],
+      ],
+    },
     examples: [
       { text: "T'as vu mon bouquin ? Je le trouve plus.", tr: "Kitabımı gördün mü? Bir türlü bulamıyorum." },
       { text: "Avez-vous vu mon livre ? Je ne le trouve plus.", tr: "Kitabımı gördünüz mü? Bulamıyorum." },
@@ -290,6 +348,17 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Anlamı değiştirmez: « Je crains qu'il ne vienne » = gelmesinden korkuyorum. Gerçek olumsuz için pas gerekir: « Je crains qu'il ne vienne pas » = gelmemesinden korkuyorum.",
       "Hep isteğe bağlıdır ve konuşmada çoğunlukla düşer; bien que, sans que ve après que'den sonra kullanılmaz (après que zaten indicatif alır).",
     ],
+    table: {
+      caption: "Ne Explétif Kullanılan ve Kullanılmayan Yapılar",
+      head: ["Kategori", "Tetikleyen Yapılar", "Örnek", "Gerçek Anlamı"],
+      rows: [
+        ["Korku / Endişe", "craindre que, avoir peur que, de peur que", "Je crains qu'il ne vienne.", "Gelmesinden korkuyorum (olumlu!)."],
+        ["Kaçınma / Engel", "éviter que, empêcher que", "Évitez qu'il ne tombe.", "Düşmesini önleyin."],
+        ["Zaman ve Koşul", "avant que, à moins que", "Rentrons avant qu'il ne pleuve.", "Yağmur yağmadan dönelim."],
+        ["Eşitsizlik karşılaştırması", "plus / moins / autre … que", "Il est plus fort qu'on ne pense.", "Düşünüldüğünden daha güçlü."],
+        ["Ne explétif ALMAYANLAR", "sans que, bien que, après que", "Je pars sans qu'il le sache.", "ne konmaz (sans qu'il le sache)."],
+      ],
+    },
     examples: [
       { text: "Je crains qu'il ne soit déjà trop tard.", tr: "Korkarım artık çok geç." },
       { text: "Rentrons avant qu'il ne fasse nuit.", tr: "Hava kararmadan dönelim." },
@@ -347,6 +416,17 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Yan cümlenin yerine edat + isim: après / avant / lors de / en raison de: Après la signature du contrat… (= Après qu'on a signé le contrat…).",
       "Cinsiyeti ek söyler: -tion, -sion, -ure, -té, -ée ile bitenler dişil; -ment ve fiilden türeyen -age ile bitenler eril.",
     ],
+    table: {
+      caption: "Adlaştırma (Nominalisation) Ekleri ve Cinsiyetleri",
+      head: ["Kaynak Tür", "Yapım Eki", "Cinsiyet", "Örnek Dönüşüm"],
+      rows: [
+        ["Fiil → İsim", "-tion / -sion", "Dişil (la)", "augmenter → l'augmentation / décider → la décision"],
+        ["Fiil → İsim", "-ment / -age", "Eril (le)", "lancer → le lancement / nettoyer → le nettoyage"],
+        ["Fiil → İsim", "-ure / -ée", "Dişil (la)", "ouvrir → l'ouverture / arriver → l'arrivée"],
+        ["Fiil → İsim (düzensiz)", "Kök değişimi", "Değişken", "partir → le départ / choisir → le choix / vendre → la vente"],
+        ["Sıfat → İsim", "-té / -esse / -eur", "Dişil (la)", "rapide → la rapidité / faible → la faiblesse / lent → la lenteur"],
+      ],
+    },
     examples: [
       { text: "La forte augmentation des prix inquiète les ménages.", tr: "Fiyatlardaki sert artış haneleri endişelendiriyor." },
       { text: "Fermeture exceptionnelle de la bibliothèque le 3 mai.", tr: "Kütüphane 3 Mayıs'ta istisnai olarak kapalı." },
@@ -399,6 +479,18 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Edat ve isimle: en cas de + isim (en cas d'urgence), avec / sans + isim (Sans ton aide, j'aurais échoué), gérondif (En partant tôt, tu éviteras les bouchons).",
       "Yan yana iki conditionnel de varsayım kurar: Tu me l'aurais dit, je serais venu (= Si tu me l'avais dit, je serais venu).",
     ],
+    table: {
+      caption: "Si Dışındaki Varsayım Bağlaçları ve İstedikleri Kip",
+      head: ["Bağlaç / Yapı", "İstediği Kip / Tür", "Anlamı", "Örnek"],
+      rows: [
+        ["au cas où", "Conditionnel", "… ihtimaline karşı, olur da … diye", "Prends un parapluie au cas où il pleuvrait."],
+        ["quand bien même", "Conditionnel", "-se bile (güçlü varsayım)", "Quand bien même il viendrait, je refuserais."],
+        ["à supposer que / en admettant que", "Subjonctif", "… olduğunu varsayarsak", "À supposer qu'il accepte, qui paiera ?"],
+        ["pour peu que", "Subjonctif", "birazcık … -sa (küçük koşul)", "Pour peu qu'il fasse beau, la terrasse sera pleine."],
+        ["à condition que / à moins que", "Subjonctif (aynı öznede de + mastar)", "… şartıyla / … -medikçe", "Je viendrai à moins qu'il ne pleuve."],
+        ["en cas de / sans", "İsim", "… durumunda / … olmasa", "En cas d'urgence / Sans ton aide"],
+      ],
+    },
     examples: [
       { text: "Je te laisse mon numéro au cas où tu aurais besoin d'aide.", tr: "Yardıma ihtiyacın olur diye numaramı bırakıyorum." },
       { text: "Quand bien même on me paierait le double, je refuserais.", tr: "Bana iki katını ödeseler bile reddederim." },
@@ -466,6 +558,35 @@ export const FR_LESSONS_3: TopicLesson[] = [
       "Çevirirken zamanı ayrıca geçmişe kaydırma: subjonctif imparfait geçmiş anlamını ana fiilden alır; « Il fallait qu'il partît » = gitmesi gerekiyordu.",
     ],
     tip: "que'den sonra şapkalı bir -ât, -ît, -ût sonu görürsen şapkayı çıkar ve subjonctif présent gibi oku: qu'il fît → qu'il fasse, qu'il eût → qu'il ait.",
+    table: {
+      "caption": "Subjonctif Imparfait Edebi Biçimleri",
+      "head": [
+        "Grup",
+        "3. Tekil Şahıs (İl)",
+        "1. Çoğul Şahıs (Nous)",
+        "Örnek Cümle"
+      ],
+      "rows": [
+        [
+          "-er fiilleri",
+          "-ât (parlât)",
+          "-assions (parlassions)",
+          "Il fallait qu’il parlât."
+        ],
+        [
+          "-ir/-re fiilleri",
+          "-ît (finît)",
+          "-issions (finissions)",
+          "Bien qu’elle finît à temps."
+        ],
+        [
+          "avoir / être",
+          "eût / fût",
+          "eussions / fussions",
+          "Avant qu’il ne fût trop tard."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Hangisi être fiilinin subjonctif imparfait 3. tekil biçimidir?",

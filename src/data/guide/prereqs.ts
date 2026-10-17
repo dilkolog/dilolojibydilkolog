@@ -190,6 +190,12 @@ export const PREREQS: Record<string, string[]> = {
 /** The lessons a lesson builds on that have not been read yet. */
 export const unmetPrereqs = (topic: string, isRead: (topic: string) => boolean): string[] => (PREREQS[topic] ?? []).filter((t) => !isRead(t))
 
+/** The lessons that directly build on `topic` (have `topic` in their PREREQS). */
+export const followUpTopics = (topic: string): string[] =>
+  Object.entries(PREREQS)
+    .filter(([, reqs]) => reqs.includes(topic))
+    .map(([t]) => t)
+
 /**
  * The lesson to read next: the first of the lessons in learning order that is not read and whose prerequisites are,
  * else (everything left builds on something unread) simply the first not read.

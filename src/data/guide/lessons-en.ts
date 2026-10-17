@@ -196,6 +196,17 @@ export const EN_LESSONS: TopicLesson[] = [
       "Few / little ile a few / a little farkı: 'a' eki olumlu bir tondur (a few / a little = az da olsa var, yeterli; few / little = neredeyse hiç yok, yetersiz).",
       "Sayıdan sonra isim çoğul olur: two apples, three years."
     ],
+    table: {
+      caption: "Sayılabilen ve Sayılamayan Miktar İfadeleri",
+      head: ["İfade", "Sayılabilen Çoğul (Countable)", "Sayılamayan Tekil (Uncountable)", "Anlam ve Ton"],
+      rows: [
+        ["some / any", "some books / any books", "some milk / any money", "biraz, birkaç (+) / hiç (-, ?)"],
+        ["many / much", "many friends", "much time", "çok (genelde - ve ? cümlelerinde)"],
+        ["a lot of", "a lot of cars", "a lot of water", "çok (olumlu cümlede en doğal seçim)"],
+        ["a few / a little", "a few days (birkaç gün)", "a little help (biraz yardım)", "az ama yeterli (olumlu ton)"],
+        ["few / little", "few people (çok az kişi)", "little hope (çok az umut)", "neredeyse hiç yok, yetersiz (olumsuz ton)"],
+      ],
+    },
     examples: [
       { text: "There are three children and two women in the room.", tr: "Odada üç çocuk ve iki kadın var." },
       { text: "Can you give me some advice?", tr: "Bana biraz tavsiye verebilir misin?" },
@@ -247,6 +258,16 @@ export const EN_LESSONS: TopicLesson[] = [
       "Olumsuz: won't (will not) / am not going to; soru: Will you…? / Are you going to…?",
       "When, if, before, after gibi zaman ve koşul bağlaçlarından sonra will değil present simple gelir: when I arrive."
     ],
+    table: {
+      caption: "İngilizcede Gelecek Zaman Yapıları Karşılaştırması",
+      head: ["Yapı", "Temel Kullanım", "Örnek", "Türkçe Açıklama"],
+      rows: [
+        ["will + V1", "Anlık karar, söz, teklif, kişisel tahmin", "I'll open the window.", "Konuşma anında verilen karar"],
+        ["be going to + V1", "Önceden yapılmış plan / kanıta dayalı tahmin", "It's going to rain.", "Niyet veya gözle görülür kanıt"],
+        ["Present Continuous", "Saati/yeri belli ayarlanmış randevu", "I'm meeting Ali at six.", "Takvime girmiş kesin düzenleme"],
+        ["Present Simple", "Zaman bağlaçları sonrası (when, after, if)", "Call me when you get home.", "Bağlaçlı yan cümlede will gelmez"],
+      ],
+    },
     examples: [
       { text: "It's hot in here. I'll open the window.", tr: "Burası sıcak. Pencereyi açayım." },
       { text: "We're going to buy a new car next year.", tr: "Seneye yeni bir araba alacağız." },
@@ -296,6 +317,17 @@ export const EN_LESSONS: TopicLesson[] = [
       "Eşitlik as + sıfat + as ile: She is as tall as her mother; olumsuzu not as … as.",
       "Superlative'de genellikle in (yer, grup) ya da of kullanılır: the best student in the class."
     ],
+    table: {
+      caption: "Karşılaştırma (Comparative) ve Üstünlük (Superlative) Tablosu",
+      head: ["Sıfat Türü", "Yalın (Positive)", "Karşılaştırma (Comparative)", "En Üstünlük (Superlative)"],
+      rows: [
+        ["Tek heceli kısa", "cheap / big", "cheaper / bigger (than)", "the cheapest / the biggest"],
+        ["Sonu -y ile biten", "happy / easy", "happier / easier (than)", "the happiest / the easiest"],
+        ["Çok heceli uzun", "expensive / careful", "more expensive (than)", "the most expensive"],
+        ["Düzensiz (Irregular)", "good / bad / far", "better / worse / further", "the best / the worst / the furthest"],
+        ["Eşitlik kalıbı", "tall / good", "as tall as / not as good as", "— (kadar uzun / kadar iyi değil)"],
+      ],
+    },
     examples: [
       { text: "This hotel is cheaper than the one near the beach.", tr: "Bu otel sahildekinden daha ucuz." },
       { text: "Today is the hottest day of the year.", tr: "Bugün yılın en sıcak günü." },
@@ -346,6 +378,16 @@ export const EN_LESSONS: TopicLesson[] = [
       "Meslek söylerken a/an gerekir: She is an engineer.",
       "Sporlar, öğünler ve asıl amacıyla kullanılan yerler artikelsizdir: play football, have lunch, go to school."
     ],
+    table: {
+      caption: "İngilizce Artikeller (a / an / the / Ø) Kullanım Rehberi",
+      head: ["Artikel", "Temel Kural", "Örnekler", "Önemli İstisna / Not"],
+      rows: [
+        ["a (+ ünsüz ses)", "Belirsiz, sayılabilir tekil isim, ilk anılış, meslek", "a dog, a doctor, a university", "Yazıma değil okunuşa bakılır ('yu' sesi)"],
+        ["an (+ ünlü ses)", "Ünlü sesle başlayan sayılabilir tekil isim", "an apple, an engineer, an hour", "Sessiz 'h' ile başlayan kelimeler 'an' alır"],
+        ["the", "Belirli/bilinen şey, tek olanlar, en üstünlük, çalgılar", "the sun, the best, play the piano", "Nehir, deniz ve sıradağ adları 'the' alır"],
+        ["Ø (artikelsiz)", "Genel çoğul/sayılamayan, spor, öğün, kurum amacı", "Life is short, play tennis, go to school", "Binayı ziyaret için: go to the school"],
+      ],
+    },
     examples: [
       { text: "I bought a jacket and a hat, but the hat was too small.", tr: "Bir ceket ve bir şapka aldım, ama şapka çok küçüktü." },
       { text: "My father is an architect.", tr: "Babam mimardır." },
@@ -399,6 +441,17 @@ export const EN_LESSONS: TopicLesson[] = [
       "When ile sorulan soru belirli zamanı sorar, past simple ister: When did you arrive?",
       "'This is the first time…' kalıbından sonra present perfect gelir."
     ],
+    table: {
+      caption: "Present Perfect ve Past Simple Karşılaştırması",
+      head: ["Özellik", "Present Perfect (have/has + V3)", "Past Simple (V2 / did)"],
+      rows: [
+        ["Zaman bağlantısı", "Geçmişi şimdiye bağlar (etkisi/süresi devam eder)", "Geçmişte belirli bir zamanda başlayıp bitmiştir"],
+        ["Hayat deneyimi", "Have you ever been to Japan? (zaman belirsiz)", "I went to Japan in 2019. (belirli zaman)"],
+        ["Been to / Gone to", "been to: gidip döndü / gone to: gitti, hâlâ orada", "She went to Paris last week."],
+        ["Süre (for / since)", "I have lived here since 2018 / for 6 years.", "I lived there for two years (artık yaşamıyorum)."],
+        ["Zaman zarfları", "just, already, yet, ever, never, so far, this week", "yesterday, last night, two days ago, in 2015, when...?"],
+      ],
+    },
     examples: [
       { text: "I have lived in Istanbul since 2018.", tr: "2018'den beri İstanbul'da yaşıyorum." },
       { text: "Have you ever tried Indian food?", tr: "Hiç Hint yemeği denedin mi?" },
@@ -453,6 +506,16 @@ export const EN_LESSONS: TopicLesson[] = [
       "Stop + -ing: bir işi bırakmak; stop + to: bir şey yapmak için durmak.",
       "Try + to: bir şeyi yapmak için çaba harcamak/zorlanmak; try + -ing: bir çözüm veya yöntem olarak denemek."
     ],
+    table: {
+      caption: "Gerund (-ing) ve Infinitive (to + V1) Seçim Tablosu",
+      head: ["Yapı", "Tetikleyen Fiiller / Kalıplar", "Örnek", "Anlam Değişenler (stop / remember / try)"],
+      rows: [
+        ["Gerund (V-ing)", "enjoy, avoid, finish, mind, suggest, keep", "He avoided talking about it.", "stop V-ing: işi bırakmak / remember V-ing: geçmişi hatırlamak"],
+        ["Infinitive (to + V1)", "decide, hope, plan, refuse, want, promise, afford", "We can't afford to buy a house.", "stop to V1: yapmak için durmak / remember to V1: yapmayı unutmamak"],
+        ["Edat + V-ing", "interested in, good at, without, before, after", "She is good at solving problems.", "try V-ing: bir yöntem/çözüm olarak denemek"],
+        ["'to' edat olanlar", "look forward to, be used to, object to + V-ing", "I look forward to seeing you.", "try to V1: bir şeyi başarmak için çabalamak"],
+      ],
+    },
     examples: [
       { text: "He avoided talking about his new job.", tr: "Yeni işinden söz etmekten kaçındı." },
       { text: "We can't afford to buy a house this year.", tr: "Bu yıl ev almaya gücümüz yetmez." },
@@ -506,6 +569,17 @@ export const EN_LESSONS: TopicLesson[] = [
       "Koşul: if, unless (= -medikçe, if … not), otherwise (= aksi hâlde), as long as.",
       "However, therefore, moreover cümle başında ve ardından virgülle kullanılır."
     ],
+    table: {
+      caption: "Bağlaçların Anlam Yönü ve Dilbilgisi Kuralları",
+      head: ["Anlam İlişkisi", "Tam Cümle Alanlar (+ Özne + Fiil)", "İsim / V-ing Alanlar", "Cümle Başı Bağlaçları (, ile)"],
+      rows: [
+        ["Zıtlık (Contrast)", "although, even though, whereas, while", "despite, in spite of", "However, / Nevertheless,"],
+        ["Neden (Reason)", "because, since, as", "because of, due to, owing to", "—"],
+        ["Sonuç (Result)", "so (+ cümle)", "—", "Therefore, / Consequently, / As a result,"],
+        ["Ekleme (Addition)", "and (+ cümle)", "in addition to, besides", "Moreover, / Furthermore, / In addition,"],
+        ["Koşul (Condition)", "if, unless (= if ... not), as long as", "in case of", "Otherwise, (aksi hâlde)"],
+      ],
+    },
     examples: [
       { text: "The flat is small. However, it is very close to the centre.", tr: "Daire küçük. Ancak merkeze çok yakın." },
       { text: "Although she was tired, she finished the report.", tr: "Yorgun olmasına rağmen raporu bitirdi." },
@@ -574,6 +648,41 @@ export const EN_LESSONS: TopicLesson[] = [
       "Be used to ile used to'yu karıştırmak: 'I'm used to work' değil 'I'm used to working'."
     ],
     tip: "Kelimeyi hep edatıyla birlikte not edin: 'depend' değil 'depend on'.",
+    table: {
+      "caption": "Common Preposition Combinations",
+      "head": [
+        "Preposition",
+        "Verbs & Adjectives",
+        "Meaning / Use",
+        "Example"
+      ],
+      "rows": [
+        [
+          "on",
+          "depend on, congratulate on, keen on",
+          "bağlı olmak, tebrik etmek, düşkün olmak",
+          "It depends on your decision."
+        ],
+        [
+          "in",
+          "believe in, succeed in, interested in",
+          "inanmak, başarmak, ilgilenmek",
+          "She succeeded in passing the exam."
+        ],
+        [
+          "at",
+          "good at, aim at, look at",
+          "yetenekli olmak, hedeflemek, bakmak",
+          "He is very good at languages."
+        ],
+        [
+          "of",
+          "afraid of, proud of, approve of",
+          "korkmak, gurur duymak, onaylamak",
+          "We are proud of your progress."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "The final decision depends ___ the manager's approval.",
@@ -624,6 +733,41 @@ export const EN_LESSONS: TopicLesson[] = [
       "'Sert kahve, şiddetli yağmur': 'hard coffee', 'strong rain' değil 'strong coffee', 'heavy rain'."
     ],
     tip: "Kelimeyi tek başına değil, fiiliyle öğrenin: 'decision' değil 'make a decision'.",
+    table: {
+      "caption": "Essential English Collocations (Do vs Make vs Take)",
+      "head": [
+        "Verb",
+        "Typical Nouns",
+        "Turkish Meaning",
+        "Common Mistake"
+      ],
+      "rows": [
+        [
+          "make",
+          "make a decision, make a mistake, make progress",
+          "karar almak, hata yapmak, ilerlemek",
+          "do a mistake (incorrect)"
+        ],
+        [
+          "do",
+          "do homework, do business, do someone a favour",
+          "ödev yapmak, iş yapmak, iyilik yapmak",
+          "make business (incorrect)"
+        ],
+        [
+          "take",
+          "take a break, take a chance, take into account",
+          "mola vermek, şansını denemek, dikkate almak",
+          "make a break (incorrect)"
+        ],
+        [
+          "have",
+          "have a chat, have difficulty, have fun",
+          "sohbet etmek, zorlanmak, eğlenmek",
+          "make fun of (different meaning)"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Don't worry if you ___ a mistake; it's part of learning.",
@@ -676,6 +820,41 @@ export const EN_LESSONS: TopicLesson[] = [
       "Değişmeyen evrensel gerçeklerde gereksiz zaman kaydırmak: genel doğruları aktarırken present simple korunabilir ('He explained that water boils at 100°C')."
     ],
     tip: "Say'den sonra 'that', tell'den sonra 'kişi': said that / told me that.",
+    table: {
+      "caption": "Reported Speech Tense Shifts",
+      "head": [
+        "Direct Speech (Present)",
+        "Reported Speech (Past Reporting)",
+        "Example Direct",
+        "Example Reported"
+      ],
+      "rows": [
+        [
+          "Present Simple",
+          "Past Simple",
+          "“I live here.”",
+          "He said he lived there."
+        ],
+        [
+          "Present Continuous",
+          "Past Continuous",
+          "“I am studying.”",
+          "She said she was studying."
+        ],
+        [
+          "Past Simple / Pres. Perfect",
+          "Past Perfect",
+          "“I saw the film.”",
+          "He said he had seen the film."
+        ],
+        [
+          "Will / Can",
+          "Would / Could",
+          "“I will call you.”",
+          "She promised she would call me."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "He told ___ that he was moving to Canada.",
@@ -730,6 +909,41 @@ export const EN_LESSONS: TopicLesson[] = [
       "Geçmiş çıkarımda had: 'must had left' değil 'must have left'."
     ],
     tip: "Mustn't = yapma! Don't have to = istersen yapma.",
+    table: {
+      "caption": "Modal Verbs for Past Deduction",
+      "head": [
+        "Structure",
+        "Certainty Level",
+        "Meaning in Turkish",
+        "Example"
+      ],
+      "rows": [
+        [
+          "must have + V3",
+          "High certainty (positive)",
+          "yapmış olmalı (kesine yakın)",
+          "The ground is wet; it must have rained."
+        ],
+        [
+          "can’t / couldn’t have + V3",
+          "High certainty (negative)",
+          "yapmış olamaz (imkânsız)",
+          "He can’t have stolen the car; he was with me."
+        ],
+        [
+          "might / may / could have + V3",
+          "Possibility",
+          "yapmış olabilir (ihtimal)",
+          "She might have missed the morning train."
+        ],
+        [
+          "should have + V3",
+          "Regret / unfulfilled expectation",
+          "yapmalıydı (ama yapmadı)",
+          "You should have told me earlier."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "You ___ smoke anywhere inside the building; it is strictly forbidden.",
@@ -779,6 +993,41 @@ export const EN_LESSONS: TopicLesson[] = [
       "Ettirgeni çevirmek: 'I cut my hair' saçımı kendim kestim demektir; berberde 'I had my hair cut'."
     ],
     tip: "Önce zamanı be'ye, sonra fiili hep V3'e verin: be + V3.",
+    table: {
+      "caption": "Active to Passive Tense Transformations",
+      "head": [
+        "Tense",
+        "Active Voice",
+        "Passive Voice Structure",
+        "Example Passive"
+      ],
+      "rows": [
+        [
+          "Present Simple",
+          "builds",
+          "am / is / are + V3",
+          "The house is built of stone."
+        ],
+        [
+          "Past Simple",
+          "built",
+          "was / were + V3",
+          "The bridge was built in 1920."
+        ],
+        [
+          "Present Continuous",
+          "is building",
+          "am / is / are being + V3",
+          "A new hospital is being built."
+        ],
+        [
+          "Present Perfect",
+          "has built",
+          "have / has been + V3",
+          "The report has been completed."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "This famous bridge ___ in 1894.",
@@ -830,6 +1079,47 @@ export const EN_LESSONS: TopicLesson[] = [
       "Virgüllü cümlede that: 'My father, that is a teacher' değil 'My father, who is a teacher'."
     ],
     tip: "Türkçedeki sırayı ters çevirin: 'dün tanıştığım adam' = 'the man (who) I met yesterday'.",
+    table: {
+      "caption": "Relative Pronouns Summary",
+      "head": [
+        "Pronoun",
+        "Reference (Person / Thing)",
+        "Role in Clause",
+        "Example"
+      ],
+      "rows": [
+        [
+          "who",
+          "People",
+          "Subject or Object",
+          "The man who called you is here."
+        ],
+        [
+          "whom",
+          "People",
+          "Formal Object (often after preposition)",
+          "The person to whom you spoke."
+        ],
+        [
+          "which",
+          "Things / Ideas",
+          "Subject or Object",
+          "The book which inspired me."
+        ],
+        [
+          "that",
+          "People or Things",
+          "Informal Subject/Object (defining only)",
+          "The song that won the award."
+        ],
+        [
+          "whose",
+          "People or Things",
+          "Possessive (whose car, whose idea)",
+          "The author whose book won a prize."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "The engineer ___ designed this software won an international award.",
@@ -878,6 +1168,29 @@ export const EN_LESSONS: TopicLesson[] = [
       "Bugünkü sonuç için would have: 'I would have been rich now' değil 'I would be rich now'."
     ],
     tip: "Her yarıya ayrı ayrı sorun: bu kısım ne zaman? Geçmişse had / would have, bugünse past simple / would.",
+    table: {
+      "caption": "Mixed Conditionals Patterns",
+      "head": [
+        "Type",
+        "If Clause",
+        "Main Clause",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Past Cause → Present Result",
+          "If + Past Perfect (had done)",
+          "would + bare infinitive (would be)",
+          "If I had taken the job, I would be rich now."
+        ],
+        [
+          "Present State → Past Result",
+          "If + Past Simple (were/had)",
+          "would have + V3",
+          "If I weren’t afraid of flying, I would have traveled."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "If I had taken your advice yesterday, I ___ in this difficult situation now.",
@@ -932,6 +1245,35 @@ export const EN_LESSONS: TopicLesson[] = [
       "Olumsuzda not'u yanlış yere koymak: 'Knowing not' değil 'Not knowing'."
     ],
     tip: "Türkçedeki -ken, -ince, -dığı için, -dıktan sonra kısaltmalarını düşünün: -ing, having + V3 ya da V3.",
+    table: {
+      "caption": "Participle Clauses Summary",
+      "head": [
+        "Type",
+        "Form",
+        "Meaning / Equivalent",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Present Participle",
+          "V-ing",
+          "Active contemporaneous action (while doing)",
+          "Opening the door, she saw a shadow."
+        ],
+        [
+          "Past Participle",
+          "V3 (Passive)",
+          "Passive cause / condition (being done)",
+          "Surrounded by fans, the singer waved."
+        ],
+        [
+          "Perfect Participle",
+          "Having + V3",
+          "Prior completed action (after having done)",
+          "Having finished breakfast, he left for work."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "___ the contract carefully, she picked up her pen and signed it.",
@@ -987,6 +1329,41 @@ export const EN_LESSONS: TopicLesson[] = [
       "Did'den sonra geçmiş fiil: 'Little did he knew' değil 'Little did he know'."
     ],
     tip: "Cümle başındaki olumsuz ifadeden sonra bir soru sorar gibi devam edin: Never + have I…?",
+    table: {
+      "caption": "Negative and Limiting Inversion",
+      "head": [
+        "Trigger Phrase",
+        "Word Order",
+        "Emphasis",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Never / Rarely / Seldom",
+          "Trigger + Auxiliary + Subject + Verb",
+          "High literary emphasis",
+          "Rarely have I seen such dedication."
+        ],
+        [
+          "No sooner ... than",
+          "No sooner + had + S + V3 ... than",
+          "Immediate sequence",
+          "No sooner had I arrived than it began to rain."
+        ],
+        [
+          "Under no circumstances",
+          "Trigger + auxiliary + subject",
+          "Absolute prohibition",
+          "Under no circumstances should you open this door."
+        ],
+        [
+          "Conditional (Had / Were / Should)",
+          "Had/Were/Should + S (+ V3)",
+          "Replaces \"if\"",
+          "Had I known the truth, I would have warned you."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Never ___ such a breathtaking view in my life.",
@@ -1043,6 +1420,35 @@ export const EN_LESSONS: TopicLesson[] = [
       "Kişiyi which ile vurgulamak: 'It was my sister which…' değil 'It was my sister who…'."
     ],
     tip: "Türkçede vurguyu fiilin hemen önüne koyarsınız; İngilizcede 'It was … that' çerçevesine koyun.",
+    table: {
+      "caption": "Cleft Sentences for Focus and Emphasis",
+      "head": [
+        "Type",
+        "Structure Formula",
+        "Focus Point",
+        "Example"
+      ],
+      "rows": [
+        [
+          "It-cleft",
+          "It is / was + focus + that/who",
+          "Focuses on person, place or time",
+          "It was Sarah who solved the puzzle."
+        ],
+        [
+          "Wh-cleft",
+          "What + subject + verb + is/was + complement",
+          "Focuses on an action or desire",
+          "What we need is a clear strategy."
+        ],
+        [
+          "Reverse Wh-cleft",
+          "Complement + is/was + what + clause",
+          "Summarizing focus",
+          "A quiet vacation is what I really want."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "It was in Madrid ___ they first met ten years ago.",
@@ -1100,6 +1506,35 @@ export const EN_LESSONS: TopicLesson[] = [
       "Suggest'ten sonra to: 'I suggest him to go' değil 'I suggest that he go'."
     ],
     tip: "That'ten sonra fiili sözlükteki hâliyle bırakın: ne -s, ne -ed, ne do.",
+    table: {
+      "caption": "Mandative Subjunctive (Base Form)",
+      "head": [
+        "Trigger Word",
+        "Formula",
+        "Form Used (Base Form)",
+        "Example"
+      ],
+      "rows": [
+        [
+          "recommend / suggest",
+          "Subject + recommend that + S + base verb",
+          "No -s, no past tense",
+          "I recommend that he take a break."
+        ],
+        [
+          "demand / insist",
+          "insist that + S + base verb",
+          "Negative uses \"not + verb\"",
+          "They insisted that she not leave alone."
+        ],
+        [
+          "essential / vital",
+          "It is vital that + S + base verb",
+          "Be instead of is/are",
+          "It is essential that everyone be punctual."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "The committee recommended that the director ___ immediately.",

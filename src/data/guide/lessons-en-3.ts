@@ -17,6 +17,17 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Durum fiilleri (know, like, love, want, need, believe, understand, belong, seem) genellikle -ing almaz: I understand, 'I am understanding' değil.",
       "Bazı fiillerin hem durum hem eylem anlamı vardır: I think it's good (görüş) / I'm thinking about it (düşünme eylemi); I have a car / I'm having lunch."
     ],
+    table: {
+      caption: "Present Continuous Kurulum ve -ing Yazım Kuralları",
+      head: ["Kategori", "Kural / Formül", "Örnek", "Türkçe Karşılığı"],
+      rows: [
+        ["Olumlu (+)", "am / is / are + V-ing", "I'm working, she's reading", "Çalışıyorum, okuyor"],
+        ["Olumsuz (-)", "am not / isn't / aren't + V-ing", "They aren't listening", "Dinlemiyorlar"],
+        ["Soru (?)", "Am / Is / Are + özne + V-ing?", "What are you doing?", "Ne yapıyorsun?"],
+        ["Yazım (-ing)", "-e düşer / CVC ikilenir / -ie → -y", "make → making, run → running, lie → lying", "Yazım değişimi"],
+        ["Durum fiilleri", "-ing almaz (Present Simple kullanılır)", "I understand / I have a car", "Anlıyorum / Arabam var"],
+      ],
+    },
     examples: [
       { text: "Shh! The children are sleeping.", tr: "Şşş! Çocuklar uyuyor." },
       { text: "I'm reading a great book these days.", tr: "Bu aralar çok güzel bir kitap okuyorum." },
@@ -68,6 +79,17 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Present perfect simple sonucu ya da miktarı söyler (kaç tane, bitti mi): I've written three emails. Continuous süreci ve süreyi: I've been writing emails all morning.",
       "Durum fiilleri continuous olmaz; süre yine present perfect simple ile verilir: I've known her for ten years."
     ],
+    table: {
+      caption: "Present Perfect Continuous ve Simple Karşılaştırması",
+      head: ["Özellik", "Present Perfect Continuous (have been V-ing)", "Present Perfect Simple (have V3)"],
+      rows: [
+        ["Temel odak", "Eylemin süreci ve ne kadar sürdüğü (How long?)", "Eylemin tamamlanmış sonucu veya miktarı (How many?)"],
+        ["Süren eylem", "I've been waiting for forty minutes.", "I've lived here since 2018."],
+        ["Görünür iz / sonuç", "I've been running (nefes nefeseyim).", "I've painted two walls (iş bitti)."],
+        ["Miktar / sayı ile", "Kullanılmaz ('been drinking 3 cups' yanlış)", "She has read three books this month."],
+        ["Durum fiilleri (know, be)", "Kullanılmaz ('have been knowing' yanlış)", "We've known each other for ten years."],
+      ],
+    },
     examples: [
       { text: "I've been waiting for you for forty minutes!", tr: "Kırk dakikadır seni bekliyorum!" },
       { text: "How long have you been living in Ankara?", tr: "Ne zamandır Ankara'da yaşıyorsun?" },
@@ -120,6 +142,16 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Durum fiilleri (know, own, believe) bu yapıya girmez: I'll know the results tomorrow.",
       "While, when gibi zaman bağlaçlarından sonra will gelmez: While you're travelling, I'll be working."
     ],
+    table: {
+      caption: "Future Continuous (will be doing) Kullanım Özeti",
+      head: ["Kullanım Amacı", "Yapı / İpucu", "Örnek Cümle", "Türkçe Anlamı"],
+      rows: [
+        ["Gelecekte belli bir anda süren iş", "at this time tomorrow, at 8 tonight", "At ten tomorrow, I'll be taking an exam.", "Yarın onda sınava giriyor olacağım."],
+        ["Olağan akışta gerçekleşecek eylem", "will be + V-ing (doğal program)", "I'll be seeing Ayşe at work tomorrow.", "Yarın işte Ayşe'yi göreceğim (zaten)."],
+        ["Kibarca plan sorma", "Will you be + V-ing?", "Will you be using the car tonight?", "Bu akşam arabayı kullanacak mısın?"],
+        ["Zaman bağlacı ile birlikte", "While + Present Cont., will be V-ing", "While you're having fun, I'll be working.", "Sen eğlenirken ben çalışıyor olacağım."],
+      ],
+    },
     examples: [
       { text: "At ten tomorrow morning, I'll be taking an exam.", tr: "Yarın sabah saat onda sınava giriyor olacağım." },
       { text: "Don't phone after nine; the baby will be sleeping.", tr: "Dokuzdan sonra arama, bebek uyuyor olacak." },
@@ -171,6 +203,16 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Durum fiilleri continuous olmaz: I had known him for years ('had been knowing' değil).",
       "Dolaylı anlatımda present perfect continuous buna kayar: \"I've been working all day.\" → She said she had been working all day."
     ],
+    table: {
+      caption: "Past Perfect Continuous (had been doing) ve Simple Karşılaştırması",
+      head: ["Özellik", "Past Perfect Continuous (had been V-ing)", "Past Perfect Simple (had V3)"],
+      rows: [
+        ["Temel vurgu", "Geçmişteki bir ana kadar süren eylemin süresi", "Geçmişteki bir andan önce tamamlanmış eylem"],
+        ["Süreç örneği", "We had been waiting for an hour when the bus came.", "When we arrived, the bus had already left."],
+        ["Geçmişteki iz / neden", "His hands were dirty because he had been fixing the car.", "She was nervous because she hadn't flown before."],
+        ["Miktar ve durum fiilleri", "Kullanılmaz ('had been knowing / writing 3 letters' yanlış)", "She had written forty novels. / I had known him for years."],
+      ],
+    },
     examples: [
       { text: "We had been waiting for an hour when the bus finally came.", tr: "Otobüs sonunda geldiğinde bir saattir bekliyorduk." },
       { text: "His hands were dirty because he had been fixing the car.", tr: "Arabayı tamir ettiği için elleri kirliydi." },
@@ -221,6 +263,16 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Had better şimdi ve gelecek içindir; olumsuzu had better not: You'd better not be late.",
       "Kısaltmada 'd iki şeyi gösterir: I'd rather = would rather, you'd better = had better."
     ],
+    table: {
+      caption: "Tercih ve Uyarı Kalıpları (Would Rather / Prefer / Had Better)",
+      head: ["Kalıp", "Formül / Fiil Biçimi", "Örnek", "Anlam ve Kullanım"],
+      rows: [
+        ["would rather (aynı özne)", "would rather (not) + V1 (yalın) (+ than V1)", "I'd rather walk than take a taxi.", "Spesifik tercih (-meyi tercih ederim)"],
+        ["would rather (farklı özne)", "would rather + özne + Past Simple (V2)", "I'd rather you didn't smoke here.", "Başkasından şimdiki/gelecek beklenti"],
+        ["prefer / would prefer", "prefer V-ing to V-ing / would prefer to V1", "She prefers tea to coffee. / I'd prefer to stay.", "Genel tercih (prefer) / anlık (would prefer)"],
+        ["had better", "had better (not) + V1 (yalın)", "You'd better leave now. / You'd better not be late.", "Güçlü uyarı ('yapsan iyi olur, yoksa kötü')"],
+      ],
+    },
     examples: [
       { text: "I'd rather have fish than meat tonight.", tr: "Bu akşam et yerine balık yemeyi tercih ederim." },
       { text: "Would you rather go out or stay in?", tr: "Dışarı çıkmayı mı tercih edersin, evde kalmayı mı?" },
@@ -272,6 +324,17 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Sonuç bildirmek için that eklenir: It was so late that we took a taxi. / It was such a long film that I fell asleep.",
       "Miktarda so many / so much / so few / so little: There were so many people."
     ],
+    table: {
+      caption: "Vurgu Yapıları: Do / Does / Did ve So / Such",
+      head: ["Vurgu Yapısı", "Kural / Formül", "Örnek", "Kullanım Amacı"],
+      rows: [
+        ["do / does / did + V1", "Olumlu cümlede yardımcı fiil + yalın fiil", "I do like your haircut. / I did call!", "Duyguyu güçlendirme veya itirazı düzeltme"],
+        ["so + sıfat / zarf", "so + adjective / adverb (+ that...)", "The hotel was so expensive (that...)", "İsim olmadan sıfat veya zarfın derecesini vurgulama"],
+        ["such + (a/an) + isim", "such + a/an + (sıfat) + tekil isim", "It was such a beautiful view.", "Sıfat + isim öbeğini birlikte vurgulama"],
+        ["such + çoğul / sayılamayan", "such + (sıfat) + çoğul/sayılamayan isim", "such good weather / such kind people", "Çoğul ve sayılamayanlarda a/an gelmez"],
+        ["so + miktar sözcüğü", "so many / so much / so few / so little", "There were so many tourists.", "Miktar vurgusunda such değil so kullanılır"],
+      ],
+    },
     examples: [
       { text: "I do understand your concerns, but we have no choice.", tr: "Endişelerini gerçekten anlıyorum ama başka seçeneğimiz yok." },
       { text: "\"You never help me.\" \"That's not true. I did help you last week.\"", tr: "\"Bana hiç yardım etmiyorsun.\" \"Doğru değil. Geçen hafta sana yardım ettim ya.\"" },
@@ -324,6 +387,17 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Tekrarlanan sayılabilir isim yerine one/ones: I don't like the red shirt; I prefer the blue one.",
       "Fiil öbeği yardımcı fiilde ya da to'da kesilir: \"Are you coming?\" \"I'd like to.\" / He said he would help, and he did."
     ],
+    table: {
+      caption: "Kısa Cevaplar ve Eksiltili Yapılar (Ellipsis & Substitution)",
+      head: ["Durum / İşlev", "Kalıp / Formül", "Örnek Diyalog", "Türkçe Karşılığı"],
+      rows: [
+        ["Olumluya katılma", "So + yardımcı fiil + özne", "\"I'm tired.\" — \"So am I.\" / \"I went.\" — \"So did I.\"", "\"Ben de (öyleyim / gittim).\""],
+        ["Olumsuza katılma", "Neither / Nor + yardımcı fiil + özne", "\"I can't swim.\" — \"Neither can I.\"", "\"Ben de (yüzemem).\""],
+        ["Fikre katılmama", "Özne + ters yardımcı fiil", "\"I don't like it.\" — \"I do.\"", "\"Ben severim.\""],
+        ["Cümle yerine so / not", "think / hope / be afraid + so / not", "I think so. / I don't think so. / I hope not.", "Sanırım öyle. / Sanmıyorum. / Umarım olmaz."],
+        ["İsim / fiil kısaltma", "one / ones (isim) veya to / yardımcı fiil", "the blue one / \"Are you coming?\" — \"I'd like to.\"", "mavi olanı / \"Gelmek isterim.\""],
+      ],
+    },
     examples: [
       { text: "\"I'm really tired.\" \"So am I.\"", tr: "\"Çok yorgunum.\" \"Ben de.\"" },
       { text: "\"I didn't see the match.\" \"Neither did I.\"", tr: "\"Maçı izlemedim.\" \"Ben de izlemedim.\"" },
@@ -390,6 +464,41 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Anlamı sözcüklerden çıkarmaya çalışmak: give up 'vermek' değil 'bırakmak', put up with 'katlanmak' demektir."
     ],
     tip: "Yeni bir phrasal verb'ü bir zamirle birlikte öğrenin: 'turn it off', 'look after them'. Nesnenin yeri böyle akılda kalır.",
+    table: {
+      "caption": "Phrasal Verbs Types and Object Position",
+      "head": [
+        "Type",
+        "Separable?",
+        "Pronoun Position",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Separable transitive",
+          "Yes",
+          "Must go between verb and particle",
+          "Turn off the light. / Turn it off."
+        ],
+        [
+          "Inseparable transitive",
+          "No",
+          "Object always follows preposition",
+          "She is looking for her keys / looking for them."
+        ],
+        [
+          "Intransitive",
+          "No object",
+          "No object needed",
+          "The plane took off on time."
+        ],
+        [
+          "Three-part phrasal",
+          "No",
+          "Never separable",
+          "I look forward to hearing from you."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "This music is too loud. Please turn ___.",
@@ -440,6 +549,35 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Supposed'ın -d'sini düşürmek: 'It was suppose to start' değil 'It was supposed to start'."
     ],
     tip: "Geçmişteki bir koltuğa oturup ileriye bakın: will → would, am going to → was going to.",
+    table: {
+      "caption": "Future in the Past Structures",
+      "head": [
+        "Structure",
+        "Grammar Formula",
+        "Nuance",
+        "Example"
+      ],
+      "rows": [
+        [
+          "was/were going to",
+          "was/were going to + V1",
+          "Unfulfilled intention or plan",
+          "I was going to call you, but my battery died."
+        ],
+        [
+          "would",
+          "would + V1",
+          "Past prediction or future from past perspective",
+          "He knew that one day he would succeed."
+        ],
+        [
+          "was/were about to",
+          "was/were about to + V1",
+          "Immediate action interrupted",
+          "She was about to leave when the phone rang."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "I ___ call you last night, but I fell asleep.",
@@ -491,6 +629,29 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Sözcükleri eksik bırakmak: 'will have working' ya da 'will been working' değil 'will have been working'."
     ],
     tip: "Gelecekteki bir andan geriye doğru 'kaç yıldır?' diye sorabiliyorsanız will have been + -ing.",
+    table: {
+      "caption": "Future Perfect Continuous",
+      "head": [
+        "Component",
+        "Formula",
+        "Emphasis",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Positive",
+          "will have been + V-ing",
+          "Duration of an action up to a future point",
+          "By midnight, we will have been driving for 8 hours."
+        ],
+        [
+          "Time markers",
+          "by then, for [duration], by the time",
+          "Süreç vurgusu",
+          "By next year, she will have been teaching for 10 years."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "By next June, she ___ at this school for fifteen years.",
@@ -542,6 +703,41 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Resmî yazıda like'ı bağlaç yapmak: 'He acts like he knows' konuşmada duyulur, yazıda 'He acts as if he knew'."
     ],
     tip: "Bu kalıplardan sonra geçmiş zaman görünce zamanı değil uzaklığı düşünün: gerçek değil, istenen ya da hayal edilen.",
+    table: {
+      "caption": "Unreal Past Structures (Wish & If only)",
+      "head": [
+        "Structure",
+        "Tense Used",
+        "Regret / Desire Timeframe",
+        "Example"
+      ],
+      "rows": [
+        [
+          "wish + Past Simple",
+          "Past Simple (were)",
+          "Present regret (I want it to be different now)",
+          "I wish I spoke French fluently."
+        ],
+        [
+          "wish + Past Perfect",
+          "Past Perfect (had done)",
+          "Past regret (I wish it had happened)",
+          "I wish I had accepted that offer."
+        ],
+        [
+          "wish + would",
+          "would + base verb",
+          "Complaint about another person’s habit",
+          "I wish you would stop interrupting me."
+        ],
+        [
+          "It’s time + Subject",
+          "Past Simple",
+          "Overdue action (vakti geldi de geçiyor)",
+          "It’s time we started the meeting."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "It's high time you ___ a job.",
@@ -593,6 +789,35 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Yoğunluğu abartmak: üst üste dört beş isim ('the city centre parking fee increase plan') okuru yorar; bir kısmını of ya da bir cümleyle açın."
     ],
     tip: "Resmî bir paragrafı yoğunlaştırırken önce fiili isme çevirin, sonra 'who is / which was'ları atın.",
+    table: {
+      "caption": "Noun Phrase Structure and Modifiers",
+      "head": [
+        "Position",
+        "Element Type",
+        "Function",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Pre-modifiers",
+          "Determiner + Adjective + Noun adjunct",
+          "İsimden önce gelen niteleyiciler",
+          "A fascinating artificial intelligence model."
+        ],
+        [
+          "Head noun",
+          "Core noun",
+          "Temel isim",
+          "The new research project."
+        ],
+        [
+          "Post-modifiers",
+          "Prepositional phrase / Relative clause",
+          "İsimden sonra gelen niteleyiciler",
+          "The report published by the department."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Hangisi doğru?",
@@ -644,6 +869,41 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Bir metinde iki tonu karıştırmak: resmî bir raporun ortasında 'a lot of stuff' ya da 'gonna' göze batar."
     ],
     tip: "Yazmadan önce sorun: bunu kime, hangi ortamda söylüyorum? Sonra fiilleri, kısaltmaları ve ricaları ona göre seçin.",
+    table: {
+      "caption": "Register: Informal vs Neutral vs Formal",
+      "head": [
+        "Informal (Everyday)",
+        "Neutral (Standard)",
+        "Formal (Academic/Business)",
+        "Context"
+      ],
+      "rows": [
+        [
+          "ask for",
+          "request",
+          "inquire about",
+          "Talebi iletme"
+        ],
+        [
+          "look into",
+          "investigate",
+          "examine / probe",
+          "İnceleme yapma"
+        ],
+        [
+          "get rid of",
+          "remove",
+          "eliminate / discard",
+          "Ortadan kaldırma"
+        ],
+        [
+          "put off",
+          "delay",
+          "postpone / defer",
+          "Erteleme"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Resmî bir e-postada en uygun rica hangisidir?",
@@ -695,6 +955,35 @@ export const EN_LESSONS_3: TopicLesson[] = [
       "Her cümleye dolgu sözcüğü koymak: 'like, you know, actually' yığını akıcılık değil kararsızlık izlenimi verir."
     ],
     tip: "Bir belirleyiciyi önce dinlerken fark edin, sonra kullanın: ne anlama geldiğine değil, hangi anda söylendiğine bakın.",
+    table: {
+      "caption": "Discourse Markers in English Flow",
+      "head": [
+        "Category",
+        "Markers",
+        "Position in Sentence",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Contrast / Concession",
+          "however, nevertheless, on the other hand",
+          "Sentence initial with comma",
+          "However, further tests are needed."
+        ],
+        [
+          "Cause & Consequence",
+          "therefore, consequently, as a result",
+          "Signals logical deduction",
+          "Therefore, we adjusted our methodology."
+        ],
+        [
+          "Addition / Amplification",
+          "furthermore, moreover, in addition",
+          "Adds stronger supporting point",
+          "Furthermore, the cost was significantly lower."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "\"Are you a teacher?\" \"___, I'm a nurse.\"",

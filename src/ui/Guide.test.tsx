@@ -303,4 +303,114 @@ describe('GuideScreen', () => {
     expect(written[0]).toContain('Savoir (Bilmek)')
     open.mockRestore()
   })
+
+  it('creates a sentence card from an example with "+ Kart" button', async () => {
+    const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
+    const saveBtn = host.querySelector<HTMLButtonElement>('.guide-ex-save')
+    expect(saveBtn).not.toBeNull()
+    expect(saveBtn?.textContent).toBe('+ Kart')
+
+    await act(async () => {
+      saveBtn?.click()
+      await new Promise((r) => setTimeout(r, 30))
+    })
+    expect(saveBtn?.textContent).toBe('✓ Kart')
+
+    const sentences = await db.getSentences()
+    expect(sentences.length).toBe(1)
+    expect(sentences[0]?.language).toBe('fr')
+    expect(sentences[0]?.source).toContain('Rehber')
+  })
+
+  it('saves a personal lesson note and shows the note tag in list and path', async () => {
+    const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
+    const noteTextarea = host.querySelector<HTMLTextAreaElement>('.guide-note-input')
+    expect(noteTextarea).not.toBeNull()
+
+    await act(async () => {
+      const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!
+      set.call(noteTextarea, 'Le masculin, la féminin')
+      noteTextarea?.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+
+    const saveNoteBtn = button(host, 'Kaydet')
+    expect(saveNoteBtn).not.toBeNull()
+    await act(async () => {
+      saveNoteBtn?.click()
+      await new Promise((r) => setTimeout(r, 30))
+    })
+
+    const marks = await db.getGuideMarks()
+    expect(marks.basics_fr_articles?.note).toBe('Le masculin, la féminin')
+
+    // Navigate back to the guide list
+    await act(async () => button(host, 'Rehber')!.click())
+    const noteTag = host.querySelector('.guide-tag-note')
+    expect(noteTag).not.toBeNull()
+    expect(noteTag?.textContent).toContain('Not')
+  })
+
+  it('launches and completes a 10-question level mixed quiz', async () => {
+    const { host } = await mount('fr')
+    const quizBtn = host.querySelector<HTMLButtonElement>('.guide-level-quiz-btn')
+    expect(quizBtn).not.toBeNull()
+    expect(quizBtn?.textContent).toContain('Seviyeyi sına')
+
+    await act(async () => quizBtn?.click())
+    expect(host.querySelector('.guide-level-quiz')).not.toBeNull()
+    expect(host.textContent).toContain('1 /')
+
+    // Answer questions
+    for (let i = 0; i < 10; i++) {
+      const choice = host.querySelector<HTMLButtonElement>('.lesson-check .option')
+      if (!choice) break
+      await act(async () => choice.click())
+
+      const nextBtn = button(host, i < 9 ? 'Sonraki soru' : 'Sınavı bitir')
+      if (!nextBtn) break
+      await act(async () => nextBtn.click())
+    }
+
+    expect(host.textContent).toContain('Seviyesi')
+
+    const backBtn = button(host, /Rehber/)
+    await act(async () => backBtn?.click())
+    expect(host.querySelector('.guide-level-quiz')).toBeNull()
+  })
+
+  it('shows follow-up topic links and navigates between them', async () => {
+    const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
+    const followUps = host.querySelector('.guide-followups')
+    expect(followUps).not.toBeNull()
+    expect(followUps?.textContent).toContain('Bu konunun devamı')
+
+    const chip = followUps?.querySelector<HTMLButtonElement>('.guide-followup-chip')
+    expect(chip).not.toBeNull()
+    const nextTitle = chip?.querySelector('strong')?.textContent
+    expect(nextTitle).toBeTruthy()
+
+    await act(async () => chip?.click())
+    expect(host.querySelector('.guide-lesson h1')?.textContent).toBe(nextTitle)
+  })
+
+  it('groups tenses by mood and renders sample conjugation tables in sheet', async () => {
+    const { host } = await mount('fr')
+    await act(async () => button(host, 'Zamanlar')!.click())
+    expect(host.textContent).toContain('Haber Kipleri')
+    expect(host.textContent).toContain('Dilek / İstek Kipi')
+
+    // Open subjonctif sheet
+    const subBtn = button(host, /subjonctif présent/i)
+    expect(subBtn).not.toBeNull()
+    await act(async () => {
+      subBtn?.click()
+      await new Promise((r) => setTimeout(r, 50))
+    })
+
+    // Check sample conjugation table
+    const conjTable = host.querySelector('.tense-sample-table') ?? document.querySelector('.tense-sample-table')
+    expect(conjTable).not.toBeNull()
+    expect(conjTable?.textContent).toContain('parler')
+    expect(conjTable?.textContent).toContain('parle')
+  })
 })

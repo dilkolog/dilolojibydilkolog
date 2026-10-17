@@ -1,5 +1,5 @@
 import '../lazy.css'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { grammarExercises } from '../data/grammar'
 import { KIND_NAME, KIND_ORDER, RESOURCES, SHARED_RESOURCES, type GuideResource, type ResourceKind } from '../data/guide/resources'
 import podcastArt from '../assets/art/src-podcast.webp'
@@ -14,15 +14,19 @@ import { localDate } from '../engine/progress'
 import { levelCertificates } from '../engine/guideCertificate'
 import { GuideCertificates } from './GuideCertificates'
 import { learningPath, pathOrder, type PathStep } from '../data/guide/path'
-import { pickNext, unmetPrereqs } from '../data/guide/prereqs'
+import { followUpTopics, pickNext, unmetPrereqs } from '../data/guide/prereqs'
 import { searchLesson, type LessonHit } from '../data/guide/search'
 import { lessonSheetHtml } from './guideSheet'
 import { openPrint } from './printWindow'
 import { LessonListen } from './LessonListen'
+import { LessonNote } from './LessonNote'
+import { LevelQuizView, type LevelQuizQuestion } from './LevelQuizView'
+import { saveSentence } from './saveSentence'
 import { TENSE_LESSON } from '../data/tenseLesson'
 import { topicStats } from '../engine/grammar'
-import { LAB_TENSES, type Tense } from '../engine/tenses'
+import { isImperative, isSubjunctive, LAB_TENSES, type Tense } from '../engine/tenses'
 import { TENSE_BRIEF } from '../engine/tenseBrief'
+import type { LabData } from '../engine/labProgress'
 import type { TargetLanguage } from '../engine/types'
 import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SearchIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
@@ -32,7 +36,7 @@ import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
-import { checkAwards, loadMarks, markChecked, markFlag, markRead as withRead } from './guideProgress'
+import { checkAwards, loadMarks, markChecked, markFlag, markNote, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
@@ -78,6 +82,8 @@ export function GuideScreen({
   const [view, setView] = useState<View>(savedView)
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
+  const [levelQuiz, setLevelQuiz] = useState<GuideLevel | null>(null)
+  const [lab, setLab] = useState<LabData | null>(null)
   const [marks, setMarks] = useState<GuideMarks>({})
   // The marks come from the database a moment after the screen opens: until then nothing is said about what is read.
   const [marksReady, setMarksReady] = useState(false)
@@ -104,6 +110,32 @@ export function GuideScreen({
       live = false
     }
   }, [exercises])
+
+  useEffect(() => {
+    if (language === 'en') return
+    let live = true
+    void db.getLab(language).then((l) => {
+      if (live) setLab(l)
+    })
+    return () => {
+      live = false
+    }
+  }, [language])
+
+  const tenseStatsMap = useMemo(() => {
+    const res = new Map<Tense, { ok: number; total: number; rate: number }>()
+    if (!lab?.tally) return res
+    for (const [key, t] of Object.entries(lab.tally)) {
+      const [tenseStr] = key.split('|')
+      const cur = res.get(tenseStr as Tense) ?? { ok: 0, total: 0, rate: 0 }
+      cur.ok += t.ok
+      cur.total += t.ok + t.wrong
+      cur.rate = cur.total > 0 ? Math.round((cur.ok / cur.total) * 100) : 0
+      res.set(tenseStr as Tense, cur)
+    }
+    return res
+  }, [lab])
+
   useEffect(() => {
     let live = true
     const ready = (m: GuideMarks) => {
@@ -130,7 +162,7 @@ export function GuideScreen({
     if (level && l.level !== level) return false
     if (flagFilter && flagOf(l.topic) !== flagFilter) return false
     if (!q) return true
-    const hit = searchLesson(l, titleOf(l), q)
+    const hit = searchLesson(l, titleOf(l), q, marks[l.topic]?.note)
     if (hit) hits.set(l.topic, hit)
     return !!hit
   })
@@ -141,6 +173,25 @@ export function GuideScreen({
   const next = pickNext(ordered, (t) => read.has(t))
   const path = useMemo(() => learningPath(lessons, (t) => read.has(t), (t) => !!marks[t]?.learned), [lessons, read, marks])
   const certs = useMemo(() => levelCertificates(lessons, marks), [lessons, marks])
+
+  const quizQuestions = useMemo((): LevelQuizQuestion[] => {
+    if (!levelQuiz) return []
+    const lvLessons = lessons.filter((l) => l.level === levelQuiz)
+    const unlearned = lvLessons.filter((l) => !marks[l.topic]?.learned)
+    const learned = lvLessons.filter((l) => !!marks[l.topic]?.learned)
+    const pool = [...unlearned, ...learned]
+    const picked: LevelQuizQuestion[] = []
+    for (const l of pool) {
+      const checks = checkFor(l)
+      for (const c of checks.slice(0, 2)) {
+        picked.push({ ...c, topic: l.topic, lessonTitle: titleOf(l) })
+        if (picked.length >= 10) break
+      }
+      if (picked.length >= 10) break
+    }
+    return picked
+  }, [levelQuiz, lessons, marks])
+
   const pickView = (v: View) => {
     setView(v)
     try {
@@ -152,11 +203,35 @@ export function GuideScreen({
 
   if (!marksReady) return <div className="stack guide" aria-busy="true" />
 
+  if (levelQuiz) {
+    return (
+      <LevelQuizView
+        level={levelQuiz}
+        levelName={LEVEL_NAME[levelQuiz]}
+        language={language}
+        questions={quizQuestions}
+        onDone={(res) => {
+          if (res.passedTopics.length > 0) {
+            let updated = marks
+            for (const t of res.passedTopics) {
+              updated = markChecked(updated, t, true)
+            }
+            change(updated)
+          }
+        }}
+        onBack={() => setLevelQuiz(null)}
+      />
+    )
+  }
+
   if (open) {
     const practice = open.practice ?? open.topic
     const targetTense = lessonTense(open)
     const idx = ordered.findIndex((l) => l.topic === open.topic)
     const following = idx >= 0 ? ordered[idx + 1] : undefined
+    const followUps = followUpTopics(open.topic)
+      .map((t) => lessonFor(language, t))
+      .filter((l): l is TopicLesson => !!l)
     return (
       <LessonView
         key={open.topic}
@@ -167,7 +242,10 @@ export function GuideScreen({
         review={review && open.topic === lessonFor(language, initialLesson ?? '')?.topic}
         flag={flagOf(open.topic)}
         onFlag={(f) => change(markFlag(marks, open.topic, f))}
+        note={marks[open.topic]?.note ?? ''}
+        onNote={(n) => change(markNote(marks, open.topic, n))}
         needs={unmetPrereqs(open.topic, (t) => read.has(t)).map((t) => lessonFor(language, t)).filter((l): l is TopicLesson => !!l)}
+        followUps={followUps}
         onOpenLesson={setOpen}
         questions={questions.get(practice) ?? 0}
         nextLesson={following}
@@ -317,10 +395,18 @@ export function GuideScreen({
                   <section key={lv} className="stack gap-2">
                     <h2 className="section-title guide-level">
                       <span className="guide-level-badge">{lv}</span> {LEVEL_NAME[lv]}
+                      <button
+                        type="button"
+                        className="guide-level-quiz-btn"
+                        title={`${lv} seviyesi karma testi`}
+                        onClick={() => setLevelQuiz(lv)}
+                      >
+                        🎯 Seviyeyi sına (10 soru)
+                      </button>
                     </h2>
                     <ol className="guide-path">
                       {steps.map((st) => (
-                        <PathRow key={st.lesson.topic} step={st} needs={st.needs.map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]} flag={flagOf(st.lesson.topic)} onOpen={() => setOpen(st.lesson)} />
+                        <PathRow key={st.lesson.topic} step={st} needs={st.needs.map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]} flag={flagOf(st.lesson.topic)} hasNote={!!marks[st.lesson.topic]?.note} onOpen={() => setOpen(st.lesson)} />
                       ))}
                     </ol>
                   </section>
@@ -339,6 +425,14 @@ export function GuideScreen({
                   <span className="guide-level-progress small muted">
                     {lvDone} / {list.length}
                   </span>
+                  <button
+                    type="button"
+                    className="guide-level-quiz-btn"
+                    title={`${lv} seviyesi karma testi`}
+                    onClick={() => setLevelQuiz(lv)}
+                  >
+                    🎯 Seviyeyi sına (10 soru)
+                  </button>
                 </h2>
                 <div className="guide-grid">
                   {list.map((l) => {
@@ -351,6 +445,7 @@ export function GuideScreen({
                         lesson={l}
                         read={read.has(l.topic)}
                         learned={!!marks[l.topic]?.learned}
+                        hasNote={!!marks[l.topic]?.note}
                         foot={
                           n > 0
                             ? s && s.answered > 0
@@ -380,25 +475,42 @@ export function GuideScreen({
           <p className="small muted">İngilizcenin zamanları, öğrenme sırasıyla: ne zaman kullanılır, nasıl kurulur, nerede karışır.</p>
           <div className="guide-grid">
             {enTenses.map((l) => (
-              <LessonCard key={l.topic} lesson={l} read={read.has(l.topic)} learned={!!marks[l.topic]?.learned} foot={l.level} onOpen={() => setOpen(l)} />
+              <LessonCard key={l.topic} lesson={l} read={read.has(l.topic)} learned={!!marks[l.topic]?.learned} hasNote={!!marks[l.topic]?.note} foot={l.level} onOpen={() => setOpen(l)} />
             ))}
           </div>
         </section>
       )}
 
       {tab === 'tenses' && tenses.length > 0 && (
-        <section className="stack gap-2">
+        <section className="stack gap-3">
           <p className="small muted">Fiil laboratuvarındaki her zamanın anlatımı: ne zaman kullanılır, nasıl kurulur, nerede karışır.</p>
-          <div className="guide-grid">
-            {tenses.map((t) => (
-              <button key={t} type="button" className="guide-card" onClick={() => setTense(t)}>
-                <span className="guide-card-head">
-                  <strong lang={language}>{TENSE_BRIEF[t].name}</strong>
-                </span>
-                <span className="small muted">{TENSE_LESSON[t]!.summary}</span>
-              </button>
-            ))}
-          </div>
+          {TENSE_MOOD_ORDER.map((mood) => {
+            const group = tenses.filter((t) => tenseMood(t) === mood)
+            if (group.length === 0) return null
+            return (
+              <div key={mood} className="guide-tense-group stack gap-2">
+                <h3 className="guide-tense-group-title">{MOOD_TITLES[mood]}</h3>
+                <div className="guide-grid">
+                  {group.map((t) => {
+                    const st = tenseStatsMap.get(t)
+                    return (
+                      <button key={t} type="button" className="guide-card" onClick={() => setTense(t)}>
+                        <span className="guide-card-head">
+                          <strong lang={language}>{TENSE_BRIEF[t].name}</strong>
+                          {st && st.total > 0 && (
+                            <span className="guide-tag guide-tag-learned" title={`${st.ok}/${st.total} doğru`}>
+                              %{st.rate} ustalık
+                            </span>
+                          )}
+                        </span>
+                        <span className="small muted">{TENSE_LESSON[t]!.summary}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
           {tense && (
             <TenseLessonSheet
               language={language as 'fr' | 'es'}
@@ -452,11 +564,34 @@ const KIND_ART: Record<ResourceKind, string | undefined> = {
 const LEVEL_NAME: Record<GuideLevel, string> = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İleri orta', C1: 'İleri' }
 const titleOf = lessonTitle
 
-function LessonCard({ lesson, read, learned, foot, flag, snippet, needs, onOpen }: { lesson: TopicLesson; read: boolean; learned: boolean; foot: string; flag?: LessonFlag; /** The line a search matched, when it was deeper than the summary. */ snippet?: string; /** The title of a lesson to read first, when one is not read. */ needs?: string; onOpen: () => void }) {
+type TenseMood = 'indicatif' | 'conditionnel' | 'subjonctif' | 'imperatif'
+
+const tenseMood = (t: Tense): TenseMood => {
+  if (isImperative(t)) return 'imperatif'
+  if (isSubjunctive(t)) return 'subjonctif'
+  if (t.includes('conditionnel') || t.includes('condicional')) return 'conditionnel'
+  return 'indicatif'
+}
+
+const TENSE_MOOD_ORDER: TenseMood[] = ['indicatif', 'conditionnel', 'subjonctif', 'imperatif']
+
+const MOOD_TITLES: Record<TenseMood, string> = {
+  indicatif: 'Haber Kipleri',
+  conditionnel: 'Koşul Kipi',
+  subjonctif: 'Dilek / İstek Kipi',
+  imperatif: 'Emir Kipi',
+}
+
+function LessonCard({ lesson, read, learned, foot, flag, hasNote, snippet, needs, onOpen }: { lesson: TopicLesson; read: boolean; learned: boolean; foot: string; flag?: LessonFlag; hasNote?: boolean; /** The line a search matched, when it was deeper than the summary. */ snippet?: string; /** The title of a lesson to read first, when one is not read. */ needs?: string; onOpen: () => void }) {
   return (
     <button type="button" className={`guide-card${learned ? ' guide-learned' : read ? ' guide-read' : ''}`} onClick={onOpen}>
       <span className="guide-card-head">
         <strong>{titleOf(lesson)}</strong>
+        {hasNote && (
+          <span className="guide-tag guide-tag-note" title="Kişisel notun var">
+            📝 Not
+          </span>
+        )}
         {flag === 'star' && (
           <span className="guide-flag" title="Yer imi" role="img" aria-label="Yer imi">
             ★
@@ -489,7 +624,7 @@ function LessonCard({ lesson, read, learned, foot, flag, snippet, needs, onOpen 
 const PATH_NOTE: Record<PathStep<TopicLesson>['state'], string> = { learned: 'Öğrenildi', read: 'Okundu', next: 'Sıradaki', open: '', waiting: '' }
 
 /** One lesson on the path: a dot (its number, or a tick when read), the title, and where it stands. */
-function PathRow({ step, needs, flag, onOpen }: { step: PathStep<TopicLesson>; needs?: string; flag?: LessonFlag; onOpen: () => void }) {
+function PathRow({ step, needs, flag, hasNote, onOpen }: { step: PathStep<TopicLesson>; needs?: string; flag?: LessonFlag; hasNote?: boolean; onOpen: () => void }) {
   const { lesson, state, number } = step
   const done = state === 'learned' || state === 'read'
   return (
@@ -503,6 +638,7 @@ function PathRow({ step, needs, flag, onOpen }: { step: PathStep<TopicLesson>; n
           <span className="small muted">
             {PATH_NOTE[state] && <span className="guide-path-state">{PATH_NOTE[state]}</span>}
             {state === 'waiting' && needs && <span>Önce: {needs}</span>}
+            {hasNote && <span> · 📝 Notlu</span>}
             {flag === 'star' && <span> ★ Yer imli</span>}
             {flag === 'hard' && <span> · Zor buldum</span>}
           </span>
@@ -531,6 +667,30 @@ function ResourceCard({ r }: { r: GuideResource }) {
   )
 }
 
+function formatRuleText(text: string) {
+  const parts: (string | ReactNode)[] = []
+  const regex = /(?:«([^»]+)»|`([^`]+)`|(?:(?<=\s|^)'([^']+)'(?=[\s,.:;!?]|$)))/g
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+  let key = 0
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index))
+    }
+    const content = match[1] ?? match[2] ?? match[3]
+    parts.push(
+      <code key={key++} className="guide-rule-code">
+        {content}
+      </code>,
+    )
+    lastIndex = regex.lastIndex
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex))
+  }
+  return parts.length > 0 ? parts : text
+}
+
 function LessonView({
   lesson,
   language,
@@ -539,7 +699,10 @@ function LessonView({
   review,
   flag,
   onFlag,
+  note,
+  onNote,
   needs,
+  followUps,
   onOpenLesson,
   questions,
   nextLesson,
@@ -557,8 +720,11 @@ function LessonView({
   review?: boolean
   flag?: LessonFlag
   onFlag: (flag: LessonFlag | null) => void
+  note: string
+  onNote: (note: string) => void
   /** Lessons this one builds on that are not read yet. */
   needs: TopicLesson[]
+  followUps: TopicLesson[]
   onOpenLesson: (lesson: TopicLesson) => void
   questions: number
   nextLesson?: TopicLesson
@@ -573,6 +739,7 @@ function LessonView({
   const check = useMemo(() => checkFor(lesson), [lesson])
   const trial = useMemo(() => tryFor(lesson, check), [lesson, check])
   const [checking, setChecking] = useState(!!review && check.length > 0)
+  const [savedExMap, setSavedExMap] = useState<Record<number, boolean>>({})
   const checkRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (checking && review) checkRef.current?.scrollIntoView({ block: 'start' })
@@ -580,6 +747,20 @@ function LessonView({
   }, [lesson]) // eslint-disable-line react-hooks/exhaustive-deps
   const own = useOwnExamples(db, lesson)
   const verbTopic = !!lessonTense(lesson) || /present|passe|imparfait|preterito|futur|subj|conditionnel/.test(lesson.topic)
+
+  const handleSaveSentence = async (x: { text: string; tr: string }, index: number) => {
+    const ok = await saveSentence({
+      language,
+      text: x.text,
+      translation: x.tr,
+      source: `Rehber: ${titleOf(lesson)}`,
+      focus: lesson.topic,
+    })
+    if (ok) {
+      setSavedExMap((prev) => ({ ...prev, [index]: true }))
+    }
+  }
+
   return (
     <article className="stack guide-lesson">
       <button type="button" className="link guide-back-btn" onClick={onBack}>
@@ -616,7 +797,7 @@ function LessonView({
         <ol className="guide-rules">
           {lesson.rules.map((r, i) => (
             <li key={i}>
-              <span className="guide-rule-text">{r}</span>
+              <span className="guide-rule-text">{formatRuleText(r)}</span>
             </li>
           ))}
         </ol>
@@ -668,6 +849,15 @@ function LessonView({
                 </span>
                 <span className="small muted">{x.tr}</span>
               </div>
+              <button
+                type="button"
+                className={`btn-quiet btn-sm guide-ex-save${savedExMap[i] ? ' guide-ex-saved' : ''}`}
+                title={savedExMap[i] ? 'Cümle kartlarına eklendi' : 'Cümle kartı olarak kaydet'}
+                aria-label={savedExMap[i] ? 'Cümle kartlarına eklendi' : 'Cümle kartı olarak kaydet'}
+                onClick={() => void handleSaveSentence(x, i)}
+              >
+                {savedExMap[i] ? '✓ Kart' : '+ Kart'}
+              </button>
             </li>
           ))}
         </ul>
@@ -717,6 +907,7 @@ function LessonView({
         </p>
       )}
       <LessonWrite key={`write-${lesson.topic}`} title={titleOf(lesson)} language={language} />
+      <LessonNote note={note} onSave={onNote} />
       {check.length > 0 && (
         <div ref={checkRef}>
           {checking ? (
@@ -768,6 +959,21 @@ function LessonView({
           )}
         </button>
       </div>
+      {followUps.length > 0 && (
+        <section className="card stack gap-2 guide-followups" aria-label="Bu konunun devamı">
+          <h2 className="section-title">Bu konunun devamı</h2>
+          <p className="small muted">Bu dersi pekiştirdikten sonra şu konularla devam edebilirsin:</p>
+          <div className="guide-followup-grid">
+            {followUps.map((fu) => (
+              <button key={fu.topic} type="button" className="guide-followup-chip" onClick={() => onOpenLesson(fu)}>
+                <span className="guide-level-badge">{fu.level}</span>
+                <strong>{titleOf(fu)}</strong>
+                <span className="small muted">{fu.summary}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
       {nextLesson && onNext && (
         <button type="button" className="card guide-next" onClick={onNext}>
           <div className="guide-next-lead">

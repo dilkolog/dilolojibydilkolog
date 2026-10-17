@@ -16,6 +16,18 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Zamir mí vurgu işareti taşır, iyelik mi (benim) taşımaz: Es para mí. Es mi libro. ti hiç vurgu almaz.",
       "entre ve según'den sonra özne biçimi kalır: entre tú y yo, según tú.",
     ],
+    table: {
+      caption: "Özne ve Edat Sonrası Kişi Zamirleri",
+      head: ["Anlam", "Özne Zamiri", "Edattan Sonra (para, sin, de…)", "con İle Birleşimi"],
+      rows: [
+        ["ben", "yo", "para mí (vurgulu)", "conmigo"],
+        ["sen", "tú", "para ti (vurgusuz)", "contigo"],
+        ["o / siz (resmî)", "él / ella / usted", "para él / ella / usted", "con él / ella / usted"],
+        ["biz", "nosotros / nosotras", "para nosotros/as", "con nosotros/as"],
+        ["siz (çoğul, İsp.)", "vosotros / vosotras", "para vosotros/as", "con vosotros/as"],
+        ["onlar / sizler", "ellos / ellas / ustedes", "para ellos / ellas / ustedes", "con ellos / ellas / ustedes"],
+      ],
+    },
     examples: [
       { text: "Yo soy de Ankara, ¿y tú?", tr: "Ben Ankaralıyım, ya sen?" },
       { text: "Este café es para ti.", tr: "Bu kahve senin için." },
@@ -67,6 +79,17 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Nötr esto, eso, aquello adı bilinmeyen şey ya da bir fikir içindir ve çoğulu yoktur: ¿Qué es esto? Eso no es verdad.",
       "Vücut parçaları ve giysilerde iyelik yerine artikel: Me duele la cabeza. Ponte el abrigo.",
     ],
+    table: {
+      caption: "İyelik ve İşaret Sözcükleri Özeti",
+      head: ["Tür / Mesafe", "Tekil (Eril / Dişil)", "Çoğul (Eril / Dişil)", "Nötr / Zamir Biçimi"],
+      rows: [
+        ["Ön iyelik (1./2./3. tekil)", "mi / tu / su (libro, casa)", "mis / tus / sus", "el mío / el tuyo / el suyo"],
+        ["Ön iyelik (1./2. çoğul)", "nuestro/a, vuestro/a", "nuestros/as, vuestros/as", "el nuestro / el vuestro"],
+        ["Yakın (aquí - bu)", "este coche / esta mesa", "estos / estas", "esto (bilinmeyen şey / durum)"],
+        ["Orta (ahí - şu)", "ese coche / esa mesa", "esos / esas", "eso (az önce söylenen / şu şey)"],
+        ["Uzak (allí - o)", "aquel coche / aquella mesa", "aquellos / aquellas", "aquello (uzak / geçmiş durum)"],
+      ],
+    },
     examples: [
       { text: "Mi hermano vive con sus hijos en Valencia.", tr: "Kardeşim çocuklarıyla Valensiya'da yaşıyor." },
       { text: "¿Es tuya esta chaqueta?", tr: "Bu ceket senin mi?" },
@@ -118,6 +141,16 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Tarih: el + gün + de + ay + de + yıl: el 15 de octubre de 2026. Ay ve gün adları küçük harfle yazılır. ¿Qué fecha es hoy? / ¿A qué fecha estamos? — Estamos a 15 de octubre.",
       "Yıllar 'bin' olarak okunur: 2026 = dos mil veintiséis; 1995 = mil novecientos noventa y cinco. Yaş tener ile söylenir: Tengo treinta años.",
     ],
+    table: {
+      caption: "Saat, Tarih ve Sayı Kalıpları",
+      head: ["Kategori", "Kalıp / Kural", "İspanyolca Örnek", "Türkçe Karşılığı"],
+      rows: [
+        ["Saat (1:00 vs diğerleri)", "Es la una / Son las + sayı", "Es la una y media. / Son las tres y cuarto.", "Saat bir buçuk. / Üçü çeyrek geçiyor."],
+        ["Kalan dakika / Kaçta?", "menos + dakika / A la(s) + saat", "Son las cinco menos diez. / A las ocho.", "Beşe on var. / Saat sekizde."],
+        ["Tarih", "el + gün + de + ay (+ de + yıl)", "el 15 de octubre de 2026", "15 Ekim 2026 (ay adı küçük harfle)"],
+        ["Yüzler ve birler uyumu", "un / una; -cientos / -cientas", "veintiún años / doscientas páginas", "21 yıl / 200 sayfa (cinsiyet uyumu)"],
+      ],
+    },
     examples: [
       { text: "—¿Qué hora es? —Son las nueve y cuarto.", tr: "—Saat kaç? —Dokuzu çeyrek geçiyor." },
       { text: "La clase empieza a las diez y media.", tr: "Ders on buçukta başlıyor." },
@@ -169,6 +202,18 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "cuánto sorduğu isme uyar: ¿Cuántas hermanas tienes? Fiyat ve miktarda tek başına: ¿Cuánto cuesta?",
       "por qué (neden) iki sözcük ve vurgulu; porque (çünkü) tek sözcük; el porqué ise 'sebep' anlamında isimdir.",
     ],
+    table: {
+      caption: "İspanyolca Soru Sözcükleri ve Qué / Cuál Ayrımı",
+      head: ["Soru Sözcüğü", "Anlamı / Kuralı", "Örnek Soru", "Bağlaç / Yanıt Karşılığı"],
+      rows: [
+        ["¿Qué…?", "Ne / Hangi (+ isim veya tanım)", "¿Qué libro lees? / ¿Qué es esto?", "que (bağlaç, vurgusuz)"],
+        ["¿Cuál / Cuáles…?", "Hangisi / Ne (ser + bilgi/seçim)", "¿Cuál es tu dirección? / ¿Cuál prefieres?", "—"],
+        ["¿Quién / Quiénes…?", "Kim / Kimler (edat başa gelir)", "¿Con quién vas? / ¿Quiénes son?", "quien (ilgi zamiri, vurgusuz)"],
+        ["¿Dónde / Adónde / Cuándo?", "Nerede / Nereye / Ne zaman", "¿De dónde eres? / ¿Cuándo empieza?", "donde / cuando (vurgusuz)"],
+        ["¿Cuánto/a/os/as…?", "Ne kadar / Kaç (isme uyar)", "¿Cuánto cuesta? / ¿Cuántas hermanas tienes?", "cuanto (vurgusuz)"],
+        ["¿Por qué…?", "Neden / Niçin (iki sözcük)", "¿Por qué no me llamaste?", "porque (çünkü) / el porqué (sebep)"],
+      ],
+    },
     examples: [
       { text: "¿De dónde eres?", tr: "Nerelisin?" },
       { text: "¿Cuál es tu dirección?", tr: "Adresin ne?" },
@@ -220,6 +265,16 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "hay que + mastar 'gerek, lazım' anlamında genel zorunluluktur: Hay que reservar mesa.",
       "Sahiplik için tener: Tengo un coche (benim arabam var); varlık için hay: Hay un coche en la puerta.",
     ],
+    table: {
+      caption: "Hay, Estar ve Tener Karşılaştırması",
+      head: ["Fiil", "İşlevi", "Yanına Gelen Öğe", "Örnek"],
+      rows: [
+        ["hay (haber)", "Varlığı ilk kez bildirme ('var')", "un/una, sayı, mucho/poco, yalın isim", "En mi calle hay dos farmacias."],
+        ["está / están (estar)", "Bilinen şeyin konumunu söyleme ('-de')", "el/la/los/las, mi/tu/su, özel ad", "La farmacia está al final de la calle."],
+        ["había / hubo (geçmiş)", "Geçmişte varlık (hep tekil!)", "Belirsiz isim / sayı", "Había mucha gente. Hubo un accidente."],
+        ["tener", "Kişisel sahiplik ('benim …-m var')", "un/una, sayı, isim", "Tengo dos hermanos y un gato."],
+      ],
+    },
     examples: [
       { text: "Perdone, ¿hay un supermercado por aquí?", tr: "Affedersiniz, buralarda süpermarket var mı?" },
       { text: "Sí, el supermercado está al final de la calle.", tr: "Evet, süpermarket sokağın sonunda." },
@@ -272,6 +327,17 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Dönüşlü olunca anlamı değişenler: ir (gitmek) / irse (ayrılmak), dormir (uyumak) / dormirse (uyuyakalmak), llamar (aramak) / llamarse (adı … olmak), quedar (buluşmak) / quedarse (kalmak).",
       "Çoğulda 'birbirini' anlamı da verir: Nos escribimos todos los días. Se conocieron en Lima.",
     ],
+    table: {
+      caption: "Dönüşlü Zamirler ve Dönüşlü Olunca Anlamı Değişen Fiiller",
+      head: ["Kişi / Fiil", "Dönüşlü Çekim / Yalın Hâl", "Dönüşlü Hâl / Zamir Yeri", "Anlam / Kural"],
+      rows: [
+        ["yo / tú / él, ella, Ud.", "me levanto / te levantas / se levanta", "Voy a levantarme / ¡Levántate!", "Çekimli fiilden önce; mastar ve olumlu emre bitişik"],
+        ["nosotros / vosotros / ellos", "nos levantamos / os levantáis / se levantan", "Nos hemos levantado (perfecto)", "Zamir haber'in önüne gelir, ortaç değişmez"],
+        ["ir vs irse", "ir (bir yere gitmek: Voy al cine)", "irse (bulunduğu yerden ayrılmak: Me voy)", "Başlangıç noktasına odaklanır ('kalkıp gitmek')"],
+        ["dormir vs dormirse", "dormir (uyumak: Duermo ocho horas)", "dormirse (uyuyakalmak: Me dormí en el tren)", "Uykuya geçiş anını vurgular"],
+        ["quedar vs quedarse", "quedar (buluşmak: Quedamos a las ocho)", "quedarse (kalmak: Me quedo en casa)", "Vücut/giysi ile artikel alır: Me lavo las manos"],
+      ],
+    },
     examples: [
       { text: "Me levanto a las siete y me ducho enseguida.", tr: "Saat yedide kalkar, hemen duş alırım." },
       { text: "¿A qué hora te acostaste anoche?", tr: "Dün gece kaçta yattın?" },
@@ -322,6 +388,17 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Latin Amerika'nın çoğunda (İspanya'da da Kanarya Adaları ve kuzeybatıda) bugün olan bitmiş iş için de indefinido kullanılır: Hoy comí con mi madre. ¿Ya comiste?",
       "Latin Amerika'da perfecto daha çok bugüne uzanan deneyim ve süreç için kalır: Nunca he estado en Europa. Últimamente he dormido mal.",
     ],
+    table: {
+      caption: "Zaman İşaretlerine ve Bölgeye Göre Geçmiş Zaman Seçimi",
+      head: ["Zaman İfadesi", "İspanya (Merkez/Kuzey)", "Latin Amerika / Kanarya", "Açıklama"],
+      rows: [
+        ["hoy, esta mañana, esta semana", "Pretérito perfecto (he comido)", "Pretérito indefinido (comí)", "İçinde bulunulan ama bitmiş olay"],
+        ["este mes, este año, últimamente", "Pretérito perfecto (he viajado)", "Perfecto / Indefinido", "Şimdiye dek süren dönem"],
+        ["alguna vez, nunca, ya, todavía no", "Pretérito perfecto (he estado)", "Pretérito perfecto (he estado)", "Zamanı belirsiz genel hayat deneyimi"],
+        ["ayer, anoche, la semana pasada", "Pretérito indefinido (fui)", "Pretérito indefinido (fui)", "Kapanmış zaman dilimi (her bölgede aynı)"],
+        ["en 2015, hace tres días, el otro día", "Pretérito indefinido (viví)", "Pretérito indefinido (viví)", "Geçmişte noktalanmış tarih veya süre"],
+      ],
+    },
     examples: [
       { text: "Esta semana he trabajado mucho.", tr: "Bu hafta çok çalıştım." },
       { text: "La semana pasada trabajé desde casa.", tr: "Geçen hafta evden çalıştım." },
@@ -388,6 +465,35 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "'Estará en casa'yı yalnızca 'evde olacak' diye anlamak: bağlama göre çoğu zaman 'evdedir herhalde' demektir.",
     ],
     tip: "Türkçedeki tahmin '-dır' eki (Yorgundur, evdedir, çıkmıştır) İspanyolcada futuroyla verilir: Estará cansado, estará en casa, habrá salido.",
+    table: {
+      "caption": "Gelecek Zaman Düzensiz Kökleri (Futuro Simple)",
+      "head": [
+        "Kök Grubu",
+        "Fiiller",
+        "Düzensiz Kök",
+        "Örnek (1. Tekil: -é)"
+      ],
+      "rows": [
+        [
+          "-d- türeyenler",
+          "tener, poner, salir, venir",
+          "tendr-, pondr-, saldr-, vendr-",
+          "tendré, saldré"
+        ],
+        [
+          "Sesli düşürenler",
+          "poder, saber, haber, querer",
+          "podr-, sabr-, habr-, querr-",
+          "podré, sabré"
+        ],
+        [
+          "Kısalanlar",
+          "hacer, decir",
+          "har-, dir-",
+          "haré, diré"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Te lo ___ mañana, te lo prometo. (decir)",
@@ -439,6 +545,35 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "llevar'da mastar kullanmak: 'Llevo tres años estudiar' değil, 'Llevo tres años estudiando'.",
     ],
     tip: "Başlangıç noktası (2020, enero, las ocho) → desde; süre (tres años) → desde hace ya da llevar; geçmişteki bir an → hace.",
+    table: {
+      "caption": "İspanyolca Zaman ve Süre Kalıpları",
+      "head": [
+        "Kalıp",
+        "Gramer Sıralaması",
+        "Türkçe Karşılığı",
+        "Örnek"
+      ],
+      "rows": [
+        [
+          "desde",
+          "desde + belirli tarih",
+          "-den beri (başlangıç noktası)",
+          "Trabajo aquí desde 2020."
+        ],
+        [
+          "desde hace",
+          "desde hace + süre",
+          "-dir / -dir beri (süre miktarı)",
+          "Vivo en Madrid desde hace dos años."
+        ],
+        [
+          "hace",
+          "hace + süre + fiil (pretérito)",
+          "önce (tamamlanmış geçmiş)",
+          "Llegué hace media hora."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Vivo en Madrid ___ 2020.",
@@ -491,6 +626,41 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Ortacı özneye uydurmak: 'Ellas habían salidas' değil, 'Ellas habían salido'.",
     ],
     tip: "Geçmişte bir dayanak noktası koy (llegué, me dijo); ondan daha geride kalan her şey había + ortaç olur.",
+    table: {
+      "caption": "Pretérito Pluscuamperfecto Kurulumu",
+      "head": [
+        "Şahıs",
+        "Haber (Imperfecto)",
+        "Participio",
+        "Örnek"
+      ],
+      "rows": [
+        [
+          "yo",
+          "había",
+          "comido / hablado",
+          "Cuando llegaste, yo ya había salido."
+        ],
+        [
+          "tú",
+          "habías",
+          "estudiado / visto",
+          "Tú ya habías terminado la tarea."
+        ],
+        [
+          "él / ella",
+          "había",
+          "leído / dicho",
+          "Ella nunca había visto la nieve."
+        ],
+        [
+          "nosotros",
+          "habíamos",
+          "llegado / comprado",
+          "Nosotros ya habíamos comprado los billetes."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Cuando llegamos, la película ya ___.",
@@ -542,6 +712,41 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Ünlüden sonra -iendo yazmak: 'leiendo', 'oiendo' değil, leyendo, oyendo.",
     ],
     tip: "Türkçe yardım eder: '-mak' (yüzmek) = mastar, '-arak' (izleyerek) = gerundio, '-iyor' (şu an) = estar + gerundio.",
+    table: {
+      "caption": "Gerundio (Ulaç) Kurulum Tablosu",
+      "head": [
+        "Fiil Türü",
+        "Kural / Değişim",
+        "Örnek Fiil",
+        "Gerundio Biçimi"
+      ],
+      "rows": [
+        [
+          "-ar fiilleri",
+          "-ando eklenir",
+          "hablar / trabajar",
+          "hablando / trabajando"
+        ],
+        [
+          "-er / -ir fiilleri",
+          "-iendo eklenir",
+          "comer / vivir",
+          "comiendo / viviendo"
+        ],
+        [
+          "Kök sesli değişimi (e->i, o->u)",
+          "Düzensiz ses değişir",
+          "pedir / dormir",
+          "pidiendo / durmiendo"
+        ],
+        [
+          "Çift sesli arasında -y-",
+          "i harfi y olur",
+          "leer / oír",
+          "leyendo / oyendo"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "___ es bueno para la salud.",
@@ -593,6 +798,35 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Bitişik zamirde vurguyu unutmak: 'dandoselo', 'explicamelo' değil, dándoselo, explícamelo.",
     ],
     tip: "Sıra tek cümlede: se en önde, lo / la en sonda, me / te / nos ortada. Emin değilsen lo kullan: her bölgede doğrudur.",
+    table: {
+      "caption": "Çift Zamir Sıralaması ve \"Se Lo\" Kuralı",
+      "head": [
+        "Kombinasyon",
+        "Dönüşüm Kuralı",
+        "Örnek (Hatalı)",
+        "Doğru Biçim"
+      ],
+      "rows": [
+        [
+          "le + lo / la",
+          "le zamiri \"se\"ye dönüşür",
+          "Le lo doy (hatalı)",
+          "Se lo doy (doğru)"
+        ],
+        [
+          "les + los / las",
+          "les zamiri \"se\"ye dönüşür",
+          "Les las muestro (hatalı)",
+          "Se las muestro (doğru)"
+        ],
+        [
+          "Zamir Yeri (Mastar)",
+          "Mastara veya ulaca bitişik yazılır",
+          "Quiero dártelo",
+          "Te lo quiero dar"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Hangisi doğru?",
@@ -644,6 +878,35 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Zarf yerine sıfat: 'Habla español bueno' değil, 'Habla bien español'.",
     ],
     tip: "-mente aslında ayrı bir sözcüktür (Latince 'zihin, tarz'): bu yüzden sıfat dişil kalır, kendi vurgusunu korur ve iki zarf tek -mente'yi paylaşır.",
+    table: {
+      "caption": "İspanyolca Zarf Türetme (-mente)",
+      "head": [
+        "Sıfat Türü",
+        "Türetme Kuralı",
+        "Örnek Sıfat",
+        "Zarf Biçimi"
+      ],
+      "rows": [
+        [
+          "Dişili olan sıfatlar",
+          "Dişil sıfat + -mente",
+          "rápida / clara",
+          "rápidamente / claramente"
+        ],
+        [
+          "Tek biçimli sıfatlar",
+          "Doğrudan sıfat + -mente",
+          "fácil / feliz",
+          "fácilmente / felizmente"
+        ],
+        [
+          "Vurgu kuralı",
+          "Sıfatın kendi aksanı korunur",
+          "útil / difícil",
+          "útilmente / difícilmente"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "fácil → ?",
@@ -696,6 +959,47 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "si'den sonra condicional: 'Si tendría tiempo' değil, 'Si tuviera tiempo'.",
     ],
     tip: "Gövdenin tek kaynağı indefinido'nun ellos biçimidir: fueron, tuvieron, pudieron, pidieron → fuera, tuviera, pudiera, pidiera. Düzensizlik oradan aynen geçer.",
+    table: {
+      "caption": "Pretérito Imperfecto de Subjuntivo",
+      "head": [
+        "Şahıs",
+        "-RA Uçları (Yaygın)",
+        "-SE Uçları (Eşdeğer)",
+        "Örnek (Hablar)"
+      ],
+      "rows": [
+        [
+          "yo",
+          "-ara / -iera",
+          "-ase / -iese",
+          "hablara / hablase"
+        ],
+        [
+          "tú",
+          "-aras / -ieras",
+          "-ases / -ieses",
+          "hablaras / hablases"
+        ],
+        [
+          "él / ella",
+          "-ara / -iera",
+          "-ase / -iese",
+          "hablara / hablase"
+        ],
+        [
+          "nosotros",
+          "-áramos / -iéramos (aksanlı)",
+          "-ásemos / -iésemos",
+          "habláramos / hablásemos"
+        ],
+        [
+          "ellos / ustedes",
+          "-aran / -ieran",
+          "-asen / -iesen",
+          "hablaran / hablasen"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Mis padres querían que yo ___ Derecho.",
@@ -747,6 +1051,41 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "a pesar'dan sonra de'yi atlamak: 'a pesar que' konuşmada duyulur ama yazıda 'a pesar de que' beklenir.",
     ],
     tip: "aunque'de kendine sor: Bu engel gerçek ve yeni bir bilgi mi? Evetse indicativo; olası, varsayımsal ya da önemsiz sayılan bir bilgiyse subjuntivo.",
+    table: {
+      "caption": "Amaç ve Karşıtlık Cümleleri (Para que vs Aunque)",
+      "head": [
+        "Bağlaç",
+        "Gerektirdiği Kip",
+        "Anlam Nuansı",
+        "Örnek"
+      ],
+      "rows": [
+        [
+          "para que",
+          "Daima Subjuntivo",
+          "Farklı iki özneyle amaç bildirir",
+          "Te lo digo para que lo sepas."
+        ],
+        [
+          "para + mastar",
+          "Mastar (Infinitivo)",
+          "Aynı özneyle amaç bildirir",
+          "Estudio para aprobar."
+        ],
+        [
+          "aunque + indicativo",
+          "Indicativo (Haber kipi)",
+          "Bilinen, kesin bir gerçeğe rağmen",
+          "Aunque llueve, voy al parque."
+        ],
+        [
+          "aunque + subjuntivo",
+          "Subjuntivo",
+          "Varsayımsal veya önemsiz bir engele rağmen",
+          "Aunque llueva mañana, iré."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Te dejo las llaves para que ___ entrar.",
@@ -799,6 +1138,41 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "Ojalá'da anlamı karıştırmak: 'Ojalá haya aprobado' sonucu bilmeden umut, 'Ojalá hubiera aprobado' geçmediğini bilerek pişmanlıktır.",
     ],
     tip: "Ojalá testi: sonucu bilmiyorsan haya (umut), bilip olmadığına üzülüyorsan hubiera (keşke).",
+    table: {
+      "caption": "Pretérito Perfecto de Subjuntivo",
+      "head": [
+        "Şahıs",
+        "Haber (Subjuntivo)",
+        "Participio",
+        "Örnek Cümle"
+      ],
+      "rows": [
+        [
+          "yo",
+          "haya",
+          "llegado / comido",
+          "Espero que haya llegado bien."
+        ],
+        [
+          "tú",
+          "hayas",
+          "visto / hecho",
+          "Me alegra que hayas venido."
+        ],
+        [
+          "él / ella",
+          "haya",
+          "dicho / terminado",
+          "Dudo que haya terminado."
+        ],
+        [
+          "nosotros",
+          "hayamos",
+          "aprobado / salido",
+          "Cuando hayamos salido, te llamo."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Me alegra mucho que ___ a mi fiesta.",
@@ -850,6 +1224,35 @@ export const ES_LESSONS_2: TopicLesson[] = [
       "de ahí que'den sonra indicativo: 'de ahí que los precios subieron' değil, 'de ahí que los precios subieran'.",
     ],
     tip: "Her belirleyiciyi yönü ve kaydıyla öğren: pero, sin embargo, no obstante aynı yöne gider ama sırayla daha resmîdir. Bir paragrafta aynı belirleyiciyi iki kez kullanma.",
+    table: {
+      "caption": "İspanyolca Söylem ve Metin İçi Bağlaçları",
+      "head": [
+        "İşlev",
+        "Bağlaçlar",
+        "Konuşma / Yazı",
+        "Örnek"
+      ],
+      "rows": [
+        [
+          "Ek bilgi ekleme",
+          "además, encima, es más",
+          "Yazı ve konuşma",
+          "Es barato y además es bonito."
+        ],
+        [
+          "Düşünceyi düzeltme",
+          "en realidad, de hecho, mejor dicho",
+          "Açıklama getirir",
+          "No es difícil, de hecho es fácil."
+        ],
+        [
+          "Özetleme / Sonuç",
+          "en resumen, en definitiva, en fin",
+          "Paragraf sonlarında",
+          "En resumen, el viaje fue un éxito."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Llovió muy poco; de ahí que los precios ___.",
