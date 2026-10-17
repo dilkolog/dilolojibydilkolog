@@ -15,7 +15,7 @@ import { topicStats } from '../engine/grammar'
 import { LAB_TENSES, type Tense } from '../engine/tenses'
 import { TENSE_BRIEF } from '../engine/tenseBrief'
 import type { TargetLanguage } from '../engine/types'
-import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SpeakerIcon } from './icons'
+import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SearchIcon, SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
@@ -122,41 +122,63 @@ export function GuideScreen({
     <div className="stack guide">
       <PageHeader art="guide" title="Rehber" sub={`${LANGUAGE_NAME[language]} okulun: konu anlatımları, zamanlar ve dışarıdaki en iyi kaynaklar.`} />
       <div className="guide-tabs" role="tablist" aria-label="Rehber bölümleri">
-        <button type="button" role="tab" aria-selected={tab === 'topics'} className="chip" onClick={() => setTab('topics')}>
-          Konular <span className="muted small">{lessons.length}</span>
+        <button type="button" role="tab" aria-selected={tab === 'topics'} className="guide-tab-btn" onClick={() => setTab('topics')}>
+          <span>Konular</span> <span className="guide-tab-count">{lessons.length}</span>
         </button>
         {tenses.length + enTenses.length > 0 && (
-          <button type="button" role="tab" aria-selected={tab === 'tenses'} className="chip" onClick={() => setTab('tenses')}>
-            Zamanlar <span className="muted small">{tenses.length + enTenses.length}</span>
+          <button type="button" role="tab" aria-selected={tab === 'tenses'} className="guide-tab-btn" onClick={() => setTab('tenses')}>
+            <span>Zamanlar</span> <span className="guide-tab-count">{tenses.length + enTenses.length}</span>
           </button>
         )}
-        <button type="button" role="tab" aria-selected={tab === 'links'} className="chip" onClick={() => setTab('links')}>
-          Dış kaynaklar
+        <button type="button" role="tab" aria-selected={tab === 'links'} className="guide-tab-btn" onClick={() => setTab('links')}>
+          <span>Dış kaynaklar</span>
         </button>
       </div>
 
       {tab === 'topics' && (
         <>
           <div className="card guide-progress">
-            <div className="row justify-between small">
-              <span>
-                <strong>{doneCount}</strong> / {lessons.length} konu okundu{learnedCount > 0 && <> · <strong>{learnedCount}</strong> öğrenildi</>}
+            <div className="guide-progress-head">
+              <div className="guide-progress-stat">
+                <span className="guide-progress-title">Genel İlerleme</span>
+                <span className="guide-progress-numbers">
+                  <strong>{doneCount}</strong> / {lessons.length} konu okundu
+                  {learnedCount > 0 && (
+                    <span className="guide-progress-learned"> · <strong>{learnedCount}</strong> öğrenildi</span>
+                  )}
+                </span>
+              </div>
+              <span className="guide-progress-pill">
+                %{lessons.length ? Math.round((doneCount / lessons.length) * 100) : 0}
               </span>
-              <span className="muted">Dersin sonundaki üç soruyu geç, konu öğrenildi sayılsın.</span>
             </div>
             <span className="guide-bar">
               <span style={{ width: `${lessons.length ? (doneCount / lessons.length) * 100 : 0}%` }} />
             </span>
+            <p className="guide-progress-hint small muted">
+              Dersin sonundaki üç soruyu geç, konu öğrenildi sayılsın.
+            </p>
           </div>
           {next && !q && !level && (
             <button type="button" className="card guide-next" onClick={() => setOpen(next)}>
-              <span className="guide-level-badge">{next.level}</span>
-              <span className="guide-next-text">
-                <span className="small muted">{doneCount ? 'Sıradaki dersin' : 'Buradan başla'}</span>
-                <strong>{titleOf(next)}</strong>
-                <span className="small muted">{next.summary}</span>
-              </span>
-              <ChevronRightIcon size={20} className="guide-next-arrow" />
+              <div className="guide-next-lead">
+                <span className="guide-hero-badge">
+                  {doneCount ? '🎯 Sıradaki dersin' : '✨ Buradan başla'}
+                </span>
+                <span className="guide-level-badge">{next.level}</span>
+              </div>
+              <div className="guide-next-content">
+                <div className="guide-next-text">
+                  <span className="small muted guide-next-eyebrow">
+                    {doneCount ? 'Öğrenme yolunda devam et' : 'Dil yolculuğuna ilk adım'}
+                  </span>
+                  <strong>{titleOf(next)}</strong>
+                  <span className="small muted">{next.summary}</span>
+                </div>
+                <span className="guide-next-btn" aria-hidden="true">
+                  <ChevronRightIcon size={20} className="guide-next-arrow" />
+                </span>
+              </div>
             </button>
           )}
           <div className="guide-filters">
@@ -170,7 +192,27 @@ export function GuideScreen({
                 </button>
               ))}
             </div>
-            <input className="input guide-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Konu ara (ör. subjonctif, edat)" aria-label="Konu ara" />
+            <div className="guide-search-box">
+              <SearchIcon size={16} className="guide-search-icon" />
+              <input
+                className="input guide-search"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Konu ara (ör. subjonctif, edat)"
+                aria-label="Konu ara"
+              />
+              {query && (
+                <button
+                  type="button"
+                  className="guide-search-clear"
+                  onClick={() => setQuery('')}
+                  aria-label="Aramayı temizle"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
           {LEVELS.map((lv) => {
             const list = shown.filter((l) => l.level === lv)
@@ -184,7 +226,16 @@ export function GuideScreen({
                   {list.map((l) => {
                     const s = stats.get(l.topic)
                     const n = questions.get(l.topic) ?? 0
-                    return <LessonCard key={l.topic} lesson={l} read={read.has(l.topic)} learned={!!marks[l.topic]?.learned} foot={n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru` : `${n} soru`) : 'Temel konu'} onOpen={() => setOpen(l)} />
+                    return (
+                      <LessonCard
+                        key={l.topic}
+                        lesson={l}
+                        read={read.has(l.topic)}
+                        learned={!!marks[l.topic]?.learned}
+                        foot={n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru` : `${n} soru`) : 'Temel konu'}
+                        onOpen={() => setOpen(l)}
+                      />
+                    )
                   })}
                 </div>
               </section>
@@ -276,12 +327,20 @@ function LessonCard({ lesson, read, learned, foot, onOpen }: { lesson: TopicLess
     <button type="button" className={`guide-card${learned ? ' guide-learned' : read ? ' guide-read' : ''}`} onClick={onOpen}>
       <span className="guide-card-head">
         <strong>{titleOf(lesson)}</strong>
-        {(read || learned) && <CheckCircleIcon size={18} className="guide-check" />}
+        {learned ? (
+          <span className="guide-check-wrap guide-check-learned" title="Öğrenildi">
+            <CheckCircleIcon size={18} className="guide-check" />
+          </span>
+        ) : read ? (
+          <span className="guide-check-wrap guide-check-read" title="Okundu">
+            <CheckCircleIcon size={18} className="guide-check" />
+          </span>
+        ) : null}
       </span>
-      <span className="small muted">{lesson.summary}</span>
+      <span className="small muted guide-card-summary">{lesson.summary}</span>
       <span className="guide-card-foot small">
-        {foot}
-        {learned && <span className="guide-tag">Öğrenildi</span>}
+        <span className="guide-card-stat">{foot}</span>
+        {learned && <span className="guide-tag guide-tag-learned">Öğrenildi</span>}
       </span>
     </button>
   )
@@ -292,13 +351,15 @@ function ResourceCard({ r }: { r: GuideResource }) {
     <a className="guide-card guide-link" href={r.url} target="_blank" rel="noopener noreferrer">
       <span className="guide-card-head">
         <strong>{r.name}</strong>
-        <LinkIcon size={16} className="guide-link-icon" />
+        <span className="guide-link-btn" aria-hidden="true">
+          <LinkIcon size={15} className="guide-link-icon" />
+        </span>
       </span>
-      <span className="small muted">{r.note}</span>
+      <span className="small muted guide-card-summary">{r.note}</span>
       <span className="guide-card-foot small">
-        {r.levels}
-        {r.open && <span className="guide-tag">Açık lisans</span>}
-        {r.paid && <span className="guide-tag">Kısmen ücretli</span>}
+        <span className="guide-card-stat">{r.levels}</span>
+        {r.open && <span className="guide-tag guide-tag-open">Açık lisans</span>}
+        {r.paid && <span className="guide-tag guide-tag-paid">Kısmen ücretli</span>}
       </span>
     </a>
   )
@@ -344,36 +405,50 @@ function LessonView({
   const verbTopic = !!lessonTense(lesson) || /present|passe|imparfait|preterito|futur|subj|conditionnel/.test(lesson.topic)
   return (
     <article className="stack guide-lesson">
-      <button type="button" className="link" onClick={onBack}>
+      <button type="button" className="link guide-back-btn" onClick={onBack}>
         <ChevronLeftIcon size={16} className="inline-icon" /> Rehber
       </button>
-      <header className="stack gap-1">
-        <span className="guide-level-badge">{lesson.level}</span>
+      <header className="stack gap-1 guide-lesson-header">
+        <div className="row items-center gap-2">
+          <span className="guide-level-badge">{lesson.level}</span>
+          {learned ? (
+            <span className="guide-tag guide-tag-learned">Öğrenildi</span>
+          ) : read ? (
+            <span className="guide-tag">Okundu</span>
+          ) : null}
+        </div>
         <h1 className="greeting">{titleOf(lesson)}</h1>
         <p className="greeting-sub">{lesson.summary}</p>
       </header>
-      <section className="card stack gap-2">
+      <section className="card stack gap-2 guide-rules-card">
         <h2 className="section-title">Kurallar</h2>
         <ol className="guide-rules">
           {lesson.rules.map((r, i) => (
-            <li key={i}>{r}</li>
+            <li key={i}>
+              <span className="guide-rule-text">{r}</span>
+            </li>
           ))}
         </ol>
       </section>
-      <section className="card stack gap-2">
+      <section className="card stack gap-2 guide-examples-card">
         <h2 className="section-title">Örnekler</h2>
         <ul className="guide-examples">
           {lesson.examples.map((x, i) => (
-            <li key={i}>
-              <button type="button" className="icon-btn icon-btn-sm" onClick={() => speak(x.text, language)} aria-label={`Dinle: ${x.text}`}>
+            <li key={i} className="guide-example-item">
+              <button
+                type="button"
+                className="icon-btn icon-btn-sm guide-speak-btn"
+                onClick={() => speak(x.text, language)}
+                aria-label={`Dinle: ${x.text}`}
+              >
                 <SpeakerIcon size={16} />
               </button>
-              <span>
+              <div className="guide-example-content">
                 <span className="guide-ex" lang={language}>
                   {x.text}
                 </span>
                 <span className="small muted">{x.tr}</span>
-              </span>
+              </div>
             </li>
           ))}
         </ul>
@@ -399,12 +474,16 @@ function LessonView({
             <LessonCheck items={check} language={language} review={review} onDone={(right) => onChecked(right, check.length)} />
           ) : (
             <button type="button" className="card guide-next lesson-check-start" onClick={() => setChecking(true)}>
-              <span className="guide-next-text">
-                <span className="small muted">{learned ? 'Öğrenildi · tekrar et' : 'Kendini dene'}</span>
-                <strong>{check.length} soruluk kısa sınav</strong>
-                <span className="small muted">{learned ? 'Kural hâlâ yerinde mi, bir bak.' : `${Math.min(PASS_RIGHT, check.length)} doğru yeterli: ders öğrenildi sayılır ve birkaç gün sonra tekrarı gelir.`}</span>
-              </span>
-              <ChevronRightIcon size={20} className="guide-next-arrow" />
+              <div className="guide-next-content">
+                <div className="guide-next-text">
+                  <span className="small muted guide-next-eyebrow">{learned ? 'Öğrenildi · tekrar et' : 'Kendini dene'}</span>
+                  <strong>{check.length} soruluk kısa sınav</strong>
+                  <span className="small muted">{learned ? 'Kural hâlâ yerinde mi, bir bak.' : `${Math.min(PASS_RIGHT, check.length)} doğru yeterli: ders öğrenildi sayılır ve birkaç gün sonra tekrarı gelir.`}</span>
+                </div>
+                <span className="guide-next-btn" aria-hidden="true">
+                  <ChevronRightIcon size={20} className="guide-next-arrow" />
+                </span>
+              </div>
             </button>
           )}
         </div>
@@ -432,13 +511,19 @@ function LessonView({
       </div>
       {nextLesson && onNext && (
         <button type="button" className="card guide-next" onClick={onNext}>
-          <span className="guide-level-badge">{nextLesson.level}</span>
-          <span className="guide-next-text">
-            <span className="small muted">Sıradaki ders</span>
-            <strong>{titleOf(nextLesson)}</strong>
-            <span className="small muted">{nextLesson.summary}</span>
-          </span>
-          <ChevronRightIcon size={20} className="guide-next-arrow" />
+          <div className="guide-next-lead">
+            <span className="guide-level-badge">{nextLesson.level}</span>
+          </div>
+          <div className="guide-next-content">
+            <div className="guide-next-text">
+              <span className="small muted guide-next-eyebrow">Sıradaki ders</span>
+              <strong>{titleOf(nextLesson)}</strong>
+              <span className="small muted">{nextLesson.summary}</span>
+            </div>
+            <span className="guide-next-btn" aria-hidden="true">
+              <ChevronRightIcon size={20} className="guide-next-arrow" />
+            </span>
+          </div>
         </button>
       )}
     </article>
