@@ -1760,6 +1760,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0.875rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .monki-setup { align-items: center; text-align: center; justify-content: center; gap: 0.75rem; }
 .monki-setup p { margin: 0; }
+.monki-save { margin-top: 0.5rem; white-space: normal; }
 .monki-msg { max-width: 88%; padding: 0.5rem 0.75rem; border-radius: var(--r-md); white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.45; }
 .monki-msg.from-monki { align-self: flex-start; background: var(--surface-2); border-bottom-left-radius: var(--r-xs); }
 .monki-msg.from-user { align-self: flex-end; background: var(--lang); color: var(--on-lang); border-bottom-right-radius: var(--r-xs); }

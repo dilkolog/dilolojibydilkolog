@@ -295,6 +295,7 @@ function SentenceReview({ cards, onDone }: { cards: SentenceCard[]; onDone: () =
               {card.text}
             </p>
           )}
+          {card.note && <p className="small muted sentence-note">{card.note}</p>}
           <div className="row">
             {ex.kind === 'translate' && verdict !== 'correct' ? (
               <>

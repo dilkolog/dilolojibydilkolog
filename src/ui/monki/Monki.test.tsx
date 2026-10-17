@@ -7,6 +7,8 @@ import { AiContext } from '../aiContext'
 
 const monkiTurn = vi.fn()
 vi.mock('../../ai', async (orig) => ({ ...(await orig<typeof import('../../ai')>()), monkiTurn: (...a: unknown[]) => monkiTurn(...a) }))
+const saveSentence = vi.fn()
+vi.mock('../saveSentence', () => ({ saveSentence: (...a: unknown[]) => saveSentence(...a) }))
 import Monki from './Monki'
 import { askMonki } from './monkiBus'
 
@@ -29,6 +31,7 @@ describe('Monki', () => {
   beforeEach(() => {
     localStorage.clear()
     monkiTurn.mockReset()
+    saveSentence.mockReset()
     onSettings.mockClear()
     container = document.createElement('div')
     document.body.appendChild(container)
@@ -73,6 +76,30 @@ describe('Monki', () => {
     expect(container.querySelector('.monki-msg.from-monki strong')?.textContent).toBe('la maison')
     expect(container.querySelector('.monki-chips')?.textContent).toContain('Bir örnek daha')
     expect(JSON.parse(localStorage.getItem('diloloji:monki:fr')!)).toHaveLength(2)
+  })
+
+  it('a correction can be kept as a sentence card, with the word that changed blanked first', async () => {
+    saveSentence.mockResolvedValueOnce(true)
+    localStorage.setItem(
+      'diloloji:monki:fr',
+      JSON.stringify([
+        { role: 'user', text: 'Je veux un café' },
+        { role: 'assistant', text: 'Très bien !\n✏️ Düzeltme: “Je voudrais un café” — kibar istek için.' },
+      ]),
+    )
+    render('sk-test')
+    openPanel()
+    const button = [...container.querySelectorAll<HTMLButtonElement>('.monki-save button')].find((b) => b.textContent?.includes('karta ekle'))!
+    await act(async () => button.click())
+    expect(saveSentence).toHaveBeenCalledWith({ language: 'fr', text: 'Je voudrais un café', focus: 'voudrais', source: 'Monki düzeltmesi', note: 'Monki: kibar istek için.' })
+    expect(container.querySelector('.monki-save')?.textContent).toContain('eklendi')
+  })
+
+  it('shows no save button on a message without a correction', () => {
+    localStorage.setItem('diloloji:monki:fr', JSON.stringify([{ role: 'user', text: 'salut' }, { role: 'assistant', text: 'coucou' }]))
+    render('sk-test')
+    openPanel()
+    expect(container.querySelector('.monki-save')).toBeNull()
   })
 
   it('keeps the chat of each language apart and can clear it', async () => {

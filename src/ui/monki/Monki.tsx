@@ -10,6 +10,8 @@ import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
 import { EMBLEM, ROLE_ART } from '../drawnArt'
 import { usesWord } from './monkiWords'
+import { changedWord, parseCorrection } from './corrections'
+import { saveSentence } from '../saveSentence'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -80,6 +82,45 @@ const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolea
   roleplay: (_h, lang) => `**Bir sahne seç**, ben karşındaki kişi olurum ve ${lang} konuşuruz. Hata yaparsan konuşmayı bölmeden altına küçük bir düzeltme yazarım.`,
   mistakes: (_h, _l, has) => (has ? '**Son hatalarına bakalım.** Tek tek, nedenini ve bir hafıza ipucunu konuşalım, sonra yeni bir cümle kuralım.' : '**Açık hatan yok**, harika! Birkaç soru çözüp hata biriktirdikçe burada onlarla çalışabiliriz.'),
   words: () => '**Kelimelerle konuşalım.** Sana sorular soracağım; cevaplarken yukarıdaki kelimeleri kullanmaya çalış, kullandıkça işaretlenir.',
+}
+
+/** Under a correction Monki wrote: one tap keeps the corrected sentence as a sentence card (the word that changed is blanked first). */
+function SaveCorrection({ text, original, language }: { text: string; original?: string; language: TargetLanguage }) {
+  const correction = parseCorrection(text)
+  const [state, setState] = useState<'idle' | 'saved' | 'had' | 'failed'>('idle')
+  if (!correction) return null
+  const save = async () => {
+    try {
+      const ok = await saveSentence({
+        language,
+        text: correction.sentence,
+        focus: changedWord(correction.sentence, original),
+        source: 'Monki düzeltmesi',
+        note: correction.reason ? `Monki: ${correction.reason}` : undefined,
+      })
+      setState(ok ? 'saved' : 'had')
+    } catch {
+      setState('failed')
+    }
+  }
+  return (
+    <div className="monki-save">
+      {state === 'saved' || state === 'had' ? (
+        <span className="small muted" role="status">
+          {state === 'saved' ? '✓ Cümle kartlarına eklendi' : 'Bu cümle zaten kartlarında'}
+        </span>
+      ) : (
+        <button type="button" className="btn btn-sm btn-quiet" onClick={() => void save()}>
+          Düzeltilmiş cümleyi karta ekle
+        </button>
+      )}
+      {state === 'failed' && (
+        <span className="small notice" role="alert">
+          Eklenemedi, tekrar dene.
+        </span>
+      )}
+    </div>
+  )
 }
 
 /** Monki: the assistant. A floating monkey that opens a small chat about the language being learned. */
@@ -319,6 +360,7 @@ export default function Monki({
                 {msgs.map((m, i) => (
                   <div key={i} className={`monki-msg ${m.role === 'user' ? 'from-user' : 'from-monki'}`}>
                     {m.role === 'user' ? m.text : <RichText text={m.text} />}
+                    {m.role === 'assistant' && <SaveCorrection text={m.text} original={msgs[i - 1]?.role === 'user' ? msgs[i - 1].text : undefined} language={language} />}
                   </div>
                 ))}
                 {busy && (
