@@ -40,6 +40,7 @@ let root: ReturnType<typeof createRoot> | undefined
 beforeEach(async () => {
   calls.length = 0
   fail = false
+  localStorage.clear()
   await db.vocabulary.clear()
 })
 afterEach(() => {
@@ -102,5 +103,25 @@ describe('FillMissingBar', () => {
     const host = await mount([bare('maison')], null)
     expect(host.querySelector<HTMLButtonElement>('button.btn')!.disabled).toBe(true)
     expect(host.textContent).toContain('anahtar')
+  })
+
+  it('can be dismissed for a week, and returns if new missing words arrive or after snooze duration', async () => {
+    const words = [bare('maison')]
+    const host = await mount(words)
+    expect(host.textContent).toContain('1 kelimede eksik var')
+    const closeBtn = host.querySelector<HTMLButtonElement>('button[aria-label="Şimdi değil"]')!
+    expect(closeBtn).toBeTruthy()
+    await act(async () => closeBtn.click())
+    expect(host.innerHTML).toBe('')
+
+    // Remounting with the same word remains hidden
+    act(() => root?.unmount())
+    const host2 = await mount(words)
+    expect(host2.innerHTML).toBe('')
+
+    // But if more words have missing details than when dismissed, it shows again
+    act(() => root?.unmount())
+    const host3 = await mount([bare('maison'), bare('soleil')])
+    expect(host3.textContent).toContain('2 kelimede eksik var')
   })
 })

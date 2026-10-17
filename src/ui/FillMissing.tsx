@@ -5,11 +5,13 @@ import type { KelimeDB } from '../data/db'
 import { fillMissing, needsFill } from '../engine/wordSuggest'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
-import { WandIcon } from './icons'
+import { CloseIcon, WandIcon } from './icons'
 import { changeWordsWithUndo } from './undo'
 
 /** Words per request (one request per batch keeps cost and time low). */
 const BATCH = 15
+
+import { dismissFillMissing, isFillMissingDismissed } from './fillMissingDismiss'
 
 /**
  * One button for the blanks across the whole list: words without an example sentence, nouns
@@ -21,7 +23,13 @@ export function FillMissingBar({ db, vocabulary, onChanged }: { db: KelimeDB; vo
   const todo = useMemo(() => needsFill(vocabulary), [vocabulary])
   const [busy, setBusy] = useState('')
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null)
-  if (!todo.length) return null
+  const [dismissed, setDismissed] = useState(false)
+  if (!todo.length || dismissed || isFillMissingDismissed(todo.length)) return null
+
+  const onDismiss = () => {
+    dismissFillMissing(todo.length)
+    setDismissed(true)
+  }
 
   const run = async () => {
     if (!apiKey) return
@@ -76,14 +84,25 @@ export function FillMissingBar({ db, vocabulary, onChanged }: { db: KelimeDB; vo
 
   return (
     <section className="card stack fill-missing" aria-label="Eksikleri tamamla">
-      <div className="row justify-between">
-        <span>
+      <div className="row justify-between items-center fill-missing-head">
+        <span className="fill-missing-text">
           <strong>{todo.length} kelimede eksik var</strong>
           <span className="small muted"> örnek cümle, isim cinsiyeti ya da tür</span>
         </span>
-        <button type="button" className="btn btn-sm" onClick={run} disabled={!apiKey || !!busy} title={apiKey ? undefined : needsApproval ? 'YZ özellikleri onay bekliyor' : 'Ayarlar → YZ yardımcısı bölümünden anahtarını gir'}>
-          <WandIcon size={14} /> {busy || 'Eksikleri YZ ile tamamla'}
-        </button>
+        <div className="row items-center gap-2 fill-missing-actions">
+          <button type="button" className="btn btn-sm" onClick={run} disabled={!apiKey || !!busy} title={apiKey ? undefined : needsApproval ? 'YZ özellikleri onay bekliyor' : 'Ayarlar → YZ yardımcısı bölümünden anahtarını gir'}>
+            <WandIcon size={14} /> {busy || 'Eksikleri YZ ile tamamla'}
+          </button>
+          <button
+            type="button"
+            className="icon-btn icon-btn-sm"
+            onClick={onDismiss}
+            aria-label="Şimdi değil"
+            title="Şimdi değil (1 hafta hatırlatma)"
+          >
+            <CloseIcon size={16} />
+          </button>
+        </div>
       </div>
       {!apiKey && <p className="small muted">{needsApproval ? 'YZ özellikleri hesabının onaylanmasını bekliyor.' : 'Bunun için Ayarlar → YZ yardımcısı bölümünde bir anahtar gerekiyor.'}</p>}
       {message && (

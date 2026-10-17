@@ -2403,6 +2403,11 @@ button.access-badge:hover { border-color: var(--ink-soft); }
   margin-left: 0.25rem;
 }
 
+/* Words view: Fill missing banner with action and dismiss */
+.fill-missing-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.fill-missing-text { flex: 1 1 12rem; min-width: 0; }
+.fill-missing-actions { display: inline-flex; align-items: center; gap: 0.5rem; flex: none; }
+
 /* Where a sentence comes from (a text the learner read, their own sentence): a quiet tag under it. */
 
 /* Turkish meanings from Wiktionary under the meaning field: one tap adds one. */
