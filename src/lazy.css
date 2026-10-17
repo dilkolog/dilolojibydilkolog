@@ -2549,6 +2549,13 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   color: var(--ink);
   line-height: 1.4;
 }
+.guide-own-mark {
+  background: var(--lang-soft);
+  color: inherit;
+  border-radius: 0.25rem;
+  padding: 0 0.15rem;
+}
+
 .guide-watch {
   border: 1px solid color-mix(in srgb, var(--near) 40%, transparent);
   border-left: 4px solid var(--near);

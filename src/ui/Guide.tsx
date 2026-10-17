@@ -19,6 +19,7 @@ import { CheckCircleIcon, ChevronLeftIcon, ChevronRightIcon, LinkIcon, SearchIco
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
+import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonCheck } from './LessonCheck'
 import { loadMarks, markChecked, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
@@ -409,6 +410,7 @@ function LessonView({
     if (checking && review) checkRef.current?.scrollIntoView({ block: 'start' })
     else window.scrollTo({ top: 0 })
   }, [lesson]) // eslint-disable-line react-hooks/exhaustive-deps
+  const own = useOwnExamples(db, lesson)
   const verbTopic = !!lessonTense(lesson) || /present|passe|imparfait|preterito|futur|subj|conditionnel/.test(lesson.topic)
   return (
     <article className="stack guide-lesson">
@@ -460,6 +462,35 @@ function LessonView({
           ))}
         </ul>
       </section>
+      {canShowOwn(lesson) && own && own.length > 0 && (
+        <section className="card stack gap-2 guide-own" aria-label="Senin cümlelerinde">
+          <h2 className="section-title">Senin cümlelerinde</h2>
+          <p className="small muted">Kendi metinlerinden, çevirilerinden ve kelime örneklerinden: bu konu gerçekten karşına çıkmış.</p>
+          <ul className="guide-examples">
+            {own.map((x, i) => (
+              <li key={i} className="guide-example-item">
+                <button type="button" className="icon-btn icon-btn-sm guide-speak-btn" onClick={() => speak(x.sentence, language)} aria-label={`Dinle: ${x.sentence}`}>
+                  <SpeakerIcon size={16} />
+                </button>
+                <div className="guide-example-content">
+                  <span className="guide-ex" lang={language}>
+                    {x.mark ? (
+                      <>
+                        {x.sentence.slice(0, x.mark.start)}
+                        <mark className="guide-own-mark">{x.sentence.slice(x.mark.start, x.mark.end)}</mark>
+                        {x.sentence.slice(x.mark.end)}
+                      </>
+                    ) : (
+                      x.sentence
+                    )}
+                  </span>
+                  <span className="small muted">{x.source}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       {lesson.watch.length > 0 && (
         <section className="card stack gap-2 guide-watch">
           <h2 className="section-title">Dikkat</h2>

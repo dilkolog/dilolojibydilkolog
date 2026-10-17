@@ -1,0 +1,45 @@
+import { useEffect, useState } from 'react'
+import { hasPattern, ownExamples, type OwnExample, type OwnSource } from '../engine/lessonExamples'
+import type { TargetLanguage } from '../engine/types'
+import type { KelimeDB } from '../data/db'
+import { loadTenses } from '../data/tenseData'
+import { lessonTense } from '../data/guide/lessonOf'
+import type { TopicLesson } from '../data/guide/lessonTypes'
+
+/** How many of each of the two piles of single sentences are read: the newest ones. */
+const PILE = 300
+
+/** What the learner owns that a lesson can be shown in, newest first: the reading library, then the translated sentences, then the examples of their words. */
+export async function ownSources(db: KelimeDB, language: TargetLanguage): Promise<OwnSource[]> {
+  const library = (await db.getLibrary(language)).slice().sort((a, b) => String(b.addedAt).localeCompare(String(a.addedAt)))
+  const out: OwnSource[] = library.map((t) => ({ title: t.title, text: t.text }))
+  const memory = (await db.getTranslations()).filter((e) => e.from === language).slice(-PILE).reverse()
+  if (memory.length) out.push({ title: 'Çeviri geçmişin', text: memory.map((e) => e.text).join('\n') })
+  const words = await db.vocabulary.where('language').equals(language).toArray()
+  const examples = words.flatMap((w) => w.senses.flatMap((s) => s.examples.map((x) => x.text).filter((t): t is string => !!t?.trim()))).slice(-PILE)
+  if (examples.length) out.push({ title: 'Kelime örneklerin', text: examples.join('\n') })
+  return out
+}
+
+/** Whether a lesson can show the learner's own sentences at all (it teaches a tense or a topic with a pattern). */
+export const canShowOwn = (lesson: TopicLesson): boolean => (lesson.language !== 'en' && !!lessonTense(lesson)) || hasPattern(lesson.topic)
+
+/** The learner's own sentences that show a lesson: null while they are looked for (or when the lesson cannot have any), else the few found. */
+export function useOwnExamples(db: KelimeDB, lesson: TopicLesson): OwnExample[] | null {
+  const [found, setFound] = useState<{ topic: string; list: OwnExample[] } | null>(null)
+  useEffect(() => {
+    if (!canShowOwn(lesson)) return
+    let live = true
+    void (async () => {
+      if (lesson.language !== 'en') await loadTenses(lesson.language)
+      // A beat after the lesson is on screen: the search reads the library and analyses text.
+      await new Promise((r) => setTimeout(r, 0))
+      const list = ownExamples(lesson.language, lesson.topic, lessonTense(lesson), await ownSources(db, lesson.language))
+      if (live) setFound({ topic: lesson.topic, list })
+    })().catch(() => live && setFound({ topic: lesson.topic, list: [] }))
+    return () => {
+      live = false
+    }
+  }, [db, lesson])
+  return found && found.topic === lesson.topic ? found.list : null
+}

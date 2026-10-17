@@ -1,3 +1,4 @@
+import { topicOfTense } from '../data/guide/tenseTopics'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { SearchIcon } from './icons'
 import { isPersonless, type Tense } from '../engine/tenses'
@@ -9,7 +10,7 @@ const SHOWN = 6
  * The verb forms in the open text, a tense at a time (the most used tense first): the form as
  * written, its verb, how often it occurs. A form opens its verb in the lab at that tense.
  */
-export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; /** Scrolls the text to a sentence and lights it. */ onShow?: (sentence: number) => void; /** Puts verb-and-tense pairs in the verb lab's review queue. */ onReview?: (pairs: { lemma: string; tense: Tense }[]) => void; onClose: () => void }) {
+export function TextForms({ groups, language, onOpenLab, onLesson, onReview, onShow, onClose }: { groups: TenseGroup[]; language: 'fr' | 'es'; onOpenLab?: (verb: string, tense: string) => void; /** Opens the guide's lesson on a topic. */ onLesson?: (topic: string) => void; /** Scrolls the text to a sentence and lights it. */ onShow?: (sentence: number) => void; /** Puts verb-and-tense pairs in the verb lab's review queue. */ onReview?: (pairs: { lemma: string; tense: Tense }[]) => void; onClose: () => void }) {
   const total = groups.reduce((n, g) => n + g.total, 0)
   // Forms with no person (après avoir mangé) cannot be asked in the lab, so they are not offered for review.
   const pairsOf = (list: readonly TenseGroup[]) => list.filter((g) => !isPersonless(g.tense)).flatMap((g) => [...new Set(g.forms.map((f) => f.lemma))].map((lemma) => ({ lemma, tense: g.tense })))
@@ -64,6 +65,11 @@ export function TextForms({ groups, language, onOpenLab, onReview, onShow, onClo
               {onReview && !isPersonless(g.tense) && (
                 <button type="button" className="link small" onClick={() => onReview(pairsOf([g]))}>
                   Bu zamanın fiillerini tekrara ekle ({pairsOf([g]).length})
+                </button>
+              )}
+              {onLesson && topicOfTense(g.tense) && (
+                <button type="button" className="link small" onClick={() => onLesson(topicOfTense(g.tense)!)}>
+                  Bu zamanın dersini oku
                 </button>
               )}
             </details>

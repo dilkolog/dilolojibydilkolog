@@ -13,6 +13,7 @@ afterEach(async () => {
   document.body.innerHTML = ''
   localStorage.clear()
   await db.meta.clear()
+  await db.texts.clear()
 })
 
 async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean } = {}) {
@@ -137,5 +138,22 @@ describe('GuideScreen', () => {
     expect(nextBtn).toBeDefined()
     await act(async () => nextBtn.click())
     expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Être ve avoir')
+  })
+
+  it('shows the learner\'s own sentences that show the topic, with the part that shows it marked', async () => {
+    await db.saveText({ id: 't1', language: 'fr', title: 'Mon carnet', text: "Je ne mange jamais de viande le soir. Demain nous irons au cinéma avec des amis.", addedAt: new Date().toISOString(), history: [] })
+    const { host } = await mount('fr', { initialLesson: 'negation_fr' })
+    await act(() => new Promise((r) => setTimeout(r, 80)))
+    const section = host.querySelector('.guide-own')!
+    expect(section.textContent).toContain('Senin cümlelerinde')
+    expect(section.textContent).toContain('Mon carnet')
+    expect(section.querySelector('mark')?.textContent).toBe('ne mange jamais')
+  })
+
+  it('a lesson the learner has nothing for shows no own section', async () => {
+    const { host } = await mount('fr', { initialLesson: 'negation_fr' })
+    await act(() => new Promise((r) => setTimeout(r, 80)))
+    expect(host.querySelector('.guide-lesson h1')).not.toBeNull()
+    expect(host.querySelector('.guide-own')).toBeNull()
   })
 })

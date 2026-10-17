@@ -173,4 +173,20 @@ describe('TextForms', () => {
 
     expect(rootEl.textContent).toContain('+3 biçim daha')
   })
+
+  it('leads from a tense to its lesson in the guide, when the tense has one', () => {
+    const onLesson = vi.fn()
+    const groups: TenseGroup[] = [
+      { tense: 'passe-compose', total: 1, forms: [{ form: 'ai mangé', lemma: 'manger', count: 1 }] },
+      { tense: 'infinitif-passe', total: 1, forms: [{ form: 'après avoir mangé', lemma: 'manger', count: 1 }] },
+    ]
+    act(() => {
+      root.render(<TextForms groups={groups} language="fr" onLesson={onLesson} onClose={vi.fn()} />)
+    })
+    const links = [...rootEl.querySelectorAll<HTMLButtonElement>('button.link')].filter((b) => b.textContent === 'Bu zamanın dersini oku')
+    // Only the passé composé has a lesson of its own.
+    expect(links).toHaveLength(1)
+    act(() => links[0]!.click())
+    expect(onLesson).toHaveBeenCalledWith('basics_fr_passe_compose')
+  })
 })

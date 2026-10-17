@@ -278,6 +278,7 @@ export function AppScreens(props: AppScreensProps) {
           onChanged={reload}
           onOpen={(entryId) => setScreen({ name: 'word', entryId })}
           onOpenLab={data.language !== 'en' ? (verb, tense) => setScreen({ name: 'verbs', verb, tense }) : undefined}
+          onLesson={(topic) => setScreen({ name: 'guide', lesson: topic })}
           onLookUp={(query) => setScreen({ name: 'dictionary', query })}
           onStudy={(deck) =>
             startSession(buildDeckPlan({ catalog: deck, states: data.states, rng: createRng(Date.now()), scheduler, now: new Date(), options }), 'normal', undefined, deck)

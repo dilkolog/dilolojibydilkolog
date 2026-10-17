@@ -7,6 +7,7 @@ import { AskMonki } from './monki/AskMonki'
 import { sentenceAsk } from './monki/asks'
 import { cleanToken } from '../engine/extract'
 import type { ReadToken } from '../engine/reading'
+import { topicOfTense } from '../data/guide/tenseTopics'
 import { TENSE_GUIDE } from '../engine/tenseGuide'
 import { subjectLabel, type FormAnalysis } from '../engine/tenses'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
@@ -48,6 +49,7 @@ export function WordCard({
   onLookUp,
   onOpen,
   onOpenLab,
+  onLesson,
   onKeepSentence,
   onListenFrom,
   onPinHeard,
@@ -75,6 +77,8 @@ export function WordCard({
   onLookUp?: (word: string) => void
   onOpen: (entryId: string) => void
   onOpenLab?: (verb: string, tense: string) => void
+  /** Opens the guide's lesson on a topic. */
+  onLesson?: (topic: string) => void
   onKeepSentence: (sentence: string, word: string) => void
   onListenFrom: (at: string) => void
   onPinHeard?: (at: string) => void
@@ -133,6 +137,14 @@ export function WordCard({
                     {' '}
                     <button className="link small" onClick={() => onOpenLab(a.lemma, a.tense)}>
                       fiil laboratuvarında aç
+                    </button>
+                  </>
+                )}
+                {onLesson && topicOfTense(a.tense) && (
+                  <>
+                    {' '}
+                    <button className="link small" onClick={() => onLesson(topicOfTense(a.tense)!)}>
+                      dersi oku
                     </button>
                   </>
                 )}

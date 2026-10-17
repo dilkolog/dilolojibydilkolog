@@ -1,3 +1,4 @@
+import { LessonLink } from '../LessonLink'
 import { useEffect, useMemo, useState } from 'react'
 import { GameResult } from './GameResult'
 import { flowParts, flowRound, shuffledOptions, flowGapId, FLOW_ROUND, type FlowItem } from '../../engine/flow'
@@ -16,7 +17,7 @@ const note = noteIn(() => db.getFlowLog(), (log) => db.saveFlowLog(log))
  * Text flow: a short paragraph with its connectors missing. The gaps are filled one after another by
  * choosing the connector that gives the thought its direction; each answer says why in Turkish.
  */
-export function FlowRound({ language, onExit }: { language: TargetLanguage; onExit: () => void }) {
+export function FlowRound({ language, onExit, onLesson }: { language: TargetLanguage; onExit: () => void; /** Opens the guide's lesson on a topic. */ onLesson?: (topic: string) => void }) {
   const [log, setLog] = useState<GrammarLog | null>(null)
   const [phase, setPhase] = useState<'intro' | 'play' | 'over'>('intro')
   const [round, setRound] = useState<FlowItem[]>([])
@@ -204,6 +205,7 @@ export function FlowRound({ language, onExit }: { language: TargetLanguage; onEx
           onExit={onExit}
         />
       )}
+      {phase === 'over' && missed.length > 0 && onLesson && <LessonLink language={language} topic={`conn_${language}`} onOpen={onLesson} />}
     </div>
   )
 }
