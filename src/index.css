@@ -1992,6 +1992,93 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 }
 .journal-editor:focus { border-color: var(--lang); }
 
+/* Journal entries list */
+.journal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.journal-item {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--dur-fast), border-color var(--dur-fast);
+}
+.journal-item:hover {
+  box-shadow: var(--shadow);
+}
+.journal-item-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.journal-details {
+  flex: 1;
+  min-width: 0;
+}
+.journal-details > summary {
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.375rem 0.5rem;
+  cursor: pointer;
+  line-height: 1.45;
+}
+.journal-details > summary::-webkit-details-marker {
+  display: none;
+}
+.journal-details > summary::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.journal-details[open] > summary::before {
+  transform: rotate(90deg);
+}
+.journal-summary-text {
+  font-weight: 600;
+  color: var(--ink);
+}
+.journal-body {
+  margin-top: 0.625rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+}
+.journal-text {
+  font-family: var(--serif);
+  font-size: var(--t-md);
+  line-height: 1.6;
+  margin: 0;
+  color: var(--ink);
+}
+.journal-entry-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding-top: 0.375rem;
+}
+.journal-delete-btn {
+  color: var(--ink-soft);
+  opacity: 0.6;
+  flex: none;
+  padding: 0.25rem;
+  border-radius: var(--r-sm);
+  transition: color var(--dur-fast), opacity var(--dur-fast), background-color var(--dur-fast);
+}
+.journal-delete-btn:hover {
+  color: var(--bad);
+  opacity: 1;
+  background: var(--bad-soft);
+}
+
 /* ---------- Garden: planters, soil, and a drop on plants that need water ---------- */
 .bed { display: grid; gap: 0.625rem; margin-top: 1.25rem; }
 .bed-title { margin: 0; display: flex; align-items: center; gap: 0.5rem; font-size: var(--t-md); font-weight: 700; color: var(--ink); }

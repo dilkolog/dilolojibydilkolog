@@ -16,7 +16,9 @@ import { scheduler } from '../data/instance'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { useAi } from './aiContext'
-import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, PenIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon } from './icons'
+import { BrandMark, CheckCircleIcon, CheckIcon, MicIcon, PenIcon, SparkleIcon, SpeakerIcon, StarIcon, StopIcon, TrashIcon } from './icons'
+import { ConfirmDialog } from './Dialog'
+import { undoable } from './toastFeed'
 import { MISSION_ART } from './drawnArt'
 import { Glyph } from './Glyph'
 import { LANGUAGE_NAME } from './labels'
@@ -99,11 +101,25 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
   const [last, setLast] = useState<JournalEntry | null>(null)
   const [added, setAdded] = useState(0)
   const [credited, setCredited] = useState(0)
+  const [confirmDelete, setConfirmDelete] = useState<JournalEntry | null>(null)
   const area = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     db.getJournal(language).then(setEntries)
   }, [db, language])
+
+  const handleDelete = async (entryToDelete: JournalEntry) => {
+    setConfirmDelete(null)
+    await db.deleteJournal(entryToDelete.id)
+    setEntries((prev) => prev.filter((j) => j.id !== entryToDelete.id))
+    if (last?.id === entryToDelete.id) setLast(null)
+    onChanged()
+    undoable('Yazı silindi', async () => {
+      await db.restoreJournal(entryToDelete)
+      setEntries((prev) => [entryToDelete, ...prev].sort((a, b) => timeOf(b.at) - timeOf(a.at)))
+      onChanged()
+    })
+  }
 
   const save = async () => {
     const t = text.trim()
@@ -207,22 +223,59 @@ function Journal({ db, language, vocabulary, states, onChanged, onOpenSettings }
             <p className="small muted">Bu ay {days} gün yazdın.</p>
             <ul className="plain stack journal-list">
               {entries.slice(0, 20).map((e) => (
-                <li key={e.id}>
-                  <details>
-                    <summary>
-                      <span className="small muted">{new Date(timeOf(e.at)).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}</span> {e.text.slice(0, 70)}
-                      {e.text.length > 70 ? '…' : ''}
-                      {e.review && <span className="small muted"> · {e.review.mistakes.length} düzeltme</span>}
-                    </summary>
-                    <p lang={language}>{e.text}</p>
-                    {e.review && <Review entry={e} language={language} />}
-                  </details>
+                <li key={e.id} className="journal-item">
+                  <div className="journal-item-row">
+                    <details className="journal-details">
+                      <summary>
+                        <span className="small muted">{new Date(timeOf(e.at)).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}</span>{' '}
+                        <span className="journal-summary-text">{e.text.slice(0, 70)}{e.text.length > 70 ? '…' : ''}</span>
+                        {e.review && <span className="small muted"> · {e.review.mistakes.length} düzeltme</span>}
+                      </summary>
+                      <div className="journal-body">
+                        <p lang={language} className="journal-text">{e.text}</p>
+                        {e.review && <Review entry={e} language={language} />}
+                        <div className="row journal-entry-actions">
+                          <button
+                            type="button"
+                            className="link small danger"
+                            onClick={() => setConfirmDelete(e)}
+                          >
+                            <TrashIcon size={14} className="inline-icon" /> Bu yazıyı sil
+                          </button>
+                        </div>
+                      </div>
+                    </details>
+                    <button
+                      type="button"
+                      className="btn-icon journal-delete-btn"
+                      title="Yazıyı sil"
+                      aria-label="Yazıyı sil"
+                      onClick={() => setConfirmDelete(e)}
+                    >
+                      <TrashIcon size={16} />
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
           </>
         )}
       </section>
+
+      {confirmDelete && (
+        <ConfirmDialog
+          title="Bu yazı silinsin mi?"
+          confirmLabel="Sil"
+          danger
+          onCancel={() => setConfirmDelete(null)}
+          onConfirm={() => void handleDelete(confirmDelete)}
+        >
+          <p lang={language} className="target" style={{ fontStyle: 'italic', margin: 0 }}>“{confirmDelete.text}”</p>
+          <p className="small muted" style={{ marginTop: '0.5rem' }}>
+            Bu günlük yazısı ve varsa değerlendirmesi silinir.
+          </p>
+        </ConfirmDialog>
+      )}
     </div>
   )
 }
