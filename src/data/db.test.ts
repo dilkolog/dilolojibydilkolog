@@ -66,6 +66,23 @@ describe('KelimeDB', () => {
     expect((await db.getLibrary('fr')).map((t) => t.id)).toEqual([text.id])
   })
 
+  it('deleted journal entries are remembered for sync and can be restored', async () => {
+    const db = new KelimeDB('t-journal')
+    const entry = { id: 'j1', language: 'fr' as const, at: NOW.toISOString(), text: 'Aujourd’hui j’ai appris le français.' }
+    await db.saveJournal(entry)
+    expect((await db.getJournal('fr')).map((j) => j.id)).toEqual(['j1'])
+
+    await db.deleteJournal(entry.id)
+    expect(await db.getJournal('fr')).toEqual([])
+    expect(deadIds(await db.getDeleted()).has(entry.id)).toBe(true)
+
+    await new Promise((r) => setTimeout(r, 5))
+
+    await db.restoreJournal(entry)
+    expect((await db.getJournal('fr')).map((j) => j.id)).toEqual(['j1'])
+    expect(deadIds(await db.getDeleted()).has(entry.id)).toBe(false)
+  })
+
   it('backup round-trips with dates intact', async () => {
     const { db } = await seeded('t3')
     await db.saveSettings({ ...DEFAULT_SETTINGS, activeLanguage: 'fr', dailyMinutes: 10, newWordsPerDay: 3 })

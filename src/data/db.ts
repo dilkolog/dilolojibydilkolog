@@ -678,6 +678,20 @@ export class KelimeDB extends Dexie {
     await this.meta.put({ key: 'journal', value: [entry, ...all.filter((j) => j.id !== entry.id)] })
   }
 
+  async deleteJournal(id: string) {
+    const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
+    await this.meta.put({ key: 'journal', value: all.filter((j) => j.id !== id) })
+    // Remembered, so another device's copy doesn't bring it back on sync.
+    await this.addDeleted([id])
+  }
+
+  /** Puts a deleted journal entry back (undo). */
+  async restoreJournal(entry: JournalEntry) {
+    const all = ((await this.meta.get('journal'))?.value as JournalEntry[]) ?? []
+    if (!all.some((j) => j.id === entry.id)) await this.meta.put({ key: 'journal', value: [...all, entry] })
+    await this.reviveDeleted([entry.id])
+  }
+
   /** Records mistakes found in free writing into the Mistake Bank. */
   async addWritingMistakes(found: readonly MistakeInput[]) {
     for (const m of found) {
