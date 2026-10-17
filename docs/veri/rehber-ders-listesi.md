@@ -150,14 +150,14 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 
 | topic | seviye | başlık | havuz | soru bankası |
 |---|---|---|---|---|
-| `basics_en_to_be` | A1 | To be (am / is / are) | 3 | 0 |
-| `basics_en_present_simple` | A1 | Geniş zaman ve şimdiki zaman | 3 | 0 |
-| `basics_en_past_simple` | A1 | Geçmiş zaman (past simple) | 3 | 0 |
-| `basics_en_plurals_quantifiers` | A2 | Çoğullar ve miktar sözcükleri | 3 | 0 |
-| `basics_en_future` | A2 | Gelecek zaman (will / going to) | 3 | 0 |
-| `basics_en_comparatives` | A2 | Karşılaştırma (-er / more, the -est / most) | 3 | 0 |
-| `articles_en` | A2 | Artikeller (a / an / the) | 3 | 15 |
-| `present_perfect` | A2 | Present perfect ve past simple | 3 | 15 |
+| `basics_en_to_be` | A1 | To be (am / is / are) | 10 | 0 |
+| `basics_en_present_simple` | A1 | Geniş zaman ve şimdiki zaman | 10 | 0 |
+| `basics_en_past_simple` | A1 | Geçmiş zaman (past simple) | 10 | 0 |
+| `basics_en_plurals_quantifiers` | A2 | Çoğullar ve miktar sözcükleri | 10 | 0 |
+| `basics_en_future` | A2 | Gelecek zaman (will / going to) | 10 | 0 |
+| `basics_en_comparatives` | A2 | Karşılaştırma (-er / more, the -est / most) | 10 | 0 |
+| `articles_en` | A2 | Artikeller (a / an / the) | 10 | 15 |
+| `present_perfect` | A2 | Present perfect ve past simple | 10 | 15 |
 | `gerund_infinitive` | B1 | Gerund ve infinitive | 3 | 18 |
 | `conn_en` | B1 | Bağlaçlar (fikrin yönü) | 3 | 12 |
 | `prep_en` | B1 | Fiil, sıfat ve edat | 3 | 24 |
@@ -171,15 +171,15 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `inversion` | C1 | Devrik yapı (inversion) | 4 | 20 |
 | `cleft` | C1 | Vurgulu cümle (cleft) | 4 | 20 |
 | `subjunctive` | C1 | Subjunctive | 4 | 19 |
-| `basics_en_pronouns` | A1 | Zamirler ve iyelik (I / me / my / mine) | 3 | 0 |
-| `basics_en_there_is` | A1 | There is / there are (var, yok) | 3 | 0 |
-| `basics_en_demonstratives` | A1 | This / that / these / those | 3 | 0 |
-| `basics_en_questions` | A1 | Soru sözcükleri ve soru düzeni | 3 | 0 |
-| `basics_en_time_prepositions` | A1 | Zaman edatları (in / on / at) | 3 | 0 |
-| `basics_en_past_continuous` | A2 | Past continuous ve past simple (when / while) | 3 | 0 |
-| `basics_en_ability` | A2 | Yetenek: can / could / be able to | 3 | 0 |
-| `basics_en_obligation` | A2 | Zorunluluk: have to ve must | 3 | 0 |
-| `basics_en_place_prepositions` | A2 | Yer ve hareket edatları (in / on / at, into, through) | 3 | 0 |
+| `basics_en_pronouns` | A1 | Zamirler ve iyelik (I / me / my / mine) | 10 | 0 |
+| `basics_en_there_is` | A1 | There is / there are (var, yok) | 10 | 0 |
+| `basics_en_demonstratives` | A1 | This / that / these / those | 10 | 0 |
+| `basics_en_questions` | A1 | Soru sözcükleri ve soru düzeni | 10 | 0 |
+| `basics_en_time_prepositions` | A1 | Zaman edatları (in / on / at) | 10 | 0 |
+| `basics_en_past_continuous` | A2 | Past continuous ve past simple (when / while) | 10 | 0 |
+| `basics_en_ability` | A2 | Yetenek: can / could / be able to | 10 | 0 |
+| `basics_en_obligation` | A2 | Zorunluluk: have to ve must | 10 | 0 |
+| `basics_en_place_prepositions` | A2 | Yer ve hareket edatları (in / on / at, into, through) | 10 | 0 |
 | `basics_en_conditionals` | B1 | Birinci ve ikinci koşul cümleleri (if / unless) | 3 | 0 |
 | `basics_en_used_to` | B1 | Used to, would, be used to, get used to | 3 | 0 |
 | `basics_en_past_perfect` | B1 | Past perfect (had done) | 3 | 0 |
@@ -188,7 +188,7 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_future_perfect` | B2 | Future continuous ve future perfect | 3 | 0 |
 | `basics_en_causative` | B2 | Ettirgen yapı: have / get something done | 3 | 0 |
 | `basics_en_hedging` | C1 | Yazıda bağlama ve temkinli dil (whereas, nonetheless, albeit) | 3 | 0 |
-| `basics_en_present_continuous` | A1 | Şimdiki zaman (present continuous) | 3 | 0 |
+| `basics_en_present_continuous` | A1 | Şimdiki zaman (present continuous) | 10 | 0 |
 | `basics_en_present_perfect_continuous` | B1 | Present perfect continuous (have been doing) | 3 | 15 |
 | `basics_en_future_continuous` | B1 | Future continuous (will be doing) | 3 | 0 |
 | `basics_en_past_perfect_continuous` | B2 | Past perfect continuous (had been doing) | 3 | 0 |
@@ -202,7 +202,7 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_noun_phrases` | C1 | Yoğun yazı dili: isimleştirme ve kısaltılmış ilgi cümleleri | 3 | 0 |
 | `basics_en_register` | C1 | Resmî ve gündelik dil (register) | 3 | 0 |
 | `basics_en_discourse_markers` | C1 | Konuşmada söylem belirleyicileri (actually, anyway, mind you) | 3 | 0 |
-| `basics_en_stative_dynamic` | A2 | Durum ve eylem fiilleri (stative vs dynamic) | 3 | 0 |
+| `basics_en_stative_dynamic` | A2 | Durum ve eylem fiilleri (stative vs dynamic) | 10 | 0 |
 | `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 3 | 15 |
 | `basics_en_causatives_advanced` | B1 | Ettirgen çatı incelikleri: have, get, make, let | 3 | 15 |
 | `basics_en_cleft_variations` | B2 | Vurgu cümleleri: it-clefts ve wh-clefts | 3 | 20 |
@@ -212,9 +212,9 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_subjunctive_mandative` | C1 | Emir ve tavsiye dilek kipi (mandative subjunctive) | 3 | 19 |
 | `basics_en_participle_advanced` | C1 | İleri ortaç cümlecikleri ve bağımsız yapılar (nominative absolute) | 3 | 19 |
 | `basics_en_punctuation_flow` | C1 | Akademik bağlaçlar ve akış: however, therefore, on the contrary | 3 | 12 |
-| `basics_en_make_do_have_take` | A2 | Temel fiil kalıpları: make, do, have ve take ayrımı | 3 | 19 |
-| `basics_en_say_tell_speak_talk` | A2 | Konuşma ve anlatma fiilleri: say, tell, speak, talk | 3 | 15 |
-| `basics_en_some_any_no_every` | A2 | Belgisiz zamirler ve ikili uyum: both, either, neither, none | 3 | 0 |
+| `basics_en_make_do_have_take` | A2 | Temel fiil kalıpları: make, do, have ve take ayrımı | 10 | 19 |
+| `basics_en_say_tell_speak_talk` | A2 | Konuşma ve anlatma fiilleri: say, tell, speak, talk | 10 | 15 |
+| `basics_en_some_any_no_every` | A2 | Belgisiz zamirler ve ikili uyum: both, either, neither, none | 10 | 0 |
 | `basics_en_so_such_too_enough` | B1 | Derece ve sonuç yapıları: so ... that, such ... that, too ... to, enough to | 3 | 0 |
 | `basics_en_indirect_questions` | B1 | Dolaylı sorular ve kibar rica kalıpları (Indirect / Embedded Questions) | 3 | 15 |
 | `basics_en_adjective_order_ed_ing` | B1 | Sıfat dizilimi (OSASCOMP) ve -ed / -ing sıfatları (bored vs boring) | 3 | 0 |

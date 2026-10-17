@@ -102,7 +102,7 @@ describe('lessonOf utilities', () => {
     expect(tried.every((t) => !asked.has(t.prompt))).toBe(true)
     expect(tried.every((t) => t.options[t.answer] !== undefined)).toBe(true)
     // A lesson with only its own three questions has none to spare; one with extra questions in its pool tries those.
-    const basic = lessonFor('en', 'basics_en_to_be')!
+    const basic = lessonFor('en', 'basics_en_third_conditional')!
     expect(tryFor(basic, checkFor(basic))).toEqual([])
     const grown = lessonFor('fr', 'basics_fr_articles')!
     const drawn = checkFor(grown)
