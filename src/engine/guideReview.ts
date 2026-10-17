@@ -4,8 +4,10 @@
  * the steps over. Kept per lesson (its topic, which is unique across the languages).
  */
 export interface LessonMark {
-  /** Local date (YYYY-MM-DD) the lesson was marked read or first passed. */
+  /** Local date (YYYY-MM-DD) the lesson was marked read or first passed; empty once it was unmarked (see `off`). */
   read: string
+  /** The day the lesson was marked unread: kept so that sync does not bring the mark back from another device. */
+  off?: string
   /** When its check first went well. */
   learned?: string
   /** The last time it was checked again, or put off. */
@@ -43,7 +45,8 @@ export function dueLesson(marks: GuideMarks, checkable: string[], today: string)
 
 /** The lesson after its check: passed moves a step on (and counts as learned), failed starts over. */
 export function afterCheck(mark: LessonMark | undefined, passed: boolean, today: string): LessonMark {
-  const base: LessonMark = mark ?? { read: today }
+  // Unmarked lessons start over: the mark is read again, the old check is not.
+  const base: LessonMark = mark?.read ? mark : { read: today }
   if (!passed) return { ...base, reviewed: today, step: 0 }
   // The first pass is the learning itself, not a review: the steps start from it.
   if (!base.learned) return { ...base, learned: today, reviewed: today, step: 0 }
@@ -52,3 +55,49 @@ export function afterCheck(mark: LessonMark | undefined, passed: boolean, today:
 
 /** Put off for now: asked again after the same wait, counted from today. */
 export const putOff = (mark: LessonMark, today: string): LessonMark => ({ ...mark, reviewed: today })
+
+/** Whether the lesson counts as read: marked, and not unmarked since. */
+export const isRead = (mark: LessonMark | undefined): boolean => !!mark?.read
+
+/** The latest day anything happened to the lesson's mark. */
+const lastTouched = (m: LessonMark): string => [m.read, m.learned, m.reviewed, m.off].filter((d): d is string => !!d).sort().pop() ?? ''
+
+/** The marks of two devices (or the stored and the new ones): per lesson the one touched last; on the same day the further on, else `b`. */
+export function mergeMarks(a: GuideMarks | undefined, b: GuideMarks | undefined): GuideMarks {
+  const out: GuideMarks = {}
+  for (const topic of new Set([...Object.keys(a ?? {}), ...Object.keys(b ?? {})])) {
+    const x = a?.[topic]
+    const y = b?.[topic]
+    if (!x || !y) {
+      out[topic] = (x ?? y)!
+      continue
+    }
+    const dx = lastTouched(x)
+    const dy = lastTouched(y)
+    if (dx !== dy) out[topic] = dx > dy ? x : y
+    // The same day: the further on wins, else the later argument (what was just done to the lesson).
+    else out[topic] = (x.step ?? -1) > (y.step ?? -1) ? x : y
+  }
+  return out
+}
+
+/** Marks as they come from storage or a backup: only well-shaped lessons are kept (a bad entry must not break the screen). */
+export function cleanMarks(raw: unknown): GuideMarks {
+  const out: GuideMarks = {}
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out
+  const day = (v: unknown) => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : undefined)
+  for (const [topic, v] of Object.entries(raw as Record<string, unknown>)) {
+    if (!v || typeof v !== 'object') continue
+    const m = v as Record<string, unknown>
+    const read = m.read === '' ? '' : day(m.read)
+    if (read === undefined) continue
+    const mark: LessonMark = { read }
+    for (const key of ['off', 'learned', 'reviewed'] as const) {
+      const d = day(m[key])
+      if (d) mark[key] = d
+    }
+    if (typeof m.step === 'number' && Number.isFinite(m.step) && m.step >= 0) mark.step = Math.min(Math.floor(m.step), REVIEW_DAYS.length)
+    out[topic] = mark
+  }
+  return out
+}

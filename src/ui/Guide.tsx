@@ -9,7 +9,7 @@ import { GAME_ART } from './gameArt'
 import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
 import { checkFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
-import { PASS_RIGHT, type GuideMarks } from '../engine/guideReview'
+import { isRead, PASS_RIGHT, type GuideMarks } from '../engine/guideReview'
 import { TENSE_LESSON } from '../data/tenseLesson'
 import { topicStats } from '../engine/grammar'
 import { LAB_TENSES, type Tense } from '../engine/tenses'
@@ -20,7 +20,7 @@ import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { speak } from './speech'
 import { LessonCheck } from './LessonCheck'
-import { loadMarks, markChecked, markRead as withRead, saveMarks } from './guideProgress'
+import { loadMarks, markChecked, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
@@ -55,9 +55,9 @@ export function GuideScreen({
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
-  const [marks, setMarks] = useState<GuideMarks>(loadMarks)
+  const [marks, setMarks] = useState<GuideMarks>({})
   const [stats, setStats] = useState<Map<string, { accuracy: number; answered: number }>>(new Map())
-  const read = useMemo(() => new Set(Object.keys(marks)), [marks])
+  const read = useMemo(() => new Set(Object.keys(marks).filter((t) => isRead(marks[t]))), [marks])
 
   const lessons = useMemo(() => lessonsOf(language), [language])
   const enTenses = useMemo(() => (language === 'en' ? englishTenseLessons() : []), [language])
@@ -79,16 +79,23 @@ export function GuideScreen({
       live = false
     }
   }, [exercises])
+  useEffect(() => {
+    let live = true
+    void loadMarks(db).then((m) => live && setMarks((now) => ({ ...m, ...now })), () => {})
+    return () => {
+      live = false
+    }
+  }, [])
   const change = (next: GuideMarks) => {
     setMarks(next)
-    saveMarks(next)
+    void db.saveGuideMarks(next).catch(() => {})
   }
   const markRead = (topic: string, on = true) => change(withRead(marks, topic, on))
 
   const q = query.trim().toLocaleLowerCase('tr')
   const shown = lessons.filter((l) => (!level || l.level === level) && (!q || `${l.title} ${l.summary} ${l.rules.join(' ')}`.toLocaleLowerCase('tr').includes(q)))
   const doneCount = lessons.filter((l) => read.has(l.topic)).length
-  const learnedCount = lessons.filter((l) => marks[l.topic]?.learned).length
+  const learnedCount = lessons.filter((l) => isRead(marks[l.topic]) && marks[l.topic]?.learned).length
   // The way through: the first lesson not read yet, the easier levels first.
   const ordered = useMemo(() => LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)), [lessons])
   const next = ordered.find((l) => !read.has(l.topic))

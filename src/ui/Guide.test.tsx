@@ -4,13 +4,15 @@ import 'fake-indexeddb/auto'
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { db } from '../data/instance'
 import { GuideScreen } from './Guide'
 
 let root: ReturnType<typeof createRoot> | undefined
-afterEach(() => {
+afterEach(async () => {
   act(() => root?.unmount())
   document.body.innerHTML = ''
   localStorage.clear()
+  await db.meta.clear()
 })
 
 async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean } = {}) {
@@ -43,7 +45,7 @@ describe('GuideScreen', () => {
     await act(async () => button(host, 'Okudum olarak işaretle')!.click())
     await act(async () => button(host, 'Rehber')!.click())
     expect(host.querySelector('.guide-progress strong')?.textContent).toBe('1')
-    expect(Object.keys(JSON.parse(localStorage.getItem('diloloji:guide-progress') ?? '{}'))).toEqual(['ser_estar'])
+    expect(Object.keys(await db.getGuideMarks())).toEqual(['ser_estar'])
   })
 
   it('filters by search and shows the outside links', async () => {
@@ -77,7 +79,7 @@ describe('GuideScreen', () => {
       await act(async () => button(host, i < 2 ? 'Sonraki' : 'Bitir')!.click())
     }
     expect(host.querySelector('.lesson-check')?.textContent).toMatch(/3 sorunun \d tanesi doğru/)
-    const marks = JSON.parse(localStorage.getItem('diloloji:guide-progress') ?? '{}') as Record<string, { read: string; learned?: string }>
+    const marks = await db.getGuideMarks()
     expect(marks.subjonctif?.read).toBeTruthy()
     const right = Number(/3 sorunun (\d) tanesi/.exec(host.textContent ?? '')![1])
     expect(!!marks.subjonctif?.learned).toBe(right >= 2)
@@ -92,11 +94,25 @@ describe('GuideScreen', () => {
     localStorage.setItem('diloloji:guide-read', JSON.stringify(['subjonctif']))
     const { host, onVerbs } = await mount('fr', { initialTense: 'subjonctif' })
     expect(host.querySelector('[role=dialog]')).not.toBeNull()
-    expect(host.querySelector('.guide-progress strong')).toBeNull()
     await act(async () => button(document.body, 'Fiil laboratuvarında çalış')!.click())
     expect(onVerbs).toHaveBeenCalledWith('subjonctif')
     await act(async () => button(host, 'Konular')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
     expect(host.querySelector('.guide-progress strong')?.textContent).toBe('1')
+    // Taken into the database, not left in the browser.
+    expect(Object.keys(await db.getGuideMarks())).toEqual(['subjonctif'])
+    expect(localStorage.getItem('diloloji:guide-read')).toBeNull()
+  })
+
+  it('a lesson unmarked stays unmarked: the mark of another device does not bring it back', async () => {
+    const { host } = await mount('es')
+    await act(async () => button(host, 'Ser ve estar')!.click())
+    await act(async () => button(host, 'Okudum olarak işaretle')!.click())
+    await act(async () => button(host, /Okundu/)!.click())
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+    const marks = await db.getGuideMarks()
+    expect(marks.ser_estar?.read).toBe('')
+    expect(marks.ser_estar?.off).toMatch(/^\d{4}-/)
   })
 
   it('supports keyboard shortcuts (1-4 and Enter) in LessonCheck and passes target tense from a verb lesson to onVerbs', async () => {

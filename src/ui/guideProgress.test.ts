@@ -1,11 +1,14 @@
 // @vitest-environment happy-dom
+import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { db } from '../data/instance'
 import type { GuideMarks } from '../engine/guideReview'
-import { loadMarks, markChecked, markPutOff, markRead, saveMarks } from './guideProgress'
+import { loadMarks, markChecked, markPutOff, markRead } from './guideProgress'
 
 describe('guideProgress state management', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear()
+    await db.meta.clear()
   })
 
   it('marks a topic as read or unread', () => {
@@ -14,9 +17,14 @@ describe('guideProgress state management', () => {
     expect(marks['articles_en']).toBeDefined()
     expect(marks['articles_en']?.read).toMatch(/^\d{4}-\d{2}-\d{2}$/)
 
-    // Unmarking removes it
+    // Unmarking leaves the day it was unmarked (so sync does not bring the mark back)
     marks = markRead(marks, 'articles_en', false)
-    expect(marks['articles_en']).toBeUndefined()
+    expect(marks['articles_en']?.read).toBe('')
+    expect(marks['articles_en']?.off).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    // Marked again: read once more, the old check forgotten
+    marks = markRead(marks, 'articles_en', true)
+    expect(marks['articles_en']?.read).toMatch(/^\d{4}-/)
+    expect(marks['articles_en']?.learned).toBeUndefined()
   })
 
   it('updates marks after checking a lesson (pass / fail)', () => {
@@ -45,21 +53,32 @@ describe('guideProgress state management', () => {
     expect(marks['por_para']?.reviewed).toBeDefined()
   })
 
-  it('persists and loads marks from localStorage', () => {
+  it('persists and loads marks from the database, merged with what is stored', async () => {
     const original = {
-      articles_en: { read: '2026-10-15', learned: '2026-10-15', next: '2026-10-18', step: 1 },
+      articles_en: { read: '2026-10-15', learned: '2026-10-15', reviewed: '2026-10-18', step: 1 },
     }
-    saveMarks(original)
+    await db.saveGuideMarks(original)
+    // A screen holding older marks does not undo the stored ones.
+    await db.saveGuideMarks({ articles_en: { read: '2026-10-15' }, subjonctif: { read: '2026-10-16' } })
 
-    const loaded = loadMarks()
-    expect(loaded).toEqual(original)
+    const loaded = await loadMarks(db)
+    expect(loaded.articles_en).toEqual(original.articles_en)
+    expect(loaded.subjonctif?.read).toBe('2026-10-16')
   })
 
-  it('migrates legacy array format from diloloji:guide-read', () => {
+  it('migrates the marks kept in the browser by older versions, once', async () => {
+    localStorage.setItem('diloloji:guide-progress', JSON.stringify({ por_para: { read: '2026-10-10', learned: '2026-10-11', step: 1 }, bad: 7 }))
+    const loaded = await loadMarks(db)
+    expect(loaded.por_para?.step).toBe(1)
+    expect(loaded.bad).toBeUndefined()
+    expect(localStorage.getItem('diloloji:guide-progress')).toBeNull()
+    expect(Object.keys(await db.getGuideMarks())).toEqual(['por_para'])
+  })
+
+  it('migrates legacy array format from diloloji:guide-read', async () => {
     localStorage.setItem('diloloji:guide-read', JSON.stringify(['articles_en', 'present_perfect']))
 
-    const loaded = loadMarks()
-    expect(loaded['articles_en']).toBeDefined()
+    const loaded = await loadMarks(db)
     expect(loaded['articles_en']?.read).toMatch(/^\d{4}-\d{2}-\d{2}$/)
     expect(loaded['present_perfect']).toBeDefined()
   })

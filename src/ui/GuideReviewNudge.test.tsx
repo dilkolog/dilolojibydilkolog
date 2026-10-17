@@ -2,15 +2,18 @@
 ;(globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'
+import 'fake-indexeddb/auto'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { db } from '../data/instance'
 import '../data/guide/lessonOf'
 import { GuideReviewNudge } from './GuideReviewNudge'
 
 let root: ReturnType<typeof createRoot> | undefined
-afterEach(() => {
+afterEach(async () => {
   act(() => root?.unmount())
   document.body.innerHTML = ''
   localStorage.clear()
+  await db.meta.clear()
 })
 
 async function mount(language: 'fr' | 'es' | 'en' = 'fr') {
@@ -30,12 +33,7 @@ describe('GuideReviewNudge', () => {
   })
 
   it('shows due lesson nudge, opens lesson on click, and postpones on dismiss', async () => {
-    localStorage.setItem(
-      'diloloji:guide-progress',
-      JSON.stringify({
-        subjonctif: { read: '2020-01-01', learned: '2020-01-01', step: 0 },
-      }),
-    )
+    await db.saveGuideMarks({ subjonctif: { read: '2020-01-01', learned: '2020-01-01', step: 0 } })
     const { host, onOpen } = await mount('fr')
     const main = host.querySelector<HTMLButtonElement>('.habit-nudge-main')
     expect(main).not.toBeNull()
@@ -48,7 +46,7 @@ describe('GuideReviewNudge', () => {
     const dismiss = host.querySelector<HTMLButtonElement>('button[aria-label="Şimdi değil"]')!
     await act(async () => dismiss.click())
     expect(host.querySelector('.habit-nudge')).toBeNull()
-    const saved = JSON.parse(localStorage.getItem('diloloji:guide-progress') ?? '{}') as Record<string, { reviewed?: string }>
-    expect(saved.subjonctif?.reviewed).toBeTruthy()
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    expect((await db.getGuideMarks()).subjonctif?.reviewed).toBeTruthy()
   })
 })
