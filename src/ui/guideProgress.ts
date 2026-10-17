@@ -55,6 +55,13 @@ export function markFlag(marks: GuideMarks, topic: string, flag: LessonFlag | nu
   return { ...marks, [topic]: { ...rest, flagAt: localDate(new Date()), ...(flag ? { flag } : {}) } }
 }
 
+/** Saves or clears a personal note on a lesson; the day is kept so sync carries the change. */
+export function markNote(marks: GuideMarks, topic: string, note: string): GuideMarks {
+  const trimmed = note.trim().slice(0, 1000)
+  const { note: _old, noteAt: _at, ...rest } = marks[topic] ?? { read: '' }
+  return { ...marks, [topic]: { ...rest, noteAt: localDate(new Date()), ...(trimmed ? { note: trimmed } : {}) } }
+}
+
 /** After the lesson's check: read in any case, learned (and a step on) when it went well. */
 export const markChecked = (marks: GuideMarks, topic: string, passed: boolean): GuideMarks => ({ ...marks, [topic]: afterCheck(marks[topic], passed, localDate(new Date())) })
 

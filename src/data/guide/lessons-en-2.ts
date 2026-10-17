@@ -16,6 +16,18 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "He/his erkek, she/her kadın, it/its eşya ve hayvan içindir; sahibine göre seçilir, sahip olunan şeye göre değil.",
       "İngilizcede özne düşmez: 'Is raining' değil 'It is raining'."
     ],
+    table: {
+      caption: "İngilizce Zamir ve İyelik Tablosu",
+      head: ["Özne (Subject)", "Nesne (Object)", "İyelik Sıfatı (+ İsim)", "İyelik Zamiri (Tek Başına)"],
+      rows: [
+        ["I (ben)", "me (beni/bana)", "my book (benim kitabım)", "mine (benimki)"],
+        ["you (sen/siz)", "you (seni/sizi)", "your car (senin araban)", "yours (seninki/sizinki)"],
+        ["he / she (o)", "him / her (onu/ona)", "his / her house (onun evi)", "his / hers (onunki)"],
+        ["it (o - cansız/hayvan)", "it (onu/ona)", "its food (onun maması)", "—"],
+        ["we (biz)", "us (bizi/bize)", "our flat (bizim dairemiz)", "ours (bizimki)"],
+        ["they (onlar)", "them (onları/onlara)", "their children (onların çocukları)", "theirs (onlarınki)"],
+      ],
+    },
     examples: [
       { text: "I know her, but she doesn't know me.", tr: "Ben onu tanıyorum ama o beni tanımıyor." },
       { text: "This is my brother and that is his wife.", tr: "Bu benim kardeşim, şu da onun karısı." },
@@ -65,6 +77,17 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Yer bildiren söz genellikle sona gelir: There is a park near my house.",
       "Sahiplik için have kullanılır, there is değil: I have a car (bir arabam var)."
     ],
+    table: {
+      caption: "There Is / There Are Kullanım Tablosu",
+      head: ["Zaman ve Durum", "Tekil / Sayılamayan", "Çoğul (Plural)", "Örnek"],
+      rows: [
+        ["Şimdi (+)", "There is (There's)", "There are", "There's a park. / There are two banks."],
+        ["Şimdi (-)", "There isn't (any)", "There aren't (any)", "There isn't any milk. / There aren't any eggs."],
+        ["Şimdi (?)", "Is there ...?", "Are there ...?", "Is there a hotel near here?"],
+        ["Geçmiş (Past)", "There was / wasn't", "There were / weren't", "There weren't many people at the concert."],
+        ["Gelecek (Future)", "There will be", "There will be", "There will be a meeting tomorrow."],
+      ],
+    },
     examples: [
       { text: "There's a good restaurant on this street.", tr: "Bu sokakta iyi bir restoran var." },
       { text: "There are twenty students in my class.", tr: "Sınıfımda yirmi öğrenci var." },
@@ -114,6 +137,15 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Telefonda kendinizi tanıtırken this kullanılır: Hi, this is Ayşe.",
       "That, söylenen bir şeye geri dönmek için de kullanılır: That's a good idea."
     ],
+    table: {
+      caption: "İşaret Sıfatları ve Zamirleri (This / That / These / Those)",
+      head: ["Mesafe / Zaman", "Tekil (Singular + is/was)", "Çoğul (Plural + are/were)", "Örnek Kullanım"],
+      rows: [
+        ["Yakın (burada / şimdi)", "this (bu)", "these (bunlar)", "this coffee, these shoes, this week"],
+        ["Uzak (orada / geçmişte)", "that (şu / o)", "those (şunlar / onlar)", "that tower over there, those people, that day"],
+        ["Özel kalıplar", "this (telefonda tanışma)", "that (söylenen şeye atıf)", "\"Hi, this is Ayşe.\" / \"That's great!\""],
+      ],
+    },
     examples: [
       { text: "This coffee is really good.", tr: "Bu kahve gerçekten güzel." },
       { text: "Can you see that tower over there?", tr: "Oradaki şu kuleyi görebiliyor musun?" },
@@ -162,6 +194,16 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Who ya da what öznenin kendisini soruyorsa do kullanılmaz: Who called you? What happened?",
       "Edat genellikle sonda kalır: Who are you talking to? Where are you from?"
     ],
+    table: {
+      caption: "İngilizcede Soru Cümlesi Kurulum Düzeni",
+      head: ["Soru Türü", "Formül / Sıralama", "Örnek", "Açıklama"],
+      rows: [
+        ["Be / Modal sorusu", "(Wh-) + am/is/are/can/will + özne + ...?", "Are you ready? / Where can we sit?", "Yardımcı fiil öznenin önüne geçer"],
+        ["Geniş zaman (do/does)", "(Wh-) + do/does + özne + V1 (yalın)?", "Where do you live? / What time does it start?", "Does gelince fiildeki -s düşer"],
+        ["Geçmiş zaman (did)", "(Wh-) + did + özne + V1 (yalın)?", "Why didn't you call me?", "Did geçmişi taşır, fiil yalın kalır"],
+        ["Özne sorusu (Who/What)", "Who / What + çekimli fiil (+ nesne)?", "Who called you? / What happened?", "Özneyi sorarken do/does/did kullanılmaz"],
+      ],
+    },
     examples: [
       { text: "Where do your parents live?", tr: "Annenle baban nerede yaşıyor?" },
       { text: "What time does the film start?", tr: "Film saat kaçta başlıyor?" },
@@ -212,6 +254,16 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Bir süre sonra anlamında in: The bus leaves in ten minutes (on dakika sonra).",
       "Amerikan İngilizcesinde hafta sonu için on the weekend denir."
     ],
+    table: {
+      caption: "Zaman Edatları (in / on / at / Ø) Özeti",
+      head: ["Edat", "Kapsadığı Zaman Dilimi", "Örnekler", "Önemli Not"],
+      rows: [
+        ["at", "Saatler, kesin anlar, gece", "at 7 o'clock, at noon, at midnight, at night", "İngilizcede: at the weekend"],
+        ["on", "Günler ve belirli tarihler", "on Monday, on 12 March, on Friday morning", "Gün adı geçiyorsa daima 'on' gelir"],
+        ["in", "Aylar, yıllar, mevsimler, günün bölümleri, süre sonu", "in June, in 2024, in winter, in the morning, in 10 minutes", "'in ten minutes' = 10 dakika sonra"],
+        ["Ø (edatsız)", "next, last, this, every, tomorrow, yesterday", "next week, last Monday, every day", "Bu sözcüklerin önüne in/on/at gelmez"],
+      ],
+    },
     examples: [
       { text: "The meeting starts at half past nine.", tr: "Toplantı dokuz buçukta başlıyor." },
       { text: "We usually go to the market on Saturdays.", tr: "Genelde cumartesileri pazara gideriz." },
@@ -263,6 +315,17 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Art arda olan olaylar past simple ile sıralanır: He opened the door, turned on the light and sat down.",
       "Durum fiilleri (know, want, like) continuous olmaz: I knew the answer."
     ],
+    table: {
+      caption: "Past Continuous ve Past Simple (When / While) Karşılaştırması",
+      head: ["Durum / Bağlaç", "Kullanılan Zaman", "Örnek Cümle", "Türkçe Açıklama"],
+      rows: [
+        ["Geçmişte belli anda süren iş", "Past Continuous (was/were + V-ing)", "At 8 o'clock I was having dinner.", "O anda devam eden arka plan eylemi (-iyordu)"],
+        ["Süren işi kesen kısa olay", "when + Past Simple (V2)", "I was cooking when the phone rang.", "Kısa olay süren eylemi böler (-diğinde)"],
+        ["Arka plandaki uzun eylem", "while + Past Continuous", "While we were driving, it started to rain.", "While çoğunlukla süren eylemle (-iken) gelir"],
+        ["Aynı anda süren iki eylem", "while + Past Cont., Past Cont.", "While she was studying, he was playing.", "İki uzun eylem paralel devam eder"],
+        ["Art arda biten olaylar", "Past Simple + Past Simple", "He opened the door and sat down.", "Sırayla tamamlanan eylemler"],
+      ],
+    },
     examples: [
       { text: "I was taking a shower when you called.", tr: "Sen aradığında duş alıyordum." },
       { text: "While we were driving home, it started to rain.", tr: "Eve giderken yağmur yağmaya başladı." },
@@ -312,6 +375,17 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Can'in gelecek ve bitişik biçimi yoktur: will be able to, have been able to, to be able to.",
       "Rica ve izin: Can I…? (gündelik), Could you…? (daha kibar)."
     ],
+    table: {
+      caption: "Yetenek ve Başarı: Can / Could / Be Able To",
+      head: ["Zaman / Durum", "Kullanılan Yapı", "Örnek", "Önemli Kural"],
+      rows: [
+        ["Şimdiki yetenek / izin", "can / can't + V1", "She can speak three languages.", "Üçüncü tekilde -s almaz ('cans' olmaz)"],
+        ["Geçmiş genel yetenek", "could + V1", "When I was five, I could read.", "Geçmişteki genel beceriler için"],
+        ["Geçmiş tek seferlik başarı", "was/were able to / managed to + V1", "We were able to find a flat.", "Olumlu tek başarıda 'could' kullanılmaz"],
+        ["Geçmiş olumsuzluk", "couldn't / wasn't able to + V1", "I couldn't sleep last night.", "Olumsuzda tek olay için de couldn't olur"],
+        ["Gelecek ve diğer zamanlar", "will be able to / have been able to", "You'll be able to speak fluently.", "Can'in gelecek/perfect biçimi yoktur"],
+      ],
+    },
     examples: [
       { text: "My grandmother can speak three languages.", tr: "Büyükannem üç dil konuşabiliyor." },
       { text: "I couldn't sleep last night because of the noise.", tr: "Dün gece gürültü yüzünden uyuyamadım." },
@@ -376,6 +450,41 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Have to'yu he/she ile çekimlememek: 'She have to' değil 'She has to'."
     ],
     tip: "Olumsuzda sorun: yasak mı (mustn't), yoksa gerek mi yok (don't have to)?",
+    table: {
+      "caption": "Expressing Obligation and Advice",
+      "head": [
+        "Modal",
+        "Strength",
+        "Meaning",
+        "Example"
+      ],
+      "rows": [
+        [
+          "must",
+          "Strong internal obligation",
+          "Kişisel zorunluluk (yapmalıyım)",
+          "I must call my mother tonight."
+        ],
+        [
+          "have to",
+          "External rule or necessity",
+          "Dış kaynaklı zorunluluk (kanun/iş)",
+          "We have to wear helmets on site."
+        ],
+        [
+          "should / ought to",
+          "Recommendation or moral duty",
+          "Tavsiye / öğüt (yaparsan iyi olur)",
+          "You should see a doctor about that cough."
+        ],
+        [
+          "mustn’t",
+          "Prohibition",
+          "Kesin yasak (asla yapma)",
+          "You mustn’t park here."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "You ___ smoke here. It's forbidden.",
@@ -427,6 +536,35 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Arrive ile to: 'arrive to London' değil 'arrive in London', 'arrive at the airport'."
     ],
     tip: "Duruyorsa in/on/at, gidiyorsa to/into/onto: önce hareket var mı diye bakın.",
+    table: {
+      "caption": "Place Prepositions: At, On, In",
+      "head": [
+        "Preposition",
+        "Dimension / Type of Place",
+        "Typical Examples",
+        "Sample Sentence"
+      ],
+      "rows": [
+        [
+          "at",
+          "Point, specific location, address",
+          "at the station, at the door, at home",
+          "Let’s meet at the entrance."
+        ],
+        [
+          "on",
+          "Surface, lines, public transit floor",
+          "on the table, on the wall, on the bus",
+          "Her photo is on the wall."
+        ],
+        [
+          "in",
+          "Enclosed 3D space, city, country",
+          "in the room, in London, in a car",
+          "He is studying in his bedroom."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Let's go ___.",
@@ -479,6 +617,35 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Unless ile ayrıca not kullanmak: 'Unless you don't study' değil 'Unless you study'."
     ],
     tip: "Gerçekten olabilir mi? present + will. Hayal mi? past + would.",
+    table: {
+      "caption": "Conditionals: Zero, First, Second",
+      "head": [
+        "Conditional",
+        "If Clause",
+        "Main Clause",
+        "Use"
+      ],
+      "rows": [
+        [
+          "Zero (Fact)",
+          "Present Simple",
+          "Present Simple",
+          "If you heat water to 100°C, it boils."
+        ],
+        [
+          "First (Real Future)",
+          "Present Simple",
+          "Will + Bare Infinitive",
+          "If it rains tomorrow, we will stay indoors."
+        ],
+        [
+          "Second (Hypothetical)",
+          "Past Simple (were)",
+          "Would + Bare Infinitive",
+          "If I had a yacht, I would sail around the world."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "If it ___ tomorrow, we'll stay at home.",
@@ -530,6 +697,41 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Durumla would: 'I would live in Ankara' değil 'I used to live in Ankara'."
     ],
     tip: "To'dan sonra fiil yalınsa (used to go) geçmiş alışkanlık; -ing ise (be used to going) alışkınlık.",
+    table: {
+      "caption": "Used to vs Be used to vs Would",
+      "head": [
+        "Structure",
+        "Grammar Rule",
+        "Meaning",
+        "Example"
+      ],
+      "rows": [
+        [
+          "used to + V1",
+          "Past habit or state",
+          "Eskiden yapardım (artık bitti)",
+          "I used to live in Paris."
+        ],
+        [
+          "would + V1",
+          "Past repeated actions only",
+          "Eskiden sık sık yapardım (durum fiili almaz)",
+          "We would play football every Saturday."
+        ],
+        [
+          "be used to + V-ing",
+          "Accustomed to",
+          "Alışkın olmak (şimdiki durum)",
+          "I am used to waking up early."
+        ],
+        [
+          "get used to + V-ing",
+          "Becoming accustomed to",
+          "Alışma süreci",
+          "She is getting used to the British weather."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "I ___ live in Bursa, but now I live in Izmir.",
@@ -578,6 +780,29 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Had'den sonra V2: 'had went' değil 'had gone'; 'had saw' değil 'had seen'."
     ],
     tip: "Geçmişte bir an seçin: ondan önce olmuşsa had + V3.",
+    table: {
+      "caption": "Past Perfect vs Past Simple Timeline",
+      "head": [
+        "Tense",
+        "Timeline Position",
+        "Function in Sentence",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Past Perfect (had + V3)",
+          "Earlier past (Action 1)",
+          "Daha önce tamamlanmış olay",
+          "The train had already left..."
+        ],
+        [
+          "Past Simple (V2)",
+          "Later past (Action 2)",
+          "Daha sonra gerçekleşen olay",
+          "...when I reached the station."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "When we got to the cinema, the film ___ already started.",
@@ -627,6 +852,41 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Tag'de ismi tekrar etmek: 'Ali is here, isn't Ali?' değil 'Ali is here, isn't he?'."
     ],
     tip: "Cümlenin yardımcı fiilini bulun, tersine çevirin, zamirle bitirin.",
+    table: {
+      "caption": "Question Tags Formula",
+      "head": [
+        "Statement",
+        "Tag Question",
+        "Rule",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Positive with auxiliary",
+          "Negative tag",
+          "He is happy → isn’t he?",
+          "You can swim, can’t you?"
+        ],
+        [
+          "Negative with auxiliary",
+          "Positive tag",
+          "She doesn’t smoke → does she?",
+          "They haven’t called, have they?"
+        ],
+        [
+          "Positive without auxiliary",
+          "Use do / does / did",
+          "Present Simple → don’t/doesn’t",
+          "You like Italian food, don’t you?"
+        ],
+        [
+          "Imperative (Let’s / Will)",
+          "Special tags",
+          "Let’s → shall we? / Help me → will you?",
+          "Let’s go for a walk, shall we?"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "You don't smoke, ___?",
@@ -679,6 +939,35 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Would have'i 'would of' diye yazmak: konuşmadaki 'would've' sesine aldanmayın."
     ],
     tip: "Wish bir zaman geriye kayar: şimdi → past simple, geçmiş → past perfect.",
+    table: {
+      "caption": "Third Conditional (Unfulfilled Past)",
+      "head": [
+        "Clause",
+        "Tense Form",
+        "Function",
+        "Example"
+      ],
+      "rows": [
+        [
+          "If Clause",
+          "Past Perfect (had + V3)",
+          "İmkânsız geçmiş şart",
+          "If you had studied harder,"
+        ],
+        [
+          "Main Clause",
+          "would have + V3",
+          "Gerçekleşmemiş geçmiş sonuç",
+          "you would have passed the exam."
+        ],
+        [
+          "Short Answer",
+          "would have / wouldn’t have",
+          "Kısa yanıt",
+          "Yes, I would have. / No, I wouldn’t have."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "If I ___ about the party, I would have come.",
@@ -728,6 +1017,35 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Will have'den sonra V2: 'will have went' değil 'will have gone'."
     ],
     tip: "O anda sürüyor mu? will be + -ing. O ana kadar bitmiş mi? will have + V3.",
+    table: {
+      "caption": "Future Perfect (will have + V3)",
+      "head": [
+        "Component",
+        "Formula",
+        "Typical Time Expressions",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Positive",
+          "will have + V3",
+          "by next week, by 2030, by the time...",
+          "By next month, I will have finished this course."
+        ],
+        [
+          "Negative",
+          "won’t have + V3",
+          "before, until",
+          "They won’t have arrived before noon."
+        ],
+        [
+          "Question",
+          "Will + S + have + V3?",
+          "by tomorrow",
+          "Will you have sent the email by tomorrow?"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "By the time you arrive, we ___ dinner.",
@@ -776,6 +1094,35 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Get someone ile to'yu unutmak: 'I got him fix it' değil 'I got him to fix it'; have ile to yok: 'I had him fix it'."
     ],
     tip: "Türkçede -tir eki duyuyorsanız (kestirdim, yaptırdım) have/get + nesne + V3.",
+    table: {
+      "caption": "English Causative Structures",
+      "head": [
+        "Structure",
+        "Agent Pattern",
+        "Meaning in Turkish",
+        "Example"
+      ],
+      "rows": [
+        [
+          "have someone do",
+          "have + person + bare infinitive",
+          "birine bir şey yaptırmak",
+          "I had the mechanic service my car."
+        ],
+        [
+          "get someone to do",
+          "get + person + to-infinitive",
+          "birini ikna edip yaptırmak",
+          "I got my brother to help me move."
+        ],
+        [
+          "have something done",
+          "have + object + V3",
+          "bir şeyi başkasına yaptırmak",
+          "She had her hair cut yesterday."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "I had my hair ___ yesterday.",
@@ -828,6 +1175,35 @@ export const EN_LESSONS_2: TopicLesson[] = [
       "Fazla temkin: tek cümlede 'it might possibly be suggested that perhaps' gibi yığmak iddiayı boşaltır."
     ],
     tip: "Bir iddia, bir temkin: her cümleye tek bir yumuşatıcı yeter.",
+    table: {
+      "caption": "Hedging and Softening Language",
+      "head": [
+        "Category",
+        "Typical Words & Phrases",
+        "Purpose",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Modal auxiliaries",
+          "may, might, could, would",
+          "Kesinliği yumuşatma",
+          "This could suggest an alternative reason."
+        ],
+        [
+          "Cautious verbs",
+          "seem, appear, tend to, suggest",
+          "İhtiyatlı bildirim",
+          "The results tend to show an improvement."
+        ],
+        [
+          "Probability adverbs",
+          "possibly, probably, arguably",
+          "İddiayı dengeli sunma",
+          "This is arguably the most effective approach."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "The economy recovered, ___ slowly.",

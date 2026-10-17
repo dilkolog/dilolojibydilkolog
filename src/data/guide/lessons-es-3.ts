@@ -17,6 +17,16 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "lo que, el que, donde, como + subjuntivo 'her ne, kim, nerede … -se' anlamı verir: Haz lo que quieras. El que llegue primero, gana. Indicativo ise bilinen şeyi gösterir: Haz lo que quieres (istediğini biliyorum, onu yap).",
       "Ana fiil geçmişteyse imperfecto de subjuntivo gelir: Buscaba un piso que estuviera cerca del centro.",
     ],
+    table: {
+      caption: "İlgi Cümlesinde Kip Seçimi (Indicativo vs Subjuntivo)",
+      head: ["Öncülün Durumu", "Kip", "Örnek Cümle", "Anlam Farkı"],
+      rows: [
+        ["Bilinen, belirli varlık", "Indicativo", "Tengo un amigo que habla japonés.", "Böyle bir arkadaşım gerçekten var"],
+        ["Aranan, belirsiz varlık", "Subjuntivo", "Busco un piso que tenga terraza.", "Böyle bir daire var mı henüz belirsiz"],
+        ["Olumsuz / yok sayılan öncül", "Subjuntivo", "No conozco a nadie que sepa ruso.", "Hiç kimse yok (kesin subjuntivo)"],
+        ["Genelleme (lo que / donde)", "Subjuntivo / Ind.", "Haz lo que quieras. / Haz lo que quieres.", "Ne istersen (belirsiz) / İstediğin o şeyi"],
+      ],
+    },
     examples: [
       { text: "Tengo una vecina que trabaja en la radio.", tr: "Radyoda çalışan bir komşum var." },
       { text: "Buscamos un hotel que tenga piscina.", tr: "Havuzu olan bir otel arıyoruz." },
@@ -67,6 +77,17 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "convertirse en + isim: tam bir dönüşüm, yalnızca isimle: El pueblo se convirtió en una ciudad turística. llegar a ser + isim ya da sıfat: uzun bir süreçten sonra varılan durum: Llegó a ser ministro.",
       "Değişim fiillerinde dönüşlü zamir unutulmaz ve kişiye uyar: Me puse nervioso. Nos quedamos sin palabras.",
     ],
+    table: {
+      caption: "İspanyolca Değişim Fiilleri (Verbos de Cambio) Karşılaştırması",
+      head: ["Fiil", "Değişimin Niteliği", "Aldığı Tür", "Örnek"],
+      rows: [
+        ["ponerse", "Ani, geçici (ruh hâli, sağlık, renk)", "Sıfat", "ponerse nervioso / rojo / enfermo"],
+        ["volverse", "Kalıcı, köklü karakter değişimi", "Sıfat (un + isim)", "volverse loco / desconfiado / tacaño"],
+        ["hacerse", "İradi çaba, süreç (meslek, inanç, yaş)", "İsim / Sıfat", "hacerse abogado / rico / mayor"],
+        ["quedarse", "Bir olay sonucu kalıcı durum / kayıp", "Sıfat / Edat öbeği", "quedarse ciego / calvo / de piedra"],
+        ["convertirse en / llegar a ser", "Tam dönüşüm / uzun süreç sonu başarı", "İsim", "convertirse en ciudad / llegar a ser jefe"],
+      ],
+    },
     examples: [
       { text: "Cuando la vi, me puse muy nervioso.", tr: "Onu görünce çok heyecanlandım." },
       { text: "Desde que ganó la lotería, se ha vuelto muy desconfiado.", tr: "Piyangoyu kazandığından beri kimseye güvenmeyen biri oldu." },
@@ -119,6 +140,17 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "Soru sözcüğü ¿cuándo? bu kurala girmez, indicativo ya da futuro alır: ¿Cuándo vendrás? Kip kuralı yalnızca bağlaç olan cuando içindir.",
       "mientras + subjuntivo '-dığı sürece' anlamında bir şart bildirir: Mientras vivas en esta casa, respetarás las normas.",
     ],
+    table: {
+      caption: "Zaman Bağlaçlarında Kip Seçimi (Cuando, En cuanto, Hasta que, Antes de que)",
+      head: ["Zaman / Bağlam", "Bağlaçtan Sonra Kip", "Örnek Cümle", "Açıklama"],
+      rows: [
+        ["Alışkanlık / Genel doğru", "Presente de indicativo", "Cuando llego a casa, me ducho.", "Her zaman tekrarlanan eylem"],
+        ["Geçmişte gerçekleşmiş olay", "Pretérito / Imperfecto (Ind.)", "Cuando llegué a casa, me duché.", "Geçmişte yaşanmış gerçek olay"],
+        ["Geleceğe bakan olay", "Presente de subjuntivo", "Cuando llegue a casa, te llamaré.", "Henüz gerçekleşmemiş (asla futuro gelmez!)"],
+        ["antes de que (her zaman)", "Subjuntivo (presente / imp.)", "Salimos antes de que lloviera.", "Olay gerçekleşmiş olsa bile daima subjuntivo"],
+        ["Aynı özne (antes de / hasta)", "Mastar (infinitivo)", "Desayuno antes de salir.", "Özneler aynıysa que düşer, mastar gelir"],
+      ],
+    },
     examples: [
       { text: "Cuando llegues al hotel, mándame un mensaje.", tr: "Otele varınca bana mesaj at." },
       { text: "Cuando era pequeño, siempre me dormía en el coche.", tr: "Küçükken arabada hep uyuyakalırdım." },
@@ -169,6 +201,17 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "lo + sıfat ya da zarf + que = 'ne kadar … olduğu'; bu yapıda sıfat kişiye uyar, lo değişmez: No sabes lo cansada que estoy. Me sorprendió lo bien que habla.",
       "lo nötrdür, dişili ve çoğulu yoktur: 'la importante' ya da 'los bueno' denmez. el + sıfat ise belli bir ismi gösterir: el rojo = kırmızı olan (araba, kalem…).",
     ],
+    table: {
+      caption: "Nötr 'lo' Kalıpları ve Kullanımları",
+      head: ["Kalıp", "Türkçe Karşılığı", "Örnek", "Dilbilgisi Notu"],
+      rows: [
+        ["lo + eril tekil sıfat", "işin … yanı / … olan şey", "Lo importante es participar.", "Soyut kavram; sıfat hep eril tekil kalır"],
+        ["lo + ortaç (participio)", "yapılan / olup biten şey", "Lo ocurrido ayer fue muy grave.", "Olup biten somut/soyut olayı adlandırır"],
+        ["lo que + fiil", "-dığı / -en şey", "No entiendo lo que dices.", "Bellisiz bir olguya/söze gönderme yapar"],
+        ["lo de + isim / zarf / mastar", "şu … meselesi / olayı", "Perdona por lo de anoche.", "Bilinen bir konuyu kısaca hatırlatır"],
+        ["lo + sıfat/zarf + que + fiil", "ne kadar … olduğu", "No sabes lo cansada que estoy.", "Sıfat özneye uyar (cansada), lo değişmez"],
+      ],
+    },
     examples: [
       { text: "Lo bueno de vivir aquí es que todo está cerca.", tr: "Burada yaşamanın iyi yanı her şeyin yakın olması." },
       { text: "Lo peor ya ha pasado.", tr: "En kötüsü geride kaldı." },
@@ -219,6 +262,16 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "Tek bir olay için ser'li edilgen çoğunlukla geçmiş zamanda kullanılır (fue publicado); presente'de daha çok tekrarlanan işleri anlatır: Los resultados son publicados cada mes.",
       "Düzensiz ortaçlar iki yapıda da aynıdır: escrito, roto, abierto, hecho, puesto, resuelto, vuelto: La ventana está rota.",
     ],
+    table: {
+      caption: "Edilgen Yapılar: Ser + Ortaç, Estar + Ortaç ve Pasiva Refleja (Se)",
+      head: ["Yapı", "Odak Noktası", "Ortaç / Fiil Uyumu", "Örnek Cümle"],
+      rows: [
+        ["ser + ortaç (+ por)", "Eylemin kendisi / süreç (film)", "Ortaç özneye cinsiyet ve sayıca uyar", "La novela fue escrita por Cervantes."],
+        ["estar + ortaç", "Eylemin sonucu olan durum (fotoğraf)", "Ortaç özneye cinsiyet ve sayıca uyar", "La puerta ya está cerrada."],
+        ["se + 3. kişi fiil", "Yapanı belirsiz doğal edilgen (konuşma)", "Fiil tekil/çoğul nesneye uyar", "Se venden pisos. / Se construyó en 1900."],
+        ["haber + ortaç (etken)", "Bitmiş etken zaman (perfecto)", "Ortaç asla değişmez (-o kalır)", "Cervantes ha escrito esta novela."],
+      ],
+    },
     examples: [
       { text: "El Quijote fue escrito por Miguel de Cervantes.", tr: "Don Kişot, Miguel de Cervantes tarafından yazıldı." },
       { text: "Las obras fueron terminadas en marzo.", tr: "İnşaat çalışmaları martta bitirildi." },
@@ -271,6 +324,17 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "deber + mastar zorunluluk, deber de + mastar tahmindir: Debes estudiar más (çalışmalısın) / Debe de ser tarde (geç olmalı). Zorunlulukta de kullanılmaz.",
       "Soruda tahmin zamanı merak ya da kaygı bildirir ('acaba'): ¿Quién será a estas horas? ¿Qué le habrá pasado?",
     ],
+    table: {
+      caption: "Olasılık ve Tahmin İçin Zaman Kayması Tablosu",
+      head: ["Tahmin Edilen Zaman", "Kesin Zaman (Gerçek)", "Tahmin Zamanı (Olasılık)", "Örnek ve Anlamı"],
+      rows: [
+        ["Şu an (şimdi)", "Presente (está / tiene)", "Futuro simple (estará / tendrá)", "Estará en casa. (Evdedir herhalde.)"],
+        ["Yakın geçmiş / şimdiye dek", "Pretérito perfecto (ha salido)", "Futuro compuesto (habrá salido)", "No contesta; habrá salido. (Çıkmıştır.)"],
+        ["Geçmişteki bir durum/an", "Imperfecto / Indefinido (estaba)", "Condicional simple (estaría)", "No vino ayer; estaría enfermo. (Hastaydı herhalde.)"],
+        ["Geçmişten daha önceki olay", "Pluscuamperfecto (había ido)", "Condicional compuesto (habría ido)", "Ya se habrían ido todos. (Gitmiş olmalıydılar.)"],
+        ["Yardımcı kalıp (deber de)", "deber + mastar (zorunluluk)", "deber de + mastar (tahmin)", "Debe de ser tarde. (Geç olmalı.)"],
+      ],
+    },
     examples: [
       { text: "—¿Dónde está Marta? —Estará en la biblioteca.", tr: "—Marta nerede? —Kütüphanededir herhalde." },
       { text: "Tiene mala cara; habrá dormido poco.", tr: "Yüzü solgun; az uyumuştur." },
@@ -323,6 +387,17 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "Kapanış: Quedo a la espera de su respuesta; ardından Atentamente, ya da biraz daha sıcak Un cordial saludo, ve ad soyad.",
       "Kısaltmalar büyük harfle yazılır: Ud. / Uds. (usted / ustedes), Sr. / Sra., D. / Dña. (don / doña); usted açık yazıldığında küçük harfle başlar (cümle başı hariç; RAE 2010).",
     ],
+    table: {
+      caption: "Resmî Yazışma (Usted) ve Samimi Yazışma (Tú) Kalıpları",
+      head: ["Bölüm", "Resmî Kayıt (Usted)", "Samimi Kayıt (Tú)", "Noktalama / Kip Kuralı"],
+      rows: [
+        ["Hitap (Açılış)", "Estimado Sr. Pérez: / Estimada Sra. Ruiz:", "Querido Luis: / ¡Hola, Ana!:", "İspanyolcada hitaptan sonra iki nokta (:) konur"],
+        ["Konuya giriş", "Me dirijo a usted para… / En relación con…", "Te escribo para contarte que…", "Baştan sona 3. kişi (le, su) korunur"],
+        ["Kibar rica", "Le agradecería que me enviara… / ¿Podría…?", "¿Puedes enviarme…? / ¿Me mandas…?", "Condicional + imperfecto de subjuntivo"],
+        ["Ek ve bilgi", "Le adjunto el documento. / No dude en…", "Te mando el archivo adjunto.", "Emir bile usted kipinde (no dude)"],
+        ["Kapanış", "Quedo a la espera… Atentamente, / Un cordial saludo,", "Un abrazo, / Besos, / Nos vemos pronto,", "Kapanış ifadesinden sonra virgül gelir"],
+      ],
+    },
     examples: [
       { text: "Estimada señora Ruiz:", tr: "Sayın Ruiz Hanım," },
       { text: "Me dirijo a usted para solicitar información sobre el curso de verano.", tr: "Yaz kursu hakkında bilgi istemek için size yazıyorum." },
@@ -389,6 +464,35 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "siempre que'nin iki anlamını kaçırmak: indicativo ile 'her … -dığında' (Siempre que viene, trae flores), subjuntivo ile 'şartıyla' (Siempre que vengas antes de las diez, te esperaré).",
     ],
     tip: "si dışındaki şart bağlaçları subjuntivo ister; indicativo görürsen anlam değişmiştir: como + indicativo neden, siempre que + indicativo 'her … -dığında' demektir.",
+    table: {
+      "caption": "Alternatif Şart Bağlaçları (Subjuntivo)",
+      "head": [
+        "Bağlaç",
+        "Gerektirdiği Kip",
+        "Türkçe Karşılığı",
+        "Örnek"
+      ],
+      "rows": [
+        [
+          "siempre que",
+          "Subjuntivo",
+          "-dığı sürece / şartıyla",
+          "Te presto el coche siempre que lo cuides."
+        ],
+        [
+          "con tal de que",
+          "Subjuntivo",
+          "yeter ki ... olsun",
+          "Iré con tal de que tú vengas."
+        ],
+        [
+          "a no ser que / a menos que",
+          "Subjuntivo",
+          "-medikçe / olmadıkça",
+          "Iremos a la playa a menos que llueva."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Lleva el paraguas en caso de que ___.",
@@ -439,6 +543,35 @@ export const ES_LESSONS_3: TopicLesson[] = [
       "Yer ve zamanda que kullanmak: 'Fue en Sevilla que nos conocimos' konuşmada duyulur ama yazıda 'Fue en Sevilla donde nos conocimos' beklenir.",
     ],
     tip: "Türkçede vurgu '-an, -dığı' ile kurulan cümlenin sonundaki isimdedir (Bunu söyleyen Ana'ydı); İspanyolcada vurgulanan öğe ser'in hemen arkasına gelir: Fue Ana quien lo dijo.",
+    table: {
+      "caption": "Vurgulu Cümleler (Oraciones Hendidas)",
+      "head": [
+        "Vurgulanan Öge",
+        "Kalıp",
+        "Örnek Cümle",
+        "Türkçe Vurgusu"
+      ],
+      "rows": [
+        [
+          "Kişi",
+          "Fue ... quien / el que",
+          "Fue María quien descubrió el error.",
+          "Hatayı keşfeden María’ydı."
+        ],
+        [
+          "Zaman",
+          "Fue ... cuando",
+          "Fue en mayo cuando nos conocimos.",
+          "Tanıştığımız zaman mayıs ayıydı."
+        ],
+        [
+          "Yer",
+          "Es ... donde",
+          "Es aquí donde ocurrió todo.",
+          "Her şeyin gerçekleştiği yer burasıdır."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Fue mi hermano ___ rompió la ventana.",

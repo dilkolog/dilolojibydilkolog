@@ -208,6 +208,18 @@ export const FR_LESSONS: TopicLesson[] = [
       "est-ce que + düz cümle: Est-ce que tu viens ? Soru sözcüğüyle: Où est-ce que tu habites ?",
       "Resmî soru, özne ile fiilin yer değiştirmesiyle: Parlez-vous français ? İki sesli harf çakışırsa araya -t- girer: Parle-t-il anglais ?",
     ],
+    table: {
+      caption: "Olumsuzluk ve Soru Kurma Kalıpları",
+      head: ["Yapı", "Formül", "Örnek", "Açıklama"],
+      rows: [
+        ["Basit olumsuz", "ne (n') + fiil + pas", "Je ne parle pas.", "Fiil iki parça arasına alınır"],
+        ["Birleşik olumsuz", "ne + yardımcı + pas + ortaç", "Je n'ai pas mangé.", "ne … pas yardımcı fiili sarar"],
+        ["Olumsuzda artikel", "pas + de (d') + isim", "Je n'ai pas de voiture.", "un/une/des → de olur"],
+        ["Tonlama sorusu", "Özne + fiil ?", "Tu viens ?", "Günlük konuşmada ses yükselir"],
+        ["Standart soru", "Est-ce que + özne + fiil ?", "Est-ce que tu viens ?", "Her ortamda doğal soru kalıbı"],
+        ["Devrik soru", "Fiil-özne ?", "Parlez-vous ? / Parle-t-il ?", "Resmî dilde; sesli çakışırsa -t- girer"],
+      ],
+    },
     examples: [
       { text: "Je ne comprends pas la question.", tr: "Soruyu anlamıyorum." },
       { text: "Elle n'a pas de voiture.", tr: "Arabası yok." },
@@ -262,6 +274,17 @@ export const FR_LESSONS: TopicLesson[] = [
       "Kısa ve sık sıfatlar isimden önce gelir (güzellik, yaş, iyilik, boyut): beau, joli, jeune, vieux, nouveau, bon, mauvais, grand, petit: une jolie maison, un petit chat.",
       "beau, nouveau, vieux, sesli harfle başlayan eril isimden önce bel, nouvel, vieil olur: un bel homme, un vieil ami.",
     ],
+    table: {
+      caption: "Sıfatların Cinsiyet ve Sayı Uyumu ile Özel Biçimleri",
+      head: ["Tür / Durum", "Eril Tekil", "Dişil Tekil", "Çoğul (Eril / Dişil)"],
+      rows: [
+        ["Düzenli (+ -e / -s)", "grand", "grande", "grands / grandes"],
+        ["-e ile biten", "rouge", "rouge", "rouges / rouges"],
+        ["-eux / -if / -er", "heureux / sportif / cher", "heureuse / sportive / chère", "heureux / sportifs / chers"],
+        ["-al ile biten", "normal", "normale", "normaux / normales"],
+        ["Sesli önünde eril (beau/nouveau/vieux)", "un bel ami / nouvel an / vieil homme", "belle / nouvelle / vieille", "beaux / nouveaux / vieux"],
+      ],
+    },
     examples: [
       { text: "Ma sœur est grande et sportive.", tr: "Kız kardeşim uzun boylu ve sporcu." },
       { text: "J'ai acheté une robe noire et des chaussures blanches.", tr: "Siyah bir elbise ve beyaz ayakkabılar aldım." },
@@ -313,6 +336,17 @@ export const FR_LESSONS: TopicLesson[] = [
       "être ile ortaç özneye uyar: elle est allée, ils sont partis, elles sont venues.",
       "Olumsuzda ne … pas yardımcı fiili sarar: je n'ai pas compris.",
     ],
+    table: {
+      caption: "Passé Composé Yardımcı Fiil Seçimi ve Ortaçlar",
+      head: ["Fiil Grubu / Türü", "Yardımcı Fiil", "Ortaç (Participe Passé)", "Örnek ve Uyum"],
+      rows: [
+        ["1. grup (-er)", "avoir", "-é (parlé, mangé)", "J'ai parlé, elle a mangé (uyum yok)"],
+        ["2. ve 3. grup (-ir / -re)", "avoir", "-i / -u (fini, vendu)", "Nous avons fini, il a vendu"],
+        ["Düzensiz ortaçlar", "avoir", "fait, pris, mis, vu, lu, dit, écrit, eu, été", "Tu as pris, j'ai vu"],
+        ["15 hareket/durum fiili", "être", "allé, venu, arrivé, parti, né, mort…", "Elle est allée, ils sont partis (özneye uyar)"],
+        ["Dönüşlü fiiller (se…)", "être", "se lever → levé(e)(s)", "Elle s'est réveillée (özneye uyar)"],
+      ],
+    },
     examples: [
       { text: "Hier, j'ai regardé un film avec mes amis.", tr: "Dün arkadaşlarımla bir film izledim." },
       { text: "Nous avons fini nos devoirs.", tr: "Ödevlerimizi bitirdik." },
@@ -365,6 +399,17 @@ export const FR_LESSONS: TopicLesson[] = [
       "Genel beğeni fiilleri (aimer, adorer, détester, préférer) belirli artikel alır: J'aime le café, ama Je bois du café.",
       "Edatla birleşme ayrı bir şeydir: de + le = du (le livre du professeur), à + le = au, à + les = aux.",
     ],
+    table: {
+      caption: "Partitif Artikeller ve Miktar Kalıpları",
+      head: ["Durum", "Biçim", "Örnek", "Açıklama"],
+      rows: [
+        ["Olumlu (eril / dişil)", "du / de la / de l'", "Je bois du café et de l'eau.", "Belirsiz miktar (« biraz »)"],
+        ["Olumlu (çoğul)", "des", "Je mange des légumes.", "Belirsiz sayıda çoğul"],
+        ["Olumsuz cümlede", "de / d' (pas, plus, jamais)", "Je ne bois pas de café.", "un/une/des ve partitif → de olur"],
+        ["Miktar zarflarıyla", "beaucoup / peu / trop / assez + de", "J'ai beaucoup d'amis.", "des değil yalnızca de gelir"],
+        ["Genel beğeni fiilleriyle", "le / la / l' / les", "J'aime le café.", "aimer, adorer, préférer, détester"],
+      ],
+    },
     examples: [
       { text: "Je voudrais de l'eau, s'il vous plaît.", tr: "Biraz su istiyorum, lütfen." },
       { text: "Le matin, je mange du pain avec de la confiture.", tr: "Sabahları ekmekle reçel yerim." },
@@ -417,6 +462,17 @@ export const FR_LESSONS: TopicLesson[] = [
       "pendant que + imparfait (süren eylem); süresi belli ve bitmiş eylem passé composé: J'ai travaillé pendant deux heures.",
       "Savoir ve connaître gibi fiillerde zaman farkı anlamı değiştirir: je savais (biliyordum, durum) vs j'ai su (öğrendim, olay); je connaissais (tanıyordum) vs j'ai connu (tanıştım)."
     ],
+    table: {
+      caption: "Passé Composé vs Imparfait Karşılaştırması",
+      head: ["Özellik", "Imparfait (Süren / Arka Plan)", "Passé Composé (Bitmiş Olay)"],
+      rows: [
+        ["Temel işlev", "Arka plan, betimleme, hava, yaş, duygu", "İleri götüren tekil, tamamlanmış olay"],
+        ["Tekrar ve süre", "Alışkanlık (chaque été, d'habitude)", "Süresi belli bitmiş eylem (pendant deux heures)"],
+        ["Birlikte kullanım", "Sürmekte olan eylem (Je prenais ma douche…)", "Araya giren olay (…quand le téléphone a sonné)"],
+        ["İpucu sözcükler", "toujours, souvent, autrefois, pendant que", "hier, soudain, tout à coup, un jour, en 2015"],
+        ["Anlam değişimi", "je savais (biliyordum) / je connaissais (tanıyordum)", "j'ai su (öğrendim) / j'ai connu (tanıştım)"],
+      ],
+    },
     examples: [
       { text: "Quand j'étais petit, nous allions chaque été chez ma grand-mère.", tr: "Küçükken her yaz büyükanneme giderdik." },
       { text: "Je prenais ma douche quand le téléphone a sonné.", tr: "Telefon çaldığında duş alıyordum." },
@@ -471,6 +527,18 @@ export const FR_LESSONS: TopicLesson[] = [
       "ne … pas encore: henüz değil; diğer olumsuzlukların aksine pas sözcüğünü korur: Je n'ai pas encore fini (Henüz bitirmedim).",
       "rien, personne, aucun özne olunca cümle başına gelir ve pas almaz: Personne n'est venu. Rien ne me fait peur.",
     ],
+    table: {
+      caption: "Gelişmiş Olumsuzluk Kalıpları ve Birleşik Zamanda Yeri",
+      head: ["Kalıp", "Anlamı", "Birleşik Zamanda Yeri", "Örnek"],
+      rows: [
+        ["ne … plus", "artık değil", "yardımcı ile ortaç arası", "Il n'a plus parlé."],
+        ["ne … jamais", "hiç, asla", "yardımcı ile ortaç arası", "Je n'ai jamais vu ça."],
+        ["ne … rien", "hiçbir şey", "yardımcı ile ortaç arası", "Je n'ai rien mangé."],
+        ["ne … personne", "hiç kimse", "ortaçtan SONRA", "Je n'ai vu personne."],
+        ["ne … pas encore", "henüz değil", "yardımcı ile ortaç arası (pas korunur!)", "Le train n'est pas encore arrivé."],
+        ["ne … que", "yalnızca (kısıtlama)", "kısıtlanan öğeden önce", "Il ne boit que de l'eau."],
+      ],
+    },
     examples: [
       { text: "Je n'ai rien mangé depuis hier.", tr: "Dünden beri hiçbir şey yemedim." },
       { text: "Je n'ai vu personne dans l'escalier.", tr: "Merdivende kimseyi görmedim." },
@@ -527,6 +595,16 @@ export const FR_LESSONS: TopicLesson[] = [
       "Bu bağlaçlardan sonra önce bitecek eylem futur antérieur olur: Dès que j'aurai fini, je sortirai.",
       "si + présent ardından futur gelir; si'den sonra futur gelmez: Si tu travailles, tu réussiras.",
     ],
+    table: {
+      caption: "Üç Gelecek Zamanın Kuruluşu ve Kullanımı",
+      head: ["Zaman", "Kuruluş", "Örnek", "Ne Zaman Kullanılır?"],
+      rows: [
+        ["Futur proche", "aller (présent) + mastar", "Je vais partir.", "Yakın, planlı veya hemen olacak eylem"],
+        ["Futur simple", "mastar + -ai, -as, -a, -ons, -ez, -ont", "Je parlerai / Il fera beau.", "Tahmin, söz verme, quand/dès que ve si cümleleri"],
+        ["Futur antérieur", "avoir/être (futur) + ortaç", "Dès que j'aurai fini, je sortirai.", "Gelecekte başka bir eylemden ÖNCE bitecek iş"],
+        ["Düzensiz gövdeler", "ser-, aur-, ir-, fer-, viendr-, pourr-, verr-, saur-, voudr-", "Je serai, tu auras, il viendra", "Ekler her zaman aynıdır (-ai, -as, -a…)"],
+      ],
+    },
     examples: [
       { text: "Demain, il fera beau.", tr: "Yarın hava güzel olacak." },
       { text: "Quand tu arriveras à Paris, appelle-moi.", tr: "Paris'e vardığında beni ara." },
@@ -579,6 +657,16 @@ export const FR_LESSONS: TopicLesson[] = [
       "İki zamir yan yana: me / te / se / nous / vous → le / la / les → lui / leur → y → en: il le lui donne, je t'en parle.",
       "Olumlu emirde zamir tireyle arkaya geçer, me → moi: donne-le-moi, téléphone-lui, vas-y.",
     ],
+    table: {
+      caption: "Nesne Zamirleri (le/la/les, lui/leur, y, en) Seçimi",
+      head: ["Zamir", "Yerini Tuttuğu Yapı", "Örnek", "Açıklama"],
+      rows: [
+        ["le, la, l', les", "Doğrudan nesne (edatsız - COD)", "Je vois Marie → Je la vois.", "Kişi ve cansız varlıklar için"],
+        ["lui / leur", "à + kişi (dolaylı nesne - COI)", "Je parle à Paul → Je lui parle.", "Yalnızca kişiler için (eril/dişil ortak)"],
+        ["y", "à / dans / chez + yer veya à + şey", "Je vais à Paris → J'y vais.", "Yerler ve cansız şeyler (kişilerle kullanılmaz!)"],
+        ["en", "de + şey, partitif (du/de la/des) ve miktar", "J'en ai pris trois.", "Sayı ve miktar zarfı fiilden sonra kalır"],
+      ],
+    },
     examples: [
       { text: "— Tu as vu Marie ? — Oui, je l'ai vue hier.", tr: "— Marie'yi gördün mü? — Evet, dün gördüm." },
       { text: "Ses parents ? Elle leur téléphone tous les jours.", tr: "Ailesi mi? Onları her gün arıyor." },
@@ -647,6 +735,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "« commencer à » (yapmaya başlamak) ile « commencer par » (ilk iş olarak yapmak) farklıdır.",
     ],
     tip: "Fiili defterine hep edatıyla yaz: « décider de », « réussir à ». Edat fiilin soyadıdır.",
+    table: {
+      "caption": "Sık Karşılaşılan Edatlı Fiiller",
+      "head": [
+        "Edat",
+        "Fiil Örnekleri",
+        "Türkçe Anlamı",
+        "Örnek Kullanım"
+      ],
+      "rows": [
+        [
+          "à",
+          "penser à, s’intéresser à, réussir à",
+          "bir şeyi/kimseyi düşünmek, ilgilenmek",
+          "Je pense à mon avenir."
+        ],
+        [
+          "de",
+          "décider de, avoir peur de, s’occuper de",
+          "bir şeyi yapmaya karar vermek, korkmak",
+          "Il a décidé de partir."
+        ],
+        [
+          "sur",
+          "compter sur, agir sur",
+          "birine güvenmek, etki etmek",
+          "Tu peux compter sur moi."
+        ],
+        [
+          "pour",
+          "voter pour, remercier pour",
+          "lehine oy vermek, teşekkür etmek",
+          "Merci pour ton aide."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Après plusieurs heures de discussion, nous avons décidé ___ signer le contrat.",
@@ -698,6 +821,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "« dikkate almak » → « tenir compte de » ya da « prendre en compte »; « prendre compte » yok.",
     ],
     tip: "Kalıbı tek parça öğren ve bir cümleyle birlikte yaz; fiili isimden ayırma.",
+    table: {
+      "caption": "Temel Fransızca Eşdizimler",
+      "head": [
+        "Fiil",
+        "Doğal İsim Tamlaması",
+        "Türkçe Anlamı",
+        "Tipik Hata"
+      ],
+      "rows": [
+        [
+          "poser",
+          "poser une question",
+          "soru sormak",
+          "demander une question (yanlış)"
+        ],
+        [
+          "prendre",
+          "prendre une décision",
+          "karar almak",
+          "faire une décision (yanlış)"
+        ],
+        [
+          "faire",
+          "faire attention / la queue",
+          "dikkat etmek / sıra beklemek",
+          "prendre attention (yanlış)"
+        ],
+        [
+          "rendre",
+          "rendre visite à quelqu’un",
+          "birini ziyaret etmek",
+          "visiter une personne (yanlış)"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Le témoin a levé la main pour ___ une question au juge.",
@@ -750,6 +908,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "« grâce à » yalnızca olumlu nedende: yağmur yüzünden → « à cause de la pluie ».",
     ],
     tip: "Önce iki fikrin ilişkisini Türkçe söyle (« ama », « bu yüzden », « -sa », « üstelik »); bağlacı sonra o gruptan seç.",
+    table: {
+      "caption": "Mantıksal Bağlaçlar Tablosu",
+      "head": [
+        "İlişki Türü",
+        "Bağlaçlar",
+        "Dilbilgisi Kuralı",
+        "Örnek Cümle"
+      ],
+      "rows": [
+        [
+          "Neden",
+          "parce que, puisque, grâce à (+ isim)",
+          "grâce à olumlu, à cause de olumsuz neden",
+          "Grâce à toi, j’ai réussi."
+        ],
+        [
+          "Sonuç",
+          "donc, par conséquent, alors",
+          "Doğrudan cümle başına veya fiil ardına",
+          "Il pleut, donc je reste."
+        ],
+        [
+          "Karşıtlık",
+          "mais, cependant, pourtant",
+          "İki bağımsız yargıyı bağlar",
+          "Il est fatigué mais il sourit."
+        ],
+        [
+          "Ödün",
+          "bien que (+ subjonctif), malgré (+ isim)",
+          "bien que mutlaka dilek kipi ister",
+          "Bien qu’il pleuve, je sors."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Il est sorti sans manteau, ___ la pluie battante.",
@@ -809,6 +1002,53 @@ export const FR_LESSONS: TopicLesson[] = [
       "Ne explétif'i olumsuz sanmak: « avant qu'il ne vienne » ifadesi « o gelmeden önce » demektir; eylemin olumsuz olduğu anlamına gelmez ve pas almaz."
     ],
     tip: "« que »dan önceki ifade bir gerçeği bildiriyorsa indicatif; bir isteği, duyguyu ya da şüpheyi bildiriyorsa subjonctif.",
+    table: {
+      "caption": "Subjonctif Kök ve Uçları",
+      "head": [
+        "Kişi",
+        "Uçlar",
+        "Parler (Konuşmak)",
+        "Faire (Düzensiz)"
+      ],
+      "rows": [
+        [
+          "que je",
+          "-e",
+          "que je parle",
+          "que je fasse"
+        ],
+        [
+          "que tu",
+          "-es",
+          "que tu parles",
+          "que tu fasses"
+        ],
+        [
+          "qu’il/elle",
+          "-e",
+          "qu’il parle",
+          "qu’il fasse"
+        ],
+        [
+          "que nous",
+          "-ions",
+          "que nous parlions",
+          "que nous fassions"
+        ],
+        [
+          "que vous",
+          "-iez",
+          "que vous parliez",
+          "que vous fassiez"
+        ],
+        [
+          "qu’ils/elles",
+          "-ent",
+          "qu’ils parlent",
+          "qu’ils fassent"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Il faut absolument que tu ___ tes devoirs avant de sortir.",
@@ -866,6 +1106,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "« je devrais » (yapmalıyım) ile « j'aurais dû » (yapmalıydım) farklıdır: geçmişte yapılmamış iş için ikincisi.",
     ],
     tip: "« si » ile « -rait » aynı yarım cümlede buluşmaz: -rait hep öbür yarıda durur.",
+    table: {
+      "caption": "Conditionnel Passé Kurulum Formülü",
+      "head": [
+        "Özne",
+        "Yardımcı Fiil (Avoir/Être)",
+        "Participe Passé",
+        "Türkçe Karşılığı"
+      ],
+      "rows": [
+        [
+          "J’ / Je",
+          "aurais / serais",
+          "parlé / venu(e)",
+          "konuşmuş olurdum / gelmiş olurdum"
+        ],
+        [
+          "Tu",
+          "aurais / serais",
+          "fini / parti(e)",
+          "bitirmiş olurdun / gitmiş olurdun"
+        ],
+        [
+          "Il / Elle",
+          "aurait / serait",
+          "compris / arrivé(e)",
+          "anlamış olurdu / varmış olurdu"
+        ],
+        [
+          "Nous",
+          "aurions / serions",
+          "dormi / sorti(e)s",
+          "uyumuş olurduk / çıkmış olurduk"
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Si j'avais su pour la grève, je ___ le train de six heures.",
@@ -924,6 +1199,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "Uyum çoğu zaman duyulmaz, ama bazı ortaçlarda duyulur: mis / mise, pris / prise, écrit / écrite; bunlarda hata kulağa da batar."
     ],
     tip: "avoir'lı cümlede « neyi? » diye sor: cevap fiilden önce yazıldıysa ortaç ona uyar, sonra geliyorsa uymaz.",
+    table: {
+      "caption": "Participe Passé Uyum Kuralları",
+      "head": [
+        "Yardımcı Fiil / Durum",
+        "Uyum Kuralı",
+        "Örnek Cümle",
+        "Türkçe Anlamı"
+      ],
+      "rows": [
+        [
+          "Être ile",
+          "Özne ile cinsiyet ve çoğulluk uyumu",
+          "Elle est partie.",
+          "O gitti."
+        ],
+        [
+          "Avoir ile (standart)",
+          "Özneyle ASLA uyum yapmaz",
+          "Elle a mangé une pomme.",
+          "Bir elma yedi."
+        ],
+        [
+          "Avoir ile (COD önde)",
+          "Öne geçen doğrudan nesneyle uyum yapar",
+          "La pomme qu’elle a mangée.",
+          "Yediği elma."
+        ],
+        [
+          "En zamiri ile",
+          "En zamiri nesne olsa dahi uyum yapılmaz",
+          "Des pommes ? J’en ai mangé.",
+          "Elma mı? Yedim."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Les lettres que Sophie a ___ sont sur le bureau.",
@@ -982,6 +1292,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "Gelecek zaman conditionnel'e döner: « il a dit qu'il viendrait », « viendra » değil.",
     ],
     tip: "Geçmiş bir çerçeve (il a dit, elle a demandé) zamanı bir basamak geri iter: şimdi → imparfait, geçmiş → plus-que-parfait, gelecek → conditionnel.",
+    table: {
+      "caption": "Dolaylı Anlatımda Zaman Kaymaları",
+      "head": [
+        "Doğrudan Cümle (Présent)",
+        "Dolaylı Anlatım (Geçmiş Aktarım)",
+        "Örnek Cümle",
+        "Türkçe Çeviri"
+      ],
+      "rows": [
+        [
+          "Présent",
+          "Imparfait",
+          "Il a dit : « Je suis fatigué » → Il a dit qu’il était fatigué.",
+          "Yorgun olduğunu söyledi."
+        ],
+        [
+          "Passé Composé",
+          "Plus-que-parfait",
+          "« J’ai fini » → Il a dit qu’il avait fini.",
+          "Bitirdiğini söyledi."
+        ],
+        [
+          "Futur Simple",
+          "Conditionnel Présent",
+          "« Je viendrai » → Il a dit qu’il viendrait.",
+          "Geleceğini söyledi."
+        ],
+        [
+          "Impératif",
+          "De + Infinitif",
+          "« Pars ! » → Il m’a dit de partir.",
+          "Bana gitmemi söyledi."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "Direct: 'Je suis très fatigué.' -> Indirect: Paul a dit qu'il ___ très fatigué.",
@@ -1034,6 +1379,41 @@ export const FR_LESSONS: TopicLesson[] = [
       "Bileşik edatlardan sonra dont kullanılmaz: « la maison près de laquelle », « la maison près dont » değil.",
     ],
     tip: "Önce iki cümleyi ayrı kur: « Je pense à cette situation. » Edatı ve ismi gör (à + la situation), sonra zamire çevir: à laquelle.",
+    table: {
+      "caption": "Temel İlgi Zamirleri (Pronoms Relatifs)",
+      "head": [
+        "Zamir",
+        "Cümledeki Görevi",
+        "Kural / İpucu",
+        "Örnek Cümle"
+      ],
+      "rows": [
+        [
+          "qui",
+          "Özne",
+          "Ardından doğrudan fiil gelir",
+          "L’homme qui parle est mon ami."
+        ],
+        [
+          "que (qu’)",
+          "Doğrudan Nesne (COD)",
+          "Ardından yeni bir özne gelir",
+          "Le livre que je lis est passionnant."
+        ],
+        [
+          "où",
+          "Yer veya Zaman Tümleci",
+          "Nerede / Ne zaman sorularının yanıtı",
+          "La ville où j’habite est calme."
+        ],
+        [
+          "dont",
+          "De edatlı tamlama",
+          "Parler de, avoir besoin de vb. ile",
+          "Le projet dont tu parles est ambitieux."
+        ]
+      ]
+    },
     check: [
       {
         prompt: "C'est une cause pour ___ il a lutté toute sa vie.",

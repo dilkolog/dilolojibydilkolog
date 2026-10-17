@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
+import { loadTenses } from '../../data/tenseData'
 import { TENSE_LESSON } from '../../data/tenseLesson'
-import type { Tense } from '../../engine/tenses'
+import { conjugateTense, personsOf, subjectLabel, tensesLoaded, type Tense } from '../../engine/tenses'
 import { CloseIcon, InfoIcon, SpeakerIcon } from '../icons'
 import { speak } from '../speech'
 import { tenseName, type LabLanguage } from './labShared'
+
+const SAMPLE_VERBS: Record<LabLanguage, readonly [string, string, string]> = {
+  fr: ['parler', 'finir', 'aller'],
+  es: ['hablar', 'comer', 'vivir'],
+}
 
 /**
  * The ⓘ beside the tense chips: opens a short lesson on the tense being looked at (what it is for,
@@ -26,6 +32,18 @@ export function TenseInfoButton({ language, tense }: { language: LabLanguage; te
 export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { language: LabLanguage; tense: Tense; onClose: () => void; onVerbs?: () => void }) {
   const guide = TENSE_LESSON[tense]
   const closeRef = useRef<HTMLButtonElement>(null)
+  const [ready, setReady] = useState(() => tensesLoaded(language))
+  useEffect(() => {
+    let live = true
+    if (!tensesLoaded(language)) {
+      void loadTenses(language).then(() => {
+        if (live) setReady(true)
+      })
+    }
+    return () => {
+      live = false
+    }
+  }, [language])
   useEffect(() => {
     const before = document.activeElement as HTMLElement | null
     closeRef.current?.focus()
@@ -42,6 +60,10 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
     }
   }, [onClose])
   if (!guide) return null
+  const sampleVerbs = SAMPLE_VERBS[language]
+  const sampleForms = ready ? sampleVerbs.map((lemma) => conjugateTense({ language, lemma, partOfSpeech: 'verb' }, tense)) : []
+  const persons = personsOf(language, tense)
+  const hasTable = sampleForms.length === sampleVerbs.length && sampleForms.every((f) => !!f)
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog dialog-wide tense-lesson" role="dialog" aria-modal="true" aria-labelledby="tense-lesson-title">
@@ -70,6 +92,39 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
             ))}
           </ul>
         </section>
+        {hasTable && (
+          <section className="tg-section" aria-label="Örnek çekimler">
+            <h3 className="subhead">Örnek çekimler</h3>
+            <div className="guide-table-wrap">
+              <table className="guide-table tense-sample-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Kişi</th>
+                    {sampleVerbs.map((v) => (
+                      <th key={v} scope="col" lang={language}>
+                        {v}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {persons.map((p) => (
+                    <tr key={p}>
+                      <td className="muted" lang={language}>
+                        {subjectLabel(language, tense, p)}
+                      </td>
+                      {sampleForms.map((forms, idx) => (
+                        <td key={sampleVerbs[idx]} lang={language}>
+                          {forms?.[p] ?? '—'}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
         <section className="tg-section">
           <h3 className="subhead">Örnekler</h3>
           <ul className="tg-examples">

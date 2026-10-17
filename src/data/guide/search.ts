@@ -25,13 +25,13 @@ function around(line: string, words: string[]): string {
  * Whether a lesson answers a search: every word of the query is somewhere in the lesson (its name, summary, rules,
  * examples with their Turkish, warnings and tip), so "depuis" finds the lesson whose example uses it. `null` when not.
  */
-export function searchLesson(lesson: TopicLesson, title: string, query: string): LessonHit | null {
+export function searchLesson(lesson: TopicLesson, title: string, query: string, note?: string): LessonHit | null {
   const words = fold(query).split(/\s+/).filter(Boolean)
   if (!words.length) return { where: 'title' }
   const head = fold(`${title} ${lesson.summary}`)
   if (words.every((w) => head.includes(w))) return { where: 'title' }
   const tableLines = lesson.table ? [...(lesson.table.caption ? [lesson.table.caption] : []), lesson.table.head.join(' · '), ...lesson.table.rows.map((r) => r.join(' · '))] : []
-  const lines = [...lesson.rules, ...tableLines, ...lesson.examples.map((x) => `${x.text} — ${x.tr}`), ...lesson.watch, ...(lesson.tip ? [lesson.tip] : [])]
+  const lines = [...lesson.rules, ...tableLines, ...lesson.examples.map((x) => `${x.text} — ${x.tr}`), ...lesson.watch, ...(lesson.tip ? [lesson.tip] : []), ...(note?.trim() ? [`Notun: ${note.trim()}`] : [])]
   const all = fold(`${head} ${lines.join(' ')}`)
   if (!words.every((w) => all.includes(w))) return null
   const line = lines.find((l) => words.some((w) => fold(l).includes(w)))
