@@ -1,0 +1,509 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "terms": [
+    {
+      "term": "article défini",
+      "aliases": [
+        "articles définis"
+      ],
+      "tr": "belirli artikel",
+      "explanation": "Belirli bir varlığı niteleyen le (eril), la (dişil), les (çoğul) sözcükleri. Sesli harften önce l' olur.",
+      "example": {
+        "text": "Le livre est sur la table.",
+        "tr": "Kitap masanın üstünde."
+      }
+    },
+    {
+      "term": "article indéfini",
+      "aliases": [
+        "articles indéfinis"
+      ],
+      "tr": "belirsiz artikel",
+      "explanation": "Herhangi bir varlığı tanıtan un (eril), une (dişil), des (çoğul) sözcükleri.",
+      "example": {
+        "text": "J'ai acheté un livre.",
+        "tr": "Bir kitap satın aldım."
+      }
+    },
+    {
+      "term": "article partitif",
+      "aliases": [
+        "articles partitifs",
+        "partitif"
+      ],
+      "tr": "parçalı artikel",
+      "explanation": "Sayılamayan madde, yiyecek veya soyut kavramların miktarını belirten du, de la, de l', des sözcükleri.",
+      "example": {
+        "text": "Je bois du café.",
+        "tr": "Kahve içiyorum."
+      }
+    },
+    {
+      "term": "présent",
+      "aliases": [
+        "présent de l'indicatif"
+      ],
+      "tr": "şimdiki / geniş zaman",
+      "explanation": "Şu an gerçekleşen eylemleri, genel doğruları ve alışkanlıkları anlatan temel zaman.",
+      "example": {
+        "text": "Nous habitons à Paris.",
+        "tr": "Paris'te oturuyoruz."
+      }
+    },
+    {
+      "term": "passé composé",
+      "aliases": [],
+      "tr": "bitmiş geçmiş zaman",
+      "explanation": "Geçmişte tamamlanmış eylemleri anlatır; avoir veya être yardımcı fiili ve geçmiş ortaçla kurulur.",
+      "example": {
+        "text": "Elle a fini ses études.",
+        "tr": "Öğrenimini bitirdi."
+      }
+    },
+    {
+      "term": "imparfait",
+      "aliases": [],
+      "tr": "süregelen geçmiş zaman",
+      "explanation": "Geçmişteki durumları, tasvirleri ve alışkanlık haline gelmiş tekrarlanan eylemleri anlatır.",
+      "example": {
+        "text": "Quand j'étais enfant, je lisais beaucoup.",
+        "tr": "Çocukken çok okurdum."
+      }
+    },
+    {
+      "term": "futur simple",
+      "aliases": [
+        "futur"
+      ],
+      "tr": "gelecek zaman",
+      "explanation": "Gelecekte gerçekleşecek eylemleri anlatır; fiil köküne -ai, -as, -a, -ons, -ez, -ont eklenir.",
+      "example": {
+        "text": "Demain, nous partirons tôt.",
+        "tr": "Yarın erken çıkacağız."
+      }
+    },
+    {
+      "term": "futur proche",
+      "aliases": [],
+      "tr": "yakın gelecek zaman",
+      "explanation": "Hemen gerçekleşecek veya planlanmış eylemleri aller fiili ve mastar ile anlatan yapı.",
+      "example": {
+        "text": "Je vais t'expliquer.",
+        "tr": "Sana açıklayacağım."
+      }
+    },
+    {
+      "term": "conditionnel",
+      "aliases": [
+        "conditionnel présent"
+      ],
+      "tr": "koşul kipi",
+      "explanation": "İstek, nezaket, öneri veya varsayıma dayalı eylemleri anlatır; kök gelecek, ekler imparfait alır.",
+      "example": {
+        "text": "Je voudrais un café, s'il vous plaît.",
+        "tr": "Bir kahve rica ediyorum."
+      }
+    },
+    {
+      "term": "conditionnel passé",
+      "aliases": [],
+      "tr": "geçmiş koşul kipi",
+      "explanation": "Geçmişte gerçekleşmemiş olasılıkları ve pişmanlıkları anlatır; aurait/serait + participe passé.",
+      "example": {
+        "text": "J'aurais aimé venir.",
+        "tr": "Gelmek isterdim."
+      }
+    },
+    {
+      "term": "subjonctif",
+      "aliases": [
+        "subjonctif présent"
+      ],
+      "tr": "dilek-istek kipi",
+      "explanation": "İstek, duygu, şüphe, zorunluluk veya belirsizlik bildiren yan cümlelerde que sonrası kullanılır.",
+      "example": {
+        "text": "Il faut que tu viennes.",
+        "tr": "Gelmen gerek."
+      }
+    },
+    {
+      "term": "subjonctif passé",
+      "aliases": [],
+      "tr": "geçmiş dilek-istek kipi",
+      "explanation": "Dilek veya zorunluluk bildiren bir ifadeden önce tamamlanmış olması beklenen eylemleri anlatır.",
+      "example": {
+        "text": "Je suis content que tu aies réussi.",
+        "tr": "Başardığına sevindim."
+      }
+    },
+    {
+      "term": "impératif",
+      "aliases": [
+        "impératif présent"
+      ],
+      "tr": "emir kipi",
+      "explanation": "Emir, rica, yasaklama veya tavsiye bildiren öznesiz fiil çekimi (tu, nous, vous şahısları için).",
+      "example": {
+        "text": "Prenez votre temps.",
+        "tr": "Acele etmeyin."
+      }
+    },
+    {
+      "term": "plus-que-parfait",
+      "aliases": [],
+      "tr": "ön geçmiş zaman",
+      "explanation": "Geçmişteki başka bir eylemden daha önce tamamlanmış olayları anlatır; avais/étais + participe passé.",
+      "example": {
+        "text": "Il était déjà parti quand je suis arrivé.",
+        "tr": "Geldiğimde çoktan gitmişti."
+      }
+    },
+    {
+      "term": "passé simple",
+      "aliases": [],
+      "tr": "tarihi / edebi geçmiş zaman",
+      "explanation": "Yazılı dilde, romanlarda ve tarihi anlatılarda tamamlanmış olayları anlatan geçmiş zaman.",
+      "example": {
+        "text": "Le roi mourut en 1715.",
+        "tr": "Kral 1715'te öldü."
+      }
+    },
+    {
+      "term": "participe passé",
+      "aliases": [],
+      "tr": "geçmiş zaman ortacı",
+      "explanation": "Bileşik zamanları (passé composé vb.) ve edilgen çatıyı kurmakta kullanılan fiil formu.",
+      "example": {
+        "text": "J'ai mangé une pomme.",
+        "tr": "Bir elma yedim."
+      }
+    },
+    {
+      "term": "participe présent",
+      "aliases": [],
+      "tr": "şimdiki zaman ortacı",
+      "explanation": "Fiil köküne -ant getirilerek türetilen, eylemi niteleyen veya yan cümle kısaltan ortaç.",
+      "example": {
+        "text": "Sachant la vérité, il s'est tu.",
+        "tr": "Gerçeği bildiğinden sustu."
+      }
+    },
+    {
+      "term": "gérondif",
+      "aliases": [],
+      "tr": "ulaç",
+      "explanation": "En + participe présent ile kurulan, eşzamanlılık, araç veya neden belirten zarf-fiil yapısı.",
+      "example": {
+        "text": "Il écoute de la musique en travaillant.",
+        "tr": "Çalışırken müzik dinliyor."
+      }
+    },
+    {
+      "term": "verbe pronominal",
+      "aliases": [
+        "verbes pronominaux"
+      ],
+      "tr": "dönüşlü fiil",
+      "explanation": "Öznesi ve nesnesi aynı olan ya da karşılıklı yapılan eylemleri belirten me, te, se zamirli fiiller.",
+      "example": {
+        "text": "Je me réveille à sept heures.",
+        "tr": "Saat yedide uyanıyorum."
+      }
+    },
+    {
+      "term": "pronom sujet",
+      "aliases": [
+        "pronoms sujets"
+      ],
+      "tr": "özne zamiri",
+      "explanation": "Fiili icra eden kişiyi temsil eden je, tu, il, elle, on, nous, vous, ils, elles sözcükleri.",
+      "example": {
+        "text": "Elle étudie le droit.",
+        "tr": "O hukuk okuyor."
+      }
+    },
+    {
+      "term": "pronom tonique",
+      "aliases": [
+        "pronoms toniques"
+      ],
+      "tr": "vurgu zamiri",
+      "explanation": "Edatlardan sonra ve vurgulama amacıyla tek başına kullanılan moi, toi, lui, elle, nous, vous, eux, elles.",
+      "example": {
+        "text": "C'est pour moi.",
+        "tr": "Bu benim için."
+      }
+    },
+    {
+      "term": "pronom cod",
+      "aliases": [
+        "cod",
+        "complément d'objet direct"
+      ],
+      "tr": "belirtili nesne zamiri",
+      "explanation": "Edatsız doğrudan nesnenin yerini alan me, te, le, la, nous, vous, les zamirleri.",
+      "example": {
+        "text": "Je la connais très bien.",
+        "tr": "Onu çok iyi tanıyorum."
+      }
+    },
+    {
+      "term": "pronom coi",
+      "aliases": [
+        "coi",
+        "complément d'objet indirect"
+      ],
+      "tr": "dolaylı nesne zamiri",
+      "explanation": "À edatıyla bağlanan şahıs nesnelerinin yerini alan me, te, lui, nous, vous, leur zamirleri.",
+      "example": {
+        "text": "Je lui ai écrit une lettre.",
+        "tr": "Ona bir mektup yazdım."
+      }
+    },
+    {
+      "term": "pronom y",
+      "aliases": [
+        "y"
+      ],
+      "tr": "y zamiri",
+      "explanation": "À ile başlayan cansız tamlamaların veya yer bildiren ifadelerin yerini alan zamir.",
+      "example": {
+        "text": "J'y vais tout de suite.",
+        "tr": "Oraya hemen gidiyorum."
+      }
+    },
+    {
+      "term": "pronom en",
+      "aliases": [
+        "en"
+      ],
+      "tr": "en zamiri",
+      "explanation": "De ile başlayan tamlamaların, miktarların ve partitif nesnelerin yerini alan zamir.",
+      "example": {
+        "text": "J'en ai trois.",
+        "tr": "Ondan üç tane var."
+      }
+    },
+    {
+      "term": "pronom relatif",
+      "aliases": [
+        "pronoms relatifs"
+      ],
+      "tr": "ilgi zamiri",
+      "explanation": "İki cümleyi birbirine bağlayan ve bir ismin yerini alan qui, que, où, dont sözcükleri.",
+      "example": {
+        "text": "L'ami qui m'a aidé est parti.",
+        "tr": "Bana yardım eden arkadaş gitti."
+      }
+    },
+    {
+      "term": "pronom relatif composé",
+      "aliases": [
+        "pronoms relatifs composés"
+      ],
+      "tr": "bileşik ilgi zamiri",
+      "explanation": "Edatlardan sonra gelen ve cinsiyete göre değişen lequel, laquelle, lesquels, auxquelles vb. zamirler.",
+      "example": {
+        "text": "La réunion à laquelle j'ai assisté.",
+        "tr": "Katıldığım toplantı."
+      }
+    },
+    {
+      "term": "adjectif qualificatif",
+      "aliases": [],
+      "tr": "niteleme sıfatı",
+      "explanation": "İsmin niteliğini belirten ve nitelediği ismin cinsiyetine ve çoğulluğuna göre uyum sağlayan sözcük.",
+      "example": {
+        "text": "Une maison blanche.",
+        "tr": "Beyaz bir ev."
+      }
+    },
+    {
+      "term": "adjectif possessif",
+      "aliases": [
+        "possessif",
+        "adjectifs possessifs"
+      ],
+      "tr": "iyelik sıfatı",
+      "explanation": "Aitlik bildiren ve sahip olunan ismin cinsiyetine uyan mon, ton, son, notre, votre, leur sözcükleri.",
+      "example": {
+        "text": "C'est mon ami.",
+        "tr": "O benim arkadaşım."
+      }
+    },
+    {
+      "term": "adjectif démonstratif",
+      "aliases": [
+        "démonstratif",
+        "adjectifs démonstratifs"
+      ],
+      "tr": "işaret sıfatı",
+      "explanation": "Bir nesneyi işaret eden ce, cet (ünlü önünde), cette, ces sözcükleri.",
+      "example": {
+        "text": "Ce livre est passionnant.",
+        "tr": "Bu kitap sürükleyici."
+      }
+    },
+    {
+      "term": "accord",
+      "aliases": [
+        "accords"
+      ],
+      "tr": "uyum kuralı",
+      "explanation": "Sıfatların ve ortaçların niteledikleri ismin eril/dişil ve tekil/çoğul özelliklerine uyum sağlaması.",
+      "example": {
+        "text": "Les portes sont ouvertes.",
+        "tr": "Kapılar açık."
+      }
+    },
+    {
+      "term": "voix passive",
+      "aliases": [
+        "passif"
+      ],
+      "tr": "edilgen çatı",
+      "explanation": "Eylemi yapanın değil etkilenenin özne olduğu çatı; être + participe passé ile kurulur.",
+      "example": {
+        "text": "Le pont a été construit en 1900.",
+        "tr": "Köprü 1900'de inşa edildi."
+      }
+    },
+    {
+      "term": "discours indirect",
+      "aliases": [],
+      "tr": "dolaylı anlatım",
+      "explanation": "Birinin söylediği sözleri tırnak işareti olmadan que ile ana cümleye bağlayarak aktarma yöntemi.",
+      "example": {
+        "text": "Il m'a dit qu'il était fatigué.",
+        "tr": "Yorgun olduğunu söyledi."
+      }
+    },
+    {
+      "term": "concordance des temps",
+      "aliases": [],
+      "tr": "zaman uyumu",
+      "explanation": "Ana cümle geçmiş zamandaysa yan cümlenin zamanının geriye kayması (présent → imparfait).",
+      "example": {
+        "text": "Elle a promis qu'elle viendrait.",
+        "tr": "Geleceğine söz verdi."
+      }
+    },
+    {
+      "term": "faire causatif",
+      "aliases": [
+        "causatif"
+      ],
+      "tr": "ettirgen çatı",
+      "explanation": "Bir işi bir başkasına yaptırmayı ifade eden faire + mastar fiil yapısı.",
+      "example": {
+        "text": "Je fais réparer ma montre.",
+        "tr": "Saatimi tamir ettiriyorum."
+      }
+    },
+    {
+      "term": "ne explétif",
+      "aliases": [],
+      "tr": "dolgu ne",
+      "explanation": "Avant que, de peur que veya à moins que sonrasında olumsuzluk anlamı taşımadan kullanılan şık ne.",
+      "example": {
+        "text": "Partez avant qu'il ne pleuve.",
+        "tr": "Yağmur yağmadan önce gidin."
+      }
+    },
+    {
+      "term": "mise en relief",
+      "aliases": [],
+      "tr": "vurgulu cümle",
+      "explanation": "Cümlenin belirli bir ögesini öne çıkarmak için kullanılan c'est ... qui / que kalıbı.",
+      "example": {
+        "text": "C'est lui qui a gagné.",
+        "tr": "Kazanan oydu."
+      }
+    },
+    {
+      "term": "adverbe",
+      "aliases": [
+        "adverbes"
+      ],
+      "tr": "zarf",
+      "explanation": "Fiili, sıfatı veya başka bir zarfı niteleyen, genellikle dişil sıfata -ment eklenerek türetilen sözcük.",
+      "example": {
+        "text": "Il conduit prudemment.",
+        "tr": "Dikkatli sürüyor."
+      }
+    },
+    {
+      "term": "comparatif",
+      "aliases": [],
+      "tr": "karşılaştırma derecesi",
+      "explanation": "İki varlığı üstünlük (plus), eşitlik (aussi) veya eksiklik (moins) yönünden kıyaslayan yapı.",
+      "example": {
+        "text": "Elle est plus grande que moi.",
+        "tr": "O benden daha uzun."
+      }
+    },
+    {
+      "term": "superlatif",
+      "aliases": [],
+      "tr": "üstünlük derecesi",
+      "explanation": "Bir grubun en üstününü veya en düşüğünü belirten le plus / le moins yapısı.",
+      "example": {
+        "text": "Le plus beau musée de la ville.",
+        "tr": "Şehrin en güzel müzesi."
+      }
+    },
+    {
+      "term": "négation",
+      "aliases": [],
+      "tr": "olumsuzluk",
+      "explanation": "Cümleyi olumsuz yapan ne ... pas, ne ... jamais, ne ... rien, ne ... plus sözcük çiftleri.",
+      "example": {
+        "text": "Je ne sais rien.",
+        "tr": "Hiçbir şey bilmiyorum."
+      }
+    },
+    {
+      "term": "élision",
+      "aliases": [],
+      "tr": "ünlü düşmesi",
+      "explanation": "Sonunda sessiz düşen ünlü bulunan sözcüklerin (je, le, la, de) sesli harf önünde kesmeyle kısalması.",
+      "example": {
+        "text": "L'école (la école yerine).",
+        "tr": "Okul."
+      }
+    },
+    {
+      "term": "liaison",
+      "aliases": [],
+      "tr": "ulama",
+      "explanation": "Normalde okunmayan kelime sonu ünsüzünün, sesliyle başlayan sonraki kelimeye bağlanarak okunması.",
+      "example": {
+        "text": "Les amis (/le-zami/).",
+        "tr": "Arkadaşlar."
+      }
+    },
+    {
+      "term": "infinitif",
+      "aliases": [],
+      "tr": "mastar",
+      "explanation": "Fiilin şahıs eki almamış temel sözlük biçimi (-er, -ir, -re ile biter).",
+      "example": {
+        "text": "Aimer, finir, attendre.",
+        "tr": "Sevmek, bitirmek, beklemek."
+      }
+    },
+    {
+      "term": "conjonction",
+      "aliases": [
+        "conjonctions"
+      ],
+      "tr": "bağlaç",
+      "explanation": "Sözcükleri veya cümleleri birbirine bağlayan mais, ou, et, donc, car gibi dil ögeleri.",
+      "example": {
+        "text": "Je pense, donc je suis.",
+        "tr": "Düşünüyorum, öyleyse varım."
+      }
+    }
+  ]
+}

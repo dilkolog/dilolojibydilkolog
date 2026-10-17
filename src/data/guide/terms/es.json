@@ -1,0 +1,506 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "terms": [
+    {
+      "term": "artículo determinado",
+      "aliases": [
+        "artículo definido"
+      ],
+      "tr": "belirli artikel",
+      "explanation": "Bilinen veya belirli bir ismi niteleyen el (eril), la (dişil), los (çoğul eril), las (çoğul dişil) sözcükleri.",
+      "example": {
+        "text": "El libro está en la mesa.",
+        "tr": "Kitap masada."
+      }
+    },
+    {
+      "term": "artículo indeterminado",
+      "aliases": [
+        "artículo indefinido"
+      ],
+      "tr": "belirsiz artikel",
+      "explanation": "Herhangi bir ismi tanıtan un (eril), una (dişil), unos (çoğul), unas (çoğul) sözcükleri.",
+      "example": {
+        "text": "Compré una revista.",
+        "tr": "Bir dergi aldım."
+      }
+    },
+    {
+      "term": "presente de indicativo",
+      "aliases": [
+        "presente"
+      ],
+      "tr": "şimdiki / geniş zaman",
+      "explanation": "Şu anki olayları, alışkanlıkları ve genel doğruları anlatan temel bildirme kipi zamanı.",
+      "example": {
+        "text": "Vivo en Madrid.",
+        "tr": "Madrid'de yaşıyorum."
+      }
+    },
+    {
+      "term": "pretérito indefinido",
+      "aliases": [
+        "pretérito perfecto simple"
+      ],
+      "tr": "basit geçmiş zaman",
+      "explanation": "Geçmişte belirli bir zaman diliminde tamamlanmış olayları anlatan geçmiş zaman.",
+      "example": {
+        "text": "Ayer hablé con María.",
+        "tr": "Dün María ile konuştum."
+      }
+    },
+    {
+      "term": "pretérito imperfecto",
+      "aliases": [
+        "imperfecto"
+      ],
+      "tr": "süregelen geçmiş zaman",
+      "explanation": "Geçmişteki alışkanlıkları, tasvirleri ve tamamlanmamış süreçleri anlatan geçmiş zaman.",
+      "example": {
+        "text": "De niño jugaba mucho al fútbol.",
+        "tr": "Çocukken çok futbol oynardım."
+      }
+    },
+    {
+      "term": "pretérito perfecto",
+      "aliases": [
+        "pretérito perfecto compuesto"
+      ],
+      "tr": "yakın geçmiş zaman",
+      "explanation": "Halen devam eden zaman diliminde tamamlanmış olayları haber + participio ile anlatan zaman.",
+      "example": {
+        "text": "Hoy he comido paella.",
+        "tr": "Bugün paella yedim."
+      }
+    },
+    {
+      "term": "pretérito pluscuamperfecto",
+      "aliases": [
+        "pluscuamperfecto"
+      ],
+      "tr": "ön geçmiş zaman",
+      "explanation": "Geçmişteki başka bir olaydan daha önce tamamlanmış olayları había + participio ile anlatır.",
+      "example": {
+        "text": "Ya habían salido cuando llegué.",
+        "tr": "Vardığımda çoktan çıkmışlardı."
+      }
+    },
+    {
+      "term": "futuro simple",
+      "aliases": [
+        "futuro"
+      ],
+      "tr": "gelecek zaman",
+      "explanation": "Gelecekteki olayları veya günümüze dair olasılık tahminlerini (-é, -ás, -á...) anlatan zaman.",
+      "example": {
+        "text": "Mañana viajaré a Sevilla.",
+        "tr": "Yarın Sevilla'ya seyahat edeceğim."
+      }
+    },
+    {
+      "term": "futuro de probabilidad",
+      "aliases": [],
+      "tr": "olasılık gelecek zamanı",
+      "explanation": "Gelecek zaman çekimini şu anki duruma ilişkin tahmin veya olasılık belirtmek için kullanma.",
+      "example": {
+        "text": "¿Dónde estará Juan? Estará en casa.",
+        "tr": "Juan nerededir? Evdedir herhalde."
+      }
+    },
+    {
+      "term": "condicional simple",
+      "aliases": [
+        "condicional"
+      ],
+      "tr": "şart kipi",
+      "explanation": "Nezaket ricaları, tavsiyeler ve varsayımsal durumları (-ía, -ías, -ía...) anlatan kip.",
+      "example": {
+        "text": "Me gustaría un café con leche.",
+        "tr": "Sütlü kahve rica ederim."
+      }
+    },
+    {
+      "term": "condicional compuesto",
+      "aliases": [],
+      "tr": "geçmiş şart kipi",
+      "explanation": "Geçmişte gerçekleşmemiş şartlı durumları habría + participio ile anlatan yapı.",
+      "example": {
+        "text": "Habría ido si hubiera sabido.",
+        "tr": "Bilseydim giderdim."
+      }
+    },
+    {
+      "term": "subjuntivo",
+      "aliases": [
+        "subjuntivo presente"
+      ],
+      "tr": "dilek-istek kipi",
+      "explanation": "İstek, duygu, şüphe, belirsizlik veya olasılık bildiren durumlarda kullanılan temel kip.",
+      "example": {
+        "text": "Espero que tengas un buen viaje.",
+        "tr": "Umarım iyi bir yolculuk geçirirsin."
+      }
+    },
+    {
+      "term": "imperfecto de subjuntivo",
+      "aliases": [
+        "subjuntivo imperfecto"
+      ],
+      "tr": "geçmiş dilek-istek kipi",
+      "explanation": "Geçmişe bağlı dilekleri ve gerçek dışı şart cümlelerini (-ra/-se ekleriyle) anlatan kip.",
+      "example": {
+        "text": "Si tuviera dinero, viajaría por el mundo.",
+        "tr": "Param olsa dünyayı gezerdim."
+      }
+    },
+    {
+      "term": "pluscuamperfecto de subjuntivo",
+      "aliases": [],
+      "tr": "ön geçmiş dilek kipi",
+      "explanation": "Geçmişteki gerçekleşmemiş gerçek dışı koşulları hubiera + participio ile kuran yapı.",
+      "example": {
+        "text": "Si me hubieras avisado, habría venido.",
+        "tr": "Haber verseydin gelirdim."
+      }
+    },
+    {
+      "term": "imperativo",
+      "aliases": [
+        "imperativo afirmativo"
+      ],
+      "tr": "emir kipi",
+      "explanation": "Emir, talimat veya rica bildiren öznesiz fiil çekim biçimi.",
+      "example": {
+        "text": "¡Pasa, por favor!",
+        "tr": "İçeri geç lütfen!"
+      }
+    },
+    {
+      "term": "imperativo negativo",
+      "aliases": [],
+      "tr": "olumsuz emir kipi",
+      "explanation": "Yasaklama ve yapmama emirlerini no + subjuntivo ile oluşturan yapı.",
+      "example": {
+        "text": "¡No hables tan alto!",
+        "tr": "O kadar yüksek sesle konuşma!"
+      }
+    },
+    {
+      "term": "participio",
+      "aliases": [],
+      "tr": "ortaç",
+      "explanation": "Fiilden türetilen (-ado / -ido), bileşik zamanlar ve sıfat görevinde kullanılan sözcük formu.",
+      "example": {
+        "text": "La puerta está cerrada.",
+        "tr": "Kapı kapalı."
+      }
+    },
+    {
+      "term": "gerundio",
+      "aliases": [],
+      "tr": "ulaç",
+      "explanation": "Fiilden türetilen (-ando / -iendo), estar ile süregelen eylemleri veya tarzı belirten form.",
+      "example": {
+        "text": "Estoy estudiando español.",
+        "tr": "İspanyolca çalışıyorum."
+      }
+    },
+    {
+      "term": "verbo reflexivo",
+      "aliases": [
+        "verbos reflexivos"
+      ],
+      "tr": "dönüşlü fiil",
+      "explanation": "Eylemin özneye döndüğü me, te, se, nos, os, se zamirleriyle çekimlenen fiiller.",
+      "example": {
+        "text": "Me levanto a las ocho.",
+        "tr": "Saat sekizde kalkıyorum."
+      }
+    },
+    {
+      "term": "se pasivo",
+      "aliases": [
+        "pasiva refleja"
+      ],
+      "tr": "edilgen se",
+      "explanation": "Özne belirtilmeyen ve üçüncü şahıs fiille se zamirini birleştiren edilgen anlatım.",
+      "example": {
+        "text": "Se venden pisos en el centro.",
+        "tr": "Merkezde daireler satılıyor."
+      }
+    },
+    {
+      "term": "se accidental",
+      "aliases": [],
+      "tr": "istemsiz eylem yapısı",
+      "explanation": "Kaza veya unutkanlık sonucu oluşan eylemleri se me, se te + fiil ile özneyi suçsuz kılan yapı.",
+      "example": {
+        "text": "Se me cayó la taza.",
+        "tr": "Fincan elimden düştü."
+      }
+    },
+    {
+      "term": "pronombre de sujeto",
+      "aliases": [
+        "pronombres personales"
+      ],
+      "tr": "özne zamiri",
+      "explanation": "Cümlenin öznesi olan yo, tú, él, ella, usted, nosotros, vosotros, ellos sözcükleri.",
+      "example": {
+        "text": "Nosotros somos de Turquía.",
+        "tr": "Biz Türkiyeliyiz."
+      }
+    },
+    {
+      "term": "objeto directo",
+      "aliases": [
+        "pronombre de objeto directo"
+      ],
+      "tr": "belirtili nesne zamiri",
+      "explanation": "Neyi/kimi sorularına cevap veren nesnenin yerini alan me, te, lo, la, nos, os, los, las zamirleri.",
+      "example": {
+        "text": "La vi en el supermercado.",
+        "tr": "Onu süpermarkette gördüm."
+      }
+    },
+    {
+      "term": "objeto indirecto",
+      "aliases": [
+        "pronombre de objeto indirecto"
+      ],
+      "tr": "dolaylı nesne zamiri",
+      "explanation": "Kime/neye sorularına cevap veren nesnenin yerini alan me, te, le, nos, os, les zamirleri.",
+      "example": {
+        "text": "Le di un regalo a mi madre.",
+        "tr": "Anneme bir hediye verdim."
+      }
+    },
+    {
+      "term": "se lo",
+      "aliases": [],
+      "tr": "se lo kuralı",
+      "explanation": "Le ve lo zamirleri yan yana geldiğinde le ses uyumu nedeniyle se biçimine dönüşür (se lo).",
+      "example": {
+        "text": "Se lo dije ayer.",
+        "tr": "Bunu ona dün söyledim."
+      }
+    },
+    {
+      "term": "laísmo",
+      "aliases": [],
+      "tr": "laísmo",
+      "explanation": "İspanya'nın bazı bölgelerinde kadın dolaylı nesneler için le yerine la kullanma dil alışkanlığı.",
+      "example": {
+        "text": "La di un beso (standart: Le di).",
+        "tr": "Ona bir öpücük verdim."
+      }
+    },
+    {
+      "term": "leísmo",
+      "aliases": [],
+      "tr": "leísmo",
+      "explanation": "Erkek şahıs doğrudan nesneler için lo yerine le kullanma eğilimi (RAE tarafından kabul edilir).",
+      "example": {
+        "text": "Le vi ayer a Pedro (lo vi yerine).",
+        "tr": "Pedro'yu dün gördüm."
+      }
+    },
+    {
+      "term": "a personal",
+      "aliases": [],
+      "tr": "şahıs a edatı",
+      "explanation": "Belirtili nesne belirli bir insan veya evcil hayvan olduğunda fiilden sonra zorunlu gelen a edatı.",
+      "example": {
+        "text": "Visité a mis abuelos.",
+        "tr": "Büyükannemleri ziyaret ettim."
+      }
+    },
+    {
+      "term": "lo neutro",
+      "aliases": [],
+      "tr": "nötr lo",
+      "explanation": "Sıfatların önüne gelerek soyut kavram türeten ya da tüm cümleciğin yerini alan artikel/zamir.",
+      "example": {
+        "text": "Lo importante es participar.",
+        "tr": "Önemli olan katılmaktır."
+      }
+    },
+    {
+      "term": "perífrasis verbal",
+      "aliases": [
+        "perífrasis"
+      ],
+      "tr": "fiil öbeği",
+      "explanation": "Yardımcı fiil ve mastar/ortaç/ulaç birleşimiyle süreç, zorunluluk veya aşama bildiren yapılar.",
+      "example": {
+        "text": "Tengo que salir pronto.",
+        "tr": "Erken çıkmam gerek."
+      }
+    },
+    {
+      "term": "ser y estar",
+      "aliases": [],
+      "tr": "ser ve estar ayrımı",
+      "explanation": "Kalıcı özellikler için ser, geçici durumlar, yerleşim ve duygular için estar fiilini kullanma kuralı.",
+      "example": {
+        "text": "Soy profesor pero estoy cansado.",
+        "tr": "Öğretmenim ama yorgunum."
+      }
+    },
+    {
+      "term": "adjetivo posesivo",
+      "aliases": [
+        "posesivos"
+      ],
+      "tr": "iyelik sıfatı",
+      "explanation": "Aitlik bildiren ve ismin önüne gelen mi, tu, su, nuestro, vuestro sözcükleri.",
+      "example": {
+        "text": "Mi casa es muy luminosa.",
+        "tr": "Evim çok aydınlık."
+      }
+    },
+    {
+      "term": "adjetivo demostrativo",
+      "aliases": [
+        "demostrativos"
+      ],
+      "tr": "işaret sıfatı",
+      "explanation": "Mesafe bildiren este (buradaki), ese (oradaki) ve aquel (uzaktaki) sözcükleri.",
+      "example": {
+        "text": "Este coche es nuevo.",
+        "tr": "Bu araba yeni."
+      }
+    },
+    {
+      "term": "pronombre relativo",
+      "aliases": [
+        "relativos"
+      ],
+      "tr": "ilgi zamiri",
+      "explanation": "İki cümleyi bağlayan que, quien, donde, el que, cuyo gibi ilgi sözcükleri.",
+      "example": {
+        "text": "La chica que canta es mi prima.",
+        "tr": "Şarkı söyleyen kız kuzenim."
+      }
+    },
+    {
+      "term": "concordancia",
+      "aliases": [],
+      "tr": "cinsiyet ve sayı uyumu",
+      "explanation": "Sıfatların niteledikleri isimle eril/dişil ve tekil/çoğul olarak örtüşmesi zorunluluğu.",
+      "example": {
+        "text": "Las casas blancas.",
+        "tr": "Beyaz evler."
+      }
+    },
+    {
+      "term": "estilo indirecto",
+      "aliases": [],
+      "tr": "dolaylı anlatım",
+      "explanation": "Başkasına ait bir ifadeyi que bağlacıyla aktarma; giriş fiili geçmişse zaman kayması olur.",
+      "example": {
+        "text": "Me dijo que vendría tarde.",
+        "tr": "Geç geleceğini söyledi."
+      }
+    },
+    {
+      "term": "apócope",
+      "aliases": [],
+      "tr": "sözcük kısalması",
+      "explanation": "Tekil eril ismin önünde bazı sıfatların son harflerini kaybetmesi (buen, mal, gran, primer).",
+      "example": {
+        "text": "Un buen amigo.",
+        "tr": "İyi bir arkadaş."
+      }
+    },
+    {
+      "term": "adverbio en -mente",
+      "aliases": [],
+      "tr": "-mente zarfı",
+      "explanation": "Dişil sıfatın sonuna -mente eklenerek türetilen durum zarfları (rápidamente, fácilmente).",
+      "example": {
+        "text": "Habló tranquilamente.",
+        "tr": "Sakin bir şekilde konuştu."
+      }
+    },
+    {
+      "term": "comparativo",
+      "aliases": [],
+      "tr": "karşılaştırma",
+      "explanation": "İki varlığı más ... que (daha fazla), menos ... que (daha az) veya tan ... como (kadar) ile kıyaslama.",
+      "example": {
+        "text": "Soy más alto que tú.",
+        "tr": "Ben senden daha uzunum."
+      }
+    },
+    {
+      "term": "superlativo",
+      "aliases": [],
+      "tr": "üstünlük derecesi",
+      "explanation": "Bir grubun en iyisini/kötüsünü (el más) veya -ísimo ekiyle aşırı dereceyi bildiren yapı.",
+      "example": {
+        "text": "Es un examen dificilísimo.",
+        "tr": "Son derece zor bir sınav."
+      }
+    },
+    {
+      "term": "oración condicional",
+      "aliases": [
+        "condicionales"
+      ],
+      "tr": "şart cümlesi",
+      "explanation": "Si ile başlayan ve koşula bağlı sonucu bildiren cümle yapıları.",
+      "example": {
+        "text": "Si llueve, no saldremos.",
+        "tr": "Yağmur yağarsa çıkmayacağız."
+      }
+    },
+    {
+      "term": "conector discursivo",
+      "aliases": [
+        "marcadores discursivos"
+      ],
+      "tr": "söylem belirleyicisi",
+      "explanation": "Cümleler arası mantıksal bağı sağlayan sin embargo, por lo tanto, además gibi geçiş ifadeleri.",
+      "example": {
+        "text": "Trabajó duro; por lo tanto, aprobó.",
+        "tr": "Sıkı çalıştı; bu nedenle geçti."
+      }
+    },
+    {
+      "term": "infinitivo",
+      "aliases": [],
+      "tr": "mastar",
+      "explanation": "Fiilin çekimlenmemiş kök hali; -ar, -er veya -ir ile biter.",
+      "example": {
+        "text": "Cantar, comer, vivir.",
+        "tr": "Şarkı söylemek, yemek, yaşamak."
+      }
+    },
+    {
+      "term": "gustar",
+      "aliases": [
+        "verbos tipo gustar"
+      ],
+      "tr": "gustar türü fiiller",
+      "explanation": "Öznesi beğenilen şey olan, beğeneni dolaylı nesneyle (me gusta) veren fiil yapısı.",
+      "example": {
+        "text": "Me gustan los libros.",
+        "tr": "Kitapları severim."
+      }
+    },
+    {
+      "term": "por y para",
+      "aliases": [
+        "por vs para"
+      ],
+      "tr": "por ve para ayrımı",
+      "explanation": "Neden, süre ve araç için por; amaç, hedef, varış yeri ve son tarih için para kullanma kuralı.",
+      "example": {
+        "text": "Trabajo para vivir, no vivo por trabajar.",
+        "tr": "Yaşamak için çalışıyorum."
+      }
+    }
+  ]
+}

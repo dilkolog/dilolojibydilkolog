@@ -1,0 +1,500 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "terms": [
+    {
+      "term": "present simple",
+      "aliases": [],
+      "tr": "geniş zaman",
+      "explanation": "Rutin alışkanlıkları, genel doğruları ve değişmeyen durumları anlatan temel zaman formu.",
+      "example": {
+        "text": "She drinks coffee every morning.",
+        "tr": "Her sabah kahve içer."
+      }
+    },
+    {
+      "term": "present continuous",
+      "aliases": [
+        "present progressive"
+      ],
+      "tr": "şimdiki zaman",
+      "explanation": "Konuşma anında sürmekte olan eylemleri veya geçici durumları am/is/are + V-ing ile anlatır.",
+      "example": {
+        "text": "They are working on a new project.",
+        "tr": "Yeni bir proje üzerinde çalışıyorlar."
+      }
+    },
+    {
+      "term": "past simple",
+      "aliases": [],
+      "tr": "basit geçmiş zaman",
+      "explanation": "Geçmişte belirli bir zamanda tamamlanmış eylemleri (-ed veya düzensiz fiillerle) anlatır.",
+      "example": {
+        "text": "We visited London last summer.",
+        "tr": "Geçen yaz Londra'yı ziyaret ettik."
+      }
+    },
+    {
+      "term": "past continuous",
+      "aliases": [
+        "past progressive"
+      ],
+      "tr": "sürekli geçmiş zaman",
+      "explanation": "Geçmişte belirli bir anda devam etmekte olan eylemleri was/were + V-ing ile anlatır.",
+      "example": {
+        "text": "I was reading when the phone rang.",
+        "tr": "Telefon çaldığında kitap okuyordum."
+      }
+    },
+    {
+      "term": "present perfect",
+      "aliases": [
+        "present perfect simple"
+      ],
+      "tr": "yakın geçmiş zaman",
+      "explanation": "Geçmişte olup etkisi veya süresi günümüze uzanan eylemleri have/has + V3 ile anlatır.",
+      "example": {
+        "text": "I have lived here for five years.",
+        "tr": "Beş yıldır burada yaşıyorum."
+      }
+    },
+    {
+      "term": "present perfect continuous",
+      "aliases": [],
+      "tr": "süregelen yakın geçmiş zaman",
+      "explanation": "Geçmişte başlayıp halen kesintisiz devam eden eylemleri have/has been + V-ing ile anlatır.",
+      "example": {
+        "text": "She has been studying since morning.",
+        "tr": "Sabahtan beri ders çalışıyor."
+      }
+    },
+    {
+      "term": "past perfect",
+      "aliases": [
+        "past perfect simple"
+      ],
+      "tr": "ön geçmiş zaman",
+      "explanation": "Geçmişteki bir noktadan daha önce tamamlanmış olayları had + V3 ile anlatır.",
+      "example": {
+        "text": "The train had left before we arrived.",
+        "tr": "Biz varmadan önce tren kalkmıştı."
+      }
+    },
+    {
+      "term": "past perfect continuous",
+      "aliases": [],
+      "tr": "süregelen ön geçmiş zaman",
+      "explanation": "Geçmişteki bir ana kadar sürmüş ve iz bırakmış eylemleri had been + V-ing ile anlatır.",
+      "example": {
+        "text": "He was tired because he had been driving.",
+        "tr": "Yorgundu çünkü araba kullanmaktaydı."
+      }
+    },
+    {
+      "term": "future simple",
+      "aliases": [
+        "future with will"
+      ],
+      "tr": "gelecek zaman",
+      "explanation": "Anlık kararları, tahminleri veya sözleri will + yalın fiil ile anlatan zaman.",
+      "example": {
+        "text": "I will help you with those bags.",
+        "tr": "O çantalarda sana yardım ederim."
+      }
+    },
+    {
+      "term": "future continuous",
+      "aliases": [],
+      "tr": "sürekli gelecek zaman",
+      "explanation": "Gelecekte belirli bir anda devam ediyor olacak eylemleri will be + V-ing ile anlatır.",
+      "example": {
+        "text": "This time tomorrow, I will be flying.",
+        "tr": "Yarın bu saatte uçuyor olacağım."
+      }
+    },
+    {
+      "term": "future perfect",
+      "aliases": [],
+      "tr": "gelecekte tamamlanmış zaman",
+      "explanation": "Gelecekteki belirli bir noktaya kadar bitmiş olacak eylemleri will have + V3 ile anlatır.",
+      "example": {
+        "text": "By 2030, we will have graduated.",
+        "tr": "2030'a kadar mezun olmuş olacağız."
+      }
+    },
+    {
+      "term": "future perfect continuous",
+      "aliases": [],
+      "tr": "süregelen gelecekte tamamlanmış zaman",
+      "explanation": "Gelecekteki bir noktada ne kadar süredir devam ediyor olacağını will have been + V-ing ile anlatır.",
+      "example": {
+        "text": "By June, she will have been teaching for ten years.",
+        "tr": "Hazirana kadar on yıldır öğretiyor olacak."
+      }
+    },
+    {
+      "term": "zero conditional",
+      "aliases": [],
+      "tr": "sıfırıncı koşul",
+      "explanation": "Doğa kanunları ve genel doğruları anlatır; if cümlesi de ana cümle de present simple olur.",
+      "example": {
+        "text": "If you heat water to 100°C, it boils.",
+        "tr": "Suyu 100°C'ye ısıtırsan kaynar."
+      }
+    },
+    {
+      "term": "first conditional",
+      "aliases": [],
+      "tr": "birinci koşul",
+      "explanation": "Gelecekte gerçekleşmesi muhtemel durumları anlatır: if + present simple, will + yalın fiil.",
+      "example": {
+        "text": "If it rains, we will stay at home.",
+        "tr": "Yağmur yağarsa evde kalacağız."
+      }
+    },
+    {
+      "term": "second conditional",
+      "aliases": [],
+      "tr": "ikinci koşul",
+      "explanation": "Şu anki gerçek dışı veya hayali durumları anlatır: if + past simple, would + yalın fiil.",
+      "example": {
+        "text": "If I won the lottery, I would travel.",
+        "tr": "Piyangoyu kazansam seyahat ederdim."
+      }
+    },
+    {
+      "term": "third conditional",
+      "aliases": [],
+      "tr": "üçüncü koşul",
+      "explanation": "Geçmişte gerçekleşmemiş durumları ve pişmanlıkları anlatır: if + had V3, would have V3.",
+      "example": {
+        "text": "If I had known, I would have come.",
+        "tr": "Bilseydim gelirdim."
+      }
+    },
+    {
+      "term": "mixed conditional",
+      "aliases": [
+        "mixed conditionals"
+      ],
+      "tr": "karma koşul",
+      "explanation": "Geçmişteki eylemin günümüzdeki sonucunu veya genel durumun geçmişteki sonucunu birleştiren yapı.",
+      "example": {
+        "text": "If I had studied, I would be a doctor now.",
+        "tr": "Çalışmış olsaydım şimdi doktordum."
+      }
+    },
+    {
+      "term": "modal verb",
+      "aliases": [
+        "modals"
+      ],
+      "tr": "kip belirteci",
+      "explanation": "Yetenek, zorunluluk, izin ve olasılık bildiren can, could, must, should, might gibi yardımcı fiiller.",
+      "example": {
+        "text": "You should see a doctor.",
+        "tr": "Bir doktora görünmelisin."
+      }
+    },
+    {
+      "term": "passive voice",
+      "aliases": [
+        "passive"
+      ],
+      "tr": "edilgen çatı",
+      "explanation": "Eylemi yapanın değil eylemden etkilenenin öne çıktığı yapı; be + past participle ile kurulur.",
+      "example": {
+        "text": "The bridge was built in 1920.",
+        "tr": "Köprü 1920'de inşa edildi."
+      }
+    },
+    {
+      "term": "gerund",
+      "aliases": [],
+      "tr": "isim-fiil",
+      "explanation": "Fiile -ing eklenerek oluşturulan ve cümlede isim görevinde (özne veya nesne) kullanılan biçim.",
+      "example": {
+        "text": "Swimming is good for your health.",
+        "tr": "Yüzmek sağlığa iyidir."
+      }
+    },
+    {
+      "term": "infinitive",
+      "aliases": [
+        "to-infinitive"
+      ],
+      "tr": "mastar",
+      "explanation": "Fiilin to ile kullanılan temel biçimi (to learn) veya to almayan yalın hali (bare infinitive).",
+      "example": {
+        "text": "I want to learn French.",
+        "tr": "Fransızca öğrenmek istiyorum."
+      }
+    },
+    {
+      "term": "phrasal verb",
+      "aliases": [
+        "phrasal verbs"
+      ],
+      "tr": "öbeksi fiil",
+      "explanation": "Bir fiilin bir edat veya zarfla birleşerek yeni bir anlam kazanması (give up, take off).",
+      "example": {
+        "text": "The plane took off on time.",
+        "tr": "Uçak vaktinde havalandı."
+      }
+    },
+    {
+      "term": "prepositional verb",
+      "aliases": [],
+      "tr": "edatlı fiil",
+      "explanation": "Belirli bir edatla sabit biçimde kullanılan ve nesnesini doğrudan edatın ardına alan fiil.",
+      "example": {
+        "text": "She listens to classical music.",
+        "tr": "Klasik müzik dinler."
+      }
+    },
+    {
+      "term": "relative clause",
+      "aliases": [
+        "relative clauses"
+      ],
+      "tr": "ilgi cümleciği",
+      "explanation": "Bir ismi niteleyen ve who, which, that, whose, where ile başlayan sıfat cümleciği.",
+      "example": {
+        "text": "The woman who called you is here.",
+        "tr": "Seni arayan kadın burada."
+      }
+    },
+    {
+      "term": "defining relative clause",
+      "aliases": [],
+      "tr": "tanımlayıcı ilgi cümleciği",
+      "explanation": "Hangi varlıktan bahsedildiğini ayırt etmek için zorunlu olan ve virgülsüz yazılan ilgi cümlesi.",
+      "example": {
+        "text": "The car that I bought is blue.",
+        "tr": "Satın aldığım araba mavidir."
+      }
+    },
+    {
+      "term": "non-defining relative clause",
+      "aliases": [],
+      "tr": "ek bilgi veren ilgi cümleciği",
+      "explanation": "Zaten bilinen bir varlığa ek bilgi katan, iki virgül arasında yazılan ve that almayan cümle.",
+      "example": {
+        "text": "My father, who is 60, runs marathons.",
+        "tr": "60 yaşındaki babam maraton koşar."
+      }
+    },
+    {
+      "term": "reported speech",
+      "aliases": [
+        "indirect speech"
+      ],
+      "tr": "dolaylı aktarım",
+      "explanation": "Birinin sözlerini say veya tell kullanarak aktarma; giriş fiili geçmişteyse zaman kayması olur.",
+      "example": {
+        "text": "He said he was happy.",
+        "tr": "Mutlu olduğunu söyledi."
+      }
+    },
+    {
+      "term": "question tag",
+      "aliases": [
+        "question tags"
+      ],
+      "tr": "onay sorusu",
+      "explanation": "Cümlenin sonuna eklenen ve teyit isteyen kısa soru eki (isn't it?, do you?, haven't they?).",
+      "example": {
+        "text": "You are coming, aren't you?",
+        "tr": "Geliyorsun, değil mi?"
+      }
+    },
+    {
+      "term": "inversion",
+      "aliases": [],
+      "tr": "devrik yapı",
+      "explanation": "Vurgu için cümlenin başına olumsuz zarf geldiğinde yardımcı fiilin özneden önce yer alması.",
+      "example": {
+        "text": "Rarely have I seen such beauty.",
+        "tr": "Böyle bir güzelliği nadiren gördüm."
+      }
+    },
+    {
+      "term": "cleft sentence",
+      "aliases": [
+        "cleft"
+      ],
+      "tr": "vurgu cümlesi",
+      "explanation": "Cümlenin bir ögesini öne çıkarmak için It is/was ... that veya What ... is kalıbını kullanma.",
+      "example": {
+        "text": "It was John who broke the vase.",
+        "tr": "Vazoyu kıran John'du."
+      }
+    },
+    {
+      "term": "participle clause",
+      "aliases": [
+        "participle clauses"
+      ],
+      "tr": "ortaç cümleciği",
+      "explanation": "Cümleyi kısaltmak ve akıcılık katmak için -ing veya -ed ortaçlarıyla kurulan yan cümlecik.",
+      "example": {
+        "text": "Hearing the bell, she opened the door.",
+        "tr": "Zili duyunca kapıyı açtı."
+      }
+    },
+    {
+      "term": "nominative absolute",
+      "aliases": [],
+      "tr": "bağımsız ortaç yapısı",
+      "explanation": "Ana cümlenin öznesinden bağımsız kendi öznesine sahip olan ortaç öbeği.",
+      "example": {
+        "text": "Weather permitting, we will hike.",
+        "tr": "Hava elverirse yürüyüş yapacağız."
+      }
+    },
+    {
+      "term": "subjunctive",
+      "aliases": [
+        "mandative subjunctive"
+      ],
+      "tr": "istek kipi",
+      "explanation": "Öneri, talep ve gereklilik bildiren that cümleciklerinde şahıstan bağımsız yalın fiil kullanımı.",
+      "example": {
+        "text": "I insist that he be present.",
+        "tr": "Onun hazır bulunmasında ısrarcıyım."
+      }
+    },
+    {
+      "term": "stative verb",
+      "aliases": [
+        "stative verbs"
+      ],
+      "tr": "durum fiili",
+      "explanation": "Düşünce, duygu, duyu veya sahiplik bildiren ve -ing süreklilik eklerini nadiren alan fiiller.",
+      "example": {
+        "text": "I understand the question.",
+        "tr": "Soruyu anlıyorum."
+      }
+    },
+    {
+      "term": "dynamic verb",
+      "aliases": [
+        "action verb"
+      ],
+      "tr": "eylem fiili",
+      "explanation": "Somut bir hareket veya etkinlik bildiren ve continuous zamanlarda rahatça kullanılan fiiller.",
+      "example": {
+        "text": "She is running in the park.",
+        "tr": "Parkta koşuyor."
+      }
+    },
+    {
+      "term": "causative",
+      "aliases": [],
+      "tr": "ettirgen çatı",
+      "explanation": "Bir işi başkasına yaptırmayı have/get something done veya make someone do ile anlatan yapı.",
+      "example": {
+        "text": "I had my car washed.",
+        "tr": "Arabamı yıkattım."
+      }
+    },
+    {
+      "term": "countable noun",
+      "aliases": [
+        "count noun"
+      ],
+      "tr": "sayılabilen isim",
+      "explanation": "Tek tek sayılabilen, a/an alabilen ve çoğul eki (-s) alan isimler (book/books).",
+      "example": {
+        "text": "Three apples are on the table.",
+        "tr": "Masada üç elma var."
+      }
+    },
+    {
+      "term": "uncountable noun",
+      "aliases": [
+        "non-count noun"
+      ],
+      "tr": "sayılamayan isim",
+      "explanation": "Tek tek sayılamayan, a/an veya çoğul eki almayan kütle veya soyut isimler (water, advice).",
+      "example": {
+        "text": "Information is valuable.",
+        "tr": "Bilgi değerlidir."
+      }
+    },
+    {
+      "term": "comparative",
+      "aliases": [],
+      "tr": "karşılaştırma derecesi",
+      "explanation": "İki varlığı kıyaslarken tek hecelilere -er, çok hecelilere more getirilerek yapılan biçim.",
+      "example": {
+        "text": "Faster, more expensive.",
+        "tr": "Daha hızlı, daha pahalı."
+      }
+    },
+    {
+      "term": "superlative",
+      "aliases": [],
+      "tr": "en üstünlük derecesi",
+      "explanation": "Bir grubun en üstününü the -est veya the most ile belirten sıfat/zarf derecesi.",
+      "example": {
+        "text": "The tallest building in the city.",
+        "tr": "Şehirdeki en yüksek bina."
+      }
+    },
+    {
+      "term": "ellipsis",
+      "aliases": [],
+      "tr": "sözcük eksiltimi",
+      "explanation": "Tekrardan kaçınmak için cümlenin anlaşılan bir ögesini atma yöntemi (So do I, I think so).",
+      "example": {
+        "text": "\"Are you coming?\" \"I hope so.\"",
+        "tr": "\"Geliyor musun?\" \"Umarım (öyle).\""
+      }
+    },
+    {
+      "term": "hedging",
+      "aliases": [],
+      "tr": "temkinli dil",
+      "explanation": "Akademik veya resmî yazıda iddiayı yumuşatmak için kullanılan tend to, seem to, arguably ifadeleri.",
+      "example": {
+        "text": "The results seem to indicate...",
+        "tr": "Sonuçlar gösteriyor gibi görünüyor..."
+      }
+    },
+    {
+      "term": "register",
+      "aliases": [],
+      "tr": "dil düzeyi",
+      "explanation": "İletişimin ortamına ve hitap edilen kişiye göre dilin resmî (formal) veya gündelik (informal) olması.",
+      "example": {
+        "text": "Commence (resmî) vs Start (günlük).",
+        "tr": "Başlamak."
+      }
+    },
+    {
+      "term": "discourse marker",
+      "aliases": [
+        "discourse markers"
+      ],
+      "tr": "söylem belirleyicisi",
+      "explanation": "Konuşmanın akışını düzenleyen by the way, anyway, mind you, actually gibi geçiş ifadeleri.",
+      "example": {
+        "text": "By the way, did you call her?",
+        "tr": "Bu arada, onu aradın mı?"
+      }
+    },
+    {
+      "term": "collocation",
+      "aliases": [
+        "collocations"
+      ],
+      "tr": "eşdizim",
+      "explanation": "Doğal dilde genellikle bir arada kullanılan kalıplaşmış sözcük çiftleri (make a mistake, heavy rain).",
+      "example": {
+        "text": "Do homework (make homework değil).",
+        "tr": "Ödev yapmak."
+      }
+    }
+  ]
+}
