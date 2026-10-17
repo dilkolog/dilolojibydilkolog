@@ -34,6 +34,19 @@ describe('loadGame cache', () => {
     await db.saveLab('fr', { favorites: [], recent: [], records: {} })
   })
 
+  it('counts the XP awards of the ledger (reading time, guide lessons), today and in total', async () => {
+    const now = new Date(2026, 9, 12, 10)
+    const before = await loadGame(db, now)
+    await db.awardXp([
+      { key: 'lesson|subjonctif', day: '2026-10-12', xp: 20 },
+      { key: 'time|2026-10-01', day: '2026-10-01', xp: 30 },
+    ])
+    const after = await loadGame(db, now)
+    expect(after.xp.total - before.xp.total).toBe(50)
+    expect(after.xp.today - before.xp.today).toBe(20)
+    await db.meta.delete('xpLedger')
+  })
+
   it('asks again on another day', async () => {
     const a = loadGame(db, new Date('2026-10-12T10:00:00'))
     await a

@@ -14,7 +14,8 @@ import type { ExamResult } from '../engine/exam'
 import { emptyLab, type LabData } from '../engine/labProgress'
 import { localDate } from '../engine/progress'
 import { cleanMarks, mergeMarks, type GuideMarks } from '../engine/guideReview'
-import { addTime, cleanTimeLog, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
+import { addTime, cleanTimeLog, daySeconds, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
+import { award, cleanLedger, timeAwardKey, timeXp, type XpLedger } from '../engine/xpLedger'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
 import type { MissionResult } from '../engine/missions'
@@ -960,10 +961,34 @@ export class KelimeDB extends Dexie {
       const added = addTime(log, kind, language, localDate(now), seconds)
       if (added === log) return
       await this.meta.put({ key: 'timeLog', value: pruneTimeLog(added, now) })
+      // Each five minutes of the day earn points (see engine/xpLedger): written down, since the log is pruned.
+      const day = localDate(now)
+      const xp = timeXp(daySeconds(added, day))
+      if (xp > 0) await this.awardXp([{ key: timeAwardKey(day), day, xp }])
     })
     this.timeQueue = next.catch(() => {})
     return next
   }
+
+  /** The points earned outside answers: time, lessons, certificates (see engine/xpLedger). */
+  async getXpLedger(): Promise<XpLedger> {
+    return cleanLedger((await this.meta.get('xpLedger'))?.value)
+  }
+
+  /** Writes awards into the ledger (one after another); a key already there only ever grows. True when something changed. */
+  awardXp(awards: readonly { key: string; day: string; xp: number }[]): Promise<boolean> {
+    const next = this.xpQueue.then(async () => {
+      const ledger = await this.getXpLedger()
+      const grown = awards.reduce((l, a) => award(l, a.key, a.day, a.xp), ledger)
+      if (grown === ledger) return false
+      await this.meta.put({ key: 'xpLedger', value: grown })
+      return true
+    })
+    this.xpQueue = next.then(() => {}, () => {})
+    return next
+  }
+
+  private xpQueue: Promise<unknown> = Promise.resolve()
 
   private timeQueue: Promise<void> = Promise.resolve()
   private guideQueue: Promise<unknown> = Promise.resolve()
@@ -1261,7 +1286,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 9
+export const BACKUP_VERSION = 10
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1299,6 +1324,8 @@ export interface Backup {
   timeLog?: Record<string, number>
   /** The guide's lessons read, learned and reviewed (backup version 9+). */
   guide?: GuideMarks
+  /** XP earned outside answers: time read and listened, lessons learned (backup version 10+). */
+  xpLedger?: XpLedger
   /** Badges earned and when. */
   badges?: BadgeLog
   /** Translations kept on the device. */
@@ -1372,6 +1399,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     records: await db.getRecords(),
     timeLog: await db.getTimeLog(),
     guide: await db.getGuideMarks(),
+    xpLedger: await db.getXpLedger(),
     badges: await db.getBadgeLog(),
     translations: await db.getTranslations(),
     earMisses: await db.getEarLog(),
@@ -1485,6 +1513,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     if (backup.records) await db.meta.put({ key: 'records', value: backup.records })
     if (backup.timeLog) await db.meta.put({ key: 'timeLog', value: cleanTimeLog(backup.timeLog) })
     if (backup.guide) await db.meta.put({ key: 'guideMarks', value: cleanMarks(backup.guide) })
+    if (backup.xpLedger) await db.meta.put({ key: 'xpLedger', value: cleanLedger(backup.xpLedger) })
     if (backup.badges) await db.meta.put({ key: 'badges', value: backup.badges })
     if (backup.translations) await db.meta.put({ key: 'translations', value: backup.translations })
     if (backup.earMisses) await db.meta.put({ key: 'earMisses', value: backup.earMisses })

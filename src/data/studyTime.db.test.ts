@@ -37,3 +37,38 @@ describe('reading and listening time on the device', () => {
     expect(await fresh.getTimeLog()).toEqual({})
   })
 })
+
+describe('XP for reading and listening time', () => {
+  it('awards 5 XP per five minutes, capped at 30 a day, once per day however it is reported', async () => {
+    const db = new KelimeDB('t-timexp-1')
+    await db.addStudyTime('read', 'fr', 240, NOW)
+    expect(await db.getXpLedger()).toEqual({})
+    await db.addStudyTime('listen', 'es', 120, NOW)
+    expect((await db.getXpLedger())['time|2026-10-13']).toMatchObject({ day: '2026-10-13', xp: 5 })
+    // One report counts for at most ten minutes (20 s groups in practice), so an hour takes several.
+    for (let i = 0; i < 6; i++) await db.addStudyTime('read', 'fr', 600, NOW)
+    expect((await db.getXpLedger())['time|2026-10-13'].xp).toBe(30)
+  })
+
+  it('survives the time log being pruned, travels in the backup and merges', async () => {
+    const a = new KelimeDB('t-timexp-a')
+    const b = new KelimeDB('t-timexp-b')
+    await a.addStudyTime('read', 'fr', 600, NOW)
+    await b.addStudyTime('read', 'fr', 600, NOW)
+    await b.addStudyTime('read', 'fr', 600, NOW)
+    await b.addStudyTime('read', 'fr', 300, NOW)
+    await b.awardXp([{ key: 'lesson|subjonctif', day: '2026-10-12', xp: 20 }])
+    const snap = async (db: KelimeDB) => parseBackup(await exportBackup(db, NOW, { media: false }))
+    const merged = mergeBackups(await snap(a), await snap(b))
+    expect(merged.xpLedger).toEqual({ 'time|2026-10-13': { day: '2026-10-13', xp: 25 }, 'lesson|subjonctif': { day: '2026-10-12', xp: 20 } })
+    const c = new KelimeDB('t-timexp-c')
+    await restoreBackup(c, merged)
+    expect(await c.getXpLedger()).toEqual(merged.xpLedger)
+  })
+
+  it('answers whether an award changed anything', async () => {
+    const db = new KelimeDB('t-timexp-2')
+    expect(await db.awardXp([{ key: 'lesson|x', day: '2026-10-13', xp: 20 }])).toBe(true)
+    expect(await db.awardXp([{ key: 'lesson|x', day: '2026-10-14', xp: 20 }])).toBe(false)
+  })
+})

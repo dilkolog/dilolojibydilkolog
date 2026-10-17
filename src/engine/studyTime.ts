@@ -93,3 +93,10 @@ export function goalProgress(totalSeconds: number, goalMinutes: number | undefin
   const share = Math.min(1, totalSeconds / (goalMinutes * 60))
   return { share, done: share >= 1, leftMinutes: Math.max(0, Math.ceil(goalMinutes - totalSeconds / 60)) }
 }
+
+/** Seconds read and listened on one day, all languages and both kinds together. */
+export function daySeconds(log: TimeLog, day: string): number {
+  let total = 0
+  for (const [key, seconds] of Object.entries(log)) if (key.endsWith(`|${day}`)) total += seconds
+  return total
+}

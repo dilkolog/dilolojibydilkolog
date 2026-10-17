@@ -48,6 +48,7 @@ export function StudyTimeCard({ db, language, goal, onGoal }: { db: KelimeDB; la
           </div>
         </>
       )}
+      <p className="small muted">Her tam 5 dakika 5 XP kazandırır (günde en çok 30).</p>
       <div className="stack">
         <p className="small">Haftalık hedef</p>
         <div className="seg-group" role="radiogroup" aria-label="Haftalık okuma ve dinleme hedefi">

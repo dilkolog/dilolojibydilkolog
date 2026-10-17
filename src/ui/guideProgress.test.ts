@@ -3,7 +3,7 @@ import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../data/instance'
 import type { GuideMarks } from '../engine/guideReview'
-import { loadMarks, markChecked, markFlag, markPutOff, markRead } from './guideProgress'
+import { checkAwards, loadMarks, markChecked, markFlag, markPutOff, markRead } from './guideProgress'
 
 describe('guideProgress state management', () => {
   beforeEach(async () => {
@@ -107,5 +107,36 @@ describe('guideProgress state management', () => {
     await db.saveGuideMarks(marks)
     expect(await db.getGuideMarks()).toMatchObject({ por_para: { read: '' } })
     expect(await loadMarks(db)).toMatchObject({ por_para: { read: '' } })
+  })
+})
+
+describe('checkAwards', () => {
+  const lessons = [
+    { topic: 'a', level: 'A1' as const },
+    { topic: 'b', level: 'A1' as const },
+    { topic: 'c', level: 'A1' as const },
+  ]
+  const pass = (marks: GuideMarks, topic: string) => markChecked(marks, topic, true)
+
+  it('pays the lesson once, a review step per step, and the certificate when the level is complete', () => {
+    let marks: GuideMarks = {}
+    let next = pass(marks, 'a')
+    expect(checkAwards('fr', lessons, marks, next, 'a', '2026-10-13')).toEqual([{ key: 'lesson|a', day: '2026-10-13', xp: 20 }])
+    marks = next
+    next = pass(marks, 'a')
+    expect(checkAwards('fr', lessons, marks, next, 'a', '2026-10-20')).toEqual([{ key: 'review|a|1', day: '2026-10-20', xp: 10 }])
+    marks = pass(pass(next, 'b'), 'b')
+    next = pass(marks, 'c')
+    const awards = checkAwards('fr', lessons, marks, next, 'c', '2026-10-21')
+    expect(awards.map((a) => [a.key, a.xp])).toEqual([['lesson|c', 20], ['cert|fr|A1', 100]])
+  })
+
+  it('pays nothing for a failed check, and keys let a lesson learned again earn nothing twice', () => {
+    const marks: GuideMarks = {}
+    expect(checkAwards('fr', lessons, marks, markChecked(marks, 'a', false), 'a', '2026-10-13')).toEqual([])
+    const learned = pass(marks, 'a')
+    const again = pass(markRead(learned, 'a', false), 'a')
+    const [first] = checkAwards('fr', lessons, markRead(learned, 'a', false), again, 'a', '2026-10-15')
+    expect(first.key).toBe('lesson|a')
   })
 })
