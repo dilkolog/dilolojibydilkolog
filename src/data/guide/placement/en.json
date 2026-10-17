@@ -1,0 +1,396 @@
+{
+  "language": "en",
+  "source": "Diloloji (özgün)",
+  "questions": [
+    {
+      "level": "A1",
+      "lesson": "basics_en_to_be",
+      "prompt": "My brother and I ___ very interested in modern art.",
+      "options": [
+        "are",
+        "is",
+        "am",
+        "be"
+      ],
+      "answer": 0,
+      "why": "'My brother and I' çoğul özne (we) olduğu için to be fiili 'are' olur."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_en_present_simple",
+      "prompt": "She ___ to work by subway every single morning.",
+      "options": [
+        "goes",
+        "go",
+        "going",
+        "is go"
+      ],
+      "answer": 0,
+      "why": "Üçüncü tekil şahısta (she) geniş zaman fiili -es takısı alır ('goes')."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_en_present_continuous",
+      "prompt": "Listen! Somebody ___ at the front door right now.",
+      "options": [
+        "is knocking",
+        "knocks",
+        "knocked",
+        "are knocking"
+      ],
+      "answer": 0,
+      "why": "Konuşma anında sürmekte olan eylemler için present continuous ('is knocking') kullanılır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_en_past_simple",
+      "prompt": "We ___ an exciting documentary about space last night.",
+      "options": [
+        "watched",
+        "watch",
+        "watches",
+        "watching"
+      ],
+      "answer": 0,
+      "why": "'Last night' geçmiş zaman zarfıdır; düzenli fiil -ed takısı alır ('watched')."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_en_pronouns",
+      "prompt": "Please give that notebook to ___; it belongs to my sister.",
+      "options": [
+        "her",
+        "she",
+        "hers",
+        "him"
+      ],
+      "answer": 0,
+      "why": "Edattan ('to') sonra nesne zamiri (object pronoun: 'her') kullanılır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_en_there_is",
+      "prompt": "___ a large supermarket just around the corner.",
+      "options": [
+        "There is",
+        "There are",
+        "It have",
+        "Is there"
+      ],
+      "answer": 0,
+      "why": "Tekil bir varlığın mevcudiyetini belirtmek için 'There is' kullanılır."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_en_plurals_quantifiers",
+      "prompt": "How ___ books did you check out from the library?",
+      "options": [
+        "many",
+        "much",
+        "little",
+        "any"
+      ],
+      "answer": 0,
+      "why": "Sayılabilen çoğul isimlerle (books) miktar sorarken 'many' kullanılır."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_en_future",
+      "prompt": "Look at those dark storm clouds; it ___ rain soon.",
+      "options": [
+        "is going to",
+        "will to",
+        "shall to",
+        "goes to"
+      ],
+      "answer": 0,
+      "why": "Mevcut somut kanıtlara dayanan yakın gelecek tahminlerinde 'be going to' kullanılır."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_en_comparatives",
+      "prompt": "This new laptop is significantly ___ than my previous one.",
+      "options": [
+        "faster",
+        "fast",
+        "fastest",
+        "more fast"
+      ],
+      "answer": 0,
+      "why": "Tek heceli sıfatlarda karşılaştırma (comparative) derecesi -er takısıyla yapılır ('faster')."
+    },
+    {
+      "level": "A2",
+      "lesson": "articles_en",
+      "prompt": "Her sister works as ___ architect in a prestigious firm.",
+      "options": [
+        "an",
+        "a",
+        "the",
+        "some"
+      ],
+      "answer": 0,
+      "why": "Sesli harfle başlayan tekil bir meslek isminden önce 'an' artikeli gelir."
+    },
+    {
+      "level": "A2",
+      "lesson": "present_perfect",
+      "prompt": "I have ___ visited that remote mountainous region before.",
+      "options": [
+        "never",
+        "ever",
+        "yet",
+        "already not"
+      ],
+      "answer": 0,
+      "why": "Geçmiş deneyimsizliği olumlu cümle yapısıyla ifade etmek için 'never' kullanılır."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_en_past_continuous",
+      "prompt": "What were you doing when the fire alarm suddenly ___ off?",
+      "options": [
+        "went",
+        "was going",
+        "goes",
+        "has gone"
+      ],
+      "answer": 0,
+      "why": "Süregelen bir eylemi aniden kesen olay past simple ('went') ile aktarılır."
+    },
+    {
+      "level": "B1",
+      "lesson": "gerund_infinitive",
+      "prompt": "She decided ___ for the senior management position.",
+      "options": [
+        "to apply",
+        "applying",
+        "apply",
+        "applied"
+      ],
+      "answer": 0,
+      "why": "'Decide' fiilinden sonra doğrudan to-infinitive ('to apply') gelir."
+    },
+    {
+      "level": "B1",
+      "lesson": "modals_en",
+      "prompt": "You ___ touch the museum exhibits; it is strictly prohibited.",
+      "options": [
+        "mustn't",
+        "don't have to",
+        "shouldn't have",
+        "might not"
+      ],
+      "answer": 0,
+      "why": "Kesin yasaklama bildiren durumlarda 'mustn't' kullanılır."
+    },
+    {
+      "level": "B1",
+      "lesson": "passive_en",
+      "prompt": "The new community center ___ by the mayor next Monday.",
+      "options": [
+        "will be opened",
+        "will open",
+        "is opened",
+        "has opened"
+      ],
+      "answer": 0,
+      "why": "Gelecek zamandaki edilgen çatı 'will be + past participle' ile kurulur."
+    },
+    {
+      "level": "B1",
+      "lesson": "relatives_en",
+      "prompt": "The scientist ___ discovery changed medicine won the award.",
+      "options": [
+        "whose",
+        "who",
+        "which",
+        "whom"
+      ],
+      "answer": 0,
+      "why": "İki isim arasındaki iyelik bağını belirten ilgi zamiri 'whose'dur."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_en_conditionals",
+      "prompt": "If you don't water these delicate plants regularly, they ___.",
+      "options": [
+        "will wither",
+        "withered",
+        "would wither",
+        "have withered"
+      ],
+      "answer": 0,
+      "why": "Birinci koşul cümlesinde (Type 1) 'if + present simple' sonrası 'will + yalın fiil' gelir."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_en_used_to",
+      "prompt": "When I was in college, I ___ study late into the night.",
+      "options": [
+        "used to",
+        "was used to",
+        "got used to",
+        "use to"
+      ],
+      "answer": 0,
+      "why": "Geçmişte kalmış eski alışkanlıkları ifade etmek için 'used to + bare verb' kullanılır."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_en_question_tags",
+      "prompt": "You haven't told anyone about our plan, ___ you?",
+      "options": [
+        "have",
+        "haven't",
+        "did",
+        "didn't"
+      ],
+      "answer": 0,
+      "why": "Olumsuz ana cümleden sonra olumlu soru eki gelir ('haven't told -> have you?')."
+    },
+    {
+      "level": "B2",
+      "lesson": "mixed_conditionals",
+      "prompt": "If he had accepted the job in Tokyo, he ___ there today.",
+      "options": [
+        "would be living",
+        "would have lived",
+        "had lived",
+        "will live"
+      ],
+      "answer": 0,
+      "why": "Geçmiş koşulun (had accepted) günümüzdeki devam eden sonucu 'would be living today' ile verilir."
+    },
+    {
+      "level": "B2",
+      "lesson": "participle_clauses",
+      "prompt": "___ all day in the hot sun, the hikers were thoroughly exhausted.",
+      "options": [
+        "Having walked",
+        "Walked",
+        "Walking",
+        "To walk"
+      ],
+      "answer": 0,
+      "why": "Eylemin yorgunluktan önce tamamlandığını vurgulamak için perfect participle ('Having walked') kullanılır."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_en_third_conditional",
+      "prompt": "If we had left ten minutes earlier, we ___ the express train.",
+      "options": [
+        "wouldn't have missed",
+        "didn't miss",
+        "wouldn't miss",
+        "hadn't missed"
+      ],
+      "answer": 0,
+      "why": "Üçüncü koşul yapısında (Type 3) ana cümlede 'would have + V3' yer alır."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_en_future_perfect",
+      "prompt": "By next November, the construction crew ___ the entire bridge.",
+      "options": [
+        "will have completed",
+        "will complete",
+        "will be completing",
+        "completes"
+      ],
+      "answer": 0,
+      "why": "'By + gelecek zaman' eylemin o tarihe kadar tamamlanmış olacağını belirtir (future perfect)."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_en_causative",
+      "prompt": "We must have our roof ___ before the rainy season arrives.",
+      "options": [
+        "inspected",
+        "inspect",
+        "inspecting",
+        "to inspect"
+      ],
+      "answer": 0,
+      "why": "'Have something done' ettirgen yapısında nesneden sonra fiilin 3. hali ('inspected') gelir."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_en_past_perfect_continuous",
+      "prompt": "His boots were muddy because he ___ in the wet garden for hours.",
+      "options": [
+        "had been working",
+        "has been working",
+        "worked",
+        "had worked"
+      ],
+      "answer": 0,
+      "why": "Geçmişteki bir ana kadar süregelen ve o an iz bırakan eylem past perfect continuous ile aktarılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "inversion",
+      "prompt": "Seldom ___ such an inspiring speech by a political figure.",
+      "options": [
+        "have I heard",
+        "I have heard",
+        "I heard",
+        "did I heard"
+      ],
+      "answer": 0,
+      "why": "Olumsuz zarf ('Seldom') başa geldiğinde yardımcı fiil özneden önce gelir ('have I heard')."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_en_inversion_conditionals",
+      "prompt": "___ you require any further clarification, please do not hesitate to ask.",
+      "options": [
+        "Should",
+        "Were",
+        "Had",
+        "Could"
+      ],
+      "answer": 0,
+      "why": "Type 1 koşul devrikliği 'Should + subject + bare verb' kalıbıyla kurulur."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_en_subjunctive_mandative",
+      "prompt": "The board demanded that the chief executive ___ an immediate explanation.",
+      "options": [
+        "provide",
+        "provides",
+        "provided",
+        "will provide"
+      ],
+      "answer": 0,
+      "why": "Mandative subjunctive kuralı gereği 'that' sonrasında 3. tekil şahıs dahi olsa fiil yalın kalır ('provide')."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_en_hedging",
+      "prompt": "The latest clinical findings ___ to support the initial hypothesis.",
+      "options": [
+        "tend",
+        "proves",
+        "guarantees",
+        "undeniably"
+      ],
+      "answer": 0,
+      "why": "Akademik yazımda kesin genellemelerden kaçınarak eğilim bildirmek için 'tend to' kullanılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_en_correlative_conjunctions",
+      "prompt": "No sooner had we entered the lobby ___ the fire alarms began to ring.",
+      "options": [
+        "than",
+        "when",
+        "then",
+        "that"
+      ],
+      "answer": 0,
+      "why": "'No sooner had ... than' kalıplaşmış bir çiftli zaman devrikliği bağlacıdır."
+    }
+  ]
+}
