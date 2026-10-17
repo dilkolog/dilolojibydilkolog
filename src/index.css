@@ -3639,11 +3639,88 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
 @keyframes combo-burst { 0% { transform: scale(1); } 45% { transform: scale(1.35); } 100% { transform: none; } }
 .combo[data-tier='3'] { font-size: var(--t-md); filter: drop-shadow(0 0 7px rgb(249 115 22 / 0.8)); }
 
-/* A new level: the number flips, a gold ring leaves the badge. */
-.level-strike { position: relative; display: inline-grid; flex: none; }
-.level-strike .level-badge { animation: level-flip 520ms var(--ease-spring); }
-.level-strike.is-up::after { content: ''; position: absolute; inset: -4px; border-radius: var(--r-full); border: 2px solid var(--gold); opacity: 0; animation: plant-burst 900ms var(--ease-out) forwards; pointer-events: none; }
-@keyframes level-flip { 0% { transform: rotateX(90deg) scale(0.8); opacity: 0; } 60% { transform: rotateX(0) scale(1.18); opacity: 1; } 100% { transform: none; } }
+/* A new level: the number anticipates, flips with a spring burst, double gold wave, and sparkles. */
+.level-strike { position: relative; display: inline-grid; place-items: center; flex: none; }
+.level-strike:not(.is-up) .level-badge { animation: level-anticipate 780ms ease-in-out forwards; }
+.level-strike.is-up .level-badge { animation: level-pop-spring 680ms var(--ease-spring) forwards; }
+
+.level-strike.is-up::before,
+.level-strike.is-up::after {
+  content: ''; position: absolute; inset: -4px; border-radius: var(--r-full);
+  pointer-events: none; opacity: 0;
+}
+.level-strike.is-up::before {
+  border: 2.5px solid var(--gold);
+  animation: level-burst-wave 900ms var(--ease-out) forwards;
+}
+.level-strike.is-up::after {
+  border: 2px solid var(--flame);
+  animation: level-burst-wave 1100ms 140ms var(--ease-out) forwards;
+}
+
+/* XL celebratory badge for MilestoneMoment modal */
+.level-strike-xl { min-width: 5.5rem; min-height: 5.5rem; }
+.level-badge-xl {
+  min-width: 5.5rem; height: 5.5rem; padding: 0 1rem;
+  font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em;
+  border-radius: var(--r-full);
+  display: inline-grid; place-items: center; line-height: 1;
+  background: linear-gradient(145deg, #fef08a 0%, var(--gold) 48%, var(--flame) 100%);
+  color: #ffffff; text-shadow: 0 2px 4px rgb(0 0 0 / 0.32);
+  box-shadow: 0 0 0 4px var(--surface), 0 0 0 7px var(--gold), 0 14px 28px -4px rgb(245 158 11 / 0.45);
+}
+.level-strike-xl.is-up::before { border-width: 3.5px; }
+.level-strike-xl.is-up::after { border-width: 2.5px; }
+
+/* Golden sparkles spraying outward on level up */
+.level-sparkles {
+  position: absolute; inset: 0; pointer-events: none;
+  overflow: visible; display: grid; place-items: center;
+}
+.level-sparkle {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 8px 1px var(--gold);
+  animation: level-sparkle-fly 680ms var(--ease-out) forwards;
+}
+.level-strike-xl .level-sparkle {
+  width: 9px; height: 9px; box-shadow: 0 0 12px 2px #fde047;
+}
+.level-sparkle.sp-1 { --sx: -34px; --sy: -32px; animation-delay: 30ms; }
+.level-sparkle.sp-2 { --sx: 34px; --sy: -32px; animation-delay: 70ms; }
+.level-sparkle.sp-3 { --sx: -30px; --sy: 30px; animation-delay: 110ms; }
+.level-sparkle.sp-4 { --sx: 32px; --sy: 32px; animation-delay: 50ms; }
+
+.level-strike-xl .level-sparkle.sp-1 { --sx: -54px; --sy: -50px; }
+.level-strike-xl .level-sparkle.sp-2 { --sx: 54px; --sy: -50px; }
+.level-strike-xl .level-sparkle.sp-3 { --sx: -48px; --sy: 48px; }
+.level-strike-xl .level-sparkle.sp-4 { --sx: 50px; --sy: 50px; }
+
+@keyframes level-anticipate {
+  0% { transform: scale(1); filter: brightness(1); }
+  45% { transform: scale(1.06); filter: brightness(1.12) drop-shadow(0 0 6px rgb(245 158 11 / 0.35)); }
+  80% { transform: scale(0.92); filter: brightness(0.97); }
+  100% { transform: scale(0.92); }
+}
+
+@keyframes level-pop-spring {
+  0% { transform: translateY(12px) scale(0.7) rotateX(-35deg); opacity: 0; filter: brightness(1.65) drop-shadow(0 0 16px rgb(245 158 11 / 0.75)); }
+  42% { transform: translateY(-7px) scale(1.2) rotateX(0deg); opacity: 1; filter: brightness(1.22) drop-shadow(0 0 12px rgb(245 158 11 / 0.55)); }
+  72% { transform: translateY(2px) scale(0.97); filter: brightness(1.05); }
+  100% { transform: translateY(0) scale(1); filter: brightness(1); }
+}
+
+@keyframes level-burst-wave {
+  0% { transform: scale(0.75); opacity: 0.95; }
+  50% { opacity: 0.65; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+
+@keyframes level-sparkle-fly {
+  0% { transform: translate(0, 0) scale(0); opacity: 0; }
+  25% { opacity: 1; transform: translate(calc(var(--sx) * 0.35), calc(var(--sy) * 0.35)) scale(1.25); }
+  70% { opacity: 0.85; transform: translate(var(--sx), var(--sy)) scale(1); }
+  100% { opacity: 0; transform: translate(calc(var(--sx) * 1.25), calc(var(--sy) * 1.25)) scale(0.2); }
+}
 
 /* A card that stays closed until wanted: its summary is the card's title and a line under it. */
 
@@ -4783,6 +4860,12 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .monki-shadow,
   .monki-bubble,
   .monki-spark { animation: none !important; }
+  .level-strike .level-badge,
+  .level-strike:not(.is-up) .level-badge,
+  .level-strike.is-up .level-badge { animation: none; transform: none; filter: none; }
+  .level-strike.is-up::before,
+  .level-strike.is-up::after,
+  .level-sparkles { display: none; }
 }
 
 /* ---------- Today: friends and their XP ---------- */

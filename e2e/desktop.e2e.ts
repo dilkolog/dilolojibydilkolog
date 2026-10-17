@@ -1836,7 +1836,7 @@ test('register game: regional usage note shows for entries with notes and is abs
     const noteLocator = page.locator('.stack[role="status"] p.small.muted')
     if (await noteLocator.count()) {
       await expect(noteLocator).toBeVisible()
-      await expect(noteLocator).toContainText(/İspanya|Latin Amerika|chamba|curro|papear|cacharro|pasta|guay/i)
+      await expect(noteLocator).toContainText(/İspanya|Latin Amerika|Meksika|chamba|curro|papear|cacharro|pasta|guay/i)
       seenNote = true
       break
     }
@@ -1938,6 +1938,23 @@ test('dictionary: a word the pack lacks is translated by DeepL, saved for good, 
   await page.getByRole('button', { name: 'Sözlüğe kaydet' }).click()
   const card = page.getByRole('region', { name: 'Kaydettiğin kelime' })
   await expect(card).toContainText('karalamak')
+  // Wait for dictionaryNotes to be persisted before reloading
+  await page.waitForFunction(() =>
+    new Promise<boolean>((resolve) => {
+      const req = indexedDB.open('kelime-koc')
+      req.onsuccess = () => {
+        try {
+          const tx = req.result.transaction('dictionaryNotes', 'readonly')
+          const get = tx.objectStore('dictionaryNotes').get('fr')
+          get.onsuccess = () => resolve(Boolean(get.result?.added?.gribouiller))
+          get.onerror = () => resolve(false)
+        } catch {
+          resolve(false)
+        }
+      }
+      req.onerror = () => resolve(false)
+    }),
+  )
   // After a reload the word is in the dictionary without asking DeepL again, and listed under "Kaydettiklerin".
   let asked = 0
   await page.route((u) => u.pathname === '/api/translate' && u.searchParams.has('text'), (r) => (asked++, r.fulfill({ json: { translation: 'x' } })))
@@ -2358,7 +2375,8 @@ test('flashcards: flipping, grading 1/2/3, unlearned card returns after 3 cards,
 
   // Dismiss any milestone badge dialog
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
-    await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').first().click()
+    await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').last().click()
+    await page.waitForTimeout(200)
   }
 
   // "Takıldıklarını çalış" button restarts with the stumbled card

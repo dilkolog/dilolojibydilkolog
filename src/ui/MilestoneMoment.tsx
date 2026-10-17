@@ -6,18 +6,29 @@ import { shareCard } from './shareCard'
 import { sfx } from './sounds'
 import { CloseIcon } from './icons'
 
-/** The new level: the badge shows the old number, flips to the new one with a ring, as if it were struck. */
-export function LevelUpBadge({ from, to }: { from: number; to: number }) {
+/** The new level: the badge shows the old number, charges with anticipation, and bursts to the new one with rings and sparkles. */
+export function LevelUpBadge({ from, to, size = 'md' }: { from: number; to: number; size?: 'md' | 'xl' }) {
   const [level, setLevel] = useState(from)
   useEffect(() => {
     const t = setTimeout(() => setLevel(to), 800)
     return () => clearTimeout(t)
   }, [to])
+  const isUp = level === to
+  const isXl = size === 'xl'
+
   return (
-    <span className={`level-strike${level === to ? ' is-up' : ''}`}>
-      <span className="level-badge level-badge-lg" key={level}>
+    <span className={`level-strike${isXl ? ' level-strike-xl' : ''}${isUp ? ' is-up' : ''}`}>
+      <span className={`level-badge ${isXl ? 'level-badge-xl' : 'level-badge-lg'}`} key={level}>
         {level}
       </span>
+      {isUp && (
+        <span className="level-sparkles" aria-hidden="true">
+          <span className="level-sparkle sp-1" />
+          <span className="level-sparkle sp-2" />
+          <span className="level-sparkle sp-3" />
+          <span className="level-sparkle sp-4" />
+        </span>
+      )}
     </span>
   )
 }
@@ -58,7 +69,7 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
           <Burst />
           {milestone.level ? (
             <span className="milestone-level" aria-hidden>
-              <LevelUpBadge from={milestone.level.from} to={milestone.level.to} />
+              <LevelUpBadge from={milestone.level.from} to={milestone.level.to} size="xl" />
             </span>
           ) : (
             <span className="milestone-emoji" aria-hidden>
