@@ -1,0 +1,2218 @@
+{
+  "language": "en",
+  "source": "Diloloji İngilizce Rehber B2–C1 Dersleri Tamamlayıcı Soru Havuzu",
+  "lessons": {
+    "mixed_conditionals": [
+      {
+        "prompt": "If you ___ the map before leaving, we wouldn't be lost in this remote valley right now.",
+        "options": [
+          "had checked",
+          "checked",
+          "would check",
+          "have checked"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki bir eylemin (haritayı kontrol etmeme) şu anki sonucu (kaybolmuş olma) anlatıldığı için if cümleciğinde past perfect ('had checked'), ana cümlecikte would + yalın fiil kullanılır."
+      },
+      {
+        "prompt": "If he ___ so fluent in German, he wouldn't have gotten the job in Berlin last year.",
+        "options": [
+          "weren't",
+          "hadn't been",
+          "isn't",
+          "wouldn't be"
+        ],
+        "answer": 0,
+        "why": "Kişinin Almanca bilmesi genel/kalıcı bir durumdur (Type 2: 'weren't'); geçmişteki işe kabul edilme sonucu ise Type 3'tür ('wouldn't have gotten')."
+      },
+      {
+        "prompt": "If they had invested in that startup five years ago, they ___ millionaires today.",
+        "options": [
+          "would be",
+          "would have been",
+          "will be",
+          "had been"
+        ],
+        "answer": 0,
+        "why": "'Today' kelimesi sonucun günümüzde olduğunu belirtir. Geçmiş koşul (had invested) günümüz sonucu ile (would be) birleşir."
+      },
+      {
+        "prompt": "If she weren't terrified of dogs, she ___ the stray puppy home yesterday.",
+        "options": [
+          "would have brought",
+          "would bring",
+          "had brought",
+          "will bring"
+        ],
+        "answer": 0,
+        "why": "Genel bir korku durumu (Type 2: 'weren't') dün gerçekleşen geçmiş bir sonucu etkilediğinde ana cümlede would have + V3 kullanılır."
+      },
+      {
+        "prompt": "We wouldn't have missed the express train if our driver ___ more familiar with the shortcut.",
+        "options": [
+          "were",
+          "would be",
+          "had been being",
+          "is"
+        ],
+        "answer": 0,
+        "why": "Sürücünün kestirme yolu bilmesi genel bir durum/nitelik olarak ele alındığında if cümleciğinde 'were' kullanılır; geçmiş sonuç ise 'wouldn't have missed' biçimindedir."
+      },
+      {
+        "prompt": "If I ___ that diploma program last semester, I would have my license right now.",
+        "options": [
+          "had completed",
+          "completed",
+          "would complete",
+          "have completed"
+        ],
+        "answer": 0,
+        "why": "Geçmişte tamamlanmış olması gereken eğitim (had completed) şu anki lisans sahibi olma sonucunu (would have right now) belirler."
+      },
+      {
+        "prompt": "Hangi cümlede geçmişteki bir kararın günümüzdeki sonucu doğru kurulmuştur?",
+        "options": [
+          "If we had bought the tickets earlier, we would be sitting in the front row now.",
+          "If we bought the tickets earlier, we would have sat in the front row now.",
+          "If we had bought the tickets earlier, we would have been sitting in the front row now.",
+          "If we would buy the tickets earlier, we would be sitting in the front row now."
+        ],
+        "answer": 0,
+        "why": "Geçmiş eylem için if + past perfect ('had bought'), şu anki devam eden sonuç için would be + V-ing ('would be sitting now') kullanılır."
+      }
+    ],
+    "participle_clauses": [
+      {
+        "prompt": "___ all his savings on speculative stocks, George had to move back in with his family.",
+        "options": [
+          "Having lost",
+          "Losing",
+          "Lost",
+          "To have lost"
+        ],
+        "answer": 0,
+        "why": "Bir eylemin diğerinden önce tamamlandığını vurgulamak için perfect participle ('Having lost') kullanılır."
+      },
+      {
+        "prompt": "___ down the avenue, Maria unexpectedly ran into her elementary school teacher.",
+        "options": [
+          "Walking",
+          "Walked",
+          "Having walked",
+          "To walk"
+        ],
+        "answer": 0,
+        "why": "İki eylemin eşzamanlı olarak gerçekleştiği durumlarda etken yapıyı kısaltmak için present participle ('Walking') kullanılır."
+      },
+      {
+        "prompt": "___ in 1889 for the World's Fair, the Eiffel Tower remains an enduring symbol of Paris.",
+        "options": [
+          "Built",
+          "Building",
+          "Having built",
+          "To build"
+        ],
+        "answer": 0,
+        "why": "Eyfel Kulesi inşa eden değil edilen (edilgen/pasif) olduğu için past participle ('Built' = which was built) kullanılır."
+      },
+      {
+        "prompt": "Not ___ which train platform to choose, the tourist asked an attendant for assistance.",
+        "options": [
+          "knowing",
+          "known",
+          "having know",
+          "to know"
+        ],
+        "answer": 0,
+        "why": "Participle cümleciklerinin olumsuzu cümlenin başına 'not' getirilerek yapılır: 'Not knowing' (= As he did not know)."
+      },
+      {
+        "prompt": "___ of the severe avalanche risk, the climbers decided to turn back to base camp.",
+        "options": [
+          "Warned",
+          "Warning",
+          "To warn",
+          "Warn"
+        ],
+        "answer": 0,
+        "why": "Dağcılar uyaran değil uyarılan taraftır (edilgen anlam); bu nedenle past participle ('Warned' = Having been warned) kullanılır."
+      },
+      {
+        "prompt": "___ her doctoral thesis, Dr. Evans took a well-deserved month off.",
+        "options": [
+          "Having submitted",
+          "Submitted",
+          "Submitting",
+          "To submit"
+        ],
+        "answer": 0,
+        "why": "Tezin teslimi tatile çıkmadan önce tamamlandığı için öncelik belirten 'Having submitted' doğru yapıdır."
+      },
+      {
+        "prompt": "Dangling participle (özne uyuşmazlığı) hatası içermeyen cümle hangisidir?",
+        "options": [
+          "Arriving at the station, we found our train waiting on platform four.",
+          "Arriving at the station, the train was already waiting on platform four.",
+          "Walking through the park, the flowers smelled wonderful.",
+          "Having eaten dinner, the dishes were washed by Sarah."
+        ],
+        "answer": 0,
+        "why": "İstasyona varan eyleminin öznesi 'we'dir. Diğer cümlelerde kısaltmanın öznesi ana cümlenin öznesiyle (train, flowers, dishes) uyuşmamaktadır."
+      }
+    ],
+    "basics_en_third_conditional": [
+      {
+        "prompt": "If the firefighters ___ so promptly, the historic library would have burned down.",
+        "options": [
+          "hadn't responded",
+          "didn't respond",
+          "wouldn't respond",
+          "haven't responded"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmemiş bir koşul için (Type 3) if cümleciğinde past perfect ('hadn't responded') kullanılır."
+      },
+      {
+        "prompt": "We would have visited the modern art museum if it ___ open on Monday.",
+        "options": [
+          "had been",
+          "were",
+          "would have been",
+          "has been"
+        ],
+        "answer": 0,
+        "why": "Üçüncü koşul yapısında (Type 3) ana cümlede would have + V3, if cümlesinde past perfect ('had been') yer alır."
+      },
+      {
+        "prompt": "I wish I ___ that insulting remark during the debate yesterday.",
+        "options": [
+          "hadn't made",
+          "didn't make",
+          "wouldn't make",
+          "haven't made"
+        ],
+        "answer": 0,
+        "why": "Geçmişe yönelik pişmanlıklarda wish yapısından sonra past perfect ('hadn't made') kullanılır."
+      },
+      {
+        "prompt": "If only we ___ our plane tickets earlier; the prices doubled last week!",
+        "options": [
+          "had booked",
+          "booked",
+          "would book",
+          "have booked"
+        ],
+        "answer": 0,
+        "why": "'If only' ile geçmişe yönelik pişmanlık veya kaçırılmış bir fırsat anlatılırken past perfect ('had booked') tercih edilir."
+      },
+      {
+        "prompt": "What ___ if nobody had come to rescue you from the island?",
+        "options": [
+          "would you have done",
+          "would you do",
+          "had you done",
+          "did you do"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmemiş duruma ilişkin soru sorulurken ana cümlede would + have + V3 ('would you have done') kullanılır."
+      },
+      {
+        "prompt": "She wouldn't have slipped on the pavement if the municipal workers ___ salt on the ice.",
+        "options": [
+          "had spread",
+          "spread",
+          "would spread",
+          "have spread"
+        ],
+        "answer": 0,
+        "why": "Type 3 koşul cümlesinin if kısmında had + V3 ('had spread') kullanılır."
+      },
+      {
+        "prompt": "If they ___ us about the detour in advance, we wouldn't have been delayed for hours.",
+        "options": [
+          "had told",
+          "told",
+          "would tell",
+          "have told"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmeyen bir bilgi verme eylemi için past perfect ('had told') gerekir."
+      }
+    ],
+    "basics_en_future_perfect": [
+      {
+        "prompt": "By this time tomorrow, the astronauts ___ towards the International Space Station.",
+        "options": [
+          "will be flying",
+          "will have flown",
+          "fly",
+          "will fly"
+        ],
+        "answer": 0,
+        "why": "Gelecekte belirli bir anda devam ediyor olacak bir eylemi ifade etmek için future continuous ('will be flying') kullanılır."
+      },
+      {
+        "prompt": "By the year 2035, researchers ___ an effective therapy for this rare condition.",
+        "options": [
+          "will have developed",
+          "will be developing",
+          "develop",
+          "will develop"
+        ],
+        "answer": 0,
+        "why": "'By + gelecek zaman' ifadesi eylemin o tarihe kadar tamamlanmış olacağını belirtir (future perfect: 'will have developed')."
+      },
+      {
+        "prompt": "Please do not phone me between 7 and 9 PM; I ___ an important webinar.",
+        "options": [
+          "will be hosting",
+          "will have hosted",
+          "host",
+          "hosted"
+        ],
+        "answer": 0,
+        "why": "Belirtilen zaman aralığında sürmekte olacak bir etkinlik için future continuous ('will be hosting') kullanılır."
+      },
+      {
+        "prompt": "By next September, they ___ in their suburban home for a quarter of a century.",
+        "options": [
+          "will have lived",
+          "will be living",
+          "live",
+          "will live"
+        ],
+        "answer": 0,
+        "why": "'By next September' ve 'for a quarter of a century' ifadeleri eylemin o tarihte tamamlanacak süresini gösterir (will have lived)."
+      },
+      {
+        "prompt": "___ the comprehensive audit before the regional director arrives on Thursday?",
+        "options": [
+          "Will you have completed",
+          "Will you be completing",
+          "Do you complete",
+          "Did you complete"
+        ],
+        "answer": 0,
+        "why": "Müdür gelmeden önce denetimin bitirilip bitirilmeyeceğini sorduğu için future perfect ('Will you have completed') kullanılır."
+      },
+      {
+        "prompt": "At 11 AM tomorrow morning, the selection panel ___ the shortlisted candidates.",
+        "options": [
+          "will be interviewing",
+          "will have interviewed",
+          "interviews",
+          "interviewed"
+        ],
+        "answer": 0,
+        "why": "Yarın saat 11'de mülakatların devam ediyor olacağını vurgulamak için future continuous ('will be interviewing') kullanılır."
+      },
+      {
+        "prompt": "Hangi cümlede 'gelecekteki belirli bir noktaya kadar işin tamamlanmış olacağı' anlatılmaktadır?",
+        "options": [
+          "By next Friday, the renovation team will have painted all the classrooms.",
+          "At this time next Friday, the renovation team will be painting the classrooms.",
+          "The renovation team will paint the classrooms next Friday.",
+          "The renovation team paints the classrooms every Friday."
+        ],
+        "answer": 0,
+        "why": "'By next Friday' ve 'will have painted' yapısı, eylemin belirtilen tarihe kadar bitirilmiş olacağını açıkça gösterir."
+      }
+    ],
+    "basics_en_causative": [
+      {
+        "prompt": "We need to get our heating system ___ before the cold weather sets in.",
+        "options": [
+          "serviced",
+          "service",
+          "to service",
+          "servicing"
+        ],
+        "answer": 0,
+        "why": "'Get something done' kalıbında nesneden sonra fiilin üçüncü hali (V3/past participle: 'serviced') gelir."
+      },
+      {
+        "prompt": "The strict professor made all the students ___ their final term papers.",
+        "options": [
+          "rewrite",
+          "to rewrite",
+          "rewriting",
+          "rewritten"
+        ],
+        "answer": 0,
+        "why": "'Make someone do something' kalıbında fiil yalın halde (bare infinitive: 'rewrite') kullanılır, 'to' almaz."
+      },
+      {
+        "prompt": "Can you get your cousin ___ us some help with moving the heavy furniture?",
+        "options": [
+          "to give",
+          "give",
+          "given",
+          "giving"
+        ],
+        "answer": 0,
+        "why": "'Get someone to do something' kalıbında kişiden sonra to-infinitive ('to give') kullanılır."
+      },
+      {
+        "prompt": "The doctor had the laboratory technician ___ another blood test.",
+        "options": [
+          "run",
+          "to run",
+          "running",
+          "ran"
+        ],
+        "answer": 0,
+        "why": "'Have someone do something' kalıbında kişi nesnesinden sonra fiil yalın halde ('run') kullanılır."
+      },
+      {
+        "prompt": "The librarian does not let visitors ___ food or drinks into the reading room.",
+        "options": [
+          "bring",
+          "to bring",
+          "bringing",
+          "brought"
+        ],
+        "answer": 0,
+        "why": "'Let someone do something' kalıbında fiil yalın halde ('bring') kullanılır."
+      },
+      {
+        "prompt": "I am going to have my tailored suit ___ for tomorrow's award gala.",
+        "options": [
+          "pressed",
+          "press",
+          "to press",
+          "pressing"
+        ],
+        "answer": 0,
+        "why": "'Have something done' yapısında nesneden (suit) sonra V3 ('pressed') gelir."
+      },
+      {
+        "prompt": "\"Müdür asistanına toplantı tutanaklarını hazırlattı\" cümlesinin İngilizce doğru karşılığı hangisidir?",
+        "options": [
+          "The manager had her assistant prepare the meeting minutes.",
+          "The manager got her assistant prepare the meeting minutes.",
+          "The manager made her assistant to prepare the meeting minutes.",
+          "The manager had her assistant to prepare the meeting minutes."
+        ],
+        "answer": 0,
+        "why": "'Have someone do something' yapısında araya 'to' girmez ('had her assistant prepare'). 'Get' kullanılsaydı 'to prepare' gerekirdi."
+      }
+    ],
+    "basics_en_hedging": [
+      {
+        "prompt": "The company reported modest revenue growth, ___ at a noticeably slower pace than projected.",
+        "options": [
+          "albeit",
+          "whereas",
+          "despite",
+          "nonetheless"
+        ],
+        "answer": 0,
+        "why": "'Albeit' (her ne kadar ... olsa da) bir sıfat veya zarf öbeğinden önce gelerek temkinli bir sınırlandırma getirir."
+      },
+      {
+        "prompt": "Patients undergoing this therapy ___ to experience fewer side effects during recovery.",
+        "options": [
+          "tend",
+          "are",
+          "must",
+          "inevitably"
+        ],
+        "answer": 0,
+        "why": "'Tend to' ifadesi kesin bir genelleme yapmaktan kaçınarak eğilimi temkinli bir şekilde belirtir."
+      },
+      {
+        "prompt": "It ___ that the initial data collection suffered from minor sampling biases.",
+        "options": [
+          "appears",
+          "concludes",
+          "guarantees",
+          "proves"
+        ],
+        "answer": 0,
+        "why": "'It appears that...' yapısı kesin bir hüküm vermeden gözlemi temkinli bir şekilde ifade eder (hedging)."
+      },
+      {
+        "prompt": "This archaeological find is ___ the most intact Roman mosaic discovered in Britain.",
+        "options": [
+          "arguably",
+          "undeniably",
+          "absolutely",
+          "surely"
+        ],
+        "answer": 0,
+        "why": "'Arguably' (savunulabilir ki / muhtemelen) iddianın tartışmaya açık bir değerlendirme olduğunu belirterek kesinliği yumuşatır."
+      },
+      {
+        "prompt": "The survey results ___ that regular physical exercise may reduce workplace burnout.",
+        "options": [
+          "suggest",
+          "prove",
+          "verify",
+          "insist"
+        ],
+        "answer": 0,
+        "why": "Akademik yazımda 'suggest' fiili 'kanıtlamak' yerine olasılık kapısını açık bırakan temkinli bir aktarımdır."
+      },
+      {
+        "prompt": "Domestic tourism increased significantly, ___ international arrivals saw a marked decline.",
+        "options": [
+          "whereas",
+          "furthermore",
+          "besides",
+          "therefore"
+        ],
+        "answer": 0,
+        "why": "'Whereas' iki zıt olguyu dengeli ve analitik bir dille karşılaştırmak için kullanılan bir bağlaçtır."
+      },
+      {
+        "prompt": "Akademik bir metinde kesinlik iddiasını yumuşatan (hedging) en uygun ifade hangisidir?",
+        "options": [
+          "The findings seem to indicate a potential link between sleep duration and cognitive focus.",
+          "The findings prove without any doubt that sleep duration determines cognitive focus.",
+          "The findings definitely demonstrate that cognitive focus depends solely on sleep duration.",
+          "The findings obviously settle the debate regarding sleep and cognitive focus."
+        ],
+        "answer": 0,
+        "why": "'seem to indicate' ve 'potential link' gibi ifadeler araştırmacının iddialarını temkinli ve bilimsel bir üslupla sunmasını sağlar."
+      }
+    ],
+    "basics_en_past_perfect_continuous": [
+      {
+        "prompt": "Her eyes were stinging and red because she ___ onions in the kitchen for twenty minutes.",
+        "options": [
+          "had been chopping",
+          "chopped",
+          "has been chopping",
+          "had chopped"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki bir ana kadar süren ve gözle görülür bir etki/iz bırakan kesintisiz eylemler için past perfect continuous ('had been chopping') kullanılır."
+      },
+      {
+        "prompt": "When the ambulance arrived, the paramedics could see he ___ heavily from a head injury.",
+        "options": [
+          "had been bleeding",
+          "bled",
+          "has been bleeding",
+          "had bled"
+        ],
+        "answer": 0,
+        "why": "Geçmişte ambulans gelene kadar bir süredir devam eden kanama süreci 'had been bleeding' ile aktarılır."
+      },
+      {
+        "prompt": "They ___ over the boundary dispute for hours before an arbitrator finally intervened.",
+        "options": [
+          "had been arguing",
+          "argued",
+          "have been arguing",
+          "had argued"
+        ],
+        "answer": 0,
+        "why": "Hakem müdahale edene kadar saatlerdir süren tartışma geçmişteki bir süreçtir (had been arguing)."
+      },
+      {
+        "prompt": "The lawn was completely flooded because the automated sprinklers ___ all night long.",
+        "options": [
+          "had been running",
+          "ran",
+          "have been running",
+          "had run"
+        ],
+        "answer": 0,
+        "why": "Çimlerin su altında kalmasının geçmişteki süregelen nedeni past perfect continuous ('had been running') ile anlatılır."
+      },
+      {
+        "prompt": "How long ___ for the connecting flight before the airline announced the cancellation?",
+        "options": [
+          "had you been waiting",
+          "did you wait",
+          "have you been waiting",
+          "had you waited"
+        ],
+        "answer": 0,
+        "why": "Uçuş iptal edilene kadar ne kadar süredir beklenmekte olduğunu sorarken past perfect continuous soru biçimi kullanılır."
+      },
+      {
+        "prompt": "He was out of breath when he reached the summit because he ___ uphill without a rest.",
+        "options": [
+          "had been cycling",
+          "cycled",
+          "has been cycling",
+          "had cycled"
+        ],
+        "answer": 0,
+        "why": "Nefes nefese kalma durumunun geçmişteki süregelen sebebi 'had been cycling' ile verilir."
+      },
+      {
+        "prompt": "Hangi cümlede geçmişte bir ana kadar sürmüş ve o anki durumu açıklamış bir eylem vurgulanmaktadır?",
+        "options": [
+          "The engine was smoking because the mechanic had been testing it at high speeds.",
+          "The engine smoked because the mechanic tested it.",
+          "The engine is smoking because the mechanic has tested it.",
+          "The engine will smoke if the mechanic tests it."
+        ],
+        "answer": 0,
+        "why": "Duman çıkması durumunun geçmişteki süregelen sebebi past perfect continuous ('had been testing') ile açıklanmıştır."
+      }
+    ],
+    "basics_en_preferences": [
+      {
+        "prompt": "I would rather you ___ anyone about our confidential meeting until next week.",
+        "options": [
+          "didn't tell",
+          "not tell",
+          "don't tell",
+          "wouldn't tell"
+        ],
+        "answer": 0,
+        "why": "'Would rather + subject' kalıbında başkasının bir şey yapması/yapmaması istenirken past simple ('didn't tell') kullanılır."
+      },
+      {
+        "prompt": "She prefers walking in the forest ___ jogging along noisy city streets.",
+        "options": [
+          "to",
+          "than",
+          "rather",
+          "from"
+        ],
+        "answer": 0,
+        "why": "'Prefer doing something TO doing something else' kalıbında iki eylem veya isim 'to' edatı ile bağlanır."
+      },
+      {
+        "prompt": "It's freezing outside. You'd better ___ on a heavy winter coat before heading out.",
+        "options": [
+          "put",
+          "to put",
+          "putting",
+          "put on to"
+        ],
+        "answer": 0,
+        "why": "'Had better' uyarısından sonra fiil doğrudan yalın halde (bare infinitive: 'put') gelir, 'to' almaz."
+      },
+      {
+        "prompt": "I'd rather ___ dinner at home tonight than dine at an overpriced restaurant.",
+        "options": [
+          "cook",
+          "to cook",
+          "cooking",
+          "cooked"
+        ],
+        "answer": 0,
+        "why": "'Would rather + bare infinitive ... than + bare infinitive' kalıbında öznenin kendi tercihi yalın fiille ifade edilir."
+      },
+      {
+        "prompt": "We had better not ___ late for the keynote presentation tomorrow morning.",
+        "options": [
+          "be",
+          "to be",
+          "being",
+          "are"
+        ],
+        "answer": 0,
+        "why": "'Had better' kalıbının olumsuzu 'had better not + bare infinitive' şeklindedir ('had better not be')."
+      },
+      {
+        "prompt": "Would you rather ___ by high-speed rail or take a domestic flight?",
+        "options": [
+          "travel",
+          "to travel",
+          "travelling",
+          "traveled"
+        ],
+        "answer": 0,
+        "why": "'Would you rather' sorusunda fiil yalın halde ('travel') kullanılır."
+      },
+      {
+        "prompt": "Hangi cümle dilbilgisi kurallarına tam olarak uygundur?",
+        "options": [
+          "I prefer to work independently rather than collaborate on large group projects.",
+          "I prefer working independently than collaborate on large group projects.",
+          "I would rather to work independently than working on group projects.",
+          "You had better to leave earlier to avoid the evening rush hour."
+        ],
+        "answer": 0,
+        "why": "'Prefer to do rather than do' kalıbı kusursuz bir yapıdır. 'Prefer -ing to -ing' veya 'would rather do than do' doğru alternatiflerdir."
+      }
+    ],
+    "basics_en_emphasis": [
+      {
+        "prompt": "Although I rarely bake, I ___ love making traditional sourdough bread on holidays.",
+        "options": [
+          "do",
+          "did",
+          "am",
+          "have"
+        ],
+        "answer": 0,
+        "why": "Geniş zamanda olumlu cümleye vurgu (emphasis) katmak için yalın fiilden önce 'do' yardımcı fiili kullanılır."
+      },
+      {
+        "prompt": "It was ___ an intriguing lecture that none of the attendees checked their phones.",
+        "options": [
+          "such",
+          "so",
+          "very",
+          "too"
+        ],
+        "answer": 0,
+        "why": "'Such + a/an + sıfat + tekil isim' kalıbında 'an intriguing lecture' tamlamasını nitelemek için 'such' kullanılır."
+      },
+      {
+        "prompt": "She explained the complex mathematical proof ___ clearly that everyone understood it.",
+        "options": [
+          "so",
+          "such",
+          "too",
+          "enough"
+        ],
+        "answer": 0,
+        "why": "Zarfları ve tek başına sıfatları niteleyip sonuç bildirmek için 'so ... that' kalıbı kullanılır ('so clearly that')."
+      },
+      {
+        "prompt": "\"You didn't submit the quarterly financial report!\" \"I ___ submit it! Check your inbox.\"",
+        "options": [
+          "did",
+          "do",
+          "have",
+          "had"
+        ],
+        "answer": 0,
+        "why": "Geçmiş zamanda yapılan bir eylemi savunurken veya vurgularken 'did + bare verb' kullanılır ('I did submit it!')."
+      },
+      {
+        "prompt": "There were ___ many unexpected obstacles that the team had to postpone the launch.",
+        "options": [
+          "so",
+          "such",
+          "too",
+          "very"
+        ],
+        "answer": 0,
+        "why": "'Many', 'few', 'much', 'little' sözcükleriyle birlikte vurgu için 'so' kullanılır ('so many obstacles')."
+      },
+      {
+        "prompt": "They are ___ dedicated professionals that they volunteered throughout the weekend.",
+        "options": [
+          "such",
+          "so",
+          "too",
+          "very"
+        ],
+        "answer": 0,
+        "why": "Çoğul bir isim tamlamasını ('dedicated professionals') nitelemek için 'such' kullanılır."
+      },
+      {
+        "prompt": "\"Söylenenlerin aksine seni gerçekten anlıyorum\" vurgusu hangisinde doğru kurulmuştur?",
+        "options": [
+          "I do understand what you are going through.",
+          "I so understand what you are going through.",
+          "I such understand what you are going through.",
+          "I am understanding what you are going through."
+        ],
+        "answer": 0,
+        "why": "Geniş zamanda 'do + understand' yapısı şüpheleri gidermek ve cümlenin doğruluğunu vurgulamak için kullanılır."
+      }
+    ],
+    "basics_en_ellipsis": [
+      {
+        "prompt": "\"Mark didn't attend the safety briefing this morning.\" \"Neither ___ Lisa.\"",
+        "options": [
+          "did",
+          "was",
+          "does",
+          "had"
+        ],
+        "answer": 0,
+        "why": "Past simple olumsuz bir cümleye ('didn't attend') olumsuz katılma ifadesi 'Neither did Lisa' şeklinde kurulur."
+      },
+      {
+        "prompt": "\"We thoroughly enjoyed the symphony last night.\" \"So ___ we!\"",
+        "options": [
+          "did",
+          "have",
+          "were",
+          "do"
+        ],
+        "answer": 0,
+        "why": "Past simple olumlu bir eyleme katılırken 'So did we' kullanılır."
+      },
+      {
+        "prompt": "\"Will our flight be canceled due to the blizzard?\" \"I hope ___.\"",
+        "options": [
+          "not",
+          "no",
+          "don't",
+          "never"
+        ],
+        "answer": 0,
+        "why": "'Hope', 'fear', 'be afraid' gibi ifadelerde olumsuz kısa cevap 'I hope not' / 'I'm afraid not' şeklinde 'not' ile verilir."
+      },
+      {
+        "prompt": "\"Do you think the price of housing will stabilize soon?\" \"I suppose ___.\"",
+        "options": [
+          "so",
+          "it",
+          "that",
+          "too"
+        ],
+        "answer": 0,
+        "why": "'Think', 'believe', 'suppose', 'expect' gibi fiillerle bir fikre katılırken 'so' kullanılır ('I suppose so')."
+      },
+      {
+        "prompt": "\"I haven't had time to read the latest research paper yet.\" \"___ have I.\"",
+        "options": [
+          "Nor",
+          "So",
+          "Either",
+          "Also"
+        ],
+        "answer": 0,
+        "why": "Olumsuz bir cümleye katılırken cümlenin başında devrik olarak 'Nor have I' veya 'Neither have I' kullanılır."
+      },
+      {
+        "prompt": "\"Emma speaks three languages fluently.\" \"So ___ her younger brother.\"",
+        "options": [
+          "does",
+          "is",
+          "speaks",
+          "has"
+        ],
+        "answer": 0,
+        "why": "Present simple bir fiile ('speaks') katılırken üçüncü tekil şahıs için 'does' kullanılır ('So does her brother')."
+      },
+      {
+        "prompt": "Olumsuz bir tahmine veya soruya katılırken hangisi söylenir?",
+        "options": [
+          "\"Is the manager coming to the workshop?\" \"I don't think so.\"",
+          "\"Is the manager coming to the workshop?\" \"I think not so.\"",
+          "\"Is the manager coming to the workshop?\" \"I don't hope so.\"",
+          "\"Is the manager coming to the workshop?\" \"I think no.\""
+        ],
+        "answer": 0,
+        "why": "'Think' fiilinde olumsuzluk genellikle ana fiile getirilir: 'I don't think so' (I think not yerine tercih edilen doğal kullanım)."
+      }
+    ],
+    "basics_en_phrasal_verbs": [
+      {
+        "prompt": "Could you please look ___ my plants while I am away on vacation next week?",
+        "options": [
+          "after",
+          "for",
+          "at",
+          "into"
+        ],
+        "answer": 0,
+        "why": "'Look after' (birine veya bir şeye bakmak, bakımını üstlenmek) ayrılmayan bir edatlı fiildir."
+      },
+      {
+        "prompt": "The airplane took ___ forty minutes behind schedule owing to the dense morning fog.",
+        "options": [
+          "off",
+          "out",
+          "up",
+          "away"
+        ],
+        "answer": 0,
+        "why": "'Take off' uçağın havalanması anlamına gelir ve nesne almayan (intransitive) bir phrasal verb'tür."
+      },
+      {
+        "prompt": "If you don't know the exact meaning of the idiom, look ___ in the glossary.",
+        "options": [
+          "it up",
+          "up it",
+          "it out",
+          "out it"
+        ],
+        "answer": 0,
+        "why": "'Look up' ayrılabilen bir phrasal verb'tür; nesne bir zamir ('it') olduğunda zorunlu olarak araya girer ('look it up')."
+      },
+      {
+        "prompt": "They had to call ___ the outdoor championship because of relentless torrential rain.",
+        "options": [
+          "off",
+          "out",
+          "back",
+          "away"
+        ],
+        "answer": 0,
+        "why": "'Call off' bir etkinliği iptal etmek anlamına gelir."
+      },
+      {
+        "prompt": "She takes ___ her grandmother; both of them have an extraordinary talent for painting.",
+        "options": [
+          "after",
+          "to",
+          "up",
+          "on"
+        ],
+        "answer": 0,
+        "why": "'Take after' bir aile büyüğüne huy veya görünüş olarak benzemek anlamında kullanılır."
+      },
+      {
+        "prompt": "He decided to give ___ smoking after his doctor warned him about cardiovascular risks.",
+        "options": [
+          "up",
+          "in",
+          "out",
+          "off"
+        ],
+        "answer": 0,
+        "why": "'Give up' bir alışkanlığı bırakmak veya terk etmek anlamına gelir."
+      },
+      {
+        "prompt": "Hangi cümlede zamirin (it / them) phrasal verb ile kullanımı kurala uygundur?",
+        "options": [
+          "The shoes were too tight, so I took them off immediately.",
+          "The shoes were too tight, so I took off them immediately.",
+          "I liked the song, so I turned on it.",
+          "Here is the application form; please fill out it."
+        ],
+        "answer": 0,
+        "why": "Ayrılabilen phrasal verb'lerde nesne bir zamir olduğunda (them, it, me vb.) mutlaka fiil ile edatın arasına girmelidir ('took them off')."
+      }
+    ],
+    "basics_en_future_in_past": [
+      {
+        "prompt": "We were ___ leave the house when a sudden thunderstorm knocked out the power.",
+        "options": [
+          "about to",
+          "would",
+          "going",
+          "supposed"
+        ],
+        "answer": 0,
+        "why": "'Be about to do something' geçmişte tam gerçekleşmek üzere olan bir eylemi ifade eder ('were about to leave')."
+      },
+      {
+        "prompt": "He gave me his word that he ___ return the borrowed money the following Friday.",
+        "options": [
+          "would",
+          "will",
+          "was",
+          "is going to"
+        ],
+        "answer": 0,
+        "why": "Geçmişte verilen bir söz veya yapılan bir tahmin aktarılırken 'will' geçmiş biçimi olan 'would'a dönüşür."
+      },
+      {
+        "prompt": "I was ___ call you yesterday afternoon, but an unexpected client emergency came up.",
+        "options": [
+          "going to",
+          "would",
+          "about",
+          "planning"
+        ],
+        "answer": 0,
+        "why": "'Was/were going to do something' geçmişte niyet edilen ancak genellikle gerçekleşmeyen eylemleri anlatır."
+      },
+      {
+        "prompt": "At that time, little did the young scientist know that her discovery ___ revolutionize medicine.",
+        "options": [
+          "would",
+          "will",
+          "was to have",
+          "has been to"
+        ],
+        "answer": 0,
+        "why": "Geçmişte henüz bilinmeyen gelecekteki bir kader veya kesin olay aktarılırken 'would' kullanılır."
+      },
+      {
+        "prompt": "The negotiator was on the ___ of signing the peace treaty when the rebel group attacked.",
+        "options": [
+          "verge",
+          "point",
+          "edge",
+          "limit"
+        ],
+        "answer": 0,
+        "why": "'On the verge of + V-ing' bir şeyin tam eşiğinde/kenarında olmak anlamına gelen kalıptır."
+      },
+      {
+        "prompt": "They were ___ take the sleeper train, but all reservations had been sold out days ago.",
+        "options": [
+          "supposed to",
+          "would to",
+          "about",
+          "destined"
+        ],
+        "answer": 0,
+        "why": "'Were supposed to' geçmişte planlanmış veya beklenmiş fakat gerçekleşememiş bir durumu anlatır."
+      },
+      {
+        "prompt": "\"Tam arabaya binmek üzereydik ki anahtarları unuttuğumu fark ettim\" cümlesi hangisidir?",
+        "options": [
+          "We were about to get into the car when I realized I had forgotten the keys.",
+          "We were going to get into the car when I realize I forgot the keys.",
+          "We would get into the car when I realized I had forgotten the keys.",
+          "We were to get into the car when I have realized I forgot the keys."
+        ],
+        "answer": 0,
+        "why": "'Were about to get into...' bir eylemin tam gerçekleşmek üzere olduğu anı kusursuz aktarır."
+      }
+    ],
+    "basics_en_future_perfect_continuous": [
+      {
+        "prompt": "By 10 PM tonight, the musicians ___ on stage for four consecutive hours.",
+        "options": [
+          "will have been playing",
+          "will be playing",
+          "will play",
+          "have been playing"
+        ],
+        "answer": 0,
+        "why": "'By 10 PM' ve 'for four consecutive hours' gelecekteki bir ana kadar sürecek olan eylemin süresini vurgular (will have been playing)."
+      },
+      {
+        "prompt": "Next month, Professor Henderson ___ research on marine biodiversity for thirty years.",
+        "options": [
+          "will have been conducting",
+          "will be conducting",
+          "will conduct",
+          "is conducting"
+        ],
+        "answer": 0,
+        "why": "Gelecekteki belirli bir tarihte otuzuncu yılına girecek olan kesintisiz bir süreç future perfect continuous ile verilir."
+      },
+      {
+        "prompt": "By the time the marathon concludes, the elite runners ___ for over two hours in scorching heat.",
+        "options": [
+          "will have been running",
+          "will run",
+          "will be running",
+          "ran"
+        ],
+        "answer": 0,
+        "why": "Maraton bittiğinde koşucuların ne kadar süredir koşmakta olacağı anlatıldığı için 'will have been running' kullanılır."
+      },
+      {
+        "prompt": "In December, my grandparents ___ married for exactly sixty years.",
+        "options": [
+          "will have been",
+          "will have been being",
+          "will be being",
+          "will be"
+        ],
+        "answer": 0,
+        "why": "'Be' durum fiili (stative verb) olduğu için continuous formda ('being') kullanılmaz; future perfect ('will have been') tercih edilir."
+      },
+      {
+        "prompt": "By midnight, the night shift driver ___ without a break for eight hours.",
+        "options": [
+          "will have been driving",
+          "will be driving",
+          "will drive",
+          "has been driving"
+        ],
+        "answer": 0,
+        "why": "Gece yarısına kadar sekiz saattir sürmekte olacak eylem 'will have been driving' ile ifade edilir."
+      },
+      {
+        "prompt": "By next Friday, how long ___ on this architectural draft?",
+        "options": [
+          "will you have been working",
+          "will you be working",
+          "will you work",
+          "have you been working"
+        ],
+        "answer": 0,
+        "why": "Gelecekteki bir noktada bir eylemin süresini sormak için 'will you have been working' kullanılır."
+      },
+      {
+        "prompt": "Hangi cümlede gelecekteki bir noktaya kadar olan eylemin süreci vurgulanmaktadır?",
+        "options": [
+          "By lunchtime tomorrow, she will have been editing manuscripts for five hours.",
+          "At lunchtime tomorrow, she will be editing manuscripts.",
+          "By lunchtime tomorrow, she will edit five manuscripts.",
+          "She edits manuscripts every day until lunchtime."
+        ],
+        "answer": 0,
+        "why": "'for five hours' zaman zarfıyla birlikte gelecekteki süreci anlatan doğru yapı future perfect continuous'tur."
+      }
+    ],
+    "basics_en_unreal_past": [
+      {
+        "prompt": "It's high time the local council ___ practical steps to reduce plastic pollution.",
+        "options": [
+          "took",
+          "takes",
+          "has taken",
+          "would take"
+        ],
+        "answer": 0,
+        "why": "'It's high time + subject' kalıbından sonra eylemin çoktan yapılmış olması gerektiğini vurgulamak için past simple ('took') kullanılır."
+      },
+      {
+        "prompt": "He speaks with such unwarranted authority as though he ___ the CEO of the entire corporation.",
+        "options": [
+          "were",
+          "is",
+          "would be",
+          "has been"
+        ],
+        "answer": 0,
+        "why": "'As though / as if' gerçek dışı durumları anlatırken 'were' (tüm şahıslar için) tercih edilir."
+      },
+      {
+        "prompt": "Suppose we ___ the apartment today; do you think someone else would snap it up?",
+        "options": [
+          "didn't rent",
+          "don't rent",
+          "haven't rented",
+          "won't rent"
+        ],
+        "answer": 0,
+        "why": "'Suppose / Supposing' ile yapılan varsayımsal durumlarda ikinci koşul mantığıyla past simple ('didn't rent') kullanılır."
+      },
+      {
+        "prompt": "It is about time you ___ your master's thesis and submitted it to the department.",
+        "options": [
+          "finished",
+          "finish",
+          "have finished",
+          "will finish"
+        ],
+        "answer": 0,
+        "why": "'It's about time + subject' yapısından sonra fiil past tense ('finished') biçiminde gelir."
+      },
+      {
+        "prompt": "She talked about Florence as if she ___ there for a decade, yet she only visited once on a weekend.",
+        "options": [
+          "had lived",
+          "lived",
+          "would live",
+          "has lived"
+        ],
+        "answer": 0,
+        "why": "Geçmişe ait gerçek dışı bir durumu 'as if' ile aktarırken past perfect ('had lived') kullanılır."
+      },
+      {
+        "prompt": "What if the investor ___ our terms at the last minute; what alternative do we have?",
+        "options": [
+          "rejected",
+          "rejects",
+          "would reject",
+          "has rejected"
+        ],
+        "answer": 0,
+        "why": "'What if' varsayımsal bir senaryo sunarken unreal past ('rejected') ile kurgulanabilir."
+      },
+      {
+        "prompt": "\"Artık kendi ayaklarının üzerinde durmanın vakti geldi\" ifadesi hangisinde doğru verilmiştir?",
+        "options": [
+          "It's high time you stood on your own two feet.",
+          "It's high time you stand on your own two feet.",
+          "It's high time you have stood on your own two feet.",
+          "It's high time for you stood on your own two feet."
+        ],
+        "answer": 0,
+        "why": "'It's high time + you + past simple' ('stood') kalıbı 'vakti geldi de geçiyor' anlamını taşır."
+      }
+    ],
+    "basics_en_noun_phrases": [
+      {
+        "prompt": "The swift ___ of renewable energy technologies has transformed the regional economy.",
+        "options": [
+          "adoption",
+          "adopt",
+          "adopting",
+          "adopted"
+        ],
+        "answer": 0,
+        "why": "Akademik ve formel dilde eylemler isimleştirilir (nominalisation); 'the swift adoption of...' doğru isim öbeğidir."
+      },
+      {
+        "prompt": "The confidential documents ___ in the bank vault belong to the late ambassador.",
+        "options": [
+          "stored",
+          "storing",
+          "which stored",
+          "were stored"
+        ],
+        "answer": 0,
+        "why": "'which are stored' edilgen ilgi cümleciğinin kısaltması past participle ('stored') ile yapılır."
+      },
+      {
+        "prompt": "Passengers ___ to upgrade their seating tier should notify the ground crew.",
+        "options": [
+          "wishing",
+          "wished",
+          "wish",
+          "are wishing"
+        ],
+        "answer": 0,
+        "why": "'who wish' etken ilgi cümleciğinin kısaltması present participle ('wishing') ile yapılır."
+      },
+      {
+        "prompt": "There has been an unprecedented ___ in international freight shipping rates this quarter.",
+        "options": [
+          "escalation",
+          "escalate",
+          "escalating",
+          "escalated"
+        ],
+        "answer": 0,
+        "why": "Sıfattan ('unprecedented') sonra isim ('escalation' = tırmanış/artış) gelmelidir."
+      },
+      {
+        "prompt": "The proposals ___ by the advisory board will be voted on tomorrow.",
+        "options": [
+          "submitted",
+          "submitting",
+          "submit",
+          "were submitted"
+        ],
+        "answer": 0,
+        "why": "Teklifler sunulan olduğu için kısaltmada edilgen past participle ('submitted') kullanılır."
+      },
+      {
+        "prompt": "The sudden ___ of the currency led to widespread inflation across the country.",
+        "options": [
+          "depreciation",
+          "depreciate",
+          "depreciatingly",
+          "depreciated"
+        ],
+        "answer": 0,
+        "why": "Belirteç ('the') ve sıfattan ('sudden') sonra isim ('depreciation' = değer kaybı) gerekir."
+      },
+      {
+        "prompt": "\"Hükümet vergi oranlarını düşürmeyi planlıyor\" cümlesinin yoğun/isimleştirilmiş yazı dili karşılığı hangisidir?",
+        "options": [
+          "The government plans a reduction in tax rates.",
+          "The government is planning that they reduce taxes.",
+          "Taxes are planned to be reduced by the government.",
+          "The government plans to reduce tax rates soon."
+        ],
+        "answer": 0,
+        "why": "'reduce' fiilinin 'a reduction in tax rates' şeklinde isimleştirilmesi resmî ve akademik üslubun temel özelliğidir."
+      }
+    ],
+    "basics_en_register": [
+      {
+        "prompt": "Resmî bir iş mektubunda alıcının adı bilinmediğinde ('Dear Sir/Madam') hangi kapanış kalıbı kullanılır?",
+        "options": [
+          "Yours faithfully",
+          "Yours sincerely",
+          "Best wishes",
+          "Cheers"
+        ],
+        "answer": 0,
+        "why": "Alıcının adı bilinmiyorsa 'Yours faithfully', adı biliniyorsa ('Dear Mr. Smith') 'Yours sincerely' kullanılır."
+      },
+      {
+        "prompt": "Resmî bir akademik raporda 'find out' deyiminin yerine hangisi tercih edilir?",
+        "options": [
+          "ascertain",
+          "get",
+          "look up",
+          "check out"
+        ],
+        "answer": 0,
+        "why": "'Find out' günlük konuşma diline aittir; akademik ve resmî yazıda 'ascertain' veya 'determine' tercih edilir."
+      },
+      {
+        "prompt": "Bir toplantının saatini belirtirken formel üsluba en uygun fiil hangisidir?",
+        "options": [
+          "The symposium will commence at 09:00.",
+          "The symposium will kick off at 09:00.",
+          "The symposium will start up at 09:00.",
+          "The symposium will get going at 09:00."
+        ],
+        "answer": 0,
+        "why": "'Commence' resmî/formel bir fiildir; 'kick off' ve 'get going' samimi/informel konuşma diline aittir."
+      },
+      {
+        "prompt": "Resmî yazışmada 'ask for' yerine hangi kelime kullanılır?",
+        "options": [
+          "request",
+          "demand",
+          "plead",
+          "order"
+        ],
+        "answer": 0,
+        "why": "'Request' (talep etmek/rica etmek) resmî iş yazışmalarının standart kibar ve formel fiilidir."
+      },
+      {
+        "prompt": "Resmî bir e-postada ekli dosyayı bildiren en profesyonel ifade hangisidir?",
+        "options": [
+          "Please find attached the quarterly financial assessment.",
+          "Here is the attachment with the financial numbers.",
+          "Check out the attached file below.",
+          "I attached the doc for you to see."
+        ],
+        "answer": 0,
+        "why": "'Please find attached...' iş dünyasında ve resmî yazışmalarda en yaygın kabul gören kalıptır."
+      },
+      {
+        "prompt": "İş yazışmasında 'put off' (ertelemek) phrasal verb'ünün resmî karşılığı hangisidir?",
+        "options": [
+          "postpone",
+          "cancel",
+          "abandon",
+          "drop"
+        ],
+        "answer": 0,
+        "why": "'Postpone' veya 'defer', günlük dildeki 'put off' fiilinin formel karşılıklarıdır."
+      },
+      {
+        "prompt": "Resmî bir dille randevu talep ederken hangisi en uygundur?",
+        "options": [
+          "I would appreciate the opportunity to meet with you at your convenience.",
+          "Can we meet up sometime next week when you're free?",
+          "Let's catch up next week for a chat.",
+          "I want to have a meeting with you real soon."
+        ],
+        "answer": 0,
+        "why": "'I would appreciate the opportunity to meet with you at your convenience' son derece saygılı ve profesyonel bir ifadedir."
+      }
+    ],
+    "basics_en_discourse_markers": [
+      {
+        "prompt": "\"The hotel was rather dated. ___, the view from our balcony was breathtaking.\"",
+        "options": [
+          "Mind you",
+          "After all",
+          "As a matter of fact",
+          "To be honest"
+        ],
+        "answer": 0,
+        "why": "'Mind you' bir önceki ifadeye sınırlayıcı veya karşıt bir dipnot eklerken ('gerçi şunu da eklemek gerekir ki') kullanılır."
+      },
+      {
+        "prompt": "\"I must be heading home. ___, thank you so much for the wonderful dinner.\"",
+        "options": [
+          "Anyway",
+          "Furthermore",
+          "In addition",
+          "Consequently"
+        ],
+        "answer": 0,
+        "why": "'Anyway' konuyu toparlamak, bitirmek veya ana temaya dönmek için konuşma dilinde sıkça kullanılır."
+      },
+      {
+        "prompt": "\"We shouldn't judge his performance too severely; ___, he has only been in the job for a week.\"",
+        "options": [
+          "after all",
+          "by the way",
+          "on the contrary",
+          "besides"
+        ],
+        "answer": 0,
+        "why": "'After all' (ne de olsa / unutmamak gerekir ki) bariz bir gerekçeyi hatırlatmak için kullanılır."
+      },
+      {
+        "prompt": "\"___, I didn't find the documentary particularly convincing.\"",
+        "options": [
+          "To be honest",
+          "At least",
+          "By the way",
+          "Mind you"
+        ],
+        "answer": 0,
+        "why": "'To be honest' veya 'Frankly' samimi ve açık bir kişisel kanaat bildirirken cümlenin başında yer alır."
+      },
+      {
+        "prompt": "\"___, have you heard from Julian since he moved to Vancouver?\" (Konuyu değiştirerek)",
+        "options": [
+          "By the way",
+          "Actually",
+          "In contrast",
+          "Nevertheless"
+        ],
+        "answer": 0,
+        "why": "'By the way' (bu arada / aklıma gelmişken) yeni ve ilgisiz bir konuya geçiş yapmak için kullanılır."
+      },
+      {
+        "prompt": "\"The flight was delayed and the luggage arrived late, but ___, we had an unforgettable vacation.\"",
+        "options": [
+          "all in all",
+          "incidentally",
+          "strictly speaking",
+          "as well"
+        ],
+        "answer": 0,
+        "why": "'All in all' (her şeyi hesaba katınca / genel olarak) genel bir değerlendirme yaparken kullanılır."
+      },
+      {
+        "prompt": "\"Did you enjoy the lecture?\" \"___, I found it quite repetitive and dull.\"",
+        "options": [
+          "Actually",
+          "Consequently",
+          "Moreover",
+          "Similarly"
+        ],
+        "answer": 0,
+        "why": "'Actually' (aslına bakarsan) beklenenin aksine bir gerçeği veya kişisel görüşü nezaketle ifade ederken kullanılır."
+      }
+    ],
+    "basics_en_cleft_variations": [
+      {
+        "prompt": "It was in 1969 ___ astronauts first walked on the surface of the Moon.",
+        "options": [
+          "that",
+          "when",
+          "which",
+          "where"
+        ],
+        "answer": 0,
+        "why": "İt-cleft cümlelerinde zaman, yer veya edat öbeği vurgulanırken standart bağlaç 'that'tir ('It was in 1969 that...')."
+      },
+      {
+        "prompt": "___ astonished the archaeologists was the pristine condition of the tomb artifacts.",
+        "options": [
+          "What",
+          "Which",
+          "That",
+          "It"
+        ],
+        "answer": 0,
+        "why": "Wh-cleft (pseudo-cleft) yapısında özne konumundaki cümlecik 'What' ile başlar ('What astonished them was...')."
+      },
+      {
+        "prompt": "All we ___ to do now is await the formal approval from the ministry.",
+        "options": [
+          "have",
+          "are",
+          "must",
+          "had"
+        ],
+        "answer": 0,
+        "why": "'All we have to do is...' (Tek yapmamız gereken...) yapısında 'have' kullanılır."
+      },
+      {
+        "prompt": "It was not until the storm subsided ___ rescue teams could reach the stranded villagers.",
+        "options": [
+          "that",
+          "when",
+          "than",
+          "then"
+        ],
+        "answer": 0,
+        "why": "'It was not until ... that ...' yapısı bir zaman noktasından sonrasını vurgulayan kalıplaşmış bir cleft yapıdır."
+      },
+      {
+        "prompt": "___ strikes me as remarkable about her research is its sheer methodological rigor.",
+        "options": [
+          "What",
+          "It",
+          "That",
+          "Which"
+        ],
+        "answer": 0,
+        "why": "'What strikes me as...' (Bana çarpıcı gelen şey...) wh-cleft yapısının klasik başlangıcıdır."
+      },
+      {
+        "prompt": "It was Dr. Patel ___ first recognized the clinical significance of the anomalous blood test.",
+        "options": [
+          "who",
+          "which",
+          "whom",
+          "what"
+        ],
+        "answer": 0,
+        "why": "İt-cleft yapısında vurgulanan öge bir insan olduğunda 'who' veya 'that' kullanılır."
+      },
+      {
+        "prompt": "\"Konserde beni en çok etkileyen şey solistin sesinin berraklığıydı\" cleft cümlesi hangisidir?",
+        "options": [
+          "What impressed me most at the concert was the clarity of the soloist's voice.",
+          "It was impressed me most that the soloist's voice was clear.",
+          "The thing which it impressed me was the soloist's voice.",
+          "All I was impressed at the concert was the soloist's voice."
+        ],
+        "answer": 0,
+        "why": "'What impressed me most ... was ...' wh-cleft yapısı cümlede vurgulanmak istenen duyguyu en doğal şekilde öne çıkarır."
+      }
+    ],
+    "basics_en_double_comparatives": [
+      {
+        "prompt": "The ___ you practice public speaking, the ___ confident you will feel on stage.",
+        "options": [
+          "more / more",
+          "much / much",
+          "most / most",
+          "more / much"
+        ],
+        "answer": 0,
+        "why": "'The more ..., the more ...' çift karşılaştırma yapısı iki durumun birbiriyle orantılı olarak değiştiğini anlatır."
+      },
+      {
+        "prompt": "The higher you climb up the alpine pass, the ___ the air becomes.",
+        "options": [
+          "thinner",
+          "thin",
+          "more thin",
+          "thinnest"
+        ],
+        "answer": 0,
+        "why": "İki tarafta da 'the + comparative' yapısı bulunmalıdır; 'thin' tek heceli olduğu için comparative hali 'thinner'dır."
+      },
+      {
+        "prompt": "The ___ the deadline, the ___ pressure the development team feels.",
+        "options": [
+          "tighter / more",
+          "tight / much",
+          "tighter / much",
+          "tightest / most"
+        ],
+        "answer": 0,
+        "why": "Karşılaştırma sıfatları: tight -> tighter; pressure sayılamayan isim olduğu için 'the more pressure'."
+      },
+      {
+        "prompt": "The ___ money a corporation invests in employee wellbeing, the ___ its turnover rate will be.",
+        "options": [
+          "more / lower",
+          "much / low",
+          "more / lowest",
+          "most / lower"
+        ],
+        "answer": 0,
+        "why": "Yatırım arttıkça işten ayrılma oranının düşeceği orantısı 'the more / the lower' ile kurulur."
+      },
+      {
+        "prompt": "The longer you procrastinate, the ___ difficult the task becomes.",
+        "options": [
+          "more",
+          "most",
+          "much",
+          "greater"
+        ],
+        "answer": 0,
+        "why": "'difficult' çok heceli bir sıfat olduğundan comparative biçimi 'more difficult'tır."
+      },
+      {
+        "prompt": "The ___ questions students ask in class, the ___ they comprehend the core principles.",
+        "options": [
+          "more / better",
+          "much / good",
+          "many / well",
+          "most / best"
+        ],
+        "answer": 0,
+        "why": "'questions' çoğuldur ('the more questions'); 'comprehend' eylemini niteleyen zarf comparative'i 'the better'dır."
+      },
+      {
+        "prompt": "Hangisi 'the more ... the better' çiftli karşılaştırma kuralına tam olarak uygundur?",
+        "options": [
+          "The earlier we depart in the morning, the less traffic we will encounter.",
+          "The earlier we depart in the morning, the least traffic we will encounter.",
+          "Earlier we depart, less traffic we will encounter.",
+          "The more early we depart, the lesser traffic we will encounter."
+        ],
+        "answer": 0,
+        "why": "Her iki cümlecikte de 'the' ile başlayan comparative yapısı bulunmalıdır ('The earlier ..., the less ...')."
+      }
+    ],
+    "basics_en_prepositional_verbs": [
+      {
+        "prompt": "I simply cannot put up ___ his arrogant and disruptive behavior any longer.",
+        "options": [
+          "with",
+          "to",
+          "on",
+          "for"
+        ],
+        "answer": 0,
+        "why": "'Put up with' (katlanmak, tahammül etmek) üç parçalı bir phrasal-prepositional verb'tür."
+      },
+      {
+        "prompt": "The engineering team came up ___ an ingenious solution to the drainage issue.",
+        "options": [
+          "with",
+          "to",
+          "at",
+          "against"
+        ],
+        "answer": 0,
+        "why": "'Come up with' (bir fikir veya çözüm bulmak/ileri sürmek) üç parçalı bir fiildir."
+      },
+      {
+        "prompt": "The physician strongly advised him to cut down ___ processed meats and sugar.",
+        "options": [
+          "on",
+          "in",
+          "to",
+          "with"
+        ],
+        "answer": 0,
+        "why": "'Cut down on' (tüketimi veya miktarı kısmak/azaltmak) kalıbıdır."
+      },
+      {
+        "prompt": "How well do you get on ___ your new colleagues in the marketing department?",
+        "options": [
+          "with",
+          "at",
+          "to",
+          "about"
+        ],
+        "answer": 0,
+        "why": "'Get on with someone' (biriyle iyi geçinmek/anlaşmak) anlamında kullanılır."
+      },
+      {
+        "prompt": "We are eagerly looking forward to ___ your delegation in Stockholm next month.",
+        "options": [
+          "welcoming",
+          "welcome",
+          "welcomed",
+          "be welcomed"
+        ],
+        "answer": 0,
+        "why": "'Look forward to' ifadesindeki 'to' bir edattır; bu nedenle ardından gelen fiil mutlaka '-ing' (gerund) alır."
+      },
+      {
+        "prompt": "After two semesters of struggling with the curriculum, he dropped out ___ university.",
+        "options": [
+          "of",
+          "from",
+          "off",
+          "out"
+        ],
+        "answer": 0,
+        "why": "'Drop out of' (okulu, eğitimi veya yarışmayı terk etmek/bırakmak) kalıbıdır."
+      },
+      {
+        "prompt": "\"Tüm enerji tasarrufu çabalarına rağmen yakıtımız tükendi\" cümlesinde hangi fiil kullanılır?",
+        "options": [
+          "We ran out of fuel.",
+          "We ran off with fuel.",
+          "We ran down on fuel.",
+          "We ran up against fuel."
+        ],
+        "answer": 0,
+        "why": "'Run out of something' bir kaynağın veya malzemenin bitmesi/tükenmesi anlamına gelir."
+      }
+    ],
+    "basics_en_inversion_conditionals": [
+      {
+        "prompt": "___ the train arrive on schedule, we will have ample time to check into the hotel.",
+        "options": [
+          "Should",
+          "Were",
+          "Had",
+          "Could"
+        ],
+        "answer": 0,
+        "why": "Type 1 koşul cümlesinde devriklik 'Should + subject + yalın fiil' ile yapılır ('If the train should arrive...')."
+      },
+      {
+        "prompt": "___ I known about the changes in the itinerary, I would have packed differently.",
+        "options": [
+          "Had",
+          "Were",
+          "Did",
+          "Should"
+        ],
+        "answer": 0,
+        "why": "Type 3 koşul cümlesinde 'If' atıldığında 'Had + subject + V3' devrik yapısı kullanılır ('Had I known...')."
+      },
+      {
+        "prompt": "___ the executive board to reject the merger, shares would drop dramatically.",
+        "options": [
+          "Were",
+          "Should",
+          "Had",
+          "Did"
+        ],
+        "answer": 0,
+        "why": "Type 2 koşul cümlesinde devriklik 'Were + subject + to-infinitive' ile kurulur ('Were the board to reject...')."
+      },
+      {
+        "prompt": "Had we ___ the warning sirens earlier, we would have found shelter in time.",
+        "options": [
+          "heard",
+          "hear",
+          "hearing",
+          "have heard"
+        ],
+        "answer": 0,
+        "why": "'Had we heard...' devrik Type 3 yapısında 'had'den sonra fiilin 3. hali (past participle: 'heard') gelir."
+      },
+      {
+        "prompt": "___ anyone inquire about my whereabouts, please inform them that I will return shortly.",
+        "options": [
+          "Should",
+          "Were",
+          "Had",
+          "Could"
+        ],
+        "answer": 0,
+        "why": "Nezaket ve formellik katan 'Should anyone inquire...' (= If anyone should inquire) devrik Type 1 yapısıdır."
+      },
+      {
+        "prompt": "Were it not ___ the emergency generator, the hospital would have lost all power.",
+        "options": [
+          "for",
+          "with",
+          "to",
+          "from"
+        ],
+        "answer": 0,
+        "why": "'Were it not for...' (= If it weren't for...) '... olmasaydı' anlamına gelen kalıplaşmış devrik yapıdır."
+      },
+      {
+        "prompt": "\"If I had realized the full scale of the crisis, I would have intervened\" cümlesinin devrik karşılığı hangisidir?",
+        "options": [
+          "Had I realized the full scale of the crisis, I would have intervened.",
+          "Were I to realize the full scale of the crisis, I would have intervened.",
+          "Should I realize the full scale of the crisis, I would have intervened.",
+          "Did I realize the full scale of the crisis, I would have intervened."
+        ],
+        "answer": 0,
+        "why": "'If I had realized' yapısının devrik karşılığı 'Had I realized'dir."
+      }
+    ],
+    "basics_en_subjunctive_mandative": [
+      {
+        "prompt": "The advisory committee recommended that the proposal ___ thoroughly evaluated before implementation.",
+        "options": [
+          "be",
+          "is",
+          "was",
+          "will be"
+        ],
+        "answer": 0,
+        "why": "Mandative subjunctive yapısında 'that' cümleciğindeki fiil kişi ve zamandan bağımsız olarak yalın halde gelir; be fiili için 'be'dir."
+      },
+      {
+        "prompt": "It is essential that every passenger ___ their seatbelt while the sign is illuminated.",
+        "options": [
+          "fasten",
+          "fastens",
+          "fastened",
+          "is fastening"
+        ],
+        "answer": 0,
+        "why": "'It is essential that...' sonrasında üçüncü tekil şahıs dahi olsa fiil -s takısı almaz, yalın kalır ('fasten')."
+      },
+      {
+        "prompt": "The magistrate ordered that the accused ___ remanded in custody until trial.",
+        "options": [
+          "be",
+          "is",
+          "being",
+          "was"
+        ],
+        "answer": 0,
+        "why": "Emir bildiren fiillerden (order that) sonra edilgen subjunctive 'be + V3' ('be remanded') şeklinde kurulur."
+      },
+      {
+        "prompt": "The CEO insisted that Mr. Higgins ___ present at the annual general meeting.",
+        "options": [
+          "be",
+          "is",
+          "was",
+          "has been"
+        ],
+        "answer": 0,
+        "why": "'Insist that' yapısında mandative subjunctive gereği 'be' kullanılır."
+      },
+      {
+        "prompt": "We suggest that she ___ an independent legal counsel before signing the contract.",
+        "options": [
+          "consult",
+          "consults",
+          "consulted",
+          "will consult"
+        ],
+        "answer": 0,
+        "why": "'Suggest that she consult...' yapısında subjunctive kuralı gereği -s takısı kullanılmaz."
+      },
+      {
+        "prompt": "It is imperative that the emergency supplies ___ dispatched without further delay.",
+        "options": [
+          "be",
+          "are",
+          "were",
+          "to be"
+        ],
+        "answer": 0,
+        "why": "'It is imperative that...' kalıbında subjunctive 'be dispatched' biçiminde olmalıdır."
+      },
+      {
+        "prompt": "Hangi cümlede mandative subjunctive kuralı doğru uygulanmıştır?",
+        "options": [
+          "The doctor urged that he take a complete week of bed rest.",
+          "The doctor urged that he takes a complete week of bed rest.",
+          "The doctor urged that he took a complete week of bed rest.",
+          "The doctor urged that he must take a complete week of bed rest."
+        ],
+        "answer": 0,
+        "why": "'urged that he take' cümlesinde 3. tekil şahıs için yalın fiil ('take') kullanılarak mandative subjunctive kuralı tam uygulanmıştır."
+      }
+    ],
+    "basics_en_participle_advanced": [
+      {
+        "prompt": "All things ___, the maiden flight of the prototype was considered a breakthrough.",
+        "options": [
+          "considered",
+          "considering",
+          "having consider",
+          "to consider"
+        ],
+        "answer": 0,
+        "why": "'All things considered' (her şey hesaba katıldığında) bağımsız bir nominative absolute kalıbıdır."
+      },
+      {
+        "prompt": "Weather ___, the regatta will commence at dawn tomorrow.",
+        "options": [
+          "permitting",
+          "permitted",
+          "permits",
+          "to permit"
+        ],
+        "answer": 0,
+        "why": "'Weather permitting' (hava elverirse) bağımsız ortaç (absolute participle) yapısıdır."
+      },
+      {
+        "prompt": "His voice ___ with suppressed emotion, the veteran accepted the service medal.",
+        "options": [
+          "trembling",
+          "trembled",
+          "having tremble",
+          "to tremble"
+        ],
+        "answer": 0,
+        "why": "'His voice trembling...' kendi öznesiyle birlikte ana cümleye bağlanan bir nominative absolute yapısıdır."
+      },
+      {
+        "prompt": "The final whistle having ___, the jubilant fans rushed onto the pitch.",
+        "options": [
+          "blown",
+          "blow",
+          "blew",
+          "blowing"
+        ],
+        "answer": 0,
+        "why": "'The final whistle having blown...' eylemin önceliğini gösteren bir absolute participle yapısıdır."
+      },
+      {
+        "prompt": "Strictly ___, this chemical compound is classified as an irritant rather than a poison.",
+        "options": [
+          "speaking",
+          "spoken",
+          "having spoken",
+          "to speak"
+        ],
+        "answer": 0,
+        "why": "'Strictly speaking' (tam olarak söylemek gerekirse) kalıplaşmış bağımsız bir ortaçtır."
+      },
+      {
+        "prompt": "The contract having ___ signed by both parties, the merger took legal effect.",
+        "options": [
+          "been",
+          "be",
+          "being",
+          "was"
+        ],
+        "answer": 0,
+        "why": "Pasif perfect participle absolute yapısında 'having been signed' kullanılır."
+      },
+      {
+        "prompt": "Hangi cümlede bağımsız bir nominative absolute yapısı doğru yer almıştır?",
+        "options": [
+          "The rain having stopped, we dismantled our tents and resumed the trek.",
+          "Having stopped, the rain we dismantled our tents.",
+          "The rain stopped, having we dismantled our tents.",
+          "Having the rain stopped, we dismantled our tents."
+        ],
+        "answer": 0,
+        "why": "'The rain having stopped' kendi öznesi olan 'the rain' ile birlikte ana cümleye bağlanan bağımsız bir yapıdır."
+      }
+    ],
+    "basics_en_punctuation_flow": [
+      {
+        "prompt": "The initial clinical trials were promising; ___, several secondary issues emerged later.",
+        "options": [
+          "however",
+          "therefore",
+          "moreover",
+          "in addition"
+        ],
+        "answer": 0,
+        "why": "Noktalı virgül ve virgül arasında zıtlık belirten geçiş bağlacı olarak 'however' kullanılır."
+      },
+      {
+        "prompt": "The turbine experienced severe overheating; ___, the safety system shut it down.",
+        "options": [
+          "consequently",
+          "nevertheless",
+          "on the contrary",
+          "whereas"
+        ],
+        "answer": 0,
+        "why": "Aşırı ısınmanın doğrudan sonucunu belirttiği için sonuç bağlacı 'consequently' (veya therefore) kullanılır."
+      },
+      {
+        "prompt": "The new processing unit is exceptionally energy-efficient; ___, it is remarkably quiet.",
+        "options": [
+          "furthermore",
+          "nonetheless",
+          "whereas",
+          "on the other hand"
+        ],
+        "answer": 0,
+        "why": "Aynı doğrultuda olumlu bir ek bilgi eklerken 'furthermore' (veya moreover) kullanılır."
+      },
+      {
+        "prompt": "The author did not endorse the revision. ___, she lodged a formal objection with the publisher.",
+        "options": [
+          "On the contrary",
+          "Similarly",
+          "In other words",
+          "Meanwhile"
+        ],
+        "answer": 0,
+        "why": "Önceki olumsuz ifadenin zıddını ve doğrusunu kuvvetle belirtmek için 'On the contrary' kullanılır."
+      },
+      {
+        "prompt": "On the one hand, remote work fosters autonomy. On the other ___, it may diminish spontaneous teamwork.",
+        "options": [
+          "hand",
+          "side",
+          "part",
+          "aspect"
+        ],
+        "answer": 0,
+        "why": "'On the one hand ..., on the other hand ...' kalıplaşmış karşılaştırma bağıntısıdır."
+      },
+      {
+        "prompt": "The budget was constrained; ___, the production quality remained exceptionally high.",
+        "options": [
+          "nonetheless",
+          "therefore",
+          "thus",
+          "consequently"
+        ],
+        "answer": 0,
+        "why": "Bütçe kısıtına rağmen kalitenin yüksek kalması zıtlık/taviz bildirir (nonetheless / nevertheless)."
+      },
+      {
+        "prompt": "Hangi cümlede akademik bağlacın noktalama işaretleri doğru kullanılmıştır?",
+        "options": [
+          "The methodology was rigorous; nevertheless, the sample size remained relatively small.",
+          "The methodology was rigorous, nevertheless the sample size remained relatively small.",
+          "The methodology was rigorous; nevertheless the sample size remained relatively small.",
+          "The methodology was rigorous nevertheless, the sample size remained relatively small."
+        ],
+        "answer": 0,
+        "why": "İki bağımsız cümleyi bağlarken bağlaçtan önce noktalı virgül (;), bağlaçtan sonra virgül (,) kullanılır."
+      }
+    ],
+    "basics_en_reporting_verbs": [
+      {
+        "prompt": "The suspect vigorously denied ___ anywhere near the scene of the burglary.",
+        "options": [
+          "being",
+          "to be",
+          "having be",
+          "to have been"
+        ],
+        "answer": 0,
+        "why": "'Deny' fiili doğrudan gerund (-ing) nesnesi alır: 'denied being'."
+      },
+      {
+        "prompt": "The coastal authorities warned the swimmers ___ venturing beyond the safe perimeter.",
+        "options": [
+          "against",
+          "to",
+          "for",
+          "with"
+        ],
+        "answer": 0,
+        "why": "'Warn someone against doing something' (birini bir şey yapmaması konusunda uyarmak) kalıbıdır."
+      },
+      {
+        "prompt": "The tenant apologized sincerely ___ making so much noise late at night.",
+        "options": [
+          "for",
+          "to",
+          "about",
+          "with"
+        ],
+        "answer": 0,
+        "why": "'Apologize for doing something' (bir şey yaptığı için özür dilemek) kalıbıdır."
+      },
+      {
+        "prompt": "She suggested ___ an informal survey before committing to the full-scale project.",
+        "options": [
+          "conducting",
+          "to conduct",
+          "conduct",
+          "conducted"
+        ],
+        "answer": 0,
+        "why": "'Suggest' fiilinden sonra doğrudan eylem geliyorsa gerund ('conducting') kullanılır."
+      },
+      {
+        "prompt": "The prosecutor accused the corporate officer ___ falsifying audit reports.",
+        "options": [
+          "of",
+          "for",
+          "with",
+          "about"
+        ],
+        "answer": 0,
+        "why": "'Accuse someone of doing something' (birini bir şeyle suçlamak) kalıbıdır."
+      },
+      {
+        "prompt": "The flight attendant reminded the travelers ___ their tray tables in the upright position.",
+        "options": [
+          "to fasten",
+          "fastening",
+          "fasten",
+          "to have fastened"
+        ],
+        "answer": 0,
+        "why": "'Remind someone to do something' kalıbında nesneden sonra to-infinitive gelir."
+      },
+      {
+        "prompt": "\"Doktor hastasına sigarayı bırakmasını tavsiye etti\" cümlesi hangisinde doğru aktarılmıştır?",
+        "options": [
+          "The doctor advised the patient to quit smoking.",
+          "The doctor suggested the patient to quit smoking.",
+          "The doctor insisted the patient to quit smoking.",
+          "The doctor warned the patient for quitting smoking."
+        ],
+        "answer": 0,
+        "why": "'Advise someone to do something' doğru kalıptır. 'Suggest' fiili 'suggest someone to do' şeklinde kullanılmaz."
+      }
+    ],
+    "basics_en_modals_past_deduction": [
+      {
+        "prompt": "The driveway is completely covered in fresh powder; it ___ have snowed heavily overnight.",
+        "options": [
+          "must",
+          "can't",
+          "should",
+          "would"
+        ],
+        "answer": 0,
+        "why": "Geçmişe yönelik güçlü bir pozitif çıkarım (kesin öyle olmuştur) için 'must have + V3' kullanılır."
+      },
+      {
+        "prompt": "Liam ___ have taken your car keys; he doesn't even know how to drive!",
+        "options": [
+          "can't",
+          "must",
+          "should",
+          "might"
+        ],
+        "answer": 0,
+        "why": "Geçmişe yönelik kesin imkansızlık bildirirken 'can't have + V3' (veya couldn't have) kullanılır."
+      },
+      {
+        "prompt": "You ___ have told me you were bringing guests; I would have prepared a larger dinner!",
+        "options": [
+          "should",
+          "must",
+          "can't",
+          "might"
+        ],
+        "answer": 0,
+        "why": "Geçmişe yönelik eleştiri ve 'yapmalıydın ama yapmadın' sitemi için 'should have + V3' kullanılır."
+      },
+      {
+        "prompt": "I cannot find my passport anywhere in my desk. I ___ have left it at the travel agency.",
+        "options": [
+          "might",
+          "mustn't",
+          "can",
+          "should"
+        ],
+        "answer": 0,
+        "why": "Geçmişe yönelik zayıf olasılık (bırakmış olabilirim) 'might have + V3' (veya could/may have) ile anlatılır."
+      },
+      {
+        "prompt": "She studied diligently for eight months. She ___ have been overjoyed when she saw the exam results.",
+        "options": [
+          "must",
+          "can't",
+          "should",
+          "couldn't"
+        ],
+        "answer": 0,
+        "why": "Sekiz ay sıkı çalışan birinin sevinmiş olduğuna dair güçlü çıkarım 'must have been' ile kurulur."
+      },
+      {
+        "prompt": "\"You needn't have washed all the dishes by hand\" cümlesinden ne anlaşılır?",
+        "options": [
+          "Bulaşıkları elle yıkadınız ama bunu yapmanıza hiç gerek yoktu (örneğin bulaşık makinesi vardı).",
+          "Bulaşıkları yıkamadınız ve bu büyük bir hataydı.",
+          "Bulaşıkları kesinlikle elle yıkamamışsınızdır.",
+          "Bulaşıkları elle yıkamak zorundaydınız."
+        ],
+        "answer": 0,
+        "why": "'Needn't have + V3' eylemin yapıldığını ancak aslında gereksiz olduğunu belirtir."
+      },
+      {
+        "prompt": "Hangi cümlede geçmişe yönelik güçlü bir olumsuz çıkarım (imkansızlık) bildirilmektedir?",
+        "options": [
+          "He couldn't have committed the robbery because he was live on television at the time.",
+          "He shouldn't have committed the robbery because it was wrong.",
+          "He mustn't have committed the robbery.",
+          "He might not have committed the robbery."
+        ],
+        "answer": 0,
+        "why": "'couldn't have committed' (işlemiş olamaz) geçmişe ait kesin olumsuz çıkarımı ifade eder."
+      }
+    ],
+    "basics_en_correlative_conjunctions": [
+      {
+        "prompt": "No sooner had the whistle sounded ___ the fans rushed onto the field.",
+        "options": [
+          "than",
+          "when",
+          "then",
+          "that"
+        ],
+        "answer": 0,
+        "why": "'No sooner ... than' kalıplaşmış bir çiftli bağlaçtır; 'than' ile tamamlanır."
+      },
+      {
+        "prompt": "Hardly had we stepped outside our hotel room ___ the torrential downpour began.",
+        "options": [
+          "when",
+          "than",
+          "then",
+          "after"
+        ],
+        "answer": 0,
+        "why": "'Hardly had ... when' (veya Scarcely had ... when) kalıbı 'tam olmuştu ki ... oldu' anlamına gelir."
+      },
+      {
+        "prompt": "Not only ___ she write the entire screenplay, but she also directed the movie.",
+        "options": [
+          "did",
+          "had",
+          "was",
+          "has"
+        ],
+        "answer": 0,
+        "why": "'Not only' cümlenin başına geldiğinde devriklik gerektirir; past simple için 'did she write' biçimindedir."
+      },
+      {
+        "prompt": "Scarcely had the president finished his speech ___ the reporters bombarded him with questions.",
+        "options": [
+          "when",
+          "than",
+          "then",
+          "so"
+        ],
+        "answer": 0,
+        "why": "'Scarcely ... when' zaman ilişkisinde 'when' bağlacını gerektirir."
+      },
+      {
+        "prompt": "Neither the team leader nor the committee members ___ satisfied with the revised draft.",
+        "options": [
+          "were",
+          "was",
+          "is",
+          "has been"
+        ],
+        "answer": 0,
+        "why": "'Neither ... nor' yapısında fiilin tekillik/çoğulluğu nor'a en yakın özneye uyar; 'members' çoğul olduğu için 'were' kullanılır."
+      },
+      {
+        "prompt": "No sooner ___ they boarded the cruise ship than it set sail into the bay.",
+        "options": [
+          "had",
+          "did",
+          "have",
+          "were"
+        ],
+        "answer": 0,
+        "why": "'No sooner had + subject + V3' standart zaman devrikliği kuralıdır."
+      },
+      {
+        "prompt": "Hangi cümlede çiftli bağlaç ve devriklik kuralı kusursuz uygulanmıştır?",
+        "options": [
+          "No sooner had I shut the front door than I realized my keys were inside.",
+          "No sooner I had shut the front door than I realized my keys were inside.",
+          "Hardly had I shut the front door than I realized my keys were inside.",
+          "No sooner had I shut the front door when I realized my keys were inside."
+        ],
+        "answer": 0,
+        "why": "'No sooner' devrik fiil ('had I shut') ve devamında 'than' gerektirir. 'Hardly' ise 'when' ile kullanılır."
+      }
+    ],
+    "basics_en_subjunctive_formulaic_clauses": [
+      {
+        "prompt": "___ what may, we are fully committed to protecting the integrity of this reserve.",
+        "options": [
+          "Come",
+          "Comes",
+          "Came",
+          "Coming"
+        ],
+        "answer": 0,
+        "why": "'Come what may' (ne olursa olsun / başımıza ne gelirse gelsin) kalıplaşmış bir formulaic subjunctive ifadesidir."
+      },
+      {
+        "prompt": "___ it to say that the negotiations ended without reaching any consensus.",
+        "options": [
+          "Suffice",
+          "Suffices",
+          "Sufficed",
+          "Sufficing"
+        ],
+        "answer": 0,
+        "why": "'Suffice it to say that...' (Şu kadarını söylemek yeter ki...) kalıplaşmış bir subjunctive geçiş ifadesidir."
+      },
+      {
+        "prompt": "Try ___ he might, he could not disentangle the knotted fishing line.",
+        "options": [
+          "as",
+          "so",
+          "though",
+          "like"
+        ],
+        "answer": 0,
+        "why": "'Try as he might' (ne kadar denerse denesin / ne kadar çabalasa da) taviz bildiren kalıplaşmış yapıdır."
+      },
+      {
+        "prompt": "Be ___ as it may, we cannot grant an exception to the established safety regulations.",
+        "options": [
+          "that",
+          "this",
+          "it",
+          "so"
+        ],
+        "answer": 0,
+        "why": "'Be that as it may' (Öyle olsa bile / Durum her ne olursa olsun) kalıplaşmış subjunctive ifadesidir."
+      },
+      {
+        "prompt": "Difficult ___ it may seem at first glance, the puzzle has an elegant and simple solution.",
+        "options": [
+          "though",
+          "although",
+          "even",
+          "despite"
+        ],
+        "answer": 0,
+        "why": "Sıfatın başa çekilip 'though' veya 'as' ile bağlandığı taviz cümlesidir ('Difficult though it may seem...')."
+      },
+      {
+        "prompt": "\"Ne olursa olsun sözümü tutacağım\" anlamındaki kalıplaşmış subjunctive ifade hangisidir?",
+        "options": [
+          "Come what may, I will keep my promise.",
+          "Whatever will come, I will keep my promise.",
+          "May come what, I will keep my promise.",
+          "Be it coming, I will keep my promise."
+        ],
+        "answer": 0,
+        "why": "'Come what may' deyimleşmiş kalıp olarak 'ne olursa olsun' anlamına gelir."
+      },
+      {
+        "prompt": "\"Suffice it to say, the keynote speaker failed to impress the audience.\" cümlesindeki 'Suffice it to say' ne anlama gelir?",
+        "options": [
+          "Şu kadarını söylemek yeterli ki...",
+          "Hiç şüphe yok ki...",
+          "Aksine inanmak gerekirse...",
+          "Sonuç olarak özetlemek gerekirse..."
+        ],
+        "answer": 0,
+        "why": "'Suffice it to say' kalıbı 'detaylara girmeden şu kadarını belirtmek yeterlidir ki' anlamında kullanılır."
+      }
+    ]
+  }
+}

@@ -12,6 +12,7 @@ import {
   TRY_SIZE,
   tryFor,
 } from './lessonOf'
+import type { TopicLesson } from './lessonTypes'
 
 describe('lessonOf utilities', () => {
   it('retrieves lessons by language', () => {
@@ -102,7 +103,21 @@ describe('lessonOf utilities', () => {
     expect(tried.every((t) => !asked.has(t.prompt))).toBe(true)
     expect(tried.every((t) => t.options[t.answer] !== undefined)).toBe(true)
     // A lesson with only its own three questions has none to spare; one with extra questions in its pool tries those.
-    const basic = lessonFor('en', 'basics_en_third_conditional')!
+    const basic: TopicLesson = {
+      language: 'en',
+      level: 'A1',
+      topic: 'test_empty_pool',
+      title: 'Empty Pool Test',
+      summary: '',
+      rules: [],
+      examples: [],
+      watch: [],
+      check: [
+        { prompt: 'Q1', options: ['A', 'B'], answer: 0, why: '' },
+        { prompt: 'Q2', options: ['A', 'B'], answer: 0, why: '' },
+        { prompt: 'Q3', options: ['A', 'B'], answer: 0, why: '' },
+      ],
+    }
     expect(tryFor(basic, checkFor(basic))).toEqual([])
     const grown = lessonFor('fr', 'basics_fr_articles')!
     const drawn = checkFor(grown)

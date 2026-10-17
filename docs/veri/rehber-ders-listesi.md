@@ -166,8 +166,8 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `modals_en` | B1 | Modal fiiller (must / can’t / should) | 10 | 15 |
 | `passive_en` | B1 | Edilgen yapı (passive) | 10 | 15 |
 | `relatives_en` | B1 | İlgi cümleleri (who / which / whose / where) | 10 | 15 |
-| `mixed_conditionals` | B2 | Karma şart cümleleri | 3 | 19 |
-| `participle_clauses` | B2 | Participle clauses | 3 | 19 |
+| `mixed_conditionals` | B2 | Karma şart cümleleri | 10 | 19 |
+| `participle_clauses` | B2 | Participle clauses | 10 | 19 |
 | `inversion` | C1 | Devrik yapı (inversion) | 4 | 20 |
 | `cleft` | C1 | Vurgulu cümle (cleft) | 4 | 20 |
 | `subjunctive` | C1 | Subjunctive | 4 | 19 |
@@ -184,41 +184,41 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_used_to` | B1 | Used to, would, be used to, get used to | 10 | 0 |
 | `basics_en_past_perfect` | B1 | Past perfect (had done) | 10 | 0 |
 | `basics_en_question_tags` | B1 | Soru ekleri (question tags) | 10 | 0 |
-| `basics_en_third_conditional` | B2 | Üçüncü koşul ve wish / if only | 3 | 0 |
-| `basics_en_future_perfect` | B2 | Future continuous ve future perfect | 3 | 0 |
-| `basics_en_causative` | B2 | Ettirgen yapı: have / get something done | 3 | 0 |
-| `basics_en_hedging` | C1 | Yazıda bağlama ve temkinli dil (whereas, nonetheless, albeit) | 3 | 0 |
+| `basics_en_third_conditional` | B2 | Üçüncü koşul ve wish / if only | 10 | 0 |
+| `basics_en_future_perfect` | B2 | Future continuous ve future perfect | 10 | 0 |
+| `basics_en_causative` | B2 | Ettirgen yapı: have / get something done | 10 | 0 |
+| `basics_en_hedging` | C1 | Yazıda bağlama ve temkinli dil (whereas, nonetheless, albeit) | 10 | 0 |
 | `basics_en_present_continuous` | A1 | Şimdiki zaman (present continuous) | 10 | 0 |
 | `basics_en_present_perfect_continuous` | B1 | Present perfect continuous (have been doing) | 10 | 15 |
 | `basics_en_future_continuous` | B1 | Future continuous (will be doing) | 10 | 0 |
-| `basics_en_past_perfect_continuous` | B2 | Past perfect continuous (had been doing) | 3 | 0 |
-| `basics_en_preferences` | B2 | Tercih ve uyarı: would rather / prefer / had better | 3 | 0 |
-| `basics_en_emphasis` | B2 | Vurgu: do / does / did, so / such | 3 | 0 |
-| `basics_en_ellipsis` | B2 | Kısa cevaplar: so do I, neither, I think so | 3 | 0 |
-| `basics_en_phrasal_verbs` | B2 | Phrasal verb'ler: ayrılabilen ve ayrılmayan | 3 | 0 |
-| `basics_en_future_in_past` | B2 | Geçmişteki gelecek (was going to, would, was about to) | 3 | 0 |
-| `basics_en_future_perfect_continuous` | C1 | Future perfect continuous (will have been doing) | 3 | 0 |
-| `basics_en_unreal_past` | C1 | Gerçek dışı geçmiş: it's time, as if, suppose | 3 | 0 |
-| `basics_en_noun_phrases` | C1 | Yoğun yazı dili: isimleştirme ve kısaltılmış ilgi cümleleri | 3 | 0 |
-| `basics_en_register` | C1 | Resmî ve gündelik dil (register) | 3 | 0 |
-| `basics_en_discourse_markers` | C1 | Konuşmada söylem belirleyicileri (actually, anyway, mind you) | 3 | 0 |
+| `basics_en_past_perfect_continuous` | B2 | Past perfect continuous (had been doing) | 10 | 0 |
+| `basics_en_preferences` | B2 | Tercih ve uyarı: would rather / prefer / had better | 10 | 0 |
+| `basics_en_emphasis` | B2 | Vurgu: do / does / did, so / such | 10 | 0 |
+| `basics_en_ellipsis` | B2 | Kısa cevaplar: so do I, neither, I think so | 10 | 0 |
+| `basics_en_phrasal_verbs` | B2 | Phrasal verb'ler: ayrılabilen ve ayrılmayan | 10 | 0 |
+| `basics_en_future_in_past` | B2 | Geçmişteki gelecek (was going to, would, was about to) | 10 | 0 |
+| `basics_en_future_perfect_continuous` | C1 | Future perfect continuous (will have been doing) | 10 | 0 |
+| `basics_en_unreal_past` | C1 | Gerçek dışı geçmiş: it's time, as if, suppose | 10 | 0 |
+| `basics_en_noun_phrases` | C1 | Yoğun yazı dili: isimleştirme ve kısaltılmış ilgi cümleleri | 10 | 0 |
+| `basics_en_register` | C1 | Resmî ve gündelik dil (register) | 10 | 0 |
+| `basics_en_discourse_markers` | C1 | Konuşmada söylem belirleyicileri (actually, anyway, mind you) | 10 | 0 |
 | `basics_en_stative_dynamic` | A2 | Durum ve eylem fiilleri (stative vs dynamic) | 10 | 0 |
 | `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 10 | 15 |
 | `basics_en_causatives_advanced` | B1 | Ettirgen çatı incelikleri: have, get, make, let | 10 | 15 |
-| `basics_en_cleft_variations` | B2 | Vurgu cümleleri: it-clefts ve wh-clefts | 3 | 20 |
-| `basics_en_double_comparatives` | B2 | Paralel karşılaştırma: the more ... the better | 3 | 0 |
-| `basics_en_prepositional_verbs` | B2 | Üç parçalı phrasal verb'ler ve ikili edatlar | 3 | 24 |
-| `basics_en_inversion_conditionals` | C1 | Şart cümlelerinde devriklik: had I known, were I, should you | 3 | 20 |
-| `basics_en_subjunctive_mandative` | C1 | Emir ve tavsiye dilek kipi (mandative subjunctive) | 3 | 19 |
-| `basics_en_participle_advanced` | C1 | İleri ortaç cümlecikleri ve bağımsız yapılar (nominative absolute) | 3 | 19 |
-| `basics_en_punctuation_flow` | C1 | Akademik bağlaçlar ve akış: however, therefore, on the contrary | 3 | 12 |
+| `basics_en_cleft_variations` | B2 | Vurgu cümleleri: it-clefts ve wh-clefts | 10 | 20 |
+| `basics_en_double_comparatives` | B2 | Paralel karşılaştırma: the more ... the better | 10 | 0 |
+| `basics_en_prepositional_verbs` | B2 | Üç parçalı phrasal verb'ler ve ikili edatlar | 10 | 24 |
+| `basics_en_inversion_conditionals` | C1 | Şart cümlelerinde devriklik: had I known, were I, should you | 10 | 20 |
+| `basics_en_subjunctive_mandative` | C1 | Emir ve tavsiye dilek kipi (mandative subjunctive) | 10 | 19 |
+| `basics_en_participle_advanced` | C1 | İleri ortaç cümlecikleri ve bağımsız yapılar (nominative absolute) | 10 | 19 |
+| `basics_en_punctuation_flow` | C1 | Akademik bağlaçlar ve akış: however, therefore, on the contrary | 10 | 12 |
 | `basics_en_make_do_have_take` | A2 | Temel fiil kalıpları: make, do, have ve take ayrımı | 10 | 19 |
 | `basics_en_say_tell_speak_talk` | A2 | Konuşma ve anlatma fiilleri: say, tell, speak, talk | 10 | 15 |
 | `basics_en_some_any_no_every` | A2 | Belgisiz zamirler ve ikili uyum: both, either, neither, none | 10 | 0 |
 | `basics_en_so_such_too_enough` | B1 | Derece ve sonuç yapıları: so ... that, such ... that, too ... to, enough to | 10 | 0 |
 | `basics_en_indirect_questions` | B1 | Dolaylı sorular ve kibar rica kalıpları (Indirect / Embedded Questions) | 10 | 15 |
 | `basics_en_adjective_order_ed_ing` | B1 | Sıfat dizilimi (OSASCOMP) ve -ed / -ing sıfatları (bored vs boring) | 10 | 0 |
-| `basics_en_reporting_verbs` | B2 | İleri dolaylı anlatım fiilleri (suggest, insist, accuse, deny, warn...) | 3 | 15 |
-| `basics_en_modals_past_deduction` | B2 | Geçmişe yönelik çıkarım ve pişmanlık modalları (modal + have + V3) | 3 | 15 |
-| `basics_en_correlative_conjunctions` | C1 | Çiftli bağlaçlar ve zaman devrikliği (No sooner ... than, Hardly ... when) | 3 | 20 |
-| `basics_en_subjunctive_formulaic_clauses` | C1 | İleri düzey şart ve taviz kalıpları (Be that as it may, Try as he might...) | 3 | 19 |
+| `basics_en_reporting_verbs` | B2 | İleri dolaylı anlatım fiilleri (suggest, insist, accuse, deny, warn...) | 10 | 15 |
+| `basics_en_modals_past_deduction` | B2 | Geçmişe yönelik çıkarım ve pişmanlık modalları (modal + have + V3) | 10 | 15 |
+| `basics_en_correlative_conjunctions` | C1 | Çiftli bağlaçlar ve zaman devrikliği (No sooner ... than, Hardly ... when) | 10 | 20 |
+| `basics_en_subjunctive_formulaic_clauses` | C1 | İleri düzey şart ve taviz kalıpları (Be that as it may, Try as he might...) | 10 | 19 |
