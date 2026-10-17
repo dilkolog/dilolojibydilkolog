@@ -2511,7 +2511,8 @@ button.access-badge:hover { border-color: var(--ink-soft); }
 /* The list starts below the filters, not against them. */
 
 /* Language switch: one pill slides to the chosen language and takes on its colour. */
-.langs { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* The language buttons keep their size: squeezed by the offline badge beside them they came out 24 px wide and overlapping. */
+.langs { position: relative; display: grid; grid-template-columns: repeat(3, minmax(2rem, 1fr)); flex: none; }
 .lang-btn { z-index: 1; transition: color var(--dur) var(--ease-out); }
 .lang-btn[aria-pressed='true'] { background: transparent; color: var(--on-lang); }
 .lang-btn:not([aria-pressed='true']):hover { color: var(--ink); }

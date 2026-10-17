@@ -301,3 +301,19 @@ export function guideMarkTopics(page: Page): Promise<string[]> {
       }),
   )
 }
+
+/** The guide's marks as saved in the app's database (to wait for the save that a tap on Today starts). */
+export function guideMarkValues(page: Page): Promise<Record<string, { reviewed?: string }>> {
+  return page.evaluate(
+    () =>
+      new Promise<Record<string, { reviewed?: string }>>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const get = open.result.transaction('meta').objectStore('meta').get('guideMarks')
+          get.onsuccess = () => resolve((get.result?.value as Record<string, { reviewed?: string }> | undefined) ?? {})
+          get.onerror = () => resolve({})
+        }
+        open.onerror = () => resolve({})
+      }),
+  )
+}
