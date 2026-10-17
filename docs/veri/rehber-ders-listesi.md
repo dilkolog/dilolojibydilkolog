@@ -78,16 +78,16 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 
 | topic | seviye | başlık | havuz | soru bankası |
 |---|---|---|---|---|
-| `basics_es_articulos` | A1 | Artikeller ve cinsiyet (el / la / un / una) | 3 | 0 |
-| `basics_es_presente` | A1 | Şimdiki zaman (presente) | 3 | 0 |
-| `basics_es_gustar` | A1 | Gustar ve benzeri fiiller | 3 | 0 |
-| `basics_es_negacion` | A1 | Olumsuzluk ve soru cümleleri | 3 | 0 |
-| `basics_es_adjetivos` | A2 | Sıfatlar: uyum ve yer | 3 | 0 |
-| `basics_es_preterito` | A2 | Geçmiş zaman: he comido mu, comí mi? | 3 | 0 |
-| `ser_estar` | A2 | Ser ve estar | 3 | 18 |
-| `preterito_imperfecto` | A2 | Pretérito ve imperfecto | 3 | 15 |
-| `comparativos_es` | A2 | Karşılaştırma ve üstünlük | 3 | 15 |
-| `imperativo_es` | A2 | Emir kipi ve zamirler | 3 | 15 |
+| `basics_es_articulos` | A1 | Artikeller ve cinsiyet (el / la / un / una) | 10 | 0 |
+| `basics_es_presente` | A1 | Şimdiki zaman (presente) | 10 | 0 |
+| `basics_es_gustar` | A1 | Gustar ve benzeri fiiller | 10 | 0 |
+| `basics_es_negacion` | A1 | Olumsuzluk ve soru cümleleri | 10 | 0 |
+| `basics_es_adjetivos` | A2 | Sıfatlar: uyum ve yer | 10 | 0 |
+| `basics_es_preterito` | A2 | Geçmiş zaman: he comido mu, comí mi? | 10 | 0 |
+| `ser_estar` | A2 | Ser ve estar | 10 | 18 |
+| `preterito_imperfecto` | A2 | Pretérito ve imperfecto | 10 | 15 |
+| `comparativos_es` | A2 | Karşılaştırma ve üstünlük | 10 | 15 |
+| `imperativo_es` | A2 | Emir kipi ve zamirler | 10 | 15 |
 | `subjuntivo` | B1 | Subjuntivo | 4 | 20 |
 | `por_para` | B1 | Por ve para | 4 | 19 |
 | `condicionales` | B1 | Şart cümleleri (si) | 3 | 20 |
@@ -99,15 +99,15 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `colloc_es` | B1 | Eşdizimler (hangi fiil?) | 3 | 19 |
 | `se_pasivo` | B2 | Se pasivo ve impersonal | 3 | 18 |
 | `estilo_indirecto` | B2 | Dolaylı anlatım (estilo indirecto) | 3 | 15 |
-| `basics_es_pronombres` | A1 | Kişi zamirleri (yo, mí, conmigo) | 3 | 0 |
-| `basics_es_posesivos` | A1 | İyelik ve işaret sözcükleri (mi, este, ese, aquel) | 3 | 0 |
-| `basics_es_numeros_hora` | A1 | Sayılar, saat ve tarih | 3 | 0 |
-| `basics_es_preguntas` | A1 | Soru sözcükleri (qué, cuál, quién, dónde…) | 3 | 0 |
-| `basics_es_hay_estar` | A1 | Hay mı, está mı? | 3 | 0 |
-| `basics_es_reflexivos` | A2 | Dönüşlü fiiller (levantarse) | 3 | 0 |
-| `basics_es_perfecto_indefinido` | A2 | He hecho mu, hice mi? Zaman işaretleri | 3 | 0 |
-| `basics_es_futuro` | A2 | Gelecek: ir a, futuro simple ve tahmin | 3 | 0 |
-| `basics_es_hace_desde` | A2 | Süre: hace, desde, desde hace, llevar | 3 | 0 |
+| `basics_es_pronombres` | A1 | Kişi zamirleri (yo, mí, conmigo) | 10 | 0 |
+| `basics_es_posesivos` | A1 | İyelik ve işaret sözcükleri (mi, este, ese, aquel) | 10 | 0 |
+| `basics_es_numeros_hora` | A1 | Sayılar, saat ve tarih | 10 | 0 |
+| `basics_es_preguntas` | A1 | Soru sözcükleri (qué, cuál, quién, dónde…) | 10 | 0 |
+| `basics_es_hay_estar` | A1 | Hay mı, está mı? | 10 | 0 |
+| `basics_es_reflexivos` | A2 | Dönüşlü fiiller (levantarse) | 10 | 0 |
+| `basics_es_perfecto_indefinido` | A2 | He hecho mu, hice mi? Zaman işaretleri | 10 | 0 |
+| `basics_es_futuro` | A2 | Gelecek: ir a, futuro simple ve tahmin | 10 | 0 |
+| `basics_es_hace_desde` | A2 | Süre: hace, desde, desde hace, llevar | 10 | 0 |
 | `basics_es_pluscuamperfecto` | B1 | Miş'li geçmiş: había hecho (pluscuamperfecto) | 3 | 0 |
 | `basics_es_gerundio` | B1 | Gerundio ve İngilizce -ing tuzakları | 3 | 0 |
 | `basics_es_orden_pronombres` | B1 | Zamir sırası, kazara se ve leísmo | 3 | 0 |
@@ -125,9 +125,9 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_registro_formal` | C1 | Resmî yazışma: usted ve nezaket kalıpları | 3 | 0 |
 | `basics_es_condicion_alternativa` | C1 | Şartın diğer yolları: en caso de que, a no ser que, como, de + mastar | 3 | 0 |
 | `basics_es_oraciones_hendidas` | C1 | Vurgulu cümleler: fue Ana quien…, lo que necesito es… | 3 | 0 |
-| `basics_es_a_personal` | A1 | Kişisel 'A' edatı: Busco a mi hermano vs Busco mi libro | 3 | 24 |
-| `basics_es_gustar_familia` | A2 | Gustar ailesi fiilleri: encantar, doler, importar, parecer | 3 | 15 |
-| `basics_es_pronombres_dobles_se_lo` | A2 | Çift zamirler ve 'se lo' kuralı: le lo değil se lo | 3 | 15 |
+| `basics_es_a_personal` | A1 | Kişisel 'A' edatı: Busco a mi hermano vs Busco mi libro | 10 | 24 |
+| `basics_es_gustar_familia` | A2 | Gustar ailesi fiilleri: encantar, doler, importar, parecer | 10 | 15 |
+| `basics_es_pronombres_dobles_se_lo` | A2 | Çift zamirler ve 'se lo' kuralı: le lo değil se lo | 10 | 15 |
 | `basics_es_subjuntivo_deseo_sentimiento` | B1 | İstek, duygu ve şüphede subjuntivo: quiero que, me alegra que | 3 | 20 |
 | `basics_es_para_que_subjuntivo` | B1 | Amaç cümlelerinde para vs para que: mastar mı subjuntivo mu? | 3 | 20 |
 | `basics_es_perifrasis_inicio_fin` | B1 | Eylemin aşamaları: ponerse a, dejar de, acabar de, seguir | 3 | 18 |
@@ -135,10 +135,10 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_si_condicionales_subjuntivo` | B2 | Si ile şart cümleleri ve imparfe subjuntivo formülü | 3 | 20 |
 | `basics_es_que_quien_el_que` | B2 | İlgi zamirleri incelikleri: que, quien, el que, lo que, cuyo | 3 | 15 |
 | `basics_es_futuro_probabilidad` | C1 | Gelecek ve şart kipiyle olasılık tahmini (futuro de probabilidad) | 3 | 0 |
-| `basics_es_saber_conocer` | A2 | Saber mi, conocer mi? (Bilgi, beceri ve tanışıklık ayrımı) | 3 | 0 |
-| `basics_es_pedir_preguntar` | A2 | Pedir mi, preguntar mı? (İstemek ve sormak ayrımı) | 3 | 0 |
-| `basics_es_llevar_traer_ir_venir` | A2 | Hareket ve taşıma yönü: ir / venir ve llevar / traer | 3 | 0 |
-| `basics_es_indefinidos_algun_ningun` | A2 | Belgisiz sözcükler ve kısalma (apócope): algún, ningún, cualquier | 3 | 0 |
+| `basics_es_saber_conocer` | A2 | Saber mi, conocer mi? (Bilgi, beceri ve tanışıklık ayrımı) | 10 | 0 |
+| `basics_es_pedir_preguntar` | A2 | Pedir mi, preguntar mı? (İstemek ve sormak ayrımı) | 10 | 0 |
+| `basics_es_llevar_traer_ir_venir` | A2 | Hareket ve taşıma yönü: ir / venir ve llevar / traer | 10 | 0 |
+| `basics_es_indefinidos_algun_ningun` | A2 | Belgisiz sözcükler ve kısalma (apócope): algún, ningún, cualquier | 10 | 0 |
 | `basics_es_preposiciones_tiempo_lugar` | B1 | Zaman ve yer edatları: en, a, de, desde, hasta, hacia, entre | 3 | 24 |
 | `basics_es_adjetivos_cambio_sentido` | B1 | İsmin önünde ve arkasında anlamı değişen sıfatlar (gran vs grande) | 3 | 0 |
 | `basics_es_se_accidental` | B2 | Kazara ve istemsiz eylem yapısı: Se me cayó, Se me olvidó (se accidental) | 3 | 18 |
