@@ -6,6 +6,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { AiContext } from '../aiContext'
 
 const monkiTurn = vi.fn()
+const speech = vi.hoisted(() => ({ canSpeak: vi.fn(() => false), speak: vi.fn(), stopSpeaking: vi.fn() }))
+const input = vi.hoisted(() => ({ canListen: vi.fn(() => false), listen: vi.fn() }))
+vi.mock('../speech', () => speech)
+vi.mock('../speechInput', () => input)
 vi.mock('../../ai', async (orig) => ({ ...(await orig<typeof import('../../ai')>()), monkiTurn: (...a: unknown[]) => monkiTurn(...a) }))
 const saveSentence = vi.fn()
 vi.mock('../saveSentence', () => ({ saveSentence: (...a: unknown[]) => saveSentence(...a) }))
@@ -32,6 +36,10 @@ describe('Monki', () => {
     localStorage.clear()
     monkiTurn.mockReset()
     saveSentence.mockReset()
+    speech.canSpeak.mockReturnValue(false)
+    speech.speak.mockReset()
+    input.canListen.mockReturnValue(false)
+    input.listen.mockReset()
     onSettings.mockClear()
     container = document.createElement('div')
     document.body.appendChild(container)
@@ -100,6 +108,64 @@ describe('Monki', () => {
     render('sk-test')
     openPanel()
     expect(container.querySelector('.monki-save')).toBeNull()
+  })
+
+  it('in a role-play with voice on, the other person\'s line is spoken; the microphone sends what was heard', async () => {
+    speech.canSpeak.mockReturnValue(true)
+    input.canListen.mockReturnValue(true)
+    const finish = vi.fn()
+    let handlers: { onFinal: (a: string[]) => void; onEnd?: () => void } | undefined
+    input.listen.mockImplementation((_l: string, h: typeof handlers) => {
+      handlers = h
+      return Object.assign(() => {}, { finish })
+    })
+    monkiTurn.mockResolvedValue({ reply: 'Le serveur: Bonjour ! Que désirez-vous ?', say: 'Bonjour ! Que désirez-vous ?', suggestions: [] })
+    render('sk-test')
+    openPanel()
+    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent?.includes('Rol yap'))!.click())
+    expect(container.textContent).toContain('Sesli: açık')
+    await act(async () => container.querySelector<HTMLButtonElement>('.monki-scene')!.click())
+    await flush()
+    expect(speech.speak).toHaveBeenCalledWith('Bonjour ! Que désirez-vous ?', 'fr')
+    // The learner answers by voice: the heard sentence goes to Monki as a message.
+    monkiTurn.mockResolvedValue({ reply: 'Très bien.', say: 'Très bien.', suggestions: [] })
+    act(() => container.querySelector<HTMLButtonElement>('.monki-mic')!.click())
+    expect(input.listen).toHaveBeenCalledTimes(1)
+    await act(async () => handlers!.onFinal(['Je voudrais un café']))
+    await flush()
+    expect(monkiTurn.mock.calls.at(-1)![1].history.at(-1)).toEqual({ role: 'user', text: 'Je voudrais un café' })
+  })
+
+  it('with voice off nothing is spoken', async () => {
+    speech.canSpeak.mockReturnValue(true)
+    localStorage.setItem('diloloji:monki-voice', 'off')
+    monkiTurn.mockResolvedValue({ reply: 'Bonjour', say: 'Bonjour', suggestions: [] })
+    render('sk-test')
+    openPanel()
+    act(() => [...container.querySelectorAll<HTMLButtonElement>('.monki-modes .chip')].find((b) => b.textContent?.includes('Rol yap'))!.click())
+    await act(async () => container.querySelector<HTMLButtonElement>('.monki-scene')!.click())
+    await flush()
+    expect(speech.speak).not.toHaveBeenCalled()
+  })
+
+  it('offers all the corrections of a scene as cards at once', async () => {
+    saveSentence.mockResolvedValueOnce(true).mockResolvedValueOnce(false)
+    localStorage.setItem(
+      'diloloji:monki:fr',
+      JSON.stringify([
+        { role: 'user', text: 'Je veux un café' },
+        { role: 'assistant', text: '✏️ Düzeltme: “Je voudrais un café” — kibar.' },
+        { role: 'user', text: 'Il y a un table' },
+        { role: 'assistant', text: '✏️ Düzeltme: “Il y a une table” — table dişil.' },
+      ]),
+    )
+    render('sk-test')
+    openPanel()
+    const all = container.querySelector<HTMLButtonElement>('.monki-save-all button')!
+    expect(all.textContent).toContain('2 düzeltmesini')
+    await act(async () => all.click())
+    expect(saveSentence).toHaveBeenCalledTimes(2)
+    expect(container.querySelector('.monki-save-all')?.textContent).toContain('1 cümle kartlarına eklendi (1 zaten vardı)')
   })
 
   it('keeps the chat of each language apart and can clear it', async () => {

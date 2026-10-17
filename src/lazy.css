@@ -1784,6 +1784,11 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .monki-form { display: flex; align-items: flex-end; gap: 0.5rem; padding: 0.625rem 0.75rem; border-top: 1px solid var(--rule); }
 .monki-form textarea { flex: 1; resize: none; max-height: 6rem; field-sizing: content; padding: 0.5rem 0.75rem; border: 2px solid var(--rule); border-radius: var(--r-md); background: var(--surface); color: var(--ink); font: inherit; }
 .monki-form textarea:focus-visible { outline: none; border-color: var(--lang); }
+.monki-voice { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; padding: 0 0.875rem 0.5rem; }
+.monki-mic { padding: 0; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; flex: none; }
+.monki-mic.mic-on { background: var(--bad); color: #fff; animation: monki-mic-pulse 1.4s ease-in-out infinite; }
+@keyframes monki-mic-pulse { 50% { box-shadow: 0 0 0 0.375rem color-mix(in srgb, var(--bad) 25%, transparent); } }
+@media (prefers-reduced-motion: reduce) { .monki-mic.mic-on { animation: none; } }
 .monki-send { padding: 0; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; flex: none; }
 @media (max-width: 40rem) {
   .monki-panel { inset: 0 0 var(--tabbar-h, 0px) 0; width: auto; height: auto; border-radius: 0; }

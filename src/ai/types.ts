@@ -238,6 +238,8 @@ export interface MonkiReply {
   reply: string
   /** Two or three short follow-ups the learner may tap (Turkish; in a role-play, things to say back in the target language). */
   suggestions: string[]
+  /** Role-play: exactly what the other person says aloud, in the target language (spoken in voice mode). Empty otherwise. */
+  say?: string
 }
 
 export interface ChatReply {
