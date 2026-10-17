@@ -62,15 +62,19 @@ export function TextForms({ groups, language, onOpenLab, onLesson, onReview, onS
                 ))}
               </ul>
               {g.forms.length > SHOWN * 2 && <p className="small muted">+{g.forms.length - SHOWN * 2} biçim daha</p>}
-              {onReview && !isPersonless(g.tense) && (
-                <button type="button" className="link small" onClick={() => onReview(pairsOf([g]))}>
-                  Bu zamanın fiillerini tekrara ekle ({pairsOf([g]).length})
-                </button>
-              )}
-              {onLesson && topicOfTense(g.tense) && (
-                <button type="button" className="link small" onClick={() => onLesson(topicOfTense(g.tense)!)}>
-                  Bu zamanın dersini oku
-                </button>
+              {((onReview && !isPersonless(g.tense)) || (onLesson && topicOfTense(g.tense))) && (
+                <div className="row gap-3 text-forms-links">
+                  {onReview && !isPersonless(g.tense) && (
+                    <button type="button" className="link small" onClick={() => onReview(pairsOf([g]))}>
+                      Bu zamanın fiillerini tekrara ekle ({pairsOf([g]).length})
+                    </button>
+                  )}
+                  {onLesson && topicOfTense(g.tense) && (
+                    <button type="button" className="link small" onClick={() => onLesson(topicOfTense(g.tense)!)}>
+                      Dersini oku
+                    </button>
+                  )}
+                </div>
               )}
             </details>
           ))}

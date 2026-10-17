@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { dueLesson } from '../engine/guideReview'
+import { dueLesson, isRead } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
 import type { TargetLanguage } from '../engine/types'
 import { db } from '../data/instance'
@@ -18,7 +18,7 @@ export function GuideReviewNudge({ language, onOpen }: { language: TargetLanguag
     let live = true
     void loadMarks(db)
       .then(async (marks) => {
-        if (!Object.keys(marks).length) return
+        if (!Object.values(marks).some(isRead)) return
         const { checkableTopics, lessonFor, lessonTitle } = await import('../data/guide/lessonOf')
         const topic = dueLesson(marks, checkableTopics(language), localDate(new Date()))
         const lesson = topic ? lessonFor(language, topic) : undefined

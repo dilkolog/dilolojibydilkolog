@@ -73,7 +73,7 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
     const code = normalizeCode(body.code)
     if (body.action === 'friends-send') {
       if (overLimit(request, 'friends-send', 20)) return tooMany()
-      const sent = await sendToFriend(id, code, body.kind, body.payload)
+      const sent = await sendToFriend(id, code, body.kind, body.payload, typeof body.today === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.today) ? body.today : undefined)
       return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'not_friends' ? 403 : 400)
     }
     if (body.action === 'friends-remove') {

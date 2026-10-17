@@ -253,6 +253,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
   background: transparent;
   border-radius: var(--r-full);
   padding: 0.25rem 0.75rem;
+  /* A touch target of at least 24 px (WCAG 2.2): the label alone can come out a hair smaller. */
+  min-height: 1.75rem;
   font-size: var(--t-sm);
   font-weight: 700;
   cursor: pointer;

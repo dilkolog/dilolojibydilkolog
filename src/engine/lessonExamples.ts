@@ -93,6 +93,8 @@ const fits = (sentence: string): boolean => {
 
 /** The most text of one source that is read (a book is long; the first pages show what a lesson needs). */
 const MAX_CHARS = 20_000
+/** The most text read for one lesson in all: a search that finds nothing must not read a whole library. */
+const MAX_TOTAL = 120_000
 
 /**
  * Sentences of the learner's own texts that show a lesson: for a lesson that teaches a tense the sentences with a form of
@@ -105,7 +107,10 @@ export function ownExamples(language: TargetLanguage, topic: string, tense: Tens
   if (!byTense && !pattern) return []
   const out: OwnExample[] = []
   const seen = new Set<string>()
+  let scanned = 0
   for (const source of sources) {
+    if (scanned >= MAX_TOTAL) break
+    scanned += Math.min(source.text.length, MAX_CHARS)
     const analysis = analyzeText(source.text.slice(0, MAX_CHARS), language, [], [], new Set())
     const sentences = analysis.paragraphs.flat().map((s) => s.text.trim())
     const hits = new Map<number, string>()

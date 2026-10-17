@@ -940,7 +940,7 @@ export class KelimeDB extends Dexie {
   /** Merges the marks with the stored ones (a screen may hold older marks than sync brought) and keeps the result; returns it. */
   saveGuideMarks(marks: GuideMarks): Promise<GuideMarks> {
     const next = this.guideQueue.then(async () => {
-      const merged = mergeMarks(await this.getGuideMarks(), cleanMarks(marks))
+      const merged = mergeMarks(await this.getGuideMarks(), cleanMarks(marks), { newest: true })
       await this.meta.put({ key: 'guideMarks', value: merged })
       return merged
     })

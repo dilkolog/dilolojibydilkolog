@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { DEFAULT_SETTINGS, type Profile } from '../data/db'
 import { db } from '../data/instance'
 import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFriendCard, recentDays, removeFriend, showCode, type FriendView, type InboxItem } from '../data/friends'
@@ -11,9 +11,9 @@ import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
-import { acceptGift, acceptText } from './friendGifts'
 import { FriendLeague } from './FriendLeague'
-import { FriendSheet } from './FriendSheet'
+// A friend's page (the chart, the gifts) is only needed when a name is tapped.
+const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m.FriendSheet })))
 
 /** The last card published from this device, so an unchanged one is not written again. */
 const SENT_KEY = 'diloloji:friend-card'
@@ -53,10 +53,11 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
 
   const refresh = useCallback(async () => {
     try {
-      setData(await loadFriends(today))
+      // The inbox is a small extra: if it cannot be read the board still shows. Both are asked at once.
+      const [board, waiting] = await Promise.all([loadFriends(today), loadInbox().catch(() => [] as InboxItem[])])
+      setData(board)
       setFailed(false)
-      // The inbox is a small extra: if it cannot be read the board still shows.
-      setInbox(await loadInbox().catch(() => []))
+      setInbox(waiting)
     } catch {
       setFailed(true)
     }
@@ -158,12 +159,20 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
   }
   /** A gift word or a text taken: put in the list or the library, then the message goes. */
   const take = async (m: InboxItem) => {
+    // Loaded on the first gift or text taken: the code that puts them in the words and the library is not for the first screen.
+    const { acceptGift, acceptText } = await import('./friendGifts')
     if (m.kind === 'gift' && m.gift) {
       const result = await acceptGift(db, m.gift)
       showToast(result === 'added' ? `“${m.gift.lemma}” kelimelerine eklendi.` : result === 'had' ? `“${m.gift.lemma}” zaten kelimelerinde.` : 'Kelime eklenemedi.', undefined, 4000, result === 'failed' ? 'info' : undefined)
       if (result === 'failed') return
     } else if (m.kind === 'text' && m.text) {
-      await acceptText(db, { ...m, text: m.text })
+      try {
+        await acceptText(db, { ...m, text: m.text })
+      } catch {
+        // The library could not be written (the storage is full): the message stays, and the learner is told.
+        showToast('Metin eklenemedi.', undefined, 4000, 'info')
+        return
+      }
       showToast(`“${m.text.title}” kütüphanene eklendi.`)
     } else return
     onChanged?.()
@@ -334,7 +343,11 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
       )}
       {data && open && (() => {
         const f = data.friends.find((x) => x.code === open)
-        return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} /> : null
+        return f ? (
+          <Suspense fallback={null}>
+            <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} />
+          </Suspense>
+        ) : null
       })()}
       {data && data.friends.length > 0 && <FriendLeague me={data.me} friends={data.friends} nicknames={nicknames} today={today} />}
       {data && data.friends.length === 0 && (

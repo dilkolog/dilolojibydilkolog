@@ -183,7 +183,7 @@ describe('TextForms', () => {
     act(() => {
       root.render(<TextForms groups={groups} language="fr" onLesson={onLesson} onClose={vi.fn()} />)
     })
-    const links = [...rootEl.querySelectorAll<HTMLButtonElement>('button.link')].filter((b) => b.textContent === 'Bu zamanın dersini oku')
+    const links = [...rootEl.querySelectorAll<HTMLButtonElement>('button.link')].filter((b) => b.textContent === 'Dersini oku')
     // Only the passé composé has a lesson of its own.
     expect(links).toHaveLength(1)
     act(() => links[0]!.click())

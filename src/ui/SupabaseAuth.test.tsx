@@ -78,6 +78,11 @@ const type = async (input: HTMLInputElement, value: string) =>
   })
 const button = (host: HTMLElement, text: string) => [...host.querySelectorAll('button')].find((b) => b.textContent?.trim() === text)!
 const settle = () => act(() => new Promise((r) => setTimeout(r, 20)))
+/** Waits until something happened (the sign-in is a chain of promises: a fixed wait is too short on a loaded machine). */
+const until = async (done: () => boolean, ms = 3000) => {
+  const end = Date.now() + ms
+  while (!done() && Date.now() < end) await act(() => new Promise((r) => setTimeout(r, 10)))
+}
 
 describe('SupabaseAuth', () => {
   it('a first sign-in makes a new account at once, tied to the person; the device\'s progress goes into it', async () => {
@@ -88,7 +93,7 @@ describe('SupabaseAuth', () => {
     await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
     await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
     await act(async () => host.querySelector('form')!.requestSubmit())
-    await settle()
+    await until(() => onDone.mock.calls.length > 0)
     expect(sb.signIn).toHaveBeenCalledWith('ali@example.com', 'gizli-sifre-1')
     expect(posts).toHaveLength(1)
     expect(posts[0]).toMatchObject({ action: 'vault-link', username: 'Ali Aydın' })
@@ -106,7 +111,7 @@ describe('SupabaseAuth', () => {
     await type(host.querySelector<HTMLInputElement>('input[type=email]')!, 'ali@example.com')
     await type(host.querySelector<HTMLInputElement>('input[type=password]')!, 'gizli-sifre-1')
     await act(async () => host.querySelector('form')!.requestSubmit())
-    await settle()
+    await until(() => onDone.mock.calls.length > 0)
     expect(posts).toHaveLength(0)
     expect(runner.account).toMatchObject({ id: 'd'.repeat(64) })
     expect(onDone).toHaveBeenCalled()

@@ -278,13 +278,25 @@ export async function inboxOf(id: string): Promise<InboxItem[]> {
   return (await readInbox(id)).sort((a, b) => b.at.localeCompare(a.at))
 }
 
-export type SendResult = 'ok' | 'unknown' | 'self' | 'not_friends' | 'bad_kind' | 'bad_payload'
+export type SendResult = 'ok' | 'unknown' | 'self' | 'not_friends' | 'bad_kind' | 'bad_payload' | 'studied'
+
+/** One change to an inbox at a time (in this server instance): two sends, or a send and a clearing, would otherwise each read the same list and the second write would undo the first. */
+const inboxLocks = new Map<string, Promise<unknown>>()
+function withInbox<T>(id: string, change: () => Promise<T>): Promise<T> {
+  const run = (inboxLocks.get(id) ?? Promise.resolve()).then(change, change)
+  const tail = run.catch(() => undefined)
+  inboxLocks.set(id, tail)
+  void tail.then(() => {
+    if (inboxLocks.get(id) === tail) inboxLocks.delete(id)
+  })
+  return run
+}
 
 /**
  * A cheer or a nudge for a friend. Only between friends (one of them follows the other), and one of a kind
  * per sender a day: a second replaces the first rather than piling up.
  */
-export async function sendToFriend(id: string, toCode: string, kind: unknown, payload?: unknown): Promise<SendResult> {
+export async function sendToFriend(id: string, toCode: string, kind: unknown, payload?: unknown, senderToday?: string): Promise<SendResult> {
   if (typeof kind !== 'string' || !INBOX_KINDS.includes(kind as InboxKind)) return 'bad_kind'
   const gift = kind === 'gift' ? cleanGift(payload) : null
   const text = kind === 'text' ? cleanText(payload) : null
@@ -298,6 +310,16 @@ export async function sendToFriend(id: string, toCode: string, kind: unknown, pa
   if (!mine.includes(toCode) && !theirs.includes(me.code)) return 'not_friends'
   const now = new Date()
   const today = now.toISOString().slice(0, 10)
+  // A nudge is for a friend who has not studied yet today (by the sender's date, which is the one the nudge is about).
+  if (kind === 'nudge') {
+    const [card] = await store.cardsOf([toCode])
+    if ((card?.days?.[senderToday ?? today] ?? 0) > 0) return 'studied'
+  }
+  return withInbox(recipient, () => deliver(recipient, me, kind as InboxKind, gift, text, now, today))
+}
+
+/** Puts one message in the recipient's inbox, in the place of the sender's earlier one of the day (a cheer, a nudge) or beside the few gifts and texts of theirs that are waiting. */
+async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift: GiftWord | null, text: SentText | null, now: Date, today: string): Promise<SendResult> {
   const waiting = await readInbox(recipient)
   // A cheer or a nudge replaces the sender's one of the day; gifts and texts pile up to a few.
   const sameKind = waiting.filter((i) => i.from.code === me.code && i.kind === kind)
@@ -307,7 +329,7 @@ export async function sendToFriend(id: string, toCode: string, kind: unknown, pa
       : [...sameKind].sort((a, b) => b.at.localeCompare(a.at)).slice(PENDING_PER_SENDER - 1).map((i) => i.id),
   )
   const fresh = waiting.filter((i) => !dropped.has(i.id))
-  const item: InboxItem = { id: crypto.randomUUID(), kind: kind as InboxKind, from: { code: me.code, name: me.name }, at: now.toISOString(), ...(gift ? { gift } : {}), ...(text ? { text } : {}) }
+  const item: InboxItem = { id: crypto.randomUUID(), kind, from: { code: me.code, name: me.name }, at: now.toISOString(), ...(gift ? { gift } : {}), ...(text ? { text } : {}) }
   await writeJson(inboxPath(recipient), { items: [item, ...fresh].slice(0, MAX_INBOX) })
   return 'ok'
 }
@@ -316,9 +338,11 @@ export async function sendToFriend(id: string, toCode: string, kind: unknown, pa
 export async function clearInbox(id: string, ids: unknown): Promise<void> {
   if (!Array.isArray(ids)) return
   const drop = new Set(ids.filter((x): x is string => typeof x === 'string'))
-  const items = await readInbox(id)
-  const left = items.filter((i) => !drop.has(i.id))
-  if (left.length !== items.length) await writeJson(inboxPath(id), { items: left })
+  await withInbox(id, async () => {
+    const items = await readInbox(id)
+    const left = items.filter((i) => !drop.has(i.id))
+    if (left.length !== items.length) await writeJson(inboxPath(id), { items: left })
+  })
 }
 
 /** Where cards and follows are kept: Blob files, or (after the move) Supabase tables. */

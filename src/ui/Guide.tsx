@@ -65,6 +65,8 @@ export function GuideScreen({
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
   const [marks, setMarks] = useState<GuideMarks>({})
+  // The marks come from the database a moment after the screen opens: until then nothing is said about what is read.
+  const [marksReady, setMarksReady] = useState(false)
   const [stats, setStats] = useState<Map<string, { accuracy: number; answered: number }>>(new Map())
   const read = useMemo(() => new Set(Object.keys(marks).filter((t) => isRead(marks[t]))), [marks])
 
@@ -90,7 +92,12 @@ export function GuideScreen({
   }, [exercises])
   useEffect(() => {
     let live = true
-    void loadMarks(db).then((m) => live && setMarks((now) => ({ ...m, ...now })), () => {})
+    const ready = (m: GuideMarks) => {
+      if (!live) return
+      setMarks((now) => ({ ...m, ...now }))
+      setMarksReady(true)
+    }
+    void loadMarks(db).then(ready, () => ready({}))
     return () => {
       live = false
     }
@@ -118,6 +125,8 @@ export function GuideScreen({
   // The way through: the first lesson not read yet, the easier levels first.
   const ordered = useMemo(() => LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)), [lessons])
   const next = pickNext(ordered, (t) => read.has(t))
+
+  if (!marksReady) return <div className="stack guide" aria-busy="true" />
 
   if (open) {
     const practice = open.practice ?? open.topic
@@ -392,9 +401,7 @@ function LessonCard({ lesson, read, learned, foot, flag, snippet, needs, onOpen 
       </span>
       <span className="small muted guide-card-summary">{lesson.summary}</span>
       {snippet && (
-        <span className="small guide-card-snippet" lang={lesson.language}>
-          {snippet}
-        </span>
+        <span className="small guide-card-snippet">{snippet}</span>
       )}
       {needs && <span className="small muted guide-card-needs">Önce: {needs}</span>}
       <span className="guide-card-foot small">
