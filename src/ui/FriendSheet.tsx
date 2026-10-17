@@ -12,8 +12,8 @@ import { showToast } from './toastFeed'
 
 const SHORT = ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct']
 
-/** The friend's page: how the last two weeks went, and a cheer or a nudge to send. */
-export function FriendSheet({ friend, name, today, vocabulary = [], language, onClose }: { friend: FriendView; name: string; today: string; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onClose: () => void }) {
+/** The friend's page: how the last two weeks went, and a cheer, nudge, gift, text, or duel invite to send. */
+export function FriendSheet({ friend, name, today, vocabulary = [], language, onClose, onDuel }: { friend: FriendView; name: string; today: string; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onClose: () => void; onDuel?: () => void }) {
   const [sent, setSent] = useState<Partial<Record<InboxKind, boolean>>>({})
   const [busy, setBusy] = useState<InboxKind | null>(null)
   const [give, setGive] = useState<'gift' | 'text' | null>(null)
@@ -23,6 +23,7 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
   const series = lastDays(friend.days ?? {}, today)
   const peak = Math.max(1, ...series.map((d) => d.xp))
   const total = series.reduce((n, d) => n + d.xp, 0)
+  const activeDays = series.filter((d) => d.xp > 0).length
   const studiedToday = friend.today > 0
 
   useEffect(() => {
@@ -61,44 +62,65 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
 
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="dialog friend-sheet" role="dialog" aria-modal="true" aria-label={`${name} arkadaş sayfası`}>
+      <div className="dialog friend-sheet" role="dialog" aria-modal="true" aria-label={`${name} arkadaş sayfası`} style={{ ['--fcolor' as string]: friend.color }}>
         <div className="friend-sheet-head">
-          <Avatar profile={{ name, emoji: friend.avatar || '🙂', color: friend.color, motto: '' } as Profile} size={48} />
-          <div>
+          <Avatar profile={{ name, emoji: friend.avatar || '🙂', color: friend.color, motto: '' } as Profile} size={54} />
+          <div className="friend-sheet-meta">
             <h2 className="section-title">{name}</h2>
-            <p className="small muted">
-              Seviye {friend.level}
+            <p className="small muted friend-sheet-badges">
+              <span className="friends-level">Seviye {friend.level}</span>
               {friend.streak > 0 && (
-                <>
-                  {' · '}
-                  <span className="friends-streak">
-                    <FlameIcon size={12} solid /> {friend.streak} gün
-                  </span>
-                </>
+                <span className="friends-streak">
+                  <FlameIcon size={12} solid /> {friend.streak} gün
+                </span>
               )}
+              <span className={`friend-status-pill${studiedToday ? ' is-active' : ''}`}>
+                {studiedToday ? 'Bugün aktif' : 'Dinleniyor'}
+              </span>
             </p>
           </div>
           <button ref={closeRef} type="button" className="icon-btn friend-sheet-close" onClick={onClose} aria-label="Kapat">
             <CloseIcon size={18} />
           </button>
         </div>
-        <p className="small muted">Son iki haftada {total.toLocaleString('tr-TR')} XP{studiedToday ? ' · bugün çalıştı' : ' · bugün henüz çalışmadı'}</p>
-        <svg className="friend-bars" viewBox={`0 0 ${DAYS * 14} 64`} role="img" aria-label={`Son ${DAYS} günün XP'si; en yüksek ${peak} XP`}>
-          {series.map((d, i) => {
-            const h = d.xp ? Math.max(4, Math.round((d.xp / peak) * 48)) : 2
-            const dow = new Date(`${d.day}T12:00:00`).getDay()
-            return (
-              <g key={d.day}>
-                <rect className={d.day === today ? 'friend-bar friend-bar-today' : 'friend-bar'} x={i * 14 + 2} y={52 - h} width={10} height={h} rx={3}>
-                  <title>{`${d.day}: ${d.xp} XP`}</title>
-                </rect>
-                <text className="friend-bar-day" x={i * 14 + 7} y={62} textAnchor="middle">
-                  {SHORT[dow]}
-                </text>
-              </g>
-            )
-          })}
-        </svg>
+        <dl className="friend-sheet-stats">
+          <div>
+            <dt className="small muted">Bugün</dt>
+            <dd>{friend.today.toLocaleString('tr-TR')} XP</dd>
+          </div>
+          <div>
+            <dt className="small muted">Bu hafta</dt>
+            <dd>{friend.week.toLocaleString('tr-TR')} XP</dd>
+          </div>
+          <div>
+            <dt className="small muted">Aktif gün</dt>
+            <dd>{activeDays}/{DAYS}</dd>
+          </div>
+        </dl>
+        <div className="friend-chart-box">
+          <p className="small muted friend-sheet-sub">
+            Son iki haftada <strong>{total.toLocaleString('tr-TR')} XP</strong>
+            {studiedToday ? ' · bugün çalıştı' : ' · bugün henüz çalışmadı'}
+          </p>
+          <svg className="friend-bars" viewBox={`0 0 ${DAYS * 16} 72`} role="img" aria-label={`Son ${DAYS} günün XP'si; en yüksek ${peak} XP`}>
+            {series.map((d, i) => {
+              const h = d.xp ? Math.max(5, Math.round((d.xp / peak) * 48)) : 3
+              const dow = new Date(`${d.day}T12:00:00`).getDay()
+              const isToday = d.day === today
+              return (
+                <g key={d.day}>
+                  <rect className="friend-bar-track" x={i * 16 + 3} y={8} width={10} height={48} rx={4} />
+                  <rect className={isToday ? 'friend-bar friend-bar-today' : 'friend-bar'} x={i * 16 + 3} y={56 - h} width={10} height={h} rx={4}>
+                    <title>{`${d.day}: ${d.xp} XP`}</title>
+                  </rect>
+                  <text className={isToday ? 'friend-bar-day is-today' : 'friend-bar-day'} x={i * 16 + 8} y={68} textAnchor="middle">
+                    {SHORT[dow]}
+                  </text>
+                </g>
+              )
+            })}
+          </svg>
+        </div>
         <div className="friend-sheet-actions">
           <button type="button" className="btn" disabled={busy !== null || sent.cheer} onClick={() => void send('cheer')}>
             {sent.cheer ? 'Tebrik gitti ✓' : 'Tebrik et 👏'}
@@ -106,6 +128,18 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
           <button type="button" className="btn btn-quiet" disabled={busy !== null || sent.nudge || studiedToday} onClick={() => void send('nudge')} title={studiedToday ? 'Bugün zaten çalıştı' : 'Bugün çalışmasını hatırlat'}>
             {sent.nudge ? 'Dürtüldü ✓' : studiedToday ? 'Bugün çalıştı' : 'Dürt 👋'}
           </button>
+          {onDuel && (
+            <button
+              type="button"
+              className="btn btn-quiet friend-duel-btn"
+              onClick={() => {
+                onClose()
+                onDuel()
+              }}
+            >
+              Düelloya davet et 🥊
+            </button>
+          )}
         </div>
         {language && (
           <div className="stack gap-2 friend-give">

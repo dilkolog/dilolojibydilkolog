@@ -29,7 +29,7 @@ async function until(done: () => boolean, ms = 3000) {
   while (!done() && Date.now() < end) await act(() => new Promise((r) => setTimeout(r, 10)))
 }
 
-async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = [], extra: { vocabulary?: VocabularyEntry[]; language?: 'fr'; onChanged?: () => void } = {}) {
+async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = [], extra: { vocabulary?: VocabularyEntry[]; language?: 'fr'; onChanged?: () => void; onDuel?: () => void } = {}) {
   const calls: { url: string; body?: unknown }[] = []
   vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
     const body = init?.body ? JSON.parse(String(init.body)) : undefined
@@ -54,6 +54,9 @@ describe('FriendsCard', () => {
     expect(calls.some((c) => (c.body as { action?: string } | undefined)?.action === 'friends-publish')).toBe(true)
     const names = () => [...host.querySelectorAll('.friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
     expect(names()).toEqual(['Veli', 'Sen'])
+    expect(host.querySelector('.friends-rank.is-top-1')?.textContent).toBe('1')
+    expect(host.querySelector('.friends-rank.is-top-2')?.textContent).toBe('2')
+    expect(host.querySelectorAll('.friends-xp-fill')).toHaveLength(2)
     await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Bu hafta')!.click())
     expect(names()).toEqual(['Sen', 'Veli'])
     expect(host.querySelector('.friends-code code')!.textContent).toBe('AAAA-AAAA')
@@ -116,18 +119,23 @@ describe('FriendsCard', () => {
   })
 
   it('a friend\'s name opens their page, where a cheer is sent; a nudge waits for a day they have not studied', async () => {
-    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 0, 20)])
+    const onDuel = vi.fn()
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 0, 20)], [], { onDuel })
     await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
     await until(() => !!host.querySelector('.friend-sheet'))
     const sheet = host.querySelector('.friend-sheet')!
     expect(sheet.textContent).toContain('Veli')
     expect(sheet.textContent).toContain('bugün henüz çalışmadı')
     expect(sheet.querySelectorAll('.friend-bar')).toHaveLength(14)
+    expect(sheet.querySelectorAll('.friend-sheet-stats > div')).toHaveLength(3)
     await act(async () => [...sheet.querySelectorAll('button')].find((b) => b.textContent?.includes('Tebrik et'))!.click())
     expect(calls.some((c) => (c.body as { action?: string; kind?: string; code?: string } | undefined)?.action === 'friends-send' && (c.body as { kind: string }).kind === 'cheer' && (c.body as { code: string }).code === 'BBBBBBBB')).toBe(true)
     expect(sheet.textContent).toContain('Tebrik gitti')
-    // Esc closes the page.
-    await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
+    // Duel invite button closes the sheet and triggers onDuel.
+    const duelBtn = sheet.querySelector('.friend-duel-btn') as HTMLButtonElement
+    expect(duelBtn).toBeTruthy()
+    await act(async () => duelBtn.click())
+    expect(onDuel).toHaveBeenCalledTimes(1)
     expect(host.querySelector('.friend-sheet')).toBeNull()
   })
 

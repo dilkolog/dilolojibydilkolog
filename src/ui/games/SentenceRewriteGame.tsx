@@ -188,6 +188,7 @@ export function SentenceRewriteGame({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Boşluğu doldur…"
+                aria-label="Boşluğu doldur"
                 disabled={submitted}
                 autoFocus
                 autoCapitalize="none"
