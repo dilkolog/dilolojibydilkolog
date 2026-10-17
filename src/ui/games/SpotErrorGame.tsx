@@ -1,3 +1,4 @@
+import { GameIcon } from '../GameIcon'
 import { useEffect, useMemo, useState } from 'react'
 import { GameResult } from './GameResult'
 import {
@@ -162,7 +163,9 @@ export function SpotErrorGame({
       {phase === 'intro' && (
         <div className="stack">
           <div className="game-intro-card card">
-            <div className="game-intro-icon">🎯</div>
+            <div className="game-intro-icon">
+              <GameIcon id="spot-error" emoji="🎯" size={64} />
+            </div>
             <h2 className="game-intro-title">Hata Avcısı</h2>
             <p className="game-intro-desc">
               B2/C1 seviyesinde en çok düşülen gramer, uyum ve sözdizimi tuzaklarını fark et. Cümledeki

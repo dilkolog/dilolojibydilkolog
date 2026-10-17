@@ -1,3 +1,4 @@
+import { GameIcon } from '../GameIcon'
 import { useEffect, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
 import {
@@ -139,7 +140,9 @@ export function SentenceRewriteGame({
       {phase === 'intro' && (
         <div className="stack">
           <div className="game-intro-card card">
-            <div className="game-intro-icon">🔄</div>
+            <div className="game-intro-icon">
+              <GameIcon id="rewrite" emoji="🔄" size={64} />
+            </div>
             <h2 className="game-intro-title">Cümle Dönüşümü</h2>
             <p className="game-intro-desc">
               C1 sınav formatı (Cambridge, DALF, DELE): İlk cümlenin anlamını bozmadan, verilen zorunlu

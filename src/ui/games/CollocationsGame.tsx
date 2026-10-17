@@ -1,3 +1,4 @@
+import { GameIcon } from '../GameIcon'
 import { useEffect, useMemo, useState } from 'react'
 import { GameResult } from './GameResult'
 import {
@@ -121,27 +122,33 @@ export function CollocationsGame({
 
   if (phase === 'intro') {
     return (
-      <div className="game-intro stack">
-        <button className="link" onClick={onExit}>
-          ← Oyunlara dön
-        </button>
-        <div className="game-intro-hero card stack">
-          <div className="game-intro-badge">🔗</div>
-          <h1 className="game-title">Edat ve Kalıplar</h1>
-          <p className="game-desc">
+      <div className="colloc-game stack">
+        <div className="game-top">
+          <button type="button" className="link" onClick={onExit}>
+            ← Oyunlar
+          </button>
+        </div>
+        <div className="game-intro-card card">
+          <div className="game-intro-icon">
+            <GameIcon id="collocations" emoji="🔗" size={64} />
+          </div>
+          <h2 className="game-intro-title">Edat ve Kalıplar</h2>
+          <p className="game-intro-desc">
             Kelimeler tek tek değil, birlikte yaşadıkları fiil ve edatlarla öğrenilir.
             Cümledeki boşluğu doğru edatla tamamla veya doğal eşdizimi eşleştir.
           </p>
-          <div className="game-stats-row">
-            <span className="pill">
-              {total} kalıp · {language.toUpperCase()}
-            </span>
-            <span className="pill">Tur başına {ROUND_SIZE} soru</span>
+          <div className="game-intro-meta small muted">
+            <span>{total} kalıp</span>
+            <span>·</span>
+            <span>Her turda {ROUND_SIZE} soru</span>
             {best !== undefined && (
-              <span className="pill pill-gold">Rekorun: %{best}</span>
+              <>
+                <span>·</span>
+                <span>Rekorun: %{best}</span>
+              </>
             )}
           </div>
-          <button className="btn btn-primary btn-lg" onClick={start}>
+          <button type="button" className="btn" onClick={start} autoFocus>
             Başla
           </button>
         </div>
@@ -176,20 +183,17 @@ export function CollocationsGame({
 
   return (
     <div className="colloc-game stack">
-      <header className="game-top-bar">
-        <button className="link small" onClick={onExit}>
-          ✕ Çıkış
+      <div className="game-top">
+        <button type="button" className="link" onClick={onExit}>
+          ← Oyunlar
         </button>
-        <div className="game-progress-bar">
-          <div
-            className="game-progress-fill"
-            style={{ width: `${((index + 1) / round.length) * 100}%` }}
-          />
-        </div>
-        <span className="game-counter small muted">
+        <span className="small muted">
           {index + 1} / {round.length}
         </span>
-      </header>
+      </div>
+      <div className="bar-track tf-progress" role="progressbar" aria-label="Tur ilerlemesi" aria-valuemin={0} aria-valuemax={round.length} aria-valuenow={index}>
+        <div className="bar-fill" style={{ width: `${(index / round.length) * 100}%` }} />
+      </div>
 
       <main className="colloc-card card stack">
         <div className="colloc-header-badges">

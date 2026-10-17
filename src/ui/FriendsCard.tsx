@@ -247,10 +247,10 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                       maxLength={24}
                       autoFocus
                     />
-                    <button type="submit" className="btn btn-sm btn-subtle" title="Kaydet" aria-label="Kaydet">
+                    <button type="submit" className="btn btn-sm btn-quiet" title="Kaydet" aria-label="Kaydet">
                       ✓
                     </button>
-                    <button type="button" className="btn btn-sm btn-subtle" onClick={() => setEditingCode(null)} title="Vazgeç" aria-label="Vazgeç">
+                    <button type="button" className="btn btn-sm btn-quiet" onClick={() => setEditingCode(null)} title="Vazgeç" aria-label="Vazgeç">
                       ✕
                     </button>
                   </form>

@@ -1088,13 +1088,13 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
 
   // 4. Oyunlar → Edat ve Kalıplar (CollocationsGame: intro ve play)
   await page.locator('.game-card', { hasText: 'Edat ve kalıplar' }).click()
-  await expect(page.locator('.game-intro')).toBeVisible()
+  await expect(page.locator('.colloc-game .game-intro-card')).toBeVisible()
   await scanAllThemes('collocations-intro')
   await page.getByRole('button', { name: /Başla/ }).click()
   await expect(page.locator('.colloc-game')).toBeVisible()
   await expect(page.locator('.colloc-option-btn').first()).toBeVisible()
   await scanAllThemes('collocations-play-screen')
-  await page.locator('button.link', { hasText: '✕ Çıkış' }).click()
+  await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 
   // 5. Profil → Rozetler ve Unvanlar
   await openScreen(page, 'Profil')
