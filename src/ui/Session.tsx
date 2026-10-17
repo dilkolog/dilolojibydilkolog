@@ -4,7 +4,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
 import { displayForm, type Evaluation } from '../engine/exercises'
-import { xpForAnswer } from '../engine/gamification'
+import { nextCombo, xpForAnswer } from '../engine/gamification'
 import { masteryStage } from '../engine/mastery'
 import { markKnown, needsIntervention, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { listeningRate } from '../engine/listening'
@@ -278,8 +278,18 @@ export function SessionScreen(p: Props) {
     mistakes.current = result.mistakes
     lastAnswer.current = { before, hadState, bank, input, eventId: result.event.id }
     const runBefore = comboOf(session.log)
-    const xp = xpForAnswer({ exerciseType: input.exerciseType, verdict: ev.verdict, hintsUsed, responseMs, mode: input.mode ?? p.mode, combo: runBefore })
-    const run = ev.verdict === 'wrong' ? 0 : runBefore + 1
+    const xp = xpForAnswer({
+      exerciseType: input.exerciseType,
+      verdict: ev.verdict,
+      hintsUsed,
+      responseMs,
+      mode: input.mode ?? p.mode,
+      combo: runBefore,
+      retrievability: result.event.retrievabilityBefore,
+      wordReviews: before.stats.reviews,
+      wordWrong: before.stats.wrong,
+    })
+    const run = ev.verdict === 'wrong' ? 0 : strictRunOf(session.log) + 1
     if (ev.verdict === 'wrong') sfx.wrong()
     else if (run === 5 || run === 10 || run === 20) sfx.combo()
     else if (ev.verdict === 'near') sfx.near()
@@ -525,8 +535,15 @@ export function SessionScreen(p: Props) {
   )
 }
 
-/** Consecutive non-wrong answers at the end of the log (introductions don't break a run). */
+/** The run that multiplies XP at the end of the log: a wrong answer halves it (introductions don't count). Same rule as `computeXp`. */
 function comboOf(log: readonly SessionLogEntry[]): number {
+  let n = 0
+  for (const entry of log) if (entry.verdict !== undefined) n = nextCombo(n, entry.verdict)
+  return n
+}
+
+/** Consecutive non-wrong answers at the end of the log (what the chimes for a run of five count). */
+function strictRunOf(log: readonly SessionLogEntry[]): number {
   let n = 0
   for (let i = log.length - 1; i >= 0; i--) {
     if (log[i].verdict === undefined) continue

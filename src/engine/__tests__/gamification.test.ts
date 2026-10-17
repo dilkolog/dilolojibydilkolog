@@ -6,10 +6,14 @@ import {
   emptyStats,
   medalTier,
   achievements,
+  comebackBonus,
   computeXp,
+  fatigueFactor,
   INTRO_XP,
+  isHardWord,
   levelFromXp,
   longestStreak,
+  nextCombo,
   perfectDays,
   xpForAnswer,
   xpToNext,
@@ -35,6 +39,69 @@ describe('xpForAnswer', () => {
     expect(xpForAnswer({ ...base, responseMs: 1000 })).toBe(12)
     expect(xpForAnswer({ ...base, combo: 10 })).toBe(15)
     expect(xpForAnswer({ ...base, mode: 'practice' })).toBe(3)
+  })
+})
+
+describe('the finer XP rules', () => {
+  it('halves a run on a wrong answer instead of ending it, and ends a short one', () => {
+    expect(nextCombo(12, 'wrong')).toBe(6)
+    expect(nextCombo(1, 'wrong')).toBe(0)
+    expect(nextCombo(12, 'near')).toBe(13)
+    expect(nextCombo(0, 'correct')).toBe(1)
+  })
+
+  it('adds 3 XP for a word about to be forgotten, but not for a first meeting, a hint or practice', () => {
+    expect(xpForAnswer({ ...base, retrievability: 0.5 })).toBe(10 + 3)
+    expect(xpForAnswer({ ...base, retrievability: 0 })).toBe(10)
+    expect(xpForAnswer({ ...base, retrievability: 0.9 })).toBe(10)
+    expect(xpForAnswer({ ...base, retrievability: 0.5, hintsUsed: 1 })).toBe(8)
+    expect(xpForAnswer({ ...base, retrievability: 0.5, mode: 'practice' })).toBe(3)
+    expect(xpForAnswer({ ...base, retrievability: 0.5, verdict: 'near' })).toBe(5)
+  })
+
+  it('weighs a right answer on a hard word 20% more', () => {
+    expect(isHardWord(10, 4)).toBe(true)
+    expect(isHardWord(10, 3)).toBe(false)
+    expect(isHardWord(3, 3)).toBe(false)
+    expect(xpForAnswer({ ...base, wordReviews: 10, wordWrong: 5 })).toBe(12)
+    expect(xpForAnswer({ ...base, wordReviews: 10, wordWrong: 5, verdict: 'wrong' })).toBe(1)
+  })
+
+  it('pays half after 150 answers a day and a quarter after 300, but never less than one', () => {
+    expect(fatigueFactor(149)).toBe(1)
+    expect(fatigueFactor(150)).toBe(0.5)
+    expect(fatigueFactor(300)).toBe(0.25)
+    expect(xpForAnswer({ ...base, answersToday: 150 })).toBe(5)
+    expect(xpForAnswer({ ...base, answersToday: 300 })).toBe(3)
+    expect(xpForAnswer({ ...base, exerciseType: 'mc_meaning', answersToday: 900 })).toBe(1)
+    expect(xpForAnswer({ ...base, verdict: 'wrong', answersToday: 900 })).toBe(1)
+  })
+
+  it('computeXp applies them per day, word and run, and the badges keep counting the strict streak', () => {
+    const e = (entryId: string, minutes: number, verdict: 'correct' | 'wrong', day = 10, r = 0): ReviewEvent =>
+      ({ ...base, id: `${entryId}${minutes}${day}`, entryId, language: 'en', skill: 'recall', direction: 'native_to_target', correct: verdict === 'correct', verdict, rating: 3, retrievabilityBefore: r, stabilityAfter: 1, scheduledDays: 1, timestamp: new Date(2026, 9, day, 12, minutes) }) as ReviewEvent
+    // Ten right in a row, one slip, then one right: the slip halves the run (10 -> 5), so the next answer is x1.2.
+    const run = [...Array.from({ length: 10 }, (_, i) => e(`w${i}`, i, 'correct')), e('z', 10, 'wrong'), e('y', 11, 'correct')]
+    const xp = computeXp(run, [], NOW)
+    expect(xp.maxCombo).toBe(10)
+    const plain = [...Array.from({ length: 10 }, (_, i) => e(`w${i}`, i, 'correct')), e('z', 10, 'wrong')]
+    const gained = xp.byDay.get('2026-10-10')! - computeXp(plain, [], NOW).byDay.get('2026-10-10')!
+    expect(gained).toBe(12)
+    // A word saved from forgetting.
+    expect(computeXp([e('s', 0, 'correct', 10, 0.4)], [], NOW).total).toBe(10 + 3)
+    // Past the cap: the 151st answer, in a run of x2, pays half of 20.
+    const grind = (n: number) => Array.from({ length: n }, (_, i) => e(`g${i}`, i % 60, 'correct', 10, 0))
+    const net = (events: ReviewEvent[]) => computeXp(events, [], NOW).total - [...questBonus(events, []).values()].reduce((x, y) => x + y, 0)
+    expect(net(grind(151)) - net(grind(150))).toBe(10)
+  })
+
+  it('pays 10 XP for coming back after three days or more, with at least five real answers that day', () => {
+    const at = (day: number, n: number, mode: 'normal' | 'practice' = 'normal'): ReviewEvent[] =>
+      Array.from({ length: n }, (_, i) => ({ ...base, id: `${day}-${i}-${mode}`, entryId: `w${i}`, mode, timestamp: new Date(2026, 9, day, 10, i) }) as unknown as ReviewEvent)
+    const bonus = comebackBonus([...at(1, 6), ...at(2, 6), ...at(6, 5), ...at(12, 4), ...at(20, 5, 'practice'), ...at(25, 5)])
+    // Day 2 follows day 1; day 6 is back after four days; day 12 has too few answers; day 20 was practice only;
+    // day 25 follows day 12 after thirteen days.
+    expect([...bonus.entries()]).toEqual([['2026-10-06', 10], ['2026-10-25', 10]])
   })
 })
 
