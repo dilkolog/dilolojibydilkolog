@@ -89,6 +89,7 @@ export function GuideScreen({
   const [marks, setMarks] = useState<GuideMarks>({})
   // The marks come from the database a moment after the screen opens: until then nothing is said about what is read.
   const [marksReady, setMarksReady] = useState(false)
+  const [earned, setEarned] = useState(0)
   const [stats, setStats] = useState<Map<string, { accuracy: number; answered: number }>>(new Map())
   const read = useMemo(() => new Set(Object.keys(marks).filter((t) => isRead(marks[t]))), [marks])
 
@@ -254,11 +255,23 @@ export function GuideScreen({
         onBack={() => setOpen(null)}
         onNext={following ? () => setOpen(following) : undefined}
         onRead={(on) => markRead(open.topic, on)}
+        earned={earned}
         onChecked={(right, size) => {
           const next = markChecked(marks, open.topic, right >= Math.min(PASS_RIGHT, size))
           change(next)
           const awards = checkAwards(language, lessons, marks, next, open.topic, localDate(new Date()))
-          if (awards.length) void db.awardXp(awards).catch(() => {})
+          setEarned(0)
+          if (awards.length) {
+            // What is really new: a step earned before (a lesson unmarked and learned again) pays nothing twice.
+            void db
+              .getXpLedger()
+              .then(async (ledger) => {
+                const fresh = awards.filter((a) => !(a.key in ledger))
+                await db.awardXp(awards)
+                setEarned(fresh.reduce((n, a) => n + a.xp, 0))
+              })
+              .catch(() => {})
+          }
           for (const a of awards) {
             const [kind, lang, level] = a.key.split('|')
             if (kind === 'cert') void notify(certNotice(lang, level, LANGUAGE_NAME[language]))
@@ -716,6 +729,7 @@ function LessonView({
   onNext,
   onRead,
   onChecked,
+  earned,
   onPractice,
   onVerbs,
 }: {
@@ -738,6 +752,8 @@ function LessonView({
   onNext?: () => void
   onRead: (on: boolean) => void
   onChecked: (right: number, size: number) => void
+  /** XP the check just earned (0 while unknown or none). */
+  earned: number
   onPractice: () => void
   onVerbs: () => void
 }) {
@@ -917,7 +933,7 @@ function LessonView({
       {check.length > 0 && (
         <div ref={checkRef}>
           {checking ? (
-            <LessonCheck items={check} language={language} review={review} onDone={(right) => onChecked(right, check.length)} />
+            <LessonCheck items={check} language={language} review={review} earned={earned} onDone={(right) => onChecked(right, check.length)} />
           ) : (
             <button type="button" className="card guide-next lesson-check-start" onClick={() => setChecking(true)}>
               <div className="guide-next-content">

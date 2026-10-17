@@ -5,7 +5,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../data/instance'
-import { lessonsOf } from '../data/guide/lessonOf'
+import { lessonFor, lessonsOf } from '../data/guide/lessonOf'
 import { GuideScreen } from './Guide'
 
 let root: ReturnType<typeof createRoot> | undefined
@@ -85,6 +85,26 @@ describe('GuideScreen', () => {
     expect(marks.subjonctif?.read).toBeTruthy()
     const right = Number(/3 sorunun (\d) tanesi/.exec(host.textContent ?? '')![1])
     expect(!!marks.subjonctif?.learned).toBe(right >= 2)
+  })
+
+  it('a review from Today earns +10 XP once for its step, and says so', async () => {
+    const lesson = lessonsOf('en').find((l) => l.check && l.check.length >= 3)!
+    const day = (n: number) => new Date(Date.now() - n * 86_400_000).toISOString().slice(0, 10)
+    await db.saveGuideMarks({ [lesson.topic]: { read: day(5), learned: day(5), reviewed: day(5), step: 0 } })
+    const { host } = await mount('en', { initialLesson: lesson.topic, review: true })
+    expect(lessonFor('en', lesson.topic)?.topic).toBe(lesson.topic)
+    for (let i = 0; i < 3; i++) {
+      // Each question answered right: the item is found by its options.
+      const options = [...host.querySelectorAll<HTMLButtonElement>('.lesson-check .option')]
+      const shown = options.map((o) => o.textContent ?? '')
+      const item = lesson.check!.find((c) => c.options.every((o) => shown.some((t) => t.includes(o))))!
+      const at = shown.findIndex((t) => t.includes(item.options[item.answer]))
+      await act(async () => options[at]!.click())
+      await act(async () => button(host, i < 2 ? 'Sonraki' : 'Bitir')!.click())
+    }
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    expect(host.querySelector('.lesson-check-xp')?.textContent).toContain('+10 XP')
+    expect(await db.getXpLedger()).toMatchObject({ [`review|${lesson.topic}|1`]: { xp: 10 } })
   })
 
   it('opened for a review, starts the check; a link from a mistake finds the lesson by its topic', async () => {
