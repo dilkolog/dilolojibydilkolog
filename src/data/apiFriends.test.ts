@@ -2,15 +2,24 @@ import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
 
 // An in-memory Blob store behind the real /api/access handlers.
 const blobs = new Map<string, Uint8Array>()
+const etags = new Map<string, string>()
+let version = 0
+/** Runs once, between a read and the write that follows it: another server instance writing in that gap. */
+let betweenReadAndWrite: (() => void) | null = null
 vi.mock('@vercel/blob', () => ({
-  put: async (path: string, body: string, opts: { allowOverwrite?: boolean }) => {
+  put: async (path: string, body: string, opts: { allowOverwrite?: boolean; ifMatch?: string }) => {
+    const gap = betweenReadAndWrite
+    betweenReadAndWrite = null
+    gap?.()
     if (opts.allowOverwrite === false && blobs.has(path)) throw new Error('exists')
+    if (opts.ifMatch && etags.get(path) !== opts.ifMatch) throw Object.assign(new Error('precondition'), { name: 'BlobPreconditionFailedError' })
     blobs.set(path, new TextEncoder().encode(body))
+    etags.set(path, `"v${++version}"`)
     return {}
   },
   get: async (path: string) => {
     const b = blobs.get(path)
-    return b ? { statusCode: 200, stream: new Response(b.slice()).body, blob: { etag: 'e' } } : null
+    return b ? { statusCode: 200, stream: new Response(b.slice()).body, blob: { etag: etags.get(path) ?? '"v0"' } } : null
   },
   list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })) }),
   del: async (path: string) => void blobs.delete(path),
@@ -35,6 +44,8 @@ const card = { name: 'Ali', avatar: 'fox', color: '#2f6de6', streak: 5, level: 6
 
 beforeEach(async () => {
   blobs.clear()
+  etags.clear()
+  betweenReadAndWrite = null
   clearAccessCache()
   resetRate()
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
@@ -188,5 +199,39 @@ describe('/api/access: friends inbox and days', () => {
     expect(last.items).toHaveLength(4)
     expect(last.items.some((i) => i.id === first.items[0].id)).toBe(false)
     expect(last.items.some((i) => i.gift.lemma === 'mot5')).toBe(true)
+  })
+
+  it('a message written by another server instance between the read and the write is not undone', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN)
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    const gift = (n: number) => ({ language: 'fr', lemma: `mot${n}`, meaning: 'sözcük' })
+    await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload: gift(1) })
+    const path = `friends/inbox/${VELI}.json`
+    const other = { id: 'from-elsewhere', kind: 'cheer', from: { code: 'ZZZZZZZZ', name: 'Başkası' }, at: new Date().toISOString() }
+    // The next write finds the file changed under it: the send reads again and puts its message beside the other one.
+    betweenReadAndWrite = () => {
+      const now = JSON.parse(new TextDecoder().decode(blobs.get(path)!)) as { items: unknown[] }
+      blobs.set(path, new TextEncoder().encode(JSON.stringify({ items: [other, ...now.items] })))
+      etags.set(path, `"v${++version}"`)
+    }
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload: gift(2) })).status).toBe(200)
+    const body = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string; gift?: { lemma: string } }[] }
+    expect(body.items.map((i) => i.gift?.lemma ?? i.id).sort()).toEqual(['from-elsewhere', 'mot1', 'mot2'])
+  })
+
+  it('the first message to an inbox that another instance has just made is kept too', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN)
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    const path = `friends/inbox/${VELI}.json`
+    const other = { id: 'first-elsewhere', kind: 'cheer', from: { code: 'ZZZZZZZZ', name: 'Başkası' }, at: new Date().toISOString() }
+    betweenReadAndWrite = () => {
+      blobs.set(path, new TextEncoder().encode(JSON.stringify({ items: [other] })))
+      etags.set(path, `"v${++version}"`)
+    }
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'nudge' })).status).toBe(200)
+    const body = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string; kind: string }[] }
+    expect(body.items.map((i) => i.kind).sort()).toEqual(['cheer', 'nudge'])
   })
 })
