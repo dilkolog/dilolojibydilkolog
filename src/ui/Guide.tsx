@@ -11,6 +11,7 @@ import { checkFor, tryFor, englishTenseLessons, lessonFor, lessonsOf, lessonTens
 import { db } from '../data/instance'
 import { isRead, PASS_RIGHT, type GuideMarks, type LessonFlag } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
+import { GUIDE_GOAL_CHOICES, lessonsThisWeek } from '../engine/guideGoal'
 import { levelCertificates } from '../engine/guideCertificate'
 import { GuideCertificates } from './GuideCertificates'
 import { learningPath, pathOrder, type PathStep } from '../data/guide/path'
@@ -64,6 +65,8 @@ export function GuideScreen({
   initialLesson,
   initialTense,
   review,
+  goal,
+  onGoal,
   onPractice,
   onVerbs,
 }: {
@@ -74,6 +77,9 @@ export function GuideScreen({
   initialTense?: string
   /** Opened for the lesson's review: its check starts at once. */
   review?: boolean
+  /** Lessons to read a week (absent: no goal) and the way to change it. */
+  goal?: number
+  onGoal?: (lessons: number) => void
   onPractice: (topic: string) => void
   onVerbs: (tense?: string) => void
 }) {
@@ -176,6 +182,7 @@ export function GuideScreen({
   const next = pickNext(ordered, (t) => read.has(t))
   const path = useMemo(() => learningPath(lessons, (t) => read.has(t), (t) => !!marks[t]?.learned), [lessons, read, marks])
   const certs = useMemo(() => levelCertificates(lessons, marks), [lessons, marks])
+  const weekDone = lessonsThisWeek(marks, localDate(new Date()))
 
   const quizQuestions = useMemo((): LevelQuizQuestion[] => {
     if (!levelQuiz) return []
@@ -323,6 +330,23 @@ export function GuideScreen({
             <p className="guide-progress-hint small muted">
               Dersin sonundaki üç soruyu geç, konu öğrenildi sayılsın.
             </p>
+            {onGoal && (
+              <div className="guide-goal">
+                <span className="small">
+                  Haftalık hedef{goal ? <>: <strong>bu hafta {weekDone}/{goal} ders</strong></> : ''}
+                </span>
+                <div className="choice-row" role="group" aria-label="Haftalık ders hedefi">
+                  <button type="button" className="chip chip-sm" aria-pressed={!goal} onClick={() => onGoal(0)}>
+                    Yok
+                  </button>
+                  {GUIDE_GOAL_CHOICES.map((n) => (
+                    <button key={n} type="button" className="chip chip-sm" aria-pressed={goal === n} onClick={() => onGoal(n)}>
+                      {n} ders
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           {!q && !level && (
             <GuideCertificates language={language} languageName={LANGUAGE_NAME[language]} certs={certs} names={LEVEL_NAME} titlesOf={(lv) => lessons.filter((l) => l.level === lv).map(titleOf)} />

@@ -557,7 +557,7 @@ export default function App() {
                 name={settings.profile.name || undefined}
                 weakWords={weakWords}
                 mistakes={monkiMistakes}
-                showButton={!inSession && screen.name !== 'summary'}
+                showButton={screen.name !== 'summary'}
                 inSession={inSession}
                 onSettings={go({ name: 'settings' })}
               />

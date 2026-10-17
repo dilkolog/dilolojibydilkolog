@@ -125,3 +125,19 @@ test('games: with a key the mini podcast card is there (waiting for learned word
   await expect(page.getByText('Arkadaşla düello', { exact: true })).toBeVisible()
   expect(await overflow(page)).toEqual([])
 })
+
+test('Monki: stays at the bottom right during a session, a small button that opens the chat', async ({ page }) => {
+  await startWithSamples(page)
+  await page.getByRole('button', { name: /^(Başla|Devam et)$/ }).click()
+  const fab = page.locator('.session-stage').first()
+  await expect(fab).toBeVisible()
+  const button = page.getByRole('button', { name: 'Monki ile konuş' })
+  await expect(button).toHaveClass(/monki-fab-session/)
+  await button.click()
+  const panel = page.getByRole('dialog', { name: 'Monki' })
+  await expect(panel).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(panel).toBeHidden()
+  // The question is still there to answer; the button did not keep the focus.
+  await expect(button).not.toBeFocused()
+})

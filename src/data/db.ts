@@ -155,6 +155,8 @@ export interface Settings {
   noticeOff?: NoticeKind[]
   /** Weekly goal of reading and listening, in minutes (absent: none). */
   weeklyTimeGoal?: number
+  /** Weekly goal of guide lessons read (absent: none; see engine/guideGoal). */
+  guideGoal?: number
   /** Missed days won back with the recall exam: they neither count nor break the streak (engine/streakRepair). */
   repairedDays?: string[]
   /** Tabs taken out of the menu (still in ⌘K and links); see HIDEABLE_TABS. */

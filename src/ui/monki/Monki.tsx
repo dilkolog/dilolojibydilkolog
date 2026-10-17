@@ -175,7 +175,7 @@ export default function Monki({
   name?: string
   weakWords?: string[]
   mistakes?: { word: string; given: string; expected: string }[]
-  /** The floating button is hidden in a session and on the summary; the chat can still be opened by a question from the screen. */
+  /** The floating button is hidden on the summary; in a session it is smaller and steps aside while the feedback sheet is up. */
   showButton?: boolean
   /** In a session the chat pauses the keyboard shortcuts (a number key would answer the question). */
   inSession?: boolean
@@ -218,11 +218,12 @@ export default function Monki({
     if (wasOpen.current && !open) {
       const back = returnTo.current
       returnTo.current = null
-      if (back?.isConnected) back.focus()
-      else fabRef.current?.focus()
+      // In a session the button is not handed the focus: Enter or Space there would open the chat again instead of going on.
+      if (back?.isConnected && !(inSession && back === fabRef.current)) back.focus()
+      else if (!inSession) fabRef.current?.focus()
     }
     wasOpen.current = open
-  }, [open])
+  }, [open, inSession])
 
   // Nothing keeps talking or listening once the chat is closed.
   useEffect(() => {
@@ -381,7 +382,7 @@ export default function Monki({
   return (
     <>
       {!open && showButton && (
-        <button ref={fabRef} type="button" className="monki-fab" onClick={() => setOpen(true)} aria-label="Monki ile konuş" title="Monki ile konuş">
+        <button ref={fabRef} type="button" className={inSession ? 'monki-fab monki-fab-session' : 'monki-fab'} onClick={() => setOpen(true)} aria-label="Monki ile konuş" title="Monki ile konuş">
           <MonkiFace face="happy" size={50} />
         </button>
       )}

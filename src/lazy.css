@@ -1825,6 +1825,9 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   display: grid; place-items: center; overflow: hidden;
   transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
+.monki-fab-session { width: 3rem; height: 3rem; bottom: 1rem; z-index: 5; }
+/* Where the feedback sheet spans the width, the button would sit on its "Devam": it waits until the sheet is gone. */
+@media (max-width: 66rem) { body:has(.sheet) .monki-fab-session { display: none; } }
 .monki-fab:hover { transform: translateY(-2px) scale(1.04); }
 .monki-fab:active { transform: scale(0.97); }
 .monki-panel {
@@ -2177,6 +2180,16 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .guide-progress-hint {
   margin: 0;
   line-height: 1.4;
+}
+
+.guide-goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
 }
 
 /* Hero Next Card */
