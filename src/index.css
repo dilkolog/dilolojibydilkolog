@@ -2212,28 +2212,85 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .cover.is-book { width: 3.25rem; height: 4.25rem; box-shadow: inset 5px 0 0 rgb(0 0 0 / 0.22), 3px 3px 0 hsl(var(--hue) 40% 75%), var(--shadow-sm); }
 
 /* ---------- Milestone moment ---------- */
-.milestone { position: relative; width: min(24rem, 100%); text-align: center; justify-items: center; padding-top: 2rem; overflow: hidden; }
-.milestone-close { position: absolute; top: 0.75rem; right: 0.75rem; z-index: 3; color: var(--ink-soft); }
+.milestone-backdrop {
+  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--scrim) 85%, #000000);
+}
+.milestone-burst-wrap {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  display: grid; place-items: center; overflow: hidden;
+}
+.milestone {
+  position: relative; z-index: 1; width: min(25rem, 100%);
+  text-align: center; justify-items: center;
+  padding: 2.25rem 1.75rem 2rem;
+  border-radius: var(--r-xl);
+  background: radial-gradient(circle at 50% -5%, color-mix(in srgb, var(--gold) 20%, var(--surface)) 0%, var(--surface) 62%);
+  box-shadow: 0 24px 56px -12px rgb(0 0 0 / 0.35), 0 0 0 1px color-mix(in srgb, var(--gold) 28%, var(--rule));
+  animation: milestone-spring-enter 480ms var(--ease-spring);
+}
+.milestone-kicker {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold-text); background: color-mix(in srgb, var(--gold) 18%, var(--surface));
+  padding: 0.3rem 0.85rem; border-radius: var(--r-full);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent);
+  margin-bottom: 0.5rem; animation: pop 400ms var(--ease-spring);
+}
+.milestone-close {
+  position: absolute; top: 0.85rem; right: 0.85rem; z-index: 3;
+  width: 2rem; height: 2rem; border-radius: var(--r-full);
+  display: inline-grid; place-items: center;
+  color: var(--ink-soft); transition: background-color var(--dur-fast), color var(--dur-fast);
+}
 .milestone-close:hover { background: var(--surface-2); color: var(--ink); }
-.milestone-art { position: relative; display: grid; place-items: center; width: 8rem; height: 8rem; }
+.milestone-art { position: relative; display: grid; place-items: center; width: 9rem; height: 9rem; margin: 0.25rem 0; }
+.milestone-aura {
+  position: absolute; inset: -0.75rem; border-radius: var(--r-full);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 35%, transparent) 0%, color-mix(in srgb, var(--flame) 18%, transparent) 45%, transparent 70%);
+  animation: milestone-aura-pulse 2.4s ease-in-out infinite alternate; pointer-events: none;
+}
 .milestone-emoji { position: relative; z-index: 1; font-size: 4.5rem; line-height: 1; animation: pop var(--dur) var(--ease-spring); }
-.milestone-title { font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.02em; }
+.milestone-title {
+  font-size: clamp(1.75rem, 5vw, 2.125rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.15;
+  color: var(--ink); margin: 0.25rem 0 0;
+}
 .milestone-level { position: relative; z-index: 1; display: grid; place-items: center; }
-/* A badge's steps (50, 100, 250… words) as stars, and listed in its sheet with their dates. */
-.badge-stars i.is-on { background: var(--gold); }
-.badge-steps li:not(.is-done) { opacity: 0.7; }
-/* Profile: badges earned, newest first, with their dates. */
-/* Translation screen: each sentence above its translation; the learner's language in the serif. */
-.translate-screen .textarea { min-height: 7rem; }
-/* Today: one suggestion card at a time (the first that renders); the rest wait for another day. */
-.home-nudges > :nth-child(n + 2) { display: none; }
-/* The session summary's one line about the next badge. */
-.summary-next { flex-wrap: nowrap; gap: 0.75rem; }
-/* Two or three new badges on one screen, side by side. */
-.badge-moment-group { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 1rem; width: 100%; }
-.badge-moment-group li { display: grid; justify-items: center; gap: 0.25rem; text-align: center; }
-.milestone-actions { justify-content: center; width: 100%; }
-@media (max-width: 30rem) { .milestone { border-radius: var(--r-lg) var(--r-lg) 0 0; } }
+.milestone-rank-card {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: color-mix(in srgb, var(--gold) 14%, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  padding: 0.4rem 0.95rem; border-radius: var(--r-full);
+  margin-top: 0.75rem; box-shadow: var(--shadow-sm);
+  animation: pop 500ms var(--ease-spring);
+}
+.milestone-rank-label { font-size: var(--t-xs); font-weight: 600; color: var(--ink-soft); }
+.milestone-rank-title { font-size: var(--t-sm); font-weight: 800; color: var(--gold-text); letter-spacing: -0.01em; }
+.milestone-text { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-soft); max-width: 20rem; margin: 0.625rem 0 0; }
+.milestone-actions {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  width: 100%; margin-top: 1.5rem;
+}
+.milestone-continue-btn {
+  min-width: 8rem; font-weight: 700; font-size: var(--t-md);
+  padding: 0.7rem 1.75rem; border-radius: var(--r-full);
+}
+.milestone-share-btn {
+  padding: 0.7rem 1.35rem; font-weight: 600; font-size: var(--t-md);
+  border-radius: var(--r-full);
+}
+@media (max-width: 30rem) {
+  .milestone { border-radius: var(--r-lg) var(--r-lg) 0 0; padding: 2rem 1.25rem 1.75rem; }
+}
+
+@keyframes milestone-spring-enter {
+  0% { opacity: 0; transform: scale(0.88) translateY(18px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes milestone-aura-pulse {
+  0% { transform: scale(0.9); opacity: 0.55; filter: blur(5px); }
+  100% { transform: scale(1.15); opacity: 0.95; filter: blur(8px); }
+}
 
 /* ---------- Home rhythm: fewer, clearer boxes ---------- */
 /* Level and stats in one card. */
@@ -4866,6 +4923,9 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .level-strike.is-up::before,
   .level-strike.is-up::after,
   .level-sparkles { display: none; }
+  .milestone { animation: none !important; transform: none !important; }
+  .milestone-aura { animation: none !important; opacity: 0.35 !important; }
+  .milestone-burst-wrap { display: none !important; }
 }
 
 /* ---------- Today: friends and their XP ---------- */

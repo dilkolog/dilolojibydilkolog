@@ -59,14 +59,25 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
     )
   }
 
+  const rankMatch = milestone.text.match(/^Yeni unvanın:\s*([^.]+)\.\s*(.*)$/i)
+  const isLevel = Boolean(milestone.level)
+
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="milestone-burst-wrap" aria-hidden="true">
+        <Burst />
+      </div>
       <div className="dialog milestone" role="dialog" aria-modal="true" aria-labelledby="ms-title">
         <button type="button" className="icon-btn milestone-close" onClick={onClose} aria-label="Kapat">
           <CloseIcon size={18} />
         </button>
+
+        <span className="milestone-kicker">
+          {isLevel ? '🎉 Yeni Seviye' : '🏆 Kilometre Taşı'}
+        </span>
+
         <div className="milestone-art">
-          <Burst />
+          <div className="milestone-aura" aria-hidden="true" />
           {milestone.level ? (
             <span className="milestone-level" aria-hidden>
               <LevelUpBadge from={milestone.level.from} to={milestone.level.to} size="xl" />
@@ -77,17 +88,29 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
             </span>
           )}
         </div>
+
         <h2 id="ms-title" className="milestone-title">
           {milestone.title}
         </h2>
-        <p className="muted">{milestone.text}</p>
+
+        {rankMatch ? (
+          <div className="milestone-rank-card">
+            <span className="milestone-rank-label">Yeni Unvan</span>
+            <strong className="milestone-rank-title">{rankMatch[1]}</strong>
+          </div>
+        ) : null}
+
+        <p className="milestone-text muted">
+          {rankMatch ? rankMatch[2] : milestone.text}
+        </p>
+
         <div className="dialog-actions milestone-actions">
           {'share' in navigator && (
-            <button className="btn btn-quiet" onClick={share}>
+            <button className="btn btn-quiet milestone-share-btn" onClick={share}>
               Paylaş
             </button>
           )}
-          <button className="btn" onClick={onClose} autoFocus>
+          <button className="btn milestone-continue-btn" onClick={onClose} autoFocus>
             Devam
           </button>
         </div>

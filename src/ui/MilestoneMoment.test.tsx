@@ -43,4 +43,23 @@ describe('MilestoneMoment close button', () => {
     act(() => closeBtn.click())
     expect(onClose).toHaveBeenCalledTimes(1)
   })
+
+  it('renders level milestone with kicker, aura, and highlighted rank title', () => {
+    const levelMilestone: Milestone = {
+      id: 'level-3',
+      emoji: '⭐',
+      title: 'Seviye 3!',
+      text: 'Yeni unvanın: Meraklı. Çalıştıkça XP birikiyor; bir seviye daha atladın!',
+      level: { from: 2, to: 3 },
+    }
+
+    act(() => {
+      root.render(<MilestoneMoment milestone={levelMilestone} onClose={() => {}} />)
+    })
+
+    expect(el.querySelector('.milestone-kicker')?.textContent).toContain('Yeni Seviye')
+    expect(el.querySelector('.milestone-aura')).not.toBeNull()
+    expect(el.querySelector('.milestone-rank-title')?.textContent).toBe('Meraklı')
+    expect(el.querySelector('.milestone-text')?.textContent).toContain('Çalıştıkça XP birikiyor')
+  })
 })
