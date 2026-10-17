@@ -10,6 +10,8 @@ import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
 import { checkFor, tryFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
 import { isRead, PASS_RIGHT, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { levelCertificates } from '../engine/guideCertificate'
+import { GuideCertificates } from './GuideCertificates'
 import { learningPath, pathOrder, type PathStep } from '../data/guide/path'
 import { pickNext, unmetPrereqs } from '../data/guide/prereqs'
 import { searchLesson, type LessonHit } from '../data/guide/search'
@@ -137,6 +139,7 @@ export function GuideScreen({
   const ordered = useMemo(() => pathOrder(lessons), [lessons])
   const next = pickNext(ordered, (t) => read.has(t))
   const path = useMemo(() => learningPath(lessons, (t) => read.has(t), (t) => !!marks[t]?.learned), [lessons, read, marks])
+  const certs = useMemo(() => levelCertificates(lessons, marks), [lessons, marks])
   const pickView = (v: View) => {
     setView(v)
     try {
@@ -218,6 +221,9 @@ export function GuideScreen({
               Dersin sonundaki üç soruyu geç, konu öğrenildi sayılsın.
             </p>
           </div>
+          {!q && !level && (
+            <GuideCertificates language={language} languageName={LANGUAGE_NAME[language]} certs={certs} names={LEVEL_NAME} titlesOf={(lv) => lessons.filter((l) => l.level === lv).map(titleOf)} />
+          )}
           {next && !q && !level && (
             <button type="button" className="card guide-next" onClick={() => setOpen(next)}>
               <div className="guide-next-lead">
