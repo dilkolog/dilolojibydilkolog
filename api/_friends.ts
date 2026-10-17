@@ -204,16 +204,64 @@ export async function forgetFriends(id: string): Promise<void> {
 // Kept in Blob files in both modes (a few hundred bytes per person, so no table needed).
 // ---------------------------------------------------------------------------
 
-export type InboxKind = 'cheer' | 'nudge'
-export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge']
+export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text'
+export const INBOX_KINDS: readonly InboxKind[] = ['cheer', 'nudge', 'gift', 'text']
 const MAX_INBOX = 30
 const KEEP_DAYS = 30
+/** A friend can have this many gifts (and as many texts) waiting from the same sender: more would be spam. */
+const PENDING_PER_SENDER = 5
+const LANGUAGES = ['en', 'fr', 'es']
+
+/** A word given to a friend, with its meaning and a sentence if there is one. */
+export interface GiftWord {
+  language: string
+  lemma: string
+  meaning: string
+  example?: string
+  exampleTranslation?: string
+}
+
+/** A short text sent to a friend to read. */
+export interface SentText {
+  language: string
+  title: string
+  body: string
+}
 
 export interface InboxItem {
   id: string
   kind: InboxKind
   from: { code: string; name: string }
   at: string
+  gift?: GiftWord
+  text?: SentText
+}
+
+const MAX_BODY = 3000
+const MIN_BODY = 30
+
+/** The gift as sent, checked and trimmed; null when it is not a word with a meaning. */
+export function cleanGift(raw: unknown): GiftWord | null {
+  if (!raw || typeof raw !== 'object') return null
+  const g = raw as Record<string, unknown>
+  const language = typeof g.language === 'string' && LANGUAGES.includes(g.language) ? g.language : ''
+  const lemma = plain(g.lemma, 60)
+  const meaning = plain(g.meaning, 120)
+  if (!language || !lemma || !meaning) return null
+  const example = plain(g.example, 200)
+  const exampleTranslation = plain(g.exampleTranslation, 200)
+  return { language, lemma, meaning, ...(example ? { example } : {}), ...(example && exampleTranslation ? { exampleTranslation } : {}) }
+}
+
+/** The text as sent, checked and trimmed; null when it is too short to be one. */
+export function cleanText(raw: unknown): SentText | null {
+  if (!raw || typeof raw !== 'object') return null
+  const t = raw as Record<string, unknown>
+  const language = typeof t.language === 'string' && LANGUAGES.includes(t.language) ? t.language : ''
+  const title = plain(t.title, 80)
+  const body = typeof t.body === 'string' ? [...t.body].filter((c) => c === '\n' || (c.charCodeAt(0) >= 32 && c.charCodeAt(0) !== 127)).join('').replace(/[<>]/g, '').trim().slice(0, MAX_BODY) : ''
+  if (!language || !title || body.length < MIN_BODY) return null
+  return { language, title, body }
 }
 
 const inboxPath = (id: string) => `friends/inbox/${id}.json`
@@ -222,7 +270,7 @@ async function readInbox(id: string): Promise<InboxItem[]> {
   const items = (await readJson<{ items?: InboxItem[] }>(inboxPath(id)))?.items
   if (!Array.isArray(items)) return []
   const oldest = Date.now() - KEEP_DAYS * 86_400_000
-  return items.filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest)
+  return items.filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest && (i.kind !== 'gift' || cleanGift(i.gift)) && (i.kind !== 'text' || cleanText(i.text)))
 }
 
 /** What waits for the account, newest first. */
@@ -230,14 +278,17 @@ export async function inboxOf(id: string): Promise<InboxItem[]> {
   return (await readInbox(id)).sort((a, b) => b.at.localeCompare(a.at))
 }
 
-export type SendResult = 'ok' | 'unknown' | 'self' | 'not_friends' | 'bad_kind'
+export type SendResult = 'ok' | 'unknown' | 'self' | 'not_friends' | 'bad_kind' | 'bad_payload'
 
 /**
  * A cheer or a nudge for a friend. Only between friends (one of them follows the other), and one of a kind
  * per sender a day: a second replaces the first rather than piling up.
  */
-export async function sendToFriend(id: string, toCode: string, kind: unknown): Promise<SendResult> {
+export async function sendToFriend(id: string, toCode: string, kind: unknown, payload?: unknown): Promise<SendResult> {
   if (typeof kind !== 'string' || !INBOX_KINDS.includes(kind as InboxKind)) return 'bad_kind'
+  const gift = kind === 'gift' ? cleanGift(payload) : null
+  const text = kind === 'text' ? cleanText(payload) : null
+  if ((kind === 'gift' && !gift) || (kind === 'text' && !text)) return 'bad_payload'
   if (!CODE.test(toCode)) return 'unknown'
   const store = await friendStore()
   const [recipient, me] = await Promise.all([store.ownerOf(toCode), ownCard(id)])
@@ -247,8 +298,16 @@ export async function sendToFriend(id: string, toCode: string, kind: unknown): P
   if (!mine.includes(toCode) && !theirs.includes(me.code)) return 'not_friends'
   const now = new Date()
   const today = now.toISOString().slice(0, 10)
-  const fresh = (await readInbox(recipient)).filter((i) => !(i.from.code === me.code && i.kind === kind && i.at.slice(0, 10) === today))
-  const item: InboxItem = { id: crypto.randomUUID(), kind: kind as InboxKind, from: { code: me.code, name: me.name }, at: now.toISOString() }
+  const waiting = await readInbox(recipient)
+  // A cheer or a nudge replaces the sender's one of the day; gifts and texts pile up to a few.
+  const sameKind = waiting.filter((i) => i.from.code === me.code && i.kind === kind)
+  const dropped = new Set(
+    kind === 'cheer' || kind === 'nudge'
+      ? sameKind.filter((i) => i.at.slice(0, 10) === today).map((i) => i.id)
+      : [...sameKind].sort((a, b) => b.at.localeCompare(a.at)).slice(PENDING_PER_SENDER - 1).map((i) => i.id),
+  )
+  const fresh = waiting.filter((i) => !dropped.has(i.id))
+  const item: InboxItem = { id: crypto.randomUUID(), kind: kind as InboxKind, from: { code: me.code, name: me.name }, at: now.toISOString(), ...(gift ? { gift } : {}), ...(text ? { text } : {}) }
   await writeJson(inboxPath(recipient), { items: [item, ...fresh].slice(0, MAX_INBOX) })
   return 'ok'
 }
