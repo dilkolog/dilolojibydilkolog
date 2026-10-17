@@ -678,13 +678,33 @@ export function WordList({
                           <td className="muted">{v.senses[0].gloss}</td>
                           <td>
                             <span className="table-stage">
-                              <Plant stage={growthStage(st)} health={plantHealth(st, scheduler, now)} size={22} />
-                              {st ? STAGE_NAME[masteryStage(st)] : 'Sırada'}
+                              <span className="table-stage-bed" aria-hidden>
+                                <Plant stage={growthStage(st)} health={plantHealth(st, scheduler, now)} size={18} />
+                              </span>
+                              <span>{st ? STAGE_NAME[masteryStage(st)] : 'Sırada'}</span>
                             </span>
                           </td>
-                          <td className="muted">{due ? relativeTime(due) : '—'}</td>
-                          <td className="num">{st ? `${st.stats.correct} / ${st.stats.wrong}` : '—'}</td>
-                          <td className="muted">{v.source !== 'sample' && bandOf(v.frequencyRank) ? bandOf(v.frequencyRank)!.short : '—'}</td>
+                          <td className={due ? (due.getTime() <= now.getTime() + 24 * 3600 * 1000 ? 'table-due-soon' : 'muted') : 'muted'}>
+                            {due ? relativeTime(due) : '—'}
+                          </td>
+                          <td className="num">
+                            {st ? (
+                              <span className="table-score">
+                                <span className="table-score-ok">{st.stats.correct}</span>
+                                <span className="table-score-sep">/</span>
+                                <span className={st.stats.wrong > 0 ? 'table-score-bad' : 'muted'}>{st.stats.wrong}</span>
+                              </span>
+                            ) : (
+                              <span className="muted">—</span>
+                            )}
+                          </td>
+                          <td>
+                            {v.source !== 'sample' && bandOf(v.frequencyRank) ? (
+                              <span className="table-freq">{bandOf(v.frequencyRank)!.short}</span>
+                            ) : (
+                              <span className="muted">—</span>
+                            )}
+                          </td>
                         </tr>
                       )
                     })}
@@ -777,8 +797,8 @@ function SortTh({ label, active, onClick }: { label: string; active: boolean; on
   return (
     <th scope="col" aria-sort={active ? 'ascending' : undefined}>
       <button type="button" className={`th-sort${active ? ' is-active' : ''}`} onClick={onClick}>
-        {label}
-        {active && <span aria-hidden> ↓</span>}
+        <span>{label}</span>
+        {active && <span className="th-sort-arrow" aria-hidden> ↓</span>}
       </button>
     </th>
   )

@@ -1903,10 +1903,10 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 
 /* ---------- Word table (wide screens) ---------- */
 .view-toggle { flex: none; }
-.word-table tbody tr:hover, .word-table tbody tr:focus-visible { background: var(--lang-soft); outline: none; }
-.word-table tbody tr.is-selected { background: var(--lang-soft); box-shadow: inset 3px 0 0 var(--lang); }
-.word-table .w { font-family: var(--serif); font-size: var(--t-md); color: var(--lang-text); white-space: nowrap; }
-.th-sort.is-active { color: var(--ink); }
+.word-table tbody tr:hover, .word-table tbody tr:focus-visible { background: color-mix(in srgb, var(--lang-soft) 28%, var(--surface)); outline: none; }
+.word-table tbody tr.is-selected { background: color-mix(in srgb, var(--lang-soft) 50%, var(--surface)); box-shadow: inset 3px 0 0 var(--lang); }
+.word-table .w { font-family: var(--serif); font-size: var(--t-md); font-weight: 600; color: var(--lang-text); white-space: nowrap; }
+.th-sort.is-active { color: var(--lang-text); }
 
 /* ---------- Games: each group in its own colour ---------- */
 .tone-review { --tone: var(--cat-emerald); }
