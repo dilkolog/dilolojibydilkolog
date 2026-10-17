@@ -1,0 +1,396 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "questions": [
+    {
+      "level": "A1",
+      "lesson": "basics_fr_articles",
+      "prompt": "J'ai acheté ___ livre passionnant pour mes vacances.",
+      "options": [
+        "un",
+        "une",
+        "des",
+        "du"
+      ],
+      "answer": 0,
+      "why": "'Livre' eril bir isim olduğu için belirsiz tekil artikel 'un' kullanılır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_fr_etre_avoir",
+      "prompt": "Nous ___ très heureux de faire votre connaissance.",
+      "options": [
+        "sommes",
+        "avons",
+        "êtes",
+        "sont"
+      ],
+      "answer": 0,
+      "why": "'Nous' şahsı için être fiilinin şimdiki zaman çekimi 'sommes' biçimindedir."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_fr_present",
+      "prompt": "Les enfants ___ dans la cour de récréation.",
+      "options": [
+        "jouent",
+        "joue",
+        "jouons",
+        "jouez"
+      ],
+      "answer": 0,
+      "why": "Çoğul özne (les enfants = ils) için birinci grup fiiller -ent takısı alır ('jouent')."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_fr_negation",
+      "prompt": "Je ___ comprends pas cette consigne en français.",
+      "options": [
+        "ne",
+        "n'",
+        "pas",
+        "non"
+      ],
+      "answer": 0,
+      "why": "Temel olumsuzluk 'ne + fiil + pas' ile kurulur; sessiz harfle başlayan fiilden önce 'ne' gelir."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_fr_pronoms",
+      "prompt": "___ s'appelle Julien et il habite à Bordeaux.",
+      "options": [
+        "Il",
+        "Elle",
+        "Je",
+        "Tu"
+      ],
+      "answer": 0,
+      "why": "'Julien' ve cümlenin devamındaki 'il habite' öznenin üçüncü tekil eril şahıs 'Il' olduğunu gösterir."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_fr_possessifs",
+      "prompt": "Je te présente ___ amie Claire.",
+      "options": [
+        "mon",
+        "ma",
+        "sa",
+        "ta"
+      ],
+      "answer": 0,
+      "why": "'Amie' dişil olmasına rağmen sesli harfle başladığı için söyleyiş kolaylığı amacıyla 'mon' alır."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_fr_adjectifs",
+      "prompt": "Elle a acheté une belle écharpe ___.",
+      "options": [
+        "blanche",
+        "blanc",
+        "blanches",
+        "blancs"
+      ],
+      "answer": 0,
+      "why": "'Écharpe' dişil ve tekil bir isim olduğu için sıfat da dişil tekil uyum yapar ('blanche')."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_fr_passe_compose",
+      "prompt": "Hier soir, nous ___ au restaurant avec nos collègues.",
+      "options": [
+        "sommes allés",
+        "avons allé",
+        "sommes鼓 allé",
+        "avons allés"
+      ],
+      "answer": 0,
+      "why": "'Aller' fiili passé composé'de être ile çekimlenir ve özneyle (nous) cinsiyet/sayı uyumu yapar."
+    },
+    {
+      "level": "A2",
+      "lesson": "articles_quantite",
+      "prompt": "Il n'y a plus ___ café dans le distributeur.",
+      "options": [
+        "de",
+        "du",
+        "le",
+        "des"
+      ],
+      "answer": 0,
+      "why": "Olumsuz cümlelerde miktar ve partitif artikeller 'de' (veya d') haline dönüşür."
+    },
+    {
+      "level": "A2",
+      "lesson": "passe_imparfait",
+      "prompt": "Pendant que je lisais un livre, le téléphone ___ soudainement.",
+      "options": [
+        "a sonné",
+        "sonnait",
+        "a sonner",
+        "avait sonné"
+      ],
+      "answer": 0,
+      "why": "Süregelen bir eylemi (imparfait) aniden kesen bitmiş olaylar passé composé ile ifade edilir."
+    },
+    {
+      "level": "A2",
+      "lesson": "negation_fr",
+      "prompt": "Je ne connais ___ dans cette nouvelle ville.",
+      "options": [
+        "personne",
+        "rien",
+        "jamais",
+        "plus"
+      ],
+      "answer": 0,
+      "why": "Kişileri niteleyen olumsuzluk zamiri 'personne'dur (hiç kimse)."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_fr_pronominaux",
+      "prompt": "Elle ___ à sept heures tous les matins de la semaine.",
+      "options": [
+        "se réveille",
+        "te réveilles",
+        "se réveillent",
+        "me réveille"
+      ],
+      "answer": 0,
+      "why": "Üçüncü tekil şahıs dişil özne (elle) için dönüşlü zamir 'se'dir ('se réveille')."
+    },
+    {
+      "level": "B1",
+      "lesson": "futur_fr",
+      "prompt": "L'année prochaine, nous ___ notre maison de campagne.",
+      "options": [
+        "vendrons",
+        "vendions",
+        "vendre",
+        "avons vendu"
+      ],
+      "answer": 0,
+      "why": "Gelecek zamanda 'vendre' fiili -ons takısıyla 'nous vendrons' olur."
+    },
+    {
+      "level": "B1",
+      "lesson": "pronoms_y_en",
+      "prompt": "Tu penses souvent à ton pays natal? Oui, j'___ pense tous les jours.",
+      "options": [
+        "y",
+        "en",
+        "le",
+        "lui"
+      ],
+      "answer": 0,
+      "why": "'Penser à + cansız/kavram' tamlamalarının yerini 'y' zamiri alır."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_fr_plus_que_parfait",
+      "prompt": "Quand nous sommes arrivés au guichet, les employés ___ déjà les portes.",
+      "options": [
+        "avaient fermé",
+        "ont fermé",
+        "fermaient",
+        "fermeront"
+      ],
+      "answer": 0,
+      "why": "Geçmişteki başka bir olaydan daha önce tamamlanan eylem plus-que-parfait ile ifade edilir."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_fr_gerondif",
+      "prompt": "Il a réussi son examen en ___ régulièrement tous les soirs.",
+      "options": [
+        "révisant",
+        "réviser",
+        "révisé",
+        "révise"
+      ],
+      "answer": 0,
+      "why": "Yöntem ve araç bildiren ulaç (gérondif) yapısı 'en + participe présent' (-ant) ile kurulur."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_fr_ordre_pronoms",
+      "prompt": "Ce dossier confidentiel? Le directeur ___ transmettra demain matin.",
+      "options": [
+        "me le",
+        "le me",
+        "moi le",
+        "le moi"
+      ],
+      "answer": 0,
+      "why": "Düz cümlede çift nesne zamiri sıralamasında me, te, se, nous, vous zamirleri le, la, les'ten önce gelir."
+    },
+    {
+      "level": "B1",
+      "lesson": "prep_fr",
+      "prompt": "Il a enfin réussi ___ convaincre ses associés.",
+      "options": [
+        "à",
+        "de",
+        "pour",
+        "en"
+      ],
+      "answer": 0,
+      "why": "'Réussir à faire quelque chose' kalıbı 'à' edatı gerektirir."
+    },
+    {
+      "level": "B1",
+      "lesson": "conn_fr",
+      "prompt": "Le projet a pris du retard, ___ l'équipe a redoublé d'efforts.",
+      "options": [
+        "donc",
+        "car",
+        "puisque",
+        "parce que"
+      ],
+      "answer": 0,
+      "why": "Önceki durumun mantıksal sonucunu bağlamak için sonuç bağlacı 'donc' kullanılır."
+    },
+    {
+      "level": "B2",
+      "lesson": "subjonctif",
+      "prompt": "Il est indispensable que vous ___ ce formulaire dès aujourd'hui.",
+      "options": [
+        "remplissiez",
+        "remplissez",
+        "rempliriez",
+        "remplirez"
+      ],
+      "answer": 0,
+      "why": "Zorunluluk bildiren ifadelerden (il est indispensable que) sonra subjonctif kullanılır ('remplissiez')."
+    },
+    {
+      "level": "B2",
+      "lesson": "conditionnel_passe",
+      "prompt": "Si tu m'avais prévenu de ton arrivée, je t'___ à l'aéroport.",
+      "options": [
+        "aurais attendu",
+        "attendrais",
+        "avais attendu",
+        "ai attendu"
+      ],
+      "answer": 0,
+      "why": "Geçmişte gerçekleşmemiş koşul yapısında (si + plus-que-parfait) ana cümle conditionnel passé alır."
+    },
+    {
+      "level": "B2",
+      "lesson": "participe_passe",
+      "prompt": "La lettre que j'ai ___ ce matin contenait d'excellentes nouvelles.",
+      "options": [
+        "reçue",
+        "reçu",
+        "reçus",
+        "reçues"
+      ],
+      "answer": 0,
+      "why": "Avoir ile çekimlenen fiillerde doğrudan nesne (la lettre = que) fiilden önce gelirse ortaç uyum yapar."
+    },
+    {
+      "level": "B2",
+      "lesson": "discours_indirect_fr",
+      "prompt": "Paul m'a affirmé qu'il ___ son rapport avant la fin de la semaine.",
+      "options": [
+        "terminerait",
+        "termine",
+        "terminera",
+        "terminer"
+      ],
+      "answer": 0,
+      "why": "Giriş fiili geçmişte olduğunda doğrudan cümlenin gelecek zamanı dolaylı anlatımda conditionnel présent'a dönüşür."
+    },
+    {
+      "level": "B2",
+      "lesson": "pronoms_relatifs",
+      "prompt": "La société pour ___ je travaille développe des solutions durables.",
+      "options": [
+        "laquelle",
+        "lequel",
+        "qui",
+        "dont"
+      ],
+      "answer": 0,
+      "why": "'Société' dişil tekil olduğu için edattan (pour) sonra bileşik ilgi zamiri 'laquelle' kullanılır."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_fr_mise_en_relief",
+      "prompt": "C'est cette brillante avocate ___ a remporté le procès historique.",
+      "options": [
+        "qui",
+        "que",
+        "dont",
+        "où"
+      ],
+      "answer": 0,
+      "why": "Özne konumundaki bir ögeyi öne çıkarmak için 'c'est ... qui' vurgu kalıbı kullanılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_fr_passe_simple",
+      "prompt": "Le souverain ___ le décret officiel devant la cour réunie.",
+      "options": [
+        "signa",
+        "a signé",
+        "signait",
+        "avait signé"
+      ],
+      "answer": 0,
+      "why": "Edebi ve tarihi anlatılarda tamamlanmış olaylar için passé simple ('signa') kullanılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_fr_concession",
+      "prompt": "___ il soit très jeune, il fait preuve d'une grande maturité.",
+      "options": [
+        "Quoiqu'",
+        "Parce qu'",
+        "Puisqu'",
+        "Tandis qu'"
+      ],
+      "answer": 0,
+      "why": "'Quoique' (her ne kadar ... olsa da) taviz bağlacı daima subjonctif gerektirir."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_fr_ne_expletif",
+      "prompt": "Dépêchons-nous avant qu'il ne ___ trop tard pour embarquer.",
+      "options": [
+        "soit",
+        "est",
+        "serait",
+        "sera"
+      ],
+      "answer": 0,
+      "why": "'Avant que' sonrasında subjonctif kullanılır ve formel dilde olumsuzluk katmayan dolgu 'ne' yer alır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_fr_subjonctif_imparfait",
+      "prompt": "Il eût été préférable qu'il ___ ses responsabilités avec plus de rigueur.",
+      "options": [
+        "assumât",
+        "assume",
+        "assumera",
+        "assumerait"
+      ],
+      "answer": 0,
+      "why": "Yüksek edebi dilde ve koşullu geçmiş bağlamlarda subjonctif imparfait (-ât) kullanılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_fr_connecteurs_argumentation",
+      "prompt": "Le modèle économique est séduisant; ___, sa viabilité à long terme reste incertaine.",
+      "options": [
+        "néanmoins",
+        "parce que",
+        "en effet",
+        "puisque"
+      ],
+      "answer": 0,
+      "why": "Resmî ve akademik dilde iki bağımsız cümle arasında zıtlık kurmak için 'néanmoins' kullanılır."
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "language": "es",
+  "source": "Diloloji (özgün)",
+  "questions": [
+    {
+      "level": "A1",
+      "lesson": "basics_es_articulos",
+      "prompt": "Por favor, pásame ___ sal que está sobre la mesa.",
+      "options": [
+        "la",
+        "el",
+        "los",
+        "las"
+      ],
+      "answer": 0,
+      "why": "'Sal' İspanyolcada dişil tekil bir isimdir; belirli artikeli 'la'dır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_es_presente",
+      "prompt": "Mis hermanos menores ___ en una escuela bilingüe.",
+      "options": [
+        "estudian",
+        "estudia",
+        "estudiamos",
+        "estudias"
+      ],
+      "answer": 0,
+      "why": "Üçüncü çoğul şahıs (ellos = mis hermanos) için birinci grup (-ar) geniş zaman takısı -an'dır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_es_gustar",
+      "prompt": "A nosotros nos ___ mucho las novelas de suspense.",
+      "options": [
+        "gustan",
+        "gusta",
+        "gustamos",
+        "gusten"
+      ],
+      "answer": 0,
+      "why": "'Gustar' fiilinde özne beğenilen şeydir; 'las novelas' çoğul olduğu için fiil 'gustan' olur."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_es_negacion",
+      "prompt": "Yo ___ tengo suficiente tiempo libre para ir al cine hoy.",
+      "options": [
+        "no",
+        "ni",
+        "nunca no",
+        "nada"
+      ],
+      "answer": 0,
+      "why": "İspanyolcada temel olumsuzluk fiilin önüne doğrudan 'no' getirilerek yapılır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_es_pronombres",
+      "prompt": "¿Quieres venir al concierto ___ esta noche?",
+      "options": [
+        "conmigo",
+        "con yo",
+        "con mí",
+        "me"
+      ],
+      "answer": 0,
+      "why": "'Con' edatı birinci tekil şahıs zamiriyle birleştiğinde düzensiz olarak 'conmigo' biçimini alır."
+    },
+    {
+      "level": "A1",
+      "lesson": "basics_es_posesivos",
+      "prompt": "___ casa es pequeña pero tiene un jardín muy bonito.",
+      "options": [
+        "Mi",
+        "Mío",
+        "Mía",
+        "Mis"
+      ],
+      "answer": 0,
+      "why": "Tekil isimden (casa) önce gelen yalın iyelik sıfatı 'mi'dir."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_es_adjetivos",
+      "prompt": "Compré unas camisas ___ para la temporada de verano.",
+      "options": [
+        "blancas",
+        "blanco",
+        "blanca",
+        "blancos"
+      ],
+      "answer": 0,
+      "why": "'Camisas' dişil çoğul olduğu için niteleyen sıfat da dişil çoğul 'blancas' biçiminde uyar."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_es_preterito",
+      "prompt": "Anoche nosotros ___ una cena deliciosa en casa de Pedro.",
+      "options": [
+        "tuvimos",
+        "tenemos",
+        "teníamos",
+        "tuvisteis"
+      ],
+      "answer": 0,
+      "why": "Tamamlanmış geçmiş zaman (indefinido) için 'tener' düzensiz kökle 'tuvimos' çekimini alır."
+    },
+    {
+      "level": "A2",
+      "lesson": "ser_estar",
+      "prompt": "Madrid ___ la capital y la ciudad más grande de España.",
+      "options": [
+        "es",
+        "está",
+        "son",
+        "están"
+      ],
+      "answer": 0,
+      "why": "Kalıcı kimlik, tanım ve başkent olma gibi değişmez durumlar 'ser' fiili ile ifade edilir ('es')."
+    },
+    {
+      "level": "A2",
+      "lesson": "preterito_imperfecto",
+      "prompt": "Cuando era niño, siempre ___ los veranos en el pueblo.",
+      "options": [
+        "pasaba",
+        "pasé",
+        "he pasado",
+        "paso"
+      ],
+      "answer": 0,
+      "why": "Geçmişte tekrarlanan alışkanlıklar ve süreçler pretérito imperfecto (-aba) ile anlatılır."
+    },
+    {
+      "level": "A2",
+      "lesson": "comparativos_es",
+      "prompt": "Este ordenador es mucho más rápido ___ el que tenía antes.",
+      "options": [
+        "que",
+        "de",
+        "como",
+        "cuanto"
+      ],
+      "answer": 0,
+      "why": "'Más ... que' karşılaştırma yapısında üstünlük derecesi 'que' ile bağlanır."
+    },
+    {
+      "level": "A2",
+      "lesson": "imperativo_es",
+      "prompt": "¡___ la ventana antes de salir, por favor!",
+      "options": [
+        "Cierra",
+        "Cierres",
+        "Cerrar",
+        "Cierre"
+      ],
+      "answer": 0,
+      "why": "'Tú' şahsı için olumlu emir kipi şimdiki zaman 3. tekil şahıs formundadır ('cierra')."
+    },
+    {
+      "level": "B1",
+      "lesson": "subjuntivo",
+      "prompt": "Mis padres quieren que yo ___ una carrera universitaria.",
+      "options": [
+        "estudie",
+        "estudio",
+        "estudiaba",
+        "estudiaré"
+      ],
+      "answer": 0,
+      "why": "İstek ve dilek bildiren ana fiilden sonra que ile bağlanan cümlecik subjuntivo ('estudie') alır."
+    },
+    {
+      "level": "B1",
+      "lesson": "por_para",
+      "prompt": "Este informe confidencial es ___ la reunión de mañana.",
+      "options": [
+        "para",
+        "por",
+        "de",
+        "en"
+      ],
+      "answer": 0,
+      "why": "Amaç, hedef ve tahsis bildiren durumlarda 'para' edatı kullanılır."
+    },
+    {
+      "level": "B1",
+      "lesson": "condicionales",
+      "prompt": "¿___ ayudarme con esta maleta tan pesada, por favor?",
+      "options": [
+        "Podrías",
+        "Puedes",
+        "Pudiste",
+        "Podrás"
+      ],
+      "answer": 0,
+      "why": "Kibar rica ve isteklerde condicional simple ('podrías') tercih edilir."
+    },
+    {
+      "level": "B1",
+      "lesson": "perifrasis",
+      "prompt": "Acabo de ___ las noticias en la radio hace cinco minutos.",
+      "options": [
+        "escuchar",
+        "escuchando",
+        "escuchado",
+        "escuche"
+      ],
+      "answer": 0,
+      "why": "'Acabar de + mastar' henüz az önce tamamlanmış bir eylemi anlatan fiil öbeğidir."
+    },
+    {
+      "level": "B1",
+      "lesson": "relativos_es",
+      "prompt": "La investigadora ___ descubrió la vacuna dará una charla.",
+      "options": [
+        "que",
+        "quien que",
+        "cual",
+        "cuyo"
+      ],
+      "answer": 0,
+      "why": "Tanımlayıcı ilgi cümleciğinde hem insanlar hem nesneler için temel zamir 'que'dir."
+    },
+    {
+      "level": "B1",
+      "lesson": "basics_es_pluscuamperfecto",
+      "prompt": "Cuando llegamos a la estación, el tren ya ___.",
+      "options": [
+        "había salido",
+        "ha salido",
+        "salía",
+        "salió"
+      ],
+      "answer": 0,
+      "why": "Geçmişteki varış anından önce tamamlanmış hareket pretérito pluscuamperfecto ile verilir."
+    },
+    {
+      "level": "B1",
+      "lesson": "conn_es",
+      "prompt": "Estudió mucho para el examen; ___ no logró aprobar.",
+      "options": [
+        "sin embargo",
+        "por lo tanto",
+        "además",
+        "entonces"
+      ],
+      "answer": 0,
+      "why": "Beklenmeyen zıt bir sonucu bağlamak için 'sin embargo' (bununla birlikte) kullanılır."
+    },
+    {
+      "level": "B2",
+      "lesson": "se_pasivo",
+      "prompt": "En este centro comunitario se ___ cursos gratuitos de informática.",
+      "options": [
+        "imparten",
+        "imparte",
+        "impartiendo",
+        "impartieron"
+      ],
+      "answer": 0,
+      "why": "Pasiva refleja yapısında fiil çoğul nesneyle ('cursos') uyum yaparak çoğul olur ('imparten')."
+    },
+    {
+      "level": "B2",
+      "lesson": "estilo_indirecto",
+      "prompt": "Me aseguró que ___ a la fiesta el sábado siguiente.",
+      "options": [
+        "iría",
+        "va",
+        "irá",
+        "iba a ir"
+      ],
+      "answer": 0,
+      "why": "Geçmişteki aktarımlarda gelecek zaman dolaylı anlatımda condicional simple'a dönüşür ('iría')."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_es_imperfecto_subjuntivo",
+      "prompt": "Si tuviera más tiempo libre, ___ un nuevo idioma.",
+      "options": [
+        "aprendería",
+        "aprendo",
+        "aprenderé",
+        "aprendiera"
+      ],
+      "answer": 0,
+      "why": "İkinci koşul yapısında 'si + imperfecto de subjuntivo' sonrasında ana cümlede condicional kullanılır."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_es_aunque_indicativo_subjuntivo",
+      "prompt": "Iremos a la excursión aunque ___ mal tiempo este fin de semana.",
+      "options": [
+        "haga",
+        "hace",
+        "hará",
+        "hacía"
+      ],
+      "answer": 0,
+      "why": "Henüz bilinmeyen veya varsayımsal bir geleceğe yönelik zıtlıkta aunque sonrası subjuntivo ('haga') gelir."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_es_si_condicionales_subjuntivo",
+      "prompt": "Si ___ más atención en clase, habrías aprobado el examen.",
+      "options": [
+        "hubieras prestado",
+        "prestarías",
+        "prestaste",
+        "hayas prestado"
+      ],
+      "answer": 0,
+      "why": "Geçmişte gerçekleşmemiş koşul yapısında 'si + pluscuamperfecto de subjuntivo' kullanılır."
+    },
+    {
+      "level": "B2",
+      "lesson": "basics_es_se_accidental",
+      "prompt": "Estaba tan nervioso que se me ___ los vasos al suelo.",
+      "options": [
+        "cayeron",
+        "cayó",
+        "caían",
+        "han caído"
+      ],
+      "answer": 0,
+      "why": "İstemsiz eylemde çoğul olan nesne ('los vasos') fiilin öznesi gibi davranır ve çoğul çekimlenir."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_es_subjuntivo_compuesto",
+      "prompt": "Dudo mucho que los delegados hayan ___ a un acuerdo definitivo.",
+      "options": [
+        "llegado",
+        "llegar",
+        "llegando",
+        "llegados"
+      ],
+      "answer": 0,
+      "why": "Pretérito perfecto de subjuntivo yapısında 'haber' çekiminden sonra değişmeyen participio gelir."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_es_futuro_probabilidad",
+      "prompt": "¿Qué hora sería cuando ocurrió el incidente? ___ las dos de la madrugada.",
+      "options": [
+        "Serían",
+        "Eran",
+        "Fueron",
+        "Serán"
+      ],
+      "answer": 0,
+      "why": "Geçmişe yönelik olasılık ve tahmin bildirmek için condicional simple kullanılır ('Serían')."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_es_conectores_dele",
+      "prompt": "El proyecto es viable; ___, requerirá una asignación presupuestaria prudente.",
+      "options": [
+        "asimismo",
+        "porque",
+        "puesto que",
+        "ya que"
+      ],
+      "answer": 0,
+      "why": "Akademik ve resmî yazıda benzer doğrultuda ek bilgi vermek için 'asimismo' kullanılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_es_participio_gerundio_compuesto",
+      "prompt": "Habiendo ___ todos los puntos de la agenda, concluyeron la asamblea.",
+      "options": [
+        "revisado",
+        "revisar",
+        "revisando",
+        "revisados"
+      ],
+      "answer": 0,
+      "why": "Bileşik ulaç (gerundio compuesto) yapısında habiendo + participio (-ado) kullanılır."
+    },
+    {
+      "level": "C1",
+      "lesson": "basics_es_condicion_alternativa",
+      "prompt": "Viajaremos mañana a la costa a no ser que ___ tormenta eléctrica.",
+      "options": [
+        "haya",
+        "hay",
+        "habrá",
+        "había"
+      ],
+      "answer": 0,
+      "why": "'A no ser que' (olmadıkça / meğerki) şart bağlacı daima subjuntivo kipi gerektirir ('haya')."
+    }
+  ]
+}
