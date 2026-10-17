@@ -11,7 +11,7 @@ import { NEW_ART } from './drawnArt'
  * the end the score, and `onDone` with how many were right (the guide marks the lesson learned, or
  * brings it back sooner).
  */
-export function LessonCheck({ items, language, review, onDone }: { items: CheckItem[]; language: TargetLanguage; review?: boolean; onDone: (right: number) => void }) {
+export function LessonCheck({ items, language, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; review?: boolean; earned?: number; onDone: (right: number) => void }) {
   const [index, setIndex] = useState(0)
   const [given, setGiven] = useState<number | null>(null)
   const [right, setRight] = useState(0)
@@ -64,6 +64,7 @@ export function LessonCheck({ items, language, review, onDone }: { items: CheckI
         <h2 className="section-title">{passed ? 'Ders oturdu' : 'Bir daha bakalım'}</h2>
         <p className={passed ? 'lesson-check-score' : 'lesson-check-score muted'}>
           {passed && <CheckCircleIcon size={18} className="inline-icon" />} {items.length} sorunun {right} tanesi doğru.
+          {earned > 0 && <strong className="lesson-check-xp"> +{earned} XP</strong>}
         </p>
         <p className="small muted">
           {passed

@@ -37,7 +37,7 @@ export function GuideReviewNudge({ language, onOpen }: { language: TargetLanguag
         <span>
           <strong>Hatırlıyor musun?</strong> <span className="muted">“{due.title}” dersinden üç kısa soru.</span>
         </span>
-        <span className="habit-nudge-cta">Tekrar et</span>
+        <span className="habit-nudge-cta">Tekrar et · +10 XP</span>
       </button>
       <button
         type="button"
