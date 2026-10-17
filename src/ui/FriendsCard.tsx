@@ -30,7 +30,7 @@ const REASONS: Record<string, string> = {
  * other's codes, as a small leaderboard. Adding a friend is their code; one's own code is shown to
  * pass on. Only for an approved account (the cards live on the server).
  */
-export function FriendsCard({ game, profile, vocabulary, language, onChanged }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onChanged?: () => void }) {
+export function FriendsCard({ game, profile, vocabulary, language, onChanged, onDuel }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onChanged?: () => void; onDuel?: () => void }) {
   const access = useAccess()
   const [range, setRange] = useState<'today' | 'week'>('today')
   const [data, setData] = useState<{ me: FriendView; friends: FriendView[] } | null>(null)
@@ -191,6 +191,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
 
   const xpOf = (f: FriendView) => (range === 'today' ? f.today : f.week)
   const board = data ? [{ ...data.me, me: true }, ...data.friends.map((f) => ({ ...f, me: false }))].sort((a, b) => xpOf(b) - xpOf(a) || Number(b.me) - Number(a.me)) : []
+  const maxXp = Math.max(1, ...board.map((f) => xpOf(f)))
   return (
     <section className="card stack gap-2 friends-card" aria-label="Arkadaşlar">
       <div className="friends-head">
@@ -214,10 +215,12 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
             const nickname = nicknames[f.code]
             const displayName = f.me ? 'Sen' : (nickname || f.name)
             const isEditing = editingCode === f.code
+            const xp = xpOf(f)
+            const pct = xp > 0 ? Math.max(6, Math.round((xp / maxXp) * 100)) : 0
             return (
               <li key={f.code} className={f.me ? 'friends-me' : isEditing ? 'friends-editing-row' : undefined}>
-                <span className="friends-rank">{i + 1}</span>
-                <Avatar profile={{ name: displayName, emoji: f.avatar || '🙂', color: f.color, motto: '' } as Profile} size={32} />
+                <span className={`friends-rank${i < 3 ? ` is-top-${i + 1}` : ''}`}>{i + 1}</span>
+                <Avatar profile={{ name: displayName, emoji: f.avatar || '🙂', color: f.color, motto: '' } as Profile} size={36} />
                 {isEditing ? (
                   <form
                     className="friends-edit-inline"
@@ -244,40 +247,47 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
                   </form>
                 ) : (
                   <>
-                    {f.me ? (
-                      <span className="friends-name">
-                        {displayName}
+                    <div className="friends-user">
+                      <div className="friends-user-top">
+                        {f.me ? (
+                          <span className="friends-name">{displayName}</span>
+                        ) : (
+                          <button type="button" className="friends-name friends-name-btn" onClick={() => setOpen(f.code)} aria-label={`${displayName} sayfasını aç`}>
+                            {displayName}
+                          </button>
+                        )}
+                        {!f.me && (
+                          <button
+                            type="button"
+                            className={`link small friends-rename-btn ${f.name === 'Arkadaş' && !nickname ? 'friends-rename-highlight' : ''}`}
+                            onClick={() => {
+                              setEditingCode(f.code)
+                              setEditName(nickname || (f.name === 'Arkadaş' ? '' : f.name))
+                            }}
+                            aria-label={`${displayName} arkadaşının ismini düzenle`}
+                            title={f.name === 'Arkadaş' && !nickname ? 'Arkadaşına isim ver' : 'İsmi düzenle'}
+                          >
+                            {f.name === 'Arkadaş' && !nickname ? '✎ İsim ver' : '✎'}
+                          </button>
+                        )}
+                        <span className="friends-xp">{xp.toLocaleString('tr-TR')} XP</span>
+                      </div>
+                      <div className="friends-user-sub">
                         {f.streak > 0 && (
                           <span className="friends-streak" title={`${f.streak} günlük seri`}>
-                            <FlameIcon size={12} solid /> {f.streak}
+                            <FlameIcon size={11} solid /> {f.streak}
                           </span>
                         )}
-                      </span>
-                    ) : (
-                      <button type="button" className="friends-name friends-name-btn" onClick={() => setOpen(f.code)} aria-label={`${displayName} sayfasını aç`}>
-                        {displayName}
-                        {f.streak > 0 && (
-                          <span className="friends-streak" title={`${f.streak} günlük seri`}>
-                            <FlameIcon size={12} solid /> {f.streak}
+                        {f.level > 0 && (
+                          <span className="friends-level" title={`Seviye ${f.level}`}>
+                            Sv. {f.level}
                           </span>
                         )}
-                      </button>
-                    )}
-                    {!f.me && (
-                      <button
-                        type="button"
-                        className={`link small friends-rename-btn ${f.name === 'Arkadaş' && !nickname ? 'friends-rename-highlight' : ''}`}
-                        onClick={() => {
-                          setEditingCode(f.code)
-                          setEditName(nickname || (f.name === 'Arkadaş' ? '' : f.name))
-                        }}
-                        aria-label={`${displayName} arkadaşının ismini düzenle`}
-                        title={f.name === 'Arkadaş' && !nickname ? 'Arkadaşına isim ver' : 'İsmi düzenle'}
-                      >
-                        {f.name === 'Arkadaş' && !nickname ? '✎ İsim ver' : '✎'}
-                      </button>
-                    )}
-                    <span className="friends-xp">{xpOf(f).toLocaleString('tr-TR')} XP</span>
+                        <span className="friends-xp-track" aria-hidden>
+                          <span className="friends-xp-fill" style={{ width: `${pct}%` }} />
+                        </span>
+                      </div>
+                    </div>
                     {!f.me && (
                       <button type="button" className="icon-btn icon-btn-sm friends-remove" onClick={() => void remove(f)} aria-label={`${displayName} arkadaşını çıkar`} title="Çıkar">
                         <CloseIcon size={14} />
@@ -294,8 +304,10 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
         <ul className="friends-inbox" aria-label="Arkadaşlarından gelenler">
           {inbox.slice(0, 3).map((m) => {
             const who = nicknames[m.from.code] || m.from.name
+            const sender = data?.friends.find((x) => x.code === m.from.code)
             return (
-              <li key={m.id}>
+              <li key={m.id} className={`friends-inbox-item is-${m.kind}`}>
+                {sender && <Avatar profile={{ name: who, emoji: sender.avatar || '🙂', color: sender.color, motto: '' } as Profile} size={26} />}
                 <span>
                   {m.kind === 'cheer' && `👏 ${who} seni tebrik etti`}
                   {m.kind === 'nudge' && `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}
@@ -323,7 +335,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
             )
           })}
           {inbox.length > 3 && (
-            <li>
+            <li className="friends-inbox-more">
               <span>+{inbox.length - 3} mesaj daha</span>
               <button type="button" className="link small" onClick={() => void dismiss(inbox.map((m) => m.id))}>
                 Hepsini temizle
@@ -334,7 +346,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
       )}
       {data && open && (() => {
         const f = data.friends.find((x) => x.code === open)
-        return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} /> : null
+        return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} onDuel={onDuel} /> : null
       })()}
       {data && data.friends.length > 0 && <FriendLeague me={data.me} friends={data.friends} nicknames={nicknames} today={today} />}
       {data && data.friends.length === 0 && (
@@ -346,12 +358,14 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged }: 
       {data && (
         <details className="friends-add" open={data.friends.length === 0}>
           <summary className="small">
-            <PlusIcon size={14} className="inline-icon" /> Arkadaş ekle
+            <PlusIcon size={14} className="inline-icon" /> Arkadaş ekle ve kodunu paylaş
           </summary>
-          <div className="stack gap-2">
+          <div className="stack gap-2 friends-add-body">
             <div className="friends-code small">
-              Senin kodun: <code>{showCode(data.me.code)}</code>
-              <button type="button" className="link small" onClick={() => void copy()}>
+              <span className="friends-code-label">
+                Senin kodun: <code>{showCode(data.me.code)}</code>
+              </span>
+              <button type="button" className="btn btn-sm btn-quiet" onClick={() => void copy()}>
                 <CopyIcon size={14} className="inline-icon" /> Paylaş
               </button>
             </div>
