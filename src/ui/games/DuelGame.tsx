@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { grammarExercises } from '../../data/grammar'
 import { db } from '../../data/instance'
-import { DUEL_INBOX, DUEL_ROUNDS, decodeDuel, duelLine, duelOptions, duelQuestions, duelWinner, encodeDuel, pickDuelIds, type DuelChallenge, type DuelResult } from '../../engine/duel'
+import { DUEL_INBOX, DUEL_ROUNDS, decodeDuel, duelLine, duelOptions, duelPool, duelQuestions, duelWinner, encodeDuel, pickDuelIds, type DuelChallenge, type DuelFilter, type DuelResult } from '../../engine/duel'
+import { addRecord, byOpponent, cleanRecords, recordOf, tally, type DuelRecord } from '../../engine/duelHistory'
 import { checkGrammar, filled, topicName } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
@@ -11,6 +12,18 @@ import { showToast } from '../toastFeed'
 import { noteIn } from './logNote'
 
 const NAME_KEY = 'diloloji:duel-name'
+const HISTORY_KEY = 'diloloji:duel-history'
+/** Fewest questions a narrowed duel may be made from. */
+const MIN_POOL = 5
+const LEVELS = ['B1', 'B2', 'C1'] as const
+
+const storedHistory = (): DuelRecord[] => {
+  try {
+    return cleanRecords(JSON.parse(localStorage.getItem(HISTORY_KEY) ?? '[]'))
+  } catch {
+    return []
+  }
+}
 
 const note = noteIn(() => db.getGrammarLog(), (log) => db.saveGrammarLog(log))
 
@@ -57,11 +70,20 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
   const [right, setRight] = useState(0)
   const [spent, setSpent] = useState(0)
   const [final, setFinal] = useState<DuelResult | null>(null)
+  const [filter, setFilter] = useState<DuelFilter>({})
+  const [history, setHistory] = useState<DuelRecord[]>(storedHistory)
   const shown = useRef(0)
   const pool = useMemo(() => grammarExercises(challenge?.language ?? language), [challenge, language])
   const questions = useMemo(() => (challenge ? duelQuestions(challenge, pool) : []), [challenge, pool])
   const q = questions[index]
   const player = name.trim() || 'Ben'
+  const ownPool = useMemo(() => grammarExercises(language), [language])
+  const topics = useMemo(() => {
+    const counts = new Map<string, number>()
+    for (const e of duelPool(ownPool)) counts.set(e.topic, (counts.get(e.topic) ?? 0) + 1)
+    return [...counts].filter(([, n]) => n >= MIN_POOL).map(([topic]) => topic).sort((a, b) => topicName(a).localeCompare(topicName(b), 'tr'))
+  }, [ownPool])
+  const narrowed = duelPool(ownPool, filter).length
 
   const remember = (n: string) => {
     setName(n)
@@ -114,8 +136,8 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
   }
 
   const startNew = () => {
-    const ids = pickDuelIds(grammarExercises(language), createRng(Date.now()))
-    if (ids.length < 5) return
+    const ids = pickDuelIds(ownPool, createRng(Date.now()), DUEL_ROUNDS, filter)
+    if (ids.length < MIN_POOL) return
     // The score is filled in when it is played; the link is made at the end.
     begin({ language, ids, from: { name: player, score: 0, ms: 0 } }, true)
   }
@@ -166,6 +188,22 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
   const outgoing: DuelChallenge | null = challenge && final ? (mine ? { ...challenge, from: final } : { ...challenge, reply: final }) : null
   const opponent: DuelResult | null = challenge && !mine ? challenge.from : null
 
+  // A duel played against a friend (or a friend's answer opened) is written in the history, once.
+  useEffect(() => {
+    if (phase !== 'over' || !challenge || mine) return
+    const record = challenge.reply ? recordOf(challenge, challenge.from, challenge.reply, new Date()) : final ? recordOf(challenge, final, challenge.from, new Date()) : null
+    if (!record) return
+    setHistory((cur) => {
+      const next = addRecord(cur, record)
+      try {
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(next))
+      } catch {
+        // Not remembered; fine.
+      }
+      return next
+    })
+  }, [phase, challenge, final, mine])
+
   return (
     <div className="stack duel-game">
       <div className="game-top">
@@ -190,11 +228,36 @@ export function DuelGame({ language, onExit }: { language: TargetLanguage; onExi
             <span className="small muted">Düelloda görünecek adın</span>
             <input className="input" value={name} maxLength={24} onChange={(e) => remember(e.target.value)} placeholder="Adın" aria-label="Adın" autoComplete="off" />
           </label>
+          <div className="stack duel-filter">
+            <label className="stack">
+              <span className="small muted">Konu</span>
+              <select className="input" value={filter.topic ?? ''} onChange={(e) => setFilter((f) => ({ ...f, topic: e.target.value || undefined }))} aria-label="Düello konusu">
+                <option value="">Karışık</option>
+                {topics.map((t) => (
+                  <option key={t} value={t}>
+                    {topicName(t)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="choice-row" role="group" aria-label="Seviye">
+              <button type="button" className="chip chip-sm" aria-pressed={!filter.level} onClick={() => setFilter((f) => ({ ...f, level: undefined }))}>
+                Her seviye
+              </button>
+              {LEVELS.map((l) => (
+                <button key={l} type="button" className="chip chip-sm" aria-pressed={filter.level === l} onClick={() => setFilter((f) => ({ ...f, level: l }))}>
+                  {l}
+                </button>
+              ))}
+            </div>
+            {narrowed < MIN_POOL && <p className="small notice">Bu seçimde yeterli soru yok; konuyu ya da seviyeyi genişlet.</p>}
+          </div>
           <div className="row">
-            <button className="btn btn-lg" onClick={startNew}>
+            <button className="btn btn-lg" onClick={startNew} disabled={narrowed < MIN_POOL}>
               {LANGUAGE_NAME[language]} düellosu başlat
             </button>
           </div>
+          {history.length > 0 && <DuelHistory history={history} />}
           <section className="card stack duel-open">
             <h2 className="section-title">Gelen düelloyu aç</h2>
             <p className="small muted">Arkadaşının gönderdiği bağlantıyı ya da kodu yapıştır. (Bağlantıya dokunursan zaten doğrudan açılır.)</p>
@@ -349,5 +412,30 @@ function DuelSide({ result, of, you = false, winner = false }: { result: DuelRes
       <span className="small muted">{Math.round(result.ms / 1000)} sn</span>
       {winner && <span className="small">🏆</span>}
     </div>
+  )
+}
+
+function DuelHistory({ history }: { history: DuelRecord[] }) {
+  const total = tally(history)
+  const people = byOpponent(history).slice(0, 5)
+  const word = { win: 'kazandın', loss: 'kaybettin', tie: 'berabere' } as const
+  return (
+    <section className="card stack duel-history" aria-label="Düello geçmişi">
+      <h2 className="section-title">Düello geçmişin</h2>
+      <p>
+        <strong>{total.wins}</strong> galibiyet · <strong>{total.losses}</strong> mağlubiyet · <strong>{total.ties}</strong> beraberlik
+      </p>
+      <ul className="plain stack gap-2">
+        {people.map((p) => (
+          <li key={p.opponent} className="small">
+            <strong>{p.opponent}</strong>: {p.tally.wins}-{p.tally.losses}
+            {p.tally.ties > 0 ? `-${p.tally.ties}` : ''} <span className="muted">({p.duels} düello)</span>
+          </li>
+        ))}
+      </ul>
+      <p className="small muted">
+        Son düello: {history[0].opponent} ile {history[0].mine}-{history[0].theirs}, {word[history[0].outcome]}. Geçmiş yalnızca bu cihazda durur.
+      </p>
+    </section>
   )
 }

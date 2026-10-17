@@ -32,12 +32,19 @@ export interface DuelChallenge {
   reply?: DuelResult
 }
 
+/** What a duel may be narrowed to: one topic, one level. */
+export interface DuelFilter {
+  topic?: string
+  level?: GrammarExercise['level']
+}
+
+/** The questions a duel can be made from. */
+export const duelPool = (pool: readonly GrammarExercise[], filter: DuelFilter = {}) =>
+  pool.filter((e) => e.type === 'choice' && (e.options?.length ?? 0) >= 3 && (!filter.topic || e.topic === filter.topic) && (!filter.level || e.level === filter.level))
+
 /** Ten different questions: choice questions only, one per topic first so a duel is not ten of the same rule. */
-export function pickDuelIds(pool: readonly GrammarExercise[], rng: Rng, count = DUEL_ROUNDS): string[] {
-  const choices = shuffle(
-    pool.filter((e) => e.type === 'choice' && (e.options?.length ?? 0) >= 3),
-    rng,
-  )
+export function pickDuelIds(pool: readonly GrammarExercise[], rng: Rng, count = DUEL_ROUNDS, filter: DuelFilter = {}): string[] {
+  const choices = shuffle(duelPool(pool, filter), rng)
   const seen = new Set<string>()
   const firsts = choices.filter((e) => !seen.has(e.topic) && !!seen.add(e.topic))
   const rest = choices.filter((e) => !firsts.includes(e))

@@ -2128,3 +2128,5 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .song-input.song-near { border-bottom-color: var(--near, var(--lang)); background: var(--near-soft); }
 .song-input.song-wrong { border-bottom-color: var(--bad); background: var(--bad-soft); }
 .song-answer { color: var(--ok-deep); line-height: 1.2; text-align: center; }
+.duel-filter { max-width: 24rem; }
+.duel-history { max-width: 28rem; }
