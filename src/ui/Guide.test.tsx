@@ -165,4 +165,54 @@ describe('GuideScreen', () => {
     const basic = await mount('fr', { initialLesson: 'basics_fr_articles' })
     expect(basic.host.querySelector('.lesson-try')).toBeNull()
   })
+
+  it('a search reaches into the lessons and shows the line that matched', async () => {
+    const { host } = await mount('fr')
+    const search = host.querySelector<HTMLInputElement>('.guide-search')!
+    await act(async () => {
+      const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!
+      set.call(search, 'depuis')
+      search.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    const snippets = [...host.querySelectorAll('.guide-card-snippet')]
+    expect(snippets.length).toBeGreaterThan(0)
+    expect(snippets.every((n) => /depuis/i.test(n.textContent ?? ''))).toBe(true)
+  })
+
+  it('a lesson that builds on another says so on its card and in the lesson, until that one is read', async () => {
+    const { host } = await mount('fr')
+    const card = [...host.querySelectorAll<HTMLElement>('.guide-card')].find((c) => c.querySelector('strong')?.textContent === 'Subjonctif')!
+    expect(card.textContent).toContain('Önce: ')
+    await act(async () => card.click())
+    expect(host.querySelector('.guide-needs')?.textContent).toContain('Önce şunu oku')
+    // The lesson it builds on opens from the note.
+    await act(async () => host.querySelector<HTMLButtonElement>('.guide-needs button')!.click())
+    expect(host.querySelector('.guide-lesson h1')?.textContent).not.toBe('Subjonctif')
+  })
+
+  it('flags a lesson as a bookmark or as hard, keeps it, and filters by it', async () => {
+    const { host } = await mount('es')
+    await act(async () => button(host, 'Ser ve estar')!.click())
+    await act(async () => button(host, '☆ Yer imi')!.click())
+    await act(async () => button(host, 'Zor buldum')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+    // One flag at a time: the hard flag replaced the bookmark.
+    expect((await db.getGuideMarks()).ser_estar).toMatchObject({ flag: 'hard' })
+    await act(async () => button(host, 'Rehber')!.click())
+    expect(host.querySelector('.guide-tag-hard')).not.toBeNull()
+    await act(async () => button(host, /Zor bulduklarım \(1\)/)!.click())
+    expect([...host.querySelectorAll('.guide-card strong')].map((n) => n.textContent)).toEqual(['Ser ve estar'])
+  })
+
+  it('prints a lesson as a sheet', async () => {
+    const written: string[] = []
+    const w = { document: { write: (h: string) => written.push(h), close: () => {} }, focus: () => {}, print: () => {} }
+    const open = vi.spyOn(window, 'open').mockReturnValue(w as unknown as Window)
+    const { host } = await mount('fr', { initialLesson: 'subjonctif' })
+    await act(async () => button(host, 'Yazdır')!.click())
+    expect(open).toHaveBeenCalled()
+    expect(written[0]).toContain('<h1>')
+    expect(written[0]).toContain('Subjonctif')
+    open.mockRestore()
+  })
 })

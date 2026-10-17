@@ -1,5 +1,5 @@
 import type { KelimeDB } from '../data/db'
-import { afterCheck, cleanMarks, putOff, type GuideMarks } from '../engine/guideReview'
+import { afterCheck, cleanMarks, flagOf, putOff, type GuideMarks, type LessonFlag } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
 
 /** Where the first versions kept the marks, on this device only: moved into the database (and so the backup and sync) on first load. */
@@ -41,9 +41,15 @@ export function markRead(marks: GuideMarks, topic: string, on: boolean): GuideMa
   const today = localDate(new Date())
   const next = { ...marks }
   if (on) {
-    if (!next[topic]?.read) next[topic] = { read: today }
-  } else if (next[topic]) next[topic] = { read: '', off: today }
+    if (!next[topic]?.read) next[topic] = { ...flagOf(next[topic]), read: today }
+  } else if (next[topic]) next[topic] = { ...flagOf(next[topic]), read: '', off: today }
   return next
+}
+
+/** Flags a lesson (a bookmark, or found hard) or takes its flag off; the day is kept either way so that sync carries the change. */
+export function markFlag(marks: GuideMarks, topic: string, flag: LessonFlag | null): GuideMarks {
+  const { flag: _old, flagAt: _at, ...rest } = marks[topic] ?? { read: '' }
+  return { ...marks, [topic]: { ...rest, flagAt: localDate(new Date()), ...(flag ? { flag } : {}) } }
 }
 
 /** After the lesson's check: read in any case, learned (and a step on) when it went well. */

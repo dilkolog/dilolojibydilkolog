@@ -60,3 +60,32 @@ describe('marks across devices', () => {
     expect(cleanMarks(null)).toEqual({})
   })
 })
+
+describe('lesson flags', () => {
+  it('a lesson found hard comes back in half the time', () => {
+    const mark = { read: '2026-10-01', learned: '2026-10-02', reviewed: '2026-10-02', step: 1 }
+    expect(reviewDay(mark)).toBe('2026-10-12')
+    expect(reviewDay({ ...mark, flag: 'hard', flagAt: '2026-10-03' })).toBe('2026-10-07')
+    expect(reviewDay({ ...mark, flag: 'star', flagAt: '2026-10-03' })).toBe('2026-10-12')
+  })
+
+  it('the flag goes by its own day when two devices meet, and taking it off is carried too', () => {
+    const a: GuideMarks = { x: { read: '2026-10-09', learned: '2026-10-09', step: 0, flag: 'star', flagAt: '2026-10-02' } }
+    // The other device took the flag off later, and has not touched the lesson since.
+    const b: GuideMarks = { x: { read: '2026-10-01', flagAt: '2026-10-05' } }
+    const m = mergeMarks(a, b).x!
+    expect(m.flag).toBeUndefined()
+    expect(m.learned).toBe('2026-10-09')
+    // A newer flag on one side wins over an older one on the other, whoever has the later reading.
+    const c: GuideMarks = { x: { read: '2026-10-01', flag: 'hard', flagAt: '2026-10-12' } }
+    expect(mergeMarks(a, c).x).toMatchObject({ flag: 'hard', flagAt: '2026-10-12', learned: '2026-10-09' })
+    expect(mergeMarks(c, a).x?.flag).toBe('hard')
+  })
+
+  it('cleans flags: an unknown flag is dropped and a flag needs its day', () => {
+    const c = cleanMarks({ a: { read: '', flag: 'hard', flagAt: '2026-10-01' }, b: { read: '', flag: 'weird', flagAt: '2026-10-01' }, c: { read: '', flag: 'star' } })
+    expect(c.a).toEqual({ read: '', flag: 'hard', flagAt: '2026-10-01' })
+    expect(c.b).toEqual({ read: '', flagAt: '2026-10-01' })
+    expect(c.c).toEqual({ read: '' })
+  })
+})

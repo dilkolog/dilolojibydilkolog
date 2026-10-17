@@ -2639,3 +2639,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .duel-history { max-width: 28rem; }
 .guide-write > summary { cursor: pointer; }
 .guide-write textarea { width: 100%; resize: vertical; }
+.guide-flag { color: var(--near, #b7791f); font-size: var(--t-lg); line-height: 1; }
+.guide-tag-hard { color: var(--near, #b7791f); border-color: currentColor; }
+.guide-card-snippet { color: var(--ink); font-family: var(--serif); }
+.guide-card-needs { font-style: italic; }
+.guide-needs button.link { font: inherit; }

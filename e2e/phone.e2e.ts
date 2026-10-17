@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, seedGuideMarks, startWithSamples } from './helpers'
 
 test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
@@ -883,7 +883,7 @@ test('the calm theme is a choice in Settings and turns the dark theme down', asy
   // Plain dark again: the flag goes away and the dark colours come back.
   await page.getByRole('radio', { name: 'Koyu' }).or(page.getByRole('button', { name: 'Koyu', exact: true })).first().click()
   await expect(root).not.toHaveAttribute('data-calm', '')
-  expect(await bg('--bg')).toBe('#0f172a')
+  expect(await bg('--bg')).toBe('#0b1120')
   // Kept across a reload, before the first paint.
   await page.getByRole('radio', { name: 'Sakin' }).or(page.getByRole('button', { name: 'Sakin', exact: true })).first().click()
   // The choice is written to the page's own storage a moment after the click; reload only once it is.
@@ -1373,13 +1373,10 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await expect(learnedCard.locator('.guide-tag')).toHaveText('Öğrenildi')
   expect(await overflow(page), 'guide list overflow').toEqual([])
 
-  // Seed localStorage with overdue lesson review
-  await page.evaluate(() => {
-    localStorage.setItem(
-      'diloloji:guide-progress',
-      JSON.stringify({ basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } }),
-    )
-  })
+  // The check's marks are saved a moment after it: wait for them, or they would land on top of the seeded ones.
+  await expect.poll(() => guideMarkTopics(page)).toContain('basics_es_hay_estar')
+  // Seed the database with an overdue lesson review
+  await seedGuideMarks(page, { basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } })
   await page.reload()
   await openScreen(page, 'Bugün')
 
@@ -1394,12 +1391,7 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await expect(nudge).toHaveCount(0)
 
   // Put overdue mark back in localStorage to test starting the review
-  await page.evaluate(() => {
-    localStorage.setItem(
-      'diloloji:guide-progress',
-      JSON.stringify({ basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } }),
-    )
-  })
+  await seedGuideMarks(page, { basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } })
   await page.reload()
   await openScreen(page, 'Bugün')
   const reviewNudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })

@@ -3,7 +3,7 @@ import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../data/instance'
 import type { GuideMarks } from '../engine/guideReview'
-import { loadMarks, markChecked, markPutOff, markRead } from './guideProgress'
+import { loadMarks, markChecked, markFlag, markPutOff, markRead } from './guideProgress'
 
 describe('guideProgress state management', () => {
   beforeEach(async () => {
@@ -81,5 +81,22 @@ describe('guideProgress state management', () => {
     const loaded = await loadMarks(db)
     expect(loaded['articles_en']?.read).toMatch(/^\d{4}-\d{2}-\d{2}$/)
     expect(loaded['present_perfect']).toBeDefined()
+  })
+
+  it('flags a lesson, keeps the flag through unmarking and starting over, and takes it off', () => {
+    let marks: GuideMarks = markFlag({}, 'por_para', 'hard')
+    expect(marks['por_para']).toMatchObject({ read: '', flag: 'hard' })
+    expect(marks['por_para']?.flagAt).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    marks = markRead(marks, 'por_para', true)
+    expect(marks['por_para']).toMatchObject({ flag: 'hard' })
+    expect(marks['por_para']?.read).toMatch(/^\d{4}-/)
+    marks = markRead(marks, 'por_para', false)
+    expect(marks['por_para']).toMatchObject({ read: '', flag: 'hard' })
+    marks = markChecked(marks, 'por_para', true)
+    expect(marks['por_para']).toMatchObject({ flag: 'hard', step: 0 })
+    marks = markFlag(marks, 'por_para', null)
+    expect(marks['por_para']?.flag).toBeUndefined()
+    expect(marks['por_para']?.flagAt).toBeDefined()
+    expect(marks['por_para']?.learned).toBeDefined()
   })
 })

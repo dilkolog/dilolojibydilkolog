@@ -9,7 +9,12 @@ import { GAME_ART } from './gameArt'
 import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
 import { checkFor, tryFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
-import { isRead, PASS_RIGHT, type GuideMarks } from '../engine/guideReview'
+import { isRead, PASS_RIGHT, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { pickNext, unmetPrereqs } from '../data/guide/prereqs'
+import { searchLesson, type LessonHit } from '../data/guide/search'
+import { lessonSheetHtml } from './guideSheet'
+import { openPrint } from './printWindow'
+import { LessonListen } from './LessonListen'
 import { TENSE_LESSON } from '../data/tenseLesson'
 import { topicStats } from '../engine/grammar'
 import { LAB_TENSES, type Tense } from '../engine/tenses'
@@ -23,7 +28,7 @@ import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
-import { loadMarks, markChecked, markRead as withRead } from './guideProgress'
+import { loadMarks, markChecked, markFlag, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
@@ -56,6 +61,7 @@ export function GuideScreen({
   const [tab, setTab] = useState<Tab>(initialTense ? 'tenses' : 'topics')
   const [level, setLevel] = useState<GuideLevel | null>(null)
   const [query, setQuery] = useState('')
+  const [flagFilter, setFlagFilter] = useState<LessonFlag | null>(null)
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
   const [marks, setMarks] = useState<GuideMarks>({})
@@ -94,14 +100,24 @@ export function GuideScreen({
     void db.saveGuideMarks(next).catch(() => {})
   }
   const markRead = (topic: string, on = true) => change(withRead(marks, topic, on))
+  const flagOf = (topic: string): LessonFlag | undefined => marks[topic]?.flag
+  const flagged = (flag: LessonFlag) => lessons.filter((l) => flagOf(l.topic) === flag).length
 
-  const q = query.trim().toLocaleLowerCase('tr')
-  const shown = lessons.filter((l) => (!level || l.level === level) && (!q || `${l.title} ${l.summary} ${l.rules.join(' ')}`.toLocaleLowerCase('tr').includes(q)))
+  const q = query.trim()
+  const hits = new Map<string, LessonHit>()
+  const shown = lessons.filter((l) => {
+    if (level && l.level !== level) return false
+    if (flagFilter && flagOf(l.topic) !== flagFilter) return false
+    if (!q) return true
+    const hit = searchLesson(l, titleOf(l), q)
+    if (hit) hits.set(l.topic, hit)
+    return !!hit
+  })
   const doneCount = lessons.filter((l) => read.has(l.topic)).length
   const learnedCount = lessons.filter((l) => isRead(marks[l.topic]) && marks[l.topic]?.learned).length
   // The way through: the first lesson not read yet, the easier levels first.
   const ordered = useMemo(() => LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)), [lessons])
-  const next = ordered.find((l) => !read.has(l.topic))
+  const next = pickNext(ordered, (t) => read.has(t))
 
   if (open) {
     const practice = open.practice ?? open.topic
@@ -116,6 +132,10 @@ export function GuideScreen({
         read={read.has(open.topic)}
         learned={!!marks[open.topic]?.learned}
         review={review && open.topic === lessonFor(language, initialLesson ?? '')?.topic}
+        flag={flagOf(open.topic)}
+        onFlag={(f) => change(markFlag(marks, open.topic, f))}
+        needs={unmetPrereqs(open.topic, (t) => read.has(t)).map((t) => lessonFor(language, t)).filter((l): l is TopicLesson => !!l)}
+        onOpenLesson={setOpen}
         questions={questions.get(practice) ?? 0}
         nextLesson={following}
         onBack={() => setOpen(null)}
@@ -202,6 +222,20 @@ export function GuideScreen({
                 </button>
               ))}
             </div>
+            {(flagged('star') > 0 || flagged('hard') > 0) && (
+              <div className="choice-row" role="group" aria-label="İşaretler">
+                {flagged('star') > 0 && (
+                  <button type="button" className="chip chip-sm" aria-pressed={flagFilter === 'star'} onClick={() => setFlagFilter(flagFilter === 'star' ? null : 'star')}>
+                    ★ Yer imli ({flagged('star')})
+                  </button>
+                )}
+                {flagged('hard') > 0 && (
+                  <button type="button" className="chip chip-sm" aria-pressed={flagFilter === 'hard'} onClick={() => setFlagFilter(flagFilter === 'hard' ? null : 'hard')}>
+                    Zor bulduklarım ({flagged('hard')})
+                  </button>
+                )}
+              </div>
+            )}
             <div className="guide-search-box">
               <SearchIcon size={16} className="guide-search-icon" />
               <input
@@ -243,6 +277,9 @@ export function GuideScreen({
                         read={read.has(l.topic)}
                         learned={!!marks[l.topic]?.learned}
                         foot={n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru` : `${n} soru`) : 'Temel konu'}
+                        flag={flagOf(l.topic)}
+                        snippet={hits.get(l.topic)?.snippet}
+                        needs={read.has(l.topic) ? undefined : unmetPrereqs(l.topic, (t) => read.has(t)).map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]}
                         onOpen={() => setOpen(l)}
                       />
                     )
@@ -332,11 +369,17 @@ const KIND_ART: Record<ResourceKind, string | undefined> = {
 const LEVEL_NAME: Record<GuideLevel, string> = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İleri orta', C1: 'İleri' }
 const titleOf = lessonTitle
 
-function LessonCard({ lesson, read, learned, foot, onOpen }: { lesson: TopicLesson; read: boolean; learned: boolean; foot: string; onOpen: () => void }) {
+function LessonCard({ lesson, read, learned, foot, flag, snippet, needs, onOpen }: { lesson: TopicLesson; read: boolean; learned: boolean; foot: string; flag?: LessonFlag; /** The line a search matched, when it was deeper than the summary. */ snippet?: string; /** The title of a lesson to read first, when one is not read. */ needs?: string; onOpen: () => void }) {
   return (
     <button type="button" className={`guide-card${learned ? ' guide-learned' : read ? ' guide-read' : ''}`} onClick={onOpen}>
       <span className="guide-card-head">
         <strong>{titleOf(lesson)}</strong>
+        {flag === 'star' && (
+          <span className="guide-flag" title="Yer imi" role="img" aria-label="Yer imi">
+            ★
+          </span>
+        )}
+        {flag === 'hard' && <span className="guide-tag guide-tag-hard">Zor</span>}
         {learned ? (
           <span className="guide-check-wrap guide-check-learned" title="Öğrenildi">
             <CheckCircleIcon size={18} className="guide-check" />
@@ -348,6 +391,12 @@ function LessonCard({ lesson, read, learned, foot, onOpen }: { lesson: TopicLess
         ) : null}
       </span>
       <span className="small muted guide-card-summary">{lesson.summary}</span>
+      {snippet && (
+        <span className="small guide-card-snippet" lang={lesson.language}>
+          {snippet}
+        </span>
+      )}
+      {needs && <span className="small muted guide-card-needs">Önce: {needs}</span>}
       <span className="guide-card-foot small">
         <span className="guide-card-stat">{foot}</span>
         {learned && <span className="guide-tag guide-tag-learned">Öğrenildi</span>}
@@ -381,6 +430,10 @@ function LessonView({
   read,
   learned,
   review,
+  flag,
+  onFlag,
+  needs,
+  onOpenLesson,
   questions,
   nextLesson,
   onBack,
@@ -395,6 +448,11 @@ function LessonView({
   read: boolean
   learned: boolean
   review?: boolean
+  flag?: LessonFlag
+  onFlag: (flag: LessonFlag | null) => void
+  /** Lessons this one builds on that are not read yet. */
+  needs: TopicLesson[]
+  onOpenLesson: (lesson: TopicLesson) => void
   questions: number
   nextLesson?: TopicLesson
   onBack: () => void
@@ -432,6 +490,20 @@ function LessonView({
         <h1 className="greeting">{titleOf(lesson)}</h1>
         <p className="greeting-sub">{lesson.summary}</p>
       </header>
+      {needs.length > 0 && !read && (
+        <p className="note guide-needs">
+          <strong>Önce şunu oku:</strong>{' '}
+          {needs.map((n, i) => (
+            <span key={n.topic}>
+              {i > 0 && ', '}
+              <button type="button" className="link" onClick={() => onOpenLesson(n)}>
+                {titleOf(n)}
+              </button>
+            </span>
+          ))}
+          . Bu ders ona dayanıyor.
+        </p>
+      )}
       <section className="card stack gap-2 guide-rules-card">
         <h2 className="section-title">Kurallar</h2>
         <ol className="guide-rules">
@@ -542,6 +614,16 @@ function LessonView({
             Fiil laboratuvarında çalış
           </button>
         )}
+        <LessonListen lesson={lesson} title={titleOf(lesson)} />
+        <button type="button" className="btn btn-quiet" aria-pressed={flag === 'star'} onClick={() => onFlag(flag === 'star' ? null : 'star')}>
+          {flag === 'star' ? '★ Yer imli' : '☆ Yer imi'}
+        </button>
+        <button type="button" className="btn btn-quiet" aria-pressed={flag === 'hard'} title="Tekrarı daha çabuk gelir" onClick={() => onFlag(flag === 'hard' ? null : 'hard')}>
+          {flag === 'hard' ? 'Zor buldum ✓' : 'Zor buldum'}
+        </button>
+        <button type="button" className="btn btn-quiet" onClick={() => openPrint(lessonSheetHtml(lesson, titleOf(lesson)))}>
+          Yazdır
+        </button>
         <button type="button" className="btn btn-quiet" aria-pressed={read} onClick={() => onRead(!read)}>
           {read ? (
             <>

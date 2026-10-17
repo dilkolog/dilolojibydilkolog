@@ -269,3 +269,35 @@ export async function approveAccount(page: Page) {
       }),
   )
 }
+
+/** Puts marks on the guide's lessons in the app's database (as the guide keeps them), for the Today review card. */
+export async function seedGuideMarks(page: Page, marks: Record<string, { read: string; learned?: string; reviewed?: string; step?: number }>) {
+  await page.evaluate(
+    (value) =>
+      new Promise<void>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'guideMarks', value })
+          tx.oncomplete = () => resolve()
+        }
+      }),
+    marks,
+  )
+}
+
+/** The topics the guide has marks for, as saved in the app's database (to wait for the save that follows a lesson's check). */
+export function guideMarkTopics(page: Page): Promise<string[]> {
+  return page.evaluate(
+    () =>
+      new Promise<string[]>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const get = open.result.transaction('meta').objectStore('meta').get('guideMarks')
+          get.onsuccess = () => resolve(Object.keys((get.result?.value as Record<string, unknown> | undefined) ?? {}))
+          get.onerror = () => resolve([])
+        }
+        open.onerror = () => resolve([])
+      }),
+  )
+}
