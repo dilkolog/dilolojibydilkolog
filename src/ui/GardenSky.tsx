@@ -18,8 +18,15 @@ export function GardenSky({ now, flowers, growing }: { now: Date; flowers: numbe
   return (
     <div className={`garden-sky is-${phase}`} role="img" aria-label={title} title={title}>
       <span className={`sky-body is-${body}`} style={{ left: `${6 + t * 88}%`, top: `${68 - arc * 52}%` }} />
+      {!night && (
+        <div className="sky-clouds" aria-hidden>
+          <span className="sky-cloud sky-cloud-1" style={{ top: '16%', left: '10%' }} />
+          <span className="sky-cloud sky-cloud-2" style={{ top: '34%', left: '68%' }} />
+        </div>
+      )}
       {night && [12, 30, 47, 66, 83].map((x, i) => <i key={x} className="sky-star" style={{ left: `${x}%`, top: `${14 + ((i * 23) % 40)}%`, '--i': i } as CSSProperties} />)}
       <svg className="sky-hills" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden>
+        <path d="M0 20 V10 Q20 3 45 8 T90 6 L100 9 V20Z" opacity="0.45" />
         <path d="M0 20 V12 Q12 5 26 11 T52 9 T78 12 T100 8 V20Z" />
       </svg>
       {Array.from({ length: guests }, (_, i) => (
