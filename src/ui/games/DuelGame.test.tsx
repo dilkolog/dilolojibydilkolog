@@ -112,4 +112,35 @@ describe('DuelGame', () => {
     expect(write).toHaveBeenCalledTimes(1)
     expect((write.mock.calls[0] as unknown as [string])[0]).toContain('?duel=')
   })
+
+  it('a duel can be narrowed to a topic and a level', async () => {
+    const host = await mount()
+    const select = host.querySelector<HTMLSelectElement>('select[aria-label="Düello konusu"]')!
+    const topic = [...select.options].map((o) => o.value).find((v) => v)!
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value')!.set!.call(select, topic)
+      select.dispatchEvent(new Event('change', { bubbles: true }))
+    })
+    await act(async () => button(host, 'düellosu başlat').click())
+    await playAll(host)
+    const sent = decodeDuel(host.querySelector('.duel-link')!.textContent!)!
+    expect(sent.ids.length).toBeGreaterThanOrEqual(5)
+    expect(sent.ids.every((id) => id.startsWith(`fr-${topic}-`))).toBe(true)
+  })
+
+  it('remembers a duel played against a friend, once, and shows the tally in the lobby', async () => {
+    const ids = pickDuelIds(grammarExercises('fr'), createRng(3))
+    const challenge: DuelChallenge = { language: 'fr', ids, from: { name: 'Şule', score: 0, ms: 1000 } }
+    sessionStorage.setItem(DUEL_INBOX, encodeDuel(challenge))
+    const host = await mount()
+    await act(async () => button(host, 'Düelloya başla').click())
+    await playAll(host)
+    const stored = JSON.parse(localStorage.getItem('diloloji:duel-history')!)
+    expect(stored).toHaveLength(1)
+    expect(stored[0]).toMatchObject({ opponent: 'Şule', theirs: 0 })
+    await act(async () => button(host, 'Yeni düello').click())
+    expect(host.querySelector('.duel-history')?.textContent).toContain('Şule')
+    expect(host.querySelector('.duel-history')?.textContent).toMatch(/\d+ galibiyet/)
+  })
 })
+

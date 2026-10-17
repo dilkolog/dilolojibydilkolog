@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { DUEL_ROUNDS, decodeDuel, duelOptions, duelQuestions, duelWinner, encodeDuel, pickDuelIds, type DuelChallenge } from '../duel'
+import { DUEL_ROUNDS, decodeDuel, duelOptions, duelPool, duelQuestions, duelWinner, encodeDuel, pickDuelIds, type DuelChallenge } from '../duel'
 import type { GrammarExercise } from '../grammar'
 import { createRng } from '../rng'
 
@@ -77,5 +77,19 @@ describe('duelQuestions', () => {
   it('finds the questions in order and skips one that is gone', () => {
     const c: DuelChallenge = { language: 'fr', ids: ['fr-passe-02', 'fr-gone-01', 'fr-futur-01'], from: { name: 'x', score: 1, ms: 1 } }
     expect(duelQuestions(c, pool).map((q) => q.id)).toEqual(['fr-passe-02', 'fr-futur-01'])
+  })
+})
+
+describe('narrowing a duel', () => {
+  it('takes questions of one topic, or one level, only', () => {
+    const mixed = [...pool.map((q, i) => ({ ...q, level: i % 2 ? ('B2' as const) : ('B1' as const) }))]
+    const ids = pickDuelIds(mixed, createRng(1), 5, { topic: 'futur' })
+    expect(ids).toHaveLength(5)
+    expect(ids.every((id) => id.startsWith('fr-futur-'))).toBe(true)
+    const b2 = pickDuelIds(mixed, createRng(1), 10, { level: 'B2' })
+    const byId = new Map(mixed.map((q) => [q.id, q]))
+    expect(b2.length).toBeGreaterThan(0)
+    expect(b2.every((id) => byId.get(id)!.level === 'B2')).toBe(true)
+    expect(duelPool(mixed, { topic: 'nothing' })).toEqual([])
   })
 })
