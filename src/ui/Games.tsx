@@ -158,9 +158,9 @@ export function GamesScreen(
     if (game === 'ear') return <EarMissesGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'pron') return <PronPractice language={p.language} vocabulary={p.vocabulary} onExit={() => setGame(null)} />
     if (game === 'back') return <BackTranslation language={p.language} onExit={() => setGame(null)} />
-    if (game === 'register') return <RegisterRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'register') return <RegisterRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'affix') return <AffixHunt language={p.language} onExit={() => setGame(null)} />
-    if (game === 'flow') return <FlowRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'flow') return <FlowRound language={p.language} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'song') return <SongGame language={p.language} onExit={() => setGame(null)} />

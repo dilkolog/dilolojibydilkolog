@@ -76,6 +76,7 @@ export function ReadingScreen({
   onOpen,
   onStudy,
   onOpenLab,
+  onLesson,
   onLookUp,
   shared,
 }: {
@@ -88,6 +89,8 @@ export function ReadingScreen({
   onStudy?: (entries: VocabularyEntry[]) => void
   /** Open a verb form's verb and tense in the verb lab. */
   onOpenLab?: (verb: string, tense: string) => void
+  /** Opens the guide's lesson on a topic (from a tense met in the text). */
+  onLesson?: (topic: string) => void
   /** The word in the dictionary: every meaning, its sound, the other languages. */
   onLookUp?: (word: string) => void
   /** Something shared to the app (Share → Diloloji): put in the add card, ready to start. */
@@ -557,7 +560,7 @@ export function ReadingScreen({
           Çoklu seç
         </button>
       </div>
-      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
+      {showForms && language !== 'en' && <TextForms groups={formGroups} language={language} onOpenLab={onOpenLab} onLesson={onLesson} onReview={reviewForms} onShow={showSentence} onClose={() => setShowForms(false)} />}
       {dictating !== null && (
         <TextDictation key={`dict-${current?.id}-${dictating}`} sentences={sentencesFlat} language={language} start={dictating} voice={recorded ? 'recording' : 'device'} play={playSentence} onClose={() => setDictating(null)} />
       )}
@@ -653,6 +656,7 @@ export function ReadingScreen({
           onLookUp={onLookUp}
           onOpen={onOpen}
           onOpenLab={onOpenLab}
+          onLesson={onLesson}
           onKeepSentence={keepSentence}
           onListenFrom={(at) => {
             const [pi, si] = at.split('.').map(Number)

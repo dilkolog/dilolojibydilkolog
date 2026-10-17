@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { dueLesson } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
 import type { TargetLanguage } from '../engine/types'
-import { loadMarks, markPutOff, saveMarks } from './guideProgress'
+import { db } from '../data/instance'
+import { loadMarks, markPutOff } from './guideProgress'
 import { CloseIcon } from './icons'
 import { NEW_ART } from './drawnArt'
 
@@ -14,11 +15,11 @@ import { NEW_ART } from './drawnArt'
 export function GuideReviewNudge({ language, onOpen }: { language: TargetLanguage; onOpen: (topic: string) => void }) {
   const [due, setDue] = useState<{ topic: string; title: string } | null>(null)
   useEffect(() => {
-    const marks = loadMarks()
-    if (!Object.keys(marks).length) return
     let live = true
-    void import('../data/guide/lessonOf')
-      .then(({ checkableTopics, lessonFor, lessonTitle }) => {
+    void loadMarks(db)
+      .then(async (marks) => {
+        if (!Object.keys(marks).length) return
+        const { checkableTopics, lessonFor, lessonTitle } = await import('../data/guide/lessonOf')
         const topic = dueLesson(marks, checkableTopics(language), localDate(new Date()))
         const lesson = topic ? lessonFor(language, topic) : undefined
         if (live) setDue(lesson ? { topic: lesson.topic, title: lessonTitle(lesson) } : null)
@@ -44,7 +45,7 @@ export function GuideReviewNudge({ language, onOpen }: { language: TargetLanguag
         aria-label="Şimdi değil"
         title="Şimdi değil"
         onClick={() => {
-          saveMarks(markPutOff(loadMarks(), due.topic))
+          void loadMarks(db).then((marks) => db.saveGuideMarks(markPutOff(marks, due.topic))).catch(() => {})
           setDue(null)
         }}
       >

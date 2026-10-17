@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -981,12 +981,7 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
   }
 
   // 1. Bugün'deki tekrar kartı (Today review card)
-  await page.evaluate(() => {
-    localStorage.setItem(
-      'diloloji:guide-progress',
-      JSON.stringify({ subjonctif: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } }),
-    )
-  })
+  await seedGuideMarks(page, { subjonctif: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } })
   await page.reload()
   await openScreen(page, 'Bugün')
   const nudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })
@@ -1081,7 +1076,7 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
   await expect(page.locator('.rewrite-game')).toBeVisible()
   await scanAllThemes('sentence-rewrite-intro')
   await page.getByRole('button', { name: 'Başla' }).click()
-  await expect(page.locator('.rewrite-card')).toBeVisible()
+  await expect(page.locator('.rewrite-play-area')).toBeVisible()
   await scanAllThemes('sentence-rewrite-play-screen')
   await page.locator('button.link', { hasText: '← Oyunlar' }).click()
 

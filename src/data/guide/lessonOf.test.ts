@@ -9,6 +9,8 @@ import {
   lessonTitle,
   lessonsOf,
   practiceTopic,
+  TRY_SIZE,
+  tryFor,
 } from './lessonOf'
 
 describe('lessonOf utilities', () => {
@@ -88,5 +90,18 @@ describe('lessonOf utilities', () => {
     const topicsEs = checkableTopics('es')
     expect(topicsEs.length).toBeGreaterThan(10)
     expect(topicsEs).toContain('basics_es_articulos')
+  })
+
+  it('offers questions to try on the spot that the check does not ask, and none when the lesson has only its own check', () => {
+    const lesson = lessonFor('fr', 'subjonctif')!
+    const check = checkFor(lesson)
+    const tried = tryFor(lesson, check)
+    expect(tried.length).toBeGreaterThan(0)
+    expect(tried.length).toBeLessThanOrEqual(TRY_SIZE)
+    const asked = new Set(check.map((c) => c.prompt))
+    expect(tried.every((t) => !asked.has(t.prompt))).toBe(true)
+    expect(tried.every((t) => t.options[t.answer] !== undefined)).toBe(true)
+    const basic = lessonFor('fr', 'basics_fr_articles')!
+    expect(tryFor(basic, checkFor(basic))).toEqual([])
   })
 })

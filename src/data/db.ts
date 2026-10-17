@@ -13,6 +13,7 @@ import type { BossWin } from '../engine/bosses'
 import type { ExamResult } from '../engine/exam'
 import { emptyLab, type LabData } from '../engine/labProgress'
 import { localDate } from '../engine/progress'
+import { cleanMarks, mergeMarks, type GuideMarks } from '../engine/guideReview'
 import { addTime, cleanTimeLog, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
@@ -931,6 +932,22 @@ export class KelimeDB extends Dexie {
     return ((await this.meta.get('records'))?.value as Record<string, number>) ?? {}
   }
 
+  /** The guide's lessons read, learned and reviewed (see engine/guideReview). */
+  async getGuideMarks(): Promise<GuideMarks> {
+    return cleanMarks((await this.meta.get('guideMarks'))?.value)
+  }
+
+  /** Merges the marks with the stored ones (a screen may hold older marks than sync brought) and keeps the result; returns it. */
+  saveGuideMarks(marks: GuideMarks): Promise<GuideMarks> {
+    const next = this.guideQueue.then(async () => {
+      const merged = mergeMarks(await this.getGuideMarks(), cleanMarks(marks))
+      await this.meta.put({ key: 'guideMarks', value: merged })
+      return merged
+    })
+    this.guideQueue = next.then(() => {}, () => {})
+    return next
+  }
+
   /** Seconds read and listened, per language and day (see engine/studyTime). */
   async getTimeLog(): Promise<TimeLog> {
     return cleanTimeLog((await this.meta.get('timeLog'))?.value)
@@ -949,6 +966,7 @@ export class KelimeDB extends Dexie {
   }
 
   private timeQueue: Promise<void> = Promise.resolve()
+  private guideQueue: Promise<unknown> = Promise.resolve()
 
   async saveRecord(key: string, value: number) {
     const all = await this.getRecords()
@@ -1243,7 +1261,7 @@ export class KelimeDB extends Dexie {
  * merge without it and upload a core file that wipes the new field from every other device. An older app then meets
  * a newer backup and is told to update (BackupVersionError) instead.
  */
-export const BACKUP_VERSION = 8
+export const BACKUP_VERSION = 9
 
 export interface Backup {
   app: 'kelime-koc'
@@ -1279,6 +1297,8 @@ export interface Backup {
   records?: Record<string, number>
   /** Seconds read and listened per language and day (backup version 8+). */
   timeLog?: Record<string, number>
+  /** The guide's lessons read, learned and reviewed (backup version 9+). */
+  guide?: GuideMarks
   /** Badges earned and when. */
   badges?: BadgeLog
   /** Translations kept on the device. */
@@ -1351,6 +1371,7 @@ export async function exportBackup(db: KelimeDB, now = new Date(), { media: with
     lab: { fr: await db.getLab('fr'), es: await db.getLab('es') },
     records: await db.getRecords(),
     timeLog: await db.getTimeLog(),
+    guide: await db.getGuideMarks(),
     badges: await db.getBadgeLog(),
     translations: await db.getTranslations(),
     earMisses: await db.getEarLog(),
@@ -1463,6 +1484,7 @@ export async function restoreBackup(db: KelimeDB, backup: Backup, { keepMedia = 
     for (const [l, notes] of Object.entries(backup.dictionary ?? {})) if (notes) await db.meta.put({ key: `dict:${l}`, value: notes })
     if (backup.records) await db.meta.put({ key: 'records', value: backup.records })
     if (backup.timeLog) await db.meta.put({ key: 'timeLog', value: cleanTimeLog(backup.timeLog) })
+    if (backup.guide) await db.meta.put({ key: 'guideMarks', value: cleanMarks(backup.guide) })
     if (backup.badges) await db.meta.put({ key: 'badges', value: backup.badges })
     if (backup.translations) await db.meta.put({ key: 'translations', value: backup.translations })
     if (backup.earMisses) await db.meta.put({ key: 'earMisses', value: backup.earMisses })

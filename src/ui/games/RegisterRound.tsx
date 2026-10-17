@@ -1,3 +1,4 @@
+import { LessonLink } from '../LessonLink'
 import { useEffect, useState } from 'react'
 import { GameResult } from './GameResult'
 import type { GrammarLog } from '../../engine/grammar'
@@ -18,7 +19,10 @@ const note = noteIn(() => db.getRegisterLog(), (log) => db.saveRegisterLog(log))
  * Register: a situation (a friend, a stranger, a job interview) and a thought; the way of saying it
  * that suits the situation is picked among the street's, the standard and the formal words.
  */
-export function RegisterRound({ language, onExit }: { language: TargetLanguage; onExit: () => void }) {
+/** The guide's lesson on register, by language. */
+const REGISTER_LESSON: Record<TargetLanguage, string> = { fr: 'basics_fr_registres', es: 'basics_es_registro_formal', en: 'basics_en_register' }
+
+export function RegisterRound({ language, onExit, onLesson }: { language: TargetLanguage; onExit: () => void; /** Opens the guide's lesson on a topic. */ onLesson?: (topic: string) => void }) {
   const [log, setLog] = useState<GrammarLog | null>(null)
   const [phase, setPhase] = useState<'intro' | 'play' | 'over'>('intro')
   const [round, setRound] = useState<RegisterQuestion[]>([])
@@ -181,6 +185,7 @@ export function RegisterRound({ language, onExit }: { language: TargetLanguage; 
           onExit={onExit}
         />
       )}
+      {phase === 'over' && missed.length > 0 && onLesson && <LessonLink language={language} topic={REGISTER_LESSON[language]} onOpen={onLesson} />}
     </div>
   )
 }

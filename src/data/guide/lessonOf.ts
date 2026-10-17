@@ -3,6 +3,7 @@ import type { Tense } from '../../engine/tenses'
 import type { TargetLanguage } from '../../engine/types'
 import { grammarExercises } from '../grammar'
 import { TOPIC_LESSONS } from './lessons'
+import { LESSON_TENSE } from './tenseTopics'
 import type { TopicLesson } from './lessonTypes'
 
 export const lessonsOf = (language: TargetLanguage): TopicLesson[] => TOPIC_LESSONS.filter((l) => l.language === language)
@@ -19,31 +20,6 @@ export const lessonTitle = (l: TopicLesson): string => (l.topic.startsWith('basi
 /** The grammar topic whose questions go with a lesson. */
 export const practiceTopic = (l: TopicLesson): string => l.practice ?? l.topic
 
-const LESSON_TENSE: Record<string, Tense> = {
-  basics_fr_present: 'present',
-  basics_fr_passe_compose: 'passe-compose',
-  passe_imparfait: 'imparfait',
-  basics_fr_plus_que_parfait: 'plus-que-parfait',
-  basics_fr_passe_simple: 'passe-simple',
-  futur_fr: 'futur',
-  basics_fr_hypothese: 'conditionnel',
-  conditionnel_passe: 'conditionnel-passe',
-  subjonctif: 'subjonctif',
-  basics_fr_subjonctif_passe: 'subjonctif-passe',
-  basics_fr_imperatif: 'imperatif',
-  basics_es_presente: 'presente',
-  basics_es_preterito: 'perfecto',
-  basics_es_perfecto_indefinido: 'preterito',
-  preterito_imperfecto: 'imperfecto',
-  basics_es_pluscuamperfecto: 'pluscuamperfecto',
-  basics_es_futuro: 'futuro',
-  basics_es_probabilidad: 'futuro-perfecto',
-  condicionales: 'condicional',
-  subjuntivo: 'subjuntivo',
-  basics_es_imperfecto_subjuntivo: 'subjuntivo-imperfecto',
-  basics_es_subjuntivo_compuesto: 'subjuntivo-perfecto',
-  imperativo_es: 'imperativo',
-}
 
 /** The verb-lab tense a French or Spanish lesson teaches, when it teaches one. */
 export const lessonTense = (l: TopicLesson): Tense | undefined => LESSON_TENSE[l.topic]
@@ -114,4 +90,17 @@ export function checkableTopics(language: TargetLanguage): string[] {
   return lessonsOf(language)
     .filter((l) => checkFor(l, () => 0.5, exercises).length > 0)
     .map((l) => l.topic)
+}
+
+/** How many questions the lesson offers to try on the spot, between its rules and its examples. */
+export const TRY_SIZE = 2
+
+/**
+ * Questions to try right after the rules: choice questions of the lesson's topic that its check does not ask (a
+ * lesson that only has its own check has none to spare, and offers nothing here).
+ */
+export function tryFor(lesson: TopicLesson, check: readonly CheckItem[], rng: () => number = Math.random, exercises?: GrammarExercise[]): CheckItem[] {
+  const asked = new Set(check.map((c) => c.prompt))
+  const pool = fromExercises(exercises ?? grammarExercises(lesson.language), practiceTopic(lesson), rng).filter((c) => !asked.has(c.prompt))
+  return shuffle(pool, rng).slice(0, TRY_SIZE)
 }

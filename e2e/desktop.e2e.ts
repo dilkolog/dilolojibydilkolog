@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import { unzipSync } from 'fflate'
-import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, startWithSamples } from './helpers'
+import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -2151,7 +2151,7 @@ test('the guide: a lesson leads to its own grammar questions, the links open out
 
 test('the guide: a lesson read days ago comes back on Today for a short check', async ({ page }) => {
   await startWithSamples(page)
-  await page.evaluate(() => localStorage.setItem('diloloji:guide-progress', JSON.stringify({ subjonctif: { read: '2020-01-01' } })))
+  await seedGuideMarks(page, { subjonctif: { read: '2020-01-01' } })
   await page.reload()
   await openScreen(page, 'Bugün')
   const nudge = page.locator('.habit-nudge').filter({ hasText: 'Hatırlıyor musun?' })
