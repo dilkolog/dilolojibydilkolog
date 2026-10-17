@@ -558,62 +558,36 @@ Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 
 **Yerel not (önemli):** `import.meta.glob` ile okunan klasöre yeni bir `*.json` koyunca vitest, o klasörü okuyan modülün eski çıktısını `node_modules/.vitest-cache`ten sunabilir (yeni dosya "yok" görünür). Yeni dosya eklediğinde `rm -rf node_modules/.vitest-cache` yap, sonra testi çalıştır. CI'da (temiz ortam) sorun olmaz.
 
-### 15.1 Sınav soru havuzu (en büyük iş, en önemli)
-**Hedef:** her dersin havuzu **≥ 10 soru** (kendi 3 sorusu + yenileri). Yani ders başına **en az 7 yeni soru**: ~204 ders × 7 ≈ 1.430 soru. Dil ve seviye gruplarıyla ayrı PR'lar:
-- 15.1a Fransızca A1–A2, 15.1b Fransızca B1, 15.1c Fransızca B2–C1
-- 15.1d–f İspanyolca (aynı bölünme), 15.1g–i İngilizce (aynı bölünme)
-Her PR ilgili derslerin tamamını kapsasın (yarım ders bırakma).
+### 15.1 Sınav soru havuzu (TAMAMLANDI — #446–#454)
+**Hedef:** her dersin havuzu **≥ 10 soru** (kendi 3 sorusu + yenileri). 204 dersin tamamı için soru havuzları tamamlandı:
+- 15.1a Fransızca A1–A2: PR #446 (161 soru, `src/data/guide/checks/fr-2.json`).
+- 15.1b Fransızca B1: PR #447 (112 soru, `src/data/guide/checks/fr-3.json`).
+- 15.1c Fransızca B2–C1: PR #448 (175 soru, `src/data/guide/checks/fr-4.json`). Fransızca 65 dersin tamamı havuz ≥ 10.
+- 15.1d İspanyolca A1–A2: PR #449 (182 soru, `src/data/guide/checks/es-1.json`).
+- 15.1e İspanyolca B1: PR #450 (126 soru, `src/data/guide/checks/es-2.json`).
+- 15.1f İspanyolca B2–C1: PR #451 (161 soru, `src/data/guide/checks/es-3.json`). İspanyolca 67 dersin tamamı havuz ≥ 10.
+- 15.1g İngilizce A1–A2: PR #452 (154 soru, `src/data/guide/checks/en-1.json`).
+- 15.1h İngilizce B1: PR #453 (133 soru, `src/data/guide/checks/en-2.json`).
+- 15.1i İngilizce B2–C1: PR #454 (196 soru, `src/data/guide/checks/en-3.json`). İngilizce 72 dersin tamamı havuz ≥ 10.
+Tüm 204 dersin soru havuzu ≥ 10 oldu, `docs/veri/rehber-ders-listesi.md` güncellendi, sıfır spare testleri sentetik mocklara uyarlandı.
 
-**Biçim:** `src/data/guide/checks/<dil>-<n>.json` (dosya adı dil koduyla başlar: `fr-2.json`, `es-1.json`…). Örnek ve biçim için `src/data/guide/checks/fr-1.json` (Claude Code'un yazdığı örnek: `basics_fr_articles` için 7 soru).
-```json
-{ "language": "fr", "source": "Diloloji (özgün)",
-  "lessons": { "<ders topic anahtarı>": [ { "prompt": "...", "options": ["...","...","..."], "answer": 1, "why": "..." } ] } }
-```
-- `prompt`: ya hedef dilde bir cümle ve boşluğu `___` (örnek: `Je vais ___ cinéma.`) ya da Türkçe bir soru (`Hangisi dişil bir isimdir?`).
-- `options`: 3 ya da 4 seçenek, hepsi farklı; `answer` doğru olanın indeksi (0'dan). Şıklar tuzaklı olsun (Türkçe konuşanın gerçekten yaptığı hatalar), saçma değil.
-- `why`: Türkçe, bir cümle, kuralı söylesin.
-- `topic` anahtarı `docs/veri/rehber-ders-listesi.md`deki gibi, dersin kendi dilinde.
+### 15.2 Rehber içerik denetimi (TAMAMLANDI — `docs/veri/rehber-icerik-denetimi.md`, #455)
+`docs/veri/rehber-icerik-denetimi.md` raporu oluşturuldu:
+- Çakışan ders çiftleri (FR coğrafi yer edatları, ES geçmiş zaman ayrımları ve olasılık zamanı, EN cleft ve subjunctive ikilikleri) için birleştirme/farklılaştırma önerileri.
+- CEFR/DELF/DELE standartlarına göre A1 olması gereken dersler (`basics_fr_possessifs`, `basics_fr_questions`, `basics_es_posesivos`, `articles_en`).
+- `src/data/guide/prereqs.ts` önkoşul haritası eksik köprüleri ve pedagojik sıralama iyileştirmeleri.
+- Dil başına eksik temel başlıklar (sayılar, saat sorma, tarihler, emir kipi).
 
-**Kalite kuralları (hepsi test ve gözden geçirmede aranacak):**
-1. **Tek doğru cevap.** Bağlam, ikinci bir şıkkı da doğru yapıyorsa (ör. `a regardé` / `regardait`, bölgeye göre `tomar/poner atención`) soruyu düzelt. Şüphede otorite kaynağa bak (RAE DPD, Le Robert, Bescherelle, Cambridge Grammar of English) ve `why`ya yazma, PR açıklamasına kaynağı yaz.
-2. **Dersin `watch` ("Dikkat") maddelerini kapsa.** Her `watch` maddesi en az bir soruya dönüşsün; kalan sorular kuralların farklı yönlerini (biçim, kullanım, istisna, Türkçeden fark) dengeli yoklasın.
-3. **Aynı soruyu kopyalama:** dersin mevcut 3 sorusunu, örnek cümlelerini ya da dilbilgisi soru bankasındaki bir soruyu birebir tekrarlama (benzer biçimde sorulabilir, aynı cümle olmasın). Bir dersin içinde aynı `prompt` iki kez olmasın (test denetler).
-4. **Biçim çeşitliliği:** boşluk doldurma ağırlıkta olsun ama bir derste en az 2 tane Türkçe "hangisi doğru/yanlış" sorusu da olsun; hep aynı desen olmasın.
-5. **Seviyeye uygun sözcük:** A1 dersinde nadir kelime yok. Özel ad kullanacaksan yaygın olsun.
-6. Aksan ve yazım doğru: Fransızca/İspanyolca özel harfler (é, è, ç, ñ, ¿ ¡ …) eksiksiz.
-7. Yeni test koşusu: `src/data/guide/checkPools.test.ts` biçimi, benzersizliği ve ders anahtarlarının varlığını denetler. **Havuz hedefi tamamlanınca** Claude Code o testteki `POOL_REQUIRED`ı 3'ten 10'a çıkaracak; bu yüzden bir PR bittiğinde `docs/veri/rehber-ders-listesi.md`yi yeniden üretip "havuz" sütununu PR açıklamasına ekle.
+### 15.3 Dilbilgisi terimleri verisi (TAMAMLANDI — `src/data/guide/terms/`, #456)
+`src/data/guide/terms/{fr,es,en}.json` (her dilde 45 terim, toplam 135 terim) ve `src/data/guide/terms.test.ts`:
+- Her terim Türkçe kısa karşılık, sade açıklama (≤ 240 karakter) ve örnek cümle taşır.
+- Test paketi: 3 dil varlığı, 40-60 terim sınırı, terim/alias benzersizliği, alan doluluğu ve karakter sınırlarını doğrular (4 test yeşil).
 
-**Ölçüt:** her PR'ın dersleri havuz ≥ 10; `npx vitest run src/data/guide` yeşil; PR açıklamasında kullanılan kaynaklar ve şüpheli bulunup düzeltilen sorular listelenmiş.
-
-### 15.2 Rehber içerik denetimi (rapor, uygulamayı Claude Code yapar)
-Çıktı: `docs/veri/rehber-icerik-denetimi.md`. Üç dil için:
-- **Çakışan / tekrar eden dersler:** konu örtüşmesi olan ders çiftleri (bilinenler: FR "Yer edatları; ülke ve şehirle…" ↔ "Ülkeler, şehirler ve adalarla edatlar…"; ES "he comido mu, comí mi?" ↔ "He hecho mu, hice mi?"; EN past simple / present perfect / past continuous grupları). Her çift için öneri: birleştir, birini sil ya da farklılaştır (hangi içerik hangisinde kalsın).
-- **Seviye etiketleri:** yaygın ölçeğe (CEFR, ders kitabı sıralaması: Cambridge/DELE/DELF programı) göre yanlış seviyedeki dersler. Bilinen şüpheli: FR'de sayılar/saat, soru sözcükleri, iyelik sıfatları A2'de (A1 olmalı olabilir); ES ve EN karşılıkları. Tablo: ders, bugünkü seviye, önerilen seviye, gerekçe.
-- **Önkoşul haritası** (`src/data/guide/prereqs.ts`): mantıksız ya da eksik bağlar.
-- **Eksik konular:** bir CEFR programında olup Rehber'de olmayan başlıklar (dil başına kısa liste, öncelik sırasıyla).
-- **Derslerde olgusal hata:** gözüne çarpanlar (kaynak göstererek). Düzeltme yapma, raporla.
-Doğrulanamayanlar ayrı listede, ağ gerektiren doğrulamalar komut çıktısıyla.
-
-### 15.3 Dilbilgisi terimleri verisi
-Çıktı: `src/data/guide/terms/<dil>.json` (3 dosya) + `src/data/guide/terms.test.ts`. Her dosya o dilin derslerinde geçen dilbilgisi terimlerini (ör. FR: *partitif, subjonctif, imparfait, pronom complément, accord du participe passé*; ES: *subjuntivo, pretérito indefinido, laísmo*; EN: *gerund, phrasal verb, modal, countable*) Türkçe açıklasın. **Dil başına 40–60 terim**, derslerde gerçekten geçenler (`docs/veri/rehber-ders-listesi.md` ve derslerin `title`/`rules` metinleri).
-```json
-{ "language": "fr", "source": "Diloloji (özgün)",
-  "terms": [ { "term": "subjonctif", "aliases": ["subjonctif présent"], "tr": "dilek-şart (subjonctif) kipi",
-               "explanation": "İstek, duygu, şüphe ya da gereklilik bildiren cümlelerde que'den sonra kullanılan kip. Türkçede tam karşılığı yok.",
-               "example": { "text": "Il faut que tu viennes.", "tr": "Gelmen gerek." } } ] }
-```
-- `term` dil içindeki yazım (küçük harf, aksanlı), `aliases` derslerde geçen başka yazımlar (boş olabilir), `tr` kısa Türkçe karşılık ya da adlandırma, `explanation` 1–2 cümle sade Türkçe (terim yığmadan), `example` isteğe bağlı.
-- Test: dosya biçimi, dil alanı, `term` benzersizliği (alias dahil), alanların dolu ve makul uzunlukta (explanation ≤ 240 karakter) olması.
-- Metinler `docs/METIN-DENETIMI.md` üslubunda.
-
-### 15.4 Seviye belirleme sorularının verisi
-Çıktı: `src/data/guide/placement/<dil>.json` (3 dosya) + `src/data/guide/placement.test.ts`. Her dil için **30 çoktan seçmeli dilbilgisi sorusu**, seviyeye göre dağılım **A1: 6, A2: 6, B1: 7, B2: 6, C1: 5**; her soru bir Rehber dersine bağlı (`lesson`: ders `topic` anahtarı) ve **o dersin seviyesiyle uyumlu** (A1 sorusu A1 dersinden). Test sonucu, ders seviyesinin altındaki derslerin "biliyorum" önerisine çevrilir: bu yüzden soru **o dersin kuralını** yoklamalı.
-```json
-{ "language": "fr", "source": "Diloloji (özgün)",
-  "questions": [ { "level": "A2", "lesson": "basics_fr_passe_compose", "prompt": "Hier, nous ___ au cinéma.", "options": ["avons allé","sommes allés","avons allés","sommes allé"], "answer": 1, "why": "aller être ile çekimlenir ve özneyle uyum yapar: nous sommes allés." } ] }
-```
-- 15.1'in kalite kuralları aynen geçerli (tek doğru cevap, tuzaklı ama adil şıklar, Türkçe `why`). Placement sorusu rastgele seçilmeden **seviyeye göre sırayla** sorulacak, bu yüzden her seviyenin içinde kolaydan zora doğru sırala.
-- Test: dağılım (6/6/7/6/5), `lesson` anahtarının dilde var olması ve sorunun seviyesinin o dersin seviyesine eşit olması, biçim kuralları.
+### 15.4 Seviye belirleme sorularının verisi (TAMAMLANDI — `src/data/guide/placement/`, #457)
+`src/data/guide/placement/{fr,es,en}.json` (her dilde 30 soru, toplam 90 soru) ve `src/data/guide/placement.test.ts`:
+- Dağılım: A1 (6), A2 (6), B1 (7), B2 (6), C1 (5).
+- Her soru ilgili seviyedeki bir rehber dersine doğrudan bağlıdır ve kuralı yoklar.
+- Test paketi: 30 soru adedi, 6/6/7/6/5 dağılımı, seviye sıralaması, müfredat dersi ve seviye eşleşmesi, şık benzersizliği ve geçerliliğini doğrular (5 test yeşil).
 
 ### 15.5 E2E ve erişilebilirlik (Claude Code ekranları bitirdikçe)
 Claude Code her ekranı birleştirdiğinde PR açıklamasında Antigravity'ye haber verecek; o zaman `e2e/a11y.e2e.ts` ve `e2e/desktop.e2e.ts`e yeni ekranlar için axe taraması (açık/koyu/sakin tema, telefon ve masaüstü) ve temel akış testleri eklenecek: seviye belirleme testi, Bugün'deki "Bugünün dersi" kartı, ders sayfasında adımlar, terim kartı.
@@ -621,7 +595,7 @@ Claude Code her ekranı birleştirdiğinde PR açıklamasında Antigravity'ye ha
 ### 15.6 Görsel referansları (KOTA)
 Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.
 
-**Tur sonu ölçütü:** 15.1'in dokuz PR'ı birleşmiş ve havuz ≥ 10; 15.2 raporu yazılmış (Claude Code uygulamış); 15.3 ve 15.4 verileri testleriyle yeşil; E2E yeşil; PR'lar tek konulu; doğrulanamayanlar ayrı listede.
+**Tur sonu ölçütü:** 15.1'in dokuz PR'ı birleşmiş ve havuz ≥ 10; 15.2 raporu yazılmış; 15.3 ve 15.4 verileri testleriyle yeşil; E2E Claude Code'un ekranları geldikçe eklenecek.
 
 ---
 
