@@ -13,7 +13,7 @@ import { TIER_NAME } from './badgeTier'
 import { BadgeMedal } from './Medal'
 import { StreakPicture } from './StreakFlame'
 import { localDate } from '../engine/progress'
-import { bannerOf, daysUntil, frameOf, pinnedBadges, titleName, type Unlockables } from '../engine/profileStyle'
+import { bannerOf, daysUntil, frameOf, PIN_LIMIT, pinnedBadges, titleName, toggleLimited, type Unlockables } from '../engine/profileStyle'
 import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
@@ -40,6 +40,7 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   const tabsRef = useTabIndicator(tab)
   const [openBadge, setOpenBadge] = useState<BadgeSeries | null>(null)
   const [timelineAll, setTimelineAll] = useState(false)
+  const [catFilter, setCatFilter] = useState<string>('all')
 
   const save = (patch: Partial<Profile>) => onChange({ ...settings, profile: { ...profile, ...patch } })
 
@@ -285,98 +286,135 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
             ))}
           </div>
 
-          {tab === 'badges' && (
-            <section className="badges-tab">
-              <div className="badge-summary">
-                <div className="badge-summary-count">
-                  <strong>{earnedSeries.length}</strong>
-                  <span className="muted">
-                    / {series.length} rozet · {unlocked.length}/{game.achievements.length} kademe
-                  </span>
-                </div>
-                <span className="badge-progress" aria-hidden>
-                  <span style={{ width: `${(unlocked.length / Math.max(1, game.achievements.length)) * 100}%` }} />
-                </span>
-                <div className="badge-tiers">
-                  {(['bronze', 'silver', 'gold', 'special'] as const).map((t) => (
-                    <span key={t} className={`badge-tier tier-${t}`}>
-                      {TIER_NAME[t]} {unlocked.filter((x) => medalTier(x) === t).length}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              {nextBadges.length > 0 && (
-                <div className="badge-block">
-                  <h2 className="subhead">Sıradakiler</h2>
-                  <div className="badge-grid badge-grid-next">
-                    {nextBadges.map((s) => (
-                      <Badge key={s.stat} s={s} onOpen={setOpenBadge} />
-                    ))}
-                  </div>
-                </div>
-              )}
-              {dated.length > 0 && (
-                <div className="badge-block">
-                  <h2 className="subhead">Son kazandıkların</h2>
-                  <ol className="badge-timeline">
-                    {dated.slice(0, timelineAll ? undefined : 5).map((a) => (
-                      <li key={a.id}>
-                        <BadgeMedal badge={a} unlocked size={36} />
-                        <span>
-                          <strong>{a.title}</strong> <span className="small muted">· {a.description}</span>
+          {tab === 'badges' && (() => {
+            const filteredEarned = catFilter === 'all' ? earnedSeries : earnedSeries.filter((s) => badgeCategory(s.steps[0]) === catFilter)
+            const filteredLocked = catFilter === 'all' ? locked : locked.filter((s) => badgeCategory(s.steps[0]) === catFilter)
+            const totalPct = Math.round((unlocked.length / Math.max(1, game.achievements.length)) * 100)
+            return (
+              <section className="badges-tab">
+                <div className="badge-summary">
+                  <img className="badge-summary-emblem" src={EMBLEM.trophy} alt="" width={42} height={42} draggable={false} />
+                  <div className="badge-summary-main">
+                    <div className="badge-summary-head">
+                      <div className="badge-summary-count">
+                        <strong>{earnedSeries.length}</strong>
+                        <span className="muted">
+                          / {series.length} rozet · {unlocked.length}/{game.achievements.length} kademe
                         </span>
-                        <time className="small muted" dateTime={a.unlockedAt}>
-                          {fmtDay(a.unlockedAt!)}
-                        </time>
-                      </li>
-                    ))}
-                  </ol>
-                  {dated.length > 5 && (
-                    <button type="button" className="link small" onClick={() => setTimelineAll((v) => !v)}>
-                      {timelineAll ? 'Daha az göster' : `Tümünü göster (${dated.length})`}
-                    </button>
-                  )}
-                </div>
-              )}
-              {earnedSeries.length > 0 && (
-                <div className="badge-block">
-                  <h2 className="subhead">
-                    <img className="cat-emblem" src={EMBLEM.trophy} alt="" width={26} height={26} draggable={false} />
-                    Kazandıkların
-                  </h2>
-                  <div className="badge-case">
-                    {earnedSeries.map((s) => (
-                      <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />
+                      </div>
+                      <span className="badge-summary-pct">%{totalPct}</span>
+                    </div>
+                    <span className="badge-progress" aria-hidden>
+                      <span style={{ width: `${(unlocked.length / Math.max(1, game.achievements.length)) * 100}%` }} />
+                    </span>
+                  </div>
+                  <div className="badge-tiers">
+                    {(['bronze', 'silver', 'gold', 'special'] as const).map((t) => (
+                      <span key={t} className={`badge-tier tier-${t}`}>
+                        <i className="badge-tier-dot" aria-hidden />
+                        {TIER_NAME[t]} <strong>{unlocked.filter((x) => medalTier(x) === t).length}</strong>
+                      </span>
                     ))}
                   </div>
                 </div>
-              )}
-              {locked.length > 0 && (
-                <details className="badge-block">
-                  <summary className="small">Diğer rozetler ({locked.length})</summary>
-                  {/* By what they count, so seventy badges read as five shelves. */}
+                {nextBadges.length > 0 && (
+                  <div className="badge-block">
+                    <h2 className="subhead">Sıradakiler</h2>
+                    <div className="badge-grid badge-grid-next">
+                      {nextBadges.map((s) => (
+                        <Badge key={s.stat} s={s} onOpen={setOpenBadge} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {dated.length > 0 && (
+                  <div className="badge-block">
+                    <h2 className="subhead">Son kazandıkların</h2>
+                    <ol className="badge-timeline">
+                      {dated.slice(0, timelineAll ? undefined : 5).map((a) => (
+                        <li key={a.id} onClick={() => setOpenBadge(series.find((x) => x.stat === a.stat) ?? null)}>
+                          <BadgeMedal badge={a} unlocked size={36} />
+                          <span className="badge-timeline-text">
+                            <strong>{a.title}</strong> <span className="small muted">· {a.description}</span>
+                          </span>
+                          <time className="small muted badge-timeline-date" dateTime={a.unlockedAt}>
+                            {fmtDay(a.unlockedAt!)}
+                          </time>
+                        </li>
+                      ))}
+                    </ol>
+                    {dated.length > 5 && (
+                      <button type="button" className="link small" onClick={() => setTimelineAll((v) => !v)}>
+                        {timelineAll ? 'Daha az göster' : `Tümünü göster (${dated.length})`}
+                      </button>
+                    )}
+                  </div>
+                )}
+                <div className="badge-filter-bar" role="group" aria-label="Rozet kategorisi">
+                  <button
+                    type="button"
+                    className="chip chip-sm"
+                    aria-pressed={catFilter === 'all'}
+                    onClick={() => setCatFilter('all')}
+                  >
+                    Tümü ({series.length})
+                  </button>
                   {BADGE_CATEGORIES.map((c) => {
-                    const shelf = locked.filter((s) => badgeCategory(s.steps[0]) === c.id)
+                    const count = series.filter((s) => badgeCategory(s.steps[0]) === c.id).length
                     return (
-                      shelf.length > 0 && (
-                        <div key={c.id} className="badge-shelf-group">
-                          <h3 className="subhead">
-                            <img className="cat-emblem" src={CATEGORY_EMBLEM[c.id]} alt="" width={26} height={26} draggable={false} />
-                            {c.name} <span className="muted small">({shelf.length})</span>
-                          </h3>
-                          <div className="badge-case is-locked">
-                            {shelf.map((s) => (
-                              <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />
-                            ))}
-                          </div>
-                        </div>
-                      )
+                      <button
+                        key={c.id}
+                        type="button"
+                        className="chip chip-sm badge-cat-chip"
+                        aria-pressed={catFilter === c.id}
+                        onClick={() => setCatFilter(catFilter === c.id ? 'all' : c.id)}
+                      >
+                        <img src={CATEGORY_EMBLEM[c.id]} alt="" width={16} height={16} draggable={false} />
+                        {c.name} ({count})
+                      </button>
                     )
                   })}
-                </details>
-              )}
-            </section>
-          )}
+                </div>
+                {filteredEarned.length > 0 && (
+                  <div className="badge-block">
+                    <h2 className="subhead">
+                      <img className="cat-emblem" src={EMBLEM.trophy} alt="" width={26} height={26} draggable={false} />
+                      Kazandıkların <span className="muted small">({filteredEarned.length})</span>
+                    </h2>
+                    <div className="badge-case">
+                      {filteredEarned.map((s) => (
+                        <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {filteredLocked.length > 0 && (
+                  <details className="badge-block" open={catFilter !== 'all' ? true : undefined}>
+                    <summary className="small">Diğer rozetler ({filteredLocked.length})</summary>
+                    {/* By what they count, so seventy badges read as five shelves. */}
+                    {BADGE_CATEGORIES.map((c) => {
+                      const shelf = filteredLocked.filter((s) => badgeCategory(s.steps[0]) === c.id)
+                      return (
+                        shelf.length > 0 && (
+                          <div key={c.id} className="badge-shelf-group">
+                            <h3 className="subhead">
+                              <img className="cat-emblem" src={CATEGORY_EMBLEM[c.id]} alt="" width={26} height={26} draggable={false} />
+                              {c.name} <span className="muted small">({shelf.length})</span>
+                            </h3>
+                            <div className="badge-case is-locked">
+                              {shelf.map((s) => (
+                                <Badge key={s.stat} s={s} compact onOpen={setOpenBadge} />
+                              ))}
+                            </div>
+                          </div>
+                        )
+                      )
+                    })}
+                  </details>
+                )}
+              </section>
+            )
+          })()}
 
           {tab === 'titles' && unlockables && <ProfileTitles profile={profile} game={game} unlockables={unlockables} save={save} />}
 
@@ -384,7 +422,20 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
         </>
       )}
 
-      {openBadge && <BadgeDialog s={openBadge} onClose={() => setOpenBadge(null)} />}
+      {openBadge && (
+        <BadgeDialog
+          s={openBadge}
+          pinned={unlockables ? (profile.pinned ?? []).filter((id) => unlockables.badges.has(id)) : []}
+          onTogglePin={(id) => {
+            if (!unlockables) return
+            const cur = (profile.pinned ?? []).filter((x) => unlockables.badges.has(x))
+            const nextPinned = toggleLimited(cur, id, PIN_LIMIT)
+            save({ pinned: nextPinned })
+            showToast(nextPinned.includes(id) ? 'Rozet vitrinine eklendi.' : 'Rozet vitrininden çıkarıldı.')
+          }}
+          onClose={() => setOpenBadge(null)}
+        />
+      )}
 
       {picking && (
         <ImagePicker
@@ -419,10 +470,12 @@ function Stars({ s }: { s: BadgeSeries }) {
 function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boolean; onOpen: (s: BadgeSeries) => void }) {
   const a = s.top ?? s.next ?? s.steps[0]
   const next = s.next
+  const pct = next ? Math.min(100, Math.round((next.value / next.goal) * 100)) : 100
+  const near = !compact && !!next && pct >= 75
   return (
     <button
       type="button"
-      className={`badge-card${s.earned ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}`}
+      className={`badge-card${s.earned ? ' is-unlocked' : ''}${compact ? ' is-compact' : ''}${near ? ' is-near' : ''}`}
       onClick={() => onOpen(s)}
       aria-label={`${a.title}: ${s.earned ? `${s.earned}/${s.steps.length} kademe kazanıldı` : `${a.value}/${a.goal}`}. Ayrıntı için dokun.`}
     >
@@ -435,11 +488,13 @@ function Badge({ s, compact = false, onOpen }: { s: BadgeSeries; compact?: boole
           <span className="badge-progress">
             <span style={{ width: `${Math.min(100, (next.value / next.goal) * 100)}%` }} />
           </span>
-          <span className="small muted">
-            {next.value}/{next.goal}
+          <span className="badge-foot-meta small muted">
+            <span>{next.value}/{next.goal}</span>
+            <span className="badge-foot-pct">%{pct}</span>
           </span>
         </span>
       )}
+      {near && <span className="badge-near-pill">Çok yakın</span>}
     </button>
   )
 }
@@ -450,7 +505,7 @@ const fmtDay = (iso: unknown) => {
 }
 
 /** A badge up close: the medal of its highest step, what it is for, and every step with its date or how far along. */
-function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
+function BadgeDialog({ s, pinned = [], onTogglePin, onClose }: { s: BadgeSeries; pinned?: string[]; onTogglePin?: (id: string) => void; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -465,6 +520,9 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
   const tier = medalTier(a)
   const next = s.next
   const pct = next ? Math.min(100, Math.round((next.value / next.goal) * 100)) : 100
+  const pinnedStepId = s.steps.find((st) => pinned.includes(st.id))?.id
+  const isPinned = !!pinnedStepId
+  const pinTargetId = pinnedStepId ?? s.top?.id
   return (
     <div className="dialog-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog badge-dialog" role="dialog" aria-modal="true" aria-labelledby="badge-title">
@@ -483,16 +541,22 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
         <p className="muted">{a.description}</p>
         {s.steps.length > 1 ? (
           <ol className="badge-steps">
-            {s.steps.map((step) => (
-              <li key={step.id} className={step.unlocked ? 'is-done' : undefined}>
-                <span>
-                  <strong>{step.title}</strong> <span className="muted small">· {step.description}</span>
-                </span>
-                <span className="small muted">
-                  {step.unlocked ? (step.unlockedAt ? fmtDay(step.unlockedAt) : 'kazandın') : `${step.value.toLocaleString('tr-TR')}/${step.goal.toLocaleString('tr-TR')}`}
-                </span>
-              </li>
-            ))}
+            {s.steps.map((step, idx) => {
+              const isNext = step === next
+              return (
+                <li key={step.id} className={step.unlocked ? 'is-done' : isNext ? 'step-next' : 'step-locked'}>
+                  <span className="badge-step-mark" aria-hidden>
+                    {step.unlocked ? <CheckCircleIcon size={15} /> : isNext ? idx + 1 : <LockIcon size={13} />}
+                  </span>
+                  <span className="badge-step-body">
+                    <strong>{step.title}</strong> <span className="muted small">· {step.description}</span>
+                  </span>
+                  <span className="small muted badge-step-right">
+                    {step.unlocked ? (step.unlockedAt ? fmtDay(step.unlockedAt) : 'kazandın') : `${step.value.toLocaleString('tr-TR')}/${step.goal.toLocaleString('tr-TR')}`}
+                  </span>
+                </li>
+              )
+            })}
           </ol>
         ) : a.unlocked ? (
           <p className="badge-dialog-status is-done">
@@ -513,9 +577,23 @@ function BadgeDialog({ s, onClose }: { s: BadgeSeries; onClose: () => void }) {
             <p className="small muted">{next.goal - next.value > 0 ? `Kazanmana ${(next.goal - next.value).toLocaleString('tr-TR')} kaldı.` : 'Neredeyse!'}</p>
           </div>
         )}
-        <button className="btn" onClick={onClose}>
-          Tamam
-        </button>
+        <div className="badge-dialog-actions">
+          {pinTargetId && onTogglePin && (
+            <button
+              type="button"
+              className={`btn btn-quiet badge-pin-btn${isPinned ? ' badge-pinned' : ''}`}
+              disabled={!isPinned && pinned.length >= PIN_LIMIT}
+              title={!isPinned && pinned.length >= PIN_LIMIT ? `En çok ${PIN_LIMIT} rozet sabitlenebilir` : undefined}
+              onClick={() => onTogglePin(pinTargetId)}
+            >
+              <PinIcon size={15} className="inline-icon" />
+              {isPinned ? 'Vitrinde ✓' : 'Vitrine sabitle'}
+            </button>
+          )}
+          <button className="btn" onClick={onClose}>
+            Tamam
+          </button>
+        </div>
       </div>
     </div>
   )
