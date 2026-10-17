@@ -4,6 +4,7 @@ import { Burst } from './Burst'
 import { shareCard } from './shareCard'
 import { BadgeMedal } from './Medal'
 import { byTier, TIER_NAME } from './badgeTier'
+import { CloseIcon } from './icons'
 
 /**
  * A new badge, full screen, once: the medal is struck (it springs in, a ring leaves it in its
@@ -37,6 +38,9 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
     return (
       <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
         <div className="dialog milestone badge-moment" role="dialog" aria-modal="true" aria-labelledby="badge-moment-title">
+          <button type="button" className="icon-btn milestone-close" onClick={onClose} aria-label="Kapat">
+            <CloseIcon size={18} />
+          </button>
           <Burst />
           <h2 id="badge-moment-title" className="milestone-title">
             {ordered.length} yeni rozet
@@ -67,6 +71,9 @@ export function BadgeMoment({ badges, onClose, onProfile }: { badges: Achievemen
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog milestone badge-moment" role="dialog" aria-modal="true" aria-labelledby="badge-moment-title">
+        <button type="button" className="icon-btn milestone-close" onClick={onClose} aria-label="Kapat">
+          <CloseIcon size={18} />
+        </button>
         <p className="eyebrow">{ordered.length > 1 ? `Yeni rozet ${i + 1}/${ordered.length}` : 'Yeni rozet!'}</p>
         {/* Keyed by the badge, so each one is struck afresh. */}
         <div className={`milestone-art badge-moment-art tier-${tier}`} key={a.id}>
