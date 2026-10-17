@@ -135,5 +135,30 @@ describe('/api/access: friends inbox and days', () => {
     expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'spam' })).json()).toEqual({ error: 'bad_kind' })
     expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toEqual([])
   })
+
+  it('a word gift and a text travel with their content, trimmed; bad ones are refused; a sender\'s waiting gifts are capped', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN)
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    const gift = { language: 'fr', lemma: '<b>maison</b>', meaning: 'ev', example: 'La maison est grande.', exampleTranslation: 'Ev büyük.' }
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload: gift })).status).toBe(200)
+    const body = 'Il fait beau aujourd\'hui. Nous allons au marché.\nOn achète des pommes.'
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'text', payload: { language: 'fr', title: 'Au marché', body } })).status).toBe(200)
+    const got = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { kind: string; gift?: { lemma: string; example?: string }; text?: { body: string } }[] }
+    expect(got.items.map((i) => i.kind).sort()).toEqual(['gift', 'text'])
+    expect(got.items.find((i) => i.kind === 'gift')!.gift).toMatchObject({ lemma: 'bmaison/b', meaning: 'ev', example: 'La maison est grande.' })
+    expect(got.items.find((i) => i.kind === 'text')!.text!.body).toContain('\n')
+    // No meaning, an unknown language, a text too short: refused.
+    for (const payload of [{ language: 'fr', lemma: 'x', meaning: '' }, { language: 'de', lemma: 'x', meaning: 'y' }, undefined]) {
+      expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload })).json()).toEqual({ error: 'bad_payload' })
+    }
+    expect(await (await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'text', payload: { language: 'fr', title: 'x', body: 'court' } })).json()).toEqual({ error: 'bad_payload' })
+    // Only a few gifts wait from one sender.
+    for (let i = 0; i < 8; i++) await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload: { ...gift, lemma: `mot${i}` } })
+    const many = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { kind: string; gift?: { lemma: string } }[] }
+    const gifts = many.items.filter((i) => i.kind === 'gift')
+    expect(gifts).toHaveLength(5)
+    expect(gifts[0].gift!.lemma).toBe('mot7')
+  })
 })
 

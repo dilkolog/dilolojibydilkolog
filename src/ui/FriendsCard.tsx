@@ -10,6 +10,8 @@ import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
+import type { TargetLanguage, VocabularyEntry } from '../engine/types'
+import { acceptGift, acceptText } from './friendGifts'
 import { FriendLeague } from './FriendLeague'
 import { FriendSheet } from './FriendSheet'
 
@@ -28,7 +30,7 @@ const REASONS: Record<string, string> = {
  * other's codes, as a small leaderboard. Adding a friend is their code; one's own code is shown to
  * pass on. Only for an approved account (the cards live on the server).
  */
-export function FriendsCard({ game, profile }: { game: GameState | null; profile: Profile }) {
+export function FriendsCard({ game, profile, vocabulary, language, onChanged }: { game: GameState | null; profile: Profile; vocabulary?: VocabularyEntry[]; language?: TargetLanguage; onChanged?: () => void }) {
   const access = useAccess()
   const [range, setRange] = useState<'today' | 'week'>('today')
   const [data, setData] = useState<{ me: FriendView; friends: FriendView[] } | null>(null)
@@ -153,6 +155,19 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
   const dismiss = async (ids: string[]) => {
     setInbox((cur) => cur.filter((m) => !ids.includes(m.id)))
     await clearInbox(ids).catch(() => undefined)
+  }
+  /** A gift word or a text taken: put in the list or the library, then the message goes. */
+  const take = async (m: InboxItem) => {
+    if (m.kind === 'gift' && m.gift) {
+      const result = await acceptGift(db, m.gift)
+      showToast(result === 'added' ? `“${m.gift.lemma}” kelimelerine eklendi.` : result === 'had' ? `“${m.gift.lemma}” zaten kelimelerinde.` : 'Kelime eklenemedi.', undefined, 4000, result === 'failed' ? 'info' : undefined)
+      if (result === 'failed') return
+    } else if (m.kind === 'text' && m.text) {
+      await acceptText(db, { ...m, text: m.text })
+      showToast(`“${m.text.title}” kütüphanene eklendi.`)
+    } else return
+    onChanged?.()
+    await dismiss([m.id])
   }
   const remove = async (f: FriendView) => {
     const displayName = nicknames[f.code] || f.name
@@ -281,8 +296,27 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
             const who = nicknames[m.from.code] || m.from.name
             return (
               <li key={m.id}>
-                <span>{m.kind === 'cheer' ? `👏 ${who} seni tebrik etti` : `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}</span>
-                <button type="button" className="icon-btn icon-btn-sm" aria-label="Tamam" title="Tamam" onClick={() => void dismiss([m.id])}>
+                <span>
+                  {m.kind === 'cheer' && `👏 ${who} seni tebrik etti`}
+                  {m.kind === 'nudge' && `👋 ${who} seni dürttü: bugün biraz çalışmaya ne dersin?`}
+                  {m.kind === 'gift' && m.gift && (
+                    <>
+                      🎁 {who} sana bir kelime gönderdi: <strong lang={m.gift.language}>{m.gift.lemma}</strong> = {m.gift.meaning}
+                    </>
+                  )}
+                  {m.kind === 'text' && m.text && `📖 ${who} bir metin gönderdi: “${m.text.title}”`}
+                </span>
+                {m.kind === 'gift' && m.gift && (
+                  <button type="button" className="btn btn-sm" onClick={() => void take(m)}>
+                    Ekle
+                  </button>
+                )}
+                {m.kind === 'text' && m.text && (
+                  <button type="button" className="btn btn-sm" onClick={() => void take(m)}>
+                    Kütüphaneme ekle
+                  </button>
+                )}
+                <button type="button" className="icon-btn icon-btn-sm" aria-label={m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} title={m.kind === 'gift' || m.kind === 'text' ? 'Geç' : 'Tamam'} onClick={() => void dismiss([m.id])}>
                   <CloseIcon size={14} />
                 </button>
               </li>
@@ -300,7 +334,7 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
       )}
       {data && open && (() => {
         const f = data.friends.find((x) => x.code === open)
-        return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} onClose={() => setOpen(null)} /> : null
+        return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} vocabulary={vocabulary} language={language} onClose={() => setOpen(null)} /> : null
       })()}
       {data && data.friends.length > 0 && <FriendLeague me={data.me} friends={data.friends} nicknames={nicknames} today={today} />}
       {data && data.friends.length === 0 && (

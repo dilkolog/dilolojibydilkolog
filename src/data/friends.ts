@@ -52,13 +52,32 @@ export async function loadFriends(today: string): Promise<{ me: FriendView; frie
   return { me: data.me, friends: data.friends ?? [] }
 }
 
-/** What a friend can send: a cheer or a nudge. */
-export type InboxKind = 'cheer' | 'nudge'
+/** What a friend can send: a cheer, a nudge, a word or a text. */
+export type InboxKind = 'cheer' | 'nudge' | 'gift' | 'text'
+
+/** A word given to a friend. */
+export interface GiftWord {
+  language: 'en' | 'fr' | 'es'
+  lemma: string
+  meaning: string
+  example?: string
+  exampleTranslation?: string
+}
+
+/** A short text sent to a friend to read. */
+export interface SentText {
+  language: 'en' | 'fr' | 'es'
+  title: string
+  body: string
+}
+
 export interface InboxItem {
   id: string
   kind: InboxKind
   from: { code: string; name: string }
   at: string
+  gift?: GiftWord
+  text?: SentText
 }
 
 export async function loadInbox(): Promise<InboxItem[]> {
@@ -68,7 +87,7 @@ export async function loadInbox(): Promise<InboxItem[]> {
   return data.items ?? []
 }
 
-export const sendToFriend = async (code: string, kind: InboxKind) => void (await post({ action: 'friends-send', code, kind }))
+export const sendToFriend = async (code: string, kind: InboxKind, payload?: GiftWord | SentText) => void (await post({ action: 'friends-send', code, kind, ...(payload ? { payload } : {}) }))
 export const clearInbox = async (ids: string[]) => void (await post({ action: 'friends-inbox-clear', ids }))
 
 export const publishFriendCard = async (card: FriendCardInput, today: string): Promise<FriendView | undefined> => (await post({ action: 'friends-publish', ...card, today })).me

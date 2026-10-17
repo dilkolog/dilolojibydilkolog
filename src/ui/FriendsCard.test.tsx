@@ -8,6 +8,8 @@ import { AccessContext } from './accessContext'
 import { FriendsCard } from './FriendsCard'
 import type { GameState } from './game'
 import type { Profile } from '../data/db'
+import { db } from '../data/instance'
+import type { VocabularyEntry } from '../engine/types'
 
 const card = (code: string, name: string, today: number, week: number) => ({ code, name, avatar: 'fox', color: '#2f6de6', today, week, streak: 3, level: 4, days: { '2026-10-15': today }, at: '2026-10-15T10:00:00Z' })
 const game = { xp: { total: 300, today: 40, maxCombo: 0, byDay: new Map([['2026-10-15', 40]]) }, streak: 3, level: { level: 4 } } as unknown as GameState
@@ -21,7 +23,7 @@ afterEach(() => {
   localStorage.clear()
 })
 
-async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = []) {
+async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = [], extra: { vocabulary?: VocabularyEntry[]; language?: 'fr'; onChanged?: () => void } = {}) {
   const calls: { url: string; body?: unknown }[] = []
   vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
     const body = init?.body ? JSON.parse(String(init.body)) : undefined
@@ -35,7 +37,7 @@ async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 
   const host = document.createElement('div')
   document.body.append(host)
   root = createRoot(host)
-  await act(async () => root!.render(<AccessContext.Provider value={{ status: approved ? 'approved' : 'signedOut', approved, refresh: async () => {} }}><FriendsCard game={game} profile={profile} /></AccessContext.Provider>))
+  await act(async () => root!.render(<AccessContext.Provider value={{ status: approved ? 'approved' : 'signedOut', approved, refresh: async () => {} }}><FriendsCard game={game} profile={profile} {...extra} /></AccessContext.Provider>))
   await act(() => new Promise((r) => setTimeout(r, 30)))
   return { host, calls }
 }
@@ -128,5 +130,50 @@ describe('FriendsCard', () => {
     const nudge = [...host.querySelectorAll('.friend-sheet button')].find((b) => b.textContent?.includes('Bugün çalıştı')) as HTMLButtonElement
     expect(nudge.disabled).toBe(true)
   })
-})
 
+  it('a word of the learner is found by its meaning and sent as a gift', async () => {
+    const vocabulary = [{ id: 'w1', language: 'fr', lemma: 'maison', pos: 'noun', gender: 'f', senses: [{ gloss: 'ev', examples: [{ text: 'La maison est grande.', translation: 'Ev büyük.' }] }] }] as unknown as VocabularyEntry[]
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 0, 20)], [], { vocabulary, language: 'fr' })
+    await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    await act(async () => ([...host.querySelectorAll('.friend-sheet button')].find((b) => b.textContent?.includes('Kelime hediye et')) as HTMLButtonElement).click())
+    const input = host.querySelector('.friend-give input') as HTMLInputElement
+    const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set
+    await act(async () => {
+      setter?.call(input, 'ev')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    await act(async () => (host.querySelector('.friend-pick') as HTMLButtonElement).click())
+    const sent = calls.find((c) => (c.body as { action?: string } | undefined)?.action === 'friends-send')?.body as { kind: string; code: string; payload: { lemma: string; meaning: string; example: string } }
+    expect(sent.kind).toBe('gift')
+    expect(sent.code).toBe('BBBBBBBB')
+    expect(sent.payload.meaning).toBe('ev')
+    expect(sent.payload.example).toBe('La maison est grande.')
+    expect(sent.payload.lemma).toContain('maison')
+  })
+
+  it('a gift word in the inbox is added to the words, then the message goes', async () => {
+    await db.vocabulary.clear()
+    const onChanged = vi.fn()
+    const gift = { language: 'fr', lemma: 'la fenêtre', meaning: 'pencere', example: 'Ouvre la fenêtre.', exampleTranslation: 'Pencereyi aç.' }
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [{ id: 'g1', kind: 'gift', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z', gift }], { onChanged })
+    expect(host.querySelector('.friends-inbox')!.textContent).toContain('Veli sana bir kelime gönderdi')
+    await act(async () => ([...host.querySelectorAll('.friends-inbox button')].find((b) => b.textContent === 'Ekle') as HTMLButtonElement).click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    const words = await db.vocabulary.toArray()
+    expect(words.map((w) => w.lemma)).toContain('fenêtre')
+    expect(onChanged).toHaveBeenCalled()
+    expect(calls.some((c) => (c.body as { action?: string; ids?: string[] } | undefined)?.action === 'friends-inbox-clear' && (c.body as { ids: string[] }).ids[0] === 'g1')).toBe(true)
+    expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(0)
+  })
+
+  it('a text in the inbox goes to the library with who sent it', async () => {
+    const text = { language: 'fr', title: 'Le chat', body: 'Le chat dort sur le canapé. Il fait beau aujourd’hui et le soleil brille.' }
+    const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [{ id: 't1', kind: 'text', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z', text }])
+    await act(async () => ([...host.querySelectorAll('.friends-inbox button')].find((b) => b.textContent === 'Kütüphaneme ekle') as HTMLButtonElement).click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    const library = await db.getLibrary('fr')
+    const added = library.find((t) => t.title === 'Le chat')
+    expect(added?.source).toContain('Veli')
+    expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(0)
+  })
+})

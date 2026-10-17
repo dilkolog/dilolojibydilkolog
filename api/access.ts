@@ -22,8 +22,8 @@ import { overLimit, tooMany } from './_rate.js'
  * GET  /api/access?friends=1&today=YYYY-MM-DD  → { me, friends }: the own card (with its code) and the followed ones
  * POST /api/access  { action: 'friends-publish', name, avatar, color, days, streak, level, today } → { me }
  * POST /api/access  { action: 'friends-add' | 'friends-remove', code } → { ok } or { error }
- * GET  /api/access?inbox=1                        → { items }: what friends sent (a cheer, a nudge)
- * POST /api/access  { action: 'friends-send', code, kind } → { ok } or { error }; { action: 'friends-inbox-clear', ids } → { ok }
+ * GET  /api/access?inbox=1                        → { items }: what friends sent (a cheer, a nudge, a word, a text)
+ * POST /api/access  { action: 'friends-send', code, kind, payload? } → { ok } or { error } (kind: cheer, nudge, gift (a word), text); { action: 'friends-inbox-clear', ids } → { ok }
  *
  * Supabase sign-in (see _supabase.ts), with `Authorization: Bearer <Supabase access token>`:
  * GET  /api/access?vault=1 → { account: { id, enc, auth, username } | null }: the person's sync account
@@ -73,7 +73,7 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
     const code = normalizeCode(body.code)
     if (body.action === 'friends-send') {
       if (overLimit(request, 'friends-send', 20)) return tooMany()
-      const sent = await sendToFriend(id, code, body.kind)
+      const sent = await sendToFriend(id, code, body.kind, body.payload)
       return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'not_friends' ? 403 : 400)
     }
     if (body.action === 'friends-remove') {
