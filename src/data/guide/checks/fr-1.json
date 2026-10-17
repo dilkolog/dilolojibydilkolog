@@ -1,0 +1,50 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "basics_fr_articles": [
+      {
+        "prompt": "Elle a ___ chat et deux chiens.",
+        "options": ["un", "le", "du", "de"],
+        "answer": 0,
+        "why": "Sayılan, ilk kez anılan bir hayvan için belirsiz artikel gerekir: un chat."
+      },
+      {
+        "prompt": "Nous parlons ___ professeur.",
+        "options": ["à le", "au", "à la", "aux"],
+        "answer": 1,
+        "why": "à ile le birleşir: à + le = au. « à le » yazılmaz."
+      },
+      {
+        "prompt": "Elle revient ___ gare.",
+        "options": ["de la", "du", "des", "de le"],
+        "answer": 0,
+        "why": "gare dişildir; de + la birleşmez: de la gare. (de + le = du, de + les = des olurdu.)"
+      },
+      {
+        "prompt": "J'adore ___ musique classique.",
+        "options": ["la", "du", "au", "à la"],
+        "answer": 0,
+        "why": "Genel beğeni bildiren fiilden (adorer, aimer, détester) sonra belirli artikel gelir: la musique."
+      },
+      {
+        "prompt": "Hangisi dişil bir isimdir?",
+        "options": ["le problème", "la nation", "le garage", "le bateau"],
+        "answer": 1,
+        "why": "-tion ile biten isimler çoğunlukla dişildir: la nation. Diğer üçü erildir."
+      },
+      {
+        "prompt": "« Problème » kelimesi hangi artikelle kullanılır?",
+        "options": ["un problème", "une problème", "la problème", "des problème"],
+        "answer": 0,
+        "why": "-e ile bitmesi dişil olduğunu göstermez: problème erildir, un problème. Kelimeyi artikeliyle ezberle."
+      },
+      {
+        "prompt": "Voici les clés ___ appartement.",
+        "options": ["de l'", "du", "de la", "des"],
+        "answer": 0,
+        "why": "appartement sesli harfle başlar; de + le / la yerine de l' kullanılır: les clés de l'appartement."
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@ import { topicName, type GrammarExercise } from '../../engine/grammar'
 import type { Tense } from '../../engine/tenses'
 import type { TargetLanguage } from '../../engine/types'
 import { grammarExercises } from '../grammar'
+import { extraChecks } from './checkPools'
 import { TOPIC_LESSONS } from './lessons'
 import { LESSON_TENSE } from './tenseTopics'
 import type { TopicLesson } from './lessonTypes'
@@ -73,14 +74,36 @@ function fromExercises(list: GrammarExercise[], topic: string, rng: () => number
 /** How many questions a check asks. */
 export const CHECK_SIZE = 3
 
+/** Options like "hepsi doğru" refer to their place in the list: such a question keeps its order. */
+const POSITIONAL = /^(hepsi|hiçbiri|yukarıdakilerin|a ve b|b ve c)/i
+
+/** The question with its options in another order (the answer follows), unless one of them points at the others. */
+function withShuffledOptions(item: CheckItem, rng: () => number): CheckItem {
+  if (item.options.some((o) => POSITIONAL.test(o.trim()))) return item
+  const right = item.options[item.answer]
+  const options = shuffle(item.options, rng)
+  return { ...item, options, answer: options.indexOf(right) }
+}
+
+/** A lesson's own questions and the extra ones of `checks/*.json`, each prompt once. */
+export function checkPool(lesson: TopicLesson): CheckItem[] {
+  const seen = new Set<string>()
+  return [...(lesson.check ?? []), ...extraChecks(lesson.language, lesson.topic)]
+    .filter((c) => !seen.has(c.prompt) && !!seen.add(c.prompt))
+    .map((c) => ({ prompt: c.prompt, options: c.options, answer: c.answer, why: c.why }))
+}
+
 /**
- * The lesson's check: its own questions when it has them, else up to three of its topic's choice
- * questions picked at random; empty when there are fewer than two (no check, the lesson is just read).
+ * The lesson's check: three of its pool (its own questions and the extra ones) drawn at random, their options in a new
+ * order each time; a lesson with none of its own takes its topic's choice questions instead. Empty when there are
+ * fewer than two (no check, the lesson is just read).
  */
 export function checkFor(lesson: TopicLesson, rng: () => number = Math.random, exercises?: GrammarExercise[]): CheckItem[] {
-  const own = lesson.check?.map((c) => ({ prompt: c.prompt, options: c.options, answer: c.answer, why: c.why })) ?? []
+  const own = checkPool(lesson)
   const pool = own.length ? own : fromExercises(exercises ?? grammarExercises(lesson.language), practiceTopic(lesson), rng)
-  const picked = shuffle(pool, rng).slice(0, CHECK_SIZE)
+  const picked = shuffle(pool, rng)
+    .slice(0, CHECK_SIZE)
+    .map((c) => withShuffledOptions(c, rng))
   return picked.length >= 2 ? picked : []
 }
 
@@ -96,11 +119,12 @@ export function checkableTopics(language: TargetLanguage): string[] {
 export const TRY_SIZE = 2
 
 /**
- * Questions to try right after the rules: choice questions of the lesson's topic that its check does not ask (a
- * lesson that only has its own check has none to spare, and offers nothing here).
+ * Questions to try right after the rules: choice questions of the lesson's topic that its check does not ask, and the
+ * extra questions of its pool the check did not draw (a lesson with only its own three has none to spare).
  */
 export function tryFor(lesson: TopicLesson, check: readonly CheckItem[], rng: () => number = Math.random, exercises?: GrammarExercise[]): CheckItem[] {
   const asked = new Set(check.map((c) => c.prompt))
-  const pool = fromExercises(exercises ?? grammarExercises(lesson.language), practiceTopic(lesson), rng).filter((c) => !asked.has(c.prompt))
-  return shuffle(pool, rng).slice(0, TRY_SIZE)
+  // The topic's questions, and the lesson's spare pool ones (those its check did not draw).
+  const pool = [...fromExercises(exercises ?? grammarExercises(lesson.language), practiceTopic(lesson), rng), ...checkPool(lesson)].filter((c) => !asked.has(c.prompt))
+  return shuffle(pool, rng).slice(0, TRY_SIZE).map((c) => withShuffledOptions(c, rng))
 }
