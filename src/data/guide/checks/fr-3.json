@@ -1,0 +1,1270 @@
+{
+  "language": "fr",
+  "source": "Diloloji (özgün)",
+  "lessons": {
+    "futur_fr": [
+      {
+        "prompt": "Quand nous ___ à Paris, nous visiterons le Louvre.",
+        "options": [
+          "arriverons",
+          "arrivons",
+          "arriverions",
+          "sommes arrivés"
+        ],
+        "answer": 0,
+        "why": "Geleceğe yönelik zaman bağlaçlarından (quand, dès que) sonra Türkçedeki gibi şimdiki zaman değil, futur simple (arriverons) kullanılır."
+      },
+      {
+        "prompt": "Demain soir, tu ___ le nouveau spectacle de danse. (voir)",
+        "options": [
+          "voiras",
+          "verras",
+          "vois",
+          "verrais"
+        ],
+        "answer": 1,
+        "why": "Voir fiilinin futur simple kökü düzensizdir (verr-); tu için verras olur."
+      },
+      {
+        "prompt": "Attention, le vase ___ tomber !",
+        "options": [
+          "va",
+          "ira",
+          "est allé",
+          "vont"
+        ],
+        "answer": 0,
+        "why": "Göz önündeki, gerçekleşmesi an meselesi olan durumlar için aller + mastar (futur proche) kullanılır: va tomber."
+      },
+      {
+        "prompt": "Dès que nous ___ nos devoirs, nous pourrons sortir jouer.",
+        "options": [
+          "avons fini",
+          "aurons fini",
+          "finirons",
+          "avions fini"
+        ],
+        "answer": 1,
+        "why": "Gelecekte başka bir eylemden önce tamamlanacak olaylar için futur antérieur (aurons fini) kullanılır."
+      },
+      {
+        "prompt": "Şart cümlesinde (Si) gelecek zaman kullanımıyla ilgili hangisi DOĞRUDUR?",
+        "options": [
+          "Si bağlacından hemen sonra futur simple kullanılır.",
+          "Si yan cümlesinde présent, ana cümlede futur simple kullanılır.",
+          "Hem si cümlesinde hem ana cümlede futur simple kullanılır.",
+          "Si ile hiçbir zaman gelecek zaman kastedilemez."
+        ],
+        "answer": 1,
+        "why": "Si bağlacından sonra asla futur gelmez (Si + présent); ancak ana cümlenin eylemi gelecek zamandaysa futur simple olur."
+      },
+      {
+        "prompt": "L'année prochaine, mes parents ___ un grand voyage en Asie. (faire)",
+        "options": [
+          "feront",
+          "faisent",
+          "faisaient",
+          "faisseront"
+        ],
+        "answer": 0,
+        "why": "Faire fiilinin futur kökü fer-'dir; ils/elles şahsında feront biçimini alır."
+      },
+      {
+        "prompt": "« Eve varınca seni ararım. » cümlesinin doğru Fransızcası hangisidir?",
+        "options": [
+          "Quand je rentre à la maison, je t'appellerai.",
+          "Quand je rentrerai à la maison, je t'appellerai.",
+          "Quand je rentrerais à la maison, je t'appelle.",
+          "Quand je vais rentrer, je t'ai appelé."
+        ],
+        "answer": 1,
+        "why": "Gelecek bağlamında quand ile kurulan yan cümlenin fiili de futur simple (rentrerai) olmak zorundadır."
+      }
+    ],
+    "pronoms_y_en": [
+      {
+        "prompt": "Tu penses encore à ton examen ? — Oui, j'___ pense tout le temps.",
+        "options": [
+          "en",
+          "y",
+          "le",
+          "lui"
+        ],
+        "answer": 1,
+        "why": "« à + cansız nesne » (à ton examen) tamlamasının yerini 'y' zamiri tutar."
+      },
+      {
+        "prompt": "Tu penses souvent à ta sœur ? — Oui, je pense souvent à ___ .",
+        "options": [
+          "elle",
+          "y",
+          "la",
+          "lui"
+        ],
+        "answer": 0,
+        "why": "« à + insan » durumunda 'y' zamiri KULLANILMAZ; edattan sonra vurgulu zamir (à elle) gelir."
+      },
+      {
+        "prompt": "— Vous venez de la gare ? — Oui, nous ___ venons tout juste.",
+        "options": [
+          "y",
+          "en",
+          "la",
+          "de là"
+        ],
+        "answer": 1,
+        "why": "« de + yer » (bir yerden gelmek/dönmek) tamlamasının yerini 'en' zamiri tutar: nous en venons."
+      },
+      {
+        "prompt": "J'ai rencontré Sophie hier et je ___ ai donné son livre.",
+        "options": [
+          "la",
+          "lui",
+          "y",
+          "l'"
+        ],
+        "answer": 1,
+        "why": "Donner à quelqu'un kalıbında 'à + kişi' tekil olduğunda cinsiyete bakılmaksızın dolaylı zamir 'lui' kullanılır."
+      },
+      {
+        "prompt": "— Avez-vous une voiture ? — Oui, j'___ ai une.",
+        "options": [
+          "l'",
+          "en",
+          "y",
+          "la"
+        ],
+        "answer": 1,
+        "why": "Belirsiz nesnelerle (une voiture) 'en' zamiri kullanılır ve 'une' sayı sözcüğü fiilden sonra kalır: j'en ai une."
+      },
+      {
+        "prompt": "Mastar içeren bir cümlede nesne zamirinin yeri hakkında hangisi DOĞRUDUR?",
+        "options": [
+          "Çekimli fiilin önüne gelir (Je le vais faire).",
+          "Mastar halindeki fiilin hemen önüne gelir (Je vais le faire).",
+          "Cümlenin en sonuna gider (Je vais faire le).",
+          "Cümleden atılır."
+        ],
+        "answer": 1,
+        "why": "Cümlede çekimli yardımcı bir fiil ve asıl mastar fiil varsa, nesne zamiri doğrudan ait olduğu mastarın önüne gelir."
+      },
+      {
+        "prompt": "Tu veux aller au cinéma ? Alors, ___ !",
+        "options": [
+          "va-y",
+          "vas-y",
+          "y-va",
+          "vas-en"
+        ],
+        "answer": 1,
+        "why": "Aller fiilinin tu emri 'va' olmasına rağmen, 'y' zamirinden önce fonetik sebeple -s geri gelir: Vas-y !"
+      }
+    ],
+    "prep_fr": [
+      {
+        "prompt": "Il est huit heures, les enfants commencent ___ étudier.",
+        "options": [
+          "de",
+          "à",
+          "pour",
+          "en"
+        ],
+        "answer": 1,
+        "why": "Commencer fiili bir eyleme başlamak anlamında 'à + mastar' ile kullanılır: commencer à étudier."
+      },
+      {
+        "prompt": "Pour ce travail, j'ai vraiment besoin ___ ton aide.",
+        "options": [
+          "à",
+          "de",
+          "pour",
+          "avec"
+        ],
+        "answer": 1,
+        "why": "Bir şeye ihtiyaç duymak kalıbı daima 'avoir besoin de' şeklindedir."
+      },
+      {
+        "prompt": "Je suis à l'arrêt de bus et j'attends ___ mes amis.",
+        "options": [
+          "à",
+          "pour",
+          "sans edat",
+          "de"
+        ],
+        "answer": 2,
+        "why": "Türkçede 'arkadaşlarımı bekliyorum' denirken Fransızcada attendre doğrudan nesne alır, edatsız kullanılır."
+      },
+      {
+        "prompt": "Le professeur a demandé aux élèves ___ faire silence.",
+        "options": [
+          "à",
+          "de",
+          "pour",
+          "en"
+        ],
+        "answer": 1,
+        "why": "« demander à quelqu'un de + mastar » kuralı gereği eylemin önüne 'de' edatı gelir."
+      },
+      {
+        "prompt": "« Paul ile evlenmek » ifadesinin doğru Fransızcası hangisidir?",
+        "options": [
+          "épouser avec Paul",
+          "épouser Paul",
+          "se marier Paul",
+          "se marier à Paul"
+        ],
+        "answer": 1,
+        "why": "Épouser fiili doğrudan nesne alır ve edatsız kullanılır (épouser Paul); se marier ise 'avec' edatıyla kullanılır."
+      },
+      {
+        "prompt": "Ne t'inquiète pas, je pense souvent ___ toi.",
+        "options": [
+          "de",
+          "à",
+          "sur",
+          "pour"
+        ],
+        "answer": 1,
+        "why": "Birini anmak veya aklında tutmak 'penser à' ile söylenir (penser de fikir sormaktır)."
+      },
+      {
+        "prompt": "N'oublie pas ___ fermer la porte à clé en partant !",
+        "options": [
+          "à",
+          "de",
+          "pour",
+          "en"
+        ],
+        "answer": 1,
+        "why": "Oublier fiili bir şeyi yapmayı unutmak anlamında 'de + mastar' alır: oublier de fermer."
+      }
+    ],
+    "colloc_fr": [
+      {
+        "prompt": "Hier soir, j'ai ___ la connaissance d'un écrivain célèbre.",
+        "options": [
+          "pris",
+          "fait",
+          "donné",
+          "eu"
+        ],
+        "answer": 1,
+        "why": "Biriyle tanışmak eşdizimi 'faire la connaissance de quelqu'un' şeklindedir."
+      },
+      {
+        "prompt": "Je dois téléphoner au cabinet pour ___ rendez-vous chez le dentiste.",
+        "options": [
+          "faire",
+          "prendre",
+          "poser",
+          "donner"
+        ],
+        "answer": 1,
+        "why": "Randevu almak Fransızcada 'prendre rendez-vous' olarak söylenir."
+      },
+      {
+        "prompt": "Le jury va ___ compte de vos efforts lors de l'évaluation.",
+        "options": [
+          "prendre",
+          "tenir",
+          "faire",
+          "garder"
+        ],
+        "answer": 1,
+        "why": "Dikkate almak / hesaba katmak kalıbı 'tenir compte de' biçimindedir (veya prendre en compte)."
+      },
+      {
+        "prompt": "Arrête de regarder ton téléphone, tu ___ ton temps !",
+        "options": [
+          "perds",
+          "fais",
+          "gagnes",
+          "passes"
+        ],
+        "answer": 0,
+        "why": "Zaman kaybetmek eşdizimi 'perdre son temps' şeklindedir."
+      },
+      {
+        "prompt": "Fransızcada « birine soru sormak » için hangi fiil kullanılır?",
+        "options": [
+          "demander une question",
+          "faire une question",
+          "poser une question",
+          "dire une question"
+        ],
+        "answer": 2,
+        "why": "Fransızcada soru sormak yalnızca 'poser une question' kalıbıyla ifade edilir; demander soru değil, bir şey talep etmektir."
+      },
+      {
+        "prompt": "L'éducation ___ un rôle essentiel dans le développement d'un pays.",
+        "options": [
+          "fait",
+          "joue",
+          "prend",
+          "tient"
+        ],
+        "answer": 1,
+        "why": "Rol oynamak Türkçede olduğu gibi Fransızcada da 'jouer un rôle' ile ifade edilir."
+      },
+      {
+        "prompt": "Il y a trop de monde, nous devons ___ la queue pour entrer.",
+        "options": [
+          "prendre",
+          "tenir",
+          "faire",
+          "attendre"
+        ],
+        "answer": 2,
+        "why": "Kuyrukta beklemek / sıraya girmek Fransızcada 'faire la queue' eşdizimidir."
+      }
+    ],
+    "conn_fr": [
+      {
+        "prompt": "Le vol a été annulé ___ la tempête de neige.",
+        "options": [
+          "grâce à",
+          "à cause de",
+          "parce que",
+          "puisque"
+        ],
+        "answer": 1,
+        "why": "Olumsuz ya da istenmeyen sonuç doğuran nedenlerde doğrudan bir isimden önce 'à cause de' kullanılır."
+      },
+      {
+        "prompt": "___ il soit fatigué, il continue de travailler.",
+        "options": [
+          "Malgré",
+          "Bien qu'",
+          "Pourtant",
+          "Parce qu'"
+        ],
+        "answer": 1,
+        "why": "'Bien que' bağlacı zıtlık bildirir, tam cümle ve subjonctif kipi (soit) ile kullanılır (malgré isim alır)."
+      },
+      {
+        "prompt": "Il n'a pas révisé ses leçons ; ___ , il a échoué à l'examen.",
+        "options": [
+          "pourtant",
+          "par conséquent",
+          "malgré",
+          "tandis que"
+        ],
+        "answer": 1,
+        "why": "Sebep-sonuç ilişkisinde sonucu bağlayan 'bu nedenle / sonuç olarak' ifadesi 'par conséquent'dır."
+      },
+      {
+        "prompt": "Sophie aime la montagne, ___ son mari préfère la mer.",
+        "options": [
+          "tandis que",
+          "parce que",
+          "à cause de",
+          "puisque"
+        ],
+        "answer": 0,
+        "why": "İki kişi veya durum arasındaki zıtlığı ve karşılaştırmayı 'tandis que' (oysa / iken) bağlar."
+      },
+      {
+        "prompt": "« Sayesinde » ile « yüzünden » arasındaki farkı Fransızcada hangi bağlaç çifti yansıtır?",
+        "options": [
+          "grâce à (sayesinde) / à cause de (yüzünden)",
+          "à cause de (sayesinde) / grâce à (yüzünden)",
+          "malgré (sayesinde) / pourtant (yüzünden)",
+          "puisque (sayesinde) / comme (yüzünden)"
+        ],
+        "answer": 0,
+        "why": "'Grâce à' olumlu etkenleri (sayesinde), 'à cause de' ise olumsuz nedenleri (yüzünden) ifade eder."
+      },
+      {
+        "prompt": "Il s'est couché très tôt hier soir ; ___ , il se sent encore fatigué.",
+        "options": [
+          "donc",
+          "pourtant",
+          "car",
+          "afin de"
+        ],
+        "answer": 1,
+        "why": "Beklentinin aksine bir durum geliştiğinde zıtlık bildiren 'pourtant' (yine de, buna rağmen) kullanılır."
+      },
+      {
+        "prompt": "Elle est partie tôt ___ ne pas arriver en retard au rendez-vous.",
+        "options": [
+          "pour que",
+          "afin de",
+          "parce que",
+          "bien que"
+        ],
+        "answer": 1,
+        "why": "Aynı özneye sahip amaç bildiren cümlelerde mastarla bağlanmak için 'afin de + mastar' kullanılır."
+      }
+    ],
+    "basics_fr_plus_que_parfait": [
+      {
+        "prompt": "Quand la police est arrivée, les voleurs s'___ déjà enfuis.",
+        "options": [
+          "avaient",
+          "étaient",
+          "ont",
+          "seraient"
+        ],
+        "answer": 1,
+        "why": "Dönüşlü fiiller (s'enfuir) plus-que-parfait'de de être alır: s'étaient enfuis."
+      },
+      {
+        "prompt": "Paul m'a expliqué qu'il ___ son portefeuille dans le bus. (perdre)",
+        "options": [
+          "a perdu",
+          "avait perdu",
+          "perdra",
+          "perdait"
+        ],
+        "answer": 1,
+        "why": "Ana fiil geçmişte olduğunda (a expliqué), daha önce bitmiş eylem plus-que-parfait (avait perdu) ile aktarılır."
+      },
+      {
+        "prompt": "Si seulement nous ___ tes conseils à ce moment-là ! (écouter)",
+        "options": [
+          "avons écouté",
+          "avions écouté",
+          "aurions écouté",
+          "écouterions"
+        ],
+        "answer": 1,
+        "why": "Geçmişe yönelik pişmanlık veya 'keşke' ifadelerinde 'si seulement + plus-que-parfait' kullanılır."
+      },
+      {
+        "prompt": "En 2010, elle ___ une avocate très réputée. (devenir)",
+        "options": [
+          "avait devenu",
+          "était devenue",
+          "a devenue",
+          "serait devenue"
+        ],
+        "answer": 1,
+        "why": "Devenir fiili être ile çekilir; dişil tekil özne için 'était devenue' biçimi doğrudur."
+      },
+      {
+        "prompt": "Plus-que-parfait zamanının kuruluş kuralı hangisidir?",
+        "options": [
+          "Avoir veya être'nin présent hali + ortaç",
+          "Avoir veya être'nin imparfait hali + geçmiş zaman ortacı (participe passé)",
+          "Mastar gövdesi + imparfait ekleri",
+          "Avoir veya être'nin conditionnel hali + ortaç"
+        ],
+        "answer": 1,
+        "why": "Plus-que-parfait, avoir veya être yardımcı fiilinin imparfait çekimi ile asıl fiilin geçmiş zaman ortacından oluşur."
+      },
+      {
+        "prompt": "Avant ce voyage en Afrique, je n'___ jamais vu de lion en liberté.",
+        "options": [
+          "avais",
+          "étais",
+          "ai",
+          "aurais"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki belirli bir andan öncesine kadar hiç yaşanmamış bir durum plus-que-parfait (avais vu) ile anlatılır."
+      },
+      {
+        "prompt": "S'ils s'étaient levés plus tôt, ils n'___ pas raté leur train.",
+        "options": [
+          "avaient",
+          "auraient",
+          "ont",
+          "seraient"
+        ],
+        "answer": 1,
+        "why": "Si + plus-que-parfait yapısının ana cümlesinde conditionnel passé (auraient raté) kullanılır."
+      }
+    ],
+    "basics_fr_gerondif": [
+      {
+        "prompt": "C'est ___ tous les jours que tu amélioreras ton vocabulaire. (lire)",
+        "options": [
+          "à lire",
+          "en lisant",
+          "pour lire",
+          "lisant"
+        ],
+        "answer": 1,
+        "why": "Eylemin hangi yolla ve araçla ('okuyarak') yapıldığını belirtmek için 'en + gérondif' kullanılır."
+      },
+      {
+        "prompt": "Avoir fiilinin participe présent (-ant) biçimi hangisidir?",
+        "options": [
+          "avoyant",
+          "avante",
+          "ayant",
+          "eut"
+        ],
+        "answer": 2,
+        "why": "Avoir fiilinin participe présent hali düzensizdir: ayant."
+      },
+      {
+        "prompt": "Il a réussi à trouver un emploi tout ___ ses études. (poursuivre)",
+        "options": [
+          "en poursuivant",
+          "poursuivant",
+          "à poursuivre",
+          "en poursuivi"
+        ],
+        "answer": 0,
+        "why": "'Tout en + gérondif' iki eylemin hem eşzamanlılığını hem de aralarındaki zıtlığı vurgular."
+      },
+      {
+        "prompt": "___ fatiguée après son long voyage, elle est allée se coucher. (être)",
+        "options": [
+          "Étant",
+          "Ayant",
+          "Étant été",
+          "Étant que"
+        ],
+        "answer": 0,
+        "why": "Être fiilinin participe présent hali 'étant'dır ve burada neden bildirmektedir (qui était fatiguée)."
+      },
+      {
+        "prompt": "Gérondif (en + -ant) yapısıyla ilgili en temel kural hangisidir?",
+        "options": [
+          "Her zaman yan cümleden sonra gelmelidir.",
+          "Gérondif'in öznesi ile ana cümlenin öznesi mutlaka aynı kişi olmalıdır.",
+          "Öznesi farklı olan eylemleri bağlamak için kullanılır.",
+          "Yalnızca geçmiş zamanda kullanılabilir."
+        ],
+        "answer": 1,
+        "why": "Gérondif eylemini yapan kişi ile temel cümlenin öznesi aynı olmak zorundadır; farklı öznelerde pendant que kullanılır."
+      },
+      {
+        "prompt": "___ à droite au prochain carrefour, vous trouverez la gare facilement. (tourner)",
+        "options": [
+          "En tournant",
+          "Tournant",
+          "À tourner",
+          "En tourné"
+        ],
+        "answer": 0,
+        "why": "Gérondif koşul (Si vous tournez à droite...) anlamı taşıyarak 'En tournant' şeklinde cümle başında kullanılabilir."
+      },
+      {
+        "prompt": "Ce sont des nouvelles très ___ pour notre équipe. (encourageant)",
+        "options": [
+          "encourageant",
+          "encourageante",
+          "encourageants",
+          "encourageantes"
+        ],
+        "answer": 3,
+        "why": "Fiilden türeyen bir niteleme sıfatı (adjectif verbal) isme (nouvelles, dişil çoğul) uyarak -es alır: encourageantes."
+      }
+    ],
+    "basics_fr_ordre_pronoms": [
+      {
+        "prompt": "Ce secret ? Il ___ a révélé hier soir.",
+        "options": [
+          "me l'",
+          "le m'",
+          "lui l'",
+          "l'en"
+        ],
+        "answer": 0,
+        "why": "Zamir sıralamasında birinci şahıs (me) doğrudan nesneden (le/la/l') önce gelir: me l'a révélé."
+      },
+      {
+        "prompt": "Ces documents ? Nous allons ___ envoyer par e-mail.",
+        "options": [
+          "leur les",
+          "les leur",
+          "les y",
+          "leur en"
+        ],
+        "answer": 1,
+        "why": "Sıralama kuralına göre le/la/les doğrudan nesnesi, lui/leur dolaylı nesnesinden önce gelir: les leur envoyer."
+      },
+      {
+        "prompt": "Ce livre m'appartient, ___ s'il te plaît !",
+        "options": [
+          "donne-me-le",
+          "donne-le-moi",
+          "donne-moi-le",
+          "me le donne"
+        ],
+        "answer": 1,
+        "why": "Olumlu emirde doğrudan nesne (le) öne gelir, kişi zamiri arkaya geçerek 'moi' olur: donne-le-moi."
+      },
+      {
+        "prompt": "Des pommes dans le panier ? Oui, il ___ reste encore trois.",
+        "options": [
+          "en y",
+          "y en",
+          "les en",
+          "y les"
+        ],
+        "answer": 1,
+        "why": "Zamir tablosunda 'y' daima 'en'den önce yer alır: il y en a / il y en reste."
+      },
+      {
+        "prompt": "« Onu bana ver! » emrinin doğru Fransızca kuruluşu hangisidir?",
+        "options": [
+          "Donne-moi-le !",
+          "Donne-me-le !",
+          "Donne-le-moi !",
+          "Le me donne !"
+        ],
+        "answer": 2,
+        "why": "Olumlu emirde doğrudan nesne (le/la/les) önce, 'moi/toi' ise en sonda yer alır: Donne-le-moi !"
+      },
+      {
+        "prompt": "Hangisi olumsuz biçimde DOĞRU dizilmiştir?",
+        "options": [
+          "Je ne lui l'ai pas dit.",
+          "Je ne le lui ai pas dit.",
+          "Je le lui n'ai pas dit.",
+          "Je ne l'ai pas lui dit."
+        ],
+        "answer": 1,
+        "why": "Olumsuz cümlede 'ne' zamirlerin önüne gelir; sıralama 'le lui' şeklindedir: Je ne le lui ai pas dit."
+      },
+      {
+        "prompt": "Cette robe ? Mon mari me l'a ___ pour mon anniversaire. (offrir)",
+        "options": [
+          "offert",
+          "offerte",
+          "offerts",
+          "offertes"
+        ],
+        "answer": 1,
+        "why": "Avoir ile kurulan geçmiş zamanda doğrudan nesne (l' = cette robe, dişil) fiilden önce geldiğinde ortaç uyum yapar: offerte."
+      }
+    ],
+    "basics_fr_adverbes": [
+      {
+        "prompt": "constant → ___ (zarf)",
+        "options": [
+          "constatement",
+          "constamment",
+          "constemment",
+          "constament"
+        ],
+        "answer": 1,
+        "why": "-ant ile biten sıfatlardan zarf türetilirken son ek '-amment' olur: constamment."
+      },
+      {
+        "prompt": "heureux → ___ (zarf)",
+        "options": [
+          "heureuxment",
+          "heureusemant",
+          "heureusement",
+          "heusement"
+        ],
+        "answer": 2,
+        "why": "Sessizle biten sıfatların dişil haline (heureuse) -ment eklenir: heureusement."
+      },
+      {
+        "prompt": "poli → ___ (zarf)",
+        "options": [
+          "poliment",
+          "poliement",
+          "polieusement",
+          "polissement"
+        ],
+        "answer": 0,
+        "why": "Sesli harfle biten eril sıfatlara doğrudan -ment eklenir: poli → poliment."
+      },
+      {
+        "prompt": "Hangisinde zarfın cümle içindeki yeri DOĞRUDUR?",
+        "options": [
+          "Il toujours arrive à l'heure.",
+          "Il arrive toujours à l'heure.",
+          "Toujours il arrive à l'heure.",
+          "Il arrive à l'heure toujours."
+        ],
+        "answer": 1,
+        "why": "Fransızcada zaman ve tarz zarfları kural olarak çekimli fiilin hemen arkasından gelir: arrive toujours."
+      },
+      {
+        "prompt": "« Bu çiçekler çok güzel kokuyor. » cümlesinde hangi ifade doğrudur?",
+        "options": [
+          "Ces fleurs sentent bon.",
+          "Ces fleurs sentent bien.",
+          "Ces fleurs sentent bonnes.",
+          "Ces fleurs sentent bonnement."
+        ],
+        "answer": 0,
+        "why": "Sentir fiiliyle koku nitelerken 'bon' sıfatı zarf görevinde değişmeden kullanılır: sentir bon."
+      },
+      {
+        "prompt": "précis sıfatından türeyen doğru zarf hangisidir?",
+        "options": [
+          "précisement",
+          "précisément",
+          "précissamment",
+          "précidemment"
+        ],
+        "answer": 1,
+        "why": "Précis sıfatı zarf olurken dişil e harfi aksan alır: précisément."
+      },
+      {
+        "prompt": "Cette voiture coûte très ___ à entretenir.",
+        "options": [
+          "chère",
+          "cher",
+          "chèrement",
+          "chers"
+        ],
+        "answer": 1,
+        "why": "'Coûter cher' (pahalıya patlamak) kalıbında cher sözcüğü zarf işlevi gördüğü için eril tekil kalır."
+      }
+    ],
+    "basics_fr_verbes_prepositions_a_de": [
+      {
+        "prompt": "Mon frère joue ___ piano et sa sœur joue ___ tennis.",
+        "options": [
+          "au / du",
+          "du / au",
+          "du / du",
+          "au / au"
+        ],
+        "answer": 1,
+        "why": "Müzik aletleriyle 'jouer de' (du piano), spor ve oyunlarla 'jouer à' (au tennis) kullanılır."
+      },
+      {
+        "prompt": "Cette équipe manque cruellement ___ expérience.",
+        "options": [
+          "à",
+          "d'",
+          "pour",
+          "de l'"
+        ],
+        "answer": 1,
+        "why": "Bir şeyin yokluğunu/eksikliğini çekmek anlamında 'manquer de' kalıbı kullanılır: manque d'expérience."
+      },
+      {
+        "prompt": "Après des mois d'hésitation, il s'est enfin décidé ___ changer de métier.",
+        "options": [
+          "de",
+          "à",
+          "pour",
+          "en"
+        ],
+        "answer": 1,
+        "why": "Tereddütten sonra harekete geçmeye karar vermek 'se décider à + mastar' ile ifade edilir."
+      },
+      {
+        "prompt": "Je tiens beaucoup ___ ce collier, c'est un cadeau de ma grand-mère.",
+        "options": [
+          "à",
+          "de",
+          "sur",
+          "pour"
+        ],
+        "answer": 0,
+        "why": "Bir nesneye manevi değer vermek veya önemsemek 'tenir à' ile söylenir."
+      },
+      {
+        "prompt": "Fransızcadaki « Tu me manques » cümlesinin mantığı hakkında hangisi DOĞRUDUR?",
+        "options": [
+          "« Je » öznesiyle başlar, yani özne özleyen kişidir.",
+          "Özlenen kişi (Tu) öznedir; sözcük anlamı 'Sen bende eksiksin' şeklindedir.",
+          "« Manquer » bu cümlede eşya eksikliğini anlatır.",
+          "Yalnızca üçüncü şahıslara karşı kullanılabilir."
+        ],
+        "answer": 1,
+        "why": "Fransızcada 'Tu me manques' ifadesinde özne özlenen kişidir (Tu = sen eksiksin), 'me' ise bana/bende anlamına gelir."
+      },
+      {
+        "prompt": "Pour son caractère têtu, Paul tient ___ son grand-père.",
+        "options": [
+          "à",
+          "de",
+          "pour",
+          "sur"
+        ],
+        "answer": 1,
+        "why": "Huy veya görünüş olarak aileden birine çekmek / benzemek 'tenir de' ile ifade edilir."
+      },
+      {
+        "prompt": "Le train vient ___ partir, vous l'avez manqué d'une minute.",
+        "options": [
+          "à",
+          "de",
+          "pour",
+          "en"
+        ],
+        "answer": 1,
+        "why": "Bir eylemin az önce tamamlandığını bildiren yakın geçmiş zaman 'venir de + mastar' kalıbıyla kurulur."
+      }
+    ],
+    "basics_fr_participe_gerondif": [
+      {
+        "prompt": "« J'ai aperçu Pierre sortant de la banque. » Cümleye göre bankadan çıkan kimdir?",
+        "options": [
+          "Konuşan kişinin kendisi",
+          "Pierre",
+          "Her ikisi birlikte",
+          "Belli değildir"
+        ],
+        "answer": 1,
+        "why": "'En'siz participe présent (sortant) hemen önündeki nesneyi (Pierre) niteler; bankadan çıkan Pierre'dir."
+      },
+      {
+        "prompt": "Ce sont des étudiants ___ plusieurs langues étrangères. (parler)",
+        "options": [
+          "parlants",
+          "parlant",
+          "en parlant",
+          "parlantes"
+        ],
+        "answer": 1,
+        "why": "Yan cümle kısaltması olan participe présent fiil niteliğini korur ve asla çoğul/dişil eki almaz: parlant."
+      },
+      {
+        "prompt": "Elle a une voix très ___ qui apaise tout le monde. (charmer)",
+        "options": [
+          "charmant",
+          "charmante",
+          "en charmant",
+          "charmantes"
+        ],
+        "answer": 1,
+        "why": "Niteleme sıfatına dönüşen biçim (adjectif verbal) nitelediği dişil isme (voix) uyar: charmante."
+      },
+      {
+        "prompt": "Ne ___ pas comment réagir, il a préféré garder le silence. (savoir)",
+        "options": [
+          "savant",
+          "sachant",
+          "en sachant",
+          "su"
+        ],
+        "answer": 1,
+        "why": "Savoir fiilinin participe présent biçimi 'sachant'dır; neden bildirerek cümlenin başında yer alır."
+      },
+      {
+        "prompt": "« Yüzmeyi çok seviyorum. » cümlesinin doğru Fransızcası hangisidir?",
+        "options": [
+          "J'aime en nageant.",
+          "J'aime nager.",
+          "J'aime nageant.",
+          "J'aime à en nager."
+        ],
+        "answer": 1,
+        "why": "Beğeni fiillerinden sonra eylemin adı mastar olarak gelir (j'aime nager); İngilizcedeki -ing etkisiyle gérondif kullanılmaz."
+      },
+      {
+        "prompt": "Elle s'est endormie ___ lisant un roman policier.",
+        "options": [
+          "à",
+          "en",
+          "de",
+          "pour"
+        ],
+        "answer": 1,
+        "why": "Eylemin yapıldığı sırada gerçekleşen eşzamanlı durumu anlatırken 'en + gérondif' kullanılır: en lisant."
+      },
+      {
+        "prompt": "___ terminé son rapport, l'avocat a quitté son bureau. (avoir)",
+        "options": [
+          "Étant",
+          "Ayant",
+          "En ayant",
+          "Avait"
+        ],
+        "answer": 1,
+        "why": "Daha önce tamamlanmış geçmiş bir eylemi bağlarken 'ayant + ortaç' (participe passé composé) kullanılır."
+      }
+    ],
+    "basics_fr_double_pronoms_imperatif": [
+      {
+        "prompt": "Cette clé ? ___ , il en a besoin tout de suite ! (à Pierre)",
+        "options": [
+          "Donne-lui-la",
+          "Donne-la-lui",
+          "La lui donne",
+          "Donne-la-le"
+        ],
+        "answer": 1,
+        "why": "Olumlu emirde doğrudan nesne (la) önce, dolaylı nesne (lui) sonra gelir: Donne-la-lui !"
+      },
+      {
+        "prompt": "Ces photos sont affreuses, ne ___ montre pas !",
+        "options": [
+          "me les",
+          "les moi",
+          "moi les",
+          "les me"
+        ],
+        "answer": 0,
+        "why": "Olumsuz emirde normal cümle dizilimi geçerlidir ve zamirler fiilin önünde yer alır: ne me les montre pas."
+      },
+      {
+        "prompt": "Ce problème est trop difficile, ___ s'il te plaît !",
+        "options": [
+          "explique-nous-le",
+          "explique-le-nous",
+          "nous le explique",
+          "explique-le-moi"
+        ],
+        "answer": 1,
+        "why": "Olumlu emirde doğrudan nesne (le), şahıs zamirinden (nous) önce gelir: Explique-le-nous !"
+      },
+      {
+        "prompt": "Il se fait tard, va-___ vite !",
+        "options": [
+          "t'en",
+          "toi-en",
+          "en-toi",
+          "te-en"
+        ],
+        "answer": 0,
+        "why": "Olumlu emirde toi ve en birleşirken sesli harf önünde 't'en' olur: Va-t'en !"
+      },
+      {
+        "prompt": "Fransızcada olumlu emir kipinde birinci tekil şahıs zamirinin kullanımıyla ilgili hangisi DOĞRUDUR?",
+        "options": [
+          "Fiilden sonra 'me' olarak kalır (Prête-me-le).",
+          "Fiilden sonra vurgulu 'moi' biçimine dönüşür (Prête-le-moi).",
+          "Olumlu emirde şahıs zamiri hiç kullanılmaz.",
+          "Yalnızca olumsuz emirde 'moi' kullanılır."
+        ],
+        "answer": 1,
+        "why": "Olumlu emirde sona gelen birinci tekil şahıs zamiri me değil, daima 'moi' olur (Donne-le-moi)."
+      },
+      {
+        "prompt": "C'est une surprise pour tes parents, ne ___ dis rien !",
+        "options": [
+          "le leur",
+          "leur le",
+          "le lui",
+          "les leur"
+        ],
+        "answer": 0,
+        "why": "Olumsuz emirde sıralama le/la/les ardından lui/leur şeklindedir: ne le leur dis rien."
+      },
+      {
+        "prompt": "Le projet commence aujourd'hui, mettez-___ dès maintenant !",
+        "options": [
+          "vous-y",
+          "y-vous",
+          "vous-en",
+          "y"
+        ],
+        "answer": 0,
+        "why": "Dönüşlü fiilin olumlu emrinde 'y' zamiri şahıs zamirinden sonra gelir: Mettez-vous-y !"
+      }
+    ],
+    "basics_fr_tout_tous_usages": [
+      {
+        "prompt": "« Les étudiants sont là ? — Oui, ils sont tous venus. » cümlesinde « tous » nasıl telaffuz edilir?",
+        "options": [
+          "Sondaki -s harfi okunmaz (/tu/).",
+          "Sondaki -s harfi açıkça okunur (/tus/).",
+          "/tut/ şeklinde okunur.",
+          "/to/ şeklinde okunur."
+        ],
+        "answer": 1,
+        "why": "Zamir olan 'tous' kelimesinde sondaki -s harfi daima /s/ olarak telaffuz edilir (sıfat olduğunda okunmaz)."
+      },
+      {
+        "prompt": "Nous faisons du sport ___ les semaines.",
+        "options": [
+          "tous",
+          "toutes",
+          "tout",
+          "toute"
+        ],
+        "answer": 1,
+        "why": "Semaines dişil çoğul bir isim olduğu için sıfat olarak 'toutes' kullanılır."
+      },
+      {
+        "prompt": "La petite fille était ___ honteuse de sa bêtise.",
+        "options": [
+          "tout",
+          "toute",
+          "toutes",
+          "tous"
+        ],
+        "answer": 1,
+        "why": "Zarf olan tout, sessiz harfle başlayan dişil bir sıfatın (honteuse) önünde istisnai olarak uyum yapar: toute honteuse."
+      },
+      {
+        "prompt": "Dans ce village, tout le monde se ___ . (connaître)",
+        "options": [
+          "connaissent",
+          "connaît",
+          "connaissez",
+          "connaissons"
+        ],
+        "answer": 1,
+        "why": "'Tout le monde' anlamca herkes olsa da gramer olarak 3. tekil şahıstır (il gibi çekilir): connaît."
+      },
+      {
+        "prompt": "« Je prends le train tous les jours. » cümlesinde « tous » nasıl telaffuz edilir?",
+        "options": [
+          "Sondaki -s harfi okunmaz (/tu/).",
+          "Sondaki -s harfi okunur (/tus/).",
+          "/tut/ olarak okunur.",
+          "/tur/ olarak okunur."
+        ],
+        "answer": 0,
+        "why": "İsimden önce gelen sıfat görevindeki 'tous' kelimesinde sondaki -s okunmaz (/tu le jur/)."
+      },
+      {
+        "prompt": "Ces gâteaux sont délicieux, je veux ___ les manger !",
+        "options": [
+          "tout",
+          "tous",
+          "toute",
+          "toutes"
+        ],
+        "answer": 1,
+        "why": "Eril çoğul nesnelerin tamamını temsil eden zamir 'tous'dur: tous les manger."
+      },
+      {
+        "prompt": "« Her şey yolunda gidecek. » cümlesinin doğru Fransızcası hangisidir?",
+        "options": [
+          "Tout va bien se passer.",
+          "Tous va bien se passer.",
+          "Toute va bien se passer.",
+          "Tout le monde va bien se passer."
+        ],
+        "answer": 0,
+        "why": "Nötr 'her şey' anlamındaki zamir tekil olan 'Tout'dur: Tout va bien."
+      }
+    ],
+    "basics_fr_indefinis": [
+      {
+        "prompt": "Nous cherchons quelqu'un ___ sérieux pour garder les enfants.",
+        "options": [
+          "de",
+          "d'",
+          "à",
+          "pour"
+        ],
+        "answer": 0,
+        "why": "Quelqu'un kelimesinden sonra sıfat geldiğinde araya 'de' edatı girer ve sıfat eril tekil kalır."
+      },
+      {
+        "prompt": "___ matin, je prends un grand café noir avant de partir.",
+        "options": [
+          "Chaque",
+          "Chacun",
+          "Tous",
+          "Quelques"
+        ],
+        "answer": 0,
+        "why": "'Chaque' bir sıfattır ve arkasından doğrudan tekil isim (matin) gelir."
+      },
+      {
+        "prompt": "___ élèves préfèrent travailler en bibliothèque.",
+        "options": [
+          "Chaque",
+          "Certains",
+          "Quelqu'un",
+          "Chacun"
+        ],
+        "answer": 1,
+        "why": "Çoğul bir ismin (élèves) önüne 'bazı/kimi' anlamında belgisiz sıfat olarak 'Certains' gelir."
+      },
+      {
+        "prompt": "Chacun des participants ___ reçu un certificat.",
+        "options": [
+          "ont",
+          "a",
+          "sont",
+          "avaient"
+        ],
+        "answer": 1,
+        "why": "'Chacun' zamiri 'her biri' demektir ve fiili daima 3. tekil şahısta (a reçu) çekilir."
+      },
+      {
+        "prompt": "« Önemli bir şey yok. » cümlesinin doğru Fransızcası hangisidir?",
+        "options": [
+          "Il n'y a rien grave.",
+          "Il n'y a rien de grave.",
+          "Il n'y a rien d'une gravité.",
+          "Il n'y a pas rien grave."
+        ],
+        "answer": 1,
+        "why": "Rien ve quelque chose sözcüklerinden sonra sıfat daima 'de' edatıyla bağlanır: rien de grave."
+      },
+      {
+        "prompt": "Il me reste encore ___ minutes avant le début de la réunion.",
+        "options": [
+          "quelque",
+          "quelques",
+          "chaque",
+          "chacun"
+        ],
+        "answer": 1,
+        "why": "Çoğul isimlerin önünde 'birkaç' anlamında 'quelques' kullanılır."
+      },
+      {
+        "prompt": "Parmi ces propositions, ___ me paraissent intéressantes.",
+        "options": [
+          "plusieurs",
+          "plusieures",
+          "chaque",
+          "quelqu'une"
+        ],
+        "answer": 0,
+        "why": "'Plusieurs' kelimesi eril ve dişil için değişmez, her zaman aynı biçimde çoğuldur."
+      }
+    ],
+    "basics_fr_questions_inversion": [
+      {
+        "prompt": "___ français au Canada ? (parler, on)",
+        "options": [
+          "Parle-on",
+          "Parle-t-on",
+          "Parles-t-on",
+          "Parle-t-il"
+        ],
+        "answer": 1,
+        "why": "Ünlü harfle biten fiilden sonra 'on' zamiri geldiğinde iki ünlü çakışmasın diye araya -t- girer: Parle-t-on."
+      },
+      {
+        "prompt": "___ -il souvent le train pour aller au travail ? (prendre)",
+        "options": [
+          "Prend-t",
+          "Prend",
+          "Prends",
+          "Prend-il"
+        ],
+        "answer": 1,
+        "why": "Fiil zaten -d veya -t harfiyle bitiyorsa araya kaynaştırma -t- konmaz: Prend-il ?"
+      },
+      {
+        "prompt": "___ à la fête demain soir ? (Sophie, venir)",
+        "options": [
+          "Vient Sophie",
+          "Sophie vient-elle",
+          "Vient-elle Sophie",
+          "Est-ce vient Sophie"
+        ],
+        "answer": 1,
+        "why": "Özne isim olduğunda isim başta kalır, fiilden sonra zamirle tekrarlanır: Sophie vient-elle ?"
+      },
+      {
+        "prompt": "___ bien dormi cette nuit ? (tu, passé composé)",
+        "options": [
+          "As-tu",
+          "Tu as",
+          "As dormi-tu",
+          "Dormi as-tu"
+        ],
+        "answer": 0,
+        "why": "Bileşik zamanlarda devrik soru yapılırken zamir yardımcı fiile (avoir/être) tireyle bağlanır: As-tu bien dormi ?"
+      },
+      {
+        "prompt": "Fransızcada resmi devrik soru (inversion) ile ilgili hangisi YANLIŞTIR?",
+        "options": [
+          "Fiil ile özne zamiri arasına kısa çizgi (-) konur.",
+          "İki sesli harf yan yana geldiğinde araya kaynaştırma -t- harfi girer.",
+          "İsim özneler doğrudan fiilin sağına atılarak soru yapılır (Parle Paul ?).",
+          "Bileşik zamanlarda yalnızca yardımcı fiil yer değiştirir (Avez-vous compris ?)."
+        ],
+        "answer": 2,
+        "why": "İsim özneler doğrudan fiilin arkasına atılamaz; isim başta kalır ve fiile zamir eklenir: Paul parle-t-il ?"
+      },
+      {
+        "prompt": "Pardon monsieur, où ___ ?",
+        "options": [
+          "allez-vous",
+          "vous allez",
+          "allez vous",
+          "est-ce allez-vous"
+        ],
+        "answer": 0,
+        "why": "Soru kelimesinden sonra devrik yapıda fiil ve zamir tireyle birleşir: où allez-vous ?"
+      },
+      {
+        "prompt": "___ déjà réservé leurs billets d'avion ? (ils)",
+        "options": [
+          "Ont-t-ils",
+          "Ont-ils",
+          "Ont ils",
+          "Sont-ils"
+        ],
+        "answer": 1,
+        "why": "Fiil zaten -t ile bittiği için ekstra kaynaştırma harfi gerekmez: Ont-ils."
+      }
+    ],
+    "basics_fr_discours_temps": [
+      {
+        "prompt": "Marc a dit : « Je ne peux pas venir aujourd'hui. » → Marc a dit qu'il ne pouvait pas venir ___ .",
+        "options": [
+          "ce jour-là",
+          "aujourd'hui",
+          "le lendemain",
+          "la veille"
+        ],
+        "answer": 0,
+        "why": "Geçmiş zamanlı aktarımda 'aujourd'hui' ifadesi 'ce jour-là' (o gün) biçimine dönüşür."
+      },
+      {
+        "prompt": "Elle m'a dit : « Reste ici ! » → Elle m'a dit de rester ___ .",
+        "options": [
+          "ici",
+          "là-bas",
+          "ce lieu-là",
+          "y"
+        ],
+        "answer": 1,
+        "why": "Dolaylı aktarımda 'ici' (burada) yer zarfı 'là' veya 'là-bas' (orada) olur."
+      },
+      {
+        "prompt": "Il a expliqué qu'il était très occupé ___ (maintenant).",
+        "options": [
+          "en ce moment",
+          "maintenant",
+          "à ce moment-là",
+          "ce jour-ci"
+        ],
+        "answer": 2,
+        "why": "Geçmişe aktarılan 'maintenant' (şimdi) ifadesi 'à ce moment-là' (o sırada / o an) olur."
+      },
+      {
+        "prompt": "Elle m'a demandé : « Est-ce que tu as faim ? » → Elle m'a demandé ___ j'avais faim.",
+        "options": [
+          "est-ce que",
+          "si",
+          "que",
+          "ce que"
+        ],
+        "answer": 1,
+        "why": "Evet/hayır soruları dolaylı anlatıma aktarılırken 'si' bağlacına dönüşür."
+      },
+      {
+        "prompt": "« Qu'est-ce qui se passe ? » sorusu geçmiş zamanlı bir fiille dolaylı anlatıma aktarıldığında neye dönüşür?",
+        "options": [
+          "qu'est-ce qui se passait",
+          "ce qui se passait",
+          "ce que se passait",
+          "si se passait"
+        ],
+        "answer": 1,
+        "why": "Özneyi soran 'Qu'est-ce qui', dolaylı anlatımda 'ce qui' olur (Qu'est-ce que ise ce que olur)."
+      },
+      {
+        "prompt": "Paul a raconté qu'il avait voyagé en Espagne ___ (la semaine dernière).",
+        "options": [
+          "la semaine dernière",
+          "la semaine suivante",
+          "la semaine précédente",
+          "la semaine d'avant-hier"
+        ],
+        "answer": 2,
+        "why": "Dolaylı aktarımda 'la semaine dernière', nötr zaman zarfı olan 'la semaine précédente' (önceki hafta) biçimine döner."
+      },
+      {
+        "prompt": "Le directeur a annoncé que les résultats seraient publiés ___ (dans deux jours).",
+        "options": [
+          "dans deux jours",
+          "deux jours plus tard",
+          "deux jours avant",
+          "après deux jours"
+        ],
+        "answer": 1,
+        "why": "Geçmişten aktarılan 'dans + süre' ifadesi 'süre + plus tard' biçimine dönüşür."
+      }
+    ]
+  }
+}
