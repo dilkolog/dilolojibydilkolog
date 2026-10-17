@@ -6,6 +6,14 @@ import { db, scheduler } from '../data/instance'
 
 const SCOPES: StudyScope[] = ['weak', 'today', 'all', 'hard', 'unlearned', 'list']
 const DIRECTION_NAME: Record<StudyDirection, string> = { forward: 'Kelime önce', reverse: 'Anlam önce', mixed: 'Karışık' }
+const SCOPE_ICON: Record<StudyScope, string> = {
+  weak: '⚡',
+  today: '📅',
+  all: '📚',
+  hard: '🎯',
+  unlearned: '🌱',
+  list: '📑',
+}
 
 /**
  * The choices before a round of cards: which words, shuffled or not, which side first, how many.
@@ -18,6 +26,7 @@ export function StudyOptionsPanel({
   vocabulary,
   states,
   directions = true,
+  children,
 }: {
   value: StudyOptions
   onChange: (o: StudyOptions) => void
@@ -26,6 +35,7 @@ export function StudyOptionsPanel({
   states: UserWordState[]
   /** Offer the side that shows first (flashcards): a test asks both ways on its own. */
   directions?: boolean
+  children?: React.ReactNode
 }) {
   const [lists, setLists] = useState<WordList[]>([])
   // Until the lists are read, a saved list choice would look empty and be moved off.
@@ -62,16 +72,19 @@ export function StudyOptionsPanel({
         <h2 className="study-label">Hangi kelimeler?</h2>
         <div className="choice-row" role="group" aria-label="Hangi kelimeler">
           {SCOPES.filter((s) => s !== 'list' || lists.length > 0).map((s) => (
-            <button key={s} type="button" className="chip" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
-              {SCOPE_NAME[s]} <span className="study-count">{counts[s]}</span>
+            <button key={s} type="button" className="chip study-chip" aria-pressed={value.scope === s} disabled={counts[s] === 0 && value.scope !== s} onClick={() => set({ scope: s, listId: s === 'list' ? listId : value.listId })}>
+              <span className="study-chip-icon" aria-hidden="true">{SCOPE_ICON[s]}</span>
+              <span>{SCOPE_NAME[s]}</span>
+              <span className="study-count">{counts[s]}</span>
             </button>
           ))}
         </div>
         {value.scope === 'list' && lists.length > 0 && (
           <div className="choice-row study-lists" role="group" aria-label="Hangi liste">
             {lists.map((l) => (
-              <button key={l.id} type="button" className="chip chip-sm" aria-pressed={listId === l.id} onClick={() => set({ listId: l.id })}>
-                {l.name} <span className="study-count">{listCount(l.id)}</span>
+              <button key={l.id} type="button" className="chip chip-sm study-chip" aria-pressed={listId === l.id} onClick={() => set({ listId: l.id })}>
+                <span>{l.name}</span>
+                <span className="study-count">{listCount(l.id)}</span>
               </button>
             ))}
           </div>
@@ -81,7 +94,7 @@ export function StudyOptionsPanel({
         <h2 className="study-label">Kaç kart?</h2>
         <div className="choice-row" role="group" aria-label="Kart sayısı">
           {STUDY_SIZES.map((n) => (
-            <button key={n} type="button" className="chip" aria-pressed={value.size === n} onClick={() => set({ size: n })}>
+            <button key={n} type="button" className="chip study-chip" aria-pressed={value.size === n} onClick={() => set({ size: n })}>
               {n === 0 ? 'Hepsi' : `${n} kart`}
             </button>
           ))}
@@ -90,17 +103,18 @@ export function StudyOptionsPanel({
       <section className="study-group">
         <h2 className="study-label">Düzen</h2>
         <div className="choice-row" role="group" aria-label="Sıra ve yön">
-          <button type="button" className="chip" aria-pressed={value.shuffle} onClick={() => set({ shuffle: !value.shuffle })}>
+          <button type="button" className="chip study-chip" aria-pressed={value.shuffle} onClick={() => set({ shuffle: !value.shuffle })}>
             Karıştır
           </button>
           {directions &&
             (['forward', 'reverse', 'mixed'] as const).map((d) => (
-              <button key={d} type="button" className="chip" aria-pressed={value.direction === d} onClick={() => set({ direction: d })}>
+              <button key={d} type="button" className="chip study-chip" aria-pressed={value.direction === d} onClick={() => set({ direction: d })}>
                 {DIRECTION_NAME[d]}
               </button>
             ))}
         </div>
       </section>
+      {children}
     </div>
   )
 }

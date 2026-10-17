@@ -29,6 +29,13 @@ function loadKinds(): TestKind[] {
   }
 }
 
+const KIND_ICONS: Record<TestKind, string> = {
+  choice: '🔘',
+  typed: '⌨️',
+  truefalse: '⚖️',
+  match: '🧩',
+}
+
 /**
  * A practice test of the learner's own words: the set, how many questions and which kinds (multiple
  * choice, typing, true/false, matching) are chosen first; at the end the score by kind and the words
@@ -97,21 +104,36 @@ export function PracticeTest({ language, vocabulary, states, onExit, onChanged }
   if (!questions) {
     const count = options.size > 0 ? Math.min(options.size, available) : available
     return (
-      <div className="stack">
+      <div className="stack exam-setup-screen">
         <button className="link" onClick={onExit}>← Oyunlar</button>
-        <h1 className="greeting">Deneme sınavı</h1>
-        <p className="greeting-sub">Kendi kelimelerinden karışık bir sınav kur: çoktan seçmeli, yazarak, doğru/yanlış, eşleştirme. Sonunda yanlışlarınla yeni bir sınav yapabilirsin.</p>
-        <StudyOptionsPanel value={options} onChange={setOptions} language={language} vocabulary={vocabulary} states={states} directions={false} />
-        <div className="choice-row" role="group" aria-label="Soru türleri">
-          {KINDS.map((k) => (
-            <button key={k} type="button" className="chip" aria-pressed={kinds.includes(k)} onClick={() => toggleKind(k)}>
-              {TEST_KIND_NAME[k]}
-            </button>
-          ))}
+        <div className="exam-hero">
+          <span className="exam-kicker">📋 DENEME SINAVI</span>
+          <h1 className="greeting">Deneme sınavı</h1>
+          <p className="greeting-sub">Kendi kelimelerinden karışık bir sınav kur: çoktan seçmeli, yazarak, doğru/yanlış, eşleştirme. Sonunda yanlışlarınla yeni bir sınav yapabilirsin.</p>
         </div>
-        <button className="btn btn-lg" disabled={available < 3} onClick={start}>
-          {available < 3 ? 'Bu grupta yeterli kelime yok' : `${count} kelimelik sınavı başlat`}
-        </button>
+        <StudyOptionsPanel value={options} onChange={setOptions} language={language} vocabulary={vocabulary} states={states} directions={false}>
+          <section className="study-group">
+            <h2 className="study-label">Soru türleri</h2>
+            <div className="choice-row" role="group" aria-label="Soru türleri">
+              {KINDS.map((k) => (
+                <button key={k} type="button" className="chip study-chip" aria-pressed={kinds.includes(k)} onClick={() => toggleKind(k)}>
+                  <span className="study-chip-icon" aria-hidden="true">{KIND_ICONS[k]}</span>
+                  <span>{TEST_KIND_NAME[k]}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+        </StudyOptionsPanel>
+        <div className="exam-start-bar">
+          <div className="exam-summary-pill">
+            <span className="exam-summary-item">📚 {available} kelime havuzda</span>
+            <span className="exam-summary-dot">·</span>
+            <span className="exam-summary-item">🎯 {kinds.length} soru türü</span>
+          </div>
+          <button className="btn btn-lg exam-start-btn" disabled={available < 3} onClick={start}>
+            {available < 3 ? 'Bu grupta yeterli kelime yok' : `${count} kelimelik sınavı başlat`}
+          </button>
+        </div>
       </div>
     )
   }
