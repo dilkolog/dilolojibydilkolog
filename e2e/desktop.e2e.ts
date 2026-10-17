@@ -2173,6 +2173,16 @@ test('the guide: a lesson read days ago comes back on Today for a short check', 
   expect(await overflow(page)).toEqual([])
 })
 
+test('the guide: a weekly goal brings today\'s lesson to Today and shows the week in the guide', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.getByRole('group', { name: 'Haftalık ders hedefi' }).getByRole('button', { name: '2 ders' }).click()
+  await expect(page.locator('.guide-goal')).toContainText('bu hafta 0/2 ders')
+  await openScreen(page, 'Bugün')
+  // Present in the page; Today shows one nudge at a time, so another one may be the one on view.
+  await expect(page.locator('.habit-nudge').filter({ hasText: 'Bugünün dersi' })).toContainText('bu hafta 0/2')
+})
+
 test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, and browser back returns to question', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')

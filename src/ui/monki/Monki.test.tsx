@@ -279,6 +279,20 @@ describe('Monki', () => {
     keep.remove()
   })
 
+  it('in a session the small button opens the chat and closing does not hand it the focus', () => {
+    render('sk-test', false, { inSession: true })
+    const fab = container.querySelector<HTMLButtonElement>('.monki-fab')!
+    expect(fab.classList.contains('monki-fab-session')).toBe(true)
+    fab.focus()
+    act(() => fab.click())
+    expect(container.querySelector('.monki-panel')!.getAttribute('aria-modal')).toBe('true')
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+    })
+    expect(container.querySelector('.monki-panel')).toBeNull()
+    expect(document.activeElement).not.toBe(container.querySelector('.monki-fab'))
+  })
+
   it('animates Monki on the opening screen and cycles poses when tapped', () => {
     render(null)
     openPanel()
