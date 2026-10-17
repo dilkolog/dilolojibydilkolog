@@ -1470,6 +1470,8 @@ test('settings: a question type can be set to less or off, and stays so after a 
   await blank.getByRole('radio', { name: 'Hiç' }).click()
   await expect(blank.getByRole('radio', { name: 'Hiç' })).toHaveAttribute('aria-checked', 'true')
   await page.getByRole('radiogroup', { name: 'Duyduğun cümleyi yaz' }).getByRole('radio', { name: 'Az' }).click()
+  // Waited for, so the reload does not outrun the save.
+  await expect(page.getByRole('radiogroup', { name: 'Duyduğun cümleyi yaz' }).getByRole('radio', { name: 'Az' })).toHaveAttribute('aria-checked', 'true')
   await page.reload()
   await openScreen(page, 'Ayarlar')
   await page.locator('.settings-menu-item', { hasText: 'Sorular' }).click()

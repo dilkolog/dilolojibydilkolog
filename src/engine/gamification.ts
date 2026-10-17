@@ -106,10 +106,11 @@ export function computeXp(events: readonly ReviewEvent[], introductions: readonl
 // ---------------------------------------------------------------------------
 
 /**
- * XP needed to go from `level` to `level + 1`. Deliberately steep: level 10 takes weeks of daily
- * practice, level 30 months, level 50 years.
+ * XP needed to go from `level` to `level + 1`. Still rising, but gently: at about 50 XP a day level 5 comes
+ * in under a month, level 11 in about seven months, level 20 in under three years. (The exponent was 1.7
+ * until 2026-10: levels are derived from the answer history, so a gentler curve raises everyone's level.)
  */
-export const xpToNext = (level: number) => Math.round(80 * Math.pow(level, 1.7))
+export const xpToNext = (level: number) => Math.round(80 * Math.pow(level, 1.45))
 
 const TITLES: [number, string][] = [
   [50, 'Efsane'],

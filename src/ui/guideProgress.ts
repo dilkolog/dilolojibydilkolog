@@ -1,6 +1,9 @@
+import type { GuideLevel } from '../data/guide/lessonTypes'
 import type { KelimeDB } from '../data/db'
-import { afterCheck, cleanMarks, flagOf, putOff, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { levelCertificates } from '../engine/guideCertificate'
+import { afterCheck, cleanMarks, flagOf, isRead, putOff, type GuideMarks, type LessonFlag } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
+import { CERT_XP, certAwardKey, LESSON_XP, lessonAwardKey, REVIEW_XP, reviewAwardKey } from '../engine/xpLedger'
 
 /** Where the first versions kept the marks, on this device only: moved into the database (and so the backup and sync) on first load. */
 const KEY = 'diloloji:guide-progress'
@@ -57,3 +60,30 @@ export const markChecked = (marks: GuideMarks, topic: string, passed: boolean): 
 
 /** The review on Today put off: asked again after the same wait. */
 export const markPutOff = (marks: GuideMarks, topic: string): GuideMarks => (marks[topic] ? { ...marks, [topic]: putOff(marks[topic]!, localDate(new Date())) } : marks)
+
+/**
+ * The XP a finished check earns: the lesson the first time it is learned, a review step each time one is passed,
+ * and a level certificate when this check completes the level. Every award has a once-only key (see `xpLedger`),
+ * so unmarking and learning a lesson again earns nothing twice.
+ */
+export function checkAwards(
+  language: string,
+  lessons: readonly { topic: string; level: GuideLevel }[],
+  before: GuideMarks,
+  after: GuideMarks,
+  topic: string,
+  today: string,
+): { key: string; day: string; xp: number }[] {
+  const out: { key: string; day: string; xp: number }[] = []
+  const was = before[topic]
+  const now = after[topic]
+  if (!now?.learned) return out
+  const newlyLearned = !isRead(was) || !was?.learned
+  if (newlyLearned) out.push({ key: lessonAwardKey(topic), day: today, xp: LESSON_XP })
+  else if (now.step && now.step !== was?.step) out.push({ key: reviewAwardKey(topic, now.step), day: today, xp: REVIEW_XP })
+  const doneBefore = new Set(levelCertificates(lessons, before).filter((c) => c.done).map((c) => c.level))
+  for (const cert of levelCertificates(lessons, after)) {
+    if (cert.done && !doneBefore.has(cert.level)) out.push({ key: certAwardKey(language, cert.level), day: today, xp: CERT_XP })
+  }
+  return out
+}

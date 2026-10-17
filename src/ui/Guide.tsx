@@ -10,6 +10,7 @@ import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
 import { checkFor, tryFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
 import { isRead, PASS_RIGHT, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { localDate } from '../engine/progress'
 import { levelCertificates } from '../engine/guideCertificate'
 import { GuideCertificates } from './GuideCertificates'
 import { learningPath, pathOrder, type PathStep } from '../data/guide/path'
@@ -31,7 +32,7 @@ import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
-import { loadMarks, markChecked, markFlag, markRead as withRead } from './guideProgress'
+import { checkAwards, loadMarks, markChecked, markFlag, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
@@ -173,7 +174,12 @@ export function GuideScreen({
         onBack={() => setOpen(null)}
         onNext={following ? () => setOpen(following) : undefined}
         onRead={(on) => markRead(open.topic, on)}
-        onChecked={(right, size) => change(markChecked(marks, open.topic, right >= Math.min(PASS_RIGHT, size)))}
+        onChecked={(right, size) => {
+          const next = markChecked(marks, open.topic, right >= Math.min(PASS_RIGHT, size))
+          change(next)
+          const awards = checkAwards(language, lessons, marks, next, open.topic, localDate(new Date()))
+          if (awards.length) void db.awardXp(awards).catch(() => {})
+        }}
         onPractice={() => onPractice(practice)}
         onVerbs={() => onVerbs(targetTense)}
       />
@@ -721,7 +727,7 @@ function LessonView({
                 <div className="guide-next-text">
                   <span className="small muted guide-next-eyebrow">{learned ? 'Öğrenildi · tekrar et' : 'Kendini dene'}</span>
                   <strong>{check.length} soruluk kısa sınav</strong>
-                  <span className="small muted">{learned ? 'Kural hâlâ yerinde mi, bir bak.' : `${Math.min(PASS_RIGHT, check.length)} doğru yeterli: ders öğrenildi sayılır ve birkaç gün sonra tekrarı gelir.`}</span>
+                  <span className="small muted">{learned ? 'Kural hâlâ yerinde mi, bir bak.' : `${Math.min(PASS_RIGHT, check.length)} doğru yeterli: ders öğrenildi sayılır (+20 XP) ve birkaç gün sonra tekrarı gelir.`}</span>
                 </div>
                 <span className="guide-next-btn" aria-hidden="true">
                   <ChevronRightIcon size={20} className="guide-next-arrow" />

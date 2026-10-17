@@ -69,7 +69,7 @@ describe('levels', () => {
     expect(xpToNext(10)).toBeGreaterThan(xpToNext(5) * 2.5)
     let total = 0
     for (let l = 1; l < 10; l++) total += xpToNext(l)
-    expect(total).toBeGreaterThan(10_000)
+    expect(total).toBeGreaterThan(7_000)
     expect(levelFromXp(total).level).toBe(10)
     expect(levelFromXp(total).title).toBe('Çırak')
   })

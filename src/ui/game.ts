@@ -14,6 +14,7 @@ import { streakWithFreezes } from '../engine/insights'
 import { repairOffer, type RepairOffer } from '../engine/streakRepair'
 import { isRestDay } from '../engine/workload'
 import { BOSS_XP } from '../engine/bosses'
+import { ledgerByDay } from '../engine/xpLedger'
 import { CHALLENGE_XP, challengeStatus, completedByWeek, type ChallengeStatus } from '../engine/challenges'
 import type { JournalEntry } from '../data/db'
 import { activityStats } from '../engine/badgeStats'
@@ -63,7 +64,7 @@ export function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
 }
 
 async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
-  const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog] = await Promise.all([
+  const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog, ledger] = await Promise.all([
     db.allEvents(),
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
@@ -75,6 +76,7 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     db.getLab('fr'),
     db.getLab('es'),
     db.getBadgeLog(),
+    db.getXpLedger(),
   ])
   const xp = computeXp(events, states.map((s) => s.introducedAt), now)
   // Beating a boss is worth a fixed bonus, counted on the day it happened.
@@ -91,6 +93,12 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
       xp.byDay.set(day, (xp.byDay.get(day) ?? 0) + n)
       if (day === localDate(now)) xp.today += n
     }
+  }
+  // Time read and listened, lessons learned: awards written down as they were earned.
+  for (const [day, n] of ledgerByDay(ledger)) {
+    xp.total += n
+    xp.byDay.set(day, (xp.byDay.get(day) ?? 0) + n)
+    if (day === localDate(now)) xp.today += n
   }
   const activity = {
     events,
