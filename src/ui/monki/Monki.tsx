@@ -3,14 +3,16 @@ import '../../lazy.css'
 import { AiError, monkiTurn, type MonkiMode } from '../../ai'
 import type { TargetLanguage } from '../../engine/types'
 import { useAi } from '../aiContext'
-import { CloseIcon, SendIcon } from '../icons'
+import { CloseIcon, MicIcon, SendIcon, StopIcon } from '../icons'
+import { canListen, listen, type Listening } from '../speechInput'
+import { canSpeak, speak, stopSpeaking } from '../speech'
 import { LANGUAGE_NAME } from '../labels'
 import { RichText } from '../RichText'
 import { MonkiFace, MonkiPose, MonkiStage } from './MonkiMascot'
 import { setMonkiListener, type MonkiAsk } from './monkiBus'
 import { EMBLEM, ROLE_ART } from '../drawnArt'
 import { usesWord } from './monkiWords'
-import { changedWord, parseCorrection } from './corrections'
+import { changedWord, parseCorrection, type Correction } from './corrections'
 import { saveSentence } from '../saveSentence'
 
 interface Msg {
@@ -19,6 +21,7 @@ interface Msg {
 }
 
 const MAX_KEPT = 30
+const VOICE_KEY = 'diloloji:monki-voice'
 const MAX_SENT = 12
 
 /** The last few turns, starting with the learner's own (a conversation must not open with the assistant). */
@@ -84,21 +87,56 @@ const INTRO: Record<MonkiMode, (hello: string, lang: string, hasMistakes: boolea
   words: () => '**Kelimelerle konuşalım.** Sana sorular soracağım; cevaplarken yukarıdaki kelimeleri kullanmaya çalış, kullandıkça işaretlenir.',
 }
 
-/** Under a correction Monki wrote: one tap keeps the corrected sentence as a sentence card (the word that changed is blanked first). */
+/** Keeps a correction as a sentence card (the word that changed is blanked first); false when the card was already there. */
+const keepCorrection = (language: TargetLanguage, correction: Correction, original?: string) =>
+  saveSentence({
+    language,
+    text: correction.sentence,
+    focus: changedWord(correction.sentence, original),
+    source: 'Monki düzeltmesi',
+    note: correction.reason ? `Monki: ${correction.reason}` : undefined,
+  })
+
+/** The corrections in a chat, each with what the learner had written just before it. */
+const correctionsIn = (msgs: Msg[]) =>
+  msgs.flatMap((m, i) => {
+    const correction = m.role === 'assistant' ? parseCorrection(m.text) : null
+    return correction ? [{ correction, original: msgs[i - 1]?.role === 'user' ? msgs[i - 1].text : undefined }] : []
+  })
+
+/** At the end of a scene with several corrections: all of them as cards in one tap. */
+function SaveAllCorrections({ msgs, language }: { msgs: Msg[]; language: TargetLanguage }) {
+  const found = correctionsIn(msgs)
+  const [done, setDone] = useState<number | null>(null)
+  if (found.length < 2) return null
+  const saveAll = async () => {
+    let added = 0
+    for (const f of found) if (await keepCorrection(language, f.correction, f.original).catch(() => false)) added++
+    setDone(added)
+  }
+  return (
+    <div className="monki-save monki-save-all">
+      {done === null ? (
+        <button type="button" className="btn btn-sm" onClick={() => void saveAll()}>
+          Bu konuşmanın {found.length} düzeltmesini karta ekle
+        </button>
+      ) : (
+        <span className="small muted" role="status">
+          ✓ {done} cümle kartlarına eklendi{done < found.length ? ` (${found.length - done} zaten vardı)` : ''}
+        </span>
+      )}
+    </div>
+  )
+}
+
+/** Under a correction Monki wrote: one tap keeps the corrected sentence as a sentence card. */
 function SaveCorrection({ text, original, language }: { text: string; original?: string; language: TargetLanguage }) {
   const correction = parseCorrection(text)
   const [state, setState] = useState<'idle' | 'saved' | 'had' | 'failed'>('idle')
   if (!correction) return null
   const save = async () => {
     try {
-      const ok = await saveSentence({
-        language,
-        text: correction.sentence,
-        focus: changedWord(correction.sentence, original),
-        source: 'Monki düzeltmesi',
-        note: correction.reason ? `Monki: ${correction.reason}` : undefined,
-      })
-      setState(ok ? 'saved' : 'had')
+      setState((await keepCorrection(language, correction, original)) ? 'saved' : 'had')
     } catch {
       setState('failed')
     }
@@ -152,6 +190,19 @@ export default function Monki({
   const [error, setError] = useState('')
   const [mode, setMode] = useState<MonkiMode>('chat')
   const [scenario, setScenario] = useState('')
+  // Voice: the other person's lines are spoken (role-play) and the microphone answers instead of typing.
+  const [voice, setVoice] = useState(() => {
+    try {
+      return localStorage.getItem(VOICE_KEY) !== 'off'
+    } catch {
+      return true
+    }
+  })
+  const [listening, setListening] = useState(false)
+  const [heard, setHeard] = useState('')
+  const stopListen = useRef<Listening | null>(null)
+  const voiceRef = useRef(voice)
+  voiceRef.current = voice
   // Words mode: the words to use, and which of them the learner has used so far.
   const [targets, setTargets] = useState<string[]>([])
   const logRef = useRef<HTMLDivElement>(null)
@@ -173,9 +224,21 @@ export default function Monki({
     wasOpen.current = open
   }, [open])
 
+  // Nothing keeps talking or listening once the chat is closed.
+  useEffect(() => {
+    if (open) return
+    stopListen.current?.()
+    stopListen.current = null
+    setListening(false)
+    setHeard('')
+    stopSpeaking()
+  }, [open])
+
   // Each language has its own chat.
   useEffect(() => {
     languageRef.current = language
+    stopListen.current?.()
+    setListening(false)
     setMsgs(loadChat(language))
     setSuggestions([])
     setError('')
@@ -230,6 +293,7 @@ export default function Monki({
         setMsgs(done)
         saveChat(asked, done)
         setSuggestions(reply.suggestions.slice(0, 3))
+        if (voiceRef.current && (over?.mode ?? mode) === 'roleplay' && reply.say?.trim() && canSpeak()) speak(reply.say, asked)
       } catch (e) {
         if (languageRef.current !== asked) return
         setError(e instanceof AiError ? e.message : 'Monki şu an cevap veremedi. Biraz sonra tekrar dene.')
@@ -243,6 +307,39 @@ export default function Monki({
   // A question from elsewhere in the app (a word page, a wrong answer, a sentence being read).
   const sendRef = useRef(send)
   sendRef.current = send
+  const toggleMic = () => {
+    if (listening) {
+      stopListen.current?.finish()
+      return
+    }
+    stopSpeaking()
+    setError('')
+    setHeard('')
+    setListening(true)
+    stopListen.current = listen(language, {
+      onInterim: setHeard,
+      onFinal: (alts) => {
+        setHeard('')
+        if (alts[0]) void sendRef.current(alts[0])
+      },
+      onError: (message) => setError(message),
+      onEnd: () => {
+        setListening(false)
+        setHeard('')
+        stopListen.current = null
+      },
+    })
+  }
+  const toggleVoice = () => {
+    const next = !voice
+    setVoice(next)
+    if (!next) stopSpeaking()
+    try {
+      localStorage.setItem(VOICE_KEY, next ? 'on' : 'off')
+    } catch {
+      // Not remembered; fine.
+    }
+  }
   useEffect(() => {
     setMonkiListener((ask: MonkiAsk) => {
       returnTo.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
@@ -333,6 +430,14 @@ export default function Monki({
                   </button>
                 ))}
               </div>
+              {mode === 'roleplay' && canSpeak() && (
+                <div className="monki-voice small">
+                  <button type="button" className="chip chip-sm" aria-pressed={voice} onClick={toggleVoice} title="Karşındaki kişinin cümlelerini sesli oku">
+                    {voice ? 'Sesli: açık' : 'Sesli: kapalı'}
+                  </button>
+                  {canListen() && <span className="muted">Mikrofona dokunup cevap ver.</span>}
+                </div>
+              )}
               {mode === 'words' && targets.length > 0 && (
                 <div className="monki-targets" role="group" aria-label="Kullanılacak kelimeler">
                   {targets.map((w) => {
@@ -363,6 +468,7 @@ export default function Monki({
                     {m.role === 'assistant' && <SaveCorrection text={m.text} original={msgs[i - 1]?.role === 'user' ? msgs[i - 1].text : undefined} language={language} />}
                   </div>
                 ))}
+                {!busy && <SaveAllCorrections key={msgs.length} msgs={msgs} language={language} />}
                 {busy && (
                   <div className="monki-msg from-monki monki-typing" role="status" aria-label="Monki yazıyor">
                     <span /> <span /> <span />
@@ -403,12 +509,25 @@ export default function Monki({
                   void send(text)
                 }}
               >
+                {canListen() && (
+                  <button
+                    type="button"
+                    className={listening ? 'btn monki-mic mic-on' : 'btn btn-quiet monki-mic'}
+                    onClick={toggleMic}
+                    disabled={busy}
+                    aria-pressed={listening}
+                    aria-label={listening ? 'Bitir ve gönder' : 'Konuşarak cevap ver'}
+                    title={listening ? 'Bitir ve gönder' : 'Konuşarak cevap ver'}
+                  >
+                    {listening ? <StopIcon size={18} /> : <MicIcon size={18} />}
+                  </button>
+                )}
                 <textarea
                   ref={inputRef}
                   rows={1}
                   value={text}
                   maxLength={1000}
-                  placeholder="Monki’ye yaz…"
+                  placeholder={listening ? heard || 'Dinliyorum…' : 'Monki’ye yaz…'}
                   aria-label="Monki’ye mesaj"
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={(e) => {
