@@ -216,6 +216,34 @@ describe('GuideScreen', () => {
     open.mockRestore()
   })
 
+  it('shows the lessons as a path in learning order, marks the next one, and remembers the view', async () => {
+    const { host } = await mount('fr')
+    await act(async () => button(host, 'Yol')!.click())
+    expect(host.querySelector('.guide-card')).toBeNull()
+    const steps = [...host.querySelectorAll<HTMLElement>('.guide-path-item')]
+    expect(steps.length).toBeGreaterThan(30)
+    const titles = steps.map((st) => st.querySelector('strong')?.textContent)
+    // The present comes before the subjunctive that builds on it; one step is the next one, and a lesson with groundwork unread says so.
+    expect(titles.indexOf('Şimdiki zaman (présent)')).toBeLessThan(titles.indexOf('Subjonctif'))
+    expect(host.querySelectorAll('.path-next')).toHaveLength(1)
+    expect(steps.find((st) => st.querySelector('strong')?.textContent === 'Subjonctif')!.textContent).toContain('Önce: ')
+    expect(localStorage.getItem('diloloji:guide-view')).toBe('path')
+    // A lesson opens from its step.
+    await act(async () => steps.find((st) => st.querySelector('strong')?.textContent === 'Subjonctif')!.querySelector('button')!.click())
+    expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Subjonctif')
+  })
+
+  it('the path shows what is read, and opens as the view last chosen', async () => {
+    localStorage.setItem('diloloji:guide-view', 'path')
+    await db.saveGuideMarks({ basics_fr_etre_avoir: { read: '2026-10-01', learned: '2026-10-01' } })
+    const { host } = await mount('fr')
+    expect(host.querySelector('.guide-path')).not.toBeNull()
+    expect(host.querySelector('.path-learned strong')?.textContent).toBe('Être ve avoir')
+    await act(async () => button(host, 'Liste')!.click())
+    expect(host.querySelector('.guide-path')).toBeNull()
+    expect(host.querySelectorAll('.guide-card').length).toBeGreaterThan(10)
+  })
+
   it('renders per-level progress badges and reference tables inside lessons and printed sheets', async () => {
     const { host } = await mount('fr')
     const badges = [...host.querySelectorAll('.guide-level-progress')]

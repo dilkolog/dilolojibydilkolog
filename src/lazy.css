@@ -2457,6 +2457,67 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   border-color: color-mix(in srgb, var(--lang) 40%, var(--rule));
 }
 
+/* Path view: the lessons in learning order, one line each */
+.guide-path-note { margin: 0; }
+.guide-path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+.guide-path-item {
+  position: relative;
+  padding-left: 2.75rem;
+}
+.guide-path-item::before {
+  content: '';
+  position: absolute;
+  left: 1.1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--rule);
+}
+.guide-path-item:first-child::before { top: 1.25rem; }
+.guide-path-item:last-child::before { bottom: calc(100% - 1.25rem); }
+.guide-path-step {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.guide-path-step:hover .guide-path-text strong { color: var(--lang-text); }
+.guide-path-step:focus-visible { outline: 2px solid var(--lang); outline-offset: 2px; border-radius: var(--r-md); }
+.guide-path-dot {
+  position: absolute;
+  left: 0.2rem;
+  top: 0.45rem;
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: var(--r-full);
+  background: var(--surface);
+  border: 2px solid var(--rule);
+  color: var(--ink-soft, var(--ink));
+  font-size: var(--t-xs);
+  font-weight: 700;
+}
+.guide-path-text { display: grid; gap: 0.1rem; }
+.guide-path-state { font-weight: 600; margin-right: 0.35rem; }
+.path-learned .guide-path-dot { background: var(--ok-soft); border-color: var(--ok); color: var(--ok-text); }
+.path-read .guide-path-dot { background: var(--near-soft); border-color: var(--lang); color: var(--near-text); }
+.path-next .guide-path-dot { background: var(--lang); border-color: var(--lang); color: #fff; }
+.path-next .guide-path-text strong { color: var(--lang-text); }
+.path-waiting .guide-path-text > strong { font-weight: 500; }
+.path-waiting .guide-path-dot { border-style: dashed; }
+
 /* Lesson View */
 .guide-lesson {
   max-width: 46rem;

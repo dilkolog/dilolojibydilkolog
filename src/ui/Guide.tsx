@@ -10,6 +10,7 @@ import { type GuideLevel, type TopicLesson } from '../data/guide/lessons'
 import { checkFor, tryFor, englishTenseLessons, lessonFor, lessonsOf, lessonTense, lessonTitle } from '../data/guide/lessonOf'
 import { db } from '../data/instance'
 import { isRead, PASS_RIGHT, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { learningPath, pathOrder, type PathStep } from '../data/guide/path'
 import { pickNext, unmetPrereqs } from '../data/guide/prereqs'
 import { searchLesson, type LessonHit } from '../data/guide/search'
 import { lessonSheetHtml } from './guideSheet'
@@ -33,6 +34,15 @@ import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
 type Tab = 'topics' | 'tenses' | 'links'
+type View = 'list' | 'path'
+const VIEW_KEY = 'diloloji:guide-view'
+const savedView = (): View => {
+  try {
+    return localStorage.getItem(VIEW_KEY) === 'path' ? 'path' : 'list'
+  } catch {
+    return 'list'
+  }
+}
 
 /**
  * The guide, the app's own school for the language: a short lesson for every grammar topic and the
@@ -62,6 +72,7 @@ export function GuideScreen({
   const [level, setLevel] = useState<GuideLevel | null>(null)
   const [query, setQuery] = useState('')
   const [flagFilter, setFlagFilter] = useState<LessonFlag | null>(null)
+  const [view, setView] = useState<View>(savedView)
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
   const [marks, setMarks] = useState<GuideMarks>({})
@@ -123,8 +134,17 @@ export function GuideScreen({
   const doneCount = lessons.filter((l) => read.has(l.topic)).length
   const learnedCount = lessons.filter((l) => isRead(marks[l.topic]) && marks[l.topic]?.learned).length
   // The way through: the first lesson not read yet, the easier levels first.
-  const ordered = useMemo(() => LEVELS.flatMap((lv) => lessons.filter((l) => l.level === lv)), [lessons])
+  const ordered = useMemo(() => pathOrder(lessons), [lessons])
   const next = pickNext(ordered, (t) => read.has(t))
+  const path = useMemo(() => learningPath(lessons, (t) => read.has(t), (t) => !!marks[t]?.learned), [lessons, read, marks])
+  const pickView = (v: View) => {
+    setView(v)
+    try {
+      localStorage.setItem(VIEW_KEY, v)
+    } catch {
+      // The choice is only remembered while the page is open.
+    }
+  }
 
   if (!marksReady) return <div className="stack guide" aria-busy="true" />
 
@@ -221,6 +241,14 @@ export function GuideScreen({
             </button>
           )}
           <div className="guide-filters">
+            <div className="choice-row" role="group" aria-label="Görünüm">
+              <button type="button" className="chip chip-sm" aria-pressed={view === 'list'} onClick={() => pickView('list')}>
+                Liste
+              </button>
+              <button type="button" className="chip chip-sm" aria-pressed={view === 'path'} onClick={() => pickView('path')}>
+                Yol
+              </button>
+            </div>
             <div className="choice-row" role="group" aria-label="Seviye">
               <button type="button" className="chip chip-sm" aria-pressed={!level} onClick={() => setLevel(null)}>
                 Hepsi
@@ -267,7 +295,28 @@ export function GuideScreen({
               )}
             </div>
           </div>
-          {LEVELS.map((lv) => {
+          {view === 'path' && (
+            <>
+              <p className="small muted guide-path-note">Öğrenme sırası: her ders, dayandığı derslerden sonra gelir. Kilit yok, istediğin dersi açabilirsin.</p>
+              {LEVELS.map((lv) => {
+                const steps = path.filter((st) => st.lesson.level === lv && shown.includes(st.lesson))
+                if (!steps.length) return null
+                return (
+                  <section key={lv} className="stack gap-2">
+                    <h2 className="section-title guide-level">
+                      <span className="guide-level-badge">{lv}</span> {LEVEL_NAME[lv]}
+                    </h2>
+                    <ol className="guide-path">
+                      {steps.map((st) => (
+                        <PathRow key={st.lesson.topic} step={st} needs={st.needs.map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]} flag={flagOf(st.lesson.topic)} onOpen={() => setOpen(st.lesson)} />
+                      ))}
+                    </ol>
+                  </section>
+                )
+              })}
+            </>
+          )}
+          {view === 'list' && LEVELS.map((lv) => {
             const list = shown.filter((l) => l.level === lv)
             if (!list.length) return null
             const lvDone = list.filter((l) => read.has(l.topic)).length
@@ -422,6 +471,32 @@ function LessonCard({ lesson, read, learned, foot, flag, snippet, needs, onOpen 
         {learned && <span className="guide-tag guide-tag-learned">Öğrenildi</span>}
       </span>
     </button>
+  )
+}
+
+const PATH_NOTE: Record<PathStep<TopicLesson>['state'], string> = { learned: 'Öğrenildi', read: 'Okundu', next: 'Sıradaki', open: '', waiting: '' }
+
+/** One lesson on the path: a dot (its number, or a tick when read), the title, and where it stands. */
+function PathRow({ step, needs, flag, onOpen }: { step: PathStep<TopicLesson>; needs?: string; flag?: LessonFlag; onOpen: () => void }) {
+  const { lesson, state, number } = step
+  const done = state === 'learned' || state === 'read'
+  return (
+    <li className={`guide-path-item path-${state}`}>
+      <button type="button" className="guide-path-step" onClick={onOpen} aria-current={state === 'next' ? 'step' : undefined}>
+        <span className="guide-path-dot" aria-hidden="true">
+          {done ? <CheckCircleIcon size={18} /> : number}
+        </span>
+        <span className="guide-path-text">
+          <strong>{titleOf(lesson)}</strong>
+          <span className="small muted">
+            {PATH_NOTE[state] && <span className="guide-path-state">{PATH_NOTE[state]}</span>}
+            {state === 'waiting' && needs && <span>Önce: {needs}</span>}
+            {flag === 'star' && <span> ★ Yer imli</span>}
+            {flag === 'hard' && <span> · Zor buldum</span>}
+          </span>
+        </span>
+      </button>
+    </li>
   )
 }
 

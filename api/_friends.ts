@@ -1,3 +1,4 @@
+import { get, put } from '@vercel/blob'
 import { readText, removeBlob, StorageError, writeJson } from './_account.js'
 import { eq, rows, tablesOn, upsert, write } from './_tables.js'
 
@@ -266,11 +267,53 @@ export function cleanText(raw: unknown): SentText | null {
 
 const inboxPath = (id: string) => `friends/inbox/${id}.json`
 
-async function readInbox(id: string): Promise<InboxItem[]> {
-  const items = (await readJson<{ items?: InboxItem[] }>(inboxPath(id)))?.items
-  if (!Array.isArray(items)) return []
+/** The inbox as stored, with the tag of the version read (null when there is no file yet). */
+async function readInboxFile(id: string): Promise<{ items: InboxItem[]; etag: string | null }> {
+  let blob
+  try {
+    blob = await get(inboxPath(id), { access: 'private', useCache: false })
+  } catch {
+    throw new StorageError('storage unavailable')
+  }
+  if (!blob || blob.statusCode !== 200 || !blob.stream) return { items: [], etag: null }
+  let items: unknown
+  try {
+    items = (JSON.parse(await new Response(blob.stream).text()) as { items?: unknown }).items
+  } catch {
+    items = []
+  }
   const oldest = Date.now() - KEEP_DAYS * 86_400_000
-  return items.filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest && (i.kind !== 'gift' || cleanGift(i.gift)) && (i.kind !== 'text' || cleanText(i.text)))
+  const kept = Array.isArray(items) ? (items as InboxItem[]).filter((i) => i && typeof i.id === 'string' && INBOX_KINDS.includes(i.kind) && new Date(i.at).getTime() > oldest && (i.kind !== 'gift' || cleanGift(i.gift)) && (i.kind !== 'text' || cleanText(i.text))) : []
+  return { items: kept, etag: blob.blob?.etag ?? null }
+}
+
+const readInbox = async (id: string): Promise<InboxItem[]> => (await readInboxFile(id)).items
+
+/** Someone else wrote the file (or made it) since it was read. */
+const wroteMeanwhile = (e: unknown) => /precondition|exist/i.test(`${(e as { name?: string })?.name ?? ''} ${(e as Error)?.message ?? ''}`)
+
+/** How many times a change is tried again when another server instance wrote the inbox in between. */
+const INBOX_TRIES = 6
+
+/**
+ * Changes an inbox as one read-modify-write: the file is written only if it is still the version that was read
+ * (`If-Match`, or "does not exist yet"), otherwise the change is made again on what the other writer left. Together
+ * with `withInbox` (same instance) this keeps two sends from two instances from undoing each other.
+ * `change` returns the new list, or null for "nothing to write".
+ */
+async function changeInbox(id: string, change: (items: InboxItem[]) => InboxItem[] | null): Promise<void> {
+  for (let attempt = 0; attempt < INBOX_TRIES; attempt++) {
+    const { items, etag } = await readInboxFile(id)
+    const next = change(items)
+    if (!next) return
+    try {
+      await put(inboxPath(id), JSON.stringify({ items: next }), { access: 'private', addRandomSuffix: false, allowOverwrite: etag !== null, contentType: 'application/json', ...(etag ? { ifMatch: etag } : {}) })
+      return
+    } catch (e) {
+      if (!wroteMeanwhile(e)) throw e
+    }
+  }
+  throw new StorageError('inbox busy')
 }
 
 /** What waits for the account, newest first. */
@@ -320,17 +363,17 @@ export async function sendToFriend(id: string, toCode: string, kind: unknown, pa
 
 /** Puts one message in the recipient's inbox, in the place of the sender's earlier one of the day (a cheer, a nudge) or beside the few gifts and texts of theirs that are waiting. */
 async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift: GiftWord | null, text: SentText | null, now: Date, today: string): Promise<SendResult> {
-  const waiting = await readInbox(recipient)
-  // A cheer or a nudge replaces the sender's one of the day; gifts and texts pile up to a few.
-  const sameKind = waiting.filter((i) => i.from.code === me.code && i.kind === kind)
-  const dropped = new Set(
-    kind === 'cheer' || kind === 'nudge'
-      ? sameKind.filter((i) => i.at.slice(0, 10) === today).map((i) => i.id)
-      : [...sameKind].sort((a, b) => b.at.localeCompare(a.at)).slice(PENDING_PER_SENDER - 1).map((i) => i.id),
-  )
-  const fresh = waiting.filter((i) => !dropped.has(i.id))
   const item: InboxItem = { id: crypto.randomUUID(), kind, from: { code: me.code, name: me.name }, at: now.toISOString(), ...(gift ? { gift } : {}), ...(text ? { text } : {}) }
-  await writeJson(inboxPath(recipient), { items: [item, ...fresh].slice(0, MAX_INBOX) })
+  await changeInbox(recipient, (waiting) => {
+    // A cheer or a nudge replaces the sender's one of the day; gifts and texts pile up to a few.
+    const sameKind = waiting.filter((i) => i.from.code === me.code && i.kind === kind)
+    const dropped = new Set(
+      kind === 'cheer' || kind === 'nudge'
+        ? sameKind.filter((i) => i.at.slice(0, 10) === today).map((i) => i.id)
+        : [...sameKind].sort((a, b) => b.at.localeCompare(a.at)).slice(PENDING_PER_SENDER - 1).map((i) => i.id),
+    )
+    return [item, ...waiting.filter((i) => !dropped.has(i.id))].slice(0, MAX_INBOX)
+  })
   return 'ok'
 }
 
@@ -339,9 +382,10 @@ export async function clearInbox(id: string, ids: unknown): Promise<void> {
   if (!Array.isArray(ids)) return
   const drop = new Set(ids.filter((x): x is string => typeof x === 'string'))
   await withInbox(id, async () => {
-    const items = await readInbox(id)
-    const left = items.filter((i) => !drop.has(i.id))
-    if (left.length !== items.length) await writeJson(inboxPath(id), { items: left })
+    await changeInbox(id, (items) => {
+      const left = items.filter((i) => !drop.has(i.id))
+      return left.length !== items.length ? left : null
+    })
   })
 }
 
