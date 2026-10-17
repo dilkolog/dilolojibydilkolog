@@ -29,6 +29,7 @@ import gGear from '../assets/art/game-gear.webp'
 import gGifts from '../assets/art/game-gifts.webp'
 import gGaps from '../assets/art/game-gaps.webp'
 import gDuel from '../assets/art/game-duel.webp'
+import gPodcast from '../assets/art/game-podcast.webp'
 import gSpotError from '../assets/art/game-spot-error.webp'
 import gRewrite from '../assets/art/game-rewrite.webp'
 import gCollocations from '../assets/art/game-collocations.webp'
@@ -45,6 +46,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   diagram: picture,
   grammar: puzzle,
   duel: gDuel,
+  podcast: gPodcast,
   dictation: headphones,
   back: swap,
   pron: mic,

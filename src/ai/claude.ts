@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -439,6 +439,33 @@ export async function wordsFromPhoto(apiKey: string, req: PhotoWordsRequest): Pr
   const out = await structured(apiKey, WordBatch, system, messages, 'low', 'photo_words')
   const seen = new Set(req.have.map((w) => w.toLocaleLowerCase(req.language)))
   return out.words.filter((w) => !seen.has(w.lemma.toLocaleLowerCase(req.language))).slice(0, req.count)
+}
+
+const Podcast = z.object({
+  title: z.string().describe('A short title in the target language.'),
+  lines: z
+    .array(
+      z.object({
+        speaker: z.enum(['A', 'B']),
+        text: z.string().describe('What the speaker says, in the target language: one or two short natural sentences, no stage directions.'),
+        translation: z.string().describe('Natural Turkish translation of the line.'),
+      }),
+    )
+    .describe('12-16 lines alternating between the two speakers.'),
+})
+
+/** A two-minute conversation to listen to, built around the words the learner is shaky on. */
+export async function miniPodcast(apiKey: string, req: PodcastRequest): Promise<PodcastScript> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You write a short ${lang} conversation between two people, to be listened to (read aloud by a voice) by a Turkish adult learner at about A2-B1 level.`,
+    'Write 12 to 16 lines, alternating speaker A and speaker B, about one everyday situation that fits the interests given (or ordinary daily life). Natural, friendly, a little story or a small problem being solved; not a list of sentences.',
+    `Work every one of these practice words into the talk, each at least once and used correctly (inflect them as the sentence needs): ${req.words.map((w) => `${w.lemma} (${w.gloss})`).join(', ') || 'none given'}.`,
+    'Keep each line to one or two short sentences, no stage directions or names in the text, and use plain spoken language; avoid words much harder than the practice words. Give a natural Turkish translation of every line.',
+  ].join('\n')
+  const user = `Interests: ${req.interests.length ? req.interests.join(', ') : '(none given: everyday life)'}`
+  const out = await structured(apiKey, Podcast, system, user, 'low', 'podcast')
+  return { title: out.title, lines: out.lines.filter((l) => l.text.trim()).slice(0, 20) }
 }
 
 const NotesQuiz = z.object({

@@ -31,6 +31,8 @@ import type {
   WordInfo,
   WordSuggestRequest,
   PhotoWordsRequest,
+  PodcastRequest,
+  PodcastScript,
 } from './types'
 
 export * from './types'
@@ -53,6 +55,8 @@ export const enrichWords = async (
 export const suggestNewWords = async (apiKey: string, req: WordSuggestRequest): Promise<WordInfo[]> => (await sdk()).suggestNewWords(apiKey, req)
 
 export const wordsFromPhoto = async (apiKey: string, req: PhotoWordsRequest): Promise<WordInfo[]> => (await sdk()).wordsFromPhoto(apiKey, req)
+
+export const miniPodcast = async (apiKey: string, req: PodcastRequest): Promise<PodcastScript> => (await sdk()).miniPodcast(apiKey, req)
 
 export const notesQuiz = async (apiKey: string, req: NotesQuizRequest): Promise<QuizQuestion[]> => (await sdk()).notesQuiz(apiKey, req)
 

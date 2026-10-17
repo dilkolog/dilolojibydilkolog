@@ -107,3 +107,21 @@ test('photo words: a photo brings back words to choose from, and the chosen ones
   await expect(page.getByText('1 kelime eklendi')).toBeVisible()
   expect(await overflow(page)).toEqual([])
 })
+
+test('games: with a key the mini podcast card is there (waiting for learned words), and the duel card for everyone', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.evaluate(() => {
+    const open = indexedDB.open('kelime-koc')
+    open.onsuccess = () => {
+      const tx = open.result.transaction('meta', 'readwrite')
+      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
+      tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
+    }
+  })
+  await page.reload()
+  await openScreen(page, 'Oyunlar')
+  await expect(page.getByText('Mini podcast', { exact: true })).toBeVisible()
+  await expect(page.getByText('Arkadaşla düello', { exact: true })).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
