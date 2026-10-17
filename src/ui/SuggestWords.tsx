@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-import { AiError, suggestNewWords, wordInfoToInput, type WordInfo } from '../ai'
+import { AiError, suggestNewWords, type WordInfo } from '../ai'
 import type { KelimeDB, Settings } from '../data/db'
-import { createEntry, wordId } from '../data/wordInput'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { suggestCount, suggestionDue } from '../engine/wordSuggest'
 import { useAi } from './aiContext'
 import { interestsOf } from './personalInterests'
 import { SparkleIcon } from './icons'
-import { placeNew } from './listMemory'
+import { addWordInfos } from './addWordInfos'
 
 type Row = { info: WordInfo; selected: boolean }
 
@@ -65,25 +64,9 @@ export function SuggestWords({
 
   const add = async () => {
     if (!rows) return
-    const now = Date.now()
-    const entries: VocabularyEntry[] = []
-    const keys = new Set(vocabulary.map((v) => v.id))
-    rows
-      .filter((r) => r.selected)
-      .forEach((r, i) => {
-        try {
-          const entry = createEntry(wordInfoToInput(r.info), language, new Date(now + i), 'import')
-          if (keys.has(entry.id) || keys.has(wordId(language, entry.lemma))) return
-          keys.add(entry.id)
-          entries.push(entry)
-        } catch {
-          // A card the AI built badly (no meaning): left out.
-        }
-      })
-    const placed = await placeNew(db, language, entries)
-    if (entries.length) await db.vocabulary.bulkPut(placed.entries)
-    setDone(entries.length)
-    setDoneList(placed.listName)
+    const result = await addWordInfos(db, language, vocabulary, rows.filter((r) => r.selected).map((r) => r.info))
+    setDone(result.added)
+    setDoneList(result.listName)
     setRows(null)
     onAdded()
   }

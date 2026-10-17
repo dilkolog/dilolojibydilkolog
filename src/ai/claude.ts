@@ -4,7 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
-import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
+import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
  * The AI layer is a controlled content and evaluation engine, not the source of truth: everything
@@ -413,6 +413,30 @@ export async function suggestNewWords(apiKey: string, req: WordSuggestRequest): 
     .filter(Boolean)
     .join('\n')
   const out = await structured(apiKey, WordBatch, system, user, 'low', 'word_suggest')
+  const seen = new Set(req.have.map((w) => w.toLocaleLowerCase(req.language)))
+  return out.words.filter((w) => !seen.has(w.lemma.toLocaleLowerCase(req.language))).slice(0, req.count)
+}
+
+/** Words read off a photo (a menu, a sign, a package, a book page), as full cards in the target language. */
+export async function wordsFromPhoto(apiKey: string, req: PhotoWordsRequest): Promise<WordInfo[]> {
+  const lang = LANGUAGE_NAME[req.language]
+  const system = [
+    `You pick ${lang} vocabulary out of a photo for a Turkish native speaker who is learning ${lang}.`,
+    `First look for ${lang} words and short phrases that are written in the photo (menu, sign, label, packaging, book page, notice). If the picture has little or no readable text, name the most useful everyday things that are clearly shown instead.`,
+    `Bring back at most ${req.count} items, the most useful first. Give each in dictionary form (nouns with the usual gender, verbs as infinitives) and set \`input\` to the word as you found it. Meanings must be real Turkish equivalents; the example sentence natural and idiomatic.`,
+    'Skip proper nouns, brand names, prices, numbers, URLs and words that are not in the target language. Never bring back a word already in the learner\'s list. If nothing usable is in the photo, return an empty list.',
+  ].join('\n')
+  const have = req.have.length ? `Words already in the list (do not repeat): ${req.have.slice(0, 400).join(', ')}` : 'The list is empty.'
+  const messages: Anthropic.Beta.BetaMessageParam[] = [
+    {
+      role: 'user',
+      content: [
+        { type: 'image', source: { type: 'base64', media_type: req.mediaType, data: req.imageBase64 } },
+        { type: 'text', text: have },
+      ],
+    },
+  ]
+  const out = await structured(apiKey, WordBatch, system, messages, 'low', 'photo_words')
   const seen = new Set(req.have.map((w) => w.toLocaleLowerCase(req.language)))
   return out.words.filter((w) => !seen.has(w.lemma.toLocaleLowerCase(req.language))).slice(0, req.count)
 }

@@ -472,6 +472,8 @@
 .rule-suffix { font-family: var(--serif); font-size: var(--t-lg); min-width: 4.5rem; color: var(--lang-text); }
 .rule-exc { color: var(--near-text); }
 .library-open { display: grid; gap: 0.125rem; flex: 1; min-width: 0; }
+.file-btn-off { opacity: 0.5; pointer-events: none; }
+.photo-words-preview { max-width: 100%; max-height: 12rem; object-fit: contain; border-radius: var(--r-md); align-self: flex-start; }
 .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .audio-word { font-family: var(--serif); font-size: var(--t-word); color: var(--lang-text); margin: 0; overflow-wrap: anywhere; }
 
