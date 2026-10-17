@@ -1,3 +1,4 @@
+import { parseTimedCues } from '../src/engine/clips.js'
 import { parseTimedText, youtubeId } from '../src/engine/subtitles.js'
 import { CaptionError, fetchCaptions } from './_captions.js'
 import { requireApproved } from './_account.js'
@@ -5,7 +6,8 @@ import { fromApp } from './_origin.js'
 
 /**
  * GET /api/youtube?v=<link or id>&lang=fr: a video's subtitles as reading text (hand-made subtitles in
- * the language first, automatic ones otherwise; see _captions.ts).
+ * the language first, automatic ones otherwise; see _captions.ts). With `cues=1` the lines come with their
+ * times too (to sing along with a song's captions).
  */
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return Response.json({ error: 'forbidden' }, { status: 403 })
@@ -19,8 +21,9 @@ export async function GET(request: Request): Promise<Response> {
     const captions = await fetchCaptions(id, lang)
     const text = parseTimedText(captions.xml)
     if (!text) return Response.json({ error: 'empty captions' }, { status: 502 })
+    const cues = q.get('cues') === '1' ? parseTimedCues(captions.xml).map((c) => ({ start: Math.round(c.start * 10) / 10, end: Math.round(c.end * 10) / 10, text: c.text })) : undefined
     return Response.json(
-      { id, title: captions.title, channel: captions.channel, auto: captions.auto, text },
+      { id, title: captions.title, channel: captions.channel, auto: captions.auto, text, ...(cues ? { cues } : {}) },
       { headers: { 'cache-control': 'private, max-age=86400' } },
     )
   } catch (e) {

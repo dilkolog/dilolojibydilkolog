@@ -117,4 +117,13 @@ describe('/api/youtube still gives subtitles as reading text', () => {
     expect(none.status).toBe(404)
     expect(await none.json()).toMatchObject({ error: 'no captions', available: ['en'] })
   })
+
+  it('brings the lines with their times only when asked (cues=1)', async () => {
+    stubYouTube()
+    const plain = await (await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr', { headers: FROM_APP }))).json()
+    expect(plain.cues).toBeUndefined()
+    const timed = await (await GET_YOUTUBE(new Request('https://x/api/youtube?v=abc12345678&lang=fr&cues=1', { headers: FROM_APP }))).json()
+    expect(timed.cues.length).toBeGreaterThan(0)
+    expect(timed.cues[0]).toEqual({ start: expect.any(Number), end: expect.any(Number), text: expect.any(String) })
+  })
 })

@@ -2618,3 +2618,38 @@ test('duel: a link opens the challenge, the same questions are played, both resu
   expect(link).toContain('?duel=')
   expect(await overflow(page)).toEqual([])
 })
+
+test('song game: a video link brings its captions as lines with gaps; a page is checked and a wrong line can become a sentence card', async ({ page }) => {
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.route((u) => u.pathname === '/api/youtube', (r) =>
+    r.fulfill({
+      json: {
+        id: 'abc12345678',
+        title: 'Une chanson',
+        channel: 'Chaîne',
+        auto: false,
+        text: 'x',
+        cues: [
+          { start: 1, end: 4, text: 'Je marche dans la rue' },
+          { start: 5, end: 8, text: 'Nous chantons ensemble' },
+          { start: 9, end: 12, text: 'Le soleil brille toujours' },
+          { start: 13, end: 16, text: 'Quelle belle journée' },
+        ],
+      },
+    }),
+  )
+  await openScreen(page, 'Oyunlar')
+  await page.getByText('Şarkıyla öğren', { exact: true }).click()
+  await page.getByLabel('YouTube bağlantısı').fill('https://www.youtube.com/watch?v=abc12345678')
+  await page.getByRole('button', { name: 'Şarkıyı aç' }).click()
+  await expect(page.locator('h1')).toHaveText('Une chanson')
+  await expect(page.locator('.song-input').first()).toBeVisible()
+  await page.getByRole('button', { name: '2. satırı çal' }).click()
+  await expect(page.locator('.song-player iframe')).toHaveAttribute('src', /start=4&end=9&autoplay=1/)
+  await page.getByRole('button', { name: 'Bu sayfayı kontrol et' }).click()
+  await expect(page.getByText('Şarkı bitti')).toBeVisible()
+  await page.getByRole('button', { name: 'Yanlış satırları cümle kartı yap' }).click()
+  await expect(page.getByText(/satır cümle kartlarına eklendi/).first()).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+})
