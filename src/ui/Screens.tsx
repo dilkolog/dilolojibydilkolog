@@ -65,6 +65,7 @@ export function Home({
   dailyXpGoal,
   answeredToday,
   nextReview,
+  onEarlyReview,
   openMistakeWords,
   canPractice,
   onStart,
@@ -121,6 +122,8 @@ export function Home({
   dailyXpGoal: number
   answeredToday: number
   nextReview?: Date
+  /** Review upcoming words before their review time arrives. */
+  onEarlyReview?: () => void
   openMistakeWords: number
   canPractice: boolean
   onStart: () => void
@@ -452,15 +455,22 @@ export function Home({
                   {nextReview && `Sıradaki tekrar ${relativeTime(nextReview)}. `}
                   {plan.waitingNew > 0 && NEW_BLOCK_TEXT[plan.newBlockedBy ?? 'limit'](plan.waitingNew)}
                 </p>
-                {plan.waitingNew > 0 ? (
-                  <button className="btn btn-lg" onClick={onExtraNew}>
-                    +{Math.min(5, plan.waitingNew)} yeni kelime öğren
-                  </button>
-                ) : (
-                  <button className="btn btn-quiet" onClick={onAddWords}>
-                    Kelime ekle
-                  </button>
-                )}
+                <div className="hero-actions">
+                  {nextReview && onEarlyReview && (
+                    <button className="btn btn-lg" onClick={onEarlyReview}>
+                      Önden tekrar et
+                    </button>
+                  )}
+                  {plan.waitingNew > 0 ? (
+                    <button className={nextReview && onEarlyReview ? 'btn btn-quiet' : 'btn btn-lg'} onClick={onExtraNew}>
+                      +{Math.min(5, plan.waitingNew)} yeni kelime öğren
+                    </button>
+                  ) : (
+                    <button className="btn btn-quiet" onClick={onAddWords}>
+                      Kelime ekle
+                    </button>
+                  )}
+                </div>
                 <FocusLine focus={focus} done={!!plan.focusDone} lists={lists} focusListId={focusListId} onFocusList={onFocusList} onOpenList={onOpenList} onOpenLists={onOpenLists} />
               </>
             )}
@@ -471,10 +481,19 @@ export function Home({
         <div className="home-nudges">{extra}</div>
         {garden?.urgent && garden.node}
 
-        {(openMistakeWords > 0 || weekMisses >= WEEK_MISSES_MIN || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames)) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
+        {(openMistakeWords > 0 || weekMisses >= WEEK_MISSES_MIN || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames || (!!nextReview && !!onEarlyReview))) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
+              {remaining === 0 && nextReview && onEarlyReview && (
+                <button className="tile" onClick={onEarlyReview}>
+                  <img className="tile-art" src={TILE_ART.early} alt="" draggable={false} />
+                  <span className="tile-text">
+                    <strong>Önden tekrar</strong>
+                    <span className="small muted">Vadesi yaklaşan kelimeleri şimdiden çalış · sıradaki {relativeTime(nextReview)}</span>
+                  </span>
+                </button>
+              )}
               {openMistakeWords > 0 && (
                 <button className="tile" onClick={onPracticeMistakes}>
                   <img className="tile-art" src={TILE_ART.mistakes} alt="" draggable={false} />

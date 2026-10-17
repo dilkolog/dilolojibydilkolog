@@ -85,6 +85,7 @@ export interface AppScreensProps {
   startMixed: () => Promise<void>
   mixedDue: { count: number; languages: number }
   practiceDifficult: () => void
+  startEarlyReview?: () => void
   reviewsWaiting: number
   pushState: PushState
   formsDue: number
@@ -102,7 +103,7 @@ export interface AppScreensProps {
 
 /** The screen the app is on: the chain of screens, each given what it needs from the shell. */
 export function AppScreens(props: AppScreensProps) {
-  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
+  const { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, startEarlyReview, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest } = props
   // This week's slips, met once more: words missed in the last seven days, most missed first.
   const weekMissed = data ? weekMisses(data.recentEvents, data.language, new Date()) : []
   return (
@@ -320,6 +321,7 @@ export function AppScreens(props: AppScreensProps) {
           dailyXpGoal={settings.dailyXpGoal}
           answeredToday={answeredToday(data.recentEvents.filter((e) => e.language === data.language), new Date())}
           nextReview={earliest(data.states)}
+          onEarlyReview={startEarlyReview}
           openMistakeWords={new Set(openMistakes(data.mistakes).map((m) => m.entryId)).size}
           canPractice={data.states.some((s) => Object.keys(s.skills).length > 0)}
           onStart={startDay}

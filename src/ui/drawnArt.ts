@@ -330,6 +330,7 @@ export const TILE_ART = {
   mixed: tileFlags,
   games: headGamesArt,
   free: stickerThumbs,
+  early: tileCards,
 }
 
 /** Covers for word lists; a list gets the one its name suggests (Turkish, English, French or Spanish). */

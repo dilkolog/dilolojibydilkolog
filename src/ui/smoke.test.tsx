@@ -200,6 +200,15 @@ describe('screens render', () => {
     expect(await render(<Home {...props} plan={{ ...plan, items: buildDailyPlan({ now, settings: { language: 'fr', dailyMinutes: 10, newWordsPerDay: 3 }, catalog: vocabulary, states, mistakes: [], scheduler, seed: 1 }).items }} onSentenceGame={noop} />)).not.toContain('Geri çeviri')
     await db.saveTranslations([])
   })
+  it('home: once the day is done, early review is offered if there are upcoming reviews', async () => {
+    const plan = { ...buildDailyPlan({ now, settings: { language: 'fr', dailyMinutes: 10, newWordsPerDay: 3 }, catalog: vocabulary, states, mistakes: [], scheduler, seed: 1 }), items: [] }
+    const nextReview = new Date(now.getTime() + 2 * 3600_000)
+    const props = { language: 'fr', plan, profile: skillProfile(states, scheduler, now), vocabularyCount: vocabulary.length, learningCount: states.length, activeVocabulary: 1, name: '', dailyXpGoal: 50, answeredToday: 10, nextReview, openMistakeWords: 0, canPractice: true, onStart: noop, onAddWords: noop, onProfile: noop, onExtraNew: noop, onPracticeMistakes: noop, onFreePractice: noop, onEarlyReview: noop } as const
+    const text = await render(<Home {...props} />)
+    expect(text).toContain('Önden tekrar et')
+    expect(text).toContain('Önden tekrar')
+    expect(text).toContain('Vadesi yaklaşan kelimeleri şimdiden çalış')
+  })
   it('a whole session can be clicked through to its summary', async () => {
     const plan = buildDailyPlan({ now, settings: { language: 'fr', dailyMinutes: 30, newWordsPerDay: 2 }, catalog: vocabulary, states, mistakes: [], scheduler, seed: 3 })
     expect(plan.items.length).toBeGreaterThan(2)

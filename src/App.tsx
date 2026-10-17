@@ -419,7 +419,7 @@ export default function App() {
   })
   const formsDue = useFormsDue(settings?.activeLanguage ?? 'en', screen.name)
   const dayForms = useDayForms(settings?.activeLanguage ?? 'en', screen.name, MAX_DAY_FORMS)
-  const { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startMixed, mixedDue, dueByLanguage } = useSessionStarters({
+  const { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage } = useSessionStarters({
     settings,
     data,
     game,
@@ -458,6 +458,7 @@ export default function App() {
     { id: 'add', label: 'Kelime ekle', icon: <PlusIcon size={18} />, group: 'İşlemler', run: () => { setScreen({ name: 'words' }); setTimeout(() => document.getElementById('w-word')?.focus(), 100) } },
     ...(startPractice ? [{ id: 'practice', label: 'Serbest pratik', icon: <SparkleIcon size={18} />, group: 'İşlemler', run: startPractice }] : []),
     ...(startMistakes ? [{ id: 'mistakes-practice', label: 'Hatalarını düzelt', icon: <AlertIcon size={18} />, group: 'İşlemler', run: startMistakes }] : []),
+    ...(startEarlyReview ? [{ id: 'early-review', label: 'Önden tekrar et', icon: <PlayIcon size={18} />, group: 'İşlemler', run: startEarlyReview }] : []),
     { id: 'vocabtest', label: 'Kelime dağarcığı testi', icon: <TargetIcon size={18} />, group: 'İşlemler', run: go({ name: 'vocabtest' }) },
     { id: 'exam', label: 'Hatırlama sınavı', icon: <CheckIcon size={18} />, group: 'İşlemler', run: go({ name: 'exam' }) },
     ...GAME_LIST.filter((g) => !g.grammar || settings.activeLanguage !== 'en').map((g) => ({
@@ -482,7 +483,7 @@ export default function App() {
   // A word looked up twice in the dictionary but not in the list, offered on Today (also on an empty list).
   const lookupNudge = data && <LookupNudge language={data.language} vocabulary={data.vocabulary} onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })} />
 
-  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
+  const screens: AppScreensProps = { screen, data, plan, settings, options, apiKey, byId, game, incoming, setIncoming, setScreen, setSettings, go, reload, updateSettings, finishSession, sessionVocabulary, planInput, startSession, startDay, startFocus, startMinutes, startShortRound, startMixed, mixedDue, practiceDifficult, startEarlyReview, reviewsWaiting, pushState, formsDue, dayForms, warmup, verbOfDay, garden, lookupNudge, newToday, weekText, weekData, startQuest }
 
   return (
     <AccessContext.Provider value={access}>
