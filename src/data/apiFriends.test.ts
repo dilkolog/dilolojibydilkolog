@@ -25,6 +25,18 @@ vi.mock('@vercel/blob', () => ({
   del: async (path: string) => void blobs.delete(path),
 }))
 
+const pushed: { endpoint: string; body: string }[] = []
+const expired = new Set<string>()
+vi.mock('web-push', () => ({
+  default: {
+    setVapidDetails: () => {},
+    sendNotification: async (sub: { endpoint: string }, body: string) => {
+      if (expired.has(sub.endpoint)) throw Object.assign(new Error('gone'), { statusCode: 410 })
+      pushed.push({ endpoint: sub.endpoint, body })
+    },
+  },
+}))
+
 const access = await import('../../api/access')
 const { clearAccessCache } = await import('../../api/_account')
 const { resetRate } = await import('../../api/_rate')
@@ -46,6 +58,8 @@ beforeEach(async () => {
   blobs.clear()
   etags.clear()
   betweenReadAndWrite = null
+  pushed.length = 0
+  expired.clear()
   clearAccessCache()
   resetRate()
   vi.stubEnv('ADMIN_TOKEN', 'owner-secret')
@@ -132,6 +146,37 @@ describe('/api/access: friends inbox and days', () => {
     const two = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string }[] }
     expect(two.items).toHaveLength(2)
     await post(as(VELI, VELI_TOKEN), { action: 'friends-inbox-clear', ids: [two.items[0].id] })
+    expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toHaveLength(1)
+  })
+
+  it('a message also arrives as a push notification, on the devices of the account that asked for it', async () => {
+    vi.stubEnv('VAPID_PRIVATE_KEY', 'test-private-key')
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN, { name: 'Veli' })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    const record = (endpoint: string, extra: object) => JSON.stringify({ subscription: { endpoint, keys: { p256dh: 'p', auth: 'a' } }, tz: 0, studiedDay: null, streak: 0, plan: '', group: null, ...extra })
+    // Veli: one phone that asked, one that did not, one that has expired. Ali's own phone is not Veli's.
+    set(`push/${'1'.repeat(40)}.json`, record('https://fcm.googleapis.com/fcm/send/yes', { owner: VELI, friends: true }))
+    set(`push/${'2'.repeat(40)}.json`, record('https://fcm.googleapis.com/fcm/send/no', { owner: VELI, friends: false }))
+    set(`push/${'3'.repeat(40)}.json`, record('https://fcm.googleapis.com/fcm/send/old', { owner: VELI, friends: true }))
+    set(`push/${'4'.repeat(40)}.json`, record('https://fcm.googleapis.com/fcm/send/ali', { owner: ALI, friends: true }))
+    set(`push/${'5'.repeat(40)}.json`, record('https://fcm.googleapis.com/fcm/send/anonymous', {}))
+    expired.add('https://fcm.googleapis.com/fcm/send/old')
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'cheer' })).status).toBe(200)
+    expect(pushed.map((p) => p.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/yes'])
+    expect(JSON.parse(pushed[0].body)).toEqual({ title: 'Diloloji', body: '👏 Ali seni tebrik etti', url: '/', kind: 'friend' })
+    // The expired address is dropped; the message is in the inbox in any case.
+    expect(blobs.has(`push/${'3'.repeat(40)}.json`)).toBe(false)
+    expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toHaveLength(1)
+  })
+
+  it('a push that cannot be sent (no key, a store failing) does not undo the message', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN, { name: 'Veli' })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    set(`push/${'1'.repeat(40)}.json`, JSON.stringify({ subscription: { endpoint: 'https://fcm.googleapis.com/fcm/send/yes', keys: { p256dh: 'p', auth: 'a' } }, owner: VELI, friends: true, tz: 0, studiedDay: null, streak: 0, plan: '', group: null }))
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'nudge' })).status).toBe(200)
+    expect(pushed).toEqual([])
     expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toHaveLength(1)
   })
 

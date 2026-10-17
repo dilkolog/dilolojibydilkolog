@@ -15,7 +15,7 @@ import { emptyLab, type LabData } from '../engine/labProgress'
 import { localDate } from '../engine/progress'
 import { cleanMarks, mergeMarks, type GuideMarks } from '../engine/guideReview'
 import { addTime, cleanTimeLog, daySeconds, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
-import { cleanNotices, type Notice } from '../engine/notices'
+import { cleanGone, cleanNotices, rememberGone, removeNotices, type Notice, type NoticeKind } from '../engine/notices'
 import { award, cleanLedger, timeAwardKey, timeXp, type XpLedger } from '../engine/xpLedger'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
@@ -151,6 +151,8 @@ export interface Settings {
   autoAdvance?: number
   /** Keeps the screen on during a session (where supported); default on. */
   keepAwake?: boolean
+  /** Kinds of notice (the bell) turned off in Settings; a kind that is off is neither listed nor pushed (engine/notices). */
+  noticeOff?: NoticeKind[]
   /** Weekly goal of reading and listening, in minutes (absent: none). */
   weeklyTimeGoal?: number
   /** Missed days won back with the recall exam: they neither count nor break the streak (engine/streakRepair). */
@@ -391,7 +393,7 @@ export class KelimeDB extends Dexie {
     }
     const bumpMeta = (key: unknown) => {
       // The sync's own bookkeeping does not count.
-      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices'))) this.writes++
+      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices' || key === 'noticesGone'))) this.writes++
     }
     this.meta.hook('creating', bumpMeta)
     this.meta.hook('updating', (_mods, key) => bumpMeta(key))
@@ -994,6 +996,24 @@ export class KelimeDB extends Dexie {
   /** The notice center's list (see engine/notices): on this device only, in no backup. */
   async getNotices(): Promise<Notice[]> {
     return cleanNotices((await this.meta.get('notices'))?.value)
+  }
+
+  /** Ids of notices taken out by hand (see engine/notices `rememberGone`). */
+  async getNoticesGone(): Promise<string[]> {
+    return cleanGone((await this.meta.get('noticesGone'))?.value)
+  }
+
+  /** Takes notices out and remembers it, so an event still waiting elsewhere does not bring them back. */
+  removeNotices(ids: readonly string[]): Promise<Notice[]> {
+    const next = this.noticeQueue.then(async () => {
+      const list = await this.getNotices()
+      const left = removeNotices(list, ids)
+      if (left !== list) await this.meta.put({ key: 'notices', value: left })
+      await this.meta.put({ key: 'noticesGone', value: rememberGone(await this.getNoticesGone(), ids) })
+      return left
+    })
+    this.noticeQueue = next.then(() => {}, () => {})
+    return next
   }
 
   /** Changes the list (one change after another, so two notices at once are both kept); the change returns the new list, or the same one for nothing. */

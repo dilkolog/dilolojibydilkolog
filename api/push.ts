@@ -51,6 +51,8 @@ export interface PushRecord {
   week?: string
   /** Local hour (0–23) to remind at: the chosen time or the usual study hour; 20 when missing. */
   hour?: number
+  /** A push record saved by a signed-in device: the account, and whether it wants a notification for a friend's message. */
+  friends?: boolean
   /** A word the learner missed lately, for the push reminder to ask about ("“maison” ne demekti?"). Never in a mail. */
   word?: string
 }
@@ -219,12 +221,15 @@ async function handlePost(request: Request): Promise<Response> {
   }
   const allowed = await allowedIds()
   if (allowed && !(typeof body.group === 'string' && allowed.has(body.group))) return new Response('not allowed', { status: 403 })
+  const owner = await accountOf(request)
   const record: PushRecord = {
     subscription: { endpoint: sub.endpoint, keys: { p256dh: String(sub.keys.p256dh), auth: String(sub.keys.auth) } },
     ...stateFields(body),
     group: typeof body.group === 'string' && /^[0-9a-f]{64}$/.test(body.group) ? body.group : null,
     week: typeof body.week === 'string' ? body.week.slice(0, 200) : '',
     word: cleanWord(body.word),
+    // A device that proves its account may ask for friends' messages (the token is checked, so nobody can ask for another's).
+    ...(owner ? { owner, friends: body.friends === true } : {}),
   }
   await (await reminderStore()).put(await pushKey(sub.endpoint), record)
   return new Response(null, { status: 204 })

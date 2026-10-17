@@ -248,3 +248,34 @@ describe('which push addresses are accepted', () => {
   })
 })
 
+
+describe('/api/push: a device that proves its account', () => {
+  const ID = 'c'.repeat(64)
+  const TOKEN = '3'.repeat(64)
+  const hex = async (t: string) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))].map((b) => b.toString(16).padStart(2, '0')).join('')
+  const withAccount = (body: unknown, headers: Record<string, string> = { 'x-sync-id': ID, 'x-sync-auth': TOKEN }) => POST(new Request('https://app.test/api/push', { method: 'POST', headers, body: JSON.stringify(body) }))
+
+  it('records its account and whether it wants friends\' messages; a wrong token records neither', async () => {
+    blobs.set(`sync/${ID}/auth.txt`, await hex(TOKEN))
+    expect((await withAccount({ action: 'save', subscription: sub(), friends: true })).status).toBe(204)
+    expect(await stored(sub().endpoint)).toMatchObject({ owner: ID, friends: true })
+    expect((await withAccount({ action: 'save', subscription: sub(), friends: 'yes' })).status).toBe(204)
+    expect(await stored(sub().endpoint)).toMatchObject({ owner: ID, friends: false })
+    expect((await withAccount({ action: 'save', subscription: sub(), friends: true }, { 'x-sync-id': ID, 'x-sync-auth': '4'.repeat(64) })).status).toBe(204)
+    const r = await stored(sub().endpoint)
+    expect(r.owner).toBeUndefined()
+    expect(r.friends).toBeUndefined()
+  })
+})
+
+describe('friendMessage', () => {
+  it('says who it is from and what kind, never the content, and keeps the name to one clean line', async () => {
+    const { friendMessage } = await import('../../api/_notify')
+    const from = { code: 'ABCDEFGH', name: 'Ayşe' }
+    expect(friendMessage({ kind: 'nudge', from }).body).toBe('👋 Ayşe seni dürttü: bugün biraz çalışmaya ne dersin?')
+    expect(friendMessage({ kind: 'gift', from }).body).toBe('🎁 Ayşe sana bir kelime gönderdi')
+    expect(friendMessage({ kind: 'text', from }).body).toBe('📖 Ayşe sana bir metin gönderdi')
+    expect(friendMessage({ kind: 'cheer', from: { code: 'X', name: '<b>Ayşe</b>\n' + 'x'.repeat(60) } }).body).toBe(`👏 bAyşe/b${'x'.repeat(23)} seni tebrik etti`)
+    expect(friendMessage({ kind: 'cheer', from: { code: 'X', name: '  ' } }).body).toBe('👏 Bir arkadaşın seni tebrik etti')
+  })
+})

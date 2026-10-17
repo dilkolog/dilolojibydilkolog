@@ -8,6 +8,7 @@ import { ReminderSuggestion } from './BestHours'
 import { disablePush, enablePush, pushSubscription, pushSupported, type PushState } from './pushReminders'
 import { calendarFile, notificationsSupported, requestNotifications, showReminder } from './reminders'
 import { Select } from './Select'
+import { kindOff, NOTICE_GROUPS } from '../engine/notices'
 import { Row, Toggle } from './settingsWidgets'
 import { useUsualStudyHour } from './useUsualStudyHour'
 
@@ -238,6 +239,29 @@ export function ReminderSettings({
         )}
       </div>
       <p className="small muted">Takvim dosyası her gün bu saatte uyaran bir etkinlik ekler; uygulama kapalıyken de çalışır.</p>
+    </section>
+  )
+}
+
+/** What the bell lists, kind by kind: a kind turned off is neither listed nor (for a friend's message) pushed. */
+export function NoticeSettings({ settings, onChange }: { settings: Settings; onChange: (s: Settings) => void }) {
+  const off = settings.noticeOff ?? []
+  return (
+    <section className="card stack">
+      <h2 className="section-title">Bildirimler (çan)</h2>
+      <p className="small muted">Üst çubuktaki çan, sen başka yerdeyken olanları listeler. Burada hangilerinin listeleneceğini seçersin.</p>
+      {NOTICE_GROUPS.map((g) => (
+        <Toggle
+          key={g.id}
+          label={g.label}
+          help={g.help}
+          checked={!g.kinds.every((k) => kindOff(off, k))}
+          onChange={(v) => {
+            const rest = off.filter((k) => !g.kinds.includes(k))
+            onChange({ ...settings, noticeOff: v ? rest : [...rest, ...g.kinds] })
+          }}
+        />
+      ))}
     </section>
   )
 }

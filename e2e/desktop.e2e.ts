@@ -2669,7 +2669,11 @@ test('notice bell: the count of unseen notices, the list marks them seen, a noti
     { id: 'sync|1', kind: 'sync', text: 'Diğer cihazlarından: 3 yeni kelime.', read: true, minutesAgo: 60 * 30 },
   ])
   await expect(bell).toHaveAttribute('aria-label', 'Bildirimler, 2 yeni')
+  // The menu rides above the page only while the list is open: always on, it would sit above a dialog's backdrop too.
+  const sidebarLayer = () => page.locator('.sidebar').evaluate((el) => getComputedStyle(el).zIndex)
+  expect(await sidebarLayer()).toBe('auto')
   await bell.click()
+  expect(await sidebarLayer()).toBe('30')
   const list = page.getByRole('dialog', { name: 'Bildirimler' })
   await expect(list.locator('.notice')).toHaveCount(3)
   await expect(list.locator('.notice').first()).toContainText('Ayşe seni tebrik etti')
@@ -2677,7 +2681,19 @@ test('notice bell: the count of unseen notices, the list marks them seen, a noti
   await list.getByRole('button', { name: /Yeni rozet: Bir hafta/ }).click()
   await expect(page.locator('.profile-hero').first()).toBeVisible()
   await expect(bell).toHaveAttribute('aria-label', 'Bildirimler')
-  // Reloaded: still seen, still listed.
+  // Reloaded: still seen, still listed; one taken out stays out, and a kind turned off in Settings is not listed.
   await page.reload()
   await expect(bell).toHaveAttribute('aria-label', 'Bildirimler')
+  await bell.click()
+  await expect(list.locator('.notice')).toHaveCount(3)
+  await list.getByRole('button', { name: 'Bildirimi kaldır' }).first().click()
+  await expect(list.locator('.notice')).toHaveCount(2)
+  await page.reload()
+  await bell.click()
+  await expect(list.locator('.notice')).toHaveCount(2)
+  await openScreen(page, 'Ayarlar')
+  await page.locator('.settings-menu-item', { hasText: 'Bildirimler' }).click()
+  await expect(page.getByRole('heading', { name: 'Bildirimler (çan)' })).toBeVisible()
+  await page.getByRole('switch', { name: /Arkadaş iletileri/ }).click()
+  await expect(page.getByRole('switch', { name: /Arkadaş iletileri/ })).toHaveAttribute('aria-checked', 'false')
 })

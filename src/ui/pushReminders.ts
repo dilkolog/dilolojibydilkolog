@@ -1,3 +1,4 @@
+import { accessFetch } from '../data/access'
 import { getCredential } from './syncRunner'
 
 /**
@@ -41,6 +42,8 @@ export interface PushState {
   hour: number
   /** A word missed lately, for the push reminder to ask about (never sent in a mail). */
   word?: string
+  /** Whether a friend's message may arrive as a push notification (the bell's "Arkadaş iletileri"; default yes). */
+  friends?: boolean
 }
 
 /** What the server is told about the day (shared by the push and the mail reminders). */
@@ -59,10 +62,11 @@ export function dayFields(state: PushState) {
 
 async function save(sub: PushSubscription, state: PushState) {
   const cred = await getCredential()
-  await fetch('/api/push', {
+  // With the account's identity: the server then knows whose device this is, for a friend's message.
+  await accessFetch('/api/push', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, word: state.word ?? '', group: cred ? await (await import('../data/sync')).credentialId(cred) : null }),
+    body: JSON.stringify({ action: 'save', subscription: sub.toJSON(), ...dayFields(state), plan: state.plan, week: state.week, word: state.word ?? '', friends: state.friends !== false, group: cred ? await (await import('../data/sync')).credentialId(cred) : null }),
   })
 }
 

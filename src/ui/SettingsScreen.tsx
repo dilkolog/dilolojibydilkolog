@@ -9,7 +9,7 @@ import { BellIcon, DataIcon, PaletteIcon, PenIcon, SearchIcon, SpeakerIcon, Targ
 import { LookSettings } from './LookSettings'
 import { PageHeader } from './PageHeader'
 import type { PushState } from './pushReminders'
-import { ReminderSettings } from './ReminderSettings'
+import { NoticeSettings, ReminderSettings } from './ReminderSettings'
 import { SETTINGS_ART } from './drawnArt'
 import { PANE_KEY } from './settingsPane'
 import { SoundSettings } from './SoundSettings'
@@ -32,7 +32,7 @@ const GROUP_LIST: Group[] = [
   { id: 's-answers', name: 'Sorular', sub: 'Yazma, ipuçları ve cevapların kontrolü', icon: <PenIcon size={18} /> },
   { id: 's-sound', name: 'Ses', sub: 'Seslendirme, sesler ve konuşarak cevap', icon: <SpeakerIcon size={18} /> },
   { id: 's-look', name: 'Görünüm', sub: 'Tema, yazı boyutu ve liste sıklığı', icon: <PaletteIcon size={18} /> },
-  { id: 's-remind', name: 'Bildirimler', sub: 'Günlük hatırlatma ve takvim', icon: <BellIcon size={18} /> },
+  { id: 's-remind', name: 'Bildirimler', sub: 'Hatırlatma, takvim ve çan', icon: <BellIcon size={18} /> },
   { id: 's-tools', name: 'Araçlar', sub: 'Yapay zekâ, kısayollar ve çevrimdışı paket', icon: <ToolIcon size={18} /> },
   { id: 's-data', name: 'Veriler', sub: 'Yedek, dışa aktarma ve sıfırlama', icon: <DataIcon size={18} /> },
 ]
@@ -181,6 +181,7 @@ export function SettingsScreen({
 
           <Pane {...pane('s-remind')}>
             <ReminderSettings settings={settings} onChange={onChange} pushState={pushState} />
+            <NoticeSettings settings={settings} onChange={onChange} />
           </Pane>
 
           <Pane {...pane('s-tools')}>

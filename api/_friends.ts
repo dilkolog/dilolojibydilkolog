@@ -339,7 +339,15 @@ function withInbox<T>(id: string, change: () => Promise<T>): Promise<T> {
  * A cheer or a nudge for a friend. Only between friends (one of them follows the other), and one of a kind
  * per sender a day: a second replaces the first rather than piling up.
  */
-export async function sendToFriend(id: string, toCode: string, kind: unknown, payload?: unknown, senderToday?: string): Promise<SendResult> {
+export async function sendToFriend(
+  id: string,
+  toCode: string,
+  kind: unknown,
+  payload?: unknown,
+  senderToday?: string,
+  /** Called once the message is in the recipient's inbox (outside its lock): where a push notification is sent. Its failure changes nothing. */
+  onDelivered?: (recipient: string, item: InboxItem) => Promise<unknown>,
+): Promise<SendResult> {
   if (typeof kind !== 'string' || !INBOX_KINDS.includes(kind as InboxKind)) return 'bad_kind'
   const gift = kind === 'gift' ? cleanGift(payload) : null
   const text = kind === 'text' ? cleanText(payload) : null
@@ -358,11 +366,14 @@ export async function sendToFriend(id: string, toCode: string, kind: unknown, pa
     const [card] = await store.cardsOf([toCode])
     if ((card?.days?.[senderToday ?? today] ?? 0) > 0) return 'studied'
   }
-  return withInbox(recipient, () => deliver(recipient, me, kind as InboxKind, gift, text, now, today))
+  let delivered = null as InboxItem | null
+  const result = await withInbox(recipient, () => deliver(recipient, me, kind as InboxKind, gift, text, now, today, (item) => (delivered = item)))
+  if (result === 'ok' && delivered && onDelivered) await onDelivered(recipient, delivered).catch(() => {})
+  return result
 }
 
 /** Puts one message in the recipient's inbox, in the place of the sender's earlier one of the day (a cheer, a nudge) or beside the few gifts and texts of theirs that are waiting. */
-async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift: GiftWord | null, text: SentText | null, now: Date, today: string): Promise<SendResult> {
+async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift: GiftWord | null, text: SentText | null, now: Date, today: string, onItem: (item: InboxItem) => void): Promise<SendResult> {
   const item: InboxItem = { id: crypto.randomUUID(), kind, from: { code: me.code, name: me.name }, at: now.toISOString(), ...(gift ? { gift } : {}), ...(text ? { text } : {}) }
   await changeInbox(recipient, (waiting) => {
     // A cheer or a nudge replaces the sender's one of the day; gifts and texts pile up to a few.
@@ -374,6 +385,7 @@ async function deliver(recipient: string, me: FriendCard, kind: InboxKind, gift:
     )
     return [item, ...waiting.filter((i) => !dropped.has(i.id))].slice(0, MAX_INBOX)
   })
+  onItem(item)
   return 'ok'
 }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addNotice, cleanNotices, markAllRead, MAX_NOTICES, noticeTime, unreadCount, type Notice } from '../notices'
+import { addNotice, cleanGone, cleanNotices, kindOff, markAllRead, MAX_GONE, MAX_NOTICES, noticeTime, rememberGone, removeNotices, unreadCount, type Notice } from '../notices'
 
 const make = (id: string, at = '2026-10-17T10:00:00.000Z'): Omit<Notice, 'read'> => ({ id, kind: 'badge', text: `Yeni rozet ${id}`, at })
 
@@ -41,5 +41,29 @@ describe('notices', () => {
     expect(noticeTime(new Date(2026, 9, 17, 9, 5).toISOString(), now)).toBe('bugün 09:05')
     expect(noticeTime(new Date(2026, 9, 16, 21, 30).toISOString(), now)).toBe('dün 21:30')
     expect(noticeTime(new Date(2026, 9, 12, 9, 0).toISOString(), now)).toBe('12 Ekim')
+  })
+
+  it('takes notices out, and an event taken out is not listed again', () => {
+    let list = addNotice(addNotice([], make('friend|a')), make('friend|b'))
+    const left = removeNotices(list, ['friend|a'])
+    expect(left.map((n) => n.id)).toEqual(['friend|b'])
+    expect(removeNotices(left, ['friend|zzz'])).toBe(left)
+    const gone = rememberGone([], ['friend|a'])
+    list = addNotice(left, make('friend|a'), gone)
+    expect(list).toBe(left)
+    expect(addNotice(left, make('friend|c'), gone).map((n) => n.id)).toEqual(['friend|c', 'friend|b'])
+  })
+
+  it('keeps the taken-out ids once each, newest first, up to a limit, and reads a stored list back clean', () => {
+    expect(rememberGone(['badge|a', 'badge|b'], ['badge|b', 'badge|c'])).toEqual(['badge|b', 'badge|c', 'badge|a'])
+    expect(rememberGone([], Array.from({ length: MAX_GONE + 20 }, (_, i) => `badge|n${i}`))).toHaveLength(MAX_GONE)
+    expect(cleanGone(['badge|a', 'bad id', 7, 'cert|fr|A1'])).toEqual(['badge|a', 'cert|fr|A1'])
+    expect(cleanGone('nope')).toEqual([])
+  })
+
+  it('knows which kinds are turned off', () => {
+    expect(kindOff(['friend'], 'friend')).toBe(true)
+    expect(kindOff(['friend'], 'badge')).toBe(false)
+    expect(kindOff(undefined, 'friend')).toBe(false)
   })
 })

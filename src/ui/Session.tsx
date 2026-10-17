@@ -4,8 +4,9 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { IntrusionSources } from '../engine/crossLanguage'
 import type { PlanItem } from '../engine/dailyPlan'
 import { displayForm, type Evaluation } from '../engine/exercises'
-import { nextCombo, xpForAnswer } from '../engine/gamification'
+import { COMEBACK_MIN_ANSWERS, COMEBACK_XP, isComeback, nextCombo, xpForAnswer } from '../engine/gamification'
 import { masteryStage } from '../engine/mastery'
+import { localDate } from '../engine/progress'
 import { markKnown, needsIntervention, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { listeningRate } from '../engine/listening'
 import { createRng } from '../engine/rng'
@@ -164,6 +165,24 @@ export function SessionScreen(p: Props) {
       showToast('Günlük XP hedefin tamam!')
     }
   }, [earnedXp, dayGoal, dayGame, p.mode])
+  // What the day already holds, for the XP the answers earn: the answers given before this session (a long day pays less) and
+  // whether today picks the studying up after a few days away (the fifth real answer then brings the comeback bonus).
+  const today = useRef({ answers: 0, normal: 0, comeback: false, paid: false })
+  useEffect(() => {
+    let live = true
+    const start = new Date()
+    start.setHours(0, 0, 0, 0)
+    void (async () => {
+      const [earlier, last] = await Promise.all([p.db.eventsSince(start), p.db.events.where('timestamp').below(start).filter((e) => e.mode === 'normal').last()])
+      if (!live) return
+      today.current = { ...today.current, answers: earlier.length, normal: earlier.filter((e) => e.mode === 'normal').length, comeback: isComeback(last ? localDate(last.timestamp) : null, localDate(start)) }
+    })().catch(() => {})
+    return () => {
+      live = false
+    }
+    // Once, when the session opens.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const { onFinish } = p
   // Words whose refresher card was shown (or put away) in this session.
   const [refreshed, setRefreshed] = useState<ReadonlySet<string>>(() => new Set())
@@ -288,7 +307,18 @@ export function SessionScreen(p: Props) {
       retrievability: result.event.retrievabilityBefore,
       wordReviews: before.stats.reviews,
       wordWrong: before.stats.wrong,
+      answersToday: today.current.answers + session.log.filter((l) => l.verdict !== undefined).length,
     })
+    // The comeback bonus, with the day's fifth real answer (the same rule as `comebackBonus`).
+    let bonus = 0
+    if ((input.mode ?? p.mode) === 'normal') {
+      const normal = today.current.normal + session.log.filter((l) => l.verdict !== undefined).length + 1
+      if (today.current.comeback && !today.current.paid && normal >= COMEBACK_MIN_ANSWERS) {
+        today.current.paid = true
+        bonus = COMEBACK_XP
+        showToast(`Hoş geldin! Döndüğün için +${COMEBACK_XP} XP`)
+      }
+    }
     const run = ev.verdict === 'wrong' ? 0 : strictRunOf(session.log) + 1
     if (ev.verdict === 'wrong') sfx.wrong()
     else if (run === 5 || run === 10 || run === 20) sfx.combo()
@@ -300,7 +330,7 @@ export function SessionScreen(p: Props) {
       errorType: ev.errorType,
       stageBefore: masteryStage(before),
       stageAfter: masteryStage(result.state),
-      xp,
+      xp: xp + bonus,
     }
   }
 

@@ -10,6 +10,7 @@ import {
   computeXp,
   fatigueFactor,
   INTRO_XP,
+  isComeback,
   isHardWord,
   levelFromXp,
   longestStreak,
@@ -93,6 +94,13 @@ describe('the finer XP rules', () => {
     const grind = (n: number) => Array.from({ length: n }, (_, i) => e(`g${i}`, i % 60, 'correct', 10, 0))
     const net = (events: ReviewEvent[]) => computeXp(events, [], NOW).total - [...questBonus(events, []).values()].reduce((x, y) => x + y, 0)
     expect(net(grind(151)) - net(grind(150))).toBe(10)
+  })
+
+  it('knows a comeback: three days or more since the last day with real answers', () => {
+    expect(isComeback('2026-10-10', '2026-10-13')).toBe(true)
+    expect(isComeback('2026-10-10', '2026-10-12')).toBe(false)
+    expect(isComeback(null, '2026-10-13')).toBe(false)
+    expect(isComeback(undefined, '2026-10-13')).toBe(false)
   })
 
   it('pays 10 XP for coming back after three days or more, with at least five real answers that day', () => {

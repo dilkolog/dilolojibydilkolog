@@ -1,6 +1,7 @@
 import webpush from 'web-push'
 import type { PushRecord } from './push.js'
 import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, type Mail } from './_mail.js'
+import { VAPID_PUBLIC_KEY } from './_notify.js'
 import { reminderStore } from './_reminders.js'
 
 /**
@@ -10,7 +11,6 @@ import { reminderStore } from './_reminders.js'
  * their reminder hour (default 20:00) and whose learner hasn't studied today, on any of their synced
  * devices. Expired subscriptions are removed.
  */
-const PUBLIC_KEY = 'BB1ttPY6-CMNk_Zl7lmm6aJuyxi0cIHr6TUagJ0u_Fpjt3YdaK6vM6c2koor8osB4pIXbPbv57X7TUBmJOhuCIg'
 
 const localDay = (tz: number, now: number) => new Date(now - tz * 60_000).toISOString().slice(0, 10)
 
@@ -60,7 +60,7 @@ export async function GET(request: Request): Promise<Response> {
   const mailOn = mailConfigured()
   // Without either key every send would fail the same way: said once, not a 500 after the first call.
   if (!pushOn && !mailOn) return new Response('VAPID_PRIVATE_KEY and RESEND_API_KEY are not set', { status: 503 })
-  if (pushOn) webpush.setVapidDetails('https://kelime-koc.vercel.app', PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY!)
+  if (pushOn) webpush.setVapidDetails('https://kelime-koc.vercel.app', VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY!)
   const now = Date.now()
   const h = new URL(request.url).searchParams.get('h')
   const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()

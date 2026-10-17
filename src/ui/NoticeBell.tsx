@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { noticeTime, type Notice, type NoticeKind, type NoticeTarget } from '../engine/notices'
-import { BellIcon, HeartIcon, InfoIcon, TrophyIcon, UserIcon } from './icons'
+import { BellIcon, CloseIcon, HeartIcon, InfoIcon, TrophyIcon, UserIcon } from './icons'
 import { useNotices } from './noticeCenter'
 import { Popover } from './Popover'
 
@@ -11,7 +11,7 @@ const ICON: Record<NoticeKind, typeof InfoIcon> = { sync: InfoIcon, badge: Troph
  * seen; opening the list marks it seen (the new ones stay highlighted while it is open). A notice leads to its place.
  */
 export function NoticeBell({ onOpen }: { onOpen: (target: NoticeTarget) => void }) {
-  const { items, unread, readAll } = useNotices()
+  const { items, unread, readAll, remove } = useNotices()
   return (
     <Popover
       button={
@@ -29,12 +29,22 @@ export function NoticeBell({ onOpen }: { onOpen: (target: NoticeTarget) => void 
       label="Bildirimler"
       align="start"
     >
-      {(close) => <NoticeList items={items} onRead={readAll} onPick={(n) => { close(); if (n.target) onOpen(n.target) }} />}
+      {(close) => (
+        <NoticeList
+          items={items}
+          onRead={readAll}
+          onRemove={remove}
+          onPick={(n) => {
+            close()
+            if (n.target) onOpen(n.target)
+          }}
+        />
+      )}
     </Popover>
   )
 }
 
-function NoticeList({ items, onRead, onPick }: { items: Notice[]; onRead: () => void; onPick: (n: Notice) => void }) {
+function NoticeList({ items, onRead, onRemove, onPick }: { items: Notice[]; onRead: () => void; onRemove: (ids: readonly string[]) => void; onPick: (n: Notice) => void }) {
   // The ones that were new when the list opened stay marked for as long as it is open.
   const fresh = useRef(new Set(items.filter((n) => !n.read).map((n) => n.id)))
   const [now] = useState(() => new Date())
@@ -45,32 +55,43 @@ function NoticeList({ items, onRead, onPick }: { items: Notice[]; onRead: () => 
   }, [])
   if (!items.length) return <p className="small muted notice-empty">Henüz bildirim yok. Rozetler, arkadaş iletileri ve diğer cihazlardan gelen haberler burada görünür.</p>
   return (
-    <ul className="notice-list">
-      {items.map((n) => {
-        const Icon = ICON[n.kind]
-        const body = (
-          <>
-            <span className="notice-icon" aria-hidden>
-              <Icon size={16} />
-            </span>
-            <span className="notice-text">
-              <span>{n.text}</span>
-              <span className="small muted">{noticeTime(n.at, now)}</span>
-            </span>
-          </>
-        )
-        return (
-          <li key={n.id} className={`notice${fresh.current.has(n.id) ? ' notice-new' : ''}`}>
-            {n.target ? (
-              <button type="button" className="notice-row" onClick={() => onPick(n)}>
-                {body}
+    <>
+      <div className="notice-head">
+        <span className="small muted">{items.length} bildirim</span>
+        <button type="button" className="link small" onClick={() => onRemove(items.map((n) => n.id))}>
+          Hepsini temizle
+        </button>
+      </div>
+      <ul className="notice-list">
+        {items.map((n) => {
+          const Icon = ICON[n.kind]
+          const body = (
+            <>
+              <span className="notice-icon" aria-hidden>
+                <Icon size={16} />
+              </span>
+              <span className="notice-text">
+                <span>{n.text}</span>
+                <span className="small muted">{noticeTime(n.at, now)}</span>
+              </span>
+            </>
+          )
+          return (
+            <li key={n.id} className={`notice${fresh.current.has(n.id) ? ' notice-new' : ''}`}>
+              {n.target ? (
+                <button type="button" className="notice-row" onClick={() => onPick(n)}>
+                  {body}
+                </button>
+              ) : (
+                <div className="notice-row">{body}</div>
+              )}
+              <button type="button" className="icon-btn icon-btn-sm notice-remove" aria-label="Bildirimi kaldır" title="Kaldır" onClick={() => onRemove([n.id])}>
+                <CloseIcon size={14} />
               </button>
-            ) : (
-              <div className="notice-row">{body}</div>
-            )}
-          </li>
-        )
-      })}
-    </ul>
+            </li>
+          )
+        })}
+      </ul>
+    </>
   )
 }

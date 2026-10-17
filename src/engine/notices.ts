@@ -18,14 +18,27 @@ export interface Notice {
 }
 
 export const MAX_NOTICES = 50
+/** Ids of notices the learner took out, so an event still waiting elsewhere (a friend's message) does not bring one back. */
+export const MAX_GONE = 200
+
+/** What the learner turns on and off in Settings: a few groups of kinds. */
+export const NOTICE_GROUPS: { id: string; label: string; help: string; kinds: readonly NoticeKind[] }[] = [
+  { id: 'friend', label: 'Arkadaş iletileri', help: 'Tebrik, dürtme, kelime ve metin hediyesi. Kapalıyken uygulama kapalıyken gelen anlık bildirim de gelmez.', kinds: ['friend'] },
+  { id: 'sync', label: 'Eşitleme haberleri', help: 'Diğer cihazlarından gelen kelime ve ayar değişiklikleri.', kinds: ['sync'] },
+  { id: 'achievement', label: 'Rozet, seviye ve sertifika', help: 'Kazandıkların.', kinds: ['badge', 'level', 'cert'] },
+  { id: 'account', label: 'Hesap durumu', help: 'Başvurunun onaylanması ya da reddi.', kinds: ['account'] },
+]
 const KINDS: readonly NoticeKind[] = ['sync', 'badge', 'level', 'cert', 'account', 'friend']
 const TARGETS: readonly NoticeTarget[] = ['home', 'profile', 'settings', 'guide']
 const ID = /^[a-z]+\|[\w.:|-]{1,120}$/
 const MAX_TEXT = 240
 
-/** The list with the notice at the front (newest first), unless its id is already there; the oldest fall off. */
-export function addNotice(list: readonly Notice[], notice: Omit<Notice, 'read'>): Notice[] {
-  if (list.some((n) => n.id === notice.id)) return list as Notice[]
+/** Whether the learner turned this kind off (in Settings). */
+export const kindOff = (off: readonly NoticeKind[] | undefined, kind: NoticeKind): boolean => !!off?.includes(kind)
+
+/** The list with the notice at the front (newest first), unless its id is already there or was taken out; the oldest fall off. */
+export function addNotice(list: readonly Notice[], notice: Omit<Notice, 'read'>, gone: readonly string[] = []): Notice[] {
+  if (list.some((n) => n.id === notice.id) || gone.includes(notice.id)) return list as Notice[]
   return [{ ...notice, text: notice.text.slice(0, MAX_TEXT), read: false }, ...list].slice(0, MAX_NOTICES)
 }
 
@@ -60,3 +73,12 @@ export function noticeTime(at: string, now = new Date()): string {
   if (apart === 1) return `dün ${time}`
   return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })
 }
+
+/** The list without these notices (taken out one by one, or all). */
+export const removeNotices = (list: readonly Notice[], ids: readonly string[]): Notice[] => (list.some((n) => ids.includes(n.id)) ? list.filter((n) => !ids.includes(n.id)) : (list as Notice[]))
+
+/** The ids kept as taken out: the newest `MAX_GONE`, each once. */
+export const rememberGone = (gone: readonly string[], ids: readonly string[]): string[] => [...new Set([...ids, ...gone])].slice(0, MAX_GONE)
+
+/** A stored "gone" list read back. */
+export const cleanGone = (raw: unknown): string[] => (Array.isArray(raw) ? raw.filter((x): x is string => typeof x === 'string' && ID.test(x)).slice(0, MAX_GONE) : [])

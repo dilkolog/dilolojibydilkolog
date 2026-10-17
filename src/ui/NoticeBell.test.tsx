@@ -47,6 +47,36 @@ describe('NoticeBell', () => {
     expect((await db.getNotices()).every((n) => n.read)).toBe(true)
   })
 
+  it('takes one notice out or all of them, and what was taken out does not come back; a kind turned off is not listed', async () => {
+    const { host } = await mount()
+    await act(async () => {
+      await notify(badgeNotice('a', 'A'))
+      await notify(badgeNotice('b', 'B'))
+      await notify(badgeNotice('c', 'C'))
+    })
+    await act(async () => host.querySelector<HTMLButtonElement>('button.notice-bell')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+    await act(async () => host.querySelectorAll<HTMLButtonElement>('.notice-remove')[0]!.click())
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+    expect([...host.querySelectorAll('.notice')].map((r) => r.textContent)).toEqual([expect.stringContaining('B'), expect.stringContaining('A')])
+    // The same event again (a friend's message still waiting on the server) is not listed.
+    await act(async () => {
+      await notify(badgeNotice('c', 'C'))
+    })
+    expect(host.querySelectorAll('.notice')).toHaveLength(2)
+    await act(async () => [...host.querySelectorAll('button')].find((b) => b.textContent === 'Hepsini temizle')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+    expect(host.querySelector('.notice-empty')).not.toBeNull()
+    // A kind the learner turned off is not listed (the toast, if there is one, still says it).
+    const settings = (await db.getSettings()) ?? ({} as never)
+    await db.saveSettings({ ...settings, noticeOff: ['badge'] })
+    await act(async () => {
+      await notify(badgeNotice('d', 'D'))
+      await notify(levelNotice(3, 'Meraklı'))
+    })
+    expect((await db.getNotices()).map((n) => n.id)).toEqual(['level|3'])
+  })
+
   it('says so when there is nothing yet', async () => {
     const { host } = await mount()
     await act(async () => host.querySelector<HTMLButtonElement>('button.notice-bell')!.click())
