@@ -3976,8 +3976,6 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   .switch, .switch span { transition-duration: 1ms; }
 }
 
-/* Owner's account approval list (Settings → Hesap → Yönetici). */
-
 /* "Yenilikler" card on Today. */
 .whats-new-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
 
