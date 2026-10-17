@@ -1773,12 +1773,143 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .tap-word:hover, .tap-word.is-open { background: var(--lang-soft); text-decoration-color: transparent; }
 .tap-note { margin: 0.25rem 0 0; padding: 0.25rem 0.625rem; border-radius: var(--r-sm); background: var(--lang-soft); color: var(--lang-text); }
 
-/* Before a round: three labelled groups (which words, how many, how) instead of one pile of chips. */
-.study-options { display: grid; gap: 1.25rem; padding: 1.25rem; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-lg); }
-.study-group { display: grid; gap: 0.625rem; }
-.study-label { margin: 0; font-size: var(--t-sm); font-weight: 700; color: var(--ink-soft); letter-spacing: 0.02em; }
-.study-count { font-size: var(--t-xs); font-weight: 700; opacity: 0.65; font-variant-numeric: tabular-nums; }
-.study-lists { padding-top: 0.25rem; }
+/* Before a round: structured, modern practice/exam setup panel */
+.exam-setup-screen {
+  max-width: 44rem;
+  margin-inline: auto;
+  gap: 1.25rem;
+}
+.exam-hero {
+  display: grid;
+  gap: 0.375rem;
+}
+.exam-kicker {
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--lang-text);
+  background: color-mix(in srgb, var(--lang) 15%, var(--surface));
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--r-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+}
+.study-options {
+  display: grid;
+  gap: 1.35rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--rule) 85%, transparent);
+  border-radius: var(--r-xl);
+  box-shadow: 0 4px 24px -6px rgb(0 0 0 / 0.06), 0 1px 3px rgb(0 0 0 / 0.04);
+}
+.study-group {
+  display: grid;
+  gap: 0.75rem;
+}
+.study-group + .study-group {
+  border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  padding-top: 1.25rem;
+}
+.study-label {
+  margin: 0;
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.study-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--r-full);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.study-chip-icon {
+  font-size: 1.05em;
+  line-height: 1;
+  flex: none;
+}
+.study-count {
+  display: inline-grid;
+  place-items: center;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  padding: 0.0625rem 0.45rem;
+  border-radius: var(--r-full);
+  min-width: 1.25rem;
+}
+.chip[aria-pressed='true'] .study-count {
+  background: color-mix(in srgb, var(--lang) 22%, var(--surface));
+  color: var(--lang-text);
+}
+.study-lists {
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--surface-2) 65%, var(--surface));
+  border-radius: var(--r-lg);
+  border: 1px dashed color-mix(in srgb, var(--lang) 35%, var(--rule));
+  margin-top: 0.25rem;
+}
+
+/* Exam bottom action bar */
+.exam-start-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+.exam-summary-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface-2);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--r-full);
+}
+.exam-summary-dot {
+  opacity: 0.4;
+}
+.exam-start-btn {
+  font-weight: 700;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--r-full);
+  background: linear-gradient(135deg, var(--lang) 0%, color-mix(in srgb, var(--lang) 85%, #000) 100%);
+  color: var(--on-color);
+  box-shadow: 0 4px 16px -2px color-mix(in srgb, var(--lang) 45%, transparent);
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast);
+}
+.exam-start-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -2px color-mix(in srgb, var(--lang) 55%, transparent);
+}
+.exam-start-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+@media (max-width: 32rem) {
+  .exam-start-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .exam-summary-pill {
+    justify-content: center;
+  }
+}
 /* The swipe cards in play: a slim progress bar, a calmer card, and the three buttons named. */
 .swipe-progress { height: 0.5rem; }
 .swipe-hint { margin: 0; font-size: var(--t-sm); color: var(--ink-soft); opacity: 0.85; }
