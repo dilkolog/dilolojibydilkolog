@@ -21,6 +21,7 @@ import { ArticleDrill } from './ArticleDrill'
 import { GrammarPractice } from './games/GrammarPractice'
 import { DuelGame } from './games/DuelGame'
 import { MiniPodcast } from './games/MiniPodcast'
+import { SongGame } from './games/SongGame'
 import { SpotErrorGame } from './games/SpotErrorGame'
 import { SentenceRewriteGame } from './games/SentenceRewriteGame'
 import { CollocationsGame } from './games/CollocationsGame'
@@ -162,6 +163,7 @@ export function GamesScreen(
     if (game === 'flow') return <FlowRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'song') return <SongGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'podcast') return <MiniPodcast {...p} onExit={() => setGame(null)} />
     if (game === 'duel') return <DuelGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'grammar') return <GrammarPractice language={p.language} initialTopic={p.initialTopic} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
@@ -207,6 +209,7 @@ export function GamesScreen(
       title: 'Dinleme ve telaffuz',
       tone: 'listen',
       cards: [
+        { id: 'song', emoji: '🎵', name: 'Şarkıyla öğren', text: 'Altyazılı bir şarkının satırlarındaki eksik kelimeleri dinleyerek yaz.', status: online ? 'YouTube bağlantısıyla' : 'İnternet gerekir', disabled: !online },
         { id: 'dictation', emoji: '📝', name: 'Gerçek seslerle dikte', text: 'Farklı insanların sesinden gerçek cümleleri dinle ve yaz.', status: online ? 'Her cümle başka bir ses' : 'İnternet gerekir', disabled: !online },
         { id: 'ear', emoji: '🦻', name: 'Kaçırdıkların', text: 'Dikte ederken duymadığın kelimeler, kendi cümleleriyle: dinle ve yaz.', status: !canSpeak() ? 'Bu tarayıcıda sesli okuma yok' : earCount ? `${earCount} kelime` : 'Dikte yaptıkça birikir', disabled: !canSpeak() || earCount === 0 },
         ...(azureEnabled()
