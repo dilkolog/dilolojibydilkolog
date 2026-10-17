@@ -752,7 +752,7 @@ function LessonView({
         <button type="button" className="btn btn-quiet" onClick={() => openPrint(lessonSheetHtml(lesson, titleOf(lesson)))}>
           Yazdır
         </button>
-        <button type="button" className="btn btn-quiet" aria-pressed={read} onClick={() => onRead(!read)}>
+        <button type="button" className="btn btn-quiet guide-read-btn" aria-pressed={read} onClick={() => onRead(!read)}>
           {read ? (
             <>
               <CheckCircleIcon size={16} className="inline-icon" /> Okundu
