@@ -30,6 +30,7 @@ import type {
   SuggestRequest,
   WordInfo,
   WordSuggestRequest,
+  PhotoWordsRequest,
 } from './types'
 
 export * from './types'
@@ -50,6 +51,8 @@ export const enrichWords = async (
 ): Promise<Map<string, WordInfo>> => (await sdk()).enrichWords(apiKey, language, words)
 
 export const suggestNewWords = async (apiKey: string, req: WordSuggestRequest): Promise<WordInfo[]> => (await sdk()).suggestNewWords(apiKey, req)
+
+export const wordsFromPhoto = async (apiKey: string, req: PhotoWordsRequest): Promise<WordInfo[]> => (await sdk()).wordsFromPhoto(apiKey, req)
 
 export const notesQuiz = async (apiKey: string, req: NotesQuizRequest): Promise<QuizQuestion[]> => (await sdk()).notesQuiz(apiKey, req)
 

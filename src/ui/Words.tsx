@@ -11,6 +11,7 @@ import { ConceptsView } from './CrossLanguage'
 import { ListHealthCard } from './ListHealth'
 import { FillMissingBar } from './FillMissing'
 import { SuggestWords } from './SuggestWords'
+import { PhotoWords } from './PhotoWords'
 import { TranslateImport } from './TranslateImport'
 import { MissingWords } from './MissingWords'
 import { KindleImport } from './KindleImport'
@@ -322,6 +323,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           <TranslateImport db={db} language={language} existing={keys} onAdded={onChanged} />
           <CommunitySets language={language} onAdded={onChanged} />
           <MissingWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
+          <PhotoWords db={db} language={language} vocabulary={vocabulary} onAdded={onChanged} />
           <SuggestWords db={db} language={language} vocabulary={vocabulary} settings={undefined} onAdded={onChanged} />
         </section>
         </section>

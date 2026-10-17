@@ -91,6 +91,17 @@ export interface PrequestionSet {
   questions: { question: string; answer: string }[]
 }
 
+export interface PhotoWordsRequest {
+  language: import('../engine/types').TargetLanguage
+  /** The photo, base64 without the data-URL prefix (shrunk before it gets here). */
+  imageBase64: string
+  mediaType: 'image/jpeg' | 'image/png' | 'image/webp'
+  /** The most words to bring back. */
+  count: number
+  /** Words already in the list (never brought back). */
+  have: string[]
+}
+
 export interface WordSuggestRequest {
   language: import('../engine/types').TargetLanguage
   /** How many words to propose. */
