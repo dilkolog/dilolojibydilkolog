@@ -18,6 +18,16 @@ export const FR_LESSONS: TopicLesson[] = [
       "à ve de, le / les ile birleşir: à + le = au, à + les = aux, de + le = du, de + les = des. la ve l' birleşmez: à la gare, de l'école.",
       "Genel beğeni bildiren fiillerden sonra belirli artikel gelir: J'aime le café (kahveyi severim, genel olarak).",
     ],
+    table: {
+      caption: "Fransızca Artikel ve Edat Birleşimleri Özeti",
+      head: ["Kategori", "Eril Tekil", "Dişil Tekil", "Sesli / Sessiz h Önü", "Çoğul (Eril / Dişil)"],
+      rows: [
+        ["Belirli (le/la/les)", "le livre", "la table", "l'ami / l'école", "les livres / les tables"],
+        ["Belirsiz (un/une/des)", "un livre", "une table", "un ami / une école", "des livres / des tables"],
+        ["à + belirli artikel", "au (à + le)", "à la", "à l'", "aux (à + les)"],
+        ["de + belirli artikel", "du (de + le)", "de la", "de l'", "des (de + les)"],
+      ],
+    },
     examples: [
       { text: "J'ai un frère et une sœur.", tr: "Bir erkek kardeşim ve bir kız kardeşim var." },
       { text: "Le livre est sur la table.", tr: "Kitap masanın üstünde." },
@@ -70,6 +80,18 @@ export const FR_LESSONS: TopicLesson[] = [
       "je, sesli harften önce j' olur: j'ai, ama je suis.",
       "C'est + isim ya da sıfat ile bir şeyi tanıtır ya da nitelersin: C'est mon ami. C'est facile.",
     ],
+    table: {
+      caption: "Être ve Avoir Şimdiki Zaman Çekimi ve Kullanım Alanları",
+      head: ["Kişi Zamiri", "être (olmak)", "avoir (sahip olmak)", "avoir ile Kalıplar (être kullanılmaz!)"],
+      rows: [
+        ["je / j'", "je suis", "j'ai", "avoir ... ans (yaşında olmak)"],
+        ["tu", "tu es", "tu as", "avoir faim / soif (aç / susuz olmak)"],
+        ["il / elle / on", "il est", "il a", "avoir chaud / froid (sıcaklamak / üşümek)"],
+        ["nous", "nous sommes", "nous avons", "avoir peur / sommeil (korkmak / uykusu gelmek)"],
+        ["vous", "vous êtes", "vous avez", "avoir raison / tort (haklı / haksız olmak)"],
+        ["ils / elles", "ils sont", "ils ont", "avoir besoin de (ihtiyacı olmak)"],
+      ],
+    },
     examples: [
       { text: "Je suis turc et j'ai vingt-cinq ans.", tr: "Türk'üm ve yirmi beş yaşındayım." },
       { text: "Nous sommes fatigués, nous avons sommeil.", tr: "Yorgunuz, uykumuz var." },
@@ -122,6 +144,18 @@ export const FR_LESSONS: TopicLesson[] = [
       "Yazım değişikliği: manger → nous mangeons, commencer → nous commençons (g ve c'nin sesi korunur).",
       "Türkçedeki « -iyor » için ayrı biçim yok; vurgulamak istersen être en train de + mastar: Je suis en train de manger.",
     ],
+    table: {
+      caption: "Düzenli Üç Fiil Grubunun (-er, -ir, -re) Présent Çekim Ekleri",
+      head: ["Kişi", "1. Grup: parler (-er)", "2. Grup: finir (-ir)", "3. Grup: vendre (-re)"],
+      rows: [
+        ["je", "parle (-e)", "finis (-is)", "vends (-s)"],
+        ["tu", "parles (-es)", "finis (-is)", "vends (-s)"],
+        ["il / elle / on", "parle (-e)", "finit (-it)", "vend (-)"],
+        ["nous", "parlons (-ons)", "finissons (-issons)", "vendons (-ons)"],
+        ["vous", "parlez (-ez)", "finissez (-issez)", "vendez (-ez)"],
+        ["ils / elles", "parlent (-ent)", "finissent (-issent)", "vendent (-ent)"],
+      ],
+    },
     examples: [
       { text: "Je parle français et anglais.", tr: "Fransızca ve İngilizce konuşuyorum." },
       { text: "Nous finissons le travail à six heures.", tr: "İşi saat altıda bitiriyoruz." },

@@ -17,6 +17,15 @@ export const EN_LESSONS: TopicLesson[] = [
       "Cümlede başka fiil yoksa be zorunludur: 'She happy' değil 'She is happy'.",
       "Geçmişte was (I/he/she/it) ve were (we/you/they) olur: I was at home."
     ],
+    table: {
+      caption: "To Be (Şimdiki ve Geçmiş Zaman) Çekim Tablosu",
+      head: ["Özne (Subject)", "Olumlu (+)", "Olumsuz (-)", "Soru (?)", "Geçmiş (Past)"],
+      rows: [
+        ["I", "I am (I'm)", "I am not (I'm not)", "Am I ...?", "I was / wasn't"],
+        ["He / She / It", "He is (He's)", "He is not (isn't)", "Is he ...?", "He was / wasn't"],
+        ["We / You / They", "They are (They're)", "They are not (aren't)", "Are they ...?", "They were / weren't"],
+      ],
+    },
     examples: [
       { text: "I am a student, and my sister is a nurse.", tr: "Ben öğrenciyim, kız kardeşim de hemşire." },
       { text: "We aren't hungry right now.", tr: "Şu an aç değiliz." },
@@ -66,6 +75,17 @@ export const EN_LESSONS: TopicLesson[] = [
       "Şimdi (now, at the moment) ve geçici durumlar (this week) için continuous kullanılır.",
       "Know, like, want, need, believe gibi durum fiilleri genellikle -ing almaz: I know, not 'I am knowing'."
     ],
+    table: {
+      caption: "Present Simple ve Present Continuous Karşılaştırması",
+      head: ["Özellik", "Present Simple (Geniş Zaman)", "Present Continuous (Şimdiki Zaman)"],
+      rows: [
+        ["Temel anlam", "Alışkanlık, rutin, genel doğru", "Şu anda veya bu dönemde süren eylem"],
+        ["Olumlu yapı", "I work / She works (-s)", "I am working / She is working"],
+        ["Olumsuz yapı", "I don't work / She doesn't work", "I'm not working / She isn't working"],
+        ["Soru yapısı", "Do you work? / Does she work?", "Are you working? / Is she working?"],
+        ["Tipik zaman zarfları", "always, usually, often, every day", "now, right now, at the moment, today"],
+      ],
+    },
     examples: [
       { text: "My brother works in a bank and usually takes the bus.", tr: "Erkek kardeşim bir bankada çalışır ve genelde otobüse biner." },
       { text: "Water boils at 100 degrees.", tr: "Su 100 derecede kaynar." },
@@ -115,6 +135,16 @@ export const EN_LESSONS: TopicLesson[] = [
       "Soru: Did + özne + yalın fiil: Did you see him?",
       "Genellikle bitmiş bir zaman ifadesiyle gelir: yesterday, last week, in 2020, two days ago."
     ],
+    table: {
+      caption: "Past Simple Kurulum ve Yazım Kuralları",
+      head: ["Cümle Türü / Kural", "Formül", "Düzenli Fiil (work)", "Düzensiz Fiil (go)"],
+      rows: [
+        ["Olumlu (+)", "Özne + V2 (-ed / düzensiz)", "I / She worked yesterday.", "I / She went yesterday."],
+        ["Olumsuz (-)", "Özne + didn't + V1 (yalın!)", "I / She didn't work.", "I / She didn't go."],
+        ["Soru (?)", "Did + özne + V1 (yalın!)", "Did you work last night?", "Did you go last night?"],
+        ["Yazım: -e / ünsüz+y / CVC", "-d / -ied / çift ünsüz", "live → lived, study → studied, stop → stopped", "see → saw, buy → bought, take → took"],
+      ],
+    },
     examples: [
       { text: "We visited my grandparents last weekend.", tr: "Geçen hafta sonu büyükannemlerle büyükbabamları ziyaret ettik." },
       { text: "She went to Rome in 2019 and loved it.", tr: "2019'da Roma'ya gitti ve çok sevdi." },

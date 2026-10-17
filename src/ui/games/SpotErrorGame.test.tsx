@@ -69,7 +69,7 @@ describe('SpotErrorGame', () => {
     expect(options.length).toBe(3)
 
     // Pick the correct option
-    const correctBtn = [...options].find((b) => b.textContent?.includes(q!.correct))
+    const correctBtn = [...options].find((b) => b.querySelector('strong')?.textContent === q!.correct)
     expect(correctBtn).toBeTruthy()
     await click(correctBtn)
 

@@ -64,6 +64,10 @@ const PATTERNS: Record<string, RegExp> = {
   basics_fr_accords_pronominaux_cod: words("(?:je\\s+me\\s+suis|tu\\s+t'es|(?:il|elle|on)\\s+s'est|nous\\s+nous\\s+sommes|vous\\s+vous\\s+êtes|(?:ils|elles)\\s+se\\s+sont)\\s+\\p{L}+"),
   basics_fr_subjonctif_conjonctions: words("bien que|pour que|avant que|afin que|à condition que|jusqu'à ce que|quoique|sans que|pourvu que|à moins que|de peur que|en attendant que|il faut que|il faudrait que|je veux que|je voudrais que"),
   basics_fr_pronoms_relatifs_composes: words("lequel|laquelle|lesquels|lesquelles|auquel|auxquels|auxquelles|duquel|desquels|desquelles"),
+  basics_fr_questions_inversion: words("\\p{L}+-(?:t-)?(?:il|elle|on|ils|elles|je|nous|vous)"),
+  basics_fr_savoir_connaitre: words('sais|sait|savons|savez|savent|connais|connaît|connaissons|connaissez|connaissent'),
+  basics_fr_infinitif_passe: words("après\\s+(?:avoir|être|s'être)\\s+\\p{L}+"),
+  basics_fr_connecteurs_argumentation: words("en effet|en revanche|d'ailleurs|en outre|de surcroît|certes|dès lors|en définitive|par conséquent"),
   // Spanish
   por_para: words('por|para'),
   ser_estar: words('es|son|era|eran|fue|fueron|soy|eres|somos|está|están|estaba|estaban|estoy|estás|estamos|estuvo'),
@@ -103,6 +107,10 @@ const PATTERNS: Record<string, RegExp> = {
   basics_es_para_que_subjuntivo: words('para que\\s+\\p{L}+|con el fin de que|a fin de que'),
   basics_es_aunque_indicativo_subjuntivo: words('aunque\\s+\\p{L}+'),
   basics_es_si_condicionales_subjuntivo: words('si\\s+(?:\\p{L}+\\s+)?\\p{L}+(?:ara|iera|aras|ieras|áramos|iéramos|aran|ieran|ase|iese)'),
+  basics_es_saber_conocer: words('sé|sabes|sabe|sabemos|saben|supe|conozco|conoces|conoce|conocemos|conocen|conocí'),
+  basics_es_se_accidental: words('se\\s+(?:me|te|le|nos|os|les)\\s+(?:cayó|cayeron|olvidó|olvidaron|rompió|rompieron|perdió|perdieron|acabó|acabaron)'),
+  basics_es_como_si_ojala: words('ojalá|como si'),
+  basics_es_conectores_dele: words('asimismo|en cambio|de ahí que|por consiguiente|si bien|siempre y cuando'),
   // English
   present_perfect: words("(?:have|has|'ve)\\s+(?:never\\s+|already\\s+|just\\s+|ever\\s+|not\\s+)?(?:\\p{L}+ed|been|done|gone|seen|made|taken|had|got|come|become|known|written|read|met|said|told|found|lost|won|begun|left|kept|felt|heard|thought)"),
   basics_en_present_perfect_continuous: words("(?:have|has|'ve)\\s+been\\s+\\p{L}+ing"),
@@ -158,6 +166,9 @@ const PATTERNS: Record<string, RegExp> = {
   basics_en_subjunctive_mandative: words('(?:suggest|recommend|insist|demand|propose|require|request|ask|advise|order)\\p{L}*\\s+that\\s+\\p{L}+'),
   basics_en_participle_advanced: words("^(?!(?:during|morning|evening|according|including|regarding|concerning|following|something|nothing|anything|everything|king|thing|spring|bring|string|ring|sing|wing)\\b)(?:having\\s+\\p{L}+|\\p{L}+ing|\\p{L}+ed|\\p{L}+en)\\s+(?:\\p{L}+\\s+){0,5}?\\p{L}+,"),
   basics_en_punctuation_flow: words('however|therefore|on the contrary|in addition|as a result|in contrast|on the other hand|for instance|for example|in conclusion|thus|hence|whereby|consequently'),
+  basics_en_so_such_too_enough: words('(?:so|such)\\s+(?:a\\s+|an\\s+)?\\p{L}+\\s+that|too\\s+\\p{L}+\\s+to\\s+\\p{L}+|\\p{L}+\\s+enough\\s+to'),
+  basics_en_modals_past_deduction: words("(?:must|can't|couldn't|might|may|should|shouldn't|needn't)\\s+have\\s+\\p{L}+"),
+  basics_en_correlative_conjunctions: words('no sooner|hardly\\s+had|scarcely\\s+had|not only'),
 }
 
 /** Topics that have a pattern (the others have no "your own sentences" section unless they teach a tense). */

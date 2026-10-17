@@ -30,9 +30,11 @@ export function searchLesson(lesson: TopicLesson, title: string, query: string):
   if (!words.length) return { where: 'title' }
   const head = fold(`${title} ${lesson.summary}`)
   if (words.every((w) => head.includes(w))) return { where: 'title' }
-  const lines = [...lesson.rules, ...lesson.examples.map((x) => `${x.text} — ${x.tr}`), ...lesson.watch, ...(lesson.tip ? [lesson.tip] : [])]
+  const tableLines = lesson.table ? [...(lesson.table.caption ? [lesson.table.caption] : []), lesson.table.head.join(' · '), ...lesson.table.rows.map((r) => r.join(' · '))] : []
+  const lines = [...lesson.rules, ...tableLines, ...lesson.examples.map((x) => `${x.text} — ${x.tr}`), ...lesson.watch, ...(lesson.tip ? [lesson.tip] : [])]
   const all = fold(`${head} ${lines.join(' ')}`)
   if (!words.every((w) => all.includes(w))) return null
   const line = lines.find((l) => words.some((w) => fold(l).includes(w)))
   return { where: 'content', ...(line ? { snippet: around(line, words) } : {}) }
 }
+
