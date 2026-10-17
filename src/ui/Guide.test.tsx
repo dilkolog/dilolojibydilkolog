@@ -5,6 +5,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../data/instance'
+import { lessonsOf } from '../data/guide/lessonOf'
 import { GuideScreen } from './Guide'
 
 let root: ReturnType<typeof createRoot> | undefined
@@ -242,5 +243,45 @@ describe('GuideScreen', () => {
     await act(async () => button(host, 'Liste')!.click())
     expect(host.querySelector('.guide-path')).toBeNull()
     expect(host.querySelectorAll('.guide-card').length).toBeGreaterThan(10)
+  })
+
+  it('shows the progress of each level, and a finished level as a certificate that can be shared', async () => {
+    const nav = navigator as unknown as { share?: unknown }
+    const share = vi.fn(async () => {})
+    nav.share = share
+    const a1 = lessonsOf('fr').filter((l) => l.level === 'A1')
+    const marks = Object.fromEntries(a1.map((l) => [l.topic, { read: '2026-10-01', learned: '2026-10-02' }]))
+    marks[a1[0]!.topic] = { read: '2026-10-01', learned: '2026-10-09' }
+    await db.saveGuideMarks(marks)
+    const { host } = await mount('fr')
+    const certs = [...host.querySelectorAll<HTMLElement>('.guide-cert')]
+    const first = certs.find((c) => c.querySelector('.guide-level-badge')?.textContent === 'A1')!
+    expect(first.classList.contains('cert-done')).toBe(true)
+    expect(first.textContent).toContain('Tamamlandı · 9 Ekim 2026')
+    // The next level is under way, with a count and no card to share.
+    const next = certs.find((c) => c.querySelector('.guide-level-badge')?.textContent === 'A2')!
+    expect(next.textContent).toMatch(/0 \/ \d+ ders öğrenildi/)
+    expect(next.querySelector('button')).toBeNull()
+    await act(async () => button(first, 'Paylaş')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+    expect(share).toHaveBeenCalledTimes(1)
+    expect(JSON.stringify(share.mock.calls[0])).toContain('Rehber sertifikası')
+    expect(JSON.stringify(share.mock.calls[0])).toContain('Fransızca · A1')
+    delete nav.share
+  })
+
+  it('shows no certificates before a lesson is learned, nor while searching', async () => {
+    const { host } = await mount('fr')
+    expect(host.querySelector('.guide-certs')).toBeNull()
+    await db.saveGuideMarks({ basics_fr_articles: { read: '2026-10-01', learned: '2026-10-01' } })
+    root?.unmount()
+    const again = await mount('fr')
+    expect(again.host.querySelector('.guide-certs')).not.toBeNull()
+    const search = again.host.querySelector<HTMLInputElement>('.guide-search')!
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(search, 'subjonctif')
+      search.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    expect(again.host.querySelector('.guide-certs')).toBeNull()
   })
 })

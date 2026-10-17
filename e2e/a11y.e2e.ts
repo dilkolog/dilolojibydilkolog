@@ -990,6 +990,8 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
 
   // 2. Ders sayfası (Guide lesson page)
   await openScreen(page, 'Rehber')
+  await expect(page.locator('.guide-certs')).toBeVisible()
+  await scanBoth('guide-certificates')
   await page.getByRole('button', { name: 'Yol', exact: true }).click()
   await expect(page.locator('.guide-path-item').first()).toBeVisible()
   await scanBoth('guide-path-view')
