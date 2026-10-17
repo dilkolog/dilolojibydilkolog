@@ -72,11 +72,14 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
           ]}
         />
         {dry.length > 0 ? (
-          <div className="row">
-            <span className="small">
-              {summary.wilting > 0 && `${summary.wilting} soluyor`}
-              {summary.wilting > 0 && summary.thirsty > 0 && ', '}
-              {summary.thirsty > 0 && `${summary.thirsty} susamış`}
+          <div className="row garden-status-bar">
+            <span className="small garden-status-text">
+              <span className="garden-status-icon" aria-hidden>💧</span>
+              <span>
+                {summary.wilting > 0 && `${summary.wilting} soluyor`}
+                {summary.wilting > 0 && summary.thirsty > 0 && ', '}
+                {summary.thirsty > 0 && `${summary.thirsty} susamış`}
+              </span>
             </span>
             <span className="row gap-2">
               {dry.length > 5 && (
@@ -90,7 +93,10 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
             </span>
           </div>
         ) : (
-          <p className="small muted">Bütün bitkilerin canlı. Bir sonraki tekrarlar zamanı gelince bahçe yine su isteyecek.</p>
+          <div className="garden-status-note">
+            <span className="garden-status-icon" aria-hidden>🌿</span>
+            <p className="small">Bütün bitkilerin canlı. Bir sonraki tekrarlar zamanı gelince bahçe yine su isteyecek.</p>
+          </div>
         )}
         {hard.length > 0 && (
           <div className="row garden-hard-row">
@@ -115,11 +121,12 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
         .filter((b) => b.words.length)
         .map((b) => (
           <div key={b.stage} className="bed">
-            <h2 className="small bed-title">
+            <h2 className="bed-title">
               <span className="bed-title-plant" aria-hidden>
-                <Plant stage={b.stage} size={26} />
+                <Plant stage={b.stage} size={24} />
               </span>
-              {STAGE_NAME[MASTERY_STAGES[b.stage]]} <span className="bed-count">{b.words.length}</span>
+              <span className="bed-title-name">{STAGE_NAME[MASTERY_STAGES[b.stage]]}</span>
+              <span className="bed-count">{b.words.length}</span>
             </h2>
             <ul className="bed-plants">
               {(open.has(b.stage) ? b.words : b.words.slice(0, BED_PREVIEW)).map((w, i) => {
@@ -127,9 +134,11 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
                 return (
                 <li key={w.id} style={{ '--i': Math.min(i, 40) } as CSSProperties}>
                   <button className={`plant-tile is-${health}${w.difficult ? ` is-hard${i < LIVE_PER_BED ? ' is-pulse' : ''}` : ''}`} onClick={() => onOpen(w.id)} title={`${displayForm(w)}: ${w.senses[0].gloss}${health !== 'fresh' ? ' · su istiyor' : ''}${w.difficult ? ' · zor işaretli' : ''}`}>
-                    <Plant stage={b.stage} health={health} size={52} live={i < LIVE_PER_BED} phase={i} />
-                    {health !== 'fresh' && <DropIcon size={14} solid className="plant-drop" />}
-                    {w.difficult && <BoltIcon size={14} solid className="plant-hard-mark" />}
+                    <span className="plant-art-bed" aria-hidden>
+                      <Plant stage={b.stage} health={health} size={48} live={i < LIVE_PER_BED} phase={i} />
+                      {health !== 'fresh' && <DropIcon size={14} solid className="plant-drop" />}
+                      {w.difficult && <BoltIcon size={14} solid className="plant-hard-mark" />}
+                    </span>
                     <span className="plant-name" lang={w.language}>
                       {w.lemma}
                     </span>
@@ -146,19 +155,23 @@ export function GardenView({ vocabulary, states, onOpen, onWater }: { vocabulary
           </div>
         ))}
       {seeds.length > 0 && (
-        <div className="bed">
-          <h2 className="small bed-title">
+        <div className="bed bed-seeds">
+          <h2 className="bed-title">
             <span className="bed-title-plant" aria-hidden>
-              <Plant stage={-1} size={26} />
+              <Plant stage={-1} size={24} />
             </span>
-            Tohumlar <span className="bed-count">{seeds.length}</span> <span className="muted">henüz ekilmedi</span>
+            <span className="bed-title-name">Tohumlar</span>
+            <span className="bed-count">{seeds.length}</span>
+            <span className="bed-subnote muted">henüz ekilmedi</span>
           </h2>
           <ul className="bed-plants">
             {seeds.slice(0, 60).map((w, i) => (
               <li key={w.id} style={{ '--i': Math.min(i, 40) } as CSSProperties}>
-                <button className={`plant-tile${w.difficult ? ` is-hard${i < LIVE_PER_BED ? ' is-pulse' : ''}` : ''}`} onClick={() => onOpen(w.id)} title={`${w.senses[0].gloss}${w.difficult ? ' · zor işaretli' : ''}`}>
-                  <Plant stage={-1} size={44} />
-                  {w.difficult && <BoltIcon size={14} solid className="plant-hard-mark" />}
+                <button className={`plant-tile is-seed${w.difficult ? ` is-hard${i < LIVE_PER_BED ? ' is-pulse' : ''}` : ''}`} onClick={() => onOpen(w.id)} title={`${w.senses[0].gloss}${w.difficult ? ' · zor işaretli' : ''}`}>
+                  <span className="plant-art-bed" aria-hidden>
+                    <Plant stage={-1} size={40} />
+                    {w.difficult && <BoltIcon size={14} solid className="plant-hard-mark" />}
+                  </span>
                   <span className="plant-name" lang={w.language}>
                     {w.lemma}
                   </span>
