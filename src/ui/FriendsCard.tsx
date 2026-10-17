@@ -10,6 +10,7 @@ import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
+import { FriendLeague } from './FriendLeague'
 import { FriendSheet } from './FriendSheet'
 
 /** The last card published from this device, so an unchanged one is not written again. */
@@ -301,6 +302,7 @@ export function FriendsCard({ game, profile }: { game: GameState | null; profile
         const f = data.friends.find((x) => x.code === open)
         return f ? <FriendSheet friend={f} name={nicknames[f.code] || f.name} today={today} onClose={() => setOpen(null)} /> : null
       })()}
+      {data && data.friends.length > 0 && <FriendLeague me={data.me} friends={data.friends} nicknames={nicknames} today={today} />}
       {data && data.friends.length === 0 && (
         <p className="small muted friends-empty">
           <img className="friends-art" src={NEW_ART.friendsCode} alt="" height={56} draggable={false} />
