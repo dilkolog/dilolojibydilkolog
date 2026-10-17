@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 import { db } from '../../data/instance'
 import { entryToInput, updateEntry, WordInputError } from '../../data/wordInput'
 import type { VocabularyEntry } from '../../engine/types'
-import { CloseIcon, PenIcon } from '../icons'
+import headEdit from '../../assets/art/head-edit.webp'
+import { CloseIcon } from '../icons'
 
 /**
  * Fixing a word without leaving the session: a typo in the meaning, a wrong article, an example
@@ -58,9 +59,7 @@ export function QuickEditDialog({ entry, onSaved, onClose }: { entry: Vocabulary
         }}
       >
         <header className="ss-head">
-          <span className="ss-head-icon" aria-hidden>
-            <PenIcon size={18} />
-          </span>
+          <img src={headEdit} alt="" className="ss-head-art" width={40} height={40} draggable={false} />
           <div className="grow">
             <h2 id="qe-title" className="ss-title">
               Kelimeyi düzelt
