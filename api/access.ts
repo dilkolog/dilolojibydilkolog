@@ -1,5 +1,5 @@
 import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID, requestPath, requireApproved, StorageError, storedAuth, tokenMatches, TOKEN, writeJson, type AccessStatus } from './_account.js'
-import { addFriend, friendsOf, normalizeCode, publishCard, removeFriend } from './_friends.js'
+import { addFriend, clearInbox, friendsOf, inboxOf, normalizeCode, publishCard, removeFriend, sendToFriend } from './_friends.js'
 import { fromApp } from './_origin.js'
 import { deleteAccountData } from './_deleteAccount.js'
 import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
@@ -22,6 +22,8 @@ import { overLimit, tooMany } from './_rate.js'
  * GET  /api/access?friends=1&today=YYYY-MM-DD  → { me, friends }: the own card (with its code) and the followed ones
  * POST /api/access  { action: 'friends-publish', name, avatar, color, days, streak, level, today } → { me }
  * POST /api/access  { action: 'friends-add' | 'friends-remove', code } → { ok } or { error }
+ * GET  /api/access?inbox=1                        → { items }: what friends sent (a cheer, a nudge)
+ * POST /api/access  { action: 'friends-send', code, kind } → { ok } or { error }; { action: 'friends-inbox-clear', ids } → { ok }
  *
  * Supabase sign-in (see _supabase.ts), with `Authorization: Bearer <Supabase access token>`:
  * GET  /api/access?vault=1 → { account: { id, enc, auth, username } | null }: the person's sync account
@@ -50,6 +52,7 @@ async function friendsGet(request: Request): Promise<Response> {
   try {
     const id = await friendAccount(request)
     if (id instanceof Response) return id
+    if (new URL(request.url).searchParams.has('inbox')) return json({ items: await inboxOf(id) })
     return json(await friendsOf(id, todayOf(new URL(request.url).searchParams.get('today'))))
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)
@@ -63,7 +66,16 @@ async function friendsPost(request: Request, body: Record<string, unknown>): Pro
     const id = await friendAccount(request)
     if (id instanceof Response) return id
     if (body.action === 'friends-publish') return json({ me: await publishCard(id, body, todayOf(body.today)) })
+    if (body.action === 'friends-inbox-clear') {
+      await clearInbox(id, body.ids)
+      return json({ ok: true })
+    }
     const code = normalizeCode(body.code)
+    if (body.action === 'friends-send') {
+      if (overLimit(request, 'friends-send', 20)) return tooMany()
+      const sent = await sendToFriend(id, code, body.kind)
+      return sent === 'ok' ? json({ ok: true }) : json({ error: sent }, sent === 'not_friends' ? 403 : 400)
+    }
     if (body.action === 'friends-remove') {
       await removeFriend(id, code)
       return json({ ok: true })
@@ -144,7 +156,7 @@ async function accountDelete(request: Request): Promise<Response> {
 
 export async function GET(request: Request): Promise<Response> {
   if (!fromApp(request)) return json({ error: 'forbidden' }, 403)
-  if (new URL(request.url).searchParams.has('friends')) return friendsGet(request)
+  if (new URL(request.url).searchParams.has('friends') || new URL(request.url).searchParams.has('inbox')) return friendsGet(request)
   if (new URL(request.url).searchParams.has('vault')) return vaultGet(request)
   if (overLimit(request, 'access-read', 120)) return tooMany()
   const id = request.headers.get('x-sync-id') ?? ''

@@ -9,7 +9,7 @@ import { FriendsCard } from './FriendsCard'
 import type { GameState } from './game'
 import type { Profile } from '../data/db'
 
-const card = (code: string, name: string, today: number, week: number) => ({ code, name, avatar: 'fox', color: '#2f6de6', today, week, streak: 3, level: 4, at: '2026-10-15T10:00:00Z' })
+const card = (code: string, name: string, today: number, week: number) => ({ code, name, avatar: 'fox', color: '#2f6de6', today, week, streak: 3, level: 4, days: { '2026-10-15': today }, at: '2026-10-15T10:00:00Z' })
 const game = { xp: { total: 300, today: 40, maxCombo: 0, byDay: new Map([['2026-10-15', 40]]) }, streak: 3, level: { level: 4 } } as unknown as GameState
 const profile = { name: 'Ali', emoji: 'monki', color: '#c6317c', motto: '' } as Profile
 
@@ -21,11 +21,13 @@ afterEach(() => {
   localStorage.clear()
 })
 
-async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)]) {
+async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = []) {
   const calls: { url: string; body?: unknown }[] = []
   vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
     const body = init?.body ? JSON.parse(String(init.body)) : undefined
     calls.push({ url, body })
+    if (String(url).includes('inbox=1')) return Response.json({ items: inbox })
+    if (body?.action === 'friends-send' || body?.action === 'friends-inbox-clear') return Response.json({ ok: true })
     if (body?.action === 'friends-add') return Response.json({ error: 'unknown' }, { status: 400 })
     if (body?.action === 'friends-publish') return Response.json({ me: card('AAAAAAAA', 'Ali', 40, 300) })
     return Response.json({ me: card('AAAAAAAA', 'Ali', 40, 300), friends })
@@ -91,4 +93,40 @@ describe('FriendsCard', () => {
     expect(names()).toEqual(['Merve', 'Sen'])
     expect(JSON.parse(localStorage.getItem('diloloji:friend-nicknames') || '{}')).toEqual({ BBBBBBBB: 'Merve' })
   })
+
+  it('shows what friends sent and takes a message away when it is dismissed', async () => {
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [
+      { id: 'm1', kind: 'cheer', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z' },
+      { id: 'm2', kind: 'nudge', from: { code: 'CCCCCCCC', name: 'Ece' }, at: '2026-10-15T08:00:00Z' },
+    ])
+    const items = [...host.querySelectorAll('.friends-inbox li')].map((li) => li.textContent)
+    expect(items[0]).toContain('Veli seni tebrik etti')
+    expect(items[1]).toContain('Ece seni dürttü')
+    await act(async () => (host.querySelector('.friends-inbox button[aria-label="Tamam"]') as HTMLButtonElement).click())
+    expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(1)
+    expect(calls.some((c) => (c.body as { action?: string; ids?: string[] } | undefined)?.action === 'friends-inbox-clear' && (c.body as { ids: string[] }).ids[0] === 'm1')).toBe(true)
+  })
+
+  it('a friend\'s name opens their page, where a cheer is sent; a nudge waits for a day they have not studied', async () => {
+    const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 0, 20)])
+    await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    const sheet = host.querySelector('.friend-sheet')!
+    expect(sheet.textContent).toContain('Veli')
+    expect(sheet.textContent).toContain('bugün henüz çalışmadı')
+    expect(sheet.querySelectorAll('.friend-bar')).toHaveLength(14)
+    await act(async () => [...sheet.querySelectorAll('button')].find((b) => b.textContent?.includes('Tebrik et'))!.click())
+    expect(calls.some((c) => (c.body as { action?: string; kind?: string; code?: string } | undefined)?.action === 'friends-send' && (c.body as { kind: string }).kind === 'cheer' && (c.body as { code: string }).code === 'BBBBBBBB')).toBe(true)
+    expect(sheet.textContent).toContain('Tebrik gitti')
+    // Esc closes the page.
+    await act(async () => void window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
+    expect(host.querySelector('.friend-sheet')).toBeNull()
+  })
+
+  it('no nudge for a friend who already studied today', async () => {
+    const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)])
+    await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    const nudge = [...host.querySelectorAll('.friend-sheet button')].find((b) => b.textContent?.includes('Bugün çalıştı')) as HTMLButtonElement
+    expect(nudge.disabled).toBe(true)
+  })
 })
+
