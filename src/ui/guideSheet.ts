@@ -8,6 +8,9 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
  */
 export function lessonSheetHtml(lesson: TopicLesson, title: string, now = new Date()): string {
   const rules = lesson.rules.map((r) => `<li>${esc(r)}</li>`).join('')
+  const table = lesson.table
+    ? `<h2>${esc(lesson.table.caption || 'Özet tablo')}</h2><table><thead><tr>${lesson.table.head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${lesson.table.rows.map((row) => `<tr>${row.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`
+    : ''
   const examples = lesson.examples.map((x) => `<li><span lang="${lesson.language}">${esc(x.text)}</span><small>${esc(x.tr)}</small></li>`).join('')
   const watch = lesson.watch.map((w) => `<li>${esc(w)}</li>`).join('')
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(title)}</title><style>
@@ -20,6 +23,9 @@ export function lessonSheetHtml(lesson: TopicLesson, title: string, now = new Da
     .s { margin: 1.5mm 0 0; color: #333; }
     h2 { font: 700 10pt system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin: 5mm 0 2mm; break-after: avoid; }
     ol, ul { margin: 0; padding-left: 5mm; display: grid; gap: 1.4mm; }
+    table { width: 100%; border-collapse: collapse; font: 9.5pt/1.35 system-ui, sans-serif; break-inside: avoid; }
+    th, td { border: 0.25mm solid #bbb; padding: 1.5mm 2.2mm; text-align: left; vertical-align: top; }
+    th { background: #f3f3f3; font-weight: 700; }
     .ex { list-style: none; padding: 0; }
     .ex li { break-inside: avoid; border-left: 0.8mm solid #bbb; padding-left: 3mm; }
     .ex small { display: block; color: #555; font: 9.5pt system-ui, sans-serif; }
@@ -29,8 +35,10 @@ export function lessonSheetHtml(lesson: TopicLesson, title: string, now = new Da
     @media screen { body { background: #eee; } main { width: 210mm; margin: 6mm auto; padding: 15mm; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.2); } }
   </style></head><body><main><header><h1><span class="lv">${esc(lesson.level)}</span>${esc(title)}</h1><p class="s">${esc(lesson.summary)}</p></header>`
     + `<h2>Kurallar</h2><ol>${rules}</ol>`
+    + table
     + (examples ? `<h2>Örnekler</h2><ul class="ex">${examples}</ul>` : '')
     + (watch ? `<h2>Dikkat</h2><ul class="w">${watch}</ul>` : '')
     + (lesson.tip ? `<p class="tip"><b>İpucu:</b> ${esc(lesson.tip)}</p>` : '')
     + `<footer><span>Diloloji · Rehber</span><span>${esc(now.toLocaleDateString('tr-TR'))}</span></footer></main></body></html>`
 }
+

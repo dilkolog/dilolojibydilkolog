@@ -29,4 +29,12 @@ describe('searching the lessons', () => {
     expect(searchLesson(lesson, lessonTitle(lesson), 'subjonctif zzzzqqq')).toBeNull()
     expect(searchLesson(lesson, lessonTitle(lesson), 'zzzzqqq')).toBeNull()
   })
+
+  it('finds a lesson by a cell in its reference table', () => {
+    const lesson = lessonFor('fr', 'basics_fr_savoir_connaitre')!
+    expect(lesson.table).toBeDefined()
+    const hit = searchLesson(lesson, lessonTitle(lesson), 'cuisiner')
+    expect(hit?.where).toBe('content')
+    expect(hit?.snippet).toContain('cuisiner')
+  })
 })

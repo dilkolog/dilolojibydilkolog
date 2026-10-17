@@ -21,6 +21,8 @@ export interface TopicLesson {
   /** Where a Turkish speaker typically goes wrong. */
   watch: string[]
   tip?: string
+  /** Optional reference or comparison table (formulas, contrasts, person/preposition grids). */
+  table?: LessonTable
   /**
    * A short check after the lesson (three questions with one right option each). A lesson whose topic
    * has grammar questions may leave it out: those are asked instead.
@@ -28,6 +30,13 @@ export interface TopicLesson {
   check?: LessonCheck[]
   /** The grammar topic whose questions practise this lesson, when its own `topic` has none. */
   practice?: string
+}
+
+/** A compact reference or contrast table shown inside a guide lesson and its printed sheet. */
+export interface LessonTable {
+  caption?: string
+  head: string[]
+  rows: string[][]
 }
 
 /** One question of a lesson's check: the option at `answer` is the only right one. */
@@ -40,3 +49,4 @@ export interface LessonCheck {
   /** Why, in Turkish, in one sentence. */
   why: string
 }
+

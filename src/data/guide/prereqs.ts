@@ -52,6 +52,13 @@ export const PREREQS: Record<string, string[]> = {
   prep_fr: ['basics_fr_present'],
   basics_fr_tout_tous_usages: ['basics_fr_adjectifs'],
   basics_fr_depuis: ['basics_fr_present'],
+  basics_fr_savoir_connaitre: ['basics_fr_present'],
+  basics_fr_questions_inversion: ['basics_fr_questions'],
+  basics_fr_discours_temps: ['passe_imparfait'],
+  basics_fr_verbes_pronominaux_sens: ['basics_fr_pronominaux'],
+  basics_fr_accord_adjectifs_particuliers: ['basics_fr_adjectifs'],
+  basics_fr_infinitif_passe: ['basics_fr_passe_compose'],
+  basics_fr_connecteurs_argumentation: ['conn_fr'],
   // Spanish
   basics_es_negacion: ['basics_es_presente'],
   basics_es_gustar: ['basics_es_presente'],
@@ -105,6 +112,14 @@ export const PREREQS: Record<string, string[]> = {
   prep_es: ['basics_es_presente'],
   por_para: ['basics_es_presente'],
   basics_es_hace_desde: ['basics_es_presente'],
+  basics_es_saber_conocer: ['basics_es_presente'],
+  basics_es_pedir_preguntar: ['basics_es_presente'],
+  basics_es_indefinidos_algun_ningun: ['basics_es_negacion'],
+  basics_es_adjetivos_cambio_sentido: ['basics_es_adjetivos'],
+  basics_es_se_accidental: ['basics_es_reflexivos', 'basics_es_gustar'],
+  basics_es_como_si_ojala: ['subjuntivo', 'basics_es_imperfecto_subjuntivo'],
+  basics_es_participio_gerundio_compuesto: ['basics_es_gerundio', 'basics_es_pluscuamperfecto'],
+  basics_es_conectores_dele: ['conn_es'],
   // English
   basics_en_present_simple: ['basics_en_to_be'],
   basics_en_present_continuous: ['basics_en_present_simple'],
@@ -162,6 +177,14 @@ export const PREREQS: Record<string, string[]> = {
   basics_en_subjunctive_mandative: ['modals_en'],
   basics_en_participle_advanced: ['participle_clauses'],
   basics_en_punctuation_flow: ['conn_en'],
+  basics_en_make_do_have_take: ['basics_en_present_simple'],
+  basics_en_say_tell_speak_talk: ['basics_en_past_simple'],
+  basics_en_indirect_questions: ['basics_en_questions'],
+  basics_en_adjective_order_ed_ing: ['basics_en_comparatives'],
+  basics_en_reporting_verbs: ['reported_speech', 'gerund_infinitive'],
+  basics_en_modals_past_deduction: ['modals_en', 'present_perfect'],
+  basics_en_correlative_conjunctions: ['inversion', 'basics_en_past_perfect'],
+  basics_en_subjunctive_formulaic_clauses: ['subjunctive'],
 }
 
 /** The lessons a lesson builds on that have not been read yet. */

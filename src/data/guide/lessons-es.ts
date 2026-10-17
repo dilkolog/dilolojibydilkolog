@@ -17,6 +17,16 @@ export const ES_LESSONS: TopicLesson[] = [
       "a + el = al, de + el = del olarak birleşir: Voy al cine. La casa del vecino.",
       "Çoğul: ünlüyle biten isme -s, ünsüzle bitene -es eklenir: el árbol → los árboles; -z ile bitende -ces: la luz → las luces.",
     ],
+    table: {
+      caption: "İspanyolca Artikel ve Edat Birleşimleri Özeti",
+      head: ["Tür", "Eril Tekil", "Dişil Tekil", "Eril Çoğul", "Dişil Çoğul"],
+      rows: [
+        ["Belirli artikel", "el libro", "la mesa (el agua*)", "los libros", "las mesas / las aguas"],
+        ["Belirsiz artikel", "un libro", "una mesa (un águila*)", "unos libros (birkaç)", "unas mesas (birkaç)"],
+        ["Edat birleşimi (a / de)", "al (a+el) / del (de+el)", "a la / de la", "a los / de los", "a las / de las"],
+        ["Sık istisnalar", "el día, el problema, el mapa", "la mano, la foto, la moto", "los días, los problemas", "las manos, las fotos"],
+      ],
+    },
     examples: [
       { text: "El libro está en la mesa.", tr: "Kitap masanın üzerinde." },
       { text: "Tengo una hermana y dos hermanos.", tr: "Bir kız kardeşim ve iki erkek kardeşim var." },
@@ -67,6 +77,18 @@ export const ES_LESSONS: TopicLesson[] = [
       "Tamamen düzensizler: ser (soy, eres, es, somos, sois, son), estar (estoy, estás, está, estamos, estáis, están), ir (voy, vas, va, vamos, vais, van), tener (tengo, tienes, tiene, tenemos, tenéis, tienen).",
       "Özne zamiri (yo, tú, él…) genellikle söylenmez; yalnızca vurgu ya da karışıklığı önlemek için kullanılır: Hablo español.",
     ],
+    table: {
+      caption: "Düzenli -ar, -er ve -ir Fiillerinin Presente Çekim Tablosu",
+      head: ["Kişi", "hablar (-ar)", "comer (-er)", "vivir (-ir)", "Gövde Değişimi (querer e→ie)"],
+      rows: [
+        ["yo", "hablo", "como", "vivo", "quiero"],
+        ["tú", "hablas", "comes", "vives", "quieres"],
+        ["él / ella / Ud.", "habla", "come", "vive", "quiere"],
+        ["nosotros/as", "hablamos", "comemos", "vivimos", "queremos (değişmez!)"],
+        ["vosotros/as", "habláis", "coméis", "vivís", "queréis (değişmez!)"],
+        ["ellos / ellas / Uds.", "hablan", "comen", "viven", "quieren"],
+      ],
+    },
     examples: [
       { text: "Vivo en Estambul y trabajo en un hospital.", tr: "İstanbul'da yaşıyorum ve bir hastanede çalışıyorum." },
       { text: "¿Qué haces los fines de semana?", tr: "Hafta sonları ne yaparsın?" },
@@ -117,6 +139,18 @@ export const ES_LESSONS: TopicLesson[] = [
       "Encantar zaten 'çok' anlamını taşır: 'me encanta mucho' denmez, yalnızca 'me encanta'.",
       "Olumsuzda no zamirden önce gelir: No me gusta el frío. Katılırken olumluya 'A mí también', olumsuza 'A mí tampoco' denir.",
     ],
+    table: {
+      caption: "Gustar Yapısı: Kişi Zamirleri ve Fiil Uyumu",
+      head: ["Vurgu (İsteğe Bağlı)", "Dolaylı Nesne Zamiri", "Tekil İsim / Mastar İle", "Çoğul İsim İle"],
+      rows: [
+        ["A mí", "me", "gusta el café / leer", "gustan los libros"],
+        ["A ti", "te", "gusta la música", "gustan las películas"],
+        ["A él / ella / usted", "le", "gusta viajar", "gustan los deportes"],
+        ["A nosotros/as", "nos", "gusta este barrio", "gustan las fiestas"],
+        ["A vosotros/as", "os", "gusta el cine", "gustan los conciertos"],
+        ["A ellos / ellas / Uds.", "les", "gusta la idea", "gustan los idiomas"],
+      ],
+    },
     examples: [
       { text: "Me gusta mucho leer por la noche.", tr: "Geceleri okumayı çok severim." },
       { text: "¿Te gustan las películas de terror?", tr: "Korku filmlerini sever misin?" },

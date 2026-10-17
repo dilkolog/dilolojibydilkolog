@@ -325,22 +325,35 @@ export function GuideScreen({
           {view === 'list' && LEVELS.map((lv) => {
             const list = shown.filter((l) => l.level === lv)
             if (!list.length) return null
+            const lvDone = list.filter((l) => read.has(l.topic)).length
             return (
               <section key={lv} className="stack gap-2">
                 <h2 className="section-title guide-level">
-                  <span className="guide-level-badge">{lv}</span> {LEVEL_NAME[lv]}
+                  <span className="guide-level-badge">{lv}</span> <span>{LEVEL_NAME[lv]}</span>
+                  <span className="guide-level-progress small muted">
+                    {lvDone} / {list.length}
+                  </span>
                 </h2>
                 <div className="guide-grid">
                   {list.map((l) => {
                     const s = stats.get(l.topic)
                     const n = questions.get(l.topic) ?? 0
+                    const pn = l.practice ? (questions.get(l.practice) ?? 0) : 0
                     return (
                       <LessonCard
                         key={l.topic}
                         lesson={l}
                         read={read.has(l.topic)}
                         learned={!!marks[l.topic]?.learned}
-                        foot={n > 0 ? (s && s.answered > 0 ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru` : `${n} soru`) : 'Temel konu'}
+                        foot={
+                          n > 0
+                            ? s && s.answered > 0
+                              ? `${n} soru · %${Math.round(s.accuracy * 100)} doğru`
+                              : `${n} soru`
+                            : pn > 0
+                              ? `Temel konu · ${pn} soru`
+                              : 'Temel konu'
+                        }
                         flag={flagOf(l.topic)}
                         snippet={hits.get(l.topic)?.snippet}
                         needs={read.has(l.topic) ? undefined : unmetPrereqs(l.topic, (t) => read.has(t)).map((t) => lessonFor(language, t)).filter((x): x is TopicLesson => !!x).map(titleOf)[0]}
@@ -602,6 +615,33 @@ function LessonView({
           ))}
         </ol>
       </section>
+      {lesson.table && (
+        <section className="card stack gap-2 guide-table-card" aria-label={lesson.table.caption || 'Özet tablo'}>
+          <h2 className="section-title">{lesson.table.caption || 'Özet tablo'}</h2>
+          <div className="guide-table-wrap">
+            <table className="guide-table">
+              <thead>
+                <tr>
+                  {lesson.table.head.map((h, i) => (
+                    <th key={i} scope="col">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {lesson.table.rows.map((row, rIdx) => (
+                  <tr key={rIdx}>
+                    {row.map((cell, cIdx) => (
+                      <td key={cIdx}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
       {trial.length > 0 && <LessonTry key={lesson.topic} items={trial} language={language} />}
       <section className="card stack gap-2 guide-examples-card">
         <h2 className="section-title">Örnekler</h2>
