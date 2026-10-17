@@ -1,0 +1,2060 @@
+{
+  "language": "es",
+  "source": "Diloloji İspanyolca Rehber A1 ve A2 soru havuzu genişletmesi (15.1d)",
+  "lessons": {
+    "basics_es_articulos": [
+      {
+        "prompt": "Me encanta ver ___ estrellas en las noches de verano.",
+        "options": [
+          "las",
+          "los",
+          "la",
+          "el"
+        ],
+        "answer": 0,
+        "why": "Estrella dişil bir isimdir ve çoğul hali 'las estrellas' belirli artikelini alır."
+      },
+      {
+        "prompt": "¿Dónde está ___ mapa que compramos en la librería?",
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las"
+        ],
+        "answer": 0,
+        "why": "Mapa -a ile bitmesine rağmen Yunanca kökenli eril bir isimdir: el mapa."
+      },
+      {
+        "prompt": "Hoy tenemos ___ problema importante en la oficina.",
+        "options": [
+          "un",
+          "una",
+          "unos",
+          "unas"
+        ],
+        "answer": 0,
+        "why": "Problema sözcüğü eril bir isimdir (el problema / un problema)."
+      },
+      {
+        "prompt": "Lávate ___ manos antes de sentarte a la mesa.",
+        "options": [
+          "las",
+          "los",
+          "la",
+          "el"
+        ],
+        "answer": 0,
+        "why": "Mano -o ile bitmesine rağmen istisnai olarak dişildir: la mano / las manos."
+      },
+      {
+        "prompt": "El profesor vive cerca ___ parque central.",
+        "options": [
+          "del",
+          "de el",
+          "al",
+          "a el"
+        ],
+        "answer": 0,
+        "why": "de + el her zaman 'del' olarak birleşir: cerca del parque."
+      },
+      {
+        "prompt": "___ águila imperial vuela a gran altura sobre la montaña.",
+        "options": [
+          "El",
+          "La",
+          "Los",
+          "Lo"
+        ],
+        "answer": 0,
+        "why": "Vurgulu a- ile başlayan dişil tekil isimler söyleyiş kolaylığı için 'el' alır: el águila (çoğulu: las águilas)."
+      },
+      {
+        "prompt": "Mi hermano trabaja como ingeniero: es ___ excelente profesional.",
+        "options": [
+          "un",
+          "el",
+          "uno",
+          "lo"
+        ],
+        "answer": 0,
+        "why": "Meslek isimleri normalde artikelsiz kullanılır ('es ingeniero'), ancak niteleyici bir sıfat geldiğinde belirsiz artikel alır: un excelente profesional."
+      }
+    ],
+    "basics_es_presente": [
+      {
+        "prompt": "Nosotros ___ español todos los días en la academia.",
+        "options": [
+          "estudiamos",
+          "estudian",
+          "estudiais",
+          "estudio"
+        ],
+        "answer": 0,
+        "why": "Estudiar (-ar grubu) fiilinin nosotros şahsındaki geniş zaman çekimi 'estudiamos'dur."
+      },
+      {
+        "prompt": "¿A qué hora ___ tú de la oficina por las tardes?",
+        "options": [
+          "sales",
+          "salgo",
+          "sale",
+          "salimos"
+        ],
+        "answer": 0,
+        "why": "Salir fiilinin tú şahsındaki şimdiki/geniş zaman çekimi 'sales' biçimindedir."
+      },
+      {
+        "prompt": "Yo ___ la comida los domingos para toda la familia.",
+        "options": [
+          "hago",
+          "hace",
+          "haces",
+          "hacemos"
+        ],
+        "answer": 0,
+        "why": "Hacer fiili yo şahsında düzensizdir: yo hago."
+      },
+      {
+        "prompt": "Mis amigos siempre ___ la verdad en cualquier situación.",
+        "options": [
+          "dicen",
+          "decimos",
+          "dices",
+          "dice"
+        ],
+        "answer": 0,
+        "why": "Decir fiilinin ellos şahsı çekimi kök değişimiyle 'dicen' olur."
+      },
+      {
+        "prompt": "Yo no ___ la solución a este problema matemático.",
+        "options": [
+          "sé",
+          "sabo",
+          "conozco",
+          "supo"
+        ],
+        "answer": 0,
+        "why": "Saber fiilinin yo şahsındaki şimdiki zaman çekimi 'sé'dir."
+      },
+      {
+        "prompt": "¿Vosotros ___ ir al cine esta noche con nosotros?",
+        "options": [
+          "queréis",
+          "quieren",
+          "quieres",
+          "queremos"
+        ],
+        "answer": 0,
+        "why": "Querer fiilinin vosotros çekimi kök değişimi almaz: queréis."
+      },
+      {
+        "prompt": "Ellos ___ en un piso muy luminoso en el centro de Madrid.",
+        "options": [
+          "viven",
+          "vivimos",
+          "vives",
+          "vive"
+        ],
+        "answer": 0,
+        "why": "Vivir (-ir grubu) fiilinin ellos/ellas çekimi 'viven'dir."
+      }
+    ],
+    "basics_es_gustar": [
+      {
+        "prompt": "A mí me ___ mucho las películas de ciencia ficción.",
+        "options": [
+          "gustan",
+          "gusta",
+          "gusto",
+          "gustas"
+        ],
+        "answer": 0,
+        "why": "Hoşlanılan şey çoğul olduğunda (las películas) fiil çoğul çekilir: me gustan."
+      },
+      {
+        "prompt": "A nosotros nos ___ viajar y conocer nuevas culturas.",
+        "options": [
+          "gusta",
+          "gustan",
+          "gustamos",
+          "gusten"
+        ],
+        "answer": 0,
+        "why": "Gustar fiilinden sonra mastar fiil (viajar) geldiğinde fiil daima tekil çekilir: nos gusta."
+      },
+      {
+        "prompt": "A Juan no ___ gusta nada madrugar los fines de semana.",
+        "options": [
+          "le",
+          "se",
+          "lo",
+          "te"
+        ],
+        "answer": 0,
+        "why": "Juan (3. tekil şahıs) için gustar dolaylı tümleç zamiri 'le'dir: a Juan le gusta."
+      },
+      {
+        "prompt": "¿A ti te ___ este libro de historia?",
+        "options": [
+          "gusta",
+          "gustas",
+          "gustan",
+          "gusto"
+        ],
+        "answer": 0,
+        "why": "Özne tekil bir nesne olduğunda (este libro) fiil 3. tekil şahıstır: te gusta."
+      },
+      {
+        "prompt": "A mis padres ___ encantan las canciones tradicionales.",
+        "options": [
+          "les",
+          "los",
+          "se",
+          "le"
+        ],
+        "answer": 0,
+        "why": "3. çoğul şahıs (mis padres) için dolaylı tümleç zamiri 'les'dir: a mis padres les encantan."
+      },
+      {
+        "prompt": "¿A vosotros os ___ el café con leche o solo?",
+        "options": [
+          "gusta",
+          "gustan",
+          "gustáis",
+          "guste"
+        ],
+        "answer": 0,
+        "why": "El café tekil bir nesne olduğu için 'os gusta' kullanılır."
+      },
+      {
+        "prompt": "A mí ___ me parece una buena idea.",
+        "options": [
+          "también",
+          "tampoco",
+          "yo",
+          "mí"
+        ],
+        "answer": 0,
+        "why": "Olumlu fikre katılma durumunda 'a mí también' (ben de öyle düşünüyorum) denir."
+      }
+    ],
+    "basics_es_negacion": [
+      {
+        "prompt": "No tengo ___ que decir sobre ese tema.",
+        "options": [
+          "nada",
+          "nadie",
+          "nunca",
+          "ninguno"
+        ],
+        "answer": 0,
+        "why": "Cansız varlıklar ve şeyler için olumsuzluk zamiri 'nada'dır: no tengo nada."
+      },
+      {
+        "prompt": "En esta sala no hay ___ trabajando ahora mismo.",
+        "options": [
+          "nadie",
+          "nada",
+          "ninguna",
+          "alguien"
+        ],
+        "answer": 0,
+        "why": "Kişiler için 'kimse' anlamına gelen olumsuzluk zamiri 'nadie'dir."
+      },
+      {
+        "prompt": "Yo ___ como carne porque soy vegetariano.",
+        "options": [
+          "nunca",
+          "nada",
+          "nadie",
+          "ningún"
+        ],
+        "answer": 0,
+        "why": "Zaman olumsuzluğu (asla/hiçbir zaman) için fiilden önce 'nunca' kullanılır."
+      },
+      {
+        "prompt": "No conozco a ___ persona en esta fiesta.",
+        "options": [
+          "ninguna",
+          "ningún",
+          "nada",
+          "nadie"
+        ],
+        "answer": 0,
+        "why": "Dişil tekil bir ismin (persona) önünde 'ninguna' olumsuz sıfatı gelir."
+      },
+      {
+        "prompt": "No tengo ___ dinero para comprar ese reloj.",
+        "options": [
+          "nada de",
+          "nadie de",
+          "nunca",
+          "ningunos"
+        ],
+        "answer": 0,
+        "why": "'Hiç param yok' anlamında 'no tengo nada de dinero' ifadesi kullanılır."
+      },
+      {
+        "prompt": "Ella no quiere comer y ___ tiene ganas de beber nada.",
+        "options": [
+          "tampoco",
+          "también",
+          "jamás",
+          "nada"
+        ],
+        "answer": 0,
+        "why": "Olumsuz bir cümleye eklenen 'de/da' anlamı için 'tampoco' kullanılır."
+      },
+      {
+        "prompt": "___ me ha llamado por teléfono esta mañana.",
+        "options": [
+          "Nadie",
+          "Nada",
+          "Ninguno",
+          "Nunca"
+        ],
+        "answer": 0,
+        "why": "Fiilden önce gelen olumsuzluk sözcüğü tek başına yeterlidir, 'no' gerektirmez: Nadie me ha llamado."
+      }
+    ],
+    "basics_es_pronombres": [
+      {
+        "prompt": "¿Quieres venir ___ al cine esta tarde? (con + yo)",
+        "options": [
+          "conmigo",
+          "con yo",
+          "con mí",
+          "con me"
+        ],
+        "answer": 0,
+        "why": "'con + yo' birleşimi istisnai olarak 'conmigo' halini alır."
+      },
+      {
+        "prompt": "Este regalo tan bonito es para ___ . (tú)",
+        "options": [
+          "ti",
+          "tú",
+          "te",
+          "contigo"
+        ],
+        "answer": 0,
+        "why": "Edatlardan (para, de, a) sonra tú zamiri 'ti' biçimine dönüşür (vurgusuz 'ti' yazılır)."
+      },
+      {
+        "prompt": "A ___ me encanta pasear por la playa al atardecer.",
+        "options": [
+          "mí",
+          "yo",
+          "me",
+          "ti"
+        ],
+        "answer": 0,
+        "why": "'A' edatından sonra vurgulu 1. tekil şahıs zamiri vurgu işaretli 'mí'dir."
+      },
+      {
+        "prompt": "Nosotros nos quedamos en casa, pero ___ podéis salir. (vosotros)",
+        "options": [
+          "vosotros",
+          "ustedes",
+          "ellos",
+          "vosotras"
+        ],
+        "answer": 0,
+        "why": "İspanya'da samimi çoğul 2. şahıs için 'vosotros' özne zamiri kullanılır."
+      },
+      {
+        "prompt": "Hablé con Pedro y él se fue ___ . (con + tú)",
+        "options": [
+          "contigo",
+          "con ti",
+          "con tú",
+          "con te"
+        ],
+        "answer": 0,
+        "why": "'con + tú' birleşimi kural olarak 'contigo' biçimini alır."
+      },
+      {
+        "prompt": "¿___ es usted, señor Martínez?",
+        "options": [
+          "Quién",
+          "Cuál",
+          "Qué",
+          "Cómo"
+        ],
+        "answer": 0,
+        "why": "Kişinin kimliğini kibar biçimde sormak için 'Quién es usted' sorusu uygundur."
+      },
+      {
+        "prompt": "Entre tú y ___ no debe haber secretos.",
+        "options": [
+          "yo",
+          "mí",
+          "me",
+          "conmigo"
+        ],
+        "answer": 0,
+        "why": "'Entre' ve 'según' edatlarından sonra 'mí' değil, istisnai olarak 'yo' ve 'tú' kullanılır: entre tú y yo."
+      }
+    ],
+    "basics_es_posesivos": [
+      {
+        "prompt": "___ amigos son muy amables y divertidos.",
+        "options": [
+          "Mis",
+          "Mi",
+          "Míos",
+          "Mías"
+        ],
+        "answer": 0,
+        "why": "Çoğul bir ismin (amigos) önünde 1. şahıs iyelik sıfatı 'mis' halini alır."
+      },
+      {
+        "prompt": "Carlos busca ___ llaves por toda la casa.",
+        "options": [
+          "sus",
+          "su",
+          "suyo",
+          "suyas"
+        ],
+        "answer": 0,
+        "why": "3. şahıs için çoğul isim önünde iyelik sıfatı 'sus'dur (sus llaves)."
+      },
+      {
+        "prompt": "___ coche de aquí es más moderno que aquel de allí.",
+        "options": [
+          "Este",
+          "Ese",
+          "Aquel",
+          "Esto"
+        ],
+        "answer": 0,
+        "why": "Konuşana en yakın eril tekil nesneyi göstermek için 'este' işaret sıfatı kullanılır."
+      },
+      {
+        "prompt": "¿De quién es esta maleta? - Es ___ . (yo)",
+        "options": [
+          "mía",
+          "mi",
+          "mío",
+          "mis"
+        ],
+        "answer": 0,
+        "why": "İsimsiz kullanılan dişil tekil iyelik zamiri 'mía'dır: es mía."
+      },
+      {
+        "prompt": "___ casa tiene un jardín muy grande y soleado. (nosotros)",
+        "options": [
+          "Nuestra",
+          "Nuestro",
+          "Nuestros",
+          "Nuestras"
+        ],
+        "answer": 0,
+        "why": "Dişil tekil isim (casa) için 'nuestra' sıfatı uygundur."
+      },
+      {
+        "prompt": "¿De quién son ___ zapatos que están debajo de la cama?",
+        "options": [
+          "estos",
+          "este",
+          "esta",
+          "estas"
+        ],
+        "answer": 0,
+        "why": "Zapatos eril çoğul bir isimdir; yakındaki nesneler için 'estos' işaret sıfatı kullanılır: estos zapatos."
+      },
+      {
+        "prompt": "Aquellas montañas de ___ son los Pirineos.",
+        "options": [
+          "allí",
+          "aquí",
+          "acá",
+          "ahí"
+        ],
+        "answer": 0,
+        "why": "'Aquel / aquella / aquellos' işaret sözcükleri en uzaktaki 'allí' konumuyla eşleşir."
+      }
+    ],
+    "basics_es_numeros_hora": [
+      {
+        "prompt": "¿Qué hora es? - ___ las tres y media de la tarde.",
+        "options": [
+          "Son",
+          "Es",
+          "Está",
+          "Hay"
+        ],
+        "answer": 0,
+        "why": "Saat 1 dışındaki tüm saatler için çoğul 'son las...' kullanılır."
+      },
+      {
+        "prompt": "La reunión empieza ___ la una en punto.",
+        "options": [
+          "a",
+          "en",
+          "por",
+          "de"
+        ],
+        "answer": 0,
+        "why": "Saat belirtirken eylemin zamanı 'a la una' şeklinde 'a' edatıyla verilir."
+      },
+      {
+        "prompt": "Tengo ___ años y estudio en la universidad.",
+        "options": [
+          "veintiún",
+          "veintiuno",
+          "veinte y un",
+          "veinte y uno"
+        ],
+        "answer": 0,
+        "why": "Eril bir ismin (años) önünde 'veintiuno' apócope'a uğrar ve 'veintiún' olur."
+      },
+      {
+        "prompt": "¿Cuál es la forma correcta del número 16 en español?",
+        "options": [
+          "Dieciséis",
+          "Diez y seis",
+          "Diecisiete",
+          "Diece y seis"
+        ],
+        "answer": 0,
+        "why": "16'dan 29'a kadar olan sayılar bitişik yazılır: dieciséis (aksanlı)."
+      },
+      {
+        "prompt": "Hoy es el quince ___ mayo de dos mil veintiséis.",
+        "options": [
+          "de",
+          "a",
+          "en",
+          "por"
+        ],
+        "answer": 0,
+        "why": "Tarihlerde ay belirtilirken 'de' edatı kullanılır: el quince de mayo."
+      },
+      {
+        "prompt": "Son las ocho menos ___ . (7:45)",
+        "options": [
+          "cuarto",
+          "cuatro",
+          "quince",
+          "quinto"
+        ],
+        "answer": 0,
+        "why": "Çeyrek kala ifadesi 'menos cuarto' olarak söylenir."
+      },
+      {
+        "prompt": "En esta biblioteca hay más de ___ libros. (100)",
+        "options": [
+          "cien",
+          "ciento",
+          "cientos",
+          "un cien"
+        ],
+        "answer": 0,
+        "why": "100 sayısı doğrudan bir ismin önünde 'cien' olarak kalır (ciento olmaz)."
+      }
+    ],
+    "basics_es_preguntas": [
+      {
+        "prompt": "¿___ es tu número de teléfono móvil?",
+        "options": [
+          "Cuál",
+          "Qué",
+          "Quién",
+          "Cómo"
+        ],
+        "answer": 0,
+        "why": "Telefon numarası, e-posta ve adres gibi belirli seçenekleri sorarken 'cuál' tercih edilir."
+      },
+      {
+        "prompt": "¿___ está la estación de tren más cercana?",
+        "options": [
+          "Dónde",
+          "Adónde",
+          "De dónde",
+          "Cuándo"
+        ],
+        "answer": 0,
+        "why": "Sabit bir konumu sormak için 'dónde' kullanılır."
+      },
+      {
+        "prompt": "¿___ cuesta este billete de autobús?",
+        "options": [
+          "Cuánto",
+          "Cuántos",
+          "Qué",
+          "Cuál"
+        ],
+        "answer": 0,
+        "why": "Fiyat sorarken 'cuánto cuesta' (ne kadar) yapısı kullanılır."
+      },
+      {
+        "prompt": "¿___ estudias español? - Porque quiero viajar a Perú.",
+        "options": [
+          "Por qué",
+          "Porque",
+          "Por que",
+          "Para que"
+        ],
+        "answer": 0,
+        "why": "Soru sorarken 'por qué' (ayrı ve aksanlı), cevap verirken 'porque' (bitişik) yazılır."
+      },
+      {
+        "prompt": "¿___ son esas personas que están en la puerta?",
+        "options": [
+          "Quiénes",
+          "Quién",
+          "Qué",
+          "Cuáles"
+        ],
+        "answer": 0,
+        "why": "Çoğul kişileri sormak için 'quiénes' soru zamiri kullanılır."
+      },
+      {
+        "prompt": "¿___ vas todos los sábados por la mañana? - Al gimnasio.",
+        "options": [
+          "Adónde",
+          "Dónde",
+          "De dónde",
+          "Por dónde"
+        ],
+        "answer": 0,
+        "why": "Varış yönü ve hareket bildiren 'ir' fiiliyle 'adónde' sorulur."
+      },
+      {
+        "prompt": "¿___ años tienes? - Tengo veinticinco años.",
+        "options": [
+          "Cuántos",
+          "Cuánto",
+          "Qué",
+          "Cuáles"
+        ],
+        "answer": 0,
+        "why": "Yaş sorarken çoğul eril isim (años) ile 'cuántos' kullanılır."
+      }
+    ],
+    "basics_es_hay_estar": [
+      {
+        "prompt": "En mi barrio ___ un supermercado muy grande.",
+        "options": [
+          "hay",
+          "está",
+          "es",
+          "tiene"
+        ],
+        "answer": 0,
+        "why": "Belirsiz bir varlığın varlığını bildirmek için 'hay' (haber fiili) kullanılır."
+      },
+      {
+        "prompt": "¿Dónde ___ la farmacia de guardia?",
+        "options": [
+          "está",
+          "hay",
+          "es",
+          "queda de"
+        ],
+        "answer": 0,
+        "why": "Belirli bir nesnenin (la farmacia) konumunu sormak için 'estar' kullanılır."
+      },
+      {
+        "prompt": "En la mesa ___ tres manzanas rojas.",
+        "options": [
+          "hay",
+          "están",
+          "son",
+          "tienen"
+        ],
+        "answer": 0,
+        "why": "Miktar ve sayı bildiren belirsiz isimlerle 'hay' kullanılır: hay tres manzanas."
+      },
+      {
+        "prompt": "Mis llaves ___ encima de la cómoda.",
+        "options": [
+          "están",
+          "hay",
+          "son",
+          "quedan a"
+        ],
+        "answer": 0,
+        "why": "Belirli çoğul bir öznenin (mis llaves) bulunduğu yeri anlatırken 'están' gelir."
+      },
+      {
+        "prompt": "¿___ algún cajero automático por aquí cerca?",
+        "options": [
+          "Hay",
+          "Está",
+          "Es",
+          "Tiene"
+        ],
+        "answer": 0,
+        "why": "'Algún' belgisiz sözcüğüyle varlık sorgularken 'hay' kullanılır: ¿Hay algún cajero...?"
+      },
+      {
+        "prompt": "El museo del Prado ___ en el centro de Madrid.",
+        "options": [
+          "está",
+          "hay",
+          "es",
+          "queda por"
+        ],
+        "answer": 0,
+        "why": "Özel ve belirli bir yerin konumu 'estar' fiiliyle ifade edilir."
+      },
+      {
+        "prompt": "No ___ nadie en la oficina a estas horas.",
+        "options": [
+          "hay",
+          "está",
+          "es",
+          "tiene"
+        ],
+        "answer": 0,
+        "why": "'Nadie' ve 'nada' ile var olmama durumu 'hay' ile ifade edilir: no hay nadie."
+      }
+    ],
+    "basics_es_a_personal": [
+      {
+        "prompt": "Ayer vi ___ María en el centro comercial.",
+        "options": [
+          "a",
+          "en",
+          "de",
+          "con"
+        ],
+        "answer": 0,
+        "why": "Doğrudan nesne belirli bir insan olduğunda 'a personal' edatı zorunludur: vi a María."
+      },
+      {
+        "prompt": "Busco ___ mis gafas de sol por todas partes.",
+        "options": [
+          "(hiçbir şey gelmez)",
+          "a",
+          "de",
+          "en"
+        ],
+        "answer": 0,
+        "why": "Nesne cansız bir varlık olduğunda (mis gafas) 'a' edatı kullanılmaz."
+      },
+      {
+        "prompt": "El profesor felicitó ___ todos los estudiantes por su esfuerzo.",
+        "options": [
+          "a",
+          "para",
+          "por",
+          "de"
+        ],
+        "answer": 0,
+        "why": "Kişilerden oluşan belirli doğrudan nesnelerde 'a' kullanılır: felicitó a todos los estudiantes."
+      },
+      {
+        "prompt": "Quiero mucho ___ mi perro Toby; es como de la familia.",
+        "options": [
+          "a",
+          "de",
+          "en",
+          "con"
+        ],
+        "answer": 0,
+        "why": "Duygusal bağ kurulan evcil hayvanlar için de kişisel 'a' kullanılır: quiero a mi perro."
+      },
+      {
+        "prompt": "¿Conoces ___ este autor español?",
+        "options": [
+          "a",
+          "de",
+          "en",
+          "con"
+        ],
+        "answer": 0,
+        "why": "Bir kişiyi tanıma durumunda doğrudan nesne 'a' edatı alır: conoces a este autor."
+      },
+      {
+        "prompt": "Llamé ___ policía inmediatamente tras el accidente.",
+        "options": [
+          "a la",
+          "la",
+          "de la",
+          "en la"
+        ],
+        "answer": 0,
+        "why": "Polis kurumu ve görevlileri insan topluluğu sayıldığından 'llamar a la policía' denir."
+      },
+      {
+        "prompt": "Tengo dos hermanos y una hermana.",
+        "options": [
+          "Bu cümlede 'a' kullanılmaz çünkü tener fiili genellikle 'a personal' almaz.",
+          "İki 'a' eklenmelidir.",
+          "Tener daima 'a' gerektirir.",
+          "Sadece hermanos için 'a' gelir."
+        ],
+        "answer": 0,
+        "why": "'Tener' fiili sahiplik belirttiği için aile üyeleriyle bile kural olarak 'a personal' almaz."
+      }
+    ],
+    "basics_es_adjetivos": [
+      {
+        "prompt": "Madrid es una ciudad muy ___ y cosmopolita.",
+        "options": [
+          "grande",
+          "gran",
+          "grandes",
+          "grando"
+        ],
+        "answer": 0,
+        "why": "İsimden sonra geldiğinde 'grande' biçimi korunur: una ciudad grande."
+      },
+      {
+        "prompt": "Cervantes fue un ___ escritor de la literatura universal.",
+        "options": [
+          "gran",
+          "grande",
+          "granes",
+          "grando"
+        ],
+        "answer": 0,
+        "why": "'Grande' tekil bir ismin önünde 'büyük, yüce' anlamında apócope'a uğrar ve 'gran' olur."
+      },
+      {
+        "prompt": "Hoy hace un ___ día para pasear por el parque.",
+        "options": [
+          "buen",
+          "bueno",
+          "buena",
+          "buenos"
+        ],
+        "answer": 0,
+        "why": "'Bueno' eril tekil bir ismin (día) önünde kısalarak 'buen' halini alır."
+      },
+      {
+        "prompt": "Estas camisas son bastante ___ pero de buena calidad.",
+        "options": [
+          "caras",
+          "caro",
+          "cara",
+          "caros"
+        ],
+        "answer": 0,
+        "why": "Sıfat nitelediği dişil çoğul isimle (camisas) uyum sağlar: camisas caras."
+      },
+      {
+        "prompt": "Tengo un ___ presentimiento sobre esta decisión.",
+        "options": [
+          "mal",
+          "malo",
+          "mala",
+          "malos"
+        ],
+        "answer": 0,
+        "why": "'Malo' eril tekil ismin önünde 'mal' olur: un mal presentimiento."
+      },
+      {
+        "prompt": "Las aguas de este lago son muy ___ y cristalinas.",
+        "options": [
+          "frías",
+          "fríos",
+          "fría",
+          "frío"
+        ],
+        "answer": 0,
+        "why": "Agua dişil bir isimdir; çoğulda sıfat dişil çoğul uyum gösterir: aguas frías."
+      },
+      {
+        "prompt": "Es una persona sumamente ___ con todo el mundo.",
+        "options": [
+          "amable",
+          "amablo",
+          "amabla",
+          "amables"
+        ],
+        "answer": 0,
+        "why": "-e ile biten sıfatlar eril ve dişil için aynı kalır: persona amable."
+      }
+    ],
+    "basics_es_preterito": [
+      {
+        "prompt": "El año pasado mis amigos y yo ___ a Roma de vacaciones.",
+        "options": [
+          "fuimos",
+          "íbamos",
+          "hemos ido",
+          "fueron"
+        ],
+        "answer": 0,
+        "why": "Geçmişte tamamlanmış belirli zaman dilimi (el año pasado) için ir fiilinin indefinido çekimi 'fuimos'dur."
+      },
+      {
+        "prompt": "Ayer yo no ___ hacer la compra porque llovió mucho.",
+        "options": [
+          "pude",
+          "podía",
+          "he podido",
+          "pudo"
+        ],
+        "answer": 0,
+        "why": "Poder fiilinin pretérito indefinido yo şahsı çekimi düzensizdir: pude."
+      },
+      {
+        "prompt": "¿Dónde ___ tú las llaves del coche anoche?",
+        "options": [
+          "pusiste",
+          "ponías",
+          "has puesto",
+          "puso"
+        ],
+        "answer": 0,
+        "why": "Poner fiilinin tú için indefinido çekimi 'pusiste'dir."
+      },
+      {
+        "prompt": "El sábado pasado ella ___ una fiesta sorpresa para su hermana.",
+        "options": [
+          "hizo",
+          "hacía",
+          "ha hecho",
+          "hiciste"
+        ],
+        "answer": 0,
+        "why": "Hacer fiilinin 3. tekil şahıs indefinido çekimi 'hizo' olarak yazılır (z harfiyle)."
+      },
+      {
+        "prompt": "Los testigos ___ toda la verdad a los agentes de policía.",
+        "options": [
+          "dijeron",
+          "decían",
+          "han dicho",
+          "dijieron"
+        ],
+        "answer": 0,
+        "why": "Decir fiilinin 3. çoğul indefinido çekimi 'dijeron'dur (-ieron değil -eron)."
+      },
+      {
+        "prompt": "Yo ___ en Madrid durante cinco años en mi juventud.",
+        "options": [
+          "estuve",
+          "estaba",
+          "he estado",
+          "estuvo"
+        ],
+        "answer": 0,
+        "why": "Süresi kesin bitmiş geçmiş dönemler için estar fiilinin indefinido'su kullanılır: estuve."
+      },
+      {
+        "prompt": "Anoche el bebé se ___ inmediatamente después de cenar.",
+        "options": [
+          "durmió",
+          "dormía",
+          "ha dormido",
+          "duerme"
+        ],
+        "answer": 0,
+        "why": "Dormir fiili indefinido 3. şahıslarda kök değişimi (o -> u) gösterir: durmió."
+      }
+    ],
+    "ser_estar": [
+      {
+        "prompt": "Mi hermano ___ médico en un hospital de Sevilla.",
+        "options": [
+          "es",
+          "está",
+          "tiene",
+          "hace"
+        ],
+        "answer": 0,
+        "why": "Meslek bildirmek için daima 'ser' fiili kullanılır: es médico."
+      },
+      {
+        "prompt": "La sopa ___ demasiado caliente, espera un poco.",
+        "options": [
+          "está",
+          "es",
+          "queda",
+          "hay"
+        ],
+        "answer": 0,
+        "why": "Geçici fiziksel durumlar ve anlık algılar için 'estar' kullanılır: está caliente."
+      },
+      {
+        "prompt": "El concierto de rock ___ en el estadio Santiago Bernabéu.",
+        "options": [
+          "es",
+          "está",
+          "hay",
+          "queda"
+        ],
+        "answer": 0,
+        "why": "Etkinliklerin (konser, maç, toplantı) gerçekleştiği yer ser ile söylenir: el concierto es en..."
+      },
+      {
+        "prompt": "Hoy Laura ___ muy contenta con sus notas del examen.",
+        "options": [
+          "está",
+          "es",
+          "tiene",
+          "queda"
+        ],
+        "answer": 0,
+        "why": "Duygusal haller ve geçici ruh halleri için 'estar' kullanılır: está contenta."
+      },
+      {
+        "prompt": "Esta mesa ___ de madera de roble.",
+        "options": [
+          "es",
+          "está",
+          "hace",
+          "tiene"
+        ],
+        "answer": 0,
+        "why": "Maddenin ham maddesi ve yapıldığı malzeme 'ser de' ile anlatılır: es de madera."
+      },
+      {
+        "prompt": "La puerta ___ cerrada con llave, no podemos entrar.",
+        "options": [
+          "está",
+          "es",
+          "hay",
+          "queda de"
+        ],
+        "answer": 0,
+        "why": "Bir eylemin sonucunda ortaya çıkan durum (açık/kapalı) 'estar' ile ifade edilir: está cerrada."
+      },
+      {
+        "prompt": "Pedro es muy listo, pero hoy ___ despistado.",
+        "options": [
+          "está",
+          "es",
+          "tiene",
+          "parece de"
+        ],
+        "answer": 0,
+        "why": "Karakter özelliği için ser ('es listo'), anlık durum için estar ('está despistado') kullanılır."
+      }
+    ],
+    "preterito_imperfecto": [
+      {
+        "prompt": "Cuando yo era niño, siempre ___ al fútbol en el parque.",
+        "options": [
+          "jugaba",
+          "jugué",
+          "he jugado",
+          "jugué a"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki tekrarlanan alışkanlıklar için pretérito imperfecto kullanılır: jugaba."
+      },
+      {
+        "prompt": "En aquella época nosotros ___ en una casa cerca de la costa.",
+        "options": [
+          "vivíamos",
+          "vivimos",
+          "hemos vivido",
+          "vivieron"
+        ],
+        "answer": 0,
+        "why": "Geçmişte süregelen durumlar için imperfecto kullanılır: vivíamos."
+      },
+      {
+        "prompt": "¿Cuál es la forma del imperfecto del verbo 'ir' para 'tú'?",
+        "options": [
+          "Ibas",
+          "Fuiste",
+          "Ibas a",
+          "Iba"
+        ],
+        "answer": 0,
+        "why": "Ir fiilinin imperfecto çekimleri düzensizdir: iba, ibas, iba, íbamos, ibais, iban."
+      },
+      {
+        "prompt": "Mientras mi madre cocinaba, yo ___ la mesa. (eylemler aynı anda)",
+        "options": [
+          "ponía",
+          "puse",
+          "he puesto",
+          "puesto"
+        ],
+        "answer": 0,
+        "why": "'Mientras' ile eşzamanlı devam eden iki geçmiş eylem imperfecto ile verilir: ponía."
+      },
+      {
+        "prompt": "Era una noche oscura y ___ muchísimo viento.",
+        "options": [
+          "hacía",
+          "hizo",
+          "ha hecho",
+          "hizo de"
+        ],
+        "answer": 0,
+        "why": "Geçmiş sahne ve hava durumu tasvirinde imperfecto kullanılır: hacía viento."
+      },
+      {
+        "prompt": "De joven, mi abuelo ___ muy alto y atlético.",
+        "options": [
+          "era",
+          "fue",
+          "ha sido",
+          "estaba"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki fiziksel özellik tasvirinde ser fiilinin imperfecto hali 'era' kullanılır."
+      },
+      {
+        "prompt": "Yo ___ la televisión cuando de repente sonó el teléfono.",
+        "options": [
+          "veía",
+          "vi",
+          "he visto",
+          "miré"
+        ],
+        "answer": 0,
+        "why": "Devam eden arka plan eylemi imperfecto (veía), onu kesen anlık eylem indefinido (sonó) olur."
+      }
+    ],
+    "comparativos_es": [
+      {
+        "prompt": "Este ejercicio de gramática es ___ fácil que el anterior.",
+        "options": [
+          "más",
+          "mucho",
+          "tan",
+          "como"
+        ],
+        "answer": 0,
+        "why": "Üstünlük karşılaştırmasında 'más + sıfat + que' kalıbı kullanılır."
+      },
+      {
+        "prompt": "Mi hermano mayor tiene ___ paciencia como mi padre.",
+        "options": [
+          "tanta",
+          "tan",
+          "tanto",
+          "tantos"
+        ],
+        "answer": 0,
+        "why": "Paciencia dişil tekil sayılamayan bir isimdir; eşitlikte 'tanta + isim + como' kullanılır."
+      },
+      {
+        "prompt": "Este restaurante no es ___ caro como el del centro.",
+        "options": [
+          "tan",
+          "tanto",
+          "más",
+          "menos"
+        ],
+        "answer": 0,
+        "why": "Sıfat ve zarflarla eşitlik karşılaştırmasında 'tan + sıfat + como' kalıbı kullanılır."
+      },
+      {
+        "prompt": "La calidad de este producto es mucho ___ que la de los otros.",
+        "options": [
+          "mejor",
+          "más buena",
+          "tan buena",
+          "bien"
+        ],
+        "answer": 0,
+        "why": "Bueno sıfatının karşılaştırma derecesi 'más bueno' değil, düzensiz 'mejor'dür."
+      },
+      {
+        "prompt": "Tengo ___ libros de historia que tú en mi estantería.",
+        "options": [
+          "más",
+          "tan",
+          "tanto",
+          "como"
+        ],
+        "answer": 0,
+        "why": "Miktar üstünlüğünde 'más + isim + que' kalıbı kullanılır."
+      },
+      {
+        "prompt": "Ana es ___ que su hermano Pedro por dos años. (yaşça)",
+        "options": [
+          "menor",
+          "más pequeña",
+          "menos",
+          "tan pequeña"
+        ],
+        "answer": 0,
+        "why": "Yaşça daha küçük olmayı ifade etmek için 'menor' karşılaştırma sıfatı kullanılır."
+      },
+      {
+        "prompt": "Trabajas ___ rápido como un profesional experimentado.",
+        "options": [
+          "tan",
+          "tanto",
+          "más",
+          "igual"
+        ],
+        "answer": 0,
+        "why": "Rápido burada zarf olarak kullanılmıştır; zarflarla eşitlikte 'tan' gelir."
+      }
+    ],
+    "imperativo_es": [
+      {
+        "prompt": "¡___ la ventana, por favor! Hace mucho calor aquí. (tú - abrir)",
+        "options": [
+          "Abre",
+          "Abres",
+          "Abra",
+          "Abras"
+        ],
+        "answer": 0,
+        "why": "Tú olumlu emir kipi şimdiki zaman 3. tekil şahıs gibidir: abre."
+      },
+      {
+        "prompt": "¡No ___ tarde a la estación mañana! (tú - llegar)",
+        "options": [
+          "llegues",
+          "llega",
+          "llegar",
+          "llegaste"
+        ],
+        "answer": 0,
+        "why": "Olumsuz emir kipi daima presente de subjuntivo ile kurulur: no llegues."
+      },
+      {
+        "prompt": "¡___ el favor de escuchar con atención! (tú - hacer)",
+        "options": [
+          "Haz",
+          "Hace",
+          "Hagas",
+          "Hacer"
+        ],
+        "answer": 0,
+        "why": "Hacer fiilinin tú için olumlu emir kipi düzensiz tek heceli 'haz'dır."
+      },
+      {
+        "prompt": "¡___ aquí ahora mismo! (tú - venir)",
+        "options": [
+          "Ven",
+          "Viene",
+          "Vengas",
+          "Venga"
+        ],
+        "answer": 0,
+        "why": "Venir fiilinin tú için olumlu emri düzensiz 'ven' biçimindedir."
+      },
+      {
+        "prompt": "Señor Gómez, por favor ___ en esta sala de espera. (usted - sentarse)",
+        "options": [
+          "siéntese",
+          "siéntate",
+          "siente",
+          "se siente"
+        ],
+        "answer": 0,
+        "why": "Usted için emir kipi subjuntivo'dur (-e/-a değişir) ve zamir sona eklenir: siéntese."
+      },
+      {
+        "prompt": "¡Dí___ la verdad ahora mismo! (tú - decir + a mí)",
+        "options": [
+          "mela",
+          "me",
+          "le",
+          "lo"
+        ],
+        "answer": 1,
+        "why": "Olumlu emirde zamir fiilin sonuna bitişir ve vurgu korunur: dime."
+      },
+      {
+        "prompt": "¡No te ___ de comprar el pan al volver! (tú - olvidar)",
+        "options": [
+          "olvides",
+          "olvida",
+          "olvidese",
+          "olvides te"
+        ],
+        "answer": 0,
+        "why": "Olumsuz emirde zamir fiilin önüne ayrı yazılır ve subjuntivo gelir: no te olvides."
+      }
+    ],
+    "basics_es_reflexivos": [
+      {
+        "prompt": "Todos los días yo ___ a las siete de la mañana.",
+        "options": [
+          "me levanto",
+          "levanto",
+          "se levanta",
+          "te levantas"
+        ],
+        "answer": 0,
+        "why": "1. tekil şahıs dönüşlü zamiri 'me'dir: yo me levanto."
+      },
+      {
+        "prompt": "¿A qué hora ___ tú los fines de semana? (acostarse)",
+        "options": [
+          "te acuestas",
+          "te acuestas a",
+          "te acuestan",
+          "acuestas"
+        ],
+        "answer": 0,
+        "why": "Acostarse fiili o -> ue kök değişimi alır: te acuestas."
+      },
+      {
+        "prompt": "Mis hermanos pequeños ___ los dientes después de cada comida.",
+        "options": [
+          "se lavan",
+          "nos lavamos",
+          "os laváis",
+          "se lava"
+        ],
+        "answer": 0,
+        "why": "3. çoğul şahıs dönüşlü zamiri 'se'dir: se lavan."
+      },
+      {
+        "prompt": "Nosotros ___ muy bien en las clases de baile.",
+        "options": [
+          "nos divertimos",
+          "nos divertéis",
+          "se divierten",
+          "divertimos"
+        ],
+        "answer": 0,
+        "why": "Divertirse fiilinin nosotros çekimi 'nos divertimos'dur."
+      },
+      {
+        "prompt": "Voy a ___ antes de salir a cenar con mis amigos.",
+        "options": [
+          "ducharme",
+          "ducharte",
+          "ducharse",
+          "duchar"
+        ],
+        "answer": 0,
+        "why": "Mastar fiilin sonuna özneye uygun dönüşlü zamir eklenir: ducharme."
+      },
+      {
+        "prompt": "¿Cómo ___ tu nuevo compañero de trabajo?",
+        "options": [
+          "se llama",
+          "te llamas",
+          "me llamo",
+          "se llaman"
+        ],
+        "answer": 0,
+        "why": "3. tekil şahıs için 'se llama' kullanılır."
+      },
+      {
+        "prompt": "Vosotros tenéis que ___ prisa si no queréis perder el tren.",
+        "options": [
+          "daros",
+          "darse",
+          "darme",
+          "darte"
+        ],
+        "answer": 0,
+        "why": "Vosotros için dönüşlü zamir 'os' mastarın sonuna birleşir: daros prisa."
+      }
+    ],
+    "basics_es_perfecto_indefinido": [
+      {
+        "prompt": "Hoy ___ mucho trabajo en la oficina.",
+        "options": [
+          "he tenido",
+          "tuve",
+          "tenía",
+          "había tenido"
+        ],
+        "answer": 0,
+        "why": "'Hoy' henüz bitmemiş bir zaman dilimidir; bu yüzden pretérito perfecto kullanılır: he tenido."
+      },
+      {
+        "prompt": "El año pasado yo ___ a París por primera vez.",
+        "options": [
+          "fui",
+          "he ido",
+          "iba",
+          "haya ido"
+        ],
+        "answer": 0,
+        "why": "'El año pasado' tamamen kapanmış bir geçmiş zamandır; pretérito indefinido gerektirir: fui."
+      },
+      {
+        "prompt": "¿Alguna vez ___ paella valenciana tradicional?",
+        "options": [
+          "has comido",
+          "comiste",
+          "comías",
+          "comas"
+        ],
+        "answer": 0,
+        "why": "Hayat tecrübelerini sorarken 'alguna vez' ile pretérito perfecto kullanılır: has comido."
+      },
+      {
+        "prompt": "Esta mañana no ___ tiempo de desayunar en casa.",
+        "options": [
+          "he tenido",
+          "tuve",
+          "tenía",
+          "hubiera tenido"
+        ],
+        "answer": 0,
+        "why": "'Esta mañana/tarde/semana' gibi içinde bulunulan zaman dilimleriyle pretérito perfecto gelir."
+      },
+      {
+        "prompt": "Ayer por la tarde ___ a mi antiguo profesor en la librería.",
+        "options": [
+          "encontré",
+          "he encontrado",
+          "encontraba",
+          "encontrara"
+        ],
+        "answer": 0,
+        "why": "'Ayer' bitmiş bir zaman işaretidir; indefinido kullanılır: encontré."
+      },
+      {
+        "prompt": "Todavía no ___ el informe que me pidió el director.",
+        "options": [
+          "he terminado",
+          "terminé",
+          "terminaba",
+          "termine"
+        ],
+        "answer": 0,
+        "why": "'Todavía no' (henüz değil) ifadesi günümüze bağlanan pretérito perfecto ile kullanılır."
+      },
+      {
+        "prompt": "Hace diez minutos ___ una llamada muy urgente de la oficina.",
+        "options": [
+          "recibí",
+          "he recibido",
+          "recibía",
+          "reciba"
+        ],
+        "answer": 0,
+        "why": "'Hace + zaman' yapısı İspanya standart kullanımında genellikle indefinido gerektirir: recibí."
+      }
+    ],
+    "basics_es_futuro": [
+      {
+        "prompt": "El próximo verano nosotros ___ a viajar por toda Andalucía.",
+        "options": [
+          "vamos",
+          "iremos",
+          "vamos a",
+          "iríamos"
+        ],
+        "answer": 0,
+        "why": "Yakın ve planlı gelecek için 'ir a + mastar' yapısı kullanılır: vamos a viajar."
+      },
+      {
+        "prompt": "Mañana te ___ todos los detalles por correo electrónico.",
+        "options": [
+          "enviaré",
+          "envío",
+          "enviaba",
+          "enviaría"
+        ],
+        "answer": 0,
+        "why": "Tekil 1. şahıs futuro simple eki -é'dir: enviaré."
+      },
+      {
+        "prompt": "¿Dónde estarán las llaves? - ___ en el salón. (tahmin)",
+        "options": [
+          "Estarán",
+          "Están",
+          "Estaban",
+          "Estarían"
+        ],
+        "answer": 0,
+        "why": "Şimdiki zamana dair olasılık ve tahmin bildirmek için futuro simple kullanılır: estarán."
+      },
+      {
+        "prompt": "Hacer fiilinin 'yo' için futuro simple çekimi hangisidir?",
+        "options": [
+          "Haré",
+          "Haceré",
+          "Haciré",
+          "Hadré"
+        ],
+        "answer": 0,
+        "why": "Hacer fiilinin gelecek zaman kökü düzensizdir (har-): yo haré."
+      },
+      {
+        "prompt": "Tener fiilinin 'nosotros' için futuro simple çekimi hangisidir?",
+        "options": [
+          "Tendremos",
+          "Teneremos",
+          "Teníamos",
+          "Tendríamos"
+        ],
+        "answer": 0,
+        "why": "Tener fiilinin kökü tendr- olur: tendremos."
+      },
+      {
+        "prompt": "Pronto ellos ___ la verdad sobre lo que ocurrió.",
+        "options": [
+          "sabrán",
+          "saberán",
+          "sabrían",
+          "supieron"
+        ],
+        "answer": 0,
+        "why": "Saber fiilinin futuro kökü sabr-'dır: ellos sabrán."
+      },
+      {
+        "prompt": "Decir fiilinin 'tú' şahsı için futuro simple çekimi hangisidir?",
+        "options": [
+          "Dirás",
+          "Decirás",
+          "Dirías",
+          "Dijiste"
+        ],
+        "answer": 0,
+        "why": "Decir fiilinin gelecek kökü dir-'dir: tú dirás."
+      }
+    ],
+    "basics_es_hace_desde": [
+      {
+        "prompt": "Vivo en esta hermosa ciudad ___ 2018.",
+        "options": [
+          "desde",
+          "desde hace",
+          "hace",
+          "para"
+        ],
+        "answer": 0,
+        "why": "Başlangıç noktası belirli bir yıl veya tarih olduğunda 'desde' kullanılır: desde 2018."
+      },
+      {
+        "prompt": "Estudio español ___ tres meses en una academia.",
+        "options": [
+          "desde hace",
+          "desde",
+          "hace",
+          "en"
+        ],
+        "answer": 0,
+        "why": "Sürenin miktarını (üç aydır) belirtirken 'desde hace' kullanılır."
+      },
+      {
+        "prompt": "Llegué a Madrid ___ tres días en avión.",
+        "options": [
+          "hace",
+          "desde",
+          "desde hace",
+          "por"
+        ],
+        "answer": 0,
+        "why": "Geçmişte kalan tekil bir zaman önce olduğunu belirtmek için 'hace + zaman' kullanılır: hace tres días."
+      },
+      {
+        "prompt": "___ dos horas que te estoy esperando aquí sentado.",
+        "options": [
+          "Hace",
+          "Desde",
+          "Desde hace",
+          "Lleva"
+        ],
+        "answer": 0,
+        "why": "Cümle başında 'hace + süre + que + fiil' yapısı eylemin ne kadar süredir devam ettiğini anlatır."
+      },
+      {
+        "prompt": "Llevo dos años ___ en esta multinacional.",
+        "options": [
+          "trabajando",
+          "trabajar",
+          "trabajado",
+          "trabajo"
+        ],
+        "answer": 0,
+        "why": "'Llevar + süre + gerundio' yapısı bir eylemin ne kadar süredir yapıldığını bildirir."
+      },
+      {
+        "prompt": "No veo a mis tíos ___ las pasadas Navidades.",
+        "options": [
+          "desde",
+          "desde hace",
+          "hace",
+          "por"
+        ],
+        "answer": 0,
+        "why": "Başlangıç olayı ve tarihi belirtilirken 'desde' edatı kullanılır: desde las Navidades."
+      },
+      {
+        "prompt": "¿Cuánto tiempo ___ que vives en este barrio?",
+        "options": [
+          "hace",
+          "desde",
+          "lleva",
+          "pasa"
+        ],
+        "answer": 0,
+        "why": "Süre sorarken standart soru kalıbı '¿Cuánto tiempo hace que...?' şeklindedir."
+      }
+    ],
+    "basics_es_gustar_familia": [
+      {
+        "prompt": "A María le ___ muchísimo viajar en tren por Europa.",
+        "options": [
+          "encanta",
+          "encantan",
+          "encanto",
+          "encante"
+        ],
+        "answer": 0,
+        "why": "Mastar eylem tekil sayıldığından encantar fiili 3. tekil şahıstır: le encanta viajar."
+      },
+      {
+        "prompt": "Ayer caminé tanto que hoy me ___ mucho las piernas.",
+        "options": [
+          "duelen",
+          "duele",
+          "duelo",
+          "doler"
+        ],
+        "answer": 0,
+        "why": "Özne çoğul olduğunda (las piernas) doler fiili çoğul çekilir: me duelen."
+      },
+      {
+        "prompt": "A nosotros no nos ___ nada tu opinión en este asunto.",
+        "options": [
+          "importa",
+          "importan",
+          "importamos",
+          "importe"
+        ],
+        "answer": 0,
+        "why": "Özne tekil bir isim olduğunda (tu opinión) fiil 3. tekil kalır: no nos importa."
+      },
+      {
+        "prompt": "¿Qué te ___ la nueva propuesta del director?",
+        "options": [
+          "parece",
+          "parecen",
+          "pareces",
+          "parezco"
+        ],
+        "answer": 0,
+        "why": "Fikir sorarken 'parecer' fiili kullanılır: ¿Qué te parece la propuesta?"
+      },
+      {
+        "prompt": "A los vecinos les ___ el ruido constante de las obras.",
+        "options": [
+          "molesta",
+          "molestan",
+          "molesto",
+          "moleste"
+        ],
+        "answer": 0,
+        "why": "Tekil isim özne olduğunda (el ruido) fiil tekildir: les molesta."
+      },
+      {
+        "prompt": "Estos pantalones te ___ muy bien, deberías comprarlos.",
+        "options": [
+          "quedan",
+          "queda",
+          "quedo",
+          "queden"
+        ],
+        "answer": 0,
+        "why": "Giysinin yakışması anlamında 'quedar' fiili çoğul özneyle (estos pantalones) çoğul çekilir: te quedan."
+      },
+      {
+        "prompt": "A mí me ___ diez euros para poder pagar la cuenta.",
+        "options": [
+          "faltan",
+          "falta",
+          "falto",
+          "falte"
+        ],
+        "answer": 0,
+        "why": "Eksik olan miktar çoğul olduğunda (diez euros) fiil çoğuldur: me faltan diez euros."
+      }
+    ],
+    "basics_es_pronombres_dobles_se_lo": [
+      {
+        "prompt": "¿Le diste el libro a Pedro? - Sí, ___ di ayer por la tarde.",
+        "options": [
+          "se lo",
+          "le lo",
+          "lo le",
+          "se la"
+        ],
+        "answer": 0,
+        "why": "İspanyolcada le + lo yan yana gelemez; le dolaylı zamiri 'se'ye dönüşür: se lo di."
+      },
+      {
+        "prompt": "¿Me prestas tu bolígrafo un momento? - Sí, claro, ___ presto ahora.",
+        "options": [
+          "te lo",
+          "me lo",
+          "se lo",
+          "te la"
+        ],
+        "answer": 0,
+        "why": "Kişi zamiri nesne zamirinden önce gelir: te (sana) + lo (onu) = te lo presto."
+      },
+      {
+        "prompt": "¿Les explicaste la regla a los alumnos? - Sí, ya ___ he explicado.",
+        "options": [
+          "se la",
+          "les la",
+          "se lo",
+          "les lo"
+        ],
+        "answer": 0,
+        "why": "'Les la' birleşimi kural olarak 'se la' olur (la regla dişil tekildir)."
+      },
+      {
+        "prompt": "Si tienes el informe listo, por favor tráe___ inmediatamente.",
+        "options": [
+          "melo",
+          "me lo",
+          "selo",
+          "te lo"
+        ],
+        "answer": 0,
+        "why": "Olumlu emirde zamirler fiilin sonuna bitişik yazılır: tráemelo."
+      },
+      {
+        "prompt": "No ___ digas a nadie, es un secreto absoluto.",
+        "options": [
+          "se lo",
+          "le lo",
+          "te lo",
+          "me lo"
+        ],
+        "answer": 0,
+        "why": "Olumsuz emirde zamirler fiilden önce ayrı yazılır ve le -> se olur: no se lo digas."
+      },
+      {
+        "prompt": "El paquete es para Juan, voy a entregár___ esta misma tarde.",
+        "options": [
+          "selo",
+          "lelo",
+          "melo",
+          "telo"
+        ],
+        "answer": 0,
+        "why": "Mastar sonuna bitişen le + lo zamirleri 'selo' haline gelir ve vurgu işareti alır: entregárselo."
+      },
+      {
+        "prompt": "¿Nos puedes enviar las fotos por correo? - Sí, ___ envío ahora.",
+        "options": [
+          "os las",
+          "se las",
+          "nos las",
+          "os los"
+        ],
+        "answer": 0,
+        "why": "Sizlere (vosotros) ve dişil çoğul nesne (las fotos) için 'os las' dizilimi kullanılır."
+      }
+    ],
+    "basics_es_saber_conocer": [
+      {
+        "prompt": "¿___ hablar italiano con fluidez?",
+        "options": [
+          "Sabes",
+          "Conoces",
+          "Puedes de",
+          "Entiendes de"
+        ],
+        "answer": 0,
+        "why": "Öğrenilmiş bir beceri ve mastarla kullanım için 'saber' fiili kullanılır: ¿Sabes hablar...?"
+      },
+      {
+        "prompt": "No ___ al nuevo profesor de literatura española.",
+        "options": [
+          "conozco",
+          "sé",
+          "puedo",
+          "entiendo"
+        ],
+        "answer": 0,
+        "why": "Bir kişiyi tanıma durumunda 'conocer + a' yapısı kullanılır: no conozco al profesor."
+      },
+      {
+        "prompt": "¿___ dónde está la oficina de correos más cercana?",
+        "options": [
+          "Sabes",
+          "Conoces",
+          "Ves",
+          "Tienes"
+        ],
+        "answer": 0,
+        "why": "Bir bilgi, olgu veya soru cümlesiyle (dónde) kullanımda 'saber' fiili gelir."
+      },
+      {
+        "prompt": "¿___ bien la ciudad de Barcelona?",
+        "options": [
+          "Conoces",
+          "Sabes",
+          "Tienes",
+          "Miras"
+        ],
+        "answer": 0,
+        "why": "Bir yeri veya şehri bilmek, gezmiş olmak anlamında 'conocer' kullanılır."
+      },
+      {
+        "prompt": "Nosotros no ___ la respuesta a esa pregunta tan difícil.",
+        "options": [
+          "sabemos",
+          "conocemos",
+          "entendemos a",
+          "podemos"
+        ],
+        "answer": 0,
+        "why": "Cevabı bilmek anlamında olgu bilgisi için 'saber la respuesta' denir."
+      },
+      {
+        "prompt": "Yo ___ a una persona que puede ayudarte con la mudanza.",
+        "options": [
+          "conozco",
+          "sé",
+          "puedo",
+          "tengo de"
+        ],
+        "answer": 0,
+        "why": "Bir insanı tanımak anlamında 'conocer a alguien' kullanılır."
+      },
+      {
+        "prompt": "Ella ___ tocar la guitarra clásica de maravilla.",
+        "options": [
+          "sabe",
+          "conoce",
+          "entiende",
+          "quiere de"
+        ],
+        "answer": 0,
+        "why": "Müzik aleti çalma becerisi için 'saber tocar' kalıbı kullanılır."
+      }
+    ],
+    "basics_es_pedir_preguntar": [
+      {
+        "prompt": "En el restaurante, el camarero se acercó y nosotros ___ la cuenta.",
+        "options": [
+          "pedimos",
+          "preguntamos",
+          "preguntamos por",
+          "dijimos"
+        ],
+        "answer": 0,
+        "why": "Hesabı istemek veya sipariş etmek için 'pedir la cuenta' kullanılır (preguntar soru sormaktır)."
+      },
+      {
+        "prompt": "Un turista me ___ la dirección del museo nacional.",
+        "options": [
+          "preguntó por",
+          "pidió",
+          "preguntó",
+          "dijo a"
+        ],
+        "answer": 0,
+        "why": "Bir şey hakkında bilgi sormak anlamında 'preguntar por' yapısı kullanılır."
+      },
+      {
+        "prompt": "Le voy a ___ un favor muy grande a mi mejor amigo.",
+        "options": [
+          "pedir",
+          "preguntar",
+          "solicitar de",
+          "hacer de"
+        ],
+        "answer": 0,
+        "why": "İyilik istemek ifadesi 'pedir un favor' olarak kurulur."
+      },
+      {
+        "prompt": "El profesor nos ___ si habíamos comprendido la lección.",
+        "options": [
+          "preguntó",
+          "pidió",
+          "dijo de",
+          "habló"
+        ],
+        "answer": 0,
+        "why": "Soru sormak ve 'si' ile dolaylı aktarım yapmak için 'preguntar' kullanılır."
+      },
+      {
+        "prompt": "Tienes que ___ perdón si has cometido un error tan grave.",
+        "options": [
+          "pedir",
+          "preguntar",
+          "dar de",
+          "hacer"
+        ],
+        "answer": 0,
+        "why": "Özür dilemek kalıbı 'pedir perdón' veya 'pedir disculpas'tır."
+      },
+      {
+        "prompt": "Voy a llamar al hotel para ___ la hora del desayuno.",
+        "options": [
+          "preguntar",
+          "pedir",
+          "preguntarse",
+          "pedirse"
+        ],
+        "answer": 0,
+        "why": "Bilgi almak amacıyla soru sormak eylemi 'preguntar' fiilidir."
+      },
+      {
+        "prompt": "¿Qué van a ___ de postre los señores?",
+        "options": [
+          "pedir",
+          "preguntar",
+          "tomarse de",
+          "querer a"
+        ],
+        "answer": 0,
+        "why": "Yiyecek ve tatlı siparişinde 'pedir' kullanılır: pedir de postre."
+      }
+    ],
+    "basics_es_llevar_traer_ir_venir": [
+      {
+        "prompt": "¿Puedes ___ un poco de hielo cuando vengas a mi casa?",
+        "options": [
+          "traer",
+          "llevar",
+          "ir",
+          "venir"
+        ],
+        "answer": 0,
+        "why": "Konuşulan yere (buraya doğru) getirme eylemi 'traer' ile ifade edilir."
+      },
+      {
+        "prompt": "Mañana voy a la fiesta y ___ una tarta casera. (oraya götürmek)",
+        "options": [
+          "llevaré",
+          "traeré",
+          "vendré",
+          "llegaré"
+        ],
+        "answer": 0,
+        "why": "Buradan başka bir yere götürme eylemi için 'llevar' fiili kullanılır."
+      },
+      {
+        "prompt": "¿Vienes conmigo al supermercado? - Sí, ___ contigo.",
+        "options": [
+          "voy",
+          "vengo",
+          "lleve",
+          "traigo"
+        ],
+        "answer": 0,
+        "why": "Konuşulan yere doğru hareket değil, başka bir yere gidiş için 'ir' kullanılır: voy contigo."
+      },
+      {
+        "prompt": "Estoy en la biblioteca, ¿___ a estudiar conmigo? (buraya gelmek)",
+        "options": [
+          "vienes",
+          "vas",
+          "llevas",
+          "traes"
+        ],
+        "answer": 0,
+        "why": "Konuşanın bulunduğu yere doğru gelme hareketi 'venir' ile sorulur: ¿vienes?"
+      },
+      {
+        "prompt": "Siempre ___ mi ordenador portátil en la mochila cuando viajo.",
+        "options": [
+          "llevo",
+          "traigo",
+          "vengo",
+          "voy"
+        ],
+        "answer": 0,
+        "why": "Yanında taşımak veya bir yere götürmek 'llevar' fiilidir: llevo mi ordenador."
+      },
+      {
+        "prompt": "El camarero nos ___ dos copas de vino tinto a la mesa.",
+        "options": [
+          "trajo",
+          "llevó",
+          "fue",
+          "vino"
+        ],
+        "answer": 0,
+        "why": "Müşterinin oturduğu yere getirme eylemi 'traer' fiilinin geçmiş zamanıdır: trajo."
+      },
+      {
+        "prompt": "¿A qué hora vas a ___ a Madrid mañana? (varmak/gitmek)",
+        "options": [
+          "ir",
+          "venir",
+          "llevar",
+          "traer"
+        ],
+        "answer": 0,
+        "why": "Başka bir şehre gidiş hareketi için 'ir' kullanılır."
+      }
+    ],
+    "basics_es_indefinidos_algun_ningun": [
+      {
+        "prompt": "¿Tienes ___ problema con la reserva del hotel?",
+        "options": [
+          "algún",
+          "alguno",
+          "alguna",
+          "algunos"
+        ],
+        "answer": 0,
+        "why": "Eril tekil bir ismin (problema) önünde 'alguno' kısalarak 'algún' (aksanlı) olur."
+      },
+      {
+        "prompt": "No tengo ___ duda sobre su profesionalidad.",
+        "options": [
+          "ninguna",
+          "ningún",
+          "ninguno",
+          "nada"
+        ],
+        "answer": 0,
+        "why": "Dişil tekil bir ismin (duda) önünde 'ninguna' olumsuzluk sıfatı kullanılır."
+      },
+      {
+        "prompt": "No hay ___ estudiante en el aula a estas horas.",
+        "options": [
+          "ningún",
+          "ninguno",
+          "ninguna",
+          "nadie"
+        ],
+        "answer": 0,
+        "why": "Eril tekil ismin (estudiante) önünde 'ninguno' kısalarak 'ningún' olur."
+      },
+      {
+        "prompt": "¿Hay ___ en casa o están todos fuera?",
+        "options": [
+          "alguien",
+          "nadie",
+          "algo",
+          "alguno"
+        ],
+        "answer": 0,
+        "why": "Belirsiz kişiyi sorgularken 'alguien' (biri / kimse var mı) kullanılır."
+      },
+      {
+        "prompt": "¿Quieres tomar ___ antes de empezar la reunión?",
+        "options": [
+          "algo",
+          "alguien",
+          "algún",
+          "nada"
+        ],
+        "answer": 0,
+        "why": "Belirsiz nesne veya yiyecek/içecek için 'algo' zamiri kullanılır."
+      },
+      {
+        "prompt": "___ día de estos tenemos que comer juntos.",
+        "options": [
+          "Algún",
+          "Alguno",
+          "Cualquier",
+          "Ningún"
+        ],
+        "answer": 0,
+        "why": "Eril tekil isim (día) önünde apócope kuralı gereği 'algún' kullanılır."
+      },
+      {
+        "prompt": "Puedes llamarme a ___ hora del día si me necesitas.",
+        "options": [
+          "cualquier",
+          "cualquiera",
+          "cuáles",
+          "alguna que"
+        ],
+        "answer": 0,
+        "why": "'Cualquiera' tekil bir ismin (hora) önünde kısalarak 'cualquier' olur."
+      }
+    ]
+  }
+}
