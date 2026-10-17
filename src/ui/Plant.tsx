@@ -165,7 +165,7 @@ function Soil({ fine, stage = 1, garden = false }: { fine: boolean; stage?: numb
   if (garden) {
     return (
       <g className="plant-soil-garden">
-        {/* Soft ground shadow blending into lawn */}
+        {/* Soft ground shading blending into lawn */}
         <ellipse cx="20" cy="35.2" rx="7.5" ry="2.2" fill="rgba(2, 20, 12, 0.45)" />
         {/* Rich dark fertile soil patch */}
         <ellipse cx="20" cy="34.6" rx="5.5" ry="1.6" fill="color-mix(in srgb, var(--plant-soil) 60%, #052e16)" opacity="0.9" />
