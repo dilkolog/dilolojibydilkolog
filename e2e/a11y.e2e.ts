@@ -990,6 +990,10 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
 
   // 2. Ders sayfası (Guide lesson page)
   await openScreen(page, 'Rehber')
+  await page.getByRole('button', { name: 'Yol', exact: true }).click()
+  await expect(page.locator('.guide-path-item').first()).toBeVisible()
+  await scanBoth('guide-path-view')
+  await page.getByRole('button', { name: 'Liste', exact: true }).click()
   await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await scanBoth('guide-lesson-page')
