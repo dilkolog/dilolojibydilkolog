@@ -183,7 +183,7 @@ describe('GuideScreen', () => {
     expect(host.querySelector('.lesson-try h2')?.textContent).toBe('Hemen dene')
     expect(host.querySelector('.guide-write summary')?.textContent).toContain('Kendi cümleni yaz')
     // A basic lesson with only its own three questions has nothing to try; one with more in its pool tries the spare ones.
-    const basic = await mount('fr', { initialLesson: 'basics_fr_passe_simple' })
+    const basic = await mount('es', { initialLesson: 'basics_es_articulos' })
     expect(basic.host.querySelector('.lesson-try')).toBeNull()
     const grown = await mount('fr', { initialLesson: 'basics_fr_articles' })
     expect(grown.host.querySelector('.lesson-try h2')?.textContent).toBe('Hemen dene')

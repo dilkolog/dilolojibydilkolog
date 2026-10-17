@@ -22,11 +22,11 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `prep_fr` | B1 | Fiil ve edat (de / à) | 10 | 24 |
 | `colloc_fr` | B1 | Eşdizimler (hangi fiil?) | 10 | 19 |
 | `conn_fr` | B1 | Bağlaçlar (fikrin yönü) | 10 | 11 |
-| `subjonctif` | B2 | Subjonctif | 4 | 23 |
-| `conditionnel_passe` | B2 | Conditionnel passé ve şart | 3 | 22 |
-| `participe_passe` | B2 | Participe passé uyumu | 4 | 22 |
-| `discours_indirect_fr` | B2 | Dolaylı anlatım ve zaman uyumu | 3 | 17 |
-| `pronoms_relatifs` | B2 | Birleşik ilgi zamirleri | 3 | 21 |
+| `subjonctif` | B2 | Subjonctif | 11 | 23 |
+| `conditionnel_passe` | B2 | Conditionnel passé ve şart | 10 | 22 |
+| `participe_passe` | B2 | Participe passé uyumu | 11 | 22 |
+| `discours_indirect_fr` | B2 | Dolaylı anlatım ve zaman uyumu | 10 | 17 |
+| `pronoms_relatifs` | B2 | Birleşik ilgi zamirleri | 10 | 21 |
 | `basics_fr_pronoms` | A1 | Kişi zamirleri ve vurgulu zamirler | 10 | 0 |
 | `basics_fr_possessifs` | A1 | İyelik ve işaret sıfatları | 10 | 0 |
 | `basics_fr_nombres` | A1 | Sayılar, saat ve tarih | 10 | 0 |
@@ -40,19 +40,19 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_fr_gerondif` | B1 | Gérondif ve participe présent | 10 | 0 |
 | `basics_fr_ordre_pronoms` | B1 | İki zamir bir arada (me le, le lui) | 10 | 0 |
 | `basics_fr_adverbes` | B1 | -ment zarfları: kuruluş ve yer | 10 | 0 |
-| `basics_fr_subjonctif_passe` | B2 | Subjonctif passé ve subjonctiften kaçınma | 3 | 0 |
-| `basics_fr_passif` | B2 | Edilgen çatı (être + ortaç, on, se faire) | 3 | 0 |
-| `basics_fr_passe_simple` | C1 | Passé simple (okurken tanımak) | 3 | 0 |
-| `basics_fr_concession` | C1 | Taviz ve nüans: quoique, encore que, si … que | 3 | 0 |
-| `basics_fr_mise_en_relief` | B2 | Vurgu yapıları: c'est … qui / que, ce qui … c'est | 3 | 0 |
-| `basics_fr_cause_consequence` | B2 | Neden ve sonuç: étant donné que, faute de, si bien que | 3 | 0 |
-| `basics_fr_demonstratifs` | B2 | İşaret zamirleri: celui, celle-ci, ceci, cela | 3 | 0 |
-| `basics_fr_faire_causatif` | B2 | Yaptırmak: faire + mastar, laisser + mastar | 3 | 0 |
-| `basics_fr_registres` | B2 | Resmî ve gündelik dil (registres) | 3 | 0 |
-| `basics_fr_ne_expletif` | C1 | Ne explétif (olumsuz anlam taşımayan ne) | 3 | 0 |
-| `basics_fr_nominalisation` | C1 | Adlaştırma (nominalisation) | 3 | 0 |
-| `basics_fr_hypothese` | C1 | Si'siz varsayım: au cas où, à supposer que, quand bien même | 3 | 0 |
-| `basics_fr_subjonctif_imparfait` | C1 | Subjonctif imparfait ve plus-que-parfait (okurken tanımak) | 3 | 0 |
+| `basics_fr_subjonctif_passe` | B2 | Subjonctif passé ve subjonctiften kaçınma | 10 | 0 |
+| `basics_fr_passif` | B2 | Edilgen çatı (être + ortaç, on, se faire) | 10 | 0 |
+| `basics_fr_passe_simple` | C1 | Passé simple (okurken tanımak) | 10 | 0 |
+| `basics_fr_concession` | C1 | Taviz ve nüans: quoique, encore que, si … que | 10 | 0 |
+| `basics_fr_mise_en_relief` | B2 | Vurgu yapıları: c'est … qui / que, ce qui … c'est | 10 | 0 |
+| `basics_fr_cause_consequence` | B2 | Neden ve sonuç: étant donné que, faute de, si bien que | 10 | 0 |
+| `basics_fr_demonstratifs` | B2 | İşaret zamirleri: celui, celle-ci, ceci, cela | 10 | 0 |
+| `basics_fr_faire_causatif` | B2 | Yaptırmak: faire + mastar, laisser + mastar | 10 | 0 |
+| `basics_fr_registres` | B2 | Resmî ve gündelik dil (registres) | 10 | 0 |
+| `basics_fr_ne_expletif` | C1 | Ne explétif (olumsuz anlam taşımayan ne) | 10 | 0 |
+| `basics_fr_nominalisation` | C1 | Adlaştırma (nominalisation) | 10 | 0 |
+| `basics_fr_hypothese` | C1 | Si'siz varsayım: au cas où, à supposer que, quand bien même | 10 | 0 |
+| `basics_fr_subjonctif_imparfait` | C1 | Subjonctif imparfait ve plus-que-parfait (okurken tanımak) | 10 | 0 |
 | `basics_fr_c_est_vs_il_est` | A1 | C'est mi, il est mi? (C'est un professeur vs Il est professeur) | 10 | 0 |
 | `basics_fr_prepositions_geographie` | A2 | Ülkeler, şehirler ve adalarla edatlar (en France, au Japon, à Paris) | 10 | 24 |
 | `basics_fr_si_concordance` | A2 | Si ile şart cümlelerinde zaman uyumu (si présent, si imparfait) | 10 | 22 |
@@ -60,19 +60,19 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_fr_participe_gerondif` | B1 | Participe présent ve gérondif ayrımı (chantant vs en chantant) | 10 | 0 |
 | `basics_fr_double_pronoms_imperatif` | B1 | Emir kipinde çift zamirler: Donne-le-moi vs Ne me le donne pas | 10 | 15 |
 | `basics_fr_tout_tous_usages` | B1 | 'Tout' sözcüğünün bütün halleri: sıfat, zamir ve zarf | 10 | 0 |
-| `basics_fr_accords_pronominaux_cod` | B2 | Dönüşlü fiillerde ortaç uyumu tuzağı: Elle s'est lavée vs s'est lavé les mains | 3 | 22 |
-| `basics_fr_subjonctif_conjonctions` | B2 | Subjonctif zorunlu kılan kilit bağlaçlar: bien que, pour que, avant que | 3 | 23 |
-| `basics_fr_pronoms_relatifs_composes` | B2 | Bileşik ilgi zamirleri: lequel, auquel, duquel | 3 | 21 |
+| `basics_fr_accords_pronominaux_cod` | B2 | Dönüşlü fiillerde ortaç uyumu tuzağı: Elle s'est lavée vs s'est lavé les mains | 10 | 22 |
+| `basics_fr_subjonctif_conjonctions` | B2 | Subjonctif zorunlu kılan kilit bağlaçlar: bien que, pour que, avant que | 10 | 23 |
+| `basics_fr_pronoms_relatifs_composes` | B2 | Bileşik ilgi zamirleri: lequel, auquel, duquel | 10 | 21 |
 | `basics_fr_savoir_connaitre` | A2 | Savoir mı, connaître mi? (Bilmek ve tanımak ayrımı) | 10 | 0 |
 | `basics_fr_amener_apporter` | A2 | Getirmek ve götürmek: amener, apporter, emmener, emporter | 10 | 0 |
 | `basics_fr_temps_mots` | A2 | Zaman kelimeleri: temps / heure / fois ve an / année, jour / journée | 10 | 0 |
 | `basics_fr_indefinis` | B1 | Belgisiz sıfat ve zamirler: chaque, chacun, quelque, plusieurs, certain(e)s | 10 | 0 |
 | `basics_fr_questions_inversion` | B1 | Resmî devrik soru ve kaynaştırma -t- harfi (Inversion) | 10 | 0 |
 | `basics_fr_discours_temps` | B1 | Dolaylı anlatımda zaman ve yer ifadelerinin dönüşümü | 10 | 17 |
-| `basics_fr_verbes_pronominaux_sens` | B2 | Dönüşlü olunca anlamı tamamen değişen fiiller (se douter, s’attendre...) | 3 | 24 |
-| `basics_fr_accord_adjectifs_particuliers` | B2 | Renk sıfatları ve bileşik sıfatlarda uyum istisnaları | 3 | 0 |
-| `basics_fr_infinitif_passe` | B2 | Geçmiş mastar (Infinitif passé): après avoir fait, après être parti | 3 | 0 |
-| `basics_fr_connecteurs_argumentation` | C1 | DELF B2 / DALF C1 tartışma ve kompozisyon bağlaçları | 3 | 11 |
+| `basics_fr_verbes_pronominaux_sens` | B2 | Dönüşlü olunca anlamı tamamen değişen fiiller (se douter, s’attendre...) | 10 | 24 |
+| `basics_fr_accord_adjectifs_particuliers` | B2 | Renk sıfatları ve bileşik sıfatlarda uyum istisnaları | 10 | 0 |
+| `basics_fr_infinitif_passe` | B2 | Geçmiş mastar (Infinitif passé): après avoir fait, après être parti | 10 | 0 |
+| `basics_fr_connecteurs_argumentation` | C1 | DELF B2 / DALF C1 tartışma ve kompozisyon bağlaçları | 10 | 11 |
 
 ## İspanyolca (es) — 67 ders
 
