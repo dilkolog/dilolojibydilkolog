@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import { unzipSync } from 'fflate'
-import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, startWithSamples } from './helpers'
+import { approveAccount, contrastProblems, finishSession, labFavorites, openScreen, openVerbLab, overflow, playSession, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
 test('the first Tab offers a jump past the menu to the screen', async ({ page }) => {
   await startWithSamples(page)
@@ -2657,4 +2657,27 @@ test('song game: a video link brings its captions as lines with gaps; a page is 
   await page.getByRole('button', { name: 'Yanlış satırları cümle kartı yap' }).click()
   await expect(page.getByText(/satır cümle kartlarına eklendi/).first()).toBeVisible()
   expect(await overflow(page)).toEqual([])
+})
+
+test('notice bell: the count of unseen notices, the list marks them seen, a notice leads to its place', async ({ page }) => {
+  await startWithSamples(page)
+  const bell = page.getByRole('button', { name: /^Bildirimler/ })
+  await expect(bell).toHaveAttribute('aria-label', 'Bildirimler')
+  await seedNotices(page, [
+    { id: 'friend|a', kind: 'friend', text: 'Ayşe seni tebrik etti', target: 'home', minutesAgo: 2 },
+    { id: 'badge|streak-7', kind: 'badge', text: 'Yeni rozet: Bir hafta', target: 'profile', minutesAgo: 90 },
+    { id: 'sync|1', kind: 'sync', text: 'Diğer cihazlarından: 3 yeni kelime.', read: true, minutesAgo: 60 * 30 },
+  ])
+  await expect(bell).toHaveAttribute('aria-label', 'Bildirimler, 2 yeni')
+  await bell.click()
+  const list = page.getByRole('dialog', { name: 'Bildirimler' })
+  await expect(list.locator('.notice')).toHaveCount(3)
+  await expect(list.locator('.notice').first()).toContainText('Ayşe seni tebrik etti')
+  await expect(list.locator('.notice-new')).toHaveCount(2)
+  await list.getByRole('button', { name: /Yeni rozet: Bir hafta/ }).click()
+  await expect(page.locator('.profile-hero').first()).toBeVisible()
+  await expect(bell).toHaveAttribute('aria-label', 'Bildirimler')
+  // Reloaded: still seen, still listed.
+  await page.reload()
+  await expect(bell).toHaveAttribute('aria-label', 'Bildirimler')
 })

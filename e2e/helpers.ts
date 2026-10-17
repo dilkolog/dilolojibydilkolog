@@ -317,3 +317,20 @@ export function guideMarkValues(page: Page): Promise<Record<string, { reviewed?:
       }),
   )
 }
+
+/** Puts notices (the bell's list) into the database, newest first, then reloads so the app reads them. */
+export async function seedNotices(page: Page, notices: { id: string; kind: string; text: string; read?: boolean; target?: string; minutesAgo?: number }[]) {
+  await page.evaluate(
+    (list) =>
+      new Promise<void>((resolve) => {
+        const open = indexedDB.open('kelime-koc')
+        open.onsuccess = () => {
+          const tx = open.result.transaction('meta', 'readwrite')
+          tx.objectStore('meta').put({ key: 'notices', value: list.map((n) => ({ id: n.id, kind: n.kind, text: n.text, read: !!n.read, ...(n.target ? { target: n.target } : {}), at: new Date(Date.now() - (n.minutesAgo ?? 1) * 60_000).toISOString() })) })
+          tx.oncomplete = () => resolve()
+        }
+      }),
+    notices,
+  )
+  await page.reload()
+}

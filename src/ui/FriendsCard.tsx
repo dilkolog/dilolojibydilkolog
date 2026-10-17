@@ -12,6 +12,8 @@ import { showToast } from './toastFeed'
 import { NEW_ART } from './drawnArt'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { FriendLeague } from './FriendLeague'
+import { notify } from './noticeCenter'
+import { friendNotice } from './noticeTexts'
 // A friend's page (the chart, the gifts) is only needed when a name is tapped.
 const FriendSheet = lazy(() => import('./FriendSheet').then((m) => ({ default: m.FriendSheet })))
 
@@ -58,6 +60,8 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       setData(board)
       setFailed(false)
       setInbox(waiting)
+      // Each message is also a notice (the bell), once.
+      for (const m of waiting) void notify(friendNotice(m, m.from.name))
     } catch {
       setFailed(true)
     }

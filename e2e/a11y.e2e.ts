@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, startWithSamples } from './helpers'
+import { approveAccount, clippedContent, contrastProblems, openScreen, playSession, SCREENS, seedGuideMarks, seedNotices, startWithSamples } from './helpers'
 
 /**
  * Automated accessibility check (axe-core, WCAG 2.2 A/AA) on every main screen, a session question
@@ -1112,3 +1112,16 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
 
 
 
+
+test('the notice bell: its list passes the accessibility check', async ({ page }) => {
+  await startWithSamples(page)
+  await seedNotices(page, [
+    { id: 'badge|streak-7', kind: 'badge', text: 'Yeni rozet: Bir hafta', target: 'profile', minutesAgo: 3 },
+    { id: 'sync|1', kind: 'sync', text: 'Diğer cihazlarından: 3 yeni kelime.', read: true, minutesAgo: 600 },
+  ])
+  const bell = page.getByRole('button', { name: /^Bildirimler/ }).first()
+  await bell.click()
+  await expect(page.getByRole('dialog', { name: 'Bildirimler' })).toContainText('Yeni rozet: Bir hafta')
+  expect(await scan(page, 'notice-bell')).toEqual([])
+  expect(await contrastProblems(page)).toEqual([])
+})
