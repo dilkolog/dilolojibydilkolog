@@ -133,6 +133,9 @@ test('verb lab: pick a verb and a tense, learn, practise, compare, and the pract
   await bar.getByRole('button', { name: 'Passé composé' }).click()
   await expect(main.locator('.lab-forms')).toContainText('avons parlé')
   await bar.getByRole('button', { name: /Diğer/ }).click()
+  // The tenses already shown as buttons are not listed again.
+  await expect(page.getByRole('menuitem', { name: /Passé composé/ })).toHaveCount(0)
+  await expect(page.getByRole('menuitem', { name: /Imparfait/ })).toHaveCount(0)
   await page.getByRole('menuitem', { name: /Plus-que-parfait/ }).click()
   await expect(main.locator('.lab-forms')).toContainText('avions parlé')
   await page.locator('body').click({ position: { x: 5, y: 5 } })

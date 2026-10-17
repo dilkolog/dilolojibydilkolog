@@ -35,14 +35,37 @@ export const INTRO_XP = 3
 /** A run of correct answers breaks after a wrong one or this long a pause. */
 export const COMBO_GAP_MS = 10 * 60_000
 
+/** Recall chance below which a right answer saved a word about to be forgotten (the daily plan's FORGOTTEN_R). */
+export const RESCUE_R = 0.7
+/** Flat XP for such an answer: what spaced repetition is for. */
+export const RESCUE_XP = 3
+/** A word answered wrong this often (over at least `HARD_MIN_REVIEWS` answers) is a hard one: right answers weigh more. */
+export const HARD_WRONG_SHARE = 0.4
+export const HARD_MIN_REVIEWS = 4
+export const HARD_FACTOR = 1.2
+/** Answers in one day after which each earns less: a long grind builds memory slower than a rested short session. */
+export const DAY_SOFT_CAP = 150
+export const DAY_HARD_CAP = 300
+/** XP for the first real answers of a day after a few days away. */
+export const COMEBACK_GAP_DAYS = 3
+export const COMEBACK_MIN_ANSWERS = 5
+export const COMEBACK_XP = 10
+
 export interface XpInput {
   exerciseType: ExerciseType
   verdict: Verdict
   hintsUsed: number
   responseMs: number
   mode: ReviewMode
-  /** Correct answers in a row before this one. */
+  /** The run before this one (see `nextCombo`). */
   combo: number
+  /** The word's recall chance before the answer; 0 or missing for a first meeting. */
+  retrievability?: number
+  /** The word's earlier answers and how many of them were wrong (the word's own counters). */
+  wordReviews?: number
+  wordWrong?: number
+  /** Answers already given today, of any kind. */
+  answersToday?: number
 }
 
 export function comboMultiplier(combo: number): number {
@@ -52,14 +75,41 @@ export function comboMultiplier(combo: number): number {
   return 1
 }
 
+/**
+ * The run after an answer. Right keeps it going; a wrong answer halves it instead of ending it (a long run is
+ * not lost to one slip), and a wrong answer on a short run still ends it. Introductions do not count.
+ */
+export const nextCombo = (combo: number, verdict: Verdict): number => (verdict === 'wrong' ? Math.floor(combo / 2) : combo + 1)
+
+/** Whether a word has been missed often enough to count as a hard one. */
+export const isHardWord = (reviews = 0, wrong = 0): boolean => reviews >= HARD_MIN_REVIEWS && wrong / reviews >= HARD_WRONG_SHARE
+
+/** What a day's answers past the soft and hard caps are worth: half, then a quarter. */
+export const fatigueFactor = (answersToday = 0): number => (answersToday >= DAY_HARD_CAP ? 0.25 : answersToday >= DAY_SOFT_CAP ? 0.5 : 1)
+
 export function xpForAnswer(a: XpInput): number {
   if (a.verdict === 'wrong') return a.mode === 'practice' ? 0 : 1
   const base = BASE_XP[a.exerciseType] * (a.verdict === 'near' ? 0.5 : 1)
   const hintFactor = Math.max(0.25, 1 - 0.25 * a.hintsUsed)
   const meta = EXERCISES[a.exerciseType]
   const fast = meta.input === 'typed' && a.hintsUsed === 0 && a.responseMs < meta.expectedMs * 0.5 ? 2 : 0
-  const xp = (base * hintFactor + fast) * comboMultiplier(a.combo) * (a.mode === 'practice' ? 0.3 : 1)
-  return Math.max(1, Math.round(xp))
+  const hard = isHardWord(a.wordReviews, a.wordWrong) ? HARD_FACTOR : 1
+  const xp = (base * hintFactor * hard + fast) * comboMultiplier(a.combo) * (a.mode === 'practice' ? 0.3 : 1) * fatigueFactor(a.answersToday)
+  const rescued = a.mode === 'normal' && a.verdict === 'correct' && a.hintsUsed === 0 && !!a.retrievability && a.retrievability > 0 && a.retrievability < RESCUE_R
+  return Math.max(1, Math.round(xp)) + (rescued ? RESCUE_XP : 0)
+}
+
+/** The days a study streak was picked up again after `COMEBACK_GAP_DAYS` or more away, with the bonus: real answers only, a few of them. */
+export function comebackBonus(events: readonly ReviewEvent[]): Map<string, number> {
+  const perDay = new Map<string, number>()
+  for (const e of events) if (e.mode === 'normal') perDay.set(localDate(e.timestamp), (perDay.get(localDate(e.timestamp)) ?? 0) + 1)
+  const days = [...perDay.keys()].sort()
+  const bonus = new Map<string, number>()
+  for (let i = 1; i < days.length; i++) {
+    const gap = Math.round((new Date(`${days[i]}T12:00:00`).getTime() - new Date(`${days[i - 1]}T12:00:00`).getTime()) / 86_400_000)
+    if (gap >= COMEBACK_GAP_DAYS && perDay.get(days[i])! >= COMEBACK_MIN_ANSWERS) bonus.set(days[i], COMEBACK_XP)
+  }
+  return bonus
 }
 
 export interface XpSummary {
@@ -75,28 +125,50 @@ export function computeXp(events: readonly ReviewEvent[], introductions: readonl
   const sorted = [...events].sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
   const byDay = new Map<string, number>()
   const add = (d: Date, xp: number) => byDay.set(localDate(d), (byDay.get(localDate(d)) ?? 0) + xp)
+  // `combo` is the run that multiplies XP (a slip halves it); `run` is the strict streak the badges count.
   let combo = 0
+  let run = 0
   let maxCombo = 0
   let last = 0
   let total = 0
+  const answersOn = new Map<string, number>()
+  const words = new Map<string, { reviews: number; wrong: number }>()
   for (const e of sorted) {
-    if (e.timestamp.getTime() - last > COMBO_GAP_MS) combo = 0
+    if (e.timestamp.getTime() - last > COMBO_GAP_MS) combo = run = 0
     last = e.timestamp.getTime()
-    const xp = xpForAnswer({ exerciseType: e.exerciseType, verdict: e.verdict, hintsUsed: e.hintsUsed, responseMs: e.responseMs, mode: e.mode, combo })
+    const day = localDate(e.timestamp)
+    const word = words.get(e.entryId) ?? { reviews: 0, wrong: 0 }
+    const xp = xpForAnswer({
+      exerciseType: e.exerciseType,
+      verdict: e.verdict,
+      hintsUsed: e.hintsUsed,
+      responseMs: e.responseMs,
+      mode: e.mode,
+      combo,
+      retrievability: e.retrievabilityBefore,
+      wordReviews: word.reviews,
+      wordWrong: word.wrong,
+      answersToday: answersOn.get(day) ?? 0,
+    })
+    answersOn.set(day, (answersOn.get(day) ?? 0) + 1)
     total += xp
     add(e.timestamp, xp)
     if (e.mode === 'normal') {
-      combo = e.verdict === 'wrong' ? 0 : combo + 1
-      maxCombo = Math.max(maxCombo, combo)
+      combo = nextCombo(combo, e.verdict)
+      run = e.verdict === 'wrong' ? 0 : run + 1
+      maxCombo = Math.max(maxCombo, run)
+      words.set(e.entryId, { reviews: word.reviews + 1, wrong: word.wrong + (e.verdict === 'wrong' ? 1 : 0) })
     }
   }
   for (const d of introductions) {
     total += INTRO_XP
     add(d, INTRO_XP)
   }
-  for (const [day, xp] of questBonus(events, introductions)) {
-    total += xp
-    byDay.set(day, (byDay.get(day) ?? 0) + xp)
+  for (const bonus of [questBonus(events, introductions), comebackBonus(events)]) {
+    for (const [day, xp] of bonus) {
+      total += xp
+      byDay.set(day, (byDay.get(day) ?? 0) + xp)
+    }
   }
   return { total, today: byDay.get(localDate(now)) ?? 0, maxCombo, byDay }
 }

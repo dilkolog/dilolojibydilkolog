@@ -28,6 +28,7 @@ export function TensePicker({
   onPick,
   available,
   label,
+  exclude = [],
   buttonClassName = 'btn btn-quiet lab-tense-btn',
 }: {
   language: LabLanguage
@@ -36,6 +37,8 @@ export function TensePicker({
   available: readonly Tense[]
   /** The button's text instead of the tense's name (e.g. "Diğer zamanlar" next to the core ones). */
   label?: string
+  /** Tenses left out of the menu (the ones already shown as buttons next to it). */
+  exclude?: readonly Tense[]
   buttonClassName?: string
 }) {
   return (
@@ -49,7 +52,7 @@ export function TensePicker({
       buttonClassName={buttonClassName} label="Zaman seç" kind="menu" align="start">
       {(close) =>
         MOODS[language].map((m) => {
-          const own = m.tenses.filter((t) => available.includes(t))
+          const own = m.tenses.filter((t) => available.includes(t) && !exclude.includes(t))
           if (!own.length) return null
           return (
             <div key={m.label} role="group" aria-label={m.label} className="lab-mood">
