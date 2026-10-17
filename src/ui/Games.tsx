@@ -19,6 +19,7 @@ import { loadBackItems } from '../data/backItems'
 import { loopItems } from '../engine/backTranslation'
 import { ArticleDrill } from './ArticleDrill'
 import { GrammarPractice } from './games/GrammarPractice'
+import { DuelGame } from './games/DuelGame'
 import { SpotErrorGame } from './games/SpotErrorGame'
 import { SentenceRewriteGame } from './games/SentenceRewriteGame'
 import { CollocationsGame } from './games/CollocationsGame'
@@ -160,6 +161,7 @@ export function GamesScreen(
     if (game === 'flow') return <FlowRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'traps') return <TrapRound language={p.language} onExit={() => setGame(null)} />
     if (game === 'reflex') return <ReflexRound language={p.language} onExit={() => setGame(null)} />
+    if (game === 'duel') return <DuelGame language={p.language} onExit={() => setGame(null)} />
     if (game === 'grammar') return <GrammarPractice language={p.language} initialTopic={p.initialTopic} onLesson={p.onOpenLesson} onExit={() => setGame(null)} />
     if (game === 'spot-error') return <SpotErrorGame language={p.language} best={records[`spot-error:${p.language}`]} recordKey={`spot-error:${p.language}`} onExit={() => setGame(null)} />
     if (game === 'rewrite') return <SentenceRewriteGame language={p.language} best={records[`rewrite:${p.language}`]} recordKey={`rewrite:${p.language}`} onExit={() => setGame(null)} />
@@ -234,8 +236,9 @@ export function GamesScreen(
   const trapCard: GameCard = { id: 'traps', emoji: '⚠️', name: 'Tuzak kelimeler', text: 'Başka bir kelimeye benzeyip başka şey diyenler: gerçek anlamı seç.', status: `${trapWords.filter((t) => t.language === p.language).length} kelime` }
   const registerCard: GameCard = { id: 'register', emoji: '🎭', name: 'Kayıt farkı', text: 'Sokakta, standart ve resmî: durumu oku, ortama uyan söyleyişi seç.', status: `${registerItems.filter((r) => r.language === p.language).length} düşünce` }
   const flowCard: GameCard = { id: 'flow', emoji: '🧱', name: 'Metin akışı', text: 'Paragrafta eksik bağlaçları yerleştir: zıtlık, neden, taviz.', status: `${flowItems.filter((r) => r.language === p.language).length} paragraf` }
+  const duelCard: GameCard = { id: 'duel', emoji: '🥊', name: 'Arkadaşla düello', text: 'Aynı 10 soruyu ikiniz de çözün; sonuç bir bağlantıyla gider gelir, hesap gerekmez.', status: 'Bağlantıyla, kendi zamanınızda' }
   const affixCard: GameCard = { id: 'affix', emoji: '🌱', name: 'Ek avı', text: 'Bir kelime ve türevi: hangi ek ya da ön ek getirir? Kelimeyi sen kur.', status: 'Kendi kelimelerinden' }
-  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, trapCard, registerCard, flowCard, affixCard] })
+  if (p.language === 'en') groups.push({ title: 'Dilbilgisi', tone: 'grammar', cards: [grammarCard, spotErrorCard, rewriteCard, collocationsCard, duelCard, trapCard, registerCard, flowCard, affixCard] })
   else
     groups.push({
       title: 'Dilbilgisi',
@@ -245,6 +248,7 @@ export function GamesScreen(
         spotErrorCard,
         rewriteCard,
         collocationsCard,
+        duelCard,
         trapCard,
         registerCard,
         flowCard,

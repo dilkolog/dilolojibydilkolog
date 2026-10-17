@@ -158,7 +158,7 @@ export function Plant({
   )
 }
 
-/** A natural mound of rich garden earth, with a soft shadow into turf and subtle organic crest. */
+/** A natural mound of dark garden earth, softening into turf and subtle organic crest. */
 function Soil({ fine, stage = 1 }: { fine: boolean; stage?: number }) {
   const zoomed = stage <= 0
   const rx = zoomed ? 7.5 : 10.5
@@ -168,7 +168,7 @@ function Soil({ fine, stage = 1 }: { fine: boolean; stage?: number }) {
   const topY = zoomed ? 32.4 : 31.8
   return (
     <g className="plant-soil">
-      {/* Soft ground shadow into turf */}
+      {/* Soft dark ground fading into turf */}
       <ellipse cx="20" cy="36.4" rx={rx + 1.2} ry={ry} fill="#14361e" opacity="0.25" />
       {/* Grounded natural earth mound */}
       <path
