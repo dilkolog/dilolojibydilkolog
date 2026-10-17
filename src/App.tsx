@@ -38,6 +38,7 @@ import { gardenSummary } from './engine/growth'
 
 import { Sidebar, TabBar, type NavMark } from './ui/AppSidebar'
 import { AppScreens, type AppScreensProps } from './AppScreens'
+import { DUEL_INBOX } from './engine/duel'
 import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScreens'
 import { useScreenHistory } from './ui/useScreenHistory'
 import { useLanguageData } from './ui/useLanguageData'
@@ -185,6 +186,19 @@ export default function App() {
     }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready])
+
+  // A duel somebody sent (?duel=…): its code waits for the game, which opens.
+  useEffect(() => {
+    const code = new URLSearchParams(location.search).get('duel')
+    if (!code) return
+    history.replaceState(null, '', location.pathname)
+    try {
+      sessionStorage.setItem(DUEL_INBOX, code)
+    } catch {
+      // No session storage: the code can be pasted into the game.
+    }
+    setScreen({ name: 'games', game: 'duel' })
+  }, [])
 
   // A list somebody shared (?set=…): shown, and added only when confirmed.
   const [incomingSet, setIncomingSet] = useState<string | null>(null)

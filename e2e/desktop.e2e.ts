@@ -2599,3 +2599,22 @@ test('progress report: print opens a popup window and Excel (.xlsx) download con
   expect(sheetFiles.length).toBeGreaterThanOrEqual(7)
   expect(await overflow(page)).toEqual([])
 })
+
+test('duel: a link opens the challenge, the same questions are played, both results show and a reply link is made', async ({ page }) => {
+  await startWithSamples(page)
+  const ids = ['fr-futur_fr-01', 'fr-discours_indirect_fr-01', 'fr-futur_fr-03']
+  const code = Buffer.from(JSON.stringify({ v: 1, l: 'fr', q: ids, f: { n: 'Şule', s: 3, t: 20000 } })).toString('base64url')
+  await page.goto(`/?duel=${code}`)
+  await expect(page.getByText('Şule, Fransızca düellosuna seni çağırıyor')).toBeVisible()
+  expect(page.url()).not.toContain('duel=')
+  await page.getByRole('button', { name: 'Düelloya başla' }).click()
+  for (let i = 0; i < ids.length; i++) {
+    await page.locator('.options .option').first().click()
+    await page.getByRole('button', { name: /^(Devam|Sonucu gör)$/ }).click()
+  }
+  await expect(page.locator('.duel-side')).toHaveCount(2)
+  await expect(page.locator('h1')).toContainText(/Şule kazandı|Kazandın|Berabere/)
+  const link = await page.locator('.duel-link').innerText()
+  expect(link).toContain('?duel=')
+  expect(await overflow(page)).toEqual([])
+})

@@ -2026,3 +2026,10 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .lesson-check-done .lesson-check-score { justify-content: center; }
 .lesson-check-art { height: 7rem; width: auto; }
 .flash-done-art { height: 8rem; width: auto; align-self: center; }
+
+/* Duel: the two results side by side; the winner's side is lifted. */
+.duel-board { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.duel-side { flex: 1 1 10rem; display: grid; gap: 0.25rem; justify-items: center; text-align: center; padding: 1rem; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow); border: 2px solid transparent; }
+.duel-side.duel-won { border-color: var(--lang); background: var(--lang-soft); }
+.duel-score { font-family: var(--serif); font-size: var(--t-2xl); line-height: 1.1; }
+.duel-link { overflow-wrap: anywhere; word-break: break-all; max-height: 4.5rem; overflow: hidden; }
