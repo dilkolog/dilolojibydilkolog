@@ -99,4 +99,13 @@ describe('guideProgress state management', () => {
     expect(marks['por_para']?.flagAt).toBeDefined()
     expect(marks['por_para']?.learned).toBeDefined()
   })
+
+  it('what is done the same day it was marked is what is kept: read, checked, then unmarked', async () => {
+    let marks = markChecked({}, 'por_para', true)
+    await db.saveGuideMarks(marks)
+    marks = markRead(marks, 'por_para', false)
+    await db.saveGuideMarks(marks)
+    expect(await db.getGuideMarks()).toMatchObject({ por_para: { read: '' } })
+    expect(await loadMarks(db)).toMatchObject({ por_para: { read: '' } })
+  })
 })

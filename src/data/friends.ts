@@ -1,3 +1,4 @@
+import { localDate } from '../engine/progress'
 import { accessFetch } from './access'
 
 /**
@@ -87,7 +88,8 @@ export async function loadInbox(): Promise<InboxItem[]> {
   return data.items ?? []
 }
 
-export const sendToFriend = async (code: string, kind: InboxKind, payload?: GiftWord | SentText) => void (await post({ action: 'friends-send', code, kind, ...(payload ? { payload } : {}) }))
+/** `today`: the sender's own date, which the server checks a nudge against (it goes only to a friend who has not studied that day). */
+export const sendToFriend = async (code: string, kind: InboxKind, payload?: GiftWord | SentText, today = localDate(new Date())) => void (await post({ action: 'friends-send', code, kind, today, ...(payload ? { payload } : {}) }))
 export const clearInbox = async (ids: string[]) => void (await post({ action: 'friends-inbox-clear', ids }))
 
 export const publishFriendCard = async (card: FriendCardInput, today: string): Promise<FriendView | undefined> => (await post({ action: 'friends-publish', ...card, today })).me

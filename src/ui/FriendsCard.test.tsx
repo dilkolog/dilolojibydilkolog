@@ -23,6 +23,12 @@ afterEach(() => {
   localStorage.clear()
 })
 
+/** Waits until something is there (a friend's page and the gift code are loaded when first needed). */
+async function until(done: () => boolean, ms = 3000) {
+  const end = Date.now() + ms
+  while (!done() && Date.now() < end) await act(() => new Promise((r) => setTimeout(r, 10)))
+}
+
 async function mount(approved: boolean, friends = [card('BBBBBBBB', 'Veli', 90, 120)], inbox: unknown[] = [], extra: { vocabulary?: VocabularyEntry[]; language?: 'fr'; onChanged?: () => void; onDuel?: () => void } = {}) {
   const calls: { url: string; body?: unknown }[] = []
   vi.stubGlobal('fetch', async (url: string, init?: RequestInit) => {
@@ -116,6 +122,7 @@ describe('FriendsCard', () => {
     const onDuel = vi.fn()
     const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 0, 20)], [], { onDuel })
     await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    await until(() => !!host.querySelector('.friend-sheet'))
     const sheet = host.querySelector('.friend-sheet')!
     expect(sheet.textContent).toContain('Veli')
     expect(sheet.textContent).toContain('bugün henüz çalışmadı')
@@ -135,6 +142,7 @@ describe('FriendsCard', () => {
   it('no nudge for a friend who already studied today', async () => {
     const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)])
     await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    await until(() => !!host.querySelector('.friend-sheet'))
     const nudge = [...host.querySelectorAll('.friend-sheet button')].find((b) => b.textContent?.includes('Bugün çalıştı')) as HTMLButtonElement
     expect(nudge.disabled).toBe(true)
   })
@@ -143,6 +151,7 @@ describe('FriendsCard', () => {
     const vocabulary = [{ id: 'w1', language: 'fr', lemma: 'maison', pos: 'noun', gender: 'f', senses: [{ gloss: 'ev', examples: [{ text: 'La maison est grande.', translation: 'Ev büyük.' }] }] }] as unknown as VocabularyEntry[]
     const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 0, 20)], [], { vocabulary, language: 'fr' })
     await act(async () => (host.querySelector('.friends-name-btn') as HTMLButtonElement).click())
+    await until(() => !!host.querySelector('.friend-sheet'))
     await act(async () => ([...host.querySelectorAll('.friend-sheet button')].find((b) => b.textContent?.includes('Kelime hediye et')) as HTMLButtonElement).click())
     const input = host.querySelector('.friend-give input') as HTMLInputElement
     const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set
@@ -166,7 +175,7 @@ describe('FriendsCard', () => {
     const { host, calls } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [{ id: 'g1', kind: 'gift', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z', gift }], { onChanged })
     expect(host.querySelector('.friends-inbox')!.textContent).toContain('Veli sana bir kelime gönderdi')
     await act(async () => ([...host.querySelectorAll('.friends-inbox button')].find((b) => b.textContent === 'Ekle') as HTMLButtonElement).click())
-    await act(() => new Promise((r) => setTimeout(r, 30)))
+    await until(() => host.querySelectorAll('.friends-inbox li').length === 0)
     const words = await db.vocabulary.toArray()
     expect(words.map((w) => w.lemma)).toContain('fenêtre')
     expect(onChanged).toHaveBeenCalled()
@@ -178,10 +187,21 @@ describe('FriendsCard', () => {
     const text = { language: 'fr', title: 'Le chat', body: 'Le chat dort sur le canapé. Il fait beau aujourd’hui et le soleil brille.' }
     const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [{ id: 't1', kind: 'text', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z', text }])
     await act(async () => ([...host.querySelectorAll('.friends-inbox button')].find((b) => b.textContent === 'Kütüphaneme ekle') as HTMLButtonElement).click())
-    await act(() => new Promise((r) => setTimeout(r, 30)))
+    await until(() => host.querySelectorAll('.friends-inbox li').length === 0)
     const library = await db.getLibrary('fr')
     const added = library.find((t) => t.title === 'Le chat')
     expect(added?.source).toContain('Veli')
     expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(0)
+  })
+
+  it('a text that cannot be put in the library is told so and stays in the inbox', async () => {
+    const save = vi.spyOn(db, 'saveText').mockRejectedValue(new Error('full'))
+    const text = { language: 'fr', title: 'Le chat', body: 'Le chat dort sur le canapé. Il fait beau aujourd’hui et le soleil brille.' }
+    const { host } = await mount(true, [card('BBBBBBBB', 'Veli', 90, 120)], [{ id: 't1', kind: 'text', from: { code: 'BBBBBBBB', name: 'Veli' }, at: '2026-10-15T09:00:00Z', text }])
+    await act(async () => ([...host.querySelectorAll('.friends-inbox button')].find((b) => b.textContent === 'Kütüphaneme ekle') as HTMLButtonElement).click())
+    await until(() => save.mock.calls.length > 0)
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    expect(host.querySelectorAll('.friends-inbox li')).toHaveLength(1)
+    save.mockRestore()
   })
 })

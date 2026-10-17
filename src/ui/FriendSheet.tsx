@@ -54,7 +54,7 @@ export function FriendSheet({ friend, name, today, vocabulary = [], language, on
         setQuery('')
       }
     } catch (e) {
-      showToast(e instanceof FriendsError && e.reason === 'not_friends' ? 'Arkadaşlık henüz karşılıklı değil.' : 'Gönderilemedi, biraz sonra yine dene.', undefined, 5000, 'info')
+      showToast(e instanceof FriendsError && e.reason === 'not_friends' ? 'Arkadaşlık henüz karşılıklı değil.' : e instanceof FriendsError && e.reason === 'studied' ? 'Bugün zaten çalışmış, dürtmeye gerek yok.' : 'Gönderilemedi, biraz sonra yine dene.', undefined, 5000, 'info')
     } finally {
       setBusy(null)
     }

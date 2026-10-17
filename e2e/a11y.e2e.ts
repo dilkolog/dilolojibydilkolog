@@ -1085,6 +1085,7 @@ test('new games (Spot Error, Sentence Rewrite, Collocations), FriendsCard, and l
   await expect(page.locator('.game-intro')).toBeVisible()
   await scanAllThemes('collocations-intro')
   await page.getByRole('button', { name: /Başla/ }).click()
+  await expect(page.locator('.colloc-game')).toBeVisible()
   await expect(page.locator('.colloc-option-btn').first()).toBeVisible()
   await scanAllThemes('collocations-play-screen')
   await page.locator('button.link', { hasText: '✕ Çıkış' }).click()

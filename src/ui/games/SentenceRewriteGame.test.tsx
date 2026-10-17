@@ -53,8 +53,9 @@ describe('SentenceRewriteGame', () => {
     expect(keywordBadge).toBeTruthy()
     const kw = keywordBadge?.textContent?.trim()
 
-    // Find active question
-    const q = SENTENCE_REWRITES.find((s) => s.language === 'en' && s.keyword === kw)
+    // Find the active question by its sentence (several questions share a keyword, and the round is random).
+    const source = host.querySelector('.rewrite-source-sentence')?.textContent?.trim()
+    const q = SENTENCE_REWRITES.find((s) => s.language === 'en' && s.keyword === kw && s.sourceSentence === source)
     expect(q).toBeTruthy()
 
     // Type the correct answer
@@ -69,6 +70,8 @@ describe('SentenceRewriteGame', () => {
 
     // Submit form
     await click(byText(host, 'Kontrol Et'))
+    // The answer is judged and logged in a few steps: a fixed wait is too short on a loaded machine.
+    for (let i = 0; i < 50 && !host.textContent?.includes('Harika! Tam dönüşüm'); i++) await wait()
 
     expect(host.textContent).toContain('Harika! Tam dönüşüm')
     expect(host.textContent).toContain(q!.explanation)

@@ -89,3 +89,15 @@ describe('lesson flags', () => {
     expect(c.c).toEqual({ read: '' })
   })
 })
+
+describe('what was just done on this device', () => {
+  it('wins on the same day whatever the step: unmarking and a failed check the day they were passed', () => {
+    const stored: GuideMarks = { x: { read: '2026-10-09', learned: '2026-10-09', reviewed: '2026-10-09', step: 1 } }
+    // Across devices the further on wins on a tie; for what the learner just did here, the new mark does.
+    expect(mergeMarks(stored, { x: { read: '', off: '2026-10-09' } }).x?.read).toBe('2026-10-09')
+    expect(mergeMarks(stored, { x: { read: '', off: '2026-10-09' } }, { newest: true }).x).toMatchObject({ read: '', off: '2026-10-09' })
+    expect(mergeMarks(stored, { x: { read: '2026-10-09', learned: '2026-10-09', reviewed: '2026-10-09', step: 0 } }, { newest: true }).x?.step).toBe(0)
+    // A day earlier is still older, whatever the flag.
+    expect(mergeMarks(stored, { x: { read: '2026-10-01' } }, { newest: true }).x?.step).toBe(1)
+  })
+})

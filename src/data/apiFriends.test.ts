@@ -160,5 +160,33 @@ describe('/api/access: friends inbox and days', () => {
     expect(gifts).toHaveLength(5)
     expect(gifts[0].gift!.lemma).toBe('mot7')
   })
-})
 
+  it('a nudge goes only to a friend who has not studied that day (by the sender\'s date)', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN, { days: { '2026-10-15': 80 } })
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    const nudge = (today?: string) => post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'nudge', ...(today ? { today } : {}) })
+    expect(await (await nudge('2026-10-15')).json()).toEqual({ error: 'studied' })
+    expect(((await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: unknown[] }).items).toEqual([])
+    // Another day for the sender (an hour ahead of the server's): nobody has studied it yet.
+    expect((await nudge('2026-10-16')).status).toBe(200)
+    // A cheer is not a nudge: it goes whatever the day was.
+    expect((await post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'cheer' })).status).toBe(200)
+  })
+
+  it('messages sent at the same moment are all kept, and a clearing does not bring back what it took out', async () => {
+    const aliCode = await publish(ALI, ALI_TOKEN)
+    const veliCode = await publish(VELI, VELI_TOKEN)
+    await post(as(VELI, VELI_TOKEN), { action: 'friends-add', code: aliCode })
+    const gift = (n: number) => ({ language: 'fr', lemma: `mot${n}`, meaning: 'sözcük' })
+    await Promise.all([1, 2, 3, 4].map((n) => post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload: gift(n) })))
+    const first = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string; gift: { lemma: string } }[] }
+    expect(first.items.map((i) => i.gift.lemma).sort()).toEqual(['mot1', 'mot2', 'mot3', 'mot4'])
+    // One is cleared while another arrives.
+    await Promise.all([post(as(VELI, VELI_TOKEN), { action: 'friends-inbox-clear', ids: [first.items[0].id] }), post(as(ALI, ALI_TOKEN), { action: 'friends-send', code: veliCode, kind: 'gift', payload: gift(5) })])
+    const last = (await (await inbox(as(VELI, VELI_TOKEN))).json()) as { items: { id: string; gift: { lemma: string } }[] }
+    expect(last.items).toHaveLength(4)
+    expect(last.items.some((i) => i.id === first.items[0].id)).toBe(false)
+    expect(last.items.some((i) => i.gift.lemma === 'mot5')).toBe(true)
+  })
+})

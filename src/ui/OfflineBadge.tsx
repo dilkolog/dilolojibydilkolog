@@ -24,7 +24,7 @@ export function OfflineBadge() {
   return (
     <span className="offline-badge" role="status" aria-live="polite" title="İnternet bağlantısı yok">
       <CloudOffIcon size={14} />
-      Çevrimdışı
+      <span className="offline-label">Çevrimdışı</span>
     </span>
   )
 }

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, seedGuideMarks, startWithSamples } from './helpers'
+import { clippedContent, contrastProblems, finishSession, playSession, openScreen, openVerbLab, overflow, SCREENS, guideMarkTopics, guideMarkValues, seedGuideMarks, startWithSamples } from './helpers'
 
 test('first run: four steps, each fits the screen, and the choices are kept', async ({ page }) => {
   await page.goto('/')
@@ -439,6 +439,8 @@ test('the profile can be dressed up: banner, frame, interests, a goal; locked st
   const found: string[] = []
   for (const theme of ['light', 'dark']) {
     await page.evaluate((t) => (document.documentElement.dataset.theme = t), theme)
+    // Colours ease from one theme to the other (a row's background fades): measure once they have settled.
+    await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running' || a.effect?.getComputedTiming().iterations === Infinity))
     for (const c of await contrastProblems(page)) found.push(`${theme}: ${c}`)
   }
   expect(found).toEqual([])
@@ -1389,8 +1391,10 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   // "Şimdi değil" (X) dismisses the card
   await nudge.getByRole('button', { name: 'Şimdi değil' }).click()
   await expect(nudge).toHaveCount(0)
+  // "Not now" saves that the lesson was put off a moment later: wait for it, or it would land on top of the next seeding.
+  await expect.poll(async () => (await guideMarkValues(page)).basics_es_hay_estar?.reviewed).not.toBe('2020-01-01')
 
-  // Put overdue mark back in localStorage to test starting the review
+  // Put the overdue mark back in the database to test starting the review
   await seedGuideMarks(page, { basics_es_hay_estar: { read: '2020-01-01', learned: '2020-01-01', reviewed: '2020-01-01', step: 0 } })
   await page.reload()
   await openScreen(page, 'Bugün')

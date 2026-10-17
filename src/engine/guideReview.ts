@@ -70,8 +70,8 @@ export const isRead = (mark: LessonMark | undefined): boolean => !!mark?.read
 /** The latest day anything happened to the lesson (reading, checking, unmarking; the flag has its own day). */
 const lastTouched = (m: LessonMark): string => [m.read, m.learned, m.reviewed, m.off].filter((d): d is string => !!d).sort().pop() ?? ''
 
-/** The marks of two devices (or the stored and the new ones): per lesson the one touched last; on the same day the further on, else `b`. */
-export function mergeMarks(a: GuideMarks | undefined, b: GuideMarks | undefined): GuideMarks {
+/** The marks of two devices (or the stored and the new ones): per lesson the one touched last; on the same day the further on, else `b`. `newest`: `b` is what the learner just did on this device, so on the same day it wins whatever the step (an unmarking, or a failed check, the same day as the mark it undoes). */
+export function mergeMarks(a: GuideMarks | undefined, b: GuideMarks | undefined, { newest = false }: { newest?: boolean } = {}): GuideMarks {
   const out: GuideMarks = {}
   for (const topic of new Set([...Object.keys(a ?? {}), ...Object.keys(b ?? {})])) {
     const x = a?.[topic]
@@ -85,7 +85,7 @@ export function mergeMarks(a: GuideMarks | undefined, b: GuideMarks | undefined)
     const dx = lastTouched(x)
     const dy = lastTouched(y)
     // The same day: the further on wins, else the later argument (what was just done to the lesson).
-    const winner = dx !== dy ? (dx > dy ? x : y) : (x.step ?? -1) > (y.step ?? -1) ? x : y
+    const winner = dx !== dy ? (dx > dy ? x : y) : !newest && (x.step ?? -1) > (y.step ?? -1) ? x : y
     const { flag: _f, flagAt: _a, ...rest } = winner
     out[topic] = { ...rest, ...(flagFrom.flagAt ? { flagAt: flagFrom.flagAt } : {}), ...(flagFrom.flag ? { flag: flagFrom.flag } : {}) }
   }
