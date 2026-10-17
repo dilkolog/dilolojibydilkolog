@@ -88,15 +88,15 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `preterito_imperfecto` | A2 | Pretérito ve imperfecto | 10 | 15 |
 | `comparativos_es` | A2 | Karşılaştırma ve üstünlük | 10 | 15 |
 | `imperativo_es` | A2 | Emir kipi ve zamirler | 10 | 15 |
-| `subjuntivo` | B1 | Subjuntivo | 4 | 20 |
-| `por_para` | B1 | Por ve para | 4 | 19 |
-| `condicionales` | B1 | Şart cümleleri (si) | 3 | 20 |
-| `perifrasis` | B1 | Perífrasis verbales | 3 | 18 |
-| `pronombres_atonos` | B1 | Zamirler: lo / la / le / se lo | 3 | 15 |
-| `relativos_es` | B1 | İlgi zamirleri (que / quien / cuyo / donde) | 3 | 15 |
-| `conn_es` | B1 | Bağlaçlar (fikrin yönü) | 3 | 11 |
-| `prep_es` | B1 | Fiil ve edat (de / en / a / con) | 3 | 24 |
-| `colloc_es` | B1 | Eşdizimler (hangi fiil?) | 3 | 19 |
+| `subjuntivo` | B1 | Subjuntivo | 11 | 20 |
+| `por_para` | B1 | Por ve para | 11 | 19 |
+| `condicionales` | B1 | Şart cümleleri (si) | 10 | 20 |
+| `perifrasis` | B1 | Perífrasis verbales | 10 | 18 |
+| `pronombres_atonos` | B1 | Zamirler: lo / la / le / se lo | 10 | 15 |
+| `relativos_es` | B1 | İlgi zamirleri (que / quien / cuyo / donde) | 10 | 15 |
+| `conn_es` | B1 | Bağlaçlar (fikrin yönü) | 10 | 11 |
+| `prep_es` | B1 | Fiil ve edat (de / en / a / con) | 10 | 24 |
+| `colloc_es` | B1 | Eşdizimler (hangi fiil?) | 10 | 19 |
 | `se_pasivo` | B2 | Se pasivo ve impersonal | 3 | 18 |
 | `estilo_indirecto` | B2 | Dolaylı anlatım (estilo indirecto) | 3 | 15 |
 | `basics_es_pronombres` | A1 | Kişi zamirleri (yo, mí, conmigo) | 10 | 0 |
@@ -108,10 +108,10 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_perfecto_indefinido` | A2 | He hecho mu, hice mi? Zaman işaretleri | 10 | 0 |
 | `basics_es_futuro` | A2 | Gelecek: ir a, futuro simple ve tahmin | 10 | 0 |
 | `basics_es_hace_desde` | A2 | Süre: hace, desde, desde hace, llevar | 10 | 0 |
-| `basics_es_pluscuamperfecto` | B1 | Miş'li geçmiş: había hecho (pluscuamperfecto) | 3 | 0 |
-| `basics_es_gerundio` | B1 | Gerundio ve İngilizce -ing tuzakları | 3 | 0 |
-| `basics_es_orden_pronombres` | B1 | Zamir sırası, kazara se ve leísmo | 3 | 0 |
-| `basics_es_adverbios_mente` | B1 | -mente ile zarflar | 3 | 0 |
+| `basics_es_pluscuamperfecto` | B1 | Miş'li geçmiş: había hecho (pluscuamperfecto) | 10 | 0 |
+| `basics_es_gerundio` | B1 | Gerundio ve İngilizce -ing tuzakları | 10 | 0 |
+| `basics_es_orden_pronombres` | B1 | Zamir sırası, kazara se ve leísmo | 10 | 0 |
+| `basics_es_adverbios_mente` | B1 | -mente ile zarflar | 10 | 0 |
 | `basics_es_imperfecto_subjuntivo` | B2 | İmperfecto de subjuntivo (-ra / -se) | 3 | 0 |
 | `basics_es_finales_concesivas` | B2 | Amaç ve taviz: para que, aunque | 3 | 0 |
 | `basics_es_subjuntivo_compuesto` | C1 | Bileşik subjuntivo: haya hecho, hubiera hecho | 3 | 0 |
@@ -128,9 +128,9 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_a_personal` | A1 | Kişisel 'A' edatı: Busco a mi hermano vs Busco mi libro | 10 | 24 |
 | `basics_es_gustar_familia` | A2 | Gustar ailesi fiilleri: encantar, doler, importar, parecer | 10 | 15 |
 | `basics_es_pronombres_dobles_se_lo` | A2 | Çift zamirler ve 'se lo' kuralı: le lo değil se lo | 10 | 15 |
-| `basics_es_subjuntivo_deseo_sentimiento` | B1 | İstek, duygu ve şüphede subjuntivo: quiero que, me alegra que | 3 | 20 |
-| `basics_es_para_que_subjuntivo` | B1 | Amaç cümlelerinde para vs para que: mastar mı subjuntivo mu? | 3 | 20 |
-| `basics_es_perifrasis_inicio_fin` | B1 | Eylemin aşamaları: ponerse a, dejar de, acabar de, seguir | 3 | 18 |
+| `basics_es_subjuntivo_deseo_sentimiento` | B1 | İstek, duygu ve şüphede subjuntivo: quiero que, me alegra que | 10 | 20 |
+| `basics_es_para_que_subjuntivo` | B1 | Amaç cümlelerinde para vs para que: mastar mı subjuntivo mu? | 10 | 20 |
+| `basics_es_perifrasis_inicio_fin` | B1 | Eylemin aşamaları: ponerse a, dejar de, acabar de, seguir | 10 | 18 |
 | `basics_es_aunque_indicativo_subjuntivo` | B2 | Aunque ile indicativo vs subjuntivo nüansı: Biliyorum vs Bilmiyorum | 3 | 20 |
 | `basics_es_si_condicionales_subjuntivo` | B2 | Si ile şart cümleleri ve imparfe subjuntivo formülü | 3 | 20 |
 | `basics_es_que_quien_el_que` | B2 | İlgi zamirleri incelikleri: que, quien, el que, lo que, cuyo | 3 | 15 |
@@ -139,8 +139,8 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_pedir_preguntar` | A2 | Pedir mi, preguntar mı? (İstemek ve sormak ayrımı) | 10 | 0 |
 | `basics_es_llevar_traer_ir_venir` | A2 | Hareket ve taşıma yönü: ir / venir ve llevar / traer | 10 | 0 |
 | `basics_es_indefinidos_algun_ningun` | A2 | Belgisiz sözcükler ve kısalma (apócope): algún, ningún, cualquier | 10 | 0 |
-| `basics_es_preposiciones_tiempo_lugar` | B1 | Zaman ve yer edatları: en, a, de, desde, hasta, hacia, entre | 3 | 24 |
-| `basics_es_adjetivos_cambio_sentido` | B1 | İsmin önünde ve arkasında anlamı değişen sıfatlar (gran vs grande) | 3 | 0 |
+| `basics_es_preposiciones_tiempo_lugar` | B1 | Zaman ve yer edatları: en, a, de, desde, hasta, hacia, entre | 10 | 24 |
+| `basics_es_adjetivos_cambio_sentido` | B1 | İsmin önünde ve arkasında anlamı değişen sıfatlar (gran vs grande) | 10 | 0 |
 | `basics_es_se_accidental` | B2 | Kazara ve istemsiz eylem yapısı: Se me cayó, Se me olvidó (se accidental) | 3 | 18 |
 | `basics_es_como_si_ojala` | B2 | Ojalá ve como si yapıları: gerçek ve gerçek dışı dilekler | 3 | 20 |
 | `basics_es_participio_gerundio_compuesto` | C1 | Bileşik mastar/ulaç ve mutlak yapılar (al haber dicho, dicho esto) | 3 | 0 |
