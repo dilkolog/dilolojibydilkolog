@@ -158,14 +158,14 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_comparatives` | A2 | Karşılaştırma (-er / more, the -est / most) | 10 | 0 |
 | `articles_en` | A2 | Artikeller (a / an / the) | 10 | 15 |
 | `present_perfect` | A2 | Present perfect ve past simple | 10 | 15 |
-| `gerund_infinitive` | B1 | Gerund ve infinitive | 3 | 18 |
-| `conn_en` | B1 | Bağlaçlar (fikrin yönü) | 3 | 12 |
-| `prep_en` | B1 | Fiil, sıfat ve edat | 3 | 24 |
-| `colloc_en` | B1 | Eşdizimler (hangi fiil?) | 3 | 19 |
-| `reported_speech` | B1 | Dolaylı anlatım (reported speech) | 3 | 15 |
-| `modals_en` | B1 | Modal fiiller (must / can’t / should) | 3 | 15 |
-| `passive_en` | B1 | Edilgen yapı (passive) | 3 | 15 |
-| `relatives_en` | B1 | İlgi cümleleri (who / which / whose / where) | 3 | 15 |
+| `gerund_infinitive` | B1 | Gerund ve infinitive | 10 | 18 |
+| `conn_en` | B1 | Bağlaçlar (fikrin yönü) | 10 | 12 |
+| `prep_en` | B1 | Fiil, sıfat ve edat | 10 | 24 |
+| `colloc_en` | B1 | Eşdizimler (hangi fiil?) | 10 | 19 |
+| `reported_speech` | B1 | Dolaylı anlatım (reported speech) | 10 | 15 |
+| `modals_en` | B1 | Modal fiiller (must / can’t / should) | 10 | 15 |
+| `passive_en` | B1 | Edilgen yapı (passive) | 10 | 15 |
+| `relatives_en` | B1 | İlgi cümleleri (who / which / whose / where) | 10 | 15 |
 | `mixed_conditionals` | B2 | Karma şart cümleleri | 3 | 19 |
 | `participle_clauses` | B2 | Participle clauses | 3 | 19 |
 | `inversion` | C1 | Devrik yapı (inversion) | 4 | 20 |
@@ -180,17 +180,17 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_ability` | A2 | Yetenek: can / could / be able to | 10 | 0 |
 | `basics_en_obligation` | A2 | Zorunluluk: have to ve must | 10 | 0 |
 | `basics_en_place_prepositions` | A2 | Yer ve hareket edatları (in / on / at, into, through) | 10 | 0 |
-| `basics_en_conditionals` | B1 | Birinci ve ikinci koşul cümleleri (if / unless) | 3 | 0 |
-| `basics_en_used_to` | B1 | Used to, would, be used to, get used to | 3 | 0 |
-| `basics_en_past_perfect` | B1 | Past perfect (had done) | 3 | 0 |
-| `basics_en_question_tags` | B1 | Soru ekleri (question tags) | 3 | 0 |
+| `basics_en_conditionals` | B1 | Birinci ve ikinci koşul cümleleri (if / unless) | 10 | 0 |
+| `basics_en_used_to` | B1 | Used to, would, be used to, get used to | 10 | 0 |
+| `basics_en_past_perfect` | B1 | Past perfect (had done) | 10 | 0 |
+| `basics_en_question_tags` | B1 | Soru ekleri (question tags) | 10 | 0 |
 | `basics_en_third_conditional` | B2 | Üçüncü koşul ve wish / if only | 3 | 0 |
 | `basics_en_future_perfect` | B2 | Future continuous ve future perfect | 3 | 0 |
 | `basics_en_causative` | B2 | Ettirgen yapı: have / get something done | 3 | 0 |
 | `basics_en_hedging` | C1 | Yazıda bağlama ve temkinli dil (whereas, nonetheless, albeit) | 3 | 0 |
 | `basics_en_present_continuous` | A1 | Şimdiki zaman (present continuous) | 10 | 0 |
-| `basics_en_present_perfect_continuous` | B1 | Present perfect continuous (have been doing) | 3 | 15 |
-| `basics_en_future_continuous` | B1 | Future continuous (will be doing) | 3 | 0 |
+| `basics_en_present_perfect_continuous` | B1 | Present perfect continuous (have been doing) | 10 | 15 |
+| `basics_en_future_continuous` | B1 | Future continuous (will be doing) | 10 | 0 |
 | `basics_en_past_perfect_continuous` | B2 | Past perfect continuous (had been doing) | 3 | 0 |
 | `basics_en_preferences` | B2 | Tercih ve uyarı: would rather / prefer / had better | 3 | 0 |
 | `basics_en_emphasis` | B2 | Vurgu: do / does / did, so / such | 3 | 0 |
@@ -203,8 +203,8 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_register` | C1 | Resmî ve gündelik dil (register) | 3 | 0 |
 | `basics_en_discourse_markers` | C1 | Konuşmada söylem belirleyicileri (actually, anyway, mind you) | 3 | 0 |
 | `basics_en_stative_dynamic` | A2 | Durum ve eylem fiilleri (stative vs dynamic) | 10 | 0 |
-| `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 3 | 15 |
-| `basics_en_causatives_advanced` | B1 | Ettirgen çatı incelikleri: have, get, make, let | 3 | 15 |
+| `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 10 | 15 |
+| `basics_en_causatives_advanced` | B1 | Ettirgen çatı incelikleri: have, get, make, let | 10 | 15 |
 | `basics_en_cleft_variations` | B2 | Vurgu cümleleri: it-clefts ve wh-clefts | 3 | 20 |
 | `basics_en_double_comparatives` | B2 | Paralel karşılaştırma: the more ... the better | 3 | 0 |
 | `basics_en_prepositional_verbs` | B2 | Üç parçalı phrasal verb'ler ve ikili edatlar | 3 | 24 |
@@ -215,9 +215,9 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_make_do_have_take` | A2 | Temel fiil kalıpları: make, do, have ve take ayrımı | 10 | 19 |
 | `basics_en_say_tell_speak_talk` | A2 | Konuşma ve anlatma fiilleri: say, tell, speak, talk | 10 | 15 |
 | `basics_en_some_any_no_every` | A2 | Belgisiz zamirler ve ikili uyum: both, either, neither, none | 10 | 0 |
-| `basics_en_so_such_too_enough` | B1 | Derece ve sonuç yapıları: so ... that, such ... that, too ... to, enough to | 3 | 0 |
-| `basics_en_indirect_questions` | B1 | Dolaylı sorular ve kibar rica kalıpları (Indirect / Embedded Questions) | 3 | 15 |
-| `basics_en_adjective_order_ed_ing` | B1 | Sıfat dizilimi (OSASCOMP) ve -ed / -ing sıfatları (bored vs boring) | 3 | 0 |
+| `basics_en_so_such_too_enough` | B1 | Derece ve sonuç yapıları: so ... that, such ... that, too ... to, enough to | 10 | 0 |
+| `basics_en_indirect_questions` | B1 | Dolaylı sorular ve kibar rica kalıpları (Indirect / Embedded Questions) | 10 | 15 |
+| `basics_en_adjective_order_ed_ing` | B1 | Sıfat dizilimi (OSASCOMP) ve -ed / -ing sıfatları (bored vs boring) | 10 | 0 |
 | `basics_en_reporting_verbs` | B2 | İleri dolaylı anlatım fiilleri (suggest, insist, accuse, deny, warn...) | 3 | 15 |
 | `basics_en_modals_past_deduction` | B2 | Geçmişe yönelik çıkarım ve pişmanlık modalları (modal + have + V3) | 3 | 15 |
 | `basics_en_correlative_conjunctions` | C1 | Çiftli bağlaçlar ve zaman devrikliği (No sooner ... than, Hardly ... when) | 3 | 20 |
