@@ -526,7 +526,7 @@ test('the YZ screens wait for the owner\'s approval: a visitor is told why, an a
   await expect(card).not.toContainText('onayladığı hesaplara açık')
 })
 
-test('a signed-in account waits for approval: the account card says so, and the owner\'s list asks for a key', async ({ page }) => {
+test('a signed-in account waits for approval: the account card says so, and there is no owner\'s list in the app', async ({ page }) => {
   test.setTimeout(60_000)
   // The server is not reached here (preview would forward /api to the live site): it answers "waiting".
   await page.route((u) => u.pathname === '/api/access', (r) => r.fulfill({ json: { status: 'pending', exists: true, match: true } }))
@@ -548,8 +548,8 @@ test('a signed-in account waits for approval: the account card says so, and the 
   await page.locator('.settings-menu-item', { hasText: 'Hesap' }).click()
   await expect(page.locator('.account-card .status-pill')).toContainText('Onay bekliyor')
   await expect(page.locator('.account-card')).toContainText('site sahibinin onayını bekliyor')
-  await page.locator('summary:visible', { hasText: 'Yönetici: hesap onayları' }).click()
-  await expect(page.getByLabel('Yönetici anahtarı').first()).toBeVisible()
+  // Approvals are handled in Supabase now: no owner's list inside the app.
+  await expect(page.getByText('Yönetici: hesap onayları')).toHaveCount(0)
 })
 
 test('reading: the forms list finds a reflexive compound tense and lights the form\'s sentence in the text', async ({ page }) => {

@@ -132,6 +132,11 @@ export function CommandPalette({
             ref={input}
             className="palette-input"
             placeholder="Kelime ara ya da bir komut yaz…"
+            // Safari's autocorrect bubble ("rehb" → "rehab") rewrote the query under the pointer, so the row aimed at moved away.
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             value={q}
             onChange={(e) => setQ(e.target.value)}
             onKeyDown={(e) => {

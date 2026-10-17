@@ -13,7 +13,6 @@ import { RestorePoints } from './RestorePoints'
 import { ACCOUNT_ART } from './drawnArt'
 import { StatusPicture } from './StatusArt'
 import { SyncSettings } from './SyncSettings'
-import { AdminAccess } from './AdminAccess'
 import { useAccess } from './accessContext'
 import { undoable } from './toastFeed'
 import { GoogleMark } from './GoogleMark'
@@ -140,7 +139,6 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           </li>
         </ul>
         {hasCode && <p className="small muted">Şu an eşitleme koduyla eşitliyorsun; hesaba geçince bu cihazdaki ilerleme hesaba taşınır.</p>}
-        <AdminAccess />
         {!modern && (
           <details className="account-advanced">
             <summary className="small">Hesapsız: eşitleme koduyla eşitle (gelişmiş)</summary>
@@ -198,7 +196,6 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
 
       <AccountManage account={account} identity={identity} onSignOut={() => void signOut()} />
       <RestorePoints />
-      <AdminAccess />
       <AccountDelete account={account} identity={identity} onGone={() => void refresh()} />
     </section>
   )
