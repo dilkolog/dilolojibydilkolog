@@ -101,7 +101,13 @@ describe('lessonOf utilities', () => {
     const asked = new Set(check.map((c) => c.prompt))
     expect(tried.every((t) => !asked.has(t.prompt))).toBe(true)
     expect(tried.every((t) => t.options[t.answer] !== undefined)).toBe(true)
-    const basic = lessonFor('fr', 'basics_fr_articles')!
+    // A lesson with only its own three questions has none to spare; one with extra questions in its pool tries those.
+    const basic = lessonFor('fr', 'basics_fr_etre_avoir')!
     expect(tryFor(basic, checkFor(basic))).toEqual([])
+    const grown = lessonFor('fr', 'basics_fr_articles')!
+    const drawn = checkFor(grown)
+    const spare = tryFor(grown, drawn)
+    expect(spare).toHaveLength(TRY_SIZE)
+    expect(spare.every((t) => !drawn.some((d) => d.prompt === t.prompt))).toBe(true)
   })
 })
