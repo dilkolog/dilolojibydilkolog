@@ -22,6 +22,23 @@ describe('the summary moment', () => {
     await act(async () => root.unmount())
   })
 
+  it('renders xl badge with sparkles on celebration', async () => {
+    vi.useFakeTimers()
+    const el = document.createElement('div')
+    const root = createRoot(el)
+    await act(async () => root.render(<LevelUpBadge from={4} to={5} size="xl" />))
+    expect(el.textContent).toBe('4')
+    expect(el.querySelector('.level-strike-xl')).not.toBeNull()
+    expect(el.querySelector('.level-badge-xl')).not.toBeNull()
+    expect(el.querySelector('.level-sparkles')).toBeNull()
+
+    await act(async () => void vi.advanceTimersByTime(850))
+    expect(el.textContent).toBe('5')
+    expect(el.querySelector('.level-strike.is-up')).not.toBeNull()
+    expect(el.querySelectorAll('.level-sparkle')).toHaveLength(4)
+    await act(async () => root.unmount())
+  })
+
   it('counts the session XP up from zero to what was earned', async () => {
     vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'requestAnimationFrame', 'cancelAnimationFrame', 'performance'] })
     const el = document.createElement('div')

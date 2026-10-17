@@ -1345,13 +1345,15 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await expect(check.getByRole('heading', { name: 'Kendini dene' })).toBeVisible()
 
   for (let i = 0; i < 3; i++) {
-    const prompt = await check.locator('.lesson-check-prompt').textContent()
-    if (prompt?.includes('dónde')) {
+    const prompt = ((await check.locator('.lesson-check-prompt').textContent()) || '').toLowerCase()
+    if (prompt.includes('dónde') || prompt.includes('donde') || prompt.includes('museo')) {
       await check.getByRole('button', { name: /^\d*\s*está$/ }).click()
-    } else if (prompt?.includes('barrio')) {
-      await check.getByRole('button', { name: /^\d*\s*hay$/ }).click()
-    } else {
+    } else if (prompt.includes('llaves')) {
+      await check.getByRole('button', { name: /^\d*\s*están$/ }).click()
+    } else if (prompt.includes('había') || prompt.includes('habia')) {
       await check.getByRole('button', { name: /^\d*\s*había$/ }).click()
+    } else {
+      await check.getByRole('button', { name: /^\d*\s*[Hh]ay$/ }).click()
     }
     await expect(check.getByRole('status')).toContainText('Doğru!')
     if (i < 2) {
