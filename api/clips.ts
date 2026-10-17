@@ -1,6 +1,6 @@
 import { findClips, parseInnertubeSearch, parseTimedCues, parseYouglishClips, type Clip } from '../src/engine/clips.js'
 import type { TargetLanguage } from '../src/engine/types.js'
-import { CaptionError, fetchCaptions } from './_captions.js'
+import { fetchCaptions } from './_captions.js'
 import { requireApproved } from './_account.js'
 import { fromApp } from './_origin.js'
 
@@ -59,18 +59,26 @@ async function fetchYouglishClips(word: string, lang: TargetLanguage): Promise<{
 async function searchInnertube(word: string, lang: TargetLanguage): Promise<{ id: string; title: string; channel: string }[]> {
   try {
     const gl = lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : 'US'
-    const res = await fetch('https://www.youtube.com/youtubei/v1/search?prettyPrint=false', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        context: { client: { clientName: 'WEB', clientVersion: '2.20250101.00.00', hl: lang, gl } },
-        query: `"${word}"`,
-        params: 'EgIoAQ==',
-      }),
-      signal: AbortSignal.timeout(5000),
-    })
-    if (!res.ok) return []
-    return parseInnertubeSearch(await res.json(), VIDEOS)
+    const doSearch = async (q: string) => {
+      const res = await fetch('https://www.youtube.com/youtubei/v1/search?prettyPrint=false', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+        },
+        body: JSON.stringify({
+          context: { client: { clientName: 'WEB', clientVersion: '2.20250101.00.00', hl: lang, gl } },
+          query: q,
+          params: 'EgIoAQ==',
+        }),
+        signal: AbortSignal.timeout(5000),
+      })
+      if (!res.ok) return []
+      return parseInnertubeSearch(await res.json(), VIDEOS)
+    }
+    const withQuotes = await doSearch(`"${word}"`)
+    if (withQuotes.length > 0) return withQuotes
+    return await doSearch(word)
   } catch {
     return []
   }
@@ -131,9 +139,8 @@ export async function GET(request: Request): Promise<Response> {
         try {
           const captions = await fetchCaptions(v.id, lang)
           return findClips(parseTimedCues(captions.xml), word, targetLang, { ...v, auto: captions.auto }, PER_VIDEO)
-        } catch (e) {
-          if (e instanceof CaptionError) return []
-          throw e
+        } catch {
+          return []
         }
       }),
     )

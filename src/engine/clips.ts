@@ -1,3 +1,4 @@
+import { splitArticle } from './answerCheck.js'
 import { formIn } from './inflection.js'
 import { cleanCue } from './subtitles.js'
 import type { TargetLanguage } from './types.js'
@@ -71,6 +72,21 @@ export function embedUrl(clip: Pick<Clip, 'id' | 'start' | 'end'>, language: Tar
 export function splitAround(text: string, form: string): [string, string, string] {
   const i = text.indexOf(form)
   return i < 0 ? [text, '', ''] : [text.slice(0, i), form, text.slice(i + form.length)]
+}
+
+/**
+ * Cleans lemma for video & caption search:
+ * Strips articles, parenthetical notes, slash alternatives, gender suffixes, and grammar placeholders.
+ */
+export function cleanWordForClips(lemma: string, language: TargetLanguage): string {
+  let s = lemma.toLocaleLowerCase(language)
+  s = s.split(/[/;]/)[0].trim()
+  s = s.replace(/\s*\([^)]*\)/g, ' ').replace(/\s*\[[^\]]*\]/g, ' ').trim()
+  s = s.replace(/,\s*-[a-z\p{L}]+/gui, ' ').trim()
+  s = s.replace(/\b(qqn|qch|algo|alguien|sb|sth)\b/gi, ' ').trim()
+  s = splitArticle(s, language).rest.trim()
+  s = s.replace(/[^\p{L}\s'-]/gu, ' ').replace(/\s+/g, ' ').trim()
+  return s || lemma.trim()
 }
 
 export interface YouglishHit {

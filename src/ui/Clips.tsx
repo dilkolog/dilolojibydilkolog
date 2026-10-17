@@ -3,11 +3,12 @@ import { APPROVAL_MESSAGE } from '../data/access'
 import { ClipsError, fetchClips, type ClipsProblem } from '../data/clips'
 import type { KelimeDB } from '../data/db'
 import { addExample, markWord, WordInputError } from '../data/wordInput'
-import { embedUrl, splitAround, type Clip } from '../engine/clips'
-import { splitArticle } from '../engine/answerCheck'
-import type { VocabularyEntry } from '../engine/types'
+import { cleanWordForClips, embedUrl, splitAround, type Clip } from '../engine/clips'
+import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { CloseIcon, PlayIcon } from './icons'
 import { LinesSkeleton } from './Skeleton'
+
+const YG_LANG: Record<TargetLanguage, string> = { en: 'english', fr: 'french', es: 'spanish' }
 
 const PROBLEM: Record<ClipsProblem, string> = {
   nokey: 'Bu özellik için bir YouTube API anahtarı gerekiyor: Vercel’de YOUTUBE_API_KEY olarak ekle (docs/YOUTUBE.md).',
@@ -15,9 +16,6 @@ const PROBLEM: Record<ClipsProblem, string> = {
   unavailable: 'Videolar alınamadı; internet bağlantını kontrol et.',
   approval: APPROVAL_MESSAGE,
 }
-
-/** The word as it is searched: without its article ("la maison" → "maison"). */
-const searchWord = (entry: VocabularyEntry) => splitArticle(entry.lemma.toLocaleLowerCase(entry.language), entry.language).rest.trim()
 
 /** A caption line with the word in it set in bold. */
 function Line({ clip }: { clip: Pick<Clip, 'text' | 'form'> }) {
@@ -40,12 +38,13 @@ export function ClipsSection({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
   const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<ClipsProblem | null>(null)
   const [open, setOpen] = useState<number | null>(null)
+  const query = cleanWordForClips(entry.lemma, entry.language)
 
   const search = async () => {
     setBusy(true)
     setProblem(null)
     try {
-      setClips(await fetchClips(searchWord(entry), entry.language, Date.now(), clips !== null))
+      setClips(await fetchClips(query, entry.language, Date.now(), clips !== null))
     } catch (e) {
       setProblem(e instanceof ClipsError ? e.problem : 'unavailable')
     } finally {
@@ -67,11 +66,55 @@ export function ClipsSection({ db, entry, onChanged }: { db: KelimeDB; entry: Vo
       <p className="small muted">Kelimenin gerçek konuşmada, YouTube videolarında geçtiği anlar. Dokununca video o saniyede açılır.</p>
       {busy && <LinesSkeleton lines={3} label="Videolar aranıyor" />}
       {problem && (
-        <p className="error small" role="alert">
-          {PROBLEM[problem]}
-        </p>
+        <div className="stack gap-xs">
+          <p className="error small" role="alert">
+            {PROBLEM[problem]}
+          </p>
+          <div className="row gap-sm flex-wrap">
+            <a
+              href={`https://youglish.com/pronounce/${encodeURIComponent(query)}/${YG_LANG[entry.language]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-quiet"
+            >
+              <PlayIcon size={14} className="inline-icon" />
+              YouGlish’te dinle (Web)
+            </a>
+            <a
+              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}&sp=EgIoAQ%253D%253D`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-quiet"
+            >
+              YouTube’da ara
+            </a>
+          </div>
+        </div>
       )}
-      {clips?.length === 0 && !busy && <p className="small muted">Bu kelime için altyazısı uygun video bulunamadı.</p>}
+      {clips?.length === 0 && !busy && (
+        <div className="clips-empty card stack gap-xs" role="region" aria-label="Altyazı bulunamadı">
+          <p className="small muted">Bu kelime için doğrudan altyazılı klip bulunamadı.</p>
+          <div className="row gap-sm flex-wrap">
+            <a
+              href={`https://youglish.com/pronounce/${encodeURIComponent(query)}/${YG_LANG[entry.language]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-quiet"
+            >
+              <PlayIcon size={14} className="inline-icon" />
+              YouGlish’te dinle (Web)
+            </a>
+            <a
+              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}&sp=EgIoAQ%253D%253D`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-quiet"
+            >
+              YouTube’da altyazılı ara
+            </a>
+          </div>
+        </div>
+      )}
       {clips && clips.length > 0 && (
         <ul className="clip-list">
           {clips.map((c, i) => (
