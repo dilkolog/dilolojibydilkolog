@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { recordMistake } from '../mistakes'
-import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from '../practice'
+import { buildDeckPlan, buildEarlyReviewPlan, buildMistakePlan, buildPracticePlan } from '../practice'
 import { answeredToday, localDate, progressStats, studyStreak } from '../progress'
 import { newWordState, processAttempt } from '../review'
 import { createRng } from '../rng'
@@ -68,6 +68,40 @@ describe('buildPracticePlan', () => {
   it('respects the limit', () => {
     const states = CATALOG.filter((e) => e.language === 'en').map((e) => practised(e))
     expect(buildPracticePlan({ catalog: CATALOG, states, rng: createRng(3), limit: 3 })).toHaveLength(3)
+  })
+})
+
+describe('buildEarlyReviewPlan', () => {
+  it('selects upcoming words sorted by earliest review date', () => {
+    const s1 = practised(decision, 1)
+    const s2 = practised(decide, 2)
+    const sUnpractised = newWordState(affect, NOW)
+    const plan = buildEarlyReviewPlan({
+      catalog: CATALOG,
+      states: [s2, sUnpractised, s1],
+      rng: createRng(1),
+      scheduler,
+      now: NOW,
+    })
+    expect(plan).toHaveLength(2)
+    expect(plan.map((p) => p.entryId).sort()).toEqual(['en:decide', 'en:decision'])
+    expect(plan.every((p) => p.kind === 'exercise')).toBe(true)
+  })
+
+  it('respects the limit and ignores retired words', () => {
+    const s1 = practised(decision, 1)
+    const s2 = practised(decide, 1)
+    const sRetired = { ...practised(affect, 1), retired: true }
+    const plan = buildEarlyReviewPlan({
+      catalog: CATALOG,
+      states: [s1, s2, sRetired],
+      rng: createRng(1),
+      scheduler,
+      now: NOW,
+      limit: 1,
+    })
+    expect(plan).toHaveLength(1)
+    expect(['en:decision', 'en:decide']).toContain(plan[0].entryId)
   })
 })
 

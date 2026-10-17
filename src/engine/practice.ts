@@ -3,6 +3,7 @@ import { interleave, type PlanItem } from './dailyPlan'
 import { exerciseTypesFor } from './exercises'
 import { openMistakes } from './mistakes'
 import { normalize } from './answerCheck'
+import { nextReviewAt } from './review'
 import { pick, shuffle, type Rng } from './rng'
 import type { Scheduler } from './scheduler'
 import { dueSkills, ERROR_SKILL, pickExerciseType, unlockedSkills } from './selection'
@@ -99,6 +100,48 @@ export function buildDeckPlan({
     const practised = unlockedSkills(state, entry, options)
       .filter((sk) => state.skills[sk])
       .sort((a, b) => scheduler.retrievability(state.skills[a]!, now) - scheduler.retrievability(state.skills[b]!, now))
+    const skill = due[0]?.skill ?? practised[0] ?? 'recognition'
+    items.push(exerciseFor(entry, state, skill, rng, due.length ? 'due' : 'weak', options))
+  }
+  return interleave(items, rng)
+}
+
+/**
+ * Early review of upcoming words before their scheduled review time arrives.
+ * Orders words by their earliest upcoming review timestamp so that items closest
+ * to expiring are reviewed first. Runs in 'normal' mode so FSRS recalculates
+ * stability and pushes the review interval forward.
+ */
+export function buildEarlyReviewPlan({
+  catalog,
+  states,
+  rng,
+  scheduler,
+  now,
+  limit = 15,
+  options = {},
+}: Input & { scheduler: Scheduler; now: Date }): PlanItem[] {
+  const byId = new Map(catalog.map((e) => [e.id, e]))
+  const upcoming = states
+    .filter((s) => !s.retired && byId.has(s.entryId) && Object.keys(s.skills).length > 0)
+    .map((s) => ({ state: s, due: nextReviewAt(s) }))
+    .filter((x): x is { state: UserWordState; due: Date } => x.due !== undefined)
+    .sort((a, b) => a.due.getTime() - b.due.getTime())
+    .slice(0, limit)
+
+  const items: PlanItem[] = []
+  for (const { state } of upcoming) {
+    const entry = byId.get(state.entryId)!
+    const due = dueSkills(state, entry, scheduler, now, options)
+    const practised = unlockedSkills(state, entry, options)
+      .filter((sk) => state.skills[sk])
+      .sort((a, b) => {
+        const cardA = state.skills[a]!
+        const cardB = state.skills[b]!
+        const dueDiff = cardA.due.getTime() - cardB.due.getTime()
+        if (dueDiff !== 0) return dueDiff
+        return scheduler.retrievability(cardA, now) - scheduler.retrievability(cardB, now)
+      })
     const skill = due[0]?.skill ?? practised[0] ?? 'recognition'
     items.push(exerciseFor(entry, state, skill, rng, due.length ? 'due' : 'weak', options))
   }

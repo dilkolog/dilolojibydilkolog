@@ -2,9 +2,10 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
 import { buildDailyPlan, buildExtraNewPlan, mixForms, roundForMinutes, shortRound, type DailyPlan, type PlanInput, type PlanItem, type PlanReason } from '../engine/dailyPlan'
 import { difficultWords } from '../engine/difficult'
 import { openMistakes } from '../engine/mistakes'
-import { buildDeckPlan, buildMistakePlan, buildPracticePlan } from '../engine/practice'
+import { buildDeckPlan, buildEarlyReviewPlan, buildMistakePlan, buildPracticePlan } from '../engine/practice'
 import { buildQuestPlan } from '../engine/questPlan'
 import type { QuestMetric } from '../engine/quests'
+import { nextReviewAt } from '../engine/review'
 import { createRng } from '../engine/rng'
 import { firstSittingEnd, SPLIT_ABOVE_MINUTES } from '../engine/session'
 import { TARGET_LANGUAGES, type EngineOptions, type ReviewMode, type TargetLanguage, type VocabularyEntry } from '../engine/types'
@@ -94,6 +95,23 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     data && openMistakes(data.mistakes).length
       ? () => startSession(buildMistakePlan({ catalog: data.vocabulary, states: data.states, mistakes: data.mistakes, rng: createRng(Date.now()), options }), 'normal')
       : undefined
+  /** Early review of upcoming words before their due time arrives. */
+  const startEarlyReview =
+    data && data.states.some((s) => !s.retired && Object.keys(s.skills).length > 0 && nextReviewAt(s) !== undefined)
+      ? () => {
+          const items = buildEarlyReviewPlan({
+            catalog: data.vocabulary,
+            states: data.states,
+            rng: createRng(Date.now()),
+            scheduler,
+            now: new Date(),
+            limit: 15,
+            options,
+          })
+          if (items.length) startSession(items, 'normal')
+          else showToast('Tekrar edilecek kelime bulunamadı.')
+        }
+      : undefined
 
   // Interleaving (Kornell & Bjork 2008): reviews due across languages, mixed into one session.
   const [mixedDue, setMixedDue] = useState({ count: 0, languages: 0 })
@@ -155,5 +173,5 @@ export function useSessionStarters({ settings, data, game, plan, planInput, opti
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [plan, data])
 
-  return { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startMixed, mixedDue, dueByLanguage }
+  return { startSession, startDay, startFocus, startMinutes, startShortRound, startQuest, practiceDifficult, startPractice, startMistakes, startEarlyReview, startMixed, mixedDue, dueByLanguage }
 }
