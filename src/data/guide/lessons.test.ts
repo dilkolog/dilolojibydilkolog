@@ -35,7 +35,17 @@ describe('guide lessons', () => {
       expect(l.examples.length, l.topic).toBeGreaterThanOrEqual(3)
       for (const x of l.examples) expect(x.text.trim() && x.tr.trim(), l.topic).toBeTruthy()
       for (const s of [...l.rules, ...l.watch]) expect(s.trim(), l.topic).not.toBe('')
+      if (l.table) {
+        expect(l.table.head.length, `${l.topic} table head`).toBeGreaterThanOrEqual(2)
+        expect(l.table.rows.length, `${l.topic} table rows`).toBeGreaterThanOrEqual(2)
+        for (const h of l.table.head) expect(h.trim(), `${l.topic} table header`).not.toBe('')
+        for (const row of l.table.rows) {
+          expect(row.length, `${l.topic} table row length`).toBe(l.table.head.length)
+          for (const cell of row) expect(cell.trim(), `${l.topic} table cell`).not.toBe('')
+        }
+      }
     }
+    expect(TOPIC_LESSONS.filter((l) => l.table).length).toBeGreaterThanOrEqual(60)
   })
 })
 

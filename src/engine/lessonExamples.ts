@@ -41,6 +41,10 @@ const PATTERNS: Record<string, RegExp> = {
   basics_fr_c_est_vs_il_est: words("c'est|ce sont|il est|elle est"),
   basics_fr_comparaison: words("(?:plus|moins|aussi)\\s+\\p{L}+\\s+(?:que|qu')"),
   inversion: words("\\p{L}+-(?:t-)?(?:il|elle|on|ils|elles|je|nous|vous)"),
+  basics_fr_questions_inversion: words("\\p{L}+-(?:t-)?(?:il|elle|on|ils|elles|je|nous|vous)"),
+  basics_fr_savoir_connaitre: words('sais|sait|savons|savez|savent|connais|connaît|connaissons|connaissez|connaissent'),
+  basics_fr_infinitif_passe: words("après\\s+(?:avoir|être|s'être)\\s+\\p{L}+"),
+  basics_fr_connecteurs_argumentation: words("en effet|en revanche|d'ailleurs|en outre|de surcroît|certes|dès lors|en définitive|par conséquent"),
   // Spanish
   por_para: words('por|para'),
   ser_estar: words('es|son|era|eran|fue|fueron|soy|eres|somos|está|están|estaba|estaban|estoy|estás|estamos|estuvo'),
@@ -59,6 +63,10 @@ const PATTERNS: Record<string, RegExp> = {
   basics_es_gerundio: words('\\p{L}+(?:ando|iendo|yendo)'),
   basics_es_orden_pronombres: words('(?:se|me|te|nos)\\s+(?:lo|la|los|las)'),
   basics_es_pronombres_dobles_se_lo: words('(?:se|me|te|nos)\\s+(?:lo|la|los|las)'),
+  basics_es_saber_conocer: words('sé|sabes|sabe|sabemos|saben|supe|conozco|conoces|conoce|conocemos|conocen|conocí'),
+  basics_es_se_accidental: words('se\\s+(?:me|te|le|nos|os|les)\\s+(?:cayó|cayeron|olvidó|olvidaron|rompió|rompieron|perdió|perdieron|acabó|acabaron)'),
+  basics_es_como_si_ojala: words('ojalá|como si'),
+  basics_es_conectores_dele: words('asimismo|en cambio|de ahí que|por consiguiente|si bien|siempre y cuando'),
   // English
   present_perfect: words("(?:have|has|'ve)\\s+(?:never\\s+|already\\s+|just\\s+|ever\\s+|not\\s+)?(?:\\p{L}+ed|been|done|gone|seen|made|taken|had|got|come|become|known|written|read|met|said|told|found|lost|won|begun|left|kept|felt|heard|thought)"),
   basics_en_present_perfect_continuous: words("(?:have|has|'ve)\\s+been\\s+\\p{L}+ing"),
@@ -78,6 +86,9 @@ const PATTERNS: Record<string, RegExp> = {
   reported_speech: words('(?:said|told|asked|explained|replied|answered)\\s+(?:\\p{L}+\\s+)?(?:that|if|whether|to)'),
   gerund_infinitive: words('(?:enjoy|avoid|suggest|mind|finish|keep|stop|remember|try)\\s+\\p{L}+ing|(?:want|decide|hope|plan|agree|refuse|manage)\\s+to\\s+\\p{L}+'),
   basics_en_comparatives: words('(?:more|less)\\s+\\p{L}+\\s+than|\\p{L}+er\\s+than|as\\s+\\p{L}+\\s+as'),
+  basics_en_so_such_too_enough: words('(?:so|such)\\s+(?:a\\s+|an\\s+)?\\p{L}+\\s+that|too\\s+\\p{L}+\\s+to\\s+\\p{L}+|\\p{L}+\\s+enough\\s+to'),
+  basics_en_modals_past_deduction: words("(?:must|can't|couldn't|might|may|should|shouldn't|needn't)\\s+have\\s+\\p{L}+"),
+  basics_en_correlative_conjunctions: words('no sooner|hardly\\s+had|scarcely\\s+had|not only'),
 }
 
 /** Topics that have a pattern (the others have no "your own sentences" section unless they teach a tense). */

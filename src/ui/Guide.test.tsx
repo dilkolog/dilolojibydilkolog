@@ -215,4 +215,23 @@ describe('GuideScreen', () => {
     expect(written[0]).toContain('Subjonctif')
     open.mockRestore()
   })
+
+  it('renders per-level progress badges and reference tables inside lessons and printed sheets', async () => {
+    const { host } = await mount('fr')
+    const badges = [...host.querySelectorAll('.guide-level-progress')]
+    expect(badges.length).toBe(5)
+    expect(badges[0]?.textContent).toMatch(/^\d+ \/ \d+$/)
+
+    const written: string[] = []
+    const w = { document: { write: (h: string) => written.push(h), close: () => {} }, focus: () => {}, print: () => {} }
+    const open = vi.spyOn(window, 'open').mockReturnValue(w as unknown as Window)
+    const lessonMount = await mount('fr', { initialLesson: 'basics_fr_savoir_connaitre' })
+    const table = lessonMount.host.querySelector('.guide-table')
+    expect(table).not.toBeNull()
+    expect(table?.textContent).toContain('Savoir (Bilmek)')
+    await act(async () => button(lessonMount.host, 'Yazdır')!.click())
+    expect(written[0]).toContain('<table>')
+    expect(written[0]).toContain('Savoir (Bilmek)')
+    open.mockRestore()
+  })
 })

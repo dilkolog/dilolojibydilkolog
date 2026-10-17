@@ -2310,6 +2310,15 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   gap: 0.625rem;
   margin-top: 0.5rem;
 }
+.guide-level-progress {
+  margin-left: auto;
+  padding: 0.125rem 0.6rem;
+  border-radius: var(--r-full);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
 .guide-level-badge {
   display: inline-grid;
   place-items: center;
@@ -2512,6 +2521,40 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .guide-rule-text {
   flex: 1;
   min-width: 0;
+}
+.guide-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--rule);
+  background: var(--surface-2);
+}
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+  line-height: 1.45;
+}
+.guide-table th,
+.guide-table td {
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+.guide-table tr:last-child td {
+  border-bottom: none;
+}
+.guide-table th {
+  background: color-mix(in srgb, var(--lang-soft) 55%, var(--surface-2));
+  color: var(--ink);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.guide-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
 }
 .guide-examples {
   list-style: none;
