@@ -336,21 +336,36 @@ export function Summary({
         )}
         {topic !== 'difficult' && rest.length > 0 && (
           <section className="stack summary-rest">
-            <h2 className="section-title">{grown.length ? 'Tekrar ettiklerin' : 'Bu oturumda çalıştıkların'}</h2>
+            <h2 className="section-title">
+              {grown.length ? 'Tekrar ettiklerin' : 'Bu oturumda çalıştıkların'} <span className="section-title-count">({rest.length})</span>
+            </h2>
             <ul className="garden garden-compact">
               {rest.map((w) => {
                 const e = byId.get(w.entryId)
                 const stage = w.stageAfter ? MASTERY_STAGES.indexOf(w.stageAfter) : w.stageBefore ? MASTERY_STAGES.indexOf(w.stageBefore) : -1
                 return (
-                  <li key={w.entryId}>
-                    <Plant stage={stage} size={40} />
+                  <li key={w.entryId} className="summary-word-row">
+                    <span className="summary-word-bed" aria-hidden>
+                      <Plant stage={stage} size={36} />
+                    </span>
                     <span className="garden-text">
                       <span className="target">{name(w.entryId)}</span>
-                      {e && <span className="small muted">{e.senses[0].gloss}</span>}
-                      <span className="small">
-                        {w.correct > 0 && <span className="garden-ok"><CheckIcon size={14} className="inline-icon" />{w.correct}</span>} {w.wrong > 0 && <span className="garden-bad"><CloseIcon size={14} className="inline-icon" />{w.wrong}</span>}
-                        {w.wrong > 0 && !practice && <span className="muted"> · yakında tekrar</span>}
-                      </span>
+                      {e && <span className="small muted garden-gloss">{e.senses[0].gloss}</span>}
+                    </span>
+                    <span className="summary-word-status">
+                      {w.correct > 0 && (
+                        <span className="garden-ok garden-pill is-ok" title={`${w.correct} doğru`}>
+                          <CheckIcon size={12} className="inline-icon" />
+                          <span>{w.correct}</span>
+                        </span>
+                      )}
+                      {w.wrong > 0 && (
+                        <span className="garden-bad garden-pill is-bad" title={`${w.wrong} yanlış`}>
+                          <CloseIcon size={12} className="inline-icon" />
+                          <span>{w.wrong}</span>
+                        </span>
+                      )}
+                      {w.wrong > 0 && !practice && <span className="summary-word-hint muted">yakında tekrar</span>}
                     </span>
                   </li>
                 )
