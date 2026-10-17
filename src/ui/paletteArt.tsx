@@ -13,6 +13,7 @@ import headWords from '../assets/art/head-words.webp'
 import headMistakes from '../assets/art/head-mistakes.webp'
 import headExam from '../assets/art/head-exam.webp'
 import headVocabtest from '../assets/art/head-vocabtest.webp'
+import headEdit from '../assets/art/head-edit.webp'
 import guideTeach from '../assets/art/guide-teach.webp'
 import progressReport from '../assets/art/progress-report.webp'
 import gameGear from '../assets/art/game-gear.webp'
@@ -49,6 +50,7 @@ export const ACTION_PALETTE_ART: Record<string, string> = {
   exam: headExam,
   'add-typed': STAT_ART.sprout,
   'look-up': headDictionary,
+  edit: headEdit,
 }
 
 export function commandArtIcon(id: string, fallback?: ReactNode): ReactNode {
