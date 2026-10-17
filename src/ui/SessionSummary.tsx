@@ -15,6 +15,8 @@ import { ERROR_NAME, STAGE_NAME } from './labels'
 import { GrowingPlant, Plant } from './Plant'
 
 import { BadgeMoment } from './BadgeMoment'
+import { notify } from './noticeCenter'
+import { badgeNotice, levelNotice } from './noticeTexts'
 import { markBadgesSeen } from './badgeSeen'
 import { Burst } from './Burst'
 
@@ -100,10 +102,12 @@ export function Summary({
     const at = new Date().toISOString()
     void db.logBadges(Object.fromEntries(newBadges.map((a) => [a.id, at])))
     markBadgesSeen(newBadges.map((a) => a.id))
+    for (const a of newBadges) void notify(badgeNotice(a.id, a.title))
   }, [newBadges.map((a) => a.id).join()]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (leveledUp || newBadges.length) sfx.levelUp()
     if (after) markLevelSeen(after.level.level)
+    if (leveledUp && after) void notify(levelNotice(after.level.level, after.level.title))
     // Play once when the summary opens.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

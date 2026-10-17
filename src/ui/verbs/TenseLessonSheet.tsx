@@ -95,7 +95,7 @@ export function TenseLessonSheet({ language, tense, onClose, onVerbs }: { langua
         {hasTable && (
           <section className="tg-section" aria-label="Örnek çekimler">
             <h3 className="subhead">Örnek çekimler</h3>
-            <div className="guide-table-wrap">
+            <div className="guide-table-wrap" tabIndex={0} role="region" aria-label="Örnek çekimler tablosu">
               <table className="guide-table tense-sample-table">
                 <thead>
                   <tr>

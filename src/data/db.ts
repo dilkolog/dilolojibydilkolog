@@ -15,6 +15,7 @@ import { emptyLab, type LabData } from '../engine/labProgress'
 import { localDate } from '../engine/progress'
 import { cleanMarks, mergeMarks, type GuideMarks } from '../engine/guideReview'
 import { addTime, cleanTimeLog, daySeconds, pruneTimeLog, type TimeKind, type TimeLog } from '../engine/studyTime'
+import { cleanNotices, type Notice } from '../engine/notices'
 import { award, cleanLedger, timeAwardKey, timeXp, type XpLedger } from '../engine/xpLedger'
 import { emptyNotes, type DictionaryNotes } from '../engine/dictionaryNotes'
 import type { ReviewResult } from '../engine/review'
@@ -390,7 +391,7 @@ export class KelimeDB extends Dexie {
     }
     const bumpMeta = (key: unknown) => {
       // The sync's own bookkeeping does not count.
-      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup'))) this.writes++
+      if (!(typeof key === 'string' && (key.startsWith('sync') || key === 'safetyBackup' || key === 'notices'))) this.writes++
     }
     this.meta.hook('creating', bumpMeta)
     this.meta.hook('updating', (_mods, key) => bumpMeta(key))
@@ -989,6 +990,25 @@ export class KelimeDB extends Dexie {
   }
 
   private xpQueue: Promise<unknown> = Promise.resolve()
+
+  /** The notice center's list (see engine/notices): on this device only, in no backup. */
+  async getNotices(): Promise<Notice[]> {
+    return cleanNotices((await this.meta.get('notices'))?.value)
+  }
+
+  /** Changes the list (one change after another, so two notices at once are both kept); the change returns the new list, or the same one for nothing. */
+  changeNotices(change: (list: Notice[]) => Notice[]): Promise<Notice[]> {
+    const next = this.noticeQueue.then(async () => {
+      const list = await this.getNotices()
+      const changed = change(list)
+      if (changed !== list) await this.meta.put({ key: 'notices', value: changed })
+      return changed
+    })
+    this.noticeQueue = next.then(() => {}, () => {})
+    return next
+  }
+
+  private noticeQueue: Promise<unknown> = Promise.resolve()
 
   private timeQueue: Promise<void> = Promise.resolve()
   private guideQueue: Promise<unknown> = Promise.resolve()

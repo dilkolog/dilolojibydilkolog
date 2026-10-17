@@ -36,6 +36,8 @@ import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
+import { notify } from './noticeCenter'
+import { certNotice } from './noticeTexts'
 import { checkAwards, loadMarks, markChecked, markFlag, markNote, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
@@ -257,6 +259,10 @@ export function GuideScreen({
           change(next)
           const awards = checkAwards(language, lessons, marks, next, open.topic, localDate(new Date()))
           if (awards.length) void db.awardXp(awards).catch(() => {})
+          for (const a of awards) {
+            const [kind, lang, level] = a.key.split('|')
+            if (kind === 'cert') void notify(certNotice(lang, level, LANGUAGE_NAME[language]))
+          }
         }}
         onPractice={() => onPractice(practice)}
         onVerbs={() => onVerbs(targetTense)}
@@ -805,7 +811,7 @@ function LessonView({
       {lesson.table && (
         <section className="card stack gap-2 guide-table-card" aria-label={lesson.table.caption || 'Özet tablo'}>
           <h2 className="section-title">{lesson.table.caption || 'Özet tablo'}</h2>
-          <div className="guide-table-wrap">
+          <div className="guide-table-wrap" tabIndex={0} role="region" aria-label={lesson.table.caption || 'Özet tablo'}>
             <table className="guide-table">
               <thead>
                 <tr>

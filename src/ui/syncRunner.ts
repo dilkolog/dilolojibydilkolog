@@ -1,6 +1,8 @@
 import { db } from '../data/instance'
 import { ACCOUNT_EVENT, forgetAccess } from '../data/access'
 import { showToast } from './toastFeed'
+import { notify } from './noticeCenter'
+import { syncNotice } from './noticeTexts'
 import { reportError } from '../data/errorReport'
 import { hasStoredSession, supabaseConfigured } from '../data/supabase'
 import type { Account, Credential, SyncResult } from '../data/sync'
@@ -135,6 +137,7 @@ export function describeIncoming(r: SyncResult | null): string {
 export function announceIncoming(r: SyncResult | null): void {
   const line = describeIncoming(r)
   if (!line) return
+  void notify(syncNotice(line))
   const replaced = r?.replaced ?? []
   if (!replaced.length) return showToast(line)
   // Another device's later edit replaced this device's copy of a word: it says which, and can be taken back.

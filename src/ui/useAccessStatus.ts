@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ACCOUNT_EVENT, approvalEnabled, cachedAccess, forgetAccess, getStoredAccount, probeAccount, requestAccess, saveAccess, type AccessStatus } from '../data/access'
 import type { AccessState } from './accessContext'
+import { notify } from './noticeCenter'
+import { accountNotice } from './noticeTexts'
 
 /** How often a waiting account asks whether it has been approved. */
 const POLL_MS = 5 * 60_000
@@ -13,6 +15,12 @@ const POLL_MS = 5 * 60_000
  */
 export function useAccessStatus(): AccessState {
   const [status, setStatus] = useState<AccessState['status']>('unknown')
+  // An account that was waiting and has now been decided on: a notice (the badge in the top bar only says "waiting").
+  const was = useRef<AccessState['status']>('unknown')
+  useEffect(() => {
+    if (was.current === 'pending' && (status === 'approved' || status === 'rejected')) void notify(accountNotice(status))
+    was.current = status
+  }, [status])
 
   const refresh = useCallback(async () => {
     const account = await getStoredAccount().catch(() => null)

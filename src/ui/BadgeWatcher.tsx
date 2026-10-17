@@ -4,6 +4,8 @@ import type { AchievementState, BadgeLog } from '../engine/gamification'
 import { BadgeMoment } from './BadgeMoment'
 import { markBadgesSeen, seenBadges } from './badgeSeen'
 import type { GameState } from './game'
+import { notify } from './noticeCenter'
+import { badgeNotice } from './noticeTexts'
 import { showToast } from './toastFeed'
 
 /** More new badges than this at once did not just happen: a backup restored, a sync, a new device. */
@@ -34,7 +36,10 @@ export function BadgeWatcher({ game, paused, onProfile, onLogged }: { game: Game
     markBadgesSeen(fresh.map((a) => a.id))
     void db.logBadges(log).then(() => onLogged?.())
     if (quiet) showToast(`${now.length} rozetin kaydedildi; Profil'de görebilirsin.`)
-    else if (now.length) setQueue(now)
+    else if (now.length) {
+      setQueue(now)
+      for (const a of now) void notify(badgeNotice(a.id, a.title))
+    }
   }, [game, paused, queue.length, onLogged])
   if (!queue.length) return null
   return (
