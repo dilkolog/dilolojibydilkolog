@@ -2127,7 +2127,9 @@ button, a, label, summary, [role='button'] { -webkit-tap-highlight-color: transp
 .cover.is-book { width: 3.25rem; height: 4.25rem; box-shadow: inset 5px 0 0 rgb(0 0 0 / 0.22), 3px 3px 0 hsl(var(--hue) 40% 75%), var(--shadow-sm); }
 
 /* ---------- Milestone moment ---------- */
-.milestone { width: min(24rem, 100%); text-align: center; justify-items: center; padding-top: 2rem; overflow: hidden; }
+.milestone { position: relative; width: min(24rem, 100%); text-align: center; justify-items: center; padding-top: 2rem; overflow: hidden; }
+.milestone-close { position: absolute; top: 0.75rem; right: 0.75rem; z-index: 3; color: var(--ink-soft); }
+.milestone-close:hover { background: var(--surface-2); color: var(--ink); }
 .milestone-art { position: relative; display: grid; place-items: center; width: 8rem; height: 8rem; }
 .milestone-emoji { position: relative; z-index: 1; font-size: 4.5rem; line-height: 1; animation: pop var(--dur) var(--ease-spring); }
 .milestone-title { font-size: var(--t-2xl); font-weight: 700; letter-spacing: -0.02em; }

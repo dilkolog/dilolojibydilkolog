@@ -24,7 +24,7 @@ async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson
   document.body.append(host)
   root = createRoot(host)
   await act(async () => root!.render(<GuideScreen language={language} onPractice={onPractice} onVerbs={onVerbs} {...extra} />))
-  await act(() => new Promise((r) => setTimeout(r, 20)))
+  await act(() => new Promise((r) => setTimeout(r, 50)))
   return { host, onPractice, onVerbs }
 }
 

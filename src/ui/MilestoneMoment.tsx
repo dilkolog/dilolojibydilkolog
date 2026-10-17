@@ -4,6 +4,7 @@ import { Burst } from './Burst'
 import { Glyph } from './Glyph'
 import { shareCard } from './shareCard'
 import { sfx } from './sounds'
+import { CloseIcon } from './icons'
 
 /** The new level: the badge shows the old number, flips to the new one with a ring, as if it were struck. */
 export function LevelUpBadge({ from, to }: { from: number; to: number }) {
@@ -50,6 +51,9 @@ export function MilestoneMoment({ milestone, onClose }: { milestone: Milestone; 
   return (
     <div className="dialog-backdrop milestone-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="dialog milestone" role="dialog" aria-modal="true" aria-labelledby="ms-title">
+        <button type="button" className="icon-btn milestone-close" onClick={onClose} aria-label="Kapat">
+          <CloseIcon size={18} />
+        </button>
         <div className="milestone-art">
           <Burst />
           {milestone.level ? (
