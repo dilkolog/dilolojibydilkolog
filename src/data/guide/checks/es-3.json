@@ -1,0 +1,1823 @@
+{
+  "language": "es",
+  "source": "Diloloji İspanyolca Rehber B2 ve C1 soru havuzu genişletmesi (15.1f)",
+  "lessons": {
+    "se_pasivo": [
+      {
+        "prompt": "En esta región ___ varios dialectos tradicionales.",
+        "options": [
+          "se hablan",
+          "se habla",
+          "hablan se",
+          "están hablando"
+        ],
+        "answer": 0,
+        "why": "Se pasivo yapısında nesne çoğul olduğunda (varios dialectos) fiil 3. çoğul çekilir: se hablan."
+      },
+      {
+        "prompt": "Se ___ a los testigos del accidente de tráfico.",
+        "options": [
+          "busca",
+          "buscan",
+          "buscan a",
+          "está buscando"
+        ],
+        "answer": 0,
+        "why": "Se impersonal yapısında doğrudan nesne 'a' edatlı insan olduğunda fiil daima 3. tekil kalır: se busca a los testigos."
+      },
+      {
+        "prompt": "En España ___ muy bien en general.",
+        "options": [
+          "se come",
+          "se comen",
+          "come",
+          "comen se"
+        ],
+        "answer": 0,
+        "why": "Belirli bir nesnesi olmayan genel öznesiz se impersonal cümlelerinde fiil 3. tekildir: se come muy bien."
+      },
+      {
+        "prompt": "En ese restaurante tradicional se ___ platos típicos de la zona.",
+        "options": [
+          "sirven",
+          "sirve",
+          "sirven de",
+          "está sirviendo"
+        ],
+        "answer": 0,
+        "why": "'Platos típicos' çoğul bir sözde özne olduğundan se pasivo fiili çoğul çekilir: se sirven."
+      },
+      {
+        "prompt": "¿A qué hora se ___ las puertas del museo por la mañana?",
+        "options": [
+          "abren",
+          "abre",
+          "abren se",
+          "abrirán se"
+        ],
+        "answer": 0,
+        "why": "Özne çoğuldur (las puertas): se abren las puertas."
+      },
+      {
+        "prompt": "Se ___ muchos rumores falsos sobre la renuncia del ministro.",
+        "options": [
+          "dijeron",
+          "dijo",
+          "decía",
+          "ha dicho"
+        ],
+        "answer": 0,
+        "why": "Çoğul bir özneyle (muchos rumores) geçmiş zamanda se pasivo: se dijeron."
+      },
+      {
+        "prompt": "En esta fábrica se ___ coches eléctricos de última generación.",
+        "options": [
+          "fabrican",
+          "fabrica",
+          "fabricando",
+          "fabrica se"
+        ],
+        "answer": 0,
+        "why": "'Coches eléctricos' çoğul olduğu için se pasivo fiili çoğul olur: se fabrican coches."
+      }
+    ],
+    "estilo_indirecto": [
+      {
+        "prompt": "Directo: «Tengo mucho trabajo hoy.» -> Indirecto: Me dijo que ___ mucho trabajo aquel día.",
+        "options": [
+          "tenía",
+          "tiene",
+          "tendrá",
+          "tuviera"
+        ],
+        "answer": 0,
+        "why": "Aktaran fiil geçmiş zamanda (dijo) olduğunda présent, imperfecto'ya döner: tenía."
+      },
+      {
+        "prompt": "Directo: «He terminado el informe.» -> Indirecto: Afirmó que ___ el informe.",
+        "options": [
+          "había terminado",
+          "ha terminado",
+          "terminó",
+          "habría terminado"
+        ],
+        "answer": 0,
+        "why": "Geçmiş zamanlı aktarımda pretérito perfecto, pluscuamperfecto'ya dönüşür: había terminado."
+      },
+      {
+        "prompt": "Directo: «Iremos a visitarte mañana.» -> Indirecto: Nos prometieron que ___ a visitarnos al día siguiente.",
+        "options": [
+          "irían",
+          "irán",
+          "iban",
+          "fueran"
+        ],
+        "answer": 0,
+        "why": "Geçmiş ana fiille aktarılan futuro simple, condicional simple'a döner: irían."
+      },
+      {
+        "prompt": "Directo: «Cierra la puerta con llave.» -> Indirecto: Me pidió que ___ la puerta con llave.",
+        "options": [
+          "cerrara",
+          "cerraba",
+          "cierre",
+          "cerrar"
+        ],
+        "answer": 0,
+        "why": "Emir kipi dolaylı anlatımda geçmiş ana fiille imperfecto de subjuntivo'ya aktarılır: que cerrara."
+      },
+      {
+        "prompt": "Directo: «¿Vendrás a la fiesta?» -> Indirecto: Me preguntó ___ a la fiesta.",
+        "options": [
+          "si iría",
+          "si vendré",
+          "que si voy",
+          "si fuera"
+        ],
+        "answer": 0,
+        "why": "Evet/hayır soruları geçmişte 'si + condicional' ile aktarılır: si iría."
+      },
+      {
+        "prompt": "Directo: «Estoy viviendo aquí.» -> Indirecto: Explicó que estaba viviendo ___ .",
+        "options": [
+          "allí",
+          "aquí",
+          "acá",
+          "ahí mismo"
+        ],
+        "answer": 0,
+        "why": "Dolaylı aktarımda mekân zarfı 'aquí' genellikle 'allí'ye dönüşür."
+      },
+      {
+        "prompt": "Directo: «No lo hagas.» -> Indirecto: El profesor me ordenó que no lo ___ .",
+        "options": [
+          "hiciera",
+          "haga",
+          "hacía",
+          "haría"
+        ],
+        "answer": 0,
+        "why": "Olumsuz emir kipi dolaylı anlatımda imperfecto de subjuntivo alır: que no lo hiciera."
+      }
+    ],
+    "basics_es_imperfecto_subjuntivo": [
+      {
+        "prompt": "El médico me recomendó que ___ más deporte al aire libre.",
+        "options": [
+          "hiciera",
+          "haga",
+          "hice",
+          "hacía"
+        ],
+        "answer": 0,
+        "why": "Ana fiil geçmişte (recomendó) olduğunda tavsiye edilen eylem imperfecto de subjuntivo gerektirir: hiciera (veya hiciese)."
+      },
+      {
+        "prompt": "Si tú me ___ la verdad desde el principio, no nos habríamos enfadado.",
+        "options": [
+          "hubieras dicho",
+          "dijeras",
+          "dijiste",
+          "habrías dicho"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmemiş şart için pluscuamperfecto de subjuntivo: hubieras dicho."
+      },
+      {
+        "prompt": "Mis padres no querían que nosotros ___ solos por la noche.",
+        "options": [
+          "saliéramos",
+          "salgamos",
+          "salíamos",
+          "salgáis"
+        ],
+        "answer": 0,
+        "why": "Geçmişte istek bildiren 'querían que' nosotros için imperfecto de subjuntivo alır: saliéramos."
+      },
+      {
+        "prompt": "¿Cuál es la forma alternativa con sufijo -se para 'tuviera'?",
+        "options": [
+          "tuviese",
+          "tuviere",
+          "tuviera se",
+          "tuviésese"
+        ],
+        "answer": 0,
+        "why": "İspanyolcada -ra ve -se ekleri imperfecto de subjuntivo için eşdeğerdir: tuviera = tuviese."
+      },
+      {
+        "prompt": "Era una lástima que el concierto se ___ por la tormenta.",
+        "options": [
+          "suspendiera",
+          "suspenda",
+          "suspendió",
+          "suspendería"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki duygu ifadesi (era una lástima que) imperfecto de subjuntivo alır: suspendiera."
+      },
+      {
+        "prompt": "Me pareció increíble que ellos no ___ nada del incidente.",
+        "options": [
+          "supieran",
+          "sepan",
+          "sabían",
+          "sabrían"
+        ],
+        "answer": 0,
+        "why": "Saber fiilinin imperfecto de subjuntivo 3. çoğul çekimi 'supieran' (veya supiesen) biçimindedir."
+      },
+      {
+        "prompt": "¿Podrías hablar más bajo como si ___ en una biblioteca?",
+        "options": [
+          "estuvieras",
+          "estés",
+          "estás",
+          "estarías"
+        ],
+        "answer": 0,
+        "why": "'Como si' bağlacı daima imperfecto veya pluscuamperfecto de subjuntivo gerektirir: como si estuvieras."
+      }
+    ],
+    "basics_es_finales_concesivas": [
+      {
+        "prompt": "El profesor explicó el problema despacio a fin de que todos ___ comprenderlo.",
+        "options": [
+          "pudieran",
+          "pueden",
+          "podían",
+          "podrían"
+        ],
+        "answer": 0,
+        "why": "'A fin de que' amaç bağlacı geçmiş zaman bağlamında imperfecto de subjuntivo alır: pudieran."
+      },
+      {
+        "prompt": "Aunque ___ lloviendo intensamente, salimos a dar un paseo.",
+        "options": [
+          "estaba",
+          "esté",
+          "estuviera",
+          "estaría"
+        ],
+        "answer": 0,
+        "why": "Gerçek ve bilinen bir olguya taviz getirirken aunque gösterge kipi (indicativo) alır: estaba lloviendo."
+      },
+      {
+        "prompt": "Aunque mañana ___ frío, pienso ir a correr al parque.",
+        "options": [
+          "haga",
+          "hace",
+          "hará",
+          "hacía"
+        ],
+        "answer": 0,
+        "why": "Geleceğe dair henüz gerçekleşmemiş veya varsayımsal taviz için aunque subjuntivo alır: aunque haga frío."
+      },
+      {
+        "prompt": "Les envié un recordatorio con el objeto de que no se ___ de la cita.",
+        "options": [
+          "olvidaran",
+          "olvidan",
+          "olvidaban",
+          "olviden"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki amaç yapısı 'con el objeto de que' subjuntivo gerektirir: se olvidaran."
+      },
+      {
+        "prompt": "A pesar de que no ___ mucho dinero, siempre son muy generosos.",
+        "options": [
+          "tienen",
+          "tengan",
+          "tuvieran",
+          "tuviesen"
+        ],
+        "answer": 0,
+        "why": "Bilinen ve gerçek bir durum taviz olarak sunulduğunda a pesar de que indicativo alır: no tienen dinero."
+      },
+      {
+        "prompt": "Por más que ___ , no logró convencer al tribunal de su inocencia.",
+        "options": [
+          "insistió",
+          "insista",
+          "insistiera",
+          "insistiendo"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmiş olgusal taviz için por más que + indicativo (insistió) kullanılır."
+      },
+      {
+        "prompt": "Dejó una nota sobre la mesa para que su hijo la ___ al regresar.",
+        "options": [
+          "viera",
+          "ve",
+          "veía",
+          "vería"
+        ],
+        "answer": 0,
+        "why": "Geçmiş amaç cümlesinde 'para que' arkasından imperfecto de subjuntivo gelir: la viera."
+      }
+    ],
+    "basics_es_subjuntivo_compuesto": [
+      {
+        "prompt": "Espero que vosotros ___ un buen viaje de vuelta a casa.",
+        "options": [
+          "hayáis tenido",
+          "habéis tenido",
+          "hubierais tenido",
+          "tuvisteis"
+        ],
+        "answer": 0,
+        "why": "Tamamlanmış eylemlerde şimdiki zaman temennisi için pretérito perfecto de subjuntivo: hayáis tenido."
+      },
+      {
+        "prompt": "Me extraña mucho que ellos no ___ el paquete todavía.",
+        "options": [
+          "hayan recibido",
+          "han recibido",
+          "hubieran recibido",
+          "recibieron"
+        ],
+        "answer": 0,
+        "why": "Duygu bildiren me extraña que + tamamlanmış geçmiş eylem: hayan recibido."
+      },
+      {
+        "prompt": "Si me ___ llamado antes, yo te habría acompañado al médico.",
+        "options": [
+          "hubieras",
+          "habías",
+          "hayas",
+          "habrías"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki 3. tip şart cümlesinde 'Si + pluscuamperfecto de subjuntivo': hubieras llamado."
+      },
+      {
+        "prompt": "Habría sido mucho mejor que nosotros ___ el coche en el garaje.",
+        "options": [
+          "hubiéramos dejado",
+          "hayamos dejado",
+          "habíamos dejado",
+          "dejáramos"
+        ],
+        "answer": 0,
+        "why": "Geçmişte kaçırılmış fırsat değerlendirmesinde pluscuamperfecto de subjuntivo kullanılır: hubiéramos dejado."
+      },
+      {
+        "prompt": "Dudo que el comité ___ tomado una decisión tan precipitada ayer.",
+        "options": [
+          "haya",
+          "ha",
+          "había",
+          "hubiese sido"
+        ],
+        "answer": 0,
+        "why": "Dudar que ile geçmişte tamamlanmış eyleme dair şüphe: haya tomado."
+      },
+      {
+        "prompt": "Ojalá no ___ ocurrido ese terrible malentendido entre ellos dos.",
+        "options": [
+          "hubiera",
+          "haya",
+          "había",
+          "habría"
+        ],
+        "answer": 0,
+        "why": "Geçmişte olmuş ve değiştirilemeyen bir olay için pişmanlık: ojalá hubiera ocurrido."
+      },
+      {
+        "prompt": "¿Cuál es la forma con -se equivalente a 'hubiera salido'?",
+        "options": [
+          "hubiese salido",
+          "hubiere salido",
+          "hubiera salidose",
+          "hubieses salido"
+        ],
+        "answer": 0,
+        "why": "Haber fiilinin pluscuamperfecto de subjuntivo -se biçimi 'hubiese'dir: hubiese salido."
+      }
+    ],
+    "basics_es_marcadores": [
+      {
+        "prompt": "El informe presenta datos preocupantes ; ___ , existen motivos para el optimismo.",
+        "options": [
+          "no obstante",
+          "por consiguiente",
+          "así pues",
+          "en consecuencia"
+        ],
+        "answer": 0,
+        "why": "'No obstante' (bununla birlikte) akademik ve formel dilde güçlü bir karşıtlık bağlacıdır."
+      },
+      {
+        "prompt": "No se alcanzaron las metas previstas ; ___ , se reestructurará el equipo directivo.",
+        "options": [
+          "por consiguiente",
+          "sin embargo",
+          "en cambio",
+          "a pesar de"
+        ],
+        "answer": 0,
+        "why": "'Por consiguiente' (dolayısıyla / netice itibarıyla) doğrudan nedensel sonucu bağlar."
+      },
+      {
+        "prompt": "El proyecto carecía de presupuesto suficiente ; de ahí que se ___ aplazarlo.",
+        "options": [
+          "tuviera que",
+          "tuvo que",
+          "tendrá que",
+          "tiene que"
+        ],
+        "answer": 0,
+        "why": "'De ahí que' bağlacı her zaman subjuntivo kipi gerektirir: de ahí que se tuviera que aplazar."
+      },
+      {
+        "prompt": "En primer lugar analizaremos las causas y, ___ , propondremos soluciones prácticas.",
+        "options": [
+          "a continuación",
+          "por el contrario",
+          "no obstante",
+          "en cambio"
+        ],
+        "answer": 0,
+        "why": "Sıralama ve düşünce akışında 'en primer lugar ... a continuación' yapısı kullanılır."
+      },
+      {
+        "prompt": "___ , las conclusiones del estudio confirman la hipótesis inicial.",
+        "options": [
+          "En resumen",
+          "Por el contrario",
+          "A no ser que",
+          "Sin duda alguna de"
+        ],
+        "answer": 0,
+        "why": "Bir metni veya konuşmayı özetlerken 'en resumen' (özetle) söylem belirleyicisi uygundur."
+      },
+      {
+        "prompt": "El candidato cuenta con experiencia internacional ; ___ , domina cuatro idiomas con soltura.",
+        "options": [
+          "asimismo",
+          "sin embargo",
+          "en cambio",
+          "de ahí que"
+        ],
+        "answer": 0,
+        "why": "'Asimismo' (aynı şekilde / ayrıca) yeni bir kanıt veya olumlu argüman ekler."
+      },
+      {
+        "prompt": "No debemos desanimarnos por los obstáculos ; al ___ , debemos redoblar los esfuerzos.",
+        "options": [
+          "contrario",
+          "menos",
+          "fin",
+          "propósito"
+        ],
+        "answer": 0,
+        "why": "Karşıt argümanı savunurken 'al contrario' (aksine / tam tersine) kullanılır."
+      }
+    ],
+    "basics_es_subjuntivo_relativo": [
+      {
+        "prompt": "Busco un piso de alquiler que ___ terraza con vistas al mar.",
+        "options": [
+          "tenga",
+          "tiene",
+          "tendrá",
+          "tenía"
+        ],
+        "answer": 0,
+        "why": "Henüz var olup olmadığı bilinmeyen aranan bir özellik için subjuntivo: que tenga terraza."
+      },
+      {
+        "prompt": "Conozco un restaurante en el centro que ___ una comida exquisita.",
+        "options": [
+          "sirve",
+          "sirva",
+          "servirá",
+          "sirviera"
+        ],
+        "answer": 0,
+        "why": "Bilinen ve somut olarak var olan bir yer için indicativo kullanılır: que sirve."
+      },
+      {
+        "prompt": "No hay nadie aquí que ___ cómo reparar esta máquina industrial.",
+        "options": [
+          "sepa",
+          "sabe",
+          "sabrá",
+          "supo"
+        ],
+        "answer": 0,
+        "why": "Varlığı reddedilen bir özne (no hay nadie que) sonrasında daima subjuntivo gelir: que sepa."
+      },
+      {
+        "prompt": "Queremos contratar a un traductor que ___ experiencia comprobada en textos legales.",
+        "options": [
+          "tenga",
+          "tiene",
+          "tendrá",
+          "tuviera"
+        ],
+        "answer": 0,
+        "why": "Adaylarda aranan kriter tanımlanırken ilgi cümleciğinde subjuntivo kullanılır: que tenga."
+      },
+      {
+        "prompt": "Compró la casa que le ___ el agente inmobiliario la semana pasada.",
+        "options": [
+          "mostró",
+          "muestre",
+          "mostrara",
+          "mostraría"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmiş belirli bir eylem için indicativo kullanılır: que le mostró."
+      },
+      {
+        "prompt": "¿Hay algún alumno en la clase que ___ hablar árabe?",
+        "options": [
+          "pueda",
+          "puede",
+          "podrá",
+          "podría"
+        ],
+        "answer": 0,
+        "why": "Varlığı sorgulanan belirsiz bir kişi için soru cümlesinde subjuntivo: que pueda hablar."
+      },
+      {
+        "prompt": "Iré al lugar que tú me ___ sin rechistar.",
+        "options": [
+          "digas",
+          "dices",
+          "dirás",
+          "decías"
+        ],
+        "answer": 0,
+        "why": "Henüz söylenmemiş geleceğe yönelik belirsiz yer için subjuntivo: que tú me digas."
+      }
+    ],
+    "basics_es_verbos_cambio": [
+      {
+        "prompt": "Cuando escuchó el cumplido delante de todos, se ___ muy rojo de vergüenza.",
+        "options": [
+          "puso",
+          "volvió",
+          "hizo",
+          "quedó"
+        ],
+        "answer": 0,
+        "why": "Anlık, geçici fiziksel ve duygusal tepkilerde 'ponerse' kullanılır: ponerse rojo."
+      },
+      {
+        "prompt": "Con el paso de los años y la fama repentina, se ___ insoportable y arrogante.",
+        "options": [
+          "volvió",
+          "puso",
+          "quedó",
+          "hizo"
+        ],
+        "answer": 0,
+        "why": "Karakter ve mizaçtaki kalıcı/olumsuz değişimlerde 'volverse' kullanılır: volverse insoportable."
+      },
+      {
+        "prompt": "Después de estudiar durante diez años con gran esfuerzo, se ___ médico especialista.",
+        "options": [
+          "hizo",
+          "puso",
+          "volvió",
+          "quedó"
+        ],
+        "answer": 0,
+        "why": "Bireysel çaba, meslek ve ideolojik değişimlerde 'hacerse' kullanılır: hacerse médico."
+      },
+      {
+        "prompt": "Al enterarse de la trágica noticia, se ___ sin palabras por la conmoción.",
+        "options": [
+          "quedó",
+          "puso",
+          "hizo",
+          "volvió"
+        ],
+        "answer": 0,
+        "why": "Bir olayın sonucunda ortaya çıkan fiziksel/ruhsal durum için 'quedarse' kullanılır: quedarse sin palabras."
+      },
+      {
+        "prompt": "Mi hermano se ha ___ vegetariano por convicción ética y medioambiental.",
+        "options": [
+          "hecho",
+          "puesto",
+          "vuelto",
+          "quedado"
+        ],
+        "answer": 0,
+        "why": "İnanç ve yaşam tarzı seçimlerinde 'hacerse' kullanılır: hacerse vegetariano."
+      },
+      {
+        "prompt": "Esa canción me pone muy ___ cada vez que la escucho en la radio.",
+        "options": [
+          "melancólico",
+          "de melancolía",
+          "en melancolía",
+          "con melancolía"
+        ],
+        "answer": 0,
+        "why": "'Poner + sıfat' bir duygusal ruh haline sokmak anlamındadır: me pone melancólico."
+      },
+      {
+        "prompt": "El abuelo se ___ sordo con la edad y necesita audífono.",
+        "options": [
+          "quedó",
+          "puso",
+          "hizo",
+          "volvió"
+        ],
+        "answer": 0,
+        "why": "Fiziksel bir kaybın (kör, sağır, kel kalmak) sonucunda 'quedarse' kullanılır: quedarse sordo."
+      }
+    ],
+    "basics_es_temporales": [
+      {
+        "prompt": "Cuando tú ___ a casa esta noche, llámame inmediatamente.",
+        "options": [
+          "llegues",
+          "llegas",
+          "llegarás",
+          "llegaste"
+        ],
+        "answer": 0,
+        "why": "Geleceğe yönelik zaman cümlelerinde 'cuando' daima presente de subjuntivo alır: cuando llegues."
+      },
+      {
+        "prompt": "Cuando ___ joven, me gustaba mucho salir a bailar los sábados.",
+        "options": [
+          "era",
+          "sea",
+          "fuese",
+          "sería"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki alışkanlık ve dönem anlatılırken 'cuando' indicativo (imperfecto) alır: cuando era joven."
+      },
+      {
+        "prompt": "En cuanto el jefe ___ la propuesta, te informaré del resultado.",
+        "options": [
+          "firme",
+          "firma",
+          "firmará",
+          "firmaba"
+        ],
+        "answer": 0,
+        "why": "'En cuanto' (-er ermez) geleceğe atıfta bulunduğunda subjuntivo kipi gerektirir: en cuanto firme."
+      },
+      {
+        "prompt": "Nos quedaremos en el refugio hasta que ___ de llover.",
+        "options": [
+          "deje",
+          "deja",
+          "dejará",
+          "dejaba"
+        ],
+        "answer": 0,
+        "why": "'Hasta que' (-e kadar) henüz gerçekleşmemiş gelecekteki süreç için subjuntivo alır: hasta que deje."
+      },
+      {
+        "prompt": "Tan pronto como ___ el paquete, confírmamelo por mensaje.",
+        "options": [
+          "recibas",
+          "recibes",
+          "recibirás",
+          "recibiste"
+        ],
+        "answer": 0,
+        "why": "'Tan pronto como' geleceğe dönük zaman yapısı olduğundan subjuntivo ile kullanılır: tan pronto como recibas."
+      },
+      {
+        "prompt": "Siempre que ___ a Madrid, me hospedo en el mismo hotel del centro.",
+        "options": [
+          "voy",
+          "vaya",
+          "iré",
+          "fuera"
+        ],
+        "answer": 0,
+        "why": "'Siempre que' her ne zaman anlamında genel bir alışkanlığı anlatıyorsa indicativo alır: siempre que voy."
+      },
+      {
+        "prompt": "Antes de que tú ___ nada, déjame explicarte lo que sucedió realmente.",
+        "options": [
+          "digas",
+          "dices",
+          "dirás",
+          "dijiste"
+        ],
+        "answer": 0,
+        "why": "'Antes de que' bağlacı arkasından her zaman istisnasız subjuntivo kipi gerektirir: antes de que digas."
+      }
+    ],
+    "basics_es_lo_neutro": [
+      {
+        "prompt": "___ importante en este momento es mantener la calma y actuar con sensatez.",
+        "options": [
+          "Lo",
+          "El",
+          "La",
+          "Los"
+        ],
+        "answer": 0,
+        "why": "Sıfatları soyut isimleştirmek ('önemli olan şey') için nötr artikel 'lo' kullanılır: lo importante."
+      },
+      {
+        "prompt": "No te imaginas ___ difícil que fue superar aquella prueba física.",
+        "options": [
+          "lo",
+          "el",
+          "la",
+          "qué"
+        ],
+        "answer": 0,
+        "why": "'Lo + sıfat + que' yapısı yoğunluk ve derece bildirir: lo difícil que fue (ne kadar zor olduğunu)."
+      },
+      {
+        "prompt": "Haz ___ que te dicte tu propia conciencia moral.",
+        "options": [
+          "lo",
+          "el",
+          "la",
+          "aquel"
+        ],
+        "answer": 0,
+        "why": "Belli bir ismi olmayan soyut fikirleri bağlamak için 'lo que' nötr ilgi zamiri kullanılır."
+      },
+      {
+        "prompt": "___ malo de este apartamento es que no tiene ascensor.",
+        "options": [
+          "Lo",
+          "El",
+          "La",
+          "Le"
+        ],
+        "answer": 0,
+        "why": "Soyut nitelik: 'lo malo' (kötü olan tarafı)."
+      },
+      {
+        "prompt": "Ella sabe ___ bien que canta su hija mayor.",
+        "options": [
+          "lo",
+          "el",
+          "tan",
+          "cómo"
+        ],
+        "answer": 0,
+        "why": "'Lo + zarf + que' kalıbı zarfın derecesini vurgular: lo bien que canta."
+      },
+      {
+        "prompt": "Aceptamos la propuesta, con ___ cual todos quedaron satisfechos.",
+        "options": [
+          "lo",
+          "la",
+          "el",
+          "los"
+        ],
+        "answer": 0,
+        "why": "Önceki cümlenin tamamına veya duruma atıfta bulunurken 'con lo cual' kullanılır."
+      },
+      {
+        "prompt": "___ mejor de las vacaciones fue desconectar completamente del trabajo.",
+        "options": [
+          "Lo",
+          "El",
+          "La",
+          "Los"
+        ],
+        "answer": 0,
+        "why": "En üstünlük derecesi soyutlandığında 'lo mejor' (en iyi şey) denir."
+      }
+    ],
+    "basics_es_pasiva_ser_estar": [
+      {
+        "prompt": "El cuadro Guernica ___ pintado por Picasso en 1937.",
+        "options": [
+          "fue",
+          "estuvo",
+          "estaba",
+          "era"
+        ],
+        "answer": 0,
+        "why": "Eylemin gerçekleşme sürecini anlatan edilgen yapıda 'ser + participio + por' kullanılır: fue pintado."
+      },
+      {
+        "prompt": "Cuando llegamos a la tienda, las persianas ya ___ bajadas.",
+        "options": [
+          "estaban",
+          "eran",
+          "fueron",
+          "estuvieron de"
+        ],
+        "answer": 0,
+        "why": "Eylemin sonucunda ulaşılan durumu bildirmek için 'estar + participio' kullanılır: estaban bajadas."
+      },
+      {
+        "prompt": "La nueva biblioteca municipal ___ inaugurada por la alcaldesa ayer.",
+        "options": [
+          "fue",
+          "estuvo",
+          "estaba",
+          "quedó"
+        ],
+        "answer": 0,
+        "why": "Tek seferlik tamamlanmış resmî eylem edilgenliği: fue inaugurada."
+      },
+      {
+        "prompt": "Todos los platos ya ___ lavados y ordenados en los armarios.",
+        "options": [
+          "están",
+          "son",
+          "quedan por",
+          "tienen"
+        ],
+        "answer": 0,
+        "why": "Tabakların temizlenmiş halini ve durumunu anlatmak için estar kullanılır: están lavados."
+      },
+      {
+        "prompt": "Estas leyes ___ aprobadas por amplia mayoría parlamentaria el mes pasado.",
+        "options": [
+          "fueron",
+          "estuvieron",
+          "estaban",
+          "serán"
+        ],
+        "answer": 0,
+        "why": "Eylemin faili ve süreci (ser + ortaç): fueron aprobadas."
+      },
+      {
+        "prompt": "El informe definitivo ya ___ redactado y listo para ser enviado.",
+        "options": [
+          "está",
+          "es",
+          "fue de",
+          "queda"
+        ],
+        "answer": 0,
+        "why": "Raporun hazır olma durumu 'estar redactado' ile ifade edilir."
+      },
+      {
+        "prompt": "El edificio ___ destruido por un devastador terremoto en el siglo pasado.",
+        "options": [
+          "fue",
+          "estuvo",
+          "estaba",
+          "había"
+        ],
+        "answer": 0,
+        "why": "Yıkılma eylemi sürecini geçmiş zamanda aktarırken 'fue destruido' kullanılır."
+      }
+    ],
+    "basics_es_probabilidad": [
+      {
+        "prompt": "—¿Dónde está María? —No sé, ___ en la biblioteca estudiando. (şimdiki olasılık)",
+        "options": [
+          "estará",
+          "está",
+          "estaría",
+          "estuvo"
+        ],
+        "answer": 0,
+        "why": "Şimdiki zamana dair tahmin ve olasılık futuro simple ile kurulur: estará."
+      },
+      {
+        "prompt": "Cuando salí de casa ___ las diez de la mañana, más o menos. (geçmiş olasılık)",
+        "options": [
+          "serían",
+          "serán",
+          "fueron",
+          "eran de"
+        ],
+        "answer": 0,
+        "why": "Geçmiş zamana dair tahmin ve yaklaşık saat bildirmede condicional simple kullanılır: serían las diez."
+      },
+      {
+        "prompt": "—No encuentro mi cartera. —La ___ dejado en el coche cuando bajaste. (tamamlanmış geçmiş tahmin)",
+        "options": [
+          "habrás",
+          "habrías",
+          "has",
+          "habías"
+        ],
+        "answer": 0,
+        "why": "Yakın geçmişe dair tamamlanmış tahmin için futuro compuesto kullanılır: la habrás dejado."
+      },
+      {
+        "prompt": "Ayer Juan no vino a trabajar; ___ enfermo. (geçmiş durum tahmini)",
+        "options": [
+          "estaría",
+          "estará",
+          "estuvo",
+          "estuviera"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki nedene dair tahmin için condicional simple kullanılır: estaría enfermo."
+      },
+      {
+        "prompt": "—¿Quién llama a la puerta a estas horas? —___ el repartidor de pizza.",
+        "options": [
+          "Será",
+          "Es",
+          "Sería",
+          "Fue"
+        ],
+        "answer": 0,
+        "why": "Şu anki duruma dair olasılık tahmini için futuro simple: será el repartidor."
+      },
+      {
+        "prompt": "En aquella época sus padres ___ unos cincuenta años.",
+        "options": [
+          "tendrían",
+          "tendrán",
+          "tuvieron",
+          "tenían de"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki yaş tahmininde condicional simple kullanılır: tendrían unos cincuenta años."
+      },
+      {
+        "prompt": "Ellos ya ___ llegado al hotel a estas horas de la noche.",
+        "options": [
+          "habrán",
+          "habrían",
+          "han",
+          "habían"
+        ],
+        "answer": 0,
+        "why": "Şu ana kadar tamamlanmış olması muhtemel eylem tahmini için futuro compuesto: habrán llegado."
+      }
+    ],
+    "basics_es_registro_formal": [
+      {
+        "prompt": "En el encabezado de una carta comercial formal, la fórmula protocolaria es:",
+        "options": [
+          "Estimado señor González:",
+          "¡Hola Pedro!",
+          "¿Qué tal, amigo?",
+          "Querido colega:"
+        ],
+        "answer": 0,
+        "why": "Resmî yazışmada soyadıyla birlikte 'Estimado señor/a X:' kalıbı kullanılır ve iki nokta konur."
+      },
+      {
+        "prompt": "Le ___ que me envíe la documentación a la mayor brevedad posible.",
+        "options": [
+          "agradecería",
+          "agradezco que",
+          "pediría de",
+          "exijo"
+        ],
+        "answer": 0,
+        "why": "Resmî nezaket ricalarında condicional kipi tercih edilir: Le agradecería que..."
+      },
+      {
+        "prompt": "Como fórmula de despedida en una comunicación administrativa, se suele emplear:",
+        "options": [
+          "Atentamente,",
+          "Un abrazo fuerte,",
+          "Hasta pronto,",
+          "Besos y saludos,"
+        ],
+        "answer": 0,
+        "why": "Standart resmî vedalaşma 'Atentamente,' (Saygılarımla) biçimindedir."
+      },
+      {
+        "prompt": "Quedo a su entera ___ para cualquier consulta o aclaración adicional.",
+        "options": [
+          "disposición",
+          "atención",
+          "voluntad",
+          "intención"
+        ],
+        "answer": 0,
+        "why": "Resmî kapanış kalıbı 'Quedo a su entera disposición' şeklindedir."
+      },
+      {
+        "prompt": "Nos dirigimos a usted con el ___ de solicitar una prórroga en el plazo de entrega.",
+        "options": [
+          "propósito",
+          "gusto",
+          "modo",
+          "deseo de"
+        ],
+        "answer": 0,
+        "why": "Resmî talep mektuplarında 'con el propósito de + mastar' kalıbı kullanılır."
+      },
+      {
+        "prompt": "Ruego a usted que se ___ presentar en nuestras oficinas el próximo lunes.",
+        "options": [
+          "sirva",
+          "sirve",
+          "servirá",
+          "sirviese"
+        ],
+        "answer": 0,
+        "why": "Aşırı resmî/hukuki dilek kalıbı 'rogar que se sirva + mastar' subjuntivo gerektirir."
+      },
+      {
+        "prompt": "Agradeciendo de antemano su valiosa colaboración, le saluda ___ .",
+        "options": [
+          "cordialmente",
+          "con cariño",
+          "de todo corazón",
+          "con amistad"
+        ],
+        "answer": 0,
+        "why": "Resmî nezaket mektubu sonlandırmasında 'le saluda cordialmente' kalıbı yer alır."
+      }
+    ],
+    "basics_es_condicion_alternativa": [
+      {
+        "prompt": "Lleva el paraguas en caso de que ___ esta tarde.",
+        "options": [
+          "llueva",
+          "llueve",
+          "lloverá",
+          "llovía"
+        ],
+        "answer": 0,
+        "why": "'En caso de que' (-mesi ihtimaline karşı) bağlacı her zaman subjuntivo alır: en caso de que llueva."
+      },
+      {
+        "prompt": "Iremos a la playa a no ser que el tiempo ___ drásticamente.",
+        "options": [
+          "empeore",
+          "empeora",
+          "empeorará",
+          "empeoró"
+        ],
+        "answer": 0,
+        "why": "'A no ser que' (-medikçe / olmaması şartıyla) daima subjuntivo kipi gerektirir: a no ser que empeore."
+      },
+      {
+        "prompt": "___ no haber recibido la confirmación oficial, no podemos iniciar las obras.",
+        "options": [
+          "De",
+          "Por",
+          "En",
+          "Con"
+        ],
+        "answer": 0,
+        "why": "'De + mastar' yapısı şart bildirir: 'De no haber recibido...' (almamış olursak / almadığımız takdirde)."
+      },
+      {
+        "prompt": "Como no ___ pronto, perderemos el último tren de la noche.",
+        "options": [
+          "vengas",
+          "vienes",
+          "vendrás",
+          "viniste"
+        ],
+        "answer": 0,
+        "why": "'Como' bağlacı uyarı veya tehdit niteliğindeki şart cümlelerinde subjuntivo alır: como no vengas."
+      },
+      {
+        "prompt": "Podrás salir con tus amigos con tal de que ___ todas tus tareas escolares.",
+        "options": [
+          "termines",
+          "terminas",
+          "terminarás",
+          "terminaste"
+        ],
+        "answer": 0,
+        "why": "'Con tal de que' (yeter ki ... olsun) şart bağlacı subjuntivo gerektirir: con tal de que termines."
+      },
+      {
+        "prompt": "A condición de que nos ___ puntualmente, te ofreceremos un descuento exclusivo.",
+        "options": [
+          "paguéis",
+          "pagáis",
+          "pagaréis",
+          "pagasteis"
+        ],
+        "answer": 0,
+        "why": "'A condición de que' şart bağlacı subjuntivo ile kurulur: a condición de que nos paguéis."
+      },
+      {
+        "prompt": "Siempre y cuando ___ las normas de seguridad, la entrada al recinto es libre.",
+        "options": [
+          "respetes",
+          "respetas",
+          "respetarás",
+          "respetaste"
+        ],
+        "answer": 0,
+        "why": "'Siempre y cuando' bağlacı subjuntivo kipiyle kullanılır: siempre y cuando respetes."
+      }
+    ],
+    "basics_es_oraciones_hendidas": [
+      {
+        "prompt": "Fue María ___ descubrió el fallo en el sistema informático.",
+        "options": [
+          "quien",
+          "la que",
+          "que",
+          "cuyo"
+        ],
+        "answer": 0,
+        "why": "Vurgu yapısında (oración hendida) insan özneyi öne çıkarırken 'fue X quien' yapısı çok yaygındır."
+      },
+      {
+        "prompt": "___ necesito de verdad en este momento es un descanso reparador.",
+        "options": [
+          "Lo que",
+          "El que",
+          "Que",
+          "Cual"
+        ],
+        "answer": 0,
+        "why": "Cümledeki nesneyi veya soyut ihtiyacı vurgularken 'Lo que ... es' yapısı kullanılır: lo que necesito es..."
+      },
+      {
+        "prompt": "Es en este parque ___ solíamos jugar todas las tardes de niños.",
+        "options": [
+          "donde",
+          "que",
+          "en que",
+          "cuando"
+        ],
+        "answer": 0,
+        "why": "Mekân vurgusunda 'es + yer + donde' kalıbı kurulur: es en este parque donde..."
+      },
+      {
+        "prompt": "Fue el año pasado ___ se celebró la primera edición del festival.",
+        "options": [
+          "cuando",
+          "que",
+          "donde",
+          "en que"
+        ],
+        "answer": 0,
+        "why": "Zaman vurgulandığında 'fue + zaman + cuando' yapısı kullanılır: fue el año pasado cuando..."
+      },
+      {
+        "prompt": "No es por dinero ___ acepté el puesto, sino por la experiencia profesional.",
+        "options": [
+          "por lo que",
+          "por que",
+          "por quien",
+          "para que"
+        ],
+        "answer": 0,
+        "why": "Sebep vurgulandığında 'por lo que' kalıbı kullanılır: no es por dinero por lo que..."
+      },
+      {
+        "prompt": "Fueron ellos ___ asumieron toda la responsabilidad del proyecto.",
+        "options": [
+          "quienes",
+          "quien",
+          "que se",
+          "los de"
+        ],
+        "answer": 0,
+        "why": "Çoğul özneler vurgulandığında 'fueron ellos quienes' yapısı kullanılır."
+      },
+      {
+        "prompt": "Es de esta manera ___ debemos enfocar el debate contemporáneo.",
+        "options": [
+          "como",
+          "que",
+          "donde",
+          "cuando"
+        ],
+        "answer": 0,
+        "why": "Tarz ve yöntem vurgusunda 'es de esta manera como...' yapısı tercih edilir."
+      }
+    ],
+    "basics_es_aunque_indicativo_subjuntivo": [
+      {
+        "prompt": "Aunque el examen ___ difícil ayer, creo que logré aprobarlo. (gerçekleşmiş durum)",
+        "options": [
+          "fue",
+          "fuera",
+          "sea",
+          "haya sido"
+        ],
+        "answer": 0,
+        "why": "Konuşanın bildiği, gerçekleşmiş kesin bir olguda aunque indicativo alır: aunque fue difícil."
+      },
+      {
+        "prompt": "Aunque ___ cansado esta tarde, iré a visitarte sin falta. (henüz gerçekleşmemiş varsayım)",
+        "options": [
+          "esté",
+          "estoy",
+          "estaba",
+          "estuve"
+        ],
+        "answer": 0,
+        "why": "Geleceğe dair olası ve varsayımsal bir durumda aunque subjuntivo alır: aunque esté cansado."
+      },
+      {
+        "prompt": "No voy a comprar ese coche aunque me lo ___ a mitad de precio.",
+        "options": [
+          "ofrezcan",
+          "ofrecen",
+          "ofrecerán",
+          "ofrecieron"
+        ],
+        "answer": 0,
+        "why": "Varsayımsal ve pazarlık konusu olmayan bir taviz için subjuntivo: aunque me lo ofrezcan."
+      },
+      {
+        "prompt": "Aunque él ___ que no le importa, sé perfectamente que le afectó mucho.",
+        "options": [
+          "dice",
+          "diga",
+          "dijera",
+          "dijese"
+        ],
+        "answer": 0,
+        "why": "O kişinin söylediği gerçek bir olgu kabul edildiğinde indicativo kullanılır: aunque él dice."
+      },
+      {
+        "prompt": "Aunque nosotros no ___ de acuerdo en todo, nos respetamos profundamente.",
+        "options": [
+          "estamos",
+          "estemos",
+          "estuviéramos",
+          "estuviésemos"
+        ],
+        "answer": 0,
+        "why": "Halihazırda var olan bilinen bir durum aktarılırken indicativo doğrudur: aunque no estamos de acuerdo."
+      },
+      {
+        "prompt": "Iré a la manifestación aunque ___ chuzos de punta mañana.",
+        "options": [
+          "caigan",
+          "caen",
+          "caerán",
+          "cayeron"
+        ],
+        "answer": 0,
+        "why": "Gelecekteki aşırı hava durumuna rağmen kararlılık bildiren ifadede subjuntivo gelir: aunque caigan."
+      },
+      {
+        "prompt": "Aunque la película ___ muy buenas críticas, a mí personalmente me aburrió.",
+        "options": [
+          "tenía",
+          "tenga",
+          "tuviera",
+          "tuviese"
+        ],
+        "answer": 0,
+        "why": "Geçmişte filmin iyi eleştirilere sahip olduğu bir olgudur; indicativo imperfecto: tenía."
+      }
+    ],
+    "basics_es_si_condicionales_subjuntivo": [
+      {
+        "prompt": "Si tú ___ más tiempo en casa, aprenderías a cocinar platos deliciosos.",
+        "options": [
+          "pasaras",
+          "pasas",
+          "pasarás",
+          "pasarías"
+        ],
+        "answer": 0,
+        "why": "Gerçekleşmesi zor/varsayımsal şart cümlelerinde 'Si + imperfecto de subjuntivo' kullanılır: pasaras (veya pasases)."
+      },
+      {
+        "prompt": "Si ellos nos hubieran avisado con tiempo, nosotros les ___ a encontrar hotel.",
+        "options": [
+          "habríamos ayudado",
+          "hubiéramos ayudado",
+          "ayudaremos",
+          "ayudábamos"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmemiş şart sonucunda condicional compuesto kullanılır: habríamos ayudado."
+      },
+      {
+        "prompt": "Si yo fuera tú, no ___ esa oferta de empleo tan tentadora.",
+        "options": [
+          "rechazaría",
+          "rechazo",
+          "rechazaré",
+          "rechazara"
+        ],
+        "answer": 0,
+        "why": "Tavsiye verirken 'Si yo fuera tú' kalıbının sonucu condicional simple'dır: no rechazaría."
+      },
+      {
+        "prompt": "¿Qué habrías hecho tú si te ___ en esa situación tan comprometida?",
+        "options": [
+          "hubieras encontrado",
+          "encontraras",
+          "has encontrado",
+          "habrías encontrado"
+        ],
+        "answer": 0,
+        "why": "Geçmiş şartta 'Si + pluscuamperfecto de subjuntivo' gereklidir: si te hubieras encontrado."
+      },
+      {
+        "prompt": "Si nosotros tuviéramos un mapa detallado, no nos ___ perdido tantas veces.",
+        "options": [
+          "habríamos",
+          "hubiéramos",
+          "hemos",
+          "habremos"
+        ],
+        "answer": 0,
+        "why": "Karma şart cümlesi: geçmişteki kaybolma sonucunda condicional compuesto gelir: no nos habríamos perdido."
+      },
+      {
+        "prompt": "Si ___ rico, viajaría alrededor del mundo durante un año entero.",
+        "options": [
+          "fuera",
+          "soy",
+          "seré",
+          "sería"
+        ],
+        "answer": 0,
+        "why": "Şimdiki zamandaki varsayımsal hayal için 'si fuera' kullanılır."
+      },
+      {
+        "prompt": "Si hubieras estudiado con constancia, hoy no ___ tan preocupado por las notas.",
+        "options": [
+          "estarías",
+          "estuvieras",
+          "estarás",
+          "has estado"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki şartın bugünkü sonucunda condicional simple kullanılır: hoy no estarías preocupado."
+      }
+    ],
+    "basics_es_que_quien_el_que": [
+      {
+        "prompt": "La casa en ___ pasé los veranos de mi infancia ha sido demolida.",
+        "options": [
+          "la que",
+          "que",
+          "cuyo",
+          "quien"
+        ],
+        "answer": 0,
+        "why": "'En' edatından sonra dişil tekil isim için 'la que' (veya la cual) kullanılır: en la que pasé."
+      },
+      {
+        "prompt": "Los candidatos, ___ habían superado la primera fase, pasaron a la entrevista.",
+        "options": [
+          "quienes",
+          "el que",
+          "cuyo",
+          "donde"
+        ],
+        "answer": 0,
+        "why": "Açıklayıcı (virgüllü) yan cümlede çoğul kişiler için 'quienes' kullanılır."
+      },
+      {
+        "prompt": "El profesor ___ libros leemos en clase es un reconocido catedrático.",
+        "options": [
+          "cuyos",
+          "cuyo",
+          "cuyas",
+          "que"
+        ],
+        "answer": 0,
+        "why": "'Cuyos libros' (kitapları): sahiplik ilgi zamiri nitelediği eril çoğul isme uyar: cuyos libros."
+      },
+      {
+        "prompt": "No me acuerdo de ___ me dijiste ayer por la tarde.",
+        "options": [
+          "lo que",
+          "el que",
+          "la que",
+          "que"
+        ],
+        "answer": 0,
+        "why": "Belirli bir ismi olmayan genel sözler için 'lo que' nötr ilgi zamiri kullanılır."
+      },
+      {
+        "prompt": "El chico con ___ hablé en la fiesta es arquitecto en Valencia.",
+        "options": [
+          "el que",
+          "que",
+          "cuyo",
+          "donde"
+        ],
+        "answer": 0,
+        "why": "Edattan sonra tekil eril kişi için 'el que' veya 'quien' kullanılır: con el que hablé."
+      },
+      {
+        "prompt": "Esa es la razón por ___ decidí cambiar de carrera profesional.",
+        "options": [
+          "la que",
+          "el que",
+          "lo que",
+          "que"
+        ],
+        "answer": 0,
+        "why": "'La razón por la que' (bu sebeple / bu yüzden) kalıbı dişil tekil isimle uyumludur."
+      },
+      {
+        "prompt": "Los coches ___ motores emiten menos gases pagan menos impuestos.",
+        "options": [
+          "cuyos",
+          "cuyo",
+          "cuyas",
+          "cuyas de"
+        ],
+        "answer": 0,
+        "why": "'Motores' eril çoğul bir isimdir; ilgi zamiri uyum sağlar: cuyos motores."
+      }
+    ],
+    "basics_es_futuro_probabilidad": [
+      {
+        "prompt": "—¿Dónde están mis gafas de leer? —___ sobre la mesilla de noche.",
+        "options": [
+          "Estarán",
+          "Están",
+          "Estaban",
+          "Estarían"
+        ],
+        "answer": 0,
+        "why": "Şimdiki zamana dair tahmin ve yaklaşık tahmin için futuro simple kullanılır: estarán."
+      },
+      {
+        "prompt": "—¿Quién es esa persona que saluda a lo lejos? —___ el nuevo vecino.",
+        "options": [
+          "Será",
+          "Es",
+          "Era",
+          "Sería"
+        ],
+        "answer": 0,
+        "why": "Şu anki duruma dair olasılık tahmini için futuro simple: será el nuevo vecino."
+      },
+      {
+        "prompt": "—¿A qué hora llegó el tren? —No sé con exactitud, ___ sobre las siete.",
+        "options": [
+          "llegaría",
+          "llegará",
+          "ha llegado",
+          "llegaba de"
+        ],
+        "answer": 0,
+        "why": "Geçmiş zamana dair zaman tahmini için condicional simple kullanılır: llegaría sobre las siete."
+      },
+      {
+        "prompt": "—¿Cuánto costó ese reloj de oro? —___ unos dos mil euros, supongo.",
+        "options": [
+          "Costaría",
+          "Costará",
+          "Cuesta",
+          "Costó de"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki fiyat tahmininde condicional simple kullanılır: costaría unos dos mil euros."
+      },
+      {
+        "prompt": "—¿Por qué no ha venido Carlos a la reunión? —Se ___ olvidado de la fecha.",
+        "options": [
+          "habrá",
+          "habría",
+          "ha",
+          "había"
+        ],
+        "answer": 0,
+        "why": "Geçmişte tamamlanmış olması muhtemel eylem tahmini için futuro compuesto: se habrá olvidado."
+      },
+      {
+        "prompt": "—¿Qué hora será? —___ las tres de la tarde.",
+        "options": [
+          "Serán",
+          "Son",
+          "Serían",
+          "Fueron"
+        ],
+        "answer": 0,
+        "why": "Şu anki saati tahmin ederken çoğul saatlerde futuro simple: serán las tres."
+      },
+      {
+        "prompt": "En aquel momento el autor ___ unos treinta años de edad.",
+        "options": [
+          "tendría",
+          "tendrá",
+          "tuvo",
+          "tenía de"
+        ],
+        "answer": 0,
+        "why": "Geçmişteki yaş tahmininde condicional simple kullanılır: tendría unos treinta años."
+      }
+    ],
+    "basics_es_se_accidental": [
+      {
+        "prompt": "Ayer a Carlos se le ___ el jarrón antiguo en mil pedazos.",
+        "options": [
+          "rompió",
+          "rompieron",
+          "rompió le",
+          "ha roto"
+        ],
+        "answer": 0,
+        "why": "Özne tekil olduğunda (el jarrón) se accidental yapısında fiil 3. tekildir: se le rompió."
+      },
+      {
+        "prompt": "Se nos ___ las llaves dentro del coche cuando cerramos la puerta.",
+        "options": [
+          "quedaron",
+          "quedó",
+          "quedaron se",
+          "han quedado"
+        ],
+        "answer": 0,
+        "why": "Özne çoğuldur (las llaves): se nos quedaron las llaves."
+      },
+      {
+        "prompt": "¿Se te ___ el billete de tren en el autobús? (perder)",
+        "options": [
+          "perdió",
+          "perdieron",
+          "perdiste",
+          "ha perdido te"
+        ],
+        "answer": 0,
+        "why": "'El billete' tekil bir isimdir; se accidental fiili tekildir: se te perdió."
+      },
+      {
+        "prompt": "A María se le ___ por completo la tarta en el horno. (quemar)",
+        "options": [
+          "quemó",
+          "quemaron",
+          "quemé",
+          "ha quemado"
+        ],
+        "answer": 0,
+        "why": "La tarta tekil özne olduğundan fiil 3. tekildir: se le quemó."
+      },
+      {
+        "prompt": "A nosotros se nos ___ una idea genial para solucionar el problema.",
+        "options": [
+          "ocurrió",
+          "ocurrieron",
+          "ocurrimos",
+          "ocurre de"
+        ],
+        "answer": 0,
+        "why": "Akla fikir gelmesi deyimi 'ocurrírsele': tekil özne (una idea) ile se nos ocurrió."
+      },
+      {
+        "prompt": "Ten cuidado con el café hirviendo, ¡se te va a ___ encima!",
+        "options": [
+          "caer",
+          "caerse",
+          "tirar",
+          "dejar"
+        ],
+        "answer": 0,
+        "why": "İstemsiz dökülme veya düşme fiili 'caer'dir: se te va a caer encima."
+      },
+      {
+        "prompt": "A los alumnos se les ___ los deberes en casa hoy. (olvidar)",
+        "options": [
+          "olvidaron",
+          "olvidó",
+          "olvidaron les",
+          "olvidaban"
+        ],
+        "answer": 0,
+        "why": "Özne çoğul (los deberes) olduğunda se accidental çoğul çekilir: se les olvidaron."
+      }
+    ],
+    "basics_es_como_si_ojala": [
+      {
+        "prompt": "Me habla en tono autoritario como si ___ mi jefe supremo.",
+        "options": [
+          "fuera",
+          "sea",
+          "es",
+          "sería"
+        ],
+        "answer": 0,
+        "why": "'Como si' bağlacı daima imperfecto veya pluscuamperfecto de subjuntivo alır: como si fuera."
+      },
+      {
+        "prompt": "¡Ojalá el examen de mañana ___ accesible para todos!",
+        "options": [
+          "sea",
+          "es",
+          "será",
+          "sería"
+        ],
+        "answer": 0,
+        "why": "Geleceğe dair gerçekleşebilir temennilerde 'ojalá + presente de subjuntivo' kullanılır: ojalá sea."
+      },
+      {
+        "prompt": "¡Ojalá ___ más dinero para poder comprar esa casa! (şu an imkânsız dilek)",
+        "options": [
+          "tuviera",
+          "tenga",
+          "tengo",
+          "tendría"
+        ],
+        "answer": 0,
+        "why": "Şimdiki zamanda imkânsız veya zor bir dilek için 'ojalá + imperfecto de subjuntivo': ojalá tuviera."
+      },
+      {
+        "prompt": "Gastaba el dinero a manos llenas como si le ___ tocado la lotería.",
+        "options": [
+          "hubiera",
+          "haya",
+          "había",
+          "habría"
+        ],
+        "answer": 0,
+        "why": "Geçmişte gerçekleşmemiş benzetme için 'como si + pluscuamperfecto de subjuntivo': como si le hubiera tocado."
+      },
+      {
+        "prompt": "Nos sonrió cálidamente como si nos ___ de toda la vida.",
+        "options": [
+          "conociera",
+          "conozca",
+          "conoce",
+          "conocería"
+        ],
+        "answer": 0,
+        "why": "Gerçek dışı benzetme için 'como si + imperfecto de subjuntivo': como si nos conociera."
+      },
+      {
+        "prompt": "¡Ojalá el tiempo no ___ arruinado nuestros planes el fin de semana pasado!",
+        "options": [
+          "hubiera",
+          "haya",
+          "había",
+          "habría"
+        ],
+        "answer": 0,
+        "why": "Geçmişte yaşanmış ve değiştirilemeyen pişmanlıkta 'ojalá + pluscuamperfecto de subjuntivo': ojalá hubiera arruinado."
+      },
+      {
+        "prompt": "Camina lentamente como si le ___ los pies.",
+        "options": [
+          "dolieran",
+          "duelan",
+          "duelen",
+          "dolerían"
+        ],
+        "answer": 0,
+        "why": "'Como si' bağlacı sonrasında imperfecto de subjuntivo: como si le dolieran los pies."
+      }
+    ],
+    "basics_es_participio_gerundio_compuesto": [
+      {
+        "prompt": "Al ___ el discurso, todo el auditorio se puso en pie para aplaudir.",
+        "options": [
+          "haber terminado",
+          "terminando",
+          "terminado de",
+          "haber terminar"
+        ],
+        "answer": 0,
+        "why": "'Al + haber + participio' yapısı bir eylemin tamamlanmasının hemen ardından gerçekleşen sonucu bildirir."
+      },
+      {
+        "prompt": "___ esto por ambas partes, se dio por concluida la sesión de negociaciones.",
+        "options": [
+          "Dicho",
+          "Diciendo",
+          "Habiendo dicho",
+          "Decir"
+        ],
+        "answer": 0,
+        "why": "Mutlak ortaç yapısında (participio absoluto) cümle başında 'dicho esto' (bu söylenerek / söylendikten sonra) kullanılır."
+      },
+      {
+        "prompt": "Habiendo ___ todos los informes periciales, el juez dictó sentencia definitiva.",
+        "options": [
+          "examinado",
+          "examinando",
+          "examinar",
+          "examinados"
+        ],
+        "answer": 0,
+        "why": "Bileşik ulaç (gerundio compuesto: habiendo + participio) tamamlanmış öncelikli eylemi anlatır."
+      },
+      {
+        "prompt": "Terminada la reunión, todos los asistentes ___ a sus respectivos despachos.",
+        "options": [
+          "regresaron",
+          "regresando",
+          "haber regresado",
+          "regresan de"
+        ],
+        "answer": 0,
+        "why": "Mutlak ortaç yan cümlesinin ardından ana cümle geçmiş zaman çekimiyle devam eder: regresaron."
+      },
+      {
+        "prompt": "Al ___ cuenta de su grave error, pidió disculpas públicamente.",
+        "options": [
+          "haberse dado",
+          "dándose",
+          "haber dado",
+          "dado se"
+        ],
+        "answer": 0,
+        "why": "Dönüşlü fiillerde zamir bileşik mastarın sonuna bitişir: al haberse dado cuenta."
+      },
+      {
+        "prompt": "Habiendo ___ con éxito el proyecto, el equipo recibió una bonificación especial.",
+        "options": [
+          "concluido",
+          "concluyendo",
+          "concluir",
+          "concluidos"
+        ],
+        "answer": 0,
+        "why": "'Habiendo concluido' bileşik gerundio öncelik bildirir."
+      },
+      {
+        "prompt": "Aclarados todos los puntos del contrato, se procedió a la firma oficial.",
+        "options": [
+          "Bu yapı bir mutlak ortaç (participio absoluto) örneğidir.",
+          "Bu yapı bir gerundio perifrasis'idir.",
+          "Burada ser pasivo kullanılmıştır.",
+          "Hatalı bir dil bilgisi yapısıdır."
+        ],
+        "answer": 0,
+        "why": "'Aclarados todos los puntos' yapısı zaman ve şart bildiren klasik bir mutlak ortaç (participio absoluto) cümlesidir."
+      }
+    ],
+    "basics_es_conectores_dele": [
+      {
+        "prompt": "La empresa redujo sus costes fijos ; ___ , mejoró la productividad global.",
+        "options": [
+          "asimismo",
+          "sin embargo",
+          "en cambio",
+          "de ahí que"
+        ],
+        "answer": 0,
+        "why": "'Asimismo' (aynı şekilde / ayrıca) akademik ve resmî yazıda paralel olumlu fikirleri bağlar."
+      },
+      {
+        "prompt": "No se alcanzaron los acuerdos comerciales previstos ; de ahí que se ___ las negociaciones.",
+        "options": [
+          "suspendieran",
+          "suspendieron",
+          "suspenderán",
+          "suspenden"
+        ],
+        "answer": 0,
+        "why": "'De ahí que' bağlacı her zaman subjuntivo kipi gerektirir: de ahí que se suspendieran."
+      },
+      {
+        "prompt": "El estudio demuestra la eficacia del tratamiento ; ___ , cabe señalar ciertas limitaciones metodológicas.",
+        "options": [
+          "no obstante",
+          "por consiguiente",
+          "así pues",
+          "en efecto"
+        ],
+        "answer": 0,
+        "why": "'No obstante' üst düzey bir taviz/karşıtlık bağlacıdır (bununla birlikte)."
+      },
+      {
+        "prompt": "___ cabe señalar que los resultados obtenidos son plenamente satisfactorios.",
+        "options": [
+          "Por ende",
+          "Asimismo",
+          "A no ser que",
+          "En cambio"
+        ],
+        "answer": 1,
+        "why": "'Asimismo cabe señalar que' (aynı şekilde belirtmek gerekir ki) DELE C1 kompozisyonlarında sıkça kullanılan bir argüman ekleme kalıbıdır."
+      },
+      {
+        "prompt": "La inflación continuó subiendo durante todo el trimestre y, por ___ , el poder adquisitivo cayó.",
+        "options": [
+          "ende",
+          "cambio",
+          "tanto de",
+          "menos"
+        ],
+        "answer": 0,
+        "why": "'Por ende' yüksek dilde 'dolayısıyla / bu sebepten ötürü' anlamına gelir."
+      },
+      {
+        "prompt": "___ es de destacar la impecable labor de todo el equipo de investigación.",
+        "options": [
+          "Digno",
+          "Digno de",
+          "Dignamente",
+          "Dignidad"
+        ],
+        "answer": 0,
+        "why": "'Digno es de destacar...' veya 'cabe destacar...' yüksek üsluplu kompozisyon kalıplarıdır."
+      },
+      {
+        "prompt": "En conclusión, el balance es positivo ; ___ , persisten algunos desafíos cruciales.",
+        "options": [
+          "si bien",
+          "porque",
+          "puesto que",
+          "ya que"
+        ],
+        "answer": 0,
+        "why": "'Si bien' (-se de / her ne kadar ... olsa da) bağlacı indicativo ile taviz ve karşıtlık bildirir."
+      }
+    ]
+  }
+}
