@@ -55,7 +55,7 @@ export function TenseBar({ language, verb, tense, available, onTense }: { langua
             {tenseName(tense)}
           </button>
         )}
-        <TensePicker language={language} tense={tense} onPick={onTense} available={available} label="Diğer" buttonClassName="chip chip-sm lab-tense-more" />
+        <TensePicker language={language} tense={tense} onPick={onTense} available={available} label="Diğer" exclude={core} buttonClassName="chip chip-sm lab-tense-more" />
         <TenseInfoButton language={language} tense={tense} />
       </div>
     </>
