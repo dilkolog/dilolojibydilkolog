@@ -25,6 +25,8 @@ import { localDate } from '../engine/progress'
 import { dayMetrics, questStatus, type QuestStatus } from '../engine/quests'
 import { CORE_TENSES } from './verbs/labShared'
 import type { KelimeDB } from '../data/db'
+import { isRead } from '../engine/guideReview'
+import { loadPlacement } from './guidePlacementStore'
 
 export interface GameState {
   xp: XpSummary
@@ -64,7 +66,7 @@ export function loadGame(db: KelimeDB, now = new Date()): Promise<GameState> {
 }
 
 async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
-  const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog, ledger] = await Promise.all([
+  const [events, states, vocabulary, wins, library, journal, settings, mistakes, labFr, labEs, badgeLog, ledger, guideMarks, placementMeta] = await Promise.all([
     db.allEvents(),
     db.wordStates.toArray(),
     db.vocabulary.toArray(),
@@ -77,6 +79,8 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     db.getLab('es'),
     db.getBadgeLog(),
     db.getXpLedger(),
+    db.getGuideMarks(),
+    db.meta.get('guidePlacementDone'),
   ])
   const xp = computeXp(events, states.map((s) => s.introducedAt), now)
   // Beating a boss is worth a fixed bonus, counted on the day it happened.
@@ -119,6 +123,12 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
   // "Sağlam" and beyond: the word has stood on its own for a while.
   const strongIds = new Set(states.filter((s) => MASTERY_STAGES.indexOf(masteryStage(s)) >= 3).map((s) => s.entryId))
   const hard = difficultWords(vocabulary)
+  const ledgerLessons = Object.keys(ledger).filter((k) => k.startsWith('lesson|')).length
+  const marksLessons = Object.values(guideMarks).filter((m) => isRead(m) && m.learned).length
+  const guideLessonsLearned = Math.max(ledgerLessons, marksLessons)
+  const guideCertsEarned = Object.keys(ledger).filter((k) => k.startsWith('cert|')).length
+  const hasStoredPlacement = (['fr', 'es', 'en'] as const).some((lang) => !!loadPlacement(lang))
+  const guidePlacementDone = (placementMeta?.value || hasStoredPlacement) ? 1 : 0
   const stats: GameStats = {
     ...activityStats(events),
     wordsAdded: vocabulary.filter((v) => v.source !== 'sample').length,
@@ -133,8 +143,6 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     formsMastered: masteredForms(labFr) + masteredForms(labEs),
     verbsMastered: wholeVerbs(labFr, CORE_TENSES.fr) + wholeVerbs(labEs, CORE_TENSES.es),
     tourDays: new Set([...(labFr.tourDays ?? []), ...(labEs.tourDays ?? [])]).size,
-    lessonsLearned: Object.keys(ledger).filter((k) => k.startsWith('lesson|')).length,
-    certificates: Object.keys(ledger).filter((k) => k.startsWith('cert|')).length,
     totalXp: xp.total,
     wordsIntroduced: states.length,
     mastered: states.filter((s) => masteryStage(s) === 'mastered').length,
@@ -150,6 +158,9 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     bossesDefeated: wins.length,
     challengesDone: [...weeks.values()].reduce((a, b) => a + b, 0),
     perfectWeeks: [...weeks.values()].filter((n) => n >= 3).length,
+    guideLessonsLearned,
+    guideCertsEarned,
+    guidePlacementDone,
   }
   const studyDays = [...new Set(real.map((e) => localDate(e.timestamp)))]
   const isRest = (day: string) => !!settings && isRestDay(new Date(`${day}T12:00:00`), settings)
