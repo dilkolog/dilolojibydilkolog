@@ -2218,7 +2218,7 @@ test('the guide: the placement test ends where a level is not passed and points 
   await expect(result.getByRole('heading', { name: 'A1 seviyesinden başla' })).toBeVisible()
   await expect(result.getByRole('button', { name: /Buradan başla/ })).toBeVisible()
   expect(await overflow(page)).toEqual([])
-  await page.getByRole('button', { name: 'Rehber', exact: true }).click()
+  await page.locator('.guide-back-btn').click()
   await expect(page.locator('.guide-placement-card')).toContainText("Seviye testin: A1'den başla")
 })
 

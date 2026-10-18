@@ -900,7 +900,8 @@ function LessonView({
           . Bu ders ona dayanıyor.
         </p>
       )}
-      <LessonSteps steps={steps} />
+      {/* Out of the way during the check: it would sit over the question and the lesson's last cards. */}
+      {!checking && <LessonSteps steps={steps} />}
       <section id="lesson-learn" className="card stack gap-2 guide-rules-card">
         <h2 className="section-title">Kurallar</h2>
         <ol className="guide-rules">
