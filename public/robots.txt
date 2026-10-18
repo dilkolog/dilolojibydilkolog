@@ -1,2 +1,6 @@
+# The app itself is private; only the pages Google's sign-in review must reach are open.
 User-agent: *
+Allow: /$
+Allow: /gizlilik
+Allow: /kosullar
 Disallow: /

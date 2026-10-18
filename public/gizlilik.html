@@ -20,24 +20,24 @@ p,li{margin:.4rem 0}ul{padding-left:1.25rem}.muted{color:var(--soft);font-size:.
 <a class="brand" href="/">● Diloloji</a>
 <article>
 <h1>Gizlilik politikası</h1>
-<p class="muted">Son güncelleme: 15 Ekim 2026</p>
+<p class="muted">Son güncelleme: 19 Ekim 2026</p>
 
 <p>Diloloji, kelime ve dil öğrenmek için bir web uygulamasıdır. Bu sayfa hangi bilgilerin nerede tutulduğunu ve kimlerle paylaşıldığını anlatır. Kısaca: reklam yok, izleme yok, verilerin satılmaz.</p>
 
 <h2>Cihazında kalanlar</h2>
-<p>Kelimelerin, cevapların, listelerin, okuma metinlerin ve ayarların önce yalnızca kendi cihazında (tarayıcının IndexedDB deposunda) tutulur. Hesap açmadan kullanırsan hiçbiri sunucuya gitmez.</p>
+<p>Kelimelerin, cevapların, listelerin, okuma metinlerin ve ayarların önce kendi cihazında (tarayıcının IndexedDB deposunda) tutulur; hesabınla giriş yaptıktan sonra cihazlar arasında eşitlenir. Uygulamayı kullanmak için bir hesap gerekir.</p>
 
-<h2>Hesap açarsan</h2>
+<h2>Hesabınla birlikte tutulanlar</h2>
 <ul>
-<li><strong>Giriş:</strong> e-posta adresin ve (şifreyle giriyorsan) şifrenin güvenli özeti, giriş hizmeti Supabase'te tutulur. Google ile girersen Google'dan yalnızca adın, e-postan ve profil resmin gelir.</li>
-<li><strong>Eşitleme:</strong> cihazlar arası eşitleme için verilerin sıkıştırılıp şifrelenerek Vercel'in depolama hizmetinde (Vercel Blob) saklanır. Şifre çözme anahtarı, şifreni unutsan da verine ulaşabilmen için hesabınla birlikte Supabase'te saklanır.</li>
-<li><strong>Onay:</strong> yeni hesaplar site sahibinin onayından geçer; bunun için site sahibi adını, e-postanı ve yazdığın kısa notu görür.</li>
+<li><strong>Giriş:</strong> e-posta adresin ve (şifreyle giriyorsan) şifrenin güvenli özeti, giriş hizmeti Supabase'te tutulur. Google ile girersen Google'dan yalnızca adın, e-postan ve profil resmin gelir; başka hiçbir Google verine erişilmez.</li>
+<li><strong>Eşitleme:</strong> cihazlar arası eşitleme için kelimelerin, ilerlemen ve ayarların hesabınla ilişkilendirilmiş olarak Supabase veritabanında ve Cloudflare'in depolama hizmetinde (R2) saklanır. Veritabanına erişim satır düzeyinde güvenlikle yalnızca kendi hesabına açılır. Hizmeti işletmek için site sahibi bu altyapıya teknik olarak erişebilir; verilerini satmaz, reklam ya da başka bir amaçla kullanmaz.</li>
+<li><strong>Onay:</strong> site sahibi yeni hesapları onaylama yetkisini kullanabilir; bu açıkken site sahibi adını, e-postanı ve yazdığın kısa notu görür.</li>
 <li><strong>Arkadaşlar (isteğe bağlı):</strong> arkadaş kodunu paylaştığın kişiler adını, avatarını, serini, seviyeni ve son iki haftanın XP'sini görür. Kelimelerin ve cevapların görünmez.</li>
 <li><strong>Paylaşılan listeler (isteğe bağlı):</strong> bir listeyi bağlantıyla paylaşırsan, bağlantıyı bilen o listeyi görür; topluluk kütüphanesine koyarsan herkes görür.</li>
 </ul>
 
 <h2>Dış hizmetler</h2>
-<p>Bazı özellikler yalnızca sen kullandığında ilgili hizmete metin gönderir:</p>
+<p>Uygulama Cloudflare üzerinde barındırılır; giriş ve veritabanı için Supabase, Google ile giriş için Google kullanılır. Bazı özellikler yalnızca sen kullandığında ilgili hizmete metin gönderir:</p>
 <ul>
 <li><strong>Çeviri:</strong> çevirmek istediğin cümleler DeepL'e gönderilir.</li>
 <li><strong>Yapay zekâ özellikleri:</strong> kendi Anthropic (Claude) anahtarını girersen, istekler cihazından doğrudan Anthropic'e gider; anahtarın yalnızca cihazında durur.</li>
@@ -49,14 +49,17 @@ p,li{margin:.4rem 0}ul{padding-left:1.25rem}.muted{color:var(--soft);font-size:.
 </ul>
 
 <h2>Çerezler ve izleme</h2>
-<p>Reklam ya da analitik çerezi, izleme pikseli veya üçüncü taraf takip aracı kullanılmaz. Tarayıcının yerel deposu yalnızca uygulamanın çalışması (oturum, ayarlar) için kullanılır.</p>
+<p>Reklam ya da analitik çerezi, izleme pikseli veya üçüncü taraf takip aracı kullanılmaz. Tarayıcının yerel deposu yalnızca uygulamanın çalışması (giriş oturumu, ayarlar) için kullanılır.</p>
 
 <h2>Verilerin üzerindeki hakların</h2>
 <ul>
 <li>Verilerinin tamamını istediğin an Ayarlar → Veriler → Yedeği indir ile dosya olarak alabilirsin.</li>
 <li>Bu cihazdan çıkış yapmak eşitlemeyi durdurur; cihazdaki veriler sende kalır.</li>
-<li>Hesabının ve sunucudaki verilerinin silinmesini istersen site sahibine yazman yeterli; silme işlemi kalıcıdır.</li>
+<li>Hesabını ve sunucudaki verilerini Ayarlar → Hesap → Hesabı sil ile kalıcı olarak silebilirsin. Yardım gerekirse aşağıdaki adrese yaz.</li>
 </ul>
+
+<h2>İletişim</h2>
+<p>Gizlilikle ilgili sorular, veri silme ve düzeltme istekleri için: <a href="mailto:destek@diloloji.com">destek@diloloji.com</a></p>
 
 <h2>Değişiklikler</h2>
 <p>Bu sayfa değişirse üstteki tarih güncellenir.</p>

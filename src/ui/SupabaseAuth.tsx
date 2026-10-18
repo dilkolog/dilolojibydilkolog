@@ -262,6 +262,9 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
         <div className="auth-note">
           <LockIcon size={16} />
           <p className="small muted">Şifreni unutsan da verilerin kaybolmaz: e-postanla yenilersin. Girişini Supabase yönetir.</p>
+          <p className="small muted auth-legal">
+            Devam edersen <a href="/kosullar.html" target="_blank" rel="noopener">Kullanım koşulları</a> ve <a href="/gizlilik.html" target="_blank" rel="noopener">Gizlilik politikası</a> geçerli olur.
+          </p>
         </div>
       </div>
     </div>
