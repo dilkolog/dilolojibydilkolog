@@ -1781,11 +1781,11 @@ details[open] > .account-accordion-summary .account-accordion-arrow, details[ope
   border: 1px solid var(--rule);
   transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
 }
-.register-tier-item.is-target {
+.register-tier-item.register-tier-target {
   background: var(--lang-soft);
   border-color: color-mix(in srgb, var(--lang) 40%, transparent);
 }
-.register-tier-item.is-wrong-pick {
+.register-tier-item.register-tier-wrong {
   background: var(--bad-soft);
   border-color: color-mix(in srgb, var(--bad) 40%, transparent);
 }
