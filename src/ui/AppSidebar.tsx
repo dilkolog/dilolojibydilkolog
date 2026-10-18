@@ -62,7 +62,9 @@ export function Sidebar({
         </button>
         <OfflineBadge />
         <AccessBadge onOpen={go({ name: 'settings' })} />
-        <NoticeBell onOpen={(target) => go({ name: target })()} />
+        <div className="brand-bell">
+          <NoticeBell onOpen={(target) => go({ name: target })()} />
+        </div>
         <button className="icon-btn rail-toggle" onClick={onToggleRail} aria-label={rail ? 'Menüyü aç' : 'Menüyü daralt'} title={rail ? 'Menüyü aç' : 'Menüyü daralt'}>
           {rail ? <ChevronRightIcon size={18} /> : <ChevronLeftIcon size={18} />}
         </button>
@@ -121,22 +123,44 @@ export function Sidebar({
         <GearIcon size={20} />
         <span className="nav-label">Ayarlar</span>
       </button>
-      <button className="sidebar-foot" aria-current={onProfilePage ? 'page' : undefined} onClick={go({ name: 'profile' })}>
-        <Avatar profile={settings.profile} size={40} />
-        <span className="sidebar-who">
-          <strong>{settings.profile.name || 'Profilin'}</strong>
-          {game && (
-            <span className="small muted">
-              Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
-            </span>
-          )}
-          {game && (
-            <span className="sidebar-level" aria-hidden>
-              <span style={{ width: `${game.level.progress * 100}%` }} />
-            </span>
-          )}
-        </span>
-      </button>
+      <div
+        className="sidebar-foot"
+        aria-current={onProfilePage ? 'page' : undefined}
+        onClick={(e) => {
+          if ((e.target as HTMLElement).closest('.sidebar-foot-bell')) return
+          go({ name: 'profile' })()
+        }}
+      >
+        <button
+          type="button"
+          className="sidebar-foot-btn"
+          onClick={go({ name: 'profile' })}
+          aria-label="Profil ve ayarlar"
+          title="Profil ve ayarlar"
+        >
+          <Avatar profile={settings.profile} size={40} />
+          <span className="sidebar-who">
+            <strong>{settings.profile.name || 'Profilin'}</strong>
+            {game && (
+              <span className="small muted">
+                Seviye {game.level.level} · <StreakFlame streak={game.streak} frozen={game.frozenYesterday} size={13} /> {game.streak}
+              </span>
+            )}
+            {game && (
+              <span className="sidebar-level" aria-hidden>
+                <span style={{ width: `${game.level.progress * 100}%` }} />
+              </span>
+            )}
+          </span>
+        </button>
+        <div
+          className="sidebar-foot-bell"
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+        >
+          <NoticeBell onOpen={(target) => go({ name: target })()} />
+        </div>
+      </div>
     </aside>
   )
 }
