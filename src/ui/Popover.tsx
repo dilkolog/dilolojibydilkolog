@@ -95,6 +95,7 @@ export function MenuItem({
   onSelect,
   disabled,
   selected,
+  className,
 }: {
   icon?: ReactNode
   title: string
@@ -102,13 +103,14 @@ export function MenuItem({
   onSelect: () => void
   disabled?: boolean
   selected?: boolean
+  className?: string
 }) {
   return (
     <button
       type="button"
       role="menuitem"
       aria-selected={selected}
-      className={`menu-item${selected ? ' is-selected' : ''}`}
+      className={`menu-item${selected ? ' is-selected' : ''}${className ? ` ${className}` : ''}`}
       disabled={disabled}
       onClick={onSelect}
     >

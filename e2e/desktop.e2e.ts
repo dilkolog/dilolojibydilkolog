@@ -2009,6 +2009,61 @@ test('dictionary: typing manual meaning allows saving for good vs adding to voca
   await expect(page.getByRole('region', { name: 'Kaydettiğin kelime' })).toContainText('küçük peri, cin')
 })
 
+test('dictionary: target list picker allows choosing which list quick-added words go to', async ({ page }) => {
+  await startWithSamples(page)
+
+  // Seed a custom word list into indexedDB
+  await page.evaluate(() =>
+    new Promise<void>((resolve) => {
+      const open = indexedDB.open('kelime-koc')
+      open.onsuccess = () => {
+        const tx = open.result.transaction('meta', 'readwrite')
+        tx.objectStore('meta').put({
+          key: 'wordLists',
+          value: [{ id: 'travel-fr', name: 'Seyahat', language: 'fr', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }],
+        })
+        tx.oncomplete = () => resolve()
+      }
+    }),
+  )
+
+  await openScreen(page, 'Sözlük')
+
+  // Target list bar is visible
+  const targetBar = page.locator('.dict-target-bar')
+  await expect(targetBar).toBeVisible()
+  await expect(targetBar).toContainText('Hedef liste:')
+
+  const targetBtn = page.locator('.dict-target-btn')
+  await expect(targetBtn).toBeVisible()
+
+  // Open the popover menu
+  await targetBtn.click()
+  const menu = page.locator('[role=menu]')
+  await expect(menu).toBeVisible()
+  await expect(menu.getByRole('menuitem', { name: /Listesiz/ })).toBeVisible()
+  await expect(menu.getByRole('menuitem', { name: /Seyahat/ })).toBeVisible()
+
+  // Switch to "Listesiz (Genel havuz)"
+  await menu.getByRole('menuitem', { name: /Listesiz/ }).click()
+  await expect(targetBtn).toContainText('Listesiz')
+
+  // Search a word that exists in the pack (e.g. bonjour)
+  const search = page.getByRole('searchbox', { name: 'Sözlükte ara' })
+  await search.fill('bonjour')
+
+  // WordCard is rendered and shows "Listesiz" target tag
+  await expect(page.locator('.word-hero-target-tag')).toContainText('Listesiz')
+
+  // Change target list to "Seyahat"
+  await targetBtn.click()
+  await menu.getByRole('menuitem', { name: /Seyahat/ }).click()
+
+  // Target button and card update with the chosen list
+  await expect(targetBtn).toContainText('Seyahat')
+  await expect(page.locator('.word-hero-target-tag')).toContainText('Seyahat')
+})
+
 test('dictionary searchability: saved word is found by prefix, without accents, and by Turkish meaning with case sensitivity (capital dotless I)', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Sözlük')

@@ -10,7 +10,7 @@ import { LevelChip } from './LevelChip'
 import { TrapChip } from './TrapChip'
 import { CollocationChip } from './CollocationChip'
 import { TARGET_LANGUAGES, type Example, type Gender, type PartOfSpeech, type TargetLanguage, type VocabularyEntry } from '../engine/types'
-import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SpeakerIcon } from './icons'
+import { BookIcon, CheckIcon, ConjugationsIcon, PenIcon, PlusIcon, SpeakerIcon, TagIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { DictionaryExamples } from './DictionaryExamples'
 import { sentencesNow } from './dictSentences'
@@ -27,6 +27,7 @@ export function WordCard({
   rank,
   own,
   fix,
+  targetListName,
   onFix,
   onOpenWord,
   onAdd,
@@ -41,6 +42,8 @@ export function WordCard({
   own?: VocabularyEntry
   /** The learner's own meanings of the word, shown in place of the pack's. */
   fix?: string[]
+  /** Name of the list the word will go to when added. */
+  targetListName?: string
   /** Saves the learner's meanings; none goes back to the pack's. */
   onFix: (meanings: string[]) => void
   onOpenWord: (id: string) => void
@@ -182,12 +185,20 @@ export function WordCard({
               <CheckIcon size={15} /> Kelimelerinde: aç
             </button>
           ) : (
-            <button
-              className="btn btn-sm"
-              onClick={() => onAdd(written, meanings.slice(0, 2).join(', '), { pos, gender: gender === 'm' || gender === 'f' ? gender : undefined, examples: sentencesNow(language, word, rec.c) })}
-            >
-              <PlusIcon size={15} /> Kelimelerime ekle
-            </button>
+            <div className="word-hero-add-wrap">
+              <button
+                className="btn btn-sm"
+                onClick={() => onAdd(written, meanings.slice(0, 2).join(', '), { pos, gender: gender === 'm' || gender === 'f' ? gender : undefined, examples: sentencesNow(language, word, rec.c) })}
+              >
+                <PlusIcon size={15} /> Kelimelerime ekle
+              </button>
+              {targetListName && (
+                <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                  <TagIcon size={12} className="inline-icon" />
+                  {targetListName}
+                </span>
+              )}
+            </div>
           )}
           {isVerb && onOpenLab && (
             <button className="btn btn-sm btn-quiet" onClick={() => onOpenLab(word)}>
