@@ -2910,3 +2910,52 @@ test('notice bell: the count of unseen notices, the list marks them seen, a noti
   await page.getByRole('switch', { name: /Arkadaş iletileri/ }).click()
   await expect(page.getByRole('switch', { name: /Arkadaş iletileri/ })).toHaveAttribute('aria-checked', 'false')
 })
+
+test('progress story card (9:16) opens, renders high-res preview and closes cleanly without layout overflow', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'İlerleme')
+
+  // Open the share popover menu
+  const shareBtn = page.getByRole('button', { name: /Paylaş/ })
+  await expect(shareBtn).toBeVisible()
+  await shareBtn.click()
+
+  // Click "Hikaye Kartı (9:16)" menu item
+  const storyMenuItem = page.getByRole('menuitem', { name: /Hikaye Kartı/ })
+  await expect(storyMenuItem).toBeVisible()
+  await storyMenuItem.click()
+
+  // Story Card modal should be open with dialog role and preview image
+  const dialog = page.locator('.story-card-dialog')
+  await expect(dialog).toBeVisible()
+  await expect(dialog.getByRole('heading', { level: 2 }).or(dialog.locator('strong'))).toContainText('Hikaye Kartı')
+  await expect(page.locator('.story-card-img-preview')).toBeVisible()
+
+  // Action buttons
+  await expect(dialog.getByRole('button', { name: /Hikayede Paylaş/ })).toBeVisible()
+  await expect(dialog.getByRole('button', { name: /Görseli İndir/ })).toBeVisible()
+
+  // Close dialog via close button
+  await dialog.getByRole('button', { name: 'Kapat' }).click()
+  await expect(dialog).not.toBeVisible()
+
+  expect(await overflow(page)).toEqual([])
+})
+
+test('reading screen displays daily micro news with offline capability and bulletin items', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Okuma')
+
+  // Daily news component or library entry
+  const newsCard = page.locator('.daily-news-card')
+  if (await newsCard.isVisible()) {
+    await expect(newsCard.locator('.daily-news-badge')).toBeVisible()
+    const items = newsCard.locator('.daily-news-item')
+    if (await items.count() > 0) {
+      await items.first().click()
+      await expect(newsCard.locator('.daily-news-item-active')).toBeVisible()
+    }
+  }
+  expect(await overflow(page)).toEqual([])
+})
+

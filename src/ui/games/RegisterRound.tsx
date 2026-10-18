@@ -210,7 +210,7 @@ export function RegisterRound({ language, onExit, onLesson }: { language: Target
                     return (
                       <li
                         key={r}
-                        className={`register-tier-item${isTarget ? ' is-target' : ''}${isWrongPick ? ' is-wrong-pick' : ''}`}
+                        className={`register-tier-item${isTarget ? ' register-tier-target' : ''}${isWrongPick ? ' register-tier-wrong' : ''}`}
                       >
                         <div className="register-tier-head">
                           <span className="register-tier-title">

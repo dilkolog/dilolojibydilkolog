@@ -5104,11 +5104,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   border: 1px solid var(--rule);
   color: var(--ink);
   cursor: pointer;
-  transition: all var(--dur-sm) var(--ease);
+  transition: all var(--dur) var(--ease-out);
   white-space: nowrap;
 }
 .daily-news-chip:hover {
-  border-color: var(--ink-muted);
+  border-color: var(--ink-soft);
 }
 .daily-news-chip.is-active {
   background: var(--lang-soft);
@@ -5647,11 +5647,11 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 .dict-target-btn:hover {
-  background: color-mix(in srgb, var(--lang-color) 12%, var(--surface-2));
-  border-color: color-mix(in srgb, var(--lang-color) 40%, var(--rule));
+  background: color-mix(in srgb, var(--lang) 12%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--lang) 40%, var(--rule));
 }
 .dict-target-btn:focus-visible {
-  outline: 2px solid var(--lang-color);
+  outline: 2px solid var(--lang);
   outline-offset: 2px;
 }
 .dict-target-btn-text {
