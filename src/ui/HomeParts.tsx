@@ -1,7 +1,8 @@
 import { useCountUp } from './useCountUp'
 import { Glyph } from './Glyph'
 import { dayPart } from './dayPart'
-import { CheckCircleIcon, CheckIcon, ChevronDownIcon, TargetIcon } from './icons'
+import { CheckCircleIcon, CheckIcon, ChevronDownIcon, TagIcon, TargetIcon } from './icons'
+import { MenuItem, Popover } from './Popover'
 import type { GameState } from './game'
 import { QUEST_ART } from './drawnArt'
 import type { Home } from './Screens'
@@ -29,25 +30,66 @@ export function FocusLine({
   onOpenLists?: () => void
 }) {
   if (!focus && !lists.length) return null
-  // A native menu: the hero clips what spills out of it, and the system's list opens above everything.
+  const activeList = focusListId ? lists.find((l) => l.id === focusListId) : null
+  const currentLabel = activeList ? `${activeList.name} (${activeList.count})` : 'tüm kelimelerin'
+
   const picker =
     onFocusList && lists.length > 0 ? (
-      <span className="hero-list-pick">
-        <select
-          className="hero-list-select"
-          aria-label="Yeni kelimeler hangi listeden"
-          value={focusListId ?? ''}
-          onChange={(e) => onFocusList(e.target.value || null)}
-        >
-          <option value="">tüm kelimelerin</option>
-          {lists.map((l) => (
-            <option key={l.id} value={l.id}>
-              {l.name} ({l.count})
-            </option>
-          ))}
-        </select>
-        <ChevronDownIcon size={14} className="hero-list-chev" />
-      </span>
+      <Popover
+        kind="menu"
+        align="start"
+        label="Yeni kelimeler hangi listeden"
+        buttonClassName="hero-list-pick hero-list-btn"
+        buttonProps={{ 'aria-label': `Yeni kelimeler: ${currentLabel}` }}
+        button={
+          <>
+            <span className="hero-list-btn-text">{currentLabel}</span>
+            <ChevronDownIcon size={14} className="hero-list-chev" />
+          </>
+        }
+      >
+        {(close) => (
+          <>
+            <MenuItem
+              icon={!focusListId ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />}
+              selected={!focusListId}
+              title="Tüm kelimelerin"
+              hint="Tüm listelerinden sırayla"
+              onSelect={() => {
+                onFocusList(null)
+                close()
+              }}
+            />
+            {lists.map((l) => (
+              <MenuItem
+                key={l.id}
+                icon={focusListId === l.id ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />}
+                selected={focusListId === l.id}
+                title={l.name}
+                hint={`${l.count} kelime`}
+                onSelect={() => {
+                  onFocusList(l.id)
+                  close()
+                }}
+              />
+            ))}
+            {onOpenLists && (
+              <>
+                <div className="popover-rule" role="separator" />
+                <MenuItem
+                  icon={<TagIcon size={16} />}
+                  title="Listeleri yönet"
+                  hint="Tüm listeleri aç ve düzenle"
+                  onSelect={() => {
+                    close()
+                    onOpenLists()
+                  }}
+                />
+              </>
+            )}
+          </>
+        )}
+      </Popover>
     ) : (
       <span className="hero-list-pick">“{focus?.name}”</span>
     )

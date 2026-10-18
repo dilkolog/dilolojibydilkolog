@@ -88,9 +88,30 @@ export function Popover({
 }
 
 /** One action in a `kind="menu"` popover: a title and, under it, a line of help. */
-export function MenuItem({ icon, title, hint, onSelect, disabled }: { icon?: ReactNode; title: string; hint?: string; onSelect: () => void; disabled?: boolean }) {
+export function MenuItem({
+  icon,
+  title,
+  hint,
+  onSelect,
+  disabled,
+  selected,
+}: {
+  icon?: ReactNode
+  title: string
+  hint?: string
+  onSelect: () => void
+  disabled?: boolean
+  selected?: boolean
+}) {
   return (
-    <button type="button" role="menuitem" className="menu-item" disabled={disabled} onClick={onSelect}>
+    <button
+      type="button"
+      role="menuitem"
+      aria-selected={selected}
+      className={`menu-item${selected ? ' is-selected' : ''}`}
+      disabled={disabled}
+      onClick={onSelect}
+    >
       {icon && <span className="menu-item-icon" aria-hidden>{icon}</span>}
       <span className="menu-item-text">
         <strong>{title}</strong>

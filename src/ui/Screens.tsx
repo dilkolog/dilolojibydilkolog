@@ -363,9 +363,11 @@ export function Home({
       <div className="home-main">
         <div className="hero hero-today">
           {/* The language itself as decoration: a large, faint greeting behind the mission. */}
-          <span className="hero-hello" aria-hidden lang={language}>
-            {HELLO[language]}
-          </span>
+          <div className="hero-hello-clip" aria-hidden>
+            <span className="hero-hello" lang={language}>
+              {HELLO[language]}
+            </span>
+          </div>
           {/* The ring is the way through the task; the plant inside grows with it. */}
           {(() => {
             const done = remaining === 0 && answeredToday > 0
