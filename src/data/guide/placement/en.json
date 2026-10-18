@@ -43,16 +43,16 @@
     },
     {
       "level": "A1",
-      "lesson": "basics_en_past_simple",
-      "prompt": "We ___ an exciting documentary about space last night.",
+      "lesson": "articles_en",
+      "prompt": "Her sister works as ___ architect in a prestigious firm.",
       "options": [
-        "watched",
-        "watch",
-        "watches",
-        "watching"
+        "an",
+        "a",
+        "the",
+        "some"
       ],
       "answer": 0,
-      "why": "'Last night' geçmiş zaman zarfıdır; düzenli fiil -ed takısı alır ('watched')."
+      "why": "Sesli harfle başlayan tekil bir meslek isminden önce 'an' artikeli gelir."
     },
     {
       "level": "A1",
@@ -79,6 +79,19 @@
       ],
       "answer": 0,
       "why": "Tekil bir varlığın mevcudiyetini belirtmek için 'There is' kullanılır."
+    },
+    {
+      "level": "A2",
+      "lesson": "basics_en_past_simple",
+      "prompt": "We ___ an exciting documentary about space last night.",
+      "options": [
+        "watched",
+        "watch",
+        "watches",
+        "watching"
+      ],
+      "answer": 0,
+      "why": "'Last night' geçmiş zaman zarfıdır; düzenli fiil -ed takısı alır ('watched')."
     },
     {
       "level": "A2",
@@ -118,19 +131,6 @@
       ],
       "answer": 0,
       "why": "Tek heceli sıfatlarda karşılaştırma (comparative) derecesi -er takısıyla yapılır ('faster')."
-    },
-    {
-      "level": "A2",
-      "lesson": "articles_en",
-      "prompt": "Her sister works as ___ architect in a prestigious firm.",
-      "options": [
-        "an",
-        "a",
-        "the",
-        "some"
-      ],
-      "answer": 0,
-      "why": "Sesli harfle başlayan tekil bir meslek isminden önce 'an' artikeli gelir."
     },
     {
       "level": "A2",

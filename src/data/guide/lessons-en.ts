@@ -125,7 +125,7 @@ export const EN_LESSONS: TopicLesson[] = [
     topic: "basics_en_past_simple",
     language: "en",
     title: "Geçmiş zaman (past simple)",
-    level: "A1",
+    level: "A2",
     summary: "Geçmişte başlayıp bitmiş olayları anlatır; Türkçedeki -di'li geçmiş zamanın karşılığıdır.",
     rules: [
       "Düzenli fiiller -ed alır: work → worked, live → lived, stop → stopped, study → studied.",
@@ -367,7 +367,7 @@ export const EN_LESSONS: TopicLesson[] = [
     topic: "articles_en",
     language: "en",
     title: "Artikeller (a / an / the)",
-    level: "A2",
+    level: "A1",
     summary: "Türkçede olmayan artikeller, ismin belirsiz mi (a/an), belirli mi (the) yoksa genel mi (artikelsiz) olduğunu gösterir.",
     rules: [
       "A/an yalnızca sayılabilir tekil isimle ve ilk kez anılan, belirsiz bir şey için: I saw a dog.",

@@ -5104,7 +5104,7 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   border: 1px solid var(--rule);
   color: var(--ink);
   cursor: pointer;
-  transition: all var(--dur-fast) var(--ease-out);
+  transition: all var(--dur) var(--ease-out);
   white-space: nowrap;
 }
 .daily-news-chip:hover {
