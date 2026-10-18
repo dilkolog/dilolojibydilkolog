@@ -271,6 +271,12 @@ export interface GameStats extends ActivityStats {
   /** Days the verb lab's daily round was finished. */
   tourDays: number
   totalXp: number
+  /** Lessons learned in the grammar guide (their check passed). */
+  guideLessonsLearned: number
+  /** Whole level certificates earned in the guide. */
+  guideCertsEarned: number
+  /** Placement test completed to find starting level. */
+  guidePlacementDone: number
 }
 
 /** Nothing done yet: the starting point for tests and for a fresh install. */
@@ -280,6 +286,7 @@ export const emptyStats: GameStats = {
   wordsIntroduced: 0, mastered: 0, totalAnswers: 0, longestStreak: 0, perfectDays: 0, maxCombo: 0, languagesStudied: 0, wordsWithPicture: 0,
   wordsWithRecording: 0, freeSentencesCorrect: 0, level: 1, bossesDefeated: 0, challengesDone: 0, perfectWeeks: 0,
   wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, formsPracticed: 0, formsMastered: 0, verbsMastered: 0, tourDays: 0, totalXp: 0, rescued: 0,
+  guideLessonsLearned: 0, guideCertsEarned: 0, guidePlacementDone: 0,
 }
 
 export interface Achievement {
@@ -379,6 +386,15 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'xp-10000', icon: '⭐', title: 'On bin XP', description: '10.000 XP kazan', goal: 10000, stat: 'totalXp' },
   { id: 'level-5', icon: '🥉', title: 'Seviye 5', description: '5. seviyeye ulaş', goal: 5, stat: 'level' },
   { id: 'level-40', icon: '🥇', title: 'Seviye 40', description: '40. seviyeye ulaş', goal: 40, stat: 'level' },
+  // ── Rehber: dersler, sertifikalar, seviye testi ──
+  { id: 'guide-lesson-1', icon: '🌱', title: 'İlk ders', description: 'Rehberde 1 ders öğren', goal: 1, stat: 'guideLessonsLearned' },
+  { id: 'guide-lessons-5', icon: '📖', title: 'Çırak öğrenci', description: 'Rehberde 5 ders öğren', goal: 5, stat: 'guideLessonsLearned' },
+  { id: 'guide-lessons-10', icon: '🎓', title: 'On ders', description: 'Rehberde 10 ders öğren', goal: 10, stat: 'guideLessonsLearned' },
+  { id: 'guide-lessons-25', icon: '🏛️', title: 'Dil bilgini', description: 'Rehberde 25 ders öğren', goal: 25, stat: 'guideLessonsLearned' },
+  { id: 'guide-lessons-50', icon: '🌟', title: 'Rehber ustası', description: 'Rehberde 50 ders öğren', goal: 50, stat: 'guideLessonsLearned' },
+  { id: 'guide-cert-1', icon: '📜', title: 'İlk sertifika', description: 'Bir seviyenin tüm derslerini tamamlayıp ilk sertifikanı al', goal: 1, stat: 'guideCertsEarned' },
+  { id: 'guide-cert-3', icon: '🎖️', title: 'Üç sertifika', description: '3 seviye sertifikası kazan', goal: 3, stat: 'guideCertsEarned' },
+  { id: 'guide-placement-1', icon: '🧭', title: 'Seviyeni bul', description: 'Rehber seviye testini tamamla', goal: 1, stat: 'guidePlacementDone' },
 ]
 
 
@@ -395,9 +411,9 @@ export const BADGE_CATEGORIES: { id: BadgeCategory; name: string }[] = [
 const CATEGORY_OF: Record<keyof GameStats, BadgeCategory> = {
   wordsIntroduced: 'words', mastered: 'words', wordsStrong: 'words', wordsAdded: 'words', wordsWithNotes: 'words', wordsWithPicture: 'words', wordsWithRecording: 'words', hardMarked: 'words', hardConquered: 'words',
   longestStreak: 'habit', daysStudied: 'habit', comebacks: 'habit', nightDays: 'habit', earlyDays: 'habit', weekendDays: 'habit', maxDayAnswers: 'habit', perfectDays: 'habit', challengesDone: 'habit', perfectWeeks: 'habit',
-  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', formsPracticed: 'skills', formsMastered: 'skills', verbsMastered: 'skills', tourDays: 'habit', rescued: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
+  totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', formsPracticed: 'skills', formsMastered: 'skills', verbsMastered: 'skills', tourDays: 'habit', rescued: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills', guideLessonsLearned: 'skills',
   textsRead: 'writing', journalEntries: 'writing', freeSentencesCorrect: 'writing',
-  level: 'level', totalXp: 'level',
+  level: 'level', totalXp: 'level', guideCertsEarned: 'level', guidePlacementDone: 'level',
 }
 
 /** Where a badge is shelved in the profile: by what it counts. */

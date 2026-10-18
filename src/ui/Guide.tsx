@@ -243,6 +243,7 @@ export function GuideScreen({
           const saved = { start, day: localDate(new Date()) }
           savePlacement(language, saved)
           setPlacement(saved)
+          void db.meta.put({ key: 'guidePlacementDone', value: true })
         }}
         onKnown={(topics) => {
           markedKnown.current = topics
