@@ -20,7 +20,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         // The privacy and terms pages are static files, not app screens: never answer them with the app's index.html.
-        navigateFallbackDenylist: [/^\/gizlilik/, /^\/kosullar/, /^\/api\//],
+        navigateFallbackDenylist: [/^\/hakkinda/, /^\/gizlilik/, /^\/kosullar/, /^\/api\//],
         // Only Latin glyphs are needed for TR/EN/FR/ES; the browser never requests the other subsets.
         globIgnores: ['**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*'],
         // Server push reminders (public/push-sw.js).
