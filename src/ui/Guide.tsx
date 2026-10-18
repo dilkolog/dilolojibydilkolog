@@ -40,6 +40,8 @@ import { loadQuestionLog, saveQuestionLog } from './guideQuestionLog'
 import { PlacementView } from './PlacementView'
 import { placementFor } from '../data/guide/placementData'
 import { loadPlacement, savePlacement } from './guidePlacementStore'
+import { LessonTerms } from './LessonTerms'
+import { lessonTexts, termsIn, termsOf } from '../data/guide/terms'
 import { LessonSteps, type LessonStep } from './LessonSteps'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
@@ -853,6 +855,7 @@ function LessonView({
     ],
     [check.length],
   )
+  const terms = useMemo(() => termsIn(termsOf(language), lessonTexts(lesson)), [language, lesson])
   const own = useOwnExamples(db, lesson)
   const verbTopic = !!lessonTense(lesson) || /present|passe|imparfait|preterito|futur|subj|conditionnel/.test(lesson.topic)
 
@@ -911,6 +914,7 @@ function LessonView({
             </li>
           ))}
         </ol>
+        <LessonTerms terms={terms} language={language} />
       </section>
       {lesson.table && (
         <section className="card stack gap-2 guide-table-card" aria-label={lesson.table.caption || 'Özet tablo'}>
