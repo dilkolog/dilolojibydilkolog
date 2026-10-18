@@ -1,7 +1,8 @@
 import type { GuideLevel } from '../data/guide/lessonTypes'
 import type { KelimeDB } from '../data/db'
 import { levelCertificates } from '../engine/guideCertificate'
-import { afterCheck, cleanMarks, flagOf, isRead, putOff, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { KNOWN_DAY } from '../engine/guidePlacement'
+import { afterCheck, cleanMarks, flagOf, isRead, putOff, REVIEW_DAYS, type GuideMarks, type LessonFlag } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
 import { CERT_XP, certAwardKey, LESSON_XP, lessonAwardKey, REVIEW_XP, reviewAwardKey } from '../engine/xpLedger'
 
@@ -46,6 +47,25 @@ export function markRead(marks: GuideMarks, topic: string, on: boolean): GuideMa
   if (on) {
     if (!next[topic]?.read) next[topic] = { ...flagOf(next[topic]), read: today }
   } else if (next[topic]) next[topic] = { ...flagOf(next[topic]), read: '', off: today }
+  return next
+}
+
+/**
+ * Marks lessons read that the placement test showed are known: read long ago (`KNOWN_DAY`, so they count for no week) and
+ * with every review step behind them (so none comes back to Today). They are not learned: that takes the check, and the XP
+ * and the level certificates with it. Lessons already read stay as they are.
+ */
+export function markKnown(marks: GuideMarks, topics: readonly string[]): GuideMarks {
+  const next = { ...marks }
+  for (const topic of topics) if (!isRead(next[topic])) next[topic] = { ...flagOf(next[topic]), read: KNOWN_DAY, step: REVIEW_DAYS.length }
+  return next
+}
+
+/** Takes back `markKnown` for these lessons: the ones still carrying the placement's day are unmarked (the day is kept, so sync carries it). */
+export function unmarkKnown(marks: GuideMarks, topics: readonly string[]): GuideMarks {
+  const next = { ...marks }
+  const today = localDate(new Date())
+  for (const topic of topics) if (next[topic]?.read === KNOWN_DAY) next[topic] = { ...flagOf(next[topic]), read: '', off: today }
   return next
 }
 

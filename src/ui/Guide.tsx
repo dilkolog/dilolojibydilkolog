@@ -37,12 +37,15 @@ import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
 import { questionKey, rankByNeed, recordAnswers } from '../engine/guideQuestions'
 import { loadQuestionLog, saveQuestionLog } from './guideQuestionLog'
+import { PlacementView } from './PlacementView'
+import { placementFor } from '../data/guide/placementData'
+import { loadPlacement, savePlacement } from './guidePlacementStore'
 import { LessonSteps, type LessonStep } from './LessonSteps'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
 import { notify } from './noticeCenter'
 import { certNotice } from './noticeTexts'
-import { checkAwards, loadMarks, markChecked, markFlag, markNote, markRead as withRead } from './guideProgress'
+import { checkAwards, loadMarks, markChecked, markFlag, markKnown, markNote, unmarkKnown, markRead as withRead } from './guideProgress'
 import { TenseLessonSheet } from './verbs/TenseLessonSheet'
 
 const LEVELS: GuideLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
@@ -94,6 +97,10 @@ export function GuideScreen({
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
   const [levelQuiz, setLevelQuiz] = useState<GuideLevel | null>(null)
+  const [placing, setPlacing] = useState(false)
+  // The lessons the placement test just marked known (for "Geri al").
+  const markedKnown = useRef<string[]>([])
+  const [placement, setPlacement] = useState(() => loadPlacement(language))
   const [lab, setLab] = useState<LabData | null>(null)
   const [marks, setMarks] = useState<GuideMarks>({})
   // The marks come from the database a moment after the screen opens: until then nothing is said about what is read.
@@ -215,6 +222,37 @@ export function GuideScreen({
   }
 
   if (!marksReady) return <div className="stack guide" aria-busy="true" />
+
+  if (placing) {
+    return (
+      <PlacementView
+        language={language}
+        languageName={LANGUAGE_NAME[language]}
+        questions={placementFor(language)}
+        lessons={ordered}
+        levelNames={LEVEL_NAME}
+        known={read}
+        onFinish={(start) => {
+          const saved = { start, day: localDate(new Date()) }
+          savePlacement(language, saved)
+          setPlacement(saved)
+        }}
+        onKnown={(topics) => {
+          markedKnown.current = topics
+          change(markKnown(marks, topics))
+        }}
+        onUndoKnown={() => {
+          change(unmarkKnown(marks, markedKnown.current))
+          markedKnown.current = []
+        }}
+        onOpenLesson={(l) => {
+          setPlacing(false)
+          setOpen(l)
+        }}
+        onBack={() => setPlacing(false)}
+      />
+    )
+  }
 
   if (levelQuiz) {
     return (
@@ -354,6 +392,17 @@ export function GuideScreen({
           </div>
           {!q && !level && (
             <GuideCertificates language={language} languageName={LANGUAGE_NAME[language]} certs={certs} names={LEVEL_NAME} titlesOf={(lv) => lessons.filter((l) => l.level === lv).map(titleOf)} />
+          )}
+          {!q && !level && placementFor(language).length > 0 && (doneCount === 0 || placement) && (
+            <div className="card guide-placement-card row justify-between items-center gap-2">
+              <div className="stack gap-1">
+                <strong>{placement ? `Seviye testin: ${placement.start}'den başla` : 'Seviyeni bul'}</strong>
+                <span className="small muted">{placement ? 'Bir süre geçtiyse testi yeniden yapabilirsin.' : 'Kısa bir gramer testiyle hangi seviyeden başlaman gerektiğini öğren.'}</span>
+              </div>
+              <button type="button" className="btn btn-quiet" onClick={() => setPlacing(true)}>
+                {placement ? 'Yeniden yap' : 'Teste başla'}
+              </button>
+            </div>
           )}
           {next && !q && !level && (
             <button type="button" className="card guide-next" onClick={() => setOpen(next)}>
