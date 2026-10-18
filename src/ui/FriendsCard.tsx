@@ -5,7 +5,7 @@ import { addFriend, clearInbox, FriendsError, loadFriends, loadInbox, publishFri
 import { localDate } from '../engine/progress'
 import { useAccess } from './accessContext'
 import { Avatar } from './Avatar'
-import { CloseIcon, CopyIcon, FlameIcon, PlusIcon } from './icons'
+import { ChevronDownIcon, CloseIcon, CopyIcon, FlameIcon, PlusIcon } from './icons'
 import type { GameState } from './game'
 import { getAccount } from './syncRunner'
 import { showToast } from './toastFeed'
@@ -49,6 +49,7 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
   const [failed, setFailed] = useState(false)
   const [code, setCode] = useState('')
   const [adding, setAdding] = useState(false)
+  const [copied, setCopied] = useState(false)
   const [nicknames, setNicknames] = useState<Record<string, string>>(storedNicknames)
   const [inbox, setInbox] = useState<InboxItem[]>([])
   const [open, setOpen] = useState<string | null>(null)
@@ -200,6 +201,8 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
         await navigator.clipboard.writeText(showCode(data.me.code))
         showToast('Kodun kopyalandı.')
       }
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2200)
     } catch {
       // Closed the share sheet.
     }
@@ -377,17 +380,35 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
       )}
       {data && (
         <details className="friends-add" open={data.friends.length === 0}>
-          <summary className="small">
-            <PlusIcon size={14} className="inline-icon" /> Arkadaş ekle ve kodunu paylaş
+          <summary className="friends-accordion-summary small">
+            <span className="friends-accordion-title">
+              <PlusIcon size={14} className="friends-accordion-icon" />
+              <span>Arkadaş ekle ve kodunu paylaş</span>
+            </span>
+            <ChevronDownIcon size={16} className="friends-accordion-arrow" />
           </summary>
           <div className="stack gap-2 friends-add-body">
-            <div className="friends-code small">
-              <span className="friends-code-label">
-                Senin kodun: <code>{showCode(data.me.code)}</code>
-              </span>
-              <button type="button" className="btn btn-sm btn-quiet" onClick={() => void copy()}>
-                <CopyIcon size={14} className="inline-icon" /> Paylaş
-              </button>
+            <div className="friends-code-card">
+              <div className="friends-code-meta">
+                <span className="friends-code-eyebrow">Senin davet kodun</span>
+                <span className="small muted">Arkadaşına ver, seni yarışa eklesin</span>
+              </div>
+              <div className="friends-code-row">
+                <div className="friends-code small">
+                  <span className="friends-code-label">
+                    <code>{showCode(data.me.code)}</code>
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className={`btn btn-sm ${copied ? 'btn-ok friends-copy-ok' : ''}`}
+                  onClick={() => void copy()}
+                  title="Kodu kopyala ya da paylaş"
+                >
+                  <CopyIcon size={14} className="inline-icon" />
+                  <span>{copied ? 'Kopyalandı!' : 'Paylaş'}</span>
+                </button>
+              </div>
             </div>
             <form
               className="friends-form"
@@ -396,9 +417,19 @@ export function FriendsCard({ game, profile, vocabulary, language, onChanged, on
                 void add()
               }}
             >
-              <input className="input" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Arkadaşının kodu" aria-label="Arkadaşının kodu" autoCapitalize="characters" autoComplete="off" spellCheck={false} maxLength={12} />
-              <button type="submit" className="btn btn-sm" disabled={adding || !code.trim()}>
-                Ekle
+              <input
+                className="input friends-input"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                placeholder="Arkadaşının kodu (örn: ABCD-1234)"
+                aria-label="Arkadaşının kodu"
+                autoCapitalize="characters"
+                autoComplete="off"
+                spellCheck={false}
+                maxLength={12}
+              />
+              <button type="submit" className="btn btn-sm friends-submit-btn" disabled={adding || !code.trim()}>
+                {adding ? 'Ekleniyor…' : 'Ekle'}
               </button>
             </form>
           </div>
