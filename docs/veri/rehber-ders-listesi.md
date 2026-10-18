@@ -31,7 +31,7 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_fr_possessifs` | A1 | İyelik ve işaret sıfatları | 3 | 0 |
 | `basics_fr_nombres` | A1 | Sayılar, saat ve tarih | 3 | 0 |
 | `basics_fr_questions` | A1 | Soru sözcükleri ve soru kurma | 3 | 0 |
-| `basics_fr_lieux` | A2 | Yer edatları; ülke ve şehirle à / en / au / aux, chez | 3 | 0 |
+| `basics_fr_lieux` | A2 | Yer edatları (dans, sur, chez, à côté de…) | 3 | 0 |
 | `basics_fr_pronominaux` | A2 | Dönüşlü fiiller (se lever) | 3 | 0 |
 | `basics_fr_comparaison` | A2 | Karşılaştırma ve en üstünlük | 3 | 0 |
 | `basics_fr_imperatif` | A2 | Emir kipi | 3 | 0 |
@@ -146,7 +146,7 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_es_participio_gerundio_compuesto` | C1 | Bileşik mastar/ulaç ve mutlak yapılar (al haber dicho, dicho esto) | 3 | 0 |
 | `basics_es_conectores_dele` | C1 | DELE B2/C1 makale ve tartışma bağlaçları (asimismo, de ahí que...) | 3 | 11 |
 
-## İngilizce (en) — 72 ders
+## İngilizce (en) — 70 ders
 
 | topic | seviye | başlık | havuz | soru bankası |
 |---|---|---|---|---|
@@ -169,8 +169,6 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `mixed_conditionals` | B2 | Karma şart cümleleri | 3 | 19 |
 | `participle_clauses` | B2 | Participle clauses | 3 | 19 |
 | `inversion` | C1 | Devrik yapı (inversion) | 4 | 20 |
-| `cleft` | C1 | Vurgulu cümle (cleft) | 4 | 20 |
-| `subjunctive` | C1 | Subjunctive | 4 | 19 |
 | `basics_en_pronouns` | A1 | Zamirler ve iyelik (I / me / my / mine) | 3 | 0 |
 | `basics_en_there_is` | A1 | There is / there are (var, yok) | 3 | 0 |
 | `basics_en_demonstratives` | A1 | This / that / these / those | 3 | 0 |
@@ -205,7 +203,7 @@ Yeniden üretme: `WRITE_GUIDE_MANIFEST=1 npx vitest run src/data/guide/guideMani
 | `basics_en_stative_dynamic` | A2 | Durum ve eylem fiilleri (stative vs dynamic) | 3 | 0 |
 | `basics_en_articles_institutions` | B1 | Kurumlarda artikel: school, hospital, prison, bed | 3 | 15 |
 | `basics_en_causatives_advanced` | B1 | Ettirgen çatı incelikleri: have, get, make, let | 3 | 15 |
-| `basics_en_cleft_variations` | B2 | Vurgu cümleleri: it-clefts ve wh-clefts | 3 | 20 |
+| `basics_en_cleft_variations` | C1 | Vurgu cümleleri: it-clefts ve wh-clefts | 3 | 20 |
 | `basics_en_double_comparatives` | B2 | Paralel karşılaştırma: the more ... the better | 3 | 0 |
 | `basics_en_prepositional_verbs` | B2 | Üç parçalı phrasal verb'ler ve ikili edatlar | 3 | 24 |
 | `basics_en_inversion_conditionals` | C1 | Şart cümlelerinde devriklik: had I known, were I, should you | 3 | 20 |

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { afterCheck, cleanMarks, dueLesson, isRead, mergeMarks, putOff, reviewDay, type GuideMarks } from './guideReview'
+import { afterCheck, cleanMarks, dueLesson, isRead, mergeMarks, migrateAliasedMarks, putOff, reviewDay, type GuideMarks } from './guideReview'
 
 describe('guide review', () => {
   it('brings a read lesson back after 3 days, a learned one after 3, 10 and 30, then never', () => {
@@ -99,5 +99,26 @@ describe('what was just done on this device', () => {
     expect(mergeMarks(stored, { x: { read: '2026-10-09', learned: '2026-10-09', reviewed: '2026-10-09', step: 0 } }, { newest: true }).x?.step).toBe(0)
     // A day earlier is still older, whatever the flag.
     expect(mergeMarks(stored, { x: { read: '2026-10-01' } }, { newest: true }).x?.step).toBe(1)
+  })
+})
+
+describe('migrateAliasedMarks', () => {
+  const aliases = { old: 'kept' }
+  it('merges the old mark into the kept lesson and leaves the old one unmarked with today', () => {
+    const marks = { old: { read: '2026-10-01', learned: '2026-10-01', step: 2 } }
+    const next = migrateAliasedMarks(marks, aliases, '2026-10-18')
+    expect(next.kept).toMatchObject({ read: '2026-10-01', learned: '2026-10-01', step: 2 })
+    expect(next.old).toEqual({ read: '', off: '2026-10-18' })
+  })
+
+  it('returns the same object when there is nothing to move', () => {
+    const marks = { kept: { read: '2026-10-01' }, old: { read: '', off: '2026-10-10' } }
+    expect(migrateAliasedMarks(marks, aliases, '2026-10-18')).toBe(marks)
+    expect(migrateAliasedMarks({}, aliases, '2026-10-18')).toEqual({})
+  })
+
+  it('keeps a flag set on the old lesson', () => {
+    const next = migrateAliasedMarks({ old: { read: '', off: '2026-10-10', flag: 'star', flagAt: '2026-10-12' } }, aliases, '2026-10-18')
+    expect(next.kept).toMatchObject({ flag: 'star' })
   })
 })

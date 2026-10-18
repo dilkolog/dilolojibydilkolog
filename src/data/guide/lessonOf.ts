@@ -1,3 +1,4 @@
+import { canonicalTopic } from './aliases'
 import { topicName, type GrammarExercise } from '../../engine/grammar'
 import type { Tense } from '../../engine/tenses'
 import type { TargetLanguage } from '../../engine/types'
@@ -12,7 +13,8 @@ export const lessonsOf = (language: TargetLanguage): TopicLesson[] => TOPIC_LESS
 /** The lesson that teaches a grammar topic: its own lesson, or the one its questions practise. */
 export function lessonFor(language: TargetLanguage, topic: string): TopicLesson | undefined {
   const own = lessonsOf(language)
-  return own.find((l) => l.topic === topic) ?? own.find((l) => l.practice === topic)
+  const kept = canonicalTopic(topic)
+  return own.find((l) => l.topic === kept) ?? own.find((l) => l.practice === topic)
 }
 
 /** A grammar topic's lesson is named as its questions name it; a basic lesson by its own title. */

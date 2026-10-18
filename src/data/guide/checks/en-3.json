@@ -1422,6 +1422,47 @@
         ],
         "answer": 0,
         "why": "'What impressed me most ... was ...' wh-cleft yapısı cümlede vurgulanmak istenen duyguyu en doğal şekilde öne çıkarır."
+      },
+      {
+        "prompt": "It was in Madrid ___ they first met ten years ago.",
+        "options": [
+          "what",
+          "that",
+          "which"
+        ],
+        "answer": 1,
+        "why": "It-cleft ('It was ...') yapısında zaman veya yer vurgulanırken 'that' kullanılır ('what' veya 'which' gelmez)."
+      },
+      {
+        "prompt": "What I really need right now ___ a cup of strong coffee.",
+        "options": [
+          "is",
+          "are",
+          "that is"
+        ],
+        "answer": 0,
+        "why": "Wh-cleft ('What + özne + fiil') yapısında vurgulanan tekil ögeden önce tekil 'be' fiili (is/was) gelir."
+      },
+      {
+        "prompt": "It was my older sister ___ taught me how to swim.",
+        "options": [
+          "which",
+          "who",
+          "what"
+        ],
+        "answer": 1,
+        "why": "It-cleft yapısında bir kişi vurgulanırken 'who' (veya 'that') kullanılır; 'which' ve 'what' kişi için kullanılmaz."
+      },
+      {
+        "prompt": "All that we are asking for ___ a little more time to complete the task.",
+        "options": [
+          "is",
+          "are",
+          "be",
+          "were"
+        ],
+        "answer": 0,
+        "why": "'All that ...' yarıklı vurgu yapısında yüklem tekil 'be' (is / was) fiilidir ('All that we are asking for is...')."
       }
     ],
     "basics_en_double_comparatives": [
@@ -1738,6 +1779,47 @@
         ],
         "answer": 0,
         "why": "'urged that he take' cümlesinde 3. tekil şahıs için yalın fiil ('take') kullanılarak mandative subjunctive kuralı tam uygulanmıştır."
+      },
+      {
+        "prompt": "The committee recommended that the director ___ immediately.",
+        "options": [
+          "resigns",
+          "resign",
+          "to resign"
+        ],
+        "answer": 1,
+        "why": "Recommend, suggest, demand gibi fiillerden sonra gelen 'that' yan cümlesinde subjunctive (çekimsiz yalın fiil: resign) kullanılır."
+      },
+      {
+        "prompt": "It is essential that every applicant ___ on time for the interview.",
+        "options": [
+          "be",
+          "is",
+          "will be"
+        ],
+        "answer": 0,
+        "why": "'It is essential / vital that...' yapısından sonra 'be' fiili çekimlenmeden yalın 'be' olarak kalır."
+      },
+      {
+        "prompt": "The lawyer insisted that his client ___ anything without counsel.",
+        "options": [
+          "doesn't sign",
+          "didn't sign",
+          "not sign"
+        ],
+        "answer": 2,
+        "why": "Subjunctive yapısının olumsuzu yardımcı fiil (do/does/did) almadan doğrudan 'not + yalın fiil' (not sign) ile kurulur."
+      },
+      {
+        "prompt": "The doctor suggested that she ___ a specialist regarding her symptoms.",
+        "options": [
+          "sees",
+          "see",
+          "saw",
+          "to see"
+        ],
+        "answer": 1,
+        "why": "'Suggest that' yapısından sonra 3. tekil şahıs için dahi fiil -s takısı almaz, yalın (base form) subjunctive kalır ('she see')."
       }
     ],
     "basics_en_participle_advanced": [

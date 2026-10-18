@@ -952,39 +952,6 @@
     ],
     "basics_fr_lieux": [
       {
-        "prompt": "L'année prochaine, nous passerons nos vacances ___ Turquie.",
-        "options": [
-          "à",
-          "au",
-          "en",
-          "aux"
-        ],
-        "answer": 2,
-        "why": "-e ile biten dişil ülke adlarının önüne 'en' edatı gelir: en Turquie."
-      },
-      {
-        "prompt": "Mon oncle travaille ___ États-Unis depuis dix ans.",
-        "options": [
-          "en",
-          "au",
-          "à les",
-          "aux"
-        ],
-        "answer": 3,
-        "why": "Çoğul ülke adlarıyla à + les birleşerek 'aux' olur: aux États-Unis."
-      },
-      {
-        "prompt": "Ils ont visité les temples d'Angkor ___ Cambodge.",
-        "options": [
-          "en",
-          "au",
-          "à",
-          "dans le"
-        ],
-        "answer": 1,
-        "why": "Kamboçya -e ile bitmesine rağmen istisna olarak erildir (le Cambodge) ve 'au' alır."
-      },
-      {
         "prompt": "Je ne me sens pas bien, je vais ___ le médecin.",
         "options": [
           "à",
@@ -1005,17 +972,6 @@
         ],
         "answer": 1,
         "why": "Cinéma eril bir isimdir; à côté de edatıyla birleşince de + le = 'du' olur."
-      },
-      {
-        "prompt": "Şehir isimlerinin önüne gelen edatla ilgili hangisi DOĞRUDUR?",
-        "options": [
-          "Büyük şehirler 'en', küçük kasabalar 'à' alır.",
-          "Şehir adları cinsiyet veya boyuta bakılmaksızın daima 'à' alır.",
-          "Ülke başkentleri 'au' edatı alır.",
-          "Sesliyle başlayan şehirler 'en' alır."
-        ],
-        "answer": 1,
-        "why": "Fransızcada tüm şehirlerin önünde istisnasız 'à' edatı kullanılır (à Paris, à Istanbul, à Londres)."
       },
       {
         "prompt": "Le chat dort tranquillement ___ le canapé du salon.",
@@ -1501,6 +1457,39 @@
         ],
         "answer": 2,
         "why": "Çoğul bir ülkeden dönmek / gelmek anlatılırken de + les birleşerek 'des' olur: des États-Unis."
+      },
+      {
+        "prompt": "L'année prochaine, nous passerons nos vacances ___ Turquie.",
+        "options": [
+          "à",
+          "au",
+          "en",
+          "aux"
+        ],
+        "answer": 2,
+        "why": "-e ile biten dişil ülke adlarının önüne 'en' edatı gelir: en Turquie."
+      },
+      {
+        "prompt": "Mon oncle travaille ___ États-Unis depuis dix ans.",
+        "options": [
+          "en",
+          "au",
+          "à les",
+          "aux"
+        ],
+        "answer": 3,
+        "why": "Çoğul ülke adlarıyla à + les birleşerek 'aux' olur: aux États-Unis."
+      },
+      {
+        "prompt": "Şehir isimlerinin önüne gelen edatla ilgili hangisi DOĞRUDUR?",
+        "options": [
+          "Büyük şehirler 'en', küçük kasabalar 'à' alır.",
+          "Şehir adları cinsiyet veya boyuta bakılmaksızın daima 'à' alır.",
+          "Ülke başkentleri 'au' edatı alır.",
+          "Sesliyle başlayan şehirler 'en' alır."
+        ],
+        "answer": 1,
+        "why": "Fransızcada tüm şehirlerin önünde istisnasız 'à' edatı kullanılır (à Paris, à Istanbul, à Londres)."
       }
     ],
     "basics_fr_si_concordance": [

@@ -139,3 +139,20 @@ export const flagOf = (mark: LessonMark | undefined): Pick<LessonMark, 'flag' | 
   ...(mark?.flagAt ? { flagAt: mark.flagAt, ...(mark.flag ? { flag: mark.flag } : {}) } : {}),
   ...(mark?.noteAt ? { noteAt: mark.noteAt, ...(mark.note ? { note: mark.note } : {}) } : {}),
 })
+
+/**
+ * Progress of merged lessons moved to the lesson that stays: for each `old → new` the two marks are merged into `new`
+ * (as if they were one lesson), and `old` is left unmarked with today's day so that sync keeps it that way. Marks that
+ * need no move come back as the same object.
+ */
+export function migrateAliasedMarks(marks: GuideMarks, aliases: Readonly<Record<string, string>>, today: string): GuideMarks {
+  let next = marks
+  for (const [old, now] of Object.entries(aliases)) {
+    const mark = next[old]
+    // Nothing to move: absent, or already unmarked and without a flag or note of its own.
+    if (!mark || (!mark.read && !mark.learned && !mark.flagAt && !mark.noteAt)) continue
+    const merged = mergeMarks(next[now] ? { [now]: next[now]! } : undefined, { [now]: mark })
+    next = { ...next, [now]: merged[now]!, [old]: { read: '', off: today } }
+  }
+  return next
+}

@@ -1,8 +1,9 @@
 import type { GuideLevel } from '../data/guide/lessonTypes'
 import type { KelimeDB } from '../data/db'
 import { levelCertificates } from '../engine/guideCertificate'
+import { LESSON_ALIASES } from '../data/guide/aliases'
 import { KNOWN_DAY } from '../engine/guidePlacement'
-import { afterCheck, cleanMarks, flagOf, isRead, putOff, REVIEW_DAYS, type GuideMarks, type LessonFlag } from '../engine/guideReview'
+import { afterCheck, cleanMarks, flagOf, isRead, migrateAliasedMarks, putOff, REVIEW_DAYS, type GuideMarks, type LessonFlag } from '../engine/guideReview'
 import { localDate } from '../engine/progress'
 import { CERT_XP, certAwardKey, LESSON_XP, lessonAwardKey, REVIEW_XP, reviewAwardKey } from '../engine/xpLedger'
 
@@ -27,6 +28,13 @@ function oldMarks(): GuideMarks {
 
 /** The guide's lessons read, learned and reviewed: from the database, after taking in what the older versions kept in the browser. */
 export async function loadMarks(db: KelimeDB): Promise<GuideMarks> {
+  const marks = await loadStoredMarks(db)
+  const moved = migrateAliasedMarks(marks, LESSON_ALIASES, localDate(new Date()))
+  // Progress of lessons that were merged into another moves to it once (and stays moved on every device).
+  return moved === marks ? marks : db.saveGuideMarks(moved)
+}
+
+async function loadStoredMarks(db: KelimeDB): Promise<GuideMarks> {
   const old = oldMarks()
   if (!Object.keys(old).length) return db.getGuideMarks()
   // Saved first, forgotten after: a failed save keeps them for the next try.

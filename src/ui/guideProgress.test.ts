@@ -162,3 +162,30 @@ describe('markKnown', () => {
     expect(back.real).toEqual({ read: '2026-10-01' })
   })
 })
+
+describe('merged lessons', () => {
+  beforeEach(async () => {
+    await db.meta.clear()
+    localStorage.clear()
+  })
+
+  it('moves the progress of a merged lesson to the lesson that stays, once', async () => {
+    await db.saveGuideMarks({
+      cleft: { read: '2026-10-01', learned: '2026-10-01', reviewed: '2026-10-05', step: 1 },
+      subjunctive: { read: '2026-09-20' },
+      basics_en_subjunctive_mandative: { read: '2026-10-02', learned: '2026-10-02', step: 0 },
+    })
+    const marks = await loadMarks(db)
+    // The old lesson's progress is the kept lesson's now.
+    expect(marks.basics_en_cleft_variations).toMatchObject({ read: '2026-10-01', learned: '2026-10-01', step: 1 })
+    // Two marks of the same lesson: the one touched last (the kept lesson's own).
+    expect(marks.basics_en_subjunctive_mandative).toMatchObject({ learned: '2026-10-02', step: 0 })
+    // The old topics are unmarked, with a day, so that sync does not bring them back.
+    expect(marks.cleft).toMatchObject({ read: '' })
+    expect(marks.cleft!.off).toMatch(/^\d{4}-/)
+    expect(marks.subjunctive).toMatchObject({ read: '' })
+    // Stored: a second load changes nothing.
+    expect((await db.getGuideMarks()).cleft).toMatchObject({ read: '' })
+    expect(await loadMarks(db)).toEqual(marks)
+  })
+})
