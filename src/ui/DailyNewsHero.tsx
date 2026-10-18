@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { accessFetch } from '../data/access'
-import type { ReadingText } from '../data/db'
+import type { KelimeDB, ReadingText } from '../data/db'
 import { FEEDS, type Article } from '../engine/news'
 import { analyzeText, coverageLine } from '../engine/reading'
 import type { TargetLanguage, UserWordState, VocabularyEntry } from '../engine/types'
@@ -13,17 +13,56 @@ const PRIMARY_FEED: Record<TargetLanguage, string> = {
   es: 'voa-es-news',
 }
 
+interface CachedNews {
+  savedAt: number
+  articles: Article[]
+}
+
+function getCacheKey(lang: TargetLanguage) {
+  return `diloloji:daily-news-cache:${lang}`
+}
+
+function loadCachedNews(lang: TargetLanguage): CachedNews | null {
+  try {
+    const raw = localStorage.getItem(getCacheKey(lang))
+    if (!raw) return null
+    return JSON.parse(raw) as CachedNews
+  } catch {
+    return null
+  }
+}
+
+function saveCachedNews(lang: TargetLanguage, articles: Article[]) {
+  try {
+    const payload: CachedNews = { savedAt: Date.now(), articles }
+    localStorage.setItem(getCacheKey(lang), JSON.stringify(payload))
+  } catch {
+    // Ignore storage quota errors
+  }
+}
+
+function formatHoursAgo(timestamp: number): string {
+  const diffHours = Math.max(0, Math.round((Date.now() - timestamp) / (1000 * 60 * 60)))
+  if (diffHours === 0) return 'az önce'
+  if (diffHours < 24) return `${diffHours} sa. önce`
+  const days = Math.round(diffHours / 24)
+  return `${days} gün önce`
+}
+
 /**
  * Daily 2-minute micro news showcase at the top of the Reading screen:
- * surfaces today's recommended learner news bulletin (RFI / VOA) with audio and text.
+ * surfaces today's recommended learner news bulletin (RFI / VOA) with audio, text,
+ * offline caching, bulletin item switching, and direct library persistence.
  */
 export function DailyNewsHero({
+  db,
   language,
   vocabulary,
   states,
   known,
   onOpen,
 }: {
+  db?: KelimeDB
   language: TargetLanguage
   vocabulary: VocabularyEntry[]
   states: UserWordState[]
@@ -35,11 +74,15 @@ export function DailyNewsHero({
   const [articles, setArticles] = useState<Article[] | null>(null)
   const [busy, setBusy] = useState(false)
   const [failed, setFailed] = useState(false)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [cachedTime, setCachedTime] = useState<number | null>(null)
 
   useEffect(() => {
     let live = true
     setBusy(true)
     setFailed(false)
+    setSelectedIndex(0)
+
     accessFetch(`/api/news?feed=${encodeURIComponent(feedId)}`)
       .then((res) => {
         if (!res.ok) throw new Error(String(res.status))
@@ -47,11 +90,24 @@ export function DailyNewsHero({
       })
       .then((data) => {
         if (!live) return
-        setArticles(data.articles?.filter((a) => a.text?.length > 80) ?? [])
+        const valid = data.articles?.filter((a) => a.text?.length > 80) ?? []
+        setArticles(valid)
+        setCachedTime(null)
+        if (valid.length > 0) {
+          saveCachedNews(language, valid)
+        }
       })
       .catch(() => {
         if (!live) return
-        setFailed(true)
+        // Try fallback to offline cached articles
+        const cached = loadCachedNews(language)
+        if (cached && cached.articles.length > 0) {
+          setArticles(cached.articles)
+          setCachedTime(cached.savedAt)
+          setFailed(false)
+        } else {
+          setFailed(true)
+        }
       })
       .finally(() => {
         if (live) setBusy(false)
@@ -59,11 +115,11 @@ export function DailyNewsHero({
     return () => {
       live = false
     }
-  }, [feedId])
+  }, [feedId, language])
 
-  const top = useMemo(() => {
-    if (!articles?.length) return null
-    // Pick the latest article with highest readable coverage
+  const scoredArticles = useMemo(() => {
+    if (!articles?.length) return []
+    // Rank articles by readable vocabulary coverage
     const scored = articles.map((a) => {
       const full = `${a.title}\n\n${a.text}`
       const cov = analyzeText(full, language, vocabulary, states, known)
@@ -71,12 +127,14 @@ export function DailyNewsHero({
       return { a, cov, words, coverage: cov.coverage }
     })
     scored.sort((x, y) => y.coverage - x.coverage)
-    return scored[0] ?? null
+    return scored
   }, [articles, language, vocabulary, states, known])
 
-  if (!feedInfo || failed) return null
+  const top = scoredArticles[selectedIndex] ?? scoredArticles[0] ?? null
 
-  const startArticle = (a: Article) => {
+  if (!feedInfo || (failed && !top)) return null
+
+  const startArticle = async (a: Article) => {
     const item: ReadingText = {
       id: crypto.randomUUID(),
       language,
@@ -87,6 +145,13 @@ export function DailyNewsHero({
       addedAt: new Date().toISOString(),
       history: [],
     }
+    if (db) {
+      try {
+        await db.saveText(item)
+      } catch {
+        // Fallback gracefully if database fails
+      }
+    }
     onOpen(item)
   }
 
@@ -96,7 +161,14 @@ export function DailyNewsHero({
         <span className="daily-news-tag">
           <RadioIcon size={16} className="inline-icon daily-news-pulse" /> Günün 2 Dakikalık Haberi
         </span>
-        <span className="small muted daily-news-source">{feedInfo.name}</span>
+        <div className="daily-news-head-end">
+          {cachedTime && (
+            <span className="pill pill-sm daily-news-cached-badge" title="İnternetsiz ortamda son indirilen bülten sunuluyor">
+              📶 Çevrimdışı kayıt ({formatHoursAgo(cachedTime)})
+            </span>
+          )}
+          <span className="small muted daily-news-source">{feedInfo.name}</span>
+        </div>
       </div>
 
       {busy && !top && (
@@ -124,7 +196,39 @@ export function DailyNewsHero({
               <span className="pill pill-sm is-coverage" title="Kelimelerin ne kadarını biliyorsun">
                 <SparkleIcon size={12} className="inline-icon" /> {coverageLine(top.cov)}
               </span>
+              {scoredArticles.length > 1 && (
+                <span className="pill pill-sm muted" title="Bülten sırası">
+                  {selectedIndex + 1} / {scoredArticles.length}
+                </span>
+              )}
             </div>
+
+            {scoredArticles.length > 1 && (
+              <div className="daily-news-selector" role="tablist" aria-label="Günün diğer bülten maddeleri">
+                <span className="small muted daily-news-selector-label">Diğer bülten maddeleri:</span>
+                <div className="daily-news-selector-chips">
+                  {scoredArticles.map((item, idx) => {
+                    const isCurrent = idx === selectedIndex
+                    return (
+                      <button
+                        key={item.a.link || item.a.title}
+                        type="button"
+                        role="tab"
+                        aria-selected={isCurrent}
+                        className={`chip daily-news-chip ${isCurrent ? 'is-active' : ''}`}
+                        onClick={() => setSelectedIndex(idx)}
+                        title={item.a.title}
+                      >
+                        <span className="daily-news-chip-num">{idx + 1}</span>
+                        <span className="daily-news-chip-title">{item.a.title.slice(0, 24)}…</span>
+                        <span className="small muted daily-news-chip-pct">%{Math.round(item.coverage * 100)}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
             <div className="daily-news-action">
               <button
                 type="button"
