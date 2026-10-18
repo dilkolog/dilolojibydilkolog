@@ -1,9 +1,11 @@
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // The tests assume a build without the sign-in gate; a developer's .env.local (needed by deploy:cf) must not leak in.
+  test: { env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_SUPABASE_ANON_KEY: '' } },
   // Drawings are never inlined into the scripts: a small one would otherwise ride in the start-up
   // bundle as base64 (larger, not cacheable on its own) even when its screen is never opened.
   build: { assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined) },
