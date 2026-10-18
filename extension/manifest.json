@@ -9,13 +9,27 @@
   "background": { "service_worker": "background.js" },
   "content_scripts": [
     {
-      "matches": ["https://kelime-koc.vercel.app/*", "https://nigalingo.online/*", "https://www.nigalingo.online/*", "http://localhost:5191/*"],
+      "matches": [
+        "https://diloloji.com/*",
+        "https://www.diloloji.com/*",
+        "https://kelime-koc.vercel.app/*",
+        "https://nigalingo.online/*",
+        "https://www.nigalingo.online/*",
+        "http://localhost:5191/*"
+      ],
       "js": ["bridge.js"],
       "run_at": "document_idle"
     },
     {
       "matches": ["http://*/*", "https://*/*"],
-      "exclude_matches": ["https://kelime-koc.vercel.app/*", "https://nigalingo.online/*", "https://www.nigalingo.online/*", "http://localhost:5191/*"],
+      "exclude_matches": [
+        "https://diloloji.com/*",
+        "https://www.diloloji.com/*",
+        "https://kelime-koc.vercel.app/*",
+        "https://nigalingo.online/*",
+        "https://www.nigalingo.online/*",
+        "http://localhost:5191/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }

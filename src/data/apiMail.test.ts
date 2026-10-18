@@ -94,20 +94,20 @@ describe('registering an address', () => {
   })
 
   it('links to the site the learner registered from (each site has its own data)', async () => {
-    await post({ action: 'email', email: EMAIL, ...state }, { origin: 'https://nigalingo.online' })
-    expect(mails[0].text).toContain('https://nigalingo.online/api/push?c=')
-    expect(mails[0].text).toContain('https://nigalingo.online/api/push?u=')
-    expect((await stored()).site).toBe('https://nigalingo.online')
+    await post({ action: 'email', email: EMAIL, ...state }, { origin: 'https://diloloji.com' })
+    expect(mails[0].text).toContain('https://diloloji.com/api/push?c=')
+    expect(mails[0].text).toContain('https://diloloji.com/api/push?u=')
+    expect((await stored()).site).toBe('https://diloloji.com')
     // Opened on that site, the page leads back to it.
-    const page = await GET(new Request(`https://nigalingo.online/api/push?c=${linkOf(mails[0].text, 'c')}`))
-    expect(await page.text()).toContain('href="https://nigalingo.online"')
+    const page = await GET(new Request(`https://diloloji.com/api/push?c=${linkOf(mails[0].text, 'c')}`))
+    expect(await page.text()).toContain('href="https://diloloji.com"')
   })
 
   it('an unknown origin falls back to the default site, never to what the caller sent', async () => {
     await post({ action: 'email', email: EMAIL, ...state }, { origin: 'https://evil.example' })
-    expect(mails[0].text).toContain('https://kelime-koc.vercel.app/api/push?c=')
+    expect(mails[0].text).toContain('https://diloloji.com/api/push?c=')
     expect(mails[0].text).not.toContain('evil.example')
-    expect((await stored()).site).toBe('https://kelime-koc.vercel.app')
+    expect((await stored()).site).toBe('https://diloloji.com')
   })
 
   it('a second call neither mails again nor changes the status, but updates the day', async () => {
@@ -217,13 +217,13 @@ describe('the daily mail', () => {
 
   it('keeps to the site the address was registered from: the button and the unsubscribe link', async () => {
     mails.length = 0
-    await post({ action: 'email', email: EMAIL, ...state, studiedDay: '2026-10-06' }, { origin: 'https://nigalingo.online' })
+    await post({ action: 'email', email: EMAIL, ...state, studiedDay: '2026-10-06' }, { origin: 'https://diloloji.com' })
     await get(`c=${linkOf(mails[0].text, 'c')}`)
     mails.length = 0
     await run()
-    expect(mails[0].text).toContain('Başla: https://nigalingo.online/?go=quick')
-    expect(mails[0].text).toContain('https://nigalingo.online/api/push?u=')
-    expect(mails[0].html).toContain('href="https://nigalingo.online/?go=quick"')
+    expect(mails[0].text).toContain('Başla: https://diloloji.com/?go=quick')
+    expect(mails[0].text).toContain('https://diloloji.com/api/push?u=')
+    expect(mails[0].html).toContain('href="https://diloloji.com/?go=quick"')
   })
 
   it('not to an address nobody confirmed, nor to one that studied or rests today', async () => {
