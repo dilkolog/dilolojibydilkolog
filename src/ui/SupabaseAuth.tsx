@@ -245,12 +245,13 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
         )}
 
         {step === 'working' && (
-          <p className="muted" role="status">
-            Hesabın hazırlanıyor…
-          </p>
+          <div className="auth-working" role="status">
+            {!error && <span className="auth-spinner" aria-hidden />}
+            <p className="muted">{error ? 'Giriş tamamlanamadı.' : 'Hesabın hazırlanıyor…'}</p>
+          </div>
         )}
         {step === 'working' && error && (
-          <p className="error" role="alert">
+          <p className="error auth-error" role="alert">
             {error}
           </p>
         )}

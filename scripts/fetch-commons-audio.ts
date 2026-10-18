@@ -47,7 +47,7 @@ do {
   // dropped connection waits a little, then both try again.
   for (let attempt = 0; attempt < 8; attempt++) {
     try {
-      res = await fetch(`https://commons.wikimedia.org/w/api.php?${q}`, { headers: { 'user-agent': 'kelime-koc-wordpack/1.0 (personal vocabulary app; low-volume build script)' } })
+      res = await fetch(`https://commons.wikimedia.org/w/api.php?${q}`, { headers: { 'user-agent': 'diloloji-wordpack/1.0 (personal vocabulary app; low-volume build script)' } })
     } catch (e) {
       res = undefined
       console.error(`network: ${(e as Error).message}; retrying`)
