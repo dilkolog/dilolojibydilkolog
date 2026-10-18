@@ -294,7 +294,7 @@ export function AppScreens(props: AppScreensProps) {
       ) : screen.name === 'verbs' ? (
         <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
       ) : screen.name === 'guide' ? (
-        <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}|${screen.placement ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} placement={screen.placement} goal={settings.guideGoal} onGoal={(n) => void updateSettings({ ...settings, guideGoal: n })} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} />
+        <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}|${screen.placement ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} placement={screen.placement} goal={settings.guideGoal} onGoal={(n) => void updateSettings({ ...settings, guideGoal: n })} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} onChanged={reload} />
       ) : screen.name === 'profile' ? (
         <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
       ) : screen.name === 'account' ? (

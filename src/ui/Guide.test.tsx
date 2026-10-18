@@ -18,7 +18,7 @@ afterEach(async () => {
   await db.texts.clear()
 })
 
-async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean; placement?: boolean } = {}) {
+async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean; placement?: boolean; onChanged?: () => void } = {}) {
   const onPractice = vi.fn()
   const onVerbs = vi.fn()
   const host = document.createElement('div')
@@ -42,13 +42,15 @@ describe('GuideScreen', () => {
     expect(onPractice).toHaveBeenCalledWith('subjonctif')
   })
 
-  it('remembers a lesson marked as read', async () => {
-    const { host } = await mount('es')
+  it('remembers a lesson marked as read and calls onChanged', async () => {
+    const onChanged = vi.fn()
+    const { host } = await mount('es', { onChanged })
     await act(async () => button(host, 'Ser ve estar')!.click())
     await act(async () => button(host, 'Okudum olarak işaretle')!.click())
     await act(async () => button(host, 'Rehber')!.click())
     expect(host.querySelector('.guide-progress strong')?.textContent).toBe('1')
     expect(Object.keys(await db.getGuideMarks())).toEqual(['ser_estar'])
+    expect(onChanged).toHaveBeenCalled()
   })
 
   it('filters by search and shows the outside links', async () => {

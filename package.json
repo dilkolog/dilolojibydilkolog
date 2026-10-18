@@ -20,7 +20,7 @@
     "security": "npm run scan:secrets && npm run audit:deps",
     "build:ext": "node extension/build.mjs",
     "typecheck:ext": "tsc -p extension",
-    "test:e2e": "vite build && playwright test",
+    "test:e2e": "VITE_SUPABASE_URL=\"\" VITE_SUPABASE_PUBLISHABLE_KEY=\"\" VITE_SUPABASE_ANON_KEY=\"\" vite build && playwright test",
     "build:cf": "npm run build && node scripts/cf-headers.mjs",
     "deploy:cf": "node scripts/check-deploy-env.mjs && npm run build:cf && wrangler deploy",
     "dev:cf": "npm run build:cf && wrangler dev"

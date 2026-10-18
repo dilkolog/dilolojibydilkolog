@@ -1,22 +1,54 @@
 {
-  // Cloudflare Worker: the app (static files) and /api/* (api/*.ts). Build: `npm run build:cf`.
-  "name": "diloloji",
-  "main": "worker/index.ts",
-  "compatibility_date": "2025-09-01",
-  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
-  "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "not_found_handling": "single-page-application",
-    "run_worker_first": ["/api/*"]
-  },
-  "r2_buckets": [{ "binding": "BLOBS", "bucket_name": "diloloji-blobs" }],
-  // api/ imports these two packages by their Vercel-side names; the Worker gets Cloudflare-side versions.
-  "alias": {
-    "@vercel/blob": "./worker/blob.ts",
-    "web-push": "./worker/webpush.ts"
-  },
-  // One hourly trigger instead of 24 daily ones.
-  "triggers": { "crons": ["0 * * * *"] },
-  "observability": { "enabled": true }
+	// Cloudflare Worker: the app (static files) and /api/* (api/*.ts). Build: `npm run build:cf`.
+	"name": "diloloji",
+	"main": "worker/index.ts",
+	"compatibility_date": "2025-09-01",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"nodejs_compat_populate_process_env"
+	],
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"not_found_handling": "single-page-application",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"r2_buckets": [
+		{
+			"binding": "BLOBS",
+			"bucket_name": "diloloji-blobs"
+		}
+	],
+	// api/ imports these two packages by their Vercel-side names; the Worker gets Cloudflare-side versions.
+	"alias": {
+		"@vercel/blob": "./worker/blob.ts",
+		"web-push": "./worker/webpush.ts"
+	},
+	// One hourly trigger instead of 24 daily ones.
+	"triggers": {
+		"crons": [
+			"0 * * * *"
+		]
+	},
+	"observability": {
+		"enabled": true
+	},
+	"routes": [
+		{
+			"pattern": "diloloji.com",
+			"zone_name": "diloloji.com",
+			"custom_domain": true,
+			"enabled": true,
+			"previews_enabled": false
+		},
+		{
+			"pattern": "www.diloloji.com",
+			"zone_name": "diloloji.com",
+			"custom_domain": true,
+			"enabled": true,
+			"previews_enabled": false
+		}
+	]
 }

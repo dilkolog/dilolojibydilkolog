@@ -392,9 +392,12 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'guide-lessons-10', icon: '🎓', title: 'On ders', description: 'Rehberde 10 ders öğren', goal: 10, stat: 'guideLessonsLearned' },
   { id: 'guide-lessons-25', icon: '🏛️', title: 'Dil bilgini', description: 'Rehberde 25 ders öğren', goal: 25, stat: 'guideLessonsLearned' },
   { id: 'guide-lessons-50', icon: '🌟', title: 'Rehber ustası', description: 'Rehberde 50 ders öğren', goal: 50, stat: 'guideLessonsLearned' },
+  { id: 'guide-lessons-100', icon: '👑', title: 'Gramer piri', description: 'Rehberde 100 ders öğren', goal: 100, stat: 'guideLessonsLearned' },
   { id: 'guide-cert-1', icon: '📜', title: 'İlk sertifika', description: 'Bir seviyenin tüm derslerini tamamlayıp ilk sertifikanı al', goal: 1, stat: 'guideCertsEarned' },
-  { id: 'guide-cert-3', icon: '🎖️', title: 'Üç sertifika', description: '3 seviye sertifikası kazan', goal: 3, stat: 'guideCertsEarned' },
-  { id: 'guide-placement-1', icon: '🧭', title: 'Seviyeni bul', description: 'Rehber seviye testini tamamla', goal: 1, stat: 'guidePlacementDone' },
+  { id: 'guide-cert-2', icon: '🥈', title: 'İki seviye', description: '2 seviye sertifikası kazan', goal: 2, stat: 'guideCertsEarned' },
+  { id: 'guide-cert-3', icon: '🎖️', title: 'Üç seviye', description: '3 seviye sertifikası kazan', goal: 3, stat: 'guideCertsEarned' },
+  { id: 'guide-cert-4', icon: '🏆', title: 'Gramer ustası', description: '4 seviye sertifikası kazan (A1–B2)', goal: 4, stat: 'guideCertsEarned' },
+  { id: 'guide-placement-1', icon: '🧭', title: 'Seviyeni keşfettin', description: 'Rehber seviye testini tamamla', goal: 1, stat: 'guidePlacementDone' },
 ]
 
 

@@ -80,6 +80,7 @@ export function GuideScreen({
   onGoal,
   onPractice,
   onVerbs,
+  onChanged,
 }: {
   language: TargetLanguage
   /** A lesson to open at once (its topic, or a grammar topic it teaches): from a mistake, or Today's review. */
@@ -95,6 +96,7 @@ export function GuideScreen({
   onGoal?: (lessons: number) => void
   onPractice: (topic: string) => void
   onVerbs: (tense?: string) => void
+  onChanged?: () => void
 }) {
   const [tab, setTab] = useState<Tab>(initialTense ? 'tenses' : 'topics')
   const [level, setLevel] = useState<GuideLevel | null>(null)
@@ -176,7 +178,7 @@ export function GuideScreen({
   }, [])
   const change = (next: GuideMarks) => {
     setMarks(next)
-    void db.saveGuideMarks(next).catch(() => {})
+    void db.saveGuideMarks(next).then(() => onChanged?.()).catch(() => {})
   }
   const markRead = (topic: string, on = true) => change(withRead(marks, topic, on))
   const flagOf = (topic: string): LessonFlag | undefined => marks[topic]?.flag
@@ -243,7 +245,9 @@ export function GuideScreen({
           const saved = { start, day: localDate(new Date()) }
           savePlacement(language, saved)
           setPlacement(saved)
-          void db.meta.put({ key: 'guidePlacementDone', value: true })
+          void db.meta.put({ key: 'guidePlacementDone', value: true }).then(() => {
+            onChanged?.()
+          })
         }}
         onKnown={(topics) => {
           markedKnown.current = topics
@@ -325,6 +329,7 @@ export function GuideScreen({
                 const fresh = awards.filter((a) => !(a.key in ledger))
                 await db.awardXp(awards)
                 setEarned(fresh.reduce((n, a) => n + a.xp, 0))
+                onChanged?.()
               })
               .catch(() => {})
           }
