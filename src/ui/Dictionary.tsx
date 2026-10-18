@@ -9,12 +9,14 @@ import { db } from '../data/instance'
 import { addEntry, emptyNotes, findAdded, noteLookup, removeEntry, setFix, type DictionaryNotes } from '../engine/dictionaryNotes'
 import { normalize, splitArticle } from '../engine/answerCheck'
 import { verbFormsOf } from '../engine/verbLookup'
-import type { Example, Gender, PartOfSpeech, TargetLanguage, VocabularyEntry } from '../engine/types'
-import { SearchIcon } from './icons'
+import type { Example, Gender, PartOfSpeech, TargetLanguage, VocabularyEntry, WordList } from '../engine/types'
+import { CheckIcon, ChevronDownIcon, SearchIcon, TagIcon, TargetIcon } from './icons'
+import { MenuItem, Popover } from './Popover'
 import { LANGUAGE_NAME } from './labels'
 import { createEntry } from '../data/wordInput'
 import { formIn } from '../engine/inflection'
-import { placeNew } from './listMemory'
+import { defaultPlacement, lastPlacement, rememberPlacement } from './listMemory'
+import { parsePlacement } from './listOptions'
 import { showToast } from './toastFeed'
 import { PageHeader } from './PageHeader'
 import { daySeed } from '../appNav'
@@ -31,6 +33,7 @@ import { SavedCard, DayWord, SavedList } from './DictionarySaved'
 interface Props {
   language: TargetLanguage
   vocabulary: VocabularyEntry[]
+  lists?: readonly WordList[]
   initialQuery?: string
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
@@ -38,6 +41,7 @@ interface Props {
   onAdded?: () => void
   onOpenLab?: (verb: string) => void
   onSwitchLanguage?: (lang: TargetLanguage, query?: string) => void
+  onOpenList?: (listId: string) => void
 }
 
 const RECENT_KEY = (l: TargetLanguage) => `kelime-koc:dictionary:${l}`
@@ -68,13 +72,16 @@ const ownEntry = (vocabulary: readonly VocabularyEntry[], word: string, language
   return vocabulary.find((v) => fold(splitArticle(normalize(v.lemma).toLocaleLowerCase(language), language).rest) === key)
 }
 
-export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOpenWord, onAdd: openForm, onAdded, onOpenLab, onSwitchLanguage }: Props) {
+export function DictionaryScreen({ language, vocabulary, lists: propLists, initialQuery = '', onOpenWord, onAdd: openForm, onAdded, onOpenLab, onSwitchLanguage, onOpenList }: Props) {
   const [query, setQuery] = useState(initialQuery)
   const [pack, setPack] = useState<Pack | null | undefined>(undefined)
   const [recent, setRecent] = useState(() => loadRecent(language))
   const [notes, setNotes] = useState<DictionaryNotes>(emptyNotes)
   const notesRef = useRef(notes)
   const [deeplOn, setDeeplOn] = useState(false)
+  const [lists, setLists] = useState<readonly WordList[]>(propLists ?? [])
+  const [targetPlacement, setTargetPlacement] = useState<string>(() => lastPlacement(language))
+
   useEffect(() => {
     let live = true
     void translationReady().then((yes) => live && setDeeplOn(yes))
@@ -98,6 +105,37 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
     }
   }, [language])
 
+  useEffect(() => {
+    let live = true
+    void Promise.all([db.getLists(language), db.getSettings()]).then(([allLists, s]) => {
+      if (!live) return
+      setLists(allLists)
+      const initial = defaultPlacement(language, allLists, s?.focusList?.[language])
+      setTargetPlacement((prev) => {
+        if (!prev) return initial
+        const valid = new Set(['__none', ...allLists.flatMap((l) => [l.id, ...(l.levels ?? []).map((lv) => `${l.id}|${lv.id}`)])])
+        return valid.has(prev) ? prev : initial
+      })
+    })
+    return () => {
+      live = false
+    }
+  }, [language, propLists])
+
+  const currentPlacementInfo = useMemo(() => {
+    if (!targetPlacement || targetPlacement === '__none') {
+      return { listId: null, label: 'Listesiz (Genel havuz)', name: 'Listesiz' }
+    }
+    const { listId, levelId } = parsePlacement(targetPlacement)
+    const list = lists.find((l) => l.id === listId)
+    if (!list) return { listId: null, label: 'Listesiz (Genel havuz)', name: 'Listesiz' }
+    if (levelId) {
+      const level = list.levels?.find((lv) => lv.id === levelId)
+      if (level) return { listId: list.id, label: `${list.name} › ${level.name}`, name: list.name }
+    }
+    return { listId: list.id, label: list.name, name: list.name }
+  }, [targetPlacement, lists])
+
   const index = useMemo(() => {
     if (!pack) return pack
     return buildIndex(pack, language, vocabulary)
@@ -117,8 +155,8 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
   }
 
   /**
-   * Adds a word in one tap, with its meaning and the sentences shown for it, where new words go
-   * (the list last used or opened); no detour through the word form. A word that would not make a
+   * Adds a word in one tap, with its meaning and the sentences shown for it, into the chosen
+   * target list (or unlisted if selected); no detour through the word form. A word that would not make a
    * card (no meaning) opens the form instead.
    */
   const onAdd = async (written: string, meaning: string, extra: { pos?: PartOfSpeech; gender?: Gender; examples?: Example[] } = {}) => {
@@ -132,11 +170,16 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
       })
       // The sentences that show the word first: those are the ones the questions can use.
       entry.senses[0].examples = [...examples.filter((x) => x.form), ...examples.filter((x) => !x.form)].slice(0, 3)
-      const placed = await placeNew(db, language, [entry])
-      await db.vocabulary.put(placed.entries[0])
+      const { listId, levelId } = parsePlacement(targetPlacement)
+      const list = lists.find((l) => l.id === listId)
+      const placedEntry: VocabularyEntry = {
+        ...entry,
+        ...(list ? { listId: list.id, ...(levelId ? { levelId } : {}) } : { listId: undefined, levelId: undefined }),
+      }
+      await db.vocabulary.put(placedEntry)
       setRecent(saveRecent(language, entry.lemma))
       onAdded?.()
-      showToast(placed.listName ? `“${written}” “${placed.listName}” listesine eklendi.` : `“${written}” kelimelerine eklendi.`, { label: 'Aç', run: () => onOpenWord(entry.id) }, 5000, 'success')
+      showToast(list ? `“${written}” “${list.name}” listesine eklendi.` : `“${written}” kelimelerine eklendi.`, { label: 'Aç', run: () => onOpenWord(entry.id) }, 5000, 'success')
     } catch {
       openForm(written, meaning)
     }
@@ -223,6 +266,93 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
             onChange={(e) => setQuery(e.target.value)}
           />
         </form>
+        <div className="dict-target-bar">
+          <span className="dict-target-title">
+            <TargetIcon size={14} className="inline-icon" />
+            <span>Hedef liste:</span>
+          </span>
+          <Popover
+            kind="menu"
+            align="start"
+            label="Yeni kelimelerin ekleneceği liste"
+            buttonClassName="dict-target-btn"
+            buttonProps={{ 'aria-label': `Hedef liste: ${currentPlacementInfo.label}` }}
+            button={
+              <>
+                <span className="dict-target-btn-text">{currentPlacementInfo.label}</span>
+                <ChevronDownIcon size={13} className="dict-target-chev" />
+              </>
+            }
+          >
+            {(close) => (
+              <>
+                <MenuItem
+                  icon={targetPlacement === '__none' ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />}
+                  selected={targetPlacement === '__none'}
+                  title="Listesiz (Genel havuz)"
+                  hint="Herhangi bir listeye bağlı olmadan ekle"
+                  onSelect={() => {
+                    setTargetPlacement('__none')
+                    rememberPlacement(language, '__none')
+                    close()
+                  }}
+                />
+                {lists.length > 0 && <div className="popover-rule" role="separator" />}
+                {lists.map((l) => {
+                  const isSelected = targetPlacement === l.id
+                  return (
+                    <div key={l.id}>
+                      <MenuItem
+                        icon={isSelected ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />}
+                        selected={isSelected}
+                        title={l.name}
+                        hint={l.levels?.length ? `${l.levels.length} alt seviye` : undefined}
+                        onSelect={() => {
+                          setTargetPlacement(l.id)
+                          rememberPlacement(language, l.id)
+                          close()
+                        }}
+                      />
+                      {l.levels?.map((lv) => {
+                        const val = `${l.id}|${lv.id}`
+                        const isLevelSelected = targetPlacement === val
+                        return (
+                          <MenuItem
+                            key={val}
+                            className="dict-target-subitem"
+                            icon={isLevelSelected ? <CheckIcon size={16} /> : <span className="lab-tick-gap" />}
+                            selected={isLevelSelected}
+                            title={`↳ ${lv.name}`}
+                            hint={l.name}
+                            onSelect={() => {
+                              setTargetPlacement(val)
+                              rememberPlacement(language, val)
+                              close()
+                            }}
+                          />
+                        )
+                      })}
+                    </div>
+                  )
+                })}
+                {onOpenList && currentPlacementInfo.listId && (
+                  <>
+                    <div className="popover-rule" role="separator" />
+                    <MenuItem
+                      icon={<TagIcon size={16} />}
+                      title={`“${currentPlacementInfo.name}” listesini aç`}
+                      hint="Listeyi görüntüle ve yönet"
+                      onSelect={() => {
+                        close()
+                        onOpenList(currentPlacementInfo.listId!)
+                      }}
+                    />
+                  </>
+                )}
+              </>
+            )}
+          </Popover>
+        </div>
         <div aria-live="polite">
           {index === undefined && <p className="small muted">Sözlük açılıyor…</p>}
           {index === null && <p className="small muted">Sözlük henüz bu cihaza inmedi; internete bağlanınca bir kez iner, sonra internetsiz de çalışır.</p>}
@@ -274,6 +404,7 @@ export function DictionaryScreen({ language, vocabulary, initialQuery = '', onOp
               rank={result.exact.rank}
               own={own}
               fix={notes.fixes[result.exact.word]?.t}
+              targetListName={currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'}
               onFix={(meanings) => updateNotes((n) => setFix(n, result.exact!.word, meanings, new Date().toISOString()))}
               onOpenWord={onOpenWord}
               onAdd={(written, meaning, extra) => {

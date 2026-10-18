@@ -188,12 +188,14 @@ export function AppScreens(props: AppScreensProps) {
           key={`${data.language}:${screen.query ?? ''}`}
           language={data.language}
           vocabulary={data.vocabulary}
+          lists={data.lists}
           initialQuery={screen.query}
           onOpenWord={(entryId) => setScreen({ name: 'word', entryId })}
           // Words are added in one tap there; the form (the incoming-word effect opens Words) only when a card can't be made.
           onAdd={(word, meaning) => setIncoming({ word, context: '', meaning })}
           onAdded={reload}
           onOpenLab={data.language !== 'en' ? (verb) => setScreen({ name: 'verbs', verb }) : undefined}
+          onOpenList={(listId) => setScreen({ name: 'words', list: listId })}
           onSwitchLanguage={(targetLang, query) => {
             if (settings) void updateSettings({ ...settings, activeLanguage: targetLang })
             setScreen({ name: 'dictionary', query })
