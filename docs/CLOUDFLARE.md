@@ -18,13 +18,13 @@ Uygulama tek bir Cloudflare Worker olarak çalışır: statik dosyalar (`dist/`)
 3. Gizlileri ekle (Vercel'deki ortam değişkenlerinin aynıları), her biri için `npx wrangler secret put <AD>`:
    `CRON_SECRET` (yeni, rastgele uzun), `ADMIN_TOKEN`, `SYNC_ALLOWED`, `DEEPL_AUTH_KEY`, `VAPID_PRIVATE_KEY`,
    `RESEND_API_KEY`, `RESEND_FROM`, `RESEND_REPLY_TO` (varsa), `SUPABASE_URL` (ya da `VITE_SUPABASE_URL`),
-   `SUPABASE_SECRET_KEY`, `YOUTUBE_API_KEY` (varsa). Düz değişkenler: `APP_URL` (ana adres, örn.
-   `https://nigalingo.online`) ve `APP_HOSTS` (izinli adresler, virgülle: `diloloji.<hesap>.workers.dev,nigalingo.online`).
+   `SUPABASE_SECRET_KEY`, `YOUTUBE_API_KEY` (varsa). Düz değişkenler: `APP_URL` (ana adres:
+   `https://diloloji.com`) ve `APP_HOSTS` (izinli adresler, virgülle: `diloloji.<hesap>.workers.dev,diloloji.com,www.diloloji.com,nigalingo.online`).
    Vercel panelindeki Environment Variables listesine bakıp hepsini aynı adlarla gir.
 4. Dağıt: `npm run deploy:cf` (ilk dağıtım `https://diloloji.<hesap>.workers.dev` adresini verir).
-5. Alan adı: `nigalingo.online`ın DNS'i Cloudflare'de olmalı (Cloudflare → Add a site → alan adını ekle, kayıt
+5. Alan adı: `diloloji.com`un DNS'i Cloudflare'de olmalı (Cloudflare → Add a site → alan adını ekle, kayıt
    şirketinde ad sunucularını Cloudflare'inkilere çevir). Sonra Workers → diloloji → Settings → Domains &
-   Routes → Add → Custom domain: `nigalingo.online`.
+   Routes → Add → Custom domain: `diloloji.com` (ve `www.diloloji.com`).
 6. İsteğe bağlı otomatik dağıtım: Workers → diloloji → Settings → Builds → GitHub deposunu bağla;
    build komutu `npm run build:cf`, deploy komutu `npx wrangler deploy`.
 7. Supabase → Authentication → URL Configuration: yeni adresi (Site URL / Redirect URLs) ekle; Google girişi

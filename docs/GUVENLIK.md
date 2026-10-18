@@ -6,7 +6,7 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13).
 - **Eşitleme uçtan uca şifreli:** veri cihazda şifrelenir; sunucu (`api/sync.ts`, özel Vercel Blob) yalnızca opak bayt saklar. Hesaplı girişte erişim belirteci denetlenir; günlük geri yükleme noktaları.
 - **Sunucu fonksiyonları keyfi adres almaz:** haber/dinleme kaynakları kimlikle seçilir (izin listesi), SSRF yok.
 - **Gizli anahtarlar sunucuda:** `DEEPL_AUTH_KEY`, `CRON_SECRET`, Blob belirteci Vercel ortam değişkenlerinde; cron `CRON_SECRET` ile korunur.
-- **Çeviri ucu:** yalnızca uygulamanın sayfaları (`fromApp`: nigalingo.online, kelime-koc.vercel.app, önizlemeler, localhost), istek başına 600 karakter, yanıtlar CDN önbelleğinde.
+- **Çeviri ucu:** yalnızca uygulamanın sayfaları (`fromApp`: diloloji.com, nigalingo.online, kelime-koc.vercel.app, önizlemeler, localhost), istek başına 600 karakter, yanıtlar CDN önbelleğinde.
 - **XSS yüzeyi küçük:** `dangerouslySetInnerHTML` yok; React metni kaçışlar.
 - **Bağımlılıklar ve sır taraması:** `npm run security` (= `npm run scan:secrets` + `npm run audit:deps`). Sır taraması izlenen dosyalarda anahtar biçimli dizgi arar (`scripts/scan-secrets.mjs`; 2026-10-13: dosyalarda ve bütün git geçmişinde bulgu yok); `npm audit --omit=dev --audit-level=high` 0 açık. CI'da `npm run typecheck:ext`ten sonra çalışır; Actions kotası dolu olduğu için şimdilik yerelde: **her PR öncesi ve ayda en az bir kez** `npm run security`.
 - **Hız freni (`api/_rate.ts`):** herkese açık uçlarda adres başına dakikada sınır: `log` 60, `access` okuma 120 / başvuru 10, `share` okuma 120 / yazma 30, `push` 60, `sync` yazma 240; aşınca 429. Sayaç çalışan işlev örneğinin belleğindedir: patlama ve betiklere karşı bir fren, kesin genel kota değildir (örnekler gelip gider, birden çok örnek çalışabilir). Sert sınır için aşağıdaki Vercel Firewall kuralı hâlâ geçerli. Adres hiçbir yere yazılmaz.
@@ -31,7 +31,7 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13).
 2. **Hız sınırı:** Vercel → proje → Firewall → Custom Rules → "Rate limit": `/api/translate` ve `/api/log` için IP başına dakikada ~30 istek, aşınca 429. (DeepL kotasının betikle tüketilmesine ve günlük çöpüne karşı.)
 3. **AI sağlayıcısında aylık harcama sınırı:** AI anahtarın tarayıcıda saklanır ve doğrudan sağlayıcıya gider; sağlayıcının panelinden aylık sınır koy.
 4. **Yedek dosyaları** (`kelime-kocu-yedek-*.json`) kişisel veri içerir; `.gitignore`'da, yine de depoya koyma, işin bitince sil.
-5. **İki adres:** `nigalingo.online` ve `kelime-koc.vercel.app` ayrı tarayıcı depoları kullanır. Birini seç; eşitleme açık değilse eski adreste yedek alıp yenisine yükle.
+5. **Adresler ve depolama:** Ana adres `diloloji.com` (ve `www.diloloji.com`). Eski adresler (`nigalingo.online` ve `kelime-koc.vercel.app`) ayrı tarayıcı depoları kullanır. Yeni adrese geçerken eşitleme açık değilse eskide yedek alıp yenisine yükle.
 
 ## Anahtar yenileme planı (2026-10-13)
 Hangi anahtar nerede, ne zaman ve nasıl yenilenir. **Hepsi için ortak kural:** yeni değer Vercel'de tanımlanır → production yeniden yayınlanır (Deployments → son dağıtım → ⋯ → Redeploy) → çalıştığı görülür → eskisi iptal edilir. Anahtarı koda, sohbete ya da ekran görüntüsüne yazma.

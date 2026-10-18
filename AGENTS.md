@@ -13,12 +13,13 @@ Son güncelleme: 2026-10-13.
 - Commit sonu: `Co-Authored-By: <model adı> <noreply@…>` tarzı bir satır kullanılıyordu; PR açıklaması sonu "🤖 Generated with …" satırı. Kendi aracının kuralına uy.
 
 ## Proje
-- React 19 + Vite 8 PWA, Dexie/IndexedDB (`src/data/db.ts`), FSRS (`ts-fsrs`) ile aralıklı tekrar, Vercel Functions (`api/`), Vercel Blob (eşitleme, şifreli). Vercel planı **Hobby** (cron günde 1 kez → 24 ayrı günlük cron kullanılıyor, #44).
+- React 19 + Vite 8 PWA, Dexie/IndexedDB (`src/data/db.ts`), FSRS (`ts-fsrs`) ile aralıklı tekrar. Altyapı Cloudflare Worker (`worker/index.ts`, `wrangler.jsonc`) ve Cloudflare R2 (eşitleme blob deposu `diloloji-blobs`, `@vercel/blob` taklidi). Vercel Hobby kotası dolduğu için Cloudflare'e taşındı (ücretsiz, sınırsız statik varlıklar, tek saatlik cron `0 * * * *`, 100k istek/gün). Canlı alan adı: **`diloloji.com`** (ve `www.diloloji.com`; `nigalingo.online` ve `kelime-koc.vercel.app` geriye dönük uyumlu).
 - Diller: EN/FR/ES öğreniliyor, arayüz Türkçe.
 - Komutlar:
-  - `npm run typecheck` (= `tsc -b && tsc -p tsconfig.api.json && tsc -p tsconfig.scripts.json`; sonuncusu `scripts/`, `e2e/` ve `playwright.config.ts`i denetler)
+  - `npm run typecheck` (= `tsc -b && tsc -p tsconfig.api.json && tsc -p tsconfig.scripts.json && tsc -p tsconfig.worker.json`; Worker tipleri dahil)
   - `npx oxlint src api e2e`
-  - `npx vitest run` (birim, ~1380 test)
+  - `npx vitest run` (birim, ~2400 test)
+  - `npm run build:cf` (statik build + dist/_headers üretimi) / `npm run deploy:cf` (Cloudflare Worker dağıtımı)
   - `npx vite build && npx playwright test e2e/phone.e2e.ts e2e/desktop.e2e.ts e2e/a11y.e2e.ts --workers=4` (E2E, ~3 dk; `E2E_PORT` için aşağıya bak)
   - Görsel testler: `e2e/visual.e2e.ts` — referanslar **yalnızca Linux** (`*-linux.png`). macOS'ta `--ignore-snapshots` ile çalıştır. **`*-darwin.png` dosyalarını asla commit etme.**
 - Referans görüntüleri yenilemek: `gh workflow run snapshots.yml --ref <dal>` (CI'da Linux'ta çeker, iki kez doğrular, dala commit eder).
@@ -39,7 +40,7 @@ Son güncelleme: 2026-10-13.
 - Fiil laboratuvarı verisi: `LabData` (`src/engine/labProgress.ts`): `records['fiil|zaman']`, `tally['zaman|kişi']` (`weakestCell`, `weakPersons`), `kinds` (hata türleri). Kayıt için `recordLabAnswer` (`src/ui/verbs/labShared.ts`).
 - **Okuma kelime kartı (`.word-pop`):** dar kapsayıcıda (`.main` < 50rem) alttan çekmece: `position: fixed`, sol/genişlik `--sheet-left`/`--sheet-w` ile metin sütununa ölçülür (Reading.tsx), altında `.has-sheet` boşluğu. `position: sticky` burada çalışmadı (grid/flex öğesi kendi alanında sıkışıyor). Çekmece yükselirken `getBoundingClientRect` animasyon yüzünden yanıltır: konumu `innerHeight - bottom - offsetHeight` ile hesapla. Geniş kapsayıcıda kart yan sütunda statik kalır.
 - Bir `useEffect` içinden gelen `reload` sonuçları dil değişince atılıyor (`languageRef`, #51 birleşti) — bu deseni koru.
-- **`vite preview` `/api`'yi canlı siteye (kelime-koc.vercel.app) yönlendirir.** E2E'de `startWithSamples` çeviriyi varsayılan olarak 503 ile kapatır (yoksa testler gerçek DeepL'i çağırır). Çeviri isteyen test, başladıktan sonra kendi taklidini kurar; URL'yi glob ile değil, işlevle eşle: `(u) => u.pathname === '/api/translate' && u.searchParams.has('usage' | 'text')`.
+- **`vite preview` `/api`'yi canlı siteye (diloloji.com) yönlendirir.** E2E'de `startWithSamples` çeviriyi varsayılan olarak 503 ile kapatır (yoksa testler gerçek DeepL'i çağırır). Çeviri isteyen test, başladıktan sonra kendi taklidini kurar; URL'yi glob ile değil, işlevle eşle: `(u) => u.pathname === '/api/translate' && u.searchParams.has('usage' | 'text')`.
 - Sesli (dinleme) metinler okumada **önce gizli** açılır ("önce dinle" turları). Testte metne tıklamadan önce "Turları bırak"a bas.
 - Çeviri: sunucu `api/translate.ts` (DeepL, anahtar Vercel ortam değişkeni `DEEPL_AUTH_KEY`; anahtarı asla koda ya da sohbete yazma). Her çeviri cihazdaki **çeviri belleğinde** (`meta 'translations'`, `src/engine/translationMemory.ts`) saklanır, yedeğe ve eşitlemeye girer; aynı cümle bir daha sunucuya gitmez. Kotayı koruyan kod (sırayla çeviri, yalnızca ekrana gelen paragraf) bu deseni bozmasın.
 - **Ortam değişkenleri ve Node:** README'deki tabloya bak; Node `>=22.12` (`engines`, `.nvmrc` 24). `pw.tmp.config.ts` makineye özeldir ve izlenmez (`.gitignore`).
