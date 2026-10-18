@@ -21,6 +21,8 @@ import { showToast, undoable } from './toastFeed'
 import { EmptyState } from './EmptyState'
 import { PageHeader } from './PageHeader'
 import { useTenses } from './tenseGroups'
+import { defaultPlacement } from './listMemory'
+import { parsePlacement } from './listOptions'
 
 import { analyzeForm, type FormAnalysis, type Tense } from '../engine/tenses'
 import { compoundsAround, groupByTense, textForms } from '../engine/textForms'
@@ -146,6 +148,36 @@ export function ReadingScreen({
   // A sentence the learner asked to be shown (from the forms list), lit for a moment.
   const [flash, setFlash] = useState<number | null>(null)
   const [freq, setFreq] = useState<ReadonlyMap<string, number>>(new Map())
+  const [targetListName, setTargetListName] = useState<string>('Listesiz')
+  useEffect(() => {
+    let live = true
+    void Promise.all([db.getLists(language), db.getSettings()]).then(([allLists, s]) => {
+      if (!live) return
+      const placement = defaultPlacement(language, allLists, s?.focusList?.[language])
+      if (!placement || placement === '__none') {
+        setTargetListName('Listesiz')
+        return
+      }
+      const { listId, levelId } = parsePlacement(placement)
+      const list = allLists.find((l) => l.id === listId)
+      if (!list) {
+        setTargetListName('Listesiz')
+        return
+      }
+      if (levelId) {
+        const level = list.levels?.find((lv) => lv.id === levelId)
+        if (level) {
+          setTargetListName(`${list.name} › ${level.name}`)
+          return
+        }
+      }
+      setTargetListName(list.name)
+    })
+    return () => {
+      live = false
+    }
+  }, [db, language])
+
   useEffect(() => {
     let live = true
     void loadFrequency(language).then((m) => live && setFreq(m))
@@ -649,6 +681,7 @@ export function ReadingScreen({
           rating={deduce && guess && selected.token.key === guess ? <GuessRating word={cleanToken(selected.token.text, language)} language={language} onDone={() => setGuess(null)} /> : undefined}
           ignored={ignored}
           skipped={skipped}
+          targetListName={targetListName}
           canListenFrom={!!times}
           canPinHeard={!!times && !current?.cues?.length}
           onPinHeard={pinHeard}

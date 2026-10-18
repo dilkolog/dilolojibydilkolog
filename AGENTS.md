@@ -71,6 +71,7 @@ Birleşti: #37–#285 (aşağıdaki liste kronolojik değil, konuya göre birikm
   - 6.4: Erişilebilirlik (a11y) test kapsamının genişletilmesi (`e2e/a11y.e2e.ts`: Çeviri ekranı açık/koyu/sakin tema ve sonuç durumları, okuma dışarıda çalış ve çekimler kartları, oturum unuttum soru ve cevap durumları, çevrimdışı rozeti axe taramaları, `clippedContent` ikon denetimi).
   - 6.5: Metin denetimi raporu (`docs/METIN-DENETIMI.md`), Diloloji isim güncellemesi (`README.md`, `package.json`, `extension/`).
   - 6.6: Performans ve bundle boyutu analiz raporu (`docs/PERFORMANS.md`).
+  - Hızlı eklenen kelimelerde hedef liste şeffaflığı: Sözlük (`NotFound`, `SavedCard`, `DayWord`), Okuma (`WordCard`) ve `MissingWords` ekranlarında kelimenin hangi listeye gideceği `.word-hero-target-tag` etiketiyle açıkça gösterildi.
 
 - Claude Code (#168 ve sonrası):
   - Çekim listesi (`textForms.ts`, bileşik zamanlar, fiil tekrarına ekleme köprüsü),

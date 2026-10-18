@@ -159,4 +159,12 @@ describe('DictionaryScreen target list picker', () => {
     expect(saved?.listId).toBeUndefined()
     expect(saved?.levelId).toBeUndefined()
   })
+
+  it('renders target tag in NotFound card when querying missing word', async () => {
+    localStorage.setItem('kelime-koc:last-list:fr', 'work-fr')
+    await mount('introuvable')
+    const targetTag = el.querySelector('.word-hero-target-tag')
+    expect(targetTag).not.toBeNull()
+    expect(targetTag?.textContent).toContain('İş Hayatı')
+  })
 })

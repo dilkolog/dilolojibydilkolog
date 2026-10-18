@@ -2,7 +2,7 @@ import { PhraseBuilder } from './PhraseBuilder'
 import type { CSSProperties, ReactNode } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
-import { PlayIcon, CloseIcon } from './icons'
+import { PlayIcon, CloseIcon, TagIcon } from './icons'
 import { AskMonki } from './monki/AskMonki'
 import { sentenceAsk } from './monki/asks'
 import { cleanToken } from '../engine/extract'
@@ -42,6 +42,7 @@ export function WordCard({
   sheet,
   ignored,
   skipped,
+  targetListName,
   canListenFrom,
   canPinHeard,
   rating,
@@ -68,6 +69,8 @@ export function WordCard({
   sheet: ReturnType<typeof useSheetSwipe>
   ignored: Set<string>
   skipped: Set<string>
+  /** Name of the list the word will go to when added. */
+  targetListName?: string
   canListenFrom: boolean
   /** The audio has no timed subtitles: the learner can pin this sentence to the moment it is heard. */
   canPinHeard?: boolean
@@ -188,13 +191,21 @@ export function WordCard({
           </button>
         ) : (
           <>
-            <button
-              className="btn"
-              onClick={() => onAdd(selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? selectedForms[0].lemma : cleanToken(selected.token.text, language).toLocaleLowerCase(language), selected.sentence)}
-            >
-              {/* A verb goes on the list as its infinitive (aller), not the form met (allions). */}
-              {selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? `Kelimelerime ekle: ${selectedForms[0].lemma}` : 'Kelimelerime ekle'} <kbd className="kbd-key">E</kbd>
-            </button>
+            <div className="word-hero-add-wrap">
+              <button
+                className="btn"
+                onClick={() => onAdd(selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? selectedForms[0].lemma : cleanToken(selected.token.text, language).toLocaleLowerCase(language), selected.sentence)}
+              >
+                {/* A verb goes on the list as its infinitive (aller), not the form met (allions). */}
+                {selectedForms[0] && !verbEntry(selectedForms[0].lemma) ? `Kelimelerime ekle: ${selectedForms[0].lemma}` : 'Kelimelerime ekle'} <kbd className="kbd-key">E</kbd>
+              </button>
+              {targetListName && (
+                <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                  <TagIcon size={12} className="inline-icon" />
+                  {targetListName}
+                </span>
+              )}
+            </div>
             {ignored.has(selected.token.key) ? (
               <button className="btn btn-quiet" onClick={() => onIgnore(selected.token.key!, false)}>
                 Yok saymayı kaldır

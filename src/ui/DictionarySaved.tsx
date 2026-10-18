@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { wordOfTheDay } from '../data/dictionary'
 import { genderOfCode, POS_CODE } from '../data/wordpackBuild'
 import type { Example, Gender, PartOfSpeech, TargetLanguage, VocabularyEntry } from '../engine/types'
-import { CheckIcon, CloseIcon, PlusIcon, SpeakerIcon } from './icons'
+import { CheckIcon, CloseIcon, PlusIcon, SpeakerIcon, TagIcon } from './icons'
 import { sentencesNow } from './dictSentences'
 import { PosTag } from './PosTag'
 import { speak, unlockedAudio } from './speech'
@@ -14,6 +14,7 @@ export function SavedCard({
   meanings,
   from,
   own,
+  targetListName,
   onOpenWord,
   onAdd,
   onRemove,
@@ -23,6 +24,8 @@ export function SavedCard({
   meanings: string[]
   from?: 'deepl' | 'own'
   own?: VocabularyEntry
+  /** Name of the list the word will go to when added. */
+  targetListName?: string
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
   onRemove: () => void
@@ -32,15 +35,23 @@ export function SavedCard({
       <p>
         <strong lang={language}>{word}</strong>: {meanings.join(', ')} <span className="small muted">({from === 'deepl' ? 'DeepL, sen kaydettin' : 'sen kaydettin'})</span>
       </p>
-      <div className="row gap-xs">
+      <div className="row gap-xs items-center">
         {own ? (
           <button className="btn btn-sm btn-quiet" onClick={() => onOpenWord(own.id)}>
             <CheckIcon size={15} /> Kelime sayfasını aç
           </button>
         ) : (
-          <button className="btn btn-sm" onClick={() => onAdd(word, meanings.slice(0, 2).join(', '))}>
-            <PlusIcon size={15} /> Kelimelerime ekle
-          </button>
+          <div className="word-hero-add-wrap">
+            <button className="btn btn-sm" onClick={() => onAdd(word, meanings.slice(0, 2).join(', '))}>
+              <PlusIcon size={15} /> Kelimelerime ekle
+            </button>
+            {targetListName && (
+              <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                <TagIcon size={12} className="inline-icon" />
+                {targetListName}
+              </span>
+            )}
+          </div>
         )}
         <button className="btn btn-sm btn-quiet" onClick={onRemove}>
           Sözlükten kaldır
@@ -58,11 +69,14 @@ const writtenOf = (word: string, language: TargetLanguage, gender?: Gender) =>
 export function DayWord({
   language,
   hit,
+  targetListName,
   onOpen,
   onAdd,
 }: {
   language: TargetLanguage
   hit: NonNullable<ReturnType<typeof wordOfTheDay>>
+  /** Name of the list the word will go to when added. */
+  targetListName?: string
   onOpen: () => void
   onAdd: (written: string, meaning: string, extra: { pos?: PartOfSpeech; gender?: Gender; examples?: Example[] }) => void
 }) {
@@ -93,10 +107,18 @@ export function DayWord({
         </div>
         {rec.i && <span className="ipa">{rec.i}</span>}
         <p className="dict-today-gloss">{meaning}</p>
-        <div className="row">
-          <button type="button" className="btn btn-sm" onClick={() => onAdd(written, (rec.t ?? []).slice(0, 2).join(', '), { pos, gender: g, examples: sentencesNow(language, word, rec.c) })}>
-            <PlusIcon size={15} /> Kelimelerime ekle
-          </button>
+        <div className="row items-center gap-xs">
+          <div className="word-hero-add-wrap">
+            <button type="button" className="btn btn-sm" onClick={() => onAdd(written, (rec.t ?? []).slice(0, 2).join(', '), { pos, gender: g, examples: sentencesNow(language, word, rec.c) })}>
+              <PlusIcon size={15} /> Kelimelerime ekle
+            </button>
+            {targetListName && (
+              <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                <TagIcon size={12} className="inline-icon" />
+                {targetListName}
+              </span>
+            )}
+          </div>
           <button type="button" className="btn btn-sm btn-quiet" onClick={onOpen}>
             Kartını aç
           </button>
