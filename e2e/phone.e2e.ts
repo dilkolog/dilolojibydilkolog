@@ -478,7 +478,7 @@ test('the titles tab shows the ladder, what is next and what a badge opens', asy
   await expect(page.locator('.titles-ladder li', { hasText: 'Ejderha Avcısı' })).toContainText('rozetiyle açılır')
   // The title reached can be shown beside the name.
   await page.locator('.titles-ladder .is-current').getByRole('button', { name: /Göster|Gösteriliyor/ }).click()
-  await expect(page.locator('.profile-level strong').first()).toHaveText('Çaylak')
+  await expect(page.locator('.profile-title-text').first()).toHaveText('Çaylak')
 })
 
 test('a badge earned in a session gets its moment once, and so does one earned outside', async ({ page }) => {
