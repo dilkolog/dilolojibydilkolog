@@ -12,7 +12,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "VITE_SUPABASE_URL=\"\" VITE_SUPABASE_PUBLISHABLE_KEY=\"\" VITE_SUPABASE_ANON_KEY=\"\" vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -b && tsc -p tsconfig.api.json && tsc -p tsconfig.scripts.json && tsc -p tsconfig.worker.json",
     "scan:secrets": "node scripts/scan-secrets.mjs",
