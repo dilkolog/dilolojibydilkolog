@@ -7,7 +7,7 @@ import { checkFor, checkPool, lessonsOf } from './lessonOf'
  * docs/ANTIGRAVITY-GOREVLER.md grows every lesson's pool; `POOL_REQUIRED` is what each lesson must have, raised to the
  * target (10) once the questions have all arrived.
  */
-const POOL_REQUIRED = 3
+const POOL_REQUIRED = 10
 
 const LANGUAGES = ['fr', 'es', 'en'] as const
 
