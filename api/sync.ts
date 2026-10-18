@@ -1,6 +1,6 @@
 import { del, get, list, put } from '@vercel/blob'
 import { isAllowed } from './_allow.js'
-import { approvalOn, isApproved, StorageError as AccountStorageError, TOKEN as ACCOUNT_TOKEN } from './_account.js'
+import { approvalOn, claimAccount, isApproved, storedAuth, StorageError as AccountStorageError, TOKEN as ACCOUNT_TOKEN } from './_account.js'
 import { overLimit, tooMany } from './_rate.js'
 
 /**
@@ -58,12 +58,6 @@ async function read(path: string) {
   }
 }
 
-async function storedAuth(id: string): Promise<string | null> {
-  const blob = await read(`sync/${id}/auth.txt`)
-  if (!blob || blob.statusCode !== 200 || !blob.stream) return null
-  return (await new Response(blob.stream).text()).trim()
-}
-
 /** null = allowed; otherwise the refusal. Claims the id on an account's first write. */
 async function checkAuth(request: Request, write: boolean): Promise<Response | null> {
   const id = new URL(request.url).searchParams.get('id') ?? ''
@@ -71,12 +65,8 @@ async function checkAuth(request: Request, write: boolean): Promise<Response | n
   if (token !== null && !TOKEN.test(token)) return new Response('bad token', { status: 400 })
   const stored = await storedAuth(id)
   if (stored) return token && (await sha256(token)) === stored ? null : new Response('forbidden', { status: 403 })
-  if (token && write) {
-    const hash = await sha256(token)
-    // Two first writes at once: only one claim sticks; the other must match it.
-    await put(`sync/${id}/auth.txt`, hash, { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'text/plain' }).catch(() => {})
-    if ((await storedAuth(id)) !== hash) return new Response('forbidden', { status: 403 })
-  }
+  // Two first writes at once: only one claim sticks; the other must match it.
+  if (token && write && !(await claimAccount(id, token))) return new Response('forbidden', { status: 403 })
   return null
 }
 
@@ -108,11 +98,14 @@ async function points(id: string): Promise<{ day: string; pathname: string }[]> 
 }
 
 /** Keeps the core about to be replaced as today's point (once a day) and drops the oldest beyond a week. */
+const pointMade = new Map<string, string>()
 async function keepPoint(id: string, today: string) {
-  // Most syncs of a day find today's point made: nothing to read then.
-  if ((await list({ prefix: `sync/${id}/h-${today}` })).blobs.length) return
+  // Most syncs of a day find today's point made (this instance remembers it; a listing is a billed Blob operation).
+  if (pointMade.get(id) === today) return
+  if ((await list({ prefix: `sync/${id}/h-${today}` })).blobs.length) return void pointMade.set(id, today)
   const old = await get(`sync/${id}/core.bin`, { access: 'private', useCache: false }).catch(() => null)
   if (!old || old.statusCode !== 200 || !old.stream) return
+  pointMade.set(id, today)
   const bytes = await new Response(old.stream).arrayBuffer()
   await put(`sync/${id}/h-${today}.bin`, bytes, { access: 'private', addRandomSuffix: false, allowOverwrite: false, contentType: 'application/octet-stream' }).catch(() => {})
   const all = await points(id)

@@ -3,12 +3,16 @@ import { cleanWord, isPushService, type PushRecord } from '../../api/push'
 
 // An in-memory Blob store and a recording web-push behind the real handlers.
 const blobs = new Map<string, string>()
+const reads: string[] = []
 vi.mock('@vercel/blob', () => ({
   put: async (path: string, body: string) => {
     blobs.set(path, body)
     return {}
   },
-  get: async (path: string) => (blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)).body } : null),
+  get: async (path: string) => {
+    reads.push(path)
+    return blobs.has(path) ? { statusCode: 200, stream: new Response(blobs.get(path)).body } : null
+  },
   del: async (path: string) => void blobs.delete(path),
   list: async ({ prefix }: { prefix: string }) => ({ blobs: [...blobs.keys()].filter((k) => k.startsWith(prefix)).map((pathname) => ({ pathname })), hasMore: false }),
 }))
@@ -33,6 +37,7 @@ const stored = async (endpoint: string) => JSON.parse(blobs.get(await recordPath
 
 beforeEach(() => {
   blobs.clear()
+  reads.length = 0
   sent.length = 0
   gone.clear()
 })
@@ -225,6 +230,40 @@ describe('/api/cron-reminder', () => {
     expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/morning'])
     await cron('Bearer s3cret', 17)
     expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/morning', 'https://fcm.googleapis.com/fcm/send/evening'])
+  })
+
+  it('an hourly run reads only the index of its hour and the records due then, not every record', async () => {
+    vi.stubEnv('CRON_SECRET', 's3cret')
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.UTC(2026, 9, 7, 6, 40))
+    // Saved through the endpoint: the records are indexed under their due hours (09:00 TR = 06 UTC, the default 20:00 = 17 UTC).
+    await post({ action: 'save', subscription: sub('https://fcm.googleapis.com/fcm/send/morning'), tz: -180, hour: 9, studiedDay: null, streak: 0, plan: '', group: null })
+    await post({ action: 'save', subscription: sub('https://fcm.googleapis.com/fcm/send/evening'), tz: -180, studiedDay: null, streak: 0, plan: '', group: null })
+    // The first run builds the indexes (from everything there); after it every run is cheap.
+    await cron('Bearer s3cret', 6)
+    sent.length = 0
+    reads.length = 0
+    expect(await (await cron('Bearer s3cret', 6)).json()).toMatchObject({ devices: 1, sent: 1 })
+    expect(sent.map((s) => s.endpoint)).toEqual(['https://fcm.googleapis.com/fcm/send/morning'])
+    expect(reads.filter((p) => p.startsWith('push/'))).toHaveLength(1)
+    reads.length = 0
+    await cron('Bearer s3cret', 12)
+    expect(reads).toEqual(['pushdue/12.json'])
+  })
+
+  it('a record whose reminder hour changed, or that was deleted, drops out of the old hour', async () => {
+    vi.stubEnv('CRON_SECRET', 's3cret')
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.UTC(2026, 9, 7, 6, 40))
+    const body = { action: 'save', subscription: sub('https://fcm.googleapis.com/fcm/send/moving'), tz: -180, hour: 9, studiedDay: null, streak: 0, plan: '', group: null }
+    await post(body)
+    await cron('Bearer s3cret', 6)
+    sent.length = 0
+    await post({ ...body, hour: 10 })
+    await cron('Bearer s3cret', 6)
+    expect(JSON.parse(blobs.get('pushdue/06.json')!).keys).toEqual([])
+    expect(JSON.parse(blobs.get('pushdue/07.json')!).keys).toHaveLength(1)
+    expect(sent).toEqual([])
   })
 
   it('on Sunday sends the week instead, also to someone who studied', async () => {

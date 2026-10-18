@@ -56,22 +56,14 @@ export async function removeBlob(path: string) {
 const remembered = new Map<string, { value: unknown; until: number }>()
 export const clearAccessCache = () => remembered.clear()
 
-async function remember<T>(key: string, ms: number, load: () => Promise<T>): Promise<T> {
-  const hit = remembered.get(key)
-  if (hit && hit.until > Date.now()) return hit.value as T
-  const value = await load()
-  remembered.set(key, { value, until: Date.now() + ms })
-  return value
-}
-
 /** The stored hash of the account's token, or null while nobody has claimed the id. */
 export async function storedAuth(id: string): Promise<string | null> {
   const key = `auth:${id}`
   const hit = remembered.get(key)
   if (hit && hit.until > Date.now()) return hit.value as string
   const stored = ((await readText(`sync/${id}/auth.txt`)) ?? '').trim() || null
-  // Only a claim is remembered (it never changes); "nobody yet" is asked again, a claim may be minutes old.
-  if (stored) remembered.set(key, { value: stored, until: Date.now() + 60_000 })
+  // Only a claim is remembered (it never changes; every read of it is a billed Blob operation); "nobody yet" is asked again, a claim may be minutes old.
+  if (stored) remembered.set(key, { value: stored, until: Date.now() + 10 * 60_000 })
   return stored
 }
 
@@ -86,7 +78,10 @@ export async function accessStatus(id: string): Promise<AccessStatus> {
   if (!approvalOn()) return 'approved'
   const listed = await allowedIds()
   if (listed?.has(id)) return 'approved'
-  return remember(`status:${id}`, 30_000, async (): Promise<AccessStatus> => {
+  // An approval is remembered for minutes (every check is several billed Blob reads), any other answer for a short while so a decision shows soon.
+  const hit = remembered.get(`status:${id}`)
+  if (hit && hit.until > Date.now()) return hit.value as AccessStatus
+  const status = await (async (): Promise<AccessStatus> => {
     if (await readText(approvedPath(id))) return 'approved'
     // A person signed in with Supabase: the owner may also decide in their profile (Table Editor).
     const profile = await profileStatus(id)
@@ -94,7 +89,9 @@ export async function accessStatus(id: string): Promise<AccessStatus> {
     if (profile === 'rejected' || (await readText(rejectedPath(id)))) return 'rejected'
     if (profile === 'pending' || (await readText(requestPath(id)))) return 'pending'
     return 'none'
-  })
+  })()
+  remembered.set(`status:${id}`, { value: status, until: Date.now() + (status === 'approved' ? 10 * 60_000 : 30_000) })
+  return status
 }
 
 export const isApproved = async (id: string) => (await accessStatus(id)) === 'approved'

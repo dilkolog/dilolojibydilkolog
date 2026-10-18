@@ -2,6 +2,7 @@ import webpush from 'web-push'
 import type { PushRecord } from './push.js'
 import { APP_URL, mailConfigured, reminderMail, sendMail, siteFrom, type Mail } from './_mail.js'
 import { VAPID_PUBLIC_KEY } from './_notify.js'
+import { dueNow, localHour } from './_due.js'
 import { reminderStore } from './_reminders.js'
 
 /**
@@ -44,11 +45,7 @@ export function resting(r: PushRecord, now: number): boolean {
   return !!r.restWeekdays?.includes(new Date(`${day}T12:00:00Z`).getUTCDay())
 }
 
-/** The learner's local hour (0–23) during UTC hour `utcHour`; `tz` as Date#getTimezoneOffset. */
-export const localHour = (tz: number, utcHour: number) => Math.floor((((utcHour * 60 - tz) % 1440) + 1440) % 1440 / 60)
-
-/** This run's reminders are for the devices whose reminder hour it is now where they are. */
-export const dueNow = (r: PushRecord, utcHour: number) => localHour(r.tz, utcHour) === (r.hour ?? 20)
+export { dueNow, localHour }
 
 /** Notifications sent at a time, and how long one send may take. */
 const BATCH = 10
@@ -66,7 +63,8 @@ export async function GET(request: Request): Promise<Response> {
   const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()
 
   const store = await reminderStore()
-  const records = await store.all()
+  // Blob: only the records due in this hour (an index per hour); tables: all of them.
+  const records = await store.due(utcHour)
 
   const studiedGroups = new Set(records.filter(({ record: r }) => r.group && r.studiedDay === localDay(r.tz, now)).map(({ record: r }) => r.group))
   let sent = 0
