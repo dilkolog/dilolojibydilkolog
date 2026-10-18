@@ -1,4 +1,4 @@
-import { currentIdentity, providersText, signInWithGoogle, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
+import { currentIdentity, signInWithGoogle, signOutSupabase, supabaseConfigured, type Identity } from '../data/supabase'
 import { AccountManage, AccountDelete } from './AccountManage'
 import { useEffect, useState } from 'react'
 import { showToast } from './toastFeed'
@@ -159,14 +159,13 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
           <img className="account-art" src={status === 'approved' ? ACCOUNT_ART.approved : status === 'rejected' ? ACCOUNT_ART.rejected : ACCOUNT_ART.pending} alt="" height={64} />
         )}
         <div className="account-who">
-          <h2 className="account-name">{name}</h2>
-          {identity?.email && <p className="account-email">{identity.email}</p>}
-          <div className="account-badges">
+          <div className="account-who-header">
+            <h2 className="account-name">{name}</h2>
             <span className={`status-pill ${status === 'approved' ? 'is-on' : 'is-off'}`} role="status">
               <i aria-hidden /> {STATUS_TEXT[status]}
             </span>
-            {identity && <span className="small muted">{providersText(identity.providers)} ile giriş</span>}
           </div>
+          {identity?.email && <p className="account-email">{identity.email}</p>}
         </div>
       </header>
 
@@ -180,8 +179,10 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
 
       <div className="account-sync">
         <div className="account-row-text">
-          <strong>Eşitleme</strong>
-          <span className="small muted">{at ? `Son eşitleme ${relativeTime(at)}; açılışta ve her oturumdan sonra kendiliğinden.` : 'Henüz eşitlenmedi; açılışta ve her oturumdan sonra kendiliğinden eşitlenir.'}</span>
+          <strong>Bulut Eşitleme</strong>
+          <span className="small muted">
+            {at ? `Otomatik eşitleme aktif · Son: ${relativeTime(at)}` : 'Otomatik eşitleme aktif · Henüz eşitlenmedi'}
+          </span>
         </div>
         <button className="btn btn-sm" onClick={syncNowClick} disabled={busy}>
           {busy ? 'Eşitleniyor…' : 'Şimdi eşitle'}

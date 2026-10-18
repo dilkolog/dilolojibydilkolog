@@ -3,6 +3,7 @@ import { currentSession, setNewPassword, signOutSupabase, authErrorText, provide
 import type { Account } from '../data/sync'
 import { deleteAccount } from '../data/vault'
 import { ConfirmDialog } from './Dialog'
+import { ChevronDownIcon } from './icons'
 import { setAccount } from './syncRunner'
 import { showToast } from './toastFeed'
 
@@ -48,20 +49,19 @@ export function AccountManage({
     <>
       {identity && (
         <div className="account-group">
-          <h3 className="account-group-title">Güvenlik</h3>
+          <h3 className="account-group-title">Giriş ve Güvenlik</h3>
           <div className="account-row">
             <div className="account-row-text">
-              <strong>Giriş yolu</strong>
+              <strong>Giriş Yöntemi</strong>
               <span className="small muted">{providersText(identity.providers)}</span>
             </div>
+            <span className="account-status-badge">Bağlı</span>
           </div>
           <div className="account-row">
             <div className="account-row-text">
               <strong>Şifre</strong>
               <span className="small muted">
-                {hasPassword
-                  ? 'Unutursan giriş ekranından e-postanla yenilersin.'
-                  : 'Google ile giriyorsun; bir şifre belirlersen e-postanla da girebilirsin.'}
+                {hasPassword ? '••••••••••••' : 'Belirlenmedi'}
               </span>
             </div>
             {!changing && (
@@ -108,8 +108,8 @@ export function AccountManage({
         <h3 className="account-group-title">Oturum</h3>
         <div className="account-row">
           <div className="account-row-text">
-            <strong>Bu cihazda çıkış yap</strong>
-            <span className="small muted">Yalnızca eşitleme kapanır; kelimelerin ve ilerlemen bu cihazda kalır.</span>
+            <strong>Mevcut Oturum</strong>
+            <span className="small muted">Bu cihazdaki oturumu kapatır; yerel kelimelerin korunur.</span>
           </div>
           <button type="button" className="btn btn-sm btn-quiet" disabled={busy} onClick={onSignOut}>
             Çıkış yap
@@ -155,10 +155,16 @@ export function AccountDelete({
 
   return (
     <details className="account-advanced account-danger-details">
-      <summary className="small muted">Hesabı sil (tehlikeli bölge)</summary>
+      <summary className="account-danger-summary small">
+        <span className="account-danger-title">
+          <span>⚠️ Hesabı sil</span>
+          <span className="small muted font-normal">(Tehlikeli bölge)</span>
+        </span>
+        <ChevronDownIcon size={16} className="account-accordion-arrow" />
+      </summary>
       <div className="account-danger-body">
         <p className="small muted">
-          Hesabın ve sunucuda eşitlenen verilerin kalıcı olarak silinir. Bu cihazdaki kelimelerin ve ilerlemen silinmez, hesapsız kullanmaya devam edebilirsin.
+          Hesabın ve bulutta eşitlenen tüm verilerin kalıcı olarak silinir. Bu cihazdaki yerel kelimelerin ve ilerlemen korunur.
         </p>
         <button type="button" className="btn btn-sm btn-danger" disabled={busy} onClick={() => setConfirming(true)}>
           Hesabımı kalıcı olarak sil

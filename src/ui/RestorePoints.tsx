@@ -6,6 +6,7 @@ import { ConfirmDialog } from './Dialog'
 import { getCredential, NOT_ALLOWED, PENDING_APPROVAL, runSync } from './syncRunner'
 import { showToast } from './toastFeed'
 import { Sticker } from './Sticker'
+import { ChevronDownIcon } from './icons'
 
 const dayLabel = (day: string) => new Date(`${day}T12:00:00`).toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' })
 
@@ -51,8 +52,14 @@ export function RestorePoints() {
 
   return (
     <details className="account-advanced" onToggle={(e) => e.currentTarget.open && void load()}>
-      <summary className="small">Geri dönüş noktaları</summary>
-      <div className="stack">
+      <summary className="account-accordion-summary small">
+        <span className="account-accordion-title">
+          <span>🕒 Geri dönüş noktaları</span>
+          <span className="small muted font-normal">(Son 7 gün)</span>
+        </span>
+        <ChevronDownIcon size={16} className="account-accordion-arrow" />
+      </summary>
+      <div className="stack account-accordion-body">
         <p className="small muted">
           Sunucu, eşitlenen verilerinin son 7 günlük hâlini şifreli saklar. Bir güne dönünce o gün olan kelimeler (yanlışlıkla silinenler dahil) geri gelir; sonradan
           eklediklerin ve ilerlemen kalır.
