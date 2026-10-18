@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { db } from '../data/instance'
 import * as lessonOfModule from '../data/guide/lessonOf'
-import { lessonFor, lessonsOf } from '../data/guide/lessonOf'
+import { checkPool, lessonFor, lessonsOf } from '../data/guide/lessonOf'
 import { GuideScreen } from './Guide'
 
 let root: ReturnType<typeof createRoot> | undefined
@@ -98,7 +98,8 @@ describe('GuideScreen', () => {
       // Each question answered right: the item is found by its options.
       const options = [...host.querySelectorAll<HTMLButtonElement>('.lesson-check .option')]
       const shown = options.map((o) => o.textContent ?? '')
-      const item = lesson.check!.find((c) => c.options.every((o) => shown.some((t) => t.includes(o))))!
+      const pool = checkPool(lesson)
+      const item = pool.find((c) => c.options.every((o) => shown.some((t) => t.includes(o))))!
       const at = shown.findIndex((t) => t.includes(item.options[item.answer]))
       await act(async () => options[at]!.click())
       await act(async () => button(host, i < 2 ? 'Sonraki' : 'Bitir')!.click())
