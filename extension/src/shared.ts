@@ -1,7 +1,7 @@
 import type { ExtData } from '../../src/ui/extensionProtocol'
 import type { TargetLanguage } from '../../src/engine/types'
 
-export const APP_URL = 'https://kelime-koc.vercel.app'
+export const APP_URL = 'https://diloloji.com'
 
 /** off: nothing coloured; list: only words in your list; all: list words and every new word. */
 export type Mode = 'off' | 'list' | 'all'

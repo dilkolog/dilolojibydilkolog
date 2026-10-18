@@ -4,7 +4,7 @@ import { endpoint, fromApp, GET } from '../../api/translate'
 // The owner's approval is tested in access.test.ts; here the account check always passes.
 vi.mock('../../api/_account', async (original) => ({ ...(await original<typeof import('../../api/_account')>()), requireApproved: async () => null }))
 
-const app = (path: string, origin = 'https://kelime-koc.vercel.app') => new Request(`https://kelime-koc.vercel.app/api/translate${path}`, { headers: { origin } })
+const app = (path: string, origin = 'https://diloloji.com') => new Request(`https://diloloji.com/api/translate${path}`, { headers: { origin } })
 
 describe('/api/translate', () => {
   let calls: { url: string; init?: RequestInit }[]
@@ -31,18 +31,16 @@ describe('/api/translate', () => {
   it('only the app itself may ask; one sentence of a sane length, known languages', async () => {
     answer(200, { translations: [{ text: 'Merhaba' }] })
     expect((await GET(app('?text=Bonjour&to=tr', 'https://evil.example'))).status).toBe(403)
-    expect((await GET(new Request('https://kelime-koc.vercel.app/api/translate?text=Bonjour&to=tr'))).status).toBe(403)
+    expect((await GET(new Request('https://diloloji.com/api/translate?text=Bonjour&to=tr'))).status).toBe(403)
     expect((await GET(app(`?text=${'a'.repeat(601)}&to=tr`))).status).toBe(400)
     expect((await GET(app('?text=Bonjour&to=de'))).status).toBe(400)
     expect(calls).toEqual([])
-    expect(fromApp(new Request('https://x/', { headers: { referer: 'https://kelime-koc-git-deepl-ali.vercel.app/words' } }))).toBe(true)
+    expect(fromApp(new Request('https://x/', { headers: { referer: 'https://diloloji-git-deepl-ali.vercel.app/words' } }))).toBe(true)
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'http://localhost:5174' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://diloloji.com' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://www.diloloji.com' } }))).toBe(true)
     expect(fromApp(new Request('https://x/', { headers: { origin: 'https://evil-diloloji.com' } }))).toBe(false)
-    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://nigalingo.online' } }))).toBe(true)
-    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://www.nigalingo.online' } }))).toBe(true)
-    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://evil-nigalingo.online' } }))).toBe(false)
-    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://nigalingo.online.evil.com' } }))).toBe(false)
+    expect(fromApp(new Request('https://x/', { headers: { origin: 'https://diloloji.com.evil.com' } }))).toBe(false)
   })
 
   it('asks DeepL with the key in the header, and lets the CDN keep the answer', async () => {

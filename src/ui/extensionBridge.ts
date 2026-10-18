@@ -8,7 +8,7 @@ import { APP_SOURCE, EXT_SOURCE, type AppMessage, type ExtData, type ExtListWord
 export type { ExtData, ExtLanguageData, ExtListWord } from './extensionProtocol'
 
 /**
- * Talks to the Kelime Koçu browser extension through its bridge script, which runs only on this
+ * Talks to the Diloloji browser extension through its bridge script, which runs only on this
  * app's own pages. The app sends what the extension needs to colour words on other sites; the
  * extension sends back words marked known or ignored there. Nothing leaves the device.
  */

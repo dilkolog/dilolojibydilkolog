@@ -31,7 +31,7 @@ function GoogleMark() {
  * reset by email. The first time, the person's progress on this device (or their old username
  * account) is tied to them; after that any device needs only the sign-in.
  */
-export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initialMode?: SupabaseMode; onDone: () => void; onBack: () => void }) {
+export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initialMode?: SupabaseMode; onDone: () => void; onBack?: () => void }) {
   const [step, setStep] = useState<Step>(initialMode === 'return' ? 'working' : initialMode)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -137,9 +137,11 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
 
   return (
     <div className="auth-page">
-      <button className="link auth-back" onClick={onBack}>
-        <ChevronLeftIcon size={16} /> Ayarlar
-      </button>
+      {onBack && (
+        <button className="link auth-back" onClick={onBack}>
+          <ChevronLeftIcon size={16} /> Ayarlar
+        </button>
+      )}
       <div className="auth-card card">
         <div className="auth-head">
           {step === 'login' || step === 'create' ? <img className="account-art auth-art" src={ACCOUNT_ART.out} alt="" height={84} draggable={false} /> : <BrandLogo className="auth-mark" size={30} />}

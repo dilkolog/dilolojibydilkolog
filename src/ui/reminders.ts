@@ -106,7 +106,7 @@ export function calendarFile(time: string, url: string): string {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Kelime Kocu//TR',
+    'PRODID:-//Diloloji//TR',
     'BEGIN:VEVENT',
     `UID:kelime-koc-daily-${ymd}@local`,
     `DTSTAMP:${stamp}`,

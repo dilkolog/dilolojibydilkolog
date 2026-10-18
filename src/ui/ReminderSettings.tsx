@@ -170,7 +170,7 @@ export function ReminderSettings({
     const url = URL.createObjectURL(new Blob([calendarFile(reminderTime(settings.reminder, usualHour ?? null), location.origin)], { type: 'text/calendar' }))
     const a = document.createElement('a')
     a.href = url
-    a.download = 'kelime-kocu-hatirlatma.ics'
+    a.download = 'diloloji-hatirlatma.ics'
     a.click()
     URL.revokeObjectURL(url)
   }

@@ -56,7 +56,7 @@ describe('encode and decode', () => {
     expect(decodeDuel(encodeDuel(withReply))).toEqual(withReply)
   })
   it('reads a whole link too', () => {
-    expect(decodeDuel(`https://nigalingo.online/?duel=${encodeDuel(c)}`)).toEqual(c)
+    expect(decodeDuel(`https://diloloji.com/?duel=${encodeDuel(c)}`)).toEqual(c)
     expect(decodeDuel(`  ${encodeDuel(c)}  `)).toEqual(c)
   })
   it('refuses what is not a duel, an unknown language, odd ids and an unnamed player', () => {

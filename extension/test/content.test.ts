@@ -75,7 +75,7 @@ describe('extension content script', () => {
     word.click()
     const link = document.getElementById('kk-host')!.shadowRoot!.querySelector<HTMLAnchorElement>('a.p')!
     const url = new URL(link.getAttribute('href')!)
-    expect(url.origin).toBe('https://kelime-koc.vercel.app')
+    expect(url.origin).toBe('https://diloloji.com')
     expect(url.searchParams.get('lang')).toBe('fr')
     expect(url.searchParams.get('context')).toContain(word.textContent!)
   })

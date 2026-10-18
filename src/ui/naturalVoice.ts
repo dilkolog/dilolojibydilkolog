@@ -65,7 +65,7 @@ export function naturalVoices(language: TargetLanguage, key = natural.key): Prom
 /** What Google's error says, in Turkish, with what to change in the Cloud console. */
 export function explainGoogleError(status: number, body: string): string {
   const b = body.toLowerCase()
-  if (b.includes('referer') || b.includes('referrer')) return 'Google bu adresten gelen isteği engelledi: anahtarın web sitesi kısıtlamasına bu adresi ekle (ör. https://kelime-koc.vercel.app/*).'
+  if (b.includes('referer') || b.includes('referrer')) return 'Google bu adresten gelen isteği engelledi: anahtarın web sitesi kısıtlamasına bu adresi ekle (ör. https://diloloji.com/*).'
   if (b.includes('billing')) return 'Bu projede faturalandırma açık değil. Google Cloud → Billing\'den projeye bir faturalandırma hesabı bağla (ücretsiz kota için de gerekiyor).'
   if (b.includes('service_disabled') || b.includes('has not been used') || b.includes('is disabled')) return 'Cloud Text-to-Speech API bu projede etkin değil: APIs & Services → Library\'den "Cloud Text-to-Speech API"yi etkinleştir (açıldıktan sonra birkaç dakika sürebilir).'
   if (b.includes('api_key_invalid') || b.includes('api key not valid')) return 'Anahtar geçersiz: kopyalarken eksik ya da fazla karakter kalmış olabilir.'

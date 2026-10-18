@@ -13,4 +13,4 @@ Eklenti hiçbir veriyi bir yere göndermez; kelimelerin yalnızca tarayıcında 
 
 ## Hangi adreste açılırsa
 
-Köprü betiği uygulamanın adreslerinde çalışır (`diloloji.com`, `www.diloloji.com`, `kelime-koc.vercel.app`, `nigalingo.online`). Kelimeleri hangi adres verdiyse (`appOrigin`), "Ekle" bağlantıları ve açılır penceredeki "Diloloji'yi aç" o adrese gider: her adresin tarayıcıda ayrı verisi olduğundan eklenen kelime başka bir adrese düşmesin. Yeni bir alan adı eklenirse `manifest.json`da iki yere (`matches` ve `exclude_matches`) yaz.
+Köprü betiği uygulamanın iki adresinde çalışır (`diloloji.com`, `www.diloloji.com`). Kelimeleri hangi adres verdiyse (`appOrigin`), "Ekle" bağlantıları ve açılır penceredeki "Diloloji'yi aç" o adrese gider: her adresin tarayıcıda ayrı verisi olduğundan eklenen kelime başka bir adrese düşmesin. Yeni bir alan adı eklenirse `manifest.json`da iki yere (`matches` ve `exclude_matches`) yaz.

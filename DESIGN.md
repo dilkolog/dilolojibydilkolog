@@ -1,5 +1,5 @@
 ---
-name: Kelime Koçu
+name: Diloloji
 description: Cesaret veren bir kelime koçu — dil değişince odanın ışığı değişir, her cevap anında renkli bir karşılık alır.
 source:
   - src/index.css            # :root tokenları (satır 8–94), koyu tema (96–148), dil vurgusu (151–152), sakin mod (:root[data-calm])
@@ -124,7 +124,7 @@ breakpoints:
   - { name: "tablet", value: "46rem", note: "min-width (max 45.99rem)" }
   - { name: "desktop", value: "64rem", note: "min-width (max 63.99rem)" }
 icons:
-  set: "Kelime Koçu'nun kendi seti (src/ui/icons.tsx, 82 ikon)"
+  set: "Diloloji'nun kendi seti (src/ui/icons.tsx, 82 ikon)"
   source: "src/ui/icons.tsx"
   grid: "24px viewBox"
   style: { variant: "outline + aynı renkte yumuşak dolgu (.icon-duo)", strokeWidth: 1.8, linecap: "round" }
@@ -197,7 +197,7 @@ components:
     source: "src/ui/Plant.tsx"
 ---
 
-# Tasarım Sistemi: Kelime Koçu
+# Tasarım Sistemi: Diloloji
 
 > Bu dosya **kural koyar**. Yeni ekran ya da bileşen yazan her ajan (Claude Code, Antigravity, başkası) önce buna bakar. Değerlerin gerçek kaynağı `src/index.css`; burada kopyası değil, **adı ve kuralı** var. İkisi çelişirse kod doğrudur ve bu dosya güncellenir.
 
@@ -205,7 +205,7 @@ components:
 
 **Kuzey yıldızı: "Cesaret veren koç, büyüyen bahçe."**
 
-Kelime Koçu, öğreneni yargılamayan, her cevaba hemen ve renkli karşılık veren bir koç gibi davranır. Kelimeler tohumdan çiçeğe büyür (bahçe, bitki, filiz). Görsel dil sıcak, dokunsal ve sakin: düğmeler basılınca gerçekten aşağı iner, kartlar sayfadan hafifçe kalkar, renk yalnızca bir şey söylemek için kullanılır.
+Diloloji, öğreneni yargılamayan, her cevaba hemen ve renkli karşılık veren bir koç gibi davranır. Kelimeler tohumdan çiçeğe büyür (bahçe, bitki, filiz). Görsel dil sıcak, dokunsal ve sakin: düğmeler basılınca gerçekten aşağı iner, kartlar sayfadan hafifçe kalkar, renk yalnızca bir şey söylemek için kullanılır.
 
 Uygulama **tek vurgu rengiyle** yaşar: öğrenilen dilin rengi. İngilizce mavi, Fransızca pembe, İspanyolca kehribar. Dil değişince odanın ışığı değişir (sayfa zemini bile o rengin %3'ünü taşır), ama ekranın "sesi" değişmez: üç renk OKLCH'de aynı ağırlığa ayarlı.
 
@@ -332,7 +332,7 @@ Ad, iz ve değer üç sütun; dolgu `--chart-data`. Grafiklerde tek veri rengi v
 
 ## İkonlar
 
-**Set:** Kelime Koçu'nun kendi seti (`src/ui/icons.tsx`): 24px ızgara, 1.8px yuvarlak uçlu çizgi ve aynı renkte yumuşak bir dolgu katmanı. Hazır bir kütüphane (lucide, heroicons) eklenmez.
+**Set:** Diloloji'nun kendi seti (`src/ui/icons.tsx`): 24px ızgara, 1.8px yuvarlak uçlu çizgi ve aynı renkte yumuşak bir dolgu katmanı. Hazır bir kütüphane (lucide, heroicons) eklenmez.
 **Boyut:** 14–22 px; en sık 16 ve 18. **Renk:** `currentColor`; ikon metnin rengini alır.
 
 - Dinle → `SpeakerIcon` · Ekle → `PlusIcon` · Kapat / yanlış → `CloseIcon` · Doğru → `CheckIcon` · Diğer seçenekler → `MoreIcon` · Fiil zamanı → `TenseIcon`

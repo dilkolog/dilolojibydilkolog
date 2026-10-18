@@ -44,7 +44,7 @@ export async function pushToOwner(owner: string, message: PushMessage): Promise<
     const store = await reminderStore()
     const devices = (await store.byOwner(owner)).filter(({ record }) => record.friends === true && record.subscription)
     if (!devices.length) return 0
-    webpush.setVapidDetails('https://kelime-koc.vercel.app', VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY)
+    webpush.setVapidDetails('https://diloloji.com', VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY)
     let sent = 0
     await Promise.all(
       devices.map(async ({ key, record }) => {
