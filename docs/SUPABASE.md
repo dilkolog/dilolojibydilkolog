@@ -30,8 +30,6 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
    - Redirect URLs:
      - `https://diloloji.com/**`
      - `https://www.diloloji.com/**`
-     - `https://nigalingo.online/**`
-     - `https://kelime-koc.vercel.app/**`
      - Cloudflare Workers adresi: `https://diloloji.<hesap>.workers.dev/**`
      - önizlemeler için `https://*.vercel.app/**`
 4. **Authentication → Sign In / Providers**:
@@ -47,11 +45,11 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
       - Contact information: kendi adresin → Create.
    3. **Branding**:
       - App domain / Application home page: `https://diloloji.com`.
-      - Authorized domains: `diloloji.com`, `nigalingo.online` ve `supabase.co`.
+      - Authorized domains: `diloloji.com` ve `supabase.co`.
       - **Logo yükleme**: logo Google'ın uygulama incelemesini başlatır ve günler sürebilir. Şimdilik boş bırak.
    4. **Audience → Publish app** ("In production"). Yalnızca e-posta/profil istendiği için Google incelemesi gerekmez; yayınlanmazsa yalnızca "test kullanıcıları" girebilir.
    5. **Clients → Create client** → Application type **Web application**, ad `Diloloji web`:
-      - Authorized JavaScript origins: `https://diloloji.com`, `https://www.diloloji.com`, `https://nigalingo.online`, `https://kelime-koc.vercel.app`
+      - Authorized JavaScript origins: `https://diloloji.com`, `https://www.diloloji.com`
       - Authorized redirect URIs: `https://<proje-kimliği>.supabase.co/auth/v1/callback`
       - Create.
    6. Açılan pencereden **Client ID** ve **Client secret**'ı kopyala. **Client secret'ı sohbete yazma.**
@@ -65,7 +63,7 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
    - Host `smtp.resend.com`, Port `465`
    - Username `resend`, Password = Resend API anahtarı
    - Sender: `hatirlatma@<doğrulanmış alan adın>`
-   - Gönderici adresi doğrulanmış alan adından olmalı (`giris@nigalingo.online`); `onboarding@resend.dev` yalnızca Resend hesabının kendi adresine teslim eder.
+   - Gönderici adresi doğrulanmış alan adından olmalı (`hatirlatma@diloloji.com`); `onboarding@resend.dev` yalnızca Resend hesabının kendi adresine teslim eder.
    - **Authentication → Rate Limits**: e-posta sınırını saatte ~30'a çıkar.
    - **Templates**: Türkçe şablonlar `supabase/templates/` (README'de hangi sekmeye hangi konu ve dosya).
 6. Dene:

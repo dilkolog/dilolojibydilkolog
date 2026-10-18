@@ -20,7 +20,7 @@
 Bir içeriğin web üzerinde **ücretsiz erişilebilir (gratis / en libre accès) olması, onun "kamu malı" (public domain) veya "telifsiz" olduğu anlamına gelmez.**  
 Hem TV5Monde hem de DELE Ahora, içeriklerini Fikri Mülkiyet Kanunları (Fransız *Code de la propriété intellectuelle* ve İspanyol *Ley de Propiedad Intelectual*) kapsamında sıkı telif koruması altında tutmaktadır.  
 
-**Sonuç:** Bu sitelerdeki metin, ses, soru ve alıştırmaların doğrudan kazınarak (scraping) veya kopyalanarak Kelime Koçu'nun veritabanına ya da koduna dahil edilmesi **açık bir telif hakkı ihlali (contrefaçon / infracción de derechos de autor)** teşkil eder. Bunun yerine kullanıcıları doğrudan ilgili platformların web sayfalarına yönlendiren **harici bağlantı (link)** modeli uygulanmalıdır.
+**Sonuç:** Bu sitelerdeki metin, ses, soru ve alıştırmaların doğrudan kazınarak (scraping) veya kopyalanarak Diloloji'nun veritabanına ya da koduna dahil edilmesi **açık bir telif hakkı ihlali (contrefaçon / infracción de derechos de autor)** teşkil eder. Bunun yerine kullanıcıları doğrudan ilgili platformların web sayfalarına yönlendiren **harici bağlantı (link)** modeli uygulanmalıdır.
 
 ---
 
@@ -60,7 +60,7 @@ Bu materyallerde haklar yalnızca TV5Monde'a bile ait değildir; ticari yayınev
    - TV5Monde'un kendi video/ses akışları ve web sayfaları güvenlik başlıkları (`X-Frame-Options: SAMEORIGIN` / CSP `frame-ancestors`) ile korunmaktadır ve doğrudan iframe içine gömülemez.
    - TV5Monde'un resmi YouTube kanalındaki videolar YouTube API/Player şartlarıyla gömülebilir; ancak sitedeki etkileşimli alıştırma motoru gömülemez.
 3. **Düzey 3 — Kopyalayıp Uygulamaya Katma (Scraping / Pack): ❌ KESİNLİKLE YAPILAMAZ**
-   - Metinleri, soruları, dinleme seslerini veya diyalogları indirip Kelime Koçu'nun içine almak hukuken suçtur (Fikri Mülkiyet Kanunu m. L.335-2, korsanlık/intihal suçu).
+   - Metinleri, soruları, dinleme seslerini veya diyalogları indirip Diloloji'nun içine almak hukuken suçtur (Fikri Mülkiyet Kanunu m. L.335-2, korsanlık/intihal suçu).
 
 ---
 
@@ -91,7 +91,7 @@ DELE Ahora'nın kullanım koşullarındaki doğrudan maddeler:
 ### 3.3. Üç Düzey Analizi (DELE Ahora)
 
 1. **Düzey 1 — Bağlantı Verme (Link): ✅ YAPILABİLİR**
-   - Kelime Koçu içinden ilgili dil bilgisi konusuna veya DELE alıştırmasına doğrudan link verilmesi (`https://deleahora.com/actividades/gramatica/...`) tamamen yasaldır. Bu işlem DELE Ahora'ya web trafiği ve reklam gösterimi kazandıracağı için sitenin çıkarınadır.
+   - Diloloji içinden ilgili dil bilgisi konusuna veya DELE alıştırmasına doğrudan link verilmesi (`https://deleahora.com/actividades/gramatica/...`) tamamen yasaldır. Bu işlem DELE Ahora'ya web trafiği ve reklam gösterimi kazandıracağı için sitenin çıkarınadır.
 2. **Düzey 2 — Gömme (iframe): ❌ YAPILAMAZ**
    - Sayfalarını iframe ile üçüncü şahıs bir web uygulamasına gömmek, sitenin kendi reklam modelini ve kullanıcı etkileşimini by-pass edeceğinden kullanım koşullarındaki "türev çalışma oluşturma" yasağına aykırıdır.
 3. **Düzey 3 — Kopyalayıp Uygulamaya Katma (Scraping / Pack): ❌ KESİNLİKLE YAPILAMAZ**
@@ -114,10 +114,10 @@ DELE Ahora'nın kullanım koşullarındaki doğrudan maddeler:
 
 ---
 
-## 5. Kelime Koçu İçin Stratejik Yol Haritası ve Öneriler
+## 5. Diloloji İçin Stratejik Yol Haritası ve Öneriler
 
 ### 1. Temel İlke: "Açık Lisans Olmayan İçeriği Koda Katma"
-Kelime Koçu bugüne kadar veri temizliğinde sıfır telif riski prensibini benimsemiştir:
+Diloloji bugüne kadar veri temizliğinde sıfır telif riski prensibini benimsemiştir:
 - **Global Storybooks** hikâyeleri: CC BY lisanslı olduğu için uygulamaya entegre edilmiştir.
 - **FLELex / ELELex** CEFR listeleri: CC BY-NC-SA lisansıyla akademik amaçlı entegre edilmiştir.
 - **Tatoeba** örnek cümleleri: CC BY lisanslıdır.
@@ -140,11 +140,11 @@ Eğer proje ekibi gelecekte kâr amacı gütmeyen eğitim ortaklığı çerçeve
 
 ### 6.1. TV5Monde İzin Talep Taslağı (Fransızca)
 **Alıcı:** `contact@tv5monde.org`  
-**Konu:** *Demande d'autorisation de référencement pédagogique non commercial - Projet Kelime Koçu*
+**Konu:** *Demande d'autorisation de référencement pédagogique non commercial - Projet Diloloji*
 
 > Madame, Monsieur,
 >
-> Nous développons une application web progressive éducative à but non lucratif et open-source intitulée **Kelime Koçu** ([nigalingo.online](https://nigalingo.online)), destinée aux apprenants turcophones du français et de l'espagnol, axée sur la répétition espacée (FSRS) et la compréhension écrite/orale.
+> Nous développons une application web progressive éducative à but non lucratif et open-source intitulée **Diloloji** ([diloloji.com](https://diloloji.com)), destinée aux apprenants turcophones du français et de l'espagnol, axée sur la répétition espacée (FSRS) et la compréhension écrite/orale.
 >
 > Nous admirons particulièrement la qualité des ressources pédagogiques proposées par TV5MONDE sur la plateforme *Apprendre le français*. Dans le strict respect de vos Conditions Générales d’Utilisation, nous souhaitons vous demander :
 > 1. L'autorisation formelle d'intégrer des liens hypertextes profonds vers vos exercices et vidéos thématiques depuis notre bibliothèque d'apprentissage, afin d'orienter nos utilisateurs vers votre plateforme officielle ;
@@ -154,18 +154,18 @@ Eğer proje ekibi gelecekte kâr amacı gütmeyen eğitim ortaklığı çerçeve
 >
 > En vous remerciant par avance pour votre attention et votre engagement en faveur de la francophonie, nous vous prions d'agréer, Madame, Monsieur, l'expression de nos salutations distinguées.
 >
-> **L'équipe Kelime Koçu**  
-> Contact : info@nigalingo.online
+> **L'équipe Diloloji**  
+> Contact : info@diloloji.com
 
 ---
 
 ### 6.2. DELE Ahora İzin Talep Taslağı (İspanyolca)
 **Alıcı:** `info@deleahora.com`  
-**Konu:** *Consulta sobre enlaces educativos y uso de recursos - Aplicación educativa Kelime Koçu*
+**Konu:** *Consulta sobre enlaces educativos y uso de recursos - Aplicación educativa Diloloji*
 
 > Estimado equipo de DELE Ahora,
 >
-> Les escribimos desde el equipo de **Kelime Koçu** ([nigalingo.online](https://nigalingo.online)), una plataforma web educativa sin ánimo de lucro diseñada para facilitar el aprendizaje de español y francés a través de la repetición espaciada y la lectura contextual.
+> Les escribimos desde el equipo de **Diloloji** ([diloloji.com](https://diloloji.com)), una plataforma web educativa sin ánimo de lucro diseñada para facilitar el aprendizaje de español y francés a través de la repetición espaciada y la lectura contextual.
 >
 > Valoramos enormemente la calidad didáctica de los ejercicios y contenidos gramaticales que ofrecen en *deleahora.com*. Con el fin de respetar rigurosamente sus Términos y Condiciones y sus derechos de propiedad intelectual, nos ponemos en contacto con ustedes para:
 > 1. Confirmar su visto bueno para incluir enlaces directos (deep linking) desde nuestra sección de gramática hacia sus ejercicios correspondientes en *deleahora.com*, dirigiendo a nuestros estudiantes a su web oficial;
@@ -176,5 +176,5 @@ Eğer proje ekibi gelecekte kâr amacı gütmeyen eğitim ortaklığı çerçeve
 > Agradeciendo de antemano su tiempo y su valiosa contribución a la enseñanza del español como lengua extranjera, quedamos a su entera disposición.
 >
 > Atentamente,  
-> **Equipo Kelime Koçu**  
-> Contacto: info@nigalingo.online
+> **Equipo Diloloji**  
+> Contacto: info@diloloji.com
