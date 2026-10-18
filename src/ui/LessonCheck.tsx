@@ -5,13 +5,14 @@ import type { TargetLanguage } from '../engine/types'
 import { CheckCircleIcon } from './icons'
 import { sfx } from './sounds'
 import { NEW_ART } from './drawnArt'
+import { ReportIssue } from './ReportIssue'
 
 /**
  * A lesson's short check, one question at a time: the options, then why the right one is right. At
  * the end the score, and `onDone` with how many were right (the guide marks the lesson learned, or
  * brings it back sooner).
  */
-export function LessonCheck({ items, language, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; review?: boolean; earned?: number; onDone: (right: number, answers: { prompt: string; right: boolean }[]) => void }) {
+export function LessonCheck({ items, language, topic, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; topic?: string; review?: boolean; earned?: number; onDone: (right: number, answers: { prompt: string; right: boolean }[]) => void }) {
   const [index, setIndex] = useState(0)
   const [given, setGiven] = useState<number | null>(null)
   const [right, setRight] = useState(0)
@@ -110,10 +111,11 @@ export function LessonCheck({ items, language, review, earned = 0, onDone }: { i
           <p className={given === item.answer ? 'small' : 'cross-warn'}>
             <strong>{given === item.answer ? 'Doğru!' : 'Olmadı.'}</strong> {item.why}
           </p>
-          <div className="row">
+          <div className="row items-center gap-2">
             <button type="button" className="btn" onClick={next} autoFocus>
               {index + 1 < items.length ? 'Sonraki' : 'Bitir'}
             </button>
+            {topic && <ReportIssue language={language} topic={topic} kind="question" prompt={item.prompt} label="Soruda hata var" />}
           </div>
         </div>
       )}

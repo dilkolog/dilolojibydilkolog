@@ -18,7 +18,7 @@ afterEach(async () => {
   await db.texts.clear()
 })
 
-async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean } = {}) {
+async function mount(language: 'fr' | 'es' | 'en' = 'fr', extra: { initialLesson?: string; initialTense?: string; review?: boolean; placement?: boolean } = {}) {
   const onPractice = vi.fn()
   const onVerbs = vi.fn()
   const host = document.createElement('div')
@@ -192,6 +192,28 @@ describe('GuideScreen', () => {
     await act(async () => button(host, 'Geri al')!.click())
     await act(() => new Promise((r) => setTimeout(r, 30)))
     expect(Object.values(await db.getGuideMarks()).filter((m) => m.read === '2000-01-01')).toHaveLength(0)
+  })
+
+  it('a lesson and a question of its check can be reported, and the list shows in the guide', async () => {
+    const { host } = await mount('fr', { initialLesson: 'subjonctif' })
+    await act(async () => button(host, 'Derste hata var')!.click())
+    await act(async () => {
+      const t = host.querySelector('.report-issue textarea')!
+      Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')!.set!.call(t, 'Tablo yanlış')
+      t.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    await act(async () => host.querySelector<HTMLButtonElement>('.report-issue button[type="submit"]')!.click())
+    const stored = JSON.parse(localStorage.getItem('diloloji:guide-reports')!)
+    expect(stored[0]).toMatchObject({ topic: 'subjonctif', kind: 'lesson', note: 'Tablo yanlış' })
+    // Back to the topics: the card lists it.
+    await act(async () => host.querySelector<HTMLButtonElement>('.guide-back-btn')!.click())
+    expect(host.querySelector('.guide-reports summary')?.textContent).toContain('Bildirdiklerin (1)')
+  })
+
+  it('opened for the placement test it starts there', async () => {
+    const { host } = await mount('fr', { placement: true })
+    expect(host.querySelector('.lesson-check h2')?.textContent).toBe('Seviyeni bul')
+    expect(button(host, 'Teste başla')).toBeDefined()
   })
 
   it('a failed level ends the placement test and starts the learner there', async () => {

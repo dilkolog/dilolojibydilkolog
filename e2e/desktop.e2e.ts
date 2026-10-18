@@ -2374,6 +2374,24 @@ test('the guide: lesson grammar terms can be inspected with definition, translat
   await expect(termCard).not.toBeVisible()
 })
 
+test('the guide: a lesson can be reported and the list is kept for the author', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await page.getByRole('button', { name: 'Derste hata var' }).click()
+  await page.getByLabel('Neyi yanlış ya da eksik buldun?').fill('Tablodaki örnek yanlış')
+  await page.locator('.report-issue').getByRole('button', { name: 'Kaydet' }).click()
+  await expect(page.getByRole('status').filter({ hasText: 'Not alındı' })).toBeVisible()
+  await page.locator('.guide-back-btn').click()
+  const card = page.locator('.guide-reports')
+  await expect(card.locator('summary')).toContainText('Bildirdiklerin (1)')
+  await card.locator('summary').click()
+  await expect(card).toContainText('Tablodaki örnek yanlış')
+  expect(await overflow(page)).toEqual([])
+  await card.getByRole('button', { name: 'Bildirimi sil' }).click()
+  await expect(card).toHaveCount(0)
+})
+
 test('the guide: a weekly goal brings today\'s lesson to Today and shows the week in the guide', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')

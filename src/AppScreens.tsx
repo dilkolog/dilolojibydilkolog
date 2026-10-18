@@ -24,6 +24,7 @@ import { MindSeed } from './ui/MindSeed'
 import { MonkiNudge } from './ui/monki/MonkiNudge'
 import { GuideReviewNudge } from './ui/GuideReviewNudge'
 import { GuideLessonNudge } from './ui/GuideLessonNudge'
+import { GuidePlacementNudge } from './ui/GuidePlacementNudge'
 import { TodayTime } from './ui/TodayTime'
 import { SuggestWords } from './ui/SuggestWords'
 import { WeeklyNudge } from './ui/WeeklyNudge'
@@ -293,7 +294,7 @@ export function AppScreens(props: AppScreensProps) {
       ) : screen.name === 'verbs' ? (
         <VerbLab key={data.language} language={data.language} vocabulary={data.vocabulary} states={data.states} scheduler={scheduler} initialVerb={screen.verb} initialTense={screen.tense} initialTab={screen.tab} onAdded={reload} />
       ) : screen.name === 'guide' ? (
-        <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} goal={settings.guideGoal} onGoal={(n) => void updateSettings({ ...settings, guideGoal: n })} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} />
+        <GuideScreen key={`${data.language}|${screen.lesson ?? ''}|${screen.tense ?? ''}|${screen.review ? 1 : 0}|${screen.placement ? 1 : 0}`} language={data.language} initialLesson={screen.lesson} initialTense={screen.tense} review={screen.review} placement={screen.placement} goal={settings.guideGoal} onGoal={(n) => void updateSettings({ ...settings, guideGoal: n })} onPractice={(topic) => setScreen({ name: 'games', game: 'grammar', topic })} onVerbs={(tense) => setScreen({ name: 'verbs', tense })} />
       ) : screen.name === 'profile' ? (
         <ProfileScreen settings={settings} onChange={updateSettings} onOpenSettings={() => setScreen({ name: 'settings' })} />
       ) : screen.name === 'account' ? (
@@ -458,6 +459,7 @@ export function AppScreens(props: AppScreensProps) {
               }}
             />
             <GuideLessonNudge language={data.language} goal={settings.guideGoal} onOpen={(topic) => setScreen({ name: 'guide', lesson: topic })} />
+            <GuidePlacementNudge language={data.language} words={data.vocabulary.filter((v) => v.source !== 'sample').length} goal={settings.guideGoal} onOpen={() => setScreen({ name: 'guide', placement: true })} />
             <MonkiNudge openMistakes={openMistakes(data.mistakes).length} />
             {/* Last: only when no other nudge has something to say (one at a time). */}
             <MindSeed language={data.language} />
