@@ -3,6 +3,8 @@
  * "Diloloji <hatirlatma@your-domain>" once a domain is verified there; until then Resend's sandbox
  * sender only delivers to the account's own address). Without the key the mail reminders are off.
  */
+import { extraHosts } from './_origin.js'
+
 export const APP_URL = (process.env.APP_URL?.trim() || 'https://kelime-koc.vercel.app').replace(/\/$/, '')
 
 /**
@@ -16,7 +18,7 @@ export function siteFrom(address: string | null | undefined): string | undefined
   if (!address) return undefined
   try {
     const url = new URL(address)
-    return url.protocol === 'https:' && SITE_HOSTS.includes(url.hostname) ? url.origin : undefined
+    return url.protocol === 'https:' && (SITE_HOSTS.includes(url.hostname) || extraHosts().includes(url.hostname)) ? url.origin : undefined
   } catch {
     return undefined
   }

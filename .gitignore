@@ -44,3 +44,5 @@ pw.tmp.config.ts
 
 # Script audit outputs
 *-output.json
+.dev.vars
+.wrangler
