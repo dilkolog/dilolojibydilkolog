@@ -1,7 +1,5 @@
 
 .btn-danger { background: var(--surface); color: var(--bad-text); border: 2px solid var(--rule); box-shadow: 0 3px 0 var(--rule); }
-.btn-ok { background: var(--ok-btn); color: var(--on-color); box-shadow: 0 4px 0 var(--ok-btn-deep); }
-.btn-ok:active:not(:disabled) { box-shadow: 0 1px 0 var(--ok-btn-deep); }
 .btn-bad { background: var(--bad-btn); color: var(--on-color); box-shadow: 0 4px 0 var(--bad-btn-deep); }
 .btn-bad:active:not(:disabled) { box-shadow: 0 1px 0 var(--bad-btn-deep); }
 .btn-near { background: var(--near-btn); color: var(--on-color); box-shadow: 0 4px 0 var(--near-btn-deep); }
@@ -2345,6 +2343,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   line-height: 1.4;
 }
 
+.lesson-terms { margin-top: 0.5rem; }
+.lesson-term-card p { margin: 0; }
 .placement-scores { display: flex; flex-wrap: wrap; gap: 0.375rem 1rem; list-style: none; margin: 0; padding: 0; }
 .placement-scores li { display: inline-flex; align-items: center; gap: 0.375rem; font-weight: 600; }
 .guide-goal {

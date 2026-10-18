@@ -209,6 +209,14 @@ describe('GuideScreen', () => {
     expect(host.querySelector('.placement-scores')?.textContent).toContain('0/6')
   })
 
+  it('a lesson offers the grammar terms it uses', async () => {
+    const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
+    const chips = [...host.querySelectorAll('.lesson-terms .chip')]
+    expect(chips.length).toBeGreaterThan(0)
+    await act(async () => (chips[0] as HTMLButtonElement).click())
+    expect(host.querySelector('.lesson-term-card')?.textContent?.length).toBeGreaterThan(20)
+  })
+
   it('navigates directly to the next lesson in curriculum order from LessonView', async () => {
     const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
     expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Artikeller ve cinsiyet')

@@ -2194,6 +2194,11 @@ test('the guide: a lesson has steps that stay in view and lead to its parts', as
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
   await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  // The terms of the lesson open a small card.
+  const termChip = page.getByRole('group', { name: 'Dilbilgisi terimleri' }).getByRole('button').first()
+  await termChip.click()
+  await expect(termChip).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.locator('.lesson-term-card')).toBeVisible()
   const steps = page.getByRole('navigation', { name: 'Ders adımları' })
   await expect(steps.getByRole('button')).toHaveText(['1Öğren', '2Gör', '3Dene', '4Sına'])
   await steps.getByRole('button', { name: /Sına/ }).click()
@@ -2483,7 +2488,7 @@ test('friends card: today and week leaderboard ranking, adding and removing a fr
   if (!(await addDetails.getAttribute('open'))) {
     await addDetails.locator('summary').click()
   }
-  await page.locator('.friends-card input[placeholder="Arkadaşının kodu"]').fill('AYSE1234')
+  await page.locator('.friends-card input[placeholder^="Arkadaşının kodu"]').fill('AYSE1234')
   await page.locator('.friends-card form.friends-form button[type="submit"]').click()
   await expect(page.locator('.friends-card')).toContainText('Ayşe')
 
