@@ -22,7 +22,7 @@
     "typecheck:ext": "tsc -p extension",
     "test:e2e": "vite build && playwright test",
     "build:cf": "npm run build && node scripts/cf-headers.mjs",
-    "deploy:cf": "npm run build:cf && wrangler deploy",
+    "deploy:cf": "node scripts/check-deploy-env.mjs && npm run build:cf && wrangler deploy",
     "dev:cf": "npm run build:cf && wrangler dev"
   },
   "dependencies": {
