@@ -109,7 +109,8 @@ export async function signOutSupabase(): Promise<void> {
   } catch {
     // Storage unreadable: sign out anyway.
   }
-  await (await supabase()).auth.signOut().catch(() => undefined)
+  // 'local': only this device signs out (the screens say so); the default would end every device's session.
+  await (await supabase()).auth.signOut({ scope: 'local' }).catch(() => undefined)
 }
 
 /** Whether this device keeps a Supabase sign-in (without loading the library). */
