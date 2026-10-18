@@ -961,7 +961,7 @@ test('dictionary states and collocation chip accessibility check (phone, light a
 })
 
 test('guide lesson, mini quiz states (question, feedback, score) and Today review card pass accessibility checks in light and dark themes', async ({ page }) => {
-  test.setTimeout(120_000)
+  test.setTimeout(180_000)
   await page.setViewportSize({ width: 375, height: 667 })
   await startWithSamples(page)
 
@@ -1000,6 +1000,15 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
   await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
   await scanBoth('guide-lesson-page')
 
+  // 2b. Dilbilgisi terim kartı (Lesson grammar term card)
+  const termChip = page.locator('.lesson-terms .chip').first()
+  if ((await termChip.count()) > 0) {
+    await termChip.click()
+    await expect(page.locator('.lesson-term-card')).toBeVisible()
+    await scanBoth('guide-lesson-term-card')
+    await termChip.click()
+  }
+
   // 3. Sınav: soru ekranı (Quiz question prompt)
   const startQuiz = page.locator('.lesson-check-start')
   await expect(startQuiz).toBeVisible()
@@ -1023,6 +1032,64 @@ test('guide lesson, mini quiz states (question, feedback, score) and Today revie
   }
   await expect(check.locator('.lesson-check-score')).toBeVisible()
   await scanBoth('guide-quiz-result-score-screen')
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
+test('guide placement test screens (intro, question, feedback, result) and Today lesson nudge pass accessibility in light, dark, and calm themes', async ({ page }) => {
+  test.setTimeout(180_000)
+  await page.setViewportSize({ width: 375, height: 667 })
+  await startWithSamples(page)
+
+  const setTheme = (t: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      if (theme === 'calm') {
+        root.dataset.theme = 'light'
+        root.dataset.calm = 'true'
+      } else {
+        root.dataset.theme = theme
+        delete root.dataset.calm
+      }
+    }, t)
+
+  const problems: string[] = []
+  const scanAllThemes = async (where: string) => {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `${where}-${theme}`)))
+    }
+  }
+
+  await openScreen(page, 'Rehber')
+  await expect(page.locator('.guide-placement-card')).toBeVisible()
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+
+  // 1. Intro screen
+  await expect(page.getByLabel('Seviyeni bul')).toBeVisible()
+  await scanAllThemes('guide-placement-intro')
+
+  // 2. Question screen
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+  const check = page.locator('.lesson-check')
+  await expect(check.getByRole('heading', { name: 'Seviyeni bul' })).toBeVisible()
+  await scanAllThemes('guide-placement-question')
+
+  // 3. Feedback status
+  await check.getByRole('button', { name: 'Bilmiyorum' }).click()
+  await expect(check.getByRole('status')).toBeVisible()
+  await scanAllThemes('guide-placement-feedback')
+
+  // 4. Complete to result screen
+  await page.getByRole('button', { name: /^(Sonraki|Sonucu gör)$/ }).click()
+  for (let i = 0; i < 5; i++) {
+    await page.getByRole('button', { name: 'Bilmiyorum' }).click()
+    await page.getByRole('button', { name: /^(Sonraki|Sonucu gör)$/ }).click()
+  }
+  const result = page.getByLabel('Seviye testi sonucu')
+  await expect(result).toBeVisible()
+  await scanAllThemes('guide-placement-result')
 
   await setTheme('light')
   expect(problems).toEqual([])

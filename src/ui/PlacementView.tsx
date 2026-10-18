@@ -251,7 +251,7 @@ export function PlacementView({
         <p className="lesson-check-prompt" lang={inSentence ? language : undefined}>
           {current.prompt}
         </p>
-        <div className="options">
+        <div className="options" role="group" aria-label="Seçenekler">
           {current.options.map((o, i) => (
             <button
               key={o}
