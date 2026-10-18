@@ -5104,11 +5104,11 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: 22rem; bac
   border: 1px solid var(--rule);
   color: var(--ink);
   cursor: pointer;
-  transition: all var(--dur-sm) var(--ease);
+  transition: all var(--dur) var(--ease-out);
   white-space: nowrap;
 }
 .daily-news-chip:hover {
-  border-color: var(--ink-muted);
+  border-color: var(--ink-soft);
 }
 .daily-news-chip.is-active {
   background: var(--lang-soft);

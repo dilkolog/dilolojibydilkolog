@@ -1192,3 +1192,56 @@ test('the notice bell: its list passes the accessibility check', async ({ page }
   expect(await scan(page, 'notice-bell')).toEqual([])
   expect(await contrastProblems(page)).toEqual([])
 })
+
+test('progress story card modal and reading daily news pass automated accessibility checks across themes', async ({ page }) => {
+  await startWithSamples(page)
+
+  const setTheme = (t: 'light' | 'dark' | 'calm') =>
+    page.evaluate((theme) => {
+      const root = document.documentElement
+      if (theme === 'calm') {
+        root.dataset.theme = 'light'
+        root.dataset.calm = 'true'
+      } else {
+        root.dataset.theme = theme
+        delete root.dataset.calm
+      }
+    }, t)
+
+  const problems: string[] = []
+
+  // 1. İlerleme -> Paylaş -> Hikaye Kartı (9:16) Modalı
+  await openScreen(page, 'İlerleme')
+  const shareBtn = page.getByRole('button', { name: /Paylaş/ })
+  await expect(shareBtn).toBeVisible()
+  await shareBtn.click()
+
+  const storyMenuItem = page.getByRole('menuitem', { name: /Hikaye Kartı/ })
+  await expect(storyMenuItem).toBeVisible()
+  await storyMenuItem.click()
+
+  const storyDialog = page.locator('.story-card-dialog')
+  await expect(storyDialog).toBeVisible()
+
+  for (const theme of ['light', 'dark', 'calm'] as const) {
+    await setTheme(theme)
+    problems.push(...(await scan(page, `story-card-modal-${theme}`)))
+  }
+
+  await storyDialog.getByRole('button', { name: 'Kapat' }).click()
+  await expect(storyDialog).not.toBeVisible()
+
+  // 2. Okuma -> Günün Mikro Haberi
+  await openScreen(page, 'Okuma')
+  const newsCard = page.locator('.daily-news-card')
+  if (await newsCard.isVisible()) {
+    for (const theme of ['light', 'dark', 'calm'] as const) {
+      await setTheme(theme)
+      problems.push(...(await scan(page, `daily-news-card-${theme}`)))
+    }
+  }
+
+  await setTheme('light')
+  expect(problems).toEqual([])
+})
+
