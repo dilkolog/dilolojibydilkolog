@@ -2,14 +2,14 @@ import type { ReactNode } from 'react'
 import { localDate } from '../engine/progress'
 import type { ReviewEvent } from '../engine/types'
 import type { weekReport } from '../engine/insights'
-import { TargetIcon } from './icons'
+import { CalendarIcon, TargetIcon } from './icons'
 
 function Delta({ now, before, suffix = '' }: { now: number; before: number; suffix?: string }) {
   if (before === 0 && now === 0) return null
   const diff = now - before
-  if (diff === 0) return <span className="delta">=</span>
+  if (diff === 0) return <span className="delta" title="Geçen haftayla aynı">=</span>
   return (
-    <span className={`delta ${diff > 0 ? 'up' : 'down'}`}>
+    <span className={`delta ${diff > 0 ? 'up' : 'down'}`} title={`Geçen haftaya göre ${diff > 0 ? '+' : ''}${Math.round(diff)}${suffix}`}>
       {diff > 0 ? '▲' : '▼'} {Math.abs(Math.round(diff))}
       {suffix}
     </span>
@@ -83,7 +83,9 @@ export function WeekHero({
   return (
     <section className="week-hero span-2">
       <div className="week-hero-main">
-        <span className="small week-hero-kicker">Son 7 gün</span>
+        <span className="small week-hero-kicker">
+          <CalendarIcon size={14} className="inline-icon" /> Son 7 Günlük Ritim
+        </span>
         <h2 className="week-hero-title">{headline}</h2>
         <ol className="week-dots" aria-label={`7 günün ${t.daysStudied} gününde çalıştın`}>
           {days.map((d) => (
