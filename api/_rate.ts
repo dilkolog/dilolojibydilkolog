@@ -7,8 +7,10 @@
 const hits = new Map<string, number[]>()
 const MAX_KEYS = 5000
 
-/** The caller's address as Vercel's proxy reports it ("unknown" when it does not). */
+/** The caller's address as the host's proxy reports it ("unknown" when it does not). */
 export function clientKey(request: Request): string {
+  const cloudflare = request.headers.get('cf-connecting-ip')?.trim()
+  if (cloudflare) return cloudflare
   const forwarded = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
   return forwarded || request.headers.get('x-real-ip')?.trim() || 'unknown'
 }
