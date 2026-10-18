@@ -2233,8 +2233,8 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
     await page.locator('.game-stage .options .option').last().click()
   }
 
-  // If first answer was somehow not wrong, advance and answer next wrong (the feedback sheet is up before the link is looked for)
-  await expect(page.locator('.sheet')).toBeVisible()
+  // If first answer was somehow not wrong, advance and answer next wrong (the feedback is up before the link is looked for)
+  await expect(page.locator('.lesson-link, button:has-text("Devam")').first()).toBeVisible()
   if ((await page.locator('.lesson-link', { hasText: 'Konunun dersi' }).count()) === 0) {
     await page.getByRole('button', { name: 'Devam' }).click()
     if (await page.locator('.game-stage input.answer-input').count() > 0) {
