@@ -188,7 +188,7 @@ export const EN_LESSONS_4: TopicLesson[] = [
     topic: 'basics_en_cleft_variations',
     language: 'en',
     title: 'Vurgu cümleleri: it-clefts ve wh-clefts',
-    level: 'B2',
+    level: 'C1',
     practice: 'cleft',
     summary: 'Cümledeki belirli bir bilgiyi (özne, nesne, yer veya zaman) dinleyicinin dikkatine sunmak veya bir yanlışı düzeltmek için parçalı vurgu cümleleri (cleft sentences) kullanılır.',
     rules: [

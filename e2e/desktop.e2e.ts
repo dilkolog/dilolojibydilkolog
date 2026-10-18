@@ -2576,7 +2576,8 @@ test('flashcards: flipping, grading 1/2/3, unlearned card returns after 3 cards,
   await expect(page.locator('.flash-done .greeting')).toHaveText('Tur bitti')
   await expect(page.locator('.swipe-missed')).toContainText(firstWord!)
 
-  // Dismiss any milestone badge dialog
+  // Dismiss any milestone badge dialog (it can come a moment after the summary, so give it a chance to show first)
+  await page.locator('.milestone-backdrop').first().waitFor({ timeout: 2500 }).catch(() => {})
   for (let i = 0; i < 6 && (await page.locator('.milestone-backdrop').count()); i++) {
     await page.locator('.milestone-backdrop .btn:not(.btn-quiet)').last().click()
     await page.waitForTimeout(200)

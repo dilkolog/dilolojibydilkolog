@@ -154,8 +154,6 @@ export const PREREQS: Record<string, string[]> = {
   basics_en_comparatives: ['basics_en_to_be'],
   conn_en: ['basics_en_present_simple'],
   prep_en: ['basics_en_present_simple'],
-  cleft: ['basics_en_cleft_variations'],
-  subjunctive: ['modals_en'],
   basics_en_there_is: ['basics_en_to_be'],
   basics_en_demonstratives: ['basics_en_to_be'],
   basics_en_ability: ['basics_en_present_simple'],
@@ -184,7 +182,7 @@ export const PREREQS: Record<string, string[]> = {
   basics_en_reporting_verbs: ['reported_speech', 'gerund_infinitive'],
   basics_en_modals_past_deduction: ['modals_en', 'present_perfect'],
   basics_en_correlative_conjunctions: ['inversion', 'basics_en_past_perfect'],
-  basics_en_subjunctive_formulaic_clauses: ['subjunctive'],
+  basics_en_subjunctive_formulaic_clauses: ['basics_en_subjunctive_mandative'],
 }
 
 /** The lessons a lesson builds on that have not been read yet. */

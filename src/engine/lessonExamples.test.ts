@@ -75,7 +75,7 @@ const SAMPLES: Record<string, { lang: 'fr' | 'es' | 'en'; yes: string; marks: st
   basics_en_plurals_quantifiers: { lang: 'en', yes: 'There are many people in the park this afternoon.', marks: 'many people', no: 'The park is empty and quiet this afternoon again.' },
   mixed_conditionals: { lang: 'en', yes: 'If I had studied harder, I would be a doctor now.', marks: 'If I had studied harder, I would be', no: 'If I study harder, I will pass the exam next week.' },
   participle_clauses: { lang: 'en', yes: 'Walking down the street, I saw an old friend of mine.', marks: 'Walking down the street,', no: 'During the meeting, I saw an old friend of mine.' },
-  cleft: { lang: 'en', yes: 'It was Maria who found the answer last night.', marks: 'It was Maria who found', no: 'Maria found the answer in the library last night.' },
+  basics_en_cleft_variations: { lang: 'en', yes: 'It was Maria who found the answer last night.', marks: 'It was Maria who found', no: 'Maria found the answer in the library last night.' },
   basics_en_time_prepositions: { lang: 'en', yes: 'The class starts at 9:30 on Monday morning.', marks: 'at 9:30', no: 'The class starts soon and nobody wants to be late.' },
   basics_en_future_perfect: { lang: 'en', yes: 'By June she will have finished all her exams.', marks: 'will have finished', no: 'By June she finished all her exams with good marks.' },
   basics_en_causative: { lang: 'en', yes: 'She had her hair cut before the wedding yesterday.', marks: 'had her hair cut', no: 'She had a good day before the wedding yesterday.' },

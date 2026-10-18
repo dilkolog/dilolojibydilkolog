@@ -12,7 +12,8 @@ describe('guide lessons', () => {
   it('teaches every grammar topic the questions ask, sentence rewrites aside', () => {
     for (const language of LANGUAGES) {
       const asked = new Set(grammarExercises(language).map((e) => e.topic).filter((t) => !t.startsWith('rewrite_')))
-      const taught = new Set(TOPIC_LESSONS.filter((l) => l.language === language).map((l) => l.topic))
+      // A lesson teaches its own topic and the grammar topic it practises (`practice`), when they differ.
+      const taught = new Set(TOPIC_LESSONS.filter((l) => l.language === language).flatMap((l) => [l.topic, ...(l.practice ? [l.practice] : [])]))
       expect([...asked].filter((t) => !taught.has(t)), language).toEqual([])
     }
   })
