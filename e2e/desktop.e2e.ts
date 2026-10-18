@@ -2190,6 +2190,20 @@ test('the guide: a lesson read days ago comes back on Today for a short check', 
   expect(await overflow(page)).toEqual([])
 })
 
+test('the guide: a lesson has steps that stay in view and lead to its parts', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  const steps = page.getByRole('navigation', { name: 'Ders adımları' })
+  await expect(steps.getByRole('button')).toHaveText(['1Öğren', '2Gör', '3Dene', '4Sına'])
+  await steps.getByRole('button', { name: /Sına/ }).click()
+  await expect(page.locator('#lesson-check')).toBeInViewport()
+  // The bar stays on the screen, and shows where the learner is.
+  await expect(steps).toBeInViewport()
+  await expect(steps.getByRole('button', { name: /Sına/ })).toHaveAttribute('aria-current', 'step')
+  expect(await overflow(page)).toEqual([])
+})
+
 test('the guide: a weekly goal brings today\'s lesson to Today and shows the week in the guide', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
@@ -2219,7 +2233,8 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
     await page.locator('.game-stage .options .option').last().click()
   }
 
-  // If first answer was somehow not wrong, advance and answer next wrong
+  // If first answer was somehow not wrong, advance and answer next wrong (the feedback sheet is up before the link is looked for)
+  await expect(page.locator('.sheet')).toBeVisible()
   if ((await page.locator('.lesson-link', { hasText: 'Konunun dersi' }).count()) === 0) {
     await page.getByRole('button', { name: 'Devam' }).click()
     if (await page.locator('.game-stage input.answer-input').count() > 0) {
