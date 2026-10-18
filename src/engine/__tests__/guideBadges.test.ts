@@ -10,23 +10,35 @@ describe('guide badges', () => {
     expect(ids).toContain('guide-lessons-10')
     expect(ids).toContain('guide-lessons-25')
     expect(ids).toContain('guide-lessons-50')
+    expect(ids).toContain('guide-lessons-100')
     expect(ids).toContain('guide-cert-1')
+    expect(ids).toContain('guide-cert-2')
     expect(ids).toContain('guide-cert-3')
+    expect(ids).toContain('guide-cert-4')
     expect(ids).toContain('guide-placement-1')
+
+    const placement = ACHIEVEMENTS.find((a) => a.id === 'guide-placement-1')!
+    expect(placement.title).toBe('Seviyeni keşfettin')
   })
 
   it('assigns correct medal tiers to guide badges', () => {
     const lesson1 = ACHIEVEMENTS.find((a) => a.id === 'guide-lesson-1')!
     const lesson10 = ACHIEVEMENTS.find((a) => a.id === 'guide-lessons-10')!
     const lesson50 = ACHIEVEMENTS.find((a) => a.id === 'guide-lessons-50')!
+    const lesson100 = ACHIEVEMENTS.find((a) => a.id === 'guide-lessons-100')!
     expect(medalTier(lesson1)).toBe('bronze')
     expect(medalTier(lesson10)).toBe('silver')
     expect(medalTier(lesson50)).toBe('gold')
+    expect(medalTier(lesson100)).toBe('gold')
 
     const cert1 = ACHIEVEMENTS.find((a) => a.id === 'guide-cert-1')!
+    const cert2 = ACHIEVEMENTS.find((a) => a.id === 'guide-cert-2')!
     const cert3 = ACHIEVEMENTS.find((a) => a.id === 'guide-cert-3')!
+    const cert4 = ACHIEVEMENTS.find((a) => a.id === 'guide-cert-4')!
     expect(medalTier(cert1)).toBe('bronze')
-    expect(medalTier(cert3)).toBe('gold')
+    expect(medalTier(cert2)).toBe('bronze')
+    expect(medalTier(cert3)).toBe('silver')
+    expect(medalTier(cert4)).toBe('gold')
 
     const placement1 = ACHIEVEMENTS.find((a) => a.id === 'guide-placement-1')!
     expect(medalTier(placement1)).toBe('special')
@@ -41,20 +53,27 @@ describe('guide badges', () => {
   it('unlocks badges when stats meet goals', () => {
     const locked = achievements(emptyStats)
     expect(locked.find((a) => a.id === 'guide-lessons-10')?.unlocked).toBe(false)
+    expect(locked.find((a) => a.id === 'guide-lessons-100')?.unlocked).toBe(false)
     expect(locked.find((a) => a.id === 'guide-cert-1')?.unlocked).toBe(false)
+    expect(locked.find((a) => a.id === 'guide-cert-4')?.unlocked).toBe(false)
     expect(locked.find((a) => a.id === 'guide-placement-1')?.unlocked).toBe(false)
 
     const unlocked = achievements({
       ...emptyStats,
-      guideLessonsLearned: 12,
-      guideCertsEarned: 1,
+      guideLessonsLearned: 105,
+      guideCertsEarned: 4,
       guidePlacementDone: 1,
     })
     expect(unlocked.find((a) => a.id === 'guide-lesson-1')?.unlocked).toBe(true)
     expect(unlocked.find((a) => a.id === 'guide-lessons-5')?.unlocked).toBe(true)
     expect(unlocked.find((a) => a.id === 'guide-lessons-10')?.unlocked).toBe(true)
-    expect(unlocked.find((a) => a.id === 'guide-lessons-25')?.unlocked).toBe(false)
+    expect(unlocked.find((a) => a.id === 'guide-lessons-25')?.unlocked).toBe(true)
+    expect(unlocked.find((a) => a.id === 'guide-lessons-50')?.unlocked).toBe(true)
+    expect(unlocked.find((a) => a.id === 'guide-lessons-100')?.unlocked).toBe(true)
     expect(unlocked.find((a) => a.id === 'guide-cert-1')?.unlocked).toBe(true)
+    expect(unlocked.find((a) => a.id === 'guide-cert-2')?.unlocked).toBe(true)
+    expect(unlocked.find((a) => a.id === 'guide-cert-3')?.unlocked).toBe(true)
+    expect(unlocked.find((a) => a.id === 'guide-cert-4')?.unlocked).toBe(true)
     expect(unlocked.find((a) => a.id === 'guide-placement-1')?.unlocked).toBe(true)
   })
 })

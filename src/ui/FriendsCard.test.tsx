@@ -52,7 +52,7 @@ describe('FriendsCard', () => {
   it('publishes the own card, then ranks the learner and the friends by today or this week', async () => {
     const { host, calls } = await mount(true)
     expect(calls.some((c) => (c.body as { action?: string } | undefined)?.action === 'friends-publish')).toBe(true)
-    const names = () => [...host.querySelectorAll('.friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
+    const names = () => [...host.querySelectorAll('.friends-board .friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
     expect(names()).toEqual(['Veli', 'Sen'])
     expect(host.querySelector('.friends-rank.is-top-1')?.textContent).toBe('1')
     expect(host.querySelector('.friends-rank.is-top-2')?.textContent).toBe('2')
@@ -100,7 +100,7 @@ describe('FriendsCard', () => {
       submitBtn.click()
     })
 
-    const names = () => [...host.querySelectorAll('.friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
+    const names = () => [...host.querySelectorAll('.friends-board .friends-name')].map((n) => n.textContent!.replace(/\d+$/, '').trim())
     expect(names()).toEqual(['Merve', 'Sen'])
     expect(JSON.parse(localStorage.getItem('diloloji:friend-nicknames') || '{}')).toEqual({ BBBBBBBB: 'Merve' })
   })
