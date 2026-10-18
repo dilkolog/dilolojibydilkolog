@@ -270,6 +270,9 @@ export interface GameStats extends ActivityStats {
   verbsMastered: number
   /** Days the verb lab's daily round was finished. */
   tourDays: number
+  /** Guide lessons learned (their check passed) and guide level certificates earned: counted from the XP ledger's once-only keys. */
+  lessonsLearned: number
+  certificates: number
   totalXp: number
 }
 
@@ -279,7 +282,7 @@ export const emptyStats: GameStats = {
   articleCorrect: 0, conjugationCorrect: 0, fastCorrect: 0,
   wordsIntroduced: 0, mastered: 0, totalAnswers: 0, longestStreak: 0, perfectDays: 0, maxCombo: 0, languagesStudied: 0, wordsWithPicture: 0,
   wordsWithRecording: 0, freeSentencesCorrect: 0, level: 1, bossesDefeated: 0, challengesDone: 0, perfectWeeks: 0,
-  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, formsPracticed: 0, formsMastered: 0, verbsMastered: 0, tourDays: 0, totalXp: 0, rescued: 0,
+  wordsAdded: 0, wordsWithNotes: 0, wordsStrong: 0, hardMarked: 0, hardConquered: 0, textsRead: 0, journalEntries: 0, mistakesFixed: 0, formsPracticed: 0, formsMastered: 0, verbsMastered: 0, tourDays: 0, totalXp: 0, rescued: 0, lessonsLearned: 0, certificates: 0,
 }
 
 export interface Achievement {
@@ -375,6 +378,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'read-25', icon: '📚', title: 'Kitap kurdu', description: '25 metin oku', goal: 25, stat: 'textsRead' },
   { id: 'journal-7', icon: '🖋️', title: 'Günlükçü', description: '7 günlük yaz', goal: 7, stat: 'journalEntries' },
   { id: 'journal-30', icon: '✍️', title: 'Günlük ustası', description: '30 günlük yaz', goal: 30, stat: 'journalEntries' },
+  { id: 'guide-5', icon: '📘', title: 'Öğrenci', description: 'Rehber\'den 5 dersi öğren', goal: 5, stat: 'lessonsLearned' },
+  { id: 'guide-25', icon: '🎓', title: 'Gramer öğrencisi', description: 'Rehber\'den 25 dersi öğren', goal: 25, stat: 'lessonsLearned' },
+  { id: 'guide-100', icon: '🏛️', title: 'Gramer ustası', description: 'Rehber\'den 100 dersi öğren', goal: 100, stat: 'lessonsLearned' },
+  { id: 'cert-1', icon: '📜', title: 'Sertifikalı', description: 'Rehber\'de bir seviyeyi tamamla', goal: 1, stat: 'certificates' },
+  { id: 'cert-5', icon: '🎖️', title: 'Seviye avcısı', description: 'Rehber\'de 5 seviye sertifikası kazan', goal: 5, stat: 'certificates' },
   { id: 'xp-1000', icon: '🌟', title: 'Bin XP', description: '1000 XP kazan', goal: 1000, stat: 'totalXp' },
   { id: 'xp-10000', icon: '⭐', title: 'On bin XP', description: '10.000 XP kazan', goal: 10000, stat: 'totalXp' },
   { id: 'level-5', icon: '🥉', title: 'Seviye 5', description: '5. seviyeye ulaş', goal: 5, stat: 'level' },
@@ -396,7 +404,7 @@ const CATEGORY_OF: Record<keyof GameStats, BadgeCategory> = {
   wordsIntroduced: 'words', mastered: 'words', wordsStrong: 'words', wordsAdded: 'words', wordsWithNotes: 'words', wordsWithPicture: 'words', wordsWithRecording: 'words', hardMarked: 'words', hardConquered: 'words',
   longestStreak: 'habit', daysStudied: 'habit', comebacks: 'habit', nightDays: 'habit', earlyDays: 'habit', weekendDays: 'habit', maxDayAnswers: 'habit', perfectDays: 'habit', challengesDone: 'habit', perfectWeeks: 'habit',
   totalAnswers: 'skills', maxCombo: 'skills', listeningCorrect: 'skills', typedCorrect: 'skills', speakCorrect: 'skills', articleCorrect: 'skills', conjugationCorrect: 'skills', formsPracticed: 'skills', formsMastered: 'skills', verbsMastered: 'skills', tourDays: 'habit', rescued: 'skills', fastCorrect: 'skills', mistakesFixed: 'skills', bossesDefeated: 'skills', languagesStudied: 'skills',
-  textsRead: 'writing', journalEntries: 'writing', freeSentencesCorrect: 'writing',
+  textsRead: 'writing', journalEntries: 'writing', freeSentencesCorrect: 'writing', lessonsLearned: 'skills', certificates: 'skills',
   level: 'level', totalXp: 'level',
 }
 

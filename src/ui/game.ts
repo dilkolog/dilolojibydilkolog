@@ -133,6 +133,8 @@ async function computeGame(db: KelimeDB, now: Date): Promise<GameState> {
     formsMastered: masteredForms(labFr) + masteredForms(labEs),
     verbsMastered: wholeVerbs(labFr, CORE_TENSES.fr) + wholeVerbs(labEs, CORE_TENSES.es),
     tourDays: new Set([...(labFr.tourDays ?? []), ...(labEs.tourDays ?? [])]).size,
+    lessonsLearned: Object.keys(ledger).filter((k) => k.startsWith('lesson|')).length,
+    certificates: Object.keys(ledger).filter((k) => k.startsWith('cert|')).length,
     totalXp: xp.total,
     wordsIntroduced: states.length,
     mastered: states.filter((s) => masteryStage(s) === 'mastered').length,
