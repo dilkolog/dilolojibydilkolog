@@ -5307,3 +5307,201 @@ button.notice-row:hover { background: var(--surface-2); }
   margin-left: 0;
   padding-left: 0;
 }
+
+/* ---------- Friends Card Bottom Section (Accordions, Invite Code, Form, League) ---------- */
+.friends-league,
+.friends-add {
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  overflow: hidden;
+}
+.friends-league[open],
+.friends-add[open] {
+  border-color: color-mix(in srgb, var(--lang) 35%, var(--rule));
+  box-shadow: var(--shadow-sm);
+}
+
+.friends-accordion-summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 600;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.friends-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+.friends-accordion-summary:hover {
+  background: color-mix(in srgb, var(--lang-soft) 60%, var(--surface-2));
+  color: var(--lang-text);
+}
+.friends-accordion-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.friends-accordion-icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+.friends-accordion-arrow {
+  flex: none;
+  color: var(--ink-soft);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+details[open] > .friends-accordion-summary .friends-accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.friends-add-body,
+.friends-league-body {
+  padding: 0.875rem 1rem 1rem;
+  background: var(--surface);
+  border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+}
+
+/* Code card */
+.friends-code-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lang) 8%, var(--surface)) 0%, var(--surface-2) 100%);
+  border: 1px solid color-mix(in srgb, var(--lang) 22%, var(--rule));
+}
+.friends-code-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.friends-code-eyebrow {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--lang-text);
+}
+.friends-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.friends-code.small {
+  padding: 0;
+  background: none;
+  border: none;
+}
+.friends-code-row code {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--lang-text);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid color-mix(in srgb, var(--lang) 30%, var(--rule));
+  box-shadow: var(--shadow-sm);
+}
+.friends-copy-ok {
+  background: var(--ok) !important;
+  color: #fff !important;
+  border-color: var(--ok) !important;
+}
+
+/* Form */
+.friends-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.friends-input {
+  flex: 1;
+  min-width: 0;
+  height: 2.625rem;
+  padding: 0 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.friends-input::placeholder {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+.friends-input:focus {
+  border-color: var(--lang);
+  box-shadow: 0 0 0 3px var(--lang-soft);
+  outline: none;
+}
+.friends-submit-btn {
+  flex: none;
+  height: 2.625rem;
+  padding: 0 1.25rem;
+  font-weight: 700;
+  border-radius: var(--r-md);
+  background: var(--lang);
+  color: var(--lang-on);
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.friends-submit-btn:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+.friends-submit-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* League improvements */
+.friends-league-body progress.friends-progress {
+  width: 100%;
+  height: 0.625rem;
+  border-radius: var(--r-full);
+  border: 0;
+  background: var(--track);
+  overflow: hidden;
+}
+.friends-league-body progress.friends-progress::-webkit-progress-bar {
+  background: var(--track);
+  border-radius: var(--r-full);
+}
+.friends-league-body progress.friends-progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--lang), #f59e0b);
+  border-radius: var(--r-full);
+}
+.friends-podium li {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  padding: 0.375rem 0.625rem;
+}
+.friends-podium li.friends-me {
+  background: var(--lang-soft);
+  border-color: color-mix(in srgb, var(--lang) 40%, var(--rule));
+}

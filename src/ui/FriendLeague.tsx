@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { FriendView } from '../data/friends'
 import { addLeagueWin, lastWeekLeague, teamWeek, TEAM_GOALS, type LeagueEntry } from '../engine/friendLeague'
+import { ChevronDownIcon } from './icons'
 
 const GOAL_KEY = 'diloloji:friend-goal'
 const WINS_KEY = 'diloloji:league-wins'
@@ -53,8 +54,14 @@ export function FriendLeague({ me, friends, nicknames, today }: { me: FriendView
   const place = league ? league.rows.findIndex((r) => r.me) + 1 : 0
   return (
     <details className="friends-league">
-      <summary className="small">Ortak hedef ve haftanın ligi</summary>
-      <div className="stack gap-2">
+      <summary className="friends-accordion-summary small">
+        <span className="friends-accordion-title">
+          <span className="friends-accordion-icon" aria-hidden="true">🎯</span>
+          <span>Ortak hedef ve haftanın ligi</span>
+        </span>
+        <ChevronDownIcon size={16} className="friends-accordion-arrow" />
+      </summary>
+      <div className="stack gap-2 friends-league-body">
         <div className="stack gap-2">
           <p className="small">
             <strong>Bu hafta birlikte:</strong> {team.xp.toLocaleString('tr-TR')} / {team.goal.toLocaleString('tr-TR')} XP{team.done ? ' · hedef tamam 🎉' : ''}
