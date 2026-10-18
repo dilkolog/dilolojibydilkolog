@@ -7,7 +7,7 @@ import { Avatar } from './Avatar'
 import { DRAWN_AVATARS, DRAWN_AVATAR_IDS, EARNED_AVATARS, avatarNeed, drawnAvatarName } from './avatarArt'
 import { ProgressCardButton } from './ProgressCard'
 import { useGame } from './game'
-import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, PinIcon, SmileIcon } from './icons'
+import { CheckCircleIcon, CloseIcon, GearIcon, LockIcon, PaletteIcon, PinIcon, PlusIcon, SmileIcon, SparkleIcon } from './icons'
 import { ImagePicker } from './ImagePicker'
 import { TIER_NAME } from './badgeTier'
 import { BadgeMedal } from './Medal'
@@ -18,7 +18,7 @@ import { timeOf } from '../engine/types'
 import { ProfileCustomizer } from './ProfileCustomizer'
 import { useTabIndicator } from './useTabIndicator'
 import { ProfileTitles } from './ProfileTitles'
-import { CATEGORY_EMBLEM, EMBLEM, STAT_ART, levelMonki } from './drawnArt'
+import { CATEGORY_EMBLEM, EMBLEM, STAT_ART } from './drawnArt'
 import { showToast } from './toastFeed'
 import { resolveCoordinates } from '../data/weather'
 
@@ -111,11 +111,24 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
   return (
     <div className="stack profile">
       <section className="card profile-card" data-banner={bannerOf(profile.banner)} style={{ ['--pcolor' as string]: profile.color }}>
-        {onOpenSettings && (
-          <button className="icon-btn profile-settings" onClick={onOpenSettings} aria-label="Ayarlar" title="Ayarlar">
-            <GearIcon size={18} />
-          </button>
-        )}
+        <div className="profile-card-actions">
+          {unlockables && (
+            <button
+              type="button"
+              className="btn btn-sm btn-quiet profile-customize-btn"
+              aria-expanded={customizing}
+              onClick={() => setCustomizing((c) => !c)}
+            >
+              <PaletteIcon size={15} className="inline-icon" />
+              <span>{customizing ? 'Kapat' : 'Özelleştir'}</span>
+            </button>
+          )}
+          {onOpenSettings && (
+            <button className="icon-btn profile-settings" onClick={onOpenSettings} aria-label="Ayarlar" title="Ayarlar">
+              <GearIcon size={18} />
+            </button>
+          )}
+        </div>
         {/* The name is an input, so the page's heading is for screen readers only. */}
         <h1 className="sr-only">Profil</h1>
         <div className="profile-hero">
@@ -124,18 +137,26 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
               <Avatar profile={profile} size={88} />
               {game && <span className="avatar-level">{game.level.level}</span>}
             </span>
-            <span className="avatar-edit-badge"><SmileIcon size={16} /></span>
+            <span className="avatar-edit-badge" title="Avatarı değiştir"><SmileIcon size={16} /></span>
           </button>
           <div className="profile-fields">
-            <input
-              className="profile-name"
-              value={name}
-              placeholder="Adın"
-              aria-label="Adın"
-              onChange={(e) => setName(e.target.value)}
-              onBlur={() => name !== profile.name && save({ name: name.trim() })}
-              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-            />
+            <div className="profile-name-row">
+              <input
+                className="profile-name"
+                value={name}
+                placeholder="Adın"
+                aria-label="Adın"
+                onChange={(e) => setName(e.target.value)}
+                onBlur={() => name !== profile.name && save({ name: name.trim() })}
+                onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+              />
+              {game && (
+                <span className="profile-badge-pill" title="Seviye ve unvan">
+                  <span className="level-badge">Seviye {game.level.level}</span>
+                  <strong className="profile-title-text">{unlockables ? titleName(profile.title, unlockables) : game.level.title}</strong>
+                </span>
+              )}
+            </div>
             <input
               className="profile-motto"
               value={motto}
@@ -170,24 +191,35 @@ export function ProfileScreen({ settings, onChange, onOpenSettings }: { settings
           </div>
         </div>
         {game && (
-          <div className="profile-level">
-            <div className="row justify-between">
-              <span className="grown-line">
-                <img className="grown-monki" src={levelMonki(game.level.level)} alt="" width={40} height={48} />
-                <span className="level-badge">Seviye {game.level.level}</span> <strong>{unlockables ? titleName(profile.title, unlockables) : game.level.title}</strong>
+          <div className="profile-level-box">
+            <div className="profile-level-top">
+              <span className="profile-level-label">
+                <SparkleIcon size={15} className="inline-icon" />
+                <strong>Seviye İlerlemesi</strong>
               </span>
-              <span className="muted small">{game.xp.total.toLocaleString('tr-TR')} XP</span>
+              <span className="profile-xp-readout">
+                <strong>{game.xp.total.toLocaleString('tr-TR')}</strong>
+                <span className="muted"> / {game.level.needed.toLocaleString('tr-TR')} XP</span>
+              </span>
             </div>
             <div className="xp-bar" role="progressbar" aria-label="Sonraki seviyeye ilerleme" aria-valuenow={Math.round(game.level.progress * 100)} aria-valuemin={0} aria-valuemax={100}>
               <div style={{ width: `${game.level.progress * 100}%` }} />
             </div>
-            <p className="small muted">
-              Sonraki seviyeye {(game.level.needed - game.level.into).toLocaleString('tr-TR')} XP.
-              {nextTitle && ` ${nextTitle[0]}. seviyede unvanın "${nextTitle[1]}".`}
-            </p>
+            <div className="profile-level-meta small muted">
+              <span>Sonraki seviyeye {(game.level.needed - game.level.into).toLocaleString('tr-TR')} XP</span>
+              {nextTitle && <span>{nextTitle[0]}. seviyede unvanın “{nextTitle[1]}”</span>}
+            </div>
           </div>
         )}
-        {game && unlockables && <ProfileAbout profile={profile} game={game} unlockables={unlockables} onOpenBadge={(a) => setOpenBadge(series.find((x) => x.stat === a.stat) ?? null)} onCustomize={() => setCustomizing((c) => !c)} customizing={customizing} />}
+        {game && unlockables && (
+          <ProfileAbout
+            profile={profile}
+            game={game}
+            unlockables={unlockables}
+            onOpenBadge={(a) => setOpenBadge(series.find((x) => x.stat === a.stat) ?? null)}
+            onCustomize={() => setCustomizing(true)}
+          />
+        )}
         {editing && (
           <div className="stack avatar-editor">
             <div className="emoji-grid">
@@ -662,31 +694,65 @@ function ActivityMini({ byDay, records }: { byDay: Map<string, number>; records:
   )
 }
 
-/** Under the level: the badges on show, interests and the goal, and the way into the customizer. */
-function ProfileAbout({ profile, game, unlockables, onOpenBadge, onCustomize, customizing }: { profile: Profile; game: NonNullable<ReturnType<typeof useGame>>; unlockables: Unlockables; onOpenBadge: (a: Achievement) => void; onCustomize: () => void; customizing: boolean }) {
-  const shown = pinnedBadges(profile.pinned, unlockables.badges).map((id) => game.achievements.find((a) => a.id === id)!).filter(Boolean)
+/** Under the level: the badges on show, interests and the goal. */
+function ProfileAbout({
+  profile,
+  game,
+  unlockables,
+  onOpenBadge,
+  onCustomize,
+}: {
+  profile: Profile
+  game: NonNullable<ReturnType<typeof useGame>>
+  unlockables: Unlockables
+  onOpenBadge: (a: Achievement) => void
+  onCustomize: () => void
+}) {
+  const shown = pinnedBadges(profile.pinned, unlockables.badges)
+    .map((id) => game.achievements.find((a) => a.id === id)!)
+    .filter(Boolean)
   const left = daysUntil(profile.goalDate, new Date())
   const interests = profile.interests ?? []
+
   return (
     <div className="profile-about">
       {shown.length > 0 && (
-        <ul className="profile-showcase" aria-label="Rozet vitrini">
-          {shown.map((a) => (
-            <li key={a.id}>
-              <button type="button" className="showcase-badge" onClick={() => onOpenBadge(a)} aria-label={`${a.title}: ayrıntı`} title={a.title}>
-                <BadgeMedal badge={a} unlocked size={46} />
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="profile-showcase-box">
+          <div className="profile-showcase-head">
+            <span className="small muted font-semibold">Öne Çıkan Rozetler ({shown.length}/{PIN_LIMIT})</span>
+          </div>
+          <ul className="profile-showcase" aria-label="Rozet vitrini">
+            {shown.map((a) => (
+              <li key={a.id}>
+                <button
+                  type="button"
+                  className="showcase-badge"
+                  onClick={() => onOpenBadge(a)}
+                  aria-label={`${a.title}: ayrıntı`}
+                  title={a.title}
+                >
+                  <BadgeMedal badge={a} unlocked size={46} />
+                </button>
+              </li>
+            ))}
+            {Array.from({ length: Math.max(0, PIN_LIMIT - shown.length) }).map((_, idx) => (
+              <li key={`empty-${idx}`}>
+                <button
+                  type="button"
+                  className="showcase-empty-slot"
+                  onClick={onCustomize}
+                  aria-label="Rozet sabitle"
+                  title="Vitrini özelleştir"
+                >
+                  <PlusIcon size={16} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
-      {(interests.length > 0 || profile.goalLevel || profile.location) && (
+      {(interests.length > 0 || profile.goalLevel) && (
         <div className="profile-tags">
-          {profile.location && (
-            <span className="interest-chip location-chip" title="Hava durumu konumu">
-              <PinIcon size={12} className="inline-icon" /> {profile.location}
-            </span>
-          )}
           {profile.goalLevel && (
             <span className="goal-chip">
               Hedef {profile.goalLevel}
@@ -700,10 +766,6 @@ function ProfileAbout({ profile, game, unlockables, onOpenBadge, onCustomize, cu
           ))}
         </div>
       )}
-      <button type="button" className="btn btn-sm btn-quiet profile-customize-btn" aria-expanded={customizing} onClick={onCustomize}>
-        <PaletteIcon size={16} className="inline-icon" />
-        {customizing ? 'Özelleştirmeyi kapat' : 'Özelleştir'}
-      </button>
     </div>
   )
 }
