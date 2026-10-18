@@ -316,7 +316,7 @@ export const ES_LESSONS_2: TopicLesson[] = [
     topic: "basics_es_reflexivos",
     language: "es",
     title: "Dönüşlü fiiller (levantarse)",
-    level: "A2",
+    level: "A1",
     summary: "Mastarı -se ile biten fiiller, eylemin özneye döndüğünü gösteren bir zamirle çekilir: levantarse 'kalkmak', ducharse 'duş almak'. Günlük rutinin çoğu bu fiillerle anlatılır.",
     rules: [
       "-se kişiye göre zamire döner: me, te, se, nos, os, se: me levanto, te levantas, se levanta, nos levantamos, os levantáis, se levantan.",
