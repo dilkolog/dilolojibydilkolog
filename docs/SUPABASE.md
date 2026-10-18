@@ -26,10 +26,13 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
    - Sonra **Redeploy**. `VITE_` değişkenleri derlemede okunur.
 2. **Supabase → SQL Editor**: `supabase/migrations/0001_accounts.sql` dosyasının içeriğini yapıştır, Run.
 3. **Authentication → URL Configuration**:
-   - Site URL: `https://nigalingo.online`
+   - Site URL: `https://diloloji.com`
    - Redirect URLs:
+     - `https://diloloji.com/**`
+     - `https://www.diloloji.com/**`
      - `https://nigalingo.online/**`
      - `https://kelime-koc.vercel.app/**`
+     - Cloudflare Workers adresi: `https://diloloji.<hesap>.workers.dev/**`
      - önizlemeler için `https://*.vercel.app/**`
 4. **Authentication → Sign In / Providers**:
    - **Email** açık, "Confirm email" açık.
@@ -43,12 +46,12 @@ Hesaplar artık Supabase'ten açılır: **e-posta + şifre**, **e-postaya giriş
       - Audience: **External**.
       - Contact information: kendi adresin → Create.
    3. **Branding**:
-      - App domain / Application home page: `https://nigalingo.online`.
-      - Authorized domains: `nigalingo.online` ve `supabase.co`.
+      - App domain / Application home page: `https://diloloji.com`.
+      - Authorized domains: `diloloji.com`, `nigalingo.online` ve `supabase.co`.
       - **Logo yükleme**: logo Google'ın uygulama incelemesini başlatır ve günler sürebilir. Şimdilik boş bırak.
    4. **Audience → Publish app** ("In production"). Yalnızca e-posta/profil istendiği için Google incelemesi gerekmez; yayınlanmazsa yalnızca "test kullanıcıları" girebilir.
    5. **Clients → Create client** → Application type **Web application**, ad `Diloloji web`:
-      - Authorized JavaScript origins: `https://nigalingo.online`, `https://kelime-koc.vercel.app`
+      - Authorized JavaScript origins: `https://diloloji.com`, `https://www.diloloji.com`, `https://nigalingo.online`, `https://kelime-koc.vercel.app`
       - Authorized redirect URIs: `https://<proje-kimliği>.supabase.co/auth/v1/callback`
       - Create.
    6. Açılan pencereden **Client ID** ve **Client secret**'ı kopyala. **Client secret'ı sohbete yazma.**
