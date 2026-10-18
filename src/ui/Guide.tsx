@@ -35,6 +35,7 @@ import { PageHeader } from './PageHeader'
 import { speak } from './speech'
 import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
+import { LessonSteps, type LessonStep } from './LessonSteps'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
 import { notify } from './noticeCenter'
@@ -324,8 +325,9 @@ export function GuideScreen({
                 %{lessons.length ? Math.round((doneCount / lessons.length) * 100) : 0}
               </span>
             </div>
-            <span className="guide-bar">
-              <span style={{ width: `${lessons.length ? (doneCount / lessons.length) * 100 : 0}%` }} />
+            <span className="guide-bar guide-bar-two" role="img" aria-label={`${doneCount} konu okundu, ${learnedCount} öğrenildi, toplam ${lessons.length}`}>
+              <span className="guide-bar-read" style={{ width: `${lessons.length ? (doneCount / lessons.length) * 100 : 0}%` }} />
+              <span className="guide-bar-learned" style={{ width: `${lessons.length ? (learnedCount / lessons.length) * 100 : 0}%` }} />
             </span>
             <p className="guide-progress-hint small muted">
               Dersin sonundaki üç soruyu geç, konu öğrenildi sayılsın.
@@ -791,6 +793,15 @@ function LessonView({
     if (checking && review) checkRef.current?.scrollIntoView({ block: 'start' })
     else window.scrollTo({ top: 0 })
   }, [lesson]) // eslint-disable-line react-hooks/exhaustive-deps
+  const steps = useMemo<LessonStep[]>(
+    () => [
+      { id: 'lesson-learn', label: 'Öğren' },
+      { id: 'lesson-see', label: 'Gör' },
+      { id: 'lesson-try', label: 'Dene' },
+      ...(check.length > 0 ? [{ id: 'lesson-check', label: 'Sına' }] : []),
+    ],
+    [check.length],
+  )
   const own = useOwnExamples(db, lesson)
   const verbTopic = !!lessonTense(lesson) || /present|passe|imparfait|preterito|futur|subj|conditionnel/.test(lesson.topic)
 
@@ -838,7 +849,8 @@ function LessonView({
           . Bu ders ona dayanıyor.
         </p>
       )}
-      <section className="card stack gap-2 guide-rules-card">
+      <LessonSteps steps={steps} />
+      <section id="lesson-learn" className="card stack gap-2 guide-rules-card">
         <h2 className="section-title">Kurallar</h2>
         <ol className="guide-rules">
           {lesson.rules.map((r, i) => (
@@ -875,8 +887,7 @@ function LessonView({
           </div>
         </section>
       )}
-      {trial.length > 0 && <LessonTry key={lesson.topic} items={trial} language={language} />}
-      <section className="card stack gap-2 guide-examples-card">
+      <section id="lesson-see" className="card stack gap-2 guide-examples-card">
         <h2 className="section-title">Örnekler</h2>
         <ul className="guide-examples">
           {lesson.examples.map((x, i) => (
@@ -952,10 +963,13 @@ function LessonView({
           <strong>İpucu:</strong> {lesson.tip}
         </p>
       )}
-      <LessonWrite key={`write-${lesson.topic}`} title={titleOf(lesson)} language={language} />
+      <div id="lesson-try" className="stack">
+        {trial.length > 0 && <LessonTry key={lesson.topic} items={trial} language={language} />}
+        <LessonWrite key={`write-${lesson.topic}`} title={titleOf(lesson)} language={language} />
+      </div>
       <LessonNote note={note} onSave={onNote} />
       {check.length > 0 && (
-        <div ref={checkRef}>
+        <div id="lesson-check" ref={checkRef}>
           {checking ? (
             <LessonCheck items={check} language={language} review={review} earned={earned} onDone={(right) => onChecked(right, check.length)} />
           ) : (
