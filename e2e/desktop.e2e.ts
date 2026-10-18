@@ -2282,6 +2282,98 @@ test('the guide: the placement test ends where a level is not passed and points 
   await expect(page.locator('.guide-placement-card')).toContainText("Seviye testin: A1'den başla")
 })
 
+test('the guide: passing levels in placement test marks easier lessons as known and sets starting lesson', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+
+  // French A1 correct answers for the 6 questions
+  const a1Answers = ['un', 'sommes', 'jouent', 'ne', 'Il', 'venez']
+  for (let i = 0; i < 6; i++) {
+    let clicked = false
+    for (const ans of a1Answers) {
+      const opt = page.locator('.option').filter({ hasText: new RegExp(`^\\d+\\s*${ans}$`) })
+      if ((await opt.count()) > 0) {
+        await opt.first().click()
+        clicked = true
+        break
+      }
+    }
+    if (!clicked) {
+      await page.locator('.option').first().click()
+    }
+    await page.getByRole('button', { name: /^(Sonraki|Sonucu gör)$/ }).click()
+  }
+
+  // Answer 'Bilmiyorum' to A2 questions (next 6 questions)
+  for (let i = 0; i < 6; i++) {
+    await page.getByRole('button', { name: 'Bilmiyorum' }).click()
+    await page.getByRole('button', { name: /^(Sonraki|Sonucu gör)$/ }).click()
+  }
+
+  const result = page.getByLabel('Seviye testi sonucu')
+  await expect(result.getByRole('heading', { name: 'A2 seviyesinden başla' })).toBeVisible()
+  await expect(result.getByRole('button', { name: /Buradan başla:/ })).toBeVisible()
+
+  // Mark A1 lessons as known
+  const markKnownBtn = page.getByRole('button', { name: /A1 derslerini biliyorum say/ })
+  await expect(markKnownBtn).toBeVisible()
+  await markKnownBtn.click()
+
+  // Status message and undo button appear
+  const undoStatus = result.locator('[role="status"]')
+  await expect(undoStatus).toContainText('ders okundu işaretlendi')
+  const undoBtn = undoStatus.getByRole('button', { name: 'Geri al' })
+  await expect(undoBtn).toBeVisible()
+
+  // Undo marks
+  await undoBtn.click()
+  await expect(markKnownBtn).toBeVisible()
+
+  // Re-apply marking
+  await markKnownBtn.click()
+  await expect(undoStatus).toBeVisible()
+
+  // Click 'Buradan başla: ...' to open the first A2 lesson
+  const startLessonBtn = result.getByRole('button', { name: /Buradan başla:/ })
+  await startLessonBtn.click()
+
+  // Verify that the lesson page opens
+  await expect(page.locator('.guide-lesson')).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+
+  // Go back to Rehber and verify placement card reflects A2
+  await page.locator('.guide-back-btn').click()
+  await expect(page.locator('.guide-placement-card')).toContainText("Seviye testin: A2'den başla")
+})
+
+test('the guide: lesson grammar terms can be inspected with definition, translation and pronunciation', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) }).click()
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
+
+  const termsSection = page.locator('.lesson-terms')
+  await expect(termsSection).toBeVisible()
+  const termChip = termsSection.getByRole('button', { name: 'subjonctif', exact: true })
+  await expect(termChip).toBeVisible()
+  await expect(termChip).toHaveAttribute('aria-expanded', 'false')
+
+  // Click term chip to open explanation card
+  await termChip.click()
+  await expect(termChip).toHaveAttribute('aria-expanded', 'true')
+  const termCard = page.locator('.lesson-term-card')
+  await expect(termCard).toBeVisible()
+  await expect(termCard).toContainText('dilek-istek kipi')
+  await expect(termCard.locator('button[aria-label^="Dinle:"]')).toBeVisible()
+
+  // Click again to collapse
+  await termChip.click()
+  await expect(termChip).toHaveAttribute('aria-expanded', 'false')
+  await expect(termCard).not.toBeVisible()
+})
+
 test('the guide: a weekly goal brings today\'s lesson to Today and shows the week in the guide', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
