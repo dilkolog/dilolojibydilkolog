@@ -58,5 +58,15 @@ describe('RegisterRound', () => {
     await click([...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.querySelector('.option-serif')?.textContent !== right))
     expect(host.textContent).toContain('Bu ortama uymaz')
     expect(host.textContent).toMatch(/söyleyiş/)
+    expect(host.querySelector('.register-target-badge')).not.toBeNull()
+    expect(host.querySelector('.register-wrong-badge')).not.toBeNull()
+  })
+
+  it('renders a register preview ladder on the intro screen', async () => {
+    const host = await mount()
+    expect(host.querySelector('.register-preview-card')).not.toBeNull()
+    expect(host.textContent).toContain('la bouffe')
+    expect(host.textContent).toContain('la nourriture')
+    expect(host.textContent).toContain('les mets')
   })
 })

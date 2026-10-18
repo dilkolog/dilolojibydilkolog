@@ -46,12 +46,16 @@ describe('FlowRound', () => {
       expect(options(host)).toHaveLength(3)
       await click(options(host).find((o) => o.querySelector('.option-serif')?.textContent === item.gaps[n].answer))
       expect(host.textContent).toContain('Doğru')
+      expect(host.querySelector('.flow-kind-chip')).not.toBeNull()
       expect((await db.getFlowLog())[`${item.id}|${n + 1}`]).toMatchObject({ ok: 1, wrong: 0 })
       if (n + 1 < item.gaps.length) await click(byText(host, 'Devam'))
     }
     expect(host.querySelectorAll('.option')).toHaveLength(0)
     expect(host.querySelectorAll('.flow-gap.is-correct')).toHaveLength(item.gaps.length)
     expect(host.textContent).toContain('Türkçesi')
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      expect(host.textContent).toContain('Paragrafı dinle')
+    }
     await click(byText(host, 'Sonraki paragraf'))
     expect(host.textContent).toContain('2 / 3')
   })

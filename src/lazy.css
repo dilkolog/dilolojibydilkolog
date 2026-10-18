@@ -1697,7 +1697,84 @@ details[open] > .account-accordion-summary .account-accordion-arrow, details[ope
 .blind-text { display: grid; gap: 0.125rem; min-width: min(16rem, 100%); flex: 1 1 16rem; }
 .grammar-sentence { white-space: pre-line; }
 .rw-masked { background: var(--lang-soft); color: var(--lang-text); border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
-.register-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+.register-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.register-tier-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
+}
+.register-tier-item.is-target {
+  background: var(--lang-soft);
+  border-color: color-mix(in srgb, var(--lang) 40%, transparent);
+}
+.register-tier-item.is-wrong-pick {
+  background: var(--bad-soft);
+  border-color: color-mix(in srgb, var(--bad) 40%, transparent);
+}
+.register-tier-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.register-tier-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--t-xs);
+  color: var(--ink-soft);
+}
+.register-tier-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.register-tier-text {
+  font-family: var(--serif);
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: var(--ink);
+}
+.register-target-badge {
+  background: var(--lang);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+}
+.register-wrong-badge {
+  background: var(--bad);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+}
+.register-situation-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+}
+.register-preview-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+}
+.register-card, .flow-card {
+  padding: 1.25rem;
+}
 .morphs { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; align-items: center; }
 .morph { border-radius: var(--r-sm); padding: 0 0.375em; font-weight: 700; background: var(--surface-2); color: var(--ink-soft); }
 .morph-root { background: var(--lang-soft); color: var(--lang-text); }

@@ -10,6 +10,9 @@ import { noteIn } from './logNote'
 import { flowItems } from '../../data/flow'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
+import { SpeakerIcon } from '../icons'
+import { canSpeak, speak } from '../speech'
+import { isPctRecord } from './shared'
 
 const note = noteIn(() => db.getFlowLog(), (log) => db.saveFlowLog(log))
 
@@ -25,6 +28,14 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
   /** What was chosen for each gap of the paragraph on screen (by gap number). */
   const [chosen, setChosen] = useState<string[]>([])
   const [results, setResults] = useState<{ text: string; ok: boolean }[]>([])
+
+  const recordKey = `flow:${language}`
+  const [best, setBest] = useState<number | undefined>(undefined)
+  const [record, setRecord] = useState(false)
+
+  useEffect(() => {
+    void db.getRecords().then((r) => setBest(r[recordKey]))
+  }, [recordKey])
 
   useEffect(() => {
     let live = true
@@ -66,7 +77,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
     void note(flowGapId(item, gapNo), ok)
   }
 
-  const next = () => {
+  const next = async () => {
     if (!item) return
     if (shown !== null && gapNo < item.gaps.length) {
       setShown(null)
@@ -77,6 +88,12 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
       setChosen([])
       setShown(null)
       return
+    }
+    const correctCount = results.filter((r) => r.ok).length
+    const pct = Math.round((correctCount / results.length) * 100)
+    if (isPctRecord(pct, best)) {
+      await db.saveRecord(recordKey, pct)
+      setRecord(best !== undefined)
     }
     sfx.levelUp()
     setPhase('over')
@@ -89,7 +106,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
       if (gap && shown === null && n >= 1 && n <= options.length) choose(options[n - 1])
       else if ((shown !== null || done) && e.key === 'Enter') {
         e.preventDefault()
-        next()
+        void next()
       }
     }
     window.addEventListener('keydown', onKey)
@@ -114,7 +131,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
       </div>
 
       {phase === 'intro' && (
-        <div className="stack">
+        <div className="card flow-card stack gap-2">
           <h1 className="greeting">Metin akışı</h1>
           <p className="muted">
             Kısa bir {LANGUAGE_NAME[language]} paragrafta düşüncenin yönünü değiştiren bağlaçlar eksik (ama, bu yüzden, -se de). Boşlukları sırayla doldurursun; her cevapta neden o bağlacın uyduğunu Türkçe görürsün. Akıcı yazı ve konuşma cümleleri birbirine bağlamakla başlar.
@@ -129,7 +146,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
       )}
 
       {phase === 'play' && item && (
-        <div className="stack">
+        <div className="card flow-card stack gap-2">
           <p className="prompt-label">Her boşluğa düşüncenin yönüne uyan bağlacı seç.</p>
           <p className="flow-text" lang={language}>
             {parts.map((p, i) => {
@@ -164,7 +181,20 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
           )}
 
           {last && (
-            <div className="stack" role="status">
+            <div className="stack gap-1" role="status">
+              <div className="row items-center gap-1">
+                <span className="chip chip-sm flow-kind-chip">{last.kind}</span>
+                {canSpeak() && (
+                  <button
+                    type="button"
+                    className="icon-btn icon-btn-sm"
+                    aria-label={`${last.answer} dinle`}
+                    onClick={() => speak(last.answer, language)}
+                  >
+                    <SpeakerIcon size={14} />
+                  </button>
+                )}
+              </div>
               <p className={chosen[shown!] === last.answer ? 'small' : 'cross-warn'}>
                 {chosen[shown!] === last.answer ? 'Doğru: ' : 'Bu bağlaç uymaz. '}
                 <strong lang={language}>{last.answer}</strong> ({last.kind.toLocaleLowerCase('tr')}). {last.why}
@@ -178,14 +208,27 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
           )}
 
           {lastOfParagraph && (
-            <div className="note flow-translation" lang="tr">
-              <strong>Türkçesi:</strong> {item.tr}
+            <div className="stack gap-2">
+              {canSpeak() && (
+                <div className="row">
+                  <button
+                    type="button"
+                    className="btn btn-quiet btn-sm"
+                    onClick={() => speak(item.text.replace(/\{(\d+)\}/g, (_, n) => item.gaps[Number(n)]?.answer ?? ''), language)}
+                  >
+                    <SpeakerIcon size={16} className="inline-icon" /> Paragrafı dinle
+                  </button>
+                </div>
+              )}
+              <div className="note flow-translation" lang="tr">
+                <strong>Türkçesi:</strong> {item.tr}
+              </div>
             </div>
           )}
 
           {(shown !== null || done) && (
             <div className="row">
-              <button type="button" className="btn" onClick={next} autoFocus>
+              <button type="button" className="btn" onClick={() => void next()} autoFocus>
                 {lastOfParagraph ? (index + 1 < round.length ? 'Sonraki paragraf' : 'Bitir') : 'Devam'}
               </button>
             </div>
@@ -198,6 +241,7 @@ export function FlowRound({ language, onExit, onLesson }: { language: TargetLang
           title="Tur bitti"
           headline={`${results.length - missed.length} / ${results.length} boşluk doğru`}
           accuracy={results.length ? (results.length - missed.length) / results.length : 0}
+          record={record}
           missed={missed.map((m) => m.text)}
           missedLabel="Tutturamadığın bağlaçlar"
           language={language}
