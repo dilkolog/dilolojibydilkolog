@@ -5,6 +5,7 @@ import { Ring } from '../Ring'
 import { Sticker } from '../Sticker'
 import { Burst } from '../Burst'
 import { sfx } from '../sounds'
+import { haptics } from '../haptics'
 
 /**
  * The end of every game in one layout: the result (a ring for accuracy, or a badge), the headline
@@ -39,19 +40,21 @@ export function GameResult({
   onExit: () => void
 }) {
   const isCelebration = (accuracy !== undefined && accuracy >= 0.8) || !!record
+  const isPerfect = accuracy !== undefined && accuracy >= 1
 
   useEffect(() => {
     if (isCelebration) {
       sfx.levelUp()
+      haptics.victory()
     }
   }, [isCelebration])
 
   return (
-    <div className="game-result">
-      <div className="game-result-card">
+    <div className={`game-result${isCelebration ? ' is-celebration' : ''}`}>
+      <div className={`game-result-card${isCelebration ? ' is-victory' : ''}`}>
         {isCelebration && <Burst />}
         {accuracy !== undefined ? (
-          <span className="game-result-ring">
+          <span className={`game-result-ring${isPerfect ? ' is-perfect' : ''}`}>
             <Ring value={accuracy} size={116} stroke={11} label={`%${Math.round(accuracy * 100)}`} doneLabel="%100" />
             {/* Not a miss: Monki gives a thumbs up. */}
             {accuracy >= 1 && <Sticker name="thumbs" size={48} className="game-result-sticker" />}

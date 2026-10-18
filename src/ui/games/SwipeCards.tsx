@@ -16,6 +16,7 @@ import { RichText } from '../RichText'
 import { StudyOptionsPanel } from '../StudyOptions'
 import { useStudyOptions } from '../studyOptionsStore'
 import { sfx } from '../sounds'
+import { haptics } from '../haptics'
 import { playWord } from '../speech'
 import { useMediaUrl } from '../useMedia'
 import { type Props, recordPractice } from './shared'
@@ -115,7 +116,18 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
     (g: FlashGrade, sound = true) => {
       if (!card || leaving) return
       setLeaving(g === 0 ? 'left' : 'right')
-      if (sound) (g === 0 ? sfx.wrong : g === 1 ? sfx.near : sfx.correct)()
+      if (sound) {
+        if (g === 0) {
+          sfx.wrong()
+          haptics.error()
+        } else if (g === 1) {
+          sfx.near()
+          haptics.tap()
+        } else {
+          sfx.correct()
+          haptics.success()
+        }
+      }
       // Meaning first (or typed) is recalling the word, word first is recognising the meaning; "hard" is a right answer given unsure.
       void recordPractice(card, stateById.get(card.id), reverse ? 'typed_translation' : 'mc_meaning', g > 0, performance.now() - shownAt.current, {
         ...(checked ? { given: typed, expected: checked.expected } : {}),
@@ -180,7 +192,10 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
   })
 
   useEffect(() => {
-    if (started && !card) onChanged()
+    if (started && !card) {
+      onChanged()
+      haptics.victory()
+    }
   }, [started, card, onChanged])
 
   if (!started) {
@@ -330,7 +345,10 @@ export function SwipeCards({ language, vocabulary, states, onExit, onChanged }: 
             if (Math.abs(dx) >= SWIPE_COMMIT) grade(dx > 0 ? 2 : 0)
             else {
               setDx(0)
-              if (!moved) setFlipped((f) => !f)
+              if (!moved) {
+                haptics.tap()
+                setFlipped((f) => !f)
+              }
             }
           }}
           onPointerCancel={() => {
