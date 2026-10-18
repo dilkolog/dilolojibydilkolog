@@ -2488,7 +2488,7 @@ test('friends card: today and week leaderboard ranking, adding and removing a fr
   if (!(await addDetails.getAttribute('open'))) {
     await addDetails.locator('summary').click()
   }
-  await page.locator('.friends-card input[placeholder="Arkadaşının kodu"]').fill('AYSE1234')
+  await page.locator('.friends-card input[placeholder^="Arkadaşının kodu"]').fill('AYSE1234')
   await page.locator('.friends-card form.friends-form button[type="submit"]').click()
   await expect(page.locator('.friends-card')).toContainText('Ayşe')
 
