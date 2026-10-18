@@ -2979,7 +2979,21 @@ p, .help, .small { text-wrap: pretty; }
   background: linear-gradient(160deg, var(--lang-soft) 0%, var(--surface) 75%);
   animation: pop var(--dur) var(--ease-out);
 }
+.game-result-card.is-victory {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--gold) 14%, var(--lang-soft)) 0%, var(--surface) 80%);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, var(--rule));
+  box-shadow: var(--shadow-lg), 0 0 32px color-mix(in srgb, var(--gold) 18%, transparent);
+  animation: victory-pop 620ms var(--ease-spring) both;
+}
+@keyframes victory-pop {
+  0% { transform: translateY(12px) scale(0.94); opacity: 0; }
+  60% { transform: translateY(-3px) scale(1.02); }
+  100% { transform: none; opacity: 1; }
+}
 .game-result-card .ring { margin-bottom: 0.75rem; }
+.game-result-ring.is-perfect .ring {
+  filter: drop-shadow(0 4px 14px color-mix(in srgb, var(--gold) 40%, transparent));
+}
 .game-result-badge { display: grid; place-items: center; width: 4.5rem; height: 4.5rem; border-radius: 50%; margin-bottom: 0.5rem; background: var(--surface); color: var(--lang-text); box-shadow: var(--shadow); }
 .game-result-badge.is-record { color: var(--gold-text); background: color-mix(in srgb, var(--gold) 18%, var(--surface)); }
 .game-result-title { font-size: var(--t-xl); font-weight: 700; letter-spacing: -0.015em; margin: 0; }
