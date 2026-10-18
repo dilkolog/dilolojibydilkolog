@@ -35,6 +35,8 @@ import { PageHeader } from './PageHeader'
 import { speak } from './speech'
 import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
+import { questionKey, rankByNeed, recordAnswers } from '../engine/guideQuestions'
+import { loadQuestionLog, saveQuestionLog } from './guideQuestionLog'
 import { LessonSteps, type LessonStep } from './LessonSteps'
 import { LessonWrite } from './LessonWrite'
 import { LessonCheck } from './LessonCheck'
@@ -784,7 +786,7 @@ function LessonView({
   onVerbs: () => void
 }) {
   // Picked once a visit: the questions do not change while the lesson is read.
-  const check = useMemo(() => checkFor(lesson), [lesson])
+  const check = useMemo(() => checkFor(lesson, Math.random, undefined, (items) => rankByNeed(items, loadQuestionLog(language), language)), [lesson, language])
   const trial = useMemo(() => tryFor(lesson, check), [lesson, check])
   const [checking, setChecking] = useState(!!review && check.length > 0)
   const [savedExMap, setSavedExMap] = useState<Record<number, boolean>>({})
@@ -971,7 +973,10 @@ function LessonView({
       {check.length > 0 && (
         <div id="lesson-check" ref={checkRef}>
           {checking ? (
-            <LessonCheck items={check} language={language} review={review} earned={earned} onDone={(right) => onChecked(right, check.length)} />
+            <LessonCheck items={check} language={language} review={review} earned={earned} onDone={(right, answers) => {
+                saveQuestionLog(language, recordAnswers(loadQuestionLog(language), answers.map((a) => ({ key: questionKey(language, a.prompt), right: a.right })), localDate(new Date())))
+                onChecked(right, check.length)
+              }} />
           ) : (
             <button type="button" className="card guide-next lesson-check-start" onClick={() => setChecking(true)}>
               <div className="guide-next-content">

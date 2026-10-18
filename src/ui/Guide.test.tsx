@@ -153,6 +153,22 @@ describe('GuideScreen', () => {
     expect(onVerbs).toHaveBeenCalledWith('imperativo')
   })
 
+  it('remembers on this device which questions of a check were answered, to ask the missed ones first next time', async () => {
+    const { host } = await mount('es', { initialLesson: 'imperativo_es', review: true })
+    for (let i = 0; i < 3; i++) {
+      await act(async () => {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: '1', bubbles: true }))
+      })
+      await act(async () => {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+      })
+    }
+    expect(host.querySelector('.lesson-check-done')).not.toBeNull()
+    const log = JSON.parse(localStorage.getItem('diloloji:guide-questions:es') ?? '{}') as Record<string, { n: number }>
+    expect(Object.keys(log)).toHaveLength(3)
+    expect(Object.values(log).every((r) => r.n === 1)).toBe(true)
+  })
+
   it('navigates directly to the next lesson in curriculum order from LessonView', async () => {
     const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
     expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Artikeller ve cinsiyet')
