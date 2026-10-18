@@ -3,7 +3,8 @@ import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../data/instance'
 import type { GuideMarks } from '../engine/guideReview'
-import { checkAwards, loadMarks, markChecked, markFlag, markPutOff, markRead } from './guideProgress'
+import { checkAwards, loadMarks, markChecked, markFlag, markKnown, markPutOff, markRead, unmarkKnown } from './guideProgress'
+import { reviewDay } from '../engine/guideReview'
 
 describe('guideProgress state management', () => {
   beforeEach(async () => {
@@ -138,5 +139,26 @@ describe('checkAwards', () => {
     const again = pass(markRead(learned, 'a', false), 'a')
     const [first] = checkAwards('fr', lessons, markRead(learned, 'a', false), again, 'a', '2026-10-15')
     expect(first.key).toBe('lesson|a')
+  })
+})
+
+describe('markKnown', () => {
+  it('marks lessons read long ago with no review to come, and leaves what is read alone', () => {
+    const marks: GuideMarks = { done: { read: '2026-10-01', learned: '2026-10-01', step: 0 }, flagged: { read: '', off: '2026-09-01', flagAt: '2026-09-02', flag: 'star' } }
+    const next = markKnown(marks, ['done', 'flagged', 'fresh'])
+    expect(next.done).toEqual(marks.done)
+    expect(next.fresh).toEqual({ read: '2000-01-01', step: 3 })
+    // A flag set before is kept.
+    expect(next.flagged).toMatchObject({ read: '2000-01-01', step: 3, flag: 'star' })
+    expect(reviewDay(next.fresh)).toBeNull()
+    expect(next.fresh!.learned).toBeUndefined()
+  })
+
+  it('takes the marking back only for lessons still carrying the placement day', () => {
+    const marks = markKnown({ real: { read: '2026-10-01' } }, ['a', 'real'])
+    const back = unmarkKnown({ ...marks, real: { read: '2026-10-01' } }, ['a', 'real'])
+    expect(back.a).toMatchObject({ read: '' })
+    expect(back.a!.off).toMatch(/^\d{4}-/)
+    expect(back.real).toEqual({ read: '2026-10-01' })
   })
 })

@@ -82,6 +82,7 @@
   --r-sm: 0.625rem;
   --r-md: 0.875rem;
   --r-lg: 1.25rem;
+  --r-xl: 1.75rem;
   --r-full: 999px;
 
   /* Motion: one curve family, three durations. Press 80 ms, hover/colour 150 ms, open/appear 280 ms. */
@@ -1249,6 +1250,8 @@ main:focus { outline: none; }
 /* Shadowing: a quiet inline control under an example sentence. */
 .retell { border-top: 1px solid var(--rule); padding-top: 1.25rem; margin-top: 0.5rem; }
 
+/* Today: one suggestion card at a time (the first that renders); the rest wait for another day. */
+.home-nudges > :nth-child(n + 2) { display: none; }
 /* Habit nudges on the home screen */
 .habit { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
 .habit-icon { font-size: var(--t-2xl); line-height: 1; }

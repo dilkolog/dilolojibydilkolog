@@ -2326,6 +2326,8 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
   line-height: 1.4;
 }
 
+.placement-scores { display: flex; flex-wrap: wrap; gap: 0.375rem 1rem; list-style: none; margin: 0; padding: 0; }
+.placement-scores li { display: inline-flex; align-items: center; gap: 0.375rem; font-weight: 600; }
 .guide-goal {
   display: flex;
   flex-wrap: wrap;
@@ -2943,7 +2945,7 @@ button.context-filled { border: 0; font: inherit; font-weight: 700; color: var(-
 .song-answer { color: var(--ok-deep); line-height: 1.2; text-align: center; }
 .duel-filter { max-width: 24rem; }
 .duel-history { max-width: 28rem; }
-.guide-write > summary { cursor: pointer; }
+.guide-write > summary { cursor: pointer; min-height: 1.75rem; padding-block: 0.25rem; }
 .guide-write textarea { width: 100%; resize: vertical; }
 .guide-flag { color: var(--near, #b7791f); font-size: var(--t-lg); line-height: 1; }
 .guide-tag-hard { color: var(--near, #b7791f); border-color: currentColor; }

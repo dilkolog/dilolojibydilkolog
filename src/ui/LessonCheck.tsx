@@ -11,17 +11,19 @@ import { NEW_ART } from './drawnArt'
  * the end the score, and `onDone` with how many were right (the guide marks the lesson learned, or
  * brings it back sooner).
  */
-export function LessonCheck({ items, language, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; review?: boolean; earned?: number; onDone: (right: number) => void }) {
+export function LessonCheck({ items, language, review, earned = 0, onDone }: { items: CheckItem[]; language: TargetLanguage; review?: boolean; earned?: number; onDone: (right: number, answers: { prompt: string; right: boolean }[]) => void }) {
   const [index, setIndex] = useState(0)
   const [given, setGiven] = useState<number | null>(null)
   const [right, setRight] = useState(0)
   const [done, setDone] = useState(false)
+  const [answers, setAnswers] = useState<{ prompt: string; right: boolean }[]>([])
   const item = items[index]
   const passNeeded = Math.min(PASS_RIGHT, items.length)
 
   const choose = (i: number) => {
     if (given !== null || !item) return
     setGiven(i)
+    setAnswers((a) => [...a, { prompt: item.prompt, right: i === item.answer }])
     if (i === item.answer) {
       setRight((n) => n + 1)
       sfx.correct()
@@ -34,7 +36,7 @@ export function LessonCheck({ items, language, review, earned = 0, onDone }: { i
       return
     }
     setDone(true)
-    onDone(right)
+    onDone(right, answers)
   }
 
   useEffect(() => {

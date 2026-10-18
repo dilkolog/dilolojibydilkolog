@@ -83,6 +83,14 @@ describe('lessonOf utilities', () => {
     }
   })
 
+  it('asks first what the order function puts first', () => {
+    const lesson = lessonFor('fr', 'basics_fr_articles')!
+    // The order function sees the whole shuffled pool; the first questions of what it returns are the ones asked.
+    const ordered = checkFor(lesson, () => 0.3, undefined, (items) => [...items].sort((a, b) => b.prompt.localeCompare(a.prompt)))
+    expect(ordered.length).toBe(CHECK_SIZE)
+    expect(ordered[0]!.prompt.localeCompare(ordered[1]!.prompt)).toBeGreaterThan(0)
+  })
+
   it('lists checkable topics per language', () => {
     const topicsFr = checkableTopics('fr')
     expect(topicsFr.length).toBeGreaterThan(10)

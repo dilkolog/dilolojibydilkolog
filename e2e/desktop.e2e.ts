@@ -2204,6 +2204,24 @@ test('the guide: a lesson has steps that stay in view and lead to its parts', as
   expect(await overflow(page)).toEqual([])
 })
 
+test('the guide: the placement test ends where a level is not passed and points to where to start', async ({ page }) => {
+  await startWithSamples(page)
+  await openScreen(page, 'Rehber')
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+  // "Bilmiyorum" to everything: the first level is not passed, so the test ends after its six questions.
+  for (let i = 0; i < 6; i++) {
+    await page.getByRole('button', { name: 'Bilmiyorum' }).click()
+    await page.getByRole('button', { name: /^(Sonraki|Sonucu gör)$/ }).click()
+  }
+  const result = page.getByLabel('Seviye testi sonucu')
+  await expect(result.getByRole('heading', { name: 'A1 seviyesinden başla' })).toBeVisible()
+  await expect(result.getByRole('button', { name: /Buradan başla/ })).toBeVisible()
+  expect(await overflow(page)).toEqual([])
+  await page.locator('.guide-back-btn').click()
+  await expect(page.locator('.guide-placement-card')).toContainText("Seviye testin: A1'den başla")
+})
+
 test('the guide: a weekly goal brings today\'s lesson to Today and shows the week in the guide', async ({ page }) => {
   await startWithSamples(page)
   await openScreen(page, 'Rehber')
@@ -2233,8 +2251,8 @@ test('the guide: grammar mistake leads to "Konunun dersi" link to guide lesson, 
     await page.locator('.game-stage .options .option').last().click()
   }
 
-  // If first answer was somehow not wrong, advance and answer next wrong (the feedback sheet is up before the link is looked for)
-  await expect(page.locator('.sheet')).toBeVisible()
+  // If first answer was somehow not wrong, advance and answer next wrong (the feedback is up before the link is looked for)
+  await expect(page.locator('.lesson-link, button:has-text("Devam")').first()).toBeVisible()
   if ((await page.locator('.lesson-link', { hasText: 'Konunun dersi' }).count()) === 0) {
     await page.getByRole('button', { name: 'Devam' }).click()
     if (await page.locator('.game-stage input.answer-input').count() > 0) {

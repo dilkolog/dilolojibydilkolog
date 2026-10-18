@@ -98,10 +98,16 @@ export function checkPool(lesson: TopicLesson): CheckItem[] {
  * order each time; a lesson with none of its own takes its topic's choice questions instead. Empty when there are
  * fewer than two (no check, the lesson is just read).
  */
-export function checkFor(lesson: TopicLesson, rng: () => number = Math.random, exercises?: GrammarExercise[]): CheckItem[] {
+export function checkFor(
+  lesson: TopicLesson,
+  rng: () => number = Math.random,
+  exercises?: GrammarExercise[],
+  /** Puts the shuffled questions in the order to ask them (what was missed first, see engine/guideQuestions). */
+  order: (items: CheckItem[]) => CheckItem[] = (items) => items,
+): CheckItem[] {
   const own = checkPool(lesson)
   const pool = own.length ? own : fromExercises(exercises ?? grammarExercises(lesson.language), practiceTopic(lesson), rng)
-  const picked = shuffle(pool, rng)
+  const picked = order(shuffle(pool, rng))
     .slice(0, CHECK_SIZE)
     .map((c) => withShuffledOptions(c, rng))
   return picked.length >= 2 ? picked : []

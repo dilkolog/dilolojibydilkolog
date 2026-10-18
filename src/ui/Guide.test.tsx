@@ -153,6 +153,62 @@ describe('GuideScreen', () => {
     expect(onVerbs).toHaveBeenCalledWith('imperativo')
   })
 
+  it('remembers on this device which questions of a check were answered, to ask the missed ones first next time', async () => {
+    const { host } = await mount('es', { initialLesson: 'imperativo_es', review: true })
+    for (let i = 0; i < 3; i++) {
+      await act(async () => {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: '1', bubbles: true }))
+      })
+      await act(async () => {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+      })
+    }
+    expect(host.querySelector('.lesson-check-done')).not.toBeNull()
+    const log = JSON.parse(localStorage.getItem('diloloji:guide-questions:es') ?? '{}') as Record<string, { n: number }>
+    expect(Object.keys(log)).toHaveLength(3)
+    expect(Object.values(log).every((r) => r.n === 1)).toBe(true)
+  })
+
+  it('the placement test finds a level, marks the easier lessons known on request, and undoes it', async () => {
+    const { host } = await mount('fr')
+    await act(async () => button(host, 'Teste başla')!.click())
+    await act(async () => button(host, 'Teste başla')!.click())
+    // Answer every question right: the options of a question are shuffled, so the right one is found by its text.
+    const { placementFor } = await import('../data/guide/placementData')
+    const questions = placementFor('fr')
+    for (let i = 0; i < questions.length; i++) {
+      const prompt = host.querySelector('.lesson-check-prompt')!.textContent!
+      const q = questions.find((x) => x.prompt === prompt)!
+      const right = [...host.querySelectorAll<HTMLButtonElement>('.option')].find((o) => o.textContent?.endsWith(q.options[q.answer]!))!
+      await act(async () => right.click())
+      await act(async () => button(host, /Sonraki|Sonucu gör/)!.click())
+    }
+    expect(host.querySelector('.lesson-check-done h2')?.textContent).toBe('Her seviyeyi geçtin')
+    expect(JSON.parse(localStorage.getItem('diloloji:guide-placement:fr')!).start).toBe('C1')
+    await act(async () => button(host, /derslerini biliyorum say/)!.click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    const marked = await db.getGuideMarks()
+    expect(Object.values(marked).filter((m) => m.read === '2000-01-01').length).toBeGreaterThan(20)
+    await act(async () => button(host, 'Geri al')!.click())
+    await act(() => new Promise((r) => setTimeout(r, 30)))
+    expect(Object.values(await db.getGuideMarks()).filter((m) => m.read === '2000-01-01')).toHaveLength(0)
+  })
+
+  it('a failed level ends the placement test and starts the learner there', async () => {
+    const { host } = await mount('fr')
+    await act(async () => button(host, 'Teste başla')!.click())
+    await act(async () => button(host, 'Teste başla')!.click())
+    // "Bilmiyorum" to everything: the first level is not passed, so the test ends after its last question.
+    let guard = 0
+    while (!host.querySelector('.lesson-check-done') && guard++ < 40) {
+      await act(async () => button(host, 'Bilmiyorum')!.click())
+      await act(async () => button(host, /Sonraki|Sonucu gör/)!.click())
+    }
+    expect(guard).toBe(6)
+    expect(host.querySelector('.lesson-check-done h2')?.textContent).toBe('A1 seviyesinden başla')
+    expect(host.querySelector('.placement-scores')?.textContent).toContain('0/6')
+  })
+
   it('navigates directly to the next lesson in curriculum order from LessonView', async () => {
     const { host } = await mount('fr', { initialLesson: 'basics_fr_articles' })
     expect(host.querySelector('.guide-lesson h1')?.textContent).toBe('Artikeller ve cinsiyet')
