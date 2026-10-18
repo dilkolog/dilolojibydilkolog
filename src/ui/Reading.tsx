@@ -389,7 +389,7 @@ export function ReadingScreen({
         />
         {loadFailed && <p className="note">Kütüphanen şu an okunamadı; metinlerin silinmedi. Sayfayı yenile; düzelmezse haber ver.</p>}
         <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
-        <DailyNewsHero language={language} vocabulary={vocabulary} states={states} known={known} onOpen={open} />
+        <DailyNewsHero db={db} language={language} vocabulary={vocabulary} states={states} known={known} onOpen={open} />
         {library.length === 0 && (
           <EmptyState art="shelf" title="Kütüphanen boş">
             Bir haber, kitaptan bir bölüm ya da bir videonun alt yazısı: ne kadarını bildiğini görürsün, bilmediklerini kelimelerine eklersin. Aşağıdan ilk metnini ekle veya klasik masallar ve öyküler koleksiyonundan başla.
