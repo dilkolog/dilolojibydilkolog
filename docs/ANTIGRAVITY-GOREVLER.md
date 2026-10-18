@@ -589,8 +589,8 @@ Tüm 204 dersin soru havuzu ≥ 10 oldu, `docs/veri/rehber-ders-listesi.md` gün
 - Her soru ilgili seviyedeki bir rehber dersine doğrudan bağlıdır ve kuralı yoklar.
 - Test paketi: 30 soru adedi, 6/6/7/6/5 dağılımı, seviye sıralaması, müfredat dersi ve seviye eşleşmesi, şık benzersizliği ve geçerliliğini doğrular (5 test yeşil).
 
-### 15.5 E2E ve erişilebilirlik (Claude Code ekranları bitirdikçe)
-Claude Code her ekranı birleştirdiğinde PR açıklamasında Antigravity'ye haber verecek; o zaman `e2e/a11y.e2e.ts` ve `e2e/desktop.e2e.ts`e yeni ekranlar için axe taraması (açık/koyu/sakin tema, telefon ve masaüstü) ve temel akış testleri eklenecek: seviye belirleme testi, Bugün'deki "Bugünün dersi" kartı, ders sayfasında adımlar, terim kartı.
+### 15.5 E2E ve erişilebilirlik (TAMAMLANDI — `e2e/desktop.e2e.ts`, `e2e/phone.e2e.ts`, `e2e/a11y.e2e.ts`)
+Seviye belirleme testi (`PlacementView`), Bugün ekranındaki "Bugünün dersi" (`GuideLessonNudge`) ve "Seviyeni bul" (`GuidePlacementNudge`) kartları, yapışık adımlar (`LessonSteps`: Öğren/Gör/Dene/Sına) ve terim kartı (`LessonTerms`) için masaüstü, telefon (375 px) ve üç temada (açık/koyu/sakin) axe WCAG taramaları eklendi ve tüm testler yeşil geçti.
 
 ### 15.6 Görsel referansları (KOTA)
 Actions kotası dönünce `gh workflow run snapshots.yml --ref main`.

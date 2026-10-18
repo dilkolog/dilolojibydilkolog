@@ -1410,3 +1410,65 @@ test('guide on phone: open basic lesson, pass quiz for learned tag, Today review
   await expect(directCheck.getByRole('heading', { name: 'Hatırlıyor musun?' })).toBeVisible()
   expect(await overflow(page), 'direct check overflow').toEqual([])
 })
+
+test('guide on phone: placement test modal, terms inspection, and sticky steps hide during quiz', async ({ page }) => {
+  await startWithSamples(page)
+
+  // 1. Open Guide and verify placement test card
+  await openScreen(page, 'Rehber')
+  await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
+  const placementCard = page.locator('.guide-placement-card')
+  await expect(placementCard).toBeVisible()
+  expect(await overflow(page), 'guide screen overflow').toEqual([])
+
+  // Open placement test modal
+  await page.getByRole('button', { name: 'Teste başla' }).click()
+  await expect(page.getByLabel('Seviyeni bul')).toBeVisible()
+  expect(await overflow(page), 'placement test intro overflow').toEqual([])
+
+  // Return from placement view
+  await page.locator('.guide-back-btn').click()
+  await expect(page.getByRole('heading', { name: 'Rehber' })).toBeVisible()
+
+  // 2. Open Subjonctif lesson
+  const subjonctifCard = page.locator('.guide-card').filter({ has: page.locator('strong', { hasText: /^Subjonctif$/ }) })
+  await expect(subjonctifCard).toBeVisible()
+  await subjonctifCard.click()
+  await expect(page.locator('.guide-lesson h1')).toHaveText('Subjonctif')
+
+  // Verify sticky lesson steps
+  const steps = page.locator('.lesson-steps')
+  await expect(steps).toBeVisible()
+  expect(await overflow(page), 'lesson page overflow').toEqual([])
+
+  // 3. Inspect a grammar term if present
+  const termBtn = page.locator('.guide-term').first()
+  if (await termBtn.isVisible()) {
+    await termBtn.click()
+    const termPop = page.locator('.term-pop')
+    await expect(termPop).toBeVisible()
+    expect(await overflow(page), 'term popover overflow').toEqual([])
+    await page.locator('.term-pop-close, button:has-text("Kapat")').first().click()
+    await expect(termPop).toHaveCount(0)
+  }
+
+  // 4. Start mini check: sticky steps must be hidden during quiz
+  const startBtn = page.locator('.lesson-check-start')
+  await expect(startBtn).toBeVisible()
+  await startBtn.click()
+
+  const check = page.locator('.lesson-check')
+  await expect(check.getByRole('heading', { name: 'Kendini dene' })).toBeVisible()
+
+  // Verify steps bar is hidden during check so it does not cover options
+  await expect(steps).not.toBeVisible()
+  expect(await overflow(page), 'lesson quiz on phone overflow').toEqual([])
+
+  // Cancel check to return to lesson
+  const cancelBtn = check.getByRole('button', { name: /^(Vazgeç|Çıkış|✕)$/ }).first()
+  if (await cancelBtn.isVisible()) {
+    await cancelBtn.click()
+    await expect(steps).toBeVisible()
+  }
+})
+

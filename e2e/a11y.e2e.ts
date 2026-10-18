@@ -1062,6 +1062,12 @@ test('guide placement test screens (intro, question, feedback, result) and Today
     }
   }
 
+  // 0. Today screen: scan placement nudge if visible
+  const placementNudge = page.locator('.habit-nudge').filter({ hasText: 'Seviyeni bul' })
+  if (await placementNudge.isVisible()) {
+    await scanAllThemes('guide-placement-today-nudge')
+  }
+
   await openScreen(page, 'Rehber')
   await expect(page.locator('.guide-placement-card')).toBeVisible()
   await page.getByRole('button', { name: 'Teste başla' }).click()
