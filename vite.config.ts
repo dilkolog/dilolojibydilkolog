@@ -8,7 +8,7 @@ export default defineConfig({
   // bundle as base64 (larger, not cacheable on its own) even when its screen is never opened.
   build: { assetsInlineLimit: (file) => (file.endsWith('.webp') ? false : undefined) },
   // Server functions (api/) run on Vercel; in local development they are reached on the live site.
-  server: { proxy: { '/api': { target: 'https://kelime-koc.vercel.app', changeOrigin: true } } },
+  server: { proxy: { '/api': { target: 'https://diloloji.com', changeOrigin: true } } },
   plugins: [
     react(),
     // Precaches the built app (JS, CSS, fonts, icons) so it opens and works without internet.

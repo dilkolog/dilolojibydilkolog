@@ -116,7 +116,7 @@ export function ProgressCardButton({ settings, game }: { settings: Settings; gam
     choose({ stats: on ? options.stats.filter((x) => x !== id) : CARD_STATS.map((s) => s.id).filter((x) => x === id || options.stats.includes(x)) })
   }
 
-  const file = () => new File([png!.blob], 'kelime-kocu-ilerleme.png', { type: 'image/png' })
+  const file = () => new File([png!.blob], 'diloloji-ilerleme.png', { type: 'image/png' })
   const canShare = typeof navigator !== 'undefined' && !!navigator.canShare && png && navigator.canShare({ files: [file()] })
 
   return (
@@ -143,7 +143,7 @@ export function ProgressCardButton({ settings, game }: { settings: Settings; gam
       </div>
       {png ? <img className="progress-card-img" src={png.url} alt="İlerleme kartı" /> : <div className="progress-card-img progress-card-wait" aria-busy="true">Hazırlanıyor…</div>}
       <div className="row">
-        <a className="btn" href={png?.url} download="kelime-kocu-ilerleme.png" aria-disabled={!png}>
+        <a className="btn" href={png?.url} download="diloloji-ilerleme.png" aria-disabled={!png}>
           İndir
         </a>
         {canShare && (

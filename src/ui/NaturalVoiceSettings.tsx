@@ -96,7 +96,7 @@ export function NaturalVoiceSettings({ language }: { language: TargetLanguage })
         </form>
       )}
       {!key && (
-        <Help text='Anahtar bu cihazda kalır, yedeğe yazılmaz. Nasıl alınır: console.cloud.google.com → yeni proje → "Cloud Text-to-Speech API"yi etkinleştir → Kimlik bilgileri → API anahtarı oluştur. Anahtarı yalnızca bu API ile ve kelime-koc.vercel.app adresiyle sınırlaman önerilir.' />
+        <Help text='Anahtar bu cihazda kalır, yedeğe yazılmaz. Nasıl alınır: console.cloud.google.com → yeni proje → "Cloud Text-to-Speech API"yi etkinleştir → Kimlik bilgileri → API anahtarı oluştur. Anahtarı yalnızca bu API ile ve diloloji.com adresiyle sınırlaman önerilir.' />
       )}
       {status && (
         <p className={status.ok ? 'notice' : 'error'} role="status">

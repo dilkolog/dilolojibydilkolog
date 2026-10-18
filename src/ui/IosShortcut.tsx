@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 /**
- * iPhone has no "Share → Kelime Koçu" for web apps; a Shortcut fills the gap. Step-by-step
+ * iPhone has no "Share → Diloloji" for web apps; a Shortcut fills the gap. Step-by-step
  * instructions (action names in Turkish and English, as iOS shows either) and the address to
  * paste. Kept as instructions: a ready-made shortcut file can't be checked here on a phone.
  */

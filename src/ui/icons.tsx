@@ -1,5 +1,5 @@
 /**
- * Kelime Koçu's own icon set: a 24px grid, 1.8px rounded strokes over a soft fill of the same
+ * Diloloji's own icon set: a 24px grid, 1.8px rounded strokes over a soft fill of the same
  * colour (the ".icon-duo" layer), so every icon has one shape and one depth. Drawn for this app,
  * in one hand, instead of mixing a stock set with emoji.
  *

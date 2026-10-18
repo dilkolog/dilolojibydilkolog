@@ -1,13 +1,13 @@
 // A short check of the deployed site against the real services (Vercel Blob, Resend), which the
 // unit tests only imitate. Run by the owner from their own machine: `node scripts/smoke-live.mjs`.
 //
-//   BASE_URL     the site (default https://kelime-koc.vercel.app)
+//   BASE_URL     the site (default https://diloloji.com)
 //   SMOKE_USER / SMOKE_PASS   a DEDICATED test account (never your own): listed in SYNC_ALLOWED
 //                or approved by you. Without them only the open checks run.
 //   ADMIN_TOKEN  optional: after the run the test account's files are deleted (the "release" action).
 //
 // The sync checks write a few small files under the test account and leave nothing else behind.
-const BASE = (process.env.BASE_URL ?? 'https://kelime-koc.vercel.app').replace(/\/$/, '')
+const BASE = (process.env.BASE_URL ?? 'https://diloloji.com').replace(/\/$/, '')
 const APP = { origin: BASE }
 let failed = 0
 const check = (name, ok, detail = '') => {

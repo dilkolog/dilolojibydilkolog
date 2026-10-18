@@ -128,15 +128,17 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
               <p className="small muted">{modern ? 'Verilerin hesabına bağlı saklanır; şifreni unutursan e-postanla yenilersin.' : 'Veriler cihazında şifrenle şifrelenir; şifren hiçbir yere gönderilmez.'}</p>
             </div>
           </li>
-          <li>
-            <span className="perk-icon" aria-hidden>
-              <CheckIcon size={18} />
-            </span>
-            <div>
-              <strong>Hesap şart değil</strong>
-              <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; her şey bu cihazda durur. Eşitleme, çeviri ve yapay zekâ onaylı hesaplara açık.</p>
-            </div>
-          </li>
+          {!modern && (
+            <li>
+              <span className="perk-icon" aria-hidden>
+                <CheckIcon size={18} />
+              </span>
+              <div>
+                <strong>Hesap şart değil</strong>
+                <p className="small muted">Hesapsız da kelime ekleyip çalışabilirsin; her şey bu cihazda durur. Eşitleme, çeviri ve yapay zekâ onaylı hesaplara açık.</p>
+              </div>
+            </li>
+          )}
         </ul>
         {hasCode && <p className="small muted">Şu an eşitleme koduyla eşitliyorsun; hesaba geçince bu cihazdaki ilerleme hesaba taşınır.</p>}
         {!modern && (

@@ -6,14 +6,14 @@ describe('error reports carry nothing personal', () => {
   it('cuts quoted text, e-mail addresses, long numbers and URL origins and queries from the message', () => {
     expect(scrubMessage(`Cannot read properties of undefined (reading 'maison')`)).toBe(`Cannot read properties of undefined (reading '…')`)
     expect(scrubMessage('No word "la maison bleue" for ali@example.com')).toBe('No word "…" for …@…')
-    expect(scrubMessage('Failed https://kelime-koc.vercel.app/api/sync?id=abc#x code 12345678')).toBe('Failed /api/sync code …')
+    expect(scrubMessage('Failed https://diloloji.com/api/sync?id=abc#x code 12345678')).toBe('Failed /api/sync code …')
     expect(scrubMessage('x'.repeat(500))).toHaveLength(200)
   })
 
   it('keeps only function names and file positions from Chrome and Firefox/Safari stacks', () => {
-    const chrome = `TypeError: boom 'secret'\n    at render (https://kelime-koc.vercel.app/assets/index-abc.js?v=1:12:34)\n    at https://kelime-koc.vercel.app/assets/vendor.js:1:2`
+    const chrome = `TypeError: boom 'secret'\n    at render (https://diloloji.com/assets/index-abc.js?v=1:12:34)\n    at https://diloloji.com/assets/vendor.js:1:2`
     expect(scrubStack(chrome)).toEqual(['render /assets/index-abc.js:12:34', '/assets/vendor.js:1:2'])
-    const firefox = `render@https://kelime-koc.vercel.app/assets/index-abc.js:12:34\n@https://kelime-koc.vercel.app/assets/vendor.js:1:2`
+    const firefox = `render@https://diloloji.com/assets/index-abc.js:12:34\n@https://diloloji.com/assets/vendor.js:1:2`
     expect(scrubStack(firefox)).toEqual(['render /assets/index-abc.js:12:34', '/assets/vendor.js:1:2'])
     expect(scrubStack(undefined)).toEqual([])
   })

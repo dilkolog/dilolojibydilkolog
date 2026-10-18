@@ -34,6 +34,7 @@ test-results
 playwright-report
 
 # Backups: personal data, never committed
+diloloji-yedek-*.json
 kelime-kocu-yedek-*.json
 *yedek*.json
 

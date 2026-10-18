@@ -14,7 +14,7 @@ export function fromApp(request: Request): boolean {
   if (!from) return false
   try {
     const host = new URL(from).hostname
-    return host === 'nigalingo.online' || host === 'www.nigalingo.online' || host === 'kelime-koc.vercel.app' || host === 'diloloji.vercel.app' || /^(?:kelime-koc|diloloji)-[a-z0-9-]+\.vercel\.app$/.test(host) || extraHosts().includes(host) || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.localhost')
+    return host === 'diloloji.com' || host === 'www.diloloji.com' || host === 'diloloji.vercel.app' || /^diloloji-[a-z0-9-]+\.vercel\.app$/.test(host) || extraHosts().includes(host) || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.localhost')
   } catch {
     return false
   }

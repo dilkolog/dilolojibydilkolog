@@ -47,7 +47,7 @@ export async function downloadBackup(db: KelimeDB, now = new Date()) {
   const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }))
   const a = document.createElement('a')
   a.href = url
-  a.download = `kelime-kocu-yedek-${now.toISOString().slice(0, 10)}.json`
+  a.download = `diloloji-yedek-${now.toISOString().slice(0, 10)}.json`
   a.click()
   URL.revokeObjectURL(url)
   write(LAST_KEY, now.getTime())

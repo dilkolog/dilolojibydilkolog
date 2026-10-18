@@ -57,7 +57,7 @@ export async function GET(request: Request): Promise<Response> {
   const mailOn = mailConfigured()
   // Without either key every send would fail the same way: said once, not a 500 after the first call.
   if (!pushOn && !mailOn) return new Response('VAPID_PRIVATE_KEY and RESEND_API_KEY are not set', { status: 503 })
-  if (pushOn) webpush.setVapidDetails('https://kelime-koc.vercel.app', VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY!)
+  if (pushOn) webpush.setVapidDetails('https://diloloji.com', VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY!)
   const now = Date.now()
   const h = new URL(request.url).searchParams.get('h')
   const utcHour = h && /^\d{1,2}$/.test(h) && Number(h) <= 23 ? Number(h) : new Date(now).getUTCHours()

@@ -44,6 +44,8 @@ import { CommandPalette, IncomingSet, Monki, prefetchScreens } from './lazyScree
 import { useScreenHistory } from './ui/useScreenHistory'
 import { useLanguageData } from './ui/useLanguageData'
 import { useAppSettings } from './ui/useAppSettings'
+import { AuthScreen } from './lazyScreens'
+import { useSignedIn } from './ui/useSignedIn'
 import { ALL_SCREENS, GROUPS, NAV, RESTORABLE, SCREEN_KEY, WIDE_SCREENS, daySeed, placeOf, restoreScreen, type NavScreen, type Screen, type ScreenName } from './appNav'
 import { Onboarding } from './ui/Onboarding'
 
@@ -111,9 +113,10 @@ export default function App() {
       return !r
     })
   const online = useOnline()
-  // A word sent from the "add to Kelime Koçu" bookmarklet on another site.
+  // A word sent from the "add to Diloloji" bookmarklet on another site.
   const [incoming, setIncoming] = useState<IncomingWord | null>(() => readIncoming())
   const { settings, setSettings, updateSettings, access, apiKey, ai } = useAppSettings()
+  const signedIn = useSignedIn()
   const language = settings?.activeLanguage
   const speechOn = settings ? settings.speechExercises && canListen() : false
   const flags = useMemo(() => engineFlags(settings?.exercisePrefs, settings?.typedBlanks), [settings?.exercisePrefs, settings?.typedBlanks])
@@ -434,7 +437,17 @@ export default function App() {
   const warmup = useWarmup(settings?.activeLanguage ?? 'en', screen.name)
   const hubTabsRef = useTabIndicator(screen.name)
   const verbOfDay = useVerbOfDay(settings?.activeLanguage ?? 'en', data?.vocabulary ?? NO_WORDS, screen.name)
-  if (settings === undefined) return null
+  if (settings === undefined || signedIn === undefined) return null
+  // An account is required: until there is one, the app is the sign-in page.
+  if (!signedIn) {
+    return (
+      <div className="app">
+        <Suspense fallback={null}>
+          <AuthScreen initialMode={screen.name === 'account' ? screen.mode : 'login'} onDone={() => setScreen({ name: 'home' })} />
+        </Suspense>
+      </div>
+    )
+  }
   if (settings === null) {
     return (
       <div className="app">

@@ -5,13 +5,13 @@
  */
 import { extraHosts } from './_origin.js'
 
-export const APP_URL = (process.env.APP_URL?.trim() || 'https://kelime-koc.vercel.app').replace(/\/$/, '')
+export const APP_URL = (process.env.APP_URL?.trim() || 'https://diloloji.com').replace(/\/$/, '')
 
 /**
  * The sites the app is served from. Each keeps its own data in the browser, so a link in a mail must
  * open the site the learner registered from: the other one would show an empty app.
  */
-const SITE_HOSTS = ['nigalingo.online', 'www.nigalingo.online', 'kelime-koc.vercel.app']
+const SITE_HOSTS = ['diloloji.com', 'www.diloloji.com']
 
 /** The origin of a page address (or an Origin/Referer header) when it is one of the app's sites, else undefined. */
 export function siteFrom(address: string | null | undefined): string | undefined {

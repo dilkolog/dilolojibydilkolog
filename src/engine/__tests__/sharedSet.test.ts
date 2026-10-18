@@ -26,7 +26,7 @@ describe('mergeShared', () => {
 describe('share links', () => {
   it('make and read back a link; anything else is not one', () => {
     const id = 'ab'.repeat(16)
-    expect(shareIdOf(shareLink('https://nigalingo.online/', id))).toBe(id)
+    expect(shareIdOf(shareLink('https://diloloji.com/', id))).toBe(id)
     expect(shareIdOf(`/?set=${id}&x=1`)).toBe(id)
     expect(shareIdOf('/?set=short')).toBeNull()
     expect(shareIdOf('/')).toBeNull()
