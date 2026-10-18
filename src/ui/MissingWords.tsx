@@ -7,12 +7,14 @@ import { wordKeys } from '../data/wordInput'
 import { loadPack } from '../data/wordpack'
 import type { Pack } from '../data/wordpackBuild'
 import { addKeyList, keyEntries, packItem } from './keyWordsList'
-import { placeNew } from './listMemory'
+import { defaultPlacement, placeNew } from './listMemory'
+import { parsePlacement } from './listOptions'
 import { showToast } from './toastFeed'
 import { WordForm } from './Words'
 import { wordsAt } from '../engine/cefrLevels'
 import type { CefrLevel } from '../engine/types'
 import { useCefr } from './useCefr'
+import { TagIcon } from './icons'
 
 const RANGES = [1000, 3000, 10000] as const
 /** Levels offered when the language has graded word levels (C1 and up are thin and specialised). */
@@ -27,6 +29,7 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
   const [open, setOpen] = useState(false)
   const [list, setList] = useState<string[] | null>(null)
   const [known, setKnown] = useState<Set<string>>(new Set())
+  const [targetListName, setTargetListName] = useState<string>('')
   // The first so many frequent words, or a level's words (French, Spanish).
   const [range, setRange] = useState<(typeof RANGES)[number] | CefrLevel>(3000)
   const cefr = useCefr(language)
@@ -37,9 +40,26 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
 
   useEffect(() => {
     if (!open) return
-    Promise.all([frequencyWords(language), db.getKnownWords(language)]).then(([l, k]) => {
+    Promise.all([frequencyWords(language), db.getKnownWords(language), db.getLists(language), db.getSettings()]).then(([l, k, allLists, s]) => {
       setList(l)
       setKnown(k)
+      const placement = defaultPlacement(language, allLists, s?.focusList?.[language])
+      if (!placement || placement === '__none') {
+        setTargetListName('Listesiz')
+        return
+      }
+      const { listId, levelId } = parsePlacement(placement)
+      const list = allLists.find((it) => it.id === listId)
+      if (list) {
+        if (levelId) {
+          const lv = list.levels?.find((lvl) => lvl.id === levelId)
+          setTargetListName(lv ? `${list.name} › ${lv.name}` : list.name)
+        } else {
+          setTargetListName(list.name)
+        }
+      } else {
+        setTargetListName('Listesiz')
+      }
     })
     void loadPack(language).then(setPack)
   }, [open, language, db])
@@ -96,6 +116,11 @@ export function MissingWords({ db, language, vocabulary, onAdded }: { db: Kelime
             Sıklık listesinde üst sıralarda olup ne listende ne de bildiğin kelimeler arasında olanlar. Sık kelimeler en çok işe yarar; bildiklerini
             işaretle, bilmediklerini ekle. Okuma modunda ve kelime testinde bildiğin kelimeler buradan otomatik düşer.
           </p>
+          {targetListName && (
+            <p className="small muted">
+              <TagIcon size={12} className="inline-icon" /> Tek dokunuşla eklenen kelimeler <strong>{targetListName}</strong> listesine gider.
+            </p>
+          )}
           <div className="choice-row">
             {RANGES.map((r) => (
               <button key={r} className="chip chip-sm" aria-pressed={range === r} onClick={() => (setRange(r), setShown(PAGE))}>

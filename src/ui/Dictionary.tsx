@@ -202,6 +202,7 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
   const exactWord = result.exact?.word
   const own = typed ? ownEntry(vocabulary, exactWord ?? typed, language) : undefined
   const saved = useMemo(() => findAdded(notes, typed, language), [notes, typed, language])
+  const targetListName = currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'
   const savedExact = result.exact ? undefined : saved.find((e) => e.exact)
   const savedOthers = saved.filter((e) => e !== savedExact)
   const savedCard = savedExact ? (
@@ -212,6 +213,7 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
       meanings={savedExact.t}
       from={notes.added?.[savedExact.word]?.from}
       own={own}
+      targetListName={targetListName}
       onOpenWord={onOpenWord}
       onAdd={onAdd}
       onRemove={() => updateNotes((n) => removeEntry(n, savedExact.word))}
@@ -359,7 +361,7 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
         </div>
       </section>
 
-      {!typed && today && <DayWord language={language} hit={today} onOpen={() => pick(today.word)} onAdd={onAdd} />}
+      {!typed && today && <DayWord language={language} hit={today} targetListName={targetListName} onOpen={() => pick(today.word)} onAdd={onAdd} />}
 
       {!typed && Object.keys(notes.added ?? {}).length > 0 && (
         <SavedList
@@ -404,7 +406,7 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
               rank={result.exact.rank}
               own={own}
               fix={notes.fixes[result.exact.word]?.t}
-              targetListName={currentPlacementInfo.listId ? currentPlacementInfo.label : 'Listesiz'}
+              targetListName={targetListName}
               onFix={(meanings) => updateNotes((n) => setFix(n, result.exact!.word, meanings, new Date().toISOString()))}
               onOpenWord={onOpenWord}
               onAdd={(written, meaning, extra) => {
@@ -421,6 +423,7 @@ export function DictionaryScreen({ language, vocabulary, lists: propLists, initi
               language={language}
               word={typed}
               own={own}
+              targetListName={targetListName}
               onOpenWord={onOpenWord}
               onAdd={onAdd}
               onSave={save}

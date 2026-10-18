@@ -6,13 +6,14 @@ import { parseMeanings } from '../engine/dictionaryNotes'
 import { normalize } from '../engine/answerCheck'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { useAi } from './aiContext'
-import { BookIcon, CheckIcon, PlusIcon, WandIcon } from './icons'
+import { BookIcon, CheckIcon, PlusIcon, TagIcon, WandIcon } from './icons'
 import { OtherLanguageVerb } from './DictionaryCard'
 
 export function NotFound({
   language,
   word,
   own,
+  targetListName,
   onOpenWord,
   onAdd,
   onSave,
@@ -23,6 +24,8 @@ export function NotFound({
   language: TargetLanguage
   word: string
   own?: VocabularyEntry
+  /** Name of the list the word will go to when added. */
+  targetListName?: string
   onOpenWord: (id: string) => void
   onAdd: (word: string, meaning: string) => void
   /** Keeps the word in the dictionary for good (not in the study list). */
@@ -100,13 +103,21 @@ export function NotFound({
           </p>
           <p className="small muted">Tek kelimede çeviri yanılabilir. “Sözlüğe kaydet” kelimeyi sözlükte hep bulunsun diye saklar (çalışma listene girmez); “Kelimelerime ekle” onu çalışma kartı yapar. Yanlışsa anlamı düzeltip kaydet.</p>
           <input type="text" className="input" placeholder={deepl} value={customMeaning} onChange={(e) => setCustomMeaning(e.target.value)} aria-label="Türkçe anlamı" />
-          <div className="row gap-xs">
+          <div className="row gap-xs items-center">
             <button type="button" className="btn btn-sm" onClick={() => onSave(word, parseMeanings(customMeaning.trim() || deepl), customMeaning.trim() ? 'own' : 'deepl')}>
               <BookIcon size={15} /> Sözlüğe kaydet
             </button>
-            <button type="button" className="btn btn-sm btn-quiet" onClick={() => onAdd(word, (customMeaning.trim() || deepl).trim())}>
-              <PlusIcon size={15} /> Kelimelerime ekle
-            </button>
+            <div className="word-hero-add-wrap">
+              <button type="button" className="btn btn-sm btn-quiet" onClick={() => onAdd(word, (customMeaning.trim() || deepl).trim())}>
+                <PlusIcon size={15} /> Kelimelerime ekle
+              </button>
+              {targetListName && (
+                <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                  <TagIcon size={12} className="inline-icon" />
+                  {targetListName}
+                </span>
+              )}
+            </div>
           </div>
         </>
       ) : ai ? (
@@ -114,10 +125,16 @@ export function NotFound({
           <p>
             <strong lang={language}>{ai.lemma}</strong>: {ai.meanings.join(', ')} <span className="small muted">(YZ)</span>
           </p>
-          <div>
+          <div className="word-hero-add-wrap">
             <button className="btn btn-sm" onClick={() => onAdd(ai.lemma, ai.meanings.slice(0, 2).join(', '))}>
               <PlusIcon size={15} /> Kelimelerime ekle
             </button>
+            {targetListName && (
+              <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                <TagIcon size={12} className="inline-icon" />
+                {targetListName}
+              </span>
+            )}
           </div>
         </>
       ) : (
@@ -126,7 +143,7 @@ export function NotFound({
             “<span lang={language}>{word}</span>” sözlük paketinde veya kelimelerinde henüz yok{hasSimilar ? ' (benzerleri aşağıda)' : ''}. Anlamını biliyorsan yazıp kaydedebilirsin:
           </p>
           <form
-            className="row gap-xs"
+            className="row gap-xs items-center"
             onSubmit={(e) => {
               e.preventDefault()
               const m = customMeaning.trim()
@@ -144,9 +161,17 @@ export function NotFound({
               onChange={(e) => setCustomMeaning(e.target.value)}
               aria-label="Türkçe anlamı"
             />
-            <button type="submit" className="btn btn-sm" disabled={!customMeaning.trim()}>
-              <PlusIcon size={15} /> Kelimelerime ekle
-            </button>
+            <div className="word-hero-add-wrap">
+              <button type="submit" className="btn btn-sm" disabled={!customMeaning.trim()}>
+                <PlusIcon size={15} /> Kelimelerime ekle
+              </button>
+              {targetListName && (
+                <span className="word-hero-target-tag" title={`Bu kelime “${targetListName}” listesine eklenecek`}>
+                  <TagIcon size={12} className="inline-icon" />
+                  {targetListName}
+                </span>
+              )}
+            </div>
             <button
               type="button"
               className="btn btn-sm btn-quiet"

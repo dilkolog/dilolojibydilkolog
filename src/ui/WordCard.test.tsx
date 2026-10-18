@@ -435,4 +435,38 @@ describe('WordCard', () => {
     })
     expect(onLookUp).toHaveBeenCalledWith('mangent')
   })
+
+  it('renders targetListName badge when targetListName is provided', () => {
+    act(() => {
+      root.render(
+        <WordCard
+          selected={baseSelected}
+          entry={undefined}
+          forms={[]}
+          verbEntry={() => undefined}
+          language="fr"
+          sheetBox={null}
+          sheet={mockSheet}
+          ignored={new Set()}
+          skipped={new Set()}
+          targetListName="Seyahat › Havalimanı"
+          canListenFrom={false}
+          onClose={() => {}}
+          onAdd={() => {}}
+          onKnown={() => {}}
+          onIgnore={() => {}}
+          onUnknown={() => {}}
+          onSkip={() => {}}
+          onKeepSentence={() => {}}
+          onListenFrom={() => {}}
+          onOpen={() => {}}
+        />,
+      )
+    })
+
+    const tag = rootEl.querySelector('.word-hero-target-tag')
+    expect(tag).not.toBeNull()
+    expect(tag?.textContent).toContain('Seyahat › Havalimanı')
+    expect(tag?.getAttribute('title')).toContain('Seyahat › Havalimanı')
+  })
 })
