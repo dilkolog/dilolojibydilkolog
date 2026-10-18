@@ -220,6 +220,55 @@ describe('AppSidebar and TabBar', () => {
       })
       expect(goSettings).toHaveBeenCalled()
     })
+
+    it('renders profile footer with integrated notice bell and isolated click events', () => {
+      const goProfile = vi.fn()
+      const go = vi.fn((screen: { name: string }) => (screen.name === 'profile' ? goProfile : vi.fn()))
+
+      act(() => {
+        root.render(
+          <Sidebar
+            settings={defaultSettings}
+            game={null}
+            rail={false}
+            onToggleRail={() => {}}
+            dueByLanguage={{}}
+            onLanguage={() => {}}
+            onOpenPalette={() => {}}
+            navRef={{ current: null }}
+            navMark={null}
+            navBadge={{}}
+            badgeLabel={{}}
+            current={() => false}
+            goPlace={() => vi.fn()}
+            go={go}
+            inSettings={false}
+            onProfilePage={false}
+          />,
+        )
+      })
+
+      const footCard = rootEl.querySelector<HTMLElement>('.sidebar-foot')
+      expect(footCard).not.toBeNull()
+      expect(footCard?.querySelector('.sidebar-foot-btn')).not.toBeNull()
+      expect(footCard?.querySelector('.sidebar-who')?.textContent).toContain('Ali')
+
+      // Integrated notice bell inside profile footer
+      const footBell = footCard?.querySelector('.sidebar-foot-bell button.notice-bell')
+      expect(footBell).not.toBeNull()
+
+      // Clicking notice bell stops propagation and does not trigger goProfile
+      act(() => {
+        footBell?.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      })
+      expect(goProfile).not.toHaveBeenCalled()
+
+      // Clicking the profile card triggers goProfile
+      act(() => {
+        footCard?.click()
+      })
+      expect(goProfile).toHaveBeenCalled()
+    })
   })
 
   describe('TabBar', () => {
