@@ -138,3 +138,18 @@ Rehber'de yer almayan ve CEFR programlarında mutlaka bulunan temel başlıklar:
    - `articles_en` A1 seviyesine taşınmalı.
 3. **Aşama 3 (Eksik Derslerin Eklenmesi):**
    - Her üç dil için de A1 seviyesine "Sayılar, Saat ve Takvim" temel dersleri eklenmeli.
+
+
+---
+
+## 8. Uygulama Durumu (Claude Code, 2026-10-18)
+
+**Uygulananlar**
+- **Önkoşullar (bölüm 4):** `basics_en_causative` → + `basics_en_causatives_advanced`; `basics_en_inversion_conditionals` → + `basics_en_third_conditional`, `inversion`; `inversion` → + `basics_en_emphasis`; `basics_fr_prepositions_geographie` → + `basics_fr_articles` (`prereqs.ts`; testler döngü/dil/seviye kuralını denetler).
+- **Seviye (bölüm 3):** `basics_es_reflexivos` A2 → A1. FR iyelik (`possessifs`) ve soru (`questions`) ile ES `posesivos` ve `preguntas` dersleri zaten A1'di.
+
+**Bilerek yapılmayanlar (gerekçeli)**
+- `basics_fr_demonstratifs`: raporda "ce, cet, cette" (sıfat) sanılmış, ama dersin kendisi *işaret zamirleri* (celui, celle-ci, ceci, cela) ve B2 doğru. Sıfatlar ayrı bir A1 dersi olarak eksik (bölüm 5'e eklenebilir).
+- `articles_en` A2 → A1: seviye testi verisinde (`placement/en.json`) bu derse bağlı bir A2 sorusu var; seviyeyi değiştirmek 6/6/7/6/5 dağılımını bozar. Antigravity soruyu A1 bir derse bağlarsa (ya da bir A1 sorusu A2'ye) birlikte yapılmalı.
+- `basics_en_cleft_variations` B2 → C1 ve çakışan derslerin birleştirilmesi (`cleft`/`subjunctive`/`lieux` ikilileri): ders anahtarları kullanıcıların işaretlerinde ve soru bankalarında geçiyor; birleştirmek bu kayıtları öksüz bırakır. Önce hangi dersin kalacağı kararlaştırılmalı, işaretler için bir yönlendirme (eski anahtar → yeni anahtar) yazılmalı.
+- Eksik derslerin eklenmesi (bölüm 5, Aşama 3): içerik yazımı, ayrı bir turda (Antigravity taslak, Claude Code bağlantı ve test).
