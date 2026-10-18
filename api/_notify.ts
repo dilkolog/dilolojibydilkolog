@@ -3,7 +3,7 @@ import type { InboxItem } from './_friends.js'
 import { reminderStore } from './_reminders.js'
 
 /** The public half of the app's VAPID key pair (the browsers subscribe with it; the private half is VAPID_PRIVATE_KEY). */
-export const VAPID_PUBLIC_KEY = 'BB1ttPY6-CMNk_Zl7lmm6aJuyxi0cIHr6TUagJ0u_Fpjt3YdaK6vM6c2koor8osB4pIXbPbv57X7TUBmJOhuCIg'
+export const VAPID_PUBLIC_KEY = 'BE8yoqcmq54W_kmyHSDscvi2h2oyikdjd4fqkm0wLz7vlo-kqk7I9t2sxGZiPA2nNvYOM0NCfcB9LoVRp0cYr1c'
 
 /** How long one send may take: an address that never answers must not hold a request. */
 const SEND_TIMEOUT_MS = 5000

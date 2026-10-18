@@ -7,7 +7,7 @@ import { getCredential } from './syncRunner'
  * on days nothing was studied.
  * Needs a service worker; on iPhone the app must be added to the Home Screen first.
  */
-const VAPID_PUBLIC_KEY = 'BB1ttPY6-CMNk_Zl7lmm6aJuyxi0cIHr6TUagJ0u_Fpjt3YdaK6vM6c2koor8osB4pIXbPbv57X7TUBmJOhuCIg'
+const VAPID_PUBLIC_KEY = 'BE8yoqcmq54W_kmyHSDscvi2h2oyikdjd4fqkm0wLz7vlo-kqk7I9t2sxGZiPA2nNvYOM0NCfcB9LoVRp0cYr1c'
 
 export const pushSupported = () => typeof window !== 'undefined' && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window
 
