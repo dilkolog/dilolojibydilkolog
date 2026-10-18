@@ -37,6 +37,8 @@ import { canShowOwn, useOwnExamples } from './useOwnExamples'
 import { LessonTry } from './LessonTry'
 import { questionKey, rankByNeed, recordAnswers } from '../engine/guideQuestions'
 import { loadQuestionLog, saveQuestionLog } from './guideQuestionLog'
+import { ReportIssue } from './ReportIssue'
+import { GuideReportsCard } from './GuideReportsCard'
 import { PlacementView } from './PlacementView'
 import { placementFor } from '../data/guide/placementData'
 import { loadPlacement, savePlacement } from './guidePlacementStore'
@@ -73,6 +75,7 @@ export function GuideScreen({
   initialLesson,
   initialTense,
   review,
+  placement: openPlacement,
   goal,
   onGoal,
   onPractice,
@@ -85,6 +88,8 @@ export function GuideScreen({
   initialTense?: string
   /** Opened for the lesson's review: its check starts at once. */
   review?: boolean
+  /** Opened for the placement test: it starts at once. */
+  placement?: boolean
   /** Lessons to read a week (absent: no goal) and the way to change it. */
   goal?: number
   onGoal?: (lessons: number) => void
@@ -99,7 +104,7 @@ export function GuideScreen({
   const [open, setOpen] = useState<TopicLesson | null>(() => (initialLesson ? (lessonFor(language, initialLesson) ?? null) : null))
   const [tense, setTense] = useState<Tense | null>(() => (initialTense && language !== 'en' && TENSE_LESSON[initialTense as Tense] ? (initialTense as Tense) : null))
   const [levelQuiz, setLevelQuiz] = useState<GuideLevel | null>(null)
-  const [placing, setPlacing] = useState(false)
+  const [placing, setPlacing] = useState(!!openPlacement)
   // The lessons the placement test just marked known (for "Geri al").
   const markedKnown = useRef<string[]>([])
   const [placement, setPlacement] = useState(() => loadPlacement(language))
@@ -395,6 +400,7 @@ export function GuideScreen({
           {!q && !level && (
             <GuideCertificates language={language} languageName={LANGUAGE_NAME[language]} certs={certs} names={LEVEL_NAME} titlesOf={(lv) => lessons.filter((l) => l.level === lv).map(titleOf)} />
           )}
+          {!q && !level && <GuideReportsCard />}
           {!q && !level && placementFor(language).length > 0 && (doneCount === 0 || placement) && (
             <div className="card guide-placement-card row justify-between items-center gap-2">
               <div className="stack gap-1">
@@ -1027,7 +1033,7 @@ function LessonView({
       {check.length > 0 && (
         <div id="lesson-check" ref={checkRef}>
           {checking ? (
-            <LessonCheck items={check} language={language} review={review} earned={earned} onDone={(right, answers) => {
+            <LessonCheck items={check} language={language} topic={lesson.topic} review={review} earned={earned} onDone={(right, answers) => {
                 saveQuestionLog(language, recordAnswers(loadQuestionLog(language), answers.map((a) => ({ key: questionKey(language, a.prompt), right: a.right })), localDate(new Date())))
                 onChecked(right, check.length)
               }} />
@@ -1068,6 +1074,7 @@ function LessonView({
         <button type="button" className="btn btn-quiet" onClick={() => openPrint(lessonSheetHtml(lesson, titleOf(lesson)))}>
           Yazdır
         </button>
+        <ReportIssue language={language} topic={lesson.topic} kind="lesson" label="Derste hata var" />
         <button type="button" className="btn btn-quiet guide-read-btn" aria-pressed={read} onClick={() => onRead(!read)}>
           {read ? (
             <>

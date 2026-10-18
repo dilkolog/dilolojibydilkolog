@@ -6,6 +6,7 @@ import { endsHere, levelScores, missedLessons, placeLevel, PLACEMENT_LEVELS, typ
 import { CheckCircleIcon, ChevronLeftIcon } from './icons'
 import { NEW_ART } from './drawnArt'
 import { sfx } from './sounds'
+import { ReportIssue } from './ReportIssue'
 
 const shuffle = <T,>(list: T[]): T[] => {
   const out = [...list]
@@ -276,10 +277,11 @@ export function PlacementView({
             <p className={given === current.answer ? 'small' : 'cross-warn'}>
               <strong>{given === current.answer ? 'Doğru!' : given === 'skip' ? 'Sorun değil.' : 'Olmadı.'}</strong> {current.why}
             </p>
-            <div className="row">
+            <div className="row items-center gap-2">
               <button type="button" className="btn" onClick={next} autoFocus>
                 {endsHere(answers, perLevel) || index + 1 >= asked.length ? 'Sonucu gör' : 'Sonraki'}
               </button>
+              <ReportIssue language={language} topic={current.lesson} kind="question" prompt={current.prompt} label="Soruda hata var" />
             </div>
           </div>
         )}
