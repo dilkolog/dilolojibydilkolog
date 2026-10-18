@@ -106,6 +106,15 @@ import questListen from '../assets/art/quest-listen.webp'
 import questNohint from '../assets/art/quest-nohint.webp'
 import questRead from '../assets/art/quest-read.webp'
 import questSpeak from '../assets/art/quest-speak.webp'
+import questSprout from '../assets/art/quest-sprout.webp'
+import questTarget from '../assets/art/quest-target.webp'
+import questChain from '../assets/art/quest-chain.webp'
+import questRecall from '../assets/art/quest-recall.webp'
+import questDictation from '../assets/art/quest-dictation.webp'
+import questEar from '../assets/art/quest-ear.webp'
+import questDialogue from '../assets/art/quest-dialogue.webp'
+import questSpeed from '../assets/art/quest-speed.webp'
+import questTrophy from '../assets/art/quest-trophy.webp'
 import stickerHello from '../assets/art/sticker-hello.webp'
 import stickerThumbs from '../assets/art/sticker-thumbs.webp'
 import stickerThink from '../assets/art/sticker-think.webp'
@@ -303,7 +312,7 @@ export const SETTINGS_ART: Record<string, string> = {
   's-data': setData,
 }
 
-/** Daily quests by what they count. */
+/** Daily quests by what they count, and weekly challenges with dedicated drawn art. */
 export const QUEST_ART: Record<string, string> = {
   newWords: questNewword,
   answers: questAnswers,
@@ -314,11 +323,24 @@ export const QUEST_ART: Record<string, string> = {
   noHintCorrect: questNohint,
   reading: questRead,
   speaking: questSpeak,
-  // The week's challenges share the ids that count the same thing, and add their own.
-  studyDays: emFlame,
-  bossWins: bossBlob,
+  // Weekly challenges: dedicated drawn art (2026-10-18)
+  studyDays: questSpeed,
+  bossWins: questTrophy,
   textsRead: questRead,
-  journalEntries: emBook,
+  journalEntries: questDictation,
+}
+
+/** Complete 9-piece kawaii quest and activity set (2026-10-18). */
+export const NEW_QUEST_ART = {
+  sprout: questSprout,
+  target: questTarget,
+  chain: questChain,
+  recall: questRecall,
+  dictation: questDictation,
+  ear: questEar,
+  dialogue: questDialogue,
+  speed: questSpeed,
+  trophy: questTrophy,
 }
 
 /** The extra-study tiles on Today (Ek çalışma), by what each one opens. */
