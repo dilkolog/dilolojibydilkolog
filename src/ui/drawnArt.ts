@@ -218,6 +218,9 @@ const MEDAL_OF: Record<string, string> = {
   formsMastered: mSunflower,
   verbsMastered: mPeakGear,
   journalEntries: mNotebook,
+  guideLessonsLearned: guideTeach,
+  guideCertsEarned: guideLearned,
+  guidePlacementDone: guideReview,
 }
 export const drawnMedal = (stat: string): string | undefined => MEDAL_OF[stat]
 
