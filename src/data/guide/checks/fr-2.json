@@ -983,6 +983,50 @@
         ],
         "answer": 1,
         "why": "Bir yüzeyin 'üstünde' olmayı anlatmak için 'sur' edatı kullanılır: sur le canapé."
+      },
+      {
+        "prompt": "Nous partons en vacances ___ Espagne cet été.",
+        "options": [
+          "à",
+          "en",
+          "au",
+          "dans"
+        ],
+        "answer": 1,
+        "why": "Dişil ülke isimlerinin (ve sesliyle başlayan eril ülkelerin) önüne yönelme veya bulunma için 'en' gelir: en Espagne."
+      },
+      {
+        "prompt": "Elle travaille ___ la banque centrale depuis deux ans.",
+        "options": [
+          "à",
+          "au",
+          "chez",
+          "dans"
+        ],
+        "answer": 0,
+        "why": "Dişil kurum veya yer isimlerinde yönelme/bulunma için 'à la' kalıbı kullanılır: à la banque."
+      },
+      {
+        "prompt": "Ils habitent ___ États-Unis depuis leur mariage.",
+        "options": [
+          "en",
+          "aux",
+          "à",
+          "dans"
+        ],
+        "answer": 1,
+        "why": "Çoğul ülke isimlerinin önüne 'aux' edatı gelir: aux États-Unis."
+      },
+      {
+        "prompt": "Il attend ses amis ___ la gare routière.",
+        "options": [
+          "devant",
+          "entre",
+          "vers",
+          "chez"
+        ],
+        "answer": 0,
+        "why": "Bir yerin 'önünde' bulunmayı ifade etmek için 'devant' edatı kullanılır: devant la gare."
       }
     ],
     "basics_fr_pronominaux": [

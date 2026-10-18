@@ -22,7 +22,10 @@ async function mount(props: { words?: number; goal?: number } = {}) {
   document.body.append(host)
   root = createRoot(host)
   await act(async () => root!.render(<GuidePlacementNudge language="fr" words={props.words ?? 10} goal={props.goal} onOpen={onOpen} />))
-  await act(() => new Promise((r) => setTimeout(r, 50)))
+  for (let i = 0; i < 10; i++) {
+    if (host.querySelector('.habit-nudge')) break
+    await act(() => new Promise((r) => setTimeout(r, 20)))
+  }
   return { host, onOpen }
 }
 

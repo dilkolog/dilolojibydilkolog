@@ -2295,6 +2295,74 @@
         "answer": 0,
         "why": "'Suffice it to say' kalıbı 'detaylara girmeden şu kadarını belirtmek yeterlidir ki' anlamında kullanılır."
       }
+    ],
+    "inversion": [
+      {
+        "prompt": "Rarely ___ such dedication and enthusiasm in a new employee.",
+        "options": [
+          "we see",
+          "do we see",
+          "we do see",
+          "did we saw"
+        ],
+        "answer": 1,
+        "why": "'Rarely' cümle başına geldiğinde düz cümle sırası bozulur ve 'yardımcı fiil + özne' (do we see) sırası kullanılır."
+      },
+      {
+        "prompt": "Little ___ that his greatest challenge was yet to come.",
+        "options": [
+          "he knew",
+          "did he know",
+          "had he knew",
+          "he did know"
+        ],
+        "answer": 1,
+        "why": "'Little' kısıtlayıcı zarfı cümle başında 'did + özne + yalın fiil' gerektirir: Little did he know."
+      },
+      {
+        "prompt": "Under no circumstances ___ the laboratory without protective goggles.",
+        "options": [
+          "you should enter",
+          "should you enter",
+          "you enter",
+          "shall enter you"
+        ],
+        "answer": 1,
+        "why": "'Under no circumstances' mutlak yasaklama zarf öbeğidir ve zorunlu devriklik kurar: should you enter."
+      },
+      {
+        "prompt": "Not only ___ all the requirements, but she also proposed innovative solutions.",
+        "options": [
+          "did she meet",
+          "she met",
+          "she did meet",
+          "has she met"
+        ],
+        "answer": 0,
+        "why": "'Not only' cümle başında devrik yapı kurar; geçmiş zaman için 'did she meet' kullanılır."
+      },
+      {
+        "prompt": "Only after the investigation was completed ___ the true cause of the malfunction.",
+        "options": [
+          "they revealed",
+          "did they reveal",
+          "they did reveal",
+          "were they revealing"
+        ],
+        "answer": 1,
+        "why": "'Only after...' yan cümleciği bittikten sonra ana cümlecik devrik olur: did they reveal."
+      },
+      {
+        "prompt": "___ any assistance, please do not hesitate to contact our customer support team.",
+        "options": [
+          "Should you require",
+          "If you should to require",
+          "Were you require",
+          "Had you required"
+        ],
+        "answer": 0,
+        "why": "1. tip koşul cümlesinde 'If you require' yerine resmî devrik yapıda 'Should you require' kullanılır."
+      }
     ]
   }
 }
