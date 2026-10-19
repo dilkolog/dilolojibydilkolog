@@ -218,7 +218,7 @@ export function GamesScreen(
         ...(azureEnabled()
           ? [{ id: 'pron' as const, emoji: '🗣️', name: 'Telaffuz çalışması', text: 'Puanı düşük kalan kelimeleri söyle ve puanla; iyileşenler listeden çıkar.', status: pronCount ? `${pronCount} kelime zayıf` : 'Kelime sayfasında puanladıkça birikir', disabled: pronCount === 0 }]
           : []),
-        { id: 'pairs', emoji: '👂', name: 'Ses ayırt etme', text: 'Tek sesi farklı iki kelimeden hangisini duydun?', status: canSpeak() ? record(`pairs:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
+        { id: 'pairs', emoji: '👂', name: 'Kulak jimnastiği', text: 'Tek sesi farklı iki kelimeden hangisini duydun? (Minimum çiftler)', status: canSpeak() ? record(`pairs:${p.language}`, (v) => `%${v}`) : 'Bu tarayıcıda sesli okuma yok', disabled: !canSpeak() },
       ],
     },
     {
