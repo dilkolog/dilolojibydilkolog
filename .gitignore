@@ -47,3 +47,6 @@ pw.tmp.config.ts
 *-output.json
 .dev.vars
 .wrangler
+dist-gate
+playwright-report-gate
+pw.gate.tmp.config.ts
