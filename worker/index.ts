@@ -37,10 +37,13 @@ export default {
     const route = name ? ROUTES[name] : undefined
     if (!route && pathname.startsWith('/api/')) return new Response('not found', { status: 404 })
     if (!route) return env.ASSETS.fetch(request as never) as unknown as Promise<Response>
-    const handler = route[request.method as keyof Module]
+    // HEAD is GET without the body (uptime monitors and link checkers ask that way).
+    const head = request.method === 'HEAD' && !!route.GET
+    const handler = head ? route.GET : route[request.method as keyof Module]
     if (!handler) return new Response('method not allowed', { status: 405, headers: { allow: Object.keys(route).join(', ') } })
     try {
-      return await handler(request)
+      const res = await handler(request)
+      return head ? new Response(null, { status: res.status, headers: res.headers }) : res
     } catch (e) {
       console.error('[worker-error]', pathname, e)
       return new Response('server error', { status: 500 })
