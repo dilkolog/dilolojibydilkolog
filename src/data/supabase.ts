@@ -68,14 +68,33 @@ export function authErrorText(message: string, unknownAsGeneric = false): string
   if (m.includes('rate limit') || m.includes('too many')) return 'Kısa sürede çok deneme oldu; birkaç dakika bekleyip tekrar dene.'
   if (m.includes('expired') || (m.includes('invalid') && m.includes('link'))) return 'Bağlantının süresi dolmuş; yenisini iste.'
   if (m.includes('provider is not enabled')) return 'Bu giriş yolu henüz açılmadı (site sahibi Supabase\'te açmalı).'
-  if (m.includes('fetch')) return 'Sunucuya bağlanılamadı; internet bağlantını kontrol et.'
+  // Chrome says "Failed to fetch", Safari "Load failed", Firefox "NetworkError when attempting to fetch".
+  if (m.includes('fetch') || m.includes('load failed') || m.includes('network')) return 'Sunucuya bağlanılamadı; internet bağlantını kontrol et.'
   // A message the library sends that nothing above knows is English and technical: say it plainly instead.
   return unknownAsGeneric ? 'Bir sorun oldu; biraz sonra tekrar dene. Sürerse destek@diloloji.com adresine yaz.' : message
 }
 
-async function run<T extends { error: { message: string } | null }>(p: Promise<T>): Promise<T> {
+/** A sign-in call that failed in a way the person cannot fix: it is reported (/api/log) so the cause can be read there. */
+export class SupabaseAuthError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'SupabaseAuthError'
+  }
+}
+
+/** Errors a person caused or can fix themselves (a wrong password, a weak one): not worth a report. */
+const EXPECTED = /invalid login credentials|email not confirmed|already registered|password should be|weak password|for security purposes|only request this after|rate limit|too many|invalid (format|email)|unable to validate email|expired|signups? not allowed|not authorized/i
+
+async function run<T extends { error: { message: string; status?: number; code?: string; name?: string } | null }>(p: Promise<T>): Promise<T> {
   const r = await p
-  if (r.error) throw new Error(authErrorText(r.error.message, true))
+  if (r.error) {
+    const { message, status, code, name } = r.error
+    const text = authErrorText(message, true)
+    if (EXPECTED.test(message)) throw new Error(text)
+    // What the server or the library said, plainly, so a "something went wrong" can be told apart (this is no secret: no address, no password).
+    const detail = [name, status, code, message].filter(Boolean).join(' · ').slice(0, 120)
+    throw new SupabaseAuthError(`${text} (${detail})`)
+  }
   return r
 }
 
