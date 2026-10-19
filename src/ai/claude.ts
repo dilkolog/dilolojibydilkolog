@@ -4,6 +4,7 @@ import * as z from 'zod/v4'
 import type { TargetLanguage, VocabularyEntry } from '../engine/types'
 import { LANGUAGE_NAME } from '../ui/labels'
 import { aiConfig, costOf, type AiFeature } from './usage'
+import { cleanQuestions } from './quizClean'
 import { AiError, type AiErrorKind, type EnrichRequest, type EpisodeDraft, type EpisodeRequest, type FamilySuggestion, type FieldSuggestions, type Mnemonic, type RetellEvaluation, type RetellRequest, type JournalRequest, type JournalReview, type ChatRequest, type ChatReply, type MonkiRequest, type MonkiReply, type ErrorReport, type ErrorReportRequest, type SessionNoteRequest, type ConjugationExplainRequest, type WeekNoteRequest, type PronTipsRequest, type PronTip, type PersonalSentencesRequest, type NotesQuizRequest, type QuizQuestion, type PersonalSentence, type WordSuggestRequest, type PhotoWordsRequest, type PodcastRequest, type PodcastScript, type PrequestionSet, type SentenceEvaluation, type SuggestField, type SuggestRequest, type WordInfo } from './types'
 
 /**
@@ -489,9 +490,25 @@ export async function notesQuiz(apiKey: string, req: NotesQuizRequest): Promise<
     'Questions about a rule are in Turkish; questions about a phrase or sentence use the target language. Keep everything short.',
   ].join('\n')
   const out = await structured(apiKey, NotesQuiz, system, req.notes.slice(0, 8000), 'low', 'notes_quiz')
-  return out.questions
-    .filter((q) => q.options.length === 4 && Number.isInteger(q.answer) && q.answer >= 0 && q.answer < 4 && new Set(q.options.map((o) => o.trim().toLowerCase())).size === 4)
-    .slice(0, req.count)
+  return cleanQuestions(out.questions, req.count)
+}
+
+/** Questions after reading: they test understanding of the text, not its words. */
+export const COMPREHENSION_COUNT = 3
+
+/**
+ * Three multiple-choice questions about what a finished text says (Turkish questions and options, so a
+ * reader who got the gist can answer without the wording of the target language getting in the way).
+ */
+export async function comprehensionQuestions(apiKey: string, language: TargetLanguage, text: string): Promise<QuizQuestion[]> {
+  const system = [
+    `You check whether a Turkish adult understood a ${LANGUAGE_NAME[language]} text they just read.`,
+    `Write exactly ${COMPREHENSION_COUNT} multiple-choice questions about what the text says: the main point, a detail that matters, and one thing that follows from it. Use only what the text states; no outside knowledge, no trivia about numbers or names unless they matter.`,
+    'Questions and options are in Turkish, short, each with four options (one right, three plausible but wrong). Do not copy sentences of the text verbatim into the options.',
+    'The explanation is one Turkish sentence that says why the answer is right, pointing to the part of the text it comes from.',
+  ].join('\n')
+  const out = await structured(apiKey, NotesQuiz, system, `Text:\n${text.slice(0, 12_000)}`, 'low', 'comprehension')
+  return cleanQuestions(out.questions, COMPREHENSION_COUNT)
 }
 
 const SessionNoteSchema = z.object({

@@ -1361,3 +1361,51 @@ test('auth screen and onboarding pass color contrast checks across light, dark, 
 })
 
 
+
+test('reading: the questions after a finished text work and pass the accessibility check', async ({ page }) => {
+  test.setTimeout(90_000)
+  await startWithSamples(page)
+  await approveAccount(page)
+  await page.evaluate(() => {
+    const open = indexedDB.open('kelime-koc')
+    open.onsuccess = () => {
+      const tx = open.result.transaction('meta', 'readwrite')
+      tx.objectStore('meta').put({ key: 'aiKey', value: 'sk-ant-test-key-123' })
+      tx.oncomplete = () => window.dispatchEvent(new Event('diloloji:account'))
+    }
+  })
+  await page.reload()
+  const question = (n: number) => ({ question: `Soru ${n}?`, options: [`Doğru ${n}`, `Yanlış ${n}a`, `Yanlış ${n}b`, `Yanlış ${n}c`], answer: 0, explanation: `Metnin ${n}. cümlesinde.` })
+  await page.route(/api\.anthropic\.com/, async (r) => {
+    await r.fulfill({
+      json: {
+        id: 'msg_1',
+        type: 'message',
+        role: 'assistant',
+        model: 'claude-sonnet-5-5',
+        stop_reason: 'end_turn',
+        content: [{ type: 'text', text: JSON.stringify({ questions: [question(1), question(2), question(3)] }) }],
+        usage: { input_tokens: 50, output_tokens: 80 },
+      },
+    })
+  })
+  await openScreen(page, 'Okuma')
+  const body = Array.from({ length: 12 }, () => "L'arbre est grand. Cette année, l'arbre a beaucoup grandi.").join(' ')
+  await page.getByLabel('Metin', { exact: true }).fill(body)
+  await page.getByRole('button', { name: 'Okumaya başla' }).click()
+  // Not before the text is finished.
+  await expect(page.getByRole('button', { name: /Okuduğunu sına/ })).toHaveCount(0)
+  await page.locator('.reader-tools').getByRole('button', { name: 'Okumayı bitir' }).click()
+  await page.getByRole('alertdialog', { name: 'Okumayı bitir' }).getByRole('button', { name: 'Bitir' }).click()
+  await page.getByRole('button', { name: /Okuduğunu sına/ }).click()
+  const card = page.getByRole('region', { name: 'Okuduğunu anlama soruları' })
+  await expect(card.locator('fieldset')).toHaveCount(3)
+  await card.getByRole('button', { name: 'Doğru 1', exact: true }).click()
+  await card.getByRole('button', { name: 'Yanlış 2a', exact: true }).click()
+  await card.getByRole('button', { name: 'Doğru 3', exact: true }).click()
+  await expect(card).toContainText('Doğru. Metnin 1. cümlesinde.')
+  await expect(card).toContainText('Doğrusu başka. Metnin 2. cümlesinde.')
+  await expect(card).toContainText("3 sorudan 2'ini bildin")
+  expect(await scan(page, 'comprehension card')).toEqual([])
+  expect(await contrastProblems(page)).toEqual([])
+})

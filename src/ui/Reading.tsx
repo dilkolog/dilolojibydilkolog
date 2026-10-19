@@ -6,6 +6,7 @@ import { KnownWordsCard } from './KnownWords'
 import { DailyNewsHero } from './DailyNewsHero'
 import { KeyWordsCard } from './KeyWords'
 import { PrequestionsCard } from './Prequestions'
+import { ComprehensionCard } from './ComprehensionCard'
 import { saveSentence } from './saveSentence'
 import { analyzeText, coverageLine, type ReadToken } from '../engine/reading'
 import { type TargetLanguage, type UserWordState, type VocabularyEntry } from '../engine/types'
@@ -744,6 +745,7 @@ export function ReadingScreen({
             <span>{message}</span>
           </p>
         )}
+        {message && <ComprehensionCard key={`cq-${current?.id}`} text={text} language={language} />}
         {message && !nextChapter && (
           <SameTopic
             text={text}

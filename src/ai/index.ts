@@ -58,6 +58,8 @@ export const wordsFromPhoto = async (apiKey: string, req: PhotoWordsRequest): Pr
 
 export const miniPodcast = async (apiKey: string, req: PodcastRequest): Promise<PodcastScript> => (await sdk()).miniPodcast(apiKey, req)
 
+export const comprehensionQuestions = async (apiKey: string, language: TargetLanguage, text: string): Promise<QuizQuestion[]> => (await sdk()).comprehensionQuestions(apiKey, language, text)
+
 export const notesQuiz = async (apiKey: string, req: NotesQuizRequest): Promise<QuizQuestion[]> => (await sdk()).notesQuiz(apiKey, req)
 
 export const suggestFields = async (apiKey: string, req: SuggestRequest): Promise<FieldSuggestions> => (await sdk()).suggestFields(apiKey, req)
