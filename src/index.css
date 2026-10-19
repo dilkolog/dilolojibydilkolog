@@ -5831,5 +5831,120 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   border-radius: var(--r-full) !important;
 }
 
+/* ── Günün Zihin Tohumu (İç Monolog Koçu) ────────────────────────────────── */
+.monologue-card {
+  border-left: 3px solid var(--lang);
+  background: color-mix(in srgb, var(--lang) 4%, var(--surface));
+  transition: opacity var(--dur-normal) var(--ease-out), border-color var(--dur-normal) var(--ease-out);
+}
+
+.monologue-card.is-done {
+  border-left-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 3%, var(--surface));
+}
+
+.monologue-kicker {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: var(--t-2xs);
+}
+
+.monologue-prompt {
+  font-family: var(--font-target, serif);
+  font-size: var(--t-md);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 0.25rem 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border-radius: var(--r-md);
+  border: 1px solid var(--rule);
+}
+
+.monologue-footer {
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.monologue-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.monologue-tip {
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* ── Kelimeler Ekranı A–Z Atlama Şeridi ─────────────────────────────────────── */
+.alpha-jump-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  padding: 0.35rem 0.25rem;
+  margin-bottom: 0.75rem;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.alpha-jump-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.alpha-jump-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0.2rem 0.45rem;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  color: var(--ink);
+  transition: all var(--dur-fast) var(--ease-out);
+  flex-shrink: 0;
+  min-width: 1.75rem;
+  text-align: center;
+}
+
+.alpha-jump-btn.has-words:hover {
+  background: var(--surface);
+  color: var(--lang);
+  box-shadow: var(--shadow-sm);
+}
+
+.alpha-jump-btn.has-words:active {
+  transform: scale(0.95);
+}
+
+.alpha-jump-btn.is-empty {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* ── Okumada Kelime Tahmin / Çıkarım Modu (Lexical Deduction) ──────────────── */
+.card-deduction-prompt {
+  background: color-mix(in srgb, var(--lang) 5%, var(--surface-2));
+  border: 1px dashed var(--lang);
+  border-radius: var(--r-md);
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.deduction-title {
+  color: var(--lang-deep, var(--ink));
+  font-size: var(--t-xs);
+}
+
+
+
+
 
 
