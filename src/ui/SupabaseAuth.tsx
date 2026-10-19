@@ -11,6 +11,9 @@ import { completeSignIn, vaultErrorText, type SignInOutcome } from './signInFlow
 import { showToast } from './toastFeed'
 
 export type SupabaseMode = 'login' | 'create' | 'return'
+/** The keyboard opens by itself only where there is one at hand: on a phone it would cover the sign-in buttons. */
+const FINE_POINTER = typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: fine)').matches
+
 type Step = 'login' | 'create' | 'magic' | 'reset' | 'sent' | 'recovery' | 'working'
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -44,6 +47,7 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
   const [error, setError] = useState('')
   // Whether the owner approves accounts at all: the sign-up text about it is only true then (until known, it is left out).
   const [approvalOn, setApprovalOn] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const session = useRef<Session | null>(null)
 
   useEffect(() => {
@@ -191,20 +195,25 @@ export function SupabaseAuth({ initialMode = 'login', onDone, onBack }: { initia
           >
             <label className="field">
               <span className="field-label">E-posta</span>
-              <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" autoCapitalize="off" spellCheck={false} autoFocus />
+              <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" autoCapitalize="off" spellCheck={false} autoFocus={FINE_POINTER} />
             </label>
             {(step === 'login' || step === 'create') && (
               <label className="field">
                 <span className="field-label">Şifre</span>
-                <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={step === 'create' ? 'new-password' : 'current-password'} />
+                <input className="input" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={step === 'create' ? 'new-password' : 'current-password'} />
                 {step === 'create' && <span className="help">En az 8 karakter</span>}
               </label>
+            )}
+            {(step === 'login' || step === 'create') && (
+              <button type="button" className="link small" aria-pressed={showPassword} onClick={() => setShowPassword((on) => !on)}>
+                {showPassword ? 'Şifreyi gizle' : 'Şifreyi göster'}
+              </button>
             )}
             {step === 'create' && (
               <>
                 <label className="field">
                   <span className="field-label">Şifre (tekrar)</span>
-                  <input className="input" type="password" value={repeat} onChange={(e) => setRepeat(e.target.value)} autoComplete="new-password" />
+                  <input className="input" type={showPassword ? 'text' : 'password'} value={repeat} onChange={(e) => setRepeat(e.target.value)} autoComplete="new-password" />
                 </label>
                 <label className="field">
                   <span className="field-label">Adın (isteğe bağlı)</span>
