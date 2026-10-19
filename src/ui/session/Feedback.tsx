@@ -7,6 +7,9 @@ import { MASTERY_STAGES, type MasteryStage } from '../../engine/mastery'
 import type { Confidence, VocabularyEntry } from '../../engine/types'
 import { ERROR_HINT, genderRuleText, LANGUAGE_NAME, STAGE_NAME } from '../labels'
 import { Plant } from '../Plant'
+import { isFormId } from '../../engine/dailyPlan'
+import { TENSE_GUIDE } from '../../engine/tenseGuide'
+import type { Tense } from '../../engine/tenses'
 import { BulbIcon, CheckIcon, CloseIcon, NearIcon, PenIcon, UndoIcon } from '../icons'
 import { PosTag } from '../PosTag'
 import { WrittenForm } from '../WrittenForm'
@@ -156,19 +159,51 @@ export function Feedback({
             </p>
           )}
           {ev.feedback ? <p className="small">{ev.feedback}</p> : hint && <p className="small">{hint}</p>}
-          {ev.errorType === 'gender' && ruleFor(entry) && <p className="small">{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>}
-          {ev.intrusion && (
-            <p className="small intrusion-note">
-              “{ev.intrusion.word}” {LANGUAGE_NAME[ev.intrusion.language]} bir kelime
-              {ev.intrusion.entry ? ` (${ev.intrusion.entry.senses[0].gloss})` : ''}. {LANGUAGE_NAME[entry.language]} doğrusu: <strong>{ev.expected}</strong>
-            </p>
+          {ev.verdict !== 'correct' && ev.errorType === 'gender' && ruleFor(entry) && (
+            <div className="formative-tip">
+              <div className="formative-tip-head">
+                <BulbIcon size={14} /> <strong>Cinsiyet kuralı</strong>
+              </div>
+              <p className="small">{genderRuleText(ruleFor(entry)!, displayForm(entry))}</p>
+            </div>
           )}
-          {ev.errorType === 'false_friend' &&
-            falseFriendsOf(entry).map((f) => (
-              <p key={f.word} className="small">
-                “{f.gloss}” {LANGUAGE_NAME[f.lang]} <em>{f.word}</em> demek. {displayForm(entry)} ise “{entry.senses[0].gloss}”.
+          {ev.verdict !== 'correct' && isFormId(entry.id) && (() => {
+            const [, tense] = entry.id.slice('form:'.length).split('|')
+            const guide = TENSE_GUIDE[tense as Tense]
+            if (!guide) return null
+            return (
+              <div className="formative-tip">
+                <div className="formative-tip-head">
+                  <BulbIcon size={14} /> <strong>Zaman kuralı: {guide.tr} ({guide.name})</strong>
+                </div>
+                <p className="small">{guide.short}</p>
+                {guide.formation && <p className="small muted formative-formation">{guide.formation}</p>}
+              </div>
+            )
+          })()}
+          {ev.intrusion && (
+            <div className="formative-tip formative-warning">
+              <div className="formative-tip-head">
+                <BulbIcon size={14} /> <strong>Dil karışması</strong>
+              </div>
+              <p className="small intrusion-note">
+                “{ev.intrusion.word}” {LANGUAGE_NAME[ev.intrusion.language]} bir kelime
+                {ev.intrusion.entry ? ` (${ev.intrusion.entry.senses[0].gloss})` : ''}. {LANGUAGE_NAME[entry.language]} doğrusu: <strong>{ev.expected}</strong>
               </p>
-            ))}
+            </div>
+          )}
+          {ev.errorType === 'false_friend' && (
+            <div className="formative-tip formative-warning">
+              <div className="formative-tip-head">
+                <BulbIcon size={14} /> <strong>Tuzak kelime (Yalancı eşdeğer)</strong>
+              </div>
+              {falseFriendsOf(entry).map((f) => (
+                <p key={f.word} className="small">
+                  “{f.gloss}” {LANGUAGE_NAME[f.lang]} <em>{f.word}</em> demek. {displayForm(entry)} ise “{entry.senses[0].gloss}”.
+                </p>
+              ))}
+            </div>
+          )}
           {ev.verdict === 'wrong' && !confidentError && !forgot && (
             <p className="small return-note">
               <Plant stage={1} size={26} live /> {soft} Bu kelimeyi birazdan bir kez daha soracağım.

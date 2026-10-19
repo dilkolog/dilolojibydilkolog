@@ -1,7 +1,7 @@
 import { createRef } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { decision } from '../../engine/__tests__/fixtures'
+import { decision, laDecision } from '../../engine/__tests__/fixtures'
 import type { Graded } from './shared'
 import { Feedback } from './Feedback'
 import { AiContext } from '../aiContext'
@@ -50,4 +50,20 @@ describe('feedback after an answer', () => {
     expect(html(true)).toContain('Baştan öğren')
     expect(html(false)).not.toContain('Baştan öğren')
   })
+
+  it('displays a formative micro-rule tip on gender error', () => {
+    const wrongGender = { verdict: 'wrong', correct: false, errorType: 'gender', expected: 'la décision' } as unknown as Graded
+    const html = renderToStaticMarkup(<Feedback ev={wrongGender} entry={laDecision} continueRef={createRef()} onContinue={() => {}} />)
+    expect(html).toContain('formative-tip')
+    expect(html).toContain('Cinsiyet kuralı')
+  })
+
+  it('displays a formative tense rule tip on verb form error', () => {
+    const verbFormEntry = { ...decision, id: 'form:parler|present', partOfSpeech: 'verb' as const }
+    const wrongVerb = { verdict: 'wrong', correct: false, expected: 'parle' } as unknown as Graded
+    const html = renderToStaticMarkup(<Feedback ev={wrongVerb} entry={verbFormEntry} continueRef={createRef()} onContinue={() => {}} />)
+    expect(html).toContain('formative-tip')
+    expect(html).toContain('Zaman kuralı: Şimdiki / geniş zaman (présent)')
+  })
 })
+

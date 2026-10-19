@@ -50,3 +50,8 @@ pw.tmp.config.ts
 dist-gate
 playwright-report-gate
 pw.gate.tmp.config.ts
+
+# Incoming raw images (processed into src/assets/art/*.webp)
+docs/gelen-gorseller/*.jpg
+docs/gelen-gorseller/*.png
+
