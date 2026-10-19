@@ -77,6 +77,7 @@ export function Home({
   onTrySamples,
   onProfile,
   onStory,
+  onReading,
   onGames,
   onShortRound,
   onQuest,
@@ -139,6 +140,7 @@ export function Home({
   onTrySamples?: () => void
   onProfile: () => void
   onStory?: () => void
+  onReading?: () => void
   onGames?: () => void
   /** A short round of the most urgent questions, for a pile of reviews too big to face at once. */
   onShortRound?: () => void
@@ -496,7 +498,7 @@ export function Home({
         {garden?.urgent && garden.node}
         <MonologueCard language={language} />
 
-        {(openMistakeWords > 0 || weekMisses >= WEEK_MISSES_MIN || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames || (!!nextReview && !!onEarlyReview))) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
+        {(openMistakeWords > 0 || weekMisses >= WEEK_MISSES_MIN || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames || (!!nextReview && !!onEarlyReview))) || onStory || onReading || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">
             <h2 className="section-title">Ek çalışma</h2>
             <div className="tiles">
@@ -560,6 +562,21 @@ export function Home({
                   <span className="tile-text">
                     <strong>Hikayenin yeni bölümü</strong>
                     <span className="small muted">Zorlandığın kelimelerle yazılır</span>
+                  </span>
+                </button>
+              )}
+              {onReading && (
+                <button className="tile" onClick={onReading}>
+                  <img className="tile-art" src={TILE_ART.news} alt="" draggable={false} />
+                  <span className="tile-text">
+                    <strong>Günün mikro haberi</strong>
+                    <span className="small muted">
+                      {language === 'fr'
+                        ? 'RFI Savoirs · 2 dakikalık kolay bülten ve transkript'
+                        : language === 'es'
+                          ? 'Radio Ambulante / VOA · Güncel kolay haber'
+                          : 'VOA Learning English · 2 dakikalık mikro bülten'}
+                    </span>
                   </span>
                 </button>
               )}
