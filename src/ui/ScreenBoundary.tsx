@@ -1,6 +1,7 @@
 import { Component, type ReactNode } from 'react'
 import { reportError } from '../data/errorReport'
 import { isChunkError } from './chunkError'
+import { supportMailto } from './helpInfo'
 import { StatusPicture } from './StatusArt'
 
 /**
@@ -49,6 +50,11 @@ export class ScreenBoundary extends Component<{ resetKey: string; onHome: () => 
           <button className="btn btn-quiet" onClick={this.props.onHome}>
             Bugün’e dön
           </button>
+          {!chunk && (
+            <a className="btn btn-quiet" href={supportMailto(`Bu ekran açılamadı (${this.props.resetKey})`)}>
+              Bize yaz
+            </a>
+          )}
         </div>
       </section>
     )

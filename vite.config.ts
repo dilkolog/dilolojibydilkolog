@@ -1,9 +1,21 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 import { VitePWA } from 'vite-plugin-pwa'
+import { execSync } from 'node:child_process'
+
+/** The build's date and commit, shown in Settings → Yardım so a bug report says which version it came from. */
+function buildId(): string {
+  const day = new Date().toISOString().slice(0, 10)
+  try {
+    return `${day} · ${execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()}`
+  } catch {
+    return day
+  }
+}
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: { __BUILD_ID__: JSON.stringify(buildId()) },
   // The tests assume a build without the sign-in gate; a developer's .env.local (needed by deploy:cf) must not leak in.
   test: { env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_SUPABASE_ANON_KEY: '' } },
   // Drawings are never inlined into the scripts: a small one would otherwise ride in the start-up
