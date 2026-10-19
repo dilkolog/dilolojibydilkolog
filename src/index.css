@@ -5720,6 +5720,61 @@ details[open] > .friends-accordion-summary .friends-accordion-arrow {
   font-weight: 500;
 }
 
+/* ── Sözlük Kişisel Anlam / Not Ekleme Daveti ──────────────────────────────── */
+.dict-meaning-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin: 0.25rem 0 0.5rem;
+}
+.dict-meaning-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.dict-meaning-head .gloss {
+  margin: 0;
+}
+.dict-fix-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--t-xs);
+  cursor: pointer;
+  background: var(--surface-2);
+  border: 1px dashed var(--rule);
+  color: var(--ink-soft);
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.dict-fix-btn:hover,
+.dict-fix-btn:focus-visible {
+  background: var(--lang-soft);
+  border-color: var(--lang);
+  color: var(--lang-text);
+}
+.dict-fix-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: var(--ink-soft);
+}
+.dict-custom-badge {
+  background: var(--lang-soft);
+  border: 1px solid var(--lang);
+  color: var(--lang-text);
+  font-weight: 600;
+}
+.dict-own-note {
+  margin-top: 0.25rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--r-sm);
+}
+.dict-fix-form {
+  padding: 0.5rem 0;
+}
+
 /* ── Formative Feedback / Mikro-Kural İpuçları ──────────────────────────────── */
 .formative-tip {
   display: flex;
