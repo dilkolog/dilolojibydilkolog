@@ -7,6 +7,7 @@ import { displayForm, type Evaluation } from '../engine/exercises'
 import { COMEBACK_MIN_ANSWERS, COMEBACK_XP, isComeback, nextCombo, xpForAnswer } from '../engine/gamification'
 import { masteryStage } from '../engine/mastery'
 import { localDate } from '../engine/progress'
+import { leechHelp } from '../engine/leechHelp'
 import { markKnown, needsIntervention, newWordState, processAttempt, type AttemptInput } from '../engine/review'
 import { listeningRate } from '../engine/listening'
 import { createRng } from '../engine/rng'
@@ -100,6 +101,8 @@ export function SessionScreen(p: Props) {
   const lastAnswer = useRef<{ before: UserWordState; hadState: boolean; bank: Mistake[]; input: AttemptInput; eventId: string } | null>(null)
   const states = useRef(new Map(p.states.map((s) => [s.entryId, s])))
   const mistakes = useRef(p.mistakes)
+  /** Words already offered help this session (a chronic leech is offered once, not on every miss). */
+  const offeredHelp = useRef(new Set<string>())
   // Distractors may come from the sample set too, so options are full even with few own words.
   const distractorPool = useMemo(() => {
     const own = new Set(p.vocabulary.map((v) => v.id))
@@ -359,6 +362,21 @@ export function SessionScreen(p: Props) {
     return { entryId: entry.id, verdict: 'correct', stageBefore: masteryStage(last.before), stageAfter: masteryStage(result.state), xp }
   }
 
+  /** A word that keeps failing is started over (progress and its recorded mistakes reset); "Geri al" brings all of it back. */
+  const relearn = async (word: VocabularyEntry) => {
+    const id = word.id
+    const snap = await p.db.snapshotWords([id])
+    await p.db.wordStates.delete(id)
+    await p.db.mistakes.where('entryId').equals(id).delete()
+    states.current.delete(id)
+    mistakes.current = mistakes.current.filter((m) => m.entryId !== id)
+    undoable(`“${displayForm(word)}” baştan öğrenilecek`, async () => {
+      await p.db.restoreWords(snap)
+      const back = await p.db.wordStates.get(id)
+      if (back) states.current.set(id, back)
+    })
+  }
+
   /** "I tapped the wrong option": the answer is taken back as if it never happened. */
   const discard = async (): Promise<boolean> => {
     const last = lastAnswer.current
@@ -551,7 +569,14 @@ export function SessionScreen(p: Props) {
           onDiscard={discard}
           onContinue={proceed}
           combo={combo}
-          struggling={() => needsIntervention(states.current.get(entry.id) ?? newWordState(entry, new Date()))}
+          helpFor={() => {
+            const state = states.current.get(entry.id) ?? newWordState(entry, new Date())
+            const help = leechHelp(state, entry, offeredHelp.current)
+            // Three wrong in a row is offered every time; the broader kind once a session, so the word is not nagged on each miss.
+            if (help && !needsIntervention(state)) offeredHelp.current.add(entry.id)
+            return help
+          }}
+          onRelearn={() => relearn(entry)}
           wordState={() => states.current.get(entry.id)}
           listenRate={listeningRate(speechPrefs.rate, states.current.get(entry.id)?.skills.listening?.stability)}
           intrusionSources={intrusionSources}

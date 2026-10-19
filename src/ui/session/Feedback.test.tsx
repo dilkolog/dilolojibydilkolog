@@ -44,4 +44,10 @@ describe('feedback after an answer', () => {
     expect(at(5)).toContain('react-combo')
     expect(at(4)).not.toContain('üst üste')
   })
+  it('offers starting a stubborn word over, only when asked to', () => {
+    const wrong = { verdict: 'wrong', correct: false, expected: 'decision' } as unknown as Graded
+    const html = (relearn: boolean) => renderToStaticMarkup(<Feedback ev={wrong} entry={decision} continueRef={createRef()} onContinue={() => {}} relearn={relearn} onRelearn={() => {}} />)
+    expect(html(true)).toContain('Baştan öğren')
+    expect(html(false)).not.toContain('Baştan öğren')
+  })
 })
