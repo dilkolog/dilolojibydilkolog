@@ -124,12 +124,36 @@ export interface GrammarRecord {
   wrong: number
   /** Last tried (ISO). */
   last: string
+  /** Right answers in a row since the last wrong one; older records lack it (see `streakOf`). */
+  streak?: number
 }
 export type GrammarLog = Record<string, GrammarRecord>
 
 export function recordGrammar(log: GrammarLog, id: string, correct: boolean, now: Date): GrammarLog {
   const had = log[id]
-  return { ...log, [id]: { ok: (had?.ok ?? 0) + (correct ? 1 : 0), wrong: (had?.wrong ?? 0) + (correct ? 0 : 1), last: now.toISOString() } }
+  return { ...log, [id]: { ok: (had?.ok ?? 0) + (correct ? 1 : 0), wrong: (had?.wrong ?? 0) + (correct ? 0 : 1), last: now.toISOString(), streak: correct ? (had ? streakOf(had) : 0) + 1 : 0 } }
+}
+
+/** Right answers in a row; a record from before streaks counts as one if it was more often right than wrong. */
+export const streakOf = (r: GrammarRecord) => r.streak ?? (r.ok > r.wrong ? 1 : 0)
+
+/** Days until a question is due again, by how many times in a row it was answered right (0 = last time wrong). */
+const GRAMMAR_GAPS = [1, 3, 7, 16, 35, 90]
+
+/** When a tried question is due again (ms), or undefined for one never tried. */
+export function grammarDueAt(r: GrammarRecord | undefined): number | undefined {
+  if (!r) return undefined
+  const last = timeOf(r.last)
+  return Number.isFinite(last) ? last + GRAMMAR_GAPS[Math.min(streakOf(r), GRAMMAR_GAPS.length - 1)] * 86_400_000 : undefined
+}
+
+/** The tried questions that are due now, the longest overdue first. */
+export function dueGrammar<T extends { id: string }>(pool: readonly T[], log: GrammarLog, now: Date): T[] {
+  const due = pool.flatMap((e) => {
+    const at = grammarDueAt(log[e.id])
+    return at !== undefined && at <= now.getTime() ? [{ e, at }] : []
+  })
+  return due.sort((a, b) => a.at - b.at).map((d) => d.e)
 }
 
 /** Two devices' logs together: per question, the larger counts and the later try. */
@@ -137,7 +161,13 @@ export function mergeGrammarLogs(a: GrammarLog = {}, b: GrammarLog = {}): Gramma
   const out: GrammarLog = { ...a }
   for (const [id, r] of Object.entries(b)) {
     const had = out[id]
-    out[id] = had ? { ok: Math.max(had.ok, r.ok), wrong: Math.max(had.wrong, r.wrong), last: timeOf(r.last) > timeOf(had.last) ? r.last : had.last } : r
+    if (!had) {
+      out[id] = r
+      continue
+    }
+    // The streak belongs to the later try.
+    const later = timeOf(r.last) > timeOf(had.last) ? r : had
+    out[id] = { ok: Math.max(had.ok, r.ok), wrong: Math.max(had.wrong, r.wrong), last: later.last, ...(later.streak !== undefined && { streak: later.streak }) }
   }
   return out
 }
@@ -193,8 +223,9 @@ export function pickGrammarRound(
   exercises: readonly GrammarExercise[],
   log: GrammarLog,
   rng: () => number,
-  { topic, size = GRAMMAR_ROUND }: { topic?: string; size?: number } = {},
+  { topic, size = GRAMMAR_ROUND, due, now = new Date() }: { topic?: string; size?: number; due?: boolean; now?: Date } = {},
 ): GrammarExercise[] {
+  if (due) return dueGrammar(exercises.filter((e) => !topic || e.topic === topic), log, now).slice(0, size)
   return pickWeighted(
     exercises.filter((e) => !topic || e.topic === topic),
     log,

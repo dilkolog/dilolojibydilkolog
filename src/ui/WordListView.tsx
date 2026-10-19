@@ -530,20 +530,6 @@ export function WordList({
               </label>
               <span className="small muted">Shift + tık: aralık seç</span>
               <span className="grow" />
-              {onPlay && (
-                <button
-                  type="button"
-                  className="btn btn-quiet"
-                  disabled={!selectedVisible.length}
-                  onClick={() => {
-                    presetScope('flashcards', 'all')
-                    onPlay('swipe')
-                  }}
-                  title="Quizlet tarzı 3D kart çevirme ve kaydırma"
-                >
-                  Kartları çevir
-                </button>
-              )}
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
               </button>

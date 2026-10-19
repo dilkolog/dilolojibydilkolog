@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checkGrammar, filled, sentenceTokens, mergeGrammarLogs, pickGrammarRound, recordGrammar, topicStats, type GrammarExercise, type GrammarLog } from '../grammar'
+import { checkGrammar, dueGrammar, filled, grammarDueAt, streakOf, sentenceTokens, mergeGrammarLogs, pickGrammarRound, recordGrammar, topicStats, type GrammarExercise, type GrammarLog } from '../grammar'
 import { createRng } from '../rng'
 
 const ex = (id: string, over: Partial<GrammarExercise> = {}): GrammarExercise => ({
@@ -118,5 +118,50 @@ describe('pickGrammarRound', () => {
   it('gives what there is when the pool is smaller than the round', () => {
     expect(pickGrammarRound(many.slice(0, 3), {}, createRng(1))).toHaveLength(3)
     expect(pickGrammarRound([], {}, createRng(1))).toEqual([])
+  })
+})
+
+describe('grammar questions come back on a schedule', () => {
+  const day = 86_400_000
+  const at = (days: number) => new Date(Date.UTC(2026, 0, 1) + days * day)
+  const pool = [{ id: 'a' }, { id: 'b' }, { id: 'c' }]
+
+  it('a wrong answer is due the next day, and each right answer in a row pushes the next one further out', () => {
+    let log = recordGrammar({}, 'a', false, at(0))
+    expect(grammarDueAt(log.a)).toBe(at(1).getTime())
+    log = recordGrammar(log, 'a', true, at(1))
+    expect(log.a.streak).toBe(1)
+    expect(grammarDueAt(log.a)).toBe(at(4).getTime())
+    log = recordGrammar(log, 'a', true, at(4))
+    expect(grammarDueAt(log.a)).toBe(at(11).getTime())
+    log = recordGrammar(log, 'a', false, at(11))
+    expect(log.a.streak).toBe(0)
+    expect(grammarDueAt(log.a)).toBe(at(12).getTime())
+  })
+
+  it('lists the tried questions that are due, the longest overdue first; never-tried ones are not due', () => {
+    let log = recordGrammar({}, 'a', true, at(0))
+    log = recordGrammar(log, 'b', false, at(0))
+    expect(dueGrammar(pool, log, at(0.5)).map((e) => e.id)).toEqual([])
+    expect(dueGrammar(pool, log, at(2)).map((e) => e.id)).toEqual(['b'])
+    expect(dueGrammar(pool, log, at(5)).map((e) => e.id)).toEqual(['b', 'a'])
+  })
+
+  it('a record from before streaks is read by its counts', () => {
+    expect(streakOf({ ok: 3, wrong: 1, last: at(0).toISOString() })).toBe(1)
+    expect(streakOf({ ok: 1, wrong: 3, last: at(0).toISOString() })).toBe(0)
+  })
+
+  it('merging keeps the streak of the later try', () => {
+    const early = { ok: 1, wrong: 0, last: at(0).toISOString(), streak: 1 }
+    const late = { ok: 1, wrong: 1, last: at(2).toISOString(), streak: 0 }
+    expect(mergeGrammarLogs({ a: early }, { a: late }).a).toMatchObject({ ok: 1, wrong: 1, streak: 0, last: late.last })
+    expect(mergeGrammarLogs({ a: late }, { a: early }).a.streak).toBe(0)
+  })
+
+  it('a round of due questions has only those', () => {
+    const exercises = [{ id: 'a', topic: 't' }, { id: 'b', topic: 't' }] as never[]
+    const log = recordGrammar({}, 'a', false, at(0))
+    expect(pickGrammarRound(exercises, log, () => 0.5, { due: true, now: at(3) }).map((e) => e.id)).toEqual(['a'])
   })
 })

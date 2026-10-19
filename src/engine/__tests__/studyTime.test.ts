@@ -45,4 +45,14 @@ describe('study time', () => {
     expect(goalProgress(30 * 60, 60)).toEqual({ share: 0.5, done: false, leftMinutes: 30 })
     expect(goalProgress(70 * 60, 60)).toMatchObject({ share: 1, done: true, leftMinutes: 0 })
   })
+
+  it('counts speaking next to reading and listening', () => {
+    let log = addTime({}, 'speak', 'fr', '2026-03-10', 90)
+    log = addTime(log, 'read', 'fr', '2026-03-10', 60)
+    const week = weekOf(log, 'fr', new Date(2026, 2, 10, 12))
+    expect(week.speak).toBe(90)
+    expect(week.total).toBe(150)
+    expect(week.days[6].speak).toBe(90)
+    expect(cleanTimeLog({ 'speak|fr|2026-03-10': 90, 'chat|fr|2026-03-10': 5 })).toEqual({ 'speak|fr|2026-03-10': 90 })
+  })
 })

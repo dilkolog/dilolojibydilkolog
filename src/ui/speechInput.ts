@@ -1,5 +1,11 @@
 import type { TargetLanguage } from '../engine/types'
+import { db } from '../data/instance'
 import { SPEECH_LANG } from './labels'
+
+/** Time really spent speaking (from the first sound to the end of speech) goes to the week's reading, listening and speaking time. */
+function spoke(language: TargetLanguage, ms: number) {
+  if (ms >= 1500) void db.addStudyTime('speak', language, ms / 1000).catch(() => {})
+}
 
 /* Minimal typing for the Web Speech API's recognition part (not in TypeScript's DOM lib). */
 interface RecognitionResultList {
@@ -15,6 +21,7 @@ interface Recognition {
   onerror: ((e: { error: string }) => void) | null
   onend: (() => void) | null
   onspeechstart: (() => void) | null
+  onspeechend: (() => void) | null
   onnomatch: (() => void) | null
   start(): void
   stop(): void
@@ -79,8 +86,10 @@ export function listen(language: TargetLanguage, h: ListenHandlers): Listening {
     h.onError?.(NOTHING_HEARD)
     h.onEnd?.()
   }, QUIET_MS)
+  let speechAt = 0
   rec.onspeechstart = () => {
     heardSomething = true
+    speechAt ||= Date.now()
   }
   rec.onresult = (e) => {
     heardSomething = true
@@ -105,6 +114,7 @@ export function listen(language: TargetLanguage, h: ListenHandlers): Listening {
   }
   rec.onend = () => {
     clearTimeout(quiet)
+    if (speechAt) spoke(language, Date.now() - speechAt)
     // Safari can end without ever marking a result final: what it last heard is the answer.
     if (!delivered && !aborted && lastInterim) {
       delivered = true
@@ -143,6 +153,14 @@ export function listenContinuous(language: TargetLanguage, onText: (final: strin
     r.lang = SPEECH_LANG[language]
     r.interimResults = true
     r.continuous = true
+    let speechAt = 0
+    r.onspeechstart = () => {
+      speechAt ||= Date.now()
+    }
+    r.onspeechend = () => {
+      if (speechAt) spoke(language, Date.now() - speechAt)
+      speechAt = 0
+    }
     r.onresult = (e) => {
       let interim = ''
       for (let i = e.resultIndex; i < e.results.length; i++) {
@@ -159,6 +177,8 @@ export function listenContinuous(language: TargetLanguage, onText: (final: strin
       if (e.error !== 'no-speech' && e.error !== 'aborted') onError?.(ERRORS[e.error] ?? 'Konuşma tanınamadı.')
     }
     r.onend = () => {
+      if (speechAt) spoke(language, Date.now() - speechAt)
+      speechAt = 0
       if (!stopped) start()
     }
     r.start()

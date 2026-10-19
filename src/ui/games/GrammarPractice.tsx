@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { GameResult } from './GameResult'
-import { checkGrammar, filled, GRAMMAR_ROUND, pickGrammarRound, sentenceTokens, topicName, topicStats, type GrammarExercise, type GrammarLog, type GrammarVerdict } from '../../engine/grammar'
+import { checkGrammar, dueGrammar, filled, GRAMMAR_ROUND, pickGrammarRound, sentenceTokens, topicName, topicStats, type GrammarExercise, type GrammarLog, type GrammarVerdict } from '../../engine/grammar'
 import { createRng } from '../../engine/rng'
 import type { TargetLanguage } from '../../engine/types'
 import { db } from '../../data/instance'
@@ -44,8 +44,10 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
   const stats = useMemo(() => (log ? topicStats(log, all) : []), [log, all])
   const q = round[index]
 
-  const start = () => {
-    const picked = pickGrammarRound(all, log ?? {}, createRng(Date.now()), { topic })
+  const dueCount = useMemo(() => (log ? dueGrammar(all.filter((e) => !topic || e.topic === topic), log, new Date()).length : 0), [log, all, topic])
+
+  const start = (dueOnly = false) => {
+    const picked = pickGrammarRound(all, log ?? {}, createRng(Date.now()), { topic, due: dueOnly })
     if (!picked.length) return
     setRound(picked)
     setIndex(0)
@@ -123,10 +125,16 @@ export function GrammarPractice({ language, onExit, initialTopic, onLesson }: { 
             ))}
           </div>
           <div className="row">
-            <button className="btn btn-lg" onClick={start} autoFocus disabled={!log || size === 0}>
+            <button className={`btn btn-lg${dueCount ? ' btn-quiet' : ''}`} onClick={() => start()} autoFocus={!dueCount} disabled={!log || size === 0}>
               {size} soruluk tura başla
             </button>
+            {dueCount > 0 && (
+              <button className="btn btn-lg" onClick={() => start(true)} autoFocus>
+                Tekrar zamanı gelen {Math.min(dueCount, GRAMMAR_ROUND)} soru{dueCount > GRAMMAR_ROUND ? ` (${dueCount} bekliyor)` : ''}
+              </button>
+            )}
           </div>
+          {dueCount > 0 && <p className="small muted">Daha önce çözdüğün sorular yanlışsa ertesi gün, doğruysa giderek seyrekleşen aralıklarla (3, 7, 16, 35 gün) yeniden gelir.</p>}
         </div>
       )}
 

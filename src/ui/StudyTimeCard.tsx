@@ -5,8 +5,8 @@ import type { TargetLanguage } from '../engine/types'
 import { dayLabel } from './progressShared'
 
 /**
- * Time spent reading and listening this week (the last seven days), in the language being learned,
- * with an optional weekly goal. Counted only while a text is open and touched, or a recording plays.
+ * Time spent reading, listening and speaking this week (the last seven days), in the language being learned,
+ * with an optional weekly goal. Counted only while a text is open and touched, a recording plays, or the microphone hears speech.
  */
 export function StudyTimeCard({ db, language, goal, onGoal }: { db: KelimeDB; language: TargetLanguage; goal: number | undefined; onGoal: (minutes: number | undefined) => void }) {
   const [log, setLog] = useState<TimeLog | null>(null)
@@ -15,28 +15,29 @@ export function StudyTimeCard({ db, language, goal, onGoal }: { db: KelimeDB; la
   }, [db])
   if (!log) return null
   const week = weekOf(log, language, new Date())
-  const peak = Math.max(60, ...week.days.map((d) => d.read + d.listen))
+  const peak = Math.max(60, ...week.days.map((d) => d.read + d.listen + d.speak))
   const progress = goalProgress(week.total, goal)
-  const summary = week.days.map((d) => `${dayLabel(d.day, { weekday: 'long' })} ${durationText(d.read + d.listen)}`).join(', ')
+  const summary = week.days.map((d) => `${dayLabel(d.day, { weekday: 'long' })} ${durationText(d.read + d.listen + d.speak)}`).join(', ')
   return (
     <section className="section stack" aria-labelledby="study-time-title">
       <h2 id="study-time-title" className="section-title">
-        Okuma ve dinleme süren
+        Okuma, dinleme ve konuşma süren
       </h2>
       {week.total === 0 ? (
-        <p className="small muted">Son 7 günde bu dilde okuma ya da dinleme yok. Bir metin açıp okumaya ya da bir kaydı dinlemeye başlayınca süre burada birikir.</p>
+        <p className="small muted">Son 7 günde bu dilde okuma, dinleme ya da konuşma yok. Bir metin açıp okumaya, bir kaydı dinlemeye ya da sesli cevap vermeye başlayınca süre burada birikir.</p>
       ) : (
         <>
           <p className="time-total">
             <strong>{durationText(week.total)}</strong> <span className="small muted">son 7 gün</span>
           </p>
           <p className="small muted">
-            Okuma {durationText(week.read)} · Dinleme {durationText(week.listen)}
+            Okuma {durationText(week.read)} · Dinleme {durationText(week.listen)} · Konuşma {durationText(week.speak)}
           </p>
           <div className="time-days" role="img" aria-label={summary}>
             {week.days.map((d) => (
               <span key={d.day} className="time-day">
                 <span className="time-bar" aria-hidden>
+                  <span className="time-speak" style={{ height: `${((d.speak / peak) * 100).toFixed(1)}%` }} />
                   <span className="time-listen" style={{ height: `${((d.listen / peak) * 100).toFixed(1)}%` }} />
                   <span className="time-read" style={{ height: `${((d.read / peak) * 100).toFixed(1)}%` }} />
                 </span>
@@ -51,7 +52,7 @@ export function StudyTimeCard({ db, language, goal, onGoal }: { db: KelimeDB; la
       <p className="small muted">Her tam 5 dakika 5 XP kazandırır (günde en çok 30).</p>
       <div className="stack">
         <p className="small">Haftalık hedef</p>
-        <div className="seg-group" role="radiogroup" aria-label="Haftalık okuma ve dinleme hedefi">
+        <div className="seg-group" role="radiogroup" aria-label="Haftalık okuma, dinleme ve konuşma hedefi">
           <button type="button" role="radio" aria-checked={!goal} className="seg-btn" onClick={() => onGoal(undefined)}>
             Yok
           </button>

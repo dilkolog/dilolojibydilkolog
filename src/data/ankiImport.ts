@@ -18,11 +18,13 @@ export class AnkiFileError extends Error {
 type Value = string | number | bigint | null | Uint8Array
 
 class Sqlite {
+  private bytes: Uint8Array
   private view: DataView
   private pageSize: number
   private usable: number
 
-  constructor(private bytes: Uint8Array) {
+  constructor(bytes: Uint8Array) {
+    this.bytes = bytes
     if (bytes.length < 100 || strFromU8(bytes.subarray(0, 15)) !== 'SQLite format 3') throw new AnkiFileError('Anki dosyası okunamadı: veritabanı biçimi tanınmadı.')
     this.view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength)
     const size = this.view.getUint16(16)

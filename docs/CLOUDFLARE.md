@@ -65,3 +65,15 @@ Worker ve istemci hatalarını canlı veya geçmişe dönük izlemek için Cloud
    - `[worker-error]`: `worker/index.ts` içindeki genel try/catch mekanizması tarafından yakalanan sunucu uç noktası hataları (500 Internal Server Error durumları).
    - `[csp-report]`: Tarayıcının Content Security Policy Report-Only ihlallerini `/api/log?csp=1` ucuna gönderdiği raporlar.
 
+
+## Otomatik dağıtım (Workers Builds)
+
+Her dağıtımı elle yapmak yerine Cloudflare, GitHub'daki `main` dalına birleştirme olunca siteyi kendisi derleyip yayınlayabilir (GitHub Actions dakikası harcamaz). Tek seferlik kurulum, sahibi tarafından Cloudflare panelinde yapılır:
+
+1. Cloudflare Dashboard → Workers & Pages → **diloloji** → Settings → **Builds** → *Connect* → GitHub'da `nigalingobydilkolog` deposunu seç, üretim dalı `main`.
+2. **Build command:** `npm ci && node scripts/check-deploy-env.mjs && npm run build:cf`
+3. **Deploy command:** `npx wrangler deploy`
+4. **Build variables and secrets** bölümüne (Worker'ın çalışma zamanı gizlilerinden AYRI bir liste): `VITE_SUPABASE_URL` ve `VITE_SUPABASE_PUBLISHABLE_KEY` (Supabase → Project Settings → API Keys → Publishable key; kopyala düğmesiyle al, eksik karakter olmasın). Ayrıca `NODE_VERSION` = `24`.
+5. Kaydet; sonraki her birleştirme otomatik dağıtılır. Yanlış kopyalanmış bir anahtar `check-deploy-env.mjs` ile derleme aşamasında durdurulur (yayına çıkmaz).
+
+Dağıtımdan sonra canlıyı denetlemek için: `npm run verify:deploy` (ana sayfa, HSTS, canlı paketteki Supabase anahtarı, Supabase'in anahtara cevabı, birkaç uç). `npm run deploy:cf` bunu kendisi de çalıştırır.
