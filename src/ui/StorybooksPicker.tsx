@@ -7,9 +7,9 @@ import { SourceTitle } from './SourceTitle'
 
 
 /**
- * Easy illustrated stories read aloud (Global Storybooks, CC BY), French and Spanish: a picture and
- * a sentence or two a page, with the Turkish of every page. The gentlest start for reading and
- * listening together, before learner news or podcasts.
+ * Easy illustrated stories read aloud (Global Storybooks, CC BY), French, Spanish and English: a
+ * picture and a sentence or two a page, with the Turkish of every page. The gentlest start for
+ * reading and listening together, before learner news or podcasts.
  */
 export function StorybooksPicker({
   language,

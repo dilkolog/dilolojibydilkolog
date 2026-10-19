@@ -1,0 +1,356 @@
+[
+  {
+    "id": "gsb-en-0008",
+    "language": "en",
+    "title": "What did you do?",
+    "level": 1,
+    "words": 27,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0008/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0008/en-0008_what.mp3",
+    "credit": {
+      "writer": "Nina Orange",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "I sing.",
+      "She waves.",
+      "I clap.",
+      "She stretches.",
+      "He calls.",
+      "I answer.",
+      "She listens.",
+      "What did you do?"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0008/09.jpg"
+    ],
+    "turkish": [
+      "Ben şarkı söylüyorum.",
+      "O sallanıyor.",
+      "Ben el çırpıyorum.",
+      "O geriniyor.",
+      "O sesleniyor.",
+      "Ben karşılık veriyorum.",
+      "O dinliyor.",
+      "Sen ne yapıyorsun?"
+    ]
+  },
+  {
+    "id": "gsb-en-0156",
+    "language": "en",
+    "title": "The very hungry crocodile",
+    "level": 1,
+    "words": 34,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0156/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0156/en-0156_hungry.mp3",
+    "credit": {
+      "writer": "Christian G.",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Once upon a time, there was a very hungry crocodile.",
+      "He searched for food quietly and slowly. And then suddenly...",
+      "SNAP! The crocodile attacked!",
+      "After that, his hunger was gone, and he was happy.",
+      "Until he was hungry again."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0156/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0156/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0156/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0156/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0156/06.jpg"
+    ],
+    "turkish": [
+      "Bir zamanlar karnı çok aç bir timsah varmış.",
+      "Sessizce ve yavaşça yiyecek av aramış. Ve sonra aniden…",
+      "Hooopp!!! Timsah saldırısı!",
+      "Ve böylece o artık aç değil ve çok mutlu.",
+      "Tabii karnı tekrar acıkana kadar."
+    ]
+  },
+  {
+    "id": "gsb-en-0087",
+    "language": "en",
+    "title": "I like to read!",
+    "level": 1,
+    "words": 42,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0087/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0087/en-0087_read.mp3",
+    "credit": {
+      "writer": "Letta Machoga",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "I like to read.",
+      "Who can I read to?",
+      "My sister is asleep.",
+      "Who can I read to?",
+      "My mother and grandmother are busy.",
+      "Who can I read to?",
+      "My father and grandfather are busy.",
+      "Who can I read to? I can read to myself!"
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0087/09.jpg"
+    ],
+    "turkish": [
+      "Okumayı seviyorum.",
+      "Kime okuyabilirim?",
+      "Kız kardeşim uyuyor.",
+      "Kime okuyabilirim?",
+      "Annem ve büyükannem meşguller.",
+      "Kime okuyabilirim?",
+      "Babam ve büyükbabam meşguller.",
+      "Kime okuyabilirim? Kendime okuyabilirim!"
+    ]
+  },
+  {
+    "id": "gsb-en-0001",
+    "language": "en",
+    "title": "A very tall man",
+    "level": 2,
+    "words": 70,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0001/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0001/en-0001_tall.mp3",
+    "credit": {
+      "writer": "Cornelius Gulere",
+      "illustrator": "Catherine Groenewald",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "His hoe was too short.",
+      "His doorway was too low.",
+      "His bed was too short.",
+      "His bicycle was too small.",
+      "This man was too tall!",
+      "He made a very long hoe handle.",
+      "He made very high door frames.",
+      "He made a very long bed.",
+      "He bought a very high bicycle.",
+      "He sat on a high chair. He ate with a very long fork.",
+      "He left his house and lived in a big forest. He lived for many years."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0001/12.jpg"
+    ],
+    "turkish": [
+      "Onun çapası çok kısaydı.",
+      "Onun kapı girişi çok alçaktı.",
+      "Onun yatağı çok kısaydı.",
+      "Onun bisikleti çok küçüktü.",
+      "Bu adam çok uzundu!",
+      "Çok uzun bir çapa sapı yaptı.",
+      "Çok uzun bir kapı çerçevesi yaptı.",
+      "Çok uzun bir yatak yaptı.",
+      "Çok yüksek bir bisiklet aldı.",
+      "Çok yüksek bir sandalyede oturdu. Çok uzun bir çatalla yemek yedi.",
+      "Evini terk etti, ve büyük bir ormanda yaşadı. Çok uzun yıllar yaşadı."
+    ]
+  },
+  {
+    "id": "gsb-en-0004",
+    "language": "en",
+    "title": "Goat, Dog and Cow",
+    "level": 2,
+    "words": 140,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0004/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0004/en-0004_goat.mp3",
+    "credit": {
+      "writer": "Fabian Wakholi",
+      "illustrator": "Marleen Visser, Ingrid Schechter",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Goat, Dog and Cow were very good friends. One day they took a journey in a taxi.",
+      "When they reached the end of their journey, the driver asked them to pay their fares. Cow paid her fare.",
+      "Dog paid a little extra, because he did not have the exact fare.",
+      "The driver was about to give Dog his change when Goat ran away without paying anything.",
+      "The driver was very upset. He drove away without giving Dog his change.",
+      "That is why, even today, Dog runs after a car to peep inside and see if he can find the driver who owes him his change.",
+      "Goat runs away from the sound of a car. She is afraid she will be arrested for not paying her fare.",
+      "And Cow is not bothered when a car comes. Cow takes her time to cross the road because she knows she paid her fare in full."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0004/09.jpg"
+    ],
+    "turkish": [
+      "Keçi, Köpek ve İnek çok iyi arkadaşlarmış. Bir gün, taksi ile bir yolculuğa çıkmışlar.",
+      "Yolculuğun sonuna geldiklerinde, taksici onlardan yol ücretini ödemelerini istemiş. İnek kendi parasını ödemiş.",
+      "Köpek kendi parasından biraz fazlasını ödemiş, çünkü bozuk parası yokmuş.",
+      "Keçi hiçbir para ödemeden uzaklaşırken, Taksici tam Köpek’in para üstünü vermek üzereymiş.",
+      "Taksici, bu durumdan çok rahatsız olmuş. Köpek’in parasının üstünü vermeden oradan uzaklaşmış.",
+      "Bu yüzden, bugün bile, Köpek, arabaların içine bakmak ve kendisine borçlu olan taksiciyi bulmak için arabaların peşinden koşar.",
+      "Keçi araba sesinden kaçar. Ücretini ödemediği için tutuklanmaktan korkar.",
+      "Ve İnek arabanın geldiğini görünce hiç rahatsız olmaz. Karşıdan karşıya geçmek için hiç acele etmez. Çünkü o bilir ki, ücretini tam olarak ödemiştir."
+    ]
+  },
+  {
+    "id": "gsb-en-0027",
+    "language": "en",
+    "title": "Decision",
+    "level": 2,
+    "words": 195,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0027/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0027/en-0027_decision.mp3",
+    "credit": {
+      "writer": "Ursula Nafula",
+      "illustrator": "Vusi Malindi",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "pages": [
+      "My village had many problems. We made a long line to fetch water from one tap.",
+      "We waited for food donated by others.",
+      "We locked our houses early because of thieves.",
+      "Many children dropped out of school.",
+      "Young girls worked as maids in other villages.",
+      "Young boys roamed around the village while others worked on people's farms.",
+      "When the wind blew, waste paper hung on trees and fences.",
+      "People were cut by broken glass that was thrown carelessly.",
+      "Then one day, the tap dried up and our containers were empty.",
+      "My father walked from house to house asking people to attend a village meeting.",
+      "People gathered under a big tree and listened.",
+      "My father stood up and said, \"We need to work together to solve our problems.\"",
+      "Eight-year-old Juma sitting on a tree trunk shouted, \"I can help with cleaning up.\"",
+      "One woman said, \"The women can join me to grow food.\"",
+      "Another man stood up and said, \"The men will dig a well.\"",
+      "We all shouted with one voice, \"We must change our lives.\" From that day we worked together to solve our problems."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/07.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/08.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/09.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/10.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/11.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/12.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/13.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/14.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/15.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/16.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0027/17.jpg"
+    ],
+    "turkish": [
+      "Benim köyümün bir sürü problemi vardı. Bir musluktan su doldurmak için uzun bir kuyruk oluştururduk.",
+      "Diğerleri tarafından bağışlanan yiyecek için beklerdik.",
+      "Hırsızlardan dolayı evlerimizi erkenden kilitlerdik.",
+      "Bir sürü çocuk okuldan ayrılırdı.",
+      "Genç kızlar diğer köylerde hizmetçi olarak çalışırdı.",
+      "Diğerleri, insanların çiftliklerinde çalışırlarken, genç oğlanlar köyde aylak aylak dolaşırlardı.",
+      "Rüzgar estiğinde atık kağıtlar ağaçlara ve çitlere takılırdı.",
+      "İnsanlar dikkatsizce atılan kırık camlar yüzünden bir yerlerini keserlerdi.",
+      "Ardından bir gün, musluk kurudu ve bizim kaplarımız boştu.",
+      "Babam evden eve dolaşarak insanları köy toplantısına katılmaları için çağırdı.",
+      "İnsanlar büyük bir ağacın altında toplandılar ve dinlediler.",
+      "Babam ayağa kalktı ve dedi ki “Problemlerimizi çözmek için birlikte çalışmalıyız.”",
+      "Sekiz yaşındaki Juma, bir ağacın dalında oturarak bağırdı, “Ben temizleme de yardım edebilirim.”",
+      "Bir kadın dedi ki “Kadınlar yiyecek yetiştirme de bana katılabilirler.”",
+      "Başka bir adam kalktı ve dedi ki, “Erkekler kuyu açacaklar.”",
+      "Hepimiz bir ağızdan bağırdık, “Hayatlarımızı değiştirmek zorundayız.” O günden itibaren problemlerimizi çözmek için hep birlikte çalıştık."
+    ]
+  },
+  {
+    "id": "gsb-en-0006",
+    "language": "en",
+    "title": "Anansi and wisdom",
+    "level": 3,
+    "words": 280,
+    "url": "https://global-asp.github.io/storybooks-english/stories/en/0006/",
+    "audio": "https://globalstorybooks.net/media/audio/en/0006/en-0006_anansi.mp3",
+    "credit": {
+      "writer": "Ghanaian folktale",
+      "illustrator": "Wiehan de Jager",
+      "reader": "Darcy Bradley"
+    },
+    "license": {
+      "name": "Creative Commons Attribution 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    "pages": [
+      "Long, long ago people didn't know anything. They didn't know how to plant crops, or how to weave cloth, or how to make iron tools. The god Nyame up in the sky had all the wisdom of the world. He kept it safe in a clay pot.",
+      "One day, Nyame decided that he would give the pot of wisdom to Anansi. Every time Anansi looked into the clay pot, he learned something new. It was so exciting!",
+      "Greedy Anansi thought, \"I will keep the pot safe at the top of a tall tree. Then I can have it all for myself!\" He spun a long thread, wound it round the clay pot, and tied it to his stomach. He began to climb the tree. But it was hard to climb the tree with the pot bumping against his knees all the time.",
+      "All the time Anansi's young son had been standing at the bottom of the tree watching. \"Wouldn't it be easier to climb if you tied the pot to your back instead?\" he called out. Anansi tried tying the clay pot full of wisdom to his back, and it really was much easier.",
+      "In no time he reached the top of the tree. But then he stopped and thought, \"I am supposed to be the wise one with all the wisdom, and here my son was wiser than me!\" Anansi was so angry about this that he threw the clay pot down out of the tree.",
+      "It smashed into pieces on the ground. The wisdom was free for everyone to share. And that is how people learned to farm, to weave cloth, to make iron tools, and all the other things that people know how to do."
+    ],
+    "images": [
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0006/02.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0006/03.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0006/04.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0006/05.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0006/06.jpg",
+      "https://raw.githubusercontent.com/global-asp/gsn-imagebank/master/0006/07.jpg"
+    ],
+    "turkish": [
+      "Uzun uzun zaman önce, insanlar hiç bir şey bilmiyorlarmış. Onlar, nasıl ekin yetiştirileceğini, nasıl kumaş dokunacağı, veya nasıl demir eşyalar yapılacağını bilmiyorlarmış. Gökteki Tanrı Nyame, dünya üzerindeki tüm bilgeliğe sahipmiş. Bilgeliği, kil bir kasenin içinde güvenle saklıyormuş.",
+      "Bir gün, Nyame, bilgelik kasesini Anansi’ye vermeye karar vermiş. Anansi kil kasenin içine her bakışında yeni şeyler öğrenmiş. Bu, çok heyecan vericiymiş!",
+      "Açgözlü Anansi, “Ben bu kaseyi büyük bir ağacın en tepesinde güvenle saklarım. Böylece tüm bilgeliğe ben sahip olurum!” diye düşünmüş. Uzun bir ip dokumuş, kil kasenin etrafına sarmış ve kaseyi karnına bağlamış. Ama her seferinde dizlerine çarpan kase ile birlikte ağaca tırmanmak çok zormuş.",
+      "Tüm bu zaman boyunca, Anansi’nin oğlu, ağacın altında babasını izleyerek durmuş. “Eğer kaseyi sırtına bağlarsan tırmanmak daha kolay olmayacak mı?” diye sormuş. Anansi, bilgelik dolu kil kaseyi sırtına bağlamayı denemiş ve gerçekten de kaseyi bu şekilde taşımak çok daha kolaymış.",
+      "Hızlı bir şekilde ağacın tepesine varmış. Ama ardından durmuş ve düşünmüş, “Benim tüm bilgeliğe sahip tek kişi olmam gerekiyordu, ve burada benim oğlum benden daha akıllı.” Anansi bu duruma o kadar çok sinirlenmiş ki, kil kaseyi ağacın tepesinden aşağı atmış.",
+      "Kase yerde parçalara ayrılmış. Bilgelik, herkesin birbiriyle paylaşması için artık serbestmiş. İşte bu, insanların nasıl çiftçilik yapılacağını, kıyafet dokumayı ve demir işlemeyi ve nasıl yapacaklarını bildikleri diğer her şeyi nasıl öğrendiklerinin hikayesidir."
+    ]
+  }
+]
