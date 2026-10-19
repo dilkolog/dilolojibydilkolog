@@ -10,6 +10,7 @@ import { reflexPhrases } from '../../data/reflex'
 import { SpeakerIcon } from '../icons'
 import { LANGUAGE_NAME } from '../labels'
 import { sfx } from '../sounds'
+import { haptics } from '../haptics'
 import { canSpeak, speak } from '../speech'
 
 const note = noteIn(() => db.getReflexLog(), (log) => db.saveReflexLog(log))
@@ -57,8 +58,13 @@ export function ReflexRound({ language, onExit }: { language: TargetLanguage; on
     const ms = Math.round(performance.now() - shownAt.current)
     const inTime = !timed || ms <= REFLEX_SECONDS * 1000
     const ok = given === q.answer && inTime
-    if (ok) sfx.correct()
-    else sfx.wrong()
+    if (ok) {
+      sfx.correct()
+      haptics.success()
+    } else {
+      sfx.wrong()
+      haptics.error()
+    }
     setAnswer({ given, ms })
     setResults((r) => [...r, { q, ok, ms }])
     void note(q.id, ok)
@@ -72,6 +78,7 @@ export function ReflexRound({ language, onExit }: { language: TargetLanguage; on
       return
     }
     sfx.levelUp()
+    haptics.victory()
     setPhase('over')
   }
 
