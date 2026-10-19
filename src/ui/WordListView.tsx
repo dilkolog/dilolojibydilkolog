@@ -28,6 +28,8 @@ import { useCefr } from './useCefr'
 import { cefrOf } from '../engine/cefrLevels'
 import { levelFromRank } from '../engine/wordLevel'
 import { CULL_GROUPS, cullIds } from '../engine/cullGroups'
+import { presetScope } from './studyOptionsStore'
+import type { GameId } from './gameList'
 
 type StageFilter = 'all' | 'waiting' | 'learning' | 'strong' | 'mastered' | 'mistakes' | 'difficult' | 'review'
 type Sort = 'newest' | 'alpha' | 'weakest' | 'strongest' | 'frequent' | 'due'
@@ -87,6 +89,7 @@ export function WordList({
   pictureTick = 0,
   onRemoveSamples,
   listFilter = true,
+  onPlay,
 }: {
   language?: TargetLanguage
   vocabulary: VocabularyEntry[]
@@ -94,6 +97,7 @@ export function WordList({
   mistakes: Mistake[]
   onOpen: (id: string) => void
   onStudy: (entries: VocabularyEntry[]) => void
+  onPlay?: (game: GameId) => void
   onDelete: (ids: string[]) => Promise<void>
   onAdd: () => void
   lists?: WordListRow[]
@@ -493,6 +497,20 @@ export function WordList({
               </label>
               <span className="small muted">Shift + tık: aralık seç</span>
               <span className="grow" />
+              {onPlay && (
+                <button
+                  type="button"
+                  className="btn btn-quiet"
+                  disabled={!selectedVisible.length}
+                  onClick={() => {
+                    presetScope('flashcards', 'all')
+                    onPlay('swipe')
+                  }}
+                  title="Quizlet tarzı 3D kart çevirme ve kaydırma"
+                >
+                  Kartları çevir
+                </button>
+              )}
               <button className="btn btn-quiet" disabled={!selectedVisible.length} onClick={() => onStudy(selectedVisible)}>
                 Seçilenleri çalış
               </button>
@@ -599,9 +617,32 @@ export function WordList({
               <span>
                 {stage === 'difficult' ? <strong>Zor kelimelerin</strong> : tag ? <strong>#{tag}</strong> : inList && inList !== '__none' ? <strong>{placementOptions(lists).find((o) => o.value === inList)?.label}</strong> : 'Filtrelenmiş liste'}: {list.length} kelime
               </span>
-              <button className="btn" onClick={() => onStudy(list)}>
-                Bu listeyi çalış
-              </button>
+              <div className="row wrap gap-2">
+                {onPlay && (
+                  <button
+                    type="button"
+                    className="btn btn-quiet"
+                    onClick={() => {
+                      if (inList && inList !== '__none') {
+                        presetScope('flashcards', 'list', parsePlacement(inList).listId ?? undefined)
+                      } else if (stage === 'difficult') {
+                        presetScope('flashcards', 'hard')
+                      } else if (stage === 'waiting') {
+                        presetScope('flashcards', 'unlearned')
+                      } else {
+                        presetScope('flashcards', 'all')
+                      }
+                      onPlay('swipe')
+                    }}
+                    title="Quizlet tarzı 3D kart çevirme ve kaydırma"
+                  >
+                    Kartları çevir
+                  </button>
+                )}
+                <button className="btn" onClick={() => onStudy(list)}>
+                  Bu listeyi çalış
+                </button>
+              </div>
             </div>
           )}
           {list.length === 0 ? (

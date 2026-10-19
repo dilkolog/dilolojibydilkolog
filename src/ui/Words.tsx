@@ -35,6 +35,8 @@ import { ImageQueue } from './ImageQueue'
 import { WordForm } from './WordForm'
 import { WordList } from './WordListView'
 import { newListId } from './wordListId'
+import { GameIcon } from './GameIcon'
+import { presetScope } from './studyOptionsStore'
 
 export { WordForm }
 
@@ -162,6 +164,7 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
       mistakes={mistakes}
       onOpen={onOpen}
       onStudy={onStudy}
+      onPlay={onPlay}
       onDelete={(ids) => deleteWordsWithUndo(ids, `${ids.length} kelime silindi`, onChanged)}
       onAdd={goAdd}
       lists={lists}
@@ -214,40 +217,67 @@ export function WordsScreen({ db, language, vocabulary, states, mistakes, onChan
           sub={vocabulary.length ? `${vocabulary.length} kelime, ${states.length} tanesi öğreniliyor.` : 'Öğrenmek istediğin kelimeleri ekle; gerisini tekrar takvimi halleder.'}
           action={
             section === 'words' && (
-              <Popover
-                kind="menu"
-                align="end"
-                label="Kelime ekle"
-                buttonClassName="btn"
-                button={
-                  <>
-                    <PlusIcon size={18} /> Ekle
-                  </>
-                }
-              >
-                {(close) => (
-                  <>
-                    <MenuItem
-                      icon={<PlusIcon size={18} />}
-                      title="Tek kelime ekle"
-                      hint="Kelimeyi, anlamını ve bir örnek cümleyi yaz"
-                      onSelect={() => {
-                        close()
-                        goAdd()
-                      }}
-                    />
-                    <MenuItem
-                      icon={<GlobeIcon size={18} />}
-                      title="Birçok kelime ekle"
-                      hint="Liste yapıştır, dosya, Kindle ya da metin"
-                      onSelect={() => {
-                        close()
-                        setSection('import')
-                      }}
-                    />
-                  </>
+              <div className="row gap-2">
+                {onPlay && vocabulary.length > 0 && (
+                  <button
+                    type="button"
+                    className="btn btn-quiet desktop-only"
+                    onClick={() => {
+                      presetScope('flashcards', 'all')
+                      onPlay('swipe')
+                    }}
+                    title="Quizlet tarzı 3D kart çevirme ve kaydırma"
+                  >
+                    Kartlar
+                  </button>
                 )}
-              </Popover>
+                <Popover
+                  kind="menu"
+                  align="end"
+                  label="Kelime ekle"
+                  buttonClassName="btn"
+                  button={
+                    <>
+                      <PlusIcon size={18} /> Ekle
+                    </>
+                  }
+                >
+                  {(close) => (
+                    <>
+                      {onPlay && vocabulary.length > 0 && (
+                        <MenuItem
+                          icon={<GameIcon id="swipe" emoji="👆" size={18} />}
+                          title="Flaş kartları çevir"
+                          hint="Quizlet tarzı 3D kart çevirme ve pratik"
+                          onSelect={() => {
+                            close()
+                            presetScope('flashcards', 'all')
+                            onPlay('swipe')
+                          }}
+                        />
+                      )}
+                      <MenuItem
+                        icon={<PlusIcon size={18} />}
+                        title="Tek kelime ekle"
+                        hint="Kelimeyi, anlamını ve bir örnek cümleyi yaz"
+                        onSelect={() => {
+                          close()
+                          goAdd()
+                        }}
+                      />
+                      <MenuItem
+                        icon={<GlobeIcon size={18} />}
+                        title="Birçok kelime ekle"
+                        hint="Liste yapıştır, dosya, Kindle ya da metin"
+                        onSelect={() => {
+                          close()
+                          setSection('import')
+                        }}
+                      />
+                    </>
+                  )}
+                </Popover>
+              </div>
             )
           }
         />
