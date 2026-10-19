@@ -12,6 +12,7 @@ import { SpeakerIcon } from './icons'
 import { LANGUAGE_NAME } from './labels'
 import { PageHeader } from './PageHeader'
 import { sfx } from './sounds'
+import { haptics } from './haptics'
 import { canSpeak, speak } from './speech'
 import { EmptyState } from './EmptyState'
 
@@ -101,15 +102,25 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
     if (verdict || !text.trim()) return
     const v = gradeSentence({ kind: 'translate', prompt: item.turkish, answer: item.text }, text)
     setVerdict(v)
-    if (v === 'correct') sfx.correct()
-    else if (v === 'near') sfx.near()
-    else sfx.wrong()
+    if (v === 'correct') {
+      sfx.correct()
+      haptics.success()
+    } else if (v === 'near') {
+      sfx.near()
+      haptics.tap()
+    } else {
+      sfx.wrong()
+      haptics.error()
+    }
   }
   const save = async (v: SentenceVerdict) => {
     const now = new Date()
     const card = newSentence({ language, text: item.text, translation: item.turkish, source: 'Geri çeviri' }, scheduler, now)
     await db.saveSentence({ ...card, card: scheduler.review(card.card, RATING[v], now) })
     if (v === 'correct') setRight((r) => r + 1)
+    if (index + 1 >= items.length) {
+      haptics.victory()
+    }
     setIndex((i) => i + 1)
   }
 
