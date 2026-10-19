@@ -18,7 +18,7 @@ type Step = 'login' | 'create' | 'magic' | 'reset' | 'sent' | 'recovery' | 'work
 
 const STEP_ART: Record<Step, string> = {
   login: ACCOUNT_ART.out,
-  create: REACT.hello,
+  create: ACCOUNT_ART.create,
   magic: ACCOUNT_ART.out,
   reset: REACT.forgot,
   sent: ACCOUNT_ART.pending,

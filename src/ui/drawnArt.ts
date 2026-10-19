@@ -77,6 +77,7 @@ import acctDoor from '../assets/art/acct-door.webp'
 import acctWait from '../assets/art/acct-wait.webp'
 import acctOk from '../assets/art/acct-ok.webp'
 import acctNo from '../assets/art/acct-no.webp'
+import actWrite from '../assets/art/act-write.webp'
 import setAccount from '../assets/art/set-account.webp'
 import setStudy from '../assets/art/set-study.webp'
 import setQuestions from '../assets/art/set-questions.webp'
@@ -298,7 +299,7 @@ export const NEW_ART = { guideTeach, guideLearned, guideReview, friendsTogether,
 /** Illustrated kawaii mascots matching the streak flame character: sprout, star, book, check. */
 export const STAT_ART = { sprout: statSprout, star: statStar, book: statBook, flame: streak1, check: statCheck }
 
-export const ACCOUNT_ART = { out: acctDoor, pending: acctWait, approved: acctOk, rejected: acctNo }
+export const ACCOUNT_ART = { out: acctDoor, create: actWrite, pending: acctWait, approved: acctOk, rejected: acctNo }
 
 /** One drawing per settings group (by the group's id). */
 export const SETTINGS_ART: Record<string, string> = {
