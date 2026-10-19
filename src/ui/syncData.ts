@@ -1,5 +1,5 @@
 import type { KelimeDB } from '../data/db'
-import { markMoved, SyncApprovalError, SyncMovedError, syncNow, type Account, type PartStore } from '../data/sync'
+import { markMoved, SyncApprovalError, syncNow, type Account, type PartStore } from '../data/sync'
 
 /**
  * Moves the account's data from the old store to Supabase. False when it cannot yet (Supabase refuses
@@ -8,9 +8,9 @@ import { markMoved, SyncApprovalError, SyncMovedError, syncNow, type Account, ty
 export async function moveToSupabase(db: KelimeDB, account: Account, store: PartStore, refreshApproval?: () => Promise<unknown>): Promise<boolean> {
   try {
     await syncNow(db, account)
-  } catch (e) {
-    // Already moved by another device, or the old store unreachable: what this device holds goes up.
-    if (!(e instanceof SyncMovedError) && !(e instanceof TypeError) && !(e instanceof SyncApprovalError)) throw e
+  } catch {
+    // The old store is a courtesy (the latest of another device that has not moved yet): moved already, unreachable,
+    // refusing, over its limit, whatever it is, what this device holds goes up. A new account has nothing there.
   }
   try {
     await syncNow(db, store)

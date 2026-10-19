@@ -1,6 +1,14 @@
 # Güvenlik
 
-Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13).
+Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13; **2026-10-19 güncellemesi aşağıda**).
+
+## 2026-10-19 güncellemesi (Cloudflare Worker + Supabase girişi)
+- **Şifreleme iddiası değişti.** Supabase eşitlemesinde (`sync_parts`) veri açık jsonb olarak tutulur; yalnızca eski Blob/R2 yolu istemci tarafında şifrelidir. `sync_keys.enc` ve `auth` Supabase'te düz metindir. Servis anahtarına ya da panele erişen veriyi okuyabilir; bu bir tasarım ödünüdür (satır düzeyinde güvenlik kendi satırını korur). Aşağıdaki "uçtan uca şifreli" cümlesi bu yüzden Blob/R2 yolu için geçerlidir.
+- **Hesap şartı sunucuda:** Supabase açıkken `ADMIN_TOKEN` olmasa da kota kullanan uçlar (`translate`, `news`, `listen`, `clips`, `youtube`, `share`, `access` arkadaşlar, `push` mail) geçerli bir eşitleme hesabı ister; `api/sync.ts` ilk yazmayla hesap açmaz (hesap yalnızca `vault-link`le talep edilir).
+- **Hız freni Worker'da zayıf:** `api/_rate.ts` sayacı Worker örneğinin belleğindedir; Cloudflare çok sayıda kısa ömürlü örnek çalıştırır, yani fiilen kesin sınır yoktur. Sert sınır için Cloudflare WAF **Rate Limiting** kuralı (ücretsiz planda 1 kural; öncelik `/api/translate`, `/api/push`, `/api/sync`) ya da Workers Rate Limiting bağlaması gerekir. "Vercel Firewall" önerisi artık geçersiz.
+- **Başlıklar:** statik dosyalara `dist/_headers` (HSTS dahil, `scripts/cf-headers.mjs`), `/api/*` yanıtlarına Worker `x-content-type-options: nosniff` ekler (`worker/index.ts`).
+- **Mail onayı** bağlantıda GET ile değil, sayfadaki düğmeyle POST ile yapılır; onay bekleyen adres bir saat silinemez (mail bombası freni).
+- **Açık kalanlar:** CSP hâlâ yalnızca rapor modunda (`connect-src https:`), Supabase'te kişi başı kota/medya sınırı yok, tek yönlü takiple arkadaşlara hediye/metin gönderilebiliyor (engelleme yok).
 
 ## Var olanlar
 - **Eşitleme uçtan uca şifreli:** veri cihazda şifrelenir; sunucu (`api/sync.ts`, özel Vercel Blob) yalnızca opak bayt saklar. Hesaplı girişte erişim belirteci denetlenir; günlük geri yükleme noktaları.
@@ -10,7 +18,7 @@ Kişisel bir uygulama için durum ve yapılacaklar (2026-10-13).
 - **XSS yüzeyi küçük:** `dangerouslySetInnerHTML` yok; React metni kaçışlar.
 - **Bağımlılıklar ve sır taraması:** `npm run security` (= `npm run scan:secrets` + `npm run audit:deps`). Sır taraması izlenen dosyalarda anahtar biçimli dizgi arar (`scripts/scan-secrets.mjs`; 2026-10-13: dosyalarda ve bütün git geçmişinde bulgu yok); `npm audit --omit=dev --audit-level=high` 0 açık. CI'da `npm run typecheck:ext`ten sonra çalışır; Actions kotası dolu olduğu için şimdilik yerelde: **her PR öncesi ve ayda en az bir kez** `npm run security`.
 - **Hız freni (`api/_rate.ts`):** herkese açık uçlarda adres başına dakikada sınır: `log` 60, `access` okuma 120 / başvuru 10, `share` okuma 120 / yazma 30, `push` 60, `sync` yazma 240; aşınca 429. Sayaç çalışan işlev örneğinin belleğindedir: patlama ve betiklere karşı bir fren, kesin genel kota değildir (örnekler gelip gider, birden çok örnek çalışabilir). Sert sınır için aşağıdaki Vercel Firewall kuralı hâlâ geçerli. Adres hiçbir yere yazılmaz.
-- **HSTS:** Vercel ekliyor.
+- **HSTS:** Vercel ekliyordu; Cloudflare'de `_headers` ile ekleniyor (yukarıdaki güncelleme).
 
 ## Başlıklar (`vercel.json`, #—)
 | Başlık | Ne yapar |
