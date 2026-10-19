@@ -28,6 +28,7 @@ import { NEW_ART, STAT_ART, TILE_ART } from './drawnArt'
 import { Sticker } from './Sticker'
 import { DayMark, FocusLine, LevelStrip, QuestIcon } from './HomeParts'
 import { useWeather } from '../data/weather'
+import { MonologueCard } from './MonologueCard'
 
 const REASON_CHIP: Record<PlanReason, (n: number) => string> = {
   forgotten: (n) => `${n} unutulmak üzere`,
@@ -493,6 +494,7 @@ export function Home({
         {/* One suggestion at a time (a habit, a word looked up, gains, the week, a backup): the first that has something to say. */}
         <div className="home-nudges">{extra}</div>
         {garden?.urgent && garden.node}
+        <MonologueCard language={language} />
 
         {(openMistakeWords > 0 || weekMisses >= WEEK_MISSES_MIN || difficultCount > 0 || !!sentenceTile || (remaining === 0 && (canPractice || onGames || (!!nextReview && !!onEarlyReview))) || onStory || onMixed || (formsDue > 0 && onForms) || (!!warmup && onWarmup) || (!!verbOfDay && onVerbOfDay)) && (
           <section className="section stack">

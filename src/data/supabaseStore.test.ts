@@ -28,6 +28,10 @@ const { moveToSupabase } = await import('../ui/syncData')
 const { KelimeDB } = await import('./db')
 const { createEntry } = await import('./wordInput')
 
+/** A real U+0000 anywhere in a value (strings and keys): what Postgres jsonb refuses. */
+const hasNul = (v: unknown): boolean =>
+  typeof v === 'string' ? v.includes('\u0000') : Array.isArray(v) ? v.some(hasNul) : !!v && typeof v === 'object' && Object.entries(v).some(([k, x]) => k.includes('\u0000') || hasNul(x))
+
 /**
  * A small Supabase: the `sync_parts` rows (what put_sync_part does, with its version check and the
  * day's restore point), the "media" bucket, and a switch for the owner's approval.
@@ -66,6 +70,8 @@ function fakeSupabase(opts: { tables?: boolean } = {}) {
     from: query,
     rpc: async (_fn: string, a: { p_name: string; p_data: unknown; p_expect: number | null; p_create: boolean }) => {
       if (!state.approved) return { error: { code: '42501', message: 'approval required' } }
+      // Postgres jsonb: "unsupported Unicode escape sequence" for U+0000 in a string or key.
+      if (hasNul(a.p_data)) return { error: { code: '22P05', message: 'unsupported Unicode escape sequence' } }
       if (a.p_name === 'core') {
         state.corePuts++
         const hook = state.beforeCorePut
@@ -161,6 +167,14 @@ describe('syncing through Supabase', () => {
     await expect(store.put('ev-2026-10', data, { createOnly: true })).rejects.toBeInstanceOf(SyncConflictError)
     await expect(store.put('ev-2026-10', data, { ifMatch: '7' })).rejects.toBeInstanceOf(SyncConflictError)
     expect(await store.put('ev-2026-10', data, { ifMatch: '1' })).toBe(data.length)
+  })
+
+  it('drops U+0000 (which jsonb refuses) from strings and keys, and keeps a typed backslash-u0000', async () => {
+    const sb = fakeSupabase()
+    const store = supabaseStore(sb.client, USER)
+    const text = JSON.stringify({ texts: [{ title: 'PDF\u0000 sayfa', body: 'a\u0000b', note: 'yazdım: \\u0000' }], ['k\u0000ey']: 1 })
+    await store.put('core', new TextEncoder().encode(text) as Uint8Array<ArrayBuffer>)
+    expect(sb.rows.get('core')!.data).toEqual({ texts: [{ title: 'PDF sayfa', body: 'ab', note: 'yazdım: \\u0000' }], key: 1 })
   })
 })
 

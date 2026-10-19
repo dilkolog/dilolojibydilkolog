@@ -44,6 +44,7 @@ export const GAME_ART: Partial<Record<GameId, string>> = {
   flow: paragraph,
   register: chat,
   traps: mask,
+  confusables: swap,
   affix: magnifier,
   diagram: picture,
   grammar: puzzle,

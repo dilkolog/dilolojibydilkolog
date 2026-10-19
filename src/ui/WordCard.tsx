@@ -1,5 +1,5 @@
 import { PhraseBuilder } from './PhraseBuilder'
-import type { CSSProperties, ReactNode } from 'react'
+import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
 import { WordPopExtras } from './WordPopExtras'
 import { SentenceTranslation } from './TranslateButton'
 import { PlayIcon, CloseIcon, TagIcon } from './icons'
@@ -46,6 +46,7 @@ export function WordCard({
   canListenFrom,
   canPinHeard,
   rating,
+  deduceMode,
   onClose,
   onLookUp,
   onOpen,
@@ -76,6 +77,8 @@ export function WordCard({
   canPinHeard?: boolean
   /** Deduction mode: asks how close the guess was; sits in the card so the bottom sheet does not cover it. */
   rating?: ReactNode
+  /** When true, masks the meaning initially to prompt context-based guessing */
+  deduceMode?: boolean
   onClose: () => void
   onLookUp?: (word: string) => void
   onOpen: (entryId: string) => void
@@ -91,6 +94,11 @@ export function WordCard({
   onKnown: (key: string) => void
   onSkip: (key: string) => void
 }) {
+  const [revealed, setRevealed] = useState(!deduceMode)
+  useEffect(() => {
+    setRevealed(!deduceMode)
+  }, [selected.token.key, deduceMode])
+
   return (
     <section className="card stack word-pop" aria-live="polite" style={{ ...(sheetBox ? ({ '--sheet-left': `${sheetBox.left}px`, '--sheet-w': `${sheetBox.width}px` } as CSSProperties) : {}), ...(sheet.dy ? { transform: `translateY(${sheet.dy}px)`, transition: 'none' } : {}) }}>
       {/* On a narrow screen this card is a bottom sheet: the head stays put while the rest scrolls, and a pull on it closes the sheet. */}
@@ -105,8 +113,29 @@ export function WordCard({
           </button>
         </div>
       </div>
-      {selectedEntry && <p className="gloss word-pop-gloss">{selectedEntry.senses[0].gloss}</p>}
-      <WordPopExtras language={language} lemma={selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language)} entry={selectedEntry ?? undefined} />
+      {deduceMode && !revealed ? (
+        <div className="card-deduction-prompt note stack">
+          <div className="row between">
+            <strong className="deduction-title">🧠 Bağlamdan Çıkarım</strong>
+            <span className="small muted">Zihinsel Egzersiz</span>
+          </div>
+          <p className="small">
+            Doğrudan anlama bakmadan önce cümledeki ipuçlarını kullanarak bu kelimenin ne anlama gelebileceğini zihninde tart.
+          </p>
+          <button
+            type="button"
+            className="btn btn-sm btn-quiet"
+            onClick={() => setRevealed(true)}
+          >
+            Tahmin ettim, anlamı göster
+          </button>
+        </div>
+      ) : (
+        <>
+          {selectedEntry && <p className="gloss word-pop-gloss">{selectedEntry.senses[0].gloss}</p>}
+          <WordPopExtras language={language} lemma={selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language)} entry={selectedEntry ?? undefined} />
+        </>
+      )}
       {onLookUp && (
         <p className="small">
           <button className="link small" onClick={() => onLookUp(selectedEntry?.lemma ?? selectedForms[0]?.lemma ?? cleanToken(selected.token.text, language).toLocaleLowerCase(language))}>
@@ -165,7 +194,9 @@ export function WordCard({
         <AskMonki variant="link" label="Monki açıklasın" ask={() => sentenceAsk(selected.sentence, cleanToken(selected.token.text, language))} />
       </p>
       <PhraseBuilder key={`${selected.sentence}|${selected.token.text}`} sentence={selected.sentence} word={cleanToken(selected.token.text, language)} language={language} onAdd={onAdd} />
-      <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />
+      {(!deduceMode || revealed) && (
+        <SentenceTranslation key={selected.sentence} sentence={selected.sentence} from={language} />
+      )}
       {canListenFrom && selected.at && (
         <button
           type="button"
