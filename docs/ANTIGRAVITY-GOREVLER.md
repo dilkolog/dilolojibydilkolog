@@ -640,7 +640,7 @@ Dosyalar: yeni `src/ui/settings/HelpSettings.tsx`, `src/ui/SettingsScreen.tsx` (
 - Hata sınırlarına aynı destek bağlantısı (ham `error.message` kalsın, altına "Sürerse bize yaz" bağlantısı).
 - `DESIGN.md` bileşenlerini kullan; telefon + koyu tema ekran görüntüsü; a11y testi.
 
-### 16.7 CSP zorunlu moda geçiş raporu (B10)
+### 16.7 CSP zorunlu moda geçiş raporu (B10) — TAMAMLANDI (#519)
 Çıktı: `docs/veri/csp-gecis.md` (kod değiştirme). `vercel.json` ve `scripts/cf-headers.mjs` başlıklarını oku; `script-src` hash'lerinin derlemede nasıl üretilebileceğini, `connect-src`'nin açık listesini (kodda kullanılan her dış adres) ve report-only'den zorunluya adım adım planı yaz.
 
 **Tur sonu ölçütü:** 16.1–16.3 ve 16.5–16.6 birleşmiş; 16.4 ve 16.7 raporları yazılmış; hepsinde yerel doğrulama yeşil.
