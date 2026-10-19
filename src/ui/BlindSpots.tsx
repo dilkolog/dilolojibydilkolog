@@ -8,6 +8,7 @@ import { trapWords } from '../data/traps'
 import { lessonFor } from '../data/guide/lessonOf'
 import { TENSE_LESSON } from '../data/tenseLesson'
 import type { Tense } from '../engine/tenses'
+import { writingRows } from '../engine/writingErrors'
 import { PlayIcon, TargetIcon } from './icons'
 
 const hasLesson = (language: TargetLanguage, l: { topic?: string; tense?: string }) => (l.topic ? !!lessonFor(language, l.topic) : language !== 'en' && !!l.tense && !!TENSE_LESSON[l.tense as Tense])
@@ -33,7 +34,7 @@ export function BlindSpotsCard({
   useEffect(() => {
     let live = true
     void (async () => {
-      const [lab, grammar, pairs, traps, reflex, register, ear] = await Promise.all([
+      const [lab, grammar, pairs, traps, reflex, register, ear, writing] = await Promise.all([
         language === 'en' ? Promise.resolve(undefined) : db.getLab(language),
         db.getGrammarLog(),
         db.getPairLog(),
@@ -41,9 +42,10 @@ export function BlindSpotsCard({
         db.getReflexLog(),
         db.getRegisterLog(),
         db.getEarLog(),
+        db.getWritingLog(),
       ])
       const earMissed = Object.values(ear[language] ?? {}).filter(stillMissed).length
-      return blindSpots({ language, errors, lab, grammar, grammarExercises: grammarExercises(language), pairs, traps, trapWords, reflex, register, earMissed })
+      return blindSpots({ language, errors, lab, grammar, grammarExercises: grammarExercises(language), pairs, traps, trapWords, reflex, register, earMissed, writing: writingRows(writing, language) })
     })()
       .then((s) => live && setSpots(s))
       .catch(() => live && setSpots([]))

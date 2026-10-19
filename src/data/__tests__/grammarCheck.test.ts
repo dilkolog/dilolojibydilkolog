@@ -118,4 +118,16 @@ describe('grammarCheck', () => {
     expect(issues[2].replacements).toHaveLength(4)
     expect(issues[2].replacements).not.toContain('extra_ignored')
   })
+  it('carries the checker\'s rule and category ids along, so a finding can be sorted into a kind of mistake', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        json: async () => ({ matches: [{ offset: 0, length: 2, message: 'm', replacements: [{ value: 'an' }], rule: { id: 'EN_A_VS_AN', issueType: 'grammar', category: { id: 'GRAMMAR' } } }] }),
+      }),
+    )
+    const [issue] = await checkGrammar('a apple', 'en')
+    expect(issue).toMatchObject({ kind: 'grammar', ruleId: 'EN_A_VS_AN', category: 'GRAMMAR' })
+  })
 })

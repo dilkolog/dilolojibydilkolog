@@ -640,6 +640,16 @@ test('new games and insight cards pass accessibility check across dark and calm 
             'fr-attendre': { ok: 0, wrong: 2, last: new Date().toISOString() },
           },
         })
+        // The writing error notebook (İlerleme → Yazı hata defterim).
+        tx.objectStore('meta').put({
+          key: 'writingErrors',
+          value: {
+            fr: {
+              agreement: { n: 5, last: new Date().toISOString().slice(0, 10), samples: [{ wrong: 'la problème', fix: 'le problème' }], seen: [] },
+              preposition: { n: 2, last: new Date().toISOString().slice(0, 10), samples: [{ wrong: 'penser de', fix: 'penser à' }], seen: [] },
+            },
+          },
+        })
         tx.oncomplete = () => resolve()
       }
     })
@@ -648,6 +658,8 @@ test('new games and insight cards pass accessibility check across dark and calm 
   await openScreen(page, 'İlerleme')
   const blindSpotsSection = page.locator('.blind-spots')
   await expect(blindSpotsSection).toBeVisible()
+  await expect(page.locator('.writing-notebook')).toBeVisible()
+  await expect(page.locator('.writing-notebook')).toContainText('Uyum')
   for (const theme of ['dark', 'calm'] as const) {
     await setTheme(theme)
     problems.push(...(await scan(page, `blind-spots-${theme}`)))

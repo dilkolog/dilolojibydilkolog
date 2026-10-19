@@ -3,6 +3,7 @@ import { blindSpots, type BlindSpotInput } from '../blindSpots'
 import type { GrammarExercise, GrammarLog } from '../grammar'
 import { MINIMAL_PAIRS, pairKey } from '../listening'
 import type { TrapWord } from '../traps'
+import type { WritingRow } from '../writingErrors'
 
 const NOW = '2026-10-10T10:00:00Z'
 const rec = (ok: number, wrong: number) => ({ ok, wrong, last: NOW })
@@ -91,5 +92,27 @@ describe('blindSpots', () => {
     expect(spots).toHaveLength(3)
     expect(spots[0].score).toBeGreaterThanOrEqual(spots[1].score)
     expect(spots[1].score).toBeGreaterThanOrEqual(spots[2].score)
+  })
+})
+
+describe('blindSpots: the learner\'s own writing', () => {
+  const row = (kind: WritingRow['kind'], n: number, wrong = 'la problème', fix = 'le problème'): WritingRow => ({ kind, n, last: '2026-10-10', samples: [{ wrong, fix }], seen: [] })
+
+  it('names the kind of mistake that keeps coming back, with an example and the practice for it', () => {
+    const [spot] = blindSpots(base({ writing: [row('agreement', 9), row('verb', 3)] }))
+    expect(spot).toMatchObject({ id: 'writing:agreement', target: 'grammar', lesson: { topic: 'basics_fr_adjectifs' } })
+    expect(spot.title).toContain('Uyum')
+    expect(spot.detail).toContain('9 kez')
+    expect(spot.detail).toContain('“la problème” → “le problème”')
+  })
+
+  it('says nothing for a few findings, or when no kind stands out', () => {
+    expect(blindSpots(base({ writing: [row('agreement', 3)] }))).toEqual([])
+    expect(blindSpots(base({ writing: [row('agreement', 4), row('verb', 4), row('preposition', 4), row('article', 4), row('confusion', 4)] }))).toEqual([])
+  })
+
+  it('does not count punctuation, and skips a kind with no practice (spelling)', () => {
+    expect(blindSpots(base({ writing: [row('punctuation', 30), row('agreement', 4)] }))[0]?.id).toBe('writing:agreement')
+    expect(blindSpots(base({ writing: [row('spelling', 20)] }))).toEqual([])
   })
 })

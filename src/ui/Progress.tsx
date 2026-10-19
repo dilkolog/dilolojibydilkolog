@@ -13,6 +13,7 @@ import { KnownWordsCard } from './KnownWords'
 import { ErrorReportCard } from './ErrorReport'
 import { EarMissesCard } from './EarMisses'
 import { BlindSpotsCard } from './BlindSpots'
+import { WritingNotebook } from './WritingNotebook'
 import type { RepairTarget } from '../engine/blindSpots'
 import { YearCalendar } from './YearCalendar'
 import { BestHoursCard } from './BestHours'
@@ -151,6 +152,7 @@ export function ProgressScreen({
       {isOpen('p-overview') && (
         <section className="section stack span-2 overview-grid">
           {onRepair && <BlindSpotsCard language={language} errors={errorsByType} onRepair={onRepair} onLesson={onLesson} />}
+          {onRepair && <WritingNotebook language={language} onRepair={onRepair} onLesson={onLesson} />}
           <KnownWordsCard db={db} language={language} vocabulary={vocabulary} states={states} />
           <FrequencyCoverageCard db={db} language={language} vocabulary={vocabulary} states={states} />
           <div className="hero-stat card">

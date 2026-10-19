@@ -18,7 +18,7 @@ interface Match {
   length: number
   message: string
   replacements: { value: string }[]
-  rule: { issueType?: string; category?: { id?: string } }
+  rule: { id?: string; issueType?: string; category?: { id?: string } }
 }
 
 const kindOf = (m: Match): GrammarIssue['kind'] =>
@@ -43,5 +43,7 @@ export async function checkGrammar(text: string, language: TargetLanguage): Prom
     message: m.message,
     replacements: m.replacements.slice(0, 4).map((r) => r.value),
     kind: kindOf(m),
+    ruleId: m.rule.id,
+    category: m.rule.category?.id,
   }))
 }
