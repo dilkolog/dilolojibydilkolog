@@ -1,5 +1,6 @@
 import { allowedIds } from './_allow.js'
 import { accountOf, requireApproved, sha256, StorageError } from './_account.js'
+import { landingPage } from './_mailLayout.js'
 import { confirmMail, EMAIL, mailConfigured, sendMail, siteFrom, usingSandboxSender, APP_URL } from './_mail.js'
 import { overLimit, tooMany } from './_rate.js'
 import { blobPath, reminderStore } from './_reminders.js'
@@ -113,10 +114,10 @@ export const mailRecordKey = (key: string) => `mail-${key}`
 export const mailPath = (key: string) => blobPath(mailRecordKey(key))
 
 const page = (title: string, text: string, status = 200, site = APP_URL, extra = '') =>
-  new Response(
-    `<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:30rem;margin:15vh auto;padding:0 1.5rem;color:#1f2933"><h1 style="font-size:1.3rem">${title}</h1><p>${text}</p>${extra}<p><a href="${site}">Diloloji'ye dön</a></p></body></html>`,
-    { status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } },
-  )
+  new Response(landingPage({ title, text, extra, site, mascot: status === 404 ? 'think' : title === 'Onaylandı' ? 'cheer' : 'wave' }), {
+    status,
+    headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
+  })
 
 /** `<key>.<token>`: the link in a mail finds its record and proves it was sent to its owner. */
 const tokenParts = (raw: string | null) => {
@@ -140,7 +141,7 @@ async function handleGet(request: Request): Promise<Response> {
   if (confirm) {
     // Opening the link only shows the button: mail scanners and link previews open every link in a mail, and a
     // GET that confirmed would confirm an address its owner never saw. The confirmation is the button's POST.
-    return page('Hatırlatma maillerini aç', 'Bu adrese günlük hatırlatma mailleri gelsin mi? Onaylamak için düğmeye dokun.', 200, here, `<form method="post" action="/api/push?c=${link.key}.${link.token}"><button type="submit" style="font:inherit;font-weight:600;padding:.7rem 1.4rem;border:0;border-radius:999px;background:#2f6f5e;color:#fff;cursor:pointer">Onaylıyorum</button></form>`)
+    return page('Hatırlatma maillerini aç', 'Bu adrese günlük hatırlatma mailleri gelsin mi? Onaylamak için düğmeye dokun.', 200, here, `<form method="post" action="/api/push?c=${link.key}.${link.token}"><button type="submit" class="go">Onaylıyorum</button></form>`)
   }
   await store.remove(mailRecordKey(link.key))
   return page('Hatırlatmalar kapatıldı', 'Bu adrese artık mail göndermeyeceğiz ve adresin silindi.', 200, here)

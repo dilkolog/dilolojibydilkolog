@@ -2,7 +2,7 @@ import { accessStatus, accountOf, approvalOn, claimAccount, clearAccessCache, ID
 import { addFriend, clearInbox, friendsOf, inboxOf, normalizeCode, publishCard, removeFriend, sendToFriend } from './_friends.js'
 import { friendMessage, pushToOwner } from './_notify.js'
 import { fromApp } from './_origin.js'
-import { deleteAccountData } from './_deleteAccount.js'
+import { deleteAccountData, timed } from './_deleteAccount.js'
 import { deleteSupabaseMedia, deleteSupabaseUser, ensureProfile, mirrorApproval, saveVault, supabaseOn, supabaseUser, vaultOf } from './_supabase.js'
 import { overLimit, tooMany } from './_rate.js'
 
@@ -149,11 +149,16 @@ async function accountDelete(request: Request): Promise<Response> {
     if (request.headers.has('authorization') && !user) return json({ error: 'signed_out' }, 401)
     const id = user ? ((await vaultOf(user.id))?.id ?? null) : await accountOf(request)
     if (!user && !id) return json({ error: 'account_required' }, 403)
-    const removed = id ? await deleteAccountData(id) : 0
-    if (user) {
-      await deleteSupabaseMedia(user.id).catch(() => undefined)
-      await deleteSupabaseUser(user.id)
-    }
+    // The server's stores and the person's Supabase files are separate: they go side by side. The person themselves
+    // go last, so a failure before that leaves the account to try again (nothing is orphaned without its sign-in).
+    const steps: Record<string, number> = {}
+    const [removed] = await Promise.all([
+      id ? timed(steps, 'data', () => deleteAccountData(id, steps)) : Promise.resolve(0),
+      user ? timed(steps, 'media', () => deleteSupabaseMedia(user.id).catch(() => undefined)) : Promise.resolve(),
+    ])
+    if (user) await timed(steps, 'user', () => deleteSupabaseUser(user.id))
+    // Where the time went, in the Worker's logs: a slow deletion names its slow step.
+    console.log('[account-delete]', JSON.stringify(steps))
     return json({ ok: true, removed })
   } catch (e) {
     if (e instanceof StorageError) return json({ error: 'storage unavailable' }, 502)

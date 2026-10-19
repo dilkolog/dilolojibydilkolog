@@ -3,6 +3,7 @@
  * "Diloloji <hatirlatma@your-domain>" once a domain is verified there; until then Resend's sandbox
  * sender only delivers to the account's own address). Without the key the mail reminders are off.
  */
+import { button, escapeHtml, fallbackLink, mailLayout, paragraph, strong } from './_mailLayout.js'
 import { extraHosts } from './_origin.js'
 
 export const APP_URL = (process.env.APP_URL?.trim() || 'https://diloloji.com').replace(/\/$/, '')
@@ -46,37 +47,19 @@ export interface Mail {
   unsubscribe?: string
 }
 
-const escapeHtml = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!)
-
-const BRAND = '#2f6f5e'
-const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
-
-/**
- * One calm card on a warm background: a wordmark (text, no images: pictures are blocked by default and
- * count against a sender), a short preview line for the inbox list, the content, then a footer that says
- * why the mail came. Tables and inline styles, because mail clients ignore most of the rest.
- */
-function layout(preheader: string, body: string, footer: string): string {
-  const hidden = `<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;font-size:1px;line-height:1px">${escapeHtml(preheader)}${'&nbsp;&zwnj;'.repeat(40)}</div>`
-  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark"><title>Diloloji</title></head><body style="margin:0;padding:0;background:#f4f1ea">${hidden}<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f1ea"><tr><td align="center" style="padding:28px 14px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px"><tr><td style="padding:0 4px 14px;font-family:${FONT};font-size:18px;font-weight:700;color:${BRAND};letter-spacing:.2px"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${BRAND};margin-right:8px"></span>Diloloji</td></tr><tr><td style="background:#ffffff;border-radius:16px;padding:28px 26px;font-family:${FONT};color:#1f2933;font-size:16px;line-height:1.55;border:1px solid #e6e1d6">${body}</td></tr><tr><td style="padding:16px 8px 0;font-family:${FONT};font-size:12px;line-height:1.5;color:#6b7280">${footer}</td></tr></table></td></tr></table></body></html>`
-}
-
-const heading = (text: string) => `<h1 style="margin:0 0 10px;font-size:22px;line-height:1.25;color:#14201c">${escapeHtml(text)}</h1>`
-
-/** A button that survives mail clients (a table cell carries the colour), with the plain address under it. */
-const button = (href: string, label: string) =>
-  `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:22px 0 6px"><tr><td bgcolor="${BRAND}" style="border-radius:12px"><a href="${escapeHtml(href)}" style="display:inline-block;padding:13px 24px;font-family:${FONT};font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:12px">${escapeHtml(label)}</a></td></tr></table><p style="margin:10px 0 0;font-size:12px;line-height:1.5;color:#6b7280">Düğme çalışmazsa bu adresi tarayıcına yapıştır:<br><a href="${escapeHtml(href)}" style="color:#6b7280;word-break:break-all">${escapeHtml(href)}</a></p>`
-
 /** The first mail to an address: nothing more is sent until its link is opened. */
 export function confirmMail(to: string, confirmUrl: string, cancelUrl: string): Mail {
   return {
     to,
     subject: 'Diloloji hatırlatmalarını onayla',
-    html: layout(
-      'Tek dokunuşla onayla; onaylamazsan mail gelmez.',
-      `${heading('Hatırlatma maillerini onayla')}<p style="margin:0">Diloloji'de <strong>${escapeHtml(to)}</strong> adresine günlük çalışma hatırlatması gönderilmesini istedin. Onaylarsan, o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir.</p>${button(confirmUrl, 'Onayla')}`,
-      `Bunu sen istemediysen hiçbir şey yapma: onaylamadıkça mail gelmez. İstersen <a href="${escapeHtml(cancelUrl)}" style="color:#6b7280">adresini şimdi sil</a>.<br>Diloloji · kelime öğrenme uygulaması`,
-    ),
+    html: mailLayout({
+      preheader: 'Tek dokunuşla onayla; onaylamazsan mail gelmez.',
+      title: 'Hatırlatma maillerini onayla',
+      mascot: 'wave',
+      body: `${paragraph(`Diloloji'de ${strong(escapeHtml(to))} adresine günlük çalışma hatırlatması gönderilmesini istedin. Onaylarsan, o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir.`)}${button(confirmUrl, 'Onayla')}${fallbackLink(confirmUrl)}`,
+      footer: `Bunu sen istemediysen hiçbir şey yapma: onaylamadıkça mail gelmez. İstersen <a class="m-link" href="${escapeHtml(cancelUrl)}" style="color:#57677e;text-decoration:underline">adresini şimdi sil</a>.`,
+      site: APP_URL,
+    }),
     text: `Hatırlatma maillerini onayla\n\nDiloloji'de ${to} adresine günlük çalışma hatırlatması gönderilmesini istedin. Onaylarsan, o gün çalışmadıysan seçtiğin saatte kısa bir hatırlatma gelir.\n\nOnaylamak için: ${confirmUrl}\n\nBunu sen istemediysen hiçbir şey yapma: onaylamadıkça mail gelmez. Adresini silmek için: ${cancelUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
     unsubscribe: cancelUrl,
   }
@@ -87,11 +70,14 @@ export function reminderMail(to: string, line: string, unsubscribeUrl: string, s
   return {
     to,
     subject: 'Diloloji: bugünkü çalışman seni bekliyor',
-    html: layout(
-      line,
-      `${heading('Bugünkü çalışman seni bekliyor')}<p style="margin:0">${escapeHtml(line)}</p>${button(`${site}/?go=quick`, 'Hızlı tekrara başla')}`,
-      `Bu mailleri sen istedin (Ayarlar → Hatırlatıcı). <a href="${escapeHtml(unsubscribeUrl)}" style="color:#6b7280">Hatırlatmaları kapat</a>.<br>Diloloji · kelime öğrenme uygulaması`,
-    ),
+    html: mailLayout({
+      preheader: line,
+      title: 'Bugünkü çalışman seni bekliyor',
+      mascot: 'cheer',
+      body: `${paragraph(escapeHtml(line))}${button(`${site}/?go=quick`, 'Hızlı tekrara başla')}`,
+      footer: `Bu mailleri sen istedin (Ayarlar → Hatırlatıcı). <a class="m-link" href="${escapeHtml(unsubscribeUrl)}" style="color:#57677e;text-decoration:underline">Hatırlatmaları kapat</a>.`,
+      site,
+    }),
     text: `Bugünkü çalışman seni bekliyor\n\n${line}\n\nBaşla: ${site}/?go=quick\n\nBu mailleri sen istedin (Ayarlar → Hatırlatıcı). Kapatmak için: ${unsubscribeUrl}\n\nDiloloji · kelime öğrenme uygulaması`,
     unsubscribe: unsubscribeUrl,
   }

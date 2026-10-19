@@ -29,6 +29,9 @@ Telefon ve iki adımlı doğrulama Diloloji'de kullanılmıyor; şablonları yin
 
 Notlar:
 - `{{ .ConfirmationURL }}`, `{{ .Email }}`, `{{ .NewEmail }}`, `{{ .OldEmail }}`, `{{ .Provider }}`, `{{ .FactorType }}`, `{{ .Token }}` Supabase'in kendi değişkenleri; olduğu gibi kalmalı.
-- Tasarım uygulamanın hatırlatma mailleriyle aynı (`api/_mail.ts`): resimsiz, tablo tabanlı tek kart. Resim yok, çünkü mail uygulamaları resimleri varsayılan olarak engeller ve spam puanını düşürür.
+- **Bu dosyalar elle yazılmaz, üretilir.** Kaynak `api/_mailTemplates.ts` (metinler) ve `api/_mailLayout.ts` (görünüm; uygulamanın hatırlatma mailleri de aynısını kullanır). Değiştirdikten sonra `WRITE_MAIL_TEMPLATES=1 npx vitest run src/data/mailTemplates.test.ts` dosyaları yeniden yazar; test, dosyalar kaynaktan farklıysa düşer.
+- Tasarım `DESIGN.md`'yi izler: slate-100 zemin, beyaz kart, üstte üç dil renginin ince şeridi, dokunsal düğme (koyu alt kenar), logonun çivit rengi, Monki. Koyu tema `prefers-color-scheme` ile (Apple Mail, Outlook.com); Gmail renkleri kendi yöntemiyle çevirir.
+- **Resimler `diloloji.com/mail/` altından gelir** (`public/mail/logo.png`, `monki-wave|cheer|think.png`; küçük PNG, çünkü Outlook WebP açmaz). Bunlar siteyle birlikte dağıtılır: şablonları Supabase'e yapıştırmadan önce site dağıtılmış olmalı. Resim engellenirse mail yine okunur (ad metin).
+- Uzun doğrulama adresi mailde yazılmaz; düğmenin altında "Bağlantıyı tarayıcında aç" kısa bağlantısı olarak durur (adres yalnızca `href`te).
 - Konu satırlarında emoji ve büyük harf yok (spam filtreleri sever).
 - GitHub'da dosyayı açıp **Raw**'a basarsan içeriği kolayca kopyalarsın.
