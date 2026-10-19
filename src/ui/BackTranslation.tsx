@@ -5,7 +5,7 @@ import { loadBackItems } from '../data/backItems'
 import { BACK_ROUND, loopItems, type BackItem } from '../engine/backTranslation'
 import { gradeSentence, newSentence, type SentenceVerdict } from '../engine/sentences'
 import type { TargetLanguage } from '../engine/types'
-import { wordDiff } from '../engine/wordDiff'
+import { twoWayDiff } from '../engine/wordDiff'
 import { AccentBar } from './AccentBar'
 import { accentChange, insertAt } from './accentCaret'
 import { SpeakerIcon } from './icons'
@@ -175,18 +175,60 @@ export function BackTranslation({ language, onExit }: { language: TargetLanguage
       ) : (
         <section className={`card stack sentence-result is-${verdict}`}>
           <strong>{verdict === 'correct' ? 'Doğru!' : 'Örnek çeviri'}</strong>
-          <p className="dictation-diff" lang={language}>
-            {(text.trim() ? wordDiff(text, item.text) : item.text.split(' ').map((w) => ({ word: w, status: 'missed' as const }))).map((p, i) => (
-              <span key={i} className={`dd-${p.status}`}>
-                {p.word}{' '}
-              </span>
-            ))}
-            {canSpeak() && (
-              <button type="button" className="icon-btn icon-btn-sm" aria-label="Dinle" onClick={() => speak(item.text, language)}>
-                <SpeakerIcon size={15} />
-              </button>
-            )}
-          </p>
+          {verdict === 'correct' ? (
+            <p className="dictation-diff" lang={language}>
+              {item.text}{' '}
+              {canSpeak() && (
+                <button type="button" className="icon-btn icon-btn-sm" aria-label="Dinle" onClick={() => speak(item.text, language)}>
+                  <SpeakerIcon size={15} />
+                </button>
+              )}
+            </p>
+          ) : (() => {
+            const diff = twoWayDiff(text.trim(), item.text)
+            return diff.user.length > 0 ? (
+              <div className="back-diff-view">
+                <div className="back-diff-block">
+                  <span className="back-diff-label">Senin yazdığın:</span>
+                  <p className="dictation-diff back-diff-user" lang={language}>
+                    {diff.user.map((p, i) => (
+                      <span key={i} className={`dd-${p.status}`}>
+                        {p.word}{' '}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+                <div className="back-diff-block">
+                  <span className="back-diff-label">Orijinal metin:</span>
+                  <p className="dictation-diff" lang={language}>
+                    {diff.expected.map((p, i) => (
+                      <span key={i} className={`dd-${p.status}`}>
+                        {p.word}{' '}
+                      </span>
+                    ))}
+                    {canSpeak() && (
+                      <button type="button" className="icon-btn icon-btn-sm" aria-label="Dinle" onClick={() => speak(item.text, language)}>
+                        <SpeakerIcon size={15} />
+                      </button>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <p className="dictation-diff" lang={language}>
+                {diff.expected.map((p, i) => (
+                  <span key={i} className={`dd-${p.status}`}>
+                    {p.word}{' '}
+                  </span>
+                ))}
+                {canSpeak() && (
+                  <button type="button" className="icon-btn icon-btn-sm" aria-label="Dinle" onClick={() => speak(item.text, language)}>
+                    <SpeakerIcon size={15} />
+                  </button>
+                )}
+              </p>
+            )
+          })()}
           {verdict === 'correct' ? (
             <div className="row">
               <button className="btn" onClick={() => save('correct')} autoFocus>

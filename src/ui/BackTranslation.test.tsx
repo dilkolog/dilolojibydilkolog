@@ -45,11 +45,20 @@ describe('BackTranslation loop', () => {
     expect(host.querySelector('.prompt-text')?.textContent).toBe('Yarın erken yola çıkıyoruz.')
   })
 
-  it('has no loop switch while everything is fresh', async () => {
-    await db.saveTranslations([{ text: 'Nous partons tôt demain.', translation: 'Yarın erken yola çıkıyoruz.', from: 'fr', to: 'tr', at: ago(1) }])
+  it('renders split diff view when user submits an imperfect translation', async () => {
     const host = await mount()
-    expect(host.textContent).toContain('1 / 1')
-    expect(host.querySelector('.chip')).toBeNull()
-    expect(host.textContent).not.toContain('döngü')
+    const input = host.querySelector<HTMLInputElement>('input.answer-input')!
+    await act(async () => {
+      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set
+      setter?.call(input, 'Le chat dort')
+      input.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    const checkBtn = [...host.querySelectorAll<HTMLButtonElement>('button')].find((b) => b.textContent?.includes('Kontrol et'))!
+    await act(async () => checkBtn.click())
+
+    expect(host.querySelector('.back-diff-view')).not.toBeNull()
+    expect(host.querySelector('.back-diff-user')?.textContent).toContain('Le chat dort')
+    const missed = [...host.querySelectorAll('.sentence-result .dd-missed')].map((el) => el.textContent?.trim())
+    expect(missed).toEqual(['sur', 'le', 'canapé.'])
   })
 })
