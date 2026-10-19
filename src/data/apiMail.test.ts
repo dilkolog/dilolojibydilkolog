@@ -33,6 +33,8 @@ const EMAIL = 'ali@example.com'
 const state = { tz: -180, streak: 3, due: 12, hour: 20, studiedDay: null, reportedDay: '2026-10-07', plan: 'DELF B2 <script>', week: 'x' }
 const post = (body: unknown, headers: Record<string, string> = {}) => POST(new Request('https://app.test/api/push', { method: 'POST', headers, body: JSON.stringify(body) }))
 const get = (qs: string) => GET(new Request(`https://app.test/api/push?${qs}`))
+// The mail's confirmation link only opens a page with a button; the button's POST confirms (scanners open every link of a mail).
+const confirmWith = (token: string) => POST(new Request(`https://app.test/api/push?c=${token}`, { method: 'POST' }))
 const stored = async (email = EMAIL) => JSON.parse(blobs.get(mailPath(await mailKey(email)))!) as PushRecord
 const linkOf = (text: string, param: 'c' | 'u') => text.match(new RegExp(`/api/push\\?${param}=([0-9a-f.]+)`))![1]
 
@@ -171,7 +173,12 @@ describe('the links in the mails', () => {
     // A different last character (the random token may itself end in 0).
     expect((await get(`c=${token.slice(0, -1)}${token.endsWith('0') ? '1' : '0'}`)).status).toBe(404)
     expect((await stored()).confirmed).toBe(false)
-    const res = await get(`c=${token}`)
+    const opened = await get(`c=${token}`)
+    expect(opened.status).toBe(200)
+    expect(await opened.text()).toContain('<form method="post"')
+    expect((await stored()).confirmed).toBe(false)
+    expect((await confirmWith(`${token.slice(0, -1)}${token.endsWith('0') ? '1' : '0'}`)).status).toBe(404)
+    const res = await confirmWith(token)
     expect(res.status).toBe(200)
     expect(res.headers.get('content-type')).toContain('text/html')
     expect((await stored()).confirmed).toBe(true)
@@ -204,7 +211,7 @@ describe('the daily mail', () => {
   const register = async (email: string, over: Record<string, unknown> = {}, confirm = true) => {
     mails.length = 0
     await post({ action: 'email', email, ...state, ...over })
-    if (confirm) await get(`c=${linkOf(mails[0].text, 'c')}`)
+    if (confirm) await confirmWith(linkOf(mails[0].text, 'c'))
     mails.length = 0
   }
 
@@ -226,7 +233,7 @@ describe('the daily mail', () => {
   it('keeps to the site the address was registered from: the button and the unsubscribe link', async () => {
     mails.length = 0
     await post({ action: 'email', email: EMAIL, ...state, studiedDay: '2026-10-06' }, { origin: 'https://diloloji.com' })
-    await get(`c=${linkOf(mails[0].text, 'c')}`)
+    await confirmWith(linkOf(mails[0].text, 'c'))
     mails.length = 0
     await run()
     expect(mails[0].text).toContain('Başla: https://diloloji.com/?go=quick')

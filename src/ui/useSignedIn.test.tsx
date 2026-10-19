@@ -4,6 +4,7 @@ import { act, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ACCOUNT_EVENT } from '../data/access'
+import { whileSigningIn } from './signInGate'
 
 const state = { configured: true, session: true, account: null as unknown }
 
@@ -70,6 +71,35 @@ describe('useSignedIn', () => {
     act(() => void window.dispatchEvent(new Event(ACCOUNT_EVENT)))
     await wait()
     expect(seen).toBe(false)
+  })
+
+  it('stays closed while a sign-in completes (account set, first sync running), then opens', async () => {
+    await mount()
+    expect(seen).toBe(false)
+    let finish!: () => void
+    const running = whileSigningIn(() => new Promise<void>((r) => (finish = r)))
+    // The account is set on this device before the sync is done: the gate must not open on that.
+    state.account = { id: 'a' }
+    act(() => void window.dispatchEvent(new Event(ACCOUNT_EVENT)))
+    await wait()
+    expect(seen).toBe(false)
+    finish()
+    await act(async () => void (await running))
+    await wait()
+    expect(seen).toBe(true)
+  })
+
+  it('a device already in the app is not sent back to sign-in by a sign-in completing', async () => {
+    state.account = { id: 'a' }
+    await mount()
+    expect(seen).toBe(true)
+    let finish!: () => void
+    const running = whileSigningIn(() => new Promise<void>((r) => (finish = r)))
+    act(() => void window.dispatchEvent(new Event(ACCOUNT_EVENT)))
+    await wait()
+    expect(seen).toBe(true)
+    finish()
+    await act(async () => void (await running))
   })
 
   it('asks for nothing without Supabase (development, tests)', async () => {

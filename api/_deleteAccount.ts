@@ -16,7 +16,7 @@ async function deletePrefix(prefix: string): Promise<number> {
   return removed
 }
 
-/** The account's mail-reminder records (their `owner` is the account), so no reminder goes out after it is gone. */
+/** The account's reminder records, mail and push (their `owner` is the account), so no reminder goes out after it is gone. */
 async function deleteOwnMail(id: string): Promise<number> {
   // Both places: an account deleted soon after the move must leave nothing behind in either.
   const stores = (await tablesOn()) ? [blobReminders, tableReminders] : [blobReminders]
@@ -25,6 +25,11 @@ async function deleteOwnMail(id: string): Promise<number> {
     const keys = await store.mailsOf(id)
     for (const key of keys) await store.remove(key)
     removed += keys.length
+    // The devices that registered for push reminders with this account (their notifications would keep coming).
+    // Best effort: a store that cannot list them must not stop the deletion of everything else.
+    const devices = await store.byOwner(id).catch(() => [])
+    for (const { key } of devices) await store.remove(key)
+    removed += devices.length
   }
   return removed
 }

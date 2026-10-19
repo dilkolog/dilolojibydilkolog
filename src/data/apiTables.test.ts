@@ -217,8 +217,11 @@ describe('server data in Supabase tables', () => {
     await adminPost({ action: 'move-tables' })
     const key = 'd'.repeat(40)
     tables.reminders!.push({ key: `mail-${key}`, kind: 'mail', owner: ALI, email: 'ali@example.com', confirmed: false, record: { email: 'ali@example.com', owner: ALI, token: 'e'.repeat(24), tz: 0, studiedDay: null, streak: 0, plan: '', group: ALI } })
+    // The link only shows a button; the button's POST confirms.
     const page = await push.GET(new Request(`https://app.test/api/push?c=${key}.${'e'.repeat(24)}`))
     expect(page.status).toBe(200)
+    expect((tables.reminders![0]!.record as { confirmed?: boolean }).confirmed).toBeUndefined()
+    expect((await push.POST(new Request(`https://app.test/api/push?c=${key}.${'e'.repeat(24)}`, { method: 'POST' }))).status).toBe(200)
     expect((tables.reminders![0]!.record as { confirmed?: boolean }).confirmed).toBe(true)
 
     await friendsPost(ALI_P, { action: 'friends-publish', ...card })

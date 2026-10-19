@@ -86,6 +86,19 @@ export async function disablePush(): Promise<void> {
   await sub.unsubscribe()
 }
 
+/**
+ * Takes this device's record off the server without unsubscribing it (signing out): the next person to sign in
+ * here registers it again with their own account, and the one who left no longer gets their reminders.
+ */
+export async function forgetPushRecord(): Promise<void> {
+  try {
+    const sub = await pushSubscription()
+    if (sub) await fetch('/api/push', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'remove', endpoint: sub.endpoint }) })
+  } catch {
+    // Offline or no push here: nothing to take off.
+  }
+}
+
 /** Tells the server what today looks like, so a learner who has studied isn't reminded. Silent on failure. */
 export async function reportPushState(state: PushState): Promise<void> {
   try {

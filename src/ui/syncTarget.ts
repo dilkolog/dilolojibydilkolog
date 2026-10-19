@@ -16,7 +16,12 @@ const STORE_KEY = 'syncStore'
 export async function syncTarget(cred: Credential): Promise<Credential | PartStore> {
   if (typeof cred === 'string' || !hasStoredSession()) return cred
   const session = await currentSession().catch(() => null)
-  if (!session) return cred
+  if (!session) {
+    // Already syncing with Supabase but no session right now (offline, a token refresh failing): the old store is not
+    // the place to write to, it would fork the data. The sync fails this time and a later one finds the session.
+    if ((await db.meta.get(STORE_KEY))?.value) throw new Error('Supabase session unavailable')
+    return cred
+  }
   const { supabaseStore, probeStore } = await import('../data/supabaseStore')
   const client = await supabase()
   const store = supabaseStore(client, session.user.id)

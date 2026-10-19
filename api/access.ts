@@ -97,7 +97,11 @@ async function vaultGet(request: Request): Promise<Response> {
   try {
     const account = await vaultOf(user.id)
     // The owner may have approved the sync account the old way: the profile follows, so its data may be written.
-    if (account) await mirrorApproval(account.id, await accessStatus(account.id).catch(() => 'none' as const))
+    if (account) {
+      // A storage hiccup must not read as "not approved": the profile is only written when the status was really read.
+      const status = await accessStatus(account.id).catch(() => null)
+      if (status) await mirrorApproval(account.id, status)
+    }
     return json({ account })
   } catch {
     return json({ error: 'supabase unavailable' }, 502)

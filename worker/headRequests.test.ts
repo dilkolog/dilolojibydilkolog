@@ -14,6 +14,12 @@ describe('HEAD requests to the API (uptime monitors ask this way)', () => {
     expect(head.headers.get('content-type')).toBe(get.headers.get('content-type'))
   })
 
+  it('API answers carry nosniff (the assets layer adds nothing to them)', async () => {
+    expect((await call('GET', '/api/push?mail=status')).headers.get('x-content-type-options')).toBe('nosniff')
+    expect((await call('HEAD', '/api/push?mail=status')).headers.get('x-content-type-options')).toBe('nosniff')
+    expect((await call('PUT', '/api/push')).headers.get('x-content-type-options')).toBe('nosniff')
+  })
+
   it('a path with no GET handler still refuses HEAD, and POST-only methods stay as they were', async () => {
     expect((await call('PUT', '/api/push')).status).toBe(405)
     expect((await call('HEAD', '/api/nothing')).status).toBe(404)

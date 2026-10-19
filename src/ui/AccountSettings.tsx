@@ -62,6 +62,8 @@ export function AccountSettings({ onOpenAuth }: { onOpenAuth?: (mode: AuthMode) 
 
   const signOut = async () => {
     const previous = await getAccount()
+    // This device's push reminders belong to the account that leaves: its record goes, the device stays subscribed.
+    void import('./pushReminders').then((m) => m.forgetPushRecord())
     await setAccount(null)
     void refresh()
     if (identity) {

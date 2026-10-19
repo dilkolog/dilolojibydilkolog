@@ -27,6 +27,17 @@ interface Env {
 type Handler = (request: Request) => Response | Promise<Response>
 type Module = Partial<Record<'GET' | 'POST' | 'PUT' | 'DELETE', Handler>>
 
+/**
+ * What an API answer carries beyond its handler's: the headers the assets layer adds to the app's files do not
+ * reach /api/* (the Worker answers those), and the confirmation page of the mail reminders is HTML.
+ * `bodyless`: a HEAD answer (the handler's GET without its body).
+ */
+function hardened(res: Response, bodyless: boolean): Response {
+  const headers = new Headers(res.headers)
+  headers.set('x-content-type-options', 'nosniff')
+  return new Response(bodyless ? null : res.body, { status: res.status, statusText: res.statusText, headers })
+}
+
 const ROUTES: Record<string, Module> = { access, admin, clips, 'cron-reminder': cron, listen, log, news, push, share, sync, translate, youtube }
 
 export default {
@@ -40,10 +51,10 @@ export default {
     // HEAD is GET without the body (uptime monitors and link checkers ask that way).
     const head = request.method === 'HEAD' && !!route.GET
     const handler = head ? route.GET : route[request.method as keyof Module]
-    if (!handler) return new Response('method not allowed', { status: 405, headers: { allow: Object.keys(route).join(', ') } })
+    if (!handler) return hardened(new Response('method not allowed', { status: 405, headers: { allow: Object.keys(route).join(', ') } }), false)
     try {
       const res = await handler(request)
-      return head ? new Response(null, { status: res.status, headers: res.headers }) : res
+      return hardened(res, head)
     } catch (e) {
       console.error('[worker-error]', pathname, e)
       return new Response('server error', { status: 500 })
@@ -57,7 +68,13 @@ export default {
     const request = new Request(`https://cron.invalid/api/cron-reminder?h=${hour}`, { headers: { authorization: `Bearer ${env.CRON_SECRET ?? ''}` } })
     ctx.waitUntil(
       cron.GET(request).then(async (res) => {
-        console.log('[cron-reminder]', res.status, await res.text())
+        const text = await res.text()
+        // A refused or failed run is a failed invocation (Cloudflare lists it and can alert), not a quiet "ok".
+        if (!res.ok) {
+          console.error('[cron-reminder-failed]', res.status, text)
+          throw new Error(`cron-reminder ${res.status}`)
+        }
+        console.log('[cron-reminder]', res.status, text)
       }),
     )
   },
